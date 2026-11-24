@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "group": "quadrature-controls",
+  "edition": "2026-11-25",
+  "verified_on": "2026-11-25",
+  "source_manifest_sha256": "7742ff5dd15bd7b848464e4ada267e7d861825f961ea0e15a982be46e2b8708e",
+  "archive": {
+    "file": "atlas-quadrature-controls-2026-11-25.zip",
+    "sha256": "843f8394607db82a40af99a34785cce4f22e0f26f3b85d2375f121bcc9ebd6f4",
+    "bytes": 1656773,
+    "archive_directory": "atlas-quadrature-controls-2026-11-25"
+  },
+  "archive_sha256": "843f8394607db82a40af99a34785cce4f22e0f26f3b85d2375f121bcc9ebd6f4",
+  "returncode": 0,
+  "passed_tests": 30,
+  "tests": 30,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "gk15-double-exponential",
+    "quadpack-domain-selection",
+    "tensor-smolyak-dimensions"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 0.8353004579985281,
+  "independent_rerun_seconds": 0.7271985830011545,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "status": "PRE_EXECUTION_SOURCE_REVIEW_CANDIDATE",
+  "q78": {
+    "specialized_absolute_error_factor": 20.0,
+    "specialized_no_message": true,
+    "specialized_cycle_flags_zero": true,
+    "relative_tolerance": 0.0
+  },
+  "q79": {
+    "g7_degree": 13,
+    "k15_degree": 23,
+    "moment_absolute_tolerance": 2e-13,
+    "successful_gk_error_factor": 20.0,
+    "de_finest_absolute_error": 1e-09,
+    "relative_tolerance": 0.0
+  },
+  "q80": {
+    "normalization_scaled_tolerance": 5e-13,
+    "assembly_scaled_tolerance": 1e-12,
+    "smooth_tensor_finest_error": 1e-10,
+    "smooth_sparse_finest_error": 1e-06,
+    "interaction_absolute_error": 2e-13,
+    "interaction_unresolved_rule": "For sparse L<d keep the actual nonzero target error and accuracy_goal_met false. Algebraic A_L=0 is a separate underresolution-control check, not an accuracy pass."
+  },
+  "reference": {
+    "precision_agreement_scaled": "1e-60",
+    "point_interval_width_scaled": "1e-60",
+    "gaussian_finite_width": "bounded by the explicit continuous-tail enclosure; not a point oracle",
+    "independent_rounding": "Directed Decimal interval operations plus explicitly bounded alternating/Taylor remainders, not precision agreement alone",
+    "expected_checks": 188,
+    "expected_targets": 30
+  },
+  "result_termination": "completed_fixed_protocol",
+  "failure_policy": "Any mandatory structural/reference/required accuracy check false makes the case false. Row study outcomes and baseline estimated-convergence flags are retained separately; no fixed-false reporting mask. No postmeasurement relaxation."
+}

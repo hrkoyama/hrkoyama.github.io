@@ -1,0 +1,22 @@
+{
+  "value": 1.7182818284590453,
+  "estimated_error": 1.9076760487502457e-14,
+  "raw_error": 2.220446049250313e-16,
+  "converged": true,
+  "termination": "estimated_tolerance",
+  "evaluations": 15,
+  "panels": [
+    {
+      "value": 1.7182818284590453,
+      "estimated_error": 1.9076760487502457e-14,
+      "raw_error": 2.220446049250313e-16,
+      "resabs": 1.7182818284590453,
+      "resasc": 0.42510107368358596,
+      "evaluations": 15,
+      "left": 0.0,
+      "right": 1.0,
+      "depth": 0,
+      "serial": 0
+    }
+  ]
+}

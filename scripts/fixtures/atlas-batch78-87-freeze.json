@@ -1,0 +1,3647 @@
+{
+  "schema_version": 1,
+  "status": "ROOT_REVIEWED_ACTUAL_CANONICAL_FREEZE",
+  "source_base_commit": "35e34ae130d47cc43445765b88e99c0c556c38bb",
+  "baseline_sha256": "af74ae58975c6b978bec5a425927ce05c0d894ed5c325443dc452ee7ec6df653",
+  "expected_new_groups": {
+    "quadrature-controls": [
+      "quadpack-domain-selection",
+      "gk15-double-exponential",
+      "tensor-smolyak-dimensions"
+    ],
+    "approximation-controls": [
+      "runge-barycentric-clenshaw",
+      "spline-shape-controls",
+      "haar-mallat-boundary-threshold"
+    ],
+    "small-models": [
+      "pinn-poisson",
+      "fno-periodic-heat",
+      "enzyme-qssa",
+      "lotka-volterra",
+      "seir-linearization"
+    ]
+  },
+  "new_method_ids": [
+    "gauss-kronrod",
+    "tanh-sinh",
+    "smolyak-sparse-grid",
+    "pchip"
+  ],
+  "promotions": [
+    "splines",
+    "chebyshev",
+    "wavelets",
+    "pinn-operators"
+  ],
+  "canonical_packets": {
+    "quadrature-controls": {
+      "base": "code/validated-examples/2026-11-25/quadrature-controls/",
+      "edition": "2026-11-25",
+      "tests": 30,
+      "case_ids": [
+        "quadpack-domain-selection",
+        "gk15-double-exponential",
+        "tensor-smolyak-dimensions"
+      ],
+      "verification_sha256": "cfc7e98903ca8dcc5b11245f15d94b6711aa5ab7992ec29b2c9b291552b85e08",
+      "manifest_sha256": "7742ff5dd15bd7b848464e4ada267e7d861825f961ea0e15a982be46e2b8708e",
+      "archive_file": "atlas-quadrature-controls-2026-11-25.zip",
+      "archive_bytes": 1656773,
+      "archive_sha256": "843f8394607db82a40af99a34785cce4f22e0f26f3b85d2375f121bcc9ebd6f4",
+      "input_sha256": "256fb2326fe3c907ac1a0b5131bf86d55b024e7c49cdac30ff23db1250c868d1",
+      "case_records": {
+        "quadpack-domain-selection": 30,
+        "gk15-double-exponential": 33,
+        "tensor-smolyak-dimensions": 42
+      }
+    },
+    "approximation-controls": {
+      "base": "code/validated-examples/2026-11-25/approximation-controls/",
+      "edition": "2026-11-25",
+      "tests": 32,
+      "case_ids": [
+        "runge-barycentric-clenshaw",
+        "spline-shape-controls",
+        "haar-mallat-boundary-threshold"
+      ],
+      "verification_sha256": "4a492b3d14bd72ead4daa18b68d791fb9b58cc49c426b87c30ebf2b0d439f7ab",
+      "manifest_sha256": "42ed019623f85764b60e8599f22fd4dcc130ac3eadb71e36553a029ddc31f084",
+      "archive_file": "atlas-approximation-controls-2026-11-25.zip",
+      "archive_bytes": 3027782,
+      "archive_sha256": "7dbadeb591e3329965c2ab5aa7f6025e5d8c18a438b7264460370ad64bdaf053",
+      "input_sha256": "1b25d6d4161e19c1208819b010042eb568f68549e513a14a500884f630745217",
+      "case_records": {
+        "runge-barycentric-clenshaw": 12,
+        "spline-shape-controls": 9,
+        "haar-mallat-boundary-threshold": 36
+      }
+    },
+    "small-models": {
+      "base": "code/validated-examples/2026-11-25/small-models/",
+      "edition": "2026-11-25",
+      "tests": 25,
+      "case_ids": [
+        "pinn-poisson",
+        "fno-periodic-heat",
+        "enzyme-qssa",
+        "lotka-volterra",
+        "seir-linearization"
+      ],
+      "verification_sha256": "a134ed7650c468598c7222c994e2ae49a87c4584264269747c4bc2141a115145",
+      "manifest_sha256": "20f3e16af0c6684b77e5a132e6d2ccd26f82de14203fdd9474d9bb4866e5914c",
+      "archive_file": "atlas-small-models-2026-11-25.zip",
+      "archive_bytes": 3591299,
+      "archive_sha256": "d341b8a90e0b6ade7c70760a2c32a9f3825a6b4e162b221c7cc95b10f3cd40c1",
+      "input_sha256": "9dc5d9527e3e36d1de06e82c386ff4375292392a6ba9e23ac09885693c1c524d",
+      "case_records": {
+        "pinn-poisson": 6,
+        "fno-periodic-heat": 2,
+        "enzyme-qssa": 6,
+        "lotka-volterra": 3,
+        "seir-linearization": 6
+      }
+    }
+  },
+  "case_problem_ids": {
+    "quadpack-domain-selection": "quadpack-domain-selection",
+    "gk15-double-exponential": "gk15-double-exponential",
+    "tensor-smolyak-dimensions": "tensor-smolyak-dimensions",
+    "runge-barycentric-clenshaw": "runge-barycentric-clenshaw",
+    "spline-shape-controls": "spline-shape-controls",
+    "haar-mallat-boundary-threshold": "haar-mallat-boundary-threshold",
+    "pinn-poisson": "poisson-1d-dirichlet",
+    "fno-periodic-heat": "heat-periodic",
+    "enzyme-qssa": "enzyme-qssa",
+    "lotka-volterra": "lotka-volterra",
+    "seir-linearization": "seir-linearization"
+  },
+  "case_models": {
+    "quadpack-domain-selection": [
+      "definite-integrals"
+    ],
+    "gk15-double-exponential": [
+      "definite-integrals"
+    ],
+    "tensor-smolyak-dimensions": [
+      "definite-integrals"
+    ],
+    "runge-barycentric-clenshaw": [
+      "polynomial-interpolation"
+    ],
+    "spline-shape-controls": [
+      "cubic-spline-pchip"
+    ],
+    "haar-mallat-boundary-threshold": [
+      "discrete-haar-transform"
+    ],
+    "pinn-poisson": [
+      "poisson-laplace"
+    ],
+    "fno-periodic-heat": [
+      "heat"
+    ],
+    "enzyme-qssa": [
+      "bio-enzyme"
+    ],
+    "lotka-volterra": [
+      "bio-lotka-volterra"
+    ],
+    "seir-linearization": [
+      "seir-compartment"
+    ]
+  },
+  "reference_geometry": {
+    "quadpack-domain-selection": {
+      "dimension": null,
+      "domain_kind": "finite-dimensional-algebra",
+      "bounds": []
+    },
+    "gk15-double-exponential": {
+      "dimension": 1,
+      "domain_kind": null,
+      "bounds": [
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    "tensor-smolyak-dimensions": {
+      "dimension": null,
+      "domain_kind": "finite-dimensional-algebra",
+      "bounds": []
+    },
+    "runge-barycentric-clenshaw": {
+      "dimension": 1,
+      "domain_kind": null,
+      "bounds": [
+        [
+          -1,
+          1
+        ]
+      ]
+    },
+    "spline-shape-controls": {
+      "dimension": 1,
+      "domain_kind": null,
+      "bounds": [
+        [
+          0,
+          5
+        ]
+      ]
+    },
+    "haar-mallat-boundary-threshold": {
+      "dimension": null,
+      "domain_kind": "finite-dimensional-algebra",
+      "bounds": []
+    },
+    "pinn-poisson": {
+      "dimension": 1,
+      "domain_kind": null,
+      "bounds": [
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    "fno-periodic-heat": {
+      "dimension": 1,
+      "domain_kind": null,
+      "bounds": [
+        [
+          0,
+          6.283185307179586
+        ]
+      ]
+    },
+    "enzyme-qssa": {
+      "dimension": null,
+      "domain_kind": "finite-dimensional-ivp",
+      "bounds": []
+    },
+    "lotka-volterra": {
+      "dimension": null,
+      "domain_kind": "finite-dimensional-ivp",
+      "bounds": []
+    },
+    "seir-linearization": {
+      "dimension": null,
+      "domain_kind": "finite-dimensional-ivp",
+      "bounds": []
+    }
+  },
+  "new_model_ids": [
+    "definite-integrals",
+    "polynomial-interpolation",
+    "cubic-spline-pchip",
+    "discrete-haar-transform",
+    "seir-compartment"
+  ],
+  "method_transitions": {
+    "rk4": {
+      "before": {
+        "depth_additional_releases": [
+          {
+            "group": "weno-critical",
+            "edition": "2026-11-23",
+            "case_ids": [
+              "weno-critical-epsilon"
+            ]
+          },
+          {
+            "group": "moving-waves",
+            "edition": "2026-11-23",
+            "case_ids": [
+              "cgrid-rotating-wave"
+            ]
+          },
+          {
+            "group": "dae-controls",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "high-index-pendulum"
+            ]
+          }
+        ],
+        "metadata_review": {
+          "level": "method-specific source-and-code inspection; no numerical rerun; reference access recorded individually",
+          "on": "2026-11-22",
+          "supplemental_review": {
+            "on": "2026-11-24",
+            "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
+          }
+        },
+        "summary": {
+          "ja": "滑らかな非硬い常微分方程式を4回の右辺評価で4次精度に進める古典Runge–Kutta法。公開例では次数条件、安定関数、非線形・時刻依存問題を比較し、SSP性やシンプレクティック性とは区別する。 追加固定例：振り子の指数低減・拘束ドリフト・明示安定化。条件と検証範囲は各配布版で確認してください。",
+          "en": "Classical four-stage Runge–Kutta advances smooth nonstiff ODEs with fourth-order accuracy. Released examples compare order conditions, stability functions and nonlinear/time-dependent problems while distinguishing accuracy from SSP and symplectic properties. Additional fixed examples: Index reduction, constraint drift and explicit stabilization for a pendulum. See each release for assumptions and checked scope."
+        },
+        "supplemental_scope_profiles": [
+          {
+            "release": {
+              "group": "dae-controls",
+              "edition": "2026-11-24",
+              "case_ids": [
+                "high-index-pendulum"
+              ]
+            },
+            "scope": {
+              "ja": "追加固定例：振り子の指数低減・拘束ドリフト・明示安定化。条件と検証範囲は各配布版で確認してください。",
+              "en": "Additional fixed examples: Index reduction, constraint drift and explicit stabilization for a pendulum. See each release for assumptions and checked scope."
+            },
+            "limits": [
+              {
+                "ja": "投影・正規化・SHAKE/RATTLEなし。一般指数3ソルバーやシンプレクティック性の検証ではありません。",
+                "en": "No projection, normalization or SHAKE/RATTLE; no general index-three-solver or symplecticity claim."
+              }
+            ]
+          }
+        ]
+      },
+      "after": {
+        "depth_additional_releases": [
+          {
+            "group": "weno-critical",
+            "edition": "2026-11-23",
+            "case_ids": [
+              "weno-critical-epsilon"
+            ]
+          },
+          {
+            "group": "moving-waves",
+            "edition": "2026-11-23",
+            "case_ids": [
+              "cgrid-rotating-wave"
+            ]
+          },
+          {
+            "group": "dae-controls",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "high-index-pendulum"
+            ]
+          },
+          {
+            "group": "small-models",
+            "edition": "2026-11-25",
+            "case_ids": [
+              "enzyme-qssa",
+              "lotka-volterra",
+              "seir-linearization"
+            ]
+          }
+        ],
+        "metadata_review": {
+          "level": "method-specific source-and-code inspection; no numerical rerun; reference access recorded individually",
+          "on": "2026-11-22",
+          "supplemental_review": {
+            "on": "2026-11-25",
+            "level": "Fixed release-specific input/reference/criterion scope; actual canonical source and independently extracted ZIP are bound. Original study targets remain separate from reproduction checks."
+          }
+        },
+        "summary": {
+          "ja": "滑らかな非硬い常微分方程式を4回の右辺評価で4次精度に進める古典Runge–Kutta法。公開例では次数条件、安定関数、非線形・時刻依存問題を比較し、SSP性やシンプレクティック性とは区別する。 追加固定例：振り子の指数低減・拘束ドリフト・明示安定化。条件と検証範囲は各配布版で確認してください。 固定した教育用実行例：酵素反応の保存と準定常近似、Lotka–Volterra不変量と正値性、SEIR保存則と初期線形化。",
+          "en": "Classical four-stage Runge–Kutta advances smooth nonstiff ODEs with fourth-order accuracy. Released examples compare order conditions, stability functions and nonlinear/time-dependent problems while distinguishing accuracy from SSP and symplectic properties. Additional fixed examples: Index reduction, constraint drift and explicit stabilization for a pendulum. See each release for assumptions and checked scope. Fixed educational executions: Enzyme conservation and QSSA, Lotka–Volterra invariant and positivity, SEIR conservation and initial linearization."
+        },
+        "supplemental_scope_profiles": [
+          {
+            "release": {
+              "group": "dae-controls",
+              "edition": "2026-11-24",
+              "case_ids": [
+                "high-index-pendulum"
+              ]
+            },
+            "scope": {
+              "ja": "追加固定例：振り子の指数低減・拘束ドリフト・明示安定化。条件と検証範囲は各配布版で確認してください。",
+              "en": "Additional fixed examples: Index reduction, constraint drift and explicit stabilization for a pendulum. See each release for assumptions and checked scope."
+            },
+            "limits": [
+              {
+                "ja": "投影・正規化・SHAKE/RATTLEなし。一般指数3ソルバーやシンプレクティック性の検証ではありません。",
+                "en": "No projection, normalization or SHAKE/RATTLE; no general index-three-solver or symplecticity claim."
+              }
+            ]
+          },
+          {
+            "release": {
+              "group": "small-models",
+              "edition": "2026-11-25",
+              "case_ids": [
+                "enzyme-qssa",
+                "lotka-volterra",
+                "seir-linearization"
+              ]
+            },
+            "scope": {
+              "ja": "固定した教育用実行例：酵素反応の保存と準定常近似、Lotka–Volterra不変量と正値性、SEIR保存則と初期線形化。",
+              "en": "Fixed educational executions: Enzyme conservation and QSSA, Lotka–Volterra invariant and positivity, SEIR conservation and initial linearization."
+            },
+            "limits": [
+              {
+                "ja": "2つの小εと固定反応定数だけの教育例です。εは尺度比であり、その値だけを厳密なQSSA誤差上界とはしません。θ≥0.02を初期層終了の証明とは呼ばず、生体内の反応・観測値へ外挿しません。",
+                "en": "These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction."
+              },
+              {
+                "ja": "1初期値・有限時間の固定比較です。連続系の閉軌道を引き込み極限周期とは呼びません。RK4の厳密な不変量保存、任意刻みでの正値性、長時間の構造保存は保証しません。",
+                "en": "This is a finite-time comparison for one initial state. The continuum closed orbit is not an attracting limit cycle. RK4 is not claimed to preserve H exactly, maintain positivity at arbitrary steps or guarantee long-time geometric fidelity."
+              },
+              {
+                "ja": "2つの小初期感染量による固定係数の整合性比較です。早期線形化をt=20全体の厳密解と見なさず、単一の優勢モードで両モードを置き換えません。実流行の予測・統計的被覆・任意人口への一般保証は行いません。",
+                "en": "These fixed-coefficient calculations compare two small initial infection levels. The early linearization is not an exact solution through t=20, and a single dominant mode does not replace the two-mode solution. No epidemic forecast, statistical coverage or arbitrary-population guarantee is claimed."
+              }
+            ]
+          }
+        ]
+      },
+      "before_absent": [],
+      "after_absent": [],
+      "before_keys": [
+        "aliases",
+        "assumptions",
+        "assumptions_ja",
+        "boundary_conditions",
+        "boundary_conditions_ja",
+        "code_mapping_scope",
+        "code_modules",
+        "depth_additional_releases",
+        "depth_previous_status",
+        "depth_release",
+        "depth_scope",
+        "group",
+        "id",
+        "limitations",
+        "metadata_review",
+        "method_review",
+        "name",
+        "origin",
+        "reading",
+        "references",
+        "status",
+        "summary",
+        "supplemental_scope_profiles",
+        "test_files",
+        "units",
+        "units_ja"
+      ],
+      "after_keys": [
+        "aliases",
+        "assumptions",
+        "assumptions_ja",
+        "boundary_conditions",
+        "boundary_conditions_ja",
+        "code_mapping_scope",
+        "code_modules",
+        "depth_additional_releases",
+        "depth_previous_status",
+        "depth_release",
+        "depth_scope",
+        "group",
+        "id",
+        "limitations",
+        "metadata_review",
+        "method_review",
+        "name",
+        "origin",
+        "reading",
+        "references",
+        "status",
+        "summary",
+        "supplemental_scope_profiles",
+        "test_files",
+        "units",
+        "units_ja"
+      ]
+    },
+    "sdirk2": {
+      "before": {
+        "metadata_review": {
+          "level": "method-specific source-and-code inspection; no numerical rerun; reference access recorded individually",
+          "on": "2026-11-22",
+          "supplemental_review": {
+            "on": "2026-11-24",
+            "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
+          }
+        },
+        "summary": {
+          "ja": "硬い常微分方程式の減衰を扱う2段2次の陰的Runge–Kutta法。公開版はγ=1−1/√2のstiffly accurateなL安定SDIRKで、各段階にNewton法を用い、別のラッパーでステップ倍化による局所誤差制御を行う。 追加固定例：Robertson反応系の初期剛性と実誤差、van der Polの短時間剛性遷移。条件と検証範囲は各配布版で確認してください。",
+          "en": "A two-stage second-order implicit Runge–Kutta method for stiff ODE decay. The release uses stiffly accurate L-stable SDIRK with γ=1−1/√2 and Newton stage solves; a separate wrapper adds step-doubling local-error control. Additional fixed examples: Robertson kinetics: initial stiffness and actual error, Van der Pol: an early stiffness transition. See each release for assumptions and checked scope."
+        },
+        "supplemental_scope_profiles": [
+          {
+            "release": {
+              "group": "ode-adaptivity",
+              "edition": "2026-11-24-r2",
+              "case_ids": [
+                "robertson-stiff-kinetics",
+                "van-der-pol-stiff-transition"
+              ]
+            },
+            "scope": {
+              "ja": "追加固定例：Robertson反応系の初期剛性と実誤差、van der Polの短時間剛性遷移。条件と検証範囲は各配布版で確認してください。",
+              "en": "Additional fixed examples: Robertson kinetics: initial stiffness and actual error, Van der Pol: an early stiffness transition. See each release for assumptions and checked scope."
+            },
+            "limits": [
+              {
+                "ja": "保存/正値性は固定入力の観測で、一般的な保証ではありません。T=.4の短時間・標本時刻での精度であり、長時間化学精度や全時刻誤差上限は主張しません。",
+                "en": "Conservation and positivity are observations for these inputs, not universal guarantees. Accuracy is sampled on T <= 0.4; this does not validate long-time chemistry or an all-time error bound."
+              },
+              {
+                "ja": "測定後の報告範囲変更で、数値的な修復ではありません。初回誤差4.535633779e-5は元目標2e-5を超えます。局所rtolは大域誤差を保証せず、報告検証の合格は全元目標の達成ではありません。大μ全周期は対象外です。",
+                "en": "This post-measurement reporting revision is not a numerical repair. The first error, 4.535633779e-5, exceeded the original 2e-5 goal. Local tolerances do not guarantee global accuracy, and reporting PASS does not mean all original goals were met. Full large-mu cycles are outside scope."
+              }
+            ]
+          }
+        ]
+      },
+      "after": {
+        "depth_additional_releases": [
+          {
+            "group": "small-models",
+            "edition": "2026-11-25",
+            "case_ids": [
+              "enzyme-qssa"
+            ]
+          }
+        ],
+        "depth_scope": {
+          "ja": "固定した教育用実行例：酵素反応の保存と準定常近似。",
+          "en": "Fixed educational executions: Enzyme conservation and QSSA."
+        },
+        "metadata_review": {
+          "level": "method-specific source-and-code inspection; no numerical rerun; reference access recorded individually",
+          "on": "2026-11-22",
+          "supplemental_review": {
+            "on": "2026-11-25",
+            "level": "Fixed release-specific input/reference/criterion scope; actual canonical source and independently extracted ZIP are bound. Original study targets remain separate from reproduction checks."
+          }
+        },
+        "summary": {
+          "ja": "硬い常微分方程式の減衰を扱う2段2次の陰的Runge–Kutta法。公開版はγ=1−1/√2のstiffly accurateなL安定SDIRKで、各段階にNewton法を用い、別のラッパーでステップ倍化による局所誤差制御を行う。 追加固定例：Robertson反応系の初期剛性と実誤差、van der Polの短時間剛性遷移。条件と検証範囲は各配布版で確認してください。 固定した教育用実行例：酵素反応の保存と準定常近似。",
+          "en": "A two-stage second-order implicit Runge–Kutta method for stiff ODE decay. The release uses stiffly accurate L-stable SDIRK with γ=1−1/√2 and Newton stage solves; a separate wrapper adds step-doubling local-error control. Additional fixed examples: Robertson kinetics: initial stiffness and actual error, Van der Pol: an early stiffness transition. See each release for assumptions and checked scope. Fixed educational executions: Enzyme conservation and QSSA."
+        },
+        "supplemental_scope_profiles": [
+          {
+            "release": {
+              "group": "ode-adaptivity",
+              "edition": "2026-11-24-r2",
+              "case_ids": [
+                "robertson-stiff-kinetics",
+                "van-der-pol-stiff-transition"
+              ]
+            },
+            "scope": {
+              "ja": "追加固定例：Robertson反応系の初期剛性と実誤差、van der Polの短時間剛性遷移。条件と検証範囲は各配布版で確認してください。",
+              "en": "Additional fixed examples: Robertson kinetics: initial stiffness and actual error, Van der Pol: an early stiffness transition. See each release for assumptions and checked scope."
+            },
+            "limits": [
+              {
+                "ja": "保存/正値性は固定入力の観測で、一般的な保証ではありません。T=.4の短時間・標本時刻での精度であり、長時間化学精度や全時刻誤差上限は主張しません。",
+                "en": "Conservation and positivity are observations for these inputs, not universal guarantees. Accuracy is sampled on T <= 0.4; this does not validate long-time chemistry or an all-time error bound."
+              },
+              {
+                "ja": "測定後の報告範囲変更で、数値的な修復ではありません。初回誤差4.535633779e-5は元目標2e-5を超えます。局所rtolは大域誤差を保証せず、報告検証の合格は全元目標の達成ではありません。大μ全周期は対象外です。",
+                "en": "This post-measurement reporting revision is not a numerical repair. The first error, 4.535633779e-5, exceeded the original 2e-5 goal. Local tolerances do not guarantee global accuracy, and reporting PASS does not mean all original goals were met. Full large-mu cycles are outside scope."
+              }
+            ]
+          },
+          {
+            "release": {
+              "group": "small-models",
+              "edition": "2026-11-25",
+              "case_ids": [
+                "enzyme-qssa"
+              ]
+            },
+            "scope": {
+              "ja": "固定した教育用実行例：酵素反応の保存と準定常近似。",
+              "en": "Fixed educational executions: Enzyme conservation and QSSA."
+            },
+            "limits": [
+              {
+                "ja": "2つの小εと固定反応定数だけの教育例です。εは尺度比であり、その値だけを厳密なQSSA誤差上界とはしません。θ≥0.02を初期層終了の証明とは呼ばず、生体内の反応・観測値へ外挿しません。",
+                "en": "These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction."
+              }
+            ]
+          }
+        ]
+      },
+      "before_absent": [
+        "depth_additional_releases",
+        "depth_scope"
+      ],
+      "after_absent": [],
+      "before_keys": [
+        "aliases",
+        "assumptions",
+        "assumptions_ja",
+        "boundary_conditions",
+        "boundary_conditions_ja",
+        "code_mapping_scope",
+        "code_modules",
+        "depth_release",
+        "group",
+        "id",
+        "limitations",
+        "metadata_review",
+        "method_review",
+        "name",
+        "origin",
+        "reading",
+        "references",
+        "status",
+        "summary",
+        "supplemental_scope_profiles",
+        "test_files",
+        "units",
+        "units_ja"
+      ],
+      "after_keys": [
+        "aliases",
+        "assumptions",
+        "assumptions_ja",
+        "boundary_conditions",
+        "boundary_conditions_ja",
+        "code_mapping_scope",
+        "code_modules",
+        "depth_additional_releases",
+        "depth_release",
+        "depth_scope",
+        "group",
+        "id",
+        "limitations",
+        "metadata_review",
+        "method_review",
+        "name",
+        "origin",
+        "reading",
+        "references",
+        "status",
+        "summary",
+        "supplemental_scope_profiles",
+        "test_files",
+        "units",
+        "units_ja"
+      ]
+    },
+    "step-doubling": {
+      "before": {
+        "metadata_review": {
+          "level": "chapter-linked; detailed method-specific curation in progress",
+          "on": "2026-11-21",
+          "supplemental_review": {
+            "on": "2026-11-24",
+            "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
+          }
+        },
+        "summary": {
+          "ja": "「適応SDIRK2／ステップ倍分割」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。 追加固定例：Robertson反応系の初期剛性と実誤差、van der Polの短時間剛性遷移。条件と検証範囲は各配布版で確認してください。",
+          "en": "Read about Adaptive SDIRK2 / step doubling, follow the original references and inspect related educational code and checks. Additional fixed examples: Robertson kinetics: initial stiffness and actual error, Van der Pol: an early stiffness transition. See each release for assumptions and checked scope."
+        },
+        "supplemental_scope_profiles": [
+          {
+            "release": {
+              "group": "ode-adaptivity",
+              "edition": "2026-11-24-r2",
+              "case_ids": [
+                "robertson-stiff-kinetics",
+                "van-der-pol-stiff-transition"
+              ]
+            },
+            "scope": {
+              "ja": "追加固定例：Robertson反応系の初期剛性と実誤差、van der Polの短時間剛性遷移。条件と検証範囲は各配布版で確認してください。",
+              "en": "Additional fixed examples: Robertson kinetics: initial stiffness and actual error, Van der Pol: an early stiffness transition. See each release for assumptions and checked scope."
+            },
+            "limits": [
+              {
+                "ja": "保存/正値性は固定入力の観測で、一般的な保証ではありません。T=.4の短時間・標本時刻での精度であり、長時間化学精度や全時刻誤差上限は主張しません。",
+                "en": "Conservation and positivity are observations for these inputs, not universal guarantees. Accuracy is sampled on T <= 0.4; this does not validate long-time chemistry or an all-time error bound."
+              },
+              {
+                "ja": "測定後の報告範囲変更で、数値的な修復ではありません。初回誤差4.535633779e-5は元目標2e-5を超えます。局所rtolは大域誤差を保証せず、報告検証の合格は全元目標の達成ではありません。大μ全周期は対象外です。",
+                "en": "This post-measurement reporting revision is not a numerical repair. The first error, 4.535633779e-5, exceeded the original 2e-5 goal. Local tolerances do not guarantee global accuracy, and reporting PASS does not mean all original goals were met. Full large-mu cycles are outside scope."
+              }
+            ]
+          }
+        ]
+      },
+      "after": {
+        "depth_additional_releases": [
+          {
+            "group": "small-models",
+            "edition": "2026-11-25",
+            "case_ids": [
+              "enzyme-qssa"
+            ]
+          }
+        ],
+        "depth_scope": {
+          "ja": "固定した教育用実行例：酵素反応の保存と準定常近似。",
+          "en": "Fixed educational executions: Enzyme conservation and QSSA."
+        },
+        "metadata_review": {
+          "level": "chapter-linked; detailed method-specific curation in progress",
+          "on": "2026-11-21",
+          "supplemental_review": {
+            "on": "2026-11-25",
+            "level": "Fixed release-specific input/reference/criterion scope; actual canonical source and independently extracted ZIP are bound. Original study targets remain separate from reproduction checks."
+          }
+        },
+        "summary": {
+          "ja": "「適応SDIRK2／ステップ倍分割」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。 追加固定例：Robertson反応系の初期剛性と実誤差、van der Polの短時間剛性遷移。条件と検証範囲は各配布版で確認してください。 固定した教育用実行例：酵素反応の保存と準定常近似。",
+          "en": "Read about Adaptive SDIRK2 / step doubling, follow the original references and inspect related educational code and checks. Additional fixed examples: Robertson kinetics: initial stiffness and actual error, Van der Pol: an early stiffness transition. See each release for assumptions and checked scope. Fixed educational executions: Enzyme conservation and QSSA."
+        },
+        "supplemental_scope_profiles": [
+          {
+            "release": {
+              "group": "ode-adaptivity",
+              "edition": "2026-11-24-r2",
+              "case_ids": [
+                "robertson-stiff-kinetics",
+                "van-der-pol-stiff-transition"
+              ]
+            },
+            "scope": {
+              "ja": "追加固定例：Robertson反応系の初期剛性と実誤差、van der Polの短時間剛性遷移。条件と検証範囲は各配布版で確認してください。",
+              "en": "Additional fixed examples: Robertson kinetics: initial stiffness and actual error, Van der Pol: an early stiffness transition. See each release for assumptions and checked scope."
+            },
+            "limits": [
+              {
+                "ja": "保存/正値性は固定入力の観測で、一般的な保証ではありません。T=.4の短時間・標本時刻での精度であり、長時間化学精度や全時刻誤差上限は主張しません。",
+                "en": "Conservation and positivity are observations for these inputs, not universal guarantees. Accuracy is sampled on T <= 0.4; this does not validate long-time chemistry or an all-time error bound."
+              },
+              {
+                "ja": "測定後の報告範囲変更で、数値的な修復ではありません。初回誤差4.535633779e-5は元目標2e-5を超えます。局所rtolは大域誤差を保証せず、報告検証の合格は全元目標の達成ではありません。大μ全周期は対象外です。",
+                "en": "This post-measurement reporting revision is not a numerical repair. The first error, 4.535633779e-5, exceeded the original 2e-5 goal. Local tolerances do not guarantee global accuracy, and reporting PASS does not mean all original goals were met. Full large-mu cycles are outside scope."
+              }
+            ]
+          },
+          {
+            "release": {
+              "group": "small-models",
+              "edition": "2026-11-25",
+              "case_ids": [
+                "enzyme-qssa"
+              ]
+            },
+            "scope": {
+              "ja": "固定した教育用実行例：酵素反応の保存と準定常近似。",
+              "en": "Fixed educational executions: Enzyme conservation and QSSA."
+            },
+            "limits": [
+              {
+                "ja": "2つの小εと固定反応定数だけの教育例です。εは尺度比であり、その値だけを厳密なQSSA誤差上界とはしません。θ≥0.02を初期層終了の証明とは呼ばず、生体内の反応・観測値へ外挿しません。",
+                "en": "These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction."
+              }
+            ]
+          }
+        ]
+      },
+      "before_absent": [
+        "depth_additional_releases",
+        "depth_scope"
+      ],
+      "after_absent": [],
+      "before_keys": [
+        "aliases",
+        "assumptions",
+        "boundary_conditions",
+        "code_mapping_scope",
+        "code_modules",
+        "depth_release",
+        "group",
+        "id",
+        "limitations",
+        "metadata_review",
+        "name",
+        "origin",
+        "reading",
+        "references",
+        "status",
+        "summary",
+        "supplemental_scope_profiles",
+        "test_files",
+        "units"
+      ],
+      "after_keys": [
+        "aliases",
+        "assumptions",
+        "boundary_conditions",
+        "code_mapping_scope",
+        "code_modules",
+        "depth_additional_releases",
+        "depth_release",
+        "depth_scope",
+        "group",
+        "id",
+        "limitations",
+        "metadata_review",
+        "name",
+        "origin",
+        "reading",
+        "references",
+        "status",
+        "summary",
+        "supplemental_scope_profiles",
+        "test_files",
+        "units"
+      ]
+    },
+    "thomas": {
+      "before": {
+        "depth_additional_releases": [
+          {
+            "group": "adjoint",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "diffusion-discrete-adjoint"
+            ]
+          }
+        ],
+        "metadata_review": {
+          "level": "method-specific bibliographic roles curated;1949 original full text unread",
+          "on": "2026-11-23",
+          "source_record": "/numerical-methods-atlas/reading/thomas-provenance.json",
+          "scope": {
+            "ja": "Thomas法は三重対角消去。1949年原報は未読で、公式収蔵目録とMolerの1996年通信から書誌を追跡しています。Crank–Nicolsonと多重格子の文献は関連章の背景資料で、Thomas原報やその再録ではありません。",
+            "en": "Thomas is tridiagonal elimination. Its1949 original remains unread; an official archival finding aid and Moler's signed1996 correspondence provide bibliographic leads. Crank–Nicolson and multigrid references are related chapter context, not Thomas originals or reprints."
+          },
+          "supplemental_review": {
+            "on": "2026-11-24",
+            "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
+          }
+        },
+        "summary": {
+          "ja": "Thomas法は三重対角消去。1949年原報は未読で、公式収蔵目録とMolerの1996年通信から書誌を追跡しています。Crank–Nicolsonと多重格子の文献は関連章の背景資料で、Thomas原報やその再録ではありません。 追加固定例：解析・中央差分・方向ADによるJacobian不要Newton–Krylov。条件と検証範囲は各配布版で確認してください。 追加固定例：時間離散拡散の随伴とcheckpoint。条件と検証範囲は各配布版で確認してください。",
+          "en": "Thomas is tridiagonal elimination. Its1949 original remains unread; an official archival finding aid and Moler's signed1996 correspondence provide bibliographic leads. Crank–Nicolson and multigrid references are related chapter context, not Thomas originals or reprints. Additional fixed examples: Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products. See each release for assumptions and checked scope. Additional fixed examples: Discrete diffusion adjoint and checkpoint replay. See each release for assumptions and checked scope."
+        },
+        "supplemental_scope_profiles": [
+          {
+            "release": {
+              "group": "bratu-continuation-jfnk",
+              "edition": "2026-11-24-r2",
+              "case_ids": [
+                "bratu-matrix-free-jfnk"
+              ]
+            },
+            "scope": {
+              "ja": "追加固定例：解析・中央差分・方向ADによるJacobian不要Newton–Krylov。条件と検証範囲は各配布版で確認してください。",
+              "en": "Additional fixed examples: Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products. See each release for assumptions and checked scope."
+            },
+            "limits": [
+              {
+                "ja": "小1次元BVP向けの教育実装です。ADは四則・exp・境界paddingの方向微分に限ります。小Hessenberg行列と基底は保持します。ηの固定下限があるため、原著EWの漸近収束定理、一般AD/PETScとの同等性、速度向上や大域収束は主張しません。",
+                "en": "An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee."
+              }
+            ]
+          },
+          {
+            "release": {
+              "group": "adjoint",
+              "edition": "2026-11-24",
+              "case_ids": [
+                "diffusion-discrete-adjoint"
+              ]
+            },
+            "scope": {
+              "ja": "追加固定例：時間離散拡散の随伴とcheckpoint。条件と検証範囲は各配布版で確認してください。",
+              "en": "Additional fixed examples: Discrete diffusion adjoint and checkpoint replay. See each release for assumptions and checked scope."
+            },
+            "limits": [
+              {
+                "ja": "固定stepの離散随伴でありCVODESや最適checkpoint法ではありません。40nは状態・随伴・RHS/solve scratchの一意な所有要素数です。静的因子・model配列は別表示し総所有byteへ含めます。検証/NPZ組立は測定後で、RSSではありません。",
+                "en": "Fixed-step discrete adjoints, not CVODES or an optimal checkpoint schedule. The40n limit counts unique evolving state/adjoint/RHS/solve-scratch elements. Static factors/model arrays are separately listed and included in total bytes. Validation/NPZ assembly follows the ownership windows; this is not RSS."
+              }
+            ]
+          }
+        ]
+      },
+      "after": {
+        "depth_additional_releases": [
+          {
+            "group": "adjoint",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "diffusion-discrete-adjoint"
+            ]
+          },
+          {
+            "group": "small-models",
+            "edition": "2026-11-25",
+            "case_ids": [
+              "pinn-poisson"
+            ]
+          }
+        ],
+        "depth_scope": {
+          "ja": "固定した教育用実行例：1D Poisson PINNと独立格子誤差。",
+          "en": "Fixed educational executions: Poisson PINN: independent grid error."
+        },
+        "metadata_review": {
+          "level": "method-specific bibliographic roles curated;1949 original full text unread",
+          "on": "2026-11-23",
+          "source_record": "/numerical-methods-atlas/reading/thomas-provenance.json",
+          "scope": {
+            "ja": "Thomas法は三重対角消去。1949年原報は未読で、公式収蔵目録とMolerの1996年通信から書誌を追跡しています。Crank–Nicolsonと多重格子の文献は関連章の背景資料で、Thomas原報やその再録ではありません。",
+            "en": "Thomas is tridiagonal elimination. Its1949 original remains unread; an official archival finding aid and Moler's signed1996 correspondence provide bibliographic leads. Crank–Nicolson and multigrid references are related chapter context, not Thomas originals or reprints."
+          },
+          "supplemental_review": {
+            "on": "2026-11-25",
+            "level": "Fixed release-specific input/reference/criterion scope; actual canonical source and independently extracted ZIP are bound. Original study targets remain separate from reproduction checks."
+          }
+        },
+        "summary": {
+          "ja": "Thomas法は三重対角消去。1949年原報は未読で、公式収蔵目録とMolerの1996年通信から書誌を追跡しています。Crank–Nicolsonと多重格子の文献は関連章の背景資料で、Thomas原報やその再録ではありません。 追加固定例：解析・中央差分・方向ADによるJacobian不要Newton–Krylov。条件と検証範囲は各配布版で確認してください。 追加固定例：時間離散拡散の随伴とcheckpoint。条件と検証範囲は各配布版で確認してください。 固定した教育用実行例：1D Poisson PINNと独立格子誤差。",
+          "en": "Thomas is tridiagonal elimination. Its1949 original remains unread; an official archival finding aid and Moler's signed1996 correspondence provide bibliographic leads. Crank–Nicolson and multigrid references are related chapter context, not Thomas originals or reprints. Additional fixed examples: Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products. See each release for assumptions and checked scope. Additional fixed examples: Discrete diffusion adjoint and checkpoint replay. See each release for assumptions and checked scope. Fixed educational executions: Poisson PINN: independent grid error."
+        },
+        "supplemental_scope_profiles": [
+          {
+            "release": {
+              "group": "bratu-continuation-jfnk",
+              "edition": "2026-11-24-r2",
+              "case_ids": [
+                "bratu-matrix-free-jfnk"
+              ]
+            },
+            "scope": {
+              "ja": "追加固定例：解析・中央差分・方向ADによるJacobian不要Newton–Krylov。条件と検証範囲は各配布版で確認してください。",
+              "en": "Additional fixed examples: Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products. See each release for assumptions and checked scope."
+            },
+            "limits": [
+              {
+                "ja": "小1次元BVP向けの教育実装です。ADは四則・exp・境界paddingの方向微分に限ります。小Hessenberg行列と基底は保持します。ηの固定下限があるため、原著EWの漸近収束定理、一般AD/PETScとの同等性、速度向上や大域収束は主張しません。",
+                "en": "An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee."
+              }
+            ]
+          },
+          {
+            "release": {
+              "group": "adjoint",
+              "edition": "2026-11-24",
+              "case_ids": [
+                "diffusion-discrete-adjoint"
+              ]
+            },
+            "scope": {
+              "ja": "追加固定例：時間離散拡散の随伴とcheckpoint。条件と検証範囲は各配布版で確認してください。",
+              "en": "Additional fixed examples: Discrete diffusion adjoint and checkpoint replay. See each release for assumptions and checked scope."
+            },
+            "limits": [
+              {
+                "ja": "固定stepの離散随伴でありCVODESや最適checkpoint法ではありません。40nは状態・随伴・RHS/solve scratchの一意な所有要素数です。静的因子・model配列は別表示し総所有byteへ含めます。検証/NPZ組立は測定後で、RSSではありません。",
+                "en": "Fixed-step discrete adjoints, not CVODES or an optimal checkpoint schedule. The40n limit counts unique evolving state/adjoint/RHS/solve-scratch elements. Static factors/model arrays are separately listed and included in total bytes. Validation/NPZ assembly follows the ownership windows; this is not RSS."
+              }
+            ]
+          },
+          {
+            "release": {
+              "group": "small-models",
+              "edition": "2026-11-25",
+              "case_ids": [
+                "pinn-poisson"
+              ]
+            },
+            "scope": {
+              "ja": "固定した教育用実行例：1D Poisson PINNと独立格子誤差。",
+              "en": "Fixed educational executions: Poisson PINN: independent grid error."
+            },
+            "limits": [
+              {
+                "ja": "1つの滑らかなPoisson問題と3seedの固定予算実験です。小さい学習損失だけで独立点精度の達成や一般的なPINN学習成功を保証しません。未達目標も表示します。",
+                "en": "This fixed-budget study covers one smooth Poisson problem and three seeds. A small training loss does not establish independent-point accuracy or general PINN training success. Unmet goals remain visible."
+              }
+            ]
+          }
+        ]
+      },
+      "before_absent": [
+        "depth_scope"
+      ],
+      "after_absent": [],
+      "before_keys": [
+        "aliases",
+        "assumptions",
+        "bibliographic_original",
+        "boundary_conditions",
+        "code_mapping_scope",
+        "code_modules",
+        "depth_additional_releases",
+        "depth_release",
+        "group",
+        "id",
+        "limitations",
+        "metadata_review",
+        "name",
+        "origin",
+        "reading",
+        "references",
+        "status",
+        "summary",
+        "supplemental_scope_profiles",
+        "test_files",
+        "units"
+      ],
+      "after_keys": [
+        "aliases",
+        "assumptions",
+        "bibliographic_original",
+        "boundary_conditions",
+        "code_mapping_scope",
+        "code_modules",
+        "depth_additional_releases",
+        "depth_release",
+        "depth_scope",
+        "group",
+        "id",
+        "limitations",
+        "metadata_review",
+        "name",
+        "origin",
+        "reading",
+        "references",
+        "status",
+        "summary",
+        "supplemental_scope_profiles",
+        "test_files",
+        "units"
+      ]
+    },
+    "newton": {
+      "before": {
+        "depth_additional_releases": [
+          {
+            "group": "globalization-controls",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "globalization-difficult-starts"
+            ]
+          },
+          {
+            "group": "adjoint",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "bratu-fold-sensitivity",
+              "bratu-distributed-vjp"
+            ]
+          },
+          {
+            "group": "ode-adaptivity",
+            "edition": "2026-11-24-r2",
+            "case_ids": [
+              "robertson-stiff-kinetics",
+              "van-der-pol-stiff-transition"
+            ]
+          },
+          {
+            "group": "dae-controls",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "index1-dae-consistent-initialization",
+              "robertson-conservation-dae"
+            ]
+          }
+        ],
+        "metadata_review": {
+          "level": "method-specific sources and implementation inspected; no new numerical rerun",
+          "on": "2026-11-22",
+          "supplemental_review": {
+            "on": "2026-11-24",
+            "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
+          }
+        },
+        "summary": {
+          "ja": "非線形方程式 F(x)=0 を、Jacobianから求めたNewton方向と残差ノルムの十分減少による減衰で解く。公開例は密行列解法または前処理付きGMRESの内部解法を選べる。 追加固定例：擬似弧長継続でBratuのfoldを越える。条件と検証範囲は各配布版で確認してください。 追加固定例：同じ難しい初期値に対する線探索と信頼領域。条件と検証範囲は各配布版で確認してください。 追加固定例：離散fold近傍のBratu感度、分布係数Bratuの行列非形成VJP。条件と検証範囲は各配布版で確認してください。 追加固定例：Robertson反応系の初期剛性と実誤差、van der Polの短時間剛性遷移。条件と検証範囲は各配布版で確認してください。 追加固定例：index-1 DAEの整合初期化と離散残差、Robertson保存制約DAEと公式IDA保存値。条件と検証範囲は各配布版で確認してください。",
+          "en": "Solve F(x)=0 using a Jacobian-based Newton direction and damping that requires sufficient decrease of the residual norm. The example supports a dense or preconditioned GMRES inner solve. Additional fixed examples: Crossing the Bratu fold with pseudo-arclength continuation. See each release for assumptions and checked scope. Additional fixed examples: Line search and trust regions from the same difficult starts. See each release for assumptions and checked scope. Additional fixed examples: Bratu sensitivity near the discrete fold, Matrix-free VJP for distributed Bratu coefficients. See each release for assumptions and checked scope. Additional fixed examples: Robertson kinetics: initial stiffness and actual error, Van der Pol: an early stiffness transition. See each release for assumptions and checked scope. Additional fixed examples: Consistent initialization and discrete residuals for an index-one DAE, Robertson conservation DAE and stored official IDA values. See each release for assumptions and checked scope."
+        },
+        "supplemental_scope_profiles": [
+          {
+            "release": {
+              "group": "bratu-continuation-jfnk",
+              "edition": "2026-11-24-r2",
+              "case_ids": [
+                "bratu-fold-continuation"
+              ]
+            },
+            "scope": {
+              "ja": "追加固定例：擬似弧長継続でBratuのfoldを越える。条件と検証範囲は各配布版で確認してください。",
+              "en": "Additional fixed examples: Crossing the Bratu fold with pseudo-arclength continuation. See each release for assumptions and checked scope."
+            },
+            "limits": [
+              {
+                "ja": "小さな1次元の単純foldだけです。分岐曲線の解析族比較では計算した中点値を族の座標に使い、固定λの独立形状比較と区別します。連続foldは離散解そのものではなく、一般の分岐追跡や大規模性能は保証しません。",
+                "en": "A small one-dimensional simple fold only. The whole-curve family comparison uses the computed midpoint as its family coordinate and is distinct from the independent fixed-lambda profile checks. The continuum fold is not an exact discrete solution. No general bifurcation-tracking or large-scale performance claim."
+              }
+            ]
+          },
+          {
+            "release": {
+              "group": "globalization-controls",
+              "edition": "2026-11-24",
+              "case_ids": [
+                "globalization-difficult-starts"
+              ]
+            },
+            "scope": {
+              "ja": "追加固定例：同じ難しい初期値に対する線探索と信頼領域。条件と検証範囲は各配布版で確認してください。",
+              "en": "Additional fixed examples: Line search and trust regions from the same difficult starts. See each release for assumptions and checked scope."
+            },
+            "limits": [
+              {
+                "ja": "全初期値の成功や手法の普遍的優越、PETSc実装との一致を保証しません。",
+                "en": "No all-start guarantee, universal method ranking or equivalence to PETSc implementation."
+              }
+            ]
+          },
+          {
+            "release": {
+              "group": "adjoint",
+              "edition": "2026-11-24",
+              "case_ids": [
+                "bratu-fold-sensitivity",
+                "bratu-distributed-vjp"
+              ]
+            },
+            "scope": {
+              "ja": "追加固定例：離散fold近傍のBratu感度、分布係数Bratuの行列非形成VJP。条件と検証範囲は各配布版で確認してください。",
+              "en": "Additional fixed examples: Bratu sensitivity near the discrete fold, Matrix-free VJP for distributed Bratu coefficients. See each release for assumptions and checked scope."
+            },
+            "limits": [
+              {
+                "ja": "連続foldは離散foldではありません。rtol1e-4/1e-8は達成必須、requested1e-12は観測のみで未達を収束と表示しません。返却候補の独立勾配精度は別判定。最小固有値/丸めscaleは浮動小数点の診断で保証区間ではありません。BratuのJは対称であり、非対称転置は別の演算子対照です。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。",
+                "en": "The continuum fold is not the discrete fold. rtol1e-4/1e-8 targets are required; requested1e-12 is observational and unmet is never called converged. Independent accuracy of the returned gradient is a separate gate. Eigenvalue/roundoff scales are floating diagnostics, not certified intervals. Bratu J is symmetric; the nonsymmetric transpose is a separate operator control. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved."
+              },
+              {
+                "ja": "同じ離散状態の微分検証で、独立した物理PDE解の証明や一般ADではありません。保存arrayと固定Krylov workspaceの記録はRSS測定ではありません。m=2のθ端点は[a-b-2,a+b-2]で、物理係数端点[a-b,a+b]と区別します。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。",
+                "en": "Derivative verification at the same discrete state, not independent physical-PDE truth or general AD. Persistent arrays and fixed Krylov workspace inventories are not RSS measurements. For m=2, theta endpoints are[a-b-2,a+b-2], distinct from physical coefficient endpoints[a-b,a+b]. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved."
+              }
+            ]
+          },
+          {
+            "release": {
+              "group": "ode-adaptivity",
+              "edition": "2026-11-24-r2",
+              "case_ids": [
+                "robertson-stiff-kinetics",
+                "van-der-pol-stiff-transition"
+              ]
+            },
+            "scope": {
+              "ja": "追加固定例：Robertson反応系の初期剛性と実誤差、van der Polの短時間剛性遷移。条件と検証範囲は各配布版で確認してください。",
+              "en": "Additional fixed examples: Robertson kinetics: initial stiffness and actual error, Van der Pol: an early stiffness transition. See each release for assumptions and checked scope."
+            },
+            "limits": [
+              {
+                "ja": "保存/正値性は固定入力の観測で、一般的な保証ではありません。T=.4の短時間・標本時刻での精度であり、長時間化学精度や全時刻誤差上限は主張しません。",
+                "en": "Conservation and positivity are observations for these inputs, not universal guarantees. Accuracy is sampled on T <= 0.4; this does not validate long-time chemistry or an all-time error bound."
+              },
+              {
+                "ja": "測定後の報告範囲変更で、数値的な修復ではありません。初回誤差4.535633779e-5は元目標2e-5を超えます。局所rtolは大域誤差を保証せず、報告検証の合格は全元目標の達成ではありません。大μ全周期は対象外です。",
+                "en": "This post-measurement reporting revision is not a numerical repair. The first error, 4.535633779e-5, exceeded the original 2e-5 goal. Local tolerances do not guarantee global accuracy, and reporting PASS does not mean all original goals were met. Full large-mu cycles are outside scope."
+              }
+            ]
+          },
+          {
+            "release": {
+              "group": "dae-controls",
+              "edition": "2026-11-24",
+              "case_ids": [
+                "index1-dae-consistent-initialization",
+                "robertson-conservation-dae"
+              ]
+            },
+            "scope": {
+              "ja": "追加固定例：index-1 DAEの整合初期化と離散残差、Robertson保存制約DAEと公式IDA保存値。条件と検証範囲は各配布版で確認してください。",
+              "en": "Additional fixed examples: Consistent initialization and discrete residuals for an index-one DAE, Robertson conservation DAE and stored official IDA values. See each release for assumptions and checked scope."
+            },
+            "limits": [
+              {
+                "ja": "単一の製造正枝・固定BE計算です。IDA実行や一般DAEソルバーの検証ではありません。",
+                "en": "One authored positive branch and fixed BE runs; no IDA execution or general DAE-solver qualification."
+              },
+              {
+                "ja": "公式SUNDIALS v7.1.1の2印字行のみ。IDAの新規実行0、長時間の化学精度や一般DAE性能は扱いません。 この固定時間格子の漸近収束や元精度目標の全合格は主張しません。",
+                "en": "Only two official SUNDIALS v7.1.1 printed rows; zero new IDA executions, with no long-time chemistry or general DAE-performance claim. No asymptotic-convergence or all-original-accuracy-goals claim is made for this fixed schedule."
+              }
+            ]
+          }
+        ]
+      },
+      "after": {
+        "depth_additional_releases": [
+          {
+            "group": "globalization-controls",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "globalization-difficult-starts"
+            ]
+          },
+          {
+            "group": "adjoint",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "bratu-fold-sensitivity",
+              "bratu-distributed-vjp"
+            ]
+          },
+          {
+            "group": "ode-adaptivity",
+            "edition": "2026-11-24-r2",
+            "case_ids": [
+              "robertson-stiff-kinetics",
+              "van-der-pol-stiff-transition"
+            ]
+          },
+          {
+            "group": "dae-controls",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "index1-dae-consistent-initialization",
+              "robertson-conservation-dae"
+            ]
+          },
+          {
+            "group": "small-models",
+            "edition": "2026-11-25",
+            "case_ids": [
+              "enzyme-qssa"
+            ]
+          }
+        ],
+        "depth_scope": {
+          "ja": "固定した教育用実行例：酵素反応の保存と準定常近似。",
+          "en": "Fixed educational executions: Enzyme conservation and QSSA."
+        },
+        "metadata_review": {
+          "level": "method-specific sources and implementation inspected; no new numerical rerun",
+          "on": "2026-11-22",
+          "supplemental_review": {
+            "on": "2026-11-25",
+            "level": "Fixed release-specific input/reference/criterion scope; actual canonical source and independently extracted ZIP are bound. Original study targets remain separate from reproduction checks."
+          }
+        },
+        "summary": {
+          "ja": "非線形方程式 F(x)=0 を、Jacobianから求めたNewton方向と残差ノルムの十分減少による減衰で解く。公開例は密行列解法または前処理付きGMRESの内部解法を選べる。 追加固定例：擬似弧長継続でBratuのfoldを越える。条件と検証範囲は各配布版で確認してください。 追加固定例：同じ難しい初期値に対する線探索と信頼領域。条件と検証範囲は各配布版で確認してください。 追加固定例：離散fold近傍のBratu感度、分布係数Bratuの行列非形成VJP。条件と検証範囲は各配布版で確認してください。 追加固定例：Robertson反応系の初期剛性と実誤差、van der Polの短時間剛性遷移。条件と検証範囲は各配布版で確認してください。 追加固定例：index-1 DAEの整合初期化と離散残差、Robertson保存制約DAEと公式IDA保存値。条件と検証範囲は各配布版で確認してください。 固定した教育用実行例：酵素反応の保存と準定常近似。",
+          "en": "Solve F(x)=0 using a Jacobian-based Newton direction and damping that requires sufficient decrease of the residual norm. The example supports a dense or preconditioned GMRES inner solve. Additional fixed examples: Crossing the Bratu fold with pseudo-arclength continuation. See each release for assumptions and checked scope. Additional fixed examples: Line search and trust regions from the same difficult starts. See each release for assumptions and checked scope. Additional fixed examples: Bratu sensitivity near the discrete fold, Matrix-free VJP for distributed Bratu coefficients. See each release for assumptions and checked scope. Additional fixed examples: Robertson kinetics: initial stiffness and actual error, Van der Pol: an early stiffness transition. See each release for assumptions and checked scope. Additional fixed examples: Consistent initialization and discrete residuals for an index-one DAE, Robertson conservation DAE and stored official IDA values. See each release for assumptions and checked scope. Fixed educational executions: Enzyme conservation and QSSA."
+        },
+        "supplemental_scope_profiles": [
+          {
+            "release": {
+              "group": "bratu-continuation-jfnk",
+              "edition": "2026-11-24-r2",
+              "case_ids": [
+                "bratu-fold-continuation"
+              ]
+            },
+            "scope": {
+              "ja": "追加固定例：擬似弧長継続でBratuのfoldを越える。条件と検証範囲は各配布版で確認してください。",
+              "en": "Additional fixed examples: Crossing the Bratu fold with pseudo-arclength continuation. See each release for assumptions and checked scope."
+            },
+            "limits": [
+              {
+                "ja": "小さな1次元の単純foldだけです。分岐曲線の解析族比較では計算した中点値を族の座標に使い、固定λの独立形状比較と区別します。連続foldは離散解そのものではなく、一般の分岐追跡や大規模性能は保証しません。",
+                "en": "A small one-dimensional simple fold only. The whole-curve family comparison uses the computed midpoint as its family coordinate and is distinct from the independent fixed-lambda profile checks. The continuum fold is not an exact discrete solution. No general bifurcation-tracking or large-scale performance claim."
+              }
+            ]
+          },
+          {
+            "release": {
+              "group": "globalization-controls",
+              "edition": "2026-11-24",
+              "case_ids": [
+                "globalization-difficult-starts"
+              ]
+            },
+            "scope": {
+              "ja": "追加固定例：同じ難しい初期値に対する線探索と信頼領域。条件と検証範囲は各配布版で確認してください。",
+              "en": "Additional fixed examples: Line search and trust regions from the same difficult starts. See each release for assumptions and checked scope."
+            },
+            "limits": [
+              {
+                "ja": "全初期値の成功や手法の普遍的優越、PETSc実装との一致を保証しません。",
+                "en": "No all-start guarantee, universal method ranking or equivalence to PETSc implementation."
+              }
+            ]
+          },
+          {
+            "release": {
+              "group": "adjoint",
+              "edition": "2026-11-24",
+              "case_ids": [
+                "bratu-fold-sensitivity",
+                "bratu-distributed-vjp"
+              ]
+            },
+            "scope": {
+              "ja": "追加固定例：離散fold近傍のBratu感度、分布係数Bratuの行列非形成VJP。条件と検証範囲は各配布版で確認してください。",
+              "en": "Additional fixed examples: Bratu sensitivity near the discrete fold, Matrix-free VJP for distributed Bratu coefficients. See each release for assumptions and checked scope."
+            },
+            "limits": [
+              {
+                "ja": "連続foldは離散foldではありません。rtol1e-4/1e-8は達成必須、requested1e-12は観測のみで未達を収束と表示しません。返却候補の独立勾配精度は別判定。最小固有値/丸めscaleは浮動小数点の診断で保証区間ではありません。BratuのJは対称であり、非対称転置は別の演算子対照です。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。",
+                "en": "The continuum fold is not the discrete fold. rtol1e-4/1e-8 targets are required; requested1e-12 is observational and unmet is never called converged. Independent accuracy of the returned gradient is a separate gate. Eigenvalue/roundoff scales are floating diagnostics, not certified intervals. Bratu J is symmetric; the nonsymmetric transpose is a separate operator control. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved."
+              },
+              {
+                "ja": "同じ離散状態の微分検証で、独立した物理PDE解の証明や一般ADではありません。保存arrayと固定Krylov workspaceの記録はRSS測定ではありません。m=2のθ端点は[a-b-2,a+b-2]で、物理係数端点[a-b,a+b]と区別します。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。",
+                "en": "Derivative verification at the same discrete state, not independent physical-PDE truth or general AD. Persistent arrays and fixed Krylov workspace inventories are not RSS measurements. For m=2, theta endpoints are[a-b-2,a+b-2], distinct from physical coefficient endpoints[a-b,a+b]. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved."
+              }
+            ]
+          },
+          {
+            "release": {
+              "group": "ode-adaptivity",
+              "edition": "2026-11-24-r2",
+              "case_ids": [
+                "robertson-stiff-kinetics",
+                "van-der-pol-stiff-transition"
+              ]
+            },
+            "scope": {
+              "ja": "追加固定例：Robertson反応系の初期剛性と実誤差、van der Polの短時間剛性遷移。条件と検証範囲は各配布版で確認してください。",
+              "en": "Additional fixed examples: Robertson kinetics: initial stiffness and actual error, Van der Pol: an early stiffness transition. See each release for assumptions and checked scope."
+            },
+            "limits": [
+              {
+                "ja": "保存/正値性は固定入力の観測で、一般的な保証ではありません。T=.4の短時間・標本時刻での精度であり、長時間化学精度や全時刻誤差上限は主張しません。",
+                "en": "Conservation and positivity are observations for these inputs, not universal guarantees. Accuracy is sampled on T <= 0.4; this does not validate long-time chemistry or an all-time error bound."
+              },
+              {
+                "ja": "測定後の報告範囲変更で、数値的な修復ではありません。初回誤差4.535633779e-5は元目標2e-5を超えます。局所rtolは大域誤差を保証せず、報告検証の合格は全元目標の達成ではありません。大μ全周期は対象外です。",
+                "en": "This post-measurement reporting revision is not a numerical repair. The first error, 4.535633779e-5, exceeded the original 2e-5 goal. Local tolerances do not guarantee global accuracy, and reporting PASS does not mean all original goals were met. Full large-mu cycles are outside scope."
+              }
+            ]
+          },
+          {
+            "release": {
+              "group": "dae-controls",
+              "edition": "2026-11-24",
+              "case_ids": [
+                "index1-dae-consistent-initialization",
+                "robertson-conservation-dae"
+              ]
+            },
+            "scope": {
+              "ja": "追加固定例：index-1 DAEの整合初期化と離散残差、Robertson保存制約DAEと公式IDA保存値。条件と検証範囲は各配布版で確認してください。",
+              "en": "Additional fixed examples: Consistent initialization and discrete residuals for an index-one DAE, Robertson conservation DAE and stored official IDA values. See each release for assumptions and checked scope."
+            },
+            "limits": [
+              {
+                "ja": "単一の製造正枝・固定BE計算です。IDA実行や一般DAEソルバーの検証ではありません。",
+                "en": "One authored positive branch and fixed BE runs; no IDA execution or general DAE-solver qualification."
+              },
+              {
+                "ja": "公式SUNDIALS v7.1.1の2印字行のみ。IDAの新規実行0、長時間の化学精度や一般DAE性能は扱いません。 この固定時間格子の漸近収束や元精度目標の全合格は主張しません。",
+                "en": "Only two official SUNDIALS v7.1.1 printed rows; zero new IDA executions, with no long-time chemistry or general DAE-performance claim. No asymptotic-convergence or all-original-accuracy-goals claim is made for this fixed schedule."
+              }
+            ]
+          },
+          {
+            "release": {
+              "group": "small-models",
+              "edition": "2026-11-25",
+              "case_ids": [
+                "enzyme-qssa"
+              ]
+            },
+            "scope": {
+              "ja": "固定した教育用実行例：酵素反応の保存と準定常近似。",
+              "en": "Fixed educational executions: Enzyme conservation and QSSA."
+            },
+            "limits": [
+              {
+                "ja": "2つの小εと固定反応定数だけの教育例です。εは尺度比であり、その値だけを厳密なQSSA誤差上界とはしません。θ≥0.02を初期層終了の証明とは呼ばず、生体内の反応・観測値へ外挿しません。",
+                "en": "These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction."
+              }
+            ]
+          }
+        ]
+      },
+      "before_absent": [
+        "depth_scope"
+      ],
+      "after_absent": [],
+      "before_keys": [
+        "aliases",
+        "assumptions",
+        "assumptions_ja",
+        "boundary_conditions",
+        "boundary_conditions_ja",
+        "code_mapping_scope",
+        "code_modules",
+        "depth_additional_releases",
+        "depth_release",
+        "group",
+        "id",
+        "limitations",
+        "metadata_review",
+        "method_review",
+        "name",
+        "origin",
+        "reading",
+        "references",
+        "status",
+        "summary",
+        "supplemental_scope_profiles",
+        "test_files",
+        "units",
+        "units_ja"
+      ],
+      "after_keys": [
+        "aliases",
+        "assumptions",
+        "assumptions_ja",
+        "boundary_conditions",
+        "boundary_conditions_ja",
+        "code_mapping_scope",
+        "code_modules",
+        "depth_additional_releases",
+        "depth_release",
+        "depth_scope",
+        "group",
+        "id",
+        "limitations",
+        "metadata_review",
+        "method_review",
+        "name",
+        "origin",
+        "reading",
+        "references",
+        "status",
+        "summary",
+        "supplemental_scope_profiles",
+        "test_files",
+        "units",
+        "units_ja"
+      ]
+    },
+    "splines": {
+      "before": {
+        "assumptions": null,
+        "boundary_conditions": null,
+        "limitations": {
+          "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+          "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+        },
+        "metadata_review": {
+          "level": "candidate outline; scientific derivation and literature review incomplete",
+          "on": "2026-11-21"
+        },
+        "next_deliverable": {
+          "ja": "既知関数の補間誤差と境界の比較。",
+          "en": "Known-function interpolation and boundary comparisons."
+        },
+        "references": [
+          {
+            "url": "https://doi.org/10.1016/0021-9045(72)90080-9",
+            "label": "On calculating with B-splines (1972)",
+            "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+          }
+        ],
+        "status": "planned",
+        "summary": {
+          "ja": "補間条件・境界条件と滑らかさを整理する。",
+          "en": "Relate interpolation, boundary conditions and smoothness."
+        },
+        "units": null
+      },
+      "after": {
+        "assumptions": [
+          "Use actual binary64 knots and values. Natural conditions set both endpoint second derivatives to zero; clamped conditions prescribe the first derivatives from the input."
+        ],
+        "assumptions_ja": [
+          "実binary64の節点と値を使用。自然条件は両端2階微分ゼロ、clamped条件は入力端点1階微分です。"
+        ],
+        "boundary_conditions": "See the exact case-specific domain and boundary conventions.",
+        "boundary_conditions_ja": "各例の正確な領域・境界の定義を確認してください。",
+        "code_mapping_scope": "Fixed educational executions: Natural and clamped splines versus PCHIP.",
+        "code_mapping_scope_ja": "固定した教育用実行例：自然・端点微分指定スプラインとPCHIP。",
+        "depth_previous_status": "planned",
+        "depth_release": {
+          "group": "approximation-controls",
+          "edition": "2026-11-25",
+          "case_ids": [
+            "spline-shape-controls"
+          ]
+        },
+        "depth_scope": {
+          "ja": "固定した教育用実行例：自然・端点微分指定スプラインとPCHIP。",
+          "en": "Fixed educational executions: Natural and clamped splines versus PCHIP."
+        },
+        "limitations": {
+          "ja": "PCHIPは通常C1でありC2とは限りません。一般データの最良近似・外挿・ノイズ平滑化は対象外。SciPyは原著完全閲読の代用ではありません。",
+          "en": "PCHIP is generally C1, not necessarily C2. Best approximation, extrapolation and noise smoothing are outside scope. A SciPy comparison does not substitute for reading the original papers."
+        },
+        "metadata_review": {
+          "on": "2026-11-25",
+          "level": "Release-specific educational promotion, backed by actual canonical source and independent ZIP verification.",
+          "prior_reading_metadata": {
+            "summary": {
+              "ja": "補間条件・境界条件と滑らかさを整理する。",
+              "en": "Relate interpolation, boundary conditions and smoothness."
+            },
+            "limitations": {
+              "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+              "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+            },
+            "metadata_review": {
+              "level": "candidate outline; scientific derivation and literature review incomplete",
+              "on": "2026-11-21"
+            },
+            "references": [
+              {
+                "url": "https://doi.org/10.1016/0021-9045(72)90080-9",
+                "label": "On calculating with B-splines (1972)",
+                "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+              }
+            ]
+          },
+          "supplemental_review": {
+            "on": "2026-11-25",
+            "level": "Fixed release-specific input/reference/criterion scope; actual canonical source and independently extracted ZIP are bound. Original study targets remain separate from reproduction checks."
+          }
+        },
+        "next_deliverable": {
+          "ja": "固定範囲を保持し、拡張は別に検証する。",
+          "en": "Preserve the fixed scope and qualify extensions separately."
+        },
+        "references": [
+          {
+            "url": "https://doi.org/10.1016/0021-9045(72)90080-9",
+            "label": "On calculating with B-splines (1972)",
+            "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+          },
+          {
+            "url": "https://raw.githubusercontent.com/scipy/scipy/v1.14.1/scipy/interpolate/_cubic.py",
+            "label": "SciPy 1.14.1 PCHIP documentation and selected source",
+            "scope": "Selected lines 202–225, 243–254, 275–298: harmonic interior derivatives, endpoint sign and 3-slope limiter, two-point case. The original Fritsch–Butland paper has not been read in full. Own formulas are independently expressed as scalar Hermite polynomials."
+          },
+          {
+            "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.interpolate.CubicSpline.html",
+            "label": "SciPy 1.14.1 BSpline and CubicSpline documentation",
+            "scope": "Natural and clamped boundary conditions and the BSpline recurrence were read during preparation. No de Boor original full-text claim. SciPy is a secondary numerical companion; the rational second-derivative system is the independent reference."
+          }
+        ],
+        "status": "educational-example",
+        "summary": {
+          "ja": "補間条件・境界条件と滑らかさを整理する。 固定した教育用実行例：自然・端点微分指定スプラインとPCHIP。",
+          "en": "Relate interpolation, boundary conditions and smoothness. Fixed educational executions: Natural and clamped splines versus PCHIP."
+        },
+        "supplemental_scope_profiles": [
+          {
+            "release": {
+              "group": "approximation-controls",
+              "edition": "2026-11-25",
+              "case_ids": [
+                "spline-shape-controls"
+              ]
+            },
+            "scope": {
+              "ja": "固定した教育用実行例：自然・端点微分指定スプラインとPCHIP。",
+              "en": "Fixed educational executions: Natural and clamped splines versus PCHIP."
+            },
+            "limits": [
+              {
+                "ja": "PCHIPは通常C1でありC2とは限りません。一般データの最良近似・外挿・ノイズ平滑化は対象外。SciPyは原著完全閲読の代用ではありません。",
+                "en": "PCHIP is generally C1, not necessarily C2. Best approximation, extrapolation and noise smoothing are outside scope. A SciPy comparison does not substitute for reading the original papers."
+              }
+            ]
+          }
+        ],
+        "units": "Dimensionless fixed educational examples.",
+        "units_ja": "無次元の固定教育用例です。"
+      },
+      "before_absent": [
+        "assumptions_ja",
+        "boundary_conditions_ja",
+        "code_mapping_scope",
+        "code_mapping_scope_ja",
+        "depth_previous_status",
+        "depth_release",
+        "depth_scope",
+        "supplemental_scope_profiles",
+        "units_ja"
+      ],
+      "after_absent": [],
+      "before_keys": [
+        "aliases",
+        "assumptions",
+        "boundary_conditions",
+        "code_modules",
+        "group",
+        "id",
+        "limitations",
+        "metadata_review",
+        "name",
+        "next_deliverable",
+        "origin",
+        "reading",
+        "references",
+        "status",
+        "summary",
+        "test_files",
+        "units"
+      ],
+      "after_keys": [
+        "aliases",
+        "assumptions",
+        "assumptions_ja",
+        "boundary_conditions",
+        "boundary_conditions_ja",
+        "code_mapping_scope",
+        "code_mapping_scope_ja",
+        "code_modules",
+        "depth_previous_status",
+        "depth_release",
+        "depth_scope",
+        "group",
+        "id",
+        "limitations",
+        "metadata_review",
+        "name",
+        "next_deliverable",
+        "origin",
+        "reading",
+        "references",
+        "status",
+        "summary",
+        "supplemental_scope_profiles",
+        "test_files",
+        "units",
+        "units_ja"
+      ]
+    },
+    "quadrature": {
+      "before": {
+        "depth_additional_releases": [
+          {
+            "group": "foundations-conditioning",
+            "edition": "2026-11-22",
+            "case_ids": [
+              "quadrature-conditioning"
+            ]
+          }
+        ],
+        "metadata_review": {
+          "level": "scoped conditioned matrix/integral families with analytic or independently computed references; residual versus forward error, convergence and explicit failure controls",
+          "on": "2026-11-22"
+        },
+        "references": [
+          {
+            "url": "https://doi.org/10.1090/s0025-5718-69-99647-1",
+            "label": "Calculation of Gauss quadrature rules (1969)",
+            "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+          },
+          {
+            "url": "https://doi.org/10.1007/978-3-642-61786-7",
+            "label": "QUADPACK: A Subroutine Package for Automatic Integration (1983)",
+            "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+          }
+        ],
+        "summary": {
+          "ja": "Gauss–Legendreと適応求積：厳密次数・推定誤差・予算切れ: Legendreの3項漸化式からGauss節点と重みを構成し、2n−1次までの多項式モーメントと指数関数を検査します。適応Simpsonは指数関数とLorentz型ピークを積分し、解析積分・独立QUADPACKと比較します。 求積：狭いピーク・相殺・端点・誤差推定の盲点: Gauss次数と適応公差を走査し、狭いLorentzピーク、平方根端点、巨大な相殺、零積分、見逃すcompact bumpを解析積分とQUADPACKで検証します。",
+          "en": "Gauss–Legendre and adaptive quadrature: exactness, error estimates and budgets: Construct Gaussian nodes/weights from the Legendre recurrence and test polynomial moments through degree 2n−1 and an exponential. Adaptive Simpson integrates exponential and Lorentzian peaks, against analytic integrals and independent QUADPACK. Quadrature: narrow peaks, cancellation, endpoints and estimator blind spots: Vary Gauss order and adaptive tolerance on narrow Lorentz peaks, a square-root endpoint, severe cancellation, a zero integral and a deliberately missed compact bump, using analytic integrals and QUADPACK."
+        }
+      },
+      "after": {
+        "depth_additional_releases": [
+          {
+            "group": "foundations-conditioning",
+            "edition": "2026-11-22",
+            "case_ids": [
+              "quadrature-conditioning"
+            ]
+          },
+          {
+            "group": "quadrature-controls",
+            "edition": "2026-11-25",
+            "case_ids": [
+              "quadpack-domain-selection",
+              "gk15-double-exponential",
+              "tensor-smolyak-dimensions"
+            ]
+          }
+        ],
+        "metadata_review": {
+          "level": "scoped conditioned matrix/integral families with analytic or independently computed references; residual versus forward error, convergence and explicit failure controls",
+          "on": "2026-11-22",
+          "supplemental_review": {
+            "on": "2026-11-25",
+            "level": "Fixed release-specific input/reference/criterion scope; actual canonical source and independently extracted ZIP are bound. Original study targets remain separate from reproduction checks."
+          }
+        },
+        "references": [
+          {
+            "url": "https://doi.org/10.1090/s0025-5718-69-99647-1",
+            "label": "Calculation of Gauss quadrature rules (1969)",
+            "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+          },
+          {
+            "url": "https://doi.org/10.1007/978-3-642-61786-7",
+            "label": "QUADPACK: A Subroutine Package for Automatic Integration (1983)",
+            "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+          },
+          {
+            "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.quad.html",
+            "label": "quad: adaptive integration and QUADPACK dispatch",
+            "scope": "Selected parameters/full_output and routine dispatch; no complete QUADPACK book/proof audit."
+          },
+          {
+            "url": "https://raw.githubusercontent.com/scipy/scipy/v1.14.1/scipy/integrate/quadpack/dqk15.f",
+            "label": "Pinned SciPy1.14.1 bundled dqk15",
+            "scope": "Displayed table and nesting/resasc safeguards; coefficients are shared-origin, not independently regenerated."
+          },
+          {
+            "url": "https://ems.press/doi/pdf/10.2977/prims/1195192451",
+            "label": "Double Exponential Formulas for Numerical Integration",
+            "scope": "Selected extracted pp722/724/730 equations; rendered equation screenshots failed. No whole-paper proof/optimality audit."
+          },
+          {
+            "url": "https://www.sam.math.ethz.ch/sam_reports/reports_final/reports2008/2008-07.pdf",
+            "label": "Fast Construction of the Fejer and Clenshaw-Curtis Quadrature Rules",
+            "scope": "Selected cover/introduction/sec2 extracted equations2.1–2.6; not the entire DFT proof or performance study. This report supports the Clenshaw-Curtis rule only. The Smolyak Delta/combination assembly is independently derived here; the Smolyak1963 and Gerstner-Griebel1998 original bodies remain unread."
+          }
+        ],
+        "summary": {
+          "ja": "Gauss–Legendreと適応求積：厳密次数・推定誤差・予算切れ: Legendreの3項漸化式からGauss節点と重みを構成し、2n−1次までの多項式モーメントと指数関数を検査します。適応Simpsonは指数関数とLorentz型ピークを積分し、解析積分・独立QUADPACKと比較します。 求積：狭いピーク・相殺・端点・誤差推定の盲点: Gauss次数と適応公差を走査し、狭いLorentzピーク、平方根端点、巨大な相殺、零積分、見逃すcompact bumpを解析積分とQUADPACKで検証します。 固定した教育用実行例：領域別QUADPACKと有限Simpson対照、G7/K15と有限区間tanh-sinh、2〜4次元テンソル・Smolyak対照。",
+          "en": "Gauss–Legendre and adaptive quadrature: exactness, error estimates and budgets: Construct Gaussian nodes/weights from the Legendre recurrence and test polynomial moments through degree 2n−1 and an exponential. Adaptive Simpson integrates exponential and Lorentzian peaks, against analytic integrals and independent QUADPACK. Quadrature: narrow peaks, cancellation, endpoints and estimator blind spots: Vary Gauss order and adaptive tolerance on narrow Lorentz peaks, a square-root endpoint, severe cancellation, a zero integral and a deliberately missed compact bump, using analytic integrals and QUADPACK. Fixed educational executions: QUADPACK dispatch and finite Simpson companions, G7/K15 and finite-interval tanh-sinh, Tensor and Smolyak controls in two to four dimensions."
+        },
+        "supplemental_scope_profiles": [
+          {
+            "release": {
+              "group": "quadrature-controls",
+              "edition": "2026-11-25",
+              "case_ids": [
+                "quadpack-domain-selection",
+                "gk15-double-exponential",
+                "tensor-smolyak-dimensions"
+              ]
+            },
+            "scope": {
+              "ja": "固定した教育用実行例：領域別QUADPACKと有限Simpson対照、G7/K15と有限区間tanh-sinh、2〜4次元テンソル・Smolyak対照。",
+              "en": "Fixed educational executions: QUADPACK dispatch and finite Simpson companions, G7/K15 and finite-interval tanh-sinh, Tensor and Smolyak controls in two to four dimensions."
+            },
+            "limits": [
+              {
+                "ja": "Simpsonの特異節点失敗と未達精度を保存し、推定誤差の一般保証にしません。",
+                "en": "Singular-node failures and unmet Simpson goals remain visible; error estimates are not general guarantees."
+              },
+              {
+                "ja": "半無限exp-sinh/全実線sinh-sinhは未実装。無限台形SUMの省略項のboundは提供しません。",
+                "en": "Half-line exp-sinh and whole-line sinh-sinh are unimplemented; no omitted infinite-grid sum bound is provided."
+              },
+              {
+                "ja": "一般の誤差単調性、常時正重み、疎格子の費用優位は主張しません。物理PDEの空間ではありません。",
+                "en": "No general error monotonicity, positive-weight or cost-superiority claim; these are integration coordinates, not a physical PDE space."
+              }
+            ]
+          }
+        ]
+      },
+      "before_absent": [
+        "supplemental_scope_profiles"
+      ],
+      "after_absent": [],
+      "before_keys": [
+        "aliases",
+        "assumptions",
+        "boundary_conditions",
+        "code_modules",
+        "depth_additional_releases",
+        "depth_previous_status",
+        "depth_release",
+        "depth_scope",
+        "group",
+        "id",
+        "limitations",
+        "metadata_review",
+        "name",
+        "next_deliverable",
+        "origin",
+        "reading",
+        "references",
+        "status",
+        "summary",
+        "test_files",
+        "units"
+      ],
+      "after_keys": [
+        "aliases",
+        "assumptions",
+        "boundary_conditions",
+        "code_modules",
+        "depth_additional_releases",
+        "depth_previous_status",
+        "depth_release",
+        "depth_scope",
+        "group",
+        "id",
+        "limitations",
+        "metadata_review",
+        "name",
+        "next_deliverable",
+        "origin",
+        "reading",
+        "references",
+        "status",
+        "summary",
+        "supplemental_scope_profiles",
+        "test_files",
+        "units"
+      ]
+    },
+    "chebyshev": {
+      "before": {
+        "assumptions": null,
+        "boundary_conditions": null,
+        "limitations": {
+          "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+          "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+        },
+        "metadata_review": {
+          "level": "candidate outline; scientific derivation and literature review incomplete",
+          "on": "2026-11-21"
+        },
+        "next_deliverable": {
+          "ja": "滑らかな関数と非滑らかな関数の誤差比較。",
+          "en": "Compare smooth and nonsmooth approximation errors."
+        },
+        "references": [
+          {
+            "url": "https://doi.org/10.1007/bf01386223",
+            "label": "A method for numerical integration on an automatic computer (1960)",
+            "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+          },
+          {
+            "url": "https://dlmf.nist.gov/",
+            "label": "NIST Digital Library of Mathematical Functions (2010)",
+            "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+          }
+        ],
+        "status": "planned",
+        "summary": {
+          "ja": "多項式近似・節点・スペクトル収束を整理する。",
+          "en": "Connect polynomial approximation, node choice and spectral convergence."
+        },
+        "units": null
+      },
+      "after": {
+        "assumptions": [
+          "Dimensionless interval [-1,1], degrees 8, 16 and 32, and 2048 fixed midpoints. Actual binary64 nodes, data and weights define the discrete problem."
+        ],
+        "assumptions_ja": [
+          "無次元区間[-1,1]、次数8・16・32、固定2048中点。節点・データ・重みは実際のbinary64値を対象にします。"
+        ],
+        "boundary_conditions": "See the exact case-specific domain and boundary conventions.",
+        "boundary_conditions_ja": "各例の正確な領域・境界の定義を確認してください。",
+        "code_mapping_scope": "Fixed educational executions: Runge interpolation: nodes, representation and rounding.",
+        "code_mapping_scope_ja": "固定した教育用実行例：節点・表現・丸めを分けるRunge補間。",
+        "depth_previous_status": "planned",
+        "depth_release": {
+          "group": "approximation-controls",
+          "edition": "2026-11-25",
+          "case_ids": [
+            "runge-barycentric-clenshaw"
+          ]
+        },
+        "depth_scope": {
+          "ja": "固定した教育用実行例：節点・表現・丸めを分けるRunge補間。",
+          "en": "Fixed educational executions: Runge interpolation: nodes, representation and rounding."
+        },
+        "limitations": {
+          "ja": "標本最大誤差は連続一様ノルムの証明ではありません。丸め節点の閉重み・離散直交性は厳密と見なしません。任意次数・任意点の安定性は保証しません。",
+          "en": "A sampled maximum error is not a proof of a continuous uniform norm. Closed weights and discrete orthogonality on rounded nodes are not treated as exact. No arbitrary-degree or all-point stability guarantee is made."
+        },
+        "metadata_review": {
+          "on": "2026-11-25",
+          "level": "Release-specific educational promotion, backed by actual canonical source and independent ZIP verification.",
+          "prior_reading_metadata": {
+            "summary": {
+              "ja": "多項式近似・節点・スペクトル収束を整理する。",
+              "en": "Connect polynomial approximation, node choice and spectral convergence."
+            },
+            "limitations": {
+              "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+              "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+            },
+            "metadata_review": {
+              "level": "candidate outline; scientific derivation and literature review incomplete",
+              "on": "2026-11-21"
+            },
+            "references": [
+              {
+                "url": "https://doi.org/10.1007/bf01386223",
+                "label": "A method for numerical integration on an automatic computer (1960)",
+                "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+              },
+              {
+                "url": "https://dlmf.nist.gov/",
+                "label": "NIST Digital Library of Mathematical Functions (2010)",
+                "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+              }
+            ]
+          },
+          "supplemental_review": {
+            "on": "2026-11-25",
+            "level": "Fixed release-specific input/reference/criterion scope; actual canonical source and independently extracted ZIP are bound. Original study targets remain separate from reproduction checks."
+          }
+        },
+        "next_deliverable": {
+          "ja": "固定範囲を保持し、拡張は別に検証する。",
+          "en": "Preserve the fixed scope and qualify extensions separately."
+        },
+        "references": [
+          {
+            "url": "https://doi.org/10.1007/bf01386223",
+            "label": "A method for numerical integration on an automatic computer (1960)",
+            "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+          },
+          {
+            "url": "https://dlmf.nist.gov/",
+            "label": "NIST Digital Library of Mathematical Functions (2010)",
+            "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+          },
+          {
+            "url": "https://dlmf.nist.gov/3.11",
+            "label": "NIST DLMF §3.11(ii): Chebyshev series and Clenshaw summation",
+            "scope": "Selected E7, E9, E11 and E15 with endpoint-halving conventions; no original Clenshaw paper reading. The implementation uses full coefficients, so its final combination is derived explicitly."
+          },
+          {
+            "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.interpolate.BarycentricInterpolator.html",
+            "label": "SciPy 1.14.1 BarycentricInterpolator documentation",
+            "scope": "Selected barycentric formula and interpolation-conditioning notes read during the preceding preparation. The Berrut–Trefethen paper is a bibliographic lead, not a full-text reading."
+          }
+        ],
+        "status": "educational-example",
+        "summary": {
+          "ja": "多項式近似・節点・スペクトル収束を整理する。 固定した教育用実行例：節点・表現・丸めを分けるRunge補間。",
+          "en": "Connect polynomial approximation, node choice and spectral convergence. Fixed educational executions: Runge interpolation: nodes, representation and rounding."
+        },
+        "supplemental_scope_profiles": [
+          {
+            "release": {
+              "group": "approximation-controls",
+              "edition": "2026-11-25",
+              "case_ids": [
+                "runge-barycentric-clenshaw"
+              ]
+            },
+            "scope": {
+              "ja": "固定した教育用実行例：節点・表現・丸めを分けるRunge補間。",
+              "en": "Fixed educational executions: Runge interpolation: nodes, representation and rounding."
+            },
+            "limits": [
+              {
+                "ja": "標本最大誤差は連続一様ノルムの証明ではありません。丸め節点の閉重み・離散直交性は厳密と見なしません。任意次数・任意点の安定性は保証しません。",
+                "en": "A sampled maximum error is not a proof of a continuous uniform norm. Closed weights and discrete orthogonality on rounded nodes are not treated as exact. No arbitrary-degree or all-point stability guarantee is made."
+              }
+            ]
+          }
+        ],
+        "units": "Dimensionless fixed educational examples.",
+        "units_ja": "無次元の固定教育用例です。"
+      },
+      "before_absent": [
+        "assumptions_ja",
+        "boundary_conditions_ja",
+        "code_mapping_scope",
+        "code_mapping_scope_ja",
+        "depth_previous_status",
+        "depth_release",
+        "depth_scope",
+        "supplemental_scope_profiles",
+        "units_ja"
+      ],
+      "after_absent": [],
+      "before_keys": [
+        "aliases",
+        "assumptions",
+        "boundary_conditions",
+        "code_modules",
+        "group",
+        "id",
+        "limitations",
+        "metadata_review",
+        "name",
+        "next_deliverable",
+        "origin",
+        "reading",
+        "references",
+        "status",
+        "summary",
+        "test_files",
+        "units"
+      ],
+      "after_keys": [
+        "aliases",
+        "assumptions",
+        "assumptions_ja",
+        "boundary_conditions",
+        "boundary_conditions_ja",
+        "code_mapping_scope",
+        "code_mapping_scope_ja",
+        "code_modules",
+        "depth_previous_status",
+        "depth_release",
+        "depth_scope",
+        "group",
+        "id",
+        "limitations",
+        "metadata_review",
+        "name",
+        "next_deliverable",
+        "origin",
+        "reading",
+        "references",
+        "status",
+        "summary",
+        "supplemental_scope_profiles",
+        "test_files",
+        "units",
+        "units_ja"
+      ]
+    },
+    "wavelets": {
+      "before": {
+        "assumptions": null,
+        "boundary_conditions": null,
+        "limitations": {
+          "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+          "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+        },
+        "metadata_review": {
+          "level": "candidate outline; scientific derivation and literature review incomplete",
+          "on": "2026-11-21"
+        },
+        "next_deliverable": {
+          "ja": "変換と再構成・打切り誤差の最小例。",
+          "en": "A small transform/reconstruction and truncation example."
+        },
+        "references": [
+          {
+            "url": "https://doi.org/10.1109/34.192463",
+            "label": "A theory for multiresolution signal decomposition: the wavelet representation (1989)",
+            "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+          }
+        ],
+        "status": "planned",
+        "summary": {
+          "ja": "多重解像度表現と局所構造の扱いを整理する。",
+          "en": "Map multiresolution representations and local structure."
+        },
+        "units": null
+      },
+      "after": {
+        "assumptions": [
+          "At each odd-length level append the first sample for periodic extension or the last for symmetric extension, then crop during synthesis. Apply threshold 0.2 only to detail coefficients."
+        ],
+        "assumptions_ja": [
+          "奇数長の各段で周期型は先頭、対称型は末尾を1点追加し、再構成時に切り戻します。詳細係数のみ閾値0.2を使用。"
+        ],
+        "boundary_conditions": "See the exact case-specific domain and boundary conventions.",
+        "boundary_conditions_ja": "各例の正確な領域・境界の定義を確認してください。",
+        "code_mapping_scope": "Fixed educational executions: Haar multiresolution: boundaries, shifts and thresholds.",
+        "code_mapping_scope_ja": "固定した教育用実行例：Haar多重解像度の境界・シフト・閾値。",
+        "depth_previous_status": "planned",
+        "depth_release": {
+          "group": "approximation-controls",
+          "edition": "2026-11-25",
+          "case_ids": [
+            "haar-mallat-boundary-threshold"
+          ]
+        },
+        "depth_scope": {
+          "ja": "固定した教育用実行例：Haar多重解像度の境界・シフト・閾値。",
+          "en": "Fixed educational executions: Haar multiresolution: boundaries, shifts and thresholds."
+        },
+        "limitations": {
+          "ja": "Haarに限定し長いフィルタや画像圧縮は対象外。一般の対称拡張に正規直交性を仮定しません。シフト不変性は要求せず、シフト別差を保存します。",
+          "en": "Limited to Haar, without longer filters or image compression. General symmetric extension is not assumed orthonormal. Shift invariance is not required; shift-dependent differences are retained."
+        },
+        "metadata_review": {
+          "on": "2026-11-25",
+          "level": "Release-specific educational promotion, backed by actual canonical source and independent ZIP verification.",
+          "prior_reading_metadata": {
+            "summary": {
+              "ja": "多重解像度表現と局所構造の扱いを整理する。",
+              "en": "Map multiresolution representations and local structure."
+            },
+            "limitations": {
+              "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+              "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+            },
+            "metadata_review": {
+              "level": "candidate outline; scientific derivation and literature review incomplete",
+              "on": "2026-11-21"
+            },
+            "references": [
+              {
+                "url": "https://doi.org/10.1109/34.192463",
+                "label": "A theory for multiresolution signal decomposition: the wavelet representation (1989)",
+                "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+              }
+            ]
+          },
+          "supplemental_review": {
+            "on": "2026-11-25",
+            "level": "Fixed release-specific input/reference/criterion scope; actual canonical source and independently extracted ZIP are bound. Original study targets remain separate from reproduction checks."
+          }
+        },
+        "next_deliverable": {
+          "ja": "固定範囲を保持し、拡張は別に検証する。",
+          "en": "Preserve the fixed scope and qualify extensions separately."
+        },
+        "references": [
+          {
+            "url": "https://doi.org/10.1109/34.192463",
+            "label": "A theory for multiresolution signal decomposition: the wavelet representation (1989)",
+            "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+          },
+          {
+            "url": "https://www.di.ens.fr/~mallat/papiers/MallatTheory89.pdf",
+            "label": "S. Mallat, A Theory for Multiresolution Signal Decomposition: The Wavelet Representation",
+            "scope": "During preparation: title/abstract, Haar example on printed p. 679, selected §III-B/C filter/downsample/inverse-pyramid and border-symmetry prose on p. 681. Extracted formula glyphs were imperfect; no complete proof or numerical-table audit is claimed."
+          },
+          {
+            "url": "https://pywavelets.readthedocs.io/en/latest/ref/signal-extension-modes.html",
+            "label": "PyWavelets documentation: Signal extension modes",
+            "scope": "Periodic and half-sample symmetric extension and the redundancy caveat. This example defines its own append-at-each-odd-level/crop convention; it does not claim PyWavelets coefficient-layout equivalence or require PyWavelets."
+          }
+        ],
+        "status": "educational-example",
+        "summary": {
+          "ja": "多重解像度表現と局所構造の扱いを整理する。 固定した教育用実行例：Haar多重解像度の境界・シフト・閾値。",
+          "en": "Map multiresolution representations and local structure. Fixed educational executions: Haar multiresolution: boundaries, shifts and thresholds."
+        },
+        "supplemental_scope_profiles": [
+          {
+            "release": {
+              "group": "approximation-controls",
+              "edition": "2026-11-25",
+              "case_ids": [
+                "haar-mallat-boundary-threshold"
+              ]
+            },
+            "scope": {
+              "ja": "固定した教育用実行例：Haar多重解像度の境界・シフト・閾値。",
+              "en": "Fixed educational executions: Haar multiresolution: boundaries, shifts and thresholds."
+            },
+            "limits": [
+              {
+                "ja": "Haarに限定し長いフィルタや画像圧縮は対象外。一般の対称拡張に正規直交性を仮定しません。シフト不変性は要求せず、シフト別差を保存します。",
+                "en": "Limited to Haar, without longer filters or image compression. General symmetric extension is not assumed orthonormal. Shift invariance is not required; shift-dependent differences are retained."
+              }
+            ]
+          }
+        ],
+        "units": "Dimensionless fixed educational examples.",
+        "units_ja": "無次元の固定教育用例です。"
+      },
+      "before_absent": [
+        "assumptions_ja",
+        "boundary_conditions_ja",
+        "code_mapping_scope",
+        "code_mapping_scope_ja",
+        "depth_previous_status",
+        "depth_release",
+        "depth_scope",
+        "supplemental_scope_profiles",
+        "units_ja"
+      ],
+      "after_absent": [],
+      "before_keys": [
+        "aliases",
+        "assumptions",
+        "boundary_conditions",
+        "code_modules",
+        "group",
+        "id",
+        "limitations",
+        "metadata_review",
+        "name",
+        "next_deliverable",
+        "origin",
+        "reading",
+        "references",
+        "status",
+        "summary",
+        "test_files",
+        "units"
+      ],
+      "after_keys": [
+        "aliases",
+        "assumptions",
+        "assumptions_ja",
+        "boundary_conditions",
+        "boundary_conditions_ja",
+        "code_mapping_scope",
+        "code_mapping_scope_ja",
+        "code_modules",
+        "depth_previous_status",
+        "depth_release",
+        "depth_scope",
+        "group",
+        "id",
+        "limitations",
+        "metadata_review",
+        "name",
+        "next_deliverable",
+        "origin",
+        "reading",
+        "references",
+        "status",
+        "summary",
+        "supplemental_scope_profiles",
+        "test_files",
+        "units",
+        "units_ja"
+      ]
+    },
+    "pinn-operators": {
+      "before": {
+        "assumptions": null,
+        "boundary_conditions": null,
+        "limitations": {
+          "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+          "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+        },
+        "metadata_review": {
+          "level": "candidate outline; scientific derivation and literature review incomplete",
+          "on": "2026-11-21"
+        },
+        "next_deliverable": {
+          "ja": "古典解法と同じ問題・評価量を使う比較計画。",
+          "en": "A comparison with classical solvers on the same problems and observables."
+        },
+        "references": [
+          {
+            "url": "https://doi.org/10.1016/j.jcp.2018.10.045",
+            "label": "Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations (2019)",
+            "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+          },
+          {
+            "url": "https://openreview.net/forum?id=c8P9NQVtmnO",
+            "label": "Fourier Neural Operator for Parametric Partial Differential Equations (2021)",
+            "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+          }
+        ],
+        "status": "planned",
+        "summary": {
+          "ja": "学習した解・演算子の位置付けと誤差・汎化を整理する。",
+          "en": "Map learned solutions/operators, error and generalization."
+        },
+        "units": null
+      },
+      "after": {
+        "assumptions": [
+          "Solve dimensionless −uₓₓ=π² sin(πx) on [0,1] with zero Dirichlet data. Use sixteen hidden units, 49 real parameters, seeds 8401–8403, 64 training points and 257 separate evaluation points.",
+          "Use periodic heat flow uₜ=νuₓₓ on [0,2π) to T=0.25. Split 46 whole problems into 24 training, 6 validation, 8 held-out ID, 4 viscosity-OOD and 4 spectrum-OOD problems. Use two fixed seeds and 93 real parameters."
+        ],
+        "assumptions_ja": [
+          "無次元区間[0,1]で −uₓₓ=π²sin(πx)、u(0)=u(1)=0。中間層16素子・49実パラメータ、固定seed 8401–8403、学習64点と独立評価257点を用います。",
+          "周期区間[0,2π)、uₜ=νuₓₓ、T=0.25。同じ関数の点を分散させず、全46問題を学習24・検証6・未見ID8・νのOOD4・周波数のOOD4に分けます。2固定seed、93実パラメータです。"
+        ],
+        "boundary_conditions": "See the exact case-specific domain and boundary conventions.",
+        "boundary_conditions_ja": "各例の正確な領域・境界の定義を確認してください。",
+        "code_mapping_scope": "Fixed educational executions: Poisson PINN: independent grid error, Tiny FNO on held-out heat problems.",
+        "code_mapping_scope_ja": "固定した教育用実行例：1D Poisson PINNと独立格子誤差、小型FNOの問題単位検証。",
+        "depth_previous_status": "planned",
+        "depth_release": {
+          "group": "small-models",
+          "edition": "2026-11-25",
+          "case_ids": [
+            "pinn-poisson",
+            "fno-periodic-heat"
+          ]
+        },
+        "depth_scope": {
+          "ja": "固定した教育用実行例：1D Poisson PINNと独立格子誤差、小型FNOの問題単位検証。",
+          "en": "Fixed educational executions: Poisson PINN: independent grid error, Tiny FNO on held-out heat problems."
+        },
+        "limitations": {
+          "ja": "1つの滑らかなPoisson問題と3seedの固定予算実験です。小さい学習損失だけで独立点精度の達成や一般的なPINN学習成功を保証しません。未達目標も表示します。 固定された小型離散作用素の比較で、任意の解像度・分布に対する一般化やOOD精度を保証しません。N=64から32への差には非線形aliasingが含まれ、連続体離散化誤差とは呼びません。最適化収束と固定予算終了は別です。",
+          "en": "This fixed-budget study covers one smooth Poisson problem and three seeds. A small training loss does not establish independent-point accuracy or general PINN training success. Unmet goals remain visible. This comparison concerns a fixed tiny discrete operator, without arbitrary-resolution, distributional or OOD guarantees. The N=64-to-32 discrepancy includes nonlinear aliasing and is not a continuum discretization error. Optimizer convergence is distinct from normal budget termination."
+        },
+        "metadata_review": {
+          "on": "2026-11-25",
+          "level": "Release-specific educational promotion, backed by actual canonical source and independent ZIP verification.",
+          "prior_reading_metadata": {
+            "summary": {
+              "ja": "学習した解・演算子の位置付けと誤差・汎化を整理する。",
+              "en": "Map learned solutions/operators, error and generalization."
+            },
+            "limitations": {
+              "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+              "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+            },
+            "metadata_review": {
+              "level": "candidate outline; scientific derivation and literature review incomplete",
+              "on": "2026-11-21"
+            },
+            "references": [
+              {
+                "url": "https://doi.org/10.1016/j.jcp.2018.10.045",
+                "label": "Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations (2019)",
+                "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+              },
+              {
+                "url": "https://openreview.net/forum?id=c8P9NQVtmnO",
+                "label": "Fourier Neural Operator for Parametric Partial Differential Equations (2021)",
+                "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+              }
+            ]
+          },
+          "supplemental_review": {
+            "on": "2026-11-25",
+            "level": "Fixed release-specific input/reference/criterion scope; actual canonical source and independently extracted ZIP are bound. Original study targets remain separate from reproduction checks."
+          }
+        },
+        "next_deliverable": {
+          "ja": "固定範囲を保持し、拡張は別に検証する。",
+          "en": "Preserve the fixed scope and qualify extensions separately."
+        },
+        "references": [
+          {
+            "url": "https://doi.org/10.1016/j.jcp.2018.10.045",
+            "label": "Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations (2019)",
+            "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+          },
+          {
+            "url": "https://openreview.net/forum?id=c8P9NQVtmnO",
+            "label": "Fourier Neural Operator for Parametric Partial Differential Equations (2021)",
+            "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+          },
+          {
+            "url": "https://arxiv.org/pdf/1711.10561",
+            "label": "Physics Informed Deep Learning (Part I): Data-driven Solutions of Nonlinear Partial Differential Equations",
+            "scope": "Extracted PDF text selected pp.4–6, §2 continuous-time residual, Eq(2)–(4), Burgers setup and loss/optimizer discussion; not all 22 pages and not visual PDF audit."
+          },
+          {
+            "url": "https://arxiv.org/html/2010.08895v3",
+            "label": "Fourier Neural Operator for Parametric Partial Differential Equations",
+            "scope": "Selected HTML §2 learning operators; §3 Eq(2); §4 Eq(4)–(5), FFT/truncation/reality; §5 setup and §5.1 Burgers. PDF header/edition only; not full paper or appendix audit."
+          }
+        ],
+        "status": "educational-example",
+        "summary": {
+          "ja": "学習した解・演算子の位置付けと誤差・汎化を整理する。 固定した教育用実行例：1D Poisson PINNと独立格子誤差、小型FNOの問題単位検証。",
+          "en": "Map learned solutions/operators, error and generalization. Fixed educational executions: Poisson PINN: independent grid error, Tiny FNO on held-out heat problems."
+        },
+        "supplemental_scope_profiles": [
+          {
+            "release": {
+              "group": "small-models",
+              "edition": "2026-11-25",
+              "case_ids": [
+                "pinn-poisson",
+                "fno-periodic-heat"
+              ]
+            },
+            "scope": {
+              "ja": "固定した教育用実行例：1D Poisson PINNと独立格子誤差、小型FNOの問題単位検証。",
+              "en": "Fixed educational executions: Poisson PINN: independent grid error, Tiny FNO on held-out heat problems."
+            },
+            "limits": [
+              {
+                "ja": "1つの滑らかなPoisson問題と3seedの固定予算実験です。小さい学習損失だけで独立点精度の達成や一般的なPINN学習成功を保証しません。未達目標も表示します。",
+                "en": "This fixed-budget study covers one smooth Poisson problem and three seeds. A small training loss does not establish independent-point accuracy or general PINN training success. Unmet goals remain visible."
+              },
+              {
+                "ja": "固定された小型離散作用素の比較で、任意の解像度・分布に対する一般化やOOD精度を保証しません。N=64から32への差には非線形aliasingが含まれ、連続体離散化誤差とは呼びません。最適化収束と固定予算終了は別です。",
+                "en": "This comparison concerns a fixed tiny discrete operator, without arbitrary-resolution, distributional or OOD guarantees. The N=64-to-32 discrepancy includes nonlinear aliasing and is not a continuum discretization error. Optimizer convergence is distinct from normal budget termination."
+              }
+            ]
+          }
+        ],
+        "units": "Dimensionless fixed educational examples.",
+        "units_ja": "無次元の固定教育用例です。"
+      },
+      "before_absent": [
+        "assumptions_ja",
+        "boundary_conditions_ja",
+        "code_mapping_scope",
+        "code_mapping_scope_ja",
+        "depth_previous_status",
+        "depth_release",
+        "depth_scope",
+        "supplemental_scope_profiles",
+        "units_ja"
+      ],
+      "after_absent": [],
+      "before_keys": [
+        "aliases",
+        "assumptions",
+        "boundary_conditions",
+        "code_modules",
+        "group",
+        "id",
+        "limitations",
+        "metadata_review",
+        "name",
+        "next_deliverable",
+        "origin",
+        "reading",
+        "references",
+        "status",
+        "summary",
+        "test_files",
+        "units"
+      ],
+      "after_keys": [
+        "aliases",
+        "assumptions",
+        "assumptions_ja",
+        "boundary_conditions",
+        "boundary_conditions_ja",
+        "code_mapping_scope",
+        "code_mapping_scope_ja",
+        "code_modules",
+        "depth_previous_status",
+        "depth_release",
+        "depth_scope",
+        "group",
+        "id",
+        "limitations",
+        "metadata_review",
+        "name",
+        "next_deliverable",
+        "origin",
+        "reading",
+        "references",
+        "status",
+        "summary",
+        "supplemental_scope_profiles",
+        "test_files",
+        "units",
+        "units_ja"
+      ]
+    }
+  },
+  "problem_transitions": {
+    "heat-periodic": {
+      "before": {},
+      "after": {
+        "supplemental_examples": [
+          {
+            "id": "fno-periodic-heat",
+            "url": "/numerical-methods-atlas/validation/fno-periodic-heat/",
+            "name": {
+              "ja": "小型FNOの問題単位検証",
+              "en": "Tiny FNO on held-out heat problems"
+            }
+          }
+        ]
+      },
+      "before_absent": [
+        "supplemental_examples"
+      ],
+      "after_absent": [],
+      "before_keys": [
+        "availability",
+        "chapter",
+        "evidence",
+        "group",
+        "id",
+        "name"
+      ],
+      "after_keys": [
+        "availability",
+        "chapter",
+        "evidence",
+        "group",
+        "id",
+        "name",
+        "supplemental_examples"
+      ]
+    },
+    "poisson-1d-dirichlet": {
+      "before": {},
+      "after": {
+        "supplemental_examples": [
+          {
+            "id": "pinn-poisson",
+            "url": "/numerical-methods-atlas/validation/pinn-poisson/",
+            "name": {
+              "ja": "1D Poisson PINNと独立格子誤差",
+              "en": "Poisson PINN: independent grid error"
+            }
+          }
+        ]
+      },
+      "before_absent": [
+        "supplemental_examples"
+      ],
+      "after_absent": [],
+      "before_keys": [
+        "availability",
+        "chapter",
+        "evidence",
+        "group",
+        "id",
+        "name"
+      ],
+      "after_keys": [
+        "availability",
+        "chapter",
+        "evidence",
+        "group",
+        "id",
+        "name",
+        "supplemental_examples"
+      ]
+    }
+  },
+  "gallery_transitions": {},
+  "new_method_records_typed_sha256": {
+    "gauss-kronrod": "0f4a185d0d3f994acd16f9d3c99eae678ff3c257dce2c280a7cd09ab87b128ef",
+    "tanh-sinh": "888459e5e72571267c730bfee5f73738ec54acb7a31c22652a9585e32e850339",
+    "smolyak-sparse-grid": "526e5e6ead19d7188d745f5ee5286687527a9c59f0f38941dab7a83004c112f4",
+    "pchip": "0c63639c82b14a08495e98f905b083e124feeed0ed088f472200ec41fc83b5b8"
+  },
+  "scientific_status": "ACTUAL_LOCAL_CANONICAL_PACKETS_VERIFIED_NOT_PUBLICATION",
+  "new_pytest_total": 87,
+  "new_check_counts": {
+    "quadpack-domain-selection": 134,
+    "gk15-double-exponential": 155,
+    "tensor-smolyak-dimensions": 289,
+    "runge-barycentric-clenshaw": 48,
+    "spline-shape-controls": 57,
+    "haar-mallat-boundary-threshold": 153,
+    "pinn-poisson": 12,
+    "fno-periodic-heat": 9,
+    "enzyme-qssa": 10,
+    "lotka-volterra": 3,
+    "seir-linearization": 6
+  },
+  "final_figures": {
+    "quadpack-domain-selection": {
+      "quadpack-domain-selection.png": {
+        "path": "code/validated-examples/2026-11-25/quadrature-controls/results/quadpack-domain-selection.png",
+        "sha256": "9b45e3cc69ef7af27848683d0e7955c215c90da800cd6313d092f0afba36bd5f"
+      },
+      "quadpack-domain-selection-preview.png": {
+        "path": "code/validated-examples/2026-11-25/quadrature-controls/results/quadpack-domain-selection-preview.png",
+        "sha256": "111323aebefd00411d8204b17d38024d3a20920e263f36af487083ecd49259f5"
+      }
+    },
+    "gk15-double-exponential": {
+      "gk15-double-exponential.png": {
+        "path": "code/validated-examples/2026-11-25/quadrature-controls/results/gk15-double-exponential.png",
+        "sha256": "54eff6035d84c6fa0bed04722537c85d31653911b6b1196391ea6d538f00cb7e"
+      },
+      "gk15-double-exponential-preview.png": {
+        "path": "code/validated-examples/2026-11-25/quadrature-controls/results/gk15-double-exponential-preview.png",
+        "sha256": "1baba282adda756250570f756dada4aca2ad08a211da1d09f4aa4f012ab8b0dd"
+      }
+    },
+    "tensor-smolyak-dimensions": {
+      "tensor-smolyak-dimensions.png": {
+        "path": "code/validated-examples/2026-11-25/quadrature-controls/results/tensor-smolyak-dimensions.png",
+        "sha256": "3f503ee0571df93719f30817552dc5f8152a5042975319acd9a450599f2ecbdc"
+      },
+      "tensor-smolyak-dimensions-preview.png": {
+        "path": "code/validated-examples/2026-11-25/quadrature-controls/results/tensor-smolyak-dimensions-preview.png",
+        "sha256": "8f0c7101b7ca3062e0789fb9a658f58542024b566a8fafdc38e6a2a9d4263147"
+      }
+    },
+    "runge-barycentric-clenshaw": {
+      "runge-barycentric-clenshaw.png": {
+        "path": "code/validated-examples/2026-11-25/approximation-controls/results/runge-barycentric-clenshaw.png",
+        "sha256": "8cf8b9c5946bbec3a3c4cef110ff3bed1c5ddc9edf77c94b6a454129e2c536fb"
+      },
+      "runge-barycentric-clenshaw-preview.png": {
+        "path": "code/validated-examples/2026-11-25/approximation-controls/results/runge-barycentric-clenshaw-preview.png",
+        "sha256": "36e92c10fcf30cc84d6982b52d2ee72e4ddacabd445527b180d06836d33aa7f7"
+      },
+      "runge-barycentric-clenshaw-diagnostics.png": {
+        "path": "code/validated-examples/2026-11-25/approximation-controls/results/runge-barycentric-clenshaw-diagnostics.png",
+        "sha256": "c5632b4a470455eba5d3ddf671eb0bcd69e6487cfd7be884a53ad31f5e5e2d68"
+      }
+    },
+    "spline-shape-controls": {
+      "spline-shape-controls.png": {
+        "path": "code/validated-examples/2026-11-25/approximation-controls/results/spline-shape-controls.png",
+        "sha256": "c0ebf146b8708eccd7174ee553417c6224f36c03a97ed6e8a09efe7a894e6a52"
+      },
+      "spline-shape-controls-preview.png": {
+        "path": "code/validated-examples/2026-11-25/approximation-controls/results/spline-shape-controls-preview.png",
+        "sha256": "f82de2009b363a8e1a42e118714084f4b920f050393c066c75f996c38299f1c5"
+      },
+      "spline-shape-controls-diagnostics.png": {
+        "path": "code/validated-examples/2026-11-25/approximation-controls/results/spline-shape-controls-diagnostics.png",
+        "sha256": "f1fff9c8a0680fa856b9365accc14a4cf52b6cc40d3a137fcf5992fdbc9a959f"
+      }
+    },
+    "haar-mallat-boundary-threshold": {
+      "haar-mallat-boundary-threshold.png": {
+        "path": "code/validated-examples/2026-11-25/approximation-controls/results/haar-mallat-boundary-threshold.png",
+        "sha256": "8515541cb6ae0fb774e093238e0b21983b29749053db2776e45f17dbc7108f51"
+      },
+      "haar-mallat-boundary-threshold-preview.png": {
+        "path": "code/validated-examples/2026-11-25/approximation-controls/results/haar-mallat-boundary-threshold-preview.png",
+        "sha256": "957809b32f1acfa3d3289eeb24e0e28fbdec9dd4df5f783f28c2bdbbf10498f3"
+      },
+      "haar-mallat-boundary-threshold-diagnostics.png": {
+        "path": "code/validated-examples/2026-11-25/approximation-controls/results/haar-mallat-boundary-threshold-diagnostics.png",
+        "sha256": "87f61d8a027e922ae366562edcd27a49f24a3111ef5854368741f99e848f141d"
+      }
+    },
+    "pinn-poisson": {
+      "pinn-poisson.png": {
+        "path": "code/validated-examples/2026-11-25/small-models/results/pinn-poisson.png",
+        "sha256": "bd65a9cb67aa5e92d5c81903ad94d2e6afae9eb3c9df85b7930c3e1b9231dad3"
+      },
+      "pinn-poisson-preview.png": {
+        "path": "code/validated-examples/2026-11-25/small-models/results/pinn-poisson-preview.png",
+        "sha256": "bd65a9cb67aa5e92d5c81903ad94d2e6afae9eb3c9df85b7930c3e1b9231dad3"
+      }
+    },
+    "fno-periodic-heat": {
+      "fno-periodic-heat.png": {
+        "path": "code/validated-examples/2026-11-25/small-models/results/fno-periodic-heat.png",
+        "sha256": "ea28a5f74ffda13ea9bc3261d83e8085994e36345dfab622690ac706ca2c3312"
+      },
+      "fno-periodic-heat-preview.png": {
+        "path": "code/validated-examples/2026-11-25/small-models/results/fno-periodic-heat-preview.png",
+        "sha256": "ea28a5f74ffda13ea9bc3261d83e8085994e36345dfab622690ac706ca2c3312"
+      }
+    },
+    "enzyme-qssa": {
+      "enzyme-qssa.png": {
+        "path": "code/validated-examples/2026-11-25/small-models/results/enzyme-qssa.png",
+        "sha256": "9f8ee2648321815e570a9415a71d42e1b7f8228ece70e9ff797860f23f7eea8c"
+      },
+      "enzyme-qssa-preview.png": {
+        "path": "code/validated-examples/2026-11-25/small-models/results/enzyme-qssa-preview.png",
+        "sha256": "9f8ee2648321815e570a9415a71d42e1b7f8228ece70e9ff797860f23f7eea8c"
+      }
+    },
+    "lotka-volterra": {
+      "lotka-volterra.png": {
+        "path": "code/validated-examples/2026-11-25/small-models/results/lotka-volterra.png",
+        "sha256": "2b0fbc061793a1f77310488f6351e2b8315fc2bc4da8c2f5946024d5f4e8d029"
+      },
+      "lotka-volterra-preview.png": {
+        "path": "code/validated-examples/2026-11-25/small-models/results/lotka-volterra-preview.png",
+        "sha256": "2b0fbc061793a1f77310488f6351e2b8315fc2bc4da8c2f5946024d5f4e8d029"
+      }
+    },
+    "seir-linearization": {
+      "seir-linearization.png": {
+        "path": "code/validated-examples/2026-11-25/small-models/results/seir-linearization.png",
+        "sha256": "3ee8e7e8fdab4934bfc1ef679ccc39722c2412e95331bfb26800ae1c4fe80e04"
+      },
+      "seir-linearization-preview.png": {
+        "path": "code/validated-examples/2026-11-25/small-models/results/seir-linearization-preview.png",
+        "sha256": "3ee8e7e8fdab4934bfc1ef679ccc39722c2412e95331bfb26800ae1c4fe80e04"
+      }
+    }
+  },
+  "reference_curation": {
+    "sequence": 86,
+    "numerical_cases": 0,
+    "shared_case_ids": [
+      "pinn-poisson",
+      "fno-periodic-heat"
+    ],
+    "public_reading_paths": [
+      "numerical-methods-atlas/ja/read/pinn-operators/index.html",
+      "numerical-methods-atlas/en/read/pinn-operators/index.html"
+    ],
+    "section": {
+      "id": "selected-original-source-roles",
+      "title": {
+        "ja": "選択閲読した原典と今回の小例",
+        "en": "Selected original sources and the present small examples"
+      },
+      "paragraphs": {
+        "ja": [
+          "2017年PINN Part I preprintの§2では、残差とデータ・境界の損失を区別します。FNO v3（2021年）§3–4の層は局所線形作用とFourier積分作用に非線形活性化を組み合わせます。今回の小Poisson・周期拡散は別の教育用入力で、2019年JCP論文全文や原著の大規模実験・性能を再現したものではありません。"
+        ],
+        "en": [
+          "Selected section 2 of the 2017 PINN Part I preprint distinguishes residual loss from data and boundary losses. Sections 3–4 of FNO version 3 (2021) combine a local linear map, a Fourier integral map and nonlinear activation. The present small Poisson and periodic-heat inputs are separate educational choices. Neither the full 2019 JCP article nor the original large experiments or performance claims are reproduced."
+        ]
+      }
+    },
+    "citations": [
+      {
+        "role": "selected-primary-documentation-or-authored-identity",
+        "title": "Physics Informed Deep Learning (Part I): Data-driven Solutions of Nonlinear Partial Differential Equations",
+        "url": "https://arxiv.org/pdf/1711.10561",
+        "note": "Extracted PDF text selected pp.4–6, §2 continuous-time residual, Eq(2)–(4), Burgers setup and loss/optimizer discussion; not all 22 pages and not visual PDF audit.",
+        "read_scope": "Extracted PDF text selected pp.4–6, §2 continuous-time residual, Eq(2)–(4), Burgers setup and loss/optimizer discussion; not all 22 pages and not visual PDF audit.",
+        "review_level": "selected-primary-body",
+        "full_text_read_by_integration_author": false,
+        "publication_year": null,
+        "publication_year_display": "2017 preprint",
+        "accessed_on": "2026-11-24",
+        "source_year": 2017,
+        "year_role": "preprint-version",
+        "version": "arXiv:1711.10561, 2017 preprint; not the 2019 JCP article"
+      },
+      {
+        "role": "selected-primary-documentation-or-authored-identity",
+        "title": "Fourier Neural Operator for Parametric Partial Differential Equations",
+        "url": "https://arxiv.org/html/2010.08895v3",
+        "note": "Selected HTML §2 learning operators; §3 Eq(2); §4 Eq(4)–(5), FFT/truncation/reality; §5 setup and §5.1 Burgers. PDF header/edition only; not full paper or appendix audit.",
+        "read_scope": "Selected HTML §2 learning operators; §3 Eq(2); §4 Eq(4)–(5), FFT/truncation/reality; §5 setup and §5.1 Burgers. PDF header/edition only; not full paper or appendix audit.",
+        "review_level": "selected-primary-body",
+        "full_text_read_by_integration_author": false,
+        "publication_year": 2021,
+        "publication_year_display": "ICLR 2021; arXiv v3",
+        "accessed_on": "2026-11-24",
+        "source_year": 2021,
+        "year_role": "conference-publication",
+        "source_year_role": "conference-and-preprint-version",
+        "version": "arXiv v3, 17 May 2021"
+      }
+    ],
+    "old_bibliographic_records_preserved": [
+      "raissi2019",
+      "li2021fno"
+    ],
+    "source_proposal_sha256": "d485768e46088d1f3d53c5154db5fdfaa2f0cf888274d6415a745b7a3160b15d",
+    "reading_insertion_proposal_sha256": "d485768e46088d1f3d53c5154db5fdfaa2f0cf888274d6415a745b7a3160b15d"
+  },
+  "model_transitions": {
+    "heat": {
+      "before": {
+        "supplemental_examples": [
+          "su-olson-transport1997",
+          "diffusion-discrete-adjoint",
+          "strang-boundary-order-reduction"
+        ]
+      },
+      "after": {
+        "supplemental_examples": [
+          "su-olson-transport1997",
+          "diffusion-discrete-adjoint",
+          "strang-boundary-order-reduction",
+          "fno-periodic-heat"
+        ]
+      },
+      "before_absent": [],
+      "after_absent": [],
+      "before_keys": [
+        "anchor_aliases",
+        "chapter",
+        "coverage_scope",
+        "formula",
+        "group",
+        "id",
+        "name",
+        "note",
+        "status",
+        "supplemental_examples"
+      ],
+      "after_keys": [
+        "anchor_aliases",
+        "chapter",
+        "coverage_scope",
+        "formula",
+        "group",
+        "id",
+        "name",
+        "note",
+        "status",
+        "supplemental_examples"
+      ]
+    },
+    "poisson-laplace": {
+      "before": {
+        "supplemental_examples": [
+          "lshape-fem",
+          "poisson-neumann",
+          "poisson-robin"
+        ]
+      },
+      "after": {
+        "supplemental_examples": [
+          "lshape-fem",
+          "poisson-neumann",
+          "poisson-robin",
+          "pinn-poisson"
+        ]
+      },
+      "before_absent": [],
+      "after_absent": [],
+      "before_keys": [
+        "anchor_aliases",
+        "chapter",
+        "coverage_scope",
+        "execution_scope",
+        "formula",
+        "group",
+        "id",
+        "name",
+        "note",
+        "status",
+        "supplemental_examples"
+      ],
+      "after_keys": [
+        "anchor_aliases",
+        "chapter",
+        "coverage_scope",
+        "execution_scope",
+        "formula",
+        "group",
+        "id",
+        "name",
+        "note",
+        "status",
+        "supplemental_examples"
+      ]
+    },
+    "bio-enzyme": {
+      "before": {
+        "coverage_scope": "The 1913 rapid-equilibrium interpretation and the 1925 quasi-steady-state derivation must remain distinct.",
+        "note": {
+          "ja": "酵素・基質・複合体の反応と飽和速度則。完全反応系、迅速平衡近似、準定常近似の違いは解説先へ。 文献解説のみ。",
+          "en": "Enzyme saturation; the full mass-action system resolves the transient complex C, while the rate law eliminates a fast variable. The 1913 rapid-equilibrium interpretation and the 1925 quasi-steady-state derivation must remain distinct. Literature-only."
+        },
+        "status": "reading"
+      },
+      "after": {
+        "coverage_scope": "These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction.",
+        "execution_scope": {
+          "ja": "2つの小εと固定反応定数だけの教育例です。εは尺度比であり、その値だけを厳密なQSSA誤差上界とはしません。θ≥0.02を初期層終了の証明とは呼ばず、生体内の反応・観測値へ外挿しません。",
+          "en": "These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction."
+        },
+        "note": {
+          "ja": "酵素・基質・複合体の反応と飽和速度則。完全反応系、迅速平衡近似、準定常近似の違いは解説先へ。 限定した実行例：2つの小εと固定反応定数だけの教育例です。εは尺度比であり、その値だけを厳密なQSSA誤差上界とはしません。θ≥0.02を初期層終了の証明とは呼ばず、生体内の反応・観測値へ外挿しません。",
+          "en": "Enzyme saturation; the full mass-action system resolves the transient complex C, while the rate law eliminates a fast variable. The 1913 rapid-equilibrium interpretation and the 1925 quasi-steady-state derivation must remain distinct. Scoped executed example: These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction."
+        },
+        "status": "local-example",
+        "supplemental_examples": [
+          "enzyme-qssa"
+        ]
+      },
+      "before_absent": [
+        "execution_scope",
+        "supplemental_examples"
+      ],
+      "after_absent": [],
+      "before_keys": [
+        "chapter",
+        "coverage_scope",
+        "formula",
+        "formula_source",
+        "group",
+        "id",
+        "name",
+        "note",
+        "section",
+        "status"
+      ],
+      "after_keys": [
+        "chapter",
+        "coverage_scope",
+        "execution_scope",
+        "formula",
+        "formula_source",
+        "group",
+        "id",
+        "name",
+        "note",
+        "section",
+        "status",
+        "supplemental_examples"
+      ]
+    },
+    "bio-lotka-volterra": {
+      "before": {
+        "coverage_scope": "",
+        "note": {
+          "ja": "捕食・被食の結合ODE。位相平面と長時間積分を考えるためのモデルです。 文献解説のみ。",
+          "en": "Coupled prey growth and predation; a phase-plane and long-time integration test.  Literature-only."
+        },
+        "status": "reading"
+      },
+      "after": {
+        "coverage_scope": "This is a finite-time comparison for one initial state. The continuum closed orbit is not an attracting limit cycle. RK4 is not claimed to preserve H exactly, maintain positivity at arbitrary steps or guarantee long-time geometric fidelity.",
+        "execution_scope": {
+          "ja": "1初期値・有限時間の固定比較です。連続系の閉軌道を引き込み極限周期とは呼びません。RK4の厳密な不変量保存、任意刻みでの正値性、長時間の構造保存は保証しません。",
+          "en": "This is a finite-time comparison for one initial state. The continuum closed orbit is not an attracting limit cycle. RK4 is not claimed to preserve H exactly, maintain positivity at arbitrary steps or guarantee long-time geometric fidelity."
+        },
+        "note": {
+          "ja": "捕食・被食の結合ODE。位相平面と長時間積分を考えるためのモデルです。 限定した実行例：1初期値・有限時間の固定比較です。連続系の閉軌道を引き込み極限周期とは呼びません。RK4の厳密な不変量保存、任意刻みでの正値性、長時間の構造保存は保証しません。",
+          "en": "Coupled prey growth and predation; a phase-plane and long-time integration test. Scoped executed example: This is a finite-time comparison for one initial state. The continuum closed orbit is not an attracting limit cycle. RK4 is not claimed to preserve H exactly, maintain positivity at arbitrary steps or guarantee long-time geometric fidelity."
+        },
+        "status": "local-example",
+        "supplemental_examples": [
+          "lotka-volterra"
+        ]
+      },
+      "before_absent": [
+        "execution_scope",
+        "supplemental_examples"
+      ],
+      "after_absent": [],
+      "before_keys": [
+        "chapter",
+        "coverage_scope",
+        "formula",
+        "formula_source",
+        "group",
+        "id",
+        "name",
+        "note",
+        "section",
+        "status"
+      ],
+      "after_keys": [
+        "chapter",
+        "coverage_scope",
+        "execution_scope",
+        "formula",
+        "formula_source",
+        "group",
+        "id",
+        "name",
+        "note",
+        "section",
+        "status",
+        "supplemental_examples"
+      ]
+    }
+  },
+  "original_study_goals": {
+    "pinn-poisson": {
+      "original_target_results": {
+        "seed-8401:optimizer-converged": false,
+        "seed-8401:solution_Linf": true,
+        "seed-8401:PDE_normalized_RMS": true,
+        "seed-8401:boundary_Linf": true,
+        "seed-8402:optimizer-converged": false,
+        "seed-8402:solution_Linf": true,
+        "seed-8402:PDE_normalized_RMS": true,
+        "seed-8402:boundary_Linf": true,
+        "seed-8403:optimizer-converged": false,
+        "seed-8403:solution_Linf": true,
+        "seed-8403:PDE_normalized_RMS": true,
+        "seed-8403:boundary_Linf": true,
+        "fd-31:solution_Linf": true,
+        "fd-63:solution_Linf": true,
+        "fd-127:solution_Linf": true
+      },
+      "original_study_goal_measurements": {
+        "seed-8401:optimizer-converged": {
+          "measured": 0,
+          "limit": 1,
+          "comparison": "==",
+          "units": "native optimizer success boolean",
+          "met": false
+        },
+        "seed-8401:solution_Linf": {
+          "measured": 2.2589996095945253e-08,
+          "limit": 0.01,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seed-8401:PDE_normalized_RMS": {
+          "measured": 3.327756867105598e-07,
+          "limit": 0.02,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seed-8401:boundary_Linf": {
+          "measured": 0.0,
+          "limit": 1e-12,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seed-8402:optimizer-converged": {
+          "measured": 0,
+          "limit": 1,
+          "comparison": "==",
+          "units": "native optimizer success boolean",
+          "met": false
+        },
+        "seed-8402:solution_Linf": {
+          "measured": 5.56788840588851e-08,
+          "limit": 0.01,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seed-8402:PDE_normalized_RMS": {
+          "measured": 1.0321910210950756e-06,
+          "limit": 0.02,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seed-8402:boundary_Linf": {
+          "measured": 0.0,
+          "limit": 1e-12,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seed-8403:optimizer-converged": {
+          "measured": 0,
+          "limit": 1,
+          "comparison": "==",
+          "units": "native optimizer success boolean",
+          "met": false
+        },
+        "seed-8403:solution_Linf": {
+          "measured": 7.840357962862754e-08,
+          "limit": 0.01,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seed-8403:PDE_normalized_RMS": {
+          "measured": 1.2435598581497693e-06,
+          "limit": 0.02,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seed-8403:boundary_Linf": {
+          "measured": 0.0,
+          "limit": 1e-12,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "fd-31:solution_Linf": {
+          "measured": 0.0008035776793697824,
+          "limit": 0.001,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "fd-63:solution_Linf": {
+          "measured": 0.00020082180969560604,
+          "limit": 0.0003,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "fd-127:solution_Linf": {
+          "measured": 5.020091591312337e-05,
+          "limit": 7e-05,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        }
+      },
+      "original_target_summary": {
+        "met": 12,
+        "total": 15,
+        "all_met": false,
+        "acceptance_sha256": "b468e78459cf81bda6a32cade0051f6615b44def256c66308ae7acc82ff516ce"
+      }
+    },
+    "fno-periodic-heat": {
+      "original_target_results": {
+        "seed-8501:optimizer-converged": false,
+        "seed-8501:ID-N32-relative": true,
+        "seed-8501:ID-N64-relative": true,
+        "seed-8501:norm-control-absolute": true,
+        "seed-8502:optimizer-converged": false,
+        "seed-8502:ID-N32-relative": true,
+        "seed-8502:ID-N64-relative": true,
+        "seed-8502:norm-control-absolute": true
+      },
+      "original_study_goal_measurements": {
+        "seed-8501:optimizer-converged": {
+          "measured": 0,
+          "limit": 1,
+          "comparison": "==",
+          "units": "native optimizer success boolean",
+          "met": false
+        },
+        "seed-8501:ID-N32-relative": {
+          "measured": 0.0725200611497353,
+          "limit": 0.1,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seed-8501:ID-N64-relative": {
+          "measured": 0.07252006117240327,
+          "limit": 0.12,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seed-8501:norm-control-absolute": {
+          "measured": 0.002675666457044871,
+          "limit": 0.02,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seed-8502:optimizer-converged": {
+          "measured": 0,
+          "limit": 1,
+          "comparison": "==",
+          "units": "native optimizer success boolean",
+          "met": false
+        },
+        "seed-8502:ID-N32-relative": {
+          "measured": 0.06860990594166173,
+          "limit": 0.1,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seed-8502:ID-N64-relative": {
+          "measured": 0.06860990594163281,
+          "limit": 0.12,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seed-8502:norm-control-absolute": {
+          "measured": 0.005624287439638441,
+          "limit": 0.02,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        }
+      },
+      "original_target_summary": {
+        "met": 6,
+        "total": 8,
+        "all_met": false,
+        "acceptance_sha256": "b468e78459cf81bda6a32cade0051f6615b44def256c66308ae7acc82ff516ce"
+      }
+    },
+    "enzyme-qssa": {
+      "original_target_results": {
+        "enzyme-01-r1e-06:integration": true,
+        "enzyme-01-r1e-06:mass": true,
+        "enzyme-01-r1e-06:negative-part": true,
+        "enzyme-01-r1e-06:QSSA-model": true,
+        "enzyme-01-r1e-08:integration": true,
+        "enzyme-01-r1e-08:mass": true,
+        "enzyme-01-r1e-08:negative-part": true,
+        "enzyme-01-r1e-08:QSSA-model": true,
+        "enzyme-002-r1e-06:integration": true,
+        "enzyme-002-r1e-06:mass": true,
+        "enzyme-002-r1e-06:negative-part": true,
+        "enzyme-002-r1e-06:QSSA-model": true,
+        "enzyme-002-r1e-08:integration": true,
+        "enzyme-002-r1e-08:mass": true,
+        "enzyme-002-r1e-08:negative-part": true,
+        "enzyme-002-r1e-08:QSSA-model": true
+      },
+      "original_study_goal_measurements": {
+        "enzyme-01-r1e-06:integration": {
+          "measured": 3.302774387314855e-08,
+          "limit": 1e-05,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "enzyme-01-r1e-06:mass": {
+          "measured": 2.4424906541753444e-15,
+          "limit": 1e-10,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "enzyme-01-r1e-06:negative-part": {
+          "measured": 0.0,
+          "limit": 1e-12,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "enzyme-01-r1e-06:QSSA-model": {
+          "measured": 0.0075850761082053575,
+          "limit": 0.02,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "enzyme-01-r1e-08:integration": {
+          "measured": 1.1869755560389716e-09,
+          "limit": 1e-05,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "enzyme-01-r1e-08:mass": {
+          "measured": 2.4424906541753444e-15,
+          "limit": 1e-10,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "enzyme-01-r1e-08:negative-part": {
+          "measured": 0.0,
+          "limit": 1e-12,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "enzyme-01-r1e-08:QSSA-model": {
+          "measured": 0.0075850761082053575,
+          "limit": 0.02,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "enzyme-002-r1e-06:integration": {
+          "measured": 8.17277473474931e-09,
+          "limit": 1e-05,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "enzyme-002-r1e-06:mass": {
+          "measured": 1.1102230246251565e-15,
+          "limit": 1e-10,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "enzyme-002-r1e-06:negative-part": {
+          "measured": 0.0,
+          "limit": 1e-12,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "enzyme-002-r1e-06:QSSA-model": {
+          "measured": 0.001518757415778449,
+          "limit": 0.02,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "enzyme-002-r1e-08:integration": {
+          "measured": 3.220199232050955e-10,
+          "limit": 1e-05,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "enzyme-002-r1e-08:mass": {
+          "measured": 3.1086244689504383e-15,
+          "limit": 1e-10,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "enzyme-002-r1e-08:negative-part": {
+          "measured": 0.0,
+          "limit": 1e-12,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "enzyme-002-r1e-08:QSSA-model": {
+          "measured": 0.001518757415778449,
+          "limit": 0.02,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        }
+      },
+      "original_target_summary": {
+        "met": 16,
+        "total": 16,
+        "all_met": true,
+        "acceptance_sha256": "b468e78459cf81bda6a32cade0051f6615b44def256c66308ae7acc82ff516ce"
+      }
+    },
+    "lotka-volterra": {
+      "original_target_results": {
+        "lv-400:state": true,
+        "lv-400:invariant": true,
+        "lv-800:state": true,
+        "lv-800:invariant": true,
+        "lv-1600:state": true,
+        "lv-1600:invariant": true
+      },
+      "original_study_goal_measurements": {
+        "lv-400:state": {
+          "measured": 3.33183228784506e-07,
+          "limit": 1e-05,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "lv-400:invariant": {
+          "measured": 5.899863708691555e-09,
+          "limit": 1e-06,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "lv-800:state": {
+          "measured": 2.085509653859674e-08,
+          "limit": 1e-05,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "lv-800:invariant": {
+          "measured": 2.909574803311443e-10,
+          "limit": 1e-06,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "lv-1600:state": {
+          "measured": 1.3042227298143416e-09,
+          "limit": 1e-05,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "lv-1600:invariant": {
+          "measured": 1.575184427338172e-11,
+          "limit": 1e-06,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        }
+      },
+      "original_target_summary": {
+        "met": 6,
+        "total": 6,
+        "all_met": true,
+        "acceptance_sha256": "b468e78459cf81bda6a32cade0051f6615b44def256c66308ae7acc82ff516ce"
+      }
+    },
+    "seir-linearization": {
+      "original_target_results": {
+        "seir-1e-4-400:integration": true,
+        "seir-1e-4-400:mass": true,
+        "seir-1e-4-400:negative-part": true,
+        "seir-1e-4-800:integration": true,
+        "seir-1e-4-800:mass": true,
+        "seir-1e-4-800:negative-part": true,
+        "seir-1e-4-1600:integration": true,
+        "seir-1e-4-1600:mass": true,
+        "seir-1e-4-1600:negative-part": true,
+        "seir-1e-4:early-linearization": true,
+        "seir-5e-5-400:integration": true,
+        "seir-5e-5-400:mass": true,
+        "seir-5e-5-400:negative-part": true,
+        "seir-5e-5-800:integration": true,
+        "seir-5e-5-800:mass": true,
+        "seir-5e-5-800:negative-part": true,
+        "seir-5e-5-1600:integration": true,
+        "seir-5e-5-1600:mass": true,
+        "seir-5e-5-1600:negative-part": true,
+        "seir-5e-5:early-linearization": true
+      },
+      "original_study_goal_measurements": {
+        "seir-1e-4-400:integration": {
+          "measured": 1.8622881015062376e-12,
+          "limit": 1e-05,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-1e-4-400:mass": {
+          "measured": 1.3322676295501878e-15,
+          "limit": 1e-10,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-1e-4-400:negative-part": {
+          "measured": 0.0,
+          "limit": 1e-12,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-1e-4-800:integration": {
+          "measured": 1.1746159600534156e-13,
+          "limit": 1e-05,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-1e-4-800:mass": {
+          "measured": 5.551115123125783e-16,
+          "limit": 1e-10,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-1e-4-800:negative-part": {
+          "measured": 0.0,
+          "limit": 1e-12,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-1e-4-1600:integration": {
+          "measured": 6.994405055138486e-15,
+          "limit": 1e-05,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-1e-4-1600:mass": {
+          "measured": 1.887379141862766e-15,
+          "limit": 1e-10,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-1e-4-1600:negative-part": {
+          "measured": 0.0,
+          "limit": 1e-12,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-1e-4:early-linearization": {
+          "measured": 0.000132065608744313,
+          "limit": 0.005,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-5e-5-400:integration": {
+          "measured": 9.460210392830959e-13,
+          "limit": 1e-05,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-5e-5-400:mass": {
+          "measured": 6.661338147750939e-16,
+          "limit": 1e-10,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-5e-5-400:negative-part": {
+          "measured": 0.0,
+          "limit": 1e-12,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-5e-5-800:integration": {
+          "measured": 6.0285110237146e-14,
+          "limit": 1e-05,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-5e-5-800:mass": {
+          "measured": 1.1102230246251565e-15,
+          "limit": 1e-10,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-5e-5-800:negative-part": {
+          "measured": 0.0,
+          "limit": 1e-12,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-5e-5-1600:integration": {
+          "measured": 6.217248937900877e-15,
+          "limit": 1e-05,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-5e-5-1600:mass": {
+          "measured": 1.9984014443252818e-15,
+          "limit": 1e-10,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-5e-5-1600:negative-part": {
+          "measured": 0.0,
+          "limit": 1e-12,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-5e-5:early-linearization": {
+          "measured": 6.603406033594108e-05,
+          "limit": 0.005,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        }
+      },
+      "original_target_summary": {
+        "met": 20,
+        "total": 20,
+        "all_met": true,
+        "acceptance_sha256": "b468e78459cf81bda6a32cade0051f6615b44def256c66308ae7acc82ff516ce"
+      }
+    }
+  },
+  "quadrature_row_accuracy_studies": {
+    "quadpack-domain-selection": {
+      "accuracy_goal_met_by_row_id": {
+        "q78:gaussian-whole-line:specialized-quadpack:a0": true,
+        "q78:gaussian-whole-line:specialized-quadpack:a1": true,
+        "q78:gaussian-whole-line:specialized-quadpack:a2": true,
+        "q78:gaussian-whole-line:simpson-companion:a0": true,
+        "q78:gaussian-whole-line:simpson-companion:a1": true,
+        "q78:gaussian-whole-line:simpson-companion:a2": true,
+        "q78:finite-sine-40:specialized-quadpack:a0": true,
+        "q78:finite-sine-40:specialized-quadpack:a1": true,
+        "q78:finite-sine-40:specialized-quadpack:a2": true,
+        "q78:finite-sine-40:simpson-companion:a0": true,
+        "q78:finite-sine-40:simpson-companion:a1": true,
+        "q78:finite-sine-40:simpson-companion:a2": true,
+        "q78:finite-sine-120:specialized-quadpack:a0": true,
+        "q78:finite-sine-120:specialized-quadpack:a1": true,
+        "q78:finite-sine-120:specialized-quadpack:a2": true,
+        "q78:finite-sine-120:simpson-companion:a0": true,
+        "q78:finite-sine-120:simpson-companion:a1": true,
+        "q78:finite-sine-120:simpson-companion:a2": false,
+        "q78:fourier-half-line:specialized-quadpack:a0": true,
+        "q78:fourier-half-line:specialized-quadpack:a1": true,
+        "q78:fourier-half-line:specialized-quadpack:a2": true,
+        "q78:fourier-half-line:simpson-companion:a0": true,
+        "q78:fourier-half-line:simpson-companion:a1": true,
+        "q78:fourier-half-line:simpson-companion:a2": false,
+        "q78:internal-root:specialized-quadpack:a0": true,
+        "q78:internal-root:specialized-quadpack:a1": true,
+        "q78:internal-root:specialized-quadpack:a2": true,
+        "q78:internal-root:simpson-companion:a0": null,
+        "q78:internal-root:simpson-companion:a1": null,
+        "q78:internal-root:simpson-companion:a2": null
+      },
+      "summary": {
+        "met": 25,
+        "unmet": 2,
+        "not_computable": 3,
+        "total": 30
+      },
+      "scope": "Actual saved per-row accuracy observations; distinct from mandatory reproduction checks and from the Small-models original study goals. No all-true requirement or fixed failure mask."
+    },
+    "gk15-double-exponential": {
+      "accuracy_goal_met_by_row_id": {
+        "q79:smooth-exponential:gk:a0": true,
+        "q79:smooth-exponential:gk:a1": true,
+        "q79:smooth-exponential:gk:a2": true,
+        "q79:smooth-exponential:de:T3:h0": false,
+        "q79:smooth-exponential:de:T3:h1": true,
+        "q79:smooth-exponential:de:T3:h2": true,
+        "q79:smooth-exponential:de:T3:h3": true,
+        "q79:smooth-exponential:de:T4:h0": false,
+        "q79:smooth-exponential:de:T4:h1": true,
+        "q79:smooth-exponential:de:T4:h2": true,
+        "q79:smooth-exponential:de:T4:h3": true,
+        "q79:algebraic-inverse-cuberoot:gk:a0": true,
+        "q79:algebraic-inverse-cuberoot:gk:a1": true,
+        "q79:algebraic-inverse-cuberoot:gk:a2": false,
+        "q79:algebraic-inverse-cuberoot:de:T3:h0": false,
+        "q79:algebraic-inverse-cuberoot:de:T3:h1": true,
+        "q79:algebraic-inverse-cuberoot:de:T3:h2": true,
+        "q79:algebraic-inverse-cuberoot:de:T3:h3": true,
+        "q79:algebraic-inverse-cuberoot:de:T4:h0": false,
+        "q79:algebraic-inverse-cuberoot:de:T4:h1": true,
+        "q79:algebraic-inverse-cuberoot:de:T4:h2": true,
+        "q79:algebraic-inverse-cuberoot:de:T4:h3": true,
+        "q79:log-endpoint:gk:a0": true,
+        "q79:log-endpoint:gk:a1": true,
+        "q79:log-endpoint:gk:a2": true,
+        "q79:log-endpoint:de:T3:h0": false,
+        "q79:log-endpoint:de:T3:h1": true,
+        "q79:log-endpoint:de:T3:h2": true,
+        "q79:log-endpoint:de:T3:h3": true,
+        "q79:log-endpoint:de:T4:h0": false,
+        "q79:log-endpoint:de:T4:h1": true,
+        "q79:log-endpoint:de:T4:h2": true,
+        "q79:log-endpoint:de:T4:h3": true
+      },
+      "summary": {
+        "met": 26,
+        "unmet": 7,
+        "not_computable": 0,
+        "total": 33
+      },
+      "scope": "Actual saved per-row accuracy observations; distinct from mandatory reproduction checks and from the Small-models original study goals. No all-true requirement or fixed failure mask."
+    },
+    "tensor-smolyak-dimensions": {
+      "accuracy_goal_met_by_row_id": {
+        "q80:d2:smooth-product:tensor-clenshaw-curtis:L1": false,
+        "q80:d2:smooth-product:tensor-clenshaw-curtis:L2": false,
+        "q80:d2:smooth-product:tensor-clenshaw-curtis:L3": true,
+        "q80:d2:smooth-product:smolyak-delta:L1": false,
+        "q80:d2:smooth-product:smolyak-delta:L2": false,
+        "q80:d2:smooth-product:smolyak-delta:L3": true,
+        "q80:d2:smooth-product:smolyak-delta:L4": true,
+        "q80:d2:interaction-product:tensor-clenshaw-curtis:L1": true,
+        "q80:d2:interaction-product:tensor-clenshaw-curtis:L2": true,
+        "q80:d2:interaction-product:tensor-clenshaw-curtis:L3": true,
+        "q80:d2:interaction-product:smolyak-delta:L1": false,
+        "q80:d2:interaction-product:smolyak-delta:L2": true,
+        "q80:d2:interaction-product:smolyak-delta:L3": true,
+        "q80:d2:interaction-product:smolyak-delta:L4": true,
+        "q80:d3:smooth-product:tensor-clenshaw-curtis:L1": false,
+        "q80:d3:smooth-product:tensor-clenshaw-curtis:L2": false,
+        "q80:d3:smooth-product:tensor-clenshaw-curtis:L3": true,
+        "q80:d3:smooth-product:smolyak-delta:L1": false,
+        "q80:d3:smooth-product:smolyak-delta:L2": false,
+        "q80:d3:smooth-product:smolyak-delta:L3": true,
+        "q80:d3:smooth-product:smolyak-delta:L4": true,
+        "q80:d3:interaction-product:tensor-clenshaw-curtis:L1": true,
+        "q80:d3:interaction-product:tensor-clenshaw-curtis:L2": true,
+        "q80:d3:interaction-product:tensor-clenshaw-curtis:L3": true,
+        "q80:d3:interaction-product:smolyak-delta:L1": false,
+        "q80:d3:interaction-product:smolyak-delta:L2": false,
+        "q80:d3:interaction-product:smolyak-delta:L3": true,
+        "q80:d3:interaction-product:smolyak-delta:L4": true,
+        "q80:d4:smooth-product:tensor-clenshaw-curtis:L1": false,
+        "q80:d4:smooth-product:tensor-clenshaw-curtis:L2": false,
+        "q80:d4:smooth-product:tensor-clenshaw-curtis:L3": true,
+        "q80:d4:smooth-product:smolyak-delta:L1": false,
+        "q80:d4:smooth-product:smolyak-delta:L2": false,
+        "q80:d4:smooth-product:smolyak-delta:L3": true,
+        "q80:d4:smooth-product:smolyak-delta:L4": true,
+        "q80:d4:interaction-product:tensor-clenshaw-curtis:L1": true,
+        "q80:d4:interaction-product:tensor-clenshaw-curtis:L2": true,
+        "q80:d4:interaction-product:tensor-clenshaw-curtis:L3": true,
+        "q80:d4:interaction-product:smolyak-delta:L1": false,
+        "q80:d4:interaction-product:smolyak-delta:L2": false,
+        "q80:d4:interaction-product:smolyak-delta:L3": false,
+        "q80:d4:interaction-product:smolyak-delta:L4": true
+      },
+      "summary": {
+        "met": 24,
+        "unmet": 18,
+        "not_computable": 0,
+        "total": 42
+      },
+      "scope": "Actual saved per-row accuracy observations; distinct from mandatory reproduction checks and from the Small-models original study goals. No all-true requirement or fixed failure mask."
+    }
+  },
+  "quadrature_row_accuracy_summary": {
+    "met": 75,
+    "unmet": 27,
+    "not_computable": 3,
+    "total": 105
+  },
+  "expected_final_counts": {
+    "groups": 63,
+    "cases": 138,
+    "pytest": 1659,
+    "methods": 167,
+    "models": 85,
+    "problems": 158,
+    "gallery_items": 158
+  },
+  "integration_sha256": "bed93d1b4e0b61c36cbaa9114dbd0791a41c3ae128df5971e41610606fd01a95",
+  "canonical_snapshot_sha256": "f46f44ccbf6296c526bf0b6e9ce3d4b7fc32f9e498128d29fd990ae0a207f4f6"
+}

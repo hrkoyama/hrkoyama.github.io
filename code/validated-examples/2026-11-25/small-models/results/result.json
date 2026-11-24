@@ -1,0 +1,967 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "termination": "completed_fixed_protocol",
+  "input_sha256": "9dc5d9527e3e36d1de06e82c386ff4375292392a6ba9e23ac09885693c1c524d",
+  "checks": {
+    "pinn-poisson": true,
+    "fno-periodic-heat": true,
+    "enzyme-qssa": true,
+    "lotka-volterra": true,
+    "seir-linearization": true
+  },
+  "cases": [
+    {
+      "id": "pinn-poisson",
+      "passed": true,
+      "checks": {
+        "seed-8401:finite-shape": true,
+        "seed-8401:optimizer-return-status": true,
+        "seed-8401:actual-work": true,
+        "seed-8402:finite-shape": true,
+        "seed-8402:optimizer-return-status": true,
+        "seed-8402:actual-work": true,
+        "seed-8403:finite-shape": true,
+        "seed-8403:optimizer-return-status": true,
+        "seed-8403:actual-work": true,
+        "fd-31:true-residual": true,
+        "fd-63:true-residual": true,
+        "fd-127:true-residual": true
+      },
+      "records": [
+        {
+          "kind": "PINN",
+          "seed": 8401,
+          "parameter_count": 49,
+          "solution_Linf": 2.2589996095945253e-08,
+          "PDE_normalized_RMS": 3.327756867105598e-07,
+          "boundary_Linf": 0.0,
+          "training_loss": 4.403620979734481e-14,
+          "status": 0,
+          "optimizer_success": 0,
+          "nfev": 300,
+          "njev": 276,
+          "fun_calls": 300,
+          "jac_calls": 276,
+          "returned_final_parameter_vectors": 1
+        },
+        {
+          "kind": "PINN",
+          "seed": 8402,
+          "parameter_count": 49,
+          "solution_Linf": 5.56788840588851e-08,
+          "PDE_normalized_RMS": 1.0321910210950756e-06,
+          "boundary_Linf": 0.0,
+          "training_loss": 5.738177320807445e-13,
+          "status": 0,
+          "optimizer_success": 0,
+          "nfev": 300,
+          "njev": 225,
+          "fun_calls": 300,
+          "jac_calls": 225,
+          "returned_final_parameter_vectors": 1
+        },
+        {
+          "kind": "PINN",
+          "seed": 8403,
+          "parameter_count": 49,
+          "solution_Linf": 7.840357962862754e-08,
+          "PDE_normalized_RMS": 1.2435598581497693e-06,
+          "boundary_Linf": 0.0,
+          "training_loss": 8.526343084359145e-13,
+          "status": 0,
+          "optimizer_success": 0,
+          "nfev": 300,
+          "njev": 286,
+          "fun_calls": 300,
+          "jac_calls": 286,
+          "returned_final_parameter_vectors": 1
+        },
+        {
+          "kind": "FD2",
+          "nodes": 31,
+          "solution_Linf": 0.0008035776793697824,
+          "true_linear_residual": 2.0250467969162855e-13
+        },
+        {
+          "kind": "FD2",
+          "nodes": 63,
+          "solution_Linf": 0.00020082180969560604,
+          "true_linear_residual": 1.2576606422953773e-12
+        },
+        {
+          "kind": "FD2",
+          "nodes": 127,
+          "solution_Linf": 5.020091591312337e-05,
+          "true_linear_residual": 7.227995979519619e-12
+        }
+      ],
+      "metrics": {
+        "training_seeds": 3,
+        "parameters": 49,
+        "independent_grid_points": 257,
+        "FD_runs": 3
+      },
+      "original_target_results": {
+        "seed-8401:optimizer-converged": false,
+        "seed-8401:solution_Linf": true,
+        "seed-8401:PDE_normalized_RMS": true,
+        "seed-8401:boundary_Linf": true,
+        "seed-8402:optimizer-converged": false,
+        "seed-8402:solution_Linf": true,
+        "seed-8402:PDE_normalized_RMS": true,
+        "seed-8402:boundary_Linf": true,
+        "seed-8403:optimizer-converged": false,
+        "seed-8403:solution_Linf": true,
+        "seed-8403:PDE_normalized_RMS": true,
+        "seed-8403:boundary_Linf": true,
+        "fd-31:solution_Linf": true,
+        "fd-63:solution_Linf": true,
+        "fd-127:solution_Linf": true
+      },
+      "original_target_summary": {
+        "met": 12,
+        "total": 15,
+        "all_met": false,
+        "acceptance_sha256": "b468e78459cf81bda6a32cade0051f6615b44def256c66308ae7acc82ff516ce"
+      },
+      "original_study_goal_measurements": {
+        "seed-8401:optimizer-converged": {
+          "measured": 0,
+          "limit": 1,
+          "comparison": "==",
+          "units": "native optimizer success boolean",
+          "met": false
+        },
+        "seed-8401:solution_Linf": {
+          "measured": 2.2589996095945253e-08,
+          "limit": 0.01,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seed-8401:PDE_normalized_RMS": {
+          "measured": 3.327756867105598e-07,
+          "limit": 0.02,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seed-8401:boundary_Linf": {
+          "measured": 0.0,
+          "limit": 1e-12,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seed-8402:optimizer-converged": {
+          "measured": 0,
+          "limit": 1,
+          "comparison": "==",
+          "units": "native optimizer success boolean",
+          "met": false
+        },
+        "seed-8402:solution_Linf": {
+          "measured": 5.56788840588851e-08,
+          "limit": 0.01,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seed-8402:PDE_normalized_RMS": {
+          "measured": 1.0321910210950756e-06,
+          "limit": 0.02,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seed-8402:boundary_Linf": {
+          "measured": 0.0,
+          "limit": 1e-12,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seed-8403:optimizer-converged": {
+          "measured": 0,
+          "limit": 1,
+          "comparison": "==",
+          "units": "native optimizer success boolean",
+          "met": false
+        },
+        "seed-8403:solution_Linf": {
+          "measured": 7.840357962862754e-08,
+          "limit": 0.01,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seed-8403:PDE_normalized_RMS": {
+          "measured": 1.2435598581497693e-06,
+          "limit": 0.02,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seed-8403:boundary_Linf": {
+          "measured": 0.0,
+          "limit": 1e-12,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "fd-31:solution_Linf": {
+          "measured": 0.0008035776793697824,
+          "limit": 0.001,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "fd-63:solution_Linf": {
+          "measured": 0.00020082180969560604,
+          "limit": 0.0003,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "fd-127:solution_Linf": {
+          "measured": 5.020091591312337e-05,
+          "limit": 7e-05,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        }
+      },
+      "validation_scope": "predeclared_accuracy_study_with_separate_reproduction_checks"
+    },
+    {
+      "id": "fno-periodic-heat",
+      "passed": true,
+      "checks": {
+        "seed-8501:finite-parameters": true,
+        "seed-8501:optimizer-return-status": true,
+        "seed-8501:actual-work": true,
+        "seed-8501:relative-NA": true,
+        "seed-8502:finite-parameters": true,
+        "seed-8502:optimizer-return-status": true,
+        "seed-8502:actual-work": true,
+        "seed-8502:relative-NA": true,
+        "disjoint-whole-problem-IDs": true
+      },
+      "records": [
+        {
+          "seed": 8501,
+          "parameters": 93,
+          "loss": 0.0004359520238047014,
+          "status": 1,
+          "optimizer_success": 0,
+          "iterations": 120,
+          "nfev": 140,
+          "njev": 140,
+          "loss_calls": 140,
+          "gradient_calls": 140,
+          "returned_final_vectors": 1
+        },
+        {
+          "seed": 8502,
+          "parameters": 93,
+          "loss": 0.0004022102353904921,
+          "status": 1,
+          "optimizer_success": 0,
+          "iterations": 120,
+          "nfev": 147,
+          "njev": 147,
+          "loss_calls": 147,
+          "gradient_calls": 147,
+          "returned_final_vectors": 1
+        }
+      ],
+      "metrics": {
+        "models": 2,
+        "parameters_per_model": 93,
+        "whole_problem_IDs": 46,
+        "prediction_rows": 116,
+        "nonlinear_dealiasing": "none",
+        "restriction_discrepancy_scope": "Native-grid nonlinear/alias sensitivity, not continuum error"
+      },
+      "original_target_results": {
+        "seed-8501:optimizer-converged": false,
+        "seed-8501:ID-N32-relative": true,
+        "seed-8501:ID-N64-relative": true,
+        "seed-8501:norm-control-absolute": true,
+        "seed-8502:optimizer-converged": false,
+        "seed-8502:ID-N32-relative": true,
+        "seed-8502:ID-N64-relative": true,
+        "seed-8502:norm-control-absolute": true
+      },
+      "original_target_summary": {
+        "met": 6,
+        "total": 8,
+        "all_met": false,
+        "acceptance_sha256": "b468e78459cf81bda6a32cade0051f6615b44def256c66308ae7acc82ff516ce"
+      },
+      "original_study_goal_measurements": {
+        "seed-8501:optimizer-converged": {
+          "measured": 0,
+          "limit": 1,
+          "comparison": "==",
+          "units": "native optimizer success boolean",
+          "met": false
+        },
+        "seed-8501:ID-N32-relative": {
+          "measured": 0.0725200611497353,
+          "limit": 0.1,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seed-8501:ID-N64-relative": {
+          "measured": 0.07252006117240327,
+          "limit": 0.12,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seed-8501:norm-control-absolute": {
+          "measured": 0.002675666457044871,
+          "limit": 0.02,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seed-8502:optimizer-converged": {
+          "measured": 0,
+          "limit": 1,
+          "comparison": "==",
+          "units": "native optimizer success boolean",
+          "met": false
+        },
+        "seed-8502:ID-N32-relative": {
+          "measured": 0.06860990594166173,
+          "limit": 0.1,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seed-8502:ID-N64-relative": {
+          "measured": 0.06860990594163281,
+          "limit": 0.12,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seed-8502:norm-control-absolute": {
+          "measured": 0.005624287439638441,
+          "limit": 0.02,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        }
+      },
+      "validation_scope": "predeclared_accuracy_study_with_separate_reproduction_checks"
+    },
+    {
+      "id": "enzyme-qssa",
+      "passed": true,
+      "checks": {
+        "enzyme-01-r1e-06:completed-work": true,
+        "enzyme-01-r1e-06:finite": true,
+        "enzyme-01-r1e-08:completed-work": true,
+        "enzyme-01-r1e-08:finite": true,
+        "enzyme-002-r1e-06:completed-work": true,
+        "enzyme-002-r1e-06:finite": true,
+        "enzyme-002-r1e-08:completed-work": true,
+        "enzyme-002-r1e-08:finite": true,
+        "mm-200:finite": true,
+        "mm-400:finite": true
+      },
+      "records": [
+        {
+          "id": "enzyme-01-r1e-06",
+          "Etotal": 0.01,
+          "epsilon": 0.008333333333333333,
+          "rtol": 1e-06,
+          "atol": 1e-10,
+          "integration_Linf": 3.302774387314855e-08,
+          "conservation_defect": 2.4424906541753444e-15,
+          "QSSA_window_model_error": 0.0075850761082053575,
+          "QSSA_full_model_error": 0.0076067541834961006,
+          "minimum_accepted": 0.0,
+          "attempted_steps": 2498,
+          "accepted_steps": 2496,
+          "rejected_steps": 2,
+          "clipped_output_steps": 88,
+          "RHS_calls": 45490,
+          "Jacobian_calls": 11504,
+          "factor_builds": 11504,
+          "linear_solves": 11504,
+          "Newton_updates": 11504,
+          "backtracks": 0
+        },
+        {
+          "id": "enzyme-01-r1e-08",
+          "Etotal": 0.01,
+          "epsilon": 0.008333333333333333,
+          "rtol": 1e-08,
+          "atol": 1e-12,
+          "integration_Linf": 1.1869755560389716e-09,
+          "conservation_defect": 2.4424906541753444e-15,
+          "QSSA_window_model_error": 0.0075850761082053575,
+          "QSSA_full_model_error": 0.0076067541834961006,
+          "minimum_accepted": 0.0,
+          "attempted_steps": 1170,
+          "accepted_steps": 1167,
+          "rejected_steps": 3,
+          "clipped_output_steps": 103,
+          "RHS_calls": 34930,
+          "Jacobian_calls": 12200,
+          "factor_builds": 12200,
+          "linear_solves": 12200,
+          "Newton_updates": 12200,
+          "backtracks": 0
+        },
+        {
+          "id": "enzyme-002-r1e-06",
+          "Etotal": 0.002,
+          "epsilon": 0.0016666666666666668,
+          "rtol": 1e-06,
+          "atol": 1e-10,
+          "integration_Linf": 8.17277473474931e-09,
+          "conservation_defect": 1.1102230246251565e-15,
+          "QSSA_window_model_error": 0.001518757415778449,
+          "QSSA_full_model_error": 0.001525935571123016,
+          "minimum_accepted": 0.0,
+          "attempted_steps": 572,
+          "accepted_steps": 570,
+          "rejected_steps": 2,
+          "clipped_output_steps": 40,
+          "RHS_calls": 11920,
+          "Jacobian_calls": 3386,
+          "factor_builds": 3386,
+          "linear_solves": 3386,
+          "Newton_updates": 3386,
+          "backtracks": 0
+        },
+        {
+          "id": "enzyme-002-r1e-08",
+          "Etotal": 0.002,
+          "epsilon": 0.0016666666666666668,
+          "rtol": 1e-08,
+          "atol": 1e-12,
+          "integration_Linf": 3.220199232050955e-10,
+          "conservation_defect": 3.1086244689504383e-15,
+          "QSSA_window_model_error": 0.001518757415778449,
+          "QSSA_full_model_error": 0.001525935571123016,
+          "minimum_accepted": 0.0,
+          "attempted_steps": 1160,
+          "accepted_steps": 1157,
+          "rejected_steps": 3,
+          "clipped_output_steps": 103,
+          "RHS_calls": 32964,
+          "Jacobian_calls": 11262,
+          "factor_builds": 11262,
+          "linear_solves": 11262,
+          "Newton_updates": 11262,
+          "backtracks": 0
+        },
+        {
+          "id": "mm-200",
+          "steps": 200,
+          "reduced_scalar_error": 2.0872192862952943e-14
+        },
+        {
+          "id": "mm-400",
+          "steps": 400,
+          "reduced_scalar_error": 3.774758283725532e-15
+        }
+      ],
+      "metrics": {
+        "actual_primary_records": 6,
+        "reference_role": "Qualified Radau/BDF full ODE; reduction/linearization errors are distinct modeling diagnostics"
+      },
+      "original_target_results": {
+        "enzyme-01-r1e-06:integration": true,
+        "enzyme-01-r1e-06:mass": true,
+        "enzyme-01-r1e-06:negative-part": true,
+        "enzyme-01-r1e-06:QSSA-model": true,
+        "enzyme-01-r1e-08:integration": true,
+        "enzyme-01-r1e-08:mass": true,
+        "enzyme-01-r1e-08:negative-part": true,
+        "enzyme-01-r1e-08:QSSA-model": true,
+        "enzyme-002-r1e-06:integration": true,
+        "enzyme-002-r1e-06:mass": true,
+        "enzyme-002-r1e-06:negative-part": true,
+        "enzyme-002-r1e-06:QSSA-model": true,
+        "enzyme-002-r1e-08:integration": true,
+        "enzyme-002-r1e-08:mass": true,
+        "enzyme-002-r1e-08:negative-part": true,
+        "enzyme-002-r1e-08:QSSA-model": true
+      },
+      "original_target_summary": {
+        "met": 16,
+        "total": 16,
+        "all_met": true,
+        "acceptance_sha256": "b468e78459cf81bda6a32cade0051f6615b44def256c66308ae7acc82ff516ce"
+      },
+      "original_study_goal_measurements": {
+        "enzyme-01-r1e-06:integration": {
+          "measured": 3.302774387314855e-08,
+          "limit": 1e-05,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "enzyme-01-r1e-06:mass": {
+          "measured": 2.4424906541753444e-15,
+          "limit": 1e-10,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "enzyme-01-r1e-06:negative-part": {
+          "measured": 0.0,
+          "limit": 1e-12,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "enzyme-01-r1e-06:QSSA-model": {
+          "measured": 0.0075850761082053575,
+          "limit": 0.02,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "enzyme-01-r1e-08:integration": {
+          "measured": 1.1869755560389716e-09,
+          "limit": 1e-05,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "enzyme-01-r1e-08:mass": {
+          "measured": 2.4424906541753444e-15,
+          "limit": 1e-10,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "enzyme-01-r1e-08:negative-part": {
+          "measured": 0.0,
+          "limit": 1e-12,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "enzyme-01-r1e-08:QSSA-model": {
+          "measured": 0.0075850761082053575,
+          "limit": 0.02,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "enzyme-002-r1e-06:integration": {
+          "measured": 8.17277473474931e-09,
+          "limit": 1e-05,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "enzyme-002-r1e-06:mass": {
+          "measured": 1.1102230246251565e-15,
+          "limit": 1e-10,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "enzyme-002-r1e-06:negative-part": {
+          "measured": 0.0,
+          "limit": 1e-12,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "enzyme-002-r1e-06:QSSA-model": {
+          "measured": 0.001518757415778449,
+          "limit": 0.02,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "enzyme-002-r1e-08:integration": {
+          "measured": 3.220199232050955e-10,
+          "limit": 1e-05,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "enzyme-002-r1e-08:mass": {
+          "measured": 3.1086244689504383e-15,
+          "limit": 1e-10,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "enzyme-002-r1e-08:negative-part": {
+          "measured": 0.0,
+          "limit": 1e-12,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "enzyme-002-r1e-08:QSSA-model": {
+          "measured": 0.001518757415778449,
+          "limit": 0.02,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        }
+      },
+      "validation_scope": "predeclared_accuracy_study_with_separate_reproduction_checks"
+    },
+    {
+      "id": "lotka-volterra",
+      "passed": true,
+      "checks": {
+        "lv-400:actual-grid-finite": true,
+        "lv-800:actual-grid-finite": true,
+        "lv-1600:actual-grid-finite": true
+      },
+      "records": [
+        {
+          "id": "lv-400",
+          "steps": 400,
+          "state_Linf": 3.33183228784506e-07,
+          "invariant_drift": 5.899863708691555e-09,
+          "minimum_state": 0.7408142635326392
+        },
+        {
+          "id": "lv-800",
+          "steps": 800,
+          "state_Linf": 2.085509653859674e-08,
+          "invariant_drift": 2.909574803311443e-10,
+          "minimum_state": 0.7408127282900917
+        },
+        {
+          "id": "lv-1600",
+          "steps": 1600,
+          "state_Linf": 1.3042227298143416e-09,
+          "invariant_drift": 1.575184427338172e-11,
+          "minimum_state": 0.7408074720424371
+        }
+      ],
+      "metrics": {
+        "actual_primary_records": 3,
+        "reference_role": "Qualified Radau/BDF full ODE; reduction/linearization errors are distinct modeling diagnostics"
+      },
+      "original_target_results": {
+        "lv-400:state": true,
+        "lv-400:invariant": true,
+        "lv-800:state": true,
+        "lv-800:invariant": true,
+        "lv-1600:state": true,
+        "lv-1600:invariant": true
+      },
+      "original_target_summary": {
+        "met": 6,
+        "total": 6,
+        "all_met": true,
+        "acceptance_sha256": "b468e78459cf81bda6a32cade0051f6615b44def256c66308ae7acc82ff516ce"
+      },
+      "original_study_goal_measurements": {
+        "lv-400:state": {
+          "measured": 3.33183228784506e-07,
+          "limit": 1e-05,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "lv-400:invariant": {
+          "measured": 5.899863708691555e-09,
+          "limit": 1e-06,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "lv-800:state": {
+          "measured": 2.085509653859674e-08,
+          "limit": 1e-05,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "lv-800:invariant": {
+          "measured": 2.909574803311443e-10,
+          "limit": 1e-06,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "lv-1600:state": {
+          "measured": 1.3042227298143416e-09,
+          "limit": 1e-05,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "lv-1600:invariant": {
+          "measured": 1.575184427338172e-11,
+          "limit": 1e-06,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        }
+      },
+      "validation_scope": "predeclared_accuracy_study_with_separate_reproduction_checks"
+    },
+    {
+      "id": "seir-linearization",
+      "passed": true,
+      "checks": {
+        "seir-1e-4-400:actual-grid-finite": true,
+        "seir-1e-4-800:actual-grid-finite": true,
+        "seir-1e-4-1600:actual-grid-finite": true,
+        "seir-5e-5-400:actual-grid-finite": true,
+        "seir-5e-5-800:actual-grid-finite": true,
+        "seir-5e-5-1600:actual-grid-finite": true
+      },
+      "records": [
+        {
+          "id": "seir-1e-4-400",
+          "eta": 0.0001,
+          "steps": 400,
+          "state_Linf": 1.8622881015062376e-12,
+          "mass_defect": 1.3322676295501878e-15,
+          "minimum_state": 0.0,
+          "early_model_deviation": 1.3206560874431299e-08,
+          "early_deviation_over_eta_squared": 1.32065608744313
+        },
+        {
+          "id": "seir-1e-4-800",
+          "eta": 0.0001,
+          "steps": 800,
+          "state_Linf": 1.1746159600534156e-13,
+          "mass_defect": 5.551115123125783e-16,
+          "minimum_state": 0.0,
+          "early_model_deviation": 1.3206560874431299e-08,
+          "early_deviation_over_eta_squared": 1.32065608744313
+        },
+        {
+          "id": "seir-1e-4-1600",
+          "eta": 0.0001,
+          "steps": 1600,
+          "state_Linf": 6.994405055138486e-15,
+          "mass_defect": 1.887379141862766e-15,
+          "minimum_state": 0.0,
+          "early_model_deviation": 1.3206560874431299e-08,
+          "early_deviation_over_eta_squared": 1.32065608744313
+        },
+        {
+          "id": "seir-5e-5-400",
+          "eta": 5e-05,
+          "steps": 400,
+          "state_Linf": 9.460210392830959e-13,
+          "mass_defect": 6.661338147750939e-16,
+          "minimum_state": 0.0,
+          "early_model_deviation": 3.3017030167970538e-09,
+          "early_deviation_over_eta_squared": 1.3206812067188214
+        },
+        {
+          "id": "seir-5e-5-800",
+          "eta": 5e-05,
+          "steps": 800,
+          "state_Linf": 6.0285110237146e-14,
+          "mass_defect": 1.1102230246251565e-15,
+          "minimum_state": 0.0,
+          "early_model_deviation": 3.3017030167970538e-09,
+          "early_deviation_over_eta_squared": 1.3206812067188214
+        },
+        {
+          "id": "seir-5e-5-1600",
+          "eta": 5e-05,
+          "steps": 1600,
+          "state_Linf": 6.217248937900877e-15,
+          "mass_defect": 1.9984014443252818e-15,
+          "minimum_state": 0.0,
+          "early_model_deviation": 3.3017030167970538e-09,
+          "early_deviation_over_eta_squared": 1.3206812067188214
+        }
+      ],
+      "metrics": {
+        "actual_primary_records": 6,
+        "reference_role": "Qualified Radau/BDF full ODE; reduction/linearization errors are distinct modeling diagnostics"
+      },
+      "original_target_results": {
+        "seir-1e-4-400:integration": true,
+        "seir-1e-4-400:mass": true,
+        "seir-1e-4-400:negative-part": true,
+        "seir-1e-4-800:integration": true,
+        "seir-1e-4-800:mass": true,
+        "seir-1e-4-800:negative-part": true,
+        "seir-1e-4-1600:integration": true,
+        "seir-1e-4-1600:mass": true,
+        "seir-1e-4-1600:negative-part": true,
+        "seir-1e-4:early-linearization": true,
+        "seir-5e-5-400:integration": true,
+        "seir-5e-5-400:mass": true,
+        "seir-5e-5-400:negative-part": true,
+        "seir-5e-5-800:integration": true,
+        "seir-5e-5-800:mass": true,
+        "seir-5e-5-800:negative-part": true,
+        "seir-5e-5-1600:integration": true,
+        "seir-5e-5-1600:mass": true,
+        "seir-5e-5-1600:negative-part": true,
+        "seir-5e-5:early-linearization": true
+      },
+      "original_target_summary": {
+        "met": 20,
+        "total": 20,
+        "all_met": true,
+        "acceptance_sha256": "b468e78459cf81bda6a32cade0051f6615b44def256c66308ae7acc82ff516ce"
+      },
+      "original_study_goal_measurements": {
+        "seir-1e-4-400:integration": {
+          "measured": 1.8622881015062376e-12,
+          "limit": 1e-05,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-1e-4-400:mass": {
+          "measured": 1.3322676295501878e-15,
+          "limit": 1e-10,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-1e-4-400:negative-part": {
+          "measured": 0.0,
+          "limit": 1e-12,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-1e-4-800:integration": {
+          "measured": 1.1746159600534156e-13,
+          "limit": 1e-05,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-1e-4-800:mass": {
+          "measured": 5.551115123125783e-16,
+          "limit": 1e-10,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-1e-4-800:negative-part": {
+          "measured": 0.0,
+          "limit": 1e-12,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-1e-4-1600:integration": {
+          "measured": 6.994405055138486e-15,
+          "limit": 1e-05,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-1e-4-1600:mass": {
+          "measured": 1.887379141862766e-15,
+          "limit": 1e-10,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-1e-4-1600:negative-part": {
+          "measured": 0.0,
+          "limit": 1e-12,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-1e-4:early-linearization": {
+          "measured": 0.000132065608744313,
+          "limit": 0.005,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-5e-5-400:integration": {
+          "measured": 9.460210392830959e-13,
+          "limit": 1e-05,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-5e-5-400:mass": {
+          "measured": 6.661338147750939e-16,
+          "limit": 1e-10,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-5e-5-400:negative-part": {
+          "measured": 0.0,
+          "limit": 1e-12,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-5e-5-800:integration": {
+          "measured": 6.0285110237146e-14,
+          "limit": 1e-05,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-5e-5-800:mass": {
+          "measured": 1.1102230246251565e-15,
+          "limit": 1e-10,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-5e-5-800:negative-part": {
+          "measured": 0.0,
+          "limit": 1e-12,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-5e-5-1600:integration": {
+          "measured": 6.217248937900877e-15,
+          "limit": 1e-05,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-5e-5-1600:mass": {
+          "measured": 1.9984014443252818e-15,
+          "limit": 1e-10,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-5e-5-1600:negative-part": {
+          "measured": 0.0,
+          "limit": 1e-12,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        },
+        "seir-5e-5:early-linearization": {
+          "measured": 6.603406033594108e-05,
+          "limit": 0.005,
+          "comparison": "<=",
+          "units": "dimensionless",
+          "met": true
+        }
+      },
+      "validation_scope": "predeclared_accuracy_study_with_separate_reproduction_checks"
+    }
+  ]
+}

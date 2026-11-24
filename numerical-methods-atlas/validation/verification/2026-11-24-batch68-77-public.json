@@ -1,0 +1,1661 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "verified_at_utc": "2026-11-24T16:29:15.494231+00:00",
+  "final_commit": "35e34ae130d47cc43445765b88e99c0c556c38bb",
+  "content_tree": "f7803e004ffdd2c9b31a03a3ce3d394fba0818bb",
+  "publication_repository": "hrkoyama/hrkoyama.github.io",
+  "publication_branch": "main",
+  "public_origin": "https://hrkoyama.github.io/numerical-methods-atlas/",
+  "backlog_sequences": [
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77
+  ],
+  "new_groups": [
+    {
+      "group": "ode-adaptivity",
+      "edition": "2026-11-24-r2",
+      "tests": 41,
+      "cases": [
+        "rk45-dense-events",
+        "robertson-stiff-kinetics",
+        "strang-boundary-order-reduction",
+        "van-der-pol-stiff-transition"
+      ],
+      "case_gates": {
+        "robertson-stiff-kinetics": 40,
+        "van-der-pol-stiff-transition": 65,
+        "rk45-dense-events": 43,
+        "strang-boundary-order-reduction": 63
+      }
+    },
+    {
+      "group": "steady-rk",
+      "edition": "2026-11-24",
+      "tests": 18,
+      "cases": [
+        "jameson-steady-linear-modes"
+      ],
+      "case_gates": {
+        "jameson-steady-linear-modes": 48
+      }
+    },
+    {
+      "group": "dae-controls",
+      "edition": "2026-11-24",
+      "tests": 25,
+      "cases": [
+        "high-index-pendulum",
+        "index1-dae-consistent-initialization",
+        "robertson-conservation-dae"
+      ],
+      "case_gates": {
+        "index1-dae-consistent-initialization": 30,
+        "robertson-conservation-dae": 43,
+        "high-index-pendulum": 45
+      }
+    },
+    {
+      "group": "geometric-controls",
+      "edition": "2026-11-24",
+      "tests": 32,
+      "cases": [
+        "kepler-eccentricity",
+        "multifrequency-resonance",
+        "shake-rattle-pendulum"
+      ],
+      "case_gates": {
+        "shake-rattle-pendulum": 74,
+        "kepler-eccentricity": 92,
+        "multifrequency-resonance": 116
+      }
+    }
+  ],
+  "new_execution_cases": 11,
+  "logical_candidates": 10,
+  "new_physical_primary_records": 8,
+  "new_pytest": 116,
+  "new_verification_gates": 659,
+  "original_study_results": [
+    {
+      "group": "ode-adaptivity",
+      "case": "robertson-stiff-kinetics",
+      "canonical": {
+        "summary": {
+          "met": 40,
+          "total": 40,
+          "all_met": true,
+          "acceptance_sha256": "fd7e7cfe528d9844e2992e8ef96d6b33e482e8c5d2bc63a4d6955431168f6051"
+        },
+        "decisions": {
+          "robertson-bdf2-512:complete-finite": true,
+          "robertson-bdf2-512:true-stage-residual": true,
+          "robertson-bdf2-512:mass": true,
+          "robertson-bdf2-512:accepted-positivity": true,
+          "robertson-bdf2-1024:complete-finite": true,
+          "robertson-bdf2-1024:true-stage-residual": true,
+          "robertson-bdf2-1024:mass": true,
+          "robertson-bdf2-1024:accepted-positivity": true,
+          "robertson-bdf2-2048:complete-finite": true,
+          "robertson-bdf2-2048:true-stage-residual": true,
+          "robertson-bdf2-2048:mass": true,
+          "robertson-bdf2-2048:accepted-positivity": true,
+          "robertson-sdirk2-512:complete-finite": true,
+          "robertson-sdirk2-512:true-stage-residual": true,
+          "robertson-sdirk2-512:mass": true,
+          "robertson-sdirk2-512:accepted-positivity": true,
+          "robertson-sdirk2-1024:complete-finite": true,
+          "robertson-sdirk2-1024:true-stage-residual": true,
+          "robertson-sdirk2-1024:mass": true,
+          "robertson-sdirk2-1024:accepted-positivity": true,
+          "robertson-sdirk2-2048:complete-finite": true,
+          "robertson-sdirk2-2048:true-stage-residual": true,
+          "robertson-sdirk2-2048:mass": true,
+          "robertson-sdirk2-2048:accepted-positivity": true,
+          "robertson-sdirk-doubling-loose:complete-finite": true,
+          "robertson-sdirk-doubling-loose:true-stage-residual": true,
+          "robertson-sdirk-doubling-loose:mass": true,
+          "robertson-sdirk-doubling-loose:accepted-positivity": true,
+          "robertson-sdirk-doubling-tight:complete-finite": true,
+          "robertson-sdirk-doubling-tight:true-stage-residual": true,
+          "robertson-sdirk-doubling-tight:mass": true,
+          "robertson-sdirk-doubling-tight:accepted-positivity": true,
+          "robertson-bdf2:finest-accuracy": true,
+          "robertson-bdf2:refinement": true,
+          "robertson-sdirk2:finest-accuracy": true,
+          "robertson-sdirk2:refinement": true,
+          "robertson-adaptive-loose:accuracy": true,
+          "robertson-adaptive-tight:accuracy": true,
+          "robertson-adaptive:actual-tolerance-response": true,
+          "actual-within-stage-factor-reuse": true
+        },
+        "unmet_keys": [],
+        "measurements": null
+      },
+      "public_Linux": {
+        "summary": {
+          "met": 40,
+          "total": 40,
+          "all_met": true,
+          "acceptance_sha256": "fd7e7cfe528d9844e2992e8ef96d6b33e482e8c5d2bc63a4d6955431168f6051"
+        },
+        "decisions": {
+          "robertson-bdf2-512:complete-finite": true,
+          "robertson-bdf2-512:true-stage-residual": true,
+          "robertson-bdf2-512:mass": true,
+          "robertson-bdf2-512:accepted-positivity": true,
+          "robertson-bdf2-1024:complete-finite": true,
+          "robertson-bdf2-1024:true-stage-residual": true,
+          "robertson-bdf2-1024:mass": true,
+          "robertson-bdf2-1024:accepted-positivity": true,
+          "robertson-bdf2-2048:complete-finite": true,
+          "robertson-bdf2-2048:true-stage-residual": true,
+          "robertson-bdf2-2048:mass": true,
+          "robertson-bdf2-2048:accepted-positivity": true,
+          "robertson-sdirk2-512:complete-finite": true,
+          "robertson-sdirk2-512:true-stage-residual": true,
+          "robertson-sdirk2-512:mass": true,
+          "robertson-sdirk2-512:accepted-positivity": true,
+          "robertson-sdirk2-1024:complete-finite": true,
+          "robertson-sdirk2-1024:true-stage-residual": true,
+          "robertson-sdirk2-1024:mass": true,
+          "robertson-sdirk2-1024:accepted-positivity": true,
+          "robertson-sdirk2-2048:complete-finite": true,
+          "robertson-sdirk2-2048:true-stage-residual": true,
+          "robertson-sdirk2-2048:mass": true,
+          "robertson-sdirk2-2048:accepted-positivity": true,
+          "robertson-sdirk-doubling-loose:complete-finite": true,
+          "robertson-sdirk-doubling-loose:true-stage-residual": true,
+          "robertson-sdirk-doubling-loose:mass": true,
+          "robertson-sdirk-doubling-loose:accepted-positivity": true,
+          "robertson-sdirk-doubling-tight:complete-finite": true,
+          "robertson-sdirk-doubling-tight:true-stage-residual": true,
+          "robertson-sdirk-doubling-tight:mass": true,
+          "robertson-sdirk-doubling-tight:accepted-positivity": true,
+          "robertson-bdf2:finest-accuracy": true,
+          "robertson-bdf2:refinement": true,
+          "robertson-sdirk2:finest-accuracy": true,
+          "robertson-sdirk2:refinement": true,
+          "robertson-adaptive-loose:accuracy": true,
+          "robertson-adaptive-tight:accuracy": true,
+          "robertson-adaptive:actual-tolerance-response": true,
+          "actual-within-stage-factor-reuse": true
+        },
+        "unmet_keys": [],
+        "measurements": null
+      }
+    },
+    {
+      "group": "ode-adaptivity",
+      "case": "van-der-pol-stiff-transition",
+      "canonical": {
+        "summary": {
+          "met": 62,
+          "total": 63,
+          "all_met": false,
+          "acceptance_sha256": "fd7e7cfe528d9844e2992e8ef96d6b33e482e8c5d2bc63a4d6955431168f6051"
+        },
+        "decisions": {
+          "vdp-mu1-bdf2-256:complete-finite": true,
+          "vdp-mu1-bdf2-256:true-stage-residual": true,
+          "vdp-mu1-bdf2-256:bounded-state": true,
+          "vdp-mu1-bdf2-512:complete-finite": true,
+          "vdp-mu1-bdf2-512:true-stage-residual": true,
+          "vdp-mu1-bdf2-512:bounded-state": true,
+          "vdp-mu1-bdf2-1024:complete-finite": true,
+          "vdp-mu1-bdf2-1024:true-stage-residual": true,
+          "vdp-mu1-bdf2-1024:bounded-state": true,
+          "vdp-mu1-sdirk2-256:complete-finite": true,
+          "vdp-mu1-sdirk2-256:true-stage-residual": true,
+          "vdp-mu1-sdirk2-256:bounded-state": true,
+          "vdp-mu1-sdirk2-512:complete-finite": true,
+          "vdp-mu1-sdirk2-512:true-stage-residual": true,
+          "vdp-mu1-sdirk2-512:bounded-state": true,
+          "vdp-mu1-sdirk2-1024:complete-finite": true,
+          "vdp-mu1-sdirk2-1024:true-stage-residual": true,
+          "vdp-mu1-sdirk2-1024:bounded-state": true,
+          "vdp-mu1-sdirk-doubling-loose:complete-finite": true,
+          "vdp-mu1-sdirk-doubling-loose:true-stage-residual": true,
+          "vdp-mu1-sdirk-doubling-loose:bounded-state": true,
+          "vdp-mu1-sdirk-doubling-tight:complete-finite": true,
+          "vdp-mu1-sdirk-doubling-tight:true-stage-residual": true,
+          "vdp-mu1-sdirk-doubling-tight:bounded-state": true,
+          "vdp-mu100-bdf2-256:complete-finite": true,
+          "vdp-mu100-bdf2-256:true-stage-residual": true,
+          "vdp-mu100-bdf2-256:bounded-state": true,
+          "vdp-mu100-bdf2-512:complete-finite": true,
+          "vdp-mu100-bdf2-512:true-stage-residual": true,
+          "vdp-mu100-bdf2-512:bounded-state": true,
+          "vdp-mu100-bdf2-1024:complete-finite": true,
+          "vdp-mu100-bdf2-1024:true-stage-residual": true,
+          "vdp-mu100-bdf2-1024:bounded-state": true,
+          "vdp-mu100-sdirk2-256:complete-finite": true,
+          "vdp-mu100-sdirk2-256:true-stage-residual": true,
+          "vdp-mu100-sdirk2-256:bounded-state": true,
+          "vdp-mu100-sdirk2-512:complete-finite": true,
+          "vdp-mu100-sdirk2-512:true-stage-residual": true,
+          "vdp-mu100-sdirk2-512:bounded-state": true,
+          "vdp-mu100-sdirk2-1024:complete-finite": true,
+          "vdp-mu100-sdirk2-1024:true-stage-residual": true,
+          "vdp-mu100-sdirk2-1024:bounded-state": true,
+          "vdp-mu100-sdirk-doubling-loose:complete-finite": true,
+          "vdp-mu100-sdirk-doubling-loose:true-stage-residual": true,
+          "vdp-mu100-sdirk-doubling-loose:bounded-state": true,
+          "vdp-mu100-sdirk-doubling-tight:complete-finite": true,
+          "vdp-mu100-sdirk-doubling-tight:true-stage-residual": true,
+          "vdp-mu100-sdirk-doubling-tight:bounded-state": true,
+          "vdp-mu1-bdf2:finest-accuracy": true,
+          "vdp-mu1-bdf2:refinement": true,
+          "vdp-mu1-sdirk2:finest-accuracy": true,
+          "vdp-mu1-sdirk2:refinement": true,
+          "vdp-mu1-adaptive-loose:accuracy": true,
+          "vdp-mu1-adaptive-tight:accuracy": false,
+          "vdp-mu1-adaptive:actual-tolerance-response": true,
+          "vdp-mu100-bdf2:finest-accuracy": true,
+          "vdp-mu100-bdf2:refinement": true,
+          "vdp-mu100-sdirk2:finest-accuracy": true,
+          "vdp-mu100-sdirk2:refinement": true,
+          "vdp-mu100-adaptive-loose:accuracy": true,
+          "vdp-mu100-adaptive-tight:accuracy": true,
+          "vdp-mu100-adaptive:actual-tolerance-response": true,
+          "actual-within-stage-factor-reuse": true
+        },
+        "unmet_keys": [
+          "vdp-mu1-adaptive-tight:accuracy"
+        ],
+        "measurements": {
+          "vdp-mu1-adaptive-tight:accuracy": {
+            "measured": 4.535633779001458e-05,
+            "limit": 2e-05,
+            "comparison": "<=",
+            "units": "dimensionless sampled weighted L-infinity error",
+            "met": false
+          }
+        }
+      },
+      "public_Linux": {
+        "summary": {
+          "met": 62,
+          "total": 63,
+          "all_met": false,
+          "acceptance_sha256": "fd7e7cfe528d9844e2992e8ef96d6b33e482e8c5d2bc63a4d6955431168f6051"
+        },
+        "decisions": {
+          "vdp-mu1-bdf2-256:complete-finite": true,
+          "vdp-mu1-bdf2-256:true-stage-residual": true,
+          "vdp-mu1-bdf2-256:bounded-state": true,
+          "vdp-mu1-bdf2-512:complete-finite": true,
+          "vdp-mu1-bdf2-512:true-stage-residual": true,
+          "vdp-mu1-bdf2-512:bounded-state": true,
+          "vdp-mu1-bdf2-1024:complete-finite": true,
+          "vdp-mu1-bdf2-1024:true-stage-residual": true,
+          "vdp-mu1-bdf2-1024:bounded-state": true,
+          "vdp-mu1-sdirk2-256:complete-finite": true,
+          "vdp-mu1-sdirk2-256:true-stage-residual": true,
+          "vdp-mu1-sdirk2-256:bounded-state": true,
+          "vdp-mu1-sdirk2-512:complete-finite": true,
+          "vdp-mu1-sdirk2-512:true-stage-residual": true,
+          "vdp-mu1-sdirk2-512:bounded-state": true,
+          "vdp-mu1-sdirk2-1024:complete-finite": true,
+          "vdp-mu1-sdirk2-1024:true-stage-residual": true,
+          "vdp-mu1-sdirk2-1024:bounded-state": true,
+          "vdp-mu1-sdirk-doubling-loose:complete-finite": true,
+          "vdp-mu1-sdirk-doubling-loose:true-stage-residual": true,
+          "vdp-mu1-sdirk-doubling-loose:bounded-state": true,
+          "vdp-mu1-sdirk-doubling-tight:complete-finite": true,
+          "vdp-mu1-sdirk-doubling-tight:true-stage-residual": true,
+          "vdp-mu1-sdirk-doubling-tight:bounded-state": true,
+          "vdp-mu100-bdf2-256:complete-finite": true,
+          "vdp-mu100-bdf2-256:true-stage-residual": true,
+          "vdp-mu100-bdf2-256:bounded-state": true,
+          "vdp-mu100-bdf2-512:complete-finite": true,
+          "vdp-mu100-bdf2-512:true-stage-residual": true,
+          "vdp-mu100-bdf2-512:bounded-state": true,
+          "vdp-mu100-bdf2-1024:complete-finite": true,
+          "vdp-mu100-bdf2-1024:true-stage-residual": true,
+          "vdp-mu100-bdf2-1024:bounded-state": true,
+          "vdp-mu100-sdirk2-256:complete-finite": true,
+          "vdp-mu100-sdirk2-256:true-stage-residual": true,
+          "vdp-mu100-sdirk2-256:bounded-state": true,
+          "vdp-mu100-sdirk2-512:complete-finite": true,
+          "vdp-mu100-sdirk2-512:true-stage-residual": true,
+          "vdp-mu100-sdirk2-512:bounded-state": true,
+          "vdp-mu100-sdirk2-1024:complete-finite": true,
+          "vdp-mu100-sdirk2-1024:true-stage-residual": true,
+          "vdp-mu100-sdirk2-1024:bounded-state": true,
+          "vdp-mu100-sdirk-doubling-loose:complete-finite": true,
+          "vdp-mu100-sdirk-doubling-loose:true-stage-residual": true,
+          "vdp-mu100-sdirk-doubling-loose:bounded-state": true,
+          "vdp-mu100-sdirk-doubling-tight:complete-finite": true,
+          "vdp-mu100-sdirk-doubling-tight:true-stage-residual": true,
+          "vdp-mu100-sdirk-doubling-tight:bounded-state": true,
+          "vdp-mu1-bdf2:finest-accuracy": true,
+          "vdp-mu1-bdf2:refinement": true,
+          "vdp-mu1-sdirk2:finest-accuracy": true,
+          "vdp-mu1-sdirk2:refinement": true,
+          "vdp-mu1-adaptive-loose:accuracy": true,
+          "vdp-mu1-adaptive-tight:accuracy": false,
+          "vdp-mu1-adaptive:actual-tolerance-response": true,
+          "vdp-mu100-bdf2:finest-accuracy": true,
+          "vdp-mu100-bdf2:refinement": true,
+          "vdp-mu100-sdirk2:finest-accuracy": true,
+          "vdp-mu100-sdirk2:refinement": true,
+          "vdp-mu100-adaptive-loose:accuracy": true,
+          "vdp-mu100-adaptive-tight:accuracy": true,
+          "vdp-mu100-adaptive:actual-tolerance-response": true,
+          "actual-within-stage-factor-reuse": true
+        },
+        "unmet_keys": [
+          "vdp-mu1-adaptive-tight:accuracy"
+        ],
+        "measurements": {
+          "vdp-mu1-adaptive-tight:accuracy": {
+            "measured": 4.535633779001458e-05,
+            "limit": 2e-05,
+            "comparison": "<=",
+            "units": "dimensionless sampled weighted L-infinity error",
+            "met": false
+          }
+        }
+      }
+    },
+    {
+      "group": "ode-adaptivity",
+      "case": "rk45-dense-events",
+      "canonical": {
+        "summary": {
+          "met": 43,
+          "total": 43,
+          "all_met": true,
+          "acceptance_sha256": "fd7e7cfe528d9844e2992e8ef96d6b33e482e8c5d2bc63a4d6955431168f6051"
+        },
+        "decisions": {
+          "rk45-loose-hmax0.4:completion-and-work": true,
+          "rk45-loose-hmax0.4:endpoint-error": true,
+          "rk45-loose-hmax0.4:offmesh-error": true,
+          "rk45-loose-hmax0.4:event-time-and-set": true,
+          "rk45-loose-hmax0.4:event-residual": true,
+          "rk45-loose-hmax0.1:completion-and-work": true,
+          "rk45-loose-hmax0.1:endpoint-error": true,
+          "rk45-loose-hmax0.1:offmesh-error": true,
+          "rk45-loose-hmax0.1:event-time-and-set": true,
+          "rk45-loose-hmax0.1:event-residual": true,
+          "rk45-medium-hmax0.4:completion-and-work": true,
+          "rk45-medium-hmax0.4:endpoint-error": true,
+          "rk45-medium-hmax0.4:offmesh-error": true,
+          "rk45-medium-hmax0.4:event-time-and-set": true,
+          "rk45-medium-hmax0.4:event-residual": true,
+          "rk45-medium-hmax0.1:completion-and-work": true,
+          "rk45-medium-hmax0.1:endpoint-error": true,
+          "rk45-medium-hmax0.1:offmesh-error": true,
+          "rk45-medium-hmax0.1:event-time-and-set": true,
+          "rk45-medium-hmax0.1:event-residual": true,
+          "rk45-tight-hmax0.4:completion-and-work": true,
+          "rk45-tight-hmax0.4:endpoint-error": true,
+          "rk45-tight-hmax0.4:offmesh-error": true,
+          "rk45-tight-hmax0.4:event-time-and-set": true,
+          "rk45-tight-hmax0.4:event-residual": true,
+          "rk45-tight-hmax0.1:completion-and-work": true,
+          "rk45-tight-hmax0.1:endpoint-error": true,
+          "rk45-tight-hmax0.1:offmesh-error": true,
+          "rk45-tight-hmax0.1:event-time-and-set": true,
+          "rk45-tight-hmax0.1:event-residual": true,
+          "rk45-terminal-direction-1:completion-and-work": true,
+          "rk45-terminal-direction-1:endpoint-error": true,
+          "rk45-terminal-direction-1:offmesh-error": true,
+          "rk45-terminal-direction-1:event-time-and-set": true,
+          "rk45-terminal-direction-1:event-residual": true,
+          "rk45-terminal-direction1:completion-and-work": true,
+          "rk45-terminal-direction1:endpoint-error": true,
+          "rk45-terminal-direction1:offmesh-error": true,
+          "rk45-terminal-direction1:event-time-and-set": true,
+          "rk45-terminal-direction1:event-residual": true,
+          "hmax0.4:actual-tolerance-response": true,
+          "hmax0.1:actual-tolerance-response": true,
+          "rejected-trial-actually-exercised": true
+        },
+        "unmet_keys": [],
+        "measurements": null
+      },
+      "public_Linux": {
+        "summary": {
+          "met": 43,
+          "total": 43,
+          "all_met": true,
+          "acceptance_sha256": "fd7e7cfe528d9844e2992e8ef96d6b33e482e8c5d2bc63a4d6955431168f6051"
+        },
+        "decisions": {
+          "rk45-loose-hmax0.4:completion-and-work": true,
+          "rk45-loose-hmax0.4:endpoint-error": true,
+          "rk45-loose-hmax0.4:offmesh-error": true,
+          "rk45-loose-hmax0.4:event-time-and-set": true,
+          "rk45-loose-hmax0.4:event-residual": true,
+          "rk45-loose-hmax0.1:completion-and-work": true,
+          "rk45-loose-hmax0.1:endpoint-error": true,
+          "rk45-loose-hmax0.1:offmesh-error": true,
+          "rk45-loose-hmax0.1:event-time-and-set": true,
+          "rk45-loose-hmax0.1:event-residual": true,
+          "rk45-medium-hmax0.4:completion-and-work": true,
+          "rk45-medium-hmax0.4:endpoint-error": true,
+          "rk45-medium-hmax0.4:offmesh-error": true,
+          "rk45-medium-hmax0.4:event-time-and-set": true,
+          "rk45-medium-hmax0.4:event-residual": true,
+          "rk45-medium-hmax0.1:completion-and-work": true,
+          "rk45-medium-hmax0.1:endpoint-error": true,
+          "rk45-medium-hmax0.1:offmesh-error": true,
+          "rk45-medium-hmax0.1:event-time-and-set": true,
+          "rk45-medium-hmax0.1:event-residual": true,
+          "rk45-tight-hmax0.4:completion-and-work": true,
+          "rk45-tight-hmax0.4:endpoint-error": true,
+          "rk45-tight-hmax0.4:offmesh-error": true,
+          "rk45-tight-hmax0.4:event-time-and-set": true,
+          "rk45-tight-hmax0.4:event-residual": true,
+          "rk45-tight-hmax0.1:completion-and-work": true,
+          "rk45-tight-hmax0.1:endpoint-error": true,
+          "rk45-tight-hmax0.1:offmesh-error": true,
+          "rk45-tight-hmax0.1:event-time-and-set": true,
+          "rk45-tight-hmax0.1:event-residual": true,
+          "rk45-terminal-direction-1:completion-and-work": true,
+          "rk45-terminal-direction-1:endpoint-error": true,
+          "rk45-terminal-direction-1:offmesh-error": true,
+          "rk45-terminal-direction-1:event-time-and-set": true,
+          "rk45-terminal-direction-1:event-residual": true,
+          "rk45-terminal-direction1:completion-and-work": true,
+          "rk45-terminal-direction1:endpoint-error": true,
+          "rk45-terminal-direction1:offmesh-error": true,
+          "rk45-terminal-direction1:event-time-and-set": true,
+          "rk45-terminal-direction1:event-residual": true,
+          "hmax0.4:actual-tolerance-response": true,
+          "hmax0.1:actual-tolerance-response": true,
+          "rejected-trial-actually-exercised": true
+        },
+        "unmet_keys": [],
+        "measurements": null
+      }
+    },
+    {
+      "group": "ode-adaptivity",
+      "case": "strang-boundary-order-reduction",
+      "canonical": {
+        "summary": {
+          "met": 63,
+          "total": 63,
+          "all_met": true,
+          "acceptance_sha256": "fd7e7cfe528d9844e2992e8ef96d6b33e482e8c5d2bc63a4d6955431168f6051"
+        },
+        "decisions": {
+          "boundary-n31-strang-unmodified-8:actual-field-and-work": true,
+          "boundary-n31-strang-unmodified-8:boundary-compatibility-ledger": true,
+          "boundary-n31-strang-unmodified-16:actual-field-and-work": true,
+          "boundary-n31-strang-unmodified-16:boundary-compatibility-ledger": true,
+          "boundary-n31-strang-unmodified-32:actual-field-and-work": true,
+          "boundary-n31-strang-unmodified-32:boundary-compatibility-ledger": true,
+          "boundary-n31-strang-unmodified-64:actual-field-and-work": true,
+          "boundary-n31-strang-unmodified-64:boundary-compatibility-ledger": true,
+          "boundary-n31-strang-boundary-corrected-8:actual-field-and-work": true,
+          "boundary-n31-strang-boundary-corrected-8:boundary-compatibility-ledger": true,
+          "boundary-n31-strang-boundary-corrected-16:actual-field-and-work": true,
+          "boundary-n31-strang-boundary-corrected-16:boundary-compatibility-ledger": true,
+          "boundary-n31-strang-boundary-corrected-32:actual-field-and-work": true,
+          "boundary-n31-strang-boundary-corrected-32:boundary-compatibility-ledger": true,
+          "boundary-n31-strang-boundary-corrected-64:actual-field-and-work": true,
+          "boundary-n31-strang-boundary-corrected-64:boundary-compatibility-ledger": true,
+          "boundary-n63-strang-unmodified-8:actual-field-and-work": true,
+          "boundary-n63-strang-unmodified-8:boundary-compatibility-ledger": true,
+          "boundary-n63-strang-unmodified-16:actual-field-and-work": true,
+          "boundary-n63-strang-unmodified-16:boundary-compatibility-ledger": true,
+          "boundary-n63-strang-unmodified-32:actual-field-and-work": true,
+          "boundary-n63-strang-unmodified-32:boundary-compatibility-ledger": true,
+          "boundary-n63-strang-unmodified-64:actual-field-and-work": true,
+          "boundary-n63-strang-unmodified-64:boundary-compatibility-ledger": true,
+          "boundary-n63-strang-boundary-corrected-8:actual-field-and-work": true,
+          "boundary-n63-strang-boundary-corrected-8:boundary-compatibility-ledger": true,
+          "boundary-n63-strang-boundary-corrected-16:actual-field-and-work": true,
+          "boundary-n63-strang-boundary-corrected-16:boundary-compatibility-ledger": true,
+          "boundary-n63-strang-boundary-corrected-32:actual-field-and-work": true,
+          "boundary-n63-strang-boundary-corrected-32:boundary-compatibility-ledger": true,
+          "boundary-n63-strang-boundary-corrected-64:actual-field-and-work": true,
+          "boundary-n63-strang-boundary-corrected-64:boundary-compatibility-ledger": true,
+          "boundary-n127-strang-unmodified-8:actual-field-and-work": true,
+          "boundary-n127-strang-unmodified-8:boundary-compatibility-ledger": true,
+          "boundary-n127-strang-unmodified-16:actual-field-and-work": true,
+          "boundary-n127-strang-unmodified-16:boundary-compatibility-ledger": true,
+          "boundary-n127-strang-unmodified-32:actual-field-and-work": true,
+          "boundary-n127-strang-unmodified-32:boundary-compatibility-ledger": true,
+          "boundary-n127-strang-unmodified-64:actual-field-and-work": true,
+          "boundary-n127-strang-unmodified-64:boundary-compatibility-ledger": true,
+          "boundary-n127-strang-boundary-corrected-8:actual-field-and-work": true,
+          "boundary-n127-strang-boundary-corrected-8:boundary-compatibility-ledger": true,
+          "boundary-n127-strang-boundary-corrected-16:actual-field-and-work": true,
+          "boundary-n127-strang-boundary-corrected-16:boundary-compatibility-ledger": true,
+          "boundary-n127-strang-boundary-corrected-32:actual-field-and-work": true,
+          "boundary-n127-strang-boundary-corrected-32:boundary-compatibility-ledger": true,
+          "boundary-n127-strang-boundary-corrected-64:actual-field-and-work": true,
+          "boundary-n127-strang-boundary-corrected-64:boundary-compatibility-ledger": true,
+          "boundary-n127-lie-8:actual-field-and-work": true,
+          "boundary-n127-lie-8:boundary-compatibility-ledger": true,
+          "boundary-n127-lie-16:actual-field-and-work": true,
+          "boundary-n127-lie-16:boundary-compatibility-ledger": true,
+          "boundary-n127-lie-32:actual-field-and-work": true,
+          "boundary-n127-lie-32:boundary-compatibility-ledger": true,
+          "boundary-n127-lie-64:actual-field-and-work": true,
+          "boundary-n127-lie-64:boundary-compatibility-ledger": true,
+          "n31:corrected-finest-accuracy": true,
+          "n63:corrected-finest-accuracy": true,
+          "n127:corrected-finest-accuracy": true,
+          "strang-unmodified:fixed-regime-temporal-order": true,
+          "strang-boundary-corrected:fixed-regime-temporal-order": true,
+          "finest:boundary-correction-improves": true,
+          "separate-reference-spatial-order": true
+        },
+        "unmet_keys": [],
+        "measurements": null
+      },
+      "public_Linux": {
+        "summary": {
+          "met": 63,
+          "total": 63,
+          "all_met": true,
+          "acceptance_sha256": "fd7e7cfe528d9844e2992e8ef96d6b33e482e8c5d2bc63a4d6955431168f6051"
+        },
+        "decisions": {
+          "boundary-n31-strang-unmodified-8:actual-field-and-work": true,
+          "boundary-n31-strang-unmodified-8:boundary-compatibility-ledger": true,
+          "boundary-n31-strang-unmodified-16:actual-field-and-work": true,
+          "boundary-n31-strang-unmodified-16:boundary-compatibility-ledger": true,
+          "boundary-n31-strang-unmodified-32:actual-field-and-work": true,
+          "boundary-n31-strang-unmodified-32:boundary-compatibility-ledger": true,
+          "boundary-n31-strang-unmodified-64:actual-field-and-work": true,
+          "boundary-n31-strang-unmodified-64:boundary-compatibility-ledger": true,
+          "boundary-n31-strang-boundary-corrected-8:actual-field-and-work": true,
+          "boundary-n31-strang-boundary-corrected-8:boundary-compatibility-ledger": true,
+          "boundary-n31-strang-boundary-corrected-16:actual-field-and-work": true,
+          "boundary-n31-strang-boundary-corrected-16:boundary-compatibility-ledger": true,
+          "boundary-n31-strang-boundary-corrected-32:actual-field-and-work": true,
+          "boundary-n31-strang-boundary-corrected-32:boundary-compatibility-ledger": true,
+          "boundary-n31-strang-boundary-corrected-64:actual-field-and-work": true,
+          "boundary-n31-strang-boundary-corrected-64:boundary-compatibility-ledger": true,
+          "boundary-n63-strang-unmodified-8:actual-field-and-work": true,
+          "boundary-n63-strang-unmodified-8:boundary-compatibility-ledger": true,
+          "boundary-n63-strang-unmodified-16:actual-field-and-work": true,
+          "boundary-n63-strang-unmodified-16:boundary-compatibility-ledger": true,
+          "boundary-n63-strang-unmodified-32:actual-field-and-work": true,
+          "boundary-n63-strang-unmodified-32:boundary-compatibility-ledger": true,
+          "boundary-n63-strang-unmodified-64:actual-field-and-work": true,
+          "boundary-n63-strang-unmodified-64:boundary-compatibility-ledger": true,
+          "boundary-n63-strang-boundary-corrected-8:actual-field-and-work": true,
+          "boundary-n63-strang-boundary-corrected-8:boundary-compatibility-ledger": true,
+          "boundary-n63-strang-boundary-corrected-16:actual-field-and-work": true,
+          "boundary-n63-strang-boundary-corrected-16:boundary-compatibility-ledger": true,
+          "boundary-n63-strang-boundary-corrected-32:actual-field-and-work": true,
+          "boundary-n63-strang-boundary-corrected-32:boundary-compatibility-ledger": true,
+          "boundary-n63-strang-boundary-corrected-64:actual-field-and-work": true,
+          "boundary-n63-strang-boundary-corrected-64:boundary-compatibility-ledger": true,
+          "boundary-n127-strang-unmodified-8:actual-field-and-work": true,
+          "boundary-n127-strang-unmodified-8:boundary-compatibility-ledger": true,
+          "boundary-n127-strang-unmodified-16:actual-field-and-work": true,
+          "boundary-n127-strang-unmodified-16:boundary-compatibility-ledger": true,
+          "boundary-n127-strang-unmodified-32:actual-field-and-work": true,
+          "boundary-n127-strang-unmodified-32:boundary-compatibility-ledger": true,
+          "boundary-n127-strang-unmodified-64:actual-field-and-work": true,
+          "boundary-n127-strang-unmodified-64:boundary-compatibility-ledger": true,
+          "boundary-n127-strang-boundary-corrected-8:actual-field-and-work": true,
+          "boundary-n127-strang-boundary-corrected-8:boundary-compatibility-ledger": true,
+          "boundary-n127-strang-boundary-corrected-16:actual-field-and-work": true,
+          "boundary-n127-strang-boundary-corrected-16:boundary-compatibility-ledger": true,
+          "boundary-n127-strang-boundary-corrected-32:actual-field-and-work": true,
+          "boundary-n127-strang-boundary-corrected-32:boundary-compatibility-ledger": true,
+          "boundary-n127-strang-boundary-corrected-64:actual-field-and-work": true,
+          "boundary-n127-strang-boundary-corrected-64:boundary-compatibility-ledger": true,
+          "boundary-n127-lie-8:actual-field-and-work": true,
+          "boundary-n127-lie-8:boundary-compatibility-ledger": true,
+          "boundary-n127-lie-16:actual-field-and-work": true,
+          "boundary-n127-lie-16:boundary-compatibility-ledger": true,
+          "boundary-n127-lie-32:actual-field-and-work": true,
+          "boundary-n127-lie-32:boundary-compatibility-ledger": true,
+          "boundary-n127-lie-64:actual-field-and-work": true,
+          "boundary-n127-lie-64:boundary-compatibility-ledger": true,
+          "n31:corrected-finest-accuracy": true,
+          "n63:corrected-finest-accuracy": true,
+          "n127:corrected-finest-accuracy": true,
+          "strang-unmodified:fixed-regime-temporal-order": true,
+          "strang-boundary-corrected:fixed-regime-temporal-order": true,
+          "finest:boundary-correction-improves": true,
+          "separate-reference-spatial-order": true
+        },
+        "unmet_keys": [],
+        "measurements": null
+      }
+    },
+    {
+      "group": "steady-rk",
+      "case": "jameson-steady-linear-modes",
+      "canonical": {
+        "summary": {
+          "met": 40,
+          "total": 41,
+          "all_met": false,
+          "acceptance_sha256": "af846323a4e4235d968ecb431eea825fbee40f7a1047e65b18c70b7d4a83fe00"
+        },
+        "decisions": {
+          "reference:h32-mode4:expanded-vs-stages": true,
+          "reference:h32-mode4:prior-classification": true,
+          "reference:h32-mode8:expanded-vs-stages": true,
+          "reference:h32-mode8:prior-classification": true,
+          "reference:h16-mode4:expanded-vs-stages": true,
+          "reference:h16-mode4:prior-classification": true,
+          "reference:h16-mode8:expanded-vs-stages": true,
+          "reference:h16-mode8:prior-classification": true,
+          "reference:neutral:expanded-vs-stages": true,
+          "reference:neutral:prior-classification": true,
+          "reference:expanding:expanded-vs-stages": true,
+          "reference:expanding:prior-classification": true,
+          "reference:rational-stencil-mode4": true,
+          "reference:rational-stencil-mode8": true,
+          "stable-h32:finite": true,
+          "stable-h32:stage-count": true,
+          "stable-h32:spurious-mode": true,
+          "stable-h32:true-residual-reference": true,
+          "stable-h32:field-error": true,
+          "stable-h32:residual-reduction": true,
+          "stable-h32:nonzero-mode4": true,
+          "stable-h16:finite": true,
+          "stable-h16:stage-count": true,
+          "stable-h16:spurious-mode": true,
+          "stable-h16:true-residual-reference": true,
+          "stable-h16:field-error": true,
+          "stable-h16:residual-reduction": true,
+          "stable-h16:nonzero-mode4": true,
+          "neutral-constant:finite": true,
+          "neutral-constant:stage-count": true,
+          "neutral-constant:spurious-mode": true,
+          "neutral-constant:true-residual-reference": true,
+          "neutral-constant:neutrality": true,
+          "expanding-nyquist:finite": true,
+          "expanding-nyquist:stage-count": true,
+          "expanding-nyquist:spurious-mode": true,
+          "expanding-nyquist:true-residual-reference": false,
+          "expanding-nyquist:expected-expansion": true,
+          "expanding-nyquist:normalized-error": true,
+          "steady-fixed-point": true,
+          "four-record-identities": true
+        },
+        "unmet_keys": [
+          "expanding-nyquist:true-residual-reference"
+        ],
+        "measurements": {
+          "expanding-nyquist:true-residual-reference": {
+            "measured": 1.0913936421275139e-11,
+            "limit": 2e-12,
+            "comparison": "<=",
+            "units": "absolute discrete residual",
+            "met": false
+          }
+        }
+      },
+      "public_Linux": {
+        "summary": {
+          "met": 40,
+          "total": 41,
+          "all_met": false,
+          "acceptance_sha256": "af846323a4e4235d968ecb431eea825fbee40f7a1047e65b18c70b7d4a83fe00"
+        },
+        "decisions": {
+          "reference:h32-mode4:expanded-vs-stages": true,
+          "reference:h32-mode4:prior-classification": true,
+          "reference:h32-mode8:expanded-vs-stages": true,
+          "reference:h32-mode8:prior-classification": true,
+          "reference:h16-mode4:expanded-vs-stages": true,
+          "reference:h16-mode4:prior-classification": true,
+          "reference:h16-mode8:expanded-vs-stages": true,
+          "reference:h16-mode8:prior-classification": true,
+          "reference:neutral:expanded-vs-stages": true,
+          "reference:neutral:prior-classification": true,
+          "reference:expanding:expanded-vs-stages": true,
+          "reference:expanding:prior-classification": true,
+          "reference:rational-stencil-mode4": true,
+          "reference:rational-stencil-mode8": true,
+          "stable-h32:finite": true,
+          "stable-h32:stage-count": true,
+          "stable-h32:spurious-mode": true,
+          "stable-h32:true-residual-reference": true,
+          "stable-h32:field-error": true,
+          "stable-h32:residual-reduction": true,
+          "stable-h32:nonzero-mode4": true,
+          "stable-h16:finite": true,
+          "stable-h16:stage-count": true,
+          "stable-h16:spurious-mode": true,
+          "stable-h16:true-residual-reference": true,
+          "stable-h16:field-error": true,
+          "stable-h16:residual-reduction": true,
+          "stable-h16:nonzero-mode4": true,
+          "neutral-constant:finite": true,
+          "neutral-constant:stage-count": true,
+          "neutral-constant:spurious-mode": true,
+          "neutral-constant:true-residual-reference": true,
+          "neutral-constant:neutrality": true,
+          "expanding-nyquist:finite": true,
+          "expanding-nyquist:stage-count": true,
+          "expanding-nyquist:spurious-mode": true,
+          "expanding-nyquist:true-residual-reference": false,
+          "expanding-nyquist:expected-expansion": true,
+          "expanding-nyquist:normalized-error": true,
+          "steady-fixed-point": true,
+          "four-record-identities": true
+        },
+        "unmet_keys": [
+          "expanding-nyquist:true-residual-reference"
+        ],
+        "measurements": {
+          "expanding-nyquist:true-residual-reference": {
+            "measured": 1.0913936421275139e-11,
+            "limit": 2e-12,
+            "comparison": "<=",
+            "units": "absolute discrete residual",
+            "met": false
+          }
+        }
+      }
+    },
+    {
+      "group": "dae-controls",
+      "case": "index1-dae-consistent-initialization",
+      "canonical": {
+        "summary": {
+          "met": 30,
+          "total": 30,
+          "all_met": true,
+          "acceptance_sha256": "de0c9378204b8b08610318f41d98efb95cc2c31048a6b593707197635a0cba96"
+        },
+        "decisions": {
+          "reference:MMS-0": true,
+          "reference:MMS-1": true,
+          "reference:MMS-2": true,
+          "reference:nonexpansive-positive-region": true,
+          "reference:initial-differentiated-constraint": true,
+          "reference:three-positive-branch-brackets": true,
+          "reference:three-independent-discrete-roots": true,
+          "initialize-0.5:root": true,
+          "initialize-0.5:algebraic-residual": true,
+          "initialize-2:root": true,
+          "initialize-2:algebraic-residual": true,
+          "initialize-0:expected-singular-status": true,
+          "index1-BE-16:finite": true,
+          "index1-BE-16:positive": true,
+          "index1-BE-16:step-residual": true,
+          "index1-BE-16:constraint": true,
+          "index1-BE-16:MMS-bound": true,
+          "index1-BE-32:finite": true,
+          "index1-BE-32:positive": true,
+          "index1-BE-32:step-residual": true,
+          "index1-BE-32:constraint": true,
+          "index1-BE-32:MMS-bound": true,
+          "index1-BE-64:finite": true,
+          "index1-BE-64:positive": true,
+          "index1-BE-64:step-residual": true,
+          "index1-BE-64:constraint": true,
+          "index1-BE-64:MMS-bound": true,
+          "first-order-refinement": true,
+          "initial-F-and-hidden-constraint": true,
+          "six-record-identities": true
+        },
+        "unmet_keys": [],
+        "measurements": null
+      },
+      "public_Linux": {
+        "summary": {
+          "met": 30,
+          "total": 30,
+          "all_met": true,
+          "acceptance_sha256": "de0c9378204b8b08610318f41d98efb95cc2c31048a6b593707197635a0cba96"
+        },
+        "decisions": {
+          "reference:MMS-0": true,
+          "reference:MMS-1": true,
+          "reference:MMS-2": true,
+          "reference:nonexpansive-positive-region": true,
+          "reference:initial-differentiated-constraint": true,
+          "reference:three-positive-branch-brackets": true,
+          "reference:three-independent-discrete-roots": true,
+          "initialize-0.5:root": true,
+          "initialize-0.5:algebraic-residual": true,
+          "initialize-2:root": true,
+          "initialize-2:algebraic-residual": true,
+          "initialize-0:expected-singular-status": true,
+          "index1-BE-16:finite": true,
+          "index1-BE-16:positive": true,
+          "index1-BE-16:step-residual": true,
+          "index1-BE-16:constraint": true,
+          "index1-BE-16:MMS-bound": true,
+          "index1-BE-32:finite": true,
+          "index1-BE-32:positive": true,
+          "index1-BE-32:step-residual": true,
+          "index1-BE-32:constraint": true,
+          "index1-BE-32:MMS-bound": true,
+          "index1-BE-64:finite": true,
+          "index1-BE-64:positive": true,
+          "index1-BE-64:step-residual": true,
+          "index1-BE-64:constraint": true,
+          "index1-BE-64:MMS-bound": true,
+          "first-order-refinement": true,
+          "initial-F-and-hidden-constraint": true,
+          "six-record-identities": true
+        },
+        "unmet_keys": [],
+        "measurements": null
+      }
+    },
+    {
+      "group": "dae-controls",
+      "case": "robertson-conservation-dae",
+      "canonical": {
+        "summary": {
+          "met": 35,
+          "total": 39,
+          "all_met": false,
+          "acceptance_sha256": "de0c9378204b8b08610318f41d98efb95cc2c31048a6b593707197635a0cba96"
+        },
+        "decisions": {
+          "reference:all-reference-complete-finite-nonnegative": true,
+          "reference:reference-agreement-0": true,
+          "reference:reference-agreement-2": true,
+          "reference:official-IDA-printed-interval-qualification": true,
+          "inconsistent-initial-rejected": true,
+          "robertson-residual_dae-r1:finite": true,
+          "robertson-residual_dae-r1:nonnegative": true,
+          "robertson-residual_dae-r1:nonlinear-residual": true,
+          "robertson-residual_dae-r1:mass": true,
+          "robertson-residual_dae-r2:finite": true,
+          "robertson-residual_dae-r2:nonnegative": true,
+          "robertson-residual_dae-r2:nonlinear-residual": true,
+          "robertson-residual_dae-r2:mass": true,
+          "robertson-residual_dae-r4:finite": true,
+          "robertson-residual_dae-r4:nonnegative": true,
+          "robertson-residual_dae-r4:nonlinear-residual": true,
+          "robertson-residual_dae-r4:mass": true,
+          "residual_dae:refinement": false,
+          "residual_dae:finest-reference-error": false,
+          "residual_dae:official-printed-comparison": true,
+          "robertson-full_ode-r1:finite": true,
+          "robertson-full_ode-r1:nonnegative": true,
+          "robertson-full_ode-r1:nonlinear-residual": true,
+          "robertson-full_ode-r1:mass": true,
+          "robertson-full_ode-r2:finite": true,
+          "robertson-full_ode-r2:nonnegative": true,
+          "robertson-full_ode-r2:nonlinear-residual": true,
+          "robertson-full_ode-r2:mass": true,
+          "robertson-full_ode-r4:finite": true,
+          "robertson-full_ode-r4:nonnegative": true,
+          "robertson-full_ode-r4:nonlinear-residual": true,
+          "robertson-full_ode-r4:mass": true,
+          "full_ode:refinement": false,
+          "full_ode:finest-reference-error": false,
+          "full_ode:official-printed-comparison": true,
+          "ODE-DAE-r1": true,
+          "ODE-DAE-r2": true,
+          "ODE-DAE-r4": true,
+          "seven-record-identities": true
+        },
+        "unmet_keys": [
+          "residual_dae:refinement",
+          "residual_dae:finest-reference-error",
+          "full_ode:refinement",
+          "full_ode:finest-reference-error"
+        ],
+        "measurements": {
+          "full_ode:finest-reference-error": {
+            "measured": 0.007755772186054176,
+            "limit": 0.002,
+            "comparison": "<=",
+            "units": "state error scaled by (1,1e-4,1)",
+            "met": false
+          },
+          "full_ode:refinement": {
+            "measured": [
+              1.0816554513576304,
+              1.72112443371103
+            ],
+            "limit": 1.6,
+            "comparison": "minimum adjacent ratio >=",
+            "units": "dimensionless error ratio",
+            "met": false
+          },
+          "residual_dae:finest-reference-error": {
+            "measured": 0.007755772186054176,
+            "limit": 0.002,
+            "comparison": "<=",
+            "units": "state error scaled by (1,1e-4,1)",
+            "met": false
+          },
+          "residual_dae:refinement": {
+            "measured": [
+              1.0816554513576002,
+              1.7211244337110214
+            ],
+            "limit": 1.6,
+            "comparison": "minimum adjacent ratio >=",
+            "units": "dimensionless error ratio",
+            "met": false
+          }
+        }
+      },
+      "public_Linux": {
+        "summary": {
+          "met": 35,
+          "total": 39,
+          "all_met": false,
+          "acceptance_sha256": "de0c9378204b8b08610318f41d98efb95cc2c31048a6b593707197635a0cba96"
+        },
+        "decisions": {
+          "reference:all-reference-complete-finite-nonnegative": true,
+          "reference:reference-agreement-0": true,
+          "reference:reference-agreement-2": true,
+          "reference:official-IDA-printed-interval-qualification": true,
+          "inconsistent-initial-rejected": true,
+          "robertson-residual_dae-r1:finite": true,
+          "robertson-residual_dae-r1:nonnegative": true,
+          "robertson-residual_dae-r1:nonlinear-residual": true,
+          "robertson-residual_dae-r1:mass": true,
+          "robertson-residual_dae-r2:finite": true,
+          "robertson-residual_dae-r2:nonnegative": true,
+          "robertson-residual_dae-r2:nonlinear-residual": true,
+          "robertson-residual_dae-r2:mass": true,
+          "robertson-residual_dae-r4:finite": true,
+          "robertson-residual_dae-r4:nonnegative": true,
+          "robertson-residual_dae-r4:nonlinear-residual": true,
+          "robertson-residual_dae-r4:mass": true,
+          "residual_dae:refinement": false,
+          "residual_dae:finest-reference-error": false,
+          "residual_dae:official-printed-comparison": true,
+          "robertson-full_ode-r1:finite": true,
+          "robertson-full_ode-r1:nonnegative": true,
+          "robertson-full_ode-r1:nonlinear-residual": true,
+          "robertson-full_ode-r1:mass": true,
+          "robertson-full_ode-r2:finite": true,
+          "robertson-full_ode-r2:nonnegative": true,
+          "robertson-full_ode-r2:nonlinear-residual": true,
+          "robertson-full_ode-r2:mass": true,
+          "robertson-full_ode-r4:finite": true,
+          "robertson-full_ode-r4:nonnegative": true,
+          "robertson-full_ode-r4:nonlinear-residual": true,
+          "robertson-full_ode-r4:mass": true,
+          "full_ode:refinement": false,
+          "full_ode:finest-reference-error": false,
+          "full_ode:official-printed-comparison": true,
+          "ODE-DAE-r1": true,
+          "ODE-DAE-r2": true,
+          "ODE-DAE-r4": true,
+          "seven-record-identities": true
+        },
+        "unmet_keys": [
+          "residual_dae:refinement",
+          "residual_dae:finest-reference-error",
+          "full_ode:refinement",
+          "full_ode:finest-reference-error"
+        ],
+        "measurements": {
+          "full_ode:finest-reference-error": {
+            "measured": 0.007755772186054515,
+            "limit": 0.002,
+            "comparison": "<=",
+            "units": "state error scaled by (1,1e-4,1)",
+            "met": false
+          },
+          "full_ode:refinement": {
+            "measured": [
+              1.0816554513576335,
+              1.7211244337109985
+            ],
+            "limit": 1.6,
+            "comparison": "minimum adjacent ratio >=",
+            "units": "dimensionless error ratio",
+            "met": false
+          },
+          "residual_dae:finest-reference-error": {
+            "measured": 0.007755772186054515,
+            "limit": 0.002,
+            "comparison": "<=",
+            "units": "state error scaled by (1,1e-4,1)",
+            "met": false
+          },
+          "residual_dae:refinement": {
+            "measured": [
+              1.0816554513576035,
+              1.7211244337109899
+            ],
+            "limit": 1.6,
+            "comparison": "minimum adjacent ratio >=",
+            "units": "dimensionless error ratio",
+            "met": false
+          }
+        }
+      }
+    },
+    {
+      "group": "dae-controls",
+      "case": "high-index-pendulum",
+      "canonical": {
+        "summary": {
+          "met": 45,
+          "total": 45,
+          "all_met": true,
+          "acceptance_sha256": "de0c9378204b8b08610318f41d98efb95cc2c31048a6b593707197635a0cba96"
+        },
+        "decisions": {
+          "reference:Jacobi-angular-agreement": true,
+          "reference:angular-tolerance-agreement": true,
+          "reference:Jacobi-initial": true,
+          "reference:Jacobi-invariants": true,
+          "reference:AGM-K": true,
+          "reference:Decimal-remainder-qualification": true,
+          "reference:constraint-identity-False": true,
+          "reference:constraint-work-False": true,
+          "reference:constraint-identity-True": true,
+          "reference:constraint-work-True": true,
+          "default-consistency-rejection": true,
+          "pendulum-consistent-underlying-500:finite": true,
+          "pendulum-consistent-underlying-500:radius": true,
+          "pendulum-consistent-underlying-1000:finite": true,
+          "pendulum-consistent-underlying-1000:radius": true,
+          "pendulum-consistent-underlying-2000:finite": true,
+          "pendulum-consistent-underlying-2000:radius": true,
+          "pendulum-consistent-underlying-2000:state": true,
+          "pendulum-consistent-underlying-2000:energy": true,
+          "pendulum-consistent-stabilized-2000:finite": true,
+          "pendulum-consistent-stabilized-2000:radius": true,
+          "pendulum-consistent-stabilized-2000:state": true,
+          "pendulum-consistent-stabilized-2000:energy": true,
+          "pendulum-radial-underlying-500:finite": true,
+          "pendulum-radial-underlying-500:radius": true,
+          "pendulum-radial-underlying-1000:finite": true,
+          "pendulum-radial-underlying-1000:radius": true,
+          "pendulum-radial-underlying-2000:finite": true,
+          "pendulum-radial-underlying-2000:radius": true,
+          "pendulum-radial-underlying-2000:C-law": true,
+          "pendulum-radial-underlying-2000:D-law": true,
+          "pendulum-radial-underlying-2000:work-ledger": true,
+          "pendulum-radial-stabilized-500:finite": true,
+          "pendulum-radial-stabilized-500:radius": true,
+          "pendulum-radial-stabilized-1000:finite": true,
+          "pendulum-radial-stabilized-1000:radius": true,
+          "pendulum-radial-stabilized-2000:finite": true,
+          "pendulum-radial-stabilized-2000:radius": true,
+          "pendulum-radial-stabilized-2000:C-law": true,
+          "pendulum-radial-stabilized-2000:D-law": true,
+          "pendulum-radial-stabilized-2000:work-ledger": true,
+          "underlying-consistent-fourth-order": true,
+          "visible-unstabilized-drift": true,
+          "stabilized-drift-ratio": true,
+          "eleven-record-identities": true
+        },
+        "unmet_keys": [],
+        "measurements": null
+      },
+      "public_Linux": {
+        "summary": {
+          "met": 45,
+          "total": 45,
+          "all_met": true,
+          "acceptance_sha256": "de0c9378204b8b08610318f41d98efb95cc2c31048a6b593707197635a0cba96"
+        },
+        "decisions": {
+          "reference:Jacobi-angular-agreement": true,
+          "reference:angular-tolerance-agreement": true,
+          "reference:Jacobi-initial": true,
+          "reference:Jacobi-invariants": true,
+          "reference:AGM-K": true,
+          "reference:Decimal-remainder-qualification": true,
+          "reference:constraint-identity-False": true,
+          "reference:constraint-work-False": true,
+          "reference:constraint-identity-True": true,
+          "reference:constraint-work-True": true,
+          "default-consistency-rejection": true,
+          "pendulum-consistent-underlying-500:finite": true,
+          "pendulum-consistent-underlying-500:radius": true,
+          "pendulum-consistent-underlying-1000:finite": true,
+          "pendulum-consistent-underlying-1000:radius": true,
+          "pendulum-consistent-underlying-2000:finite": true,
+          "pendulum-consistent-underlying-2000:radius": true,
+          "pendulum-consistent-underlying-2000:state": true,
+          "pendulum-consistent-underlying-2000:energy": true,
+          "pendulum-consistent-stabilized-2000:finite": true,
+          "pendulum-consistent-stabilized-2000:radius": true,
+          "pendulum-consistent-stabilized-2000:state": true,
+          "pendulum-consistent-stabilized-2000:energy": true,
+          "pendulum-radial-underlying-500:finite": true,
+          "pendulum-radial-underlying-500:radius": true,
+          "pendulum-radial-underlying-1000:finite": true,
+          "pendulum-radial-underlying-1000:radius": true,
+          "pendulum-radial-underlying-2000:finite": true,
+          "pendulum-radial-underlying-2000:radius": true,
+          "pendulum-radial-underlying-2000:C-law": true,
+          "pendulum-radial-underlying-2000:D-law": true,
+          "pendulum-radial-underlying-2000:work-ledger": true,
+          "pendulum-radial-stabilized-500:finite": true,
+          "pendulum-radial-stabilized-500:radius": true,
+          "pendulum-radial-stabilized-1000:finite": true,
+          "pendulum-radial-stabilized-1000:radius": true,
+          "pendulum-radial-stabilized-2000:finite": true,
+          "pendulum-radial-stabilized-2000:radius": true,
+          "pendulum-radial-stabilized-2000:C-law": true,
+          "pendulum-radial-stabilized-2000:D-law": true,
+          "pendulum-radial-stabilized-2000:work-ledger": true,
+          "underlying-consistent-fourth-order": true,
+          "visible-unstabilized-drift": true,
+          "stabilized-drift-ratio": true,
+          "eleven-record-identities": true
+        },
+        "unmet_keys": [],
+        "measurements": null
+      }
+    }
+  ],
+  "original_study_aggregates": {
+    "canonical": {
+      "total": 364,
+      "met": 358,
+      "unmet": 6
+    },
+    "public_Linux": {
+      "total": 364,
+      "met": 358,
+      "unmet": 6
+    }
+  },
+  "original_study_scope": "Original target decisions, including unmet goals, are reported independently for canonical and public Linux. Verification PASS is not a claim that all original accuracy goals were met.",
+  "source_reading_scopes": [
+    {
+      "case": "robertson-stiff-kinetics",
+      "metadata": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json",
+      "references": [
+        {
+          "id": "sundials-robertson-model",
+          "title": "Official SUNDIALS cvRoberts_dns model definition",
+          "url": "https://raw.githubusercontent.com/LLNL/sundials/main/examples/cvode/serial/cvRoberts_dns.c",
+          "accessed_on": "2026-11-24",
+          "review_level": "official-source-selected-functions",
+          "review": {
+            "ja": "観測mainのモデル式・初期値・Jacobianを選択閲読。今回T=.4のみで、原論文全文・4e10の長時間計算や既存数値表の再現ではありません。",
+            "en": "Read the model, initial values and Jacobian in selected official source sections. The observed main URL is not an immutable release pin. Our T = 0.4 scope does not reproduce the original paper, the long 4e10 benchmark or its numerical tables."
+          }
+        },
+        {
+          "id": "scipy-ivp-1.14.1",
+          "title": "SciPy1.14.1 solve_ivp and selected official source",
+          "version": "1.14.1",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html",
+          "accessed_on": "2026-11-24",
+          "review_level": "official-selected-source",
+          "review": {
+            "ja": "固定版の手法/API・局所許容誤差・終了状態を選択確認。独立原著の全編監査ではありません。",
+            "en": "Read selected fixed-version method, API, local-tolerance and termination sections. This is not a full audit of the original research papers."
+          }
+        }
+      ]
+    },
+    {
+      "case": "van-der-pol-stiff-transition",
+      "metadata": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json",
+      "references": [
+        {
+          "id": "official-vdp-example",
+          "title": "scikit-sundae official van der Pol example",
+          "url": "https://scikit-sundae.readthedocs.io/en/stable/examples/van_der_pol.html",
+          "accessed_on": "2026-11-24",
+          "review_level": "official-project-example-selected-equations",
+          "review": {
+            "ja": "公式binding例の2階/1階系と初期値を確認。採用μ=1/100,T=2は独自の軽量範囲で、原著やμ1000全周期の再現ではありません。",
+            "en": "Read the equations and initial state in the official binding example. Our mu = 1 and 100, T = 2 inputs are an authored early-transient scope, not an original-paper or full mu = 1000 cycle reproduction."
+          }
+        },
+        {
+          "id": "scipy-ivp-1.14.1",
+          "title": "SciPy1.14.1 solve_ivp and selected official source",
+          "version": "1.14.1",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html",
+          "accessed_on": "2026-11-24",
+          "review_level": "official-selected-source",
+          "review": {
+            "ja": "固定版の手法/API・局所許容誤差・終了状態を選択確認。独立原著の全編監査ではありません。",
+            "en": "Read selected fixed-version method, API, local-tolerance and termination sections. This is not a full audit of the original research papers."
+          }
+        }
+      ]
+    },
+    {
+      "case": "rk45-dense-events",
+      "metadata": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json",
+      "references": [
+        {
+          "id": "scipy-rk45-coefficients",
+          "title": "SciPy1.14.1 RK45 coefficient and dense-output source",
+          "url": "https://github.com/scipy/scipy/blob/v1.14.1/scipy/integrate/_ivp/rk.py",
+          "version": "1.14.1",
+          "accessed_on": "2026-11-24",
+          "review_level": "official-release-source-selected-functions",
+          "review": {
+            "ja": "C/A/B/E/P、段階・受理/棄却時FSAL更新、quartic補間を確認。原Dormand–Prince1980/Shampine1986論文は書誌参照のみで全文未読。係数由来のBSD通知を同梱。",
+            "en": "Read C, A, B, E, P, stage evaluation, accepted/rejected FSAL updates and quartic evaluation. The original Dormand–Prince 1980 and Shampine 1986 papers remain unread beyond bibliography. The adapted coefficient BSD notice is retained."
+          }
+        }
+      ]
+    },
+    {
+      "case": "strang-boundary-order-reduction",
+      "metadata": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json",
+      "references": [
+        {
+          "id": "einkemmer-ostermann-dirichlet",
+          "author": "L. Einkemmer; A. Ostermann",
+          "title": "Overcoming order reduction in diffusion-reaction splitting. Part1: Dirichlet boundary conditions",
+          "year": 2014,
+          "url": "https://arxiv.org/abs/1411.0465",
+          "accessed_on": "2026-11-24",
+          "review_level": "primary-preprint-selected-sections",
+          "review": {
+            "ja": "2014v1の§2/Algorithm2/定数境界例、§3.2の定理・仮定、1D例の選択抽出テキストを閲読。全証明・原PDF全画像の監査ではありません。今回線形特殊例で、原著の非線形数値表ではありません。",
+            "en": "Read selected extracted text from the 2014 v1 preprint: section 2, Algorithm 2, the constant-boundary example, section 3.2 assumptions and result, and the one-dimensional example. This was not a full-proof or whole-PDF visual audit; the present linear specialization does not reproduce the nonlinear tables."
+          }
+        }
+      ]
+    },
+    {
+      "case": "jameson-steady-linear-modes",
+      "metadata": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/cases.json",
+      "references": [
+        {
+          "id": "perform-rk4-selected",
+          "title": "PERFORM time integration schemes",
+          "url": "https://perform.readthedocs.io/en/latest/solver/timeschemes.html",
+          "review_level": "official-documentation-selected-equations",
+          "review_scope": "Selected four-stage base-state recurrence. No full JST 1981 paper reading or compressible-flow implementation claim.",
+          "accessed_on": "2026-11-24"
+        }
+      ]
+    },
+    {
+      "case": "index1-dae-consistent-initialization",
+      "metadata": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/cases.json",
+      "references": [
+        {
+          "id": "sundials-ida-mathematics-selected",
+          "title": "SUNDIALS v7.1.1 IDA mathematics, section 5.2",
+          "url": "https://sundials.readthedocs.io/en/v7.1.1/ida/Mathematics_link.html",
+          "review_level": "official-documentation-selected-equations",
+          "review_scope": "Residual form, BDF/Newton and consistent initialization sections selected. Section5.2 is not an IDA version. This authored MMS/BE solver is not IDA.",
+          "accessed_on": "2026-11-24"
+        }
+      ]
+    },
+    {
+      "case": "robertson-conservation-dae",
+      "metadata": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/cases.json",
+      "references": [
+        {
+          "id": "sundials-ida-roberts-source",
+          "title": "SUNDIALS v7.1.1 idaRoberts_dns example",
+          "url": "https://github.com/LLNL/sundials/blob/v7.1.1/examples/ida/serial/idaRoberts_dns.c",
+          "review_level": "official-source-selected-functions",
+          "review_scope": "Read residual/Jacobian, initialization, tolerances and print format. Own first two residual rows have opposite sign and the same zero set.",
+          "accessed_on": "2026-11-24"
+        },
+        {
+          "id": "sundials-ida-roberts-stored-output",
+          "title": "Stored official v7.1.1 IDA Robertson output",
+          "url": "https://github.com/LLNL/sundials/blob/v7.1.1/examples/ida/serial/idaRoberts_dns.out",
+          "review_level": "official-stored-output-selected-rows",
+          "review_scope": "Selected printed t=0.4 and4 values only, with Decimal rounding intervals. These approximate IDA values are not exact truth; no IDA run is performed here.",
+          "accessed_on": "2026-11-24"
+        }
+      ]
+    },
+    {
+      "case": "high-index-pendulum",
+      "metadata": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/cases.json",
+      "references": [
+        {
+          "id": "nist-dlmf-pendulum-selected",
+          "title": "NIST DLMF section22.19(i), pendulum",
+          "url": "https://dlmf.nist.gov/22.19",
+          "review_level": "official-reference-selected-equations",
+          "review_scope": "Selected pendulum formulas, phase and modulus convention. Authored Cartesian conversion uses K-t; SciPy takes parameter m=k². No full chapter reading claimed.",
+          "accessed_on": "2026-11-24"
+        },
+        {
+          "id": "nist-dlmf-agm-selected",
+          "title": "NIST DLMF section19.8(i), arithmetic-geometric mean",
+          "url": "https://dlmf.nist.gov/19.8",
+          "review_level": "official-reference-selected-equations",
+          "review_scope": "Selected AGM/K identity; independent Decimal Machin pi and sine with explicit finite remainders qualify a single fixed modulus.",
+          "accessed_on": "2026-11-24"
+        }
+      ]
+    },
+    {
+      "case": "shake-rattle-pendulum",
+      "metadata": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/cases.json",
+      "references": [
+        {
+          "id": "hairer-manifolds-2011",
+          "title": "Solving Differential Equations on Manifolds",
+          "url": "https://www.unige.ch/~hairer/poly-sde-mani.pdf",
+          "year": 2011,
+          "year_role": "date displayed on lecture notes",
+          "accessed_on": "2026-11-24",
+          "review_level": "selected-primary-scope",
+          "review_scope": "Author-hosted lecture notes, selected printed page50, SectionV.5, equations5.1–5.3 and Theorem5.1 statement, rendered and visually read. Centered SHAKE momentum and RATTLE final tangency are explicit. The original1977 SHAKE and1983 RATTLE articles remain full-text unread; no full proof review is claimed."
+        },
+        {
+          "id": "hairer-symplectic-2010",
+          "title": "Lecture2: Symplectic integrators",
+          "url": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+          "year": 2010,
+          "year_role": "displayed course date",
+          "accessed_on": "2026-11-24",
+          "review_level": "selected-primary-scope",
+          "review_scope": "Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment."
+        },
+        {
+          "id": "dlmf-jacobi-periods",
+          "title": "DLMF22.4: Periods, Poles, and Zeros",
+          "url": "https://dlmf.nist.gov/22.4",
+          "year": 2026,
+          "year_role": "version",
+          "version": "1.2.8",
+          "release_date": "2026-09-15",
+          "accessed_on": "2026-11-24",
+          "review_level": "selected-primary-scope",
+          "review_scope": "Official Table22.4.1 selected real periods: sn and cn have4K, dn has2K. Version date is not an initial publication date. Common-period reduction and direct-library periodicity qualification are separate from the independent angular DOP853 state comparison."
+        }
+      ]
+    },
+    {
+      "case": "kepler-eccentricity",
+      "metadata": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/cases.json",
+      "references": [
+        {
+          "id": "hairer-symplectic-2010",
+          "title": "Lecture2: Symplectic integrators",
+          "url": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+          "year": 2010,
+          "year_role": "displayed course date",
+          "accessed_on": "2026-11-24",
+          "review_level": "selected-primary-scope",
+          "review_scope": "Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment."
+        },
+        {
+          "id": "jpl-kepler-equation",
+          "title": "Approximate Positions of the Planets",
+          "url": "https://ssd.jpl.nasa.gov/planets/approx_pos.html",
+          "accessed_on": "2026-11-24",
+          "review_level": "selected-primary-scope",
+          "review_scope": "Official JPL page, selected steps3–4 and Kepler equation. Only the eccentric-anomaly equation and elliptic coordinate transformation are used; no planetary coefficient tables, fitted ephemeris accuracy or Horizons calculation is claimed. Publication date was not verified."
+        }
+      ]
+    },
+    {
+      "case": "multifrequency-resonance",
+      "metadata": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/cases.json",
+      "references": [
+        {
+          "id": "hairer-symplectic-2010",
+          "title": "Lecture2: Symplectic integrators",
+          "url": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+          "year": 2010,
+          "year_role": "displayed course date",
+          "accessed_on": "2026-11-24",
+          "review_level": "selected-primary-scope",
+          "review_scope": "Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment."
+        }
+      ]
+    }
+  ],
+  "public_linux": {
+    "run_id": 45431291060,
+    "run_attempt": 1,
+    "groups": 60,
+    "cases": 127,
+    "pytest": 1572,
+    "all_junit_verified": true,
+    "junit_groups": 60,
+    "source_checkout": false
+  },
+  "public_HTTP": {
+    "files": 2089,
+    "bytes": 451110396,
+    "anonymous": true
+  },
+  "public_UI": {
+    "actual_views": 16,
+    "root_images_reviewed": 9
+  },
+  "site_checks": {
+    "actual_node_counts": {
+      "tests": 639,
+      "pass": 639,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "actual_browser_tests": 24,
+    "profiles": [
+      "en-1280",
+      "en-390",
+      "ja-1280",
+      "ja-390"
+    ]
+  },
+  "cold_search": {
+    "sample_count": 12,
+    "group_count": 4,
+    "repetitions": 3,
+    "modeled_gzip_level9": {
+      "node_version": "v22.19.0",
+      "zlib_version": "1.3.1-470d3a2",
+      "raw_sha256": "135421264120ff75c72d02e81299538848d6c69316ffecb754dea723e7d221a6",
+      "decoded_bytes": 4828851,
+      "gzip_level": 9,
+      "gzip_level9_bytes": 1688403,
+      "node_executable": "/usr/local/bin/node",
+      "definition": "UTF-8 JSON bytes and gzip level9 bytes; detailed compatibility exports are not the browser entry indexes",
+      "budget_source_sha256": "97d8d1b9bfbe191ff0a06b24c23ed13d9e99343c87dcba87c111aedf5be9295d",
+      "decoded_limit": 6000000,
+      "gzip_level9_limit": 1700000,
+      "scope": "Exact selected-commit raw UTF-8 JSON and existing Node22 gzipSync(level9); not CDN wire encoding."
+    },
+    "actual_CDN_wire_transfers": [
+      {
+        "language": "en",
+        "entry": "global",
+        "repetition": 0,
+        "content_encoding": "gzip",
+        "index_sha256": "135421264120ff75c72d02e81299538848d6c69316ffecb754dea723e7d221a6",
+        "index_encoded_bytes": 1708115,
+        "index_decoded_bytes": 4828851
+      },
+      {
+        "language": "en",
+        "entry": "global",
+        "repetition": 1,
+        "content_encoding": "gzip",
+        "index_sha256": "135421264120ff75c72d02e81299538848d6c69316ffecb754dea723e7d221a6",
+        "index_encoded_bytes": 1708115,
+        "index_decoded_bytes": 4828851
+      },
+      {
+        "language": "en",
+        "entry": "global",
+        "repetition": 2,
+        "content_encoding": "gzip",
+        "index_sha256": "135421264120ff75c72d02e81299538848d6c69316ffecb754dea723e7d221a6",
+        "index_encoded_bytes": 1708115,
+        "index_decoded_bytes": 4828851
+      },
+      {
+        "language": "en",
+        "entry": "home",
+        "repetition": 0,
+        "content_encoding": "gzip",
+        "index_sha256": "135421264120ff75c72d02e81299538848d6c69316ffecb754dea723e7d221a6",
+        "index_encoded_bytes": 1708115,
+        "index_decoded_bytes": 4828851
+      },
+      {
+        "language": "en",
+        "entry": "home",
+        "repetition": 1,
+        "content_encoding": "gzip",
+        "index_sha256": "135421264120ff75c72d02e81299538848d6c69316ffecb754dea723e7d221a6",
+        "index_encoded_bytes": 1708115,
+        "index_decoded_bytes": 4828851
+      },
+      {
+        "language": "en",
+        "entry": "home",
+        "repetition": 2,
+        "content_encoding": "gzip",
+        "index_sha256": "135421264120ff75c72d02e81299538848d6c69316ffecb754dea723e7d221a6",
+        "index_encoded_bytes": 1708115,
+        "index_decoded_bytes": 4828851
+      },
+      {
+        "language": "ja",
+        "entry": "global",
+        "repetition": 0,
+        "content_encoding": "gzip",
+        "index_sha256": "135421264120ff75c72d02e81299538848d6c69316ffecb754dea723e7d221a6",
+        "index_encoded_bytes": 1708115,
+        "index_decoded_bytes": 4828851
+      },
+      {
+        "language": "ja",
+        "entry": "global",
+        "repetition": 1,
+        "content_encoding": "gzip",
+        "index_sha256": "135421264120ff75c72d02e81299538848d6c69316ffecb754dea723e7d221a6",
+        "index_encoded_bytes": 1708115,
+        "index_decoded_bytes": 4828851
+      },
+      {
+        "language": "ja",
+        "entry": "global",
+        "repetition": 2,
+        "content_encoding": "gzip",
+        "index_sha256": "135421264120ff75c72d02e81299538848d6c69316ffecb754dea723e7d221a6",
+        "index_encoded_bytes": 1708115,
+        "index_decoded_bytes": 4828851
+      },
+      {
+        "language": "ja",
+        "entry": "home",
+        "repetition": 0,
+        "content_encoding": "gzip",
+        "index_sha256": "135421264120ff75c72d02e81299538848d6c69316ffecb754dea723e7d221a6",
+        "index_encoded_bytes": 1708115,
+        "index_decoded_bytes": 4828851
+      },
+      {
+        "language": "ja",
+        "entry": "home",
+        "repetition": 1,
+        "content_encoding": "gzip",
+        "index_sha256": "135421264120ff75c72d02e81299538848d6c69316ffecb754dea723e7d221a6",
+        "index_encoded_bytes": 1708115,
+        "index_decoded_bytes": 4828851
+      },
+      {
+        "language": "ja",
+        "entry": "home",
+        "repetition": 2,
+        "content_encoding": "gzip",
+        "index_sha256": "135421264120ff75c72d02e81299538848d6c69316ffecb754dea723e7d221a6",
+        "index_encoded_bytes": 1708115,
+        "index_decoded_bytes": 4828851
+      }
+    ],
+    "scope": "12 synthetic shaped Chromium cold-search samples; 3 per group, min/median/max. Not physical-device equivalence, p95, or a newly imposed latency threshold."
+  },
+  "mandatory_workflows": [
+    {
+      "id": 45427451572,
+      "name": "Atlas cold-search performance verification",
+      "head_sha": "35e34ae130d47cc43445765b88e99c0c556c38bb",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45427451572",
+      "run_attempt": 1
+    },
+    {
+      "id": 45431291060,
+      "name": "Atlas lightweight public Linux verification",
+      "head_sha": "35e34ae130d47cc43445765b88e99c0c556c38bb",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45431291060",
+      "run_attempt": 1
+    },
+    {
+      "id": 45431291146,
+      "name": "Foundations English public Web and PDF verification",
+      "head_sha": "35e34ae130d47cc43445765b88e99c0c556c38bb",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45431291146",
+      "run_attempt": 1
+    },
+    {
+      "id": 45431291189,
+      "name": "Foundations course public Linux verification",
+      "head_sha": "35e34ae130d47cc43445765b88e99c0c556c38bb",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45431291189",
+      "run_attempt": 1
+    },
+    {
+      "id": 45427451315,
+      "name": "Public site checks",
+      "head_sha": "35e34ae130d47cc43445765b88e99c0c556c38bb",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45427451315",
+      "run_attempt": 2
+    },
+    {
+      "id": 45427449065,
+      "name": "pages build and deployment",
+      "head_sha": "35e34ae130d47cc43445765b88e99c0c556c38bb",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45427449065",
+      "run_attempt": 1
+    }
+  ],
+  "proof_sha256": {
+    "linux_report": "ad795afd87ab81396536019bac7f4fef4b7ba2ab3d5813175973bf8f6d21e9dd",
+    "http": "9e6f827d89abfd740dae1eea94962c839c33dd19f8330797ba9cb63a895ce013",
+    "english": "deb78090e310bc1db1b33efbf4b45bb1f1d4c2b062c9b51688bb9ce4f074285a",
+    "linux_ci": "2da8c939f865c04360f8e57cddd9bb4a14f8748576c314eac4e25c5ca4d7ac51",
+    "site": "d2d98af07c399de05a32dc082f48301d70997b78005c5ee4ca2be4a24423465d",
+    "linux_junit_summary": "c354d0f20df5e1b35ec22481c0f1864c9e8981e1218cec7a1289ba0831f1c76d",
+    "course": "3a997c8c72c095235b34c1c4debe3ba1b69affb966b66b8265c14eddcf69d16f",
+    "ui_visual": "549a2c64c1e205706843c4d63962236dcdf03463563976f0b0a456649b72ece3",
+    "linux_context": "9a757b0c9b8e637857b5fea5bb10a243791bd505bfba91158acb26b75e9626b8",
+    "performance": "de2e88227f0e697570de07b350333ca89635044d1792d71bce5b5919db440308",
+    "ui": "24fd8490494e37f7646b37202f54bc78d58a90a6388e0edafb99fe2ec460e1cf",
+    "history_retention": "bfe0a795e67c975b38af850d83c04824d74768d5de5ed0c6d15d0f3c79a3851d",
+    "status": "19cccf0c31c379e66d970ca1ff9c07e86e20b22e78003972bb656e34f159fd93",
+    "final_summary": "eb48357d85de37854377d65326bbbeed65ffee604df47abe969465047c6bbaea"
+  },
+  "remaining_unfinished_candidates": 33,
+  "scope": "Actual final same-SHA public checks. Scoped verification/reporting PASS does not turn unmet original accuracy goals into successes. Published labels and this public record are deferred to the next authorized aggregate."
+}

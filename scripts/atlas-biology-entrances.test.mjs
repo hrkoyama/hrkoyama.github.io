@@ -14,17 +14,17 @@ test('the two new nonlinear cases deepen the existing biological scope without p
  const biology=json('catalog/atlas-depth.json').fields.find(x=>x.id==='biology');
  const goal=json('catalog/atlas-goals.json').goals.find(x=>x.id==='biological-models');
  assert.deepEqual(biology.examples,['logistic-growth','sir-epidemic']);
- assert.deepEqual(biology.supplemental_examples,['reaction-diffusion-fourier','turing-schnakenberg','fitzhugh-nagumo',...cases,'reaction-diffusion-splitting']);
+ assert.deepEqual(biology.supplemental_examples,['reaction-diffusion-fourier','turing-schnakenberg','fitzhugh-nagumo',...cases,'reaction-diffusion-splitting','enzyme-qssa','lotka-volterra','seir-linearization']);
  assert.deepEqual(goal.supplemental_examples,biology.supplemental_examples);
  assert.deepEqual(goal.scope,biology.scope);
  assert.deepEqual(goal.resources.find(x=>x.id==='bio-patterns').supplemental_examples,[...shared,'reaction-diffusion-splitting']);
  assert.equal(goal.resources.find(x=>x.id==='bio-excitation').status,'reading-only');
  const survey=json('numerical-methods-atlas/assets/biological-models.json').models;
  assert.equal(survey.length,22);
- assert.equal(survey.filter(x=>x.status==='scoped-educational-example').length,5);
+ assert.equal(survey.filter(x=>x.status==='scoped-educational-example').length,7);
  const equations=json('catalog/atlas-equations.json').equations;
  assert.equal(equations.length,equationCount);
- assert.equal(equations.filter(x=>!['rotational-advection','shallow-water-bed','forced-incompressible','level-set-advection', 'forced-vorticity', 'boussinesq-buoyancy', 'ale-scalar-transport', 'linear-rotating-shallow-water', 'variable-viscosity-vector', 'srmhd', 'srhd','tensor-diffusion','coulomb-electrostatics','vlasov-poisson','hard-sphere-boltzmann',...equationsAddedAfterBatch37].includes(x.id)&&x.status==='local-example').length,23);
+ assert.equal(equations.filter(x=>!['rotational-advection','shallow-water-bed','forced-incompressible','level-set-advection', 'forced-vorticity', 'boussinesq-buoyancy', 'ale-scalar-transport', 'linear-rotating-shallow-water', 'variable-viscosity-vector', 'srmhd', 'srhd','tensor-diffusion','coulomb-electrostatics','vlasov-poisson','hard-sphere-boltzmann','bio-enzyme','bio-lotka-volterra',...equationsAddedAfterBatch37].includes(x.id)&&x.status==='local-example').length,23);
  for(const id of ['turing','schnakenberg']){
   const model=survey.find(x=>x.id===id),equation=equations.find(x=>x.id==='bio-'+id);
   assert.deepEqual(model.supplemental_examples,shared);

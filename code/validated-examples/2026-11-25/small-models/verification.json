@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "group": "small-models",
+  "edition": "2026-11-25",
+  "verified_on": "2026-11-25",
+  "source_manifest_sha256": "20f3e16af0c6684b77e5a132e6d2ccd26f82de14203fdd9474d9bb4866e5914c",
+  "archive": {
+    "file": "atlas-small-models-2026-11-25.zip",
+    "sha256": "d341b8a90e0b6ade7c70760a2c32a9f3825a6b4e162b221c7cc95b10f3cd40c1",
+    "bytes": 3591299,
+    "archive_directory": "atlas-small-models-2026-11-25"
+  },
+  "archive_sha256": "d341b8a90e0b6ade7c70760a2c32a9f3825a6b4e162b221c7cc95b10f3cd40c1",
+  "returncode": 0,
+  "passed_tests": 25,
+  "tests": 25,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "enzyme-qssa",
+    "fno-periodic-heat",
+    "lotka-volterra",
+    "pinn-poisson",
+    "seir-linearization"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 6.914097667002352,
+  "independent_rerun_seconds": 7.011353291003616,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

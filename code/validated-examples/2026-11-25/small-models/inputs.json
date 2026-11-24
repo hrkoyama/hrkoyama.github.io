@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "case_ids": [
+    "pinn-poisson",
+    "fno-periodic-heat",
+    "enzyme-qssa",
+    "lotka-volterra",
+    "seir-linearization"
+  ],
+  "pinn": {
+    "seeds": [
+      8401,
+      8402,
+      8403
+    ],
+    "fd_nodes": [
+      31,
+      63,
+      127
+    ],
+    "optimizer": {
+      "max_fun_calls": 300,
+      "max_jac_calls": 300
+    }
+  },
+  "fno": {
+    "seeds": [
+      8501,
+      8502
+    ],
+    "relative_norm_cutoff": 1e-12,
+    "optimizer": {
+      "max_fun_calls": 300
+    }
+  },
+  "reference_check_ids": [
+    "pinn:0:all49-residual-columns",
+    "pinn:0:all49-loss-gradient",
+    "pinn:0:x-first",
+    "pinn:0:x-second",
+    "pinn:1:all49-residual-columns",
+    "pinn:1:all49-loss-gradient",
+    "pinn:1:x-first",
+    "pinn:1:x-second",
+    "pinn:wrong-column-negative",
+    "pinn:product-and-finite-difference",
+    "pinn:half-cost-negative",
+    "fno:0:all93-gradient-h15",
+    "fno:0:all93-gradient-h16",
+    "fno:0:direction-0",
+    "fno:0:direction-1",
+    "fno:1:all93-gradient-h15",
+    "fno:1:all93-gradient-h16",
+    "fno:1:direction-0",
+    "fno:1:direction-1",
+    "fno:block-N16-fixture0",
+    "fno:block-N16-fixture1",
+    "fno:block-N16-fixture2",
+    "fno:block-N16-fixture3",
+    "fno:block-N16-fixture4",
+    "fno:block-N16-fixture5",
+    "fno:block-N32-fixture0",
+    "fno:block-N32-fixture1",
+    "fno:block-N32-fixture2",
+    "fno:block-N32-fixture3",
+    "fno:block-N32-fixture4",
+    "fno:block-N32-fixture5",
+    "fno:wrong-imaginary-negative",
+    "fno:wrong-normalization-negative",
+    "fno:wrong-channel-negative",
+    "enzyme-01:analytic-Jacobian",
+    "enzyme-01:all-statuses",
+    "enzyme-01:finite",
+    "enzyme-01:Radau-refinement",
+    "enzyme-01:BDF-refinement",
+    "enzyme-01:cross-engine",
+    "enzyme-01:initial",
+    "enzyme-01:positivity-and-invariant",
+    "enzyme-002:analytic-Jacobian",
+    "enzyme-002:all-statuses",
+    "enzyme-002:finite",
+    "enzyme-002:Radau-refinement",
+    "enzyme-002:BDF-refinement",
+    "enzyme-002:cross-engine",
+    "enzyme-002:initial",
+    "enzyme-002:positivity-and-invariant",
+    "lv:analytic-Jacobian",
+    "lv:all-statuses",
+    "lv:finite",
+    "lv:Radau-refinement",
+    "lv:BDF-refinement",
+    "lv:cross-engine",
+    "lv:initial",
+    "lv:positivity-and-invariant",
+    "seir-1e-4:analytic-Jacobian",
+    "seir-1e-4:all-statuses",
+    "seir-1e-4:finite",
+    "seir-1e-4:Radau-refinement",
+    "seir-1e-4:BDF-refinement",
+    "seir-1e-4:cross-engine",
+    "seir-1e-4:initial",
+    "seir-1e-4:positivity-and-invariant",
+    "seir-1e-4:eta-square-reference-margin",
+    "seir-5e-5:analytic-Jacobian",
+    "seir-5e-5:all-statuses",
+    "seir-5e-5:finite",
+    "seir-5e-5:Radau-refinement",
+    "seir-5e-5:BDF-refinement",
+    "seir-5e-5:cross-engine",
+    "seir-5e-5:initial",
+    "seir-5e-5:positivity-and-invariant",
+    "seir-5e-5:eta-square-reference-margin",
+    "fd:31:independent-discrete-mode",
+    "fd:31:continuum-error-bound",
+    "fd:63:independent-discrete-mode",
+    "fd:63:continuum-error-bound",
+    "fd:127:independent-discrete-mode",
+    "fd:127:continuum-error-bound",
+    "mm:identity-200",
+    "mm:identity-400",
+    "seir:full-matrix-exponential-0",
+    "seir:full-matrix-exponential-1",
+    "seir:full-matrix-exponential-2",
+    "seir:full-matrix-exponential-3",
+    "lv:invariant-derivative-0",
+    "lv:invariant-derivative-1",
+    "lv:invariant-derivative-2",
+    "data:whole-problem-split"
+  ],
+  "fixed_biology": {
+    "enzyme_totals": [
+      0.01,
+      0.002
+    ],
+    "enzyme_tolerance_pairs": [
+      [
+        1e-06,
+        1e-10
+      ],
+      [
+        1e-08,
+        1e-12
+      ]
+    ],
+    "LV_steps": [
+      400,
+      800,
+      1600
+    ],
+    "SEIR_etas": [
+      0.0001,
+      5e-05
+    ],
+    "SEIR_steps": [
+      400,
+      800,
+      1600
+    ]
+  },
+  "protocol": "All fixed choices and modeled error definitions are specified in PROTOCOL.md. Source constants are bound by pre-run-contract; no sweep/autoretry/adaptive hyperparameter selection."
+}

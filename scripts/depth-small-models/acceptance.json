@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "pinn": {
+    "solution_Linf": 0.01,
+    "PDE_normalized_RMS": 0.02,
+    "boundary_Linf": 1e-12
+  },
+  "fd": {
+    "31": 0.001,
+    "63": 0.0003,
+    "127": 7e-05
+  },
+  "fno": {
+    "ID_relative": 0.1,
+    "N64_relative": 0.12,
+    "zero_absolute_RMS": 0.02
+  },
+  "biology": {
+    "state_Linf": 1e-05,
+    "conservation": 1e-10,
+    "negative_allowance": 1e-12,
+    "LV_invariant": 1e-06,
+    "QSSA_free_S": 0.02,
+    "SEIR_early_relative": 0.005
+  },
+  "validation_policy": {
+    "predeclared_before_any_measurement": true,
+    "accuracy_goals_are_structured_study_results": true,
+    "optimizer_success_is_separately_mandatory": false,
+    "no_fixed_false_mask": true,
+    "scope": "Original numerical goals retain their actual TRUE/FALSE outcomes. Reproduction checks require qualifiedreferences/finitecompletefixedrecords/declaredoptimizercompletion/work/ownership. They do not assert all study goals met.",
+    "optimizer_convergence_is_a_study_goal": true,
+    "normal_fixed_budget_return_is_mandatory": true,
+    "termination_rules": {
+      "PINN": "status0..4,success==(status>0); status0requiresactualnfev300. finitefinalvector/countersrequired.",
+      "FNO": "status0+successTrue ORstatus1+successFalse+actualnit120oractualnfev300+explicitlimitmessage. Abnormal linesearch/otherstatus/exception/unreturned/callcapoverflowFAIL."
+    },
+    "premeasurement_R2_reason": "Nonconvexconvergence isobserved,notguaranteedby a fixedsmallbudget. Inputs/seeds/budgets/optimizerandaccuracytolerancesunchanged. Nativeconvergedbooleansarepreservedasactualstudygoals."
+  },
+  "qualification_limits": {
+    "PINN_scaled_complexstep": 2e-10,
+    "PINN_x_second_FD_absolute": 2e-06,
+    "FNO_real_gradient_scaled_FD": 5e-05,
+    "FNO_direct_DFT_absolute": 2e-12,
+    "reference_cross_absolute": 1e-08,
+    "reference_jacobian_scaled": 3e-14
+  }
+}

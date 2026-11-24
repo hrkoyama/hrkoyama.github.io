@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_on": "2026-11-24",
+  "reviewed_on": "2026-11-25",
   "title": {
     "ja": "分野別に解説を読む",
     "en": "Learn by field"
@@ -62,7 +62,9 @@
         "validation-foundations-conditioning",
         "validation-coefficient-diffusion",
         "validation-linear-algebra-spectral",
-        "validation-bratu-continuation-jfnk"
+        "validation-bratu-continuation-jfnk",
+        "validation-quadrature-controls",
+        "validation-approximation-controls"
       ]
     },
     {
@@ -85,7 +87,8 @@
         "validation-globalization-controls",
         "validation-reverse-higher-ad",
         "validation-adjoint",
-        "validation-inverse-optimization"
+        "validation-inverse-optimization",
+        "validation-small-models"
       ]
     },
     {
@@ -244,7 +247,8 @@
         "validation-models",
         "validation-thermostats",
         "validation-stochastic-accuracy",
-        "validation-stochastic-estimation"
+        "validation-stochastic-estimation",
+        "validation-small-models"
       ]
     },
     {

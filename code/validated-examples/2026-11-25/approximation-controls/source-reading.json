@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-11-25",
+  "reading_status": "selected-scope-not-full-papers",
+  "sources": [
+    {
+      "id": "dlmf-3-11",
+      "title": "NIST DLMF §3.11(ii): Chebyshev series and Clenshaw summation",
+      "url": "https://dlmf.nist.gov/3.11",
+      "review_level": "official-reference-selected-equations",
+      "review_scope": "Selected E7, E9, E11 and E15 with endpoint-halving conventions; no original Clenshaw paper reading. The implementation uses full coefficients, so its final combination is derived explicitly.",
+      "accessed_on": "2026-11-25",
+      "publication_year": null
+    },
+    {
+      "id": "scipy-barycentric-1-14-1",
+      "title": "SciPy 1.14.1 BarycentricInterpolator documentation",
+      "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.interpolate.BarycentricInterpolator.html",
+      "review_level": "official-documentation-selected-notes",
+      "review_scope": "Selected barycentric formula and interpolation-conditioning notes read during the preceding preparation. The Berrut–Trefethen paper is a bibliographic lead, not a full-text reading.",
+      "accessed_on": "2026-11-24",
+      "version": "1.14.1",
+      "publication_year": null
+    },
+    {
+      "id": "scipy-cubic-1-14-1",
+      "title": "SciPy 1.14.1 PCHIP documentation and selected source",
+      "url": "https://raw.githubusercontent.com/scipy/scipy/v1.14.1/scipy/interpolate/_cubic.py",
+      "review_level": "official-source-selected-lines",
+      "review_scope": "Selected lines 202–225, 243–254, 275–298: harmonic interior derivatives, endpoint sign and 3-slope limiter, two-point case. The original Fritsch–Butland paper has not been read in full. Own formulas are independently expressed as scalar Hermite polynomials.",
+      "accessed_on": "2026-11-25",
+      "version": "1.14.1",
+      "publication_year": null
+    },
+    {
+      "id": "scipy-splines-1-14-1",
+      "title": "SciPy 1.14.1 BSpline and CubicSpline documentation",
+      "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.interpolate.CubicSpline.html",
+      "review_level": "official-documentation-selected-definitions",
+      "review_scope": "Natural and clamped boundary conditions and the BSpline recurrence were read during preparation. No de Boor original full-text claim. SciPy is a secondary numerical companion; the rational second-derivative system is the independent reference.",
+      "accessed_on": "2026-11-24",
+      "version": "1.14.1",
+      "publication_year": null
+    },
+    {
+      "id": "mallat-1989-selected",
+      "title": "S. Mallat, A Theory for Multiresolution Signal Decomposition: The Wavelet Representation",
+      "url": "https://www.di.ens.fr/~mallat/papiers/MallatTheory89.pdf",
+      "year": 1989,
+      "year_role": "publication",
+      "review_level": "primary-paper-selected-body",
+      "review_scope": "During preparation: title/abstract, Haar example on printed p. 679, selected §III-B/C filter/downsample/inverse-pyramid and border-symmetry prose on p. 681. Extracted formula glyphs were imperfect; no complete proof or numerical-table audit is claimed.",
+      "accessed_on": "2026-11-24"
+    },
+    {
+      "id": "pywavelets-modes",
+      "title": "PyWavelets documentation: Signal extension modes",
+      "url": "https://pywavelets.readthedocs.io/en/latest/ref/signal-extension-modes.html",
+      "review_level": "official-documentation-selected-terminology",
+      "review_scope": "Periodic and half-sample symmetric extension and the redundancy caveat. This example defines its own append-at-each-odd-level/crop convention; it does not claim PyWavelets coefficient-layout equivalence or require PyWavelets.",
+      "accessed_on": "2026-11-25",
+      "publication_year": null
+    }
+  ],
+  "unread_or_failed": [
+    {
+      "title": "de Boor (1972) original article",
+      "url": "https://doi.org/10.1016/0021-9045(72)90080-9",
+      "status": "previous-access-403-fulltext-unread"
+    },
+    {
+      "title": "Berrut and Trefethen (2004)",
+      "status": "bibliographic-lead-original-fulltext-unread"
+    },
+    {
+      "title": "Fritsch and Butland (1984)",
+      "url": "https://doi.org/10.1137/0905021",
+      "status": "original-fulltext-unread"
+    }
+  ],
+  "previous_drafts_preserved": {
+    "81-83-revision2/manifest.json": "a5dff5514c089ef3cd6f6af28cb9c491af3683cb5ded233a3d30d83c8bdc2415",
+    "review-81-83-by-weno.json": "5bc67244ba8feff6b86c9d72710646d895f5194e9d8b31553763ec68101e0cdb",
+    "review-81-83-r2-confirmation-by-weno.json": "d4e51e4848f87f5646191e0a19e4c340c33a4688b1039ecfc6e98ac358bc2921",
+    "prepared-next10-root-review.json": "4dda53b00418c6445e240d09106af41d592022b2883bb58b6f1eaa74bad63887"
+  },
+  "implementation": "independently written; no third-party source body copied",
+  "numerical_imports": 0,
+  "executions": 0
+}

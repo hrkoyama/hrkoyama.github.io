@@ -5,10 +5,12 @@ import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {createReadStream,readFileSync,statSync} from 'node:fs';
 import {projectMethodBeforeBatch68} from './fixtures/atlas-inventory.mjs';
+import {projectCatalogBeforeBatch78} from './fixtures/atlas-batch78-projection.mjs';
 const root=new URL('../',import.meta.url);
 const local=p=>String(p).replace(/^https:\/\/hrkoyama\.github\.io\//,'').replace(/^\//,'');
 const bytes=p=>readFileSync(new URL(local(p),root));
-const json=p=>JSON.parse(bytes(p));
+// This dated test views only its exact cohort; the batch78 test checks the full current catalogs.
+const json=p=>projectCatalogBeforeBatch78(p,JSON.parse(bytes(p)));
 const sha=p=>createHash('sha256').update(bytes(p)).digest('hex');
 const sorted=xs=>[...xs].sort();
 const rows=value=>Array.isArray(value)?value:Object.values(value);

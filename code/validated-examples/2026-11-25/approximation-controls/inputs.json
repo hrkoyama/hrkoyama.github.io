@@ -1,0 +1,261 @@
+{
+  "schema_version": 1,
+  "cases": {
+    "runge-barycentric-clenshaw": {
+      "degrees": [
+        8,
+        16,
+        32
+      ],
+      "functions": [
+        "runge",
+        "absolute"
+      ],
+      "node_families": [
+        "equispaced",
+        "lobatto"
+      ],
+      "positive_cosine32_decimal": [
+        1,
+        0.9951847266721969,
+        0.9807852804032304,
+        0.9569403357322088,
+        0.9238795325112867,
+        0.881921264348355,
+        0.8314696123025452,
+        0.773010453362737,
+        0.7071067811865476,
+        0.6343932841636455,
+        0.5555702330196023,
+        0.4713967368259978,
+        0.38268343236508984,
+        0.29028467725446233,
+        0.19509032201612833,
+        0.09801714032956077,
+        0
+      ],
+      "probe_count": 2048,
+      "certificate_probe_indices": [
+        0,
+        127,
+        255,
+        383,
+        511,
+        639,
+        767,
+        895,
+        1023,
+        1151,
+        1279,
+        1407,
+        1535,
+        1663,
+        1791,
+        1919,
+        2047
+      ],
+      "polynomial_control_degree": 8
+    },
+    "spline-shape-controls": {
+      "datasets": [
+        {
+          "id": "plateau",
+          "x": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "y": [
+            0.01,
+            0.01,
+            0.01,
+            1.01,
+            1.01,
+            1.01
+          ],
+          "endpoint_slopes": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": "cubic",
+          "x": [
+            -1,
+            -0.6,
+            0,
+            0.3,
+            1
+          ],
+          "function": "cubic",
+          "endpoint_slopes": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "linear",
+          "x": [
+            -1,
+            -0.6,
+            0,
+            0.3,
+            1
+          ],
+          "function": "linear",
+          "endpoint_slopes": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "methods": [
+        "natural",
+        "clamped",
+        "pchip"
+      ],
+      "probe_count": 1024,
+      "endpoint_left_controls": [
+        {
+          "id": "retain",
+          "y": [
+            0,
+            1,
+            2
+          ],
+          "expected": "1"
+        },
+        {
+          "id": "reset",
+          "y": [
+            0,
+            1,
+            5
+          ],
+          "expected": "0"
+        },
+        {
+          "id": "positive-cap",
+          "y": [
+            0,
+            1,
+            -3
+          ],
+          "expected": "3"
+        },
+        {
+          "id": "opposite-retain",
+          "y": [
+            0,
+            1,
+            0
+          ],
+          "expected": "2"
+        },
+        {
+          "id": "negative-cap",
+          "y": [
+            0,
+            -1,
+            3
+          ],
+          "expected": "-3"
+        },
+        {
+          "id": "leading-zero",
+          "y": [
+            0,
+            0,
+            1
+          ],
+          "expected": "0"
+        },
+        {
+          "id": "constant",
+          "y": [
+            2,
+            2,
+            2
+          ],
+          "expected": "0"
+        }
+      ],
+      "two_point_control": {
+        "x": [
+          0,
+          2
+        ],
+        "y": [
+          1,
+          5
+        ],
+        "expected": [
+          "2",
+          "2"
+        ]
+      }
+    },
+    "haar-mallat-boundary-threshold": {
+      "levels": 3,
+      "signals": [
+        {
+          "id": "periodic-smooth32",
+          "length": 32,
+          "kind": "smooth",
+          "shift": 0
+        },
+        {
+          "id": "step32",
+          "length": 32,
+          "kind": "step",
+          "shift": 0
+        },
+        {
+          "id": "ramp17",
+          "length": 17,
+          "kind": "ramp",
+          "shift": 0
+        },
+        {
+          "id": "step17",
+          "length": 17,
+          "kind": "step",
+          "shift": 0
+        },
+        {
+          "id": "step32-shift1",
+          "length": 32,
+          "kind": "step",
+          "shift": 1
+        },
+        {
+          "id": "step17-shift1",
+          "length": 17,
+          "kind": "step",
+          "shift": 1
+        }
+      ],
+      "boundary_rules": [
+        "periodic",
+        "symmetric"
+      ],
+      "thresholds": [
+        {
+          "id": "none",
+          "tau": 0
+        },
+        {
+          "id": "hard",
+          "tau": 0.2
+        },
+        {
+          "id": "soft",
+          "tau": 0.2
+        }
+      ]
+    }
+  }
+}

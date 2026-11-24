@@ -1,5 +1,7 @@
-import {projectMethodBeforeBatch68,methodIdsAddedInBatch68} from './atlas-batch68-method-projection.mjs';
-export {projectMethodBeforeBatch68,methodIdsAddedInBatch68};
+import {projectMethodBeforeBatch68 as projectMethodBeforeBatch68Only,methodIdsAddedInBatch68} from './atlas-batch68-method-projection.mjs';
+import {projectMethodBeforeBatch78,methodIdsAddedInBatch78,methodIdsPromotedInBatch78} from './atlas-batch78-projection.mjs';
+export {methodIdsAddedInBatch68,methodIdsAddedInBatch78,methodIdsPromotedInBatch78};
+export function projectMethodBeforeBatch68(row){return projectMethodBeforeBatch68Only(projectMethodBeforeBatch78(row));}
 // Current registration expectations come from canonical inputs. Immutable
 // release counts, hashes and numerical golden values stay in their own tests.
 import {readFileSync} from 'node:fs';

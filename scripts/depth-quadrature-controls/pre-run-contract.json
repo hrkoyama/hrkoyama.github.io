@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "group": "quadrature-controls",
+  "proposed_edition": "2026-11-25",
+  "status": "FROZEN_POST_SUCCESS_REFERENCE_METADATA_CLASSIFICATION_REVISION",
+  "frozen_at_utc": "2026-11-24T21:57:18.364990+00:00",
+  "before_first_main_execution": false,
+  "before_any_scientific_execution": false,
+  "prior_reference_qualification": {
+    "attempt01": {
+      "passed": true,
+      "checks": 188,
+      "targets": 30,
+      "receipt_sha256": "3b636dae3481623f92754481ad157d8450837c5a4b1a3299e060d14ec9b7a433"
+    },
+    "attempt02": {
+      "passed": true,
+      "checks": 188,
+      "targets": 30,
+      "receipt_sha256": "a3b1c8bb074c066931241715c940105c3f746006f162b4ed3e9aa19cb211c414",
+      "qualification_sha256": "1854e94d343fb1eeade6ed077737b743c38c43d41b199af74e260306bcd1d6c0",
+      "cache_sha256": "49acee8f365c65d8150fe765e84ce179d8b167c5838c13c11b324f3cd0054f57"
+    }
+  },
+  "files_sha256": {
+    "LICENSE": "07cca125623617c85a41e9a21a2b114d693c61737bc353e3ca98587431e26ee6",
+    "README.md": "da369bbf7d595475830b876f1e2f4afb758af6574ff3bd6eb8e6ecc66c2a0122",
+    "acceptance.json": "8f83d83c15af06ded71a045e5ef81758d47d139307df57c6942425abd6c0408d",
+    "cases.json": "f900a3245e2b6ae3b446e553a17f93b507444654bce72ffeb1003b95bc97446b",
+    "cubature.py": "e670b43adad8753f1e0112f48801ba8004c3d6de6ae0f059339251d4bab28bdd",
+    "double_exponential.py": "c4eb6a979bebf17bec84a9a473b7731fd6c631280e8968b5c0d6e798d76367d0",
+    "experiments.py": "af3ce070b95c60cb9e836f16f496d981d2063442a55e5f2420af4509ffd3ec62",
+    "gk15.py": "4986d18bacbda1f20447c82cfc261b748c3202c508ff46130e9a868b93926c86",
+    "inputs.json": "256fb2326fe3c907ac1a0b5131bf86d55b024e7c49cdac30ff23db1250c868d1",
+    "io_contract.py": "54f4d8bbe84c8c91f3aa9dae6d5b1471080c0f10bbd0591b0203620515e9a361",
+    "plot.py": "d19187dde0606202afb8815f24e212af06d43fdd60a755b0be51f37a87bf395b",
+    "quadpack_adapter.py": "f63f8fcbc16c56b8a29e6eeea18072ad7e0d9cc1c236a0e464d1444c9d0aaf6d",
+    "reference_cache.py": "e1ed6f819ea650943a96c5eac7b9be8273b533b6bdc28d00d3afb1f41d4538b2",
+    "references/__init__.py": "59f6df7262e0bce101d0fb8d9aacdee7804c2259f5636c99b754b4ec3ed2c446",
+    "references/direct_rule.py": "f94717e051e9c821942ead70925a68c62a60245d7abaffafb0634dfed6bac0b4",
+    "references/formulas.py": "4e97ccd74d2ef9545beb452d0871a0f2afa195eee15b5e0cb93e69f4ead2d4ff",
+    "references/interval.py": "901ba39307baab092536a89c655c6f11745ba1a81d8b358dfa2cf30f951d7dcf",
+    "references/qualification.json": "1854e94d343fb1eeade6ed077737b743c38c43d41b199af74e260306bcd1d6c0",
+    "references/qualify.py": "f2487d77b912ad71128fb33ac80a0b518360bc13e739a35d974cd1cf43566800",
+    "references/reference-cache.json": "49acee8f365c65d8150fe765e84ce179d8b167c5838c13c11b324f3cd0054f57",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "22eb54075ab4b4acc935c8eff0f5112fdcac065de1d44f0770261eaca5913f27",
+    "simpson_baseline.py": "b73eac6186447c3bf1563fe5a5914c69ef6ed555780743e295e086eb65c29dea",
+    "source-reading.json": "649285abc319642ef009ccd7fbf9b80befccff3b9740393b4a06e628676bddf2",
+    "test_quadrature.py": "ec330fdc63b6104af7cb13867c788fe86731fd594f3c450c70e413006382e59e"
+  },
+  "primary_cases": [
+    "quadpack-domain-selection",
+    "gk15-double-exponential",
+    "tensor-smolyak-dimensions"
+  ],
+  "primary_records": 105,
+  "case_records": [
+    30,
+    33,
+    42
+  ],
+  "expected_pytest_tests": 30,
+  "expected_main_checks": 578,
+  "termination": "completed_fixed_protocol",
+  "shared_pytest_and_main_seconds": 120,
+  "desired_local_seconds": 36,
+  "reference_scope": "Independent analytic interval references are already qualified; main loads their cache and does not regenerate them. Small pytest component quadratures are separate from105 primary rows.",
+  "source_scope": "Three fixed mathematical integration protocols; not105 physical systems and not a generic certified integrator.",
+  "revision_scope": "Post-success presentation and reference-metadata revisions only. The earlier plot-only revision remains unchanged. This latest delta adds stable IDs and actual reading-depth classifications to references and citations, and explains the independently derived Smolyak assembly without claiming unread original bodies. Only cases.json and this source contract change in this latest delta. Inputs, references/cache bytes, algorithms, acceptance, tests, plot.py and figures are unchanged. The original main and plot receipts remain historical; the full current source awaits canonical qualification.",
+  "prior_main_qualification": {
+    "passed": true,
+    "pytest": 30,
+    "records": 105,
+    "checks": 578,
+    "receipt_sha256": "27323d2722b4ffdf6a491a807a7628acc68544cd2c37879e1847e2e921a8dd52",
+    "qualified_source_contract_sha256": "69ce23b44b5c34d667a07c8a6636aad5a9e810d37a01f90f99f0a51f503e8c1d",
+    "scope": "The successful main covered the preceding complete source, including its original plot.py. All numerical source, inputs, acceptance criteria, test code and qualified reference/cache files are unchanged in this presentation revision."
+  },
+  "current_complete_source_main_executed": false,
+  "prior_plot_qualification": {
+    "passed": true,
+    "assets": 18,
+    "PNG_figures": 6,
+    "receipt_sha256": "75e5a7dfc673e391910df2cf29b9240b11c0d6938b9084f9d835f7882f813d07",
+    "visual_review_sha256": "cce1ba0163c1e1200f02d03aa003ff170a32136d6f2de1c4e931c88252382764",
+    "qualified_source_contract_sha256": "270d4badd97856b8a5dd3436de922642b67c20928b63d51c187055b47e5c1e25",
+    "scope": "Saved-data-only plot02 and visual review cover the identical current plot.py. Only references/citations metadata and this source contract change afterward; source data and figures are unchanged."
+  },
+  "prior_failed_canonical_preflight": {
+    "passed": false,
+    "receipt_sha256": "cc8eeb7e284063a1e6f181403692b9edf223fa970c35a9388ee000190ac9f490",
+    "stage": "Reference metadata preflight before numerical execution",
+    "reason": "Missing reference review_level; id was also absent and is required by the immediately following preflight. The packager and strict loader are unchanged.",
+    "primary_or_reference_evolutions": 0
+  }
+}

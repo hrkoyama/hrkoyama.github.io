@@ -1,0 +1,26 @@
+{
+  "keys": {
+    "raw_array": "candidate__keys"
+  },
+  "weights": {
+    "raw_array": "candidate__weights"
+  },
+  "points": {
+    "raw_array": "candidate__points"
+  },
+  "assembly_contributions": 196,
+  "unique_nodes": 69,
+  "assembly_duplicates": 127,
+  "sum_weights": 1.0000000000000002,
+  "sum_absolute_weights": 4.255026455026456,
+  "zero_weights_retained": 0,
+  "values": {
+    "raw_array": "candidate__values"
+  },
+  "value": 2.53279318327831,
+  "evaluations": 69,
+  "cache_hits": 0,
+  "converged": true,
+  "termination": "fixed_rule_completed",
+  "estimated_error": null
+}

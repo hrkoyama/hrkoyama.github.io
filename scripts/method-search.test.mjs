@@ -182,7 +182,10 @@ test('untrusted method labels stay text and hostile destinations never become ac
 }));
 
 test('remaining plans retain reading-only actions while the neutral slab exposes only its verified supplement',()=>withDOM(({render})=>{
- for(const id of ['splines']){
+ const remaining=['velocity-rescaling','berendsen-thermostat','andersen-thermostat','nose-thermostat','nose-hoover','nose-hoover-chains','gaussian-isokinetic','generalized-langevin','dpd-thermostat','lowe-andersen'];
+ assert.deepEqual(published.filter(m=>m.status==='planned').map(m=>m.id),remaining);
+ assert.deepEqual(catalog.filter(m=>m.status==='planned').map(m=>m.id),remaining);
+ for(const id of remaining){
   const m=published.find(m=>m.id===id),card=render(m,'ja');assert.equal(m.status,'planned');assert.ok(card.textContent.includes('解説あり・実装予定'));assert.ok(links(card).some(a=>a.textContent==='解説'));assert.ok(!links(card).some(a=>a.href.startsWith('/code/')));
  }
  const slab=byId('slab-ewald'),release=json('numerical-methods-atlas/validation/releases.json').releases.find(row=>row.group==='slab-ewald');

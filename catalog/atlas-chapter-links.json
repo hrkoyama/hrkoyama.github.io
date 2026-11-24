@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_on": "2026-11-24",
+  "reviewed_on": "2026-11-25",
   "scope": {
     "ja": "既存の登録情報で対応が付いていなかった5つの技術解説章に、確認した関連資料だけを追加します。手法の定義、関連する固定入力、保存図、公開ソースと検査の範囲を区別し、新しい数値結果や実行例を登録しません。",
     "en": "Reviewed additional resource links for five technical chapters without existing registered associations. Method definitions, related fixed inputs, saved figures, published sources and checks retain their separate scopes; no new numerical results or executions are registered."
@@ -1442,6 +1442,133 @@
       "note": {
         "ja": "SHAKE/RATTLE、Kepler軌道、結合振動子を固定した小規模条件で比較します。拘束、位相、エネルギーと丸め誤差を別々に示します。",
         "en": "Fixed small examples compare SHAKE/RATTLE, Kepler orbits and coupled oscillators. Constraints, phase, energy and rounding effects are reported separately."
+      }
+    },
+    {
+      "id": "validation-quadrature-controls",
+      "method_ids": [
+        "quadrature",
+        "gauss-kronrod",
+        "tanh-sinh",
+        "smolyak-sparse-grid"
+      ],
+      "equation_ids": [
+        "definite-integrals"
+      ],
+      "problem_ids": [
+        "quadpack-domain-selection",
+        "gk15-double-exponential",
+        "tensor-smolyak-dimensions"
+      ],
+      "execution_ids": [
+        "quadpack-domain-selection",
+        "gk15-double-exponential",
+        "tensor-smolyak-dimensions"
+      ],
+      "reference_ids": [
+        "quadpack-domain-selection",
+        "gk15-double-exponential",
+        "tensor-smolyak-dimensions"
+      ],
+      "code_problem_ids": [
+        "quadpack-domain-selection",
+        "gk15-double-exponential",
+        "tensor-smolyak-dimensions"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "固定した積分を適用条件に応じて比較し、推定誤差・実誤差・予算終了・未解像対照を区別します。",
+        "en": "Compare fixed integrals with domain-aware methods, separating estimated errors, actual errors, budget exits and underresolution controls."
+      }
+    },
+    {
+      "id": "validation-approximation-controls",
+      "method_ids": [
+        "chebyshev",
+        "splines",
+        "pchip",
+        "wavelets"
+      ],
+      "equation_ids": [
+        "polynomial-interpolation",
+        "cubic-spline-pchip",
+        "discrete-haar-transform"
+      ],
+      "problem_ids": [
+        "runge-barycentric-clenshaw",
+        "spline-shape-controls",
+        "haar-mallat-boundary-threshold"
+      ],
+      "execution_ids": [
+        "runge-barycentric-clenshaw",
+        "spline-shape-controls",
+        "haar-mallat-boundary-threshold"
+      ],
+      "reference_ids": [
+        "runge-barycentric-clenshaw",
+        "spline-shape-controls",
+        "haar-mallat-boundary-threshold"
+      ],
+      "code_problem_ids": [
+        "runge-barycentric-clenshaw",
+        "spline-shape-controls",
+        "haar-mallat-boundary-threshold"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "節点・表現・丸め、C2連続性と形状保存、境界拡張とシフトをそれぞれ分けた小さな固定例です。",
+        "en": "Small fixed examples separate nodes, representation and rounding; C2 continuity and shape preservation; and boundary extension and shifts."
+      }
+    },
+    {
+      "id": "validation-small-models",
+      "method_ids": [
+        "pinn-operators",
+        "thomas",
+        "sdirk2",
+        "step-doubling",
+        "newton",
+        "rk4"
+      ],
+      "equation_ids": [
+        "poisson-laplace",
+        "heat",
+        "bio-enzyme",
+        "bio-lotka-volterra",
+        "seir-compartment"
+      ],
+      "problem_ids": [
+        "poisson-1d-dirichlet",
+        "heat-periodic",
+        "enzyme-qssa",
+        "lotka-volterra",
+        "seir-linearization"
+      ],
+      "execution_ids": [
+        "pinn-poisson",
+        "fno-periodic-heat",
+        "enzyme-qssa",
+        "lotka-volterra",
+        "seir-linearization"
+      ],
+      "reference_ids": [
+        "pinn-poisson",
+        "fno-periodic-heat",
+        "enzyme-qssa",
+        "lotka-volterra",
+        "seir-linearization"
+      ],
+      "code_problem_ids": [
+        "poisson-1d-dirichlet",
+        "heat-periodic",
+        "enzyme-qssa",
+        "lotka-volterra",
+        "seir-linearization"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "Poisson PINN・周期熱FNOと、酵素・捕食被食・SEIRを固定予算で調べます。学習/近似の元精度目標と再現検査を区別します。",
+        "en": "Study a Poisson PINN, periodic-heat FNO and enzyme, predator–prey and SEIR systems under fixed budgets. Original learning and approximation goals remain separate from reproduction checks."
       }
     }
   ]

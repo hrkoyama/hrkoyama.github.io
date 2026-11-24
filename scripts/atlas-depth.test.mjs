@@ -50,7 +50,7 @@ print(json.dumps([x['id'] for x in load_supplemental_examples(r,ids)]))`],{cwd:r
  }
  const survey=read('numerical-methods-atlas/assets/biological-models.json');
  assert.equal(survey.models.length,22);
- assert.deepEqual(new Set(survey.models.filter(m=>m.status==='scoped-educational-example').map(m=>m.id)),new Set(['logistic','sir','turing','schnakenberg','fitzhugh-nagumo']));
+ assert.deepEqual(new Set(survey.models.filter(m=>m.status==='scoped-educational-example').map(m=>m.id)),new Set(['logistic','sir','turing','schnakenberg','fitzhugh-nagumo','enzyme','lotka-volterra']));
  assert.notEqual(survey.models.find(m=>m.id==='hodgkin-huxley').status,'scoped-educational-example');
  assert.notEqual(survey.models.find(m=>m.id==='gray-scott').status,'scoped-educational-example');
  for(const lang of ['ja','en']){
@@ -76,4 +76,32 @@ test('four scoped cases preserve model inputs, independent/analytic references a
  const refCode=bytes(base+'reference_sir.py').toString();assert.ok(!/from (models|run) import/.test(refCode));assert.ok(refCode.includes("method='DOP853'"));
  assert.ok(read(base+'results/sir-epidemic/result.json').metrics.mass_balance_max<2e-13);
  const gbm=read(base+'results/gbm-sde/result.json');assert.ok(gbm.metrics.observed_orders.every(p=>p>=.35&&p<=.7));
+});
+
+// Each new surveyed identity binds directly to its immutable case row and manifest.
+test('enzyme and Lotka–Volterra overlays retain survey provenance and exact verified case limits',()=>{
+ const biology=read('catalog/atlas-depth.json').fields.find(x=>x.id==='biology');
+ assert.deepEqual(biology.model_supplements,{enzyme:{group:'small-models',case_ids:['enzyme-qssa']},'lotka-volterra':{group:'small-models',case_ids:['lotka-volterra']}});
+ const survey=read('numerical-methods-atlas/assets/biological-models.json').models;
+ const equations=read('catalog/atlas-equations.json').equations;
+ const expansion=read('catalog/atlas-depth-expansion.json');
+ const discovery=read('catalog/atlas-execution-discovery.json').examples;
+ for(const [modelID,binding] of Object.entries(biology.model_supplements)){
+  const config=expansion.groups.find(row=>row.id===binding.group);assert.ok(config);
+  const base='code/validated-examples/'+(config.edition||expansion.edition)+'/'+binding.group+'/';
+  const raw=read(base+'cases.json'),metadata=Array.isArray(raw)?raw:raw.cases;
+  const model=survey.find(row=>row.id===modelID),equation=equations.find(row=>row.id==='bio-'+modelID);
+  const selected=metadata.filter(row=>binding.case_ids.includes(row.id));assert.equal(selected.length,1);
+  assert.equal(hash(base+'cases.json'),read(base+'source-manifest.json').files['cases.json']);
+  assert.equal(hash(base+'source-manifest.json'),read(base+'verification.json').source_manifest_sha256);
+  assert.equal(model.status,'scoped-educational-example');assert.equal(equation.status,'local-example');
+  assert.deepEqual(model.supplemental_examples,binding.case_ids);assert.deepEqual(equation.supplemental_examples,binding.case_ids);
+  assert.deepEqual(model.implementation_scope,selected[0].limits);assert.deepEqual(equation.execution_scope,selected[0].limits);
+  assert.deepEqual(equation.formula_source,{path:'numerical-methods-atlas/assets/biological-models.json',model_id:modelID});
+  assert.ok(!discovery.some(row=>row.equation_ids.includes(equation.id)));
+  for(const ident of binding.case_ids)assert.ok(biology.supplemental_examples.includes(ident));
+ }
+ assert.ok(!biology.supplemental_examples.includes('pinn-poisson')&&!biology.supplemental_examples.includes('fno-periodic-heat'));
+ assert.deepEqual(survey.find(row=>row.id==='sir').execution_examples,['sir-epidemic']);
+ assert.ok(!survey.find(row=>row.id==='sir').supplemental_examples?.includes('seir-linearization'));
 });

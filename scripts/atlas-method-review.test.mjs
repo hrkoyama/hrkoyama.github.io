@@ -14,7 +14,7 @@ const cohort=[
   'scf','hartree-poisson','xc-functionals','ewald','pme','spme',
 ];
 const implementedLongRange={ewald:['ewald'],pme:['spme'],spme:['spme']};
-const planned=['splines'];
+const planned=['velocity-rescaling','berendsen-thermostat','andersen-thermostat','nose-thermostat','nose-hoover','nose-hoover-chains','gaussian-isokinetic','generalized-langevin','dpd-thermostat','lowe-andersen'];
 const languages=['ja','en'];
 const fields=['assumptions','units','boundary_conditions','limitations'];
 const states=['specified','not-applicable','unknown'];
@@ -232,6 +232,7 @@ test('scoped Ewald and smooth-PME examples expose their dedicated evidence witho
 });
 
 test('remaining planned methods do not advertise runnable code or borrow the new periodic implementations',()=>{
+  assert.deepEqual(catalog.methods.filter(m=>m.status==='planned').map(m=>m.id),planned);
   for(const id of planned){
     const source=byId.get(id);
     const record=JSON.parse(read(`numerical-methods-atlas/methods/${id}/index.json`));

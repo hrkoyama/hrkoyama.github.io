@@ -193,6 +193,40 @@ def pack_deltas(deltas):
     return base64.b64encode(raw).decode('ascii')
 
 
+def encode_row_pool(data):
+    """Lossless code-point prefixes for the existing pool, with unchanged IDs."""
+    if 'row_pool_encoding' in data or 'row_pool_prefixes' in data:
+        raise ValueError('Reserved row pool header')
+    if data.get('row_string_encoding') is None:
+        if 'row_strings' in data:
+            raise ValueError('Orphan row string pool')
+        return data
+    if (data.get('format') != 'compact-search-v1' or data.get('kind') not in ['atlas', 'site'] or
+            data.get('row_string_encoding') != ENCODING):
+        raise ValueError('Expected shared raw row string pool')
+    pool = data.get('row_strings')
+    if not isinstance(pool, list) or len(pool) > MAX_POOL:
+        raise ValueError('Invalid row pool')
+    previous, units, seen, prefixes, suffixes = '', 0, set(), [], []
+    for text in pool:
+        if (not isinstance(text, str) or any(0xD800 <= ord(c) <= 0xDFFF for c in text) or
+                text in seen):
+            raise ValueError('Invalid row pool string')
+        size = len(text.encode('utf-16-le')) // 2
+        units += size
+        if size > MAX_STRING_UNITS or units > MAX_POOL_UNITS:
+            raise ValueError('Row pool exceeds unchanged limits')
+        seen.add(text)
+        prefix = 0
+        while prefix < min(len(previous), len(text)) and previous[prefix] == text[prefix]:
+            prefix += 1
+        prefixes.append(prefix)
+        suffixes.append(text[prefix:])
+        previous = text
+    return {**data, 'row_strings': suffixes, 'row_pool_encoding': 'unicode-prefix-columns-v1',
+            'row_pool_prefixes': pack_deltas(prefixes)}
+
+
 def encode_vocabulary_columns(data):
     """Store the same alphabet suffixes with a separate canonical prefix stream."""
     if 'vocabulary_prefixes' in data:
@@ -396,5 +430,5 @@ def write_compact(root, source, kind):
         'scope': 'Same public search terms; original text and explicit navigation are loaded from fixed public files as needed. Search queries are never transmitted.',
     }
     path = root/'search'/('atlas-query-index.json' if kind == 'atlas' else 'query-index.json')
-    path.write_bytes(encoded(encode_row_shapes(encode_vocabulary_columns(encode_vocabulary_alphabet(encode_row_strings(payload))))))
+    path.write_bytes(encoded(encode_row_shapes(encode_row_pool(encode_vocabulary_columns(encode_vocabulary_alphabet(encode_row_strings(payload)))))))
     return path

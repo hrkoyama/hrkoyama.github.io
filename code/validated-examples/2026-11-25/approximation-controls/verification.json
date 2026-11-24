@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "group": "approximation-controls",
+  "edition": "2026-11-25",
+  "verified_on": "2026-11-25",
+  "source_manifest_sha256": "42ed019623f85764b60e8599f22fd4dcc130ac3eadb71e36553a029ddc31f084",
+  "archive": {
+    "file": "atlas-approximation-controls-2026-11-25.zip",
+    "sha256": "7dbadeb591e3329965c2ab5aa7f6025e5d8c18a438b7264460370ad64bdaf053",
+    "bytes": 3027782,
+    "archive_directory": "atlas-approximation-controls-2026-11-25"
+  },
+  "archive_sha256": "7dbadeb591e3329965c2ab5aa7f6025e5d8c18a438b7264460370ad64bdaf053",
+  "returncode": 0,
+  "passed_tests": 32,
+  "tests": 32,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "haar-mallat-boundary-threshold",
+    "runge-barycentric-clenshaw",
+    "spline-shape-controls"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 1.733271542005241,
+  "independent_rerun_seconds": 1.6214387910004007,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

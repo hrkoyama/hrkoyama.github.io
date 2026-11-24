@@ -1,0 +1,54 @@
+"""Independent reference equations; production biology.py is not imported."""
+import numpy as np
+
+
+def rhs(key, y):
+    if key.startswith('enzyme'):
+        s, c, e, p = y
+        return np.array([-10*s*e+c, 10*s*e-2*c, -10*s*e+2*c, c])
+    if key == 'lv':
+        # Different dependent variables from the primary physical-state RK4.
+        a, b = y
+        return np.array([1-np.exp(b), np.exp(a)-1])
+    s, e, i, r = y
+    return np.array([-.6*s*i, .6*s*i-.3*e, .3*e-.2*i, .2*i])
+
+
+def jac(key, y):
+    if key.startswith('enzyme'):
+        s, c, e, p = y
+        return np.array([[-10*e, 1, -10*s, 0], [10*e, -2, 10*s, 0],
+                         [-10*e, 2, -10*s, 0], [0, 1, 0, 0]])
+    if key == 'lv':
+        return np.array([[0, -np.exp(y[1])], [np.exp(y[0]), 0]])
+    s, e, i, r = y
+    return np.array([[-.6*i, 0, -.6*s, 0], [.6*i, -.3, .6*s, 0],
+                     [0, .3, -.2, 0], [0, 0, .2, 0]])
+
+
+def seir_scaled_rhs(eta, z):
+    """Reference coordinates ((S-1)/eta,E/eta,I/eta,R/eta)."""
+    s, e, i, r = z
+    infection = .6*(1+eta*s)*i
+    return np.array([-infection, infection-.3*e, .3*e-.2*i, .2*i])
+
+
+def seir_scaled_jac(eta, z):
+    s, e, i, r = z
+    return np.array([[-.6*eta*i, 0, -.6*(1+eta*s), 0],
+                     [.6*eta*i, -.3, .6*(1+eta*s), 0],
+                     [0, .3, -.2, 0], [0, 0, .2, 0]])
+
+
+def systems():
+    result = []
+    for label, total in [('01', .01), ('002', .002)]:
+        times = np.unique(np.concatenate((np.arange(101)/200/total,
+                                         np.array([1., 5., 20.])/12)))
+        result.append(('enzyme-'+label, np.array([1., 0., total, 0.]), times))
+    result.append(('lv', np.log([1.2, .8]), np.linspace(0, 20, 1601)))
+    for label, eta in [('1e-4', 1e-4), ('5e-5', 5e-5)]:
+        times = np.unique(np.concatenate((np.linspace(0, 20, 1601), np.linspace(0, 1, 201))))
+        result.append(('seir-'+label, np.array([1-2*eta, eta, eta, 0.]), times))
+    return result
+

@@ -1,0 +1,259 @@
+{
+  "group": "approximation-controls",
+  "cases": [
+    {
+      "id": "runge-barycentric-clenshaw",
+      "title": {
+        "ja": "節点・表現・丸めを分けるRunge補間",
+        "en": "Runge interpolation: nodes, representation and rounding"
+      },
+      "summary": {
+        "ja": "Runge関数と絶対値関数を等間隔・Lobatto型の固定節点で補間し、Clenshaw評価と比較します。",
+        "en": "Interpolate the Runge and absolute-value functions on fixed equispaced and Lobatto-like nodes, and compare with Clenshaw evaluation."
+      },
+      "assumptions": {
+        "ja": "無次元区間[-1,1]、次数8・16・32、固定2048中点。節点・データ・重みは実際のbinary64値を対象にします。",
+        "en": "Dimensionless interval [-1,1], degrees 8, 16 and 32, and 2048 fixed midpoints. Actual binary64 nodes, data and weights define the discrete problem."
+      },
+      "algorithm": {
+        "ja": "第2重心公式と全係数Clenshaw漸化式を自作。丸め済み節点上の閉形式重みと有限Chebyshev変換をそのまま保存します。",
+        "en": "Implement the second barycentric formula and a full-coefficient Clenshaw recurrence. Retain the closed weights and finite Chebyshev transform on rounded nodes."
+      },
+      "validation": {
+        "ja": "格納値の補間多項式P、閉重み有理式R、格納係数級数C、目標関数fを区別。17点の正確な有理参照・演算別誤差上界・節点一致・固定Runge傾向を照合します。",
+        "en": "Separate the stored-data polynomial P, closed-weight rational expression R, stored-coefficient series C and target f. Check exact rational references at 17 probes, operation-based error bounds, node identities and fixed Runge trends."
+      },
+      "limits": {
+        "ja": "標本最大誤差は連続一様ノルムの証明ではありません。丸め節点の閉重み・離散直交性は厳密と見なしません。任意次数・任意点の安定性は保証しません。",
+        "en": "A sampled maximum error is not a proof of a continuous uniform norm. Closed weights and discrete orthogonality on rounded nodes are not treated as exact. No arbitrary-degree or all-point stability guarantee is made."
+      },
+      "method_ids": [
+        "chebyshev"
+      ],
+      "domains": [
+        "approximation"
+      ],
+      "code_files": [
+        "run.py",
+        "interpolation.py"
+      ],
+      "reference_files": [
+        "DESIGN.md",
+        "source-reading.json"
+      ],
+      "references": [
+        {
+          "id": "dlmf-3-11",
+          "title": "NIST DLMF §3.11(ii): Chebyshev series and Clenshaw summation",
+          "url": "https://dlmf.nist.gov/3.11",
+          "review_level": "official-reference-selected-equations",
+          "review_scope": "Selected E7, E9, E11 and E15 with endpoint-halving conventions; no original Clenshaw paper reading. The implementation uses full coefficients, so its final combination is derived explicitly.",
+          "accessed_on": "2026-11-25",
+          "publication_year": null
+        },
+        {
+          "id": "scipy-barycentric-1-14-1",
+          "title": "SciPy 1.14.1 BarycentricInterpolator documentation",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.interpolate.BarycentricInterpolator.html",
+          "review_level": "official-documentation-selected-notes",
+          "review_scope": "Selected barycentric formula and interpolation-conditioning notes read during the preceding preparation. The Berrut–Trefethen paper is a bibliographic lead, not a full-text reading.",
+          "accessed_on": "2026-11-24",
+          "version": "1.14.1",
+          "publication_year": null
+        }
+      ],
+      "formulas": [
+        "p(x)=sum_j y_j*prod_(k!=j)((x-x_k)/(x_j-x_k))",
+        "R(x)=(sum_j w_j*y_j/(x-x_j))/(sum_j w_j/(x-x_j))",
+        "C(x)=sum_(k=0)^n a_k*T_k(x); b_k=a_k+2*x*b_(k+1)-b_(k+2)"
+      ],
+      "gallery_figure": "runge-barycentric-clenshaw-preview.png",
+      "additional_figures": [
+        {
+          "file": "runge-barycentric-clenshaw-preview.png",
+          "caption": {
+            "ja": "Runge関数と絶対値関数を等間隔・Lobatto型の固定節点で補間し、Clenshaw評価と比較します。 保存配列から作図。",
+            "en": "Interpolate the Runge and absolute-value functions on fixed equispaced and Lobatto-like nodes, and compare with Clenshaw evaluation. Drawn from saved arrays."
+          }
+        },
+        {
+          "file": "runge-barycentric-clenshaw-diagnostics.png",
+          "caption": {
+            "ja": "保存済み誤差・導関数または二乗ノルムを別表示。各境界・表現の適用範囲は本文を参照。",
+            "en": "Saved errors, derivatives or squared norms shown separately. The text states the scope of each boundary and representation."
+          }
+        }
+      ]
+    },
+    {
+      "id": "spline-shape-controls",
+      "title": {
+        "ja": "自然・端点微分指定スプラインとPCHIP",
+        "en": "Natural and clamped splines versus PCHIP"
+      },
+      "summary": {
+        "ja": "平坦部を持つ単調データ・3次式・直線の固定3組で、C2連続性と形状保存を比較します。",
+        "en": "Compare C2 continuity and shape preservation on three fixed data sets: a monotone plateau, a cubic and a straight line."
+      },
+      "assumptions": {
+        "ja": "実binary64の節点と値を使用。自然条件は両端2階微分ゼロ、clamped条件は入力端点1階微分です。",
+        "en": "Use actual binary64 knots and values. Natural conditions set both endpoint second derivatives to zero; clamped conditions prescribe the first derivatives from the input."
+      },
+      "algorithm": {
+        "ja": "3次Bスプラインの配置行列を解きde Boor評価。別経路でPCHIPの調和平均・端点制限とHermite評価を実装します。",
+        "en": "Solve a cubic B-spline collocation system and evaluate it with de Boor recursion. A separate path implements PCHIP harmonic slopes, endpoint limiting and Hermite evaluation."
+      },
+      "validation": {
+        "ja": "正確な有理2階微分系・有理PCHIP・SciPy 1.14.1を照合。端点15記録は16スカラー出力・13異なる入力。平坦部の負値は実binary64をFraction化した独立式で示します。",
+        "en": "Compare with exact rational second-derivative systems, rational PCHIP and SciPy 1.14.1. Fifteen endpoint records contain sixteen scalar outputs from thirteen distinct inputs. Independent Fraction formulas show plateau undershoot for the actual binary64 data."
+      },
+      "limits": {
+        "ja": "PCHIPは通常C1でありC2とは限りません。一般データの最良近似・外挿・ノイズ平滑化は対象外。SciPyは原著完全閲読の代用ではありません。",
+        "en": "PCHIP is generally C1, not necessarily C2. Best approximation, extrapolation and noise smoothing are outside scope. A SciPy comparison does not substitute for reading the original papers."
+      },
+      "method_ids": [
+        "splines",
+        "pchip"
+      ],
+      "domains": [
+        "approximation"
+      ],
+      "code_files": [
+        "run.py",
+        "splines.py"
+      ],
+      "reference_files": [
+        "DESIGN.md",
+        "source-reading.json"
+      ],
+      "references": [
+        {
+          "id": "scipy-cubic-1-14-1",
+          "title": "SciPy 1.14.1 PCHIP documentation and selected source",
+          "url": "https://raw.githubusercontent.com/scipy/scipy/v1.14.1/scipy/interpolate/_cubic.py",
+          "review_level": "official-source-selected-lines",
+          "review_scope": "Selected lines 202–225, 243–254, 275–298: harmonic interior derivatives, endpoint sign and 3-slope limiter, two-point case. The original Fritsch–Butland paper has not been read in full. Own formulas are independently expressed as scalar Hermite polynomials.",
+          "accessed_on": "2026-11-25",
+          "version": "1.14.1",
+          "publication_year": null
+        },
+        {
+          "id": "scipy-splines-1-14-1",
+          "title": "SciPy 1.14.1 BSpline and CubicSpline documentation",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.interpolate.CubicSpline.html",
+          "review_level": "official-documentation-selected-definitions",
+          "review_scope": "Natural and clamped boundary conditions and the BSpline recurrence were read during preparation. No de Boor original full-text claim. SciPy is a secondary numerical companion; the rational second-derivative system is the independent reference.",
+          "accessed_on": "2026-11-24",
+          "version": "1.14.1",
+          "publication_year": null
+        }
+      ],
+      "formulas": [
+        "S_i(s)=a_i+b_i*s+c_i*s^2+d_i*s^3",
+        "d_k=(w_1+w_2)/(w_1/m_(k-1)+w_2/m_k)",
+        "S_natural(1.5)=a-9*(b-a)/88; S_clamped(1.5)=a-15*(b-a)/152"
+      ],
+      "gallery_figure": "spline-shape-controls-preview.png",
+      "additional_figures": [
+        {
+          "file": "spline-shape-controls-preview.png",
+          "caption": {
+            "ja": "平坦部を持つ単調データ・3次式・直線の固定3組で、C2連続性と形状保存を比較します。 保存配列から作図。",
+            "en": "Compare C2 continuity and shape preservation on three fixed data sets: a monotone plateau, a cubic and a straight line. Drawn from saved arrays."
+          }
+        },
+        {
+          "file": "spline-shape-controls-diagnostics.png",
+          "caption": {
+            "ja": "保存済み誤差・導関数または二乗ノルムを別表示。各境界・表現の適用範囲は本文を参照。",
+            "en": "Saved errors, derivatives or squared norms shown separately. The text states the scope of each boundary and representation."
+          }
+        }
+      ]
+    },
+    {
+      "id": "haar-mallat-boundary-threshold",
+      "title": {
+        "ja": "Haar多重解像度の境界・シフト・閾値",
+        "en": "Haar multiresolution: boundaries, shifts and thresholds"
+      },
+      "summary": {
+        "ja": "長さ17・32の小信号に3段Haar分解を適用。1標本シフトと奇数長の境界処理を分けて比較します。",
+        "en": "Apply three-level Haar analysis to short signals of lengths 17 and 32, separating one-sample shifts from odd-length boundary handling."
+      },
+      "assumptions": {
+        "ja": "奇数長の各段で周期型は先頭、対称型は末尾を1点追加し、再構成時に切り戻します。詳細係数のみ閾値0.2を使用。",
+        "en": "At each odd-length level append the first sample for periodic extension or the last for symmetric extension, then crop during synthesis. Apply threshold 0.2 only to detail coefficients."
+      },
+      "algorithm": {
+        "ja": "和差フィルタ・間引き・逆ピラミッドを自作。閾値なし・hard・softの3条件を同じ解析係数から再構成します。",
+        "en": "Implement pair-sum and pair-difference filters, downsampling and inverse pyramids. Reconstruct with no threshold, hard thresholding and soft thresholding from the same analysis coefficients."
+      },
+      "validation": {
+        "ja": "12解析・36再構成。独立行列・Fraction/Decimal係数、完全再構成、二乗L2誤差を照合。長さ32のみ直交誤差恒等式を要求し、17点では追加エネルギーを段別保存します。",
+        "en": "Use twelve analyses and thirty-six reconstructions. Check independent matrices, Fraction/Decimal coefficients, perfect reconstruction and squared L2 errors. Require the orthogonal error identity only at length 32; retain level-by-level padding energy at length 17."
+      },
+      "limits": {
+        "ja": "Haarに限定し長いフィルタや画像圧縮は対象外。一般の対称拡張に正規直交性を仮定しません。シフト不変性は要求せず、シフト別差を保存します。",
+        "en": "Limited to Haar, without longer filters or image compression. General symmetric extension is not assumed orthonormal. Shift invariance is not required; shift-dependent differences are retained."
+      },
+      "method_ids": [
+        "wavelets"
+      ],
+      "domains": [
+        "approximation"
+      ],
+      "code_files": [
+        "run.py",
+        "haar.py"
+      ],
+      "reference_files": [
+        "DESIGN.md",
+        "source-reading.json"
+      ],
+      "references": [
+        {
+          "id": "mallat-1989-selected",
+          "title": "S. Mallat, A Theory for Multiresolution Signal Decomposition: The Wavelet Representation",
+          "url": "https://www.di.ens.fr/~mallat/papiers/MallatTheory89.pdf",
+          "year": 1989,
+          "year_role": "publication",
+          "review_level": "primary-paper-selected-body",
+          "review_scope": "During preparation: title/abstract, Haar example on printed p. 679, selected §III-B/C filter/downsample/inverse-pyramid and border-symmetry prose on p. 681. Extracted formula glyphs were imperfect; no complete proof or numerical-table audit is claimed.",
+          "accessed_on": "2026-11-24"
+        },
+        {
+          "id": "pywavelets-modes",
+          "title": "PyWavelets documentation: Signal extension modes",
+          "url": "https://pywavelets.readthedocs.io/en/latest/ref/signal-extension-modes.html",
+          "review_level": "official-documentation-selected-terminology",
+          "review_scope": "Periodic and half-sample symmetric extension and the redundancy caveat. This example defines its own append-at-each-odd-level/crop convention; it does not claim PyWavelets coefficient-layout equivalence or require PyWavelets.",
+          "accessed_on": "2026-11-25",
+          "publication_year": null
+        }
+      ],
+      "formulas": [
+        "a_(l+1,k)=(a_(l,2k)+a_(l,2k+1))/sqrt(2)",
+        "d_(l+1,k)=(a_(l,2k)-a_(l,2k+1))/sqrt(2)",
+        "E_after=E_before+padding^2; ||e||_2^2=||delta_coeff||_2^2 only for square orthogonal transform"
+      ],
+      "gallery_figure": "haar-mallat-boundary-threshold-preview.png",
+      "additional_figures": [
+        {
+          "file": "haar-mallat-boundary-threshold-preview.png",
+          "caption": {
+            "ja": "長さ17・32の小信号に3段Haar分解を適用。1標本シフトと奇数長の境界処理を分けて比較します。 保存配列から作図。",
+            "en": "Apply three-level Haar analysis to short signals of lengths 17 and 32, separating one-sample shifts from odd-length boundary handling. Drawn from saved arrays."
+          }
+        },
+        {
+          "file": "haar-mallat-boundary-threshold-diagnostics.png",
+          "caption": {
+            "ja": "保存済み誤差・導関数または二乗ノルムを別表示。各境界・表現の適用範囲は本文を参照。",
+            "en": "Saved errors, derivatives or squared norms shown separately. The text states the scope of each boundary and representation."
+          }
+        }
+      ]
+    }
+  ]
+}

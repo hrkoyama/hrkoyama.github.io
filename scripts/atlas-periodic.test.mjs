@@ -1,4 +1,4 @@
-import {methodIdsAddedInBatch68,methodIdsAddedInBatch58,methodCount,methodIds} from './fixtures/atlas-inventory.mjs';
+import {methodIdsAddedInBatch78,methodIdsPromotedInBatch78,methodIdsAddedInBatch68,methodIdsAddedInBatch58,methodCount,methodIds} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -173,7 +173,7 @@ test('BOMD and CPMD are searchable reading-only methods with equations and prima
   const addedMethods = ['lu-partial-pivoting','cholesky','minres','lobpcg','pseudo-arclength-continuation','jacobian-free-newton-krylov'];
   assert.equal(Object.keys(baseline.methods).length,152);
   assert.deepEqual(baseline.expected_new_method_ids,addedMethods);
-  assert.deepEqual(methodIds.filter(id=>!Object.hasOwn(baseline.methods,id)&&!methodIdsAddedInBatch58.includes(id)&&!methodIdsAddedInBatch68.includes(id)),addedMethods);
+  assert.deepEqual(methodIds.filter(id=>!Object.hasOwn(baseline.methods,id)&&!methodIdsAddedInBatch58.includes(id)&&!methodIdsAddedInBatch68.includes(id)&&!methodIdsAddedInBatch78.includes(id)),addedMethods);
   assert.deepEqual(coveredMethods.filter(row=>addedMethods.includes(row.id)).map(row=>row.id),addedMethods);
   assert.deepEqual(coveredMethods.filter(row=>addedMethods.includes(row.id)).map(row=>row.chapter),[
     ...Array(4).fill('validation-linear-algebra-spectral'),...Array(2).fill('validation-bratu-continuation-jfnk'),
@@ -183,7 +183,11 @@ test('BOMD and CPMD are searchable reading-only methods with equations and prima
   assert.deepEqual([...methodIdsAddedInBatch68],cohort68.expected_new_method_ids);
   assert.equal(cohort68.methods.dae.status,'planned');assert.ok(!cohort68.methods.dae.depth_release);
   const addedCoverage68=new Set([...methodIdsAddedInBatch68,'dae']);
-  assert.equal(coveredMethods.filter(row => row.id !== 'slab-ewald'&&!addedMethods.includes(row.id)&&!methodIdsAddedInBatch58.includes(row.id)&&!addedCoverage68.has(row.id)).length,136);
+  const addedCoverage78=new Set([...methodIdsAddedInBatch78,...methodIdsPromotedInBatch78]);
+  const expectedCoverage78=[['gauss-kronrod','validation-quadrature-controls'],['tanh-sinh','validation-quadrature-controls'],['smolyak-sparse-grid','validation-quadrature-controls'],['pchip','validation-approximation-controls'],['splines','validation-approximation-controls'],['chebyshev','validation-approximation-controls'],['wavelets','validation-approximation-controls'],['pinn-operators','validation-small-models']];
+  assert.deepEqual(coveredMethods.filter(row=>addedCoverage78.has(row.id)).map(row=>[row.id,row.chapter]).sort(),expectedCoverage78.sort());
+  assert.ok(coveredMethods.filter(row=>addedCoverage78.has(row.id)).every(row=>row.status==='local-example'));
+  assert.equal(coveredMethods.filter(row => row.id !== 'slab-ewald'&&!addedMethods.includes(row.id)&&!methodIdsAddedInBatch58.includes(row.id)&&!addedCoverage68.has(row.id)&&!addedCoverage78.has(row.id)).length,136);
   const expectedCoverage68=[['dae','validation-dae-controls'],['rk45','validation-ode-adaptivity'],['jameson-steady-rk','validation-steady-rk'],['shake','validation-geometric-controls'],['rattle','validation-geometric-controls']];
   const byId=(a,b)=>a[0].localeCompare(b[0]);
   assert.deepEqual(coveredMethods.filter(row=>addedCoverage68.has(row.id)).map(row=>[row.id,row.chapter]).sort(byId),expectedCoverage68.sort(byId));

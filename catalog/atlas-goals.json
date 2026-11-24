@@ -196,8 +196,8 @@
         "post-growth pattern"
       ],
       "scope": {
-        "ja": "22モデル族の文献解説に、ロジスティック増殖・閉鎖SIR、線形反応拡散、Schnakenbergの線形発現・有限振幅の非線形発展・成長後の1次元パターン、空間なしFitzHugh–Nagumoの限定例を接続します。全22族やHodgkin–Huxleyの実装ではありません。",
-        "en": "The 22-family survey links scoped examples of logistic growth, closed SIR, linear reaction–diffusion, linear Schnakenberg onset, finite-amplitude nonlinear evolution and post-growth 1D patterns, plus spatially uniform FitzHugh–Nagumo. This does not implement all 22 families or Hodgkin–Huxley."
+        "ja": "22モデル族の文献解説に、ロジスティック増殖・閉鎖SIR、線形反応拡散、Schnakenbergの線形発現・有限振幅の非線形発展・成長後の1次元パターン、空間なしFitzHugh–Nagumoの限定例を接続します。全22族やHodgkin–Huxleyの実装ではありません。 別群small-modelsから、固定した4状態酵素/QSSA、正のLotka–Volterra軌道、SEIR保存則と初期2モード線形化の3例だけを追加します。SEIRはSIRの既存実行範囲とは別です。",
+        "en": "The 22-family survey links scoped examples of logistic growth, closed SIR, linear reaction–diffusion, linear Schnakenberg onset, finite-amplitude nonlinear evolution and post-growth 1D patterns, plus spatially uniform FitzHugh–Nagumo. This does not implement all 22 families or Hodgkin–Huxley. Three further fixed examples from the separate small-models group cover four-state enzyme/QSSA, a positive Lotka–Volterra orbit, and SEIR conservation with full two-mode early linearization. SEIR is separate from the existing SIR execution scope."
       },
       "methods": [],
       "examples": [
@@ -245,8 +245,8 @@
         {
           "id": "bio-epidemics",
           "name": {
-            "ja": "閉鎖SIR感染症モデル（SEIRは未実装）",
-            "en": "Closed SIR epidemic model (SEIR unimplemented)"
+            "ja": "閉鎖SIR感染症モデル（既存の固定入力例）",
+            "en": "Closed SIR epidemic model (existing fixed-input example)"
           },
           "group": {
             "ja": "生物モデル",
@@ -397,7 +397,10 @@
         "fitzhugh-nagumo",
         "schnakenberg-nonlinear",
         "schnakenberg-pattern",
-        "reaction-diffusion-splitting"
+        "reaction-diffusion-splitting",
+        "enzyme-qssa",
+        "lotka-volterra",
+        "seir-linearization"
       ]
     },
     {
@@ -423,7 +426,8 @@
         "thomas",
         "cg",
         "multigrid",
-        "amg"
+        "amg",
+        "pinn-operators"
       ],
       "examples": [
         "poisson-1d-dirichlet",
@@ -433,7 +437,9 @@
         "diffusion"
       ],
       "supplemental_examples": [
-        "sa-amg"
+        "sa-amg",
+        "pinn-poisson",
+        "fno-periodic-heat"
       ],
       "resources": [
         {
@@ -900,6 +906,49 @@
       "domains": [
         "quantum"
       ]
+    },
+    {
+      "id": "function-approximation",
+      "title": {
+        "ja": "関数を近似・積分したい",
+        "en": "Approximate and integrate a function"
+      },
+      "terms": [
+        "補間",
+        "求積",
+        "スプライン",
+        "Haar",
+        "interpolation",
+        "quadrature",
+        "splines",
+        "wavelets"
+      ],
+      "scope": {
+        "ja": "少数の固定関数・信号で、節点、境界、誤差推定、未解像と丸めを分けて比較します。再現確認の合格は全精度目標の達成ではありません。",
+        "en": "Use a few fixed functions and signals to separate nodes, boundaries, error estimates, underresolution and rounding. Passing reproduction checks does not mean all accuracy goals were met."
+      },
+      "methods": [
+        "quadrature",
+        "gauss-kronrod",
+        "tanh-sinh",
+        "smolyak-sparse-grid",
+        "chebyshev",
+        "splines",
+        "pchip",
+        "wavelets"
+      ],
+      "examples": [],
+      "domains": [
+        "foundations"
+      ],
+      "supplemental_examples": [
+        "quadpack-domain-selection",
+        "gk15-double-exponential",
+        "tensor-smolyak-dimensions",
+        "runge-barycentric-clenshaw",
+        "spline-shape-controls",
+        "haar-mallat-boundary-threshold"
+      ]
     }
   ],
   "home": {
@@ -981,5 +1030,5 @@
       }
     }
   ],
-  "reviewed_on": "2026-11-24"
+  "reviewed_on": "2026-11-25"
 }

@@ -169,12 +169,30 @@
       ]
     },
     {
+      "id": "build-atlas-biology-model-evidence",
+      "runner": "python",
+      "script": "scripts/build-atlas-biology-model-evidence.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-forces"
+      ],
+      "inputs": [
+        "catalog/atlas-depth.json",
+        "catalog/atlas-depth-expansion.json",
+        "numerical-methods-atlas/code-and-data/examples.json",
+        "code/validated-examples/"
+      ],
+      "outputs": [
+        "numerical-methods-atlas/assets/biological-models.json"
+      ]
+    },
+    {
       "id": "build-atlas-quantum",
       "runner": "python",
       "script": "scripts/build-atlas-quantum.py",
       "args": [],
       "depends_on": [
-        "build-atlas-forces"
+        "build-atlas-biology-model-evidence"
       ]
     },
     {

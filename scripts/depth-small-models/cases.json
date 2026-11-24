@@ -1,0 +1,380 @@
+[
+  {
+    "id": "pinn-poisson",
+    "method_ids": [
+      "pinn-operators",
+      "thomas"
+    ],
+    "title": {
+      "ja": "1D Poisson PINNと独立格子誤差",
+      "en": "Poisson PINN: independent grid error"
+    },
+    "summary": {
+      "ja": "3固定seedの49パラメータPINNを解析解・FDと比較します。",
+      "en": "Compare a 49-parameter PINN for three fixed seeds with analytic and finite-difference solutions."
+    },
+    "assumptions": {
+      "ja": "無次元区間[0,1]で −uₓₓ=π²sin(πx)、u(0)=u(1)=0。中間層16素子・49実パラメータ、固定seed 8401–8403、学習64点と独立評価257点を用います。",
+      "en": "Solve dimensionless −uₓₓ=π² sin(πx) on [0,1] with zero Dirichlet data. Use sixteen hidden units, 49 real parameters, seeds 8401–8403, 64 training points and 257 separate evaluation points."
+    },
+    "algorithm": {
+      "ja": "x(1−x)を掛けて境界値を厳密に組み込むtanhネットワークを、解析的な全パラメータJacobian付きTRF最小二乗法で学習します。固定予算後の全モデルを保存し、31/63/127未知数の2次中心差分とThomas法も計算します。",
+      "en": "Train a hard-boundary tanh ansatz with trust-region reflective least squares and an analytic parameter Jacobian. Retain every returned model under the fixed budget. Also solve second-order finite differences with 31, 63 and 127 unknowns using the Thomas algorithm."
+    },
+    "validation": {
+      "ja": "全49列の残差Jacobianと損失勾配、空間微分を別資格段階で独立照合。解析解sin(πx)に対する独立点誤差、PDE残差、境界値、FD誤差を別に保存します。収束・精度目標の実際の真偽を残し、正常な予算終了を収束と呼びません。",
+      "en": "Independently qualify all 49 residual-Jacobian columns, loss-gradient coordinates and spatial derivatives. Save off-training solution error against sin(πx), PDE residual, boundary error and finite-difference error separately. Preserve actual convergence and accuracy decisions; a normal budget return is not convergence."
+    },
+    "limits": {
+      "ja": "1つの滑らかなPoisson問題と3seedの固定予算実験です。小さい学習損失だけで独立点精度の達成や一般的なPINN学習成功を保証しません。未達目標も表示します。",
+      "en": "This fixed-budget study covers one smooth Poisson problem and three seeds. A small training loss does not establish independent-point accuracy or general PINN training success. Unmet goals remain visible."
+    },
+    "domains": [
+      "foundations"
+    ],
+    "code_files": [
+      "run.py",
+      "experiments.py",
+      "io_utils.py",
+      "pinn.py"
+    ],
+    "reference_files": [
+      "PROTOCOL.md",
+      "source-reading.json",
+      "acceptance.json"
+    ],
+    "references": [
+      {
+        "id": "raissi-part1-2017-selected",
+        "title": "Physics Informed Deep Learning (Part I): Data-driven Solutions of Nonlinear Partial Differential Equations",
+        "url": "https://arxiv.org/pdf/1711.10561",
+        "accessed_on": "2026-11-24",
+        "review_level": "selected-primary-body",
+        "review": {
+          "ja": "Extracted PDF text selected pp.4–6, §2 continuous-time residual, Eq(2)–(4), Burgers setup and loss/optimizer discussion; not all 22 pages and not visual PDF audit.",
+          "en": "Extracted PDF text selected pp.4–6, §2 continuous-time residual, Eq(2)–(4), Burgers setup and loss/optimizer discussion; not all 22 pages and not visual PDF audit."
+        },
+        "year": 2017,
+        "year_role": "preprint-version"
+      }
+    ],
+    "gallery_figure": "pinn-poisson-preview.png",
+    "additional_figures": [
+      {
+        "file": "pinn-poisson-preview.png",
+        "caption": {
+          "ja": "3固定seedの49パラメータPINNを解析解・FDと比較します。 保存値だけを描画します。",
+          "en": "Compare a 49-parameter PINN for three fixed seeds with analytic and finite-difference solutions. This figure reads saved data only."
+        }
+      }
+    ],
+    "formulas": [
+      "-u_{xx}=\\pi^2\\sin(\\pi x),\\quad 0<x<1,\\quad u(0)=u(1)=0",
+      "u_\\theta(x)=x(1-x)\\left[b_0+\\sum_{j=1}^{16}a_j\\tanh(w_jx+b_j)\\right]",
+      "r_i=\\frac{-u_{\\theta,xx}(x_i)-\\pi^2\\sin(\\pi x_i)}{\\pi^2},\\quad L=\\frac1{64}\\sum_{i=1}^{64}r_i^2"
+    ]
+  },
+  {
+    "id": "fno-periodic-heat",
+    "method_ids": [
+      "pinn-operators"
+    ],
+    "title": {
+      "ja": "小型FNOの問題単位検証",
+      "en": "Tiny FNO on held-out heat problems"
+    },
+    "summary": {
+      "ja": "同じ重みで32/64点・未見関数・OODを分けて評価します。",
+      "en": "Evaluate the same learned weights on 32/64-point grids, held-out functions and separate OOD inputs."
+    },
+    "assumptions": {
+      "ja": "周期区間[0,2π)、uₜ=νuₓₓ、T=0.25。同じ関数の点を分散させず、全46問題を学習24・検証6・未見ID8・νのOOD4・周波数のOOD4に分けます。2固定seed、93実パラメータです。",
+      "en": "Use periodic heat flow uₜ=νuₓₓ on [0,2π) to T=0.25. Split 46 whole problems into 24 training, 6 validation, 8 held-out ID, 4 viscosity-OOD and 4 spectrum-OOD problems. Use two fixed seeds and 93 real parameters."
+    },
+    "algorithm": {
+      "ja": "入力(u₀,ν)を幅2へ写し、局所線形項・DCと1–4モードの複素Fourier項・tanhからなる2ブロックを適用します。L-BFGS-Bの固定予算で学習し、同じ重みをN=32/64へ転送。非線形項は各格子上で評価しdealiasingしません。",
+      "en": "Lift (u₀,ν) to width two and apply two blocks containing a local linear map, real DC and complex Fourier modes 1–4, then tanh. Train with a fixed L-BFGS-B budget and evaluate the same weights at N=32 and 64. Nonlinear terms are evaluated on each native grid without dealiasing."
+    },
+    "validation": {
+      "ja": "全93実座標の損失勾配を2つの固定差分幅で照合し、Fourierブロックを直接DFTと比較。解析的な熱モード減衰に対する絶対・相対誤差、格子制限差、ID/OODを分離します。参照RMS≤10⁻¹²では相対誤差をNAとし、ゼロ・微小振幅では絶対誤差を保存します。",
+      "en": "Qualify all 93 real loss-gradient coordinates at two fixed finite-difference widths and compare Fourier blocks with direct DFT sums. Separate analytic heat-mode errors, grid-restriction differences and ID/OOD diagnostics. Relative error is NA when reference RMS≤10⁻¹²; zero and near-zero controls retain absolute errors."
+    },
+    "limits": {
+      "ja": "固定された小型離散作用素の比較で、任意の解像度・分布に対する一般化やOOD精度を保証しません。N=64から32への差には非線形aliasingが含まれ、連続体離散化誤差とは呼びません。最適化収束と固定予算終了は別です。",
+      "en": "This comparison concerns a fixed tiny discrete operator, without arbitrary-resolution, distributional or OOD guarantees. The N=64-to-32 discrepancy includes nonlinear aliasing and is not a continuum discretization error. Optimizer convergence is distinct from normal budget termination."
+    },
+    "domains": [
+      "foundations"
+    ],
+    "code_files": [
+      "run.py",
+      "experiments.py",
+      "io_utils.py",
+      "fno.py",
+      "data_family.py"
+    ],
+    "reference_files": [
+      "PROTOCOL.md",
+      "source-reading.json",
+      "acceptance.json"
+    ],
+    "references": [
+      {
+        "id": "li-fno-v3-2021-selected",
+        "title": "Fourier Neural Operator for Parametric Partial Differential Equations",
+        "url": "https://arxiv.org/html/2010.08895v3",
+        "accessed_on": "2026-11-24",
+        "review_level": "selected-primary-body",
+        "review": {
+          "ja": "Selected HTML §2 learning operators; §3 Eq(2); §4 Eq(4)–(5), FFT/truncation/reality; §5 setup and §5.1 Burgers. PDF header/edition only; not full paper or appendix audit.",
+          "en": "Selected HTML §2 learning operators; §3 Eq(2); §4 Eq(4)–(5), FFT/truncation/reality; §5 setup and §5.1 Burgers. PDF header/edition only; not full paper or appendix audit."
+        },
+        "year": 2021,
+        "year_role": "conference-and-preprint-version"
+      }
+    ],
+    "gallery_figure": "fno-periodic-heat-preview.png",
+    "additional_figures": [
+      {
+        "file": "fno-periodic-heat-preview.png",
+        "caption": {
+          "ja": "同じ重みで32/64点・未見関数・OODを分けて評価します。 保存値だけを描画します。",
+          "en": "Evaluate the same learned weights on 32/64-point grids, held-out functions and separate OOD inputs. This figure reads saved data only."
+        }
+      }
+    ],
+    "formulas": [
+      "u_t=\\nu u_{xx},\\quad x\\in[0,2\\pi),\\quad u(x+2\\pi,t)=u(x,t),\\quad T=\\tfrac14",
+      "\\widehat u_k(T)=e^{-\\nu k^2T}\\widehat u_k(0)",
+      "v^{\\ell+1}=\\tanh\\!\\left(W_\\ell v^\\ell+b_\\ell+\\mathcal F_N^{-1}(R_\\ell\\mathcal F_Nv^\\ell)\\right),\\quad \\ell=0,1",
+      "\\mathrm{relative\\ error}=\\frac{\\operatorname{RMS}(u_\\theta-u_{\\rm ref})}{\\operatorname{RMS}(u_{\\rm ref})}\\quad\\text{only if }\\operatorname{RMS}(u_{\\rm ref})>10^{-12}"
+    ]
+  },
+  {
+    "id": "enzyme-qssa",
+    "method_ids": [
+      "sdirk2",
+      "step-doubling",
+      "newton",
+      "rk4"
+    ],
+    "title": {
+      "ja": "酵素反応の保存と準定常近似",
+      "en": "Enzyme conservation and QSSA"
+    },
+    "summary": {
+      "ja": "全4状態と準定常近似を比較し、初期層と積分誤差を分けます。",
+      "en": "Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism."
+    },
+    "assumptions": {
+      "ja": "閉鎖反応E+S⇌C→E+Pを無次元化し、k₁=10、k₋₁=k₂=1、S₀=1、C₀=P₀=0、E₀=0.01/0.002。Kₘ=0.2、ε=E₀/(Kₘ+S₀)=1/120,1/600、θ=E₀t∈[0,0.5]です。",
+      "en": "Use the closed dimensionless reaction E+S⇌C→E+P with k₁=10, k₋₁=k₂=1, S₀=1, C₀=P₀=0 and E₀=0.01 or 0.002. Then Kₘ=0.2, ε=E₀/(Kₘ+S₀)=1/120 or 1/600, and θ=E₀t ranges from 0 to 0.5."
+    },
+    "algorithm": {
+      "ja": "全4状態をSDIRK2のstep doublingで積分し、各段のNewton法では同じ重み付きL∞残差とArmijo条件を使います。縮約Michaelis–Menten式はθ上の別RK4計算で求め、全系の積分誤差と近似モデル誤差を混同しません。",
+      "en": "Integrate all four states with SDIRK2 step doubling, using the same weighted L∞ residual for Newton convergence and Armijo backtracking. Evolve the reduced Michaelis–Menten equation separately with RK4 in θ, keeping integration error distinct from model-reduction error."
+    },
+    "validation": {
+      "ja": "独立な全系Radau/BDF参照、縮約式の陰的スカラー恒等式、E+C=E₀とS+C+P=1、正値性、実際の採用・棄却・Newton作業を照合。初期層を含む全時間と、事前指定θ≥0.02の近似誤差を別保存します。",
+      "en": "Compare with independent full-system Radau/BDF references and an implicit scalar identity for the reduced equation. Check E+C=E₀, S+C+P=1, positivity and actual acceptance, rejection and Newton work. Retain both all-time errors including the initial layer and errors on the declared θ≥0.02 window."
+    },
+    "limits": {
+      "ja": "2つの小εと固定反応定数だけの教育例です。εは尺度比であり、その値だけを厳密なQSSA誤差上界とはしません。θ≥0.02を初期層終了の証明とは呼ばず、生体内の反応・観測値へ外挿しません。",
+      "en": "These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction."
+    },
+    "domains": [
+      "biology"
+    ],
+    "code_files": [
+      "run.py",
+      "experiments.py",
+      "io_utils.py",
+      "biology.py"
+    ],
+    "reference_files": [
+      "PROTOCOL.md",
+      "source-reading.json",
+      "acceptance.json"
+    ],
+    "references": [
+      {
+        "id": "mm-eilertsen-v2-selected",
+        "title": "Rigorous estimates for the quasi-steady state approximation of the Michaelis–Menten reaction mechanism at low enzyme concentrations",
+        "url": "https://arxiv.org/html/2305.12602v2",
+        "accessed_on": "2026-11-24",
+        "review_level": "selected-primary-body",
+        "review": {
+          "ja": "Selected §1 Eq(1)–(8) and selected discussion around transient-time estimates Eq(32); proofs and complete quantitative bounds unread.",
+          "en": "Selected §1 Eq(1)–(8) and selected discussion around transient-time estimates Eq(32); proofs and complete quantitative bounds unread."
+        },
+        "year": 2024,
+        "year_role": "preprint-version"
+      }
+    ],
+    "gallery_figure": "enzyme-qssa-preview.png",
+    "additional_figures": [
+      {
+        "file": "enzyme-qssa-preview.png",
+        "caption": {
+          "ja": "全4状態と準定常近似を比較し、初期層と積分誤差を分けます。 保存値だけを描画します。",
+          "en": "Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism. This figure reads saved data only."
+        }
+      }
+    ],
+    "formulas": [
+      "\\begin{aligned}\\dot S&=-10ES+C,&\\dot C&=10ES-2C,\\\\\\dot E&=-10ES+2C,&\\dot P&=C.\\end{aligned}",
+      "E+C=E_0,\\quad S+C+P=1,\\quad K_m=\\frac{k_{-1}+k_2}{k_1}=0.2",
+      "\\theta=E_0t,\\quad \\varepsilon=\\frac{E_0}{K_m+S_0}\\in\\left\\{\\frac1{120},\\frac1{600}\\right\\}",
+      "\\frac{dS_{\\rm MM}}{d\\theta}=-\\frac{S_{\\rm MM}}{0.2+S_{\\rm MM}},\\quad S_{\\rm MM}+0.2\\log S_{\\rm MM}=1-\\theta"
+    ]
+  },
+  {
+    "id": "lotka-volterra",
+    "method_ids": [
+      "rk4"
+    ],
+    "title": {
+      "ja": "Lotka–Volterra不変量と正値性",
+      "en": "Lotka–Volterra invariant and positivity"
+    },
+    "summary": {
+      "ja": "正の軌道を独立な対数座標参照と比較します。",
+      "en": "Compare a positive orbit against an independently integrated log-coordinate reference."
+    },
+    "assumptions": {
+      "ja": "無次元の捕食者・被食者系x′=x(1−y)、y′=y(x−1)、初期値(1.2,0.8)、0≤t≤20。正の象限で不変量H=x−log x+y−log yを評価します。",
+      "en": "Use the dimensionless predator–prey equations x′=x(1−y), y′=y(x−1), initial state (1.2,0.8) and 0≤t≤20. Evaluate H=x−log x+y−log y only in the positive quadrant."
+    },
+    "algorithm": {
+      "ja": "固定400/800/1600ステップの古典RK4で物理状態を積分します。独立参照はlog x・log yの変数でRadau/BDFを実行し、主計算には対数変数や保存量の射影を導入しません。",
+      "en": "Integrate physical populations with classical RK4 at 400, 800 and 1600 fixed steps. Independent Radau/BDF references evolve log x and log y; the primary method uses neither a log-coordinate update nor invariant projection."
+    },
+    "validation": {
+      "ja": "独立参照との状態誤差、Hのドリフト、保存された軌道の最小値を別々に測定。参照側では解析Jacobian、Radau/BDF差、刻み精度、Hの時間微分の恒等式を事前資格しています。",
+      "en": "Measure state error against the independent reference, drift of H and the minimum saved population separately. The reference stage qualifies analytic Jacobians, Radau/BDF agreement, tolerance refinement and the identity dH/dt=0."
+    },
+    "limits": {
+      "ja": "1初期値・有限時間の固定比較です。連続系の閉軌道を引き込み極限周期とは呼びません。RK4の厳密な不変量保存、任意刻みでの正値性、長時間の構造保存は保証しません。",
+      "en": "This is a finite-time comparison for one initial state. The continuum closed orbit is not an attracting limit cycle. RK4 is not claimed to preserve H exactly, maintain positivity at arbitrary steps or guarantee long-time geometric fidelity."
+    },
+    "domains": [
+      "biology"
+    ],
+    "code_files": [
+      "run.py",
+      "experiments.py",
+      "io_utils.py",
+      "biology.py"
+    ],
+    "reference_files": [
+      "PROTOCOL.md",
+      "source-reading.json",
+      "acceptance.json"
+    ],
+    "references": [
+      {
+        "id": "moler-predprey-selected",
+        "title": "Experiments in MATLAB, Chapter16: Predator-Prey Model",
+        "url": "https://www.mathworks.com/content/dam/mathworks/mathworks-dot-com/moler/exm/chapters/predprey.pdf",
+        "accessed_on": "2026-11-24",
+        "review_level": "selected-primary-body",
+        "review": {
+          "ja": "Selected extracted text pp3–6: normalized LV equations, equilibrium, periodic-orbit discussion and numerical illustration. No original Lotka/Volterra paper read.",
+          "en": "Selected extracted text pp3–6: normalized LV equations, equilibrium, periodic-orbit discussion and numerical illustration. No original Lotka/Volterra paper read."
+        },
+        "year": 2011,
+        "year_role": "document-version"
+      }
+    ],
+    "gallery_figure": "lotka-volterra-preview.png",
+    "additional_figures": [
+      {
+        "file": "lotka-volterra-preview.png",
+        "caption": {
+          "ja": "正の軌道を独立な対数座標参照と比較します。 保存値だけを描画します。",
+          "en": "Compare a positive orbit against an independently integrated log-coordinate reference. This figure reads saved data only."
+        }
+      }
+    ],
+    "formulas": [
+      "\\dot x=x(1-y),\\quad\\dot y=y(x-1),\\quad(x(0),y(0))=(1.2,0.8),\\quad0\\le t\\le20",
+      "H(x,y)=x-\\log x+y-\\log y,\\quad\\frac{dH}{dt}=0\\quad(x>0,y>0)",
+      "\\frac{d\\log x}{dt}=1-e^{\\log y},\\quad\\frac{d\\log y}{dt}=e^{\\log x}-1"
+    ]
+  },
+  {
+    "id": "seir-linearization",
+    "method_ids": [
+      "rk4"
+    ],
+    "title": {
+      "ja": "SEIR保存則と初期線形化",
+      "en": "SEIR conservation and initial linearization"
+    },
+    "summary": {
+      "ja": "人口保存と2モードの初期線形化を別々に検査します。",
+      "en": "Check population conservation and the full two-mode initial linearization separately."
+    },
+    "assumptions": {
+      "ja": "閉鎖人口S+E+I+R=1、β=0.6、σ=0.3、γ=0.2。η=10⁻⁴/5×10⁻⁵に対し(S,E,I,R)(0)=(1−2η,η,η,0)、0≤t≤20。出生・死亡・外部流入はありません。",
+      "en": "Use a closed population S+E+I+R=1 with β=0.6, σ=0.3 and γ=0.2. For η=10⁻⁴ or 5×10⁻⁵, start from (1−2η,η,η,0) and evolve to t=20. There are no births, deaths or external inflows."
+    },
+    "algorithm": {
+      "ja": "全4状態を固定400/800/1600ステップのRK4で積分。独立非線形参照は偏差をηで尺度化してRadau/BDFで求め、早期のE・I線形化は2×2行列指数の両モードを使います。",
+      "en": "Evolve all four physical states with RK4 at 400, 800 and 1600 fixed steps. Independently compute the nonlinear reference with scaled-deviation Radau/BDF and the early E/I linearization with both modes of the full 2×2 matrix exponential."
+    },
+    "validation": {
+      "ja": "t≤20の全ODE積分誤差・人口保存・非負性と、0≤t≤1の201参照点での線形化モデル誤差を分けます。参照では両ηの尺度付きJacobian、Radau/BDF差とη²に対する余裕、解析的な全行列指数を別資格しています。",
+      "en": "Separate full-ODE integration error, population conservation and nonnegativity through t=20 from linearization-model error at 201 reference points on 0≤t≤1. Qualify scaled Jacobians, Radau/BDF agreement with an η² margin and the analytic full matrix exponential independently."
+    },
+    "limits": {
+      "ja": "2つの小初期感染量による固定係数の整合性比較です。早期線形化をt=20全体の厳密解と見なさず、単一の優勢モードで両モードを置き換えません。実流行の予測・統計的被覆・任意人口への一般保証は行いません。",
+      "en": "These fixed-coefficient calculations compare two small initial infection levels. The early linearization is not an exact solution through t=20, and a single dominant mode does not replace the two-mode solution. No epidemic forecast, statistical coverage or arbitrary-population guarantee is claimed."
+    },
+    "domains": [
+      "biology"
+    ],
+    "code_files": [
+      "run.py",
+      "experiments.py",
+      "io_utils.py",
+      "biology.py"
+    ],
+    "reference_files": [
+      "PROTOCOL.md",
+      "source-reading.json",
+      "acceptance.json"
+    ],
+    "references": [
+      {
+        "id": "hethcote2000-selected",
+        "title": "The Mathematics of Infectious Diseases",
+        "url": "https://math.uchicago.edu/~shmuel/Modeling/hethcote2000%20Mathematics%20of%20Infectious%20diseases.pdf",
+        "accessed_on": "2026-11-24",
+        "review_level": "selected-primary-body",
+        "review": {
+          "ja": "Header, selected introduction compartment definitions and §3.1 printedpp618–619, displayed mass-action numbers and Eq(3.1); search around3.2/SEIR limit. Not whole55pages or visual diagram audit.",
+          "en": "Header, selected introduction compartment definitions and §3.1 printedpp618–619, displayed mass-action numbers and Eq(3.1); search around3.2/SEIR limit. Not whole55pages or visual diagram audit."
+        },
+        "year": 2000,
+        "year_role": "publication"
+      }
+    ],
+    "gallery_figure": "seir-linearization-preview.png",
+    "additional_figures": [
+      {
+        "file": "seir-linearization-preview.png",
+        "caption": {
+          "ja": "人口保存と2モードの初期線形化を別々に検査します。 保存値だけを描画します。",
+          "en": "Check population conservation and the full two-mode initial linearization separately. This figure reads saved data only."
+        }
+      }
+    ],
+    "formulas": [
+      "\\begin{aligned}\\dot S&=-\\beta SI,&\\dot E&=\\beta SI-\\sigma E,\\\\\\dot I&=\\sigma E-\\gamma I,&\\dot R&=\\gamma I.\\end{aligned}",
+      "\\beta=0.6,\\quad\\sigma=0.3,\\quad\\gamma=0.2,\\quad(S,E,I,R)(0)=(1-2\\eta,\\eta,\\eta,0)",
+      "S+E+I+R=1,\\quad\\eta\\in\\{10^{-4},5\\times10^{-5}\\}",
+      "\\begin{pmatrix}E_{\\rm lin}(t)\\\\ I_{\\rm lin}(t)\\end{pmatrix}=\\exp\\!\\left[t\\begin{pmatrix}-0.3&0.6\\\\0.3&-0.2\\end{pmatrix}\\right]\\begin{pmatrix}\\eta\\\\\\eta\\end{pmatrix}"
+    ]
+  }
+]

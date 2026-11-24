@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_on": "2026-11-24",
+  "reviewed_on": "2026-11-25",
   "edition": "2026-11-22",
   "title": {
     "ja": "分野ごとの小規模実装・検証をたどる",
@@ -888,6 +888,53 @@
         "ja": "SHAKE/RATTLE、Kepler軌道、結合振動子を固定した小規模条件で比較します。拘束、位相、エネルギーと丸め誤差を別々に示します。",
         "en": "Fixed small examples compare SHAKE/RATTLE, Kepler orbits and coupled oscillators. Constraints, phase, energy and rounding effects are reported separately."
       }
+    },
+    {
+      "id": "quadrature-controls",
+      "edition": "2026-11-25",
+      "title": {
+        "ja": "領域別・二重指数・疎格子求積",
+        "en": "Domain-aware, double-exponential and sparse-grid quadrature"
+      },
+      "fields": [
+        "foundations"
+      ],
+      "intro": {
+        "ja": "固定した積分を適用条件に応じて比較し、推定誤差・実誤差・予算終了・未解像対照を区別します。",
+        "en": "Compare fixed integrals with domain-aware methods, separating estimated errors, actual errors, budget exits and underresolution controls."
+      }
+    },
+    {
+      "id": "approximation-controls",
+      "edition": "2026-11-25",
+      "title": {
+        "ja": "補間・スプライン・Haarの固定対照",
+        "en": "Fixed interpolation, spline and Haar controls"
+      },
+      "fields": [
+        "foundations"
+      ],
+      "intro": {
+        "ja": "節点・表現・丸め、C2連続性と形状保存、境界拡張とシフトをそれぞれ分けた小さな固定例です。",
+        "en": "Small fixed examples separate nodes, representation and rounding; C2 continuity and shape preservation; and boundary extension and shifts."
+      }
+    },
+    {
+      "id": "small-models",
+      "edition": "2026-11-25",
+      "title": {
+        "ja": "小型学習モデルと生物ODEの独立検証",
+        "en": "Small learned models and independently checked biological ODEs"
+      },
+      "fields": [
+        "foundations",
+        "differentiation-inverse",
+        "biology"
+      ],
+      "intro": {
+        "ja": "Poisson PINN・周期熱FNOと、酵素・捕食被食・SEIRを固定予算で調べます。学習/近似の元精度目標と再現検査を区別します。",
+        "en": "Study a Poisson PINN, periodic-heat FNO and enzyme, predator–prey and SEIR systems under fixed budgets. Original learning and approximation goals remain separate from reproduction checks."
+      }
     }
   ],
   "case_problem_ids": {
@@ -1017,7 +1064,18 @@
     "high-index-pendulum": "high-index-pendulum",
     "shake-rattle-pendulum": "high-index-pendulum",
     "kepler-eccentricity": "gravity-kepler",
-    "multifrequency-resonance": "multifrequency-resonance"
+    "multifrequency-resonance": "multifrequency-resonance",
+    "quadpack-domain-selection": "quadpack-domain-selection",
+    "gk15-double-exponential": "gk15-double-exponential",
+    "tensor-smolyak-dimensions": "tensor-smolyak-dimensions",
+    "runge-barycentric-clenshaw": "runge-barycentric-clenshaw",
+    "spline-shape-controls": "spline-shape-controls",
+    "haar-mallat-boundary-threshold": "haar-mallat-boundary-threshold",
+    "pinn-poisson": "poisson-1d-dirichlet",
+    "fno-periodic-heat": "heat-periodic",
+    "enzyme-qssa": "enzyme-qssa",
+    "lotka-volterra": "lotka-volterra",
+    "seir-linearization": "seir-linearization"
   },
   "routine_policy": {
     "ja": "通常の補助例CIは、公開レジストリに登録した補助配布グループをNumPy・SciPy・pytestで実行します。保存済みの独立参照は版・入力・実行記録を照合し、新規の参照計算と区別します。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。",
@@ -1423,6 +1481,50 @@
     "multifrequency-resonance": {
       "ja": "中心の実浮動係数写像はunresolvedとし、理想πのJordan性を移しません。64刻み増幅と小さい固定入力の観測であり、走査した共鳴図・一般安定性・長時間の普遍誤差定理は主張しません。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
       "en": "The central actual floating map remains unresolved; ideal-pi Jordan structure is not transferred to it. Results concern 64-step amplification and small fixed inputs, not a scanned resonance diagram, general stability or a universal long-time error theorem. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
+    },
+    "quadpack-domain-selection": {
+      "ja": "Simpsonの特異節点失敗と未達精度を保存し、推定誤差の一般保証にしません。 数学的な積分領域と次元は式・入力に示します。パラメータや誤差の図軸に物理空間の次元を割り当てません。 再現確認の合格は精度目標の全達成を意味しません。元の目標判定は達成25件・未達2件・計算不能3件です。FALSE/NAと失敗rawを保持します。",
+      "en": "Singular-node failures and unmet Simpson goals remain visible; error estimates are not general guarantees. The formulas and inputs specify mathematical integration domains and dimensions. Parameter and error axes are not physical spatial coordinates. Passing reproduction checks does not mean that every accuracy goal was met. Original row outcomes: 25 met, 2 unmet and 3 not computable. False/NA outcomes and raw failures are retained."
+    },
+    "gk15-double-exponential": {
+      "ja": "半無限exp-sinh/全実線sinh-sinhは未実装。無限台形SUMの省略項のboundは提供しません。 数学的な積分領域と次元は式・入力に示します。パラメータや誤差の図軸に物理空間の次元を割り当てません。 再現確認の合格は精度目標の全達成を意味しません。元の目標判定は達成26件・未達7件・計算不能0件です。FALSE/NAと失敗rawを保持します。",
+      "en": "Half-line exp-sinh and whole-line sinh-sinh are unimplemented; no omitted infinite-grid sum bound is provided. The formulas and inputs specify mathematical integration domains and dimensions. Parameter and error axes are not physical spatial coordinates. Passing reproduction checks does not mean that every accuracy goal was met. Original row outcomes: 26 met, 7 unmet and 0 not computable. False/NA outcomes and raw failures are retained."
+    },
+    "tensor-smolyak-dimensions": {
+      "ja": "一般の誤差単調性、常時正重み、疎格子の費用優位は主張しません。物理PDEの空間ではありません。 数学的な積分領域と次元は式・入力に示します。パラメータや誤差の図軸に物理空間の次元を割り当てません。 再現確認の合格は精度目標の全達成を意味しません。元の目標判定は達成24件・未達18件・計算不能0件です。FALSE/NAと失敗rawを保持します。",
+      "en": "No general error monotonicity, positive-weight or cost-superiority claim; these are integration coordinates, not a physical PDE space. The formulas and inputs specify mathematical integration domains and dimensions. Parameter and error axes are not physical spatial coordinates. Passing reproduction checks does not mean that every accuracy goal was met. Original row outcomes: 24 met, 18 unmet and 0 not computable. False/NA outcomes and raw failures are retained."
+    },
+    "runge-barycentric-clenshaw": {
+      "ja": "標本最大誤差は連続一様ノルムの証明ではありません。丸め節点の閉重み・離散直交性は厳密と見なしません。任意次数・任意点の安定性は保証しません。",
+      "en": "A sampled maximum error is not a proof of a continuous uniform norm. Closed weights and discrete orthogonality on rounded nodes are not treated as exact. No arbitrary-degree or all-point stability guarantee is made."
+    },
+    "spline-shape-controls": {
+      "ja": "PCHIPは通常C1でありC2とは限りません。一般データの最良近似・外挿・ノイズ平滑化は対象外。SciPyは原著完全閲読の代用ではありません。",
+      "en": "PCHIP is generally C1, not necessarily C2. Best approximation, extrapolation and noise smoothing are outside scope. A SciPy comparison does not substitute for reading the original papers."
+    },
+    "haar-mallat-boundary-threshold": {
+      "ja": "Haarに限定し長いフィルタや画像圧縮は対象外。一般の対称拡張に正規直交性を仮定しません。シフト不変性は要求せず、シフト別差を保存します。 標本添字は物理空間の座標ではありません。境界処理を含む有限長信号の写像です。",
+      "en": "Limited to Haar, without longer filters or image compression. General symmetric extension is not assumed orthonormal. Shift invariance is not required; shift-dependent differences are retained. Sample indices are not physical spatial coordinates. This is a finite-signal map with declared boundary handling."
+    },
+    "pinn-poisson": {
+      "ja": "1つの滑らかなPoisson問題と3seedの固定予算実験です。小さい学習損失だけで独立点精度の達成や一般的なPINN学習成功を保証しません。未達目標も表示します。",
+      "en": "This fixed-budget study covers one smooth Poisson problem and three seeds. A small training loss does not establish independent-point accuracy or general PINN training success. Unmet goals remain visible."
+    },
+    "fno-periodic-heat": {
+      "ja": "固定された小型離散作用素の比較で、任意の解像度・分布に対する一般化やOOD精度を保証しません。N=64から32への差には非線形aliasingが含まれ、連続体離散化誤差とは呼びません。最適化収束と固定予算終了は別です。 旧熱拡散primaryを保持し、今回の[0,2π)・問題単位データ族・νとTは別入力として示します。",
+      "en": "This comparison concerns a fixed tiny discrete operator, without arbitrary-resolution, distributional or OOD guarantees. The N=64-to-32 discrepancy includes nonlinear aliasing and is not a continuum discretization error. Optimizer convergence is distinct from normal budget termination. The old heat primary remains. This [0,2pi) whole-problem family, diffusivities and final time are separate fixed inputs."
+    },
+    "enzyme-qssa": {
+      "ja": "2つの小εと固定反応定数だけの教育例です。εは尺度比であり、その値だけを厳密なQSSA誤差上界とはしません。θ≥0.02を初期層終了の証明とは呼ばず、生体内の反応・観測値へ外挿しません。 時間・濃度・個体数の軸は空間次元ではありません。率は教育用で疾病・実験予測ではありません。",
+      "en": "These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction. Time, concentrations and populations do not define a spatial dimension. The rates are educational, not disease or experimental predictions."
+    },
+    "lotka-volterra": {
+      "ja": "1初期値・有限時間の固定比較です。連続系の閉軌道を引き込み極限周期とは呼びません。RK4の厳密な不変量保存、任意刻みでの正値性、長時間の構造保存は保証しません。 時間・濃度・個体数の軸は空間次元ではありません。率は教育用で疾病・実験予測ではありません。",
+      "en": "This is a finite-time comparison for one initial state. The continuum closed orbit is not an attracting limit cycle. RK4 is not claimed to preserve H exactly, maintain positivity at arbitrary steps or guarantee long-time geometric fidelity. Time, concentrations and populations do not define a spatial dimension. The rates are educational, not disease or experimental predictions."
+    },
+    "seir-linearization": {
+      "ja": "2つの小初期感染量による固定係数の整合性比較です。早期線形化をt=20全体の厳密解と見なさず、単一の優勢モードで両モードを置き換えません。実流行の予測・統計的被覆・任意人口への一般保証は行いません。 時間・濃度・個体数の軸は空間次元ではありません。率は教育用で疾病・実験予測ではありません。",
+      "en": "These fixed-coefficient calculations compare two small initial infection levels. The early linearization is not an exact solution through t=20, and a single dominant mode does not replace the two-mode solution. No epidemic forecast, statistical coverage or arbitrary-population guarantee is claimed. Time, concentrations and populations do not define a spatial dimension. The rates are educational, not disease or experimental predictions."
     }
   },
   "case_equations": {
@@ -2225,6 +2327,105 @@
       "note": {
         "ja": "α=1、ω=10/20、q0=(1,1/ω)、p0=0。中心probeは保存binary64のhとsin/cosをそのまま使い、πへ丸め直しません。",
         "en": "alpha=1, omega=10/20, q0=(1,1/omega) and p0=0. Central probes retain the evaluated binary64 h and sin/cos coefficients without snapping to mathematical pi."
+      }
+    },
+    "quadpack-domain-selection": {
+      "ids": [
+        "definite-integrals"
+      ],
+      "note": {
+        "ja": "無限Gaussian、有限振動2周波数、半無限Fourier、内部特異点。絶対公差1e-6/1e-8/1e-10、epsrel=0。",
+        "en": "Whole-line Gaussian, two finite frequencies, half-line Fourier and an internal singularity; absolute tolerances1e-6/1e-8/1e-10 and epsrel0."
+      }
+    },
+    "gk15-double-exponential": {
+      "ids": [
+        "definite-integrals"
+      ],
+      "note": {
+        "ja": "exp(x)、x^(-1/3)、−log(x)を[0,1]で積分。h=1/2〜1/16、切断T=3/4。",
+        "en": "Integrate exp(x), x^(-1/3) and -log(x) on[0,1], with h from1/2 to1/16 and cutoffs3/4."
+      }
+    },
+    "tensor-smolyak-dimensions": {
+      "ids": [
+        "definite-integrals"
+      ],
+      "note": {
+        "ja": "[0,1]^d、d=2/3/4。テンソルlevel1/2/3、疎格子level1/2/3/4。",
+        "en": "The integration domain is[0,1]^d for d2/3/4; tensor levels1/2/3 and sparse levels1/2/3/4."
+      }
+    },
+    "runge-barycentric-clenshaw": {
+      "ids": [
+        "polynomial-interpolation"
+      ],
+      "note": {
+        "ja": "無次元区間[-1,1]、次数8・16・32、固定2048中点。節点・データ・重みは実際のbinary64値を対象にします。",
+        "en": "Dimensionless interval [-1,1], degrees 8, 16 and 32, and 2048 fixed midpoints. Actual binary64 nodes, data and weights define the discrete problem."
+      }
+    },
+    "spline-shape-controls": {
+      "ids": [
+        "cubic-spline-pchip"
+      ],
+      "note": {
+        "ja": "実binary64の節点と値を使用。自然条件は両端2階微分ゼロ、clamped条件は入力端点1階微分です。",
+        "en": "Use actual binary64 knots and values. Natural conditions set both endpoint second derivatives to zero; clamped conditions prescribe the first derivatives from the input."
+      }
+    },
+    "haar-mallat-boundary-threshold": {
+      "ids": [
+        "discrete-haar-transform"
+      ],
+      "note": {
+        "ja": "奇数長の各段で周期型は先頭、対称型は末尾を1点追加し、再構成時に切り戻します。詳細係数のみ閾値0.2を使用。",
+        "en": "At each odd-length level append the first sample for periodic extension or the last for symmetric extension, then crop during synthesis. Apply threshold 0.2 only to detail coefficients."
+      }
+    },
+    "pinn-poisson": {
+      "ids": [
+        "poisson-laplace"
+      ],
+      "note": {
+        "ja": "無次元区間[0,1]で −uₓₓ=π²sin(πx)、u(0)=u(1)=0。中間層16素子・49実パラメータ、固定seed 8401–8403、学習64点と独立評価257点を用います。",
+        "en": "Solve dimensionless −uₓₓ=π² sin(πx) on [0,1] with zero Dirichlet data. Use sixteen hidden units, 49 real parameters, seeds 8401–8403, 64 training points and 257 separate evaluation points."
+      }
+    },
+    "fno-periodic-heat": {
+      "ids": [
+        "heat"
+      ],
+      "note": {
+        "ja": "周期区間[0,2π)、uₜ=νuₓₓ、T=0.25。同じ関数の点を分散させず、全46問題を学習24・検証6・未見ID8・νのOOD4・周波数のOOD4に分けます。2固定seed、93実パラメータです。",
+        "en": "Use periodic heat flow uₜ=νuₓₓ on [0,2π) to T=0.25. Split 46 whole problems into 24 training, 6 validation, 8 held-out ID, 4 viscosity-OOD and 4 spectrum-OOD problems. Use two fixed seeds and 93 real parameters."
+      }
+    },
+    "enzyme-qssa": {
+      "ids": [
+        "bio-enzyme"
+      ],
+      "note": {
+        "ja": "閉鎖反応E+S⇌C→E+Pを無次元化し、k₁=10、k₋₁=k₂=1、S₀=1、C₀=P₀=0、E₀=0.01/0.002。Kₘ=0.2、ε=E₀/(Kₘ+S₀)=1/120,1/600、θ=E₀t∈[0,0.5]です。",
+        "en": "Use the closed dimensionless reaction E+S⇌C→E+P with k₁=10, k₋₁=k₂=1, S₀=1, C₀=P₀=0 and E₀=0.01 or 0.002. Then Kₘ=0.2, ε=E₀/(Kₘ+S₀)=1/120 or 1/600, and θ=E₀t ranges from 0 to 0.5."
+      }
+    },
+    "lotka-volterra": {
+      "ids": [
+        "bio-lotka-volterra"
+      ],
+      "note": {
+        "ja": "無次元の捕食者・被食者系x′=x(1−y)、y′=y(x−1)、初期値(1.2,0.8)、0≤t≤20。正の象限で不変量H=x−log x+y−log yを評価します。",
+        "en": "Use the dimensionless predator–prey equations x′=x(1−y), y′=y(x−1), initial state (1.2,0.8) and 0≤t≤20. Evaluate H=x−log x+y−log y only in the positive quadrant."
+      }
+    },
+    "seir-linearization": {
+      "ids": [
+        "seir-compartment"
+      ],
+      "note": {
+        "ja": "閉鎖人口S+E+I+R=1、β=0.6、σ=0.3、γ=0.2。η=10⁻⁴/5×10⁻⁵に対し(S,E,I,R)(0)=(1−2η,η,η,0)、0≤t≤20。出生・死亡・外部流入はありません。",
+        "en": "Use a closed population S+E+I+R=1 with β=0.6, σ=0.3 and γ=0.2. For η=10⁻⁴ or 5×10⁻⁵, start from (1−2η,η,η,0) and evolve to t=20. There are no births, deaths or external inflows."
       }
     }
   }

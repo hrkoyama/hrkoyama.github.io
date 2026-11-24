@@ -1,0 +1,187 @@
+{
+  "case_ids": [
+    "pinn-poisson",
+    "fno-periodic-heat",
+    "enzyme-qssa",
+    "lotka-volterra",
+    "seir-linearization"
+  ],
+  "reproduction_check_ids": {
+    "pinn-poisson": [
+      "seed-8401:finite-shape",
+      "seed-8401:optimizer-return-status",
+      "seed-8401:actual-work",
+      "seed-8402:finite-shape",
+      "seed-8402:optimizer-return-status",
+      "seed-8402:actual-work",
+      "seed-8403:finite-shape",
+      "seed-8403:optimizer-return-status",
+      "seed-8403:actual-work",
+      "fd-31:true-residual",
+      "fd-63:true-residual",
+      "fd-127:true-residual"
+    ],
+    "fno-periodic-heat": [
+      "seed-8501:finite-parameters",
+      "seed-8501:optimizer-return-status",
+      "seed-8501:actual-work",
+      "seed-8501:relative-NA",
+      "seed-8502:finite-parameters",
+      "seed-8502:optimizer-return-status",
+      "seed-8502:actual-work",
+      "seed-8502:relative-NA",
+      "disjoint-whole-problem-IDs"
+    ],
+    "enzyme-qssa": [
+      "enzyme-01-r1e-06:completed-work",
+      "enzyme-01-r1e-06:finite",
+      "enzyme-01-r1e-08:completed-work",
+      "enzyme-01-r1e-08:finite",
+      "enzyme-002-r1e-06:completed-work",
+      "enzyme-002-r1e-06:finite",
+      "enzyme-002-r1e-08:completed-work",
+      "enzyme-002-r1e-08:finite",
+      "mm-200:finite",
+      "mm-400:finite"
+    ],
+    "lotka-volterra": [
+      "lv-400:actual-grid-finite",
+      "lv-800:actual-grid-finite",
+      "lv-1600:actual-grid-finite"
+    ],
+    "seir-linearization": [
+      "seir-1e-4-400:actual-grid-finite",
+      "seir-1e-4-800:actual-grid-finite",
+      "seir-1e-4-1600:actual-grid-finite",
+      "seir-5e-5-400:actual-grid-finite",
+      "seir-5e-5-800:actual-grid-finite",
+      "seir-5e-5-1600:actual-grid-finite"
+    ]
+  },
+  "original_target_ids": {
+    "pinn-poisson": [
+      "seed-8401:optimizer-converged",
+      "seed-8401:solution_Linf",
+      "seed-8401:PDE_normalized_RMS",
+      "seed-8401:boundary_Linf",
+      "seed-8402:optimizer-converged",
+      "seed-8402:solution_Linf",
+      "seed-8402:PDE_normalized_RMS",
+      "seed-8402:boundary_Linf",
+      "seed-8403:optimizer-converged",
+      "seed-8403:solution_Linf",
+      "seed-8403:PDE_normalized_RMS",
+      "seed-8403:boundary_Linf",
+      "fd-31:solution_Linf",
+      "fd-63:solution_Linf",
+      "fd-127:solution_Linf"
+    ],
+    "fno-periodic-heat": [
+      "seed-8501:optimizer-converged",
+      "seed-8501:ID-N32-relative",
+      "seed-8501:ID-N64-relative",
+      "seed-8501:norm-control-absolute",
+      "seed-8502:optimizer-converged",
+      "seed-8502:ID-N32-relative",
+      "seed-8502:ID-N64-relative",
+      "seed-8502:norm-control-absolute"
+    ],
+    "enzyme-qssa": [
+      "enzyme-01-r1e-06:integration",
+      "enzyme-01-r1e-06:mass",
+      "enzyme-01-r1e-06:negative-part",
+      "enzyme-01-r1e-06:QSSA-model",
+      "enzyme-01-r1e-08:integration",
+      "enzyme-01-r1e-08:mass",
+      "enzyme-01-r1e-08:negative-part",
+      "enzyme-01-r1e-08:QSSA-model",
+      "enzyme-002-r1e-06:integration",
+      "enzyme-002-r1e-06:mass",
+      "enzyme-002-r1e-06:negative-part",
+      "enzyme-002-r1e-06:QSSA-model",
+      "enzyme-002-r1e-08:integration",
+      "enzyme-002-r1e-08:mass",
+      "enzyme-002-r1e-08:negative-part",
+      "enzyme-002-r1e-08:QSSA-model"
+    ],
+    "lotka-volterra": [
+      "lv-400:state",
+      "lv-400:invariant",
+      "lv-800:state",
+      "lv-800:invariant",
+      "lv-1600:state",
+      "lv-1600:invariant"
+    ],
+    "seir-linearization": [
+      "seir-1e-4-400:integration",
+      "seir-1e-4-400:mass",
+      "seir-1e-4-400:negative-part",
+      "seir-1e-4-800:integration",
+      "seir-1e-4-800:mass",
+      "seir-1e-4-800:negative-part",
+      "seir-1e-4-1600:integration",
+      "seir-1e-4-1600:mass",
+      "seir-1e-4-1600:negative-part",
+      "seir-5e-5-400:integration",
+      "seir-5e-5-400:mass",
+      "seir-5e-5-400:negative-part",
+      "seir-5e-5-800:integration",
+      "seir-5e-5-800:mass",
+      "seir-5e-5-800:negative-part",
+      "seir-5e-5-1600:integration",
+      "seir-5e-5-1600:mass",
+      "seir-5e-5-1600:negative-part",
+      "seir-1e-4:early-linearization",
+      "seir-5e-5:early-linearization"
+    ]
+  },
+  "reproduction_check_counts": {
+    "pinn-poisson": 12,
+    "fno-periodic-heat": 9,
+    "enzyme-qssa": 10,
+    "lotka-volterra": 3,
+    "seir-linearization": 6
+  },
+  "original_target_counts": {
+    "pinn-poisson": 15,
+    "fno-periodic-heat": 8,
+    "enzyme-qssa": 16,
+    "lotka-volterra": 6,
+    "seir-linearization": 20
+  },
+  "pytest_function_ids": [
+    "test_pinn_hard_boundary",
+    "test_pinn_parameter_draw_reproducible",
+    "test_pinn_constant_network_product_rule",
+    "test_pinn_output_bias_residual_column",
+    "test_pinn_callback_cap_retains_candidate",
+    "test_fno_parameter_layout",
+    "test_fno_output_bias_is_not_hidden",
+    "test_fno_dc_control_direct_transform",
+    "test_fno_real_coordinate_jacobian_shape",
+    "test_problem_split_is_whole_function",
+    "test_heat_initial_and_mode_decay",
+    "test_same_function_nested_grid",
+    "test_enzyme_two_conservation_identities",
+    "test_enzyme_jacobian_conservation",
+    "test_lv_equilibrium_and_positive_log_coordinates",
+    "test_seir_total_transfer_identity",
+    "test_rk4_retains_completed_equilibrium",
+    "test_enzyme_output_grid_contains_initial_layer",
+    "test_stage_zero_rhs_retains_true_initial",
+    "test_trace_nonfinite_raw_array_is_not_suppressed",
+    "test_fresh_directory_rejects_overwrite",
+    "test_lookup_refuses_interpolation",
+    "test_original_false_target_is_preserved",
+    "test_NA_relative_CSV_is_blank",
+    "test_normal_budget_return_does_not_mask_abnormal_failure"
+  ],
+  "planned_records": {
+    "pinn-poisson": 6,
+    "fno-periodic-heat": 2,
+    "enzyme-qssa": 6,
+    "lotka-volterra": 3,
+    "seir-linearization": 6
+  },
+  "scope": "Static fixed inventory, not observed pytest/main success. All original goals retain measured booleans; no expected-failure mask."
+}

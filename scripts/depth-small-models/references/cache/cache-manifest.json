@@ -1,0 +1,16 @@
+{
+  "files_sha256": {
+    "qualification.json": "7f22ba3febd8dc3358b1b1047920473e246320caa03d0c441a28a8c301dbe69e",
+    "heat-data.npz": "65aa51875e11eedc9c83de6359f622704d7f0b93b9be44e70c4c6a8c30a5b7c9",
+    "heat-problems.json": "f099e9da2326ca67b4f55e00ac6408892ecf3175fdb05e04fd0e17ee57e5c2b7",
+    "enzyme-01-qualified.npz": "44b38960781e05cb6909f199fa122e526e5d18072536c4b62e00baa592765e10",
+    "enzyme-002-qualified.npz": "3eb6c017ccf72584caa8df1ec911b4a66b406aab3ef77ca5bf5540ae8af6de6f",
+    "lv-qualified.npz": "bac745850c1dc608239c86b590b7a9c55d0df9a598a8885b2a4c2c17f32ff3db",
+    "seir-1e-4-qualified.npz": "faa5d1883f11f6fd93d8dddcdab6795064eea1f386ef87e4b9d48ff58d93ecc2",
+    "seir-5e-5-qualified.npz": "0612ee4ec60607bac7b24f67ae69c121be4aee3fda69430e151dee51ae52766d",
+    "mm-200-qualified.npz": "3521f192dc7c4593c1b306d6649758f3fb0b0e19b7760298e1df8fff0ea3fc00",
+    "mm-400-qualified.npz": "cfbdffae6bb09ee12273893fe9a9555879ef77684e187673a529177c61025860"
+  },
+  "qualification_receipt_sha256": "efbfc399b3f5d2b786bbac58e458847a3e65f465cc941210d70898728d23961b",
+  "scope": "Byte-identical qualified finite reference cache; no regeneration by main"
+}

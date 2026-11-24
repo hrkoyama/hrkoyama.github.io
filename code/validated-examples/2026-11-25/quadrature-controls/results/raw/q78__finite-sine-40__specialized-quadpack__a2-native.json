@@ -1,0 +1,32 @@
+{
+  "routine": "qawoe",
+  "value": 0.030943160676812815,
+  "estimated_error": 1.0618642991290645e-18,
+  "native_info": {
+    "neval": 25,
+    "last": 0,
+    "iord": {
+      "raw_array": "candidate__native_info__iord"
+    },
+    "alist": {
+      "raw_array": "candidate__native_info__alist"
+    },
+    "blist": {
+      "raw_array": "candidate__native_info__blist"
+    },
+    "rlist": {
+      "raw_array": "candidate__native_info__rlist"
+    },
+    "elist": {
+      "raw_array": "candidate__native_info__elist"
+    },
+    "nnlog": {
+      "raw_array": "candidate__native_info__nnlog"
+    },
+    "momcom": 1,
+    "chebmo": {
+      "raw_array": "candidate__native_info__chebmo"
+    }
+  },
+  "messages": []
+}

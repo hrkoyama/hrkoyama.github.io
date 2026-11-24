@@ -8975,5 +8975,637 @@
   "reference.batch68-77.74b2bab2967d": {
     "en": "Executable evidence is the separately versioned dae-controls supplement; it does not implement a general IDA replacement.",
     "ja": "実行の根拠は版を固定したdae-controls追加配布です。汎用IDAの代替実装ではありません。"
+  },
+  "reference.batch78-87.a66035dc4ee2": {
+    "en": "Domain-aware, double-exponential and sparse-grid quadrature",
+    "ja": "領域別・二重指数・疎格子求積"
+  },
+  "reference.batch78-87.99d9865cfdb4": {
+    "en": "Compare fixed integrals with domain-aware methods, separating estimated errors, actual errors, budget exits and underresolution controls.",
+    "ja": "固定した積分を適用条件に応じて比較し、推定誤差・実誤差・予算終了・未解像対照を区別します。"
+  },
+  "reference.batch78-87.cb158d7ab530": {
+    "en": "Fixed interpolation, spline and Haar controls",
+    "ja": "補間・スプライン・Haarの固定対照"
+  },
+  "reference.batch78-87.9b1c4c606f9a": {
+    "en": "Small fixed examples separate nodes, representation and rounding; C2 continuity and shape preservation; and boundary extension and shifts.",
+    "ja": "節点・表現・丸め、C2連続性と形状保存、境界拡張とシフトをそれぞれ分けた小さな固定例です。"
+  },
+  "reference.batch78-87.0db8886fba1e": {
+    "en": "Small learned models and independently checked biological ODEs",
+    "ja": "小型学習モデルと生物ODEの独立検証"
+  },
+  "reference.batch78-87.531a1d669b7d": {
+    "en": "Study a Poisson PINN, periodic-heat FNO and enzyme, predator–prey and SEIR systems under fixed budgets. Original learning and approximation goals remain separate from reproduction checks.",
+    "ja": "Poisson PINN・周期熱FNOと、酵素・捕食被食・SEIRを固定予算で調べます。学習/近似の元精度目標と再現検査を区別します。"
+  },
+  "reference.batch78-87.11cd05a50fba": {
+    "en": "The formulas and inputs specify mathematical integration domains and dimensions. Parameter and error axes are not physical spatial coordinates. Passing reproduction checks does not mean that every accuracy goal was met. Original row outcomes: 25 met, 2 unmet and 3 not computable. False/NA outcomes and raw failures are retained.",
+    "ja": "数学的な積分領域と次元は式・入力に示します。パラメータや誤差の図軸に物理空間の次元を割り当てません。 再現確認の合格は精度目標の全達成を意味しません。元の目標判定は達成25件・未達2件・計算不能3件です。FALSE/NAと失敗rawを保持します。"
+  },
+  "reference.batch78-87.da5188f73ab4": {
+    "en": "QUADPACK dispatch and finite Simpson companions",
+    "ja": "領域別QUADPACKと有限Simpson対照"
+  },
+  "reference.batch78-87.485d82fab573": {
+    "en": "Whole-line Gaussian, two finite frequencies, half-line Fourier and an internal singularity; absolute tolerances1e-6/1e-8/1e-10 and epsrel0.",
+    "ja": "無限Gaussian、有限振動2周波数、半無限Fourier、内部特異点。絶対公差1e-6/1e-8/1e-10、epsrel=0。"
+  },
+  "reference.batch78-87.99414a81552e": {
+    "en": "Independent analytic interval references and actual callback counts are checked. The finite Gaussian target is an interval, not an invented erf value. Singular-node failures and unmet Simpson goals remain visible; error estimates are not general guarantees.",
+    "ja": "独立の解析区間参照と実callback数を照合します。有限Gaussianは点値でなく厳密区間です。 Simpsonの特異節点失敗と未達精度を保存し、推定誤差の一般保証にしません。"
+  },
+  "reference.batch78-87.dfa234b31c6c": {
+    "en": "Fifteen specialized quadratures and fifteen Simpson companions use fixed inputs.",
+    "ja": "15本の特殊化求積と15本のSimpson対照を固定入力で比較します。"
+  },
+  "reference.batch78-87.1cefcbba6198": {
+    "en": "Explicit domain/weight dispatch retains active full_output prefixes. The existing Simpson function is unchanged.",
+    "ja": "領域と重みを明示しfull_outputの活動prefixを保持。既存Simpson関数は不変。"
+  },
+  "reference.batch78-87.56ecbecc9876": {
+    "en": "Independent analytic interval references and actual callback counts are checked. The finite Gaussian target is an interval, not an invented erf value.",
+    "ja": "独立の解析区間参照と実callback数を照合します。有限Gaussianは点値でなく厳密区間です。"
+  },
+  "reference.batch78-87.a5ea14060d2a": {
+    "en": "Singular-node failures and unmet Simpson goals remain visible; error estimates are not general guarantees.",
+    "ja": "Simpsonの特異節点失敗と未達精度を保存し、推定誤差の一般保証にしません。"
+  },
+  "reference.batch78-87.668084efb7ba": {
+    "en": "Saved active Fourier contributions and actual errors/call counts",
+    "ja": "活動Fourier周期の保存寄与と誤差・評価数"
+  },
+  "reference.batch78-87.33d65ce5286e": {
+    "en": "The formulas and inputs specify mathematical integration domains and dimensions. Parameter and error axes are not physical spatial coordinates. Passing reproduction checks does not mean that every accuracy goal was met. Original row outcomes: 26 met, 7 unmet and 0 not computable. False/NA outcomes and raw failures are retained.",
+    "ja": "数学的な積分領域と次元は式・入力に示します。パラメータや誤差の図軸に物理空間の次元を割り当てません。 再現確認の合格は精度目標の全達成を意味しません。元の目標判定は達成26件・未達7件・計算不能0件です。FALSE/NAと失敗rawを保持します。"
+  },
+  "reference.batch78-87.3987055bd9c5": {
+    "en": "G7/K15 and finite-interval tanh-sinh",
+    "ja": "G7/K15と有限区間tanh-sinh"
+  },
+  "reference.batch78-87.4abcce73efba": {
+    "en": "Integrate exp(x), x^(-1/3) and -log(x) on[0,1], with h from1/2 to1/16 and cutoffs3/4.",
+    "ja": "exp(x)、x^(-1/3)、−log(x)を[0,1]で積分。h=1/2〜1/16、切断T=3/4。"
+  },
+  "reference.batch78-87.694ba9e98abf": {
+    "en": "Analytic interval references separate total error, continuous tail and finite-window defect. Half-line exp-sinh and whole-line sinh-sinh are unimplemented; no omitted infinite-grid sum bound is provided.",
+    "ja": "解析区間参照で全誤差、連続tail、有限窓誤差を分離します。 半無限exp-sinh/全実線sinh-sinhは未実装。無限台形SUMの省略項のboundは提供しません。"
+  },
+  "reference.batch78-87.ecdcaa1c63f5": {
+    "en": "Nine adaptive GK rows and twenty-four fixed DE sums are compared.",
+    "ja": "9本の適応GKと24本の固定DE和を比較します。"
+  },
+  "reference.batch78-87.321c09d0aeba": {
+    "en": "Shared15-node G7 degree13/K15 degree23; DE uses stable logarithmic products and full endpoint weights.",
+    "ja": "共有15節点、G7次数13/K15次数23。DEは安定log式と全端点重みです。"
+  },
+  "reference.batch78-87.94e076894c17": {
+    "en": "Analytic interval references separate total error, continuous tail and finite-window defect.",
+    "ja": "解析区間参照で全誤差、連続tail、有限窓誤差を分離します。"
+  },
+  "reference.batch78-87.b5110975848e": {
+    "en": "Half-line exp-sinh and whole-line sinh-sinh are unimplemented; no omitted infinite-grid sum bound is provided.",
+    "ja": "半無限exp-sinh/全実線sinh-sinhは未実装。無限台形SUMの省略項のboundは提供しません。"
+  },
+  "reference.batch78-87.651790c54d93": {
+    "en": "Saved transformed integrands and finite-window defects; continuous tails are distinct",
+    "ja": "保存された変換関数と有限窓誤差（連続tailは別量）"
+  },
+  "reference.batch78-87.41ab1d7b4408": {
+    "en": "The formulas and inputs specify mathematical integration domains and dimensions. Parameter and error axes are not physical spatial coordinates. Passing reproduction checks does not mean that every accuracy goal was met. Original row outcomes: 24 met, 18 unmet and 0 not computable. False/NA outcomes and raw failures are retained.",
+    "ja": "数学的な積分領域と次元は式・入力に示します。パラメータや誤差の図軸に物理空間の次元を割り当てません。 再現確認の合格は精度目標の全達成を意味しません。元の目標判定は達成24件・未達18件・計算不能0件です。FALSE/NAと失敗rawを保持します。"
+  },
+  "reference.batch78-87.72e8f872d590": {
+    "en": "Tensor and Smolyak controls in two to four dimensions",
+    "ja": "2〜4次元テンソル・Smolyak対照"
+  },
+  "reference.batch78-87.35db60affa9e": {
+    "en": "The integration domain is[0,1]^d for d2/3/4; tensor levels1/2/3 and sparse levels1/2/3/4.",
+    "ja": "[0,1]^d、d=2/3/4。テンソルlevel1/2/3、疎格子level1/2/3/4。"
+  },
+  "reference.batch78-87.8fc02f0e6c57": {
+    "en": "Analytic integrals are distinct from companion Delta/combination assembly; interaction underresolution at L<d remains visible. No general error monotonicity, positive-weight or cost-superiority claim; these are integration coordinates, not a physical PDE space.",
+    "ja": "解析積分と独立Delta/combination組立を区別し、L<dの相互作用未解像を可視化。 一般の誤差単調性、常時正重み、疎格子の費用優位は主張しません。物理PDEの空間ではありません。"
+  },
+  "reference.batch78-87.26efe2db2ab4": {
+    "en": "Forty-two fixed cubatures compare a smooth product and an interaction product.",
+    "ja": "滑らかな積と相互作用積の42本の固定cubatureを比較します。"
+  },
+  "reference.batch78-87.c5b164f40bf1": {
+    "en": "Canonical dyadic angle keys own shared nodes; signed weights and call ledgers are retained.",
+    "ja": "正規化dyadic角キーで同一節点を所有し、符号付き重みと評価台帳を保持。"
+  },
+  "reference.batch78-87.fe19e715c03d": {
+    "en": "Analytic integrals are distinct from companion Delta/combination assembly; interaction underresolution at L<d remains visible.",
+    "ja": "解析積分と独立Delta/combination組立を区別し、L<dの相互作用未解像を可視化。"
+  },
+  "reference.batch78-87.1dbed398b009": {
+    "en": "No general error monotonicity, positive-weight or cost-superiority claim; these are integration coordinates, not a physical PDE space.",
+    "ja": "一般の誤差単調性、常時正重み、疎格子の費用優位は主張しません。物理PDEの空間ではありません。"
+  },
+  "reference.batch78-87.cdb542f92acd": {
+    "en": "Actual two-dimensional nodes and signed integration weights",
+    "ja": "実2次元節点と符号付き積分重み"
+  },
+  "reference.batch78-87.ff109b8f6167": {
+    "en": "Runge interpolation: nodes, representation and rounding",
+    "ja": "節点・表現・丸めを分けるRunge補間"
+  },
+  "reference.batch78-87.2854598323d7": {
+    "en": "Dimensionless interval [-1,1], degrees 8, 16 and 32, and 2048 fixed midpoints. Actual binary64 nodes, data and weights define the discrete problem.",
+    "ja": "無次元区間[-1,1]、次数8・16・32、固定2048中点。節点・データ・重みは実際のbinary64値を対象にします。"
+  },
+  "reference.batch78-87.b3c604764ad3": {
+    "en": "Separate the stored-data polynomial P, closed-weight rational expression R, stored-coefficient series C and target f. Check exact rational references at 17 probes, operation-based error bounds, node identities and fixed Runge trends. A sampled maximum error is not a proof of a continuous uniform norm. Closed weights and discrete orthogonality on rounded nodes are not treated as exact. No arbitrary-degree or all-point stability guarantee is made.",
+    "ja": "格納値の補間多項式P、閉重み有理式R、格納係数級数C、目標関数fを区別。17点の正確な有理参照・演算別誤差上界・節点一致・固定Runge傾向を照合します。 標本最大誤差は連続一様ノルムの証明ではありません。丸め節点の閉重み・離散直交性は厳密と見なしません。任意次数・任意点の安定性は保証しません。"
+  },
+  "reference.batch78-87.a3573dc03de3": {
+    "en": "Interpolate the Runge and absolute-value functions on fixed equispaced and Lobatto-like nodes, and compare with Clenshaw evaluation.",
+    "ja": "Runge関数と絶対値関数を等間隔・Lobatto型の固定節点で補間し、Clenshaw評価と比較します。"
+  },
+  "reference.batch78-87.31cf047a37b4": {
+    "en": "Implement the second barycentric formula and a full-coefficient Clenshaw recurrence. Retain the closed weights and finite Chebyshev transform on rounded nodes.",
+    "ja": "第2重心公式と全係数Clenshaw漸化式を自作。丸め済み節点上の閉形式重みと有限Chebyshev変換をそのまま保存します。"
+  },
+  "reference.batch78-87.46499c0c0665": {
+    "en": "Separate the stored-data polynomial P, closed-weight rational expression R, stored-coefficient series C and target f. Check exact rational references at 17 probes, operation-based error bounds, node identities and fixed Runge trends.",
+    "ja": "格納値の補間多項式P、閉重み有理式R、格納係数級数C、目標関数fを区別。17点の正確な有理参照・演算別誤差上界・節点一致・固定Runge傾向を照合します。"
+  },
+  "reference.batch78-87.4993463d3bb5": {
+    "en": "A sampled maximum error is not a proof of a continuous uniform norm. Closed weights and discrete orthogonality on rounded nodes are not treated as exact. No arbitrary-degree or all-point stability guarantee is made.",
+    "ja": "標本最大誤差は連続一様ノルムの証明ではありません。丸め節点の閉重み・離散直交性は厳密と見なしません。任意次数・任意点の安定性は保証しません。"
+  },
+  "reference.batch78-87.7050dba525c2": {
+    "en": "Interpolate the Runge and absolute-value functions on fixed equispaced and Lobatto-like nodes, and compare with Clenshaw evaluation. Drawn from saved arrays.",
+    "ja": "Runge関数と絶対値関数を等間隔・Lobatto型の固定節点で補間し、Clenshaw評価と比較します。 保存配列から作図。"
+  },
+  "reference.batch78-87.cc8243670c1d": {
+    "en": "Saved errors, derivatives or squared norms shown separately. The text states the scope of each boundary and representation.",
+    "ja": "保存済み誤差・導関数または二乗ノルムを別表示。各境界・表現の適用範囲は本文を参照。"
+  },
+  "reference.batch78-87.a628d2cc0e2d": {
+    "en": "Natural and clamped splines versus PCHIP",
+    "ja": "自然・端点微分指定スプラインとPCHIP"
+  },
+  "reference.batch78-87.4fa9b6089bf7": {
+    "en": "Use actual binary64 knots and values. Natural conditions set both endpoint second derivatives to zero; clamped conditions prescribe the first derivatives from the input.",
+    "ja": "実binary64の節点と値を使用。自然条件は両端2階微分ゼロ、clamped条件は入力端点1階微分です。"
+  },
+  "reference.batch78-87.33d9d600dd70": {
+    "en": "Compare with exact rational second-derivative systems, rational PCHIP and SciPy 1.14.1. Fifteen endpoint records contain sixteen scalar outputs from thirteen distinct inputs. Independent Fraction formulas show plateau undershoot for the actual binary64 data. PCHIP is generally C1, not necessarily C2. Best approximation, extrapolation and noise smoothing are outside scope. A SciPy comparison does not substitute for reading the original papers.",
+    "ja": "正確な有理2階微分系・有理PCHIP・SciPy 1.14.1を照合。端点15記録は16スカラー出力・13異なる入力。平坦部の負値は実binary64をFraction化した独立式で示します。 PCHIPは通常C1でありC2とは限りません。一般データの最良近似・外挿・ノイズ平滑化は対象外。SciPyは原著完全閲読の代用ではありません。"
+  },
+  "reference.batch78-87.cda41c70fab5": {
+    "en": "Compare C2 continuity and shape preservation on three fixed data sets: a monotone plateau, a cubic and a straight line.",
+    "ja": "平坦部を持つ単調データ・3次式・直線の固定3組で、C2連続性と形状保存を比較します。"
+  },
+  "reference.batch78-87.024f8e3e573b": {
+    "en": "Solve a cubic B-spline collocation system and evaluate it with de Boor recursion. A separate path implements PCHIP harmonic slopes, endpoint limiting and Hermite evaluation.",
+    "ja": "3次Bスプラインの配置行列を解きde Boor評価。別経路でPCHIPの調和平均・端点制限とHermite評価を実装します。"
+  },
+  "reference.batch78-87.fced1f76a3f5": {
+    "en": "Compare with exact rational second-derivative systems, rational PCHIP and SciPy 1.14.1. Fifteen endpoint records contain sixteen scalar outputs from thirteen distinct inputs. Independent Fraction formulas show plateau undershoot for the actual binary64 data.",
+    "ja": "正確な有理2階微分系・有理PCHIP・SciPy 1.14.1を照合。端点15記録は16スカラー出力・13異なる入力。平坦部の負値は実binary64をFraction化した独立式で示します。"
+  },
+  "reference.batch78-87.4b00dd860686": {
+    "en": "PCHIP is generally C1, not necessarily C2. Best approximation, extrapolation and noise smoothing are outside scope. A SciPy comparison does not substitute for reading the original papers.",
+    "ja": "PCHIPは通常C1でありC2とは限りません。一般データの最良近似・外挿・ノイズ平滑化は対象外。SciPyは原著完全閲読の代用ではありません。"
+  },
+  "reference.batch78-87.90d09d93787b": {
+    "en": "Compare C2 continuity and shape preservation on three fixed data sets: a monotone plateau, a cubic and a straight line. Drawn from saved arrays.",
+    "ja": "平坦部を持つ単調データ・3次式・直線の固定3組で、C2連続性と形状保存を比較します。 保存配列から作図。"
+  },
+  "reference.batch78-87.022e779fefc2": {
+    "en": "Sample indices are not physical spatial coordinates. This is a finite-signal map with declared boundary handling.",
+    "ja": "標本添字は物理空間の座標ではありません。境界処理を含む有限長信号の写像です。"
+  },
+  "reference.batch78-87.4d02cf37db6a": {
+    "en": "Haar multiresolution: boundaries, shifts and thresholds",
+    "ja": "Haar多重解像度の境界・シフト・閾値"
+  },
+  "reference.batch78-87.23ec5941d729": {
+    "en": "At each odd-length level append the first sample for periodic extension or the last for symmetric extension, then crop during synthesis. Apply threshold 0.2 only to detail coefficients.",
+    "ja": "奇数長の各段で周期型は先頭、対称型は末尾を1点追加し、再構成時に切り戻します。詳細係数のみ閾値0.2を使用。"
+  },
+  "reference.batch78-87.6665e98cc8aa": {
+    "en": "Use twelve analyses and thirty-six reconstructions. Check independent matrices, Fraction/Decimal coefficients, perfect reconstruction and squared L2 errors. Require the orthogonal error identity only at length 32; retain level-by-level padding energy at length 17. Limited to Haar, without longer filters or image compression. General symmetric extension is not assumed orthonormal. Shift invariance is not required; shift-dependent differences are retained.",
+    "ja": "12解析・36再構成。独立行列・Fraction/Decimal係数、完全再構成、二乗L2誤差を照合。長さ32のみ直交誤差恒等式を要求し、17点では追加エネルギーを段別保存します。 Haarに限定し長いフィルタや画像圧縮は対象外。一般の対称拡張に正規直交性を仮定しません。シフト不変性は要求せず、シフト別差を保存します。"
+  },
+  "reference.batch78-87.1c2495f36de9": {
+    "en": "Apply three-level Haar analysis to short signals of lengths 17 and 32, separating one-sample shifts from odd-length boundary handling.",
+    "ja": "長さ17・32の小信号に3段Haar分解を適用。1標本シフトと奇数長の境界処理を分けて比較します。"
+  },
+  "reference.batch78-87.e68bfeb3ccea": {
+    "en": "Implement pair-sum and pair-difference filters, downsampling and inverse pyramids. Reconstruct with no threshold, hard thresholding and soft thresholding from the same analysis coefficients.",
+    "ja": "和差フィルタ・間引き・逆ピラミッドを自作。閾値なし・hard・softの3条件を同じ解析係数から再構成します。"
+  },
+  "reference.batch78-87.9c14eac4c83c": {
+    "en": "Use twelve analyses and thirty-six reconstructions. Check independent matrices, Fraction/Decimal coefficients, perfect reconstruction and squared L2 errors. Require the orthogonal error identity only at length 32; retain level-by-level padding energy at length 17.",
+    "ja": "12解析・36再構成。独立行列・Fraction/Decimal係数、完全再構成、二乗L2誤差を照合。長さ32のみ直交誤差恒等式を要求し、17点では追加エネルギーを段別保存します。"
+  },
+  "reference.batch78-87.53c1855bb501": {
+    "en": "Limited to Haar, without longer filters or image compression. General symmetric extension is not assumed orthonormal. Shift invariance is not required; shift-dependent differences are retained.",
+    "ja": "Haarに限定し長いフィルタや画像圧縮は対象外。一般の対称拡張に正規直交性を仮定しません。シフト不変性は要求せず、シフト別差を保存します。"
+  },
+  "reference.batch78-87.64cb9929c41b": {
+    "en": "Apply three-level Haar analysis to short signals of lengths 17 and 32, separating one-sample shifts from odd-length boundary handling. Drawn from saved arrays.",
+    "ja": "長さ17・32の小信号に3段Haar分解を適用。1標本シフトと奇数長の境界処理を分けて比較します。 保存配列から作図。"
+  },
+  "reference.batch78-87.76b354d22eeb": {
+    "en": "Poisson PINN: independent grid error",
+    "ja": "1D Poisson PINNと独立格子誤差"
+  },
+  "reference.batch78-87.937e076f6465": {
+    "en": "Solve dimensionless −uₓₓ=π² sin(πx) on [0,1] with zero Dirichlet data. Use sixteen hidden units, 49 real parameters, seeds 8401–8403, 64 training points and 257 separate evaluation points.",
+    "ja": "無次元区間[0,1]で −uₓₓ=π²sin(πx)、u(0)=u(1)=0。中間層16素子・49実パラメータ、固定seed 8401–8403、学習64点と独立評価257点を用います。"
+  },
+  "reference.batch78-87.f4a174be505f": {
+    "en": "Independently qualify all 49 residual-Jacobian columns, loss-gradient coordinates and spatial derivatives. Save off-training solution error against sin(πx), PDE residual, boundary error and finite-difference error separately. Preserve actual convergence and accuracy decisions; a normal budget return is not convergence. This fixed-budget study covers one smooth Poisson problem and three seeds. A small training loss does not establish independent-point accuracy or general PINN training success. Unmet goals remain visible.",
+    "ja": "全49列の残差Jacobianと損失勾配、空間微分を別資格段階で独立照合。解析解sin(πx)に対する独立点誤差、PDE残差、境界値、FD誤差を別に保存します。収束・精度目標の実際の真偽を残し、正常な予算終了を収束と呼びません。 1つの滑らかなPoisson問題と3seedの固定予算実験です。小さい学習損失だけで独立点精度の達成や一般的なPINN学習成功を保証しません。未達目標も表示します。"
+  },
+  "reference.batch78-87.fdc65ccad419": {
+    "en": "Compare a 49-parameter PINN for three fixed seeds with analytic and finite-difference solutions.",
+    "ja": "3固定seedの49パラメータPINNを解析解・FDと比較します。"
+  },
+  "reference.batch78-87.1a2dd10b4a52": {
+    "en": "Train a hard-boundary tanh ansatz with trust-region reflective least squares and an analytic parameter Jacobian. Retain every returned model under the fixed budget. Also solve second-order finite differences with 31, 63 and 127 unknowns using the Thomas algorithm.",
+    "ja": "x(1−x)を掛けて境界値を厳密に組み込むtanhネットワークを、解析的な全パラメータJacobian付きTRF最小二乗法で学習します。固定予算後の全モデルを保存し、31/63/127未知数の2次中心差分とThomas法も計算します。"
+  },
+  "reference.batch78-87.c32850ade703": {
+    "en": "Independently qualify all 49 residual-Jacobian columns, loss-gradient coordinates and spatial derivatives. Save off-training solution error against sin(πx), PDE residual, boundary error and finite-difference error separately. Preserve actual convergence and accuracy decisions; a normal budget return is not convergence.",
+    "ja": "全49列の残差Jacobianと損失勾配、空間微分を別資格段階で独立照合。解析解sin(πx)に対する独立点誤差、PDE残差、境界値、FD誤差を別に保存します。収束・精度目標の実際の真偽を残し、正常な予算終了を収束と呼びません。"
+  },
+  "reference.batch78-87.ddc694343ee4": {
+    "en": "This fixed-budget study covers one smooth Poisson problem and three seeds. A small training loss does not establish independent-point accuracy or general PINN training success. Unmet goals remain visible.",
+    "ja": "1つの滑らかなPoisson問題と3seedの固定予算実験です。小さい学習損失だけで独立点精度の達成や一般的なPINN学習成功を保証しません。未達目標も表示します。"
+  },
+  "reference.batch78-87.33afa939b530": {
+    "en": "Extracted PDF text selected pp.4–6, §2 continuous-time residual, Eq(2)–(4), Burgers setup and loss/optimizer discussion; not all 22 pages and not visual PDF audit.",
+    "ja": "Extracted PDF text selected pp.4–6, §2 continuous-time residual, Eq(2)–(4), Burgers setup and loss/optimizer discussion; not all 22 pages and not visual PDF audit."
+  },
+  "reference.batch78-87.bee3c9a8d4d4": {
+    "en": "Compare a 49-parameter PINN for three fixed seeds with analytic and finite-difference solutions. This figure reads saved data only.",
+    "ja": "3固定seedの49パラメータPINNを解析解・FDと比較します。 保存値だけを描画します。"
+  },
+  "reference.batch78-87.4311c0054d37": {
+    "en": "The old heat primary remains. This [0,2pi) whole-problem family, diffusivities and final time are separate fixed inputs.",
+    "ja": "旧熱拡散primaryを保持し、今回の[0,2π)・問題単位データ族・νとTは別入力として示します。"
+  },
+  "reference.batch78-87.d3bd1d4caa56": {
+    "en": "Tiny FNO on held-out heat problems",
+    "ja": "小型FNOの問題単位検証"
+  },
+  "reference.batch78-87.aa9aeb92d4d5": {
+    "en": "Use periodic heat flow uₜ=νuₓₓ on [0,2π) to T=0.25. Split 46 whole problems into 24 training, 6 validation, 8 held-out ID, 4 viscosity-OOD and 4 spectrum-OOD problems. Use two fixed seeds and 93 real parameters.",
+    "ja": "周期区間[0,2π)、uₜ=νuₓₓ、T=0.25。同じ関数の点を分散させず、全46問題を学習24・検証6・未見ID8・νのOOD4・周波数のOOD4に分けます。2固定seed、93実パラメータです。"
+  },
+  "reference.batch78-87.2fa5d7a41ff8": {
+    "en": "Qualify all 93 real loss-gradient coordinates at two fixed finite-difference widths and compare Fourier blocks with direct DFT sums. Separate analytic heat-mode errors, grid-restriction differences and ID/OOD diagnostics. Relative error is NA when reference RMS≤10⁻¹²; zero and near-zero controls retain absolute errors. This comparison concerns a fixed tiny discrete operator, without arbitrary-resolution, distributional or OOD guarantees. The N=64-to-32 discrepancy includes nonlinear aliasing and is not a continuum discretization error. Optimizer convergence is distinct from normal budget termination.",
+    "ja": "全93実座標の損失勾配を2つの固定差分幅で照合し、Fourierブロックを直接DFTと比較。解析的な熱モード減衰に対する絶対・相対誤差、格子制限差、ID/OODを分離します。参照RMS≤10⁻¹²では相対誤差をNAとし、ゼロ・微小振幅では絶対誤差を保存します。 固定された小型離散作用素の比較で、任意の解像度・分布に対する一般化やOOD精度を保証しません。N=64から32への差には非線形aliasingが含まれ、連続体離散化誤差とは呼びません。最適化収束と固定予算終了は別です。"
+  },
+  "reference.batch78-87.67136bdcb81f": {
+    "en": "Evaluate the same learned weights on 32/64-point grids, held-out functions and separate OOD inputs.",
+    "ja": "同じ重みで32/64点・未見関数・OODを分けて評価します。"
+  },
+  "reference.batch78-87.68aca6cc3331": {
+    "en": "Lift (u₀,ν) to width two and apply two blocks containing a local linear map, real DC and complex Fourier modes 1–4, then tanh. Train with a fixed L-BFGS-B budget and evaluate the same weights at N=32 and 64. Nonlinear terms are evaluated on each native grid without dealiasing.",
+    "ja": "入力(u₀,ν)を幅2へ写し、局所線形項・DCと1–4モードの複素Fourier項・tanhからなる2ブロックを適用します。L-BFGS-Bの固定予算で学習し、同じ重みをN=32/64へ転送。非線形項は各格子上で評価しdealiasingしません。"
+  },
+  "reference.batch78-87.acf1126d56b3": {
+    "en": "Qualify all 93 real loss-gradient coordinates at two fixed finite-difference widths and compare Fourier blocks with direct DFT sums. Separate analytic heat-mode errors, grid-restriction differences and ID/OOD diagnostics. Relative error is NA when reference RMS≤10⁻¹²; zero and near-zero controls retain absolute errors.",
+    "ja": "全93実座標の損失勾配を2つの固定差分幅で照合し、Fourierブロックを直接DFTと比較。解析的な熱モード減衰に対する絶対・相対誤差、格子制限差、ID/OODを分離します。参照RMS≤10⁻¹²では相対誤差をNAとし、ゼロ・微小振幅では絶対誤差を保存します。"
+  },
+  "reference.batch78-87.64278e9f94dc": {
+    "en": "This comparison concerns a fixed tiny discrete operator, without arbitrary-resolution, distributional or OOD guarantees. The N=64-to-32 discrepancy includes nonlinear aliasing and is not a continuum discretization error. Optimizer convergence is distinct from normal budget termination.",
+    "ja": "固定された小型離散作用素の比較で、任意の解像度・分布に対する一般化やOOD精度を保証しません。N=64から32への差には非線形aliasingが含まれ、連続体離散化誤差とは呼びません。最適化収束と固定予算終了は別です。"
+  },
+  "reference.batch78-87.7ab3ca0a3427": {
+    "en": "Selected HTML §2 learning operators; §3 Eq(2); §4 Eq(4)–(5), FFT/truncation/reality; §5 setup and §5.1 Burgers. PDF header/edition only; not full paper or appendix audit.",
+    "ja": "Selected HTML §2 learning operators; §3 Eq(2); §4 Eq(4)–(5), FFT/truncation/reality; §5 setup and §5.1 Burgers. PDF header/edition only; not full paper or appendix audit."
+  },
+  "reference.batch78-87.0bdd259ca10c": {
+    "en": "Evaluate the same learned weights on 32/64-point grids, held-out functions and separate OOD inputs. This figure reads saved data only.",
+    "ja": "同じ重みで32/64点・未見関数・OODを分けて評価します。 保存値だけを描画します。"
+  },
+  "reference.batch78-87.92ddb3a5db3d": {
+    "en": "Time, concentrations and populations do not define a spatial dimension. The rates are educational, not disease or experimental predictions.",
+    "ja": "時間・濃度・個体数の軸は空間次元ではありません。率は教育用で疾病・実験予測ではありません。"
+  },
+  "reference.batch78-87.83cb8efa0756": {
+    "en": "Enzyme conservation and QSSA",
+    "ja": "酵素反応の保存と準定常近似"
+  },
+  "reference.batch78-87.d15adf33eafa": {
+    "en": "Use the closed dimensionless reaction E+S⇌C→E+P with k₁=10, k₋₁=k₂=1, S₀=1, C₀=P₀=0 and E₀=0.01 or 0.002. Then Kₘ=0.2, ε=E₀/(Kₘ+S₀)=1/120 or 1/600, and θ=E₀t ranges from 0 to 0.5.",
+    "ja": "閉鎖反応E+S⇌C→E+Pを無次元化し、k₁=10、k₋₁=k₂=1、S₀=1、C₀=P₀=0、E₀=0.01/0.002。Kₘ=0.2、ε=E₀/(Kₘ+S₀)=1/120,1/600、θ=E₀t∈[0,0.5]です。"
+  },
+  "reference.batch78-87.9d838b4f90a8": {
+    "en": "Compare with independent full-system Radau/BDF references and an implicit scalar identity for the reduced equation. Check E+C=E₀, S+C+P=1, positivity and actual acceptance, rejection and Newton work. Retain both all-time errors including the initial layer and errors on the declared θ≥0.02 window. These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction.",
+    "ja": "独立な全系Radau/BDF参照、縮約式の陰的スカラー恒等式、E+C=E₀とS+C+P=1、正値性、実際の採用・棄却・Newton作業を照合。初期層を含む全時間と、事前指定θ≥0.02の近似誤差を別保存します。 2つの小εと固定反応定数だけの教育例です。εは尺度比であり、その値だけを厳密なQSSA誤差上界とはしません。θ≥0.02を初期層終了の証明とは呼ばず、生体内の反応・観測値へ外挿しません。"
+  },
+  "reference.batch78-87.9ce867035674": {
+    "en": "Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism.",
+    "ja": "全4状態と準定常近似を比較し、初期層と積分誤差を分けます。"
+  },
+  "reference.batch78-87.cd86d5ccd2c9": {
+    "en": "Integrate all four states with SDIRK2 step doubling, using the same weighted L∞ residual for Newton convergence and Armijo backtracking. Evolve the reduced Michaelis–Menten equation separately with RK4 in θ, keeping integration error distinct from model-reduction error.",
+    "ja": "全4状態をSDIRK2のstep doublingで積分し、各段のNewton法では同じ重み付きL∞残差とArmijo条件を使います。縮約Michaelis–Menten式はθ上の別RK4計算で求め、全系の積分誤差と近似モデル誤差を混同しません。"
+  },
+  "reference.batch78-87.b41c8425deb6": {
+    "en": "Compare with independent full-system Radau/BDF references and an implicit scalar identity for the reduced equation. Check E+C=E₀, S+C+P=1, positivity and actual acceptance, rejection and Newton work. Retain both all-time errors including the initial layer and errors on the declared θ≥0.02 window.",
+    "ja": "独立な全系Radau/BDF参照、縮約式の陰的スカラー恒等式、E+C=E₀とS+C+P=1、正値性、実際の採用・棄却・Newton作業を照合。初期層を含む全時間と、事前指定θ≥0.02の近似誤差を別保存します。"
+  },
+  "reference.batch78-87.6b5067325b47": {
+    "en": "These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction.",
+    "ja": "2つの小εと固定反応定数だけの教育例です。εは尺度比であり、その値だけを厳密なQSSA誤差上界とはしません。θ≥0.02を初期層終了の証明とは呼ばず、生体内の反応・観測値へ外挿しません。"
+  },
+  "reference.batch78-87.bb74f5d5c2cf": {
+    "en": "Selected §1 Eq(1)–(8) and selected discussion around transient-time estimates Eq(32); proofs and complete quantitative bounds unread.",
+    "ja": "Selected §1 Eq(1)–(8) and selected discussion around transient-time estimates Eq(32); proofs and complete quantitative bounds unread."
+  },
+  "reference.batch78-87.7e7ef34a5a9f": {
+    "en": "Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism. This figure reads saved data only.",
+    "ja": "全4状態と準定常近似を比較し、初期層と積分誤差を分けます。 保存値だけを描画します。"
+  },
+  "reference.batch78-87.9d1a5cff9075": {
+    "en": "Lotka–Volterra invariant and positivity",
+    "ja": "Lotka–Volterra不変量と正値性"
+  },
+  "reference.batch78-87.276dee73b384": {
+    "en": "Use the dimensionless predator–prey equations x′=x(1−y), y′=y(x−1), initial state (1.2,0.8) and 0≤t≤20. Evaluate H=x−log x+y−log y only in the positive quadrant.",
+    "ja": "無次元の捕食者・被食者系x′=x(1−y)、y′=y(x−1)、初期値(1.2,0.8)、0≤t≤20。正の象限で不変量H=x−log x+y−log yを評価します。"
+  },
+  "reference.batch78-87.ed4708f0fc53": {
+    "en": "Measure state error against the independent reference, drift of H and the minimum saved population separately. The reference stage qualifies analytic Jacobians, Radau/BDF agreement, tolerance refinement and the identity dH/dt=0. This is a finite-time comparison for one initial state. The continuum closed orbit is not an attracting limit cycle. RK4 is not claimed to preserve H exactly, maintain positivity at arbitrary steps or guarantee long-time geometric fidelity.",
+    "ja": "独立参照との状態誤差、Hのドリフト、保存された軌道の最小値を別々に測定。参照側では解析Jacobian、Radau/BDF差、刻み精度、Hの時間微分の恒等式を事前資格しています。 1初期値・有限時間の固定比較です。連続系の閉軌道を引き込み極限周期とは呼びません。RK4の厳密な不変量保存、任意刻みでの正値性、長時間の構造保存は保証しません。"
+  },
+  "reference.batch78-87.4e23219e3136": {
+    "en": "Compare a positive orbit against an independently integrated log-coordinate reference.",
+    "ja": "正の軌道を独立な対数座標参照と比較します。"
+  },
+  "reference.batch78-87.73d4d3993b0b": {
+    "en": "Integrate physical populations with classical RK4 at 400, 800 and 1600 fixed steps. Independent Radau/BDF references evolve log x and log y; the primary method uses neither a log-coordinate update nor invariant projection.",
+    "ja": "固定400/800/1600ステップの古典RK4で物理状態を積分します。独立参照はlog x・log yの変数でRadau/BDFを実行し、主計算には対数変数や保存量の射影を導入しません。"
+  },
+  "reference.batch78-87.a79a7e6452fd": {
+    "en": "Measure state error against the independent reference, drift of H and the minimum saved population separately. The reference stage qualifies analytic Jacobians, Radau/BDF agreement, tolerance refinement and the identity dH/dt=0.",
+    "ja": "独立参照との状態誤差、Hのドリフト、保存された軌道の最小値を別々に測定。参照側では解析Jacobian、Radau/BDF差、刻み精度、Hの時間微分の恒等式を事前資格しています。"
+  },
+  "reference.batch78-87.0f019bdef653": {
+    "en": "This is a finite-time comparison for one initial state. The continuum closed orbit is not an attracting limit cycle. RK4 is not claimed to preserve H exactly, maintain positivity at arbitrary steps or guarantee long-time geometric fidelity.",
+    "ja": "1初期値・有限時間の固定比較です。連続系の閉軌道を引き込み極限周期とは呼びません。RK4の厳密な不変量保存、任意刻みでの正値性、長時間の構造保存は保証しません。"
+  },
+  "reference.batch78-87.c22c6c5c09aa": {
+    "en": "Selected extracted text pp3–6: normalized LV equations, equilibrium, periodic-orbit discussion and numerical illustration. No original Lotka/Volterra paper read.",
+    "ja": "Selected extracted text pp3–6: normalized LV equations, equilibrium, periodic-orbit discussion and numerical illustration. No original Lotka/Volterra paper read."
+  },
+  "reference.batch78-87.8d116067ea0a": {
+    "en": "Compare a positive orbit against an independently integrated log-coordinate reference. This figure reads saved data only.",
+    "ja": "正の軌道を独立な対数座標参照と比較します。 保存値だけを描画します。"
+  },
+  "reference.batch78-87.7b945bb39830": {
+    "en": "SEIR conservation and initial linearization",
+    "ja": "SEIR保存則と初期線形化"
+  },
+  "reference.batch78-87.a11cc0e752b9": {
+    "en": "Use a closed population S+E+I+R=1 with β=0.6, σ=0.3 and γ=0.2. For η=10⁻⁴ or 5×10⁻⁵, start from (1−2η,η,η,0) and evolve to t=20. There are no births, deaths or external inflows.",
+    "ja": "閉鎖人口S+E+I+R=1、β=0.6、σ=0.3、γ=0.2。η=10⁻⁴/5×10⁻⁵に対し(S,E,I,R)(0)=(1−2η,η,η,0)、0≤t≤20。出生・死亡・外部流入はありません。"
+  },
+  "reference.batch78-87.dddf334fe350": {
+    "en": "Separate full-ODE integration error, population conservation and nonnegativity through t=20 from linearization-model error at 201 reference points on 0≤t≤1. Qualify scaled Jacobians, Radau/BDF agreement with an η² margin and the analytic full matrix exponential independently. These fixed-coefficient calculations compare two small initial infection levels. The early linearization is not an exact solution through t=20, and a single dominant mode does not replace the two-mode solution. No epidemic forecast, statistical coverage or arbitrary-population guarantee is claimed.",
+    "ja": "t≤20の全ODE積分誤差・人口保存・非負性と、0≤t≤1の201参照点での線形化モデル誤差を分けます。参照では両ηの尺度付きJacobian、Radau/BDF差とη²に対する余裕、解析的な全行列指数を別資格しています。 2つの小初期感染量による固定係数の整合性比較です。早期線形化をt=20全体の厳密解と見なさず、単一の優勢モードで両モードを置き換えません。実流行の予測・統計的被覆・任意人口への一般保証は行いません。"
+  },
+  "reference.batch78-87.5b3061145d99": {
+    "en": "Check population conservation and the full two-mode initial linearization separately.",
+    "ja": "人口保存と2モードの初期線形化を別々に検査します。"
+  },
+  "reference.batch78-87.064e94f82a91": {
+    "en": "Evolve all four physical states with RK4 at 400, 800 and 1600 fixed steps. Independently compute the nonlinear reference with scaled-deviation Radau/BDF and the early E/I linearization with both modes of the full 2×2 matrix exponential.",
+    "ja": "全4状態を固定400/800/1600ステップのRK4で積分。独立非線形参照は偏差をηで尺度化してRadau/BDFで求め、早期のE・I線形化は2×2行列指数の両モードを使います。"
+  },
+  "reference.batch78-87.6a1d4a58be80": {
+    "en": "Separate full-ODE integration error, population conservation and nonnegativity through t=20 from linearization-model error at 201 reference points on 0≤t≤1. Qualify scaled Jacobians, Radau/BDF agreement with an η² margin and the analytic full matrix exponential independently.",
+    "ja": "t≤20の全ODE積分誤差・人口保存・非負性と、0≤t≤1の201参照点での線形化モデル誤差を分けます。参照では両ηの尺度付きJacobian、Radau/BDF差とη²に対する余裕、解析的な全行列指数を別資格しています。"
+  },
+  "reference.batch78-87.dffd14ab9a45": {
+    "en": "These fixed-coefficient calculations compare two small initial infection levels. The early linearization is not an exact solution through t=20, and a single dominant mode does not replace the two-mode solution. No epidemic forecast, statistical coverage or arbitrary-population guarantee is claimed.",
+    "ja": "2つの小初期感染量による固定係数の整合性比較です。早期線形化をt=20全体の厳密解と見なさず、単一の優勢モードで両モードを置き換えません。実流行の予測・統計的被覆・任意人口への一般保証は行いません。"
+  },
+  "reference.batch78-87.5fd10c08903b": {
+    "en": "Header, selected introduction compartment definitions and §3.1 printedpp618–619, displayed mass-action numbers and Eq(3.1); search around3.2/SEIR limit. Not whole55pages or visual diagram audit.",
+    "ja": "Header, selected introduction compartment definitions and §3.1 printedpp618–619, displayed mass-action numbers and Eq(3.1); search around3.2/SEIR limit. Not whole55pages or visual diagram audit."
+  },
+  "reference.batch78-87.5c89a18b2679": {
+    "en": "Check population conservation and the full two-mode initial linearization separately. This figure reads saved data only.",
+    "ja": "人口保存と2モードの初期線形化を別々に検査します。 保存値だけを描画します。"
+  },
+  "reference.batch78-87.94486159dce6": {
+    "en": "Gauss–Kronrod G7/K15",
+    "ja": "Gauss–Kronrod G7/K15"
+  },
+  "reference.batch78-87.f57ab42f564b": {
+    "en": "Compare a shared fifteen-node G7/K15 difference with actual errors on fixed integrals.",
+    "ja": "15節点を共有するG7/K15差と実誤差を固定積分で比較します。"
+  },
+  "reference.batch78-87.1d1df2fed61a": {
+    "en": "Preserve this fixed scope; qualify extensions with separate inputs, references and criteria.",
+    "ja": "既存の固定範囲を保ち、拡張は別の入力・参照・基準で確認する。"
+  },
+  "reference.batch78-87.4a1d4948c0bb": {
+    "en": "An authored finite-interval adaptive worklist uses QUADPACK-origin coefficients. Its estimate is not a certified bound for arbitrary functions.",
+    "ja": "自作の有限区間適応ワークリストとQUADPACK由来の係数を使います。推定値は任意関数の認証上界ではありません。"
+  },
+  "reference.batch78-87.5b53ea928538": {
+    "en": "Only the release-specific fixed inputs are qualified.",
+    "ja": "配布版で固定した入力だけを検証します。"
+  },
+  "reference.batch78-87.6b7f54e89618": {
+    "en": "Dimensionless mathematical examples.",
+    "ja": "無次元の数学的な例です。"
+  },
+  "reference.batch78-87.02e8b8c0d179": {
+    "en": "The fixed integration domain or interpolation endpoints are stated in each case.",
+    "ja": "固定の積分領域・補間端点を各例に明示します。"
+  },
+  "reference.batch78-87.dcb22ef39da3": {
+    "en": "Tanh–sinh double-exponential quadrature",
+    "ja": "tanh–sinh二重指数求積"
+  },
+  "reference.batch78-87.60a4e08c7339": {
+    "en": "Evaluate stable transformed products with a finite full-endpoint trapezoidal sum.",
+    "ja": "安定な変換積を有限の全端点重み台形和で評価します。"
+  },
+  "reference.batch78-87.a3def2064468": {
+    "en": "Distinguish continuous finite-window tails from finite-sum errors. No bound on an omitted infinite-grid sum is claimed.",
+    "ja": "有限窓の連続tailと離散和の誤差を区別します。無限格子の省略和を保証したとは表示しません。"
+  },
+  "reference.batch78-87.df4690e769bb": {
+    "en": "Smolyak sparse-grid quadrature",
+    "ja": "Smolyak疎格子求積"
+  },
+  "reference.batch78-87.4dd0dc6ee2cd": {
+    "en": "Compare nested Clenshaw–Curtis differences and tensor rules on fixed integrals in two to four variables.",
+    "ja": "2〜4変数の固定積分で入れ子Clenshaw–Curtis差分とテンソル積を比べます。"
+  },
+  "reference.batch78-87.031770cfdc08": {
+    "en": "Low sparse levels can miss interactions. No general high-dimensional optimality or ranking against MC/QMC is claimed.",
+    "ja": "小レベルの相互作用項は未解像となり得ます。一般の高次元最適性やMC/QMC順位は主張しません。"
+  },
+  "reference.batch78-87.f252fe4277b5": {
+    "en": "PCHIP monotone cubic Hermite interpolation",
+    "ja": "PCHIP単調3次Hermite補間"
+  },
+  "reference.batch78-87.c61723b02eb5": {
+    "en": "Construct shape-preserving piecewise cubics using harmonic interior slopes and endpoint limiting.",
+    "ja": "調和平均の内部傾きと端点制限で形状を保つ区分3次補間を構成します。"
+  },
+  "reference.batch78-87.6e10c1b9a337": {
+    "en": "Limited to three fixed data sets and fifteen endpoint records. Generally C1 rather than C2; extrapolation and noise smoothing are outside scope.",
+    "ja": "固定3データ組と端点15記録に限定。通常C1でありC2とは限らず、外挿やノイズ平滑化は扱いません。"
+  },
+  "reference.batch78-87.3f1adff15b68": {
+    "en": "Finite, improper and multivariate definite integrals",
+    "ja": "有限・無限・多変数の定積分"
+  },
+  "reference.batch78-87.7e9837579db4": {
+    "en": "Mathematical quadrature problems with explicit domains, weights, singularities and finite transformed-sum conventions.",
+    "ja": "領域・重み・特異性と有限変換和の定義を確認する数学的求積問題です。"
+  },
+  "reference.batch78-87.53cc728ab5a0": {
+    "en": "Fixed educational inputs only; inspect the release-specific assumptions, references and limits.",
+    "ja": "固定した教育用入力だけを対象にします。各配布版の前提・参照・制限を確認してください。"
+  },
+  "reference.batch78-87.2152c1775664": {
+    "en": "Polynomial interpolation on stored nodes",
+    "ja": "格納節点の多項式補間"
+  },
+  "reference.batch78-87.88084273ea32": {
+    "en": "Separate closed-weight representation on rounded nodes, interpolation error and evaluation rounding.",
+    "ja": "閉形式重みと丸め節点の表現差、補間誤差と演算丸めを分けます。"
+  },
+  "reference.batch78-87.43a4a5d4ece6": {
+    "en": "Cubic splines and shape-preserving interpolation",
+    "ja": "3次スプラインと形状保存補間"
+  },
+  "reference.batch78-87.53d0164808d3": {
+    "en": "Distinguish C2 interpolation with endpoint conditions from monotone piecewise Hermite interpolation.",
+    "ja": "端点条件を持つC2補間と単調な区分Hermite補間を区別します。"
+  },
+  "reference.batch78-87.90cdf02bfe4d": {
+    "en": "Discrete Haar transforms of finite signals",
+    "ja": "有限長信号の離散Haar変換"
+  },
+  "reference.batch78-87.77eedf9b33d2": {
+    "en": "A finite map including odd-length padding and cropping; global orthogonality is not assumed for redundant extensions.",
+    "ja": "奇数長の追加標本と切戻しを含む有限写像です。冗長拡張全体の直交性は仮定しません。"
+  },
+  "reference.batch78-87.7fc7a49f1bb1": {
+    "en": "Closed SEIR compartment model",
+    "ja": "閉鎖SEIR区画モデル"
+  },
+  "reference.batch78-87.046921fdc362": {
+    "en": "Educational rates with no births or deaths and constant population. Compare the early transient with a full two-by-two matrix exponential; no disease forecast is made.",
+    "ja": "出生死亡なし・全人口一定の教育用率です。初期過渡は2×2行列指数に比較し、感染症予測には使いません。"
+  },
+  "reference.batch78-87.5e7b44dfdebc": {
+    "en": "Summing the four equations gives zero derivative of total population. Initial total one yields the conservation relation. Rates and initial states are fixed educational inputs.",
+    "ja": "4式を足すと全人口の時間微分は0です。初期総量1から保存式を得ます。率と初期値は固定教育用入力です。"
+  },
+  "reference.batch78-87.92603413453d": {
+    "en": "Selected original sources and the present small examples",
+    "ja": "選択閲読した原典と今回の小例"
+  },
+  "reference.batch78-87.c55808c2d738": {
+    "en": "Spline interpolation",
+    "ja": "スプライン補間"
+  },
+  "reference.batch78-87.c19a8abe90f5": {
+    "en": "Relate interpolation, boundary conditions and smoothness. Fixed educational executions: Natural and clamped splines versus PCHIP.",
+    "ja": "補間条件・境界条件と滑らかさを整理する。 固定した教育用実行例：自然・端点微分指定スプラインとPCHIP。"
+  },
+  "reference.batch78-87.cc95ee590c5b": {
+    "en": "Preserve the fixed scope and qualify extensions separately.",
+    "ja": "固定範囲を保持し、拡張は別に検証する。"
+  },
+  "reference.batch78-87.4051097b207a": {
+    "en": "Relate interpolation, boundary conditions and smoothness.",
+    "ja": "補間条件・境界条件と滑らかさを整理する。"
+  },
+  "reference.batch78-87.f0f4459d7098": {
+    "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet.",
+    "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。"
+  },
+  "reference.batch78-87.ab62e95e1414": {
+    "en": "Fixed educational executions: Natural and clamped splines versus PCHIP.",
+    "ja": "固定した教育用実行例：自然・端点微分指定スプラインとPCHIP。"
+  },
+  "reference.batch78-87.7d62cb127c63": {
+    "en": "Dimensionless fixed educational examples.",
+    "ja": "無次元の固定教育用例です。"
+  },
+  "reference.batch78-87.0172487ff3f5": {
+    "en": "See the exact case-specific domain and boundary conventions.",
+    "ja": "各例の正確な領域・境界の定義を確認してください。"
+  },
+  "reference.batch78-87.c483168210c9": {
+    "en": "Chebyshev approximation",
+    "ja": "Chebyshev近似"
+  },
+  "reference.batch78-87.1b76c41a7791": {
+    "en": "Connect polynomial approximation, node choice and spectral convergence. Fixed educational executions: Runge interpolation: nodes, representation and rounding.",
+    "ja": "多項式近似・節点・スペクトル収束を整理する。 固定した教育用実行例：節点・表現・丸めを分けるRunge補間。"
+  },
+  "reference.batch78-87.acca4381937c": {
+    "en": "Connect polynomial approximation, node choice and spectral convergence.",
+    "ja": "多項式近似・節点・スペクトル収束を整理する。"
+  },
+  "reference.batch78-87.7b0f375617fe": {
+    "en": "Fixed educational executions: Runge interpolation: nodes, representation and rounding.",
+    "ja": "固定した教育用実行例：節点・表現・丸めを分けるRunge補間。"
+  },
+  "reference.batch78-87.0d95ffc3ce0a": {
+    "en": "Wavelets",
+    "ja": "ウェーブレット"
+  },
+  "reference.batch78-87.a01f65c40cdb": {
+    "en": "Map multiresolution representations and local structure. Fixed educational executions: Haar multiresolution: boundaries, shifts and thresholds.",
+    "ja": "多重解像度表現と局所構造の扱いを整理する。 固定した教育用実行例：Haar多重解像度の境界・シフト・閾値。"
+  },
+  "reference.batch78-87.4cbe2140b98b": {
+    "en": "Map multiresolution representations and local structure.",
+    "ja": "多重解像度表現と局所構造の扱いを整理する。"
+  },
+  "reference.batch78-87.d319ae7fa435": {
+    "en": "Fixed educational executions: Haar multiresolution: boundaries, shifts and thresholds.",
+    "ja": "固定した教育用実行例：Haar多重解像度の境界・シフト・閾値。"
+  },
+  "reference.batch78-87.39cc30cdaf67": {
+    "en": "PINNs and neural operators",
+    "ja": "PINN・ニューラル演算子"
+  },
+  "reference.batch78-87.d6b0a3353ce9": {
+    "en": "Map learned solutions/operators, error and generalization. Fixed educational executions: Poisson PINN: independent grid error, Tiny FNO on held-out heat problems.",
+    "ja": "学習した解・演算子の位置付けと誤差・汎化を整理する。 固定した教育用実行例：1D Poisson PINNと独立格子誤差、小型FNOの問題単位検証。"
+  },
+  "reference.batch78-87.8d9799b9fa54": {
+    "en": "This fixed-budget study covers one smooth Poisson problem and three seeds. A small training loss does not establish independent-point accuracy or general PINN training success. Unmet goals remain visible. This comparison concerns a fixed tiny discrete operator, without arbitrary-resolution, distributional or OOD guarantees. The N=64-to-32 discrepancy includes nonlinear aliasing and is not a continuum discretization error. Optimizer convergence is distinct from normal budget termination.",
+    "ja": "1つの滑らかなPoisson問題と3seedの固定予算実験です。小さい学習損失だけで独立点精度の達成や一般的なPINN学習成功を保証しません。未達目標も表示します。 固定された小型離散作用素の比較で、任意の解像度・分布に対する一般化やOOD精度を保証しません。N=64から32への差には非線形aliasingが含まれ、連続体離散化誤差とは呼びません。最適化収束と固定予算終了は別です。"
+  },
+  "reference.batch78-87.2a663da03935": {
+    "en": "Map learned solutions/operators, error and generalization.",
+    "ja": "学習した解・演算子の位置付けと誤差・汎化を整理する。"
+  },
+  "reference.batch78-87.c6203997ca75": {
+    "en": "Fixed educational executions: Poisson PINN: independent grid error, Tiny FNO on held-out heat problems.",
+    "ja": "固定した教育用実行例：1D Poisson PINNと独立格子誤差、小型FNOの問題単位検証。"
+  },
+  "reference.batch78-87.c3f22532bbcf": {
+    "en": "Fixed educational executions: G7/K15 and finite-interval tanh-sinh.",
+    "ja": "固定した教育用実行例：G7/K15と有限区間tanh-sinh。"
+  },
+  "reference.batch78-87.e3feafb39059": {
+    "en": "Fixed educational executions: Tensor and Smolyak controls in two to four dimensions.",
+    "ja": "固定した教育用実行例：2〜4次元テンソル・Smolyak対照。"
   }
 }

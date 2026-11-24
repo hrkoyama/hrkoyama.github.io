@@ -2230,11 +2230,28 @@
               "Compare against analytic or independently converged conventional solutions. Measure off-training L1/L2/L∞ errors, boundaries, conservation and multiple seeds. Split operator data by independent problems rather than nearby time slices alone, and report distribution-shift tests separately."
             ]
           }
+        },
+        {
+          "id": "selected-original-source-roles",
+          "title": {
+            "ja": "選択閲読した原典と今回の小例",
+            "en": "Selected original sources and the present small examples"
+          },
+          "paragraphs": {
+            "ja": [
+              "2017年PINN Part I preprintの§2では、残差とデータ・境界の損失を区別します。FNO v3（2021年）§3–4の層は局所線形作用とFourier積分作用に非線形活性化を組み合わせます。今回の小Poisson・周期拡散は別の教育用入力で、2019年JCP論文全文や原著の大規模実験・性能を再現したものではありません。"
+            ],
+            "en": [
+              "Selected section 2 of the 2017 PINN Part I preprint distinguishes residual loss from data and boundary losses. Sections 3–4 of FNO version 3 (2021) combine a local linear map, a Fourier integral map and nonlinear activation. The present small Poisson and periodic-heat inputs are separate educational choices. Neither the full 2019 JCP article nor the original large experiments or performance claims are reproduced."
+            ]
+          }
         }
       ],
       "references": [
         "raissi2019",
-        "li2021fno"
+        "li2021fno",
+        "raissi2017part1-selected",
+        "li2021fno-v3-selected"
       ]
     },
     {
@@ -4427,6 +4444,45 @@
         "ja": "公式サイトのFRによる空間離散化・非構造格子・CPU/GPUの紹介を確認。今回の軽量Python例でPyFRを導入・実行・検証したとはしない。",
         "en": "Official overview: FR spatial discretization, unstructured meshes and CPU/GPU platforms. PyFR is not installed, invoked or validated by this small Python example."
       }
+    },
+    {
+      "id": "raissi2017part1-selected",
+      "author": "M. Raissi, P. Perdikaris and G. E. Karniadakis",
+      "title": "Physics Informed Deep Learning (Part I): Data-driven Solutions of Nonlinear Partial Differential Equations",
+      "year": 2017,
+      "year_role": "preprint-version",
+      "doi": "",
+      "type": "misc",
+      "source": "https://arxiv.org/pdf/1711.10561",
+      "note": "Extracted PDF text selected pp.4–6, §2 continuous-time residual, Eq(2)–(4), Burgers setup and loss/optimizer discussion; not all 22 pages and not visual PDF audit.",
+      "source_review": {
+        "level": "full-text",
+        "checked_on": "2026-11-24",
+        "scope": "Extracted PDF text selected pp.4–6, §2 continuous-time residual, Eq(2)–(4), Burgers setup and loss/optimizer discussion; not all 22 pages and not visual PDF audit.",
+        "url": "https://arxiv.org/pdf/1711.10561",
+        "scope_ja": "2017年PINN Part IプレプリントのPDF抽出テキストから、pp.4–6・§2の連続時間残差、式(2)–(4)、Burgers問題の設定、損失・最適化の記述を選択閲読しました。全22ページやレンダリングした図式の監査ではなく、2019年JCP論文全文を確認したという意味でもありません。"
+      },
+      "source_role": "research-preprint"
+    },
+    {
+      "id": "li2021fno-v3-selected",
+      "author": "Z. Li et al.",
+      "title": "Fourier Neural Operator for Parametric Partial Differential Equations",
+      "year": 2021,
+      "year_role": "conference-publication",
+      "doi": "",
+      "type": "misc",
+      "source": "https://arxiv.org/html/2010.08895v3",
+      "note": "Selected HTML §2 learning operators; §3 Eq(2); §4 Eq(4)–(5), FFT/truncation/reality; §5 setup and §5.1 Burgers. PDF header/edition only; not full paper or appendix audit.",
+      "source_review": {
+        "level": "full-text",
+        "checked_on": "2026-11-24",
+        "scope": "Selected HTML §2 learning operators; §3 Eq(2); §4 Eq(4)–(5), FFT/truncation/reality; §5 setup and §5.1 Burgers. PDF header/edition only; not full paper or appendix audit.",
+        "url": "https://arxiv.org/html/2010.08895v3",
+        "scope_ja": "arXiv v3（2021年）のHTMLから、§2の作用素学習、§3の式(2)、§4の式(4)–(5)のFFT・モード打切り・実数性、§5の設定と§5.1のBurgersを選択閲読しました。PDFは表題と版の確認のみで、論文全体や付録・全数値表の監査は行っていません。"
+      },
+      "source_role": "research-preprint"
     }
-  ]
+  ],
+  "reviewed_on": "2026-11-25"
 }

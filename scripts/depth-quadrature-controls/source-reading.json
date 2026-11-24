@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "inherited_selected_reading": [
+    {
+      "id": "scipy-quad-1141",
+      "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.quad.html",
+      "title": "SciPy1.14.1 quad official reference",
+      "version": "1.14.1",
+      "publication_year": null,
+      "year_role": "software-version-not-publication",
+      "accessed_on_utc": "2026-11-24",
+      "actual_read_scope": "Parameters/full_output/abserr, points versus weight restriction; qagie/qagpe/qawoe/qawfe dispatch table and descriptions; neval, finite partition arrays and Fourier cycle diagnostics. No claim of the complete QUADPACK book or all implementation proofs.",
+      "source_role": "Versioned API/diagnostic and routine-selection contract"
+    },
+    {
+      "id": "quadpack-dqawfe",
+      "url": "https://netlib.org/quadpack/dqawfe.f",
+      "title": "Original Netlib QUADPACK dqawfe source",
+      "publication_year": null,
+      "source_written_date": "1980-01-01",
+      "source_revision_date": "1983-05-18",
+      "date_role": "prologue source dates",
+      "actual_read_scope": "Prologue/signature and Fourier cycle/status fields through line196; selected cycle bookkeeping around220. Source reports estimated errors and abnormal termination; it is not a universal accuracy certificate.",
+      "source_role": "Primary software formulation, limited static source inspection"
+    },
+    {
+      "id": "scipy-dqk15-1141",
+      "url": "https://raw.githubusercontent.com/scipy/scipy/v1.14.1/scipy/integrate/quadpack/dqk15.f",
+      "title": "SciPy1.14.1 bundled QUADPACK dqk15 Fortran",
+      "version": "1.14.1",
+      "publication_year": null,
+      "year_role": "software-version-not-publication",
+      "actual_read_scope": "Full displayed174-line small routine: G7/K15 nesting, printed coefficient tables,15 shared integrand evaluations, resabs/resasc and rescaled difference/roundoff floor. This is source reading, not execution, independent constant regeneration or an error-bound proof.",
+      "source_role": "Primary coefficient/formula attribution; shared-origin table dependence must be declared"
+    },
+    {
+      "id": "takahasi-mori-1974",
+      "url": "https://ems.press/doi/pdf/10.2977/prims/1195192451",
+      "resolved_url": "https://ems.press/content/serial-article-files/41766?nt=1",
+      "title": "Double Exponential Formulas for Numerical Integration",
+      "authors": [
+        "Hidetosi Takahasi",
+        "Masatake Mori"
+      ],
+      "publication_year": 1974,
+      "volume": 9,
+      "pages": "721-741",
+      "actual_read_scope": "Publisher PDF extracted selected text: first-page bibliography, printed722 equations1.3-1.7, printed724 distinction of discretization/truncation, printed730 equations2.b.3-2.b.4. Screenshot attempts for PDF indices1/3/9 failed with Cache miss; no rendered-symbol audit or complete proof/full-body reading is claimed.",
+      "source_role": "Selected original-paper transformation and separation of two errors; no implementation-wide optimality guarantee"
+    },
+    {
+      "id": "waldvogel-report-2008",
+      "url": "https://www.sam.math.ethz.ch/sam_reports/reports_final/reports2008/2008-07.pdf",
+      "title": "Fast Construction of the Fejer and Clenshaw-Curtis Quadrature Rules",
+      "author": "Joerg Waldvogel",
+      "publication_year": 2008,
+      "year_role": "institutional-report-version",
+      "report": "2008-07",
+      "release_date": "2008-05",
+      "actual_read_scope": "Official10-page report extracted cover and selected introduction/section2, PDF indices2-4: nested family purpose, cosine extrema, interpolatory rule and equations2.1-2.6 finite cosine weights. No complete DFT proof, report performance reproduction or rendered-page audit. The separately opened author URL waldvogel.pdf contained only a one-page abstract labelled to appear2006, and is not treated as the full report.",
+      "source_role": "Primary author/institutional rule construction, selected text"
+    },
+    {
+      "id": "burkardt-sparse-grid-cc",
+      "url": "https://people.sc.fsu.edu/~jburkardt/f_src/sparse_grid_cc/sparse_grid_cc.html",
+      "title": "Burkardt sparse_grid_cc official author software page",
+      "publication_year": null,
+      "last_revised": "2023-01-16",
+      "date_role": "page revision, not first publication",
+      "actual_read_scope": "Official page sections on level0 order1, higher orders2^level+1, nested Clenshaw-Curtis grids, multidimensional purpose, references and licensing. Linked Fortran source access returned Cache miss and was not read. Smolyak1963 original and Gerstner/Griebel1998 body were not obtained/read here.",
+      "source_role": "Primary software author overview; planned Smolyak delta/combination identity is independently derived, not claimed source-code reproduced"
+    }
+  ],
+  "inherited_failed_access": [
+    {
+      "url": "https://netlib.org/quadpack/dqk15.f",
+      "outcome": "web tool inaccessible; alternate official SciPy pinned source read instead"
+    },
+    {
+      "url": "https://www.netlib.org/quadpack/dqk15.f",
+      "outcome": "redirect to inaccessible Netlib URL; no further retry"
+    },
+    {
+      "url": "https://netlib.org/quadpack/dqagpe.f",
+      "outcome": "web tool inaccessible; only official SciPy routine-description scope used"
+    },
+    {
+      "url": "https://people.sc.fsu.edu/~jburkardt/f_src/sparse_grid_cc/sparse_grid_cc.f90",
+      "outcome": "Cache miss; source body unread"
+    },
+    {
+      "url": "https://ems.press/doi/pdf/10.2977/prims/1195192451",
+      "operation": "selected screenshot indices1/3/9",
+      "outcome": "Cache miss on all3; extracted selected original text only"
+    }
+  ],
+  "new_reading": [
+    {
+      "url": "https://docs.python.org/3.12/library/decimal.html",
+      "version": "3.12",
+      "accessed_on_utc": "2026-11-24",
+      "publication_year": null,
+      "scope": "Selected interval-relevant API: contexts/directed rounding/exact float conversion, exp/ln/sqrt and adjacent representable values. These are arithmetic API premises, not a complete libmpdec proof audit."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/scipy/scipy/v1.14.1/scipy/integrate/quadpack/dqk15.f",
+      "version": "1.14.1",
+      "accessed_on_utc": "2026-11-24",
+      "publication_year": null,
+      "scope": "Rechecked displayed coefficient literals, nested15-node evaluation and resasc/roundoff safeguards. The table is shared-origin, not independently regenerated."
+    }
+  ],
+  "unread": [
+    "Full QUADPACK book/proofs",
+    "Rendered Takahasi-Mori equation pages; selected extracted text only",
+    "Smolyak1963 and Gerstner-Griebel1998 original bodies",
+    "Burkardt linked Fortran body"
+  ],
+  "publication_date_policy": "Software version and source-prologue/revision dates are not presented as first-publication years.",
+  "design_lineage_sha256": {
+    "manifest.json": "66574621087d4476b03f713dc22021ec41f4ab059853024ecab06daf8118eb9d",
+    "review-78-80-by-walls.json": "0428403e4fdeb2de8f8fb17e7e4c09f048301c56292ff5170dd1121e3a4c4096",
+    "review-78-80-r2-confirmation-by-walls.json": "58f46c3e7758ea7a6d448d5c183b08f6de652da45dc411b0eaacdd281234e01a",
+    "prepared-next10-root-review.json": "4dda53b00418c6445e240d09106af41d592022b2883bb58b6f1eaa74bad63887"
+  }
+}

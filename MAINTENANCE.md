@@ -438,3 +438,8 @@ Bratuの状態補正では、通常精度で指定残差に届かなかった2�
 最終 c89776f807fc0137d3aa46aba172a784dabc61aa をHR mainで公開。追加4群10科学例・104pytest/883判定。公開ZIP Linux全56群116例1456pytestと全56JUnit、実サイトNode 621件・ブラウザ 20件、匿名HTTP 1653件/363919929bytes、実HR日英390/1280の16表示と代表画像の目視が合格。原典の選択読解範囲・入力・参照・包装改訂と失敗履歴を保持する。
 
 published表示・公開記録・対応索引だけの更新は日次集約方針により次回の承認済み集約へ保留。今回10候補の科学公開必須確認と、残る候補43件を区別する。詳細は /numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json 。
+
+
+## 候補68〜77の実公開確認（表示更新は次回集約）
+
+最終 35e34ae130d47cc43445765b88e99c0c556c38bb をHR mainで公開。追加4群11実行例・10候補・8新physical primary・116pytest。公開Linux全60群127例1572pytestと全60JUnit、実24browser、12cold-search、匿名HTTP 2089件、実HR UI 16表示と代表画像目視の証跡を保存。元の未達目標を成功へ変更せず、旧科学・出典・失敗履歴を保持する。残33候補。published表示と公開記録だけの更新は次回の承認済み集約へ保留。詳細は /numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json 。

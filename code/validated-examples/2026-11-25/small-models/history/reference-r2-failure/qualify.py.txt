@@ -1,0 +1,219 @@
+"""Explicit separate component/reference stage; never run by primary/plot."""
+import argparse
+import hashlib
+import json
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import numpy as np
+from scipy.integrate import solve_ivp
+from scipy.linalg import expm
+import pinn
+import fno
+from data_family import problems, batch, values
+from io_utils import Deadline, Trace, fresh, sha, write_json
+from references.reference_models import rhs, jac, systems
+from references.oracles import pinn_second, pinn_first, seir_linear, mm_identity
+
+
+def qualify(output, seconds):
+    root = Path(__file__).resolve().parents[1]
+    out = fresh(output); budget = Deadline(seconds)
+    checks = {}; trace = Trace(out, 'qualification')
+    def check(name, passed):
+        checks[name] = bool(passed)
+        write_json(out/'qualification.json', {'passed': False, 'checks': checks,
+            'scope': 'Partial reference/component qualification, not primary science'})
+        if not passed:
+            raise AssertionError(name)
+    try:
+        j = np.arange(16)
+        fixtures = [np.r_[(-1.)**j*(.3+.02*j), .1*(-1.)**j, (j-7.5)/32, .07],
+                    np.r_[(-1.)**j*(12+j), 15*(-1.)**(j//2), (-1.)**j/16, -.03]]
+        x5 = np.array([0., .13, .37, .73, 1.]); x64 = np.arange(1, 65)/65
+        for index, theta in enumerate(fixtures):
+            _, primary = pinn.residual(theta, x5, True)
+            complex_j = np.zeros_like(primary)
+            gradient = np.zeros(49)
+            for k in range(49):
+                budget.check()
+                trial = theta.astype(complex); trial[k] += 1j*1e-30
+                r = (-pinn_second(trial, x5)-np.pi**2*np.sin(np.pi*x5))/np.pi**2
+                complex_j[:, k] = r.imag/1e-30
+                rr = (-pinn_second(trial, x64)-np.pi**2*np.sin(np.pi*x64))/np.pi**2
+                gradient[k] = np.mean(rr*rr).imag/1e-30
+                trace.observe('pinn_coordinate', theta=trial, J=complex_j, gradient=gradient)
+            r, jr = pinn.residual(theta, x64, True)
+            analytic = 2*np.einsum('ij,i->j', jr, r, optimize=False)/64
+            np.savez_compressed(out/f'pinn-{index}.npz', theta=theta, jacobian=primary,
+                oracle_jacobian=complex_j, gradient=analytic, oracle_gradient=gradient)
+            check(f'pinn:{index}:all49-residual-columns', np.max(np.abs(primary-complex_j)/(1+np.abs(complex_j))) <= 2e-10)
+            check(f'pinn:{index}:all49-loss-gradient', np.max(np.abs(analytic-gradient)/(1+np.abs(gradient))) <= 2e-10)
+            _, ux, uxx = pinn.fields(theta, x5)
+            ucs = pinn.fields(theta, x5.astype(complex)+1j*1e-30)[0].imag/1e-30
+            second_cs = pinn_first(theta, x5.astype(complex)+1j*1e-30).imag/1e-30
+            check(f'pinn:{index}:x-first', np.max(np.abs(ux-ucs)/(1+np.abs(ux))) <= 2e-10)
+            check(f'pinn:{index}:x-second', np.max(np.abs(uxx-second_cs)/(1+np.abs(uxx))) <= 2e-10)
+        bad = primary.copy(); bad[:, 0] += .1
+        check('pinn:wrong-column-negative', np.max(np.abs(bad-complex_j)) > .01)
+        theta = fixtures[0]; h = 2.**-9
+        xx = np.array([.13, .37, .73])
+        value = lambda z: pinn.fields(theta, z)[0]
+        fd = (-value(xx+2*h)+16*value(xx+h)-30*value(xx)+16*value(xx-h)-value(xx-2*h))/(12*h*h)
+        np.savez_compressed(out/'pinn-x-fd.npz', x=xx, finite_difference=fd, exact=pinn.fields(theta, xx)[2])
+        w, b, aa, out_bias = pinn.unpack(theta)
+        omit_gsecond = pinn.fields(theta, xx)[2]+2*(np.sum(aa*np.tanh(xx[:, None]*w+b), axis=1)+out_bias)
+        check('pinn:product-and-finite-difference',
+              np.max(np.abs(fd-pinn.fields(theta, xx)[2])) <= 2e-6
+              and np.max(np.abs(fd-omit_gsecond)) > .01)
+        check('pinn:half-cost-negative', np.max(np.abs(gradient/2-gradient)) > 1e-5)
+
+        x = 2*np.pi*np.arange(16)/16
+        base = np.array([np.column_stack((np.cos(x), np.full(16, .1))),
+                         np.column_stack((np.sin(2*x), np.full(16, .15))),
+                         np.column_stack((.3*np.cos(4*x), np.full(16, .05)))])
+        target = base[:, :, 0]*.7
+        for label, theta in enumerate([.08*np.sin(np.arange(93)+1), .12*np.cos(np.arange(93)+1)]):
+            prediction, derivative = fno.forward(theta, base, True)
+            error = prediction-target
+            analytic = 2*np.einsum('bn,bnp->p', error, derivative, optimize=False)/error.size
+            for power in [15, 16]:
+                fd = np.zeros(93)
+                for k in range(93):
+                    budget.check(); step = 2.**-power*max(1., abs(theta[k]))
+                    plus, minus = theta.copy(), theta.copy(); plus[k] += step; minus[k] -= step
+                    lp = np.mean((fno.forward(plus, base, direct=True)-target)**2)
+                    lm = np.mean((fno.forward(minus, base, direct=True)-target)**2)
+                    fd[k] = (lp-lm)/(2*step)
+                    trace.observe('fno_coordinate', theta=theta, gradient=analytic, fd=fd)
+                np.savez_compressed(out/f'fno-gradient-{label}-{power}.npz', analytic=analytic, oracle=fd)
+                check(f'fno:{label}:all93-gradient-h{power}', np.max(np.abs(fd-analytic)/(1+np.abs(fd))) <= 5e-5)
+            for direction in [0, 1]:
+                v = (-1.)**(np.arange(93)+direction)*(1 if direction == 0 else np.arange(1, 94)/93)
+                v /= np.linalg.norm(v); step = 2.**-15
+                fp = np.mean((fno.forward(theta+step*v, base, direct=True)-target)**2)
+                fm = np.mean((fno.forward(theta-step*v, base, direct=True)-target)**2)
+                check(f'fno:{label}:direction-{direction}', abs((fp-fm)/(2*step)-np.sum(analytic*v)) <= 5e-5)
+        for n in [16, 32]:
+            x = 2*np.pi*np.arange(n)/n
+            for control in range(6):
+                u = [np.ones(n), np.cos(x), np.sin(x), np.cos(4*x),
+                     .4*np.sin(7*x), .2*np.cos(3*x)+.1*np.sin(2*x)][control]
+                inp = np.column_stack((u, np.full(n, .1)))[None]
+                candidate = fno.forward(theta, inp); oracle = fno.forward(theta, inp, direct=True)
+                np.savez_compressed(out/f'fno-layer-{n}-{control}.npz', candidate=candidate, oracle=oracle)
+                check(f'fno:block-N{n}-fixture{control}', np.max(np.abs(candidate-oracle)) <= 2e-12)
+        changed = theta.copy(); changed[17] += .3
+        check('fno:wrong-imaginary-negative', np.max(np.abs(fno.forward(changed, base)-prediction)) > 1e-7)
+        check('fno:wrong-normalization-negative', np.max(np.abs(prediction-prediction/16)) > 1e-5)
+        check('fno:wrong-channel-negative', np.max(np.abs(fno.forward(theta, base[:, :, ::-1])-prediction)) > 1e-7)
+
+        for key, initial, times in systems():
+            budget.check(); n = len(initial)
+            cs = np.column_stack([rhs(key, initial.astype(complex)+1j*1e-30*np.eye(n)[k]).imag/1e-30 for k in range(n)])
+            check(key+':analytic-Jacobian', np.max(np.abs(jac(key, initial)-cs)/(1+np.abs(cs))) <= 3e-14)
+            solved = []
+            for method in ['Radau', 'BDF']:
+                for level, (rtol, atol) in enumerate([(1e-11, 1e-13), (2e-12, 2e-14)]):
+                    last = {}
+                    def fun(t, y):
+                        budget.check(); last.update(time=t, state=y.copy())
+                        result = rhs(key, y); last['rhs'] = result.copy(); return result
+                    def derivative(t, y):
+                        budget.check(); last.update(time=t, state=y.copy())
+                        result = jac(key, y); last['jacobian'] = result.copy(); return result
+                    try:
+                        sol = solve_ivp(fun, (0, float(times[-1])), initial, method=method,
+                            jac=derivative, rtol=rtol, atol=atol, dense_output=True)
+                        # Persist the completed native adaptive result BEFORE dense
+                        # interpolation or log-to-physical transformation can fail.
+                        np.savez_compressed(out/f'{key}-{method}-{level}-native.npz',
+                            t=sol.t, y=sol.y, status=np.array(sol.status),
+                            success=np.array(sol.success), message=np.array(str(sol.message)),
+                            nfev=np.array(sol.nfev), njev=np.array(sol.njev), nlu=np.array(sol.nlu))
+                        sampled = sol.sol(times)
+                        physical = np.exp(sampled) if key == 'lv' else sampled
+                        np.savez_compressed(out/f'{key}-{method}-{level}.npz', t=times,
+                            y=physical, solver_t=sol.t, solver_y=sol.y)
+                        solved.append((bool(sol.success), physical))
+                    except BaseException:
+                        np.savez_compressed(out/f'{key}-{method}-{level}-last-callback.npz', **last)
+                        raise
+            reference_states = [v for success, v in solved]
+            check(key+':all-statuses', all(ok for ok, val in solved))
+            check(key+':finite', all(np.isfinite(v).all() for v in reference_states))
+            check(key+':Radau-refinement', np.max(np.abs(reference_states[0]-reference_states[1])) <= 1e-8)
+            check(key+':BDF-refinement', np.max(np.abs(reference_states[2]-reference_states[3])) <= 1e-8)
+            check(key+':cross-engine', np.max(np.abs(reference_states[1]-reference_states[3])) <= 1e-8)
+            expected = np.exp(initial) if key == 'lv' else initial
+            check(key+':initial', np.max(np.abs(reference_states[1][:, 0]-expected)) <= 1e-14)
+            check(key+':positivity-and-invariant', np.min(reference_states[1]) >= -1e-12 and (
+                (np.max(np.abs(reference_states[1][1]+reference_states[1][2]-expected[2])) <= 1e-10
+                 and np.max(np.abs(reference_states[1][0]+reference_states[1][1]+reference_states[1][3]-1)) <= 1e-10) if key.startswith('enzyme') else
+                (np.max(np.abs(np.sum(reference_states[1], axis=0)-1)) <= 1e-10 if key.startswith('seir') else
+                 np.max(np.abs(np.sum(reference_states[1]-np.log(reference_states[1]), axis=0)-np.sum(expected-np.log(expected)))) <= 1e-8)))
+            if key.startswith('seir'):
+                eta = initial[1]
+                check(key+':eta-square-reference-margin', np.max(np.abs(reference_states[1]-reference_states[3])) <= min(1e-10, 1e-3*eta*eta))
+            extra = {}
+            if key.startswith('enzyme'):
+                extra['mm'] = mm_identity(times*initial[2])
+            if key.startswith('seir'):
+                extra['linear'] = seir_linear(initial[1], times).T
+            np.savez_compressed(out/(key+'-qualified.npz'), t=times, y=reference_states[1],
+                reference_discrepancy=np.max(np.abs(reference_states[1]-reference_states[3])), **extra)
+        for n in [31, 63, 127]:
+            x = np.arange(1, n+1)/(n+1)
+            ratio = np.pi**2/(4*(n+1)**2*np.sin(np.pi/(2*(n+1)))**2)
+            y = ratio*np.sin(np.pi*x)
+            residual = (2*y-np.r_[0, y[:-1]]-np.r_[y[1:], 0])*(n+1)**2-np.pi**2*np.sin(np.pi*x)
+            check(f'fd:{n}:independent-discrete-mode', np.max(np.abs(residual)) <= 1e-9)
+            check(f'fd:{n}:continuum-error-bound', np.max(np.abs(y-np.sin(np.pi*x))) <= {31:1e-3, 63:3e-4, 127:7e-5}[n])
+        for steps in [200, 400]:
+            t = np.linspace(0, .5, steps+1); y = mm_identity(t)
+            np.savez_compressed(out/f'mm-{steps}-qualified.npz', t=t, y=y)
+            check(f'mm:identity-{steps}', np.max(np.abs(y+.2*np.log(y)-1+t)) <= 2e-13)
+        matrix = np.array([[-.3, .6], [.3, -.2]])
+        for index, t in enumerate([0., .2, .5, 1.]):
+            direct = seir_linear(1e-4, [t])[0]
+            expected = np.einsum('ij,j->i', expm(t*matrix), np.full(2, 1e-4), optimize=False)
+            check(f'seir:full-matrix-exponential-{index}', np.max(np.abs(direct-expected)) <= 2e-18)
+        for index, y in enumerate([np.array([1.2, .8]), np.array([.7, 1.3]), np.ones(2)]):
+            value = (1-1/y[0])*y[0]*(1-y[1])+(1-1/y[1])*y[1]*(y[0]-1)
+            check(f'lv:invariant-derivative-{index}', abs(value) <= 1e-14)
+        data = problems(); ids = [p['id'] for p in data]
+        check('data:whole-problem-split', len(ids) == len(set(ids)) == 46)
+        write_json(out/'heat-problems.json', data)
+        heat = {}
+        for problem in data:
+            for n in [32, 64]:
+                inp, target = batch([problem], n)
+                heat[f'i{problem["id"]}_{n}'] = inp[0]
+                heat[f'y{problem["id"]}_{n}'] = target[0]
+        norm_problem = dict(next(p for p in data if p['id'] == 850300))
+        norm_problem['nu'] = .1
+        for n in [32, 64]:
+            heat[f'norm_zero_{n}'] = np.zeros(n)
+            heat[f'norm_near-zero_{n}'] = values(norm_problem, n, .25)*1e-14
+        np.savez_compressed(out/'heat-data.npz', **heat)
+        if len(checks) != 92:
+            raise AssertionError('Fixed qualification inventory count differs')
+        dependencies = ['pinn.py', 'fno.py', 'data_family.py', 'io_utils.py',
+            'references/reference_models.py', 'references/oracles.py', 'references/qualify.py']
+        bindings = {name: sha(root/name) for name in dependencies}
+        write_json(out/'qualification.json', {'schema_version': 1, 'passed': True,
+            'checks': checks, 'input_sha256': sha(root/'inputs.json'),
+            'acceptance_sha256': sha(root/'acceptance.json'), 'source_sha256': bindings,
+            'scope': '92 component/reference checks; 20 independent ODE propagations; no primary optimization/evolution'})
+        trace.flush()
+        return checks
+    except BaseException:
+        trace.flush()
+        raise
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(); parser.add_argument('--output', required=True)
+    parser.add_argument('--max-seconds', type=float, default=30)
+    args = parser.parse_args(); qualify(args.output, args.max_seconds)
+

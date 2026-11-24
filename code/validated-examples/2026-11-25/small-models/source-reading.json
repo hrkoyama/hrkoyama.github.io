@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "scope": "Selected primary reading only; no original full-paper numerical reproduction or previous abstract-record overwrite.",
+  "inherited_sources": [
+    {
+      "id": "raissi-part1-2017-selected",
+      "url": "https://arxiv.org/pdf/1711.10561",
+      "edition": "arXiv:1711.10561v1, 28 Nov 2017; displayed preprint date Nov30",
+      "accessed_on": "2026-11-24",
+      "source_kind": "author primary preprint",
+      "read_scope": "Extracted PDF text selected pp.4–6, §2 continuous-time residual, Eq(2)–(4), Burgers setup and loss/optimizer discussion; not all 22 pages and not visual PDF audit.",
+      "observations": "Residual and data/boundary losses are distinct; shared neural parameters are differentiated for the residual. The selected experiment uses L-BFGS. Our Poisson hard-boundary ansatz and small network are new educational choices.",
+      "unread": "2019 JCP full article remains unread here; preprint selected body does not upgrade that bibliographic item to full-paper-read."
+    },
+    {
+      "id": "li-fno-v3-2021-selected",
+      "url": "https://arxiv.org/html/2010.08895v3",
+      "alternate_primary_url": "https://arxiv.org/pdf/2010.08895",
+      "edition": "arXiv:2010.08895v3, 17 May 2021; ICLR2021 paper",
+      "accessed_on": "2026-11-24",
+      "source_kind": "author primary paper",
+      "read_scope": "Selected HTML §2 learning operators; §3 Eq(2); §4 Eq(4)–(5), FFT/truncation/reality; §5 setup and §5.1 Burgers. PDF header/edition only; not full paper or appendix audit.",
+      "observations": "Whole function-pairs define operator learning. Fourier blocks combine learned spectral and local maps. The paper reports substantially larger training/test sets and GPU training; this tiny heat design changes problem, architecture and budget. No paper accuracy/speed is adopted.",
+      "unread": "Appendix data generation and all numerical tables were not independently audited; zero-shot and OOD guarantees are not inferred."
+    },
+    {
+      "id": "mm-eilertsen-v2-selected",
+      "url": "https://arxiv.org/html/2305.12602v2",
+      "edition": "v2,30Jan2024 (preprint version date, not inferred journal year)",
+      "accessed_on": "2026-11-24",
+      "source_kind": "author primary paper",
+      "read_scope": "Selected §1 Eq(1)–(8) and selected discussion around transient-time estimates Eq(32); proofs and complete quantitative bounds unread.",
+      "observations": "Full mass-action, standard reduction and small enzyme parameters were checked. A fast timescale alone does not certify the end of the transient; no theorem-bound constants from unread proofs are imported."
+    },
+    {
+      "id": "enzyme-hanche-author-notes",
+      "url": "https://hanche.folk.ntnu.no/kurs/matmod/2005h/enzyme.pdf",
+      "edition": "TMA4195 course2005, document version2006-04-11",
+      "accessed_on": "2026-11-24",
+      "source_kind": "author-hosted mathematical lecture notes, not historical original",
+      "read_scope": "Selected extracted text pp1–3: mass-action equations, conservation, QSSA and fast/slow scales. Remaining asymptotic matching not audited.",
+      "observations": "Equations and conservation provide a formulation cross-check; historical1913 equilibrium and1925 QSSA are distinct, neither original was read here."
+    },
+    {
+      "id": "moler-predprey-selected",
+      "url": "https://www.mathworks.com/content/dam/mathworks/mathworks-dot-com/moler/exm/chapters/predprey.pdf",
+      "edition": "CleveMoler,Experiments in MATLAB ch16; footer2011-10-02",
+      "accessed_on": "2026-11-24",
+      "source_kind": "author chapter at official MathWorks host",
+      "read_scope": "Selected extracted text pp3–6: normalized LV equations, equilibrium, periodic-orbit discussion and numerical illustration. No original Lotka/Volterra paper read.",
+      "observations": "Adopt mu1=mu2=1. Invariant H is derived directly for this draft, not claimed transcribed from the chapter; positive non-equilibrium orbits and equilibria are distinguished."
+    },
+    {
+      "id": "hethcote2000-selected",
+      "url": "https://math.uchicago.edu/~shmuel/Modeling/hethcote2000%20Mathematics%20of%20Infectious%20diseases.pdf",
+      "canonical_url": "https://doi.org/10.1137/S0036144500371907",
+      "edition": "SIAMReview42(4),599–653,2000; publisher PDF text mirrored at university",
+      "accessed_on": "2026-11-24",
+      "source_kind": "primary review paper itself; university-hosted copy, not claimed author-hosted",
+      "read_scope": "Header, selected introduction compartment definitions and §3.1 printedpp618–619, displayed mass-action numbers and Eq(3.1); search around3.2/SEIR limit. Not whole55pages or visual diagram audit.",
+      "observations": "Draft closed SEIR is explicitly obtained by no births/deaths and no maternal compartment. Incidence beta*S*I/N and exposed-to-infectious/recovery transfers are distinguished; educational rates are not disease estimates."
+    }
+  ],
+  "new_selected_official_reads": [
+    {
+      "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.optimize.least_squares.html",
+      "version": "1.14.1",
+      "publication_year": null,
+      "accessed_on_utc": "2026-11-24",
+      "read_scope": "Signature/cost normalization, analytic vs numericalJacobian, nfev/njev andstatus/success definitions; no fullTRFsourceaudit."
+    },
+    {
+      "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/optimize.minimize-lbfgsb.html",
+      "version": "1.14.1",
+      "publication_year": null,
+      "accessed_on_utc": "2026-11-24",
+      "read_scope": "Selected options maxcor/ftol/gtol/maxfun/maxiter/maxls and warning that numericalgradientwork canexceed maxfun."
+    }
+  ],
+  "reconfirmed_primary_headers": [
+    {
+      "url": "https://arxiv.org/html/2010.08895v3",
+      "read_scope": "Version/header andselected§3–4 Eq2/4/5 nonlinearFourier-layerdefinition/conjugatesymmetry; previous§5scope remainsselectedonly."
+    },
+    {
+      "url": "https://arxiv.org/html/2305.12602v2",
+      "read_scope": "Version/header; previousselectedmassaction/QSSA/transientnotes inherited, notfullproofre-reading."
+    }
+  ],
+  "historical_unread": "2019JCP fullarticle; historicalMichaelis/Briggs/Lotka/Volterra originals; completeFNOappendix andMMproofconstants unread. Original accessfailures remain in private R1 manifest, no fullarticlePDF redistributed.",
+  "bibliographic_sequence86": {
+    "shared_with": [
+      84,
+      85
+    ],
+    "additional_numerical_cases": 0
+  }
+}

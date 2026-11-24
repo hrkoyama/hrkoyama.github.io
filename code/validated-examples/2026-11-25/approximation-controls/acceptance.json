@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "runge-barycentric-clenshaw": {
+    "records": 12,
+    "coefficient_sets": 6,
+    "node_cosine_abs_max": 8.881784197001252e-16,
+    "polynomial_control_abs_max": 2e-12,
+    "equispaced_runge_growth_min": 1.0,
+    "lobatto_runge_refinement_max": 1.0,
+    "roundoff": "Exact Fraction certificates derived from declared scalar operation graph; no empirical common epsilon."
+  },
+  "spline-shape-controls": {
+    "records": 9,
+    "endpoint_records": 15,
+    "endpoint_scalar_outputs": 16,
+    "endpoint_distinct_datasets": 13,
+    "value_scaled_max": 2e-12,
+    "derivative_scaled_max": 3e-10,
+    "shape_roundoff_max": 2e-12,
+    "continuity_scaled_max": 3e-10
+  },
+  "haar-mallat-boundary-threshold": {
+    "analysis_records": 12,
+    "records": 36,
+    "reconstruction_scaled_max": 5e-13,
+    "dense_map_scaled_max": 5e-13,
+    "energy_scaled_max": 2e-12,
+    "coefficient_counts": {
+      "17": 20,
+      "32": 32
+    }
+  }
+}

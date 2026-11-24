@@ -11,6 +11,8 @@ const json=path=>JSON.parse(read(path));
 const equations=json('catalog/atlas-equations.json').equations;
 const methods=json('catalog/atlas-methods.json').methods;
 const expected={
+ 'bio-enzyme':{common:[],supplemental:['enzyme-qssa']},
+ 'bio-lotka-volterra':{common:[],supplemental:['lotka-volterra']},
  'bio-logistic':{common:['logistic-growth'],supplemental:[]},
  'bio-sir':{common:['sir-epidemic'],supplemental:[]},
  'bio-turing':{common:[],supplemental:['turing-schnakenberg','schnakenberg-nonlinear','schnakenberg-pattern']},
@@ -27,10 +29,10 @@ discovery=load_discovery(ROOT)
 `;
 const python=source=>execFileSync('python3',['-B','-c',prelude+source],{cwd:root,encoding:'utf8',timeout:30000});
 
-test('five biology labels expose only their verified common or supplemental scope, without adding equations or physical problems',()=>{
+test('seven surveyed biology labels expose only their verified common or supplemental scope',()=>{
  assert.equal(equations.length,equationCount);
- assert.equal(equations.filter(x=>!['rotational-advection','shallow-water-bed','forced-incompressible','level-set-advection', 'forced-vorticity', 'boussinesq-buoyancy', 'ale-scalar-transport', 'linear-rotating-shallow-water', 'variable-viscosity-vector', 'srmhd', 'srhd','tensor-diffusion','coulomb-electrostatics','vlasov-poisson','hard-sphere-boltzmann',...equationsAddedAfterBatch37].includes(x.id)&&x.status==='local-example').length,23);
- assert.equal(equations.filter(x=>x.status==='reading').length,22);
+ assert.equal(equations.filter(x=>!['rotational-advection','shallow-water-bed','forced-incompressible','level-set-advection', 'forced-vorticity', 'boussinesq-buoyancy', 'ale-scalar-transport', 'linear-rotating-shallow-water', 'variable-viscosity-vector', 'srmhd', 'srhd','tensor-diffusion','coulomb-electrostatics','vlasov-poisson','hard-sphere-boltzmann','bio-enzyme','bio-lotka-volterra',...equationsAddedAfterBatch37].includes(x.id)&&x.status==='local-example').length,23);
+ assert.equal(equations.filter(x=>x.status==='reading').length,20);
  const discovery=json('catalog/atlas-execution-discovery.json').examples;
  for(const [id,wanted] of Object.entries(expected)){
   const model=equations.find(x=>x.id===id);assert.equal(model.status,'local-example');
@@ -43,25 +45,100 @@ test('five biology labels expose only their verified common or supplemental scop
  assert.ok(equations.find(x=>x.id==='bio-fitzhugh-nagumo').note.en.includes('D=0'));
  for(const id of ['bio-hodgkin-huxley','bio-gray-scott'])assert.equal(equations.find(x=>x.id===id).status,'reading');
  const uniqueSupplementIds=new Set(Object.keys(expected).flatMap(id=>equations.find(x=>x.id===id).supplemental_examples||[]));
- assert.deepEqual([...uniqueSupplementIds].sort(),['fitzhugh-nagumo','schnakenberg-nonlinear','schnakenberg-pattern','turing-schnakenberg']);
+ assert.deepEqual([...uniqueSupplementIds].sort(),['enzyme-qssa','fitzhugh-nagumo','lotka-volterra','schnakenberg-nonlinear','schnakenberg-pattern','turing-schnakenberg']);
  assert.equal(createHash('sha256').update(read('numerical-methods-atlas/code-and-data/examples.json')).digest('hex'),'3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7');
 });
 
 test('actual evidence resolves immutable receipts and refuses borrowed, missing or inflated biological executions',()=>{
  python(String.raw`
-value=equation_evidence(ROOT,equations,discovery)
+# Test-local immutable snapshot only; production loaders are unchanged.
+from hashlib import sha256
+from urllib.parse import urlsplit
+from unittest import mock
+import atlas_equation_availability as equation_module
+
+requested_ids=list(dict.fromkeys(ident for row in equations for ident in row.get('supplemental_examples',[])))
+snapshot_paths=set(['scripts/atlas_equation_availability.py','scripts/atlas_goal_availability.py','scripts/atlas_depth_release.py','scripts/atlas_registration.py','scripts/atlas_execution_discovery.py','scripts/atlas-display-sync.test.mjs','catalog/atlas-registration.json','catalog/schemas/atlas-registration.schema.json','catalog/atlas-equations.json','catalog/atlas-execution-examples.json','catalog/atlas-execution-discovery.json','catalog/atlas-depth-expansion.json','numerical-methods-atlas/assets/biological-models.json','numerical-methods-atlas/code-and-data/examples.json'])
+
+def checked_file(relative):
+ path=ROOT/relative
+ if not isinstance(relative,str) or path.is_symlink() or not path.is_file() or not path.resolve().is_relative_to(ROOT.resolve()):
+  raise RuntimeError('Unsafe immutable snapshot path')
+ return path
+
+registry=json.loads(checked_file('numerical-methods-atlas/code-and-data/examples.json').read_text())
+receipt=urlsplit(registry['verification_receipt'])
+if receipt.scheme!='https' or receipt.netloc!='hrkoyama.github.io' or receipt.query or receipt.fragment:
+ raise RuntimeError('Unexpected common verification destination')
+snapshot_paths.add(receipt.path.lstrip('/'))
+config=json.loads(checked_file('catalog/atlas-depth-expansion.json').read_text())
+for group in config['groups']:
+ edition=group.get('edition',config['edition'])
+ prefix='code/validated-examples/'+edition+'/'+group['id']+'/'
+ metadata_path=prefix+'cases.json';snapshot_paths.add(metadata_path)
+ raw=json.loads(checked_file(metadata_path).read_text());metadata=raw['cases'] if isinstance(raw,dict) else raw
+ if not set(requested_ids).intersection(row['id'] for row in metadata):continue
+ manifest_path=prefix+'source-manifest.json';verification_path=prefix+'verification.json'
+ snapshot_paths.update([manifest_path,verification_path])
+ manifest=json.loads(checked_file(manifest_path).read_text());verification=json.loads(checked_file(verification_path).read_text())
+ for name in manifest['files']:
+  if name.startswith('/') or '..' in pathlib.PurePosixPath(name).parts or '\\' in name:raise RuntimeError('Unsafe snapshot member')
+  snapshot_paths.add(prefix+name)
+ snapshot_paths.add(prefix+verification['archive']['file'])
+
+def fingerprint_snapshot():
+ return {name:sha256(checked_file(name).read_bytes()).hexdigest() for name in sorted(snapshot_paths)}
+
+before_sha=fingerprint_snapshot()
+real_loader=equation_module.load_supplemental_examples
+verified={};real_calls=[];replay_calls=[]
+
+def capture_verified(root,identifiers):
+ if pathlib.Path(root).resolve()!=ROOT.resolve() or identifiers!=requested_ids:
+  raise RuntimeError('Unexpected positive loader request')
+ records=real_loader(root,identifiers)  # Mandatory actual full loader, never mocked away.
+ if [row['id'] for row in records]!=identifiers:raise RuntimeError('Positive loader order differs')
+ real_calls.append(list(identifiers))
+ for row in records:
+  if row['id'] in verified:raise RuntimeError('Duplicate verified snapshot ID')
+  verified[row['id']]=copy.deepcopy(row)
+ return records
+
+with mock.patch.object(equation_module,'load_supplemental_examples',side_effect=capture_verified):
+ value=equation_evidence(ROOT,equations,discovery)
+if len(real_calls)!=1 or list(verified)!=requested_ids:raise RuntimeError('Actual positive full-loader count/order differs')
+for name,expected in value['source_sha256'].items():
+ if before_sha.get(name)!=expected:raise RuntimeError('Actual positive source SHA is outside/broken snapshot')
+verified_original=copy.deepcopy(verified)
+
+def replay_verified(root,identifiers):
+ # RuntimeError is deliberate: cache/fixture failures must NOT satisfy a
+ # negative control that expects a production mapping AssertionError.
+ if pathlib.Path(root).resolve()!=ROOT.resolve() or not isinstance(identifiers,list) or len(identifiers)!=len(set(identifiers)) or not set(identifiers)<=verified.keys():
+  raise RuntimeError('Invalid immutable snapshot request')
+ result=[copy.deepcopy(verified[ident]) for ident in identifiers]
+ if [row['id'] for row in result]!=identifiers:raise RuntimeError('Immutable snapshot request order differs')
+ replay_calls.append(list(identifiers))
+ return result
 assert [x for x in value['supplemental_case_ids'] if x not in ['zalesak-rotation','weno-critical-epsilon','swashes-topography','dry-bed-dam-break','cavity-ghia-re100','wall-manufactured','level-set-translation','level-set-rotation', 'kh-initial-growth', 'rt-initial-growth', 'circular-alfven-refinement', 'magnetic-loop-independent', 'postshock-orszag-tang', 'lshape-fem', 'annular-viscous-mms', 'poisson-neumann', 'poisson-robin', 'ale-nonuniform-transport', 'cgrid-rotating-wave', 'srhd-collision', 'srmhd-alfven', 'sem-poisson-2d', 'fr-periodic-advection','checkerboard-diffusion','rotated-anisotropic-diffusion','neutral-slab-yb','fmm3d-inverse-r','gravity-kepler','gravity-plummer-short','thermal-landau-damping','thermal-two-stream','pic-independent-spatial','dsmc-couette','dsmc-fourier','dsmc-planar-shock']+${JSON.stringify(examplesAddedAfterBatch37)}]==['fitzhugh-nagumo','schnakenberg-nonlinear','schnakenberg-pattern','turing-schnakenberg']
 assert len(value['common']['bio-logistic'])==len(value['common']['bio-sir'])==1
-for scenario in ['borrow-hh','wrong-case','missing-common','inflated-scope']:
- rows=copy.deepcopy(equations);d=copy.deepcopy(discovery);byid={x['id']:x for x in rows}
- if scenario=='borrow-hh':
-  byid['bio-hodgkin-huxley'].update(status='local-example',supplemental_examples=['fitzhugh-nagumo'])
- elif scenario=='wrong-case':byid['bio-turing']['supplemental_examples']=['fitzhugh-nagumo']
- elif scenario=='missing-common':next(x for x in d['examples'] if x['id']=='sir-epidemic')['equation_ids']=[]
- else:byid['bio-fitzhugh-nagumo']['execution_scope']['en']='Full spatial Hodgkin-Huxley validation'
- try:equation_evidence(ROOT,rows,d)
- except AssertionError:pass
- else:raise AssertionError('Invalid execution mapping accepted: '+scenario)
+try:
+ with mock.patch.object(equation_module,'load_supplemental_examples',side_effect=replay_verified):
+  for scenario in ['borrow-hh','wrong-case','missing-common','inflated-scope']:
+   rows=copy.deepcopy(equations);d=copy.deepcopy(discovery);byid={x['id']:x for x in rows}
+   if scenario=='borrow-hh':
+    byid['bio-hodgkin-huxley'].update(status='local-example',supplemental_examples=['fitzhugh-nagumo'])
+   elif scenario=='wrong-case':byid['bio-turing']['supplemental_examples']=['fitzhugh-nagumo']
+   elif scenario=='missing-common':next(x for x in d['examples'] if x['id']=='sir-epidemic')['equation_ids']=[]
+   else:byid['bio-fitzhugh-nagumo']['execution_scope']['en']='Full spatial Hodgkin-Huxley validation'
+   try:equation_evidence(ROOT,rows,d)
+   except AssertionError:pass
+   else:raise AssertionError('Invalid execution mapping accepted: '+scenario)
+finally:
+ # Source edits, even under unchanged manifest names, invalidate the snapshot.
+ if fingerprint_snapshot()!=before_sha:raise RuntimeError('Immutable source snapshot changed')
+if len(replay_calls)!=4 or verified!=verified_original:
+ raise RuntimeError('Negative replay count or owned snapshot mutation differs')
 for path in ['scripts/atlas_equation_availability.py','scripts/build-atlas-equations.py','scripts/build-atlas-quantum.py','scripts/integrate-depth-catalog.py']:
  ast.parse((ROOT/path).read_text())
 `);
@@ -89,9 +166,9 @@ with mock.patch.object(pathlib.Path,'read_text',read_text),mock.patch.object(pat
 html=captured[str(ROOT/'numerical-methods-atlas/equations/index.html')]
 public=json.loads(captured[str(ROOT/'numerical-methods-atlas/equations/index.json')])
 historical=[x for x in public['equations'] if x['id'] not in ['rotational-advection','shallow-water-bed','forced-incompressible','level-set-advection','forced-vorticity','boussinesq-buoyancy','ale-scalar-transport','linear-rotating-shallow-water','variable-viscosity-vector','srmhd','tensor-diffusion','coulomb-electrostatics','vlasov-poisson','hard-sphere-boltzmann']+${JSON.stringify(equationsAddedAfterBatch37)}]
-assert len(historical)==46 and sum(x['status']=='local-example' for x in historical)==24
+assert len(historical)==46 and sum(x['status']=='local-example' for x in historical if x['id'] not in ['bio-enzyme','bio-lotka-volterra'])==24
 assert next(x for x in historical if x['id']=='srhd')['status']=='local-example'
-assert sum(x['status']=='local-example' for x in historical if x['id']!='srhd')==23
+assert sum(x['status']=='local-example' for x in historical if x['id'] not in ['srhd','bio-enzyme','bio-lotka-volterra'])==23
 assert public['counts']['total']==len(public['equations'])
 assert public['counts']['local_example']==sum(x['status']=='local-example' for x in public['equations'])
 assert public['execution_example_count']==22
@@ -100,6 +177,9 @@ rows={x['id']:x for x in public['equations']}
 for ident in ['bio-turing','bio-schnakenberg']:
  assert rows[ident]['execution_examples']==[]
  assert [x['id'] for x in rows[ident]['supplemental_execution_examples']]==['turing-schnakenberg','schnakenberg-nonlinear','schnakenberg-pattern']
+for ident,case in [('bio-enzyme','enzyme-qssa'),('bio-lotka-volterra','lotka-volterra')]:
+ assert rows[ident]['execution_examples']==[]
+ assert [x['id'] for x in rows[ident]['supplemental_execution_examples']]==[case]
 for ident,case in [('bio-logistic','logistic-growth'),('bio-sir','sir-epidemic')]:
  assert [x['id'] for x in rows[ident]['execution_examples']]==[case]
  assert rows[ident]['supplemental_execution_examples']==[]

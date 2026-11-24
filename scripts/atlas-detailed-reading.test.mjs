@@ -25,7 +25,35 @@ test('all 23 formerly unlinked methods have substantive bilingual reading while 
     for(const id of ['fdtd-pde','fdtd-update','fdtd-plane','fdtd-cavity','fdtd-dispersion','fdtd-energy','fdtd-order'])assert.ok(formulas.includes(id),lang+' '+id);
     for(const id of formulas)assert.ok(source.formulas[id],id);
    }
-   else{assert.equal(chapter.sections.length,4);assert.ok(chapter.intro[lang].length>40);for(const section of chapter.sections)assert.ok(section.paragraphs[lang].join(' ').length>65,id+' '+lang+' '+section.id);}
+   else{
+    let sections=chapter.sections;
+    if(id==='pinn-operators'){
+     const freeze=read('scripts/fixtures/atlas-batch78-87-freeze.json');
+     assert.deepEqual(chapter.sections.map(s=>s.id),['model','algorithm','conditions','verification','selected-original-source-roles']);
+     assert.deepEqual(chapter.sections[4],freeze.reference_curation.section);
+     assert.deepEqual(chapter.references,['raissi2019','li2021fno','raissi2017part1-selected','li2021fno-v3-selected']);
+     assert.equal(freeze.reference_curation.sequence,86);
+     assert.equal(freeze.reference_curation.numerical_cases,0);
+     assert.deepEqual(freeze.reference_curation.old_bibliographic_records_preserved,['raissi2019','li2021fno']);
+     const selectedIds=['raissi2017part1-selected','li2021fno-v3-selected'];
+     assert.equal(freeze.reference_curation.citations.length,selectedIds.length);
+     for(const [index,referenceId] of selectedIds.entries()){
+      const reference=source.references.find(r=>r.id===referenceId),curated=freeze.reference_curation.citations[index];
+      assert.ok(reference,referenceId);
+      assert.equal(reference.title,curated.title,referenceId);
+      assert.equal(reference.source,curated.url,referenceId);
+      assert.equal(reference.year,curated.source_year,referenceId);
+      assert.equal(reference.year_role,curated.year_role,referenceId);
+      assert.equal(reference.source_review.level,'full-text',referenceId+' selected passages use the supported reading enum');
+      assert.equal(reference.source_review.url,curated.url,referenceId);
+      assert.equal(reference.source_review.scope,curated.read_scope,referenceId);
+      assert.equal(reference.source_review.checked_on,curated.accessed_on,referenceId);
+      assert.equal(curated.full_text_read_by_integration_author,false,referenceId+' selected scope is not a whole-paper claim');
+     }
+     sections=chapter.sections.slice(0,4);
+    }
+    assert.equal(sections.length,4);assert.ok(chapter.intro[lang].length>40);for(const section of sections)assert.ok(section.paragraphs[lang].join(' ').length>65,id+' '+lang+' '+section.id);
+   }
    assert.equal(m.reading[lang],`/numerical-methods-atlas/${lang}/read/${id==='optimization'?'bratu-multi-inverse':id}/`);
   }
  }

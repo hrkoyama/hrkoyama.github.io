@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_on": "2026-11-24",
+  "reviewed_on": "2026-11-25",
   "title": {
     "ja": "分野ごとの実装・検証範囲",
     "en": "Implementation and validation by field"
@@ -155,7 +155,8 @@
         "checkerboard-diffusion",
         "rotated-anisotropic-diffusion",
         "bratu-fold-continuation",
-        "bratu-matrix-free-jfnk"
+        "bratu-matrix-free-jfnk",
+        "pinn-poisson"
       ]
     },
     {
@@ -228,8 +229,8 @@
         "en": "Biology"
       },
       "scope": {
-        "ja": "22モデル族の文献解説に、ロジスティック増殖・閉鎖SIR、線形反応拡散、Schnakenbergの線形発現・有限振幅の非線形発展・成長後の1次元パターン、空間なしFitzHugh–Nagumoの限定例を接続します。全22族やHodgkin–Huxleyの実装ではありません。",
-        "en": "The 22-family survey links scoped examples of logistic growth, closed SIR, linear reaction–diffusion, linear Schnakenberg onset, finite-amplitude nonlinear evolution and post-growth 1D patterns, plus spatially uniform FitzHugh–Nagumo. This does not implement all 22 families or Hodgkin–Huxley."
+        "ja": "22モデル族の文献解説に、ロジスティック増殖・閉鎖SIR、線形反応拡散、Schnakenbergの線形発現・有限振幅の非線形発展・成長後の1次元パターン、空間なしFitzHugh–Nagumoの限定例を接続します。全22族やHodgkin–Huxleyの実装ではありません。 別群small-modelsから、固定した4状態酵素/QSSA、正のLotka–Volterra軌道、SEIR保存則と初期2モード線形化の3例だけを追加します。SEIRはSIRの既存実行範囲とは別です。",
+        "en": "The 22-family survey links scoped examples of logistic growth, closed SIR, linear reaction–diffusion, linear Schnakenberg onset, finite-amplitude nonlinear evolution and post-growth 1D patterns, plus spatially uniform FitzHugh–Nagumo. This does not implement all 22 families or Hodgkin–Huxley. Three further fixed examples from the separate small-models group cover four-state enzyme/QSSA, a positive Lotka–Volterra orbit, and SEIR conservation with full two-mode early linearization. SEIR is separate from the existing SIR execution scope."
       },
       "examples": [
         "logistic-growth",
@@ -240,16 +241,16 @@
         "en": "/numerical-methods-atlas/en/read/biological-models/"
       },
       "reference": {
-        "ja": "ロジスティック・線形反応拡散は解析解、SIR/FHNは別実装DOP853、線形Turingは行列指数です。新しい非線形Schnakenbergは、脱エイリアスしたFourier–Galerkin＋Radauの独立参照と、時間誤差用の同じ差分半離散系のRadau参照を区別します。",
-        "en": "Analytic references for logistic/linear reaction–diffusion, independent DOP853 for SIR/FHN and matrix exponentials for linear Turing growth. New nonlinear Schnakenberg checks distinguish an independent dealiased Fourier–Galerkin/Radau reference from Radau on the same finite-difference semidiscretization used to isolate time error."
+        "ja": "ロジスティック・線形反応拡散は解析解、SIR/FHNは別実装DOP853、線形Turingは行列指数です。新しい非線形Schnakenbergは、脱エイリアスしたFourier–Galerkin＋Radauの独立参照と、時間誤差用の同じ差分半離散系のRadau参照を区別します。 追加3ODE例は独立実装のRadau/BDF参照を用い、酵素の縮約モデルは陰的スカラー式、SEIR初期線形化は全2×2行列指数と区別します。",
+        "en": "Analytic references for logistic/linear reaction–diffusion, independent DOP853 for SIR/FHN and matrix exponentials for linear Turing growth. New nonlinear Schnakenberg checks distinguish an independent dealiased Fourier–Galerkin/Radau reference from Radau on the same finite-difference semidiscretization used to isolate time error. The three additional ODE examples use separately implemented Radau/BDF references; distinguish the enzyme scalar implicit reduced solution and the full 2×2 exponential used for early SEIR linearization."
       },
       "refinement": {
-        "ja": "旧例の空間2次・RK4時間4次を保持。新例は中心差分の拡散を厳密に進め、反応を陰的中点則で解くStrang分割です。有限振幅の解について空間・時間を別々に細分化し、成長後のパターンでも独立参照の解像度・公差の感度を区別します。 追加の短時間例では同じ32格子・部分ソルバーでLie–TrotterとStrangの時間収束を比較し、Radau公差とDOP853の参照差を別に測ります。",
-        "en": "Preserve second-order space/fourth-order RK4 time checks in the old examples. New cases combine exact finite-difference diffusion with implicit-midpoint reactions in a Strang split. Refine space and time separately for finite-amplitude solutions, distinguishing independent-reference resolution/tolerance sensitivity for post-growth patterns. An additional short-time example compares Lie–Trotter/Strang time refinement at the same 32-point grid with matched subsolvers, separately measuring Radau-tolerance and DOP853 reference differences."
+        "ja": "旧例の空間2次・RK4時間4次を保持。新例は中心差分の拡散を厳密に進め、反応を陰的中点則で解くStrang分割です。有限振幅の解について空間・時間を別々に細分化し、成長後のパターンでも独立参照の解像度・公差の感度を区別します。 追加の短時間例では同じ32格子・部分ソルバーでLie–TrotterとStrangの時間収束を比較し、Radau公差とDOP853の参照差を別に測ります。 酵素では2つのE0・2許容誤差と縮約200/400刻み、LVとSEIRでは400/800/1600刻みを固定し、積分誤差・縮約/線形化誤差を分けて報告します。",
+        "en": "Preserve second-order space/fourth-order RK4 time checks in the old examples. New cases combine exact finite-difference diffusion with implicit-midpoint reactions in a Strang split. Refine space and time separately for finite-amplitude solutions, distinguishing independent-reference resolution/tolerance sensitivity for post-growth patterns. An additional short-time example compares Lie–Trotter/Strang time refinement at the same 32-point grid with matched subsolvers, separately measuring Radau-tolerance and DOP853 reference differences. Fixed enzyme controls use two E0 values, two tolerance pairs and reduced-model 200/400 steps; LV and SEIR use 400/800/1600 steps, reporting integration error separately from reduction/linearization error."
       },
       "next": {
-        "ja": "固定した1次元周期・反射対称初期値の検証です。一般初期値からの模様選択、2次元・非周期境界、他の反応則、SEIR・完全HH、実験データへの較正と移流・流体連成は未検証です。",
-        "en": "Validation is limited to fixed reflection-symmetric initial data in 1D periodic domains. Pattern selection from general starts, 2D/nonperiodic problems, other kinetics, SEIR/full HH, experimental calibration and advection/fluid coupling remain unvalidated."
+        "ja": "固定した1次元周期・反射対称初期値の検証です。一般初期値からの模様選択、2次元・非周期境界、他の反応則、SEIRの一般入力・完全HH、実験データへの較正と移流・流体連成は未検証です。 追加ODE例も固定小入力に限り、QSSAの厳密誤差保証・捕食被食の一般的長時間保証・SEIRの全時刻線形化精度は主張しません。",
+        "en": "Validation is limited to fixed reflection-symmetric initial data in 1D periodic domains. Pattern selection from general starts, 2D/nonperiodic problems, other kinetics, general SEIR inputs/full HH, experimental calibration and advection/fluid coupling remain unvalidated. The added ODE examples also use fixed small inputs; they do not certify rigorous QSSA error bounds, general long-time predator–prey behavior or all-time SEIR linearization accuracy."
       },
       "supplemental_examples": [
         "reaction-diffusion-fourier",
@@ -257,11 +258,28 @@
         "fitzhugh-nagumo",
         "schnakenberg-nonlinear",
         "schnakenberg-pattern",
-        "reaction-diffusion-splitting"
+        "reaction-diffusion-splitting",
+        "enzyme-qssa",
+        "lotka-volterra",
+        "seir-linearization"
       ],
       "schnakenberg_scope": {
         "ja": "a=0.1,b=0.9、拡散係数0.01/1、長さ2πの1次元周期Schnakenberg系。旧線形発現例を保持し、固定した反射対称の有限振幅初期値の非線形発展と成長後パターンを独立Fourier–Galerkin/Radau参照および空間・時間細分化で比較します。一般の模様選択、2次元、生物実験への較正、流体連成には広げません。",
         "en": "A 1D periodic Schnakenberg system of length 2pi, a=0.1, b=0.9 and diffusivities 0.01/1. Preserve the earlier linear-onset example and compare finite-amplitude nonlinear evolution and post-growth patterns from fixed reflection-symmetric data with independent Fourier–Galerkin/Radau references and separate spatial/temporal refinement. No general pattern selection, 2D, biological calibration or fluid-coupling claim."
+      },
+      "model_supplements": {
+        "enzyme": {
+          "group": "small-models",
+          "case_ids": [
+            "enzyme-qssa"
+          ]
+        },
+        "lotka-volterra": {
+          "group": "small-models",
+          "case_ids": [
+            "lotka-volterra"
+          ]
+        }
       }
     },
     {
@@ -400,7 +418,14 @@
         "high-index-pendulum",
         "shake-rattle-pendulum",
         "kepler-eccentricity",
-        "multifrequency-resonance"
+        "multifrequency-resonance",
+        "quadpack-domain-selection",
+        "gk15-double-exponential",
+        "tensor-smolyak-dimensions",
+        "runge-barycentric-clenshaw",
+        "spline-shape-controls",
+        "haar-mallat-boundary-threshold",
+        "fno-periodic-heat"
       ],
       "scope": {
         "ja": "旧版のSA-AMG、QR／SVD、Krylov固有値、求積の固定例を保持し、条件数・残差・精度と、異方性・右辺摂動と階数閾値・非正規性・狭い山の診断対照を別版で比較します。AMG追加例は代数的診断で、Poissonの格子精度へ加算しません。",
@@ -560,7 +585,9 @@
         "bratu-distributed-vjp",
         "bratu-gn-lm-bounds",
         "bfgs-lbfgs-controls",
-        "bratu-noise-regularization"
+        "bratu-noise-regularization",
+        "pinn-poisson",
+        "fno-periodic-heat"
       ],
       "scope": {
         "ja": "小さな固定例で微分作用と非線形・逆問題の反復を確かめます。",

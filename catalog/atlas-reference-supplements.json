@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_on": "2026-11-24",
+  "reviewed_on": "2026-11-25",
   "scope": "Additional explicitly cited references; preserve all historical saved cases and their original evidence.",
   "cases": [
     {
@@ -6508,6 +6508,772 @@
         "en": "/numerical-methods-atlas/en/read/validation-geometric-controls/#multifrequency-resonance"
       },
       "domain_kind": "finite-dimensional-ivp"
+    },
+    {
+      "id": "quadpack-domain-selection",
+      "model": "definite-integrals",
+      "kind": "analytic",
+      "title": "QUADPACK dispatch and finite Simpson companions",
+      "assumptions": "Whole-line Gaussian, two finite frequencies, half-line Fourier and an internal singularity; absolute tolerances1e-6/1e-8/1e-10 and epsrel0.",
+      "formula": "\\int_{-\\infty}^{\\infty}e^{-x^2}\\,dx=\\sqrt\\pi;\\quad\\int_0^1e^{-x}\\sin(\\omega x)\\,dx=\\frac{\\omega-e^{-1}(\\sin\\omega+\\omega\\cos\\omega)}{1+\\omega^2};\\quad\\int_0^\\infty e^{-x}\\sin(8x)\\,dx=\\frac8{65};\\quad\\int_0^1|x-3/8|^{-1/2}\\,dx=2(\\sqrt{3/8}+\\sqrt{5/8})",
+      "dimension": null,
+      "domain_kind": "finite-dimensional-algebra",
+      "bounds": [],
+      "components": [
+        "stored state or function",
+        "independent reference",
+        "error and study diagnostics"
+      ],
+      "field_type": "scalar",
+      "parameters": {
+        "case_id": "quadpack-domain-selection",
+        "inputs_sha256": "256fb2326fe3c907ac1a0b5131bf86d55b024e7c49cdac30ff23db1250c868d1",
+        "public_inputs": {
+          "registry_group": "quadrature-controls",
+          "edition": "2026-11-25",
+          "member": "inputs.json",
+          "json_pointer": "",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/inputs.json",
+          "sha256": "256fb2326fe3c907ac1a0b5131bf86d55b024e7c49cdac30ff23db1250c868d1"
+        },
+        "primary_row_filter": {
+          "case_id": "quadpack-domain-selection"
+        }
+      },
+      "sources": [
+        "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.quad.html"
+      ],
+      "citations": [
+        {
+          "role": "selected-primary-documentation-or-authored-identity",
+          "title": "quad: adaptive integration and QUADPACK dispatch",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.quad.html",
+          "note": "Selected parameters/full_output and routine dispatch; no complete QUADPACK book/proof audit.",
+          "read_scope": "Selected parameters/full_output and routine dispatch; no complete QUADPACK book/proof audit.",
+          "review_level": "selected-official-documentation",
+          "full_text_read_by_integration_author": false,
+          "publication_year": null,
+          "publication_year_display": "n.d.",
+          "accessed_on": "2026-11-25",
+          "version": "1.14.1"
+        }
+      ],
+      "reference_scope": "Independent analytic interval references and actual callback counts are checked. The finite Gaussian target is an interval, not an invented erf value. Singular-node failures and unmet Simpson goals remain visible; error estimates are not general guarantees.",
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/quadpack-domain-selection/?lang=ja#quadpack-domain-selection-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/quadpack-domain-selection/?lang=en#quadpack-domain-selection-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-quadrature-controls/#quadpack-domain-selection",
+        "en": "/numerical-methods-atlas/en/read/validation-quadrature-controls/#quadpack-domain-selection"
+      }
+    },
+    {
+      "id": "gk15-double-exponential",
+      "model": "definite-integrals",
+      "kind": "analytic",
+      "title": "G7/K15 and finite-interval tanh-sinh",
+      "assumptions": "Integrate exp(x), x^(-1/3) and -log(x) on[0,1], with h from1/2 to1/16 and cutoffs3/4.",
+      "formula": "Q_h^T=h\\sum_{k=-T/h}^{T/h}f(\\phi(kh))\\phi^{\\prime}(kh),\\quad\\phi(t)=\\tfrac12[1+\\tanh(\\tfrac\\pi2\\sinh t)];\\quad\\int_0^1(e^x,x^{-1/3},-\\log x)\\,dx=(e-1,3/2,1)",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "stored state or function",
+        "independent reference",
+        "error and study diagnostics"
+      ],
+      "field_type": "scalar",
+      "parameters": {
+        "case_id": "gk15-double-exponential",
+        "inputs_sha256": "256fb2326fe3c907ac1a0b5131bf86d55b024e7c49cdac30ff23db1250c868d1",
+        "public_inputs": {
+          "registry_group": "quadrature-controls",
+          "edition": "2026-11-25",
+          "member": "inputs.json",
+          "json_pointer": "",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/inputs.json",
+          "sha256": "256fb2326fe3c907ac1a0b5131bf86d55b024e7c49cdac30ff23db1250c868d1"
+        },
+        "primary_row_filter": {
+          "case_id": "gk15-double-exponential"
+        }
+      },
+      "sources": [
+        "https://raw.githubusercontent.com/scipy/scipy/v1.14.1/scipy/integrate/quadpack/dqk15.f",
+        "https://ems.press/doi/pdf/10.2977/prims/1195192451"
+      ],
+      "citations": [
+        {
+          "role": "selected-primary-documentation-or-authored-identity",
+          "title": "Pinned SciPy1.14.1 bundled dqk15",
+          "url": "https://raw.githubusercontent.com/scipy/scipy/v1.14.1/scipy/integrate/quadpack/dqk15.f",
+          "note": "Displayed table and nesting/resasc safeguards; coefficients are shared-origin, not independently regenerated.",
+          "read_scope": "Displayed table and nesting/resasc safeguards; coefficients are shared-origin, not independently regenerated.",
+          "review_level": "primary-software-source",
+          "full_text_read_by_integration_author": false,
+          "publication_year": null,
+          "publication_year_display": "n.d.",
+          "accessed_on": "2026-11-25",
+          "version": "1.14.1"
+        },
+        {
+          "role": "selected-primary-documentation-or-authored-identity",
+          "title": "Double Exponential Formulas for Numerical Integration",
+          "url": "https://ems.press/doi/pdf/10.2977/prims/1195192451",
+          "note": "Selected extracted pp722/724/730 equations; rendered equation screenshots failed. No whole-paper proof/optimality audit.",
+          "read_scope": "Selected extracted pp722/724/730 equations; rendered equation screenshots failed. No whole-paper proof/optimality audit.",
+          "review_level": "selected-primary-body-text",
+          "full_text_read_by_integration_author": false,
+          "publication_year": 1974,
+          "publication_year_display": "1974",
+          "accessed_on": "2026-11-25",
+          "source_year": 1974,
+          "year_role": "publication"
+        }
+      ],
+      "reference_scope": "Analytic interval references separate total error, continuous tail and finite-window defect. Half-line exp-sinh and whole-line sinh-sinh are unimplemented; no omitted infinite-grid sum bound is provided.",
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/gk15-double-exponential/?lang=ja#gk15-double-exponential-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/gk15-double-exponential/?lang=en#gk15-double-exponential-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-quadrature-controls/#gk15-double-exponential",
+        "en": "/numerical-methods-atlas/en/read/validation-quadrature-controls/#gk15-double-exponential"
+      }
+    },
+    {
+      "id": "tensor-smolyak-dimensions",
+      "model": "definite-integrals",
+      "kind": "analytic",
+      "title": "Tensor and Smolyak controls in two to four dimensions",
+      "assumptions": "The integration domain is[0,1]^d for d2/3/4; tensor levels1/2/3 and sparse levels1/2/3/4.",
+      "formula": "\\int_{[0,1]^d}\\prod_{j=1}^de^{a_jx_j}\\,d\\mathbf x=\\prod_{j=1}^d\\frac{e^{a_j}-1}{a_j},\\quad\\int_{[0,1]^d}\\prod_{j=1}^d(x_j-1/2)^2\\,d\\mathbf x=12^{-d};\\quad A_L=\\sum_{|\\ell|_1\\le L}\\bigotimes_{j=1}^d(Q_{\\ell_j}-Q_{\\ell_j-1}),\\quad Q_{-1}=0",
+      "dimension": null,
+      "domain_kind": "finite-dimensional-algebra",
+      "bounds": [],
+      "components": [
+        "stored state or function",
+        "independent reference",
+        "error and study diagnostics"
+      ],
+      "field_type": "scalar",
+      "parameters": {
+        "case_id": "tensor-smolyak-dimensions",
+        "inputs_sha256": "256fb2326fe3c907ac1a0b5131bf86d55b024e7c49cdac30ff23db1250c868d1",
+        "public_inputs": {
+          "registry_group": "quadrature-controls",
+          "edition": "2026-11-25",
+          "member": "inputs.json",
+          "json_pointer": "",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/inputs.json",
+          "sha256": "256fb2326fe3c907ac1a0b5131bf86d55b024e7c49cdac30ff23db1250c868d1"
+        },
+        "primary_row_filter": {
+          "case_id": "tensor-smolyak-dimensions"
+        },
+        "integration_dimensions": [
+          2,
+          3,
+          4
+        ],
+        "integration_domain": "[0,1]^d",
+        "sparse_levels": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "tensor_levels": [
+          1,
+          2,
+          3
+        ]
+      },
+      "sources": [
+        "https://www.sam.math.ethz.ch/sam_reports/reports_final/reports2008/2008-07.pdf"
+      ],
+      "citations": [
+        {
+          "role": "selected-primary-documentation-or-authored-identity",
+          "title": "Fast Construction of the Fejer and Clenshaw-Curtis Quadrature Rules",
+          "url": "https://www.sam.math.ethz.ch/sam_reports/reports_final/reports2008/2008-07.pdf",
+          "note": "Selected cover/introduction/sec2 extracted equations2.1–2.6; not the entire DFT proof or performance study. This report supports the Clenshaw-Curtis rule only. The Smolyak Delta/combination assembly is independently derived here; the Smolyak1963 and Gerstner-Griebel1998 original bodies remain unread.",
+          "read_scope": "Selected cover/introduction/sec2 extracted equations2.1–2.6; not the entire DFT proof or performance study. This report supports the Clenshaw-Curtis rule only. The Smolyak Delta/combination assembly is independently derived here; the Smolyak1963 and Gerstner-Griebel1998 original bodies remain unread.",
+          "review_level": "selected-primary-body-text",
+          "full_text_read_by_integration_author": false,
+          "publication_year": null,
+          "publication_year_display": "n.d.",
+          "accessed_on": "2026-11-25",
+          "version": "ETH report2008-07",
+          "release_date": "2008-05",
+          "source_year": 2008,
+          "year_role": "report-version"
+        }
+      ],
+      "reference_scope": "Analytic integrals are distinct from companion Delta/combination assembly; interaction underresolution at L<d remains visible. No general error monotonicity, positive-weight or cost-superiority claim; these are integration coordinates, not a physical PDE space.",
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/tensor-smolyak-dimensions/?lang=ja#tensor-smolyak-dimensions-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/tensor-smolyak-dimensions/?lang=en#tensor-smolyak-dimensions-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-quadrature-controls/#tensor-smolyak-dimensions",
+        "en": "/numerical-methods-atlas/en/read/validation-quadrature-controls/#tensor-smolyak-dimensions"
+      }
+    },
+    {
+      "id": "runge-barycentric-clenshaw",
+      "model": "polynomial-interpolation",
+      "kind": "analytic",
+      "title": "Runge interpolation: nodes, representation and rounding",
+      "assumptions": "Dimensionless interval [-1,1], degrees 8, 16 and 32, and 2048 fixed midpoints. Actual binary64 nodes, data and weights define the discrete problem.",
+      "formula": "P_{\\rm stored}(x)=\\sum_j y_j\\prod_{k\\ne j}\\frac{x-x_k}{x_j-x_k},\\quad R_{\\rm closed}(x)=\\frac{\\sum_jw_jy_j/(x-x_j)}{\\sum_jw_j/(x-x_j)},\\quad C_{\\rm stored}(x)=\\sum_{k=0}^na_kT_k(x),\\quad f(x)\\in\\{(1+25x^2)^{-1},|x|\\}",
+      "dimension": 1,
+      "bounds": [
+        [
+          -1,
+          1
+        ]
+      ],
+      "components": [
+        "stored state or function",
+        "independent reference",
+        "error and study diagnostics"
+      ],
+      "field_type": "scalar",
+      "parameters": {
+        "case_id": "runge-barycentric-clenshaw",
+        "inputs_sha256": "1b25d6d4161e19c1208819b010042eb568f68549e513a14a500884f630745217",
+        "public_inputs": {
+          "registry_group": "approximation-controls",
+          "edition": "2026-11-25",
+          "member": "inputs.json",
+          "json_pointer": "/cases/runge-barycentric-clenshaw",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/inputs.json",
+          "sha256": "1b25d6d4161e19c1208819b010042eb568f68549e513a14a500884f630745217"
+        }
+      },
+      "sources": [
+        "https://dlmf.nist.gov/3.11",
+        "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.interpolate.BarycentricInterpolator.html"
+      ],
+      "citations": [
+        {
+          "role": "selected-primary-documentation-or-authored-identity",
+          "title": "NIST DLMF §3.11(ii): Chebyshev series and Clenshaw summation",
+          "url": "https://dlmf.nist.gov/3.11",
+          "note": "Selected E7, E9, E11 and E15 with endpoint-halving conventions; no original Clenshaw paper reading. The implementation uses full coefficients, so its final combination is derived explicitly.",
+          "read_scope": "Selected E7, E9, E11 and E15 with endpoint-halving conventions; no original Clenshaw paper reading. The implementation uses full coefficients, so its final combination is derived explicitly.",
+          "review_level": "official-reference-selected-equations",
+          "full_text_read_by_integration_author": false,
+          "publication_year": null,
+          "publication_year_display": "n.d.",
+          "accessed_on": "2026-11-25"
+        },
+        {
+          "role": "selected-primary-documentation-or-authored-identity",
+          "title": "SciPy 1.14.1 BarycentricInterpolator documentation",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.interpolate.BarycentricInterpolator.html",
+          "note": "Selected barycentric formula and interpolation-conditioning notes read during the preceding preparation. The Berrut–Trefethen paper is a bibliographic lead, not a full-text reading.",
+          "read_scope": "Selected barycentric formula and interpolation-conditioning notes read during the preceding preparation. The Berrut–Trefethen paper is a bibliographic lead, not a full-text reading.",
+          "review_level": "official-documentation-selected-notes",
+          "full_text_read_by_integration_author": false,
+          "publication_year": null,
+          "publication_year_display": "n.d.",
+          "accessed_on": "2026-11-24",
+          "version": "1.14.1"
+        }
+      ],
+      "reference_scope": "Separate the stored-data polynomial P, closed-weight rational expression R, stored-coefficient series C and target f. Check exact rational references at 17 probes, operation-based error bounds, node identities and fixed Runge trends. A sampled maximum error is not a proof of a continuous uniform norm. Closed weights and discrete orthogonality on rounded nodes are not treated as exact. No arbitrary-degree or all-point stability guarantee is made.",
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/runge-barycentric-clenshaw/?lang=ja#runge-barycentric-clenshaw-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/runge-barycentric-clenshaw/?lang=en#runge-barycentric-clenshaw-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-approximation-controls/#runge-barycentric-clenshaw",
+        "en": "/numerical-methods-atlas/en/read/validation-approximation-controls/#runge-barycentric-clenshaw"
+      }
+    },
+    {
+      "id": "spline-shape-controls",
+      "model": "cubic-spline-pchip",
+      "kind": "analytic",
+      "title": "Natural and clamped splines versus PCHIP",
+      "assumptions": "Use actual binary64 knots and values. Natural conditions set both endpoint second derivatives to zero; clamped conditions prescribe the first derivatives from the input.",
+      "formula": "S_i(s)=a_i+b_is+c_is^2+d_is^3,\\quad d_k=\\frac{w_1+w_2}{w_1/m_{k-1}+w_2/m_k};\\quad S_{\\rm nat}(3/2)=a-\\frac9{88}(b-a),\\quad S_{\\rm clamp}(3/2)=a-\\frac{15}{152}(b-a)",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          5
+        ]
+      ],
+      "components": [
+        "stored state or function",
+        "independent reference",
+        "error and study diagnostics"
+      ],
+      "field_type": "scalar",
+      "parameters": {
+        "case_id": "spline-shape-controls",
+        "inputs_sha256": "1b25d6d4161e19c1208819b010042eb568f68549e513a14a500884f630745217",
+        "public_inputs": {
+          "registry_group": "approximation-controls",
+          "edition": "2026-11-25",
+          "member": "inputs.json",
+          "json_pointer": "/cases/spline-shape-controls",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/inputs.json",
+          "sha256": "1b25d6d4161e19c1208819b010042eb568f68549e513a14a500884f630745217"
+        },
+        "primary_figure_dataset": "plateau",
+        "dataset_domains": {
+          "plateau": [
+            0,
+            5
+          ],
+          "cubic": [
+            -1,
+            1
+          ],
+          "linear": [
+            -1,
+            1
+          ]
+        },
+        "endpoint_fixture_records": 15,
+        "endpoint_scalar_outputs": 16,
+        "endpoint_distinct_datasets": 13
+      },
+      "sources": [
+        "https://raw.githubusercontent.com/scipy/scipy/v1.14.1/scipy/interpolate/_cubic.py",
+        "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.interpolate.CubicSpline.html"
+      ],
+      "citations": [
+        {
+          "role": "selected-primary-documentation-or-authored-identity",
+          "title": "SciPy 1.14.1 PCHIP documentation and selected source",
+          "url": "https://raw.githubusercontent.com/scipy/scipy/v1.14.1/scipy/interpolate/_cubic.py",
+          "note": "Selected lines 202–225, 243–254, 275–298: harmonic interior derivatives, endpoint sign and 3-slope limiter, two-point case. The original Fritsch–Butland paper has not been read in full. Own formulas are independently expressed as scalar Hermite polynomials.",
+          "read_scope": "Selected lines 202–225, 243–254, 275–298: harmonic interior derivatives, endpoint sign and 3-slope limiter, two-point case. The original Fritsch–Butland paper has not been read in full. Own formulas are independently expressed as scalar Hermite polynomials.",
+          "review_level": "official-source-selected-lines",
+          "full_text_read_by_integration_author": false,
+          "publication_year": null,
+          "publication_year_display": "n.d.",
+          "accessed_on": "2026-11-25",
+          "version": "1.14.1"
+        },
+        {
+          "role": "selected-primary-documentation-or-authored-identity",
+          "title": "SciPy 1.14.1 BSpline and CubicSpline documentation",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.interpolate.CubicSpline.html",
+          "note": "Natural and clamped boundary conditions and the BSpline recurrence were read during preparation. No de Boor original full-text claim. SciPy is a secondary numerical companion; the rational second-derivative system is the independent reference.",
+          "read_scope": "Natural and clamped boundary conditions and the BSpline recurrence were read during preparation. No de Boor original full-text claim. SciPy is a secondary numerical companion; the rational second-derivative system is the independent reference.",
+          "review_level": "official-documentation-selected-definitions",
+          "full_text_read_by_integration_author": false,
+          "publication_year": null,
+          "publication_year_display": "n.d.",
+          "accessed_on": "2026-11-24",
+          "version": "1.14.1"
+        }
+      ],
+      "reference_scope": "Compare with exact rational second-derivative systems, rational PCHIP and SciPy 1.14.1. Fifteen endpoint records contain sixteen scalar outputs from thirteen distinct inputs. Independent Fraction formulas show plateau undershoot for the actual binary64 data. PCHIP is generally C1, not necessarily C2. Best approximation, extrapolation and noise smoothing are outside scope. A SciPy comparison does not substitute for reading the original papers.",
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/spline-shape-controls/?lang=ja#spline-shape-controls-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/spline-shape-controls/?lang=en#spline-shape-controls-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-approximation-controls/#spline-shape-controls",
+        "en": "/numerical-methods-atlas/en/read/validation-approximation-controls/#spline-shape-controls"
+      }
+    },
+    {
+      "id": "haar-mallat-boundary-threshold",
+      "model": "discrete-haar-transform",
+      "kind": "analytic",
+      "title": "Haar multiresolution: boundaries, shifts and thresholds",
+      "assumptions": "At each odd-length level append the first sample for periodic extension or the last for symmetric extension, then crop during synthesis. Apply threshold 0.2 only to detail coefficients.",
+      "formula": "a_{\\ell+1,k}=\\frac{a_{\\ell,2k}+a_{\\ell,2k+1}}{\\sqrt2},\\quad d_{\\ell+1,k}=\\frac{a_{\\ell,2k}-a_{\\ell,2k+1}}{\\sqrt2};\\quad E_{\\rm after}=E_{\\rm before}+p_\\ell^2,\\quad \\|e\\|_2^2=\\|\\Delta c\\|_2^2\\ \\text{for the square orthogonal case only}",
+      "dimension": null,
+      "domain_kind": "finite-dimensional-algebra",
+      "bounds": [],
+      "components": [
+        "stored state or function",
+        "independent reference",
+        "error and study diagnostics"
+      ],
+      "field_type": "scalar",
+      "parameters": {
+        "case_id": "haar-mallat-boundary-threshold",
+        "inputs_sha256": "1b25d6d4161e19c1208819b010042eb568f68549e513a14a500884f630745217",
+        "public_inputs": {
+          "registry_group": "approximation-controls",
+          "edition": "2026-11-25",
+          "member": "inputs.json",
+          "json_pointer": "/cases/haar-mallat-boundary-threshold",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/inputs.json",
+          "sha256": "1b25d6d4161e19c1208819b010042eb568f68549e513a14a500884f630745217"
+        },
+        "lengths": [
+          17,
+          32
+        ],
+        "levels": 3,
+        "analysis_records": 12,
+        "reconstruction_records": 36,
+        "norm_convention": "Unweighted squared sequence L2 norm; odd padding is not assumed orthonormal"
+      },
+      "sources": [
+        "https://www.di.ens.fr/~mallat/papiers/MallatTheory89.pdf",
+        "https://pywavelets.readthedocs.io/en/latest/ref/signal-extension-modes.html"
+      ],
+      "citations": [
+        {
+          "role": "selected-primary-documentation-or-authored-identity",
+          "title": "S. Mallat, A Theory for Multiresolution Signal Decomposition: The Wavelet Representation",
+          "url": "https://www.di.ens.fr/~mallat/papiers/MallatTheory89.pdf",
+          "note": "During preparation: title/abstract, Haar example on printed p. 679, selected §III-B/C filter/downsample/inverse-pyramid and border-symmetry prose on p. 681. Extracted formula glyphs were imperfect; no complete proof or numerical-table audit is claimed.",
+          "read_scope": "During preparation: title/abstract, Haar example on printed p. 679, selected §III-B/C filter/downsample/inverse-pyramid and border-symmetry prose on p. 681. Extracted formula glyphs were imperfect; no complete proof or numerical-table audit is claimed.",
+          "review_level": "primary-paper-selected-body",
+          "full_text_read_by_integration_author": false,
+          "publication_year": 1989,
+          "publication_year_display": "1989",
+          "accessed_on": "2026-11-24",
+          "source_year": 1989,
+          "year_role": "publication"
+        },
+        {
+          "role": "selected-primary-documentation-or-authored-identity",
+          "title": "PyWavelets documentation: Signal extension modes",
+          "url": "https://pywavelets.readthedocs.io/en/latest/ref/signal-extension-modes.html",
+          "note": "Periodic and half-sample symmetric extension and the redundancy caveat. This example defines its own append-at-each-odd-level/crop convention; it does not claim PyWavelets coefficient-layout equivalence or require PyWavelets.",
+          "read_scope": "Periodic and half-sample symmetric extension and the redundancy caveat. This example defines its own append-at-each-odd-level/crop convention; it does not claim PyWavelets coefficient-layout equivalence or require PyWavelets.",
+          "review_level": "official-documentation-selected-terminology",
+          "full_text_read_by_integration_author": false,
+          "publication_year": null,
+          "publication_year_display": "n.d.",
+          "accessed_on": "2026-11-25"
+        }
+      ],
+      "reference_scope": "Use twelve analyses and thirty-six reconstructions. Check independent matrices, Fraction/Decimal coefficients, perfect reconstruction and squared L2 errors. Require the orthogonal error identity only at length 32; retain level-by-level padding energy at length 17. Limited to Haar, without longer filters or image compression. General symmetric extension is not assumed orthonormal. Shift invariance is not required; shift-dependent differences are retained.",
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/haar-mallat-boundary-threshold/?lang=ja#haar-mallat-boundary-threshold-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/haar-mallat-boundary-threshold/?lang=en#haar-mallat-boundary-threshold-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-approximation-controls/#haar-mallat-boundary-threshold",
+        "en": "/numerical-methods-atlas/en/read/validation-approximation-controls/#haar-mallat-boundary-threshold"
+      }
+    },
+    {
+      "id": "pinn-poisson",
+      "model": "poisson-laplace",
+      "kind": "manufactured",
+      "title": "Poisson PINN: independent grid error",
+      "assumptions": "Solve dimensionless −uₓₓ=π² sin(πx) on [0,1] with zero Dirichlet data. Use sixteen hidden units, 49 real parameters, seeds 8401–8403, 64 training points and 257 separate evaluation points.",
+      "formula": "u_{\\rm exact}(x)=\\sin(\\pi x);\\quad -u_{xx}=\\pi^2\\sin(\\pi x),\\quad 0<x<1,\\quad u(0)=u(1)=0;\\quad u_\\theta(x)=x(1-x)\\left[b_0+\\sum_{j=1}^{16}a_j\\tanh(w_jx+b_j)\\right];\\quad r_i=\\frac{-u_{\\theta,xx}(x_i)-\\pi^2\\sin(\\pi x_i)}{\\pi^2},\\quad L=\\frac1{64}\\sum_{i=1}^{64}r_i^2",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "stored state or function",
+        "independent reference",
+        "error and study diagnostics"
+      ],
+      "field_type": "scalar",
+      "parameters": {
+        "case_id": "pinn-poisson",
+        "inputs_sha256": "9dc5d9527e3e36d1de06e82c386ff4375292392a6ba9e23ac09885693c1c524d",
+        "public_inputs": {
+          "registry_group": "small-models",
+          "edition": "2026-11-25",
+          "member": "inputs.json",
+          "json_pointer": "/pinn",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/inputs.json",
+          "sha256": "9dc5d9527e3e36d1de06e82c386ff4375292392a6ba9e23ac09885693c1c524d"
+        }
+      },
+      "sources": [
+        "https://arxiv.org/pdf/1711.10561"
+      ],
+      "citations": [
+        {
+          "role": "selected-primary-documentation-or-authored-identity",
+          "title": "Physics Informed Deep Learning (Part I): Data-driven Solutions of Nonlinear Partial Differential Equations",
+          "url": "https://arxiv.org/pdf/1711.10561",
+          "note": "Extracted PDF text selected pp.4–6, §2 continuous-time residual, Eq(2)–(4), Burgers setup and loss/optimizer discussion; not all 22 pages and not visual PDF audit.",
+          "read_scope": "Extracted PDF text selected pp.4–6, §2 continuous-time residual, Eq(2)–(4), Burgers setup and loss/optimizer discussion; not all 22 pages and not visual PDF audit.",
+          "review_level": "selected-primary-body",
+          "full_text_read_by_integration_author": false,
+          "publication_year": null,
+          "publication_year_display": "2017 preprint",
+          "accessed_on": "2026-11-24",
+          "source_year": 2017,
+          "year_role": "preprint-version",
+          "version": "arXiv:1711.10561, 2017 preprint; not the 2019 JCP article"
+        }
+      ],
+      "reference_scope": "Independently qualify all 49 residual-Jacobian columns, loss-gradient coordinates and spatial derivatives. Save off-training solution error against sin(πx), PDE residual, boundary error and finite-difference error separately. Preserve actual convergence and accuracy decisions; a normal budget return is not convergence. This fixed-budget study covers one smooth Poisson problem and three seeds. A small training loss does not establish independent-point accuracy or general PINN training success. Unmet goals remain visible.",
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/pinn-poisson/?lang=ja#pinn-poisson-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/pinn-poisson/?lang=en#pinn-poisson-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-small-models/#pinn-poisson",
+        "en": "/numerical-methods-atlas/en/read/validation-small-models/#pinn-poisson"
+      }
+    },
+    {
+      "id": "fno-periodic-heat",
+      "model": "heat",
+      "kind": "analytic",
+      "title": "Tiny FNO on held-out heat problems",
+      "assumptions": "Use periodic heat flow uₜ=νuₓₓ on [0,2π) to T=0.25. Split 46 whole problems into 24 training, 6 validation, 8 held-out ID, 4 viscosity-OOD and 4 spectrum-OOD problems. Use two fixed seeds and 93 real parameters.",
+      "formula": "u_t=\\nu u_{xx},\\quad x\\in[0,2\\pi),\\quad u(x+2\\pi,t)=u(x,t),\\quad T=\\tfrac14;\\quad \\widehat u_k(T)=e^{-\\nu k^2T}\\widehat u_k(0);\\quad v^{\\ell+1}=\\tanh\\!\\left(W_\\ell v^\\ell+b_\\ell+\\mathcal F_N^{-1}(R_\\ell\\mathcal F_Nv^\\ell)\\right),\\quad \\ell=0,1;\\quad \\mathrm{relative\\ error}=\\frac{\\operatorname{RMS}(u_\\theta-u_{\\rm ref})}{\\operatorname{RMS}(u_{\\rm ref})}\\quad\\text{only if }\\operatorname{RMS}(u_{\\rm ref})>10^{-12}",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          6.283185307179586
+        ]
+      ],
+      "components": [
+        "stored state or function",
+        "independent reference",
+        "error and study diagnostics"
+      ],
+      "field_type": "scalar",
+      "parameters": {
+        "case_id": "fno-periodic-heat",
+        "inputs_sha256": "9dc5d9527e3e36d1de06e82c386ff4375292392a6ba9e23ac09885693c1c524d",
+        "public_inputs": {
+          "registry_group": "small-models",
+          "edition": "2026-11-25",
+          "member": "inputs.json",
+          "json_pointer": "/fno",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/inputs.json",
+          "sha256": "9dc5d9527e3e36d1de06e82c386ff4375292392a6ba9e23ac09885693c1c524d"
+        }
+      },
+      "sources": [
+        "https://arxiv.org/html/2010.08895v3"
+      ],
+      "citations": [
+        {
+          "role": "selected-primary-documentation-or-authored-identity",
+          "title": "Fourier Neural Operator for Parametric Partial Differential Equations",
+          "url": "https://arxiv.org/html/2010.08895v3",
+          "note": "Selected HTML §2 learning operators; §3 Eq(2); §4 Eq(4)–(5), FFT/truncation/reality; §5 setup and §5.1 Burgers. PDF header/edition only; not full paper or appendix audit.",
+          "read_scope": "Selected HTML §2 learning operators; §3 Eq(2); §4 Eq(4)–(5), FFT/truncation/reality; §5 setup and §5.1 Burgers. PDF header/edition only; not full paper or appendix audit.",
+          "review_level": "selected-primary-body",
+          "full_text_read_by_integration_author": false,
+          "publication_year": 2021,
+          "publication_year_display": "ICLR 2021; arXiv v3",
+          "accessed_on": "2026-11-24",
+          "source_year": 2021,
+          "year_role": "conference-publication",
+          "source_year_role": "conference-and-preprint-version",
+          "version": "arXiv v3, 17 May 2021"
+        }
+      ],
+      "reference_scope": "Qualify all 93 real loss-gradient coordinates at two fixed finite-difference widths and compare Fourier blocks with direct DFT sums. Separate analytic heat-mode errors, grid-restriction differences and ID/OOD diagnostics. Relative error is NA when reference RMS≤10⁻¹²; zero and near-zero controls retain absolute errors. This comparison concerns a fixed tiny discrete operator, without arbitrary-resolution, distributional or OOD guarantees. The N=64-to-32 discrepancy includes nonlinear aliasing and is not a continuum discretization error. Optimizer convergence is distinct from normal budget termination.",
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/fno-periodic-heat/?lang=ja#fno-periodic-heat-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/fno-periodic-heat/?lang=en#fno-periodic-heat-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-small-models/#fno-periodic-heat",
+        "en": "/numerical-methods-atlas/en/read/validation-small-models/#fno-periodic-heat"
+      }
+    },
+    {
+      "id": "enzyme-qssa",
+      "model": "bio-enzyme",
+      "kind": "numerical-reference",
+      "title": "Enzyme conservation and QSSA",
+      "assumptions": "Use the closed dimensionless reaction E+S⇌C→E+P with k₁=10, k₋₁=k₂=1, S₀=1, C₀=P₀=0 and E₀=0.01 or 0.002. Then Kₘ=0.2, ε=E₀/(Kₘ+S₀)=1/120 or 1/600, and θ=E₀t ranges from 0 to 0.5.",
+      "formula": "\\begin{aligned}\\dot S&=-10ES+C,&\\dot C&=10ES-2C,\\\\\\dot E&=-10ES+2C,&\\dot P&=C.\\end{aligned};\\quad E+C=E_0,\\quad S+C+P=1,\\quad K_m=\\frac{k_{-1}+k_2}{k_1}=0.2;\\quad \\theta=E_0t,\\quad \\varepsilon=\\frac{E_0}{K_m+S_0}\\in\\left\\{\\frac1{120},\\frac1{600}\\right\\};\\quad \\frac{dS_{\\rm MM}}{d\\theta}=-\\frac{S_{\\rm MM}}{0.2+S_{\\rm MM}},\\quad S_{\\rm MM}+0.2\\log S_{\\rm MM}=1-\\theta",
+      "dimension": null,
+      "domain_kind": "finite-dimensional-ivp",
+      "bounds": [],
+      "components": [
+        "stored state or function",
+        "independent reference",
+        "error and study diagnostics"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "case_id": "enzyme-qssa",
+        "inputs_sha256": "9dc5d9527e3e36d1de06e82c386ff4375292392a6ba9e23ac09885693c1c524d",
+        "public_inputs": {
+          "registry_group": "small-models",
+          "edition": "2026-11-25",
+          "member": "inputs.json",
+          "json_pointer": "/fixed_biology",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/inputs.json",
+          "sha256": "9dc5d9527e3e36d1de06e82c386ff4375292392a6ba9e23ac09885693c1c524d"
+        },
+        "case_input_keys": [
+          "enzyme_totals",
+          "enzyme_tolerance_pairs"
+        ]
+      },
+      "sources": [
+        "https://arxiv.org/html/2305.12602v2"
+      ],
+      "citations": [
+        {
+          "role": "selected-primary-documentation-or-authored-identity",
+          "title": "Rigorous estimates for the quasi-steady state approximation of the Michaelis–Menten reaction mechanism at low enzyme concentrations",
+          "url": "https://arxiv.org/html/2305.12602v2",
+          "note": "Selected §1 Eq(1)–(8) and selected discussion around transient-time estimates Eq(32); proofs and complete quantitative bounds unread.",
+          "read_scope": "Selected §1 Eq(1)–(8) and selected discussion around transient-time estimates Eq(32); proofs and complete quantitative bounds unread.",
+          "review_level": "selected-primary-body",
+          "full_text_read_by_integration_author": false,
+          "publication_year": null,
+          "publication_year_display": "n.d.",
+          "accessed_on": "2026-11-24",
+          "source_year": 2024,
+          "year_role": "preprint-version"
+        }
+      ],
+      "reference_scope": "Compare with independent full-system Radau/BDF references and an implicit scalar identity for the reduced equation. Check E+C=E₀, S+C+P=1, positivity and actual acceptance, rejection and Newton work. Retain both all-time errors including the initial layer and errors on the declared θ≥0.02 window. These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction.",
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/enzyme-qssa/?lang=ja#enzyme-qssa-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/enzyme-qssa/?lang=en#enzyme-qssa-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-small-models/#enzyme-qssa",
+        "en": "/numerical-methods-atlas/en/read/validation-small-models/#enzyme-qssa"
+      }
+    },
+    {
+      "id": "lotka-volterra",
+      "model": "bio-lotka-volterra",
+      "kind": "numerical-reference",
+      "title": "Lotka–Volterra invariant and positivity",
+      "assumptions": "Use the dimensionless predator–prey equations x′=x(1−y), y′=y(x−1), initial state (1.2,0.8) and 0≤t≤20. Evaluate H=x−log x+y−log y only in the positive quadrant.",
+      "formula": "\\dot x=x(1-y),\\quad\\dot y=y(x-1),\\quad(x(0),y(0))=(1.2,0.8),\\quad0\\le t\\le20;\\quad H(x,y)=x-\\log x+y-\\log y,\\quad\\frac{dH}{dt}=0\\quad(x>0,y>0);\\quad \\frac{d\\log x}{dt}=1-e^{\\log y},\\quad\\frac{d\\log y}{dt}=e^{\\log x}-1",
+      "dimension": null,
+      "domain_kind": "finite-dimensional-ivp",
+      "bounds": [],
+      "components": [
+        "stored state or function",
+        "independent reference",
+        "error and study diagnostics"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "case_id": "lotka-volterra",
+        "inputs_sha256": "9dc5d9527e3e36d1de06e82c386ff4375292392a6ba9e23ac09885693c1c524d",
+        "public_inputs": {
+          "registry_group": "small-models",
+          "edition": "2026-11-25",
+          "member": "inputs.json",
+          "json_pointer": "/fixed_biology",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/inputs.json",
+          "sha256": "9dc5d9527e3e36d1de06e82c386ff4375292392a6ba9e23ac09885693c1c524d"
+        },
+        "case_input_keys": [
+          "LV_steps"
+        ]
+      },
+      "sources": [
+        "https://www.mathworks.com/content/dam/mathworks/mathworks-dot-com/moler/exm/chapters/predprey.pdf"
+      ],
+      "citations": [
+        {
+          "role": "selected-primary-documentation-or-authored-identity",
+          "title": "Experiments in MATLAB, Chapter16: Predator-Prey Model",
+          "url": "https://www.mathworks.com/content/dam/mathworks/mathworks-dot-com/moler/exm/chapters/predprey.pdf",
+          "note": "Selected extracted text pp3–6: normalized LV equations, equilibrium, periodic-orbit discussion and numerical illustration. No original Lotka/Volterra paper read.",
+          "read_scope": "Selected extracted text pp3–6: normalized LV equations, equilibrium, periodic-orbit discussion and numerical illustration. No original Lotka/Volterra paper read.",
+          "review_level": "selected-primary-body",
+          "full_text_read_by_integration_author": false,
+          "publication_year": null,
+          "publication_year_display": "n.d.",
+          "accessed_on": "2026-11-24",
+          "source_year": 2011,
+          "year_role": "document-version"
+        }
+      ],
+      "reference_scope": "Measure state error against the independent reference, drift of H and the minimum saved population separately. The reference stage qualifies analytic Jacobians, Radau/BDF agreement, tolerance refinement and the identity dH/dt=0. This is a finite-time comparison for one initial state. The continuum closed orbit is not an attracting limit cycle. RK4 is not claimed to preserve H exactly, maintain positivity at arbitrary steps or guarantee long-time geometric fidelity.",
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/lotka-volterra/?lang=ja#lotka-volterra-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/lotka-volterra/?lang=en#lotka-volterra-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-small-models/#lotka-volterra",
+        "en": "/numerical-methods-atlas/en/read/validation-small-models/#lotka-volterra"
+      }
+    },
+    {
+      "id": "seir-linearization",
+      "model": "seir-compartment",
+      "kind": "numerical-reference",
+      "title": "SEIR conservation and initial linearization",
+      "assumptions": "Use a closed population S+E+I+R=1 with β=0.6, σ=0.3 and γ=0.2. For η=10⁻⁴ or 5×10⁻⁵, start from (1−2η,η,η,0) and evolve to t=20. There are no births, deaths or external inflows.",
+      "formula": "\\begin{aligned}\\dot S&=-\\beta SI,&\\dot E&=\\beta SI-\\sigma E,\\\\\\dot I&=\\sigma E-\\gamma I,&\\dot R&=\\gamma I.\\end{aligned};\\quad \\beta=0.6,\\quad\\sigma=0.3,\\quad\\gamma=0.2,\\quad(S,E,I,R)(0)=(1-2\\eta,\\eta,\\eta,0);\\quad S+E+I+R=1,\\quad\\eta\\in\\{10^{-4},5\\times10^{-5}\\};\\quad \\begin{pmatrix}E_{\\rm lin}(t)\\\\ I_{\\rm lin}(t)\\end{pmatrix}=\\exp\\!\\left[t\\begin{pmatrix}-0.3&0.6\\\\0.3&-0.2\\end{pmatrix}\\right]\\begin{pmatrix}\\eta\\\\\\eta\\end{pmatrix}",
+      "dimension": null,
+      "domain_kind": "finite-dimensional-ivp",
+      "bounds": [],
+      "components": [
+        "stored state or function",
+        "independent reference",
+        "error and study diagnostics"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "case_id": "seir-linearization",
+        "inputs_sha256": "9dc5d9527e3e36d1de06e82c386ff4375292392a6ba9e23ac09885693c1c524d",
+        "public_inputs": {
+          "registry_group": "small-models",
+          "edition": "2026-11-25",
+          "member": "inputs.json",
+          "json_pointer": "/fixed_biology",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/inputs.json",
+          "sha256": "9dc5d9527e3e36d1de06e82c386ff4375292392a6ba9e23ac09885693c1c524d"
+        },
+        "case_input_keys": [
+          "SEIR_etas",
+          "SEIR_steps"
+        ]
+      },
+      "sources": [
+        "https://math.uchicago.edu/~shmuel/Modeling/hethcote2000%20Mathematics%20of%20Infectious%20diseases.pdf"
+      ],
+      "citations": [
+        {
+          "role": "selected-primary-documentation-or-authored-identity",
+          "title": "The Mathematics of Infectious Diseases",
+          "url": "https://math.uchicago.edu/~shmuel/Modeling/hethcote2000%20Mathematics%20of%20Infectious%20diseases.pdf",
+          "note": "Header, selected introduction compartment definitions and §3.1 printedpp618–619, displayed mass-action numbers and Eq(3.1); search around3.2/SEIR limit. Not whole55pages or visual diagram audit.",
+          "read_scope": "Header, selected introduction compartment definitions and §3.1 printedpp618–619, displayed mass-action numbers and Eq(3.1); search around3.2/SEIR limit. Not whole55pages or visual diagram audit.",
+          "review_level": "selected-primary-body",
+          "full_text_read_by_integration_author": false,
+          "publication_year": 2000,
+          "publication_year_display": "2000",
+          "accessed_on": "2026-11-24",
+          "source_year": 2000,
+          "year_role": "publication"
+        }
+      ],
+      "reference_scope": "Separate full-ODE integration error, population conservation and nonnegativity through t=20 from linearization-model error at 201 reference points on 0≤t≤1. Qualify scaled Jacobians, Radau/BDF agreement with an η² margin and the analytic full matrix exponential independently. These fixed-coefficient calculations compare two small initial infection levels. The early linearization is not an exact solution through t=20, and a single dominant mode does not replace the two-mode solution. No epidemic forecast, statistical coverage or arbitrary-population guarantee is claimed.",
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/seir-linearization/?lang=ja#seir-linearization-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/seir-linearization/?lang=en#seir-linearization-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-small-models/#seir-linearization",
+        "en": "/numerical-methods-atlas/en/read/validation-small-models/#seir-linearization"
+      }
     }
   ]
 }

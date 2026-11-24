@@ -1,0 +1,65 @@
+{
+  "collection": "AST-only; not pytest execution",
+  "test_files": [
+    "test_approximation.py"
+  ],
+  "tests": [
+    {
+      "name": "test_node_symmetry_and_distinctness",
+      "expanded_count": 6
+    },
+    {
+      "name": "test_barycentric_exact_node_and_weight_scale",
+      "expanded_count": 1
+    },
+    {
+      "name": "test_roundoff_certificate_rejects_bad_result",
+      "expanded_count": 1
+    },
+    {
+      "name": "test_full_coefficient_clenshaw",
+      "expanded_count": 3
+    },
+    {
+      "name": "test_bspline_partition_derivatives",
+      "expanded_count": 3
+    },
+    {
+      "name": "test_deboor_closed_endpoint",
+      "expanded_count": 2
+    },
+    {
+      "name": "test_c2_linear_reproduction",
+      "expanded_count": 2
+    },
+    {
+      "name": "test_pchip_endpoint_branches",
+      "expanded_count": 7
+    },
+    {
+      "name": "test_pchip_two_point_and_invalid_knots",
+      "expanded_count": 1
+    },
+    {
+      "name": "test_fraction_plateau_is_actual_binary_input",
+      "expanded_count": 1
+    },
+    {
+      "name": "test_odd_haar_has_independent_left_inverse",
+      "expanded_count": 2
+    },
+    {
+      "name": "test_haar_sign_golden",
+      "expanded_count": 1
+    },
+    {
+      "name": "test_threshold_tie_and_ownership",
+      "expanded_count": 1
+    },
+    {
+      "name": "test_scalar_json_and_csv_policy",
+      "expanded_count": 1
+    }
+  ],
+  "expanded_total": 32
+}

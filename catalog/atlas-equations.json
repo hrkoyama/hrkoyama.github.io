@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "reviewed_on": "2026-11-24",
+  "reviewed_on": "2026-11-25",
   "scope": "All equation/model entries in the shared atlas coverage inventory. Formulas are representative forms or explicitly identified schematic systems; they do not supply every closure or implementation. Status and coverage IDs are matched at build time.",
   "formula_format": "latex",
   "groups": [
@@ -82,7 +82,8 @@
       "supplemental_examples": [
         "su-olson-transport1997",
         "diffusion-discrete-adjoint",
-        "strang-boundary-order-reduction"
+        "strang-boundary-order-reduction",
+        "fno-periodic-heat"
       ]
     },
     {
@@ -109,7 +110,8 @@
       "supplemental_examples": [
         "lshape-fem",
         "poisson-neumann",
-        "poisson-robin"
+        "poisson-robin",
+        "pinn-poisson"
       ],
       "execution_scope": {
         "ja": "追加例はL字特異解と同じ自由度のgraded三角形、warped正方形、および純Neumannの適合条件・平均ゲージと混合Robin境界。旧Poisson例を保持し、残差と連続誤差を区別します。",
@@ -588,17 +590,24 @@
       ],
       "chapter": "biological-models",
       "note": {
-        "ja": "酵素・基質・複合体の反応と飽和速度則。完全反応系、迅速平衡近似、準定常近似の違いは解説先へ。 文献解説のみ。",
-        "en": "Enzyme saturation; the full mass-action system resolves the transient complex C, while the rate law eliminates a fast variable. The 1913 rapid-equilibrium interpretation and the 1925 quasi-steady-state derivation must remain distinct. Literature-only."
+        "ja": "酵素・基質・複合体の反応と飽和速度則。完全反応系、迅速平衡近似、準定常近似の違いは解説先へ。 限定した実行例：2つの小εと固定反応定数だけの教育例です。εは尺度比であり、その値だけを厳密なQSSA誤差上界とはしません。θ≥0.02を初期層終了の証明とは呼ばず、生体内の反応・観測値へ外挿しません。",
+        "en": "Enzyme saturation; the full mass-action system resolves the transient complex C, while the rate law eliminates a fast variable. The 1913 rapid-equilibrium interpretation and the 1925 quasi-steady-state derivation must remain distinct. Scoped executed example: These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction."
       },
       "section": "02-1913-michaelismenten-and-full-enzyme-kinetics",
       "formula_source": {
         "path": "numerical-methods-atlas/assets/biological-models.json",
         "model_id": "enzyme"
       },
-      "status": "reading",
+      "status": "local-example",
       "group": "biology",
-      "coverage_scope": "The 1913 rapid-equilibrium interpretation and the 1925 quasi-steady-state derivation must remain distinct."
+      "coverage_scope": "These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction.",
+      "supplemental_examples": [
+        "enzyme-qssa"
+      ],
+      "execution_scope": {
+        "ja": "2つの小εと固定反応定数だけの教育例です。εは尺度比であり、その値だけを厳密なQSSA誤差上界とはしません。θ≥0.02を初期層終了の証明とは呼ばず、生体内の反応・観測値へ外挿しません。",
+        "en": "These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction."
+      }
     },
     {
       "id": "bio-lotka-volterra",
@@ -612,17 +621,24 @@
       ],
       "chapter": "biological-models",
       "note": {
-        "ja": "捕食・被食の結合ODE。位相平面と長時間積分を考えるためのモデルです。 文献解説のみ。",
-        "en": "Coupled prey growth and predation; a phase-plane and long-time integration test.  Literature-only."
+        "ja": "捕食・被食の結合ODE。位相平面と長時間積分を考えるためのモデルです。 限定した実行例：1初期値・有限時間の固定比較です。連続系の閉軌道を引き込み極限周期とは呼びません。RK4の厳密な不変量保存、任意刻みでの正値性、長時間の構造保存は保証しません。",
+        "en": "Coupled prey growth and predation; a phase-plane and long-time integration test. Scoped executed example: This is a finite-time comparison for one initial state. The continuum closed orbit is not an attracting limit cycle. RK4 is not claimed to preserve H exactly, maintain positivity at arbitrary steps or guarantee long-time geometric fidelity."
       },
       "section": "03-1920-lotkavolterra-predatorprey",
       "formula_source": {
         "path": "numerical-methods-atlas/assets/biological-models.json",
         "model_id": "lotka-volterra"
       },
-      "status": "reading",
+      "status": "local-example",
       "group": "biology",
-      "coverage_scope": ""
+      "coverage_scope": "This is a finite-time comparison for one initial state. The continuum closed orbit is not an attracting limit cycle. RK4 is not claimed to preserve H exactly, maintain positivity at arbitrary steps or guarantee long-time geometric fidelity.",
+      "supplemental_examples": [
+        "lotka-volterra"
+      ],
+      "execution_scope": {
+        "ja": "1初期値・有限時間の固定比較です。連続系の閉軌道を引き込み極限周期とは呼びません。RK4の厳密な不変量保存、任意刻みでの正値性、長時間の構造保存は保証しません。",
+        "en": "This is a finite-time comparison for one initial state. The continuum closed orbit is not an attracting limit cycle. RK4 is not claimed to preserve H exactly, maintain positivity at arbitrary steps or guarantee long-time geometric fidelity."
+      }
     },
     {
       "id": "bio-age-structure",
@@ -2229,6 +2245,133 @@
       "coverage_scope": "Fixed educational models; see each release for inputs, reference qualification and limits.",
       "supplemental_examples": [
         "multifrequency-resonance"
+      ]
+    },
+    {
+      "id": "definite-integrals",
+      "name": {
+        "ja": "有限・無限・多変数の定積分",
+        "en": "Finite, improper and multivariate definite integrals"
+      },
+      "formula": [
+        "I_D(f)=\\int_D f(\\mathbf x)\\,d\\mathbf x"
+      ],
+      "chapter": "validation-quadrature-controls",
+      "note": {
+        "ja": "領域・重み・特異性と有限変換和の定義を確認する数学的求積問題です。",
+        "en": "Mathematical quadrature problems with explicit domains, weights, singularities and finite transformed-sum conventions."
+      },
+      "status": "local-example",
+      "group": "algebraic",
+      "coverage_scope": "Fixed educational inputs only; inspect the release-specific assumptions, references and limits.",
+      "supplemental_examples": [
+        "quadpack-domain-selection",
+        "gk15-double-exponential",
+        "tensor-smolyak-dimensions"
+      ]
+    },
+    {
+      "id": "polynomial-interpolation",
+      "name": {
+        "ja": "格納節点の多項式補間",
+        "en": "Polynomial interpolation on stored nodes"
+      },
+      "formula": [
+        "P_n(x_j)=y_j,\\quad P_n\\in\\mathcal P_n",
+        "R(x)=\\frac{\\sum_jw_jy_j/(x-x_j)}{\\sum_jw_j/(x-x_j)}"
+      ],
+      "chapter": "validation-approximation-controls",
+      "note": {
+        "ja": "閉形式重みと丸め節点の表現差、補間誤差と演算丸めを分けます。",
+        "en": "Separate closed-weight representation on rounded nodes, interpolation error and evaluation rounding."
+      },
+      "status": "local-example",
+      "group": "algebraic",
+      "coverage_scope": "Fixed educational inputs only; inspect the release-specific assumptions, references and limits.",
+      "supplemental_examples": [
+        "runge-barycentric-clenshaw"
+      ]
+    },
+    {
+      "id": "cubic-spline-pchip",
+      "name": {
+        "ja": "3次スプラインと形状保存補間",
+        "en": "Cubic splines and shape-preserving interpolation"
+      },
+      "formula": [
+        "S_i(x)=a_i+b_i(x-x_i)+c_i(x-x_i)^2+d_i(x-x_i)^3",
+        "S\\in C^2\\ \\text{for the natural/clamped spline};\\quad P\\in C^1\\ \\text{for PCHIP}"
+      ],
+      "chapter": "validation-approximation-controls",
+      "note": {
+        "ja": "端点条件を持つC2補間と単調な区分Hermite補間を区別します。",
+        "en": "Distinguish C2 interpolation with endpoint conditions from monotone piecewise Hermite interpolation."
+      },
+      "status": "local-example",
+      "group": "algebraic",
+      "coverage_scope": "Fixed educational inputs only; inspect the release-specific assumptions, references and limits.",
+      "supplemental_examples": [
+        "spline-shape-controls"
+      ]
+    },
+    {
+      "id": "discrete-haar-transform",
+      "name": {
+        "ja": "有限長信号の離散Haar変換",
+        "en": "Discrete Haar transforms of finite signals"
+      },
+      "formula": [
+        "\\binom{a^{\\prime}}d=\\frac1{\\sqrt2}\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}\\binom ab",
+        "S_NA_N=I_N,\\quad\\|A_Nx\\|_2^2=\\|x\\|_2^2+\\sum_\\ell p_\\ell^2"
+      ],
+      "chapter": "validation-approximation-controls",
+      "note": {
+        "ja": "奇数長の追加標本と切戻しを含む有限写像です。冗長拡張全体の直交性は仮定しません。",
+        "en": "A finite map including odd-length padding and cropping; global orthogonality is not assumed for redundant extensions."
+      },
+      "status": "local-example",
+      "group": "algebraic",
+      "coverage_scope": "Fixed educational inputs only; inspect the release-specific assumptions, references and limits.",
+      "supplemental_examples": [
+        "haar-mallat-boundary-threshold"
+      ]
+    },
+    {
+      "id": "seir-compartment",
+      "name": {
+        "ja": "閉鎖SEIR区画モデル",
+        "en": "Closed SEIR compartment model"
+      },
+      "formula": [
+        "\\begin{aligned}\\dot S&=-\\beta SI,&\\dot E&=\\beta SI-\\sigma E,\\\\\\dot I&=\\sigma E-\\gamma I,&\\dot R&=\\gamma I.\\end{aligned}",
+        "S+E+I+R=1"
+      ],
+      "chapter": "validation-small-models",
+      "note": {
+        "ja": "出生死亡なし・全人口一定の教育用率です。初期過渡は2×2行列指数に比較し、感染症予測には使いません。",
+        "en": "Educational rates with no births or deaths and constant population. Compare the early transient with a full two-by-two matrix exponential; no disease forecast is made."
+      },
+      "status": "local-example",
+      "group": "biology",
+      "coverage_scope": "These fixed-coefficient calculations compare two small initial infection levels. The early linearization is not an exact solution through t=20, and a single dominant mode does not replace the two-mode solution. No epidemic forecast, statistical coverage or arbitrary-population guarantee is claimed.",
+      "execution_scope": {
+        "ja": "2つの小初期感染量による固定係数の整合性比較です。早期線形化をt=20全体の厳密解と見なさず、単一の優勢モードで両モードを置き換えません。実流行の予測・統計的被覆・任意人口への一般保証は行いません。",
+        "en": "These fixed-coefficient calculations compare two small initial infection levels. The early linearization is not an exact solution through t=20, and a single dominant mode does not replace the two-mode solution. No epidemic forecast, statistical coverage or arbitrary-population guarantee is claimed."
+      },
+      "formula_source": {
+        "kind": "verified-supplement",
+        "case_id": "seir-linearization",
+        "path": "code/validated-examples/2026-11-25/small-models/cases.json",
+        "sha256": "7da1b291ce84a8133573794574cb539f6d3c5512571cafa8f05a67ad1d6acabc",
+        "json_pointer": "/4/formulas/0",
+        "source_formula": "\\begin{aligned}\\dot S&=-\\beta SI,&\\dot E&=\\beta SI-\\sigma E,\\\\\\dot I&=\\sigma E-\\gamma I,&\\dot R&=\\gamma I.\\end{aligned}",
+        "derivation_note": {
+          "ja": "4式を足すと全人口の時間微分は0です。初期総量1から保存式を得ます。率と初期値は固定教育用入力です。",
+          "en": "Summing the four equations gives zero derivative of total population. Initial total one yields the conservation relation. Rates and initial states are fixed educational inputs."
+        }
+      },
+      "supplemental_examples": [
+        "seir-linearization"
       ]
     }
   ]
