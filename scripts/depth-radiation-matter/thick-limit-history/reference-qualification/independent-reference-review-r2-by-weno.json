@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "reviewer": "batch_weno",
+  "status": "STATIC_R2_REFERENCE_ONLY_REVIEW_PASS_AWAITING_PARENT_EXECUTION_AUTHORIZATION",
+  "review_completed_at_utc": "2026-11-23T23:31:54.242012+00:00",
+  "protocol_sha256": "6296d1ae9c7873e6dc1821a453d9b0a0e64ae05453896e7e1eb4cb910dac0b09",
+  "binding_count": 69,
+  "binding_mismatches": [],
+  "prior_review_sha256": "49a0d5061bd7bda8a912b81034ded16f5bb2954d0e628db7d119f4ddecbc9501",
+  "scope": "Focused static R1-to-R2 action/backend, chronology, unchanged criteria, failure retention and fresh wrapper review. No numerical import/action/reference/main/compile performed.",
+  "revision_verified": {
+    "reference_action": "expm_multiply(csr_matrix(time*A),initial,traceA=time*np.trace(A))",
+    "primary_action_same_mathematical_change": true,
+    "trace_identity": "trace(time*A)=time*trace(A), so traceA belongs to supplied scaled sparse matrix.",
+    "zero_time_complex_copy_unchanged": true,
+    "complex_dtype_and_initial_vector_retained": true,
+    "no_matrix_equation_reassociation_or_physical_parameter_change": true,
+    "no_warning_suppression": true,
+    "no_bit_equivalence_claim": true,
+    "shared_reference_primary_primitive_declared_in_README_and_limits": true,
+    "DOP853_independent_derivative_and_k0_golden_unchanged": true
+  },
+  "installed_primary_source_review": {
+    "path": "batch28-37/env/lib/python3.12/site-packages/scipy/sparse/linalg/_expm_multiply.py",
+    "reviewed_lines": [
+      "109-151 API doc",
+      "254-278 trace shift and action dispatch"
+    ],
+    "scope": "API declares matrix exponential action and trace preconditioning; source read statically without SciPy import."
+  },
+  "unchanged_bytes_compared_to_failed_R1": [
+    "inputs.json",
+    "acceptance.json",
+    "test_matter.py",
+    "test_thick_limit.py",
+    "transport.py",
+    "diffusion.py",
+    "references/analytic.py"
+  ],
+  "reference_gate_count": 141,
+  "qualification_criteria_identical_to_R1": true,
+  "check_inventory_identical_to_R1": true,
+  "primary_new29_and_old63_criteria_unchanged": true,
+  "old_failure_retention": {
+    "original_protocol_sha256": "f9a19d913d751a33760f0b98ad2c17a38b7442fcd1a898f446584c246da423f7",
+    "all_original69_binding_bytes_verified": true,
+    "archived_binding_mismatches": [],
+    "receipt_sha256": "c56ae44b175890042c86127056e06e823343341170a9b7f0a7f8c922094744dc",
+    "status": "failed",
+    "completed_true_checks": 17,
+    "completed_primary_rhs_probes": 0,
+    "completed_primary_mode_evolutions": 0,
+    "positive_time_dense_failure": "First positive-time scipy.linalg.expm internal BLAS warning retained under -W error, not a physical gate failure.",
+    "original_source_logs_partial_arrays_protocol_review_authorization_retained": true
+  },
+  "chronology": {
+    "before_any_new_thick_numerical_import_probe_expm": false,
+    "existing_R4_matter_already_passed17tests63gates": true,
+    "new_primary_pytest_and_main_still_not_authorized": true,
+    "before_any_R2_numerical_execution": true,
+    "prior_R1_reference_attempt_completed_checks": 17,
+    "prior_R1_primary_probes_or_modes": 0
+  },
+  "fresh_wrapper_review": {
+    "attempt": "reference-attempts/02",
+    "requires_root_authorization_for_current_protocol_sha": true,
+    "shared_seconds": 30,
+    "full_source_copy_and_prepost_hashes": true,
+    "persistent_stdout_stderr_and_receipt": true,
+    "warning_as_error_threads1": true,
+    "timeout_process_group_kill": true,
+    "exact141_native_true_checks_required": true,
+    "auto_retry": false
+  },
+  "blocking_findings": [],
+  "reference_execution_authorized_by_this_review": false,
+  "primary_main_pytest_authorized_by_this_review": false,
+  "numerical_execution_performed": false,
+  "publisher_modified": false
+}

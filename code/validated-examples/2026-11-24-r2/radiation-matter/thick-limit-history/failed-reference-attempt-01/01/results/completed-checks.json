@@ -1,0 +1,117 @@
+{
+  "check_count": 17,
+  "passed": true,
+  "checks": {
+    "hemisphere32/weight-measure": true,
+    "hemisphere32/odd-first-moment": true,
+    "hemisphere32/one-third-second-moment": true,
+    "hemisphere32/positive-directional-measure": true,
+    "GL64/weight-measure": true,
+    "GL64/odd-first-moment": true,
+    "GL64/one-third-second-moment": true,
+    "GL64/positive-directional-measure": true,
+    "GL128/weight-measure": true,
+    "GL128/odd-first-moment": true,
+    "GL128/one-third-second-moment": true,
+    "GL128/positive-directional-measure": true,
+    "hemisphere32/k4/finite-generator": true,
+    "hemisphere32/k4/weighted-moment-operator-identity": true,
+    "hemisphere32/k4/streaming-conjugacy": true,
+    "hemisphere32/k4/s0.0/finite-amplitude-and-positive-field-bound": true,
+    "hemisphere32/k4/s0.0/even-odd-Fourier-symmetry": true
+  },
+  "details": [
+    {
+      "name": "hemisphere32/weight-measure",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/odd-first-moment",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/one-third-second-moment",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/positive-directional-measure",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/weight-measure",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/odd-first-moment",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/one-third-second-moment",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/positive-directional-measure",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/weight-measure",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/odd-first-moment",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/one-third-second-moment",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/positive-directional-measure",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k4/finite-generator",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k4/weighted-moment-operator-identity",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k4/streaming-conjugacy",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k4/s0.0/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k4/s0.0/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    }
+  ],
+  "completed": [
+    {
+      "rule": "hemisphere32",
+      "kappa": 4,
+      "scaled_time": 0.0
+    }
+  ]
+}

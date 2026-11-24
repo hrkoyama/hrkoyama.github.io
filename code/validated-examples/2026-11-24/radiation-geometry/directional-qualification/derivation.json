@@ -1,0 +1,23 @@
+{
+  "status": "DRAFT_UNEXECUTED_ANALYTIC_DESIGN",
+  "recorded_at_utc": "2026-11-23T22:47:04.865884+00:00",
+  "markdown_sha256": "66ac51f2b958e1a4e09b04c6913ee12bde00a64c868c58980fc94f23c2117e15",
+  "eigenvalues_verified_by": "IndependentLorentz-isotropicphoton-fluidalgebra,c_s²1/3; matchesparentJacobianformula",
+  "LF_cone_root": "[8abs(v_n)+sqrt(delta*(9delta+8|v_t|²))]/(8+delta)",
+  "stable_eigenvalues": "lambda0=v_n;lambda±=[2v_n±sqrt(delta*(3delta+2|v_t|²))]/(2+delta)",
+  "stable_parameters": "s=sqrt(4−3f²);v=3f/(2+s);delta=12*(1−f²)/((s+1)*(s+2))",
+  "face_rule_proposal": "max endpoint spectralradius,LFconebound,abs(f_n); not claimednonlinearRiemannfanbound",
+  "CFL_sufficient": "sum_faces dt*a_face/(2*h_normal)<=1; squareglobal2dt/h<=1 unchanged",
+  "vacuum_recommendation": "a=1 conservative speedextension;U/Gremainzero",
+  "roundoff_domain_choices": "Strictreject OR explicitlyfrozena1speed-onlyextension,count/maxovershootreported;neverstateprojection,nosilentnegative-radicandclamp,noexpandedtolerance.",
+  "source": {
+    "url": "https://arxiv.org/pdf/1306.0010",
+    "actual_scope": "Selectedextractedtext§3.3equations37–41,streaming/isotropiclimits. No fullpaper/rendered-symbolaudit. PrincetonPDF401.",
+    "role": "Primaryclosure/eigenvalues/context;independentLFconeproofnotattributedtothepaper"
+  },
+  "unread_proof_scope": "GeneralBerthonHLLCnonlinearfan/invariantdomaintheoremsnotread;notborrowed.",
+  "new_scientific_executions": 0,
+  "reference_generations": 0,
+  "source_PUB_Git_edits": false,
+  "criteria_frozen": false
+}

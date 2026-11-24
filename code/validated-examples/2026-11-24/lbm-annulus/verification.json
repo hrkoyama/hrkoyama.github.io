@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "group": "lbm-annulus",
+  "edition": "2026-11-24",
+  "verified_on": "2026-11-24",
+  "source_manifest_sha256": "0f5ae6b66e83fbfcf5b142c533caeddcdc78b0c7e4679da6567547231aa48c3c",
+  "archive": {
+    "file": "atlas-lbm-annulus-2026-11-24.zip",
+    "sha256": "c38c290902c1e344b4905b3141d0212000525f45d97b0104ed35c3b8d4f6eb1b",
+    "bytes": 55440866,
+    "archive_directory": "atlas-lbm-annulus-2026-11-24"
+  },
+  "archive_sha256": "c38c290902c1e344b4905b3141d0212000525f45d97b0104ed35c3b8d4f6eb1b",
+  "returncode": 0,
+  "passed_tests": 28,
+  "tests": 28,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "lbm-annular-couette-control"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 50.83854141700431,
+  "independent_rerun_seconds": 49.38523879199056,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

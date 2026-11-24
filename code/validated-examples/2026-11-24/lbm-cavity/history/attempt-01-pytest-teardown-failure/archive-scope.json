@@ -1,0 +1,11 @@
+{
+  "status": "FAILED_QA_RETAINED",
+  "pytest_test_bodies_passed": 22,
+  "pytest_teardown_errors": 1,
+  "main_evolutions": 0,
+  "reason": "TemporaryDirectory implicit cleanup ResourceWarning became pytest teardown error with-Werror; no main started.",
+  "source_test_pathmap": {
+    "source/archived_test_lbm.py.txt": "source/test_lbm.py"
+  },
+  "input_acceptance_unchanged": true
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "checks": {
+    "3.0/moment1": true,
+    "3.0/moment2": true,
+    "3.0/moment3": true,
+    "3.0/moment4": true,
+    "3.0/erfc": true,
+    "3.0/variancepositive": true,
+    "3.0/variancereduction": true,
+    "3.0/omitted_weight_negative": true,
+    "3.0/weight_sign/-2.0": true,
+    "3.0/weight_sign/0.0": true,
+    "3.0/weight_sign/3.0": true,
+    "6.0/moment1": true,
+    "6.0/moment2": true,
+    "6.0/moment3": true,
+    "6.0/moment4": true,
+    "6.0/erfc": true,
+    "6.0/variancepositive": true,
+    "6.0/variancereduction": true,
+    "6.0/omitted_weight_negative": true,
+    "6.0/weight_sign/-2.0": true,
+    "6.0/weight_sign/0.0": true,
+    "6.0/weight_sign/3.0": true
+  },
+  "records": {
+    "3.0": {
+      "probability": 0.001349898031630094,
+      "moments1to4": [
+        0.001349898031630094,
+        7.994402489649384e-06,
+        6.004634757513218e-08,
+        5.028782606972224e-10
+      ],
+      "variance": 6.172177793850584e-06,
+      "direct_variance": 0.0013480758069342952,
+      "reference_scope": "Independent scaled positive adaptive integral versus completed-square log-normal-tail formula."
+    },
+    "6.0": {
+      "probability": 9.865876450376937e-10,
+      "moments1to4": [
+        9.865876450376937e-10,
+        7.658825724475013e-18,
+        7.805582377467952e-26,
+        8.927819236174195e-34
+      ],
+      "variance": 6.6854705431339915e-18,
+      "direct_variance": 9.865876440643385e-10,
+      "reference_scope": "Independent scaled positive adaptive integral versus completed-square log-normal-tail formula."
+    }
+  },
+  "input_sha256": "879308e8a4ebef90bc4f3258381a84a59cedc3f954afbf3a05f2a33fb86586ca",
+  "acceptance_sha256": "45ae8a7c0190c12b5f147fb7e1d912f40a6f5629567a4afa6cda324f11b8a49c",
+  "generator_sha256": "1a5dad7a407f83f61dbafc08013f874c04b97c9e03ed43246faf96362456675d",
+  "stochastic_samples": 0
+}

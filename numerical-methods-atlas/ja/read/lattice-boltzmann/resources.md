@@ -76,6 +76,22 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/lattice-boltzmann/
 
 ## コード・検証
 
+- [LBM Taylor–Green渦：格子・刻み・Machの結合感度](<https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-taylor-green/?lang=ja>)
+  availability: run
+
+  周期2Dの非線形渦を実際に時間発展し、連続解析場への速度・圧力・エネルギー誤差を保存します。amplitude感度と同格子のcoupled刻み感度も分けて示します。
+- [LBM Re100蓋駆動キャビティ：実2D場とGhia中心線](<https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-cavity-re100/?lang=ja>)
+  availability: run
+
+  4壁のBGK更新を3固定格子で実行し、nominal蓋速度で正規化したGhia中心線、主渦、定常性と壁運動量収支を検査します。
+- [曲面LBMの環状Couette制御：速度・圧力・torque](<https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-annular-couette-control/?lang=ja>)
+  availability: run
+
+  実円弧交点の2次Lagrange補間とstair-halfwayを、回転内壁の解析Navier–Stokes場に比較します。円柱wakeとは別の追加制御です。
+- [LBMの実円柱Re20：Schäfer–Turek形状と明示出口](<https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-cylinder-re20/?lang=ja>)
+  availability: run
+
+  標準2D-1の全長channelと偏心円柱を実際に発展し、抗力・揚力・表面圧力差・再循環長と定常性を2格子で検査します。
 - [D2Q9–BGK衝突・並進：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/d2q9-bgk/?lang=ja#method-execution-ja>)
   availability: source
 

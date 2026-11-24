@@ -1,0 +1,302 @@
+{
+  "01/receipt.json": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/receipt.json",
+    "sha256": "c56ae44b175890042c86127056e06e823343341170a9b7f0a7f8c922094744dc"
+  },
+  "01/reference-qualification-protocol.json": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/reference-qualification-protocol.json",
+    "sha256": "f9a19d913d751a33760f0b98ad2c17a38b7442fcd1a898f446584c246da423f7"
+  },
+  "01/results/completed-checks.json": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/results/completed-checks.json",
+    "sha256": "bba43b4fb475aea7548e68894659670438097ddca261fff336e03fcf110d84d7"
+  },
+  "01/results/reference-partial.npz": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/results/reference-partial.npz",
+    "sha256": "e62d940e6c70fc919a0b59d63126be20d57e6142b119eb3d8dcdd790b159b4c3"
+  },
+  "01/source/LICENSE": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/LICENSE",
+    "sha256": "e1053200337d037d9d81620956ce49263117c6540b1c1352c030c220bee05f59"
+  },
+  "01/source/README.md": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/README.md",
+    "sha256": "0333c90ded6b2252a9e24511cb39d700dd19553021f486da9d3aef60da45f27c"
+  },
+  "01/source/acceptance.json": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/acceptance.json",
+    "sha256": "d90424437d8296e6dcb03901dbf8a2d049fd70b565ca5c84b27971610d756d9d"
+  },
+  "01/source/cases.json": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/cases.json",
+    "sha256": "e59c2da8d6b44ca9339ce976c985397eb2682367b926c412a2c47644588df78c"
+  },
+  "01/source/diffusion.py": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/diffusion.py.txt",
+    "sha256": "f23ffa9c7c14645a95e46cb3b4fd9fd7891881ce5c58d860a965d0dd44f09854"
+  },
+  "01/source/inputs.json": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/inputs.json",
+    "sha256": "9032f6d9ba61972884d55c46ea93d6bda13e42d38a40f64c0a9ba619d48a8400"
+  },
+  "01/source/io_contract.py": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/io_contract.py.txt",
+    "sha256": "abce97b60b9a34498577e97f5f786c461b06e1c7904fdb2d450a74ecf3578884"
+  },
+  "01/source/plot.py": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/plot.py.txt",
+    "sha256": "a31e6beb786ea69c149572daa6e31f122d891effdbaa3bd721e0abb6046ebf8e"
+  },
+  "01/source/pre-run-contract.json": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/pre-run-contract.json",
+    "sha256": "3bccff1ef956c791e740adb3b752caa38f40f208b5058f71e837619df0277043"
+  },
+  "01/source/pytest.ini": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/pytest.ini",
+    "sha256": "9626ac48fd15173c70c7a3b6c72eb5db55dd6d640d9393ba4e92b4a5b57d69c2"
+  },
+  "01/source/reference-history/README.md": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/reference-history/README.md",
+    "sha256": "c5785cd4c269d30430e7e39e7a84c95ef7ae9295ccc90b1345d970b329b079f4"
+  },
+  "01/source/reference-history/before-diagnostic-retention/diffusion.py.patch": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/reference-history/before-diagnostic-retention/diffusion.py.patch",
+    "sha256": "28f93d6c5131083d03f51edd0fabd449d15cc24b6cc5d2cc41a13db37b416426"
+  },
+  "01/source/reference-history/before-diagnostic-retention/diffusion.py.txt": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/reference-history/before-diagnostic-retention/diffusion.py.txt",
+    "sha256": "81680efa9bb95273d3b79c14bddca7717a3cc712e7e55c0dfb3fe61ec1a145a0"
+  },
+  "01/source/reference-history/before-diagnostic-retention/reference-pre-run-contract.json": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/reference-history/before-diagnostic-retention/reference-pre-run-contract.json",
+    "sha256": "5a6af0d40975fdddb63c7e70a6bdacd0f1911774535f5d61cbb659ee62775282"
+  },
+  "01/source/reference-history/before-diagnostic-retention/revision.json": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/reference-history/before-diagnostic-retention/revision.json",
+    "sha256": "2ff014fe0c3be5f5fa95b3ff448700a919274977d7a8ddfb7e9410164b373229"
+  },
+  "01/source/reference-history/before-diagnostic-retention/transport.py.patch": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/reference-history/before-diagnostic-retention/transport.py.patch",
+    "sha256": "d6b7eed2d97e1aede1ef3d6aee7f46f7fa2331707c7515ea38054f7de09e3892"
+  },
+  "01/source/reference-history/before-diagnostic-retention/transport.py.txt": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/reference-history/before-diagnostic-retention/transport.py.txt",
+    "sha256": "eba4933158320cd49dd6a8f05ed5c62686944ffc335bd84a39740a0d1acd21c2"
+  },
+  "01/source/reference-history/failed-attempt01-pathmap.json": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/reference-history/failed-attempt01-pathmap.json",
+    "sha256": "de72ae368b74ee0977edb46804599c161088a3d3e1f28fb0a3346da395f8c674"
+  },
+  "01/source/reference-history/failed-attempt01-receipt.json": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/reference-history/failed-attempt01-receipt.json",
+    "sha256": "3c86c890b031fff9d15e4d86e43cb513b78be74f3ec180f47235b36ff7819e59"
+  },
+  "01/source/reference-history/failed-attempt01-source/diffusion.py.txt": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/reference-history/failed-attempt01-source/diffusion.py.txt",
+    "sha256": "81680efa9bb95273d3b79c14bddca7717a3cc712e7e55c0dfb3fe61ec1a145a0"
+  },
+  "01/source/reference-history/failed-attempt01-source/references/RTClosureJAX-LICENSE.txt": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/reference-history/failed-attempt01-source/references/RTClosureJAX-LICENSE.txt",
+    "sha256": "afb9b676decfee079d3779b7efb26ddaede789dda19ea995785ccc91902643eb"
+  },
+  "01/source/reference-history/failed-attempt01-source/references/SuOlson_V_transport.dat.txt": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/reference-history/failed-attempt01-source/references/SuOlson_V_transport.dat.txt",
+    "sha256": "81b8135798184cad65a15587919239f1adaceaae827895bed3a048a99f9c1cfc"
+  },
+  "01/source/reference-history/failed-attempt01-source/references/SuOlson_W_transport.dat.txt": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/reference-history/failed-attempt01-source/references/SuOlson_W_transport.dat.txt",
+    "sha256": "957495981447b11ced7d0e5da32d9ac2d6393aa7aaf2fe20c78534adfbd8bdba"
+  },
+  "01/source/reference-history/failed-attempt01-source/references/SuOlsont.dat.txt": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/reference-history/failed-attempt01-source/references/SuOlsont.dat.txt",
+    "sha256": "18236df08094350b5928d4d288a83b7c7d8d3b883a01deb0746737379eebc792"
+  },
+  "01/source/reference-history/failed-attempt01-source/references/SuOlsonx.dat.txt": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/reference-history/failed-attempt01-source/references/SuOlsonx.dat.txt",
+    "sha256": "5041610696c91307ff73fb5262268f9b3412a61553edf7990b3707642cd3b417"
+  },
+  "01/source/reference-history/failed-attempt01-source/references/analytic.py.txt": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/reference-history/failed-attempt01-source/references/analytic.py.txt",
+    "sha256": "38b146765d6533cf7cfd20bfaf561e3a30d75f293c5fe6c23c4e6b1752d53bbb"
+  },
+  "01/source/reference-history/failed-attempt01-source/references/exactpack-LICENSE.txt": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/reference-history/failed-attempt01-source/references/exactpack-LICENSE.txt",
+    "sha256": "763767e730623814502f95054919a019f17f5257e0cd8d60aede203d9736dd40"
+  },
+  "01/source/reference-history/failed-attempt01-source/references/exactpack-__init__.py.txt": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/reference-history/failed-attempt01-source/references/exactpack-__init__.py.txt",
+    "sha256": "8da20cb9e1d5bda45773de42007c216f57723573f03b003e1071b84e6e4fd754"
+  },
+  "01/source/reference-history/failed-attempt01-source/references/exactpack-provenance.json": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/reference-history/failed-attempt01-source/references/exactpack-provenance.json",
+    "sha256": "e2623a82005dd1bd72a749623143529792daa86830d1a68ba22e148383edd13a"
+  },
+  "01/source/reference-history/failed-attempt01-source/references/exactpack-suolson.py.txt": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/reference-history/failed-attempt01-source/references/exactpack-suolson.py.txt",
+    "sha256": "d860465ce7e1ec344001956bf5f2c7be2cd406a4e65d6f7743d670ef1e0eeb99"
+  },
+  "01/source/reference-history/failed-attempt01-source/references/exactpack-timmes-tight.py.txt": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/reference-history/failed-attempt01-source/references/exactpack-timmes-tight.py.txt",
+    "sha256": "3c7a4da4297c1aa09c5c598dccbff1058879cdd60702b2be2644fa1a280c767d"
+  },
+  "01/source/reference-history/failed-attempt01-source/references/exactpack-timmes.py.txt": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/reference-history/failed-attempt01-source/references/exactpack-timmes.py.txt",
+    "sha256": "fb80920b82a6444566261e7bd8f9ba4932d92e69b31604a492a18a8bc663940e"
+  },
+  "01/source/reference-history/failed-attempt01-source/references/qualify.py.txt": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/reference-history/failed-attempt01-source/references/qualify.py.txt",
+    "sha256": "4e2b587f2ebc6d53c3d4b183c144148a76f0b5d8cf0c34672fd0328d87dd835d"
+  },
+  "01/source/reference-history/failed-attempt01-source/references/transport-data-provenance.json": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/reference-history/failed-attempt01-source/references/transport-data-provenance.json",
+    "sha256": "ba001d22897f03856419f664da5175f0b771cc6ae0df95911a0159e90025bcc3"
+  },
+  "01/source/reference-history/failed-attempt01-source/transport.py.txt": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/reference-history/failed-attempt01-source/transport.py.txt",
+    "sha256": "eba4933158320cd49dd6a8f05ed5c62686944ffc335bd84a39740a0d1acd21c2"
+  },
+  "01/source/reference-history/qualified-r4-contract.json": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/reference-history/qualified-r4-contract.json",
+    "sha256": "5a6af0d40975fdddb63c7e70a6bdacd0f1911774535f5d61cbb659ee62775282"
+  },
+  "01/source/reference-history/qualified-r4-root-review.json": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/reference-history/qualified-r4-root-review.json",
+    "sha256": "db0ab9ff5de323386be16f9337704268ee10d363b7c587f6bbc4f28a52703aa4"
+  },
+  "01/source/reference-history/qualified-r4-shared-receipt.json": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/reference-history/qualified-r4-shared-receipt.json",
+    "sha256": "d61204b12b711912b1825df154c9b94aaaba2409639ead965b1d07342d6185b7"
+  },
+  "01/source/references/RTClosureJAX-LICENSE.txt": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/references/RTClosureJAX-LICENSE.txt",
+    "sha256": "afb9b676decfee079d3779b7efb26ddaede789dda19ea995785ccc91902643eb"
+  },
+  "01/source/references/SuOlson_V_transport.dat.txt": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/references/SuOlson_V_transport.dat.txt",
+    "sha256": "81b8135798184cad65a15587919239f1adaceaae827895bed3a048a99f9c1cfc"
+  },
+  "01/source/references/SuOlson_W_transport.dat.txt": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/references/SuOlson_W_transport.dat.txt",
+    "sha256": "957495981447b11ced7d0e5da32d9ac2d6393aa7aaf2fe20c78534adfbd8bdba"
+  },
+  "01/source/references/SuOlsont.dat.txt": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/references/SuOlsont.dat.txt",
+    "sha256": "18236df08094350b5928d4d288a83b7c7d8d3b883a01deb0746737379eebc792"
+  },
+  "01/source/references/SuOlsonx.dat.txt": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/references/SuOlsonx.dat.txt",
+    "sha256": "5041610696c91307ff73fb5262268f9b3412a61553edf7990b3707642cd3b417"
+  },
+  "01/source/references/analytic.py": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/references/analytic.py.txt",
+    "sha256": "38b146765d6533cf7cfd20bfaf561e3a30d75f293c5fe6c23c4e6b1752d53bbb"
+  },
+  "01/source/references/diffusion-reference.npz": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/references/diffusion-reference.npz",
+    "sha256": "07b3d46690a4387d8d9a7cdce0f61bc562077db184aa971e900218f6ce2d0190"
+  },
+  "01/source/references/exactpack-LICENSE.txt": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/references/exactpack-LICENSE.txt",
+    "sha256": "763767e730623814502f95054919a019f17f5257e0cd8d60aede203d9736dd40"
+  },
+  "01/source/references/exactpack-__init__.py.txt": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/references/exactpack-__init__.py.txt",
+    "sha256": "8da20cb9e1d5bda45773de42007c216f57723573f03b003e1071b84e6e4fd754"
+  },
+  "01/source/references/exactpack-provenance.json": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/references/exactpack-provenance.json",
+    "sha256": "e2623a82005dd1bd72a749623143529792daa86830d1a68ba22e148383edd13a"
+  },
+  "01/source/references/exactpack-suolson.py.txt": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/references/exactpack-suolson.py.txt",
+    "sha256": "d860465ce7e1ec344001956bf5f2c7be2cd406a4e65d6f7743d670ef1e0eeb99"
+  },
+  "01/source/references/exactpack-timmes-tight.py.txt": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/references/exactpack-timmes-tight.py.txt",
+    "sha256": "3c7a4da4297c1aa09c5c598dccbff1058879cdd60702b2be2644fa1a280c767d"
+  },
+  "01/source/references/exactpack-timmes.py.txt": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/references/exactpack-timmes.py.txt",
+    "sha256": "fb80920b82a6444566261e7bd8f9ba4932d92e69b31604a492a18a8bc663940e"
+  },
+  "01/source/references/installed-reference-provenance.json": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/references/installed-reference-provenance.json",
+    "sha256": "c40ae13c701c5522a280e8a9478355993f0eb642d61e0b47273395c1366d581e"
+  },
+  "01/source/references/qualification.json": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/references/qualification.json",
+    "sha256": "0ca13c4843d6eb56c95f449110da314e22e6be61795732a745375de4fdb6eb36"
+  },
+  "01/source/references/qualify.py": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/references/qualify.py.txt",
+    "sha256": "4e2b587f2ebc6d53c3d4b183c144148a76f0b5d8cf0c34672fd0328d87dd835d"
+  },
+  "01/source/references/qualify_thick.py": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/references/qualify_thick.py.txt",
+    "sha256": "66392b70a599a36dba64739ca78e3112d2582ffc650e4a90401dae110865586c"
+  },
+  "01/source/references/thick_reference.py": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/references/thick_reference.py.txt",
+    "sha256": "2217bab3ebb4edd3193962b1be3e61a19e225c5e4a2f2f59ec336eeaa40a6531"
+  },
+  "01/source/references/transport-data-provenance.json": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/references/transport-data-provenance.json",
+    "sha256": "ba001d22897f03856419f664da5175f0b771cc6ae0df95911a0159e90025bcc3"
+  },
+  "01/source/references/transport-reference.npz": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/references/transport-reference.npz",
+    "sha256": "53422f997c50c3c82ac477ef7ab8f286e051642e8cbb31963c2cf5befe67eb61"
+  },
+  "01/source/requirements-plotting.txt": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/requirements-plotting.txt",
+    "sha256": "fd70c5b60168fd91d504345ec04061037fb9de084f7ec8fa53255486c9c94ab1"
+  },
+  "01/source/requirements.txt": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/requirements.txt",
+    "sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75"
+  },
+  "01/source/run.py": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/run.py.txt",
+    "sha256": "5cbc2ab546187df7162c73b8e2cf4e247d5afedce579b13fc53706a683e7efbe"
+  },
+  "01/source/test_matter.py": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/test_matter.py.txt",
+    "sha256": "83e8ae8dc529f7374af1c4114a5e89a840335fbf772ad622805c1d4753ca69ba"
+  },
+  "01/source/test_thick_limit.py": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/test_thick_limit.py.txt",
+    "sha256": "ef3aca8252338dc27f50077cda6207504703c14feebb41ef84ebdc909b90a66f"
+  },
+  "01/source/thick_limit.py": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/thick_limit.py.txt",
+    "sha256": "c57786c83d5d7e638e30e10c7954bd8ab016048353e8eddbdb08c96bd8d3a308"
+  },
+  "01/source/transport.py": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/source/transport.py.txt",
+    "sha256": "e8babc54533b1c7d8fae54cd646af1507f24c27d43dfa916355b7f1cb848fb27"
+  },
+  "01/stderr.log": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/stderr.log",
+    "sha256": "fefbf8ef43fad29d3261d9fbd018f699768d7fbe21ada79c3483e0f01938e8d6"
+  },
+  "01/stdout.log": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/01/stdout.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "r1/execute-reference-once.py": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/r1/execute-reference-once.py.txt",
+    "sha256": "13558eb0a4c50956d7a7d04eaf26481ecdf798af1446ecbac7b524b05726132c"
+  },
+  "r1/independent-reference-review-by-weno.json": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/r1/independent-reference-review-by-weno.json",
+    "sha256": "49a0d5061bd7bda8a912b81034ded16f5bb2954d0e628db7d119f4ddecbc9501"
+  },
+  "r1/reference-qualification-protocol.json": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/r1/reference-qualification-protocol.json",
+    "sha256": "f9a19d913d751a33760f0b98ad2c17a38b7442fcd1a898f446584c246da423f7"
+  },
+  "r1/root-reference-authorization.json": {
+    "snapshot": "thick-limit-history/failed-reference-attempt-01/r1/root-reference-authorization.json",
+    "sha256": "559951e678aaddc4ae42bfdf68bfc9ffe8865d66303d2c3a832018b717ff5c73"
+  }
+}

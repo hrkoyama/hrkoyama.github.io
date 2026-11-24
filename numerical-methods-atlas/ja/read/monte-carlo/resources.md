@@ -42,6 +42,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/monte-carlo/
   availability: run
 
   U[0,1]でx²を積分。256の独立seedで解析積分・分散と比較し、Nの平方根に反比例するRMS誤差と区間被覆を確認。MCMC・希少事象は対象外。
+- [正規稀少尾の通常importance sampling](<https://hrkoyama.github.io/numerical-methods-atlas/validation/normal-tail-importance/?lang=ja>)
+  availability: run
+
+  通常の尤度比平均を解析モーメント・独立seed分散・有限被覆診断で確認。
 - [Monte Carlo積分：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/monte-carlo/?lang=ja#method-execution-ja>)
   availability: source
 

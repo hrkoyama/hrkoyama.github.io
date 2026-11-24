@@ -1,0 +1,68 @@
+{
+  "status": "SELECTED_PRIMARY_SCOPE_INSPECTED_NOT_NUMERICALLY_QUALIFIED",
+  "scientific_executions": 0,
+  "references": [
+    {
+      "id": "zou-he-1996-preprint",
+      "title": "On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model",
+      "url": "https://arxiv.org/pdf/comp-gas/9611001",
+      "review_level": "selected-primary-text",
+      "actually_read": "Extracted pp2-7, equations1-3,17-29 and nearby discussion. Standard versus incompressible equilibrium, moment reconstruction for flat density/velocity boundaries, corner qualification and fixed-Mach compressibility caveat.",
+      "role": "Adopted standard D2Q9 equilibrium and independently indexed left/right Zou-He moment closure.",
+      "not_claimed": "No use of the paper's special incompressible d2q9i machine-accuracy results as a pass for standard compressible BGK. No full-paper/rendered-symbol audit."
+    },
+    {
+      "id": "lallemand-luo-2003",
+      "title": "Lattice Boltzmann method for moving boundaries",
+      "url": "https://doi.org/10.1016/S0021-9991(02)00022-0",
+      "actual_delivery_url": "https://www.academia.edu/126173532/Lattice_Boltzmann_method_for_moving_boundaries",
+      "review_level": "selected-primary-text-via-author-content-mirror",
+      "actually_read": "Original article extracted text sec3, printed410-414, Fig2 discussion and equations12-15. Off-grid bounce-back paths, before/after-stream interpolation, q=.5 reduction, moving-wall correction, momentum exchange and explicit warning that interpolation compromises mass conservation.",
+      "role": "Primary derivation context. Our two-point linear formula is independently derived and qualified, while the displayed primary formulas are quadratic. Coordinate orientation and moving-wall signs are independently checked.",
+      "not_claimed": "No original C++/author code copied, no moving-particle geometry/topology implementation, no general Galilean-invariance certification."
+    },
+    {
+      "id": "bouzidi-firdaouss-lallemand-2001",
+      "title": "Momentum transfer of a Boltzmann-lattice fluid with boundaries",
+      "url": "https://doi.org/10.1063/1.1399290",
+      "review_level": "bibliography-abstract-only",
+      "actually_read": "Publisher metadata/abstract only; DOI text fetch was inaccessible. Original2001 full interpolation/force formulas were not inspected.",
+      "role": "Origin of BFL boundary family, not the sole claimed formula qualification."
+    },
+    {
+      "id": "schaefer-turek-1996",
+      "title": "Benchmark Computations of Laminar Flow Around a Cylinder",
+      "url": "https://doi.org/10.1007/978-3-322-89849-4_39",
+      "actual_delivery_url": "https://kent-and.github.io/mek4250/2021/SchaeferTurek1996.pdf",
+      "official_delivery_attempts": ["https://www.mathematik.tu-dortmund.de/lsiii/cms/papers/SchaeferTurek1996.pdf", "https://wwwold.mathematik.tu-dortmund.de/lsiii/cms/papers/SchaeferTurek1996.pdf"],
+      "official_attempt_results": "Both returned404 through the web tool; original20-page article text was read from the course mirror.",
+      "review_level": "selected-primary-text",
+      "actually_read": "Printed pp3-4 geometry/properties/2D-1 definitions and Fig1; p7 protocol statement on user-chosen outflow; pp11-12 description of estimated intervals and Table3. Requested rendered snapshots for pp3/12 but do not claim a separate local rendered-symbol audit.",
+      "reference_data": {"CD": [5.57,5.59], "CL": [0.0104,0.0110], "recirculation_length": [0.0842,0.0852], "pressure_difference": [0.1172,0.1176]},
+      "qualification_boundary": "Original authors' estimated comparison ranges, not rigorous exact-error enclosures. The original explicitly permits selecting an outflow condition. This release declares its finite-grid Zou-He outlet and does not equate it to FEATflow's later do-nothing outlet."
+    },
+    {
+      "id": "featflow-re20",
+      "title": "DFG flow around cylinder benchmark2D-1",
+      "url": "https://wwwold.mathematik.tu-dortmund.de/~featflow/en/benchmarks/cfdbenchmarking/flow/dfg_benchmark1_re20.html",
+      "review_level": "official-benchmark-page",
+      "actually_read": "Geometry, inlet/outlet conditions, mean-speed normalization, force and pressure-probe definitions and reference-result attribution. The page attributes precise values to Nabh1998 spectral calculations.",
+      "reference_data": {"CD":5.57953523384,"CL":0.010618948146,"pressure_difference":0.11752016697},
+      "not_claimed": "Nabh1998 original full report was not read. Its do-nothing outlet is not the adopted lattice boundary condition; these precise numbers are secondary context, not falsely labelled exact same-BC kinetic truth."
+    },
+    {
+      "id": "ghia-re100",
+      "title": "Ghia, Ghia and Shin1982 Re100 centerlines",
+      "url": "https://doi.org/10.1016/0021-9991(82)90058-4",
+      "review_level": "existing-audited-transcription-and-provenance",
+      "actually_read": "Existing exact-byte CSV and source-review JSON,17points each for tablesI/II printed398-399. Existing provenance records primary PDF hash and prior rendered inspection. No new successful publisher full-text access is claimed in this session.",
+      "role": "Independent published incompressible cavity reference, with limited printed precision; not another LBM execution or exact continuum oracle."
+    },
+    {
+      "id": "tgv-derived",
+      "title": "Independently derived2D decaying Taylor-Green field",
+      "review_level": "derived-analytic-reference",
+      "role": "Differentiate analytic velocities/pressure and derive viscous decay/energy; no inaccessible author code or uninspected table values are credited."
+    }
+  ]
+}

@@ -47,7 +47,9 @@ $$
 
 正準Gaussian・Gamma分布とK/U/Hの平均・分散を照合。有限刻みではVerletのshadow二次形式を使い、位置分散T/[ω²(1−h²ω²/4)]、運動量分散Tを別導出したLyapunov解と比較します。h=0.2/0.1/0.05の決定論的偏りで2次性を確認。Langevinのq,p,K,H相関は独立の離散伝播と照合し、CSVRの相関は独立複製の標準誤差とτ・h依存を表示します。
 
-参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
+- [OUのweakモーメントと同時Brownian結合](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-ou-weak-moments-ja) (`ou-weak-moments`; 関連モデルの参照 · 解析参照)
+
+dX=1.5(.2-X)dt+.8dW,X0=.7。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。
 ## 前提・単位・境界
 
 m=kB=T=1、ω=(1,1.7)、Nf=2。τ=0.25/1、h=0.1/0.05。正準初期8192複製とq,pを1.4倍した4096複製を別にt=20まで進めます。相関lagは0/0.5/1/2/4。
@@ -196,7 +198,9 @@ A saved validation figure for this execution example. Its conditions and accepta
 
 Check canonical Gaussian/Gamma distributions and K/U/H means/variances. For finite steps, compare the Verlet-shadow position variance T/[omega²(1−h² omega²/4)] and momentum variance T against a separately constructed Lyapunov solution. Deterministic biases at h=0.2/0.1/0.05 establish second order. Check Langevin q,p,K,H correlations against independent discrete propagation; report CSVR correlations with independent-replica standard errors and tau/h dependence.
 
-No corresponding reference-library card is registered; execution-specific material above documents its reference values and acceptance checks.
+- [OU weak moments with joint Brownian coupling](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-ou-weak-moments-en) (`ou-weak-moments`; Related-model reference · Analytic reference)
+
+dX=1.5(.2-X)dt+.8dW,X0=.7;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping.
 ## Assumptions, units and boundaries
 
 m=kB=T=1, omega=(1,1.7), Nf=2. tau=0.25/1, h=0.1/0.05. Evolve 8192 canonically initialized replicas and a separate 4096-replica ensemble with q,p scaled by 1.4 to t=20. Correlation lags are 0/0.5/1/2/4.

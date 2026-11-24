@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "limits": {
+    "IS_mean_z": 5.0,
+    "IS_batch_variance_ratio": [
+      0.4,
+      2.0
+    ],
+    "IS_analytic_variance_reduction_ratio": 0.05,
+    "IS_reference_moment_relative": 1e-10,
+    "IS_negative_control_min_ratio": 100.0,
+    "MCMC_rhat_max": 1.01,
+    "MCMC_bulk_tail_ess_min": 400.0,
+    "MCMC_mcse_over_natural_sd_max": 0.03,
+    "MCMC_moment_mcse_factor": 5.0,
+    "MCMC_moment_sd_allowance": 0.02,
+    "reference_rhat_absolute": 2e-10,
+    "reference_ess_relative": 2e-08,
+    "reference_mcse_relative": 2e-08
+  },
+  "statistical_scope": "Finite fixed experiments; SE/CI/diagnostics are not deterministic error bounds or general coverage/convergence proofs. No observed criterion relaxation."
+}

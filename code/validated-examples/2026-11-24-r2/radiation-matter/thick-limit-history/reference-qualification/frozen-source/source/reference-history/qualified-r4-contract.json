@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "status": "FROZEN_REFERENCE_COMPONENT_PROPOSAL_AWAITING_ROOT_AND_INDEPENDENT_REVIEW",
+  "created_at_utc": "2026-11-23T22:19:35.880499+00:00",
+  "before_first_reference_or_component_execution": true,
+  "authored_science_imports_or_compile": 0,
+  "PDE_main_executions": 0,
+  "source_head": "9dde48159c568f985170506ef2eb0a7008f1c4ea",
+  "files_sha256": {
+    "radiation-geometry/geometry.py": "0752951c97b0e5b5b2f19e5e16368cb747bf6e83c0791d1abc4b428842313cbc",
+    "radiation-geometry/mms.py": "51295a29c1dc52eae6f3496f01237ea4d2345b5f6cb5344efcb4b0044f5ff69f",
+    "radiation-geometry/references/analytic.py": "0a56ccd3f678b002929713466224f58277269a05b0a2eb8a1a4591b1ebcb621d",
+    "radiation-geometry/references/qualify.py": "bf3950ed47f59d9406d07c3a327c499c05052fddd73384115d33a6be45da68d5",
+    "radiation-matter/diffusion.py": "81680efa9bb95273d3b79c14bddca7717a3cc712e7e55c0dfb3fe61ec1a145a0",
+    "radiation-matter/references/RTClosureJAX-LICENSE.txt": "afb9b676decfee079d3779b7efb26ddaede789dda19ea995785ccc91902643eb",
+    "radiation-matter/references/SuOlson_V_transport.dat.txt": "81b8135798184cad65a15587919239f1adaceaae827895bed3a048a99f9c1cfc",
+    "radiation-matter/references/SuOlson_W_transport.dat.txt": "957495981447b11ced7d0e5da32d9ac2d6393aa7aaf2fe20c78534adfbd8bdba",
+    "radiation-matter/references/SuOlsont.dat.txt": "18236df08094350b5928d4d288a83b7c7d8d3b883a01deb0746737379eebc792",
+    "radiation-matter/references/SuOlsonx.dat.txt": "5041610696c91307ff73fb5262268f9b3412a61553edf7990b3707642cd3b417",
+    "radiation-matter/references/analytic.py": "38b146765d6533cf7cfd20bfaf561e3a30d75f293c5fe6c23c4e6b1752d53bbb",
+    "radiation-matter/references/exactpack-LICENSE.txt": "763767e730623814502f95054919a019f17f5257e0cd8d60aede203d9736dd40",
+    "radiation-matter/references/exactpack-__init__.py.txt": "8da20cb9e1d5bda45773de42007c216f57723573f03b003e1071b84e6e4fd754",
+    "radiation-matter/references/exactpack-provenance.json": "e2623a82005dd1bd72a749623143529792daa86830d1a68ba22e148383edd13a",
+    "radiation-matter/references/exactpack-suolson.py.txt": "d860465ce7e1ec344001956bf5f2c7be2cd406a4e65d6f7743d670ef1e0eeb99",
+    "radiation-matter/references/exactpack-timmes-tight.py.txt": "3c7a4da4297c1aa09c5c598dccbff1058879cdd60702b2be2644fa1a280c767d",
+    "radiation-matter/references/exactpack-timmes.py.txt": "fb80920b82a6444566261e7bd8f9ba4932d92e69b31604a492a18a8bc663940e",
+    "radiation-matter/references/qualify.py": "4e2b587f2ebc6d53c3d4b183c144148a76f0b5d8cf0c34672fd0328d87dd835d",
+    "radiation-matter/references/transport-data-provenance.json": "ba001d22897f03856419f664da5175f0b771cc6ae0df95911a0159e90025bcc3",
+    "radiation-matter/transport.py": "eba4933158320cd49dd6a8f05ed5c62686944ffc335bd84a39740a0d1acd21c2",
+    "radiation-scattering/references/fredholm.py": "0eda94759b77dee38718edae5be1fbdcbb3896ae2598fbaa26c3b8e32fe325a8",
+    "radiation-scattering/references/qualify.py": "808ebfceb53f0bb3a595b8dee787b15ffb4c4c96347ace7fb32f792130771301",
+    "radiation-scattering/slab.py": "75a01d35ff690b7dc7eec625f3ef931b73cba7f1220efef331fd729397c99bc4"
+  },
+  "groups": [
+    {
+      "id": "radiation-scattering",
+      "command": [
+        "PINNED_PYTHON",
+        "-B",
+        "-W",
+        "error",
+        "references/qualify.py",
+        "--output",
+        "FRESH_ATTEMPT/radiation-scattering"
+      ],
+      "planned_checks": 78,
+      "work": "20fixed Fredholm solves:4slabinputs,constant256/512/1024andlinear256/512;3independent singular-diagonal quadratures.No primary imports."
+    },
+    {
+      "id": "radiation-matter",
+      "command": [
+        "PINNED_PYTHON",
+        "-B",
+        "-W",
+        "error",
+        "references/qualify.py",
+        "--output",
+        "FRESH_ATTEMPT/radiation-matter"
+      ],
+      "planned_checks": 54,
+      "work": "42official/tight1996point-evaluations,PDE/Robinresiduals,and pinned1997table finite/shape/normalization/causalitychecks.No primary solve."
+    },
+    {
+      "id": "radiation-geometry",
+      "command": [
+        "PINNED_PYTHON",
+        "-B",
+        "-W",
+        "error",
+        "references/qualify.py",
+        "--output",
+        "FRESH_ATTEMPT/radiation-geometry"
+      ],
+      "planned_checks": 191,
+      "work": "Analyticcellmeansq8/16/32allgrids/times;M1tensor/forcing/invalidstatecomponents only.No PDEtimeevolution. Crossed+x/+ypacket characteristicquadrature at3grids/5times adds45checks."
+    }
+  ],
+  "planned_checks": 323,
+  "shared_outer_deadline_seconds": 120,
+  "warnings_policy": "-Werror;no warning suppression or accepted quadraturefailure.",
+  "execution_policy": "One external process-group wrapper for allthreequalifiers,actualremainingtime perchild. Freshoutputs. Preserve source/log/receipt/partialarrays/completedrows onexception/timeout/gatefailure.No retry or thresholdchange. InstallcachesonlyafterallchecksPASS.",
+  "main_authorization": false,
+  "main_plan_status": "Runners/tests/plots remain understaticauthoring outside thisboundset. Finalmaininputs/acceptance require separatefreeze/review afterreferencequalification.",
+  "reference_scope_limits": [
+    "ExactPack/tight agreement plusPDE/Robinchecks is finite empiricalsensitivity,not rigorousbound. Original1996paperunread.",
+    "1997dataareMITauthor-providedanalyticalbenchmarktables withpin;originalpaper/tabledirectcomparisonunavailable.",
+    "Geometryquadrature/MMScomplexsteparecomponents,notprimaryPDEsuccess."
+  ],
+  "environment": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "TMPDIR": "TASK_SCRATCH_ONLY"
+  },
+  "runtime": "UNMEASURED",
+  "integration_notes_sha256": "35be50a4c9f2deb48e09386b502f5e52fb7149bf7e64b03471ec1a18d2d10871",
+  "revision": 4,
+  "prior_unexecuted_contract_sha256": "2783e54e605c9fb26eda4318ed3b05f984b0c9a2853a2037a8e0c372979a9bb9",
+  "revision_reason": "Preserved failedattempt01: MacNumPyBLASmatmul warning at first residual before return. Replace only three pure contractions by indexed np.einsum optimizeFalse;warnings-as-error/320existingcriteria/inputs unchanged. Add3independent exactscalar-sum contractiongoldens.",
+  "previous_actual_attempt": {
+    "path": "reference-attempts/01",
+    "passed": false,
+    "completed_checks": 0,
+    "combined_seconds": 0.32548112500000004,
+    "failure": "RuntimeWarning dividebyzero inNumPymatmul residual;no field returned;source23pre/postunchanged",
+    "PDE_main_executions": 0
+  }
+}

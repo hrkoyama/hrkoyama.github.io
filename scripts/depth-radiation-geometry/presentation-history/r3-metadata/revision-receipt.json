@@ -1,0 +1,19 @@
+{
+  "created_at_utc": "2026-11-23T23:00:56.852044+00:00",
+  "after_actual_R3_success": true,
+  "scope": "Presentation/catalog metadata only: add actual rusanov methodID to bothcases and define evaluation-counter semantics in README. No scientific mutation or new primary execution.",
+  "original_metadata_sha256": {
+    "cases.json": "eb2a946cf43b1559c5d2f29c1dde3575650c6edad172b627a8f4a1fba878b247",
+    "README.md": "11b3eebe69b2482437f956385f1edbaf2aedc3e9dce0afabb22481110875a638",
+    "pre-run-contract.json": "dd7c4375ba1c4a1943948a0c9b9319fd22d1d7cc521e189b5e6a71d49f71d46b"
+  },
+  "new_cases_sha256": "297e1e3fd8ebf0bdd504faf9005f7ef58de0564ecbec7cb6405d2c3cca48f3a4",
+  "new_README_sha256": "3ee34b6ad891b16c3350d3290e7d19e5da6f3e9424d4ae9f0d2350bb71a3fdc3",
+  "retained_actual_main": {
+    "tests": 22,
+    "runs": 24,
+    "gates": 166,
+    "shared_seconds": 19.58630679199996
+  },
+  "scientific_source_inputs_acceptance_tests_references_unchanged": true
+}

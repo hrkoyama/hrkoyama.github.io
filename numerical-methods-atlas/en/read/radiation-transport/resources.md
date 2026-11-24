@@ -32,6 +32,26 @@ No chapter-specific association is registered. Atlas-wide index: [Exact and refe
   availability: run
 
   Compare characteristics, independent adaptive integration and photon survival in a pure-absorption slab; separate discrete balance, sampling error and interval coverage.
+- [Isotropic scattering in a finite slab](<https://hrkoyama.github.io/numerical-methods-atlas/validation/isotropic-scattering-slab/?lang=en>)
+  availability: run
+
+  Solve genuinely coupled signed-angle steady transport and compare R/T/A with an independent continuum-angle Fredholm reference.
+- [Su–Olson1996 non-equilibrium diffusion](<https://hrkoyama.github.io/numerical-methods-atlas/validation/su-olson-diffusion1996/?lang=en>)
+  availability: run
+
+  Advance actual radiation/material fields with the Marshak boundary and compare with independently qualified pinned ExactPack integrals.
+- [Su–Olson transport with an independently published analytical table](<https://hrkoyama.github.io/numerical-methods-atlas/validation/su-olson-transport1997/?lang=en>)
+  availability: run
+
+  Evolve actual signed-angle transport/material exchange and compare with pinned analytical benchmark tables provided by the2023primary author.
+- [Two-dimensional absorber shadow and M1 transport](<https://hrkoyama.github.io/numerical-methods-atlas/validation/shadow-absorber2d/?lang=en>)
+  availability: run
+
+  Compare the actual evolved circular-absorber shadow with characteristic chord attenuation, signed-angle transport and nonlinear M1.
+- [Opposing beams and information loss in the M1 closure](<https://hrkoyama.github.io/numerical-methods-atlas/validation/opposing-beams2d/?lang=en>)
+  availability: run
+
+  Show the M1 limitation in actual opposing-packet evolution; validate the same closed M1 solver independently with a manufactured solution.
 - [Radiation transport and moment methods — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/radiation-transport/?lang=en#method-execution-en>)
   availability: source
 

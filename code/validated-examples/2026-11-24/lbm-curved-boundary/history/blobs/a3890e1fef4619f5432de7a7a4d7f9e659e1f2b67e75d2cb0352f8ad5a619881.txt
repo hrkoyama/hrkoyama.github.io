@@ -1,0 +1,27 @@
+{
+  "status": "ROOT_LIFECYCLE_R2_STATIC_REBIND_PASS",
+  "reviewed_at_utc": "2026-11-23T22:30:58.933110+00:00",
+  "reviewer": "root",
+  "main_contracts_sha256": "dd17887b4aca949efc2a8c1b2b4e6d451f3fa8209a0d27a2304d166124385174",
+  "original_independent_review_sha256": "21c5d0e9641b06d22e80df58f04c3073e7f144e594b83a124f737b5050875524",
+  "scope": "Explicit Native temporary cleanup,fixture teardown andmainfinally only; all prior numerical source/input/criteria unchanged per authorASTdiff and exact kernel/geometry/scalar bindings.",
+  "group_contracts": {
+    "lbm-cavity": "5c84bcc8e8adab82051284102ecca00ee832a84cfb77a2127377662a0a4acd4a",
+    "lbm-taylor-green": "83cd333894c21565c3bc03dff48333d3fef7c6efe8d0d98acb4648098e5d8248",
+    "lbm-curved-boundary": "d3907d6280b085981c5b1595a8b9805cfb5e11a813feb4f7af89886908a1e6dc"
+  },
+  "shared_seconds_each": 120,
+  "expected_pytest_each": 22,
+  "expected_evolutions": [
+    3,
+    6,
+    8
+  ],
+  "expected_case_gates": [
+    37,
+    79,
+    113
+  ],
+  "prior_cavity_trial": "22numeric unittest bodies passed; QA teardownerror,main0; originalfailure retained",
+  "main_execution_by_reviewer": false
+}

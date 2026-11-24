@@ -48,6 +48,25 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#hamiltonian-ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#hamiltonian-en"
       }
+    },
+    {
+      "id": "scalar-ito-diffusion",
+      "name": {
+        "ja": "スカラーItô拡散：GBMとOU",
+        "en": "Scalar Ito diffusion: GBM and OU"
+      },
+      "formula": [
+        "\\mathrm dX_t=a(X_t,t)\\,\\mathrm dt+b(X_t,t)\\,\\mathrm dW_t",
+        "\\mathrm{GBM}:\\ a=\\mu X,\\ b=\\sigma X;\\quad\\mathrm{OU}:\\ a=\\kappa(\\theta-X),\\ b=\\sigma"
+      ],
+      "note": {
+        "ja": "決定論的初期値のスカラーSDE。平均・二次モーメントの弱誤差、共有Brown運動での強誤差、有限標本のMCSEを分けます。OUは調和Langevin系の浴成分に関連する追加検査です。",
+        "en": "Scalar SDEs with deterministic initial states. Separate weak moment bias,strong errors on shared Brownian paths and finite-sample MCSE. OU is a related bath-component check,not the full harmonic Langevin system."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#scalar-ito-diffusion-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#scalar-ito-diffusion-en"
+      }
     }
   ],
   "equation_note": {
@@ -90,9 +109,54 @@
         "ja": "異なる周波数を持つ2自由度でglobal CSVRとlocal Langevinを同じOBABO分割で比較。位置・運動量・温度・全エネルギーの分布、揺らぎ、相関を記録します。",
         "en": "Compare global CSVR with local Langevin on two nondegenerate modes using the same OBABO splitting. Record position, momentum, temperature and total-energy distributions, fluctuations and correlations."
       }
+    },
+    {
+      "id": "supplement-ou-weak-moments",
+      "name": {
+        "ja": "OUのweakモーメントと同時Brownian結合",
+        "en": "OU weak moments with joint Brownian coupling"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "dX_t=\\kappa(\\theta-X_t)\\,dt+\\sigma\\,dW_t",
+        "b_p(h)=\\mathbb E[X_h(T)^p]-\\mathbb E[X(T)^p],\\quad p=1,2",
+        "\\operatorname{Cov}(J_h,\\Delta W)=(1-e^{-\\kappa h})/\\kappa"
+      ],
+      "note": {
+        "ja": "連続真値、離散EM期待値、同一経路差とMCSEを分離する固定入力です。",
+        "en": "Separate continuous truth,exact discrete EM expectation,paired-path weak difference and MCSE."
+      }
     }
   ],
-  "references": [],
+  "references": [
+    {
+      "id": "ou-weak-moments",
+      "kind": "analytic",
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "title": {
+        "ja": "OUのweakモーメントと同時Brownian結合",
+        "en": "OU weak moments with joint Brownian coupling"
+      },
+      "formula": "dX_t=\\kappa(\\theta-X_t)\\,dt+\\sigma\\,dW_t; b_p(h)=\\mathbb E[X_h(T)^p]-\\mathbb E[X(T)^p],\\quad p=1,2; \\operatorname{Cov}(J_h,\\Delta W)=(1-e^{-\\kappa h})/\\kappa",
+      "assumptions": {
+        "ja": "dX=1.5(.2-X)dt+.8dW,X0=.7。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。",
+        "en": "dX=1.5(.2-X)dt+.8dW,X0=.7;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping."
+      },
+      "relation": "related-model",
+      "note": {
+        "ja": "dX=1.5(.2-X)dt+.8dW,X0=.7。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。",
+        "en": "dX=1.5(.2-X)dt+.8dW,X0=.7;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ou-weak-moments/?lang=ja#ou-weak-moments-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ou-weak-moments/?lang=en#ou-weak-moments-en-measurements"
+      }
+    }
+  ],
   "reference_note": {
     "ja": "調和ポテンシャルの正準分布・モーメントと相関の解析基準を使い、刻み幅バイアスを確認します。摩擦・雑音を持たない調和軌道とは区別します。",
     "en": "Use analytic canonical-distribution, moment and correlation standards for the harmonic potential to check timestep bias, separately from frictionless, noiseless harmonic trajectories."
@@ -122,6 +186,19 @@
       "url": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/stochastic-velocity-rescaling/?lang=ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/stochastic-velocity-rescaling/?lang=en"
+      }
+    },
+    {
+      "id": "sde",
+      "name": {
+        "ja": "確率微分方程式",
+        "en": "Stochastic differential equations"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/sde/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/sde/?lang=en"
       }
     }
   ],
@@ -231,6 +308,60 @@
       ],
       "test_urls": [
         "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/test_thermostats.py"
+      ],
+      "source_scope": "package"
+    },
+    {
+      "id": "ou-weak-moments",
+      "kind": "supplement",
+      "name": {
+        "ja": "OUのweakモーメントと同時Brownian結合",
+        "en": "OU weak moments with joint Brownian coupling"
+      },
+      "method_ids": [
+        "sde"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ou-weak-moments/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ou-weak-moments/?lang=en"
+      },
+      "scope": {
+        "ja": "連続真値、離散EM期待値、同一経路差とMCSEを分離する固定入力です。",
+        "en": "Separate continuous truth,exact discrete EM expectation,paired-path weak difference and MCSE."
+      },
+      "assumptions": {
+        "ja": "dX=1.5(.2-X)dt+.8dW,X0=.7。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。",
+        "en": "dX=1.5(.2-X)dt+.8dW,X0=.7;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping."
+      },
+      "limits": {
+        "ja": "弱誤差は期待値の差です。3SEや区間を真の誤差上界・一般被覆保証としません。1D状態×時間の保存例であり2D物理流れではありません。GBMやOU浴成分を新しい物理問題として重複計数しません。",
+        "en": "Weak error is a difference of expectations. SE/intervals are not true-error bounds or general coverage guarantees. State×time examples are not2Dphysical flow. Existing GBM/OUbath physical families are reused."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/atlas-stochastic-accuracy-2026-11-24.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "軌道前にDecimal80/120・独立GH/OU共分散積分とpaired分散による標本解像を資格。各モーメントの5MCSE校正、MCSE精度、固定3段weak率、最後2段の3SE解像を判定。区間の被覆は離散真値に対する有限32反復の記述値。",
+        "en": "Before paths qualify Decimal80/120,independent GH/OUcovariance integrals and paired-variance allocation. Gate5MCSE calibration,MCSE precision,fixed three-level weak rate and final-two-level3SE resolution. Coverage is descriptive over32batches against discrete truth."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/paths.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/references/analytic.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/test_driver_contract.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/test_paths.py"
       ],
       "source_scope": "package"
     }

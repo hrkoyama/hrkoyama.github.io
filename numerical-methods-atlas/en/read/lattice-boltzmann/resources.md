@@ -76,6 +76,22 @@ Resources explicitly registered to the methods, problems and executions of this 
 
 ## Code and validation
 
+- [LBM Taylor–Green vortex: coupled grid/time/Mach sensitivity](<https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-taylor-green/?lang=en>)
+  availability: run
+
+  Evolve a nonlinear periodic2D vortex and save velocity/pressure/energy errors against the continuous analytic field. Distinguish amplitude probes from a fixed-grid coupled-step probe.
+- [LBM Re100 cavity: actual2D fields and Ghia centerlines](<https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-cavity-re100/?lang=en>)
+  availability: run
+
+  Advance genuine four-wall BGK flow on three fixed grids, checking nominal-lid Ghia centerlines, primary vortex, stationarity and wall momentum budgets.
+- [Curved LBM annular Couette control: velocity,pressure andtorque](<https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-annular-couette-control/?lang=en>)
+  availability: run
+
+  Compare true-circle quadratic Lagrange link interpolation andstair halfway against analytic rotating-inner-wall Navier–Stokes flow; anadditional control distinct fromcylinderwake.
+- [Actual LBM cylinderRe20: Schäfer–Turek geometry anddeclared outlet](<https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-cylinder-re20/?lang=en>)
+  availability: run
+
+  Evolve the full-length original2D-1channel andoff-center cylinder on twogrids,checking drag,lift,surface pressure difference,recirculation length andstationarity.
 - [D2Q9–BGK collision and streaming — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/d2q9-bgk/?lang=en#method-execution-en>)
   availability: source
 

@@ -10,8 +10,8 @@
     "en": "Time integration"
   },
   "summary": {
-    "ja": "「後退Euler法」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。",
-    "en": "Read about Backward Euler, follow the original references and inspect related educational code and checks."
+    "ja": "「後退Euler法」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。 追加固定例：Su–Olson1996非平衡拡散。条件と検証範囲は各配布版で確認してください。",
+    "en": "Read about Backward Euler, follow the original references and inspect related educational code and checks. Additional fixed examples: Su–Olson1996 non-equilibrium diffusion. See each release for assumptions and checked scope."
   },
   "status": "educational-example",
   "origin": "existing-coverage-catalog",
@@ -29,7 +29,7 @@
     "test_runge_kutta",
     "test_hamiltonian"
   ],
-  "code_mapping_scope": "Related chapter modules and test files; not a claim that each test covers every named method.",
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
   "references": [
     {
       "url": "https://doi.org/10.1175/2009MWR2724.1",
@@ -41,12 +41,16 @@
   "units": null,
   "boundary_conditions": null,
   "limitations": {
-    "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。",
-    "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers."
+    "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。 今回の追加固定例：1996拡散であり1997角度輸送とは別です。原典本文は未読、公式ソフトの選択値を資格。物理単位の質量opacity解釈は使わず無次元関数を直接参照します。",
+    "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers. Additional fixed examples: This1996diffusion model is distinct from1997angular transport. Original paper fulltext unread;officialsoftware selected values qualified. Direct dimensionless functions avoid ambiguous mass-opacity physical-wrapper units."
   },
   "metadata_review": {
     "level": "chapter-linked; detailed method-specific curation in progress",
-    "on": "2026-11-21"
+    "on": "2026-11-21",
+    "supplemental_review": {
+      "on": "2026-11-24",
+      "level": "Frozen fixed-input source,independent review,actual pytest/main and independently extracted ZIP; see each new release for exact reference independence and failed-attempt history."
+    }
   },
   "aliases": [
     "後退オイラー法",
@@ -55,18 +59,532 @@
     "implicit Euler",
     "backward Euler method"
   ],
+  "depth_release": {
+    "group": "radiation-matter",
+    "case_ids": [
+      "su-olson-diffusion1996"
+    ],
+    "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/",
+    "code_edition": "2026-11-24-r2",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/diffusion.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/transport.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/thick_limit.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/io_contract.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/references/thick_reference.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/references/analytic.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/references/qualify.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/references/qualify_thick.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/test_matter.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/test_thick_limit.py"
+    ],
+    "run_commands": [
+      "python -m pytest -q",
+      "python run.py --input inputs.json --output output"
+    ],
+    "run_from": "atlas-radiation-matter-2026-11-24-r2",
+    "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/atlas-radiation-matter-2026-11-24-r2.zip",
+    "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/source-manifest.json",
+    "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/verification.json",
+    "code_archive_sha256": "fe1e3d790bd9792d8781243dc4d5ff40d3491a181a11c795569f3f4e542ed7e6",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/results/result.json",
+    "passed_tests": 21,
+    "examples": [
+      {
+        "id": "su-olson-diffusion1996",
+        "method_ids": [
+          "radiation-transport",
+          "backward-euler"
+        ],
+        "domains": [
+          "pde",
+          "time"
+        ],
+        "code_files": [
+          "run.py",
+          "diffusion.py"
+        ],
+        "title": {
+          "ja": "Su–Olson1996非平衡拡散",
+          "en": "Su–Olson1996 non-equilibrium diffusion"
+        },
+        "summary": {
+          "ja": "実際の放射・物質2場とMarshak境界を進め、固定版ExactPackの独立積分参照と比較します。",
+          "en": "Advance actual radiation/material fields with the Marshak boundary and compare with independently qualified pinned ExactPack integrals."
+        },
+        "assumptions": {
+          "ja": "無次元ε1、区間[0,16]、初期u=v0、左Robin入射、右0。128/256/512セルと時間半減・区間24probe。",
+          "en": "Nondimensionalepsilon1,x0..16,initialu=v0,leftRobin inflow/right0;128/256/512cells plus half-step/domain24probes."
+        },
+        "algorithm": {
+          "ja": "保存的FVと後退Euler。放射物質の反対sourceを同じSchur補元で結合し、Robinのβ+h/2半セル抵抗を用います。ε.25/2の同じ交換operatorも解析検査します。",
+          "en": "Conservative FV/backwardEuler with opposite exchange sources coupled by a shared Schur complement and Robin half-cell resistance beta+h/2. Analytic nonunitepsilon.25/2controls exercise the same exchange operators."
+        },
+        "validation": {
+          "ja": "独立参照54項目を輸送ケースと共有して資格済み。5主計算で独立u/v誤差、全stepの容量重み収支・正値、時間・有限領域差を分離します。",
+          "en": "The independent54check reference study is shared with transport. Five primary runs separate u/vreferenceerror,all-step capacity-weighted budgets/positivity,time and finite-domain sensitivity."
+        },
+        "limits": {
+          "ja": "1996拡散であり1997角度輸送とは別です。原典本文は未読、公式ソフトの選択値を資格。物理単位の質量opacity解釈は使わず無次元関数を直接参照します。",
+          "en": "This1996diffusion model is distinct from1997angular transport. Original paper fulltext unread;officialsoftware selected values qualified. Direct dimensionless functions avoid ambiguous mass-opacity physical-wrapper units."
+        },
+        "formulas": [
+          "\\epsilon u_\\tau-u_{xx}=v-u,\\quad v_\\tau=u-v",
+          "u(0,\\tau)-\\frac2{\\sqrt3}u_x(0,\\tau)=1",
+          "\\epsilon=4a/\\alpha,\\quad e_m/E_0=v/\\epsilon,\\quad \\mathcal E=\\epsilon u+v"
+        ],
+        "references": [
+          {
+            "id": "exactpack175-suolson",
+            "author": "LANL ExactPack developers;Timmes implementation provenance",
+            "year": 2023,
+            "title": "ExactPack1.7.5SuOlson pinned independent diffusion solution",
+            "url": "https://github.com/lanl/ExactPack/tree/8718b61f281a9744ea7a3820c51800915e4636e9/exactpack/solvers/suolson",
+            "review_level": "primary-official-software-full-three-module-text-and-qualified-selected-values",
+            "review_scope": "Read doc55/wrapper41/Timmes348lines;original1996paper abstract only. Serial original/tight selected integrals and independent PDE/Robin qualifiers passed before main. FullExactPack/base/libraries not audited.",
+            "accessed_on": "2026-11-24"
+          }
+        ],
+        "citations": [
+          {
+            "id": "exactpack175-suolson",
+            "author": "LANL ExactPack developers;Timmes implementation provenance",
+            "year": 2023,
+            "title": "ExactPack1.7.5SuOlson pinned independent diffusion solution",
+            "url": "https://github.com/lanl/ExactPack/tree/8718b61f281a9744ea7a3820c51800915e4636e9/exactpack/solvers/suolson",
+            "review_level": "primary-official-software-full-three-module-text-and-qualified-selected-values",
+            "review_scope": "Read doc55/wrapper41/Timmes348lines;original1996paper abstract only. Serial original/tight selected integrals and independent PDE/Robin qualifiers passed before main. FullExactPack/base/libraries not audited.",
+            "accessed_on": "2026-11-24"
+          }
+        ],
+        "gallery_figure": "su-olson-diffusion1996-preview.png",
+        "additional_figures": [
+          {
+            "file": "su-olson-diffusion1996-preview.png",
+            "caption": {
+              "ja": "保存した実計算場の科学プレビュー。",
+              "en": "Scientific preview from the actual saved numerical fields."
+            }
+          }
+        ],
+        "measured": {
+          "id": "su-olson-diffusion1996",
+          "passed": true,
+          "checks": {
+            "su-olson-diffusion1996-n128/finite-positive": true,
+            "su-olson-diffusion1996-n128/energy-budget": true,
+            "su-olson-diffusion1996-n128/fixed-final-time": true,
+            "su-olson-diffusion1996-n256/finite-positive": true,
+            "su-olson-diffusion1996-n256/energy-budget": true,
+            "su-olson-diffusion1996-n256/fixed-final-time": true,
+            "su-olson-diffusion1996-n512/finite-positive": true,
+            "su-olson-diffusion1996-n512/energy-budget": true,
+            "su-olson-diffusion1996-n512/fixed-final-time": true,
+            "su-olson-diffusion1996-half-dt/finite-positive": true,
+            "su-olson-diffusion1996-half-dt/energy-budget": true,
+            "su-olson-diffusion1996-half-dt/fixed-final-time": true,
+            "su-olson-diffusion1996-far-domain/finite-positive": true,
+            "su-olson-diffusion1996-far-domain/energy-budget": true,
+            "su-olson-diffusion1996-far-domain/fixed-final-time": true,
+            "refinement/1": true,
+            "refinement/2": true,
+            "finest-independent-rms": true,
+            "finest-independent-linf": true,
+            "separate-time-sensitivity": true,
+            "finite-domain-sensitivity": true,
+            "capacity/0.25/diffusion/error": true,
+            "capacity/0.25/diffusion/budget": true,
+            "capacity/0.25/transport/error": true,
+            "capacity/0.25/transport/budget": true,
+            "capacity/2.0/diffusion/error": true,
+            "capacity/2.0/diffusion/budget": true,
+            "capacity/2.0/transport/error": true,
+            "capacity/2.0/transport/budget": true
+          },
+          "check_details": [
+            {
+              "name": "su-olson-diffusion1996-n128/finite-positive",
+              "value": 7.258084099909136e-225,
+              "bound": -1e-13,
+              "passed": true
+            },
+            {
+              "name": "su-olson-diffusion1996-n128/energy-budget",
+              "value": 3.879119248040297e-13,
+              "bound": 2e-10,
+              "passed": true
+            },
+            {
+              "name": "su-olson-diffusion1996-n128/fixed-final-time",
+              "value": 3.0,
+              "bound": 3.0,
+              "passed": true
+            },
+            {
+              "name": "su-olson-diffusion1996-n256/finite-positive",
+              "value": 0.0,
+              "bound": -1e-13,
+              "passed": true
+            },
+            {
+              "name": "su-olson-diffusion1996-n256/energy-budget",
+              "value": 7.192024753521764e-13,
+              "bound": 2e-10,
+              "passed": true
+            },
+            {
+              "name": "su-olson-diffusion1996-n256/fixed-final-time",
+              "value": 3.0,
+              "bound": 3.0,
+              "passed": true
+            },
+            {
+              "name": "su-olson-diffusion1996-n512/finite-positive",
+              "value": 0.0,
+              "bound": -1e-13,
+              "passed": true
+            },
+            {
+              "name": "su-olson-diffusion1996-n512/energy-budget",
+              "value": 7.085443343157749e-13,
+              "bound": 2e-10,
+              "passed": true
+            },
+            {
+              "name": "su-olson-diffusion1996-n512/fixed-final-time",
+              "value": 3.0,
+              "bound": 3.0,
+              "passed": true
+            },
+            {
+              "name": "su-olson-diffusion1996-half-dt/finite-positive",
+              "value": 0.0,
+              "bound": -1e-13,
+              "passed": true
+            },
+            {
+              "name": "su-olson-diffusion1996-half-dt/energy-budget",
+              "value": 2.9829472225628706e-12,
+              "bound": 2e-10,
+              "passed": true
+            },
+            {
+              "name": "su-olson-diffusion1996-half-dt/fixed-final-time",
+              "value": 3.0,
+              "bound": 3.0,
+              "passed": true
+            },
+            {
+              "name": "su-olson-diffusion1996-far-domain/finite-positive",
+              "value": 0.0,
+              "bound": -1e-13,
+              "passed": true
+            },
+            {
+              "name": "su-olson-diffusion1996-far-domain/energy-budget",
+              "value": 7.014389069581739e-13,
+              "bound": 2e-10,
+              "passed": true
+            },
+            {
+              "name": "su-olson-diffusion1996-far-domain/fixed-final-time",
+              "value": 3.0,
+              "bound": 3.0,
+              "passed": true
+            },
+            {
+              "name": "refinement/1",
+              "value": 0.24786092954614275,
+              "bound": 0.92,
+              "passed": true
+            },
+            {
+              "name": "refinement/2",
+              "value": 0.2483659010618088,
+              "bound": 0.92,
+              "passed": true
+            },
+            {
+              "name": "finest-independent-rms",
+              "value": [
+                3.181996278126943e-05,
+                1.161311555354063e-05
+              ],
+              "bound": 0.02,
+              "passed": true
+            },
+            {
+              "name": "finest-independent-linf",
+              "value": [
+                9.057646696342125e-05,
+                2.202011795187503e-05
+              ],
+              "bound": 0.05,
+              "passed": true
+            },
+            {
+              "name": "separate-time-sensitivity",
+              "value": 0.12593409392512162,
+              "bound": 0.2,
+              "passed": true
+            },
+            {
+              "name": "finite-domain-sensitivity",
+              "value": 0.0,
+              "bound": 0.0002,
+              "passed": true
+            },
+            {
+              "name": "capacity/0.25/diffusion/error",
+              "value": 0.00019032949653130515,
+              "bound": 0.002,
+              "passed": true
+            },
+            {
+              "name": "capacity/0.25/diffusion/budget",
+              "value": 5.984102102729594e-14,
+              "bound": 1e-11,
+              "passed": true
+            },
+            {
+              "name": "capacity/0.25/transport/error",
+              "value": 3.181825272147165e-07,
+              "bound": 0.002,
+              "passed": true
+            },
+            {
+              "name": "capacity/0.25/transport/budget",
+              "value": 3.3306690738754696e-16,
+              "bound": 1e-11,
+              "passed": true
+            },
+            {
+              "name": "capacity/2.0/diffusion/error",
+              "value": 0.000154177848556869,
+              "bound": 0.002,
+              "passed": true
+            },
+            {
+              "name": "capacity/2.0/diffusion/budget",
+              "value": 7.460698725481052e-14,
+              "bound": 1e-11,
+              "passed": true
+            },
+            {
+              "name": "capacity/2.0/transport/error",
+              "value": 7.721428540996556e-08,
+              "bound": 0.002,
+              "passed": true
+            },
+            {
+              "name": "capacity/2.0/transport/budget",
+              "value": 1.199040866595169e-14,
+              "bound": 1e-11,
+              "passed": true
+            }
+          ],
+          "records": [
+            {
+              "id": "su-olson-diffusion1996-n128",
+              "cells": 128,
+              "length": 16.0,
+              "epsilon": 1.0,
+              "times": [
+                0.1,
+                1.0,
+                3.0
+              ],
+              "max_dt": 0.0003125,
+              "family": "refinement",
+              "fields": "su-olson-diffusion1996-n128.npz",
+              "reference_rms": [
+                0.0005828935430371845,
+                0.0001886464788587654
+              ],
+              "reference_linf": [
+                0.0015246120986942974,
+                0.00037398509166339244
+              ]
+            },
+            {
+              "id": "su-olson-diffusion1996-n256",
+              "cells": 256,
+              "length": 16.0,
+              "epsilon": 1.0,
+              "times": [
+                0.1,
+                1.0,
+                3.0
+              ],
+              "max_dt": 0.00015625,
+              "family": "refinement",
+              "fields": "su-olson-diffusion1996-n256.npz",
+              "reference_rms": [
+                0.00013911365660577288,
+                4.675809160554036e-05
+              ],
+              "reference_linf": [
+                0.0003681927147146727,
+                8.991602698502077e-05
+              ]
+            },
+            {
+              "id": "su-olson-diffusion1996-n512",
+              "cells": 512,
+              "length": 16.0,
+              "epsilon": 1.0,
+              "times": [
+                0.1,
+                1.0,
+                3.0
+              ],
+              "max_dt": 7.8125e-05,
+              "family": "refinement",
+              "fields": "su-olson-diffusion1996-n512.npz",
+              "reference_rms": [
+                3.181996278126943e-05,
+                1.161311555354063e-05
+              ],
+              "reference_linf": [
+                9.057646696342125e-05,
+                2.202011795187503e-05
+              ]
+            },
+            {
+              "id": "su-olson-diffusion1996-half-dt",
+              "cells": 512,
+              "length": 16.0,
+              "epsilon": 1.0,
+              "times": [
+                0.1,
+                1.0,
+                3.0
+              ],
+              "max_dt": 3.90625e-05,
+              "family": "time-probe",
+              "fields": "su-olson-diffusion1996-half-dt.npz",
+              "reference_rms": [
+                3.4740959727708664e-05,
+                1.1761108358809267e-05
+              ],
+              "reference_linf": [
+                9.20871373647908e-05,
+                2.243302371870981e-05
+              ]
+            },
+            {
+              "id": "su-olson-diffusion1996-far-domain",
+              "cells": 768,
+              "length": 24.0,
+              "epsilon": 1.0,
+              "times": [
+                0.1,
+                1.0,
+                3.0
+              ],
+              "max_dt": 7.8125e-05,
+              "family": "domain-probe",
+              "fields": "su-olson-diffusion1996-far-domain.npz",
+              "reference_rms": [
+                3.181996278126943e-05,
+                1.161311555354063e-05
+              ],
+              "reference_linf": [
+                9.057646696342125e-05,
+                2.202011795187503e-05
+              ]
+            }
+          ],
+          "metrics": {
+            "completed_primary_runs": 5,
+            "reference_scope": "independent official diffusion integrals",
+            "capacity_controls": [
+              {
+                "epsilon": 0.25,
+                "method": "diffusion",
+                "error": 0.00019032949653130515,
+                "budget": 5.984102102729594e-14
+              },
+              {
+                "epsilon": 0.25,
+                "method": "transport",
+                "error": 3.181825272147165e-07,
+                "budget": 3.3306690738754696e-16
+              },
+              {
+                "epsilon": 2.0,
+                "method": "diffusion",
+                "error": 0.000154177848556869,
+                "budget": 7.460698725481052e-14
+              },
+              {
+                "epsilon": 2.0,
+                "method": "transport",
+                "error": 7.721428540996556e-08,
+                "budget": 1.199040866595169e-14
+              }
+            ]
+          }
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/su-olson-diffusion1996/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-diffusion1996",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-matter/#su-olson-diffusion1996"
+        }
+      }
+    ]
+  },
+  "depth_scope": {
+    "ja": "追加固定例：Su–Olson1996非平衡拡散。条件と検証範囲は各配布版で確認してください。 1996拡散であり1997角度輸送とは別です。原典本文は未読、公式ソフトの選択値を資格。物理単位の質量opacity解釈は使わず無次元関数を直接参照します。",
+    "en": "Additional fixed examples: Su–Olson1996 non-equilibrium diffusion. See each release for assumptions and checked scope. This1996diffusion model is distinct from1997angular transport. Original paper fulltext unread;officialsoftware selected values qualified. Direct dimensionless functions avoid ambiguous mass-opacity physical-wrapper units."
+  },
+  "supplemental_scope_profiles": [
+    {
+      "release": {
+        "group": "radiation-matter",
+        "edition": "2026-11-24-r2",
+        "case_ids": [
+          "su-olson-diffusion1996"
+        ]
+      },
+      "scope": {
+        "ja": "追加固定例：Su–Olson1996非平衡拡散。条件と検証範囲は各配布版で確認してください。",
+        "en": "Additional fixed examples: Su–Olson1996 non-equilibrium diffusion. See each release for assumptions and checked scope."
+      },
+      "limits": [
+        {
+          "ja": "1996拡散であり1997角度輸送とは別です。原典本文は未読、公式ソフトの選択値を資格。物理単位の質量opacity解釈は使わず無次元関数を直接参照します。",
+          "en": "This1996diffusion model is distinct from1997angular transport. Original paper fulltext unread;officialsoftware selected values qualified. Direct dimensionless functions avoid ambiguous mass-opacity physical-wrapper units."
+        }
+      ]
+    }
+  ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/backward-euler/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/backward-euler/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/backward-euler/index.md",
   "code_urls": [
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/time_integration.py",
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/runge_kutta.py",
-    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/hamiltonian.py"
+    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/hamiltonian.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/diffusion.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/transport.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/thick_limit.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/io_contract.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/references/thick_reference.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/references/analytic.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/references/qualify.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/references/qualify_thick.py"
   ],
   "test_urls": [
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py",
-    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_hamiltonian.py"
+    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_hamiltonian.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/test_matter.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/test_thick_limit.py"
   ],
   "run_commands": [
     "python -m pytest -q tests/test_time_geometry.py tests/test_runge_kutta.py tests/test_hamiltonian.py"
@@ -74,7 +592,17 @@
   "run_from": "Extracted code edition directory",
   "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
   "code_edition": "2026-11-21",
-  "execution_examples": [],
+  "execution_examples": [
+    {
+      "id": "su-olson-diffusion1996",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/su-olson-diffusion1996/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/su-olson-diffusion1996/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    }
+  ],
   "problem_navigation": {
     "method_id": "backward-euler",
     "status": "educational-example",
@@ -91,6 +619,20 @@
         "url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#heat-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#heat-en"
+        }
+      },
+      {
+        "id": "non-equilibrium-diffusion-exchange",
+        "name": {
+          "ja": "Su–Olson1996の非平衡拡散・物質交換",
+          "en": "Su–Olson1996 non-equilibrium diffusion and material exchange"
+        },
+        "problem_ids": [
+          "su-olson-diffusion1996"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#non-equilibrium-diffusion-exchange-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#non-equilibrium-diffusion-exchange-en"
         }
       }
     ],
@@ -166,6 +708,66 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-ode/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-ode/?lang=en#references-en"
         }
+      },
+      {
+        "id": "su-olson-diffusion1996",
+        "name": {
+          "ja": "Su–Olson1996非平衡拡散",
+          "en": "Su–Olson1996 non-equilibrium diffusion"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/results/su-olson-diffusion1996-preview.png",
+          "sha256": "88eb23f634971127b70e93f6a373937d45e1701807685268223f850fb3a7dceb",
+          "width": 1098,
+          "height": 568,
+          "caption": {
+            "ja": "保存した実計算場の科学プレビュー。",
+            "en": "Scientific preview from the actual saved numerical fields."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/su-olson-diffusion1996/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/su-olson-diffusion1996/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/su-olson-diffusion1996/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/su-olson-diffusion1996/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "su-olson-diffusion1996",
+            "kind": "supplement",
+            "name": {
+              "ja": "Su–Olson1996非平衡拡散",
+              "en": "Su–Olson1996 non-equilibrium diffusion"
+            },
+            "scope": {
+              "ja": "実際の放射・物質2場とMarshak境界を進め、固定版ExactPackの独立積分参照と比較します。",
+              "en": "Advance actual radiation/material fields with the Marshak boundary and compare with independently qualified pinned ExactPack integrals."
+            },
+            "method_ids": [
+              "radiation-transport",
+              "backward-euler"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/su-olson-diffusion1996/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/su-olson-diffusion1996/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/atlas-radiation-matter-2026-11-24-r2.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "保存的FVと後退Euler。放射物質の反対sourceを同じSchur補元で結合し、Robinのβ+h/2半セル抵抗を用います。ε.25/2の同じ交換operatorも解析検査します。",
+          "en": "Conservative FV/backwardEuler with opposite exchange sources coupled by a shared Schur complement and Robin half-cell resistance beta+h/2. Analytic nonunitepsilon.25/2controls exercise the same exchange operators."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/su-olson-diffusion1996/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/su-olson-diffusion1996/?lang=en#references-en"
+        }
       }
     ],
     "references": [
@@ -214,6 +816,40 @@
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-ode/?lang=en#references-en"
         },
         "cases": []
+      },
+      {
+        "problem_id": "su-olson-diffusion1996",
+        "problem_name": {
+          "ja": "Su–Olson1996非平衡拡散",
+          "en": "Su–Olson1996 non-equilibrium diffusion"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/su-olson-diffusion1996/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/su-olson-diffusion1996/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "su-olson-diffusion1996",
+            "title": {
+              "ja": "Su–Olson1996拡散：固定版の独立積分評価関数",
+              "en": "Su–Olson1996 diffusion: pinned independent integral evaluator"
+            },
+            "kind": "semi-analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "1996拡散であり1997角度輸送とは別です。原典本文は未読、公式ソフトの選択値を資格。物理単位の質量opacity解釈は使わず無次元関数を直接参照します。",
+              "en": "This1996diffusion model is distinct from1997angular transport. Original paper fulltext unread;officialsoftware selected values qualified. Direct dimensionless functions avoid ambiguous mass-opacity physical-wrapper units."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-su-olson-diffusion1996-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-su-olson-diffusion1996-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/su-olson-diffusion1996/?lang=ja#su-olson-diffusion1996-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/su-olson-diffusion1996/?lang=en#su-olson-diffusion1996-en-measurements"
+            }
+          }
+        ]
       }
     ]
   }

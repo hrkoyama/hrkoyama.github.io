@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "status": "UNEXECUTED_FIXED_MAIN_PROPOSAL",
+  "created_at_utc": "2026-11-23T22:33:41.113280+00:00",
+  "baseline_public_commit": "9dde48159c568f985170506ef2eb0a7008f1c4ea",
+  "group": "stochastic-accuracy",
+  "case_ids": [
+    "gbm-weak-moments",
+    "ou-weak-moments",
+    "gbm-milstein-strong"
+  ],
+  "before_first_fixed_main_execution": true,
+  "before_all_scientific_execution": false,
+  "actual_reference_science_before_this_contract": {
+    "analytic_qualifiers": 80,
+    "IS_qualifiers": 22,
+    "MH_chainset_reference_input_evolutions": 8,
+    "ArviZ_data_sets": 128,
+    "ArviZ_values": 640,
+    "original_candidate_passed": 637,
+    "original_candidate_total": 640,
+    "saved_data_cause_audit_checks": 27,
+    "compatibility_regressions": 3,
+    "final_candidate_comparisons_passed": 640
+  },
+  "planned_pytest": 21,
+  "test_ast_inventory": [
+    {
+      "name": "test_real_cli_completes_strict_case_json_and_numeric_csv",
+      "parameterized_cases": 1,
+      "file": "test_driver_contract.py"
+    },
+    {
+      "name": "test_real_cli_retains_partial_candidate_and_failure",
+      "parameterized_cases": 1,
+      "file": "test_driver_contract.py"
+    },
+    {
+      "name": "test_real_cli_rejects_empty_case_records",
+      "parameterized_cases": 1,
+      "file": "test_driver_contract.py"
+    },
+    {
+      "name": "test_csv_guard_rejects_nonfinite_ragged_and_duplicate_columns",
+      "parameterized_cases": 1,
+      "file": "test_driver_contract.py"
+    },
+    {
+      "name": "test_completed_candidates_survive_a_later_fit_failure",
+      "parameterized_cases": 1,
+      "file": "test_driver_contract.py"
+    },
+    {
+      "name": "test_grouping_reuses_declared_fine_increments",
+      "parameterized_cases": 3,
+      "file": "test_paths.py"
+    },
+    {
+      "name": "test_ou_bridge_covariance_and_variance_by_independent_integrals",
+      "parameterized_cases": 3,
+      "file": "test_paths.py"
+    },
+    {
+      "name": "test_zero_noise_is_discrete_euler_not_exponential",
+      "parameterized_cases": 2,
+      "file": "test_paths.py"
+    },
+    {
+      "name": "test_milstein_compensation_negative_control",
+      "parameterized_cases": 1,
+      "file": "test_paths.py"
+    },
+    {
+      "name": "test_exact_endpoint_is_single_saved_fine_sum",
+      "parameterized_cases": 1,
+      "file": "test_paths.py"
+    },
+    {
+      "name": "test_grouping_rejects_non_nested_levels",
+      "parameterized_cases": 1,
+      "file": "test_paths.py"
+    },
+    {
+      "name": "test_weak_moment_identities_sigma_zero",
+      "parameterized_cases": 2,
+      "file": "test_paths.py"
+    },
+    {
+      "name": "test_ou_second_moment_contains_squared_mean",
+      "parameterized_cases": 1,
+      "file": "test_paths.py"
+    },
+    {
+      "name": "test_strong_analytic_mse_positive_precision_agrees",
+      "parameterized_cases": 2,
+      "file": "test_paths.py"
+    }
+  ],
+  "planned_case_gates": 65,
+  "gate_inventory_derivation": {
+    "gbm-weak-moments": 26,
+    "ou-weak-moments": 26,
+    "gbm-milstein-strong": 13
+  },
+  "planned_actual_operations": {
+    "fixed_cases": 3,
+    "independent_seed_batches": 68,
+    "levels_per_case": 4,
+    "independent_paths_per_case": 32768,
+    "GBM_weak_seed_batches": 32,
+    "OU_weak_seed_batches": 32,
+    "GBM_strong_seed_batches": 4,
+    "exact_endpoint_shared_within_each_complete_path": true
+  },
+  "files_sha256": {
+    "LICENSE": "e1053200337d037d9d81620956ce49263117c6540b1c1352c030c220bee05f59",
+    "README.md": "bd7b38de542db9c58ea9eb134f41510b3a1bff3b5aa1d3cc978526b3ff2d2ebb",
+    "acceptance.json": "cd8ad3c6391de11eb562f3027493c519cf69954d13a67b49c01df3eb221b45c9",
+    "cases.json": "32bbca261339410393cdbaed888ab3b226374b7dc2b9308f0aaedf0c90cc52bb",
+    "inputs.json": "c6ccd5eaa236bd52c053c8f1cd20efa081d89a7e7715ed7e77e8ecc89efdd9d1",
+    "paths.py": "9ca5a55f01275616a63b38ba75b4c5ca00744df15b34050ab6dbd25d25eba473",
+    "plot.py": "24581b75f17b39c0486d35eeedb598fef5950992295a667dd13af5492f9ecfb9",
+    "pytest.ini": "9f309ec4b3e4ae626f051b4f5ca52d64a8e48fab8c92c9b9fefcfd4ba45cf76e",
+    "references/__init__.py": "a8689f94c1956a7eae793697cb55d79c4ef72c4465e07ba5f868751b848ed767",
+    "references/analytic.py": "98d5f9d7197037f75d1515c7c1c0f3a94665ee2d9815388898bd22d0d489e52a",
+    "references/qualification-provenance.json": "aaef059462a656c7dbc88d888c2654daefaef4f0be6e3072095d92025e2601b0",
+    "references/qualify.py": "8dc750d35fce8bb7c179439098575233ecca56906d880702f7a7c7dee9dd0e6d",
+    "references/reference.json": "6589ee476ed989956b8a18f66f3917c1bfd98eb46b56379af4bf0171d4683a72",
+    "requirements-plotting.txt": "fd70c5b60168fd91d504345ec04061037fb9de084f7ec8fa53255486c9c94ab1",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "79267354bd2b6aa6d0e2d9ea622dd87c605b8f302e8ca4154bf4ad37afcf123c",
+    "support.py": "55af46d3156475698fc201b8c3034168bae83c44aef0b08a26e305b2a4b6d03b",
+    "test_driver_contract.py": "ca0c7c7d1f6b86f2cf9f0bfda63f005c9cf0384e096548ae30641aeef06d352a",
+    "test_paths.py": "859bebf4e1d7d1c0fd21d7904c39cf65a52153fc383d80be0ca4d57951586c24"
+  },
+  "shared_pytest_plus_main_deadline_seconds": 120,
+  "runtime_unmeasured": true,
+  "aggregate_local_runtime_target_seconds": 30,
+  "scientific_runtime_limit_is_not_estimate": true,
+  "environment": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "TMPDIR": "OWN_STOCHASTIC_SCRATCH"
+  },
+  "commands": [
+    [
+      "PINNED_PYTHON",
+      "-B",
+      "-W",
+      "error",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "--junitxml=FRESH/tests.xml"
+    ],
+    [
+      "PINNED_PYTHON",
+      "-B",
+      "-W",
+      "error",
+      "run.py",
+      "--input",
+      "inputs.json",
+      "--output",
+      "FRESH/results"
+    ]
+  ],
+  "plot_command": [
+    "PINNED_PYTHON",
+    "plot.py",
+    "--results",
+    "ACTUAL_RESULTS",
+    "--output",
+    "ACTUAL_RESULTS"
+  ],
+  "scope": "Finite fixed stochastic study. SE/nominal intervals do not bound true error or prove general coverage/global convergence. Scalar state-time and sample/state2Dfigures are not two-spatial-dimensional physics. Shared Brownian timing,commonquantile primitive and independent reference roles declared.",
+  "failure_policy": "One fresh main attempt per reviewed contract;retain exact source/input/acceptance/logs/partial fields and allfailed gates,stop before any change or rerun. No threshold/seed/window adjustment to fit results.",
+  "main_execution_authorized": false,
+  "presentation_revision": {
+    "previous_contract_sha256": "a3d3dac2ab0e80ccacbdd1b99d36aeba89624653e8616c6240fee035fdf17570",
+    "change": "Accept canonical plot--results result.json path as well as resultsdirectory; plotdata/math andallscientificsource/input/acceptance/tests unchanged.",
+    "before_packaging_rerun": true
+  }
+}

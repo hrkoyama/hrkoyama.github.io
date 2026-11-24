@@ -1,0 +1,35 @@
+--- qualified-r4/diffusion.py
++++ main/diffusion.py
+@@ -27,7 +27,7 @@
+ def material_recovery(v,u_new,dt):return (v+dt*u_new)/(1+dt)
+ 
+ 
+-def solve(config):
++def solve(config,partial=None):
+     cells,length=config['cells'],config['length'];eps=config['epsilon'];h=length/cells
+     if eps<=0:raise ValueError('Positive material-capacity parameter required')
+     matrix,boundary=operator(cells,length);u=np.zeros(cells);v=np.zeros(cells)
+@@ -38,12 +38,17 @@
+         start=t
+         for k in range(count):
+             old_u,old_v=u,v
+-            rhs=exchange_rhs(old_u,old_v,dt,eps,boundary)
+-            u=factors[dt].solve(rhs);v=material_recovery(old_v,u,dt)
+-            if not np.isfinite(u).all() or not np.isfinite(v).all() or min(u.min(),v.min())< -1e-13:raise ArithmeticError('Nonphysical diffusion state')
+-            beta=2/np.sqrt(3);left=(1-u[0])/(beta+h/2);right=2*u[-1]/h
+-            ledger+=dt*(left-right);t=start+(k+1)*dt
+-            history.append([t,h*np.sum(eps*u+v),ledger,abs(h*np.sum(eps*u+v)-ledger),u.min(),v.min(),float(np.max(abs((matrix@u)+(exchange_diagonal(dt,eps))*u-rhs)))])
++            stage="update"
++            try:
++                rhs=exchange_rhs(old_u,old_v,dt,eps,boundary)
++                u=factors[dt].solve(rhs);v=material_recovery(old_v,u,dt)
++                if not np.isfinite(u).all() or not np.isfinite(v).all() or min(u.min(),v.min())< -1e-13:raise ArithmeticError('Nonphysical diffusion state')
++                beta=2/np.sqrt(3);left=(1-u[0])/(beta+h/2);right=2*u[-1]/h
++                ledger+=dt*(left-right);t=start+(k+1)*dt
++                history.append([t,h*np.sum(eps*u+v),ledger,abs(h*np.sum(eps*u+v)-ledger),u.min(),v.min(),float(np.max(abs((matrix@u)+(exchange_diagonal(dt,eps))*u-rhs)))])
++            except Exception:
++                if partial is not None:np.savez(partial,last_valid_u=old_u,last_valid_v=old_v,candidate_u=u,candidate_v=v,time=t,step=k,stage=stage)
++                raise
+         states.append(np.stack([u,v]));times.append(target)
+     return dict(x=(np.arange(cells)+.5)*h,states=np.array(states),times=np.array(times),history=np.array(history),
+                 epsilon=np.array(eps),length=np.array(length),steps=np.array(len(history)))

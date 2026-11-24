@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_on": "2026-11-23",
+  "reviewed_on": "2026-11-24",
   "scope": "Additional explicitly cited references; preserve all historical saved cases and their original evidence.",
   "cases": [
     {
@@ -3081,6 +3081,1234 @@
           "note": "Read selected HS/VSS parameter relations, physical collision candidates, diffuse wall and incoming flux conventions. Bird1994 original book was not read; no full-original-book verification claim."
         }
       ]
+    },
+    {
+      "id": "lbm-cavity-re100",
+      "model": "navier-stokes",
+      "kind": "numerical-reference",
+      "title": "LBM Re100 cavity: actual2D fields and Ghia centerlines",
+      "assumptions": "Physical unit square, lid1, viscosity.01, Re100; N24/32/48, lattice lid.04, dt=.04/N. Three stationary walls/rightward lid; stationary side owns a simultaneous top/side link. Initialrho1/rest.",
+      "formula": "Ghia1982Re100 centerline tables and primary-vortex location; these are rounded numerical data,not an exact whole-field solution.",
+      "dimension": 2,
+      "bounds": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "u on x=.5",
+        "v on y=.5",
+        "primary vortex location"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "schema_version": 1,
+        "group": "lbm-cavity",
+        "cavity": {
+          "N": [
+            24,
+            32,
+            48
+          ],
+          "lid_lattice": 0.04,
+          "Re": 100,
+          "convective_T": 100,
+          "checkpoints": [
+            90,
+            95,
+            100
+          ]
+        }
+      },
+      "sources": [
+        "https://arxiv.org/abs/comp-gas/9611001",
+        "https://doi.org/10.1016/S0021-9991(02)00022-0",
+        "https://www.sciencedirect.com/science/article/pii/0021999182900584"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/lbm-cavity-re100/?lang=ja#lbm-cavity-re100-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/lbm-cavity-re100/?lang=en#lbm-cavity-re100-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-lbm-cavity/#lbm-cavity-re100",
+        "en": "/numerical-methods-atlas/en/read/validation-lbm-cavity/#lbm-cavity-re100"
+      },
+      "reference_scope": "Independent finite-resolution incompressible NS tables,not exact discrete-kinetic populations. Existing audited transcription/prior primary-page reading preserved; no newly reacquired original PDF is claimed.",
+      "citations": [
+        {
+          "role": "case-method-or-independent-reference",
+          "title": "On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model",
+          "url": "https://arxiv.org/abs/comp-gas/9611001",
+          "note": "Selected original preprint pp2-7: standard equilibrium, moment-based flat velocity/density boundaries and corner/finite-Mach limitations. No full-paper audit; special d2q9i accuracy is not credited to this standard BGK."
+        },
+        {
+          "role": "case-method-or-independent-reference",
+          "title": "Lattice Boltzmann method for moving boundaries",
+          "url": "https://doi.org/10.1016/S0021-9991(02)00022-0",
+          "note": "Original article sec3 printed410-414 via author-content mirror; quadratic interpolation paths, q=.5, wall correction, momentum exchange and compromised mass conservation. Our two-point linear implementation is separately derived and qualified; original2001BFL full text was inaccessible."
+        },
+        {
+          "role": "case-method-or-independent-reference",
+          "title": "High-Re solutions for incompressible flow using the Navier-Stokes equations and a multigrid method",
+          "url": "https://www.sciencedirect.com/science/article/pii/0021999182900584",
+          "note": "Exact-byte existing17-point Re100columns and prior original-PDF/rendered-page provenance rechecked. Current session did not reacquire the original PDF. Printed398-399TablesI/II and408TableV provenance retained."
+        }
+      ]
+    },
+    {
+      "id": "lbm-taylor-green",
+      "model": "navier-stokes",
+      "kind": "analytic",
+      "title": "LBM Taylor–Green vortex: coupled grid/time/Mach sensitivity",
+      "assumptions": "Periodic[0,2pi)²,nu.1,baseU.2,N24/32/64,dt=.2dx²,tau.56,T=.2pi²and144/256/1024steps. Add N32/U.4,.8andN32/U.2/dt=.1dx²/tau.53/512steps. Use pressure-consistent initial density.",
+      "formula": "u=U sin(x)cos(y) exp(-2nu t), v=-U cos(x)sin(y) exp(-2nu t); p=U^2 exp(-4nu t)[cos(2x)+cos(2y)]/4.",
+      "dimension": 2,
+      "bounds": [
+        [
+          0,
+          6.283185307179586
+        ],
+        [
+          0,
+          6.283185307179586
+        ]
+      ],
+      "components": [
+        "velocity u",
+        "velocity v",
+        "pressure"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "schema_version": 1,
+        "group": "lbm-taylor-green",
+        "tgv": {
+          "N": [
+            24,
+            32,
+            64
+          ],
+          "U": 0.2,
+          "nu": 0.1,
+          "amplitude_U": [
+            0.4,
+            0.8
+          ],
+          "T_over_pi2": 0.2
+        }
+      },
+      "sources": [
+        "https://arxiv.org/abs/comp-gas/9611001",
+        "https://doi.org/10.1016/S0021-9991(02)00022-0"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/lbm-taylor-green/?lang=ja#lbm-taylor-green-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/lbm-taylor-green/?lang=en#lbm-taylor-green-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-lbm-taylor-green/#lbm-taylor-green",
+        "en": "/numerical-methods-atlas/en/read/validation-lbm-taylor-green/#lbm-taylor-green"
+      },
+      "reference_scope": "Exact continuous incompressible NS vortex; Fourier divergence/momentum/energy qualifications. Finite-Mach BGK is compared with its continuum limit,not called an exact kinetic solution. Grid/time/Mach refinement is coupled; order uses finestN32/N64pair.",
+      "citations": [
+        {
+          "role": "case-method-or-independent-reference",
+          "title": "On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model",
+          "url": "https://arxiv.org/abs/comp-gas/9611001",
+          "note": "Selected original preprint pp2-7: standard equilibrium, moment-based flat velocity/density boundaries and corner/finite-Mach limitations. No full-paper audit; special d2q9i accuracy is not credited to this standard BGK."
+        },
+        {
+          "role": "case-method-or-independent-reference",
+          "title": "Lattice Boltzmann method for moving boundaries",
+          "url": "https://doi.org/10.1016/S0021-9991(02)00022-0",
+          "note": "Original article sec3 printed410-414 via author-content mirror; quadratic interpolation paths, q=.5, wall correction, momentum exchange and compromised mass conservation. Our two-point linear implementation is separately derived and qualified; original2001BFL full text was inaccessible."
+        }
+      ]
+    },
+    {
+      "id": "lbm-annular-couette-control",
+      "model": "navier-stokes",
+      "kind": "analytic",
+      "title": "Curved LBM annular Couette control: velocity,pressure andtorque",
+      "assumptions": "Rin.2/Rout.4,center(.5,.5),inner tangential speed.02,stationary outerwall,nu.01. N80/160/240,tau.7,T4,integer3840/15360/34560steps; both boundaries give sixruns. Initialize equilibrium moments of the analytic field.",
+      "formula": "u_theta=Ar+B/r; p=A^2r^2/2+2AB log(r)-B^2/(2r^2)+C; T_inner=-4pi rho nu B.",
+      "dimension": 2,
+      "bounds": [
+        [
+          0.1,
+          0.9
+        ],
+        [
+          0.1,
+          0.9
+        ]
+      ],
+      "components": [
+        "velocity u",
+        "velocity v",
+        "pressure"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "schema_version": 1,
+        "group": "lbm-annulus",
+        "annulus": {
+          "N": [
+            80,
+            160,
+            240
+          ],
+          "tau": 0.7,
+          "nu": 0.01,
+          "inner_speed": 0.02,
+          "T": 4
+        },
+        "cylinder": {
+          "dx": [
+            0.01,
+            0.005
+          ],
+          "nu": 0.001,
+          "peak_U": 0.3,
+          "mean_U": 0.2,
+          "T": 30,
+          "late_checkpoints": [
+            26,
+            28,
+            30
+          ]
+        }
+      },
+      "sources": [
+        "https://arxiv.org/abs/comp-gas/9611001",
+        "https://doi.org/10.1016/S0021-9991(02)00022-0"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/lbm-annular-couette-control/?lang=ja#lbm-annular-couette-control-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/lbm-annular-couette-control/?lang=en#lbm-annular-couette-control-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-lbm-annulus/#lbm-annular-couette-control",
+        "en": "/numerical-methods-atlas/en/read/validation-lbm-annulus/#lbm-annular-couette-control"
+      },
+      "reference_scope": "Exact continuous annular Couette NS field on .2<r<.4 centered(.5,.5). Bounds are a finite Cartesian viewing box,not a squarefluiddomain. Velocity,full pointwise pressure and torque are separate; radial averaging does not replace pressure acceptance. This control doesnot replace actual cylinder flow. CurrentR4fixedboundaryscope:quadraticcirclelinks;forcylinderall9poststreamNEEreservoir,notlaterdo-nothing. Allpriorfailedarraysretained. Components87and29PASSaredistinctfrommainacceptance;R3annularpFAILisretainedandR4primaryannularmainpassedall80originalgatesafterfixedN80/160/240refinement;independentpublicZIPrerunisseparate.",
+      "citations": [
+        {
+          "role": "case-method-or-independent-reference",
+          "title": "On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model",
+          "url": "https://arxiv.org/abs/comp-gas/9611001",
+          "note": "Selected original preprint pp2-7: standard equilibrium, moment-based flat velocity/density boundaries and corner/finite-Mach limitations. No full-paper audit; special d2q9i accuracy is not credited to this standard BGK."
+        },
+        {
+          "role": "case-method-or-independent-reference",
+          "title": "Lattice Boltzmann method for moving boundaries",
+          "url": "https://doi.org/10.1016/S0021-9991(02)00022-0",
+          "note": "Selected original sec3 printed410-414 via disclosed author-content mirror: Eq12/13/14 quadratic reflected-characteristic interpolation,moving-wall coefficient,Eq15 momentum exchange and compromised mass conservation. Generic Lagrange scalar oracle independently qualifies weights andsigns. No localPDF/rendered-symbol audit;2001BFLfulloriginal remains unread."
+        }
+      ]
+    },
+    {
+      "id": "lbm-cylinder-re20",
+      "model": "navier-stokes",
+      "kind": "numerical-reference",
+      "title": "Actual LBM cylinderRe20: Schäfer–Turek geometry anddeclared outlet",
+      "assumptions": "[0,2.2]x[0,.41],center(.2,.2),R.05,nu.001,rho1,mean.2/peak.3/Re20. dx.01/.005,xwet221/441,yhalfway41/82,dt=dx/6,T30,18k/36ksteps. Parabolic inlet;all-nine poststream NEE outletwithrho1andadjacent-interiorvelocity.",
+      "formula": "Re=Umean D/nu=20; CD=2Fx/(rho Umean^2 D); CL=2Fy/(rho Umean^2 D); delta p=p(.15,.2)-p(.25,.2).",
+      "dimension": 2,
+      "bounds": [
+        [
+          0,
+          2.2
+        ],
+        [
+          0,
+          0.41
+        ]
+      ],
+      "components": [
+        "drag coefficient",
+        "lift coefficient",
+        "pressure difference",
+        "recirculation length"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "schema_version": 1,
+        "group": "lbm-curved-boundary",
+        "annulus": {
+          "N": [
+            80,
+            160,
+            240
+          ],
+          "tau": 0.7,
+          "nu": 0.01,
+          "inner_speed": 0.02,
+          "T": 4
+        },
+        "cylinder": {
+          "dx": [
+            0.01,
+            0.005
+          ],
+          "nu": 0.001,
+          "peak_U": 0.3,
+          "mean_U": 0.2,
+          "T": 30,
+          "late_checkpoints": [
+            26,
+            28,
+            30
+          ]
+        }
+      },
+      "sources": [
+        "https://arxiv.org/abs/comp-gas/9611001",
+        "https://doi.org/10.1016/S0021-9991(02)00022-0",
+        "https://kent-and.github.io/mek4250/2021/SchaeferTurek1996.pdf",
+        "https://wwwold.mathematik.tu-dortmund.de/~featflow/en/benchmarks/cfdbenchmarking/flow/dfg_benchmark1_re20.html",
+        "https://cpb.iphy.ac.cn/en/article/doi/10.1088/1009-1963/11/4/310"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/lbm-cylinder-re20/?lang=ja#lbm-cylinder-re20-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/lbm-cylinder-re20/?lang=en#lbm-cylinder-re20-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-lbm-curved-boundary/#lbm-cylinder-re20",
+        "en": "/numerical-methods-atlas/en/read/validation-lbm-curved-boundary/#lbm-cylinder-re20"
+      },
+      "reference_scope": "Original1996two-dimensional steady benchmark estimated intervals,not exact error bounds. The original paper permits an outlet choice; this kinetic outlet is declared separately from later FEATflow do-nothing data. Force/pressure/recirculation comparisons apply to this fixed low-Re case,not arbitrary curved-wall accuracy. CurrentR4fixedboundaryscope:quadraticcirclelinks;forcylinderall9poststreamNEEreservoir,notlaterdo-nothing. Allpriorfailedarraysretained. Components87and29PASSaredistinctfrommainacceptance;R3annularpFAILisretainedandR4primarycylindermainpassedall33originalgates;independentpublicZIPrerunisseparate.",
+      "citations": [
+        {
+          "role": "case-method-or-independent-reference",
+          "title": "On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model",
+          "url": "https://arxiv.org/abs/comp-gas/9611001",
+          "note": "Selected original preprint pp2-7: standard equilibrium, moment-based flat velocity/density boundaries and corner/finite-Mach limitations. No full-paper audit; special d2q9i accuracy is not credited to this standard BGK."
+        },
+        {
+          "role": "case-method-or-independent-reference",
+          "title": "Lattice Boltzmann method for moving boundaries",
+          "url": "https://doi.org/10.1016/S0021-9991(02)00022-0",
+          "note": "Selected original sec3 printed410-414 via disclosed author-content mirror: Eq12/13/14 quadratic reflected-characteristic interpolation,moving-wall coefficient,Eq15 momentum exchange and compromised mass conservation. Generic Lagrange scalar oracle independently qualifies weights andsigns. No localPDF/rendered-symbol audit;2001BFLfulloriginal remains unread."
+        },
+        {
+          "role": "case-method-or-independent-reference",
+          "title": "Benchmark Computations of Laminar Flow Around a Cylinder",
+          "url": "https://kent-and.github.io/mek4250/2021/SchaeferTurek1996.pdf",
+          "note": "Original chapter delivered by course mirror after official links404: printed3-4geometry/2D-1/force definitions,7protocol user-selected outlet,11-12Table3 estimated ranges. Not a full-paper or separate local rendered-symbol audit."
+        },
+        {
+          "role": "case-method-or-independent-reference",
+          "title": "DFG flow around cylinder benchmark2D-1, Re20",
+          "url": "https://wwwold.mathematik.tu-dortmund.de/~featflow/en/benchmarks/cfdbenchmarking/flow/dfg_benchmark1_re20.html",
+          "note": "Actual geometry,do-nothingBC,mean-speed normalization,force/probe definitions and Nabh1998attribution read. Nabh original report not read; its precise values are contextual,not the adopted outlet truth."
+        },
+        {
+          "role": "case-method-or-independent-reference",
+          "title": "Non-equilibrium extrapolation method for velocity and pressure boundary conditions in the lattice Boltzmann method",
+          "url": "https://cpb.iphy.ac.cn/en/article/doi/10.1088/1009-1963/11/4/310",
+          "note": "Official primary abstract actually read: equilibrium/nonequilibrium split and adjacent-fluid extrapolation. Full primary equations unavailable; the adopted all-nine poststream density reservoir is independently derived and qualified,not labelled the exact author implementation."
+        }
+      ]
+    },
+    {
+      "id": "isotropic-scattering-slab",
+      "model": "static-grey-transfer",
+      "kind": "semi-analytic",
+      "title": "Isotropically scattering slab: continuous-angle Fredholm flux reference",
+      "assumptions": "Plane-parallel steady optical-depth slab, unit incoming radiance on the left,vacuum incoming on the right,isotropic single-scattering albedo. Incoming hemispherical flux pi; signed-angle J=.5*integral I.",
+      "formula": "J(x)=.5*E2(x)+omega/2*integral_0^L E1(|x-y|)J(y)dy; R=2omega*integral J E2(x)dx; T=2E3(L)+2omega*integral J E2(L-x)dx; A=4(1-omega)*integral J dx.",
+      "dimension": 1,
+      "bounds": [
+        [
+          0.0,
+          3.0
+        ]
+      ],
+      "components": [
+        "scalar radiance",
+        "reflected flux",
+        "transmitted flux",
+        "absorbed flux"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "depths": [
+          0.5,
+          3.0
+        ],
+        "albedos": [
+          0.5,
+          0.9
+        ],
+        "reference_constant_cells": [
+          256,
+          512,
+          1024
+        ],
+        "reference_linear_cells": [
+          256,
+          512
+        ],
+        "normalized_incident_flux": 1.0
+      },
+      "sources": [
+        "https://www.pbr-book.org/4ed/Light_Transport_II_Volume_Rendering/The_Equation_of_Transfer"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/isotropic-scattering-slab/?lang=ja#isotropic-scattering-slab-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/isotropic-scattering-slab/?lang=en#isotropic-scattering-slab-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-radiation-scattering/#isotropic-scattering-slab",
+        "en": "/numerical-methods-atlas/en/read/validation-radiation-scattering/#isotropic-scattering-slab"
+      },
+      "reference_scope": "Independent continuous-angle Fredholm evaluator,not the primary signed-angle FV sweeps. Exact singular E1diagonal weights; constant/linear scalar bases and selected singular-weight quadratures qualify finite reference sensitivity.78reference checks passed before primary execution. No certified continuum bound or stochastic reference.",
+      "citations": [
+        {
+          "role": "transfer-equation-and-boundary-convention",
+          "title": "Pharr,Jakob and Humphreys, Physically Based Rendering4e: The Equation of Transfer",
+          "url": "https://www.pbr-book.org/4ed/Light_Transport_II_Volume_Rendering/The_Equation_of_Transfer",
+          "note": "Read selected transfer/source/finite-ray boundary section. The isotropic Fredholm normalization,independent exact-cell E1weights and flux derivations are documented in this packet; no DISORT reproduction or Monte Carlo claim."
+        }
+      ]
+    },
+    {
+      "id": "su-olson-diffusion1996",
+      "model": "non-equilibrium-diffusion-exchange",
+      "kind": "semi-analytic",
+      "title": "Su–Olson1996 diffusion: pinned independent integral evaluator",
+      "assumptions": "Half-space Marshak diffusion with zero initial radiation/material variables and epsilon1. Direct dimensionless evaluator; no ambiguous physical mass-opacity wrapper convention.",
+      "formula": "epsilon*u_tau-u_xx=v-u; v_tau=u-v; u(0,tau)-2/sqrt(3)*u_x(0,tau)=1; u(infinity,tau)=0; epsilon*u+v is the capacity-weighted total.",
+      "dimension": 1,
+      "bounds": [
+        [
+          0.0,
+          16.0
+        ]
+      ],
+      "components": [
+        "radiation u",
+        "material variable v"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "epsilon": 1.0,
+        "reference_times": [
+          0.1,
+          1.0,
+          3.0
+        ],
+        "x_definition": "sqrt(3)*kappa*z",
+        "tau_definition": "epsilon*c*kappa*t",
+        "epsilon_definition": "4a/alpha",
+        "physical_material_energy": "v/epsilon times E0",
+        "nonunit_capacity_controls": [
+          0.25,
+          2.0
+        ]
+      },
+      "sources": [
+        "https://doi.org/10.1016/0022-4073(96)84524-9",
+        "https://doi.org/10.1016/j.softx.2023.101560",
+        "https://github.com/lanl/ExactPack/tree/8718b61f281a9744ea7a3820c51800915e4636e9/exactpack/solvers/suolson",
+        "https://github.com/lanl/ExactPack/blob/8718b61f281a9744ea7a3820c51800915e4636e9/LICENSE.txt"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/su-olson-diffusion1996/?lang=ja#su-olson-diffusion1996-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/su-olson-diffusion1996/?lang=en#su-olson-diffusion1996-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-diffusion1996",
+        "en": "/numerical-methods-atlas/en/read/validation-radiation-matter/#su-olson-diffusion1996"
+      },
+      "reference_scope": "Pinned official ExactPack1.7.5 implementation of independent1996diffusion integrals. Selected original/tighter evaluator sensitivities plus independent PDE/Robin residuals and transport-table controls jointly passed54checks. Finite numerical integral reference,not a rigorous quadrature bound. Original1996full text is unread; this is not the1997transport oracle.",
+      "citations": [
+        {
+          "role": "original-problem",
+          "title": "B. Su and G. L. Olson (1996), Benchmark results for the non-equilibrium Marshak diffusion problem, JQSRT56(3),337–351",
+          "url": "https://doi.org/10.1016/0022-4073(96)84524-9",
+          "note": "Publisher abstract and bibliographic metadata read; original full text/equations/tables unavailable and not directly checked. Diffusion is distinct from the1997transport problem."
+        },
+        {
+          "role": "reference-software-paper",
+          "title": "J. Thrussell and J. M. Ferguson (2023), ExactPack: A python library of exact analytic solutions, SoftwareX24,101560",
+          "url": "https://doi.org/10.1016/j.softx.2023.101560",
+          "note": "Bibliographic software credit,recorded separately from Su–Olson1996 and the pinned executed source. Full software paper is not claimed read."
+        },
+        {
+          "role": "executed-reference-implementation",
+          "title": "LANL ExactPack1.7.5, pinned SuOlson/Timmes evaluator",
+          "url": "https://github.com/lanl/ExactPack/tree/8718b61f281a9744ea7a3820c51800915e4636e9/exactpack/solvers/suolson",
+          "note": "All55documentation,41wrapper and348Timmes module lines read. Execute nondimensional usolution/vsolution serially; qualify selected original/tight integrals against sensitivity,PDE and Robin checks. No primary solver shares this evaluator. Full ExactPack/base/library audit is not claimed."
+        },
+        {
+          "role": "reference-source-license",
+          "title": "LANL ExactPack pinned BSD-3-Clause license",
+          "url": "https://github.com/lanl/ExactPack/blob/8718b61f281a9744ea7a3820c51800915e4636e9/LICENSE.txt",
+          "note": "Actual license text read and retained as exactpack-LICENSE.txt with redistributed inert source snapshots."
+        }
+      ]
+    },
+    {
+      "id": "su-olson-transport1997",
+      "model": "static-grey-transfer",
+      "kind": "numerical-reference",
+      "title": "Su–Olson transport: primary2023author-provided analytical benchmark data",
+      "assumptions": "Infinite symmetric1D angular transport/material exchange,epsilon1,no elastic scattering,cold initial state. Source Q1 for |x|<.5 and0<tau<10. Primary half-domain uses reflecting left and distant incoming-vacuum right; comparison times precede boundary influence. A separate matched periodic cell-mean companion uses physical x in [0,2*pi), c=epsilon=1, kappa4/8/16, N128/512/2048, Q0, initial I=V=1+.1cos(x), and t=kappa*s for s=0,.0625,.125,.25. Its IC/BC/source differ from the source-driven1997 benchmark; the FV, continuum-angular and diffusion comparisons within this companion use matched inputs.",
+      "formula": "epsilon*I_tau+mu*I_x+I=V+Q; V_tau=E-V; E=.5*integral_-1^1 I dmu; I=2U of Crilly2023Appendix4.1; conserved total epsilon*E+V. Separate periodic companion: epsilon*I_t+mu*I_x=kappa*(V-I), V_t=kappa*(E-V); F approximately -E_x/(3*kappa), (epsilon+1)*E_t approximately E_xx/(3*kappa). For h=2*pi/N, A_N=.1*sin(h/2)/(h/2), E_diff=V_diff=1+A_N*exp[-s/(3*(epsilon+1))]*cos(x), t=kappa*s.",
+      "dimension": 1,
+      "bounds": [
+        [
+          0.0,
+          8.0
+        ]
+      ],
+      "components": [
+        "radiation E=W",
+        "material V"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "epsilon": 1.0,
+        "source_half_width": 0.5,
+        "source_off": 10.0,
+        "source_amplitude": 1.0,
+        "elastic_scattering": 0.0,
+        "reference_times": [
+          0.1,
+          1.0,
+          3.16228
+        ],
+        "raw_table_shape": [
+          15,
+          7
+        ],
+        "compared_x_points": 13,
+        "compared_x_limit": 6.0,
+        "data_commit": "3e4f636299d62bc03f7118cfc884230c756f9d87",
+        "matched_periodic_companion": {
+          "edition": "2026-11-24-r2",
+          "physical_domain": [
+            0.0,
+            "2*pi"
+          ],
+          "boundary": "periodic",
+          "c": 1.0,
+          "epsilon": 1.0,
+          "kappa": [
+            4,
+            8,
+            16
+          ],
+          "cells": [
+            128,
+            512,
+            2048
+          ],
+          "ordinates": 32,
+          "source": 0.0,
+          "initial": "actual cell means of I=V=1+.1*cos(x), initial F=0",
+          "scaled_times": [
+            0.0,
+            0.0625,
+            0.125,
+            0.25
+          ],
+          "physical_times": "t=kappa*s",
+          "radiation_diffusivity": "1/(3*kappa)",
+          "effective_diffusivity": "1/[3*kappa*(epsilon+1)]",
+          "reference_angular_rules": [
+            64,
+            128
+          ],
+          "reference_qualification_checks": 141,
+          "final_time_only_asymptotic_gates": true,
+          "different_from_source_driven_1997_benchmark": true
+        }
+      },
+      "sources": [
+        "https://doi.org/10.1016/S0306-4549(96)00100-4",
+        "https://raw.githubusercontent.com/ml4physicalsciences/ml4physicalsciences.github.io/master/2023/files/NeurIPS_ML4PS_2023_16.pdf",
+        "https://github.com/aidancrilly/RTClosureJAX/tree/3e4f636299d62bc03f7118cfc884230c756f9d87/SuOlsonData",
+        "https://github.com/aidancrilly/RTClosureJAX/blob/3e4f636299d62bc03f7118cfc884230c756f9d87/LICENSE",
+        "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.sparse.linalg.expm_multiply.html",
+        "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/su-olson-transport1997/?lang=ja#su-olson-transport1997-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/su-olson-transport1997/?lang=en#su-olson-transport1997-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-transport1997",
+        "en": "/numerical-methods-atlas/en/read/validation-radiation-matter/#su-olson-transport1997"
+      },
+      "reference_scope": "Actual comparison uses independently published analytical benchmark tables from the pinned2023primary-author repository,not trained outputs and not the primary transport method. Five-decimal rounding,raw shape/hash,finite coordinates,causal/homogeneous limits and exact source/normalization matching were qualified in the54check reference study. Original1997full text/tables were not directly verified; transcription versus regeneration is unknown. No source-off/general-scattering/global-angular-order certification. A separately recorded matched periodic companion qualifies an independently assembled continuum-space angular matrix before any primary mode probes:141 fixed checks include GL64/128 finite moment sensitivity, capacity-weighted generator identities, exact homogeneous k=0 exchange for epsilon.25/1/2, and two full GL128 final-vector comparisons with a separately written DOP853 derivative. The primary uses the actual FV stencil recovered by real cosine/sine probes and reconstructs all cell means. Both new matrix-action paths share scipy.sparse.linalg.expm_multiply(csr_matrix(t*A),initial,traceA=t*trace(A)); this shared primitive is not an independent primary time engine, and DOP853 qualifies only the reference propagation. The analytic diffusion limit includes material capacity epsilon+1. Initial F0 versus nonzero Fick flux is retained; asymptotic gates use only final scaled time s=.25. N grows as kappa squared and resolves the mean free path, so neither fixed-grid AP behavior nor the primary SSPRK2 temporal accuracy is certified. This companion does not supply the unread original1997 tables or replace the1996 Marshak-boundary reference.",
+      "citations": [
+        {
+          "role": "original-problem",
+          "title": "B. Su and G. L. Olson (1997), An analytical benchmark for non-equilibrium radiative transfer in an isotropically scattering medium, Annals of Nuclear Energy24(13),1035–1055",
+          "url": "https://doi.org/10.1016/S0306-4549(96)00100-4",
+          "note": "Publisher abstract/metadata read only. Original full text,integral normalization and original numerical tables were not directly read or transcribed. The actual comparison is independently attributed to the selected2023author repository below."
+        },
+        {
+          "role": "primary-author-model-normalization",
+          "title": "A. Crilly (2023), Learning closure relations using differentiable programming: an example in radiation transport",
+          "url": "https://raw.githubusercontent.com/ml4physicalsciences/ml4physicalsciences.github.io/master/2023/files/NeurIPS_ML4PS_2023_16.pdf",
+          "note": "Actually read and visually verified PDFpage6 Appendix4.1 equations7–10: epsilon*d_tau U+mu*d_x U+U=V/2+Q/2,V_tau=W−V. With I=2U, E=W. epsilon1,x0=.5,source duration10; no direct original1997-table verification."
+        },
+        {
+          "role": "qualified-independent-published-data",
+          "title": "A. Crilly RTClosureJAX pinned SuOlsonData analytical benchmark tables",
+          "url": "https://github.com/aidancrilly/RTClosureJAX/tree/3e4f636299d62bc03f7118cfc884230c756f9d87/SuOlsonData",
+          "note": "Pinned W/Vtransport data,coordinates,times and README actually read. Repository calls them analytical Su–Olson data; transcription versus regeneration is undocumented. They are not trained-closure/model predictions. Retain full15×7raw table; compare13points at tau.1,1,3.16228 with matching source/epsilon/units. Rounded five-decimal finite data,not a rigorous exact reference."
+        },
+        {
+          "role": "reference-data-license",
+          "title": "RTClosureJAX pinned MIT license",
+          "url": "https://github.com/aidancrilly/RTClosureJAX/blob/3e4f636299d62bc03f7118cfc884230c756f9d87/LICENSE",
+          "note": "Actual MIT license read and retained with the bundled raw table. No redistribution of the2023paper PDF is required by this packet."
+        },
+        {
+          "role": "shared-exponential-action-API",
+          "title": "SciPy1.14.1 expm_multiply: matrix exponential action and trace preconditioning",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.sparse.linalg.expm_multiply.html",
+          "note": "Actually inspected installed1.14.1 source/API docstring and the versioned official API action/traceA section. Shared by the new FV-mode and continuum-reference propagators; mathematical action equivalence is not bit equivalence or independent-engine evidence. The linked algorithm papers were not read as part of this update."
+        },
+        {
+          "role": "independent-reference-propagator-qualification",
+          "title": "SciPy1.14.1 solve_ivp: DOP853 and complex initial states",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html",
+          "note": "Read selected official API sections for complex initial states,DOP853 and fixed tolerances. Two separately written continuum derivatives are compared to the shared exponential action under frozen141checks. This is finite reference qualification,not a primary SSPRK2 order test or a rigorous bound; original DOP853 papers were not reviewed here."
+        }
+      ]
+    },
+    {
+      "id": "shadow-absorber2d",
+      "model": "static-grey-transfer",
+      "kind": "analytic",
+      "title": "Circular-absorber characteristic reference",
+      "assumptions": "2Dspace with3Dangular measure,c1. Pure aligned rays; actual signed-angle transport and nonlinear closed M1 both evolved. The analytic characteristic reference applies to RTE/S_N,not to the entire M1 solution.",
+      "formula": "I(x,y,t)=I_in(y)*exp(-kappa*ell_circle(x,y))*1_(x<t); Pxx=E,Pyy=Pzz=0 for the+xray.",
+      "dimension": 2,
+      "bounds": [
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "components": [
+        "E",
+        "Fx",
+        "Fy",
+        "Pxx",
+        "Pyy",
+        "Pzz"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "c": 1.0,
+        "angular_dimensions": 3,
+        "directions": "six Cartesian axes",
+        "axis_weights": "1/6",
+        "beam_nodal_intensity": 6.0,
+        "reference_cell_quadratures": [
+          8,
+          16,
+          32
+        ],
+        "main_grids": [
+          24,
+          48,
+          96
+        ],
+        "final_time": 1.1,
+        "disk_center": [
+          0.35,
+          0.5
+        ],
+        "disk_radius": 0.12,
+        "disk_absorption": 40.0,
+        "incoming_stripe": [
+          0.3,
+          0.7
+        ]
+      },
+      "sources": [
+        "https://arxiv.org/html/1304.7126v2",
+        "https://arxiv.org/pdf/1306.0010"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/shadow-absorber2d/?lang=ja#shadow-absorber2d-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/shadow-absorber2d/?lang=en#shadow-absorber2d-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-radiation-geometry/#shadow-absorber2d",
+        "en": "/numerical-methods-atlas/en/read/validation-radiation-geometry/#shadow-absorber2d"
+      },
+      "reference_scope": "Analytic characteristic transport with independently evaluated cell averages and finite quadrature qualification.191component checks jointly cover shadow/opposing/crossed packets,M1MMS forcing,3Dpressure and invalid states. This is NOT an exact full M1 shadow/opposing-beam solution. Actual M1numerics are verified by a separate varying-direction/magnitude manufactured solution using the same PDE solver and analytic forcing checked by independent complex step. At exact equal head-on meeting F0,angular Pxx=E while M1assigns E/3; report that information loss rather than imposing convergence to RTE. Pixelized opacity and finite transport errors remain distinct. No general angular convergence or relativistic radiation claim. For the special pure+xshadow invariant E=Fx,Fy0,continuous M1also reduces to the characteristic RTEbeam equation;that statement does not extend to generalM1shadow/opposing-beam solutions. Preserve the originalc1transverse-diffusion failure and use the separately qualified general directional local-LF redesign.",
+      "citations": [
+        {
+          "role": "closure-and-model-limitations",
+          "title": "J. Rosdahl etal. (2013), RAMSES-RT: Radiation hydrodynamics in the cosmological context",
+          "url": "https://arxiv.org/html/1304.7126v2",
+          "note": "Read selectedSection2 equations12–14 and opposing-beam limitation text. The static grey equations here are neither GR nor reproductions of RAMSES astrophysical calculations. Original Levermore1984 full text was not read."
+        },
+        {
+          "role": "qualified-M1-numerical-method-context",
+          "title": "A Two-moment Radiation Hydrodynamics Module in Athena Using a Time-Explicit Godunov Method",
+          "url": "https://arxiv.org/pdf/1306.0010",
+          "note": "Independent reviewer actually read selected extracted Section3.3equations37–41and eigenvalue limits;not a whole-paper/rendered-symbol audit. Directional LF cone root/weighted-CFL algebra is separately authored and independently crosschecked,not a transplanted HLL solver or claimed general Riemann-fan bound. Actual generalized directional LF core passed762component checks,then all166fixed geometry gates. The authored LFcone proof is separate from the paper;no general nonlinearRiemannfan bound is claimed."
+        }
+      ]
+    },
+    {
+      "id": "opposing-beams2d",
+      "model": "static-grey-transfer",
+      "kind": "analytic",
+      "title": "Counterpropagating packet characteristic reference",
+      "assumptions": "2Dspace with3Dangular measure,c1. Pure aligned rays; actual signed-angle transport and nonlinear closed M1 both evolved. The analytic characteristic reference applies to RTE/S_N,not to the entire M1 solution.",
+      "formula": "Iplus(x,y,t)=6G(x-t,y;.25); Iminus(x,y,t)=6G(x+t,y;.75); E=Gplus+Gminus,Fx=Gplus-Gminus,Fy=0; Pxx=E,Pyy=Pzz=0.",
+      "dimension": 2,
+      "bounds": [
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "components": [
+        "E",
+        "Fx",
+        "Fy",
+        "Pxx",
+        "Pyy",
+        "Pzz"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "c": 1.0,
+        "angular_dimensions": 3,
+        "directions": "six Cartesian axes",
+        "axis_weights": "1/6",
+        "beam_nodal_intensity": 6.0,
+        "reference_cell_quadratures": [
+          8,
+          16,
+          32
+        ],
+        "main_grids": [
+          24,
+          48,
+          96
+        ],
+        "final_time": 0.5,
+        "packet_exponent": 16.0,
+        "meeting_time": 0.25
+      },
+      "sources": [
+        "https://arxiv.org/html/1304.7126v2",
+        "https://arxiv.org/pdf/1306.0010"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/opposing-beams2d/?lang=ja#opposing-beams2d-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/opposing-beams2d/?lang=en#opposing-beams2d-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-radiation-geometry/#opposing-beams2d",
+        "en": "/numerical-methods-atlas/en/read/validation-radiation-geometry/#opposing-beams2d"
+      },
+      "reference_scope": "Analytic characteristic transport with independently evaluated cell averages and finite quadrature qualification.191component checks jointly cover shadow/opposing/crossed packets,M1MMS forcing,3Dpressure and invalid states. This is NOT an exact full M1 shadow/opposing-beam solution. Actual M1numerics are verified by a separate varying-direction/magnitude manufactured solution using the same PDE solver and analytic forcing checked by independent complex step. At exact equal head-on meeting F0,angular Pxx=E while M1assigns E/3; report that information loss rather than imposing convergence to RTE. Pixelized opacity and finite transport errors remain distinct. No general angular convergence or relativistic radiation claim. For the special pure+xshadow invariant E=Fx,Fy0,continuous M1also reduces to the characteristic RTEbeam equation;that statement does not extend to generalM1shadow/opposing-beam solutions. Preserve the originalc1transverse-diffusion failure and use the separately qualified general directional local-LF redesign.",
+      "citations": [
+        {
+          "role": "closure-and-model-limitations",
+          "title": "J. Rosdahl etal. (2013), RAMSES-RT: Radiation hydrodynamics in the cosmological context",
+          "url": "https://arxiv.org/html/1304.7126v2",
+          "note": "Read selectedSection2 equations12–14 and opposing-beam limitation text. The static grey equations here are neither GR nor reproductions of RAMSES astrophysical calculations. Original Levermore1984 full text was not read."
+        },
+        {
+          "role": "qualified-M1-numerical-method-context",
+          "title": "A Two-moment Radiation Hydrodynamics Module in Athena Using a Time-Explicit Godunov Method",
+          "url": "https://arxiv.org/pdf/1306.0010",
+          "note": "Independent reviewer actually read selected extracted Section3.3equations37–41and eigenvalue limits;not a whole-paper/rendered-symbol audit. Directional LF cone root/weighted-CFL algebra is separately authored and independently crosschecked,not a transplanted HLL solver or claimed general Riemann-fan bound. Actual generalized directional LF core passed762component checks,then all166fixed geometry gates. The authored LFcone proof is separate from the paper;no general nonlinearRiemannfan bound is claimed."
+        }
+      ]
+    },
+    {
+      "id": "gbm-weak-moments",
+      "model": "scalar-ito-diffusion",
+      "kind": "analytic",
+      "title": "GBM weak bias and Monte Carlo error",
+      "assumptions": "dX=.5Xdt+.4XdW,X0=1;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping.",
+      "formula": "dX_t=\\mu X_t\\,dt+\\sigma X_t\\,dW_t; b_p(h)=\\mathbb E[X_h(T)^p]-\\mathbb E[X(T)^p],\\quad p=1,2; \\mathbb E[X_h(T)]=X_0(1+\\mu h)^n",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "state X",
+        "weak moment bias",
+        "paired MCSE"
+      ],
+      "field_type": "scalar",
+      "parameters": {
+        "kind": "gbm",
+        "initial": 1.0,
+        "mu": 0.5,
+        "sigma": 0.4,
+        "T": 1.0,
+        "steps": [
+          8,
+          16,
+          32,
+          64
+        ],
+        "paths_per_batch": 1024,
+        "seeds": [
+          44001,
+          44002,
+          44003,
+          44004,
+          44005,
+          44006,
+          44007,
+          44008,
+          44009,
+          44010,
+          44011,
+          44012,
+          44013,
+          44014,
+          44015,
+          44016,
+          44017,
+          44018,
+          44019,
+          44020,
+          44021,
+          44022,
+          44023,
+          44024,
+          44025,
+          44026,
+          44027,
+          44028,
+          44029,
+          44030,
+          44031,
+          44032
+        ]
+      },
+      "sources": [
+        "https://epubs.siam.org/doi/10.1137/S0036144500378302"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/gbm-weak-moments/?lang=ja#gbm-weak-moments-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/gbm-weak-moments/?lang=en#gbm-weak-moments-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#gbm-weak-moments",
+        "en": "/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#gbm-weak-moments"
+      },
+      "reference_scope": "Independent authored analytic continuous/discrete/mixed moments; Decimal80/120 and independent positive integral/covariance qualifiers. Shared Brownian coupling is declared. Scalar state×time, not2Dphysical space; finite stochastic precision is not a deterministic bound. State distributions have unbounded support; listed bounds are time interval or finite viewing windows,not imposed state boundaries.",
+      "citations": [
+        {
+          "role": "selected-primary-definition-or-diagnostic-algorithm",
+          "title": "An Algorithmic Introduction to Numerical Simulation of Stochastic Differential Equations",
+          "url": "https://epubs.siam.org/doi/10.1137/S0036144500378302",
+          "note": "Read selected original sections4-6 on linear SDEs,strong/weak definitions,EM and Milstein. No full-paper audit or reproduction of its MATLAB/logistic experiment. Its L1strong definition is distinguished from our L2RMS."
+        }
+      ]
+    },
+    {
+      "id": "ou-weak-moments",
+      "model": "scalar-ito-diffusion",
+      "kind": "analytic",
+      "title": "OU weak moments with joint Brownian coupling",
+      "assumptions": "dX=1.5(.2-X)dt+.8dW,X0=.7;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping.",
+      "formula": "dX_t=\\kappa(\\theta-X_t)\\,dt+\\sigma\\,dW_t; b_p(h)=\\mathbb E[X_h(T)^p]-\\mathbb E[X(T)^p],\\quad p=1,2; \\operatorname{Cov}(J_h,\\Delta W)=(1-e^{-\\kappa h})/\\kappa",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "state X",
+        "weak moment bias",
+        "paired MCSE"
+      ],
+      "field_type": "scalar",
+      "parameters": {
+        "kind": "ou",
+        "initial": 0.7,
+        "theta": 0.2,
+        "kappa": 1.5,
+        "sigma": 0.8,
+        "T": 1.0,
+        "steps": [
+          8,
+          16,
+          32,
+          64
+        ],
+        "paths_per_batch": 1024,
+        "seeds": [
+          44101,
+          44102,
+          44103,
+          44104,
+          44105,
+          44106,
+          44107,
+          44108,
+          44109,
+          44110,
+          44111,
+          44112,
+          44113,
+          44114,
+          44115,
+          44116,
+          44117,
+          44118,
+          44119,
+          44120,
+          44121,
+          44122,
+          44123,
+          44124,
+          44125,
+          44126,
+          44127,
+          44128,
+          44129,
+          44130,
+          44131,
+          44132
+        ]
+      },
+      "sources": [
+        "https://epubs.siam.org/doi/10.1137/S0036144500378302"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/ou-weak-moments/?lang=ja#ou-weak-moments-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/ou-weak-moments/?lang=en#ou-weak-moments-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#ou-weak-moments",
+        "en": "/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#ou-weak-moments"
+      },
+      "reference_scope": "Independent authored analytic continuous/discrete/mixed moments; Decimal80/120 and independent positive integral/covariance qualifiers. Shared Brownian coupling is declared. Scalar state×time, not2Dphysical space; finite stochastic precision is not a deterministic bound. State distributions have unbounded support; listed bounds are time interval or finite viewing windows,not imposed state boundaries.",
+      "citations": [
+        {
+          "role": "selected-primary-definition-or-diagnostic-algorithm",
+          "title": "An Algorithmic Introduction to Numerical Simulation of Stochastic Differential Equations",
+          "url": "https://epubs.siam.org/doi/10.1137/S0036144500378302",
+          "note": "Read selected original sections4-6 on linear SDEs,strong/weak definitions,EM and Milstein. No full-paper audit or reproduction of its MATLAB/logistic experiment. Its L1strong definition is distinguished from our L2RMS."
+        }
+      ]
+    },
+    {
+      "id": "gbm-milstein-strong",
+      "model": "scalar-ito-diffusion",
+      "kind": "analytic",
+      "title": "Milstein and EM on identical Brownian paths",
+      "assumptions": "ExistingGBMparametersmu.15,sigma.4,X0=T1;4seeds×8192paths;16/32/64/128steps.",
+      "formula": "X_{j+1}=X_j[1+\\mu h+\\sigma\\Delta W_j+\\tfrac12\\sigma^2((\\Delta W_j)^2-h)]; \\mathbb E[(X_n-X(T))^2]=X_0^2[A^n+e^{(2\\mu+\\sigma^2)T}-2K^n]",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "EM endpoint RMS",
+        "Milstein endpoint RMS"
+      ],
+      "field_type": "scalar",
+      "parameters": {
+        "kind": "gbm",
+        "initial": 1.0,
+        "mu": 0.15,
+        "sigma": 0.4,
+        "T": 1.0,
+        "steps": [
+          16,
+          32,
+          64,
+          128
+        ],
+        "paths_per_batch": 8192,
+        "seeds": [
+          47001,
+          47002,
+          47003,
+          47004
+        ]
+      },
+      "sources": [
+        "https://epubs.siam.org/doi/10.1137/S0036144500378302"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/gbm-milstein-strong/?lang=ja#gbm-milstein-strong-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/gbm-milstein-strong/?lang=en#gbm-milstein-strong-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#gbm-milstein-strong",
+        "en": "/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#gbm-milstein-strong"
+      },
+      "reference_scope": "Independent authored analytic continuous/discrete/mixed moments; Decimal80/120 and independent positive integral/covariance qualifiers. Shared Brownian coupling is declared. Scalar state×time, not2Dphysical space; finite stochastic precision is not a deterministic bound. State distributions have unbounded support; listed bounds are time interval or finite viewing windows,not imposed state boundaries.",
+      "citations": [
+        {
+          "role": "selected-primary-definition-or-diagnostic-algorithm",
+          "title": "An Algorithmic Introduction to Numerical Simulation of Stochastic Differential Equations",
+          "url": "https://epubs.siam.org/doi/10.1137/S0036144500378302",
+          "note": "Read selected original sections4-6 on linear SDEs,strong/weak definitions,EM and Milstein. No full-paper audit or reproduction of its MATLAB/logistic experiment. Its L1strong definition is distinguished from our L2RMS."
+        }
+      ]
+    },
+    {
+      "id": "normal-tail-importance",
+      "model": "gaussian-probability-model",
+      "kind": "analytic",
+      "title": "Ordinary importance sampling of a normal rare tail",
+      "assumptions": "Standard normal tailsa3/6;proposalN(a,1);64independent seeds;fixedN2048/8192prefixes.",
+      "formula": "\\widehat p=N^{-1}\\sum_i\\mathbf1_{X_i>a}e^{-aX_i+a^2/2}; \\mathbb E_q[Y^r]=e^{r(r-1)a^2/2}\\overline\\Phi(ra)",
+      "dimension": 1,
+      "bounds": [
+        [
+          -10,
+          10
+        ]
+      ],
+      "components": [
+        "ordinary IS contribution",
+        "tail probability",
+        "estimator variance"
+      ],
+      "field_type": "probability",
+      "parameters": {
+        "thresholds": [
+          3.0,
+          6.0
+        ],
+        "samples": [
+          2048,
+          8192
+        ],
+        "seeds": [
+          45001,
+          45002,
+          45003,
+          45004,
+          45005,
+          45006,
+          45007,
+          45008,
+          45009,
+          45010,
+          45011,
+          45012,
+          45013,
+          45014,
+          45015,
+          45016,
+          45017,
+          45018,
+          45019,
+          45020,
+          45021,
+          45022,
+          45023,
+          45024,
+          45025,
+          45026,
+          45027,
+          45028,
+          45029,
+          45030,
+          45031,
+          45032,
+          45033,
+          45034,
+          45035,
+          45036,
+          45037,
+          45038,
+          45039,
+          45040,
+          45041,
+          45042,
+          45043,
+          45044,
+          45045,
+          45046,
+          45047,
+          45048,
+          45049,
+          45050,
+          45051,
+          45052,
+          45053,
+          45054,
+          45055,
+          45056,
+          45057,
+          45058,
+          45059,
+          45060,
+          45061,
+          45062,
+          45063,
+          45064
+        ],
+        "coverage_interval": "known-analytic-variance normal95 IS; Clopper-Pearson95 direct; per-threshold/per-prefix separate64replications"
+      },
+      "sources": [
+        "https://artowen.su.domains/mc/Ch-var-is.pdf"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/normal-tail-importance/?lang=ja#normal-tail-importance-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/normal-tail-importance/?lang=en#normal-tail-importance-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#normal-tail-importance",
+        "en": "/numerical-methods-atlas/en/read/validation-stochastic-estimation/#normal-tail-importance"
+      },
+      "reference_scope": "Known exact normal-tail contribution moments independently quadrature-qualified;64independent seed batches. Finite repeated interval coverage is descriptive,not a general coverage theorem. State distributions have unbounded support; listed bounds are time interval or finite viewing windows,not imposed state boundaries.",
+      "citations": [
+        {
+          "role": "selected-primary-definition-or-diagnostic-algorithm",
+          "title": "Monte Carlo theory,methods and examples,Chapter9: importance sampling",
+          "url": "https://artowen.su.domains/mc/Ch-var-is.pdf",
+          "note": "Selected author-chapter support,ordinary estimator,second moments and diagnostics were read during preparation. Current refetch returned403. No full-book or PERT experiment reproduction."
+        }
+      ]
+    },
+    {
+      "id": "correlated-gaussian-mcmc",
+      "model": "gaussian-probability-model",
+      "kind": "numerical-reference",
+      "title": "Joint target and MCSE for a correlated bivariate Gaussian",
+      "assumptions": "Mean(1,-1),unit marginal variances,rho.95;4independent chainsets×4chains;burn1024/draw8192;prefix2048/8192. Fixed.9Lzand.25z,no adaptation.",
+      "formula": "\\pi(x)\\propto\\exp[-\\tfrac12(x-m)^\\top\\Sigma^{-1}(x-m)]; \\operatorname{MCSE}(g)=s_g/\\sqrt{\\operatorname{ESS}_{\\mathrm{mean}}(g)}",
+      "dimension": 2,
+      "bounds": [
+        [
+          -6,
+          8
+        ],
+        [
+          -8,
+          6
+        ]
+      ],
+      "components": [
+        "joint target density",
+        "observable means",
+        "Rhat",
+        "ESS",
+        "MCSE"
+      ],
+      "field_type": "probability",
+      "parameters": {
+        "mean": [
+          1.0,
+          -1.0
+        ],
+        "rho": 0.95,
+        "chains": 4,
+        "burn": 1024,
+        "draws": 8192,
+        "prefixes": [
+          2048,
+          8192
+        ],
+        "seeds": [
+          46001,
+          46002,
+          46003,
+          46004
+        ],
+        "initial_whitened": [
+          [
+            -4.0,
+            -4.0
+          ],
+          [
+            -4.0,
+            4.0
+          ],
+          [
+            4.0,
+            -4.0
+          ],
+          [
+            4.0,
+            4.0
+          ]
+        ],
+        "proposals": {
+          "preconditioned": 0.9,
+          "isotropic": 0.25
+        },
+        "observables": [
+          "y1",
+          "y2",
+          "y1_squared",
+          "y2_squared",
+          "product",
+          "Q",
+          "sum_direction",
+          "difference_direction"
+        ]
+      },
+      "sources": [
+        "https://arxiv.org/pdf/1903.08008",
+        "https://python.arviz.org/en/v0.20.0/api/generated/arviz.mcse.html"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/correlated-gaussian-mcmc/?lang=ja#correlated-gaussian-mcmc-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/correlated-gaussian-mcmc/?lang=en#correlated-gaussian-mcmc-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc",
+        "en": "/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc"
+      },
+      "reference_scope": "Independent ArviZ0.20diagnostic engine on exactly the same128datasets/640values. Exact Gaussian joint moments and whitening are separate target controls; diagnostic agreement is not an independent sampler or global convergence proof. Banana/funnel remain unimplemented. State distributions have unbounded support; listed bounds are time interval or finite viewing windows,not imposed state boundaries. New variant explicitly shares pinned SciPytype7 quantile primitive with ArviZ; independent ACF/ESS arithmetic. This is finite-floating compatibility,not mathematical type7 superiority; old637/640failure and causeaudit retained. Portable main compares640diagnostics on the immutable byte-bound reference fixture;8freshchainsets separately receive all unchanged physical/mixing gates. No cross-platform generated-array bit identity is required or promised.",
+      "citations": [
+        {
+          "role": "selected-primary-definition-or-diagnostic-algorithm",
+          "title": "Rank-normalization,folding,and localization: An improved R-hat for assessing convergence of MCMC",
+          "url": "https://arxiv.org/pdf/1903.08008",
+          "note": "Read selected original rank/foldedRhat,ESS and corrected Blom equation. No multivariate global-convergence certificate."
+        },
+        {
+          "role": "selected-primary-definition-or-diagnostic-algorithm",
+          "title": "ArviZ0.20.0 public diagnostics API and selected implementation",
+          "url": "https://python.arviz.org/en/v0.20.0/api/generated/arviz.mcse.html",
+          "note": "Read official0.20.0 ESS/MCSE source and API. Cache640values from128same-data observable/prefix arrays of8fixed chainsets in a separate process. Independence is the diagnostic engine,not an independent sampler."
+        }
+      ],
+      "qualification_status": "Actual640/640same-data comparisons and3tie regressions PASS; freshmain8chainsets and unchanged128physical/mixing+8finitegates PASS. Original637/640failure retained."
     }
   ]
 }

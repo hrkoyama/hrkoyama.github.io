@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "group": "radiation-geometry",
+  "edition": "2026-11-24",
+  "verified_on": "2026-11-24",
+  "source_manifest_sha256": "83fec8d3ed8a7b56fe191624cb2222c8720db4553ee2c28f5302ee5da8754d13",
+  "archive": {
+    "file": "atlas-radiation-geometry-2026-11-24.zip",
+    "sha256": "20a166a35e5e87275be4c1bcf12a31742b267ddc9f9a424a293852da53c672e0",
+    "bytes": 24402467,
+    "archive_directory": "atlas-radiation-geometry-2026-11-24"
+  },
+  "archive_sha256": "20a166a35e5e87275be4c1bcf12a31742b267ddc9f9a424a293852da53c672e0",
+  "returncode": 0,
+  "passed_tests": 22,
+  "tests": 22,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "opposing-beams2d",
+    "shadow-absorber2d"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 19.18256858299719,
+  "independent_rerun_seconds": 19.450851417001104,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

@@ -1,0 +1,80 @@
+[
+  {
+    "id": "isotropic-scattering-slab",
+    "method_ids": [
+      "radiation-transport",
+      "upwind"
+    ],
+    "domains": [
+      "pde",
+      "linear-algebra"
+    ],
+    "code_files": [
+      "run.py",
+      "slab.py"
+    ],
+    "title": {
+      "ja": "等方散乱平板の反射・透過・吸収",
+      "en": "Isotropic scattering in a finite slab"
+    },
+    "summary": {
+      "ja": "正負の角度を結合した実際の定常輸送を解き、独立な連続角Fredholm参照とR/T/Aを比較します。",
+      "en": "Solve genuinely coupled signed-angle steady transport and compare R/T/A with an independent continuum-angle Fredholm reference."
+    },
+    "assumptions": {
+      "ja": "光学厚さ.5/3、単一散乱albedo.5/.9の4入力。左の等方入射I1、右入射0。64/128/256セル、32角と独立64角probe。",
+      "en": "Four fixed inputs L=.5/3,albedo=.5/.9;unit left incoming radiance,right vacuum incoming.64/128/256cells at32signed angles and a separate64angle probe."
+    },
+    "algorithm": {
+      "ja": "保存的風上FVの全方向source結合を離散sweep応答で解きます。半球ごとの正重みGaussにより入射流束πを正規化し、吸収は体積sourceから独立積算します。",
+      "en": "Conservative upwind FV with the full discrete angular source coupling solved by sweep-response elimination. Positive hemisphere Gauss weights normalize incoming fluxpi;absorption is independently accumulated from the volume source."
+    },
+    "validation": {
+      "ja": "独立参照78項目はmain前に合格。主18計算では収支・正値・残差と、別々の空間・角度差、純吸収・保存散乱controlを判定します。",
+      "en": "Independent reference78checks passed before main.18primary/control solves test budget,positivity,residuals,separate space/angle changes,pure absorption and conservative scattering."
+    },
+    "limits": {
+      "ja": "有限の4平板に限定。MC、一般角度phase関数、DISORT再現、普遍的次数や厳密連続体誤差境界は認証しません。",
+      "en": "Limited to fourfixedisotropic slabs;noMC,generalphase-function/DISORT reproduction,universalorder or rigorouscontinuumerrorbound."
+    },
+    "formulas": [
+      "\\mu\\partial_xI+I=\\omega J,\\quad J=\\frac12\\int_{-1}^{1}I\\,d\\mu",
+      "J(x)=\\frac12E_2(x)+\\frac\\omega2\\int_0^L E_1(|x-s|)J(s)\\,ds",
+      "R+T+A=1,\\qquad A=4(1-\\omega)\\int_0^LJ\\,dx"
+    ],
+    "references": [
+      {
+        "id": "pbrt4-transfer",
+        "author": "Pharr,Jakob,Humphreys",
+        "year": 2023,
+        "title": "Physically Based Rendering4e,14.1The Equation of Transfer",
+        "url": "https://www.pbr-book.org/4ed/Light_Transport_II_Volume_Rendering/The_Equation_of_Transfer",
+        "review_level": "primary-author-book-selected-equations",
+        "review_scope": "Read14.1transfer/source/finite-ray boundary formulation. Isotropic slab/Fredholm normalization independently derived here;not DISORTpaper/table reproduction.",
+        "accessed_on": "2026-11-24"
+      }
+    ],
+    "citations": [
+      {
+        "id": "pbrt4-transfer",
+        "author": "Pharr,Jakob,Humphreys",
+        "year": 2023,
+        "title": "Physically Based Rendering4e,14.1The Equation of Transfer",
+        "url": "https://www.pbr-book.org/4ed/Light_Transport_II_Volume_Rendering/The_Equation_of_Transfer",
+        "review_level": "primary-author-book-selected-equations",
+        "review_scope": "Read14.1transfer/source/finite-ray boundary formulation. Isotropic slab/Fredholm normalization independently derived here;not DISORTpaper/table reproduction.",
+        "accessed_on": "2026-11-24"
+      }
+    ],
+    "gallery_figure": "isotropic-scattering-slab-preview.png",
+    "additional_figures": [
+      {
+        "file": "isotropic-scattering-slab-preview.png",
+        "caption": {
+          "ja": "保存した実計算場の科学プレビュー。",
+          "en": "Scientific preview from the actual saved numerical fields."
+        }
+      }
+    ]
+  }
+]

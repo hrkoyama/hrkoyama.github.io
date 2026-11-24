@@ -1,0 +1,144 @@
+"""Frozen small M1 flux components only; no PDE time series/reference regeneration."""
+from pathlib import Path
+import argparse,ast,json,hashlib,datetime,sys
+import numpy as np
+D=Path(__file__).resolve().parent
+sys.path.insert(0,str(D/'candidate'))
+import geometry,wavespeeds
+
+def direct_flux(u,axis):
+    E=u[0];f=u[1:]/E;q=np.sum(f*f);s=np.sqrt(4-3*q);a=(s-1)/3;c=3/(s+2)
+    p=np.array([E*(a+c*f[0]*f[0]),E*c*f[0]*f[1],E*(a+c*f[1]*f[1])])
+    return np.array([u[axis+1],p[0] if axis==0 else p[1],p[1] if axis==0 else p[2]])
+
+def jacobian(u,axis):
+    columns=[]
+    for j in range(3):
+        z=np.array(u,dtype=complex);z[j]+=1e-30j;columns.append(np.imag(direct_flux(z,axis))/1e-30)
+    return np.stack(columns,axis=1)
+
+def independent_cone_root(u,axis):
+    f=u[1:]/u[0];p=direct_flux(u,axis)[1:]/u[0];A=1-float(np.sum(f*f));B=float(f[axis]-sum(float(x)*float(y) for x,y in zip(f,p)));C=float(f[axis]**2-np.sum(p*p))
+    return (abs(B)+np.sqrt(B*B-A*C))/A
+
+def slack(u):return u[...,0]-np.sqrt(np.sum(u[...,1:]**2,axis=-1))
+
+def physical_flux(u,axis):return geometry.fluxes(np.array(u,float)[None,:])[axis][0]
+
+def split_valid(u,axis,a,sign):
+    flux=physical_flux(u,axis)
+    if a==0:return bool(np.max(abs(flux))==0 and slack(u)>=0)
+    v=u+sign*flux/a;tol=3e-12*max(1.,float(u[0]));return bool(np.isfinite(v).all() and v[0]>=-tol and slack(v)>=-tol)
+
+def main():
+    parser=argparse.ArgumentParser();parser.add_argument('--output',type=Path,required=True);args=parser.parse_args();out=args.output
+    assert not out.exists();out.mkdir(parents=True);checks={};details=[];arrays={}
+    def save():
+        data=dict(passed=bool(checks) and all(checks.values()),check_count=len(checks),checks=checks,details=details)
+        (out/'completed-checks.json').write_text(json.dumps(data,indent=2,allow_nan=False)+'\n')
+    def add(name,value,detail=None):
+        assert name not in checks;checks[name]=bool(value);details.append(dict(name=name,passed=bool(value),detail=detail));save()
+    try:
+        states=[np.array([E,E*f*np.cos(angle),E*f*np.sin(angle)]) for E in [.25,2.] for f in [0.,.1,.5,.9,.99] for angle in [0.,.3,1.1,2.2]]
+        arrays['interior_states']=np.array(states);js=[]
+        for i,u in enumerate(states):
+            for axis in [0,1]:
+                name=f'interior/{i}/axis{axis}';data=wavespeeds.wave_data(u,axis);a=float(data['speed']);J=jacobian(u,axis);js.append(J);eigs=np.linalg.eigvals(J)
+                add(name+'/independent-pressure-flux',np.max(abs(physical_flux(u,axis)-direct_flux(u,axis)))<=2e-13*max(1.,u[0]))
+                error=float(np.max(abs(np.sort(eigs.real)-np.sort(data['eigenvalues']))));add(name+'/complex-step-Jacobian-spectrum',np.max(abs(eigs.imag))<=2e-12 and error<=2e-11,{'maximum_error':error})
+                root=float(independent_cone_root(u,axis));add(name+'/independent-quadratic-cone-root',abs(float(data['cone_bound'])-root)<=2e-11)
+                expected=max(float(np.max(abs(eigs))),root,abs(float(u[axis+1]/u[0])));add(name+'/selected-causal-speed',abs(a-expected)<=2e-11 and 0<=a<=1+5e-12)
+                add(name+'/plus-split-cone',split_valid(u,axis,a,1));add(name+'/minus-split-cone',split_valid(u,axis,a,-1))
+        arrays['complex_step_jacobians']=np.array(js)
+        beams=[np.array(u,float) for u in [(1,1,0),(1,-1,0),(1,0,1),(1,0,-1),(5,3,4),(5,-3,4),(5,3,-4),(5,-3,-4)]]
+        for i,u in enumerate(beams):
+            for axis in [0,1]:
+                n=f'exact-beam/{i}/axis{axis}';data=wavespeeds.wave_data(u,axis);fn=float(u[axis+1]/u[0]);a=float(data['speed']);J=jacobian(u,axis)
+                add(n+'/streaming-flux',np.max(abs(physical_flux(u,axis)-fn*u))<=2e-13*max(1.,u[0]))
+                add(n+'/coalesced-symbolic-eigenvalue',np.max(abs(data['eigenvalues']-fn))<=2e-11 and bool(data['physical_cone_mask']))
+                add(n+'/directional-cone-limit',abs(a-abs(fn))<=2e-11 and abs(float(data['cone_bound'])-abs(fn))<=2e-11)
+                # Characteristic polynomial coefficients,not unstable eigvals
+                # of a potentially defective exact-beam Jacobian.
+                tr=float(np.trace(J));J2=np.einsum('ij,jk->ik',J,J,optimize=False);c2=.5*(tr*tr-float(np.trace(J2)));det=float(np.linalg.det(J))
+                add(n+'/characteristic-polynomial-limit',max(abs(tr-3*fn),abs(c2-3*fn*fn),abs(det-fn**3))<=2e-11)
+                add(n+'/plus-split',split_valid(u,axis,a,1));add(n+'/minus-split',split_valid(u,axis,a,-1))
+        for axis in [0,1]:
+            data=wavespeeds.wave_data(np.array([1.,0.,0.]),axis)
+            add(f'isotropic/{axis}/eigenvalues',np.max(abs(data['eigenvalues']-np.array([-1/np.sqrt(3),0,1/np.sqrt(3)])))<=2e-15)
+            add(f'isotropic/{axis}/cone-root',abs(float(data['cone_bound'])-1/3)<=2e-15)
+            add(f'isotropic/{axis}/selected-speed',abs(float(data['speed'])-1/np.sqrt(3))<=2e-15)
+        vac=np.array([0.,0.,0.]);negative=np.array([-1e-14,0.,0.]);outside=np.array([1.,1+1e-13,0.])
+        original=[x.copy() for x in [vac,negative,outside]]
+        for axis in [0,1]:
+            record=wavespeeds.diagnostics();data=wavespeeds.wave_data(vac,axis,record)
+            add(f'vacuum/{axis}/explicit-speed1',float(data['speed'])==1 and not bool(data['physical_cone_mask']))
+            add(f'vacuum/{axis}/zero-physical-flux',np.max(abs(physical_flux(vac,axis)))==0)
+            add(f'vacuum/{axis}/counted',record['vacuum_states']==1 and record['calls']==1)
+            record=wavespeeds.diagnostics();data=wavespeeds.wave_data(negative,axis,record)
+            add(f'tiny-negative/{axis}/speed-only-extension',float(data['speed'])==1 and not bool(data['physical_cone_mask']))
+            add(f'tiny-negative/{axis}/counted',record['tiny_negative_energy_states']==1)
+            record=wavespeeds.diagnostics();data=wavespeeds.wave_data(outside,axis,record)
+            add(f'roundoff-outside/{axis}/speed-only-extension',float(data['speed'])==1 and not bool(data['physical_cone_mask']))
+            add(f'roundoff-outside/{axis}/count-and-actual-max',record['outside_cone_roundoff_states']==1 and record['maximum_outside_cone_excess']==float(np.sum((outside[1:]/outside[0])**2)-1)>0)
+        for i,(old,current) in enumerate(zip(original,[vac,negative,outside])):add(f'extension/{i}/no-state-mutation',np.array_equal(old,current))
+        invalid=[[-1.,0.,0.],[-1e-14,1.,0.],[0.,.1,0.],[1.,1.01,0.],[np.nan,0.,0.],[1.,np.inf,0.]]
+        for i,u in enumerate(invalid):
+            for axis in [0,1]:
+                rejected=False
+                try:wavespeeds.wave_data(np.array(u,float),axis)
+                except ArithmeticError:rejected=True
+                add(f'invalid/{i}/axis{axis}',rejected)
+        for axis in [-1,2]:
+            rejected=False
+            try:wavespeeds.wave_data(np.array([1.,0.,0.]),axis)
+            except ValueError:rejected=True
+            add(f'invalid-axis/{axis}',rejected)
+        pairs=[([1,0,0],[2,0,0]),([.9,.18,.27],[1.1,-.4,.1]),([1,1,0],[2,2,0]),([0,0,0],[1,.2,.1]),([1,1,0],[1,-1,0])]
+        for i,(ll,rr) in enumerate(pairs):
+            left,right=np.array(ll,float),np.array(rr,float)
+            for axis in [0,1]:
+                al=wavespeeds.directional_speed(left,axis);ar=wavespeeds.directional_speed(right,axis);fl=physical_flux(left,axis);fr=physical_flux(right,axis);value=geometry.rusanov_face(left,right,fl,fr,al,ar)
+                expected=np.array([.5*(fl[j]+fr[j]-max(float(al),float(ar))*(right[j]-left[j])) for j in range(3)])
+                add(f'face/{i}/{axis}/scalar-flux-golden',np.max(abs(value-expected))<=2e-15)
+                opposite=geometry.rusanov_face(right,left,-fr,-fl,ar,al);add(f'face/{i}/{axis}/orientation-conservation',np.max(abs(value+opposite))<=2e-15)
+        for axis,u in [(1,np.array([1.,1.,0.])),(0,np.array([1.,0.,1.]))]:
+            fl=physical_flux(u,axis);fr=physical_flux(2*u,axis);a=wavespeeds.directional_speed(u,axis);b=wavespeeds.directional_speed(2*u,axis)
+            add(f'nonvacuum-transverse-beam/{axis}/zero-face-flux',float(a)==0 and float(b)==0 and np.max(abs(geometry.rusanov_face(u,2*u,fl,fr,a,b)))==0)
+        x=(np.arange(8)+.5)/8;xx,yy=np.meshgrid(x,x,indexing='ij');E=1+.1*np.cos(2*np.pi*(xx+yy));smooth=np.stack([E,.2*E*np.sin(2*np.pi*xx),.1*E*np.cos(2*np.pi*yy)],axis=-1)
+        fields=[np.broadcast_to([1.,0.,0.],(8,8,3)).copy(),np.broadcast_to([1.,1.,0.],(8,8,3)).copy(),smooth,np.zeros((8,8,3))]
+        for i,u in enumerate(fields):
+            for periodic in [False,True]:
+                h=1/8;dt=.1*h;record=wavespeeds.diagnostics();beam=np.ones(8);rhs,f1=geometry.moment_rhs(u,h,beam,periodic,record);euler=u+dt*rhs;rhs2,f2=geometry.moment_rhs(euler,h,beam,periodic,record);second=.5*(u+euler+dt*rhs2);name=f'operator/{i}/periodic{periodic}'
+                add(name+'/actual-boundary-energy-ledger',abs(h*h*np.sum(rhs[...,0])+f1)<=2e-13)
+                add(name+'/Euler-cone',np.isfinite(euler).all() and euler[...,0].min()>=-2e-12 and slack(euler).min()>=-2e-12)
+                add(name+'/SSPRK2-cone',np.isfinite(second).all() and second[...,0].min()>=-2e-12 and slack(second).min()>=-2e-12)
+                add(name+'/SSPRK2-actual-flux-ledger',abs(h*h*np.sum(second[...,0]-u[...,0])+.5*dt*(f1+f2))<=2e-13)
+                add(name+'/explicit-speed-diagnostics',record['calls']>0 and record['maximum_speed']<=1+5e-12 and record['maximum_outside_cone_excess']<=5e-12)
+        # Independent Lorentz-isotropic stress tensor,not the primary closure.
+        for i,(vx,vy) in enumerate([(0.,0.),(.2,.1),(.6,.3),(.95,0.)]):
+            for E0 in [.25,2.]:
+                gamma2=1/(1-vx*vx-vy*vy);u=np.array([E0*(4*gamma2-1)/3,4*E0*gamma2*vx/3,4*E0*gamma2*vy/3]);P=E0*np.eye(2)/3+4*E0*gamma2*np.array([[vx*vx,vx*vy],[vx*vy,vy*vy]])/3
+                for axis in [0,1]:
+                    data=wavespeeds.wave_data(u,axis);expected=np.r_[u[axis+1],P[:,axis]];name=f'boost/{i}/{E0}/axis{axis}'
+                    add(name+'/independent-stress-flux',np.max(abs(physical_flux(u,axis)-expected))<=2e-13*max(1.,u[0]))
+                    add(name+'/both-cone-splits',split_valid(u,axis,float(data['speed']),1) and split_valid(u,axis,float(data['speed']),-1))
+        for i,direction in enumerate([np.array([1.,0.]),np.array([.6,.8])]):
+            for delta in [1e-4,1e-8,1e-12]:
+                u=np.r_[1.,(1-delta)*direction]
+                for axis in [0,1]:
+                    data=wavespeeds.wave_data(u,axis);a=float(data['speed']);name=f'near-cone/{i}/{delta}/axis{axis}'
+                    add(name+'/nonnegative-radicand-finite-causal',np.isfinite(data['eigenvalues']).all() and np.isfinite(a) and 0<=a<=1+5e-12)
+                    add(name+'/both-cone-splits',split_valid(u,axis,a,1) and split_valid(u,axis,a,-1))
+        cfg=json.loads((D/'baseline/inputs.json').read_text());specs=[s for rows in cfg['cases'].values() for s in rows]+cfg['same_solver_controls']
+        for spec in specs:add('fixed-CFL/'+spec['id'],2*spec['final_time']*spec['cells']/spec['steps']<=1)
+        functions=lambda p:{n.name:ast.dump(n,include_attributes=False) for n in ast.parse(p.read_text()).body if isinstance(n,ast.FunctionDef)}
+        before,after=functions(D/'baseline/geometry.py'),functions(D/'candidate/geometry.py')
+        for name in ['pressure','fluxes','angular_rhs','moments','angular_pressure','packet','cell_initial']:add('unchanged-qualified-AST/'+name,before[name]==after[name])
+        assert len(checks)==762,len(checks)
+        result=dict(passed=all(checks.values()),check_count=len(checks),checks=checks,details=details,finished_at_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),PDE_time_series=0,reference_regenerations=0,scope='Fixed flux/Jacobian/cone/face/one-step components only; not a main PDE success or nonlinear Riemann-fan proof.')
+        (out/'qualification.json').write_text(json.dumps(result,indent=2,allow_nan=False)+'\n');print(json.dumps({'passed':result['passed'],'checks':len(checks)}))
+        if not result['passed']:raise SystemExit(1)
+    finally:
+        if arrays:np.savez(out/'component-arrays.npz',**arrays)
+        save()
+if __name__=='__main__':main()

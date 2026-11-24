@@ -1,0 +1,190 @@
+{
+  "id": "gbm-milstein-strong",
+  "passed": true,
+  "checks": {
+    "finite saved candidate arrays": true,
+    "declared Brownian grouping roundoff": true,
+    "em/n16/squared error calibration": true,
+    "em/n32/squared error calibration": true,
+    "em/n64/squared error calibration": true,
+    "em/n128/squared error calibration": true,
+    "em/sampled RMS order": true,
+    "milstein/n16/squared error calibration": true,
+    "milstein/n32/squared error calibration": true,
+    "milstein/n64/squared error calibration": true,
+    "milstein/n128/squared error calibration": true,
+    "milstein/sampled RMS order": true,
+    "finest Milstein advantage": true
+  },
+  "metrics": {
+    "methods": [
+      {
+        "method": "em",
+        "fixed_last_three_level_order": 0.4998402424562693,
+        "paired64block_jackknife_order_SE": 0.005081776686564279,
+        "levels": [
+          {
+            "steps": 16,
+            "sample_RMS": 0.03546853869286994,
+            "analytic_RMS": 0.03587672817493905,
+            "squared_error_SE": 2.097976302745995e-05,
+            "RMS_nominal95": [
+              0.03488406021479733,
+              0.03604354057172545
+            ]
+          },
+          {
+            "steps": 32,
+            "sample_RMS": 0.025165151018332176,
+            "analytic_RMS": 0.02527327799108889,
+            "squared_error_SE": 8.876035396356257e-06,
+            "RMS_nominal95": [
+              0.024817093223685645,
+              0.025508460076567263
+            ]
+          },
+          {
+            "steps": 64,
+            "sample_RMS": 0.017816206216199258,
+            "analytic_RMS": 0.017835633497176234,
+            "squared_error_SE": 4.05128352337309e-06,
+            "RMS_nominal95": [
+              0.0175919536760749,
+              0.018037670962047978
+            ]
+          },
+          {
+            "steps": 128,
+            "sample_RMS": 0.012585362493127097,
+            "analytic_RMS": 0.01259894455771596,
+            "squared_error_SE": 1.997492589267111e-06,
+            "RMS_nominal95": [
+              0.012428850934380906,
+              0.012739951437025162
+            ]
+          }
+        ],
+        "scope": "L2endpoint RMS; uncertainty is first computed on complete-path squared error,not independent-level regression."
+      },
+      {
+        "method": "milstein",
+        "fixed_last_three_level_order": 0.9964533189042089,
+        "paired64block_jackknife_order_SE": 0.003307644094798437,
+        "levels": [
+          {
+            "steps": 16,
+            "sample_RMS": 0.005694296746405224,
+            "analytic_RMS": 0.00575637004554713,
+            "squared_error_SE": 6.844976320449696e-07,
+            "RMS_nominal95": [
+              0.005575251091189529,
+              0.005810904072726739
+            ]
+          },
+          {
+            "steps": 32,
+            "sample_RMS": 0.0028808462540585045,
+            "analytic_RMS": 0.002900680886555887,
+            "squared_error_SE": 1.7007993941367778e-07,
+            "RMS_nominal95": [
+              0.0028223969571588184,
+              0.0029381330288580335
+            ]
+          },
+          {
+            "steps": 64,
+            "sample_RMS": 0.0014353709990780313,
+            "analytic_RMS": 0.0014560370611600836,
+            "squared_error_SE": 4.114602073259352e-08,
+            "RMS_nominal95": [
+              0.0014069986447226039,
+              0.0014631932967784152
+            ]
+          },
+          {
+            "steps": 128,
+            "sample_RMS": 0.0007237613790168262,
+            "analytic_RMS": 0.0007294519104131344,
+            "squared_error_SE": 1.035143974400747e-08,
+            "RMS_nominal95": [
+              0.0007096069931095287,
+              0.0007376442115564449
+            ]
+          }
+        ],
+        "scope": "L2endpoint RMS; uncertainty is first computed on complete-path squared error,not independent-level regression."
+      }
+    ],
+    "fine_driver_sha256": [
+      "0794acba8cd8fdeb082cb9d29a72fb8e832fe7866188a764e8830287d2ab927f",
+      "0b3d5dc28f3a8e4926bb77927716fd3e8a527bf6656c91df7c5cce5bd5f436d6",
+      "fd6162c066179bc3a267b4a95fd6ffb025aca0ecee80a07719fe021df36bea20",
+      "3930ed3f59a8122c2eb5ad97cf93df4880ecf303ca2851e5a33c61829fb95c88"
+    ],
+    "Brownian_association_error": 1.3322676295501878e-15,
+    "same_exact_endpoint_role": "One stored fine terminal array reused by both methods and every level; sums under different associations need not be bit identical."
+  },
+  "records": [
+    {
+      "seed": 47001,
+      "steps": [
+        16,
+        32,
+        64,
+        128
+      ],
+      "methods": [
+        "em",
+        "milstein"
+      ],
+      "candidate_file": "gbm-milstein-strong.npz",
+      "driver_sha256": "0794acba8cd8fdeb082cb9d29a72fb8e832fe7866188a764e8830287d2ab927f"
+    },
+    {
+      "seed": 47002,
+      "steps": [
+        16,
+        32,
+        64,
+        128
+      ],
+      "methods": [
+        "em",
+        "milstein"
+      ],
+      "candidate_file": "gbm-milstein-strong.npz",
+      "driver_sha256": "0b3d5dc28f3a8e4926bb77927716fd3e8a527bf6656c91df7c5cce5bd5f436d6"
+    },
+    {
+      "seed": 47003,
+      "steps": [
+        16,
+        32,
+        64,
+        128
+      ],
+      "methods": [
+        "em",
+        "milstein"
+      ],
+      "candidate_file": "gbm-milstein-strong.npz",
+      "driver_sha256": "fd6162c066179bc3a267b4a95fd6ffb025aca0ecee80a07719fe021df36bea20"
+    },
+    {
+      "seed": 47004,
+      "steps": [
+        16,
+        32,
+        64,
+        128
+      ],
+      "methods": [
+        "em",
+        "milstein"
+      ],
+      "candidate_file": "gbm-milstein-strong.npz",
+      "driver_sha256": "3930ed3f59a8122c2eb5ad97cf93df4880ecf303ca2851e5a33c61829fb95c88"
+    }
+  ],
+  "termination": "fixed_budget_completed"
+}

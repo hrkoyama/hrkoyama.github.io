@@ -1,0 +1,43 @@
+"""Independent continuum-space angular matrices and analytic diffusion oracles.
+
+No primary solver/operator import. Sparse SciPy expm_multiply is a declared shared
+primitive; qualification also uses separately specified DOP853 derivatives.
+"""
+import numpy as np
+from scipy.sparse import csr_matrix
+from scipy.sparse.linalg import expm_multiply
+
+
+def angular_rule(number,hemisphere=False):
+    if hemisphere:
+        x,w=np.polynomial.legendre.leggauss(number//2);p=.5*(x+1)
+        return np.r_[-p[::-1],p],np.r_[.5*w[::-1],.5*w]
+    return np.polynomial.legendre.leggauss(number)
+
+
+def continuum_matrix(mu,w,kappa,epsilon=1.,wavenumber=1.):
+    m=len(mu);A=np.zeros((m+1,m+1),complex)
+    A[np.arange(m),np.arange(m)]=(-kappa-1j*wavenumber*mu)/epsilon
+    A[:m,m]=kappa/epsilon;A[m,:m]=.5*kappa*w;A[m,m]=-kappa
+    return A
+
+
+def discrete_upwind_matrix(mu,w,kappa,h,epsilon=1.,wavenumber=1.):
+    A=continuum_matrix(mu,w,kappa,epsilon,wavenumber);m=len(mu)
+    streaming=-abs(mu)*(1-np.cos(wavenumber*h))/h-1j*mu*np.sin(wavenumber*h)/h
+    A[np.arange(m),np.arange(m)]=(-kappa+streaming)/epsilon
+    return A
+
+
+def action(A,time,initial):
+    if time==0:return np.asarray(initial,dtype=complex).copy()
+    return expm_multiply(csr_matrix(time*A),initial,traceA=time*np.trace(A))
+
+
+def moments(amplitudes,mu,w):
+    return np.array([.5*np.sum(w*amplitudes[:-1]),amplitudes[-1],.5*np.sum(w*mu*amplitudes[:-1])])
+
+
+def diffusion_amplitudes(initial_amplitude,scaled_time,kappa,epsilon=1.,wavenumber=1.,factor=1/3):
+    energy=initial_amplitude*np.exp(-factor*wavenumber*wavenumber*scaled_time/(epsilon+1))
+    return np.array([energy,energy,-1j*factor*wavenumber*energy/kappa],complex)

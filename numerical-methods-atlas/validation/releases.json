@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "edition": "2026-11-22",
-  "case_count": 83,
+  "case_count": 97,
   "releases": [
     {
       "group": "foundations",
@@ -579,6 +579,137 @@
         "dsmc-planar-shock"
       ],
       "tests": 20
+    },
+    {
+      "group": "lbm-cavity",
+      "edition": "2026-11-24",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/",
+      "archive": "atlas-lbm-cavity-2026-11-24.zip",
+      "archive_sha256": "94781f84128fa97fb59fe1a00a469352db69fcca082ce170fa3b881919f5cdda",
+      "manifest_sha256": "840d5366e967b00ce902ac881d9785ebdcbd110cfcf0b2f5a2cd15c654e9c690",
+      "verification_sha256": "52d15320dd9a967edcc92c7e66e9bb99b99db89e6f765c7ac33b28213dc64f59",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "lbm-cavity-re100"
+      ],
+      "tests": 22
+    },
+    {
+      "group": "lbm-taylor-green",
+      "edition": "2026-11-24",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/",
+      "archive": "atlas-lbm-taylor-green-2026-11-24.zip",
+      "archive_sha256": "90d6999a33f47bbf03f359dc63c5a8d6ab729c0f905a8aad292bd58d1a070a22",
+      "manifest_sha256": "b3970548ea98ed3f4d1f1e5813b12eadb6ebbfebb0c877a54cdaee2cf5902096",
+      "verification_sha256": "19eae401bd03c04f643579e45210cad612852b42c134573bbefe22582f1075c1",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "lbm-taylor-green"
+      ],
+      "tests": 22
+    },
+    {
+      "group": "lbm-annulus",
+      "edition": "2026-11-24",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/",
+      "archive": "atlas-lbm-annulus-2026-11-24.zip",
+      "archive_sha256": "c38c290902c1e344b4905b3141d0212000525f45d97b0104ed35c3b8d4f6eb1b",
+      "manifest_sha256": "0f5ae6b66e83fbfcf5b142c533caeddcdc78b0c7e4679da6567547231aa48c3c",
+      "verification_sha256": "db353908280ce48e35d925b11a6325dfccb2e40259588f688cde76cfbcacfaa6",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "lbm-annular-couette-control"
+      ],
+      "tests": 28
+    },
+    {
+      "group": "lbm-curved-boundary",
+      "edition": "2026-11-24",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/",
+      "archive": "atlas-lbm-curved-boundary-2026-11-24.zip",
+      "archive_sha256": "69757fbf7ccab53450d7bdf6ce3023cd6f5ca3b42698d2e8c7a383421a1c640d",
+      "manifest_sha256": "cac10700634effbdb134202fbaee4b257121293a3c501a15430f8cbd3848db6b",
+      "verification_sha256": "2c16481aa5f2081be0aea7ecd234e0c435d14f9e8bd587db9d879b6ff9b93807",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "lbm-cylinder-re20"
+      ],
+      "tests": 28
+    },
+    {
+      "group": "radiation-scattering",
+      "edition": "2026-11-24",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-scattering/",
+      "archive": "atlas-radiation-scattering-2026-11-24.zip",
+      "archive_sha256": "52323265fbea51e79d109b45acc8c4c69d210ac70a8f49ecac6d4fa1f16c33d9",
+      "manifest_sha256": "030a887ec8ff157149733ec9707960cdd5459f7d125352f632cc4f6c05cf6def",
+      "verification_sha256": "7c1bfd3319d1743eb6de888b52c7e7498954761ffb8e8c3f2b6d5c6d3754011f",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "isotropic-scattering-slab"
+      ],
+      "tests": 12
+    },
+    {
+      "group": "radiation-matter",
+      "edition": "2026-11-24-r2",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/",
+      "archive": "atlas-radiation-matter-2026-11-24-r2.zip",
+      "archive_sha256": "fe1e3d790bd9792d8781243dc4d5ff40d3491a181a11c795569f3f4e542ed7e6",
+      "manifest_sha256": "9786f8365507f141a6d3bebc3035e5177bc4a8ccec3ac747b8bd5a7eaed50aeb",
+      "verification_sha256": "cbbc27e98b13939b705bfdcd85593747dd7ef02e7b5eaf2d9ef2a838007107d0",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "su-olson-diffusion1996",
+        "su-olson-transport1997"
+      ],
+      "tests": 21
+    },
+    {
+      "group": "radiation-geometry",
+      "edition": "2026-11-24",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/",
+      "archive": "atlas-radiation-geometry-2026-11-24.zip",
+      "archive_sha256": "20a166a35e5e87275be4c1bcf12a31742b267ddc9f9a424a293852da53c672e0",
+      "manifest_sha256": "83fec8d3ed8a7b56fe191624cb2222c8720db4553ee2c28f5302ee5da8754d13",
+      "verification_sha256": "d98432e748b5b009d442b3a2fc4becff23c20f43fc9c012cce7d6fe74931e4d9",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "opposing-beams2d",
+        "shadow-absorber2d"
+      ],
+      "tests": 22
+    },
+    {
+      "group": "stochastic-accuracy",
+      "edition": "2026-11-24",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/",
+      "archive": "atlas-stochastic-accuracy-2026-11-24.zip",
+      "archive_sha256": "6a6ecc012df95853e20b2aa6db2fcceb8fce216872805a2b285c1f123a1e9801",
+      "manifest_sha256": "996edb048ee701274828fcbac37f400c6da4748e926c51825f256e64a61b86b4",
+      "verification_sha256": "1bf7faf0bc801f9206bbfa6e0072f7f3af2aae809d7154aa77aabae11c3d31a1",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "gbm-milstein-strong",
+        "gbm-weak-moments",
+        "ou-weak-moments"
+      ],
+      "tests": 21
+    },
+    {
+      "group": "stochastic-estimation",
+      "edition": "2026-11-24",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-estimation/",
+      "archive": "atlas-stochastic-estimation-2026-11-24.zip",
+      "archive_sha256": "313b9cb048b46d4dedd13dc214b7eb25de4fb72af01e267fa69da7e460f81ec3",
+      "manifest_sha256": "17ec6615e238e14afb92b67337262922ff12e299e9f5358457f16db7e6c81def",
+      "verification_sha256": "04589e7e1285b60e3d327c5772d392405e04f5fc9623a0850b38c9eaa9478f90",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "correlated-gaussian-mcmc",
+        "normal-tail-importance"
+      ],
+      "tests": 21
     }
   ]
 }

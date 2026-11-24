@@ -204,11 +204,17 @@ def load_depth_group(root, group, edition):
             assert hashlib.sha256(zipped.read(prefix+'/'+name)).hexdigest() == expected, 'Changed ZIP member: '+name
         assert hashlib.sha256(zipped.read(prefix+'/source-manifest.json')).hexdigest() == digest(file('source-manifest.json'))
 
-    # Failed, archived revisions remain in the manifest/ZIP, not active code links.
-    python_files = sorted(name for name in manifest['files']
-                          if name.endswith('.py') and 'attempts' not in PurePosixPath(name).parts)
-    tests = [name for name in python_files if PurePosixPath(name).name.startswith('test_')]
-    code = [name for name in python_files if name not in tests and PurePosixPath(name).name not in ('plot.py', '__init__.py')]
+    # Preserve existing Python links; add native sources only when case metadata
+    # explicitly declares them, rather than exposing archived/reference C++ files.
+    native_files = {name for case in metadata for name in case.get('code_files', [])
+                    if PurePosixPath(name).suffix == '.cpp'}
+    assert native_files <= manifest['files'].keys(), 'Unknown case-specific native source'
+    source_files = sorted(name for name in manifest['files']
+                          if (name.endswith('.py') or name in native_files)
+                          and 'attempts' not in PurePosixPath(name).parts)
+    tests = [name for name in source_files
+             if name.endswith('.py') and PurePosixPath(name).name.startswith('test_')]
+    code = [name for name in source_files if name not in tests and PurePosixPath(name).name not in ('plot.py', '__init__.py')]
     assert 'run.py' in code and tests
     code = _code_order(code, metadata)
     sources = {base.lstrip('/')+'source-manifest.json': digest(file('source-manifest.json')),

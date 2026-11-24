@@ -1,0 +1,15 @@
+{
+  "started_at_utc": "2026-11-23T22:11:52.964268+00:00",
+  "protocol_sha256": "71b464fd008d3cfa565c165d727ea2d5553c9d4fccab566b932491c7d391e206",
+  "review_sha256": "500068772e1044ce0451ec7df875a32b573f1dc6008d6bd874445004d6aa5897",
+  "deadline_seconds": 30,
+  "source_bindings": 8,
+  "scope": "Exactly one component checker: compile plus reset one-step goldens/timing; no main PDE trajectory or reference generation",
+  "passed": true,
+  "returncode": 0,
+  "timed_out": false,
+  "completed_at_utc": "2026-11-23T22:11:57.147891+00:00",
+  "elapsed_seconds": 4.183360209004604,
+  "changed_bound_files": [],
+  "checks": 58
+}

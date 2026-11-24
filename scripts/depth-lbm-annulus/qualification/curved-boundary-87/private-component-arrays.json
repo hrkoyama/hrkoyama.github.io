@@ -1,0 +1,47 @@
+{
+  "arrays": [
+    {
+      "path": "attempt01/results/intended-invalid-density.npz",
+      "sha256": "948d68c68a64d5306f25e6fef8ca40522934afb6286d3e5efea696f484fc8ad0",
+      "bytes": 1890,
+      "retention": "PRIVATE_FULL_COMPONENT_ARRAYS_NOT_INCLUDED_PUBLIC"
+    },
+    {
+      "path": "attempt01/results/intended-missing-neighbor.npz",
+      "sha256": "64f0c4b3ced13ca0596682868216ddcf04dc69dffd9853eb2689f35ccf368d52",
+      "bytes": 1905,
+      "retention": "PRIVATE_FULL_COMPONENT_ARRAYS_NOT_INCLUDED_PUBLIC"
+    },
+    {
+      "path": "attempt01/results/legacy-annulus.npz",
+      "sha256": "dbc8cd2812fa37eb3f4990d09c2e626739a6c02dcfd88a61e85f3beee4c5eafa",
+      "bytes": 33445,
+      "retention": "PRIVATE_FULL_COMPONENT_ARRAYS_NOT_INCLUDED_PUBLIC"
+    },
+    {
+      "path": "attempt01/results/legacy-cavity.npz",
+      "sha256": "628c4645c1a4d65efb9af765b3756a9b5baa776a26a9c9857d9e646438cfc44a",
+      "bytes": 6759,
+      "retention": "PRIVATE_FULL_COMPONENT_ARRAYS_NOT_INCLUDED_PUBLIC"
+    },
+    {
+      "path": "attempt01/results/legacy-periodic.npz",
+      "sha256": "1ff0cd4e6f2801d5ce46af9c80cb9422c253526886ed58c796d9fe748467729d",
+      "bytes": 6541,
+      "retention": "PRIVATE_FULL_COMPONENT_ARRAYS_NOT_INCLUDED_PUBLIC"
+    },
+    {
+      "path": "attempt01/results/quadratic-NEE-cylinder.npz",
+      "sha256": "30948a204766bcbcdd7bac20b7fc92087c2b823de473e229be96be86a4b2dd71",
+      "bytes": 1682803,
+      "retention": "PRIVATE_FULL_COMPONENT_ARRAYS_NOT_INCLUDED_PUBLIC"
+    },
+    {
+      "path": "attempt01/results/quadratic-annulus.npz",
+      "sha256": "cacbb1346a3516014cb4bf1d212ef61808e2911467561fcbf39d0af3af051ae6",
+      "bytes": 33429,
+      "retention": "PRIVATE_FULL_COMPONENT_ARRAYS_NOT_INCLUDED_PUBLIC"
+    }
+  ],
+  "scope": "Fullarraysretainedprivateatoriginalcomponent;frozenprotocol/source/reviews/results/receipt/timingtextareincluded. Componentqualificationisdistinctfromactivecasemain."
+}

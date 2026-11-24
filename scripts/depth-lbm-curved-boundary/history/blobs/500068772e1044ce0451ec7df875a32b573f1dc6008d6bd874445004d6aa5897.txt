@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "status": "STATIC_R3_COMPONENT_PREFLIGHT_PASS_AWAITING_ROOT_AUTHORIZATION",
+  "reviewer": "/root/batch_weno",
+  "finished_at_utc": "2026-11-23T22:11:23.668254+00:00",
+  "protocol_sha256": "71b464fd008d3cfa565c165d727ea2d5553c9d4fccab566b932491c7d391e206",
+  "all8_bindings_match": true,
+  "prior_review_sha256": "1eb47d3464a7384ea3bab4e9507e530cc43ddbd534795a0797b8fd73d2b23c7e",
+  "prior_review_preserved": true,
+  "prior_unexecuted_sources_retained": [
+    "component-attempts/proposal-01-unexecuted",
+    "component-attempts/proposal-02-unexecuted"
+  ],
+  "changes_reviewed": [
+    {
+      "id": "L1",
+      "resolved": true,
+      "finding": "Only fraction fixture uses periodic-xCouette now. Every boundary diagonal has a valid behind-fluid neighbor for q<.5; no corner missing-back condition is relabeled as a numeric failure. Five fraction values,3checks each and58total retained."
+    },
+    {
+      "id": "L2",
+      "resolved": true,
+      "finding": "NativeCompileFailure carries a preinitialized receipt. TimeoutExpired retains command,15s cap,sourceSHA,partial stdout/stderr with safe bytes decoding; OSerror and nonzero compiler status also retain evidence. Checker writes compiler.json even when constructor fails. Numeric kernel/advance path unchanged."
+    }
+  ],
+  "unchanged_core": {
+    "source/kernel.cpp": true,
+    "source/geometry.py": true,
+    "source/reference_step.py": true
+  },
+  "acceptance_unchanged": true,
+  "planned_checks": 58,
+  "deadline_seconds": 30,
+  "compile_timeout_seconds": 15,
+  "consistent_R1_findings_remain": [
+    "17argument extern-C/ctypes ABI,int32geometry,float64C-contiguousq-majorstate/history,valid fixed internal geometry.",
+    "Independent scalar one-step collision/stream/open-boundary formulas match the native equations within declared tolerance; no bit-match claim.",
+    "Moving-wall rho_ref1 declared; curved interpolation mass error is reported via wall/open ledger rather than repaired.",
+    "Movinglid/corner globalmass,openmoments,bodyimpulse/torque,analyticcircleanchors,invalidtau/nonpositive density/failedstate retention are covered.",
+    "58check count and alltrue required;16same-resetone-step timings are workload projections rather than a main/PDE validation."
+  ],
+  "blocking_findings": [],
+  "component_executed": false,
+  "compiler_or_solver_imported_by_reviewer": false,
+  "source_or_PUB_or_Git_edits": false,
+  "execution_authorized_by_this_review": false,
+  "main_authorized": false,
+  "summary_ja": "R3差分の独立静的PASS。8bindings一致、q<.5fixtureとcompiler失敗出力保持の2blocking解消。kernel/geometry/scalar/58criteria/30souter/15scompile不変、旧未実行版とR1review保持。成分未実行、親別認可待ち。"
+}

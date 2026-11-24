@@ -1,0 +1,71 @@
+"""Separate actual1996diffusion and1997angulartransport; all fixed inputs."""
+import numpy as np
+import diffusion,transport
+from references.analytic import closed_step
+from io_contract import ROOT,case,check,checkpoint,save_fields,run
+
+
+def compare(out,rx,rt,reference):
+    indices=[int(np.argmin(abs(out['times']-t))) for t in rt]
+    if not np.allclose(out['times'][indices],rt,rtol=0,atol=1e-13):raise ValueError('Wrong saved benchmark times')
+    sampled=np.array([[np.interp(rx,out['x'],out['states'][i,j]) for j in range(2)] for i in indices]).transpose(0,2,1)
+    error=sampled-reference
+    return sampled,np.sqrt(np.mean(error*error,axis=(0,1))),np.max(abs(error),axis=(0,1))
+
+
+def capacity_controls(c,limits,control):
+    details=[]
+    dt=control['dt'];steps=int(round(control['final_time']/dt));on_steps=int(round(control['source_off']/dt))
+    for epsilon in control['epsilon']:
+        initial_u,initial_v,q=control['initial_u'],control['initial_v'],control['source']
+        exact_u,exact_v=closed_step(initial_u,initial_v,control['source_off'],epsilon,q);exact_u,exact_v=closed_step(exact_u,exact_v,control['final_time']-control['source_off'],epsilon,0.)
+        u,v=initial_u,initial_v
+        for step in range(steps):u,v=diffusion.closed_advance(u,v,dt,epsilon,q if step<on_steps else 0.)
+        mu,w=transport.angles(8);I=np.full((8,8),initial_u);V=np.full(8,initial_v)
+        for step in range(steps):
+            source=np.full(8,q if step<on_steps else 0.);a,b,_=transport.rhs(I,V,mu,w,1/8,epsilon,source,periodic=True);ii=I+dt*a;vv=V+dt*b
+            a,b,_=transport.rhs(ii,vv,mu,w,1/8,epsilon,source,periodic=True);I=.5*(I+ii+dt*a);V=.5*(V+vv+dt*b)
+        E=.5*np.sum(w[:,None]*I,axis=0)
+        for name,uu,vv in [('diffusion',np.asarray(u),np.asarray(v)),('transport',E,V)]:
+            error=float(max(np.max(abs(uu-exact_u)),np.max(abs(vv-exact_v))));budget=float(np.max(abs(epsilon*uu+vv-(epsilon*initial_u+initial_v+q*control['source_off']))))
+            check(c,f'capacity/{epsilon}/{name}/error',error,limits['closed_capacity_error'],error<=limits['closed_capacity_error'])
+            check(c,f'capacity/{epsilon}/{name}/budget',budget,limits['closed_capacity_budget'],budget<=limits['closed_capacity_budget'])
+            details.append(dict(epsilon=epsilon,method=name,error=error,budget=budget))
+    return details
+
+
+def execute(cfg,limits,output,cases):
+    for ident,table in cfg['cases'].items():
+        c=case(ident);cases.append(c);checkpoint(output,cases);diffusive='diffusion' in ident
+        filename='diffusion-reference.npz' if diffusive else 'transport-reference.npz'
+        with np.load(ROOT/'references'/filename,allow_pickle=False) as f:rx,rt,reference=f['x'],f['times'],f['values']
+        records=[];fields=[];csv=[]
+        for spec in table:
+            name=ident+'-'+spec['id'];out=diffusion.solve(spec,output/(name+'-failed-state.npz')) if diffusive else transport.solve(spec,output/(name+'-failed-state.npz'))
+            out['history_columns']=np.array(['time','weighted_total','boundary_source_ledger','budget_defect','minimum_radiation','minimum_material','algebraic_residual' if diffusive else 'courant'])
+            save_fields(output,name,out) # Retain completed candidate before any diagnostic can fail.
+            sampled,error,maximum=compare(out,rx,rt,reference);out['reference_x']=rx;out['reference_times']=rt;out['reference_values']=reference;out['sampled_values']=sampled;save_fields(output,name,out)
+            h=out['history'];row={**spec,'id':name,'fields':name+'.npz','reference_rms':error.tolist(),'reference_linf':maximum.tolist()};c['records'].append(row);records.append(row);fields.append(out)
+            check(c,name+'/finite-positive',float(h[:,4:6].min()),-limits['negative_energy'],np.isfinite(h).all() and h[:,4:6].min()>=-limits['negative_energy'])
+            check(c,name+'/energy-budget',float(h[:,3].max()),limits['budget'],h[:,3].max()<=limits['budget'])
+            check(c,name+'/fixed-final-time',float(out['times'][-1]),spec['times'][-1],out['times'][-1]==spec['times'][-1])
+            if not diffusive:check(c,name+'/explicit-courant',float(h[:,6].max()),limits['transport_courant'],h[:,6].max()<=limits['transport_courant'])
+            csv.append([spec['cells'],spec['length'],spec.get('ordinates',0),spec['max_dt'],*error,*maximum,float(h[:,3].max())]);checkpoint(output,cases)
+        for i in [1,2]:
+            ratio=float(np.max(np.array(records[i]['reference_rms'])/np.maximum(records[i-1]['reference_rms'],1e-300)))
+            check(c,'refinement/'+str(i),ratio,limits['refinement_ratio'],ratio<=limits['refinement_ratio'])
+        fine=records[2];bound=limits['diffusion_finest_rms' if diffusive else 'transport_finest_rms'];linf=limits['diffusion_finest_linf' if diffusive else 'transport_finest_linf']
+        check(c,'finest-independent-rms',fine['reference_rms'],bound,max(fine['reference_rms'])<=bound)
+        check(c,'finest-independent-linf',fine['reference_linf'],linf,max(fine['reference_linf'])<=linf)
+        for i,spec in enumerate(table):
+            if spec['family']=='time-probe':
+                difference=float(np.max(np.sqrt(np.mean((fields[i]['sampled_values']-fields[2]['sampled_values'])**2,axis=(0,1)))))
+                fraction=difference/max(max(fine['reference_rms']),1e-300);check(c,'separate-time-sensitivity',fraction,limits['time_probe_fraction'],fraction<=limits['time_probe_fraction'])
+            elif spec['family']=='domain-probe':
+                difference=float(np.max(abs(fields[i]['sampled_values']-fields[2]['sampled_values'])));check(c,'finite-domain-sensitivity',difference,limits['finite_domain_change'],difference<=limits['finite_domain_change'])
+            elif spec['family']=='angle-probe':
+                difference=float(np.max(abs(fields[i]['sampled_values']-fields[2]['sampled_values'])));check(c,'separate-angular-sensitivity',difference,limits['transport_angular_change'],difference<=limits['transport_angular_change'])
+        c['metrics']=dict(completed_primary_runs=len(records),reference_scope='independent official diffusion integrals' if diffusive else 'pinned2023author-providedanalyticaltransporttable;original1997table not directly verified',capacity_controls=capacity_controls(c,limits,cfg['closed_capacity_controls']))
+        np.savetxt(output/(ident+'.csv'),np.array(csv),delimiter=',',header='cells,length,ordinates,max_dt,rms_radiation,rms_material,linf_radiation,linf_material,max_budget',comments='',fmt='%.16e')
+        c['passed']=bool(all(c['checks'].values()));checkpoint(output,cases)
+if __name__=='__main__':run(execute)

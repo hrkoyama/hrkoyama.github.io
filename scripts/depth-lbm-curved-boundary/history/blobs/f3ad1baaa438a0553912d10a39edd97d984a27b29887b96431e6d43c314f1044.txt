@@ -1,0 +1,135 @@
+"""One fixed saved-data audit; no LBM evolution, source patch or reference generation."""
+import argparse
+from datetime import datetime,timezone
+import hashlib,json
+from pathlib import Path
+import time,traceback
+
+def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+def dump(path,value):Path(path).write_text(json.dumps(value,ensure_ascii=False,indent=2,allow_nan=False)+'\n')
+
+def main():
+    parser=argparse.ArgumentParser();parser.add_argument('--protocol',type=Path,required=True)
+    parser.add_argument('--output',type=Path,required=True);args=parser.parse_args()
+    protocol=json.loads(args.protocol.read_text());files=protocol['files']
+    for name,row in files.items():
+        if sha(row['path'])!=row['sha256']:raise ValueError('Frozen saved input changed: '+name)
+    if args.output.exists():raise ValueError('Fresh audit output required')
+    args.output.mkdir(parents=True);start=time.monotonic();records=[];arrays={};failure=None;checks={}
+    report=dict(schema_version=1,audit_completed=False,started_at_utc=datetime.now(timezone.utc).isoformat(),
+                protocol_sha256=sha(args.protocol),records=records,checks=checks,
+                evolution_executions=0,reference_regenerations=0,source_or_criteria_changes=False)
+    try:
+        import numpy as np
+        def rms(a):return float(np.sqrt(np.mean(a*a)))
+        for n in [40,60,80]:
+            with (np.load(files[f'annulus_{n}']['path'],allow_pickle=False) as z,
+                  np.load(files[f'annulus_diagnostics_{n}']['path'],allow_pickle=False) as d):
+                x=z['x']-.5;y=z['y']-.5;r=np.sqrt(x*x+y*y);theta=np.arctan2(y,x)
+                p=d['p'];exact=d['exact_p'];u=d['u'];target=d['exact_u'];error=p-exact
+                checks[f'{n}/saved-shape-finite']=bool(p.shape==exact.shape==(len(x),) and u.shape==target.shape==(2,len(x)) and
+                    all(np.isfinite(a).all() for a in [x,y,p,exact,u,target]))
+                if not checks[f'{n}/saved-shape-finite']:raise ValueError('Invalid saved annular arrays')
+                edges=np.linspace(.2,.4,13);bins=np.searchsorted(edges,r,side='right')-1
+                counts=np.bincount(bins,minlength=12)
+                if np.any(bins<0) or np.any(bins>=12) or np.any(counts==0):raise ValueError('Fixed radial bin inventory failed')
+                radial_means=np.bincount(bins,weights=error,minlength=12)/counts
+                radial=radial_means[bins];angular=error-radial;scale=rms(exact)
+                fit=float(np.sum(p*exact)/np.sum(exact*exact))
+                modes=[]
+                for mode in range(1,9):
+                    modes.append(dict(mode=mode,cos_projection=float(2*np.mean(error*np.cos(mode*theta))),
+                                      sin_projection=float(2*np.mean(error*np.sin(mode*theta)))))
+                radial_velocity=(u[0]*x+u[1]*y)/r
+                reference_radial_velocity=(target[0]*x+target[1]*y)/r
+                mask=z['mask'].astype(bool);dx=float(z['dx']);interior=mask.copy()
+                for axis in [0,1]:
+                    for offset in [-2,-1,1,2]:interior &= np.roll(mask,offset,axis=axis)
+                full=[]
+                for values in [u[0],u[1],p]:
+                    field=np.zeros(mask.shape);field[mask]=values;full.append(field)
+                ux,uy,pressure=full
+                def derivative(a,axis):return (np.roll(a,-1,axis)-np.roll(a,1,axis))/(2*dx)
+                def lap(a):return (np.roll(a,-1,0)+np.roll(a,1,0)+np.roll(a,-1,1)+np.roll(a,1,1)-4*a)/dx**2
+                rx=ux*derivative(ux,1)+uy*derivative(ux,0)+derivative(pressure,1)-.01*lap(ux)
+                ry=ux*derivative(uy,1)+uy*derivative(uy,0)+derivative(pressure,0)-.01*lap(uy)
+                checks[f'{n}/orthogonal-radial-bin-decomposition']=bool(abs(np.mean(error*error)-np.mean(radial*radial)-np.mean(angular*angular))<=1e-20)
+                checks[f'{n}/interior-FD-support']=bool(np.count_nonzero(interior)>0 and np.isfinite(rx[interior]).all() and np.isfinite(ry[interior]).all())
+                records.append(dict(kind='annulus-saved-fields',n=n,pressure_error_relative=rms(error)/scale,
+                    exact_pressure_RMS=scale,radial_bin_mean_error_relative=rms(radial)/scale,
+                    within_radial_bin_angular_error_relative=rms(angular)/scale,
+                    diagnostic_best_pressure_scale=fit,scale_fit_is_not_used_for_acceptance=True,
+                    qualified_reference_derivation='u_theta=Ar+B/r; dp/dr=u_theta^2/r integrates to .5A^2r^2+2ABlogr-.5B^2/r^2+C. This audit reads saved exact_p; the original radial/Cartesian analytic tests already ran in retained22pytest, not regenerated here.',
+                    radial_velocity_RMS=rms(radial_velocity),reference_radial_velocity_RMS=rms(reference_radial_velocity),
+                    radial_velocity_maximum=float(np.max(abs(radial_velocity))),
+                    angular_projections=modes,projection_scope='Descriptive unweighted projections,not an orthogonal complete Fourier energy decomposition on cut geometry.',
+                    interior_centered_FD_residual_RMS=rms(np.r_[rx[interior],ry[interior]]),
+                    FD_scope='Postprocess saved fields away from two-link boundary neighborhood; not a new solver/reference or a passed residual gate.',
+                    total_saved_wall_mass=float(np.sum(z['history'][:,13])),
+                    max_saved_wall_mass_step=float(np.max(abs(z['history'][:,13])))))
+                arrays.update({f'{n}_pressure_error':error,f'{n}_radial_bin_component':radial,
+                               f'{n}_angular_residual':angular,f'{n}_radial_edges':edges,f'{n}_radial_counts':counts,
+                               f'{n}_radial_velocity':radial_velocity,f'{n}_FD_interior_mask':interior.astype(np.uint8),
+                               f'{n}_FD_rx':rx,f'{n}_FD_ry':ry})
+                dump(args.output/'partial-audit.json',report)
+        with np.load(files['failed_candidate']['path'],allow_pickle=False) as z:
+            f=z['f'];history=z['history'];status=z['native_status'];dx=.01
+            xaxis=np.arange(221)*dx;yaxis=(np.arange(41)+.5)*dx
+            X,Y=np.meshgrid(xaxis,yaxis);mask=np.sqrt((X-.2)**2+(Y-.2)**2)>.05
+            x=X[mask];y=Y[mask];checks['cylinder/saved-node-count']=f.shape==(9,len(x))
+            if not checks['cylinder/saved-node-count']:raise ValueError('Failed-state geometry inventory mismatch')
+            rho=np.sum(f,axis=0);finite_nodes=np.isfinite(f).all(axis=0)&np.isfinite(rho)
+            valid=finite_nodes&(rho>0);bad=np.flatnonzero(~valid);index=int(status[2])
+            order=np.argsort(np.where(np.isfinite(rho),rho,np.inf),kind='stable')[:20]
+            locations=[]
+            for j in order:
+                locations.append(dict(node=int(j),x=float(x[j]),y=float(y[j]),rho=float(rho[j]) if np.isfinite(rho[j]) else None,
+                    distance_from_circle=float(np.hypot(x[j]-.2,y[j]-.2)-.05),
+                    distance_from_y_wall=float(min(y[j],.41-y[j])),distance_from_open=float(min(x[j],2.2-x[j]))))
+            checks['cylinder/saved-failure-status']=bool(status.tolist()==[265,265,4379] and len(history)==265)
+            vectors=[(0,0),(1,0),(0,1),(-1,0),(0,-1),(1,1),(-1,1),(-1,-1),(1,-1)]
+            links=[];point=np.array([x[index],y[index]])
+            for incoming,(cx,cy) in enumerate(vectors):
+                source_point=point-dx*np.array([cx,cy]);back_point=point+dx*np.array([cx,cy])
+                detail=dict(incoming_q=incoming,c_in=[cx,cy],current_saved_population=float(f[incoming,index]) if np.isfinite(f[incoming,index]) else None,
+                            source_point=source_point.tolist(),back_point=back_point.tolist())
+                if source_point[0]<0 or source_point[0]>2.2:detail['kind']='open'
+                elif source_point[1]<0 or source_point[1]>.41:detail['kind']='flat-wall'
+                elif float(np.hypot(source_point[0]-.2,source_point[1]-.2))<=.05:
+                    direction=-dx*np.array([cx,cy]);offset=point-np.array([.2,.2])
+                    aa=float(np.sum(direction*direction));bb=2*float(np.sum(offset*direction));cc=float(np.sum(offset*offset)-.05**2)
+                    discriminant=bb*bb-4*aa*cc
+                    roots=[(-bb-np.sqrt(discriminant))/(2*aa),(-bb+np.sqrt(discriminant))/(2*aa)]
+                    q=min(value for value in roots if value>0 and value<=1+2e-12)
+                    back_valid=(0<=back_point[0]<=2.2 and 0<back_point[1]<.41 and np.hypot(back_point[0]-.2,back_point[1]-.2)>.05)
+                    detail.update(kind='cylinder-link',outgoing_c=[-cx,-cy],fraction=float(q),back_is_fluid=bool(back_valid),
+                                  branch='short' if q<.5 else 'long',
+                                  interpolation_coefficients=[float(2*q),float(1-2*q)] if q<.5 else [float(1/(2*q)),float((2*q-1)/(2*q))],
+                                  moving_wall_correction=0.,
+                                  previous_post_collision_populations_available=False,
+                                  accounting_limit='Cannot reconstruct the previous per-link fin/fout from this saved final f alone; no fabricated link impulse or collision at nonpositive density.')
+                else:detail['kind']='fluid'
+                links.append(detail)
+            arrays.update(cylinder_failed_f=f,cylinder_rho=rho,cylinder_x=x,cylinder_y=y,
+                          cylinder_invalid_density_nodes=bad,cylinder_history=history,cylinder_native_status=status)
+            records.append(dict(kind='cylinder-saved-failure',completed_steps=int(status[0]),failing_step=int(status[1]),
+                failing_node=index,failing_coordinate=[float(x[index]),float(y[index])],
+                finite_population_count=int(np.count_nonzero(np.isfinite(f))),population_count=f.size,
+                invalid_density_or_nonfinite_node_count=len(bad),minimum_finite_rho=float(np.min(rho[finite_nodes])),
+                twenty_lowest_density_nodes=locations,initial_history_max_Mach=float(history[0,9]),
+                failing_node_link_geometry_and_interpolation=links,
+                final_completed_history_max_Mach=float(history[-1,9]),largest_saved_history_Mach=float(np.max(history[:,9])),
+                saved_history_rho_minimum=float(np.min(history[:,10])),
+                cause_scope='Location/history evidence only; neither a diagnosed unique instability mechanism nor permission to change tau/BC/criteria.'))
+        np.savez_compressed(args.output/'audit-fields.npz',**arrays)
+        report['audit_completed']=len(records)==4 and len(checks)==11 and all(checks.values())
+    except Exception as error:
+        failure=dict(type=type(error).__name__,message=str(error));(args.output/'traceback.txt').write_text(traceback.format_exc())
+    report.update(failure=failure,elapsed_seconds=time.monotonic()-start,finished_at_utc=datetime.now(timezone.utc).isoformat(),
+                  source_posthash_mismatches=[name for name,row in files.items() if sha(row['path'])!=row['sha256']],
+                  scientific_qualification_status='Original curved attempt remains failed; all diagnostics are saved-data postprocessing only.')
+    report['audit_completed']=bool(report['audit_completed'] and failure is None and not report['source_posthash_mismatches'])
+    dump(args.output/'result.json',report);print(json.dumps(dict(audit_completed=report['audit_completed'],records=len(records),checks=len(checks),failure=failure)))
+    return 0 if report['audit_completed'] else 1
+
+if __name__=='__main__':raise SystemExit(main())

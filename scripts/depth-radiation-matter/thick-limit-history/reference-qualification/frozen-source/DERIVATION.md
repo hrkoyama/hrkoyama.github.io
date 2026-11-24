@@ -1,0 +1,21 @@
+# Matched optically thick control — static proposal, unexecuted
+
+Use physical c=1, periodic x in[0,2pi), k=1, no source, epsilon1 and absorption/re-emission coefficient kappa=4,8,16. The actual existing signed-angle FV operator is reused through
+
+    physical_rhs(I,V,mu,w,h,epsilon) = kappa * transport.rhs(I,V,mu,w,kappa*h,epsilon,0,periodic=True).
+
+Thus epsilon I_t+mu I_x=kappa(V-I), V_t=kappa(E-V), E=.5 sum(w I), F=.5 sum(w mu I). The periodic weighted total is integral(epsilon E+V)dx. The mean free path is1/kappa, not epsilon. Multiplying only the radiation row would change the physical capacity/exchange model and is not allowed.
+
+The physical initial data are I=V=1+.1cos(x). For every FV cell, use the actual cell mean with amplitude A_N=.1 sin(h/2)/(h/2), center x_j=(j+.5)h. The continuum/angular and analytic-diffusion comparisons use the same cell-average amplitude. Fourier-basis probes use unit cos/sin amplitude without an additional sinc factor.
+
+The hydrodynamic expansion gives I=E-mu E_x/kappa+O(kappa^-2), hence F=-E_x/(3kappa)+O(kappa^-2). With E approximately V, the total-energy equation is (epsilon+1)E_t=E_xx/(3kappa). At t=kappa*s the matched diffusion amplitude is A_N exp[-s/(3(epsilon+1))]. The radiation diffusion coefficient is1/(3kappa); the effective energy decay coefficient includes the additional capacity epsilon+1. The cell-mean flux amplitude is -i A_N exp[-s/6]/(3kappa) at epsilon1.
+
+Initially the actual flux is0 while the Fick flux is nonzero. This is a fast physical initial layer, not a failed sign test or a reason to change the initial data. Save/report all s=0,.0625,.125,.25. All asymptotic convergence/accuracy and wrong-sign/wrong-1/3 checks use the predeclared final s=.25 only. Do not divide by s or a zero-time decay change.
+
+For each physical N=128,512,2048, the single-mode generator of dimension(ordinates+1) is obtained by two REAL basis probes per column on5virtual cells centered at x=0. The center stencil does not touch the periodic wrap. Its complex column is the center response to cos+i sin. This exactly represents the actual periodic FV/S_N operator on a single k=1mode; it is not a different toy transport equation. Propagate the complex amplitudes with scipy.linalg.expm and reconstruct all actual Ncell fields at the four fixed physical times. This is exact-in-time semidiscrete evolution; it does not retest SSPRK2 temporal truncation or certify the full primary transient time integrator.
+
+The independent continuum-space angular matrix uses diag(-kappa/epsilon-i*k*mu/epsilon), radiation/material coupling kappa/epsilon, material angular mean kappa*w/2 and material diagonal -kappa. Build it algebraically without the primary stencil or its probe routine. Qualify full-interval GL64/128 moment sensitivity, and separately evaluate the same continuum-space matrix on the primary hemisphere-Gauss32measure to isolate angular from FV-space error. The SciPy expm primitive is shared and explicitly declared; the matrices/continuum limit are independently specified. An independent analytic k=0exchange golden and diffusion coefficient/sign controls qualify normalization and capacity.
+
+Use separate final errors: (a)FV minus continuum-space S32, (b)continuum S32 minus GL128, (c)continuum GL128 minus analytic diffusion, and(d)FV minus analytic diffusion. Normalize by A_N, not the background1. Scale flux error by kappa before division by A_N. The continuum-limit error is expected O(kappa^-2) after the initial layer, while FV upwind viscosity contributes O(kappa*h). Here N scales kappa^2, so kappa*h=pi/16,pi/32,pi/64 tends downward; this is a mean-free-path-resolved joint limit. No fixed-grid AP property is claimed. Joint FV/limit errors may have cancelling components; report them all and require finest accuracy plus separately decreasing space/continuum errors, rather than fit a guaranteed joint order.
+
+All values and gates below are frozen before any new expm/operator probe. The existing17pytest,10Su–Olson PDE inputs,eight homogeneous integrations and63scientific checks remain unchanged. This adds one explicitly limited three-mode control,not three new physical cases. The old successful packet/source/results remain immutable; the proposed new packet edition is2026-11-24-r2.

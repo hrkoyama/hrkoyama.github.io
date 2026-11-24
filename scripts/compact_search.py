@@ -1,5 +1,6 @@
 """Small browser indexes; keep the existing detailed public corpora and URLs."""
 from copy import deepcopy
+import base64
 import hashlib
 import json
 import re
@@ -15,6 +16,29 @@ def encoded(value):
 def vocabulary(text):
     text = re.sub('[‐‑‒–—−-]', ' ', unicodedata.normalize('NFKC', text).lower())
     return list(dict.fromkeys(text.split()))
+
+
+def pack_vocabulary(words):
+    """Lossless Unicode-code-point prefix lengths and suffixes, in ID order."""
+    packed, previous = [], ''
+    for word in words:
+        common = 0
+        while common < min(len(previous), len(word)) and previous[common] == word[common]:
+            common += 1
+        packed.extend((common, word[common:]))
+        previous = word
+    return packed
+
+
+def pack_deltas(deltas):
+    """Canonical unsigned LEB128 bytes; base64 keeps the JSON transport simple."""
+    raw = bytearray()
+    for value in deltas:
+        while value >= 128:
+            raw.append((value & 127) | 128)
+            value >>= 7
+        raw.append(value)
+    return base64.b64encode(raw).decode('ascii')
 
 
 def write_compact(root, source, kind):
@@ -93,7 +117,7 @@ def write_compact(root, source, kind):
         for index in sorted(remap[index] for index in indices):
             result.append(index-previous)
             previous = index
-        return result
+        return pack_deltas(result)
 
     for row in rows:
         values = row['search_terms']
@@ -101,8 +125,10 @@ def write_compact(root, source, kind):
                                if isinstance(values, dict) else deltas(values))
     source_path = 'numerical-methods-atlas/home-search-index.json' if kind == 'atlas' else 'search/index.json'
     payload = {
-        'format': 'compact-search-v1', 'kind': kind, field: rows, 'terms': ordered,
-        'term_encoding': 'sorted-delta',
+        'format': 'compact-search-v1', 'kind': kind, field: rows,
+        'terms': pack_vocabulary(ordered),
+        'vocabulary_encoding': 'unicode-prefix-flat-v1',
+        'term_encoding': 'sorted-delta-varint-base64',
         'source_index': {'url': '/'+source_path,
                          'sha256': hashlib.sha256((root/source_path).read_bytes()).hexdigest()},
         'details': {'directory': '/search/details/', 'keys': sorted(references)},

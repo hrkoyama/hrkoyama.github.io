@@ -1,5 +1,5 @@
 // Generated from frontend/search/method-search.mjs by scripts/search_assets.py. Edit the source template.
-import {matchGoals} from './goals-data.mjs?v=8bf88d84e111';
+import {matchGoals} from './goals-data.mjs?v=1656e4edee61';
 import {appendSearchNavigation} from './navigation.mjs?v=49405df7f323';
 // Both the atlas and the site search use these identities and availability links.
 export const normalizeMethodQuery = value => String(value).normalize('NFKC').toLowerCase()

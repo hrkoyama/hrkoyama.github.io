@@ -1,0 +1,207 @@
+[
+  {
+    "original_path": "LICENSE",
+    "sha256": "e1053200337d037d9d81620956ce49263117c6540b1c1352c030c220bee05f59",
+    "archived_path": "source/LICENSE"
+  },
+  {
+    "original_path": "README.md",
+    "sha256": "50aeeecdd22d4823afbc23c083f55cc963e3925a382826a11fe7acb73e771ebc",
+    "archived_path": "source/README.md"
+  },
+  {
+    "original_path": "acceptance.json",
+    "sha256": "cbd27ef872420843de09d65917d2ff8f5a9a654e290ce4e79210432b62614632",
+    "archived_path": "source/acceptance.json"
+  },
+  {
+    "original_path": "cases.json",
+    "sha256": "664015266b1638e8401e0b5145f0c5ed38d0cc7a60e0f92669d22d1249837f54",
+    "archived_path": "source/cases.json"
+  },
+  {
+    "original_path": "geometry.py",
+    "sha256": "0752951c97b0e5b5b2f19e5e16368cb747bf6e83c0791d1abc4b428842313cbc",
+    "archived_path": "source/geometry.py.txt"
+  },
+  {
+    "original_path": "inputs.json",
+    "sha256": "4e6d8420ae9f0338e31ad1659bb1b584c47d72b50730aa748baf9ae2528f5efc",
+    "archived_path": "source/inputs.json"
+  },
+  {
+    "original_path": "io_contract.py",
+    "sha256": "abce97b60b9a34498577e97f5f786c461b06e1c7904fdb2d450a74ecf3578884",
+    "archived_path": "source/io_contract.py.txt"
+  },
+  {
+    "original_path": "mms.py",
+    "sha256": "51295a29c1dc52eae6f3496f01237ea4d2345b5f6cb5344efcb4b0044f5ff69f",
+    "archived_path": "source/mms.py.txt"
+  },
+  {
+    "original_path": "plot.py",
+    "sha256": "ed351b6681a92f0d8158bbfccc9e3fcfb8f875aedd72db71b7b3f7ef7939d084",
+    "archived_path": "source/plot.py.txt"
+  },
+  {
+    "original_path": "pre-run-contract.json",
+    "sha256": "51d9d1277c9872ed361df6bb4d17aa4eefd8fd92f54ea1a7f1f6e554c5250a03",
+    "archived_path": "source/pre-run-contract.json"
+  },
+  {
+    "original_path": "pytest.ini",
+    "sha256": "9626ac48fd15173c70c7a3b6c72eb5db55dd6d640d9393ba4e92b4a5b57d69c2",
+    "archived_path": "source/pytest.ini"
+  },
+  {
+    "original_path": "reference-history/README.md",
+    "sha256": "c5785cd4c269d30430e7e39e7a84c95ef7ae9295ccc90b1345d970b329b079f4",
+    "archived_path": "source/reference-history/README.md"
+  },
+  {
+    "original_path": "reference-history/failed-attempt01-pathmap.json",
+    "sha256": "3811a78ec269c03de0e8efec2996563ce3d7b330a6f3b7586c3a5dce4082b51e",
+    "archived_path": "source/reference-history/failed-attempt01-pathmap.json"
+  },
+  {
+    "original_path": "reference-history/failed-attempt01-receipt.json",
+    "sha256": "3c86c890b031fff9d15e4d86e43cb513b78be74f3ec180f47235b36ff7819e59",
+    "archived_path": "source/reference-history/failed-attempt01-receipt.json"
+  },
+  {
+    "original_path": "reference-history/failed-attempt01-source/geometry.py.txt",
+    "sha256": "0752951c97b0e5b5b2f19e5e16368cb747bf6e83c0791d1abc4b428842313cbc",
+    "archived_path": "source/reference-history/failed-attempt01-source/geometry.py.txt"
+  },
+  {
+    "original_path": "reference-history/failed-attempt01-source/mms.py.txt",
+    "sha256": "51295a29c1dc52eae6f3496f01237ea4d2345b5f6cb5344efcb4b0044f5ff69f",
+    "archived_path": "source/reference-history/failed-attempt01-source/mms.py.txt"
+  },
+  {
+    "original_path": "reference-history/failed-attempt01-source/references/analytic.py.txt",
+    "sha256": "0a56ccd3f678b002929713466224f58277269a05b0a2eb8a1a4591b1ebcb621d",
+    "archived_path": "source/reference-history/failed-attempt01-source/references/analytic.py.txt"
+  },
+  {
+    "original_path": "reference-history/failed-attempt01-source/references/qualify.py.txt",
+    "sha256": "bf3950ed47f59d9406d07c3a327c499c05052fddd73384115d33a6be45da68d5",
+    "archived_path": "source/reference-history/failed-attempt01-source/references/qualify.py.txt"
+  },
+  {
+    "original_path": "reference-history/qualified-r4-contract.json",
+    "sha256": "5a6af0d40975fdddb63c7e70a6bdacd0f1911774535f5d61cbb659ee62775282",
+    "archived_path": "source/reference-history/qualified-r4-contract.json"
+  },
+  {
+    "original_path": "reference-history/qualified-r4-root-review.json",
+    "sha256": "db0ab9ff5de323386be16f9337704268ee10d363b7c587f6bbc4f28a52703aa4",
+    "archived_path": "source/reference-history/qualified-r4-root-review.json"
+  },
+  {
+    "original_path": "reference-history/qualified-r4-shared-receipt.json",
+    "sha256": "d61204b12b711912b1825df154c9b94aaaba2409639ead965b1d07342d6185b7",
+    "archived_path": "source/reference-history/qualified-r4-shared-receipt.json"
+  },
+  {
+    "original_path": "references/analytic.py",
+    "sha256": "0a56ccd3f678b002929713466224f58277269a05b0a2eb8a1a4591b1ebcb621d",
+    "archived_path": "source/references/analytic.py.txt"
+  },
+  {
+    "original_path": "references/beams-n24.npz",
+    "sha256": "041df3d149de551399a31f52119b89a65930c039d4678a49c648b0218c86cbfb",
+    "unchanged_current_source_path": "references/beams-n24.npz"
+  },
+  {
+    "original_path": "references/beams-n48.npz",
+    "sha256": "1b4e7ac7efafc458e80b8ba0f18902f56f5553afda259d74f34c4eaefe4f9d1f",
+    "unchanged_current_source_path": "references/beams-n48.npz"
+  },
+  {
+    "original_path": "references/beams-n96.npz",
+    "sha256": "36984dd71a84627baf5bee4749e430cec4c9206142dfca2b7555922011347af3",
+    "unchanged_current_source_path": "references/beams-n96.npz"
+  },
+  {
+    "original_path": "references/crossed-n24.npz",
+    "sha256": "dc26018b79036d54fbb6f060e2bc15b818a5a7adea6f7b772f68c9079d3d374d",
+    "unchanged_current_source_path": "references/crossed-n24.npz"
+  },
+  {
+    "original_path": "references/crossed-n48.npz",
+    "sha256": "9daaf12e197f2603c055a34c8fd15fcda51a031b925f030839a402e706cbac26",
+    "unchanged_current_source_path": "references/crossed-n48.npz"
+  },
+  {
+    "original_path": "references/crossed-n96.npz",
+    "sha256": "b44ab067fdb6588bfa6ab86ad4c086d71ab57a974f3a04d2b2049e4c2502d0ab",
+    "unchanged_current_source_path": "references/crossed-n96.npz"
+  },
+  {
+    "original_path": "references/installed-reference-provenance.json",
+    "sha256": "57b7b0c7cef9b49b76f27bbc1ba16e520729473f7ad4851c617492b77c1f3040",
+    "archived_path": "source/references/installed-reference-provenance.json"
+  },
+  {
+    "original_path": "references/mms-n16.npz",
+    "sha256": "a19ff551b41fd2f8e2600beea353fc2bc4ec43afca994729144b363e45e09bd1",
+    "unchanged_current_source_path": "references/mms-n16.npz"
+  },
+  {
+    "original_path": "references/mms-n32.npz",
+    "sha256": "455c49b2325764740bebd2f6d23f03f8aadd1952920e4902f3f6326f9cae660d",
+    "unchanged_current_source_path": "references/mms-n32.npz"
+  },
+  {
+    "original_path": "references/mms-n64.npz",
+    "sha256": "376d52f7bd1b9c01efb85e056f6316d5a6fb9f9084ac0fb756fc9925327c76df",
+    "unchanged_current_source_path": "references/mms-n64.npz"
+  },
+  {
+    "original_path": "references/qualification.json",
+    "sha256": "410226395be3ae91fe12d11740096a6019e770c9ac10fcb1328010780f51e418",
+    "archived_path": "source/references/qualification.json"
+  },
+  {
+    "original_path": "references/qualify.py",
+    "sha256": "bf3950ed47f59d9406d07c3a327c499c05052fddd73384115d33a6be45da68d5",
+    "archived_path": "source/references/qualify.py.txt"
+  },
+  {
+    "original_path": "references/shadow-n24.npz",
+    "sha256": "91593b41fd4e81b1468d415b1563bb39d456b6c7610ac7c0f4e156a85b6a4921",
+    "unchanged_current_source_path": "references/shadow-n24.npz"
+  },
+  {
+    "original_path": "references/shadow-n48.npz",
+    "sha256": "c857b0725f6c56762a9ca7ccc877371341504d3b71a4fb9e1fa01fca966030ab",
+    "unchanged_current_source_path": "references/shadow-n48.npz"
+  },
+  {
+    "original_path": "references/shadow-n96.npz",
+    "sha256": "c1306aee01744d0b3ddd8a0d574e79b05d27e4810069f8294e5cf77c781cea5b",
+    "unchanged_current_source_path": "references/shadow-n96.npz"
+  },
+  {
+    "original_path": "requirements-plotting.txt",
+    "sha256": "fd70c5b60168fd91d504345ec04061037fb9de084f7ec8fa53255486c9c94ab1",
+    "archived_path": "source/requirements-plotting.txt"
+  },
+  {
+    "original_path": "requirements.txt",
+    "sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "archived_path": "source/requirements.txt"
+  },
+  {
+    "original_path": "run.py",
+    "sha256": "4253667e3688608911d9dc8a4fd3f5d719102a3f36fd26ac98a21480031586f0",
+    "archived_path": "source/run.py.txt"
+  },
+  {
+    "original_path": "test_geometry.py",
+    "sha256": "9dabda1a8d7d341029147921b7736e01e81779ae3a43c8649c1e4d9aa9e06a36",
+    "archived_path": "source/test_geometry.py.txt"
+  }
+]

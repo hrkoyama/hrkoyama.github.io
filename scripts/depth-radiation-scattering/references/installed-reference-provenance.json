@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "installed_at_utc": "2026-11-23T22:20:56.044968+00:00",
+  "reference_contract_sha256": "5a6af0d40975fdddb63c7e70a6bdacd0f1911774535f5d61cbb659ee62775282",
+  "execution_receipt_sha256": "d61204b12b711912b1825df154c9b94aaaba2409639ead965b1d07342d6185b7",
+  "group_checks": 78,
+  "all_reference_checks": 323,
+  "reference_shared_seconds": 5.2940135,
+  "cache_files": [
+    {
+      "file": "reference-cache.npz",
+      "sha256": "1fff194f982ec168eb7fb03c7c790c5afa307bc53db5a7261487b0fd3351cdac"
+    },
+    {
+      "file": "qualification.json",
+      "sha256": "253eaaa0b86e12eb29d7101b0315484f431a01ef5d0c0ded15429dfae1fed5aa"
+    }
+  ],
+  "PDE_primary_runs": 0,
+  "scope": "Qualified before main. Full source/log/partial/failure history retained persistently in preparation;no primaryPDErun or rigorousreferencebound claimed."
+}

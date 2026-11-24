@@ -1283,6 +1283,16 @@
         }
       ],
       "availability": "saved-output",
+      "supplemental_examples": [
+        {
+          "id": "lbm-taylor-green",
+          "url": "/numerical-methods-atlas/validation/lbm-taylor-green/",
+          "name": {
+            "ja": "LBM Taylor–Green渦：格子・刻み・Machの結合感度",
+            "en": "LBM Taylor–Green vortex: coupled grid/time/Mach sensitivity"
+          }
+        }
+      ],
       "reading": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/incompressible/",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/incompressible/"
@@ -2521,6 +2531,24 @@
           "python_symbol": "test_fixed_case"
         }
       ],
+      "supplemental_examples": [
+        {
+          "id": "gbm-weak-moments",
+          "url": "/numerical-methods-atlas/validation/gbm-weak-moments/",
+          "name": {
+            "ja": "GBMのweak誤差とMonte Carlo標準誤差",
+            "en": "GBM weak bias and Monte Carlo error"
+          }
+        },
+        {
+          "id": "gbm-milstein-strong",
+          "url": "/numerical-methods-atlas/validation/gbm-milstein-strong/",
+          "name": {
+            "ja": "同じBrownian経路のMilstein・EM strong比較",
+            "en": "Milstein and EM on identical Brownian paths"
+          }
+        }
+      ],
       "reading": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/sde/#publication-scope",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/sde/#publication-scope"
@@ -3020,6 +3048,14 @@
           "name": {
             "ja": "CSVRとLangevin：調和2自由度の分布・揺らぎ・相関",
             "en": "CSVR versus Langevin: distributions, fluctuations and correlations of two harmonic modes"
+          }
+        },
+        {
+          "id": "ou-weak-moments",
+          "url": "/numerical-methods-atlas/validation/ou-weak-moments/",
+          "name": {
+            "ja": "OUのweakモーメントと同時Brownian結合",
+            "en": "OU weak moments with joint Brownian coupling"
           }
         }
       ],
@@ -4289,6 +4325,14 @@
           "name": {
             "ja": "Re=100蓋駆動キャビティ：Ghia中心線との比較",
             "en": "Re100 lid-driven cavity: Ghia centerline comparison"
+          }
+        },
+        {
+          "id": "lbm-cavity-re100",
+          "url": "/numerical-methods-atlas/validation/lbm-cavity-re100/",
+          "name": {
+            "ja": "LBM Re100蓋駆動キャビティ：実2D場とGhia中心線",
+            "en": "LBM Re100 cavity: actual2D fields and Ghia centerlines"
           }
         }
       ],
@@ -5594,6 +5638,501 @@
         "python -W error -m pytest -q -p no:cacheprovider",
         "python -W error run.py --input inputs.json --output output"
       ]
+    },
+    {
+      "id": "lbm-annular-couette-control",
+      "group": "viscous",
+      "name": {
+        "ja": "曲面LBMの環状Couette制御：速度・圧力・torque",
+        "en": "Curved LBM annular Couette control: velocity,pressure andtorque"
+      },
+      "chapter": "validation-lbm-annulus",
+      "reading_section": "lbm-annular-couette-control",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24/lbm-annulus/",
+      "verification": "/code/validated-examples/2026-11-24/lbm-annulus/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24/lbm-annulus/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "lbm-annular-couette-control"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/lbm-annulus/results/lbm-annular-couette-control-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/lbm-annulus/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "lbm-annular-couette-control",
+          "url": "/numerical-methods-atlas/validation/lbm-annular-couette-control/",
+          "name": {
+            "ja": "曲面LBMの環状Couette制御：速度・圧力・torque",
+            "en": "Curved LBM annular Couette control: velocity,pressure andtorque"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-annulus/#lbm-annular-couette-control",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-annulus/#lbm-annular-couette-control"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#lbm-annular-couette-control",
+      "run_commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ]
+    },
+    {
+      "id": "lbm-cylinder-re20",
+      "group": "viscous",
+      "name": {
+        "ja": "LBMの実円柱Re20：Schäfer–Turek形状と明示出口",
+        "en": "Actual LBM cylinderRe20: Schäfer–Turek geometry anddeclared outlet"
+      },
+      "chapter": "validation-lbm-curved-boundary",
+      "reading_section": "lbm-cylinder-re20",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24/lbm-curved-boundary/",
+      "verification": "/code/validated-examples/2026-11-24/lbm-curved-boundary/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24/lbm-curved-boundary/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "lbm-cylinder-re20"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/lbm-curved-boundary/results/lbm-cylinder-re20-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/lbm-curved-boundary/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "lbm-cylinder-re20",
+          "url": "/numerical-methods-atlas/validation/lbm-cylinder-re20/",
+          "name": {
+            "ja": "LBMの実円柱Re20：Schäfer–Turek形状と明示出口",
+            "en": "Actual LBM cylinderRe20: Schäfer–Turek geometry anddeclared outlet"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-curved-boundary/#lbm-cylinder-re20",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-curved-boundary/#lbm-cylinder-re20"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#lbm-cylinder-re20",
+      "run_commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ]
+    },
+    {
+      "id": "isotropic-scattering-slab",
+      "group": "transport",
+      "name": {
+        "ja": "等方散乱平板の反射・透過・吸収",
+        "en": "Isotropic scattering in a finite slab"
+      },
+      "chapter": "validation-radiation-scattering",
+      "reading_section": "isotropic-scattering-slab",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24/radiation-scattering/",
+      "verification": "/code/validated-examples/2026-11-24/radiation-scattering/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24/radiation-scattering/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "isotropic-scattering-slab"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/radiation-scattering/results/isotropic-scattering-slab-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/radiation-scattering/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "isotropic-scattering-slab",
+          "url": "/numerical-methods-atlas/validation/isotropic-scattering-slab/",
+          "name": {
+            "ja": "等方散乱平板の反射・透過・吸収",
+            "en": "Isotropic scattering in a finite slab"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-scattering/#isotropic-scattering-slab",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-scattering/#isotropic-scattering-slab"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-scattering/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#isotropic-scattering-slab",
+      "run_commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ]
+    },
+    {
+      "id": "su-olson-diffusion1996",
+      "group": "transport",
+      "name": {
+        "ja": "Su–Olson1996非平衡拡散",
+        "en": "Su–Olson1996 non-equilibrium diffusion"
+      },
+      "chapter": "validation-radiation-matter",
+      "reading_section": "su-olson-diffusion1996",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24-r2/radiation-matter/",
+      "verification": "/code/validated-examples/2026-11-24-r2/radiation-matter/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24-r2/radiation-matter/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "su-olson-diffusion1996"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r2/radiation-matter/results/su-olson-diffusion1996-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r2/radiation-matter/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "su-olson-diffusion1996",
+          "url": "/numerical-methods-atlas/validation/su-olson-diffusion1996/",
+          "name": {
+            "ja": "Su–Olson1996非平衡拡散",
+            "en": "Su–Olson1996 non-equilibrium diffusion"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-diffusion1996",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-matter/#su-olson-diffusion1996"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#su-olson-diffusion1996",
+      "run_commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ]
+    },
+    {
+      "id": "su-olson-transport1997",
+      "group": "transport",
+      "name": {
+        "ja": "Su–Olson1997角度輸送の独立公開表比較",
+        "en": "Su–Olson transport with an independently published analytical table"
+      },
+      "chapter": "validation-radiation-matter",
+      "reading_section": "su-olson-transport1997",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24-r2/radiation-matter/",
+      "verification": "/code/validated-examples/2026-11-24-r2/radiation-matter/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24-r2/radiation-matter/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "su-olson-transport1997"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r2/radiation-matter/results/su-olson-transport1997-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r2/radiation-matter/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "su-olson-transport1997",
+          "url": "/numerical-methods-atlas/validation/su-olson-transport1997/",
+          "name": {
+            "ja": "Su–Olson1997角度輸送の独立公開表比較",
+            "en": "Su–Olson transport with an independently published analytical table"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-transport1997",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-matter/#su-olson-transport1997"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#su-olson-transport1997",
+      "run_commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ]
+    },
+    {
+      "id": "shadow-absorber2d",
+      "group": "transport",
+      "name": {
+        "ja": "2D吸収影と保存的M1輸送",
+        "en": "Two-dimensional absorber shadow and M1 transport"
+      },
+      "chapter": "validation-radiation-geometry",
+      "reading_section": "shadow-absorber2d",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24/radiation-geometry/",
+      "verification": "/code/validated-examples/2026-11-24/radiation-geometry/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24/radiation-geometry/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "shadow-absorber2d"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/radiation-geometry/results/shadow-absorber2d-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/radiation-geometry/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "shadow-absorber2d",
+          "url": "/numerical-methods-atlas/validation/shadow-absorber2d/",
+          "name": {
+            "ja": "2D吸収影と保存的M1輸送",
+            "en": "Two-dimensional absorber shadow and M1 transport"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-geometry/#shadow-absorber2d",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/#shadow-absorber2d"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#shadow-absorber2d",
+      "run_commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ]
+    },
+    {
+      "id": "opposing-beams2d",
+      "group": "transport",
+      "name": {
+        "ja": "2D反向beamとM1閉包の情報損失",
+        "en": "Opposing beams and information loss in the M1 closure"
+      },
+      "chapter": "validation-radiation-geometry",
+      "reading_section": "opposing-beams2d",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24/radiation-geometry/",
+      "verification": "/code/validated-examples/2026-11-24/radiation-geometry/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24/radiation-geometry/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "opposing-beams2d"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/radiation-geometry/results/opposing-beams2d-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/radiation-geometry/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "opposing-beams2d",
+          "url": "/numerical-methods-atlas/validation/opposing-beams2d/",
+          "name": {
+            "ja": "2D反向beamとM1閉包の情報損失",
+            "en": "Opposing beams and information loss in the M1 closure"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-geometry/#opposing-beams2d",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/#opposing-beams2d"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#opposing-beams2d",
+      "run_commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ]
+    },
+    {
+      "id": "normal-tail-importance",
+      "group": "probability",
+      "name": {
+        "ja": "正規稀少尾の通常importance sampling",
+        "en": "Ordinary importance sampling of a normal rare tail"
+      },
+      "chapter": "validation-stochastic-estimation",
+      "reading_section": "normal-tail-importance",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24/stochastic-estimation/",
+      "verification": "/code/validated-examples/2026-11-24/stochastic-estimation/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24/stochastic-estimation/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "normal-tail-importance"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/stochastic-estimation/results/normal-tail-importance-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/stochastic-estimation/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "normal-tail-importance",
+          "url": "/numerical-methods-atlas/validation/normal-tail-importance/",
+          "name": {
+            "ja": "正規稀少尾の通常importance sampling",
+            "en": "Ordinary importance sampling of a normal rare tail"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#normal-tail-importance",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#normal-tail-importance"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-estimation/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#normal-tail-importance",
+      "run_commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ]
+    },
+    {
+      "id": "correlated-gaussian-mcmc",
+      "group": "probability",
+      "name": {
+        "ja": "相関2変量Gaussianのjoint標的とMCSE",
+        "en": "Joint target and MCSE for a correlated bivariate Gaussian"
+      },
+      "chapter": "validation-stochastic-estimation",
+      "reading_section": "correlated-gaussian-mcmc",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24/stochastic-estimation/",
+      "verification": "/code/validated-examples/2026-11-24/stochastic-estimation/verification.json",
+      "commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24/stochastic-estimation/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "correlated-gaussian-mcmc"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/stochastic-estimation/results/correlated-gaussian-mcmc-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/stochastic-estimation/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "correlated-gaussian-mcmc",
+          "url": "/numerical-methods-atlas/validation/correlated-gaussian-mcmc/",
+          "name": {
+            "ja": "相関2変量Gaussianのjoint標的とMCSE",
+            "en": "Joint target and MCSE for a correlated bivariate Gaussian"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-estimation/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#correlated-gaussian-mcmc",
+      "run_commands": [
+        "python -W error -m pytest -q -p no:cacheprovider",
+        "python -W error run.py --input inputs.json --output output"
+      ]
     }
   ],
   "excluded_examples": {
@@ -5622,26 +6161,26 @@
   },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/",
   "counts": {
-    "test_problems": 113,
-    "saved_test_problems": 113,
+    "test_problems": 122,
+    "saved_test_problems": 122,
     "code_test_problems": 0,
     "groups": {
-      "transport": 12,
+      "transport": 17,
       "fluid": 23,
       "mhd": 6,
-      "viscous": 7,
+      "viscous": 9,
       "elliptic": 19,
       "gravity": 11,
       "time": 8,
       "approximation": 6,
       "quantum": 5,
       "biology": 5,
-      "probability": 4,
+      "probability": 6,
       "kinetic": 7
     }
   },
   "source_sha256": {
-    "catalog/atlas-test-problems.json": "6d18326fa3356b0727e8546444239ea8771472a64ae596de7d0d333175d46a72",
+    "catalog/atlas-test-problems.json": "a9542061ab829afde53067ae7db77331f462f809ee117822f2c2c9dc1b2ba203",
     "numerical-methods-atlas/equation-gallery.json": "e99af38238a50232f92875817c4556ab6c730289db13014efdd41913096c902e",
     "numerical-methods-atlas/cip.json": "3aa33fbffad6b9ad76310e9b713629a1a35b4e30e419db0c531180cf769e6b6f",
     "numerical-methods-atlas/limiters.json": "3242180ba171420220fd349cac93dff552466070f886f3d00a70927939255312",
@@ -5852,7 +6391,28 @@
     "code/validated-examples/2026-11-23/dsmc-wall/results/dsmc-fourier-preview.png": "87bfad63ef3230c67e56fb2c6e252f69075f311e2af565a363584461a2039a2a",
     "code/validated-examples/2026-11-24/dsmc-shock/results/result.json": "a4cd1e0092935bccd85bc0cf14086d01c723f05e4ce9474c3563283b3a55562e",
     "code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock-preview.png": "89e25d3088c177ac0cb027fe58f02627b049626d0198bda02abc0eb6fec6555c",
-    "code/validated-examples/2026-11-24/dsmc-shock/verification.json": "7e7919032dafc67b5e857acd4464516cb4b742eed89ff8adae7f3c8cf75a96f5"
+    "code/validated-examples/2026-11-24/dsmc-shock/verification.json": "7e7919032dafc67b5e857acd4464516cb4b742eed89ff8adae7f3c8cf75a96f5",
+    "code/validated-examples/2026-11-24/lbm-annulus/results/result.json": "2efe456b62a078d6e80569f071d46680182cba2709816acc4b68f9fea67a488e",
+    "code/validated-examples/2026-11-24/lbm-annulus/results/lbm-annular-couette-control-preview.png": "ee068b5c21a8ae3a92d5d54b829c7646cda91967b5d03439eccd5907ca5a7e5a",
+    "code/validated-examples/2026-11-24/lbm-annulus/verification.json": "db353908280ce48e35d925b11a6325dfccb2e40259588f688cde76cfbcacfaa6",
+    "code/validated-examples/2026-11-24/lbm-curved-boundary/results/result.json": "954e50130a966eb647e09bb3e6ebd2ce8e73f3cac34fbe5094d0eb5fee77088d",
+    "code/validated-examples/2026-11-24/lbm-curved-boundary/results/lbm-cylinder-re20-preview.png": "25778fa66822e0ee9f3aa0c9c8258bffceccb906506c11470026cd2d5b086c47",
+    "code/validated-examples/2026-11-24/lbm-curved-boundary/verification.json": "2c16481aa5f2081be0aea7ecd234e0c435d14f9e8bd587db9d879b6ff9b93807",
+    "code/validated-examples/2026-11-24/radiation-scattering/results/result.json": "7bfe8722dc42743a829debfb52222687f767cee18d1d2aeb9033adb4228e87b5",
+    "code/validated-examples/2026-11-24/radiation-scattering/results/isotropic-scattering-slab-preview.png": "3d477b96516f17ba2f039a120ad56fe2ce913bc03e72bde1b0ef4d6a249b77f1",
+    "code/validated-examples/2026-11-24/radiation-scattering/verification.json": "7c1bfd3319d1743eb6de888b52c7e7498954761ffb8e8c3f2b6d5c6d3754011f",
+    "code/validated-examples/2026-11-24-r2/radiation-matter/results/result.json": "39c457ec19fa3e73ed021778b4fd4fa19d112cf895c344cf7ffed63847ce9e54",
+    "code/validated-examples/2026-11-24-r2/radiation-matter/results/su-olson-diffusion1996-preview.png": "88eb23f634971127b70e93f6a373937d45e1701807685268223f850fb3a7dceb",
+    "code/validated-examples/2026-11-24-r2/radiation-matter/verification.json": "cbbc27e98b13939b705bfdcd85593747dd7ef02e7b5eaf2d9ef2a838007107d0",
+    "code/validated-examples/2026-11-24-r2/radiation-matter/results/su-olson-transport1997-preview.png": "00ed0c00d9a00b8c994b9aede72db9659dd505b5fecc12fa3b819471e7015dc8",
+    "code/validated-examples/2026-11-24/radiation-geometry/results/result.json": "4453e68f6a856f65097bbfe36a154b74f4437e99a217300e4c010176a3ee7aec",
+    "code/validated-examples/2026-11-24/radiation-geometry/results/shadow-absorber2d-preview.png": "a44ef843df139cdef9e602b5d46d78478bf3a75452b316ddee2e1baa30a9d17e",
+    "code/validated-examples/2026-11-24/radiation-geometry/verification.json": "d98432e748b5b009d442b3a2fc4becff23c20f43fc9c012cce7d6fe74931e4d9",
+    "code/validated-examples/2026-11-24/radiation-geometry/results/opposing-beams2d-preview.png": "79f027ee883833d34179e35687564ba63c1dd284494b66f370c8d31ab30a26ee",
+    "code/validated-examples/2026-11-24/stochastic-estimation/results/result.json": "267e0b0be6f4a5fbcb8b116837f670d8bfacf09f0a7cda25f8e97956dd180435",
+    "code/validated-examples/2026-11-24/stochastic-estimation/results/normal-tail-importance-preview.png": "bb43d99a5fddd23605e1a9c5c757f6ef0119a6b6dac33b8224ac153bf718fba4",
+    "code/validated-examples/2026-11-24/stochastic-estimation/verification.json": "04589e7e1285b60e3d327c5772d392405e04f5fc9623a0850b38c9eaa9478f90",
+    "code/validated-examples/2026-11-24/stochastic-estimation/results/correlated-gaussian-mcmc-preview.png": "323b66d08f2a80a174e615b964a416ca79065d6849e60a09b6494dbc7bb9aff6"
   },
   "code_edition": "2026-11-21",
   "code_verification": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/verification.json"

@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "limits": {
+    "weak_mcse_factor": 5.0,
+    "weak_mcse_ratio": [
+      0.4,
+      2.0
+    ],
+    "weak_resolution_3se_fraction": 0.3,
+    "weak_analytic_order": [
+      0.8,
+      1.2
+    ],
+    "weak_sample_order": [
+      0.6,
+      1.4
+    ],
+    "strong_mcse_factor": 5.0,
+    "strong_em_order": [
+      0.35,
+      0.7
+    ],
+    "strong_milstein_order": [
+      0.8,
+      1.2
+    ],
+    "strong_finest_ratio": 0.35,
+    "calibration_absolute_allowance": 1e-12,
+    "brownian_sum_roundoff_eps_factor": 64.0,
+    "reference_one_step_relative": 2e-12,
+    "reference_decimal_relative": "1e-40",
+    "reference_resolution_3se_fraction": 0.3
+  },
+  "statistical_scope": "Finite fixed experiments; SE/CI/diagnostics are not deterministic error bounds or general coverage/convergence proofs. No observed criterion relaxation."
+}

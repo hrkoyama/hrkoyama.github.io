@@ -1,0 +1,20 @@
+{
+  "CD": [
+    5.57,
+    5.59
+  ],
+  "CL": [
+    0.0104,
+    0.011
+  ],
+  "pressure_difference": [
+    0.1172,
+    0.1176
+  ],
+  "recirculation_length": [
+    0.0842,
+    0.0852
+  ],
+  "original_outlet_user_selected": true,
+  "scope": "Sch\u00e4fer-Turek1996 Table3 estimated numerical-comparison ranges, not exact or rigorous enclosures. Original pp3/7 allow user-selected outflow. This source uses declared Zou-He, not later FEATflow do-nothing. Coarse LBM acceptance separately fixed before execution."
+}

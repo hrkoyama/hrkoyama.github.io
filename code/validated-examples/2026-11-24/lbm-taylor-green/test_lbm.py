@@ -1,0 +1,124 @@
+import csv
+import json
+from pathlib import Path
+import numpy as np
+import pytest
+from geometry import build,equilibrium,moments,C,W,OPP,circle_fraction
+from native import Native,NativeFailure
+from reference_step import step
+from diagnostics import physical
+from evolution import trajectory
+from experiments import numeric_csv
+
+@pytest.fixture(scope='session')
+def native():
+    instance=Native()
+    try:yield instance
+    finally:instance.close()
+
+def initial(g):
+    q=np.arange(g['n']);return equilibrium(1+.001*np.sin(.31*q),np.array([.002*np.cos(.17*q),.001*np.sin(.19*q)]))
+
+def test_equilibrium_density():
+    rho=np.array([.98,1.,1.02]);u=np.array([[.01,.02,-.01],[.02,0.,-.03]])
+    np.testing.assert_allclose(equilibrium(rho,u).sum(axis=0),rho,rtol=0,atol=3e-16)
+
+def test_equilibrium_momentum():
+    rho=np.array([.98,1.,1.02]);u=np.array([[.01,.02,-.01],[.02,0.,-.03]])
+    np.testing.assert_allclose(np.einsum('qd,qn->dn',C,equilibrium(rho,u)),rho*u,rtol=0,atol=6e-17)
+
+def test_equilibrium_second_tensor_moment():
+    rho=np.array([1.,1.02]);u=np.array([[.02,-.01],[-.01,.03]]);f=equilibrium(rho,u)
+    actual=np.einsum('qa,qb,qn->abn',C,C,f)
+    expected=np.einsum('an,bn,n->abn',u,u,rho)+np.eye(2)[:,:,None]*rho/3
+    np.testing.assert_allclose(actual,expected,rtol=0,atol=2e-16)
+
+def test_cavity_rest_state(native):
+    g=build('cavity',6,1/6,.01,lid=0);f=equilibrium(np.ones(g['n']),np.zeros((2,g['n'])));old=f.copy()
+    native.advance(f,g,.8,1);np.testing.assert_allclose(f,old,rtol=0,atol=3e-16)
+
+def test_periodic_native_scalar_one_step(native):
+    g=build('periodic',5,2*np.pi/5,.01);f=initial(g);expected=step(f,g,.8)
+    native.advance(f,g,.8,1);np.testing.assert_allclose(f,expected,rtol=0,atol=3e-15)
+
+def test_wall_native_scalar_one_step(native):
+    g=build('cavity',5,.2,.01);f=initial(g);expected=step(f,g,.8)
+    native.advance(f,g,.8,1);np.testing.assert_allclose(f,expected,rtol=0,atol=3e-15)
+
+def test_curved_native_scalar_one_step(native):
+    g=build('annulus',20,.05,.01);f=initial(g);expected=step(f,g,.8)
+    native.advance(f,g,.8,1);np.testing.assert_allclose(f,expected,rtol=0,atol=3e-15)
+
+def ledger(f):return np.r_[np.sum(f),np.sum(np.einsum('qd,qn->dn',C,f),axis=1)]
+
+def test_closed_wall_mass_and_momentum_ledger(native):
+    g=build('cavity',6,1/6,.01);f=initial(g);before=ledger(f);h=native.advance(f,g,.8,1)
+    np.testing.assert_allclose(ledger(f)-before,h[0,3:6],rtol=0,atol=2e-13)
+
+def test_open_boundary_mass_and_momentum_ledger(native):
+    g=build('cylinder',0,.01,.001);f=initial(g);before=ledger(f);h=native.advance(f,g,.8,1)
+    np.testing.assert_allclose((ledger(f)-before-h[0,3:6])/g['n'],0,rtol=0,atol=3e-14)
+
+def test_rightward_lid_impulse_sign(native):
+    g=build('cavity',6,1/6,.01,lid=.02);f=equilibrium(np.ones(g['n']),np.zeros((2,g['n'])))
+    h=native.advance(f,g,.8,1);assert h[0,4]>0 and abs(h[0,3])<2e-15
+
+def test_negative_density_failure_retains_candidate(native):
+    g=build('cavity',5,.2,.01);f=initial(g);f[:,2]=-1
+    with pytest.raises(NativeFailure) as error:native.advance(f,g,.8,1)
+    np.testing.assert_array_equal(error.value.payload['f'],f)
+
+def test_invalid_relaxation_is_rejected(native):
+    g=build('cavity',5,.2,.01);f=initial(g)
+    for tau in [.5,float('nan')]:
+        with pytest.raises(ValueError):native.advance(f,g,tau,1)
+
+def test_half_link_reduces_to_stationary_reversal(native):
+    g=build('cavity',5,.2,.01,lid=0.);f=initial(g);rho,u=moments(f)
+    post=f-(f-equilibrium(rho,u))/.8;native.advance(f,g,.8,1)
+    for q in range(9):
+        mask=g['kind'][q]>0;np.testing.assert_allclose(f[q,mask],post[OPP[q],mask],rtol=0,atol=3e-15)
+
+def test_circle_fraction_known_intersections():
+    assert circle_fraction([1.1,0],[-.4,0],np.zeros(2),1.)==pytest.approx(.25,abs=2e-15)
+    assert circle_fraction([.6,0],[.8,0],np.zeros(2),1.)==pytest.approx(.5,abs=2e-15)
+
+def test_simultaneous_corner_is_stationary_side_owned():
+    g=build('cavity',5,.2,.01,lid=.02);j=int(np.flatnonzero((g['ix']==0)&(g['iy']==4))[0])
+    assert g['wall_dot'][8,j]==0 and g['wall_dot'][7,j]==.02
+
+def test_physical_pressure_units_and_gauge():
+    g=build('periodic',4,.25,.05)
+    # Use a nonconstant prescribed density independent of periodic trig aliases.
+    p=np.linspace(-.003,.003,g['n']);f=equilibrium(1+3*(g['dt']/g['dx'])**2*p,np.zeros((2,g['n'])))
+    _,u,actual=physical(f,g);np.testing.assert_allclose(actual,p-p.mean(),rtol=0,atol=8e-14)
+
+def test_noninteger_or_mismatched_checkpoint_is_rejected(native,tmp_path):
+    g=build('cavity',5,.2,.01);f=initial(g)
+    with pytest.raises(ValueError):trajectory(native,g,.8,8,[4,7],f,tmp_path,'bad')
+    with pytest.raises(ValueError):trajectory(native,g,.8,8,[4.,8],f,tmp_path,'bad')
+
+def test_numeric_csv_rejects_nonfinite_and_ragged_rows(tmp_path):
+    with pytest.raises(ArithmeticError):numeric_csv(tmp_path/'nan.csv',[{'x':float('nan')}])
+    with pytest.raises(ArithmeticError):numeric_csv(tmp_path/'ragged.csv',[{'x':1.},{'y':2.}])
+
+from analytic import tgv,qualify_tgv
+
+def test_TGV_independent_Fourier_NS_qualification():
+    assert all(v<=2e-12 for v in qualify_tgv().values())
+
+def test_TGV_energy_has_both_components_and_zero_gauge():
+    x=(np.arange(16)+.5)*2*np.pi/16;X,Y=np.meshgrid(x,x);a=tgv(X,Y,.37)
+    assert abs(np.mean((a['u']**2+a['v']**2)/2)-.2**2*np.exp(-4*.1*.37)/4)<2e-17
+    assert abs(np.mean(a['p']))<1e-17
+
+def test_diffusive_and_coupled_integer_steps_same_endpoint():
+    for n,ratio in [(16,.2),(32,.2),(64,.2),(32,.1)]:
+        steps=n*n//4 if ratio==.2 else n*n//2
+        assert abs(steps*ratio*(2*np.pi/n)**2-.2*np.pi**2)<2e-14
+
+def test_TGV_pressure_consistent_initial_density_roundtrip():
+    n=16;dx=2*np.pi/n;dt=.2*dx**2;g=build('periodic',n,dx,dt);a=tgv(g['x'],g['y'],0.)
+    f=equilibrium(1+3*(dt/dx)**2*a['p'],np.array([a['u'],a['v']])*dt/dx)
+    r,u,p=physical(f,g);np.testing.assert_allclose(p,a['p']-np.mean(a['p']),rtol=0,atol=2e-13)
+    np.testing.assert_allclose(u,np.array([a['u'],a['v']]),rtol=0,atol=2e-15)

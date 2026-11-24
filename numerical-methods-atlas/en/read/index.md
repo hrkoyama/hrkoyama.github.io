@@ -121,6 +121,13 @@ Explore particle methods, distribution functions, long-range forces and transpor
 - [PIC checks against independent spatial kernels](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-pic-spatial/)
 - [Finite-Knudsen Couette and Fourier flows](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-wall/)
 - [Mach2 planar shock with hard-sphere DSMC](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-dsmc-shock/)
+- [LBM lid-driven cavity at Re100](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-cavity/)
+- [LBM Taylor–Green vortex and finite-Mach errors](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-taylor-green/)
+- [Annular Couette control for curved-wall LBM](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-annulus/)
+- [LBM curved walls and a Re20 cylinder](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-curved-boundary/)
+- [Isotropically scattering slabs and continuum-angle references](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-scattering/)
+- [Non-equilibrium radiation: distinct diffusion and transport](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-matter/)
+- [2D shadows,beams and M1 closure](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/)
 
 ## Electromagnetic fields, electrostatics and electronic structure
 
@@ -152,6 +159,8 @@ Compare stochastic error, population models and temperature control through thei
 - [Thermostats: temperature control and distributions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/thermostats/)
 - [MCMC, temperature control and biological models](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/)
 - [CSVR and Langevin: distributions, fluctuations and correlations](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/)
+- [Weak/strong SDE errors and sampling uncertainty](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/)
+- [Importance sampling and correlated-Gaussian diagnostics](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/)
 
 ## Verification problems and experiment guides
 

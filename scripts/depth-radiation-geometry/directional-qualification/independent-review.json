@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "status": "PASS_FOCUSED_STATIC_COMPONENT_REVIEW",
+  "reviewer": "batch_weno",
+  "reviewed_at_utc": "2026-11-23T22:53:22.608203+00:00",
+  "protocol_sha256": "b856bda035d70c175372da2b77507936331361301e53685a587c8216152f411c",
+  "source_bindings": 88,
+  "source_hash_mismatches": [],
+  "planned_checks": 762,
+  "independently_summed_inventory": 762,
+  "previous_derivation_sha256": "66ac51f2b958e1a4e09b04c6913ee12bde00a64c868c58980fc94f23c2117e15",
+  "inspected_scope": [
+    "Readcompletewave_data/speeddiagnostics andcompletegeometrypatch includingallghostfaces,SSPRKcallsandresultdiagnostics.",
+    "Readcompletequalify_components.py andprotocol;checked88hashesandASTwithoutimport/compile/evaluation."
+  ],
+  "mathematical_implementation": [
+    "Stablev=3g/(2+s),delta=12(1−q)/[(s+1)(s+2)] andnonnegativeinteriorradicals implementindependentderivationexactly. Axis-transversecomponentisexplicit,3DLevermoreclosurepreserved.",
+    "Physicala=maxspectralradius,LFconeroot,absnormalreducedflux. Faceamaxofbothstates. ThisjustifiesLFcone/CFLconsistency;notanunprovednonlinearRiemannfanbound.",
+    "Exactvacuumandpreexistingtinynegativeenergy/roundoffoutsideconeusesexplicit speed1extension. NoU/F/Pmodification,nosilentrootclamporstateprojection. Counts,maxovershootandmaximumspeedrecorded.",
+    "Allfourghostfacesuseexactlythesamerusanovhelperwithactualghostspeed1forvacuum. Boundaryenergyledgerusesactualcomputedf/gfluxes. Periodicpairantisymmetryandfaceorientationarequalified.",
+    "SSPRKstageguardsandsource/absorptionunchanged;fixedinput2dt/h<=1CFLcheckedfor24specs. Proofappliestohomogeneoustransport;arbitraryMMSforcingremainsguarded,nogeneralpositive-sourcetheoremclaimed."
+  ],
+  "qualification_review": [
+    "40strictinteriorstates×2axesuseindependentcomplex-stepclosureJacobian,eigenvalues,generalABCquadraticconeroot,andbothLFsplittings;noneoftheoraclecallsusesproductionwavespeedsalgebra.",
+    "8exactbeams×2axesusephysicalstreamingflux,coalescedsymboliclimitsandcharacteristicpolynomialratherthanfragilegenericeigsolverataweaklyhyperbolicboundary.",
+    "Isotropic/boost/nearbeam/vacuum/allowedroundoff/invalidstates/invalidaxes/nomutationchecksexplicit.",
+    "Fivefacepairsbothtypesplus2nonvacuumtangentfacescatchretainedglobalc1diffusion;scalarfluxgoldensandorientationconservationexplicit.",
+    "Eightresetone-Euler/SSPRK2operatorscheckactualboundaryledger,coneanddiagnostics;notaphysicalPDEtimeseries.",
+    "SevenpreviouslyqualifiedfunctionASTsprotected;input/acceptanceunchangedandoriginalfailedgeometrysource/dataremainbaseline."
+  ],
+  "check_arithmetic": "480interior+96beam+6isotropic+6vacuum+4tinynegative+4tinyoutside+3nomutation+12invalidstates+2invalidaxes+20faces+2tangent+40EulerSSPRK+32boost+24nearcone+24fixedCFL+7AST=762",
+  "blocking_findings": [],
+  "required_execution_wrapper": "Rootexplicitauthorization;onefreshattempt;outershared30process-groupcap;all88pre/posthashes;source/protocol/stdoutstderr/fulltraceback/completed-checks/componentarrays/finalreceiptretained;requireexact762checksandalltrue. Noautomaticretryorphysicalmain.",
+  "limitations": [
+    "StaticPASSdoesnotassertcomponentorPDEPASS.",
+    "Coneproofexactlyphysicalcone;speed-onlyextensiondoesnotcertifyanoutsideconeJacobianandmustremainseparatelyreported.",
+    "EndpointJacobianeigenvaluessupplementLFsplittingbound;nogeneralnonlinearwavefanproofborrowed."
+  ],
+  "scientific_executions": 0,
+  "source_PUB_Git_edits": false
+}

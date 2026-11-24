@@ -1,0 +1,19 @@
+{
+  "revision": 2,
+  "recorded_at_utc": "2026-11-23T22:29:58.278965+00:00",
+  "old_contract_sha256": "6ec0ba32f9e549004cc454dfb47844272221a992b606bb075453f06287e713e3",
+  "scope": "Explicit temporary compiler-directory lifecycle only; no warning filtering/suppression.",
+  "changes": [
+    "Native.close plus explicit cleanup on compilererror",
+    "pytest sessionfixtureyield/finallyclose",
+    "mainexecute try/finallyclose"
+  ],
+  "first_attempt": "R1ofthisgroupwasunexecuted;commonlifecyclefailurewasobservedonlyincavityQA.",
+  "main_evolutions_so_far": 0,
+  "scientific_pytest_test_bodies_executed_so_far": 0,
+  "old_case_gate_criteria_and_inputs_byte_identical": true,
+  "all22_test_function_ASTs_unchanged": true,
+  "native_advance_AST_unchanged": true,
+  "kernel_geometry_scalar_byte_identical": true,
+  "component58reference_numerics_unchanged": true
+}

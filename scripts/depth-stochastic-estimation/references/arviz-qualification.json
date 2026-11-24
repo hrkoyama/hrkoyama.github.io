@@ -1,0 +1,5132 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "checks": {
+    "preconditioned-46001/2048/y1/rhat_rank": true,
+    "preconditioned-46001/2048/y1/ess_bulk": true,
+    "preconditioned-46001/2048/y1/ess_tail": true,
+    "preconditioned-46001/2048/y1/ess_mean": true,
+    "preconditioned-46001/2048/y1/mcse_mean": true,
+    "preconditioned-46001/2048/y2/rhat_rank": true,
+    "preconditioned-46001/2048/y2/ess_bulk": true,
+    "preconditioned-46001/2048/y2/ess_tail": true,
+    "preconditioned-46001/2048/y2/ess_mean": true,
+    "preconditioned-46001/2048/y2/mcse_mean": true,
+    "preconditioned-46001/2048/y1_squared/rhat_rank": true,
+    "preconditioned-46001/2048/y1_squared/ess_bulk": true,
+    "preconditioned-46001/2048/y1_squared/ess_tail": true,
+    "preconditioned-46001/2048/y1_squared/ess_mean": true,
+    "preconditioned-46001/2048/y1_squared/mcse_mean": true,
+    "preconditioned-46001/2048/y2_squared/rhat_rank": true,
+    "preconditioned-46001/2048/y2_squared/ess_bulk": true,
+    "preconditioned-46001/2048/y2_squared/ess_tail": true,
+    "preconditioned-46001/2048/y2_squared/ess_mean": true,
+    "preconditioned-46001/2048/y2_squared/mcse_mean": true,
+    "preconditioned-46001/2048/product/rhat_rank": true,
+    "preconditioned-46001/2048/product/ess_bulk": true,
+    "preconditioned-46001/2048/product/ess_tail": true,
+    "preconditioned-46001/2048/product/ess_mean": true,
+    "preconditioned-46001/2048/product/mcse_mean": true,
+    "preconditioned-46001/2048/Q/rhat_rank": true,
+    "preconditioned-46001/2048/Q/ess_bulk": true,
+    "preconditioned-46001/2048/Q/ess_tail": true,
+    "preconditioned-46001/2048/Q/ess_mean": true,
+    "preconditioned-46001/2048/Q/mcse_mean": true,
+    "preconditioned-46001/2048/sum_direction/rhat_rank": true,
+    "preconditioned-46001/2048/sum_direction/ess_bulk": true,
+    "preconditioned-46001/2048/sum_direction/ess_tail": true,
+    "preconditioned-46001/2048/sum_direction/ess_mean": true,
+    "preconditioned-46001/2048/sum_direction/mcse_mean": true,
+    "preconditioned-46001/2048/difference_direction/rhat_rank": true,
+    "preconditioned-46001/2048/difference_direction/ess_bulk": true,
+    "preconditioned-46001/2048/difference_direction/ess_tail": true,
+    "preconditioned-46001/2048/difference_direction/ess_mean": true,
+    "preconditioned-46001/2048/difference_direction/mcse_mean": true,
+    "preconditioned-46001/8192/y1/rhat_rank": true,
+    "preconditioned-46001/8192/y1/ess_bulk": true,
+    "preconditioned-46001/8192/y1/ess_tail": true,
+    "preconditioned-46001/8192/y1/ess_mean": true,
+    "preconditioned-46001/8192/y1/mcse_mean": true,
+    "preconditioned-46001/8192/y2/rhat_rank": true,
+    "preconditioned-46001/8192/y2/ess_bulk": true,
+    "preconditioned-46001/8192/y2/ess_tail": true,
+    "preconditioned-46001/8192/y2/ess_mean": true,
+    "preconditioned-46001/8192/y2/mcse_mean": true,
+    "preconditioned-46001/8192/y1_squared/rhat_rank": true,
+    "preconditioned-46001/8192/y1_squared/ess_bulk": true,
+    "preconditioned-46001/8192/y1_squared/ess_tail": true,
+    "preconditioned-46001/8192/y1_squared/ess_mean": true,
+    "preconditioned-46001/8192/y1_squared/mcse_mean": true,
+    "preconditioned-46001/8192/y2_squared/rhat_rank": true,
+    "preconditioned-46001/8192/y2_squared/ess_bulk": true,
+    "preconditioned-46001/8192/y2_squared/ess_tail": true,
+    "preconditioned-46001/8192/y2_squared/ess_mean": true,
+    "preconditioned-46001/8192/y2_squared/mcse_mean": true,
+    "preconditioned-46001/8192/product/rhat_rank": true,
+    "preconditioned-46001/8192/product/ess_bulk": true,
+    "preconditioned-46001/8192/product/ess_tail": true,
+    "preconditioned-46001/8192/product/ess_mean": true,
+    "preconditioned-46001/8192/product/mcse_mean": true,
+    "preconditioned-46001/8192/Q/rhat_rank": true,
+    "preconditioned-46001/8192/Q/ess_bulk": true,
+    "preconditioned-46001/8192/Q/ess_tail": true,
+    "preconditioned-46001/8192/Q/ess_mean": true,
+    "preconditioned-46001/8192/Q/mcse_mean": true,
+    "preconditioned-46001/8192/sum_direction/rhat_rank": true,
+    "preconditioned-46001/8192/sum_direction/ess_bulk": true,
+    "preconditioned-46001/8192/sum_direction/ess_tail": true,
+    "preconditioned-46001/8192/sum_direction/ess_mean": true,
+    "preconditioned-46001/8192/sum_direction/mcse_mean": true,
+    "preconditioned-46001/8192/difference_direction/rhat_rank": true,
+    "preconditioned-46001/8192/difference_direction/ess_bulk": true,
+    "preconditioned-46001/8192/difference_direction/ess_tail": true,
+    "preconditioned-46001/8192/difference_direction/ess_mean": true,
+    "preconditioned-46001/8192/difference_direction/mcse_mean": true,
+    "isotropic-46001/2048/y1/rhat_rank": true,
+    "isotropic-46001/2048/y1/ess_bulk": true,
+    "isotropic-46001/2048/y1/ess_tail": true,
+    "isotropic-46001/2048/y1/ess_mean": true,
+    "isotropic-46001/2048/y1/mcse_mean": true,
+    "isotropic-46001/2048/y2/rhat_rank": true,
+    "isotropic-46001/2048/y2/ess_bulk": true,
+    "isotropic-46001/2048/y2/ess_tail": true,
+    "isotropic-46001/2048/y2/ess_mean": true,
+    "isotropic-46001/2048/y2/mcse_mean": true,
+    "isotropic-46001/2048/y1_squared/rhat_rank": true,
+    "isotropic-46001/2048/y1_squared/ess_bulk": true,
+    "isotropic-46001/2048/y1_squared/ess_tail": true,
+    "isotropic-46001/2048/y1_squared/ess_mean": true,
+    "isotropic-46001/2048/y1_squared/mcse_mean": true,
+    "isotropic-46001/2048/y2_squared/rhat_rank": true,
+    "isotropic-46001/2048/y2_squared/ess_bulk": true,
+    "isotropic-46001/2048/y2_squared/ess_tail": true,
+    "isotropic-46001/2048/y2_squared/ess_mean": true,
+    "isotropic-46001/2048/y2_squared/mcse_mean": true,
+    "isotropic-46001/2048/product/rhat_rank": true,
+    "isotropic-46001/2048/product/ess_bulk": true,
+    "isotropic-46001/2048/product/ess_tail": true,
+    "isotropic-46001/2048/product/ess_mean": true,
+    "isotropic-46001/2048/product/mcse_mean": true,
+    "isotropic-46001/2048/Q/rhat_rank": true,
+    "isotropic-46001/2048/Q/ess_bulk": true,
+    "isotropic-46001/2048/Q/ess_tail": true,
+    "isotropic-46001/2048/Q/ess_mean": true,
+    "isotropic-46001/2048/Q/mcse_mean": true,
+    "isotropic-46001/2048/sum_direction/rhat_rank": true,
+    "isotropic-46001/2048/sum_direction/ess_bulk": true,
+    "isotropic-46001/2048/sum_direction/ess_tail": true,
+    "isotropic-46001/2048/sum_direction/ess_mean": true,
+    "isotropic-46001/2048/sum_direction/mcse_mean": true,
+    "isotropic-46001/2048/difference_direction/rhat_rank": true,
+    "isotropic-46001/2048/difference_direction/ess_bulk": true,
+    "isotropic-46001/2048/difference_direction/ess_tail": true,
+    "isotropic-46001/2048/difference_direction/ess_mean": true,
+    "isotropic-46001/2048/difference_direction/mcse_mean": true,
+    "isotropic-46001/8192/y1/rhat_rank": true,
+    "isotropic-46001/8192/y1/ess_bulk": true,
+    "isotropic-46001/8192/y1/ess_tail": true,
+    "isotropic-46001/8192/y1/ess_mean": true,
+    "isotropic-46001/8192/y1/mcse_mean": true,
+    "isotropic-46001/8192/y2/rhat_rank": true,
+    "isotropic-46001/8192/y2/ess_bulk": true,
+    "isotropic-46001/8192/y2/ess_tail": true,
+    "isotropic-46001/8192/y2/ess_mean": true,
+    "isotropic-46001/8192/y2/mcse_mean": true,
+    "isotropic-46001/8192/y1_squared/rhat_rank": true,
+    "isotropic-46001/8192/y1_squared/ess_bulk": true,
+    "isotropic-46001/8192/y1_squared/ess_tail": true,
+    "isotropic-46001/8192/y1_squared/ess_mean": true,
+    "isotropic-46001/8192/y1_squared/mcse_mean": true,
+    "isotropic-46001/8192/y2_squared/rhat_rank": true,
+    "isotropic-46001/8192/y2_squared/ess_bulk": true,
+    "isotropic-46001/8192/y2_squared/ess_tail": true,
+    "isotropic-46001/8192/y2_squared/ess_mean": true,
+    "isotropic-46001/8192/y2_squared/mcse_mean": true,
+    "isotropic-46001/8192/product/rhat_rank": true,
+    "isotropic-46001/8192/product/ess_bulk": true,
+    "isotropic-46001/8192/product/ess_tail": true,
+    "isotropic-46001/8192/product/ess_mean": true,
+    "isotropic-46001/8192/product/mcse_mean": true,
+    "isotropic-46001/8192/Q/rhat_rank": true,
+    "isotropic-46001/8192/Q/ess_bulk": true,
+    "isotropic-46001/8192/Q/ess_tail": true,
+    "isotropic-46001/8192/Q/ess_mean": true,
+    "isotropic-46001/8192/Q/mcse_mean": true,
+    "isotropic-46001/8192/sum_direction/rhat_rank": true,
+    "isotropic-46001/8192/sum_direction/ess_bulk": true,
+    "isotropic-46001/8192/sum_direction/ess_tail": true,
+    "isotropic-46001/8192/sum_direction/ess_mean": true,
+    "isotropic-46001/8192/sum_direction/mcse_mean": true,
+    "isotropic-46001/8192/difference_direction/rhat_rank": true,
+    "isotropic-46001/8192/difference_direction/ess_bulk": true,
+    "isotropic-46001/8192/difference_direction/ess_tail": true,
+    "isotropic-46001/8192/difference_direction/ess_mean": true,
+    "isotropic-46001/8192/difference_direction/mcse_mean": true,
+    "preconditioned-46002/2048/y1/rhat_rank": true,
+    "preconditioned-46002/2048/y1/ess_bulk": true,
+    "preconditioned-46002/2048/y1/ess_tail": true,
+    "preconditioned-46002/2048/y1/ess_mean": true,
+    "preconditioned-46002/2048/y1/mcse_mean": true,
+    "preconditioned-46002/2048/y2/rhat_rank": true,
+    "preconditioned-46002/2048/y2/ess_bulk": true,
+    "preconditioned-46002/2048/y2/ess_tail": true,
+    "preconditioned-46002/2048/y2/ess_mean": true,
+    "preconditioned-46002/2048/y2/mcse_mean": true,
+    "preconditioned-46002/2048/y1_squared/rhat_rank": true,
+    "preconditioned-46002/2048/y1_squared/ess_bulk": true,
+    "preconditioned-46002/2048/y1_squared/ess_tail": true,
+    "preconditioned-46002/2048/y1_squared/ess_mean": true,
+    "preconditioned-46002/2048/y1_squared/mcse_mean": true,
+    "preconditioned-46002/2048/y2_squared/rhat_rank": true,
+    "preconditioned-46002/2048/y2_squared/ess_bulk": true,
+    "preconditioned-46002/2048/y2_squared/ess_tail": true,
+    "preconditioned-46002/2048/y2_squared/ess_mean": true,
+    "preconditioned-46002/2048/y2_squared/mcse_mean": true,
+    "preconditioned-46002/2048/product/rhat_rank": true,
+    "preconditioned-46002/2048/product/ess_bulk": true,
+    "preconditioned-46002/2048/product/ess_tail": true,
+    "preconditioned-46002/2048/product/ess_mean": true,
+    "preconditioned-46002/2048/product/mcse_mean": true,
+    "preconditioned-46002/2048/Q/rhat_rank": true,
+    "preconditioned-46002/2048/Q/ess_bulk": true,
+    "preconditioned-46002/2048/Q/ess_tail": true,
+    "preconditioned-46002/2048/Q/ess_mean": true,
+    "preconditioned-46002/2048/Q/mcse_mean": true,
+    "preconditioned-46002/2048/sum_direction/rhat_rank": true,
+    "preconditioned-46002/2048/sum_direction/ess_bulk": true,
+    "preconditioned-46002/2048/sum_direction/ess_tail": true,
+    "preconditioned-46002/2048/sum_direction/ess_mean": true,
+    "preconditioned-46002/2048/sum_direction/mcse_mean": true,
+    "preconditioned-46002/2048/difference_direction/rhat_rank": true,
+    "preconditioned-46002/2048/difference_direction/ess_bulk": true,
+    "preconditioned-46002/2048/difference_direction/ess_tail": true,
+    "preconditioned-46002/2048/difference_direction/ess_mean": true,
+    "preconditioned-46002/2048/difference_direction/mcse_mean": true,
+    "preconditioned-46002/8192/y1/rhat_rank": true,
+    "preconditioned-46002/8192/y1/ess_bulk": true,
+    "preconditioned-46002/8192/y1/ess_tail": true,
+    "preconditioned-46002/8192/y1/ess_mean": true,
+    "preconditioned-46002/8192/y1/mcse_mean": true,
+    "preconditioned-46002/8192/y2/rhat_rank": true,
+    "preconditioned-46002/8192/y2/ess_bulk": true,
+    "preconditioned-46002/8192/y2/ess_tail": true,
+    "preconditioned-46002/8192/y2/ess_mean": true,
+    "preconditioned-46002/8192/y2/mcse_mean": true,
+    "preconditioned-46002/8192/y1_squared/rhat_rank": true,
+    "preconditioned-46002/8192/y1_squared/ess_bulk": true,
+    "preconditioned-46002/8192/y1_squared/ess_tail": true,
+    "preconditioned-46002/8192/y1_squared/ess_mean": true,
+    "preconditioned-46002/8192/y1_squared/mcse_mean": true,
+    "preconditioned-46002/8192/y2_squared/rhat_rank": true,
+    "preconditioned-46002/8192/y2_squared/ess_bulk": true,
+    "preconditioned-46002/8192/y2_squared/ess_tail": true,
+    "preconditioned-46002/8192/y2_squared/ess_mean": true,
+    "preconditioned-46002/8192/y2_squared/mcse_mean": true,
+    "preconditioned-46002/8192/product/rhat_rank": true,
+    "preconditioned-46002/8192/product/ess_bulk": true,
+    "preconditioned-46002/8192/product/ess_tail": true,
+    "preconditioned-46002/8192/product/ess_mean": true,
+    "preconditioned-46002/8192/product/mcse_mean": true,
+    "preconditioned-46002/8192/Q/rhat_rank": true,
+    "preconditioned-46002/8192/Q/ess_bulk": true,
+    "preconditioned-46002/8192/Q/ess_tail": true,
+    "preconditioned-46002/8192/Q/ess_mean": true,
+    "preconditioned-46002/8192/Q/mcse_mean": true,
+    "preconditioned-46002/8192/sum_direction/rhat_rank": true,
+    "preconditioned-46002/8192/sum_direction/ess_bulk": true,
+    "preconditioned-46002/8192/sum_direction/ess_tail": true,
+    "preconditioned-46002/8192/sum_direction/ess_mean": true,
+    "preconditioned-46002/8192/sum_direction/mcse_mean": true,
+    "preconditioned-46002/8192/difference_direction/rhat_rank": true,
+    "preconditioned-46002/8192/difference_direction/ess_bulk": true,
+    "preconditioned-46002/8192/difference_direction/ess_tail": true,
+    "preconditioned-46002/8192/difference_direction/ess_mean": true,
+    "preconditioned-46002/8192/difference_direction/mcse_mean": true,
+    "isotropic-46002/2048/y1/rhat_rank": true,
+    "isotropic-46002/2048/y1/ess_bulk": true,
+    "isotropic-46002/2048/y1/ess_tail": true,
+    "isotropic-46002/2048/y1/ess_mean": true,
+    "isotropic-46002/2048/y1/mcse_mean": true,
+    "isotropic-46002/2048/y2/rhat_rank": true,
+    "isotropic-46002/2048/y2/ess_bulk": true,
+    "isotropic-46002/2048/y2/ess_tail": true,
+    "isotropic-46002/2048/y2/ess_mean": true,
+    "isotropic-46002/2048/y2/mcse_mean": true,
+    "isotropic-46002/2048/y1_squared/rhat_rank": true,
+    "isotropic-46002/2048/y1_squared/ess_bulk": true,
+    "isotropic-46002/2048/y1_squared/ess_tail": true,
+    "isotropic-46002/2048/y1_squared/ess_mean": true,
+    "isotropic-46002/2048/y1_squared/mcse_mean": true,
+    "isotropic-46002/2048/y2_squared/rhat_rank": true,
+    "isotropic-46002/2048/y2_squared/ess_bulk": true,
+    "isotropic-46002/2048/y2_squared/ess_tail": true,
+    "isotropic-46002/2048/y2_squared/ess_mean": true,
+    "isotropic-46002/2048/y2_squared/mcse_mean": true,
+    "isotropic-46002/2048/product/rhat_rank": true,
+    "isotropic-46002/2048/product/ess_bulk": true,
+    "isotropic-46002/2048/product/ess_tail": true,
+    "isotropic-46002/2048/product/ess_mean": true,
+    "isotropic-46002/2048/product/mcse_mean": true,
+    "isotropic-46002/2048/Q/rhat_rank": true,
+    "isotropic-46002/2048/Q/ess_bulk": true,
+    "isotropic-46002/2048/Q/ess_tail": true,
+    "isotropic-46002/2048/Q/ess_mean": true,
+    "isotropic-46002/2048/Q/mcse_mean": true,
+    "isotropic-46002/2048/sum_direction/rhat_rank": true,
+    "isotropic-46002/2048/sum_direction/ess_bulk": true,
+    "isotropic-46002/2048/sum_direction/ess_tail": true,
+    "isotropic-46002/2048/sum_direction/ess_mean": true,
+    "isotropic-46002/2048/sum_direction/mcse_mean": true,
+    "isotropic-46002/2048/difference_direction/rhat_rank": true,
+    "isotropic-46002/2048/difference_direction/ess_bulk": true,
+    "isotropic-46002/2048/difference_direction/ess_tail": true,
+    "isotropic-46002/2048/difference_direction/ess_mean": true,
+    "isotropic-46002/2048/difference_direction/mcse_mean": true,
+    "isotropic-46002/8192/y1/rhat_rank": true,
+    "isotropic-46002/8192/y1/ess_bulk": true,
+    "isotropic-46002/8192/y1/ess_tail": true,
+    "isotropic-46002/8192/y1/ess_mean": true,
+    "isotropic-46002/8192/y1/mcse_mean": true,
+    "isotropic-46002/8192/y2/rhat_rank": true,
+    "isotropic-46002/8192/y2/ess_bulk": true,
+    "isotropic-46002/8192/y2/ess_tail": true,
+    "isotropic-46002/8192/y2/ess_mean": true,
+    "isotropic-46002/8192/y2/mcse_mean": true,
+    "isotropic-46002/8192/y1_squared/rhat_rank": true,
+    "isotropic-46002/8192/y1_squared/ess_bulk": true,
+    "isotropic-46002/8192/y1_squared/ess_tail": true,
+    "isotropic-46002/8192/y1_squared/ess_mean": true,
+    "isotropic-46002/8192/y1_squared/mcse_mean": true,
+    "isotropic-46002/8192/y2_squared/rhat_rank": true,
+    "isotropic-46002/8192/y2_squared/ess_bulk": true,
+    "isotropic-46002/8192/y2_squared/ess_tail": true,
+    "isotropic-46002/8192/y2_squared/ess_mean": true,
+    "isotropic-46002/8192/y2_squared/mcse_mean": true,
+    "isotropic-46002/8192/product/rhat_rank": true,
+    "isotropic-46002/8192/product/ess_bulk": true,
+    "isotropic-46002/8192/product/ess_tail": true,
+    "isotropic-46002/8192/product/ess_mean": true,
+    "isotropic-46002/8192/product/mcse_mean": true,
+    "isotropic-46002/8192/Q/rhat_rank": true,
+    "isotropic-46002/8192/Q/ess_bulk": true,
+    "isotropic-46002/8192/Q/ess_tail": true,
+    "isotropic-46002/8192/Q/ess_mean": true,
+    "isotropic-46002/8192/Q/mcse_mean": true,
+    "isotropic-46002/8192/sum_direction/rhat_rank": true,
+    "isotropic-46002/8192/sum_direction/ess_bulk": true,
+    "isotropic-46002/8192/sum_direction/ess_tail": true,
+    "isotropic-46002/8192/sum_direction/ess_mean": true,
+    "isotropic-46002/8192/sum_direction/mcse_mean": true,
+    "isotropic-46002/8192/difference_direction/rhat_rank": true,
+    "isotropic-46002/8192/difference_direction/ess_bulk": true,
+    "isotropic-46002/8192/difference_direction/ess_tail": true,
+    "isotropic-46002/8192/difference_direction/ess_mean": true,
+    "isotropic-46002/8192/difference_direction/mcse_mean": true,
+    "preconditioned-46003/2048/y1/rhat_rank": true,
+    "preconditioned-46003/2048/y1/ess_bulk": true,
+    "preconditioned-46003/2048/y1/ess_tail": true,
+    "preconditioned-46003/2048/y1/ess_mean": true,
+    "preconditioned-46003/2048/y1/mcse_mean": true,
+    "preconditioned-46003/2048/y2/rhat_rank": true,
+    "preconditioned-46003/2048/y2/ess_bulk": true,
+    "preconditioned-46003/2048/y2/ess_tail": true,
+    "preconditioned-46003/2048/y2/ess_mean": true,
+    "preconditioned-46003/2048/y2/mcse_mean": true,
+    "preconditioned-46003/2048/y1_squared/rhat_rank": true,
+    "preconditioned-46003/2048/y1_squared/ess_bulk": true,
+    "preconditioned-46003/2048/y1_squared/ess_tail": true,
+    "preconditioned-46003/2048/y1_squared/ess_mean": true,
+    "preconditioned-46003/2048/y1_squared/mcse_mean": true,
+    "preconditioned-46003/2048/y2_squared/rhat_rank": true,
+    "preconditioned-46003/2048/y2_squared/ess_bulk": true,
+    "preconditioned-46003/2048/y2_squared/ess_tail": true,
+    "preconditioned-46003/2048/y2_squared/ess_mean": true,
+    "preconditioned-46003/2048/y2_squared/mcse_mean": true,
+    "preconditioned-46003/2048/product/rhat_rank": true,
+    "preconditioned-46003/2048/product/ess_bulk": true,
+    "preconditioned-46003/2048/product/ess_tail": true,
+    "preconditioned-46003/2048/product/ess_mean": true,
+    "preconditioned-46003/2048/product/mcse_mean": true,
+    "preconditioned-46003/2048/Q/rhat_rank": true,
+    "preconditioned-46003/2048/Q/ess_bulk": true,
+    "preconditioned-46003/2048/Q/ess_tail": true,
+    "preconditioned-46003/2048/Q/ess_mean": true,
+    "preconditioned-46003/2048/Q/mcse_mean": true,
+    "preconditioned-46003/2048/sum_direction/rhat_rank": true,
+    "preconditioned-46003/2048/sum_direction/ess_bulk": true,
+    "preconditioned-46003/2048/sum_direction/ess_tail": true,
+    "preconditioned-46003/2048/sum_direction/ess_mean": true,
+    "preconditioned-46003/2048/sum_direction/mcse_mean": true,
+    "preconditioned-46003/2048/difference_direction/rhat_rank": true,
+    "preconditioned-46003/2048/difference_direction/ess_bulk": true,
+    "preconditioned-46003/2048/difference_direction/ess_tail": true,
+    "preconditioned-46003/2048/difference_direction/ess_mean": true,
+    "preconditioned-46003/2048/difference_direction/mcse_mean": true,
+    "preconditioned-46003/8192/y1/rhat_rank": true,
+    "preconditioned-46003/8192/y1/ess_bulk": true,
+    "preconditioned-46003/8192/y1/ess_tail": true,
+    "preconditioned-46003/8192/y1/ess_mean": true,
+    "preconditioned-46003/8192/y1/mcse_mean": true,
+    "preconditioned-46003/8192/y2/rhat_rank": true,
+    "preconditioned-46003/8192/y2/ess_bulk": true,
+    "preconditioned-46003/8192/y2/ess_tail": true,
+    "preconditioned-46003/8192/y2/ess_mean": true,
+    "preconditioned-46003/8192/y2/mcse_mean": true,
+    "preconditioned-46003/8192/y1_squared/rhat_rank": true,
+    "preconditioned-46003/8192/y1_squared/ess_bulk": true,
+    "preconditioned-46003/8192/y1_squared/ess_tail": true,
+    "preconditioned-46003/8192/y1_squared/ess_mean": true,
+    "preconditioned-46003/8192/y1_squared/mcse_mean": true,
+    "preconditioned-46003/8192/y2_squared/rhat_rank": true,
+    "preconditioned-46003/8192/y2_squared/ess_bulk": true,
+    "preconditioned-46003/8192/y2_squared/ess_tail": true,
+    "preconditioned-46003/8192/y2_squared/ess_mean": true,
+    "preconditioned-46003/8192/y2_squared/mcse_mean": true,
+    "preconditioned-46003/8192/product/rhat_rank": true,
+    "preconditioned-46003/8192/product/ess_bulk": true,
+    "preconditioned-46003/8192/product/ess_tail": true,
+    "preconditioned-46003/8192/product/ess_mean": true,
+    "preconditioned-46003/8192/product/mcse_mean": true,
+    "preconditioned-46003/8192/Q/rhat_rank": true,
+    "preconditioned-46003/8192/Q/ess_bulk": true,
+    "preconditioned-46003/8192/Q/ess_tail": true,
+    "preconditioned-46003/8192/Q/ess_mean": true,
+    "preconditioned-46003/8192/Q/mcse_mean": true,
+    "preconditioned-46003/8192/sum_direction/rhat_rank": true,
+    "preconditioned-46003/8192/sum_direction/ess_bulk": true,
+    "preconditioned-46003/8192/sum_direction/ess_tail": true,
+    "preconditioned-46003/8192/sum_direction/ess_mean": true,
+    "preconditioned-46003/8192/sum_direction/mcse_mean": true,
+    "preconditioned-46003/8192/difference_direction/rhat_rank": true,
+    "preconditioned-46003/8192/difference_direction/ess_bulk": true,
+    "preconditioned-46003/8192/difference_direction/ess_tail": true,
+    "preconditioned-46003/8192/difference_direction/ess_mean": true,
+    "preconditioned-46003/8192/difference_direction/mcse_mean": true,
+    "isotropic-46003/2048/y1/rhat_rank": true,
+    "isotropic-46003/2048/y1/ess_bulk": true,
+    "isotropic-46003/2048/y1/ess_tail": true,
+    "isotropic-46003/2048/y1/ess_mean": true,
+    "isotropic-46003/2048/y1/mcse_mean": true,
+    "isotropic-46003/2048/y2/rhat_rank": true,
+    "isotropic-46003/2048/y2/ess_bulk": true,
+    "isotropic-46003/2048/y2/ess_tail": true,
+    "isotropic-46003/2048/y2/ess_mean": true,
+    "isotropic-46003/2048/y2/mcse_mean": true,
+    "isotropic-46003/2048/y1_squared/rhat_rank": true,
+    "isotropic-46003/2048/y1_squared/ess_bulk": true,
+    "isotropic-46003/2048/y1_squared/ess_tail": true,
+    "isotropic-46003/2048/y1_squared/ess_mean": true,
+    "isotropic-46003/2048/y1_squared/mcse_mean": true,
+    "isotropic-46003/2048/y2_squared/rhat_rank": true,
+    "isotropic-46003/2048/y2_squared/ess_bulk": true,
+    "isotropic-46003/2048/y2_squared/ess_tail": true,
+    "isotropic-46003/2048/y2_squared/ess_mean": true,
+    "isotropic-46003/2048/y2_squared/mcse_mean": true,
+    "isotropic-46003/2048/product/rhat_rank": true,
+    "isotropic-46003/2048/product/ess_bulk": true,
+    "isotropic-46003/2048/product/ess_tail": true,
+    "isotropic-46003/2048/product/ess_mean": true,
+    "isotropic-46003/2048/product/mcse_mean": true,
+    "isotropic-46003/2048/Q/rhat_rank": true,
+    "isotropic-46003/2048/Q/ess_bulk": true,
+    "isotropic-46003/2048/Q/ess_tail": true,
+    "isotropic-46003/2048/Q/ess_mean": true,
+    "isotropic-46003/2048/Q/mcse_mean": true,
+    "isotropic-46003/2048/sum_direction/rhat_rank": true,
+    "isotropic-46003/2048/sum_direction/ess_bulk": true,
+    "isotropic-46003/2048/sum_direction/ess_tail": true,
+    "isotropic-46003/2048/sum_direction/ess_mean": true,
+    "isotropic-46003/2048/sum_direction/mcse_mean": true,
+    "isotropic-46003/2048/difference_direction/rhat_rank": true,
+    "isotropic-46003/2048/difference_direction/ess_bulk": true,
+    "isotropic-46003/2048/difference_direction/ess_tail": true,
+    "isotropic-46003/2048/difference_direction/ess_mean": true,
+    "isotropic-46003/2048/difference_direction/mcse_mean": true,
+    "isotropic-46003/8192/y1/rhat_rank": true,
+    "isotropic-46003/8192/y1/ess_bulk": true,
+    "isotropic-46003/8192/y1/ess_tail": true,
+    "isotropic-46003/8192/y1/ess_mean": true,
+    "isotropic-46003/8192/y1/mcse_mean": true,
+    "isotropic-46003/8192/y2/rhat_rank": true,
+    "isotropic-46003/8192/y2/ess_bulk": true,
+    "isotropic-46003/8192/y2/ess_tail": true,
+    "isotropic-46003/8192/y2/ess_mean": true,
+    "isotropic-46003/8192/y2/mcse_mean": true,
+    "isotropic-46003/8192/y1_squared/rhat_rank": true,
+    "isotropic-46003/8192/y1_squared/ess_bulk": true,
+    "isotropic-46003/8192/y1_squared/ess_tail": true,
+    "isotropic-46003/8192/y1_squared/ess_mean": true,
+    "isotropic-46003/8192/y1_squared/mcse_mean": true,
+    "isotropic-46003/8192/y2_squared/rhat_rank": true,
+    "isotropic-46003/8192/y2_squared/ess_bulk": true,
+    "isotropic-46003/8192/y2_squared/ess_tail": true,
+    "isotropic-46003/8192/y2_squared/ess_mean": true,
+    "isotropic-46003/8192/y2_squared/mcse_mean": true,
+    "isotropic-46003/8192/product/rhat_rank": true,
+    "isotropic-46003/8192/product/ess_bulk": true,
+    "isotropic-46003/8192/product/ess_tail": true,
+    "isotropic-46003/8192/product/ess_mean": true,
+    "isotropic-46003/8192/product/mcse_mean": true,
+    "isotropic-46003/8192/Q/rhat_rank": true,
+    "isotropic-46003/8192/Q/ess_bulk": true,
+    "isotropic-46003/8192/Q/ess_tail": true,
+    "isotropic-46003/8192/Q/ess_mean": true,
+    "isotropic-46003/8192/Q/mcse_mean": true,
+    "isotropic-46003/8192/sum_direction/rhat_rank": true,
+    "isotropic-46003/8192/sum_direction/ess_bulk": true,
+    "isotropic-46003/8192/sum_direction/ess_tail": true,
+    "isotropic-46003/8192/sum_direction/ess_mean": true,
+    "isotropic-46003/8192/sum_direction/mcse_mean": true,
+    "isotropic-46003/8192/difference_direction/rhat_rank": true,
+    "isotropic-46003/8192/difference_direction/ess_bulk": true,
+    "isotropic-46003/8192/difference_direction/ess_tail": true,
+    "isotropic-46003/8192/difference_direction/ess_mean": true,
+    "isotropic-46003/8192/difference_direction/mcse_mean": true,
+    "preconditioned-46004/2048/y1/rhat_rank": true,
+    "preconditioned-46004/2048/y1/ess_bulk": true,
+    "preconditioned-46004/2048/y1/ess_tail": true,
+    "preconditioned-46004/2048/y1/ess_mean": true,
+    "preconditioned-46004/2048/y1/mcse_mean": true,
+    "preconditioned-46004/2048/y2/rhat_rank": true,
+    "preconditioned-46004/2048/y2/ess_bulk": true,
+    "preconditioned-46004/2048/y2/ess_tail": true,
+    "preconditioned-46004/2048/y2/ess_mean": true,
+    "preconditioned-46004/2048/y2/mcse_mean": true,
+    "preconditioned-46004/2048/y1_squared/rhat_rank": true,
+    "preconditioned-46004/2048/y1_squared/ess_bulk": true,
+    "preconditioned-46004/2048/y1_squared/ess_tail": true,
+    "preconditioned-46004/2048/y1_squared/ess_mean": true,
+    "preconditioned-46004/2048/y1_squared/mcse_mean": true,
+    "preconditioned-46004/2048/y2_squared/rhat_rank": true,
+    "preconditioned-46004/2048/y2_squared/ess_bulk": true,
+    "preconditioned-46004/2048/y2_squared/ess_tail": true,
+    "preconditioned-46004/2048/y2_squared/ess_mean": true,
+    "preconditioned-46004/2048/y2_squared/mcse_mean": true,
+    "preconditioned-46004/2048/product/rhat_rank": true,
+    "preconditioned-46004/2048/product/ess_bulk": true,
+    "preconditioned-46004/2048/product/ess_tail": true,
+    "preconditioned-46004/2048/product/ess_mean": true,
+    "preconditioned-46004/2048/product/mcse_mean": true,
+    "preconditioned-46004/2048/Q/rhat_rank": true,
+    "preconditioned-46004/2048/Q/ess_bulk": true,
+    "preconditioned-46004/2048/Q/ess_tail": true,
+    "preconditioned-46004/2048/Q/ess_mean": true,
+    "preconditioned-46004/2048/Q/mcse_mean": true,
+    "preconditioned-46004/2048/sum_direction/rhat_rank": true,
+    "preconditioned-46004/2048/sum_direction/ess_bulk": true,
+    "preconditioned-46004/2048/sum_direction/ess_tail": true,
+    "preconditioned-46004/2048/sum_direction/ess_mean": true,
+    "preconditioned-46004/2048/sum_direction/mcse_mean": true,
+    "preconditioned-46004/2048/difference_direction/rhat_rank": true,
+    "preconditioned-46004/2048/difference_direction/ess_bulk": true,
+    "preconditioned-46004/2048/difference_direction/ess_tail": true,
+    "preconditioned-46004/2048/difference_direction/ess_mean": true,
+    "preconditioned-46004/2048/difference_direction/mcse_mean": true,
+    "preconditioned-46004/8192/y1/rhat_rank": true,
+    "preconditioned-46004/8192/y1/ess_bulk": true,
+    "preconditioned-46004/8192/y1/ess_tail": true,
+    "preconditioned-46004/8192/y1/ess_mean": true,
+    "preconditioned-46004/8192/y1/mcse_mean": true,
+    "preconditioned-46004/8192/y2/rhat_rank": true,
+    "preconditioned-46004/8192/y2/ess_bulk": true,
+    "preconditioned-46004/8192/y2/ess_tail": true,
+    "preconditioned-46004/8192/y2/ess_mean": true,
+    "preconditioned-46004/8192/y2/mcse_mean": true,
+    "preconditioned-46004/8192/y1_squared/rhat_rank": true,
+    "preconditioned-46004/8192/y1_squared/ess_bulk": true,
+    "preconditioned-46004/8192/y1_squared/ess_tail": true,
+    "preconditioned-46004/8192/y1_squared/ess_mean": true,
+    "preconditioned-46004/8192/y1_squared/mcse_mean": true,
+    "preconditioned-46004/8192/y2_squared/rhat_rank": true,
+    "preconditioned-46004/8192/y2_squared/ess_bulk": true,
+    "preconditioned-46004/8192/y2_squared/ess_tail": true,
+    "preconditioned-46004/8192/y2_squared/ess_mean": true,
+    "preconditioned-46004/8192/y2_squared/mcse_mean": true,
+    "preconditioned-46004/8192/product/rhat_rank": true,
+    "preconditioned-46004/8192/product/ess_bulk": true,
+    "preconditioned-46004/8192/product/ess_tail": true,
+    "preconditioned-46004/8192/product/ess_mean": true,
+    "preconditioned-46004/8192/product/mcse_mean": true,
+    "preconditioned-46004/8192/Q/rhat_rank": true,
+    "preconditioned-46004/8192/Q/ess_bulk": true,
+    "preconditioned-46004/8192/Q/ess_tail": true,
+    "preconditioned-46004/8192/Q/ess_mean": true,
+    "preconditioned-46004/8192/Q/mcse_mean": true,
+    "preconditioned-46004/8192/sum_direction/rhat_rank": true,
+    "preconditioned-46004/8192/sum_direction/ess_bulk": true,
+    "preconditioned-46004/8192/sum_direction/ess_tail": true,
+    "preconditioned-46004/8192/sum_direction/ess_mean": true,
+    "preconditioned-46004/8192/sum_direction/mcse_mean": true,
+    "preconditioned-46004/8192/difference_direction/rhat_rank": true,
+    "preconditioned-46004/8192/difference_direction/ess_bulk": true,
+    "preconditioned-46004/8192/difference_direction/ess_tail": true,
+    "preconditioned-46004/8192/difference_direction/ess_mean": true,
+    "preconditioned-46004/8192/difference_direction/mcse_mean": true,
+    "isotropic-46004/2048/y1/rhat_rank": true,
+    "isotropic-46004/2048/y1/ess_bulk": true,
+    "isotropic-46004/2048/y1/ess_tail": true,
+    "isotropic-46004/2048/y1/ess_mean": true,
+    "isotropic-46004/2048/y1/mcse_mean": true,
+    "isotropic-46004/2048/y2/rhat_rank": true,
+    "isotropic-46004/2048/y2/ess_bulk": true,
+    "isotropic-46004/2048/y2/ess_tail": true,
+    "isotropic-46004/2048/y2/ess_mean": true,
+    "isotropic-46004/2048/y2/mcse_mean": true,
+    "isotropic-46004/2048/y1_squared/rhat_rank": true,
+    "isotropic-46004/2048/y1_squared/ess_bulk": true,
+    "isotropic-46004/2048/y1_squared/ess_tail": true,
+    "isotropic-46004/2048/y1_squared/ess_mean": true,
+    "isotropic-46004/2048/y1_squared/mcse_mean": true,
+    "isotropic-46004/2048/y2_squared/rhat_rank": true,
+    "isotropic-46004/2048/y2_squared/ess_bulk": true,
+    "isotropic-46004/2048/y2_squared/ess_tail": true,
+    "isotropic-46004/2048/y2_squared/ess_mean": true,
+    "isotropic-46004/2048/y2_squared/mcse_mean": true,
+    "isotropic-46004/2048/product/rhat_rank": true,
+    "isotropic-46004/2048/product/ess_bulk": true,
+    "isotropic-46004/2048/product/ess_tail": true,
+    "isotropic-46004/2048/product/ess_mean": true,
+    "isotropic-46004/2048/product/mcse_mean": true,
+    "isotropic-46004/2048/Q/rhat_rank": true,
+    "isotropic-46004/2048/Q/ess_bulk": true,
+    "isotropic-46004/2048/Q/ess_tail": true,
+    "isotropic-46004/2048/Q/ess_mean": true,
+    "isotropic-46004/2048/Q/mcse_mean": true,
+    "isotropic-46004/2048/sum_direction/rhat_rank": true,
+    "isotropic-46004/2048/sum_direction/ess_bulk": true,
+    "isotropic-46004/2048/sum_direction/ess_tail": true,
+    "isotropic-46004/2048/sum_direction/ess_mean": true,
+    "isotropic-46004/2048/sum_direction/mcse_mean": true,
+    "isotropic-46004/2048/difference_direction/rhat_rank": true,
+    "isotropic-46004/2048/difference_direction/ess_bulk": true,
+    "isotropic-46004/2048/difference_direction/ess_tail": true,
+    "isotropic-46004/2048/difference_direction/ess_mean": true,
+    "isotropic-46004/2048/difference_direction/mcse_mean": true,
+    "isotropic-46004/8192/y1/rhat_rank": true,
+    "isotropic-46004/8192/y1/ess_bulk": true,
+    "isotropic-46004/8192/y1/ess_tail": true,
+    "isotropic-46004/8192/y1/ess_mean": true,
+    "isotropic-46004/8192/y1/mcse_mean": true,
+    "isotropic-46004/8192/y2/rhat_rank": true,
+    "isotropic-46004/8192/y2/ess_bulk": true,
+    "isotropic-46004/8192/y2/ess_tail": true,
+    "isotropic-46004/8192/y2/ess_mean": true,
+    "isotropic-46004/8192/y2/mcse_mean": true,
+    "isotropic-46004/8192/y1_squared/rhat_rank": true,
+    "isotropic-46004/8192/y1_squared/ess_bulk": true,
+    "isotropic-46004/8192/y1_squared/ess_tail": true,
+    "isotropic-46004/8192/y1_squared/ess_mean": true,
+    "isotropic-46004/8192/y1_squared/mcse_mean": true,
+    "isotropic-46004/8192/y2_squared/rhat_rank": true,
+    "isotropic-46004/8192/y2_squared/ess_bulk": true,
+    "isotropic-46004/8192/y2_squared/ess_tail": true,
+    "isotropic-46004/8192/y2_squared/ess_mean": true,
+    "isotropic-46004/8192/y2_squared/mcse_mean": true,
+    "isotropic-46004/8192/product/rhat_rank": true,
+    "isotropic-46004/8192/product/ess_bulk": true,
+    "isotropic-46004/8192/product/ess_tail": true,
+    "isotropic-46004/8192/product/ess_mean": true,
+    "isotropic-46004/8192/product/mcse_mean": true,
+    "isotropic-46004/8192/Q/rhat_rank": true,
+    "isotropic-46004/8192/Q/ess_bulk": true,
+    "isotropic-46004/8192/Q/ess_tail": true,
+    "isotropic-46004/8192/Q/ess_mean": true,
+    "isotropic-46004/8192/Q/mcse_mean": true,
+    "isotropic-46004/8192/sum_direction/rhat_rank": true,
+    "isotropic-46004/8192/sum_direction/ess_bulk": true,
+    "isotropic-46004/8192/sum_direction/ess_tail": true,
+    "isotropic-46004/8192/sum_direction/ess_mean": true,
+    "isotropic-46004/8192/sum_direction/mcse_mean": true,
+    "isotropic-46004/8192/difference_direction/rhat_rank": true,
+    "isotropic-46004/8192/difference_direction/ess_bulk": true,
+    "isotropic-46004/8192/difference_direction/ess_tail": true,
+    "isotropic-46004/8192/difference_direction/ess_mean": true,
+    "isotropic-46004/8192/difference_direction/mcse_mean": true
+  },
+  "comparisons": [
+    {
+      "id": "preconditioned-46001/2048/y1/rhat_rank",
+      "actual": 1.0028234908080917,
+      "reference": 1.0028234908080917,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/y1/ess_bulk",
+      "actual": 842.393374234801,
+      "reference": 842.3933742348013,
+      "tolerance": 1.6847867484696025e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/y1/ess_tail",
+      "actual": 1156.7493143970592,
+      "reference": 1156.7493143970596,
+      "tolerance": 2.3134986287941193e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/y1/ess_mean",
+      "actual": 844.5065958382512,
+      "reference": 844.5065958382513,
+      "tolerance": 1.6890131916765027e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/y1/mcse_mean",
+      "actual": 0.03462914715701663,
+      "reference": 0.03462914715701663,
+      "tolerance": 6.925829431403325e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/y2/rhat_rank",
+      "actual": 1.0027038600453424,
+      "reference": 1.0027038600453424,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/y2/ess_bulk",
+      "actual": 843.7879060658638,
+      "reference": 843.7879060658638,
+      "tolerance": 1.6875758121317277e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/y2/ess_tail",
+      "actual": 942.3715879183177,
+      "reference": 942.3715879183177,
+      "tolerance": 1.8847431758366355e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/y2/ess_mean",
+      "actual": 841.4812978607972,
+      "reference": 841.4812978607972,
+      "tolerance": 1.6829625957215946e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/y2/mcse_mean",
+      "actual": 0.03475078746204045,
+      "reference": 0.03475078746204045,
+      "tolerance": 6.950157492408091e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/y1_squared/rhat_rank",
+      "actual": 1.0020602281225262,
+      "reference": 1.0020602281225262,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/y1_squared/ess_bulk",
+      "actual": 1581.3625909792775,
+      "reference": 1581.362590979278,
+      "tolerance": 3.162725181958556e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/y1_squared/ess_tail",
+      "actual": 1443.054617307469,
+      "reference": 1443.0546173074688,
+      "tolerance": 2.8861092346149377e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/y1_squared/ess_mean",
+      "actual": 1130.832921373483,
+      "reference": 1130.832921373483,
+      "tolerance": 2.2616658427469663e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/y1_squared/mcse_mean",
+      "actual": 0.041739701345924876,
+      "reference": 0.041739701345924876,
+      "tolerance": 8.347940269184976e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/y2_squared/rhat_rank",
+      "actual": 1.0028847282903728,
+      "reference": 1.0028847282903726,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/y2_squared/ess_bulk",
+      "actual": 1399.8399302606222,
+      "reference": 1399.839930260622,
+      "tolerance": 2.799679860521244e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/y2_squared/ess_tail",
+      "actual": 1215.0993978673393,
+      "reference": 1215.0993978673391,
+      "tolerance": 2.4301987957346784e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/y2_squared/ess_mean",
+      "actual": 925.3926891011614,
+      "reference": 925.3926891011612,
+      "tolerance": 1.8507853782023224e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/y2_squared/mcse_mean",
+      "actual": 0.04769439506234704,
+      "reference": 0.047694395062347045,
+      "tolerance": 9.53887901246941e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/product/rhat_rank",
+      "actual": 1.0015509118824761,
+      "reference": 1.0015509118824761,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/product/ess_bulk",
+      "actual": 1531.9412928141007,
+      "reference": 1531.9412928141003,
+      "tolerance": 3.063882585628201e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/product/ess_tail",
+      "actual": 1419.2156527412385,
+      "reference": 1419.2156527412383,
+      "tolerance": 2.8384313054824767e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/product/ess_mean",
+      "actual": 1015.7530751436617,
+      "reference": 1015.7530751436617,
+      "tolerance": 2.0315061502873233e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/product/mcse_mean",
+      "actual": 0.0437461996115656,
+      "reference": 0.0437461996115656,
+      "tolerance": 8.749239922313121e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/Q/rhat_rank",
+      "actual": 1.0054024275360913,
+      "reference": 1.005402427536091,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/Q/ess_bulk",
+      "actual": 1142.029112553154,
+      "reference": 1142.0291125531537,
+      "tolerance": 2.2840582251063073e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/Q/ess_tail",
+      "actual": 1336.367916540867,
+      "reference": 1336.367916540867,
+      "tolerance": 2.6727358330817343e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/Q/ess_mean",
+      "actual": 947.884892847457,
+      "reference": 947.884892847457,
+      "tolerance": 1.895769785694914e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/Q/mcse_mean",
+      "actual": 0.06560309805954616,
+      "reference": 0.06560309805954616,
+      "tolerance": 1.3120619611909231e-09,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/sum_direction/rhat_rank",
+      "actual": 1.0025118393268277,
+      "reference": 1.0025118393268277,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/sum_direction/ess_bulk",
+      "actual": 846.186685441556,
+      "reference": 846.1866854415562,
+      "tolerance": 1.6923733708831125e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/sum_direction/ess_tail",
+      "actual": 1002.9082373333366,
+      "reference": 1002.9082373333366,
+      "tolerance": 2.005816474666673e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/sum_direction/ess_mean",
+      "actual": 846.7234138747014,
+      "reference": 846.7234138747011,
+      "tolerance": 1.6934468277494022e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/sum_direction/mcse_mean",
+      "actual": 0.03461013969718671,
+      "reference": 0.034610139697186716,
+      "tolerance": 6.922027939437343e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/difference_direction/rhat_rank",
+      "actual": 1.007327324383575,
+      "reference": 1.007327324383575,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/difference_direction/ess_bulk",
+      "actual": 684.4433664205947,
+      "reference": 684.4433664205947,
+      "tolerance": 1.3688867328411894e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/difference_direction/ess_tail",
+      "actual": 975.6093139374403,
+      "reference": 975.6093139374403,
+      "tolerance": 1.9512186278748806e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/difference_direction/ess_mean",
+      "actual": 681.2539670476775,
+      "reference": 681.2539670476777,
+      "tolerance": 1.3625079340953555e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/2048/difference_direction/mcse_mean",
+      "actual": 0.03873154704094146,
+      "reference": 0.03873154704094146,
+      "tolerance": 7.746309408188292e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/y1/rhat_rank",
+      "actual": 1.0008151205779574,
+      "reference": 1.0008151205779574,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/y1/ess_bulk",
+      "actual": 3075.919072632889,
+      "reference": 3075.919072632889,
+      "tolerance": 6.151838145265778e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/y1/ess_tail",
+      "actual": 4422.390392349233,
+      "reference": 4422.390392349233,
+      "tolerance": 8.844780784698465e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/y1/ess_mean",
+      "actual": 3080.6833822167046,
+      "reference": 3080.6833822167046,
+      "tolerance": 6.161366764433409e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/y1/mcse_mean",
+      "actual": 0.017897352803688746,
+      "reference": 0.017897352803688746,
+      "tolerance": 3.5794705607377494e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/y2/rhat_rank",
+      "actual": 1.0006401688227156,
+      "reference": 1.0006401688227156,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/y2/ess_bulk",
+      "actual": 3138.346202374029,
+      "reference": 3138.34620237403,
+      "tolerance": 6.27669240474806e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/y2/ess_tail",
+      "actual": 4480.827493577582,
+      "reference": 4480.827493577581,
+      "tolerance": 8.961654987155162e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/y2/ess_mean",
+      "actual": 3140.5859054630932,
+      "reference": 3140.585905463092,
+      "tolerance": 6.281171810926184e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/y2/mcse_mean",
+      "actual": 0.017622704535850048,
+      "reference": 0.017622704535850055,
+      "tolerance": 3.524540907170011e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/y1_squared/rhat_rank",
+      "actual": 1.000185470403974,
+      "reference": 1.000185470403974,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/y1_squared/ess_bulk",
+      "actual": 5715.282095859754,
+      "reference": 5715.282095859756,
+      "tolerance": 0.00011430564191719512,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/y1_squared/ess_tail",
+      "actual": 5213.223175047471,
+      "reference": 5213.22317504747,
+      "tolerance": 0.0001042644635009494,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/y1_squared/ess_mean",
+      "actual": 4136.553451113296,
+      "reference": 4136.553451113297,
+      "tolerance": 8.273106902226595e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/y1_squared/mcse_mean",
+      "actual": 0.021348136394524268,
+      "reference": 0.021348136394524268,
+      "tolerance": 4.269627278904854e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/y2_squared/rhat_rank",
+      "actual": 1.0003413588333978,
+      "reference": 1.0003413588333978,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/y2_squared/ess_bulk",
+      "actual": 5722.070295267152,
+      "reference": 5722.070295267152,
+      "tolerance": 0.00011444140590534304,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/y2_squared/ess_tail",
+      "actual": 5174.224128622179,
+      "reference": 5174.22412862218,
+      "tolerance": 0.0001034844825724436,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/y2_squared/ess_mean",
+      "actual": 4105.673962789241,
+      "reference": 4105.673962789242,
+      "tolerance": 8.211347925578484e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/y2_squared/mcse_mean",
+      "actual": 0.021395001692398777,
+      "reference": 0.021395001692398777,
+      "tolerance": 4.279000338479756e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/product/rhat_rank",
+      "actual": 1.0002215829825107,
+      "reference": 1.0002215829825107,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/product/ess_bulk",
+      "actual": 5820.0147395516215,
+      "reference": 5820.014739551621,
+      "tolerance": 0.00011640029479103242,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/product/ess_tail",
+      "actual": 5254.549771968714,
+      "reference": 5254.549771968715,
+      "tolerance": 0.00010509099543937429,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/product/ess_mean",
+      "actual": 4123.715089815382,
+      "reference": 4123.715089815382,
+      "tolerance": 8.247430179630764e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/product/mcse_mean",
+      "actual": 0.02081845394522371,
+      "reference": 0.02081845394522371,
+      "tolerance": 4.163690789044742e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/Q/rhat_rank",
+      "actual": 1.0009909900479994,
+      "reference": 1.0009909900479994,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/Q/ess_bulk",
+      "actual": 4547.714155437986,
+      "reference": 4547.714155437981,
+      "tolerance": 9.095428310875963e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/Q/ess_tail",
+      "actual": 4943.401692503204,
+      "reference": 4943.401692503203,
+      "tolerance": 9.886803385006406e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/Q/ess_mean",
+      "actual": 3715.937653831554,
+      "reference": 3715.937653831554,
+      "tolerance": 7.431875307663109e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/Q/mcse_mean",
+      "actual": 0.03228957201741417,
+      "reference": 0.03228957201741417,
+      "tolerance": 6.457914403482834e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/sum_direction/rhat_rank",
+      "actual": 1.0007424048176283,
+      "reference": 1.0007424048176283,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/sum_direction/ess_bulk",
+      "actual": 3109.380177758341,
+      "reference": 3109.380177758341,
+      "tolerance": 6.218760355516682e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/sum_direction/ess_tail",
+      "actual": 4398.384796421083,
+      "reference": 4398.384796421081,
+      "tolerance": 8.796769592842161e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/sum_direction/ess_mean",
+      "actual": 3112.8581610111382,
+      "reference": 3112.8581610111387,
+      "tolerance": 6.225716322022278e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/sum_direction/mcse_mean",
+      "actual": 0.017749713259677415,
+      "reference": 0.017749713259677415,
+      "tolerance": 3.5499426519354833e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/difference_direction/rhat_rank",
+      "actual": 1.0009028414784726,
+      "reference": 1.0009028414784726,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/difference_direction/ess_bulk",
+      "actual": 2981.855924949352,
+      "reference": 2981.855924949351,
+      "tolerance": 5.963711849898702e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/difference_direction/ess_tail",
+      "actual": 4354.003451817646,
+      "reference": 4354.003451817646,
+      "tolerance": 8.708006903635293e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/difference_direction/ess_mean",
+      "actual": 2981.0809986281065,
+      "reference": 2981.0809986281074,
+      "tolerance": 5.962161997256215e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46001/8192/difference_direction/mcse_mean",
+      "actual": 0.018267317867082522,
+      "reference": 0.018267317867082515,
+      "tolerance": 3.653463573416503e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/y1/rhat_rank",
+      "actual": 1.0908566955918233,
+      "reference": 1.0908566955918235,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/y1/ess_bulk",
+      "actual": 33.80774094748844,
+      "reference": 33.807740947488455,
+      "tolerance": 6.761548189497691e-07,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/y1/ess_tail",
+      "actual": 133.0382483695632,
+      "reference": 133.03824836956318,
+      "tolerance": 2.6607649673912637e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/y1/ess_mean",
+      "actual": 32.804726801783225,
+      "reference": 32.80472680178321,
+      "tolerance": 6.560945360356643e-07,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/y1/mcse_mean",
+      "actual": 0.17283949935955797,
+      "reference": 0.17283949935955803,
+      "tolerance": 3.4567899871911608e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/y2/rhat_rank",
+      "actual": 1.0992092349239537,
+      "reference": 1.0992092349239537,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/y2/ess_bulk",
+      "actual": 31.064029882385412,
+      "reference": 31.064029882385405,
+      "tolerance": 6.212805976477081e-07,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/y2/ess_tail",
+      "actual": 138.57239140689046,
+      "reference": 138.5723914068905,
+      "tolerance": 2.77144782813781e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/y2/ess_mean",
+      "actual": 30.549038303360593,
+      "reference": 30.549038303360586,
+      "tolerance": 6.109807660672117e-07,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/y2/mcse_mean",
+      "actual": 0.1805117834034541,
+      "reference": 0.18051178340345414,
+      "tolerance": 3.610235668069083e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/y1_squared/rhat_rank",
+      "actual": 1.0173080573889652,
+      "reference": 1.0173080573889652,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/y1_squared/ess_bulk",
+      "actual": 142.3436348626523,
+      "reference": 142.34363486265224,
+      "tolerance": 2.846872697253045e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/y1_squared/ess_tail",
+      "actual": 223.18070970298223,
+      "reference": 223.1807097029824,
+      "tolerance": 4.4636141940596484e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/y1_squared/ess_mean",
+      "actual": 126.64508845343562,
+      "reference": 126.64508845343562,
+      "tolerance": 2.5329017690687125e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/y1_squared/mcse_mean",
+      "actual": 0.11176530261672589,
+      "reference": 0.11176530261672589,
+      "tolerance": 2.2353060523345177e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/y2_squared/rhat_rank",
+      "actual": 1.0165492443940272,
+      "reference": 1.0165492443940272,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/y2_squared/ess_bulk",
+      "actual": 136.19335404957275,
+      "reference": 136.19335404957275,
+      "tolerance": 2.723867080991455e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/y2_squared/ess_tail",
+      "actual": 241.25941220892676,
+      "reference": 241.25941220892676,
+      "tolerance": 4.825188244178535e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/y2_squared/ess_mean",
+      "actual": 120.48917107160015,
+      "reference": 120.48917107160015,
+      "tolerance": 2.409783421432003e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/y2_squared/mcse_mean",
+      "actual": 0.11533911274750662,
+      "reference": 0.11533911274750662,
+      "tolerance": 2.3067822549501326e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/product/rhat_rank",
+      "actual": 1.0184411156453945,
+      "reference": 1.0184411156453945,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/product/ess_bulk",
+      "actual": 130.3735783879689,
+      "reference": 130.37357838796888,
+      "tolerance": 2.6074715677593776e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/product/ess_tail",
+      "actual": 223.73189822645662,
+      "reference": 223.73189822645662,
+      "tolerance": 4.4746379645291326e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/product/ess_mean",
+      "actual": 117.1777803178342,
+      "reference": 117.17778031783418,
+      "tolerance": 2.3435556063566835e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/product/mcse_mean",
+      "actual": 0.11364895857924212,
+      "reference": 0.11364895857924213,
+      "tolerance": 2.272979171584843e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/Q/rhat_rank",
+      "actual": 1.0116717416671954,
+      "reference": 1.0116717416671954,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/Q/ess_bulk",
+      "actual": 246.88463801275157,
+      "reference": 246.8846380127514,
+      "tolerance": 4.937692760255028e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/Q/ess_tail",
+      "actual": 610.1063416061706,
+      "reference": 610.1063416061705,
+      "tolerance": 1.2202126832123411e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/Q/ess_mean",
+      "actual": 247.96221788765376,
+      "reference": 247.96221788765382,
+      "tolerance": 4.959244357753076e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/Q/mcse_mean",
+      "actual": 0.11651116471672839,
+      "reference": 0.11651116471672837,
+      "tolerance": 2.3302232943345677e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/sum_direction/rhat_rank",
+      "actual": 1.0975412172201815,
+      "reference": 1.0975412172201815,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/sum_direction/ess_bulk",
+      "actual": 31.420154796435977,
+      "reference": 31.420154796435934,
+      "tolerance": 6.284030959287187e-07,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/sum_direction/ess_tail",
+      "actual": 132.67855831062948,
+      "reference": 132.67855831062948,
+      "tolerance": 2.6535711662125897e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/sum_direction/ess_mean",
+      "actual": 30.36531111464063,
+      "reference": 30.36531111464062,
+      "tolerance": 6.073062222928124e-07,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/sum_direction/mcse_mean",
+      "actual": 0.18039586553736683,
+      "reference": 0.18039586553736686,
+      "tolerance": 3.6079173107473373e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/difference_direction/rhat_rank",
+      "actual": 1.0060215814753901,
+      "reference": 1.0060215814753901,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/difference_direction/ess_bulk",
+      "actual": 1203.2714338235533,
+      "reference": 1203.2714338235514,
+      "tolerance": 2.406542867647103e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/difference_direction/ess_tail",
+      "actual": 1649.2840545902543,
+      "reference": 1649.2840545902543,
+      "tolerance": 3.298568109180509e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/difference_direction/ess_mean",
+      "actual": 1194.7015403762016,
+      "reference": 1194.7015403762014,
+      "tolerance": 2.3894030807524028e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/2048/difference_direction/mcse_mean",
+      "actual": 0.028490929732823113,
+      "reference": 0.028490929732823113,
+      "tolerance": 5.698185946564622e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/y1/rhat_rank",
+      "actual": 1.0112196685210786,
+      "reference": 1.0112196685210786,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/y1/ess_bulk",
+      "actual": 198.66792332543312,
+      "reference": 198.6679233254331,
+      "tolerance": 3.973358466508662e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/y1/ess_tail",
+      "actual": 500.90212804942956,
+      "reference": 500.90212804942956,
+      "tolerance": 1.001804256098859e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/y1/ess_mean",
+      "actual": 198.02975656878368,
+      "reference": 198.0297565687838,
+      "tolerance": 3.960595131375676e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/y1/mcse_mean",
+      "actual": 0.07206539372012286,
+      "reference": 0.07206539372012283,
+      "tolerance": 1.4413078744024565e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/y2/rhat_rank",
+      "actual": 1.0116253339722898,
+      "reference": 1.0116253339722898,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/y2/ess_bulk",
+      "actual": 201.96399670675237,
+      "reference": 201.96399670675234,
+      "tolerance": 4.0392799341350466e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/y2/ess_tail",
+      "actual": 472.41330730457884,
+      "reference": 472.41330730457895,
+      "tolerance": 9.44826614609158e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/y2/ess_mean",
+      "actual": 201.21294051421,
+      "reference": 201.21294051421,
+      "tolerance": 4.0242588102842e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/y2/mcse_mean",
+      "actual": 0.07151168059345263,
+      "reference": 0.07151168059345263,
+      "tolerance": 1.4302336118690525e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/y1_squared/rhat_rank",
+      "actual": 1.012777434848511,
+      "reference": 1.012777434848511,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/y1_squared/ess_bulk",
+      "actual": 502.51001147110475,
+      "reference": 502.51001147110475,
+      "tolerance": 1.0050200229422095e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/y1_squared/ess_tail",
+      "actual": 745.5555115136003,
+      "reference": 745.5555115136002,
+      "tolerance": 1.4911110230272005e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/y1_squared/ess_mean",
+      "actual": 416.91024532669286,
+      "reference": 416.91024532669303,
+      "tolerance": 8.338204906533861e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/y1_squared/mcse_mean",
+      "actual": 0.0668503604188869,
+      "reference": 0.06685036041888688,
+      "tolerance": 1.3370072083777376e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/y2_squared/rhat_rank",
+      "actual": 1.0137456554088542,
+      "reference": 1.0137456554088542,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/y2_squared/ess_bulk",
+      "actual": 503.66936337693244,
+      "reference": 503.66936337693267,
+      "tolerance": 1.0073387267538653e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/y2_squared/ess_tail",
+      "actual": 665.5397191028724,
+      "reference": 665.5397191028723,
+      "tolerance": 1.3310794382057445e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/y2_squared/ess_mean",
+      "actual": 410.7748228547369,
+      "reference": 410.77482285473684,
+      "tolerance": 8.215496457094737e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/y2_squared/mcse_mean",
+      "actual": 0.06782929588048103,
+      "reference": 0.06782929588048103,
+      "tolerance": 1.3565859176096207e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/product/rhat_rank",
+      "actual": 1.0131917771475392,
+      "reference": 1.0131917771475394,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/product/ess_bulk",
+      "actual": 483.03641552311984,
+      "reference": 483.03641552311973,
+      "tolerance": 9.660728310462395e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/product/ess_tail",
+      "actual": 689.2835611949433,
+      "reference": 689.2835611949433,
+      "tolerance": 1.3785671223898867e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/product/ess_mean",
+      "actual": 395.35927880725825,
+      "reference": 395.35927880725825,
+      "tolerance": 7.907185576145165e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/product/mcse_mean",
+      "actual": 0.06713438189503636,
+      "reference": 0.06713438189503636,
+      "tolerance": 1.3426876379007271e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/Q/rhat_rank",
+      "actual": 1.0100086016440297,
+      "reference": 1.01000860164403,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/Q/ess_bulk",
+      "actual": 780.5012512355969,
+      "reference": 780.5012512355975,
+      "tolerance": 1.561002502471195e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/Q/ess_tail",
+      "actual": 1213.908321563433,
+      "reference": 1213.9083215634328,
+      "tolerance": 2.4278166431268656e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/Q/ess_mean",
+      "actual": 699.6211564751555,
+      "reference": 699.6211564751557,
+      "tolerance": 1.3992423129503114e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/Q/mcse_mean",
+      "actual": 0.0732704331607407,
+      "reference": 0.0732704331607407,
+      "tolerance": 1.465408663214814e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/sum_direction/rhat_rank",
+      "actual": 1.0117075549543013,
+      "reference": 1.0117075549543013,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/sum_direction/ess_bulk",
+      "actual": 195.78439748886126,
+      "reference": 195.78439748886132,
+      "tolerance": 3.915687949777226e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/sum_direction/ess_tail",
+      "actual": 451.4764622641546,
+      "reference": 451.4764622641546,
+      "tolerance": 9.029529245283091e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/sum_direction/ess_mean",
+      "actual": 195.12764233985,
+      "reference": 195.1276423398501,
+      "tolerance": 3.902552846797002e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/sum_direction/mcse_mean",
+      "actual": 0.07265158764829327,
+      "reference": 0.07265158764829326,
+      "tolerance": 1.4530317529658652e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/difference_direction/rhat_rank",
+      "actual": 1.0003440651916806,
+      "reference": 1.0003440651916806,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/difference_direction/ess_bulk",
+      "actual": 4454.426962974271,
+      "reference": 4454.426962974272,
+      "tolerance": 8.908853925948544e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/difference_direction/ess_tail",
+      "actual": 6022.403515958944,
+      "reference": 6022.403515958944,
+      "tolerance": 0.00012044807031917887,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/difference_direction/ess_mean",
+      "actual": 4455.126081873381,
+      "reference": 4455.126081873379,
+      "tolerance": 8.910252163746758e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46001/8192/difference_direction/mcse_mean",
+      "actual": 0.014841917514795633,
+      "reference": 0.014841917514795636,
+      "tolerance": 2.968383502959127e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/y1/rhat_rank",
+      "actual": 1.007494427941954,
+      "reference": 1.007494427941954,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/y1/ess_bulk",
+      "actual": 660.7252741867275,
+      "reference": 660.725274186728,
+      "tolerance": 1.321450548373456e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/y1/ess_tail",
+      "actual": 1121.4919334976598,
+      "reference": 1121.4919334976598,
+      "tolerance": 2.24298386699532e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/y1/ess_mean",
+      "actual": 659.6445694975074,
+      "reference": 659.6445694975073,
+      "tolerance": 1.3192891389950146e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/y1/mcse_mean",
+      "actual": 0.038201225609915075,
+      "reference": 0.03820122560991508,
+      "tolerance": 7.640245121983017e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/y2/rhat_rank",
+      "actual": 1.0089557165839231,
+      "reference": 1.0089557165839231,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/y2/ess_bulk",
+      "actual": 640.2511659402684,
+      "reference": 640.2511659402683,
+      "tolerance": 1.2805023318805366e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/y2/ess_tail",
+      "actual": 808.7236943239649,
+      "reference": 808.7236943239648,
+      "tolerance": 1.6174473886479297e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/y2/ess_mean",
+      "actual": 640.406702646689,
+      "reference": 640.4067026466892,
+      "tolerance": 1.2808134052933784e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/y2/mcse_mean",
+      "actual": 0.03875837058439622,
+      "reference": 0.03875837058439622,
+      "tolerance": 7.751674116879244e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/y1_squared/rhat_rank",
+      "actual": 1.0026874694233563,
+      "reference": 1.0026874694233563,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/y1_squared/ess_bulk",
+      "actual": 1227.8035163678837,
+      "reference": 1227.8035163678837,
+      "tolerance": 2.4556070327357676e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/y1_squared/ess_tail",
+      "actual": 1224.3336124521882,
+      "reference": 1224.3336124521884,
+      "tolerance": 2.4486672249043767e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/y1_squared/ess_mean",
+      "actual": 933.5651956941815,
+      "reference": 933.5651956941813,
+      "tolerance": 1.8671303913883627e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/y1_squared/mcse_mean",
+      "actual": 0.045402000272643295,
+      "reference": 0.0454020002726433,
+      "tolerance": 9.080400054528661e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/y2_squared/rhat_rank",
+      "actual": 1.0030743730597618,
+      "reference": 1.003074373059762,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/y2_squared/ess_bulk",
+      "actual": 1244.4901550605948,
+      "reference": 1244.490155060595,
+      "tolerance": 2.48898031012119e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/y2_squared/ess_tail",
+      "actual": 1265.4691866371923,
+      "reference": 1265.4691866371923,
+      "tolerance": 2.5309383732743844e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/y2_squared/ess_mean",
+      "actual": 895.7355182773676,
+      "reference": 895.7355182773676,
+      "tolerance": 1.7914710365547352e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/y2_squared/mcse_mean",
+      "actual": 0.04572964782635543,
+      "reference": 0.04572964782635543,
+      "tolerance": 9.145929565271086e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/product/rhat_rank",
+      "actual": 1.0032118600203273,
+      "reference": 1.0032118600203273,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/product/ess_bulk",
+      "actual": 1281.0804111729271,
+      "reference": 1281.0804111729271,
+      "tolerance": 2.5621608223458544e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/product/ess_tail",
+      "actual": 1284.9219036758568,
+      "reference": 1284.9219036758566,
+      "tolerance": 2.5698438073517132e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/product/ess_mean",
+      "actual": 930.6653869240529,
+      "reference": 930.6653869240528,
+      "tolerance": 1.8613307738481056e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/product/mcse_mean",
+      "actual": 0.04398123915946788,
+      "reference": 0.04398123915946788,
+      "tolerance": 8.796247831893576e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/Q/rhat_rank",
+      "actual": 1.0032921652153863,
+      "reference": 1.0032921652153863,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/Q/ess_bulk",
+      "actual": 926.0266226006097,
+      "reference": 926.0266226006097,
+      "tolerance": 1.8520532452012194e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/Q/ess_tail",
+      "actual": 951.1953208925346,
+      "reference": 951.1953208925348,
+      "tolerance": 1.9023906417850696e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/Q/ess_mean",
+      "actual": 724.9539472146174,
+      "reference": 724.9539472146176,
+      "tolerance": 1.4499078944292353e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/Q/mcse_mean",
+      "actual": 0.07293784095190121,
+      "reference": 0.07293784095190121,
+      "tolerance": 1.4587568190380242e-09,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/sum_direction/rhat_rank",
+      "actual": 1.008418049664222,
+      "reference": 1.0084180496642219,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/sum_direction/ess_bulk",
+      "actual": 655.3376041435404,
+      "reference": 655.3376041435404,
+      "tolerance": 1.3106752082870808e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/sum_direction/ess_tail",
+      "actual": 906.1436122850866,
+      "reference": 906.1436122850866,
+      "tolerance": 1.8122872245701733e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/sum_direction/ess_mean",
+      "actual": 654.5030879302603,
+      "reference": 654.5030879302603,
+      "tolerance": 1.3090061758605207e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/sum_direction/mcse_mean",
+      "actual": 0.03832362524080297,
+      "reference": 0.03832362524080297,
+      "tolerance": 7.664725048160594e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/difference_direction/rhat_rank",
+      "actual": 1.0029079658293791,
+      "reference": 1.0029079658293794,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/difference_direction/ess_bulk",
+      "actual": 777.6298228425858,
+      "reference": 777.6298228425856,
+      "tolerance": 1.5552596456851713e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/difference_direction/ess_tail",
+      "actual": 898.6477054096708,
+      "reference": 898.6477054096705,
+      "tolerance": 1.797295410819341e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/difference_direction/ess_mean",
+      "actual": 775.4582396730293,
+      "reference": 775.4582396730294,
+      "tolerance": 1.550916479346059e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/2048/difference_direction/mcse_mean",
+      "actual": 0.035979840440358374,
+      "reference": 0.035979840440358374,
+      "tolerance": 7.195968088071675e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/y1/rhat_rank",
+      "actual": 1.0007090803224639,
+      "reference": 1.0007090803224639,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/y1/ess_bulk",
+      "actual": 2769.09516637422,
+      "reference": 2769.09516637422,
+      "tolerance": 5.53819033274844e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/y1/ess_tail",
+      "actual": 4639.572177904277,
+      "reference": 4639.572177904277,
+      "tolerance": 9.279144355808554e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/y1/ess_mean",
+      "actual": 2778.437906496096,
+      "reference": 2778.437906496096,
+      "tolerance": 5.556875812992192e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/y1/mcse_mean",
+      "actual": 0.018631010620892174,
+      "reference": 0.018631010620892174,
+      "tolerance": 3.726202124178435e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/y2/rhat_rank",
+      "actual": 1.000474748081342,
+      "reference": 1.000474748081342,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/y2/ess_bulk",
+      "actual": 2766.1598785122032,
+      "reference": 2766.1598785122037,
+      "tolerance": 5.532319757024407e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/y2/ess_tail",
+      "actual": 4046.2292456748387,
+      "reference": 4046.2292456748387,
+      "tolerance": 8.092458491349677e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/y2/ess_mean",
+      "actual": 2770.753062808176,
+      "reference": 2770.753062808176,
+      "tolerance": 5.5415061256163516e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/y2/mcse_mean",
+      "actual": 0.01876510092208429,
+      "reference": 0.01876510092208429,
+      "tolerance": 3.753020184416858e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/y1_squared/rhat_rank",
+      "actual": 1.0002797341270144,
+      "reference": 1.0002797341270144,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/y1_squared/ess_bulk",
+      "actual": 5490.4221419550795,
+      "reference": 5490.4221419550795,
+      "tolerance": 0.00010980844283910159,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/y1_squared/ess_tail",
+      "actual": 5577.620171551835,
+      "reference": 5577.620171551834,
+      "tolerance": 0.00011155240343103667,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/y1_squared/ess_mean",
+      "actual": 4276.603645745191,
+      "reference": 4276.603645745193,
+      "tolerance": 8.553207291490386e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/y1_squared/mcse_mean",
+      "actual": 0.02023800439746444,
+      "reference": 0.020238004397464433,
+      "tolerance": 4.0476008794928866e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/y2_squared/rhat_rank",
+      "actual": 1.0001041320125335,
+      "reference": 1.0001041320125335,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/y2_squared/ess_bulk",
+      "actual": 5348.869334429785,
+      "reference": 5348.869334429785,
+      "tolerance": 0.00010697738668859571,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/y2_squared/ess_tail",
+      "actual": 5477.351822380791,
+      "reference": 5477.351822380794,
+      "tolerance": 0.00010954703644761588,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/y2_squared/ess_mean",
+      "actual": 4008.4251591749226,
+      "reference": 4008.4251591749244,
+      "tolerance": 8.016850318349848e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/y2_squared/mcse_mean",
+      "actual": 0.021344507484539692,
+      "reference": 0.021344507484539685,
+      "tolerance": 4.268901496907937e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/product/rhat_rank",
+      "actual": 1.0001772768255643,
+      "reference": 1.0001772768255643,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/product/ess_bulk",
+      "actual": 5395.846332617447,
+      "reference": 5395.846332617445,
+      "tolerance": 0.0001079169266523489,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/product/ess_tail",
+      "actual": 5558.8627631141735,
+      "reference": 5558.8627631141735,
+      "tolerance": 0.00011117725526228347,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/product/ess_mean",
+      "actual": 4174.326691132973,
+      "reference": 4174.326691132973,
+      "tolerance": 8.348653382265946e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/product/mcse_mean",
+      "actual": 0.020105993807784436,
+      "reference": 0.020105993807784436,
+      "tolerance": 4.0211987615568874e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/Q/rhat_rank",
+      "actual": 1.0005679035610218,
+      "reference": 1.0005679035610218,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/Q/ess_bulk",
+      "actual": 4098.938357530427,
+      "reference": 4098.938357530426,
+      "tolerance": 8.197876715060853e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/Q/ess_tail",
+      "actual": 3757.7581154017435,
+      "reference": 3757.7581154017425,
+      "tolerance": 7.515516230803486e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/Q/ess_mean",
+      "actual": 2974.9083931328287,
+      "reference": 2974.9083931328296,
+      "tolerance": 5.9498167862656594e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/Q/mcse_mean",
+      "actual": 0.0372158089939976,
+      "reference": 0.037215808993997596,
+      "tolerance": 7.443161798799519e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/sum_direction/rhat_rank",
+      "actual": 1.0005810263333332,
+      "reference": 1.0005810263333332,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/sum_direction/ess_bulk",
+      "actual": 2766.035560201476,
+      "reference": 2766.035560201477,
+      "tolerance": 5.532071120402954e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/sum_direction/ess_tail",
+      "actual": 4113.859505987089,
+      "reference": 4113.859505987089,
+      "tolerance": 8.227719011974178e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/sum_direction/ess_mean",
+      "actual": 2773.699219399106,
+      "reference": 2773.6992193991055,
+      "tolerance": 5.547398438798211e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/sum_direction/mcse_mean",
+      "actual": 0.018687033411071516,
+      "reference": 0.018687033411071516,
+      "tolerance": 3.7374066822143035e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/difference_direction/rhat_rank",
+      "actual": 1.000827787968325,
+      "reference": 1.0008277879683247,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/difference_direction/ess_bulk",
+      "actual": 2830.384241652918,
+      "reference": 2830.384241652918,
+      "tolerance": 5.660768483305836e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/difference_direction/ess_tail",
+      "actual": 3847.8431435033895,
+      "reference": 3847.8431435033904,
+      "tolerance": 7.695686287006781e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/difference_direction/ess_mean",
+      "actual": 2802.07494347227,
+      "reference": 2802.074943472269,
+      "tolerance": 5.604149886944538e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46002/8192/difference_direction/mcse_mean",
+      "actual": 0.019144150892320275,
+      "reference": 0.019144150892320282,
+      "tolerance": 3.8288301784640564e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/y1/rhat_rank",
+      "actual": 1.157848831872826,
+      "reference": 1.157848831872826,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/y1/ess_bulk",
+      "actual": 20.519360576290048,
+      "reference": 20.519360576290048,
+      "tolerance": 4.1038721152580095e-07,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/y1/ess_tail",
+      "actual": 96.38333410730968,
+      "reference": 96.38333410730968,
+      "tolerance": 1.9276666821461935e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/y1/ess_mean",
+      "actual": 20.433561625654,
+      "reference": 20.433561625654,
+      "tolerance": 4.0867123251308003e-07,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/y1/mcse_mean",
+      "actual": 0.23545531335511383,
+      "reference": 0.23545531335511383,
+      "tolerance": 4.709106267102277e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/y2/rhat_rank",
+      "actual": 1.1611436332540448,
+      "reference": 1.1611436332540448,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/y2/ess_bulk",
+      "actual": 20.38388313069404,
+      "reference": 20.38388313069405,
+      "tolerance": 4.07677662613881e-07,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/y2/ess_tail",
+      "actual": 87.08591414778905,
+      "reference": 87.08591414778905,
+      "tolerance": 1.7417182829557812e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/y2/ess_mean",
+      "actual": 20.400428142037534,
+      "reference": 20.40042814203754,
+      "tolerance": 4.080085628407508e-07,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/y2/mcse_mean",
+      "actual": 0.23512290499234817,
+      "reference": 0.23512290499234811,
+      "tolerance": 4.702458099846963e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/y1_squared/rhat_rank",
+      "actual": 1.031443107333629,
+      "reference": 1.031443107333629,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/y1_squared/ess_bulk",
+      "actual": 118.6702432739498,
+      "reference": 118.67024327394975,
+      "tolerance": 2.373404865478995e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/y1_squared/ess_tail",
+      "actual": 130.87119598085405,
+      "reference": 130.871195980854,
+      "tolerance": 2.61742391961708e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/y1_squared/ess_mean",
+      "actual": 93.88016071035301,
+      "reference": 93.88016071035301,
+      "tolerance": 1.8776032142070602e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/y1_squared/mcse_mean",
+      "actual": 0.15905899699841092,
+      "reference": 0.15905899699841092,
+      "tolerance": 3.1811799399682186e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/y2_squared/rhat_rank",
+      "actual": 1.0246625382486174,
+      "reference": 1.0246625382486174,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/y2_squared/ess_bulk",
+      "actual": 119.47973803759027,
+      "reference": 119.47973803759028,
+      "tolerance": 2.3895947607518057e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/y2_squared/ess_tail",
+      "actual": 115.69316513453202,
+      "reference": 115.69316513453202,
+      "tolerance": 2.3138633026906407e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/y2_squared/ess_mean",
+      "actual": 88.20089398747558,
+      "reference": 88.20089398747557,
+      "tolerance": 1.7640178797495114e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/y2_squared/mcse_mean",
+      "actual": 0.167993352519886,
+      "reference": 0.167993352519886,
+      "tolerance": 3.3598670503977202e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/product/rhat_rank",
+      "actual": 1.0325335073675201,
+      "reference": 1.0325335073675201,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/product/ess_bulk",
+      "actual": 111.88635344839487,
+      "reference": 111.88635344839493,
+      "tolerance": 2.2377270689678987e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/product/ess_tail",
+      "actual": 119.92564153223806,
+      "reference": 119.92564153223803,
+      "tolerance": 2.398512830644761e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/product/ess_mean",
+      "actual": 87.14411785152184,
+      "reference": 87.14411785152184,
+      "tolerance": 1.7428823570304368e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/product/mcse_mean",
+      "actual": 0.1633410981797276,
+      "reference": 0.1633410981797276,
+      "tolerance": 3.2668219635945524e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/Q/rhat_rank",
+      "actual": 1.0127966074512489,
+      "reference": 1.0127966074512489,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/Q/ess_bulk",
+      "actual": 196.8482267759296,
+      "reference": 196.84822677592967,
+      "tolerance": 3.936964535518594e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/Q/ess_tail",
+      "actual": 258.3830909564891,
+      "reference": 258.38309095648907,
+      "tolerance": 5.167661819129782e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/Q/ess_mean",
+      "actual": 161.05456594494578,
+      "reference": 161.05456594494584,
+      "tolerance": 3.2210913188989167e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/Q/mcse_mean",
+      "actual": 0.16774218184486073,
+      "reference": 0.1677421818448607,
+      "tolerance": 3.354843636897214e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/sum_direction/rhat_rank",
+      "actual": 1.1633323582775137,
+      "reference": 1.1633323582775137,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/sum_direction/ess_bulk",
+      "actual": 20.032412867405522,
+      "reference": 20.032412867405522,
+      "tolerance": 4.0064825734811043e-07,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/sum_direction/ess_tail",
+      "actual": 87.61753026435247,
+      "reference": 87.61753026435248,
+      "tolerance": 1.7523506052870497e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/sum_direction/ess_mean",
+      "actual": 19.93233367119276,
+      "reference": 19.932333671192758,
+      "tolerance": 3.9864667342385517e-07,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/sum_direction/mcse_mean",
+      "actual": 0.238504814222719,
+      "reference": 0.238504814222719,
+      "tolerance": 4.77009628445438e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/difference_direction/rhat_rank",
+      "actual": 1.0028603426748184,
+      "reference": 1.0028603426748184,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/difference_direction/ess_bulk",
+      "actual": 1097.408707165636,
+      "reference": 1097.408707165636,
+      "tolerance": 2.1948174143312723e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/difference_direction/ess_tail",
+      "actual": 1376.2118421955154,
+      "reference": 1376.2118421955156,
+      "tolerance": 2.752423684391031e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/difference_direction/ess_mean",
+      "actual": 1086.5181522466307,
+      "reference": 1086.5181522466305,
+      "tolerance": 2.173036304493261e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/2048/difference_direction/mcse_mean",
+      "actual": 0.030222531931782218,
+      "reference": 0.030222531931782218,
+      "tolerance": 6.044506386356443e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/y1/rhat_rank",
+      "actual": 1.0184888781025923,
+      "reference": 1.0184888781025923,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/y1/ess_bulk",
+      "actual": 169.5368491244277,
+      "reference": 169.5368491244277,
+      "tolerance": 3.3907369824885543e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/y1/ess_tail",
+      "actual": 395.5880991148959,
+      "reference": 395.58809911489584,
+      "tolerance": 7.911761982297916e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/y1/ess_mean",
+      "actual": 170.48880447454823,
+      "reference": 170.4888044745483,
+      "tolerance": 3.409776089490966e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/y1/mcse_mean",
+      "actual": 0.07421747397607215,
+      "reference": 0.07421747397607212,
+      "tolerance": 1.4843494795214424e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/y2/rhat_rank",
+      "actual": 1.0175639213503649,
+      "reference": 1.0175639213503649,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/y2/ess_bulk",
+      "actual": 173.03593142632238,
+      "reference": 173.03593142632238,
+      "tolerance": 3.4607186285264475e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/y2/ess_tail",
+      "actual": 380.68034893639543,
+      "reference": 380.68034893639555,
+      "tolerance": 7.613606978727911e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/y2/ess_mean",
+      "actual": 173.42565353966543,
+      "reference": 173.42565353966535,
+      "tolerance": 3.468513070793307e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/y2/mcse_mean",
+      "actual": 0.0737325788094893,
+      "reference": 0.07373257880948933,
+      "tolerance": 1.4746515761897866e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/y1_squared/rhat_rank",
+      "actual": 1.003807834866166,
+      "reference": 1.003807834866166,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/y1_squared/ess_bulk",
+      "actual": 461.58012938302204,
+      "reference": 461.5801293830221,
+      "tolerance": 9.231602587660443e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/y1_squared/ess_tail",
+      "actual": 625.2063895732961,
+      "reference": 625.2063895732961,
+      "tolerance": 1.2504127791465922e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/y1_squared/ess_mean",
+      "actual": 376.50468611230036,
+      "reference": 376.5046861123004,
+      "tolerance": 7.530093722246009e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/y1_squared/mcse_mean",
+      "actual": 0.06768185570768417,
+      "reference": 0.06768185570768416,
+      "tolerance": 1.3536371141536831e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/y2_squared/rhat_rank",
+      "actual": 1.0026092236799342,
+      "reference": 1.002609223679934,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/y2_squared/ess_bulk",
+      "actual": 456.46404407548505,
+      "reference": 456.46404407548476,
+      "tolerance": 9.129280881509695e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/y2_squared/ess_tail",
+      "actual": 610.618487998869,
+      "reference": 610.6184879988689,
+      "tolerance": 1.2212369759977378e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/y2_squared/ess_mean",
+      "actual": 373.3607243697496,
+      "reference": 373.3607243697497,
+      "tolerance": 7.4672144873949935e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/y2_squared/mcse_mean",
+      "actual": 0.06858808078144756,
+      "reference": 0.06858808078144754,
+      "tolerance": 1.3717616156289508e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/product/rhat_rank",
+      "actual": 1.0029001001450526,
+      "reference": 1.0029001001450526,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/product/ess_bulk",
+      "actual": 422.731509730445,
+      "reference": 422.7315097304453,
+      "tolerance": 8.454630194608905e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/product/ess_tail",
+      "actual": 584.6883151437854,
+      "reference": 584.6883151437854,
+      "tolerance": 1.1693766302875709e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/product/ess_mean",
+      "actual": 355.4907909157845,
+      "reference": 355.49079091578443,
+      "tolerance": 7.109815818315689e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/product/mcse_mean",
+      "actual": 0.06828309757084519,
+      "reference": 0.06828309757084519,
+      "tolerance": 1.365661951416904e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/Q/rhat_rank",
+      "actual": 1.0021475339598427,
+      "reference": 1.0021475339598427,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/Q/ess_bulk",
+      "actual": 847.7082921108729,
+      "reference": 847.708292110873,
+      "tolerance": 1.6954165842217462e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/Q/ess_tail",
+      "actual": 1257.1810087745405,
+      "reference": 1257.1810087745405,
+      "tolerance": 2.514362017549081e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/Q/ess_mean",
+      "actual": 769.9391679470043,
+      "reference": 769.9391679470041,
+      "tolerance": 1.5398783358940084e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/Q/mcse_mean",
+      "actual": 0.06855820670560997,
+      "reference": 0.06855820670560998,
+      "tolerance": 1.3711641341121996e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/sum_direction/rhat_rank",
+      "actual": 1.0184973239776038,
+      "reference": 1.0184973239776038,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/sum_direction/ess_bulk",
+      "actual": 166.96795862000337,
+      "reference": 166.96795862000343,
+      "tolerance": 3.3393591724000688e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/sum_direction/ess_tail",
+      "actual": 380.6899992120704,
+      "reference": 380.6899992120704,
+      "tolerance": 7.613799984241408e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/sum_direction/ess_mean",
+      "actual": 167.6000350762926,
+      "reference": 167.60003507629258,
+      "tolerance": 3.3520007015258518e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/sum_direction/mcse_mean",
+      "actual": 0.07488522146917222,
+      "reference": 0.07488522146917222,
+      "tolerance": 1.4977044293834444e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/difference_direction/rhat_rank",
+      "actual": 1.0006662949425955,
+      "reference": 1.0006662949425955,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/difference_direction/ess_bulk",
+      "actual": 4276.582828188928,
+      "reference": 4276.582828188928,
+      "tolerance": 8.553165656377856e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/difference_direction/ess_tail",
+      "actual": 5663.903284815697,
+      "reference": 5663.903284815696,
+      "tolerance": 0.00011327806569631392,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/difference_direction/ess_mean",
+      "actual": 4263.85754982481,
+      "reference": 4263.857549824809,
+      "tolerance": 8.527715099649618e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46002/8192/difference_direction/mcse_mean",
+      "actual": 0.015188119720193906,
+      "reference": 0.015188119720193906,
+      "tolerance": 3.0376239440387814e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/y1/rhat_rank",
+      "actual": 1.004590032361422,
+      "reference": 1.004590032361422,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/y1/ess_bulk",
+      "actual": 672.9815280194233,
+      "reference": 672.9815280194236,
+      "tolerance": 1.3459630560388473e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/y1/ess_tail",
+      "actual": 988.8649596726187,
+      "reference": 988.8649596726187,
+      "tolerance": 1.9777299193452376e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/y1/ess_mean",
+      "actual": 672.6115332323416,
+      "reference": 672.6115332323415,
+      "tolerance": 1.345223066464683e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/y1/mcse_mean",
+      "actual": 0.0392200872502384,
+      "reference": 0.0392200872502384,
+      "tolerance": 7.84401745004768e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/y2/rhat_rank",
+      "actual": 1.0060330213495938,
+      "reference": 1.0060330213495938,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/y2/ess_bulk",
+      "actual": 613.4263516751734,
+      "reference": 613.426351675174,
+      "tolerance": 1.226852703350348e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/y2/ess_tail",
+      "actual": 975.4529056071348,
+      "reference": 975.4529056071348,
+      "tolerance": 1.9509058112142694e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/y2/ess_mean",
+      "actual": 610.7255034663863,
+      "reference": 610.725503466386,
+      "tolerance": 1.2214510069327721e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/y2/mcse_mean",
+      "actual": 0.041575665441394814,
+      "reference": 0.04157566544139482,
+      "tolerance": 8.315133088278965e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/y1_squared/rhat_rank",
+      "actual": 1.0003741377531146,
+      "reference": 1.0003741377531143,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/y1_squared/ess_bulk",
+      "actual": 1476.3159575678822,
+      "reference": 1476.315957567882,
+      "tolerance": 2.952631915135764e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/y1_squared/ess_tail",
+      "actual": 1229.2314102845219,
+      "reference": 1229.2314102845219,
+      "tolerance": 2.4584628205690437e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/y1_squared/ess_mean",
+      "actual": 997.333128802527,
+      "reference": 997.3331288025263,
+      "tolerance": 1.9946662576050525e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/y1_squared/mcse_mean",
+      "actual": 0.04713318156987704,
+      "reference": 0.04713318156987705,
+      "tolerance": 9.42663631397541e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/y2_squared/rhat_rank",
+      "actual": 1.0015976246390585,
+      "reference": 1.0015976246390585,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/y2_squared/ess_bulk",
+      "actual": 1370.789220921899,
+      "reference": 1370.7892209218994,
+      "tolerance": 2.7415784418437988e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/y2_squared/ess_tail",
+      "actual": 1079.1832126724298,
+      "reference": 1079.1832126724296,
+      "tolerance": 2.158366425344859e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/y2_squared/ess_mean",
+      "actual": 905.7406611103477,
+      "reference": 905.7406611103477,
+      "tolerance": 1.8114813222206954e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/y2_squared/mcse_mean",
+      "actual": 0.0501516042980144,
+      "reference": 0.0501516042980144,
+      "tolerance": 1.0030320859602881e-09,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/product/rhat_rank",
+      "actual": 1.0007050768147345,
+      "reference": 1.0007050768147345,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/product/ess_bulk",
+      "actual": 1446.527578300388,
+      "reference": 1446.5275783003883,
+      "tolerance": 2.8930551566007768e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/product/ess_tail",
+      "actual": 1198.0390116846263,
+      "reference": 1198.0390116846265,
+      "tolerance": 2.3960780233692532e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/product/ess_mean",
+      "actual": 956.6775056688405,
+      "reference": 956.6775056688409,
+      "tolerance": 1.913355011337682e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/product/mcse_mean",
+      "actual": 0.04734369124083928,
+      "reference": 0.04734369124083927,
+      "tolerance": 9.468738248167855e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/Q/rhat_rank",
+      "actual": 1.0012990658299161,
+      "reference": 1.0012990658299161,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/Q/ess_bulk",
+      "actual": 1061.0128613364013,
+      "reference": 1061.0128613364013,
+      "tolerance": 2.1220257226728026e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/Q/ess_tail",
+      "actual": 969.5562011616707,
+      "reference": 969.5562011616707,
+      "tolerance": 1.9391124023233416e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/Q/ess_mean",
+      "actual": 857.094575893566,
+      "reference": 857.0945758935665,
+      "tolerance": 1.714189151787133e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/Q/mcse_mean",
+      "actual": 0.07002806422188981,
+      "reference": 0.0700280642218898,
+      "tolerance": 1.400561284437796e-09,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/sum_direction/rhat_rank",
+      "actual": 1.0052294220829383,
+      "reference": 1.0052294220829383,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/sum_direction/ess_bulk",
+      "actual": 642.1527418660316,
+      "reference": 642.1527418660316,
+      "tolerance": 1.2843054837320634e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/sum_direction/ess_tail",
+      "actual": 970.9036039945044,
+      "reference": 970.9036039945044,
+      "tolerance": 1.9418072079890087e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/sum_direction/ess_mean",
+      "actual": 640.0940037608659,
+      "reference": 640.0940037608657,
+      "tolerance": 1.2801880075217314e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/sum_direction/mcse_mean",
+      "actual": 0.0404287610198986,
+      "reference": 0.040428761019898604,
+      "tolerance": 8.085752203979721e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/difference_direction/rhat_rank",
+      "actual": 1.00865982387959,
+      "reference": 1.00865982387959,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/difference_direction/ess_bulk",
+      "actual": 686.5566442209057,
+      "reference": 686.5566442209057,
+      "tolerance": 1.3731132884418114e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/difference_direction/ess_tail",
+      "actual": 1024.1799032305335,
+      "reference": 1024.1799032305335,
+      "tolerance": 2.048359806461067e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/difference_direction/ess_mean",
+      "actual": 689.4598480462157,
+      "reference": 689.4598480462159,
+      "tolerance": 1.3789196960924319e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/2048/difference_direction/mcse_mean",
+      "actual": 0.03813973236977433,
+      "reference": 0.038139732369774325,
+      "tolerance": 7.627946473954865e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/y1/rhat_rank",
+      "actual": 1.001671808695657,
+      "reference": 1.001671808695657,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/y1/ess_bulk",
+      "actual": 3031.1611069273677,
+      "reference": 3031.1611069273677,
+      "tolerance": 6.0623222138547356e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/y1/ess_tail",
+      "actual": 4498.926290623421,
+      "reference": 4498.926290623421,
+      "tolerance": 8.997852581246842e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/y1/ess_mean",
+      "actual": 3033.8693523294965,
+      "reference": 3033.8693523294974,
+      "tolerance": 6.067738704658995e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/y1/mcse_mean",
+      "actual": 0.018301421801918488,
+      "reference": 0.018301421801918485,
+      "tolerance": 3.660284360383697e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/y2/rhat_rank",
+      "actual": 1.0017492163962254,
+      "reference": 1.0017492163962254,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/y2/ess_bulk",
+      "actual": 3013.663310491297,
+      "reference": 3013.663310491296,
+      "tolerance": 6.027326620982592e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/y2/ess_tail",
+      "actual": 4559.047557576549,
+      "reference": 4559.047557576549,
+      "tolerance": 9.118095115153097e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/y2/ess_mean",
+      "actual": 3015.1032191429254,
+      "reference": 3015.103219142926,
+      "tolerance": 6.0302064382858514e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/y2/mcse_mean",
+      "actual": 0.018297341152186977,
+      "reference": 0.018297341152186977,
+      "tolerance": 3.6594682304373955e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/y1_squared/rhat_rank",
+      "actual": 1.000678098868957,
+      "reference": 1.000678098868957,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/y1_squared/ess_bulk",
+      "actual": 5752.367017978587,
+      "reference": 5752.367017978588,
+      "tolerance": 0.00011504734035957176,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/y1_squared/ess_tail",
+      "actual": 5333.89743459998,
+      "reference": 5333.89743459998,
+      "tolerance": 0.00010667794869199961,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/y1_squared/ess_mean",
+      "actual": 4211.084058020139,
+      "reference": 4211.08405802014,
+      "tolerance": 8.42216811604028e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/y1_squared/mcse_mean",
+      "actual": 0.02200322358246759,
+      "reference": 0.022003223582467583,
+      "tolerance": 4.400644716493517e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/y2_squared/rhat_rank",
+      "actual": 1.0011061898539948,
+      "reference": 1.0011061898539948,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/y2_squared/ess_bulk",
+      "actual": 5791.839944674767,
+      "reference": 5791.839944674769,
+      "tolerance": 0.00011583679889349538,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/y2_squared/ess_tail",
+      "actual": 5119.480250528779,
+      "reference": 5119.480250528779,
+      "tolerance": 0.00010238960501057559,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/y2_squared/ess_mean",
+      "actual": 4151.106420690445,
+      "reference": 4151.106420690445,
+      "tolerance": 8.30221284138089e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/y2_squared/mcse_mean",
+      "actual": 0.02213413097101888,
+      "reference": 0.02213413097101888,
+      "tolerance": 4.426826194203776e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/product/rhat_rank",
+      "actual": 1.000803390780102,
+      "reference": 1.000803390780102,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/product/ess_bulk",
+      "actual": 5877.575986536781,
+      "reference": 5877.575986536786,
+      "tolerance": 0.00011755151973073573,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/product/ess_tail",
+      "actual": 5251.997272566933,
+      "reference": 5251.997272566933,
+      "tolerance": 0.00010503994545133866,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/product/ess_mean",
+      "actual": 4231.961011918029,
+      "reference": 4231.96101191803,
+      "tolerance": 8.463922023836059e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/product/mcse_mean",
+      "actual": 0.021410944934946368,
+      "reference": 0.021410944934946368,
+      "tolerance": 4.2821889869892736e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/Q/rhat_rank",
+      "actual": 1.0007267266601403,
+      "reference": 1.0007267266601403,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/Q/ess_bulk",
+      "actual": 4406.656849314222,
+      "reference": 4406.656849314222,
+      "tolerance": 8.813313698628445e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/Q/ess_tail",
+      "actual": 4470.2602780097295,
+      "reference": 4470.2602780097295,
+      "tolerance": 8.940520556019459e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/Q/ess_mean",
+      "actual": 3573.9199537817476,
+      "reference": 3573.9199537817485,
+      "tolerance": 7.147839907563497e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/Q/mcse_mean",
+      "actual": 0.03342004404572789,
+      "reference": 0.03342004404572788,
+      "tolerance": 6.684008809145576e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/sum_direction/rhat_rank",
+      "actual": 1.0017233772105976,
+      "reference": 1.0017233772105976,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/sum_direction/ess_bulk",
+      "actual": 3020.576976682484,
+      "reference": 3020.576976682486,
+      "tolerance": 6.041153953364972e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/sum_direction/ess_tail",
+      "actual": 4420.669163675445,
+      "reference": 4420.669163675446,
+      "tolerance": 8.841338327350891e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/sum_direction/ess_mean",
+      "actual": 3023.2329195683224,
+      "reference": 3023.232919568322,
+      "tolerance": 6.046465839136644e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/sum_direction/mcse_mean",
+      "actual": 0.018306977562105992,
+      "reference": 0.018306977562105996,
+      "tolerance": 3.6613955124211995e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/difference_direction/rhat_rank",
+      "actual": 1.0010368362768822,
+      "reference": 1.0010368362768822,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/difference_direction/ess_bulk",
+      "actual": 3099.5218045831753,
+      "reference": 3099.5218045831734,
+      "tolerance": 6.199043609166347e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/difference_direction/ess_tail",
+      "actual": 4541.0735510155955,
+      "reference": 4541.0735510155955,
+      "tolerance": 9.082147102031191e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/difference_direction/ess_mean",
+      "actual": 3100.011372528984,
+      "reference": 3100.011372528985,
+      "tolerance": 6.20002274505797e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46003/8192/difference_direction/mcse_mean",
+      "actual": 0.017928260340573748,
+      "reference": 0.017928260340573744,
+      "tolerance": 3.585652068114749e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/y1/rhat_rank",
+      "actual": 1.1973543168908334,
+      "reference": 1.1973543168908334,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/y1/ess_bulk",
+      "actual": 14.911316700621734,
+      "reference": 14.911316700621738,
+      "tolerance": 2.9822633401243474e-07,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/y1/ess_tail",
+      "actual": 39.96008371442047,
+      "reference": 39.96008371442048,
+      "tolerance": 7.992016742884096e-07,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/y1/ess_mean",
+      "actual": 14.930752732438858,
+      "reference": 14.930752732438854,
+      "tolerance": 2.986150546487771e-07,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/y1/mcse_mean",
+      "actual": 0.2634368854515495,
+      "reference": 0.2634368854515495,
+      "tolerance": 5.26873770903099e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/y2/rhat_rank",
+      "actual": 1.189672174035844,
+      "reference": 1.189672174035844,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/y2/ess_bulk",
+      "actual": 15.429948772494757,
+      "reference": 15.429948772494757,
+      "tolerance": 3.085989754498952e-07,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/y2/ess_tail",
+      "actual": 35.7916563282073,
+      "reference": 35.7916563282073,
+      "tolerance": 7.158331265641461e-07,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/y2/ess_mean",
+      "actual": 15.13143256068965,
+      "reference": 15.13143256068965,
+      "tolerance": 3.02628651213793e-07,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/y2/mcse_mean",
+      "actual": 0.2609921683242463,
+      "reference": 0.2609921683242463,
+      "tolerance": 5.2198433664849265e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/y1_squared/rhat_rank",
+      "actual": 1.0374988499859639,
+      "reference": 1.0374988499859639,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/y1_squared/ess_bulk",
+      "actual": 103.51300545222732,
+      "reference": 103.5130054522273,
+      "tolerance": 2.0702601090445462e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/y1_squared/ess_tail",
+      "actual": 66.91427467427408,
+      "reference": 66.91427467427407,
+      "tolerance": 1.3382854934854813e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/y1_squared/ess_mean",
+      "actual": 72.25924283313901,
+      "reference": 72.25924283313901,
+      "tolerance": 1.4451848566627803e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/y1_squared/mcse_mean",
+      "actual": 0.17977253118654937,
+      "reference": 0.17977253118654937,
+      "tolerance": 3.5954506237309877e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/y2_squared/rhat_rank",
+      "actual": 1.04515069518306,
+      "reference": 1.04515069518306,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/y2_squared/ess_bulk",
+      "actual": 96.42666638845209,
+      "reference": 96.42666638845213,
+      "tolerance": 1.9285333277690425e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/y2_squared/ess_tail",
+      "actual": 68.40450655857146,
+      "reference": 68.40450655857147,
+      "tolerance": 1.3680901311714295e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/y2_squared/ess_mean",
+      "actual": 71.42790504990522,
+      "reference": 71.42790504990522,
+      "tolerance": 1.4285581009981045e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/y2_squared/mcse_mean",
+      "actual": 0.17924998131101413,
+      "reference": 0.17924998131101413,
+      "tolerance": 3.5849996262202827e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/product/rhat_rank",
+      "actual": 1.0406265742452505,
+      "reference": 1.0406265742452505,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/product/ess_bulk",
+      "actual": 96.17744535991238,
+      "reference": 96.17744535991238,
+      "tolerance": 1.9235489071982476e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/product/ess_tail",
+      "actual": 65.41459152917669,
+      "reference": 65.41459152917669,
+      "tolerance": 1.3082918305835337e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/product/ess_mean",
+      "actual": 69.37433086900296,
+      "reference": 69.37433086900297,
+      "tolerance": 1.3874866173800596e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/product/mcse_mean",
+      "actual": 0.1785174661433869,
+      "reference": 0.1785174661433869,
+      "tolerance": 3.570349322867738e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/Q/rhat_rank",
+      "actual": 1.032599615325656,
+      "reference": 1.032599615325656,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/Q/ess_bulk",
+      "actual": 127.87170335611357,
+      "reference": 127.87170335611405,
+      "tolerance": 2.557434067122281e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/Q/ess_tail",
+      "actual": 169.89818467802314,
+      "reference": 169.89818467802309,
+      "tolerance": 3.3979636935604616e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/Q/ess_mean",
+      "actual": 98.93602160392196,
+      "reference": 98.93602160392199,
+      "tolerance": 1.9787204320784397e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/Q/mcse_mean",
+      "actual": 0.2091635515620365,
+      "reference": 0.20916355156203648,
+      "tolerance": 4.1832710312407296e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/sum_direction/rhat_rank",
+      "actual": 1.199481978827965,
+      "reference": 1.1994819788279647,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/sum_direction/ess_bulk",
+      "actual": 14.763563919629183,
+      "reference": 14.763563919629183,
+      "tolerance": 2.952712783925837e-07,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/sum_direction/ess_tail",
+      "actual": 38.59358221469252,
+      "reference": 38.59358221469252,
+      "tolerance": 7.718716442938504e-07,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/sum_direction/ess_mean",
+      "actual": 14.65043184747804,
+      "reference": 14.650431847478043,
+      "tolerance": 2.9300863694956086e-07,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/sum_direction/mcse_mean",
+      "actual": 0.26579589823195715,
+      "reference": 0.26579589823195715,
+      "tolerance": 5.315917964639143e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/difference_direction/rhat_rank",
+      "actual": 1.0020109614880288,
+      "reference": 1.0020109614880288,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/difference_direction/ess_bulk",
+      "actual": 1288.3756943496544,
+      "reference": 1288.3756943496544,
+      "tolerance": 2.5767513886993088e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/difference_direction/ess_tail",
+      "actual": 1630.0683225999053,
+      "reference": 1630.0683225999053,
+      "tolerance": 3.260136645199811e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/difference_direction/ess_mean",
+      "actual": 1284.39738492173,
+      "reference": 1284.39738492173,
+      "tolerance": 2.56879476984346e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/2048/difference_direction/mcse_mean",
+      "actual": 0.02751092320045485,
+      "reference": 0.02751092320045485,
+      "tolerance": 5.502184640090971e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/y1/rhat_rank",
+      "actual": 1.0286171489637221,
+      "reference": 1.0286171489637221,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/y1/ess_bulk",
+      "actual": 124.34184399321207,
+      "reference": 124.3418439932121,
+      "tolerance": 2.486836879864242e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/y1/ess_tail",
+      "actual": 217.36947366820306,
+      "reference": 217.36947366820306,
+      "tolerance": 4.347389473364061e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/y1/ess_mean",
+      "actual": 122.8158854778088,
+      "reference": 122.81588547780885,
+      "tolerance": 2.456317709556177e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/y1/mcse_mean",
+      "actual": 0.093633395714945,
+      "reference": 0.09363339571494499,
+      "tolerance": 1.8726679142988997e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/y2/rhat_rank",
+      "actual": 1.025838964483446,
+      "reference": 1.0258389644834462,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/y2/ess_bulk",
+      "actual": 127.98445021197497,
+      "reference": 127.984450211975,
+      "tolerance": 2.5596890042395e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/y2/ess_tail",
+      "actual": 213.8674990119993,
+      "reference": 213.8674990119993,
+      "tolerance": 4.277349980239987e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/y2/ess_mean",
+      "actual": 126.0587660887426,
+      "reference": 126.05876608874263,
+      "tolerance": 2.5211753217748524e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/y2/mcse_mean",
+      "actual": 0.09196133560003669,
+      "reference": 0.09196133560003668,
+      "tolerance": 1.8392267120007337e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/y1_squared/rhat_rank",
+      "actual": 1.0255631275639467,
+      "reference": 1.0255631275639467,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/y1_squared/ess_bulk",
+      "actual": 382.42364083564826,
+      "reference": 382.4236408356482,
+      "tolerance": 7.648472816712964e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/y1_squared/ess_tail",
+      "actual": 370.67701358347284,
+      "reference": 370.6770135834728,
+      "tolerance": 7.413540271669456e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/y1_squared/ess_mean",
+      "actual": 278.01514468579376,
+      "reference": 278.0151446857938,
+      "tolerance": 5.560302893715876e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/y1_squared/mcse_mean",
+      "actual": 0.0898442543547549,
+      "reference": 0.0898442543547549,
+      "tolerance": 1.796885087095098e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/y2_squared/rhat_rank",
+      "actual": 1.0231609281333598,
+      "reference": 1.0231609281333598,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/y2_squared/ess_bulk",
+      "actual": 386.8519737270076,
+      "reference": 386.8519737270075,
+      "tolerance": 7.73703947454015e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/y2_squared/ess_tail",
+      "actual": 361.9369426276319,
+      "reference": 361.9369426276319,
+      "tolerance": 7.238738852552638e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/y2_squared/ess_mean",
+      "actual": 274.9711938421947,
+      "reference": 274.97119384219474,
+      "tolerance": 5.499423876843895e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/y2_squared/mcse_mean",
+      "actual": 0.0901135751019945,
+      "reference": 0.0901135751019945,
+      "tolerance": 1.80227150203989e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/product/rhat_rank",
+      "actual": 1.0262983433867143,
+      "reference": 1.0262983433867143,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/product/ess_bulk",
+      "actual": 365.3221673932591,
+      "reference": 365.322167393259,
+      "tolerance": 7.3064433478651805e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/product/ess_tail",
+      "actual": 340.85775274043453,
+      "reference": 340.85775274043453,
+      "tolerance": 6.817155054808691e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/product/ess_mean",
+      "actual": 265.0464616632177,
+      "reference": 265.0464616632177,
+      "tolerance": 5.300929233264355e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/product/mcse_mean",
+      "actual": 0.08975923307484332,
+      "reference": 0.08975923307484332,
+      "tolerance": 1.7951846614968665e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/Q/rhat_rank",
+      "actual": 1.0133320028258404,
+      "reference": 1.0133320028258404,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/Q/ess_bulk",
+      "actual": 563.9052404754347,
+      "reference": 563.9052404754349,
+      "tolerance": 1.1278104809508697e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/Q/ess_tail",
+      "actual": 723.5423581858374,
+      "reference": 723.5423581858375,
+      "tolerance": 1.4470847163716751e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/Q/ess_mean",
+      "actual": 452.64993001704886,
+      "reference": 452.64993001704886,
+      "tolerance": 9.052998600340977e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/Q/mcse_mean",
+      "actual": 0.09543147372711412,
+      "reference": 0.09543147372711412,
+      "tolerance": 1.9086294745422826e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/sum_direction/rhat_rank",
+      "actual": 1.0286188197090844,
+      "reference": 1.0286188197090844,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/sum_direction/ess_bulk",
+      "actual": 123.36786076645129,
+      "reference": 123.36786076645136,
+      "tolerance": 2.467357215329027e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/sum_direction/ess_tail",
+      "actual": 195.8398588893825,
+      "reference": 195.83985888938247,
+      "tolerance": 3.91679717778765e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/sum_direction/ess_mean",
+      "actual": 121.62110334592332,
+      "reference": 121.62110334592332,
+      "tolerance": 2.432422066918466e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/sum_direction/mcse_mean",
+      "actual": 0.09396434565536362,
+      "reference": 0.09396434565536362,
+      "tolerance": 1.8792869131072722e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/difference_direction/rhat_rank",
+      "actual": 1.0012571326245714,
+      "reference": 1.0012571326245714,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/difference_direction/ess_bulk",
+      "actual": 4430.182056255708,
+      "reference": 4430.182056255697,
+      "tolerance": 8.860364112511394e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/difference_direction/ess_tail",
+      "actual": 5845.282221077561,
+      "reference": 5845.282221077561,
+      "tolerance": 0.00011690564442155123,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/difference_direction/ess_mean",
+      "actual": 4429.757259247861,
+      "reference": 4429.757259247859,
+      "tolerance": 8.859514518495718e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46003/8192/difference_direction/mcse_mean",
+      "actual": 0.014851242694333999,
+      "reference": 0.014851242694334002,
+      "tolerance": 2.970248538866801e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/y1/rhat_rank",
+      "actual": 1.0041518783207832,
+      "reference": 1.0041518783207832,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/y1/ess_bulk",
+      "actual": 706.3812885952816,
+      "reference": 706.3812885952813,
+      "tolerance": 1.4127625771905626e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/y1/ess_tail",
+      "actual": 1343.7929595090422,
+      "reference": 1343.7929595090422,
+      "tolerance": 2.6875859190180844e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/y1/ess_mean",
+      "actual": 703.7059161813453,
+      "reference": 703.7059161813453,
+      "tolerance": 1.4074118323626905e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/y1/mcse_mean",
+      "actual": 0.03680402151029386,
+      "reference": 0.03680402151029386,
+      "tolerance": 7.360804302058772e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/y2/rhat_rank",
+      "actual": 1.002347923321214,
+      "reference": 1.002347923321214,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/y2/ess_bulk",
+      "actual": 671.8381143723915,
+      "reference": 671.8381143723913,
+      "tolerance": 1.3436762287447826e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/y2/ess_tail",
+      "actual": 1357.929218267469,
+      "reference": 1357.9292182674685,
+      "tolerance": 2.715858436534937e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/y2/ess_mean",
+      "actual": 671.3919096060162,
+      "reference": 671.3919096060162,
+      "tolerance": 1.3427838192120323e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/y2/mcse_mean",
+      "actual": 0.03813936115673247,
+      "reference": 0.03813936115673247,
+      "tolerance": 7.627872231346495e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/y1_squared/rhat_rank",
+      "actual": 1.001016752119319,
+      "reference": 1.001016752119319,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/y1_squared/ess_bulk",
+      "actual": 1621.8004091043201,
+      "reference": 1621.8004091043201,
+      "tolerance": 3.24360081820864e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/y1_squared/ess_tail",
+      "actual": 1627.4076000489522,
+      "reference": 1627.4076000489522,
+      "tolerance": 3.2548152000979045e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/y1_squared/ess_mean",
+      "actual": 1181.3640866620278,
+      "reference": 1181.3640866620276,
+      "tolerance": 2.3627281733240554e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/y1_squared/mcse_mean",
+      "actual": 0.04000395698431491,
+      "reference": 0.040003956984314915,
+      "tolerance": 8.000791396862984e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/y2_squared/rhat_rank",
+      "actual": 1.002854129080933,
+      "reference": 1.002854129080933,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/y2_squared/ess_bulk",
+      "actual": 1537.0476195384033,
+      "reference": 1537.047619538403,
+      "tolerance": 3.0740952390768064e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/y2_squared/ess_tail",
+      "actual": 1613.7709891772051,
+      "reference": 1613.7709891772051,
+      "tolerance": 3.2275419783544106e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/y2_squared/ess_mean",
+      "actual": 1170.8574000061521,
+      "reference": 1170.8574000061521,
+      "tolerance": 2.3417148000123045e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/y2_squared/mcse_mean",
+      "actual": 0.040716158832539304,
+      "reference": 0.040716158832539304,
+      "tolerance": 8.143231766507861e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/product/rhat_rank",
+      "actual": 1.001422482316654,
+      "reference": 1.0014224823166542,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/product/ess_bulk",
+      "actual": 1558.7624954112798,
+      "reference": 1558.76249541128,
+      "tolerance": 3.11752499082256e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/product/ess_tail",
+      "actual": 1742.3355667144333,
+      "reference": 1742.3355667144333,
+      "tolerance": 3.4846711334288664e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/product/ess_mean",
+      "actual": 1173.0763844545008,
+      "reference": 1173.076384454501,
+      "tolerance": 2.3461527689090023e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/product/mcse_mean",
+      "actual": 0.03960269566186745,
+      "reference": 0.03960269566186744,
+      "tolerance": 7.920539132373489e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/Q/rhat_rank",
+      "actual": 1.0034838574863325,
+      "reference": 1.0034838574863325,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/Q/ess_bulk",
+      "actual": 1201.7444970390316,
+      "reference": 1201.7444970390316,
+      "tolerance": 2.4034889940780632e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/Q/ess_tail",
+      "actual": 1504.8742993920669,
+      "reference": 1504.8742993920673,
+      "tolerance": 3.0097485987841346e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/Q/ess_mean",
+      "actual": 1053.230484940719,
+      "reference": 1053.2304849407187,
+      "tolerance": 2.1064609698814375e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/Q/mcse_mean",
+      "actual": 0.0600922793369378,
+      "reference": 0.0600922793369378,
+      "tolerance": 1.201845586738756e-09,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/sum_direction/rhat_rank",
+      "actual": 1.0031054778571467,
+      "reference": 1.0031054778571467,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/sum_direction/ess_bulk",
+      "actual": 685.0497669201985,
+      "reference": 685.0497669201989,
+      "tolerance": 1.3700995338403977e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/sum_direction/ess_tail",
+      "actual": 1332.2019324080497,
+      "reference": 1332.2019324080497,
+      "tolerance": 2.6644038648160997e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/sum_direction/ess_mean",
+      "actual": 683.7726003054773,
+      "reference": 683.7726003054775,
+      "tolerance": 1.3675452006109549e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/sum_direction/mcse_mean",
+      "actual": 0.037560371300720076,
+      "reference": 0.03756037130072007,
+      "tolerance": 7.512074260144014e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/difference_direction/rhat_rank",
+      "actual": 1.0076442793120755,
+      "reference": 1.0076442793120755,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/difference_direction/ess_bulk",
+      "actual": 822.6744099704985,
+      "reference": 822.6744099704983,
+      "tolerance": 1.645348819940997e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/difference_direction/ess_tail",
+      "actual": 1223.2675253229393,
+      "reference": 1223.2675253229393,
+      "tolerance": 2.4465350506458785e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/difference_direction/ess_mean",
+      "actual": 816.9115033057152,
+      "reference": 816.9115033057151,
+      "tolerance": 1.63382300661143e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/2048/difference_direction/mcse_mean",
+      "actual": 0.034541753716689355,
+      "reference": 0.034541753716689355,
+      "tolerance": 6.908350743337871e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/y1/rhat_rank",
+      "actual": 1.0015572136767057,
+      "reference": 1.0015572136767057,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/y1/ess_bulk",
+      "actual": 2856.414032553728,
+      "reference": 2856.4140325537282,
+      "tolerance": 5.7128280651074564e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/y1/ess_tail",
+      "actual": 4183.759270785682,
+      "reference": 4183.759270785683,
+      "tolerance": 8.367518541571365e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/y1/ess_mean",
+      "actual": 2853.8201434363255,
+      "reference": 2853.820143436325,
+      "tolerance": 5.70764028687265e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/y1/mcse_mean",
+      "actual": 0.018702811137127438,
+      "reference": 0.01870281113712744,
+      "tolerance": 3.740562227425488e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/y2/rhat_rank",
+      "actual": 1.001570229811313,
+      "reference": 1.001570229811313,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/y2/ess_bulk",
+      "actual": 2870.6177653488953,
+      "reference": 2870.6177653488953,
+      "tolerance": 5.741235530697791e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/y2/ess_tail",
+      "actual": 4617.56545906279,
+      "reference": 4617.565459062791,
+      "tolerance": 9.235130918125582e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/y2/ess_mean",
+      "actual": 2869.34483530617,
+      "reference": 2869.34483530617,
+      "tolerance": 5.73868967061234e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/y2/mcse_mean",
+      "actual": 0.018609784356297246,
+      "reference": 0.018609784356297246,
+      "tolerance": 3.7219568712594493e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/y1_squared/rhat_rank",
+      "actual": 1.001056149998568,
+      "reference": 1.001056149998568,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/y1_squared/ess_bulk",
+      "actual": 5442.036230823677,
+      "reference": 5442.036230823676,
+      "tolerance": 0.00010884072461647352,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/y1_squared/ess_tail",
+      "actual": 5499.172654981195,
+      "reference": 5499.172654981194,
+      "tolerance": 0.00010998345309962388,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/y1_squared/ess_mean",
+      "actual": 4172.348319641113,
+      "reference": 4172.348319641113,
+      "tolerance": 8.344696639282227e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/y1_squared/mcse_mean",
+      "actual": 0.02187039609718452,
+      "reference": 0.02187039609718452,
+      "tolerance": 4.374079219436904e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/y2_squared/rhat_rank",
+      "actual": 1.0008467152995515,
+      "reference": 1.0008467152995515,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/y2_squared/ess_bulk",
+      "actual": 5628.03551826573,
+      "reference": 5628.0355182657295,
+      "tolerance": 0.00011256071036531459,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/y2_squared/ess_tail",
+      "actual": 5925.374119338748,
+      "reference": 5925.374119338748,
+      "tolerance": 0.00011850748238677496,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/y2_squared/ess_mean",
+      "actual": 4392.502253783939,
+      "reference": 4392.50225378394,
+      "tolerance": 8.78500450756788e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/y2_squared/mcse_mean",
+      "actual": 0.021103141532771052,
+      "reference": 0.02110314153277105,
+      "tolerance": 4.22062830655421e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/product/rhat_rank",
+      "actual": 1.0011001254746992,
+      "reference": 1.001100125474699,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/product/ess_bulk",
+      "actual": 5599.762280434028,
+      "reference": 5599.762280434028,
+      "tolerance": 0.00011199524560868056,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/product/ess_tail",
+      "actual": 5800.807506533611,
+      "reference": 5800.807506533611,
+      "tolerance": 0.00011601615013067221,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/product/ess_mean",
+      "actual": 4295.928102899432,
+      "reference": 4295.928102899433,
+      "tolerance": 8.591856205798865e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/product/mcse_mean",
+      "actual": 0.020949898529884704,
+      "reference": 0.020949898529884704,
+      "tolerance": 4.189979705976941e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/Q/rhat_rank",
+      "actual": 1.0008448468341475,
+      "reference": 1.0008448468341475,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/Q/ess_bulk",
+      "actual": 4498.479423589753,
+      "reference": 4498.479423589755,
+      "tolerance": 8.99695884717951e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/Q/ess_tail",
+      "actual": 5046.276073180092,
+      "reference": 5046.276073180091,
+      "tolerance": 0.00010092552146360182,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/Q/ess_mean",
+      "actual": 3883.2385327761594,
+      "reference": 3883.2385327761585,
+      "tolerance": 7.766477065552317e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/Q/mcse_mean",
+      "actual": 0.031572857944807006,
+      "reference": 0.031572857944807006,
+      "tolerance": 6.314571588961402e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/sum_direction/rhat_rank",
+      "actual": 1.0014984474122044,
+      "reference": 1.0014984474122044,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/sum_direction/ess_bulk",
+      "actual": 2857.356264189052,
+      "reference": 2857.3562641890517,
+      "tolerance": 5.714712528378104e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/sum_direction/ess_tail",
+      "actual": 4210.779051560615,
+      "reference": 4210.779051560614,
+      "tolerance": 8.421558103121229e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/sum_direction/ess_mean",
+      "actual": 2855.697212079016,
+      "reference": 2855.697212079016,
+      "tolerance": 5.7113944241580325e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/sum_direction/mcse_mean",
+      "actual": 0.018673784084495125,
+      "reference": 0.018673784084495125,
+      "tolerance": 3.734756816899025e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/difference_direction/rhat_rank",
+      "actual": 1.0038254483007107,
+      "reference": 1.0038254483007107,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/difference_direction/ess_bulk",
+      "actual": 3089.997886923112,
+      "reference": 3089.9978869231118,
+      "tolerance": 6.179995773846224e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/difference_direction/ess_tail",
+      "actual": 5047.3866169079765,
+      "reference": 5047.3866169079765,
+      "tolerance": 0.00010094773233815954,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/difference_direction/ess_mean",
+      "actual": 3094.070213537124,
+      "reference": 3094.0702135371253,
+      "tolerance": 6.18814042707425e-05,
+      "passed": true
+    },
+    {
+      "id": "preconditioned-46004/8192/difference_direction/mcse_mean",
+      "actual": 0.018003709692320066,
+      "reference": 0.018003709692320062,
+      "tolerance": 3.6007419384640125e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/y1/rhat_rank",
+      "actual": 1.1311849894526347,
+      "reference": 1.1311849894526347,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/y1/ess_bulk",
+      "actual": 30.12300932649815,
+      "reference": 30.12300932649815,
+      "tolerance": 6.02460186529963e-07,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/y1/ess_tail",
+      "actual": 113.91786349422027,
+      "reference": 113.91786349422027,
+      "tolerance": 2.2783572698844053e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/y1/ess_mean",
+      "actual": 29.32247868850623,
+      "reference": 29.32247868850623,
+      "tolerance": 5.864495737701246e-07,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/y1/mcse_mean",
+      "actual": 0.17315730851757763,
+      "reference": 0.17315730851757763,
+      "tolerance": 3.4631461703515527e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/y2/rhat_rank",
+      "actual": 1.12714903957868,
+      "reference": 1.12714903957868,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/y2/ess_bulk",
+      "actual": 32.903803200479125,
+      "reference": 32.9038032004791,
+      "tolerance": 6.58076064009582e-07,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/y2/ess_tail",
+      "actual": 103.52301462135631,
+      "reference": 103.52301462135631,
+      "tolerance": 2.0704602924271264e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/y2/ess_mean",
+      "actual": 31.955099332874408,
+      "reference": 31.955099332874415,
+      "tolerance": 6.391019866574883e-07,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/y2/mcse_mean",
+      "actual": 0.16726886394728252,
+      "reference": 0.1672688639472825,
+      "tolerance": 3.34537727894565e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/y1_squared/rhat_rank",
+      "actual": 1.013126325646844,
+      "reference": 1.013126325646844,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/y1_squared/ess_bulk",
+      "actual": 134.35874958089167,
+      "reference": 134.35874958089167,
+      "tolerance": 2.6871749916178333e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/y1_squared/ess_tail",
+      "actual": 158.14447683371006,
+      "reference": 158.14447683371012,
+      "tolerance": 3.162889536674202e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/y1_squared/ess_mean",
+      "actual": 113.43202231132383,
+      "reference": 113.4320223113239,
+      "tolerance": 2.268640446226478e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/y1_squared/mcse_mean",
+      "actual": 0.11225950191089616,
+      "reference": 0.11225950191089612,
+      "tolerance": 2.2451900382179225e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/y2_squared/rhat_rank",
+      "actual": 1.010884564446194,
+      "reference": 1.010884564446194,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/y2_squared/ess_bulk",
+      "actual": 138.91289368706774,
+      "reference": 138.91289368706774,
+      "tolerance": 2.7782578737413547e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/y2_squared/ess_tail",
+      "actual": 155.7294313877631,
+      "reference": 155.7294313877631,
+      "tolerance": 3.114588627755262e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/y2_squared/ess_mean",
+      "actual": 106.69932831756334,
+      "reference": 106.6993283175633,
+      "tolerance": 2.133986566351266e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/y2_squared/mcse_mean",
+      "actual": 0.11609776968726869,
+      "reference": 0.11609776968726873,
+      "tolerance": 2.3219553937453746e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/product/rhat_rank",
+      "actual": 1.0135356741649142,
+      "reference": 1.0135356741649142,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/product/ess_bulk",
+      "actual": 125.62477349780795,
+      "reference": 125.62477349780802,
+      "tolerance": 2.5124954699561605e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/product/ess_tail",
+      "actual": 149.19997962321978,
+      "reference": 149.19997962321978,
+      "tolerance": 2.9839995924643955e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/product/ess_mean",
+      "actual": 104.61975055976437,
+      "reference": 104.61975055976433,
+      "tolerance": 2.0923950111952867e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/product/mcse_mean",
+      "actual": 0.11380280748181272,
+      "reference": 0.11380280748181273,
+      "tolerance": 2.276056149636255e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/Q/rhat_rank",
+      "actual": 1.0042590086673333,
+      "reference": 1.0042590086673333,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/Q/ess_bulk",
+      "actual": 259.82501127906517,
+      "reference": 259.8250112790651,
+      "tolerance": 5.196500225581302e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/Q/ess_tail",
+      "actual": 405.6122943797454,
+      "reference": 405.6122943797451,
+      "tolerance": 8.112245887594902e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/Q/ess_mean",
+      "actual": 215.4529857125414,
+      "reference": 215.45298571254145,
+      "tolerance": 4.3090597142508295e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/Q/mcse_mean",
+      "actual": 0.12255669118830896,
+      "reference": 0.12255669118830895,
+      "tolerance": 2.451133823766179e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/sum_direction/rhat_rank",
+      "actual": 1.1330811306732658,
+      "reference": 1.1330811306732658,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/sum_direction/ess_bulk",
+      "actual": 30.78334867922456,
+      "reference": 30.783348679224538,
+      "tolerance": 6.156669735844908e-07,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/sum_direction/ess_tail",
+      "actual": 104.96678984602772,
+      "reference": 104.96678984602774,
+      "tolerance": 2.0993357969205548e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/sum_direction/ess_mean",
+      "actual": 29.829967931635153,
+      "reference": 29.82996793163516,
+      "tolerance": 5.965993586327033e-07,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/sum_direction/mcse_mean",
+      "actual": 0.17218575087246188,
+      "reference": 0.17218575087246188,
+      "tolerance": 3.4437150174492375e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/difference_direction/rhat_rank",
+      "actual": 1.002002591234777,
+      "reference": 1.002002591234777,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/difference_direction/ess_bulk",
+      "actual": 1196.5399215912992,
+      "reference": 1196.5399215912996,
+      "tolerance": 2.393079843182599e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/difference_direction/ess_tail",
+      "actual": 1552.8983598085956,
+      "reference": 1552.8983598085956,
+      "tolerance": 3.105796719617191e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/difference_direction/ess_mean",
+      "actual": 1195.325239630404,
+      "reference": 1195.3252396304038,
+      "tolerance": 2.3906504792608075e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/2048/difference_direction/mcse_mean",
+      "actual": 0.028540411195061184,
+      "reference": 0.02854041119506119,
+      "tolerance": 5.708082239012238e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/y1/rhat_rank",
+      "actual": 1.0132563873068647,
+      "reference": 1.0132563873068647,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/y1/ess_bulk",
+      "actual": 157.06986769143734,
+      "reference": 157.0698676914374,
+      "tolerance": 3.1413973538287478e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/y1/ess_tail",
+      "actual": 339.404749508254,
+      "reference": 339.4047495082541,
+      "tolerance": 6.788094990165082e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/y1/ess_mean",
+      "actual": 157.4054168185264,
+      "reference": 157.4054168185264,
+      "tolerance": 3.148108336370528e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/y1/mcse_mean",
+      "actual": 0.08101063662618588,
+      "reference": 0.08101063662618588,
+      "tolerance": 1.6202127325237176e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/y2/rhat_rank",
+      "actual": 1.0130895563198592,
+      "reference": 1.0130895563198592,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/y2/ess_bulk",
+      "actual": 155.1270491241321,
+      "reference": 155.12704912413218,
+      "tolerance": 3.1025409824826438e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/y2/ess_tail",
+      "actual": 323.98400418635305,
+      "reference": 323.9840041863531,
+      "tolerance": 6.4796800837270624e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/y2/ess_mean",
+      "actual": 155.67011248035354,
+      "reference": 155.67011248035357,
+      "tolerance": 3.113402249607071e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/y2/mcse_mean",
+      "actual": 0.0813700376549553,
+      "reference": 0.08137003765495529,
+      "tolerance": 1.6274007530991058e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/y1_squared/rhat_rank",
+      "actual": 1.0129652940138292,
+      "reference": 1.0129652940138292,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/y1_squared/ess_bulk",
+      "actual": 436.6863029393501,
+      "reference": 436.68630293934996,
+      "tolerance": 8.733726058786999e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/y1_squared/ess_tail",
+      "actual": 572.0082698000479,
+      "reference": 572.0082698000477,
+      "tolerance": 1.1440165396000956e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/y1_squared/ess_mean",
+      "actual": 367.69045390220737,
+      "reference": 367.69045390220737,
+      "tolerance": 7.353809078044147e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/y1_squared/mcse_mean",
+      "actual": 0.07687935979423682,
+      "reference": 0.07687935979423682,
+      "tolerance": 1.5375871958847365e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/y2_squared/rhat_rank",
+      "actual": 1.013036482126259,
+      "reference": 1.013036482126259,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/y2_squared/ess_bulk",
+      "actual": 435.9131968053761,
+      "reference": 435.9131968053761,
+      "tolerance": 8.718263936107523e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/y2_squared/ess_tail",
+      "actual": 546.4345211253752,
+      "reference": 546.4345211253752,
+      "tolerance": 1.0928690422507505e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/y2_squared/ess_mean",
+      "actual": 368.89540347732463,
+      "reference": 368.8954034773245,
+      "tolerance": 7.377908069546491e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/y2_squared/mcse_mean",
+      "actual": 0.07842395462947314,
+      "reference": 0.07842395462947316,
+      "tolerance": 1.5684790925894633e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/product/rhat_rank",
+      "actual": 1.0139515801400794,
+      "reference": 1.0139515801400794,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/product/ess_bulk",
+      "actual": 410.7659423030592,
+      "reference": 410.76594230305926,
+      "tolerance": 8.215318846061185e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/product/ess_tail",
+      "actual": 528.1667455409812,
+      "reference": 528.1667455409812,
+      "tolerance": 1.0563334910819625e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/product/ess_mean",
+      "actual": 353.7571964956146,
+      "reference": 353.7571964956145,
+      "tolerance": 7.07514392991229e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/product/mcse_mean",
+      "actual": 0.07745499763980024,
+      "reference": 0.07745499763980024,
+      "tolerance": 1.5490999527960048e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/Q/rhat_rank",
+      "actual": 1.0072720018167338,
+      "reference": 1.0072720018167338,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/Q/ess_bulk",
+      "actual": 711.270687848913,
+      "reference": 711.2706878489126,
+      "tolerance": 1.4225413756978252e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/Q/ess_tail",
+      "actual": 1001.5648302318469,
+      "reference": 1001.5648302318469,
+      "tolerance": 2.003129660463694e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/Q/ess_mean",
+      "actual": 619.4789693190149,
+      "reference": 619.4789693190152,
+      "tolerance": 1.2389579386380303e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/Q/mcse_mean",
+      "actual": 0.08165408811326873,
+      "reference": 0.08165408811326871,
+      "tolerance": 1.6330817622653742e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/sum_direction/rhat_rank",
+      "actual": 1.0137259100672278,
+      "reference": 1.0137259100672278,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/sum_direction/ess_bulk",
+      "actual": 152.46907750585834,
+      "reference": 152.46907750585842,
+      "tolerance": 3.0493815501171685e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/sum_direction/ess_tail",
+      "actual": 296.8163285757542,
+      "reference": 296.8163285757542,
+      "tolerance": 5.936326571515084e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/sum_direction/ess_mean",
+      "actual": 152.9231607989825,
+      "reference": 152.9231607989825,
+      "tolerance": 3.05846321597965e-06,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/sum_direction/mcse_mean",
+      "actual": 0.08218277835682745,
+      "reference": 0.08218277835682745,
+      "tolerance": 1.643655567136549e-09,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/difference_direction/rhat_rank",
+      "actual": 1.0008093205529087,
+      "reference": 1.0008093205529087,
+      "tolerance": 2e-10,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/difference_direction/ess_bulk",
+      "actual": 4472.327067418408,
+      "reference": 4472.327067418409,
+      "tolerance": 8.944654134836818e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/difference_direction/ess_tail",
+      "actual": 6053.018618831451,
+      "reference": 6053.018618831454,
+      "tolerance": 0.00012106037237662908,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/difference_direction/ess_mean",
+      "actual": 4477.763505260571,
+      "reference": 4477.763505260571,
+      "tolerance": 8.955527010521142e-05,
+      "passed": true
+    },
+    {
+      "id": "isotropic-46004/8192/difference_direction/mcse_mean",
+      "actual": 0.014894139634556361,
+      "reference": 0.014894139634556361,
+      "tolerance": 2.9788279269112726e-10,
+      "passed": true
+    }
+  ],
+  "reference_sha256": "30b5762bcdffb6c1db044bd9e57135760564ba96647cd408c476060cbfd8efc1",
+  "array_archive_sha256": "dda9e4421b41c4ed208238ce43713da629cb0e45b7bad6b4fbc962a6bc4d5c82",
+  "diagnostics_sha256": "95a0379f8e22ade63cfb651046b77c9ebc05da2a85bc36c83996af47f8585e57",
+  "scope": "128actual fixed MH observable/prefix arrays;640independent engine values. Diagnostic independence only; target moments are a separate analytic reference. The declared SciPy type7 quantile primitive is shared with ArviZ; the ESS/ACF implementation remains independent."
+}

@@ -1,0 +1,245 @@
+{
+  "passed": true,
+  "checks": {
+    "strict C++17 compile": true,
+    "N160-variant0 true-circle/stair fractions": true,
+    "N160-variant0 required stencil support": true,
+    "N160-variant0 scalar-native one-step": true,
+    "N160-variant0 mass ledger": true,
+    "N160-variant0 momentum ledger": true,
+    "N160-variant0 finite positive one-step density": true,
+    "N160-variant0 every reset reproduces identical single-step": true,
+    "N160-variant1 true-circle/stair fractions": true,
+    "N160-variant1 required stencil support": true,
+    "N160-variant1 scalar-native one-step": true,
+    "N160-variant1 mass ledger": true,
+    "N160-variant1 momentum ledger": true,
+    "N160-variant1 finite positive one-step density": true,
+    "N160-variant1 every reset reproduces identical single-step": true,
+    "N240-variant0 true-circle/stair fractions": true,
+    "N240-variant0 required stencil support": true,
+    "N240-variant0 scalar-native one-step": true,
+    "N240-variant0 mass ledger": true,
+    "N240-variant0 momentum ledger": true,
+    "N240-variant0 finite positive one-step density": true,
+    "N240-variant0 every reset reproduces identical single-step": true,
+    "N240-variant1 true-circle/stair fractions": true,
+    "N240-variant1 required stencil support": true,
+    "N240-variant1 scalar-native one-step": true,
+    "N240-variant1 mass ledger": true,
+    "N240-variant1 momentum ledger": true,
+    "N240-variant1 finite positive one-step density": true,
+    "N240-variant1 every reset reproduces identical single-step": true
+  },
+  "records": [
+    {
+      "name": "strict C++17 compile",
+      "passed": true
+    },
+    {
+      "name": "N160-variant0 true-circle/stair fractions",
+      "passed": true
+    },
+    {
+      "name": "N160-variant0 required stencil support",
+      "passed": true,
+      "short_links": 1028,
+      "long_links": 828
+    },
+    {
+      "name": "N160-variant0 scalar-native one-step",
+      "passed": true,
+      "error": 3.3306690738754696e-16
+    },
+    {
+      "name": "N160-variant0 mass ledger",
+      "passed": true
+    },
+    {
+      "name": "N160-variant0 momentum ledger",
+      "passed": true
+    },
+    {
+      "name": "N160-variant0 finite positive one-step density",
+      "passed": true
+    },
+    {
+      "name": "N160-variant0 every reset reproduces identical single-step",
+      "passed": true
+    },
+    {
+      "name": "N160-variant1 true-circle/stair fractions",
+      "passed": true
+    },
+    {
+      "name": "N160-variant1 required stencil support",
+      "passed": true,
+      "short_links": 0,
+      "long_links": 0
+    },
+    {
+      "name": "N160-variant1 scalar-native one-step",
+      "passed": true,
+      "error": 3.3306690738754696e-16
+    },
+    {
+      "name": "N160-variant1 mass ledger",
+      "passed": true
+    },
+    {
+      "name": "N160-variant1 momentum ledger",
+      "passed": true
+    },
+    {
+      "name": "N160-variant1 finite positive one-step density",
+      "passed": true
+    },
+    {
+      "name": "N160-variant1 every reset reproduces identical single-step",
+      "passed": true
+    },
+    {
+      "name": "N240-variant0 true-circle/stair fractions",
+      "passed": true
+    },
+    {
+      "name": "N240-variant0 required stencil support",
+      "passed": true,
+      "short_links": 1500,
+      "long_links": 1276
+    },
+    {
+      "name": "N240-variant0 scalar-native one-step",
+      "passed": true,
+      "error": 3.3306690738754696e-16
+    },
+    {
+      "name": "N240-variant0 mass ledger",
+      "passed": true
+    },
+    {
+      "name": "N240-variant0 momentum ledger",
+      "passed": true
+    },
+    {
+      "name": "N240-variant0 finite positive one-step density",
+      "passed": true
+    },
+    {
+      "name": "N240-variant0 every reset reproduces identical single-step",
+      "passed": true
+    },
+    {
+      "name": "N240-variant1 true-circle/stair fractions",
+      "passed": true
+    },
+    {
+      "name": "N240-variant1 required stencil support",
+      "passed": true,
+      "short_links": 0,
+      "long_links": 0
+    },
+    {
+      "name": "N240-variant1 scalar-native one-step",
+      "passed": true,
+      "error": 3.3306690738754696e-16
+    },
+    {
+      "name": "N240-variant1 mass ledger",
+      "passed": true
+    },
+    {
+      "name": "N240-variant1 momentum ledger",
+      "passed": true
+    },
+    {
+      "name": "N240-variant1 finite positive one-step density",
+      "passed": true
+    },
+    {
+      "name": "N240-variant1 every reset reproduces identical single-step",
+      "passed": true
+    }
+  ],
+  "timings": [
+    {
+      "n": 160,
+      "variant": 0,
+      "fluid_nodes": 9664,
+      "main_steps": 15360,
+      "one_step_seconds": [
+        0.00030058593711146386,
+        0.0002925806875282433,
+        0.0002921823124779621
+      ],
+      "zero_step_allocation_seconds": [
+        4.888799958280288e-05,
+        4.2273437429685146e-05,
+        4.277087464288343e-05
+      ],
+      "median_one_step_seconds": 0.0002925806875282433,
+      "median_zero_step_seconds": 4.277087464288343e-05
+    },
+    {
+      "n": 160,
+      "variant": 1,
+      "fluid_nodes": 9664,
+      "main_steps": 15360,
+      "one_step_seconds": [
+        0.000289044249257131,
+        0.0002877812503356836,
+        0.0002868801875592908
+      ],
+      "zero_step_allocation_seconds": [
+        4.7650999476900324e-05,
+        4.080731287103845e-05,
+        3.93046875615255e-05
+      ],
+      "median_one_step_seconds": 0.0002877812503356836,
+      "median_zero_step_seconds": 4.080731287103845e-05
+    },
+    {
+      "n": 240,
+      "variant": 0,
+      "fluid_nodes": 21736,
+      "main_steps": 34560,
+      "one_step_seconds": [
+        0.0006434661245293682,
+        0.0006279531253312598,
+        0.0006267239377848455
+      ],
+      "zero_step_allocation_seconds": [
+        7.719268796790857e-05,
+        6.926824971742462e-05,
+        6.895312526467023e-05
+      ],
+      "median_one_step_seconds": 0.0006279531253312598,
+      "median_zero_step_seconds": 6.926824971742462e-05
+    },
+    {
+      "n": 240,
+      "variant": 1,
+      "fluid_nodes": 21736,
+      "main_steps": 34560,
+      "one_step_seconds": [
+        0.0006316093749774154,
+        0.0006181848757478292,
+        0.000623057312623132
+      ],
+      "zero_step_allocation_seconds": [
+        7.844268748158356e-05,
+        6.753387515345821e-05,
+        6.729687447659671e-05
+      ],
+      "median_one_step_seconds": 0.000623057312623132,
+      "median_zero_step_seconds": 6.753387515345821e-05
+    }
+  ],
+  "failure": null,
+  "check_count": 29,
+  "expected_checks": 29,
+  "protocol_sha256": "243675a36fd8519b320f1b58cf99d4e6a60d9a202860f7defe47d8f313834abc",
+  "physical_trajectories": 0,
+  "reference_generations": 0,
+  "elapsed_seconds": 3.5926847090013325
+}

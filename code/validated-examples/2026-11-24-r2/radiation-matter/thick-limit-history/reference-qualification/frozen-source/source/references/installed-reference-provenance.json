@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "installed_at_utc": "2026-11-23T22:20:56.046089+00:00",
+  "reference_contract_sha256": "5a6af0d40975fdddb63c7e70a6bdacd0f1911774535f5d61cbb659ee62775282",
+  "execution_receipt_sha256": "d61204b12b711912b1825df154c9b94aaaba2409639ead965b1d07342d6185b7",
+  "group_checks": 54,
+  "all_reference_checks": 323,
+  "reference_shared_seconds": 5.2940135,
+  "cache_files": [
+    {
+      "file": "diffusion-reference.npz",
+      "sha256": "07b3d46690a4387d8d9a7cdce0f61bc562077db184aa971e900218f6ce2d0190"
+    },
+    {
+      "file": "transport-reference.npz",
+      "sha256": "53422f997c50c3c82ac477ef7ab8f286e051642e8cbb31963c2cf5befe67eb61"
+    },
+    {
+      "file": "qualification.json",
+      "sha256": "0ca13c4843d6eb56c95f449110da314e22e6be61795732a745375de4fdb6eb36"
+    }
+  ],
+  "PDE_primary_runs": 0,
+  "scope": "Qualified before main. Full source/log/partial/failure history retained persistently in preparation;no primaryPDErun or rigorousreferencebound claimed."
+}

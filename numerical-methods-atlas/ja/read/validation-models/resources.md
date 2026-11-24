@@ -17,6 +17,9 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/
 - [確率的速度リスケーリング（CSVR）](<https://hrkoyama.github.io/numerical-methods-atlas/methods/stochastic-velocity-rescaling/?lang=ja>)
 
   この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。
+- [確率微分方程式](<https://hrkoyama.github.io/numerical-methods-atlas/methods/sde/?lang=ja>)
+
+  この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。
 - [空間中心差分](<https://hrkoyama.github.io/numerical-methods-atlas/methods/centered-difference/?lang=ja>)
 
   この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。
@@ -51,6 +54,9 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/
 - [Hamilton系・振動子](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#hamiltonian-ja>)
 
   正準方程式と分離可能なHamiltonianの代表形。調和・4次ポテンシャルの振動子で、エネルギー誤差とシンプレクティック性を比べます。 Hamilton系へのリンクは調和ポテンシャルの力学部分です。計算には摩擦・雑音またはCSVRの温度浴が追加されます。
+- [スカラーItô拡散：GBMとOU](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#scalar-ito-diffusion-ja>)
+
+  決定論的初期値のスカラーSDE。平均・二次モーメントの弱誤差、共有Brown運動での強誤差、有限標本のMCSEを分けます。OUは調和Langevin系の浴成分に関連する追加検査です。 Hamilton系へのリンクは調和ポテンシャルの力学部分です。計算には摩擦・雑音またはCSVRの温度浴が追加されます。
 - [熱・拡散方程式](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#heat-ja>)
 
   一定拡散係数νの代表形。モードの減衰、時間積分、境界条件へ。 線形反応拡散u_t=D u_xx+r u（公開入力はD=0.1、r=0.1）です。熱方程式へのリンクは拡散部分で、反応項を含む固有値r-Dk²で比較します。
@@ -140,6 +146,11 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/
 - [Langevin温度制御：正準分布・刻み偏り・時間相関：参照・比較条件](<https://hrkoyama.github.io/numerical-methods-atlas/problems/langevin-harmonic/?lang=ja#references-ja>)
 
   調和ポテンシャルの正準分布・モーメントと相関の解析基準を使い、刻み幅バイアスを確認します。摩擦・雑音を持たない調和軌道とは区別します。
+- [OUのweakモーメントと同時Brownian結合](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-ou-weak-moments-ja>)
+  relation: related-model
+  reference_kind: analytic
+
+  解析解 dX=1.5(.2-X)dt+.8dW,X0=.7。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。 dX=1.5(.2-X)dt+.8dW,X0=.7。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。
 - [反応拡散：空間2次と時間4次を分けて測る：参照・比較条件](<https://hrkoyama.github.io/numerical-methods-atlas/problems/reaction-diffusion-fourier/?lang=ja#references-ja>)
 
   線形反応拡散の連続Fourier解と半離散Fourier解を分け、空間2次・時間4次の収束を確認します。純拡散カードの指数率をそのまま使いません。
@@ -155,6 +166,11 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/
 - [Langevin温度制御：正準分布・刻み偏り・時間相関：参照・検証](<https://hrkoyama.github.io/numerical-methods-atlas/validation/langevin-harmonic/?lang=ja#langevin-harmonic-ja-validation>)
 
   SciPy離散Lyapunov解および調和系の明示共分散diag(T/omega²,T(1-h²omega²/4))で照合。運動量の刻み2次偏りと有限標本誤差を分離し、burn過渡を写像で評価。連続相関は別の行列指数で算出します。
+- [OUのweakモーメントと同時Brownian結合](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-ou-weak-moments-ja>)
+  relation: related-model
+  reference_kind: analytic
+
+  解析解 dX=1.5(.2-X)dt+.8dW,X0=.7。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。 dX=1.5(.2-X)dt+.8dW,X0=.7。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。
 - [反応拡散：空間2次と時間4次を分けて測る：参照・検証](<https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-fourier/?lang=ja#reaction-diffusion-fourier-ja-validation>)
 
   連続固有値r-Dk²への最大誤差で空間次数、半離散固有値r-4Dsin²(kdx/2)/dx²への最大誤差で時間次数を測ります。独立した解析参照であり同じ実装の細格子値を参照にしません。
@@ -179,6 +195,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/
   availability: run
 
   異なる周波数を持つ2自由度でglobal CSVRとlocal Langevinを同じOBABO分割で比較。位置・運動量・温度・全エネルギーの分布、揺らぎ、相関を記録します。
+- [OUのweakモーメントと同時Brownian結合](<https://hrkoyama.github.io/numerical-methods-atlas/validation/ou-weak-moments/?lang=ja>)
+  availability: run
+
+  連続真値、離散EM期待値、同一経路差とMCSEを分離する固定入力です。
 - [反応拡散：空間2次と時間4次を分けて測る](<https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-fourier/?lang=ja>)
   availability: run
 

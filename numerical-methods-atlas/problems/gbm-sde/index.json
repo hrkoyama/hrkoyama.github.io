@@ -29,7 +29,27 @@
     "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#gbm-sde",
     "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#gbm-sde-en"
   },
-  "equations": [],
+  "equations": [
+    {
+      "id": "scalar-ito-diffusion",
+      "name": {
+        "ja": "スカラーItô拡散：GBMとOU",
+        "en": "Scalar Ito diffusion: GBM and OU"
+      },
+      "formula": [
+        "\\mathrm dX_t=a(X_t,t)\\,\\mathrm dt+b(X_t,t)\\,\\mathrm dW_t",
+        "\\mathrm{GBM}:\\ a=\\mu X,\\ b=\\sigma X;\\quad\\mathrm{OU}:\\ a=\\kappa(\\theta-X),\\ b=\\sigma"
+      ],
+      "note": {
+        "ja": "決定論的初期値のスカラーSDE。平均・二次モーメントの弱誤差、共有Brown運動での強誤差、有限標本のMCSEを分けます。OUは調和Langevin系の浴成分に関連する追加検査です。",
+        "en": "Scalar SDEs with deterministic initial states. Separate weak moment bias,strong errors on shared Brownian paths and finite-sample MCSE. OU is a related bath-component check,not the full harmonic Langevin system."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#scalar-ito-diffusion-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#scalar-ito-diffusion-en"
+      }
+    }
+  ],
   "equation_note": {
     "ja": "幾何Brown運動のItô SDE dX=μXdt+σXdW。既存46式にはSDEの専用項目がありません。",
     "en": "Geometric-Brownian Itô SDE dX=μXdt+σXdW; no SDE-specific entry exists among the 46 equations."
@@ -51,9 +71,97 @@
         "ja": "スカラー幾何Brown運動のEuler–Maruyama。粗細刻みと解析解で同じBrown運動を共有し、4096経路で強RMS誤差を測定。一般SDE・MCMC・弱収束次数は検証しない。",
         "en": "Euler–Maruyama for scalar geometric Brownian motion. Coarse/fine steps and analytic endpoints share the same Brownian paths; measure strong RMS error across 4096 paths. Does not validate general SDEs, MCMC or weak convergence order."
       }
+    },
+    {
+      "id": "supplement-gbm-weak-moments",
+      "name": {
+        "ja": "GBMのweak誤差とMonte Carlo標準誤差",
+        "en": "GBM weak bias and Monte Carlo error"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "dX_t=\\mu X_t\\,dt+\\sigma X_t\\,dW_t",
+        "b_p(h)=\\mathbb E[X_h(T)^p]-\\mathbb E[X(T)^p],\\quad p=1,2",
+        "\\mathbb E[X_h(T)]=X_0(1+\\mu h)^n"
+      ],
+      "note": {
+        "ja": "連続真値、離散EM期待値、同一経路差とMCSEを分離する固定入力です。",
+        "en": "Separate continuous truth,exact discrete EM expectation,paired-path weak difference and MCSE."
+      }
+    },
+    {
+      "id": "supplement-gbm-milstein-strong",
+      "name": {
+        "ja": "同じBrownian経路のMilstein・EM strong比較",
+        "en": "Milstein and EM on identical Brownian paths"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "X_{j+1}=X_j[1+\\mu h+\\sigma\\Delta W_j+\\tfrac12\\sigma^2((\\Delta W_j)^2-h)]",
+        "\\mathbb E[(X_n-X(T))^2]=X_0^2[A^n+e^{(2\\mu+\\sigma^2)T}-2K^n]"
+      ],
+      "note": {
+        "ja": "補償項を持つMilsteinとEMの終端L2 RMSを、厳密端点と有限モーメントから検査。",
+        "en": "Compare compensated Milstein and EM endpoint L2RMS against exact endpoints and finite-moment identities."
+      }
     }
   ],
-  "references": [],
+  "references": [
+    {
+      "id": "gbm-weak-moments",
+      "kind": "analytic",
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "title": {
+        "ja": "GBMのweak誤差とMonte Carlo標準誤差",
+        "en": "GBM weak bias and Monte Carlo error"
+      },
+      "formula": "dX_t=\\mu X_t\\,dt+\\sigma X_t\\,dW_t; b_p(h)=\\mathbb E[X_h(T)^p]-\\mathbb E[X(T)^p],\\quad p=1,2; \\mathbb E[X_h(T)]=X_0(1+\\mu h)^n",
+      "assumptions": {
+        "ja": "dX=.5Xdt+.4XdW,X0=1。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。",
+        "en": "dX=.5Xdt+.4XdW,X0=1;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping."
+      },
+      "relation": "related-model",
+      "note": {
+        "ja": "dX=.5Xdt+.4XdW,X0=1。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。",
+        "en": "dX=.5Xdt+.4XdW,X0=1;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gbm-weak-moments/?lang=ja#gbm-weak-moments-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gbm-weak-moments/?lang=en#gbm-weak-moments-en-measurements"
+      }
+    },
+    {
+      "id": "gbm-milstein-strong",
+      "kind": "analytic",
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "title": {
+        "ja": "同じBrownian経路のMilstein・EM strong比較",
+        "en": "Milstein and EM on identical Brownian paths"
+      },
+      "formula": "X_{j+1}=X_j[1+\\mu h+\\sigma\\Delta W_j+\\tfrac12\\sigma^2((\\Delta W_j)^2-h)]; \\mathbb E[(X_n-X(T))^2]=X_0^2[A^n+e^{(2\\mu+\\sigma^2)T}-2K^n]",
+      "assumptions": {
+        "ja": "既存GBMと同じμ=.15,σ=.4,X0=T=1。4seed×8192経路、16/32/64/128刻み。",
+        "en": "ExistingGBMparametersmu.15,sigma.4,X0=T1;4seeds×8192paths;16/32/64/128steps."
+      },
+      "relation": "related-model",
+      "note": {
+        "ja": "既存GBMと同じμ=.15,σ=.4,X0=T=1。4seed×8192経路、16/32/64/128刻み。",
+        "en": "ExistingGBMparametersmu.15,sigma.4,X0=T1;4seeds×8192paths;16/32/64/128steps."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gbm-milstein-strong/?lang=ja#gbm-milstein-strong-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gbm-milstein-strong/?lang=en#gbm-milstein-strong-en-measurements"
+      }
+    }
+  ],
   "reference_note": {
     "ja": "幾何Brown運動の解析的なItô解を同じBrown増分で結び、強収束とモーメントを確認します。決定論ODEの厳密解とは区別します。",
     "en": "Couple geometric Brownian motion to its analytic Itô solution using the same Brownian increments to check strong convergence and moments, separately from deterministic ODE exactness."
@@ -127,6 +235,114 @@
       ],
       "test_urls": [
         "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/test_models.py"
+      ],
+      "source_scope": "package"
+    },
+    {
+      "id": "gbm-weak-moments",
+      "kind": "supplement",
+      "name": {
+        "ja": "GBMのweak誤差とMonte Carlo標準誤差",
+        "en": "GBM weak bias and Monte Carlo error"
+      },
+      "method_ids": [
+        "sde"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gbm-weak-moments/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gbm-weak-moments/?lang=en"
+      },
+      "scope": {
+        "ja": "連続真値、離散EM期待値、同一経路差とMCSEを分離する固定入力です。",
+        "en": "Separate continuous truth,exact discrete EM expectation,paired-path weak difference and MCSE."
+      },
+      "assumptions": {
+        "ja": "dX=.5Xdt+.4XdW,X0=1。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。",
+        "en": "dX=.5Xdt+.4XdW,X0=1;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping."
+      },
+      "limits": {
+        "ja": "弱誤差は期待値の差です。3SEや区間を真の誤差上界・一般被覆保証としません。1D状態×時間の保存例であり2D物理流れではありません。GBMやOU浴成分を新しい物理問題として重複計数しません。",
+        "en": "Weak error is a difference of expectations. SE/intervals are not true-error bounds or general coverage guarantees. State×time examples are not2Dphysical flow. Existing GBM/OUbath physical families are reused."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/atlas-stochastic-accuracy-2026-11-24.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "軌道前にDecimal80/120・独立GH/OU共分散積分とpaired分散による標本解像を資格。各モーメントの5MCSE校正、MCSE精度、固定3段weak率、最後2段の3SE解像を判定。区間の被覆は離散真値に対する有限32反復の記述値。",
+        "en": "Before paths qualify Decimal80/120,independent GH/OUcovariance integrals and paired-variance allocation. Gate5MCSE calibration,MCSE precision,fixed three-level weak rate and final-two-level3SE resolution. Coverage is descriptive over32batches against discrete truth."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/paths.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/references/analytic.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/test_driver_contract.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/test_paths.py"
+      ],
+      "source_scope": "package"
+    },
+    {
+      "id": "gbm-milstein-strong",
+      "kind": "supplement",
+      "name": {
+        "ja": "同じBrownian経路のMilstein・EM strong比較",
+        "en": "Milstein and EM on identical Brownian paths"
+      },
+      "method_ids": [
+        "sde"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gbm-milstein-strong/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gbm-milstein-strong/?lang=en"
+      },
+      "scope": {
+        "ja": "補償項を持つMilsteinとEMの終端L2 RMSを、厳密端点と有限モーメントから検査。",
+        "en": "Compare compensated Milstein and EM endpoint L2RMS against exact endpoints and finite-moment identities."
+      },
+      "assumptions": {
+        "ja": "既存GBMと同じμ=.15,σ=.4,X0=T=1。4seed×8192経路、16/32/64/128刻み。",
+        "en": "ExistingGBMparametersmu.15,sigma.4,X0=T1;4seeds×8192paths;16/32/64/128steps."
+      },
+      "limits": {
+        "ja": "L2終端誤差を扱い、原著のL1定義と区別。GBM以外の非Lipschitz系・正値性の一般保証はしません。既存gbm-sdeへの手法追加です。",
+        "en": "EndpointL2error is distinct from the selected paper L1definition. No general non-Lipschitz/positivity guarantee. This extends existinggbm-sde rather than adding a physical problem."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/atlas-stochastic-accuracy-2026-11-24.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "相殺を含む解析MSEをDecimal80/120と独立1step GHで資格。二乗誤差の5SE校正、固定3段RMS率、最細段の優位性を判定。相関を保つ64pathblock jackknifeで率の不確実性を記述。",
+        "en": "Qualify cancellation-prone analytic MSE by Decimal80/120and independent one-step GH. Gate squared-error5SE calibration,fixed-three-level RMS rates and finest advantage.64paired path-block jackknife describes slope uncertainty."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/paths.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/references/analytic.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/test_driver_contract.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/test_paths.py"
       ],
       "source_scope": "package"
     }

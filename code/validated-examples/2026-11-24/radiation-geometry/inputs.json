@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "group": "radiation-geometry",
+  "cases": {
+    "shadow-absorber2d": [
+      {
+        "id": "shadow-sn-n24",
+        "kind": "shadow",
+        "method": "sn",
+        "cells": 24,
+        "final_time": 1.1,
+        "steps": 152,
+        "family": "refinement"
+      },
+      {
+        "id": "shadow-sn-n48",
+        "kind": "shadow",
+        "method": "sn",
+        "cells": 48,
+        "final_time": 1.1,
+        "steps": 304,
+        "family": "refinement"
+      },
+      {
+        "id": "shadow-sn-n96",
+        "kind": "shadow",
+        "method": "sn",
+        "cells": 96,
+        "final_time": 1.1,
+        "steps": 604,
+        "family": "refinement"
+      },
+      {
+        "id": "shadow-m1-n24",
+        "kind": "shadow",
+        "method": "m1",
+        "cells": 24,
+        "final_time": 1.1,
+        "steps": 152,
+        "family": "refinement"
+      },
+      {
+        "id": "shadow-m1-n48",
+        "kind": "shadow",
+        "method": "m1",
+        "cells": 48,
+        "final_time": 1.1,
+        "steps": 304,
+        "family": "refinement"
+      },
+      {
+        "id": "shadow-m1-n96",
+        "kind": "shadow",
+        "method": "m1",
+        "cells": 96,
+        "final_time": 1.1,
+        "steps": 604,
+        "family": "refinement"
+      },
+      {
+        "id": "shadow-sn-n96-half-dt",
+        "kind": "shadow",
+        "method": "sn",
+        "cells": 96,
+        "final_time": 1.1,
+        "steps": 1208,
+        "family": "time-probe"
+      },
+      {
+        "id": "shadow-m1-n96-half-dt",
+        "kind": "shadow",
+        "method": "m1",
+        "cells": 96,
+        "final_time": 1.1,
+        "steps": 1208,
+        "family": "time-probe"
+      }
+    ],
+    "opposing-beams2d": [
+      {
+        "id": "beams-sn-n24",
+        "kind": "beams",
+        "method": "sn",
+        "cells": 24,
+        "final_time": 0.5,
+        "steps": 72,
+        "family": "refinement"
+      },
+      {
+        "id": "beams-sn-n48",
+        "kind": "beams",
+        "method": "sn",
+        "cells": 48,
+        "final_time": 0.5,
+        "steps": 140,
+        "family": "refinement"
+      },
+      {
+        "id": "beams-sn-n96",
+        "kind": "beams",
+        "method": "sn",
+        "cells": 96,
+        "final_time": 0.5,
+        "steps": 276,
+        "family": "refinement"
+      },
+      {
+        "id": "beams-m1-n24",
+        "kind": "beams",
+        "method": "m1",
+        "cells": 24,
+        "final_time": 0.5,
+        "steps": 72,
+        "family": "refinement"
+      },
+      {
+        "id": "beams-m1-n48",
+        "kind": "beams",
+        "method": "m1",
+        "cells": 48,
+        "final_time": 0.5,
+        "steps": 140,
+        "family": "refinement"
+      },
+      {
+        "id": "beams-m1-n96",
+        "kind": "beams",
+        "method": "m1",
+        "cells": 96,
+        "final_time": 0.5,
+        "steps": 276,
+        "family": "refinement"
+      },
+      {
+        "id": "beams-sn-n96-half-dt",
+        "kind": "beams",
+        "method": "sn",
+        "cells": 96,
+        "final_time": 0.5,
+        "steps": 552,
+        "family": "time-probe"
+      },
+      {
+        "id": "beams-m1-n96-half-dt",
+        "kind": "beams",
+        "method": "m1",
+        "cells": 96,
+        "final_time": 0.5,
+        "steps": 552,
+        "family": "time-probe"
+      }
+    ]
+  },
+  "same_solver_controls": [
+    {
+      "id": "mms-m1-n16",
+      "kind": "mms",
+      "method": "m1",
+      "cells": 16,
+      "final_time": 0.25,
+      "steps": 24,
+      "family": "refinement"
+    },
+    {
+      "id": "mms-m1-n32",
+      "kind": "mms",
+      "method": "m1",
+      "cells": 32,
+      "final_time": 0.25,
+      "steps": 48,
+      "family": "refinement"
+    },
+    {
+      "id": "mms-m1-n64",
+      "kind": "mms",
+      "method": "m1",
+      "cells": 64,
+      "final_time": 0.25,
+      "steps": 92,
+      "family": "refinement"
+    },
+    {
+      "id": "mms-m1-n64-half-dt",
+      "kind": "mms",
+      "method": "m1",
+      "cells": 64,
+      "final_time": 0.25,
+      "steps": 184,
+      "family": "time-probe"
+    },
+    {
+      "id": "crossed-sn-n24",
+      "kind": "crossed",
+      "method": "sn",
+      "cells": 24,
+      "final_time": 0.25,
+      "steps": 36,
+      "family": "refinement"
+    },
+    {
+      "id": "crossed-sn-n48",
+      "kind": "crossed",
+      "method": "sn",
+      "cells": 48,
+      "final_time": 0.25,
+      "steps": 72,
+      "family": "refinement"
+    },
+    {
+      "id": "crossed-sn-n96",
+      "kind": "crossed",
+      "method": "sn",
+      "cells": 96,
+      "final_time": 0.25,
+      "steps": 140,
+      "family": "refinement"
+    },
+    {
+      "id": "crossed-sn-n96-half-dt",
+      "kind": "crossed",
+      "method": "sn",
+      "cells": 96,
+      "final_time": 0.25,
+      "steps": 280,
+      "family": "time-probe"
+    }
+  ]
+}

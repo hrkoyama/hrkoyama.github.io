@@ -1,0 +1,395 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "checks": {
+    "gbm-weak-moments/8/0/variancepositive": true,
+    "gbm-weak-moments/8/0/precision": true,
+    "gbm-weak-moments/8/1/variancepositive": true,
+    "gbm-weak-moments/8/1/precision": true,
+    "gbm-weak-moments/16/0/variancepositive": true,
+    "gbm-weak-moments/16/0/precision": true,
+    "gbm-weak-moments/16/1/variancepositive": true,
+    "gbm-weak-moments/16/1/precision": true,
+    "gbm-weak-moments/32/0/variancepositive": true,
+    "gbm-weak-moments/32/0/precision": true,
+    "gbm-weak-moments/32/0/pre_sampling_resolution": true,
+    "gbm-weak-moments/32/1/variancepositive": true,
+    "gbm-weak-moments/32/1/precision": true,
+    "gbm-weak-moments/32/1/pre_sampling_resolution": true,
+    "gbm-weak-moments/64/0/variancepositive": true,
+    "gbm-weak-moments/64/0/precision": true,
+    "gbm-weak-moments/64/0/pre_sampling_resolution": true,
+    "gbm-weak-moments/64/1/variancepositive": true,
+    "gbm-weak-moments/64/1/precision": true,
+    "gbm-weak-moments/64/1/pre_sampling_resolution": true,
+    "gbm-weak-moments/0/analytic_order": true,
+    "gbm-weak-moments/1/analytic_order": true,
+    "ou-weak-moments/8/0/variancepositive": true,
+    "ou-weak-moments/8/0/precision": true,
+    "ou-weak-moments/8/1/variancepositive": true,
+    "ou-weak-moments/8/1/precision": true,
+    "ou-weak-moments/8/independent_covariance": true,
+    "ou-weak-moments/8/bridge_covariance": true,
+    "ou-weak-moments/8/bridge_variance": true,
+    "ou-weak-moments/16/0/variancepositive": true,
+    "ou-weak-moments/16/0/precision": true,
+    "ou-weak-moments/16/1/variancepositive": true,
+    "ou-weak-moments/16/1/precision": true,
+    "ou-weak-moments/16/independent_covariance": true,
+    "ou-weak-moments/16/bridge_covariance": true,
+    "ou-weak-moments/16/bridge_variance": true,
+    "ou-weak-moments/32/0/variancepositive": true,
+    "ou-weak-moments/32/0/precision": true,
+    "ou-weak-moments/32/0/pre_sampling_resolution": true,
+    "ou-weak-moments/32/1/variancepositive": true,
+    "ou-weak-moments/32/1/precision": true,
+    "ou-weak-moments/32/1/pre_sampling_resolution": true,
+    "ou-weak-moments/32/independent_covariance": true,
+    "ou-weak-moments/32/bridge_covariance": true,
+    "ou-weak-moments/32/bridge_variance": true,
+    "ou-weak-moments/64/0/variancepositive": true,
+    "ou-weak-moments/64/0/precision": true,
+    "ou-weak-moments/64/0/pre_sampling_resolution": true,
+    "ou-weak-moments/64/1/variancepositive": true,
+    "ou-weak-moments/64/1/precision": true,
+    "ou-weak-moments/64/1/pre_sampling_resolution": true,
+    "ou-weak-moments/64/independent_covariance": true,
+    "ou-weak-moments/64/bridge_covariance": true,
+    "ou-weak-moments/64/bridge_variance": true,
+    "ou-weak-moments/0/analytic_order": true,
+    "ou-weak-moments/1/analytic_order": true,
+    "gbm-milstein-strong/16/em/precision": true,
+    "gbm-milstein-strong/16/em/GH32": true,
+    "gbm-milstein-strong/16/em/GH64": true,
+    "gbm-milstein-strong/16/milstein/precision": true,
+    "gbm-milstein-strong/16/milstein/GH32": true,
+    "gbm-milstein-strong/16/milstein/GH64": true,
+    "gbm-milstein-strong/32/em/precision": true,
+    "gbm-milstein-strong/32/em/GH32": true,
+    "gbm-milstein-strong/32/em/GH64": true,
+    "gbm-milstein-strong/32/milstein/precision": true,
+    "gbm-milstein-strong/32/milstein/GH32": true,
+    "gbm-milstein-strong/32/milstein/GH64": true,
+    "gbm-milstein-strong/64/em/precision": true,
+    "gbm-milstein-strong/64/em/GH32": true,
+    "gbm-milstein-strong/64/em/GH64": true,
+    "gbm-milstein-strong/64/milstein/precision": true,
+    "gbm-milstein-strong/64/milstein/GH32": true,
+    "gbm-milstein-strong/64/milstein/GH64": true,
+    "gbm-milstein-strong/128/em/precision": true,
+    "gbm-milstein-strong/128/em/GH32": true,
+    "gbm-milstein-strong/128/em/GH64": true,
+    "gbm-milstein-strong/128/milstein/precision": true,
+    "gbm-milstein-strong/128/milstein/GH32": true,
+    "gbm-milstein-strong/128/milstein/GH64": true
+  },
+  "records": {
+    "gbm-weak-moments": [
+      {
+        "continuous": [
+          1.6487212707001282,
+          3.1899332761161845
+        ],
+        "discrete": [
+          1.6241700949613005,
+          3.0358250198827115
+        ],
+        "bias": [
+          -0.024551175738827653,
+          -0.15410825623347305
+        ],
+        "paired_variance": [
+          0.007874816781315604,
+          0.3549405989472986
+        ],
+        "raw_variance": [
+          0.39789652251611174,
+          6.503949039617551
+        ]
+      },
+      {
+        "continuous": [
+          1.6487212707001282,
+          3.1899332761161845
+        ],
+        "discrete": [
+          1.6361510105666233,
+          3.10943203756081
+        ],
+        "bias": [
+          -0.012570260133504842,
+          -0.08050123855537453
+        ],
+        "paired_variance": [
+          0.00331243557190612,
+          0.1309742907397229
+        ],
+        "raw_variance": [
+          0.43244190818262745,
+          7.646156313014897
+        ]
+      },
+      {
+        "continuous": [
+          1.6487212707001282,
+          3.1899332761161845
+        ],
+        "discrete": [
+          1.6423595685979058,
+          3.1487577023303888
+        ],
+        "bias": [
+          -0.006361702102222466,
+          -0.041175573785795776
+        ],
+        "paired_variance": [
+          0.0014754642785034897,
+          0.04991623384331888
+        ],
+        "raw_variance": [
+          0.45141274976529006,
+          8.334853103021164
+        ]
+      },
+      {
+        "continuous": [
+          1.6487212707001282,
+          3.1899332761161845
+        ],
+        "discrete": [
+          1.6455208961566001,
+          3.169105649496455
+        ],
+        "bias": [
+          -0.0032003745435279854,
+          -0.020827626619729842
+        ],
+        "paired_variance": [
+          0.0006890928663208021,
+          0.020439207937337264
+        ],
+        "raw_variance": [
+          0.46136662980843435,
+          8.715079105620326
+        ]
+      }
+    ],
+    "ou-weak-moments": [
+      {
+        "continuous": [
+          0.3115650800742149,
+          0.2997848912031743
+        ],
+        "discrete": [
+          0.2949635544093326,
+          0.3139142933667624
+        ],
+        "bias": [
+          -0.016601525664882343,
+          0.014129402163588095
+        ],
+        "paired_variance": [
+          0.001600781510257387,
+          0.0022964182078678997
+        ],
+        "raw_variance": [
+          0.2269107949369751,
+          0.18194514968186354
+        ],
+        "joint_covariance": 0.21401105275412005
+      },
+      {
+        "continuous": [
+          0.3115650800742149,
+          0.2997848912031743
+        ],
+        "discrete": [
+          0.3034995156940724,
+          0.3063464991147277
+        ],
+        "bias": [
+          -0.008065564380142496,
+          0.006561607911553392
+        ],
+        "paired_variance": [
+          0.0003758855110976841,
+          0.000528174087004342
+        ],
+        "raw_variance": [
+          0.2142345430881912,
+          0.17072713015363053
+        ],
+        "joint_covariance": 0.20828537482930792
+      },
+      {
+        "continuous": [
+          0.3115650800742149,
+          0.2997848912031743
+        ],
+        "discrete": [
+          0.3075884268146882,
+          0.3029493487438396
+        ],
+        "bias": [
+          -0.003976653259526749,
+          0.0031644575406652867
+        ],
+        "paired_variance": [
+          9.113356727056052e-05,
+          0.0001267995472395171
+        ],
+        "raw_variance": [
+          0.20833870843350483,
+          0.16565426928877
+        ],
+        "joint_covariance": 0.2054798334738783
+      },
+      {
+        "continuous": [
+          0.3115650800742149,
+          0.2997848912031743
+        ],
+        "discrete": [
+          0.3095904674504201,
+          0.30133911677255804
+        ],
+        "bias": [
+          -0.0019746126237947625,
+          0.0015542255693837448
+        ],
+        "paired_variance": [
+          2.244028657658515e-05,
+          3.107258409439803e-05
+        ],
+        "raw_variance": [
+          0.2054928592363884,
+          0.16323751642715123
+        ],
+        "joint_covariance": 0.2040912555156671
+      }
+    ],
+    "gbm-milstein-strong": [
+      {
+        "em": {
+          "A": 1.028837890625,
+          "K": 1.0289765776964999,
+          "mse": 0.0012871396245384655,
+          "rms": 0.03587672817493905
+        },
+        "milstein": {
+          "A": 1.028887890625,
+          "K": 1.029027048650648,
+          "mse": 3.313579610127226e-05,
+          "rms": 0.00575637004554713
+        }
+      },
+      {
+        "em": {
+          "A": 1.01439697265625,
+          "K": 1.0144315202671939,
+          "mse": 0.0006387385804148579,
+          "rms": 0.02527327799108889
+        },
+        "milstein": {
+          "A": 1.01440947265625,
+          "K": 1.0144440789984879,
+          "mse": 8.413949605630646e-06,
+          "rms": 0.002900680886555887
+        }
+      },
+      {
+        "em": {
+          "A": 1.0071929931640624,
+          "K": 1.0072016145822753,
+          "mse": 0.000318109822245595,
+          "rms": 0.017835633497176234
+        },
+        "milstein": {
+          "A": 1.0071961181640625,
+          "K": 1.0072047469150838,
+          "mse": 2.1200439234716934e-06,
+          "rms": 0.0014560370611600836
+        }
+      },
+      {
+        "em": {
+          "A": 1.0035951232910156,
+          "K": 1.0035972767121923,
+          "mse": 0.00015873340396840057,
+          "rms": 0.01259894455771596
+        },
+        "milstein": {
+          "A": 1.0035959045410157,
+          "K": 1.0035980588782563,
+          "mse": 5.321000896053714e-07,
+          "rms": 0.0007294519104131344
+        }
+      }
+    ]
+  },
+  "pre_sampling_resolution": [
+    {
+      "id": "gbm-weak-moments",
+      "n": 32,
+      "observable_power": 1,
+      "predicted_3MCSE_over_bias": 0.10006617708206124,
+      "allocation_paths": 32768
+    },
+    {
+      "id": "gbm-weak-moments",
+      "n": 32,
+      "observable_power": 2,
+      "predicted_3MCSE_over_bias": 0.08992439667573264,
+      "allocation_paths": 32768
+    },
+    {
+      "id": "gbm-weak-moments",
+      "n": 64,
+      "observable_power": 1,
+      "predicted_3MCSE_over_bias": 0.13593595948740145,
+      "allocation_paths": 32768
+    },
+    {
+      "id": "gbm-weak-moments",
+      "n": 64,
+      "observable_power": 2,
+      "predicted_3MCSE_over_bias": 0.11375972533496301,
+      "allocation_paths": 32768
+    },
+    {
+      "id": "ou-weak-moments",
+      "n": 32,
+      "observable_power": 1,
+      "predicted_3MCSE_over_bias": 0.03978485207705664,
+      "allocation_paths": 32768
+    },
+    {
+      "id": "ou-weak-moments",
+      "n": 32,
+      "observable_power": 2,
+      "predicted_3MCSE_over_bias": 0.058973359106570124,
+      "allocation_paths": 32768
+    },
+    {
+      "id": "ou-weak-moments",
+      "n": 64,
+      "observable_power": 1,
+      "predicted_3MCSE_over_bias": 0.0397583705922748,
+      "allocation_paths": 32768
+    },
+    {
+      "id": "ou-weak-moments",
+      "n": 64,
+      "observable_power": 2,
+      "predicted_3MCSE_over_bias": 0.05943892192268459,
+      "allocation_paths": 32768
+    }
+  ],
+  "input_sha256": "c6ccd5eaa236bd52c053c8f1cd20efa081d89a7e7715ed7e77e8ecc89efdd9d1",
+  "acceptance_sha256": "cd8ad3c6391de11eb562f3027493c519cf69954d13a67b49c01df3eb221b45c9",
+  "source_sha256": {
+    "analytic.py": "98d5f9d7197037f75d1515c7c1c0f3a94665ee2d9815388898bd22d0d489e52a",
+    "qualify.py": "8dc750d35fce8bb7c179439098575233ecca56906d880702f7a7c7dee9dd0e6d"
+  },
+  "scope": "Decimal80/120 precision,independent GH32/64one-step squared-error quadrature and OU piecewise covariance integral; no stochastic trajectory. These analytic moments are authored and reviewed identities,not a copied paper table."
+}

@@ -1,0 +1,9 @@
+{
+  "run": "lbm-annular-couette-control-v1-N240",
+  "completed_steps": 34240,
+  "next_steps": 320,
+  "fixed_total_steps": 34560,
+  "tau": 0.7,
+  "dx": 0.004166666666666667,
+  "dt": 0.00011574074074074072
+}

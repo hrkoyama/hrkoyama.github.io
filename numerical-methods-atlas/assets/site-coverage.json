@@ -10,7 +10,7 @@
     "test_problems": "Count independent problems across published atlas results and the verified public code edition. Distinguish governing equations, dimensions, boundary conditions and named initial/source problems; merge solver, mesh, step-size, parameter-sweep, random-seed and presentation variants of the same problem. Repeated Sod exhibits, wedge Mach variants and CT/GLM variants do not add problems. Exclude reference-only evaluations, planned/literature-only entries, diagrams, and local identity/invariant/input-error unit checks. Static-force, boundary-value, approximation and algebraic problems are included; not every entry is a time-evolving simulation."
   },
   "counts": {
-    "equations": 60,
+    "equations": 65,
     "methods": 137,
     "papers": 249,
     "references": 310,
@@ -20,16 +20,16 @@
     "chapters": 3,
     "reports": 4,
     "other_sources": 29,
-    "local_equations": 38,
+    "local_equations": 43,
     "reading_equations": 22,
     "local_methods": 122,
     "reading_methods": 15,
     "biological_entries": 22,
     "gallery_cases": 9,
     "gallery_equations": 7,
-    "reading_chapters": 123,
-    "test_problems": 113,
-    "saved_test_problems": 113,
+    "reading_chapters": 132,
+    "test_problems": 122,
+    "saved_test_problems": 122,
     "code_test_problems": 0
   },
   "items": [
@@ -350,15 +350,6 @@
     },
     {
       "kind": "method",
-      "id": "backward-euler",
-      "label": "Backward Euler",
-      "chapter": "time-integration",
-      "status": "local-example",
-      "group": "Time integration",
-      "scope": ""
-    },
-    {
-      "kind": "method",
       "id": "explicit-midpoint",
       "label": "Explicit midpoint RK2",
       "chapter": "time-integration",
@@ -596,15 +587,6 @@
       "id": "projection",
       "label": "MAC pressure projection",
       "chapter": "incompressible",
-      "status": "local-example",
-      "group": "Coupling, constraints & particles",
-      "scope": ""
-    },
-    {
-      "kind": "method",
-      "id": "d2q9-bgk",
-      "label": "D2Q9–BGK collision and streaming",
-      "chapter": "lattice-boltzmann",
       "status": "local-example",
       "group": "Coupling, constraints & particles",
       "scope": ""
@@ -1341,24 +1323,54 @@
       "origin": "curated-equation-catalog"
     },
     {
-      "kind": "method",
-      "id": "monte-carlo",
-      "label": "Monte Carlo integration",
-      "chapter": "monte-carlo",
+      "kind": "equation",
+      "id": "static-grey-transfer",
+      "label": "Static grey radiative transfer,scattering and linear exchange",
+      "chapter": "validation-radiation-matter",
       "status": "local-example",
-      "group": "Optimization & stochastic methods",
-      "scope": "Integrate x² under U[0,1]. Compare 256 independent seeds with analytic integral and variance, checking N^-1/2 RMS scaling and interval coverage. Excludes MCMC and rare events.",
-      "origin": "curated-model-example"
+      "group": "Physics & mathematical models",
+      "scope": "Use a normalized angular mean. Material exchange is evolved in the1997 transport example and periodic Fourier controls. The1997 optical coordinates give a unit exchange coefficient; physical-coordinate controls multiply both exchange terms by kappa.",
+      "origin": "curated-equation-catalog"
     },
     {
-      "kind": "method",
-      "id": "sde",
-      "label": "Stochastic differential equations",
-      "chapter": "sde",
+      "kind": "equation",
+      "id": "non-equilibrium-diffusion-exchange",
+      "label": "Su–Olson1996 non-equilibrium diffusion and material exchange",
+      "chapter": "validation-radiation-matter",
       "status": "local-example",
-      "group": "Optimization & stochastic methods",
-      "scope": "Euler–Maruyama for scalar geometric Brownian motion. Coarse/fine steps and analytic endpoints share the same Brownian paths; measure strong RMS error across 4096 paths. Does not validate general SDEs, MCMC or weak convergence order.",
-      "origin": "curated-model-example"
+      "group": "Physics & mathematical models",
+      "scope": "x=sqrt(3)kappa*z,distinct from x=kappa*z in1997 transport. Boundary data and references remain separate; non-unit-epsilon closed cells are separate controls.",
+      "origin": "curated-equation-catalog"
+    },
+    {
+      "kind": "equation",
+      "id": "static-grey-m1",
+      "label": "Static grey M1 moments in flat spacetime",
+      "chapter": "validation-radiation-geometry",
+      "status": "local-example",
+      "group": "Physics & mathematical models",
+      "scope": "c=1,2D space with full3D pressure including Pzz. Separate isotropic/vacuum branches,closed-PDE MMS and beam defects against angular transport; no relativistic-fluid claim.",
+      "origin": "curated-equation-catalog"
+    },
+    {
+      "kind": "equation",
+      "id": "scalar-ito-diffusion",
+      "label": "Scalar Ito diffusion: GBM and OU",
+      "chapter": "validation-stochastic-accuracy",
+      "status": "local-example",
+      "group": "Physics & mathematical models",
+      "scope": "Scalar SDEs with deterministic initial states. Separate weak moment bias,strong errors on shared Brownian paths and finite-sample MCSE. OU is a related bath-component check,not the full harmonic Langevin system.",
+      "origin": "curated-equation-catalog"
+    },
+    {
+      "kind": "equation",
+      "id": "gaussian-probability-model",
+      "label": "Gaussian probability measures: tails and correlated targets",
+      "chapter": "validation-stochastic-estimation",
+      "status": "local-example",
+      "group": "Physics & mathematical models",
+      "scope": "A probability-density/integration model. Separate ordinary importance weights/known-variance intervals and observable-specific2D Gaussian diagnostics; no physical-time or universal MCMC-convergence claim.",
+      "origin": "curated-equation-catalog"
     },
     {
       "kind": "method",
@@ -1532,6 +1544,16 @@
     },
     {
       "kind": "method",
+      "id": "backward-euler",
+      "label": "Backward Euler",
+      "chapter": "validation-radiation-matter",
+      "status": "local-example",
+      "group": "Time integration",
+      "scope": "Additional fixed examples: Su–Olson1996 non-equilibrium diffusion. See each release for assumptions and checked scope. This1996diffusion model is distinct from1997angular transport. Original paper fulltext unread;officialsoftware selected values qualified. Direct dimensionless functions avoid ambiguous mass-opacity physical-wrapper units.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
       "id": "heun",
       "label": "Heun / SSPRK(2,2)",
       "chapter": "validation-noh",
@@ -1628,6 +1650,16 @@
       "status": "local-example",
       "group": "Coupling, constraints & particles",
       "scope": "Orszag–Tang: CT, GLM and independent Athena++: Compare CT and GLM density, magnetic field, conservation and div B for the same periodic Orszag–Tang data, against separately executed Athena++. GLM longitudinal mode: analytic damping: Compare a longitudinal magnetic Fourier mode of GLM cleaning with the continuous linear matrix-exponential solution. CT and GLM: mesh/time convergence of a moving magnetostatic equilibrium: Use a constructed exact equilibrium with nonzero magnetic force balanced by a pressure gradient, matching CT/GLM initial cell states, flux speed bound and time-step sequence. Orszag–Tang: matched CT/GLM and converged independent references: Run CT/GLM with the same OT initial cell averages and dt sequence, comparing with separately executed Athena++ references whose mesh/time sensitivities are separated. Initial-constraint preservation by CT and active GLM cleaning: nonphysical control: Intentionally begin with the same non-solenoidal cell B, checking that CT does not remove the initial defect and calibrating GLM’s B/psi response. This diagnostic adds no physical problem.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "d2q9-bgk",
+      "label": "D2Q9–BGK collision and streaming",
+      "chapter": "validation-lbm-cavity",
+      "status": "local-example",
+      "group": "Coupling, constraints & particles",
+      "scope": "Additional fixed examples: LBM Re100 cavity: actual2D fields and Ghia centerlines. See each release for assumptions and checked scope. Three finite-Mach educational grids. Ghia is a rounded independent numerical reference, not exact. No pointwise corner order/high-Re claim or borrowed success from another cavity solver. A standard C++17compiler is required. Additional fixed examples: LBM Taylor–Green vortex: coupled grid/time/Mach sensitivity. See each release for assumptions and checked scope. Diffusive scaling couples grid,time andMach; amplitude changesRe. No isolated spatial/time/Mach order or exact incompressibility atfiniteMach. Kinetic equilibrium-startup transients remain part of the measured errors. Additional fixed examples: Curved LBM annular Couette control: velocity,pressure andtorque. See each release for assumptions and checked scope. Fixedcircles andslowrotation only. Negative quadratic coefficients preclude a general positivity/stability guarantee; report actual interpolation massnonconservation. Prior linear attemptfailed pressure.617757>.08 andisretained; no radial-average substitution. No changing-solid topology orsubstitute forcylinderflow. Retain the failedquadraticN80pressure.352758>.08;refinebothboundariesatfixedUi/tau/T. Additional fixed examples: Actual LBM cylinderRe20: Schäfer–Turek geometry anddeclared outlet. See each release for assumptions and checked scope. Originalpp3/7allow selectingoutflow. AdoptedNEEis independently derived finite reservoir,not claimed exactunread authorimplementation orFEATflowdo-nothing. Nabhvaluesarenotexact adopted-BCtruth andoriginalrangesarenotrigorousenclosures. Retain failedlinear/Zou–Heattempt(outlet-nearstep265). FiniteMach/BC/curveerrors;nogeneralaccuracyguarantee.",
       "origin": "curated-depth-example"
     },
     {
@@ -1782,12 +1814,32 @@
     },
     {
       "kind": "method",
+      "id": "monte-carlo",
+      "label": "Monte Carlo integration",
+      "chapter": "validation-stochastic-estimation",
+      "status": "local-example",
+      "group": "Optimization & stochastic methods",
+      "scope": "Additional fixed examples: Ordinary importance sampling of a normal rare tail. See each release for assumptions and checked scope. Bernoulli exact intervals are not applied to weighted IS.64trials do not prove general95%coverage;nested prefixes are not extra independent replicates. Global weightESS and eventESS are distinct.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
       "id": "mcmc",
       "label": "Markov-chain Monte Carlo / MCMC",
       "chapter": "validation-models",
       "status": "local-example",
       "group": "Optimization & stochastic methods",
       "scope": "Gaussian-target MCMC: distribution, autocorrelation and ESS: Check 32 Metropolis chains against a known standard-normal target; record mean, variance, CDF, autocorrelation time, ESS and sample-budget dependence. Multimodal MCMC: trapping, false reassurance and a global proposal: Compare dispersed local MH, same-mode local MH and symmetry-informed reflection/local MH on the same bimodal target. Separate detecting expected mixing failures from successful finite-budget mode exploration. Independent MCMC diagnostic checks: rank Rhat, bulk/tail ESS and degeneracies: Actually process62 byte-identical datasets with separately installed ArviZ0.20.0, bound by recipe/input/chain/official-source hashes. Separate finite-value agreement from explicit degeneracy-policy differences.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "sde",
+      "label": "Stochastic differential equations",
+      "chapter": "validation-stochastic-accuracy",
+      "status": "local-example",
+      "group": "Optimization & stochastic methods",
+      "scope": "Additional fixed examples: GBM weak bias and Monte Carlo error, OU weak moments with joint Brownian coupling, Milstein and EM on identical Brownian paths. See each release for assumptions and checked scope. Weak error is a difference of expectations. SE/intervals are not true-error bounds or general coverage guarantees. State×time examples are not2Dphysical flow. Existing GBM/OUbath physical families are reused. Weak error is a difference of expectations. SE/intervals are not true-error bounds or general coverage guarantees. State×time examples are not2Dphysical flow. Existing GBM/OUbath physical families are reused. EndpointL2error is distinct from the selected paper L1definition. No general non-Lipschitz/positivity guarantee. This extends existinggbm-sde rather than adding a physical problem.",
       "origin": "curated-depth-example"
     },
     {
@@ -3600,21 +3652,26 @@
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "415dd98efe103ad5a2d950c22b98980f53539f6243b93e4e193dbca2c67169fe",
-    "catalog/atlas-methods.json": "059728dddbfeda2cba7a0bb022735b12a8d30857a0a6ab7881209b25c61041f8",
-    "catalog/atlas-equations.json": "28ff2cf7ae26b5ffad16b1c6215e8a496d97bb4541ae726f6fb03f1b4f18f866",
+    "catalog/atlas-methods.json": "3f2b7051c980e5492f6f94f01b3e75c4802394856c55a7176d9c9a1a9f35e305",
+    "catalog/atlas-equations.json": "597ba9e1d7745a59cfcb72fd0b632bc6b0375f68ed62f24e2c23984cb87851bb",
     "catalog/atlas-method-primary-references.json": "1e9de6c042875cb95060bf63386cb051f0dbdbce4d5a63ce5600b52fef2e2082"
   },
   "equation_execution_source_sha256": {
     "numerical-methods-atlas/assets/biological-models.json": "b4432736fdbb32d6ec0be5104585348bfc166663688640f8d99a039dd4e521ab",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "catalog/atlas-equations.json": "28ff2cf7ae26b5ffad16b1c6215e8a496d97bb4541ae726f6fb03f1b4f18f866",
+    "catalog/atlas-equations.json": "597ba9e1d7745a59cfcb72fd0b632bc6b0375f68ed62f24e2c23984cb87851bb",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "code/validated-examples/2026-11-23/weno-critical/source-manifest.json": "abd8b0a29bb81b7d98b897ec0a0eb409f77873857ec8199c3767f1ede11b43a5",
     "code/validated-examples/2026-11-23/weno-critical/verification.json": "ccbf3c6a2fe7055b324a0d98c152da909242f36e0c82ca3281038e4c9b0c165f",
     "code/validated-examples/2026-11-23/weno-critical/cases.json": "6b68c525e99fe15adbdce97a5d078289e5df0ff5f63cd9c790784a29b979440b",
     "code/validated-examples/2026-11-23/weno-critical/results/result.json": "c4150a350d0854b3b815bd820790711ecdbcc7594690c0ad8c15e23f6aa3d05d",
     "code/validated-examples/2026-11-23/weno-critical/atlas-weno-critical-2026-11-23.zip": "9c119480261013ef8ed0c58716c45af5b9fb9d3e891aef56b95b66fbd8415491",
+    "code/validated-examples/2026-11-24-r2/radiation-matter/source-manifest.json": "9786f8365507f141a6d3bebc3035e5177bc4a8ccec3ac747b8bd5a7eaed50aeb",
+    "code/validated-examples/2026-11-24-r2/radiation-matter/verification.json": "cbbc27e98b13939b705bfdcd85593747dd7ef02e7b5eaf2d9ef2a838007107d0",
+    "code/validated-examples/2026-11-24-r2/radiation-matter/cases.json": "c5522498e8c797035b7c093d4371d88a7950e19f26ab6c6495faa81e7e1b8ebb",
+    "code/validated-examples/2026-11-24-r2/radiation-matter/results/result.json": "39c457ec19fa3e73ed021778b4fd4fa19d112cf895c344cf7ffed63847ce9e54",
+    "code/validated-examples/2026-11-24-r2/radiation-matter/atlas-radiation-matter-2026-11-24-r2.zip": "fe1e3d790bd9792d8781243dc4d5ff40d3491a181a11c795569f3f4e542ed7e6",
     "code/validated-examples/2026-11-23/mesh-boundary/source-manifest.json": "96e55d4c564baf804d3ae7feb86a36c7d7a3d4079f5e47180326fd2c09ee675a",
     "code/validated-examples/2026-11-23/mesh-boundary/verification.json": "1191781061a2ec3339d26d8e9e4db605e9c40e8d5d5dfa6433712b38f43f7d01",
     "code/validated-examples/2026-11-23/mesh-boundary/cases.json": "30c7d39639f74d4f263a045cccc8ced3e14a466e4e279c4c156fc21ce176f796",
@@ -3635,6 +3692,26 @@
     "code/validated-examples/2026-11-23-r2/wall-flow/cases.json": "ed51f9003bbf5ddfa88602dd579ad962c81f95fb5dd3e7ef32973b17f9844d70",
     "code/validated-examples/2026-11-23-r2/wall-flow/results/result.json": "ce92039a849015c3c3bd1de8e6ef77052f6fc5a9765ff961bc20086180996252",
     "code/validated-examples/2026-11-23-r2/wall-flow/atlas-wall-flow-2026-11-23-r2.zip": "de499fde477a49b1eae10bd6bf04b0800b58105ca5d504ec6eff2ec3272690fd",
+    "code/validated-examples/2026-11-24/lbm-cavity/source-manifest.json": "840d5366e967b00ce902ac881d9785ebdcbd110cfcf0b2f5a2cd15c654e9c690",
+    "code/validated-examples/2026-11-24/lbm-cavity/verification.json": "52d15320dd9a967edcc92c7e66e9bb99b99db89e6f765c7ac33b28213dc64f59",
+    "code/validated-examples/2026-11-24/lbm-cavity/cases.json": "a72f6113a8c12758aa53865e02bfbaada371c4ccefb9715cefba4e834202346d",
+    "code/validated-examples/2026-11-24/lbm-cavity/results/result.json": "0fcabbfdce818c2bf84a977cd53b7fcd7fdbe195fd0e1532d3097f7a86712d5e",
+    "code/validated-examples/2026-11-24/lbm-cavity/atlas-lbm-cavity-2026-11-24.zip": "94781f84128fa97fb59fe1a00a469352db69fcca082ce170fa3b881919f5cdda",
+    "code/validated-examples/2026-11-24/lbm-taylor-green/source-manifest.json": "b3970548ea98ed3f4d1f1e5813b12eadb6ebbfebb0c877a54cdaee2cf5902096",
+    "code/validated-examples/2026-11-24/lbm-taylor-green/verification.json": "19eae401bd03c04f643579e45210cad612852b42c134573bbefe22582f1075c1",
+    "code/validated-examples/2026-11-24/lbm-taylor-green/cases.json": "af286deb690d8f0dd3d11e881f7a2f23c212b8610c0cf91560a15b8ac249d016",
+    "code/validated-examples/2026-11-24/lbm-taylor-green/results/result.json": "e69681e105bfa75f52761a678fc3f6fabf2548bd7cff9fb345a406c031eb8e8d",
+    "code/validated-examples/2026-11-24/lbm-taylor-green/atlas-lbm-taylor-green-2026-11-24.zip": "90d6999a33f47bbf03f359dc63c5a8d6ab729c0f905a8aad292bd58d1a070a22",
+    "code/validated-examples/2026-11-24/lbm-annulus/source-manifest.json": "0f5ae6b66e83fbfcf5b142c533caeddcdc78b0c7e4679da6567547231aa48c3c",
+    "code/validated-examples/2026-11-24/lbm-annulus/verification.json": "db353908280ce48e35d925b11a6325dfccb2e40259588f688cde76cfbcacfaa6",
+    "code/validated-examples/2026-11-24/lbm-annulus/cases.json": "8b29983bdc91a9b27ec825b857e45718240604a673831a6e5facba65a9d27959",
+    "code/validated-examples/2026-11-24/lbm-annulus/results/result.json": "2efe456b62a078d6e80569f071d46680182cba2709816acc4b68f9fea67a488e",
+    "code/validated-examples/2026-11-24/lbm-annulus/atlas-lbm-annulus-2026-11-24.zip": "c38c290902c1e344b4905b3141d0212000525f45d97b0104ed35c3b8d4f6eb1b",
+    "code/validated-examples/2026-11-24/lbm-curved-boundary/source-manifest.json": "cac10700634effbdb134202fbaee4b257121293a3c501a15430f8cbd3848db6b",
+    "code/validated-examples/2026-11-24/lbm-curved-boundary/verification.json": "2c16481aa5f2081be0aea7ecd234e0c435d14f9e8bd587db9d879b6ff9b93807",
+    "code/validated-examples/2026-11-24/lbm-curved-boundary/cases.json": "a6423cddd48d0540aa5121e0ea3d8b84e8db9792d8650582e9f6e22fd168e78b",
+    "code/validated-examples/2026-11-24/lbm-curved-boundary/results/result.json": "954e50130a966eb647e09bb3e6ebd2ce8e73f3cac34fbe5094d0eb5fee77088d",
+    "code/validated-examples/2026-11-24/lbm-curved-boundary/atlas-lbm-curved-boundary-2026-11-24.zip": "69757fbf7ccab53450d7bdf6ce3023cd6f5ca3b42698d2e8c7a383421a1c640d",
     "code/validated-examples/2026-11-23/fmm3d/source-manifest.json": "bc624983d4b0480538aa873ff2a867491e4384d25ea39930b5bb948b98e59c89",
     "code/validated-examples/2026-11-23/fmm3d/verification.json": "b6cc2a0ad2f31c01ebd833447f7f6d9496db6df5f6c14deb93d4f057d177c175",
     "code/validated-examples/2026-11-23/fmm3d/cases.json": "ca113f993ead48117c2678734dbb774a07d7911eab0f3392a4ac897b48f1b5f9",
@@ -3709,6 +3786,26 @@
     "code/validated-examples/2026-11-24/dsmc-shock/verification.json": "7e7919032dafc67b5e857acd4464516cb4b742eed89ff8adae7f3c8cf75a96f5",
     "code/validated-examples/2026-11-24/dsmc-shock/cases.json": "d5123d6e0f48145bcf0b25a68cffb2f9250bb019e21ea42760db848aed536b22",
     "code/validated-examples/2026-11-24/dsmc-shock/results/result.json": "a4cd1e0092935bccd85bc0cf14086d01c723f05e4ce9474c3563283b3a55562e",
-    "code/validated-examples/2026-11-24/dsmc-shock/atlas-dsmc-shock-2026-11-24.zip": "92794cc568e7857346a24489eddaae113eb60754de7ba717254955ace9d8d961"
+    "code/validated-examples/2026-11-24/dsmc-shock/atlas-dsmc-shock-2026-11-24.zip": "92794cc568e7857346a24489eddaae113eb60754de7ba717254955ace9d8d961",
+    "code/validated-examples/2026-11-24/radiation-scattering/source-manifest.json": "030a887ec8ff157149733ec9707960cdd5459f7d125352f632cc4f6c05cf6def",
+    "code/validated-examples/2026-11-24/radiation-scattering/verification.json": "7c1bfd3319d1743eb6de888b52c7e7498954761ffb8e8c3f2b6d5c6d3754011f",
+    "code/validated-examples/2026-11-24/radiation-scattering/cases.json": "b211e20e6d5d40c1f7d16070b4e111915d7385b03dea26da72ebc1ed744641ed",
+    "code/validated-examples/2026-11-24/radiation-scattering/results/result.json": "7bfe8722dc42743a829debfb52222687f767cee18d1d2aeb9033adb4228e87b5",
+    "code/validated-examples/2026-11-24/radiation-scattering/atlas-radiation-scattering-2026-11-24.zip": "52323265fbea51e79d109b45acc8c4c69d210ac70a8f49ecac6d4fa1f16c33d9",
+    "code/validated-examples/2026-11-24/radiation-geometry/source-manifest.json": "83fec8d3ed8a7b56fe191624cb2222c8720db4553ee2c28f5302ee5da8754d13",
+    "code/validated-examples/2026-11-24/radiation-geometry/verification.json": "d98432e748b5b009d442b3a2fc4becff23c20f43fc9c012cce7d6fe74931e4d9",
+    "code/validated-examples/2026-11-24/radiation-geometry/cases.json": "297e1e3fd8ebf0bdd504faf9005f7ef58de0564ecbec7cb6405d2c3cca48f3a4",
+    "code/validated-examples/2026-11-24/radiation-geometry/results/result.json": "4453e68f6a856f65097bbfe36a154b74f4437e99a217300e4c010176a3ee7aec",
+    "code/validated-examples/2026-11-24/radiation-geometry/atlas-radiation-geometry-2026-11-24.zip": "20a166a35e5e87275be4c1bcf12a31742b267ddc9f9a424a293852da53c672e0",
+    "code/validated-examples/2026-11-24/stochastic-accuracy/source-manifest.json": "996edb048ee701274828fcbac37f400c6da4748e926c51825f256e64a61b86b4",
+    "code/validated-examples/2026-11-24/stochastic-accuracy/verification.json": "1bf7faf0bc801f9206bbfa6e0072f7f3af2aae809d7154aa77aabae11c3d31a1",
+    "code/validated-examples/2026-11-24/stochastic-accuracy/cases.json": "32bbca261339410393cdbaed888ab3b226374b7dc2b9308f0aaedf0c90cc52bb",
+    "code/validated-examples/2026-11-24/stochastic-accuracy/results/result.json": "9322e0a28a62774d84e4f38504d05063d8e668e11599f4959aab186d06a38016",
+    "code/validated-examples/2026-11-24/stochastic-accuracy/atlas-stochastic-accuracy-2026-11-24.zip": "6a6ecc012df95853e20b2aa6db2fcceb8fce216872805a2b285c1f123a1e9801",
+    "code/validated-examples/2026-11-24/stochastic-estimation/source-manifest.json": "17ec6615e238e14afb92b67337262922ff12e299e9f5358457f16db7e6c81def",
+    "code/validated-examples/2026-11-24/stochastic-estimation/verification.json": "04589e7e1285b60e3d327c5772d392405e04f5fc9623a0850b38c9eaa9478f90",
+    "code/validated-examples/2026-11-24/stochastic-estimation/cases.json": "ec2095c7748dec022e754e3f9898b510f2fd3955d82b52c116374a410c7f3f5a",
+    "code/validated-examples/2026-11-24/stochastic-estimation/results/result.json": "267e0b0be6f4a5fbcb8b116837f670d8bfacf09f0a7cda25f8e97956dd180435",
+    "code/validated-examples/2026-11-24/stochastic-estimation/atlas-stochastic-estimation-2026-11-24.zip": "313b9cb048b46d4dedd13dc214b7eb25de4fb72af01e267fa69da7e460f81ec3"
   }
 }

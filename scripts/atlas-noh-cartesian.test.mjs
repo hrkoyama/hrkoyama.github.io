@@ -1,3 +1,4 @@
+import {groupsAddedAfterBatch37,problemCount,supplementCaseCount,supplementGroupCount} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -9,13 +10,13 @@ const bytes=p=>readFileSync(new URL(p,root)),json=p=>JSON.parse(bytes(p)),hash=p
 
 test('Cartesian Noh adds one scoped run while retaining all12 original release records',()=>{
  const registry=json('numerical-methods-atlas/validation/releases.json');
- const old=registry.releases.filter(r=>!['noh-cartesian','sedov','double-mach','forward-step','low-mach','guderley','euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic', 'sem-fr','coefficient-diffusion','slab-ewald','fmm3d','gravity-dynamics','warm-pic','pic-spatial','dsmc-wall','dsmc-shock'].includes(r.group));
+ const old=registry.releases.filter(r=>!['noh-cartesian','sedov','double-mach','forward-step','low-mach','guderley','euler-positivity','zalesak','weno-critical','shallow-water','wall-flow','level-set', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic', 'sem-fr','coefficient-diffusion','slab-ewald','fmm3d','gravity-dynamics','warm-pic','pic-spatial','dsmc-wall','dsmc-shock',...groupsAddedAfterBatch37].includes(r.group));
  assert.equal(old.length,12);
  assert.equal(createHash('sha256').update(JSON.stringify(old)).digest('hex'),'af35b7cc69704e07ded7957427be6fb60f91245e808c0e854d5e5d6543e4be69');
  assert.equal(old.reduce((s,r)=>s+r.tests,0),416);
  const fresh=registry.releases.find(r=>r.group==='noh-cartesian');assert.equal(fresh.tests,19);assert.deepEqual(fresh.case_ids,['noh-cartesian-2d']);
- assert.equal(registry.case_count,83);assert.equal(registry.releases.length,38);
- assert.equal(json('catalog/atlas-test-problems.json').problems.length,113);
+ assert.equal(registry.case_count,supplementCaseCount);assert.equal(registry.releases.length,supplementGroupCount);
+ assert.equal(json('catalog/atlas-test-problems.json').problems.length,problemCount);
  const manifest=json(base+'source-manifest.json');for(const[p,h]of Object.entries(manifest.files))assert.equal(hash(base+p),h,p);
  const verification=json(base+'verification.json');assert.equal(verification.tests,19);assert.equal(verification.all_cases_rerun,true);assert.equal(verification.passed,true);
 });

@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "group": "lbm-curved-boundary",
+  "edition": "2026-11-24",
+  "verified_on": "2026-11-24",
+  "source_manifest_sha256": "cac10700634effbdb134202fbaee4b257121293a3c501a15430f8cbd3848db6b",
+  "archive": {
+    "file": "atlas-lbm-curved-boundary-2026-11-24.zip",
+    "sha256": "69757fbf7ccab53450d7bdf6ce3023cd6f5ca3b42698d2e8c7a383421a1c640d",
+    "bytes": 44648039,
+    "archive_directory": "atlas-lbm-curved-boundary-2026-11-24"
+  },
+  "archive_sha256": "69757fbf7ccab53450d7bdf6ce3023cd6f5ca3b42698d2e8c7a383421a1c640d",
+  "returncode": 0,
+  "passed_tests": 28,
+  "tests": 28,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "lbm-cylinder-re20"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 37.372478917008266,
+  "independent_rerun_seconds": 39.503532083006576,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

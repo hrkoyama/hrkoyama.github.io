@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "limits": {
+    "tgv": {
+      "max_mach": 0.1,
+      "mass_drift": 1e-10,
+      "mean_momentum": 1e-10,
+      "divergence": 0.02,
+      "energy": 0.03,
+      "velocity": 0.03,
+      "pressure": 0.08,
+      "combined_order": 1.5
+    }
+  },
+  "common_ledger_scaled": 1e-10,
+  "scope": "Frozen before first pytest/main. Fixed finite-input educational checks; reference ranges and empirical grid differences are not rigorous continuum-error bounds."
+}

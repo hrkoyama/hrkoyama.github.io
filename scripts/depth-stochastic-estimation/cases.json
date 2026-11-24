@@ -1,0 +1,155 @@
+[
+  {
+    "id": "normal-tail-importance",
+    "method_ids": [
+      "monte-carlo"
+    ],
+    "domains": [
+      "stochastic"
+    ],
+    "code_files": [
+      "run.py",
+      "importance.py"
+    ],
+    "title": {
+      "ja": "正規稀少尾の通常importance sampling",
+      "en": "Ordinary importance sampling of a normal rare tail"
+    },
+    "summary": {
+      "ja": "通常の尤度比平均を解析モーメント・独立seed分散・有限被覆診断で確認。",
+      "en": "Check ordinary likelihood-ratio averages with analytic moments,independent batch variance and finite coverage diagnostics."
+    },
+    "assumptions": {
+      "ja": "標準正規尾a=3/6、proposal=N(a,1)、64独立seed、N=2048/8192の固定prefix。",
+      "en": "Standard normal tailsa3/6;proposalN(a,1);64independent seeds;fixedN2048/8192prefixes."
+    },
+    "algorithm": {
+      "ja": "Y=1(X>a)exp(-aX+a²/2)の通常平均。ランダムな重み総和で割らず、proposal調整なし。直接MCの無hitは0のまま保存しCP区間を付けます。",
+      "en": "Ordinary mean ofY=1(X>a)exp(-aX+a²/2),without random weight normalization or proposal tuning. Retain direct zero-hit counts with Clopper-Pearson intervals."
+    },
+    "validation": {
+      "ja": "1〜4次モーメントを独立正の積分で資格。既知分散による5SE校正、seed間分散、解析分散低減、重み欠落負例。既知分散normal95%のIS区間の被覆は閾値/prefixごと64反復で別記。",
+      "en": "Qualify moments1..4 by independent positive quadrature. Gate known-variance5SE,batch variance,analytic variance reduction and omitted-weight negative control. Report known-variance normal95IScoverage separately for64trials per threshold/prefix."
+    },
+    "limits": {
+      "ja": "重み付きISへBernoulliの厳密区間を転用しません。64反復は一般95%被覆の証明でなく、nestedprefixを独立反復へ水増ししません。global weightESSと事象ESSは別です。",
+      "en": "Bernoulli exact intervals are not applied to weighted IS.64trials do not prove general95%coverage;nested prefixes are not extra independent replicates. Global weightESS and eventESS are distinct."
+    },
+    "review_level": {
+      "ja": "著者一次章の選択箇所＋独立モーメント積分",
+      "en": "Selected author-primary exposition plus independent moment quadrature"
+    },
+    "formulas": [
+      "\\widehat p=N^{-1}\\sum_i\\mathbf1_{X_i>a}e^{-aX_i+a^2/2}",
+      "\\mathbb E_q[Y^r]=e^{r(r-1)a^2/2}\\overline\\Phi(ra)"
+    ],
+    "references": [
+      {
+        "id": "owen-importance",
+        "author": "A. B. Owen",
+        "title": "Monte Carlo theory,methods and examples,Chapter9: importance sampling",
+        "url": "https://artowen.su.domains/mc/Ch-var-is.pdf",
+        "type": "author-book-chapter",
+        "review_level": "selected-author-pdf-equations-and-scope",
+        "review": {
+          "ja": "準備時に著者版9章のsupport・通常IS平均・2次モーメントと重み診断の選択箇所を確認。今回の再取得は403。全書籍やPERT実験を再現しません。",
+          "en": "Selected author-chapter support,ordinary estimator,second moments and diagnostics were read during preparation. Current refetch returned403. No full-book or PERT experiment reproduction."
+        }
+      }
+    ],
+    "gallery_figure": "normal-tail-importance-preview.png",
+    "additional_figures": [
+      {
+        "file": "normal-tail-importance-preview.png",
+        "caption": {
+          "ja": "保存した実データ由来の分布・誤差診断。空間次元と標本/時間軸を区別します。",
+          "en": "Distribution and error diagnostics from actual saved data;sample/time axes are distinguished from spatial dimensions."
+        }
+      }
+    ]
+  },
+  {
+    "id": "correlated-gaussian-mcmc",
+    "method_ids": [
+      "mcmc"
+    ],
+    "domains": [
+      "stochastic"
+    ],
+    "code_files": [
+      "run.py",
+      "sampler.py",
+      "diagnostics.py"
+    ],
+    "title": {
+      "ja": "相関2変量Gaussianのjoint標的とMCSE",
+      "en": "Joint target and MCSE for a correlated bivariate Gaussian"
+    },
+    "summary": {
+      "ja": "実2D MH軌道を既知のjointモーメントと同一データArviZ診断で検査。",
+      "en": "Test actual2D MH paths against known joint moments and same-data ArviZ diagnostics."
+    },
+    "assumptions": {
+      "ja": "平均(1,-1)、相関.95・対角分散1。4独立chainset×4chain、burn1024/draw8192、prefix2048/8192。固定.9Lzと.25z、適応なし。",
+      "en": "Mean(1,-1),unit marginal variances,rho.95;4independent chainsets×4chains;burn1024/draw8192;prefix2048/8192. Fixed.9Lzand.25z,no adaptation."
+    },
+    "algorithm": {
+      "ja": "対称random-walk MH、拒否状態も保持。8観測量それぞれのoriginal-scale meanESS/MCSEを計算し、rankbulkESSを流用しません。",
+      "en": "Symmetric random-walk MH retains rejected states. Compute original-scale meanESS/MCSE separately for8observables;rank bulkESS is not substituted."
+    },
+    "validation": {
+      "ja": "4つのpreconditioned最終prefix全観測量にRhat/ESS/MCSE/既知moment条件。同じ128scalararrayを別ArviZ0.20過程へ渡した640値資格と全データSHAで照合。標的は解析Gaussianモーメントで別検査。 640比較は不変な同一データfixture上で行い、別に生成する8組のfresh軌道で物理・混合判定を行います。環境を跨ぐ生成配列のbit一致は要求しません。",
+      "en": "Gate all full-prefix observables in4preconditioned chainsets by Rhat/ESS/MCSE/knownmoments. Match exact dataSHAand640values from128scalar arrays in a separateArviZ0.20process. Target law is separately checked by analytic Gaussian moments. All640comparisons use the immutable same-data fixture;8freshchainsets independently receive the unchanged physical/mixing gates. No portable generated-byte-identity claim."
+    },
+    "limits": {
+      "ja": "診断engineの独立性とsamplerの独立参照を混同しません。Rhat等は大域収束・被覆の証明ではありません。isotropicは固定比較で失敗を要求せず、banana/funnel/HMC/NUTSは未実装です。",
+      "en": "Diagnostic-engine independence is not an independent sampler. Rhat/ESS/MCSE do not prove global convergence/coverage. Isotropic is descriptive with no required failure;banana/funnel/HMC/NUTSremain unimplemented."
+    },
+    "review_level": {
+      "ja": "原著診断定義と公式実装選択確認・実同一データ資格",
+      "en": "Selected original definitions,official implementation and actual same-data qualification"
+    },
+    "formulas": [
+      "\\pi(x)\\propto\\exp[-\\tfrac12(x-m)^\\top\\Sigma^{-1}(x-m)]",
+      "\\operatorname{MCSE}(g)=s_g/\\sqrt{\\operatorname{ESS}_{\\mathrm{mean}}(g)}"
+    ],
+    "references": [
+      {
+        "id": "vehtari2021",
+        "author": "A. Vehtari et al.",
+        "year": 2021,
+        "title": "Rank-normalization,folding,and localization: An improved R-hat for assessing convergence of MCMC",
+        "url": "https://arxiv.org/pdf/1903.08008",
+        "type": "article",
+        "review_level": "selected-primary-diagnostic-definitions",
+        "review": {
+          "ja": "原著のrank/folded Rhat・ESSの選択節と修正Blom式を確認。多変量大域収束の認証ではありません。",
+          "en": "Read selected original rank/foldedRhat,ESS and corrected Blom equation. No multivariate global-convergence certificate."
+        }
+      },
+      {
+        "id": "arviz020",
+        "author": "ArviZ developers",
+        "year": 2024,
+        "title": "ArviZ0.20.0 public diagnostics API and selected implementation",
+        "url": "https://python.arviz.org/en/v0.20.0/api/generated/arviz.mcse.html",
+        "type": "software",
+        "review_level": "official-pinned-source-and-independent-same-data-execution",
+        "review": {
+          "ja": "公式0.20.0のESS/MCSE実装とAPIを確認。実際の固定8chainsetの128観測量prefix配列を別過程へ渡す640値資格を保存します。独立性は診断実装でありsampler独立参照ではありません。",
+          "en": "Read official0.20.0 ESS/MCSE source and API. Cache640values from128same-data observable/prefix arrays of8fixed chainsets in a separate process. Independence is the diagnostic engine,not an independent sampler."
+        }
+      }
+    ],
+    "gallery_figure": "correlated-gaussian-mcmc-preview.png",
+    "additional_figures": [
+      {
+        "file": "correlated-gaussian-mcmc-preview.png",
+        "caption": {
+          "ja": "保存した実データ由来の分布・誤差診断。空間次元と標本/時間軸を区別します。",
+          "en": "Distribution and error diagnostics from actual saved data;sample/time axes are distinguished from spatial dimensions."
+        }
+      }
+    ]
+  }
+]

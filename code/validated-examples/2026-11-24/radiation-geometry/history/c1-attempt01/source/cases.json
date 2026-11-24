@@ -1,0 +1,169 @@
+[
+  {
+    "id": "shadow-absorber2d",
+    "method_ids": [
+      "radiation-transport",
+      "upwind",
+      "heun"
+    ],
+    "domains": [
+      "pde",
+      "time"
+    ],
+    "code_files": [
+      "run.py",
+      "geometry.py",
+      "mms.py"
+    ],
+    "title": {
+      "ja": "2D吸収影と保存的M1輸送",
+      "en": "Two-dimensional absorber shadow and M1 transport"
+    },
+    "summary": {
+      "ja": "実際の円形吸収体の影を、特性線の円弦減衰・角度輸送・M1で比較します。",
+      "en": "Compare the actual evolved circular-absorber shadow with characteristic chord attenuation, signed-angle transport and nonlinear M1."
+    },
+    "assumptions": {
+      "ja": "2D空間と3D角度測度、c1、静止吸収体。実S_Nと非線形M1を24/48/96格子で進め、同一solverの変動方向MMS・x/y交差packet controlを保持。",
+      "en": "Two spatial dimensions, a three-dimensional angular measure, c=1 and static absorption. Evolve the actual signed-angle and nonlinear M1 equations on24/48/96grids. Same-solver controls retain a varying-direction manufactured solution and crossed x/y packets."
+    },
+    "algorithm": {
+      "ja": "風上角度FV／M1のRusanovとSSPRK2。吸収は保存ledger付き指数分割。6軸重み1/6、単位beamのnodal強度6、Pzzと全3Dtraceを保持。floor/projectionはしません。",
+      "en": "Conservative upwind angular finite volumes or M1 Rusanov fluxes with SSPRK2; exponential absorption with a separate deposited-energy ledger. Six axis directions have weight1/6; a unit beam has nodal intensity6. Retain Pzz and the full3D trace. No positive floor or cone projection."
+    },
+    "validation": {
+      "ja": "独立な特性cell平均と閉M1強制項の複素step検査191項目がmain前に合格。全step収支・cone・正値、別時間probe、MMSとx/y実進行の収束を検査します。",
+      "en": "The independent characteristic cell averages and manufactured M1 forcing passed191reference/component checks before any PDE main. Check all-step budgets, realizability and positivity, spatial refinement, a separate half-step probe, and actual x/y evolution. Opposing-beam closure error is distinguished from numerical error."
+    },
+    "limits": {
+      "ja": "6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。",
+      "en": "Six aligned directions do not demonstrate general angular convergence. The M1 opposing-beam mismatch is expected information loss and is not required to converge to angular transport. No relativistic, gas-dynamical or multifrequency radiation hydrodynamics is implemented."
+    },
+    "formulas": [
+      "\\partial_tE+\\nabla\\cdot\\mathbf F=-\\kappa_aE,\\quad\\partial_t\\mathbf F+\\nabla\\cdot\\mathbf P=-\\kappa_a\\mathbf F",
+      "\\mathbf P=E\\left[\\frac{1-\\chi}{2}\\mathbf I_3+\\frac{3\\chi-1}{2}\\mathbf n\\otimes\\mathbf n\\right]",
+      "\\chi=\\frac{3+4f^2}{5+2\\sqrt{4-3f^2}},\\quad f=|\\mathbf F|/E,\\quad P_{xx}+P_{yy}+P_{zz}=E"
+    ],
+    "references": [
+      {
+        "id": "rosdahl2013-m1",
+        "author": "Rosdahl etal.",
+        "year": 2013,
+        "title": "RAMSES-RT: Radiation hydrodynamics in the cosmological context",
+        "url": "https://arxiv.org/html/1304.7126v2",
+        "review_level": "primary-paper-selected-M1-equations-and-limitations",
+        "review_scope": "ReadSection2equations12-14and two-opposing-beams limitation text. Levermore1984original not read. Educational staticgrey cases/MMS here do not reproduce RAMSESastrophysical runs.",
+        "accessed_on": "2026-11-24"
+      }
+    ],
+    "citations": [
+      {
+        "id": "rosdahl2013-m1",
+        "author": "Rosdahl etal.",
+        "year": 2013,
+        "title": "RAMSES-RT: Radiation hydrodynamics in the cosmological context",
+        "url": "https://arxiv.org/html/1304.7126v2",
+        "review_level": "primary-paper-selected-M1-equations-and-limitations",
+        "review_scope": "ReadSection2equations12-14and two-opposing-beams limitation text. Levermore1984original not read. Educational staticgrey cases/MMS here do not reproduce RAMSESastrophysical runs.",
+        "accessed_on": "2026-11-24"
+      }
+    ],
+    "gallery_figure": "shadow-absorber2d-preview.png",
+    "additional_figures": [
+      {
+        "file": "shadow-absorber2d-preview.png",
+        "caption": {
+          "ja": "保存した実計算場の科学プレビュー。",
+          "en": "Scientific preview from the actual saved numerical fields."
+        }
+      }
+    ]
+  },
+  {
+    "id": "opposing-beams2d",
+    "method_ids": [
+      "radiation-transport",
+      "upwind",
+      "heun"
+    ],
+    "domains": [
+      "pde",
+      "time"
+    ],
+    "code_files": [
+      "run.py",
+      "geometry.py",
+      "mms.py"
+    ],
+    "title": {
+      "ja": "2D反向beamとM1閉包の情報損失",
+      "en": "Opposing beams and information loss in the M1 closure"
+    },
+    "summary": {
+      "ja": "保存した反向packetの実進行からM1の限界を示し、別の閉M1MMSで数値実装を検証します。",
+      "en": "Show the M1 limitation in actual opposing-packet evolution; validate the same closed M1 solver independently with a manufactured solution."
+    },
+    "assumptions": {
+      "ja": "2D空間と3D角度測度、c1、静止吸収体。実S_Nと非線形M1を24/48/96格子で進め、同一solverの変動方向MMS・x/y交差packet controlを保持。",
+      "en": "Two spatial dimensions, a three-dimensional angular measure, c=1 and static absorption. Evolve the actual signed-angle and nonlinear M1 equations on24/48/96grids. Same-solver controls retain a varying-direction manufactured solution and crossed x/y packets."
+    },
+    "algorithm": {
+      "ja": "風上角度FV／M1のRusanovとSSPRK2。吸収は保存ledger付き指数分割。6軸重み1/6、単位beamのnodal強度6、Pzzと全3Dtraceを保持。floor/projectionはしません。",
+      "en": "Conservative upwind angular finite volumes or M1 Rusanov fluxes with SSPRK2; exponential absorption with a separate deposited-energy ledger. Six axis directions have weight1/6; a unit beam has nodal intensity6. Retain Pzz and the full3D trace. No positive floor or cone projection."
+    },
+    "validation": {
+      "ja": "独立な特性cell平均と閉M1強制項の複素step検査191項目がmain前に合格。全step収支・cone・正値、別時間probe、MMSとx/y実進行の収束を検査します。",
+      "en": "The independent characteristic cell averages and manufactured M1 forcing passed191reference/component checks before any PDE main. Check all-step budgets, realizability and positivity, spatial refinement, a separate half-step probe, and actual x/y evolution. Opposing-beam closure error is distinguished from numerical error."
+    },
+    "limits": {
+      "ja": "6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。",
+      "en": "Six aligned directions do not demonstrate general angular convergence. The M1 opposing-beam mismatch is expected information loss and is not required to converge to angular transport. No relativistic, gas-dynamical or multifrequency radiation hydrodynamics is implemented."
+    },
+    "formulas": [
+      "\\partial_tE+\\nabla\\cdot\\mathbf F=-\\kappa_aE,\\quad\\partial_t\\mathbf F+\\nabla\\cdot\\mathbf P=-\\kappa_a\\mathbf F",
+      "\\mathbf P=E\\left[\\frac{1-\\chi}{2}\\mathbf I_3+\\frac{3\\chi-1}{2}\\mathbf n\\otimes\\mathbf n\\right]",
+      "\\chi=\\frac{3+4f^2}{5+2\\sqrt{4-3f^2}},\\quad f=|\\mathbf F|/E,\\quad P_{xx}+P_{yy}+P_{zz}=E"
+    ],
+    "references": [
+      {
+        "id": "rosdahl2013-m1",
+        "author": "Rosdahl etal.",
+        "year": 2013,
+        "title": "RAMSES-RT: Radiation hydrodynamics in the cosmological context",
+        "url": "https://arxiv.org/html/1304.7126v2",
+        "review_level": "primary-paper-selected-M1-equations-and-limitations",
+        "review_scope": "ReadSection2equations12-14and two-opposing-beams limitation text. Levermore1984original not read. Educational staticgrey cases/MMS here do not reproduce RAMSESastrophysical runs.",
+        "accessed_on": "2026-11-24"
+      }
+    ],
+    "citations": [
+      {
+        "id": "rosdahl2013-m1",
+        "author": "Rosdahl etal.",
+        "year": 2013,
+        "title": "RAMSES-RT: Radiation hydrodynamics in the cosmological context",
+        "url": "https://arxiv.org/html/1304.7126v2",
+        "review_level": "primary-paper-selected-M1-equations-and-limitations",
+        "review_scope": "ReadSection2equations12-14and two-opposing-beams limitation text. Levermore1984original not read. Educational staticgrey cases/MMS here do not reproduce RAMSESastrophysical runs.",
+        "accessed_on": "2026-11-24"
+      }
+    ],
+    "gallery_figure": "opposing-beams2d-preview.png",
+    "additional_figures": [
+      {
+        "file": "opposing-beams2d-preview.png",
+        "caption": {
+          "ja": "保存した実計算場の科学プレビュー。",
+          "en": "Scientific preview from the actual saved numerical fields."
+        }
+      },
+      {
+        "file": "m1-manufactured-control.png",
+        "caption": {
+          "ja": "同じM1 solverで進めた変動方向の製造解・実計算場・符号付き誤差。",
+          "en": "Independent manufactured energy,actual evolved energy,and signed error from the same varying-direction M1 solver."
+        }
+      }
+    ]
+  }
+]

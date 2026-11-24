@@ -1,0 +1,72 @@
+{
+  "scope": "Three synthetic sorted tie fixtures derived from actually audited interpolation brackets; not additional MH evolutions.",
+  "source_audit_sha256": "3f614ab73194eb1a5425c47229966342b9e04d54ba174de4b21bcf8cef032dc5",
+  "fixtures": [
+    {
+      "dataset": {
+        "key": "preconditioned-46001",
+        "prefix": 2048,
+        "observable": "product",
+        "column": 4,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "703b1e28e71b7c5ba2f05d1f65bcee8bf796fcde2f9ffaf0b14ff3a1d25e4fcf"
+      },
+      "n": 8192,
+      "probability": 0.95,
+      "repeated_value_hex": "0x1.e8e2da47a7bffp+1",
+      "below_count": 7781,
+      "tie_count": 2,
+      "reference_threshold_hex": "0x1.e8e2da47a7bfep+1",
+      "numpy_threshold_hex": "0x1.e8e2da47a7bffp+1",
+      "reference_true_count": 7781,
+      "numpy_true_count": 7783
+    },
+    {
+      "dataset": {
+        "key": "isotropic-46004",
+        "prefix": 8192,
+        "observable": "product",
+        "column": 4,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "7a2bebb42e40d415a436e1ae4cc36216c21dbd97f70c8907966f818af8867341"
+      },
+      "n": 32768,
+      "probability": 0.95,
+      "repeated_value_hex": "0x1.edfd09bb6c0a7p+1",
+      "below_count": 31128,
+      "tie_count": 2,
+      "reference_threshold_hex": "0x1.edfd09bb6c0a6p+1",
+      "numpy_threshold_hex": "0x1.edfd09bb6c0a7p+1",
+      "reference_true_count": 31128,
+      "numpy_true_count": 31130
+    },
+    {
+      "dataset": {
+        "key": "isotropic-46004",
+        "prefix": 8192,
+        "observable": "sum_direction",
+        "column": 6,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "d622103b9b65f89e103717c5acd39f522eaeeb00d9eda7b48025615651e4b169"
+      },
+      "n": 32768,
+      "probability": 0.05,
+      "repeated_value_hex": "-0x1.9946966d0b883p+0",
+      "below_count": 1638,
+      "tie_count": 2,
+      "reference_threshold_hex": "-0x1.9946966d0b884p+0",
+      "numpy_threshold_hex": "-0x1.9946966d0b883p+0",
+      "reference_true_count": 1638,
+      "numpy_true_count": 1640
+    }
+  ]
+}

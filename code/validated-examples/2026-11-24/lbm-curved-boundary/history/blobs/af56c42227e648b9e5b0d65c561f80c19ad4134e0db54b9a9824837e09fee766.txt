@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "status": "FROZEN_SAVED_DATA_ONLY_AUDIT_AWAITING_ROOT_REVIEW",
+  "created_at_utc": "2026-11-23T22:37:49.377198+00:00",
+  "files": {
+    "audit_script": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/curved-saved-audit/audit_saved_curved.py",
+      "sha256": "f3ad1baaa438a0553912d10a39edd97d984a27b29887b96431e6d43c314f1044"
+    },
+    "failed_candidate": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/main-attempts/lbm-curved-boundary/01/results/failed-candidate.npz",
+      "sha256": "50ed3298215be4c97e661549af3fd950cd53ee30089a0c11a7c7277a6f62f8b7"
+    },
+    "failed_result": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/main-attempts/lbm-curved-boundary/01/results/result.json",
+      "sha256": "18ef254013e3ce094674d35592089b156620abf01768c81a730e830fd63ade90"
+    },
+    "failure_stage_traceback": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/main-attempts/lbm-curved-boundary/01/results/failure-traceback.txt",
+      "sha256": "973804e1babdf9d799169b97159730ee0e3c86ff74cf0fd74b1b4a36525b9ff0"
+    },
+    "failed_attempt_receipt": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/main-attempts/lbm-curved-boundary/01/receipt.json",
+      "sha256": "14e2bf3a3da17a76c8b3461631e6b069c61e4962485cc2b49f0e13351e1509e6"
+    },
+    "frozen_inputs": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/main-attempts/lbm-curved-boundary/01/source/inputs.json",
+      "sha256": "45d48ba5c59f9cfd94e1c41468af319354fbc204ec2fd8048d520a62a3394ab5"
+    },
+    "frozen_acceptance": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/main-attempts/lbm-curved-boundary/01/source/acceptance.json",
+      "sha256": "e5e171409fc4e90e55ba1ac34b82f8c0b58a731d4e16e4dda163b9c4e528b967"
+    },
+    "frozen_contract": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/main-attempts/lbm-curved-boundary/01/source/pre-run-contract.json",
+      "sha256": "d3907d6280b085981c5b1595a8b9805cfb5e11a813feb4f7af89886908a1e6dc"
+    },
+    "frozen_geometry": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/main-attempts/lbm-curved-boundary/01/source/geometry.py",
+      "sha256": "28cad349c8842eb5da7efb138efb23ecfeaa3dac6b47e3337dda1ddfbad4fec4"
+    },
+    "frozen_kernel": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/main-attempts/lbm-curved-boundary/01/source/kernel.cpp",
+      "sha256": "f8639d0c614e36571ceb96a7352b0e55f986a538274a2e1a9e6480da14fe2241"
+    },
+    "frozen_analytic": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/main-attempts/lbm-curved-boundary/01/source/analytic.py",
+      "sha256": "dab995c7b08f64aaa194d7f89557021179d8869686ab328939cdf3975b28a17c"
+    },
+    "frozen_diagnostics": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/main-attempts/lbm-curved-boundary/01/source/diagnostics.py",
+      "sha256": "1fd58b1e97bfcd496abeef7389381d2bce560bb674bf5d577c5b3beba44950cd"
+    },
+    "frozen_experiments": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/main-attempts/lbm-curved-boundary/01/source/experiments.py",
+      "sha256": "defeb0a499de5dbedf3c9bace698003d687c2b5fbc0527d8392f7a1b298c3a8c"
+    },
+    "annulus_40": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/main-attempts/lbm-curved-boundary/01/results/lbm-annular-couette-control-v0-N40.npz",
+      "sha256": "e0ef796e2cc1764097151678273155371d6122908ece31704ee0ec42b96cf3b9"
+    },
+    "annulus_diagnostics_40": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/main-attempts/lbm-curved-boundary/01/results/lbm-annular-couette-control-v0-N40-diagnostics.npz",
+      "sha256": "1cff96d6c62e7121fca09ead7f39fe7638592157e2583e1161b2f141b67653a2"
+    },
+    "annulus_60": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/main-attempts/lbm-curved-boundary/01/results/lbm-annular-couette-control-v0-N60.npz",
+      "sha256": "868c6925362dac86a1f9845a23e709a2bd98ab9c2885a1cf8c995755996fb3a6"
+    },
+    "annulus_diagnostics_60": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/main-attempts/lbm-curved-boundary/01/results/lbm-annular-couette-control-v0-N60-diagnostics.npz",
+      "sha256": "38aaa0d1c686faa775ca93b02d355dd4d1484ee83d467874c26224f43d13f624"
+    },
+    "annulus_80": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/main-attempts/lbm-curved-boundary/01/results/lbm-annular-couette-control-v0-N80.npz",
+      "sha256": "f2470f3bf19f05f9fd53c0bdd96b175f5b06fa539f7b94e103319446be190f03"
+    },
+    "annulus_diagnostics_80": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/main-attempts/lbm-curved-boundary/01/results/lbm-annular-couette-control-v0-N80-diagnostics.npz",
+      "sha256": "6083bd962128dbb418b11499c639c7785722d451c7af35ea5a8efb1fc5566f74"
+    }
+  },
+  "outer_shared_deadline_seconds": 20,
+  "planned_structural_checks": 11,
+  "check_derivation": "3annularsavedgrids*(shape/finite+orthogonalradial-bin-decomposition+interiorFDsupport)=9 plusfailedcylinder nodeinventory/status2=11",
+  "datasets": {
+    "annulus_interpolated_saved_N": [
+      40,
+      60,
+      80
+    ],
+    "cylinder_failed_state": {
+      "dx": 0.01,
+      "completed_steps": 265,
+      "failing_step": 265,
+      "node": 4379
+    }
+  },
+  "fixed_postprocessing": {
+    "radial_bins": 12,
+    "radial_bounds": [
+      0.2,
+      0.4
+    ],
+    "descriptive_angular_modes": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "FD_interior_excludes_two_links": true,
+    "lowest_density_sites": 20,
+    "failed_node_all9_link_geometry": true,
+    "pressure_scale_fit": "diagnostic only,never substitutes for original acceptance"
+  },
+  "scope": "Only retained NPZ/JSON/source from the failed fixed curved attempt. No LBMstep,sampling,newtrajectory,reference-fieldgeneration,parameterselection,sourcepatch or criterionchange. Reconstruct only fixed coordinate/mask/index geometry for locating saved failednode and its9links; never evaluate collision at nonpositive density.",
+  "limitations": [
+    "Original six annular trajectories and failed coarsecylinder retain failed status.",
+    "Pressure decomposition and leastsquares scale are diagnostic,not corrections or alternative acceptance fields.",
+    "Per-link previous outgoing/incoming postcollision arrays were not saved in failedpayload,so report geometry/coefficients and explicit unavailability; never fabricate previous link impulses.",
+    "Finite-difference residual is saved-field postprocessing awayfromboundaries,not a new reference or certified residual gate.",
+    "No unique cause or future solver/input choice is inferred before reading the actual evidence."
+  ],
+  "command": [
+    "PINNED_SHARED_PYTHON",
+    "-B",
+    "-W",
+    "error",
+    "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/curved-saved-audit/audit_saved_curved.py",
+    "--protocol",
+    "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/curved-saved-audit/protocol.json",
+    "--output",
+    "FRESH_PRIVATE_AUDIT_OUTPUT"
+  ],
+  "source_or_criteria_changes": false,
+  "numerical_imports_or_evaluations_by_preparer": false,
+  "AST_passed": true,
+  "scientific_evolution_executions": 0,
+  "reference_generations": 0,
+  "failure_policy": "One root-authorized20s process-group run; preserve full protocol/source/stdout/stderr/partialoutput/receipt on failure. No automatic retry or altered diagnosis thresholds. audit_completed only means fixed saved-data postprocess completed andboundinputbytes stayed unchanged; it never upgrades the failedscientificcase."
+}

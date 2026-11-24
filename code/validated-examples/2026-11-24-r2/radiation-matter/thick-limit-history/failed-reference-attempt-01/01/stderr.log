@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/radiation/thick-limit-r5/source/references/qualify_thick.py", line 74, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/radiation/thick-limit-r5/source/references/qualify_thick.py", line 39, in main
+    state=action(A,kappa*s,np.ones(len(mu)+1));value=moments(state,mu,w);cache['moments_'+name][j,i]=value;raw['active_amplitude']=state;completed.append(dict(rule=name,kappa=kappa,scaled_time=s))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/radiation/thick-limit-r5/source/references/thick_reference.py", line 33, in action
+    return np.einsum('ij,j->i',expm(time*A),initial,optimize=False)
+                               ^^^^^^^^^^^^
+  File "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/lib/python3.12/site-packages/scipy/linalg/_matfuncs.py", line 323, in expm
+    m, s = pick_pade_structure(Am)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "scipy/linalg/_matfuncs_expm.pyx", line 128, in scipy.linalg._matfuncs_expm.pick_pade_structure
+RuntimeWarning: divide by zero encountered in matmul

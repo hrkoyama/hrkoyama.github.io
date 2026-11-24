@@ -1,0 +1,24 @@
+--- qualified-r4/transport.py
++++ main/transport.py
+@@ -39,7 +39,7 @@
+         count=int(np.ceil((target-t)/config['max_dt']));dt=(target-t)/count;start=t
+         for k in range(count):
+             q=source if t+.5*dt<config['source_off'] else np.zeros(cells)
+-            stage='rhs0'
++            stage='rhs0';ii=vv=jj=ww=None
+             try:
+                 a,b,f1=rhs(intensity,material,mu,w,h,epsilon,q)
+                 ii=intensity+dt*a;vv=material+dt*b;stage='euler1'
+@@ -49,7 +49,11 @@
+                 if min(jj.min(),ww.min())< -1e-13 or not np.isfinite(jj).all() or not np.isfinite(ww).all():raise ArithmeticError('Nonphysical transport second stage')
+                 intensity=.5*(intensity+jj);material=.5*(material+ww)
+             except Exception:
+-                if partial is not None:np.savez(partial,intensity=intensity,material=material,time=t,step=k,stage=stage)
++                if partial is not None:
++                    failed=dict(last_valid_intensity=intensity,last_valid_material=material,time=t,step=k,stage=stage)
++                    for key,value in [('candidate_intensity1',ii),('candidate_material1',vv),('candidate_intensity2',jj),('candidate_material2',ww)]:
++                        if value is not None:failed[key]=value
++                    np.savez(partial,**failed)
+                 raise
+             t=start+(k+1)*dt;energy=.5*np.sum(w[:,None]*intensity,axis=0)
+             ledger+=dt*(h*np.sum(q)-.5*(f1+f2))

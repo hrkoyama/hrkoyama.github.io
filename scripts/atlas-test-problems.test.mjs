@@ -1,3 +1,6 @@
+import {examplesAddedAfterBatch37} from './fixtures/atlas-inventory.mjs';
+import {problemGroupCounts} from './fixtures/atlas-inventory.mjs';
+import {problemCount} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,existsSync} from 'node:fs';
@@ -14,7 +17,7 @@ test('matched MHD refinements add one constructed equilibrium, reuse OT and excl
  const mapping=JSON.parse(read('catalog/atlas-depth-expansion.json')).case_problem_ids;
  const smooth=inventory.problems.find(x=>x.id==='advected-magnetostatic-equilibrium');
  const ot=inventory.problems.find(x=>x.id==='orszag-tang');
- assert.equal(inventory.problems.length,113);
+ assert.equal(inventory.problems.length,problemCount);
  assert.equal(mapping['ct-glm-smooth-convergence'],smooth.id);
  assert.equal(mapping['ct-glm-ot-convergence'],ot.id);
  assert.equal(mapping['ct-glm-constraint-control'],null);
@@ -73,7 +76,7 @@ test('the new thermostat comparisons add one quartic problem and retain the orig
   const results=JSON.parse(read(base+'results/result.json'));
   const receipt=JSON.parse(read(base+'verification.json'));
   const mapping=JSON.parse(read('catalog/atlas-depth-expansion.json')).case_problem_ids;
-  assert.equal(catalog.problems.length,113);
+  assert.equal(catalog.problems.length,problemCount);
   assert.equal(inventory.counts.groups.time,8);
   assert.equal(mapping['csvr-kinetic-kernel'],null);
   assert.equal(mapping['csvr-langevin-harmonic'],'langevin-harmonic');
@@ -82,7 +85,7 @@ test('the new thermostat comparisons add one quartic problem and retain the orig
   const harmonic=catalog.problems.find(x=>x.id==='langevin-harmonic');
   assert.equal(harmonic.chapter,'validation-models');
   assert.equal(harmonic.code_base,'/code/validated-examples/2026-11-22/models/');
-  assert.deepEqual(harmonic.supplemental_examples.map(x=>x.id),['langevin-harmonic','csvr-langevin-harmonic']);
+  assert.deepEqual(harmonic.supplemental_examples.filter(x=>!examplesAddedAfterBatch37.includes(x.id)).map(x=>x.id),['langevin-harmonic','csvr-langevin-harmonic']);
   const quartic=catalog.problems.find(x=>x.id==='thermostatted-quartic');
   const metadata=cases.find(x=>x.id==='csvr-langevin-quartic');
   assert.equal(quartic.group,'time');
@@ -102,7 +105,7 @@ test('nonlinear Schnakenberg refinements reuse one physical problem and preserve
   const metadata=JSON.parse(read(base+'cases.json'));
   const mapping=JSON.parse(read('catalog/atlas-depth-expansion.json')).case_problem_ids;
   const problem=catalog.problems.find(x=>x.id==='turing-schnakenberg');
-  assert.equal(catalog.problems.length,113);
+  assert.equal(catalog.problems.length,problemCount);
   assert.equal(inventory.counts.groups.biology,5);
   assert.equal(problem.chapter,'validation-models');
   assert.equal(problem.code_base,'/code/validated-examples/2026-11-22/models/');
@@ -128,8 +131,8 @@ test('bimodal MCMC adds one target problem while the diagnostic control and old 
   const cases=JSON.parse(read(base+'cases.json'));
   const mapping=JSON.parse(read('catalog/atlas-depth-expansion.json')).case_problem_ids;
   const problem=catalog.problems.find(x=>x.id==='mcmc-bimodal-mixture');
-  assert.equal(catalog.problems.length,113);
-  assert.equal(inventory.counts.groups.probability,4);
+  assert.equal(catalog.problems.length,problemCount);
+  assert.equal(inventory.counts.groups.probability,problemGroupCounts.probability);
   assert.equal(mapping['mcmc-multimodal-mixing'],problem.id);
   assert.equal(mapping['mcmc-diagnostic-reference'],null);
   assert.equal(problem.chapter,'validation-mcmc');

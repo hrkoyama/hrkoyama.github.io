@@ -558,6 +558,141 @@
         "ja": "流入出を持つ1D空間・3D速度の衝撃波で、RH遠方状態と内部の独立な数値参照を区別します。",
         "en": "For a1D-space,3D-velocity open-reservoir shock,distinguish RH far states from independent numerical internal-profile references."
       }
+    },
+    {
+      "id": "lbm-cavity",
+      "edition": "2026-11-24",
+      "title": {
+        "ja": "LBMのRe100蓋駆動キャビティ",
+        "en": "LBM lid-driven cavity at Re100"
+      },
+      "fields": [
+        "fluid"
+      ],
+      "intro": {
+        "ja": "LBMで四壁に囲まれたRe100の流れを進め、Ghiaの中心線と主渦に照合します。壁との運動量交換も記録します。",
+        "en": "Advance a four-wall Re100 LBM flow and compare Ghia centerlines and the primary vortex, recording wall momentum exchange."
+      }
+    },
+    {
+      "id": "lbm-taylor-green",
+      "edition": "2026-11-24",
+      "title": {
+        "ja": "LBMのTaylor–Green渦と低Mach誤差",
+        "en": "LBM Taylor–Green vortex and finite-Mach errors"
+      },
+      "fields": [
+        "fluid"
+      ],
+      "intro": {
+        "ja": "周期渦の解析解を使い、格子・時間刻み・Mach数が結び付く誤差と振幅依存性を調べます。",
+        "en": "Use the exact periodic vortex to examine coupled grid/time/Mach errors and amplitude effects."
+      }
+    },
+    {
+      "id": "lbm-annulus",
+      "edition": "2026-11-24",
+      "title": {
+        "ja": "曲面LBMの環状Couette流",
+        "en": "Annular Couette control for curved-wall LBM"
+      },
+      "fields": [
+        "fluid"
+      ],
+      "intro": {
+        "ja": "同じ物理条件で格子を細かくし、曲面補間と階段壁の速度・点ごとの圧力・トルクを解析解に照合します。",
+        "en": "Refine the grid at identical physical conditions and compare interpolated/stair walls with analytic velocity,pointwise pressure and torque."
+      }
+    },
+    {
+      "id": "lbm-curved-boundary",
+      "edition": "2026-11-24",
+      "title": {
+        "ja": "LBMの曲面壁とRe20円柱",
+        "en": "LBM curved walls and a Re20 cylinder"
+      },
+      "fields": [
+        "fluid"
+      ],
+      "intro": {
+        "ja": "Re20円柱流の曲面壁と流出境界を実計算し、抗力・圧力差・後流を独立な数値ベンチマークへ照合します。",
+        "en": "Advance actual Re20 cylinder flow with curved walls and an open outlet; compare forces,pressure difference and wake with independent numerical benchmarks."
+      }
+    },
+    {
+      "id": "radiation-scattering",
+      "edition": "2026-11-24",
+      "title": {
+        "ja": "等方散乱平板と連続角度参照",
+        "en": "Isotropically scattering slabs and continuum-angle references"
+      },
+      "fields": [
+        "transport"
+      ],
+      "intro": {
+        "ja": "等方散乱平板の角度離散法を、連続角度の積分方程式から得た独立参照に照合します。",
+        "en": "Compare discrete ordinates in an isotropically scattering slab with an independent continuous-angle integral-equation reference."
+      }
+    },
+    {
+      "id": "radiation-matter",
+      "edition": "2026-11-24-r2",
+      "title": {
+        "ja": "非平衡放射：拡散と輸送を分ける",
+        "en": "Non-equilibrium radiation: distinct diffusion and transport"
+      },
+      "fields": [
+        "transport"
+      ],
+      "intro": {
+        "ja": "Su–Olsonの拡散問題と輸送問題を規格化・境界・出典で分け、同条件の周期Fourier制御による拡散極限も別に確認します。",
+        "en": "Separate Su-Olson diffusion and transport by normalization,boundaries and sources,with an additional matched periodic Fourier control for the resolved diffusion limit."
+      }
+    },
+    {
+      "id": "radiation-geometry",
+      "edition": "2026-11-24",
+      "title": {
+        "ja": "2Dの影・ビームとM1閉包",
+        "en": "2D shadows,beams and M1 closure"
+      },
+      "fields": [
+        "transport"
+      ],
+      "intro": {
+        "ja": "吸収体の影と衝突するビームを角度法とM1で計算し、M1自体の製造解による検査と分けて示します。",
+        "en": "Compute absorber shadows and opposing beams with discrete ordinates and M1, separately checking the closed M1 PDE with a manufactured solution."
+      }
+    },
+    {
+      "id": "stochastic-accuracy",
+      "edition": "2026-11-24",
+      "title": {
+        "ja": "SDEの弱誤差・強誤差と標本誤差",
+        "en": "Weak/strong SDE errors and sampling uncertainty"
+      },
+      "fields": [
+        "probability"
+      ],
+      "intro": {
+        "ja": "解析モーメントと共有Brown運動を使い、SDEの弱誤差・強誤差と有限標本の不確かさを分けます。",
+        "en": "Use analytic moments and shared Brownian paths to separate weak/strong SDE errors from finite-sample uncertainty."
+      }
+    },
+    {
+      "id": "stochastic-estimation",
+      "edition": "2026-11-24",
+      "title": {
+        "ja": "重要度サンプリングと相関Gaussian診断",
+        "en": "Importance sampling and correlated-Gaussian diagnostics"
+      },
+      "fields": [
+        "probability"
+      ],
+      "intro": {
+        "ja": "重要度重み付き尾確率と2D相関GaussianのMCMCを扱い、解析値・同一データの診断照合・新規標本の検査を区別します。",
+        "en": "Study importance-weighted tails and 2D correlated-Gaussian MCMC, separating analytic targets, same-data diagnostic comparisons and fresh-sample checks."
+      }
     }
   ],
   "case_problem_ids": {
@@ -643,7 +778,21 @@
     "pic-independent-spatial": "cold-plasma-pic",
     "dsmc-couette": "dsmc-couette",
     "dsmc-fourier": "dsmc-fourier",
-    "dsmc-planar-shock": "dsmc-planar-shock"
+    "dsmc-planar-shock": "dsmc-planar-shock",
+    "lbm-cavity-re100": "lid-driven-cavity",
+    "lbm-taylor-green": "taylor-green",
+    "lbm-annular-couette-control": "lbm-annular-couette-control",
+    "lbm-cylinder-re20": "lbm-cylinder-re20",
+    "isotropic-scattering-slab": "isotropic-scattering-slab",
+    "su-olson-diffusion1996": "su-olson-diffusion1996",
+    "su-olson-transport1997": "su-olson-transport1997",
+    "shadow-absorber2d": "shadow-absorber2d",
+    "opposing-beams2d": "opposing-beams2d",
+    "gbm-weak-moments": "gbm-sde",
+    "ou-weak-moments": "langevin-harmonic",
+    "gbm-milstein-strong": "gbm-sde",
+    "normal-tail-importance": "normal-tail-importance",
+    "correlated-gaussian-mcmc": "correlated-gaussian-mcmc"
   },
   "routine_policy": {
     "ja": "通常の補助例CIは、公開レジストリに登録した補助配布グループをNumPy・SciPy・pytestで実行します。保存済みの独立参照は版・入力・実行記録を照合し、新規の参照計算と区別します。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。",
@@ -873,6 +1022,62 @@
     "dsmc-planar-shock": {
       "ja": "有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。RHは遠方状態・流束だけの参照で、内部構造の厳密解ではありません。図は保存した粒子位相空間であり、2D物理流れではありません。",
       "en": "Finite-particle finite-grid independent stochastic reference,empirically qualified; no rigorous continuum bound,linear-response/general-DSMC/VHS or spatial-order claim. RH validates far states/full fluxes,not an exact internal shock profile. Saved phase space is not a2D physical flow."
+    },
+    "lbm-cavity-re100": {
+      "ja": "有限Machでの3格子教育例。Ghiaは丸めた独立数値参照で厳密解ではありません。蓋角は不連続で点ごとの二次精度や高Reを主張せず、他手法の既存キャビティ結果を本LBMの成功に流用しません。標準C++17compilerが必要です。",
+      "en": "Three finite-Mach educational grids. Ghia is a rounded independent numerical reference, not exact. No pointwise corner order/high-Re claim or borrowed success from another cavity solver. A standard C++17compiler is required."
+    },
+    "lbm-taylor-green": {
+      "ja": "拡散尺度では格子・時間・Machが結合し、amplitude変更はReも変えます。純空間/純時間/純Mach次数や有限Machの厳密非圧縮性を主張しません。平衡初期化のkinetic startupも実誤差へ含めます。",
+      "en": "Diffusive scaling couples grid,time andMach; amplitude changesRe. No isolated spatial/time/Mach order or exact incompressibility atfiniteMach. Kinetic equilibrium-startup transients remain part of the measured errors."
+    },
+    "lbm-annular-couette-control": {
+      "ja": "固定円弧と低速回転のみ。2次補間は負係数を含み一般の正値性や安定性を保証しません。補間mass非保存は実値を記録。以前の線形版は圧力.617757>.08で不合格として保存し、半径平均への置換なし。移動solidの拓撲変化や円柱の代用ではありません。 2次版旧N80の圧力.352758>.08も不合格として保持し、Ui/tau/Tを変えず両境界を固定細分化します。",
+      "en": "Fixedcircles andslowrotation only. Negative quadratic coefficients preclude a general positivity/stability guarantee; report actual interpolation massnonconservation. Prior linear attemptfailed pressure.617757>.08 andisretained; no radial-average substitution. No changing-solid topology orsubstitute forcylinderflow. Retain the failedquadraticN80pressure.352758>.08;refinebothboundariesatfixedUi/tau/T."
+    },
+    "lbm-cylinder-re20": {
+      "ja": "原典p3/p7は出口を選択可。採用NEEは独立導出した有限reservoirで、原著NEE全文の同一実装やFEATflow do-nothingと偽りません。Nabh高精度値は同BCの厳密値ではなく、原典範囲も厳密誤差区間ではありません。線形/Zou–He旧試行はstep265出口近傍で不合格として保持。有限Mach/境界/曲面差を含み一般精度保証なし。",
+      "en": "Originalpp3/7allow selectingoutflow. AdoptedNEEis independently derived finite reservoir,not claimed exactunread authorimplementation orFEATflowdo-nothing. Nabhvaluesarenotexact adopted-BCtruth andoriginalrangesarenotrigorousenclosures. Retain failedlinear/Zou–Heattempt(outlet-nearstep265). FiniteMach/BC/curveerrors;nogeneralaccuracyguarantee."
+    },
+    "isotropic-scattering-slab": {
+      "ja": "有限の4平板に限定。MC、一般角度phase関数、DISORT再現、普遍的次数や厳密連続体誤差境界は認証しません。",
+      "en": "Limited to fourfixedisotropic slabs;noMC,generalphase-function/DISORT reproduction,universalorder or rigorouscontinuumerrorbound."
+    },
+    "su-olson-diffusion1996": {
+      "ja": "1996拡散であり1997角度輸送とは別です。原典本文は未読、公式ソフトの選択値を資格。物理単位の質量opacity解釈は使わず無次元関数を直接参照します。",
+      "en": "This1996diffusion model is distinct from1997angular transport. Original paper fulltext unread;officialsoftware selected values qualified. Direct dimensionless functions avoid ambiguous mass-opacity physical-wrapper units."
+    },
+    "su-olson-transport1997": {
+      "ja": "原1997本文・原表と直接照合したとはしません。公開表の転記か再生成かは著者READMEに未記載。source停止後、一般散乱、全時空間の連続体誤差や角度次数は未認証です。 この追加はκhを解像したN∝κ²の半離散周期制御で、固定格子AP性や主SSPRK2の拡散時間次数を認証しません。初期F0と非零Fick流束の初期層を保持し、極限判定は最終s=.25のみ。両行列伝播にSciPy sparse expm_multiplyを共有し、DOP853照合は参照伝播器の資格です。",
+      "en": "No direct original1997fulltext/tablecomparison claim. TheauthorREADMEdoesnotstate transcriptionversusregeneration. Source-offprofiles,generalscattering,globalcontinuumerrorandangularorderarenotcertified. The addition is a resolved N~kappa^2 semidiscrete periodic control,not fixed-grid AP or an SSPRK2 diffusion-time order certificate. Initial F0 versus nonzero Fick flux is retained;limit gates use final s=.25 only. SciPy sparse expm_multiply is shared;DOP853 qualifies the reference propagator."
+    },
+    "shadow-absorber2d": {
+      "ja": "6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。",
+      "en": "Six aligned directions do not demonstrate general angular convergence. The M1 opposing-beam mismatch is expected information loss and is not required to converge to angular transport. No relativistic, gas-dynamical or multifrequency radiation hydrodynamics is implemented."
+    },
+    "opposing-beams2d": {
+      "ja": "6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。",
+      "en": "Six aligned directions do not demonstrate general angular convergence. The M1 opposing-beam mismatch is expected information loss and is not required to converge to angular transport. No relativistic, gas-dynamical or multifrequency radiation hydrodynamics is implemented."
+    },
+    "gbm-weak-moments": {
+      "ja": "弱誤差は期待値の差です。3SEや区間を真の誤差上界・一般被覆保証としません。1D状態×時間の保存例であり2D物理流れではありません。GBMやOU浴成分を新しい物理問題として重複計数しません。",
+      "en": "Weak error is a difference of expectations. SE/intervals are not true-error bounds or general coverage guarantees. State×time examples are not2Dphysical flow. Existing GBM/OUbath physical families are reused."
+    },
+    "ou-weak-moments": {
+      "ja": "弱誤差は期待値の差です。3SEや区間を真の誤差上界・一般被覆保証としません。1D状態×時間の保存例であり2D物理流れではありません。GBMやOU浴成分を新しい物理問題として重複計数しません。",
+      "en": "Weak error is a difference of expectations. SE/intervals are not true-error bounds or general coverage guarantees. State×time examples are not2Dphysical flow. Existing GBM/OUbath physical families are reused."
+    },
+    "gbm-milstein-strong": {
+      "ja": "L2終端誤差を扱い、原著のL1定義と区別。GBM以外の非Lipschitz系・正値性の一般保証はしません。既存gbm-sdeへの手法追加です。",
+      "en": "EndpointL2error is distinct from the selected paper L1definition. No general non-Lipschitz/positivity guarantee. This extends existinggbm-sde rather than adding a physical problem."
+    },
+    "normal-tail-importance": {
+      "ja": "重み付きISへBernoulliの厳密区間を転用しません。64反復は一般95%被覆の証明でなく、nestedprefixを独立反復へ水増ししません。global weightESSと事象ESSは別です。",
+      "en": "Bernoulli exact intervals are not applied to weighted IS.64trials do not prove general95%coverage;nested prefixes are not extra independent replicates. Global weightESS and eventESS are distinct."
+    },
+    "correlated-gaussian-mcmc": {
+      "ja": "診断engineの独立性とsamplerの独立参照を混同しません。Rhat等は大域収束・被覆の証明ではありません。isotropicは固定比較で失敗を要求せず、banana/funnel/HMC/NUTSは未実装です。",
+      "en": "Diagnostic-engine independence is not an independent sampler. Rhat/ESS/MCSE do not prove global convergence/coverage. Isotropic is descriptive with no required failure;banana/funnel/HMC/NUTSremain unimplemented."
     }
   },
   "case_equations": {
@@ -1261,6 +1466,139 @@
       "note": {
         "ja": "1次元位置・3次元速度、単原子硬球。Mach2、区間[0,16]、RHの開境界reservoir。192セル、粒子重み1/192、dt=.01、burn20/sample20、12seed。",
         "en": "{\"kind\":\"shock\",\"cells\":192,\"length\":16,\"weight\":0.005208333333333333,\"dt\":0.01,\"burn_in\":20,\"sample_time\":20,\"blocks\":5,\"bins\":64,\"sample_every\":10,\"hist_velocity\":[-4,7]} Twelve independent seeds; primary fixed-weight mesh,particle-weight,and half-step companions each retain seed1."
+      }
+    },
+    "lbm-cavity-re100": {
+      "ids": [
+        "bgk",
+        "navier-stokes"
+      ],
+      "note": {
+        "ja": "物理単位正方形、蓋U1、ν.01、Re100。N24/32/48、格子蓋速度.04、dt=.04/N。3壁静止、上壁右向き、同時上面/側面crossingは静止側を優先。初期rho1・静止。",
+        "en": "Physical unit square, lid1, viscosity.01, Re100; N24/32/48, lattice lid.04, dt=.04/N. Three stationary walls/rightward lid; stationary side owns a simultaneous top/side link. Initialrho1/rest."
+      }
+    },
+    "lbm-taylor-green": {
+      "ids": [
+        "bgk",
+        "navier-stokes"
+      ],
+      "note": {
+        "ja": "[0,2pi)²、ν.1、基本U.2、N24/32/64、dt=.2dx²、tau.56、T=.2pi²、144/256/1024steps。N32/U.4,.8とN32/U.2/dt=.1dx²/tau.53/512stepsを追加。初期圧力整合rhoを使用。",
+        "en": "Periodic[0,2pi)²,nu.1,baseU.2,N24/32/64,dt=.2dx²,tau.56,T=.2pi²and144/256/1024steps. Add N32/U.4,.8andN32/U.2/dt=.1dx²/tau.53/512steps. Use pressure-consistent initial density."
+      }
+    },
+    "lbm-annular-couette-control": {
+      "ids": [
+        "bgk",
+        "navier-stokes"
+      ],
+      "note": {
+        "ja": "Rin.2/Rout.4、中心(.5,.5)、内壁接線速度.02、外壁静止、ν.01。N80/160/240、tau.7、T4、整数3840/15360/34560steps、両境界法計6runs。初期は解析場の平衡分布。",
+        "en": "Rin.2/Rout.4,center(.5,.5),inner tangential speed.02,stationary outerwall,nu.01. N80/160/240,tau.7,T4,integer3840/15360/34560steps; both boundaries give sixruns. Initialize equilibrium moments of the analytic field."
+      }
+    },
+    "lbm-cylinder-re20": {
+      "ids": [
+        "bgk",
+        "navier-stokes"
+      ],
+      "note": {
+        "ja": "[0,2.2]x[0,.41]、中心(.2,.2)、R.05、ν.001、rho1、平均流速.2/最大.3/Re20。dx.01/.005、x wet nodes221/441、y halfway nodes41/82、dt=dx/6、T30、18k/36ksteps。入口parabola、出口はrho1と隣接内点poststream速度による全9成分NEE。",
+        "en": "[0,2.2]x[0,.41],center(.2,.2),R.05,nu.001,rho1,mean.2/peak.3/Re20. dx.01/.005,xwet221/441,yhalfway41/82,dt=dx/6,T30,18k/36ksteps. Parabolic inlet;all-nine poststream NEE outletwithrho1andadjacent-interiorvelocity."
+      }
+    },
+    "isotropic-scattering-slab": {
+      "ids": [
+        "static-grey-transfer"
+      ],
+      "note": {
+        "ja": "光学厚さ.5/3、単一散乱albedo.5/.9の4入力。左の等方入射I1、右入射0。64/128/256セル、32角と独立64角probe。",
+        "en": "Four fixed inputs L=.5/3,albedo=.5/.9;unit left incoming radiance,right vacuum incoming.64/128/256cells at32signed angles and a separate64angle probe."
+      }
+    },
+    "su-olson-diffusion1996": {
+      "ids": [
+        "non-equilibrium-diffusion-exchange"
+      ],
+      "note": {
+        "ja": "無次元ε1、区間[0,16]、初期u=v0、左Robin入射、右0。128/256/512セルと時間半減・区間24probe。",
+        "en": "Nondimensionalepsilon1,x0..16,initialu=v0,leftRobin inflow/right0;128/256/512cells plus half-step/domain24probes."
+      }
+    },
+    "su-olson-transport1997": {
+      "ids": [
+        "static-grey-transfer",
+        "heat"
+      ],
+      "note": {
+        "ja": "主検証は1997型の放射輸送・物質交換です。熱・拡散方程式への関連は、別の周期Fourier制御におけるE約V、拡散係数1/[3κ(ε+1)]の極限に限ります。1996Marshak境界や輸送全体の厳密解とは区別します。",
+        "en": "The main benchmark uses1997-type radiation/material transport. The heat equation is a limiting companion for separate periodic Fourier controls with E approximately V and diffusivity1/[3kappa(epsilon+1)],not the1996Marshak boundary problem or an exact solution of full transport."
+      }
+    },
+    "shadow-absorber2d": {
+      "ids": [
+        "static-grey-transfer",
+        "static-grey-m1"
+      ],
+      "note": {
+        "ja": "2D空間と3D角度測度、c1、静止吸収体。実S_Nと非線形M1を24/48/96格子で進め、同一solverの変動方向MMS・x/y交差packet controlを保持。",
+        "en": "Two spatial dimensions, a three-dimensional angular measure, c=1 and static absorption. Evolve the actual signed-angle and nonlinear M1 equations on24/48/96grids. Same-solver controls retain a varying-direction manufactured solution and crossed x/y packets."
+      }
+    },
+    "opposing-beams2d": {
+      "ids": [
+        "static-grey-transfer",
+        "static-grey-m1"
+      ],
+      "note": {
+        "ja": "2D空間と3D角度測度、c1、静止吸収体。実S_Nと非線形M1を24/48/96格子で進め、同一solverの変動方向MMS・x/y交差packet controlを保持。",
+        "en": "Two spatial dimensions, a three-dimensional angular measure, c=1 and static absorption. Evolve the actual signed-angle and nonlinear M1 equations on24/48/96grids. Same-solver controls retain a varying-direction manufactured solution and crossed x/y packets."
+      }
+    },
+    "gbm-weak-moments": {
+      "ids": [
+        "scalar-ito-diffusion"
+      ],
+      "note": {
+        "ja": "dX=.5Xdt+.4XdW,X0=1。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。",
+        "en": "dX=.5Xdt+.4XdW,X0=1;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping."
+      }
+    },
+    "ou-weak-moments": {
+      "ids": [
+        "scalar-ito-diffusion"
+      ],
+      "note": {
+        "ja": "dX=1.5(.2-X)dt+.8dW,X0=.7。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。",
+        "en": "dX=1.5(.2-X)dt+.8dW,X0=.7;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping."
+      }
+    },
+    "gbm-milstein-strong": {
+      "ids": [
+        "scalar-ito-diffusion"
+      ],
+      "note": {
+        "ja": "既存GBMと同じμ=.15,σ=.4,X0=T=1。4seed×8192経路、16/32/64/128刻み。",
+        "en": "ExistingGBMparametersmu.15,sigma.4,X0=T1;4seeds×8192paths;16/32/64/128steps."
+      }
+    },
+    "normal-tail-importance": {
+      "ids": [
+        "gaussian-probability-model"
+      ],
+      "note": {
+        "ja": "標準正規尾a=3/6、proposal=N(a,1)、64独立seed、N=2048/8192の固定prefix。",
+        "en": "Standard normal tailsa3/6;proposalN(a,1);64independent seeds;fixedN2048/8192prefixes."
+      }
+    },
+    "correlated-gaussian-mcmc": {
+      "ids": [
+        "gaussian-probability-model"
+      ],
+      "note": {
+        "ja": "平均(1,-1)、相関.95・対角分散1。4独立chainset×4chain、burn1024/draw8192、prefix2048/8192。固定.9Lzと.25z、適応なし。",
+        "en": "Mean(1,-1),unit marginal variances,rho.95;4independent chainsets×4chains;burn1024/draw8192;prefix2048/8192. Fixed.9Lzand.25z,no adaptation."
       }
     }
   }

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_on": "2026-11-23",
+  "reviewed_on": "2026-11-24",
   "title": {
     "ja": "分野ごとの実装・検証範囲",
     "en": "Implementation and validation by field"
@@ -64,7 +64,11 @@
         "rt-initial-growth",
         "ale-nonuniform-transport",
         "cgrid-rotating-wave",
-        "srhd-collision"
+        "srhd-collision",
+        "lbm-cavity-re100",
+        "lbm-taylor-green",
+        "lbm-annular-couette-control",
+        "lbm-cylinder-re20"
       ]
     },
     {
@@ -291,7 +295,12 @@
       "supplemental_examples": [
         "gaussian-mcmc",
         "mcmc-multimodal-mixing",
-        "mcmc-diagnostic-reference"
+        "mcmc-diagnostic-reference",
+        "gbm-weak-moments",
+        "ou-weak-moments",
+        "gbm-milstein-strong",
+        "normal-tail-importance",
+        "correlated-gaussian-mcmc"
       ]
     },
     {
@@ -456,11 +465,16 @@
       },
       "supplemental_examples": [
         "radiation-transport",
-        "radiation-convergence"
+        "radiation-convergence",
+        "isotropic-scattering-slab",
+        "su-olson-diffusion1996",
+        "su-olson-transport1997",
+        "shadow-absorber2d",
+        "opposing-beams2d"
       ],
       "scope": {
-        "ja": "吸収のみの1次元平板で角度離散化と風上空間離散化を実装。散乱や多周波輸送へ広げない。 旧版を保持し、同じ純吸収標的の独立参照・空間/角度収束・放射収支を別配布版で比較します。",
-        "en": "Implement angular quadrature and upwind spatial discretization in an absorbing 1D slab; excludes scattering and multifrequency transport. Keep the historical release and compare independent references, spatial/angular refinement and radiative balance for the same pure-absorption target in a separate companion."
+        "ja": "従来の1次元純吸収平板を保持します。追加の固定例では、等方散乱平板、規格化を分けた非平衡拡散と輸送・物質交換、2Dの影・ビームと静止M1を扱います。拡散極限の比較は平均自由行程を解像したFourierモードに限定し、固定格子APや一般の放射流体連成へは広げません。",
+        "en": "Preserve the original 1D absorbing slab. Additional fixed examples cover isotropic scattering, distinct non-equilibrium diffusion and transport/material exchange, and 2D shadows/beams with static M1. Diffusion-limit comparisons use mean-free-path-resolved Fourier modes; they do not establish fixed-grid AP behavior or general radiation hydrodynamics."
       },
       "reference": {
         "ja": "厳密ray解、連続角度の指数積分によるfluxを独立参照に使う。 参照自身の求積細分化と、流入・流出・体積吸収の保存診断も区別します。",
@@ -471,8 +485,8 @@
         "en": "Separate pure angular error using exact rays from spatial error at a fixed angular quadrature. Balance consistency alone does not guarantee angular-distribution accuracy."
       },
       "next": {
-        "ja": "散乱、時間依存、多次元・不透明度結合は別の検証が必要。",
-        "en": "Scattering, time dependence, multiple dimensions and opacity coupling require separate validation."
+        "ja": "多群・周波数依存、温度依存不透明度の非線形連成、放射流体と固定格子APは別の検証が必要です。",
+        "en": "Multigroup/frequency dependence, nonlinear temperature-dependent opacity, radiation hydrodynamics and fixed-grid AP behavior require separate validation."
       },
       "examples": [],
       "reading": {

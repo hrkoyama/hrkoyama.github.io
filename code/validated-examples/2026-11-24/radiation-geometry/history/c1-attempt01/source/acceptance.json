@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "limits": {
+    "budget": 2e-10,
+    "negative_energy": 1e-13,
+    "realizability_slack": 5e-12,
+    "pressure_trace": 2e-11,
+    "shadow_sn_finest_l1": 0.08,
+    "shadow_m1_finest_l1": 0.12,
+    "refinement_ratio": 0.85,
+    "mms_finest_l1": 0.02,
+    "crossed_finest_l1": 0.02,
+    "time_probe_fraction": 0.2
+  },
+  "scope": "Actual2Dbeamcontrols with3Dmeasure;M1MMSvalidatesitsclosedPDE. OpposingbeamM1/angular discrepancy ismodelerror,notrequiredtovanish. Referenceuncertaintyismuchsmallerthanfixedlowresolutioneducationaltargets."
+}

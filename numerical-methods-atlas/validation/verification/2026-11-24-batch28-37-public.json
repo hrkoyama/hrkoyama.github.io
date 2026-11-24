@@ -1,0 +1,537 @@
+{
+  "schema_version": 2,
+  "title": "Actual public verification of backlog28–37 after runtime repair",
+  "passed": true,
+  "verified_at_utc": "2026-11-23T16:00:15.277644+00:00",
+  "verified_on": "2026-11-24",
+  "initial_content_commit": "0e53b62dd4d442d8609f93ff45201cd60a5b4d1d",
+  "final_commit": "4c5a25eca6ba9f53195f9b70f005322ec4d1e738",
+  "content_tree": "4d182bf7159aac1dae0a93fbe2a130f77c3d40e9",
+  "backlog_sequences": [
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37
+  ],
+  "new_groups": [
+    {
+      "group": "coefficient-diffusion",
+      "edition": "2026-11-23",
+      "tests": 12,
+      "case_ids": [
+        "checkerboard-diffusion",
+        "rotated-anisotropic-diffusion"
+      ],
+      "numerical_gates": 97,
+      "case_gates": {
+        "checkerboard-diffusion": 52,
+        "rotated-anisotropic-diffusion": 45
+      },
+      "archive": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/coefficient-diffusion/atlas-coefficient-diffusion-2026-11-23.zip",
+        "sha256": "c53624aa03cf7f945297e7bd09d72030e111e035c3ce7174fd2da9e86756b666"
+      }
+    },
+    {
+      "group": "slab-ewald",
+      "edition": "2026-11-23",
+      "tests": 17,
+      "case_ids": [
+        "neutral-slab-yb"
+      ],
+      "numerical_gates": 42,
+      "case_gates": {
+        "neutral-slab-yb": 42
+      },
+      "archive": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/slab-ewald/atlas-slab-ewald-2026-11-23.zip",
+        "sha256": "168b250fd18b209534fe8a767afc689ea11b6b8ca95657a7c0ff0d8803f00414"
+      }
+    },
+    {
+      "group": "fmm3d",
+      "edition": "2026-11-23",
+      "tests": 19,
+      "case_ids": [
+        "fmm3d-inverse-r"
+      ],
+      "numerical_gates": 48,
+      "case_gates": {
+        "fmm3d-inverse-r": 48
+      },
+      "archive": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/fmm3d/atlas-fmm3d-2026-11-23.zip",
+        "sha256": "61861fb2a1d24437175710a09c4afdc934aab49c1c2f2e3e14b5a3c2d466b59c"
+      }
+    },
+    {
+      "group": "gravity-dynamics",
+      "edition": "2026-11-23",
+      "tests": 18,
+      "case_ids": [
+        "gravity-kepler",
+        "gravity-plummer-short"
+      ],
+      "numerical_gates": 78,
+      "case_gates": {
+        "gravity-kepler": 31,
+        "gravity-plummer-short": 47
+      },
+      "archive": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/gravity-dynamics/atlas-gravity-dynamics-2026-11-23.zip",
+        "sha256": "47f1a4bdb8a6a5fdac82e66ffbe8b32c59242ffb7f9f05b418a37bd5913ffacd"
+      }
+    },
+    {
+      "group": "warm-pic",
+      "edition": "2026-11-23",
+      "tests": 31,
+      "case_ids": [
+        "thermal-landau-damping",
+        "thermal-two-stream"
+      ],
+      "numerical_gates": 140,
+      "case_gates": {
+        "thermal-landau-damping": 75,
+        "thermal-two-stream": 65
+      },
+      "archive": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/warm-pic/atlas-warm-pic-2026-11-23.zip",
+        "sha256": "10661b33b9d36f35721fa1ed55b12b94926fe6fab47b8dd1e5dea52a61415fdb"
+      }
+    },
+    {
+      "group": "pic-spatial",
+      "edition": "2026-11-23",
+      "tests": 19,
+      "case_ids": [
+        "pic-independent-spatial"
+      ],
+      "numerical_gates": 58,
+      "case_gates": {
+        "pic-independent-spatial": 58
+      },
+      "archive": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/pic-spatial/atlas-pic-spatial-2026-11-23.zip",
+        "sha256": "51da779a41f2109fbd22d1628463b8be3770ee93b61e49529b1b48a19f431bc3"
+      }
+    },
+    {
+      "group": "dsmc-wall",
+      "edition": "2026-11-23",
+      "tests": 18,
+      "case_ids": [
+        "dsmc-couette",
+        "dsmc-fourier"
+      ],
+      "numerical_gates": 117,
+      "case_gates": {
+        "dsmc-couette": 61,
+        "dsmc-fourier": 56
+      },
+      "archive": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/dsmc-wall/atlas-dsmc-wall-2026-11-23.zip",
+        "sha256": "7b6d5a11874a0042ce772df4c241c72ce42f861c43ed0d44164074ba662da0cb"
+      }
+    },
+    {
+      "group": "dsmc-shock",
+      "edition": "2026-11-24",
+      "tests": 20,
+      "case_ids": [
+        "dsmc-planar-shock"
+      ],
+      "numerical_gates": 129,
+      "case_gates": {
+        "dsmc-planar-shock": 129
+      },
+      "archive": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dsmc-shock/atlas-dsmc-shock-2026-11-24.zip",
+        "sha256": "92794cc568e7857346a24489eddaae113eb60754de7ba717254955ace9d8d961"
+      }
+    }
+  ],
+  "new_group_count": 8,
+  "new_case_count": 12,
+  "new_pytest": 154,
+  "new_numerical_gates": 709,
+  "scope": "Nine scientific candidates give12fixed-input cases; Thomas1949 is bibliography curation, not a scientific execution. No unread original-report claim.",
+  "initial_publication": {
+    "commit": "0e53b62dd4d442d8609f93ff45201cd60a5b4d1d",
+    "pages_run_id": 45195926116,
+    "site_run_id": 45195929164,
+    "site_tests": 543,
+    "http_matched_files": 2163,
+    "http_matched_bytes": 356539287,
+    "actual_browser_mobile_pages": 24,
+    "actual_gallery_cards": 11,
+    "linux_complete_at_that_commit": false
+  },
+  "retained_linux_failures": [
+    {
+      "run_id": 45196555796,
+      "commit": "0e53b62dd4d442d8609f93ff45201cd60a5b4d1d",
+      "group": "mhd-transport",
+      "conclusion": "failure",
+      "report_sha256": "40510542840355f17b81f11cf187063bf1999eeb1fcd162f775acc25b8356fac",
+      "pytest_process": {
+        "command": [
+          "/home/runner/work/_temp/atlas-depth-public-env/bin/python",
+          "-W",
+          "error",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/home/runner/work/_temp/atlas-depth-public-report/verification/groups/mhd-transport/pytest.xml"
+        ],
+        "started": true,
+        "completed": true,
+        "timed_out": false,
+        "exit_code": 0,
+        "stdout": "pytest.stdout.log",
+        "stderr": "pytest.stderr.log",
+        "duration_seconds": 1.2167706669999916
+      },
+      "main_process": {
+        "command": [
+          "/home/runner/work/_temp/atlas-depth-public-env/bin/python",
+          "-W",
+          "error",
+          "run.py",
+          "--input",
+          "inputs.json",
+          "--output",
+          "/home/runner/work/_temp/atlas-depth-public-report/verification/groups/mhd-transport/generated"
+        ],
+        "started": true,
+        "completed": true,
+        "timed_out": false,
+        "exit_code": 1,
+        "stdout": "run.stdout.log",
+        "stderr": "run.stderr.log",
+        "duration_seconds": 115.26144525799998
+      },
+      "cause": "Immutable old MHD reached its115s internal deadline; no tolerance or old bytes changed."
+    },
+    {
+      "run_id": 45197177345,
+      "commit": "0e53b62dd4d442d8609f93ff45201cd60a5b4d1d",
+      "group": "dsmc-shock",
+      "conclusion": "failure",
+      "report_sha256": "0d0469fb90eeb7cc73908ed7590d940a37b1a7229890b5aa0a120afede698d2b",
+      "pytest_process": {
+        "command": [
+          "/home/runner/work/_temp/atlas-depth-public-env/bin/python",
+          "-W",
+          "error",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/home/runner/work/_temp/atlas-depth-public-report/verification/groups/dsmc-shock/pytest.xml"
+        ],
+        "started": true,
+        "completed": true,
+        "timed_out": false,
+        "exit_code": 0,
+        "stdout": "pytest.stdout.log",
+        "stderr": "pytest.stderr.log",
+        "duration_seconds": 0.565254901000003
+      },
+      "main_process": {
+        "command": [
+          "/home/runner/work/_temp/atlas-depth-public-env/bin/python",
+          "-W",
+          "error",
+          "run.py",
+          "--input",
+          "inputs.json",
+          "--output",
+          "/home/runner/work/_temp/atlas-depth-public-report/verification/groups/dsmc-shock/generated"
+        ],
+        "started": true,
+        "completed": false,
+        "timed_out": true,
+        "exit_code": null,
+        "stdout": "run.stdout.log",
+        "stderr": "run.stderr.log",
+        "duration_seconds": 118.903726957
+      },
+      "cause": "Old Nov23shock completed14of15 runs then shared120s timed out; no completed numerical gate failed."
+    }
+  ],
+  "performance_repair": {
+    "edition": "2026-11-24",
+    "scientific_tests": 20,
+    "scientific_runs": 15,
+    "scientific_gates": 129,
+    "original_criteria_unchanged": true,
+    "contract_sha256": "02992a78faa2da2b83de6f4f18e7f9d7373755a5047f4ad0446e1e288e1ff741",
+    "comparison_sha256": "8561a67975ca5f1092e683acaa1c4b958ba82bd8a6ff425f17a702b4cc8e4e44",
+    "packaged_comparison_sha256": "f0625ec4e93e5e70034d3873a9944398d6028ace18b8e32e57e2854257534191",
+    "independent_postrun_review_sha256": "d7d1233ebe9872c32262e2ead8b21dca6fcc01a7899483370bae5159b23a224b",
+    "combined_seconds": 52.7627991660047,
+    "components": [
+      {
+        "name": "R2",
+        "checks": 163,
+        "protocol_sha256": "f49a86e1d54e143eab762e944f819bc208bc2159c81b3d57e3308ec66d5f0aaa",
+        "result_sha256": "19b6dd6fef76a6c810be2cbb43ba70d499ff8197e80b47dbdf63515e11a3175b",
+        "receipt_sha256": "724669bdd31366fe0314714ca4d585fefb1ad34354151f0be608703417101c5d",
+        "elapsed_seconds": 2.2510181660036324,
+        "PDE_executions": 0
+      },
+      {
+        "name": "R3",
+        "checks": 348,
+        "protocol_sha256": "980326f0665340dffe04dfa6244c5dbf07c81176e7d3ec3b5e81aecd71631c5d",
+        "result_sha256": "c2852ce73835dbe896726a0adeb53312c23165890c440bf30741872f369ad225",
+        "receipt_sha256": "5416863906604456729b93cae99446bca8fd4c96d8ddf650f95e6d9587d5a9ca",
+        "elapsed_seconds": 2.6937950840001577,
+        "PDE_executions": 0
+      }
+    ],
+    "component_checks_are_not_added_to_pytest_or_case_gates": true,
+    "all246_arrays15_CSVs4_JSON_science_exact": true,
+    "six_figure_bytes_preserved": {
+      "edition": "2026-11-23",
+      "count": 6,
+      "scope": "All six original-edition files remain protected; this does not claim new SVG/PDF byte identity."
+    },
+    "new_png_bytes_exact": true,
+    "figure_comparisons": [
+      {
+        "file": "dsmc-planar-shock.png",
+        "old_edition_path": "code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock.png",
+        "old_sha256": "7e0e1af4543efca816a5b900b2f4c9d4fc3fccacbf1eb3e367e6e4775c2cd92c",
+        "new_edition_path": "code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock.png",
+        "new_sha256": "7e0e1af4543efca816a5b900b2f4c9d4fc3fccacbf1eb3e367e6e4775c2cd92c",
+        "new_bytes_match_old": true,
+        "kind": "raster"
+      },
+      {
+        "file": "dsmc-planar-shock.svg",
+        "old_edition_path": "code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock.svg",
+        "old_sha256": "3dc8f57ce7dafb6beffb6c72ce7f76a5c3d070b3e48ea0009ee7d9913d005200",
+        "new_edition_path": "code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock.svg",
+        "new_sha256": "8bdd948c08e7dee04b1d2a2bd1523c68aecae651b57b3df5d53003fc4ee230b7",
+        "new_bytes_match_old": false,
+        "kind": "vector"
+      },
+      {
+        "file": "dsmc-planar-shock.pdf",
+        "old_edition_path": "code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock.pdf",
+        "old_sha256": "9cb1d50e1f2bcf4781b9930d83290cf58bb80aaa7038a5ed533d6961eeed3e33",
+        "new_edition_path": "code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock.pdf",
+        "new_sha256": "6e60174ff582f2e78f4d4f1a0c474e61bde38d7fb7a1203c7433ff3311c94922",
+        "new_bytes_match_old": false,
+        "kind": "vector"
+      },
+      {
+        "file": "dsmc-planar-shock-preview.png",
+        "old_edition_path": "code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.png",
+        "old_sha256": "89e25d3088c177ac0cb027fe58f02627b049626d0198bda02abc0eb6fec6555c",
+        "new_edition_path": "code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock-preview.png",
+        "new_sha256": "89e25d3088c177ac0cb027fe58f02627b049626d0198bda02abc0eb6fec6555c",
+        "new_bytes_match_old": true,
+        "kind": "raster"
+      },
+      {
+        "file": "dsmc-planar-shock-preview.svg",
+        "old_edition_path": "code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.svg",
+        "old_sha256": "9817f260430c8f03fa34df97afd97c8320d1d50523f2b38a95a54e0809bb5452",
+        "new_edition_path": "code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock-preview.svg",
+        "new_sha256": "b33e3913d2804796ee3aa01facff28d3f8ec78420ca746428a1ae2e1c26485ab",
+        "new_bytes_match_old": false,
+        "kind": "vector"
+      },
+      {
+        "file": "dsmc-planar-shock-preview.pdf",
+        "old_edition_path": "code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.pdf",
+        "old_sha256": "5322707b5fb1a3d355ac3d96bf042d0f9c0f807362c2937af4ed98c1a10c85d2",
+        "new_edition_path": "code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock-preview.pdf",
+        "new_sha256": "da6ccae821470734c3c9e381331721c6381d830d2614dc87e9fc245181dd59af",
+        "new_bytes_match_old": false,
+        "kind": "vector"
+      }
+    ],
+    "new_vector_artifacts": [
+      {
+        "file": "dsmc-planar-shock.svg",
+        "old_edition_path": "code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock.svg",
+        "old_sha256": "3dc8f57ce7dafb6beffb6c72ce7f76a5c3d070b3e48ea0009ee7d9913d005200",
+        "new_edition_path": "code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock.svg",
+        "new_sha256": "8bdd948c08e7dee04b1d2a2bd1523c68aecae651b57b3df5d53003fc4ee230b7",
+        "new_bytes_match_old": false,
+        "kind": "vector"
+      },
+      {
+        "file": "dsmc-planar-shock.pdf",
+        "old_edition_path": "code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock.pdf",
+        "old_sha256": "9cb1d50e1f2bcf4781b9930d83290cf58bb80aaa7038a5ed533d6961eeed3e33",
+        "new_edition_path": "code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock.pdf",
+        "new_sha256": "6e60174ff582f2e78f4d4f1a0c474e61bde38d7fb7a1203c7433ff3311c94922",
+        "new_bytes_match_old": false,
+        "kind": "vector"
+      },
+      {
+        "file": "dsmc-planar-shock-preview.svg",
+        "old_edition_path": "code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.svg",
+        "old_sha256": "9817f260430c8f03fa34df97afd97c8320d1d50523f2b38a95a54e0809bb5452",
+        "new_edition_path": "code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock-preview.svg",
+        "new_sha256": "b33e3913d2804796ee3aa01facff28d3f8ec78420ca746428a1ae2e1c26485ab",
+        "new_bytes_match_old": false,
+        "kind": "vector"
+      },
+      {
+        "file": "dsmc-planar-shock-preview.pdf",
+        "old_edition_path": "code/validated-examples/2026-11-23/dsmc-shock/results/dsmc-planar-shock-preview.pdf",
+        "old_sha256": "5322707b5fb1a3d355ac3d96bf042d0f9c0f807362c2937af4ed98c1a10c85d2",
+        "new_edition_path": "code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock-preview.pdf",
+        "new_sha256": "da6ccae821470734c3c9e381331721c6381d830d2614dc87e9fc245181dd59af",
+        "new_bytes_match_old": false,
+        "kind": "vector"
+      }
+    ],
+    "vector_difference_cause": "Not analyzed; no cause inferred from unequal hashes."
+  },
+  "old_immutable_code_files_preserved": 776,
+  "other37_release_registry_objects_unchanged": true,
+  "public_http": {
+    "mode": "prior-full-baseline-plus-final-SHA-delta",
+    "baseline_commit": "0e53b62dd4d442d8609f93ff45201cd60a5b4d1d",
+    "baseline_matched_files": 2163,
+    "baseline_receipt_sha256": "ddf00e3773e1010ba0610a1f3c0d08b45c8a794218f64e084cb8579dc45135cf",
+    "delta_commit": "4c5a25eca6ba9f53195f9b70f005322ec4d1e738",
+    "delta_matched_files": 1594,
+    "delta_matched_bytes": 309417633,
+    "delta_receipt_sha256": "446e6283c119abcf9f7fbef2962a8306fa21c539af1064e6a56a1c135e5b6143",
+    "anonymous": true,
+    "counts_are_not_added": true
+  },
+  "public_ui": {
+    "mode": "HTTP-new-edition-links-with-prior-visual-proof",
+    "visual_commit": "0e53b62dd4d442d8609f93ff45201cd60a5b4d1d",
+    "new_browser_visit_claimed": false,
+    "final_HTTP_link_commit": "4c5a25eca6ba9f53195f9b70f005322ec4d1e738",
+    "actual_saved_HTML_pages": 2,
+    "new_edition_link_targets": [
+      "code/validated-examples/2026-11-24/dsmc-shock/atlas-dsmc-shock-2026-11-24.zip",
+      "code/validated-examples/2026-11-24/dsmc-shock/dsmc.py",
+      "code/validated-examples/2026-11-24/dsmc-shock/inputs.json",
+      "code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock-preview.png",
+      "numerical-methods-atlas/validation/dsmc-planar-shock/index.json",
+      "numerical-methods-atlas/validation/dsmc-planar-shock/index.md"
+    ],
+    "prior_visual_sha256": "d7fb6cd125ac2dff1ab78244ec3a4c9de816a9a18ce3018ae7fc96f28afaf778",
+    "link_receipt_sha256": "dce38b3c617dab7c8be8d1c74a22786a432c6da626ed882e90cc44ebb9a6fc50"
+  },
+  "linux": {
+    "commit": "4c5a25eca6ba9f53195f9b70f005322ec4d1e738",
+    "run_id": 45208638965,
+    "url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45208638965",
+    "groups": 38,
+    "cases": 83,
+    "tests": 1047,
+    "source_checkout": false,
+    "report_sha256": "20c058cf308baf8cfde239852deb86dabb013bebc54d361e4e2672a45d1cce4e"
+  },
+  "workflows": {
+    "commit": "4c5a25eca6ba9f53195f9b70f005322ec4d1e738",
+    "pages": 45207845753,
+    "site_checks": 45207845040,
+    "site_node_tests": 543,
+    "linux": 45208638965,
+    "all_selected_same_SHA_success": true
+  },
+  "artifact_acquisition": {
+    "artifact_id": 14835184586,
+    "artifact_total_bytes": 488341558,
+    "selected_transfer_bytes": 1316910,
+    "range_only": true,
+    "archive_written": false
+  },
+  "next_set_preparation": {
+    "candidate_count": 10,
+    "independent_reviews": 3,
+    "scientific_runs": 0,
+    "runtime_status": "UNMEASURED",
+    "acceptance_contract_frozen": false,
+    "started_at_utc": "2026-11-23T14:40:00.683500+00:00",
+    "completed_at_utc": "2026-11-23T14:52:04.733984+00:00",
+    "overlap_linux_run_id": 45196555796,
+    "overlap_linux_conclusion": "failure",
+    "overlap_seconds": 672.670124,
+    "preparation_total_seconds": 724.050484,
+    "scope": "Draft preparation only; overlap is with45196555796, never the later repair/success run."
+  },
+  "evidence_sha256": {
+    "component_R2_protocol": "f49a86e1d54e143eab762e944f819bc208bc2159c81b3d57e3308ec66d5f0aaa",
+    "component_R2_receipt": "724669bdd31366fe0314714ca4d585fefb1ad34354151f0be608703417101c5d",
+    "component_R2_result": "19b6dd6fef76a6c810be2cbb43ba70d499ff8197e80b47dbdf63515e11a3175b",
+    "component_R3_protocol": "980326f0665340dffe04dfa6244c5dbf07c81176e7d3ec3b5e81aecd71631c5d",
+    "component_R3_receipt": "5416863906604456729b93cae99446bca8fd4c96d8ddf650f95e6d9587d5a9ca",
+    "component_R3_result": "c2852ce73835dbe896726a0adeb53312c23165890c440bf30741872f369ad225",
+    "final_ci_verification": "72bfd1496f7b224dca4049f7f1599113d9ae4e705b351f78d3a0c4da291a0e37",
+    "final_http_delta": "446e6283c119abcf9f7fbef2962a8306fa21c539af1064e6a56a1c135e5b6143",
+    "final_linux_context": "fb58eb7d3e2329a7d842778e5614593fc1b10c8f41b08fc33888ccfc5fadbe21",
+    "final_linux_report": "20c058cf308baf8cfde239852deb86dabb013bebc54d361e4e2672a45d1cce4e",
+    "final_publication_checks": "ccd423133bd125e49a5f0e9055e9cd7416f304126bc083c9eb9b3d8ba8fd75e8",
+    "final_site": "b630e7376ea5ad70c63a30162dd9cdc9ec9af3a43fcea9d20c0bd89715dede2d",
+    "final_ui_links": "dce38b3c617dab7c8be8d1c74a22786a432c6da626ed882e90cc44ebb9a6fc50",
+    "final_ui_saved_body_0": "d3be4f55246a35ea9f0c491270ae9081bf2a424949f3ec420778cab86357e1c2",
+    "final_ui_saved_body_1": "ac7413121f6b98fbee0234b35c68de7ca347804bc7b5c5abfa8206e1ad4aca3b",
+    "final_workflows": "3e6cdfb0767b42676571c16d8d8e25d3c497b999d2010bb9dce7659c6c3c501c",
+    "initial_http": "ddf00e3773e1010ba0610a1f3c0d08b45c8a794218f64e084cb8579dc45135cf",
+    "initial_site": "6ad0e7b1ab81ad86a46bc5d3f9b174f95fee948a3dd1f26a4dac91696a49db3d",
+    "initial_ui": "d7fb6cd125ac2dff1ab78244ec3a4c9de816a9a18ce3018ae7fc96f28afaf778",
+    "initial_workflows": "fb1d729ada196ee6677e7701d3f77995fbde4a31386ca6ccc0c3c811b00c94d6",
+    "linux1_context": "21941e57c84df1c0b556e644f6de62198d1d20c70e0dff8e8443dc11b545cb89",
+    "linux1_mhd_result": "ce12c6bb168934d3b26b4d848d3a86dfdfa944183fc499eb99001eb90fcd49a1",
+    "linux1_report": "40510542840355f17b81f11cf187063bf1999eeb1fcd162f775acc25b8356fac",
+    "linux2_context": "3cd1a20243f93330306adb14a9b5b9d880aed9425a062e6df3ce98e11a11060a",
+    "linux2_report": "0d0469fb90eeb7cc73908ed7590d940a37b1a7229890b5aa0a120afede698d2b",
+    "linux2_shock_checkpoint": "9b222e755ac6174b32aad53d1bf7623348c380f20b643b2c2ac8ea5b70716862",
+    "linux2_shock_completed_runs": "0cb0896e10be3744d8d08eb71b91c10156381f7cd366a0246d7d53a0545ab540",
+    "preparation_index": "9d55cee97e81b6aba6e4618753f31917f7a321c3104e4e5b1c12f810b68e64a6",
+    "preservation_fixture": "d5bcdc8c2c0a749174f68add4ad0d8bf5b5169b61801c4f39faa54ad8c4fb304",
+    "preview_stop": "7456e04c55bed2dfc2f08763a3b8480238a302078dcf06fb4e0962c507f6032b",
+    "repair_comparison_plan": "9f876f43c9b7f2e567484b7d48a5269ff91ac764d170ef97b2a82fe99ab51d9a",
+    "repair_contract": "02992a78faa2da2b83de6f4f18e7f9d7373755a5047f4ad0446e1e288e1ff741",
+    "repair_expected_sources": "3550498f769f05b7afc58e04c8fce8f2bed405a1218a50e8e1cfc41d83d5a073",
+    "repair_full_receipt": "de87211b513a5e6d2d153c577981e4f55bc8ae53b85c2b58a8a77f78670a8927",
+    "repair_main_result": "4201797e0dfbd43ae6cec0f5e9cd6e5c1542a410196f8219824206b8bcf0ae32",
+    "repair_packaged_science_comparison": "f0625ec4e93e5e70034d3873a9944398d6028ace18b8e32e57e2854257534191",
+    "repair_plan": "7bc4512d1ec66f874f996b1f24de0041288154d416eca0cf9e87f257107a3acc",
+    "repair_postrun_review": "d7d1233ebe9872c32262e2ead8b21dca6fcc01a7899483370bae5159b23a224b",
+    "repair_science_comparison": "8561a67975ca5f1092e683acaa1c4b958ba82bd8a6ff425f17a702b4cc8e4e44",
+    "repair_source_changes": "e0d666075728f295aeab5ecc7afd5d4f051a23e0e5224fe67b5ad09ad914f492"
+  },
+  "public_metadata_status": "APPLIED_WITH_NEXT_AGGREGATE",
+  "metadata_application": {
+    "batch_sequences": [
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47
+    ],
+    "source_base_commit": "9dde48159c568f985170506ef2eb0a7008f1c4ea",
+    "applied_at_utc": "2026-11-23T22:03:13.918574+00:00",
+    "scope": "Publication labels only; scientific verification remains bound to the recorded4c5a25ec commit."
+  }
+}

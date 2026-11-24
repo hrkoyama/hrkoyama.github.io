@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "limits": {
+    "cavity": {
+      "max_mach": 0.1,
+      "mass_drift": 1e-08,
+      "stationarity": 0.0002,
+      "vortex_all_grids": 0.1,
+      "centerline": 0.03,
+      "vortex_finest": 0.06
+    }
+  },
+  "common_ledger_scaled": 1e-10,
+  "scope": "Frozen before first pytest/main. Fixed finite-input educational checks; reference ranges and empirical grid differences are not rigorous continuum-error bounds."
+}

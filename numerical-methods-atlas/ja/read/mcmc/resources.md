@@ -32,6 +32,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/mcmc/
   availability: run
 
   同じ2峰密度を、分散初期値の局所MH・同じ峰からの局所MH・対称reflectionを混ぜるMHで比較。期待した混合不良の検出と、実際の峰間移動を分けて検証します。
+- [相関2変量Gaussianのjoint標的とMCSE](<https://hrkoyama.github.io/numerical-methods-atlas/validation/correlated-gaussian-mcmc/?lang=ja>)
+  availability: run
+
+  実2D MH軌道を既知のjointモーメントと同一データArviZ診断で検査。
 - [Markov連鎖Monte Carlo：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/mcmc/?lang=ja#method-execution-ja>)
   availability: source
 

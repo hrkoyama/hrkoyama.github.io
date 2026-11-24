@@ -1,0 +1,556 @@
+{
+  "passed": true,
+  "checks": {
+    "safe-contraction/matrix-vector": true,
+    "safe-contraction/row-matrix/0": true,
+    "safe-contraction/row-matrix/1": true,
+    "L0.5-w0.5/constant256/finite-positive": true,
+    "L0.5-w0.5/constant256/residual": true,
+    "L0.5-w0.5/constant256/budget": true,
+    "L0.5-w0.5/constant512/finite-positive": true,
+    "L0.5-w0.5/constant512/residual": true,
+    "L0.5-w0.5/constant512/budget": true,
+    "L0.5-w0.5/constant1024/finite-positive": true,
+    "L0.5-w0.5/constant1024/residual": true,
+    "L0.5-w0.5/constant1024/budget": true,
+    "L0.5-w0.5/linear256/finite-positive": true,
+    "L0.5-w0.5/linear256/residual": true,
+    "L0.5-w0.5/linear256/budget": true,
+    "L0.5-w0.5/linear512/finite-positive": true,
+    "L0.5-w0.5/linear512/residual": true,
+    "L0.5-w0.5/linear512/budget": true,
+    "L0.5-w0.5/constant-refinement": true,
+    "L0.5-w0.5/linear-refinement": true,
+    "L0.5-w0.5/independent-basis": true,
+    "L0.5-w0.9/constant256/finite-positive": true,
+    "L0.5-w0.9/constant256/residual": true,
+    "L0.5-w0.9/constant256/budget": true,
+    "L0.5-w0.9/constant512/finite-positive": true,
+    "L0.5-w0.9/constant512/residual": true,
+    "L0.5-w0.9/constant512/budget": true,
+    "L0.5-w0.9/constant1024/finite-positive": true,
+    "L0.5-w0.9/constant1024/residual": true,
+    "L0.5-w0.9/constant1024/budget": true,
+    "L0.5-w0.9/linear256/finite-positive": true,
+    "L0.5-w0.9/linear256/residual": true,
+    "L0.5-w0.9/linear256/budget": true,
+    "L0.5-w0.9/linear512/finite-positive": true,
+    "L0.5-w0.9/linear512/residual": true,
+    "L0.5-w0.9/linear512/budget": true,
+    "L0.5-w0.9/constant-refinement": true,
+    "L0.5-w0.9/linear-refinement": true,
+    "L0.5-w0.9/independent-basis": true,
+    "L3.0-w0.5/constant256/finite-positive": true,
+    "L3.0-w0.5/constant256/residual": true,
+    "L3.0-w0.5/constant256/budget": true,
+    "L3.0-w0.5/constant512/finite-positive": true,
+    "L3.0-w0.5/constant512/residual": true,
+    "L3.0-w0.5/constant512/budget": true,
+    "L3.0-w0.5/constant1024/finite-positive": true,
+    "L3.0-w0.5/constant1024/residual": true,
+    "L3.0-w0.5/constant1024/budget": true,
+    "L3.0-w0.5/linear256/finite-positive": true,
+    "L3.0-w0.5/linear256/residual": true,
+    "L3.0-w0.5/linear256/budget": true,
+    "L3.0-w0.5/linear512/finite-positive": true,
+    "L3.0-w0.5/linear512/residual": true,
+    "L3.0-w0.5/linear512/budget": true,
+    "L3.0-w0.5/constant-refinement": true,
+    "L3.0-w0.5/linear-refinement": true,
+    "L3.0-w0.5/independent-basis": true,
+    "L3.0-w0.9/constant256/finite-positive": true,
+    "L3.0-w0.9/constant256/residual": true,
+    "L3.0-w0.9/constant256/budget": true,
+    "L3.0-w0.9/constant512/finite-positive": true,
+    "L3.0-w0.9/constant512/residual": true,
+    "L3.0-w0.9/constant512/budget": true,
+    "L3.0-w0.9/constant1024/finite-positive": true,
+    "L3.0-w0.9/constant1024/residual": true,
+    "L3.0-w0.9/constant1024/budget": true,
+    "L3.0-w0.9/linear256/finite-positive": true,
+    "L3.0-w0.9/linear256/residual": true,
+    "L3.0-w0.9/linear256/budget": true,
+    "L3.0-w0.9/linear512/finite-positive": true,
+    "L3.0-w0.9/linear512/residual": true,
+    "L3.0-w0.9/linear512/budget": true,
+    "L3.0-w0.9/constant-refinement": true,
+    "L3.0-w0.9/linear-refinement": true,
+    "L3.0-w0.9/independent-basis": true,
+    "independent-E1-diagonal-0.001953125": true,
+    "independent-E1-diagonal-0.01171875": true,
+    "independent-E1-diagonal-0.0029296875": true
+  },
+  "check_count": 78,
+  "details": [
+    {
+      "name": "safe-contraction/matrix-vector",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "safe-contraction/row-matrix/0",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "safe-contraction/row-matrix/1",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.5/constant256/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.5/constant256/residual",
+      "value": 8.326672684688674e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.5/constant256/budget",
+      "value": 1.4599692713668233e-06,
+      "bound": 0.0005,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.5/constant512/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.5/constant512/residual",
+      "value": 1.5543122344752192e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.5/constant512/budget",
+      "value": 3.9845166255325637e-07,
+      "bound": 0.0005,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.5/constant1024/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.5/constant1024/residual",
+      "value": 2.7200464103316335e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.5/constant1024/budget",
+      "value": 1.0797870381162866e-07,
+      "bound": 0.0005,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.5/linear256/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.5/linear256/residual",
+      "value": 8.881784197001252e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.5/linear256/budget",
+      "value": 1.4597480256783868e-06,
+      "bound": 0.0005,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.5/linear512/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.5/linear512/residual",
+      "value": 1.8318679906315083e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.5/linear512/budget",
+      "value": 3.984202915918722e-07,
+      "bound": 0.0005,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.5/constant-refinement",
+      "value": 1.7261884927011195e-07,
+      "bound": 0.0002,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.5/linear-refinement",
+      "value": 6.600606485274163e-07,
+      "bound": 0.0002,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.5/independent-basis",
+      "value": 1.829061843094948e-07,
+      "bound": 0.0002,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.9/constant256/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.9/constant256/residual",
+      "value": 9.43689570931383e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.9/constant256/budget",
+      "value": 3.676202014607499e-07,
+      "bound": 0.0005,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.9/constant512/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.9/constant512/residual",
+      "value": 2.1649348980190553e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.9/constant512/budget",
+      "value": 1.0016240042931557e-07,
+      "bound": 0.0005,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.9/constant1024/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.9/constant1024/residual",
+      "value": 3.0531133177191805e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.9/constant1024/budget",
+      "value": 2.7105388170078903e-08,
+      "bound": 0.0005,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.9/linear256/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.9/linear256/residual",
+      "value": 1.5543122344752192e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.9/linear256/budget",
+      "value": 3.675188273433161e-07,
+      "bound": 0.0005,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.9/linear512/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.9/linear512/residual",
+      "value": 1.942890293094024e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.9/linear512/budget",
+      "value": 1.0014808431157984e-07,
+      "bound": 0.0005,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.9/constant-refinement",
+      "value": 1.3023743802853538e-07,
+      "bound": 0.0002,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.9/linear-refinement",
+      "value": 2.4919736529849246e-07,
+      "bound": 0.0002,
+      "passed": true
+    },
+    {
+      "name": "L0.5-w0.9/independent-basis",
+      "value": 4.9168037835611855e-08,
+      "bound": 0.0002,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.5/constant256/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.5/constant256/residual",
+      "value": 6.938893903907228e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.5/constant256/budget",
+      "value": 5.26628638880533e-05,
+      "bound": 0.0005,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.5/constant512/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.5/constant512/residual",
+      "value": 9.43689570931383e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.5/constant512/budget",
+      "value": 1.455260966831684e-05,
+      "bound": 0.0005,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.5/constant1024/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.5/constant1024/residual",
+      "value": 1.6930901125533637e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.5/constant1024/budget",
+      "value": 3.985055289312811e-06,
+      "bound": 0.0005,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.5/linear256/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.5/linear256/residual",
+      "value": 5.551115123125783e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.5/linear256/budget",
+      "value": 5.261777534981693e-05,
+      "bound": 0.0005,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.5/linear512/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.5/linear512/residual",
+      "value": 1.3877787807814457e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.5/linear512/budget",
+      "value": 1.4546075072341402e-05,
+      "bound": 0.0005,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.5/constant-refinement",
+      "value": 6.8454526347405675e-06,
+      "bound": 0.0002,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.5/linear-refinement",
+      "value": 2.882908562207298e-05,
+      "bound": 0.0002,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.5/independent-basis",
+      "value": 8.322665749571634e-06,
+      "bound": 0.0002,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.9/constant256/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.9/constant256/residual",
+      "value": 8.326672684688674e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.9/constant256/budget",
+      "value": 2.1608023278829602e-05,
+      "bound": 0.0005,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.9/constant512/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.9/constant512/residual",
+      "value": 1.609823385706477e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.9/constant512/budget",
+      "value": 5.923338726010474e-06,
+      "bound": 0.0005,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.9/constant1024/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.9/constant1024/residual",
+      "value": 2.3314683517128287e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.9/constant1024/budget",
+      "value": 1.611331197082233e-06,
+      "bound": 0.0005,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.9/linear256/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.9/linear256/residual",
+      "value": 1.0547118733938987e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.9/linear256/budget",
+      "value": 2.1572793323321182e-05,
+      "bound": 0.0005,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.9/linear512/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.9/linear512/residual",
+      "value": 1.5543122344752192e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.9/linear512/budget",
+      "value": 5.918341039690134e-06,
+      "bound": 0.0005,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.9/constant-refinement",
+      "value": 4.413761499955093e-06,
+      "bound": 0.0002,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.9/linear-refinement",
+      "value": 1.0039594627475612e-05,
+      "bound": 0.0002,
+      "passed": true
+    },
+    {
+      "name": "L3.0-w0.9/independent-basis",
+      "value": 2.2935739490415052e-06,
+      "bound": 0.0002,
+      "passed": true
+    },
+    {
+      "name": "independent-E1-diagonal-0.001953125",
+      "value": 9.020562075079397e-17,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "independent-E1-diagonal-0.01171875",
+      "value": 6.938893903907228e-17,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "independent-E1-diagonal-0.0029296875",
+      "value": 6.245004513516506e-17,
+      "bound": 1e-10,
+      "passed": true
+    }
+  ],
+  "scope": "Continuum Fredholm reference with exact singular-cell weights,two scalar bases and fixed refinements;empirical finite-reference sensitivity,not a rigorous continuum error bound.",
+  "PDE_primary_runs": 0
+}

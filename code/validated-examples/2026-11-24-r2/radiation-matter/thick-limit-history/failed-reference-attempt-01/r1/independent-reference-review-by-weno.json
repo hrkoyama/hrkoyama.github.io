@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "reviewer": "batch_weno",
+  "status": "STATIC_REFERENCE_ONLY_REVIEW_PASS_AWAITING_PARENT_EXECUTION_AUTHORIZATION",
+  "review_completed_at_utc": "2026-11-23T23:28:52.493802+00:00",
+  "protocol_sha256": "f9a19d913d751a33760f0b98ad2c17a38b7442fcd1a898f446584c246da423f7",
+  "bindings_checked": 69,
+  "binding_mismatches": [],
+  "critical_source_sha256": {
+    "source/references/thick_reference.py": "2217bab3ebb4edd3193962b1be3e61a19e225c5e4a2f2f59ec336eeaa40a6531",
+    "source/references/qualify_thick.py": "66392b70a599a36dba64739ca78e3112d2582ffc650e4a90401dae110865586c",
+    "source/references/analytic.py": "38b146765d6533cf7cfd20bfaf561e3a30d75f293c5fe6c23c4e6b1752d53bbb",
+    "execute-reference-once.py": "13558eb0a4c50956d7a7d04eaf26481ecdf798af1446ecbac7b524b05726132c",
+    "source/inputs.json": "9032f6d9ba61972884d55c46ea93d6bda13e42d38a40f64c0a9ba619d48a8400",
+    "source/acceptance.json": "d90424437d8296e6dcb03901dbf8a2d049fd70b565ca5c84b27971610d756d9d"
+  },
+  "scope": "Read-only static source/protocol/AST/hash review only. No numerical module imported, no compile, rhs probe, matrix action, primary trajectory or timing performed.",
+  "mathematical_checks": [
+    {
+      "topic": "continuum generator",
+      "finding": "Radiation diagonal (-kappa-i*k*mu)/epsilon, material coupling kappa/epsilon, material derivative kappa*(half-angular-mean-V) agree with declared physical equations."
+    },
+    {
+      "topic": "weighted conservation",
+      "finding": "Left weight [epsilon*w/2,1] acting on generator gives [-i*k*w*mu/2,0]; the qualifier checks k=1. This tests capacity-weighted local Fourier energy identity, not zero flux at nonzero k."
+    },
+    {
+      "topic": "angular normalization",
+      "finding": "Hemisphere32 and full GL64/128 each explicitly check sum weights2, first moment0, half second moment1/3 and positive weights/strict interior ordinates."
+    },
+    {
+      "topic": "k0 golden",
+      "finding": "Independent closed_step at physical time kappa*t includes nonunit epsilon .25,1,2 and kappas4,16; its difference decays exp[-kappa*(1+1/epsilon)*t], correctly conserving epsilon*E+V."
+    },
+    {
+      "topic": "shared expm qualification",
+      "finding": "Separate direct DOP853 derivative at fixed epsilon1 checks full129-component GL128 final state for kappas4,16, with rtol2e-11/atol2e-13/maxstep1/(4*kappa)/nfev<=6000; expm is explicitly shared with later primary, not an independent time engine."
+    },
+    {
+      "topic": "units and cell means",
+      "finding": "Reference cache stores unit Fourier amplitudes at physical time kappa*s. Later multiplication by A_N=.1*sinc(h/(2*pi)) is needed exactly once; unit basis probes carry no sinc. Reference-only qualifier appropriately performs no primary probe/reconstruction."
+    },
+    {
+      "topic": "diffusion and initial layer",
+      "finding": "D_eff=1/[3*kappa*(epsilon+1)], giving exp[-s/6] at epsilon1 and k1; initial zero actual flux differs from nonzero Fick flux. Final-only asymptotic interpretation remains required."
+    }
+  ],
+  "check_inventory": {
+    "angular_rules_3x4": 12,
+    "finite_generators_3x3": 9,
+    "weighted_moment_identity_3x3": 9,
+    "Fourier_conjugacy_3x3": 9,
+    "amplitude_and_symmetry_3x3x4x2": 72,
+    "GL64_128_3x4": 12,
+    "closed_k0_epsilon3_kappa2_time2": 12,
+    "DOP853_kappa2_x3": 6
+  },
+  "planned_checks": 141,
+  "independent_count_sum": 141,
+  "retention_review": {
+    "fresh_attempt_required": true,
+    "full_frozen_source_protocol_copy_before_child": true,
+    "logs_direct_to_persistent_binary_files": true,
+    "completed_moment_cache_and_last_active_amplitude_persisted_per_check": true,
+    "DOP_partial_state_saved_every256_evaluations_and_finally_via_raw": true,
+    "qualification_failure_blocks_cache_installation": true,
+    "completed_full_angular_vectors_not_all_public_cache": "Qualification retains completed moments plus last active full vector; final GL128 full-vector comparison is evaluated before passing. Scope does not claim every historical full angular vector retained."
+  },
+  "execution_guards_reviewed": {
+    "outer_shared_seconds": 30,
+    "warnings_as_error": true,
+    "threads": 1,
+    "frozen_interpreter_and_versions_checked": true,
+    "preflight_and_copy_within_shared_budget": true,
+    "process_group_kill_on_timeout": true,
+    "post_hash_check_and_receipt_on_failure": true,
+    "exact141_true_native_bool_gate": true,
+    "no_auto_retry": true,
+    "primary_rhs_probes": 0,
+    "primary_mode_evolutions": 0
+  },
+  "limitations": [
+    "GL64/128 sensitivity is a finite check, not a rigorous continuum angular-error bound.",
+    "DOP853 versus expm qualifies only the independent reference propagation, not original primary SSPRK2.",
+    "This review does not authorize or qualify the later primary stencil-mode/main/pytest batch.",
+    "Resolved N~kappa^2 refinement does not prove fixed-grid asymptotic preservation.",
+    "No reference numeric success or runtime has been measured by this reviewer."
+  ],
+  "blocking_findings": [],
+  "publisher_modified": false,
+  "numerical_execution_performed": false,
+  "review_timestamp_scope": "Completion clock captured; review start was not separately recorded."
+}

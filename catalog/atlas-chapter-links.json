@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_on": "2026-11-23",
+  "reviewed_on": "2026-11-24",
   "scope": {
     "ja": "既存の登録情報で対応が付いていなかった5つの技術解説章に、確認した関連資料だけを追加します。手法の定義、関連する固定入力、保存図、公開ソースと検査の範囲を区別し、新しい数値結果や実行例を登録しません。",
     "en": "Reviewed additional resource links for five technical chapters without existing registered associations. Method definitions, related fixed inputs, saved figures, published sources and checks retain their separate scopes; no new numerical results or executions are registered."
@@ -716,6 +716,273 @@
       "note": {
         "ja": "流入出を持つ1D空間・3D速度の衝撃波で、RH遠方状態と内部の独立な数値参照を区別します。",
         "en": "For a1D-space,3D-velocity open-reservoir shock,distinguish RH far states from independent numerical internal-profile references."
+      }
+    },
+    {
+      "id": "validation-lbm-cavity",
+      "method_ids": [
+        "d2q9-bgk"
+      ],
+      "equation_ids": [
+        "bgk",
+        "navier-stokes"
+      ],
+      "problem_ids": [
+        "lid-driven-cavity"
+      ],
+      "execution_ids": [
+        "lbm-cavity-re100"
+      ],
+      "reference_ids": [
+        "lbm-cavity-re100"
+      ],
+      "code_problem_ids": [
+        "lid-driven-cavity"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "LBMで四壁に囲まれたRe100の流れを進め、Ghiaの中心線と主渦に照合します。壁との運動量交換も記録します。",
+        "en": "Advance a four-wall Re100 LBM flow and compare Ghia centerlines and the primary vortex, recording wall momentum exchange."
+      }
+    },
+    {
+      "id": "validation-lbm-taylor-green",
+      "method_ids": [
+        "d2q9-bgk"
+      ],
+      "equation_ids": [
+        "bgk",
+        "navier-stokes"
+      ],
+      "problem_ids": [
+        "taylor-green"
+      ],
+      "execution_ids": [
+        "lbm-taylor-green"
+      ],
+      "reference_ids": [
+        "lbm-taylor-green"
+      ],
+      "code_problem_ids": [
+        "taylor-green"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "周期渦の解析解を使い、格子・時間刻み・Mach数が結び付く誤差と振幅依存性を調べます。",
+        "en": "Use the exact periodic vortex to examine coupled grid/time/Mach errors and amplitude effects."
+      }
+    },
+    {
+      "id": "validation-lbm-annulus",
+      "method_ids": [
+        "d2q9-bgk"
+      ],
+      "equation_ids": [
+        "bgk",
+        "navier-stokes"
+      ],
+      "problem_ids": [
+        "lbm-annular-couette-control"
+      ],
+      "execution_ids": [
+        "lbm-annular-couette-control"
+      ],
+      "reference_ids": [
+        "lbm-annular-couette-control"
+      ],
+      "code_problem_ids": [
+        "lbm-annular-couette-control"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "同じ物理条件で格子を細かくし、曲面補間と階段壁の速度・点ごとの圧力・トルクを解析解に照合します。",
+        "en": "Refine the grid at identical physical conditions and compare interpolated/stair walls with analytic velocity,pointwise pressure and torque."
+      }
+    },
+    {
+      "id": "validation-lbm-curved-boundary",
+      "method_ids": [
+        "d2q9-bgk"
+      ],
+      "equation_ids": [
+        "bgk",
+        "navier-stokes"
+      ],
+      "problem_ids": [
+        "lbm-cylinder-re20"
+      ],
+      "execution_ids": [
+        "lbm-cylinder-re20"
+      ],
+      "reference_ids": [
+        "lbm-cylinder-re20"
+      ],
+      "code_problem_ids": [
+        "lbm-cylinder-re20"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "Re20円柱流の曲面壁と流出境界を実計算し、抗力・圧力差・後流を独立な数値ベンチマークへ照合します。",
+        "en": "Advance actual Re20 cylinder flow with curved walls and an open outlet; compare forces,pressure difference and wake with independent numerical benchmarks."
+      }
+    },
+    {
+      "id": "validation-radiation-scattering",
+      "method_ids": [
+        "radiation-transport",
+        "upwind"
+      ],
+      "equation_ids": [
+        "static-grey-transfer"
+      ],
+      "problem_ids": [
+        "isotropic-scattering-slab"
+      ],
+      "execution_ids": [
+        "isotropic-scattering-slab"
+      ],
+      "reference_ids": [
+        "isotropic-scattering-slab"
+      ],
+      "code_problem_ids": [
+        "isotropic-scattering-slab"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "等方散乱平板の角度離散法を、連続角度の積分方程式から得た独立参照に照合します。",
+        "en": "Compare discrete ordinates in an isotropically scattering slab with an independent continuous-angle integral-equation reference."
+      }
+    },
+    {
+      "id": "validation-radiation-matter",
+      "method_ids": [
+        "radiation-transport",
+        "backward-euler",
+        "upwind",
+        "heun"
+      ],
+      "equation_ids": [
+        "non-equilibrium-diffusion-exchange",
+        "static-grey-transfer",
+        "heat"
+      ],
+      "problem_ids": [
+        "su-olson-diffusion1996",
+        "su-olson-transport1997"
+      ],
+      "execution_ids": [
+        "su-olson-diffusion1996",
+        "su-olson-transport1997"
+      ],
+      "reference_ids": [
+        "su-olson-diffusion1996",
+        "su-olson-transport1997"
+      ],
+      "code_problem_ids": [
+        "su-olson-diffusion1996",
+        "su-olson-transport1997"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "Su–Olsonの拡散問題と輸送問題を規格化・境界・出典で分け、同条件の周期Fourier制御による拡散極限も別に確認します。",
+        "en": "Separate Su-Olson diffusion and transport by normalization,boundaries and sources,with an additional matched periodic Fourier control for the resolved diffusion limit."
+      }
+    },
+    {
+      "id": "validation-radiation-geometry",
+      "method_ids": [
+        "radiation-transport",
+        "upwind",
+        "heun",
+        "rusanov"
+      ],
+      "equation_ids": [
+        "static-grey-transfer",
+        "static-grey-m1"
+      ],
+      "problem_ids": [
+        "shadow-absorber2d",
+        "opposing-beams2d"
+      ],
+      "execution_ids": [
+        "shadow-absorber2d",
+        "opposing-beams2d"
+      ],
+      "reference_ids": [
+        "shadow-absorber2d",
+        "opposing-beams2d"
+      ],
+      "code_problem_ids": [
+        "shadow-absorber2d",
+        "opposing-beams2d"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "吸収体の影と衝突するビームを角度法とM1で計算し、M1自体の製造解による検査と分けて示します。",
+        "en": "Compute absorber shadows and opposing beams with discrete ordinates and M1, separately checking the closed M1 PDE with a manufactured solution."
+      }
+    },
+    {
+      "id": "validation-stochastic-accuracy",
+      "method_ids": [
+        "sde"
+      ],
+      "equation_ids": [
+        "scalar-ito-diffusion"
+      ],
+      "problem_ids": [
+        "gbm-sde",
+        "langevin-harmonic"
+      ],
+      "execution_ids": [
+        "gbm-weak-moments",
+        "ou-weak-moments",
+        "gbm-milstein-strong"
+      ],
+      "reference_ids": [
+        "gbm-weak-moments",
+        "ou-weak-moments",
+        "gbm-milstein-strong"
+      ],
+      "code_problem_ids": [
+        "gbm-sde",
+        "langevin-harmonic"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "解析モーメントと共有Brown運動を使い、SDEの弱誤差・強誤差と有限標本の不確かさを分けます。",
+        "en": "Use analytic moments and shared Brownian paths to separate weak/strong SDE errors from finite-sample uncertainty."
+      }
+    },
+    {
+      "id": "validation-stochastic-estimation",
+      "method_ids": [
+        "monte-carlo",
+        "mcmc"
+      ],
+      "equation_ids": [
+        "gaussian-probability-model"
+      ],
+      "problem_ids": [
+        "normal-tail-importance",
+        "correlated-gaussian-mcmc"
+      ],
+      "execution_ids": [
+        "normal-tail-importance",
+        "correlated-gaussian-mcmc"
+      ],
+      "reference_ids": [
+        "normal-tail-importance",
+        "correlated-gaussian-mcmc"
+      ],
+      "code_problem_ids": [
+        "normal-tail-importance",
+        "correlated-gaussian-mcmc"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "重要度重み付き尾確率と2D相関GaussianのMCMCを扱い、解析値・同一データの診断照合・新規標本の検査を区別します。",
+        "en": "Study importance-weighted tails and 2D correlated-Gaussian MCMC, separating analytic targets, same-data diagnostic comparisons and fresh-sample checks."
       }
     }
   ]

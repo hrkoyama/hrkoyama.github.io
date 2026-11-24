@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "group": "radiation-scattering",
+  "slabs": [
+    {
+      "depth": 0.5,
+      "albedo": 0.5
+    },
+    {
+      "depth": 0.5,
+      "albedo": 0.9
+    },
+    {
+      "depth": 3.0,
+      "albedo": 0.5
+    },
+    {
+      "depth": 3.0,
+      "albedo": 0.9
+    }
+  ],
+  "refinement": [
+    {
+      "cells": 64,
+      "ordinates": 32
+    },
+    {
+      "cells": 128,
+      "ordinates": 32
+    },
+    {
+      "cells": 256,
+      "ordinates": 32
+    }
+  ],
+  "angular_probe": {
+    "cells": 256,
+    "ordinates": 64
+  },
+  "controls": [
+    {
+      "depth": 3.0,
+      "albedo": 0.0,
+      "cells": 128,
+      "ordinates": 32
+    },
+    {
+      "depth": 3.0,
+      "albedo": 1.0,
+      "cells": 128,
+      "ordinates": 32
+    }
+  ]
+}

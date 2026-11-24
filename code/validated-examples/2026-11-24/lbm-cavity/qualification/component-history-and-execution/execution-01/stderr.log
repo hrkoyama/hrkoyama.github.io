@@ -1,0 +1,8 @@
+Exception ignored in: <finalize object at 0x106335a60; dead>
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.12/3.12.16/Frameworks/Python.framework/Versions/3.12/lib/python3.12/weakref.py", line 590, in __call__
+    return info.func(*info.args, **(info.kwargs or {}))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.16/Frameworks/Python.framework/Versions/3.12/lib/python3.12/tempfile.py", line 1019, in _cleanup
+    _warnings.warn(warn_message, ResourceWarning)
+ResourceWarning: Implicitly cleaning up <TemporaryDirectory '/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch38-47/lbm/atlas-lbm-1dhkcu7b'>

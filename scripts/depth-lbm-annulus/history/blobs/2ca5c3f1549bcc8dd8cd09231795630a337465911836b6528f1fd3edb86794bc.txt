@@ -1,0 +1,38 @@
+{
+  "components": {
+    "cavity": {
+      "nodes": 1024,
+      "one_step_seconds": 4.790362527273828e-05,
+      "reset_calls": 16,
+      "each_call_steps": 1,
+      "physical_evolution_performed": false
+    },
+    "annulus": {
+      "nodes": 2416,
+      "one_step_seconds": 8.679168695380213e-05,
+      "reset_calls": 16,
+      "each_call_steps": 1,
+      "physical_evolution_performed": false
+    },
+    "cylinder": {
+      "nodes": 35850,
+      "one_step_seconds": 0.0008858958117343718,
+      "reset_calls": 16,
+      "each_call_steps": 1,
+      "physical_evolution_performed": false
+    },
+    "periodic": {
+      "nodes": 4096,
+      "one_step_seconds": 0.00019890624935214873,
+      "reset_calls": 16,
+      "each_call_steps": 1,
+      "physical_evolution_performed": false
+    }
+  },
+  "estimates": {
+    "cavity": 18.383016198413316,
+    "curved": 36.79790434008282,
+    "tgv": 0.2681256241266965
+  },
+  "scope": "UNEXECUTED-main projection from reset one-step operations; not a wall-time guarantee."
+}

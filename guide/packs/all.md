@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-23-b5356411e9
-Captured (UTC): 2026-11-23T15:36:55+00:00
+Snapshot: 2026-11-24-e156fad009
+Captured (UTC): 2026-11-24T00:26:27+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -9153,7 +9153,7 @@ R. Car; M. Parrinello (1985)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#verification
 Coverage: reading
 
-Two hydrogenic/He problem families were executed, independently compared and added to the 113-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; molecular DFT, FCI and other periodic materials are not validated.
+Two hydrogenic/He problem families were executed, independently compared and added to the 122-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; molecular DFT, FCI and other periodic materials are not validated.
 Runnable and checked
 
 ## Quantum chemistry and DFT: approximations and equations — One electron: hydrogenic atoms [en]
@@ -12874,8 +12874,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Published web edition, counted 2026-11-23. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
-60 equation/model entries · 137 methods and building blocks · 249 journal/conference papers · 310 total sources.
-There are 9 saved-profile equation-gallery cases across 7 equation families, and 123 reading chapters including this inventory.
+65 equation/model entries · 137 methods and building blocks · 249 journal/conference papers · 310 total sources.
+There are 9 saved-profile equation-gallery cases across 7 equation families, and 132 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
 
@@ -12883,7 +12883,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Named equation/model entries, not scalar component equations or mathematically disjoint families. Includes frameworks and auxiliary formulations; variants share one entry except the three separately explained SR/GR fluid systems. Biological entries are imported once from their own catalog.
-38 entries have scoped local examples; 22 are reading-only, including all 22 biological survey entries. A coupled system is one entry; its individual component equations do not increase the count. Poisson/Laplace and dimensional variants share entries. Named frameworks and specialized kinetic laws can both appear, so this is not a count of mathematically disjoint families.
+43 entries have scoped local examples; 22 are reading-only, including all 22 biological survey entries. A coupled system is one entry; its individual component equations do not increase the count. Poisson/Laplace and dimensional variants share entries. Named frameworks and specialized kinetic laws can both appear, so this is not a count of mathematically disjoint families.
 
 ## Site coverage and counting rules — Physics & mathematical models# [en]
 
@@ -19309,6 +19309,790 @@ Antonio Celani, Andrea Mazzino and Lara Vozella (2006). Rayleigh–Taylor turbul
 Review scope / review_level: primary-selected-original-pdf-text
 Original Boussinesq equations and periodic setup read; our smooth maintained layers and linear reference are constructed here.
 
+## Annular Couette control for curved-wall LBM — Annular Couette control for curved-wall LBM [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-annulus/
+Coverage: reading
+
+Refine the grid at identical physical conditions and compare interpolated/stair walls with analytic velocity,pointwise pressure and torque.
+
+## Annular Couette control for curved-wall LBM — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-annulus/#run-all
+Coverage: reading
+
+Run inside atlas-lbm-annulus-2026-11-24 from the ZIP. This command executes all 1 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Annular Couette control for curved-wall LBM — Curved LBM annular Couette control: velocity,pressure andtorque [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-annulus/
+Coverage: reading
+
+Compare true-circle quadratic Lagrange link interpolation andstair halfway against analytic rotating-inner-wall Navier–Stokes flow; anadditional control distinct fromcylinderwake.
+Methods, equations, figures and references
+Methods used
+D2Q9–BGK collision and streaming
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Three-point quadratic interpolation on the reflected characteristic: twointerior outgoing samples forq<.5,oneinterior incoming sample forq>.5,exacthalfway atq=.5. Record movingwall correction,actual force/torque andnonzero wallmass; nofloor ormassrepair.
+Isothermal lattice BGK
+Rin.2/Rout.4,center(.5,.5),inner tangential speed.02,stationary outerwall,nu.01. N80/160/240,tau.7,T4,integer3840/15360/34560steps; both boundaries give sixruns. Initialize equilibrium moments of the analytic field.
+Incompressible Navier–Stokes
+Rin.2/Rout.4,center(.5,.5),inner tangential speed.02,stationary outerwall,nu.01. N80/160/240,tau.7,T4,integer3840/15360/34560steps; both boundaries give sixruns. Initialize equilibrium moments of the analytic field.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+
+## Annular Couette control for curved-wall LBM — Curved LBM annular Couette control: velocity,pressure andtorque [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-annulus/
+Coverage: reading
+
+Curved LBM annular Couette control: velocity,pressure andtorque
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+Group28pytest;80annular gates. Sevenindependent radial/Cartesian qualifiers,finest velocity.03,fullpointwise pressure-gauge.08,torque relative.05,stationarity/refinement/stair comparison andwallinclusive budgets. Separate87component qualifiers passed; this doesnot imply main success. Separate29newmeshcomponentqualifierspassed.
+Same-problem reference · Analytic reference
+Curved LBM annular Couette control: velocity,pressure andtorque
+Fixedcircles andslowrotation only. Negative quadratic coefficients preclude a general positivity/stability guarantee; report actual interpolation massnonconservation. Prior linear attemptfailed pressure.617757>.08 andisretained; no radial-average substitution. No changing-solid topology orsubstitute forcylinderflow. Retain the failedquadraticN80pressure.352758>.08;refinebothboundariesatfixedUi/tau/T.
+
+## Annular Couette control for curved-wall LBM — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-annulus/#lbm-annular-couette-control-assumptions
+Coverage: reading
+
+Rin.2/Rout.4,center(.5,.5),inner tangential speed.02,stationary outerwall,nu.01. N80/160/240,tau.7,T4,integer3840/15360/34560steps; both boundaries give sixruns. Initialize equilibrium moments of the analytic field.
+
+## Annular Couette control for curved-wall LBM — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-annulus/#lbm-annular-couette-control-algorithm
+Coverage: reading
+
+Three-point quadratic interpolation on the reflected characteristic: twointerior outgoing samples forq<.5,oneinterior incoming sample forq>.5,exacthalfway atq=.5. Record movingwall correction,actual force/torque andnonzero wallmass; nofloor ormassrepair.
+u_\theta=Ar+B/r,\quad A=-U_iR_i/(R_o^2-R_i^2),\quad B=U_iR_iR_o^2/(R_o^2-R_i^2)p=\tfrac12A^2r^2+2AB\log r-\tfrac12B^2/r^2+C,\quad T_{inner}=-4\pi\rho\nu B
+
+## Annular Couette control for curved-wall LBM — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-annulus/#lbm-annular-couette-control-validation
+Coverage: reading
+
+Group28pytest;80annular gates. Sevenindependent radial/Cartesian qualifiers,finest velocity.03,fullpointwise pressure-gauge.08,torque relative.05,stationarity/refinement/stair comparison andwallinclusive budgets. Separate87component qualifiers passed; this doesnot imply main success. Separate29newmeshcomponentqualifierspassed.
+
+## Annular Couette control for curved-wall LBM — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-annulus/#lbm-annular-couette-control-limits
+Coverage: reading
+
+Fixedcircles andslowrotation only. Negative quadratic coefficients preclude a general positivity/stability guarantee; report actual interpolation massnonconservation. Prior linear attemptfailed pressure.617757>.08 andisretained; no radial-average substitution. No changing-solid topology orsubstitute forcylinderflow. Retain the failedquadraticN80pressure.352758>.08;refinebothboundariesatfixedUi/tau/T.
+
+## Annular Couette control for curved-wall LBM — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-annulus/#lbm-annular-couette-control-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+finest_interpolated{"variant":0,"n":240,"steps":34560,"dx":0.004166666666666667,"dt":0.00011574074074074072,"time":3.999999999999999,"tau":0.7,"nu":0.01,"velocity_error":4.1181013570439095e-05,"pressure_error":0.056576140457462176,"torque":-0.0006702247827550396,"exact_torque":-0.0006702064327658225,"torque_error":2.7379607714759232e-05,"stationarity":5.063686002269724e-08,"torque_drift":4.646498909951803e-09,"mass_drift":4.200271990063427e-07,"mass_ledger":2.7512395413137817e-12,"momentum_ledger":9.763298584209473e-13,"max_mach":0.0009599923524199409,"min_rho":0.9999997461691433,"max_rho":1.0000004573310033,"min_population":0.027712534590816466,"wall_mass_exchange":0.00912977083678769,"open_mass_exchange":0.0,"final_lattice_momentum_x":4.615197113366776e-13,"final_lattice_momentum_y":5.0622700475955185e-14}
+
+## Annular Couette control for curved-wall LBM — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-annulus/#lbm-annular-couette-control-measurements
+Coverage: reading
+
+finest_stair{"variant":1,"n":240,"steps":34560,"dx":0.004166666666666667,"dt":0.00011574074074074072,"time":3.999999999999999,"tau":0.7,"nu":0.01,"velocity_error":0.0056320234931158345,"pressure_error":5.0386965555033765,"torque":-0.0006741976046875688,"exact_torque":-0.0006702064327658225,"torque_error":0.005955138188207717,"stationarity":2.173500599846503e-07,"torque_drift":4.07061909864866e-07,"mass_drift":2.7425432799505342e-12,"mass_ledger":2.7517486245531947e-12,"momentum_ledger":8.644174008350578e-13,"max_mach":0.0009599923524199409,"min_rho":0.9999925252188234,"max_rho":1.000007128199855,"min_population":0.027712460348227712,"wall_mass_exchange":-1.4606371667724716e-15,"open_mass_exchange":0.0,"final_lattice_momentum_x":-3.0608848788915566e-13,"final_lattice_momentum_y":5.230781086051906e-13}
+reference_qualification{"radial viscous equation":5.551115123125783e-17,"radial pressure equation":2.574980159653073e-19,"Cartesian divergence":1.3877787807814457e-17,"Cartesian x momentum":4.336808689942018e-19,"Cartesian y momentum":2.168404344971009e-19,"inner wall speed":0.0,"outer wall speed":1.734723475976807e-18}
+scopeStationary rotating-wall annulus only; does not substitute for actual cylinder flow.
+判定 / checkPassed
+analytic reference radial viscous equationtrue
+analytic reference radial pressure equationtrue
+analytic reference Cartesian divergencetrue
+
+## Annular Couette control for curved-wall LBM — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-annulus/#lbm-annular-couette-control-measurements
+Coverage: reading
+
+analytic reference Cartesian x momentumtrue
+analytic reference Cartesian y momentumtrue
+analytic reference inner wall speedtrue
+analytic reference outer wall speedtrue
+0-80 finite arraystrue
+0-80 positive densitytrue
+0-80 actual maximum Machtrue
+0-80 mass ledgertrue
+0-80 wall-open momentum ledgertrue
+0-80 all fixed integer stepstrue
+0-80 declared physical endpointtrue
+0-80 total mass drift diagnostic boundtrue
+0-80 late velocity stationaritytrue
+0-80 late torque stationaritytrue
+0-80 correct inner resisting torque signtrue
+0-160 finite arraystrue
+0-160 positive densitytrue
+0-160 actual maximum Machtrue
+0-160 mass ledgertrue
+0-160 wall-open momentum ledgertrue
+0-160 all fixed integer stepstrue
+0-160 declared physical endpointtrue
+0-160 total mass drift diagnostic boundtrue
+0-160 late velocity stationaritytrue
+0-160 late torque stationaritytrue
+0-160 correct inner resisting torque signtrue
+0-240 finite arraystrue
+0-240 positive densitytrue
+0-240 actual maximum Machtrue
+0-240 mass ledgertrue
+0-240 wall-open momentum ledgertrue
+0-240 all fixed integer stepstrue
+0-240 declared physical endpointtrue
+0-240 total mass drift diagnostic boundtrue
+0-240 late velocity stationaritytrue
+0-240 late torque stationaritytrue
+0-240 correct inner resisting torque signtrue
+1-80 finite arraystrue
+1-80 positive densitytrue
+1-80 actual maximum Machtrue
+1-80 mass ledgertrue
+
+## Annular Couette control for curved-wall LBM — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-annulus/#lbm-annular-couette-control-measurements
+Coverage: reading
+
+1-80 wall-open momentum ledgertrue
+1-80 all fixed integer stepstrue
+1-80 declared physical endpointtrue
+1-80 total mass drift diagnostic boundtrue
+1-80 late velocity stationaritytrue
+1-80 late torque stationaritytrue
+1-80 correct inner resisting torque signtrue
+1-160 finite arraystrue
+1-160 positive densitytrue
+1-160 actual maximum Machtrue
+1-160 mass ledgertrue
+1-160 wall-open momentum ledgertrue
+1-160 all fixed integer stepstrue
+1-160 declared physical endpointtrue
+1-160 total mass drift diagnostic boundtrue
+1-160 late velocity stationaritytrue
+1-160 late torque stationaritytrue
+1-160 correct inner resisting torque signtrue
+1-240 finite arraystrue
+1-240 positive densitytrue
+1-240 actual maximum Machtrue
+1-240 mass ledgertrue
+1-240 wall-open momentum ledgertrue
+1-240 all fixed integer stepstrue
+1-240 declared physical endpointtrue
+1-240 total mass drift diagnostic boundtrue
+1-240 late velocity stationaritytrue
+1-240 late torque stationaritytrue
+1-240 correct inner resisting torque signtrue
+finest interpolated velocitytrue
+finest interpolated pressure gaugetrue
+finest interpolated torquetrue
+interpolated velocity refinementtrue
+interpolated pressure refinementtrue
+interpolated improves finest stair velocitytrue
+three grids with both boundary variantstrue
+
+## Annular Couette control for curved-wall LBM — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-annulus/#lbm-annular-couette-control-measurements
+Coverage: reading
+
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Actual saved2Dfields anddiagnostics fromfixedinputs; reference,boundary anderror scopesaredeclaredinthecase.Read every stored record
+variantnstepsdxdttimetaunuvelocity_errorpressure_errortorqueexact_torquetorque_errorstationaritytorque_driftmass_driftmass_ledgermomentum_ledgermax_machmin_rhomax_rhomin_populationwall_mass_exchangeopen_mass_exchangefinal_lattice_momentum_xfinal_lattice_momentum_y
+08038400.01250.0010416666666740.70.010.0005050996894260.352757782623-0.00067041207707-0.0006702064327660.0003068372578784.93184357181e-075.10768081088e-084.11101154651e-063.05163888893e-131.47969040442e-130.002844941347160.9999971449011.000004577370.02758500333970.0099322046311906.85562717706e-145.53584955654e-14
+0160153600.006250.00026041666666740.70.010.0001046009624590.108782754881-0.0006702461821-0.0006702064327665.9309090753e-051.04932371412e-071.05785313738e-088.73609330607e-071.22397176706e-122.42854250093e-130.001440443768540.9999993617451.000000963850.02767967453480.008442572351890-4.17443857259e-14-7.1418565506e-14
+
+## Annular Couette control for curved-wall LBM — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-annulus/#lbm-annular-couette-control-measurements
+Coverage: reading
+
+0240345600.004166666666670.00011574074074140.70.014.11810135704e-050.0565761404575-0.000670224782755-0.0006702064327662.73796077148e-055.06368600227e-084.64649890995e-094.20027199006e-072.75123954131e-129.76329858421e-130.000959992352420.9999997461691.000000457330.02771253459080.0091297708367904.61519711337e-135.0622700476e-14
+18038400.01250.0010416666666740.70.010.02819655047618.49259086604-0.000691471153177-0.0006702064327660.03172861281431.67378040414e-062.60750261263e-063.0454520436e-133.09815455116e-131.92072661584e-130.002846753889060.9999519346821.000045861920.0275772157747002.16493489802e-15-2.49349152437e-14
+1160153600.006250.00026041666666740.70.010.01473654289156.56865910172-0.000681016426304-0.0006702064327660.01612934912298.80329369368e-071.65250157611e-061.21780437096e-121.21968660337e-124.70753833955e-130.001440443768540.9999844869881.000014829960.027678315606800-1.67310609811e-13-2.41473507856e-15
+1240345600.004166666666670.00011574074074140.70.010.005632023493125.0386965555-0.000674197604688-0.0006702064327660.005955138188212.17350059985e-074.07061909865e-072.74254327995e-122.75174862455e-128.64417400835e-130.000959992352420.9999925252191.00000712820.0277124603482-1.46063716677e-150-3.06088487889e-135.23078108605e-13
+Measurements and complete records / JSON
+
+## Annular Couette control for curved-wall LBM — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-annulus/#lbm-annular-couette-control-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Qisu Zou and Xiaoyi He (1996). On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model
+Review scope / review_level: primary-selected-extracted-text
+Selected primary equations and flat-boundary/corner/compressibility discussion read; special d2q9i successes are not borrowed.
+Pierre Lallemand and Li-Shi Luo (2003). Lattice Boltzmann method for moving boundaries · DOI: 10.1016/S0021-9991(02)00022-0
+Review scope / review_level: primary-selected-text-via-mirror
+Read selected original Eq12–15 on quadratic links,wall correction,momentum exchange andmassnonconservation; qualify by a generic-Lagrange scalar oracle. No2001fulltext orlocalPDFsymbol audit.
+
+## LBM lid-driven cavity at Re100 — LBM lid-driven cavity at Re100 [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-cavity/
+Coverage: reading
+
+Advance a four-wall Re100 LBM flow and compare Ghia centerlines and the primary vortex, recording wall momentum exchange.
+
+## LBM lid-driven cavity at Re100 — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-cavity/#run-all
+Coverage: reading
+
+Run inside atlas-lbm-cavity-2026-11-24 from the ZIP. This command executes all 1 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## LBM lid-driven cavity at Re100 — LBM Re100 cavity: actual2D fields and Ghia centerlines [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-cavity/
+Coverage: reading
+
+Advance genuine four-wall BGK flow on three fixed grids, checking nominal-lid Ghia centerlines, primary vortex, stationarity and wall momentum budgets.
+Methods, equations, figures and references
+Methods used
+D2Q9–BGK collision and streaming
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Standard D2Q9equilibrium/BGK collision, nonperiodic link streaming and moving halfway reflection atq=.5. Sum actual population wall impulses without density repair/interior reset. Compile shipped C++17temporarily and call fromPython.
+Isothermal lattice BGK
+Physical unit square, lid1, viscosity.01, Re100; N24/32/48, lattice lid.04, dt=.04/N. Three stationary walls/rightward lid; stationary side owns a simultaneous top/side link. Initialrho1/rest.
+Incompressible Navier–Stokes
+Physical unit square, lid1, viscosity.01, Re100; N24/32/48, lattice lid.04, dt=.04/N. Three stationary walls/rightward lid; stationary side owns a simultaneous top/side link. Initialrho1/rest.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Re100 lid-driven cavity
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+
+## LBM lid-driven cavity at Re100 — LBM Re100 cavity: actual2D fields and Ghia centerlines [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-cavity/
+Coverage: reading
+
+22pytest and37case gates. Fixed60k/80k/120ksteps reach t*=100with90/95/100saved. Finest u/v max error.03,vortex distance.06,late relativeL2 change2e-4andmass/wall-inclusive momentum gates are frozen.
+Same-problem reference · Finite-grid numerical reference
+Ghia Re100: original finite-grid velocity centerlines
+Educational Re100 checks on three fixed grids. Lid/sidewall corner velocities are discontinuous; stationary corners take precedence. Ghia values are rounded numerical references, not an exact solution, and printed four-decimal coordinates are preserved. No high-Re, turbulence, original-algorithm reproduction or cavity-pressure validation is claimed.
+Related-model reference · Finite-grid numerical reference
+LBM Re100 cavity: actual2D fields and Ghia centerlines
+Physical unit square, lid1, viscosity.01, Re100; N24/32/48, lattice lid.04, dt=.04/N. Three stationary walls/rightward lid; stationary side owns a simultaneous top/side link. Initialrho1/rest.
+
+## LBM lid-driven cavity at Re100 — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-cavity/#lbm-cavity-re100-assumptions
+Coverage: reading
+
+Physical unit square, lid1, viscosity.01, Re100; N24/32/48, lattice lid.04, dt=.04/N. Three stationary walls/rightward lid; stationary side owns a simultaneous top/side link. Initialrho1/rest.
+
+## LBM lid-driven cavity at Re100 — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-cavity/#lbm-cavity-re100-algorithm
+Coverage: reading
+
+Standard D2Q9equilibrium/BGK collision, nonperiodic link streaming and moving halfway reflection atq=.5. Sum actual population wall impulses without density repair/interior reset. Compile shipped C++17temporarily and call fromPython.
+f_i^{eq}=w_i\rho[1+3c_i\cdot u+\frac92(c_i\cdot u)^2-\frac32|u|^2],\quad\nu_\ell=(\tau-1/2)/3f_{\bar i}(x,t+1)=f_i^\star(x,t)-6w_i\rho_0c_i\cdot u_w,\quad\rho_0=1\mathrm{Re}=UL/\nu=100,\quad t_\star=100
+
+## LBM lid-driven cavity at Re100 — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-cavity/#lbm-cavity-re100-validation
+Coverage: reading
+
+22pytest and37case gates. Fixed60k/80k/120ksteps reach t*=100with90/95/100saved. Finest u/v max error.03,vortex distance.06,late relativeL2 change2e-4andmass/wall-inclusive momentum gates are frozen.
+
+## LBM lid-driven cavity at Re100 — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-cavity/#lbm-cavity-re100-limits
+Coverage: reading
+
+Three finite-Mach educational grids. Ghia is a rounded independent numerical reference, not exact. No pointwise corner order/high-Re claim or borrowed success from another cavity solver. A standard C++17compiler is required.
+
+## LBM lid-driven cavity at Re100 — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-cavity/#lbm-cavity-re100-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+finest{"n":48,"steps":120000,"tau":0.5576,"dx":0.020833333333333332,"dt":0.0008333333333333334,"time":100.0,"nu_physical":0.01,"u_error":0.007040567404226761,"v_error":0.007012356068378106,"vortex_x":0.6151785336174457,"vortex_y":0.7373696566057102,"vortex_distance":0.003592378973832659,"stationarity":6.585547769458423e-13,"mass_drift":1.1935933722876744e-11,"mass_ledger":1.1934784256250985e-11,"momentum_ledger":1.2265850980789804e-12,"max_mach":0.06489965337111371,"min_rho":0.9704718614269573,"max_rho":1.030441007310979,"min_population":0.020237879428496697,"wall_mass_exchange":-2.648371105751224e-12,"open_mass_exchange":0.0,"final_lattice_momentum_x":-7.993605777301127e-14,"final_lattice_momentum_y":5.898753707711535e-14}
+referenceGhia1982 printed Re100 tables; limited precision, independent numerical reference
+判定 / checkPassed
+Ghia printed table shape and anchorstrue
+24 finite arraystrue
+24 positive densitytrue
+24 actual maximum Machtrue
+24 mass ledgertrue
+24 wall-open momentum ledgertrue
+24 all fixed integer stepstrue
+24 declared physical endpointtrue
+24 closed cavity masstrue
+24 late stationaritytrue
+24 vortex search residual distancetrue
+32 finite arraystrue
+32 positive densitytrue
+
+## LBM lid-driven cavity at Re100 — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-cavity/#lbm-cavity-re100-measurements
+Coverage: reading
+
+32 actual maximum Machtrue
+32 mass ledgertrue
+32 wall-open momentum ledgertrue
+32 all fixed integer stepstrue
+32 declared physical endpointtrue
+32 closed cavity masstrue
+32 late stationaritytrue
+32 vortex search residual distancetrue
+48 finite arraystrue
+48 positive densitytrue
+48 actual maximum Machtrue
+48 mass ledgertrue
+48 wall-open momentum ledgertrue
+48 all fixed integer stepstrue
+48 declared physical endpointtrue
+48 closed cavity masstrue
+48 late stationaritytrue
+48 vortex search residual distancetrue
+finest nominal-lid u centerlinetrue
+finest nominal-lid v centerlinetrue
+finest primary vortextrue
+u error decreases coarse to finetrue
+v error decreases coarse to finetrue
+all three prescribed cavity gridstrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Actual saved2Dfields anddiagnostics fromfixedinputs; reference,boundary anderror scopesaredeclaredinthecase.Read every stored record
+nstepstaudxdttimenu_physicalu_errorv_errorvortex_xvortex_yvortex_distancestationaritymass_driftmass_ledgermomentum_ledgermax_machmin_rhomax_rhomin_populationwall_mass_exchangeopen_mass_exchangefinal_lattice_momentum_xfinal_lattice_momentum_y
+
+## LBM lid-driven cavity at Re100 — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-cavity/#lbm-cavity-re100-measurements
+Coverage: reading
+
+24600000.52880.04166666666670.001666666666671000.010.01296643356130.009149707355290.6086421441760.7405439026690.01053491510723.92242201978e-136.27981617324e-126.2783229558e-122.13175379403e-130.06118843784550.9688299233751.031724765060.0196854650562-1.31488570032e-120-1.31006316906e-14-2.66626998258e-14
+32800000.53840.031250.001251000.010.01126126139390.00650926436250.6135748084870.7362252606610.004058767052255.11199258751e-138.241629601e-128.23991013767e-122.76855090502e-130.0630310013980.9702175495621.030337262340.0198862701708-1.76073045033e-120-1.15463194561e-146.18671780472e-14
+481200000.55760.02083333333330.0008333333333331000.010.007040567404230.007012356068380.6151785336170.7373696566060.003592378973836.58554776946e-131.19359337229e-111.19347842563e-111.22658509808e-120.06489965337110.9704718614271.030441007310.0202378794285-2.64837110575e-120-7.9936057773e-145.89875370771e-14
+Measurements and complete records / JSON
+
+## LBM lid-driven cavity at Re100 — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-cavity/#lbm-cavity-re100-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Qisu Zou and Xiaoyi He (1996). On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model
+Review scope / review_level: primary-selected-extracted-text
+Selected primary equations and flat-boundary/corner/compressibility discussion read; special d2q9i successes are not borrowed.
+Pierre Lallemand and Li-Shi Luo (2003). Lattice Boltzmann method for moving boundaries · DOI: 10.1016/S0021-9991(02)00022-0
+Review scope / review_level: primary-selected-text-via-mirror
+Selected primary section via author-content mirror. The implemented two-point interpolation is separately derived/qualified; no2001full-text claim.
+U. Ghia, K. N. Ghia and C. T. Shin (1982). High-Re solutions for incompressible flow using the Navier-Stokes equations and a multigrid method · DOI: 10.1016/0021-9991(82)90058-4
+Review scope / review_level: existing-audited-primary-transcription
+Rechecked existing audited table transcription/prior rendered-original provenance, without claiming a new PDF acquisition.
+
+## LBM curved walls and a Re20 cylinder — LBM curved walls and a Re20 cylinder [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-curved-boundary/
+Coverage: reading
+
+Advance actual Re20 cylinder flow with curved walls and an open outlet; compare forces,pressure difference and wake with independent numerical benchmarks.
+
+## LBM curved walls and a Re20 cylinder — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-curved-boundary/#run-all
+Coverage: reading
+
+Run inside atlas-lbm-curved-boundary-2026-11-24 from the ZIP. This command executes all 1 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## LBM curved walls and a Re20 cylinder — Actual LBM cylinderRe20: Schäfer–Turek geometry anddeclared outlet [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-curved-boundary/
+Coverage: reading
+
+Evolve the full-length original2D-1channel andoff-center cylinder on twogrids,checking drag,lift,surface pressure difference,recirculation length andstationarity.
+Methods, equations, figures and references
+Methods used
+D2Q9–BGK collision and streaming
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+StandardBGK,true-circle quadratic links,halfwaychannelwalls,nonperiodic openstreaming. Setall9outlet populations tofeq(1,ua)+fa−feq(rhoa,ua); ledgerchanges include theknown6. Evolve fromaPoiseuille pressureguess; normalizeactual momentumexchange bymean speed.
+Isothermal lattice BGK
+[0,2.2]x[0,.41],center(.2,.2),R.05,nu.001,rho1,mean.2/peak.3/Re20. dx.01/.005,xwet221/441,yhalfway41/82,dt=dx/6,T30,18k/36ksteps. Parabolic inlet;all-nine poststream NEE outletwithrho1andadjacent-interiorvelocity.
+Incompressible Navier–Stokes
+[0,2.2]x[0,.41],center(.2,.2),R.05,nu.001,rho1,mean.2/peak.3/Re20. dx.01/.005,xwet221/441,yhalfway41/82,dt=dx/6,T30,18k/36ksteps. Parabolic inlet;all-nine poststream NEE outletwithrho1andadjacent-interiorvelocity.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+
+## LBM curved walls and a Re20 cylinder — Actual LBM cylinderRe20: Schäfer–Turek geometry anddeclared outlet [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-curved-boundary/
+Coverage: reading
+
+Actual LBM cylinderRe20: Schäfer–Turek geometry anddeclared outlet
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+Group28pytest;33cylinder gates. Score distance fromoriginalTable3estimated ranges usingseparate frozen coarse-grid tolerances:CD5%,CLabsolute.01,dp10%,Laabsolute.025. Check26/28/30field/force/dp stationarity,twogrid difference,Ma andwall/open budgets. Retain prior outletinstability anddistinguish the87boundarycomponent qualifiers frommain acceptance.
+Same-problem reference · Finite-grid numerical reference
+Actual LBM cylinderRe20: Schäfer–Turek geometry anddeclared outlet
+Originalpp3/7allow selectingoutflow. AdoptedNEEis independently derived finite reservoir,not claimed exactunread authorimplementation orFEATflowdo-nothing. Nabhvaluesarenotexact adopted-BCtruth andoriginalrangesarenotrigorousenclosures. Retain failedlinear/Zou–Heattempt(outlet-nearstep265). FiniteMach/BC/curveerrors;nogeneralaccuracyguarantee.
+
+## LBM curved walls and a Re20 cylinder — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-curved-boundary/#lbm-cylinder-re20-assumptions
+Coverage: reading
+
+[0,2.2]x[0,.41],center(.2,.2),R.05,nu.001,rho1,mean.2/peak.3/Re20. dx.01/.005,xwet221/441,yhalfway41/82,dt=dx/6,T30,18k/36ksteps. Parabolic inlet;all-nine poststream NEE outletwithrho1andadjacent-interiorvelocity.
+
+## LBM curved walls and a Re20 cylinder — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-curved-boundary/#lbm-cylinder-re20-algorithm
+Coverage: reading
+
+StandardBGK,true-circle quadratic links,halfwaychannelwalls,nonperiodic openstreaming. Setall9outlet populations tofeq(1,ua)+fa−feq(rhoa,ua); ledgerchanges include theknown6. Evolve fromaPoiseuille pressureguess; normalizeactual momentumexchange bymean speed.
+\mathrm{Re}=\overline U D/\nu=20,\quad C_D=2F_x/(\rho\overline U^2D),\quad C_L=2F_y/(\rho\overline U^2D)\Delta p=p(.15,.2)-p(.25,.2),\quad L_a=x_{reattach}-.25f_{i,b}=f_i^{eq}(1,u_a)+f_{i,a}-f_i^{eq}(\rho_a,u_a),\quad i=0,\ldots,8
+
+## LBM curved walls and a Re20 cylinder — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-curved-boundary/#lbm-cylinder-re20-validation
+Coverage: reading
+
+Group28pytest;33cylinder gates. Score distance fromoriginalTable3estimated ranges usingseparate frozen coarse-grid tolerances:CD5%,CLabsolute.01,dp10%,Laabsolute.025. Check26/28/30field/force/dp stationarity,twogrid difference,Ma andwall/open budgets. Retain prior outletinstability anddistinguish the87boundarycomponent qualifiers frommain acceptance.
+
+## LBM curved walls and a Re20 cylinder — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-curved-boundary/#lbm-cylinder-re20-limits
+Coverage: reading
+
+Originalpp3/7allow selectingoutflow. AdoptedNEEis independently derived finite reservoir,not claimed exactunread authorimplementation orFEATflowdo-nothing. Nabhvaluesarenotexact adopted-BCtruth andoriginalrangesarenotrigorousenclosures. Retain failedlinear/Zou–Heattempt(outlet-nearstep265). FiniteMach/BC/curveerrors;nogeneralaccuracyguarantee.
+
+## LBM curved walls and a Re20 cylinder — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-curved-boundary/#lbm-cylinder-re20-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+finest{"dx":0.005,"dt":0.0008333333333333334,"tau":0.6,"steps":36000,"time":30.000000000000004,"Re":20,"CD":5.644519321602302,"CL":0.011096755643135437,"stationarity":0.0002032789456526155,"drag_drift":0.000151098422030169,"lift_drift":3.478689810392302e-06,"pressure_drift":1.863260540397613e-06,"pressure_difference":0.11872124659802585,"recirculation_length":0.08386681527452555,"mass_drift":0.0004002747565754678,"mass_ledger":3.339112580809518e-12,"momentum_ledger":3.37499434539968e-12,"max_mach":0.1536578006651768,"min_rho":0.9010633065006105,"max_rho":1.1123850424542971,"min_population":0.020454450201225206,"wall_mass_exchange":16.570402727464682,"open_mass_exchange":-2.2019060198153952,"final_lattice_momentum_x":1213.6393581371472,"final_lattice_momentum_y":0.17207763765525091}
+reference_scopeSchäfer-Turek1996 Table3 estimated numerical-comparison ranges, not exact or rigorous enclosures. Original pp3/7 allow user-selected outflow. This source uses a declared all-nine poststream NEE pressure reservoir, not later FEATflow do-nothing; exact original-author NEE implementation is not claimed. Coarse LBM acceptance separately fixed before execution.
+
+## LBM curved walls and a Re20 cylinder — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-curved-boundary/#lbm-cylinder-re20-measurements
+Coverage: reading
+
+outletAll-nine poststream NEE: rho1,adjacent-poststream velocity; finite reservoir,not later FEATflow do-nothing
+initial_pressureStraight Poiseuille-gradient guess, not a cylinder reference or imposed interior field
+判定 / checkPassed
+original source definitions and interval anchorstrue
+0.01 finite arraystrue
+0.01 positive densitytrue
+0.01 actual maximum Machtrue
+0.01 mass ledgertrue
+0.01 wall-open momentum ledgertrue
+0.01 all fixed integer stepstrue
+0.01 declared physical endpointtrue
+0.01 velocity stationaritytrue
+0.01 drag late block drifttrue
+0.01 lift late block drifttrue
+0.01 pressure late drifttrue
+0.01 positive downstream dragtrue
+0.01 pressure front exceeds backtrue
+0.005 finite arraystrue
+0.005 positive densitytrue
+0.005 actual maximum Machtrue
+0.005 mass ledgertrue
+0.005 wall-open momentum ledgertrue
+0.005 all fixed integer stepstrue
+0.005 declared physical endpointtrue
+0.005 velocity stationaritytrue
+0.005 drag late block drifttrue
+0.005 lift late block drifttrue
+0.005 pressure late drifttrue
+0.005 positive downstream dragtrue
+0.005 pressure front exceeds backtrue
+finest original range distance CDtrue
+finest original range distance CLtrue
+finest original range distance pressure_differencetrue
+finest original range distance recirculation_lengthtrue
+two-grid drag sensitivitytrue
+both prescribed actual full-domain cylinder gridstrue
+
+## LBM curved walls and a Re20 cylinder — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-curved-boundary/#lbm-cylinder-re20-measurements
+Coverage: reading
+
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Actual saved2Dfields anddiagnostics fromfixedinputs; reference,boundary anderror scopesaredeclaredinthecase.Read every stored record
+dxdttaustepstimeReCDCLstationaritydrag_driftlift_driftpressure_driftpressure_differencerecirculation_lengthmass_driftmass_ledgermomentum_ledgermax_machmin_rhomax_rhomin_populationwall_mass_exchangeopen_mass_exchangefinal_lattice_momentum_xfinal_lattice_momentum_y
+0.010.001666666666670.551800030205.703600037280.01356802592390.0001575917131740.0001514621438243.83782227699e-067.62364482045e-060.1218401487270.07918804676590.0004098788298341.81766131708e-121.86360136259e-120.1587061212280.8968586382391.116898082110.0201658277715-10.902519156814.5892451895303.9958066160.0453377974147
+0.0050.0008333333333330.63600030205.64451932160.01109675564310.0002032789456530.000151098422033.47868981039e-061.8632605404e-060.1187212465980.08386681527450.0004002747565753.33911258081e-123.3749943454e-120.1536578006650.9010633065011.112385042450.020454450201216.5704027275-2.201906019821213.639358140.172077637655
+Measurements and complete records / JSON
+
+## LBM curved walls and a Re20 cylinder — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-curved-boundary/#lbm-cylinder-re20-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Qisu Zou and Xiaoyi He (1996). On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model
+Review scope / review_level: primary-selected-extracted-text
+Selected primary equations and flat-boundary/corner/compressibility discussion read; special d2q9i successes are not borrowed.
+Pierre Lallemand and Li-Shi Luo (2003). Lattice Boltzmann method for moving boundaries · DOI: 10.1016/S0021-9991(02)00022-0
+Review scope / review_level: primary-selected-text-via-mirror
+Read selected original Eq12–15 on quadratic links,wall correction,momentum exchange andmassnonconservation; qualify by a generic-Lagrange scalar oracle. No2001fulltext orlocalPDFsymbol audit.
+M. Schäfer and S. Turek (1996). Benchmark Computations of Laminar Flow Around a Cylinder
+Review scope / review_level: primary-selected-extracted-text
+Read original geometry/definitions/user-selected outflow/Table3estimated intervals via a disclosed course mirror after official404s.
+FEATflow benchmark project (2026). DFG flow around cylinder benchmark2D-1, Re20
+Review scope / review_level: official-benchmark-page
+
+## LBM curved walls and a Re20 cylinder — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-curved-boundary/#lbm-cylinder-re20-references
+Coverage: reading
+
+Official BC/definitions/Nabh attribution read; Nabh original unread and values not labelled exact adopted-outlet truth.
+Zhaoli Guo,Chuguang Zheng and Baochang Shi (2002). Non-equilibrium extrapolation method for velocity and pressure boundary conditions in the lattice Boltzmann method · DOI: 10.1088/1009-1963/11/4/310
+Review scope / review_level: primary-official-abstract-only
+Official primary abstract only. Full equations unread; adopted all-nine poststream pressure reservoir is independently derived and qualified.
+
+## LBM Taylor–Green vortex and finite-Mach errors — LBM Taylor–Green vortex and finite-Mach errors [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-taylor-green/
+Coverage: reading
+
+Use the exact periodic vortex to examine coupled grid/time/Mach errors and amplitude effects.
+
+## LBM Taylor–Green vortex and finite-Mach errors — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-taylor-green/#run-all
+Coverage: reading
+
+Run inside atlas-lbm-taylor-green-2026-11-24 from the ZIP. This command executes all 1 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## LBM Taylor–Green vortex and finite-Mach errors — LBM Taylor–Green vortex: coupled grid/time/Mach sensitivity [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-taylor-green/
+Coverage: reading
+
+Evolve a nonlinear periodic2D vortex and save velocity/pressure/energy errors against the continuous analytic field. Distinguish amplitude probes from a fixed-grid coupled-step probe.
+Methods, equations, figures and references
+Methods used
+D2Q9–BGK collision and streaming
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Standard BGK and fully periodic streaming. Convert/gauge pressure ascs²(rho−meanrho)(dx/dt)². No analytic field injection after initialization; independently qualify the continuum field by Fourier differentiation.
+Isothermal lattice BGK
+Periodic[0,2pi)²,nu.1,baseU.2,N24/32/64,dt=.2dx²,tau.56,T=.2pi²and144/256/1024steps. Add N32/U.4,.8andN32/U.2/dt=.1dx²/tau.53/512steps. Use pressure-consistent initial density.
+Incompressible Navier–Stokes
+Periodic[0,2pi)²,nu.1,baseU.2,N24/32/64,dt=.2dx²,tau.56,T=.2pi²and144/256/1024steps. Add N32/U.4,.8andN32/U.2/dt=.1dx²/tau.53/512steps. Use pressure-consistent initial density.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Periodic Taylor–Green vortex
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## LBM Taylor–Green vortex and finite-Mach errors — LBM Taylor–Green vortex: coupled grid/time/Mach sensitivity [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-taylor-green/
+Coverage: reading
+
+22pytest and79gates,sixfixed evolutions. Require finest velocity relativeL2.03,pressure.08,combined velocity order≥1.5,energy.03anddivergence/periodic mass/mean momentum. Save five analyticPDEqualifiers distinctly. Retain the initial N16energy failure5.0018%; refine only thatcoarsegrid to24against the unchanged3%gate. Report order only for thefinest32/64pair.
+Related-model reference · Analytic reference
+Viscous flow / 2D Taylor–Green
+The analytic model shares ν=0.1 and periodic [0,2π]², but the card displays an x-slice at y=π/4, not full 2D velocity/pressure or mesh-error arrays.
+Related-model reference · Analytic reference
+LBM Taylor–Green vortex: coupled grid/time/Mach sensitivity
+Periodic[0,2pi)²,nu.1,baseU.2,N24/32/64,dt=.2dx²,tau.56,T=.2pi²and144/256/1024steps. Add N32/U.4,.8andN32/U.2/dt=.1dx²/tau.53/512steps. Use pressure-consistent initial density.
+
+## LBM Taylor–Green vortex and finite-Mach errors — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-taylor-green/#lbm-taylor-green-assumptions
+Coverage: reading
+
+Periodic[0,2pi)²,nu.1,baseU.2,N24/32/64,dt=.2dx²,tau.56,T=.2pi²and144/256/1024steps. Add N32/U.4,.8andN32/U.2/dt=.1dx²/tau.53/512steps. Use pressure-consistent initial density.
+
+## LBM Taylor–Green vortex and finite-Mach errors — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-taylor-green/#lbm-taylor-green-algorithm
+Coverage: reading
+
+Standard BGK and fully periodic streaming. Convert/gauge pressure ascs²(rho−meanrho)(dx/dt)². No analytic field injection after initialization; independently qualify the continuum field by Fourier differentiation.
+u=U\sin x\cos y\,e^{-2\nu t},\quad v=-U\cos x\sin y\,e^{-2\nu t}p=\frac{U^2}{4}(\cos2x+\cos2y)e^{-4\nu t},\quad\langle K\rangle=\frac{U^2}{4}e^{-4\nu t}
+
+## LBM Taylor–Green vortex and finite-Mach errors — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-taylor-green/#lbm-taylor-green-validation
+Coverage: reading
+
+22pytest and79gates,sixfixed evolutions. Require finest velocity relativeL2.03,pressure.08,combined velocity order≥1.5,energy.03anddivergence/periodic mass/mean momentum. Save five analyticPDEqualifiers distinctly. Retain the initial N16energy failure5.0018%; refine only thatcoarsegrid to24against the unchanged3%gate. Report order only for thefinest32/64pair.
+
+## LBM Taylor–Green vortex and finite-Mach errors — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-taylor-green/#lbm-taylor-green-limits
+Coverage: reading
+
+Diffusive scaling couples grid,time andMach; amplitude changesRe. No isolated spatial/time/Mach order or exact incompressibility atfiniteMach. Kinetic equilibrium-startup transients remain part of the measured errors.
+
+## LBM Taylor–Green vortex and finite-Mach errors — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-taylor-green/#lbm-taylor-green-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+combined_velocity_order1.99974085713
+reference_qualification{"Fourier divergence":4.718447854656915e-16,"Fourier NS x":3.0878077872387166e-16,"Fourier NS y":3.434752482434078e-16,"mean pressure gauge":6.505213034913027e-19,"analytic mean energy":1.734723475976807e-18}
+scopeDiffusive grid/time/Mach refinement, amplitude/Re sensitivity, and coupled dt/Mach/tau probe; no pure time or pure Mach order.
+判定 / checkPassed
+analytic reference Fourier divergencetrue
+analytic reference Fourier NS xtrue
+analytic reference Fourier NS ytrue
+analytic reference mean pressure gaugetrue
+analytic reference analytic mean energytrue
+0 finite arraystrue
+0 positive densitytrue
+0 actual maximum Machtrue
+0 mass ledgertrue
+0 wall-open momentum ledgertrue
+0 all fixed integer stepstrue
+0 declared physical endpointtrue
+0 periodic masstrue
+0 zero mean momentumtrue
+0 normalized divergencetrue
+0 mean kinetic energytrue
+1 finite arraystrue
+1 positive densitytrue
+1 actual maximum Machtrue
+1 mass ledgertrue
+1 wall-open momentum ledgertrue
+1 all fixed integer stepstrue
+1 declared physical endpointtrue
+1 periodic masstrue
+1 zero mean momentumtrue
+1 normalized divergencetrue
+1 mean kinetic energytrue
+2 finite arraystrue
+
+## LBM Taylor–Green vortex and finite-Mach errors — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-taylor-green/#lbm-taylor-green-measurements
+Coverage: reading
+
+2 positive densitytrue
+2 actual maximum Machtrue
+2 mass ledgertrue
+2 wall-open momentum ledgertrue
+2 all fixed integer stepstrue
+2 declared physical endpointtrue
+2 periodic masstrue
+2 zero mean momentumtrue
+2 normalized divergencetrue
+2 mean kinetic energytrue
+3 finite arraystrue
+3 positive densitytrue
+3 actual maximum Machtrue
+3 mass ledgertrue
+3 wall-open momentum ledgertrue
+3 all fixed integer stepstrue
+3 declared physical endpointtrue
+3 periodic masstrue
+3 zero mean momentumtrue
+3 normalized divergencetrue
+3 mean kinetic energytrue
+4 finite arraystrue
+4 positive densitytrue
+4 actual maximum Machtrue
+4 mass ledgertrue
+4 wall-open momentum ledgertrue
+4 all fixed integer stepstrue
+4 declared physical endpointtrue
+4 periodic masstrue
+4 zero mean momentumtrue
+4 normalized divergencetrue
+4 mean kinetic energytrue
+5 finite arraystrue
+5 positive densitytrue
+5 actual maximum Machtrue
+5 mass ledgertrue
+5 wall-open momentum ledgertrue
+5 all fixed integer stepstrue
+5 declared physical endpointtrue
+5 periodic masstrue
+5 zero mean momentumtrue
+5 normalized divergencetrue
+5 mean kinetic energytrue
+finest combined velocity errortrue
+finest pressure gauge errortrue
+combined finest velocity ordertrue
+first diffusive refinement decreases velocitytrue
+second diffusive refinement decreases velocitytrue
+same physical endpoint all six runstrue
+amplitude probes change actual Machtrue
+
+## LBM Taylor–Green vortex and finite-Mach errors — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-taylor-green/#lbm-taylor-green-measurements
+Coverage: reading
+
+exactly six distinct prescribed runstrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Actual saved2Dfields anddiagnostics fromfixedinputs; reference,boundary anderror scopesaredeclaredinthecase.Read every stored record
+runconfiguration_codenUstepsdxdttautimenuvelocity_errorpressure_errorenergyenergy_errordivergencemean_momentummass_driftmass_ledgermomentum_ledgermax_machmin_rhomax_rhomin_populationwall_mass_exchangeopen_mass_exchangefinal_lattice_momentum_xfinal_lattice_momentum_y
+00240.21440.2617993877990.01370778389040.561.973920880220.10.01126461574620.02518061926060.004438693223280.02240199068345.0610079995e-051.16993059572e-151.42108547152e-141.63819575189e-141.24297935956e-150.01783165288190.999841111571.000159042450.026902534070600-5.87030424271e-157.05685510027e-15
+10320.22560.1963495408490.007710628438350.561.973920880220.10.006337842680030.006421548825630.00448304056720.01263472970116.40248683755e-053.26993875943e-162.56461518688e-142.76445533132e-141.06165162097e-150.01347343544430.999909250351.00009077850.027123391409100-2.62984078958e-15-2.24473217791e-15
+
+## LBM Taylor–Green vortex and finite-Mach errors — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-taylor-green/#lbm-taylor-green-measurements
+Coverage: reading
+
+20640.210240.09817477042470.001927657109590.561.973920880220.10.001584745302970.004258365794950.004526029597920.003166629803542.18201003905e-052.99924132255e-151.02473585173e-131.09356967926e-134.36092492336e-150.006785391240380.9999769795011.000023020970.0274511647826004.82426598669e-149.5028152014e-15
+31320.42560.1963495408490.007710628438350.561.973920880220.10.006302930935290.006743318537340.01793348158120.01256208685670.0001363494223492.961494668e-162.56461518688e-142.86437540353e-148.33877522687e-160.02694687088860.9996370013981.000363116310.0264796879038001.87350135405e-15-4.76355066503e-15
+41320.82560.1963495408490.007710628438350.561.973920880220.10.006169997671850.007968000888480.07175502609010.01227164258440.0003290846765253.26778180774e-162.57571741713e-142.81996648255e-145.12707416303e-160.05389374177730.9985480055921.001452502450.025224238940600-5.24927323831e-151.05124242644e-14
+52320.25120.1963495408490.003855314219180.531.973920880220.10.006401675235730.01909368147530.004482461790660.01276220208313.01929284689e-053.79709775204e-155.37347943919e-145.57331958362e-145.26123655804e-150.006736717722160.9999773125871.000022694590.027444045847800-1.52690360355e-14-7.47318873451e-15
+Measurements and complete records / JSON
+
+## LBM Taylor–Green vortex and finite-Mach errors — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-taylor-green/#lbm-taylor-green-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Qisu Zou and Xiaoyi He (1996). On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model
+Review scope / review_level: primary-selected-extracted-text
+Selected primary equations and flat-boundary/corner/compressibility discussion read; special d2q9i successes are not borrowed.
+Pierre Lallemand and Li-Shi Luo (2003). Lattice Boltzmann method for moving boundaries · DOI: 10.1016/S0021-9991(02)00022-0
+Review scope / review_level: primary-selected-text-via-mirror
+Selected primary section via author-content mirror. The implemented two-point interpolation is separately derived/qualified; no2001full-text claim.
+
 ## Level sets: 2D circle translation and rigid rotation — Level sets: 2D circle translation and rigid rotation [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-level-set/
@@ -24809,13 +25593,15 @@ Exact / reference solutions
 References and checks for this execution
 Reference and validation scope
 Check against a SciPy discrete-Lyapunov solve and explicit harmonic covariance diag(T/omega²,T(1-h²omega²/4)). Separate second-order momentum bias from sampling error and evaluate burn transients from the map. A separate matrix exponential gives continuous correlation.
+Related-model reference · Analytic reference
+OU weak moments with joint Brownian coupling
 
 ## MCMC, temperature control and biological models — Langevin thermostat: canonical distributions, timestep bias and correlation [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-models/
 Coverage: reading
 
-No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
+dX=1.5(.2-X)dt+.8dW,X0=.7;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping.
 
 ## MCMC, temperature control and biological models — Assumptions, units and boundaries [en]
 
@@ -32406,6 +33192,1087 @@ Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton (
 Review scope / review_level: primary-selected-original-pdf-text
 Selected original equations and diagnostic limitations inspected; independently derived continuum references are evaluated here.
 
+## 2D shadows,beams and M1 closure — 2D shadows,beams and M1 closure [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/
+Coverage: reading
+
+Compute absorber shadows and opposing beams with discrete ordinates and M1, separately checking the closed M1 PDE with a manufactured solution.
+
+## 2D shadows,beams and M1 closure — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/#run-all
+Coverage: reading
+
+Run inside atlas-radiation-geometry-2026-11-24 from the ZIP. This command executes all 2 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## 2D shadows,beams and M1 closure — Two-dimensional absorber shadow and M1 transport [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/
+Coverage: reading
+
+Compare the actual evolved circular-absorber shadow with characteristic chord attenuation, signed-angle transport and nonlinear M1.
+Methods, equations, figures and references
+Methods used
+Radiation transport and moment methods
+Upwind finite differences
+Heun / SSPRK(2,2)
+Rusanov / local Lax–Friedrichs flux
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Conservative upwind angular finite volumes or M1 Rusanov fluxes with SSPRK2; exponential absorption with a separate deposited-energy ledger. Six axis directions have weight1/6; a unit beam has nodal intensity6. Retain Pzz and the full3D trace. No positive floor or cone projection. The revised general directional local-LF coefficient is the maximum of endpoint spectral radii,an independently derived cone-splitting bound,and normal reduced flux. Use the same face rule on all ghost boundaries and in the ledger. Explicit speed-only vacuum/allowed-roundoff extension1 is counted; no U/P projection or special beam branch. Preserve the original c1 transverse-diffusion failure.
+Static grey radiative transfer,scattering and linear exchange
+
+## 2D shadows,beams and M1 closure — Two-dimensional absorber shadow and M1 transport [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/
+Coverage: reading
+
+Two spatial dimensions, a three-dimensional angular measure, c=1 and static absorption. Evolve the actual signed-angle and nonlinear M1 equations on24/48/96grids. Same-solver controls retain a varying-direction manufactured solution and crossed x/y packets.
+Static grey M1 moments in flat spacetime
+Two spatial dimensions, a three-dimensional angular measure, c=1 and static absorption. Evolve the actual signed-angle and nonlinear M1 equations on24/48/96grids. Same-solver controls retain a varying-direction manufactured solution and crossed x/y packets.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Two-dimensional absorber shadow and M1 transport
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## 2D shadows,beams and M1 closure — Two-dimensional absorber shadow and M1 transport [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/
+Coverage: reading
+
+The independent characteristic cell averages and manufactured M1 forcing passed191reference/component checks before any PDE main. Check all-step budgets, realizability and positivity, spatial refinement, a separate half-step probe, and actual x/y evolution. Opposing-beam closure error is distinguished from numerical error. The new general flux passed762fixed component checks before this revised PDE main. Retain the17old tests and add5directional regressions=22tests; all24fixed runs and166scientific gates remain unchanged under the same120second limit.
+Same-problem reference · Analytic reference
+Circular-absorber characteristic reference
+Six aligned directions do not demonstrate general angular convergence. The M1 opposing-beam mismatch is expected information loss and is not required to converge to angular transport. No relativistic, gas-dynamical or multifrequency radiation hydrodynamics is implemented.
+
+## 2D shadows,beams and M1 closure — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/#shadow-absorber2d-assumptions
+Coverage: reading
+
+Two spatial dimensions, a three-dimensional angular measure, c=1 and static absorption. Evolve the actual signed-angle and nonlinear M1 equations on24/48/96grids. Same-solver controls retain a varying-direction manufactured solution and crossed x/y packets.
+
+## 2D shadows,beams and M1 closure — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/#shadow-absorber2d-algorithm
+Coverage: reading
+
+Conservative upwind angular finite volumes or M1 Rusanov fluxes with SSPRK2; exponential absorption with a separate deposited-energy ledger. Six axis directions have weight1/6; a unit beam has nodal intensity6. Retain Pzz and the full3D trace. No positive floor or cone projection. The revised general directional local-LF coefficient is the maximum of endpoint spectral radii,an independently derived cone-splitting bound,and normal reduced flux. Use the same face rule on all ghost boundaries and in the ledger. Explicit speed-only vacuum/allowed-roundoff extension1 is counted; no U/P projection or special beam branch. Preserve the original c1 transverse-diffusion failure.
+\partial_tE+\nabla\cdot\mathbf F=-\kappa_aE,\quad\partial_t\mathbf F+\nabla\cdot\mathbf P=-\kappa_a\mathbf F\mathbf P=E\left[\frac{1-\chi}{2}\mathbf I_3+\frac{3\chi-1}{2}\mathbf n\otimes\mathbf n\right]\chi=\frac{3+4f^2}{5+2\sqrt{4-3f^2}},\quad f=|\mathbf F|/E,\quad P_{xx}+P_{yy}+P_{zz}=E
+
+## 2D shadows,beams and M1 closure — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/#shadow-absorber2d-validation
+Coverage: reading
+
+The independent characteristic cell averages and manufactured M1 forcing passed191reference/component checks before any PDE main. Check all-step budgets, realizability and positivity, spatial refinement, a separate half-step probe, and actual x/y evolution. Opposing-beam closure error is distinguished from numerical error. The new general flux passed762fixed component checks before this revised PDE main. Retain the17old tests and add5directional regressions=22tests; all24fixed runs and166scientific gates remain unchanged under the same120second limit.
+
+## 2D shadows,beams and M1 closure — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/#shadow-absorber2d-limits
+Coverage: reading
+
+Six aligned directions do not demonstrate general angular convergence. The M1 opposing-beam mismatch is expected information loss and is not required to converge to angular transport. No relativistic, gas-dynamical or multifrequency radiation hydrodynamics is implemented.
+
+## 2D shadows,beams and M1 closure — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/#shadow-absorber2d-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+M1_numerical_fluxGeneral directional localLF:max endpoint spectralradius,LFcone-splitting bound and absolute normal reducedflux;not a nonlinearRiemannfan bound
+completed_primary_and_control_runs8
+spatial_dimensions2
+angular_dimensions3
+Pzz_retainedtrue
+判定 / checkPassed
+shadow-sn-n24/all-stages-finitetrue
+shadow-sn-n24/positive-energytrue
+shadow-sn-n24/realizabilitytrue
+shadow-sn-n24/energy-budgettrue
+shadow-sn-n24/full3D-pressure-tracetrue
+shadow-sn-n24/five-fixed-snapshotstrue
+shadow-sn-n48/all-stages-finitetrue
+shadow-sn-n48/positive-energytrue
+shadow-sn-n48/realizabilitytrue
+shadow-sn-n48/energy-budgettrue
+shadow-sn-n48/full3D-pressure-tracetrue
+shadow-sn-n48/five-fixed-snapshotstrue
+shadow-sn-n96/all-stages-finitetrue
+shadow-sn-n96/positive-energytrue
+shadow-sn-n96/realizabilitytrue
+shadow-sn-n96/energy-budgettrue
+shadow-sn-n96/full3D-pressure-tracetrue
+shadow-sn-n96/five-fixed-snapshotstrue
+shadow-m1-n24/all-stages-finitetrue
+shadow-m1-n24/positive-energytrue
+shadow-m1-n24/realizabilitytrue
+shadow-m1-n24/energy-budgettrue
+shadow-m1-n24/full3D-pressure-tracetrue
+shadow-m1-n24/five-fixed-snapshotstrue
+shadow-m1-n48/all-stages-finitetrue
+shadow-m1-n48/positive-energytrue
+
+## 2D shadows,beams and M1 closure — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/#shadow-absorber2d-measurements
+Coverage: reading
+
+shadow-m1-n48/realizabilitytrue
+shadow-m1-n48/energy-budgettrue
+shadow-m1-n48/full3D-pressure-tracetrue
+shadow-m1-n48/five-fixed-snapshotstrue
+shadow-m1-n96/all-stages-finitetrue
+shadow-m1-n96/positive-energytrue
+shadow-m1-n96/realizabilitytrue
+shadow-m1-n96/energy-budgettrue
+shadow-m1-n96/full3D-pressure-tracetrue
+shadow-m1-n96/five-fixed-snapshotstrue
+shadow-sn-n96-half-dt/all-stages-finitetrue
+shadow-sn-n96-half-dt/positive-energytrue
+shadow-sn-n96-half-dt/realizabilitytrue
+shadow-sn-n96-half-dt/energy-budgettrue
+shadow-sn-n96-half-dt/full3D-pressure-tracetrue
+shadow-sn-n96-half-dt/five-fixed-snapshotstrue
+shadow-m1-n96-half-dt/all-stages-finitetrue
+shadow-m1-n96-half-dt/positive-energytrue
+shadow-m1-n96-half-dt/realizabilitytrue
+shadow-m1-n96-half-dt/energy-budgettrue
+shadow-m1-n96-half-dt/full3D-pressure-tracetrue
+shadow-m1-n96-half-dt/five-fixed-snapshotstrue
+shadow/sn/refinement-n48true
+shadow/sn/refinement-n96true
+shadow/sn/finest-referencetrue
+shadow/sn/separate-time-sensitivitytrue
+shadow/m1/refinement-n48true
+shadow/m1/refinement-n96true
+shadow/m1/finest-referencetrue
+shadow/m1/separate-time-sensitivitytrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Scientific preview from the actual saved numerical fields.Read every stored record
+
+## 2D shadows,beams and M1 closure — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/#shadow-absorber2d-measurements
+Coverage: reading
+
+idkindmethodcellsfinal_timestepsfamilyfieldsindependent_moment_l1maximum_budgetminimum_energyminimum_conedirectional_speed_diagnostics
+shadow-sn-n24shadowsn241.1152refinementshadow-sn-n24.npz0.01571627158062.22044604925e-1600—
+shadow-sn-n48shadowsn481.1304refinementshadow-sn-n48.npz0.01148426575785.55111512313e-1600—
+shadow-sn-n96shadowsn961.1604refinementshadow-sn-n96.npz0.004394928879926.38378239159e-1600—
+shadow-m1-n24shadowm1241.1152refinementshadow-m1-n24.npz0.01573005576392.49800180541e-1600{"calls":912,"vacuum_states":21344,"tiny_negative_energy_states":0,"outside_cone_roundoff_states":0,"maximum_outside_cone_excess":0.0,"maximum_speed":1.0}
+shadow-m1-n48shadowm1481.1304refinementshadow-m1-n48.npz0.01148633648445.27355936697e-1600{"calls":1824,"vacuum_states":150080,"tiny_negative_energy_states":0,"outside_cone_roundoff_states":0,"maximum_outside_cone_excess":0.0,"maximum_speed":1.0}
+shadow-m1-n96shadowm1961.1604refinementshadow-m1-n96.npz0.004395049365788.60422844084e-1600{"calls":3624,"vacuum_states":1117504,"tiny_negative_energy_states":0,"outside_cone_roundoff_states":0,"maximum_outside_cone_excess":0.0,"maximum_speed":1.0}
+shadow-sn-n96-half-dtshadowsn961.11208time-probeshadow-sn-n96-half-dt.npz0.004384816488892.27595720048e-1500—
+
+## 2D shadows,beams and M1 closure — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/#shadow-absorber2d-measurements
+Coverage: reading
+
+shadow-m1-n96-half-dtshadowm1961.11208time-probeshadow-m1-n96-half-dt.npz0.004384844948393.46944695195e-1500{"calls":7248,"vacuum_states":1185152,"tiny_negative_energy_states":0,"outside_cone_roundoff_states":0,"maximum_outside_cone_excess":0.0,"maximum_speed":1.0}
+Measurements and complete records / JSON
+
+## 2D shadows,beams and M1 closure — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/#shadow-absorber2d-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Rosdahl etal. (2013). RAMSES-RT: Radiation hydrodynamics in the cosmological context
+Review scope / review_level: primary-paper-selected-M1-equations-and-limitations
+ReadSection2equations12-14and two-opposing-beams limitation text. Levermore1984original not read. Educational staticgrey cases/MMS here do not reproduce RAMSESastrophysical runs.
+M. A. Skinner and E. C. Ostriker (2013). A Two-moment Radiation Hydrodynamics Module in Athena Using a Time-Explicit Godunov Method
+Review scope / review_level: primary-selected-section-by-independent-mathematical-reviewer
+Independent reviewer actually read selected extracted Section3.3equations37–41and eigenvalue limits;not a whole-paper/rendered-symbol audit. Directional LF cone root/weighted-CFL algebra is separately authored and independently crosschecked,not a transplanted HLL solver or claimed general Riemann-fan bound.
+
+## 2D shadows,beams and M1 closure — Opposing beams and information loss in the M1 closure [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/
+Coverage: reading
+
+Show the M1 limitation in actual opposing-packet evolution; validate the same closed M1 solver independently with a manufactured solution.
+Methods, equations, figures and references
+Methods used
+Radiation transport and moment methods
+Upwind finite differences
+Heun / SSPRK(2,2)
+Rusanov / local Lax–Friedrichs flux
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Conservative upwind angular finite volumes or M1 Rusanov fluxes with SSPRK2; exponential absorption with a separate deposited-energy ledger. Six axis directions have weight1/6; a unit beam has nodal intensity6. Retain Pzz and the full3D trace. No positive floor or cone projection. The revised general directional local-LF coefficient is the maximum of endpoint spectral radii,an independently derived cone-splitting bound,and normal reduced flux. Use the same face rule on all ghost boundaries and in the ledger. Explicit speed-only vacuum/allowed-roundoff extension1 is counted; no U/P projection or special beam branch. Preserve the original c1 transverse-diffusion failure.
+Static grey radiative transfer,scattering and linear exchange
+
+## 2D shadows,beams and M1 closure — Opposing beams and information loss in the M1 closure [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/
+Coverage: reading
+
+Two spatial dimensions, a three-dimensional angular measure, c=1 and static absorption. Evolve the actual signed-angle and nonlinear M1 equations on24/48/96grids. Same-solver controls retain a varying-direction manufactured solution and crossed x/y packets.
+Static grey M1 moments in flat spacetime
+Two spatial dimensions, a three-dimensional angular measure, c=1 and static absorption. Evolve the actual signed-angle and nonlinear M1 equations on24/48/96grids. Same-solver controls retain a varying-direction manufactured solution and crossed x/y packets.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Opposing beams and information loss in the M1 closure
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## 2D shadows,beams and M1 closure — Opposing beams and information loss in the M1 closure [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/
+Coverage: reading
+
+The independent characteristic cell averages and manufactured M1 forcing passed191reference/component checks before any PDE main. Check all-step budgets, realizability and positivity, spatial refinement, a separate half-step probe, and actual x/y evolution. Opposing-beam closure error is distinguished from numerical error. The new general flux passed762fixed component checks before this revised PDE main. Retain the17old tests and add5directional regressions=22tests; all24fixed runs and166scientific gates remain unchanged under the same120second limit.
+Same-problem reference · Analytic reference
+Counterpropagating packet characteristic reference
+Six aligned directions do not demonstrate general angular convergence. The M1 opposing-beam mismatch is expected information loss and is not required to converge to angular transport. No relativistic, gas-dynamical or multifrequency radiation hydrodynamics is implemented.
+
+## 2D shadows,beams and M1 closure — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/#opposing-beams2d-assumptions
+Coverage: reading
+
+Two spatial dimensions, a three-dimensional angular measure, c=1 and static absorption. Evolve the actual signed-angle and nonlinear M1 equations on24/48/96grids. Same-solver controls retain a varying-direction manufactured solution and crossed x/y packets.
+
+## 2D shadows,beams and M1 closure — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/#opposing-beams2d-algorithm
+Coverage: reading
+
+Conservative upwind angular finite volumes or M1 Rusanov fluxes with SSPRK2; exponential absorption with a separate deposited-energy ledger. Six axis directions have weight1/6; a unit beam has nodal intensity6. Retain Pzz and the full3D trace. No positive floor or cone projection. The revised general directional local-LF coefficient is the maximum of endpoint spectral radii,an independently derived cone-splitting bound,and normal reduced flux. Use the same face rule on all ghost boundaries and in the ledger. Explicit speed-only vacuum/allowed-roundoff extension1 is counted; no U/P projection or special beam branch. Preserve the original c1 transverse-diffusion failure.
+\partial_tE+\nabla\cdot\mathbf F=-\kappa_aE,\quad\partial_t\mathbf F+\nabla\cdot\mathbf P=-\kappa_a\mathbf F\mathbf P=E\left[\frac{1-\chi}{2}\mathbf I_3+\frac{3\chi-1}{2}\mathbf n\otimes\mathbf n\right]\chi=\frac{3+4f^2}{5+2\sqrt{4-3f^2}},\quad f=|\mathbf F|/E,\quad P_{xx}+P_{yy}+P_{zz}=E
+
+## 2D shadows,beams and M1 closure — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/#opposing-beams2d-validation
+Coverage: reading
+
+The independent characteristic cell averages and manufactured M1 forcing passed191reference/component checks before any PDE main. Check all-step budgets, realizability and positivity, spatial refinement, a separate half-step probe, and actual x/y evolution. Opposing-beam closure error is distinguished from numerical error. The new general flux passed762fixed component checks before this revised PDE main. Retain the17old tests and add5directional regressions=22tests; all24fixed runs and166scientific gates remain unchanged under the same120second limit.
+
+## 2D shadows,beams and M1 closure — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/#opposing-beams2d-limits
+Coverage: reading
+
+Six aligned directions do not demonstrate general angular convergence. The M1 opposing-beam mismatch is expected information loss and is not required to converge to angular transport. No relativistic, gas-dynamical or multifrequency radiation hydrodynamics is implemented.
+
+## 2D shadows,beams and M1 closure — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/#opposing-beams2d-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+same_solver_controls["nonlinear-closed-M1-MMS","actual-x-and-y-crossed-angular-packets"]
+M1_transport_difference_is_model_errortrue
+M1_numerical_fluxGeneral directional localLF:max endpoint spectralradius,LFcone-splitting bound and absolute normal reducedflux;not a nonlinearRiemannfan bound
+completed_primary_and_control_runs16
+spatial_dimensions2
+angular_dimensions3
+Pzz_retainedtrue
+判定 / checkPassed
+beams-sn-n24/all-stages-finitetrue
+beams-sn-n24/positive-energytrue
+beams-sn-n24/realizabilitytrue
+beams-sn-n24/energy-budgettrue
+beams-sn-n24/full3D-pressure-tracetrue
+beams-sn-n24/five-fixed-snapshotstrue
+beams-sn-n48/all-stages-finitetrue
+beams-sn-n48/positive-energytrue
+beams-sn-n48/realizabilitytrue
+beams-sn-n48/energy-budgettrue
+beams-sn-n48/full3D-pressure-tracetrue
+beams-sn-n48/five-fixed-snapshotstrue
+beams-sn-n96/all-stages-finitetrue
+beams-sn-n96/positive-energytrue
+beams-sn-n96/realizabilitytrue
+beams-sn-n96/energy-budgettrue
+beams-sn-n96/full3D-pressure-tracetrue
+beams-sn-n96/five-fixed-snapshotstrue
+beams-m1-n24/all-stages-finitetrue
+beams-m1-n24/positive-energytrue
+beams-m1-n24/realizabilitytrue
+beams-m1-n24/energy-budgettrue
+beams-m1-n24/full3D-pressure-tracetrue
+
+## 2D shadows,beams and M1 closure — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/#opposing-beams2d-measurements
+Coverage: reading
+
+beams-m1-n24/five-fixed-snapshotstrue
+beams-m1-n48/all-stages-finitetrue
+beams-m1-n48/positive-energytrue
+beams-m1-n48/realizabilitytrue
+beams-m1-n48/energy-budgettrue
+beams-m1-n48/full3D-pressure-tracetrue
+beams-m1-n48/five-fixed-snapshotstrue
+beams-m1-n96/all-stages-finitetrue
+beams-m1-n96/positive-energytrue
+beams-m1-n96/realizabilitytrue
+beams-m1-n96/energy-budgettrue
+beams-m1-n96/full3D-pressure-tracetrue
+beams-m1-n96/five-fixed-snapshotstrue
+beams-sn-n96-half-dt/all-stages-finitetrue
+beams-sn-n96-half-dt/positive-energytrue
+beams-sn-n96-half-dt/realizabilitytrue
+beams-sn-n96-half-dt/energy-budgettrue
+beams-sn-n96-half-dt/full3D-pressure-tracetrue
+beams-sn-n96-half-dt/five-fixed-snapshotstrue
+beams-m1-n96-half-dt/all-stages-finitetrue
+beams-m1-n96-half-dt/positive-energytrue
+beams-m1-n96-half-dt/realizabilitytrue
+beams-m1-n96-half-dt/energy-budgettrue
+beams-m1-n96-half-dt/full3D-pressure-tracetrue
+beams-m1-n96-half-dt/five-fixed-snapshotstrue
+beams/sn/refinement-n48true
+beams/sn/refinement-n96true
+beams/sn/finest-referencetrue
+beams/sn/separate-time-sensitivitytrue
+beams/m1/separate-time-sensitivitytrue
+mms-m1-n16/all-stages-finitetrue
+mms-m1-n16/positive-energytrue
+mms-m1-n16/realizabilitytrue
+mms-m1-n16/energy-budgettrue
+mms-m1-n16/full3D-pressure-tracetrue
+mms-m1-n16/five-fixed-snapshotstrue
+mms-m1-n32/all-stages-finitetrue
+mms-m1-n32/positive-energytrue
+
+## 2D shadows,beams and M1 closure — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/#opposing-beams2d-measurements
+Coverage: reading
+
+mms-m1-n32/realizabilitytrue
+mms-m1-n32/energy-budgettrue
+mms-m1-n32/full3D-pressure-tracetrue
+mms-m1-n32/five-fixed-snapshotstrue
+mms-m1-n64/all-stages-finitetrue
+mms-m1-n64/positive-energytrue
+mms-m1-n64/realizabilitytrue
+mms-m1-n64/energy-budgettrue
+mms-m1-n64/full3D-pressure-tracetrue
+mms-m1-n64/five-fixed-snapshotstrue
+mms-m1-n64-half-dt/all-stages-finitetrue
+mms-m1-n64-half-dt/positive-energytrue
+mms-m1-n64-half-dt/realizabilitytrue
+mms-m1-n64-half-dt/energy-budgettrue
+mms-m1-n64-half-dt/full3D-pressure-tracetrue
+mms-m1-n64-half-dt/five-fixed-snapshotstrue
+crossed-sn-n24/all-stages-finitetrue
+crossed-sn-n24/positive-energytrue
+crossed-sn-n24/realizabilitytrue
+crossed-sn-n24/energy-budgettrue
+crossed-sn-n24/full3D-pressure-tracetrue
+crossed-sn-n24/five-fixed-snapshotstrue
+crossed-sn-n48/all-stages-finitetrue
+crossed-sn-n48/positive-energytrue
+crossed-sn-n48/realizabilitytrue
+crossed-sn-n48/energy-budgettrue
+crossed-sn-n48/full3D-pressure-tracetrue
+crossed-sn-n48/five-fixed-snapshotstrue
+crossed-sn-n96/all-stages-finitetrue
+crossed-sn-n96/positive-energytrue
+crossed-sn-n96/realizabilitytrue
+crossed-sn-n96/energy-budgettrue
+crossed-sn-n96/full3D-pressure-tracetrue
+crossed-sn-n96/five-fixed-snapshotstrue
+crossed-sn-n96-half-dt/all-stages-finitetrue
+crossed-sn-n96-half-dt/positive-energytrue
+crossed-sn-n96-half-dt/realizabilitytrue
+crossed-sn-n96-half-dt/energy-budgettrue
+
+## 2D shadows,beams and M1 closure — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/#opposing-beams2d-measurements
+Coverage: reading
+
+crossed-sn-n96-half-dt/full3D-pressure-tracetrue
+crossed-sn-n96-half-dt/five-fixed-snapshotstrue
+mms/m1/refinement-n32true
+mms/m1/refinement-n64true
+mms/m1/finest-referencetrue
+mms/m1/separate-time-sensitivitytrue
+crossed/sn/refinement-n48true
+crossed/sn/refinement-n96true
+crossed/sn/finest-referencetrue
+crossed/sn/separate-time-sensitivitytrue
+head-on-closure-information-defecttrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Scientific preview from the actual saved numerical fields.Independent manufactured energy,actual evolved energy,and signed error from the same varying-direction M1 solver.Read every stored record
+idkindmethodcellsfinal_timestepsfamilyfieldsindependent_moment_l1maximum_budgetminimum_energyminimum_conedirectional_speed_diagnostics
+beams-sn-n24beamssn240.572refinementbeams-sn-n24.npz0.02159072878796.93889390391e-181.99491505044e-210—
+beams-sn-n48beamssn480.5140refinementbeams-sn-n48.npz0.01810883312346.93889390391e-186.93453283989e-240—
+beams-sn-n96beamssn960.5276refinementbeams-sn-n96.npz0.01345529789263.46944695195e-181.47896130662e-260—
+
+## 2D shadows,beams and M1 closure — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/#opposing-beams2d-measurements
+Coverage: reading
+
+beams-m1-n24beamsm1240.572refinementbeams-m1-n24.npz0.03751689555556.93889390391e-182.23517819207e-204.89093761237e-28{"calls":288,"vacuum_states":0,"tiny_negative_energy_states":0,"outside_cone_roundoff_states":0,"maximum_outside_cone_excess":0.0,"maximum_speed":0.9999999999999807}
+beams-m1-n48beamsm1480.5140refinementbeams-m1-n48.npz0.03779050071163.46944695195e-182.27816613728e-213.53409685539e-28{"calls":560,"vacuum_states":0,"tiny_negative_energy_states":0,"outside_cone_roundoff_states":0,"maximum_outside_cone_excess":0.0,"maximum_speed":0.9999999999999853}
+beams-m1-n96beamsm1960.5276refinementbeams-m1-n96.npz0.03722645080786.93889390391e-185.60564464068e-223.28166136572e-28{"calls":1104,"vacuum_states":0,"tiny_negative_energy_states":0,"outside_cone_roundoff_states":0,"maximum_outside_cone_excess":0.0,"maximum_speed":0.9999999999999865}
+beams-sn-n96-half-dtbeamssn960.5552time-probebeams-sn-n96-half-dt.npz0.01345368372486.93889390391e-181.54902502056e-260—
+beams-m1-n96-half-dtbeamsm1960.5552time-probebeams-m1-n96-half-dt.npz0.03722621475256.93889390391e-185.60794258978e-223.28166136572e-28{"calls":2208,"vacuum_states":0,"tiny_negative_energy_states":0,"outside_cone_roundoff_states":0,"maximum_outside_cone_excess":0.0,"maximum_speed":0.9999999999999865}
+
+## 2D shadows,beams and M1 closure — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/#opposing-beams2d-measurements
+Coverage: reading
+
+mms-m1-n16mmsm1160.2524refinementmms-m1-n16.npz0.01536419044494.28711609037e-180.90299128950.666986081724{"calls":96,"vacuum_states":0,"tiny_negative_energy_states":0,"outside_cone_roundoff_states":0,"maximum_outside_cone_excess":0.0,"maximum_speed":0.6908442378741732}
+mms-m1-n32mmsm1320.2548refinementmms-m1-n32.npz0.008581684030512.19587080001e-160.9007732103410.661973156452{"calls":192,"vacuum_states":0,"tiny_negative_energy_states":0,"outside_cone_roundoff_states":0,"maximum_outside_cone_excess":0.0,"maximum_speed":0.6909000278930099}
+mms-m1-n64mmsm1640.2592refinementmms-m1-n64.npz0.004540918658592.21799480956e-160.9002011803920.659094670883{"calls":368,"vacuum_states":0,"tiny_negative_energy_states":0,"outside_cone_roundoff_states":0,"maximum_outside_cone_excess":0.0,"maximum_speed":0.6909869582293076}
+mms-m1-n64-half-dtmmsm1640.25184time-probemms-m1-n64-half-dt.npz0.004539175754412.23439925982e-160.9001371241130.659090055604{"calls":736,"vacuum_states":0,"tiny_negative_energy_states":0,"outside_cone_roundoff_states":0,"maximum_outside_cone_excess":0.0,"maximum_speed":0.6909846201381773}
+crossed-sn-n24crossedsn240.2536refinementcrossed-sn-n24.npz0.01592496466716.93889390391e-183.86975299898e-240—
+crossed-sn-n48crossedsn480.2572refinementcrossed-sn-n48.npz0.01166365547536.93889390391e-182.59338160907e-250—
+
+## 2D shadows,beams and M1 closure — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/#opposing-beams2d-measurements
+Coverage: reading
+
+crossed-sn-n96crossedsn960.25140refinementcrossed-sn-n96.npz0.007707035251546.93889390391e-185.82247250136e-270—
+crossed-sn-n96-half-dtcrossedsn960.25280time-probecrossed-sn-n96-half-dt.npz0.007705046785923.46944695195e-186.03805527375e-270—
+Measurements and complete records / JSON
+
+## 2D shadows,beams and M1 closure — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/#opposing-beams2d-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Rosdahl etal. (2013). RAMSES-RT: Radiation hydrodynamics in the cosmological context
+Review scope / review_level: primary-paper-selected-M1-equations-and-limitations
+ReadSection2equations12-14and two-opposing-beams limitation text. Levermore1984original not read. Educational staticgrey cases/MMS here do not reproduce RAMSESastrophysical runs.
+M. A. Skinner and E. C. Ostriker (2013). A Two-moment Radiation Hydrodynamics Module in Athena Using a Time-Explicit Godunov Method
+Review scope / review_level: primary-selected-section-by-independent-mathematical-reviewer
+Independent reviewer actually read selected extracted Section3.3equations37–41and eigenvalue limits;not a whole-paper/rendered-symbol audit. Directional LF cone root/weighted-CFL algebra is separately authored and independently crosschecked,not a transplanted HLL solver or claimed general Riemann-fan bound.
+
+## Non-equilibrium radiation: distinct diffusion and transport — Non-equilibrium radiation: distinct diffusion and transport [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-matter/
+Coverage: reading
+
+Separate Su-Olson diffusion and transport by normalization,boundaries and sources,with an additional matched periodic Fourier control for the resolved diffusion limit.
+
+## Non-equilibrium radiation: distinct diffusion and transport — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-matter/#run-all
+Coverage: reading
+
+Run inside atlas-radiation-matter-2026-11-24-r2 from the ZIP. This command executes all 2 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Non-equilibrium radiation: distinct diffusion and transport — Su–Olson1996 non-equilibrium diffusion [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-matter/
+Coverage: reading
+
+Advance actual radiation/material fields with the Marshak boundary and compare with independently qualified pinned ExactPack integrals.
+Methods, equations, figures and references
+Methods used
+Radiation transport and moment methods
+Backward Euler
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Conservative FV/backwardEuler with opposite exchange sources coupled by a shared Schur complement and Robin half-cell resistance beta+h/2. Analytic nonunitepsilon.25/2controls exercise the same exchange operators.
+Su–Olson1996 non-equilibrium diffusion and material exchange
+Nondimensionalepsilon1,x0..16,initialu=v0,leftRobin inflow/right0;128/256/512cells plus half-step/domain24probes.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Su–Olson1996 non-equilibrium diffusion
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+The independent54check reference study is shared with transport. Five primary runs separate u/vreferenceerror,all-step capacity-weighted budgets/positivity,time and finite-domain sensitivity.
+Same-problem reference · Semi-analytic reference
+Su–Olson1996 diffusion: pinned independent integral evaluator
+
+## Non-equilibrium radiation: distinct diffusion and transport — Su–Olson1996 non-equilibrium diffusion [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-matter/
+Coverage: reading
+
+This1996diffusion model is distinct from1997angular transport. Original paper fulltext unread;officialsoftware selected values qualified. Direct dimensionless functions avoid ambiguous mass-opacity physical-wrapper units.
+
+## Non-equilibrium radiation: distinct diffusion and transport — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-matter/#su-olson-diffusion1996-assumptions
+Coverage: reading
+
+Nondimensionalepsilon1,x0..16,initialu=v0,leftRobin inflow/right0;128/256/512cells plus half-step/domain24probes.
+
+## Non-equilibrium radiation: distinct diffusion and transport — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-matter/#su-olson-diffusion1996-algorithm
+Coverage: reading
+
+Conservative FV/backwardEuler with opposite exchange sources coupled by a shared Schur complement and Robin half-cell resistance beta+h/2. Analytic nonunitepsilon.25/2controls exercise the same exchange operators.
+\epsilon u_\tau-u_{xx}=v-u,\quad v_\tau=u-vu(0,\tau)-\frac2{\sqrt3}u_x(0,\tau)=1\epsilon=4a/\alpha,\quad e_m/E_0=v/\epsilon,\quad \mathcal E=\epsilon u+v
+
+## Non-equilibrium radiation: distinct diffusion and transport — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-matter/#su-olson-diffusion1996-validation
+Coverage: reading
+
+The independent54check reference study is shared with transport. Five primary runs separate u/vreferenceerror,all-step capacity-weighted budgets/positivity,time and finite-domain sensitivity.
+
+## Non-equilibrium radiation: distinct diffusion and transport — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-matter/#su-olson-diffusion1996-limits
+Coverage: reading
+
+This1996diffusion model is distinct from1997angular transport. Original paper fulltext unread;officialsoftware selected values qualified. Direct dimensionless functions avoid ambiguous mass-opacity physical-wrapper units.
+
+## Non-equilibrium radiation: distinct diffusion and transport — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-matter/#su-olson-diffusion1996-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+completed_primary_runs5
+reference_scopeindependent official diffusion integrals
+capacity_controls[{"epsilon":0.25,"method":"diffusion","error":0.00019032949653130515,"budget":5.984102102729594e-14},{"epsilon":0.25,"method":"transport","error":3.181825272147165e-07,"budget":3.3306690738754696e-16},{"epsilon":2.0,"method":"diffusion","error":0.000154177848556869,"budget":7.460698725481052e-14},{"epsilon":2.0,"method":"transport","error":7.721428540996556e-08,"budget":1.199040866595169e-14}]
+判定 / checkPassed
+su-olson-diffusion1996-n128/finite-positivetrue
+su-olson-diffusion1996-n128/energy-budgettrue
+su-olson-diffusion1996-n128/fixed-final-timetrue
+su-olson-diffusion1996-n256/finite-positivetrue
+su-olson-diffusion1996-n256/energy-budgettrue
+su-olson-diffusion1996-n256/fixed-final-timetrue
+su-olson-diffusion1996-n512/finite-positivetrue
+su-olson-diffusion1996-n512/energy-budgettrue
+su-olson-diffusion1996-n512/fixed-final-timetrue
+su-olson-diffusion1996-half-dt/finite-positivetrue
+su-olson-diffusion1996-half-dt/energy-budgettrue
+su-olson-diffusion1996-half-dt/fixed-final-timetrue
+su-olson-diffusion1996-far-domain/finite-positivetrue
+su-olson-diffusion1996-far-domain/energy-budgettrue
+
+## Non-equilibrium radiation: distinct diffusion and transport — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-matter/#su-olson-diffusion1996-measurements
+Coverage: reading
+
+su-olson-diffusion1996-far-domain/fixed-final-timetrue
+refinement/1true
+refinement/2true
+finest-independent-rmstrue
+finest-independent-linftrue
+separate-time-sensitivitytrue
+finite-domain-sensitivitytrue
+capacity/0.25/diffusion/errortrue
+capacity/0.25/diffusion/budgettrue
+capacity/0.25/transport/errortrue
+capacity/0.25/transport/budgettrue
+capacity/2.0/diffusion/errortrue
+capacity/2.0/diffusion/budgettrue
+capacity/2.0/transport/errortrue
+capacity/2.0/transport/budgettrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Scientific preview from the actual saved numerical fields.Read every stored record
+idcellslengthepsilontimesmax_dtfamilyfieldsreference_rmsreference_linf
+su-olson-diffusion1996-n128128161[0.1,1.0,3.0]0.0003125refinementsu-olson-diffusion1996-n128.npz[0.0005828935430371845,0.0001886464788587654][0.0015246120986942974,0.00037398509166339244]
+su-olson-diffusion1996-n256256161[0.1,1.0,3.0]0.00015625refinementsu-olson-diffusion1996-n256.npz[0.00013911365660577288,4.675809160554036e-05][0.0003681927147146727,8.991602698502077e-05]
+su-olson-diffusion1996-n512512161[0.1,1.0,3.0]7.8125e-05refinementsu-olson-diffusion1996-n512.npz[3.181996278126943e-05,1.161311555354063e-05][9.057646696342125e-05,2.202011795187503e-05]
+
+## Non-equilibrium radiation: distinct diffusion and transport — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-matter/#su-olson-diffusion1996-measurements
+Coverage: reading
+
+su-olson-diffusion1996-half-dt512161[0.1,1.0,3.0]3.90625e-05time-probesu-olson-diffusion1996-half-dt.npz[3.4740959727708664e-05,1.1761108358809267e-05][9.20871373647908e-05,2.243302371870981e-05]
+su-olson-diffusion1996-far-domain768241[0.1,1.0,3.0]7.8125e-05domain-probesu-olson-diffusion1996-far-domain.npz[3.181996278126943e-05,1.161311555354063e-05][9.057646696342125e-05,2.202011795187503e-05]
+Measurements and complete records / JSON
+
+## Non-equilibrium radiation: distinct diffusion and transport — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-matter/#su-olson-diffusion1996-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+LANL ExactPack developers;Timmes implementation provenance (2023). ExactPack1.7.5SuOlson pinned independent diffusion solution
+Review scope / review_level: primary-official-software-full-three-module-text-and-qualified-selected-values
+Read doc55/wrapper41/Timmes348lines;original1996paper abstract only. Serial original/tight selected integrals and independent PDE/Robin qualifiers passed before main. FullExactPack/base/libraries not audited.
+
+## Non-equilibrium radiation: distinct diffusion and transport — Su–Olson transport with an independently published analytical table [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-matter/
+Coverage: reading
+
+Evolve actual signed-angle transport/material exchange and compare with pinned analytical benchmark tables provided by the2023primary author.
+Methods, equations, figures and references
+Methods used
+Radiation transport and moment methods
+Upwind finite differences
+Heun / SSPRK(2,2)
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Full signed-angle upwind FV/SSPRK2 advancesIandV. WithI=2U,E=halfangularintegral,the weightedbudgetisepsilonE+V;nodiffusionsubstitution. Only the thick-limit control constructs the same upwind operator from actual real cos/sin responses and evolves one Fourier mode by an exact-time matrix exponential.
+Static grey radiative transfer,scattering and linear exchange
+The main benchmark uses1997-type radiation/material transport. The heat equation is a limiting companion for separate periodic Fourier controls with E approximately V and diffusivity1/[3kappa(epsilon+1)],not the1996Marshak boundary problem or an exact solution of full transport.
+Heat / diffusion equation
+
+## Non-equilibrium radiation: distinct diffusion and transport — Su–Olson transport with an independently published analytical table [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-matter/
+Coverage: reading
+
+The main benchmark uses1997-type radiation/material transport. The heat equation is a limiting companion for separate periodic Fourier controls with E approximately V and diffusivity1/[3kappa(epsilon+1)],not the1996Marshak boundary problem or an exact solution of full transport.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Su–Olson transport with an independently published analytical table
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+Fiveprimaryrunsseparatespace,32/64angles,timeandindependentW/Verrors. Finite/causalzero/homogeneousanalyticsource normalization oftheprovidedtableswerequalifiedbeforemain. A matched-IC/BC/source control separates FV-space,angular and continuum-limit errors against independent continuum angular matrices and analytic diffusion;141 reference checks use GL64/128,exact nonunit-capacity k0 exchange and independent DOP853 before primary mode evaluation.
+Same-problem reference · Finite-grid numerical reference
+Su–Olson transport: primary2023author-provided analytical benchmark data
+
+## Non-equilibrium radiation: distinct diffusion and transport — Su–Olson transport with an independently published analytical table [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-matter/
+Coverage: reading
+
+No direct original1997fulltext/tablecomparison claim. TheauthorREADMEdoesnotstate transcriptionversusregeneration. Source-offprofiles,generalscattering,globalcontinuumerrorandangularorderarenotcertified. The addition is a resolved N~kappa^2 semidiscrete periodic control,not fixed-grid AP or an SSPRK2 diffusion-time order certificate. Initial F0 versus nonzero Fick flux is retained;limit gates use final s=.25 only. SciPy sparse expm_multiply is shared;DOP853 qualifies the reference propagator.
+
+## Non-equilibrium radiation: distinct diffusion and transport — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-matter/#su-olson-transport1997-assumptions
+Coverage: reading
+
+epsilon1,noelastic scattering,coldIC,Q1inside|x|<.5untiltau10. Symmetricx0..8withreflectingleft/vacuumright;times.1/1/3.16228and13referencepointsx<6. A separate periodic length2pi control uses kappa4/8/16,cells128/512/2048,epsilon1,Q0 and actual cell means of I=V=1+.1cos x.
+
+## Non-equilibrium radiation: distinct diffusion and transport — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-matter/#su-olson-transport1997-algorithm
+Coverage: reading
+
+Full signed-angle upwind FV/SSPRK2 advancesIandV. WithI=2U,E=halfangularintegral,the weightedbudgetisepsilonE+V;nodiffusionsubstitution. Only the thick-limit control constructs the same upwind operator from actual real cos/sin responses and evolves one Fourier mode by an exact-time matrix exponential.
+\epsilon I_\tau+\mu I_x+I=V+Q,\quad V_\tau=E-VE=\frac12\int_{-1}^1I\,d\mu,\quad I=2U,\quad\mathcal E=\epsilon E+VQ=\mathbf1_{|x|<1/2}\mathbf1_{0<\tau<10}\epsilon I_t+\mu I_x=\kappa(V-I),\quad V_t=\kappa(E-V),\quad x\in[0,2\pi)D_{\rm rad}=\frac1{3\kappa},\quad D_{\rm eff}=\frac1{3\kappa(\epsilon+1)},\quad t=\kappa sE_D=V_D=1+A_N e^{-s/[3(\epsilon+1)]}\cos x,\quad F_D=-\frac1{3\kappa}\partial_x E_D
+
+## Non-equilibrium radiation: distinct diffusion and transport — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-matter/#su-olson-transport1997-validation
+Coverage: reading
+
+Fiveprimaryrunsseparatespace,32/64angles,timeandindependentW/Verrors. Finite/causalzero/homogeneousanalyticsource normalization oftheprovidedtableswerequalifiedbeforemain. A matched-IC/BC/source control separates FV-space,angular and continuum-limit errors against independent continuum angular matrices and analytic diffusion;141 reference checks use GL64/128,exact nonunit-capacity k0 exchange and independent DOP853 before primary mode evaluation.
+
+## Non-equilibrium radiation: distinct diffusion and transport — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-matter/#su-olson-transport1997-limits
+Coverage: reading
+
+No direct original1997fulltext/tablecomparison claim. TheauthorREADMEdoesnotstate transcriptionversusregeneration. Source-offprofiles,generalscattering,globalcontinuumerrorandangularorderarenotcertified. The addition is a resolved N~kappa^2 semidiscrete periodic control,not fixed-grid AP or an SSPRK2 diffusion-time order certificate. Initial F0 versus nonzero Fick flux is retained;limit gates use final s=.25 only. SciPy sparse expm_multiply is shared;DOP853 qualifies the reference propagator.
+
+## Non-equilibrium radiation: distinct diffusion and transport — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-matter/#su-olson-transport1997-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+completed_primary_runs5
+reference_scopepinned2023author-providedanalyticaltransporttable;original1997table not directly verified
+capacity_controls[{"epsilon":0.25,"method":"diffusion","error":0.00019032949653130515,"budget":5.984102102729594e-14},{"epsilon":0.25,"method":"transport","error":3.181825272147165e-07,"budget":3.3306690738754696e-16},{"epsilon":2.0,"method":"diffusion","error":0.000154177848556869,"budget":7.460698725481052e-14},{"epsilon":2.0,"method":"transport","error":7.721428540996556e-08,"budget":1.199040866595169e-14}]
+
+## Non-equilibrium radiation: distinct diffusion and transport — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-matter/#su-olson-transport1997-measurements
+Coverage: reading
+
+matched_thick_limit_control{"physical_mode_evolutions":3,"mode_records":[{"id":"su-olson-transport1997-thick-k4","kind":"matched-thick-semidiscrete-mode-control","fields":"su-olson-transport1997-thick-k4.npz","kappa":4,"cells":128,"ordinates":32,"mean_free_path":0.25,"kappa_h":0.19634954084936207,"times":[0.0,0.25,0.5,1.0],"scaled_times":[0.0,0.0625,0.125,0.25],"initial_cellmean_amplitude":0.09998996042161418,"final_FV_space_error":0.006406191708967511,"final_continuum_limit_error":0.01484981145966009,"final_joint_energy_error":0.009801905835372807,"final_joint_scaled_flux_error":0.008805846751149496,"maximum_angular_sensitivity":2.361755418510908e-15,"maximum_budget":2.8398112908774138e-15,"matrix_residual":1.3877787807814457e-17,"semidiscrete_global_RHS_residual":9.096889908022376e-15},{"id":"su-olson-transport1997-thick-k8","kind":"matched-thick-semidiscrete-mode-control","fields":"su-olson-transport1997-thick-k8.npz","kappa":8,"cells":512,"ordinates":32,"mean_free_path":0.125,"kappa_h":0.09817477042468103,"times":[0.0,0.5,1.0,2.0],"scaled_times":[0.0,0.0625,0.125,0.25],"initial_cellmean_amplitude":0.09999937250863256,"final_FV_space_error":0.0029971556290815586,"final_continuum_limit_error":0.0038430634683478773,"final_joint_energy_error":0.0016548173640567698,"final_joint_scaled_flux_error":0.0012410650258467806,"maximum_angular_sensitivity":2.707688603804596e-15,"maximum_
+
+## Non-equilibrium radiation: distinct diffusion and transport — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-matter/#su-olson-transport1997-measurements
+Coverage: reading
+
+budget":5.698441403484806e-15,"matrix_residual":1.3877787807814457e-17,"semidiscrete_global_RHS_residual":3.609851133290487e-14},{"id":"su-olson-transport1997-thick-k16","kind":"matched-thick-semidiscrete-mode-control","fields":"su-olson-transport1997-thick-k16.npz","kappa":16,"cells":2048,"ordinates":32,"mean_free_path":0.0625,"kappa_h":0.04908738521234052,"times":[0.0,1.0,2.0,4.0],"scaled_times":[0.0,0.0625,0.125,0.25],"initial_cellmean_amplitude":0.09999996078172033,"final_FV_space_error":0.0014774233739939713,"final_continuum_limit_error":0.0009641878482973868,"final_joint_energy_error":0.0011378880853298219,"final_joint_scaled_flux_error":0.0005274719030461596,"maximum_angular_sensitivity":5.828675392681093e-15,"maximum_budget":1.0695349491031034e-14,"matrix_residual":3.469446951953614e-18,"semidiscrete_global_RHS_residual":8.391850078921443e-14}],"reference_checks":141,"same_operator":"kappa times actualtransport.rhs withkappa*h,bothrates","time_role":"Exact-time semidiscrete Fourier control; originalSSPRK2tests/transientruns separate","reference_role":"Independentcontinuum-space angularmatrixGL64/128plusDOP853qualifiers;sharedSciPysparseexpm_multiplydeclared","diffusion":"D_rad1/(3kappa),D_eff1/[3kappa(epsilon+1)],matchedperiodiccellmeanIC","scope":"ResolvedjointN~kappa^2limit; nofixed-gridAPorSSPRK2temporal-orderclaim. Initiallayerreportedallfourtimes;asymptoticgatesfin
+
+## Non-equilibrium radiation: distinct diffusion and transport — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-matter/#su-olson-transport1997-measurements
+Coverage: reading
+
+als.25only;nojointorderfit."}
+判定 / checkPassed
+su-olson-transport1997-n128/finite-positivetrue
+su-olson-transport1997-n128/energy-budgettrue
+su-olson-transport1997-n128/fixed-final-timetrue
+su-olson-transport1997-n128/explicit-couranttrue
+su-olson-transport1997-n256/finite-positivetrue
+su-olson-transport1997-n256/energy-budgettrue
+su-olson-transport1997-n256/fixed-final-timetrue
+su-olson-transport1997-n256/explicit-couranttrue
+su-olson-transport1997-n512/finite-positivetrue
+su-olson-transport1997-n512/energy-budgettrue
+su-olson-transport1997-n512/fixed-final-timetrue
+su-olson-transport1997-n512/explicit-couranttrue
+su-olson-transport1997-angular-64/finite-positivetrue
+su-olson-transport1997-angular-64/energy-budgettrue
+su-olson-transport1997-angular-64/fixed-final-timetrue
+su-olson-transport1997-angular-64/explicit-couranttrue
+su-olson-transport1997-half-dt/finite-positivetrue
+su-olson-transport1997-half-dt/energy-budgettrue
+su-olson-transport1997-half-dt/fixed-final-timetrue
+su-olson-transport1997-half-dt/explicit-couranttrue
+refinement/1true
+refinement/2true
+finest-independent-rmstrue
+finest-independent-linftrue
+separate-angular-sensitivitytrue
+separate-time-sensitivitytrue
+capacity/0.25/diffusion/errortrue
+capacity/0.25/diffusion/budgettrue
+capacity/0.25/transport/errortrue
+capacity/0.25/transport/budgettrue
+capacity/2.0/diffusion/errortrue
+capacity/2.0/diffusion/budgettrue
+
+## Non-equilibrium radiation: distinct diffusion and transport — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-matter/#su-olson-transport1997-measurements
+Coverage: reading
+
+capacity/2.0/transport/errortrue
+capacity/2.0/transport/budgettrue
+thick/4/finite-positive-fieldstrue
+thick/4/periodic-weighted-energytrue
+thick/4/actual-stencil-and-global-RHStrue
+thick/4/separate-FV-space-errortrue
+thick/4/separate-angular-sensitivitytrue
+thick/4/physical-initial-layer-retainedtrue
+thick/4/mean-free-path-resolvedtrue
+thick/8/finite-positive-fieldstrue
+thick/8/periodic-weighted-energytrue
+thick/8/actual-stencil-and-global-RHStrue
+thick/8/separate-FV-space-errortrue
+thick/8/separate-angular-sensitivitytrue
+thick/8/physical-initial-layer-retainedtrue
+thick/8/mean-free-path-resolvedtrue
+thick/16/finite-positive-fieldstrue
+thick/16/periodic-weighted-energytrue
+thick/16/actual-stencil-and-global-RHStrue
+thick/16/separate-FV-space-errortrue
+thick/16/separate-angular-sensitivitytrue
+thick/16/physical-initial-layer-retainedtrue
+thick/16/mean-free-path-resolvedtrue
+thick/space/k8true
+thick/continuum-limit/k8true
+thick/space/k16true
+thick/continuum-limit/k16true
+thick/finest-energy-limittrue
+thick/finest-scaled-flux-limittrue
+thick/wrong-flux-sign-negative-controltrue
+thick/missing-one-third-negative-controltrue
+
+## Non-equilibrium radiation: distinct diffusion and transport — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-matter/#su-olson-transport1997-measurements
+Coverage: reading
+
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Scientific preview from the actual saved numerical fields.Matched thick-limit control: exact-time single Fourier mode of the actual 1D periodic FV/S_N operator;initial layer and spatial/angular/limit errors separated. No fixed-grid AP or SSPRK2 time-integration certification.Read every stored record
+idcellslengthepsilonordinatestimesmax_dtsource_offfamilyfieldsreference_rmsreference_linf
+su-olson-transport1997-n1281288132[0.1,1.0,3.16228]0.012510refinementsu-olson-transport1997-n128.npz[0.007750579861524426,0.005567982625889962][0.029067854414183025,0.024016466305888606]
+su-olson-transport1997-n2562568132[0.1,1.0,3.16228]0.0062510refinementsu-olson-transport1997-n256.npz[0.004135418825315243,0.00298976823623515][0.015301532539392149,0.01274441919854874]
+su-olson-transport1997-n5125128132[0.1,1.0,3.16228]0.00312510refinementsu-olson-transport1997-n512.npz[0.0020954035751023056,0.0015130534725422019][0.007864368991879589,0.006578670088229099]
+su-olson-transport1997-angular-645128164[0.1,1.0,3.16228]0.00312510angle-probesu-olson-transport1997-angular-64.npz[0.002095991064252647,0.001513211152085938][0.007865185298010058,0.006577120707319806]
+
+## Non-equilibrium radiation: distinct diffusion and transport — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-matter/#su-olson-transport1997-measurements
+Coverage: reading
+
+su-olson-transport1997-half-dt5128132[0.1,1.0,3.16228]0.001562510time-probesu-olson-transport1997-half-dt.npz[0.002095220691966766,0.0015130674001851108][0.007864357948125344,0.006578675451004878]
+Measurements and complete records / JSON
+
+## Non-equilibrium radiation: distinct diffusion and transport — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-matter/#su-olson-transport1997-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Aidan Crilly (2023). Learning closure relations using differentiable programming:an example in radiation transport;author-provided analytic benchmark data
+Review scope / review_level: primary-author-paper-selected-equations-and-pinned-data-qualification
+Read official2023paperpage6Appendix4.1equations7-10,README,pinned W/Vtransport tables andMITlicense. Whether author tables were transcribed or regenerated is unstated. Original1997fulltext/tables not directly checked;not trained-model outputs. Shape,normalization,causal/homogeneous controls qualified.
+
+## Isotropically scattering slabs and continuum-angle references — Isotropically scattering slabs and continuum-angle references [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-scattering/
+Coverage: reading
+
+Compare discrete ordinates in an isotropically scattering slab with an independent continuous-angle integral-equation reference.
+
+## Isotropically scattering slabs and continuum-angle references — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-scattering/#run-all
+Coverage: reading
+
+Run inside atlas-radiation-scattering-2026-11-24 from the ZIP. This command executes all 1 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Isotropically scattering slabs and continuum-angle references — Isotropic scattering in a finite slab [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-scattering/
+Coverage: reading
+
+Solve genuinely coupled signed-angle steady transport and compare R/T/A with an independent continuum-angle Fredholm reference.
+Methods, equations, figures and references
+Methods used
+Radiation transport and moment methods
+Upwind finite differences
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Conservative upwind FV with the full discrete angular source coupling solved by sweep-response elimination. Positive hemisphere Gauss weights normalize incoming fluxpi;absorption is independently accumulated from the volume source.
+Static grey radiative transfer,scattering and linear exchange
+Four fixed inputs L=.5/3,albedo=.5/.9;unit left incoming radiance,right vacuum incoming.64/128/256cells at32signed angles and a separate64angle probe.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Isotropic scattering in a finite slab
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Independent reference78checks passed before main.18primary/control solves test budget,positivity,residuals,separate space/angle changes,pure absorption and conservative scattering.
+Same-problem reference · Semi-analytic reference
+
+## Isotropically scattering slabs and continuum-angle references — Isotropic scattering in a finite slab [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-scattering/
+Coverage: reading
+
+Isotropically scattering slab: continuous-angle Fredholm flux reference
+Limited to fourfixedisotropic slabs;noMC,generalphase-function/DISORT reproduction,universalorder or rigorouscontinuumerrorbound.
+
+## Isotropically scattering slabs and continuum-angle references — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-scattering/#isotropic-scattering-slab-assumptions
+Coverage: reading
+
+Four fixed inputs L=.5/3,albedo=.5/.9;unit left incoming radiance,right vacuum incoming.64/128/256cells at32signed angles and a separate64angle probe.
+
+## Isotropically scattering slabs and continuum-angle references — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-scattering/#isotropic-scattering-slab-algorithm
+Coverage: reading
+
+Conservative upwind FV with the full discrete angular source coupling solved by sweep-response elimination. Positive hemisphere Gauss weights normalize incoming fluxpi;absorption is independently accumulated from the volume source.
+\mu\partial_xI+I=\omega J,\quad J=\frac12\int_{-1}^{1}I\,d\muJ(x)=\frac12E_2(x)+\frac\omega2\int_0^L E_1(|x-s|)J(s)\,dsR+T+A=1,\qquad A=4(1-\omega)\int_0^LJ\,dx
+
+## Isotropically scattering slabs and continuum-angle references — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-scattering/#isotropic-scattering-slab-validation
+Coverage: reading
+
+Independent reference78checks passed before main.18primary/control solves test budget,positivity,residuals,separate space/angle changes,pure absorption and conservative scattering.
+
+## Isotropically scattering slabs and continuum-angle references — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-scattering/#isotropic-scattering-slab-limits
+Coverage: reading
+
+Limited to fourfixedisotropic slabs;noMC,generalphase-function/DISORT reproduction,universalorder or rigorouscontinuumerrorbound.
+
+## Isotropically scattering slabs and continuum-angle references — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-scattering/#isotropic-scattering-slab-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+completed_runs18
+scattering_slabs4
+continuum_angle_referencetrue
+separate_space_angle_probestrue
+stochastic_runs0
+判定 / checkPassed
+slab0-n64-s32/finite-positivetrue
+slab0-n64-s32/residualtrue
+slab0-n64-s32/source_residualtrue
+slab0-n64-s32/balancetrue
+slab0-n64-s32/physical-fluxestrue
+slab0-n128-s32/finite-positivetrue
+slab0-n128-s32/residualtrue
+slab0-n128-s32/source_residualtrue
+slab0-n128-s32/balancetrue
+slab0-n128-s32/physical-fluxestrue
+slab0-n256-s32/finite-positivetrue
+slab0-n256-s32/residualtrue
+slab0-n256-s32/source_residualtrue
+slab0-n256-s32/balancetrue
+slab0-n256-s32/physical-fluxestrue
+slab0-n256-s64/finite-positivetrue
+slab0-n256-s64/residualtrue
+slab0-n256-s64/source_residualtrue
+slab0-n256-s64/balancetrue
+slab0-n256-s64/physical-fluxestrue
+slab0/refinement-n128true
+slab0/refinement-n256true
+slab0/finest-independent-errortrue
+slab0/space-probetrue
+slab0/angle-probetrue
+slab1-n64-s32/finite-positivetrue
+slab1-n64-s32/residualtrue
+slab1-n64-s32/source_residualtrue
+slab1-n64-s32/balancetrue
+slab1-n64-s32/physical-fluxestrue
+slab1-n128-s32/finite-positivetrue
+slab1-n128-s32/residualtrue
+slab1-n128-s32/source_residualtrue
+slab1-n128-s32/balancetrue
+slab1-n128-s32/physical-fluxestrue
+
+## Isotropically scattering slabs and continuum-angle references — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-scattering/#isotropic-scattering-slab-measurements
+Coverage: reading
+
+slab1-n256-s32/finite-positivetrue
+slab1-n256-s32/residualtrue
+slab1-n256-s32/source_residualtrue
+slab1-n256-s32/balancetrue
+slab1-n256-s32/physical-fluxestrue
+slab1-n256-s64/finite-positivetrue
+slab1-n256-s64/residualtrue
+slab1-n256-s64/source_residualtrue
+slab1-n256-s64/balancetrue
+slab1-n256-s64/physical-fluxestrue
+slab1/refinement-n128true
+slab1/refinement-n256true
+slab1/finest-independent-errortrue
+slab1/space-probetrue
+slab1/angle-probetrue
+slab2-n64-s32/finite-positivetrue
+slab2-n64-s32/residualtrue
+slab2-n64-s32/source_residualtrue
+slab2-n64-s32/balancetrue
+slab2-n64-s32/physical-fluxestrue
+slab2-n128-s32/finite-positivetrue
+slab2-n128-s32/residualtrue
+slab2-n128-s32/source_residualtrue
+slab2-n128-s32/balancetrue
+slab2-n128-s32/physical-fluxestrue
+slab2-n256-s32/finite-positivetrue
+slab2-n256-s32/residualtrue
+slab2-n256-s32/source_residualtrue
+slab2-n256-s32/balancetrue
+slab2-n256-s32/physical-fluxestrue
+slab2-n256-s64/finite-positivetrue
+slab2-n256-s64/residualtrue
+slab2-n256-s64/source_residualtrue
+slab2-n256-s64/balancetrue
+slab2-n256-s64/physical-fluxestrue
+slab2/refinement-n128true
+slab2/refinement-n256true
+slab2/finest-independent-errortrue
+slab2/space-probetrue
+slab2/angle-probetrue
+slab3-n64-s32/finite-positivetrue
+slab3-n64-s32/residualtrue
+slab3-n64-s32/source_residualtrue
+slab3-n64-s32/balancetrue
+slab3-n64-s32/physical-fluxestrue
+
+## Isotropically scattering slabs and continuum-angle references — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-scattering/#isotropic-scattering-slab-measurements
+Coverage: reading
+
+slab3-n128-s32/finite-positivetrue
+slab3-n128-s32/residualtrue
+slab3-n128-s32/source_residualtrue
+slab3-n128-s32/balancetrue
+slab3-n128-s32/physical-fluxestrue
+slab3-n256-s32/finite-positivetrue
+slab3-n256-s32/residualtrue
+slab3-n256-s32/source_residualtrue
+slab3-n256-s32/balancetrue
+slab3-n256-s32/physical-fluxestrue
+slab3-n256-s64/finite-positivetrue
+slab3-n256-s64/residualtrue
+slab3-n256-s64/source_residualtrue
+slab3-n256-s64/balancetrue
+slab3-n256-s64/physical-fluxestrue
+slab3/refinement-n128true
+slab3/refinement-n256true
+slab3/finest-independent-errortrue
+slab3/space-probetrue
+slab3/angle-probetrue
+control0/budgettrue
+control0/pure-absorptiontrue
+control1/budgettrue
+control1/conservativetrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Scientific preview from the actual saved numerical fields.Read every stored record
+idparameter_indexdepthalbedocellsordinatesfieldsfluxesreferencemaximum_flux_error
+slab0-n64-s3200.50.56432slab0-n64-s32.npz[0.10682419147087935,0.5367222851839086,0.35645352334521196][0.10767597774708512,0.534992832679682,0.35733079115294125]0.00172945250423
+slab0-n128-s3200.50.512832slab0-n128-s32.npz[0.10724853619149974,0.5358598022338242,0.3568916615746777][0.10767597774708512,0.534992832679682,0.35733079115294125]0.000866969554142
+
+## Isotropically scattering slabs and continuum-angle references — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-scattering/#isotropic-scattering-slab-measurements
+Coverage: reading
+
+slab0-n256-s3200.50.525632slab0-n256-s32.npz[0.10746190808414739,0.535426903976892,0.357111187938961][0.10767597774708512,0.534992832679682,0.35733079115294125]0.00043407129721
+slab0-n256-s6400.50.525664slab0-n256-s64.npz[0.10746190844126681,0.5354268830147071,0.35711120854402323][0.10767597774708512,0.534992832679682,0.35733079115294125]0.000434050335025
+slab1-n64-s3210.50.96432slab1-n64-s32.npz[0.24608897558353443,0.6613827084618017,0.09252831595466386][0.24749406441718938,0.6599195442736329,0.09258629116109347]0.00146316418817
+slab1-n128-s3210.50.912832slab1-n128-s32.npz[0.24678953700957568,0.6606531599160019,0.09255730307442427][0.24749406441718938,0.6599195442736329,0.09258629116109347]0.000733615642369
+slab1-n256-s3210.50.925632slab1-n256-s32.npz[0.24714133605421384,0.6602868615553186,0.09257180239046811][0.24749406441718938,0.6599195442736329,0.09258629116109347]0.000367317281686
+slab1-n256-s6410.50.925664slab1-n256-s64.npz[0.24714134021703799,0.6602868558813143,0.09257180390164421][0.24749406441718938,0.6599195442736329,0.09258629116109347]0.000367311607681
+slab2-n64-s32230.56432slab2-n64-s32.npz[0.14197285075345084,0.04168710025384494,0.8163400489927038][0.14635364579219207,0.038689939241468047,0.8149418688912675]0.00438079503874
+
+## Isotropically scattering slabs and continuum-angle references — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-scattering/#isotropic-scattering-slab-measurements
+Coverage: reading
+
+slab2-n128-s32230.512832slab2-n128-s32.npz[0.1441244125428462,0.040183295162574934,0.8156922922945785][0.14635364579219207,0.038689939241468047,0.8149418688912675]0.00222923324935
+slab2-n256-s32230.525632slab2-n256-s32.npz[0.14523011071703051,0.03943532362829971,0.8153345656546691][0.14635364579219207,0.038689939241468047,0.8149418688912675]0.00112353507516
+slab2-n256-s64230.525664slab2-n256-s64.npz[0.14523010982682014,0.03943532364723124,0.8153345665259484][0.14635364579219207,0.038689939241468047,0.8149418688912675]0.00112353596537
+slab3-n64-s32330.96432slab3-n64-s32.npz[0.4569356319077321,0.16027506766707383,0.38278930042519344][0.46406037689569296,0.15416826416484455,0.38176544059842277]0.00712474498796
+slab3-n128-s32330.912832slab3-n128-s32.npz[0.4604692340712682,0.15723481037007903,0.3822959555586521][0.46406037689569296,0.15416826416484455,0.38176544059842277]0.00359114282442
+slab3-n256-s32330.925632slab3-n256-s32.npz[0.46225886893324114,0.15570489306961305,0.3820362379971441][0.46406037689569296,0.15416826416484455,0.38176544059842277]0.00180150796245
+slab3-n256-s64330.925664slab3-n256-s64.npz[0.46225886858567333,0.15570489319173436,0.3820362382225913][0.46406037689569296,0.15416826416484455,0.38176544059842277]0.00180150831002
+control0—3012832control0.npz———
+control1—3112832control1.npz———
+Measurements and complete records / JSON
+
+## Isotropically scattering slabs and continuum-angle references — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-scattering/#isotropic-scattering-slab-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Pharr,Jakob,Humphreys (2023). Physically Based Rendering4e,14.1The Equation of Transfer
+Review scope / review_level: primary-author-book-selected-equations
+Read14.1transfer/source/finite-ray boundary formulation. Isotropic slab/Fredholm normalization independently derived here;not DISORTpaper/table reproduction.
+
 ## SRHD collision and nonlinear SRMHD Alfven wave — SRHD collision and nonlinear SRMHD Alfven wave [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-relativistic/
@@ -34060,6 +35927,2395 @@ The SciPy community (2024). SciPy1.14.1 solve_ivp reference
 Review scope / review_level: official-versioned-documentation-selected-methods-and-tolerances
 Consulted SciPy 1.14.1 methods and rtol/atol documentation. Radau order five and DOP853 order eight are independent time algorithms for the same spatial system, not exact continuum solutions.
 
+## Weak/strong SDE errors and sampling uncertainty — Weak/strong SDE errors and sampling uncertainty [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/
+Coverage: reading
+
+Use analytic moments and shared Brownian paths to separate weak/strong SDE errors from finite-sample uncertainty.
+
+## Weak/strong SDE errors and sampling uncertainty — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#run-all
+Coverage: reading
+
+Run inside atlas-stochastic-accuracy-2026-11-24 from the ZIP. This command executes all 3 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Weak/strong SDE errors and sampling uncertainty — GBM weak bias and Monte Carlo error [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/
+Coverage: reading
+
+Separate continuous truth,exact discrete EM expectation,paired-path weak difference and MCSE.
+Methods, equations, figures and references
+Methods used
+Stochastic differential equations
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Aggregate fixed fine Gaussian blocks;reuse one exact terminal array. OUexact kicks use the correct jointly sampled integral with independent bridge noise. Different floating reduction orders need not be bit identical.
+Scalar Ito diffusion: GBM and OU
+dX=.5Xdt+.4XdW,X0=1;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Itô SDE: strong convergence with coupled Brownian paths
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+Before paths qualify Decimal80/120,independent GH/OUcovariance integrals and paired-variance allocation. Gate5MCSE calibration,MCSE precision,fixed three-level weak rate and final-two-level3SE resolution. Coverage is descriptive over32batches against discrete truth.
+Related-model reference · Analytic reference
+GBM weak bias and Monte Carlo error
+
+## Weak/strong SDE errors and sampling uncertainty — GBM weak bias and Monte Carlo error [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/
+Coverage: reading
+
+dX=.5Xdt+.4XdW,X0=1;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping.
+Related-model reference · Analytic reference
+Milstein and EM on identical Brownian paths
+ExistingGBMparametersmu.15,sigma.4,X0=T1;4seeds×8192paths;16/32/64/128steps.
+
+## Weak/strong SDE errors and sampling uncertainty — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#gbm-weak-moments-assumptions
+Coverage: reading
+
+dX=.5Xdt+.4XdW,X0=1;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping.
+
+## Weak/strong SDE errors and sampling uncertainty — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#gbm-weak-moments-algorithm
+Coverage: reading
+
+Aggregate fixed fine Gaussian blocks;reuse one exact terminal array. OUexact kicks use the correct jointly sampled integral with independent bridge noise. Different floating reduction orders need not be bit identical.
+dX_t=\mu X_t\,dt+\sigma X_t\,dW_tb_p(h)=\mathbb E[X_h(T)^p]-\mathbb E[X(T)^p],\quad p=1,2\mathbb E[X_h(T)]=X_0(1+\mu h)^n
+
+## Weak/strong SDE errors and sampling uncertainty — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#gbm-weak-moments-validation
+Coverage: reading
+
+Before paths qualify Decimal80/120,independent GH/OUcovariance integrals and paired-variance allocation. Gate5MCSE calibration,MCSE precision,fixed three-level weak rate and final-two-level3SE resolution. Coverage is descriptive over32batches against discrete truth.
+
+## Weak/strong SDE errors and sampling uncertainty — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#gbm-weak-moments-limits
+Coverage: reading
+
+Weak error is a difference of expectations. SE/intervals are not true-error bounds or general coverage guarantees. State×time examples are not2Dphysical flow. Existing GBM/OUbath physical families are reused.
+
+## Weak/strong SDE errors and sampling uncertainty — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#gbm-weak-moments-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+
+## Weak/strong SDE errors and sampling uncertainty — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#gbm-weak-moments-measurements
+Coverage: reading
+
+observables[{"observable_power":1,"sampled_paired_order":0.9956027089190806,"analytic_order":0.986850922673782,"levels":[{"steps":8,"analytic_bias":-0.024551175738827653,"paired_mean":-0.02390546859088743,"paired_MCSE":0.000431509288625275,"analytic_expected_MCSE":0.0004902247814460831,"raw_EM_interval_coverage_for_discrete_truth":0.96875,"coverage_binomial95":[0.8378290058184884,0.9992091314020475]},{"steps":16,"analytic_bias":-0.012570260133504842,"paired_mean":-0.012073199459893005,"paired_MCSE":0.0002494235153701287,"analytic_expected_MCSE":0.0003179426227319547,"raw_EM_interval_coverage_for_discrete_truth":0.9375,"coverage_binomial95":[0.7919305701049926,0.9923392636535436]},{"steps":32,"analytic_bias":-0.006361702102222466,"paired_mean":-0.006046178211109456,"paired_MCSE":0.00014930108420397513,"analytic_expected_MCSE":0.00021219706970143816,"raw_EM_interval_coverage_for_discrete_truth":0.9375,"coverage_binomial95":[0.7919305701049926,0.9923392636535436]},{"steps":64,"analytic_bias":-0.0032003745435279854,"paired_mean":-0.0030367554342063926,"paired_MCSE":0.0001452128976770314,"analytic_expected_MCSE":0.0001450153280978437,"raw_EM_interval_coverage_for_discrete_truth":0.90625,"coverage_binomial95":[0.7497730493162054,0.9802328198267152]}],"coverage_scope":"Independent batch95%normal intervals target discrete EM moments,not the continuous diffusion; coverage is descriptive
+
+## Weak/strong SDE errors and sampling uncertainty — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#gbm-weak-moments-measurements
+Coverage: reading
+
+ and not a pass criterion."},{"observable_power":2,"sampled_paired_order":0.9744925206389199,"analytic_order":0.9752562657019691,"levels":[{"steps":8,"analytic_bias":-0.15410825623347305,"paired_mean":-0.14906616356143917,"paired_MCSE":0.003147990583178188,"analytic_expected_MCSE":0.003291189368314816,"raw_EM_interval_coverage_for_discrete_truth":0.9375,"coverage_binomial95":[0.7919305701049926,0.9923392636535436]},{"steps":16,"analytic_bias":-0.08050123855537453,"paired_mean":-0.07770877547600556,"paired_MCSE":0.0018030716808605054,"analytic_expected_MCSE":0.001999254398523599,"raw_EM_interval_coverage_for_discrete_truth":0.90625,"coverage_binomial95":[0.7497730493162054,0.9802328198267152]},{"steps":32,"analytic_bias":-0.041175573785795776,"paired_mean":-0.03965375759547908,"paired_MCSE":0.0009919791240891069,"analytic_expected_MCSE":0.0012342295434882658,"raw_EM_interval_coverage_for_discrete_truth":0.90625,"coverage_binomial95":[0.7497730493162054,0.9802328198267152]},{"steps":64,"analytic_bias":-0.020827626619729842,"paired_mean":-0.02012644667453873,"paired_MCSE":0.0007054106323910044,"analytic_expected_MCSE":0.0007897816945465437,"raw_EM_interval_coverage_for_discrete_truth":0.90625,"coverage_binomial95":[0.7497730493162054,0.9802328198267152]}],"coverage_scope":"Independent batch95%normal intervals target discrete EM moments,not the continuous diffusion; coverage is des
+
+## Weak/strong SDE errors and sampling uncertainty — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#gbm-weak-moments-measurements
+Coverage: reading
+
+criptive and not a pass criterion."}]
+Brownian_association_error8.881784197e-16
+
+## Weak/strong SDE errors and sampling uncertainty — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#gbm-weak-moments-measurements
+Coverage: reading
+
+fine_driver_sha256["062cc28f1b5fc93039f27f4059ac1361e6d11682eb2435731d285d316f4aa823","2d6f4757e5ad6fec57b5d63b1da982ea8f364ef0e7467bf075c5d78342e418ec","211980ad2f8b1eb1d666d9f575765a1d33dd0f127690ebe0febd51f736cf9f4b","9e847e310bb5c91aac72fe60ae3898c0774a54f284f0c96d1b661b1db4509ea9","47ed94304c9637379f3605b34fc9285546d83dc9ac8ed989fccc1ae807baae0c","f3017fb5c77c37ec260ddb326f1e746272ffaac77507eb0fd356c40e80e584ba","44baac7402f08c0ddaaae154ae26f6c568fe73a8bf1d1db98e1db54073c949b7","ea0164b72e67cd52ad0b56efc86884e7756c560c7a6ae48b2afe0d25d70f7cdb","5e89673e3d79411f1605b0a87141c447779fbb0e0ba25f62f24c88a2db389ab0","e32d50c91870002e9db7a4b0c251ecd997c681e26a877f7dc1774776cc6d9bd3","bc6ec6e7a88fb142af33231a49c6a4952de8eee94aee6d675e3ed55a63da89fe","ac8663af01ff7a5dd29873f8da7674438c0ce824d5a0d68c4361571e73556d6e","658419fe6f33031525cd0f475b5b79a434fe0648b9dd219ce1827bac38c60a64","723d7ed34394b933e3f577732aa4f6826dc48f41255294ce4f40ca60dcc34ebe","32ba3a1d678327efa71fafd8775e54592d8c8ee2bcf700b91021d3a535ac4a2f","b2d96051eefe7541c51ff53bc309b0562918977751f56f20948213b521a9f63b","fc6f8bb229669f915d514fe451c366d3fdbf72f1279e5f9479e889574db08320","cfce102e39422f655bbc1a3c332ce886e11dfd32fa492563a88bf7fd38af5383","80adbe538b0f5f9b9c1caba2175d27cd3648e1f4acaaa8c7fc8a4422ba90c9a1","0aa28d9838f8b4261821a718e7d10433e1a8843619075582bb9cd41a1e360cde","bd7977d0290110397956f5c5aca3bd087181780f
+
+## Weak/strong SDE errors and sampling uncertainty — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#gbm-weak-moments-measurements
+Coverage: reading
+
+96dbd6bd4fd00ec473ae1b0f","7d23d99637da04cd10a3aecc9a841cbbe5adacdcc5da018614cdf2255cf419d1","ba997a851a487141e23fd1de6afca95f646279adca8e0ba52400c672d62e368b","188fb1058a2c645eb9701b15efc1e44741c22b4b6492f87c01553c00d834c793","b88b85f05d54af414a81b1951d5934f043ef20882b536234ebfecb5ae6b664a5","7918daa0dc6fd330508bd29d816a051eaa47c0e680c47b2a399e5e268e1ca1f0","9718d50375705d9fbb532ffe848f813a5652fbaf7c74e9627c078b31104f6afd","f8b8d4fa2453cd347abd43c6e68cd80d5c780052a42440c4dc1386f850938a8c","62486023170b5c8a56224f809204c0d727f81b10abcebe6da29a6859c2e399cc","1d3cb939b24ce46e72d062d4ad56ed0fe1bffca70cb3a44d19421a303e93519a","1ce008007caeaa391342596c98bcb6102c8b2b2ab77bbb2e275b98fe3d5b2b9b","b8aa0ed98d5317954181d7433193f4ed3ebb6408ea3cea3a73dd6a4de7c20e8f"]
+completed_independent_seed_batches32
+判定 / checkPassed
+finite saved candidate arraystrue
+declared Brownian grouping roundofftrue
+power1/n8/paired mean calibrationtrue
+power1/n8/MCSE calibrationtrue
+power1/n16/paired mean calibrationtrue
+power1/n16/MCSE calibrationtrue
+power1/n32/paired mean calibrationtrue
+power1/n32/MCSE calibrationtrue
+power1/n32/resolved before slopetrue
+power1/n64/paired mean calibrationtrue
+power1/n64/MCSE calibrationtrue
+power1/n64/resolved before slopetrue
+power1/analytic weak ordertrue
+power1/sampled paired weak ordertrue
+power2/n8/paired mean calibrationtrue
+power2/n8/MCSE calibrationtrue
+
+## Weak/strong SDE errors and sampling uncertainty — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#gbm-weak-moments-measurements
+Coverage: reading
+
+power2/n16/paired mean calibrationtrue
+power2/n16/MCSE calibrationtrue
+power2/n32/paired mean calibrationtrue
+power2/n32/MCSE calibrationtrue
+power2/n32/resolved before slopetrue
+power2/n64/paired mean calibrationtrue
+power2/n64/MCSE calibrationtrue
+power2/n64/resolved before slopetrue
+power2/analytic weak ordertrue
+power2/sampled paired weak ordertrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Distribution and error diagnostics from actual saved data;sample/time axes are distinguished from spatial dimensions.Read every stored record
+seedstepsmethodscandidate_filedriver_sha256
+44001[8,16,32,64]["em"]gbm-weak-moments.npz062cc28f1b5fc93039f27f4059ac1361e6d11682eb2435731d285d316f4aa823
+44002[8,16,32,64]["em"]gbm-weak-moments.npz2d6f4757e5ad6fec57b5d63b1da982ea8f364ef0e7467bf075c5d78342e418ec
+44003[8,16,32,64]["em"]gbm-weak-moments.npz211980ad2f8b1eb1d666d9f575765a1d33dd0f127690ebe0febd51f736cf9f4b
+44004[8,16,32,64]["em"]gbm-weak-moments.npz9e847e310bb5c91aac72fe60ae3898c0774a54f284f0c96d1b661b1db4509ea9
+44005[8,16,32,64]["em"]gbm-weak-moments.npz47ed94304c9637379f3605b34fc9285546d83dc9ac8ed989fccc1ae807baae0c
+44006[8,16,32,64]["em"]gbm-weak-moments.npzf3017fb5c77c37ec260ddb326f1e746272ffaac77507eb0fd356c40e80e584ba
+44007[8,16,32,64]["em"]gbm-weak-moments.npz44baac7402f08c0ddaaae154ae26f6c568fe73a8bf1d1db98e1db54073c949b7
+
+## Weak/strong SDE errors and sampling uncertainty — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#gbm-weak-moments-measurements
+Coverage: reading
+
+44008[8,16,32,64]["em"]gbm-weak-moments.npzea0164b72e67cd52ad0b56efc86884e7756c560c7a6ae48b2afe0d25d70f7cdb
+44009[8,16,32,64]["em"]gbm-weak-moments.npz5e89673e3d79411f1605b0a87141c447779fbb0e0ba25f62f24c88a2db389ab0
+44010[8,16,32,64]["em"]gbm-weak-moments.npze32d50c91870002e9db7a4b0c251ecd997c681e26a877f7dc1774776cc6d9bd3
+44011[8,16,32,64]["em"]gbm-weak-moments.npzbc6ec6e7a88fb142af33231a49c6a4952de8eee94aee6d675e3ed55a63da89fe
+44012[8,16,32,64]["em"]gbm-weak-moments.npzac8663af01ff7a5dd29873f8da7674438c0ce824d5a0d68c4361571e73556d6e
+44013[8,16,32,64]["em"]gbm-weak-moments.npz658419fe6f33031525cd0f475b5b79a434fe0648b9dd219ce1827bac38c60a64
+44014[8,16,32,64]["em"]gbm-weak-moments.npz723d7ed34394b933e3f577732aa4f6826dc48f41255294ce4f40ca60dcc34ebe
+44015[8,16,32,64]["em"]gbm-weak-moments.npz32ba3a1d678327efa71fafd8775e54592d8c8ee2bcf700b91021d3a535ac4a2f
+44016[8,16,32,64]["em"]gbm-weak-moments.npzb2d96051eefe7541c51ff53bc309b0562918977751f56f20948213b521a9f63b
+44017[8,16,32,64]["em"]gbm-weak-moments.npzfc6f8bb229669f915d514fe451c366d3fdbf72f1279e5f9479e889574db08320
+44018[8,16,32,64]["em"]gbm-weak-moments.npzcfce102e39422f655bbc1a3c332ce886e11dfd32fa492563a88bf7fd38af5383
+44019[8,16,32,64]["em"]gbm-weak-moments.npz80adbe538b0f5f9b9c1caba2175d27cd3648e1f4acaaa8c7fc8a4422ba90c9a1
+
+## Weak/strong SDE errors and sampling uncertainty — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#gbm-weak-moments-measurements
+Coverage: reading
+
+44020[8,16,32,64]["em"]gbm-weak-moments.npz0aa28d9838f8b4261821a718e7d10433e1a8843619075582bb9cd41a1e360cde
+44021[8,16,32,64]["em"]gbm-weak-moments.npzbd7977d0290110397956f5c5aca3bd087181780f96dbd6bd4fd00ec473ae1b0f
+44022[8,16,32,64]["em"]gbm-weak-moments.npz7d23d99637da04cd10a3aecc9a841cbbe5adacdcc5da018614cdf2255cf419d1
+44023[8,16,32,64]["em"]gbm-weak-moments.npzba997a851a487141e23fd1de6afca95f646279adca8e0ba52400c672d62e368b
+44024[8,16,32,64]["em"]gbm-weak-moments.npz188fb1058a2c645eb9701b15efc1e44741c22b4b6492f87c01553c00d834c793
+44025[8,16,32,64]["em"]gbm-weak-moments.npzb88b85f05d54af414a81b1951d5934f043ef20882b536234ebfecb5ae6b664a5
+44026[8,16,32,64]["em"]gbm-weak-moments.npz7918daa0dc6fd330508bd29d816a051eaa47c0e680c47b2a399e5e268e1ca1f0
+44027[8,16,32,64]["em"]gbm-weak-moments.npz9718d50375705d9fbb532ffe848f813a5652fbaf7c74e9627c078b31104f6afd
+44028[8,16,32,64]["em"]gbm-weak-moments.npzf8b8d4fa2453cd347abd43c6e68cd80d5c780052a42440c4dc1386f850938a8c
+44029[8,16,32,64]["em"]gbm-weak-moments.npz62486023170b5c8a56224f809204c0d727f81b10abcebe6da29a6859c2e399cc
+44030[8,16,32,64]["em"]gbm-weak-moments.npz1d3cb939b24ce46e72d062d4ad56ed0fe1bffca70cb3a44d19421a303e93519a
+44031[8,16,32,64]["em"]gbm-weak-moments.npz1ce008007caeaa391342596c98bcb6102c8b2b2ab77bbb2e275b98fe3d5b2b9b
+
+## Weak/strong SDE errors and sampling uncertainty — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#gbm-weak-moments-measurements
+Coverage: reading
+
+44032[8,16,32,64]["em"]gbm-weak-moments.npzb8aa0ed98d5317954181d7433193f4ed3ebb6408ea3cea3a73dd6a4de7c20e8f
+Measurements and complete records / JSON
+
+## Weak/strong SDE errors and sampling uncertainty — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#gbm-weak-moments-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+D. J. Higham (2001). An Algorithmic Introduction to Numerical Simulation of Stochastic Differential Equations
+Review scope / review_level: selected-primary-full-text-sections4-6
+Read selected original sections4-6 on linear SDEs,strong/weak definitions,EM and Milstein. No full-paper audit or reproduction of its MATLAB/logistic experiment. Its L1strong definition is distinguished from our L2RMS.
+
+## Weak/strong SDE errors and sampling uncertainty — OU weak moments with joint Brownian coupling [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/
+Coverage: reading
+
+Separate continuous truth,exact discrete EM expectation,paired-path weak difference and MCSE.
+Methods, equations, figures and references
+Methods used
+Stochastic differential equations
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Aggregate fixed fine Gaussian blocks;reuse one exact terminal array. OUexact kicks use the correct jointly sampled integral with independent bridge noise. Different floating reduction orders need not be bit identical.
+Scalar Ito diffusion: GBM and OU
+dX=1.5(.2-X)dt+.8dW,X0=.7;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Langevin thermostat: canonical distributions, timestep bias and correlation
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+Before paths qualify Decimal80/120,independent GH/OUcovariance integrals and paired-variance allocation. Gate5MCSE calibration,MCSE precision,fixed three-level weak rate and final-two-level3SE resolution. Coverage is descriptive over32batches against discrete truth.
+Related-model reference · Analytic reference
+
+## Weak/strong SDE errors and sampling uncertainty — OU weak moments with joint Brownian coupling [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/
+Coverage: reading
+
+OU weak moments with joint Brownian coupling
+dX=1.5(.2-X)dt+.8dW,X0=.7;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping.
+
+## Weak/strong SDE errors and sampling uncertainty — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#ou-weak-moments-assumptions
+Coverage: reading
+
+dX=1.5(.2-X)dt+.8dW,X0=.7;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping.
+
+## Weak/strong SDE errors and sampling uncertainty — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#ou-weak-moments-algorithm
+Coverage: reading
+
+Aggregate fixed fine Gaussian blocks;reuse one exact terminal array. OUexact kicks use the correct jointly sampled integral with independent bridge noise. Different floating reduction orders need not be bit identical.
+dX_t=\kappa(\theta-X_t)\,dt+\sigma\,dW_tb_p(h)=\mathbb E[X_h(T)^p]-\mathbb E[X(T)^p],\quad p=1,2\operatorname{Cov}(J_h,\Delta W)=(1-e^{-\kappa h})/\kappa
+
+## Weak/strong SDE errors and sampling uncertainty — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#ou-weak-moments-validation
+Coverage: reading
+
+Before paths qualify Decimal80/120,independent GH/OUcovariance integrals and paired-variance allocation. Gate5MCSE calibration,MCSE precision,fixed three-level weak rate and final-two-level3SE resolution. Coverage is descriptive over32batches against discrete truth.
+
+## Weak/strong SDE errors and sampling uncertainty — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#ou-weak-moments-limits
+Coverage: reading
+
+Weak error is a difference of expectations. SE/intervals are not true-error bounds or general coverage guarantees. State×time examples are not2Dphysical flow. Existing GBM/OUbath physical families are reused.
+
+## Weak/strong SDE errors and sampling uncertainty — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#ou-weak-moments-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+
+## Weak/strong SDE errors and sampling uncertainty — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#ou-weak-moments-measurements
+Coverage: reading
+
+observables[{"observable_power":1,"sampled_paired_order":1.0028604920506838,"analytic_order":1.0151029162857539,"levels":[{"steps":8,"analytic_bias":-0.016601525664882343,"paired_mean":-0.01629562931347308,"paired_MCSE":0.00023909443711104658,"analytic_expected_MCSE":0.00022102482847032208,"raw_EM_interval_coverage_for_discrete_truth":0.9375,"coverage_binomial95":[0.7919305701049926,0.9923392636535436]},{"steps":16,"analytic_bias":-0.008065564380142496,"paired_mean":-0.007887561656949873,"paired_MCSE":0.00010882818086019489,"analytic_expected_MCSE":0.00010710329337130175,"raw_EM_interval_coverage_for_discrete_truth":0.96875,"coverage_binomial95":[0.8378290058184884,0.9992091314020475]},{"steps":32,"analytic_bias":-0.003976653259526749,"paired_mean":-0.003939807047794929,"paired_MCSE":5.3339993867843966e-05,"analytic_expected_MCSE":5.2736853897338943e-05,"raw_EM_interval_coverage_for_discrete_truth":0.96875,"coverage_binomial95":[0.8378290058184884,0.9992091314020475]},{"steps":64,"analytic_bias":-0.0019746126237947625,"paired_mean":-0.0019640863979277275,"paired_MCSE":2.572665329848958e-05,"analytic_expected_MCSE":2.6169126824338754e-05,"raw_EM_interval_coverage_for_discrete_truth":0.96875,"coverage_binomial95":[0.8378290058184884,0.9992091314020475]}],"coverage_scope":"Independent batch95%normal intervals target discrete EM moments,not the continuous diffusion; coverage is des
+
+## Weak/strong SDE errors and sampling uncertainty — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#ou-weak-moments-measurements
+Coverage: reading
+
+criptive and not a pass criterion."},{"observable_power":2,"sampled_paired_order":1.0496248413875717,"analytic_order":1.0389267433589098,"levels":[{"steps":8,"analytic_bias":0.014129402163588095,"paired_mean":0.01401542171183142,"paired_MCSE":0.00024104357117435304,"analytic_expected_MCSE":0.00026472839301117877,"raw_EM_interval_coverage_for_discrete_truth":0.96875,"coverage_binomial95":[0.8378290058184884,0.9992091314020475]},{"steps":16,"analytic_bias":0.006561607911553392,"paired_mean":0.00647516245322562,"paired_MCSE":0.00013154200960569608,"analytic_expected_MCSE":0.00012695902474324364,"raw_EM_interval_coverage_for_discrete_truth":0.96875,"coverage_binomial95":[0.8378290058184884,0.9992091314020475]},{"steps":32,"analytic_bias":0.0031644575406652867,"paired_mean":0.0031052169014772067,"paired_MCSE":6.715510115001812e-05,"analytic_expected_MCSE":6.22062303077159e-05,"raw_EM_interval_coverage_for_discrete_truth":0.96875,"coverage_binomial95":[0.8378290058184884,0.9992091314020475]},{"steps":64,"analytic_bias":0.0015542255693837448,"paired_mean":0.0015111707743697739,"paired_MCSE":3.073670093533357e-05,"analytic_expected_MCSE":3.0793830756280135e-05,"raw_EM_interval_coverage_for_discrete_truth":0.96875,"coverage_binomial95":[0.8378290058184884,0.9992091314020475]}],"coverage_scope":"Independent batch95%normal intervals target discrete EM moments,not the continuous diffusion;
+
+## Weak/strong SDE errors and sampling uncertainty — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#ou-weak-moments-measurements
+Coverage: reading
+
+ coverage is descriptive and not a pass criterion."}]
+Brownian_association_error8.881784197e-16
+
+## Weak/strong SDE errors and sampling uncertainty — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#ou-weak-moments-measurements
+Coverage: reading
+
+fine_driver_sha256["0d73f7e3fb6d4fb13a8fe0acf5b067cc7431e3342d5714438b195926ccb31bd6","517a0733a44601dc5a390ac93942b07115b9445189b75a99f1b92cfd206ced8c","c4b8023f47bf9ed3f0aa9eec01c7d637dc9ae0db3660cd466de7776d363056ab","2895543ecc2a01393b4c7cec98641749aca4f9a06bc37e13c8bcbac76ae6d45a","033b60984273a09b7f5e14f43e0d8fead742341211063ff321cf2abec09c42c0","81f1e26e638fe732e2018c5eb5b86c40b6aff57bf40bcfecaf298c5e21276c69","f86b03f661cf9206146b59d4cb3040097fd1c63431946ddbb7a19d4b5ef0e818","66640fadaf7f5f9400389fa76894e4399a6960536fa45cc9e78a6bab399680d5","a364057c053f3bf3a5bc2cce7ab69f8b996cb9b639bcc297c64b53a657e0977e","cc08ec187a765b97cc878d0d18a1da339e92571828f7112043c32127e174870c","75459ce05f29203347f60645c0eb1b9311e6dc5cb31742bc6cd1bc931a4650aa","e2e0389256a8600f7865668d7495be7386a389a86ff661c3986fe87b7a156dcd","e4bf8fe176ccc3e6906a384a2a7d7886c5119e02b944b4d785b019c31aac922a","54b5bb78ee939b6aa5320805eec7287185b17a4544ddcbfa1ebc741ccfaca694","86ff8a27f2343e59c38463c1ac403594b382d865baffc4cb225df796650d30dc","904c4738321c84035196329704a459d23a6d497bd00427ae7bdf9c0434a8fbfd","abfaa427b6bed41f959993b7750980045b29f758682924d55ff0b27f8309675d","d21d24ab4375a6b1e73a4152582eb9df0bf463e777970cd1810cb28594fbea33","b9dc500fbb43c9b6ae1e2bbc3111c311d128a3ba4fbaf19c5d66430bf68e6e6a","1f623b10ba38ebeb0d21831e8f61e0e0edd2952c7421eb87326b35cedc73567a","dc8427870eca1e02ba741dcc8ca42881d69b86a6
+
+## Weak/strong SDE errors and sampling uncertainty — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#ou-weak-moments-measurements
+Coverage: reading
+
+0153ccaf1845afc186b2ab76","af8fb326a6540e78c5d79d6382c0882821fc17ac518b370cc7eba0765dee6e8c","90f7a22a5a05a513c18b56c72ee17fe2e56adb126ad202483ac075cffdc9f407","bedb31ee586f99e001eba8020550576196d237c3467da4fa26d5be437dc6cb1d","5d01d5a09fb9570e91b645d447d4946017dd93725fa4c4d5b91eafeebcef87c8","c704833cf3a478237eeed30edb1229bd91e551d6723be097cd01da19b0db5175","a8e62ae7577e1d047a11ca69f8d045f798132b06dadf511c6733387769338ccf","42503445b6f496bc8371c06e89ddfde8bd39fe61e4a8745c8f46e487ccab605b","ff4e5d69c37ffb1e116ac90e4d3013010416f21a8b1aad910e636570f27f2d05","7d71965364b0db48fa6cd0c5ed42ab1e770be594c6dcf6e9dd2b94ed882a8529","f0e2d130c7cfee902ccad20215a5835e5e17e05b7e0bdd9900744f164ac9e5c1","424e0c38ca4dc556b66825f94eb5f19190607740a16d53e91e3461a3d6fd609b"]
+completed_independent_seed_batches32
+判定 / checkPassed
+finite saved candidate arraystrue
+declared Brownian grouping roundofftrue
+power1/n8/paired mean calibrationtrue
+power1/n8/MCSE calibrationtrue
+power1/n16/paired mean calibrationtrue
+power1/n16/MCSE calibrationtrue
+power1/n32/paired mean calibrationtrue
+power1/n32/MCSE calibrationtrue
+power1/n32/resolved before slopetrue
+power1/n64/paired mean calibrationtrue
+power1/n64/MCSE calibrationtrue
+power1/n64/resolved before slopetrue
+power1/analytic weak ordertrue
+power1/sampled paired weak ordertrue
+power2/n8/paired mean calibrationtrue
+power2/n8/MCSE calibrationtrue
+
+## Weak/strong SDE errors and sampling uncertainty — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#ou-weak-moments-measurements
+Coverage: reading
+
+power2/n16/paired mean calibrationtrue
+power2/n16/MCSE calibrationtrue
+power2/n32/paired mean calibrationtrue
+power2/n32/MCSE calibrationtrue
+power2/n32/resolved before slopetrue
+power2/n64/paired mean calibrationtrue
+power2/n64/MCSE calibrationtrue
+power2/n64/resolved before slopetrue
+power2/analytic weak ordertrue
+power2/sampled paired weak ordertrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Distribution and error diagnostics from actual saved data;sample/time axes are distinguished from spatial dimensions.Read every stored record
+seedstepsmethodscandidate_filedriver_sha256
+44101[8,16,32,64]["em"]ou-weak-moments.npz0d73f7e3fb6d4fb13a8fe0acf5b067cc7431e3342d5714438b195926ccb31bd6
+44102[8,16,32,64]["em"]ou-weak-moments.npz517a0733a44601dc5a390ac93942b07115b9445189b75a99f1b92cfd206ced8c
+44103[8,16,32,64]["em"]ou-weak-moments.npzc4b8023f47bf9ed3f0aa9eec01c7d637dc9ae0db3660cd466de7776d363056ab
+44104[8,16,32,64]["em"]ou-weak-moments.npz2895543ecc2a01393b4c7cec98641749aca4f9a06bc37e13c8bcbac76ae6d45a
+44105[8,16,32,64]["em"]ou-weak-moments.npz033b60984273a09b7f5e14f43e0d8fead742341211063ff321cf2abec09c42c0
+44106[8,16,32,64]["em"]ou-weak-moments.npz81f1e26e638fe732e2018c5eb5b86c40b6aff57bf40bcfecaf298c5e21276c69
+44107[8,16,32,64]["em"]ou-weak-moments.npzf86b03f661cf9206146b59d4cb3040097fd1c63431946ddbb7a19d4b5ef0e818
+
+## Weak/strong SDE errors and sampling uncertainty — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#ou-weak-moments-measurements
+Coverage: reading
+
+44108[8,16,32,64]["em"]ou-weak-moments.npz66640fadaf7f5f9400389fa76894e4399a6960536fa45cc9e78a6bab399680d5
+44109[8,16,32,64]["em"]ou-weak-moments.npza364057c053f3bf3a5bc2cce7ab69f8b996cb9b639bcc297c64b53a657e0977e
+44110[8,16,32,64]["em"]ou-weak-moments.npzcc08ec187a765b97cc878d0d18a1da339e92571828f7112043c32127e174870c
+44111[8,16,32,64]["em"]ou-weak-moments.npz75459ce05f29203347f60645c0eb1b9311e6dc5cb31742bc6cd1bc931a4650aa
+44112[8,16,32,64]["em"]ou-weak-moments.npze2e0389256a8600f7865668d7495be7386a389a86ff661c3986fe87b7a156dcd
+44113[8,16,32,64]["em"]ou-weak-moments.npze4bf8fe176ccc3e6906a384a2a7d7886c5119e02b944b4d785b019c31aac922a
+44114[8,16,32,64]["em"]ou-weak-moments.npz54b5bb78ee939b6aa5320805eec7287185b17a4544ddcbfa1ebc741ccfaca694
+44115[8,16,32,64]["em"]ou-weak-moments.npz86ff8a27f2343e59c38463c1ac403594b382d865baffc4cb225df796650d30dc
+44116[8,16,32,64]["em"]ou-weak-moments.npz904c4738321c84035196329704a459d23a6d497bd00427ae7bdf9c0434a8fbfd
+44117[8,16,32,64]["em"]ou-weak-moments.npzabfaa427b6bed41f959993b7750980045b29f758682924d55ff0b27f8309675d
+44118[8,16,32,64]["em"]ou-weak-moments.npzd21d24ab4375a6b1e73a4152582eb9df0bf463e777970cd1810cb28594fbea33
+44119[8,16,32,64]["em"]ou-weak-moments.npzb9dc500fbb43c9b6ae1e2bbc3111c311d128a3ba4fbaf19c5d66430bf68e6e6a
+44120[8,16,32,64]["em"]ou-weak-moments.npz1f623b10ba38ebeb0d21831e8f61e0e0edd2952c7421eb87326b35cedc73567a
+
+## Weak/strong SDE errors and sampling uncertainty — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#ou-weak-moments-measurements
+Coverage: reading
+
+44121[8,16,32,64]["em"]ou-weak-moments.npzdc8427870eca1e02ba741dcc8ca42881d69b86a60153ccaf1845afc186b2ab76
+44122[8,16,32,64]["em"]ou-weak-moments.npzaf8fb326a6540e78c5d79d6382c0882821fc17ac518b370cc7eba0765dee6e8c
+44123[8,16,32,64]["em"]ou-weak-moments.npz90f7a22a5a05a513c18b56c72ee17fe2e56adb126ad202483ac075cffdc9f407
+44124[8,16,32,64]["em"]ou-weak-moments.npzbedb31ee586f99e001eba8020550576196d237c3467da4fa26d5be437dc6cb1d
+44125[8,16,32,64]["em"]ou-weak-moments.npz5d01d5a09fb9570e91b645d447d4946017dd93725fa4c4d5b91eafeebcef87c8
+44126[8,16,32,64]["em"]ou-weak-moments.npzc704833cf3a478237eeed30edb1229bd91e551d6723be097cd01da19b0db5175
+44127[8,16,32,64]["em"]ou-weak-moments.npza8e62ae7577e1d047a11ca69f8d045f798132b06dadf511c6733387769338ccf
+44128[8,16,32,64]["em"]ou-weak-moments.npz42503445b6f496bc8371c06e89ddfde8bd39fe61e4a8745c8f46e487ccab605b
+44129[8,16,32,64]["em"]ou-weak-moments.npzff4e5d69c37ffb1e116ac90e4d3013010416f21a8b1aad910e636570f27f2d05
+44130[8,16,32,64]["em"]ou-weak-moments.npz7d71965364b0db48fa6cd0c5ed42ab1e770be594c6dcf6e9dd2b94ed882a8529
+44131[8,16,32,64]["em"]ou-weak-moments.npzf0e2d130c7cfee902ccad20215a5835e5e17e05b7e0bdd9900744f164ac9e5c1
+44132[8,16,32,64]["em"]ou-weak-moments.npz424e0c38ca4dc556b66825f94eb5f19190607740a16d53e91e3461a3d6fd609b
+Measurements and complete records / JSON
+
+## Weak/strong SDE errors and sampling uncertainty — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#ou-weak-moments-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+D. J. Higham (2001). An Algorithmic Introduction to Numerical Simulation of Stochastic Differential Equations
+Review scope / review_level: selected-primary-full-text-sections4-6
+Read selected original sections4-6 on linear SDEs,strong/weak definitions,EM and Milstein. No full-paper audit or reproduction of its MATLAB/logistic experiment. Its L1strong definition is distinguished from our L2RMS.
+
+## Weak/strong SDE errors and sampling uncertainty — Milstein and EM on identical Brownian paths [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/
+Coverage: reading
+
+Compare compensated Milstein and EM endpoint L2RMS against exact endpoints and finite-moment identities.
+Methods, equations, figures and references
+Methods used
+Stochastic differential equations
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Milstein adds.5sigma²X(dW²-h). All methods/levels share the fine driver and one exact terminal array. No state repair.
+Scalar Ito diffusion: GBM and OU
+ExistingGBMparametersmu.15,sigma.4,X0=T1;4seeds×8192paths;16/32/64/128steps.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Itô SDE: strong convergence with coupled Brownian paths
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Qualify cancellation-prone analytic MSE by Decimal80/120and independent one-step GH. Gate squared-error5SE calibration,fixed-three-level RMS rates and finest advantage.64paired path-block jackknife describes slope uncertainty.
+Related-model reference · Analytic reference
+GBM weak bias and Monte Carlo error
+dX=.5Xdt+.4XdW,X0=1;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping.
+Related-model reference · Analytic reference
+
+## Weak/strong SDE errors and sampling uncertainty — Milstein and EM on identical Brownian paths [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/
+Coverage: reading
+
+Milstein and EM on identical Brownian paths
+ExistingGBMparametersmu.15,sigma.4,X0=T1;4seeds×8192paths;16/32/64/128steps.
+
+## Weak/strong SDE errors and sampling uncertainty — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#gbm-milstein-strong-assumptions
+Coverage: reading
+
+ExistingGBMparametersmu.15,sigma.4,X0=T1;4seeds×8192paths;16/32/64/128steps.
+
+## Weak/strong SDE errors and sampling uncertainty — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#gbm-milstein-strong-algorithm
+Coverage: reading
+
+Milstein adds.5sigma²X(dW²-h). All methods/levels share the fine driver and one exact terminal array. No state repair.
+X_{j+1}=X_j[1+\mu h+\sigma\Delta W_j+\tfrac12\sigma^2((\Delta W_j)^2-h)]\mathbb E[(X_n-X(T))^2]=X_0^2[A^n+e^{(2\mu+\sigma^2)T}-2K^n]
+
+## Weak/strong SDE errors and sampling uncertainty — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#gbm-milstein-strong-validation
+Coverage: reading
+
+Qualify cancellation-prone analytic MSE by Decimal80/120and independent one-step GH. Gate squared-error5SE calibration,fixed-three-level RMS rates and finest advantage.64paired path-block jackknife describes slope uncertainty.
+
+## Weak/strong SDE errors and sampling uncertainty — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#gbm-milstein-strong-limits
+Coverage: reading
+
+EndpointL2error is distinct from the selected paper L1definition. No general non-Lipschitz/positivity guarantee. This extends existinggbm-sde rather than adding a physical problem.
+
+## Weak/strong SDE errors and sampling uncertainty — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#gbm-milstein-strong-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+
+## Weak/strong SDE errors and sampling uncertainty — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#gbm-milstein-strong-measurements
+Coverage: reading
+
+methods[{"method":"em","fixed_last_three_level_order":0.4998402424562693,"paired64block_jackknife_order_SE":0.005081776686564279,"levels":[{"steps":16,"sample_RMS":0.03546853869286994,"analytic_RMS":0.03587672817493905,"squared_error_SE":2.097976302745995e-05,"RMS_nominal95":[0.03488406021479733,0.03604354057172545]},{"steps":32,"sample_RMS":0.025165151018332176,"analytic_RMS":0.02527327799108889,"squared_error_SE":8.876035396356257e-06,"RMS_nominal95":[0.024817093223685645,0.025508460076567263]},{"steps":64,"sample_RMS":0.017816206216199258,"analytic_RMS":0.017835633497176234,"squared_error_SE":4.05128352337309e-06,"RMS_nominal95":[0.0175919536760749,0.018037670962047978]},{"steps":128,"sample_RMS":0.012585362493127097,"analytic_RMS":0.01259894455771596,"squared_error_SE":1.997492589267111e-06,"RMS_nominal95":[0.012428850934380906,0.012739951437025162]}],"scope":"L2endpoint RMS; uncertainty is first computed on complete-path squared error,not independent-level regression."},{"method":"milstein","fixed_last_three_level_order":0.9964533189042089,"paired64block_jackknife_order_SE":0.003307644094798437,"levels":[{"steps":16,"sample_RMS":0.005694296746405224,"analytic_RMS":0.00575637004554713,"squared_error_SE":6.844976320449696e-07,"RMS_nominal95":[0.005575251091189529,0.005810904072726739]},{"steps":32,"sample_RMS":0.0028808462540585045,"analytic_RMS":0.002900680886555887,"square
+
+## Weak/strong SDE errors and sampling uncertainty — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#gbm-milstein-strong-measurements
+Coverage: reading
+
+d_error_SE":1.7007993941367778e-07,"RMS_nominal95":[0.0028223969571588184,0.0029381330288580335]},{"steps":64,"sample_RMS":0.0014353709990780313,"analytic_RMS":0.0014560370611600836,"squared_error_SE":4.114602073259352e-08,"RMS_nominal95":[0.0014069986447226039,0.0014631932967784152]},{"steps":128,"sample_RMS":0.0007237613790168262,"analytic_RMS":0.0007294519104131344,"squared_error_SE":1.035143974400747e-08,"RMS_nominal95":[0.0007096069931095287,0.0007376442115564449]}],"scope":"L2endpoint RMS; uncertainty is first computed on complete-path squared error,not independent-level regression."}]
+fine_driver_sha256["0794acba8cd8fdeb082cb9d29a72fb8e832fe7866188a764e8830287d2ab927f","0b3d5dc28f3a8e4926bb77927716fd3e8a527bf6656c91df7c5cce5bd5f436d6","fd6162c066179bc3a267b4a95fd6ffb025aca0ecee80a07719fe021df36bea20","3930ed3f59a8122c2eb5ad97cf93df4880ecf303ca2851e5a33c61829fb95c88"]
+Brownian_association_error1.33226762955e-15
+same_exact_endpoint_roleOne stored fine terminal array reused by both methods and every level; sums under different associations need not be bit identical.
+判定 / checkPassed
+finite saved candidate arraystrue
+declared Brownian grouping roundofftrue
+em/n16/squared error calibrationtrue
+em/n32/squared error calibrationtrue
+em/n64/squared error calibrationtrue
+em/n128/squared error calibrationtrue
+em/sampled RMS ordertrue
+milstein/n16/squared error calibrationtrue
+
+## Weak/strong SDE errors and sampling uncertainty — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#gbm-milstein-strong-measurements
+Coverage: reading
+
+milstein/n32/squared error calibrationtrue
+milstein/n64/squared error calibrationtrue
+milstein/n128/squared error calibrationtrue
+milstein/sampled RMS ordertrue
+finest Milstein advantagetrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Distribution and error diagnostics from actual saved data;sample/time axes are distinguished from spatial dimensions.Read every stored record
+seedstepsmethodscandidate_filedriver_sha256
+47001[16,32,64,128]["em","milstein"]gbm-milstein-strong.npz0794acba8cd8fdeb082cb9d29a72fb8e832fe7866188a764e8830287d2ab927f
+47002[16,32,64,128]["em","milstein"]gbm-milstein-strong.npz0b3d5dc28f3a8e4926bb77927716fd3e8a527bf6656c91df7c5cce5bd5f436d6
+47003[16,32,64,128]["em","milstein"]gbm-milstein-strong.npzfd6162c066179bc3a267b4a95fd6ffb025aca0ecee80a07719fe021df36bea20
+47004[16,32,64,128]["em","milstein"]gbm-milstein-strong.npz3930ed3f59a8122c2eb5ad97cf93df4880ecf303ca2851e5a33c61829fb95c88
+Measurements and complete records / JSON
+
+## Weak/strong SDE errors and sampling uncertainty — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#gbm-milstein-strong-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+D. J. Higham (2001). An Algorithmic Introduction to Numerical Simulation of Stochastic Differential Equations
+Review scope / review_level: selected-primary-full-text-sections4-6
+Read selected original sections4-6 on linear SDEs,strong/weak definitions,EM and Milstein. No full-paper audit or reproduction of its MATLAB/logistic experiment. Its L1strong definition is distinguished from our L2RMS.
+
+## Importance sampling and correlated-Gaussian diagnostics — Importance sampling and correlated-Gaussian diagnostics [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/
+Coverage: reading
+
+Study importance-weighted tails and 2D correlated-Gaussian MCMC, separating analytic targets, same-data diagnostic comparisons and fresh-sample checks.
+
+## Importance sampling and correlated-Gaussian diagnostics — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#run-all
+Coverage: reading
+
+Run inside atlas-stochastic-estimation-2026-11-24 from the ZIP. This command executes all 2 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Importance sampling and correlated-Gaussian diagnostics — Ordinary importance sampling of a normal rare tail [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/
+Coverage: reading
+
+Check ordinary likelihood-ratio averages with analytic moments,independent batch variance and finite coverage diagnostics.
+Methods, equations, figures and references
+Methods used
+Monte Carlo integration
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Ordinary mean ofY=1(X>a)exp(-aX+a²/2),without random weight normalization or proposal tuning. Retain direct zero-hit counts with Clopper-Pearson intervals.
+Gaussian probability measures: tails and correlated targets
+Standard normal tailsa3/6;proposalN(a,1);64independent seeds;fixedN2048/8192prefixes.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Ordinary importance sampling of a normal rare tail
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+Qualify moments1..4 by independent positive quadrature. Gate known-variance5SE,batch variance,analytic variance reduction and omitted-weight negative control. Report known-variance normal95IScoverage separately for64trials per threshold/prefix.
+Same-problem reference · Analytic reference
+Ordinary importance sampling of a normal rare tail
+
+## Importance sampling and correlated-Gaussian diagnostics — Ordinary importance sampling of a normal rare tail [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/
+Coverage: reading
+
+Bernoulli exact intervals are not applied to weighted IS.64trials do not prove general95%coverage;nested prefixes are not extra independent replicates. Global weightESS and eventESS are distinct.
+
+## Importance sampling and correlated-Gaussian diagnostics — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#normal-tail-importance-assumptions
+Coverage: reading
+
+Standard normal tailsa3/6;proposalN(a,1);64independent seeds;fixedN2048/8192prefixes.
+
+## Importance sampling and correlated-Gaussian diagnostics — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#normal-tail-importance-algorithm
+Coverage: reading
+
+Ordinary mean ofY=1(X>a)exp(-aX+a²/2),without random weight normalization or proposal tuning. Retain direct zero-hit counts with Clopper-Pearson intervals.
+\widehat p=N^{-1}\sum_i\mathbf1_{X_i>a}e^{-aX_i+a^2/2}\mathbb E_q[Y^r]=e^{r(r-1)a^2/2}\overline\Phi(ra)
+
+## Importance sampling and correlated-Gaussian diagnostics — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#normal-tail-importance-validation
+Coverage: reading
+
+Qualify moments1..4 by independent positive quadrature. Gate known-variance5SE,batch variance,analytic variance reduction and omitted-weight negative control. Report known-variance normal95IScoverage separately for64trials per threshold/prefix.
+
+## Importance sampling and correlated-Gaussian diagnostics — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#normal-tail-importance-limits
+Coverage: reading
+
+Bernoulli exact intervals are not applied to weighted IS.64trials do not prove general95%coverage;nested prefixes are not extra independent replicates. Global weightESS and eventESS are distinct.
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+records[{"a":3.0,"n":2048,"truth":0.001349898031630094,"analytic_variance":6.172177793850583e-06,"estimate_mean":0.001351984003550967,"batch_variance":2.789399943750647e-09,"aggregate_known_se":6.862213892491717e-06,"IS_coverage":0.9375,"IS_coverage_binomial_CI":[0.8476365265773032,0.9827099726189448],"direct_coverage":0.96875,"direct_coverage_binomial_CI":[0.8916294777754828,0.9961928186181276],"direct_no_hit_batches":3,"IS_estimates":[0.0012550460353203821,0.0013890762459010146,0.0013392136263617044,0.0012863909620800917,0.0013035730351468027,0.0013151240206251324,0.001367243754794386,0.0014649450123506184,0.0013606245760530507,0.0014479491489106959,0.001391926413438083,0.0013432295685127519,0.0013007450723325207,0.0013061670769347875,0.0013351313018450956,0.0013538104517836482,0.0013934358497783624,0.0012036826103343692,0.0013589773387416085,0.0014039112782072987,0.0015024917823896877,0.0014137826011059312,0.0013063628673717909,0.0013597518942813128,0.001367629752166919,0.0013645493097139828,0.0012503737035146226,0.0012825666153344181,0.0013177398616881278,0.001403385685321558,0.0013612361021995794,0.001317015535588769,0.00125214191170982,0.0013693917053444543,0.001298656527100136,0.0014709659210733997,0.0013882786863022708,0.0013561966476754615,0.0013438634031408695,0.001346407027373498,0.0013873210529493233,0.0013370580270836373,0.0013140626083199798,0.0013755429619267436,
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+0.0013673814687594737,0.0013914709527790955,0.001321873402687219,0.0014094485655711851,0.0013388802107734345,0.0013232687996502395,0.0014015725264946385,0.0013467917393770413,0.0013318715335592407,0.0013765868035285982,0.0012866921830016124,0.001357057070388789,0.0013828533932956815,0.0013342819261334528,0.0013724342170568721,0.0013459303226530683,0.0013376451450722944,0.001386789762753255,0.001385154138625203,0.0013220164949727924],"direct_estimates":[0.00244140625,0.00146484375,0.00146484375,0.00146484375,0.0009765625,0.0009765625,0.001953125,0.00146484375,0.00146484375,0.00048828125,0.0009765625,0.00244140625,0.0009765625,0.0009765625,0.00048828125,0.0009765625,0.001953125,0.0009765625,0.0009765625,0.0029296875,0.001953125,0.0,0.001953125,0.00146484375,0.0009765625,0.001953125,0.00146484375,0.0009765625,0.00390625,0.00048828125,0.00048828125,0.00244140625,0.00244140625,0.0009765625,0.001953125,0.0009765625,0.0009765625,0.0009765625,0.0,0.0009765625,0.00048828125,0.00048828125,0.0,0.001953125,0.0009765625,0.0009765625,0.001953125,0.00390625,0.0009765625,0.00146484375,0.00146484375,0.001953125,0.00146484375,0.0009765625,0.0009765625,0.001953125,0.001953125,0.00146484375,0.00146484375,0.001953125,0.00146484375,0.00048828125,0.00244140625,0.00146484375],"direct_CP95_intervals":[[0.0007931783677401395,0.005688157267145868],[0.00030218793228204327,0.004274871147354223],[0.00030218
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+793228204327,0.004274871147354223],[0.00030218793228204327,0.004274871147354223],[0.00011828813715452324,0.0035231826302861025],[0.00011828813715452324,0.0035231826302861025],[0.0005324091955734352,0.004993159826672394],[0.00030218793228204327,0.004274871147354223],[0.00030218793228204327,0.004274871147354223],[1.2362134518014377e-05,0.0027174944939663413],[0.00011828813715452324,0.0035231826302861025],[0.0007931783677401395,0.005688157267145868],[0.00011828813715452324,0.0035231826302861025],[0.00011828813715452324,0.0035231826302861025],[1.2362134518014377e-05,0.0027174944939663413],[0.00011828813715452324,0.0035231826302861025],[0.0005324091955734352,0.004993159826672394],[0.00011828813715452324,0.0035231826302861025],[0.00011828813715452324,0.0035231826302861025],[0.0010758790336718924,0.006365711368738894],[0.0005324091955734352,0.004993159826672394],[0.0,0.0017995894645376769],[0.0005324091955734352,0.004993159826672394],[0.00030218793228204327,0.004274871147354223],[0.00011828813715452324,0.0035231826302861025],[0.0005324091955734352,0.004993159826672394],[0.00030218793228204327,0.004274871147354223],[0.00011828813715452324,0.0035231826302861025],[0.0016879038818811754,0.007682287181498291],[1.2362134518014377e-05,0.0027174944939663413],[1.2362134518014377e-05,0.0027174944939663413],[0.0007931783677401395,0.005688157267145868],[0.0007931783677401395,0.005688157267145868]
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+,[0.00011828813715452324,0.0035231826302861025],[0.0005324091955734352,0.004993159826672394],[0.00011828813715452324,0.0035231826302861025],[0.00011828813715452324,0.0035231826302861025],[0.00011828813715452324,0.0035231826302861025],[0.0,0.0017995894645376769],[0.00011828813715452324,0.0035231826302861025],[1.2362134518014377e-05,0.0027174944939663413],[1.2362134518014377e-05,0.0027174944939663413],[0.0,0.0017995894645376769],[0.0005324091955734352,0.004993159826672394],[0.00011828813715452324,0.0035231826302861025],[0.00011828813715452324,0.0035231826302861025],[0.0005324091955734352,0.004993159826672394],[0.0016879038818811754,0.007682287181498291],[0.00011828813715452324,0.0035231826302861025],[0.00030218793228204327,0.004274871147354223],[0.00030218793228204327,0.004274871147354223],[0.0005324091955734352,0.004993159826672394],[0.00030218793228204327,0.004274871147354223],[0.00011828813715452324,0.0035231826302861025],[0.00011828813715452324,0.0035231826302861025],[0.0005324091955734352,0.004993159826672394],[0.0005324091955734352,0.004993159826672394],[0.00030218793228204327,0.004274871147354223],[0.00030218793228204327,0.004274871147354223],[0.0005324091955734352,0.004993159826672394],[0.00030218793228204327,0.004274871147354223],[1.2362134518014377e-05,0.0027174944939663413],[0.0007931783677401395,0.005688157267145868],[0.00030218793228204327,0.004274871147354223]],"wei
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+ght_ESS":[21.15926317394717,41.18951576956041,10.45543456292765,23.484856447328344,8.360665351154841,32.59831035625985,32.19484436120817,32.91344033935609,10.641410040061622,3.6354992863162425,23.323125495904907,4.298509643227482,29.41457780946849,28.10048070366128,35.783725656946714,21.665039736746984,19.243948865782308,17.398286898861425,22.068968759429247,8.346756239247581,12.059726551426824,9.89638075042065,7.209983943104346,11.53036856328907,32.918351301858664,20.772877808107957,2.217438312592306,10.762667182772804,10.189763469667886,38.18814330100251,8.411978915071577,2.6368095064526944,10.103335365015365,8.46855626119429,13.545103491851783,15.43587990523498,24.700560992411813,35.453148681381464,6.354606406000917,3.5395629588422692,15.246182935267912,17.1147852363793,19.467809133229593,18.313484449686033,26.863035425120714,8.736442436893535,9.996532032663163,28.401413750676404,22.27762339254489,7.438141519817047,3.9092290969228145,2.5996766751099787,6.621143137980135,3.258009792376355,38.33437775266722,4.490879891151306,44.28757529141263,9.776563902495228,6.55489764928504,22.54828024867047,22.23830877653678,32.15735704914305,6.828507242879617,14.949306279335607],"event_ESS":[438.9225458422814,483.06764487143937,465.8613558401836,451.6073961643048,456.36662369561606,461.1733586139038,469.9593873526784,498.4496477409389,474.81876845223576,489.45057686525723,475.201487781463
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+13,457.9495823924123,453.56217855932067,473.90289225623576,479.5732342245853,458.6613997313665,469.0850593585455,423.85142033717335,472.5499644064114,470.4681446374088,484.68972263915475,468.2480852118712,464.99627970877344,465.6027723029047,487.2922772969232,481.7359668955205,447.553817775507,454.1953715070741,460.91861610428657,489.73343956712876,468.4452553693607,469.32151734013127,435.0412881868084,461.779314807457,461.6966352330581,500.67546413986213,465.3881415871457,472.7759101667183,488.3982671900122,475.4228742012357,469.6159524879314,464.626398273608,460.4781034523246,488.2499328934969,497.4676945943087,463.53794909680823,458.88749491040517,475.81932663858043,467.00292647750615,463.9545405059138,483.32259095053746,464.7607598616894,465.1322867534066,480.62810990041316,448.99976790517695,465.27391800964494,469.08895681548364,459.1814204145638,475.79526047384843,456.33899442049034,484.90338601159533,477.10921843048243,478.99580263197566,451.9511779604279],"unweighted_proposal_event_mean":0.5010833740234375,"IS_interval_recipe":"Known exact estimator variance normal95; not an exact finite-sample weighted interval.","coverage_scope":"64independent batches for this threshold/prefix only; nested prefixes and thresholds are not pooled."},{"a":3.0,"n":8192,"truth":0.001349898031630094,"analytic_variance":6.172177793850583e-06,"estimate_mean":0.0013538346728247394,"batch_varia
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+nce":6.647514263171066e-10,"aggregate_known_se":3.4311069462458586e-06,"IS_coverage":0.9375,"IS_coverage_binomial_CI":[0.8476365265773032,0.9827099726189448],"direct_coverage":0.984375,"direct_coverage_binomial_CI":[0.9159896735656463,0.9996044874859493],"direct_no_hit_batches":0,"IS_estimates":[0.0012955759479823796,0.001365994689342002,0.0013392497027614014,0.0013482352660169699,0.0013287952860593553,0.0013587410961390064,0.0013349456199233825,0.0014219918056852486,0.0013430114890319186,0.0013466969216158258,0.0013911036834545552,0.001341500723390601,0.0013742031108327415,0.0013566643373500928,0.001342378654081307,0.0013886537287883642,0.0013803736092000893,0.0013198998827120335,0.0013415406527451696,0.0013478079730572228,0.0013394034302933598,0.0014061064386545364,0.0013773434628773645,0.0013689295813097396,0.0013433342566347287,0.001359152964152292,0.001342266979953551,0.0013075988988867759,0.0013313239493322245,0.001392798035506312,0.001359124080706126,0.00133106177837497,0.0013139924829111966,0.0013585977345950402,0.0013286831418092152,0.0013949612582008948,0.0013360494308676755,0.001336231870713237,0.0013535734715982588,0.0013489069892118346,0.0013875888219847827,0.001353921830947201,0.0012906788875562015,0.0013626835365065412,0.0013777207456340064,0.0013928746604192123,0.0013245245236920369,0.0013648644378409544,0.0013342113510153544,0.0013414949353409361,0.001385250069
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+3311773,0.0013492535404461927,0.0013405148558886639,0.0013748676143185627,0.0013412478093999946,0.001338327162779291,0.0013502424542147368,0.0013815805127482949,0.0013262041524113417,0.0013604444852616333,0.001385214987044176,0.001357785358499723,0.0013614660256278071,0.0013656518851154875],"direct_estimates":[0.0015869140625,0.0018310546875,0.0015869140625,0.0013427734375,0.001220703125,0.00146484375,0.0015869140625,0.00146484375,0.001708984375,0.00146484375,0.000732421875,0.0018310546875,0.0008544921875,0.0013427734375,0.0013427734375,0.001220703125,0.0018310546875,0.0018310546875,0.0018310546875,0.0010986328125,0.001708984375,0.001220703125,0.001708984375,0.00146484375,0.001708984375,0.0013427734375,0.0010986328125,0.0009765625,0.0018310546875,0.0009765625,0.0013427734375,0.00146484375,0.0015869140625,0.0013427734375,0.001708984375,0.00146484375,0.0010986328125,0.0008544921875,0.0013427734375,0.00146484375,0.0010986328125,0.0009765625,0.000732421875,0.00146484375,0.0010986328125,0.001220703125,0.00146484375,0.001953125,0.0015869140625,0.00146484375,0.0018310546875,0.0020751953125,0.0013427734375,0.00146484375,0.0015869140625,0.0013427734375,0.0013427734375,0.001708984375,0.00146484375,0.000732421875,0.0009765625,0.0003662109375,0.0015869140625,0.0015869140625],"direct_CP95_intervals":[[0.00084522695436736,0.0027121425634731794],[0.001025178227975317,0.0030182507898352004],[0
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+.00084522695436736,0.0027121425634731794],[0.0006704922276954308,0.002401319490213853],[0.0005855248944070898,0.0022437669417077846],[0.0007571279926472161,0.0025573876887955396],[0.00084522695436736,0.0027121425634731794],[0.0007571279926472161,0.0025573876887955396],[0.000934622729384305,0.0028657245810842667],[0.0007571279926472161,0.0025573876887955396],[0.0002688318375382104,0.0015934872668981336],[0.001025178227975317,0.0030182507898352004],[0.00034361699911774864,0.0017597829535838307],[0.0006704922276954308,0.002401319490213853],[0.0006704922276954308,0.002401319490213853],[0.0005855248944070898,0.0022437669417077846],[0.001025178227975317,0.0030182507898352004],[0.001025178227975317,0.0030182507898352004],[0.001025178227975317,0.0030182507898352004],[0.0005024840430941555,0.0020845182470392108],[0.000934622729384305,0.0028657245810842667],[0.0005855248944070898,0.0022437669417077846],[0.000934622729384305,0.0028657245810842667],[0.0007571279926472161,0.0025573876887955396],[0.000934622729384305,0.0028657245810842667],[0.0006704922276954308,0.002401319490213853],[0.0005024840430941555,0.0020845182470392108],[0.0004217016632144691,0.0019233057715157638],[0.001025178227975317,0.0030182507898352004],[0.0004217016632144691,0.0019233057715157638],[0.0006704922276954308,0.002401319490213853],[0.0007571279926472161,0.0025573876887955396],[0.00084522695436736,0.0027121425634731
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+794],[0.0006704922276954308,0.002401319490213853],[0.000934622729384305,0.0028657245810842667],[0.0007571279926472161,0.0025573876887955396],[0.0005024840430941555,0.0020845182470392108],[0.00034361699911774864,0.0017597829535838307],[0.0006704922276954308,0.002401319490213853],[0.0007571279926472161,0.0025573876887955396],[0.0005024840430941555,0.0020845182470392108],[0.0004217016632144691,0.0019233057715157638],[0.0002688318375382104,0.0015934872668981336],[0.0007571279926472161,0.0025573876887955396],[0.0005024840430941555,0.0020845182470392108],[0.0005855248944070898,0.0022437669417077846],[0.0007571279926472161,0.0025573876887955396],[0.0011167789171197464,0.003169819947707148],[0.00084522695436736,0.0027121425634731794],[0.0007571279926472161,0.0025573876887955396],[0.001025178227975317,0.0030182507898352004],[0.001209327950503123,0.0033205162911927274],[0.0006704922276954308,0.002401319490213853],[0.0007571279926472161,0.0025573876887955396],[0.00084522695436736,0.0027121425634731794],[0.0006704922276954308,0.002401319490213853],[0.0006704922276954308,0.002401319490213853],[0.000934622729384305,0.0028657245810842667],[0.0007571279926472161,0.0025573876887955396],[0.0002688318375382104,0.0015934872668981336],[0.0004217016632144691,0.0019233057715157638],[7.552786749571872e-05,0.001069847095663702],[0.00084522695436736,0.0027121425634731794],[0.00084522695436736,0.00271214
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+25634731794]],"weight_ESS":[66.23998104979297,113.59323228023624,11.751659390762851,94.70929983598165,41.44410768648745,117.42330857913716,40.422187910007,46.022119334870645,46.214887264138724,34.300450980786046,88.34654656982536,22.68399113053046,7.749356954602243,47.38186943181799,59.20918822864521,52.822313229471014,18.882601432067695,23.020344324992333,19.871030808362946,34.28579780533458,52.5425747784841,37.425547414890715,29.39321119688508,6.291125270515702,60.00486342127477,3.226270410334914,3.3144298525293907,19.25082605514417,52.437060299123154,31.464044166246055,46.15302779619956,21.110587414251683,34.16900932791078,26.609285404705957,27.110227270727346,40.49500714584381,40.177619170494914,1.4232303655445597,39.342533814508954,17.82310705677744,37.8184913941953,4.988826681860445,66.36205046023919,79.81645770031706,110.46194003762037,18.035974909223487,38.622701436125446,45.814913936262535,59.24468999530841,45.9590252132087,27.984483646635866,13.166146583658245,29.725391560019872,15.40440603435487,115.31807676396603,23.707175437595428,7.448009692335163,37.90026960159977,37.358460461179476,102.32821421048857,9.646116314593414,15.14499063990412,15.498761414692467,22.958860522291808],"event_ESS":[1808.1802627826917,1905.7172951786765,1860.865019634981,1877.7177201904137,1858.6241941778953,1858.01186802349,1866.4942264146052,1923.9113661360136,1855.592482631044,1861.062413
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+6770052,1912.3172406195345,1853.243393862451,1879.9667659452275,1896.134245346237,1870.2916496952503,1910.9954554250946,1880.160041930153,1842.6234502012205,1860.0473952725401,1858.029948821048,1851.5327050587766,1884.1767055193263,1911.9865836235604,1879.2117974288271,1894.750756927274,1894.7559793731725,1881.111115450584,1843.524191811513,1851.2202300998472,1913.0835168475428,1874.852290196117,1863.0213497223083,1793.3642669500196,1861.1153291256676,1833.9659227304378,1899.7364739193645,1828.8005466666018,1863.1489663012717,1922.3971359503587,1882.1602935732003,1887.5966032258652,1883.8122063790295,1802.0138660395862,1910.5008480296938,1930.792158942273,1887.1902771905811,1848.6495213393566,1865.2140954165395,1851.2315915049178,1847.9927704572453,1915.1821016562083,1877.449250434492,1877.7808327163227,1889.100024840456,1860.4631943067552,1847.29642806664,1867.3190347646498,1881.8303877986982,1823.5669764979348,1864.2011891900027,1897.411551696171,1859.153587631972,1870.4128308388206,1873.9333825251597],"unweighted_proposal_event_mean":0.5001049041748047,"IS_interval_recipe":"Known exact estimator variance normal95; not an exact finite-sample weighted interval.","coverage_scope":"64independent batches for this threshold/prefix only; nested prefixes and thresholds are not pooled."},{"a":6.0,"n":2048,"truth":9.865876450376937e-10,"analytic_variance":6.6854705431339915e-18,"estim
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+ate_mean":9.861214855163445e-10,"batch_variance":3.1618825990168494e-21,"aggregate_known_se":7.141854969167285e-12,"IS_coverage":0.96875,"IS_coverage_binomial_CI":[0.8916294777754828,0.9961928186181276],"direct_coverage":1.0,"direct_coverage_binomial_CI":[0.9439909106133634,1.0],"direct_no_hit_batches":64,"IS_estimates":[9.070078333783081e-10,1.009540704745744e-09,9.730219736445002e-10,9.261141707910175e-10,9.4110152472827e-10,9.478701019925323e-10,1.0053358804731246e-09,1.0881805740385411e-09,9.854358551535095e-10,1.0826233517580747e-09,1.0304676820763462e-09,9.957777879537214e-10,9.428164712672742e-10,9.098875477389926e-10,9.394477587972658e-10,1.0099576156933417e-09,1.0461693060545515e-09,8.639526576781079e-10,9.877710875728894e-10,1.0588360477469757e-09,1.1771722477546251e-09,1.078869387620109e-09,9.275937026346321e-10,1.0036525737917939e-09,9.701238167435806e-10,9.768975286356927e-10,8.829050726614606e-10,9.153702076053908e-10,9.521705239875131e-10,1.016421728881111e-09,9.997414258441975e-10,9.340947797097386e-10,9.108696756850622e-10,1.0263619094847984e-09,9.232334070355259e-10,1.0922662851409089e-09,1.0466888902826617e-09,9.832628002960672e-10,9.34578433695038e-10,9.637231274635848e-10,1.035835349111186e-09,9.72470073550091e-10,9.477695397451322e-10,9.794578271391693e-10,9.499354867352237e-10,1.055705076263842e-09,9.623944742422842e-10,1.0552029606034014e-09,9.7016020914
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+4801e-10,9.538944705081765e-10,1.02724413897473e-09,9.863954266062508e-10,9.638907263085543e-10,9.965008002023537e-10,9.319289941205503e-10,1.0003849085797933e-09,1.0303308073280273e-09,9.799197581728087e-10,1.000558712453649e-09,1.0033147319187742e-09,9.326232406035776e-10,1.0187862184254055e-09,1.0123813017507918e-09,9.77376382320892e-10],"direct_estimates":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"direct_CP95_intervals":[[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769]
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+,[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769]],"weight_ESS":[2.714757698130342,7.294877470133458,2.306968151815931,5.914035980365611,1.47293345398692,7.05270995063711,6.722331273550882,5.217795166103699,1.451808786850598,1.0301596735875282,9.372515382420085,1.2445332739092032,3.6162346650052664,3.275446233542616,6.292501955080596,4.1497947651256935,3.120425695660313,1.4338885472358478,2.9737075488570257,2.
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+406683637656517,2.6707420987067496,2.1718790173647244,2.3977482634935066,1.6528516149771635,4.373283540837031,3.669137139206666,1.0228689205211179,1.6647144288424398,1.6571974943142729,9.844277752136971,1.266243799090225,1.020095846700053,1.3204795118796084,1.2511395647959747,2.849084464435868,2.3145148357411345,4.179104065621091,7.218035686824816,1.6653528852253334,1.137203640228748,3.6896363802176912,3.386059349507665,3.119264491874781,3.4372264929190184,5.320318353617252,1.2668912498073732,2.5118510782932155,3.8883326154582774,4.6509947849465485,1.4195522201645985,1.1177235915378045,1.0324966686431505,1.39654932253797,1.1535944089020482,3.621819774855334,1.1456867697455162,6.436726659609086,1.257308749741118,1.949342148766888,3.2550019657468057,5.150597495246921,6.211874406479659,1.2675684985653248,2.131595568136746],"event_ESS":[243.52586288394315,274.02662205371064,266.1828588979608,251.73612050866527,254.98950482975653,247.08580785147274,263.38401228181556,280.52522740829033,266.5330696674651,274.5088554716088,279.61473074201757,249.5850204151761,240.15474098957318,255.10315500110323,261.0475688914342,257.7836822321271,268.9988584523106,228.82436093884795,262.70428213327557,266.7458671442742,277.2162621202265,275.35038156332047,250.5441211562008,261.9998113199418,263.9930053905389,276.51122613265267,232.29715233989106,245.684212020674,251.4141996688122,271.4196415913557,2
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+55.22525967252088,258.41175823668675,234.97387686279723,264.970320823065,249.60648204009902,285.3263351803979,268.81163441908154,264.5274226478653,266.9808902622782,259.76415520163454,263.9871182509216,262.78121194212207,247.8219308059197,275.2572124760674,275.725093367583,264.56540126539005,250.7397233608818,272.29922797074113,257.5597825223091,251.04672038604247,270.13556079697435,257.61729807712794,252.03830475492495,263.099352723686,236.7728679777003,265.2992124843516,268.9617838129497,262.70749015617236,266.6993792564432,252.32477846398618,264.00527840942794,267.11712813696295,266.05061861435075,255.9150617463252],"unweighted_proposal_event_mean":0.5010833740234375,"IS_interval_recipe":"Known exact estimator variance normal95; not an exact finite-sample weighted interval.","coverage_scope":"64independent batches for this threshold/prefix only; nested prefixes and thresholds are not pooled."},{"a":6.0,"n":8192,"truth":9.865876450376937e-10,"analytic_variance":6.6854705431339915e-18,"estimate_mean":9.901279153514042e-10,"batch_variance":7.304251198197894e-22,"aggregate_known_se":3.5709274845836424e-12,"IS_coverage":0.96875,"IS_coverage_binomial_CI":[0.8916294777754828,0.9961928186181276],"direct_coverage":1.0,"direct_coverage_binomial_CI":[0.9439909106133634,1.0],"direct_no_hit_batches":64,"IS_estimates":[9.384770050450396e-10,9.898722579661525e-10,9.744237298905054e-10,9.78
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+6798967047097e-10,9.60426595788667e-10,1.0045337789030703e-09,9.652506551957613e-10,1.0625484292696635e-09,9.826898219324656e-10,9.851863889707915e-10,1.0230542578001111e-09,9.817230053140634e-10,1.015526566792674e-09,9.813306022225466e-10,9.74047972724746e-10,1.020159038118419e-09,1.0245616197318522e-09,9.558395426438538e-10,9.781901184393691e-10,9.88423219052427e-10,9.79559977295874e-10,1.0608509511485965e-09,1.0030885434063296e-09,1.0081521784147612e-09,9.628434871715173e-10,9.856506064341348e-10,9.682844780246075e-10,9.376480566364892e-10,9.679412721960937e-10,1.0251371394873673e-09,9.960720719899273e-10,9.61431174931773e-10,9.733227081327001e-10,1.0026470779279062e-09,9.73175561443403e-10,1.0355487243076329e-09,9.867754050978884e-10,9.688480702543526e-10,9.63518735769837e-10,9.773430053143033e-10,1.0312216081529822e-09,9.83760049298345e-10,9.34583028532717e-10,9.826127376207202e-10,9.93862893210187e-10,1.0393169050985464e-09,9.594117461255202e-10,1.009694415172965e-09,9.721384392273054e-10,9.845038376605056e-10,1.0129450657724822e-09,9.802989394578378e-10,9.674710255874582e-10,1.0115944009217273e-09,9.775445866490635e-10,9.802291221655806e-10,9.87062380350866e-10,1.0254430051574067e-09,9.750764206152436e-10,1.003710517212627e-09,1.0223801986555683e-09,1.0025050751584843e-09,1.0018800991711014e-09,1.006156357622259e-09],"direct_estimates":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"direct_CP95_intervals":[[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394]],"weight_ESS":[3.6978082418675897,7.708388620708694,1.7297961744015466,17.987220232459247,3.8046931364083614,9.156782235226185,2.7595717485986624,3.224026673854086,3.2095624315850135,2.504135707935715,15.801239452072016,3.9871873224314553,2.2313273409198002,4.489560086650381,4.687679048630668,6.538817050216461,1.4813640580607146,2.554305663702664,1.436988206182495,4.7450776515749835,6.522471230977075,3.4403130780840354,3.6838105285885847,1.1561919695197984,3.3510552625653336,1.0496563703359412,1.142042658254571,1.5468430481210833,10.350880027769255,1.5966312521084864,1.8286383938115192,1.70156494221803,2.545793988111603,5.8968998840285805,3.3016146961878725,4.013008340589144,5.4941145349
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+05161,1.0055508887818296,3.2181808683864204,1.558927211752986,2.4021262726871098,1.6960762620282075,9.567856188148756,11.714359688969635,10.536573302645126,1.5223566705253797,4.859437801737428,3.355626166535342,5.306789869825481,4.648086503827353,1.85944270927682,1.8838353017588594,1.8704994272160258,1.4483417447517886,12.022159366837881,4.31222896975211,1.199233107401293,3.823778071686044,3.5361441360764267,11.689327382440737,1.1746347031138509,1.2237499979736275,2.8729649098543666,4.285257602415676],"event_ESS":[999.6513532187043,1059.612301861933,1036.484025837569,1046.6261534017947,1017.7266992172638,1039.5691306590745,1040.0455111878475,1091.1335616489152,1033.3638999561872,1033.375306521878,1073.7007336959837,1023.5653184320416,1054.9418813055402,1054.4628948652314,1029.4030144954606,1083.2267229899267,1071.1308792759387,1012.4652489820016,1020.8071966311732,1039.717703118517,1016.0350187732137,1082.1030131421896,1088.719581912626,1053.0760892706912,1050.473345972688,1064.5967550465093,1026.9654478154926,1012.0044667696657,1015.8092778841888,1070.8451424797,1048.8611816690004,1030.0026770896038,1007.2655325371007,1050.3243572321676,1012.6460066941606,1064.3123987038468,1029.803002361434,1017.9119391858753,1057.9423098826326,1036.4598520271006,1073.147208787342,1050.461103501832,992.2757997911554,1076.2572216341775,1090.4754292588448,1063.8482889695158,1006.3243609770534,1
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+044.9249406021781,1037.3626138305408,1019.0910165430724,1079.5515376629812,1043.9234151191079,1030.313496285386,1046.6193197554344,1029.3810888405815,1025.748646877055,1060.2452910253762,1069.40072084528,1021.4448686715785,1046.9128005570024,1059.8574524562348,1048.0037872901923,1042.1462975203187,1050.4837256024211],"unweighted_proposal_event_mean":0.5001049041748047,"IS_interval_recipe":"Known exact estimator variance normal95; not an exact finite-sample weighted interval.","coverage_scope":"64independent batches for this threshold/prefix only; nested prefixes and thresholds are not pooled."}]
+independent_batches_per_configuration64
+scopeKnown-moment calibration and finite repeated-interval coverage. Neither nominal intervals nor their64trial coverage is a deterministic bound/general95%coverage proof. Ordinary IS weights have no random denominator.
+判定 / checkPassed
+finite saved contribution arraystrue
+a3.0/n2048/mean calibrationtrue
+a3.0/n2048/batch variance calibrationtrue
+a3.0/n2048/analytic variance reductiontrue
+a3.0/n2048/unweighted proposal negative controltrue
+a3.0/n8192/mean calibrationtrue
+a3.0/n8192/batch variance calibrationtrue
+a3.0/n8192/analytic variance reductiontrue
+a3.0/n8192/unweighted proposal negative controltrue
+a6.0/n2048/mean calibrationtrue
+a6.0/n2048/batch variance calibrationtrue
+a6.0/n2048/analytic variance reductiontrue
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+a6.0/n2048/unweighted proposal negative controltrue
+a6.0/n8192/mean calibrationtrue
+a6.0/n8192/batch variance calibrationtrue
+a6.0/n8192/analytic variance reductiontrue
+a6.0/n8192/unweighted proposal negative controltrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Distribution and error diagnostics from actual saved data;sample/time axes are distinguished from spatial dimensions.Read every stored record
+thresholdsamplesindependent_seed_batchescandidate_file
+3204864normal-tail-importance.npz
+3819264normal-tail-importance.npz
+6204864normal-tail-importance.npz
+6819264normal-tail-importance.npz
+Measurements and complete records / JSON
+
+## Importance sampling and correlated-Gaussian diagnostics — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#normal-tail-importance-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+A. B. Owen (n.d.). Monte Carlo theory,methods and examples,Chapter9: importance sampling
+Review scope / review_level: selected-author-pdf-equations-and-scope
+Selected author-chapter support,ordinary estimator,second moments and diagnostics were read during preparation. Current refetch returned403. No full-book or PERT experiment reproduction.
+
+## Importance sampling and correlated-Gaussian diagnostics — Joint target and MCSE for a correlated bivariate Gaussian [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/
+Coverage: reading
+
+Test actual2D MH paths against known joint moments and same-data ArviZ diagnostics.
+Methods, equations, figures and references
+Methods used
+Markov-chain Monte Carlo / MCMC
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Symmetric random-walk MH retains rejected states. Compute original-scale meanESS/MCSE separately for8observables;rank bulkESS is not substituted.
+Gaussian probability measures: tails and correlated targets
+Mean(1,-1),unit marginal variances,rho.95;4independent chainsets×4chains;burn1024/draw8192;prefix2048/8192. Fixed.9Lzand.25z,no adaptation.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Joint target and MCSE for a correlated bivariate Gaussian
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## Importance sampling and correlated-Gaussian diagnostics — Joint target and MCSE for a correlated bivariate Gaussian [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/
+Coverage: reading
+
+Gate all full-prefix observables in4preconditioned chainsets by Rhat/ESS/MCSE/knownmoments. Match exact dataSHAand640values from128scalar arrays in a separateArviZ0.20process. Target law is separately checked by analytic Gaussian moments. All640comparisons use the immutable same-data fixture;8freshchainsets independently receive the unchanged physical/mixing gates. No portable generated-byte-identity claim.
+Same-problem reference · Finite-grid numerical reference
+Joint target and MCSE for a correlated bivariate Gaussian
+Diagnostic-engine independence is not an independent sampler. Rhat/ESS/MCSE do not prove global convergence/coverage. Isotropic is descriptive with no required failure;banana/funnel/HMC/NUTSremain unimplemented.
+
+## Importance sampling and correlated-Gaussian diagnostics — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-assumptions
+Coverage: reading
+
+Mean(1,-1),unit marginal variances,rho.95;4independent chainsets×4chains;burn1024/draw8192;prefix2048/8192. Fixed.9Lzand.25z,no adaptation.
+
+## Importance sampling and correlated-Gaussian diagnostics — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-algorithm
+Coverage: reading
+
+Symmetric random-walk MH retains rejected states. Compute original-scale meanESS/MCSE separately for8observables;rank bulkESS is not substituted.
+\pi(x)\propto\exp[-\tfrac12(x-m)^\top\Sigma^{-1}(x-m)]\operatorname{MCSE}(g)=s_g/\sqrt{\operatorname{ESS}_{\mathrm{mean}}(g)}
+
+## Importance sampling and correlated-Gaussian diagnostics — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-validation
+Coverage: reading
+
+Gate all full-prefix observables in4preconditioned chainsets by Rhat/ESS/MCSE/knownmoments. Match exact dataSHAand640values from128scalar arrays in a separateArviZ0.20process. Target law is separately checked by analytic Gaussian moments. All640comparisons use the immutable same-data fixture;8freshchainsets independently receive the unchanged physical/mixing gates. No portable generated-byte-identity claim.
+
+## Importance sampling and correlated-Gaussian diagnostics — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-limits
+Coverage: reading
+
+Diagnostic-engine independence is not an independent sampler. Rhat/ESS/MCSE do not prove global convergence/coverage. Isotropic is descriptive with no required failure;banana/funnel/HMC/NUTSremain unimplemented.
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+records[{"seed":46001,"proposal":"preconditioned","prefix":2048,"observable":"y1","estimate":0.02273213346340055,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0028234908080917,"rhat_z":1.0028234908080917,"rhat_folded":1.0016115323391686,"rhat_split":1.0028494808631363,"ess_bulk":842.393374234801,"ess_tail":1156.7493143970592,"ess_mean":844.5065958382512,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.03462914715701663},"same_data_fixture_sha256":"4d9ce02d665b304d6572b8b3e8446983e45122f2fc452951085990602b4d4953","fresh_data_sha256":"4d9ce02d665b304d6572b8b3e8446983e45122f2fc452951085990602b4d4953","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"preconditioned","prefix":2048,"observable":"y2","estimate":0.024635947147705787,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0027038600453424,"rhat_z":1.0016396597142083,"rhat_folded":1.0027038600453424,"rhat_split":1.0016162218619131,"ess_bulk":843.7879060658638,"ess_tail":942.3715879183177,"ess_mean":841.4812978607972,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.03475078746204045},"same_data_fixture_sha256":"d7f17150a19f0222e031b47e5e0182ffbeee31882a3e82e
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+cad3207f3f1472558","fresh_data_sha256":"d7f17150a19f0222e031b47e5e0182ffbeee31882a3e82ecad3207f3f1472558","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"preconditioned","prefix":2048,"observable":"y1_squared","estimate":1.0131067170289296,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0020602281225262,"rhat_z":1.001811696173043,"rhat_folded":1.0020602281225262,"rhat_split":1.0025156100971693,"ess_bulk":1581.3625909792775,"ess_tail":1443.054617307469,"ess_mean":1130.832921373483,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.041739701345924876},"same_data_fixture_sha256":"f33e903f9350cc203d87827ed92803bdbd7ba92bb08ba400c3bc72627cf8f633","fresh_data_sha256":"f33e903f9350cc203d87827ed92803bdbd7ba92bb08ba400c3bc72627cf8f633","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"preconditioned","prefix":2048,"observable":"y2_squared","estimate":1.0166701969620884,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0028847282903728,"rhat_z":1.0028847282903728,"rhat_folded":1.002147957168465,"rhat_split":1.0043486685230458,"ess_bulk":1399.8399302606222,"ess_tail":1215.0993978673393,"ess_mean":925.3926891011614,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"o
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+k","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.04769439506234704},"same_data_fixture_sha256":"990a6e37719a420f9e004261b3c7483d2558f40c5e815c6f32718ad6d4dedbae","fresh_data_sha256":"990a6e37719a420f9e004261b3c7483d2558f40c5e815c6f32718ad6d4dedbae","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"preconditioned","prefix":2048,"observable":"product","estimate":0.9637943134793139,"analytic_truth":0.95,"natural_sd":1.379311422413372,"diagnostics":{"rhat_rank":1.0015509118824761,"rhat_z":1.0015509118824761,"rhat_folded":1.0013224735738022,"rhat_split":1.0031739915726539,"ess_bulk":1531.9412928141007,"ess_tail":1419.2156527412385,"ess_mean":1015.7530751436617,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.0437461996115656},"same_data_fixture_sha256":"703b1e28e71b7c5ba2f05d1f65bcee8bf796fcde2f9ffaf0b14ff3a1d25e4fcf","fresh_data_sha256":"703b1e28e71b7c5ba2f05d1f65bcee8bf796fcde2f9ffaf0b14ff3a1d25e4fcf","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"preconditioned","prefix":2048,"observable":"Q","estimate":2.036591983387913,"analytic_truth":2.0,"natural_sd":2.0,"diagnostics":{"rhat_rank":1.0054024275360913,"rhat_z":1.0054024275360913,"rhat_folded":1.00469991277063,"rhat_split":1.0065393127795856,"ess_bulk":1142.0
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+29112553154,"ess_tail":1336.367916540867,"ess_mean":947.884892847457,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.06560309805954616},"same_data_fixture_sha256":"3eed07c612d38047d805898554f54be0748ba30f66af778a30bbd12552a19a23","fresh_data_sha256":"3eed07c612d38047d805898554f54be0748ba30f66af778a30bbd12552a19a23","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"preconditioned","prefix":2048,"observable":"sum_direction","estimate":0.023985759989029957,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0025118393268277,"rhat_z":1.0021254756240014,"rhat_folded":1.0025118393268277,"rhat_split":1.0020998851830283,"ess_bulk":846.186685441556,"ess_tail":1002.9082373333366,"ess_mean":846.7234138747014,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.03461013969718671},"same_data_fixture_sha256":"99163a22521d7aee20252f89df851d2280a00ec20596b11a6d744a4d51bcbf9c","fresh_data_sha256":"99163a22521d7aee20252f89df851d2280a00ec20596b11a6d744a4d51bcbf9c","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"preconditioned","prefix":2048,"observable":"difference_direction","estimate":-0.006020387483001313,"analytic_truth":0.0,"natural_s
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+d":1.0,"diagnostics":{"rhat_rank":1.007327324383575,"rhat_z":1.007327324383575,"rhat_folded":1.003251787384027,"rhat_split":1.0073520196136254,"ess_bulk":684.4433664205947,"ess_tail":975.6093139374403,"ess_mean":681.2539670476775,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.03873154704094146},"same_data_fixture_sha256":"ee50235e0598612c4d0921e48481277e7390b5e4f493ffba9a114bfd59126708","fresh_data_sha256":"ee50235e0598612c4d0921e48481277e7390b5e4f493ffba9a114bfd59126708","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"preconditioned","prefix":8192,"observable":"y1","estimate":-0.011455496095055934,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0008151205779574,"rhat_z":1.0008151205779574,"rhat_folded":1.0001794066985847,"rhat_split":1.0008211201570911,"ess_bulk":3075.919072632889,"ess_tail":4422.390392349233,"ess_mean":3080.6833822167046,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.017897352803688746},"same_data_fixture_sha256":"426bdf2063fc89ce8c70837cc11f3a787587ba9757125ff1b7ca04d7d49c090d","fresh_data_sha256":"426bdf2063fc89ce8c70837cc11f3a787587ba9757125ff1b7ca04d7d49c090d","fresh_equals_fixture_bytes":true},{"s
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+eed":46001,"proposal":"preconditioned","prefix":8192,"observable":"y2","estimate":-0.011594803573214671,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0006401688227156,"rhat_z":1.0006401688227156,"rhat_folded":1.0003108897616824,"rhat_split":1.0006440883170196,"ess_bulk":3138.346202374029,"ess_tail":4480.827493577582,"ess_mean":3140.5859054630932,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.017622704535850048},"same_data_fixture_sha256":"6ea3266396fd94a31b23db17789468acee22616fab7028962168e2064b944c42","fresh_data_sha256":"6ea3266396fd94a31b23db17789468acee22616fab7028962168e2064b944c42","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"preconditioned","prefix":8192,"observable":"y1_squared","estimate":0.9868909428215458,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.000185470403974,"rhat_z":1.0001705949119442,"rhat_folded":1.000185470403974,"rhat_split":1.0003551052099493,"ess_bulk":5715.282095859754,"ess_tail":5213.223175047471,"ess_mean":4136.553451113296,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.021348136394524268},"same_data_fixture_sha256":"dadc777c443d5f142021858051191d84f9
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+579ae73ed2e34c19bb8281d40434a5","fresh_data_sha256":"dadc777c443d5f142021858051191d84f9579ae73ed2e34c19bb8281d40434a5","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"preconditioned","prefix":8192,"observable":"y2_squared","estimate":0.9754441387010426,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0003413588333978,"rhat_z":1.000320688316004,"rhat_folded":1.0003413588333978,"rhat_split":1.0005984942689066,"ess_bulk":5722.070295267152,"ess_tail":5174.224128622179,"ess_mean":4105.673962789241,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.021395001692398777},"same_data_fixture_sha256":"33ca8b1b03be4c76dc56d74702bdb03a1d1caa20b61fba08b6e9fcaa0b234bb3","fresh_data_sha256":"33ca8b1b03be4c76dc56d74702bdb03a1d1caa20b61fba08b6e9fcaa0b234bb3","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"preconditioned","prefix":8192,"observable":"product","estimate":0.9314304723658401,"analytic_truth":0.95,"natural_sd":1.379311422413372,"diagnostics":{"rhat_rank":1.0002215829825107,"rhat_z":1.0002215829825107,"rhat_folded":1.0001556372584388,"rhat_split":1.0004266988212132,"ess_bulk":5820.0147395516215,"ess_tail":5254.549771968714,"ess_mean":4123.715089815382,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_f
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+olded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.02081845394522371},"same_data_fixture_sha256":"e5538c71331cd5d63477ee916bab761915878ceb2e8ab9a97d016760464431a1","fresh_data_sha256":"e5538c71331cd5d63477ee916bab761915878ceb2e8ab9a97d016760464431a1","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"preconditioned","prefix":8192,"observable":"Q","estimate":1.9755608618204326,"analytic_truth":2.0,"natural_sd":2.0,"diagnostics":{"rhat_rank":1.0009909900479994,"rhat_z":1.0008940429463693,"rhat_folded":1.0009909900479994,"rhat_split":1.0009802692870815,"ess_bulk":4547.714155437986,"ess_tail":4943.401692503204,"ess_mean":3715.937653831554,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.03228957201741417},"same_data_fixture_sha256":"52eeff77bb4e581da9dd2abef22537c4bdea50aa7a315d4d45bebdad2b6c4391","fresh_data_sha256":"52eeff77bb4e581da9dd2abef22537c4bdea50aa7a315d4d45bebdad2b6c4391","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"preconditioned","prefix":8192,"observable":"sum_direction","estimate":-0.011671972948566613,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0007424048176283,"rhat_z":1.0007424048176283,"rhat_folded":1.0002326335913754,"rhat_split":1.0007476144768266,"ess_bulk":31
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+09.380177758341,"ess_tail":4398.384796421083,"ess_mean":3112.8581610111382,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.017749713259677415},"same_data_fixture_sha256":"4b4ca3bc82975610f8ee2c19b8ed86f4436dbe9ee76ee502cfe419d71f4c8b3e","fresh_data_sha256":"4b4ca3bc82975610f8ee2c19b8ed86f4436dbe9ee76ee502cfe419d71f4c8b3e","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"preconditioned","prefix":8192,"observable":"difference_direction","estimate":0.0004405289260757629,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0009028414784726,"rhat_z":1.0001801473474417,"rhat_folded":1.0009028414784726,"rhat_split":1.0001758673592305,"ess_bulk":2981.855924949352,"ess_tail":4354.003451817646,"ess_mean":2981.0809986281065,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.018267317867082522},"same_data_fixture_sha256":"ed38241651b82d438b2539e36fa8b91abdc0d501f4f803a6c06e4a931eb5c143","fresh_data_sha256":"ed38241651b82d438b2539e36fa8b91abdc0d501f4f803a6c06e4a931eb5c143","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"isotropic","prefix":2048,"observable":"y1","estimate":-0.05317071805117521,"analytic_truth":0.0,"natural_sd":1.0,
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+"diagnostics":{"rhat_rank":1.0908566955918233,"rhat_z":1.0908566955918233,"rhat_folded":1.024689861608745,"rhat_split":1.092743703020371,"ess_bulk":33.80774094748844,"ess_tail":133.0382483695632,"ess_mean":32.804726801783225,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.17283949935955797},"same_data_fixture_sha256":"2ccda40995152c856a9c9e974fd69e4cf5458fa4f78f0aa62206db57b3c2318f","fresh_data_sha256":"2ccda40995152c856a9c9e974fd69e4cf5458fa4f78f0aa62206db57b3c2318f","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"isotropic","prefix":2048,"observable":"y2","estimate":-0.049184340731888154,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0992092349239537,"rhat_z":1.0992092349239537,"rhat_folded":1.0194672316046847,"rhat_split":1.1010526994922227,"ess_bulk":31.064029882385412,"ess_tail":138.57239140689046,"ess_mean":30.549038303360593,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.1805117834034541},"same_data_fixture_sha256":"1a3887d6f2e2ee985d8d9a24ec61e14359e6b00d202d0d4bb99d1bca0c6a9139","fresh_data_sha256":"1a3887d6f2e2ee985d8d9a24ec61e14359e6b00d202d0d4bb99d1bca0c6a9139","fresh_equals_fixture_bytes":true},{"seed":46001
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+,"proposal":"isotropic","prefix":2048,"observable":"y1_squared","estimate":0.9826992587100203,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0173080573889652,"rhat_z":1.0173080573889652,"rhat_folded":1.0112299387262913,"rhat_split":1.0240522237334042,"ess_bulk":142.3436348626523,"ess_tail":223.18070970298223,"ess_mean":126.64508845343562,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.11176530261672589},"same_data_fixture_sha256":"48b419583dd841bb7e160c4911f901d7e00dcfebc44f80e14eaea827e9ba0b55","fresh_data_sha256":"48b419583dd841bb7e160c4911f901d7e00dcfebc44f80e14eaea827e9ba0b55","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"isotropic","prefix":2048,"observable":"y2_squared","estimate":0.9977228466888164,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0165492443940272,"rhat_z":1.0165492443940272,"rhat_folded":1.0109748026079282,"rhat_split":1.0224134151826476,"ess_bulk":136.19335404957275,"ess_tail":241.25941220892676,"ess_mean":120.48917107160015,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.11533911274750662},"same_data_fixture_sha256":"9b063cb21573b9762acfe102b1b33e
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+28e7c019e08bbb4bdb5148be58293df385","fresh_data_sha256":"9b063cb21573b9762acfe102b1b33e28e7c019e08bbb4bdb5148be58293df385","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"isotropic","prefix":2048,"observable":"product","estimate":0.941720088281412,"analytic_truth":0.95,"natural_sd":1.379311422413372,"diagnostics":{"rhat_rank":1.0184411156453945,"rhat_z":1.0184411156453945,"rhat_folded":1.0093734427648635,"rhat_split":1.024467827405889,"ess_bulk":130.3735783879689,"ess_tail":223.73189822645662,"ess_mean":117.1777803178342,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.11364895857924212},"same_data_fixture_sha256":"18a869e468f7a2f12accae3a9a8f60bbafa95dd1b8bf065465fe5167615e703c","fresh_data_sha256":"18a869e468f7a2f12accae3a9a8f60bbafa95dd1b8bf065465fe5167615e703c","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"isotropic","prefix":2048,"observable":"Q","estimate":1.9605532068118356,"analytic_truth":2.0,"natural_sd":2.0,"diagnostics":{"rhat_rank":1.0116717416671954,"rhat_z":1.0115444225318853,"rhat_folded":1.0116717416671954,"rhat_split":1.0142932346758042,"ess_bulk":246.88463801275157,"ess_tail":610.1063416061706,"ess_mean":247.96221788765376,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok",
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+"ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.11651116471672839},"same_data_fixture_sha256":"b9452a85f72f586f82a1d5425bb0a50279bb4d4485e4014a1e4f2e38aca21c3f","fresh_data_sha256":"b9452a85f72f586f82a1d5425bb0a50279bb4d4485e4014a1e4f2e38aca21c3f","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"isotropic","prefix":2048,"observable":"sum_direction","estimate":-0.05182949872488557,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0975412172201815,"rhat_z":1.0975412172201815,"rhat_folded":1.0248272503811644,"rhat_split":1.0994705631842911,"ess_bulk":31.420154796435977,"ess_tail":132.67855831062948,"ess_mean":30.36531111464063,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.18039586553736683},"same_data_fixture_sha256":"429e8847c3448ca94294287d4104f5bb81fe27ef660e8f6daa7b6d439fece86c","fresh_data_sha256":"429e8847c3448ca94294287d4104f5bb81fe27ef660e8f6daa7b6d439fece86c","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"isotropic","prefix":2048,"observable":"difference_direction","estimate":-0.01260603194178333,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0060215814753901,"rhat_z":1.0060215814753901,"rhat_folded":1.0031724184392328,"rhat_split":1.0061086233437628,"ess_bulk":1203.2714338235533,"
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+ess_tail":1649.2840545902543,"ess_mean":1194.7015403762016,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.028490929732823113},"same_data_fixture_sha256":"2ee9561072d8cf6b88bb64e4b845454c061046944dd633afd33502cfb1a48f8c","fresh_data_sha256":"2ee9561072d8cf6b88bb64e4b845454c061046944dd633afd33502cfb1a48f8c","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"isotropic","prefix":8192,"observable":"y1","estimate":0.06541553842647943,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0112196685210786,"rhat_z":1.0104796958197249,"rhat_folded":1.0112196685210786,"rhat_split":1.009852899194581,"ess_bulk":198.66792332543312,"ess_tail":500.90212804942956,"ess_mean":198.02975656878368,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.07206539372012286},"same_data_fixture_sha256":"65e43965269c2c44b67472e085dc00ced71da107b882f2fe73485ea52c6e24ec","fresh_data_sha256":"65e43965269c2c44b67472e085dc00ced71da107b882f2fe73485ea52c6e24ec","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"isotropic","prefix":8192,"observable":"y2","estimate":0.0643337438125269,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.01162533397228
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+98,"rhat_z":1.010907151910727,"rhat_folded":1.0116253339722898,"rhat_split":1.010132693150702,"ess_bulk":201.96399670675237,"ess_tail":472.41330730457884,"ess_mean":201.21294051421,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.07151168059345263},"same_data_fixture_sha256":"e5d84a0480c6dd1b5699688b5a0a13770bbdc7a5e2c9ea32662d8a3108e42dea","fresh_data_sha256":"e5d84a0480c6dd1b5699688b5a0a13770bbdc7a5e2c9ea32662d8a3108e42dea","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"isotropic","prefix":8192,"observable":"y1_squared","estimate":1.032699697658268,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.012777434848511,"rhat_z":1.012777434848511,"rhat_folded":1.0085145995470897,"rhat_split":1.0162439705289446,"ess_bulk":502.51001147110475,"ess_tail":745.5555115136003,"ess_mean":416.91024532669286,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.0668503604188869},"same_data_fixture_sha256":"b08885b8b2982239c5da887c9f6f9539b8f106fb1ff67cec20314900bf2da214","fresh_data_sha256":"b08885b8b2982239c5da887c9f6f9539b8f106fb1ff67cec20314900bf2da214","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"isotropic","pre
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+fix":8192,"observable":"y2_squared","estimate":1.0330944019765362,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0137456554088542,"rhat_z":1.0137456554088542,"rhat_folded":1.008925735588912,"rhat_split":1.0160120654684226,"ess_bulk":503.66936337693244,"ess_tail":665.5397191028724,"ess_mean":410.7748228547369,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.06782929588048103},"same_data_fixture_sha256":"15b88804d4b6f5d3f11e9c67cd9226e48fb04c52b190e15e396cdef0b13df8f2","fresh_data_sha256":"15b88804d4b6f5d3f11e9c67cd9226e48fb04c52b190e15e396cdef0b13df8f2","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"isotropic","prefix":8192,"observable":"product","estimate":0.9838286431415852,"analytic_truth":0.95,"natural_sd":1.379311422413372,"diagnostics":{"rhat_rank":1.0131917771475392,"rhat_z":1.0131917771475392,"rhat_folded":1.0081070815585422,"rhat_split":1.0167678795755042,"ess_bulk":483.03641552311984,"ess_tail":689.2835611949433,"ess_mean":395.35927880725825,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.06713438189503636},"same_data_fixture_sha256":"1f9c5c74456599069e090dd3b3c2771c6fcf672696e2ad0ae0c8c4b8d674ec12
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+","fresh_data_sha256":"1f9c5c74456599069e090dd3b3c2771c6fcf672696e2ad0ae0c8c4b8d674ec12","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"isotropic","prefix":8192,"observable":"Q","estimate":2.015586437597868,"analytic_truth":2.0,"natural_sd":2.0,"diagnostics":{"rhat_rank":1.0100086016440297,"rhat_z":1.0100086016440297,"rhat_folded":1.006319563715632,"rhat_split":1.0108892449801083,"ess_bulk":780.5012512355969,"ess_tail":1213.908321563433,"ess_mean":699.6211564751555,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.0732704331607407},"same_data_fixture_sha256":"45b1f3af25b2ebc0ab2fc1d360823a1c039c6d48c4c604b3e0077a79a852c00e","fresh_data_sha256":"45b1f3af25b2ebc0ab2fc1d360823a1c039c6d48c4c604b3e0077a79a852c00e","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"isotropic","prefix":8192,"observable":"sum_direction","estimate":0.06570110298714564,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0117075549543013,"rhat_z":1.0110054201898009,"rhat_folded":1.0117075549543013,"rhat_split":1.010235744000016,"ess_bulk":195.78439748886126,"ess_tail":451.4764622641546,"ess_mean":195.12764233985,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+,"mcse_mean":0.07265158764829327},"same_data_fixture_sha256":"ab9af7dd1614bca0bf86eb9aee420cdd1e4fa484df2e71f9d01f35e037045f5c","fresh_data_sha256":"ab9af7dd1614bca0bf86eb9aee420cdd1e4fa484df2e71f9d01f35e037045f5c","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"isotropic","prefix":8192,"observable":"difference_direction","estimate":0.0034209349405925323,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0003440651916806,"rhat_z":1.0001820148996294,"rhat_folded":1.0003440651916806,"rhat_split":1.000173618571447,"ess_bulk":4454.426962974271,"ess_tail":6022.403515958944,"ess_mean":4455.126081873381,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.014841917514795633},"same_data_fixture_sha256":"84b462022034ffcf9a87f02040cc87b3232926d7fdcc4b438178ba84977ac579","fresh_data_sha256":"84b462022034ffcf9a87f02040cc87b3232926d7fdcc4b438178ba84977ac579","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"preconditioned","prefix":2048,"observable":"y1","estimate":0.02180867524098464,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.007494427941954,"rhat_z":1.007494427941954,"rhat_folded":1.0027667455264477,"rhat_split":1.00740639417924,"ess_bulk":660.7252741867275,"ess_tail":1121.4919334976598,"ess_mean":659.6445694975074,"st
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+atus":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.038201225609915075},"same_data_fixture_sha256":"63744de183f8899d82e201b39b08283b5066eb53db3e1c74c220f43995aa87a1","fresh_data_sha256":"63744de183f8899d82e201b39b08283b5066eb53db3e1c74c220f43995aa87a1","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"preconditioned","prefix":2048,"observable":"y2","estimate":0.02688503106444869,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0089557165839231,"rhat_z":1.0089557165839231,"rhat_folded":1.0029606575008665,"rhat_split":1.0089635863144264,"ess_bulk":640.2511659402684,"ess_tail":808.7236943239649,"ess_mean":640.406702646689,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.03875837058439622},"same_data_fixture_sha256":"6bb9217bf54e3c8c219cfd0d99158ac5f16bcb3c526d8dc2d1208e83ebdffa37","fresh_data_sha256":"6bb9217bf54e3c8c219cfd0d99158ac5f16bcb3c526d8dc2d1208e83ebdffa37","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"preconditioned","prefix":2048,"observable":"y1_squared","estimate":0.9629996178233445,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0026874694233563,"rhat_z":1.0026874694233563,"
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+rhat_folded":1.0021811552734736,"rhat_split":1.005024392893799,"ess_bulk":1227.8035163678837,"ess_tail":1224.3336124521882,"ess_mean":933.5651956941815,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.045402000272643295},"same_data_fixture_sha256":"4568a7df1b47a285d93ce106a7b3238e249f15277803faf93bd5bfef44b95e3a","fresh_data_sha256":"4568a7df1b47a285d93ce106a7b3238e249f15277803faf93bd5bfef44b95e3a","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"preconditioned","prefix":2048,"observable":"y2_squared","estimate":0.96263154919542,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0030743730597618,"rhat_z":1.0030743730597618,"rhat_folded":1.0021187911248775,"rhat_split":1.00577342058134,"ess_bulk":1244.4901550605948,"ess_tail":1265.4691866371923,"ess_mean":895.7355182773676,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.04572964782635543},"same_data_fixture_sha256":"eea3ea505fda34ed96647dca27d26e1508889872dd23a01e4099764799915d48","fresh_data_sha256":"eea3ea505fda34ed96647dca27d26e1508889872dd23a01e4099764799915d48","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"preconditioned","prefix":2048,"observa
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+ble":"product","estimate":0.9126153946824468,"analytic_truth":0.95,"natural_sd":1.379311422413372,"diagnostics":{"rhat_rank":1.0032118600203273,"rhat_z":1.0032118600203273,"rhat_folded":1.002436439809366,"rhat_split":1.0055103272918777,"ess_bulk":1281.0804111729271,"ess_tail":1284.9219036758568,"ess_mean":930.6653869240529,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.04398123915946788},"same_data_fixture_sha256":"224a67984013fb29dc08fca1186dc983391bdeb1e3322927536c2e94c20d85e0","fresh_data_sha256":"224a67984013fb29dc08fca1186dc983391bdeb1e3322927536c2e94c20d85e0","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"preconditioned","prefix":2048,"observable":"Q","estimate":1.9657632525345206,"analytic_truth":2.0,"natural_sd":2.0,"diagnostics":{"rhat_rank":1.0032921652153863,"rhat_z":1.0025037350059476,"rhat_folded":1.0032921652153863,"rhat_split":1.0048974243299436,"ess_bulk":926.0266226006097,"ess_tail":951.1953208925346,"ess_mean":724.9539472146174,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.07293784095190121},"same_data_fixture_sha256":"ca33af96ad54fda8f4184b65388bb4d54f8f81d7b23ab6c5959e901eff8ba374","fresh_data_sha256":"ca33af96ad54fda
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+8f4184b65388bb4d54f8f81d7b23ab6c5959e901eff8ba374","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"preconditioned","prefix":2048,"observable":"sum_direction","estimate":0.02465701665236126,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.008418049664222,"rhat_z":1.008418049664222,"rhat_folded":1.0030329399537679,"rhat_split":1.008342745002937,"ess_bulk":655.3376041435404,"ess_tail":906.1436122850866,"ess_mean":654.5030879302603,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.03832362524080297},"same_data_fixture_sha256":"b5182618a56929bcbe5d0fda50be4385337d797a2e031f15ab9f6fbc52a7ba44","fresh_data_sha256":"b5182618a56929bcbe5d0fda50be4385337d797a2e031f15ab9f6fbc52a7ba44","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"preconditioned","prefix":2048,"observable":"difference_direction","estimate":-0.016052846615606017,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0029079658293791,"rhat_z":1.0023606836684784,"rhat_folded":1.0029079658293791,"rhat_split":1.0022996806626778,"ess_bulk":777.6298228425858,"ess_tail":898.6477054096708,"ess_mean":775.4582396730293,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mc
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+se_mean":0.035979840440358374},"same_data_fixture_sha256":"ce3b02ea9d3e1f6b7aec3eb96b530ffd9874df5cdbb762a45d358ad648bfcef1","fresh_data_sha256":"ce3b02ea9d3e1f6b7aec3eb96b530ffd9874df5cdbb762a45d358ad648bfcef1","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"preconditioned","prefix":8192,"observable":"y1","estimate":-0.016969141116687826,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0007090803224639,"rhat_z":1.0007090803224639,"rhat_folded":1.0001254183340633,"rhat_split":1.0007089129218825,"ess_bulk":2769.09516637422,"ess_tail":4639.572177904277,"ess_mean":2778.437906496096,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.018631010620892174},"same_data_fixture_sha256":"b4e014e5974d7022d70251002f23a322f34110c8f063b6bae6d7877fafaa109a","fresh_data_sha256":"b4e014e5974d7022d70251002f23a322f34110c8f063b6bae6d7877fafaa109a","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"preconditioned","prefix":8192,"observable":"y2","estimate":-0.007502617361999697,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.000474748081342,"rhat_z":1.000474748081342,"rhat_folded":1.0000856947563719,"rhat_split":1.0004772540542337,"ess_bulk":2766.1598785122032,"ess_tail":4046.2292456748387,"ess_mean":2770.753062808176,"status":"ok",
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+"metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.01876510092208429},"same_data_fixture_sha256":"2ee2ac02ad5c777c40a79623b378ef7ba5207292d1f69ff0a1cb41fef53e4389","fresh_data_sha256":"2ee2ac02ad5c777c40a79623b378ef7ba5207292d1f69ff0a1cb41fef53e4389","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"preconditioned","prefix":8192,"observable":"y1_squared","estimate":0.9646947618787614,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0002797341270144,"rhat_z":1.0001901308732364,"rhat_folded":1.0002797341270144,"rhat_split":1.0004536480879538,"ess_bulk":5490.4221419550795,"ess_tail":5577.620171551835,"ess_mean":4276.603645745191,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.02023800439746444},"same_data_fixture_sha256":"f2a222063f0b4c80feff0923fabfba090a65808edad2adae8d602479710af785","fresh_data_sha256":"f2a222063f0b4c80feff0923fabfba090a65808edad2adae8d602479710af785","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"preconditioned","prefix":8192,"observable":"y2_squared","estimate":0.9756890546189109,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0001041320125335,"rhat_z":1.000104
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+1320125335,"rhat_folded":1.0000150712383786,"rhat_split":1.0002026234995804,"ess_bulk":5348.869334429785,"ess_tail":5477.351822380791,"ess_mean":4008.4251591749226,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.021344507484539692},"same_data_fixture_sha256":"ae2dfdc14cca11f9b835ddc4c1a5db15b8b4df5c99627ca9f3d38d177950c7f3","fresh_data_sha256":"ae2dfdc14cca11f9b835ddc4c1a5db15b8b4df5c99627ca9f3d38d177950c7f3","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"preconditioned","prefix":8192,"observable":"product","estimate":0.9188008526645873,"analytic_truth":0.95,"natural_sd":1.379311422413372,"diagnostics":{"rhat_rank":1.0001772768255643,"rhat_z":1.0000866340055918,"rhat_folded":1.0001772768255643,"rhat_split":1.0003377608270805,"ess_bulk":5395.846332617447,"ess_tail":5558.8627631141735,"ess_mean":4174.326691132973,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.020105993807784436},"same_data_fixture_sha256":"1569cfe95ad1fcfcc722357f461aaa8d976c258dca1ad05441f5460d69c4fa14","fresh_data_sha256":"1569cfe95ad1fcfcc722357f461aaa8d976c258dca1ad05441f5460d69c4fa14","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"preconditioned","prefix":
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+8192,"observable":"Q","estimate":1.9965353480508348,"analytic_truth":2.0,"natural_sd":2.0,"diagnostics":{"rhat_rank":1.0005679035610218,"rhat_z":1.0004429515080204,"rhat_folded":1.0005679035610218,"rhat_split":1.0004810146975753,"ess_bulk":4098.938357530427,"ess_tail":3757.7581154017435,"ess_mean":2974.9083931328287,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.0372158089939976},"same_data_fixture_sha256":"3af4ba5e4a2054780a4ec5c26c5a4fde2c06f3ad77d4df0fafb511ed3f21a28e","fresh_data_sha256":"3af4ba5e4a2054780a4ec5c26c5a4fde2c06f3ad77d4df0fafb511ed3f21a28e","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"preconditioned","prefix":8192,"observable":"sum_direction","estimate":-0.01239175659656518,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0005810263333332,"rhat_z":1.0005810263333332,"rhat_folded":1.0000739775259648,"rhat_split":1.000585330379314,"ess_bulk":2766.035560201476,"ess_tail":4113.859505987089,"ess_mean":2773.699219399106,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.018687033411071516},"same_data_fixture_sha256":"1ac91ef80e9d4a267cf54067d7a7b28d7abfad2238ccfa5ab3068b4fa89c4fab","fresh_data_sha256":"1ac91ef80
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+e9d4a267cf54067d7a7b28d7abfad2238ccfa5ab3068b4fa89c4fab","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"preconditioned","prefix":8192,"observable":"difference_direction","estimate":-0.029935776588903545,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.000827787968325,"rhat_z":1.000827787968325,"rhat_folded":1.000641994050616,"rhat_split":1.0008523990160945,"ess_bulk":2830.384241652918,"ess_tail":3847.8431435033895,"ess_mean":2802.07494347227,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.019144150892320275},"same_data_fixture_sha256":"4bace6feb3e61059901520e28ed3ac7a45a986c47f427d60351521c58a1e3179","fresh_data_sha256":"4bace6feb3e61059901520e28ed3ac7a45a986c47f427d60351521c58a1e3179","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"isotropic","prefix":2048,"observable":"y1","estimate":-0.022899434867380136,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.157848831872826,"rhat_z":1.157848831872826,"rhat_folded":1.0317178200328836,"rhat_split":1.1587773776004857,"ess_bulk":20.519360576290048,"ess_tail":96.38333410730968,"ess_mean":20.433561625654,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+.23545531335511383},"same_data_fixture_sha256":"0ceacc06b8329f5df2a6ad0035b13d0b07422842a3df30e8d1c2415fb9e8db97","fresh_data_sha256":"0ceacc06b8329f5df2a6ad0035b13d0b07422842a3df30e8d1c2415fb9e8db97","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"isotropic","prefix":2048,"observable":"y2","estimate":-0.025661736828646572,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.1611436332540448,"rhat_z":1.1611436332540448,"rhat_folded":1.024845068421108,"rhat_split":1.161969984255315,"ess_bulk":20.38388313069404,"ess_tail":87.08591414778905,"ess_mean":20.400428142037534,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.23512290499234817},"same_data_fixture_sha256":"e61bc883fa49434381c4a107000d963c2a0973602e58c822b02a392c998c0442","fresh_data_sha256":"e61bc883fa49434381c4a107000d963c2a0973602e58c822b02a392c998c0442","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"isotropic","prefix":2048,"observable":"y1_squared","estimate":1.1332065037854633,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.031443107333629,"rhat_z":1.031443107333629,"rhat_folded":1.0163881153542655,"rhat_split":1.0354524996074435,"ess_bulk":118.6702432739498,"ess_tail":130.87119598085405,"ess_mean":93.88016071035301,"status":"ok","me
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+tric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.15905899699841092},"same_data_fixture_sha256":"5e996f1ec0c5d016916620c2033336df60faa0d83bd60878da642e6f3926a2b5","fresh_data_sha256":"5e996f1ec0c5d016916620c2033336df60faa0d83bd60878da642e6f3926a2b5","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"isotropic","prefix":2048,"observable":"y2_squared","estimate":1.1283132448714632,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0246625382486174,"rhat_z":1.0246625382486174,"rhat_folded":1.0145962675846345,"rhat_split":1.0314187238583292,"ess_bulk":119.47973803759027,"ess_tail":115.69316513453202,"ess_mean":88.20089398747558,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.167993352519886},"same_data_fixture_sha256":"2b53c8a360baa9bdf4a9f4dd7c1efd5310e18c029eb73bff1464c702c7789df0","fresh_data_sha256":"2b53c8a360baa9bdf4a9f4dd7c1efd5310e18c029eb73bff1464c702c7789df0","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"isotropic","prefix":2048,"observable":"product","estimate":1.0811407544224951,"analytic_truth":0.95,"natural_sd":1.379311422413372,"diagnostics":{"rhat_rank":1.0325335073675201,"rhat_z":1.0325335073675201,"rhat_
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+folded":1.017961832318176,"rhat_split":1.0352206446421257,"ess_bulk":111.88635344839487,"ess_tail":119.92564153223806,"ess_mean":87.14411785152184,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.1633410981797276},"same_data_fixture_sha256":"d022e932a5881a1fb9d4a4c306ef9c1ba1ac1a8fd830d9032d3409a048e975a4","fresh_data_sha256":"d022e932a5881a1fb9d4a4c306ef9c1ba1ac1a8fd830d9032d3409a048e975a4","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"isotropic","prefix":2048,"observable":"Q","estimate":2.126690412863443,"analytic_truth":2.0,"natural_sd":2.0,"diagnostics":{"rhat_rank":1.0127966074512489,"rhat_z":1.0127966074512489,"rhat_folded":1.0080288110939608,"rhat_split":1.0155116440908663,"ess_bulk":196.8482267759296,"ess_tail":258.3830909564891,"ess_mean":161.05456594494578,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.16774218184486073},"same_data_fixture_sha256":"b84d5b574e133cd4ade2a8ff504e680871b665ba0af5aac62dcbadddc6647bdd","fresh_data_sha256":"b84d5b574e133cd4ade2a8ff504e680871b665ba0af5aac62dcbadddc6647bdd","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"isotropic","prefix":2048,"observable":"sum_direction","estimate":-0.0245
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+8990514413771,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.1633323582775137,"rhat_z":1.1633323582775137,"rhat_folded":1.0323855483910824,"rhat_split":1.1646603104431823,"ess_bulk":20.032412867405522,"ess_tail":87.61753026435247,"ess_mean":19.93233367119276,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.238504814222719},"same_data_fixture_sha256":"64f2db8ed117a20f06f0c2bcd48f49ac5920deef230d42bdadae89beb8f6ff05","fresh_data_sha256":"64f2db8ed117a20f06f0c2bcd48f49ac5920deef230d42bdadae89beb8f6ff05","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"isotropic","prefix":2048,"observable":"difference_direction","estimate":0.008735165782752262,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0028603426748184,"rhat_z":1.0028603426748184,"rhat_folded":0.9999318292820359,"rhat_split":1.0028675186305853,"ess_bulk":1097.408707165636,"ess_tail":1376.2118421955154,"ess_mean":1086.5181522466307,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.030222531931782218},"same_data_fixture_sha256":"57dfb1730f159a304b4d2585929e33600527659a6c08b071a7f3afa5be47ed99","fresh_data_sha256":"57dfb1730f159a304b4d2585929e33600527659a6c08
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+b071a7f3afa5be47ed99","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"isotropic","prefix":8192,"observable":"y1","estimate":-0.13267948119374276,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0184888781025923,"rhat_z":1.0184888781025923,"rhat_folded":1.00161961644562,"rhat_split":1.0182624192205638,"ess_bulk":169.5368491244277,"ess_tail":395.5880991148959,"ess_mean":170.48880447454823,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.07421747397607215},"same_data_fixture_sha256":"da1652a0b72ff83c13321b8abf0d15166e810c044e248e60f99b874ff856101d","fresh_data_sha256":"da1652a0b72ff83c13321b8abf0d15166e810c044e248e60f99b874ff856101d","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"isotropic","prefix":8192,"observable":"y2","estimate":-0.1315120901192671,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0175639213503649,"rhat_z":1.0175639213503649,"rhat_folded":1.0011439327092182,"rhat_split":1.0174822168405513,"ess_bulk":173.03593142632238,"ess_tail":380.68034893639543,"ess_mean":173.42565353966543,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.0737325788094893},"same_data_fixture_sha256":"939c26d
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+d2c59f590308f7f3efe4536a25c21ccb8555c35fce2361d1ed1db99e1","fresh_data_sha256":"939c26dd2c59f590308f7f3efe4536a25c21ccb8555c35fce2361d1ed1db99e1","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"isotropic","prefix":8192,"observable":"y1_squared","estimate":0.9566673204423639,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.003807834866166,"rhat_z":1.0023008101718764,"rhat_folded":1.003807834866166,"rhat_split":1.0046693194144116,"ess_bulk":461.58012938302204,"ess_tail":625.2063895732961,"ess_mean":376.50468611230036,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.06768185570768417},"same_data_fixture_sha256":"d1cd72bf94d4faf92b248ffa6766aec19ebb41e6b2b86eb4dd36008ab9b40c2e","fresh_data_sha256":"d1cd72bf94d4faf92b248ffa6766aec19ebb41e6b2b86eb4dd36008ab9b40c2e","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"isotropic","prefix":8192,"observable":"y2_squared","estimate":0.9600940393800547,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0026092236799342,"rhat_z":1.0021631291621005,"rhat_folded":1.0026092236799342,"rhat_split":1.003389869198248,"ess_bulk":456.46404407548505,"ess_tail":610.618487998869,"ess_mean":373.3607243697496,"status":"ok","metric_status":{"rhat_rank":"ok","rh
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+at_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.06858808078144756},"same_data_fixture_sha256":"846b84dcfc1ad07624686e32f1f3b666deb6e65af5979f280884313e1d370ea3","fresh_data_sha256":"846b84dcfc1ad07624686e32f1f3b666deb6e65af5979f280884313e1d370ea3","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"isotropic","prefix":8192,"observable":"product","estimate":0.9092023836794435,"analytic_truth":0.95,"natural_sd":1.379311422413372,"diagnostics":{"rhat_rank":1.0029001001450526,"rhat_z":1.0021790526224847,"rhat_folded":1.0029001001450526,"rhat_split":1.004177829444041,"ess_bulk":422.731509730445,"ess_tail":584.6883151437854,"ess_mean":355.4907909157845,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.06828309757084519},"same_data_fixture_sha256":"b6400c8b744894fd5e02b9651444a14d26c793fa565978f381fcf2b210aed7ab","fresh_data_sha256":"b6400c8b744894fd5e02b9651444a14d26c793fa565978f381fcf2b210aed7ab","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"isotropic","prefix":8192,"observable":"Q","estimate":1.9413008290407796,"analytic_truth":2.0,"natural_sd":2.0,"diagnostics":{"rhat_rank":1.0021475339598427,"rhat_z":1.0018597931777753,"rhat_folded":1.0021475339598427,"rhat_split":1.0024113371296646,"
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+ess_bulk":847.7082921108729,"ess_tail":1257.1810087745405,"ess_mean":769.9391679470043,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.06855820670560997},"same_data_fixture_sha256":"6905636f5a976f0d5214e73f89bb02b7488564dd3dc1c3ab74f619eca6774721","fresh_data_sha256":"6905636f5a976f0d5214e73f89bb02b7488564dd3dc1c3ab74f619eca6774721","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"isotropic","prefix":8192,"observable":"sum_direction","estimate":-0.13377860236018851,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0184973239776038,"rhat_z":1.0184973239776038,"rhat_folded":1.0016509643894562,"rhat_split":1.0183511071697635,"ess_bulk":166.96795862000337,"ess_tail":380.6899992120704,"ess_mean":167.6000350762926,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.07488522146917222},"same_data_fixture_sha256":"e16d19ac6cb6c317f96dcd81f5866b3ec2978fa42162466a853771f8e929b803","fresh_data_sha256":"e16d19ac6cb6c317f96dcd81f5866b3ec2978fa42162466a853771f8e929b803","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"isotropic","prefix":8192,"observable":"difference_direction","estimate":-0.0036916147154944868,"analytic_truth":0.0,
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0006662949425955,"rhat_z":1.0003911617854435,"rhat_folded":1.0006662949425955,"rhat_split":1.000387897607412,"ess_bulk":4276.582828188928,"ess_tail":5663.903284815697,"ess_mean":4263.85754982481,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.015188119720193906},"same_data_fixture_sha256":"26c183d20ad142b82beec9ab5d5863466c2fd35edfb9bafa947b705869ee656b","fresh_data_sha256":"26c183d20ad142b82beec9ab5d5863466c2fd35edfb9bafa947b705869ee656b","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"preconditioned","prefix":2048,"observable":"y1","estimate":-0.03501062336601947,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.004590032361422,"rhat_z":1.004590032361422,"rhat_folded":1.0001097845008768,"rhat_split":1.0044785933029734,"ess_bulk":672.9815280194233,"ess_tail":988.8649596726187,"ess_mean":672.6115332323416,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.0392200872502384},"same_data_fixture_sha256":"f598d3f75d023b69d6e3b0babf3e545b0e1cb7d7d56015b85b01bad8087c956b","fresh_data_sha256":"f598d3f75d023b69d6e3b0babf3e545b0e1cb7d7d56015b85b01bad8087c956b","fresh_equals_fixture_bytes":tru
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+e},{"seed":46003,"proposal":"preconditioned","prefix":2048,"observable":"y2","estimate":-0.02501561347756439,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0060330213495938,"rhat_z":1.0060330213495938,"rhat_folded":1.0001647431226155,"rhat_split":1.0060495759214534,"ess_bulk":613.4263516751734,"ess_tail":975.4529056071348,"ess_mean":610.7255034663863,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.041575665441394814},"same_data_fixture_sha256":"e237b6099aaee277c317ab379f3be6c729c60ac9c43de05aa88377a53ac0a032","fresh_data_sha256":"e237b6099aaee277c317ab379f3be6c729c60ac9c43de05aa88377a53ac0a032","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"preconditioned","prefix":2048,"observable":"y1_squared","estimate":1.0357207608533119,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0003741377531146,"rhat_z":1.0000658715824122,"rhat_folded":1.0003741377531146,"rhat_split":1.0006408338702901,"ess_bulk":1476.3159575678822,"ess_tail":1229.2314102845219,"ess_mean":997.333128802527,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.04713318156987704},"same_data_fixture_sha256":"fbc82a98f3428beb6a441c5f483b
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+fe1294f4111b986aeb93fb6562321d933f85","fresh_data_sha256":"fbc82a98f3428beb6a441c5f483bfe1294f4111b986aeb93fb6562321d933f85","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"preconditioned","prefix":2048,"observable":"y2_squared","estimate":1.056157908584729,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0015976246390585,"rhat_z":1.0002488371077425,"rhat_folded":1.0015976246390585,"rhat_split":1.0013536324304881,"ess_bulk":1370.789220921899,"ess_tail":1079.1832126724298,"ess_mean":905.7406611103477,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.0501516042980144},"same_data_fixture_sha256":"fcde0f21fb5d5058d2c5f01a0b870ecb20ad47acdfc00ba7c547092c0ee5fb69","fresh_data_sha256":"fcde0f21fb5d5058d2c5f01a0b870ecb20ad47acdfc00ba7c547092c0ee5fb69","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"preconditioned","prefix":2048,"observable":"product","estimate":0.9957497403361468,"analytic_truth":0.95,"natural_sd":1.379311422413372,"diagnostics":{"rhat_rank":1.0007050768147345,"rhat_z":0.9999802555642024,"rhat_folded":1.0007050768147345,"rhat_split":1.0007981293166914,"ess_bulk":1446.527578300388,"ess_tail":1198.0390116846263,"ess_mean":956.6775056688405,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","r
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+hat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.04734369124083928},"same_data_fixture_sha256":"30671e4abd634378354f88e7c69eba3b3ff98f751ffb50a96246f768f7715df0","fresh_data_sha256":"30671e4abd634378354f88e7c69eba3b3ff98f751ffb50a96246f768f7715df0","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"preconditioned","prefix":2048,"observable":"Q","estimate":2.050811926147304,"analytic_truth":2.0,"natural_sd":2.0,"diagnostics":{"rhat_rank":1.0012990658299161,"rhat_z":1.0012990658299161,"rhat_folded":1.000157940442891,"rhat_split":1.0016140888893592,"ess_bulk":1061.0128613364013,"ess_tail":969.5562011616707,"ess_mean":857.094575893566,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.07002806422188981},"same_data_fixture_sha256":"e6a17529aba5fad8c2c797b65f61d9b1cc9645329800d09e44636e86b49c817f","fresh_data_sha256":"e6a17529aba5fad8c2c797b65f61d9b1cc9645329800d09e44636e86b49c817f","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"preconditioned","prefix":2048,"observable":"sum_direction","estimate":-0.030395466554692687,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0052294220829383,"rhat_z":1.0052294220829383,"rhat_folded":0.9999458700891615,"rhat_split":1.0051907443496766,"ess_bulk"
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+:642.1527418660316,"ess_tail":970.9036039945044,"ess_mean":640.0940037608659,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.0404287610198986},"same_data_fixture_sha256":"833726bde82d75457b395f763ef63320f8915facc1fc8f4d1b14803cc45f52ac","fresh_data_sha256":"833726bde82d75457b395f763ef63320f8915facc1fc8f4d1b14803cc45f52ac","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"preconditioned","prefix":2048,"observable":"difference_direction","estimate":-0.03160699648342352,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.00865982387959,"rhat_z":1.00865982387959,"rhat_folded":1.0018578453780869,"rhat_split":1.0085591476324782,"ess_bulk":686.5566442209057,"ess_tail":1024.1799032305335,"ess_mean":689.4598480462157,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.03813973236977433},"same_data_fixture_sha256":"7a7394465881278d9abdb7f197ee2a8e5fbdb67efe6bd9d3178fc610046fee1c","fresh_data_sha256":"7a7394465881278d9abdb7f197ee2a8e5fbdb67efe6bd9d3178fc610046fee1c","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"preconditioned","prefix":8192,"observable":"y1","estimate":-0.005504187164659537,"analytic_truth":0.0,"natural_sd":1.0,
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+"diagnostics":{"rhat_rank":1.001671808695657,"rhat_z":1.001671808695657,"rhat_folded":1.0006988128854053,"rhat_split":1.0016805245221823,"ess_bulk":3031.1611069273677,"ess_tail":4498.926290623421,"ess_mean":3033.8693523294965,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.018301421801918488},"same_data_fixture_sha256":"9eda85cc8070f9459a6e850f03d47803dac0b133add6241c4f416209cd690f73","fresh_data_sha256":"9eda85cc8070f9459a6e850f03d47803dac0b133add6241c4f416209cd690f73","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"preconditioned","prefix":8192,"observable":"y2","estimate":0.005286647863731458,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0017492163962254,"rhat_z":1.0017492163962254,"rhat_folded":1.00116635905351,"rhat_split":1.0017469207454697,"ess_bulk":3013.663310491297,"ess_tail":4559.047557576549,"ess_mean":3015.1032191429254,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.018297341152186977},"same_data_fixture_sha256":"7fa3ea0d771332cedac3210f7b694dbecdf2ea801401b04850ffa6433f36fab2","fresh_data_sha256":"7fa3ea0d771332cedac3210f7b694dbecdf2ea801401b04850ffa6433f36fab2","fresh_equals_fixture_bytes":true},{"seed":4
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+6003,"proposal":"preconditioned","prefix":8192,"observable":"y1_squared","estimate":1.0161696748940579,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.000678098868957,"rhat_z":1.000678098868957,"rhat_folded":1.0002436661213678,"rhat_split":1.0010096837940745,"ess_bulk":5752.367017978587,"ess_tail":5333.89743459998,"ess_mean":4211.084058020139,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.02200322358246759},"same_data_fixture_sha256":"b2f272fc64289aa2daad848b9ace2cde85dc7f9e17c7f943768b3558b78ba498","fresh_data_sha256":"b2f272fc64289aa2daad848b9ace2cde85dc7f9e17c7f943768b3558b78ba498","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"preconditioned","prefix":8192,"observable":"y2_squared","estimate":1.009431670280583,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0011061898539948,"rhat_z":1.0011061898539948,"rhat_folded":1.0010729269980938,"rhat_split":1.0020795875612079,"ess_bulk":5791.839944674767,"ess_tail":5119.480250528779,"ess_mean":4151.106420690445,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.02213413097101888},"same_data_fixture_sha256":"081328c02862b9506db2c8304
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+18789c26a9bbee1211e7e8392939448c47229ce","fresh_data_sha256":"081328c02862b9506db2c830418789c26a9bbee1211e7e8392939448c47229ce","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"preconditioned","prefix":8192,"observable":"product","estimate":0.9629232987438507,"analytic_truth":0.95,"natural_sd":1.379311422413372,"diagnostics":{"rhat_rank":1.000803390780102,"rhat_z":1.000803390780102,"rhat_folded":1.000526312489669,"rhat_split":1.0015387252089558,"ess_bulk":5877.575986536781,"ess_tail":5251.997272566933,"ess_mean":4231.961011918029,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.021410944934946368},"same_data_fixture_sha256":"52cb66fa262168c9aafb0c8eab4a667f7990bc57869b2464f4abcdeec342d998","fresh_data_sha256":"52cb66fa262168c9aafb0c8eab4a667f7990bc57869b2464f4abcdeec342d998","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"preconditioned","prefix":8192,"observable":"Q","estimate":2.010739257039225,"analytic_truth":2.0,"natural_sd":2.0,"diagnostics":{"rhat_rank":1.0007267266601403,"rhat_z":1.0004839996768584,"rhat_folded":1.0007267266601403,"rhat_split":1.0009490616773853,"ess_bulk":4406.656849314222,"ess_tail":4470.2602780097295,"ess_mean":3573.9199537817476,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.03342004404572789},"same_data_fixture_sha256":"52e1461341b23539d23fe34f4a87157cc9165122591b2dea5d540ac18f01f764","fresh_data_sha256":"52e1461341b23539d23fe34f4a87157cc9165122591b2dea5d540ac18f01f764","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"preconditioned","prefix":8192,"observable":"sum_direction","estimate":-0.00011015530696886072,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0017233772105976,"rhat_z":1.0017233772105976,"rhat_folded":1.000812502727387,"rhat_split":1.001730721807971,"ess_bulk":3020.576976682484,"ess_tail":4420.669163675445,"ess_mean":3023.2329195683224,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.018306977562105992},"same_data_fixture_sha256":"15fe707caf0c3fc4e4fffbf7e3954e41641fe05523595d110eca2696ab4d5630","fresh_data_sha256":"15fe707caf0c3fc4e4fffbf7e3954e41641fe05523595d110eca2696ab4d5630","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"preconditioned","prefix":8192,"observable":"difference_direction","estimate":-0.03412361654484325,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0010368362768822,"rhat_z":1.0010368362768822,"rhat_folded":1.000472257522728,"rhat_split":1.0010356152361781,"ess_bul
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+k":3099.5218045831753,"ess_tail":4541.0735510155955,"ess_mean":3100.011372528984,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.017928260340573748},"same_data_fixture_sha256":"812807f3c67f79e77693770d288960e15cc35c4484c3387376424da4b9be6eca","fresh_data_sha256":"812807f3c67f79e77693770d288960e15cc35c4484c3387376424da4b9be6eca","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"isotropic","prefix":2048,"observable":"y1","estimate":0.13091837358614145,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.1973543168908334,"rhat_z":1.1973543168908334,"rhat_folded":1.0292753086053192,"rhat_split":1.1978167868154943,"ess_bulk":14.911316700621734,"ess_tail":39.96008371442047,"ess_mean":14.930752732438858,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.2634368854515495},"same_data_fixture_sha256":"42d0c9ff805e3a2d919d4bf672f874b3d5b5bdafb5a5253269b4b0ebf9d0e620","fresh_data_sha256":"42d0c9ff805e3a2d919d4bf672f874b3d5b5bdafb5a5253269b4b0ebf9d0e620","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"isotropic","prefix":2048,"observable":"y2","estimate":0.11919936657478357,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+rank":1.189672174035844,"rhat_z":1.189672174035844,"rhat_folded":1.0377802663391327,"rhat_split":1.1920901556821017,"ess_bulk":15.429948772494757,"ess_tail":35.7916563282073,"ess_mean":15.13143256068965,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.2609921683242463},"same_data_fixture_sha256":"a9127b14b07db39f5274b1348b6609499854eceb1ca501eaa78a9d623a93efcc","fresh_data_sha256":"a9127b14b07db39f5274b1348b6609499854eceb1ca501eaa78a9d623a93efcc","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"isotropic","prefix":2048,"observable":"y1_squared","estimate":1.0531923324598664,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0374988499859639,"rhat_z":1.0374988499859639,"rhat_folded":1.0324923225497324,"rhat_split":1.0496161374131538,"ess_bulk":103.51300545222732,"ess_tail":66.91427467427408,"ess_mean":72.25924283313901,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.17977253118654937},"same_data_fixture_sha256":"b97ceaf64405642fffa465982d174a8f4035de30ca9bafc49b716422a1531b1a","fresh_data_sha256":"b97ceaf64405642fffa465982d174a8f4035de30ca9bafc49b716422a1531b1a","fresh_equals_fixture_bytes":true},{"seed":46003,"pr
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+oposal":"isotropic","prefix":2048,"observable":"y2_squared","estimate":1.0447891293919356,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.04515069518306,"rhat_z":1.04515069518306,"rhat_folded":1.0274561667203517,"rhat_split":1.0529936559312072,"ess_bulk":96.42666638845209,"ess_tail":68.40450655857146,"ess_mean":71.42790504990522,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.17924998131101413},"same_data_fixture_sha256":"7dc3d75442c4f8fee7f574c080887fae4acbe81c74d8ef3a681922845c85341a","fresh_data_sha256":"7dc3d75442c4f8fee7f574c080887fae4acbe81c74d8ef3a681922845c85341a","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"isotropic","prefix":2048,"observable":"product","estimate":1.0003231310367569,"analytic_truth":0.95,"natural_sd":1.379311422413372,"diagnostics":{"rhat_rank":1.0406265742452505,"rhat_z":1.0406265742452505,"rhat_folded":1.031193729447127,"rhat_split":1.0529314633342994,"ess_bulk":96.17744535991238,"ess_tail":65.41459152917669,"ess_mean":69.37433086900296,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.1785174661433869},"same_data_fixture_sha256":"965505cb42318851149698d2c9ae26ca29dc593136559133
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+19bdb416891e4b8f","fresh_data_sha256":"965505cb42318851149698d2c9ae26ca29dc59313655913319bdb416891e4b8f","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"isotropic","prefix":2048,"observable":"Q","estimate":2.024282183404763,"analytic_truth":2.0,"natural_sd":2.0,"diagnostics":{"rhat_rank":1.032599615325656,"rhat_z":1.032599615325656,"rhat_folded":1.017268130938733,"rhat_split":1.0375649927057717,"ess_bulk":127.87170335611357,"ess_tail":169.89818467802314,"ess_mean":98.93602160392196,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.2091635515620365},"same_data_fixture_sha256":"100f8beddcd03d70fdb6d6707e218223af81560e0bbe7435b047b03a151b1ffd","fresh_data_sha256":"100f8beddcd03d70fdb6d6707e218223af81560e0bbe7435b047b03a151b1ffd","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"isotropic","prefix":2048,"observable":"sum_direction","estimate":0.1266520409334861,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.199481978827965,"rhat_z":1.199481978827965,"rhat_folded":1.03392180411996,"rhat_split":1.2008385115085534,"ess_bulk":14.763563919629183,"ess_tail":38.59358221469252,"ess_mean":14.65043184747804,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","e
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+ss_mean":"ok"},"mcse_mean":0.26579589823195715},"same_data_fixture_sha256":"f33a172bed73de88b9bb22f64b0b873c20f646195918bacd158a9f3608b6b6c7","fresh_data_sha256":"f33a172bed73de88b9bb22f64b0b873c20f646195918bacd158a9f3608b6b6c7","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"isotropic","prefix":2048,"observable":"difference_direction","estimate":0.037058754071373504,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0020109614880288,"rhat_z":1.0020109614880288,"rhat_folded":1.0018654282265083,"rhat_split":1.0020566342784356,"ess_bulk":1288.3756943496544,"ess_tail":1630.0683225999053,"ess_mean":1284.39738492173,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.02751092320045485},"same_data_fixture_sha256":"64203d5aeaaa9879bea52b545fd2ec54d4c348008783bfe5704049eba851f481","fresh_data_sha256":"64203d5aeaaa9879bea52b545fd2ec54d4c348008783bfe5704049eba851f481","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"isotropic","prefix":8192,"observable":"y1","estimate":-0.06274072328977398,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0286171489637221,"rhat_z":1.0254938520104815,"rhat_folded":1.0286171489637221,"rhat_split":1.0261769809083627,"ess_bulk":124.34184399321207,"ess_tail":217.36947366820306,"ess_mean":122.81
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+58854778088,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.093633395714945},"same_data_fixture_sha256":"0663b5a10e9cd9beb3b5456f86c2df034d4993629e868c61bf4fdc69951bd582","fresh_data_sha256":"0663b5a10e9cd9beb3b5456f86c2df034d4993629e868c61bf4fdc69951bd582","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"isotropic","prefix":8192,"observable":"y2","estimate":-0.061563666747451166,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.025838964483446,"rhat_z":1.0244493660774079,"rhat_folded":1.025838964483446,"rhat_split":1.0252612889625887,"ess_bulk":127.98445021197497,"ess_tail":213.8674990119993,"ess_mean":126.0587660887426,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.09196133560003669},"same_data_fixture_sha256":"54eafd9cb5d72f1a30fe52c4f2a42861e8e5d3b2b7f338e5681174656daefb1f","fresh_data_sha256":"54eafd9cb5d72f1a30fe52c4f2a42861e8e5d3b2b7f338e5681174656daefb1f","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"isotropic","prefix":8192,"observable":"y1_squared","estimate":1.0806565408234126,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0255631275639467,"rhat_z":1.02556312756394
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+67,"rhat_folded":1.0143542503633305,"rhat_split":1.0250755535771245,"ess_bulk":382.42364083564826,"ess_tail":370.67701358347284,"ess_mean":278.01514468579376,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.0898442543547549},"same_data_fixture_sha256":"37b44f30a1fb002cc0cabb01c3cf78d2f837ea6983ebdc8af2a24366527e5e0b","fresh_data_sha256":"37b44f30a1fb002cc0cabb01c3cf78d2f837ea6983ebdc8af2a24366527e5e0b","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"isotropic","prefix":8192,"observable":"y2_squared","estimate":1.0698223224479635,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0231609281333598,"rhat_z":1.0231609281333598,"rhat_folded":1.015021379332884,"rhat_split":1.0243545296401642,"ess_bulk":386.8519737270076,"ess_tail":361.9369426276319,"ess_mean":274.9711938421947,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.0901135751019945},"same_data_fixture_sha256":"286384933204815f2f4ff8f4722852187e676b16aabf07ca53af4c2b9b624a44","fresh_data_sha256":"286384933204815f2f4ff8f4722852187e676b16aabf07ca53af4c2b9b624a44","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"isotropic","prefix":8192,"observable":"
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+product","estimate":1.0263889974449114,"analytic_truth":0.95,"natural_sd":1.379311422413372,"diagnostics":{"rhat_rank":1.0262983433867143,"rhat_z":1.0262983433867143,"rhat_folded":1.0149665381786783,"rhat_split":1.0259789942309203,"ess_bulk":365.3221673932591,"ess_tail":340.85775274043453,"ess_mean":265.0464616632177,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.08975923307484332},"same_data_fixture_sha256":"8478df1263f25b471c48c477aaf467dbd51c65901b278d11aec76b7006a767c9","fresh_data_sha256":"8478df1263f25b471c48c477aaf467dbd51c65901b278d11aec76b7006a767c9","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"isotropic","prefix":8192,"observable":"Q","estimate":2.0547668525748186,"analytic_truth":2.0,"natural_sd":2.0,"diagnostics":{"rhat_rank":1.0133320028258404,"rhat_z":1.0133320028258404,"rhat_folded":1.004679917050511,"rhat_split":1.0133722134187861,"ess_bulk":563.9052404754347,"ess_tail":723.5423581858374,"ess_mean":452.64993001704886,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.09543147372711412},"same_data_fixture_sha256":"433d1d4f5e33d0da681b1be9a4dc00ee8cf7141a00323e30a7b4f2ff682774b5","fresh_data_sha256":"433d1d4f5e33d0da681b1be9a4
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+dc00ee8cf7141a00323e30a7b4f2ff682774b5","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"isotropic","prefix":8192,"observable":"sum_direction","estimate":-0.06294397464601031,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0286188197090844,"rhat_z":1.0254884886863138,"rhat_folded":1.0286188197090844,"rhat_split":1.0263098217179663,"ess_bulk":123.36786076645129,"ess_tail":195.8398588893825,"ess_mean":121.62110334592332,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.09396434565536362},"same_data_fixture_sha256":"8f3b235dbd197d2003a2d17b3484697f6ed753a00ecc716437484b003cda14d7","fresh_data_sha256":"8f3b235dbd197d2003a2d17b3484697f6ed753a00ecc716437484b003cda14d7","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"isotropic","prefix":8192,"observable":"difference_direction","estimate":-0.003722179608542462,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0012571326245714,"rhat_z":1.0012571326245714,"rhat_folded":1.0000406109703082,"rhat_split":1.0012615051388054,"ess_bulk":4430.182056255708,"ess_tail":5845.282221077561,"ess_mean":4429.757259247861,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.0148
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+51242694333999},"same_data_fixture_sha256":"f7971ef843b3da03053a7d13f237c32a0c6698cb2e4b3b49f48f7d220efe6e04","fresh_data_sha256":"f7971ef843b3da03053a7d13f237c32a0c6698cb2e4b3b49f48f7d220efe6e04","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"preconditioned","prefix":2048,"observable":"y1","estimate":0.020908475196097443,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0041518783207832,"rhat_z":1.0041518783207832,"rhat_folded":1.0008871205846577,"rhat_split":1.0042247522741345,"ess_bulk":706.3812885952816,"ess_tail":1343.7929595090422,"ess_mean":703.7059161813453,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.03680402151029386},"same_data_fixture_sha256":"3a7ea45da9c13209df9070dd434fde3504b5cdf49f83424c5fa7b0e517fda31b","fresh_data_sha256":"3a7ea45da9c13209df9070dd434fde3504b5cdf49f83424c5fa7b0e517fda31b","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"preconditioned","prefix":2048,"observable":"y2","estimate":0.05293143566394567,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.002347923321214,"rhat_z":1.002347923321214,"rhat_folded":1.0021830765251913,"rhat_split":1.002323918501404,"ess_bulk":671.8381143723915,"ess_tail":1357.929218267469,"ess_mean":671.3919096060162,"status":"ok","metric_status":{"rh
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+at_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.03813936115673247},"same_data_fixture_sha256":"366388ee106ba55fdee3352e22cb32bbbbd29c349ebe2bb23e2783fb09955db6","fresh_data_sha256":"366388ee106ba55fdee3352e22cb32bbbbd29c349ebe2bb23e2783fb09955db6","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"preconditioned","prefix":2048,"observable":"y1_squared","estimate":0.9535158039331946,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.001016752119319,"rhat_z":1.001016752119319,"rhat_folded":1.0004901023486383,"rhat_split":1.0016263403697068,"ess_bulk":1621.8004091043201,"ess_tail":1627.4076000489522,"ess_mean":1181.3640866620278,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.04000395698431491},"same_data_fixture_sha256":"c3f681647e5bfde99db5c9219e5a1c04f62a5bf63849649196863f4e32d8474c","fresh_data_sha256":"c3f681647e5bfde99db5c9219e5a1c04f62a5bf63849649196863f4e32d8474c","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"preconditioned","prefix":2048,"observable":"y2_squared","estimate":0.979296490678469,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.002854129080933,"rhat_z":1.0025391399104187,"rhat_folde
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+d":1.002854129080933,"rhat_split":1.0033327642597851,"ess_bulk":1537.0476195384033,"ess_tail":1613.7709891772051,"ess_mean":1170.8574000061521,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.040716158832539304},"same_data_fixture_sha256":"fa26b258611ad444e62415e27736b5d846b1bb3b1c5a995bd204159efcc67e6d","fresh_data_sha256":"fa26b258611ad444e62415e27736b5d846b1bb3b1c5a995bd204159efcc67e6d","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"preconditioned","prefix":2048,"observable":"product","estimate":0.9171651678903712,"analytic_truth":0.95,"natural_sd":1.379311422413372,"diagnostics":{"rhat_rank":1.001422482316654,"rhat_z":1.001409707845834,"rhat_folded":1.001422482316654,"rhat_split":1.0022791352923954,"ess_bulk":1558.7624954112798,"ess_tail":1742.3355667144333,"ess_mean":1173.0763844545008,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.03960269566186745},"same_data_fixture_sha256":"bae24ae30f2c5f42557dbfff5e61395e5335a06b5d2bfafbf12a7924451a5c14","fresh_data_sha256":"bae24ae30f2c5f42557dbfff5e61395e5335a06b5d2bfafbf12a7924451a5c14","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"preconditioned","prefix":2048,"observable":"Q","
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+estimate":1.9507535961021378,"analytic_truth":2.0,"natural_sd":2.0,"diagnostics":{"rhat_rank":1.0034838574863325,"rhat_z":1.0034838574863325,"rhat_folded":1.002008384088176,"rhat_split":1.0035703311280169,"ess_bulk":1201.7444970390316,"ess_tail":1504.8742993920669,"ess_mean":1053.230484940719,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.0600922793369378},"same_data_fixture_sha256":"193fb7618b299458f6f9a05c01e18bfa9e2476d14271633d8655c563fc572f99","fresh_data_sha256":"193fb7618b299458f6f9a05c01e18bfa9e2476d14271633d8655c563fc572f99","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"preconditioned","prefix":2048,"observable":"sum_direction","estimate":0.0373902922949572,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0031054778571467,"rhat_z":1.0031054778571467,"rhat_folded":1.0014867979257054,"rhat_split":1.0031486451003615,"ess_bulk":685.0497669201985,"ess_tail":1332.2019324080497,"ess_mean":683.7726003054773,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.037560371300720076},"same_data_fixture_sha256":"b2b78f051da8e5cc68e3a1ecfc90eed6dd57357340c317f51a8ff13928e0f2b6","fresh_data_sha256":"b2b78f051da8e5cc68e3a1ecfc90eed6d
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+d57357340c317f51a8ff13928e0f2b6","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"preconditioned","prefix":2048,"observable":"difference_direction","estimate":-0.10126549249993158,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0076442793120755,"rhat_z":1.0076442793120755,"rhat_folded":1.002507486075813,"rhat_split":1.0076489970018683,"ess_bulk":822.6744099704985,"ess_tail":1223.2675253229393,"ess_mean":816.9115033057152,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.034541753716689355},"same_data_fixture_sha256":"58686001f18f2dc7c34f9228817319160ebd7ababe73bb06eb3793da9b55b1cc","fresh_data_sha256":"58686001f18f2dc7c34f9228817319160ebd7ababe73bb06eb3793da9b55b1cc","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"preconditioned","prefix":8192,"observable":"y1","estimate":-0.0009030386511943503,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0015572136767057,"rhat_z":1.0015572136767057,"rhat_folded":1.0007341378526575,"rhat_split":1.0015577911644806,"ess_bulk":2856.414032553728,"ess_tail":4183.759270785682,"ess_mean":2853.8201434363255,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.01870281113
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+7127438},"same_data_fixture_sha256":"0e69c1e0a7310752e1dbe3b7c57d5c01e54fa8303b708f35671cfc2ddebae958","fresh_data_sha256":"0e69c1e0a7310752e1dbe3b7c57d5c01e54fa8303b708f35671cfc2ddebae958","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"preconditioned","prefix":8192,"observable":"y2","estimate":0.010672314636752526,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.001570229811313,"rhat_z":1.001570229811313,"rhat_folded":1.0006252532816884,"rhat_split":1.0015660130915502,"ess_bulk":2870.6177653488953,"ess_tail":4617.56545906279,"ess_mean":2869.34483530617,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.018609784356297246},"same_data_fixture_sha256":"6aeedb1171d2aa78fcb609c9f1a15c3c3ec35cbd7b33a3d0d2ac3fc280c9e7b0","fresh_data_sha256":"6aeedb1171d2aa78fcb609c9f1a15c3c3ec35cbd7b33a3d0d2ac3fc280c9e7b0","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"preconditioned","prefix":8192,"observable":"y1_squared","estimate":0.9982227804858801,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.001056149998568,"rhat_z":1.0007342146832874,"rhat_folded":1.001056149998568,"rhat_split":1.0016340402340103,"ess_bulk":5442.036230823677,"ess_tail":5499.172654981195,"ess_mean":4172.348319641113,"status":"ok","metric
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.02187039609718452},"same_data_fixture_sha256":"66880fb77af26de89f0e6aad6d3511fb098d317afd0208fcd0bfe1ca09e50194","fresh_data_sha256":"66880fb77af26de89f0e6aad6d3511fb098d317afd0208fcd0bfe1ca09e50194","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"preconditioned","prefix":8192,"observable":"y2_squared","estimate":0.993806764740008,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0008467152995515,"rhat_z":1.0006701725511873,"rhat_folded":1.0008467152995515,"rhat_split":1.0011855615227019,"ess_bulk":5628.03551826573,"ess_tail":5925.374119338748,"ess_mean":4392.502253783939,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.021103141532771052},"same_data_fixture_sha256":"784471190eb1e831ab430e24dcccd42ff71dd82927a72179b872cdc065b94eec","fresh_data_sha256":"784471190eb1e831ab430e24dcccd42ff71dd82927a72179b872cdc065b94eec","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"preconditioned","prefix":8192,"observable":"product","estimate":0.945804708427205,"analytic_truth":0.95,"natural_sd":1.379311422413372,"diagnostics":{"rhat_rank":1.0011001254746992,"rhat_z":1.0008033903378775,"r
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+hat_folded":1.0011001254746992,"rhat_split":1.001409470061421,"ess_bulk":5599.762280434028,"ess_tail":5800.807506533611,"ess_mean":4295.928102899432,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.020949898529884704},"same_data_fixture_sha256":"dd1eb8b2b510461466ac60c53034f33a0c4d5c0aae2a6090f4207bfc222fbd5a","fresh_data_sha256":"dd1eb8b2b510461466ac60c53034f33a0c4d5c0aae2a6090f4207bfc222fbd5a","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"preconditioned","prefix":8192,"observable":"Q","estimate":2.0000061457866507,"analytic_truth":2.0,"natural_sd":2.0,"diagnostics":{"rhat_rank":1.0008448468341475,"rhat_z":1.0008448468341475,"rhat_folded":1.0008168557393433,"rhat_split":1.001244892489217,"ess_bulk":4498.479423589753,"ess_tail":5046.276073180092,"ess_mean":3883.2385327761594,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.031572857944807006},"same_data_fixture_sha256":"11f98e36cbf50c910d55ed584c38004871f1f1b524d9824ff6a759b3ac534f31","fresh_data_sha256":"11f98e36cbf50c910d55ed584c38004871f1f1b524d9824ff6a759b3ac534f31","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"preconditioned","prefix":8192,"observable":"sum_direction","es
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+timate":0.00494686518923992,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0014984474122044,"rhat_z":1.0014984474122044,"rhat_folded":1.0007260457397407,"rhat_split":1.0015041269673723,"ess_bulk":2857.356264189052,"ess_tail":4210.779051560615,"ess_mean":2855.697212079016,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.018673784084495125},"same_data_fixture_sha256":"55fba442cf739633cadd580485f668a1967e6862e8a4e782b89db85b5dcd28f8","fresh_data_sha256":"55fba442cf739633cadd580485f668a1967e6862e8a4e782b89db85b5dcd28f8","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"preconditioned","prefix":8192,"observable":"difference_direction","estimate":-0.036604481111031,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0038254483007107,"rhat_z":1.0038254483007107,"rhat_folded":1.0003139054925336,"rhat_split":1.00380528311868,"ess_bulk":3089.997886923112,"ess_tail":5047.3866169079765,"ess_mean":3094.070213537124,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.018003709692320066},"same_data_fixture_sha256":"d1dc484c08b338b2c2c9389f1157e46b4c52b5c3d22555e4b2ea3bfa1a43e2b9","fresh_data_sha256":"d1dc484c08b338b2c2c9389f1157
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+e46b4c52b5c3d22555e4b2ea3bfa1a43e2b9","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"isotropic","prefix":2048,"observable":"y1","estimate":-0.005283923521943207,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.1311849894526347,"rhat_z":1.1311849894526347,"rhat_folded":1.0146390086659465,"rhat_split":1.1310533240943945,"ess_bulk":30.12300932649815,"ess_tail":113.91786349422027,"ess_mean":29.32247868850623,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.17315730851757763},"same_data_fixture_sha256":"9eb7119156cf36f3d7ac70b38c8341fb9d471a3786bad1c1eca2c52fbfc0954f","fresh_data_sha256":"9eb7119156cf36f3d7ac70b38c8341fb9d471a3786bad1c1eca2c52fbfc0954f","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"isotropic","prefix":2048,"observable":"y2","estimate":0.0018225484860261432,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.12714903957868,"rhat_z":1.12714903957868,"rhat_folded":1.0113261147862267,"rhat_split":1.1272367887071784,"ess_bulk":32.903803200479125,"ess_tail":103.52301462135631,"ess_mean":31.955099332874408,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.16726886394728252},"same_data_fixtur
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+e_sha256":"c4623676f6ff947c6c11a9d6f3dd7a38d601327236bfaf253de9077fa330102a","fresh_data_sha256":"c4623676f6ff947c6c11a9d6f3dd7a38d601327236bfaf253de9077fa330102a","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"isotropic","prefix":2048,"observable":"y1_squared","estimate":0.8791097730081399,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.013126325646844,"rhat_z":1.013126325646844,"rhat_folded":1.0114383101059967,"rhat_split":1.0132345450433742,"ess_bulk":134.35874958089167,"ess_tail":158.14447683371006,"ess_mean":113.43202231132383,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.11225950191089616},"same_data_fixture_sha256":"7e672ba776b8e6c71a60544831471a4d24c8d874069d66689a027fe7f50a18df","fresh_data_sha256":"7e672ba776b8e6c71a60544831471a4d24c8d874069d66689a027fe7f50a18df","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"isotropic","prefix":2048,"observable":"y2_squared","estimate":0.8939618435868537,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.010884564446194,"rhat_z":1.010884564446194,"rhat_folded":1.0089531333118957,"rhat_split":1.0132477021376678,"ess_bulk":138.91289368706774,"ess_tail":155.7294313877631,"ess_mean":106.69932831756334,"status":"ok","metric_status":{
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.11609776968726869},"same_data_fixture_sha256":"af3f17a0d2634ae0f2792f62acf7b07fb3138e47522d0f0957e4d694ecd9f7b9","fresh_data_sha256":"af3f17a0d2634ae0f2792f62acf7b07fb3138e47522d0f0957e4d694ecd9f7b9","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"isotropic","prefix":2048,"observable":"product","estimate":0.837833588280842,"analytic_truth":0.95,"natural_sd":1.379311422413372,"diagnostics":{"rhat_rank":1.0135356741649142,"rhat_z":1.0134524683110804,"rhat_folded":1.0135356741649142,"rhat_split":1.0142231923771785,"ess_bulk":125.62477349780795,"ess_tail":149.19997962321978,"ess_mean":104.61975055976437,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.11380280748181272},"same_data_fixture_sha256":"868142c54c917e1e26f90cc347aece04ab69835bdd0b11e2f8802ec0e80216ed","fresh_data_sha256":"868142c54c917e1e26f90cc347aece04ab69835bdd0b11e2f8802ec0e80216ed","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"isotropic","prefix":2048,"observable":"Q","estimate":1.8583363985783972,"analytic_truth":2.0,"natural_sd":2.0,"diagnostics":{"rhat_rank":1.0042590086673333,"rhat_z":1.0042590086673333,"rhat_folded":1.003779664128235,"rhat_spli
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+t":1.0050061953821983,"ess_bulk":259.82501127906517,"ess_tail":405.6122943797454,"ess_mean":215.4529857125414,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.12255669118830896},"same_data_fixture_sha256":"6fcc86502826710b95bc90fe10f295ba41fc405a4f7024dfd21fa5895f9a6bb9","fresh_data_sha256":"6fcc86502826710b95bc90fe10f295ba41fc405a4f7024dfd21fa5895f9a6bb9","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"isotropic","prefix":2048,"observable":"sum_direction","estimate":-0.0017527353815569302,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.1330811306732658,"rhat_z":1.1330811306732658,"rhat_folded":1.0138206267849217,"rhat_split":1.133332195602233,"ess_bulk":30.78334867922456,"ess_tail":104.96678984602772,"ess_mean":29.829967931635153,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.17218575087246188},"same_data_fixture_sha256":"184d3fd1a592dac7d5b8cd9f017b08b159a2b65053416513f035f5c47acdf177","fresh_data_sha256":"184d3fd1a592dac7d5b8cd9f017b08b159a2b65053416513f035f5c47acdf177","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"isotropic","prefix":2048,"observable":"difference_direction","estimate":-0.0224726376734133
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+9,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.002002591234777,"rhat_z":1.002002591234777,"rhat_folded":1.0012457020651861,"rhat_split":1.0019901380984935,"ess_bulk":1196.5399215912992,"ess_tail":1552.8983598085956,"ess_mean":1195.325239630404,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.028540411195061184},"same_data_fixture_sha256":"69a9eca69590b9fc076bd09e2a6608074ef3919905c8b628097ce7c2d5d07b70","fresh_data_sha256":"69a9eca69590b9fc076bd09e2a6608074ef3919905c8b628097ce7c2d5d07b70","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"isotropic","prefix":8192,"observable":"y1","estimate":0.06773010157461062,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0132563873068647,"rhat_z":1.0132563873068647,"rhat_folded":1.012605771567129,"rhat_split":1.0132455256702826,"ess_bulk":157.06986769143734,"ess_tail":339.404749508254,"ess_mean":157.4054168185264,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.08101063662618588},"same_data_fixture_sha256":"c83a26ea35efed5b3db0dd9c982b0705aa69502e33401e87a487ee77e841389f","fresh_data_sha256":"c83a26ea35efed5b3db0dd9c982b0705aa69502e33401e87a487ee77e841389f","fresh_equa
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+ls_fixture_bytes":true},{"seed":46004,"proposal":"isotropic","prefix":8192,"observable":"y2","estimate":0.06824606160158475,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0130895563198592,"rhat_z":1.0130895563198592,"rhat_folded":1.01296523272989,"rhat_split":1.0131928889571369,"ess_bulk":155.1270491241321,"ess_tail":323.98400418635305,"ess_mean":155.67011248035354,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.0813700376549553},"same_data_fixture_sha256":"1dc8626b246ecb5036d31cb34fede7a5cf518a2a53bb469242476c806c8a3205","fresh_data_sha256":"1dc8626b246ecb5036d31cb34fede7a5cf518a2a53bb469242476c806c8a3205","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"isotropic","prefix":8192,"observable":"y1_squared","estimate":1.0375640298437696,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0129652940138292,"rhat_z":1.0129652940138292,"rhat_folded":1.0092841519290676,"rhat_split":1.0143078342374057,"ess_bulk":436.6863029393501,"ess_tail":572.0082698000479,"ess_mean":367.69045390220737,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.07687935979423682},"same_data_fixture_sha256":"a550a8b7cf7941eff97f
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+d5c9c50ac94243a8c1b93664891ae1248151bee5193e","fresh_data_sha256":"a550a8b7cf7941eff97fd5c9c50ac94243a8c1b93664891ae1248151bee5193e","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"isotropic","prefix":8192,"observable":"y2_squared","estimate":1.035330810017379,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.013036482126259,"rhat_z":1.013036482126259,"rhat_folded":1.0103207448622535,"rhat_split":1.0141441002313505,"ess_bulk":435.9131968053761,"ess_tail":546.4345211253752,"ess_mean":368.89540347732463,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.07842395462947314},"same_data_fixture_sha256":"daf532d29821c764832b03d76a97cb75339eda35169b572fafc7919ac8542195","fresh_data_sha256":"daf532d29821c764832b03d76a97cb75339eda35169b572fafc7919ac8542195","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"isotropic","prefix":8192,"observable":"product","estimate":0.9867824806221853,"analytic_truth":0.95,"natural_sd":1.379311422413372,"diagnostics":{"rhat_rank":1.0139515801400794,"rhat_z":1.0139515801400794,"rhat_folded":1.010330987371136,"rhat_split":1.014961307919561,"ess_bulk":410.7659423030592,"ess_tail":528.1667455409812,"ess_mean":353.7571964956146,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_fo
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+lded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.07745499763980024},"same_data_fixture_sha256":"7a2bebb42e40d415a436e1ae4cc36216c21dbd97f70c8907966f818af8867341","fresh_data_sha256":"7a2bebb42e40d415a436e1ae4cc36216c21dbd97f70c8907966f818af8867341","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"isotropic","prefix":8192,"observable":"Q","estimate":2.030852581323041,"analytic_truth":2.0,"natural_sd":2.0,"diagnostics":{"rhat_rank":1.0072720018167338,"rhat_z":1.0072720018167338,"rhat_folded":1.004216107432291,"rhat_split":1.0073201722703717,"ess_bulk":711.270687848913,"ess_tail":1001.5648302318469,"ess_mean":619.4789693190149,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.08165408811326873},"same_data_fixture_sha256":"1c232ff7b098ae4b51ffc6052d3939300d94727079f1446aabb8fa74a966d436","fresh_data_sha256":"1c232ff7b098ae4b51ffc6052d3939300d94727079f1446aabb8fa74a966d436","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"isotropic","prefix":8192,"observable":"sum_direction","estimate":0.06885420671676273,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0137259100672278,"rhat_z":1.013477941425695,"rhat_folded":1.0137259100672278,"rhat_split":1.0135301119772184,"ess_bulk":152.46907750585834
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+,"ess_tail":296.8163285757542,"ess_mean":152.9231607989825,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.08218277835682745},"same_data_fixture_sha256":"d622103b9b65f89e103717c5acd39f522eaeeb00d9eda7b48025615651e4b169","fresh_data_sha256":"d622103b9b65f89e103717c5acd39f522eaeeb00d9eda7b48025615651e4b169","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"isotropic","prefix":8192,"observable":"difference_direction","estimate":-0.001631608866840207,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0008093205529087,"rhat_z":1.0008093205529087,"rhat_folded":1.0002681978576553,"rhat_split":1.0008108976918595,"ess_bulk":4472.327067418408,"ess_tail":6053.018618831451,"ess_mean":4477.763505260571,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.014894139634556361},"same_data_fixture_sha256":"f7d3ecc1bfd98692f2b7c9c44753ef1a65dbcb3739358fe60084fa3d89de9349","fresh_data_sha256":"f7d3ecc1bfd98692f2b7c9c44753ef1a65dbcb3739358fe60084fa3d89de9349","fresh_equals_fixture_bytes":true}]
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+acceptance_rates{"preconditioned-46001-accepted":0.5859375,"isotropic-46001-accepted":0.6636827256944444,"preconditioned-46002-accepted":0.5844455295138888,"isotropic-46002-accepted":0.6636555989583334,"preconditioned-46003-accepted":0.5865614149305556,"isotropic-46003-accepted":0.6662868923611112,"preconditioned-46004-accepted":0.5952690972222222,"isotropic-46004-accepted":0.6641167534722222}
+scopeAll4preconditioned chainsets have per-observable full-prefix gates. Isotropic fixed comparator and short prefixes are reported,not required to fail or pass a mixing gate. ArviZ validates diagnostics on the immutable identical-data fixture,not on a claimed cross-platform byte-identical fresh simulation. Positive physical/mixing gates use fresh chains; analytic Gaussian moments validate joint target. Rhat/ESS/MCSE do not prove global convergence.
+remaining_unimplemented["banana","funnel","HMC","NUTS"]
+判定 / checkPassed
+preconditioned-46001/finite candidatetrue
+preconditioned-46001/2048/y1/ArviZ/rhat_ranktrue
+preconditioned-46001/2048/y1/ArviZ/ess_bulktrue
+preconditioned-46001/2048/y1/ArviZ/ess_tailtrue
+preconditioned-46001/2048/y1/ArviZ/ess_meantrue
+preconditioned-46001/2048/y1/ArviZ/mcse_meantrue
+preconditioned-46001/2048/y2/ArviZ/rhat_ranktrue
+preconditioned-46001/2048/y2/ArviZ/ess_bulktrue
+preconditioned-46001/2048/y2/ArviZ/ess_tailtrue
+preconditioned-46001/2048/y2/ArviZ/ess_meantrue
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46001/2048/y2/ArviZ/mcse_meantrue
+preconditioned-46001/2048/y1_squared/ArviZ/rhat_ranktrue
+preconditioned-46001/2048/y1_squared/ArviZ/ess_bulktrue
+preconditioned-46001/2048/y1_squared/ArviZ/ess_tailtrue
+preconditioned-46001/2048/y1_squared/ArviZ/ess_meantrue
+preconditioned-46001/2048/y1_squared/ArviZ/mcse_meantrue
+preconditioned-46001/2048/y2_squared/ArviZ/rhat_ranktrue
+preconditioned-46001/2048/y2_squared/ArviZ/ess_bulktrue
+preconditioned-46001/2048/y2_squared/ArviZ/ess_tailtrue
+preconditioned-46001/2048/y2_squared/ArviZ/ess_meantrue
+preconditioned-46001/2048/y2_squared/ArviZ/mcse_meantrue
+preconditioned-46001/2048/product/ArviZ/rhat_ranktrue
+preconditioned-46001/2048/product/ArviZ/ess_bulktrue
+preconditioned-46001/2048/product/ArviZ/ess_tailtrue
+preconditioned-46001/2048/product/ArviZ/ess_meantrue
+preconditioned-46001/2048/product/ArviZ/mcse_meantrue
+preconditioned-46001/2048/Q/ArviZ/rhat_ranktrue
+preconditioned-46001/2048/Q/ArviZ/ess_bulktrue
+preconditioned-46001/2048/Q/ArviZ/ess_tailtrue
+preconditioned-46001/2048/Q/ArviZ/ess_meantrue
+preconditioned-46001/2048/Q/ArviZ/mcse_meantrue
+preconditioned-46001/2048/sum_direction/ArviZ/rhat_ranktrue
+preconditioned-46001/2048/sum_direction/ArviZ/ess_bulktrue
+preconditioned-46001/2048/sum_direction/ArviZ/ess_tailtrue
+preconditioned-46001/2048/sum_direction/ArviZ/ess_meantrue
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46001/2048/sum_direction/ArviZ/mcse_meantrue
+preconditioned-46001/2048/difference_direction/ArviZ/rhat_ranktrue
+preconditioned-46001/2048/difference_direction/ArviZ/ess_bulktrue
+preconditioned-46001/2048/difference_direction/ArviZ/ess_tailtrue
+preconditioned-46001/2048/difference_direction/ArviZ/ess_meantrue
+preconditioned-46001/2048/difference_direction/ArviZ/mcse_meantrue
+preconditioned-46001/8192/y1/ArviZ/rhat_ranktrue
+preconditioned-46001/8192/y1/ArviZ/ess_bulktrue
+preconditioned-46001/8192/y1/ArviZ/ess_tailtrue
+preconditioned-46001/8192/y1/ArviZ/ess_meantrue
+preconditioned-46001/8192/y1/ArviZ/mcse_meantrue
+preconditioned-46001/8192/y1/rank-folded Rhattrue
+preconditioned-46001/8192/y1/bulk-tail ESStrue
+preconditioned-46001/8192/y1/observable MCSEtrue
+preconditioned-46001/8192/y1/known target momenttrue
+preconditioned-46001/8192/y2/ArviZ/rhat_ranktrue
+preconditioned-46001/8192/y2/ArviZ/ess_bulktrue
+preconditioned-46001/8192/y2/ArviZ/ess_tailtrue
+preconditioned-46001/8192/y2/ArviZ/ess_meantrue
+preconditioned-46001/8192/y2/ArviZ/mcse_meantrue
+preconditioned-46001/8192/y2/rank-folded Rhattrue
+preconditioned-46001/8192/y2/bulk-tail ESStrue
+preconditioned-46001/8192/y2/observable MCSEtrue
+preconditioned-46001/8192/y2/known target momenttrue
+preconditioned-46001/8192/y1_squared/ArviZ/rhat_ranktrue
+preconditioned-46001/8192/y1_squared/ArviZ/ess_bulktrue
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46001/8192/y1_squared/ArviZ/ess_tailtrue
+preconditioned-46001/8192/y1_squared/ArviZ/ess_meantrue
+preconditioned-46001/8192/y1_squared/ArviZ/mcse_meantrue
+preconditioned-46001/8192/y1_squared/rank-folded Rhattrue
+preconditioned-46001/8192/y1_squared/bulk-tail ESStrue
+preconditioned-46001/8192/y1_squared/observable MCSEtrue
+preconditioned-46001/8192/y1_squared/known target momenttrue
+preconditioned-46001/8192/y2_squared/ArviZ/rhat_ranktrue
+preconditioned-46001/8192/y2_squared/ArviZ/ess_bulktrue
+preconditioned-46001/8192/y2_squared/ArviZ/ess_tailtrue
+preconditioned-46001/8192/y2_squared/ArviZ/ess_meantrue
+preconditioned-46001/8192/y2_squared/ArviZ/mcse_meantrue
+preconditioned-46001/8192/y2_squared/rank-folded Rhattrue
+preconditioned-46001/8192/y2_squared/bulk-tail ESStrue
+preconditioned-46001/8192/y2_squared/observable MCSEtrue
+preconditioned-46001/8192/y2_squared/known target momenttrue
+preconditioned-46001/8192/product/ArviZ/rhat_ranktrue
+preconditioned-46001/8192/product/ArviZ/ess_bulktrue
+preconditioned-46001/8192/product/ArviZ/ess_tailtrue
+preconditioned-46001/8192/product/ArviZ/ess_meantrue
+preconditioned-46001/8192/product/ArviZ/mcse_meantrue
+preconditioned-46001/8192/product/rank-folded Rhattrue
+preconditioned-46001/8192/product/bulk-tail ESStrue
+preconditioned-46001/8192/product/observable MCSEtrue
+preconditioned-46001/8192/product/known target momenttrue
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46001/8192/Q/ArviZ/rhat_ranktrue
+preconditioned-46001/8192/Q/ArviZ/ess_bulktrue
+preconditioned-46001/8192/Q/ArviZ/ess_tailtrue
+preconditioned-46001/8192/Q/ArviZ/ess_meantrue
+preconditioned-46001/8192/Q/ArviZ/mcse_meantrue
+preconditioned-46001/8192/Q/rank-folded Rhattrue
+preconditioned-46001/8192/Q/bulk-tail ESStrue
+preconditioned-46001/8192/Q/observable MCSEtrue
+preconditioned-46001/8192/Q/known target momenttrue
+preconditioned-46001/8192/sum_direction/ArviZ/rhat_ranktrue
+preconditioned-46001/8192/sum_direction/ArviZ/ess_bulktrue
+preconditioned-46001/8192/sum_direction/ArviZ/ess_tailtrue
+preconditioned-46001/8192/sum_direction/ArviZ/ess_meantrue
+preconditioned-46001/8192/sum_direction/ArviZ/mcse_meantrue
+preconditioned-46001/8192/sum_direction/rank-folded Rhattrue
+preconditioned-46001/8192/sum_direction/bulk-tail ESStrue
+preconditioned-46001/8192/sum_direction/observable MCSEtrue
+preconditioned-46001/8192/sum_direction/known target momenttrue
+preconditioned-46001/8192/difference_direction/ArviZ/rhat_ranktrue
+preconditioned-46001/8192/difference_direction/ArviZ/ess_bulktrue
+preconditioned-46001/8192/difference_direction/ArviZ/ess_tailtrue
+preconditioned-46001/8192/difference_direction/ArviZ/ess_meantrue
+preconditioned-46001/8192/difference_direction/ArviZ/mcse_meantrue
+preconditioned-46001/8192/difference_direction/rank-folded Rhattrue
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46001/8192/difference_direction/bulk-tail ESStrue
+preconditioned-46001/8192/difference_direction/observable MCSEtrue
+preconditioned-46001/8192/difference_direction/known target momenttrue
+isotropic-46001/finite candidatetrue
+isotropic-46001/2048/y1/ArviZ/rhat_ranktrue
+isotropic-46001/2048/y1/ArviZ/ess_bulktrue
+isotropic-46001/2048/y1/ArviZ/ess_tailtrue
+isotropic-46001/2048/y1/ArviZ/ess_meantrue
+isotropic-46001/2048/y1/ArviZ/mcse_meantrue
+isotropic-46001/2048/y2/ArviZ/rhat_ranktrue
+isotropic-46001/2048/y2/ArviZ/ess_bulktrue
+isotropic-46001/2048/y2/ArviZ/ess_tailtrue
+isotropic-46001/2048/y2/ArviZ/ess_meantrue
+isotropic-46001/2048/y2/ArviZ/mcse_meantrue
+isotropic-46001/2048/y1_squared/ArviZ/rhat_ranktrue
+isotropic-46001/2048/y1_squared/ArviZ/ess_bulktrue
+isotropic-46001/2048/y1_squared/ArviZ/ess_tailtrue
+isotropic-46001/2048/y1_squared/ArviZ/ess_meantrue
+isotropic-46001/2048/y1_squared/ArviZ/mcse_meantrue
+isotropic-46001/2048/y2_squared/ArviZ/rhat_ranktrue
+isotropic-46001/2048/y2_squared/ArviZ/ess_bulktrue
+isotropic-46001/2048/y2_squared/ArviZ/ess_tailtrue
+isotropic-46001/2048/y2_squared/ArviZ/ess_meantrue
+isotropic-46001/2048/y2_squared/ArviZ/mcse_meantrue
+isotropic-46001/2048/product/ArviZ/rhat_ranktrue
+isotropic-46001/2048/product/ArviZ/ess_bulktrue
+isotropic-46001/2048/product/ArviZ/ess_tailtrue
+isotropic-46001/2048/product/ArviZ/ess_meantrue
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+isotropic-46001/2048/product/ArviZ/mcse_meantrue
+isotropic-46001/2048/Q/ArviZ/rhat_ranktrue
+isotropic-46001/2048/Q/ArviZ/ess_bulktrue
+isotropic-46001/2048/Q/ArviZ/ess_tailtrue
+isotropic-46001/2048/Q/ArviZ/ess_meantrue
+isotropic-46001/2048/Q/ArviZ/mcse_meantrue
+isotropic-46001/2048/sum_direction/ArviZ/rhat_ranktrue
+isotropic-46001/2048/sum_direction/ArviZ/ess_bulktrue
+isotropic-46001/2048/sum_direction/ArviZ/ess_tailtrue
+isotropic-46001/2048/sum_direction/ArviZ/ess_meantrue
+isotropic-46001/2048/sum_direction/ArviZ/mcse_meantrue
+isotropic-46001/2048/difference_direction/ArviZ/rhat_ranktrue
+isotropic-46001/2048/difference_direction/ArviZ/ess_bulktrue
+isotropic-46001/2048/difference_direction/ArviZ/ess_tailtrue
+isotropic-46001/2048/difference_direction/ArviZ/ess_meantrue
+isotropic-46001/2048/difference_direction/ArviZ/mcse_meantrue
+isotropic-46001/8192/y1/ArviZ/rhat_ranktrue
+isotropic-46001/8192/y1/ArviZ/ess_bulktrue
+isotropic-46001/8192/y1/ArviZ/ess_tailtrue
+isotropic-46001/8192/y1/ArviZ/ess_meantrue
+isotropic-46001/8192/y1/ArviZ/mcse_meantrue
+isotropic-46001/8192/y2/ArviZ/rhat_ranktrue
+isotropic-46001/8192/y2/ArviZ/ess_bulktrue
+isotropic-46001/8192/y2/ArviZ/ess_tailtrue
+isotropic-46001/8192/y2/ArviZ/ess_meantrue
+isotropic-46001/8192/y2/ArviZ/mcse_meantrue
+isotropic-46001/8192/y1_squared/ArviZ/rhat_ranktrue
+isotropic-46001/8192/y1_squared/ArviZ/ess_bulktrue
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+isotropic-46001/8192/y1_squared/ArviZ/ess_tailtrue
+isotropic-46001/8192/y1_squared/ArviZ/ess_meantrue
+isotropic-46001/8192/y1_squared/ArviZ/mcse_meantrue
+isotropic-46001/8192/y2_squared/ArviZ/rhat_ranktrue
+isotropic-46001/8192/y2_squared/ArviZ/ess_bulktrue
+isotropic-46001/8192/y2_squared/ArviZ/ess_tailtrue
+isotropic-46001/8192/y2_squared/ArviZ/ess_meantrue
+isotropic-46001/8192/y2_squared/ArviZ/mcse_meantrue
+isotropic-46001/8192/product/ArviZ/rhat_ranktrue
+isotropic-46001/8192/product/ArviZ/ess_bulktrue
+isotropic-46001/8192/product/ArviZ/ess_tailtrue
+isotropic-46001/8192/product/ArviZ/ess_meantrue
+isotropic-46001/8192/product/ArviZ/mcse_meantrue
+isotropic-46001/8192/Q/ArviZ/rhat_ranktrue
+isotropic-46001/8192/Q/ArviZ/ess_bulktrue
+isotropic-46001/8192/Q/ArviZ/ess_tailtrue
+isotropic-46001/8192/Q/ArviZ/ess_meantrue
+isotropic-46001/8192/Q/ArviZ/mcse_meantrue
+isotropic-46001/8192/sum_direction/ArviZ/rhat_ranktrue
+isotropic-46001/8192/sum_direction/ArviZ/ess_bulktrue
+isotropic-46001/8192/sum_direction/ArviZ/ess_tailtrue
+isotropic-46001/8192/sum_direction/ArviZ/ess_meantrue
+isotropic-46001/8192/sum_direction/ArviZ/mcse_meantrue
+isotropic-46001/8192/difference_direction/ArviZ/rhat_ranktrue
+isotropic-46001/8192/difference_direction/ArviZ/ess_bulktrue
+isotropic-46001/8192/difference_direction/ArviZ/ess_tailtrue
+isotropic-46001/8192/difference_direction/ArviZ/ess_meantrue
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+isotropic-46001/8192/difference_direction/ArviZ/mcse_meantrue
+preconditioned-46002/finite candidatetrue
+preconditioned-46002/2048/y1/ArviZ/rhat_ranktrue
+preconditioned-46002/2048/y1/ArviZ/ess_bulktrue
+preconditioned-46002/2048/y1/ArviZ/ess_tailtrue
+preconditioned-46002/2048/y1/ArviZ/ess_meantrue
+preconditioned-46002/2048/y1/ArviZ/mcse_meantrue
+preconditioned-46002/2048/y2/ArviZ/rhat_ranktrue
+preconditioned-46002/2048/y2/ArviZ/ess_bulktrue
+preconditioned-46002/2048/y2/ArviZ/ess_tailtrue
+preconditioned-46002/2048/y2/ArviZ/ess_meantrue
+preconditioned-46002/2048/y2/ArviZ/mcse_meantrue
+preconditioned-46002/2048/y1_squared/ArviZ/rhat_ranktrue
+preconditioned-46002/2048/y1_squared/ArviZ/ess_bulktrue
+preconditioned-46002/2048/y1_squared/ArviZ/ess_tailtrue
+preconditioned-46002/2048/y1_squared/ArviZ/ess_meantrue
+preconditioned-46002/2048/y1_squared/ArviZ/mcse_meantrue
+preconditioned-46002/2048/y2_squared/ArviZ/rhat_ranktrue
+preconditioned-46002/2048/y2_squared/ArviZ/ess_bulktrue
+preconditioned-46002/2048/y2_squared/ArviZ/ess_tailtrue
+preconditioned-46002/2048/y2_squared/ArviZ/ess_meantrue
+preconditioned-46002/2048/y2_squared/ArviZ/mcse_meantrue
+preconditioned-46002/2048/product/ArviZ/rhat_ranktrue
+preconditioned-46002/2048/product/ArviZ/ess_bulktrue
+preconditioned-46002/2048/product/ArviZ/ess_tailtrue
+preconditioned-46002/2048/product/ArviZ/ess_meantrue
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46002/2048/product/ArviZ/mcse_meantrue
+preconditioned-46002/2048/Q/ArviZ/rhat_ranktrue
+preconditioned-46002/2048/Q/ArviZ/ess_bulktrue
+preconditioned-46002/2048/Q/ArviZ/ess_tailtrue
+preconditioned-46002/2048/Q/ArviZ/ess_meantrue
+preconditioned-46002/2048/Q/ArviZ/mcse_meantrue
+preconditioned-46002/2048/sum_direction/ArviZ/rhat_ranktrue
+preconditioned-46002/2048/sum_direction/ArviZ/ess_bulktrue
+preconditioned-46002/2048/sum_direction/ArviZ/ess_tailtrue
+preconditioned-46002/2048/sum_direction/ArviZ/ess_meantrue
+preconditioned-46002/2048/sum_direction/ArviZ/mcse_meantrue
+preconditioned-46002/2048/difference_direction/ArviZ/rhat_ranktrue
+preconditioned-46002/2048/difference_direction/ArviZ/ess_bulktrue
+preconditioned-46002/2048/difference_direction/ArviZ/ess_tailtrue
+preconditioned-46002/2048/difference_direction/ArviZ/ess_meantrue
+preconditioned-46002/2048/difference_direction/ArviZ/mcse_meantrue
+preconditioned-46002/8192/y1/ArviZ/rhat_ranktrue
+preconditioned-46002/8192/y1/ArviZ/ess_bulktrue
+preconditioned-46002/8192/y1/ArviZ/ess_tailtrue
+preconditioned-46002/8192/y1/ArviZ/ess_meantrue
+preconditioned-46002/8192/y1/ArviZ/mcse_meantrue
+preconditioned-46002/8192/y1/rank-folded Rhattrue
+preconditioned-46002/8192/y1/bulk-tail ESStrue
+preconditioned-46002/8192/y1/observable MCSEtrue
+preconditioned-46002/8192/y1/known target momenttrue
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46002/8192/y2/ArviZ/rhat_ranktrue
+preconditioned-46002/8192/y2/ArviZ/ess_bulktrue
+preconditioned-46002/8192/y2/ArviZ/ess_tailtrue
+preconditioned-46002/8192/y2/ArviZ/ess_meantrue
+preconditioned-46002/8192/y2/ArviZ/mcse_meantrue
+preconditioned-46002/8192/y2/rank-folded Rhattrue
+preconditioned-46002/8192/y2/bulk-tail ESStrue
+preconditioned-46002/8192/y2/observable MCSEtrue
+preconditioned-46002/8192/y2/known target momenttrue
+preconditioned-46002/8192/y1_squared/ArviZ/rhat_ranktrue
+preconditioned-46002/8192/y1_squared/ArviZ/ess_bulktrue
+preconditioned-46002/8192/y1_squared/ArviZ/ess_tailtrue
+preconditioned-46002/8192/y1_squared/ArviZ/ess_meantrue
+preconditioned-46002/8192/y1_squared/ArviZ/mcse_meantrue
+preconditioned-46002/8192/y1_squared/rank-folded Rhattrue
+preconditioned-46002/8192/y1_squared/bulk-tail ESStrue
+preconditioned-46002/8192/y1_squared/observable MCSEtrue
+preconditioned-46002/8192/y1_squared/known target momenttrue
+preconditioned-46002/8192/y2_squared/ArviZ/rhat_ranktrue
+preconditioned-46002/8192/y2_squared/ArviZ/ess_bulktrue
+preconditioned-46002/8192/y2_squared/ArviZ/ess_tailtrue
+preconditioned-46002/8192/y2_squared/ArviZ/ess_meantrue
+preconditioned-46002/8192/y2_squared/ArviZ/mcse_meantrue
+preconditioned-46002/8192/y2_squared/rank-folded Rhattrue
+preconditioned-46002/8192/y2_squared/bulk-tail ESStrue
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46002/8192/y2_squared/observable MCSEtrue
+preconditioned-46002/8192/y2_squared/known target momenttrue
+preconditioned-46002/8192/product/ArviZ/rhat_ranktrue
+preconditioned-46002/8192/product/ArviZ/ess_bulktrue
+preconditioned-46002/8192/product/ArviZ/ess_tailtrue
+preconditioned-46002/8192/product/ArviZ/ess_meantrue
+preconditioned-46002/8192/product/ArviZ/mcse_meantrue
+preconditioned-46002/8192/product/rank-folded Rhattrue
+preconditioned-46002/8192/product/bulk-tail ESStrue
+preconditioned-46002/8192/product/observable MCSEtrue
+preconditioned-46002/8192/product/known target momenttrue
+preconditioned-46002/8192/Q/ArviZ/rhat_ranktrue
+preconditioned-46002/8192/Q/ArviZ/ess_bulktrue
+preconditioned-46002/8192/Q/ArviZ/ess_tailtrue
+preconditioned-46002/8192/Q/ArviZ/ess_meantrue
+preconditioned-46002/8192/Q/ArviZ/mcse_meantrue
+preconditioned-46002/8192/Q/rank-folded Rhattrue
+preconditioned-46002/8192/Q/bulk-tail ESStrue
+preconditioned-46002/8192/Q/observable MCSEtrue
+preconditioned-46002/8192/Q/known target momenttrue
+preconditioned-46002/8192/sum_direction/ArviZ/rhat_ranktrue
+preconditioned-46002/8192/sum_direction/ArviZ/ess_bulktrue
+preconditioned-46002/8192/sum_direction/ArviZ/ess_tailtrue
+preconditioned-46002/8192/sum_direction/ArviZ/ess_meantrue
+preconditioned-46002/8192/sum_direction/ArviZ/mcse_meantrue
+preconditioned-46002/8192/sum_direction/rank-folded Rhattrue
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46002/8192/sum_direction/bulk-tail ESStrue
+preconditioned-46002/8192/sum_direction/observable MCSEtrue
+preconditioned-46002/8192/sum_direction/known target momenttrue
+preconditioned-46002/8192/difference_direction/ArviZ/rhat_ranktrue
+preconditioned-46002/8192/difference_direction/ArviZ/ess_bulktrue
+preconditioned-46002/8192/difference_direction/ArviZ/ess_tailtrue
+preconditioned-46002/8192/difference_direction/ArviZ/ess_meantrue
+preconditioned-46002/8192/difference_direction/ArviZ/mcse_meantrue
+preconditioned-46002/8192/difference_direction/rank-folded Rhattrue
+preconditioned-46002/8192/difference_direction/bulk-tail ESStrue
+preconditioned-46002/8192/difference_direction/observable MCSEtrue
+preconditioned-46002/8192/difference_direction/known target momenttrue
+isotropic-46002/finite candidatetrue
+isotropic-46002/2048/y1/ArviZ/rhat_ranktrue
+isotropic-46002/2048/y1/ArviZ/ess_bulktrue
+isotropic-46002/2048/y1/ArviZ/ess_tailtrue
+isotropic-46002/2048/y1/ArviZ/ess_meantrue
+isotropic-46002/2048/y1/ArviZ/mcse_meantrue
+isotropic-46002/2048/y2/ArviZ/rhat_ranktrue
+isotropic-46002/2048/y2/ArviZ/ess_bulktrue
+isotropic-46002/2048/y2/ArviZ/ess_tailtrue
+isotropic-46002/2048/y2/ArviZ/ess_meantrue
+isotropic-46002/2048/y2/ArviZ/mcse_meantrue
+isotropic-46002/2048/y1_squared/ArviZ/rhat_ranktrue
+isotropic-46002/2048/y1_squared/ArviZ/ess_bulktrue
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+isotropic-46002/2048/y1_squared/ArviZ/ess_tailtrue
+isotropic-46002/2048/y1_squared/ArviZ/ess_meantrue
+isotropic-46002/2048/y1_squared/ArviZ/mcse_meantrue
+isotropic-46002/2048/y2_squared/ArviZ/rhat_ranktrue
+isotropic-46002/2048/y2_squared/ArviZ/ess_bulktrue
+isotropic-46002/2048/y2_squared/ArviZ/ess_tailtrue
+isotropic-46002/2048/y2_squared/ArviZ/ess_meantrue
+isotropic-46002/2048/y2_squared/ArviZ/mcse_meantrue
+isotropic-46002/2048/product/ArviZ/rhat_ranktrue
+isotropic-46002/2048/product/ArviZ/ess_bulktrue
+isotropic-46002/2048/product/ArviZ/ess_tailtrue
+isotropic-46002/2048/product/ArviZ/ess_meantrue
+isotropic-46002/2048/product/ArviZ/mcse_meantrue
+isotropic-46002/2048/Q/ArviZ/rhat_ranktrue
+isotropic-46002/2048/Q/ArviZ/ess_bulktrue
+isotropic-46002/2048/Q/ArviZ/ess_tailtrue
+isotropic-46002/2048/Q/ArviZ/ess_meantrue
+isotropic-46002/2048/Q/ArviZ/mcse_meantrue
+isotropic-46002/2048/sum_direction/ArviZ/rhat_ranktrue
+isotropic-46002/2048/sum_direction/ArviZ/ess_bulktrue
+isotropic-46002/2048/sum_direction/ArviZ/ess_tailtrue
+isotropic-46002/2048/sum_direction/ArviZ/ess_meantrue
+isotropic-46002/2048/sum_direction/ArviZ/mcse_meantrue
+isotropic-46002/2048/difference_direction/ArviZ/rhat_ranktrue
+isotropic-46002/2048/difference_direction/ArviZ/ess_bulktrue
+isotropic-46002/2048/difference_direction/ArviZ/ess_tailtrue
+isotropic-46002/2048/difference_direction/ArviZ/ess_meantrue
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+isotropic-46002/2048/difference_direction/ArviZ/mcse_meantrue
+isotropic-46002/8192/y1/ArviZ/rhat_ranktrue
+isotropic-46002/8192/y1/ArviZ/ess_bulktrue
+isotropic-46002/8192/y1/ArviZ/ess_tailtrue
+isotropic-46002/8192/y1/ArviZ/ess_meantrue
+isotropic-46002/8192/y1/ArviZ/mcse_meantrue
+isotropic-46002/8192/y2/ArviZ/rhat_ranktrue
+isotropic-46002/8192/y2/ArviZ/ess_bulktrue
+isotropic-46002/8192/y2/ArviZ/ess_tailtrue
+isotropic-46002/8192/y2/ArviZ/ess_meantrue
+isotropic-46002/8192/y2/ArviZ/mcse_meantrue
+isotropic-46002/8192/y1_squared/ArviZ/rhat_ranktrue
+isotropic-46002/8192/y1_squared/ArviZ/ess_bulktrue
+isotropic-46002/8192/y1_squared/ArviZ/ess_tailtrue
+isotropic-46002/8192/y1_squared/ArviZ/ess_meantrue
+isotropic-46002/8192/y1_squared/ArviZ/mcse_meantrue
+isotropic-46002/8192/y2_squared/ArviZ/rhat_ranktrue
+isotropic-46002/8192/y2_squared/ArviZ/ess_bulktrue
+isotropic-46002/8192/y2_squared/ArviZ/ess_tailtrue
+isotropic-46002/8192/y2_squared/ArviZ/ess_meantrue
+isotropic-46002/8192/y2_squared/ArviZ/mcse_meantrue
+isotropic-46002/8192/product/ArviZ/rhat_ranktrue
+isotropic-46002/8192/product/ArviZ/ess_bulktrue
+isotropic-46002/8192/product/ArviZ/ess_tailtrue
+isotropic-46002/8192/product/ArviZ/ess_meantrue
+isotropic-46002/8192/product/ArviZ/mcse_meantrue
+isotropic-46002/8192/Q/ArviZ/rhat_ranktrue
+isotropic-46002/8192/Q/ArviZ/ess_bulktrue
+isotropic-46002/8192/Q/ArviZ/ess_tailtrue
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+isotropic-46002/8192/Q/ArviZ/ess_meantrue
+isotropic-46002/8192/Q/ArviZ/mcse_meantrue
+isotropic-46002/8192/sum_direction/ArviZ/rhat_ranktrue
+isotropic-46002/8192/sum_direction/ArviZ/ess_bulktrue
+isotropic-46002/8192/sum_direction/ArviZ/ess_tailtrue
+isotropic-46002/8192/sum_direction/ArviZ/ess_meantrue
+isotropic-46002/8192/sum_direction/ArviZ/mcse_meantrue
+isotropic-46002/8192/difference_direction/ArviZ/rhat_ranktrue
+isotropic-46002/8192/difference_direction/ArviZ/ess_bulktrue
+isotropic-46002/8192/difference_direction/ArviZ/ess_tailtrue
+isotropic-46002/8192/difference_direction/ArviZ/ess_meantrue
+isotropic-46002/8192/difference_direction/ArviZ/mcse_meantrue
+preconditioned-46003/finite candidatetrue
+preconditioned-46003/2048/y1/ArviZ/rhat_ranktrue
+preconditioned-46003/2048/y1/ArviZ/ess_bulktrue
+preconditioned-46003/2048/y1/ArviZ/ess_tailtrue
+preconditioned-46003/2048/y1/ArviZ/ess_meantrue
+preconditioned-46003/2048/y1/ArviZ/mcse_meantrue
+preconditioned-46003/2048/y2/ArviZ/rhat_ranktrue
+preconditioned-46003/2048/y2/ArviZ/ess_bulktrue
+preconditioned-46003/2048/y2/ArviZ/ess_tailtrue
+preconditioned-46003/2048/y2/ArviZ/ess_meantrue
+preconditioned-46003/2048/y2/ArviZ/mcse_meantrue
+preconditioned-46003/2048/y1_squared/ArviZ/rhat_ranktrue
+preconditioned-46003/2048/y1_squared/ArviZ/ess_bulktrue
+preconditioned-46003/2048/y1_squared/ArviZ/ess_tailtrue
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46003/2048/y1_squared/ArviZ/ess_meantrue
+preconditioned-46003/2048/y1_squared/ArviZ/mcse_meantrue
+preconditioned-46003/2048/y2_squared/ArviZ/rhat_ranktrue
+preconditioned-46003/2048/y2_squared/ArviZ/ess_bulktrue
+preconditioned-46003/2048/y2_squared/ArviZ/ess_tailtrue
+preconditioned-46003/2048/y2_squared/ArviZ/ess_meantrue
+preconditioned-46003/2048/y2_squared/ArviZ/mcse_meantrue
+preconditioned-46003/2048/product/ArviZ/rhat_ranktrue
+preconditioned-46003/2048/product/ArviZ/ess_bulktrue
+preconditioned-46003/2048/product/ArviZ/ess_tailtrue
+preconditioned-46003/2048/product/ArviZ/ess_meantrue
+preconditioned-46003/2048/product/ArviZ/mcse_meantrue
+preconditioned-46003/2048/Q/ArviZ/rhat_ranktrue
+preconditioned-46003/2048/Q/ArviZ/ess_bulktrue
+preconditioned-46003/2048/Q/ArviZ/ess_tailtrue
+preconditioned-46003/2048/Q/ArviZ/ess_meantrue
+preconditioned-46003/2048/Q/ArviZ/mcse_meantrue
+preconditioned-46003/2048/sum_direction/ArviZ/rhat_ranktrue
+preconditioned-46003/2048/sum_direction/ArviZ/ess_bulktrue
+preconditioned-46003/2048/sum_direction/ArviZ/ess_tailtrue
+preconditioned-46003/2048/sum_direction/ArviZ/ess_meantrue
+preconditioned-46003/2048/sum_direction/ArviZ/mcse_meantrue
+preconditioned-46003/2048/difference_direction/ArviZ/rhat_ranktrue
+preconditioned-46003/2048/difference_direction/ArviZ/ess_bulktrue
+preconditioned-46003/2048/difference_direction/ArviZ/ess_tailtrue
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46003/2048/difference_direction/ArviZ/ess_meantrue
+preconditioned-46003/2048/difference_direction/ArviZ/mcse_meantrue
+preconditioned-46003/8192/y1/ArviZ/rhat_ranktrue
+preconditioned-46003/8192/y1/ArviZ/ess_bulktrue
+preconditioned-46003/8192/y1/ArviZ/ess_tailtrue
+preconditioned-46003/8192/y1/ArviZ/ess_meantrue
+preconditioned-46003/8192/y1/ArviZ/mcse_meantrue
+preconditioned-46003/8192/y1/rank-folded Rhattrue
+preconditioned-46003/8192/y1/bulk-tail ESStrue
+preconditioned-46003/8192/y1/observable MCSEtrue
+preconditioned-46003/8192/y1/known target momenttrue
+preconditioned-46003/8192/y2/ArviZ/rhat_ranktrue
+preconditioned-46003/8192/y2/ArviZ/ess_bulktrue
+preconditioned-46003/8192/y2/ArviZ/ess_tailtrue
+preconditioned-46003/8192/y2/ArviZ/ess_meantrue
+preconditioned-46003/8192/y2/ArviZ/mcse_meantrue
+preconditioned-46003/8192/y2/rank-folded Rhattrue
+preconditioned-46003/8192/y2/bulk-tail ESStrue
+preconditioned-46003/8192/y2/observable MCSEtrue
+preconditioned-46003/8192/y2/known target momenttrue
+preconditioned-46003/8192/y1_squared/ArviZ/rhat_ranktrue
+preconditioned-46003/8192/y1_squared/ArviZ/ess_bulktrue
+preconditioned-46003/8192/y1_squared/ArviZ/ess_tailtrue
+preconditioned-46003/8192/y1_squared/ArviZ/ess_meantrue
+preconditioned-46003/8192/y1_squared/ArviZ/mcse_meantrue
+preconditioned-46003/8192/y1_squared/rank-folded Rhattrue
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46003/8192/y1_squared/bulk-tail ESStrue
+preconditioned-46003/8192/y1_squared/observable MCSEtrue
+preconditioned-46003/8192/y1_squared/known target momenttrue
+preconditioned-46003/8192/y2_squared/ArviZ/rhat_ranktrue
+preconditioned-46003/8192/y2_squared/ArviZ/ess_bulktrue
+preconditioned-46003/8192/y2_squared/ArviZ/ess_tailtrue
+preconditioned-46003/8192/y2_squared/ArviZ/ess_meantrue
+preconditioned-46003/8192/y2_squared/ArviZ/mcse_meantrue
+preconditioned-46003/8192/y2_squared/rank-folded Rhattrue
+preconditioned-46003/8192/y2_squared/bulk-tail ESStrue
+preconditioned-46003/8192/y2_squared/observable MCSEtrue
+preconditioned-46003/8192/y2_squared/known target momenttrue
+preconditioned-46003/8192/product/ArviZ/rhat_ranktrue
+preconditioned-46003/8192/product/ArviZ/ess_bulktrue
+preconditioned-46003/8192/product/ArviZ/ess_tailtrue
+preconditioned-46003/8192/product/ArviZ/ess_meantrue
+preconditioned-46003/8192/product/ArviZ/mcse_meantrue
+preconditioned-46003/8192/product/rank-folded Rhattrue
+preconditioned-46003/8192/product/bulk-tail ESStrue
+preconditioned-46003/8192/product/observable MCSEtrue
+preconditioned-46003/8192/product/known target momenttrue
+preconditioned-46003/8192/Q/ArviZ/rhat_ranktrue
+preconditioned-46003/8192/Q/ArviZ/ess_bulktrue
+preconditioned-46003/8192/Q/ArviZ/ess_tailtrue
+preconditioned-46003/8192/Q/ArviZ/ess_meantrue
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46003/8192/Q/ArviZ/mcse_meantrue
+preconditioned-46003/8192/Q/rank-folded Rhattrue
+preconditioned-46003/8192/Q/bulk-tail ESStrue
+preconditioned-46003/8192/Q/observable MCSEtrue
+preconditioned-46003/8192/Q/known target momenttrue
+preconditioned-46003/8192/sum_direction/ArviZ/rhat_ranktrue
+preconditioned-46003/8192/sum_direction/ArviZ/ess_bulktrue
+preconditioned-46003/8192/sum_direction/ArviZ/ess_tailtrue
+preconditioned-46003/8192/sum_direction/ArviZ/ess_meantrue
+preconditioned-46003/8192/sum_direction/ArviZ/mcse_meantrue
+preconditioned-46003/8192/sum_direction/rank-folded Rhattrue
+preconditioned-46003/8192/sum_direction/bulk-tail ESStrue
+preconditioned-46003/8192/sum_direction/observable MCSEtrue
+preconditioned-46003/8192/sum_direction/known target momenttrue
+preconditioned-46003/8192/difference_direction/ArviZ/rhat_ranktrue
+preconditioned-46003/8192/difference_direction/ArviZ/ess_bulktrue
+preconditioned-46003/8192/difference_direction/ArviZ/ess_tailtrue
+preconditioned-46003/8192/difference_direction/ArviZ/ess_meantrue
+preconditioned-46003/8192/difference_direction/ArviZ/mcse_meantrue
+preconditioned-46003/8192/difference_direction/rank-folded Rhattrue
+preconditioned-46003/8192/difference_direction/bulk-tail ESStrue
+preconditioned-46003/8192/difference_direction/observable MCSEtrue
+preconditioned-46003/8192/difference_direction/known target momenttrue
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+isotropic-46003/finite candidatetrue
+isotropic-46003/2048/y1/ArviZ/rhat_ranktrue
+isotropic-46003/2048/y1/ArviZ/ess_bulktrue
+isotropic-46003/2048/y1/ArviZ/ess_tailtrue
+isotropic-46003/2048/y1/ArviZ/ess_meantrue
+isotropic-46003/2048/y1/ArviZ/mcse_meantrue
+isotropic-46003/2048/y2/ArviZ/rhat_ranktrue
+isotropic-46003/2048/y2/ArviZ/ess_bulktrue
+isotropic-46003/2048/y2/ArviZ/ess_tailtrue
+isotropic-46003/2048/y2/ArviZ/ess_meantrue
+isotropic-46003/2048/y2/ArviZ/mcse_meantrue
+isotropic-46003/2048/y1_squared/ArviZ/rhat_ranktrue
+isotropic-46003/2048/y1_squared/ArviZ/ess_bulktrue
+isotropic-46003/2048/y1_squared/ArviZ/ess_tailtrue
+isotropic-46003/2048/y1_squared/ArviZ/ess_meantrue
+isotropic-46003/2048/y1_squared/ArviZ/mcse_meantrue
+isotropic-46003/2048/y2_squared/ArviZ/rhat_ranktrue
+isotropic-46003/2048/y2_squared/ArviZ/ess_bulktrue
+isotropic-46003/2048/y2_squared/ArviZ/ess_tailtrue
+isotropic-46003/2048/y2_squared/ArviZ/ess_meantrue
+isotropic-46003/2048/y2_squared/ArviZ/mcse_meantrue
+isotropic-46003/2048/product/ArviZ/rhat_ranktrue
+isotropic-46003/2048/product/ArviZ/ess_bulktrue
+isotropic-46003/2048/product/ArviZ/ess_tailtrue
+isotropic-46003/2048/product/ArviZ/ess_meantrue
+isotropic-46003/2048/product/ArviZ/mcse_meantrue
+isotropic-46003/2048/Q/ArviZ/rhat_ranktrue
+isotropic-46003/2048/Q/ArviZ/ess_bulktrue
+isotropic-46003/2048/Q/ArviZ/ess_tailtrue
+isotropic-46003/2048/Q/ArviZ/ess_meantrue
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+isotropic-46003/2048/Q/ArviZ/mcse_meantrue
+isotropic-46003/2048/sum_direction/ArviZ/rhat_ranktrue
+isotropic-46003/2048/sum_direction/ArviZ/ess_bulktrue
+isotropic-46003/2048/sum_direction/ArviZ/ess_tailtrue
+isotropic-46003/2048/sum_direction/ArviZ/ess_meantrue
+isotropic-46003/2048/sum_direction/ArviZ/mcse_meantrue
+isotropic-46003/2048/difference_direction/ArviZ/rhat_ranktrue
+isotropic-46003/2048/difference_direction/ArviZ/ess_bulktrue
+isotropic-46003/2048/difference_direction/ArviZ/ess_tailtrue
+isotropic-46003/2048/difference_direction/ArviZ/ess_meantrue
+isotropic-46003/2048/difference_direction/ArviZ/mcse_meantrue
+isotropic-46003/8192/y1/ArviZ/rhat_ranktrue
+isotropic-46003/8192/y1/ArviZ/ess_bulktrue
+isotropic-46003/8192/y1/ArviZ/ess_tailtrue
+isotropic-46003/8192/y1/ArviZ/ess_meantrue
+isotropic-46003/8192/y1/ArviZ/mcse_meantrue
+isotropic-46003/8192/y2/ArviZ/rhat_ranktrue
+isotropic-46003/8192/y2/ArviZ/ess_bulktrue
+isotropic-46003/8192/y2/ArviZ/ess_tailtrue
+isotropic-46003/8192/y2/ArviZ/ess_meantrue
+isotropic-46003/8192/y2/ArviZ/mcse_meantrue
+isotropic-46003/8192/y1_squared/ArviZ/rhat_ranktrue
+isotropic-46003/8192/y1_squared/ArviZ/ess_bulktrue
+isotropic-46003/8192/y1_squared/ArviZ/ess_tailtrue
+isotropic-46003/8192/y1_squared/ArviZ/ess_meantrue
+isotropic-46003/8192/y1_squared/ArviZ/mcse_meantrue
+isotropic-46003/8192/y2_squared/ArviZ/rhat_ranktrue
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+isotropic-46003/8192/y2_squared/ArviZ/ess_bulktrue
+isotropic-46003/8192/y2_squared/ArviZ/ess_tailtrue
+isotropic-46003/8192/y2_squared/ArviZ/ess_meantrue
+isotropic-46003/8192/y2_squared/ArviZ/mcse_meantrue
+isotropic-46003/8192/product/ArviZ/rhat_ranktrue
+isotropic-46003/8192/product/ArviZ/ess_bulktrue
+isotropic-46003/8192/product/ArviZ/ess_tailtrue
+isotropic-46003/8192/product/ArviZ/ess_meantrue
+isotropic-46003/8192/product/ArviZ/mcse_meantrue
+isotropic-46003/8192/Q/ArviZ/rhat_ranktrue
+isotropic-46003/8192/Q/ArviZ/ess_bulktrue
+isotropic-46003/8192/Q/ArviZ/ess_tailtrue
+isotropic-46003/8192/Q/ArviZ/ess_meantrue
+isotropic-46003/8192/Q/ArviZ/mcse_meantrue
+isotropic-46003/8192/sum_direction/ArviZ/rhat_ranktrue
+isotropic-46003/8192/sum_direction/ArviZ/ess_bulktrue
+isotropic-46003/8192/sum_direction/ArviZ/ess_tailtrue
+isotropic-46003/8192/sum_direction/ArviZ/ess_meantrue
+isotropic-46003/8192/sum_direction/ArviZ/mcse_meantrue
+isotropic-46003/8192/difference_direction/ArviZ/rhat_ranktrue
+isotropic-46003/8192/difference_direction/ArviZ/ess_bulktrue
+isotropic-46003/8192/difference_direction/ArviZ/ess_tailtrue
+isotropic-46003/8192/difference_direction/ArviZ/ess_meantrue
+isotropic-46003/8192/difference_direction/ArviZ/mcse_meantrue
+preconditioned-46004/finite candidatetrue
+preconditioned-46004/2048/y1/ArviZ/rhat_ranktrue
+preconditioned-46004/2048/y1/ArviZ/ess_bulktrue
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46004/2048/y1/ArviZ/ess_tailtrue
+preconditioned-46004/2048/y1/ArviZ/ess_meantrue
+preconditioned-46004/2048/y1/ArviZ/mcse_meantrue
+preconditioned-46004/2048/y2/ArviZ/rhat_ranktrue
+preconditioned-46004/2048/y2/ArviZ/ess_bulktrue
+preconditioned-46004/2048/y2/ArviZ/ess_tailtrue
+preconditioned-46004/2048/y2/ArviZ/ess_meantrue
+preconditioned-46004/2048/y2/ArviZ/mcse_meantrue
+preconditioned-46004/2048/y1_squared/ArviZ/rhat_ranktrue
+preconditioned-46004/2048/y1_squared/ArviZ/ess_bulktrue
+preconditioned-46004/2048/y1_squared/ArviZ/ess_tailtrue
+preconditioned-46004/2048/y1_squared/ArviZ/ess_meantrue
+preconditioned-46004/2048/y1_squared/ArviZ/mcse_meantrue
+preconditioned-46004/2048/y2_squared/ArviZ/rhat_ranktrue
+preconditioned-46004/2048/y2_squared/ArviZ/ess_bulktrue
+preconditioned-46004/2048/y2_squared/ArviZ/ess_tailtrue
+preconditioned-46004/2048/y2_squared/ArviZ/ess_meantrue
+preconditioned-46004/2048/y2_squared/ArviZ/mcse_meantrue
+preconditioned-46004/2048/product/ArviZ/rhat_ranktrue
+preconditioned-46004/2048/product/ArviZ/ess_bulktrue
+preconditioned-46004/2048/product/ArviZ/ess_tailtrue
+preconditioned-46004/2048/product/ArviZ/ess_meantrue
+preconditioned-46004/2048/product/ArviZ/mcse_meantrue
+preconditioned-46004/2048/Q/ArviZ/rhat_ranktrue
+preconditioned-46004/2048/Q/ArviZ/ess_bulktrue
+preconditioned-46004/2048/Q/ArviZ/ess_tailtrue
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46004/2048/Q/ArviZ/ess_meantrue
+preconditioned-46004/2048/Q/ArviZ/mcse_meantrue
+preconditioned-46004/2048/sum_direction/ArviZ/rhat_ranktrue
+preconditioned-46004/2048/sum_direction/ArviZ/ess_bulktrue
+preconditioned-46004/2048/sum_direction/ArviZ/ess_tailtrue
+preconditioned-46004/2048/sum_direction/ArviZ/ess_meantrue
+preconditioned-46004/2048/sum_direction/ArviZ/mcse_meantrue
+preconditioned-46004/2048/difference_direction/ArviZ/rhat_ranktrue
+preconditioned-46004/2048/difference_direction/ArviZ/ess_bulktrue
+preconditioned-46004/2048/difference_direction/ArviZ/ess_tailtrue
+preconditioned-46004/2048/difference_direction/ArviZ/ess_meantrue
+preconditioned-46004/2048/difference_direction/ArviZ/mcse_meantrue
+preconditioned-46004/8192/y1/ArviZ/rhat_ranktrue
+preconditioned-46004/8192/y1/ArviZ/ess_bulktrue
+preconditioned-46004/8192/y1/ArviZ/ess_tailtrue
+preconditioned-46004/8192/y1/ArviZ/ess_meantrue
+preconditioned-46004/8192/y1/ArviZ/mcse_meantrue
+preconditioned-46004/8192/y1/rank-folded Rhattrue
+preconditioned-46004/8192/y1/bulk-tail ESStrue
+preconditioned-46004/8192/y1/observable MCSEtrue
+preconditioned-46004/8192/y1/known target momenttrue
+preconditioned-46004/8192/y2/ArviZ/rhat_ranktrue
+preconditioned-46004/8192/y2/ArviZ/ess_bulktrue
+preconditioned-46004/8192/y2/ArviZ/ess_tailtrue
+preconditioned-46004/8192/y2/ArviZ/ess_meantrue
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46004/8192/y2/ArviZ/mcse_meantrue
+preconditioned-46004/8192/y2/rank-folded Rhattrue
+preconditioned-46004/8192/y2/bulk-tail ESStrue
+preconditioned-46004/8192/y2/observable MCSEtrue
+preconditioned-46004/8192/y2/known target momenttrue
+preconditioned-46004/8192/y1_squared/ArviZ/rhat_ranktrue
+preconditioned-46004/8192/y1_squared/ArviZ/ess_bulktrue
+preconditioned-46004/8192/y1_squared/ArviZ/ess_tailtrue
+preconditioned-46004/8192/y1_squared/ArviZ/ess_meantrue
+preconditioned-46004/8192/y1_squared/ArviZ/mcse_meantrue
+preconditioned-46004/8192/y1_squared/rank-folded Rhattrue
+preconditioned-46004/8192/y1_squared/bulk-tail ESStrue
+preconditioned-46004/8192/y1_squared/observable MCSEtrue
+preconditioned-46004/8192/y1_squared/known target momenttrue
+preconditioned-46004/8192/y2_squared/ArviZ/rhat_ranktrue
+preconditioned-46004/8192/y2_squared/ArviZ/ess_bulktrue
+preconditioned-46004/8192/y2_squared/ArviZ/ess_tailtrue
+preconditioned-46004/8192/y2_squared/ArviZ/ess_meantrue
+preconditioned-46004/8192/y2_squared/ArviZ/mcse_meantrue
+preconditioned-46004/8192/y2_squared/rank-folded Rhattrue
+preconditioned-46004/8192/y2_squared/bulk-tail ESStrue
+preconditioned-46004/8192/y2_squared/observable MCSEtrue
+preconditioned-46004/8192/y2_squared/known target momenttrue
+preconditioned-46004/8192/product/ArviZ/rhat_ranktrue
+preconditioned-46004/8192/product/ArviZ/ess_bulktrue
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46004/8192/product/ArviZ/ess_tailtrue
+preconditioned-46004/8192/product/ArviZ/ess_meantrue
+preconditioned-46004/8192/product/ArviZ/mcse_meantrue
+preconditioned-46004/8192/product/rank-folded Rhattrue
+preconditioned-46004/8192/product/bulk-tail ESStrue
+preconditioned-46004/8192/product/observable MCSEtrue
+preconditioned-46004/8192/product/known target momenttrue
+preconditioned-46004/8192/Q/ArviZ/rhat_ranktrue
+preconditioned-46004/8192/Q/ArviZ/ess_bulktrue
+preconditioned-46004/8192/Q/ArviZ/ess_tailtrue
+preconditioned-46004/8192/Q/ArviZ/ess_meantrue
+preconditioned-46004/8192/Q/ArviZ/mcse_meantrue
+preconditioned-46004/8192/Q/rank-folded Rhattrue
+preconditioned-46004/8192/Q/bulk-tail ESStrue
+preconditioned-46004/8192/Q/observable MCSEtrue
+preconditioned-46004/8192/Q/known target momenttrue
+preconditioned-46004/8192/sum_direction/ArviZ/rhat_ranktrue
+preconditioned-46004/8192/sum_direction/ArviZ/ess_bulktrue
+preconditioned-46004/8192/sum_direction/ArviZ/ess_tailtrue
+preconditioned-46004/8192/sum_direction/ArviZ/ess_meantrue
+preconditioned-46004/8192/sum_direction/ArviZ/mcse_meantrue
+preconditioned-46004/8192/sum_direction/rank-folded Rhattrue
+preconditioned-46004/8192/sum_direction/bulk-tail ESStrue
+preconditioned-46004/8192/sum_direction/observable MCSEtrue
+preconditioned-46004/8192/sum_direction/known target momenttrue
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46004/8192/difference_direction/ArviZ/rhat_ranktrue
+preconditioned-46004/8192/difference_direction/ArviZ/ess_bulktrue
+preconditioned-46004/8192/difference_direction/ArviZ/ess_tailtrue
+preconditioned-46004/8192/difference_direction/ArviZ/ess_meantrue
+preconditioned-46004/8192/difference_direction/ArviZ/mcse_meantrue
+preconditioned-46004/8192/difference_direction/rank-folded Rhattrue
+preconditioned-46004/8192/difference_direction/bulk-tail ESStrue
+preconditioned-46004/8192/difference_direction/observable MCSEtrue
+preconditioned-46004/8192/difference_direction/known target momenttrue
+isotropic-46004/finite candidatetrue
+isotropic-46004/2048/y1/ArviZ/rhat_ranktrue
+isotropic-46004/2048/y1/ArviZ/ess_bulktrue
+isotropic-46004/2048/y1/ArviZ/ess_tailtrue
+isotropic-46004/2048/y1/ArviZ/ess_meantrue
+isotropic-46004/2048/y1/ArviZ/mcse_meantrue
+isotropic-46004/2048/y2/ArviZ/rhat_ranktrue
+isotropic-46004/2048/y2/ArviZ/ess_bulktrue
+isotropic-46004/2048/y2/ArviZ/ess_tailtrue
+isotropic-46004/2048/y2/ArviZ/ess_meantrue
+isotropic-46004/2048/y2/ArviZ/mcse_meantrue
+isotropic-46004/2048/y1_squared/ArviZ/rhat_ranktrue
+isotropic-46004/2048/y1_squared/ArviZ/ess_bulktrue
+isotropic-46004/2048/y1_squared/ArviZ/ess_tailtrue
+isotropic-46004/2048/y1_squared/ArviZ/ess_meantrue
+isotropic-46004/2048/y1_squared/ArviZ/mcse_meantrue
+isotropic-46004/2048/y2_squared/ArviZ/rhat_ranktrue
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+isotropic-46004/2048/y2_squared/ArviZ/ess_bulktrue
+isotropic-46004/2048/y2_squared/ArviZ/ess_tailtrue
+isotropic-46004/2048/y2_squared/ArviZ/ess_meantrue
+isotropic-46004/2048/y2_squared/ArviZ/mcse_meantrue
+isotropic-46004/2048/product/ArviZ/rhat_ranktrue
+isotropic-46004/2048/product/ArviZ/ess_bulktrue
+isotropic-46004/2048/product/ArviZ/ess_tailtrue
+isotropic-46004/2048/product/ArviZ/ess_meantrue
+isotropic-46004/2048/product/ArviZ/mcse_meantrue
+isotropic-46004/2048/Q/ArviZ/rhat_ranktrue
+isotropic-46004/2048/Q/ArviZ/ess_bulktrue
+isotropic-46004/2048/Q/ArviZ/ess_tailtrue
+isotropic-46004/2048/Q/ArviZ/ess_meantrue
+isotropic-46004/2048/Q/ArviZ/mcse_meantrue
+isotropic-46004/2048/sum_direction/ArviZ/rhat_ranktrue
+isotropic-46004/2048/sum_direction/ArviZ/ess_bulktrue
+isotropic-46004/2048/sum_direction/ArviZ/ess_tailtrue
+isotropic-46004/2048/sum_direction/ArviZ/ess_meantrue
+isotropic-46004/2048/sum_direction/ArviZ/mcse_meantrue
+isotropic-46004/2048/difference_direction/ArviZ/rhat_ranktrue
+isotropic-46004/2048/difference_direction/ArviZ/ess_bulktrue
+isotropic-46004/2048/difference_direction/ArviZ/ess_tailtrue
+isotropic-46004/2048/difference_direction/ArviZ/ess_meantrue
+isotropic-46004/2048/difference_direction/ArviZ/mcse_meantrue
+isotropic-46004/8192/y1/ArviZ/rhat_ranktrue
+isotropic-46004/8192/y1/ArviZ/ess_bulktrue
+isotropic-46004/8192/y1/ArviZ/ess_tailtrue
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+isotropic-46004/8192/y1/ArviZ/ess_meantrue
+isotropic-46004/8192/y1/ArviZ/mcse_meantrue
+isotropic-46004/8192/y2/ArviZ/rhat_ranktrue
+isotropic-46004/8192/y2/ArviZ/ess_bulktrue
+isotropic-46004/8192/y2/ArviZ/ess_tailtrue
+isotropic-46004/8192/y2/ArviZ/ess_meantrue
+isotropic-46004/8192/y2/ArviZ/mcse_meantrue
+isotropic-46004/8192/y1_squared/ArviZ/rhat_ranktrue
+isotropic-46004/8192/y1_squared/ArviZ/ess_bulktrue
+isotropic-46004/8192/y1_squared/ArviZ/ess_tailtrue
+isotropic-46004/8192/y1_squared/ArviZ/ess_meantrue
+isotropic-46004/8192/y1_squared/ArviZ/mcse_meantrue
+isotropic-46004/8192/y2_squared/ArviZ/rhat_ranktrue
+isotropic-46004/8192/y2_squared/ArviZ/ess_bulktrue
+isotropic-46004/8192/y2_squared/ArviZ/ess_tailtrue
+isotropic-46004/8192/y2_squared/ArviZ/ess_meantrue
+isotropic-46004/8192/y2_squared/ArviZ/mcse_meantrue
+isotropic-46004/8192/product/ArviZ/rhat_ranktrue
+isotropic-46004/8192/product/ArviZ/ess_bulktrue
+isotropic-46004/8192/product/ArviZ/ess_tailtrue
+isotropic-46004/8192/product/ArviZ/ess_meantrue
+isotropic-46004/8192/product/ArviZ/mcse_meantrue
+isotropic-46004/8192/Q/ArviZ/rhat_ranktrue
+isotropic-46004/8192/Q/ArviZ/ess_bulktrue
+isotropic-46004/8192/Q/ArviZ/ess_tailtrue
+isotropic-46004/8192/Q/ArviZ/ess_meantrue
+isotropic-46004/8192/Q/ArviZ/mcse_meantrue
+isotropic-46004/8192/sum_direction/ArviZ/rhat_ranktrue
+isotropic-46004/8192/sum_direction/ArviZ/ess_bulktrue
+
+## Importance sampling and correlated-Gaussian diagnostics — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+isotropic-46004/8192/sum_direction/ArviZ/ess_tailtrue
+isotropic-46004/8192/sum_direction/ArviZ/ess_meantrue
+isotropic-46004/8192/sum_direction/ArviZ/mcse_meantrue
+isotropic-46004/8192/difference_direction/ArviZ/rhat_ranktrue
+isotropic-46004/8192/difference_direction/ArviZ/ess_bulktrue
+isotropic-46004/8192/difference_direction/ArviZ/ess_tailtrue
+isotropic-46004/8192/difference_direction/ArviZ/ess_meantrue
+isotropic-46004/8192/difference_direction/ArviZ/mcse_meantrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Distribution and error diagnostics from actual saved data;sample/time axes are distinguished from spatial dimensions.Read every stored record
+seedproposalchainssaved_drawscandidate_file
+46001preconditioned48192correlated-gaussian-mcmc.npz
+46001isotropic48192correlated-gaussian-mcmc.npz
+46002preconditioned48192correlated-gaussian-mcmc.npz
+46002isotropic48192correlated-gaussian-mcmc.npz
+46003preconditioned48192correlated-gaussian-mcmc.npz
+46003isotropic48192correlated-gaussian-mcmc.npz
+46004preconditioned48192correlated-gaussian-mcmc.npz
+46004isotropic48192correlated-gaussian-mcmc.npz
+Measurements and complete records / JSON
+
+## Importance sampling and correlated-Gaussian diagnostics — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+A. Vehtari et al. (2021). Rank-normalization,folding,and localization: An improved R-hat for assessing convergence of MCMC
+Review scope / review_level: selected-primary-diagnostic-definitions
+Read selected original rank/foldedRhat,ESS and corrected Blom equation. No multivariate global-convergence certificate.
+ArviZ developers (2024). ArviZ0.20.0 public diagnostics API and selected implementation
+Review scope / review_level: official-pinned-source-and-independent-same-data-execution
+Read official0.20.0 ESS/MCSE source and API. Cache640values from128same-data observable/prefix arrays of8fixed chainsets in a separate process. Independence is the diagnostic engine,not an independent sampler.
+
 ## CSVR and Langevin: distributions, fluctuations and correlations — CSVR and Langevin: distributions, fluctuations and correlations [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/
@@ -34257,7 +38513,9 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-th
 Coverage: reading
 
 Check canonical Gaussian/Gamma distributions and K/U/H means/variances. For finite steps, compare the Verlet-shadow position variance T/[omega²(1−h² omega²/4)] and momentum variance T against a separately constructed Lyapunov solution. Deterministic biases at h=0.2/0.1/0.05 establish second order. Check Langevin q,p,K,H correlations against independent discrete propagation; report CSVR correlations with independent-replica standard errors and tau/h dependence.
-No corresponding reference-library card is registered. The execution-specific validation material above documents its reference values and acceptance checks.
+Related-model reference · Analytic reference
+OU weak moments with joint Brownian coupling
+dX=1.5(.2-X)dt+.8dW,X0=.7;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping.
 
 ## CSVR and Langevin: distributions, fluctuations and correlations — Assumptions, units and boundaries [en]
 
@@ -34924,6 +39182,9 @@ Freeze 22 pytest checks and 94 group gates. Linearly interpolate to 17 points pe
 Same-problem reference · Finite-grid numerical reference
 Ghia Re100: original finite-grid velocity centerlines
 Educational Re100 checks on three fixed grids. Lid/sidewall corner velocities are discontinuous; stationary corners take precedence. Ghia values are rounded numerical references, not an exact solution, and printed four-decimal coordinates are preserved. No high-Re, turbulence, original-algorithm reproduction or cavity-pressure validation is claimed.
+Related-model reference · Finite-grid numerical reference
+LBM Re100 cavity: actual2D fields and Ghia centerlines
+Physical unit square, lid1, viscosity.01, Re100; N24/32/48, lattice lid.04, dt=.04/N. Three stationary walls/rightward lid; stationary side owns a simultaneous top/side link. Initialrho1/rest.
 Input and validation protocol history · Initial input
 
 ## Nonperiodic walls: cavity and manufactured flow — Assumptions, units and boundaries [en]
@@ -43853,7 +48114,7 @@ R. Car; M. Parrinello (1985)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/#verification
 Coverage: reading
 
-水素型原子・Heの2問題群を実行し、独立参照と比較して全113問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。分子DFT・FCIや他の周期物質へ検証を拡張していません。
+水素型原子・Heの2問題群を実行し、独立参照と比較して全122問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。分子DFT・FCIや他の周期物質へ検証を拡張していません。
 実行・検証例あり
 
 ## 量子化学・DFT：何を近似し、何を解くか — 1電子：水素型原子 [ja]
@@ -47006,8 +51267,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 公開Web版、集計日2026-11-23。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
-方程式・モデル60項目・計算法と構成要素137項目・学術誌／会議論文249件・全参考資料310件。
-保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め123章です。
+方程式・モデル65項目・計算法と構成要素137項目・学術誌／会議論文249件・全参考資料310件。
+保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め132章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]
 
@@ -47015,7 +51276,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 名前付きの方程式・モデルを数えます。スカラー成分や数学的に互いに独立な系統の数ではありません。枠組みや補助定式化を含み、通常は派生形を一つにまとめます。ただし個別に説明するSR／GRの流体系3種類は分けます。生物モデルは専用カタログから一度だけ取り込みます。
-ローカル実験のある項目は38、文献解説のみは22で、後者には生物調査22項目すべてを含みます。連成系は一項目とし、成分方程式では増やしません。Poisson／Laplaceや次元の違いもまとめます。枠組みと個別反応則が並ぶため、数学的に独立した系統数ではありません。
+ローカル実験のある項目は43、文献解説のみは22で、後者には生物調査22項目すべてを含みます。連成系は一項目とし、成分方程式では増やしません。Poisson／Laplaceや次元の違いもまとめます。枠組みと個別反応則が並ぶため、数学的に独立した系統数ではありません。
 一覧の詳細な範囲注記は原文（英語）を保持します。各章の日本語本文も併せて参照できます。
 
 ## 収録範囲と数え方 — 物理・数学モデル# [ja]
@@ -53028,6 +57289,755 @@ Antonio Celani, Andrea Mazzino and Lara Vozella (2006). Rayleigh–Taylor turbul
 確認範囲 / review_level: primary-selected-original-pdf-text
 原著のBoussinesq方程式と周期設定を確認。本例の滑らかな定常維持二層と線形参照は独自です。
 
+## 曲面LBMの環状Couette流 — 曲面LBMの環状Couette流 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-annulus/
+Coverage: reading
+
+同じ物理条件で格子を細かくし、曲面補間と階段壁の速度・点ごとの圧力・トルクを解析解に照合します。
+
+## 曲面LBMの環状Couette流 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-annulus/#run-all
+Coverage: reading
+
+ZIPの atlas-lbm-annulus-2026-11-24 フォルダで実行します。このコマンドは配布版の全1例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## 曲面LBMの環状Couette流 — 曲面LBMの環状Couette制御：速度・圧力・torque [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-annulus/
+Coverage: reading
+
+実円弧交点の2次Lagrange補間とstair-halfwayを、回転内壁の解析Navier–Stokes場に比較します。円柱wakeとは別の追加制御です。
+手法・式・図・参照解
+使用手法
+D2Q9–BGK衝突・並進
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+円弧交点qから反射特性上の3点2次補間を行います。q<.5はoutgoingの内側2点、q>.5はincomingの内側1点を使用し、q=.5はhalfway。移動壁補正、実force/torqueと非零wall massを台帳化し、floorやmass補正をしません。
+等温格子BGK
+Rin.2/Rout.4、中心(.5,.5)、内壁接線速度.02、外壁静止、ν.01。N80/160/240、tau.7、T4、整数3840/15360/34560steps、両境界法計6runs。初期は解析場の平衡分布。
+非圧縮Navier–Stokes
+Rin.2/Rout.4、中心(.5,.5)、内壁接線速度.02、外壁静止、ν.01。N80/160/240、tau.7、T4、整数3840/15360/34560steps、両境界法計6runs。初期は解析場の平衡分布。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+曲面LBMの環状Couette制御：速度・圧力・torque
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+群28pytest、環状80判定。独立半径/Cartesian微分7資格、最細速度.03・全点圧力ゲージ.08・torque相対.05、定常性・細分化・stair差・壁込み収支。別の87成分資格に合格済みですが主計算合格とは分けます。 新160/240格子の別29成分資格に合格。
+同じ問題の参照 · 解析参照
+曲面LBMの環状Couette制御：速度・圧力・トルク
+固定円弧と低速回転のみ。2次補間は負係数を含み一般の正値性や安定性を保証しません。補間mass非保存は実値を記録。以前の線形版は圧力.617757>.08で不合格として保存し、半径平均への置換なし。移動solidの拓撲変化や円柱の代用ではありません。 2次版旧N80の圧力.352758>.08も不合格として保持し、Ui/tau/Tを変えず両境界を固定細分化します。
+
+## 曲面LBMの環状Couette流 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-annulus/#lbm-annular-couette-control-assumptions
+Coverage: reading
+
+Rin.2/Rout.4、中心(.5,.5)、内壁接線速度.02、外壁静止、ν.01。N80/160/240、tau.7、T4、整数3840/15360/34560steps、両境界法計6runs。初期は解析場の平衡分布。
+
+## 曲面LBMの環状Couette流 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-annulus/#lbm-annular-couette-control-algorithm
+Coverage: reading
+
+円弧交点qから反射特性上の3点2次補間を行います。q<.5はoutgoingの内側2点、q>.5はincomingの内側1点を使用し、q=.5はhalfway。移動壁補正、実force/torqueと非零wall massを台帳化し、floorやmass補正をしません。
+u_\theta=Ar+B/r,\quad A=-U_iR_i/(R_o^2-R_i^2),\quad B=U_iR_iR_o^2/(R_o^2-R_i^2)p=\tfrac12A^2r^2+2AB\log r-\tfrac12B^2/r^2+C,\quad T_{inner}=-4\pi\rho\nu B
+
+## 曲面LBMの環状Couette流 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-annulus/#lbm-annular-couette-control-validation
+Coverage: reading
+
+群28pytest、環状80判定。独立半径/Cartesian微分7資格、最細速度.03・全点圧力ゲージ.08・torque相対.05、定常性・細分化・stair差・壁込み収支。別の87成分資格に合格済みですが主計算合格とは分けます。 新160/240格子の別29成分資格に合格。
+
+## 曲面LBMの環状Couette流 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-annulus/#lbm-annular-couette-control-limits
+Coverage: reading
+
+固定円弧と低速回転のみ。2次補間は負係数を含み一般の正値性や安定性を保証しません。補間mass非保存は実値を記録。以前の線形版は圧力.617757>.08で不合格として保存し、半径平均への置換なし。移動solidの拓撲変化や円柱の代用ではありません。 2次版旧N80の圧力.352758>.08も不合格として保持し、Ui/tau/Tを変えず両境界を固定細分化します。
+
+## 曲面LBMの環状Couette流 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-annulus/#lbm-annular-couette-control-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+finest_interpolated{"variant":0,"n":240,"steps":34560,"dx":0.004166666666666667,"dt":0.00011574074074074072,"time":3.999999999999999,"tau":0.7,"nu":0.01,"velocity_error":4.1181013570439095e-05,"pressure_error":0.056576140457462176,"torque":-0.0006702247827550396,"exact_torque":-0.0006702064327658225,"torque_error":2.7379607714759232e-05,"stationarity":5.063686002269724e-08,"torque_drift":4.646498909951803e-09,"mass_drift":4.200271990063427e-07,"mass_ledger":2.7512395413137817e-12,"momentum_ledger":9.763298584209473e-13,"max_mach":0.0009599923524199409,"min_rho":0.9999997461691433,"max_rho":1.0000004573310033,"min_population":0.027712534590816466,"wall_mass_exchange":0.00912977083678769,"open_mass_exchange":0.0,"final_lattice_momentum_x":4.615197113366776e-13,"final_lattice_momentum_y":5.0622700475955185e-14}
+
+## 曲面LBMの環状Couette流 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-annulus/#lbm-annular-couette-control-measurements
+Coverage: reading
+
+finest_stair{"variant":1,"n":240,"steps":34560,"dx":0.004166666666666667,"dt":0.00011574074074074072,"time":3.999999999999999,"tau":0.7,"nu":0.01,"velocity_error":0.0056320234931158345,"pressure_error":5.0386965555033765,"torque":-0.0006741976046875688,"exact_torque":-0.0006702064327658225,"torque_error":0.005955138188207717,"stationarity":2.173500599846503e-07,"torque_drift":4.07061909864866e-07,"mass_drift":2.7425432799505342e-12,"mass_ledger":2.7517486245531947e-12,"momentum_ledger":8.644174008350578e-13,"max_mach":0.0009599923524199409,"min_rho":0.9999925252188234,"max_rho":1.000007128199855,"min_population":0.027712460348227712,"wall_mass_exchange":-1.4606371667724716e-15,"open_mass_exchange":0.0,"final_lattice_momentum_x":-3.0608848788915566e-13,"final_lattice_momentum_y":5.230781086051906e-13}
+reference_qualification{"radial viscous equation":5.551115123125783e-17,"radial pressure equation":2.574980159653073e-19,"Cartesian divergence":1.3877787807814457e-17,"Cartesian x momentum":4.336808689942018e-19,"Cartesian y momentum":2.168404344971009e-19,"inner wall speed":0.0,"outer wall speed":1.734723475976807e-18}
+scopeStationary rotating-wall annulus only; does not substitute for actual cylinder flow.
+判定 / check合格
+analytic reference radial viscous equationtrue
+analytic reference radial pressure equationtrue
+analytic reference Cartesian divergencetrue
+
+## 曲面LBMの環状Couette流 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-annulus/#lbm-annular-couette-control-measurements
+Coverage: reading
+
+analytic reference Cartesian x momentumtrue
+analytic reference Cartesian y momentumtrue
+analytic reference inner wall speedtrue
+analytic reference outer wall speedtrue
+0-80 finite arraystrue
+0-80 positive densitytrue
+0-80 actual maximum Machtrue
+0-80 mass ledgertrue
+0-80 wall-open momentum ledgertrue
+0-80 all fixed integer stepstrue
+0-80 declared physical endpointtrue
+0-80 total mass drift diagnostic boundtrue
+0-80 late velocity stationaritytrue
+0-80 late torque stationaritytrue
+0-80 correct inner resisting torque signtrue
+0-160 finite arraystrue
+0-160 positive densitytrue
+0-160 actual maximum Machtrue
+0-160 mass ledgertrue
+0-160 wall-open momentum ledgertrue
+0-160 all fixed integer stepstrue
+0-160 declared physical endpointtrue
+0-160 total mass drift diagnostic boundtrue
+0-160 late velocity stationaritytrue
+0-160 late torque stationaritytrue
+0-160 correct inner resisting torque signtrue
+0-240 finite arraystrue
+0-240 positive densitytrue
+0-240 actual maximum Machtrue
+0-240 mass ledgertrue
+0-240 wall-open momentum ledgertrue
+0-240 all fixed integer stepstrue
+0-240 declared physical endpointtrue
+0-240 total mass drift diagnostic boundtrue
+0-240 late velocity stationaritytrue
+0-240 late torque stationaritytrue
+0-240 correct inner resisting torque signtrue
+1-80 finite arraystrue
+1-80 positive densitytrue
+1-80 actual maximum Machtrue
+1-80 mass ledgertrue
+
+## 曲面LBMの環状Couette流 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-annulus/#lbm-annular-couette-control-measurements
+Coverage: reading
+
+1-80 wall-open momentum ledgertrue
+1-80 all fixed integer stepstrue
+1-80 declared physical endpointtrue
+1-80 total mass drift diagnostic boundtrue
+1-80 late velocity stationaritytrue
+1-80 late torque stationaritytrue
+1-80 correct inner resisting torque signtrue
+1-160 finite arraystrue
+1-160 positive densitytrue
+1-160 actual maximum Machtrue
+1-160 mass ledgertrue
+1-160 wall-open momentum ledgertrue
+1-160 all fixed integer stepstrue
+1-160 declared physical endpointtrue
+1-160 total mass drift diagnostic boundtrue
+1-160 late velocity stationaritytrue
+1-160 late torque stationaritytrue
+1-160 correct inner resisting torque signtrue
+1-240 finite arraystrue
+1-240 positive densitytrue
+1-240 actual maximum Machtrue
+1-240 mass ledgertrue
+1-240 wall-open momentum ledgertrue
+1-240 all fixed integer stepstrue
+1-240 declared physical endpointtrue
+1-240 total mass drift diagnostic boundtrue
+1-240 late velocity stationaritytrue
+1-240 late torque stationaritytrue
+1-240 correct inner resisting torque signtrue
+finest interpolated velocitytrue
+finest interpolated pressure gaugetrue
+finest interpolated torquetrue
+interpolated velocity refinementtrue
+interpolated pressure refinementtrue
+interpolated improves finest stair velocitytrue
+three grids with both boundary variantstrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。固定入力を実計算した保存配列の2D場と検証診断。参照・境界・誤差の範囲は本文に明記。全記録を表で読む
+
+## 曲面LBMの環状Couette流 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-annulus/#lbm-annular-couette-control-measurements
+Coverage: reading
+
+variantnstepsdxdttimetaunuvelocity_errorpressure_errortorqueexact_torquetorque_errorstationaritytorque_driftmass_driftmass_ledgermomentum_ledgermax_machmin_rhomax_rhomin_populationwall_mass_exchangeopen_mass_exchangefinal_lattice_momentum_xfinal_lattice_momentum_y
+08038400.01250.0010416666666740.70.010.0005050996894260.352757782623-0.00067041207707-0.0006702064327660.0003068372578784.93184357181e-075.10768081088e-084.11101154651e-063.05163888893e-131.47969040442e-130.002844941347160.9999971449011.000004577370.02758500333970.0099322046311906.85562717706e-145.53584955654e-14
+0160153600.006250.00026041666666740.70.010.0001046009624590.108782754881-0.0006702461821-0.0006702064327665.9309090753e-051.04932371412e-071.05785313738e-088.73609330607e-071.22397176706e-122.42854250093e-130.001440443768540.9999993617451.000000963850.02767967453480.008442572351890-4.17443857259e-14-7.1418565506e-14
+0240345600.004166666666670.00011574074074140.70.014.11810135704e-050.0565761404575-0.000670224782755-0.0006702064327662.73796077148e-055.06368600227e-084.64649890995e-094.20027199006e-072.75123954131e-129.76329858421e-130.000959992352420.9999997461691.000000457330.02771253459080.0091297708367904.61519711337e-135.0622700476e-14
+
+## 曲面LBMの環状Couette流 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-annulus/#lbm-annular-couette-control-measurements
+Coverage: reading
+
+18038400.01250.0010416666666740.70.010.02819655047618.49259086604-0.000691471153177-0.0006702064327660.03172861281431.67378040414e-062.60750261263e-063.0454520436e-133.09815455116e-131.92072661584e-130.002846753889060.9999519346821.000045861920.0275772157747002.16493489802e-15-2.49349152437e-14
+1160153600.006250.00026041666666740.70.010.01473654289156.56865910172-0.000681016426304-0.0006702064327660.01612934912298.80329369368e-071.65250157611e-061.21780437096e-121.21968660337e-124.70753833955e-130.001440443768540.9999844869881.000014829960.027678315606800-1.67310609811e-13-2.41473507856e-15
+1240345600.004166666666670.00011574074074140.70.010.005632023493125.0386965555-0.000674197604688-0.0006702064327660.005955138188212.17350059985e-074.07061909865e-072.74254327995e-122.75174862455e-128.64417400835e-130.000959992352420.9999925252191.00000712820.0277124603482-1.46063716677e-150-3.06088487889e-135.23078108605e-13
+この例の実測値・全記録 / JSON
+
+## 曲面LBMの環状Couette流 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-annulus/#lbm-annular-couette-control-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Qisu Zou and Xiaoyi He (1996). On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model
+確認範囲 / review_level: primary-selected-extracted-text
+原著preprintの式と平面流入出境界・角・圧縮性の範囲を選択読解。特殊d2q9iの成功を本BGKへ流用しません。
+Pierre Lallemand and Li-Shi Luo (2003). Lattice Boltzmann method for moving boundaries · DOI: 10.1016/S0021-9991(02)00022-0
+確認範囲 / review_level: primary-selected-text-via-mirror
+原著選択部分Eq12–15の2次補間・壁補正・運動量交換・mass非保存を読解。汎用Lagrange式の独立scalarで係数を資格。2001原著全文や局所PDFの画像確認は未実施です。
+
+## LBMのRe100蓋駆動キャビティ — LBMのRe100蓋駆動キャビティ [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-cavity/
+Coverage: reading
+
+LBMで四壁に囲まれたRe100の流れを進め、Ghiaの中心線と主渦に照合します。壁との運動量交換も記録します。
+
+## LBMのRe100蓋駆動キャビティ — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-cavity/#run-all
+Coverage: reading
+
+ZIPの atlas-lbm-cavity-2026-11-24 フォルダで実行します。このコマンドは配布版の全1例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## LBMのRe100蓋駆動キャビティ — LBM Re100蓋駆動キャビティ：実2D場とGhia中心線 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-cavity/
+Coverage: reading
+
+4壁のBGK更新を3固定格子で実行し、nominal蓋速度で正規化したGhia中心線、主渦、定常性と壁運動量収支を検査します。
+手法・式・図・参照解
+使用手法
+D2Q9–BGK衝突・並進
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+標準D2Q9平衡分布とBGK衝突、非周期link streaming、q=.5の移動halfway反射。流出入分布ごとに壁impulseを加算し、密度補正や内部速度resetをしません。C++17を一時領域でcompileしPythonから呼びます。
+等温格子BGK
+物理単位正方形、蓋U1、ν.01、Re100。N24/32/48、格子蓋速度.04、dt=.04/N。3壁静止、上壁右向き、同時上面/側面crossingは静止側を優先。初期rho1・静止。
+非圧縮Navier–Stokes
+物理単位正方形、蓋U1、ν.01、Re100。N24/32/48、格子蓋速度.04、dt=.04/N。3壁静止、上壁右向き、同時上面/側面crossingは静止側を優先。初期rho1・静止。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Re100の蓋駆動キャビティ
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+各群22pytestと37判定。60k/80k/120k整数stepsでt*=100へ進み90/95/100を保存。最細u/v中心線最大誤差.03、主渦距離.06、95→100相対L2変化2e-4、質量・壁込み運動量ledgerを事前固定します。
+同じ問題の参照 · 有限格子の数値参照
+Ghia Re100：原著の有限格子速度中心線
+Re=100・3固定格子の教育用検査です。蓋と側壁の角に速度の不連続があり、角の速度は静止側を優先します。Ghia値は丸めた数値参照で厳密解ではなく、4桁座標をそのまま使います。高Re・乱流・原著アルゴリズムの再現・キャビティ圧力を検証したとは主張しません。
+関連モデルの参照 · 有限格子の数値参照
+LBMのRe100キャビティ：実2D場とGhia中心線
+物理単位正方形、蓋U1、ν.01、Re100。N24/32/48、格子蓋速度.04、dt=.04/N。3壁静止、上壁右向き、同時上面/側面crossingは静止側を優先。初期rho1・静止。
+
+## LBMのRe100蓋駆動キャビティ — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-cavity/#lbm-cavity-re100-assumptions
+Coverage: reading
+
+物理単位正方形、蓋U1、ν.01、Re100。N24/32/48、格子蓋速度.04、dt=.04/N。3壁静止、上壁右向き、同時上面/側面crossingは静止側を優先。初期rho1・静止。
+
+## LBMのRe100蓋駆動キャビティ — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-cavity/#lbm-cavity-re100-algorithm
+Coverage: reading
+
+標準D2Q9平衡分布とBGK衝突、非周期link streaming、q=.5の移動halfway反射。流出入分布ごとに壁impulseを加算し、密度補正や内部速度resetをしません。C++17を一時領域でcompileしPythonから呼びます。
+f_i^{eq}=w_i\rho[1+3c_i\cdot u+\frac92(c_i\cdot u)^2-\frac32|u|^2],\quad\nu_\ell=(\tau-1/2)/3f_{\bar i}(x,t+1)=f_i^\star(x,t)-6w_i\rho_0c_i\cdot u_w,\quad\rho_0=1\mathrm{Re}=UL/\nu=100,\quad t_\star=100
+
+## LBMのRe100蓋駆動キャビティ — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-cavity/#lbm-cavity-re100-validation
+Coverage: reading
+
+各群22pytestと37判定。60k/80k/120k整数stepsでt*=100へ進み90/95/100を保存。最細u/v中心線最大誤差.03、主渦距離.06、95→100相対L2変化2e-4、質量・壁込み運動量ledgerを事前固定します。
+
+## LBMのRe100蓋駆動キャビティ — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-cavity/#lbm-cavity-re100-limits
+Coverage: reading
+
+有限Machでの3格子教育例。Ghiaは丸めた独立数値参照で厳密解ではありません。蓋角は不連続で点ごとの二次精度や高Reを主張せず、他手法の既存キャビティ結果を本LBMの成功に流用しません。標準C++17compilerが必要です。
+
+## LBMのRe100蓋駆動キャビティ — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-cavity/#lbm-cavity-re100-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+finest{"n":48,"steps":120000,"tau":0.5576,"dx":0.020833333333333332,"dt":0.0008333333333333334,"time":100.0,"nu_physical":0.01,"u_error":0.007040567404226761,"v_error":0.007012356068378106,"vortex_x":0.6151785336174457,"vortex_y":0.7373696566057102,"vortex_distance":0.003592378973832659,"stationarity":6.585547769458423e-13,"mass_drift":1.1935933722876744e-11,"mass_ledger":1.1934784256250985e-11,"momentum_ledger":1.2265850980789804e-12,"max_mach":0.06489965337111371,"min_rho":0.9704718614269573,"max_rho":1.030441007310979,"min_population":0.020237879428496697,"wall_mass_exchange":-2.648371105751224e-12,"open_mass_exchange":0.0,"final_lattice_momentum_x":-7.993605777301127e-14,"final_lattice_momentum_y":5.898753707711535e-14}
+referenceGhia1982 printed Re100 tables; limited precision, independent numerical reference
+判定 / check合格
+Ghia printed table shape and anchorstrue
+24 finite arraystrue
+24 positive densitytrue
+24 actual maximum Machtrue
+24 mass ledgertrue
+24 wall-open momentum ledgertrue
+24 all fixed integer stepstrue
+24 declared physical endpointtrue
+24 closed cavity masstrue
+24 late stationaritytrue
+24 vortex search residual distancetrue
+32 finite arraystrue
+32 positive densitytrue
+32 actual maximum Machtrue
+32 mass ledgertrue
+32 wall-open momentum ledgertrue
+32 all fixed integer stepstrue
+
+## LBMのRe100蓋駆動キャビティ — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-cavity/#lbm-cavity-re100-measurements
+Coverage: reading
+
+32 declared physical endpointtrue
+32 closed cavity masstrue
+32 late stationaritytrue
+32 vortex search residual distancetrue
+48 finite arraystrue
+48 positive densitytrue
+48 actual maximum Machtrue
+48 mass ledgertrue
+48 wall-open momentum ledgertrue
+48 all fixed integer stepstrue
+48 declared physical endpointtrue
+48 closed cavity masstrue
+48 late stationaritytrue
+48 vortex search residual distancetrue
+finest nominal-lid u centerlinetrue
+finest nominal-lid v centerlinetrue
+finest primary vortextrue
+u error decreases coarse to finetrue
+v error decreases coarse to finetrue
+all three prescribed cavity gridstrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。固定入力を実計算した保存配列の2D場と検証診断。参照・境界・誤差の範囲は本文に明記。全記録を表で読む
+nstepstaudxdttimenu_physicalu_errorv_errorvortex_xvortex_yvortex_distancestationaritymass_driftmass_ledgermomentum_ledgermax_machmin_rhomax_rhomin_populationwall_mass_exchangeopen_mass_exchangefinal_lattice_momentum_xfinal_lattice_momentum_y
+24600000.52880.04166666666670.001666666666671000.010.01296643356130.009149707355290.6086421441760.7405439026690.01053491510723.92242201978e-136.27981617324e-126.2783229558e-122.13175379403e-130.06118843784550.9688299233751.031724765060.0196854650562-1.31488570032e-120-1.31006316906e-14-2.66626998258e-14
+
+## LBMのRe100蓋駆動キャビティ — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-cavity/#lbm-cavity-re100-measurements
+Coverage: reading
+
+32800000.53840.031250.001251000.010.01126126139390.00650926436250.6135748084870.7362252606610.004058767052255.11199258751e-138.241629601e-128.23991013767e-122.76855090502e-130.0630310013980.9702175495621.030337262340.0198862701708-1.76073045033e-120-1.15463194561e-146.18671780472e-14
+481200000.55760.02083333333330.0008333333333331000.010.007040567404230.007012356068380.6151785336170.7373696566060.003592378973836.58554776946e-131.19359337229e-111.19347842563e-111.22658509808e-120.06489965337110.9704718614271.030441007310.0202378794285-2.64837110575e-120-7.9936057773e-145.89875370771e-14
+この例の実測値・全記録 / JSON
+
+## LBMのRe100蓋駆動キャビティ — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-cavity/#lbm-cavity-re100-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Qisu Zou and Xiaoyi He (1996). On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model
+確認範囲 / review_level: primary-selected-extracted-text
+原著preprintの式と平面流入出境界・角・圧縮性の範囲を選択読解。特殊d2q9iの成功を本BGKへ流用しません。
+Pierre Lallemand and Li-Shi Luo (2003). Lattice Boltzmann method for moving boundaries · DOI: 10.1016/S0021-9991(02)00022-0
+確認範囲 / review_level: primary-selected-text-via-mirror
+原著の選択部分を著者資料ミラーから読解。今回の2点線形補間は別導出・単step資格で確認し、2001原著全文を読んだとはしません。
+U. Ghia, K. N. Ghia and C. T. Shin (1982). High-Re solutions for incompressible flow using the Navier-Stokes equations and a multigrid method · DOI: 10.1016/0021-9991(82)90058-4
+確認範囲 / review_level: existing-audited-primary-transcription
+既存の監査済み原表転記と以前のPDF目視出典を再照合。この実装時に原PDFを再取得したとはしません。
+
+## LBMの曲面壁とRe20円柱 — LBMの曲面壁とRe20円柱 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-curved-boundary/
+Coverage: reading
+
+Re20円柱流の曲面壁と流出境界を実計算し、抗力・圧力差・後流を独立な数値ベンチマークへ照合します。
+
+## LBMの曲面壁とRe20円柱 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-curved-boundary/#run-all
+Coverage: reading
+
+ZIPの atlas-lbm-curved-boundary-2026-11-24 フォルダで実行します。このコマンドは配布版の全1例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## LBMの曲面壁とRe20円柱 — LBMの実円柱Re20：Schäfer–Turek形状と明示出口 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-curved-boundary/
+Coverage: reading
+
+標準2D-1の全長channelと偏心円柱を実際に発展し、抗力・揚力・表面圧力差・再循環長と定常性を2格子で検査します。
+手法・式・図・参照解
+使用手法
+D2Q9–BGK衝突・並進
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+標準BGK、真円交点の2次補間、半格子channel壁、非周期open streaming。出口全9成分にfeq(1,ua)+fa−feq(rhoa,ua)を設定し、既知6成分を含む変化量を収支へ記録。初期Poiseuille圧力guessから円柱摂動を実発展し、実運動量交換を平均流速基準の力係数へ換算します。
+等温格子BGK
+[0,2.2]x[0,.41]、中心(.2,.2)、R.05、ν.001、rho1、平均流速.2/最大.3/Re20。dx.01/.005、x wet nodes221/441、y halfway nodes41/82、dt=dx/6、T30、18k/36ksteps。入口parabola、出口はrho1と隣接内点poststream速度による全9成分NEE。
+非圧縮Navier–Stokes
+[0,2.2]x[0,.41]、中心(.2,.2)、R.05、ν.001、rho1、平均流速.2/最大.3/Re20。dx.01/.005、x wet nodes221/441、y halfway nodes41/82、dt=dx/6、T30、18k/36ksteps。入口parabola、出口はrho1と隣接内点poststream速度による全9成分NEE。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+LBMの実円柱Re20：Schäfer–Turek形状と明示出口
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+群28pytest、円柱33判定。原典表3の推定範囲からの距離を別の事前粗格子公差で判定（CD5%、CL絶対.01、dp10%、La絶対.025）。26/28/30で場・力・dpの定常性、2格子差・Ma・wall/open収支も確認します。 元の出口不安定も保存し、境界式の別87成分資格と主計算を区別します。
+同じ問題の参照 · 有限格子の数値参照
+実LBMのRe20円柱流：Schäfer–Turek形状と明示した流出境界
+原典p3/p7は出口を選択可。採用NEEは独立導出した有限reservoirで、原著NEE全文の同一実装やFEATflow do-nothingと偽りません。Nabh高精度値は同BCの厳密値ではなく、原典範囲も厳密誤差区間ではありません。線形/Zou–He旧試行はstep265出口近傍で不合格として保持。有限Mach/境界/曲面差を含み一般精度保証なし。
+
+## LBMの曲面壁とRe20円柱 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-curved-boundary/#lbm-cylinder-re20-assumptions
+Coverage: reading
+
+[0,2.2]x[0,.41]、中心(.2,.2)、R.05、ν.001、rho1、平均流速.2/最大.3/Re20。dx.01/.005、x wet nodes221/441、y halfway nodes41/82、dt=dx/6、T30、18k/36ksteps。入口parabola、出口はrho1と隣接内点poststream速度による全9成分NEE。
+
+## LBMの曲面壁とRe20円柱 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-curved-boundary/#lbm-cylinder-re20-algorithm
+Coverage: reading
+
+標準BGK、真円交点の2次補間、半格子channel壁、非周期open streaming。出口全9成分にfeq(1,ua)+fa−feq(rhoa,ua)を設定し、既知6成分を含む変化量を収支へ記録。初期Poiseuille圧力guessから円柱摂動を実発展し、実運動量交換を平均流速基準の力係数へ換算します。
+\mathrm{Re}=\overline U D/\nu=20,\quad C_D=2F_x/(\rho\overline U^2D),\quad C_L=2F_y/(\rho\overline U^2D)\Delta p=p(.15,.2)-p(.25,.2),\quad L_a=x_{reattach}-.25f_{i,b}=f_i^{eq}(1,u_a)+f_{i,a}-f_i^{eq}(\rho_a,u_a),\quad i=0,\ldots,8
+
+## LBMの曲面壁とRe20円柱 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-curved-boundary/#lbm-cylinder-re20-validation
+Coverage: reading
+
+群28pytest、円柱33判定。原典表3の推定範囲からの距離を別の事前粗格子公差で判定（CD5%、CL絶対.01、dp10%、La絶対.025）。26/28/30で場・力・dpの定常性、2格子差・Ma・wall/open収支も確認します。 元の出口不安定も保存し、境界式の別87成分資格と主計算を区別します。
+
+## LBMの曲面壁とRe20円柱 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-curved-boundary/#lbm-cylinder-re20-limits
+Coverage: reading
+
+原典p3/p7は出口を選択可。採用NEEは独立導出した有限reservoirで、原著NEE全文の同一実装やFEATflow do-nothingと偽りません。Nabh高精度値は同BCの厳密値ではなく、原典範囲も厳密誤差区間ではありません。線形/Zou–He旧試行はstep265出口近傍で不合格として保持。有限Mach/境界/曲面差を含み一般精度保証なし。
+
+## LBMの曲面壁とRe20円柱 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-curved-boundary/#lbm-cylinder-re20-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+finest{"dx":0.005,"dt":0.0008333333333333334,"tau":0.6,"steps":36000,"time":30.000000000000004,"Re":20,"CD":5.644519321602302,"CL":0.011096755643135437,"stationarity":0.0002032789456526155,"drag_drift":0.000151098422030169,"lift_drift":3.478689810392302e-06,"pressure_drift":1.863260540397613e-06,"pressure_difference":0.11872124659802585,"recirculation_length":0.08386681527452555,"mass_drift":0.0004002747565754678,"mass_ledger":3.339112580809518e-12,"momentum_ledger":3.37499434539968e-12,"max_mach":0.1536578006651768,"min_rho":0.9010633065006105,"max_rho":1.1123850424542971,"min_population":0.020454450201225206,"wall_mass_exchange":16.570402727464682,"open_mass_exchange":-2.2019060198153952,"final_lattice_momentum_x":1213.6393581371472,"final_lattice_momentum_y":0.17207763765525091}
+reference_scopeSchäfer-Turek1996 Table3 estimated numerical-comparison ranges, not exact or rigorous enclosures. Original pp3/7 allow user-selected outflow. This source uses a declared all-nine poststream NEE pressure reservoir, not later FEATflow do-nothing; exact original-author NEE implementation is not claimed. Coarse LBM acceptance separately fixed before execution.
+outletAll-nine poststream NEE: rho1,adjacent-poststream velocity; finite reservoir,not later FEATflow do-nothing
+
+## LBMの曲面壁とRe20円柱 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-curved-boundary/#lbm-cylinder-re20-measurements
+Coverage: reading
+
+initial_pressureStraight Poiseuille-gradient guess, not a cylinder reference or imposed interior field
+判定 / check合格
+original source definitions and interval anchorstrue
+0.01 finite arraystrue
+0.01 positive densitytrue
+0.01 actual maximum Machtrue
+0.01 mass ledgertrue
+0.01 wall-open momentum ledgertrue
+0.01 all fixed integer stepstrue
+0.01 declared physical endpointtrue
+0.01 velocity stationaritytrue
+0.01 drag late block drifttrue
+0.01 lift late block drifttrue
+0.01 pressure late drifttrue
+0.01 positive downstream dragtrue
+0.01 pressure front exceeds backtrue
+0.005 finite arraystrue
+0.005 positive densitytrue
+0.005 actual maximum Machtrue
+0.005 mass ledgertrue
+0.005 wall-open momentum ledgertrue
+0.005 all fixed integer stepstrue
+0.005 declared physical endpointtrue
+0.005 velocity stationaritytrue
+0.005 drag late block drifttrue
+0.005 lift late block drifttrue
+0.005 pressure late drifttrue
+0.005 positive downstream dragtrue
+0.005 pressure front exceeds backtrue
+finest original range distance CDtrue
+finest original range distance CLtrue
+finest original range distance pressure_differencetrue
+finest original range distance recirculation_lengthtrue
+two-grid drag sensitivitytrue
+both prescribed actual full-domain cylinder gridstrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。固定入力を実計算した保存配列の2D場と検証診断。参照・境界・誤差の範囲は本文に明記。全記録を表で読む
+
+## LBMの曲面壁とRe20円柱 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-curved-boundary/#lbm-cylinder-re20-measurements
+Coverage: reading
+
+dxdttaustepstimeReCDCLstationaritydrag_driftlift_driftpressure_driftpressure_differencerecirculation_lengthmass_driftmass_ledgermomentum_ledgermax_machmin_rhomax_rhomin_populationwall_mass_exchangeopen_mass_exchangefinal_lattice_momentum_xfinal_lattice_momentum_y
+0.010.001666666666670.551800030205.703600037280.01356802592390.0001575917131740.0001514621438243.83782227699e-067.62364482045e-060.1218401487270.07918804676590.0004098788298341.81766131708e-121.86360136259e-120.1587061212280.8968586382391.116898082110.0201658277715-10.902519156814.5892451895303.9958066160.0453377974147
+0.0050.0008333333333330.63600030205.64451932160.01109675564310.0002032789456530.000151098422033.47868981039e-061.8632605404e-060.1187212465980.08386681527450.0004002747565753.33911258081e-123.3749943454e-120.1536578006650.9010633065011.112385042450.020454450201216.5704027275-2.201906019821213.639358140.172077637655
+この例の実測値・全記録 / JSON
+
+## LBMの曲面壁とRe20円柱 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-curved-boundary/#lbm-cylinder-re20-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Qisu Zou and Xiaoyi He (1996). On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model
+確認範囲 / review_level: primary-selected-extracted-text
+原著preprintの式と平面流入出境界・角・圧縮性の範囲を選択読解。特殊d2q9iの成功を本BGKへ流用しません。
+Pierre Lallemand and Li-Shi Luo (2003). Lattice Boltzmann method for moving boundaries · DOI: 10.1016/S0021-9991(02)00022-0
+確認範囲 / review_level: primary-selected-text-via-mirror
+原著選択部分Eq12–15の2次補間・壁補正・運動量交換・mass非保存を読解。汎用Lagrange式の独立scalarで係数を資格。2001原著全文や局所PDFの画像確認は未実施です。
+M. Schäfer and S. Turek (1996). Benchmark Computations of Laminar Flow Around a Cylinder
+確認範囲 / review_level: primary-selected-extracted-text
+原論文の形状・定義・出口自由選択・表3の推定範囲を選択読解。公式リンク404後の講義ミラー配送を明記します。
+FEATflow benchmark project (2026). DFG flow around cylinder benchmark2D-1, Re20
+確認範囲 / review_level: official-benchmark-page
+公式頁のBC・定義とNabhへの帰属を確認。Nabh原報未読で、採用出口と同一条件の厳密値とはしません。
+Zhaoli Guo,Chuguang Zheng and Baochang Shi (2002). Non-equilibrium extrapolation method for velocity and pressure boundary conditions in the lattice Boltzmann method · DOI: 10.1088/1009-1963/11/4/310
+確認範囲 / review_level: primary-official-abstract-only
+公式の原著抄録のみ読解。全文の式は未読で、採用する全9成分poststream圧力reservoirは別導出・資格です。
+
+## LBMのTaylor–Green渦と低Mach誤差 — LBMのTaylor–Green渦と低Mach誤差 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-taylor-green/
+Coverage: reading
+
+周期渦の解析解を使い、格子・時間刻み・Mach数が結び付く誤差と振幅依存性を調べます。
+
+## LBMのTaylor–Green渦と低Mach誤差 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-taylor-green/#run-all
+Coverage: reading
+
+ZIPの atlas-lbm-taylor-green-2026-11-24 フォルダで実行します。このコマンドは配布版の全1例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## LBMのTaylor–Green渦と低Mach誤差 — LBM Taylor–Green渦：格子・刻み・Machの結合感度 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-taylor-green/
+Coverage: reading
+
+周期2Dの非線形渦を実際に時間発展し、連続解析場への速度・圧力・エネルギー誤差を保存します。amplitude感度と同格子のcoupled刻み感度も分けて示します。
+手法・式・図・参照解
+使用手法
+D2Q9–BGK衝突・並進
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+標準BGKと完全周期streaming。p=cs²(rho−平均rho)(dx/dt)²で圧力単位とゲージを揃えます。解析場は初期値以外に注入せず、微分を独立Fourier演算で資格確認します。
+等温格子BGK
+[0,2pi)²、ν.1、基本U.2、N24/32/64、dt=.2dx²、tau.56、T=.2pi²、144/256/1024steps。N32/U.4,.8とN32/U.2/dt=.1dx²/tau.53/512stepsを追加。初期圧力整合rhoを使用。
+非圧縮Navier–Stokes
+[0,2pi)²、ν.1、基本U.2、N24/32/64、dt=.2dx²、tau.56、T=.2pi²、144/256/1024steps。N32/U.4,.8とN32/U.2/dt=.1dx²/tau.53/512stepsを追加。初期圧力整合rhoを使用。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+周期Taylor–Green渦
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+22pytestと79判定、6固定発展。最細速度相対L2.03、圧力.08、combined速度次数1.5以上、エネルギー.03、発散・周期質量・平均運動量を判定。解析PDE5資格を区別して保存します。 最粗N16の初回エネルギー誤差5.0018%未達を保持し、同じ3%基準へ最粗だけN24へ細分化。次数は最細32/64対だけで評価します。
+関連モデルの参照 · 解析参照
+粘性流／2次元Taylor–Green渦
+同じν=0.1・周期[0,2π]²の解析モデルですが、参照カードはy=π/4のx断面表示です。2次元速度・圧力場や格子誤差の配列とは一致しません。
+関連モデルの参照 · 解析参照
+LBMのTaylor–Green渦：格子・時間・Mach数が結び付く感度
+[0,2pi)²、ν.1、基本U.2、N24/32/64、dt=.2dx²、tau.56、T=.2pi²、144/256/1024steps。N32/U.4,.8とN32/U.2/dt=.1dx²/tau.53/512stepsを追加。初期圧力整合rhoを使用。
+
+## LBMのTaylor–Green渦と低Mach誤差 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-taylor-green/#lbm-taylor-green-assumptions
+Coverage: reading
+
+[0,2pi)²、ν.1、基本U.2、N24/32/64、dt=.2dx²、tau.56、T=.2pi²、144/256/1024steps。N32/U.4,.8とN32/U.2/dt=.1dx²/tau.53/512stepsを追加。初期圧力整合rhoを使用。
+
+## LBMのTaylor–Green渦と低Mach誤差 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-taylor-green/#lbm-taylor-green-algorithm
+Coverage: reading
+
+標準BGKと完全周期streaming。p=cs²(rho−平均rho)(dx/dt)²で圧力単位とゲージを揃えます。解析場は初期値以外に注入せず、微分を独立Fourier演算で資格確認します。
+u=U\sin x\cos y\,e^{-2\nu t},\quad v=-U\cos x\sin y\,e^{-2\nu t}p=\frac{U^2}{4}(\cos2x+\cos2y)e^{-4\nu t},\quad\langle K\rangle=\frac{U^2}{4}e^{-4\nu t}
+
+## LBMのTaylor–Green渦と低Mach誤差 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-taylor-green/#lbm-taylor-green-validation
+Coverage: reading
+
+22pytestと79判定、6固定発展。最細速度相対L2.03、圧力.08、combined速度次数1.5以上、エネルギー.03、発散・周期質量・平均運動量を判定。解析PDE5資格を区別して保存します。 最粗N16の初回エネルギー誤差5.0018%未達を保持し、同じ3%基準へ最粗だけN24へ細分化。次数は最細32/64対だけで評価します。
+
+## LBMのTaylor–Green渦と低Mach誤差 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-taylor-green/#lbm-taylor-green-limits
+Coverage: reading
+
+拡散尺度では格子・時間・Machが結合し、amplitude変更はReも変えます。純空間/純時間/純Mach次数や有限Machの厳密非圧縮性を主張しません。平衡初期化のkinetic startupも実誤差へ含めます。
+
+## LBMのTaylor–Green渦と低Mach誤差 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-taylor-green/#lbm-taylor-green-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+combined_velocity_order1.99974085713
+reference_qualification{"Fourier divergence":4.718447854656915e-16,"Fourier NS x":3.0878077872387166e-16,"Fourier NS y":3.434752482434078e-16,"mean pressure gauge":6.505213034913027e-19,"analytic mean energy":1.734723475976807e-18}
+scopeDiffusive grid/time/Mach refinement, amplitude/Re sensitivity, and coupled dt/Mach/tau probe; no pure time or pure Mach order.
+判定 / check合格
+analytic reference Fourier divergencetrue
+analytic reference Fourier NS xtrue
+analytic reference Fourier NS ytrue
+analytic reference mean pressure gaugetrue
+analytic reference analytic mean energytrue
+0 finite arraystrue
+0 positive densitytrue
+0 actual maximum Machtrue
+0 mass ledgertrue
+0 wall-open momentum ledgertrue
+0 all fixed integer stepstrue
+0 declared physical endpointtrue
+0 periodic masstrue
+0 zero mean momentumtrue
+0 normalized divergencetrue
+0 mean kinetic energytrue
+1 finite arraystrue
+1 positive densitytrue
+1 actual maximum Machtrue
+1 mass ledgertrue
+1 wall-open momentum ledgertrue
+1 all fixed integer stepstrue
+1 declared physical endpointtrue
+1 periodic masstrue
+1 zero mean momentumtrue
+1 normalized divergencetrue
+1 mean kinetic energytrue
+2 finite arraystrue
+2 positive densitytrue
+2 actual maximum Machtrue
+2 mass ledgertrue
+2 wall-open momentum ledgertrue
+2 all fixed integer stepstrue
+
+## LBMのTaylor–Green渦と低Mach誤差 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-taylor-green/#lbm-taylor-green-measurements
+Coverage: reading
+
+2 declared physical endpointtrue
+2 periodic masstrue
+2 zero mean momentumtrue
+2 normalized divergencetrue
+2 mean kinetic energytrue
+3 finite arraystrue
+3 positive densitytrue
+3 actual maximum Machtrue
+3 mass ledgertrue
+3 wall-open momentum ledgertrue
+3 all fixed integer stepstrue
+3 declared physical endpointtrue
+3 periodic masstrue
+3 zero mean momentumtrue
+3 normalized divergencetrue
+3 mean kinetic energytrue
+4 finite arraystrue
+4 positive densitytrue
+4 actual maximum Machtrue
+4 mass ledgertrue
+4 wall-open momentum ledgertrue
+4 all fixed integer stepstrue
+4 declared physical endpointtrue
+4 periodic masstrue
+4 zero mean momentumtrue
+4 normalized divergencetrue
+4 mean kinetic energytrue
+5 finite arraystrue
+5 positive densitytrue
+5 actual maximum Machtrue
+5 mass ledgertrue
+5 wall-open momentum ledgertrue
+5 all fixed integer stepstrue
+5 declared physical endpointtrue
+5 periodic masstrue
+5 zero mean momentumtrue
+5 normalized divergencetrue
+5 mean kinetic energytrue
+finest combined velocity errortrue
+finest pressure gauge errortrue
+combined finest velocity ordertrue
+first diffusive refinement decreases velocitytrue
+second diffusive refinement decreases velocitytrue
+same physical endpoint all six runstrue
+amplitude probes change actual Machtrue
+exactly six distinct prescribed runstrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。固定入力を実計算した保存配列の2D場と検証診断。参照・境界・誤差の範囲は本文に明記。全記録を表で読む
+
+## LBMのTaylor–Green渦と低Mach誤差 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-taylor-green/#lbm-taylor-green-measurements
+Coverage: reading
+
+runconfiguration_codenUstepsdxdttautimenuvelocity_errorpressure_errorenergyenergy_errordivergencemean_momentummass_driftmass_ledgermomentum_ledgermax_machmin_rhomax_rhomin_populationwall_mass_exchangeopen_mass_exchangefinal_lattice_momentum_xfinal_lattice_momentum_y
+00240.21440.2617993877990.01370778389040.561.973920880220.10.01126461574620.02518061926060.004438693223280.02240199068345.0610079995e-051.16993059572e-151.42108547152e-141.63819575189e-141.24297935956e-150.01783165288190.999841111571.000159042450.026902534070600-5.87030424271e-157.05685510027e-15
+10320.22560.1963495408490.007710628438350.561.973920880220.10.006337842680030.006421548825630.00448304056720.01263472970116.40248683755e-053.26993875943e-162.56461518688e-142.76445533132e-141.06165162097e-150.01347343544430.999909250351.00009077850.027123391409100-2.62984078958e-15-2.24473217791e-15
+20640.210240.09817477042470.001927657109590.561.973920880220.10.001584745302970.004258365794950.004526029597920.003166629803542.18201003905e-052.99924132255e-151.02473585173e-131.09356967926e-134.36092492336e-150.006785391240380.9999769795011.000023020970.0274511647826004.82426598669e-149.5028152014e-15
+
+## LBMのTaylor–Green渦と低Mach誤差 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-taylor-green/#lbm-taylor-green-measurements
+Coverage: reading
+
+31320.42560.1963495408490.007710628438350.561.973920880220.10.006302930935290.006743318537340.01793348158120.01256208685670.0001363494223492.961494668e-162.56461518688e-142.86437540353e-148.33877522687e-160.02694687088860.9996370013981.000363116310.0264796879038001.87350135405e-15-4.76355066503e-15
+41320.82560.1963495408490.007710628438350.561.973920880220.10.006169997671850.007968000888480.07175502609010.01227164258440.0003290846765253.26778180774e-162.57571741713e-142.81996648255e-145.12707416303e-160.05389374177730.9985480055921.001452502450.025224238940600-5.24927323831e-151.05124242644e-14
+52320.25120.1963495408490.003855314219180.531.973920880220.10.006401675235730.01909368147530.004482461790660.01276220208313.01929284689e-053.79709775204e-155.37347943919e-145.57331958362e-145.26123655804e-150.006736717722160.9999773125871.000022694590.027444045847800-1.52690360355e-14-7.47318873451e-15
+この例の実測値・全記録 / JSON
+
+## LBMのTaylor–Green渦と低Mach誤差 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-taylor-green/#lbm-taylor-green-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Qisu Zou and Xiaoyi He (1996). On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model
+確認範囲 / review_level: primary-selected-extracted-text
+原著preprintの式と平面流入出境界・角・圧縮性の範囲を選択読解。特殊d2q9iの成功を本BGKへ流用しません。
+Pierre Lallemand and Li-Shi Luo (2003). Lattice Boltzmann method for moving boundaries · DOI: 10.1016/S0021-9991(02)00022-0
+確認範囲 / review_level: primary-selected-text-via-mirror
+原著の選択部分を著者資料ミラーから読解。今回の2点線形補間は別導出・単step資格で確認し、2001原著全文を読んだとはしません。
+
 ## レベルセット法：円の2D移流・剛体回転 — レベルセット法：円の2D移流・剛体回転 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-level-set/
@@ -58338,7 +63348,9 @@ Langevin温度制御：正準分布・刻み偏り・時間相関
 厳密解・参照解
 この実行例の参照・検証
 SciPy離散Lyapunov解および調和系の明示共分散diag(T/omega²,T(1-h²omega²/4))で照合。運動量の刻み2次偏りと有限標本誤差を分離し、burn過渡を写像で評価。連続相関は別の行列指数で算出します。
-参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
+関連モデルの参照 · 解析参照
+OUのweakモーメントと同時Brownian結合
+dX=1.5(.2-X)dt+.8dW,X0=.7。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。
 
 ## MCMC・温度制御・生物モデル — 前提・単位・境界 [ja]
 
@@ -65785,6 +70797,1017 @@ Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton (
 確認範囲 / review_level: primary-selected-original-pdf-text
 原著の規格化方程式、再帰・雑音、Landauと二流の線形窓の議論を選択して確認。原著の計算値は転用しません。
 
+## 2Dの影・ビームとM1閉包 — 2Dの影・ビームとM1閉包 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-geometry/
+Coverage: reading
+
+吸収体の影と衝突するビームを角度法とM1で計算し、M1自体の製造解による検査と分けて示します。
+
+## 2Dの影・ビームとM1閉包 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-geometry/#run-all
+Coverage: reading
+
+ZIPの atlas-radiation-geometry-2026-11-24 フォルダで実行します。このコマンドは配布版の全2例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## 2Dの影・ビームとM1閉包 — 2D吸収影と保存的M1輸送 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-geometry/
+Coverage: reading
+
+実際の円形吸収体の影を、特性線の円弦減衰・角度輸送・M1で比較します。
+手法・式・図・参照解
+使用手法
+放射輸送・モーメント法
+風上差分（upwind）
+Heun法／SSPRK(2,2)
+Rusanov／局所Lax–Friedrichs流束
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+式・近似・診断の範囲
+風上角度FV／M1のRusanovとSSPRK2。吸収は保存ledger付き指数分割。6軸重み1/6、単位beamのnodal強度6、Pzzと全3Dtraceを保持。floor/projectionはしません。 旧c1 Rusanovの横拡散による3不合格を保持し、一般状態の方向別Jacobian固有値・LF円錐分割・法線flux比の最大を一面係数に採用。全ghost面と台帳へ同じfluxを使い、真空と既存許容丸め域の速度だけ1へ拡張して回数・最大超過を記録します。U/Pの投影や純beam特例branchはありません。
+静止媒質の灰色放射輸送・散乱・線形交換
+2D空間と3D角度測度、c1、静止吸収体。実S_Nと非線形M1を24/48/96格子で進め、同一solverの変動方向MMS・x/y交差packet controlを保持。
+静止媒質・平坦時空の灰色M1モーメント
+2D空間と3D角度測度、c1、静止吸収体。実S_Nと非線形M1を24/48/96格子で進め、同一solverの変動方向MMS・x/y交差packet controlを保持。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+2D吸収影と保存的M1輸送
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+独立な特性cell平均と閉M1強制項の複素step検査191項目がmain前に合格。全step収支・cone・正値、別時間probe、MMSとx/y実進行の収束を検査します。 新fluxの762固定成分判定がPDE改訂前に合格。旧17pytestを維持し方向別fluxの5回帰を追加した22pytestと、元24計算・166科学判定を同じ120秒上限で再検査します。
+同じ問題の参照 · 解析参照
+円形吸収体の特性線参照
+6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。
+
+## 2Dの影・ビームとM1閉包 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-geometry/#shadow-absorber2d-assumptions
+Coverage: reading
+
+2D空間と3D角度測度、c1、静止吸収体。実S_Nと非線形M1を24/48/96格子で進め、同一solverの変動方向MMS・x/y交差packet controlを保持。
+
+## 2Dの影・ビームとM1閉包 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-geometry/#shadow-absorber2d-algorithm
+Coverage: reading
+
+風上角度FV／M1のRusanovとSSPRK2。吸収は保存ledger付き指数分割。6軸重み1/6、単位beamのnodal強度6、Pzzと全3Dtraceを保持。floor/projectionはしません。 旧c1 Rusanovの横拡散による3不合格を保持し、一般状態の方向別Jacobian固有値・LF円錐分割・法線flux比の最大を一面係数に採用。全ghost面と台帳へ同じfluxを使い、真空と既存許容丸め域の速度だけ1へ拡張して回数・最大超過を記録します。U/Pの投影や純beam特例branchはありません。
+\partial_tE+\nabla\cdot\mathbf F=-\kappa_aE,\quad\partial_t\mathbf F+\nabla\cdot\mathbf P=-\kappa_a\mathbf F\mathbf P=E\left[\frac{1-\chi}{2}\mathbf I_3+\frac{3\chi-1}{2}\mathbf n\otimes\mathbf n\right]\chi=\frac{3+4f^2}{5+2\sqrt{4-3f^2}},\quad f=|\mathbf F|/E,\quad P_{xx}+P_{yy}+P_{zz}=E
+
+## 2Dの影・ビームとM1閉包 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-geometry/#shadow-absorber2d-validation
+Coverage: reading
+
+独立な特性cell平均と閉M1強制項の複素step検査191項目がmain前に合格。全step収支・cone・正値、別時間probe、MMSとx/y実進行の収束を検査します。 新fluxの762固定成分判定がPDE改訂前に合格。旧17pytestを維持し方向別fluxの5回帰を追加した22pytestと、元24計算・166科学判定を同じ120秒上限で再検査します。
+
+## 2Dの影・ビームとM1閉包 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-geometry/#shadow-absorber2d-limits
+Coverage: reading
+
+6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。
+
+## 2Dの影・ビームとM1閉包 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-geometry/#shadow-absorber2d-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+M1_numerical_fluxGeneral directional localLF:max endpoint spectralradius,LFcone-splitting bound and absolute normal reducedflux;not a nonlinearRiemannfan bound
+completed_primary_and_control_runs8
+spatial_dimensions2
+angular_dimensions3
+Pzz_retainedtrue
+判定 / check合格
+shadow-sn-n24/all-stages-finitetrue
+shadow-sn-n24/positive-energytrue
+shadow-sn-n24/realizabilitytrue
+shadow-sn-n24/energy-budgettrue
+shadow-sn-n24/full3D-pressure-tracetrue
+shadow-sn-n24/five-fixed-snapshotstrue
+shadow-sn-n48/all-stages-finitetrue
+shadow-sn-n48/positive-energytrue
+shadow-sn-n48/realizabilitytrue
+shadow-sn-n48/energy-budgettrue
+shadow-sn-n48/full3D-pressure-tracetrue
+shadow-sn-n48/five-fixed-snapshotstrue
+shadow-sn-n96/all-stages-finitetrue
+shadow-sn-n96/positive-energytrue
+shadow-sn-n96/realizabilitytrue
+shadow-sn-n96/energy-budgettrue
+shadow-sn-n96/full3D-pressure-tracetrue
+shadow-sn-n96/five-fixed-snapshotstrue
+shadow-m1-n24/all-stages-finitetrue
+shadow-m1-n24/positive-energytrue
+shadow-m1-n24/realizabilitytrue
+shadow-m1-n24/energy-budgettrue
+shadow-m1-n24/full3D-pressure-tracetrue
+shadow-m1-n24/five-fixed-snapshotstrue
+shadow-m1-n48/all-stages-finitetrue
+shadow-m1-n48/positive-energytrue
+shadow-m1-n48/realizabilitytrue
+shadow-m1-n48/energy-budgettrue
+shadow-m1-n48/full3D-pressure-tracetrue
+shadow-m1-n48/five-fixed-snapshotstrue
+
+## 2Dの影・ビームとM1閉包 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-geometry/#shadow-absorber2d-measurements
+Coverage: reading
+
+shadow-m1-n96/all-stages-finitetrue
+shadow-m1-n96/positive-energytrue
+shadow-m1-n96/realizabilitytrue
+shadow-m1-n96/energy-budgettrue
+shadow-m1-n96/full3D-pressure-tracetrue
+shadow-m1-n96/five-fixed-snapshotstrue
+shadow-sn-n96-half-dt/all-stages-finitetrue
+shadow-sn-n96-half-dt/positive-energytrue
+shadow-sn-n96-half-dt/realizabilitytrue
+shadow-sn-n96-half-dt/energy-budgettrue
+shadow-sn-n96-half-dt/full3D-pressure-tracetrue
+shadow-sn-n96-half-dt/five-fixed-snapshotstrue
+shadow-m1-n96-half-dt/all-stages-finitetrue
+shadow-m1-n96-half-dt/positive-energytrue
+shadow-m1-n96-half-dt/realizabilitytrue
+shadow-m1-n96-half-dt/energy-budgettrue
+shadow-m1-n96-half-dt/full3D-pressure-tracetrue
+shadow-m1-n96-half-dt/five-fixed-snapshotstrue
+shadow/sn/refinement-n48true
+shadow/sn/refinement-n96true
+shadow/sn/finest-referencetrue
+shadow/sn/separate-time-sensitivitytrue
+shadow/m1/refinement-n48true
+shadow/m1/refinement-n96true
+shadow/m1/finest-referencetrue
+shadow/m1/separate-time-sensitivitytrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存した実計算場の科学プレビュー。全記録を表で読む
+idkindmethodcellsfinal_timestepsfamilyfieldsindependent_moment_l1maximum_budgetminimum_energyminimum_conedirectional_speed_diagnostics
+shadow-sn-n24shadowsn241.1152refinementshadow-sn-n24.npz0.01571627158062.22044604925e-1600—
+shadow-sn-n48shadowsn481.1304refinementshadow-sn-n48.npz0.01148426575785.55111512313e-1600—
+
+## 2Dの影・ビームとM1閉包 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-geometry/#shadow-absorber2d-measurements
+Coverage: reading
+
+shadow-sn-n96shadowsn961.1604refinementshadow-sn-n96.npz0.004394928879926.38378239159e-1600—
+shadow-m1-n24shadowm1241.1152refinementshadow-m1-n24.npz0.01573005576392.49800180541e-1600{"calls":912,"vacuum_states":21344,"tiny_negative_energy_states":0,"outside_cone_roundoff_states":0,"maximum_outside_cone_excess":0.0,"maximum_speed":1.0}
+shadow-m1-n48shadowm1481.1304refinementshadow-m1-n48.npz0.01148633648445.27355936697e-1600{"calls":1824,"vacuum_states":150080,"tiny_negative_energy_states":0,"outside_cone_roundoff_states":0,"maximum_outside_cone_excess":0.0,"maximum_speed":1.0}
+shadow-m1-n96shadowm1961.1604refinementshadow-m1-n96.npz0.004395049365788.60422844084e-1600{"calls":3624,"vacuum_states":1117504,"tiny_negative_energy_states":0,"outside_cone_roundoff_states":0,"maximum_outside_cone_excess":0.0,"maximum_speed":1.0}
+shadow-sn-n96-half-dtshadowsn961.11208time-probeshadow-sn-n96-half-dt.npz0.004384816488892.27595720048e-1500—
+shadow-m1-n96-half-dtshadowm1961.11208time-probeshadow-m1-n96-half-dt.npz0.004384844948393.46944695195e-1500{"calls":7248,"vacuum_states":1185152,"tiny_negative_energy_states":0,"outside_cone_roundoff_states":0,"maximum_outside_cone_excess":0.0,"maximum_speed":1.0}
+この例の実測値・全記録 / JSON
+
+## 2Dの影・ビームとM1閉包 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-geometry/#shadow-absorber2d-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Rosdahl etal. (2013). RAMSES-RT: Radiation hydrodynamics in the cosmological context
+確認範囲 / review_level: primary-paper-selected-M1-equations-and-limitations
+ReadSection2equations12-14and two-opposing-beams limitation text. Levermore1984original not read. Educational staticgrey cases/MMS here do not reproduce RAMSESastrophysical runs.
+M. A. Skinner and E. C. Ostriker (2013). A Two-moment Radiation Hydrodynamics Module in Athena Using a Time-Explicit Godunov Method
+確認範囲 / review_level: primary-selected-section-by-independent-mathematical-reviewer
+Independent reviewer actually read selected extracted Section3.3equations37–41and eigenvalue limits;not a whole-paper/rendered-symbol audit. Directional LF cone root/weighted-CFL algebra is separately authored and independently crosschecked,not a transplanted HLL solver or claimed general Riemann-fan bound.
+
+## 2Dの影・ビームとM1閉包 — 2D反向beamとM1閉包の情報損失 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-geometry/
+Coverage: reading
+
+保存した反向packetの実進行からM1の限界を示し、別の閉M1MMSで数値実装を検証します。
+手法・式・図・参照解
+使用手法
+放射輸送・モーメント法
+風上差分（upwind）
+Heun法／SSPRK(2,2)
+Rusanov／局所Lax–Friedrichs流束
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+式・近似・診断の範囲
+風上角度FV／M1のRusanovとSSPRK2。吸収は保存ledger付き指数分割。6軸重み1/6、単位beamのnodal強度6、Pzzと全3Dtraceを保持。floor/projectionはしません。 旧c1 Rusanovの横拡散による3不合格を保持し、一般状態の方向別Jacobian固有値・LF円錐分割・法線flux比の最大を一面係数に採用。全ghost面と台帳へ同じfluxを使い、真空と既存許容丸め域の速度だけ1へ拡張して回数・最大超過を記録します。U/Pの投影や純beam特例branchはありません。
+静止媒質の灰色放射輸送・散乱・線形交換
+2D空間と3D角度測度、c1、静止吸収体。実S_Nと非線形M1を24/48/96格子で進め、同一solverの変動方向MMS・x/y交差packet controlを保持。
+静止媒質・平坦時空の灰色M1モーメント
+2D空間と3D角度測度、c1、静止吸収体。実S_Nと非線形M1を24/48/96格子で進め、同一solverの変動方向MMS・x/y交差packet controlを保持。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+2D反向beamとM1閉包の情報損失
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+独立な特性cell平均と閉M1強制項の複素step検査191項目がmain前に合格。全step収支・cone・正値、別時間probe、MMSとx/y実進行の収束を検査します。 新fluxの762固定成分判定がPDE改訂前に合格。旧17pytestを維持し方向別fluxの5回帰を追加した22pytestと、元24計算・166科学判定を同じ120秒上限で再検査します。
+同じ問題の参照 · 解析参照
+反向伝播packetの特性線参照
+6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。
+
+## 2Dの影・ビームとM1閉包 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-geometry/#opposing-beams2d-assumptions
+Coverage: reading
+
+2D空間と3D角度測度、c1、静止吸収体。実S_Nと非線形M1を24/48/96格子で進め、同一solverの変動方向MMS・x/y交差packet controlを保持。
+
+## 2Dの影・ビームとM1閉包 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-geometry/#opposing-beams2d-algorithm
+Coverage: reading
+
+風上角度FV／M1のRusanovとSSPRK2。吸収は保存ledger付き指数分割。6軸重み1/6、単位beamのnodal強度6、Pzzと全3Dtraceを保持。floor/projectionはしません。 旧c1 Rusanovの横拡散による3不合格を保持し、一般状態の方向別Jacobian固有値・LF円錐分割・法線flux比の最大を一面係数に採用。全ghost面と台帳へ同じfluxを使い、真空と既存許容丸め域の速度だけ1へ拡張して回数・最大超過を記録します。U/Pの投影や純beam特例branchはありません。
+\partial_tE+\nabla\cdot\mathbf F=-\kappa_aE,\quad\partial_t\mathbf F+\nabla\cdot\mathbf P=-\kappa_a\mathbf F\mathbf P=E\left[\frac{1-\chi}{2}\mathbf I_3+\frac{3\chi-1}{2}\mathbf n\otimes\mathbf n\right]\chi=\frac{3+4f^2}{5+2\sqrt{4-3f^2}},\quad f=|\mathbf F|/E,\quad P_{xx}+P_{yy}+P_{zz}=E
+
+## 2Dの影・ビームとM1閉包 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-geometry/#opposing-beams2d-validation
+Coverage: reading
+
+独立な特性cell平均と閉M1強制項の複素step検査191項目がmain前に合格。全step収支・cone・正値、別時間probe、MMSとx/y実進行の収束を検査します。 新fluxの762固定成分判定がPDE改訂前に合格。旧17pytestを維持し方向別fluxの5回帰を追加した22pytestと、元24計算・166科学判定を同じ120秒上限で再検査します。
+
+## 2Dの影・ビームとM1閉包 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-geometry/#opposing-beams2d-limits
+Coverage: reading
+
+6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。
+
+## 2Dの影・ビームとM1閉包 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-geometry/#opposing-beams2d-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+same_solver_controls["nonlinear-closed-M1-MMS","actual-x-and-y-crossed-angular-packets"]
+M1_transport_difference_is_model_errortrue
+M1_numerical_fluxGeneral directional localLF:max endpoint spectralradius,LFcone-splitting bound and absolute normal reducedflux;not a nonlinearRiemannfan bound
+completed_primary_and_control_runs16
+spatial_dimensions2
+angular_dimensions3
+Pzz_retainedtrue
+判定 / check合格
+beams-sn-n24/all-stages-finitetrue
+beams-sn-n24/positive-energytrue
+beams-sn-n24/realizabilitytrue
+beams-sn-n24/energy-budgettrue
+beams-sn-n24/full3D-pressure-tracetrue
+beams-sn-n24/five-fixed-snapshotstrue
+beams-sn-n48/all-stages-finitetrue
+beams-sn-n48/positive-energytrue
+beams-sn-n48/realizabilitytrue
+beams-sn-n48/energy-budgettrue
+beams-sn-n48/full3D-pressure-tracetrue
+beams-sn-n48/five-fixed-snapshotstrue
+beams-sn-n96/all-stages-finitetrue
+beams-sn-n96/positive-energytrue
+beams-sn-n96/realizabilitytrue
+beams-sn-n96/energy-budgettrue
+beams-sn-n96/full3D-pressure-tracetrue
+beams-sn-n96/five-fixed-snapshotstrue
+beams-m1-n24/all-stages-finitetrue
+beams-m1-n24/positive-energytrue
+beams-m1-n24/realizabilitytrue
+beams-m1-n24/energy-budgettrue
+beams-m1-n24/full3D-pressure-tracetrue
+beams-m1-n24/five-fixed-snapshotstrue
+beams-m1-n48/all-stages-finitetrue
+beams-m1-n48/positive-energytrue
+beams-m1-n48/realizabilitytrue
+
+## 2Dの影・ビームとM1閉包 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-geometry/#opposing-beams2d-measurements
+Coverage: reading
+
+beams-m1-n48/energy-budgettrue
+beams-m1-n48/full3D-pressure-tracetrue
+beams-m1-n48/five-fixed-snapshotstrue
+beams-m1-n96/all-stages-finitetrue
+beams-m1-n96/positive-energytrue
+beams-m1-n96/realizabilitytrue
+beams-m1-n96/energy-budgettrue
+beams-m1-n96/full3D-pressure-tracetrue
+beams-m1-n96/five-fixed-snapshotstrue
+beams-sn-n96-half-dt/all-stages-finitetrue
+beams-sn-n96-half-dt/positive-energytrue
+beams-sn-n96-half-dt/realizabilitytrue
+beams-sn-n96-half-dt/energy-budgettrue
+beams-sn-n96-half-dt/full3D-pressure-tracetrue
+beams-sn-n96-half-dt/five-fixed-snapshotstrue
+beams-m1-n96-half-dt/all-stages-finitetrue
+beams-m1-n96-half-dt/positive-energytrue
+beams-m1-n96-half-dt/realizabilitytrue
+beams-m1-n96-half-dt/energy-budgettrue
+beams-m1-n96-half-dt/full3D-pressure-tracetrue
+beams-m1-n96-half-dt/five-fixed-snapshotstrue
+beams/sn/refinement-n48true
+beams/sn/refinement-n96true
+beams/sn/finest-referencetrue
+beams/sn/separate-time-sensitivitytrue
+beams/m1/separate-time-sensitivitytrue
+mms-m1-n16/all-stages-finitetrue
+mms-m1-n16/positive-energytrue
+mms-m1-n16/realizabilitytrue
+mms-m1-n16/energy-budgettrue
+mms-m1-n16/full3D-pressure-tracetrue
+mms-m1-n16/five-fixed-snapshotstrue
+mms-m1-n32/all-stages-finitetrue
+mms-m1-n32/positive-energytrue
+mms-m1-n32/realizabilitytrue
+mms-m1-n32/energy-budgettrue
+mms-m1-n32/full3D-pressure-tracetrue
+mms-m1-n32/five-fixed-snapshotstrue
+
+## 2Dの影・ビームとM1閉包 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-geometry/#opposing-beams2d-measurements
+Coverage: reading
+
+mms-m1-n64/all-stages-finitetrue
+mms-m1-n64/positive-energytrue
+mms-m1-n64/realizabilitytrue
+mms-m1-n64/energy-budgettrue
+mms-m1-n64/full3D-pressure-tracetrue
+mms-m1-n64/five-fixed-snapshotstrue
+mms-m1-n64-half-dt/all-stages-finitetrue
+mms-m1-n64-half-dt/positive-energytrue
+mms-m1-n64-half-dt/realizabilitytrue
+mms-m1-n64-half-dt/energy-budgettrue
+mms-m1-n64-half-dt/full3D-pressure-tracetrue
+mms-m1-n64-half-dt/five-fixed-snapshotstrue
+crossed-sn-n24/all-stages-finitetrue
+crossed-sn-n24/positive-energytrue
+crossed-sn-n24/realizabilitytrue
+crossed-sn-n24/energy-budgettrue
+crossed-sn-n24/full3D-pressure-tracetrue
+crossed-sn-n24/five-fixed-snapshotstrue
+crossed-sn-n48/all-stages-finitetrue
+crossed-sn-n48/positive-energytrue
+crossed-sn-n48/realizabilitytrue
+crossed-sn-n48/energy-budgettrue
+crossed-sn-n48/full3D-pressure-tracetrue
+crossed-sn-n48/five-fixed-snapshotstrue
+crossed-sn-n96/all-stages-finitetrue
+crossed-sn-n96/positive-energytrue
+crossed-sn-n96/realizabilitytrue
+crossed-sn-n96/energy-budgettrue
+crossed-sn-n96/full3D-pressure-tracetrue
+crossed-sn-n96/five-fixed-snapshotstrue
+crossed-sn-n96-half-dt/all-stages-finitetrue
+crossed-sn-n96-half-dt/positive-energytrue
+crossed-sn-n96-half-dt/realizabilitytrue
+crossed-sn-n96-half-dt/energy-budgettrue
+crossed-sn-n96-half-dt/full3D-pressure-tracetrue
+crossed-sn-n96-half-dt/five-fixed-snapshotstrue
+mms/m1/refinement-n32true
+
+## 2Dの影・ビームとM1閉包 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-geometry/#opposing-beams2d-measurements
+Coverage: reading
+
+mms/m1/refinement-n64true
+mms/m1/finest-referencetrue
+mms/m1/separate-time-sensitivitytrue
+crossed/sn/refinement-n48true
+crossed/sn/refinement-n96true
+crossed/sn/finest-referencetrue
+crossed/sn/separate-time-sensitivitytrue
+head-on-closure-information-defecttrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存した実計算場の科学プレビュー。同じM1 solverで進めた変動方向の製造解・実計算場・符号付き誤差。全記録を表で読む
+idkindmethodcellsfinal_timestepsfamilyfieldsindependent_moment_l1maximum_budgetminimum_energyminimum_conedirectional_speed_diagnostics
+beams-sn-n24beamssn240.572refinementbeams-sn-n24.npz0.02159072878796.93889390391e-181.99491505044e-210—
+beams-sn-n48beamssn480.5140refinementbeams-sn-n48.npz0.01810883312346.93889390391e-186.93453283989e-240—
+beams-sn-n96beamssn960.5276refinementbeams-sn-n96.npz0.01345529789263.46944695195e-181.47896130662e-260—
+beams-m1-n24beamsm1240.572refinementbeams-m1-n24.npz0.03751689555556.93889390391e-182.23517819207e-204.89093761237e-28{"calls":288,"vacuum_states":0,"tiny_negative_energy_states":0,"outside_cone_roundoff_states":0,"maximum_outside_cone_excess":0.0,"maximum_speed":0.9999999999999807}
+beams-m1-n48beamsm1480.5140refinementbeams-m1-n48.npz0.03779050071163.46944695195e-182.27816613728e-213.53409685539e-28{"calls":560,"vacuum_states":0,"tiny_negative_energy_states":0,"outside_cone_roundoff_states":0,"maximum_outside_cone_excess":0.0,"maximum_speed":0.9999999999999853}
+
+## 2Dの影・ビームとM1閉包 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-geometry/#opposing-beams2d-measurements
+Coverage: reading
+
+beams-m1-n96beamsm1960.5276refinementbeams-m1-n96.npz0.03722645080786.93889390391e-185.60564464068e-223.28166136572e-28{"calls":1104,"vacuum_states":0,"tiny_negative_energy_states":0,"outside_cone_roundoff_states":0,"maximum_outside_cone_excess":0.0,"maximum_speed":0.9999999999999865}
+beams-sn-n96-half-dtbeamssn960.5552time-probebeams-sn-n96-half-dt.npz0.01345368372486.93889390391e-181.54902502056e-260—
+beams-m1-n96-half-dtbeamsm1960.5552time-probebeams-m1-n96-half-dt.npz0.03722621475256.93889390391e-185.60794258978e-223.28166136572e-28{"calls":2208,"vacuum_states":0,"tiny_negative_energy_states":0,"outside_cone_roundoff_states":0,"maximum_outside_cone_excess":0.0,"maximum_speed":0.9999999999999865}
+mms-m1-n16mmsm1160.2524refinementmms-m1-n16.npz0.01536419044494.28711609037e-180.90299128950.666986081724{"calls":96,"vacuum_states":0,"tiny_negative_energy_states":0,"outside_cone_roundoff_states":0,"maximum_outside_cone_excess":0.0,"maximum_speed":0.6908442378741732}
+mms-m1-n32mmsm1320.2548refinementmms-m1-n32.npz0.008581684030512.19587080001e-160.9007732103410.661973156452{"calls":192,"vacuum_states":0,"tiny_negative_energy_states":0,"outside_cone_roundoff_states":0,"maximum_outside_cone_excess":0.0,"maximum_speed":0.6909000278930099}
+
+## 2Dの影・ビームとM1閉包 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-geometry/#opposing-beams2d-measurements
+Coverage: reading
+
+mms-m1-n64mmsm1640.2592refinementmms-m1-n64.npz0.004540918658592.21799480956e-160.9002011803920.659094670883{"calls":368,"vacuum_states":0,"tiny_negative_energy_states":0,"outside_cone_roundoff_states":0,"maximum_outside_cone_excess":0.0,"maximum_speed":0.6909869582293076}
+mms-m1-n64-half-dtmmsm1640.25184time-probemms-m1-n64-half-dt.npz0.004539175754412.23439925982e-160.9001371241130.659090055604{"calls":736,"vacuum_states":0,"tiny_negative_energy_states":0,"outside_cone_roundoff_states":0,"maximum_outside_cone_excess":0.0,"maximum_speed":0.6909846201381773}
+crossed-sn-n24crossedsn240.2536refinementcrossed-sn-n24.npz0.01592496466716.93889390391e-183.86975299898e-240—
+crossed-sn-n48crossedsn480.2572refinementcrossed-sn-n48.npz0.01166365547536.93889390391e-182.59338160907e-250—
+crossed-sn-n96crossedsn960.25140refinementcrossed-sn-n96.npz0.007707035251546.93889390391e-185.82247250136e-270—
+crossed-sn-n96-half-dtcrossedsn960.25280time-probecrossed-sn-n96-half-dt.npz0.007705046785923.46944695195e-186.03805527375e-270—
+この例の実測値・全記録 / JSON
+
+## 2Dの影・ビームとM1閉包 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-geometry/#opposing-beams2d-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Rosdahl etal. (2013). RAMSES-RT: Radiation hydrodynamics in the cosmological context
+確認範囲 / review_level: primary-paper-selected-M1-equations-and-limitations
+ReadSection2equations12-14and two-opposing-beams limitation text. Levermore1984original not read. Educational staticgrey cases/MMS here do not reproduce RAMSESastrophysical runs.
+M. A. Skinner and E. C. Ostriker (2013). A Two-moment Radiation Hydrodynamics Module in Athena Using a Time-Explicit Godunov Method
+確認範囲 / review_level: primary-selected-section-by-independent-mathematical-reviewer
+Independent reviewer actually read selected extracted Section3.3equations37–41and eigenvalue limits;not a whole-paper/rendered-symbol audit. Directional LF cone root/weighted-CFL algebra is separately authored and independently crosschecked,not a transplanted HLL solver or claimed general Riemann-fan bound.
+
+## 非平衡放射：拡散と輸送を分ける — 非平衡放射：拡散と輸送を分ける [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/
+Coverage: reading
+
+Su–Olsonの拡散問題と輸送問題を規格化・境界・出典で分け、同条件の周期Fourier制御による拡散極限も別に確認します。
+
+## 非平衡放射：拡散と輸送を分ける — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#run-all
+Coverage: reading
+
+ZIPの atlas-radiation-matter-2026-11-24-r2 フォルダで実行します。このコマンドは配布版の全2例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## 非平衡放射：拡散と輸送を分ける — Su–Olson1996非平衡拡散 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/
+Coverage: reading
+
+実際の放射・物質2場とMarshak境界を進め、固定版ExactPackの独立積分参照と比較します。
+手法・式・図・参照解
+使用手法
+放射輸送・モーメント法
+後退Euler法
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+保存的FVと後退Euler。放射物質の反対sourceを同じSchur補元で結合し、Robinのβ+h/2半セル抵抗を用います。ε.25/2の同じ交換operatorも解析検査します。
+Su–Olson1996の非平衡拡散・物質交換
+無次元ε1、区間[0,16]、初期u=v0、左Robin入射、右0。128/256/512セルと時間半減・区間24probe。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Su–Olson1996非平衡拡散
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+独立参照54項目を輸送ケースと共有して資格済み。5主計算で独立u/v誤差、全stepの容量重み収支・正値、時間・有限領域差を分離します。
+同じ問題の参照 · 半解析参照
+Su–Olson1996拡散：固定版の独立積分評価関数
+1996拡散であり1997角度輸送とは別です。原典本文は未読、公式ソフトの選択値を資格。物理単位の質量opacity解釈は使わず無次元関数を直接参照します。
+
+## 非平衡放射：拡散と輸送を分ける — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-diffusion1996-assumptions
+Coverage: reading
+
+無次元ε1、区間[0,16]、初期u=v0、左Robin入射、右0。128/256/512セルと時間半減・区間24probe。
+
+## 非平衡放射：拡散と輸送を分ける — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-diffusion1996-algorithm
+Coverage: reading
+
+保存的FVと後退Euler。放射物質の反対sourceを同じSchur補元で結合し、Robinのβ+h/2半セル抵抗を用います。ε.25/2の同じ交換operatorも解析検査します。
+\epsilon u_\tau-u_{xx}=v-u,\quad v_\tau=u-vu(0,\tau)-\frac2{\sqrt3}u_x(0,\tau)=1\epsilon=4a/\alpha,\quad e_m/E_0=v/\epsilon,\quad \mathcal E=\epsilon u+v
+
+## 非平衡放射：拡散と輸送を分ける — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-diffusion1996-validation
+Coverage: reading
+
+独立参照54項目を輸送ケースと共有して資格済み。5主計算で独立u/v誤差、全stepの容量重み収支・正値、時間・有限領域差を分離します。
+
+## 非平衡放射：拡散と輸送を分ける — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-diffusion1996-limits
+Coverage: reading
+
+1996拡散であり1997角度輸送とは別です。原典本文は未読、公式ソフトの選択値を資格。物理単位の質量opacity解釈は使わず無次元関数を直接参照します。
+
+## 非平衡放射：拡散と輸送を分ける — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-diffusion1996-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+completed_primary_runs5
+reference_scopeindependent official diffusion integrals
+capacity_controls[{"epsilon":0.25,"method":"diffusion","error":0.00019032949653130515,"budget":5.984102102729594e-14},{"epsilon":0.25,"method":"transport","error":3.181825272147165e-07,"budget":3.3306690738754696e-16},{"epsilon":2.0,"method":"diffusion","error":0.000154177848556869,"budget":7.460698725481052e-14},{"epsilon":2.0,"method":"transport","error":7.721428540996556e-08,"budget":1.199040866595169e-14}]
+判定 / check合格
+su-olson-diffusion1996-n128/finite-positivetrue
+su-olson-diffusion1996-n128/energy-budgettrue
+su-olson-diffusion1996-n128/fixed-final-timetrue
+su-olson-diffusion1996-n256/finite-positivetrue
+su-olson-diffusion1996-n256/energy-budgettrue
+su-olson-diffusion1996-n256/fixed-final-timetrue
+su-olson-diffusion1996-n512/finite-positivetrue
+su-olson-diffusion1996-n512/energy-budgettrue
+su-olson-diffusion1996-n512/fixed-final-timetrue
+su-olson-diffusion1996-half-dt/finite-positivetrue
+su-olson-diffusion1996-half-dt/energy-budgettrue
+su-olson-diffusion1996-half-dt/fixed-final-timetrue
+su-olson-diffusion1996-far-domain/finite-positivetrue
+su-olson-diffusion1996-far-domain/energy-budgettrue
+su-olson-diffusion1996-far-domain/fixed-final-timetrue
+refinement/1true
+refinement/2true
+finest-independent-rmstrue
+
+## 非平衡放射：拡散と輸送を分ける — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-diffusion1996-measurements
+Coverage: reading
+
+finest-independent-linftrue
+separate-time-sensitivitytrue
+finite-domain-sensitivitytrue
+capacity/0.25/diffusion/errortrue
+capacity/0.25/diffusion/budgettrue
+capacity/0.25/transport/errortrue
+capacity/0.25/transport/budgettrue
+capacity/2.0/diffusion/errortrue
+capacity/2.0/diffusion/budgettrue
+capacity/2.0/transport/errortrue
+capacity/2.0/transport/budgettrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存した実計算場の科学プレビュー。全記録を表で読む
+idcellslengthepsilontimesmax_dtfamilyfieldsreference_rmsreference_linf
+su-olson-diffusion1996-n128128161[0.1,1.0,3.0]0.0003125refinementsu-olson-diffusion1996-n128.npz[0.0005828935430371845,0.0001886464788587654][0.0015246120986942974,0.00037398509166339244]
+su-olson-diffusion1996-n256256161[0.1,1.0,3.0]0.00015625refinementsu-olson-diffusion1996-n256.npz[0.00013911365660577288,4.675809160554036e-05][0.0003681927147146727,8.991602698502077e-05]
+su-olson-diffusion1996-n512512161[0.1,1.0,3.0]7.8125e-05refinementsu-olson-diffusion1996-n512.npz[3.181996278126943e-05,1.161311555354063e-05][9.057646696342125e-05,2.202011795187503e-05]
+su-olson-diffusion1996-half-dt512161[0.1,1.0,3.0]3.90625e-05time-probesu-olson-diffusion1996-half-dt.npz[3.4740959727708664e-05,1.1761108358809267e-05][9.20871373647908e-05,2.243302371870981e-05]
+
+## 非平衡放射：拡散と輸送を分ける — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-diffusion1996-measurements
+Coverage: reading
+
+su-olson-diffusion1996-far-domain768241[0.1,1.0,3.0]7.8125e-05domain-probesu-olson-diffusion1996-far-domain.npz[3.181996278126943e-05,1.161311555354063e-05][9.057646696342125e-05,2.202011795187503e-05]
+この例の実測値・全記録 / JSON
+
+## 非平衡放射：拡散と輸送を分ける — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-diffusion1996-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+LANL ExactPack developers;Timmes implementation provenance (2023). ExactPack1.7.5SuOlson pinned independent diffusion solution
+確認範囲 / review_level: primary-official-software-full-three-module-text-and-qualified-selected-values
+Read doc55/wrapper41/Timmes348lines;original1996paper abstract only. Serial original/tight selected integrals and independent PDE/Robin qualifiers passed before main. FullExactPack/base/libraries not audited.
+
+## 非平衡放射：拡散と輸送を分ける — Su–Olson1997角度輸送の独立公開表比較 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/
+Coverage: reading
+
+物質交換を含む実際の正負角度輸送を進め、2023原著者公開の解析benchmark表と比較します。
+手法・式・図・参照解
+使用手法
+放射輸送・モーメント法
+風上差分（upwind）
+Heun法／SSPRK(2,2)
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+全方向の風上FVとSSPRK2でIとVを実進行。I=2U、E=半角積分、εE+Vの収支を追跡し、拡散への置換はしません。 厚い極限制御だけは同じ風上演算子を実cos/sin応答から構成し、単一モードを行列指数で時間厳密に進めます。
+静止媒質の灰色放射輸送・散乱・線形交換
+主検証は1997型の放射輸送・物質交換です。熱・拡散方程式への関連は、別の周期Fourier制御におけるE約V、拡散係数1/[3κ(ε+1)]の極限に限ります。1996Marshak境界や輸送全体の厳密解とは区別します。
+熱・拡散方程式
+主検証は1997型の放射輸送・物質交換です。熱・拡散方程式への関連は、別の周期Fourier制御におけるE約V、拡散係数1/[3κ(ε+1)]の極限に限ります。1996Marshak境界や輸送全体の厳密解とは区別します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Su–Olson1997角度輸送の独立公開表比較
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+5主計算で空間・32/64角・時間差と独立W/V誤差を分けます。参照表の有限性・因果零・一様解析source極限はmain前に資格済みです。 同じ初期・境界・sourceで別の連続空間角度行列と解析拡散極限を比較し、空間・角度・連続体極限誤差を分離。GL64/128、非単位容量の一様厳密解、独立DOP853で新参照141項目を先に資格します。
+同じ問題の参照 · 有限格子の数値参照
+Su–Olson輸送：2023著者公開の独立解析ベンチマーク表
+原1997本文・原表と直接照合したとはしません。公開表の転記か再生成かは著者READMEに未記載。source停止後、一般散乱、全時空間の連続体誤差や角度次数は未認証です。 この追加はκhを解像したN∝κ²の半離散周期制御で、固定格子AP性や主SSPRK2の拡散時間次数を認証しません。初期F0と非零Fick流束の初期層を保持し、極限判定は最終s=.25のみ。両行列伝播にSciPy sparse expm_multiplyを共有し、DOP853照合は参照伝播器の資格です。
+
+## 非平衡放射：拡散と輸送を分ける — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-transport1997-assumptions
+Coverage: reading
+
+ε1、弾性散乱0、初期0、|x|<.5でQ1を時刻10まで。対称性でx0..8反射左・真空右。時刻.1/1/3.16228、13参照点x<6。 別制御は周期長2π、κ4/8/16、128/512/2048セル、ε1、Q0、I=V=1+.1cos xのセル平均です。
+
+## 非平衡放射：拡散と輸送を分ける — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-transport1997-algorithm
+Coverage: reading
+
+全方向の風上FVとSSPRK2でIとVを実進行。I=2U、E=半角積分、εE+Vの収支を追跡し、拡散への置換はしません。 厚い極限制御だけは同じ風上演算子を実cos/sin応答から構成し、単一モードを行列指数で時間厳密に進めます。
+\epsilon I_\tau+\mu I_x+I=V+Q,\quad V_\tau=E-VE=\frac12\int_{-1}^1I\,d\mu,\quad I=2U,\quad\mathcal E=\epsilon E+VQ=\mathbf1_{|x|<1/2}\mathbf1_{0<\tau<10}\epsilon I_t+\mu I_x=\kappa(V-I),\quad V_t=\kappa(E-V),\quad x\in[0,2\pi)D_{\rm rad}=\frac1{3\kappa},\quad D_{\rm eff}=\frac1{3\kappa(\epsilon+1)},\quad t=\kappa sE_D=V_D=1+A_N e^{-s/[3(\epsilon+1)]}\cos x,\quad F_D=-\frac1{3\kappa}\partial_x E_D
+
+## 非平衡放射：拡散と輸送を分ける — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-transport1997-validation
+Coverage: reading
+
+5主計算で空間・32/64角・時間差と独立W/V誤差を分けます。参照表の有限性・因果零・一様解析source極限はmain前に資格済みです。 同じ初期・境界・sourceで別の連続空間角度行列と解析拡散極限を比較し、空間・角度・連続体極限誤差を分離。GL64/128、非単位容量の一様厳密解、独立DOP853で新参照141項目を先に資格します。
+
+## 非平衡放射：拡散と輸送を分ける — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-transport1997-limits
+Coverage: reading
+
+原1997本文・原表と直接照合したとはしません。公開表の転記か再生成かは著者READMEに未記載。source停止後、一般散乱、全時空間の連続体誤差や角度次数は未認証です。 この追加はκhを解像したN∝κ²の半離散周期制御で、固定格子AP性や主SSPRK2の拡散時間次数を認証しません。初期F0と非零Fick流束の初期層を保持し、極限判定は最終s=.25のみ。両行列伝播にSciPy sparse expm_multiplyを共有し、DOP853照合は参照伝播器の資格です。
+
+## 非平衡放射：拡散と輸送を分ける — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-transport1997-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+completed_primary_runs5
+reference_scopepinned2023author-providedanalyticaltransporttable;original1997table not directly verified
+capacity_controls[{"epsilon":0.25,"method":"diffusion","error":0.00019032949653130515,"budget":5.984102102729594e-14},{"epsilon":0.25,"method":"transport","error":3.181825272147165e-07,"budget":3.3306690738754696e-16},{"epsilon":2.0,"method":"diffusion","error":0.000154177848556869,"budget":7.460698725481052e-14},{"epsilon":2.0,"method":"transport","error":7.721428540996556e-08,"budget":1.199040866595169e-14}]
+
+## 非平衡放射：拡散と輸送を分ける — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-transport1997-measurements
+Coverage: reading
+
+matched_thick_limit_control{"physical_mode_evolutions":3,"mode_records":[{"id":"su-olson-transport1997-thick-k4","kind":"matched-thick-semidiscrete-mode-control","fields":"su-olson-transport1997-thick-k4.npz","kappa":4,"cells":128,"ordinates":32,"mean_free_path":0.25,"kappa_h":0.19634954084936207,"times":[0.0,0.25,0.5,1.0],"scaled_times":[0.0,0.0625,0.125,0.25],"initial_cellmean_amplitude":0.09998996042161418,"final_FV_space_error":0.006406191708967511,"final_continuum_limit_error":0.01484981145966009,"final_joint_energy_error":0.009801905835372807,"final_joint_scaled_flux_error":0.008805846751149496,"maximum_angular_sensitivity":2.361755418510908e-15,"maximum_budget":2.8398112908774138e-15,"matrix_residual":1.3877787807814457e-17,"semidiscrete_global_RHS_residual":9.096889908022376e-15},{"id":"su-olson-transport1997-thick-k8","kind":"matched-thick-semidiscrete-mode-control","fields":"su-olson-transport1997-thick-k8.npz","kappa":8,"cells":512,"ordinates":32,"mean_free_path":0.125,"kappa_h":0.09817477042468103,"times":[0.0,0.5,1.0,2.0],"scaled_times":[0.0,0.0625,0.125,0.25],"initial_cellmean_amplitude":0.09999937250863256,"final_FV_space_error":0.0029971556290815586,"final_continuum_limit_error":0.0038430634683478773,"final_joint_energy_error":0.0016548173640567698,"final_joint_scaled_flux_error":0.0012410650258467806,"maximum_angular_sensitivity":2.707688603804596e-15,"maximum_
+
+## 非平衡放射：拡散と輸送を分ける — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-transport1997-measurements
+Coverage: reading
+
+budget":5.698441403484806e-15,"matrix_residual":1.3877787807814457e-17,"semidiscrete_global_RHS_residual":3.609851133290487e-14},{"id":"su-olson-transport1997-thick-k16","kind":"matched-thick-semidiscrete-mode-control","fields":"su-olson-transport1997-thick-k16.npz","kappa":16,"cells":2048,"ordinates":32,"mean_free_path":0.0625,"kappa_h":0.04908738521234052,"times":[0.0,1.0,2.0,4.0],"scaled_times":[0.0,0.0625,0.125,0.25],"initial_cellmean_amplitude":0.09999996078172033,"final_FV_space_error":0.0014774233739939713,"final_continuum_limit_error":0.0009641878482973868,"final_joint_energy_error":0.0011378880853298219,"final_joint_scaled_flux_error":0.0005274719030461596,"maximum_angular_sensitivity":5.828675392681093e-15,"maximum_budget":1.0695349491031034e-14,"matrix_residual":3.469446951953614e-18,"semidiscrete_global_RHS_residual":8.391850078921443e-14}],"reference_checks":141,"same_operator":"kappa times actualtransport.rhs withkappa*h,bothrates","time_role":"Exact-time semidiscrete Fourier control; originalSSPRK2tests/transientruns separate","reference_role":"Independentcontinuum-space angularmatrixGL64/128plusDOP853qualifiers;sharedSciPysparseexpm_multiplydeclared","diffusion":"D_rad1/(3kappa),D_eff1/[3kappa(epsilon+1)],matchedperiodiccellmeanIC","scope":"ResolvedjointN~kappa^2limit; nofixed-gridAPorSSPRK2temporal-orderclaim. Initiallayerreportedallfourtimes;asymptoticgatesfin
+
+## 非平衡放射：拡散と輸送を分ける — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-transport1997-measurements
+Coverage: reading
+
+als.25only;nojointorderfit."}
+判定 / check合格
+su-olson-transport1997-n128/finite-positivetrue
+su-olson-transport1997-n128/energy-budgettrue
+su-olson-transport1997-n128/fixed-final-timetrue
+su-olson-transport1997-n128/explicit-couranttrue
+su-olson-transport1997-n256/finite-positivetrue
+su-olson-transport1997-n256/energy-budgettrue
+su-olson-transport1997-n256/fixed-final-timetrue
+su-olson-transport1997-n256/explicit-couranttrue
+su-olson-transport1997-n512/finite-positivetrue
+su-olson-transport1997-n512/energy-budgettrue
+su-olson-transport1997-n512/fixed-final-timetrue
+su-olson-transport1997-n512/explicit-couranttrue
+su-olson-transport1997-angular-64/finite-positivetrue
+su-olson-transport1997-angular-64/energy-budgettrue
+su-olson-transport1997-angular-64/fixed-final-timetrue
+su-olson-transport1997-angular-64/explicit-couranttrue
+su-olson-transport1997-half-dt/finite-positivetrue
+su-olson-transport1997-half-dt/energy-budgettrue
+su-olson-transport1997-half-dt/fixed-final-timetrue
+su-olson-transport1997-half-dt/explicit-couranttrue
+refinement/1true
+refinement/2true
+finest-independent-rmstrue
+finest-independent-linftrue
+separate-angular-sensitivitytrue
+separate-time-sensitivitytrue
+capacity/0.25/diffusion/errortrue
+capacity/0.25/diffusion/budgettrue
+capacity/0.25/transport/errortrue
+capacity/0.25/transport/budgettrue
+capacity/2.0/diffusion/errortrue
+capacity/2.0/diffusion/budgettrue
+
+## 非平衡放射：拡散と輸送を分ける — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-transport1997-measurements
+Coverage: reading
+
+capacity/2.0/transport/errortrue
+capacity/2.0/transport/budgettrue
+thick/4/finite-positive-fieldstrue
+thick/4/periodic-weighted-energytrue
+thick/4/actual-stencil-and-global-RHStrue
+thick/4/separate-FV-space-errortrue
+thick/4/separate-angular-sensitivitytrue
+thick/4/physical-initial-layer-retainedtrue
+thick/4/mean-free-path-resolvedtrue
+thick/8/finite-positive-fieldstrue
+thick/8/periodic-weighted-energytrue
+thick/8/actual-stencil-and-global-RHStrue
+thick/8/separate-FV-space-errortrue
+thick/8/separate-angular-sensitivitytrue
+thick/8/physical-initial-layer-retainedtrue
+thick/8/mean-free-path-resolvedtrue
+thick/16/finite-positive-fieldstrue
+thick/16/periodic-weighted-energytrue
+thick/16/actual-stencil-and-global-RHStrue
+thick/16/separate-FV-space-errortrue
+thick/16/separate-angular-sensitivitytrue
+thick/16/physical-initial-layer-retainedtrue
+thick/16/mean-free-path-resolvedtrue
+thick/space/k8true
+thick/continuum-limit/k8true
+thick/space/k16true
+thick/continuum-limit/k16true
+thick/finest-energy-limittrue
+thick/finest-scaled-flux-limittrue
+thick/wrong-flux-sign-negative-controltrue
+thick/missing-one-third-negative-controltrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存した実計算場の科学プレビュー。1次元周期・同じ実FV/S_N演算子の単一Fourierモードを時間厳密に進めた厚い極限制御。初期層と空間・角度・極限誤差を分離。固定格子AP性やSSPRK2時間積分の認証ではありません。全記録を表で読む
+idcellslengthepsilonordinatestimesmax_dtsource_offfamilyfieldsreference_rmsreference_linf
+
+## 非平衡放射：拡散と輸送を分ける — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-transport1997-measurements
+Coverage: reading
+
+su-olson-transport1997-n1281288132[0.1,1.0,3.16228]0.012510refinementsu-olson-transport1997-n128.npz[0.007750579861524426,0.005567982625889962][0.029067854414183025,0.024016466305888606]
+su-olson-transport1997-n2562568132[0.1,1.0,3.16228]0.0062510refinementsu-olson-transport1997-n256.npz[0.004135418825315243,0.00298976823623515][0.015301532539392149,0.01274441919854874]
+su-olson-transport1997-n5125128132[0.1,1.0,3.16228]0.00312510refinementsu-olson-transport1997-n512.npz[0.0020954035751023056,0.0015130534725422019][0.007864368991879589,0.006578670088229099]
+su-olson-transport1997-angular-645128164[0.1,1.0,3.16228]0.00312510angle-probesu-olson-transport1997-angular-64.npz[0.002095991064252647,0.001513211152085938][0.007865185298010058,0.006577120707319806]
+su-olson-transport1997-half-dt5128132[0.1,1.0,3.16228]0.001562510time-probesu-olson-transport1997-half-dt.npz[0.002095220691966766,0.0015130674001851108][0.007864357948125344,0.006578675451004878]
+この例の実測値・全記録 / JSON
+
+## 非平衡放射：拡散と輸送を分ける — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-transport1997-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Aidan Crilly (2023). Learning closure relations using differentiable programming:an example in radiation transport;author-provided analytic benchmark data
+確認範囲 / review_level: primary-author-paper-selected-equations-and-pinned-data-qualification
+Read official2023paperpage6Appendix4.1equations7-10,README,pinned W/Vtransport tables andMITlicense. Whether author tables were transcribed or regenerated is unstated. Original1997fulltext/tables not directly checked;not trained-model outputs. Shape,normalization,causal/homogeneous controls qualified.
+
+## 等方散乱平板と連続角度参照 — 等方散乱平板と連続角度参照 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-scattering/
+Coverage: reading
+
+等方散乱平板の角度離散法を、連続角度の積分方程式から得た独立参照に照合します。
+
+## 等方散乱平板と連続角度参照 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-scattering/#run-all
+Coverage: reading
+
+ZIPの atlas-radiation-scattering-2026-11-24 フォルダで実行します。このコマンドは配布版の全1例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## 等方散乱平板と連続角度参照 — 等方散乱平板の反射・透過・吸収 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-scattering/
+Coverage: reading
+
+正負の角度を結合した実際の定常輸送を解き、独立な連続角Fredholm参照とR/T/Aを比較します。
+手法・式・図・参照解
+使用手法
+放射輸送・モーメント法
+風上差分（upwind）
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+保存的風上FVの全方向source結合を離散sweep応答で解きます。半球ごとの正重みGaussにより入射流束πを正規化し、吸収は体積sourceから独立積算します。
+静止媒質の灰色放射輸送・散乱・線形交換
+光学厚さ.5/3、単一散乱albedo.5/.9の4入力。左の等方入射I1、右入射0。64/128/256セル、32角と独立64角probe。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+等方散乱平板の反射・透過・吸収
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+独立参照78項目はmain前に合格。主18計算では収支・正値・残差と、別々の空間・角度差、純吸収・保存散乱controlを判定します。
+同じ問題の参照 · 半解析参照
+等方散乱平板：連続角Fredholm流束参照
+有限の4平板に限定。MC、一般角度phase関数、DISORT再現、普遍的次数や厳密連続体誤差境界は認証しません。
+
+## 等方散乱平板と連続角度参照 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-scattering/#isotropic-scattering-slab-assumptions
+Coverage: reading
+
+光学厚さ.5/3、単一散乱albedo.5/.9の4入力。左の等方入射I1、右入射0。64/128/256セル、32角と独立64角probe。
+
+## 等方散乱平板と連続角度参照 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-scattering/#isotropic-scattering-slab-algorithm
+Coverage: reading
+
+保存的風上FVの全方向source結合を離散sweep応答で解きます。半球ごとの正重みGaussにより入射流束πを正規化し、吸収は体積sourceから独立積算します。
+\mu\partial_xI+I=\omega J,\quad J=\frac12\int_{-1}^{1}I\,d\muJ(x)=\frac12E_2(x)+\frac\omega2\int_0^L E_1(|x-s|)J(s)\,dsR+T+A=1,\qquad A=4(1-\omega)\int_0^LJ\,dx
+
+## 等方散乱平板と連続角度参照 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-scattering/#isotropic-scattering-slab-validation
+Coverage: reading
+
+独立参照78項目はmain前に合格。主18計算では収支・正値・残差と、別々の空間・角度差、純吸収・保存散乱controlを判定します。
+
+## 等方散乱平板と連続角度参照 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-scattering/#isotropic-scattering-slab-limits
+Coverage: reading
+
+有限の4平板に限定。MC、一般角度phase関数、DISORT再現、普遍的次数や厳密連続体誤差境界は認証しません。
+
+## 等方散乱平板と連続角度参照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-scattering/#isotropic-scattering-slab-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+completed_runs18
+scattering_slabs4
+continuum_angle_referencetrue
+separate_space_angle_probestrue
+stochastic_runs0
+判定 / check合格
+slab0-n64-s32/finite-positivetrue
+slab0-n64-s32/residualtrue
+slab0-n64-s32/source_residualtrue
+slab0-n64-s32/balancetrue
+slab0-n64-s32/physical-fluxestrue
+slab0-n128-s32/finite-positivetrue
+slab0-n128-s32/residualtrue
+slab0-n128-s32/source_residualtrue
+slab0-n128-s32/balancetrue
+slab0-n128-s32/physical-fluxestrue
+slab0-n256-s32/finite-positivetrue
+slab0-n256-s32/residualtrue
+slab0-n256-s32/source_residualtrue
+slab0-n256-s32/balancetrue
+slab0-n256-s32/physical-fluxestrue
+slab0-n256-s64/finite-positivetrue
+slab0-n256-s64/residualtrue
+slab0-n256-s64/source_residualtrue
+slab0-n256-s64/balancetrue
+slab0-n256-s64/physical-fluxestrue
+slab0/refinement-n128true
+slab0/refinement-n256true
+slab0/finest-independent-errortrue
+slab0/space-probetrue
+slab0/angle-probetrue
+slab1-n64-s32/finite-positivetrue
+slab1-n64-s32/residualtrue
+slab1-n64-s32/source_residualtrue
+slab1-n64-s32/balancetrue
+slab1-n64-s32/physical-fluxestrue
+slab1-n128-s32/finite-positivetrue
+slab1-n128-s32/residualtrue
+slab1-n128-s32/source_residualtrue
+slab1-n128-s32/balancetrue
+slab1-n128-s32/physical-fluxestrue
+slab1-n256-s32/finite-positivetrue
+slab1-n256-s32/residualtrue
+slab1-n256-s32/source_residualtrue
+
+## 等方散乱平板と連続角度参照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-scattering/#isotropic-scattering-slab-measurements
+Coverage: reading
+
+slab1-n256-s32/balancetrue
+slab1-n256-s32/physical-fluxestrue
+slab1-n256-s64/finite-positivetrue
+slab1-n256-s64/residualtrue
+slab1-n256-s64/source_residualtrue
+slab1-n256-s64/balancetrue
+slab1-n256-s64/physical-fluxestrue
+slab1/refinement-n128true
+slab1/refinement-n256true
+slab1/finest-independent-errortrue
+slab1/space-probetrue
+slab1/angle-probetrue
+slab2-n64-s32/finite-positivetrue
+slab2-n64-s32/residualtrue
+slab2-n64-s32/source_residualtrue
+slab2-n64-s32/balancetrue
+slab2-n64-s32/physical-fluxestrue
+slab2-n128-s32/finite-positivetrue
+slab2-n128-s32/residualtrue
+slab2-n128-s32/source_residualtrue
+slab2-n128-s32/balancetrue
+slab2-n128-s32/physical-fluxestrue
+slab2-n256-s32/finite-positivetrue
+slab2-n256-s32/residualtrue
+slab2-n256-s32/source_residualtrue
+slab2-n256-s32/balancetrue
+slab2-n256-s32/physical-fluxestrue
+slab2-n256-s64/finite-positivetrue
+slab2-n256-s64/residualtrue
+slab2-n256-s64/source_residualtrue
+slab2-n256-s64/balancetrue
+slab2-n256-s64/physical-fluxestrue
+slab2/refinement-n128true
+slab2/refinement-n256true
+slab2/finest-independent-errortrue
+slab2/space-probetrue
+slab2/angle-probetrue
+slab3-n64-s32/finite-positivetrue
+slab3-n64-s32/residualtrue
+slab3-n64-s32/source_residualtrue
+slab3-n64-s32/balancetrue
+slab3-n64-s32/physical-fluxestrue
+slab3-n128-s32/finite-positivetrue
+slab3-n128-s32/residualtrue
+slab3-n128-s32/source_residualtrue
+slab3-n128-s32/balancetrue
+
+## 等方散乱平板と連続角度参照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-scattering/#isotropic-scattering-slab-measurements
+Coverage: reading
+
+slab3-n128-s32/physical-fluxestrue
+slab3-n256-s32/finite-positivetrue
+slab3-n256-s32/residualtrue
+slab3-n256-s32/source_residualtrue
+slab3-n256-s32/balancetrue
+slab3-n256-s32/physical-fluxestrue
+slab3-n256-s64/finite-positivetrue
+slab3-n256-s64/residualtrue
+slab3-n256-s64/source_residualtrue
+slab3-n256-s64/balancetrue
+slab3-n256-s64/physical-fluxestrue
+slab3/refinement-n128true
+slab3/refinement-n256true
+slab3/finest-independent-errortrue
+slab3/space-probetrue
+slab3/angle-probetrue
+control0/budgettrue
+control0/pure-absorptiontrue
+control1/budgettrue
+control1/conservativetrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存した実計算場の科学プレビュー。全記録を表で読む
+idparameter_indexdepthalbedocellsordinatesfieldsfluxesreferencemaximum_flux_error
+slab0-n64-s3200.50.56432slab0-n64-s32.npz[0.10682419147087935,0.5367222851839086,0.35645352334521196][0.10767597774708512,0.534992832679682,0.35733079115294125]0.00172945250423
+slab0-n128-s3200.50.512832slab0-n128-s32.npz[0.10724853619149974,0.5358598022338242,0.3568916615746777][0.10767597774708512,0.534992832679682,0.35733079115294125]0.000866969554142
+slab0-n256-s3200.50.525632slab0-n256-s32.npz[0.10746190808414739,0.535426903976892,0.357111187938961][0.10767597774708512,0.534992832679682,0.35733079115294125]0.00043407129721
+
+## 等方散乱平板と連続角度参照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-scattering/#isotropic-scattering-slab-measurements
+Coverage: reading
+
+slab0-n256-s6400.50.525664slab0-n256-s64.npz[0.10746190844126681,0.5354268830147071,0.35711120854402323][0.10767597774708512,0.534992832679682,0.35733079115294125]0.000434050335025
+slab1-n64-s3210.50.96432slab1-n64-s32.npz[0.24608897558353443,0.6613827084618017,0.09252831595466386][0.24749406441718938,0.6599195442736329,0.09258629116109347]0.00146316418817
+slab1-n128-s3210.50.912832slab1-n128-s32.npz[0.24678953700957568,0.6606531599160019,0.09255730307442427][0.24749406441718938,0.6599195442736329,0.09258629116109347]0.000733615642369
+slab1-n256-s3210.50.925632slab1-n256-s32.npz[0.24714133605421384,0.6602868615553186,0.09257180239046811][0.24749406441718938,0.6599195442736329,0.09258629116109347]0.000367317281686
+slab1-n256-s6410.50.925664slab1-n256-s64.npz[0.24714134021703799,0.6602868558813143,0.09257180390164421][0.24749406441718938,0.6599195442736329,0.09258629116109347]0.000367311607681
+slab2-n64-s32230.56432slab2-n64-s32.npz[0.14197285075345084,0.04168710025384494,0.8163400489927038][0.14635364579219207,0.038689939241468047,0.8149418688912675]0.00438079503874
+slab2-n128-s32230.512832slab2-n128-s32.npz[0.1441244125428462,0.040183295162574934,0.8156922922945785][0.14635364579219207,0.038689939241468047,0.8149418688912675]0.00222923324935
+
+## 等方散乱平板と連続角度参照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-scattering/#isotropic-scattering-slab-measurements
+Coverage: reading
+
+slab2-n256-s32230.525632slab2-n256-s32.npz[0.14523011071703051,0.03943532362829971,0.8153345656546691][0.14635364579219207,0.038689939241468047,0.8149418688912675]0.00112353507516
+slab2-n256-s64230.525664slab2-n256-s64.npz[0.14523010982682014,0.03943532364723124,0.8153345665259484][0.14635364579219207,0.038689939241468047,0.8149418688912675]0.00112353596537
+slab3-n64-s32330.96432slab3-n64-s32.npz[0.4569356319077321,0.16027506766707383,0.38278930042519344][0.46406037689569296,0.15416826416484455,0.38176544059842277]0.00712474498796
+slab3-n128-s32330.912832slab3-n128-s32.npz[0.4604692340712682,0.15723481037007903,0.3822959555586521][0.46406037689569296,0.15416826416484455,0.38176544059842277]0.00359114282442
+slab3-n256-s32330.925632slab3-n256-s32.npz[0.46225886893324114,0.15570489306961305,0.3820362379971441][0.46406037689569296,0.15416826416484455,0.38176544059842277]0.00180150796245
+slab3-n256-s64330.925664slab3-n256-s64.npz[0.46225886858567333,0.15570489319173436,0.3820362382225913][0.46406037689569296,0.15416826416484455,0.38176544059842277]0.00180150831002
+control0—3012832control0.npz———
+control1—3112832control1.npz———
+この例の実測値・全記録 / JSON
+
+## 等方散乱平板と連続角度参照 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-scattering/#isotropic-scattering-slab-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Pharr,Jakob,Humphreys (2023). Physically Based Rendering4e,14.1The Equation of Transfer
+確認範囲 / review_level: primary-author-book-selected-equations
+Read14.1transfer/source/finite-ray boundary formulation. Isotropic slab/Fredholm normalization independently derived here;not DISORTpaper/table reproduction.
+
 ## SRHD衝突・SRMHD非線形Alfvén波 — SRHD衝突・SRMHD非線形Alfvén波 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-relativistic/
@@ -67348,6 +73371,2355 @@ The SciPy community (2024). SciPy1.14.1 solve_ivp reference
 確認範囲 / review_level: official-versioned-documentation-selected-methods-and-tolerances
 SciPy 1.14.1公式資料のmethod・rtol/atolを参照。Radau 5次とDOP853 8次は同じ空間離散の独立した時間積分法として用い、連続PDEの厳密解とは呼びません。
 
+## SDEの弱誤差・強誤差と標本誤差 — SDEの弱誤差・強誤差と標本誤差 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/
+Coverage: reading
+
+解析モーメントと共有Brown運動を使い、SDEの弱誤差・強誤差と有限標本の不確かさを分けます。
+
+## SDEの弱誤差・強誤差と標本誤差 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#run-all
+Coverage: reading
+
+ZIPの atlas-stochastic-accuracy-2026-11-24 フォルダで実行します。このコマンドは配布版の全3例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## SDEの弱誤差・強誤差と標本誤差 — GBMのweak誤差とMonte Carlo標準誤差 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/
+Coverage: reading
+
+連続真値、離散EM期待値、同一経路差とMCSEを分離する固定入力です。
+手法・式・図・参照解
+使用手法
+確率微分方程式
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+fine Gaussian増分を固定block和で集約し、厳密端点1配列を全刻みで共有。OUの厳密積分はdWとの共分散を保つ独立bridge正規変数から構成。異なる加算順の和のbit一致は主張しません。
+スカラーItô拡散：GBMとOU
+dX=.5Xdt+.4XdW,X0=1。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Itô SDE：共有Brown運動による強収束
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+軌道前にDecimal80/120・独立GH/OU共分散積分とpaired分散による標本解像を資格。各モーメントの5MCSE校正、MCSE精度、固定3段weak率、最後2段の3SE解像を判定。区間の被覆は離散真値に対する有限32反復の記述値。
+関連モデルの参照 · 解析参照
+GBMのweak誤差とMonte Carlo標準誤差
+dX=.5Xdt+.4XdW,X0=1。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。
+関連モデルの参照 · 解析参照
+同じBrownian経路のMilstein・EM strong比較
+既存GBMと同じμ=.15,σ=.4,X0=T=1。4seed×8192経路、16/32/64/128刻み。
+
+## SDEの弱誤差・強誤差と標本誤差 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#gbm-weak-moments-assumptions
+Coverage: reading
+
+dX=.5Xdt+.4XdW,X0=1。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。
+
+## SDEの弱誤差・強誤差と標本誤差 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#gbm-weak-moments-algorithm
+Coverage: reading
+
+fine Gaussian増分を固定block和で集約し、厳密端点1配列を全刻みで共有。OUの厳密積分はdWとの共分散を保つ独立bridge正規変数から構成。異なる加算順の和のbit一致は主張しません。
+dX_t=\mu X_t\,dt+\sigma X_t\,dW_tb_p(h)=\mathbb E[X_h(T)^p]-\mathbb E[X(T)^p],\quad p=1,2\mathbb E[X_h(T)]=X_0(1+\mu h)^n
+
+## SDEの弱誤差・強誤差と標本誤差 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#gbm-weak-moments-validation
+Coverage: reading
+
+軌道前にDecimal80/120・独立GH/OU共分散積分とpaired分散による標本解像を資格。各モーメントの5MCSE校正、MCSE精度、固定3段weak率、最後2段の3SE解像を判定。区間の被覆は離散真値に対する有限32反復の記述値。
+
+## SDEの弱誤差・強誤差と標本誤差 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#gbm-weak-moments-limits
+Coverage: reading
+
+弱誤差は期待値の差です。3SEや区間を真の誤差上界・一般被覆保証としません。1D状態×時間の保存例であり2D物理流れではありません。GBMやOU浴成分を新しい物理問題として重複計数しません。
+
+## SDEの弱誤差・強誤差と標本誤差 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#gbm-weak-moments-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+
+## SDEの弱誤差・強誤差と標本誤差 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#gbm-weak-moments-measurements
+Coverage: reading
+
+observables[{"observable_power":1,"sampled_paired_order":0.9956027089190806,"analytic_order":0.986850922673782,"levels":[{"steps":8,"analytic_bias":-0.024551175738827653,"paired_mean":-0.02390546859088743,"paired_MCSE":0.000431509288625275,"analytic_expected_MCSE":0.0004902247814460831,"raw_EM_interval_coverage_for_discrete_truth":0.96875,"coverage_binomial95":[0.8378290058184884,0.9992091314020475]},{"steps":16,"analytic_bias":-0.012570260133504842,"paired_mean":-0.012073199459893005,"paired_MCSE":0.0002494235153701287,"analytic_expected_MCSE":0.0003179426227319547,"raw_EM_interval_coverage_for_discrete_truth":0.9375,"coverage_binomial95":[0.7919305701049926,0.9923392636535436]},{"steps":32,"analytic_bias":-0.006361702102222466,"paired_mean":-0.006046178211109456,"paired_MCSE":0.00014930108420397513,"analytic_expected_MCSE":0.00021219706970143816,"raw_EM_interval_coverage_for_discrete_truth":0.9375,"coverage_binomial95":[0.7919305701049926,0.9923392636535436]},{"steps":64,"analytic_bias":-0.0032003745435279854,"paired_mean":-0.0030367554342063926,"paired_MCSE":0.0001452128976770314,"analytic_expected_MCSE":0.0001450153280978437,"raw_EM_interval_coverage_for_discrete_truth":0.90625,"coverage_binomial95":[0.7497730493162054,0.9802328198267152]}],"coverage_scope":"Independent batch95%normal intervals target discrete EM moments,not the continuous diffusion; coverage is descriptive
+
+## SDEの弱誤差・強誤差と標本誤差 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#gbm-weak-moments-measurements
+Coverage: reading
+
+ and not a pass criterion."},{"observable_power":2,"sampled_paired_order":0.9744925206389199,"analytic_order":0.9752562657019691,"levels":[{"steps":8,"analytic_bias":-0.15410825623347305,"paired_mean":-0.14906616356143917,"paired_MCSE":0.003147990583178188,"analytic_expected_MCSE":0.003291189368314816,"raw_EM_interval_coverage_for_discrete_truth":0.9375,"coverage_binomial95":[0.7919305701049926,0.9923392636535436]},{"steps":16,"analytic_bias":-0.08050123855537453,"paired_mean":-0.07770877547600556,"paired_MCSE":0.0018030716808605054,"analytic_expected_MCSE":0.001999254398523599,"raw_EM_interval_coverage_for_discrete_truth":0.90625,"coverage_binomial95":[0.7497730493162054,0.9802328198267152]},{"steps":32,"analytic_bias":-0.041175573785795776,"paired_mean":-0.03965375759547908,"paired_MCSE":0.0009919791240891069,"analytic_expected_MCSE":0.0012342295434882658,"raw_EM_interval_coverage_for_discrete_truth":0.90625,"coverage_binomial95":[0.7497730493162054,0.9802328198267152]},{"steps":64,"analytic_bias":-0.020827626619729842,"paired_mean":-0.02012644667453873,"paired_MCSE":0.0007054106323910044,"analytic_expected_MCSE":0.0007897816945465437,"raw_EM_interval_coverage_for_discrete_truth":0.90625,"coverage_binomial95":[0.7497730493162054,0.9802328198267152]}],"coverage_scope":"Independent batch95%normal intervals target discrete EM moments,not the continuous diffusion; coverage is des
+
+## SDEの弱誤差・強誤差と標本誤差 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#gbm-weak-moments-measurements
+Coverage: reading
+
+criptive and not a pass criterion."}]
+Brownian_association_error8.881784197e-16
+
+## SDEの弱誤差・強誤差と標本誤差 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#gbm-weak-moments-measurements
+Coverage: reading
+
+fine_driver_sha256["062cc28f1b5fc93039f27f4059ac1361e6d11682eb2435731d285d316f4aa823","2d6f4757e5ad6fec57b5d63b1da982ea8f364ef0e7467bf075c5d78342e418ec","211980ad2f8b1eb1d666d9f575765a1d33dd0f127690ebe0febd51f736cf9f4b","9e847e310bb5c91aac72fe60ae3898c0774a54f284f0c96d1b661b1db4509ea9","47ed94304c9637379f3605b34fc9285546d83dc9ac8ed989fccc1ae807baae0c","f3017fb5c77c37ec260ddb326f1e746272ffaac77507eb0fd356c40e80e584ba","44baac7402f08c0ddaaae154ae26f6c568fe73a8bf1d1db98e1db54073c949b7","ea0164b72e67cd52ad0b56efc86884e7756c560c7a6ae48b2afe0d25d70f7cdb","5e89673e3d79411f1605b0a87141c447779fbb0e0ba25f62f24c88a2db389ab0","e32d50c91870002e9db7a4b0c251ecd997c681e26a877f7dc1774776cc6d9bd3","bc6ec6e7a88fb142af33231a49c6a4952de8eee94aee6d675e3ed55a63da89fe","ac8663af01ff7a5dd29873f8da7674438c0ce824d5a0d68c4361571e73556d6e","658419fe6f33031525cd0f475b5b79a434fe0648b9dd219ce1827bac38c60a64","723d7ed34394b933e3f577732aa4f6826dc48f41255294ce4f40ca60dcc34ebe","32ba3a1d678327efa71fafd8775e54592d8c8ee2bcf700b91021d3a535ac4a2f","b2d96051eefe7541c51ff53bc309b0562918977751f56f20948213b521a9f63b","fc6f8bb229669f915d514fe451c366d3fdbf72f1279e5f9479e889574db08320","cfce102e39422f655bbc1a3c332ce886e11dfd32fa492563a88bf7fd38af5383","80adbe538b0f5f9b9c1caba2175d27cd3648e1f4acaaa8c7fc8a4422ba90c9a1","0aa28d9838f8b4261821a718e7d10433e1a8843619075582bb9cd41a1e360cde","bd7977d0290110397956f5c5aca3bd087181780f
+
+## SDEの弱誤差・強誤差と標本誤差 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#gbm-weak-moments-measurements
+Coverage: reading
+
+96dbd6bd4fd00ec473ae1b0f","7d23d99637da04cd10a3aecc9a841cbbe5adacdcc5da018614cdf2255cf419d1","ba997a851a487141e23fd1de6afca95f646279adca8e0ba52400c672d62e368b","188fb1058a2c645eb9701b15efc1e44741c22b4b6492f87c01553c00d834c793","b88b85f05d54af414a81b1951d5934f043ef20882b536234ebfecb5ae6b664a5","7918daa0dc6fd330508bd29d816a051eaa47c0e680c47b2a399e5e268e1ca1f0","9718d50375705d9fbb532ffe848f813a5652fbaf7c74e9627c078b31104f6afd","f8b8d4fa2453cd347abd43c6e68cd80d5c780052a42440c4dc1386f850938a8c","62486023170b5c8a56224f809204c0d727f81b10abcebe6da29a6859c2e399cc","1d3cb939b24ce46e72d062d4ad56ed0fe1bffca70cb3a44d19421a303e93519a","1ce008007caeaa391342596c98bcb6102c8b2b2ab77bbb2e275b98fe3d5b2b9b","b8aa0ed98d5317954181d7433193f4ed3ebb6408ea3cea3a73dd6a4de7c20e8f"]
+completed_independent_seed_batches32
+判定 / check合格
+finite saved candidate arraystrue
+declared Brownian grouping roundofftrue
+power1/n8/paired mean calibrationtrue
+power1/n8/MCSE calibrationtrue
+power1/n16/paired mean calibrationtrue
+power1/n16/MCSE calibrationtrue
+power1/n32/paired mean calibrationtrue
+power1/n32/MCSE calibrationtrue
+power1/n32/resolved before slopetrue
+power1/n64/paired mean calibrationtrue
+power1/n64/MCSE calibrationtrue
+power1/n64/resolved before slopetrue
+power1/analytic weak ordertrue
+power1/sampled paired weak ordertrue
+power2/n8/paired mean calibrationtrue
+power2/n8/MCSE calibrationtrue
+
+## SDEの弱誤差・強誤差と標本誤差 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#gbm-weak-moments-measurements
+Coverage: reading
+
+power2/n16/paired mean calibrationtrue
+power2/n16/MCSE calibrationtrue
+power2/n32/paired mean calibrationtrue
+power2/n32/MCSE calibrationtrue
+power2/n32/resolved before slopetrue
+power2/n64/paired mean calibrationtrue
+power2/n64/MCSE calibrationtrue
+power2/n64/resolved before slopetrue
+power2/analytic weak ordertrue
+power2/sampled paired weak ordertrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存した実データ由来の分布・誤差診断。空間次元と標本/時間軸を区別します。全記録を表で読む
+seedstepsmethodscandidate_filedriver_sha256
+44001[8,16,32,64]["em"]gbm-weak-moments.npz062cc28f1b5fc93039f27f4059ac1361e6d11682eb2435731d285d316f4aa823
+44002[8,16,32,64]["em"]gbm-weak-moments.npz2d6f4757e5ad6fec57b5d63b1da982ea8f364ef0e7467bf075c5d78342e418ec
+44003[8,16,32,64]["em"]gbm-weak-moments.npz211980ad2f8b1eb1d666d9f575765a1d33dd0f127690ebe0febd51f736cf9f4b
+44004[8,16,32,64]["em"]gbm-weak-moments.npz9e847e310bb5c91aac72fe60ae3898c0774a54f284f0c96d1b661b1db4509ea9
+44005[8,16,32,64]["em"]gbm-weak-moments.npz47ed94304c9637379f3605b34fc9285546d83dc9ac8ed989fccc1ae807baae0c
+44006[8,16,32,64]["em"]gbm-weak-moments.npzf3017fb5c77c37ec260ddb326f1e746272ffaac77507eb0fd356c40e80e584ba
+44007[8,16,32,64]["em"]gbm-weak-moments.npz44baac7402f08c0ddaaae154ae26f6c568fe73a8bf1d1db98e1db54073c949b7
+44008[8,16,32,64]["em"]gbm-weak-moments.npzea0164b72e67cd52ad0b56efc86884e7756c560c7a6ae48b2afe0d25d70f7cdb
+
+## SDEの弱誤差・強誤差と標本誤差 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#gbm-weak-moments-measurements
+Coverage: reading
+
+44009[8,16,32,64]["em"]gbm-weak-moments.npz5e89673e3d79411f1605b0a87141c447779fbb0e0ba25f62f24c88a2db389ab0
+44010[8,16,32,64]["em"]gbm-weak-moments.npze32d50c91870002e9db7a4b0c251ecd997c681e26a877f7dc1774776cc6d9bd3
+44011[8,16,32,64]["em"]gbm-weak-moments.npzbc6ec6e7a88fb142af33231a49c6a4952de8eee94aee6d675e3ed55a63da89fe
+44012[8,16,32,64]["em"]gbm-weak-moments.npzac8663af01ff7a5dd29873f8da7674438c0ce824d5a0d68c4361571e73556d6e
+44013[8,16,32,64]["em"]gbm-weak-moments.npz658419fe6f33031525cd0f475b5b79a434fe0648b9dd219ce1827bac38c60a64
+44014[8,16,32,64]["em"]gbm-weak-moments.npz723d7ed34394b933e3f577732aa4f6826dc48f41255294ce4f40ca60dcc34ebe
+44015[8,16,32,64]["em"]gbm-weak-moments.npz32ba3a1d678327efa71fafd8775e54592d8c8ee2bcf700b91021d3a535ac4a2f
+44016[8,16,32,64]["em"]gbm-weak-moments.npzb2d96051eefe7541c51ff53bc309b0562918977751f56f20948213b521a9f63b
+44017[8,16,32,64]["em"]gbm-weak-moments.npzfc6f8bb229669f915d514fe451c366d3fdbf72f1279e5f9479e889574db08320
+44018[8,16,32,64]["em"]gbm-weak-moments.npzcfce102e39422f655bbc1a3c332ce886e11dfd32fa492563a88bf7fd38af5383
+44019[8,16,32,64]["em"]gbm-weak-moments.npz80adbe538b0f5f9b9c1caba2175d27cd3648e1f4acaaa8c7fc8a4422ba90c9a1
+44020[8,16,32,64]["em"]gbm-weak-moments.npz0aa28d9838f8b4261821a718e7d10433e1a8843619075582bb9cd41a1e360cde
+
+## SDEの弱誤差・強誤差と標本誤差 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#gbm-weak-moments-measurements
+Coverage: reading
+
+44021[8,16,32,64]["em"]gbm-weak-moments.npzbd7977d0290110397956f5c5aca3bd087181780f96dbd6bd4fd00ec473ae1b0f
+44022[8,16,32,64]["em"]gbm-weak-moments.npz7d23d99637da04cd10a3aecc9a841cbbe5adacdcc5da018614cdf2255cf419d1
+44023[8,16,32,64]["em"]gbm-weak-moments.npzba997a851a487141e23fd1de6afca95f646279adca8e0ba52400c672d62e368b
+44024[8,16,32,64]["em"]gbm-weak-moments.npz188fb1058a2c645eb9701b15efc1e44741c22b4b6492f87c01553c00d834c793
+44025[8,16,32,64]["em"]gbm-weak-moments.npzb88b85f05d54af414a81b1951d5934f043ef20882b536234ebfecb5ae6b664a5
+44026[8,16,32,64]["em"]gbm-weak-moments.npz7918daa0dc6fd330508bd29d816a051eaa47c0e680c47b2a399e5e268e1ca1f0
+44027[8,16,32,64]["em"]gbm-weak-moments.npz9718d50375705d9fbb532ffe848f813a5652fbaf7c74e9627c078b31104f6afd
+44028[8,16,32,64]["em"]gbm-weak-moments.npzf8b8d4fa2453cd347abd43c6e68cd80d5c780052a42440c4dc1386f850938a8c
+44029[8,16,32,64]["em"]gbm-weak-moments.npz62486023170b5c8a56224f809204c0d727f81b10abcebe6da29a6859c2e399cc
+44030[8,16,32,64]["em"]gbm-weak-moments.npz1d3cb939b24ce46e72d062d4ad56ed0fe1bffca70cb3a44d19421a303e93519a
+44031[8,16,32,64]["em"]gbm-weak-moments.npz1ce008007caeaa391342596c98bcb6102c8b2b2ab77bbb2e275b98fe3d5b2b9b
+44032[8,16,32,64]["em"]gbm-weak-moments.npzb8aa0ed98d5317954181d7433193f4ed3ebb6408ea3cea3a73dd6a4de7c20e8f
+この例の実測値・全記録 / JSON
+
+## SDEの弱誤差・強誤差と標本誤差 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#gbm-weak-moments-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+D. J. Higham (2001). An Algorithmic Introduction to Numerical Simulation of Stochastic Differential Equations
+確認範囲 / review_level: selected-primary-full-text-sections4-6
+原著の線形SDE厳密解、strong/weak定義、EM、Milstein補正の選択節を確認。論文全体やMATLAB実験の再現ではありません。掲載strong定義L1と本例L2 RMSを区別します。
+
+## SDEの弱誤差・強誤差と標本誤差 — OUのweakモーメントと同時Brownian結合 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/
+Coverage: reading
+
+連続真値、離散EM期待値、同一経路差とMCSEを分離する固定入力です。
+手法・式・図・参照解
+使用手法
+確率微分方程式
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+fine Gaussian増分を固定block和で集約し、厳密端点1配列を全刻みで共有。OUの厳密積分はdWとの共分散を保つ独立bridge正規変数から構成。異なる加算順の和のbit一致は主張しません。
+スカラーItô拡散：GBMとOU
+dX=1.5(.2-X)dt+.8dW,X0=.7。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Langevin温度制御：正準分布・刻み偏り・時間相関
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+軌道前にDecimal80/120・独立GH/OU共分散積分とpaired分散による標本解像を資格。各モーメントの5MCSE校正、MCSE精度、固定3段weak率、最後2段の3SE解像を判定。区間の被覆は離散真値に対する有限32反復の記述値。
+関連モデルの参照 · 解析参照
+OUのweakモーメントと同時Brownian結合
+dX=1.5(.2-X)dt+.8dW,X0=.7。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。
+
+## SDEの弱誤差・強誤差と標本誤差 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#ou-weak-moments-assumptions
+Coverage: reading
+
+dX=1.5(.2-X)dt+.8dW,X0=.7。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。
+
+## SDEの弱誤差・強誤差と標本誤差 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#ou-weak-moments-algorithm
+Coverage: reading
+
+fine Gaussian増分を固定block和で集約し、厳密端点1配列を全刻みで共有。OUの厳密積分はdWとの共分散を保つ独立bridge正規変数から構成。異なる加算順の和のbit一致は主張しません。
+dX_t=\kappa(\theta-X_t)\,dt+\sigma\,dW_tb_p(h)=\mathbb E[X_h(T)^p]-\mathbb E[X(T)^p],\quad p=1,2\operatorname{Cov}(J_h,\Delta W)=(1-e^{-\kappa h})/\kappa
+
+## SDEの弱誤差・強誤差と標本誤差 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#ou-weak-moments-validation
+Coverage: reading
+
+軌道前にDecimal80/120・独立GH/OU共分散積分とpaired分散による標本解像を資格。各モーメントの5MCSE校正、MCSE精度、固定3段weak率、最後2段の3SE解像を判定。区間の被覆は離散真値に対する有限32反復の記述値。
+
+## SDEの弱誤差・強誤差と標本誤差 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#ou-weak-moments-limits
+Coverage: reading
+
+弱誤差は期待値の差です。3SEや区間を真の誤差上界・一般被覆保証としません。1D状態×時間の保存例であり2D物理流れではありません。GBMやOU浴成分を新しい物理問題として重複計数しません。
+
+## SDEの弱誤差・強誤差と標本誤差 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#ou-weak-moments-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+
+## SDEの弱誤差・強誤差と標本誤差 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#ou-weak-moments-measurements
+Coverage: reading
+
+observables[{"observable_power":1,"sampled_paired_order":1.0028604920506838,"analytic_order":1.0151029162857539,"levels":[{"steps":8,"analytic_bias":-0.016601525664882343,"paired_mean":-0.01629562931347308,"paired_MCSE":0.00023909443711104658,"analytic_expected_MCSE":0.00022102482847032208,"raw_EM_interval_coverage_for_discrete_truth":0.9375,"coverage_binomial95":[0.7919305701049926,0.9923392636535436]},{"steps":16,"analytic_bias":-0.008065564380142496,"paired_mean":-0.007887561656949873,"paired_MCSE":0.00010882818086019489,"analytic_expected_MCSE":0.00010710329337130175,"raw_EM_interval_coverage_for_discrete_truth":0.96875,"coverage_binomial95":[0.8378290058184884,0.9992091314020475]},{"steps":32,"analytic_bias":-0.003976653259526749,"paired_mean":-0.003939807047794929,"paired_MCSE":5.3339993867843966e-05,"analytic_expected_MCSE":5.2736853897338943e-05,"raw_EM_interval_coverage_for_discrete_truth":0.96875,"coverage_binomial95":[0.8378290058184884,0.9992091314020475]},{"steps":64,"analytic_bias":-0.0019746126237947625,"paired_mean":-0.0019640863979277275,"paired_MCSE":2.572665329848958e-05,"analytic_expected_MCSE":2.6169126824338754e-05,"raw_EM_interval_coverage_for_discrete_truth":0.96875,"coverage_binomial95":[0.8378290058184884,0.9992091314020475]}],"coverage_scope":"Independent batch95%normal intervals target discrete EM moments,not the continuous diffusion; coverage is des
+
+## SDEの弱誤差・強誤差と標本誤差 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#ou-weak-moments-measurements
+Coverage: reading
+
+criptive and not a pass criterion."},{"observable_power":2,"sampled_paired_order":1.0496248413875717,"analytic_order":1.0389267433589098,"levels":[{"steps":8,"analytic_bias":0.014129402163588095,"paired_mean":0.01401542171183142,"paired_MCSE":0.00024104357117435304,"analytic_expected_MCSE":0.00026472839301117877,"raw_EM_interval_coverage_for_discrete_truth":0.96875,"coverage_binomial95":[0.8378290058184884,0.9992091314020475]},{"steps":16,"analytic_bias":0.006561607911553392,"paired_mean":0.00647516245322562,"paired_MCSE":0.00013154200960569608,"analytic_expected_MCSE":0.00012695902474324364,"raw_EM_interval_coverage_for_discrete_truth":0.96875,"coverage_binomial95":[0.8378290058184884,0.9992091314020475]},{"steps":32,"analytic_bias":0.0031644575406652867,"paired_mean":0.0031052169014772067,"paired_MCSE":6.715510115001812e-05,"analytic_expected_MCSE":6.22062303077159e-05,"raw_EM_interval_coverage_for_discrete_truth":0.96875,"coverage_binomial95":[0.8378290058184884,0.9992091314020475]},{"steps":64,"analytic_bias":0.0015542255693837448,"paired_mean":0.0015111707743697739,"paired_MCSE":3.073670093533357e-05,"analytic_expected_MCSE":3.0793830756280135e-05,"raw_EM_interval_coverage_for_discrete_truth":0.96875,"coverage_binomial95":[0.8378290058184884,0.9992091314020475]}],"coverage_scope":"Independent batch95%normal intervals target discrete EM moments,not the continuous diffusion;
+
+## SDEの弱誤差・強誤差と標本誤差 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#ou-weak-moments-measurements
+Coverage: reading
+
+ coverage is descriptive and not a pass criterion."}]
+Brownian_association_error8.881784197e-16
+
+## SDEの弱誤差・強誤差と標本誤差 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#ou-weak-moments-measurements
+Coverage: reading
+
+fine_driver_sha256["0d73f7e3fb6d4fb13a8fe0acf5b067cc7431e3342d5714438b195926ccb31bd6","517a0733a44601dc5a390ac93942b07115b9445189b75a99f1b92cfd206ced8c","c4b8023f47bf9ed3f0aa9eec01c7d637dc9ae0db3660cd466de7776d363056ab","2895543ecc2a01393b4c7cec98641749aca4f9a06bc37e13c8bcbac76ae6d45a","033b60984273a09b7f5e14f43e0d8fead742341211063ff321cf2abec09c42c0","81f1e26e638fe732e2018c5eb5b86c40b6aff57bf40bcfecaf298c5e21276c69","f86b03f661cf9206146b59d4cb3040097fd1c63431946ddbb7a19d4b5ef0e818","66640fadaf7f5f9400389fa76894e4399a6960536fa45cc9e78a6bab399680d5","a364057c053f3bf3a5bc2cce7ab69f8b996cb9b639bcc297c64b53a657e0977e","cc08ec187a765b97cc878d0d18a1da339e92571828f7112043c32127e174870c","75459ce05f29203347f60645c0eb1b9311e6dc5cb31742bc6cd1bc931a4650aa","e2e0389256a8600f7865668d7495be7386a389a86ff661c3986fe87b7a156dcd","e4bf8fe176ccc3e6906a384a2a7d7886c5119e02b944b4d785b019c31aac922a","54b5bb78ee939b6aa5320805eec7287185b17a4544ddcbfa1ebc741ccfaca694","86ff8a27f2343e59c38463c1ac403594b382d865baffc4cb225df796650d30dc","904c4738321c84035196329704a459d23a6d497bd00427ae7bdf9c0434a8fbfd","abfaa427b6bed41f959993b7750980045b29f758682924d55ff0b27f8309675d","d21d24ab4375a6b1e73a4152582eb9df0bf463e777970cd1810cb28594fbea33","b9dc500fbb43c9b6ae1e2bbc3111c311d128a3ba4fbaf19c5d66430bf68e6e6a","1f623b10ba38ebeb0d21831e8f61e0e0edd2952c7421eb87326b35cedc73567a","dc8427870eca1e02ba741dcc8ca42881d69b86a6
+
+## SDEの弱誤差・強誤差と標本誤差 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#ou-weak-moments-measurements
+Coverage: reading
+
+0153ccaf1845afc186b2ab76","af8fb326a6540e78c5d79d6382c0882821fc17ac518b370cc7eba0765dee6e8c","90f7a22a5a05a513c18b56c72ee17fe2e56adb126ad202483ac075cffdc9f407","bedb31ee586f99e001eba8020550576196d237c3467da4fa26d5be437dc6cb1d","5d01d5a09fb9570e91b645d447d4946017dd93725fa4c4d5b91eafeebcef87c8","c704833cf3a478237eeed30edb1229bd91e551d6723be097cd01da19b0db5175","a8e62ae7577e1d047a11ca69f8d045f798132b06dadf511c6733387769338ccf","42503445b6f496bc8371c06e89ddfde8bd39fe61e4a8745c8f46e487ccab605b","ff4e5d69c37ffb1e116ac90e4d3013010416f21a8b1aad910e636570f27f2d05","7d71965364b0db48fa6cd0c5ed42ab1e770be594c6dcf6e9dd2b94ed882a8529","f0e2d130c7cfee902ccad20215a5835e5e17e05b7e0bdd9900744f164ac9e5c1","424e0c38ca4dc556b66825f94eb5f19190607740a16d53e91e3461a3d6fd609b"]
+completed_independent_seed_batches32
+判定 / check合格
+finite saved candidate arraystrue
+declared Brownian grouping roundofftrue
+power1/n8/paired mean calibrationtrue
+power1/n8/MCSE calibrationtrue
+power1/n16/paired mean calibrationtrue
+power1/n16/MCSE calibrationtrue
+power1/n32/paired mean calibrationtrue
+power1/n32/MCSE calibrationtrue
+power1/n32/resolved before slopetrue
+power1/n64/paired mean calibrationtrue
+power1/n64/MCSE calibrationtrue
+power1/n64/resolved before slopetrue
+power1/analytic weak ordertrue
+power1/sampled paired weak ordertrue
+power2/n8/paired mean calibrationtrue
+power2/n8/MCSE calibrationtrue
+
+## SDEの弱誤差・強誤差と標本誤差 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#ou-weak-moments-measurements
+Coverage: reading
+
+power2/n16/paired mean calibrationtrue
+power2/n16/MCSE calibrationtrue
+power2/n32/paired mean calibrationtrue
+power2/n32/MCSE calibrationtrue
+power2/n32/resolved before slopetrue
+power2/n64/paired mean calibrationtrue
+power2/n64/MCSE calibrationtrue
+power2/n64/resolved before slopetrue
+power2/analytic weak ordertrue
+power2/sampled paired weak ordertrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存した実データ由来の分布・誤差診断。空間次元と標本/時間軸を区別します。全記録を表で読む
+seedstepsmethodscandidate_filedriver_sha256
+44101[8,16,32,64]["em"]ou-weak-moments.npz0d73f7e3fb6d4fb13a8fe0acf5b067cc7431e3342d5714438b195926ccb31bd6
+44102[8,16,32,64]["em"]ou-weak-moments.npz517a0733a44601dc5a390ac93942b07115b9445189b75a99f1b92cfd206ced8c
+44103[8,16,32,64]["em"]ou-weak-moments.npzc4b8023f47bf9ed3f0aa9eec01c7d637dc9ae0db3660cd466de7776d363056ab
+44104[8,16,32,64]["em"]ou-weak-moments.npz2895543ecc2a01393b4c7cec98641749aca4f9a06bc37e13c8bcbac76ae6d45a
+44105[8,16,32,64]["em"]ou-weak-moments.npz033b60984273a09b7f5e14f43e0d8fead742341211063ff321cf2abec09c42c0
+44106[8,16,32,64]["em"]ou-weak-moments.npz81f1e26e638fe732e2018c5eb5b86c40b6aff57bf40bcfecaf298c5e21276c69
+44107[8,16,32,64]["em"]ou-weak-moments.npzf86b03f661cf9206146b59d4cb3040097fd1c63431946ddbb7a19d4b5ef0e818
+44108[8,16,32,64]["em"]ou-weak-moments.npz66640fadaf7f5f9400389fa76894e4399a6960536fa45cc9e78a6bab399680d5
+
+## SDEの弱誤差・強誤差と標本誤差 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#ou-weak-moments-measurements
+Coverage: reading
+
+44109[8,16,32,64]["em"]ou-weak-moments.npza364057c053f3bf3a5bc2cce7ab69f8b996cb9b639bcc297c64b53a657e0977e
+44110[8,16,32,64]["em"]ou-weak-moments.npzcc08ec187a765b97cc878d0d18a1da339e92571828f7112043c32127e174870c
+44111[8,16,32,64]["em"]ou-weak-moments.npz75459ce05f29203347f60645c0eb1b9311e6dc5cb31742bc6cd1bc931a4650aa
+44112[8,16,32,64]["em"]ou-weak-moments.npze2e0389256a8600f7865668d7495be7386a389a86ff661c3986fe87b7a156dcd
+44113[8,16,32,64]["em"]ou-weak-moments.npze4bf8fe176ccc3e6906a384a2a7d7886c5119e02b944b4d785b019c31aac922a
+44114[8,16,32,64]["em"]ou-weak-moments.npz54b5bb78ee939b6aa5320805eec7287185b17a4544ddcbfa1ebc741ccfaca694
+44115[8,16,32,64]["em"]ou-weak-moments.npz86ff8a27f2343e59c38463c1ac403594b382d865baffc4cb225df796650d30dc
+44116[8,16,32,64]["em"]ou-weak-moments.npz904c4738321c84035196329704a459d23a6d497bd00427ae7bdf9c0434a8fbfd
+44117[8,16,32,64]["em"]ou-weak-moments.npzabfaa427b6bed41f959993b7750980045b29f758682924d55ff0b27f8309675d
+44118[8,16,32,64]["em"]ou-weak-moments.npzd21d24ab4375a6b1e73a4152582eb9df0bf463e777970cd1810cb28594fbea33
+44119[8,16,32,64]["em"]ou-weak-moments.npzb9dc500fbb43c9b6ae1e2bbc3111c311d128a3ba4fbaf19c5d66430bf68e6e6a
+44120[8,16,32,64]["em"]ou-weak-moments.npz1f623b10ba38ebeb0d21831e8f61e0e0edd2952c7421eb87326b35cedc73567a
+44121[8,16,32,64]["em"]ou-weak-moments.npzdc8427870eca1e02ba741dcc8ca42881d69b86a60153ccaf1845afc186b2ab76
+
+## SDEの弱誤差・強誤差と標本誤差 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#ou-weak-moments-measurements
+Coverage: reading
+
+44122[8,16,32,64]["em"]ou-weak-moments.npzaf8fb326a6540e78c5d79d6382c0882821fc17ac518b370cc7eba0765dee6e8c
+44123[8,16,32,64]["em"]ou-weak-moments.npz90f7a22a5a05a513c18b56c72ee17fe2e56adb126ad202483ac075cffdc9f407
+44124[8,16,32,64]["em"]ou-weak-moments.npzbedb31ee586f99e001eba8020550576196d237c3467da4fa26d5be437dc6cb1d
+44125[8,16,32,64]["em"]ou-weak-moments.npz5d01d5a09fb9570e91b645d447d4946017dd93725fa4c4d5b91eafeebcef87c8
+44126[8,16,32,64]["em"]ou-weak-moments.npzc704833cf3a478237eeed30edb1229bd91e551d6723be097cd01da19b0db5175
+44127[8,16,32,64]["em"]ou-weak-moments.npza8e62ae7577e1d047a11ca69f8d045f798132b06dadf511c6733387769338ccf
+44128[8,16,32,64]["em"]ou-weak-moments.npz42503445b6f496bc8371c06e89ddfde8bd39fe61e4a8745c8f46e487ccab605b
+44129[8,16,32,64]["em"]ou-weak-moments.npzff4e5d69c37ffb1e116ac90e4d3013010416f21a8b1aad910e636570f27f2d05
+44130[8,16,32,64]["em"]ou-weak-moments.npz7d71965364b0db48fa6cd0c5ed42ab1e770be594c6dcf6e9dd2b94ed882a8529
+44131[8,16,32,64]["em"]ou-weak-moments.npzf0e2d130c7cfee902ccad20215a5835e5e17e05b7e0bdd9900744f164ac9e5c1
+44132[8,16,32,64]["em"]ou-weak-moments.npz424e0c38ca4dc556b66825f94eb5f19190607740a16d53e91e3461a3d6fd609b
+この例の実測値・全記録 / JSON
+
+## SDEの弱誤差・強誤差と標本誤差 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#ou-weak-moments-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+D. J. Higham (2001). An Algorithmic Introduction to Numerical Simulation of Stochastic Differential Equations
+確認範囲 / review_level: selected-primary-full-text-sections4-6
+原著の線形SDE厳密解、strong/weak定義、EM、Milstein補正の選択節を確認。論文全体やMATLAB実験の再現ではありません。掲載strong定義L1と本例L2 RMSを区別します。
+
+## SDEの弱誤差・強誤差と標本誤差 — 同じBrownian経路のMilstein・EM strong比較 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/
+Coverage: reading
+
+補償項を持つMilsteinとEMの終端L2 RMSを、厳密端点と有限モーメントから検査。
+手法・式・図・参照解
+使用手法
+確率微分方程式
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+Milsteinは.5σ²X(dW²-h)を追加。全法・刻みでfine driverと厳密端点1配列を共有。負状態を修復しません。
+スカラーItô拡散：GBMとOU
+既存GBMと同じμ=.15,σ=.4,X0=T=1。4seed×8192経路、16/32/64/128刻み。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Itô SDE：共有Brown運動による強収束
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+相殺を含む解析MSEをDecimal80/120と独立1step GHで資格。二乗誤差の5SE校正、固定3段RMS率、最細段の優位性を判定。相関を保つ64pathblock jackknifeで率の不確実性を記述。
+関連モデルの参照 · 解析参照
+GBMのweak誤差とMonte Carlo標準誤差
+dX=.5Xdt+.4XdW,X0=1。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。
+関連モデルの参照 · 解析参照
+同じBrownian経路のMilstein・EM strong比較
+既存GBMと同じμ=.15,σ=.4,X0=T=1。4seed×8192経路、16/32/64/128刻み。
+
+## SDEの弱誤差・強誤差と標本誤差 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#gbm-milstein-strong-assumptions
+Coverage: reading
+
+既存GBMと同じμ=.15,σ=.4,X0=T=1。4seed×8192経路、16/32/64/128刻み。
+
+## SDEの弱誤差・強誤差と標本誤差 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#gbm-milstein-strong-algorithm
+Coverage: reading
+
+Milsteinは.5σ²X(dW²-h)を追加。全法・刻みでfine driverと厳密端点1配列を共有。負状態を修復しません。
+X_{j+1}=X_j[1+\mu h+\sigma\Delta W_j+\tfrac12\sigma^2((\Delta W_j)^2-h)]\mathbb E[(X_n-X(T))^2]=X_0^2[A^n+e^{(2\mu+\sigma^2)T}-2K^n]
+
+## SDEの弱誤差・強誤差と標本誤差 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#gbm-milstein-strong-validation
+Coverage: reading
+
+相殺を含む解析MSEをDecimal80/120と独立1step GHで資格。二乗誤差の5SE校正、固定3段RMS率、最細段の優位性を判定。相関を保つ64pathblock jackknifeで率の不確実性を記述。
+
+## SDEの弱誤差・強誤差と標本誤差 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#gbm-milstein-strong-limits
+Coverage: reading
+
+L2終端誤差を扱い、原著のL1定義と区別。GBM以外の非Lipschitz系・正値性の一般保証はしません。既存gbm-sdeへの手法追加です。
+
+## SDEの弱誤差・強誤差と標本誤差 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#gbm-milstein-strong-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+
+## SDEの弱誤差・強誤差と標本誤差 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#gbm-milstein-strong-measurements
+Coverage: reading
+
+methods[{"method":"em","fixed_last_three_level_order":0.4998402424562693,"paired64block_jackknife_order_SE":0.005081776686564279,"levels":[{"steps":16,"sample_RMS":0.03546853869286994,"analytic_RMS":0.03587672817493905,"squared_error_SE":2.097976302745995e-05,"RMS_nominal95":[0.03488406021479733,0.03604354057172545]},{"steps":32,"sample_RMS":0.025165151018332176,"analytic_RMS":0.02527327799108889,"squared_error_SE":8.876035396356257e-06,"RMS_nominal95":[0.024817093223685645,0.025508460076567263]},{"steps":64,"sample_RMS":0.017816206216199258,"analytic_RMS":0.017835633497176234,"squared_error_SE":4.05128352337309e-06,"RMS_nominal95":[0.0175919536760749,0.018037670962047978]},{"steps":128,"sample_RMS":0.012585362493127097,"analytic_RMS":0.01259894455771596,"squared_error_SE":1.997492589267111e-06,"RMS_nominal95":[0.012428850934380906,0.012739951437025162]}],"scope":"L2endpoint RMS; uncertainty is first computed on complete-path squared error,not independent-level regression."},{"method":"milstein","fixed_last_three_level_order":0.9964533189042089,"paired64block_jackknife_order_SE":0.003307644094798437,"levels":[{"steps":16,"sample_RMS":0.005694296746405224,"analytic_RMS":0.00575637004554713,"squared_error_SE":6.844976320449696e-07,"RMS_nominal95":[0.005575251091189529,0.005810904072726739]},{"steps":32,"sample_RMS":0.0028808462540585045,"analytic_RMS":0.002900680886555887,"square
+
+## SDEの弱誤差・強誤差と標本誤差 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#gbm-milstein-strong-measurements
+Coverage: reading
+
+d_error_SE":1.7007993941367778e-07,"RMS_nominal95":[0.0028223969571588184,0.0029381330288580335]},{"steps":64,"sample_RMS":0.0014353709990780313,"analytic_RMS":0.0014560370611600836,"squared_error_SE":4.114602073259352e-08,"RMS_nominal95":[0.0014069986447226039,0.0014631932967784152]},{"steps":128,"sample_RMS":0.0007237613790168262,"analytic_RMS":0.0007294519104131344,"squared_error_SE":1.035143974400747e-08,"RMS_nominal95":[0.0007096069931095287,0.0007376442115564449]}],"scope":"L2endpoint RMS; uncertainty is first computed on complete-path squared error,not independent-level regression."}]
+fine_driver_sha256["0794acba8cd8fdeb082cb9d29a72fb8e832fe7866188a764e8830287d2ab927f","0b3d5dc28f3a8e4926bb77927716fd3e8a527bf6656c91df7c5cce5bd5f436d6","fd6162c066179bc3a267b4a95fd6ffb025aca0ecee80a07719fe021df36bea20","3930ed3f59a8122c2eb5ad97cf93df4880ecf303ca2851e5a33c61829fb95c88"]
+Brownian_association_error1.33226762955e-15
+same_exact_endpoint_roleOne stored fine terminal array reused by both methods and every level; sums under different associations need not be bit identical.
+判定 / check合格
+finite saved candidate arraystrue
+declared Brownian grouping roundofftrue
+em/n16/squared error calibrationtrue
+em/n32/squared error calibrationtrue
+em/n64/squared error calibrationtrue
+em/n128/squared error calibrationtrue
+em/sampled RMS ordertrue
+milstein/n16/squared error calibrationtrue
+
+## SDEの弱誤差・強誤差と標本誤差 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#gbm-milstein-strong-measurements
+Coverage: reading
+
+milstein/n32/squared error calibrationtrue
+milstein/n64/squared error calibrationtrue
+milstein/n128/squared error calibrationtrue
+milstein/sampled RMS ordertrue
+finest Milstein advantagetrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存した実データ由来の分布・誤差診断。空間次元と標本/時間軸を区別します。全記録を表で読む
+seedstepsmethodscandidate_filedriver_sha256
+47001[16,32,64,128]["em","milstein"]gbm-milstein-strong.npz0794acba8cd8fdeb082cb9d29a72fb8e832fe7866188a764e8830287d2ab927f
+47002[16,32,64,128]["em","milstein"]gbm-milstein-strong.npz0b3d5dc28f3a8e4926bb77927716fd3e8a527bf6656c91df7c5cce5bd5f436d6
+47003[16,32,64,128]["em","milstein"]gbm-milstein-strong.npzfd6162c066179bc3a267b4a95fd6ffb025aca0ecee80a07719fe021df36bea20
+47004[16,32,64,128]["em","milstein"]gbm-milstein-strong.npz3930ed3f59a8122c2eb5ad97cf93df4880ecf303ca2851e5a33c61829fb95c88
+この例の実測値・全記録 / JSON
+
+## SDEの弱誤差・強誤差と標本誤差 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#gbm-milstein-strong-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+D. J. Higham (2001). An Algorithmic Introduction to Numerical Simulation of Stochastic Differential Equations
+確認範囲 / review_level: selected-primary-full-text-sections4-6
+原著の線形SDE厳密解、strong/weak定義、EM、Milstein補正の選択節を確認。論文全体やMATLAB実験の再現ではありません。掲載strong定義L1と本例L2 RMSを区別します。
+
+## 重要度サンプリングと相関Gaussian診断 — 重要度サンプリングと相関Gaussian診断 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/
+Coverage: reading
+
+重要度重み付き尾確率と2D相関GaussianのMCMCを扱い、解析値・同一データの診断照合・新規標本の検査を区別します。
+
+## 重要度サンプリングと相関Gaussian診断 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#run-all
+Coverage: reading
+
+ZIPの atlas-stochastic-estimation-2026-11-24 フォルダで実行します。このコマンドは配布版の全2例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## 重要度サンプリングと相関Gaussian診断 — 正規稀少尾の通常importance sampling [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/
+Coverage: reading
+
+通常の尤度比平均を解析モーメント・独立seed分散・有限被覆診断で確認。
+手法・式・図・参照解
+使用手法
+Monte Carlo積分
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+Y=1(X>a)exp(-aX+a²/2)の通常平均。ランダムな重み総和で割らず、proposal調整なし。直接MCの無hitは0のまま保存しCP区間を付けます。
+Gaussian確率測度：尾確率と相関標的
+標準正規尾a=3/6、proposal=N(a,1)、64独立seed、N=2048/8192の固定prefix。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+正規稀少尾の通常importance sampling
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+1〜4次モーメントを独立正の積分で資格。既知分散による5SE校正、seed間分散、解析分散低減、重み欠落負例。既知分散normal95%のIS区間の被覆は閾値/prefixごと64反復で別記。
+同じ問題の参照 · 解析参照
+正規稀少尾の通常importance sampling
+重み付きISへBernoulliの厳密区間を転用しません。64反復は一般95%被覆の証明でなく、nestedprefixを独立反復へ水増ししません。global weightESSと事象ESSは別です。
+
+## 重要度サンプリングと相関Gaussian診断 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#normal-tail-importance-assumptions
+Coverage: reading
+
+標準正規尾a=3/6、proposal=N(a,1)、64独立seed、N=2048/8192の固定prefix。
+
+## 重要度サンプリングと相関Gaussian診断 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#normal-tail-importance-algorithm
+Coverage: reading
+
+Y=1(X>a)exp(-aX+a²/2)の通常平均。ランダムな重み総和で割らず、proposal調整なし。直接MCの無hitは0のまま保存しCP区間を付けます。
+\widehat p=N^{-1}\sum_i\mathbf1_{X_i>a}e^{-aX_i+a^2/2}\mathbb E_q[Y^r]=e^{r(r-1)a^2/2}\overline\Phi(ra)
+
+## 重要度サンプリングと相関Gaussian診断 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#normal-tail-importance-validation
+Coverage: reading
+
+1〜4次モーメントを独立正の積分で資格。既知分散による5SE校正、seed間分散、解析分散低減、重み欠落負例。既知分散normal95%のIS区間の被覆は閾値/prefixごと64反復で別記。
+
+## 重要度サンプリングと相関Gaussian診断 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#normal-tail-importance-limits
+Coverage: reading
+
+重み付きISへBernoulliの厳密区間を転用しません。64反復は一般95%被覆の証明でなく、nestedprefixを独立反復へ水増ししません。global weightESSと事象ESSは別です。
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+records[{"a":3.0,"n":2048,"truth":0.001349898031630094,"analytic_variance":6.172177793850583e-06,"estimate_mean":0.001351984003550967,"batch_variance":2.789399943750647e-09,"aggregate_known_se":6.862213892491717e-06,"IS_coverage":0.9375,"IS_coverage_binomial_CI":[0.8476365265773032,0.9827099726189448],"direct_coverage":0.96875,"direct_coverage_binomial_CI":[0.8916294777754828,0.9961928186181276],"direct_no_hit_batches":3,"IS_estimates":[0.0012550460353203821,0.0013890762459010146,0.0013392136263617044,0.0012863909620800917,0.0013035730351468027,0.0013151240206251324,0.001367243754794386,0.0014649450123506184,0.0013606245760530507,0.0014479491489106959,0.001391926413438083,0.0013432295685127519,0.0013007450723325207,0.0013061670769347875,0.0013351313018450956,0.0013538104517836482,0.0013934358497783624,0.0012036826103343692,0.0013589773387416085,0.0014039112782072987,0.0015024917823896877,0.0014137826011059312,0.0013063628673717909,0.0013597518942813128,0.001367629752166919,0.0013645493097139828,0.0012503737035146226,0.0012825666153344181,0.0013177398616881278,0.001403385685321558,0.0013612361021995794,0.001317015535588769,0.00125214191170982,0.0013693917053444543,0.001298656527100136,0.0014709659210733997,0.0013882786863022708,0.0013561966476754615,0.0013438634031408695,0.001346407027373498,0.0013873210529493233,0.0013370580270836373,0.0013140626083199798,0.0013755429619267436,
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+0.0013673814687594737,0.0013914709527790955,0.001321873402687219,0.0014094485655711851,0.0013388802107734345,0.0013232687996502395,0.0014015725264946385,0.0013467917393770413,0.0013318715335592407,0.0013765868035285982,0.0012866921830016124,0.001357057070388789,0.0013828533932956815,0.0013342819261334528,0.0013724342170568721,0.0013459303226530683,0.0013376451450722944,0.001386789762753255,0.001385154138625203,0.0013220164949727924],"direct_estimates":[0.00244140625,0.00146484375,0.00146484375,0.00146484375,0.0009765625,0.0009765625,0.001953125,0.00146484375,0.00146484375,0.00048828125,0.0009765625,0.00244140625,0.0009765625,0.0009765625,0.00048828125,0.0009765625,0.001953125,0.0009765625,0.0009765625,0.0029296875,0.001953125,0.0,0.001953125,0.00146484375,0.0009765625,0.001953125,0.00146484375,0.0009765625,0.00390625,0.00048828125,0.00048828125,0.00244140625,0.00244140625,0.0009765625,0.001953125,0.0009765625,0.0009765625,0.0009765625,0.0,0.0009765625,0.00048828125,0.00048828125,0.0,0.001953125,0.0009765625,0.0009765625,0.001953125,0.00390625,0.0009765625,0.00146484375,0.00146484375,0.001953125,0.00146484375,0.0009765625,0.0009765625,0.001953125,0.001953125,0.00146484375,0.00146484375,0.001953125,0.00146484375,0.00048828125,0.00244140625,0.00146484375],"direct_CP95_intervals":[[0.0007931783677401395,0.005688157267145868],[0.00030218793228204327,0.004274871147354223],[0.00030218
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+793228204327,0.004274871147354223],[0.00030218793228204327,0.004274871147354223],[0.00011828813715452324,0.0035231826302861025],[0.00011828813715452324,0.0035231826302861025],[0.0005324091955734352,0.004993159826672394],[0.00030218793228204327,0.004274871147354223],[0.00030218793228204327,0.004274871147354223],[1.2362134518014377e-05,0.0027174944939663413],[0.00011828813715452324,0.0035231826302861025],[0.0007931783677401395,0.005688157267145868],[0.00011828813715452324,0.0035231826302861025],[0.00011828813715452324,0.0035231826302861025],[1.2362134518014377e-05,0.0027174944939663413],[0.00011828813715452324,0.0035231826302861025],[0.0005324091955734352,0.004993159826672394],[0.00011828813715452324,0.0035231826302861025],[0.00011828813715452324,0.0035231826302861025],[0.0010758790336718924,0.006365711368738894],[0.0005324091955734352,0.004993159826672394],[0.0,0.0017995894645376769],[0.0005324091955734352,0.004993159826672394],[0.00030218793228204327,0.004274871147354223],[0.00011828813715452324,0.0035231826302861025],[0.0005324091955734352,0.004993159826672394],[0.00030218793228204327,0.004274871147354223],[0.00011828813715452324,0.0035231826302861025],[0.0016879038818811754,0.007682287181498291],[1.2362134518014377e-05,0.0027174944939663413],[1.2362134518014377e-05,0.0027174944939663413],[0.0007931783677401395,0.005688157267145868],[0.0007931783677401395,0.005688157267145868]
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+,[0.00011828813715452324,0.0035231826302861025],[0.0005324091955734352,0.004993159826672394],[0.00011828813715452324,0.0035231826302861025],[0.00011828813715452324,0.0035231826302861025],[0.00011828813715452324,0.0035231826302861025],[0.0,0.0017995894645376769],[0.00011828813715452324,0.0035231826302861025],[1.2362134518014377e-05,0.0027174944939663413],[1.2362134518014377e-05,0.0027174944939663413],[0.0,0.0017995894645376769],[0.0005324091955734352,0.004993159826672394],[0.00011828813715452324,0.0035231826302861025],[0.00011828813715452324,0.0035231826302861025],[0.0005324091955734352,0.004993159826672394],[0.0016879038818811754,0.007682287181498291],[0.00011828813715452324,0.0035231826302861025],[0.00030218793228204327,0.004274871147354223],[0.00030218793228204327,0.004274871147354223],[0.0005324091955734352,0.004993159826672394],[0.00030218793228204327,0.004274871147354223],[0.00011828813715452324,0.0035231826302861025],[0.00011828813715452324,0.0035231826302861025],[0.0005324091955734352,0.004993159826672394],[0.0005324091955734352,0.004993159826672394],[0.00030218793228204327,0.004274871147354223],[0.00030218793228204327,0.004274871147354223],[0.0005324091955734352,0.004993159826672394],[0.00030218793228204327,0.004274871147354223],[1.2362134518014377e-05,0.0027174944939663413],[0.0007931783677401395,0.005688157267145868],[0.00030218793228204327,0.004274871147354223]],"wei
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+ght_ESS":[21.15926317394717,41.18951576956041,10.45543456292765,23.484856447328344,8.360665351154841,32.59831035625985,32.19484436120817,32.91344033935609,10.641410040061622,3.6354992863162425,23.323125495904907,4.298509643227482,29.41457780946849,28.10048070366128,35.783725656946714,21.665039736746984,19.243948865782308,17.398286898861425,22.068968759429247,8.346756239247581,12.059726551426824,9.89638075042065,7.209983943104346,11.53036856328907,32.918351301858664,20.772877808107957,2.217438312592306,10.762667182772804,10.189763469667886,38.18814330100251,8.411978915071577,2.6368095064526944,10.103335365015365,8.46855626119429,13.545103491851783,15.43587990523498,24.700560992411813,35.453148681381464,6.354606406000917,3.5395629588422692,15.246182935267912,17.1147852363793,19.467809133229593,18.313484449686033,26.863035425120714,8.736442436893535,9.996532032663163,28.401413750676404,22.27762339254489,7.438141519817047,3.9092290969228145,2.5996766751099787,6.621143137980135,3.258009792376355,38.33437775266722,4.490879891151306,44.28757529141263,9.776563902495228,6.55489764928504,22.54828024867047,22.23830877653678,32.15735704914305,6.828507242879617,14.949306279335607],"event_ESS":[438.9225458422814,483.06764487143937,465.8613558401836,451.6073961643048,456.36662369561606,461.1733586139038,469.9593873526784,498.4496477409389,474.81876845223576,489.45057686525723,475.201487781463
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+13,457.9495823924123,453.56217855932067,473.90289225623576,479.5732342245853,458.6613997313665,469.0850593585455,423.85142033717335,472.5499644064114,470.4681446374088,484.68972263915475,468.2480852118712,464.99627970877344,465.6027723029047,487.2922772969232,481.7359668955205,447.553817775507,454.1953715070741,460.91861610428657,489.73343956712876,468.4452553693607,469.32151734013127,435.0412881868084,461.779314807457,461.6966352330581,500.67546413986213,465.3881415871457,472.7759101667183,488.3982671900122,475.4228742012357,469.6159524879314,464.626398273608,460.4781034523246,488.2499328934969,497.4676945943087,463.53794909680823,458.88749491040517,475.81932663858043,467.00292647750615,463.9545405059138,483.32259095053746,464.7607598616894,465.1322867534066,480.62810990041316,448.99976790517695,465.27391800964494,469.08895681548364,459.1814204145638,475.79526047384843,456.33899442049034,484.90338601159533,477.10921843048243,478.99580263197566,451.9511779604279],"unweighted_proposal_event_mean":0.5010833740234375,"IS_interval_recipe":"Known exact estimator variance normal95; not an exact finite-sample weighted interval.","coverage_scope":"64independent batches for this threshold/prefix only; nested prefixes and thresholds are not pooled."},{"a":3.0,"n":8192,"truth":0.001349898031630094,"analytic_variance":6.172177793850583e-06,"estimate_mean":0.0013538346728247394,"batch_varia
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+nce":6.647514263171066e-10,"aggregate_known_se":3.4311069462458586e-06,"IS_coverage":0.9375,"IS_coverage_binomial_CI":[0.8476365265773032,0.9827099726189448],"direct_coverage":0.984375,"direct_coverage_binomial_CI":[0.9159896735656463,0.9996044874859493],"direct_no_hit_batches":0,"IS_estimates":[0.0012955759479823796,0.001365994689342002,0.0013392497027614014,0.0013482352660169699,0.0013287952860593553,0.0013587410961390064,0.0013349456199233825,0.0014219918056852486,0.0013430114890319186,0.0013466969216158258,0.0013911036834545552,0.001341500723390601,0.0013742031108327415,0.0013566643373500928,0.001342378654081307,0.0013886537287883642,0.0013803736092000893,0.0013198998827120335,0.0013415406527451696,0.0013478079730572228,0.0013394034302933598,0.0014061064386545364,0.0013773434628773645,0.0013689295813097396,0.0013433342566347287,0.001359152964152292,0.001342266979953551,0.0013075988988867759,0.0013313239493322245,0.001392798035506312,0.001359124080706126,0.00133106177837497,0.0013139924829111966,0.0013585977345950402,0.0013286831418092152,0.0013949612582008948,0.0013360494308676755,0.001336231870713237,0.0013535734715982588,0.0013489069892118346,0.0013875888219847827,0.001353921830947201,0.0012906788875562015,0.0013626835365065412,0.0013777207456340064,0.0013928746604192123,0.0013245245236920369,0.0013648644378409544,0.0013342113510153544,0.0013414949353409361,0.001385250069
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+3311773,0.0013492535404461927,0.0013405148558886639,0.0013748676143185627,0.0013412478093999946,0.001338327162779291,0.0013502424542147368,0.0013815805127482949,0.0013262041524113417,0.0013604444852616333,0.001385214987044176,0.001357785358499723,0.0013614660256278071,0.0013656518851154875],"direct_estimates":[0.0015869140625,0.0018310546875,0.0015869140625,0.0013427734375,0.001220703125,0.00146484375,0.0015869140625,0.00146484375,0.001708984375,0.00146484375,0.000732421875,0.0018310546875,0.0008544921875,0.0013427734375,0.0013427734375,0.001220703125,0.0018310546875,0.0018310546875,0.0018310546875,0.0010986328125,0.001708984375,0.001220703125,0.001708984375,0.00146484375,0.001708984375,0.0013427734375,0.0010986328125,0.0009765625,0.0018310546875,0.0009765625,0.0013427734375,0.00146484375,0.0015869140625,0.0013427734375,0.001708984375,0.00146484375,0.0010986328125,0.0008544921875,0.0013427734375,0.00146484375,0.0010986328125,0.0009765625,0.000732421875,0.00146484375,0.0010986328125,0.001220703125,0.00146484375,0.001953125,0.0015869140625,0.00146484375,0.0018310546875,0.0020751953125,0.0013427734375,0.00146484375,0.0015869140625,0.0013427734375,0.0013427734375,0.001708984375,0.00146484375,0.000732421875,0.0009765625,0.0003662109375,0.0015869140625,0.0015869140625],"direct_CP95_intervals":[[0.00084522695436736,0.0027121425634731794],[0.001025178227975317,0.0030182507898352004],[0
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+.00084522695436736,0.0027121425634731794],[0.0006704922276954308,0.002401319490213853],[0.0005855248944070898,0.0022437669417077846],[0.0007571279926472161,0.0025573876887955396],[0.00084522695436736,0.0027121425634731794],[0.0007571279926472161,0.0025573876887955396],[0.000934622729384305,0.0028657245810842667],[0.0007571279926472161,0.0025573876887955396],[0.0002688318375382104,0.0015934872668981336],[0.001025178227975317,0.0030182507898352004],[0.00034361699911774864,0.0017597829535838307],[0.0006704922276954308,0.002401319490213853],[0.0006704922276954308,0.002401319490213853],[0.0005855248944070898,0.0022437669417077846],[0.001025178227975317,0.0030182507898352004],[0.001025178227975317,0.0030182507898352004],[0.001025178227975317,0.0030182507898352004],[0.0005024840430941555,0.0020845182470392108],[0.000934622729384305,0.0028657245810842667],[0.0005855248944070898,0.0022437669417077846],[0.000934622729384305,0.0028657245810842667],[0.0007571279926472161,0.0025573876887955396],[0.000934622729384305,0.0028657245810842667],[0.0006704922276954308,0.002401319490213853],[0.0005024840430941555,0.0020845182470392108],[0.0004217016632144691,0.0019233057715157638],[0.001025178227975317,0.0030182507898352004],[0.0004217016632144691,0.0019233057715157638],[0.0006704922276954308,0.002401319490213853],[0.0007571279926472161,0.0025573876887955396],[0.00084522695436736,0.0027121425634731
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+794],[0.0006704922276954308,0.002401319490213853],[0.000934622729384305,0.0028657245810842667],[0.0007571279926472161,0.0025573876887955396],[0.0005024840430941555,0.0020845182470392108],[0.00034361699911774864,0.0017597829535838307],[0.0006704922276954308,0.002401319490213853],[0.0007571279926472161,0.0025573876887955396],[0.0005024840430941555,0.0020845182470392108],[0.0004217016632144691,0.0019233057715157638],[0.0002688318375382104,0.0015934872668981336],[0.0007571279926472161,0.0025573876887955396],[0.0005024840430941555,0.0020845182470392108],[0.0005855248944070898,0.0022437669417077846],[0.0007571279926472161,0.0025573876887955396],[0.0011167789171197464,0.003169819947707148],[0.00084522695436736,0.0027121425634731794],[0.0007571279926472161,0.0025573876887955396],[0.001025178227975317,0.0030182507898352004],[0.001209327950503123,0.0033205162911927274],[0.0006704922276954308,0.002401319490213853],[0.0007571279926472161,0.0025573876887955396],[0.00084522695436736,0.0027121425634731794],[0.0006704922276954308,0.002401319490213853],[0.0006704922276954308,0.002401319490213853],[0.000934622729384305,0.0028657245810842667],[0.0007571279926472161,0.0025573876887955396],[0.0002688318375382104,0.0015934872668981336],[0.0004217016632144691,0.0019233057715157638],[7.552786749571872e-05,0.001069847095663702],[0.00084522695436736,0.0027121425634731794],[0.00084522695436736,0.00271214
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+25634731794]],"weight_ESS":[66.23998104979297,113.59323228023624,11.751659390762851,94.70929983598165,41.44410768648745,117.42330857913716,40.422187910007,46.022119334870645,46.214887264138724,34.300450980786046,88.34654656982536,22.68399113053046,7.749356954602243,47.38186943181799,59.20918822864521,52.822313229471014,18.882601432067695,23.020344324992333,19.871030808362946,34.28579780533458,52.5425747784841,37.425547414890715,29.39321119688508,6.291125270515702,60.00486342127477,3.226270410334914,3.3144298525293907,19.25082605514417,52.437060299123154,31.464044166246055,46.15302779619956,21.110587414251683,34.16900932791078,26.609285404705957,27.110227270727346,40.49500714584381,40.177619170494914,1.4232303655445597,39.342533814508954,17.82310705677744,37.8184913941953,4.988826681860445,66.36205046023919,79.81645770031706,110.46194003762037,18.035974909223487,38.622701436125446,45.814913936262535,59.24468999530841,45.9590252132087,27.984483646635866,13.166146583658245,29.725391560019872,15.40440603435487,115.31807676396603,23.707175437595428,7.448009692335163,37.90026960159977,37.358460461179476,102.32821421048857,9.646116314593414,15.14499063990412,15.498761414692467,22.958860522291808],"event_ESS":[1808.1802627826917,1905.7172951786765,1860.865019634981,1877.7177201904137,1858.6241941778953,1858.01186802349,1866.4942264146052,1923.9113661360136,1855.592482631044,1861.062413
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+6770052,1912.3172406195345,1853.243393862451,1879.9667659452275,1896.134245346237,1870.2916496952503,1910.9954554250946,1880.160041930153,1842.6234502012205,1860.0473952725401,1858.029948821048,1851.5327050587766,1884.1767055193263,1911.9865836235604,1879.2117974288271,1894.750756927274,1894.7559793731725,1881.111115450584,1843.524191811513,1851.2202300998472,1913.0835168475428,1874.852290196117,1863.0213497223083,1793.3642669500196,1861.1153291256676,1833.9659227304378,1899.7364739193645,1828.8005466666018,1863.1489663012717,1922.3971359503587,1882.1602935732003,1887.5966032258652,1883.8122063790295,1802.0138660395862,1910.5008480296938,1930.792158942273,1887.1902771905811,1848.6495213393566,1865.2140954165395,1851.2315915049178,1847.9927704572453,1915.1821016562083,1877.449250434492,1877.7808327163227,1889.100024840456,1860.4631943067552,1847.29642806664,1867.3190347646498,1881.8303877986982,1823.5669764979348,1864.2011891900027,1897.411551696171,1859.153587631972,1870.4128308388206,1873.9333825251597],"unweighted_proposal_event_mean":0.5001049041748047,"IS_interval_recipe":"Known exact estimator variance normal95; not an exact finite-sample weighted interval.","coverage_scope":"64independent batches for this threshold/prefix only; nested prefixes and thresholds are not pooled."},{"a":6.0,"n":2048,"truth":9.865876450376937e-10,"analytic_variance":6.6854705431339915e-18,"estim
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+ate_mean":9.861214855163445e-10,"batch_variance":3.1618825990168494e-21,"aggregate_known_se":7.141854969167285e-12,"IS_coverage":0.96875,"IS_coverage_binomial_CI":[0.8916294777754828,0.9961928186181276],"direct_coverage":1.0,"direct_coverage_binomial_CI":[0.9439909106133634,1.0],"direct_no_hit_batches":64,"IS_estimates":[9.070078333783081e-10,1.009540704745744e-09,9.730219736445002e-10,9.261141707910175e-10,9.4110152472827e-10,9.478701019925323e-10,1.0053358804731246e-09,1.0881805740385411e-09,9.854358551535095e-10,1.0826233517580747e-09,1.0304676820763462e-09,9.957777879537214e-10,9.428164712672742e-10,9.098875477389926e-10,9.394477587972658e-10,1.0099576156933417e-09,1.0461693060545515e-09,8.639526576781079e-10,9.877710875728894e-10,1.0588360477469757e-09,1.1771722477546251e-09,1.078869387620109e-09,9.275937026346321e-10,1.0036525737917939e-09,9.701238167435806e-10,9.768975286356927e-10,8.829050726614606e-10,9.153702076053908e-10,9.521705239875131e-10,1.016421728881111e-09,9.997414258441975e-10,9.340947797097386e-10,9.108696756850622e-10,1.0263619094847984e-09,9.232334070355259e-10,1.0922662851409089e-09,1.0466888902826617e-09,9.832628002960672e-10,9.34578433695038e-10,9.637231274635848e-10,1.035835349111186e-09,9.72470073550091e-10,9.477695397451322e-10,9.794578271391693e-10,9.499354867352237e-10,1.055705076263842e-09,9.623944742422842e-10,1.0552029606034014e-09,9.7016020914
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+4801e-10,9.538944705081765e-10,1.02724413897473e-09,9.863954266062508e-10,9.638907263085543e-10,9.965008002023537e-10,9.319289941205503e-10,1.0003849085797933e-09,1.0303308073280273e-09,9.799197581728087e-10,1.000558712453649e-09,1.0033147319187742e-09,9.326232406035776e-10,1.0187862184254055e-09,1.0123813017507918e-09,9.77376382320892e-10],"direct_estimates":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"direct_CP95_intervals":[[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769]
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+,[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769],[0.0,0.0017995894645376769]],"weight_ESS":[2.714757698130342,7.294877470133458,2.306968151815931,5.914035980365611,1.47293345398692,7.05270995063711,6.722331273550882,5.217795166103699,1.451808786850598,1.0301596735875282,9.372515382420085,1.2445332739092032,3.6162346650052664,3.275446233542616,6.292501955080596,4.1497947651256935,3.120425695660313,1.4338885472358478,2.9737075488570257,2.
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+406683637656517,2.6707420987067496,2.1718790173647244,2.3977482634935066,1.6528516149771635,4.373283540837031,3.669137139206666,1.0228689205211179,1.6647144288424398,1.6571974943142729,9.844277752136971,1.266243799090225,1.020095846700053,1.3204795118796084,1.2511395647959747,2.849084464435868,2.3145148357411345,4.179104065621091,7.218035686824816,1.6653528852253334,1.137203640228748,3.6896363802176912,3.386059349507665,3.119264491874781,3.4372264929190184,5.320318353617252,1.2668912498073732,2.5118510782932155,3.8883326154582774,4.6509947849465485,1.4195522201645985,1.1177235915378045,1.0324966686431505,1.39654932253797,1.1535944089020482,3.621819774855334,1.1456867697455162,6.436726659609086,1.257308749741118,1.949342148766888,3.2550019657468057,5.150597495246921,6.211874406479659,1.2675684985653248,2.131595568136746],"event_ESS":[243.52586288394315,274.02662205371064,266.1828588979608,251.73612050866527,254.98950482975653,247.08580785147274,263.38401228181556,280.52522740829033,266.5330696674651,274.5088554716088,279.61473074201757,249.5850204151761,240.15474098957318,255.10315500110323,261.0475688914342,257.7836822321271,268.9988584523106,228.82436093884795,262.70428213327557,266.7458671442742,277.2162621202265,275.35038156332047,250.5441211562008,261.9998113199418,263.9930053905389,276.51122613265267,232.29715233989106,245.684212020674,251.4141996688122,271.4196415913557,2
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+55.22525967252088,258.41175823668675,234.97387686279723,264.970320823065,249.60648204009902,285.3263351803979,268.81163441908154,264.5274226478653,266.9808902622782,259.76415520163454,263.9871182509216,262.78121194212207,247.8219308059197,275.2572124760674,275.725093367583,264.56540126539005,250.7397233608818,272.29922797074113,257.5597825223091,251.04672038604247,270.13556079697435,257.61729807712794,252.03830475492495,263.099352723686,236.7728679777003,265.2992124843516,268.9617838129497,262.70749015617236,266.6993792564432,252.32477846398618,264.00527840942794,267.11712813696295,266.05061861435075,255.9150617463252],"unweighted_proposal_event_mean":0.5010833740234375,"IS_interval_recipe":"Known exact estimator variance normal95; not an exact finite-sample weighted interval.","coverage_scope":"64independent batches for this threshold/prefix only; nested prefixes and thresholds are not pooled."},{"a":6.0,"n":8192,"truth":9.865876450376937e-10,"analytic_variance":6.6854705431339915e-18,"estimate_mean":9.901279153514042e-10,"batch_variance":7.304251198197894e-22,"aggregate_known_se":3.5709274845836424e-12,"IS_coverage":0.96875,"IS_coverage_binomial_CI":[0.8916294777754828,0.9961928186181276],"direct_coverage":1.0,"direct_coverage_binomial_CI":[0.9439909106133634,1.0],"direct_no_hit_batches":64,"IS_estimates":[9.384770050450396e-10,9.898722579661525e-10,9.744237298905054e-10,9.78
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+6798967047097e-10,9.60426595788667e-10,1.0045337789030703e-09,9.652506551957613e-10,1.0625484292696635e-09,9.826898219324656e-10,9.851863889707915e-10,1.0230542578001111e-09,9.817230053140634e-10,1.015526566792674e-09,9.813306022225466e-10,9.74047972724746e-10,1.020159038118419e-09,1.0245616197318522e-09,9.558395426438538e-10,9.781901184393691e-10,9.88423219052427e-10,9.79559977295874e-10,1.0608509511485965e-09,1.0030885434063296e-09,1.0081521784147612e-09,9.628434871715173e-10,9.856506064341348e-10,9.682844780246075e-10,9.376480566364892e-10,9.679412721960937e-10,1.0251371394873673e-09,9.960720719899273e-10,9.61431174931773e-10,9.733227081327001e-10,1.0026470779279062e-09,9.73175561443403e-10,1.0355487243076329e-09,9.867754050978884e-10,9.688480702543526e-10,9.63518735769837e-10,9.773430053143033e-10,1.0312216081529822e-09,9.83760049298345e-10,9.34583028532717e-10,9.826127376207202e-10,9.93862893210187e-10,1.0393169050985464e-09,9.594117461255202e-10,1.009694415172965e-09,9.721384392273054e-10,9.845038376605056e-10,1.0129450657724822e-09,9.802989394578378e-10,9.674710255874582e-10,1.0115944009217273e-09,9.775445866490635e-10,9.802291221655806e-10,9.87062380350866e-10,1.0254430051574067e-09,9.750764206152436e-10,1.003710517212627e-09,1.0223801986555683e-09,1.0025050751584843e-09,1.0018800991711014e-09,1.006156357622259e-09],"direct_estimates":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"direct_CP95_intervals":[[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394],[0.0,0.00045020129670868394]],"weight_ESS":[3.6978082418675897,7.708388620708694,1.7297961744015466,17.987220232459247,3.8046931364083614,9.156782235226185,2.7595717485986624,3.224026673854086,3.2095624315850135,2.504135707935715,15.801239452072016,3.9871873224314553,2.2313273409198002,4.489560086650381,4.687679048630668,6.538817050216461,1.4813640580607146,2.554305663702664,1.436988206182495,4.7450776515749835,6.522471230977075,3.4403130780840354,3.6838105285885847,1.1561919695197984,3.3510552625653336,1.0496563703359412,1.142042658254571,1.5468430481210833,10.350880027769255,1.5966312521084864,1.8286383938115192,1.70156494221803,2.545793988111603,5.8968998840285805,3.3016146961878725,4.013008340589144,5.4941145349
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+05161,1.0055508887818296,3.2181808683864204,1.558927211752986,2.4021262726871098,1.6960762620282075,9.567856188148756,11.714359688969635,10.536573302645126,1.5223566705253797,4.859437801737428,3.355626166535342,5.306789869825481,4.648086503827353,1.85944270927682,1.8838353017588594,1.8704994272160258,1.4483417447517886,12.022159366837881,4.31222896975211,1.199233107401293,3.823778071686044,3.5361441360764267,11.689327382440737,1.1746347031138509,1.2237499979736275,2.8729649098543666,4.285257602415676],"event_ESS":[999.6513532187043,1059.612301861933,1036.484025837569,1046.6261534017947,1017.7266992172638,1039.5691306590745,1040.0455111878475,1091.1335616489152,1033.3638999561872,1033.375306521878,1073.7007336959837,1023.5653184320416,1054.9418813055402,1054.4628948652314,1029.4030144954606,1083.2267229899267,1071.1308792759387,1012.4652489820016,1020.8071966311732,1039.717703118517,1016.0350187732137,1082.1030131421896,1088.719581912626,1053.0760892706912,1050.473345972688,1064.5967550465093,1026.9654478154926,1012.0044667696657,1015.8092778841888,1070.8451424797,1048.8611816690004,1030.0026770896038,1007.2655325371007,1050.3243572321676,1012.6460066941606,1064.3123987038468,1029.803002361434,1017.9119391858753,1057.9423098826326,1036.4598520271006,1073.147208787342,1050.461103501832,992.2757997911554,1076.2572216341775,1090.4754292588448,1063.8482889695158,1006.3243609770534,1
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+044.9249406021781,1037.3626138305408,1019.0910165430724,1079.5515376629812,1043.9234151191079,1030.313496285386,1046.6193197554344,1029.3810888405815,1025.748646877055,1060.2452910253762,1069.40072084528,1021.4448686715785,1046.9128005570024,1059.8574524562348,1048.0037872901923,1042.1462975203187,1050.4837256024211],"unweighted_proposal_event_mean":0.5001049041748047,"IS_interval_recipe":"Known exact estimator variance normal95; not an exact finite-sample weighted interval.","coverage_scope":"64independent batches for this threshold/prefix only; nested prefixes and thresholds are not pooled."}]
+independent_batches_per_configuration64
+scopeKnown-moment calibration and finite repeated-interval coverage. Neither nominal intervals nor their64trial coverage is a deterministic bound/general95%coverage proof. Ordinary IS weights have no random denominator.
+判定 / check合格
+finite saved contribution arraystrue
+a3.0/n2048/mean calibrationtrue
+a3.0/n2048/batch variance calibrationtrue
+a3.0/n2048/analytic variance reductiontrue
+a3.0/n2048/unweighted proposal negative controltrue
+a3.0/n8192/mean calibrationtrue
+a3.0/n8192/batch variance calibrationtrue
+a3.0/n8192/analytic variance reductiontrue
+a3.0/n8192/unweighted proposal negative controltrue
+a6.0/n2048/mean calibrationtrue
+a6.0/n2048/batch variance calibrationtrue
+a6.0/n2048/analytic variance reductiontrue
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#normal-tail-importance-measurements
+Coverage: reading
+
+a6.0/n2048/unweighted proposal negative controltrue
+a6.0/n8192/mean calibrationtrue
+a6.0/n8192/batch variance calibrationtrue
+a6.0/n8192/analytic variance reductiontrue
+a6.0/n8192/unweighted proposal negative controltrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存した実データ由来の分布・誤差診断。空間次元と標本/時間軸を区別します。全記録を表で読む
+thresholdsamplesindependent_seed_batchescandidate_file
+3204864normal-tail-importance.npz
+3819264normal-tail-importance.npz
+6204864normal-tail-importance.npz
+6819264normal-tail-importance.npz
+この例の実測値・全記録 / JSON
+
+## 重要度サンプリングと相関Gaussian診断 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#normal-tail-importance-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+A. B. Owen (n.d.). Monte Carlo theory,methods and examples,Chapter9: importance sampling
+確認範囲 / review_level: selected-author-pdf-equations-and-scope
+準備時に著者版9章のsupport・通常IS平均・2次モーメントと重み診断の選択箇所を確認。今回の再取得は403。全書籍やPERT実験を再現しません。
+
+## 重要度サンプリングと相関Gaussian診断 — 相関2変量Gaussianのjoint標的とMCSE [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/
+Coverage: reading
+
+実2D MH軌道を既知のjointモーメントと同一データArviZ診断で検査。
+手法・式・図・参照解
+使用手法
+Markov連鎖Monte Carlo
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+対称random-walk MH、拒否状態も保持。8観測量それぞれのoriginal-scale meanESS/MCSEを計算し、rankbulkESSを流用しません。
+Gaussian確率測度：尾確率と相関標的
+平均(1,-1)、相関.95・対角分散1。4独立chainset×4chain、burn1024/draw8192、prefix2048/8192。固定.9Lzと.25z、適応なし。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+相関2変量Gaussianのjoint標的とMCSE
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+4つのpreconditioned最終prefix全観測量にRhat/ESS/MCSE/既知moment条件。同じ128scalararrayを別ArviZ0.20過程へ渡した640値資格と全データSHAで照合。標的は解析Gaussianモーメントで別検査。 640比較は不変な同一データfixture上で行い、別に生成する8組のfresh軌道で物理・混合判定を行います。環境を跨ぐ生成配列のbit一致は要求しません。
+同じ問題の参照 · 有限格子の数値参照
+相関2変量Gaussianのjoint標的とMCSE
+診断engineの独立性とsamplerの独立参照を混同しません。Rhat等は大域収束・被覆の証明ではありません。isotropicは固定比較で失敗を要求せず、banana/funnel/HMC/NUTSは未実装です。
+
+## 重要度サンプリングと相関Gaussian診断 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-assumptions
+Coverage: reading
+
+平均(1,-1)、相関.95・対角分散1。4独立chainset×4chain、burn1024/draw8192、prefix2048/8192。固定.9Lzと.25z、適応なし。
+
+## 重要度サンプリングと相関Gaussian診断 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-algorithm
+Coverage: reading
+
+対称random-walk MH、拒否状態も保持。8観測量それぞれのoriginal-scale meanESS/MCSEを計算し、rankbulkESSを流用しません。
+\pi(x)\propto\exp[-\tfrac12(x-m)^\top\Sigma^{-1}(x-m)]\operatorname{MCSE}(g)=s_g/\sqrt{\operatorname{ESS}_{\mathrm{mean}}(g)}
+
+## 重要度サンプリングと相関Gaussian診断 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-validation
+Coverage: reading
+
+4つのpreconditioned最終prefix全観測量にRhat/ESS/MCSE/既知moment条件。同じ128scalararrayを別ArviZ0.20過程へ渡した640値資格と全データSHAで照合。標的は解析Gaussianモーメントで別検査。 640比較は不変な同一データfixture上で行い、別に生成する8組のfresh軌道で物理・混合判定を行います。環境を跨ぐ生成配列のbit一致は要求しません。
+
+## 重要度サンプリングと相関Gaussian診断 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-limits
+Coverage: reading
+
+診断engineの独立性とsamplerの独立参照を混同しません。Rhat等は大域収束・被覆の証明ではありません。isotropicは固定比較で失敗を要求せず、banana/funnel/HMC/NUTSは未実装です。
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+records[{"seed":46001,"proposal":"preconditioned","prefix":2048,"observable":"y1","estimate":0.02273213346340055,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0028234908080917,"rhat_z":1.0028234908080917,"rhat_folded":1.0016115323391686,"rhat_split":1.0028494808631363,"ess_bulk":842.393374234801,"ess_tail":1156.7493143970592,"ess_mean":844.5065958382512,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.03462914715701663},"same_data_fixture_sha256":"4d9ce02d665b304d6572b8b3e8446983e45122f2fc452951085990602b4d4953","fresh_data_sha256":"4d9ce02d665b304d6572b8b3e8446983e45122f2fc452951085990602b4d4953","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"preconditioned","prefix":2048,"observable":"y2","estimate":0.024635947147705787,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0027038600453424,"rhat_z":1.0016396597142083,"rhat_folded":1.0027038600453424,"rhat_split":1.0016162218619131,"ess_bulk":843.7879060658638,"ess_tail":942.3715879183177,"ess_mean":841.4812978607972,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.03475078746204045},"same_data_fixture_sha256":"d7f17150a19f0222e031b47e5e0182ffbeee31882a3e82e
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+cad3207f3f1472558","fresh_data_sha256":"d7f17150a19f0222e031b47e5e0182ffbeee31882a3e82ecad3207f3f1472558","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"preconditioned","prefix":2048,"observable":"y1_squared","estimate":1.0131067170289296,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0020602281225262,"rhat_z":1.001811696173043,"rhat_folded":1.0020602281225262,"rhat_split":1.0025156100971693,"ess_bulk":1581.3625909792775,"ess_tail":1443.054617307469,"ess_mean":1130.832921373483,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.041739701345924876},"same_data_fixture_sha256":"f33e903f9350cc203d87827ed92803bdbd7ba92bb08ba400c3bc72627cf8f633","fresh_data_sha256":"f33e903f9350cc203d87827ed92803bdbd7ba92bb08ba400c3bc72627cf8f633","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"preconditioned","prefix":2048,"observable":"y2_squared","estimate":1.0166701969620884,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0028847282903728,"rhat_z":1.0028847282903728,"rhat_folded":1.002147957168465,"rhat_split":1.0043486685230458,"ess_bulk":1399.8399302606222,"ess_tail":1215.0993978673393,"ess_mean":925.3926891011614,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"o
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+k","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.04769439506234704},"same_data_fixture_sha256":"990a6e37719a420f9e004261b3c7483d2558f40c5e815c6f32718ad6d4dedbae","fresh_data_sha256":"990a6e37719a420f9e004261b3c7483d2558f40c5e815c6f32718ad6d4dedbae","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"preconditioned","prefix":2048,"observable":"product","estimate":0.9637943134793139,"analytic_truth":0.95,"natural_sd":1.379311422413372,"diagnostics":{"rhat_rank":1.0015509118824761,"rhat_z":1.0015509118824761,"rhat_folded":1.0013224735738022,"rhat_split":1.0031739915726539,"ess_bulk":1531.9412928141007,"ess_tail":1419.2156527412385,"ess_mean":1015.7530751436617,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.0437461996115656},"same_data_fixture_sha256":"703b1e28e71b7c5ba2f05d1f65bcee8bf796fcde2f9ffaf0b14ff3a1d25e4fcf","fresh_data_sha256":"703b1e28e71b7c5ba2f05d1f65bcee8bf796fcde2f9ffaf0b14ff3a1d25e4fcf","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"preconditioned","prefix":2048,"observable":"Q","estimate":2.036591983387913,"analytic_truth":2.0,"natural_sd":2.0,"diagnostics":{"rhat_rank":1.0054024275360913,"rhat_z":1.0054024275360913,"rhat_folded":1.00469991277063,"rhat_split":1.0065393127795856,"ess_bulk":1142.0
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+29112553154,"ess_tail":1336.367916540867,"ess_mean":947.884892847457,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.06560309805954616},"same_data_fixture_sha256":"3eed07c612d38047d805898554f54be0748ba30f66af778a30bbd12552a19a23","fresh_data_sha256":"3eed07c612d38047d805898554f54be0748ba30f66af778a30bbd12552a19a23","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"preconditioned","prefix":2048,"observable":"sum_direction","estimate":0.023985759989029957,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0025118393268277,"rhat_z":1.0021254756240014,"rhat_folded":1.0025118393268277,"rhat_split":1.0020998851830283,"ess_bulk":846.186685441556,"ess_tail":1002.9082373333366,"ess_mean":846.7234138747014,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.03461013969718671},"same_data_fixture_sha256":"99163a22521d7aee20252f89df851d2280a00ec20596b11a6d744a4d51bcbf9c","fresh_data_sha256":"99163a22521d7aee20252f89df851d2280a00ec20596b11a6d744a4d51bcbf9c","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"preconditioned","prefix":2048,"observable":"difference_direction","estimate":-0.006020387483001313,"analytic_truth":0.0,"natural_s
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+d":1.0,"diagnostics":{"rhat_rank":1.007327324383575,"rhat_z":1.007327324383575,"rhat_folded":1.003251787384027,"rhat_split":1.0073520196136254,"ess_bulk":684.4433664205947,"ess_tail":975.6093139374403,"ess_mean":681.2539670476775,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.03873154704094146},"same_data_fixture_sha256":"ee50235e0598612c4d0921e48481277e7390b5e4f493ffba9a114bfd59126708","fresh_data_sha256":"ee50235e0598612c4d0921e48481277e7390b5e4f493ffba9a114bfd59126708","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"preconditioned","prefix":8192,"observable":"y1","estimate":-0.011455496095055934,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0008151205779574,"rhat_z":1.0008151205779574,"rhat_folded":1.0001794066985847,"rhat_split":1.0008211201570911,"ess_bulk":3075.919072632889,"ess_tail":4422.390392349233,"ess_mean":3080.6833822167046,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.017897352803688746},"same_data_fixture_sha256":"426bdf2063fc89ce8c70837cc11f3a787587ba9757125ff1b7ca04d7d49c090d","fresh_data_sha256":"426bdf2063fc89ce8c70837cc11f3a787587ba9757125ff1b7ca04d7d49c090d","fresh_equals_fixture_bytes":true},{"s
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+eed":46001,"proposal":"preconditioned","prefix":8192,"observable":"y2","estimate":-0.011594803573214671,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0006401688227156,"rhat_z":1.0006401688227156,"rhat_folded":1.0003108897616824,"rhat_split":1.0006440883170196,"ess_bulk":3138.346202374029,"ess_tail":4480.827493577582,"ess_mean":3140.5859054630932,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.017622704535850048},"same_data_fixture_sha256":"6ea3266396fd94a31b23db17789468acee22616fab7028962168e2064b944c42","fresh_data_sha256":"6ea3266396fd94a31b23db17789468acee22616fab7028962168e2064b944c42","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"preconditioned","prefix":8192,"observable":"y1_squared","estimate":0.9868909428215458,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.000185470403974,"rhat_z":1.0001705949119442,"rhat_folded":1.000185470403974,"rhat_split":1.0003551052099493,"ess_bulk":5715.282095859754,"ess_tail":5213.223175047471,"ess_mean":4136.553451113296,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.021348136394524268},"same_data_fixture_sha256":"dadc777c443d5f142021858051191d84f9
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+579ae73ed2e34c19bb8281d40434a5","fresh_data_sha256":"dadc777c443d5f142021858051191d84f9579ae73ed2e34c19bb8281d40434a5","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"preconditioned","prefix":8192,"observable":"y2_squared","estimate":0.9754441387010426,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0003413588333978,"rhat_z":1.000320688316004,"rhat_folded":1.0003413588333978,"rhat_split":1.0005984942689066,"ess_bulk":5722.070295267152,"ess_tail":5174.224128622179,"ess_mean":4105.673962789241,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.021395001692398777},"same_data_fixture_sha256":"33ca8b1b03be4c76dc56d74702bdb03a1d1caa20b61fba08b6e9fcaa0b234bb3","fresh_data_sha256":"33ca8b1b03be4c76dc56d74702bdb03a1d1caa20b61fba08b6e9fcaa0b234bb3","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"preconditioned","prefix":8192,"observable":"product","estimate":0.9314304723658401,"analytic_truth":0.95,"natural_sd":1.379311422413372,"diagnostics":{"rhat_rank":1.0002215829825107,"rhat_z":1.0002215829825107,"rhat_folded":1.0001556372584388,"rhat_split":1.0004266988212132,"ess_bulk":5820.0147395516215,"ess_tail":5254.549771968714,"ess_mean":4123.715089815382,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_f
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+olded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.02081845394522371},"same_data_fixture_sha256":"e5538c71331cd5d63477ee916bab761915878ceb2e8ab9a97d016760464431a1","fresh_data_sha256":"e5538c71331cd5d63477ee916bab761915878ceb2e8ab9a97d016760464431a1","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"preconditioned","prefix":8192,"observable":"Q","estimate":1.9755608618204326,"analytic_truth":2.0,"natural_sd":2.0,"diagnostics":{"rhat_rank":1.0009909900479994,"rhat_z":1.0008940429463693,"rhat_folded":1.0009909900479994,"rhat_split":1.0009802692870815,"ess_bulk":4547.714155437986,"ess_tail":4943.401692503204,"ess_mean":3715.937653831554,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.03228957201741417},"same_data_fixture_sha256":"52eeff77bb4e581da9dd2abef22537c4bdea50aa7a315d4d45bebdad2b6c4391","fresh_data_sha256":"52eeff77bb4e581da9dd2abef22537c4bdea50aa7a315d4d45bebdad2b6c4391","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"preconditioned","prefix":8192,"observable":"sum_direction","estimate":-0.011671972948566613,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0007424048176283,"rhat_z":1.0007424048176283,"rhat_folded":1.0002326335913754,"rhat_split":1.0007476144768266,"ess_bulk":31
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+09.380177758341,"ess_tail":4398.384796421083,"ess_mean":3112.8581610111382,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.017749713259677415},"same_data_fixture_sha256":"4b4ca3bc82975610f8ee2c19b8ed86f4436dbe9ee76ee502cfe419d71f4c8b3e","fresh_data_sha256":"4b4ca3bc82975610f8ee2c19b8ed86f4436dbe9ee76ee502cfe419d71f4c8b3e","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"preconditioned","prefix":8192,"observable":"difference_direction","estimate":0.0004405289260757629,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0009028414784726,"rhat_z":1.0001801473474417,"rhat_folded":1.0009028414784726,"rhat_split":1.0001758673592305,"ess_bulk":2981.855924949352,"ess_tail":4354.003451817646,"ess_mean":2981.0809986281065,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.018267317867082522},"same_data_fixture_sha256":"ed38241651b82d438b2539e36fa8b91abdc0d501f4f803a6c06e4a931eb5c143","fresh_data_sha256":"ed38241651b82d438b2539e36fa8b91abdc0d501f4f803a6c06e4a931eb5c143","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"isotropic","prefix":2048,"observable":"y1","estimate":-0.05317071805117521,"analytic_truth":0.0,"natural_sd":1.0,
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+"diagnostics":{"rhat_rank":1.0908566955918233,"rhat_z":1.0908566955918233,"rhat_folded":1.024689861608745,"rhat_split":1.092743703020371,"ess_bulk":33.80774094748844,"ess_tail":133.0382483695632,"ess_mean":32.804726801783225,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.17283949935955797},"same_data_fixture_sha256":"2ccda40995152c856a9c9e974fd69e4cf5458fa4f78f0aa62206db57b3c2318f","fresh_data_sha256":"2ccda40995152c856a9c9e974fd69e4cf5458fa4f78f0aa62206db57b3c2318f","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"isotropic","prefix":2048,"observable":"y2","estimate":-0.049184340731888154,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0992092349239537,"rhat_z":1.0992092349239537,"rhat_folded":1.0194672316046847,"rhat_split":1.1010526994922227,"ess_bulk":31.064029882385412,"ess_tail":138.57239140689046,"ess_mean":30.549038303360593,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.1805117834034541},"same_data_fixture_sha256":"1a3887d6f2e2ee985d8d9a24ec61e14359e6b00d202d0d4bb99d1bca0c6a9139","fresh_data_sha256":"1a3887d6f2e2ee985d8d9a24ec61e14359e6b00d202d0d4bb99d1bca0c6a9139","fresh_equals_fixture_bytes":true},{"seed":46001
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+,"proposal":"isotropic","prefix":2048,"observable":"y1_squared","estimate":0.9826992587100203,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0173080573889652,"rhat_z":1.0173080573889652,"rhat_folded":1.0112299387262913,"rhat_split":1.0240522237334042,"ess_bulk":142.3436348626523,"ess_tail":223.18070970298223,"ess_mean":126.64508845343562,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.11176530261672589},"same_data_fixture_sha256":"48b419583dd841bb7e160c4911f901d7e00dcfebc44f80e14eaea827e9ba0b55","fresh_data_sha256":"48b419583dd841bb7e160c4911f901d7e00dcfebc44f80e14eaea827e9ba0b55","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"isotropic","prefix":2048,"observable":"y2_squared","estimate":0.9977228466888164,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0165492443940272,"rhat_z":1.0165492443940272,"rhat_folded":1.0109748026079282,"rhat_split":1.0224134151826476,"ess_bulk":136.19335404957275,"ess_tail":241.25941220892676,"ess_mean":120.48917107160015,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.11533911274750662},"same_data_fixture_sha256":"9b063cb21573b9762acfe102b1b33e
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+28e7c019e08bbb4bdb5148be58293df385","fresh_data_sha256":"9b063cb21573b9762acfe102b1b33e28e7c019e08bbb4bdb5148be58293df385","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"isotropic","prefix":2048,"observable":"product","estimate":0.941720088281412,"analytic_truth":0.95,"natural_sd":1.379311422413372,"diagnostics":{"rhat_rank":1.0184411156453945,"rhat_z":1.0184411156453945,"rhat_folded":1.0093734427648635,"rhat_split":1.024467827405889,"ess_bulk":130.3735783879689,"ess_tail":223.73189822645662,"ess_mean":117.1777803178342,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.11364895857924212},"same_data_fixture_sha256":"18a869e468f7a2f12accae3a9a8f60bbafa95dd1b8bf065465fe5167615e703c","fresh_data_sha256":"18a869e468f7a2f12accae3a9a8f60bbafa95dd1b8bf065465fe5167615e703c","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"isotropic","prefix":2048,"observable":"Q","estimate":1.9605532068118356,"analytic_truth":2.0,"natural_sd":2.0,"diagnostics":{"rhat_rank":1.0116717416671954,"rhat_z":1.0115444225318853,"rhat_folded":1.0116717416671954,"rhat_split":1.0142932346758042,"ess_bulk":246.88463801275157,"ess_tail":610.1063416061706,"ess_mean":247.96221788765376,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok",
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+"ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.11651116471672839},"same_data_fixture_sha256":"b9452a85f72f586f82a1d5425bb0a50279bb4d4485e4014a1e4f2e38aca21c3f","fresh_data_sha256":"b9452a85f72f586f82a1d5425bb0a50279bb4d4485e4014a1e4f2e38aca21c3f","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"isotropic","prefix":2048,"observable":"sum_direction","estimate":-0.05182949872488557,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0975412172201815,"rhat_z":1.0975412172201815,"rhat_folded":1.0248272503811644,"rhat_split":1.0994705631842911,"ess_bulk":31.420154796435977,"ess_tail":132.67855831062948,"ess_mean":30.36531111464063,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.18039586553736683},"same_data_fixture_sha256":"429e8847c3448ca94294287d4104f5bb81fe27ef660e8f6daa7b6d439fece86c","fresh_data_sha256":"429e8847c3448ca94294287d4104f5bb81fe27ef660e8f6daa7b6d439fece86c","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"isotropic","prefix":2048,"observable":"difference_direction","estimate":-0.01260603194178333,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0060215814753901,"rhat_z":1.0060215814753901,"rhat_folded":1.0031724184392328,"rhat_split":1.0061086233437628,"ess_bulk":1203.2714338235533,"
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+ess_tail":1649.2840545902543,"ess_mean":1194.7015403762016,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.028490929732823113},"same_data_fixture_sha256":"2ee9561072d8cf6b88bb64e4b845454c061046944dd633afd33502cfb1a48f8c","fresh_data_sha256":"2ee9561072d8cf6b88bb64e4b845454c061046944dd633afd33502cfb1a48f8c","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"isotropic","prefix":8192,"observable":"y1","estimate":0.06541553842647943,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0112196685210786,"rhat_z":1.0104796958197249,"rhat_folded":1.0112196685210786,"rhat_split":1.009852899194581,"ess_bulk":198.66792332543312,"ess_tail":500.90212804942956,"ess_mean":198.02975656878368,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.07206539372012286},"same_data_fixture_sha256":"65e43965269c2c44b67472e085dc00ced71da107b882f2fe73485ea52c6e24ec","fresh_data_sha256":"65e43965269c2c44b67472e085dc00ced71da107b882f2fe73485ea52c6e24ec","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"isotropic","prefix":8192,"observable":"y2","estimate":0.0643337438125269,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.01162533397228
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+98,"rhat_z":1.010907151910727,"rhat_folded":1.0116253339722898,"rhat_split":1.010132693150702,"ess_bulk":201.96399670675237,"ess_tail":472.41330730457884,"ess_mean":201.21294051421,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.07151168059345263},"same_data_fixture_sha256":"e5d84a0480c6dd1b5699688b5a0a13770bbdc7a5e2c9ea32662d8a3108e42dea","fresh_data_sha256":"e5d84a0480c6dd1b5699688b5a0a13770bbdc7a5e2c9ea32662d8a3108e42dea","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"isotropic","prefix":8192,"observable":"y1_squared","estimate":1.032699697658268,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.012777434848511,"rhat_z":1.012777434848511,"rhat_folded":1.0085145995470897,"rhat_split":1.0162439705289446,"ess_bulk":502.51001147110475,"ess_tail":745.5555115136003,"ess_mean":416.91024532669286,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.0668503604188869},"same_data_fixture_sha256":"b08885b8b2982239c5da887c9f6f9539b8f106fb1ff67cec20314900bf2da214","fresh_data_sha256":"b08885b8b2982239c5da887c9f6f9539b8f106fb1ff67cec20314900bf2da214","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"isotropic","pre
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+fix":8192,"observable":"y2_squared","estimate":1.0330944019765362,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0137456554088542,"rhat_z":1.0137456554088542,"rhat_folded":1.008925735588912,"rhat_split":1.0160120654684226,"ess_bulk":503.66936337693244,"ess_tail":665.5397191028724,"ess_mean":410.7748228547369,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.06782929588048103},"same_data_fixture_sha256":"15b88804d4b6f5d3f11e9c67cd9226e48fb04c52b190e15e396cdef0b13df8f2","fresh_data_sha256":"15b88804d4b6f5d3f11e9c67cd9226e48fb04c52b190e15e396cdef0b13df8f2","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"isotropic","prefix":8192,"observable":"product","estimate":0.9838286431415852,"analytic_truth":0.95,"natural_sd":1.379311422413372,"diagnostics":{"rhat_rank":1.0131917771475392,"rhat_z":1.0131917771475392,"rhat_folded":1.0081070815585422,"rhat_split":1.0167678795755042,"ess_bulk":483.03641552311984,"ess_tail":689.2835611949433,"ess_mean":395.35927880725825,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.06713438189503636},"same_data_fixture_sha256":"1f9c5c74456599069e090dd3b3c2771c6fcf672696e2ad0ae0c8c4b8d674ec12
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+","fresh_data_sha256":"1f9c5c74456599069e090dd3b3c2771c6fcf672696e2ad0ae0c8c4b8d674ec12","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"isotropic","prefix":8192,"observable":"Q","estimate":2.015586437597868,"analytic_truth":2.0,"natural_sd":2.0,"diagnostics":{"rhat_rank":1.0100086016440297,"rhat_z":1.0100086016440297,"rhat_folded":1.006319563715632,"rhat_split":1.0108892449801083,"ess_bulk":780.5012512355969,"ess_tail":1213.908321563433,"ess_mean":699.6211564751555,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.0732704331607407},"same_data_fixture_sha256":"45b1f3af25b2ebc0ab2fc1d360823a1c039c6d48c4c604b3e0077a79a852c00e","fresh_data_sha256":"45b1f3af25b2ebc0ab2fc1d360823a1c039c6d48c4c604b3e0077a79a852c00e","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"isotropic","prefix":8192,"observable":"sum_direction","estimate":0.06570110298714564,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0117075549543013,"rhat_z":1.0110054201898009,"rhat_folded":1.0117075549543013,"rhat_split":1.010235744000016,"ess_bulk":195.78439748886126,"ess_tail":451.4764622641546,"ess_mean":195.12764233985,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"}
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+,"mcse_mean":0.07265158764829327},"same_data_fixture_sha256":"ab9af7dd1614bca0bf86eb9aee420cdd1e4fa484df2e71f9d01f35e037045f5c","fresh_data_sha256":"ab9af7dd1614bca0bf86eb9aee420cdd1e4fa484df2e71f9d01f35e037045f5c","fresh_equals_fixture_bytes":true},{"seed":46001,"proposal":"isotropic","prefix":8192,"observable":"difference_direction","estimate":0.0034209349405925323,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0003440651916806,"rhat_z":1.0001820148996294,"rhat_folded":1.0003440651916806,"rhat_split":1.000173618571447,"ess_bulk":4454.426962974271,"ess_tail":6022.403515958944,"ess_mean":4455.126081873381,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.014841917514795633},"same_data_fixture_sha256":"84b462022034ffcf9a87f02040cc87b3232926d7fdcc4b438178ba84977ac579","fresh_data_sha256":"84b462022034ffcf9a87f02040cc87b3232926d7fdcc4b438178ba84977ac579","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"preconditioned","prefix":2048,"observable":"y1","estimate":0.02180867524098464,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.007494427941954,"rhat_z":1.007494427941954,"rhat_folded":1.0027667455264477,"rhat_split":1.00740639417924,"ess_bulk":660.7252741867275,"ess_tail":1121.4919334976598,"ess_mean":659.6445694975074,"st
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+atus":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.038201225609915075},"same_data_fixture_sha256":"63744de183f8899d82e201b39b08283b5066eb53db3e1c74c220f43995aa87a1","fresh_data_sha256":"63744de183f8899d82e201b39b08283b5066eb53db3e1c74c220f43995aa87a1","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"preconditioned","prefix":2048,"observable":"y2","estimate":0.02688503106444869,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0089557165839231,"rhat_z":1.0089557165839231,"rhat_folded":1.0029606575008665,"rhat_split":1.0089635863144264,"ess_bulk":640.2511659402684,"ess_tail":808.7236943239649,"ess_mean":640.406702646689,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.03875837058439622},"same_data_fixture_sha256":"6bb9217bf54e3c8c219cfd0d99158ac5f16bcb3c526d8dc2d1208e83ebdffa37","fresh_data_sha256":"6bb9217bf54e3c8c219cfd0d99158ac5f16bcb3c526d8dc2d1208e83ebdffa37","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"preconditioned","prefix":2048,"observable":"y1_squared","estimate":0.9629996178233445,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0026874694233563,"rhat_z":1.0026874694233563,"
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+rhat_folded":1.0021811552734736,"rhat_split":1.005024392893799,"ess_bulk":1227.8035163678837,"ess_tail":1224.3336124521882,"ess_mean":933.5651956941815,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.045402000272643295},"same_data_fixture_sha256":"4568a7df1b47a285d93ce106a7b3238e249f15277803faf93bd5bfef44b95e3a","fresh_data_sha256":"4568a7df1b47a285d93ce106a7b3238e249f15277803faf93bd5bfef44b95e3a","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"preconditioned","prefix":2048,"observable":"y2_squared","estimate":0.96263154919542,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0030743730597618,"rhat_z":1.0030743730597618,"rhat_folded":1.0021187911248775,"rhat_split":1.00577342058134,"ess_bulk":1244.4901550605948,"ess_tail":1265.4691866371923,"ess_mean":895.7355182773676,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.04572964782635543},"same_data_fixture_sha256":"eea3ea505fda34ed96647dca27d26e1508889872dd23a01e4099764799915d48","fresh_data_sha256":"eea3ea505fda34ed96647dca27d26e1508889872dd23a01e4099764799915d48","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"preconditioned","prefix":2048,"observa
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+ble":"product","estimate":0.9126153946824468,"analytic_truth":0.95,"natural_sd":1.379311422413372,"diagnostics":{"rhat_rank":1.0032118600203273,"rhat_z":1.0032118600203273,"rhat_folded":1.002436439809366,"rhat_split":1.0055103272918777,"ess_bulk":1281.0804111729271,"ess_tail":1284.9219036758568,"ess_mean":930.6653869240529,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.04398123915946788},"same_data_fixture_sha256":"224a67984013fb29dc08fca1186dc983391bdeb1e3322927536c2e94c20d85e0","fresh_data_sha256":"224a67984013fb29dc08fca1186dc983391bdeb1e3322927536c2e94c20d85e0","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"preconditioned","prefix":2048,"observable":"Q","estimate":1.9657632525345206,"analytic_truth":2.0,"natural_sd":2.0,"diagnostics":{"rhat_rank":1.0032921652153863,"rhat_z":1.0025037350059476,"rhat_folded":1.0032921652153863,"rhat_split":1.0048974243299436,"ess_bulk":926.0266226006097,"ess_tail":951.1953208925346,"ess_mean":724.9539472146174,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.07293784095190121},"same_data_fixture_sha256":"ca33af96ad54fda8f4184b65388bb4d54f8f81d7b23ab6c5959e901eff8ba374","fresh_data_sha256":"ca33af96ad54fda
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+8f4184b65388bb4d54f8f81d7b23ab6c5959e901eff8ba374","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"preconditioned","prefix":2048,"observable":"sum_direction","estimate":0.02465701665236126,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.008418049664222,"rhat_z":1.008418049664222,"rhat_folded":1.0030329399537679,"rhat_split":1.008342745002937,"ess_bulk":655.3376041435404,"ess_tail":906.1436122850866,"ess_mean":654.5030879302603,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.03832362524080297},"same_data_fixture_sha256":"b5182618a56929bcbe5d0fda50be4385337d797a2e031f15ab9f6fbc52a7ba44","fresh_data_sha256":"b5182618a56929bcbe5d0fda50be4385337d797a2e031f15ab9f6fbc52a7ba44","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"preconditioned","prefix":2048,"observable":"difference_direction","estimate":-0.016052846615606017,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0029079658293791,"rhat_z":1.0023606836684784,"rhat_folded":1.0029079658293791,"rhat_split":1.0022996806626778,"ess_bulk":777.6298228425858,"ess_tail":898.6477054096708,"ess_mean":775.4582396730293,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mc
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+se_mean":0.035979840440358374},"same_data_fixture_sha256":"ce3b02ea9d3e1f6b7aec3eb96b530ffd9874df5cdbb762a45d358ad648bfcef1","fresh_data_sha256":"ce3b02ea9d3e1f6b7aec3eb96b530ffd9874df5cdbb762a45d358ad648bfcef1","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"preconditioned","prefix":8192,"observable":"y1","estimate":-0.016969141116687826,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0007090803224639,"rhat_z":1.0007090803224639,"rhat_folded":1.0001254183340633,"rhat_split":1.0007089129218825,"ess_bulk":2769.09516637422,"ess_tail":4639.572177904277,"ess_mean":2778.437906496096,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.018631010620892174},"same_data_fixture_sha256":"b4e014e5974d7022d70251002f23a322f34110c8f063b6bae6d7877fafaa109a","fresh_data_sha256":"b4e014e5974d7022d70251002f23a322f34110c8f063b6bae6d7877fafaa109a","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"preconditioned","prefix":8192,"observable":"y2","estimate":-0.007502617361999697,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.000474748081342,"rhat_z":1.000474748081342,"rhat_folded":1.0000856947563719,"rhat_split":1.0004772540542337,"ess_bulk":2766.1598785122032,"ess_tail":4046.2292456748387,"ess_mean":2770.753062808176,"status":"ok",
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+"metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.01876510092208429},"same_data_fixture_sha256":"2ee2ac02ad5c777c40a79623b378ef7ba5207292d1f69ff0a1cb41fef53e4389","fresh_data_sha256":"2ee2ac02ad5c777c40a79623b378ef7ba5207292d1f69ff0a1cb41fef53e4389","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"preconditioned","prefix":8192,"observable":"y1_squared","estimate":0.9646947618787614,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0002797341270144,"rhat_z":1.0001901308732364,"rhat_folded":1.0002797341270144,"rhat_split":1.0004536480879538,"ess_bulk":5490.4221419550795,"ess_tail":5577.620171551835,"ess_mean":4276.603645745191,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.02023800439746444},"same_data_fixture_sha256":"f2a222063f0b4c80feff0923fabfba090a65808edad2adae8d602479710af785","fresh_data_sha256":"f2a222063f0b4c80feff0923fabfba090a65808edad2adae8d602479710af785","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"preconditioned","prefix":8192,"observable":"y2_squared","estimate":0.9756890546189109,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0001041320125335,"rhat_z":1.000104
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+1320125335,"rhat_folded":1.0000150712383786,"rhat_split":1.0002026234995804,"ess_bulk":5348.869334429785,"ess_tail":5477.351822380791,"ess_mean":4008.4251591749226,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.021344507484539692},"same_data_fixture_sha256":"ae2dfdc14cca11f9b835ddc4c1a5db15b8b4df5c99627ca9f3d38d177950c7f3","fresh_data_sha256":"ae2dfdc14cca11f9b835ddc4c1a5db15b8b4df5c99627ca9f3d38d177950c7f3","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"preconditioned","prefix":8192,"observable":"product","estimate":0.9188008526645873,"analytic_truth":0.95,"natural_sd":1.379311422413372,"diagnostics":{"rhat_rank":1.0001772768255643,"rhat_z":1.0000866340055918,"rhat_folded":1.0001772768255643,"rhat_split":1.0003377608270805,"ess_bulk":5395.846332617447,"ess_tail":5558.8627631141735,"ess_mean":4174.326691132973,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.020105993807784436},"same_data_fixture_sha256":"1569cfe95ad1fcfcc722357f461aaa8d976c258dca1ad05441f5460d69c4fa14","fresh_data_sha256":"1569cfe95ad1fcfcc722357f461aaa8d976c258dca1ad05441f5460d69c4fa14","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"preconditioned","prefix":
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+8192,"observable":"Q","estimate":1.9965353480508348,"analytic_truth":2.0,"natural_sd":2.0,"diagnostics":{"rhat_rank":1.0005679035610218,"rhat_z":1.0004429515080204,"rhat_folded":1.0005679035610218,"rhat_split":1.0004810146975753,"ess_bulk":4098.938357530427,"ess_tail":3757.7581154017435,"ess_mean":2974.9083931328287,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.0372158089939976},"same_data_fixture_sha256":"3af4ba5e4a2054780a4ec5c26c5a4fde2c06f3ad77d4df0fafb511ed3f21a28e","fresh_data_sha256":"3af4ba5e4a2054780a4ec5c26c5a4fde2c06f3ad77d4df0fafb511ed3f21a28e","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"preconditioned","prefix":8192,"observable":"sum_direction","estimate":-0.01239175659656518,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0005810263333332,"rhat_z":1.0005810263333332,"rhat_folded":1.0000739775259648,"rhat_split":1.000585330379314,"ess_bulk":2766.035560201476,"ess_tail":4113.859505987089,"ess_mean":2773.699219399106,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.018687033411071516},"same_data_fixture_sha256":"1ac91ef80e9d4a267cf54067d7a7b28d7abfad2238ccfa5ab3068b4fa89c4fab","fresh_data_sha256":"1ac91ef80
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+e9d4a267cf54067d7a7b28d7abfad2238ccfa5ab3068b4fa89c4fab","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"preconditioned","prefix":8192,"observable":"difference_direction","estimate":-0.029935776588903545,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.000827787968325,"rhat_z":1.000827787968325,"rhat_folded":1.000641994050616,"rhat_split":1.0008523990160945,"ess_bulk":2830.384241652918,"ess_tail":3847.8431435033895,"ess_mean":2802.07494347227,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.019144150892320275},"same_data_fixture_sha256":"4bace6feb3e61059901520e28ed3ac7a45a986c47f427d60351521c58a1e3179","fresh_data_sha256":"4bace6feb3e61059901520e28ed3ac7a45a986c47f427d60351521c58a1e3179","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"isotropic","prefix":2048,"observable":"y1","estimate":-0.022899434867380136,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.157848831872826,"rhat_z":1.157848831872826,"rhat_folded":1.0317178200328836,"rhat_split":1.1587773776004857,"ess_bulk":20.519360576290048,"ess_tail":96.38333410730968,"ess_mean":20.433561625654,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+.23545531335511383},"same_data_fixture_sha256":"0ceacc06b8329f5df2a6ad0035b13d0b07422842a3df30e8d1c2415fb9e8db97","fresh_data_sha256":"0ceacc06b8329f5df2a6ad0035b13d0b07422842a3df30e8d1c2415fb9e8db97","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"isotropic","prefix":2048,"observable":"y2","estimate":-0.025661736828646572,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.1611436332540448,"rhat_z":1.1611436332540448,"rhat_folded":1.024845068421108,"rhat_split":1.161969984255315,"ess_bulk":20.38388313069404,"ess_tail":87.08591414778905,"ess_mean":20.400428142037534,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.23512290499234817},"same_data_fixture_sha256":"e61bc883fa49434381c4a107000d963c2a0973602e58c822b02a392c998c0442","fresh_data_sha256":"e61bc883fa49434381c4a107000d963c2a0973602e58c822b02a392c998c0442","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"isotropic","prefix":2048,"observable":"y1_squared","estimate":1.1332065037854633,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.031443107333629,"rhat_z":1.031443107333629,"rhat_folded":1.0163881153542655,"rhat_split":1.0354524996074435,"ess_bulk":118.6702432739498,"ess_tail":130.87119598085405,"ess_mean":93.88016071035301,"status":"ok","me
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+tric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.15905899699841092},"same_data_fixture_sha256":"5e996f1ec0c5d016916620c2033336df60faa0d83bd60878da642e6f3926a2b5","fresh_data_sha256":"5e996f1ec0c5d016916620c2033336df60faa0d83bd60878da642e6f3926a2b5","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"isotropic","prefix":2048,"observable":"y2_squared","estimate":1.1283132448714632,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0246625382486174,"rhat_z":1.0246625382486174,"rhat_folded":1.0145962675846345,"rhat_split":1.0314187238583292,"ess_bulk":119.47973803759027,"ess_tail":115.69316513453202,"ess_mean":88.20089398747558,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.167993352519886},"same_data_fixture_sha256":"2b53c8a360baa9bdf4a9f4dd7c1efd5310e18c029eb73bff1464c702c7789df0","fresh_data_sha256":"2b53c8a360baa9bdf4a9f4dd7c1efd5310e18c029eb73bff1464c702c7789df0","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"isotropic","prefix":2048,"observable":"product","estimate":1.0811407544224951,"analytic_truth":0.95,"natural_sd":1.379311422413372,"diagnostics":{"rhat_rank":1.0325335073675201,"rhat_z":1.0325335073675201,"rhat_
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+folded":1.017961832318176,"rhat_split":1.0352206446421257,"ess_bulk":111.88635344839487,"ess_tail":119.92564153223806,"ess_mean":87.14411785152184,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.1633410981797276},"same_data_fixture_sha256":"d022e932a5881a1fb9d4a4c306ef9c1ba1ac1a8fd830d9032d3409a048e975a4","fresh_data_sha256":"d022e932a5881a1fb9d4a4c306ef9c1ba1ac1a8fd830d9032d3409a048e975a4","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"isotropic","prefix":2048,"observable":"Q","estimate":2.126690412863443,"analytic_truth":2.0,"natural_sd":2.0,"diagnostics":{"rhat_rank":1.0127966074512489,"rhat_z":1.0127966074512489,"rhat_folded":1.0080288110939608,"rhat_split":1.0155116440908663,"ess_bulk":196.8482267759296,"ess_tail":258.3830909564891,"ess_mean":161.05456594494578,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.16774218184486073},"same_data_fixture_sha256":"b84d5b574e133cd4ade2a8ff504e680871b665ba0af5aac62dcbadddc6647bdd","fresh_data_sha256":"b84d5b574e133cd4ade2a8ff504e680871b665ba0af5aac62dcbadddc6647bdd","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"isotropic","prefix":2048,"observable":"sum_direction","estimate":-0.0245
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+8990514413771,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.1633323582775137,"rhat_z":1.1633323582775137,"rhat_folded":1.0323855483910824,"rhat_split":1.1646603104431823,"ess_bulk":20.032412867405522,"ess_tail":87.61753026435247,"ess_mean":19.93233367119276,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.238504814222719},"same_data_fixture_sha256":"64f2db8ed117a20f06f0c2bcd48f49ac5920deef230d42bdadae89beb8f6ff05","fresh_data_sha256":"64f2db8ed117a20f06f0c2bcd48f49ac5920deef230d42bdadae89beb8f6ff05","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"isotropic","prefix":2048,"observable":"difference_direction","estimate":0.008735165782752262,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0028603426748184,"rhat_z":1.0028603426748184,"rhat_folded":0.9999318292820359,"rhat_split":1.0028675186305853,"ess_bulk":1097.408707165636,"ess_tail":1376.2118421955154,"ess_mean":1086.5181522466307,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.030222531931782218},"same_data_fixture_sha256":"57dfb1730f159a304b4d2585929e33600527659a6c08b071a7f3afa5be47ed99","fresh_data_sha256":"57dfb1730f159a304b4d2585929e33600527659a6c08
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+b071a7f3afa5be47ed99","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"isotropic","prefix":8192,"observable":"y1","estimate":-0.13267948119374276,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0184888781025923,"rhat_z":1.0184888781025923,"rhat_folded":1.00161961644562,"rhat_split":1.0182624192205638,"ess_bulk":169.5368491244277,"ess_tail":395.5880991148959,"ess_mean":170.48880447454823,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.07421747397607215},"same_data_fixture_sha256":"da1652a0b72ff83c13321b8abf0d15166e810c044e248e60f99b874ff856101d","fresh_data_sha256":"da1652a0b72ff83c13321b8abf0d15166e810c044e248e60f99b874ff856101d","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"isotropic","prefix":8192,"observable":"y2","estimate":-0.1315120901192671,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0175639213503649,"rhat_z":1.0175639213503649,"rhat_folded":1.0011439327092182,"rhat_split":1.0174822168405513,"ess_bulk":173.03593142632238,"ess_tail":380.68034893639543,"ess_mean":173.42565353966543,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.0737325788094893},"same_data_fixture_sha256":"939c26d
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+d2c59f590308f7f3efe4536a25c21ccb8555c35fce2361d1ed1db99e1","fresh_data_sha256":"939c26dd2c59f590308f7f3efe4536a25c21ccb8555c35fce2361d1ed1db99e1","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"isotropic","prefix":8192,"observable":"y1_squared","estimate":0.9566673204423639,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.003807834866166,"rhat_z":1.0023008101718764,"rhat_folded":1.003807834866166,"rhat_split":1.0046693194144116,"ess_bulk":461.58012938302204,"ess_tail":625.2063895732961,"ess_mean":376.50468611230036,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.06768185570768417},"same_data_fixture_sha256":"d1cd72bf94d4faf92b248ffa6766aec19ebb41e6b2b86eb4dd36008ab9b40c2e","fresh_data_sha256":"d1cd72bf94d4faf92b248ffa6766aec19ebb41e6b2b86eb4dd36008ab9b40c2e","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"isotropic","prefix":8192,"observable":"y2_squared","estimate":0.9600940393800547,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0026092236799342,"rhat_z":1.0021631291621005,"rhat_folded":1.0026092236799342,"rhat_split":1.003389869198248,"ess_bulk":456.46404407548505,"ess_tail":610.618487998869,"ess_mean":373.3607243697496,"status":"ok","metric_status":{"rhat_rank":"ok","rh
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+at_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.06858808078144756},"same_data_fixture_sha256":"846b84dcfc1ad07624686e32f1f3b666deb6e65af5979f280884313e1d370ea3","fresh_data_sha256":"846b84dcfc1ad07624686e32f1f3b666deb6e65af5979f280884313e1d370ea3","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"isotropic","prefix":8192,"observable":"product","estimate":0.9092023836794435,"analytic_truth":0.95,"natural_sd":1.379311422413372,"diagnostics":{"rhat_rank":1.0029001001450526,"rhat_z":1.0021790526224847,"rhat_folded":1.0029001001450526,"rhat_split":1.004177829444041,"ess_bulk":422.731509730445,"ess_tail":584.6883151437854,"ess_mean":355.4907909157845,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.06828309757084519},"same_data_fixture_sha256":"b6400c8b744894fd5e02b9651444a14d26c793fa565978f381fcf2b210aed7ab","fresh_data_sha256":"b6400c8b744894fd5e02b9651444a14d26c793fa565978f381fcf2b210aed7ab","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"isotropic","prefix":8192,"observable":"Q","estimate":1.9413008290407796,"analytic_truth":2.0,"natural_sd":2.0,"diagnostics":{"rhat_rank":1.0021475339598427,"rhat_z":1.0018597931777753,"rhat_folded":1.0021475339598427,"rhat_split":1.0024113371296646,"
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+ess_bulk":847.7082921108729,"ess_tail":1257.1810087745405,"ess_mean":769.9391679470043,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.06855820670560997},"same_data_fixture_sha256":"6905636f5a976f0d5214e73f89bb02b7488564dd3dc1c3ab74f619eca6774721","fresh_data_sha256":"6905636f5a976f0d5214e73f89bb02b7488564dd3dc1c3ab74f619eca6774721","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"isotropic","prefix":8192,"observable":"sum_direction","estimate":-0.13377860236018851,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0184973239776038,"rhat_z":1.0184973239776038,"rhat_folded":1.0016509643894562,"rhat_split":1.0183511071697635,"ess_bulk":166.96795862000337,"ess_tail":380.6899992120704,"ess_mean":167.6000350762926,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.07488522146917222},"same_data_fixture_sha256":"e16d19ac6cb6c317f96dcd81f5866b3ec2978fa42162466a853771f8e929b803","fresh_data_sha256":"e16d19ac6cb6c317f96dcd81f5866b3ec2978fa42162466a853771f8e929b803","fresh_equals_fixture_bytes":true},{"seed":46002,"proposal":"isotropic","prefix":8192,"observable":"difference_direction","estimate":-0.0036916147154944868,"analytic_truth":0.0,
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0006662949425955,"rhat_z":1.0003911617854435,"rhat_folded":1.0006662949425955,"rhat_split":1.000387897607412,"ess_bulk":4276.582828188928,"ess_tail":5663.903284815697,"ess_mean":4263.85754982481,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.015188119720193906},"same_data_fixture_sha256":"26c183d20ad142b82beec9ab5d5863466c2fd35edfb9bafa947b705869ee656b","fresh_data_sha256":"26c183d20ad142b82beec9ab5d5863466c2fd35edfb9bafa947b705869ee656b","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"preconditioned","prefix":2048,"observable":"y1","estimate":-0.03501062336601947,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.004590032361422,"rhat_z":1.004590032361422,"rhat_folded":1.0001097845008768,"rhat_split":1.0044785933029734,"ess_bulk":672.9815280194233,"ess_tail":988.8649596726187,"ess_mean":672.6115332323416,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.0392200872502384},"same_data_fixture_sha256":"f598d3f75d023b69d6e3b0babf3e545b0e1cb7d7d56015b85b01bad8087c956b","fresh_data_sha256":"f598d3f75d023b69d6e3b0babf3e545b0e1cb7d7d56015b85b01bad8087c956b","fresh_equals_fixture_bytes":tru
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+e},{"seed":46003,"proposal":"preconditioned","prefix":2048,"observable":"y2","estimate":-0.02501561347756439,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0060330213495938,"rhat_z":1.0060330213495938,"rhat_folded":1.0001647431226155,"rhat_split":1.0060495759214534,"ess_bulk":613.4263516751734,"ess_tail":975.4529056071348,"ess_mean":610.7255034663863,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.041575665441394814},"same_data_fixture_sha256":"e237b6099aaee277c317ab379f3be6c729c60ac9c43de05aa88377a53ac0a032","fresh_data_sha256":"e237b6099aaee277c317ab379f3be6c729c60ac9c43de05aa88377a53ac0a032","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"preconditioned","prefix":2048,"observable":"y1_squared","estimate":1.0357207608533119,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0003741377531146,"rhat_z":1.0000658715824122,"rhat_folded":1.0003741377531146,"rhat_split":1.0006408338702901,"ess_bulk":1476.3159575678822,"ess_tail":1229.2314102845219,"ess_mean":997.333128802527,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.04713318156987704},"same_data_fixture_sha256":"fbc82a98f3428beb6a441c5f483b
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+fe1294f4111b986aeb93fb6562321d933f85","fresh_data_sha256":"fbc82a98f3428beb6a441c5f483bfe1294f4111b986aeb93fb6562321d933f85","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"preconditioned","prefix":2048,"observable":"y2_squared","estimate":1.056157908584729,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0015976246390585,"rhat_z":1.0002488371077425,"rhat_folded":1.0015976246390585,"rhat_split":1.0013536324304881,"ess_bulk":1370.789220921899,"ess_tail":1079.1832126724298,"ess_mean":905.7406611103477,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.0501516042980144},"same_data_fixture_sha256":"fcde0f21fb5d5058d2c5f01a0b870ecb20ad47acdfc00ba7c547092c0ee5fb69","fresh_data_sha256":"fcde0f21fb5d5058d2c5f01a0b870ecb20ad47acdfc00ba7c547092c0ee5fb69","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"preconditioned","prefix":2048,"observable":"product","estimate":0.9957497403361468,"analytic_truth":0.95,"natural_sd":1.379311422413372,"diagnostics":{"rhat_rank":1.0007050768147345,"rhat_z":0.9999802555642024,"rhat_folded":1.0007050768147345,"rhat_split":1.0007981293166914,"ess_bulk":1446.527578300388,"ess_tail":1198.0390116846263,"ess_mean":956.6775056688405,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","r
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+hat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.04734369124083928},"same_data_fixture_sha256":"30671e4abd634378354f88e7c69eba3b3ff98f751ffb50a96246f768f7715df0","fresh_data_sha256":"30671e4abd634378354f88e7c69eba3b3ff98f751ffb50a96246f768f7715df0","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"preconditioned","prefix":2048,"observable":"Q","estimate":2.050811926147304,"analytic_truth":2.0,"natural_sd":2.0,"diagnostics":{"rhat_rank":1.0012990658299161,"rhat_z":1.0012990658299161,"rhat_folded":1.000157940442891,"rhat_split":1.0016140888893592,"ess_bulk":1061.0128613364013,"ess_tail":969.5562011616707,"ess_mean":857.094575893566,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.07002806422188981},"same_data_fixture_sha256":"e6a17529aba5fad8c2c797b65f61d9b1cc9645329800d09e44636e86b49c817f","fresh_data_sha256":"e6a17529aba5fad8c2c797b65f61d9b1cc9645329800d09e44636e86b49c817f","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"preconditioned","prefix":2048,"observable":"sum_direction","estimate":-0.030395466554692687,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0052294220829383,"rhat_z":1.0052294220829383,"rhat_folded":0.9999458700891615,"rhat_split":1.0051907443496766,"ess_bulk"
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+:642.1527418660316,"ess_tail":970.9036039945044,"ess_mean":640.0940037608659,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.0404287610198986},"same_data_fixture_sha256":"833726bde82d75457b395f763ef63320f8915facc1fc8f4d1b14803cc45f52ac","fresh_data_sha256":"833726bde82d75457b395f763ef63320f8915facc1fc8f4d1b14803cc45f52ac","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"preconditioned","prefix":2048,"observable":"difference_direction","estimate":-0.03160699648342352,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.00865982387959,"rhat_z":1.00865982387959,"rhat_folded":1.0018578453780869,"rhat_split":1.0085591476324782,"ess_bulk":686.5566442209057,"ess_tail":1024.1799032305335,"ess_mean":689.4598480462157,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.03813973236977433},"same_data_fixture_sha256":"7a7394465881278d9abdb7f197ee2a8e5fbdb67efe6bd9d3178fc610046fee1c","fresh_data_sha256":"7a7394465881278d9abdb7f197ee2a8e5fbdb67efe6bd9d3178fc610046fee1c","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"preconditioned","prefix":8192,"observable":"y1","estimate":-0.005504187164659537,"analytic_truth":0.0,"natural_sd":1.0,
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+"diagnostics":{"rhat_rank":1.001671808695657,"rhat_z":1.001671808695657,"rhat_folded":1.0006988128854053,"rhat_split":1.0016805245221823,"ess_bulk":3031.1611069273677,"ess_tail":4498.926290623421,"ess_mean":3033.8693523294965,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.018301421801918488},"same_data_fixture_sha256":"9eda85cc8070f9459a6e850f03d47803dac0b133add6241c4f416209cd690f73","fresh_data_sha256":"9eda85cc8070f9459a6e850f03d47803dac0b133add6241c4f416209cd690f73","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"preconditioned","prefix":8192,"observable":"y2","estimate":0.005286647863731458,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0017492163962254,"rhat_z":1.0017492163962254,"rhat_folded":1.00116635905351,"rhat_split":1.0017469207454697,"ess_bulk":3013.663310491297,"ess_tail":4559.047557576549,"ess_mean":3015.1032191429254,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.018297341152186977},"same_data_fixture_sha256":"7fa3ea0d771332cedac3210f7b694dbecdf2ea801401b04850ffa6433f36fab2","fresh_data_sha256":"7fa3ea0d771332cedac3210f7b694dbecdf2ea801401b04850ffa6433f36fab2","fresh_equals_fixture_bytes":true},{"seed":4
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+6003,"proposal":"preconditioned","prefix":8192,"observable":"y1_squared","estimate":1.0161696748940579,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.000678098868957,"rhat_z":1.000678098868957,"rhat_folded":1.0002436661213678,"rhat_split":1.0010096837940745,"ess_bulk":5752.367017978587,"ess_tail":5333.89743459998,"ess_mean":4211.084058020139,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.02200322358246759},"same_data_fixture_sha256":"b2f272fc64289aa2daad848b9ace2cde85dc7f9e17c7f943768b3558b78ba498","fresh_data_sha256":"b2f272fc64289aa2daad848b9ace2cde85dc7f9e17c7f943768b3558b78ba498","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"preconditioned","prefix":8192,"observable":"y2_squared","estimate":1.009431670280583,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0011061898539948,"rhat_z":1.0011061898539948,"rhat_folded":1.0010729269980938,"rhat_split":1.0020795875612079,"ess_bulk":5791.839944674767,"ess_tail":5119.480250528779,"ess_mean":4151.106420690445,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.02213413097101888},"same_data_fixture_sha256":"081328c02862b9506db2c8304
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+18789c26a9bbee1211e7e8392939448c47229ce","fresh_data_sha256":"081328c02862b9506db2c830418789c26a9bbee1211e7e8392939448c47229ce","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"preconditioned","prefix":8192,"observable":"product","estimate":0.9629232987438507,"analytic_truth":0.95,"natural_sd":1.379311422413372,"diagnostics":{"rhat_rank":1.000803390780102,"rhat_z":1.000803390780102,"rhat_folded":1.000526312489669,"rhat_split":1.0015387252089558,"ess_bulk":5877.575986536781,"ess_tail":5251.997272566933,"ess_mean":4231.961011918029,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.021410944934946368},"same_data_fixture_sha256":"52cb66fa262168c9aafb0c8eab4a667f7990bc57869b2464f4abcdeec342d998","fresh_data_sha256":"52cb66fa262168c9aafb0c8eab4a667f7990bc57869b2464f4abcdeec342d998","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"preconditioned","prefix":8192,"observable":"Q","estimate":2.010739257039225,"analytic_truth":2.0,"natural_sd":2.0,"diagnostics":{"rhat_rank":1.0007267266601403,"rhat_z":1.0004839996768584,"rhat_folded":1.0007267266601403,"rhat_split":1.0009490616773853,"ess_bulk":4406.656849314222,"ess_tail":4470.2602780097295,"ess_mean":3573.9199537817476,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.03342004404572789},"same_data_fixture_sha256":"52e1461341b23539d23fe34f4a87157cc9165122591b2dea5d540ac18f01f764","fresh_data_sha256":"52e1461341b23539d23fe34f4a87157cc9165122591b2dea5d540ac18f01f764","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"preconditioned","prefix":8192,"observable":"sum_direction","estimate":-0.00011015530696886072,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0017233772105976,"rhat_z":1.0017233772105976,"rhat_folded":1.000812502727387,"rhat_split":1.001730721807971,"ess_bulk":3020.576976682484,"ess_tail":4420.669163675445,"ess_mean":3023.2329195683224,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.018306977562105992},"same_data_fixture_sha256":"15fe707caf0c3fc4e4fffbf7e3954e41641fe05523595d110eca2696ab4d5630","fresh_data_sha256":"15fe707caf0c3fc4e4fffbf7e3954e41641fe05523595d110eca2696ab4d5630","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"preconditioned","prefix":8192,"observable":"difference_direction","estimate":-0.03412361654484325,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0010368362768822,"rhat_z":1.0010368362768822,"rhat_folded":1.000472257522728,"rhat_split":1.0010356152361781,"ess_bul
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+k":3099.5218045831753,"ess_tail":4541.0735510155955,"ess_mean":3100.011372528984,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.017928260340573748},"same_data_fixture_sha256":"812807f3c67f79e77693770d288960e15cc35c4484c3387376424da4b9be6eca","fresh_data_sha256":"812807f3c67f79e77693770d288960e15cc35c4484c3387376424da4b9be6eca","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"isotropic","prefix":2048,"observable":"y1","estimate":0.13091837358614145,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.1973543168908334,"rhat_z":1.1973543168908334,"rhat_folded":1.0292753086053192,"rhat_split":1.1978167868154943,"ess_bulk":14.911316700621734,"ess_tail":39.96008371442047,"ess_mean":14.930752732438858,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.2634368854515495},"same_data_fixture_sha256":"42d0c9ff805e3a2d919d4bf672f874b3d5b5bdafb5a5253269b4b0ebf9d0e620","fresh_data_sha256":"42d0c9ff805e3a2d919d4bf672f874b3d5b5bdafb5a5253269b4b0ebf9d0e620","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"isotropic","prefix":2048,"observable":"y2","estimate":0.11919936657478357,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+rank":1.189672174035844,"rhat_z":1.189672174035844,"rhat_folded":1.0377802663391327,"rhat_split":1.1920901556821017,"ess_bulk":15.429948772494757,"ess_tail":35.7916563282073,"ess_mean":15.13143256068965,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.2609921683242463},"same_data_fixture_sha256":"a9127b14b07db39f5274b1348b6609499854eceb1ca501eaa78a9d623a93efcc","fresh_data_sha256":"a9127b14b07db39f5274b1348b6609499854eceb1ca501eaa78a9d623a93efcc","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"isotropic","prefix":2048,"observable":"y1_squared","estimate":1.0531923324598664,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0374988499859639,"rhat_z":1.0374988499859639,"rhat_folded":1.0324923225497324,"rhat_split":1.0496161374131538,"ess_bulk":103.51300545222732,"ess_tail":66.91427467427408,"ess_mean":72.25924283313901,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.17977253118654937},"same_data_fixture_sha256":"b97ceaf64405642fffa465982d174a8f4035de30ca9bafc49b716422a1531b1a","fresh_data_sha256":"b97ceaf64405642fffa465982d174a8f4035de30ca9bafc49b716422a1531b1a","fresh_equals_fixture_bytes":true},{"seed":46003,"pr
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+oposal":"isotropic","prefix":2048,"observable":"y2_squared","estimate":1.0447891293919356,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.04515069518306,"rhat_z":1.04515069518306,"rhat_folded":1.0274561667203517,"rhat_split":1.0529936559312072,"ess_bulk":96.42666638845209,"ess_tail":68.40450655857146,"ess_mean":71.42790504990522,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.17924998131101413},"same_data_fixture_sha256":"7dc3d75442c4f8fee7f574c080887fae4acbe81c74d8ef3a681922845c85341a","fresh_data_sha256":"7dc3d75442c4f8fee7f574c080887fae4acbe81c74d8ef3a681922845c85341a","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"isotropic","prefix":2048,"observable":"product","estimate":1.0003231310367569,"analytic_truth":0.95,"natural_sd":1.379311422413372,"diagnostics":{"rhat_rank":1.0406265742452505,"rhat_z":1.0406265742452505,"rhat_folded":1.031193729447127,"rhat_split":1.0529314633342994,"ess_bulk":96.17744535991238,"ess_tail":65.41459152917669,"ess_mean":69.37433086900296,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.1785174661433869},"same_data_fixture_sha256":"965505cb42318851149698d2c9ae26ca29dc593136559133
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+19bdb416891e4b8f","fresh_data_sha256":"965505cb42318851149698d2c9ae26ca29dc59313655913319bdb416891e4b8f","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"isotropic","prefix":2048,"observable":"Q","estimate":2.024282183404763,"analytic_truth":2.0,"natural_sd":2.0,"diagnostics":{"rhat_rank":1.032599615325656,"rhat_z":1.032599615325656,"rhat_folded":1.017268130938733,"rhat_split":1.0375649927057717,"ess_bulk":127.87170335611357,"ess_tail":169.89818467802314,"ess_mean":98.93602160392196,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.2091635515620365},"same_data_fixture_sha256":"100f8beddcd03d70fdb6d6707e218223af81560e0bbe7435b047b03a151b1ffd","fresh_data_sha256":"100f8beddcd03d70fdb6d6707e218223af81560e0bbe7435b047b03a151b1ffd","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"isotropic","prefix":2048,"observable":"sum_direction","estimate":0.1266520409334861,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.199481978827965,"rhat_z":1.199481978827965,"rhat_folded":1.03392180411996,"rhat_split":1.2008385115085534,"ess_bulk":14.763563919629183,"ess_tail":38.59358221469252,"ess_mean":14.65043184747804,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","e
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+ss_mean":"ok"},"mcse_mean":0.26579589823195715},"same_data_fixture_sha256":"f33a172bed73de88b9bb22f64b0b873c20f646195918bacd158a9f3608b6b6c7","fresh_data_sha256":"f33a172bed73de88b9bb22f64b0b873c20f646195918bacd158a9f3608b6b6c7","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"isotropic","prefix":2048,"observable":"difference_direction","estimate":0.037058754071373504,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0020109614880288,"rhat_z":1.0020109614880288,"rhat_folded":1.0018654282265083,"rhat_split":1.0020566342784356,"ess_bulk":1288.3756943496544,"ess_tail":1630.0683225999053,"ess_mean":1284.39738492173,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.02751092320045485},"same_data_fixture_sha256":"64203d5aeaaa9879bea52b545fd2ec54d4c348008783bfe5704049eba851f481","fresh_data_sha256":"64203d5aeaaa9879bea52b545fd2ec54d4c348008783bfe5704049eba851f481","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"isotropic","prefix":8192,"observable":"y1","estimate":-0.06274072328977398,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0286171489637221,"rhat_z":1.0254938520104815,"rhat_folded":1.0286171489637221,"rhat_split":1.0261769809083627,"ess_bulk":124.34184399321207,"ess_tail":217.36947366820306,"ess_mean":122.81
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+58854778088,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.093633395714945},"same_data_fixture_sha256":"0663b5a10e9cd9beb3b5456f86c2df034d4993629e868c61bf4fdc69951bd582","fresh_data_sha256":"0663b5a10e9cd9beb3b5456f86c2df034d4993629e868c61bf4fdc69951bd582","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"isotropic","prefix":8192,"observable":"y2","estimate":-0.061563666747451166,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.025838964483446,"rhat_z":1.0244493660774079,"rhat_folded":1.025838964483446,"rhat_split":1.0252612889625887,"ess_bulk":127.98445021197497,"ess_tail":213.8674990119993,"ess_mean":126.0587660887426,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.09196133560003669},"same_data_fixture_sha256":"54eafd9cb5d72f1a30fe52c4f2a42861e8e5d3b2b7f338e5681174656daefb1f","fresh_data_sha256":"54eafd9cb5d72f1a30fe52c4f2a42861e8e5d3b2b7f338e5681174656daefb1f","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"isotropic","prefix":8192,"observable":"y1_squared","estimate":1.0806565408234126,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0255631275639467,"rhat_z":1.02556312756394
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+67,"rhat_folded":1.0143542503633305,"rhat_split":1.0250755535771245,"ess_bulk":382.42364083564826,"ess_tail":370.67701358347284,"ess_mean":278.01514468579376,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.0898442543547549},"same_data_fixture_sha256":"37b44f30a1fb002cc0cabb01c3cf78d2f837ea6983ebdc8af2a24366527e5e0b","fresh_data_sha256":"37b44f30a1fb002cc0cabb01c3cf78d2f837ea6983ebdc8af2a24366527e5e0b","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"isotropic","prefix":8192,"observable":"y2_squared","estimate":1.0698223224479635,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0231609281333598,"rhat_z":1.0231609281333598,"rhat_folded":1.015021379332884,"rhat_split":1.0243545296401642,"ess_bulk":386.8519737270076,"ess_tail":361.9369426276319,"ess_mean":274.9711938421947,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.0901135751019945},"same_data_fixture_sha256":"286384933204815f2f4ff8f4722852187e676b16aabf07ca53af4c2b9b624a44","fresh_data_sha256":"286384933204815f2f4ff8f4722852187e676b16aabf07ca53af4c2b9b624a44","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"isotropic","prefix":8192,"observable":"
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+product","estimate":1.0263889974449114,"analytic_truth":0.95,"natural_sd":1.379311422413372,"diagnostics":{"rhat_rank":1.0262983433867143,"rhat_z":1.0262983433867143,"rhat_folded":1.0149665381786783,"rhat_split":1.0259789942309203,"ess_bulk":365.3221673932591,"ess_tail":340.85775274043453,"ess_mean":265.0464616632177,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.08975923307484332},"same_data_fixture_sha256":"8478df1263f25b471c48c477aaf467dbd51c65901b278d11aec76b7006a767c9","fresh_data_sha256":"8478df1263f25b471c48c477aaf467dbd51c65901b278d11aec76b7006a767c9","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"isotropic","prefix":8192,"observable":"Q","estimate":2.0547668525748186,"analytic_truth":2.0,"natural_sd":2.0,"diagnostics":{"rhat_rank":1.0133320028258404,"rhat_z":1.0133320028258404,"rhat_folded":1.004679917050511,"rhat_split":1.0133722134187861,"ess_bulk":563.9052404754347,"ess_tail":723.5423581858374,"ess_mean":452.64993001704886,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.09543147372711412},"same_data_fixture_sha256":"433d1d4f5e33d0da681b1be9a4dc00ee8cf7141a00323e30a7b4f2ff682774b5","fresh_data_sha256":"433d1d4f5e33d0da681b1be9a4
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+dc00ee8cf7141a00323e30a7b4f2ff682774b5","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"isotropic","prefix":8192,"observable":"sum_direction","estimate":-0.06294397464601031,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0286188197090844,"rhat_z":1.0254884886863138,"rhat_folded":1.0286188197090844,"rhat_split":1.0263098217179663,"ess_bulk":123.36786076645129,"ess_tail":195.8398588893825,"ess_mean":121.62110334592332,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.09396434565536362},"same_data_fixture_sha256":"8f3b235dbd197d2003a2d17b3484697f6ed753a00ecc716437484b003cda14d7","fresh_data_sha256":"8f3b235dbd197d2003a2d17b3484697f6ed753a00ecc716437484b003cda14d7","fresh_equals_fixture_bytes":true},{"seed":46003,"proposal":"isotropic","prefix":8192,"observable":"difference_direction","estimate":-0.003722179608542462,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0012571326245714,"rhat_z":1.0012571326245714,"rhat_folded":1.0000406109703082,"rhat_split":1.0012615051388054,"ess_bulk":4430.182056255708,"ess_tail":5845.282221077561,"ess_mean":4429.757259247861,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.0148
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+51242694333999},"same_data_fixture_sha256":"f7971ef843b3da03053a7d13f237c32a0c6698cb2e4b3b49f48f7d220efe6e04","fresh_data_sha256":"f7971ef843b3da03053a7d13f237c32a0c6698cb2e4b3b49f48f7d220efe6e04","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"preconditioned","prefix":2048,"observable":"y1","estimate":0.020908475196097443,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0041518783207832,"rhat_z":1.0041518783207832,"rhat_folded":1.0008871205846577,"rhat_split":1.0042247522741345,"ess_bulk":706.3812885952816,"ess_tail":1343.7929595090422,"ess_mean":703.7059161813453,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.03680402151029386},"same_data_fixture_sha256":"3a7ea45da9c13209df9070dd434fde3504b5cdf49f83424c5fa7b0e517fda31b","fresh_data_sha256":"3a7ea45da9c13209df9070dd434fde3504b5cdf49f83424c5fa7b0e517fda31b","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"preconditioned","prefix":2048,"observable":"y2","estimate":0.05293143566394567,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.002347923321214,"rhat_z":1.002347923321214,"rhat_folded":1.0021830765251913,"rhat_split":1.002323918501404,"ess_bulk":671.8381143723915,"ess_tail":1357.929218267469,"ess_mean":671.3919096060162,"status":"ok","metric_status":{"rh
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+at_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.03813936115673247},"same_data_fixture_sha256":"366388ee106ba55fdee3352e22cb32bbbbd29c349ebe2bb23e2783fb09955db6","fresh_data_sha256":"366388ee106ba55fdee3352e22cb32bbbbd29c349ebe2bb23e2783fb09955db6","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"preconditioned","prefix":2048,"observable":"y1_squared","estimate":0.9535158039331946,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.001016752119319,"rhat_z":1.001016752119319,"rhat_folded":1.0004901023486383,"rhat_split":1.0016263403697068,"ess_bulk":1621.8004091043201,"ess_tail":1627.4076000489522,"ess_mean":1181.3640866620278,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.04000395698431491},"same_data_fixture_sha256":"c3f681647e5bfde99db5c9219e5a1c04f62a5bf63849649196863f4e32d8474c","fresh_data_sha256":"c3f681647e5bfde99db5c9219e5a1c04f62a5bf63849649196863f4e32d8474c","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"preconditioned","prefix":2048,"observable":"y2_squared","estimate":0.979296490678469,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.002854129080933,"rhat_z":1.0025391399104187,"rhat_folde
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+d":1.002854129080933,"rhat_split":1.0033327642597851,"ess_bulk":1537.0476195384033,"ess_tail":1613.7709891772051,"ess_mean":1170.8574000061521,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.040716158832539304},"same_data_fixture_sha256":"fa26b258611ad444e62415e27736b5d846b1bb3b1c5a995bd204159efcc67e6d","fresh_data_sha256":"fa26b258611ad444e62415e27736b5d846b1bb3b1c5a995bd204159efcc67e6d","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"preconditioned","prefix":2048,"observable":"product","estimate":0.9171651678903712,"analytic_truth":0.95,"natural_sd":1.379311422413372,"diagnostics":{"rhat_rank":1.001422482316654,"rhat_z":1.001409707845834,"rhat_folded":1.001422482316654,"rhat_split":1.0022791352923954,"ess_bulk":1558.7624954112798,"ess_tail":1742.3355667144333,"ess_mean":1173.0763844545008,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.03960269566186745},"same_data_fixture_sha256":"bae24ae30f2c5f42557dbfff5e61395e5335a06b5d2bfafbf12a7924451a5c14","fresh_data_sha256":"bae24ae30f2c5f42557dbfff5e61395e5335a06b5d2bfafbf12a7924451a5c14","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"preconditioned","prefix":2048,"observable":"Q","
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+estimate":1.9507535961021378,"analytic_truth":2.0,"natural_sd":2.0,"diagnostics":{"rhat_rank":1.0034838574863325,"rhat_z":1.0034838574863325,"rhat_folded":1.002008384088176,"rhat_split":1.0035703311280169,"ess_bulk":1201.7444970390316,"ess_tail":1504.8742993920669,"ess_mean":1053.230484940719,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.0600922793369378},"same_data_fixture_sha256":"193fb7618b299458f6f9a05c01e18bfa9e2476d14271633d8655c563fc572f99","fresh_data_sha256":"193fb7618b299458f6f9a05c01e18bfa9e2476d14271633d8655c563fc572f99","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"preconditioned","prefix":2048,"observable":"sum_direction","estimate":0.0373902922949572,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0031054778571467,"rhat_z":1.0031054778571467,"rhat_folded":1.0014867979257054,"rhat_split":1.0031486451003615,"ess_bulk":685.0497669201985,"ess_tail":1332.2019324080497,"ess_mean":683.7726003054773,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.037560371300720076},"same_data_fixture_sha256":"b2b78f051da8e5cc68e3a1ecfc90eed6dd57357340c317f51a8ff13928e0f2b6","fresh_data_sha256":"b2b78f051da8e5cc68e3a1ecfc90eed6d
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+d57357340c317f51a8ff13928e0f2b6","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"preconditioned","prefix":2048,"observable":"difference_direction","estimate":-0.10126549249993158,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0076442793120755,"rhat_z":1.0076442793120755,"rhat_folded":1.002507486075813,"rhat_split":1.0076489970018683,"ess_bulk":822.6744099704985,"ess_tail":1223.2675253229393,"ess_mean":816.9115033057152,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.034541753716689355},"same_data_fixture_sha256":"58686001f18f2dc7c34f9228817319160ebd7ababe73bb06eb3793da9b55b1cc","fresh_data_sha256":"58686001f18f2dc7c34f9228817319160ebd7ababe73bb06eb3793da9b55b1cc","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"preconditioned","prefix":8192,"observable":"y1","estimate":-0.0009030386511943503,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0015572136767057,"rhat_z":1.0015572136767057,"rhat_folded":1.0007341378526575,"rhat_split":1.0015577911644806,"ess_bulk":2856.414032553728,"ess_tail":4183.759270785682,"ess_mean":2853.8201434363255,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.01870281113
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+7127438},"same_data_fixture_sha256":"0e69c1e0a7310752e1dbe3b7c57d5c01e54fa8303b708f35671cfc2ddebae958","fresh_data_sha256":"0e69c1e0a7310752e1dbe3b7c57d5c01e54fa8303b708f35671cfc2ddebae958","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"preconditioned","prefix":8192,"observable":"y2","estimate":0.010672314636752526,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.001570229811313,"rhat_z":1.001570229811313,"rhat_folded":1.0006252532816884,"rhat_split":1.0015660130915502,"ess_bulk":2870.6177653488953,"ess_tail":4617.56545906279,"ess_mean":2869.34483530617,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.018609784356297246},"same_data_fixture_sha256":"6aeedb1171d2aa78fcb609c9f1a15c3c3ec35cbd7b33a3d0d2ac3fc280c9e7b0","fresh_data_sha256":"6aeedb1171d2aa78fcb609c9f1a15c3c3ec35cbd7b33a3d0d2ac3fc280c9e7b0","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"preconditioned","prefix":8192,"observable":"y1_squared","estimate":0.9982227804858801,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.001056149998568,"rhat_z":1.0007342146832874,"rhat_folded":1.001056149998568,"rhat_split":1.0016340402340103,"ess_bulk":5442.036230823677,"ess_tail":5499.172654981195,"ess_mean":4172.348319641113,"status":"ok","metric
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.02187039609718452},"same_data_fixture_sha256":"66880fb77af26de89f0e6aad6d3511fb098d317afd0208fcd0bfe1ca09e50194","fresh_data_sha256":"66880fb77af26de89f0e6aad6d3511fb098d317afd0208fcd0bfe1ca09e50194","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"preconditioned","prefix":8192,"observable":"y2_squared","estimate":0.993806764740008,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0008467152995515,"rhat_z":1.0006701725511873,"rhat_folded":1.0008467152995515,"rhat_split":1.0011855615227019,"ess_bulk":5628.03551826573,"ess_tail":5925.374119338748,"ess_mean":4392.502253783939,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.021103141532771052},"same_data_fixture_sha256":"784471190eb1e831ab430e24dcccd42ff71dd82927a72179b872cdc065b94eec","fresh_data_sha256":"784471190eb1e831ab430e24dcccd42ff71dd82927a72179b872cdc065b94eec","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"preconditioned","prefix":8192,"observable":"product","estimate":0.945804708427205,"analytic_truth":0.95,"natural_sd":1.379311422413372,"diagnostics":{"rhat_rank":1.0011001254746992,"rhat_z":1.0008033903378775,"r
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+hat_folded":1.0011001254746992,"rhat_split":1.001409470061421,"ess_bulk":5599.762280434028,"ess_tail":5800.807506533611,"ess_mean":4295.928102899432,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.020949898529884704},"same_data_fixture_sha256":"dd1eb8b2b510461466ac60c53034f33a0c4d5c0aae2a6090f4207bfc222fbd5a","fresh_data_sha256":"dd1eb8b2b510461466ac60c53034f33a0c4d5c0aae2a6090f4207bfc222fbd5a","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"preconditioned","prefix":8192,"observable":"Q","estimate":2.0000061457866507,"analytic_truth":2.0,"natural_sd":2.0,"diagnostics":{"rhat_rank":1.0008448468341475,"rhat_z":1.0008448468341475,"rhat_folded":1.0008168557393433,"rhat_split":1.001244892489217,"ess_bulk":4498.479423589753,"ess_tail":5046.276073180092,"ess_mean":3883.2385327761594,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.031572857944807006},"same_data_fixture_sha256":"11f98e36cbf50c910d55ed584c38004871f1f1b524d9824ff6a759b3ac534f31","fresh_data_sha256":"11f98e36cbf50c910d55ed584c38004871f1f1b524d9824ff6a759b3ac534f31","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"preconditioned","prefix":8192,"observable":"sum_direction","es
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+timate":0.00494686518923992,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0014984474122044,"rhat_z":1.0014984474122044,"rhat_folded":1.0007260457397407,"rhat_split":1.0015041269673723,"ess_bulk":2857.356264189052,"ess_tail":4210.779051560615,"ess_mean":2855.697212079016,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.018673784084495125},"same_data_fixture_sha256":"55fba442cf739633cadd580485f668a1967e6862e8a4e782b89db85b5dcd28f8","fresh_data_sha256":"55fba442cf739633cadd580485f668a1967e6862e8a4e782b89db85b5dcd28f8","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"preconditioned","prefix":8192,"observable":"difference_direction","estimate":-0.036604481111031,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0038254483007107,"rhat_z":1.0038254483007107,"rhat_folded":1.0003139054925336,"rhat_split":1.00380528311868,"ess_bulk":3089.997886923112,"ess_tail":5047.3866169079765,"ess_mean":3094.070213537124,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.018003709692320066},"same_data_fixture_sha256":"d1dc484c08b338b2c2c9389f1157e46b4c52b5c3d22555e4b2ea3bfa1a43e2b9","fresh_data_sha256":"d1dc484c08b338b2c2c9389f1157
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+e46b4c52b5c3d22555e4b2ea3bfa1a43e2b9","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"isotropic","prefix":2048,"observable":"y1","estimate":-0.005283923521943207,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.1311849894526347,"rhat_z":1.1311849894526347,"rhat_folded":1.0146390086659465,"rhat_split":1.1310533240943945,"ess_bulk":30.12300932649815,"ess_tail":113.91786349422027,"ess_mean":29.32247868850623,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.17315730851757763},"same_data_fixture_sha256":"9eb7119156cf36f3d7ac70b38c8341fb9d471a3786bad1c1eca2c52fbfc0954f","fresh_data_sha256":"9eb7119156cf36f3d7ac70b38c8341fb9d471a3786bad1c1eca2c52fbfc0954f","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"isotropic","prefix":2048,"observable":"y2","estimate":0.0018225484860261432,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.12714903957868,"rhat_z":1.12714903957868,"rhat_folded":1.0113261147862267,"rhat_split":1.1272367887071784,"ess_bulk":32.903803200479125,"ess_tail":103.52301462135631,"ess_mean":31.955099332874408,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.16726886394728252},"same_data_fixtur
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+e_sha256":"c4623676f6ff947c6c11a9d6f3dd7a38d601327236bfaf253de9077fa330102a","fresh_data_sha256":"c4623676f6ff947c6c11a9d6f3dd7a38d601327236bfaf253de9077fa330102a","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"isotropic","prefix":2048,"observable":"y1_squared","estimate":0.8791097730081399,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.013126325646844,"rhat_z":1.013126325646844,"rhat_folded":1.0114383101059967,"rhat_split":1.0132345450433742,"ess_bulk":134.35874958089167,"ess_tail":158.14447683371006,"ess_mean":113.43202231132383,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.11225950191089616},"same_data_fixture_sha256":"7e672ba776b8e6c71a60544831471a4d24c8d874069d66689a027fe7f50a18df","fresh_data_sha256":"7e672ba776b8e6c71a60544831471a4d24c8d874069d66689a027fe7f50a18df","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"isotropic","prefix":2048,"observable":"y2_squared","estimate":0.8939618435868537,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.010884564446194,"rhat_z":1.010884564446194,"rhat_folded":1.0089531333118957,"rhat_split":1.0132477021376678,"ess_bulk":138.91289368706774,"ess_tail":155.7294313877631,"ess_mean":106.69932831756334,"status":"ok","metric_status":{
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.11609776968726869},"same_data_fixture_sha256":"af3f17a0d2634ae0f2792f62acf7b07fb3138e47522d0f0957e4d694ecd9f7b9","fresh_data_sha256":"af3f17a0d2634ae0f2792f62acf7b07fb3138e47522d0f0957e4d694ecd9f7b9","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"isotropic","prefix":2048,"observable":"product","estimate":0.837833588280842,"analytic_truth":0.95,"natural_sd":1.379311422413372,"diagnostics":{"rhat_rank":1.0135356741649142,"rhat_z":1.0134524683110804,"rhat_folded":1.0135356741649142,"rhat_split":1.0142231923771785,"ess_bulk":125.62477349780795,"ess_tail":149.19997962321978,"ess_mean":104.61975055976437,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.11380280748181272},"same_data_fixture_sha256":"868142c54c917e1e26f90cc347aece04ab69835bdd0b11e2f8802ec0e80216ed","fresh_data_sha256":"868142c54c917e1e26f90cc347aece04ab69835bdd0b11e2f8802ec0e80216ed","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"isotropic","prefix":2048,"observable":"Q","estimate":1.8583363985783972,"analytic_truth":2.0,"natural_sd":2.0,"diagnostics":{"rhat_rank":1.0042590086673333,"rhat_z":1.0042590086673333,"rhat_folded":1.003779664128235,"rhat_spli
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+t":1.0050061953821983,"ess_bulk":259.82501127906517,"ess_tail":405.6122943797454,"ess_mean":215.4529857125414,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.12255669118830896},"same_data_fixture_sha256":"6fcc86502826710b95bc90fe10f295ba41fc405a4f7024dfd21fa5895f9a6bb9","fresh_data_sha256":"6fcc86502826710b95bc90fe10f295ba41fc405a4f7024dfd21fa5895f9a6bb9","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"isotropic","prefix":2048,"observable":"sum_direction","estimate":-0.0017527353815569302,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.1330811306732658,"rhat_z":1.1330811306732658,"rhat_folded":1.0138206267849217,"rhat_split":1.133332195602233,"ess_bulk":30.78334867922456,"ess_tail":104.96678984602772,"ess_mean":29.829967931635153,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.17218575087246188},"same_data_fixture_sha256":"184d3fd1a592dac7d5b8cd9f017b08b159a2b65053416513f035f5c47acdf177","fresh_data_sha256":"184d3fd1a592dac7d5b8cd9f017b08b159a2b65053416513f035f5c47acdf177","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"isotropic","prefix":2048,"observable":"difference_direction","estimate":-0.0224726376734133
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+9,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.002002591234777,"rhat_z":1.002002591234777,"rhat_folded":1.0012457020651861,"rhat_split":1.0019901380984935,"ess_bulk":1196.5399215912992,"ess_tail":1552.8983598085956,"ess_mean":1195.325239630404,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.028540411195061184},"same_data_fixture_sha256":"69a9eca69590b9fc076bd09e2a6608074ef3919905c8b628097ce7c2d5d07b70","fresh_data_sha256":"69a9eca69590b9fc076bd09e2a6608074ef3919905c8b628097ce7c2d5d07b70","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"isotropic","prefix":8192,"observable":"y1","estimate":0.06773010157461062,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0132563873068647,"rhat_z":1.0132563873068647,"rhat_folded":1.012605771567129,"rhat_split":1.0132455256702826,"ess_bulk":157.06986769143734,"ess_tail":339.404749508254,"ess_mean":157.4054168185264,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.08101063662618588},"same_data_fixture_sha256":"c83a26ea35efed5b3db0dd9c982b0705aa69502e33401e87a487ee77e841389f","fresh_data_sha256":"c83a26ea35efed5b3db0dd9c982b0705aa69502e33401e87a487ee77e841389f","fresh_equa
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+ls_fixture_bytes":true},{"seed":46004,"proposal":"isotropic","prefix":8192,"observable":"y2","estimate":0.06824606160158475,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0130895563198592,"rhat_z":1.0130895563198592,"rhat_folded":1.01296523272989,"rhat_split":1.0131928889571369,"ess_bulk":155.1270491241321,"ess_tail":323.98400418635305,"ess_mean":155.67011248035354,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.0813700376549553},"same_data_fixture_sha256":"1dc8626b246ecb5036d31cb34fede7a5cf518a2a53bb469242476c806c8a3205","fresh_data_sha256":"1dc8626b246ecb5036d31cb34fede7a5cf518a2a53bb469242476c806c8a3205","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"isotropic","prefix":8192,"observable":"y1_squared","estimate":1.0375640298437696,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.0129652940138292,"rhat_z":1.0129652940138292,"rhat_folded":1.0092841519290676,"rhat_split":1.0143078342374057,"ess_bulk":436.6863029393501,"ess_tail":572.0082698000479,"ess_mean":367.69045390220737,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.07687935979423682},"same_data_fixture_sha256":"a550a8b7cf7941eff97f
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+d5c9c50ac94243a8c1b93664891ae1248151bee5193e","fresh_data_sha256":"a550a8b7cf7941eff97fd5c9c50ac94243a8c1b93664891ae1248151bee5193e","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"isotropic","prefix":8192,"observable":"y2_squared","estimate":1.035330810017379,"analytic_truth":1.0,"natural_sd":1.4142135623730951,"diagnostics":{"rhat_rank":1.013036482126259,"rhat_z":1.013036482126259,"rhat_folded":1.0103207448622535,"rhat_split":1.0141441002313505,"ess_bulk":435.9131968053761,"ess_tail":546.4345211253752,"ess_mean":368.89540347732463,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.07842395462947314},"same_data_fixture_sha256":"daf532d29821c764832b03d76a97cb75339eda35169b572fafc7919ac8542195","fresh_data_sha256":"daf532d29821c764832b03d76a97cb75339eda35169b572fafc7919ac8542195","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"isotropic","prefix":8192,"observable":"product","estimate":0.9867824806221853,"analytic_truth":0.95,"natural_sd":1.379311422413372,"diagnostics":{"rhat_rank":1.0139515801400794,"rhat_z":1.0139515801400794,"rhat_folded":1.010330987371136,"rhat_split":1.014961307919561,"ess_bulk":410.7659423030592,"ess_tail":528.1667455409812,"ess_mean":353.7571964956146,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_fo
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+lded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.07745499763980024},"same_data_fixture_sha256":"7a2bebb42e40d415a436e1ae4cc36216c21dbd97f70c8907966f818af8867341","fresh_data_sha256":"7a2bebb42e40d415a436e1ae4cc36216c21dbd97f70c8907966f818af8867341","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"isotropic","prefix":8192,"observable":"Q","estimate":2.030852581323041,"analytic_truth":2.0,"natural_sd":2.0,"diagnostics":{"rhat_rank":1.0072720018167338,"rhat_z":1.0072720018167338,"rhat_folded":1.004216107432291,"rhat_split":1.0073201722703717,"ess_bulk":711.270687848913,"ess_tail":1001.5648302318469,"ess_mean":619.4789693190149,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.08165408811326873},"same_data_fixture_sha256":"1c232ff7b098ae4b51ffc6052d3939300d94727079f1446aabb8fa74a966d436","fresh_data_sha256":"1c232ff7b098ae4b51ffc6052d3939300d94727079f1446aabb8fa74a966d436","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"isotropic","prefix":8192,"observable":"sum_direction","estimate":0.06885420671676273,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0137259100672278,"rhat_z":1.013477941425695,"rhat_folded":1.0137259100672278,"rhat_split":1.0135301119772184,"ess_bulk":152.46907750585834
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+,"ess_tail":296.8163285757542,"ess_mean":152.9231607989825,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.08218277835682745},"same_data_fixture_sha256":"d622103b9b65f89e103717c5acd39f522eaeeb00d9eda7b48025615651e4b169","fresh_data_sha256":"d622103b9b65f89e103717c5acd39f522eaeeb00d9eda7b48025615651e4b169","fresh_equals_fixture_bytes":true},{"seed":46004,"proposal":"isotropic","prefix":8192,"observable":"difference_direction","estimate":-0.001631608866840207,"analytic_truth":0.0,"natural_sd":1.0,"diagnostics":{"rhat_rank":1.0008093205529087,"rhat_z":1.0008093205529087,"rhat_folded":1.0002681978576553,"rhat_split":1.0008108976918595,"ess_bulk":4472.327067418408,"ess_tail":6053.018618831451,"ess_mean":4477.763505260571,"status":"ok","metric_status":{"rhat_rank":"ok","rhat_z":"ok","rhat_folded":"ok","rhat_split":"ok","ess_bulk":"ok","ess_tail":"ok","ess_mean":"ok"},"mcse_mean":0.014894139634556361},"same_data_fixture_sha256":"f7d3ecc1bfd98692f2b7c9c44753ef1a65dbcb3739358fe60084fa3d89de9349","fresh_data_sha256":"f7d3ecc1bfd98692f2b7c9c44753ef1a65dbcb3739358fe60084fa3d89de9349","fresh_equals_fixture_bytes":true}]
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+acceptance_rates{"preconditioned-46001-accepted":0.5859375,"isotropic-46001-accepted":0.6636827256944444,"preconditioned-46002-accepted":0.5844455295138888,"isotropic-46002-accepted":0.6636555989583334,"preconditioned-46003-accepted":0.5865614149305556,"isotropic-46003-accepted":0.6662868923611112,"preconditioned-46004-accepted":0.5952690972222222,"isotropic-46004-accepted":0.6641167534722222}
+scopeAll4preconditioned chainsets have per-observable full-prefix gates. Isotropic fixed comparator and short prefixes are reported,not required to fail or pass a mixing gate. ArviZ validates diagnostics on the immutable identical-data fixture,not on a claimed cross-platform byte-identical fresh simulation. Positive physical/mixing gates use fresh chains; analytic Gaussian moments validate joint target. Rhat/ESS/MCSE do not prove global convergence.
+remaining_unimplemented["banana","funnel","HMC","NUTS"]
+判定 / check合格
+preconditioned-46001/finite candidatetrue
+preconditioned-46001/2048/y1/ArviZ/rhat_ranktrue
+preconditioned-46001/2048/y1/ArviZ/ess_bulktrue
+preconditioned-46001/2048/y1/ArviZ/ess_tailtrue
+preconditioned-46001/2048/y1/ArviZ/ess_meantrue
+preconditioned-46001/2048/y1/ArviZ/mcse_meantrue
+preconditioned-46001/2048/y2/ArviZ/rhat_ranktrue
+preconditioned-46001/2048/y2/ArviZ/ess_bulktrue
+preconditioned-46001/2048/y2/ArviZ/ess_tailtrue
+preconditioned-46001/2048/y2/ArviZ/ess_meantrue
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46001/2048/y2/ArviZ/mcse_meantrue
+preconditioned-46001/2048/y1_squared/ArviZ/rhat_ranktrue
+preconditioned-46001/2048/y1_squared/ArviZ/ess_bulktrue
+preconditioned-46001/2048/y1_squared/ArviZ/ess_tailtrue
+preconditioned-46001/2048/y1_squared/ArviZ/ess_meantrue
+preconditioned-46001/2048/y1_squared/ArviZ/mcse_meantrue
+preconditioned-46001/2048/y2_squared/ArviZ/rhat_ranktrue
+preconditioned-46001/2048/y2_squared/ArviZ/ess_bulktrue
+preconditioned-46001/2048/y2_squared/ArviZ/ess_tailtrue
+preconditioned-46001/2048/y2_squared/ArviZ/ess_meantrue
+preconditioned-46001/2048/y2_squared/ArviZ/mcse_meantrue
+preconditioned-46001/2048/product/ArviZ/rhat_ranktrue
+preconditioned-46001/2048/product/ArviZ/ess_bulktrue
+preconditioned-46001/2048/product/ArviZ/ess_tailtrue
+preconditioned-46001/2048/product/ArviZ/ess_meantrue
+preconditioned-46001/2048/product/ArviZ/mcse_meantrue
+preconditioned-46001/2048/Q/ArviZ/rhat_ranktrue
+preconditioned-46001/2048/Q/ArviZ/ess_bulktrue
+preconditioned-46001/2048/Q/ArviZ/ess_tailtrue
+preconditioned-46001/2048/Q/ArviZ/ess_meantrue
+preconditioned-46001/2048/Q/ArviZ/mcse_meantrue
+preconditioned-46001/2048/sum_direction/ArviZ/rhat_ranktrue
+preconditioned-46001/2048/sum_direction/ArviZ/ess_bulktrue
+preconditioned-46001/2048/sum_direction/ArviZ/ess_tailtrue
+preconditioned-46001/2048/sum_direction/ArviZ/ess_meantrue
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46001/2048/sum_direction/ArviZ/mcse_meantrue
+preconditioned-46001/2048/difference_direction/ArviZ/rhat_ranktrue
+preconditioned-46001/2048/difference_direction/ArviZ/ess_bulktrue
+preconditioned-46001/2048/difference_direction/ArviZ/ess_tailtrue
+preconditioned-46001/2048/difference_direction/ArviZ/ess_meantrue
+preconditioned-46001/2048/difference_direction/ArviZ/mcse_meantrue
+preconditioned-46001/8192/y1/ArviZ/rhat_ranktrue
+preconditioned-46001/8192/y1/ArviZ/ess_bulktrue
+preconditioned-46001/8192/y1/ArviZ/ess_tailtrue
+preconditioned-46001/8192/y1/ArviZ/ess_meantrue
+preconditioned-46001/8192/y1/ArviZ/mcse_meantrue
+preconditioned-46001/8192/y1/rank-folded Rhattrue
+preconditioned-46001/8192/y1/bulk-tail ESStrue
+preconditioned-46001/8192/y1/observable MCSEtrue
+preconditioned-46001/8192/y1/known target momenttrue
+preconditioned-46001/8192/y2/ArviZ/rhat_ranktrue
+preconditioned-46001/8192/y2/ArviZ/ess_bulktrue
+preconditioned-46001/8192/y2/ArviZ/ess_tailtrue
+preconditioned-46001/8192/y2/ArviZ/ess_meantrue
+preconditioned-46001/8192/y2/ArviZ/mcse_meantrue
+preconditioned-46001/8192/y2/rank-folded Rhattrue
+preconditioned-46001/8192/y2/bulk-tail ESStrue
+preconditioned-46001/8192/y2/observable MCSEtrue
+preconditioned-46001/8192/y2/known target momenttrue
+preconditioned-46001/8192/y1_squared/ArviZ/rhat_ranktrue
+preconditioned-46001/8192/y1_squared/ArviZ/ess_bulktrue
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46001/8192/y1_squared/ArviZ/ess_tailtrue
+preconditioned-46001/8192/y1_squared/ArviZ/ess_meantrue
+preconditioned-46001/8192/y1_squared/ArviZ/mcse_meantrue
+preconditioned-46001/8192/y1_squared/rank-folded Rhattrue
+preconditioned-46001/8192/y1_squared/bulk-tail ESStrue
+preconditioned-46001/8192/y1_squared/observable MCSEtrue
+preconditioned-46001/8192/y1_squared/known target momenttrue
+preconditioned-46001/8192/y2_squared/ArviZ/rhat_ranktrue
+preconditioned-46001/8192/y2_squared/ArviZ/ess_bulktrue
+preconditioned-46001/8192/y2_squared/ArviZ/ess_tailtrue
+preconditioned-46001/8192/y2_squared/ArviZ/ess_meantrue
+preconditioned-46001/8192/y2_squared/ArviZ/mcse_meantrue
+preconditioned-46001/8192/y2_squared/rank-folded Rhattrue
+preconditioned-46001/8192/y2_squared/bulk-tail ESStrue
+preconditioned-46001/8192/y2_squared/observable MCSEtrue
+preconditioned-46001/8192/y2_squared/known target momenttrue
+preconditioned-46001/8192/product/ArviZ/rhat_ranktrue
+preconditioned-46001/8192/product/ArviZ/ess_bulktrue
+preconditioned-46001/8192/product/ArviZ/ess_tailtrue
+preconditioned-46001/8192/product/ArviZ/ess_meantrue
+preconditioned-46001/8192/product/ArviZ/mcse_meantrue
+preconditioned-46001/8192/product/rank-folded Rhattrue
+preconditioned-46001/8192/product/bulk-tail ESStrue
+preconditioned-46001/8192/product/observable MCSEtrue
+preconditioned-46001/8192/product/known target momenttrue
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46001/8192/Q/ArviZ/rhat_ranktrue
+preconditioned-46001/8192/Q/ArviZ/ess_bulktrue
+preconditioned-46001/8192/Q/ArviZ/ess_tailtrue
+preconditioned-46001/8192/Q/ArviZ/ess_meantrue
+preconditioned-46001/8192/Q/ArviZ/mcse_meantrue
+preconditioned-46001/8192/Q/rank-folded Rhattrue
+preconditioned-46001/8192/Q/bulk-tail ESStrue
+preconditioned-46001/8192/Q/observable MCSEtrue
+preconditioned-46001/8192/Q/known target momenttrue
+preconditioned-46001/8192/sum_direction/ArviZ/rhat_ranktrue
+preconditioned-46001/8192/sum_direction/ArviZ/ess_bulktrue
+preconditioned-46001/8192/sum_direction/ArviZ/ess_tailtrue
+preconditioned-46001/8192/sum_direction/ArviZ/ess_meantrue
+preconditioned-46001/8192/sum_direction/ArviZ/mcse_meantrue
+preconditioned-46001/8192/sum_direction/rank-folded Rhattrue
+preconditioned-46001/8192/sum_direction/bulk-tail ESStrue
+preconditioned-46001/8192/sum_direction/observable MCSEtrue
+preconditioned-46001/8192/sum_direction/known target momenttrue
+preconditioned-46001/8192/difference_direction/ArviZ/rhat_ranktrue
+preconditioned-46001/8192/difference_direction/ArviZ/ess_bulktrue
+preconditioned-46001/8192/difference_direction/ArviZ/ess_tailtrue
+preconditioned-46001/8192/difference_direction/ArviZ/ess_meantrue
+preconditioned-46001/8192/difference_direction/ArviZ/mcse_meantrue
+preconditioned-46001/8192/difference_direction/rank-folded Rhattrue
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46001/8192/difference_direction/bulk-tail ESStrue
+preconditioned-46001/8192/difference_direction/observable MCSEtrue
+preconditioned-46001/8192/difference_direction/known target momenttrue
+isotropic-46001/finite candidatetrue
+isotropic-46001/2048/y1/ArviZ/rhat_ranktrue
+isotropic-46001/2048/y1/ArviZ/ess_bulktrue
+isotropic-46001/2048/y1/ArviZ/ess_tailtrue
+isotropic-46001/2048/y1/ArviZ/ess_meantrue
+isotropic-46001/2048/y1/ArviZ/mcse_meantrue
+isotropic-46001/2048/y2/ArviZ/rhat_ranktrue
+isotropic-46001/2048/y2/ArviZ/ess_bulktrue
+isotropic-46001/2048/y2/ArviZ/ess_tailtrue
+isotropic-46001/2048/y2/ArviZ/ess_meantrue
+isotropic-46001/2048/y2/ArviZ/mcse_meantrue
+isotropic-46001/2048/y1_squared/ArviZ/rhat_ranktrue
+isotropic-46001/2048/y1_squared/ArviZ/ess_bulktrue
+isotropic-46001/2048/y1_squared/ArviZ/ess_tailtrue
+isotropic-46001/2048/y1_squared/ArviZ/ess_meantrue
+isotropic-46001/2048/y1_squared/ArviZ/mcse_meantrue
+isotropic-46001/2048/y2_squared/ArviZ/rhat_ranktrue
+isotropic-46001/2048/y2_squared/ArviZ/ess_bulktrue
+isotropic-46001/2048/y2_squared/ArviZ/ess_tailtrue
+isotropic-46001/2048/y2_squared/ArviZ/ess_meantrue
+isotropic-46001/2048/y2_squared/ArviZ/mcse_meantrue
+isotropic-46001/2048/product/ArviZ/rhat_ranktrue
+isotropic-46001/2048/product/ArviZ/ess_bulktrue
+isotropic-46001/2048/product/ArviZ/ess_tailtrue
+isotropic-46001/2048/product/ArviZ/ess_meantrue
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+isotropic-46001/2048/product/ArviZ/mcse_meantrue
+isotropic-46001/2048/Q/ArviZ/rhat_ranktrue
+isotropic-46001/2048/Q/ArviZ/ess_bulktrue
+isotropic-46001/2048/Q/ArviZ/ess_tailtrue
+isotropic-46001/2048/Q/ArviZ/ess_meantrue
+isotropic-46001/2048/Q/ArviZ/mcse_meantrue
+isotropic-46001/2048/sum_direction/ArviZ/rhat_ranktrue
+isotropic-46001/2048/sum_direction/ArviZ/ess_bulktrue
+isotropic-46001/2048/sum_direction/ArviZ/ess_tailtrue
+isotropic-46001/2048/sum_direction/ArviZ/ess_meantrue
+isotropic-46001/2048/sum_direction/ArviZ/mcse_meantrue
+isotropic-46001/2048/difference_direction/ArviZ/rhat_ranktrue
+isotropic-46001/2048/difference_direction/ArviZ/ess_bulktrue
+isotropic-46001/2048/difference_direction/ArviZ/ess_tailtrue
+isotropic-46001/2048/difference_direction/ArviZ/ess_meantrue
+isotropic-46001/2048/difference_direction/ArviZ/mcse_meantrue
+isotropic-46001/8192/y1/ArviZ/rhat_ranktrue
+isotropic-46001/8192/y1/ArviZ/ess_bulktrue
+isotropic-46001/8192/y1/ArviZ/ess_tailtrue
+isotropic-46001/8192/y1/ArviZ/ess_meantrue
+isotropic-46001/8192/y1/ArviZ/mcse_meantrue
+isotropic-46001/8192/y2/ArviZ/rhat_ranktrue
+isotropic-46001/8192/y2/ArviZ/ess_bulktrue
+isotropic-46001/8192/y2/ArviZ/ess_tailtrue
+isotropic-46001/8192/y2/ArviZ/ess_meantrue
+isotropic-46001/8192/y2/ArviZ/mcse_meantrue
+isotropic-46001/8192/y1_squared/ArviZ/rhat_ranktrue
+isotropic-46001/8192/y1_squared/ArviZ/ess_bulktrue
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+isotropic-46001/8192/y1_squared/ArviZ/ess_tailtrue
+isotropic-46001/8192/y1_squared/ArviZ/ess_meantrue
+isotropic-46001/8192/y1_squared/ArviZ/mcse_meantrue
+isotropic-46001/8192/y2_squared/ArviZ/rhat_ranktrue
+isotropic-46001/8192/y2_squared/ArviZ/ess_bulktrue
+isotropic-46001/8192/y2_squared/ArviZ/ess_tailtrue
+isotropic-46001/8192/y2_squared/ArviZ/ess_meantrue
+isotropic-46001/8192/y2_squared/ArviZ/mcse_meantrue
+isotropic-46001/8192/product/ArviZ/rhat_ranktrue
+isotropic-46001/8192/product/ArviZ/ess_bulktrue
+isotropic-46001/8192/product/ArviZ/ess_tailtrue
+isotropic-46001/8192/product/ArviZ/ess_meantrue
+isotropic-46001/8192/product/ArviZ/mcse_meantrue
+isotropic-46001/8192/Q/ArviZ/rhat_ranktrue
+isotropic-46001/8192/Q/ArviZ/ess_bulktrue
+isotropic-46001/8192/Q/ArviZ/ess_tailtrue
+isotropic-46001/8192/Q/ArviZ/ess_meantrue
+isotropic-46001/8192/Q/ArviZ/mcse_meantrue
+isotropic-46001/8192/sum_direction/ArviZ/rhat_ranktrue
+isotropic-46001/8192/sum_direction/ArviZ/ess_bulktrue
+isotropic-46001/8192/sum_direction/ArviZ/ess_tailtrue
+isotropic-46001/8192/sum_direction/ArviZ/ess_meantrue
+isotropic-46001/8192/sum_direction/ArviZ/mcse_meantrue
+isotropic-46001/8192/difference_direction/ArviZ/rhat_ranktrue
+isotropic-46001/8192/difference_direction/ArviZ/ess_bulktrue
+isotropic-46001/8192/difference_direction/ArviZ/ess_tailtrue
+isotropic-46001/8192/difference_direction/ArviZ/ess_meantrue
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+isotropic-46001/8192/difference_direction/ArviZ/mcse_meantrue
+preconditioned-46002/finite candidatetrue
+preconditioned-46002/2048/y1/ArviZ/rhat_ranktrue
+preconditioned-46002/2048/y1/ArviZ/ess_bulktrue
+preconditioned-46002/2048/y1/ArviZ/ess_tailtrue
+preconditioned-46002/2048/y1/ArviZ/ess_meantrue
+preconditioned-46002/2048/y1/ArviZ/mcse_meantrue
+preconditioned-46002/2048/y2/ArviZ/rhat_ranktrue
+preconditioned-46002/2048/y2/ArviZ/ess_bulktrue
+preconditioned-46002/2048/y2/ArviZ/ess_tailtrue
+preconditioned-46002/2048/y2/ArviZ/ess_meantrue
+preconditioned-46002/2048/y2/ArviZ/mcse_meantrue
+preconditioned-46002/2048/y1_squared/ArviZ/rhat_ranktrue
+preconditioned-46002/2048/y1_squared/ArviZ/ess_bulktrue
+preconditioned-46002/2048/y1_squared/ArviZ/ess_tailtrue
+preconditioned-46002/2048/y1_squared/ArviZ/ess_meantrue
+preconditioned-46002/2048/y1_squared/ArviZ/mcse_meantrue
+preconditioned-46002/2048/y2_squared/ArviZ/rhat_ranktrue
+preconditioned-46002/2048/y2_squared/ArviZ/ess_bulktrue
+preconditioned-46002/2048/y2_squared/ArviZ/ess_tailtrue
+preconditioned-46002/2048/y2_squared/ArviZ/ess_meantrue
+preconditioned-46002/2048/y2_squared/ArviZ/mcse_meantrue
+preconditioned-46002/2048/product/ArviZ/rhat_ranktrue
+preconditioned-46002/2048/product/ArviZ/ess_bulktrue
+preconditioned-46002/2048/product/ArviZ/ess_tailtrue
+preconditioned-46002/2048/product/ArviZ/ess_meantrue
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46002/2048/product/ArviZ/mcse_meantrue
+preconditioned-46002/2048/Q/ArviZ/rhat_ranktrue
+preconditioned-46002/2048/Q/ArviZ/ess_bulktrue
+preconditioned-46002/2048/Q/ArviZ/ess_tailtrue
+preconditioned-46002/2048/Q/ArviZ/ess_meantrue
+preconditioned-46002/2048/Q/ArviZ/mcse_meantrue
+preconditioned-46002/2048/sum_direction/ArviZ/rhat_ranktrue
+preconditioned-46002/2048/sum_direction/ArviZ/ess_bulktrue
+preconditioned-46002/2048/sum_direction/ArviZ/ess_tailtrue
+preconditioned-46002/2048/sum_direction/ArviZ/ess_meantrue
+preconditioned-46002/2048/sum_direction/ArviZ/mcse_meantrue
+preconditioned-46002/2048/difference_direction/ArviZ/rhat_ranktrue
+preconditioned-46002/2048/difference_direction/ArviZ/ess_bulktrue
+preconditioned-46002/2048/difference_direction/ArviZ/ess_tailtrue
+preconditioned-46002/2048/difference_direction/ArviZ/ess_meantrue
+preconditioned-46002/2048/difference_direction/ArviZ/mcse_meantrue
+preconditioned-46002/8192/y1/ArviZ/rhat_ranktrue
+preconditioned-46002/8192/y1/ArviZ/ess_bulktrue
+preconditioned-46002/8192/y1/ArviZ/ess_tailtrue
+preconditioned-46002/8192/y1/ArviZ/ess_meantrue
+preconditioned-46002/8192/y1/ArviZ/mcse_meantrue
+preconditioned-46002/8192/y1/rank-folded Rhattrue
+preconditioned-46002/8192/y1/bulk-tail ESStrue
+preconditioned-46002/8192/y1/observable MCSEtrue
+preconditioned-46002/8192/y1/known target momenttrue
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46002/8192/y2/ArviZ/rhat_ranktrue
+preconditioned-46002/8192/y2/ArviZ/ess_bulktrue
+preconditioned-46002/8192/y2/ArviZ/ess_tailtrue
+preconditioned-46002/8192/y2/ArviZ/ess_meantrue
+preconditioned-46002/8192/y2/ArviZ/mcse_meantrue
+preconditioned-46002/8192/y2/rank-folded Rhattrue
+preconditioned-46002/8192/y2/bulk-tail ESStrue
+preconditioned-46002/8192/y2/observable MCSEtrue
+preconditioned-46002/8192/y2/known target momenttrue
+preconditioned-46002/8192/y1_squared/ArviZ/rhat_ranktrue
+preconditioned-46002/8192/y1_squared/ArviZ/ess_bulktrue
+preconditioned-46002/8192/y1_squared/ArviZ/ess_tailtrue
+preconditioned-46002/8192/y1_squared/ArviZ/ess_meantrue
+preconditioned-46002/8192/y1_squared/ArviZ/mcse_meantrue
+preconditioned-46002/8192/y1_squared/rank-folded Rhattrue
+preconditioned-46002/8192/y1_squared/bulk-tail ESStrue
+preconditioned-46002/8192/y1_squared/observable MCSEtrue
+preconditioned-46002/8192/y1_squared/known target momenttrue
+preconditioned-46002/8192/y2_squared/ArviZ/rhat_ranktrue
+preconditioned-46002/8192/y2_squared/ArviZ/ess_bulktrue
+preconditioned-46002/8192/y2_squared/ArviZ/ess_tailtrue
+preconditioned-46002/8192/y2_squared/ArviZ/ess_meantrue
+preconditioned-46002/8192/y2_squared/ArviZ/mcse_meantrue
+preconditioned-46002/8192/y2_squared/rank-folded Rhattrue
+preconditioned-46002/8192/y2_squared/bulk-tail ESStrue
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46002/8192/y2_squared/observable MCSEtrue
+preconditioned-46002/8192/y2_squared/known target momenttrue
+preconditioned-46002/8192/product/ArviZ/rhat_ranktrue
+preconditioned-46002/8192/product/ArviZ/ess_bulktrue
+preconditioned-46002/8192/product/ArviZ/ess_tailtrue
+preconditioned-46002/8192/product/ArviZ/ess_meantrue
+preconditioned-46002/8192/product/ArviZ/mcse_meantrue
+preconditioned-46002/8192/product/rank-folded Rhattrue
+preconditioned-46002/8192/product/bulk-tail ESStrue
+preconditioned-46002/8192/product/observable MCSEtrue
+preconditioned-46002/8192/product/known target momenttrue
+preconditioned-46002/8192/Q/ArviZ/rhat_ranktrue
+preconditioned-46002/8192/Q/ArviZ/ess_bulktrue
+preconditioned-46002/8192/Q/ArviZ/ess_tailtrue
+preconditioned-46002/8192/Q/ArviZ/ess_meantrue
+preconditioned-46002/8192/Q/ArviZ/mcse_meantrue
+preconditioned-46002/8192/Q/rank-folded Rhattrue
+preconditioned-46002/8192/Q/bulk-tail ESStrue
+preconditioned-46002/8192/Q/observable MCSEtrue
+preconditioned-46002/8192/Q/known target momenttrue
+preconditioned-46002/8192/sum_direction/ArviZ/rhat_ranktrue
+preconditioned-46002/8192/sum_direction/ArviZ/ess_bulktrue
+preconditioned-46002/8192/sum_direction/ArviZ/ess_tailtrue
+preconditioned-46002/8192/sum_direction/ArviZ/ess_meantrue
+preconditioned-46002/8192/sum_direction/ArviZ/mcse_meantrue
+preconditioned-46002/8192/sum_direction/rank-folded Rhattrue
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46002/8192/sum_direction/bulk-tail ESStrue
+preconditioned-46002/8192/sum_direction/observable MCSEtrue
+preconditioned-46002/8192/sum_direction/known target momenttrue
+preconditioned-46002/8192/difference_direction/ArviZ/rhat_ranktrue
+preconditioned-46002/8192/difference_direction/ArviZ/ess_bulktrue
+preconditioned-46002/8192/difference_direction/ArviZ/ess_tailtrue
+preconditioned-46002/8192/difference_direction/ArviZ/ess_meantrue
+preconditioned-46002/8192/difference_direction/ArviZ/mcse_meantrue
+preconditioned-46002/8192/difference_direction/rank-folded Rhattrue
+preconditioned-46002/8192/difference_direction/bulk-tail ESStrue
+preconditioned-46002/8192/difference_direction/observable MCSEtrue
+preconditioned-46002/8192/difference_direction/known target momenttrue
+isotropic-46002/finite candidatetrue
+isotropic-46002/2048/y1/ArviZ/rhat_ranktrue
+isotropic-46002/2048/y1/ArviZ/ess_bulktrue
+isotropic-46002/2048/y1/ArviZ/ess_tailtrue
+isotropic-46002/2048/y1/ArviZ/ess_meantrue
+isotropic-46002/2048/y1/ArviZ/mcse_meantrue
+isotropic-46002/2048/y2/ArviZ/rhat_ranktrue
+isotropic-46002/2048/y2/ArviZ/ess_bulktrue
+isotropic-46002/2048/y2/ArviZ/ess_tailtrue
+isotropic-46002/2048/y2/ArviZ/ess_meantrue
+isotropic-46002/2048/y2/ArviZ/mcse_meantrue
+isotropic-46002/2048/y1_squared/ArviZ/rhat_ranktrue
+isotropic-46002/2048/y1_squared/ArviZ/ess_bulktrue
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+isotropic-46002/2048/y1_squared/ArviZ/ess_tailtrue
+isotropic-46002/2048/y1_squared/ArviZ/ess_meantrue
+isotropic-46002/2048/y1_squared/ArviZ/mcse_meantrue
+isotropic-46002/2048/y2_squared/ArviZ/rhat_ranktrue
+isotropic-46002/2048/y2_squared/ArviZ/ess_bulktrue
+isotropic-46002/2048/y2_squared/ArviZ/ess_tailtrue
+isotropic-46002/2048/y2_squared/ArviZ/ess_meantrue
+isotropic-46002/2048/y2_squared/ArviZ/mcse_meantrue
+isotropic-46002/2048/product/ArviZ/rhat_ranktrue
+isotropic-46002/2048/product/ArviZ/ess_bulktrue
+isotropic-46002/2048/product/ArviZ/ess_tailtrue
+isotropic-46002/2048/product/ArviZ/ess_meantrue
+isotropic-46002/2048/product/ArviZ/mcse_meantrue
+isotropic-46002/2048/Q/ArviZ/rhat_ranktrue
+isotropic-46002/2048/Q/ArviZ/ess_bulktrue
+isotropic-46002/2048/Q/ArviZ/ess_tailtrue
+isotropic-46002/2048/Q/ArviZ/ess_meantrue
+isotropic-46002/2048/Q/ArviZ/mcse_meantrue
+isotropic-46002/2048/sum_direction/ArviZ/rhat_ranktrue
+isotropic-46002/2048/sum_direction/ArviZ/ess_bulktrue
+isotropic-46002/2048/sum_direction/ArviZ/ess_tailtrue
+isotropic-46002/2048/sum_direction/ArviZ/ess_meantrue
+isotropic-46002/2048/sum_direction/ArviZ/mcse_meantrue
+isotropic-46002/2048/difference_direction/ArviZ/rhat_ranktrue
+isotropic-46002/2048/difference_direction/ArviZ/ess_bulktrue
+isotropic-46002/2048/difference_direction/ArviZ/ess_tailtrue
+isotropic-46002/2048/difference_direction/ArviZ/ess_meantrue
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+isotropic-46002/2048/difference_direction/ArviZ/mcse_meantrue
+isotropic-46002/8192/y1/ArviZ/rhat_ranktrue
+isotropic-46002/8192/y1/ArviZ/ess_bulktrue
+isotropic-46002/8192/y1/ArviZ/ess_tailtrue
+isotropic-46002/8192/y1/ArviZ/ess_meantrue
+isotropic-46002/8192/y1/ArviZ/mcse_meantrue
+isotropic-46002/8192/y2/ArviZ/rhat_ranktrue
+isotropic-46002/8192/y2/ArviZ/ess_bulktrue
+isotropic-46002/8192/y2/ArviZ/ess_tailtrue
+isotropic-46002/8192/y2/ArviZ/ess_meantrue
+isotropic-46002/8192/y2/ArviZ/mcse_meantrue
+isotropic-46002/8192/y1_squared/ArviZ/rhat_ranktrue
+isotropic-46002/8192/y1_squared/ArviZ/ess_bulktrue
+isotropic-46002/8192/y1_squared/ArviZ/ess_tailtrue
+isotropic-46002/8192/y1_squared/ArviZ/ess_meantrue
+isotropic-46002/8192/y1_squared/ArviZ/mcse_meantrue
+isotropic-46002/8192/y2_squared/ArviZ/rhat_ranktrue
+isotropic-46002/8192/y2_squared/ArviZ/ess_bulktrue
+isotropic-46002/8192/y2_squared/ArviZ/ess_tailtrue
+isotropic-46002/8192/y2_squared/ArviZ/ess_meantrue
+isotropic-46002/8192/y2_squared/ArviZ/mcse_meantrue
+isotropic-46002/8192/product/ArviZ/rhat_ranktrue
+isotropic-46002/8192/product/ArviZ/ess_bulktrue
+isotropic-46002/8192/product/ArviZ/ess_tailtrue
+isotropic-46002/8192/product/ArviZ/ess_meantrue
+isotropic-46002/8192/product/ArviZ/mcse_meantrue
+isotropic-46002/8192/Q/ArviZ/rhat_ranktrue
+isotropic-46002/8192/Q/ArviZ/ess_bulktrue
+isotropic-46002/8192/Q/ArviZ/ess_tailtrue
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+isotropic-46002/8192/Q/ArviZ/ess_meantrue
+isotropic-46002/8192/Q/ArviZ/mcse_meantrue
+isotropic-46002/8192/sum_direction/ArviZ/rhat_ranktrue
+isotropic-46002/8192/sum_direction/ArviZ/ess_bulktrue
+isotropic-46002/8192/sum_direction/ArviZ/ess_tailtrue
+isotropic-46002/8192/sum_direction/ArviZ/ess_meantrue
+isotropic-46002/8192/sum_direction/ArviZ/mcse_meantrue
+isotropic-46002/8192/difference_direction/ArviZ/rhat_ranktrue
+isotropic-46002/8192/difference_direction/ArviZ/ess_bulktrue
+isotropic-46002/8192/difference_direction/ArviZ/ess_tailtrue
+isotropic-46002/8192/difference_direction/ArviZ/ess_meantrue
+isotropic-46002/8192/difference_direction/ArviZ/mcse_meantrue
+preconditioned-46003/finite candidatetrue
+preconditioned-46003/2048/y1/ArviZ/rhat_ranktrue
+preconditioned-46003/2048/y1/ArviZ/ess_bulktrue
+preconditioned-46003/2048/y1/ArviZ/ess_tailtrue
+preconditioned-46003/2048/y1/ArviZ/ess_meantrue
+preconditioned-46003/2048/y1/ArviZ/mcse_meantrue
+preconditioned-46003/2048/y2/ArviZ/rhat_ranktrue
+preconditioned-46003/2048/y2/ArviZ/ess_bulktrue
+preconditioned-46003/2048/y2/ArviZ/ess_tailtrue
+preconditioned-46003/2048/y2/ArviZ/ess_meantrue
+preconditioned-46003/2048/y2/ArviZ/mcse_meantrue
+preconditioned-46003/2048/y1_squared/ArviZ/rhat_ranktrue
+preconditioned-46003/2048/y1_squared/ArviZ/ess_bulktrue
+preconditioned-46003/2048/y1_squared/ArviZ/ess_tailtrue
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46003/2048/y1_squared/ArviZ/ess_meantrue
+preconditioned-46003/2048/y1_squared/ArviZ/mcse_meantrue
+preconditioned-46003/2048/y2_squared/ArviZ/rhat_ranktrue
+preconditioned-46003/2048/y2_squared/ArviZ/ess_bulktrue
+preconditioned-46003/2048/y2_squared/ArviZ/ess_tailtrue
+preconditioned-46003/2048/y2_squared/ArviZ/ess_meantrue
+preconditioned-46003/2048/y2_squared/ArviZ/mcse_meantrue
+preconditioned-46003/2048/product/ArviZ/rhat_ranktrue
+preconditioned-46003/2048/product/ArviZ/ess_bulktrue
+preconditioned-46003/2048/product/ArviZ/ess_tailtrue
+preconditioned-46003/2048/product/ArviZ/ess_meantrue
+preconditioned-46003/2048/product/ArviZ/mcse_meantrue
+preconditioned-46003/2048/Q/ArviZ/rhat_ranktrue
+preconditioned-46003/2048/Q/ArviZ/ess_bulktrue
+preconditioned-46003/2048/Q/ArviZ/ess_tailtrue
+preconditioned-46003/2048/Q/ArviZ/ess_meantrue
+preconditioned-46003/2048/Q/ArviZ/mcse_meantrue
+preconditioned-46003/2048/sum_direction/ArviZ/rhat_ranktrue
+preconditioned-46003/2048/sum_direction/ArviZ/ess_bulktrue
+preconditioned-46003/2048/sum_direction/ArviZ/ess_tailtrue
+preconditioned-46003/2048/sum_direction/ArviZ/ess_meantrue
+preconditioned-46003/2048/sum_direction/ArviZ/mcse_meantrue
+preconditioned-46003/2048/difference_direction/ArviZ/rhat_ranktrue
+preconditioned-46003/2048/difference_direction/ArviZ/ess_bulktrue
+preconditioned-46003/2048/difference_direction/ArviZ/ess_tailtrue
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46003/2048/difference_direction/ArviZ/ess_meantrue
+preconditioned-46003/2048/difference_direction/ArviZ/mcse_meantrue
+preconditioned-46003/8192/y1/ArviZ/rhat_ranktrue
+preconditioned-46003/8192/y1/ArviZ/ess_bulktrue
+preconditioned-46003/8192/y1/ArviZ/ess_tailtrue
+preconditioned-46003/8192/y1/ArviZ/ess_meantrue
+preconditioned-46003/8192/y1/ArviZ/mcse_meantrue
+preconditioned-46003/8192/y1/rank-folded Rhattrue
+preconditioned-46003/8192/y1/bulk-tail ESStrue
+preconditioned-46003/8192/y1/observable MCSEtrue
+preconditioned-46003/8192/y1/known target momenttrue
+preconditioned-46003/8192/y2/ArviZ/rhat_ranktrue
+preconditioned-46003/8192/y2/ArviZ/ess_bulktrue
+preconditioned-46003/8192/y2/ArviZ/ess_tailtrue
+preconditioned-46003/8192/y2/ArviZ/ess_meantrue
+preconditioned-46003/8192/y2/ArviZ/mcse_meantrue
+preconditioned-46003/8192/y2/rank-folded Rhattrue
+preconditioned-46003/8192/y2/bulk-tail ESStrue
+preconditioned-46003/8192/y2/observable MCSEtrue
+preconditioned-46003/8192/y2/known target momenttrue
+preconditioned-46003/8192/y1_squared/ArviZ/rhat_ranktrue
+preconditioned-46003/8192/y1_squared/ArviZ/ess_bulktrue
+preconditioned-46003/8192/y1_squared/ArviZ/ess_tailtrue
+preconditioned-46003/8192/y1_squared/ArviZ/ess_meantrue
+preconditioned-46003/8192/y1_squared/ArviZ/mcse_meantrue
+preconditioned-46003/8192/y1_squared/rank-folded Rhattrue
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46003/8192/y1_squared/bulk-tail ESStrue
+preconditioned-46003/8192/y1_squared/observable MCSEtrue
+preconditioned-46003/8192/y1_squared/known target momenttrue
+preconditioned-46003/8192/y2_squared/ArviZ/rhat_ranktrue
+preconditioned-46003/8192/y2_squared/ArviZ/ess_bulktrue
+preconditioned-46003/8192/y2_squared/ArviZ/ess_tailtrue
+preconditioned-46003/8192/y2_squared/ArviZ/ess_meantrue
+preconditioned-46003/8192/y2_squared/ArviZ/mcse_meantrue
+preconditioned-46003/8192/y2_squared/rank-folded Rhattrue
+preconditioned-46003/8192/y2_squared/bulk-tail ESStrue
+preconditioned-46003/8192/y2_squared/observable MCSEtrue
+preconditioned-46003/8192/y2_squared/known target momenttrue
+preconditioned-46003/8192/product/ArviZ/rhat_ranktrue
+preconditioned-46003/8192/product/ArviZ/ess_bulktrue
+preconditioned-46003/8192/product/ArviZ/ess_tailtrue
+preconditioned-46003/8192/product/ArviZ/ess_meantrue
+preconditioned-46003/8192/product/ArviZ/mcse_meantrue
+preconditioned-46003/8192/product/rank-folded Rhattrue
+preconditioned-46003/8192/product/bulk-tail ESStrue
+preconditioned-46003/8192/product/observable MCSEtrue
+preconditioned-46003/8192/product/known target momenttrue
+preconditioned-46003/8192/Q/ArviZ/rhat_ranktrue
+preconditioned-46003/8192/Q/ArviZ/ess_bulktrue
+preconditioned-46003/8192/Q/ArviZ/ess_tailtrue
+preconditioned-46003/8192/Q/ArviZ/ess_meantrue
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46003/8192/Q/ArviZ/mcse_meantrue
+preconditioned-46003/8192/Q/rank-folded Rhattrue
+preconditioned-46003/8192/Q/bulk-tail ESStrue
+preconditioned-46003/8192/Q/observable MCSEtrue
+preconditioned-46003/8192/Q/known target momenttrue
+preconditioned-46003/8192/sum_direction/ArviZ/rhat_ranktrue
+preconditioned-46003/8192/sum_direction/ArviZ/ess_bulktrue
+preconditioned-46003/8192/sum_direction/ArviZ/ess_tailtrue
+preconditioned-46003/8192/sum_direction/ArviZ/ess_meantrue
+preconditioned-46003/8192/sum_direction/ArviZ/mcse_meantrue
+preconditioned-46003/8192/sum_direction/rank-folded Rhattrue
+preconditioned-46003/8192/sum_direction/bulk-tail ESStrue
+preconditioned-46003/8192/sum_direction/observable MCSEtrue
+preconditioned-46003/8192/sum_direction/known target momenttrue
+preconditioned-46003/8192/difference_direction/ArviZ/rhat_ranktrue
+preconditioned-46003/8192/difference_direction/ArviZ/ess_bulktrue
+preconditioned-46003/8192/difference_direction/ArviZ/ess_tailtrue
+preconditioned-46003/8192/difference_direction/ArviZ/ess_meantrue
+preconditioned-46003/8192/difference_direction/ArviZ/mcse_meantrue
+preconditioned-46003/8192/difference_direction/rank-folded Rhattrue
+preconditioned-46003/8192/difference_direction/bulk-tail ESStrue
+preconditioned-46003/8192/difference_direction/observable MCSEtrue
+preconditioned-46003/8192/difference_direction/known target momenttrue
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+isotropic-46003/finite candidatetrue
+isotropic-46003/2048/y1/ArviZ/rhat_ranktrue
+isotropic-46003/2048/y1/ArviZ/ess_bulktrue
+isotropic-46003/2048/y1/ArviZ/ess_tailtrue
+isotropic-46003/2048/y1/ArviZ/ess_meantrue
+isotropic-46003/2048/y1/ArviZ/mcse_meantrue
+isotropic-46003/2048/y2/ArviZ/rhat_ranktrue
+isotropic-46003/2048/y2/ArviZ/ess_bulktrue
+isotropic-46003/2048/y2/ArviZ/ess_tailtrue
+isotropic-46003/2048/y2/ArviZ/ess_meantrue
+isotropic-46003/2048/y2/ArviZ/mcse_meantrue
+isotropic-46003/2048/y1_squared/ArviZ/rhat_ranktrue
+isotropic-46003/2048/y1_squared/ArviZ/ess_bulktrue
+isotropic-46003/2048/y1_squared/ArviZ/ess_tailtrue
+isotropic-46003/2048/y1_squared/ArviZ/ess_meantrue
+isotropic-46003/2048/y1_squared/ArviZ/mcse_meantrue
+isotropic-46003/2048/y2_squared/ArviZ/rhat_ranktrue
+isotropic-46003/2048/y2_squared/ArviZ/ess_bulktrue
+isotropic-46003/2048/y2_squared/ArviZ/ess_tailtrue
+isotropic-46003/2048/y2_squared/ArviZ/ess_meantrue
+isotropic-46003/2048/y2_squared/ArviZ/mcse_meantrue
+isotropic-46003/2048/product/ArviZ/rhat_ranktrue
+isotropic-46003/2048/product/ArviZ/ess_bulktrue
+isotropic-46003/2048/product/ArviZ/ess_tailtrue
+isotropic-46003/2048/product/ArviZ/ess_meantrue
+isotropic-46003/2048/product/ArviZ/mcse_meantrue
+isotropic-46003/2048/Q/ArviZ/rhat_ranktrue
+isotropic-46003/2048/Q/ArviZ/ess_bulktrue
+isotropic-46003/2048/Q/ArviZ/ess_tailtrue
+isotropic-46003/2048/Q/ArviZ/ess_meantrue
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+isotropic-46003/2048/Q/ArviZ/mcse_meantrue
+isotropic-46003/2048/sum_direction/ArviZ/rhat_ranktrue
+isotropic-46003/2048/sum_direction/ArviZ/ess_bulktrue
+isotropic-46003/2048/sum_direction/ArviZ/ess_tailtrue
+isotropic-46003/2048/sum_direction/ArviZ/ess_meantrue
+isotropic-46003/2048/sum_direction/ArviZ/mcse_meantrue
+isotropic-46003/2048/difference_direction/ArviZ/rhat_ranktrue
+isotropic-46003/2048/difference_direction/ArviZ/ess_bulktrue
+isotropic-46003/2048/difference_direction/ArviZ/ess_tailtrue
+isotropic-46003/2048/difference_direction/ArviZ/ess_meantrue
+isotropic-46003/2048/difference_direction/ArviZ/mcse_meantrue
+isotropic-46003/8192/y1/ArviZ/rhat_ranktrue
+isotropic-46003/8192/y1/ArviZ/ess_bulktrue
+isotropic-46003/8192/y1/ArviZ/ess_tailtrue
+isotropic-46003/8192/y1/ArviZ/ess_meantrue
+isotropic-46003/8192/y1/ArviZ/mcse_meantrue
+isotropic-46003/8192/y2/ArviZ/rhat_ranktrue
+isotropic-46003/8192/y2/ArviZ/ess_bulktrue
+isotropic-46003/8192/y2/ArviZ/ess_tailtrue
+isotropic-46003/8192/y2/ArviZ/ess_meantrue
+isotropic-46003/8192/y2/ArviZ/mcse_meantrue
+isotropic-46003/8192/y1_squared/ArviZ/rhat_ranktrue
+isotropic-46003/8192/y1_squared/ArviZ/ess_bulktrue
+isotropic-46003/8192/y1_squared/ArviZ/ess_tailtrue
+isotropic-46003/8192/y1_squared/ArviZ/ess_meantrue
+isotropic-46003/8192/y1_squared/ArviZ/mcse_meantrue
+isotropic-46003/8192/y2_squared/ArviZ/rhat_ranktrue
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+isotropic-46003/8192/y2_squared/ArviZ/ess_bulktrue
+isotropic-46003/8192/y2_squared/ArviZ/ess_tailtrue
+isotropic-46003/8192/y2_squared/ArviZ/ess_meantrue
+isotropic-46003/8192/y2_squared/ArviZ/mcse_meantrue
+isotropic-46003/8192/product/ArviZ/rhat_ranktrue
+isotropic-46003/8192/product/ArviZ/ess_bulktrue
+isotropic-46003/8192/product/ArviZ/ess_tailtrue
+isotropic-46003/8192/product/ArviZ/ess_meantrue
+isotropic-46003/8192/product/ArviZ/mcse_meantrue
+isotropic-46003/8192/Q/ArviZ/rhat_ranktrue
+isotropic-46003/8192/Q/ArviZ/ess_bulktrue
+isotropic-46003/8192/Q/ArviZ/ess_tailtrue
+isotropic-46003/8192/Q/ArviZ/ess_meantrue
+isotropic-46003/8192/Q/ArviZ/mcse_meantrue
+isotropic-46003/8192/sum_direction/ArviZ/rhat_ranktrue
+isotropic-46003/8192/sum_direction/ArviZ/ess_bulktrue
+isotropic-46003/8192/sum_direction/ArviZ/ess_tailtrue
+isotropic-46003/8192/sum_direction/ArviZ/ess_meantrue
+isotropic-46003/8192/sum_direction/ArviZ/mcse_meantrue
+isotropic-46003/8192/difference_direction/ArviZ/rhat_ranktrue
+isotropic-46003/8192/difference_direction/ArviZ/ess_bulktrue
+isotropic-46003/8192/difference_direction/ArviZ/ess_tailtrue
+isotropic-46003/8192/difference_direction/ArviZ/ess_meantrue
+isotropic-46003/8192/difference_direction/ArviZ/mcse_meantrue
+preconditioned-46004/finite candidatetrue
+preconditioned-46004/2048/y1/ArviZ/rhat_ranktrue
+preconditioned-46004/2048/y1/ArviZ/ess_bulktrue
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46004/2048/y1/ArviZ/ess_tailtrue
+preconditioned-46004/2048/y1/ArviZ/ess_meantrue
+preconditioned-46004/2048/y1/ArviZ/mcse_meantrue
+preconditioned-46004/2048/y2/ArviZ/rhat_ranktrue
+preconditioned-46004/2048/y2/ArviZ/ess_bulktrue
+preconditioned-46004/2048/y2/ArviZ/ess_tailtrue
+preconditioned-46004/2048/y2/ArviZ/ess_meantrue
+preconditioned-46004/2048/y2/ArviZ/mcse_meantrue
+preconditioned-46004/2048/y1_squared/ArviZ/rhat_ranktrue
+preconditioned-46004/2048/y1_squared/ArviZ/ess_bulktrue
+preconditioned-46004/2048/y1_squared/ArviZ/ess_tailtrue
+preconditioned-46004/2048/y1_squared/ArviZ/ess_meantrue
+preconditioned-46004/2048/y1_squared/ArviZ/mcse_meantrue
+preconditioned-46004/2048/y2_squared/ArviZ/rhat_ranktrue
+preconditioned-46004/2048/y2_squared/ArviZ/ess_bulktrue
+preconditioned-46004/2048/y2_squared/ArviZ/ess_tailtrue
+preconditioned-46004/2048/y2_squared/ArviZ/ess_meantrue
+preconditioned-46004/2048/y2_squared/ArviZ/mcse_meantrue
+preconditioned-46004/2048/product/ArviZ/rhat_ranktrue
+preconditioned-46004/2048/product/ArviZ/ess_bulktrue
+preconditioned-46004/2048/product/ArviZ/ess_tailtrue
+preconditioned-46004/2048/product/ArviZ/ess_meantrue
+preconditioned-46004/2048/product/ArviZ/mcse_meantrue
+preconditioned-46004/2048/Q/ArviZ/rhat_ranktrue
+preconditioned-46004/2048/Q/ArviZ/ess_bulktrue
+preconditioned-46004/2048/Q/ArviZ/ess_tailtrue
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46004/2048/Q/ArviZ/ess_meantrue
+preconditioned-46004/2048/Q/ArviZ/mcse_meantrue
+preconditioned-46004/2048/sum_direction/ArviZ/rhat_ranktrue
+preconditioned-46004/2048/sum_direction/ArviZ/ess_bulktrue
+preconditioned-46004/2048/sum_direction/ArviZ/ess_tailtrue
+preconditioned-46004/2048/sum_direction/ArviZ/ess_meantrue
+preconditioned-46004/2048/sum_direction/ArviZ/mcse_meantrue
+preconditioned-46004/2048/difference_direction/ArviZ/rhat_ranktrue
+preconditioned-46004/2048/difference_direction/ArviZ/ess_bulktrue
+preconditioned-46004/2048/difference_direction/ArviZ/ess_tailtrue
+preconditioned-46004/2048/difference_direction/ArviZ/ess_meantrue
+preconditioned-46004/2048/difference_direction/ArviZ/mcse_meantrue
+preconditioned-46004/8192/y1/ArviZ/rhat_ranktrue
+preconditioned-46004/8192/y1/ArviZ/ess_bulktrue
+preconditioned-46004/8192/y1/ArviZ/ess_tailtrue
+preconditioned-46004/8192/y1/ArviZ/ess_meantrue
+preconditioned-46004/8192/y1/ArviZ/mcse_meantrue
+preconditioned-46004/8192/y1/rank-folded Rhattrue
+preconditioned-46004/8192/y1/bulk-tail ESStrue
+preconditioned-46004/8192/y1/observable MCSEtrue
+preconditioned-46004/8192/y1/known target momenttrue
+preconditioned-46004/8192/y2/ArviZ/rhat_ranktrue
+preconditioned-46004/8192/y2/ArviZ/ess_bulktrue
+preconditioned-46004/8192/y2/ArviZ/ess_tailtrue
+preconditioned-46004/8192/y2/ArviZ/ess_meantrue
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46004/8192/y2/ArviZ/mcse_meantrue
+preconditioned-46004/8192/y2/rank-folded Rhattrue
+preconditioned-46004/8192/y2/bulk-tail ESStrue
+preconditioned-46004/8192/y2/observable MCSEtrue
+preconditioned-46004/8192/y2/known target momenttrue
+preconditioned-46004/8192/y1_squared/ArviZ/rhat_ranktrue
+preconditioned-46004/8192/y1_squared/ArviZ/ess_bulktrue
+preconditioned-46004/8192/y1_squared/ArviZ/ess_tailtrue
+preconditioned-46004/8192/y1_squared/ArviZ/ess_meantrue
+preconditioned-46004/8192/y1_squared/ArviZ/mcse_meantrue
+preconditioned-46004/8192/y1_squared/rank-folded Rhattrue
+preconditioned-46004/8192/y1_squared/bulk-tail ESStrue
+preconditioned-46004/8192/y1_squared/observable MCSEtrue
+preconditioned-46004/8192/y1_squared/known target momenttrue
+preconditioned-46004/8192/y2_squared/ArviZ/rhat_ranktrue
+preconditioned-46004/8192/y2_squared/ArviZ/ess_bulktrue
+preconditioned-46004/8192/y2_squared/ArviZ/ess_tailtrue
+preconditioned-46004/8192/y2_squared/ArviZ/ess_meantrue
+preconditioned-46004/8192/y2_squared/ArviZ/mcse_meantrue
+preconditioned-46004/8192/y2_squared/rank-folded Rhattrue
+preconditioned-46004/8192/y2_squared/bulk-tail ESStrue
+preconditioned-46004/8192/y2_squared/observable MCSEtrue
+preconditioned-46004/8192/y2_squared/known target momenttrue
+preconditioned-46004/8192/product/ArviZ/rhat_ranktrue
+preconditioned-46004/8192/product/ArviZ/ess_bulktrue
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46004/8192/product/ArviZ/ess_tailtrue
+preconditioned-46004/8192/product/ArviZ/ess_meantrue
+preconditioned-46004/8192/product/ArviZ/mcse_meantrue
+preconditioned-46004/8192/product/rank-folded Rhattrue
+preconditioned-46004/8192/product/bulk-tail ESStrue
+preconditioned-46004/8192/product/observable MCSEtrue
+preconditioned-46004/8192/product/known target momenttrue
+preconditioned-46004/8192/Q/ArviZ/rhat_ranktrue
+preconditioned-46004/8192/Q/ArviZ/ess_bulktrue
+preconditioned-46004/8192/Q/ArviZ/ess_tailtrue
+preconditioned-46004/8192/Q/ArviZ/ess_meantrue
+preconditioned-46004/8192/Q/ArviZ/mcse_meantrue
+preconditioned-46004/8192/Q/rank-folded Rhattrue
+preconditioned-46004/8192/Q/bulk-tail ESStrue
+preconditioned-46004/8192/Q/observable MCSEtrue
+preconditioned-46004/8192/Q/known target momenttrue
+preconditioned-46004/8192/sum_direction/ArviZ/rhat_ranktrue
+preconditioned-46004/8192/sum_direction/ArviZ/ess_bulktrue
+preconditioned-46004/8192/sum_direction/ArviZ/ess_tailtrue
+preconditioned-46004/8192/sum_direction/ArviZ/ess_meantrue
+preconditioned-46004/8192/sum_direction/ArviZ/mcse_meantrue
+preconditioned-46004/8192/sum_direction/rank-folded Rhattrue
+preconditioned-46004/8192/sum_direction/bulk-tail ESStrue
+preconditioned-46004/8192/sum_direction/observable MCSEtrue
+preconditioned-46004/8192/sum_direction/known target momenttrue
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+preconditioned-46004/8192/difference_direction/ArviZ/rhat_ranktrue
+preconditioned-46004/8192/difference_direction/ArviZ/ess_bulktrue
+preconditioned-46004/8192/difference_direction/ArviZ/ess_tailtrue
+preconditioned-46004/8192/difference_direction/ArviZ/ess_meantrue
+preconditioned-46004/8192/difference_direction/ArviZ/mcse_meantrue
+preconditioned-46004/8192/difference_direction/rank-folded Rhattrue
+preconditioned-46004/8192/difference_direction/bulk-tail ESStrue
+preconditioned-46004/8192/difference_direction/observable MCSEtrue
+preconditioned-46004/8192/difference_direction/known target momenttrue
+isotropic-46004/finite candidatetrue
+isotropic-46004/2048/y1/ArviZ/rhat_ranktrue
+isotropic-46004/2048/y1/ArviZ/ess_bulktrue
+isotropic-46004/2048/y1/ArviZ/ess_tailtrue
+isotropic-46004/2048/y1/ArviZ/ess_meantrue
+isotropic-46004/2048/y1/ArviZ/mcse_meantrue
+isotropic-46004/2048/y2/ArviZ/rhat_ranktrue
+isotropic-46004/2048/y2/ArviZ/ess_bulktrue
+isotropic-46004/2048/y2/ArviZ/ess_tailtrue
+isotropic-46004/2048/y2/ArviZ/ess_meantrue
+isotropic-46004/2048/y2/ArviZ/mcse_meantrue
+isotropic-46004/2048/y1_squared/ArviZ/rhat_ranktrue
+isotropic-46004/2048/y1_squared/ArviZ/ess_bulktrue
+isotropic-46004/2048/y1_squared/ArviZ/ess_tailtrue
+isotropic-46004/2048/y1_squared/ArviZ/ess_meantrue
+isotropic-46004/2048/y1_squared/ArviZ/mcse_meantrue
+isotropic-46004/2048/y2_squared/ArviZ/rhat_ranktrue
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+isotropic-46004/2048/y2_squared/ArviZ/ess_bulktrue
+isotropic-46004/2048/y2_squared/ArviZ/ess_tailtrue
+isotropic-46004/2048/y2_squared/ArviZ/ess_meantrue
+isotropic-46004/2048/y2_squared/ArviZ/mcse_meantrue
+isotropic-46004/2048/product/ArviZ/rhat_ranktrue
+isotropic-46004/2048/product/ArviZ/ess_bulktrue
+isotropic-46004/2048/product/ArviZ/ess_tailtrue
+isotropic-46004/2048/product/ArviZ/ess_meantrue
+isotropic-46004/2048/product/ArviZ/mcse_meantrue
+isotropic-46004/2048/Q/ArviZ/rhat_ranktrue
+isotropic-46004/2048/Q/ArviZ/ess_bulktrue
+isotropic-46004/2048/Q/ArviZ/ess_tailtrue
+isotropic-46004/2048/Q/ArviZ/ess_meantrue
+isotropic-46004/2048/Q/ArviZ/mcse_meantrue
+isotropic-46004/2048/sum_direction/ArviZ/rhat_ranktrue
+isotropic-46004/2048/sum_direction/ArviZ/ess_bulktrue
+isotropic-46004/2048/sum_direction/ArviZ/ess_tailtrue
+isotropic-46004/2048/sum_direction/ArviZ/ess_meantrue
+isotropic-46004/2048/sum_direction/ArviZ/mcse_meantrue
+isotropic-46004/2048/difference_direction/ArviZ/rhat_ranktrue
+isotropic-46004/2048/difference_direction/ArviZ/ess_bulktrue
+isotropic-46004/2048/difference_direction/ArviZ/ess_tailtrue
+isotropic-46004/2048/difference_direction/ArviZ/ess_meantrue
+isotropic-46004/2048/difference_direction/ArviZ/mcse_meantrue
+isotropic-46004/8192/y1/ArviZ/rhat_ranktrue
+isotropic-46004/8192/y1/ArviZ/ess_bulktrue
+isotropic-46004/8192/y1/ArviZ/ess_tailtrue
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+isotropic-46004/8192/y1/ArviZ/ess_meantrue
+isotropic-46004/8192/y1/ArviZ/mcse_meantrue
+isotropic-46004/8192/y2/ArviZ/rhat_ranktrue
+isotropic-46004/8192/y2/ArviZ/ess_bulktrue
+isotropic-46004/8192/y2/ArviZ/ess_tailtrue
+isotropic-46004/8192/y2/ArviZ/ess_meantrue
+isotropic-46004/8192/y2/ArviZ/mcse_meantrue
+isotropic-46004/8192/y1_squared/ArviZ/rhat_ranktrue
+isotropic-46004/8192/y1_squared/ArviZ/ess_bulktrue
+isotropic-46004/8192/y1_squared/ArviZ/ess_tailtrue
+isotropic-46004/8192/y1_squared/ArviZ/ess_meantrue
+isotropic-46004/8192/y1_squared/ArviZ/mcse_meantrue
+isotropic-46004/8192/y2_squared/ArviZ/rhat_ranktrue
+isotropic-46004/8192/y2_squared/ArviZ/ess_bulktrue
+isotropic-46004/8192/y2_squared/ArviZ/ess_tailtrue
+isotropic-46004/8192/y2_squared/ArviZ/ess_meantrue
+isotropic-46004/8192/y2_squared/ArviZ/mcse_meantrue
+isotropic-46004/8192/product/ArviZ/rhat_ranktrue
+isotropic-46004/8192/product/ArviZ/ess_bulktrue
+isotropic-46004/8192/product/ArviZ/ess_tailtrue
+isotropic-46004/8192/product/ArviZ/ess_meantrue
+isotropic-46004/8192/product/ArviZ/mcse_meantrue
+isotropic-46004/8192/Q/ArviZ/rhat_ranktrue
+isotropic-46004/8192/Q/ArviZ/ess_bulktrue
+isotropic-46004/8192/Q/ArviZ/ess_tailtrue
+isotropic-46004/8192/Q/ArviZ/ess_meantrue
+isotropic-46004/8192/Q/ArviZ/mcse_meantrue
+isotropic-46004/8192/sum_direction/ArviZ/rhat_ranktrue
+isotropic-46004/8192/sum_direction/ArviZ/ess_bulktrue
+
+## 重要度サンプリングと相関Gaussian診断 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-measurements
+Coverage: reading
+
+isotropic-46004/8192/sum_direction/ArviZ/ess_tailtrue
+isotropic-46004/8192/sum_direction/ArviZ/ess_meantrue
+isotropic-46004/8192/sum_direction/ArviZ/mcse_meantrue
+isotropic-46004/8192/difference_direction/ArviZ/rhat_ranktrue
+isotropic-46004/8192/difference_direction/ArviZ/ess_bulktrue
+isotropic-46004/8192/difference_direction/ArviZ/ess_tailtrue
+isotropic-46004/8192/difference_direction/ArviZ/ess_meantrue
+isotropic-46004/8192/difference_direction/ArviZ/mcse_meantrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存した実データ由来の分布・誤差診断。空間次元と標本/時間軸を区別します。全記録を表で読む
+seedproposalchainssaved_drawscandidate_file
+46001preconditioned48192correlated-gaussian-mcmc.npz
+46001isotropic48192correlated-gaussian-mcmc.npz
+46002preconditioned48192correlated-gaussian-mcmc.npz
+46002isotropic48192correlated-gaussian-mcmc.npz
+46003preconditioned48192correlated-gaussian-mcmc.npz
+46003isotropic48192correlated-gaussian-mcmc.npz
+46004preconditioned48192correlated-gaussian-mcmc.npz
+46004isotropic48192correlated-gaussian-mcmc.npz
+この例の実測値・全記録 / JSON
+
+## 重要度サンプリングと相関Gaussian診断 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+A. Vehtari et al. (2021). Rank-normalization,folding,and localization: An improved R-hat for assessing convergence of MCMC
+確認範囲 / review_level: selected-primary-diagnostic-definitions
+原著のrank/folded Rhat・ESSの選択節と修正Blom式を確認。多変量大域収束の認証ではありません。
+ArviZ developers (2024). ArviZ0.20.0 public diagnostics API and selected implementation
+確認範囲 / review_level: official-pinned-source-and-independent-same-data-execution
+公式0.20.0のESS/MCSE実装とAPIを確認。実際の固定8chainsetの128観測量prefix配列を別過程へ渡す640値資格を保存します。独立性は診断実装でありsampler独立参照ではありません。
+
 ## CSVRとLangevin：分布・揺らぎ・相関 — CSVRとLangevin：分布・揺らぎ・相関 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/
@@ -67517,7 +75889,9 @@ Langevin温度制御：正準分布・刻み偏り・時間相関
 厳密解・参照解
 この実行例の参照・検証
 正準Gaussian・Gamma分布とK/U/Hの平均・分散を照合。有限刻みではVerletのshadow二次形式を使い、位置分散T/[ω²(1−h²ω²/4)]、運動量分散Tを別導出したLyapunov解と比較します。h=0.2/0.1/0.05の決定論的偏りで2次性を確認。Langevinのq,p,K,H相関は独立の離散伝播と照合し、CSVRの相関は独立複製の標準誤差とτ・h依存を表示します。
-参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
+関連モデルの参照 · 解析参照
+OUのweakモーメントと同時Brownian結合
+dX=1.5(.2-X)dt+.8dW,X0=.7。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。
 
 ## CSVRとLangevin：分布・揺らぎ・相関 — 前提・単位・境界 [ja]
 
@@ -68151,6 +76525,9 @@ Re100の蓋駆動キャビティ
 同じ問題の参照 · 有限格子の数値参照
 Ghia Re100：原著の有限格子速度中心線
 Re=100・3固定格子の教育用検査です。蓋と側壁の角に速度の不連続があり、角の速度は静止側を優先します。Ghia値は丸めた数値参照で厳密解ではなく、4桁座標をそのまま使います。高Re・乱流・原著アルゴリズムの再現・キャビティ圧力を検証したとは主張しません。
+関連モデルの参照 · 有限格子の数値参照
+LBMのRe100キャビティ：実2D場とGhia中心線
+物理単位正方形、蓋U1、ν.01、Re100。N24/32/48、格子蓋速度.04、dt=.04/N。3壁静止、上壁右向き、同時上面/側面crossingは静止側を優先。初期rho1・静止。
 入力・検証手順の履歴 · 初回の入力
 
 ## 非周期壁面：キャビティと製造解 — 前提・単位・境界 [ja]

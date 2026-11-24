@@ -4,8 +4,8 @@
   "title": "分野別に解説を読む",
   "description": "理論・導出・計算例を、分野ごとにまとめた読み物です。基礎から関連する手法と検証例へ進めます。",
   "source": "/catalog/atlas-reading-index.json",
-  "source_sha256": "60506e1eafb91f899f2bfc73d5c2911b0b2939ffb03c6bdd48bc601befc0bd53",
-  "chapter_count": 123,
+  "source_sha256": "a88f16a724d288201771b6fc8b95ededaba7100eb743e75dfddf20c78eb3248e",
+  "chapter_count": 132,
   "groups": [
     {
       "id": "foundations-time",
@@ -1036,6 +1036,83 @@
             "en"
           ],
           "search_text": "validation-dsmc-shock 剛体球DSMCのMach2平面衝撃波 Mach2 planar shock with hard-sphere DSMC 粒子・運動論・輸送 Particles, kinetic methods and transport"
+        },
+        {
+          "id": "validation-lbm-cavity",
+          "title": "LBMのRe100蓋駆動キャビティ",
+          "url": "/numerical-methods-atlas/ja/read/validation-lbm-cavity/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-lbm-cavity LBMのRe100蓋駆動キャビティ LBM lid-driven cavity at Re100 粒子・運動論・輸送 Particles, kinetic methods and transport"
+        },
+        {
+          "id": "validation-lbm-taylor-green",
+          "title": "LBMのTaylor–Green渦と低Mach誤差",
+          "url": "/numerical-methods-atlas/ja/read/validation-lbm-taylor-green/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-lbm-taylor-green LBMのTaylor–Green渦と低Mach誤差 LBM Taylor–Green vortex and finite-Mach errors 粒子・運動論・輸送 Particles, kinetic methods and transport"
+        },
+        {
+          "id": "validation-lbm-annulus",
+          "title": "曲面LBMの環状Couette流",
+          "url": "/numerical-methods-atlas/ja/read/validation-lbm-annulus/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-lbm-annulus 曲面LBMの環状Couette流 Annular Couette control for curved-wall LBM 粒子・運動論・輸送 Particles, kinetic methods and transport"
+        },
+        {
+          "id": "validation-lbm-curved-boundary",
+          "title": "LBMの曲面壁とRe20円柱",
+          "url": "/numerical-methods-atlas/ja/read/validation-lbm-curved-boundary/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-lbm-curved-boundary LBMの曲面壁とRe20円柱 LBM curved walls and a Re20 cylinder 粒子・運動論・輸送 Particles, kinetic methods and transport"
+        },
+        {
+          "id": "validation-radiation-scattering",
+          "title": "等方散乱平板と連続角度参照",
+          "url": "/numerical-methods-atlas/ja/read/validation-radiation-scattering/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-radiation-scattering 等方散乱平板と連続角度参照 Isotropically scattering slabs and continuum-angle references 粒子・運動論・輸送 Particles, kinetic methods and transport"
+        },
+        {
+          "id": "validation-radiation-matter",
+          "title": "非平衡放射：拡散と輸送を分ける",
+          "url": "/numerical-methods-atlas/ja/read/validation-radiation-matter/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-radiation-matter 非平衡放射：拡散と輸送を分ける Non-equilibrium radiation: distinct diffusion and transport 粒子・運動論・輸送 Particles, kinetic methods and transport"
+        },
+        {
+          "id": "validation-radiation-geometry",
+          "title": "2Dの影・ビームとM1閉包",
+          "url": "/numerical-methods-atlas/ja/read/validation-radiation-geometry/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-radiation-geometry 2Dの影・ビームとM1閉包 2D shadows,beams and M1 closure 粒子・運動論・輸送 Particles, kinetic methods and transport"
         }
       ]
     },
@@ -1281,6 +1358,28 @@
             "en"
           ],
           "search_text": "validation-thermostats CSVRとLangevin：分布・揺らぎ・相関 CSVR and Langevin: distributions, fluctuations and correlations 確率計算・生物・温度制御 Stochastic computation, biology and temperature control"
+        },
+        {
+          "id": "validation-stochastic-accuracy",
+          "title": "SDEの弱誤差・強誤差と標本誤差",
+          "url": "/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-stochastic-accuracy SDEの弱誤差・強誤差と標本誤差 Weak/strong SDE errors and sampling uncertainty 確率計算・生物・温度制御 Stochastic computation, biology and temperature control"
+        },
+        {
+          "id": "validation-stochastic-estimation",
+          "title": "重要度サンプリングと相関Gaussian診断",
+          "url": "/numerical-methods-atlas/ja/read/validation-stochastic-estimation/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-stochastic-estimation 重要度サンプリングと相関Gaussian診断 Importance sampling and correlated-Gaussian diagnostics 確率計算・生物・温度制御 Stochastic computation, biology and temperature control"
         }
       ]
     },

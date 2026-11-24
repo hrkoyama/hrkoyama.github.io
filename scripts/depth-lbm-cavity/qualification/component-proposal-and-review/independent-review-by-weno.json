@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "status": "STATIC_REVIEW_REQUIRES_FIXTURE_AND_FAILURE_RETENTION_FIX",
+  "reviewer": "/root/batch_weno",
+  "started_at_utc": "2026-11-23T22:08:15Z",
+  "finished_at_utc": "2026-11-23T22:09:56.524413+00:00",
+  "protocol_sha256": "65e817d9187fa0fdac14b03a74d257553c2dcf01276603b15c6da88977dd55c1",
+  "all8_source_bindings_match": true,
+  "source_bindings": {
+    "DESIGN.md": "abab95081226a51c1e8a2cf6ed1190055a1675b88426d40cb7f33fa513c4c1d5",
+    "inputs.json": "63daf6a572cd62ce96f4ce0d7b51229bc763d00475be41be59497334e4e8547d",
+    "reference-review.json": "dfe854f6c7829a77ae102c9db36e41405931cfc3c402173d54384ec955be101d",
+    "source/check_components.py": "9dc2a908f4b30885c3607e4d5db1340c0f8146a7470d29b8fbbc22e49d1feab4",
+    "source/geometry.py": "28cad349c8842eb5da7efb138efb23ecfeaa3dac6b47e3337dda1ddfbad4fec4",
+    "source/kernel.cpp": "f8639d0c614e36571ceb96a7352b0e55f986a538274a2e1a9e6480da14fe2241",
+    "source/native.py": "cd8df1aa1abd7b8df18b28e4d9425a542ecb580b2115a63b0b5f8b62e9c69f27",
+    "source/reference_step.py": "4aeb706562fb4bae938dc6eb0f4028f86c431d679645ba1e9899133911a19210"
+  },
+  "executed": false,
+  "compiled_or_imported_by_reviewer": false,
+  "PUB_or_Git_edits": false,
+  "static_scope": "Read full kernel/native/reference/checker/geometry/inputs and selected DESIGN/reference declarations. No numerical geometry construction,compilation,component or trajectory execution.",
+  "consistent_findings": [
+    "C++ extern-C signature has17arguments matching ctypes argtypes:int32geometry and status,float64population/history with correct q-major memory layout. Fixed internal build produces contiguous arrays; arbitrary external malformed geometry is outside this qualification.",
+    "Independent scalar collision/stream/outlet equations agree algebraically with the native expressions despite independent evaluation ordering;3e-15max-absolute criterion qualifies floating error,not a claimed bit match.",
+    "Moving-wall rho_ref=1 is explicitly declared in DESIGN,not an accidentally omitted variable rho in a supposedly generic compressible wall law. Retain this low-Mach scope in main metadata.",
+    "Global mass/momentum ledger independently subtracts measured before/after totals and boundary transfers. Curved interpolated wall mass is measured separately,not repaired. Body torque using node radius has same cross product as link intersection because the displacement is parallel to link velocity.",
+    "Inlet reconstructs prescribed horizontal velocity and zero transverse velocity; outlet rho1and old interior tangential velocity are independently tested. Flat side/top corner ownership is explicit.",
+    "Inventory1compile+15families+15fractions+10rest+3moving+4open+3circle+2invalidtau+2densityretention+3workestimates=58. Final count gate and all checks required for PASS.",
+    "All16timed calls per family reset the identical state and advance one step. This is a component cost estimate,not a multistep scientific PDE/main claim. Outer30s and compile15s require parent enforcement."
+  ],
+  "blocking_findings": [
+    {
+      "id": "L1-INVALID-SHORT-LINK-FIXTURE",
+      "file": "source/check_components.py",
+      "location": "fraction probes immediately after five family comparisons",
+      "finding": "build(cavity,5,...) produces corner diagonals with back=-1,valid at defaultq=.5. The fixture then overwrites every wall fraction to.1/.25 without rechecking back. Example bottom-left row0,col0 and incoming C=(-1,+1): pull source crosses bottom,while its behind node row1,col-1 is outside. Scalar reference reads post[o,-1];native rejects with code4,so this does not qualify a physical short link.",
+      "required": "Use a valid short-link fixture,for example periodic-x couette for the fraction family,or vary only links with valid back while retaining q=.5on invalid-back corners. Preserve the reviewed unexecuted version and rebind protocol before first execution. No main input/numerical threshold/core formula change required."
+    },
+    {
+      "id": "L2-COMPILE-TIMEOUT-EVIDENCE",
+      "file": "source/native.py and checker exception handler",
+      "finding": "subprocess.run(timeout15) can raise TimeoutExpired before compile_receipt is assigned;checker catches it only into message/traceback and drops exception stdout/stderr/command. This does not fulfill explicit retained compiler-output protocol on timeout.",
+      "required": "Retain timeout command/seconds and available stdout/stderr/return state in a private compiler failure receipt before exit. Decode bytes safely even with text=True. Preserve any compile failure evidence; no numeric criteria changes."
+    }
+  ],
+  "execution_authorized": false,
+  "main_authorized": false,
+  "summary_ja": "8SHAとABI/数式/ledger/58件構成は整合。ただしcavity角back=-1をq<.5へ上書きするfractionfixtureはnative必須条件違反で修正が必要。compile timeoutの部分stdout/stderrも保存すること。いずれも事前の狭いfixture/retention修正であり主数値式・入力・公差変更は不要。未実行。"
+}

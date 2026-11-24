@@ -1,0 +1,58 @@
+"""Actual signed-angle FV/SSPRK2 Su-Olson1997 transport/material PDE.
+
+I=2U in the independently read2023primary Appendix4.1 notation:
+epsilon*I_t+mu*I_x+I=V+Q, V_t=E-V, E=.5*integral(I dmu).
+The source is the original unit box |x|<.5,on0<t<10. Symmetry permits x>=0
+with reflecting incoming left ordinates; right incoming is vacuum. Cases stop
+before signals can reach the right end. No diffusion/moment substitution.
+"""
+import numpy as np
+
+
+def angles(number):
+    if number<2 or number%2:raise ValueError('Even signed angles required')
+    x,w=np.polynomial.legendre.leggauss(number//2);positive=.5*(x+1)
+    return np.r_[-positive[::-1],positive],np.r_[.5*w[::-1],.5*w]
+
+
+def rhs(intensity,material,mu,weights,h,epsilon,source,periodic=False):
+    nangle=len(mu);half=nangle//2
+    upstream=np.empty_like(intensity)
+    upstream[half:,1:]=intensity[half:,:-1];upstream[:half,:-1]=intensity[:half,1:]
+    if periodic:
+        upstream[half:,0]=intensity[half:,-1];upstream[:half,-1]=intensity[:half,0]
+    else:
+        upstream[half:,0]=intensity[:half,0][::-1];upstream[:half,-1]=0.
+    energy=.5*np.sum(weights[:,None]*intensity,axis=0)
+    rate=(-abs(mu[:,None])*(intensity-upstream)/h-intensity+material[None,:]+source[None,:])/epsilon
+    outflux=0. if periodic else .5*np.sum(weights[half:]*mu[half:]*intensity[half:,-1])
+    return rate,energy-material,float(outflux)
+
+
+def solve(config,partial=None):
+    cells,length=config['cells'],config['length'];h=length/cells;epsilon=config['epsilon'];mu,w=angles(config['ordinates'])
+    intensity=np.zeros((len(mu),cells));material=np.zeros(cells);x=(np.arange(cells)+.5)*h
+    source=np.maximum(0.,np.minimum((np.arange(cells)+1)*h,.5)-np.arange(cells)*h)/h
+    states=[];angular=[];times=[];history=[];ledger=0.;t=0.
+    states.append(np.stack([np.zeros(cells),material]));angular.append(intensity.copy());times.append(0.)
+    for target in config['times']:
+        count=int(np.ceil((target-t)/config['max_dt']));dt=(target-t)/count;start=t
+        for k in range(count):
+            q=source if t+.5*dt<config['source_off'] else np.zeros(cells)
+            stage='rhs0'
+            try:
+                a,b,f1=rhs(intensity,material,mu,w,h,epsilon,q)
+                ii=intensity+dt*a;vv=material+dt*b;stage='euler1'
+                if min(ii.min(),vv.min())< -1e-13 or not np.isfinite(ii).all() or not np.isfinite(vv).all():raise ArithmeticError('Nonphysical transport first stage')
+                a,b,f2=rhs(ii,vv,mu,w,h,epsilon,q)
+                jj=ii+dt*a;ww=vv+dt*b;stage='euler2'
+                if min(jj.min(),ww.min())< -1e-13 or not np.isfinite(jj).all() or not np.isfinite(ww).all():raise ArithmeticError('Nonphysical transport second stage')
+                intensity=.5*(intensity+jj);material=.5*(material+ww)
+            except Exception:
+                if partial is not None:np.savez(partial,intensity=intensity,material=material,time=t,step=k,stage=stage)
+                raise
+            t=start+(k+1)*dt;energy=.5*np.sum(w[:,None]*intensity,axis=0)
+            ledger+=dt*(h*np.sum(q)-.5*(f1+f2))
+            history.append([t,h*np.sum(epsilon*energy+material),ledger,abs(h*np.sum(epsilon*energy+material)-ledger),intensity.min(),material.min(),dt*(np.max(abs(mu))/h+1)/epsilon])
+        states.append(np.stack([energy,material]));angular.append(intensity.copy());times.append(target)
+    return dict(x=x,mu=mu,weights=w,states=np.array(states),intensity=np.array(angular),times=np.array(times),history=np.array(history),epsilon=np.array(epsilon),steps=np.array(len(history)))

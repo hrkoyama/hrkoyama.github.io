@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "id": "isotropic-scattering-slab",
+  "name": {
+    "ja": "等方散乱平板の反射・透過・吸収",
+    "en": "Isotropic scattering in a finite slab"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isotropic-scattering-slab/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isotropic-scattering-slab/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isotropic-scattering-slab/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-scattering/results/isotropic-scattering-slab-preview.png",
+    "sha256": "3d477b96516f17ba2f039a120ad56fe2ce913bc03e72bde1b0ef4d6a249b77f1",
+    "width": 1055,
+    "height": 568,
+    "caption": {
+      "ja": "保存した実計算場の科学プレビュー。",
+      "en": "Scientific preview from the actual saved numerical fields."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-scattering/#isotropic-scattering-slab",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-scattering/#isotropic-scattering-slab"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#isotropic-scattering-slab",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#isotropic-scattering-slab-en"
+  },
+  "equations": [
+    {
+      "id": "static-grey-transfer",
+      "name": {
+        "ja": "静止媒質の灰色放射輸送・散乱・線形交換",
+        "en": "Static grey radiative transfer,scattering and linear exchange"
+      },
+      "formula": [
+        "\\epsilon\\partial_t I+\\boldsymbol\\Omega\\cdot\\nabla I+(\\kappa_a+\\kappa_s)I=\\kappa_sJ+\\kappa_aV+Q",
+        "J=\\langle I\\rangle_\\Omega,\\quad\\partial_t V=\\kappa_a(J-V)\\quad(\\mathrm{linear\\ exchange})"
+      ],
+      "note": {
+        "ja": "正規化した角度平均を使います。物質交換は1997輸送例と周期Fourier比較で進めます。1997の光学座標では係数1、物理座標の比較ではκを放射・物質の両交換項に掛けます。",
+        "en": "Use a normalized angular mean. Material exchange is evolved in the1997 transport example and periodic Fourier controls. The1997 optical coordinates give a unit exchange coefficient; physical-coordinate controls multiply both exchange terms by kappa."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#static-grey-transfer-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#static-grey-transfer-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "光学厚さ.5/3、単一散乱albedo.5/.9の4入力。左の等方入射I1、右入射0。64/128/256セル、32角と独立64角probe。",
+    "en": "Four fixed inputs L=.5/3,albedo=.5/.9;unit left incoming radiance,right vacuum incoming.64/128/256cells at32signed angles and a separate64angle probe."
+  },
+  "formulations": [
+    {
+      "id": "supplement-isotropic-scattering-slab",
+      "name": {
+        "ja": "等方散乱平板の反射・透過・吸収",
+        "en": "Isotropic scattering in a finite slab"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "\\mu\\partial_xI+I=\\omega J,\\quad J=\\frac12\\int_{-1}^{1}I\\,d\\mu",
+        "J(x)=\\frac12E_2(x)+\\frac\\omega2\\int_0^L E_1(|x-s|)J(s)\\,ds",
+        "R+T+A=1,\\qquad A=4(1-\\omega)\\int_0^LJ\\,dx"
+      ],
+      "note": {
+        "ja": "正負の角度を結合した実際の定常輸送を解き、独立な連続角Fredholm参照とR/T/Aを比較します。",
+        "en": "Solve genuinely coupled signed-angle steady transport and compare R/T/A with an independent continuum-angle Fredholm reference."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "isotropic-scattering-slab",
+      "kind": "semi-analytic",
+      "kind_label": {
+        "ja": "半解析解",
+        "en": "Semi-analytic reference"
+      },
+      "title": {
+        "ja": "等方散乱平板：連続角Fredholm流束参照",
+        "en": "Isotropically scattering slab: continuous-angle Fredholm flux reference"
+      },
+      "formula": "J(x)=.5*E2(x)+omega/2*integral_0^L E1(|x-y|)J(y)dy; R=2omega*integral J E2(x)dx; T=2E3(L)+2omega*integral J E2(L-x)dx; A=4(1-omega)*integral J dx.",
+      "assumptions": {
+        "ja": "平行平板の定常な光学厚さ座標を用い、左の入射放射輝度は1、右の入射は真空、等方散乱の単一散乱アルベドを固定します。入射半球流束はπ、符号付き角度の平均はJ=(1/2)∫I dμです。",
+        "en": "Plane-parallel steady optical-depth slab, unit incoming radiance on the left,vacuum incoming on the right,isotropic single-scattering albedo. Incoming hemispherical flux pi; signed-angle J=.5*integral I."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "有限の4平板に限定。MC、一般角度phase関数、DISORT再現、普遍的次数や厳密連続体誤差境界は認証しません。",
+        "en": "Limited to fourfixedisotropic slabs;noMC,generalphase-function/DISORT reproduction,universalorder or rigorouscontinuumerrorbound."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/isotropic-scattering-slab/?lang=ja#isotropic-scattering-slab-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/isotropic-scattering-slab/?lang=en#isotropic-scattering-slab-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "独立参照78項目はmain前に合格。主18計算では収支・正値・残差と、別々の空間・角度差、純吸収・保存散乱controlを判定します。",
+    "en": "Independent reference78checks passed before main.18primary/control solves test budget,positivity,residuals,separate space/angle changes,pure absorption and conservative scattering."
+  },
+  "methods": [
+    {
+      "id": "radiation-transport",
+      "name": {
+        "ja": "放射輸送・モーメント法",
+        "en": "Radiation transport and moment methods"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/radiation-transport/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/radiation-transport/?lang=en"
+      }
+    },
+    {
+      "id": "upwind",
+      "name": {
+        "ja": "風上差分（upwind）",
+        "en": "Upwind finite differences"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/upwind/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/upwind/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "保存的風上FVの全方向source結合を離散sweep応答で解きます。半球ごとの正重みGaussにより入射流束πを正規化し、吸収は体積sourceから独立積算します。",
+    "en": "Conservative upwind FV with the full discrete angular source coupling solved by sweep-response elimination. Positive hemisphere Gauss weights normalize incoming fluxpi;absorption is independently accumulated from the volume source."
+  },
+  "executions": [
+    {
+      "id": "isotropic-scattering-slab",
+      "kind": "supplement",
+      "name": {
+        "ja": "等方散乱平板の反射・透過・吸収",
+        "en": "Isotropic scattering in a finite slab"
+      },
+      "method_ids": [
+        "radiation-transport",
+        "upwind"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/isotropic-scattering-slab/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/isotropic-scattering-slab/?lang=en"
+      },
+      "scope": {
+        "ja": "正負の角度を結合した実際の定常輸送を解き、独立な連続角Fredholm参照とR/T/Aを比較します。",
+        "en": "Solve genuinely coupled signed-angle steady transport and compare R/T/A with an independent continuum-angle Fredholm reference."
+      },
+      "assumptions": {
+        "ja": "光学厚さ.5/3、単一散乱albedo.5/.9の4入力。左の等方入射I1、右入射0。64/128/256セル、32角と独立64角probe。",
+        "en": "Four fixed inputs L=.5/3,albedo=.5/.9;unit left incoming radiance,right vacuum incoming.64/128/256cells at32signed angles and a separate64angle probe."
+      },
+      "limits": {
+        "ja": "有限の4平板に限定。MC、一般角度phase関数、DISORT再現、普遍的次数や厳密連続体誤差境界は認証しません。",
+        "en": "Limited to fourfixedisotropic slabs;noMC,generalphase-function/DISORT reproduction,universalorder or rigorouscontinuumerrorbound."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-scattering/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-scattering/atlas-radiation-scattering-2026-11-24.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-scattering/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-scattering/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "独立参照78項目はmain前に合格。主18計算では収支・正値・残差と、別々の空間・角度差、純吸収・保存散乱controlを判定します。",
+        "en": "Independent reference78checks passed before main.18primary/control solves test budget,positivity,residuals,separate space/angle changes,pure absorption and conservative scattering."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-scattering/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-scattering/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-scattering/slab.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-scattering/test_scattering.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

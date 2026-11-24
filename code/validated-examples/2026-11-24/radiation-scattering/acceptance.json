@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "limits": {
+    "residual": 1e-10,
+    "source_residual": 1e-11,
+    "budget": 2e-11,
+    "negative_intensity": 1e-13,
+    "finest_flux_error": 0.01,
+    "refinement_ratio": 0.9,
+    "space_probe_difference": 0.01,
+    "angle_probe_difference": 0.01,
+    "pure_absorption_error": 0.02
+  },
+  "scope": "Fourfixedslabs,threefixedupwindspatialgrids and separateangularprobe. NoMC/generalDISORT/fullcontinuumerrorcertification."
+}

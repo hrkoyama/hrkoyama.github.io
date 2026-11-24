@@ -1,0 +1,52 @@
+"""Explicit root-authorized single saved-field audit, external20s process-group cap."""
+from datetime import datetime,timezone
+import hashlib,json,os
+from pathlib import Path
+import shutil,signal,subprocess,time,traceback
+
+D=Path(__file__).resolve().parent
+PY=Path('/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/bin/python')
+S=Path('/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch38-47/lbm')
+def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+def now():return datetime.now(timezone.utc).isoformat()
+def dump(p,d):Path(p).write_text(json.dumps(d,ensure_ascii=False,indent=2,allow_nan=False)+'\n')
+
+def main():
+ protocol=D/'protocol.json'
+ if sha(protocol)!='af56c42227e648b9e5b0d65c561f80c19ad4134e0db54b9a9824837e09fee766':raise ValueError('Protocol differs from explicit root authorization')
+ plan=json.loads(protocol.read_text())
+ for name,row in plan['files'].items():
+  if sha(row['path'])!=row['sha256']:raise ValueError('Bound source/input differs: '+name)
+ attempt=D/'attempt01'
+ if attempt.exists():raise ValueError('Exactly one fresh audit attempt authorized')
+ attempt.mkdir();shutil.copyfile(protocol,attempt/'protocol.json');shutil.copyfile(D/'audit_saved_curved.py',attempt/'audit_saved_curved.py.txt')
+ receipt=dict(started_at_utc=now(),protocol_sha256=sha(protocol),deadline_seconds=20,bindings=len(plan['files']),
+              authorization='Root explicitly approved one20s saved-data-only audit of this exact protocol/19bindings; no new evolution/reference/criteria changes.',
+              passed=False,timed_out=False,sampling_or_evolution_executions=0)
+ dump(attempt/'receipt.json',receipt);start=time.monotonic()
+ command=[str(PY),'-B','-W','error',str(D/'audit_saved_curved.py'),'--protocol',str(protocol),'--output',str(attempt/'results')]
+ receipt['command']=command
+ try:
+  env=dict(os.environ,OPENBLAS_NUM_THREADS='1',OMP_NUM_THREADS='1',MKL_NUM_THREADS='1',PYTHONDONTWRITEBYTECODE='1',TMPDIR=str(S))
+  with (attempt/'stdout.log').open('w') as stdout,(attempt/'stderr.log').open('w') as stderr:
+   process=subprocess.Popen(command,cwd=D,env=env,stdout=stdout,stderr=stderr,start_new_session=True)
+   try:code=process.wait(timeout=20)
+   except subprocess.TimeoutExpired:
+    receipt['timed_out']=True;os.killpg(process.pid,signal.SIGTERM)
+    try:process.wait(timeout=2)
+    except subprocess.TimeoutExpired:os.killpg(process.pid,signal.SIGKILL);process.wait()
+    code=process.returncode
+  receipt['returncode']=code
+  result=json.loads((attempt/'results/result.json').read_text())
+  receipt['structural_checks']=len(result['checks'])
+  receipt['passed']=bool(code==0 and not receipt['timed_out'] and result['audit_completed'] is True and
+                         len(result['checks'])==11 and all(v is True for v in result['checks'].values()))
+ except Exception as error:
+  receipt['failure']=dict(type=type(error).__name__,message=str(error));(attempt/'wrapper-traceback.txt').write_text(traceback.format_exc())
+ receipt['source_posthash_mismatches']=[name for name,row in plan['files'].items() if sha(row['path'])!=row['sha256']]
+ receipt['passed']=bool(receipt['passed'] and not receipt['source_posthash_mismatches'])
+ receipt.update(elapsed_seconds=time.monotonic()-start,finished_at_utc=now())
+ dump(attempt/'receipt.json',receipt);print(json.dumps(receipt),flush=True)
+ return 0 if receipt['passed'] else 1
+
+if __name__=='__main__':raise SystemExit(main())

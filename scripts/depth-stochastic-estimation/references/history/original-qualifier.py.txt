@@ -1,0 +1,26 @@
+"""Candidate diagnostics versus independently executed ArviZ on identical bytes."""
+import argparse,hashlib,json,sys
+from pathlib import Path
+import numpy as np
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
+from diagnostics import diagnose,mean_mcse
+
+
+def main():
+    p=argparse.ArgumentParser();p.add_argument('--arrays',type=Path,required=True);p.add_argument('--reference',type=Path,required=True);p.add_argument('--acceptance',type=Path,required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args()
+    if a.output.exists():raise ValueError('Fresh qualification receipt required')
+    ref=json.loads(a.reference.read_text());limits=json.loads(a.acceptance.read_text())['limits'];checks={}
+    if len(ref['datasets'])!=128:raise ValueError('Expected all128fixed observable-prefix datasets')
+    with np.load(a.arrays,allow_pickle=False) as data:
+        for row in ref['datasets']:
+            x=np.asarray(data[row['key']][:,:row['prefix'],row['column']],dtype='<f8',order='C')
+            if hashlib.sha256(x.tobytes()).hexdigest()!=row['sha256']:raise ValueError('Reference data bytes mismatch')
+            actual=diagnose(x);actual['mcse_mean']=mean_mcse(x)
+            for key,target in row['metrics'].items():
+                tolerance=limits['reference_rhat_absolute'] if key=='rhat_rank' else limits['reference_mcse_relative']*target if key=='mcse_mean' else limits['reference_ess_relative']*target
+                checks[f"{row['key']}/{row['prefix']}/{row['observable']}/{key}"]=bool(actual[key] is not None and abs(actual[key]-target)<=tolerance)
+    result={'schema_version':1,'passed':len(checks)==640 and all(checks.values()),'checks':checks,'reference_sha256':hashlib.sha256(a.reference.read_bytes()).hexdigest(),'array_archive_sha256':hashlib.sha256(a.arrays.read_bytes()).hexdigest(),'diagnostics_sha256':hashlib.sha256((Path(__file__).resolve().parents[1]/'diagnostics.py').read_bytes()).hexdigest(),'scope':'128actual fixed MH observable/prefix arrays;640independent engine values. Diagnostic independence only; target moments are a separate analytic reference.'}
+    a.output.write_text(json.dumps(result,indent=2,allow_nan=False)+'\n');print(json.dumps({'passed':result['passed'],'checks':len(checks),'failures':sum(not v for v in checks.values())}))
+    if not result['passed']:raise SystemExit(1)
+
+if __name__=='__main__':main()

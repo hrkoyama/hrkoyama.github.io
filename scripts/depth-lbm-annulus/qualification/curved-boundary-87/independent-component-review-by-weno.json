@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "status": "PASS_STATIC_COMPONENT_REVIEW_ONLY",
+  "reviewer": "batch_weno",
+  "recorded_at_utc": "2026-11-23T22:51:42.915799+00:00",
+  "protocol_sha256": "2bd555e868955b3dfd1da163a77cf6b91815b280807b15a85ee5687b7e35276b",
+  "local_bindings_checked": 7,
+  "evidence_bindings_checked": 9,
+  "hash_mismatches": [],
+  "expected_checks": 87,
+  "check_inventory_derivation": "1compile+5scalar/nativefixtures*3+9qprobes*5+3movingrestprobes*3+3halfway/negativeweight+5NEE+5actualgeometrysupport+2failureguards+1oldlinearnegative+1cost=87",
+  "source_scope": [
+    "Read complete DERIVATION.md/protocol/check_repair.py and complete diffs ofkernel,geometry,native,scalarvsfailedcurvedsource.",
+    "StaticAST/hash/textonly;no sourceimport,compile,one-step,geometryenumeration,referencegeneration,timingortrajectorybyreviewer."
+  ],
+  "mathematical_checks": [
+    "IndependentgenericLagrange interpolation gives shortcoefficientsq(2q+1),1−4q²,−q(1−2q) at2q−1 on0,−1,−2. Longcoefficients1/[q(2q+1)],(2q−1)/q,−(2q−1)/(2q+1) at0 on2q−1,−1,−2.",
+    "Longthirdsampleispostincoming atback1;shortusespostoutgoingback1/back2. Exactq.5branchreduceslegacyhalfway;movingwallcorrectionlongcarriesfirstLagrangeweight.",
+    "All9poststreamNEEformula equilibrium(1,u_a)+f_a−equilibrium(rho_a,u_a) enforcesdensity1andvelocityu_a bymomentidentities. It isdeclaredindependentfiniteBCvariant,notanunreadoriginalpaperimplementation.",
+    "Outletledgeraddsdelta=new−already_streamed forall9,includingknown6;missing3outgoingstreamsubtractionretained. Fullnodecornerownership/no periodicwrapexplicit.",
+    "20ctypesABIargumentsmatchC++;alladdedindexarraysint32/contiguousandmodeintsforwardedinmatchingorder. Nativeguardsback/back2,invalidmodes,nonpositivedensity;failurepayloadandcompilerreceiptretained."
+  ],
+  "coverage_and_limits": [
+    "87fixedchecksincludeindependentpolynomialdegree0/1/2,near0/.5/1,uniformmovingwall,rest,q.5legacyreduction,ledger,known6omissionandoldlinearnegativecontrols.",
+    "Fiveactualfixedannulus/cylindergeometries areenumeratedonlyafterauthorization;supportisnotassertedfromstaticreading. Missingneighborabortswithnoreducedstencil/fallback.",
+    "Negativequadraticweightsretained;nogeneralpositivity/unconditionalstabilityorpressurePASSclaim.",
+    "Reset16single-steptimingpergeometryisnotphysicalevolutionorLinuxruntime. Projectionusesgridcostscalingandisaplanningestimate,notarigorousupperbound.",
+    "Qualifiedcavity/TGVcontractsandoriginalcurvedinputs/acceptancearehashguardedevidence;nochangesperformed."
+  ],
+  "required_outer_driver": "Explicitrootauthorization,shared30sincludingcompiler15s,processgroupstop,all7local+9evidencepre/posthashes,compilerlogs/stdoutstderr/partialNPZ/checks/finalreceiptandsourcepreservation. Noautomaticretry/mainauthorization.",
+  "blocking_findings": [],
+  "reference_role": "Selected2003primarytextandindependentreflected-characteristicLagrangederivation;2001BFLfullpaperandoriginalNEEfullformulaunreadasrecorded. Reviewerdoesnotclaimnewfullpaperorlocalrenderedaudit.",
+  "execution_authorization": "Rootonly;thisstaticreviewneitherexecutesnorclaimsnumericalPASS."
+}

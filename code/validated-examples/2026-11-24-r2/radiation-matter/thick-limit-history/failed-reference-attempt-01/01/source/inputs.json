@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "group": "radiation-matter",
+  "cases": {
+    "su-olson-diffusion1996": [
+      {
+        "id": "n128",
+        "cells": 128,
+        "length": 16.0,
+        "epsilon": 1.0,
+        "times": [
+          0.1,
+          1.0,
+          3.0
+        ],
+        "max_dt": 0.0003125,
+        "family": "refinement"
+      },
+      {
+        "id": "n256",
+        "cells": 256,
+        "length": 16.0,
+        "epsilon": 1.0,
+        "times": [
+          0.1,
+          1.0,
+          3.0
+        ],
+        "max_dt": 0.00015625,
+        "family": "refinement"
+      },
+      {
+        "id": "n512",
+        "cells": 512,
+        "length": 16.0,
+        "epsilon": 1.0,
+        "times": [
+          0.1,
+          1.0,
+          3.0
+        ],
+        "max_dt": 7.8125e-05,
+        "family": "refinement"
+      },
+      {
+        "id": "half-dt",
+        "cells": 512,
+        "length": 16.0,
+        "epsilon": 1.0,
+        "times": [
+          0.1,
+          1.0,
+          3.0
+        ],
+        "max_dt": 3.90625e-05,
+        "family": "time-probe"
+      },
+      {
+        "id": "far-domain",
+        "cells": 768,
+        "length": 24.0,
+        "epsilon": 1.0,
+        "times": [
+          0.1,
+          1.0,
+          3.0
+        ],
+        "max_dt": 7.8125e-05,
+        "family": "domain-probe"
+      }
+    ],
+    "su-olson-transport1997": [
+      {
+        "id": "n128",
+        "cells": 128,
+        "length": 8.0,
+        "epsilon": 1.0,
+        "ordinates": 32,
+        "times": [
+          0.1,
+          1.0,
+          3.16228
+        ],
+        "max_dt": 0.0125,
+        "source_off": 10.0,
+        "family": "refinement"
+      },
+      {
+        "id": "n256",
+        "cells": 256,
+        "length": 8.0,
+        "epsilon": 1.0,
+        "ordinates": 32,
+        "times": [
+          0.1,
+          1.0,
+          3.16228
+        ],
+        "max_dt": 0.00625,
+        "source_off": 10.0,
+        "family": "refinement"
+      },
+      {
+        "id": "n512",
+        "cells": 512,
+        "length": 8.0,
+        "epsilon": 1.0,
+        "ordinates": 32,
+        "times": [
+          0.1,
+          1.0,
+          3.16228
+        ],
+        "max_dt": 0.003125,
+        "source_off": 10.0,
+        "family": "refinement"
+      },
+      {
+        "id": "angular-64",
+        "cells": 512,
+        "length": 8.0,
+        "epsilon": 1.0,
+        "ordinates": 64,
+        "times": [
+          0.1,
+          1.0,
+          3.16228
+        ],
+        "max_dt": 0.003125,
+        "source_off": 10.0,
+        "family": "angle-probe"
+      },
+      {
+        "id": "half-dt",
+        "cells": 512,
+        "length": 8.0,
+        "epsilon": 1.0,
+        "ordinates": 32,
+        "times": [
+          0.1,
+          1.0,
+          3.16228
+        ],
+        "max_dt": 0.0015625,
+        "source_off": 10.0,
+        "family": "time-probe"
+      }
+    ]
+  },
+  "closed_capacity_controls": {
+    "epsilon": [
+      0.25,
+      2.0
+    ],
+    "initial_u": 1.2,
+    "initial_v": 0.3,
+    "source": 0.7,
+    "source_off": 0.4,
+    "final_time": 1.0,
+    "dt": 0.001
+  },
+  "matched_thick_limit_control": {
+    "c": 1.0,
+    "epsilon": 1.0,
+    "length_pi_factor": 2.0,
+    "wavenumber": 1.0,
+    "boundary": "periodic",
+    "source": 0.0,
+    "kappa": [
+      4,
+      8,
+      16
+    ],
+    "cells": [
+      128,
+      512,
+      2048
+    ],
+    "scaled_times": [
+      0.0,
+      0.0625,
+      0.125,
+      0.25
+    ],
+    "ordinates": 32,
+    "amplitude": 0.1,
+    "initial": "actualcellmeansofI=V=1+.1cosx;initialF0",
+    "evolution": "time-exact-single-mode-semidiscrete-actual-FV-SN",
+    "physical_times": "kappa*scaled_time"
+  }
+}

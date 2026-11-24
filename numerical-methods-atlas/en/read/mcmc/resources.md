@@ -32,6 +32,10 @@ No chapter-specific association is registered. Atlas-wide index: [Exact and refe
   availability: run
 
   Compare dispersed local MH, same-mode local MH and symmetry-informed reflection/local MH on the same bimodal target. Separate detecting expected mixing failures from successful finite-budget mode exploration.
+- [Joint target and MCSE for a correlated bivariate Gaussian](<https://hrkoyama.github.io/numerical-methods-atlas/validation/correlated-gaussian-mcmc/?lang=en>)
+  availability: run
+
+  Test actual2D MH paths against known joint moments and same-data ArviZ diagnostics.
 - [Markov-chain Monte Carlo / MCMC — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/mcmc/?lang=en#method-execution-en>)
   availability: source
 

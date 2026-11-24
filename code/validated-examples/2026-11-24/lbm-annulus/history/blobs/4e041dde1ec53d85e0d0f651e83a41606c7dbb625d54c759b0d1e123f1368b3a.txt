@@ -1,0 +1,329 @@
+[
+  {
+    "method_ids": [
+      "d2q9-bgk"
+    ],
+    "domains": [
+      "pde",
+      "kinetic",
+      "coupling"
+    ],
+    "code_files": [
+      "run.py",
+      "kernel.cpp",
+      "native.py",
+      "geometry.py",
+      "analytic.py",
+      "diagnostics.py",
+      "experiments.py"
+    ],
+    "id": "lbm-annular-couette-control",
+    "title": {
+      "ja": "曲面LBMの環状Couette制御：速度・圧力・torque",
+      "en": "Curved LBM annular Couette control: velocity,pressure andtorque"
+    },
+    "summary": {
+      "ja": "実円弧交点の2次Lagrange補間とstair-halfwayを、回転内壁の解析Navier–Stokes場に比較します。円柱wakeとは別の追加制御です。",
+      "en": "Compare true-circle quadratic Lagrange link interpolation andstair halfway against analytic rotating-inner-wall Navier–Stokes flow; anadditional control distinct fromcylinderwake."
+    },
+    "assumptions": {
+      "ja": "Rin.2/Rout.4、中心(.5,.5)、内壁接線速度.02、外壁静止、ν.01。N40/60/80、tau.7、T4、整数960/2160/3840steps、両境界法計6runs。初期は解析場の平衡分布。",
+      "en": "Rin.2/Rout.4,center(.5,.5),inner tangential speed.02,stationary outerwall,nu.01. N40/60/80,tau.7,T4,integer960/2160/3840steps; both boundaries give sixruns. Initialize equilibrium moments of the analytic field."
+    },
+    "algorithm": {
+      "ja": "円弧交点qから反射特性上の3点2次補間を行います。q<.5はoutgoingの内側2点、q>.5はincomingの内側1点を使用し、q=.5はhalfway。移動壁補正、実force/torqueと非零wall massを台帳化し、floorやmass補正をしません。",
+      "en": "Three-point quadratic interpolation on the reflected characteristic: twointerior outgoing samples forq<.5,oneinterior incoming sample forq>.5,exacthalfway atq=.5. Record movingwall correction,actual force/torque andnonzero wallmass; nofloor ormassrepair."
+    },
+    "validation": {
+      "ja": "群28pytest、環状80判定。独立半径/Cartesian微分7資格、最細速度.03・全点圧力ゲージ.08・torque相対.05、定常性・細分化・stair差・壁込み収支。別の87成分資格に合格済みですが主計算合格とは分けます。",
+      "en": "Group28pytest;80annular gates. Sevenindependent radial/Cartesian qualifiers,finest velocity.03,fullpointwise pressure-gauge.08,torque relative.05,stationarity/refinement/stair comparison andwallinclusive budgets. Separate87component qualifiers passed; this doesnot imply main success."
+    },
+    "limits": {
+      "ja": "固定円弧と低速回転のみ。2次補間は負係数を含み一般の正値性や安定性を保証しません。補間mass非保存は実値を記録。以前の線形版は圧力.617757>.08で不合格として保存し、半径平均への置換なし。移動solidの拓撲変化や円柱の代用ではありません。",
+      "en": "Fixedcircles andslowrotation only. Negative quadratic coefficients preclude a general positivity/stability guarantee; report actual interpolation massnonconservation. Prior linear attemptfailed pressure.617757>.08 andisretained; no radial-average substitution. No changing-solid topology orsubstitute forcylinderflow."
+    },
+    "references": [
+      {
+        "id": "zou-he-preprint1996",
+        "author": "Qisu Zou and Xiaoyi He",
+        "year": 1996,
+        "title": "On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model",
+        "url": "https://arxiv.org/abs/comp-gas/9611001",
+        "type": "article",
+        "review_level": "primary-selected-extracted-text",
+        "review_scope": "Selected original preprint pp2-7: standard equilibrium, moment-based flat velocity/density boundaries and corner/finite-Mach limitations. No full-paper audit; special d2q9i accuracy is not credited to this standard BGK.",
+        "review": {
+          "ja": "原著preprintの式と平面流入出境界・角・圧縮性の範囲を選択読解。特殊d2q9iの成功を本BGKへ流用しません。",
+          "en": "Selected primary equations and flat-boundary/corner/compressibility discussion read; special d2q9i successes are not borrowed."
+        }
+      },
+      {
+        "id": "lallemand-luo2003",
+        "author": "Pierre Lallemand and Li-Shi Luo",
+        "year": 2003,
+        "title": "Lattice Boltzmann method for moving boundaries",
+        "doi": "10.1016/S0021-9991(02)00022-0",
+        "url": "https://doi.org/10.1016/S0021-9991(02)00022-0",
+        "type": "article",
+        "review_level": "primary-selected-text-via-mirror",
+        "review_scope": "Selected original sec3 printed410-414 via disclosed author-content mirror: Eq12/13/14 quadratic reflected-characteristic interpolation,moving-wall coefficient,Eq15 momentum exchange and compromised mass conservation. Generic Lagrange scalar oracle independently qualifies weights andsigns. No localPDF/rendered-symbol audit;2001BFLfulloriginal remains unread.",
+        "review": {
+          "ja": "原著選択部分Eq12–15の2次補間・壁補正・運動量交換・mass非保存を読解。汎用Lagrange式の独立scalarで係数を資格。2001原著全文や局所PDFの画像確認は未実施です。",
+          "en": "Read selected original Eq12–15 on quadratic links,wall correction,momentum exchange andmassnonconservation; qualify by a generic-Lagrange scalar oracle. No2001fulltext orlocalPDFsymbol audit."
+        }
+      }
+    ],
+    "formulas": [
+      "u_\\theta=Ar+B/r,\\quad A=-U_iR_i/(R_o^2-R_i^2),\\quad B=U_iR_iR_o^2/(R_o^2-R_i^2)",
+      "p=\\tfrac12A^2r^2+2AB\\log r-\\tfrac12B^2/r^2+C,\\quad T_{inner}=-4\\pi\\rho\\nu B"
+    ],
+    "citations": [
+      {
+        "id": "zou-he-preprint1996",
+        "author": "Qisu Zou and Xiaoyi He",
+        "year": 1996,
+        "title": "On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model",
+        "url": "https://arxiv.org/abs/comp-gas/9611001",
+        "type": "article",
+        "review_level": "primary-selected-extracted-text",
+        "review_scope": "Selected original preprint pp2-7: standard equilibrium, moment-based flat velocity/density boundaries and corner/finite-Mach limitations. No full-paper audit; special d2q9i accuracy is not credited to this standard BGK.",
+        "review": {
+          "ja": "原著preprintの式と平面流入出境界・角・圧縮性の範囲を選択読解。特殊d2q9iの成功を本BGKへ流用しません。",
+          "en": "Selected primary equations and flat-boundary/corner/compressibility discussion read; special d2q9i successes are not borrowed."
+        }
+      },
+      {
+        "id": "lallemand-luo2003",
+        "author": "Pierre Lallemand and Li-Shi Luo",
+        "year": 2003,
+        "title": "Lattice Boltzmann method for moving boundaries",
+        "doi": "10.1016/S0021-9991(02)00022-0",
+        "url": "https://doi.org/10.1016/S0021-9991(02)00022-0",
+        "type": "article",
+        "review_level": "primary-selected-text-via-mirror",
+        "review_scope": "Selected original sec3 printed410-414 via disclosed author-content mirror: Eq12/13/14 quadratic reflected-characteristic interpolation,moving-wall coefficient,Eq15 momentum exchange and compromised mass conservation. Generic Lagrange scalar oracle independently qualifies weights andsigns. No localPDF/rendered-symbol audit;2001BFLfulloriginal remains unread.",
+        "review": {
+          "ja": "原著選択部分Eq12–15の2次補間・壁補正・運動量交換・mass非保存を読解。汎用Lagrange式の独立scalarで係数を資格。2001原著全文や局所PDFの画像確認は未実施です。",
+          "en": "Read selected original Eq12–15 on quadratic links,wall correction,momentum exchange andmassnonconservation; qualify by a generic-Lagrange scalar oracle. No2001fulltext orlocalPDFsymbol audit."
+        }
+      }
+    ],
+    "gallery_figure": "lbm-annular-couette-control-preview.png",
+    "additional_figures": [
+      {
+        "file": "lbm-annular-couette-control-preview.png",
+        "caption": {
+          "ja": "固定入力を実計算した保存配列の2D場と検証診断。参照・境界・誤差の範囲は本文に明記。",
+          "en": "Actual saved2Dfields anddiagnostics fromfixedinputs; reference,boundary anderror scopesaredeclaredinthecase."
+        }
+      }
+    ]
+  },
+  {
+    "method_ids": [
+      "d2q9-bgk"
+    ],
+    "domains": [
+      "pde",
+      "kinetic",
+      "coupling"
+    ],
+    "code_files": [
+      "run.py",
+      "kernel.cpp",
+      "native.py",
+      "geometry.py",
+      "analytic.py",
+      "diagnostics.py",
+      "experiments.py"
+    ],
+    "id": "lbm-cylinder-re20",
+    "title": {
+      "ja": "LBMの実円柱Re20：Schäfer–Turek形状と明示出口",
+      "en": "Actual LBM cylinderRe20: Schäfer–Turek geometry anddeclared outlet"
+    },
+    "summary": {
+      "ja": "標準2D-1の全長channelと偏心円柱を実際に発展し、抗力・揚力・表面圧力差・再循環長と定常性を2格子で検査します。",
+      "en": "Evolve the full-length original2D-1channel andoff-center cylinder on twogrids,checking drag,lift,surface pressure difference,recirculation length andstationarity."
+    },
+    "assumptions": {
+      "ja": "[0,2.2]x[0,.41]、中心(.2,.2)、R.05、ν.001、rho1、平均流速.2/最大.3/Re20。dx.01/.005、x wet nodes221/441、y halfway nodes41/82、dt=dx/6、T30、18k/36ksteps。入口parabola、出口はrho1と隣接内点poststream速度による全9成分NEE。",
+      "en": "[0,2.2]x[0,.41],center(.2,.2),R.05,nu.001,rho1,mean.2/peak.3/Re20. dx.01/.005,xwet221/441,yhalfway41/82,dt=dx/6,T30,18k/36ksteps. Parabolic inlet;all-nine poststream NEE outletwithrho1andadjacent-interiorvelocity."
+    },
+    "algorithm": {
+      "ja": "標準BGK、真円交点の2次補間、半格子channel壁、非周期open streaming。出口全9成分にfeq(1,ua)+fa−feq(rhoa,ua)を設定し、既知6成分を含む変化量を収支へ記録。初期Poiseuille圧力guessから円柱摂動を実発展し、実運動量交換を平均流速基準の力係数へ換算します。",
+      "en": "StandardBGK,true-circle quadratic links,halfwaychannelwalls,nonperiodic openstreaming. Setall9outlet populations tofeq(1,ua)+fa−feq(rhoa,ua); ledgerchanges include theknown6. Evolve fromaPoiseuille pressureguess; normalizeactual momentumexchange bymean speed."
+    },
+    "validation": {
+      "ja": "群28pytest、円柱33判定。原典表3の推定範囲からの距離を別の事前粗格子公差で判定（CD5%、CL絶対.01、dp10%、La絶対.025）。26/28/30で場・力・dpの定常性、2格子差・Ma・wall/open収支も確認します。 元の出口不安定も保存し、境界式の別87成分資格と主計算を区別します。",
+      "en": "Group28pytest;33cylinder gates. Score distance fromoriginalTable3estimated ranges usingseparate frozen coarse-grid tolerances:CD5%,CLabsolute.01,dp10%,Laabsolute.025. Check26/28/30field/force/dp stationarity,twogrid difference,Ma andwall/open budgets. Retain prior outletinstability anddistinguish the87boundarycomponent qualifiers frommain acceptance."
+    },
+    "limits": {
+      "ja": "原典p3/p7は出口を選択可。採用NEEは独立導出した有限reservoirで、原著NEE全文の同一実装やFEATflow do-nothingと偽りません。Nabh高精度値は同BCの厳密値ではなく、原典範囲も厳密誤差区間ではありません。線形/Zou–He旧試行はstep265出口近傍で不合格として保持。有限Mach/境界/曲面差を含み一般精度保証なし。",
+      "en": "Originalpp3/7allow selectingoutflow. AdoptedNEEis independently derived finite reservoir,not claimed exactunread authorimplementation orFEATflowdo-nothing. Nabhvaluesarenotexact adopted-BCtruth andoriginalrangesarenotrigorousenclosures. Retain failedlinear/Zou–Heattempt(outlet-nearstep265). FiniteMach/BC/curveerrors;nogeneralaccuracyguarantee."
+    },
+    "references": [
+      {
+        "id": "zou-he-preprint1996",
+        "author": "Qisu Zou and Xiaoyi He",
+        "year": 1996,
+        "title": "On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model",
+        "url": "https://arxiv.org/abs/comp-gas/9611001",
+        "type": "article",
+        "review_level": "primary-selected-extracted-text",
+        "review_scope": "Selected original preprint pp2-7: standard equilibrium, moment-based flat velocity/density boundaries and corner/finite-Mach limitations. No full-paper audit; special d2q9i accuracy is not credited to this standard BGK.",
+        "review": {
+          "ja": "原著preprintの式と平面流入出境界・角・圧縮性の範囲を選択読解。特殊d2q9iの成功を本BGKへ流用しません。",
+          "en": "Selected primary equations and flat-boundary/corner/compressibility discussion read; special d2q9i successes are not borrowed."
+        }
+      },
+      {
+        "id": "lallemand-luo2003",
+        "author": "Pierre Lallemand and Li-Shi Luo",
+        "year": 2003,
+        "title": "Lattice Boltzmann method for moving boundaries",
+        "doi": "10.1016/S0021-9991(02)00022-0",
+        "url": "https://doi.org/10.1016/S0021-9991(02)00022-0",
+        "type": "article",
+        "review_level": "primary-selected-text-via-mirror",
+        "review_scope": "Selected original sec3 printed410-414 via disclosed author-content mirror: Eq12/13/14 quadratic reflected-characteristic interpolation,moving-wall coefficient,Eq15 momentum exchange and compromised mass conservation. Generic Lagrange scalar oracle independently qualifies weights andsigns. No localPDF/rendered-symbol audit;2001BFLfulloriginal remains unread.",
+        "review": {
+          "ja": "原著選択部分Eq12–15の2次補間・壁補正・運動量交換・mass非保存を読解。汎用Lagrange式の独立scalarで係数を資格。2001原著全文や局所PDFの画像確認は未実施です。",
+          "en": "Read selected original Eq12–15 on quadratic links,wall correction,momentum exchange andmassnonconservation; qualify by a generic-Lagrange scalar oracle. No2001fulltext orlocalPDFsymbol audit."
+        }
+      },
+      {
+        "id": "schaefer-turek1996",
+        "author": "M. Schäfer and S. Turek",
+        "year": 1996,
+        "title": "Benchmark Computations of Laminar Flow Around a Cylinder",
+        "url": "https://kent-and.github.io/mek4250/2021/SchaeferTurek1996.pdf",
+        "type": "book-chapter",
+        "review_level": "primary-selected-extracted-text",
+        "review_scope": "Original chapter delivered by course mirror after official links404: printed3-4geometry/2D-1/force definitions,7protocol user-selected outlet,11-12Table3 estimated ranges. Not a full-paper or separate local rendered-symbol audit.",
+        "review": {
+          "ja": "原論文の形状・定義・出口自由選択・表3の推定範囲を選択読解。公式リンク404後の講義ミラー配送を明記します。",
+          "en": "Read original geometry/definitions/user-selected outflow/Table3estimated intervals via a disclosed course mirror after official404s."
+        }
+      },
+      {
+        "id": "featflow-re20-official",
+        "author": "FEATflow benchmark project",
+        "year": 2026,
+        "title": "DFG flow around cylinder benchmark2D-1, Re20",
+        "url": "https://wwwold.mathematik.tu-dortmund.de/~featflow/en/benchmarks/cfdbenchmarking/flow/dfg_benchmark1_re20.html",
+        "type": "web",
+        "review_level": "official-benchmark-page",
+        "review_scope": "Actual geometry,do-nothingBC,mean-speed normalization,force/probe definitions and Nabh1998attribution read. Nabh original report not read; its precise values are contextual,not the adopted outlet truth.",
+        "review": {
+          "ja": "公式頁のBC・定義とNabhへの帰属を確認。Nabh原報未読で、採用出口と同一条件の厳密値とはしません。",
+          "en": "Official BC/definitions/Nabh attribution read; Nabh original unread and values not labelled exact adopted-outlet truth."
+        }
+      },
+      {
+        "id": "guo-zheng-shi2002-nee",
+        "author": "Zhaoli Guo,Chuguang Zheng and Baochang Shi",
+        "year": 2002,
+        "title": "Non-equilibrium extrapolation method for velocity and pressure boundary conditions in the lattice Boltzmann method",
+        "doi": "10.1088/1009-1963/11/4/310",
+        "url": "https://cpb.iphy.ac.cn/en/article/doi/10.1088/1009-1963/11/4/310",
+        "type": "article",
+        "review_level": "primary-official-abstract-only",
+        "review_scope": "Official primary abstract actually read: equilibrium/nonequilibrium split and adjacent-fluid extrapolation. Full primary equations unavailable; the adopted all-nine poststream density reservoir is independently derived and qualified,not labelled the exact author implementation.",
+        "review": {
+          "ja": "公式の原著抄録のみ読解。全文の式は未読で、採用する全9成分poststream圧力reservoirは別導出・資格です。",
+          "en": "Official primary abstract only. Full equations unread; adopted all-nine poststream pressure reservoir is independently derived and qualified."
+        }
+      }
+    ],
+    "formulas": [
+      "\\mathrm{Re}=\\overline U D/\\nu=20,\\quad C_D=2F_x/(\\rho\\overline U^2D),\\quad C_L=2F_y/(\\rho\\overline U^2D)",
+      "\\Delta p=p(.15,.2)-p(.25,.2),\\quad L_a=x_{reattach}-.25",
+      "f_{i,b}=f_i^{eq}(1,u_a)+f_{i,a}-f_i^{eq}(\\rho_a,u_a),\\quad i=0,\\ldots,8"
+    ],
+    "citations": [
+      {
+        "id": "zou-he-preprint1996",
+        "author": "Qisu Zou and Xiaoyi He",
+        "year": 1996,
+        "title": "On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model",
+        "url": "https://arxiv.org/abs/comp-gas/9611001",
+        "type": "article",
+        "review_level": "primary-selected-extracted-text",
+        "review_scope": "Selected original preprint pp2-7: standard equilibrium, moment-based flat velocity/density boundaries and corner/finite-Mach limitations. No full-paper audit; special d2q9i accuracy is not credited to this standard BGK.",
+        "review": {
+          "ja": "原著preprintの式と平面流入出境界・角・圧縮性の範囲を選択読解。特殊d2q9iの成功を本BGKへ流用しません。",
+          "en": "Selected primary equations and flat-boundary/corner/compressibility discussion read; special d2q9i successes are not borrowed."
+        }
+      },
+      {
+        "id": "lallemand-luo2003",
+        "author": "Pierre Lallemand and Li-Shi Luo",
+        "year": 2003,
+        "title": "Lattice Boltzmann method for moving boundaries",
+        "doi": "10.1016/S0021-9991(02)00022-0",
+        "url": "https://doi.org/10.1016/S0021-9991(02)00022-0",
+        "type": "article",
+        "review_level": "primary-selected-text-via-mirror",
+        "review_scope": "Selected original sec3 printed410-414 via disclosed author-content mirror: Eq12/13/14 quadratic reflected-characteristic interpolation,moving-wall coefficient,Eq15 momentum exchange and compromised mass conservation. Generic Lagrange scalar oracle independently qualifies weights andsigns. No localPDF/rendered-symbol audit;2001BFLfulloriginal remains unread.",
+        "review": {
+          "ja": "原著選択部分Eq12–15の2次補間・壁補正・運動量交換・mass非保存を読解。汎用Lagrange式の独立scalarで係数を資格。2001原著全文や局所PDFの画像確認は未実施です。",
+          "en": "Read selected original Eq12–15 on quadratic links,wall correction,momentum exchange andmassnonconservation; qualify by a generic-Lagrange scalar oracle. No2001fulltext orlocalPDFsymbol audit."
+        }
+      },
+      {
+        "id": "schaefer-turek1996",
+        "author": "M. Schäfer and S. Turek",
+        "year": 1996,
+        "title": "Benchmark Computations of Laminar Flow Around a Cylinder",
+        "url": "https://kent-and.github.io/mek4250/2021/SchaeferTurek1996.pdf",
+        "type": "book-chapter",
+        "review_level": "primary-selected-extracted-text",
+        "review_scope": "Original chapter delivered by course mirror after official links404: printed3-4geometry/2D-1/force definitions,7protocol user-selected outlet,11-12Table3 estimated ranges. Not a full-paper or separate local rendered-symbol audit.",
+        "review": {
+          "ja": "原論文の形状・定義・出口自由選択・表3の推定範囲を選択読解。公式リンク404後の講義ミラー配送を明記します。",
+          "en": "Read original geometry/definitions/user-selected outflow/Table3estimated intervals via a disclosed course mirror after official404s."
+        }
+      },
+      {
+        "id": "featflow-re20-official",
+        "author": "FEATflow benchmark project",
+        "year": 2026,
+        "title": "DFG flow around cylinder benchmark2D-1, Re20",
+        "url": "https://wwwold.mathematik.tu-dortmund.de/~featflow/en/benchmarks/cfdbenchmarking/flow/dfg_benchmark1_re20.html",
+        "type": "web",
+        "review_level": "official-benchmark-page",
+        "review_scope": "Actual geometry,do-nothingBC,mean-speed normalization,force/probe definitions and Nabh1998attribution read. Nabh original report not read; its precise values are contextual,not the adopted outlet truth.",
+        "review": {
+          "ja": "公式頁のBC・定義とNabhへの帰属を確認。Nabh原報未読で、採用出口と同一条件の厳密値とはしません。",
+          "en": "Official BC/definitions/Nabh attribution read; Nabh original unread and values not labelled exact adopted-outlet truth."
+        }
+      },
+      {
+        "id": "guo-zheng-shi2002-nee",
+        "author": "Zhaoli Guo,Chuguang Zheng and Baochang Shi",
+        "year": 2002,
+        "title": "Non-equilibrium extrapolation method for velocity and pressure boundary conditions in the lattice Boltzmann method",
+        "doi": "10.1088/1009-1963/11/4/310",
+        "url": "https://cpb.iphy.ac.cn/en/article/doi/10.1088/1009-1963/11/4/310",
+        "type": "article",
+        "review_level": "primary-official-abstract-only",
+        "review_scope": "Official primary abstract actually read: equilibrium/nonequilibrium split and adjacent-fluid extrapolation. Full primary equations unavailable; the adopted all-nine poststream density reservoir is independently derived and qualified,not labelled the exact author implementation.",
+        "review": {
+          "ja": "公式の原著抄録のみ読解。全文の式は未読で、採用する全9成分poststream圧力reservoirは別導出・資格です。",
+          "en": "Official primary abstract only. Full equations unread; adopted all-nine poststream pressure reservoir is independently derived and qualified."
+        }
+      }
+    ],
+    "gallery_figure": "lbm-cylinder-re20-preview.png",
+    "additional_figures": [
+      {
+        "file": "lbm-cylinder-re20-preview.png",
+        "caption": {
+          "ja": "固定入力を実計算した保存配列の2D場と検証診断。参照・境界・誤差の範囲は本文に明記。",
+          "en": "Actual saved2Dfields anddiagnostics fromfixedinputs; reference,boundary anderror scopesaredeclaredinthecase."
+        }
+      }
+    ]
+  }
+]

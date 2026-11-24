@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "group": "stochastic-accuracy",
+  "edition": "2026-11-24",
+  "verified_on": "2026-11-24",
+  "source_manifest_sha256": "996edb048ee701274828fcbac37f400c6da4748e926c51825f256e64a61b86b4",
+  "archive": {
+    "file": "atlas-stochastic-accuracy-2026-11-24.zip",
+    "sha256": "6a6ecc012df95853e20b2aa6db2fcceb8fce216872805a2b285c1f123a1e9801",
+    "bytes": 7825649,
+    "archive_directory": "atlas-stochastic-accuracy-2026-11-24"
+  },
+  "archive_sha256": "6a6ecc012df95853e20b2aa6db2fcceb8fce216872805a2b285c1f123a1e9801",
+  "returncode": 0,
+  "passed_tests": 21,
+  "tests": 21,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "gbm-milstein-strong",
+    "gbm-weak-moments",
+    "ou-weak-moments"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 0.7397614579967922,
+  "independent_rerun_seconds": 0.5636614999966696,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

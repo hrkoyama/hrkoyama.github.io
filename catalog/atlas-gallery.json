@@ -1208,6 +1208,87 @@
         "ja": "保存した実粒子の位置–速度ヒストグラム。1次元位置と分子速度の位相空間であり、2D物理流れではありません。",
         "en": "Actual saved particle position-velocity histograms; phase space of1D position and molecular velocity,not2D physical flow."
       }
+    },
+    {
+      "id": "lbm-annular-couette-control",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-24/lbm-annulus/results/lbm-annular-couette-control-preview.png",
+      "caption": {
+        "ja": "固定入力を実計算した保存配列の2D場と検証診断。参照・境界・誤差の範囲は本文に明記。",
+        "en": "Actual saved2Dfields anddiagnostics fromfixedinputs; reference,boundary anderror scopesaredeclaredinthecase."
+      }
+    },
+    {
+      "id": "lbm-cylinder-re20",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-24/lbm-curved-boundary/results/lbm-cylinder-re20-preview.png",
+      "caption": {
+        "ja": "固定入力を実計算した保存配列の2D場と検証診断。参照・境界・誤差の範囲は本文に明記。",
+        "en": "Actual saved2Dfields anddiagnostics fromfixedinputs; reference,boundary anderror scopesaredeclaredinthecase."
+      }
+    },
+    {
+      "id": "isotropic-scattering-slab",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-24/radiation-scattering/results/isotropic-scattering-slab-preview.png",
+      "caption": {
+        "ja": "保存した実計算場の科学プレビュー。",
+        "en": "Scientific preview from the actual saved numerical fields."
+      }
+    },
+    {
+      "id": "su-olson-diffusion1996",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-24-r2/radiation-matter/results/su-olson-diffusion1996-preview.png",
+      "caption": {
+        "ja": "保存した実計算場の科学プレビュー。",
+        "en": "Scientific preview from the actual saved numerical fields."
+      }
+    },
+    {
+      "id": "su-olson-transport1997",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-24-r2/radiation-matter/results/su-olson-transport1997-preview.png",
+      "caption": {
+        "ja": "保存した実計算場の科学プレビュー。",
+        "en": "Scientific preview from the actual saved numerical fields."
+      }
+    },
+    {
+      "id": "shadow-absorber2d",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-24/radiation-geometry/results/shadow-absorber2d-preview.png",
+      "caption": {
+        "ja": "保存した実計算場の科学プレビュー。",
+        "en": "Scientific preview from the actual saved numerical fields."
+      }
+    },
+    {
+      "id": "opposing-beams2d",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-24/radiation-geometry/results/opposing-beams2d-preview.png",
+      "caption": {
+        "ja": "保存した実計算場の科学プレビュー。",
+        "en": "Scientific preview from the actual saved numerical fields."
+      }
+    },
+    {
+      "id": "normal-tail-importance",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-24/stochastic-estimation/results/normal-tail-importance-preview.png",
+      "caption": {
+        "ja": "保存した実データ由来の分布・誤差診断。空間次元と標本/時間軸を区別します。",
+        "en": "Distribution and error diagnostics from actual saved data;sample/time axes are distinguished from spatial dimensions."
+      }
+    },
+    {
+      "id": "correlated-gaussian-mcmc",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-24/stochastic-estimation/results/correlated-gaussian-mcmc-preview.png",
+      "caption": {
+        "ja": "保存した実データ由来の分布・誤差診断。空間次元と標本/時間軸を区別します。",
+        "en": "Distribution and error diagnostics from actual saved data;sample/time axes are distinguished from spatial dimensions."
+      }
     }
   ]
 }

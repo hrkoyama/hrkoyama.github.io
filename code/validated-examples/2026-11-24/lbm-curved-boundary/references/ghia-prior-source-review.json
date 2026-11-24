@@ -1,0 +1,19 @@
+{
+  "reviewed_on": "2026-11-23",
+  "ghia_original": {
+    "doi": "10.1016/0021-9991(82)90058-4",
+    "publisher_url": "https://www.sciencedirect.com/science/article/pii/0021999182900584",
+    "publisher_access": "metadata and abstract read; PDF open returned403",
+    "read_copy_url": "https://raw.githubusercontent.com/nilot-pal/Lid-driven-cavity/main/ghia1982.pdf",
+    "original_pdf_sha256": "1d76e4636d24d0fad41c7bdb5ed383e9b224b0bfe3aa0317ce7dfc50619f2d93",
+    "actual_read": "Rendered and visually inspected printed391–392 equations3.1–3.5/Fig1,398–399 TablesI/II,408 TableV Re100 column. PDF25pages. Not a complete full-paper audit.",
+    "transcription": "Manual Re100 column17 u points and17 v points. Printed coordinates preserved. Primary-vortex center(.6172,.7344), psi_min−.103423 read from TableV on408. No third-party PDF redistributed.",
+    "method_difference": "Independent centered FD/Heun/Dirichlet DST Poisson with local first-order Thom wall vorticity; not CSI-MG or original higher-order wall closure."
+  },
+  "mms_methodology": {
+    "doi": "10.2172/759450",
+    "official_url": "https://www.sandia.gov/research/publications/details/code-verification-by-the-method-of-manufactured-solutions-2000-06-01/",
+    "read_section_url": "https://digital.library.unt.edu/ark:/67531/metadc702130/m1/13/",
+    "actual_read": "Official abstract/bibliography and primary report printed12 on manufactured solutions plus grid refinement; no whole-report audit. This polynomial and pressure field are independently constructed here."
+  }
+}

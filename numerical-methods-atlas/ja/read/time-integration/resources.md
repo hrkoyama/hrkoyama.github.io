@@ -54,6 +54,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/time-integration/
   availability: run
 
   右半分を厳密にh=q=0として開始する浅水方程式を解き、実際の乾湿前線の進行と保存をRitter解析解と比較します。
+- [Su–Olson1996非平衡拡散](<https://hrkoyama.github.io/numerical-methods-atlas/validation/su-olson-diffusion1996/?lang=ja>)
+  availability: run
+
+  実際の放射・物質2場とMarshak境界を進め、固定版ExactPackの独立積分参照と比較します。
 - [Double Mach反射：多格子の軽量検証](<https://hrkoyama.github.io/numerical-methods-atlas/validation/double-mach-reflection/?lang=ja>)
   availability: run
 
@@ -110,6 +114,18 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/time-integration/
   availability: run
 
   質量と格子面位置を同じHeun段で更新し、一様GCLだけでなく非一様な解析波を運びます。
+- [Su–Olson1997角度輸送の独立公開表比較](<https://hrkoyama.github.io/numerical-methods-atlas/validation/su-olson-transport1997/?lang=ja>)
+  availability: run
+
+  物質交換を含む実際の正負角度輸送を進め、2023原著者公開の解析benchmark表と比較します。
+- [2D吸収影と保存的M1輸送](<https://hrkoyama.github.io/numerical-methods-atlas/validation/shadow-absorber2d/?lang=ja>)
+  availability: run
+
+  実際の円形吸収体の影を、特性線の円弦減衰・角度輸送・M1で比較します。
+- [2D反向beamとM1閉包の情報損失](<https://hrkoyama.github.io/numerical-methods-atlas/validation/opposing-beams2d/?lang=ja>)
+  availability: run
+
+  保存した反向packetの実進行からM1の限界を示し、別の閉M1MMSで数値実装を検証します。
 - [Euler二重膨張波：段階ごとの正値性](<https://hrkoyama.github.io/numerical-methods-atlas/validation/euler-double-rarefaction-positivity/?lang=ja>)
   availability: run
 

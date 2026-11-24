@@ -1,0 +1,132 @@
+{
+  "status": "FROZEN_STATIC_SCIENTIFIC_PROPOSAL_UNEXECUTED_REQUIRES_SOURCE_PROTOCOL_REVIEW",
+  "created_at_utc": "2026-11-23T23:19:10.180090+00:00",
+  "edition": "2026-11-24-r2",
+  "previous_successful_edition": "2026-11-24",
+  "before_any_new_operator_probe_or_expm": true,
+  "scope": "One additional matched periodic transport-to-equilibrium-diffusion indicator. Existing physical cases and allsuccessfuloldinput/criteria/operator evidence remain unchanged. No numerical execution is authorized by this proposal.",
+  "physical": {
+    "c": 1,
+    "epsilon": 1,
+    "domain": [
+      0.0,
+      "2*pi"
+    ],
+    "boundary": "periodic",
+    "source": 0,
+    "initial": "I=V=1+.1cos(x),actualFVcellmeans",
+    "cellmean_amplitude": ".1*np.sinc(h/(2*pi))",
+    "wavenumber": 1,
+    "kappa": [
+      4,
+      8,
+      16
+    ],
+    "cells": [
+      128,
+      512,
+      2048
+    ],
+    "scaled_observation_times": [
+      0.0,
+      0.0625,
+      0.125,
+      0.25
+    ],
+    "physical_times": "t=kappa*s",
+    "ordinates": 32,
+    "angular_measure": "existing signed hemisphere Gauss,weights sum2;E=.5sumwI,F=.5sumwmuI",
+    "mean_free_path": "1/kappa",
+    "kappa_h": [
+      "pi/16",
+      "pi/32",
+      "pi/64"
+    ]
+  },
+  "actual_solver_reuse": "kappa*transport.rhs(I,V,mu,w,kappa*h,epsilon,Q0,periodic=True),appliedtoBOTHreturnedradiation/materialrates",
+  "primary_evolution": "Singlek1mode actualsemidiscreteFVoperatorfrom2REALcos/sinbasisprobespercolumn on5cells,centercellresponse;scipy.linalg.expm;reconstructallNfields",
+  "independent_reference": {
+    "continuum_matrix": "Algebraic continuum-space streaming/collision/materialmatrix,notstencilprobes",
+    "angular_qualification": [
+      64,
+      128
+    ],
+    "primary_measure_continuum": 32,
+    "shared_primitive": "scipy.linalg.expm declaredshared; no claimedindependenttime-integratorengine",
+    "analytic_diffusion": "D_rad=1/(3kappa),D_eff=D_rad/(epsilon+1),amplitude=A_N exp[-s/(3(epsilon+1))],F=-E_x/(3kappa)",
+    "zero_mode_golden": "Independentanalyticclosedexchangeincludingnonunitepsilonandphysicalkappatime"
+  },
+  "final_time_only_asymptotic_gates": true,
+  "initial_layer": "ActualF0 is retained and differs from Fick flux. Reportallfourtimes;none oftheasymptoticgatesassumess0orearlys.0625postlayer.",
+  "normalization": {
+    "energy_material_errors": "complexmodeorcorrespondingcellmeanerrors dividedbyA_N",
+    "flux_errors": "kappa*fluxerror/A_N",
+    "background1_not_error_scale": true
+  },
+  "proposed_main_acceptance": {
+    "per_kappa_7_checks": [
+      "all4savedstatesfiniteandnonnegative",
+      "weightedperiodicenergyandactualRHSbudgetabsolute<=2e-11",
+      "probe-matrixversusindependentFVsymbolandglobalreconstructionRHSrelativeresidual<=2e-12",
+      "FVspaceerroragainstcontinuumS32<=.02normalized",
+      "continuumS32versusGL128momentangularsensitivity<=2e-10normalized",
+      "initialactualFzeroandnonzeroFickinitiallayerretained",
+      "kappa*h<=pi/16withdeclaredNandphysicalmeanfreepath"
+    ],
+    "cross_kappa_8_checks": [
+      "2successivefinalFVspaceerrorratios<=.8",
+      "2successivefinalcontinuumGL128energy/material-to-diffusionerrorratios<=.6",
+      "finestFVenergy/material-to-diffusionerror<=.01normalized",
+      "finestFVscaledfluxto-diffusionerror<=.02normalized",
+      "finecorrectfluxerror<=.25*wrong-signfluxerror",
+      "finecorrectenergyerror<=.25*missing-one-third-diffusionenergyerror"
+    ],
+    "new_gate_count": 29,
+    "preserved_old_gate_count": 63,
+    "total_gate_count": 92,
+    "joint_error_monotonicity": "Reportonly;space/limitcancellationmayoccur.Nojointorderfitrequired."
+  },
+  "reference_qualification_tolerances": {
+    "GL64_vs128_moments_normalized": 2e-11,
+    "independent_discrete_symbol_relative": 2e-12,
+    "closed_exchange_absolute": 2e-12,
+    "finite_positivity_required": true
+  },
+  "proposed_public_pytest": {
+    "preserve_old": 17,
+    "add": 4,
+    "total": 21,
+    "new_checks": [
+      "physicalkappaRHSscalingandcapacityweightedzero-mode",
+      "realbasisprobeversusindependentupwindFouriersymbol",
+      "initialcellmeananddiffusionfluxsign/one-thirdfactornegativecontrols",
+      "reconstructedsemidiscretemodeglobalRHSandinitiallayercontract"
+    ]
+  },
+  "saved_outputs": [
+    "3modeNPZwithallNcells/all4times:I,V,E,F,analyticdiffusion,independentcontinuumE/V/F,amplitudesandgeneratorprovenance",
+    "finiteper-kappatimeseriesCSVanderror-decompositionCSV",
+    "actualperiodicfield/fluxandseparatederrorfigurePNG/SVG/PDF;explicitlysemidiscretecontrolnotnewSuOlsoncase"
+  ],
+  "runtime": {
+    "status": "UNMEASURED",
+    "additional_qualification_plus_control_target_seconds": 20,
+    "unchanged_public_pytest_and_all_main_deadline_seconds": 120,
+    "no_installs_or_extra_dependencies": true
+  },
+  "limitations": [
+    "No fixed-grid APclaim:meanfreepathisresolvedandNscaleskappa^2.",
+    "Exact-timeFouriermodecontrolisnotSSPRK2time-integratorvalidation.",
+    "ThematchisperiodicsmoothLTEequilibriumdiffusion,notaneworiginalSuOlson1997tableorMarshakboundarylayercomparison.",
+    "GL64/128sensitivityplusanalyticgoldensarefinitequalification,notarigorouscontinuumerrorbound."
+  ],
+  "protected_current_source_sha256": {
+    "radiation-matter/run.py": "0459389ba1dcce5174a955b18a0f3bcad8c2c8c1f50cf572c7d2ceb6684d94d3",
+    "radiation-matter/transport.py": "e8babc54533b1c7d8fae54cd646af1507f24c27d43dfa916355b7f1cb848fb27",
+    "radiation-matter/diffusion.py": "f23ffa9c7c14645a95e46cb3b4fd9fd7891881ce5c58d860a965d0dd44f09854",
+    "radiation-matter/inputs.json": "ab7f7f5fe2e1c4f7b4dfaa35bcecc106301ca1df7b681d2609ff05db803b2fff",
+    "radiation-matter/acceptance.json": "049e5990f9d1885f11e413cb0f7047f4fe3ee2285dad72a294f5c6cd52823553",
+    "radiation-matter/pre-run-contract.json": "3bccff1ef956c791e740adb3b752caa38f40f208b5058f71e837619df0277043"
+  },
+  "derivation_sha256": "92405f9cbe7a263f6b0e130d45facdf98cd16f97b67130071a944855f4bdfd51"
+}

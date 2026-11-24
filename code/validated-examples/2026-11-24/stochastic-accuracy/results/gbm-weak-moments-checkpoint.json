@@ -1,0 +1,635 @@
+{
+  "id": "gbm-weak-moments",
+  "passed": true,
+  "checks": {
+    "finite saved candidate arrays": true,
+    "declared Brownian grouping roundoff": true,
+    "power1/n8/paired mean calibration": true,
+    "power1/n8/MCSE calibration": true,
+    "power1/n16/paired mean calibration": true,
+    "power1/n16/MCSE calibration": true,
+    "power1/n32/paired mean calibration": true,
+    "power1/n32/MCSE calibration": true,
+    "power1/n32/resolved before slope": true,
+    "power1/n64/paired mean calibration": true,
+    "power1/n64/MCSE calibration": true,
+    "power1/n64/resolved before slope": true,
+    "power1/analytic weak order": true,
+    "power1/sampled paired weak order": true,
+    "power2/n8/paired mean calibration": true,
+    "power2/n8/MCSE calibration": true,
+    "power2/n16/paired mean calibration": true,
+    "power2/n16/MCSE calibration": true,
+    "power2/n32/paired mean calibration": true,
+    "power2/n32/MCSE calibration": true,
+    "power2/n32/resolved before slope": true,
+    "power2/n64/paired mean calibration": true,
+    "power2/n64/MCSE calibration": true,
+    "power2/n64/resolved before slope": true,
+    "power2/analytic weak order": true,
+    "power2/sampled paired weak order": true
+  },
+  "metrics": {
+    "observables": [
+      {
+        "observable_power": 1,
+        "sampled_paired_order": 0.9956027089190806,
+        "analytic_order": 0.986850922673782,
+        "levels": [
+          {
+            "steps": 8,
+            "analytic_bias": -0.024551175738827653,
+            "paired_mean": -0.02390546859088743,
+            "paired_MCSE": 0.000431509288625275,
+            "analytic_expected_MCSE": 0.0004902247814460831,
+            "raw_EM_interval_coverage_for_discrete_truth": 0.96875,
+            "coverage_binomial95": [
+              0.8378290058184884,
+              0.9992091314020475
+            ]
+          },
+          {
+            "steps": 16,
+            "analytic_bias": -0.012570260133504842,
+            "paired_mean": -0.012073199459893005,
+            "paired_MCSE": 0.0002494235153701287,
+            "analytic_expected_MCSE": 0.0003179426227319547,
+            "raw_EM_interval_coverage_for_discrete_truth": 0.9375,
+            "coverage_binomial95": [
+              0.7919305701049926,
+              0.9923392636535436
+            ]
+          },
+          {
+            "steps": 32,
+            "analytic_bias": -0.006361702102222466,
+            "paired_mean": -0.006046178211109456,
+            "paired_MCSE": 0.00014930108420397513,
+            "analytic_expected_MCSE": 0.00021219706970143816,
+            "raw_EM_interval_coverage_for_discrete_truth": 0.9375,
+            "coverage_binomial95": [
+              0.7919305701049926,
+              0.9923392636535436
+            ]
+          },
+          {
+            "steps": 64,
+            "analytic_bias": -0.0032003745435279854,
+            "paired_mean": -0.0030367554342063926,
+            "paired_MCSE": 0.0001452128976770314,
+            "analytic_expected_MCSE": 0.0001450153280978437,
+            "raw_EM_interval_coverage_for_discrete_truth": 0.90625,
+            "coverage_binomial95": [
+              0.7497730493162054,
+              0.9802328198267152
+            ]
+          }
+        ],
+        "coverage_scope": "Independent batch95%normal intervals target discrete EM moments,not the continuous diffusion; coverage is descriptive and not a pass criterion."
+      },
+      {
+        "observable_power": 2,
+        "sampled_paired_order": 0.9744925206389199,
+        "analytic_order": 0.9752562657019691,
+        "levels": [
+          {
+            "steps": 8,
+            "analytic_bias": -0.15410825623347305,
+            "paired_mean": -0.14906616356143917,
+            "paired_MCSE": 0.003147990583178188,
+            "analytic_expected_MCSE": 0.003291189368314816,
+            "raw_EM_interval_coverage_for_discrete_truth": 0.9375,
+            "coverage_binomial95": [
+              0.7919305701049926,
+              0.9923392636535436
+            ]
+          },
+          {
+            "steps": 16,
+            "analytic_bias": -0.08050123855537453,
+            "paired_mean": -0.07770877547600556,
+            "paired_MCSE": 0.0018030716808605054,
+            "analytic_expected_MCSE": 0.001999254398523599,
+            "raw_EM_interval_coverage_for_discrete_truth": 0.90625,
+            "coverage_binomial95": [
+              0.7497730493162054,
+              0.9802328198267152
+            ]
+          },
+          {
+            "steps": 32,
+            "analytic_bias": -0.041175573785795776,
+            "paired_mean": -0.03965375759547908,
+            "paired_MCSE": 0.0009919791240891069,
+            "analytic_expected_MCSE": 0.0012342295434882658,
+            "raw_EM_interval_coverage_for_discrete_truth": 0.90625,
+            "coverage_binomial95": [
+              0.7497730493162054,
+              0.9802328198267152
+            ]
+          },
+          {
+            "steps": 64,
+            "analytic_bias": -0.020827626619729842,
+            "paired_mean": -0.02012644667453873,
+            "paired_MCSE": 0.0007054106323910044,
+            "analytic_expected_MCSE": 0.0007897816945465437,
+            "raw_EM_interval_coverage_for_discrete_truth": 0.90625,
+            "coverage_binomial95": [
+              0.7497730493162054,
+              0.9802328198267152
+            ]
+          }
+        ],
+        "coverage_scope": "Independent batch95%normal intervals target discrete EM moments,not the continuous diffusion; coverage is descriptive and not a pass criterion."
+      }
+    ],
+    "Brownian_association_error": 8.881784197001252e-16,
+    "fine_driver_sha256": [
+      "062cc28f1b5fc93039f27f4059ac1361e6d11682eb2435731d285d316f4aa823",
+      "2d6f4757e5ad6fec57b5d63b1da982ea8f364ef0e7467bf075c5d78342e418ec",
+      "211980ad2f8b1eb1d666d9f575765a1d33dd0f127690ebe0febd51f736cf9f4b",
+      "9e847e310bb5c91aac72fe60ae3898c0774a54f284f0c96d1b661b1db4509ea9",
+      "47ed94304c9637379f3605b34fc9285546d83dc9ac8ed989fccc1ae807baae0c",
+      "f3017fb5c77c37ec260ddb326f1e746272ffaac77507eb0fd356c40e80e584ba",
+      "44baac7402f08c0ddaaae154ae26f6c568fe73a8bf1d1db98e1db54073c949b7",
+      "ea0164b72e67cd52ad0b56efc86884e7756c560c7a6ae48b2afe0d25d70f7cdb",
+      "5e89673e3d79411f1605b0a87141c447779fbb0e0ba25f62f24c88a2db389ab0",
+      "e32d50c91870002e9db7a4b0c251ecd997c681e26a877f7dc1774776cc6d9bd3",
+      "bc6ec6e7a88fb142af33231a49c6a4952de8eee94aee6d675e3ed55a63da89fe",
+      "ac8663af01ff7a5dd29873f8da7674438c0ce824d5a0d68c4361571e73556d6e",
+      "658419fe6f33031525cd0f475b5b79a434fe0648b9dd219ce1827bac38c60a64",
+      "723d7ed34394b933e3f577732aa4f6826dc48f41255294ce4f40ca60dcc34ebe",
+      "32ba3a1d678327efa71fafd8775e54592d8c8ee2bcf700b91021d3a535ac4a2f",
+      "b2d96051eefe7541c51ff53bc309b0562918977751f56f20948213b521a9f63b",
+      "fc6f8bb229669f915d514fe451c366d3fdbf72f1279e5f9479e889574db08320",
+      "cfce102e39422f655bbc1a3c332ce886e11dfd32fa492563a88bf7fd38af5383",
+      "80adbe538b0f5f9b9c1caba2175d27cd3648e1f4acaaa8c7fc8a4422ba90c9a1",
+      "0aa28d9838f8b4261821a718e7d10433e1a8843619075582bb9cd41a1e360cde",
+      "bd7977d0290110397956f5c5aca3bd087181780f96dbd6bd4fd00ec473ae1b0f",
+      "7d23d99637da04cd10a3aecc9a841cbbe5adacdcc5da018614cdf2255cf419d1",
+      "ba997a851a487141e23fd1de6afca95f646279adca8e0ba52400c672d62e368b",
+      "188fb1058a2c645eb9701b15efc1e44741c22b4b6492f87c01553c00d834c793",
+      "b88b85f05d54af414a81b1951d5934f043ef20882b536234ebfecb5ae6b664a5",
+      "7918daa0dc6fd330508bd29d816a051eaa47c0e680c47b2a399e5e268e1ca1f0",
+      "9718d50375705d9fbb532ffe848f813a5652fbaf7c74e9627c078b31104f6afd",
+      "f8b8d4fa2453cd347abd43c6e68cd80d5c780052a42440c4dc1386f850938a8c",
+      "62486023170b5c8a56224f809204c0d727f81b10abcebe6da29a6859c2e399cc",
+      "1d3cb939b24ce46e72d062d4ad56ed0fe1bffca70cb3a44d19421a303e93519a",
+      "1ce008007caeaa391342596c98bcb6102c8b2b2ab77bbb2e275b98fe3d5b2b9b",
+      "b8aa0ed98d5317954181d7433193f4ed3ebb6408ea3cea3a73dd6a4de7c20e8f"
+    ],
+    "completed_independent_seed_batches": 32
+  },
+  "records": [
+    {
+      "seed": 44001,
+      "steps": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "methods": [
+        "em"
+      ],
+      "candidate_file": "gbm-weak-moments.npz",
+      "driver_sha256": "062cc28f1b5fc93039f27f4059ac1361e6d11682eb2435731d285d316f4aa823"
+    },
+    {
+      "seed": 44002,
+      "steps": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "methods": [
+        "em"
+      ],
+      "candidate_file": "gbm-weak-moments.npz",
+      "driver_sha256": "2d6f4757e5ad6fec57b5d63b1da982ea8f364ef0e7467bf075c5d78342e418ec"
+    },
+    {
+      "seed": 44003,
+      "steps": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "methods": [
+        "em"
+      ],
+      "candidate_file": "gbm-weak-moments.npz",
+      "driver_sha256": "211980ad2f8b1eb1d666d9f575765a1d33dd0f127690ebe0febd51f736cf9f4b"
+    },
+    {
+      "seed": 44004,
+      "steps": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "methods": [
+        "em"
+      ],
+      "candidate_file": "gbm-weak-moments.npz",
+      "driver_sha256": "9e847e310bb5c91aac72fe60ae3898c0774a54f284f0c96d1b661b1db4509ea9"
+    },
+    {
+      "seed": 44005,
+      "steps": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "methods": [
+        "em"
+      ],
+      "candidate_file": "gbm-weak-moments.npz",
+      "driver_sha256": "47ed94304c9637379f3605b34fc9285546d83dc9ac8ed989fccc1ae807baae0c"
+    },
+    {
+      "seed": 44006,
+      "steps": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "methods": [
+        "em"
+      ],
+      "candidate_file": "gbm-weak-moments.npz",
+      "driver_sha256": "f3017fb5c77c37ec260ddb326f1e746272ffaac77507eb0fd356c40e80e584ba"
+    },
+    {
+      "seed": 44007,
+      "steps": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "methods": [
+        "em"
+      ],
+      "candidate_file": "gbm-weak-moments.npz",
+      "driver_sha256": "44baac7402f08c0ddaaae154ae26f6c568fe73a8bf1d1db98e1db54073c949b7"
+    },
+    {
+      "seed": 44008,
+      "steps": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "methods": [
+        "em"
+      ],
+      "candidate_file": "gbm-weak-moments.npz",
+      "driver_sha256": "ea0164b72e67cd52ad0b56efc86884e7756c560c7a6ae48b2afe0d25d70f7cdb"
+    },
+    {
+      "seed": 44009,
+      "steps": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "methods": [
+        "em"
+      ],
+      "candidate_file": "gbm-weak-moments.npz",
+      "driver_sha256": "5e89673e3d79411f1605b0a87141c447779fbb0e0ba25f62f24c88a2db389ab0"
+    },
+    {
+      "seed": 44010,
+      "steps": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "methods": [
+        "em"
+      ],
+      "candidate_file": "gbm-weak-moments.npz",
+      "driver_sha256": "e32d50c91870002e9db7a4b0c251ecd997c681e26a877f7dc1774776cc6d9bd3"
+    },
+    {
+      "seed": 44011,
+      "steps": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "methods": [
+        "em"
+      ],
+      "candidate_file": "gbm-weak-moments.npz",
+      "driver_sha256": "bc6ec6e7a88fb142af33231a49c6a4952de8eee94aee6d675e3ed55a63da89fe"
+    },
+    {
+      "seed": 44012,
+      "steps": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "methods": [
+        "em"
+      ],
+      "candidate_file": "gbm-weak-moments.npz",
+      "driver_sha256": "ac8663af01ff7a5dd29873f8da7674438c0ce824d5a0d68c4361571e73556d6e"
+    },
+    {
+      "seed": 44013,
+      "steps": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "methods": [
+        "em"
+      ],
+      "candidate_file": "gbm-weak-moments.npz",
+      "driver_sha256": "658419fe6f33031525cd0f475b5b79a434fe0648b9dd219ce1827bac38c60a64"
+    },
+    {
+      "seed": 44014,
+      "steps": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "methods": [
+        "em"
+      ],
+      "candidate_file": "gbm-weak-moments.npz",
+      "driver_sha256": "723d7ed34394b933e3f577732aa4f6826dc48f41255294ce4f40ca60dcc34ebe"
+    },
+    {
+      "seed": 44015,
+      "steps": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "methods": [
+        "em"
+      ],
+      "candidate_file": "gbm-weak-moments.npz",
+      "driver_sha256": "32ba3a1d678327efa71fafd8775e54592d8c8ee2bcf700b91021d3a535ac4a2f"
+    },
+    {
+      "seed": 44016,
+      "steps": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "methods": [
+        "em"
+      ],
+      "candidate_file": "gbm-weak-moments.npz",
+      "driver_sha256": "b2d96051eefe7541c51ff53bc309b0562918977751f56f20948213b521a9f63b"
+    },
+    {
+      "seed": 44017,
+      "steps": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "methods": [
+        "em"
+      ],
+      "candidate_file": "gbm-weak-moments.npz",
+      "driver_sha256": "fc6f8bb229669f915d514fe451c366d3fdbf72f1279e5f9479e889574db08320"
+    },
+    {
+      "seed": 44018,
+      "steps": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "methods": [
+        "em"
+      ],
+      "candidate_file": "gbm-weak-moments.npz",
+      "driver_sha256": "cfce102e39422f655bbc1a3c332ce886e11dfd32fa492563a88bf7fd38af5383"
+    },
+    {
+      "seed": 44019,
+      "steps": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "methods": [
+        "em"
+      ],
+      "candidate_file": "gbm-weak-moments.npz",
+      "driver_sha256": "80adbe538b0f5f9b9c1caba2175d27cd3648e1f4acaaa8c7fc8a4422ba90c9a1"
+    },
+    {
+      "seed": 44020,
+      "steps": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "methods": [
+        "em"
+      ],
+      "candidate_file": "gbm-weak-moments.npz",
+      "driver_sha256": "0aa28d9838f8b4261821a718e7d10433e1a8843619075582bb9cd41a1e360cde"
+    },
+    {
+      "seed": 44021,
+      "steps": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "methods": [
+        "em"
+      ],
+      "candidate_file": "gbm-weak-moments.npz",
+      "driver_sha256": "bd7977d0290110397956f5c5aca3bd087181780f96dbd6bd4fd00ec473ae1b0f"
+    },
+    {
+      "seed": 44022,
+      "steps": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "methods": [
+        "em"
+      ],
+      "candidate_file": "gbm-weak-moments.npz",
+      "driver_sha256": "7d23d99637da04cd10a3aecc9a841cbbe5adacdcc5da018614cdf2255cf419d1"
+    },
+    {
+      "seed": 44023,
+      "steps": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "methods": [
+        "em"
+      ],
+      "candidate_file": "gbm-weak-moments.npz",
+      "driver_sha256": "ba997a851a487141e23fd1de6afca95f646279adca8e0ba52400c672d62e368b"
+    },
+    {
+      "seed": 44024,
+      "steps": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "methods": [
+        "em"
+      ],
+      "candidate_file": "gbm-weak-moments.npz",
+      "driver_sha256": "188fb1058a2c645eb9701b15efc1e44741c22b4b6492f87c01553c00d834c793"
+    },
+    {
+      "seed": 44025,
+      "steps": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "methods": [
+        "em"
+      ],
+      "candidate_file": "gbm-weak-moments.npz",
+      "driver_sha256": "b88b85f05d54af414a81b1951d5934f043ef20882b536234ebfecb5ae6b664a5"
+    },
+    {
+      "seed": 44026,
+      "steps": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "methods": [
+        "em"
+      ],
+      "candidate_file": "gbm-weak-moments.npz",
+      "driver_sha256": "7918daa0dc6fd330508bd29d816a051eaa47c0e680c47b2a399e5e268e1ca1f0"
+    },
+    {
+      "seed": 44027,
+      "steps": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "methods": [
+        "em"
+      ],
+      "candidate_file": "gbm-weak-moments.npz",
+      "driver_sha256": "9718d50375705d9fbb532ffe848f813a5652fbaf7c74e9627c078b31104f6afd"
+    },
+    {
+      "seed": 44028,
+      "steps": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "methods": [
+        "em"
+      ],
+      "candidate_file": "gbm-weak-moments.npz",
+      "driver_sha256": "f8b8d4fa2453cd347abd43c6e68cd80d5c780052a42440c4dc1386f850938a8c"
+    },
+    {
+      "seed": 44029,
+      "steps": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "methods": [
+        "em"
+      ],
+      "candidate_file": "gbm-weak-moments.npz",
+      "driver_sha256": "62486023170b5c8a56224f809204c0d727f81b10abcebe6da29a6859c2e399cc"
+    },
+    {
+      "seed": 44030,
+      "steps": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "methods": [
+        "em"
+      ],
+      "candidate_file": "gbm-weak-moments.npz",
+      "driver_sha256": "1d3cb939b24ce46e72d062d4ad56ed0fe1bffca70cb3a44d19421a303e93519a"
+    },
+    {
+      "seed": 44031,
+      "steps": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "methods": [
+        "em"
+      ],
+      "candidate_file": "gbm-weak-moments.npz",
+      "driver_sha256": "1ce008007caeaa391342596c98bcb6102c8b2b2ab77bbb2e275b98fe3d5b2b9b"
+    },
+    {
+      "seed": 44032,
+      "steps": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "methods": [
+        "em"
+      ],
+      "candidate_file": "gbm-weak-moments.npz",
+      "driver_sha256": "b8aa0ed98d5317954181d7433193f4ed3ebb6408ea3cea3a73dd6a4de7c20e8f"
+    }
+  ],
+  "termination": "fixed_budget_completed"
+}

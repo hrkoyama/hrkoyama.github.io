@@ -1,0 +1,7 @@
+{
+  "recorded_at_utc": "2026-11-23T22:27:39.681759+00:00",
+  "authority": "/root",
+  "message": "Root explicitly authorized these three frozen main groups, serially, one fresh pytest+allfixedinputs attempt pergroup, shared120s includingbothcompilations. If onegroup fails retain it unchanged and continueotherindependentgroups; no retries/input/threshold/source edits.",
+  "contract_sha256": "72386d8eb9d7d5b3c1098273afc3be4239c6957da327094f156425c9fb0683b1",
+  "independent_review_sha256": "21c5d0e9641b06d22e80df58f04c3073e7f144e594b83a124f737b5050875524"
+}

@@ -1,0 +1,37 @@
+"""Single fresh reference-only attempt; execute only after parent authorization."""
+from pathlib import Path
+import os,sys,json,hashlib,datetime,time,subprocess,signal,shutil,importlib.metadata
+D=Path(__file__).resolve().parent;S=D/'source';protocol=D/'reference-qualification-protocol.json'
+PY=Path('/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/bin/python')
+sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+def main():
+    start=time.monotonic();stamp=lambda:datetime.datetime.now(datetime.timezone.utc).isoformat();p=json.loads(protocol.read_text());out=D/'reference-attempts'/'01';out.mkdir(parents=True,exist_ok=False);receipt=dict(started_at_utc=stamp(),protocol_sha256=sha(protocol),status='preflight',primary_rhs_probes=0,primary_mode_evolutions=0);child=None
+    def write(): (out/'receipt.json').write_text(json.dumps(receipt,indent=2,allow_nan=False)+'\n')
+    write()
+    try:
+        for name,h in p['files_sha256'].items():
+            if sha(D/name)!=h:raise ValueError('Changed frozen source '+name)
+        if Path(sys.executable).resolve()!=PY.resolve():raise ValueError('Use frozen pinned interpreter')
+        versions={name:importlib.metadata.version(name) for name in p['scientific_pins']};receipt['installed_pins']=versions
+        if versions!=p['scientific_pins']:raise ValueError('Changed scientific pins')
+        shutil.copytree(S,out/'source');shutil.copy2(protocol,out/protocol.name)
+        env=os.environ.copy();env.update(OPENBLAS_NUM_THREADS='1',OMP_NUM_THREADS='1',MKL_NUM_THREADS='1',PYTHONDONTWRITEBYTECODE='1');tmp=Path('/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch38-47/radiation/thick-r5-tmp');tmp.mkdir(parents=True,exist_ok=True);env['TMPDIR']=str(tmp)
+        remaining=p['outer_shared_seconds']-(time.monotonic()-start)
+        if remaining<=0:raise TimeoutError('Preflight exhausted shared budget')
+        command=[str(PY),'-B','-W','error',str(S/'references/qualify_thick.py'),'--output',str(out/'results')];receipt.update(status='running',command=command);write()
+        with (out/'stdout.log').open('wb') as stdout,(out/'stderr.log').open('wb') as stderr:
+            child=subprocess.Popen(command,cwd=S,env=env,stdout=stdout,stderr=stderr,start_new_session=True)
+            try:code=child.wait(timeout=remaining)
+            except subprocess.TimeoutExpired:os.killpg(child.pid,signal.SIGKILL);child.wait();raise TimeoutError('Frozen shared reference budget exceeded')
+        receipt['returncode']=code
+        if code!=0:raise RuntimeError('Reference qualifier failed; retain full attempt')
+        q=json.loads((out/'results/qualification-thick.json').read_text());receipt['actual_checks']=q['check_count']
+        if q['passed'] is not True or q['check_count']!=141 or len(q['checks'])!=141 or not all(type(v) is bool and v for v in q['checks'].values()):raise ValueError('Reference gate/count failure')
+        receipt.update(status='passed',primary_rhs_probes=q['primary_rhs_probes'],primary_mode_evolutions=q['primary_mode_evolutions'])
+    except Exception as error:receipt.update(status='failed',error=dict(type=type(error).__name__,message=str(error)))
+    finally:
+        receipt['post_hashes_unchanged']=all((D/n).is_file() and sha(D/n)==h for n,h in p['files_sha256'].items());receipt['duration_seconds']=time.monotonic()-start;receipt['finished_at_utc']=stamp()
+        if not receipt['post_hashes_unchanged'] or receipt['duration_seconds']>p['outer_shared_seconds']:receipt['status']='failed'
+        write();print(json.dumps(receipt))
+    if receipt['status']!='passed':raise SystemExit(1)
+if __name__=='__main__':main()

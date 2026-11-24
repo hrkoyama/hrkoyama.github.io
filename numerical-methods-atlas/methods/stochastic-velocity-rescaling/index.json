@@ -5308,6 +5308,20 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#hamiltonian-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#hamiltonian-en"
         }
+      },
+      {
+        "id": "scalar-ito-diffusion",
+        "name": {
+          "ja": "スカラーItô拡散：GBMとOU",
+          "en": "Scalar Ito diffusion: GBM and OU"
+        },
+        "problem_ids": [
+          "langevin-harmonic"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#scalar-ito-diffusion-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#scalar-ito-diffusion-en"
+        }
       }
     ],
     "problems": [
@@ -5443,7 +5457,29 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/langevin-harmonic/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/langevin-harmonic/?lang=en#references-en"
         },
-        "cases": []
+        "cases": [
+          {
+            "id": "ou-weak-moments",
+            "title": {
+              "ja": "OUのweakモーメントと同時Brownian結合",
+              "en": "OU weak moments with joint Brownian coupling"
+            },
+            "kind": "analytic",
+            "relation": "related-model",
+            "note": {
+              "ja": "dX=1.5(.2-X)dt+.8dW,X0=.7。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。",
+              "en": "dX=1.5(.2-X)dt+.8dW,X0=.7;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-ou-weak-moments-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-ou-weak-moments-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/ou-weak-moments/?lang=ja#ou-weak-moments-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/ou-weak-moments/?lang=en#ou-weak-moments-en-measurements"
+            }
+          }
+        ]
       },
       {
         "problem_id": "thermostatted-quartic",

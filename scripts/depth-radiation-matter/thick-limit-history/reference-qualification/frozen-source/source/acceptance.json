@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "limits": {
+    "budget": 2e-10,
+    "negative_energy": 1e-13,
+    "diffusion_finest_rms": 0.02,
+    "diffusion_finest_linf": 0.05,
+    "transport_finest_rms": 0.025,
+    "transport_finest_linf": 0.06,
+    "refinement_ratio": 0.92,
+    "time_probe_fraction": 0.2,
+    "transport_angular_change": 0.01,
+    "finite_domain_change": 0.0002,
+    "closed_capacity_error": 0.002,
+    "closed_capacity_budget": 1e-11,
+    "transport_courant": 0.4,
+    "thick_budget": 2e-11,
+    "thick_operator_relative": 2e-12,
+    "thick_space_error": 0.02,
+    "thick_angular_error": 2e-10,
+    "thick_initial_flux_zero": 2e-12,
+    "thick_space_ratio": 0.8,
+    "thick_continuum_ratio": 0.6,
+    "thick_finest_energy": 0.01,
+    "thick_finest_flux": 0.02,
+    "thick_negative_advantage": 0.25
+  },
+  "reference_scope": "1996officialindependentintegrals;1997pinnedauthor-providedanalyticalbenchmarktables,original1997tablesnotdirectlychecked. Distincttime/space/angle effects;no fittedcontinuumorder.",
+  "matched_thick_scope": "Additional matchedperiodicsemidiscretemodeindicator,finals.25asymptoticchecks;initiallayerreported. Alloriginal63checks/inputsunchanged;nofixedgridAPorSSPRK2temporalclaim."
+}

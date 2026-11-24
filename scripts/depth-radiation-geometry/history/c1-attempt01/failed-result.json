@@ -1,0 +1,1880 @@
+{
+  "schema_version": 1,
+  "passed": false,
+  "checks": {
+    "shadow-absorber2d": false,
+    "opposing-beams2d": true
+  },
+  "cases": [
+    {
+      "id": "shadow-absorber2d",
+      "passed": false,
+      "checks": {
+        "shadow-sn-n24/all-stages-finite": true,
+        "shadow-sn-n24/positive-energy": true,
+        "shadow-sn-n24/realizability": true,
+        "shadow-sn-n24/energy-budget": true,
+        "shadow-sn-n24/full3D-pressure-trace": true,
+        "shadow-sn-n24/five-fixed-snapshots": true,
+        "shadow-sn-n48/all-stages-finite": true,
+        "shadow-sn-n48/positive-energy": true,
+        "shadow-sn-n48/realizability": true,
+        "shadow-sn-n48/energy-budget": true,
+        "shadow-sn-n48/full3D-pressure-trace": true,
+        "shadow-sn-n48/five-fixed-snapshots": true,
+        "shadow-sn-n96/all-stages-finite": true,
+        "shadow-sn-n96/positive-energy": true,
+        "shadow-sn-n96/realizability": true,
+        "shadow-sn-n96/energy-budget": true,
+        "shadow-sn-n96/full3D-pressure-trace": true,
+        "shadow-sn-n96/five-fixed-snapshots": true,
+        "shadow-m1-n24/all-stages-finite": true,
+        "shadow-m1-n24/positive-energy": true,
+        "shadow-m1-n24/realizability": true,
+        "shadow-m1-n24/energy-budget": true,
+        "shadow-m1-n24/full3D-pressure-trace": true,
+        "shadow-m1-n24/five-fixed-snapshots": true,
+        "shadow-m1-n48/all-stages-finite": true,
+        "shadow-m1-n48/positive-energy": true,
+        "shadow-m1-n48/realizability": true,
+        "shadow-m1-n48/energy-budget": true,
+        "shadow-m1-n48/full3D-pressure-trace": true,
+        "shadow-m1-n48/five-fixed-snapshots": true,
+        "shadow-m1-n96/all-stages-finite": true,
+        "shadow-m1-n96/positive-energy": true,
+        "shadow-m1-n96/realizability": true,
+        "shadow-m1-n96/energy-budget": true,
+        "shadow-m1-n96/full3D-pressure-trace": true,
+        "shadow-m1-n96/five-fixed-snapshots": true,
+        "shadow-sn-n96-half-dt/all-stages-finite": true,
+        "shadow-sn-n96-half-dt/positive-energy": true,
+        "shadow-sn-n96-half-dt/realizability": true,
+        "shadow-sn-n96-half-dt/energy-budget": true,
+        "shadow-sn-n96-half-dt/full3D-pressure-trace": true,
+        "shadow-sn-n96-half-dt/five-fixed-snapshots": true,
+        "shadow-m1-n96-half-dt/all-stages-finite": true,
+        "shadow-m1-n96-half-dt/positive-energy": true,
+        "shadow-m1-n96-half-dt/realizability": true,
+        "shadow-m1-n96-half-dt/energy-budget": true,
+        "shadow-m1-n96-half-dt/full3D-pressure-trace": true,
+        "shadow-m1-n96-half-dt/five-fixed-snapshots": true,
+        "shadow/sn/refinement-n48": true,
+        "shadow/sn/refinement-n96": true,
+        "shadow/sn/finest-reference": true,
+        "shadow/sn/separate-time-sensitivity": true,
+        "shadow/m1/refinement-n48": false,
+        "shadow/m1/refinement-n96": false,
+        "shadow/m1/finest-reference": false,
+        "shadow/m1/separate-time-sensitivity": true
+      },
+      "check_details": [
+        {
+          "name": "shadow-sn-n24/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n24/positive-energy",
+          "value": 0.0,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n24/realizability",
+          "value": 0.0,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n24/energy-budget",
+          "value": 2.220446049250313e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n24/full3D-pressure-trace",
+          "value": 0.0,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n24/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.275,
+            0.55,
+            0.8250000000000001,
+            1.1
+          ],
+          "bound": [
+            0.0,
+            0.275,
+            0.55,
+            0.8250000000000001,
+            1.1
+          ],
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n48/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n48/positive-energy",
+          "value": 0.0,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n48/realizability",
+          "value": 0.0,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n48/energy-budget",
+          "value": 5.551115123125783e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n48/full3D-pressure-trace",
+          "value": 0.0,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n48/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.275,
+            0.55,
+            0.8250000000000001,
+            1.1
+          ],
+          "bound": [
+            0.0,
+            0.275,
+            0.55,
+            0.8250000000000001,
+            1.1
+          ],
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n96/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n96/positive-energy",
+          "value": 0.0,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n96/realizability",
+          "value": 0.0,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n96/energy-budget",
+          "value": 6.38378239159465e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n96/full3D-pressure-trace",
+          "value": 0.0,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n96/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.275,
+            0.55,
+            0.8250000000000001,
+            1.1
+          ],
+          "bound": [
+            0.0,
+            0.275,
+            0.55,
+            0.8250000000000001,
+            1.1
+          ],
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n24/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n24/positive-energy",
+          "value": 0.0,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n24/realizability",
+          "value": 0.0,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n24/energy-budget",
+          "value": 1.8041124150158794e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n24/full3D-pressure-trace",
+          "value": 0.0,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n24/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.275,
+            0.55,
+            0.8250000000000001,
+            1.1
+          ],
+          "bound": [
+            0.0,
+            0.275,
+            0.55,
+            0.8250000000000001,
+            1.1
+          ],
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n48/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n48/positive-energy",
+          "value": 0.0,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n48/realizability",
+          "value": 0.0,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n48/energy-budget",
+          "value": 7.494005416219807e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n48/full3D-pressure-trace",
+          "value": 0.0,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n48/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.275,
+            0.55,
+            0.8250000000000001,
+            1.1
+          ],
+          "bound": [
+            0.0,
+            0.275,
+            0.55,
+            0.8250000000000001,
+            1.1
+          ],
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n96/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n96/positive-energy",
+          "value": 0.0,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n96/realizability",
+          "value": 0.0,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n96/energy-budget",
+          "value": 1.0824674490095276e-15,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n96/full3D-pressure-trace",
+          "value": 0.0,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n96/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.275,
+            0.55,
+            0.8250000000000001,
+            1.1
+          ],
+          "bound": [
+            0.0,
+            0.275,
+            0.55,
+            0.8250000000000001,
+            1.1
+          ],
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n96-half-dt/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n96-half-dt/positive-energy",
+          "value": 0.0,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n96-half-dt/realizability",
+          "value": 0.0,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n96-half-dt/energy-budget",
+          "value": 2.275957200481571e-15,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n96-half-dt/full3D-pressure-trace",
+          "value": 0.0,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n96-half-dt/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.275,
+            0.55,
+            0.8250000000000001,
+            1.1
+          ],
+          "bound": [
+            0.0,
+            0.275,
+            0.55,
+            0.8250000000000001,
+            1.1
+          ],
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n96-half-dt/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n96-half-dt/positive-energy",
+          "value": 0.0,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n96-half-dt/realizability",
+          "value": 0.0,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n96-half-dt/energy-budget",
+          "value": 3.941291737419306e-15,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n96-half-dt/full3D-pressure-trace",
+          "value": 0.0,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n96-half-dt/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.275,
+            0.55,
+            0.8250000000000001,
+            1.1
+          ],
+          "bound": [
+            0.0,
+            0.275,
+            0.55,
+            0.8250000000000001,
+            1.1
+          ],
+          "passed": true
+        },
+        {
+          "name": "shadow/sn/refinement-n48",
+          "value": 0.7307245677767888,
+          "bound": 0.85,
+          "passed": true
+        },
+        {
+          "name": "shadow/sn/refinement-n96",
+          "value": 0.3826913250368595,
+          "bound": 0.85,
+          "passed": true
+        },
+        {
+          "name": "shadow/sn/finest-reference",
+          "value": 0.004394928879915303,
+          "bound": 0.08,
+          "passed": true
+        },
+        {
+          "name": "shadow/sn/separate-time-sensitivity",
+          "value": 0.004185913044663024,
+          "bound": 0.2,
+          "passed": true
+        },
+        {
+          "name": "shadow/m1/refinement-n48",
+          "value": 0.876468817739518,
+          "bound": 0.85,
+          "passed": false
+        },
+        {
+          "name": "shadow/m1/refinement-n96",
+          "value": 0.8703363359897638,
+          "bound": 0.85,
+          "passed": false
+        },
+        {
+          "name": "shadow/m1/finest-reference",
+          "value": 0.13182048838239352,
+          "bound": 0.12,
+          "passed": false
+        },
+        {
+          "name": "shadow/m1/separate-time-sensitivity",
+          "value": 0.00024037586388566147,
+          "bound": 0.2,
+          "passed": true
+        }
+      ],
+      "records": [
+        {
+          "id": "shadow-sn-n24",
+          "kind": "shadow",
+          "method": "sn",
+          "cells": 24,
+          "final_time": 1.1,
+          "steps": 152,
+          "family": "refinement",
+          "fields": "shadow-sn-n24.npz",
+          "independent_moment_l1": 0.0157162715805596,
+          "maximum_budget": 2.220446049250313e-16,
+          "minimum_energy": 0.0,
+          "minimum_cone": 0.0
+        },
+        {
+          "id": "shadow-sn-n48",
+          "kind": "shadow",
+          "method": "sn",
+          "cells": 48,
+          "final_time": 1.1,
+          "steps": 304,
+          "family": "refinement",
+          "fields": "shadow-sn-n48.npz",
+          "independent_moment_l1": 0.011484265757767044,
+          "maximum_budget": 5.551115123125783e-16,
+          "minimum_energy": 0.0,
+          "minimum_cone": 0.0
+        },
+        {
+          "id": "shadow-sn-n96",
+          "kind": "shadow",
+          "method": "sn",
+          "cells": 96,
+          "final_time": 1.1,
+          "steps": 604,
+          "family": "refinement",
+          "fields": "shadow-sn-n96.npz",
+          "independent_moment_l1": 0.004394928879915303,
+          "maximum_budget": 6.38378239159465e-16,
+          "minimum_energy": 0.0,
+          "minimum_cone": 0.0
+        },
+        {
+          "id": "shadow-m1-n24",
+          "kind": "shadow",
+          "method": "m1",
+          "cells": 24,
+          "final_time": 1.1,
+          "steps": 152,
+          "family": "refinement",
+          "fields": "shadow-m1-n24.npz",
+          "independent_moment_l1": 0.17280620436609131,
+          "maximum_budget": 1.8041124150158794e-16,
+          "minimum_energy": 0.0,
+          "minimum_cone": 0.0
+        },
+        {
+          "id": "shadow-m1-n48",
+          "kind": "shadow",
+          "method": "m1",
+          "cells": 48,
+          "final_time": 1.1,
+          "steps": 304,
+          "family": "refinement",
+          "fields": "shadow-m1-n48.npz",
+          "independent_moment_l1": 0.15145924963880159,
+          "maximum_budget": 7.494005416219807e-16,
+          "minimum_energy": 0.0,
+          "minimum_cone": 0.0
+        },
+        {
+          "id": "shadow-m1-n96",
+          "kind": "shadow",
+          "method": "m1",
+          "cells": 96,
+          "final_time": 1.1,
+          "steps": 604,
+          "family": "refinement",
+          "fields": "shadow-m1-n96.npz",
+          "independent_moment_l1": 0.13182048838239352,
+          "maximum_budget": 1.0824674490095276e-15,
+          "minimum_energy": 0.0,
+          "minimum_cone": 0.0
+        },
+        {
+          "id": "shadow-sn-n96-half-dt",
+          "kind": "shadow",
+          "method": "sn",
+          "cells": 96,
+          "final_time": 1.1,
+          "steps": 1208,
+          "family": "time-probe",
+          "fields": "shadow-sn-n96-half-dt.npz",
+          "independent_moment_l1": 0.004384816488888061,
+          "maximum_budget": 2.275957200481571e-15,
+          "minimum_energy": 0.0,
+          "minimum_cone": 0.0
+        },
+        {
+          "id": "shadow-m1-n96-half-dt",
+          "kind": "shadow",
+          "method": "m1",
+          "cells": 96,
+          "final_time": 1.1,
+          "steps": 1208,
+          "family": "time-probe",
+          "fields": "shadow-m1-n96-half-dt.npz",
+          "independent_moment_l1": 0.13182082951331164,
+          "maximum_budget": 3.941291737419306e-15,
+          "minimum_energy": 0.0,
+          "minimum_cone": 0.0
+        }
+      ],
+      "metrics": {
+        "completed_primary_and_control_runs": 8,
+        "spatial_dimensions": 2,
+        "angular_dimensions": 3,
+        "Pzz_retained": true
+      }
+    },
+    {
+      "id": "opposing-beams2d",
+      "passed": true,
+      "checks": {
+        "beams-sn-n24/all-stages-finite": true,
+        "beams-sn-n24/positive-energy": true,
+        "beams-sn-n24/realizability": true,
+        "beams-sn-n24/energy-budget": true,
+        "beams-sn-n24/full3D-pressure-trace": true,
+        "beams-sn-n24/five-fixed-snapshots": true,
+        "beams-sn-n48/all-stages-finite": true,
+        "beams-sn-n48/positive-energy": true,
+        "beams-sn-n48/realizability": true,
+        "beams-sn-n48/energy-budget": true,
+        "beams-sn-n48/full3D-pressure-trace": true,
+        "beams-sn-n48/five-fixed-snapshots": true,
+        "beams-sn-n96/all-stages-finite": true,
+        "beams-sn-n96/positive-energy": true,
+        "beams-sn-n96/realizability": true,
+        "beams-sn-n96/energy-budget": true,
+        "beams-sn-n96/full3D-pressure-trace": true,
+        "beams-sn-n96/five-fixed-snapshots": true,
+        "beams-m1-n24/all-stages-finite": true,
+        "beams-m1-n24/positive-energy": true,
+        "beams-m1-n24/realizability": true,
+        "beams-m1-n24/energy-budget": true,
+        "beams-m1-n24/full3D-pressure-trace": true,
+        "beams-m1-n24/five-fixed-snapshots": true,
+        "beams-m1-n48/all-stages-finite": true,
+        "beams-m1-n48/positive-energy": true,
+        "beams-m1-n48/realizability": true,
+        "beams-m1-n48/energy-budget": true,
+        "beams-m1-n48/full3D-pressure-trace": true,
+        "beams-m1-n48/five-fixed-snapshots": true,
+        "beams-m1-n96/all-stages-finite": true,
+        "beams-m1-n96/positive-energy": true,
+        "beams-m1-n96/realizability": true,
+        "beams-m1-n96/energy-budget": true,
+        "beams-m1-n96/full3D-pressure-trace": true,
+        "beams-m1-n96/five-fixed-snapshots": true,
+        "beams-sn-n96-half-dt/all-stages-finite": true,
+        "beams-sn-n96-half-dt/positive-energy": true,
+        "beams-sn-n96-half-dt/realizability": true,
+        "beams-sn-n96-half-dt/energy-budget": true,
+        "beams-sn-n96-half-dt/full3D-pressure-trace": true,
+        "beams-sn-n96-half-dt/five-fixed-snapshots": true,
+        "beams-m1-n96-half-dt/all-stages-finite": true,
+        "beams-m1-n96-half-dt/positive-energy": true,
+        "beams-m1-n96-half-dt/realizability": true,
+        "beams-m1-n96-half-dt/energy-budget": true,
+        "beams-m1-n96-half-dt/full3D-pressure-trace": true,
+        "beams-m1-n96-half-dt/five-fixed-snapshots": true,
+        "beams/sn/refinement-n48": true,
+        "beams/sn/refinement-n96": true,
+        "beams/sn/finest-reference": true,
+        "beams/sn/separate-time-sensitivity": true,
+        "beams/m1/separate-time-sensitivity": true,
+        "mms-m1-n16/all-stages-finite": true,
+        "mms-m1-n16/positive-energy": true,
+        "mms-m1-n16/realizability": true,
+        "mms-m1-n16/energy-budget": true,
+        "mms-m1-n16/full3D-pressure-trace": true,
+        "mms-m1-n16/five-fixed-snapshots": true,
+        "mms-m1-n32/all-stages-finite": true,
+        "mms-m1-n32/positive-energy": true,
+        "mms-m1-n32/realizability": true,
+        "mms-m1-n32/energy-budget": true,
+        "mms-m1-n32/full3D-pressure-trace": true,
+        "mms-m1-n32/five-fixed-snapshots": true,
+        "mms-m1-n64/all-stages-finite": true,
+        "mms-m1-n64/positive-energy": true,
+        "mms-m1-n64/realizability": true,
+        "mms-m1-n64/energy-budget": true,
+        "mms-m1-n64/full3D-pressure-trace": true,
+        "mms-m1-n64/five-fixed-snapshots": true,
+        "mms-m1-n64-half-dt/all-stages-finite": true,
+        "mms-m1-n64-half-dt/positive-energy": true,
+        "mms-m1-n64-half-dt/realizability": true,
+        "mms-m1-n64-half-dt/energy-budget": true,
+        "mms-m1-n64-half-dt/full3D-pressure-trace": true,
+        "mms-m1-n64-half-dt/five-fixed-snapshots": true,
+        "crossed-sn-n24/all-stages-finite": true,
+        "crossed-sn-n24/positive-energy": true,
+        "crossed-sn-n24/realizability": true,
+        "crossed-sn-n24/energy-budget": true,
+        "crossed-sn-n24/full3D-pressure-trace": true,
+        "crossed-sn-n24/five-fixed-snapshots": true,
+        "crossed-sn-n48/all-stages-finite": true,
+        "crossed-sn-n48/positive-energy": true,
+        "crossed-sn-n48/realizability": true,
+        "crossed-sn-n48/energy-budget": true,
+        "crossed-sn-n48/full3D-pressure-trace": true,
+        "crossed-sn-n48/five-fixed-snapshots": true,
+        "crossed-sn-n96/all-stages-finite": true,
+        "crossed-sn-n96/positive-energy": true,
+        "crossed-sn-n96/realizability": true,
+        "crossed-sn-n96/energy-budget": true,
+        "crossed-sn-n96/full3D-pressure-trace": true,
+        "crossed-sn-n96/five-fixed-snapshots": true,
+        "crossed-sn-n96-half-dt/all-stages-finite": true,
+        "crossed-sn-n96-half-dt/positive-energy": true,
+        "crossed-sn-n96-half-dt/realizability": true,
+        "crossed-sn-n96-half-dt/energy-budget": true,
+        "crossed-sn-n96-half-dt/full3D-pressure-trace": true,
+        "crossed-sn-n96-half-dt/five-fixed-snapshots": true,
+        "mms/m1/refinement-n32": true,
+        "mms/m1/refinement-n64": true,
+        "mms/m1/finest-reference": true,
+        "mms/m1/separate-time-sensitivity": true,
+        "crossed/sn/refinement-n48": true,
+        "crossed/sn/refinement-n96": true,
+        "crossed/sn/finest-reference": true,
+        "crossed/sn/separate-time-sensitivity": true,
+        "head-on-closure-information-defect": true
+      },
+      "check_details": [
+        {
+          "name": "beams-sn-n24/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n24/positive-energy",
+          "value": 1.9949150504393308e-21,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n24/realizability",
+          "value": 0.0,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n24/energy-budget",
+          "value": 6.938893903907228e-18,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n24/full3D-pressure-trace",
+          "value": 0.0,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n24/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "bound": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n48/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n48/positive-energy",
+          "value": 6.934532839886868e-24,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n48/realizability",
+          "value": 0.0,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n48/energy-budget",
+          "value": 6.938893903907228e-18,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n48/full3D-pressure-trace",
+          "value": 0.0,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n48/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "bound": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n96/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n96/positive-energy",
+          "value": 1.4789613066181417e-26,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n96/realizability",
+          "value": 0.0,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n96/energy-budget",
+          "value": 3.469446951953614e-18,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n96/full3D-pressure-trace",
+          "value": 0.0,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n96/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "bound": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n24/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n24/positive-energy",
+          "value": 2.889414240314591e-20,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n24/realizability",
+          "value": 6.121560624515052e-28,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n24/energy-budget",
+          "value": 3.469446951953614e-18,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n24/full3D-pressure-trace",
+          "value": 2.220446049250313e-16,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n24/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "bound": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n48/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n48/positive-energy",
+          "value": 3.2558307476229973e-21,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n48/realizability",
+          "value": 3.6445373821210745e-28,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n48/energy-budget",
+          "value": 3.469446951953614e-18,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n48/full3D-pressure-trace",
+          "value": 2.220446049250313e-16,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n48/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "bound": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n96/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n96/positive-energy",
+          "value": 9.137307682358644e-22,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n96/realizability",
+          "value": 3.2974385838238293e-28,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n96/energy-budget",
+          "value": 3.469446951953614e-18,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n96/full3D-pressure-trace",
+          "value": 2.220446049250313e-16,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n96/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "bound": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n96-half-dt/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n96-half-dt/positive-energy",
+          "value": 1.5490250205621913e-26,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n96-half-dt/realizability",
+          "value": 0.0,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n96-half-dt/energy-budget",
+          "value": 6.938893903907228e-18,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n96-half-dt/full3D-pressure-trace",
+          "value": 0.0,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n96-half-dt/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "bound": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n96-half-dt/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n96-half-dt/positive-energy",
+          "value": 9.140983389876668e-22,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n96-half-dt/realizability",
+          "value": 3.2974385838238293e-28,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n96-half-dt/energy-budget",
+          "value": 3.469446951953614e-18,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n96-half-dt/full3D-pressure-trace",
+          "value": 2.220446049250313e-16,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n96-half-dt/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "bound": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "passed": true
+        },
+        {
+          "name": "beams/sn/refinement-n48",
+          "value": 0.8387319067036042,
+          "bound": 0.85,
+          "passed": true
+        },
+        {
+          "name": "beams/sn/refinement-n96",
+          "value": 0.7430240149039188,
+          "bound": 0.85,
+          "passed": true
+        },
+        {
+          "name": "beams/sn/finest-reference",
+          "value": 0.013455297892561235,
+          "bound": 0.02,
+          "passed": true
+        },
+        {
+          "name": "beams/sn/separate-time-sensitivity",
+          "value": 0.0008208353805229829,
+          "bound": 0.2,
+          "passed": true
+        },
+        {
+          "name": "beams/m1/separate-time-sensitivity",
+          "value": 0.00015272242940664302,
+          "bound": 0.2,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n16/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n16/positive-energy",
+          "value": 0.9038455088751471,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n16/realizability",
+          "value": 0.6702558909540274,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n16/energy-budget",
+          "value": 4.287116090369765e-18,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n16/full3D-pressure-trace",
+          "value": 2.220446049250313e-16,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n16/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.0625,
+            0.125,
+            0.1875,
+            0.25
+          ],
+          "bound": [
+            0.0,
+            0.0625,
+            0.125,
+            0.1875,
+            0.25
+          ],
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n32/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n32/positive-energy",
+          "value": 0.9009964321267947,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n32/realizability",
+          "value": 0.6651760840934247,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n32/energy-budget",
+          "value": 2.2038216159388688e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n32/full3D-pressure-trace",
+          "value": 2.220446049250313e-16,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n32/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.0625,
+            0.125,
+            0.1875,
+            0.25
+          ],
+          "bound": [
+            0.0,
+            0.0625,
+            0.125,
+            0.1875,
+            0.25
+          ],
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n64/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n64/positive-energy",
+          "value": 0.9002602416117471,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n64/realizability",
+          "value": 0.6608043639009522,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n64/energy-budget",
+          "value": 2.2162977974599337e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n64/full3D-pressure-trace",
+          "value": 4.440892098500626e-16,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n64/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.0625,
+            0.125,
+            0.1875,
+            0.25
+          ],
+          "bound": [
+            0.0,
+            0.0625,
+            0.125,
+            0.1875,
+            0.25
+          ],
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n64-half-dt/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n64-half-dt/positive-energy",
+          "value": 0.9001667118030606,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n64-half-dt/realizability",
+          "value": 0.6607997550767303,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n64-half-dt/energy-budget",
+          "value": 2.2091326352765512e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n64-half-dt/full3D-pressure-trace",
+          "value": 3.3306690738754696e-16,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n64-half-dt/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.0625,
+            0.125,
+            0.1875,
+            0.25
+          ],
+          "bound": [
+            0.0,
+            0.0625,
+            0.125,
+            0.1875,
+            0.25
+          ],
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n24/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n24/positive-energy",
+          "value": 3.86975299897601e-24,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n24/realizability",
+          "value": 0.0,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n24/energy-budget",
+          "value": 6.938893903907228e-18,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n24/full3D-pressure-trace",
+          "value": 1.1102230246251565e-16,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n24/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.0625,
+            0.125,
+            0.1875,
+            0.25
+          ],
+          "bound": [
+            0.0,
+            0.0625,
+            0.125,
+            0.1875,
+            0.25
+          ],
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n48/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n48/positive-energy",
+          "value": 2.5933816090657233e-25,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n48/realizability",
+          "value": 0.0,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n48/energy-budget",
+          "value": 6.938893903907228e-18,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n48/full3D-pressure-trace",
+          "value": 1.1102230246251565e-16,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n48/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.0625,
+            0.125,
+            0.1875,
+            0.25
+          ],
+          "bound": [
+            0.0,
+            0.0625,
+            0.125,
+            0.1875,
+            0.25
+          ],
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n96/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n96/positive-energy",
+          "value": 5.822472501355593e-27,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n96/realizability",
+          "value": 0.0,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n96/energy-budget",
+          "value": 6.938893903907228e-18,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n96/full3D-pressure-trace",
+          "value": 2.220446049250313e-16,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n96/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.0625,
+            0.125,
+            0.1875,
+            0.25
+          ],
+          "bound": [
+            0.0,
+            0.0625,
+            0.125,
+            0.1875,
+            0.25
+          ],
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n96-half-dt/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n96-half-dt/positive-energy",
+          "value": 6.0380552737491554e-27,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n96-half-dt/realizability",
+          "value": 0.0,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n96-half-dt/energy-budget",
+          "value": 3.469446951953614e-18,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n96-half-dt/full3D-pressure-trace",
+          "value": 2.220446049250313e-16,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n96-half-dt/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.0625,
+            0.125,
+            0.1875,
+            0.25
+          ],
+          "bound": [
+            0.0,
+            0.0625,
+            0.125,
+            0.1875,
+            0.25
+          ],
+          "passed": true
+        },
+        {
+          "name": "mms/m1/refinement-n32",
+          "value": 0.5771200263213564,
+          "bound": 0.85,
+          "passed": true
+        },
+        {
+          "name": "mms/m1/refinement-n64",
+          "value": 0.5383604121051269,
+          "bound": 0.85,
+          "passed": true
+        },
+        {
+          "name": "mms/m1/finest-reference",
+          "value": 0.0069086963497639094,
+          "bound": 0.02,
+          "passed": true
+        },
+        {
+          "name": "mms/m1/separate-time-sensitivity",
+          "value": 0.0004232293784446045,
+          "bound": 0.2,
+          "passed": true
+        },
+        {
+          "name": "crossed/sn/refinement-n48",
+          "value": 0.7324132718151688,
+          "bound": 0.85,
+          "passed": true
+        },
+        {
+          "name": "crossed/sn/refinement-n96",
+          "value": 0.6607735686148842,
+          "bound": 0.85,
+          "passed": true
+        },
+        {
+          "name": "crossed/sn/finest-reference",
+          "value": 0.007707035251535256,
+          "bound": 0.02,
+          "passed": true
+        },
+        {
+          "name": "crossed/sn/separate-time-sensitivity",
+          "value": 0.0011544394006506456,
+          "bound": 0.2,
+          "passed": true
+        },
+        {
+          "name": "head-on-closure-information-defect",
+          "value": 0.6666666666666666,
+          "bound": 0.6666666666666666,
+          "passed": true
+        }
+      ],
+      "records": [
+        {
+          "id": "beams-sn-n24",
+          "kind": "beams",
+          "method": "sn",
+          "cells": 24,
+          "final_time": 0.5,
+          "steps": 72,
+          "family": "refinement",
+          "fields": "beams-sn-n24.npz",
+          "independent_moment_l1": 0.021590728787884983,
+          "maximum_budget": 6.938893903907228e-18,
+          "minimum_energy": 1.9949150504393308e-21,
+          "minimum_cone": 0.0
+        },
+        {
+          "id": "beams-sn-n48",
+          "kind": "beams",
+          "method": "sn",
+          "cells": 48,
+          "final_time": 0.5,
+          "steps": 140,
+          "family": "refinement",
+          "fields": "beams-sn-n48.npz",
+          "independent_moment_l1": 0.01810883312338317,
+          "maximum_budget": 6.938893903907228e-18,
+          "minimum_energy": 6.934532839886868e-24,
+          "minimum_cone": 0.0
+        },
+        {
+          "id": "beams-sn-n96",
+          "kind": "beams",
+          "method": "sn",
+          "cells": 96,
+          "final_time": 0.5,
+          "steps": 276,
+          "family": "refinement",
+          "fields": "beams-sn-n96.npz",
+          "independent_moment_l1": 0.013455297892561235,
+          "maximum_budget": 3.469446951953614e-18,
+          "minimum_energy": 1.4789613066181417e-26,
+          "minimum_cone": 0.0
+        },
+        {
+          "id": "beams-m1-n24",
+          "kind": "beams",
+          "method": "m1",
+          "cells": 24,
+          "final_time": 0.5,
+          "steps": 72,
+          "family": "refinement",
+          "fields": "beams-m1-n24.npz",
+          "independent_moment_l1": 0.036494688481944176,
+          "maximum_budget": 3.469446951953614e-18,
+          "minimum_energy": 2.889414240314591e-20,
+          "minimum_cone": 6.121560624515052e-28
+        },
+        {
+          "id": "beams-m1-n48",
+          "kind": "beams",
+          "method": "m1",
+          "cells": 48,
+          "final_time": 0.5,
+          "steps": 140,
+          "family": "refinement",
+          "fields": "beams-m1-n48.npz",
+          "independent_moment_l1": 0.036678726065449044,
+          "maximum_budget": 3.469446951953614e-18,
+          "minimum_energy": 3.2558307476229973e-21,
+          "minimum_cone": 3.6445373821210745e-28
+        },
+        {
+          "id": "beams-m1-n96",
+          "kind": "beams",
+          "method": "m1",
+          "cells": 96,
+          "final_time": 0.5,
+          "steps": 276,
+          "family": "refinement",
+          "fields": "beams-m1-n96.npz",
+          "independent_moment_l1": 0.03628977185383718,
+          "maximum_budget": 3.469446951953614e-18,
+          "minimum_energy": 9.137307682358644e-22,
+          "minimum_cone": 3.2974385838238293e-28
+        },
+        {
+          "id": "beams-sn-n96-half-dt",
+          "kind": "beams",
+          "method": "sn",
+          "cells": 96,
+          "final_time": 0.5,
+          "steps": 552,
+          "family": "time-probe",
+          "fields": "beams-sn-n96-half-dt.npz",
+          "independent_moment_l1": 0.01345368372481539,
+          "maximum_budget": 6.938893903907228e-18,
+          "minimum_energy": 1.5490250205621913e-26,
+          "minimum_cone": 0.0
+        },
+        {
+          "id": "beams-m1-n96-half-dt",
+          "kind": "beams",
+          "method": "m1",
+          "cells": 96,
+          "final_time": 0.5,
+          "steps": 552,
+          "family": "time-probe",
+          "fields": "beams-m1-n96-half-dt.npz",
+          "independent_moment_l1": 0.036289948314740215,
+          "maximum_budget": 3.469446951953614e-18,
+          "minimum_energy": 9.140983389876668e-22,
+          "minimum_cone": 3.2974385838238293e-28
+        },
+        {
+          "id": "mms-m1-n16",
+          "kind": "mms",
+          "method": "m1",
+          "cells": 16,
+          "final_time": 0.25,
+          "steps": 24,
+          "family": "refinement",
+          "fields": "mms-m1-n16.npz",
+          "independent_moment_l1": 0.022236009113388862,
+          "maximum_budget": 4.287116090369765e-18,
+          "minimum_energy": 0.9038455088751471,
+          "minimum_cone": 0.6702558909540274
+        },
+        {
+          "id": "mms-m1-n32",
+          "kind": "mms",
+          "method": "m1",
+          "cells": 32,
+          "final_time": 0.25,
+          "steps": 48,
+          "family": "refinement",
+          "fields": "mms-m1-n32.npz",
+          "independent_moment_l1": 0.0128328461648009,
+          "maximum_budget": 2.2038216159388688e-16,
+          "minimum_energy": 0.9009964321267947,
+          "minimum_cone": 0.6651760840934247
+        },
+        {
+          "id": "mms-m1-n64",
+          "kind": "mms",
+          "method": "m1",
+          "cells": 64,
+          "final_time": 0.25,
+          "steps": 92,
+          "family": "refinement",
+          "fields": "mms-m1-n64.npz",
+          "independent_moment_l1": 0.0069086963497639094,
+          "maximum_budget": 2.2162977974599337e-16,
+          "minimum_energy": 0.9002602416117471,
+          "minimum_cone": 0.6608043639009522
+        },
+        {
+          "id": "mms-m1-n64-half-dt",
+          "kind": "mms",
+          "method": "m1",
+          "cells": 64,
+          "final_time": 0.25,
+          "steps": 184,
+          "family": "time-probe",
+          "fields": "mms-m1-n64-half-dt.npz",
+          "independent_moment_l1": 0.006906853576907913,
+          "maximum_budget": 2.2091326352765512e-16,
+          "minimum_energy": 0.9001667118030606,
+          "minimum_cone": 0.6607997550767303
+        },
+        {
+          "id": "crossed-sn-n24",
+          "kind": "crossed",
+          "method": "sn",
+          "cells": 24,
+          "final_time": 0.25,
+          "steps": 36,
+          "family": "refinement",
+          "fields": "crossed-sn-n24.npz",
+          "independent_moment_l1": 0.0159249646670574,
+          "maximum_budget": 6.938893903907228e-18,
+          "minimum_energy": 3.86975299897601e-24,
+          "minimum_cone": 0.0
+        },
+        {
+          "id": "crossed-sn-n48",
+          "kind": "crossed",
+          "method": "sn",
+          "cells": 48,
+          "final_time": 0.25,
+          "steps": 72,
+          "family": "refinement",
+          "fields": "crossed-sn-n48.npz",
+          "independent_moment_l1": 0.01166365547534047,
+          "maximum_budget": 6.938893903907228e-18,
+          "minimum_energy": 2.5933816090657233e-25,
+          "minimum_cone": 0.0
+        },
+        {
+          "id": "crossed-sn-n96",
+          "kind": "crossed",
+          "method": "sn",
+          "cells": 96,
+          "final_time": 0.25,
+          "steps": 140,
+          "family": "refinement",
+          "fields": "crossed-sn-n96.npz",
+          "independent_moment_l1": 0.007707035251535256,
+          "maximum_budget": 6.938893903907228e-18,
+          "minimum_energy": 5.822472501355593e-27,
+          "minimum_cone": 0.0
+        },
+        {
+          "id": "crossed-sn-n96-half-dt",
+          "kind": "crossed",
+          "method": "sn",
+          "cells": 96,
+          "final_time": 0.25,
+          "steps": 280,
+          "family": "time-probe",
+          "fields": "crossed-sn-n96-half-dt.npz",
+          "independent_moment_l1": 0.007705046785916882,
+          "maximum_budget": 3.469446951953614e-18,
+          "minimum_energy": 6.0380552737491554e-27,
+          "minimum_cone": 0.0
+        }
+      ],
+      "metrics": {
+        "same_solver_controls": [
+          "nonlinear-closed-M1-MMS",
+          "actual-x-and-y-crossed-angular-packets"
+        ],
+        "M1_transport_difference_is_model_error": true,
+        "completed_primary_and_control_runs": 16,
+        "spatial_dimensions": 2,
+        "angular_dimensions": 3,
+        "Pzz_retained": true
+      }
+    }
+  ],
+  "termination": "fixed_budget_completed",
+  "failure": null,
+  "input_sha256": "4e6d8420ae9f0338e31ad1659bb1b584c47d72b50730aa748baf9ae2528f5efc",
+  "duration_seconds": 9.686615374987014,
+  "source_sha256": {
+    "LICENSE": "e1053200337d037d9d81620956ce49263117c6540b1c1352c030c220bee05f59",
+    "README.md": "50aeeecdd22d4823afbc23c083f55cc963e3925a382826a11fe7acb73e771ebc",
+    "acceptance.json": "cbd27ef872420843de09d65917d2ff8f5a9a654e290ce4e79210432b62614632",
+    "cases.json": "664015266b1638e8401e0b5145f0c5ed38d0cc7a60e0f92669d22d1249837f54",
+    "geometry.py": "0752951c97b0e5b5b2f19e5e16368cb747bf6e83c0791d1abc4b428842313cbc",
+    "inputs.json": "4e6d8420ae9f0338e31ad1659bb1b584c47d72b50730aa748baf9ae2528f5efc",
+    "io_contract.py": "abce97b60b9a34498577e97f5f786c461b06e1c7904fdb2d450a74ecf3578884",
+    "mms.py": "51295a29c1dc52eae6f3496f01237ea4d2345b5f6cb5344efcb4b0044f5ff69f",
+    "plot.py": "ed351b6681a92f0d8158bbfccc9e3fcfb8f875aedd72db71b7b3f7ef7939d084",
+    "pytest.ini": "9626ac48fd15173c70c7a3b6c72eb5db55dd6d640d9393ba4e92b4a5b57d69c2",
+    "reference-history/README.md": "c5785cd4c269d30430e7e39e7a84c95ef7ae9295ccc90b1345d970b329b079f4",
+    "reference-history/failed-attempt01-pathmap.json": "3811a78ec269c03de0e8efec2996563ce3d7b330a6f3b7586c3a5dce4082b51e",
+    "reference-history/failed-attempt01-receipt.json": "3c86c890b031fff9d15e4d86e43cb513b78be74f3ec180f47235b36ff7819e59",
+    "reference-history/failed-attempt01-source/geometry.py.txt": "0752951c97b0e5b5b2f19e5e16368cb747bf6e83c0791d1abc4b428842313cbc",
+    "reference-history/failed-attempt01-source/mms.py.txt": "51295a29c1dc52eae6f3496f01237ea4d2345b5f6cb5344efcb4b0044f5ff69f",
+    "reference-history/failed-attempt01-source/references/analytic.py.txt": "0a56ccd3f678b002929713466224f58277269a05b0a2eb8a1a4591b1ebcb621d",
+    "reference-history/failed-attempt01-source/references/qualify.py.txt": "bf3950ed47f59d9406d07c3a327c499c05052fddd73384115d33a6be45da68d5",
+    "reference-history/qualified-r4-contract.json": "5a6af0d40975fdddb63c7e70a6bdacd0f1911774535f5d61cbb659ee62775282",
+    "reference-history/qualified-r4-root-review.json": "db0ab9ff5de323386be16f9337704268ee10d363b7c587f6bbc4f28a52703aa4",
+    "reference-history/qualified-r4-shared-receipt.json": "d61204b12b711912b1825df154c9b94aaaba2409639ead965b1d07342d6185b7",
+    "references/analytic.py": "0a56ccd3f678b002929713466224f58277269a05b0a2eb8a1a4591b1ebcb621d",
+    "references/beams-n24.npz": "041df3d149de551399a31f52119b89a65930c039d4678a49c648b0218c86cbfb",
+    "references/beams-n48.npz": "1b4e7ac7efafc458e80b8ba0f18902f56f5553afda259d74f34c4eaefe4f9d1f",
+    "references/beams-n96.npz": "36984dd71a84627baf5bee4749e430cec4c9206142dfca2b7555922011347af3",
+    "references/crossed-n24.npz": "dc26018b79036d54fbb6f060e2bc15b818a5a7adea6f7b772f68c9079d3d374d",
+    "references/crossed-n48.npz": "9daaf12e197f2603c055a34c8fd15fcda51a031b925f030839a402e706cbac26",
+    "references/crossed-n96.npz": "b44ab067fdb6588bfa6ab86ad4c086d71ab57a974f3a04d2b2049e4c2502d0ab",
+    "references/installed-reference-provenance.json": "57b7b0c7cef9b49b76f27bbc1ba16e520729473f7ad4851c617492b77c1f3040",
+    "references/mms-n16.npz": "a19ff551b41fd2f8e2600beea353fc2bc4ec43afca994729144b363e45e09bd1",
+    "references/mms-n32.npz": "455c49b2325764740bebd2f6d23f03f8aadd1952920e4902f3f6326f9cae660d",
+    "references/mms-n64.npz": "376d52f7bd1b9c01efb85e056f6316d5a6fb9f9084ac0fb756fc9925327c76df",
+    "references/qualification.json": "410226395be3ae91fe12d11740096a6019e770c9ac10fcb1328010780f51e418",
+    "references/qualify.py": "bf3950ed47f59d9406d07c3a327c499c05052fddd73384115d33a6be45da68d5",
+    "references/shadow-n24.npz": "91593b41fd4e81b1468d415b1563bb39d456b6c7610ac7c0f4e156a85b6a4921",
+    "references/shadow-n48.npz": "c857b0725f6c56762a9ca7ccc877371341504d3b71a4fb9e1fa01fca966030ab",
+    "references/shadow-n96.npz": "c1306aee01744d0b3ddd8a0d574e79b05d27e4810069f8294e5cf77c781cea5b",
+    "requirements-plotting.txt": "fd70c5b60168fd91d504345ec04061037fb9de084f7ec8fa53255486c9c94ab1",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "4253667e3688608911d9dc8a4fd3f5d719102a3f36fd26ac98a21480031586f0",
+    "test_geometry.py": "9dabda1a8d7d341029147921b7736e01e81779ae3a43c8649c1e4d9aa9e06a36",
+    "pre-run-contract.json": "51d9d1277c9872ed361df6bb4d17aa4eefd8fd92f54ea1a7f1f6e554c5250a03"
+  }
+}

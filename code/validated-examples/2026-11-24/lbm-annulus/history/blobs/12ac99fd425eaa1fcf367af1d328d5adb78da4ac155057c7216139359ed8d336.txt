@@ -1,0 +1,26 @@
+{
+  "started_at_utc": "2026-11-23T22:39:10.028047+00:00",
+  "protocol_sha256": "af56c42227e648b9e5b0d65c561f80c19ad4134e0db54b9a9824837e09fee766",
+  "deadline_seconds": 20,
+  "bindings": 19,
+  "authorization": "Root explicitly approved one20s saved-data-only audit of this exact protocol/19bindings; no new evolution/reference/criteria changes.",
+  "passed": true,
+  "timed_out": false,
+  "sampling_or_evolution_executions": 0,
+  "command": [
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/bin/python",
+    "-B",
+    "-W",
+    "error",
+    "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/curved-saved-audit/audit_saved_curved.py",
+    "--protocol",
+    "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/curved-saved-audit/protocol.json",
+    "--output",
+    "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/curved-saved-audit/attempt01/results"
+  ],
+  "returncode": 0,
+  "structural_checks": 11,
+  "source_posthash_mismatches": [],
+  "elapsed_seconds": 0.14729958400130272,
+  "finished_at_utc": "2026-11-23T22:39:10.175593+00:00"
+}

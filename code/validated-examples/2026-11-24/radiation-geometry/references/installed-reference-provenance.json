@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "installed_at_utc": "2026-11-23T22:20:56.053063+00:00",
+  "reference_contract_sha256": "5a6af0d40975fdddb63c7e70a6bdacd0f1911774535f5d61cbb659ee62775282",
+  "execution_receipt_sha256": "d61204b12b711912b1825df154c9b94aaaba2409639ead965b1d07342d6185b7",
+  "group_checks": 191,
+  "all_reference_checks": 323,
+  "reference_shared_seconds": 5.2940135,
+  "cache_files": [
+    {
+      "file": "shadow-n24.npz",
+      "sha256": "91593b41fd4e81b1468d415b1563bb39d456b6c7610ac7c0f4e156a85b6a4921"
+    },
+    {
+      "file": "shadow-n48.npz",
+      "sha256": "c857b0725f6c56762a9ca7ccc877371341504d3b71a4fb9e1fa01fca966030ab"
+    },
+    {
+      "file": "shadow-n96.npz",
+      "sha256": "c1306aee01744d0b3ddd8a0d574e79b05d27e4810069f8294e5cf77c781cea5b"
+    },
+    {
+      "file": "beams-n24.npz",
+      "sha256": "041df3d149de551399a31f52119b89a65930c039d4678a49c648b0218c86cbfb"
+    },
+    {
+      "file": "beams-n48.npz",
+      "sha256": "1b4e7ac7efafc458e80b8ba0f18902f56f5553afda259d74f34c4eaefe4f9d1f"
+    },
+    {
+      "file": "beams-n96.npz",
+      "sha256": "36984dd71a84627baf5bee4749e430cec4c9206142dfca2b7555922011347af3"
+    },
+    {
+      "file": "crossed-n24.npz",
+      "sha256": "dc26018b79036d54fbb6f060e2bc15b818a5a7adea6f7b772f68c9079d3d374d"
+    },
+    {
+      "file": "crossed-n48.npz",
+      "sha256": "9daaf12e197f2603c055a34c8fd15fcda51a031b925f030839a402e706cbac26"
+    },
+    {
+      "file": "crossed-n96.npz",
+      "sha256": "b44ab067fdb6588bfa6ab86ad4c086d71ab57a974f3a04d2b2049e4c2502d0ab"
+    },
+    {
+      "file": "mms-n16.npz",
+      "sha256": "a19ff551b41fd2f8e2600beea353fc2bc4ec43afca994729144b363e45e09bd1"
+    },
+    {
+      "file": "mms-n32.npz",
+      "sha256": "455c49b2325764740bebd2f6d23f03f8aadd1952920e4902f3f6326f9cae660d"
+    },
+    {
+      "file": "mms-n64.npz",
+      "sha256": "376d52f7bd1b9c01efb85e056f6316d5a6fb9f9084ac0fb756fc9925327c76df"
+    },
+    {
+      "file": "qualification.json",
+      "sha256": "410226395be3ae91fe12d11740096a6019e770c9ac10fcb1328010780f51e418"
+    }
+  ],
+  "PDE_primary_runs": 0,
+  "scope": "Qualified before main. Full source/log/partial/failure history retained persistently in preparation;no primaryPDErun or rigorousreferencebound claimed."
+}

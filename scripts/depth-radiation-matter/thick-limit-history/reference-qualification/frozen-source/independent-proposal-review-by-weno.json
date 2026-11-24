@@ -1,0 +1,42 @@
+{
+  "status": "STATIC_PROPOSAL_MATH_REVIEW_PASS_REQUIRES_FINAL_SOURCE_PROTOCOL_REVIEW",
+  "reviewed_at_utc": "2026-11-23T23:23:04.105676+00:00",
+  "reviewer": "batch_weno",
+  "review_scope": "Only frozen proposal, derivation and old transport.rhs signature/equations. No new source execution, imports, numerical probes or expm.",
+  "bindings": {
+    "proposal.json": "4eb7bdd246c1545e029d86fc750aeb718dbff98b590c1125ca64d4d6abd46f97",
+    "DERIVATION.md": "92405f9cbe7a263f6b0e130d45facdf98cd16f97b67130071a944855f4bdfd51"
+  },
+  "verified_algebra": [
+    "Multiplying BOTH RHS rates by kappa while replacing h by kappa*h gives physical epsilon I_t+mu I_x=kappa(V-I), V_t=kappa(E-V).",
+    "Angular half-integral gives conserved periodic integral(epsilon E+V), not integral(E+V) for arbitrary epsilon.",
+    "Leading F=-E_x/(3*kappa); material capacity gives effective diffusion coefficient 1/[3*kappa*(epsilon+1)].",
+    "For t=kappa*s and epsilon=1, k=1 amplitude is A_N*exp(-s/6).",
+    "Cell-mean amplitude .1*sinc(h/(2*pi)) uses NumPy normalized sinc; unit Fourier basis probes must not multiply by this factor.",
+    "N scaling kappa^2 gives kappa*h pi/16,pi/32,pi/64; this is resolved mean-free-path joint refinement, not fixed-grid AP.",
+    "Independent continuum operator differs from FV symbol; shared expm is correctly disclosed.",
+    "Initial F=0 differs from nonzero Fick flux; final-only asymptotic gates avoid assuming initial equilibrium of the flux.",
+    "21 per-kappa decisions plus8 cross-kappa decisions yields29 additions; old63+29=92."
+  ],
+  "no_math_blocker_in_proposal": true,
+  "required_final_review_items": [
+    "Final actual source/input/acceptance bindings and external shared120s wrapper.",
+    "Construct matrix from both real probe columns with exact complex sign, apply kappa to material and radiation rows, and independently compare analytic upwind symbol.",
+    "Save completed candidate fields/amplitudes before qualification/acceptance diagnostics can raise.",
+    "Qualify nonunit-epsilon k0 exchange: E=C/(epsilon+1)+(E0-V0)*exp[-kappa*(epsilon+1)*t/epsilon]/(epsilon+1), V=C/(epsilon+1)-epsilon*(E0-V0)*exp[-kappa*(epsilon+1)*t/epsilon]/(epsilon+1).",
+    "Independent GL64/128 generator and finite differences are finite reference qualification, not rigorous angular bound.",
+    "Keep physical-limit, spatial, angular and joint errors separate; no post hoc monotonicity/threshold relaxation.",
+    "Retain old successful immutable packet and numerical criteria, and do not claim supplemental modes as3new physical cases."
+  ],
+  "planned_counts": {
+    "old_pytest": 17,
+    "new_pytest": 4,
+    "total_pytest": 21,
+    "preserved_old_gates": 63,
+    "new_gates": 29,
+    "total_gates": 92
+  },
+  "numerical_success_claimed": false,
+  "execution_authorized_by_this_review": false,
+  "publisher_modified": false
+}

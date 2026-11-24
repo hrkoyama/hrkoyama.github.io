@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "status": "FROZEN_COMPONENT_PROPOSAL_AWAITING_ROOT_REVIEW_AND_AUTHORIZATION",
+  "created_at_utc": "2026-11-23T22:07:28.432679+00:00",
+  "baseline_public_commit": "9dde48159c568f985170506ef2eb0a7008f1c4ea",
+  "scientific_executions_so_far": 0,
+  "component_executions_so_far": 0,
+  "reference_generations_so_far": 0,
+  "compiler_binary_built": false,
+  "pure_static_checks": {
+    "Python_AST": true,
+    "Cxx_fsyntax_only": true,
+    "object_or_shared_library_generated": false
+  },
+  "files_sha256": {
+    "DESIGN.md": "abab95081226a51c1e8a2cf6ed1190055a1675b88426d40cb7f33fa513c4c1d5",
+    "inputs.json": "63daf6a572cd62ce96f4ce0d7b51229bc763d00475be41be59497334e4e8547d",
+    "reference-review.json": "dfe854f6c7829a77ae102c9db36e41405931cfc3c402173d54384ec955be101d",
+    "source/check_components.py": "3539327f56d87d846126ea70cfce6212a78308941b54d8de37ba3f8f65cb53b6",
+    "source/geometry.py": "28cad349c8842eb5da7efb138efb23ecfeaa3dac6b47e3337dda1ddfbad4fec4",
+    "source/kernel.cpp": "f8639d0c614e36571ceb96a7352b0e55f986a538274a2e1a9e6480da14fe2241",
+    "source/native.py": "ed7ad575f98062f2c1cec70257c5e5661a57b49571338510d54ae6bbb991f2ef",
+    "source/reference_step.py": "4aeb706562fb4bae938dc6eb0f4028f86c431d679645ba1e9899133911a19210"
+  },
+  "planned_checks": 58,
+  "planned_check_derivation": "strictcompile1+5families*3comparison/ledger+5qvalues*3comparison/ledger+5restfamilies*2+movinglid3+openmoments4+circleanchors3+invalidtau2+invaliddensity/retention2+workloadestimates3=58",
+  "component_shared_deadline_seconds": 30,
+  "compile_timeout_seconds": 15,
+  "expected_python_dependencies": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "additional_requirement": "System C++17 compiler; source only is shipped. -O2 -std=c++17 -ffp-contract=off -fPIC -Wall -Wextra -Werror; no fastmath. Temp library outside generated scientific output. Compiler/runtime output retained.",
+  "entrypoint": [
+    "PINNED_PYTHON",
+    "-B",
+    "-W",
+    "error",
+    "source/check_components.py",
+    "--output",
+    "FRESH_PRIVATE_COMPONENT_RESULTS"
+  ],
+  "environment": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "TMPDIR": "OWN_LBM_SCRATCH"
+  },
+  "scope": "Compile exact source plus fixed single-step algebra/geometry/ledger qualification. Every timed native call is one step from an identical reset state, never a multistep PDE trajectory or reference generation. Main/pytest are separate future freezes and authorizations.",
+  "acceptance": {
+    "native_scalar_max_absolute": 3e-15,
+    "mass_momentum_defect_per_node": 3e-14,
+    "rest_population_absolute": 3e-16,
+    "rest_wall_body_impulse": 2e-12,
+    "moving_mass_absolute": 2e-15,
+    "moving_total_mass_absolute": 3e-14,
+    "open_moment_absolute": 3e-15,
+    "circle_anchor_absolute": 2e-15,
+    "workload_projection_limits_seconds": {
+      "cavity": 25,
+      "curved": 40,
+      "tgv": 5
+    },
+    "projection_not_measured_main_runtime": true
+  },
+  "failure_policy": "Run all fixed diagnostics if numerically valid, preserve all individual arrays/partial JSON and failures. Exceptions or outer30s timeout terminate; no automatic retries or threshold/source/input changes. Failed component is not main scientific failure but must be retained before any revision.",
+  "main_execution_authorized": false,
+  "physics_claims": [
+    "No cavity/TGV/cylinder scientific PASS from component",
+    "Curved interpolation mass nonconservation is explicitly recorded, not repaired",
+    "Actual cylinder required; annulus control does not substitute",
+    "Original1996 user-selected outflow differs from later FEATflow do-nothing convention"
+  ],
+  "revision": 3,
+  "previous_unexecuted_protocol_sha256": "65e817d9187fa0fdac14b03a74d257553c2dcf01276603b15c6da88977dd55c1",
+  "revision_created_at_utc": "2026-11-23T22:10:39.409548+00:00",
+  "revision_reason": "Pre-execution compiler failure/timeout/OSerror retention only. Preserve command/sourceSHA/timeout/partial decoded stdout/stderr through NativeCompileFailure.receipt and checker compiler.json. R2 valid Couette fraction fixture retained. Core mathematics/all58checks/criteria/main inputs unchanged."
+}

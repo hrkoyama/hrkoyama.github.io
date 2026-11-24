@@ -1,0 +1,248 @@
+{
+  "schema_version": 1,
+  "id": "opposing-beams2d",
+  "name": {
+    "ja": "2D反向beamとM1閉包の情報損失",
+    "en": "Opposing beams and information loss in the M1 closure"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/opposing-beams2d/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/opposing-beams2d/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/opposing-beams2d/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/results/opposing-beams2d-preview.png",
+    "sha256": "79f027ee883833d34179e35687564ba63c1dd284494b66f370c8d31ab30a26ee",
+    "width": 1509,
+    "height": 495,
+    "caption": {
+      "ja": "保存した実計算場の科学プレビュー。",
+      "en": "Scientific preview from the actual saved numerical fields."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-geometry/#opposing-beams2d",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/#opposing-beams2d"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#opposing-beams2d",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#opposing-beams2d-en"
+  },
+  "equations": [
+    {
+      "id": "static-grey-transfer",
+      "name": {
+        "ja": "静止媒質の灰色放射輸送・散乱・線形交換",
+        "en": "Static grey radiative transfer,scattering and linear exchange"
+      },
+      "formula": [
+        "\\epsilon\\partial_t I+\\boldsymbol\\Omega\\cdot\\nabla I+(\\kappa_a+\\kappa_s)I=\\kappa_sJ+\\kappa_aV+Q",
+        "J=\\langle I\\rangle_\\Omega,\\quad\\partial_t V=\\kappa_a(J-V)\\quad(\\mathrm{linear\\ exchange})"
+      ],
+      "note": {
+        "ja": "正規化した角度平均を使います。物質交換は1997輸送例と周期Fourier比較で進めます。1997の光学座標では係数1、物理座標の比較ではκを放射・物質の両交換項に掛けます。",
+        "en": "Use a normalized angular mean. Material exchange is evolved in the1997 transport example and periodic Fourier controls. The1997 optical coordinates give a unit exchange coefficient; physical-coordinate controls multiply both exchange terms by kappa."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#static-grey-transfer-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#static-grey-transfer-en"
+      }
+    },
+    {
+      "id": "static-grey-m1",
+      "name": {
+        "ja": "静止媒質・平坦時空の灰色M1モーメント",
+        "en": "Static grey M1 moments in flat spacetime"
+      },
+      "formula": [
+        "E_t+\\nabla\\cdot\\boldsymbol F=-\\kappa E+S_E,\\quad\\boldsymbol F_t+\\nabla\\cdot\\mathsf P=-\\kappa\\boldsymbol F+\\boldsymbol S_F",
+        "\\mathsf P=E[(1-\\chi)\\mathsf I_3/2+(3\\chi-1)\\boldsymbol n\\boldsymbol n^T/2]",
+        "\\chi=\\frac{3+4f^2}{5+2\\sqrt{4-3f^2}},\\quad f=|\\boldsymbol F|/E"
+      ],
+      "note": {
+        "ja": "c=1、2D空間で3D圧力のPzzを保持。等方・真空分岐、閉じたPDEの製造解、角度法とのビーム差を区別し、相対論的放射流体とは扱いません。",
+        "en": "c=1,2D space with full3D pressure including Pzz. Separate isotropic/vacuum branches,closed-PDE MMS and beam defects against angular transport; no relativistic-fluid claim."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#static-grey-m1-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#static-grey-m1-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "2D空間と3D角度測度、c1、静止吸収体。実S_Nと非線形M1を24/48/96格子で進め、同一solverの変動方向MMS・x/y交差packet controlを保持。",
+    "en": "Two spatial dimensions, a three-dimensional angular measure, c=1 and static absorption. Evolve the actual signed-angle and nonlinear M1 equations on24/48/96grids. Same-solver controls retain a varying-direction manufactured solution and crossed x/y packets."
+  },
+  "formulations": [
+    {
+      "id": "supplement-opposing-beams2d",
+      "name": {
+        "ja": "2D反向beamとM1閉包の情報損失",
+        "en": "Opposing beams and information loss in the M1 closure"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "\\partial_tE+\\nabla\\cdot\\mathbf F=-\\kappa_aE,\\quad\\partial_t\\mathbf F+\\nabla\\cdot\\mathbf P=-\\kappa_a\\mathbf F",
+        "\\mathbf P=E\\left[\\frac{1-\\chi}{2}\\mathbf I_3+\\frac{3\\chi-1}{2}\\mathbf n\\otimes\\mathbf n\\right]",
+        "\\chi=\\frac{3+4f^2}{5+2\\sqrt{4-3f^2}},\\quad f=|\\mathbf F|/E,\\quad P_{xx}+P_{yy}+P_{zz}=E"
+      ],
+      "note": {
+        "ja": "保存した反向packetの実進行からM1の限界を示し、別の閉M1MMSで数値実装を検証します。",
+        "en": "Show the M1 limitation in actual opposing-packet evolution; validate the same closed M1 solver independently with a manufactured solution."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "opposing-beams2d",
+      "kind": "analytic",
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "title": {
+        "ja": "反向伝播packetの特性線参照",
+        "en": "Counterpropagating packet characteristic reference"
+      },
+      "formula": "Iplus(x,y,t)=6G(x-t,y;.25); Iminus(x,y,t)=6G(x+t,y;.75); E=Gplus+Gminus,Fx=Gplus-Gminus,Fy=0; Pxx=E,Pyy=Pzz=0.",
+      "assumptions": {
+        "ja": "2D空間に3D角度測度を用い、c=1の軸に整列した光線を扱います。実際の符号付き角度輸送と非線形の閉じたM1方程式をともに進めます。解析特性線の参照はRTE/S_Nに適用し、M1解全体の厳密参照とはしません。",
+        "en": "2Dspace with3Dangular measure,c1. Pure aligned rays; actual signed-angle transport and nonlinear closed M1 both evolved. The analytic characteristic reference applies to RTE/S_N,not to the entire M1 solution."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。",
+        "en": "Six aligned directions do not demonstrate general angular convergence. The M1 opposing-beam mismatch is expected information loss and is not required to converge to angular transport. No relativistic, gas-dynamical or multifrequency radiation hydrodynamics is implemented."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/opposing-beams2d/?lang=ja#opposing-beams2d-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/opposing-beams2d/?lang=en#opposing-beams2d-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "独立な特性cell平均と閉M1強制項の複素step検査191項目がmain前に合格。全step収支・cone・正値、別時間probe、MMSとx/y実進行の収束を検査します。 新fluxの762固定成分判定がPDE改訂前に合格。旧17pytestを維持し方向別fluxの5回帰を追加した22pytestと、元24計算・166科学判定を同じ120秒上限で再検査します。",
+    "en": "The independent characteristic cell averages and manufactured M1 forcing passed191reference/component checks before any PDE main. Check all-step budgets, realizability and positivity, spatial refinement, a separate half-step probe, and actual x/y evolution. Opposing-beam closure error is distinguished from numerical error. The new general flux passed762fixed component checks before this revised PDE main. Retain the17old tests and add5directional regressions=22tests; all24fixed runs and166scientific gates remain unchanged under the same120second limit."
+  },
+  "methods": [
+    {
+      "id": "radiation-transport",
+      "name": {
+        "ja": "放射輸送・モーメント法",
+        "en": "Radiation transport and moment methods"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/radiation-transport/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/radiation-transport/?lang=en"
+      }
+    },
+    {
+      "id": "upwind",
+      "name": {
+        "ja": "風上差分（upwind）",
+        "en": "Upwind finite differences"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/upwind/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/upwind/?lang=en"
+      }
+    },
+    {
+      "id": "heun",
+      "name": {
+        "ja": "Heun法／SSPRK(2,2)",
+        "en": "Heun / SSPRK(2,2)"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/?lang=en"
+      }
+    },
+    {
+      "id": "rusanov",
+      "name": {
+        "ja": "Rusanov／局所Lax–Friedrichs流束",
+        "en": "Rusanov / local Lax–Friedrichs flux"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rusanov/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rusanov/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "風上角度FV／M1のRusanovとSSPRK2。吸収は保存ledger付き指数分割。6軸重み1/6、単位beamのnodal強度6、Pzzと全3Dtraceを保持。floor/projectionはしません。 旧c1 Rusanovの横拡散による3不合格を保持し、一般状態の方向別Jacobian固有値・LF円錐分割・法線flux比の最大を一面係数に採用。全ghost面と台帳へ同じfluxを使い、真空と既存許容丸め域の速度だけ1へ拡張して回数・最大超過を記録します。U/Pの投影や純beam特例branchはありません。",
+    "en": "Conservative upwind angular finite volumes or M1 Rusanov fluxes with SSPRK2; exponential absorption with a separate deposited-energy ledger. Six axis directions have weight1/6; a unit beam has nodal intensity6. Retain Pzz and the full3D trace. No positive floor or cone projection. The revised general directional local-LF coefficient is the maximum of endpoint spectral radii,an independently derived cone-splitting bound,and normal reduced flux. Use the same face rule on all ghost boundaries and in the ledger. Explicit speed-only vacuum/allowed-roundoff extension1 is counted; no U/P projection or special beam branch. Preserve the original c1 transverse-diffusion failure."
+  },
+  "executions": [
+    {
+      "id": "opposing-beams2d",
+      "kind": "supplement",
+      "name": {
+        "ja": "2D反向beamとM1閉包の情報損失",
+        "en": "Opposing beams and information loss in the M1 closure"
+      },
+      "method_ids": [
+        "radiation-transport",
+        "upwind",
+        "heun",
+        "rusanov"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/opposing-beams2d/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/opposing-beams2d/?lang=en"
+      },
+      "scope": {
+        "ja": "保存した反向packetの実進行からM1の限界を示し、別の閉M1MMSで数値実装を検証します。",
+        "en": "Show the M1 limitation in actual opposing-packet evolution; validate the same closed M1 solver independently with a manufactured solution."
+      },
+      "assumptions": {
+        "ja": "2D空間と3D角度測度、c1、静止吸収体。実S_Nと非線形M1を24/48/96格子で進め、同一solverの変動方向MMS・x/y交差packet controlを保持。",
+        "en": "Two spatial dimensions, a three-dimensional angular measure, c=1 and static absorption. Evolve the actual signed-angle and nonlinear M1 equations on24/48/96grids. Same-solver controls retain a varying-direction manufactured solution and crossed x/y packets."
+      },
+      "limits": {
+        "ja": "6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。",
+        "en": "Six aligned directions do not demonstrate general angular convergence. The M1 opposing-beam mismatch is expected information loss and is not required to converge to angular transport. No relativistic, gas-dynamical or multifrequency radiation hydrodynamics is implemented."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/atlas-radiation-geometry-2026-11-24.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "独立な特性cell平均と閉M1強制項の複素step検査191項目がmain前に合格。全step収支・cone・正値、別時間probe、MMSとx/y実進行の収束を検査します。 新fluxの762固定成分判定がPDE改訂前に合格。旧17pytestを維持し方向別fluxの5回帰を追加した22pytestと、元24計算・166科学判定を同じ120秒上限で再検査します。",
+        "en": "The independent characteristic cell averages and manufactured M1 forcing passed191reference/component checks before any PDE main. Check all-step budgets, realizability and positivity, spatial refinement, a separate half-step probe, and actual x/y evolution. Opposing-beam closure error is distinguished from numerical error. The new general flux passed762fixed component checks before this revised PDE main. Retain the17old tests and add5directional regressions=22tests; all24fixed runs and166scientific gates remain unchanged under the same120second limit."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/geometry.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/mms.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/wavespeeds.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/test_directional.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/test_geometry.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

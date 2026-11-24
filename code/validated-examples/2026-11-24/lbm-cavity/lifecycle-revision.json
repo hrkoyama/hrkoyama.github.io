@@ -1,0 +1,19 @@
+{
+  "revision": 2,
+  "recorded_at_utc": "2026-11-23T22:29:58.278965+00:00",
+  "old_contract_sha256": "72386d8eb9d7d5b3c1098273afc3be4239c6957da327094f156425c9fb0683b1",
+  "scope": "Explicit temporary compiler-directory lifecycle only; no warning filtering/suppression.",
+  "changes": [
+    "Native.close plus explicit cleanup on compilererror",
+    "pytest sessionfixtureyield/finallyclose",
+    "mainexecute try/finallyclose"
+  ],
+  "first_attempt": "R1cavityexecuted22numericaltestbodies,allpassed;sessionteardownResourceWarningfailedQA,main0. R1ofthisgroupisthatfailedcavityattempt.",
+  "main_evolutions_so_far": 0,
+  "scientific_pytest_test_bodies_executed_so_far": 22,
+  "old_case_gate_criteria_and_inputs_byte_identical": true,
+  "all22_test_function_ASTs_unchanged": true,
+  "native_advance_AST_unchanged": true,
+  "kernel_geometry_scalar_byte_identical": true,
+  "component58reference_numerics_unchanged": true
+}

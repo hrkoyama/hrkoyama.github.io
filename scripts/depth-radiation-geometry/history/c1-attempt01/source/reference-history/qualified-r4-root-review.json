@@ -1,0 +1,20 @@
+{
+  "status": "INDEPENDENT_STATIC_R4_REFERENCE_REVIEW_PASS",
+  "reviewed_at_utc": "2026-11-23T22:19:57.095720+00:00",
+  "reviewer": "root",
+  "contract_sha256": "5a6af0d40975fdddb63c7e70a6bdacd0f1911774535f5d61cbb659ee62775282",
+  "prior_review_sha256": "f60cc3f58dd68fb228d59215e01f35e32d9a4b69071386bffe0c4edfdf65489a",
+  "prior_failed_attempt": "reference-attempts/01",
+  "changed_bound_files": [
+    "radiation-scattering/references/fredholm.py",
+    "radiation-scattering/references/qualify.py"
+  ],
+  "source_bindings": 23,
+  "planned_checks": 323,
+  "retained_original_checks": 320,
+  "new_exact_scalar_goldens": 3,
+  "mathematical_change": "Three BLAS-only reduction expressions replaced with explicitly indexed einsum optimizeFalse, same mathematical sums; warning policy and original numeric criteria unchanged.",
+  "authorized_scope": "One new reference/component-only shared120s attempt; no primary PDE/main/pytest.",
+  "reviewer_scientific_execution": false,
+  "blocking_findings": []
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "author": "Aidan Crilly",
+  "repository": "https://github.com/aidancrilly/RTClosureJAX",
+  "commit": "3e4f636299d62bc03f7118cfc884230c756f9d87",
+  "primary_paper": "https://raw.githubusercontent.com/ml4physicalsciences/ml4physicalsciences.github.io/master/2023/files/NeurIPS_ML4PS_2023_16.pdf",
+  "paper_sha256": "5969f7cc1458979e30e9b995a0e405cdd8ce6f8f01c1cac1080234c8960f706d",
+  "actual_read_scope": "Paperpage6Appendix4.1equations7-10 visually read; pinned README model/source normalization and raw W/V transport tables read. LicenseMIT. Author repository describes these as tabulated Su-Olson analytical data; original1997tables not directly checked. These are not the authors trained/reduced-model outputs.",
+  "is_original1997_direct_table_comparison": false,
+  "reference_data_qualified": false,
+  "raw_files": [
+    {
+      "original_path": "SuOlsonData/SuOlson_V_transport.dat",
+      "bundled_file": "SuOlson_V_transport.dat.txt",
+      "sha256": "81b8135798184cad65a15587919239f1adaceaae827895bed3a048a99f9c1cfc"
+    },
+    {
+      "original_path": "SuOlsonData/SuOlson_W_transport.dat",
+      "bundled_file": "SuOlson_W_transport.dat.txt",
+      "sha256": "957495981447b11ced7d0e5da32d9ac2d6393aa7aaf2fe20c78534adfbd8bdba"
+    },
+    {
+      "original_path": "SuOlsonData/SuOlsont.dat",
+      "bundled_file": "SuOlsont.dat.txt",
+      "sha256": "18236df08094350b5928d4d288a83b7c7d8d3b883a01deb0746737379eebc792"
+    },
+    {
+      "original_path": "SuOlsonData/SuOlsonx.dat",
+      "bundled_file": "SuOlsonx.dat.txt",
+      "sha256": "5041610696c91307ff73fb5262268f9b3412a61553edf7990b3707642cd3b417"
+    }
+  ],
+  "source_parameters": {
+    "epsilon": 1,
+    "half_width": 0.5,
+    "source_off": 10,
+    "source_amplitude": 1,
+    "scattering": 0,
+    "initial": "cold zero",
+    "geometry": "infinite symmetric1D"
+  },
+  "normalization": "I=2U,E=.5integral I =W,materialV;epsilon*I_tau+mu*I_x+I=V+Q,V_tau=E-V",
+  "qualification_required": "Finite/shape/unique coordinates,causal zeros,analytic homogeneous-source limit and immutable exact raw hashes before main.",
+  "table_origin_limit": "README attributes these to Su-Olson analytical tabulations;transcription versus independent regeneration is not explicitly documented. Label as author-provided analytical benchmark data,not directly verified original-table transcription."
+}

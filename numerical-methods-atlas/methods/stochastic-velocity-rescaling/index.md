@@ -52,6 +52,7 @@ Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-d
 問題から導かれた対応です。検証範囲は各問題の入力・境界条件に従います。
 
 - [Hamilton系・振動子](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#hamiltonian-ja) (`hamiltonian`; langevin-harmonic, thermostatted-quartic)
+- [スカラーItô拡散：GBMとOU](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#scalar-ito-diffusion-ja) (`scalar-ito-diffusion`; langevin-harmonic)
 
 #### 問題の図 (`method-problems-ja`)
 
@@ -84,7 +85,11 @@ Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-d
 
 ##### [Langevin温度制御：正準分布・刻み偏り・時間相関](https://hrkoyama.github.io/numerical-methods-atlas/problems/langevin-harmonic/?lang=ja#references-ja) (`langevin-harmonic`)
 
-参照解一覧の対応カードは未登録です。問題ごとの参照・検証資料に、解析的基準・数値参照・保存則などの確認範囲を示します。
+- [OUのweakモーメントと同時Brownian結合](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-ou-weak-moments-ja) (`ou-weak-moments`; 関連モデルの参照; 解析参照)
+
+dX=1.5(.2-X)dt+.8dW,X0=.7。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。
+
+[既存の参照図](/numerical-methods-atlas/validation/ou-weak-moments/?lang=ja#ou-weak-moments-ja-measurements)
 
 ##### [非調和CSVRとLangevin：Boltzmann求積との分布比較](https://hrkoyama.github.io/numerical-methods-atlas/problems/thermostatted-quartic/?lang=ja#references-ja) (`thermostatted-quartic`)
 
@@ -163,6 +168,7 @@ python run.py --input inputs.json --output output
 These links are derived through associated problems; checked scope follows their inputs and boundaries.
 
 - [Hamiltonian systems and oscillators](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#hamiltonian-en) (`hamiltonian`; langevin-harmonic, thermostatted-quartic)
+- [Scalar Ito diffusion: GBM and OU](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#scalar-ito-diffusion-en) (`scalar-ito-diffusion`; langevin-harmonic)
 
 #### Problem figures (`method-problems-en`)
 
@@ -195,7 +201,11 @@ Compare CSVR and Langevin distributions, temperature/energy fluctuations and cor
 
 ##### [Langevin thermostat: canonical distributions, timestep bias and correlation](https://hrkoyama.github.io/numerical-methods-atlas/problems/langevin-harmonic/?lang=en#references-en) (`langevin-harmonic`)
 
-No corresponding reference-library card is registered. The problem’s references and checks describe its analytic standards, numerical references or conservation checks.
+- [OU weak moments with joint Brownian coupling](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-ou-weak-moments-en) (`ou-weak-moments`; Related-model reference; Analytic reference)
+
+dX=1.5(.2-X)dt+.8dW,X0=.7;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping.
+
+[Existing reference profile](/numerical-methods-atlas/validation/ou-weak-moments/?lang=en#ou-weak-moments-en-measurements)
 
 ##### [Anharmonic CSVR versus Langevin: distribution checks against Boltzmann quadrature](https://hrkoyama.github.io/numerical-methods-atlas/problems/thermostatted-quartic/?lang=en#references-en) (`thermostatted-quartic`)
 

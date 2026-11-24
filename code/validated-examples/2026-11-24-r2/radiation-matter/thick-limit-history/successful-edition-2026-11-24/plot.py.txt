@@ -1,0 +1,28 @@
+"""Saved physical radiation/material energies; independent point references."""
+import argparse,json
+from pathlib import Path
+import numpy as np
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+
+
+def save(fig,path):
+    for ext in ['png','svg','pdf']:fig.savefig(str(path)+'.'+ext,dpi=155,bbox_inches='tight')
+
+
+def main():
+    p=argparse.ArgumentParser();p.add_argument('--results',type=Path,required=True);p.add_argument('--output',type=Path,required=True);a=p.parse_args();directory=a.results.parent if a.results.is_file() else a.results;result=json.loads((directory/'result.json').read_text());a.output.mkdir(parents=True,exist_ok=True)
+    for c in result['cases']:
+        row=next(r for r in c['records'] if r.get('id','').endswith('-n512'))
+        with np.load(directory/row['fields'],allow_pickle=False) as d:x=d['x'];states=d['states'];times=d['times'];rx=d['reference_x'];refs=d['reference_values'];history=d['history']
+        fig,axes=plt.subplots(2,2,figsize=(10.6,7.3));colors=plt.cm.plasma(np.linspace(.15,.85,len(times)-1))
+        for i,color in enumerate(colors,1):
+            for j in range(2):axes[0,j].plot(x,states[i,j],color=color,label=f'tau={times[i]:.5g}');axes[0,j].plot(rx,refs[i-1,:,j],'o',mfc='none',color=color,markersize=4)
+        for j,label in enumerate(['Radiation energy','Material variable V (energy at epsilon1)']):axes[0,j].set(xlim=(0,6),xlabel='Dimensionless position',ylabel=label,title='Lines: numerical; circles: independent reference');axes[0,j].legend(fontsize=7)
+        axes[1,0].plot(history[:,0],history[:,1],label='Weighted total');axes[1,0].plot(history[:,0],history[:,2],'--',label='Source/boundary ledger');axes[1,0].set(xlabel='Dimensionless time',ylabel='Integrated energy');axes[1,0].legend()
+        for j,label in enumerate(['Radiation','Material']):
+            sequence=[r for r in c['records'] if r.get('family')=='refinement'];axes[1,1].loglog([r['cells'] for r in sequence],[r['reference_rms'][j] for r in sequence],'o-',label=label)
+        axes[1,1].set(xlabel='Cells',ylabel='Reference-point RMS',title='Separate from time/angle/domain sensitivity');axes[1,1].legend();fig.suptitle(c['id']+' — diffusion and transport are distinct models');fig.tight_layout();save(fig,a.output/c['id']);plt.close(fig)
+        fig,ax=plt.subplots(figsize=(7.2,3.8));ax.plot(x,states[-1,0],label='Radiation');ax.plot(x,states[-1,1],label='Material');ax.plot(rx,refs[-1,:,0],'ko',mfc='none',label='Independent reference');ax.plot(rx,refs[-1,:,1],'ks',mfc='none');ax.set(xlim=(0,6),xlabel='Dimensionless position',ylabel='Energy variable',title=c['id']+f' at tau={times[-1]:.5g}');ax.legend(fontsize=8);fig.tight_layout();save(fig,a.output/(c['id']+'-preview'));plt.close(fig)
+if __name__=='__main__':main()

@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "status": "FROZEN_NEW_TWO_MESH_COMPONENT_AWAITING_INDEPENDENT_REVIEW_AND_ROOT_AUTHORIZATION",
+  "created_at_utc": "2026-11-23T23:00:33.198990+00:00",
+  "files_sha256": {
+    "source/check_refinement.py": "0dd978bfffa9a4923f652341126400e69bf8ace4629c37725d3f5f2739776244",
+    "source/geometry.py": "517bd0e411a48847b40028084343c403fe99626733970617945f01f8940a1214",
+    "source/kernel.cpp": "94224e87617ceed1b946bb13829e20242fc9c6f43041eae3b54487f30b589d4d",
+    "source/native.py": "199aff9198a80a7859567283d21f52a2111520d2de9cfab6e25ec4d7de6ac98d",
+    "source/reference_step.py": "8735c74ce0dffc74657f794cf3fb8f0e615ee60ee56af375baf682b409a82e69"
+  },
+  "evidence": {
+    "executed_R3_contract": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/main-attempts/lbm-curved-boundary/02/source/pre-run-contract.json",
+      "sha256": "52429b7f7551ca77fd7d99762be4d74bd008359f3e3909250caf4cc5d8e97538"
+    },
+    "R3_result": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/main-attempts/lbm-curved-boundary/02/results/result.json",
+      "sha256": "c62162a8bc943b52c16f545f7307751a67693f2742a63175f9107f28c1707c7c"
+    },
+    "R3_receipt": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/main-attempts/lbm-curved-boundary/02/receipt.json",
+      "sha256": "63533d1512172604e55bba9900d664bd23d4301eb4bacbbca26c31c856be90d4"
+    },
+    "qualified87_protocol": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/curved-repair/component/protocol.json",
+      "sha256": "2bd555e868955b3dfd1da163a77cf6b91815b280807b15a85ee5687b7e35276b"
+    },
+    "qualified87_receipt": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/curved-repair/component/attempt01/receipt.json",
+      "sha256": "906f30b612f10804d40b6c0b6362711cc451f201dd0db208f714f3ba98b4f601"
+    },
+    "qualified87_timing": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/curved-repair/component/attempt01/results/timing.json",
+      "sha256": "03399a2360b98a18feea2174cbb2f45a95ea83e337c67145d354563b0520a59b"
+    },
+    "fixed_refinement_design_options": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/curved-repair/annular-refinement-proposal.json",
+      "sha256": "7aa3cbf987bca6f56460765bfa6a9c20588f7816bcca23217d9c8600e519225e"
+    }
+  },
+  "new_N": [
+    160,
+    240
+  ],
+  "existing_retained_N": 80,
+  "variants": [
+    0,
+    1
+  ],
+  "fixed_physics": {
+    "Ui": 0.02,
+    "tau": 0.7,
+    "nu": 0.01,
+    "T": 4,
+    "steps_formula": "3*N*N//5",
+    "dt_formula": "(tau-.5)/3*dx^2/nu"
+  },
+  "reset_calls_per_geometry": 16,
+  "interleaved_timing_blocks": 3,
+  "zero_step_allocation_diagnostic": true,
+  "planned_check_count": 29,
+  "planned_check_names": [
+    "strict C++17 compile",
+    "N160-variant0 true-circle/stair fractions",
+    "N160-variant0 required stencil support",
+    "N160-variant0 scalar-native one-step",
+    "N160-variant0 mass ledger",
+    "N160-variant0 momentum ledger",
+    "N160-variant0 finite positive one-step density",
+    "N160-variant0 every reset reproduces identical single-step",
+    "N160-variant1 true-circle/stair fractions",
+    "N160-variant1 required stencil support",
+    "N160-variant1 scalar-native one-step",
+    "N160-variant1 mass ledger",
+    "N160-variant1 momentum ledger",
+    "N160-variant1 finite positive one-step density",
+    "N160-variant1 every reset reproduces identical single-step",
+    "N240-variant0 true-circle/stair fractions",
+    "N240-variant0 required stencil support",
+    "N240-variant0 scalar-native one-step",
+    "N240-variant0 mass ledger",
+    "N240-variant0 momentum ledger",
+    "N240-variant0 finite positive one-step density",
+    "N240-variant0 every reset reproduces identical single-step",
+    "N240-variant1 true-circle/stair fractions",
+    "N240-variant1 required stencil support",
+    "N240-variant1 scalar-native one-step",
+    "N240-variant1 mass ledger",
+    "N240-variant1 momentum ledger",
+    "N240-variant1 finite positive one-step density",
+    "N240-variant1 every reset reproduces identical single-step"
+  ],
+  "accuracy": {
+    "scalar_native_abs": 4e-15,
+    "pernode_mass_momentum_ledger_abs": 3e-14,
+    "reset_state_bitwise_identical": true
+  },
+  "planning_baseline": {
+    "R3_main_measured_seconds": 36.506039249987225,
+    "R3_pytest_seconds": 1.8850903749989811,
+    "R3_non_annular_main_planning_seconds": 35.56755543845429,
+    "old_N80_reset_one_step_seconds": 8.861981223162729e-05
+  },
+  "planning_policy": "BothvariantsN80/160/240fixedbyroot. Rawresetandzero-step-subtractedcostsarediagnosticnotrigorousbounds. Ifmeasuredcombinedplanningcost>approximately85s,rootconditionallyapprovesorganisationalcasegroupsplit:lbm-annulusandexistinglbm-curved-boundary(cylinder),samecaseIDs/physics/criteria,each120s. Decideafterthiscomponent,notafteranewPDEtrial. NoPDEauthorizationinthisprotocol.",
+  "execution": {
+    "outer_shared_deadline_seconds": 30,
+    "compile_timeout_seconds": 15,
+    "strict_warnings": true,
+    "pinned_python": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/bin/python",
+    "environment": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "command": [
+      "PINNED_PYTHON",
+      "-B",
+      "-W",
+      "error",
+      "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/curved-repair/refinement-component/source/check_refinement.py",
+      "--output",
+      "FRESH_PRIVATE_RESULTS"
+    ]
+  },
+  "scope": "Exactly4geometryfixtures(twoNEWmeshes,bothvariants),independentscalarnativeONEstep,reset16single-stepcallsx3blocks,and16zero-stepallocationcallsx3blocks. Everycallstartsfromsamef0;NOphysicaltrajectory/newreference/PDEcalibration. No source/input/acceptance changes toR3.",
+  "failure_policy": "Onefreshroot-authorized30sprocessgroupattempt,includescompiler15s. Allsource/evidencepreposthashes,source/protocol/review/stdoutstderr/compiler/partialarrays/checks/exception/candidate/receipt retained. No retry/gridselection/scientificcriterionchange.",
+  "source_files_identical_to_qualified87": true,
+  "AST_passed": true,
+  "new_component_execution_started": false,
+  "new_main_execution_started": false
+}

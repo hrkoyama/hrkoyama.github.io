@@ -1,0 +1,1090 @@
+[
+  {
+    "id": "su-olson-diffusion1996",
+    "passed": true,
+    "checks": {
+      "su-olson-diffusion1996-n128/finite-positive": true,
+      "su-olson-diffusion1996-n128/energy-budget": true,
+      "su-olson-diffusion1996-n128/fixed-final-time": true,
+      "su-olson-diffusion1996-n256/finite-positive": true,
+      "su-olson-diffusion1996-n256/energy-budget": true,
+      "su-olson-diffusion1996-n256/fixed-final-time": true,
+      "su-olson-diffusion1996-n512/finite-positive": true,
+      "su-olson-diffusion1996-n512/energy-budget": true,
+      "su-olson-diffusion1996-n512/fixed-final-time": true,
+      "su-olson-diffusion1996-half-dt/finite-positive": true,
+      "su-olson-diffusion1996-half-dt/energy-budget": true,
+      "su-olson-diffusion1996-half-dt/fixed-final-time": true,
+      "su-olson-diffusion1996-far-domain/finite-positive": true,
+      "su-olson-diffusion1996-far-domain/energy-budget": true,
+      "su-olson-diffusion1996-far-domain/fixed-final-time": true,
+      "refinement/1": true,
+      "refinement/2": true,
+      "finest-independent-rms": true,
+      "finest-independent-linf": true,
+      "separate-time-sensitivity": true,
+      "finite-domain-sensitivity": true,
+      "capacity/0.25/diffusion/error": true,
+      "capacity/0.25/diffusion/budget": true,
+      "capacity/0.25/transport/error": true,
+      "capacity/0.25/transport/budget": true,
+      "capacity/2.0/diffusion/error": true,
+      "capacity/2.0/diffusion/budget": true,
+      "capacity/2.0/transport/error": true,
+      "capacity/2.0/transport/budget": true
+    },
+    "check_details": [
+      {
+        "name": "su-olson-diffusion1996-n128/finite-positive",
+        "value": 7.258084099909136e-225,
+        "bound": -1e-13,
+        "passed": true
+      },
+      {
+        "name": "su-olson-diffusion1996-n128/energy-budget",
+        "value": 3.879119248040297e-13,
+        "bound": 2e-10,
+        "passed": true
+      },
+      {
+        "name": "su-olson-diffusion1996-n128/fixed-final-time",
+        "value": 3.0,
+        "bound": 3.0,
+        "passed": true
+      },
+      {
+        "name": "su-olson-diffusion1996-n256/finite-positive",
+        "value": 0.0,
+        "bound": -1e-13,
+        "passed": true
+      },
+      {
+        "name": "su-olson-diffusion1996-n256/energy-budget",
+        "value": 7.192024753521764e-13,
+        "bound": 2e-10,
+        "passed": true
+      },
+      {
+        "name": "su-olson-diffusion1996-n256/fixed-final-time",
+        "value": 3.0,
+        "bound": 3.0,
+        "passed": true
+      },
+      {
+        "name": "su-olson-diffusion1996-n512/finite-positive",
+        "value": 0.0,
+        "bound": -1e-13,
+        "passed": true
+      },
+      {
+        "name": "su-olson-diffusion1996-n512/energy-budget",
+        "value": 7.085443343157749e-13,
+        "bound": 2e-10,
+        "passed": true
+      },
+      {
+        "name": "su-olson-diffusion1996-n512/fixed-final-time",
+        "value": 3.0,
+        "bound": 3.0,
+        "passed": true
+      },
+      {
+        "name": "su-olson-diffusion1996-half-dt/finite-positive",
+        "value": 0.0,
+        "bound": -1e-13,
+        "passed": true
+      },
+      {
+        "name": "su-olson-diffusion1996-half-dt/energy-budget",
+        "value": 2.9829472225628706e-12,
+        "bound": 2e-10,
+        "passed": true
+      },
+      {
+        "name": "su-olson-diffusion1996-half-dt/fixed-final-time",
+        "value": 3.0,
+        "bound": 3.0,
+        "passed": true
+      },
+      {
+        "name": "su-olson-diffusion1996-far-domain/finite-positive",
+        "value": 0.0,
+        "bound": -1e-13,
+        "passed": true
+      },
+      {
+        "name": "su-olson-diffusion1996-far-domain/energy-budget",
+        "value": 7.014389069581739e-13,
+        "bound": 2e-10,
+        "passed": true
+      },
+      {
+        "name": "su-olson-diffusion1996-far-domain/fixed-final-time",
+        "value": 3.0,
+        "bound": 3.0,
+        "passed": true
+      },
+      {
+        "name": "refinement/1",
+        "value": 0.24786092954614275,
+        "bound": 0.92,
+        "passed": true
+      },
+      {
+        "name": "refinement/2",
+        "value": 0.2483659010618088,
+        "bound": 0.92,
+        "passed": true
+      },
+      {
+        "name": "finest-independent-rms",
+        "value": [
+          3.181996278126943e-05,
+          1.161311555354063e-05
+        ],
+        "bound": 0.02,
+        "passed": true
+      },
+      {
+        "name": "finest-independent-linf",
+        "value": [
+          9.057646696342125e-05,
+          2.202011795187503e-05
+        ],
+        "bound": 0.05,
+        "passed": true
+      },
+      {
+        "name": "separate-time-sensitivity",
+        "value": 0.12593409392512162,
+        "bound": 0.2,
+        "passed": true
+      },
+      {
+        "name": "finite-domain-sensitivity",
+        "value": 0.0,
+        "bound": 0.0002,
+        "passed": true
+      },
+      {
+        "name": "capacity/0.25/diffusion/error",
+        "value": 0.00019032949653130515,
+        "bound": 0.002,
+        "passed": true
+      },
+      {
+        "name": "capacity/0.25/diffusion/budget",
+        "value": 5.984102102729594e-14,
+        "bound": 1e-11,
+        "passed": true
+      },
+      {
+        "name": "capacity/0.25/transport/error",
+        "value": 3.181825272147165e-07,
+        "bound": 0.002,
+        "passed": true
+      },
+      {
+        "name": "capacity/0.25/transport/budget",
+        "value": 3.3306690738754696e-16,
+        "bound": 1e-11,
+        "passed": true
+      },
+      {
+        "name": "capacity/2.0/diffusion/error",
+        "value": 0.000154177848556869,
+        "bound": 0.002,
+        "passed": true
+      },
+      {
+        "name": "capacity/2.0/diffusion/budget",
+        "value": 7.460698725481052e-14,
+        "bound": 1e-11,
+        "passed": true
+      },
+      {
+        "name": "capacity/2.0/transport/error",
+        "value": 7.721428540996556e-08,
+        "bound": 0.002,
+        "passed": true
+      },
+      {
+        "name": "capacity/2.0/transport/budget",
+        "value": 1.199040866595169e-14,
+        "bound": 1e-11,
+        "passed": true
+      }
+    ],
+    "records": [
+      {
+        "id": "su-olson-diffusion1996-n128",
+        "cells": 128,
+        "length": 16.0,
+        "epsilon": 1.0,
+        "times": [
+          0.1,
+          1.0,
+          3.0
+        ],
+        "max_dt": 0.0003125,
+        "family": "refinement",
+        "fields": "su-olson-diffusion1996-n128.npz",
+        "reference_rms": [
+          0.0005828935430371845,
+          0.0001886464788587654
+        ],
+        "reference_linf": [
+          0.0015246120986942974,
+          0.00037398509166339244
+        ]
+      },
+      {
+        "id": "su-olson-diffusion1996-n256",
+        "cells": 256,
+        "length": 16.0,
+        "epsilon": 1.0,
+        "times": [
+          0.1,
+          1.0,
+          3.0
+        ],
+        "max_dt": 0.00015625,
+        "family": "refinement",
+        "fields": "su-olson-diffusion1996-n256.npz",
+        "reference_rms": [
+          0.00013911365660577288,
+          4.675809160554036e-05
+        ],
+        "reference_linf": [
+          0.0003681927147146727,
+          8.991602698502077e-05
+        ]
+      },
+      {
+        "id": "su-olson-diffusion1996-n512",
+        "cells": 512,
+        "length": 16.0,
+        "epsilon": 1.0,
+        "times": [
+          0.1,
+          1.0,
+          3.0
+        ],
+        "max_dt": 7.8125e-05,
+        "family": "refinement",
+        "fields": "su-olson-diffusion1996-n512.npz",
+        "reference_rms": [
+          3.181996278126943e-05,
+          1.161311555354063e-05
+        ],
+        "reference_linf": [
+          9.057646696342125e-05,
+          2.202011795187503e-05
+        ]
+      },
+      {
+        "id": "su-olson-diffusion1996-half-dt",
+        "cells": 512,
+        "length": 16.0,
+        "epsilon": 1.0,
+        "times": [
+          0.1,
+          1.0,
+          3.0
+        ],
+        "max_dt": 3.90625e-05,
+        "family": "time-probe",
+        "fields": "su-olson-diffusion1996-half-dt.npz",
+        "reference_rms": [
+          3.4740959727708664e-05,
+          1.1761108358809267e-05
+        ],
+        "reference_linf": [
+          9.20871373647908e-05,
+          2.243302371870981e-05
+        ]
+      },
+      {
+        "id": "su-olson-diffusion1996-far-domain",
+        "cells": 768,
+        "length": 24.0,
+        "epsilon": 1.0,
+        "times": [
+          0.1,
+          1.0,
+          3.0
+        ],
+        "max_dt": 7.8125e-05,
+        "family": "domain-probe",
+        "fields": "su-olson-diffusion1996-far-domain.npz",
+        "reference_rms": [
+          3.181996278126943e-05,
+          1.161311555354063e-05
+        ],
+        "reference_linf": [
+          9.057646696342125e-05,
+          2.202011795187503e-05
+        ]
+      }
+    ],
+    "metrics": {
+      "completed_primary_runs": 5,
+      "reference_scope": "independent official diffusion integrals",
+      "capacity_controls": [
+        {
+          "epsilon": 0.25,
+          "method": "diffusion",
+          "error": 0.00019032949653130515,
+          "budget": 5.984102102729594e-14
+        },
+        {
+          "epsilon": 0.25,
+          "method": "transport",
+          "error": 3.181825272147165e-07,
+          "budget": 3.3306690738754696e-16
+        },
+        {
+          "epsilon": 2.0,
+          "method": "diffusion",
+          "error": 0.000154177848556869,
+          "budget": 7.460698725481052e-14
+        },
+        {
+          "epsilon": 2.0,
+          "method": "transport",
+          "error": 7.721428540996556e-08,
+          "budget": 1.199040866595169e-14
+        }
+      ]
+    }
+  },
+  {
+    "id": "su-olson-transport1997",
+    "passed": true,
+    "checks": {
+      "su-olson-transport1997-n128/finite-positive": true,
+      "su-olson-transport1997-n128/energy-budget": true,
+      "su-olson-transport1997-n128/fixed-final-time": true,
+      "su-olson-transport1997-n128/explicit-courant": true,
+      "su-olson-transport1997-n256/finite-positive": true,
+      "su-olson-transport1997-n256/energy-budget": true,
+      "su-olson-transport1997-n256/fixed-final-time": true,
+      "su-olson-transport1997-n256/explicit-courant": true,
+      "su-olson-transport1997-n512/finite-positive": true,
+      "su-olson-transport1997-n512/energy-budget": true,
+      "su-olson-transport1997-n512/fixed-final-time": true,
+      "su-olson-transport1997-n512/explicit-courant": true,
+      "su-olson-transport1997-angular-64/finite-positive": true,
+      "su-olson-transport1997-angular-64/energy-budget": true,
+      "su-olson-transport1997-angular-64/fixed-final-time": true,
+      "su-olson-transport1997-angular-64/explicit-courant": true,
+      "su-olson-transport1997-half-dt/finite-positive": true,
+      "su-olson-transport1997-half-dt/energy-budget": true,
+      "su-olson-transport1997-half-dt/fixed-final-time": true,
+      "su-olson-transport1997-half-dt/explicit-courant": true,
+      "refinement/1": true,
+      "refinement/2": true,
+      "finest-independent-rms": true,
+      "finest-independent-linf": true,
+      "separate-angular-sensitivity": true,
+      "separate-time-sensitivity": true,
+      "capacity/0.25/diffusion/error": true,
+      "capacity/0.25/diffusion/budget": true,
+      "capacity/0.25/transport/error": true,
+      "capacity/0.25/transport/budget": true,
+      "capacity/2.0/diffusion/error": true,
+      "capacity/2.0/diffusion/budget": true,
+      "capacity/2.0/transport/error": true,
+      "capacity/2.0/transport/budget": true,
+      "thick/4/finite-positive-fields": true,
+      "thick/4/periodic-weighted-energy": true,
+      "thick/4/actual-stencil-and-global-RHS": true,
+      "thick/4/separate-FV-space-error": true,
+      "thick/4/separate-angular-sensitivity": true,
+      "thick/4/physical-initial-layer-retained": true,
+      "thick/4/mean-free-path-resolved": true,
+      "thick/8/finite-positive-fields": true,
+      "thick/8/periodic-weighted-energy": true,
+      "thick/8/actual-stencil-and-global-RHS": true,
+      "thick/8/separate-FV-space-error": true,
+      "thick/8/separate-angular-sensitivity": true,
+      "thick/8/physical-initial-layer-retained": true,
+      "thick/8/mean-free-path-resolved": true,
+      "thick/16/finite-positive-fields": true,
+      "thick/16/periodic-weighted-energy": true,
+      "thick/16/actual-stencil-and-global-RHS": true,
+      "thick/16/separate-FV-space-error": true,
+      "thick/16/separate-angular-sensitivity": true,
+      "thick/16/physical-initial-layer-retained": true,
+      "thick/16/mean-free-path-resolved": true,
+      "thick/space/k8": true,
+      "thick/continuum-limit/k8": true,
+      "thick/space/k16": true,
+      "thick/continuum-limit/k16": true,
+      "thick/finest-energy-limit": true,
+      "thick/finest-scaled-flux-limit": true,
+      "thick/wrong-flux-sign-negative-control": true,
+      "thick/missing-one-third-negative-control": true
+    },
+    "check_details": [
+      {
+        "name": "su-olson-transport1997-n128/finite-positive",
+        "value": 0.0,
+        "bound": -1e-13,
+        "passed": true
+      },
+      {
+        "name": "su-olson-transport1997-n128/energy-budget",
+        "value": 3.552713678800501e-15,
+        "bound": 2e-10,
+        "passed": true
+      },
+      {
+        "name": "su-olson-transport1997-n128/fixed-final-time",
+        "value": 3.16228,
+        "bound": 3.16228,
+        "passed": true
+      },
+      {
+        "name": "su-olson-transport1997-n128/explicit-courant",
+        "value": 0.21144009349916504,
+        "bound": 0.4,
+        "passed": true
+      },
+      {
+        "name": "su-olson-transport1997-n256/finite-positive",
+        "value": 0.0,
+        "bound": -1e-13,
+        "passed": true
+      },
+      {
+        "name": "su-olson-transport1997-n256/energy-budget",
+        "value": 1.7763568394002505e-14,
+        "bound": 2e-10,
+        "passed": true
+      },
+      {
+        "name": "su-olson-transport1997-n256/fixed-final-time",
+        "value": 3.16228,
+        "bound": 3.16228,
+        "passed": true
+      },
+      {
+        "name": "su-olson-transport1997-n256/explicit-courant",
+        "value": 0.20519009349916503,
+        "bound": 0.4,
+        "passed": true
+      },
+      {
+        "name": "su-olson-transport1997-n512/finite-positive",
+        "value": 0.0,
+        "bound": -1e-13,
+        "passed": true
+      },
+      {
+        "name": "su-olson-transport1997-n512/energy-budget",
+        "value": 3.1308289294429414e-14,
+        "bound": 2e-10,
+        "passed": true
+      },
+      {
+        "name": "su-olson-transport1997-n512/fixed-final-time",
+        "value": 3.16228,
+        "bound": 3.16228,
+        "passed": true
+      },
+      {
+        "name": "su-olson-transport1997-n512/explicit-courant",
+        "value": 0.20206509349916502,
+        "bound": 0.4,
+        "passed": true
+      },
+      {
+        "name": "su-olson-transport1997-angular-64/finite-positive",
+        "value": 0.0,
+        "bound": -1e-13,
+        "passed": true
+      },
+      {
+        "name": "su-olson-transport1997-angular-64/energy-budget",
+        "value": 3.1308289294429414e-14,
+        "bound": 2e-10,
+        "passed": true
+      },
+      {
+        "name": "su-olson-transport1997-angular-64/fixed-final-time",
+        "value": 3.16228,
+        "bound": 3.16228,
+        "passed": true
+      },
+      {
+        "name": "su-olson-transport1997-angular-64/explicit-courant",
+        "value": 0.2028513861849482,
+        "bound": 0.4,
+        "passed": true
+      },
+      {
+        "name": "su-olson-transport1997-half-dt/finite-positive",
+        "value": 0.0,
+        "bound": -1e-13,
+        "passed": true
+      },
+      {
+        "name": "su-olson-transport1997-half-dt/energy-budget",
+        "value": 2.90878432451791e-14,
+        "bound": 2e-10,
+        "passed": true
+      },
+      {
+        "name": "su-olson-transport1997-half-dt/fixed-final-time",
+        "value": 3.16228,
+        "bound": 3.16228,
+        "passed": true
+      },
+      {
+        "name": "su-olson-transport1997-half-dt/explicit-courant",
+        "value": 0.10103254674958251,
+        "bound": 0.4,
+        "passed": true
+      },
+      {
+        "name": "refinement/1",
+        "value": 0.5369571776918536,
+        "bound": 0.92,
+        "passed": true
+      },
+      {
+        "name": "refinement/2",
+        "value": 0.5066968216798629,
+        "bound": 0.92,
+        "passed": true
+      },
+      {
+        "name": "finest-independent-rms",
+        "value": [
+          0.0020954035751023056,
+          0.0015130534725422019
+        ],
+        "bound": 0.025,
+        "passed": true
+      },
+      {
+        "name": "finest-independent-linf",
+        "value": [
+          0.007864368991879589,
+          0.006578670088229099
+        ],
+        "bound": 0.06,
+        "passed": true
+      },
+      {
+        "name": "separate-angular-sensitivity",
+        "value": 1.070763714339229e-05,
+        "bound": 0.01,
+        "passed": true
+      },
+      {
+        "name": "separate-time-sensitivity",
+        "value": 0.000355958614359254,
+        "bound": 0.2,
+        "passed": true
+      },
+      {
+        "name": "capacity/0.25/diffusion/error",
+        "value": 0.00019032949653130515,
+        "bound": 0.002,
+        "passed": true
+      },
+      {
+        "name": "capacity/0.25/diffusion/budget",
+        "value": 5.984102102729594e-14,
+        "bound": 1e-11,
+        "passed": true
+      },
+      {
+        "name": "capacity/0.25/transport/error",
+        "value": 3.181825272147165e-07,
+        "bound": 0.002,
+        "passed": true
+      },
+      {
+        "name": "capacity/0.25/transport/budget",
+        "value": 3.3306690738754696e-16,
+        "bound": 1e-11,
+        "passed": true
+      },
+      {
+        "name": "capacity/2.0/diffusion/error",
+        "value": 0.000154177848556869,
+        "bound": 0.002,
+        "passed": true
+      },
+      {
+        "name": "capacity/2.0/diffusion/budget",
+        "value": 7.460698725481052e-14,
+        "bound": 1e-11,
+        "passed": true
+      },
+      {
+        "name": "capacity/2.0/transport/error",
+        "value": 7.721428540996556e-08,
+        "bound": 0.002,
+        "passed": true
+      },
+      {
+        "name": "capacity/2.0/transport/budget",
+        "value": 1.199040866595169e-14,
+        "bound": 1e-11,
+        "passed": true
+      },
+      {
+        "name": "thick/4/finite-positive-fields",
+        "value": 0.9000401546850321,
+        "bound": 0.0,
+        "passed": true
+      },
+      {
+        "name": "thick/4/periodic-weighted-energy",
+        "value": 2.8398112908774138e-15,
+        "bound": 2e-11,
+        "passed": true
+      },
+      {
+        "name": "thick/4/actual-stencil-and-global-RHS",
+        "value": 9.096889908022376e-15,
+        "bound": 2e-12,
+        "passed": true
+      },
+      {
+        "name": "thick/4/separate-FV-space-error",
+        "value": 0.006406191708967511,
+        "bound": 0.02,
+        "passed": true
+      },
+      {
+        "name": "thick/4/separate-angular-sensitivity",
+        "value": 2.361755418510908e-15,
+        "bound": 2e-10,
+        "passed": true
+      },
+      {
+        "name": "thick/4/physical-initial-layer-retained",
+        "value": {
+          "actual_scaled_flux": 2.463554666388876e-15,
+          "nonzero_Fick_scaled_amplitude": 0.3333333333333333
+        },
+        "bound": {
+          "zero_flux_tolerance": 2e-12,
+          "Fick_amplitude": 0.3333333333333333
+        },
+        "passed": true
+      },
+      {
+        "name": "thick/4/mean-free-path-resolved",
+        "value": 0.19634954084936207,
+        "bound": 0.19634954084936207,
+        "passed": true
+      },
+      {
+        "name": "thick/8/finite-positive-fields",
+        "value": 0.9000025099512949,
+        "bound": 0.0,
+        "passed": true
+      },
+      {
+        "name": "thick/8/periodic-weighted-energy",
+        "value": 5.698441403484806e-15,
+        "bound": 2e-11,
+        "passed": true
+      },
+      {
+        "name": "thick/8/actual-stencil-and-global-RHS",
+        "value": 3.609851133290487e-14,
+        "bound": 2e-12,
+        "passed": true
+      },
+      {
+        "name": "thick/8/separate-FV-space-error",
+        "value": 0.0029971556290815586,
+        "bound": 0.02,
+        "passed": true
+      },
+      {
+        "name": "thick/8/separate-angular-sensitivity",
+        "value": 2.707688603804596e-15,
+        "bound": 2e-10,
+        "passed": true
+      },
+      {
+        "name": "thick/8/physical-initial-layer-retained",
+        "value": {
+          "actual_scaled_flux": 7.008326819592096e-15,
+          "nonzero_Fick_scaled_amplitude": 0.3333333333333333
+        },
+        "bound": {
+          "zero_flux_tolerance": 2e-12,
+          "Fick_amplitude": 0.3333333333333333
+        },
+        "passed": true
+      },
+      {
+        "name": "thick/8/mean-free-path-resolved",
+        "value": 0.09817477042468103,
+        "bound": 0.19634954084936207,
+        "passed": true
+      },
+      {
+        "name": "thick/16/finite-positive-fields",
+        "value": 0.9000001568730633,
+        "bound": 0.0,
+        "passed": true
+      },
+      {
+        "name": "thick/16/periodic-weighted-energy",
+        "value": 1.0695349491031034e-14,
+        "bound": 2e-11,
+        "passed": true
+      },
+      {
+        "name": "thick/16/actual-stencil-and-global-RHS",
+        "value": 8.391850078921443e-14,
+        "bound": 2e-12,
+        "passed": true
+      },
+      {
+        "name": "thick/16/separate-FV-space-error",
+        "value": 0.0014774233739939713,
+        "bound": 0.02,
+        "passed": true
+      },
+      {
+        "name": "thick/16/separate-angular-sensitivity",
+        "value": 5.828675392681093e-15,
+        "bound": 2e-10,
+        "passed": true
+      },
+      {
+        "name": "thick/16/physical-initial-layer-retained",
+        "value": {
+          "actual_scaled_flux": 1.4988016710481925e-14,
+          "nonzero_Fick_scaled_amplitude": 0.33333333333333326
+        },
+        "bound": {
+          "zero_flux_tolerance": 2e-12,
+          "Fick_amplitude": 0.3333333333333333
+        },
+        "passed": true
+      },
+      {
+        "name": "thick/16/mean-free-path-resolved",
+        "value": 0.04908738521234052,
+        "bound": 0.19634954084936207,
+        "passed": true
+      },
+      {
+        "name": "thick/space/k8",
+        "value": 0.4678529405990274,
+        "bound": 0.8,
+        "passed": true
+      },
+      {
+        "name": "thick/continuum-limit/k8",
+        "value": 0.2587954385001898,
+        "bound": 0.6,
+        "passed": true
+      },
+      {
+        "name": "thick/space/k16",
+        "value": 0.49294182779781426,
+        "bound": 0.8,
+        "passed": true
+      },
+      {
+        "name": "thick/continuum-limit/k16",
+        "value": 0.2508904305740984,
+        "bound": 0.6,
+        "passed": true
+      },
+      {
+        "name": "thick/finest-energy-limit",
+        "value": 0.0011378880853298219,
+        "bound": 0.01,
+        "passed": true
+      },
+      {
+        "name": "thick/finest-scaled-flux-limit",
+        "value": 0.0005274719030461596,
+        "bound": 0.02,
+        "passed": true
+      },
+      {
+        "name": "thick/wrong-flux-sign-negative-control",
+        "value": 0.0005274719030461596,
+        "bound": 0.15973304154242812,
+        "passed": true
+      },
+      {
+        "name": "thick/missing-one-third-negative-control",
+        "value": 0.0011378880853298219,
+        "bound": 0.01905031832187136,
+        "passed": true
+      }
+    ],
+    "records": [
+      {
+        "id": "su-olson-transport1997-n128",
+        "cells": 128,
+        "length": 8.0,
+        "epsilon": 1.0,
+        "ordinates": 32,
+        "times": [
+          0.1,
+          1.0,
+          3.16228
+        ],
+        "max_dt": 0.0125,
+        "source_off": 10.0,
+        "family": "refinement",
+        "fields": "su-olson-transport1997-n128.npz",
+        "reference_rms": [
+          0.007750579861524426,
+          0.005567982625889962
+        ],
+        "reference_linf": [
+          0.029067854414183025,
+          0.024016466305888606
+        ]
+      },
+      {
+        "id": "su-olson-transport1997-n256",
+        "cells": 256,
+        "length": 8.0,
+        "epsilon": 1.0,
+        "ordinates": 32,
+        "times": [
+          0.1,
+          1.0,
+          3.16228
+        ],
+        "max_dt": 0.00625,
+        "source_off": 10.0,
+        "family": "refinement",
+        "fields": "su-olson-transport1997-n256.npz",
+        "reference_rms": [
+          0.004135418825315243,
+          0.00298976823623515
+        ],
+        "reference_linf": [
+          0.015301532539392149,
+          0.01274441919854874
+        ]
+      },
+      {
+        "id": "su-olson-transport1997-n512",
+        "cells": 512,
+        "length": 8.0,
+        "epsilon": 1.0,
+        "ordinates": 32,
+        "times": [
+          0.1,
+          1.0,
+          3.16228
+        ],
+        "max_dt": 0.003125,
+        "source_off": 10.0,
+        "family": "refinement",
+        "fields": "su-olson-transport1997-n512.npz",
+        "reference_rms": [
+          0.0020954035751023056,
+          0.0015130534725422019
+        ],
+        "reference_linf": [
+          0.007864368991879589,
+          0.006578670088229099
+        ]
+      },
+      {
+        "id": "su-olson-transport1997-angular-64",
+        "cells": 512,
+        "length": 8.0,
+        "epsilon": 1.0,
+        "ordinates": 64,
+        "times": [
+          0.1,
+          1.0,
+          3.16228
+        ],
+        "max_dt": 0.003125,
+        "source_off": 10.0,
+        "family": "angle-probe",
+        "fields": "su-olson-transport1997-angular-64.npz",
+        "reference_rms": [
+          0.002095991064252647,
+          0.001513211152085938
+        ],
+        "reference_linf": [
+          0.007865185298010058,
+          0.006577120707319806
+        ]
+      },
+      {
+        "id": "su-olson-transport1997-half-dt",
+        "cells": 512,
+        "length": 8.0,
+        "epsilon": 1.0,
+        "ordinates": 32,
+        "times": [
+          0.1,
+          1.0,
+          3.16228
+        ],
+        "max_dt": 0.0015625,
+        "source_off": 10.0,
+        "family": "time-probe",
+        "fields": "su-olson-transport1997-half-dt.npz",
+        "reference_rms": [
+          0.002095220691966766,
+          0.0015130674001851108
+        ],
+        "reference_linf": [
+          0.007864357948125344,
+          0.006578675451004878
+        ]
+      }
+    ],
+    "metrics": {
+      "completed_primary_runs": 5,
+      "reference_scope": "pinned2023author-providedanalyticaltransporttable;original1997table not directly verified",
+      "capacity_controls": [
+        {
+          "epsilon": 0.25,
+          "method": "diffusion",
+          "error": 0.00019032949653130515,
+          "budget": 5.984102102729594e-14
+        },
+        {
+          "epsilon": 0.25,
+          "method": "transport",
+          "error": 3.181825272147165e-07,
+          "budget": 3.3306690738754696e-16
+        },
+        {
+          "epsilon": 2.0,
+          "method": "diffusion",
+          "error": 0.000154177848556869,
+          "budget": 7.460698725481052e-14
+        },
+        {
+          "epsilon": 2.0,
+          "method": "transport",
+          "error": 7.721428540996556e-08,
+          "budget": 1.199040866595169e-14
+        }
+      ],
+      "matched_thick_limit_control": {
+        "physical_mode_evolutions": 3,
+        "mode_records": [
+          {
+            "id": "su-olson-transport1997-thick-k4",
+            "kind": "matched-thick-semidiscrete-mode-control",
+            "fields": "su-olson-transport1997-thick-k4.npz",
+            "kappa": 4,
+            "cells": 128,
+            "ordinates": 32,
+            "mean_free_path": 0.25,
+            "kappa_h": 0.19634954084936207,
+            "times": [
+              0.0,
+              0.25,
+              0.5,
+              1.0
+            ],
+            "scaled_times": [
+              0.0,
+              0.0625,
+              0.125,
+              0.25
+            ],
+            "initial_cellmean_amplitude": 0.09998996042161418,
+            "final_FV_space_error": 0.006406191708967511,
+            "final_continuum_limit_error": 0.01484981145966009,
+            "final_joint_energy_error": 0.009801905835372807,
+            "final_joint_scaled_flux_error": 0.008805846751149496,
+            "maximum_angular_sensitivity": 2.361755418510908e-15,
+            "maximum_budget": 2.8398112908774138e-15,
+            "matrix_residual": 1.3877787807814457e-17,
+            "semidiscrete_global_RHS_residual": 9.096889908022376e-15
+          },
+          {
+            "id": "su-olson-transport1997-thick-k8",
+            "kind": "matched-thick-semidiscrete-mode-control",
+            "fields": "su-olson-transport1997-thick-k8.npz",
+            "kappa": 8,
+            "cells": 512,
+            "ordinates": 32,
+            "mean_free_path": 0.125,
+            "kappa_h": 0.09817477042468103,
+            "times": [
+              0.0,
+              0.5,
+              1.0,
+              2.0
+            ],
+            "scaled_times": [
+              0.0,
+              0.0625,
+              0.125,
+              0.25
+            ],
+            "initial_cellmean_amplitude": 0.09999937250863256,
+            "final_FV_space_error": 0.0029971556290815586,
+            "final_continuum_limit_error": 0.0038430634683478773,
+            "final_joint_energy_error": 0.0016548173640567698,
+            "final_joint_scaled_flux_error": 0.0012410650258467806,
+            "maximum_angular_sensitivity": 2.707688603804596e-15,
+            "maximum_budget": 5.698441403484806e-15,
+            "matrix_residual": 1.3877787807814457e-17,
+            "semidiscrete_global_RHS_residual": 3.609851133290487e-14
+          },
+          {
+            "id": "su-olson-transport1997-thick-k16",
+            "kind": "matched-thick-semidiscrete-mode-control",
+            "fields": "su-olson-transport1997-thick-k16.npz",
+            "kappa": 16,
+            "cells": 2048,
+            "ordinates": 32,
+            "mean_free_path": 0.0625,
+            "kappa_h": 0.04908738521234052,
+            "times": [
+              0.0,
+              1.0,
+              2.0,
+              4.0
+            ],
+            "scaled_times": [
+              0.0,
+              0.0625,
+              0.125,
+              0.25
+            ],
+            "initial_cellmean_amplitude": 0.09999996078172033,
+            "final_FV_space_error": 0.0014774233739939713,
+            "final_continuum_limit_error": 0.0009641878482973868,
+            "final_joint_energy_error": 0.0011378880853298219,
+            "final_joint_scaled_flux_error": 0.0005274719030461596,
+            "maximum_angular_sensitivity": 5.828675392681093e-15,
+            "maximum_budget": 1.0695349491031034e-14,
+            "matrix_residual": 3.469446951953614e-18,
+            "semidiscrete_global_RHS_residual": 8.391850078921443e-14
+          }
+        ],
+        "reference_checks": 141,
+        "same_operator": "kappa times actualtransport.rhs withkappa*h,bothrates",
+        "time_role": "Exact-time semidiscrete Fourier control; originalSSPRK2tests/transientruns separate",
+        "reference_role": "Independentcontinuum-space angularmatrixGL64/128plusDOP853qualifiers;sharedSciPysparseexpm_multiplydeclared",
+        "diffusion": "D_rad1/(3kappa),D_eff1/[3kappa(epsilon+1)],matchedperiodiccellmeanIC",
+        "scope": "ResolvedjointN~kappa^2limit; nofixed-gridAPorSSPRK2temporal-orderclaim. Initiallayerreportedallfourtimes;asymptoticgatesfinals.25only;nojointorderfit."
+      }
+    }
+  }
+]

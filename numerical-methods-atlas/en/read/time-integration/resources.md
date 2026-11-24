@@ -54,6 +54,10 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Start the right half at exactly h=q=0 and compare wetting-front advance, conservation and conservative errors with the Ritter analytic solution.
+- [Su–Olson1996 non-equilibrium diffusion](<https://hrkoyama.github.io/numerical-methods-atlas/validation/su-olson-diffusion1996/?lang=en>)
+  availability: run
+
+  Advance actual radiation/material fields with the Marshak boundary and compare with independently qualified pinned ExactPack integrals.
 - [Double Mach reflection: lightweight grid verification](<https://hrkoyama.github.io/numerical-methods-atlas/validation/double-mach-reflection/?lang=en>)
   availability: run
 
@@ -110,6 +114,18 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Advance cell integrals and face positions with identical Heun stages, transporting a nonuniform analytic wave beyond a uniform GCL check.
+- [Su–Olson transport with an independently published analytical table](<https://hrkoyama.github.io/numerical-methods-atlas/validation/su-olson-transport1997/?lang=en>)
+  availability: run
+
+  Evolve actual signed-angle transport/material exchange and compare with pinned analytical benchmark tables provided by the2023primary author.
+- [Two-dimensional absorber shadow and M1 transport](<https://hrkoyama.github.io/numerical-methods-atlas/validation/shadow-absorber2d/?lang=en>)
+  availability: run
+
+  Compare the actual evolved circular-absorber shadow with characteristic chord attenuation, signed-angle transport and nonlinear M1.
+- [Opposing beams and information loss in the M1 closure](<https://hrkoyama.github.io/numerical-methods-atlas/validation/opposing-beams2d/?lang=en>)
+  availability: run
+
+  Show the M1 limitation in actual opposing-packet evolution; validate the same closed M1 solver independently with a manufactured solution.
 - [Euler double rarefaction: positivity at every stage](<https://hrkoyama.github.io/numerical-methods-atlas/validation/euler-double-rarefaction-positivity/?lang=en>)
   availability: run
 

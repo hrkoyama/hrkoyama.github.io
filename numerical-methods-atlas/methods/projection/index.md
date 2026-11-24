@@ -31,6 +31,7 @@ Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-d
 問題から導かれた対応です。検証範囲は各問題の入力・境界条件に従います。
 
 - [非圧縮Navier–Stokes](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#navier-stokes-ja) (`navier-stokes`; taylor-green)
+- [等温格子BGK](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bgk-ja) (`bgk`; taylor-green)
 
 #### 問題の図 (`method-problems-ja`)
 
@@ -56,6 +57,12 @@ Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-d
 同じν=0.1・周期[0,2π]²の解析モデルですが、参照カードはy=π/4のx断面表示です。2次元速度・圧力場や格子誤差の配列とは一致しません。
 
 [既存の参照図](https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=taylor-green)
+
+- [LBMのTaylor–Green渦：格子・時間・Mach数が結び付く感度](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-lbm-taylor-green-ja) (`lbm-taylor-green`; 関連モデルの参照; 解析参照)
+
+[0,2pi)²、ν.1、基本U.2、N24/32/64、dt=.2dx²、tau.56、T=.2pi²、144/256/1024steps。N32/U.4,.8とN32/U.2/dt=.1dx²/tau.53/512stepsを追加。初期圧力整合rhoを使用。
+
+[既存の参照図](/numerical-methods-atlas/validation/lbm-taylor-green/?lang=ja#lbm-taylor-green-ja-measurements)
 
 ##### 手法の解説・独立参照・保存結果
 
@@ -108,6 +115,7 @@ python -m pytest -q tests/test_new_models.py
 These links are derived through associated problems; checked scope follows their inputs and boundaries.
 
 - [Incompressible Navier–Stokes](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#navier-stokes-en) (`navier-stokes`; taylor-green)
+- [Isothermal lattice BGK](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bgk-en) (`bgk`; taylor-green)
 
 #### Problem figures (`method-problems-en`)
 
@@ -133,6 +141,12 @@ Use existing two-dimensional MAC projection, centered convection and explicit SS
 The analytic model shares ν=0.1 and periodic [0,2π]², but the card displays an x-slice at y=π/4, not full 2D velocity/pressure or mesh-error arrays.
 
 [Existing reference profile](https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=taylor-green)
+
+- [LBM Taylor–Green vortex: coupled grid/time/Mach sensitivity](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-lbm-taylor-green-en) (`lbm-taylor-green`; Related-model reference; Analytic reference)
+
+Periodic[0,2pi)²,nu.1,baseU.2,N24/32/64,dt=.2dx²,tau.56,T=.2pi²and144/256/1024steps. Add N32/U.4,.8andN32/U.2/dt=.1dx²/tau.53/512steps. Use pressure-consistent initial density.
+
+[Existing reference profile](/numerical-methods-atlas/validation/lbm-taylor-green/?lang=en#lbm-taylor-green-en-measurements)
 
 ##### Method explanations, independent references and saved results
 

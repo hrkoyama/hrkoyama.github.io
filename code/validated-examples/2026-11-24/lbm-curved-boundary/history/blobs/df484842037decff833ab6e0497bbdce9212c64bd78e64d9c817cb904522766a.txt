@@ -1,0 +1,48 @@
+{
+  "revision": 3,
+  "created_at_utc": "2026-11-23T22:55:20.166882+00:00",
+  "previous_executed_contract_sha256": "d3907d6280b085981c5b1595a8b9805cfb5e11a813feb4f7af89886908a1e6dc",
+  "retained_failure": "history/attempt-01-linear-outlet-pressure-failure",
+  "prior_outcome": {
+    "pytest": 22,
+    "completed_annulus": 6,
+    "cylinder_failed_step": 265,
+    "finest_pointwise_pressure_error": 0.617757,
+    "pressure_limit": 0.08,
+    "status": "FAILED"
+  },
+  "changes": [
+    "Qualified native quadratric reflected-characteristic curvedlinks; originaldefaultlinearpath retained for22legacytests.",
+    "All-nine poststream NEEoutlet foractualcylinder; known6delta includedinopenledger.",
+    "Mainalgorithmselection only:annulusorder2,cylinderorder2+NEE;fixedphysicalinputs/criteria/reference/force/pressurediagnosticsunchanged.",
+    "Six additive boundarytests;original22filebytesretainedasprefixandall22testASTbodiesidentical.",
+    "Additive saved back/back2/modearrays only inevolution.py;step/chunk/checkpoint/mathunchanged.",
+    "Presentation-only plotfileordir support andactualannularpointwisepressureerrorpanel.",
+    "Fulloldsource/results/logs/NPZ/CSV/JUnit+savedonlyaudit+qualified87component retained;archivedtest.txtpathmapavoidsduplicatecollection."
+  ],
+  "unchanged_sha256": {
+    "inputs.json": "45d48ba5c59f9cfd94e1c41468af319354fbc204ec2fd8048d520a62a3394ab5",
+    "acceptance.json": "e5e171409fc4e90e55ba1ac34b82f8c0b58a731d4e16e4dda163b9c4e528b967",
+    "analytic.py": "dab995c7b08f64aaa194d7f89557021179d8869686ab328939cdf3975b28a17c",
+    "diagnostics.py": "1fd58b1e97bfcd496abeef7389381d2bce560bb674bf5d577c5b3beba44950cd",
+    "run.py": "66124c8d80edbaf631d3ac75d9e40f0b1144962bb51f169387ec3c6ccb9111f1",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "requirements-plotting.txt": "fd70c5b60168fd91d504345ec04061037fb9de084f7ec8fa53255486c9c94ab1"
+  },
+  "qualified_native_sha256": {
+    "kernel.cpp": "94224e87617ceed1b946bb13829e20242fc9c6f43041eae3b54487f30b589d4d",
+    "native.py": "199aff9198a80a7859567283d21f52a2111520d2de9cfab6e25ec4d7de6ac98d",
+    "geometry.py": "517bd0e411a48847b40028084343c403fe99626733970617945f01f8940a1214",
+    "reference_step.py": "8735c74ce0dffc74657f794cf3fb8f0e615ee60ee56af375baf682b409a82e69"
+  },
+  "component_protocol_sha256": "2bd555e868955b3dfd1da163a77cf6b91815b280807b15a85ee5687b7e35276b",
+  "component_receipt_sha256": "906f30b612f10804d40b6c0b6362711cc451f201dd0db208f714f3ba98b4f601",
+  "component_actual_passed": 87,
+  "component_actual_elapsed_seconds": 2.27343704100349,
+  "original22test_ASTs_identical": true,
+  "original_test_file_exact_prefix": true,
+  "this_revision_main_and_pytest_executed": false,
+  "acceptance_relaxed": false,
+  "inputs_changed": false,
+  "primary_scope": "SelectedLL2003Eq12-15text;officialNEEabstractonly;independentlyderivedall9variant;noglobalpositivityclaim."
+}

@@ -1,0 +1,16 @@
+{
+  "created_at_utc": "2026-11-23T22:29:02.349524+00:00",
+  "parent_authorized": true,
+  "changes": {
+    "diffusion.py": {
+      "qualified_r4_sha256": "81680efa9bb95273d3b79c14bddca7717a3cc712e7e55c0dfb3fe61ec1a145a0",
+      "main_sha256": "f23ffa9c7c14645a95e46cb3b4fd9fd7891881ce5c58d860a965d0dd44f09854"
+    },
+    "transport.py": {
+      "qualified_r4_sha256": "eba4933158320cd49dd6a8f05ed5c62686944ffc335bd84a39740a0d1acd21c2",
+      "main_sha256": "e8babc54533b1c7d8fae54cd646af1507f24c27d43dfa916355b7f1cb848fb27"
+    }
+  },
+  "scope": "Optional partial=None plus exception-only candidate/last-valid dumps; successful numerical operations unchanged. The qualified reference entrypoint imports neither diffusion.py nor transport.py and cached reference numerics are independent of these callpaths. R4 contract/source/output evidence retained unchanged.",
+  "reference_contract_sha256": "5a6af0d40975fdddb63c7e70a6bdacd0f1911774535f5d61cbb659ee62775282"
+}

@@ -1,3 +1,4 @@
+import {equationCount,problemCount} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -106,8 +107,8 @@ test('every verified example is reachable from words, formulas and its image thr
       assert.ok(badge?.includes('href="'+target+'"'),item.id+' direct run badge');
     }
   }
-  assert.equal(json('numerical-methods-atlas/equations/index.json').equations.length,60);
-  assert.equal(gallery.items.length,113);
+  assert.equal(json('numerical-methods-atlas/equations/index.json').equations.length,equationCount);
+  assert.equal(gallery.items.length,problemCount);
 });
 
 test('the concise homepage leads to the full execution chooser with the existing starting calculations',()=>{

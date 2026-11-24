@@ -1,0 +1,2252 @@
+{
+  "title": "2Dの影・ビームとM1閉包",
+  "html": "<h1>2Dの影・ビームとM1閉包</h1><p>吸収体の影と衝突するビームを角度法とM1で計算し、M1自体の製造解による検査と分けて示します。</p><aside class=\"validation-scope\"><p>共通22実行例の台帳とは別に管理する追加検証集です。配布ZIPを独立展開し、各グループの全固定入力と検査を実行した記録を示します。設定・手法・刻み幅の違いを独立した物理問題の数には加算しません。</p><p>通常の補助例CIは、公開レジストリに登録した補助配布グループをNumPy・SciPy・pytestで実行します。保存済みの独立参照は版・入力・実行記録を照合し、新規の参照計算と区別します。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。</p></aside><nav class=\"validation-actions\"><a href=\"/numerical-methods-atlas/validation/?lang=ja\">追加検証の一覧</a><a href=\"/code/validated-examples/2026-11-24/radiation-geometry/atlas-radiation-geometry-2026-11-24.zip\">コード・テスト / ZIP</a><a href=\"/code/validated-examples/2026-11-24/radiation-geometry/verification.json\">独立展開の検証記録</a></nav><nav class=\"validation-toc\" aria-label=\"この章の例\"><a href=\"#shadow-absorber2d\">2D吸収影と保存的M1輸送</a><a href=\"#opposing-beams2d\">2D反向beamとM1閉包の情報損失</a></nav><section><h2 id=\"run-all\">配布版を取得して実行する</h2><p>ZIPの atlas-radiation-geometry-2026-11-24 フォルダで実行します。このコマンドは配布版の全2例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。</p><pre><code>python -m pip install -r requirements.txt\npython -m pytest -q\npython run.py --input inputs.json --output output</code></pre><p>Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。</p></section><article class=\"validation-case\" data-validation-case=\"shadow-absorber2d\" id=\"shadow-absorber2d\"><h2>2D吸収影と保存的M1輸送</h2><p>実際の円形吸収体の影を、特性線の円弦減衰・角度輸送・M1で比較します。</p><nav class=\"validation-actions\" aria-label=\"コード・入力・検証\"><a href=\"/numerical-methods-atlas/validation/shadow-absorber2d/?lang=ja\">固定入力・実行入口</a><a href=\"/code/validated-examples/2026-11-24/radiation-geometry/atlas-radiation-geometry-2026-11-24.zip\">コード / ZIP</a><a href=\"/code/validated-examples/2026-11-24/radiation-geometry/inputs.json\">固定入力 / JSON</a><a href=\"/code/validated-examples/2026-11-24/radiation-geometry/results/result.json\">全結果 / JSON</a><a href=\"/code/validated-examples/2026-11-24/radiation-geometry/source-manifest.json\">配布物のSHA-256</a><a href=\"/code/validated-examples/2026-11-24/radiation-geometry/verification.json\">独立展開の検証記録</a></nav><details class=\"execution-resource-details\"><summary>手法・式・図・参照解</summary><div class=\"execution-navigation execution-resource-navigation\" data-execution-navigation=\"shadow-absorber2d\" role=\"group\" aria-label=\"この実行例に関連する資料\"><div class=\"execution-navigation-grid\"><div class=\"execution-navigation-card\" data-execution-navigation-card=\"methods\"><p class=\"execution-navigation-label\"><strong>使用手法</strong></p><ul class=\"execution-navigation-links\"><li data-execution-method-id=\"radiation-transport\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/methods/radiation-transport/?lang=ja\" data-execution-method-link>放射輸送・モーメント法</a></li><li data-execution-method-id=\"upwind\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/methods/upwind/?lang=ja\" data-execution-method-link>風上差分（upwind）</a></li><li data-execution-method-id=\"heun\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/?lang=ja\" data-execution-method-link>Heun法／SSPRK(2,2)</a></li><li data-execution-method-id=\"rusanov\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/methods/rusanov/?lang=ja\" data-execution-method-link>Rusanov／局所Lax–Friedrichs流束</a></li></ul><p class=\"execution-navigation-note\">この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。</p></div><div class=\"execution-navigation-card\" data-execution-navigation-card=\"equations\"><p class=\"execution-navigation-label\"><strong>方程式</strong></p><p class=\"execution-navigation-primary\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/validation/shadow-absorber2d/?lang=ja#shadow-absorber2d-ja-algorithm\" data-execution-formulation-link>この実行例の式と条件</a></p><details class=\"execution-navigation-scope\"><summary>式・近似・診断の範囲</summary><p>風上角度FV／M1のRusanovとSSPRK2。吸収は保存ledger付き指数分割。6軸重み1/6、単位beamのnodal強度6、Pzzと全3Dtraceを保持。floor/projectionはしません。 旧c1 Rusanovの横拡散による3不合格を保持し、一般状態の方向別Jacobian固有値・LF円錐分割・法線flux比の最大を一面係数に採用。全ghost面と台帳へ同じfluxを使い、真空と既存許容丸め域の速度だけ1へ拡張して回数・最大超過を記録します。U/Pの投影や純beam特例branchはありません。</p></details><ul class=\"execution-navigation-links\"><li data-execution-equation-id=\"static-grey-transfer\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#static-grey-transfer-ja\" data-execution-equation-link>静止媒質の灰色放射輸送・散乱・線形交換</a><p class=\"execution-navigation-equation-note\">2D空間と3D角度測度、c1、静止吸収体。実S_Nと非線形M1を24/48/96格子で進め、同一solverの変動方向MMS・x/y交差packet controlを保持。</p></li><li data-execution-equation-id=\"static-grey-m1\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#static-grey-m1-ja\" data-execution-equation-link>静止媒質・平坦時空の灰色M1モーメント</a><p class=\"execution-navigation-equation-note\">2D空間と3D角度測度、c1、静止吸収体。実S_Nと非線形M1を24/48/96格子で進め、同一solverの変動方向MMS・x/y交差packet controlを保持。</p></li></ul></div><div class=\"execution-navigation-card\" data-execution-navigation-card=\"figure\"><p class=\"execution-navigation-label\"><strong>問題の図</strong></p><a class=\"execution-navigation-figure\" data-execution-figure-link href=\"https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/results/shadow-absorber2d.png\"><img src=\"https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/results/shadow-absorber2d.png\" alt=\"2D吸収影と保存的M1輸送：この実行例の保存済み検証図。\" width=\"1611\" height=\"1084\" loading=\"lazy\" decoding=\"async\"></a><p class=\"execution-navigation-note\">この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。</p><p class=\"execution-navigation-primary\" data-execution-problem-id=\"shadow-absorber2d\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/problems/shadow-absorber2d/?lang=ja\" data-execution-problem-link>2D吸収影と保存的M1輸送</a></p><p class=\"execution-navigation-primary\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/problems/shadow-absorber2d/?lang=ja#code-ja\" data-execution-problem-code>この問題のコード・検証状況</a></p></div><div class=\"execution-navigation-card\" data-execution-navigation-card=\"references\"><p class=\"execution-navigation-label\"><strong>厳密解・参照解</strong></p><p class=\"execution-navigation-primary\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/validation/shadow-absorber2d/?lang=ja#shadow-absorber2d-ja-validation\" data-execution-validation-link>この実行例の参照・検証</a></p><p class=\"execution-navigation-note\">独立な特性cell平均と閉M1強制項の複素step検査191項目がmain前に合格。全step収支・cone・正値、別時間probe、MMSとx/y実進行の収束を検査します。 新fluxの762固定成分判定がPDE改訂前に合格。旧17pytestを維持し方向別fluxの5回帰を追加した22pytestと、元24計算・166科学判定を同じ120秒上限で再検査します。</p><ul class=\"execution-navigation-reference-cases\"><li data-execution-reference-id=\"shadow-absorber2d\" data-reference-relation=\"same-problem\"><p class=\"execution-navigation-relation\">同じ問題の参照 · 解析参照</p><p class=\"execution-navigation-primary\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-shadow-absorber2d-ja\" data-execution-reference-link>円形吸収体の特性線参照</a></p><p class=\"execution-navigation-reference-note\">6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。</p></li></ul></div></div></div></details><h3 id=\"shadow-absorber2d-assumptions\">前提・単位・境界</h3><p>2D空間と3D角度測度、c1、静止吸収体。実S_Nと非線形M1を24/48/96格子で進め、同一solverの変動方向MMS・x/y交差packet controlを保持。</p><aside class=\"validation-scope validation-editorial-note\"><strong>編集上の補足</strong><p>6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。</p></aside><h3 id=\"shadow-absorber2d-algorithm\">採用した計算法</h3><p>風上角度FV／M1のRusanovとSSPRK2。吸収は保存ledger付き指数分割。6軸重み1/6、単位beamのnodal強度6、Pzzと全3Dtraceを保持。floor/projectionはしません。 旧c1 Rusanovの横拡散による3不合格を保持し、一般状態の方向別Jacobian固有値・LF円錐分割・法線flux比の最大を一面係数に採用。全ghost面と台帳へ同じfluxを使い、真空と既存許容丸め域の速度だけ1へ拡張して回数・最大超過を記録します。U/Pの投影や純beam特例branchはありません。</p><div class=\"validation-math\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi mathvariant=\"normal\">∂</mi><mi>t</mi></msub><mi>E</mi><mo>+</mo><mi mathvariant=\"normal\">∇</mi><mo>⋅</mo><mi mathvariant=\"bold\">F</mi><mo>=</mo><mo>−</mo><msub><mi>κ</mi><mi>a</mi></msub><mi>E</mi><mo separator=\"true\">,</mo><mspace width=\"1em\"/><msub><mi mathvariant=\"normal\">∂</mi><mi>t</mi></msub><mi mathvariant=\"bold\">F</mi><mo>+</mo><mi mathvariant=\"normal\">∇</mi><mo>⋅</mo><mi mathvariant=\"bold\">P</mi><mo>=</mo><mo>−</mo><msub><mi>κ</mi><mi>a</mi></msub><mi mathvariant=\"bold\">F</mi></mrow><annotation encoding=\"application/x-tex\">\\partial_tE+\\nabla\\cdot\\mathbf F=-\\kappa_aE,\\quad\\partial_t\\mathbf F+\\nabla\\cdot\\mathbf P=-\\kappa_a\\mathbf F</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8444em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord\" style=\"margin-right:0.0556em;\">∂</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2806em;\"><span style=\"top:-2.55em;margin-left:-0.0556em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">t</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\" style=\"margin-right:0.0576em;\">E</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.6833em;\"></span><span class=\"mord\">∇</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.6861em;\"></span><span class=\"mord mathbf\">F</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord\">−</span><span class=\"mord\"><span class=\"mord mathnormal\">κ</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">a</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\" style=\"margin-right:0.0576em;\">E</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:1em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord\" style=\"margin-right:0.0556em;\">∂</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2806em;\"><span style=\"top:-2.55em;margin-left:-0.0556em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">t</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathbf\">F</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.6833em;\"></span><span class=\"mord\">∇</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.6861em;\"></span><span class=\"mord mathbf\">P</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8361em;vertical-align:-0.15em;\"></span><span class=\"mord\">−</span><span class=\"mord\"><span class=\"mord mathnormal\">κ</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">a</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathbf\">F</span></span></span></span></span></div><div class=\"validation-math\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><mi mathvariant=\"bold\">P</mi><mo>=</mo><mi>E</mi><mrow><mo fence=\"true\">[</mo><mfrac><mrow><mn>1</mn><mo>−</mo><mi>χ</mi></mrow><mn>2</mn></mfrac><msub><mi mathvariant=\"bold\">I</mi><mn>3</mn></msub><mo>+</mo><mfrac><mrow><mn>3</mn><mi>χ</mi><mo>−</mo><mn>1</mn></mrow><mn>2</mn></mfrac><mi mathvariant=\"bold\">n</mi><mo>⊗</mo><mi mathvariant=\"bold\">n</mi><mo fence=\"true\">]</mo></mrow></mrow><annotation encoding=\"application/x-tex\">\\mathbf P=E\\left[\\frac{1-\\chi}{2}\\mathbf I_3+\\frac{3\\chi-1}{2}\\mathbf n\\otimes\\mathbf n\\right]</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.6861em;\"></span><span class=\"mord mathbf\">P</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:2.4em;vertical-align:-0.95em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.0576em;\">E</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"minner\"><span class=\"mopen delimcenter\" style=\"top:0em;\"><span class=\"delimsizing size3\">[</span></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.3214em;\"><span style=\"top:-2.314em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\">2</span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.677em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\">1</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mord mathnormal\">χ</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.686em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mord\"><span class=\"mord mathbf\">I</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">3</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.3214em;\"><span style=\"top:-2.314em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\">2</span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.677em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\">3</span><span class=\"mord mathnormal\">χ</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mord\">1</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.686em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mord mathbf\">n</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊗</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mord mathbf\">n</span><span class=\"mclose delimcenter\" style=\"top:0em;\"><span class=\"delimsizing size3\">]</span></span></span></span></span></span></span></div><div class=\"validation-math\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><mi>χ</mi><mo>=</mo><mfrac><mrow><mn>3</mn><mo>+</mo><mn>4</mn><msup><mi>f</mi><mn>2</mn></msup></mrow><mrow><mn>5</mn><mo>+</mo><mn>2</mn><msqrt><mrow><mn>4</mn><mo>−</mo><mn>3</mn><msup><mi>f</mi><mn>2</mn></msup></mrow></msqrt></mrow></mfrac><mo separator=\"true\">,</mo><mspace width=\"1em\"/><mi>f</mi><mo>=</mo><mi mathvariant=\"normal\">∣</mi><mi mathvariant=\"bold\">F</mi><mi mathvariant=\"normal\">∣</mi><mi mathvariant=\"normal\">/</mi><mi>E</mi><mo separator=\"true\">,</mo><mspace width=\"1em\"/><msub><mi>P</mi><mrow><mi>x</mi><mi>x</mi></mrow></msub><mo>+</mo><msub><mi>P</mi><mrow><mi>y</mi><mi>y</mi></mrow></msub><mo>+</mo><msub><mi>P</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub><mo>=</mo><mi>E</mi></mrow><annotation encoding=\"application/x-tex\">\\chi=\\frac{3+4f^2}{5+2\\sqrt{4-3f^2}},\\quad f=|\\mathbf F|/E,\\quad P_{xx}+P_{yy}+P_{zz}=E</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.625em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\">χ</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:2.6211em;vertical-align:-1.13em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.4911em;\"><span style=\"top:-2.1522em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\">5</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mord\">2</span><span class=\"mord sqrt\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.9578em;\"><span class=\"svg-align\" style=\"top:-3.2em;\"><span class=\"pstrut\" style=\"height:3.2em;\"></span><span class=\"mord\" style=\"padding-left:1em;\"><span class=\"mord\">4</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mord\">3</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.1076em;\">f</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.7401em;\"><span style=\"top:-2.989em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span></span></span></span></span></span></span><span style=\"top:-2.9178em;\"><span class=\"pstrut\" style=\"height:3.2em;\"></span><span class=\"hide-tail\" style=\"min-width:1.02em;height:1.28em;\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"400em\" height=\"1.28em\" viewBox=\"0 0 400000 1296\" preserveAspectRatio=\"xMinYMin slice\"><path d=\"M263,681c0.7,0,18,39.7,52,119\nc34,79.3,68.167,158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120\nc340,-704.7,510.7,-1060.3,512,-1067\nl0 -0\nc4.7,-7.3,11,-11,19,-11\nH40000v40H1012.3\ns-271.3,567,-271.3,567c-38.7,80.7,-84,175,-136,283c-52,108,-89.167,185.3,-111.5,232\nc-22.3,46.7,-33.8,70.3,-34.5,71c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1\ns-109,-253,-109,-253c-72.7,-168,-109.3,-252,-110,-252c-10.7,8,-22,16.7,-34,26\nc-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26s76,-59,76,-59s76,-60,76,-60z\nM1001 80h400000v40h-400000z\"/></svg></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2822em;\"><span></span></span></span></span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.677em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\">3</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mord\">4</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.1076em;\">f</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8141em;\"><span style=\"top:-3.063em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span></span></span></span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.13em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:1em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.1076em;\">f</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord\">∣</span><span class=\"mord mathbf\">F</span><span class=\"mord\">∣/</span><span class=\"mord mathnormal\" style=\"margin-right:0.0576em;\">E</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:1em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">P</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">xx</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.9694em;vertical-align:-0.2861em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">P</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0359em;\">y</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0359em;\">y</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2861em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">P</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.044em;\">z</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.044em;\">z</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.0576em;\">E</span></span></span></span></span></div><h3 id=\"shadow-absorber2d-validation\">何と比較し、何を測るか</h3><p>独立な特性cell平均と閉M1強制項の複素step検査191項目がmain前に合格。全step収支・cone・正値、別時間probe、MMSとx/y実進行の収束を検査します。 新fluxの762固定成分判定がPDE改訂前に合格。旧17pytestを維持し方向別fluxの5回帰を追加した22pytestと、元24計算・166科学判定を同じ120秒上限で再検査します。</p><h3 id=\"shadow-absorber2d-limits\">確認の限界と失敗条件</h3><p>6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。</p><h3 id=\"shadow-absorber2d-measurements\">保存した実測値と判定</h3><p>表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。</p><div class=\"validation-table\" tabindex=\"0\" role=\"region\" aria-label=\"2D吸収影と保存的M1輸送：実測値\"><table><thead><tr><th scope=\"col\">量 / metric</th><th scope=\"col\">実測値</th></tr></thead><tbody><tr><td>M1_numerical_flux</td><td>General directional localLF:max endpoint spectralradius,LFcone-splitting bound and absolute normal reducedflux;not a nonlinearRiemannfan bound</td></tr><tr><td>completed_primary_and_control_runs</td><td>8</td></tr><tr><td>spatial_dimensions</td><td>2</td></tr><tr><td>angular_dimensions</td><td>3</td></tr><tr><td>Pzz_retained</td><td>true</td></tr></tbody></table></div><div class=\"validation-table\" tabindex=\"0\" role=\"region\" aria-label=\"2D吸収影と保存的M1輸送：判定\"><table><thead><tr><th scope=\"col\">判定 / check</th><th scope=\"col\">合格</th></tr></thead><tbody><tr><td>shadow-sn-n24/all-stages-finite</td><td>true</td></tr><tr><td>shadow-sn-n24/positive-energy</td><td>true</td></tr><tr><td>shadow-sn-n24/realizability</td><td>true</td></tr><tr><td>shadow-sn-n24/energy-budget</td><td>true</td></tr><tr><td>shadow-sn-n24/full3D-pressure-trace</td><td>true</td></tr><tr><td>shadow-sn-n24/five-fixed-snapshots</td><td>true</td></tr><tr><td>shadow-sn-n48/all-stages-finite</td><td>true</td></tr><tr><td>shadow-sn-n48/positive-energy</td><td>true</td></tr><tr><td>shadow-sn-n48/realizability</td><td>true</td></tr><tr><td>shadow-sn-n48/energy-budget</td><td>true</td></tr><tr><td>shadow-sn-n48/full3D-pressure-trace</td><td>true</td></tr><tr><td>shadow-sn-n48/five-fixed-snapshots</td><td>true</td></tr><tr><td>shadow-sn-n96/all-stages-finite</td><td>true</td></tr><tr><td>shadow-sn-n96/positive-energy</td><td>true</td></tr><tr><td>shadow-sn-n96/realizability</td><td>true</td></tr><tr><td>shadow-sn-n96/energy-budget</td><td>true</td></tr><tr><td>shadow-sn-n96/full3D-pressure-trace</td><td>true</td></tr><tr><td>shadow-sn-n96/five-fixed-snapshots</td><td>true</td></tr><tr><td>shadow-m1-n24/all-stages-finite</td><td>true</td></tr><tr><td>shadow-m1-n24/positive-energy</td><td>true</td></tr><tr><td>shadow-m1-n24/realizability</td><td>true</td></tr><tr><td>shadow-m1-n24/energy-budget</td><td>true</td></tr><tr><td>shadow-m1-n24/full3D-pressure-trace</td><td>true</td></tr><tr><td>shadow-m1-n24/five-fixed-snapshots</td><td>true</td></tr><tr><td>shadow-m1-n48/all-stages-finite</td><td>true</td></tr><tr><td>shadow-m1-n48/positive-energy</td><td>true</td></tr><tr><td>shadow-m1-n48/realizability</td><td>true</td></tr><tr><td>shadow-m1-n48/energy-budget</td><td>true</td></tr><tr><td>shadow-m1-n48/full3D-pressure-trace</td><td>true</td></tr><tr><td>shadow-m1-n48/five-fixed-snapshots</td><td>true</td></tr><tr><td>shadow-m1-n96/all-stages-finite</td><td>true</td></tr><tr><td>shadow-m1-n96/positive-energy</td><td>true</td></tr><tr><td>shadow-m1-n96/realizability</td><td>true</td></tr><tr><td>shadow-m1-n96/energy-budget</td><td>true</td></tr><tr><td>shadow-m1-n96/full3D-pressure-trace</td><td>true</td></tr><tr><td>shadow-m1-n96/five-fixed-snapshots</td><td>true</td></tr><tr><td>shadow-sn-n96-half-dt/all-stages-finite</td><td>true</td></tr><tr><td>shadow-sn-n96-half-dt/positive-energy</td><td>true</td></tr><tr><td>shadow-sn-n96-half-dt/realizability</td><td>true</td></tr><tr><td>shadow-sn-n96-half-dt/energy-budget</td><td>true</td></tr><tr><td>shadow-sn-n96-half-dt/full3D-pressure-trace</td><td>true</td></tr><tr><td>shadow-sn-n96-half-dt/five-fixed-snapshots</td><td>true</td></tr><tr><td>shadow-m1-n96-half-dt/all-stages-finite</td><td>true</td></tr><tr><td>shadow-m1-n96-half-dt/positive-energy</td><td>true</td></tr><tr><td>shadow-m1-n96-half-dt/realizability</td><td>true</td></tr><tr><td>shadow-m1-n96-half-dt/energy-budget</td><td>true</td></tr><tr><td>shadow-m1-n96-half-dt/full3D-pressure-trace</td><td>true</td></tr><tr><td>shadow-m1-n96-half-dt/five-fixed-snapshots</td><td>true</td></tr><tr><td>shadow/sn/refinement-n48</td><td>true</td></tr><tr><td>shadow/sn/refinement-n96</td><td>true</td></tr><tr><td>shadow/sn/finest-reference</td><td>true</td></tr><tr><td>shadow/sn/separate-time-sensitivity</td><td>true</td></tr><tr><td>shadow/m1/refinement-n48</td><td>true</td></tr><tr><td>shadow/m1/refinement-n96</td><td>true</td></tr><tr><td>shadow/m1/finest-reference</td><td>true</td></tr><tr><td>shadow/m1/separate-time-sensitivity</td><td>true</td></tr></tbody></table></div><figure><img loading=\"lazy\" src=\"/code/validated-examples/2026-11-24/radiation-geometry/results/shadow-absorber2d.png\" width=\"1611\" height=\"1084\" alt=\"2D吸収影と保存的M1輸送の保存済み検証図\"><figcaption>保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。</figcaption></figure><figure class=\"validation-additional-figure\" data-validation-additional-figure=\"shadow-absorber2d-preview.png\"><a href=\"/code/validated-examples/2026-11-24/radiation-geometry/results/shadow-absorber2d-preview.png\"><img loading=\"lazy\" src=\"/code/validated-examples/2026-11-24/radiation-geometry/results/shadow-absorber2d-preview.png\" width=\"1509\" height=\"495\" alt=\"保存した実計算場の科学プレビュー。\"></a><figcaption>保存した実計算場の科学プレビュー。</figcaption></figure><details class=\"validation-records\"><summary>全記録を表で読む</summary><div class=\"validation-table\" tabindex=\"0\" role=\"region\" aria-label=\"shadow-absorber2d records\"><table><thead><tr><th scope=\"col\">id</th><th scope=\"col\">kind</th><th scope=\"col\">method</th><th scope=\"col\">cells</th><th scope=\"col\">final_time</th><th scope=\"col\">steps</th><th scope=\"col\">family</th><th scope=\"col\">fields</th><th scope=\"col\">independent_moment_l1</th><th scope=\"col\">maximum_budget</th><th scope=\"col\">minimum_energy</th><th scope=\"col\">minimum_cone</th><th scope=\"col\">directional_speed_diagnostics</th></tr></thead><tbody><tr><td>shadow-sn-n24</td><td>shadow</td><td>sn</td><td>24</td><td>1.1</td><td>152</td><td>refinement</td><td>shadow-sn-n24.npz</td><td>0.0157162715806</td><td>2.22044604925e-16</td><td>0</td><td>0</td><td>—</td></tr><tr><td>shadow-sn-n48</td><td>shadow</td><td>sn</td><td>48</td><td>1.1</td><td>304</td><td>refinement</td><td>shadow-sn-n48.npz</td><td>0.0114842657578</td><td>5.55111512313e-16</td><td>0</td><td>0</td><td>—</td></tr><tr><td>shadow-sn-n96</td><td>shadow</td><td>sn</td><td>96</td><td>1.1</td><td>604</td><td>refinement</td><td>shadow-sn-n96.npz</td><td>0.00439492887992</td><td>6.38378239159e-16</td><td>0</td><td>0</td><td>—</td></tr><tr><td>shadow-m1-n24</td><td>shadow</td><td>m1</td><td>24</td><td>1.1</td><td>152</td><td>refinement</td><td>shadow-m1-n24.npz</td><td>0.0157300557639</td><td>2.49800180541e-16</td><td>0</td><td>0</td><td>{&quot;calls&quot;:912,&quot;vacuum_states&quot;:21344,&quot;tiny_negative_energy_states&quot;:0,&quot;outside_cone_roundoff_states&quot;:0,&quot;maximum_outside_cone_excess&quot;:0.0,&quot;maximum_speed&quot;:1.0}</td></tr><tr><td>shadow-m1-n48</td><td>shadow</td><td>m1</td><td>48</td><td>1.1</td><td>304</td><td>refinement</td><td>shadow-m1-n48.npz</td><td>0.0114863364844</td><td>5.27355936697e-16</td><td>0</td><td>0</td><td>{&quot;calls&quot;:1824,&quot;vacuum_states&quot;:150080,&quot;tiny_negative_energy_states&quot;:0,&quot;outside_cone_roundoff_states&quot;:0,&quot;maximum_outside_cone_excess&quot;:0.0,&quot;maximum_speed&quot;:1.0}</td></tr><tr><td>shadow-m1-n96</td><td>shadow</td><td>m1</td><td>96</td><td>1.1</td><td>604</td><td>refinement</td><td>shadow-m1-n96.npz</td><td>0.00439504936578</td><td>8.60422844084e-16</td><td>0</td><td>0</td><td>{&quot;calls&quot;:3624,&quot;vacuum_states&quot;:1117504,&quot;tiny_negative_energy_states&quot;:0,&quot;outside_cone_roundoff_states&quot;:0,&quot;maximum_outside_cone_excess&quot;:0.0,&quot;maximum_speed&quot;:1.0}</td></tr><tr><td>shadow-sn-n96-half-dt</td><td>shadow</td><td>sn</td><td>96</td><td>1.1</td><td>1208</td><td>time-probe</td><td>shadow-sn-n96-half-dt.npz</td><td>0.00438481648889</td><td>2.27595720048e-15</td><td>0</td><td>0</td><td>—</td></tr><tr><td>shadow-m1-n96-half-dt</td><td>shadow</td><td>m1</td><td>96</td><td>1.1</td><td>1208</td><td>time-probe</td><td>shadow-m1-n96-half-dt.npz</td><td>0.00438484494839</td><td>3.46944695195e-15</td><td>0</td><td>0</td><td>{&quot;calls&quot;:7248,&quot;vacuum_states&quot;:1185152,&quot;tiny_negative_energy_states&quot;:0,&quot;outside_cone_roundoff_states&quot;:0,&quot;maximum_outside_cone_excess&quot;:0.0,&quot;maximum_speed&quot;:1.0}</td></tr></tbody></table></div></details><p><a href=\"/numerical-methods-atlas/validation/shadow-absorber2d/index.json\">この例の実測値・全記録 / JSON</a></p><h3 id=\"shadow-absorber2d-references\">一次文献・関連資料と確認範囲</h3><p>原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。</p><ol class=\"validation-references\"><li id=\"shadow-absorber2d-source-rosdahl2013-m1\"><a href=\"https://arxiv.org/html/1304.7126v2\">Rosdahl etal. (2013). RAMSES-RT: Radiation hydrodynamics in the cosmological context</a><p>確認範囲 / review_level: primary-paper-selected-M1-equations-and-limitations</p><p>ReadSection2equations12-14and two-opposing-beams limitation text. Levermore1984original not read. Educational staticgrey cases/MMS here do not reproduce RAMSESastrophysical runs.</p></li><li id=\"shadow-absorber2d-source-skinner-ostriker2013-m1-spectrum\"><a href=\"https://arxiv.org/pdf/1306.0010\">M. A. Skinner and E. C. Ostriker (2013). A Two-moment Radiation Hydrodynamics Module in Athena Using a Time-Explicit Godunov Method</a><p>確認範囲 / review_level: primary-selected-section-by-independent-mathematical-reviewer</p><p>Independent reviewer actually read selected extracted Section3.3equations37–41and eigenvalue limits;not a whole-paper/rendered-symbol audit. Directional LF cone root/weighted-CFL algebra is separately authored and independently crosschecked,not a transplanted HLL solver or claimed general Riemann-fan bound.</p></li></ol></article><article class=\"validation-case\" data-validation-case=\"opposing-beams2d\" id=\"opposing-beams2d\"><h2>2D反向beamとM1閉包の情報損失</h2><p>保存した反向packetの実進行からM1の限界を示し、別の閉M1MMSで数値実装を検証します。</p><nav class=\"validation-actions\" aria-label=\"コード・入力・検証\"><a href=\"/numerical-methods-atlas/validation/opposing-beams2d/?lang=ja\">固定入力・実行入口</a><a href=\"/code/validated-examples/2026-11-24/radiation-geometry/atlas-radiation-geometry-2026-11-24.zip\">コード / ZIP</a><a href=\"/code/validated-examples/2026-11-24/radiation-geometry/inputs.json\">固定入力 / JSON</a><a href=\"/code/validated-examples/2026-11-24/radiation-geometry/results/result.json\">全結果 / JSON</a><a href=\"/code/validated-examples/2026-11-24/radiation-geometry/source-manifest.json\">配布物のSHA-256</a><a href=\"/code/validated-examples/2026-11-24/radiation-geometry/verification.json\">独立展開の検証記録</a></nav><details class=\"execution-resource-details\"><summary>手法・式・図・参照解</summary><div class=\"execution-navigation execution-resource-navigation\" data-execution-navigation=\"opposing-beams2d\" role=\"group\" aria-label=\"この実行例に関連する資料\"><div class=\"execution-navigation-grid\"><div class=\"execution-navigation-card\" data-execution-navigation-card=\"methods\"><p class=\"execution-navigation-label\"><strong>使用手法</strong></p><ul class=\"execution-navigation-links\"><li data-execution-method-id=\"radiation-transport\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/methods/radiation-transport/?lang=ja\" data-execution-method-link>放射輸送・モーメント法</a></li><li data-execution-method-id=\"upwind\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/methods/upwind/?lang=ja\" data-execution-method-link>風上差分（upwind）</a></li><li data-execution-method-id=\"heun\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/methods/heun/?lang=ja\" data-execution-method-link>Heun法／SSPRK(2,2)</a></li><li data-execution-method-id=\"rusanov\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/methods/rusanov/?lang=ja\" data-execution-method-link>Rusanov／局所Lax–Friedrichs流束</a></li></ul><p class=\"execution-navigation-note\">この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。</p></div><div class=\"execution-navigation-card\" data-execution-navigation-card=\"equations\"><p class=\"execution-navigation-label\"><strong>方程式</strong></p><p class=\"execution-navigation-primary\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/validation/opposing-beams2d/?lang=ja#opposing-beams2d-ja-algorithm\" data-execution-formulation-link>この実行例の式と条件</a></p><details class=\"execution-navigation-scope\"><summary>式・近似・診断の範囲</summary><p>風上角度FV／M1のRusanovとSSPRK2。吸収は保存ledger付き指数分割。6軸重み1/6、単位beamのnodal強度6、Pzzと全3Dtraceを保持。floor/projectionはしません。 旧c1 Rusanovの横拡散による3不合格を保持し、一般状態の方向別Jacobian固有値・LF円錐分割・法線flux比の最大を一面係数に採用。全ghost面と台帳へ同じfluxを使い、真空と既存許容丸め域の速度だけ1へ拡張して回数・最大超過を記録します。U/Pの投影や純beam特例branchはありません。</p></details><ul class=\"execution-navigation-links\"><li data-execution-equation-id=\"static-grey-transfer\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#static-grey-transfer-ja\" data-execution-equation-link>静止媒質の灰色放射輸送・散乱・線形交換</a><p class=\"execution-navigation-equation-note\">2D空間と3D角度測度、c1、静止吸収体。実S_Nと非線形M1を24/48/96格子で進め、同一solverの変動方向MMS・x/y交差packet controlを保持。</p></li><li data-execution-equation-id=\"static-grey-m1\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#static-grey-m1-ja\" data-execution-equation-link>静止媒質・平坦時空の灰色M1モーメント</a><p class=\"execution-navigation-equation-note\">2D空間と3D角度測度、c1、静止吸収体。実S_Nと非線形M1を24/48/96格子で進め、同一solverの変動方向MMS・x/y交差packet controlを保持。</p></li></ul></div><div class=\"execution-navigation-card\" data-execution-navigation-card=\"figure\"><p class=\"execution-navigation-label\"><strong>問題の図</strong></p><a class=\"execution-navigation-figure\" data-execution-figure-link href=\"https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/results/opposing-beams2d.png\"><img src=\"https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/results/opposing-beams2d.png\" alt=\"2D反向beamとM1閉包の情報損失：この実行例の保存済み検証図。\" width=\"1603\" height=\"1079\" loading=\"lazy\" decoding=\"async\"></a><p class=\"execution-navigation-note\">この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。</p><p class=\"execution-navigation-primary\" data-execution-problem-id=\"opposing-beams2d\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/problems/opposing-beams2d/?lang=ja\" data-execution-problem-link>2D反向beamとM1閉包の情報損失</a></p><p class=\"execution-navigation-primary\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/problems/opposing-beams2d/?lang=ja#code-ja\" data-execution-problem-code>この問題のコード・検証状況</a></p></div><div class=\"execution-navigation-card\" data-execution-navigation-card=\"references\"><p class=\"execution-navigation-label\"><strong>厳密解・参照解</strong></p><p class=\"execution-navigation-primary\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/validation/opposing-beams2d/?lang=ja#opposing-beams2d-ja-validation\" data-execution-validation-link>この実行例の参照・検証</a></p><p class=\"execution-navigation-note\">独立な特性cell平均と閉M1強制項の複素step検査191項目がmain前に合格。全step収支・cone・正値、別時間probe、MMSとx/y実進行の収束を検査します。 新fluxの762固定成分判定がPDE改訂前に合格。旧17pytestを維持し方向別fluxの5回帰を追加した22pytestと、元24計算・166科学判定を同じ120秒上限で再検査します。</p><ul class=\"execution-navigation-reference-cases\"><li data-execution-reference-id=\"opposing-beams2d\" data-reference-relation=\"same-problem\"><p class=\"execution-navigation-relation\">同じ問題の参照 · 解析参照</p><p class=\"execution-navigation-primary\"><a href=\"https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-opposing-beams2d-ja\" data-execution-reference-link>反向伝播packetの特性線参照</a></p><p class=\"execution-navigation-reference-note\">6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。</p></li></ul></div></div></div></details><h3 id=\"opposing-beams2d-assumptions\">前提・単位・境界</h3><p>2D空間と3D角度測度、c1、静止吸収体。実S_Nと非線形M1を24/48/96格子で進め、同一solverの変動方向MMS・x/y交差packet controlを保持。</p><aside class=\"validation-scope validation-editorial-note\"><strong>編集上の補足</strong><p>6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。</p></aside><h3 id=\"opposing-beams2d-algorithm\">採用した計算法</h3><p>風上角度FV／M1のRusanovとSSPRK2。吸収は保存ledger付き指数分割。6軸重み1/6、単位beamのnodal強度6、Pzzと全3Dtraceを保持。floor/projectionはしません。 旧c1 Rusanovの横拡散による3不合格を保持し、一般状態の方向別Jacobian固有値・LF円錐分割・法線flux比の最大を一面係数に採用。全ghost面と台帳へ同じfluxを使い、真空と既存許容丸め域の速度だけ1へ拡張して回数・最大超過を記録します。U/Pの投影や純beam特例branchはありません。</p><div class=\"validation-math\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><msub><mi mathvariant=\"normal\">∂</mi><mi>t</mi></msub><mi>E</mi><mo>+</mo><mi mathvariant=\"normal\">∇</mi><mo>⋅</mo><mi mathvariant=\"bold\">F</mi><mo>=</mo><mo>−</mo><msub><mi>κ</mi><mi>a</mi></msub><mi>E</mi><mo separator=\"true\">,</mo><mspace width=\"1em\"/><msub><mi mathvariant=\"normal\">∂</mi><mi>t</mi></msub><mi mathvariant=\"bold\">F</mi><mo>+</mo><mi mathvariant=\"normal\">∇</mi><mo>⋅</mo><mi mathvariant=\"bold\">P</mi><mo>=</mo><mo>−</mo><msub><mi>κ</mi><mi>a</mi></msub><mi mathvariant=\"bold\">F</mi></mrow><annotation encoding=\"application/x-tex\">\\partial_tE+\\nabla\\cdot\\mathbf F=-\\kappa_aE,\\quad\\partial_t\\mathbf F+\\nabla\\cdot\\mathbf P=-\\kappa_a\\mathbf F</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8444em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord\" style=\"margin-right:0.0556em;\">∂</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2806em;\"><span style=\"top:-2.55em;margin-left:-0.0556em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">t</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\" style=\"margin-right:0.0576em;\">E</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.6833em;\"></span><span class=\"mord\">∇</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.6861em;\"></span><span class=\"mord mathbf\">F</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8889em;vertical-align:-0.1944em;\"></span><span class=\"mord\">−</span><span class=\"mord\"><span class=\"mord mathnormal\">κ</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">a</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathnormal\" style=\"margin-right:0.0576em;\">E</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:1em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord\" style=\"margin-right:0.0556em;\">∂</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2806em;\"><span style=\"top:-2.55em;margin-left:-0.0556em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">t</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathbf\">F</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.6833em;\"></span><span class=\"mord\">∇</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⋅</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.6861em;\"></span><span class=\"mord mathbf\">P</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8361em;vertical-align:-0.15em;\"></span><span class=\"mord\">−</span><span class=\"mord\"><span class=\"mord mathnormal\">κ</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">a</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mord mathbf\">F</span></span></span></span></span></div><div class=\"validation-math\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><mi mathvariant=\"bold\">P</mi><mo>=</mo><mi>E</mi><mrow><mo fence=\"true\">[</mo><mfrac><mrow><mn>1</mn><mo>−</mo><mi>χ</mi></mrow><mn>2</mn></mfrac><msub><mi mathvariant=\"bold\">I</mi><mn>3</mn></msub><mo>+</mo><mfrac><mrow><mn>3</mn><mi>χ</mi><mo>−</mo><mn>1</mn></mrow><mn>2</mn></mfrac><mi mathvariant=\"bold\">n</mi><mo>⊗</mo><mi mathvariant=\"bold\">n</mi><mo fence=\"true\">]</mo></mrow></mrow><annotation encoding=\"application/x-tex\">\\mathbf P=E\\left[\\frac{1-\\chi}{2}\\mathbf I_3+\\frac{3\\chi-1}{2}\\mathbf n\\otimes\\mathbf n\\right]</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.6861em;\"></span><span class=\"mord mathbf\">P</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:2.4em;vertical-align:-0.95em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.0576em;\">E</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"minner\"><span class=\"mopen delimcenter\" style=\"top:0em;\"><span class=\"delimsizing size3\">[</span></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.3214em;\"><span style=\"top:-2.314em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\">2</span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.677em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\">1</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mord mathnormal\">χ</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.686em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mord\"><span class=\"mord mathbf\">I</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.3011em;\"><span style=\"top:-2.55em;margin-left:0em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">3</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.3214em;\"><span style=\"top:-2.314em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\">2</span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.677em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\">3</span><span class=\"mord mathnormal\">χ</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mord\">1</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.686em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mord mathbf\">n</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">⊗</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mord mathbf\">n</span><span class=\"mclose delimcenter\" style=\"top:0em;\"><span class=\"delimsizing size3\">]</span></span></span></span></span></span></span></div><div class=\"validation-math\"><span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><semantics><mrow><mi>χ</mi><mo>=</mo><mfrac><mrow><mn>3</mn><mo>+</mo><mn>4</mn><msup><mi>f</mi><mn>2</mn></msup></mrow><mrow><mn>5</mn><mo>+</mo><mn>2</mn><msqrt><mrow><mn>4</mn><mo>−</mo><mn>3</mn><msup><mi>f</mi><mn>2</mn></msup></mrow></msqrt></mrow></mfrac><mo separator=\"true\">,</mo><mspace width=\"1em\"/><mi>f</mi><mo>=</mo><mi mathvariant=\"normal\">∣</mi><mi mathvariant=\"bold\">F</mi><mi mathvariant=\"normal\">∣</mi><mi mathvariant=\"normal\">/</mi><mi>E</mi><mo separator=\"true\">,</mo><mspace width=\"1em\"/><msub><mi>P</mi><mrow><mi>x</mi><mi>x</mi></mrow></msub><mo>+</mo><msub><mi>P</mi><mrow><mi>y</mi><mi>y</mi></mrow></msub><mo>+</mo><msub><mi>P</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub><mo>=</mo><mi>E</mi></mrow><annotation encoding=\"application/x-tex\">\\chi=\\frac{3+4f^2}{5+2\\sqrt{4-3f^2}},\\quad f=|\\mathbf F|/E,\\quad P_{xx}+P_{yy}+P_{zz}=E</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.625em;vertical-align:-0.1944em;\"></span><span class=\"mord mathnormal\">χ</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:2.6211em;vertical-align:-1.13em;\"></span><span class=\"mord\"><span class=\"mopen nulldelimiter\"></span><span class=\"mfrac\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.4911em;\"><span style=\"top:-2.1522em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\">5</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mord\">2</span><span class=\"mord sqrt\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.9578em;\"><span class=\"svg-align\" style=\"top:-3.2em;\"><span class=\"pstrut\" style=\"height:3.2em;\"></span><span class=\"mord\" style=\"padding-left:1em;\"><span class=\"mord\">4</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">−</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mord\">3</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.1076em;\">f</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.7401em;\"><span style=\"top:-2.989em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span></span></span></span></span></span></span><span style=\"top:-2.9178em;\"><span class=\"pstrut\" style=\"height:3.2em;\"></span><span class=\"hide-tail\" style=\"min-width:1.02em;height:1.28em;\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"400em\" height=\"1.28em\" viewBox=\"0 0 400000 1296\" preserveAspectRatio=\"xMinYMin slice\"><path d=\"M263,681c0.7,0,18,39.7,52,119\nc34,79.3,68.167,158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120\nc340,-704.7,510.7,-1060.3,512,-1067\nl0 -0\nc4.7,-7.3,11,-11,19,-11\nH40000v40H1012.3\ns-271.3,567,-271.3,567c-38.7,80.7,-84,175,-136,283c-52,108,-89.167,185.3,-111.5,232\nc-22.3,46.7,-33.8,70.3,-34.5,71c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1\ns-109,-253,-109,-253c-72.7,-168,-109.3,-252,-110,-252c-10.7,8,-22,16.7,-34,26\nc-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26s76,-59,76,-59s76,-60,76,-60z\nM1001 80h400000v40h-400000z\"/></svg></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2822em;\"><span></span></span></span></span></span></span></span><span style=\"top:-3.23em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"frac-line\" style=\"border-bottom-width:0.04em;\"></span></span><span style=\"top:-3.677em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord\"><span class=\"mord\">3</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mord\">4</span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.1076em;\">f</span><span class=\"msupsub\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.8141em;\"><span style=\"top:-3.063em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\">2</span></span></span></span></span></span></span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:1.13em;\"><span></span></span></span></span></span><span class=\"mclose nulldelimiter\"></span></span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:1em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.1076em;\">f</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord\">∣</span><span class=\"mord mathbf\">F</span><span class=\"mord\">∣/</span><span class=\"mord mathnormal\" style=\"margin-right:0.0576em;\">E</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:1em;\"></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">P</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\">xx</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.9694em;vertical-align:-0.2861em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">P</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0359em;\">y</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.0359em;\">y</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.2861em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span><span class=\"mbin\">+</span><span class=\"mspace\" style=\"margin-right:0.2222em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.8333em;vertical-align:-0.15em;\"></span><span class=\"mord\"><span class=\"mord mathnormal\" style=\"margin-right:0.1389em;\">P</span><span class=\"msupsub\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.1514em;\"><span style=\"top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;\"><span class=\"pstrut\" style=\"height:2.7em;\"></span><span class=\"katex-sizing reset-size6 size3 mtight\"><span class=\"mord mtight\"><span class=\"mord mathnormal mtight\" style=\"margin-right:0.044em;\">z</span><span class=\"mord mathnormal mtight\" style=\"margin-right:0.044em;\">z</span></span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.15em;\"><span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"katex-base\"><span class=\"katex-strut\" style=\"height:0.6833em;\"></span><span class=\"mord mathnormal\" style=\"margin-right:0.0576em;\">E</span></span></span></span></span></div><h3 id=\"opposing-beams2d-validation\">何と比較し、何を測るか</h3><p>独立な特性cell平均と閉M1強制項の複素step検査191項目がmain前に合格。全step収支・cone・正値、別時間probe、MMSとx/y実進行の収束を検査します。 新fluxの762固定成分判定がPDE改訂前に合格。旧17pytestを維持し方向別fluxの5回帰を追加した22pytestと、元24計算・166科学判定を同じ120秒上限で再検査します。</p><h3 id=\"opposing-beams2d-limits\">確認の限界と失敗条件</h3><p>6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。</p><h3 id=\"opposing-beams2d-measurements\">保存した実測値と判定</h3><p>表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。</p><div class=\"validation-table\" tabindex=\"0\" role=\"region\" aria-label=\"2D反向beamとM1閉包の情報損失：実測値\"><table><thead><tr><th scope=\"col\">量 / metric</th><th scope=\"col\">実測値</th></tr></thead><tbody><tr><td>same_solver_controls</td><td>[&quot;nonlinear-closed-M1-MMS&quot;,&quot;actual-x-and-y-crossed-angular-packets&quot;]</td></tr><tr><td>M1_transport_difference_is_model_error</td><td>true</td></tr><tr><td>M1_numerical_flux</td><td>General directional localLF:max endpoint spectralradius,LFcone-splitting bound and absolute normal reducedflux;not a nonlinearRiemannfan bound</td></tr><tr><td>completed_primary_and_control_runs</td><td>16</td></tr><tr><td>spatial_dimensions</td><td>2</td></tr><tr><td>angular_dimensions</td><td>3</td></tr><tr><td>Pzz_retained</td><td>true</td></tr></tbody></table></div><div class=\"validation-table\" tabindex=\"0\" role=\"region\" aria-label=\"2D反向beamとM1閉包の情報損失：判定\"><table><thead><tr><th scope=\"col\">判定 / check</th><th scope=\"col\">合格</th></tr></thead><tbody><tr><td>beams-sn-n24/all-stages-finite</td><td>true</td></tr><tr><td>beams-sn-n24/positive-energy</td><td>true</td></tr><tr><td>beams-sn-n24/realizability</td><td>true</td></tr><tr><td>beams-sn-n24/energy-budget</td><td>true</td></tr><tr><td>beams-sn-n24/full3D-pressure-trace</td><td>true</td></tr><tr><td>beams-sn-n24/five-fixed-snapshots</td><td>true</td></tr><tr><td>beams-sn-n48/all-stages-finite</td><td>true</td></tr><tr><td>beams-sn-n48/positive-energy</td><td>true</td></tr><tr><td>beams-sn-n48/realizability</td><td>true</td></tr><tr><td>beams-sn-n48/energy-budget</td><td>true</td></tr><tr><td>beams-sn-n48/full3D-pressure-trace</td><td>true</td></tr><tr><td>beams-sn-n48/five-fixed-snapshots</td><td>true</td></tr><tr><td>beams-sn-n96/all-stages-finite</td><td>true</td></tr><tr><td>beams-sn-n96/positive-energy</td><td>true</td></tr><tr><td>beams-sn-n96/realizability</td><td>true</td></tr><tr><td>beams-sn-n96/energy-budget</td><td>true</td></tr><tr><td>beams-sn-n96/full3D-pressure-trace</td><td>true</td></tr><tr><td>beams-sn-n96/five-fixed-snapshots</td><td>true</td></tr><tr><td>beams-m1-n24/all-stages-finite</td><td>true</td></tr><tr><td>beams-m1-n24/positive-energy</td><td>true</td></tr><tr><td>beams-m1-n24/realizability</td><td>true</td></tr><tr><td>beams-m1-n24/energy-budget</td><td>true</td></tr><tr><td>beams-m1-n24/full3D-pressure-trace</td><td>true</td></tr><tr><td>beams-m1-n24/five-fixed-snapshots</td><td>true</td></tr><tr><td>beams-m1-n48/all-stages-finite</td><td>true</td></tr><tr><td>beams-m1-n48/positive-energy</td><td>true</td></tr><tr><td>beams-m1-n48/realizability</td><td>true</td></tr><tr><td>beams-m1-n48/energy-budget</td><td>true</td></tr><tr><td>beams-m1-n48/full3D-pressure-trace</td><td>true</td></tr><tr><td>beams-m1-n48/five-fixed-snapshots</td><td>true</td></tr><tr><td>beams-m1-n96/all-stages-finite</td><td>true</td></tr><tr><td>beams-m1-n96/positive-energy</td><td>true</td></tr><tr><td>beams-m1-n96/realizability</td><td>true</td></tr><tr><td>beams-m1-n96/energy-budget</td><td>true</td></tr><tr><td>beams-m1-n96/full3D-pressure-trace</td><td>true</td></tr><tr><td>beams-m1-n96/five-fixed-snapshots</td><td>true</td></tr><tr><td>beams-sn-n96-half-dt/all-stages-finite</td><td>true</td></tr><tr><td>beams-sn-n96-half-dt/positive-energy</td><td>true</td></tr><tr><td>beams-sn-n96-half-dt/realizability</td><td>true</td></tr><tr><td>beams-sn-n96-half-dt/energy-budget</td><td>true</td></tr><tr><td>beams-sn-n96-half-dt/full3D-pressure-trace</td><td>true</td></tr><tr><td>beams-sn-n96-half-dt/five-fixed-snapshots</td><td>true</td></tr><tr><td>beams-m1-n96-half-dt/all-stages-finite</td><td>true</td></tr><tr><td>beams-m1-n96-half-dt/positive-energy</td><td>true</td></tr><tr><td>beams-m1-n96-half-dt/realizability</td><td>true</td></tr><tr><td>beams-m1-n96-half-dt/energy-budget</td><td>true</td></tr><tr><td>beams-m1-n96-half-dt/full3D-pressure-trace</td><td>true</td></tr><tr><td>beams-m1-n96-half-dt/five-fixed-snapshots</td><td>true</td></tr><tr><td>beams/sn/refinement-n48</td><td>true</td></tr><tr><td>beams/sn/refinement-n96</td><td>true</td></tr><tr><td>beams/sn/finest-reference</td><td>true</td></tr><tr><td>beams/sn/separate-time-sensitivity</td><td>true</td></tr><tr><td>beams/m1/separate-time-sensitivity</td><td>true</td></tr><tr><td>mms-m1-n16/all-stages-finite</td><td>true</td></tr><tr><td>mms-m1-n16/positive-energy</td><td>true</td></tr><tr><td>mms-m1-n16/realizability</td><td>true</td></tr><tr><td>mms-m1-n16/energy-budget</td><td>true</td></tr><tr><td>mms-m1-n16/full3D-pressure-trace</td><td>true</td></tr><tr><td>mms-m1-n16/five-fixed-snapshots</td><td>true</td></tr><tr><td>mms-m1-n32/all-stages-finite</td><td>true</td></tr><tr><td>mms-m1-n32/positive-energy</td><td>true</td></tr><tr><td>mms-m1-n32/realizability</td><td>true</td></tr><tr><td>mms-m1-n32/energy-budget</td><td>true</td></tr><tr><td>mms-m1-n32/full3D-pressure-trace</td><td>true</td></tr><tr><td>mms-m1-n32/five-fixed-snapshots</td><td>true</td></tr><tr><td>mms-m1-n64/all-stages-finite</td><td>true</td></tr><tr><td>mms-m1-n64/positive-energy</td><td>true</td></tr><tr><td>mms-m1-n64/realizability</td><td>true</td></tr><tr><td>mms-m1-n64/energy-budget</td><td>true</td></tr><tr><td>mms-m1-n64/full3D-pressure-trace</td><td>true</td></tr><tr><td>mms-m1-n64/five-fixed-snapshots</td><td>true</td></tr><tr><td>mms-m1-n64-half-dt/all-stages-finite</td><td>true</td></tr><tr><td>mms-m1-n64-half-dt/positive-energy</td><td>true</td></tr><tr><td>mms-m1-n64-half-dt/realizability</td><td>true</td></tr><tr><td>mms-m1-n64-half-dt/energy-budget</td><td>true</td></tr><tr><td>mms-m1-n64-half-dt/full3D-pressure-trace</td><td>true</td></tr><tr><td>mms-m1-n64-half-dt/five-fixed-snapshots</td><td>true</td></tr><tr><td>crossed-sn-n24/all-stages-finite</td><td>true</td></tr><tr><td>crossed-sn-n24/positive-energy</td><td>true</td></tr><tr><td>crossed-sn-n24/realizability</td><td>true</td></tr><tr><td>crossed-sn-n24/energy-budget</td><td>true</td></tr><tr><td>crossed-sn-n24/full3D-pressure-trace</td><td>true</td></tr><tr><td>crossed-sn-n24/five-fixed-snapshots</td><td>true</td></tr><tr><td>crossed-sn-n48/all-stages-finite</td><td>true</td></tr><tr><td>crossed-sn-n48/positive-energy</td><td>true</td></tr><tr><td>crossed-sn-n48/realizability</td><td>true</td></tr><tr><td>crossed-sn-n48/energy-budget</td><td>true</td></tr><tr><td>crossed-sn-n48/full3D-pressure-trace</td><td>true</td></tr><tr><td>crossed-sn-n48/five-fixed-snapshots</td><td>true</td></tr><tr><td>crossed-sn-n96/all-stages-finite</td><td>true</td></tr><tr><td>crossed-sn-n96/positive-energy</td><td>true</td></tr><tr><td>crossed-sn-n96/realizability</td><td>true</td></tr><tr><td>crossed-sn-n96/energy-budget</td><td>true</td></tr><tr><td>crossed-sn-n96/full3D-pressure-trace</td><td>true</td></tr><tr><td>crossed-sn-n96/five-fixed-snapshots</td><td>true</td></tr><tr><td>crossed-sn-n96-half-dt/all-stages-finite</td><td>true</td></tr><tr><td>crossed-sn-n96-half-dt/positive-energy</td><td>true</td></tr><tr><td>crossed-sn-n96-half-dt/realizability</td><td>true</td></tr><tr><td>crossed-sn-n96-half-dt/energy-budget</td><td>true</td></tr><tr><td>crossed-sn-n96-half-dt/full3D-pressure-trace</td><td>true</td></tr><tr><td>crossed-sn-n96-half-dt/five-fixed-snapshots</td><td>true</td></tr><tr><td>mms/m1/refinement-n32</td><td>true</td></tr><tr><td>mms/m1/refinement-n64</td><td>true</td></tr><tr><td>mms/m1/finest-reference</td><td>true</td></tr><tr><td>mms/m1/separate-time-sensitivity</td><td>true</td></tr><tr><td>crossed/sn/refinement-n48</td><td>true</td></tr><tr><td>crossed/sn/refinement-n96</td><td>true</td></tr><tr><td>crossed/sn/finest-reference</td><td>true</td></tr><tr><td>crossed/sn/separate-time-sensitivity</td><td>true</td></tr><tr><td>head-on-closure-information-defect</td><td>true</td></tr></tbody></table></div><figure><img loading=\"lazy\" src=\"/code/validated-examples/2026-11-24/radiation-geometry/results/opposing-beams2d.png\" width=\"1603\" height=\"1079\" alt=\"2D反向beamとM1閉包の情報損失の保存済み検証図\"><figcaption>保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。</figcaption></figure><figure class=\"validation-additional-figure\" data-validation-additional-figure=\"opposing-beams2d-preview.png\"><a href=\"/code/validated-examples/2026-11-24/radiation-geometry/results/opposing-beams2d-preview.png\"><img loading=\"lazy\" src=\"/code/validated-examples/2026-11-24/radiation-geometry/results/opposing-beams2d-preview.png\" width=\"1509\" height=\"495\" alt=\"保存した実計算場の科学プレビュー。\"></a><figcaption>保存した実計算場の科学プレビュー。</figcaption></figure><figure class=\"validation-additional-figure\" data-validation-additional-figure=\"m1-manufactured-control.png\"><a href=\"/code/validated-examples/2026-11-24/radiation-geometry/results/m1-manufactured-control.png\"><img loading=\"lazy\" src=\"/code/validated-examples/2026-11-24/radiation-geometry/results/m1-manufactured-control.png\" width=\"1763\" height=\"536\" alt=\"同じM1 solverで進めた変動方向の製造解・実計算場・符号付き誤差。\"></a><figcaption>同じM1 solverで進めた変動方向の製造解・実計算場・符号付き誤差。</figcaption></figure><details class=\"validation-records\"><summary>全記録を表で読む</summary><div class=\"validation-table\" tabindex=\"0\" role=\"region\" aria-label=\"opposing-beams2d records\"><table><thead><tr><th scope=\"col\">id</th><th scope=\"col\">kind</th><th scope=\"col\">method</th><th scope=\"col\">cells</th><th scope=\"col\">final_time</th><th scope=\"col\">steps</th><th scope=\"col\">family</th><th scope=\"col\">fields</th><th scope=\"col\">independent_moment_l1</th><th scope=\"col\">maximum_budget</th><th scope=\"col\">minimum_energy</th><th scope=\"col\">minimum_cone</th><th scope=\"col\">directional_speed_diagnostics</th></tr></thead><tbody><tr><td>beams-sn-n24</td><td>beams</td><td>sn</td><td>24</td><td>0.5</td><td>72</td><td>refinement</td><td>beams-sn-n24.npz</td><td>0.0215907287879</td><td>6.93889390391e-18</td><td>1.99491505044e-21</td><td>0</td><td>—</td></tr><tr><td>beams-sn-n48</td><td>beams</td><td>sn</td><td>48</td><td>0.5</td><td>140</td><td>refinement</td><td>beams-sn-n48.npz</td><td>0.0181088331234</td><td>6.93889390391e-18</td><td>6.93453283989e-24</td><td>0</td><td>—</td></tr><tr><td>beams-sn-n96</td><td>beams</td><td>sn</td><td>96</td><td>0.5</td><td>276</td><td>refinement</td><td>beams-sn-n96.npz</td><td>0.0134552978926</td><td>3.46944695195e-18</td><td>1.47896130662e-26</td><td>0</td><td>—</td></tr><tr><td>beams-m1-n24</td><td>beams</td><td>m1</td><td>24</td><td>0.5</td><td>72</td><td>refinement</td><td>beams-m1-n24.npz</td><td>0.0375168955555</td><td>6.93889390391e-18</td><td>2.23517819207e-20</td><td>4.89093761237e-28</td><td>{&quot;calls&quot;:288,&quot;vacuum_states&quot;:0,&quot;tiny_negative_energy_states&quot;:0,&quot;outside_cone_roundoff_states&quot;:0,&quot;maximum_outside_cone_excess&quot;:0.0,&quot;maximum_speed&quot;:0.9999999999999807}</td></tr><tr><td>beams-m1-n48</td><td>beams</td><td>m1</td><td>48</td><td>0.5</td><td>140</td><td>refinement</td><td>beams-m1-n48.npz</td><td>0.0377905007116</td><td>3.46944695195e-18</td><td>2.27816613728e-21</td><td>3.53409685539e-28</td><td>{&quot;calls&quot;:560,&quot;vacuum_states&quot;:0,&quot;tiny_negative_energy_states&quot;:0,&quot;outside_cone_roundoff_states&quot;:0,&quot;maximum_outside_cone_excess&quot;:0.0,&quot;maximum_speed&quot;:0.9999999999999853}</td></tr><tr><td>beams-m1-n96</td><td>beams</td><td>m1</td><td>96</td><td>0.5</td><td>276</td><td>refinement</td><td>beams-m1-n96.npz</td><td>0.0372264508078</td><td>6.93889390391e-18</td><td>5.60564464068e-22</td><td>3.28166136572e-28</td><td>{&quot;calls&quot;:1104,&quot;vacuum_states&quot;:0,&quot;tiny_negative_energy_states&quot;:0,&quot;outside_cone_roundoff_states&quot;:0,&quot;maximum_outside_cone_excess&quot;:0.0,&quot;maximum_speed&quot;:0.9999999999999865}</td></tr><tr><td>beams-sn-n96-half-dt</td><td>beams</td><td>sn</td><td>96</td><td>0.5</td><td>552</td><td>time-probe</td><td>beams-sn-n96-half-dt.npz</td><td>0.0134536837248</td><td>6.93889390391e-18</td><td>1.54902502056e-26</td><td>0</td><td>—</td></tr><tr><td>beams-m1-n96-half-dt</td><td>beams</td><td>m1</td><td>96</td><td>0.5</td><td>552</td><td>time-probe</td><td>beams-m1-n96-half-dt.npz</td><td>0.0372262147525</td><td>6.93889390391e-18</td><td>5.60794258978e-22</td><td>3.28166136572e-28</td><td>{&quot;calls&quot;:2208,&quot;vacuum_states&quot;:0,&quot;tiny_negative_energy_states&quot;:0,&quot;outside_cone_roundoff_states&quot;:0,&quot;maximum_outside_cone_excess&quot;:0.0,&quot;maximum_speed&quot;:0.9999999999999865}</td></tr><tr><td>mms-m1-n16</td><td>mms</td><td>m1</td><td>16</td><td>0.25</td><td>24</td><td>refinement</td><td>mms-m1-n16.npz</td><td>0.0153641904449</td><td>4.28711609037e-18</td><td>0.9029912895</td><td>0.666986081724</td><td>{&quot;calls&quot;:96,&quot;vacuum_states&quot;:0,&quot;tiny_negative_energy_states&quot;:0,&quot;outside_cone_roundoff_states&quot;:0,&quot;maximum_outside_cone_excess&quot;:0.0,&quot;maximum_speed&quot;:0.6908442378741732}</td></tr><tr><td>mms-m1-n32</td><td>mms</td><td>m1</td><td>32</td><td>0.25</td><td>48</td><td>refinement</td><td>mms-m1-n32.npz</td><td>0.00858168403051</td><td>2.19587080001e-16</td><td>0.900773210341</td><td>0.661973156452</td><td>{&quot;calls&quot;:192,&quot;vacuum_states&quot;:0,&quot;tiny_negative_energy_states&quot;:0,&quot;outside_cone_roundoff_states&quot;:0,&quot;maximum_outside_cone_excess&quot;:0.0,&quot;maximum_speed&quot;:0.6909000278930099}</td></tr><tr><td>mms-m1-n64</td><td>mms</td><td>m1</td><td>64</td><td>0.25</td><td>92</td><td>refinement</td><td>mms-m1-n64.npz</td><td>0.00454091865859</td><td>2.21799480956e-16</td><td>0.900201180392</td><td>0.659094670883</td><td>{&quot;calls&quot;:368,&quot;vacuum_states&quot;:0,&quot;tiny_negative_energy_states&quot;:0,&quot;outside_cone_roundoff_states&quot;:0,&quot;maximum_outside_cone_excess&quot;:0.0,&quot;maximum_speed&quot;:0.6909869582293076}</td></tr><tr><td>mms-m1-n64-half-dt</td><td>mms</td><td>m1</td><td>64</td><td>0.25</td><td>184</td><td>time-probe</td><td>mms-m1-n64-half-dt.npz</td><td>0.00453917575441</td><td>2.23439925982e-16</td><td>0.900137124113</td><td>0.659090055604</td><td>{&quot;calls&quot;:736,&quot;vacuum_states&quot;:0,&quot;tiny_negative_energy_states&quot;:0,&quot;outside_cone_roundoff_states&quot;:0,&quot;maximum_outside_cone_excess&quot;:0.0,&quot;maximum_speed&quot;:0.6909846201381773}</td></tr><tr><td>crossed-sn-n24</td><td>crossed</td><td>sn</td><td>24</td><td>0.25</td><td>36</td><td>refinement</td><td>crossed-sn-n24.npz</td><td>0.0159249646671</td><td>6.93889390391e-18</td><td>3.86975299898e-24</td><td>0</td><td>—</td></tr><tr><td>crossed-sn-n48</td><td>crossed</td><td>sn</td><td>48</td><td>0.25</td><td>72</td><td>refinement</td><td>crossed-sn-n48.npz</td><td>0.0116636554753</td><td>6.93889390391e-18</td><td>2.59338160907e-25</td><td>0</td><td>—</td></tr><tr><td>crossed-sn-n96</td><td>crossed</td><td>sn</td><td>96</td><td>0.25</td><td>140</td><td>refinement</td><td>crossed-sn-n96.npz</td><td>0.00770703525154</td><td>6.93889390391e-18</td><td>5.82247250136e-27</td><td>0</td><td>—</td></tr><tr><td>crossed-sn-n96-half-dt</td><td>crossed</td><td>sn</td><td>96</td><td>0.25</td><td>280</td><td>time-probe</td><td>crossed-sn-n96-half-dt.npz</td><td>0.00770504678592</td><td>3.46944695195e-18</td><td>6.03805527375e-27</td><td>0</td><td>—</td></tr></tbody></table></div></details><p><a href=\"/numerical-methods-atlas/validation/opposing-beams2d/index.json\">この例の実測値・全記録 / JSON</a></p><h3 id=\"opposing-beams2d-references\">一次文献・関連資料と確認範囲</h3><p>原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。</p><ol class=\"validation-references\"><li id=\"opposing-beams2d-source-rosdahl2013-m1\"><a href=\"https://arxiv.org/html/1304.7126v2\">Rosdahl etal. (2013). RAMSES-RT: Radiation hydrodynamics in the cosmological context</a><p>確認範囲 / review_level: primary-paper-selected-M1-equations-and-limitations</p><p>ReadSection2equations12-14and two-opposing-beams limitation text. Levermore1984original not read. Educational staticgrey cases/MMS here do not reproduce RAMSESastrophysical runs.</p></li><li id=\"opposing-beams2d-source-skinner-ostriker2013-m1-spectrum\"><a href=\"https://arxiv.org/pdf/1306.0010\">M. A. Skinner and E. C. Ostriker (2013). A Two-moment Radiation Hydrodynamics Module in Athena Using a Time-Explicit Godunov Method</a><p>確認範囲 / review_level: primary-selected-section-by-independent-mathematical-reviewer</p><p>Independent reviewer actually read selected extracted Section3.3equations37–41and eigenvalue limits;not a whole-paper/rendered-symbol audit. Directional LF cone root/weighted-CFL algebra is separately authored and independently crosschecked,not a transplanted HLL solver or claimed general Riemann-fan bound.</p></li></ol></article><aside class=\"validation-terms\"><p>オリジナルコードはMIT。本文・図・固定入力・数値データと第三者資料は、それぞれの利用条件に従います。</p><p><a href=\"/LICENSING.md\">LICENSING.md</a> · <a href=\"/rights/?lang=ja\">利用条件・AI方針</a></p></aside>",
+  "headings": [
+    {
+      "level": 2,
+      "id": "run-all",
+      "title": "配布版を取得して実行する"
+    },
+    {
+      "level": 3,
+      "id": "shadow-absorber2d-assumptions",
+      "title": "前提・単位・境界"
+    },
+    {
+      "level": 3,
+      "id": "shadow-absorber2d-algorithm",
+      "title": "採用した計算法"
+    },
+    {
+      "level": 3,
+      "id": "shadow-absorber2d-validation",
+      "title": "何と比較し、何を測るか"
+    },
+    {
+      "level": 3,
+      "id": "shadow-absorber2d-limits",
+      "title": "確認の限界と失敗条件"
+    },
+    {
+      "level": 3,
+      "id": "shadow-absorber2d-measurements",
+      "title": "保存した実測値と判定"
+    },
+    {
+      "level": 3,
+      "id": "shadow-absorber2d-references",
+      "title": "一次文献・関連資料と確認範囲"
+    },
+    {
+      "level": 3,
+      "id": "opposing-beams2d-assumptions",
+      "title": "前提・単位・境界"
+    },
+    {
+      "level": 3,
+      "id": "opposing-beams2d-algorithm",
+      "title": "採用した計算法"
+    },
+    {
+      "level": 3,
+      "id": "opposing-beams2d-validation",
+      "title": "何と比較し、何を測るか"
+    },
+    {
+      "level": 3,
+      "id": "opposing-beams2d-limits",
+      "title": "確認の限界と失敗条件"
+    },
+    {
+      "level": 3,
+      "id": "opposing-beams2d-measurements",
+      "title": "保存した実測値と判定"
+    },
+    {
+      "level": 3,
+      "id": "opposing-beams2d-references",
+      "title": "一次文献・関連資料と確認範囲"
+    },
+    {
+      "level": 2,
+      "id": "shadow-absorber2d",
+      "title": "2D吸収影と保存的M1輸送"
+    },
+    {
+      "level": 2,
+      "id": "opposing-beams2d",
+      "title": "2D反向beamとM1閉包の情報損失"
+    }
+  ],
+  "locale": "ja",
+  "source_url": "/code/validated-examples/2026-11-24/radiation-geometry/cases.json",
+  "updated_on": "2026-11-24",
+  "translation_status": "draft",
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-geometry/",
+  "group": "radiation-geometry",
+  "case_ids": [
+    "shadow-absorber2d",
+    "opposing-beams2d"
+  ],
+  "measurements": [
+    {
+      "id": "shadow-absorber2d",
+      "passed": true,
+      "checks": {
+        "shadow-sn-n24/all-stages-finite": true,
+        "shadow-sn-n24/positive-energy": true,
+        "shadow-sn-n24/realizability": true,
+        "shadow-sn-n24/energy-budget": true,
+        "shadow-sn-n24/full3D-pressure-trace": true,
+        "shadow-sn-n24/five-fixed-snapshots": true,
+        "shadow-sn-n48/all-stages-finite": true,
+        "shadow-sn-n48/positive-energy": true,
+        "shadow-sn-n48/realizability": true,
+        "shadow-sn-n48/energy-budget": true,
+        "shadow-sn-n48/full3D-pressure-trace": true,
+        "shadow-sn-n48/five-fixed-snapshots": true,
+        "shadow-sn-n96/all-stages-finite": true,
+        "shadow-sn-n96/positive-energy": true,
+        "shadow-sn-n96/realizability": true,
+        "shadow-sn-n96/energy-budget": true,
+        "shadow-sn-n96/full3D-pressure-trace": true,
+        "shadow-sn-n96/five-fixed-snapshots": true,
+        "shadow-m1-n24/all-stages-finite": true,
+        "shadow-m1-n24/positive-energy": true,
+        "shadow-m1-n24/realizability": true,
+        "shadow-m1-n24/energy-budget": true,
+        "shadow-m1-n24/full3D-pressure-trace": true,
+        "shadow-m1-n24/five-fixed-snapshots": true,
+        "shadow-m1-n48/all-stages-finite": true,
+        "shadow-m1-n48/positive-energy": true,
+        "shadow-m1-n48/realizability": true,
+        "shadow-m1-n48/energy-budget": true,
+        "shadow-m1-n48/full3D-pressure-trace": true,
+        "shadow-m1-n48/five-fixed-snapshots": true,
+        "shadow-m1-n96/all-stages-finite": true,
+        "shadow-m1-n96/positive-energy": true,
+        "shadow-m1-n96/realizability": true,
+        "shadow-m1-n96/energy-budget": true,
+        "shadow-m1-n96/full3D-pressure-trace": true,
+        "shadow-m1-n96/five-fixed-snapshots": true,
+        "shadow-sn-n96-half-dt/all-stages-finite": true,
+        "shadow-sn-n96-half-dt/positive-energy": true,
+        "shadow-sn-n96-half-dt/realizability": true,
+        "shadow-sn-n96-half-dt/energy-budget": true,
+        "shadow-sn-n96-half-dt/full3D-pressure-trace": true,
+        "shadow-sn-n96-half-dt/five-fixed-snapshots": true,
+        "shadow-m1-n96-half-dt/all-stages-finite": true,
+        "shadow-m1-n96-half-dt/positive-energy": true,
+        "shadow-m1-n96-half-dt/realizability": true,
+        "shadow-m1-n96-half-dt/energy-budget": true,
+        "shadow-m1-n96-half-dt/full3D-pressure-trace": true,
+        "shadow-m1-n96-half-dt/five-fixed-snapshots": true,
+        "shadow/sn/refinement-n48": true,
+        "shadow/sn/refinement-n96": true,
+        "shadow/sn/finest-reference": true,
+        "shadow/sn/separate-time-sensitivity": true,
+        "shadow/m1/refinement-n48": true,
+        "shadow/m1/refinement-n96": true,
+        "shadow/m1/finest-reference": true,
+        "shadow/m1/separate-time-sensitivity": true
+      },
+      "check_details": [
+        {
+          "name": "shadow-sn-n24/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n24/positive-energy",
+          "value": 0.0,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n24/realizability",
+          "value": 0.0,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n24/energy-budget",
+          "value": 2.220446049250313e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n24/full3D-pressure-trace",
+          "value": 0.0,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n24/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.275,
+            0.55,
+            0.8250000000000001,
+            1.1
+          ],
+          "bound": [
+            0.0,
+            0.275,
+            0.55,
+            0.8250000000000001,
+            1.1
+          ],
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n48/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n48/positive-energy",
+          "value": 0.0,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n48/realizability",
+          "value": 0.0,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n48/energy-budget",
+          "value": 5.551115123125783e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n48/full3D-pressure-trace",
+          "value": 0.0,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n48/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.275,
+            0.55,
+            0.8250000000000001,
+            1.1
+          ],
+          "bound": [
+            0.0,
+            0.275,
+            0.55,
+            0.8250000000000001,
+            1.1
+          ],
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n96/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n96/positive-energy",
+          "value": 0.0,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n96/realizability",
+          "value": 0.0,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n96/energy-budget",
+          "value": 6.38378239159465e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n96/full3D-pressure-trace",
+          "value": 0.0,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n96/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.275,
+            0.55,
+            0.8250000000000001,
+            1.1
+          ],
+          "bound": [
+            0.0,
+            0.275,
+            0.55,
+            0.8250000000000001,
+            1.1
+          ],
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n24/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n24/positive-energy",
+          "value": 0.0,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n24/realizability",
+          "value": 0.0,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n24/energy-budget",
+          "value": 2.498001805406602e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n24/full3D-pressure-trace",
+          "value": 0.0,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n24/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.275,
+            0.55,
+            0.8250000000000001,
+            1.1
+          ],
+          "bound": [
+            0.0,
+            0.275,
+            0.55,
+            0.8250000000000001,
+            1.1
+          ],
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n48/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n48/positive-energy",
+          "value": 0.0,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n48/realizability",
+          "value": 0.0,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n48/energy-budget",
+          "value": 5.273559366969494e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n48/full3D-pressure-trace",
+          "value": 0.0,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n48/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.275,
+            0.55,
+            0.8250000000000001,
+            1.1
+          ],
+          "bound": [
+            0.0,
+            0.275,
+            0.55,
+            0.8250000000000001,
+            1.1
+          ],
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n96/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n96/positive-energy",
+          "value": 0.0,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n96/realizability",
+          "value": 0.0,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n96/energy-budget",
+          "value": 8.604228440844963e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n96/full3D-pressure-trace",
+          "value": 0.0,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n96/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.275,
+            0.55,
+            0.8250000000000001,
+            1.1
+          ],
+          "bound": [
+            0.0,
+            0.275,
+            0.55,
+            0.8250000000000001,
+            1.1
+          ],
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n96-half-dt/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n96-half-dt/positive-energy",
+          "value": 0.0,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n96-half-dt/realizability",
+          "value": 0.0,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n96-half-dt/energy-budget",
+          "value": 2.275957200481571e-15,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n96-half-dt/full3D-pressure-trace",
+          "value": 0.0,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "shadow-sn-n96-half-dt/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.275,
+            0.55,
+            0.8250000000000001,
+            1.1
+          ],
+          "bound": [
+            0.0,
+            0.275,
+            0.55,
+            0.8250000000000001,
+            1.1
+          ],
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n96-half-dt/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n96-half-dt/positive-energy",
+          "value": 0.0,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n96-half-dt/realizability",
+          "value": 0.0,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n96-half-dt/energy-budget",
+          "value": 3.469446951953614e-15,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n96-half-dt/full3D-pressure-trace",
+          "value": 0.0,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "shadow-m1-n96-half-dt/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.275,
+            0.55,
+            0.8250000000000001,
+            1.1
+          ],
+          "bound": [
+            0.0,
+            0.275,
+            0.55,
+            0.8250000000000001,
+            1.1
+          ],
+          "passed": true
+        },
+        {
+          "name": "shadow/sn/refinement-n48",
+          "value": 0.7307245677767888,
+          "bound": 0.85,
+          "passed": true
+        },
+        {
+          "name": "shadow/sn/refinement-n96",
+          "value": 0.3826913250368595,
+          "bound": 0.85,
+          "passed": true
+        },
+        {
+          "name": "shadow/sn/finest-reference",
+          "value": 0.004394928879915303,
+          "bound": 0.08,
+          "passed": true
+        },
+        {
+          "name": "shadow/sn/separate-time-sensitivity",
+          "value": 0.004185913044663024,
+          "bound": 0.2,
+          "passed": true
+        },
+        {
+          "name": "shadow/m1/refinement-n48",
+          "value": 0.7302158782391597,
+          "bound": 0.85,
+          "passed": true
+        },
+        {
+          "name": "shadow/m1/refinement-n96",
+          "value": 0.38263282394395043,
+          "bound": 0.85,
+          "passed": true
+        },
+        {
+          "name": "shadow/m1/finest-reference",
+          "value": 0.004395049365780737,
+          "bound": 0.12,
+          "passed": true
+        },
+        {
+          "name": "shadow/m1/separate-time-sensitivity",
+          "value": 0.004206736933040654,
+          "bound": 0.2,
+          "passed": true
+        }
+      ],
+      "records": [
+        {
+          "id": "shadow-sn-n24",
+          "kind": "shadow",
+          "method": "sn",
+          "cells": 24,
+          "final_time": 1.1,
+          "steps": 152,
+          "family": "refinement",
+          "fields": "shadow-sn-n24.npz",
+          "independent_moment_l1": 0.0157162715805596,
+          "maximum_budget": 2.220446049250313e-16,
+          "minimum_energy": 0.0,
+          "minimum_cone": 0.0
+        },
+        {
+          "id": "shadow-sn-n48",
+          "kind": "shadow",
+          "method": "sn",
+          "cells": 48,
+          "final_time": 1.1,
+          "steps": 304,
+          "family": "refinement",
+          "fields": "shadow-sn-n48.npz",
+          "independent_moment_l1": 0.011484265757767044,
+          "maximum_budget": 5.551115123125783e-16,
+          "minimum_energy": 0.0,
+          "minimum_cone": 0.0
+        },
+        {
+          "id": "shadow-sn-n96",
+          "kind": "shadow",
+          "method": "sn",
+          "cells": 96,
+          "final_time": 1.1,
+          "steps": 604,
+          "family": "refinement",
+          "fields": "shadow-sn-n96.npz",
+          "independent_moment_l1": 0.004394928879915303,
+          "maximum_budget": 6.38378239159465e-16,
+          "minimum_energy": 0.0,
+          "minimum_cone": 0.0
+        },
+        {
+          "id": "shadow-m1-n24",
+          "kind": "shadow",
+          "method": "m1",
+          "cells": 24,
+          "final_time": 1.1,
+          "steps": 152,
+          "family": "refinement",
+          "fields": "shadow-m1-n24.npz",
+          "independent_moment_l1": 0.01573005576386148,
+          "maximum_budget": 2.498001805406602e-16,
+          "minimum_energy": 0.0,
+          "minimum_cone": 0.0,
+          "directional_speed_diagnostics": {
+            "calls": 912,
+            "vacuum_states": 21344,
+            "tiny_negative_energy_states": 0,
+            "outside_cone_roundoff_states": 0,
+            "maximum_outside_cone_excess": 0.0,
+            "maximum_speed": 1.0
+          }
+        },
+        {
+          "id": "shadow-m1-n48",
+          "kind": "shadow",
+          "method": "m1",
+          "cells": 48,
+          "final_time": 1.1,
+          "steps": 304,
+          "family": "refinement",
+          "fields": "shadow-m1-n48.npz",
+          "independent_moment_l1": 0.011486336484359067,
+          "maximum_budget": 5.273559366969494e-16,
+          "minimum_energy": 0.0,
+          "minimum_cone": 0.0,
+          "directional_speed_diagnostics": {
+            "calls": 1824,
+            "vacuum_states": 150080,
+            "tiny_negative_energy_states": 0,
+            "outside_cone_roundoff_states": 0,
+            "maximum_outside_cone_excess": 0.0,
+            "maximum_speed": 1.0
+          }
+        },
+        {
+          "id": "shadow-m1-n96",
+          "kind": "shadow",
+          "method": "m1",
+          "cells": 96,
+          "final_time": 1.1,
+          "steps": 604,
+          "family": "refinement",
+          "fields": "shadow-m1-n96.npz",
+          "independent_moment_l1": 0.004395049365780737,
+          "maximum_budget": 8.604228440844963e-16,
+          "minimum_energy": 0.0,
+          "minimum_cone": 0.0,
+          "directional_speed_diagnostics": {
+            "calls": 3624,
+            "vacuum_states": 1117504,
+            "tiny_negative_energy_states": 0,
+            "outside_cone_roundoff_states": 0,
+            "maximum_outside_cone_excess": 0.0,
+            "maximum_speed": 1.0
+          }
+        },
+        {
+          "id": "shadow-sn-n96-half-dt",
+          "kind": "shadow",
+          "method": "sn",
+          "cells": 96,
+          "final_time": 1.1,
+          "steps": 1208,
+          "family": "time-probe",
+          "fields": "shadow-sn-n96-half-dt.npz",
+          "independent_moment_l1": 0.004384816488888061,
+          "maximum_budget": 2.275957200481571e-15,
+          "minimum_energy": 0.0,
+          "minimum_cone": 0.0
+        },
+        {
+          "id": "shadow-m1-n96-half-dt",
+          "kind": "shadow",
+          "method": "m1",
+          "cells": 96,
+          "final_time": 1.1,
+          "steps": 1208,
+          "family": "time-probe",
+          "fields": "shadow-m1-n96-half-dt.npz",
+          "independent_moment_l1": 0.004384844948391874,
+          "maximum_budget": 3.469446951953614e-15,
+          "minimum_energy": 0.0,
+          "minimum_cone": 0.0,
+          "directional_speed_diagnostics": {
+            "calls": 7248,
+            "vacuum_states": 1185152,
+            "tiny_negative_energy_states": 0,
+            "outside_cone_roundoff_states": 0,
+            "maximum_outside_cone_excess": 0.0,
+            "maximum_speed": 1.0
+          }
+        }
+      ],
+      "metrics": {
+        "M1_numerical_flux": "General directional localLF:max endpoint spectralradius,LFcone-splitting bound and absolute normal reducedflux;not a nonlinearRiemannfan bound",
+        "completed_primary_and_control_runs": 8,
+        "spatial_dimensions": 2,
+        "angular_dimensions": 3,
+        "Pzz_retained": true
+      }
+    },
+    {
+      "id": "opposing-beams2d",
+      "passed": true,
+      "checks": {
+        "beams-sn-n24/all-stages-finite": true,
+        "beams-sn-n24/positive-energy": true,
+        "beams-sn-n24/realizability": true,
+        "beams-sn-n24/energy-budget": true,
+        "beams-sn-n24/full3D-pressure-trace": true,
+        "beams-sn-n24/five-fixed-snapshots": true,
+        "beams-sn-n48/all-stages-finite": true,
+        "beams-sn-n48/positive-energy": true,
+        "beams-sn-n48/realizability": true,
+        "beams-sn-n48/energy-budget": true,
+        "beams-sn-n48/full3D-pressure-trace": true,
+        "beams-sn-n48/five-fixed-snapshots": true,
+        "beams-sn-n96/all-stages-finite": true,
+        "beams-sn-n96/positive-energy": true,
+        "beams-sn-n96/realizability": true,
+        "beams-sn-n96/energy-budget": true,
+        "beams-sn-n96/full3D-pressure-trace": true,
+        "beams-sn-n96/five-fixed-snapshots": true,
+        "beams-m1-n24/all-stages-finite": true,
+        "beams-m1-n24/positive-energy": true,
+        "beams-m1-n24/realizability": true,
+        "beams-m1-n24/energy-budget": true,
+        "beams-m1-n24/full3D-pressure-trace": true,
+        "beams-m1-n24/five-fixed-snapshots": true,
+        "beams-m1-n48/all-stages-finite": true,
+        "beams-m1-n48/positive-energy": true,
+        "beams-m1-n48/realizability": true,
+        "beams-m1-n48/energy-budget": true,
+        "beams-m1-n48/full3D-pressure-trace": true,
+        "beams-m1-n48/five-fixed-snapshots": true,
+        "beams-m1-n96/all-stages-finite": true,
+        "beams-m1-n96/positive-energy": true,
+        "beams-m1-n96/realizability": true,
+        "beams-m1-n96/energy-budget": true,
+        "beams-m1-n96/full3D-pressure-trace": true,
+        "beams-m1-n96/five-fixed-snapshots": true,
+        "beams-sn-n96-half-dt/all-stages-finite": true,
+        "beams-sn-n96-half-dt/positive-energy": true,
+        "beams-sn-n96-half-dt/realizability": true,
+        "beams-sn-n96-half-dt/energy-budget": true,
+        "beams-sn-n96-half-dt/full3D-pressure-trace": true,
+        "beams-sn-n96-half-dt/five-fixed-snapshots": true,
+        "beams-m1-n96-half-dt/all-stages-finite": true,
+        "beams-m1-n96-half-dt/positive-energy": true,
+        "beams-m1-n96-half-dt/realizability": true,
+        "beams-m1-n96-half-dt/energy-budget": true,
+        "beams-m1-n96-half-dt/full3D-pressure-trace": true,
+        "beams-m1-n96-half-dt/five-fixed-snapshots": true,
+        "beams/sn/refinement-n48": true,
+        "beams/sn/refinement-n96": true,
+        "beams/sn/finest-reference": true,
+        "beams/sn/separate-time-sensitivity": true,
+        "beams/m1/separate-time-sensitivity": true,
+        "mms-m1-n16/all-stages-finite": true,
+        "mms-m1-n16/positive-energy": true,
+        "mms-m1-n16/realizability": true,
+        "mms-m1-n16/energy-budget": true,
+        "mms-m1-n16/full3D-pressure-trace": true,
+        "mms-m1-n16/five-fixed-snapshots": true,
+        "mms-m1-n32/all-stages-finite": true,
+        "mms-m1-n32/positive-energy": true,
+        "mms-m1-n32/realizability": true,
+        "mms-m1-n32/energy-budget": true,
+        "mms-m1-n32/full3D-pressure-trace": true,
+        "mms-m1-n32/five-fixed-snapshots": true,
+        "mms-m1-n64/all-stages-finite": true,
+        "mms-m1-n64/positive-energy": true,
+        "mms-m1-n64/realizability": true,
+        "mms-m1-n64/energy-budget": true,
+        "mms-m1-n64/full3D-pressure-trace": true,
+        "mms-m1-n64/five-fixed-snapshots": true,
+        "mms-m1-n64-half-dt/all-stages-finite": true,
+        "mms-m1-n64-half-dt/positive-energy": true,
+        "mms-m1-n64-half-dt/realizability": true,
+        "mms-m1-n64-half-dt/energy-budget": true,
+        "mms-m1-n64-half-dt/full3D-pressure-trace": true,
+        "mms-m1-n64-half-dt/five-fixed-snapshots": true,
+        "crossed-sn-n24/all-stages-finite": true,
+        "crossed-sn-n24/positive-energy": true,
+        "crossed-sn-n24/realizability": true,
+        "crossed-sn-n24/energy-budget": true,
+        "crossed-sn-n24/full3D-pressure-trace": true,
+        "crossed-sn-n24/five-fixed-snapshots": true,
+        "crossed-sn-n48/all-stages-finite": true,
+        "crossed-sn-n48/positive-energy": true,
+        "crossed-sn-n48/realizability": true,
+        "crossed-sn-n48/energy-budget": true,
+        "crossed-sn-n48/full3D-pressure-trace": true,
+        "crossed-sn-n48/five-fixed-snapshots": true,
+        "crossed-sn-n96/all-stages-finite": true,
+        "crossed-sn-n96/positive-energy": true,
+        "crossed-sn-n96/realizability": true,
+        "crossed-sn-n96/energy-budget": true,
+        "crossed-sn-n96/full3D-pressure-trace": true,
+        "crossed-sn-n96/five-fixed-snapshots": true,
+        "crossed-sn-n96-half-dt/all-stages-finite": true,
+        "crossed-sn-n96-half-dt/positive-energy": true,
+        "crossed-sn-n96-half-dt/realizability": true,
+        "crossed-sn-n96-half-dt/energy-budget": true,
+        "crossed-sn-n96-half-dt/full3D-pressure-trace": true,
+        "crossed-sn-n96-half-dt/five-fixed-snapshots": true,
+        "mms/m1/refinement-n32": true,
+        "mms/m1/refinement-n64": true,
+        "mms/m1/finest-reference": true,
+        "mms/m1/separate-time-sensitivity": true,
+        "crossed/sn/refinement-n48": true,
+        "crossed/sn/refinement-n96": true,
+        "crossed/sn/finest-reference": true,
+        "crossed/sn/separate-time-sensitivity": true,
+        "head-on-closure-information-defect": true
+      },
+      "check_details": [
+        {
+          "name": "beams-sn-n24/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n24/positive-energy",
+          "value": 1.9949150504393308e-21,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n24/realizability",
+          "value": 0.0,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n24/energy-budget",
+          "value": 6.938893903907228e-18,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n24/full3D-pressure-trace",
+          "value": 0.0,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n24/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "bound": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n48/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n48/positive-energy",
+          "value": 6.934532839886868e-24,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n48/realizability",
+          "value": 0.0,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n48/energy-budget",
+          "value": 6.938893903907228e-18,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n48/full3D-pressure-trace",
+          "value": 0.0,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n48/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "bound": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n96/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n96/positive-energy",
+          "value": 1.4789613066181417e-26,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n96/realizability",
+          "value": 0.0,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n96/energy-budget",
+          "value": 3.469446951953614e-18,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n96/full3D-pressure-trace",
+          "value": 0.0,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n96/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "bound": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n24/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n24/positive-energy",
+          "value": 2.2351781920721677e-20,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n24/realizability",
+          "value": 4.890937612370273e-28,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n24/energy-budget",
+          "value": 6.938893903907228e-18,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n24/full3D-pressure-trace",
+          "value": 2.220446049250313e-16,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n24/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "bound": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n48/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n48/positive-energy",
+          "value": 2.278166137275934e-21,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n48/realizability",
+          "value": 3.534096855390133e-28,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n48/energy-budget",
+          "value": 3.469446951953614e-18,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n48/full3D-pressure-trace",
+          "value": 2.220446049250313e-16,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n48/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "bound": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n96/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n96/positive-energy",
+          "value": 5.605644640684361e-22,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n96/realizability",
+          "value": 3.281661365719409e-28,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n96/energy-budget",
+          "value": 6.938893903907228e-18,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n96/full3D-pressure-trace",
+          "value": 4.440892098500626e-16,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n96/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "bound": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n96-half-dt/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n96-half-dt/positive-energy",
+          "value": 1.5490250205621913e-26,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n96-half-dt/realizability",
+          "value": 0.0,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n96-half-dt/energy-budget",
+          "value": 6.938893903907228e-18,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n96-half-dt/full3D-pressure-trace",
+          "value": 0.0,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "beams-sn-n96-half-dt/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "bound": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n96-half-dt/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n96-half-dt/positive-energy",
+          "value": 5.607942589781722e-22,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n96-half-dt/realizability",
+          "value": 3.281661365719409e-28,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n96-half-dt/energy-budget",
+          "value": 6.938893903907228e-18,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n96-half-dt/full3D-pressure-trace",
+          "value": 2.220446049250313e-16,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "beams-m1-n96-half-dt/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "bound": [
+            0.0,
+            0.125,
+            0.25,
+            0.375,
+            0.5
+          ],
+          "passed": true
+        },
+        {
+          "name": "beams/sn/refinement-n48",
+          "value": 0.8387319067036042,
+          "bound": 0.85,
+          "passed": true
+        },
+        {
+          "name": "beams/sn/refinement-n96",
+          "value": 0.7430240149039188,
+          "bound": 0.85,
+          "passed": true
+        },
+        {
+          "name": "beams/sn/finest-reference",
+          "value": 0.013455297892561235,
+          "bound": 0.02,
+          "passed": true
+        },
+        {
+          "name": "beams/sn/separate-time-sensitivity",
+          "value": 0.0008208353805229829,
+          "bound": 0.2,
+          "passed": true
+        },
+        {
+          "name": "beams/m1/separate-time-sensitivity",
+          "value": 0.0002022546689663927,
+          "bound": 0.2,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n16/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n16/positive-energy",
+          "value": 0.9029912894996561,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n16/realizability",
+          "value": 0.6669860817238052,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n16/energy-budget",
+          "value": 4.287116090369765e-18,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n16/full3D-pressure-trace",
+          "value": 2.220446049250313e-16,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n16/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.0625,
+            0.125,
+            0.1875,
+            0.25
+          ],
+          "bound": [
+            0.0,
+            0.0625,
+            0.125,
+            0.1875,
+            0.25
+          ],
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n32/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n32/positive-energy",
+          "value": 0.9007732103410289,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n32/realizability",
+          "value": 0.6619731564516176,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n32/energy-budget",
+          "value": 2.1958708000073082e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n32/full3D-pressure-trace",
+          "value": 4.440892098500626e-16,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n32/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.0625,
+            0.125,
+            0.1875,
+            0.25
+          ],
+          "bound": [
+            0.0,
+            0.0625,
+            0.125,
+            0.1875,
+            0.25
+          ],
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n64/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n64/positive-energy",
+          "value": 0.9002011803923525,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n64/realizability",
+          "value": 0.6590946708826949,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n64/energy-budget",
+          "value": 2.217994809555998e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n64/full3D-pressure-trace",
+          "value": 4.440892098500626e-16,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n64/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.0625,
+            0.125,
+            0.1875,
+            0.25
+          ],
+          "bound": [
+            0.0,
+            0.0625,
+            0.125,
+            0.1875,
+            0.25
+          ],
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n64-half-dt/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n64-half-dt/positive-energy",
+          "value": 0.9001371241132852,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n64-half-dt/realizability",
+          "value": 0.6590900556038615,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n64-half-dt/energy-budget",
+          "value": 2.234399259817953e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n64-half-dt/full3D-pressure-trace",
+          "value": 4.440892098500626e-16,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "mms-m1-n64-half-dt/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.0625,
+            0.125,
+            0.1875,
+            0.25
+          ],
+          "bound": [
+            0.0,
+            0.0625,
+            0.125,
+            0.1875,
+            0.25
+          ],
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n24/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n24/positive-energy",
+          "value": 3.86975299897601e-24,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n24/realizability",
+          "value": 0.0,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n24/energy-budget",
+          "value": 6.938893903907228e-18,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n24/full3D-pressure-trace",
+          "value": 1.1102230246251565e-16,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n24/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.0625,
+            0.125,
+            0.1875,
+            0.25
+          ],
+          "bound": [
+            0.0,
+            0.0625,
+            0.125,
+            0.1875,
+            0.25
+          ],
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n48/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n48/positive-energy",
+          "value": 2.5933816090657233e-25,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n48/realizability",
+          "value": 0.0,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n48/energy-budget",
+          "value": 6.938893903907228e-18,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n48/full3D-pressure-trace",
+          "value": 1.1102230246251565e-16,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n48/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.0625,
+            0.125,
+            0.1875,
+            0.25
+          ],
+          "bound": [
+            0.0,
+            0.0625,
+            0.125,
+            0.1875,
+            0.25
+          ],
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n96/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n96/positive-energy",
+          "value": 5.822472501355593e-27,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n96/realizability",
+          "value": 0.0,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n96/energy-budget",
+          "value": 6.938893903907228e-18,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n96/full3D-pressure-trace",
+          "value": 2.220446049250313e-16,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n96/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.0625,
+            0.125,
+            0.1875,
+            0.25
+          ],
+          "bound": [
+            0.0,
+            0.0625,
+            0.125,
+            0.1875,
+            0.25
+          ],
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n96-half-dt/all-stages-finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n96-half-dt/positive-energy",
+          "value": 6.0380552737491554e-27,
+          "bound": -1e-13,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n96-half-dt/realizability",
+          "value": 0.0,
+          "bound": -5e-12,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n96-half-dt/energy-budget",
+          "value": 3.469446951953614e-18,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n96-half-dt/full3D-pressure-trace",
+          "value": 2.220446049250313e-16,
+          "bound": 2e-11,
+          "passed": true
+        },
+        {
+          "name": "crossed-sn-n96-half-dt/five-fixed-snapshots",
+          "value": [
+            0.0,
+            0.0625,
+            0.125,
+            0.1875,
+            0.25
+          ],
+          "bound": [
+            0.0,
+            0.0625,
+            0.125,
+            0.1875,
+            0.25
+          ],
+          "passed": true
+        },
+        {
+          "name": "mms/m1/refinement-n32",
+          "value": 0.5585510060748827,
+          "bound": 0.85,
+          "passed": true
+        },
+        {
+          "name": "mms/m1/refinement-n64",
+          "value": 0.5291407423581191,
+          "bound": 0.85,
+          "passed": true
+        },
+        {
+          "name": "mms/m1/finest-reference",
+          "value": 0.0045409186585890415,
+          "bound": 0.02,
+          "passed": true
+        },
+        {
+          "name": "mms/m1/separate-time-sensitivity",
+          "value": 0.0006495509999786097,
+          "bound": 0.2,
+          "passed": true
+        },
+        {
+          "name": "crossed/sn/refinement-n48",
+          "value": 0.7324132718151688,
+          "bound": 0.85,
+          "passed": true
+        },
+        {
+          "name": "crossed/sn/refinement-n96",
+          "value": 0.6607735686148842,
+          "bound": 0.85,
+          "passed": true
+        },
+        {
+          "name": "crossed/sn/finest-reference",
+          "value": 0.007707035251535256,
+          "bound": 0.02,
+          "passed": true
+        },
+        {
+          "name": "crossed/sn/separate-time-sensitivity",
+          "value": 0.0011544394006506456,
+          "bound": 0.2,
+          "passed": true
+        },
+        {
+          "name": "head-on-closure-information-defect",
+          "value": 0.6666666666666666,
+          "bound": 0.6666666666666666,
+          "passed": true
+        }
+      ],
+      "records": [
+        {
+          "id": "beams-sn-n24",
+          "kind": "beams",
+          "method": "sn",
+          "cells": 24,
+          "final_time": 0.5,
+          "steps": 72,
+          "family": "refinement",
+          "fields": "beams-sn-n24.npz",
+          "independent_moment_l1": 0.021590728787884983,
+          "maximum_budget": 6.938893903907228e-18,
+          "minimum_energy": 1.9949150504393308e-21,
+          "minimum_cone": 0.0
+        },
+        {
+          "id": "beams-sn-n48",
+          "kind": "beams",
+          "method": "sn",
+          "cells": 48,
+          "final_time": 0.5,
+          "steps": 140,
+          "family": "refinement",
+          "fields": "beams-sn-n48.npz",
+          "independent_moment_l1": 0.01810883312338317,
+          "maximum_budget": 6.938893903907228e-18,
+          "minimum_energy": 6.934532839886868e-24,
+          "minimum_cone": 0.0
+        },
+        {
+          "id": "beams-sn-n96",
+          "kind": "beams",
+          "method": "sn",
+          "cells": 96,
+          "final_time": 0.5,
+          "steps": 276,
+          "family": "refinement",
+          "fields": "beams-sn-n96.npz",
+          "independent_moment_l1": 0.013455297892561235,
+          "maximum_budget": 3.469446951953614e-18,
+          "minimum_energy": 1.4789613066181417e-26,
+          "minimum_cone": 0.0
+        },
+        {
+          "id": "beams-m1-n24",
+          "kind": "beams",
+          "method": "m1",
+          "cells": 24,
+          "final_time": 0.5,
+          "steps": 72,
+          "family": "refinement",
+          "fields": "beams-m1-n24.npz",
+          "independent_moment_l1": 0.03751689555550444,
+          "maximum_budget": 6.938893903907228e-18,
+          "minimum_energy": 2.2351781920721677e-20,
+          "minimum_cone": 4.890937612370273e-28,
+          "directional_speed_diagnostics": {
+            "calls": 288,
+            "vacuum_states": 0,
+            "tiny_negative_energy_states": 0,
+            "outside_cone_roundoff_states": 0,
+            "maximum_outside_cone_excess": 0.0,
+            "maximum_speed": 0.9999999999999807
+          }
+        },
+        {
+          "id": "beams-m1-n48",
+          "kind": "beams",
+          "method": "m1",
+          "cells": 48,
+          "final_time": 0.5,
+          "steps": 140,
+          "family": "refinement",
+          "fields": "beams-m1-n48.npz",
+          "independent_moment_l1": 0.03779050071161092,
+          "maximum_budget": 3.469446951953614e-18,
+          "minimum_energy": 2.278166137275934e-21,
+          "minimum_cone": 3.534096855390133e-28,
+          "directional_speed_diagnostics": {
+            "calls": 560,
+            "vacuum_states": 0,
+            "tiny_negative_energy_states": 0,
+            "outside_cone_roundoff_states": 0,
+            "maximum_outside_cone_excess": 0.0,
+            "maximum_speed": 0.9999999999999853
+          }
+        },
+        {
+          "id": "beams-m1-n96",
+          "kind": "beams",
+          "method": "m1",
+          "cells": 96,
+          "final_time": 0.5,
+          "steps": 276,
+          "family": "refinement",
+          "fields": "beams-m1-n96.npz",
+          "independent_moment_l1": 0.0372264508077657,
+          "maximum_budget": 6.938893903907228e-18,
+          "minimum_energy": 5.605644640684361e-22,
+          "minimum_cone": 3.281661365719409e-28,
+          "directional_speed_diagnostics": {
+            "calls": 1104,
+            "vacuum_states": 0,
+            "tiny_negative_energy_states": 0,
+            "outside_cone_roundoff_states": 0,
+            "maximum_outside_cone_excess": 0.0,
+            "maximum_speed": 0.9999999999999865
+          }
+        },
+        {
+          "id": "beams-sn-n96-half-dt",
+          "kind": "beams",
+          "method": "sn",
+          "cells": 96,
+          "final_time": 0.5,
+          "steps": 552,
+          "family": "time-probe",
+          "fields": "beams-sn-n96-half-dt.npz",
+          "independent_moment_l1": 0.01345368372481539,
+          "maximum_budget": 6.938893903907228e-18,
+          "minimum_energy": 1.5490250205621913e-26,
+          "minimum_cone": 0.0
+        },
+        {
+          "id": "beams-m1-n96-half-dt",
+          "kind": "beams",
+          "method": "m1",
+          "cells": 96,
+          "final_time": 0.5,
+          "steps": 552,
+          "family": "time-probe",
+          "fields": "beams-m1-n96-half-dt.npz",
+          "independent_moment_l1": 0.03722621475249416,
+          "maximum_budget": 6.938893903907228e-18,
+          "minimum_energy": 5.607942589781722e-22,
+          "minimum_cone": 3.281661365719409e-28,
+          "directional_speed_diagnostics": {
+            "calls": 2208,
+            "vacuum_states": 0,
+            "tiny_negative_energy_states": 0,
+            "outside_cone_roundoff_states": 0,
+            "maximum_outside_cone_excess": 0.0,
+            "maximum_speed": 0.9999999999999865
+          }
+        },
+        {
+          "id": "mms-m1-n16",
+          "kind": "mms",
+          "method": "m1",
+          "cells": 16,
+          "final_time": 0.25,
+          "steps": 24,
+          "family": "refinement",
+          "fields": "mms-m1-n16.npz",
+          "independent_moment_l1": 0.015364190444880478,
+          "maximum_budget": 4.287116090369765e-18,
+          "minimum_energy": 0.9029912894996561,
+          "minimum_cone": 0.6669860817238052,
+          "directional_speed_diagnostics": {
+            "calls": 96,
+            "vacuum_states": 0,
+            "tiny_negative_energy_states": 0,
+            "outside_cone_roundoff_states": 0,
+            "maximum_outside_cone_excess": 0.0,
+            "maximum_speed": 0.6908442378741732
+          }
+        },
+        {
+          "id": "mms-m1-n32",
+          "kind": "mms",
+          "method": "m1",
+          "cells": 32,
+          "final_time": 0.25,
+          "steps": 48,
+          "family": "refinement",
+          "fields": "mms-m1-n32.npz",
+          "independent_moment_l1": 0.00858168403051409,
+          "maximum_budget": 2.1958708000073082e-16,
+          "minimum_energy": 0.9007732103410289,
+          "minimum_cone": 0.6619731564516176,
+          "directional_speed_diagnostics": {
+            "calls": 192,
+            "vacuum_states": 0,
+            "tiny_negative_energy_states": 0,
+            "outside_cone_roundoff_states": 0,
+            "maximum_outside_cone_excess": 0.0,
+            "maximum_speed": 0.6909000278930099
+          }
+        },
+        {
+          "id": "mms-m1-n64",
+          "kind": "mms",
+          "method": "m1",
+          "cells": 64,
+          "final_time": 0.25,
+          "steps": 92,
+          "family": "refinement",
+          "fields": "mms-m1-n64.npz",
+          "independent_moment_l1": 0.0045409186585890415,
+          "maximum_budget": 2.217994809555998e-16,
+          "minimum_energy": 0.9002011803923525,
+          "minimum_cone": 0.6590946708826949,
+          "directional_speed_diagnostics": {
+            "calls": 368,
+            "vacuum_states": 0,
+            "tiny_negative_energy_states": 0,
+            "outside_cone_roundoff_states": 0,
+            "maximum_outside_cone_excess": 0.0,
+            "maximum_speed": 0.6909869582293076
+          }
+        },
+        {
+          "id": "mms-m1-n64-half-dt",
+          "kind": "mms",
+          "method": "m1",
+          "cells": 64,
+          "final_time": 0.25,
+          "steps": 184,
+          "family": "time-probe",
+          "fields": "mms-m1-n64-half-dt.npz",
+          "independent_moment_l1": 0.004539175754405183,
+          "maximum_budget": 2.234399259817953e-16,
+          "minimum_energy": 0.9001371241132852,
+          "minimum_cone": 0.6590900556038615,
+          "directional_speed_diagnostics": {
+            "calls": 736,
+            "vacuum_states": 0,
+            "tiny_negative_energy_states": 0,
+            "outside_cone_roundoff_states": 0,
+            "maximum_outside_cone_excess": 0.0,
+            "maximum_speed": 0.6909846201381773
+          }
+        },
+        {
+          "id": "crossed-sn-n24",
+          "kind": "crossed",
+          "method": "sn",
+          "cells": 24,
+          "final_time": 0.25,
+          "steps": 36,
+          "family": "refinement",
+          "fields": "crossed-sn-n24.npz",
+          "independent_moment_l1": 0.0159249646670574,
+          "maximum_budget": 6.938893903907228e-18,
+          "minimum_energy": 3.86975299897601e-24,
+          "minimum_cone": 0.0
+        },
+        {
+          "id": "crossed-sn-n48",
+          "kind": "crossed",
+          "method": "sn",
+          "cells": 48,
+          "final_time": 0.25,
+          "steps": 72,
+          "family": "refinement",
+          "fields": "crossed-sn-n48.npz",
+          "independent_moment_l1": 0.01166365547534047,
+          "maximum_budget": 6.938893903907228e-18,
+          "minimum_energy": 2.5933816090657233e-25,
+          "minimum_cone": 0.0
+        },
+        {
+          "id": "crossed-sn-n96",
+          "kind": "crossed",
+          "method": "sn",
+          "cells": 96,
+          "final_time": 0.25,
+          "steps": 140,
+          "family": "refinement",
+          "fields": "crossed-sn-n96.npz",
+          "independent_moment_l1": 0.007707035251535256,
+          "maximum_budget": 6.938893903907228e-18,
+          "minimum_energy": 5.822472501355593e-27,
+          "minimum_cone": 0.0
+        },
+        {
+          "id": "crossed-sn-n96-half-dt",
+          "kind": "crossed",
+          "method": "sn",
+          "cells": 96,
+          "final_time": 0.25,
+          "steps": 280,
+          "family": "time-probe",
+          "fields": "crossed-sn-n96-half-dt.npz",
+          "independent_moment_l1": 0.007705046785916882,
+          "maximum_budget": 3.469446951953614e-18,
+          "minimum_energy": 6.0380552737491554e-27,
+          "minimum_cone": 0.0
+        }
+      ],
+      "metrics": {
+        "same_solver_controls": [
+          "nonlinear-closed-M1-MMS",
+          "actual-x-and-y-crossed-angular-packets"
+        ],
+        "M1_transport_difference_is_model_error": true,
+        "M1_numerical_flux": "General directional localLF:max endpoint spectralradius,LFcone-splitting bound and absolute normal reducedflux;not a nonlinearRiemannfan bound",
+        "completed_primary_and_control_runs": 16,
+        "spatial_dimensions": 2,
+        "angular_dimensions": 3,
+        "Pzz_retained": true
+      }
+    }
+  ],
+  "source_sha256": {
+    "catalog/atlas-depth-expansion.json": "808390a31a772b2e1f9c625f8619a05d3387afb5256dd5e31b3c712c6283863a",
+    "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
+    "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
+    "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
+    "code/validated-examples/2026-11-22/foundations/results/result.json": "93a27cb8e43d7195d2417fc9110f196b07c826ea1f4e2b240f879ab8ab8b4b77",
+    "code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip": "1d130f886c31647aa5ba565fb10703a64d8af249c5715b4b2301401a3cfe22e2",
+    "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
+    "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
+    "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
+    "code/validated-examples/2026-11-22/models/results/result.json": "d3af162e0e4a1cb0cc14bd41f250cfe16b69e0b6f111cc4ba1c71eb4ca55e266",
+    "code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip": "18619b7f1223dbe33b58534d4e1248205decf9e706fa31c9e9517542530d379c",
+    "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
+    "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
+    "code/validated-examples/2026-11-22/particles/cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",
+    "code/validated-examples/2026-11-22/particles/results/result.json": "ed038f2af0d25bb29235e5f2853e0c8360974e8a499475f4b5cb3146d142ad60",
+    "code/validated-examples/2026-11-22/particles/atlas-particles-2026-11-22.zip": "8d2c39d6166a6b8715329574ed699515b0aa5b1f4c08fbec46b97400c50025b6",
+    "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
+    "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
+    "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
+    "code/validated-examples/2026-11-22/mhd/results/result.json": "ce1a011a3f2a18727aa7c10a81d712e23b536e9367e4be18d6847b74210a73f6",
+    "code/validated-examples/2026-11-22/mhd/atlas-mhd-2026-11-22.zip": "2e7eeaaacaeb918671228cc56ab333d0c4ca5a9879241846f5772594552d0b16",
+    "code/validated-examples/2026-11-22/thermostats/source-manifest.json": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
+    "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
+    "code/validated-examples/2026-11-22/thermostats/cases.json": "123566ec7000dce11f2a6a7474d35e45c8fdf24db85a0556e2cbb3911d3acd77",
+    "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
+    "code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip": "38142da988bf0c790eab7e7f10f8d1e209d074c3627f73a207f5223a24e18d65",
+    "code/validated-examples/2026-11-22/biology/source-manifest.json": "56947a4fb54ae757408ddddfc5de0884bfe35266032ee425a8d96a815f3362ba",
+    "code/validated-examples/2026-11-22/biology/verification.json": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
+    "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
+    "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
+    "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
+    "code/validated-examples/2026-11-22/mcmc/source-manifest.json": "c288e5c96aefe6f4bfdab4dbd78efc8b27924087aa09ac7e91d61adf63ebf195",
+    "code/validated-examples/2026-11-22/mcmc/verification.json": "f39975a549b48345d5b6f833d6226cdae1054ecb9f004d9c845d1ffa8bbc8c9e",
+    "code/validated-examples/2026-11-22/mcmc/cases.json": "fa950eafd45ac23aa2eba3374b23ab2d8df934368ab5b833bf812fbdd095fcaa",
+    "code/validated-examples/2026-11-22/mcmc/results/result.json": "530a343f4e59e03aa9369e373507e73a063eb810eb5a24fd820568467567cbd5",
+    "code/validated-examples/2026-11-22/mcmc/atlas-mcmc-2026-11-22.zip": "7fb1cde233b79e2b2d56edac89c6e1bdbe8239c1b7f5e166054f8e3e2cdaac11",
+    "code/validated-examples/2026-11-22/mhd-convergence/source-manifest.json": "9d5fd8eb67ed3d4ac3965596bbd12152bdc1ae2e03a3a4f060573175d00caf67",
+    "code/validated-examples/2026-11-22/mhd-convergence/verification.json": "ddf51e803eb94ca7dc419d0b9fc4aa6ec7204c319e448f7d4b120f5342a319d8",
+    "code/validated-examples/2026-11-22/mhd-convergence/cases.json": "a1ebd3a1344c90cc49e11dd790a522434f7fdec27f77d8621a2197a7be738434",
+    "code/validated-examples/2026-11-22/mhd-convergence/results/result.json": "7b1ddd177a96b1ede21b568b0f8e72e4b23d970d96ace3ab2441b0df0efbfe6b",
+    "code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip": "5db2fc202014a576145e98c84e1802540df7d8e26353d469fbd55c8e393fd866",
+    "code/validated-examples/2026-11-22/foundations-conditioning/source-manifest.json": "f5b5b5cb5540a1ea76f60f599bd3afd99ffbf312343588e6c7d5c5bcffb3dd9c",
+    "code/validated-examples/2026-11-22/foundations-conditioning/verification.json": "3368c373d622c4246868a43ce869f160de34d0d124c0334d4355573e7c8b3b5f",
+    "code/validated-examples/2026-11-22/foundations-conditioning/cases.json": "fe1b43a92ad60c91a1fdbd79342db0269e27cc0ef2f7d1ddcee58e183cf5b66c",
+    "code/validated-examples/2026-11-22/foundations-conditioning/results/result.json": "0b8ef84da85f950afa9779feb79052401dcdda707d1ac6bb314c3afa3a1973e9",
+    "code/validated-examples/2026-11-22/foundations-conditioning/atlas-foundations-conditioning-2026-11-22.zip": "71d8f0d3b0bed4a6a97f976aabfd02cc0baf08a30c1655f6b1ea42ea16df3c9d",
+    "code/validated-examples/2026-11-22/particle-transport/source-manifest.json": "d5724e7fd43635a489acb3b9ae90ac83fcce734ee89b6f29bc80cbdd4cefac97",
+    "code/validated-examples/2026-11-22/particle-transport/verification.json": "a16b3b90fd815909a8f3241dd7c04aeedabb2dd964da603eadd851fd6a0e171d",
+    "code/validated-examples/2026-11-22/particle-transport/cases.json": "3d3dd9cbc6c62666bb76f893762cf27b33b2606a34e87ffe8c4275e258b96f66",
+    "code/validated-examples/2026-11-22/particle-transport/results/result.json": "8e189a555c575dba4878c1813f828b29a3045c5015bb4ff2aa1b16c8eab9b138",
+    "code/validated-examples/2026-11-22/particle-transport/atlas-particle-transport-2026-11-22.zip": "940c1b9c867d5fda395bf93d9dac6b38d992bb4d3de29065f1b42108d1d4c0c9",
+    "code/validated-examples/2026-11-22/splitting/source-manifest.json": "e071ab71032cce9e1a8340cdd80bb58364b7105de764594507024259915f6368",
+    "code/validated-examples/2026-11-22/splitting/verification.json": "899af4b800c58e990a6eae62dd5510ff1afed02060ab7fb67e1c5c8ebcd47b53",
+    "code/validated-examples/2026-11-22/splitting/cases.json": "f252ee6b994a6827e5579b28127143680170124de50f05057d2890e545dcc84f",
+    "code/validated-examples/2026-11-22/splitting/results/result.json": "7b1b8338ec2a03eb04e82f3891d4e2fd08a2edb665313dc8bd0991b1a7a9a8f2",
+    "code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip": "2ae466a4ea62e204716a388b86033de3a6493a9ab0ef4ad9aec4ebb038d8a404",
+    "code/validated-examples/2026-11-23-r5/noh/source-manifest.json": "8597cbc7b841502f4e7eca154e86fe8893402c1167614952de682d7307c5595d",
+    "code/validated-examples/2026-11-23-r5/noh/verification.json": "48545a33ab2c19e9071616a15a1fcbf90c716096aa1a12550d3cb872ed8d9e36",
+    "code/validated-examples/2026-11-23-r5/noh/cases.json": "9501c9cb57617c09a8ceb0aa7e124ba1e2af303144eaa82045e8632fc7c39fc2",
+    "code/validated-examples/2026-11-23-r5/noh/results/result.json": "4e92acb911d505b3f7e74e39f01acf77e59fbe15577f321ac759f1315e487724",
+    "code/validated-examples/2026-11-23-r5/noh/atlas-noh-2026-11-23-r5.zip": "64de5483e9896a3773348b75e1ec2b4630f8a709d68194c1d94772396f531733",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/source-manifest.json": "3f34837f6078bfdc96e5bea2a0ec36c3ae4c48a09c25fcd61560cbb4f4781f93",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/verification.json": "7c530b06df5d2878958bd249b3035050592365e23aee79804e600368dfb09f46",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/cases.json": "49b94c1f65e269d4a878be3a4d8778375b88b767f5dd01998ae5fe6b8fc2b3ee",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/results/result.json": "e121c2f5171ee53491b492019311d002ceb44213f6f7cd43051a3ca68f74c694",
+    "code/validated-examples/2026-11-23-r2/noh-cartesian/atlas-noh-cartesian-2026-11-23-r2.zip": "2145beb161f993c1608fc5ac167af5278d58e10f92e74ed37e5fb9c35243b918",
+    "code/validated-examples/2026-11-23-r2/sedov/source-manifest.json": "4a92404602abd0d01096aae1576afb96533c64ea68989615df885a4310e3479f",
+    "code/validated-examples/2026-11-23-r2/sedov/verification.json": "1bec773b9e6d657ea7b71996df2bcc2c593f64b8cbb51942ed7d106be3419a03",
+    "code/validated-examples/2026-11-23-r2/sedov/cases.json": "aab3ca7447d35997bd38505e1ef79e1693096a29cc52c10e994bdcc9c80c8c03",
+    "code/validated-examples/2026-11-23-r2/sedov/results/result.json": "e4767029260bee54e0de2c85b07cbca07c5b99c4eb999b9d609735b6e615ef23",
+    "code/validated-examples/2026-11-23-r2/sedov/atlas-sedov-2026-11-23-r2.zip": "abb7344023b91b090820de1ebec8d6c6a949b8c06fda73037204a5d6f62b4b73",
+    "code/validated-examples/2026-11-23/double-mach/source-manifest.json": "32ba5521149368b729b31796dcc0006c8fd743e840e1e36533a867a47170d8c8",
+    "code/validated-examples/2026-11-23/double-mach/verification.json": "c588b4ce7f539d53b1d5eec4413ce3a1dc104eff975e4adddf0c544460dbb49e",
+    "code/validated-examples/2026-11-23/double-mach/cases.json": "38eb6a6fb4af35cdd3ca8834b9f3e5c80be22a50615f03aef712bc67b11b85e3",
+    "code/validated-examples/2026-11-23/double-mach/results/result.json": "3b4a36b9b3e10e7a6984130ee24bb7d5707de0fe24facff3a49b8eabd71ea5fe",
+    "code/validated-examples/2026-11-23/double-mach/atlas-double-mach-2026-11-23.zip": "0a68d19746c508e0ac0cf9b5bebe9375c797a87ade1a9fbfbef87d6e5fa63347",
+    "code/validated-examples/2026-11-23/forward-step/source-manifest.json": "77546e263d8e08266cedb57ef5e128a3bee68d7b9597fb56bed2eee5dcbec6dc",
+    "code/validated-examples/2026-11-23/forward-step/verification.json": "f40317a2721c2048c6174bf41c03adf5e3eddae07e19ae95e6ed5210a9b01914",
+    "code/validated-examples/2026-11-23/forward-step/cases.json": "e7397c94e5d170170b09a6baa4fdf9276d83419118e456cc172ad6c5cf63b363",
+    "code/validated-examples/2026-11-23/forward-step/results/result.json": "636e179813165fbe620caadd825ac699973ea2dde897d13aed8b2d22102e6704",
+    "code/validated-examples/2026-11-23/forward-step/atlas-forward-step-2026-11-23.zip": "ae69647a4e63c75c0888a6daf15835d348e9d74de58b5e59926e359e9ffc52cd",
+    "code/validated-examples/2026-11-23/low-mach/source-manifest.json": "ff359786cf6efff8e5e61f842ae63a866cb7655a4151b2d33ac12501eed98124",
+    "code/validated-examples/2026-11-23/low-mach/verification.json": "f747210e1d46900c4f56b01e989696c3feaee35361fe42be11428fd280bacf84",
+    "code/validated-examples/2026-11-23/low-mach/cases.json": "8a33dd861d6c635afeb526a2823fa33e88dc84fb49f1ae8a5ba19cbad32ae058",
+    "code/validated-examples/2026-11-23/low-mach/results/result.json": "5e1fdfa86dc57b13857bd571de1070d00ac5237400e0fc9ee9875fae9824d9f5",
+    "code/validated-examples/2026-11-23/low-mach/atlas-low-mach-2026-11-23.zip": "717b2ceed76d37cf4c1e570a7a022e1a17d66fce3048648a3edde4164a1513aa",
+    "code/validated-examples/2026-11-23-r3/guderley/source-manifest.json": "e436ada98187ba8a1ca755712fc60d1ce5f735379f026d92d63b2cbd19c6d112",
+    "code/validated-examples/2026-11-23-r3/guderley/verification.json": "3eb90bb576b4b9579433bb15a93b0acc42948a85f335a45de7c649ec1b61e625",
+    "code/validated-examples/2026-11-23-r3/guderley/cases.json": "72e621b096fdb1ff229dba33b9243667a7e7c4f9b2593d7331953333707f28f7",
+    "code/validated-examples/2026-11-23-r3/guderley/results/result.json": "c85894f329b97d62ef9d093792316028e4b3b9ca38a0488047bdbab2542e84bb",
+    "code/validated-examples/2026-11-23-r3/guderley/atlas-guderley-2026-11-23-r3.zip": "f00ff906861495bd73b2ae75f7c3895fab505ba45ad7a34a2612700405d8466f",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/source-manifest.json": "86eef08f81c19d211d9908ba195f6fbbdcd4af54dcfaf8df59ebbe9df73b34b9",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/verification.json": "4c205d9d21d1ea7efbf3d56e881c8c740f26a983576415a69e95490393af4f3d",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/cases.json": "52e618b3a97dab879badba192d5c2f74c5a08c25e473f055de81c645a6985d5a",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/results/result.json": "bee593154817e7a6339cee14fa7c029000002f42ade8ccd6d568119d375fdddc",
+    "code/validated-examples/2026-11-23-r2/euler-positivity/atlas-euler-positivity-2026-11-23-r2.zip": "0f2c8a3bf94a612f89d8f6f695b94574dd05d70976aa97a497ef47ff4e0c1efe",
+    "code/validated-examples/2026-11-23/zalesak/source-manifest.json": "d13a134c2e791740190529a8a4eef07eda5126a14101155d254f450d0438eb55",
+    "code/validated-examples/2026-11-23/zalesak/verification.json": "aad9b39c23d83e967588361edfdb05724f1ea3fade93843ebb05b5fd829ba44e",
+    "code/validated-examples/2026-11-23/zalesak/cases.json": "4ff0db4160a4da838ddb57089dae6849d18d3386fedd935365ab53795611831a",
+    "code/validated-examples/2026-11-23/zalesak/results/result.json": "51851a31df72eec078e25171deeacd2699a9bfe9eedc55b4bc6831fd233b408d",
+    "code/validated-examples/2026-11-23/zalesak/atlas-zalesak-2026-11-23.zip": "28e7d2bc93d3a5ba1cb015c874c489e9fd1a2e8a586a46d519800c799b0fb6f8",
+    "code/validated-examples/2026-11-23/weno-critical/source-manifest.json": "abd8b0a29bb81b7d98b897ec0a0eb409f77873857ec8199c3767f1ede11b43a5",
+    "code/validated-examples/2026-11-23/weno-critical/verification.json": "ccbf3c6a2fe7055b324a0d98c152da909242f36e0c82ca3281038e4c9b0c165f",
+    "code/validated-examples/2026-11-23/weno-critical/cases.json": "6b68c525e99fe15adbdce97a5d078289e5df0ff5f63cd9c790784a29b979440b",
+    "code/validated-examples/2026-11-23/weno-critical/results/result.json": "c4150a350d0854b3b815bd820790711ecdbcc7594690c0ad8c15e23f6aa3d05d",
+    "code/validated-examples/2026-11-23/weno-critical/atlas-weno-critical-2026-11-23.zip": "9c119480261013ef8ed0c58716c45af5b9fb9d3e891aef56b95b66fbd8415491",
+    "code/validated-examples/2026-11-23/shallow-water/source-manifest.json": "0fdab6190462f91176fa2eb4eb452d6fb66c2066b0e07d115b8ea789231614da",
+    "code/validated-examples/2026-11-23/shallow-water/verification.json": "e342321ddc1f7692e08dcc7a63478912956f63637c855f2f85eaf0999c4d22cc",
+    "code/validated-examples/2026-11-23/shallow-water/cases.json": "9296c20b7609cb4acdcd5a0ce437781dcd2e7635dbfea0a924f8468a3e5a5792",
+    "code/validated-examples/2026-11-23/shallow-water/results/result.json": "49a56493e429dd3b4c9d6f8eba72c53ddd3469689699217157b9823a392c015f",
+    "code/validated-examples/2026-11-23/shallow-water/atlas-shallow-water-2026-11-23.zip": "259244fc5c237542ba577df62308fd2a3191979dd43717d58df33d8abb902644",
+    "code/validated-examples/2026-11-23-r2/wall-flow/source-manifest.json": "5defc88a20d06c6806f1aa18c5a5a9f027c7891d8a237bb5fe980169d1bbdfe4",
+    "code/validated-examples/2026-11-23-r2/wall-flow/verification.json": "6daf2fa12cf2e7f604bb54413b82e36bbe72891132e1846abf598f9c9600b096",
+    "code/validated-examples/2026-11-23-r2/wall-flow/cases.json": "ed51f9003bbf5ddfa88602dd579ad962c81f95fb5dd3e7ef32973b17f9844d70",
+    "code/validated-examples/2026-11-23-r2/wall-flow/results/result.json": "ce92039a849015c3c3bd1de8e6ef77052f6fc5a9765ff961bc20086180996252",
+    "code/validated-examples/2026-11-23-r2/wall-flow/atlas-wall-flow-2026-11-23-r2.zip": "de499fde477a49b1eae10bd6bf04b0800b58105ca5d504ec6eff2ec3272690fd",
+    "code/validated-examples/2026-11-23/level-set/source-manifest.json": "7055bd243b522c8de50c2091a983c61b734a589105af49d27d63f0519f9075e4",
+    "code/validated-examples/2026-11-23/level-set/verification.json": "d70c2ed415b9e61bac769c0060a7ee1e7a4cf4b0b8ce1a6beabd4bca09ef7042",
+    "code/validated-examples/2026-11-23/level-set/cases.json": "b077db49bb69055b9612a2153f7d9ea4d9c1025f0bf13b0c94157d2e9235e655",
+    "code/validated-examples/2026-11-23/level-set/results/result.json": "7108491721386902c6adaa5ea5c1c709b31a204060346d0c93a06efd4a4a5a31",
+    "code/validated-examples/2026-11-23/level-set/atlas-level-set-2026-11-23.zip": "46c2c2fd0aea98eb4cc4facef8d30cc81ebd6b1b9e0d965f7ef79167a06c048b",
+    "code/validated-examples/2026-11-23/sem-fr/source-manifest.json": "800461c1ae226cc1f4350d4fce65a0c24ef2bce851ad862ad55394b47fc321d1",
+    "code/validated-examples/2026-11-23/sem-fr/verification.json": "63de17e91ba54215e7de815df931b8b2c6f04c65d5d43037b9c921c14ca75b54",
+    "code/validated-examples/2026-11-23/sem-fr/cases.json": "b1005680e6bd36a330dd178f9eac2c39444dc40c98f5dbf5bfd3ad01ca2c751d",
+    "code/validated-examples/2026-11-23/sem-fr/results/result.json": "f934329701c57bd4eb41cec04c0bbf374812ec0372739c3c2d869e9829b54a96",
+    "code/validated-examples/2026-11-23/sem-fr/atlas-sem-fr-2026-11-23.zip": "f7e852c18571791492fa4b804cba1fdd744909e690a90d2708a422a4b5e99d66",
+    "code/validated-examples/2026-11-23-r2/instability-growth/source-manifest.json": "e9e27e0d2911bdafb09f2280eef3eaad7d602510cdd7f1b0282db740a137c69f",
+    "code/validated-examples/2026-11-23-r2/instability-growth/verification.json": "c604289f94d71ea4540a9128763590708c484dc840ea4464178719ee5eea3a3d",
+    "code/validated-examples/2026-11-23-r2/instability-growth/cases.json": "a313678254c42e664fe47d65bc1a5e22ffde0c7824be09e63dd90a665b1a2665",
+    "code/validated-examples/2026-11-23-r2/instability-growth/results/result.json": "a86f27c415bd6e10ae5e1135351f9282e05b6126f100f49dd9306ea9bc35e36f",
+    "code/validated-examples/2026-11-23-r2/instability-growth/atlas-instability-growth-2026-11-23-r2.zip": "731bf5ce375327daba93014990053ffc52b38626f132f94303a6d061aca7a7e7",
+    "code/validated-examples/2026-11-23/mhd-transport/source-manifest.json": "c7d853b1b958f830ac30f45b076410ba55045ddedc88006cf8dda2c3e7dfee8d",
+    "code/validated-examples/2026-11-23/mhd-transport/verification.json": "56767d3b24b0c2fd9e6e660db523be8f8565876b38867f819c57ed983d468752",
+    "code/validated-examples/2026-11-23/mhd-transport/cases.json": "351ec0540ab5aea5c75aebfd90c9800d7e7fc8eb742dbbd534d80f61437a3914",
+    "code/validated-examples/2026-11-23/mhd-transport/results/result.json": "c43acea7e89a837e34b2e171bc292c75bc68766b98614697ec755f05ce944ba4",
+    "code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip": "8b6d4d9d30c9ed12fd29b7b91a11c16dc183b9aea49234966a66c376713ebf90",
+    "code/validated-examples/2026-11-23/mesh-boundary/source-manifest.json": "96e55d4c564baf804d3ae7feb86a36c7d7a3d4079f5e47180326fd2c09ee675a",
+    "code/validated-examples/2026-11-23/mesh-boundary/verification.json": "1191781061a2ec3339d26d8e9e4db605e9c40e8d5d5dfa6433712b38f43f7d01",
+    "code/validated-examples/2026-11-23/mesh-boundary/cases.json": "30c7d39639f74d4f263a045cccc8ced3e14a466e4e279c4c156fc21ce176f796",
+    "code/validated-examples/2026-11-23/mesh-boundary/results/result.json": "fd91eff20f607bd816815f8458f6e5b1017139d5c2b6a7521bff3a38287a6402",
+    "code/validated-examples/2026-11-23/mesh-boundary/atlas-mesh-boundary-2026-11-23.zip": "51032054029345b8f187ebb12e1a0d8d4473b70312f29585a160fc3b0fdca315",
+    "code/validated-examples/2026-11-23/moving-waves/source-manifest.json": "8cf67dddc182fe3519eb33f89deddd711a9ecb639f3760e1edc0c88505eb8be1",
+    "code/validated-examples/2026-11-23/moving-waves/verification.json": "29199bb55f03b1167eaa27115c8bb531006a298371f614d8c1397516c5862894",
+    "code/validated-examples/2026-11-23/moving-waves/cases.json": "0b7092f12334f3ce018f0f837deb59803b8b14e50999a10e34de452b1038f989",
+    "code/validated-examples/2026-11-23/moving-waves/results/result.json": "e53ff99821e9977c975cda2a33d99b00d895901f1e428780ef27c10dd5242426",
+    "code/validated-examples/2026-11-23/moving-waves/atlas-moving-waves-2026-11-23.zip": "d9f2f8bff3bf5d9fa7c1118c0968e9c0374fd5e9a6d3f7f99352abc0841e3b7d",
+    "code/validated-examples/2026-11-23/relativistic/source-manifest.json": "89496dc623ddb7a3c381539d403b1ad657cee8ad772509788f185b7364dd6584",
+    "code/validated-examples/2026-11-23/relativistic/verification.json": "d2d62b2d0aa0e5f9f7e3a7e7991f24586fcc7c3baa3a567cd51f0d6f00367737",
+    "code/validated-examples/2026-11-23/relativistic/cases.json": "8e0f3c1834cf74a57e20628fcf6580b19b8a7153c6f7c33c9b0b0986ca680a58",
+    "code/validated-examples/2026-11-23/relativistic/results/result.json": "30f709ac0ea4dac4819fbfca0c94ff045ca2b566d1245914d1a6aecc5bf86548",
+    "code/validated-examples/2026-11-23/relativistic/atlas-relativistic-2026-11-23.zip": "c80b18e40f259d72aae6375d59faa0bd3c6c1b00b50da06538004bb6462a7185",
+    "code/validated-examples/2026-11-23/coefficient-diffusion/source-manifest.json": "2d927e3042eb221498be0f5f0bf5e7363cdb280247379f92dfaacce47b62b914",
+    "code/validated-examples/2026-11-23/coefficient-diffusion/verification.json": "49dcdd24f0d90110fb0bbb1f28a8a9bce0c8d4fdd3645d0cd5a79722f3fe39c2",
+    "code/validated-examples/2026-11-23/coefficient-diffusion/cases.json": "c861a45e8f07dbce47bb74c62a57427117cd1e5d20d3d914a588be0a1c26785a",
+    "code/validated-examples/2026-11-23/coefficient-diffusion/results/result.json": "13f91d2a2e927aa59a5a043005d98d267cebc1b6a5c57a7ab966b2670f86635c",
+    "code/validated-examples/2026-11-23/coefficient-diffusion/atlas-coefficient-diffusion-2026-11-23.zip": "c53624aa03cf7f945297e7bd09d72030e111e035c3ce7174fd2da9e86756b666",
+    "code/validated-examples/2026-11-23/slab-ewald/source-manifest.json": "94e960898e16b4e2f0c571deb81bad3e3602a7a6333a4beaa43a5272a9366311",
+    "code/validated-examples/2026-11-23/slab-ewald/verification.json": "1ba388ae7557baa644f6b773811cf78ad23b20b5938db8a5d748fba741bc9684",
+    "code/validated-examples/2026-11-23/slab-ewald/cases.json": "e1533bdaff925ba7f441dd1c719988f6a8cbbecfe32516a9cb573518a39b7875",
+    "code/validated-examples/2026-11-23/slab-ewald/results/result.json": "a81227eaee02508eab1ee1b6bec2a9177131c798191ca2b4338cf7205bb4c8d8",
+    "code/validated-examples/2026-11-23/slab-ewald/atlas-slab-ewald-2026-11-23.zip": "168b250fd18b209534fe8a767afc689ea11b6b8ca95657a7c0ff0d8803f00414",
+    "code/validated-examples/2026-11-23/fmm3d/source-manifest.json": "bc624983d4b0480538aa873ff2a867491e4384d25ea39930b5bb948b98e59c89",
+    "code/validated-examples/2026-11-23/fmm3d/verification.json": "b6cc2a0ad2f31c01ebd833447f7f6d9496db6df5f6c14deb93d4f057d177c175",
+    "code/validated-examples/2026-11-23/fmm3d/cases.json": "ca113f993ead48117c2678734dbb774a07d7911eab0f3392a4ac897b48f1b5f9",
+    "code/validated-examples/2026-11-23/fmm3d/results/result.json": "ccb60af7e0a8a3f71ca7b36ddfb6b23eb4cefd91709a10ff00ec28d6aa330199",
+    "code/validated-examples/2026-11-23/fmm3d/atlas-fmm3d-2026-11-23.zip": "61861fb2a1d24437175710a09c4afdc934aab49c1c2f2e3e14b5a3c2d466b59c",
+    "code/validated-examples/2026-11-23/gravity-dynamics/source-manifest.json": "ac07fb7bbb54a8f5ac7e20ceb9ea2ecdbc7ca2fd6d524072f609ef52ee79655b",
+    "code/validated-examples/2026-11-23/gravity-dynamics/verification.json": "47839837648f140ffb9696b7974dba4d6858bd15569e0415274a330d6e286ca3",
+    "code/validated-examples/2026-11-23/gravity-dynamics/cases.json": "de18f8a723bdd60efac585abf95e17f125e6f4e68823d147445cb0f3e0f172a7",
+    "code/validated-examples/2026-11-23/gravity-dynamics/results/result.json": "d5129ce2c86fa37b8baa3abd0c9822323768e8ff0915abf86b23ef041bae837b",
+    "code/validated-examples/2026-11-23/gravity-dynamics/atlas-gravity-dynamics-2026-11-23.zip": "47f1a4bdb8a6a5fdac82e66ffbe8b32c59242ffb7f9f05b418a37bd5913ffacd",
+    "code/validated-examples/2026-11-23/warm-pic/source-manifest.json": "c38a3af2f3854853fdfc29033ec482551cf187e76cacf6e85717d26319b98776",
+    "code/validated-examples/2026-11-23/warm-pic/verification.json": "c8af7a2828d26a884774f3325c9fc64c489855db9a14eab6325b1f510f8953d1",
+    "code/validated-examples/2026-11-23/warm-pic/cases.json": "34d7e1d14e91f84fb40883ccca8343dd216c7850826a7c6070c6139aee358730",
+    "code/validated-examples/2026-11-23/warm-pic/results/result.json": "055d3a90ef7eb53cb59405884f2a6f9db3bcf9bbb0cec459f39d5e723615b03e",
+    "code/validated-examples/2026-11-23/warm-pic/atlas-warm-pic-2026-11-23.zip": "10661b33b9d36f35721fa1ed55b12b94926fe6fab47b8dd1e5dea52a61415fdb",
+    "code/validated-examples/2026-11-23/pic-spatial/source-manifest.json": "cb2990ccac19fc27ae3c21fbf0fe20d49592dfb1dbedfe25fa808094cbe38b55",
+    "code/validated-examples/2026-11-23/pic-spatial/verification.json": "8d8a7e9105d39ea8f55a4700e686c074c77930b99a8146130cf2d1a4f58e0edb",
+    "code/validated-examples/2026-11-23/pic-spatial/cases.json": "162abe59e4c4e975cfc908543556206a50b372572356dcef5f908be739dd4d67",
+    "code/validated-examples/2026-11-23/pic-spatial/results/result.json": "79fd92b4793f435e9899d9e50cb17fcdec9d5df116f3790ff7222edf2208ae3f",
+    "code/validated-examples/2026-11-23/pic-spatial/atlas-pic-spatial-2026-11-23.zip": "51da779a41f2109fbd22d1628463b8be3770ee93b61e49529b1b48a19f431bc3",
+    "code/validated-examples/2026-11-23/dsmc-wall/source-manifest.json": "86b7629e41658327280445b9e0a03e9e3c2894886a06f32c1dafcbeb6a7b811b",
+    "code/validated-examples/2026-11-23/dsmc-wall/verification.json": "c468aabcd27c1d73d44923b83d0d5a2b267f61114c37beb4743bdfcf8b63a048",
+    "code/validated-examples/2026-11-23/dsmc-wall/cases.json": "0b1fb2514bff09c0dd5e214348a875f15f37cbde756afbf88ea2fcac188e7bb5",
+    "code/validated-examples/2026-11-23/dsmc-wall/results/result.json": "e25dc3114ca3149ec876c88d5cdaf7e1cd8b2639e71e09fd8338f0e488e52824",
+    "code/validated-examples/2026-11-23/dsmc-wall/atlas-dsmc-wall-2026-11-23.zip": "7b6d5a11874a0042ce772df4c241c72ce42f861c43ed0d44164074ba662da0cb",
+    "code/validated-examples/2026-11-24/dsmc-shock/source-manifest.json": "cc8ff5afec49e7f1ccffd2cce91bcf85e4e116c7389342304667bc7c9bb5eccf",
+    "code/validated-examples/2026-11-24/dsmc-shock/verification.json": "7e7919032dafc67b5e857acd4464516cb4b742eed89ff8adae7f3c8cf75a96f5",
+    "code/validated-examples/2026-11-24/dsmc-shock/cases.json": "d5123d6e0f48145bcf0b25a68cffb2f9250bb019e21ea42760db848aed536b22",
+    "code/validated-examples/2026-11-24/dsmc-shock/results/result.json": "a4cd1e0092935bccd85bc0cf14086d01c723f05e4ce9474c3563283b3a55562e",
+    "code/validated-examples/2026-11-24/dsmc-shock/atlas-dsmc-shock-2026-11-24.zip": "92794cc568e7857346a24489eddaae113eb60754de7ba717254955ace9d8d961",
+    "code/validated-examples/2026-11-24/lbm-cavity/source-manifest.json": "840d5366e967b00ce902ac881d9785ebdcbd110cfcf0b2f5a2cd15c654e9c690",
+    "code/validated-examples/2026-11-24/lbm-cavity/verification.json": "52d15320dd9a967edcc92c7e66e9bb99b99db89e6f765c7ac33b28213dc64f59",
+    "code/validated-examples/2026-11-24/lbm-cavity/cases.json": "a72f6113a8c12758aa53865e02bfbaada371c4ccefb9715cefba4e834202346d",
+    "code/validated-examples/2026-11-24/lbm-cavity/results/result.json": "0fcabbfdce818c2bf84a977cd53b7fcd7fdbe195fd0e1532d3097f7a86712d5e",
+    "code/validated-examples/2026-11-24/lbm-cavity/atlas-lbm-cavity-2026-11-24.zip": "94781f84128fa97fb59fe1a00a469352db69fcca082ce170fa3b881919f5cdda",
+    "code/validated-examples/2026-11-24/lbm-taylor-green/source-manifest.json": "b3970548ea98ed3f4d1f1e5813b12eadb6ebbfebb0c877a54cdaee2cf5902096",
+    "code/validated-examples/2026-11-24/lbm-taylor-green/verification.json": "19eae401bd03c04f643579e45210cad612852b42c134573bbefe22582f1075c1",
+    "code/validated-examples/2026-11-24/lbm-taylor-green/cases.json": "af286deb690d8f0dd3d11e881f7a2f23c212b8610c0cf91560a15b8ac249d016",
+    "code/validated-examples/2026-11-24/lbm-taylor-green/results/result.json": "e69681e105bfa75f52761a678fc3f6fabf2548bd7cff9fb345a406c031eb8e8d",
+    "code/validated-examples/2026-11-24/lbm-taylor-green/atlas-lbm-taylor-green-2026-11-24.zip": "90d6999a33f47bbf03f359dc63c5a8d6ab729c0f905a8aad292bd58d1a070a22",
+    "code/validated-examples/2026-11-24/lbm-annulus/source-manifest.json": "0f5ae6b66e83fbfcf5b142c533caeddcdc78b0c7e4679da6567547231aa48c3c",
+    "code/validated-examples/2026-11-24/lbm-annulus/verification.json": "db353908280ce48e35d925b11a6325dfccb2e40259588f688cde76cfbcacfaa6",
+    "code/validated-examples/2026-11-24/lbm-annulus/cases.json": "8b29983bdc91a9b27ec825b857e45718240604a673831a6e5facba65a9d27959",
+    "code/validated-examples/2026-11-24/lbm-annulus/results/result.json": "2efe456b62a078d6e80569f071d46680182cba2709816acc4b68f9fea67a488e",
+    "code/validated-examples/2026-11-24/lbm-annulus/atlas-lbm-annulus-2026-11-24.zip": "c38c290902c1e344b4905b3141d0212000525f45d97b0104ed35c3b8d4f6eb1b",
+    "code/validated-examples/2026-11-24/lbm-curved-boundary/source-manifest.json": "cac10700634effbdb134202fbaee4b257121293a3c501a15430f8cbd3848db6b",
+    "code/validated-examples/2026-11-24/lbm-curved-boundary/verification.json": "2c16481aa5f2081be0aea7ecd234e0c435d14f9e8bd587db9d879b6ff9b93807",
+    "code/validated-examples/2026-11-24/lbm-curved-boundary/cases.json": "a6423cddd48d0540aa5121e0ea3d8b84e8db9792d8650582e9f6e22fd168e78b",
+    "code/validated-examples/2026-11-24/lbm-curved-boundary/results/result.json": "954e50130a966eb647e09bb3e6ebd2ce8e73f3cac34fbe5094d0eb5fee77088d",
+    "code/validated-examples/2026-11-24/lbm-curved-boundary/atlas-lbm-curved-boundary-2026-11-24.zip": "69757fbf7ccab53450d7bdf6ce3023cd6f5ca3b42698d2e8c7a383421a1c640d",
+    "code/validated-examples/2026-11-24/radiation-scattering/source-manifest.json": "030a887ec8ff157149733ec9707960cdd5459f7d125352f632cc4f6c05cf6def",
+    "code/validated-examples/2026-11-24/radiation-scattering/verification.json": "7c1bfd3319d1743eb6de888b52c7e7498954761ffb8e8c3f2b6d5c6d3754011f",
+    "code/validated-examples/2026-11-24/radiation-scattering/cases.json": "b211e20e6d5d40c1f7d16070b4e111915d7385b03dea26da72ebc1ed744641ed",
+    "code/validated-examples/2026-11-24/radiation-scattering/results/result.json": "7bfe8722dc42743a829debfb52222687f767cee18d1d2aeb9033adb4228e87b5",
+    "code/validated-examples/2026-11-24/radiation-scattering/atlas-radiation-scattering-2026-11-24.zip": "52323265fbea51e79d109b45acc8c4c69d210ac70a8f49ecac6d4fa1f16c33d9",
+    "code/validated-examples/2026-11-24-r2/radiation-matter/source-manifest.json": "9786f8365507f141a6d3bebc3035e5177bc4a8ccec3ac747b8bd5a7eaed50aeb",
+    "code/validated-examples/2026-11-24-r2/radiation-matter/verification.json": "cbbc27e98b13939b705bfdcd85593747dd7ef02e7b5eaf2d9ef2a838007107d0",
+    "code/validated-examples/2026-11-24-r2/radiation-matter/cases.json": "c5522498e8c797035b7c093d4371d88a7950e19f26ab6c6495faa81e7e1b8ebb",
+    "code/validated-examples/2026-11-24-r2/radiation-matter/results/result.json": "39c457ec19fa3e73ed021778b4fd4fa19d112cf895c344cf7ffed63847ce9e54",
+    "code/validated-examples/2026-11-24-r2/radiation-matter/atlas-radiation-matter-2026-11-24-r2.zip": "fe1e3d790bd9792d8781243dc4d5ff40d3491a181a11c795569f3f4e542ed7e6",
+    "code/validated-examples/2026-11-24/radiation-geometry/source-manifest.json": "83fec8d3ed8a7b56fe191624cb2222c8720db4553ee2c28f5302ee5da8754d13",
+    "code/validated-examples/2026-11-24/radiation-geometry/verification.json": "d98432e748b5b009d442b3a2fc4becff23c20f43fc9c012cce7d6fe74931e4d9",
+    "code/validated-examples/2026-11-24/radiation-geometry/cases.json": "297e1e3fd8ebf0bdd504faf9005f7ef58de0564ecbec7cb6405d2c3cca48f3a4",
+    "code/validated-examples/2026-11-24/radiation-geometry/results/result.json": "4453e68f6a856f65097bbfe36a154b74f4437e99a217300e4c010176a3ee7aec",
+    "code/validated-examples/2026-11-24/radiation-geometry/atlas-radiation-geometry-2026-11-24.zip": "20a166a35e5e87275be4c1bcf12a31742b267ddc9f9a424a293852da53c672e0",
+    "code/validated-examples/2026-11-24/stochastic-accuracy/source-manifest.json": "996edb048ee701274828fcbac37f400c6da4748e926c51825f256e64a61b86b4",
+    "code/validated-examples/2026-11-24/stochastic-accuracy/verification.json": "1bf7faf0bc801f9206bbfa6e0072f7f3af2aae809d7154aa77aabae11c3d31a1",
+    "code/validated-examples/2026-11-24/stochastic-accuracy/cases.json": "32bbca261339410393cdbaed888ab3b226374b7dc2b9308f0aaedf0c90cc52bb",
+    "code/validated-examples/2026-11-24/stochastic-accuracy/results/result.json": "9322e0a28a62774d84e4f38504d05063d8e668e11599f4959aab186d06a38016",
+    "code/validated-examples/2026-11-24/stochastic-accuracy/atlas-stochastic-accuracy-2026-11-24.zip": "6a6ecc012df95853e20b2aa6db2fcceb8fce216872805a2b285c1f123a1e9801",
+    "code/validated-examples/2026-11-24/stochastic-estimation/source-manifest.json": "17ec6615e238e14afb92b67337262922ff12e299e9f5358457f16db7e6c81def",
+    "code/validated-examples/2026-11-24/stochastic-estimation/verification.json": "04589e7e1285b60e3d327c5772d392405e04f5fc9623a0850b38c9eaa9478f90",
+    "code/validated-examples/2026-11-24/stochastic-estimation/cases.json": "ec2095c7748dec022e754e3f9898b510f2fd3955d82b52c116374a410c7f3f5a",
+    "code/validated-examples/2026-11-24/stochastic-estimation/results/result.json": "267e0b0be6f4a5fbcb8b116837f670d8bfacf09f0a7cda25f8e97956dd180435",
+    "code/validated-examples/2026-11-24/stochastic-estimation/atlas-stochastic-estimation-2026-11-24.zip": "313b9cb048b46d4dedd13dc214b7eb25de4fb72af01e267fa69da7e460f81ec3"
+  }
+}

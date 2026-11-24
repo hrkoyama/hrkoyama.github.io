@@ -1,0 +1,339 @@
+{
+  "passed": true,
+  "protocol_sha256": "71b464fd008d3cfa565c165d727ea2d5553c9d4fccab566b932491c7d391e206",
+  "checks": {
+    "strict C++17 compile": true,
+    "periodic native-scalar": true,
+    "periodic mass ledger": true,
+    "periodic momentum ledger": true,
+    "cavity native-scalar": true,
+    "cavity mass ledger": true,
+    "cavity momentum ledger": true,
+    "couette native-scalar": true,
+    "couette mass ledger": true,
+    "couette momentum ledger": true,
+    "annulus native-scalar": true,
+    "annulus mass ledger": true,
+    "annulus momentum ledger": true,
+    "cylinder native-scalar": true,
+    "cylinder mass ledger": true,
+    "cylinder momentum ledger": true,
+    "fraction-0.1 native-scalar": true,
+    "fraction-0.1 mass ledger": true,
+    "fraction-0.1 momentum ledger": true,
+    "fraction-0.25 native-scalar": true,
+    "fraction-0.25 mass ledger": true,
+    "fraction-0.25 momentum ledger": true,
+    "fraction-0.5 native-scalar": true,
+    "fraction-0.5 mass ledger": true,
+    "fraction-0.5 momentum ledger": true,
+    "fraction-0.75 native-scalar": true,
+    "fraction-0.75 mass ledger": true,
+    "fraction-0.75 momentum ledger": true,
+    "fraction-1.0 native-scalar": true,
+    "fraction-1.0 mass ledger": true,
+    "fraction-1.0 momentum ledger": true,
+    "periodic rest populations": true,
+    "periodic rest wall-body impulse": true,
+    "cavity rest populations": true,
+    "cavity rest wall-body impulse": true,
+    "couette rest populations": true,
+    "couette rest wall-body impulse": true,
+    "annulus rest populations": true,
+    "annulus rest wall-body impulse": true,
+    "cylinder rest populations": true,
+    "cylinder rest wall-body impulse": true,
+    "rightward lid injects positive x momentum": true,
+    "moving-corner mass closure": true,
+    "moving-corner actual global mass": true,
+    "inlet nominal horizontal velocity": true,
+    "inlet zero vertical velocity": true,
+    "outlet prescribed density": true,
+    "outlet tangential old-interior extrapolation": true,
+    "analytic circle quarter": true,
+    "analytic circle half-inner": true,
+    "analytic circle half-outer": true,
+    "invalid tau half": true,
+    "invalid tau nan": true,
+    "nonpositive density rejected without floor": true,
+    "failed candidate retained": true,
+    "cavity frozen workload estimate <=25s": true,
+    "curved frozen workload estimate <=40s": true,
+    "TGV frozen workload estimate <=5s": true
+  },
+  "check_count": 58,
+  "records": [
+    {
+      "name": "strict C++17 compile",
+      "passed": true
+    },
+    {
+      "name": "periodic native-scalar",
+      "passed": true,
+      "error": 1.6653345369377348e-16
+    },
+    {
+      "name": "periodic mass ledger",
+      "passed": true,
+      "scaled_defect": 0.0
+    },
+    {
+      "name": "periodic momentum ledger",
+      "passed": true,
+      "scaled_defect": 3.0531133177191805e-18
+    },
+    {
+      "name": "cavity native-scalar",
+      "passed": true,
+      "error": 1.6653345369377348e-16
+    },
+    {
+      "name": "cavity mass ledger",
+      "passed": true,
+      "scaled_defect": 1.4155343563970745e-16
+    },
+    {
+      "name": "cavity momentum ledger",
+      "passed": true,
+      "scaled_defect": 4.996003610813204e-18
+    },
+    {
+      "name": "couette native-scalar",
+      "passed": true,
+      "error": 1.1102230246251565e-16
+    },
+    {
+      "name": "couette mass ledger",
+      "passed": true,
+      "scaled_defect": 1.772887392448297e-16
+    },
+    {
+      "name": "couette momentum ledger",
+      "passed": true,
+      "scaled_defect": 6.938893903907229e-19
+    },
+    {
+      "name": "annulus native-scalar",
+      "passed": true,
+      "error": 1.6653345369377348e-16
+    },
+    {
+      "name": "annulus mass ledger",
+      "passed": true,
+      "scaled_defect": 5.366522753246199e-17
+    },
+    {
+      "name": "annulus momentum ledger",
+      "passed": true,
+      "scaled_defect": 2.568725147119503e-17
+    },
+    {
+      "name": "cylinder native-scalar",
+      "passed": true,
+      "error": 2.220446049250313e-16
+    },
+    {
+      "name": "cylinder mass ledger",
+      "passed": true,
+      "scaled_defect": 7.076852987870028e-17
+    },
+    {
+      "name": "cylinder momentum ledger",
+      "passed": true,
+      "scaled_defect": 7.633710231032303e-18
+    },
+    {
+      "name": "fraction-0.1 native-scalar",
+      "passed": true,
+      "error": 1.1102230246251565e-16
+    },
+    {
+      "name": "fraction-0.1 mass ledger",
+      "passed": true,
+      "scaled_defect": 1.1639994523804375e-16
+    },
+    {
+      "name": "fraction-0.1 momentum ledger",
+      "passed": true,
+      "scaled_defect": 6.938893903907229e-19
+    },
+    {
+      "name": "fraction-0.25 native-scalar",
+      "passed": true,
+      "error": 1.1102230246251565e-16
+    },
+    {
+      "name": "fraction-0.25 mass ledger",
+      "passed": true,
+      "scaled_defect": 6.175615574477434e-17
+    },
+    {
+      "name": "fraction-0.25 momentum ledger",
+      "passed": true,
+      "scaled_defect": 2.7755575615628915e-18
+    },
+    {
+      "name": "fraction-0.5 native-scalar",
+      "passed": true,
+      "error": 1.1102230246251565e-16
+    },
+    {
+      "name": "fraction-0.5 mass ledger",
+      "passed": true,
+      "scaled_defect": 1.772887392448297e-16
+    },
+    {
+      "name": "fraction-0.5 momentum ledger",
+      "passed": true,
+      "scaled_defect": 6.938893903907229e-19
+    },
+    {
+      "name": "fraction-0.75 native-scalar",
+      "passed": true,
+      "error": 1.1102230246251565e-16
+    },
+    {
+      "name": "fraction-0.75 mass ledger",
+      "passed": true,
+      "scaled_defect": 4.354155924701786e-17
+    },
+    {
+      "name": "fraction-0.75 momentum ledger",
+      "passed": true,
+      "scaled_defect": 4.8572257327350596e-18
+    },
+    {
+      "name": "fraction-1.0 native-scalar",
+      "passed": true,
+      "error": 1.1102230246251565e-16
+    },
+    {
+      "name": "fraction-1.0 mass ledger",
+      "passed": true,
+      "scaled_defect": 1.1188966420050406e-16
+    },
+    {
+      "name": "fraction-1.0 momentum ledger",
+      "passed": true,
+      "scaled_defect": 5.551115123125783e-18
+    },
+    {
+      "name": "periodic rest populations",
+      "passed": true
+    },
+    {
+      "name": "periodic rest wall-body impulse",
+      "passed": true
+    },
+    {
+      "name": "cavity rest populations",
+      "passed": true
+    },
+    {
+      "name": "cavity rest wall-body impulse",
+      "passed": true
+    },
+    {
+      "name": "couette rest populations",
+      "passed": true
+    },
+    {
+      "name": "couette rest wall-body impulse",
+      "passed": true
+    },
+    {
+      "name": "annulus rest populations",
+      "passed": true
+    },
+    {
+      "name": "annulus rest wall-body impulse",
+      "passed": true
+    },
+    {
+      "name": "cylinder rest populations",
+      "passed": true
+    },
+    {
+      "name": "cylinder rest wall-body impulse",
+      "passed": true
+    },
+    {
+      "name": "rightward lid injects positive x momentum",
+      "passed": true
+    },
+    {
+      "name": "moving-corner mass closure",
+      "passed": true
+    },
+    {
+      "name": "moving-corner actual global mass",
+      "passed": true
+    },
+    {
+      "name": "inlet nominal horizontal velocity",
+      "passed": true
+    },
+    {
+      "name": "inlet zero vertical velocity",
+      "passed": true
+    },
+    {
+      "name": "outlet prescribed density",
+      "passed": true
+    },
+    {
+      "name": "outlet tangential old-interior extrapolation",
+      "passed": true
+    },
+    {
+      "name": "analytic circle quarter",
+      "passed": true,
+      "actual": 0.25000000000000017
+    },
+    {
+      "name": "analytic circle half-inner",
+      "passed": true,
+      "actual": 0.5000000000000003
+    },
+    {
+      "name": "analytic circle half-outer",
+      "passed": true,
+      "actual": 0.5
+    },
+    {
+      "name": "invalid tau half",
+      "passed": true
+    },
+    {
+      "name": "invalid tau nan",
+      "passed": true
+    },
+    {
+      "name": "nonpositive density rejected without floor",
+      "passed": true
+    },
+    {
+      "name": "failed candidate retained",
+      "passed": true
+    },
+    {
+      "name": "cavity frozen workload estimate <=25s",
+      "passed": true,
+      "estimated_seconds": 18.383016198413316
+    },
+    {
+      "name": "curved frozen workload estimate <=40s",
+      "passed": true,
+      "estimated_seconds": 36.79790434008282
+    },
+    {
+      "name": "TGV frozen workload estimate <=5s",
+      "passed": true,
+      "estimated_seconds": 0.2681256241266965
+    }
+  ],
+  "failure": null,
+  "elapsed_seconds": 4.061686750006629,
+  "main_PDE_executions": 0,
+  "reference_generations": 0
+}

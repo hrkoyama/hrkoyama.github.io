@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "group": "lbm-taylor-green",
+  "tgv": {
+    "N": [
+      24,
+      32,
+      64
+    ],
+    "U": 0.2,
+    "nu": 0.1,
+    "amplitude_U": [
+      0.4,
+      0.8
+    ],
+    "T_over_pi2": 0.2
+  }
+}

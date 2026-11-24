@@ -1,0 +1,31 @@
+{
+  "status": "PRIMARY_SELECTED_TEXT_AND_OFFICIAL_ABSTRACT_READ_NOT_FULLTEXT_CERTIFICATION",
+  "sources": [
+    {
+      "title": "Lallemand and Luo (2003), Lattice Boltzmann method for moving boundaries",
+      "url": "https://www.academia.edu/126173532/Lattice_Boltzmann_method_for_moving_boundaries",
+      "read_scope": "Selected original-article extracted text, printed410-414 sec3, Eq12/13/14/15 and interpolation/mass-conservation discussion; no localPDF/rendered-symbol audit. Distinguish our BGK collision from article MRT implementation. Our coordinate derivation and generic polynomial goldens qualify selected link formulas."
+    },
+    {
+      "title": "Guo, Zheng and Shi (2002), Non-equilibrium extrapolation method for velocity and pressure boundary conditions in the lattice Boltzmann method",
+      "url": "https://cpb.iphy.ac.cn/en/article/doi/10.1088/1009-1963/11/4/310",
+      "read_scope": "Official abstract actually inspected: equilibrium plus nonequilibrium split and adjacent-fluid first-order extrapolation. Full primary equations not obtained. Adopted all-nine poststream reservoir is independently derived, not claimed exact author implementation."
+    },
+    {
+      "title": "Author-upload metadata/full-text lead for Guo et al.",
+      "url": "https://www.researchgate.net/publication/230963379_Non-equilibrium_extrapolation_method_for_velocity_and_boundary_conditions_in_the_lattice_Boltzmann_method",
+      "read_scope": "Metadata/abstract only; attempted PDF returned404. Not a fulltext read."
+    },
+    {
+      "title": "Bouzidi,Firdaouss,Lallemand (2001)",
+      "url": "https://doi.org/10.1063/1.1399290",
+      "read_scope": "Full original remains unread; no copied implementation or original-paper complete-read claim."
+    }
+  ],
+  "limitations": [
+    "Negative quadratic coefficients, so no general positivity/stability guarantee.",
+    "Required fixedgeometry neighbors must be checked in this qualification; no implicit fallback.",
+    "NEE is a distinct finite outflow BC; FEATflow do-nothing values remain context only.",
+    "No new trajectory/main/PDE reference generated during preparation."
+  ]
+}

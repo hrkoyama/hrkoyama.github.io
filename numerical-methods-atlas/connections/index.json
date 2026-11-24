@@ -2593,13 +2593,39 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/run.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/transport.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/references/exact.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/experiments.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/experiments.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-scattering/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-scattering/slab.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-scattering/io_contract.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-scattering/references/fredholm.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-scattering/references/qualify.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/transport.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/thick_limit.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/references/thick_reference.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/diffusion.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/io_contract.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/references/analytic.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/references/qualify.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/references/qualify_thick.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/geometry.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/mms.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/wavespeeds.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/io_contract.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/references/analytic.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/references/qualify.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/test_rotation.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/test_moving.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/test_moving.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-scattering/test_scattering.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/test_matter.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/test_thick_limit.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/test_directional.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/test_geometry.py"
                 ],
                 "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
@@ -3759,14 +3785,14 @@
   "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
   "source_sha256": {
     "catalog/atlas-crossovers.json": "04358952828bd2732864c794205f60e351d0a7a669abec0222c2821fc03fd71f",
-    "catalog/atlas-methods.json": "059728dddbfeda2cba7a0bb022735b12a8d30857a0a6ab7881209b25c61041f8",
-    "numerical-methods-atlas/methods/index.json": "6320c02a1352efe0e6abf20a73fc0ef01636514d90f32ac14ef35e96f57d76fa",
+    "catalog/atlas-methods.json": "3f2b7051c980e5492f6f94f01b3e75c4802394856c55a7176d9c9a1a9f35e305",
+    "numerical-methods-atlas/methods/index.json": "9f11e9f7a1efff60515ec5653fa737e6bba768b2676ab80fa6d8f98a1048edc2",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/assets/biological-models.json": "b4432736fdbb32d6ec0be5104585348bfc166663688640f8d99a039dd4e521ab"
+    "numerical-methods-atlas/assets/biological-models.json": "3ee3489ca4d2632d672576fcd75c062137053e203b55cbf51ee0cbe8cfc9556f"
   },
   "supplemental_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "28ed0737a4c15dce04bf7c7f5563d1a7b51fadd44fb8bfa6cbed7d2255ff8efb",
+    "catalog/atlas-depth-expansion.json": "808390a31a772b2e1f9c625f8619a05d3387afb5256dd5e31b3c712c6283863a",
     "code/validated-examples/2026-11-22/biology/source-manifest.json": "56947a4fb54ae757408ddddfc5de0884bfe35266032ee425a8d96a815f3362ba",
     "code/validated-examples/2026-11-22/biology/verification.json": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",

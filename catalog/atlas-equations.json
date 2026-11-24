@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "reviewed_on": "2026-11-23",
+  "reviewed_on": "2026-11-24",
   "scope": "All equation/model entries in the shared atlas coverage inventory. Formulas are representative forms or explicitly identified schematic systems; they do not supply every closure or implementation. Status and coverage IDs are matched at build time.",
   "formula_format": "latex",
   "groups": [
@@ -73,7 +73,10 @@
       ],
       "status": "local-example",
       "group": "physical",
-      "coverage_scope": ""
+      "coverage_scope": "",
+      "supplemental_examples": [
+        "su-olson-transport1997"
+      ]
     },
     {
       "id": "poisson-laplace",
@@ -261,7 +264,11 @@
       "group": "physical",
       "coverage_scope": "Scoped periodic MAC/Taylor–Green and nonperiodic Re100 vorticity-cavity examples; cavity pressure is not validated.",
       "supplemental_examples": [
-        "cavity-ghia-re100"
+        "cavity-ghia-re100",
+        "lbm-cavity-re100",
+        "lbm-taylor-green",
+        "lbm-annular-couette-control",
+        "lbm-cylinder-re20"
       ],
       "execution_scope": {
         "ja": "既存の周期2D MAC射影・Taylor–Green例を保持し、追加の非周期Re100キャビティでは渦度・流れ関数法とThom壁条件を使います。速度中心線をGhia有限格子数値表と比較します。圧力を消去しているため、キャビティ圧力・圧力境界・MAC射影の追加検証とは表示しません。",
@@ -284,7 +291,13 @@
       },
       "status": "local-example",
       "group": "physical",
-      "coverage_scope": ""
+      "coverage_scope": "",
+      "supplemental_examples": [
+        "lbm-cavity-re100",
+        "lbm-taylor-green",
+        "lbm-annular-couette-control",
+        "lbm-cylinder-re20"
+      ]
     },
     {
       "id": "hamiltonian",
@@ -1632,6 +1645,119 @@
         "dsmc-couette",
         "dsmc-fourier",
         "dsmc-planar-shock"
+      ]
+    },
+    {
+      "id": "static-grey-transfer",
+      "name": {
+        "ja": "静止媒質の灰色放射輸送・散乱・線形交換",
+        "en": "Static grey radiative transfer,scattering and linear exchange"
+      },
+      "formula": [
+        "\\epsilon\\partial_t I+\\boldsymbol\\Omega\\cdot\\nabla I+(\\kappa_a+\\kappa_s)I=\\kappa_sJ+\\kappa_aV+Q",
+        "J=\\langle I\\rangle_\\Omega,\\quad\\partial_t V=\\kappa_a(J-V)\\quad(\\mathrm{linear\\ exchange})"
+      ],
+      "chapter": "validation-radiation-matter",
+      "note": {
+        "ja": "正規化した角度平均を使います。物質交換は1997輸送例と周期Fourier比較で進めます。1997の光学座標では係数1、物理座標の比較ではκを放射・物質の両交換項に掛けます。",
+        "en": "Use a normalized angular mean. Material exchange is evolved in the1997 transport example and periodic Fourier controls. The1997 optical coordinates give a unit exchange coefficient; physical-coordinate controls multiply both exchange terms by kappa."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "supplemental_examples": [
+        "isotropic-scattering-slab",
+        "su-olson-transport1997",
+        "shadow-absorber2d",
+        "opposing-beams2d"
+      ]
+    },
+    {
+      "id": "non-equilibrium-diffusion-exchange",
+      "name": {
+        "ja": "Su–Olson1996の非平衡拡散・物質交換",
+        "en": "Su–Olson1996 non-equilibrium diffusion and material exchange"
+      },
+      "formula": [
+        "\\epsilon u_\\tau-u_{xx}=v-u,\\quad v_\\tau=u-v",
+        "u-\\frac{2}{\\sqrt3}u_x=1\\ (x=0),\\quad \\epsilon u+v\\ \\mathrm{is\\ the\\ weighted\\ energy}"
+      ],
+      "chapter": "validation-radiation-matter",
+      "note": {
+        "ja": "x=√3κz。1997輸送のx=κzとは規格化も境界・参照も分けます。非単位epsilonの閉セル検査を別に行います。",
+        "en": "x=sqrt(3)kappa*z,distinct from x=kappa*z in1997 transport. Boundary data and references remain separate; non-unit-epsilon closed cells are separate controls."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "supplemental_examples": [
+        "su-olson-diffusion1996"
+      ]
+    },
+    {
+      "id": "static-grey-m1",
+      "name": {
+        "ja": "静止媒質・平坦時空の灰色M1モーメント",
+        "en": "Static grey M1 moments in flat spacetime"
+      },
+      "formula": [
+        "E_t+\\nabla\\cdot\\boldsymbol F=-\\kappa E+S_E,\\quad\\boldsymbol F_t+\\nabla\\cdot\\mathsf P=-\\kappa\\boldsymbol F+\\boldsymbol S_F",
+        "\\mathsf P=E[(1-\\chi)\\mathsf I_3/2+(3\\chi-1)\\boldsymbol n\\boldsymbol n^T/2]",
+        "\\chi=\\frac{3+4f^2}{5+2\\sqrt{4-3f^2}},\\quad f=|\\boldsymbol F|/E"
+      ],
+      "chapter": "validation-radiation-geometry",
+      "note": {
+        "ja": "c=1、2D空間で3D圧力のPzzを保持。等方・真空分岐、閉じたPDEの製造解、角度法とのビーム差を区別し、相対論的放射流体とは扱いません。",
+        "en": "c=1,2D space with full3D pressure including Pzz. Separate isotropic/vacuum branches,closed-PDE MMS and beam defects against angular transport; no relativistic-fluid claim."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "supplemental_examples": [
+        "shadow-absorber2d",
+        "opposing-beams2d"
+      ]
+    },
+    {
+      "id": "scalar-ito-diffusion",
+      "name": {
+        "ja": "スカラーItô拡散：GBMとOU",
+        "en": "Scalar Ito diffusion: GBM and OU"
+      },
+      "formula": [
+        "\\mathrm dX_t=a(X_t,t)\\,\\mathrm dt+b(X_t,t)\\,\\mathrm dW_t",
+        "\\mathrm{GBM}:\\ a=\\mu X,\\ b=\\sigma X;\\quad\\mathrm{OU}:\\ a=\\kappa(\\theta-X),\\ b=\\sigma"
+      ],
+      "chapter": "validation-stochastic-accuracy",
+      "note": {
+        "ja": "決定論的初期値のスカラーSDE。平均・二次モーメントの弱誤差、共有Brown運動での強誤差、有限標本のMCSEを分けます。OUは調和Langevin系の浴成分に関連する追加検査です。",
+        "en": "Scalar SDEs with deterministic initial states. Separate weak moment bias,strong errors on shared Brownian paths and finite-sample MCSE. OU is a related bath-component check,not the full harmonic Langevin system."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "supplemental_examples": [
+        "gbm-weak-moments",
+        "ou-weak-moments",
+        "gbm-milstein-strong"
+      ]
+    },
+    {
+      "id": "gaussian-probability-model",
+      "name": {
+        "ja": "Gaussian確率測度：尾確率と相関標的",
+        "en": "Gaussian probability measures: tails and correlated targets"
+      },
+      "formula": [
+        "\\pi_d(x)=\\frac{\\exp[-(x-\\mu)^T\\Sigma^{-1}(x-\\mu)/2]}{\\sqrt{(2\\pi)^d\\det\\Sigma}}",
+        "p_a=\\int_a^\\infty\\phi(z)\\,\\mathrm dz,\\quad\\mathbb E_\\pi[g]=\\mathbb E_q[g(X)\\pi(X)/q(X)]"
+      ],
+      "chapter": "validation-stochastic-estimation",
+      "note": {
+        "ja": "確率密度と積分のモデル。通常の重要度重みと既知分散の区間、2D相関Gaussianの量別診断を区別し、物理時間発展や一般のMCMC収束保証とは扱いません。",
+        "en": "A probability-density/integration model. Separate ordinary importance weights/known-variance intervals and observable-specific2D Gaussian diagnostics; no physical-time or universal MCMC-convergence claim."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "supplemental_examples": [
+        "normal-tail-importance",
+        "correlated-gaussian-mcmc"
       ]
     }
   ]

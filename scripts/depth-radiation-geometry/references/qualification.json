@@ -1,0 +1,1347 @@
+{
+  "passed": true,
+  "checks": {
+    "shadow/24/0/finite": true,
+    "shadow/24/0/quadrature": true,
+    "shadow/24/0/refinement": true,
+    "shadow/24/1/finite": true,
+    "shadow/24/1/quadrature": true,
+    "shadow/24/1/refinement": true,
+    "shadow/24/2/finite": true,
+    "shadow/24/2/quadrature": true,
+    "shadow/24/2/refinement": true,
+    "shadow/24/3/finite": true,
+    "shadow/24/3/quadrature": true,
+    "shadow/24/3/refinement": true,
+    "shadow/24/4/finite": true,
+    "shadow/24/4/quadrature": true,
+    "shadow/24/4/refinement": true,
+    "shadow/48/0/finite": true,
+    "shadow/48/0/quadrature": true,
+    "shadow/48/0/refinement": true,
+    "shadow/48/1/finite": true,
+    "shadow/48/1/quadrature": true,
+    "shadow/48/1/refinement": true,
+    "shadow/48/2/finite": true,
+    "shadow/48/2/quadrature": true,
+    "shadow/48/2/refinement": true,
+    "shadow/48/3/finite": true,
+    "shadow/48/3/quadrature": true,
+    "shadow/48/3/refinement": true,
+    "shadow/48/4/finite": true,
+    "shadow/48/4/quadrature": true,
+    "shadow/48/4/refinement": true,
+    "shadow/96/0/finite": true,
+    "shadow/96/0/quadrature": true,
+    "shadow/96/0/refinement": true,
+    "shadow/96/1/finite": true,
+    "shadow/96/1/quadrature": true,
+    "shadow/96/1/refinement": true,
+    "shadow/96/2/finite": true,
+    "shadow/96/2/quadrature": true,
+    "shadow/96/2/refinement": true,
+    "shadow/96/3/finite": true,
+    "shadow/96/3/quadrature": true,
+    "shadow/96/3/refinement": true,
+    "shadow/96/4/finite": true,
+    "shadow/96/4/quadrature": true,
+    "shadow/96/4/refinement": true,
+    "beams/24/0/finite": true,
+    "beams/24/0/quadrature": true,
+    "beams/24/0/refinement": true,
+    "beams/24/1/finite": true,
+    "beams/24/1/quadrature": true,
+    "beams/24/1/refinement": true,
+    "beams/24/2/finite": true,
+    "beams/24/2/quadrature": true,
+    "beams/24/2/refinement": true,
+    "beams/24/3/finite": true,
+    "beams/24/3/quadrature": true,
+    "beams/24/3/refinement": true,
+    "beams/24/4/finite": true,
+    "beams/24/4/quadrature": true,
+    "beams/24/4/refinement": true,
+    "beams/48/0/finite": true,
+    "beams/48/0/quadrature": true,
+    "beams/48/0/refinement": true,
+    "beams/48/1/finite": true,
+    "beams/48/1/quadrature": true,
+    "beams/48/1/refinement": true,
+    "beams/48/2/finite": true,
+    "beams/48/2/quadrature": true,
+    "beams/48/2/refinement": true,
+    "beams/48/3/finite": true,
+    "beams/48/3/quadrature": true,
+    "beams/48/3/refinement": true,
+    "beams/48/4/finite": true,
+    "beams/48/4/quadrature": true,
+    "beams/48/4/refinement": true,
+    "beams/96/0/finite": true,
+    "beams/96/0/quadrature": true,
+    "beams/96/0/refinement": true,
+    "beams/96/1/finite": true,
+    "beams/96/1/quadrature": true,
+    "beams/96/1/refinement": true,
+    "beams/96/2/finite": true,
+    "beams/96/2/quadrature": true,
+    "beams/96/2/refinement": true,
+    "beams/96/3/finite": true,
+    "beams/96/3/quadrature": true,
+    "beams/96/3/refinement": true,
+    "beams/96/4/finite": true,
+    "beams/96/4/quadrature": true,
+    "beams/96/4/refinement": true,
+    "mms/16/0/finite": true,
+    "mms/16/0/quadrature": true,
+    "mms/16/0/refinement": true,
+    "mms/16/1/finite": true,
+    "mms/16/1/quadrature": true,
+    "mms/16/1/refinement": true,
+    "mms/16/2/finite": true,
+    "mms/16/2/quadrature": true,
+    "mms/16/2/refinement": true,
+    "mms/16/3/finite": true,
+    "mms/16/3/quadrature": true,
+    "mms/16/3/refinement": true,
+    "mms/16/4/finite": true,
+    "mms/16/4/quadrature": true,
+    "mms/16/4/refinement": true,
+    "mms/32/0/finite": true,
+    "mms/32/0/quadrature": true,
+    "mms/32/0/refinement": true,
+    "mms/32/1/finite": true,
+    "mms/32/1/quadrature": true,
+    "mms/32/1/refinement": true,
+    "mms/32/2/finite": true,
+    "mms/32/2/quadrature": true,
+    "mms/32/2/refinement": true,
+    "mms/32/3/finite": true,
+    "mms/32/3/quadrature": true,
+    "mms/32/3/refinement": true,
+    "mms/32/4/finite": true,
+    "mms/32/4/quadrature": true,
+    "mms/32/4/refinement": true,
+    "mms/64/0/finite": true,
+    "mms/64/0/quadrature": true,
+    "mms/64/0/refinement": true,
+    "mms/64/1/finite": true,
+    "mms/64/1/quadrature": true,
+    "mms/64/1/refinement": true,
+    "mms/64/2/finite": true,
+    "mms/64/2/quadrature": true,
+    "mms/64/2/refinement": true,
+    "mms/64/3/finite": true,
+    "mms/64/3/quadrature": true,
+    "mms/64/3/refinement": true,
+    "mms/64/4/finite": true,
+    "mms/64/4/quadrature": true,
+    "mms/64/4/refinement": true,
+    "crossed/24/0/finite": true,
+    "crossed/24/0/quadrature": true,
+    "crossed/24/0/refinement": true,
+    "crossed/24/1/finite": true,
+    "crossed/24/1/quadrature": true,
+    "crossed/24/1/refinement": true,
+    "crossed/24/2/finite": true,
+    "crossed/24/2/quadrature": true,
+    "crossed/24/2/refinement": true,
+    "crossed/24/3/finite": true,
+    "crossed/24/3/quadrature": true,
+    "crossed/24/3/refinement": true,
+    "crossed/24/4/finite": true,
+    "crossed/24/4/quadrature": true,
+    "crossed/24/4/refinement": true,
+    "crossed/48/0/finite": true,
+    "crossed/48/0/quadrature": true,
+    "crossed/48/0/refinement": true,
+    "crossed/48/1/finite": true,
+    "crossed/48/1/quadrature": true,
+    "crossed/48/1/refinement": true,
+    "crossed/48/2/finite": true,
+    "crossed/48/2/quadrature": true,
+    "crossed/48/2/refinement": true,
+    "crossed/48/3/finite": true,
+    "crossed/48/3/quadrature": true,
+    "crossed/48/3/refinement": true,
+    "crossed/48/4/finite": true,
+    "crossed/48/4/quadrature": true,
+    "crossed/48/4/refinement": true,
+    "crossed/96/0/finite": true,
+    "crossed/96/0/quadrature": true,
+    "crossed/96/0/refinement": true,
+    "crossed/96/1/finite": true,
+    "crossed/96/1/quadrature": true,
+    "crossed/96/1/refinement": true,
+    "crossed/96/2/finite": true,
+    "crossed/96/2/quadrature": true,
+    "crossed/96/2/refinement": true,
+    "crossed/96/3/finite": true,
+    "crossed/96/3/quadrature": true,
+    "crossed/96/3/refinement": true,
+    "crossed/96/4/finite": true,
+    "crossed/96/4/quadrature": true,
+    "crossed/96/4/refinement": true,
+    "M1/analytic-forcing/0.0": true,
+    "M1/analytic-forcing/0.117": true,
+    "M1/analytic-forcing/0.25": true,
+    "M1/full3Dtrace": true,
+    "M1/isotropic": true,
+    "M1/single-beam": true,
+    "M1/equal-two-beam-closure-defect": true,
+    "M1/invalid-state-rejected/0": true,
+    "M1/invalid-state-rejected/1": true,
+    "M1/invalid-state-rejected/2": true,
+    "M1/invalid-state-rejected/3": true
+  },
+  "check_count": 191,
+  "details": [
+    {
+      "name": "shadow/24/0/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "shadow/24/0/quadrature",
+      "value": 0.0,
+      "bound": 0.0002,
+      "passed": true
+    },
+    {
+      "name": "shadow/24/0/refinement",
+      "value": 0.0,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "shadow/24/1/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "shadow/24/1/quadrature",
+      "value": 1.0148487892269742e-06,
+      "bound": 0.0002,
+      "passed": true
+    },
+    {
+      "name": "shadow/24/1/refinement",
+      "value": 1.0148487892269742e-06,
+      "bound": 4.178689435030414e-06,
+      "passed": true
+    },
+    {
+      "name": "shadow/24/2/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "shadow/24/2/quadrature",
+      "value": 7.440977314865371e-07,
+      "bound": 0.0002,
+      "passed": true
+    },
+    {
+      "name": "shadow/24/2/refinement",
+      "value": 7.440977314865371e-07,
+      "bound": 2.7144425472080957e-06,
+      "passed": true
+    },
+    {
+      "name": "shadow/24/3/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "shadow/24/3/quadrature",
+      "value": 7.440977314865371e-07,
+      "bound": 0.0002,
+      "passed": true
+    },
+    {
+      "name": "shadow/24/3/refinement",
+      "value": 7.440977314865371e-07,
+      "bound": 2.7144425472080957e-06,
+      "passed": true
+    },
+    {
+      "name": "shadow/24/4/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "shadow/24/4/quadrature",
+      "value": 7.440977314865371e-07,
+      "bound": 0.0002,
+      "passed": true
+    },
+    {
+      "name": "shadow/24/4/refinement",
+      "value": 7.440977314865371e-07,
+      "bound": 2.7144425472080957e-06,
+      "passed": true
+    },
+    {
+      "name": "shadow/48/0/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "shadow/48/0/quadrature",
+      "value": 0.0,
+      "bound": 0.0002,
+      "passed": true
+    },
+    {
+      "name": "shadow/48/0/refinement",
+      "value": 0.0,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "shadow/48/1/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "shadow/48/1/quadrature",
+      "value": 4.996171565074814e-07,
+      "bound": 0.0002,
+      "passed": true
+    },
+    {
+      "name": "shadow/48/1/refinement",
+      "value": 4.996171565074814e-07,
+      "bound": 3.0822846144862304e-06,
+      "passed": true
+    },
+    {
+      "name": "shadow/48/2/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "shadow/48/2/quadrature",
+      "value": 2.3120888092975633e-08,
+      "bound": 0.0002,
+      "passed": true
+    },
+    {
+      "name": "shadow/48/2/refinement",
+      "value": 2.3120888092975633e-08,
+      "bound": 1.1080927014850417e-07,
+      "passed": true
+    },
+    {
+      "name": "shadow/48/3/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "shadow/48/3/quadrature",
+      "value": 2.3120888092975633e-08,
+      "bound": 0.0002,
+      "passed": true
+    },
+    {
+      "name": "shadow/48/3/refinement",
+      "value": 2.3120888092975633e-08,
+      "bound": 1.1080927014850417e-07,
+      "passed": true
+    },
+    {
+      "name": "shadow/48/4/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "shadow/48/4/quadrature",
+      "value": 2.3120888092975633e-08,
+      "bound": 0.0002,
+      "passed": true
+    },
+    {
+      "name": "shadow/48/4/refinement",
+      "value": 2.3120888092975633e-08,
+      "bound": 1.1080927014850417e-07,
+      "passed": true
+    },
+    {
+      "name": "shadow/96/0/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "shadow/96/0/quadrature",
+      "value": 0.0,
+      "bound": 0.0002,
+      "passed": true
+    },
+    {
+      "name": "shadow/96/0/refinement",
+      "value": 0.0,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "shadow/96/1/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "shadow/96/1/quadrature",
+      "value": 1.3130146969686507e-10,
+      "bound": 0.0002,
+      "passed": true
+    },
+    {
+      "name": "shadow/96/1/refinement",
+      "value": 1.3130146969686507e-10,
+      "bound": 1.6558987514514456e-10,
+      "passed": true
+    },
+    {
+      "name": "shadow/96/2/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "shadow/96/2/quadrature",
+      "value": 4.623138527559689e-08,
+      "bound": 0.0002,
+      "passed": true
+    },
+    {
+      "name": "shadow/96/2/refinement",
+      "value": 4.623138527559689e-08,
+      "bound": 1.6904221022961963e-07,
+      "passed": true
+    },
+    {
+      "name": "shadow/96/3/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "shadow/96/3/quadrature",
+      "value": 4.623138527559689e-08,
+      "bound": 0.0002,
+      "passed": true
+    },
+    {
+      "name": "shadow/96/3/refinement",
+      "value": 4.623138527559689e-08,
+      "bound": 1.6904221022961963e-07,
+      "passed": true
+    },
+    {
+      "name": "shadow/96/4/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "shadow/96/4/quadrature",
+      "value": 4.623138527559689e-08,
+      "bound": 0.0002,
+      "passed": true
+    },
+    {
+      "name": "shadow/96/4/refinement",
+      "value": 4.623138527559689e-08,
+      "bound": 1.6904221022961963e-07,
+      "passed": true
+    },
+    {
+      "name": "beams/24/0/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "beams/24/0/quadrature",
+      "value": 2.220446049250313e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "beams/24/0/refinement",
+      "value": 2.220446049250313e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "beams/24/1/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "beams/24/1/quadrature",
+      "value": 2.220446049250313e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "beams/24/1/refinement",
+      "value": 2.220446049250313e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "beams/24/2/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "beams/24/2/quadrature",
+      "value": 4.440892098500626e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "beams/24/2/refinement",
+      "value": 4.440892098500626e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "beams/24/3/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "beams/24/3/quadrature",
+      "value": 2.220446049250313e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "beams/24/3/refinement",
+      "value": 2.220446049250313e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "beams/24/4/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "beams/24/4/quadrature",
+      "value": 2.220446049250313e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "beams/24/4/refinement",
+      "value": 2.220446049250313e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "beams/48/0/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "beams/48/0/quadrature",
+      "value": 4.440892098500626e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "beams/48/0/refinement",
+      "value": 4.440892098500626e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "beams/48/1/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "beams/48/1/quadrature",
+      "value": 4.440892098500626e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "beams/48/1/refinement",
+      "value": 4.440892098500626e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "beams/48/2/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "beams/48/2/quadrature",
+      "value": 4.440892098500626e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "beams/48/2/refinement",
+      "value": 4.440892098500626e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "beams/48/3/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "beams/48/3/quadrature",
+      "value": 4.440892098500626e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "beams/48/3/refinement",
+      "value": 4.440892098500626e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "beams/48/4/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "beams/48/4/quadrature",
+      "value": 4.440892098500626e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "beams/48/4/refinement",
+      "value": 4.440892098500626e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "beams/96/0/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "beams/96/0/quadrature",
+      "value": 7.771561172376096e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "beams/96/0/refinement",
+      "value": 7.771561172376096e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "beams/96/1/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "beams/96/1/quadrature",
+      "value": 7.771561172376096e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "beams/96/1/refinement",
+      "value": 7.771561172376096e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "beams/96/2/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "beams/96/2/quadrature",
+      "value": 1.5543122344752192e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "beams/96/2/refinement",
+      "value": 1.5543122344752192e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "beams/96/3/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "beams/96/3/quadrature",
+      "value": 7.771561172376096e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "beams/96/3/refinement",
+      "value": 7.771561172376096e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "beams/96/4/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "beams/96/4/quadrature",
+      "value": 7.771561172376096e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "beams/96/4/refinement",
+      "value": 7.771561172376096e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "mms/16/0/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "mms/16/0/quadrature",
+      "value": 2.220446049250313e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "mms/16/0/refinement",
+      "value": 2.220446049250313e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "mms/16/1/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "mms/16/1/quadrature",
+      "value": 2.220446049250313e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "mms/16/1/refinement",
+      "value": 2.220446049250313e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "mms/16/2/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "mms/16/2/quadrature",
+      "value": 2.220446049250313e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "mms/16/2/refinement",
+      "value": 2.220446049250313e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "mms/16/3/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "mms/16/3/quadrature",
+      "value": 2.220446049250313e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "mms/16/3/refinement",
+      "value": 2.220446049250313e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "mms/16/4/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "mms/16/4/quadrature",
+      "value": 2.220446049250313e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "mms/16/4/refinement",
+      "value": 2.220446049250313e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "mms/32/0/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "mms/32/0/quadrature",
+      "value": 2.4424906541753444e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "mms/32/0/refinement",
+      "value": 2.4424906541753444e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "mms/32/1/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "mms/32/1/quadrature",
+      "value": 2.4424906541753444e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "mms/32/1/refinement",
+      "value": 2.4424906541753444e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "mms/32/2/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "mms/32/2/quadrature",
+      "value": 2.4424906541753444e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "mms/32/2/refinement",
+      "value": 2.4424906541753444e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "mms/32/3/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "mms/32/3/quadrature",
+      "value": 2.4424906541753444e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "mms/32/3/refinement",
+      "value": 2.4424906541753444e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "mms/32/4/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "mms/32/4/quadrature",
+      "value": 2.4424906541753444e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "mms/32/4/refinement",
+      "value": 2.4424906541753444e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "mms/64/0/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "mms/64/0/quadrature",
+      "value": 3.1086244689504383e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "mms/64/0/refinement",
+      "value": 3.1086244689504383e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "mms/64/1/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "mms/64/1/quadrature",
+      "value": 3.1086244689504383e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "mms/64/1/refinement",
+      "value": 3.1086244689504383e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "mms/64/2/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "mms/64/2/quadrature",
+      "value": 3.1086244689504383e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "mms/64/2/refinement",
+      "value": 3.1086244689504383e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "mms/64/3/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "mms/64/3/quadrature",
+      "value": 3.1086244689504383e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "mms/64/3/refinement",
+      "value": 3.1086244689504383e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "mms/64/4/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "mms/64/4/quadrature",
+      "value": 3.1086244689504383e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "mms/64/4/refinement",
+      "value": 3.1086244689504383e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "crossed/24/0/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "crossed/24/0/quadrature",
+      "value": 1.1102230246251565e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "crossed/24/0/refinement",
+      "value": 1.1102230246251565e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "crossed/24/1/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "crossed/24/1/quadrature",
+      "value": 1.6653345369377348e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "crossed/24/1/refinement",
+      "value": 1.6653345369377348e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "crossed/24/2/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "crossed/24/2/quadrature",
+      "value": 2.220446049250313e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "crossed/24/2/refinement",
+      "value": 2.220446049250313e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "crossed/24/3/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "crossed/24/3/quadrature",
+      "value": 3.3306690738754696e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "crossed/24/3/refinement",
+      "value": 3.3306690738754696e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "crossed/24/4/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "crossed/24/4/quadrature",
+      "value": 4.440892098500626e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "crossed/24/4/refinement",
+      "value": 4.440892098500626e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "crossed/48/0/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "crossed/48/0/quadrature",
+      "value": 4.440892098500626e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "crossed/48/0/refinement",
+      "value": 4.440892098500626e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "crossed/48/1/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "crossed/48/1/quadrature",
+      "value": 4.440892098500626e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "crossed/48/1/refinement",
+      "value": 4.440892098500626e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "crossed/48/2/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "crossed/48/2/quadrature",
+      "value": 4.440892098500626e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "crossed/48/2/refinement",
+      "value": 4.440892098500626e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "crossed/48/3/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "crossed/48/3/quadrature",
+      "value": 4.440892098500626e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "crossed/48/3/refinement",
+      "value": 4.440892098500626e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "crossed/48/4/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "crossed/48/4/quadrature",
+      "value": 4.440892098500626e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "crossed/48/4/refinement",
+      "value": 4.440892098500626e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "crossed/96/0/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "crossed/96/0/quadrature",
+      "value": 7.771561172376096e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "crossed/96/0/refinement",
+      "value": 7.771561172376096e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "crossed/96/1/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "crossed/96/1/quadrature",
+      "value": 7.771561172376096e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "crossed/96/1/refinement",
+      "value": 7.771561172376096e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "crossed/96/2/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "crossed/96/2/quadrature",
+      "value": 7.771561172376096e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "crossed/96/2/refinement",
+      "value": 7.771561172376096e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "crossed/96/3/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "crossed/96/3/quadrature",
+      "value": 8.881784197001252e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "crossed/96/3/refinement",
+      "value": 8.881784197001252e-16,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "crossed/96/4/finite",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "crossed/96/4/quadrature",
+      "value": 1.5543122344752192e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "crossed/96/4/refinement",
+      "value": 1.5543122344752192e-15,
+      "bound": 1e-10,
+      "passed": true
+    },
+    {
+      "name": "M1/analytic-forcing/0.0",
+      "value": 1.1102230246251565e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "M1/analytic-forcing/0.117",
+      "value": 1.1102230246251565e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "M1/analytic-forcing/0.25",
+      "value": 1.1102230246251565e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "M1/full3Dtrace",
+      "value": 0.0,
+      "bound": 2e-14,
+      "passed": true
+    },
+    {
+      "name": "M1/isotropic",
+      "value": 5.551115123125783e-17,
+      "bound": 2e-14,
+      "passed": true
+    },
+    {
+      "name": "M1/single-beam",
+      "value": 0.0,
+      "bound": 2e-14,
+      "passed": true
+    },
+    {
+      "name": "M1/equal-two-beam-closure-defect",
+      "value": 0.0,
+      "bound": 2e-14,
+      "passed": true
+    },
+    {
+      "name": "M1/invalid-state-rejected/0",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "M1/invalid-state-rejected/1",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "M1/invalid-state-rejected/2",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "M1/invalid-state-rejected/3",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    }
+  ],
+  "scope": "Independent characteristic cell means and complex-step qualification of analytically derived CLOSED M1forcing;local tensor limits. No primary PDE execution.",
+  "PDE_primary_runs": 0
+}

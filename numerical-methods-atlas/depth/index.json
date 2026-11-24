@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_on": "2026-11-23",
+  "reviewed_on": "2026-11-24",
   "title": {
     "ja": "分野ごとの実装・検証範囲",
     "en": "Implementation and validation by field"
@@ -64,7 +64,11 @@
         "rt-initial-growth",
         "ale-nonuniform-transport",
         "cgrid-rotating-wave",
-        "srhd-collision"
+        "srhd-collision",
+        "lbm-cavity-re100",
+        "lbm-taylor-green",
+        "lbm-annular-couette-control",
+        "lbm-cylinder-re20"
       ]
     },
     {
@@ -291,7 +295,12 @@
       "supplemental_examples": [
         "gaussian-mcmc",
         "mcmc-multimodal-mixing",
-        "mcmc-diagnostic-reference"
+        "mcmc-diagnostic-reference",
+        "gbm-weak-moments",
+        "ou-weak-moments",
+        "gbm-milstein-strong",
+        "normal-tail-importance",
+        "correlated-gaussian-mcmc"
       ]
     },
     {
@@ -456,11 +465,16 @@
       },
       "supplemental_examples": [
         "radiation-transport",
-        "radiation-convergence"
+        "radiation-convergence",
+        "isotropic-scattering-slab",
+        "su-olson-diffusion1996",
+        "su-olson-transport1997",
+        "shadow-absorber2d",
+        "opposing-beams2d"
       ],
       "scope": {
-        "ja": "吸収のみの1次元平板で角度離散化と風上空間離散化を実装。散乱や多周波輸送へ広げない。 旧版を保持し、同じ純吸収標的の独立参照・空間/角度収束・放射収支を別配布版で比較します。",
-        "en": "Implement angular quadrature and upwind spatial discretization in an absorbing 1D slab; excludes scattering and multifrequency transport. Keep the historical release and compare independent references, spatial/angular refinement and radiative balance for the same pure-absorption target in a separate companion."
+        "ja": "従来の1次元純吸収平板を保持します。追加の固定例では、等方散乱平板、規格化を分けた非平衡拡散と輸送・物質交換、2Dの影・ビームと静止M1を扱います。拡散極限の比較は平均自由行程を解像したFourierモードに限定し、固定格子APや一般の放射流体連成へは広げません。",
+        "en": "Preserve the original 1D absorbing slab. Additional fixed examples cover isotropic scattering, distinct non-equilibrium diffusion and transport/material exchange, and 2D shadows/beams with static M1. Diffusion-limit comparisons use mean-free-path-resolved Fourier modes; they do not establish fixed-grid AP behavior or general radiation hydrodynamics."
       },
       "reference": {
         "ja": "厳密ray解、連続角度の指数積分によるfluxを独立参照に使う。 参照自身の求積細分化と、流入・流出・体積吸収の保存診断も区別します。",
@@ -471,8 +485,8 @@
         "en": "Separate pure angular error using exact rays from spatial error at a fixed angular quadrature. Balance consistency alone does not guarantee angular-distribution accuracy."
       },
       "next": {
-        "ja": "散乱、時間依存、多次元・不透明度結合は別の検証が必要。",
-        "en": "Scattering, time dependence, multiple dimensions and opacity coupling require separate validation."
+        "ja": "多群・周波数依存、温度依存不透明度の非線形連成、放射流体と固定格子APは別の検証が必要です。",
+        "en": "Multigroup/frequency dependence, nonlinear temperature-dependent opacity, radiation hydrodynamics and fixed-grid AP behavior require separate validation."
       },
       "examples": [],
       "reading": {
@@ -485,10 +499,10 @@
   "registry": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
   "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
   "source_sha256": {
-    "catalog/atlas-depth.json": "3210d13442d09ada2a6b3a773f03279ed26420a7abd2707cfb97b302305b44e0",
+    "catalog/atlas-depth.json": "350ab2d1f5fdda6a43e77324777ff2c7fcf0e8e8f1e6f3c71cffb3beac568e9c",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "catalog/atlas-depth-expansion.json": "28ed0737a4c15dce04bf7c7f5563d1a7b51fadd44fb8bfa6cbed7d2255ff8efb",
+    "catalog/atlas-depth-expansion.json": "808390a31a772b2e1f9c625f8619a05d3387afb5256dd5e31b3c712c6283863a",
     "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
     "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
     "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
@@ -579,6 +593,26 @@
     "code/validated-examples/2026-11-23/relativistic/cases.json": "8e0f3c1834cf74a57e20628fcf6580b19b8a7153c6f7c33c9b0b0986ca680a58",
     "code/validated-examples/2026-11-23/relativistic/results/result.json": "30f709ac0ea4dac4819fbfca0c94ff045ca2b566d1245914d1a6aecc5bf86548",
     "code/validated-examples/2026-11-23/relativistic/atlas-relativistic-2026-11-23.zip": "c80b18e40f259d72aae6375d59faa0bd3c6c1b00b50da06538004bb6462a7185",
+    "code/validated-examples/2026-11-24/lbm-cavity/source-manifest.json": "840d5366e967b00ce902ac881d9785ebdcbd110cfcf0b2f5a2cd15c654e9c690",
+    "code/validated-examples/2026-11-24/lbm-cavity/verification.json": "52d15320dd9a967edcc92c7e66e9bb99b99db89e6f765c7ac33b28213dc64f59",
+    "code/validated-examples/2026-11-24/lbm-cavity/cases.json": "a72f6113a8c12758aa53865e02bfbaada371c4ccefb9715cefba4e834202346d",
+    "code/validated-examples/2026-11-24/lbm-cavity/results/result.json": "0fcabbfdce818c2bf84a977cd53b7fcd7fdbe195fd0e1532d3097f7a86712d5e",
+    "code/validated-examples/2026-11-24/lbm-cavity/atlas-lbm-cavity-2026-11-24.zip": "94781f84128fa97fb59fe1a00a469352db69fcca082ce170fa3b881919f5cdda",
+    "code/validated-examples/2026-11-24/lbm-taylor-green/source-manifest.json": "b3970548ea98ed3f4d1f1e5813b12eadb6ebbfebb0c877a54cdaee2cf5902096",
+    "code/validated-examples/2026-11-24/lbm-taylor-green/verification.json": "19eae401bd03c04f643579e45210cad612852b42c134573bbefe22582f1075c1",
+    "code/validated-examples/2026-11-24/lbm-taylor-green/cases.json": "af286deb690d8f0dd3d11e881f7a2f23c212b8610c0cf91560a15b8ac249d016",
+    "code/validated-examples/2026-11-24/lbm-taylor-green/results/result.json": "e69681e105bfa75f52761a678fc3f6fabf2548bd7cff9fb345a406c031eb8e8d",
+    "code/validated-examples/2026-11-24/lbm-taylor-green/atlas-lbm-taylor-green-2026-11-24.zip": "90d6999a33f47bbf03f359dc63c5a8d6ab729c0f905a8aad292bd58d1a070a22",
+    "code/validated-examples/2026-11-24/lbm-annulus/source-manifest.json": "0f5ae6b66e83fbfcf5b142c533caeddcdc78b0c7e4679da6567547231aa48c3c",
+    "code/validated-examples/2026-11-24/lbm-annulus/verification.json": "db353908280ce48e35d925b11a6325dfccb2e40259588f688cde76cfbcacfaa6",
+    "code/validated-examples/2026-11-24/lbm-annulus/cases.json": "8b29983bdc91a9b27ec825b857e45718240604a673831a6e5facba65a9d27959",
+    "code/validated-examples/2026-11-24/lbm-annulus/results/result.json": "2efe456b62a078d6e80569f071d46680182cba2709816acc4b68f9fea67a488e",
+    "code/validated-examples/2026-11-24/lbm-annulus/atlas-lbm-annulus-2026-11-24.zip": "c38c290902c1e344b4905b3141d0212000525f45d97b0104ed35c3b8d4f6eb1b",
+    "code/validated-examples/2026-11-24/lbm-curved-boundary/source-manifest.json": "cac10700634effbdb134202fbaee4b257121293a3c501a15430f8cbd3848db6b",
+    "code/validated-examples/2026-11-24/lbm-curved-boundary/verification.json": "2c16481aa5f2081be0aea7ecd234e0c435d14f9e8bd587db9d879b6ff9b93807",
+    "code/validated-examples/2026-11-24/lbm-curved-boundary/cases.json": "a6423cddd48d0540aa5121e0ea3d8b84e8db9792d8650582e9f6e22fd168e78b",
+    "code/validated-examples/2026-11-24/lbm-curved-boundary/results/result.json": "954e50130a966eb647e09bb3e6ebd2ce8e73f3cac34fbe5094d0eb5fee77088d",
+    "code/validated-examples/2026-11-24/lbm-curved-boundary/atlas-lbm-curved-boundary-2026-11-24.zip": "69757fbf7ccab53450d7bdf6ce3023cd6f5ca3b42698d2e8c7a383421a1c640d",
     "code/validated-examples/2026-11-22/mhd-convergence/source-manifest.json": "9d5fd8eb67ed3d4ac3965596bbd12152bdc1ae2e03a3a4f060573175d00caf67",
     "code/validated-examples/2026-11-22/mhd-convergence/verification.json": "ddf51e803eb94ca7dc419d0b9fc4aa6ec7204c319e448f7d4b120f5342a319d8",
     "code/validated-examples/2026-11-22/mhd-convergence/cases.json": "a1ebd3a1344c90cc49e11dd790a522434f7fdec27f77d8621a2197a7be738434",
@@ -619,6 +653,16 @@
     "code/validated-examples/2026-11-22/mcmc/cases.json": "fa950eafd45ac23aa2eba3374b23ab2d8df934368ab5b833bf812fbdd095fcaa",
     "code/validated-examples/2026-11-22/mcmc/results/result.json": "530a343f4e59e03aa9369e373507e73a063eb810eb5a24fd820568467567cbd5",
     "code/validated-examples/2026-11-22/mcmc/atlas-mcmc-2026-11-22.zip": "7fb1cde233b79e2b2d56edac89c6e1bdbe8239c1b7f5e166054f8e3e2cdaac11",
+    "code/validated-examples/2026-11-24/stochastic-accuracy/source-manifest.json": "996edb048ee701274828fcbac37f400c6da4748e926c51825f256e64a61b86b4",
+    "code/validated-examples/2026-11-24/stochastic-accuracy/verification.json": "1bf7faf0bc801f9206bbfa6e0072f7f3af2aae809d7154aa77aabae11c3d31a1",
+    "code/validated-examples/2026-11-24/stochastic-accuracy/cases.json": "32bbca261339410393cdbaed888ab3b226374b7dc2b9308f0aaedf0c90cc52bb",
+    "code/validated-examples/2026-11-24/stochastic-accuracy/results/result.json": "9322e0a28a62774d84e4f38504d05063d8e668e11599f4959aab186d06a38016",
+    "code/validated-examples/2026-11-24/stochastic-accuracy/atlas-stochastic-accuracy-2026-11-24.zip": "6a6ecc012df95853e20b2aa6db2fcceb8fce216872805a2b285c1f123a1e9801",
+    "code/validated-examples/2026-11-24/stochastic-estimation/source-manifest.json": "17ec6615e238e14afb92b67337262922ff12e299e9f5358457f16db7e6c81def",
+    "code/validated-examples/2026-11-24/stochastic-estimation/verification.json": "04589e7e1285b60e3d327c5772d392405e04f5fc9623a0850b38c9eaa9478f90",
+    "code/validated-examples/2026-11-24/stochastic-estimation/cases.json": "ec2095c7748dec022e754e3f9898b510f2fd3955d82b52c116374a410c7f3f5a",
+    "code/validated-examples/2026-11-24/stochastic-estimation/results/result.json": "267e0b0be6f4a5fbcb8b116837f670d8bfacf09f0a7cda25f8e97956dd180435",
+    "code/validated-examples/2026-11-24/stochastic-estimation/atlas-stochastic-estimation-2026-11-24.zip": "313b9cb048b46d4dedd13dc214b7eb25de4fb72af01e267fa69da7e460f81ec3",
     "code/validated-examples/2026-11-22/thermostats/source-manifest.json": "81a854bdfe3ae33b4eb4bffdccc9ab15a09f2bddbffb294cd2c2cbd07e641580",
     "code/validated-examples/2026-11-22/thermostats/verification.json": "c14f55ac05d93269dbf8eef4a2a4042f75764d5228d06f8e41039d0b60351905",
     "code/validated-examples/2026-11-22/thermostats/cases.json": "123566ec7000dce11f2a6a7474d35e45c8fdf24db85a0556e2cbb3911d3acd77",
@@ -679,6 +723,21 @@
     "code/validated-examples/2026-11-24/dsmc-shock/cases.json": "d5123d6e0f48145bcf0b25a68cffb2f9250bb019e21ea42760db848aed536b22",
     "code/validated-examples/2026-11-24/dsmc-shock/results/result.json": "a4cd1e0092935bccd85bc0cf14086d01c723f05e4ce9474c3563283b3a55562e",
     "code/validated-examples/2026-11-24/dsmc-shock/atlas-dsmc-shock-2026-11-24.zip": "92794cc568e7857346a24489eddaae113eb60754de7ba717254955ace9d8d961",
+    "code/validated-examples/2026-11-24/radiation-scattering/source-manifest.json": "030a887ec8ff157149733ec9707960cdd5459f7d125352f632cc4f6c05cf6def",
+    "code/validated-examples/2026-11-24/radiation-scattering/verification.json": "7c1bfd3319d1743eb6de888b52c7e7498954761ffb8e8c3f2b6d5c6d3754011f",
+    "code/validated-examples/2026-11-24/radiation-scattering/cases.json": "b211e20e6d5d40c1f7d16070b4e111915d7385b03dea26da72ebc1ed744641ed",
+    "code/validated-examples/2026-11-24/radiation-scattering/results/result.json": "7bfe8722dc42743a829debfb52222687f767cee18d1d2aeb9033adb4228e87b5",
+    "code/validated-examples/2026-11-24/radiation-scattering/atlas-radiation-scattering-2026-11-24.zip": "52323265fbea51e79d109b45acc8c4c69d210ac70a8f49ecac6d4fa1f16c33d9",
+    "code/validated-examples/2026-11-24-r2/radiation-matter/source-manifest.json": "9786f8365507f141a6d3bebc3035e5177bc4a8ccec3ac747b8bd5a7eaed50aeb",
+    "code/validated-examples/2026-11-24-r2/radiation-matter/verification.json": "cbbc27e98b13939b705bfdcd85593747dd7ef02e7b5eaf2d9ef2a838007107d0",
+    "code/validated-examples/2026-11-24-r2/radiation-matter/cases.json": "c5522498e8c797035b7c093d4371d88a7950e19f26ab6c6495faa81e7e1b8ebb",
+    "code/validated-examples/2026-11-24-r2/radiation-matter/results/result.json": "39c457ec19fa3e73ed021778b4fd4fa19d112cf895c344cf7ffed63847ce9e54",
+    "code/validated-examples/2026-11-24-r2/radiation-matter/atlas-radiation-matter-2026-11-24-r2.zip": "fe1e3d790bd9792d8781243dc4d5ff40d3491a181a11c795569f3f4e542ed7e6",
+    "code/validated-examples/2026-11-24/radiation-geometry/source-manifest.json": "83fec8d3ed8a7b56fe191624cb2222c8720db4553ee2c28f5302ee5da8754d13",
+    "code/validated-examples/2026-11-24/radiation-geometry/verification.json": "d98432e748b5b009d442b3a2fc4becff23c20f43fc9c012cce7d6fe74931e4d9",
+    "code/validated-examples/2026-11-24/radiation-geometry/cases.json": "297e1e3fd8ebf0bdd504faf9005f7ef58de0564ecbec7cb6405d2c3cca48f3a4",
+    "code/validated-examples/2026-11-24/radiation-geometry/results/result.json": "4453e68f6a856f65097bbfe36a154b74f4437e99a217300e4c010176a3ee7aec",
+    "code/validated-examples/2026-11-24/radiation-geometry/atlas-radiation-geometry-2026-11-24.zip": "20a166a35e5e87275be4c1bcf12a31742b267ddc9f9a424a293852da53c672e0",
     "code/model-benchmarks/2026-11-22/results/logistic-growth/result.json": "4991cd0ef46e069581a131f995fb9bdb65251d9d59923b89abb2b4a14cbfe30d",
     "code/model-benchmarks/2026-11-22/results/sir-epidemic/result.json": "03c7e2a52bc0412e9eec10588777c0a70253804c149d5b7e5792581e8f3a3942",
     "code/model-benchmarks/2026-11-22/results/mc-integral/result.json": "c7b0ef9397376242b375817db2152b8b5855e81200e2fad6adce1a6adc0268a8",

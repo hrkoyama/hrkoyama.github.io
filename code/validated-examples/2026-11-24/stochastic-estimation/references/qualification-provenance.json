@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-11-23T22:32:22.161737+00:00",
+  "actual_reference_operations": {
+    "analytic_accuracy_qualifiers": 80,
+    "IS_qualifiers": 22,
+    "candidate_MH_chainset_evolutions": 8,
+    "same_data_observable_prefix_datasets": 128,
+    "ArviZ_reference_values": 640,
+    "compatibility_regression_tests": 3,
+    "final_candidate_comparison_values": 640
+  },
+  "main_runs_so_far": 0,
+  "history": [
+    {
+      "attempt": "01",
+      "result": "80/80analytic +22/22IS +8MH passed; ArviZ import stopped on pyparsing3.3.3 deprecation warning",
+      "receipt_sha256": "70db8d889697198496904e36873b84849db7fcc70a11e04b1c5e71b5b06949b3"
+    },
+    {
+      "attempt": "02",
+      "result": "Compatible refenv setup,128datasets/640ArviZvalues generated; original637/640diagnostics comparison failed3tail values",
+      "receipt_sha256": "0ffac8f6b693fbe7a7b23b35b2784d56690d367a64bae30bcb1fc3b0e2bfea0e",
+      "new_sampling": 0
+    },
+    {
+      "attempt": "tail-cause-audit",
+      "result": "27/27structural checks;1ULP interpolation at ties explains all3mask differences",
+      "receipt_sha256": "14a97302c272c590d4dea646d30b2dff97691d273e2289fbc226d3e4df9cefe8",
+      "new_sampling": 0
+    },
+    {
+      "attempt": "03",
+      "result": "3/3tie regressions and640/640comparison passed under unchanged tolerances",
+      "receipt_sha256": "5e72404194a492275524d25d6c61d1f1fe3dc18ec42e33b347ea9b3d9dd747fc",
+      "shared_seconds": 2.1521504590054974,
+      "new_sampling": 0,
+      "ArviZ_regeneration": 0
+    }
+  ],
+  "raw_array_archive_sha256": "dda9e4421b41c4ed208238ce43713da629cb0e45b7bad6b4fbc962a6bc4d5c82",
+  "raw_data_role": "The exact17MBreference observable fixture is packaged for same-data640diagnostic comparisons. Main separately evolves and scientifically gates8freshchainsets; generated chains are not required cross-platform bit-identical. Full oldfailedattempts/source/protocols remain persistently retained.",
+  "quantile_definition": "New variant deliberately matches pinned ArviZ0.20/SciPy1.14.1 finite floating type7 interpolation. In exact real arithmetic NumPylinear and SciPytype7 are equivalent. Decimal120 exacttype7 preserves these tied observations as old NumPy did; this is compatibility,not evidence that NumPy is mathematically wrong or ArviZ is exact truth. Common SciPyquantile primitive is shared; rank/ACF/ESS arithmetic implementation remains independent. Old publicsource and old637/640failure unchanged.",
+  "failed_dataset_cause_records": [
+    {
+      "dataset": {
+        "key": "preconditioned-46001",
+        "prefix": 2048,
+        "observable": "product",
+        "column": 4,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "703b1e28e71b7c5ba2f05d1f65bcee8bf796fcde2f9ffaf0b14ff3a1d25e4fcf"
+      },
+      "old_candidate_tail_ESS": 1419.9723258613592,
+      "saved_ArviZ_tail_ESS": 1419.2156527412383,
+      "counterfactual_reference_threshold_candidate_tail_ESS": 1419.2156527412385,
+      "old_absolute_difference": 0.7566731201209222,
+      "counterfactual_absolute_difference": 2.2737367544323206e-13,
+      "mask_difference_explains_original_tail_mismatch": true
+    },
+    {
+      "dataset": {
+        "key": "isotropic-46004",
+        "prefix": 8192,
+        "observable": "product",
+        "column": 4,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "7a2bebb42e40d415a436e1ae4cc36216c21dbd97f70c8907966f818af8867341"
+      },
+      "old_candidate_tail_ESS": 528.3821518714057,
+      "saved_ArviZ_tail_ESS": 528.1667455409812,
+      "counterfactual_reference_threshold_candidate_tail_ESS": 528.1667455409812,
+      "old_absolute_difference": 0.21540633042445734,
+      "counterfactual_absolute_difference": 0.0,
+      "mask_difference_explains_original_tail_mismatch": true
+    },
+    {
+      "dataset": {
+        "key": "isotropic-46004",
+        "prefix": 8192,
+        "observable": "sum_direction",
+        "column": 6,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "d622103b9b65f89e103717c5acd39f522eaeeb00d9eda7b48025615651e4b169"
+      },
+      "old_candidate_tail_ESS": 296.74797244435206,
+      "saved_ArviZ_tail_ESS": 296.8163285757542,
+      "counterfactual_reference_threshold_candidate_tail_ESS": 296.8163285757542,
+      "old_absolute_difference": 0.06835613140214036,
+      "counterfactual_absolute_difference": 0.0,
+      "mask_difference_explains_original_tail_mismatch": true
+    }
+  ],
+  "cache_installation": "Copied only after actual qualification passed; production needs three pins,not ArviZ. Reference-only full lock supplied.",
+  "source_scopes": [
+    {
+      "title": "Higham2001",
+      "url": "https://epubs.siam.org/doi/10.1137/S0036144500378302",
+      "actually_read": "Selected sections4–6 linear SDE solution,weak/strong definitions and Milstein context. No full-paper audit; L1strong and ourL2RMS distinguished."
+    },
+    {
+      "title": "Owen authorChapter9",
+      "url": "https://artowen.su.domains/mc/Ch-var-is.pdf",
+      "actually_read": "Preparation selected support/ordinaryIS/moment sections. Currentrefetch403; no full-book read."
+    },
+    {
+      "title": "Vehtari etal2021",
+      "url": "https://arxiv.org/pdf/1903.08008",
+      "actually_read": "Selected rank/fold and observableESS primary sections,corrected Blom normalization. No full-paper claim."
+    },
+    {
+      "title": "ArviZ0.20officialsource",
+      "url": "https://github.com/arviz-devs/arviz/blob/v0.20.0/arviz/stats/diagnostics.py",
+      "actually_read": "Selected public diagnostic APIs,_mcse_mean originalscale and pinned quantile helper; actualengine generation on same arrays separately qualified."
+    }
+  ],
+  "portable_main_role_revision": {
+    "status": "Pre-main unexecuted R2",
+    "reason": "NumPy2.0samebuild/environment/machine compatibility scope; potential portability risk,not measured mismatch",
+    "reference_fixture_sha256": "dda9e4421b41c4ed208238ce43713da629cb0e45b7bad6b4fbc962a6bc4d5c82",
+    "source": "https://numpy.org/doc/2.0/reference/random/compatibility.html",
+    "physical_inputs_and_numeric_bounds_unchanged": true
+  }
+}

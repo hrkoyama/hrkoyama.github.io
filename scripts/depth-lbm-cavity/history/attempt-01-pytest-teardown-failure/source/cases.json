@@ -1,0 +1,153 @@
+[
+  {
+    "method_ids": [
+      "d2q9-bgk"
+    ],
+    "domains": [
+      "pde",
+      "kinetic",
+      "coupling"
+    ],
+    "code_files": [
+      "run.py",
+      "kernel.cpp",
+      "native.py",
+      "geometry.py",
+      "analytic.py",
+      "diagnostics.py",
+      "experiments.py"
+    ],
+    "id": "lbm-cavity-re100",
+    "title": {
+      "ja": "LBM Re100蓋駆動キャビティ：実2D場とGhia中心線",
+      "en": "LBM Re100 cavity: actual2D fields and Ghia centerlines"
+    },
+    "summary": {
+      "ja": "4壁のBGK更新を3固定格子で実行し、nominal蓋速度で正規化したGhia中心線、主渦、定常性と壁運動量収支を検査します。",
+      "en": "Advance genuine four-wall BGK flow on three fixed grids, checking nominal-lid Ghia centerlines, primary vortex, stationarity and wall momentum budgets."
+    },
+    "assumptions": {
+      "ja": "物理単位正方形、蓋U1、ν.01、Re100。N24/32/48、格子蓋速度.04、dt=.04/N。3壁静止、上壁右向き、同時上面/側面crossingは静止側を優先。初期rho1・静止。",
+      "en": "Physical unit square, lid1, viscosity.01, Re100; N24/32/48, lattice lid.04, dt=.04/N. Three stationary walls/rightward lid; stationary side owns a simultaneous top/side link. Initialrho1/rest."
+    },
+    "algorithm": {
+      "ja": "標準D2Q9平衡分布とBGK衝突、非周期link streaming、q=.5の移動halfway反射。流出入分布ごとに壁impulseを加算し、密度補正や内部速度resetをしません。C++17を一時領域でcompileしPythonから呼びます。",
+      "en": "Standard D2Q9equilibrium/BGK collision, nonperiodic link streaming and moving halfway reflection atq=.5. Sum actual population wall impulses without density repair/interior reset. Compile shipped C++17temporarily and call fromPython."
+    },
+    "validation": {
+      "ja": "各群22pytestと37判定。60k/80k/120k整数stepsでt*=100へ進み90/95/100を保存。最細u/v中心線最大誤差.03、主渦距離.06、95→100相対L2変化2e-4、質量・壁込み運動量ledgerを事前固定します。",
+      "en": "22pytest and37case gates. Fixed60k/80k/120ksteps reach t*=100with90/95/100saved. Finest u/v max error.03,vortex distance.06,late relativeL2 change2e-4andmass/wall-inclusive momentum gates are frozen."
+    },
+    "limits": {
+      "ja": "有限Machでの3格子教育例。Ghiaは丸めた独立数値参照で厳密解ではありません。蓋角は不連続で点ごとの二次精度や高Reを主張せず、他手法の既存キャビティ結果を本LBMの成功に流用しません。標準C++17compilerが必要です。",
+      "en": "Three finite-Mach educational grids. Ghia is a rounded independent numerical reference, not exact. No pointwise corner order/high-Re claim or borrowed success from another cavity solver. A standard C++17compiler is required."
+    },
+    "references": [
+      {
+        "id": "zou-he-preprint1996",
+        "author": "Qisu Zou and Xiaoyi He",
+        "year": 1996,
+        "title": "On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model",
+        "url": "https://arxiv.org/abs/comp-gas/9611001",
+        "type": "article",
+        "review_level": "primary-selected-extracted-text",
+        "review_scope": "Selected original preprint pp2-7: standard equilibrium, moment-based flat velocity/density boundaries and corner/finite-Mach limitations. No full-paper audit; special d2q9i accuracy is not credited to this standard BGK.",
+        "review": {
+          "ja": "原著preprintの式と平面流入出境界・角・圧縮性の範囲を選択読解。特殊d2q9iの成功を本BGKへ流用しません。",
+          "en": "Selected primary equations and flat-boundary/corner/compressibility discussion read; special d2q9i successes are not borrowed."
+        }
+      },
+      {
+        "id": "lallemand-luo2003",
+        "author": "Pierre Lallemand and Li-Shi Luo",
+        "year": 2003,
+        "title": "Lattice Boltzmann method for moving boundaries",
+        "doi": "10.1016/S0021-9991(02)00022-0",
+        "url": "https://doi.org/10.1016/S0021-9991(02)00022-0",
+        "type": "article",
+        "review_level": "primary-selected-text-via-mirror",
+        "review_scope": "Original article sec3 printed410-414 via author-content mirror; quadratic interpolation paths, q=.5, wall correction, momentum exchange and compromised mass conservation. Our two-point linear implementation is separately derived and qualified; original2001BFL full text was inaccessible.",
+        "review": {
+          "ja": "原著の選択部分を著者資料ミラーから読解。今回の2点線形補間は別導出・単step資格で確認し、2001原著全文を読んだとはしません。",
+          "en": "Selected primary section via author-content mirror. The implemented two-point interpolation is separately derived/qualified; no2001full-text claim."
+        }
+      },
+      {
+        "id": "ghia1982",
+        "author": "U. Ghia, K. N. Ghia and C. T. Shin",
+        "year": 1982,
+        "title": "High-Re solutions for incompressible flow using the Navier-Stokes equations and a multigrid method",
+        "doi": "10.1016/0021-9991(82)90058-4",
+        "url": "https://www.sciencedirect.com/science/article/pii/0021999182900584",
+        "type": "article",
+        "review_level": "existing-audited-primary-transcription",
+        "review_scope": "Exact-byte existing17-point Re100columns and prior original-PDF/rendered-page provenance rechecked. Current session did not reacquire the original PDF. Printed398-399TablesI/II and408TableV provenance retained.",
+        "review": {
+          "ja": "既存の監査済み原表転記と以前のPDF目視出典を再照合。この実装時に原PDFを再取得したとはしません。",
+          "en": "Rechecked existing audited table transcription/prior rendered-original provenance, without claiming a new PDF acquisition."
+        }
+      }
+    ],
+    "formulas": [
+      "f_i^{eq}=w_i\\rho[1+3c_i\\cdot u+\\frac92(c_i\\cdot u)^2-\\frac32|u|^2],\\quad\\nu_\\ell=(\\tau-1/2)/3",
+      "f_{\\bar i}(x,t+1)=f_i^\\star(x,t)-6w_i\\rho_0c_i\\cdot u_w,\\quad\\rho_0=1",
+      "\\mathrm{Re}=UL/\\nu=100,\\quad t_\\star=100"
+    ],
+    "citations": [
+      {
+        "id": "zou-he-preprint1996",
+        "author": "Qisu Zou and Xiaoyi He",
+        "year": 1996,
+        "title": "On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model",
+        "url": "https://arxiv.org/abs/comp-gas/9611001",
+        "type": "article",
+        "review_level": "primary-selected-extracted-text",
+        "review_scope": "Selected original preprint pp2-7: standard equilibrium, moment-based flat velocity/density boundaries and corner/finite-Mach limitations. No full-paper audit; special d2q9i accuracy is not credited to this standard BGK.",
+        "review": {
+          "ja": "原著preprintの式と平面流入出境界・角・圧縮性の範囲を選択読解。特殊d2q9iの成功を本BGKへ流用しません。",
+          "en": "Selected primary equations and flat-boundary/corner/compressibility discussion read; special d2q9i successes are not borrowed."
+        }
+      },
+      {
+        "id": "lallemand-luo2003",
+        "author": "Pierre Lallemand and Li-Shi Luo",
+        "year": 2003,
+        "title": "Lattice Boltzmann method for moving boundaries",
+        "doi": "10.1016/S0021-9991(02)00022-0",
+        "url": "https://doi.org/10.1016/S0021-9991(02)00022-0",
+        "type": "article",
+        "review_level": "primary-selected-text-via-mirror",
+        "review_scope": "Original article sec3 printed410-414 via author-content mirror; quadratic interpolation paths, q=.5, wall correction, momentum exchange and compromised mass conservation. Our two-point linear implementation is separately derived and qualified; original2001BFL full text was inaccessible.",
+        "review": {
+          "ja": "原著の選択部分を著者資料ミラーから読解。今回の2点線形補間は別導出・単step資格で確認し、2001原著全文を読んだとはしません。",
+          "en": "Selected primary section via author-content mirror. The implemented two-point interpolation is separately derived/qualified; no2001full-text claim."
+        }
+      },
+      {
+        "id": "ghia1982",
+        "author": "U. Ghia, K. N. Ghia and C. T. Shin",
+        "year": 1982,
+        "title": "High-Re solutions for incompressible flow using the Navier-Stokes equations and a multigrid method",
+        "doi": "10.1016/0021-9991(82)90058-4",
+        "url": "https://www.sciencedirect.com/science/article/pii/0021999182900584",
+        "type": "article",
+        "review_level": "existing-audited-primary-transcription",
+        "review_scope": "Exact-byte existing17-point Re100columns and prior original-PDF/rendered-page provenance rechecked. Current session did not reacquire the original PDF. Printed398-399TablesI/II and408TableV provenance retained.",
+        "review": {
+          "ja": "既存の監査済み原表転記と以前のPDF目視出典を再照合。この実装時に原PDFを再取得したとはしません。",
+          "en": "Rechecked existing audited table transcription/prior rendered-original provenance, without claiming a new PDF acquisition."
+        }
+      }
+    ],
+    "gallery_figure": "lbm-cavity-re100-preview.png",
+    "additional_figures": [
+      {
+        "file": "lbm-cavity-re100-preview.png",
+        "caption": {
+          "ja": "固定入力を実計算した保存配列の2D場と検証診断。参照・境界・誤差の範囲は本文に明記。",
+          "en": "Actual saved2Dfields anddiagnostics fromfixedinputs; reference,boundary anderror scopesaredeclaredinthecase."
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,24 @@
+{
+  "started_at_utc": "2026-11-23T23:03:15.578310+00:00",
+  "protocol_sha256": "243675a36fd8519b320f1b58cf99d4e6a60d9a202860f7defe47d8f313834abc",
+  "review_sha256": "ed4c443a35a74c2fe845880ab411542aec38b2c44f886952e28289ffab942e92",
+  "deadline_seconds": 30,
+  "bindings": 12,
+  "scope": "Exactly one reviewed compile+single-step component qualification; no main physical trajectory or reference generation.",
+  "passed": true,
+  "timed_out": false,
+  "command": [
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/bin/python",
+    "-B",
+    "-W",
+    "error",
+    "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/curved-repair/refinement-component/source/check_refinement.py",
+    "--output",
+    "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/curved-repair/refinement-component/attempt01/results"
+  ],
+  "returncode": 0,
+  "checks": 29,
+  "changed_bound_files": [],
+  "elapsed_seconds": 3.6927242090023356,
+  "finished_at_utc": "2026-11-23T23:03:19.271308+00:00"
+}

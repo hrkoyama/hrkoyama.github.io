@@ -1,3 +1,4 @@
+import {problemCount} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {existsSync,readFileSync} from 'node:fs';
@@ -142,7 +143,7 @@ function links(html){
 }
 
 test('the reviewed problem links and generated hub inventory cover every physical problem exactly once',()=>{
-  assert.equal(inventory.length,113);
+  assert.equal(inventory.length,problemCount);
   const expected=inventory.map(row=>row.id);
   for(const rows of [mapping.problems,index.problems]){
     assert.deepEqual(rows.map(row=>row.id),expected);

@@ -1,0 +1,7 @@
+# Failed R2/R3 history: exact text blobs and explicit private full fields
+
+Both prior curved main attempts remain FAILED: R2annularpressure.617757>.08 pluscylinderstep265invaliddensity; R3annularpressure.352758>.08 withall33cylindergatespassing. Theyarenotsilentlyoverwrittenbynewgridsorcasegrouping.
+
+`pathmap.json` mapsEVERYoldsource/resulttextfile to anexactSHA-addressed `.txt` blob. Identicalbytes shareoneblob;originalrelativepaths/SHAs arepreserved. Thisincludesfulltextsource,inputs,criteria,contracts,resultJSON,CSV,logs,JUnit andoldreceipttext,includingnestedhistoricaltext. Textisinert,soarchivedpytestisnotcollected.
+
+ALLcompleteoldsource/results—includingALLoldNPZ/population/checkpointarrays—remainuntouchedatpersistentprivatepathsrecordedinthemanifest. BinaryNPZfields areexplicitlyNOT includedinthispublichistory torespectunchanged64MiBZIP/128MiBuncompressed/1000memberlimits. AmanifestSHAisnotadownloadclaim. OnlynewactivecaseoutputscontainfullrunnablecurrentNPZ/CSVhere. HistoricaloldrunnerswouldneedtheomittedprivatequalificationNPZstofullyreconstructtheiroriginalboundfolders.

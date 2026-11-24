@@ -48,6 +48,24 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#navier-stokes-ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#navier-stokes-en"
       }
+    },
+    {
+      "id": "bgk",
+      "name": {
+        "ja": "等温格子BGK",
+        "en": "Isothermal lattice BGK"
+      },
+      "formula": [
+        "f_q(\\boldsymbol x+\\boldsymbol c_q,t+1)=f_q(\\boldsymbol x,t)-\\frac{f_q-f_q^{\\rm eq}}{\\tau}+S_q"
+      ],
+      "note": {
+        "ja": "格子単位Δx=Δt=1の衝突・並進更新。D2Q9等温・低Mach数のせん断波とPoiseuille流を扱います。",
+        "en": "Collision/streaming in lattice units Δx=Δt=1. Examples cover D2Q9 isothermal low-Mach shear waves and Poiseuille flow."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bgk-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bgk-en"
+      }
     }
   ],
   "equation_note": {
@@ -70,6 +88,23 @@
       "note": {
         "ja": "[0,2π)²周期、t=0.5、16/32/64格子のMAC圧力射影。保存すべき定数エネルギーではなく粘性減衰を調べる。空間と安定刻みの同時細分化と、同一格子の刻み感度を区別する。",
         "en": "Periodic [0,2π)², t=0.5, MAC pressure projection on 16/32/64 grids. Check viscous decay rather than constant energy. Combined space/stable-step refinement is separated from fixed-grid time-step sensitivity."
+      }
+    },
+    {
+      "id": "supplement-lbm-taylor-green",
+      "name": {
+        "ja": "LBM Taylor–Green渦：格子・刻み・Machの結合感度",
+        "en": "LBM Taylor–Green vortex: coupled grid/time/Mach sensitivity"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "u=U\\sin x\\cos y\\,e^{-2\\nu t},\\quad v=-U\\cos x\\sin y\\,e^{-2\\nu t}",
+        "p=\\frac{U^2}{4}(\\cos2x+\\cos2y)e^{-4\\nu t},\\quad\\langle K\\rangle=\\frac{U^2}{4}e^{-4\\nu t}"
+      ],
+      "note": {
+        "ja": "周期2Dの非線形渦を実際に時間発展し、連続解析場への速度・圧力・エネルギー誤差を保存します。amplitude感度と同格子のcoupled刻み感度も分けて示します。",
+        "en": "Evolve a nonlinear periodic2D vortex and save velocity/pressure/energy errors against the continuous analytic field. Distinguish amplitude probes from a fixed-grid coupled-step probe."
       }
     }
   ],
@@ -99,6 +134,32 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=taylor-green",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=taylor-green"
       }
+    },
+    {
+      "id": "lbm-taylor-green",
+      "kind": "analytic",
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "title": {
+        "ja": "LBMのTaylor–Green渦：格子・時間・Mach数が結び付く感度",
+        "en": "LBM Taylor–Green vortex: coupled grid/time/Mach sensitivity"
+      },
+      "formula": "u=U sin(x)cos(y) exp(-2nu t), v=-U cos(x)sin(y) exp(-2nu t); p=U^2 exp(-4nu t)[cos(2x)+cos(2y)]/4.",
+      "assumptions": {
+        "ja": "[0,2pi)²、ν.1、基本U.2、N24/32/64、dt=.2dx²、tau.56、T=.2pi²、144/256/1024steps。N32/U.4,.8とN32/U.2/dt=.1dx²/tau.53/512stepsを追加。初期圧力整合rhoを使用。",
+        "en": "Periodic[0,2pi)²,nu.1,baseU.2,N24/32/64,dt=.2dx²,tau.56,T=.2pi²and144/256/1024steps. Add N32/U.4,.8andN32/U.2/dt=.1dx²/tau.53/512steps. Use pressure-consistent initial density."
+      },
+      "relation": "related-model",
+      "note": {
+        "ja": "[0,2pi)²、ν.1、基本U.2、N24/32/64、dt=.2dx²、tau.56、T=.2pi²、144/256/1024steps。N32/U.4,.8とN32/U.2/dt=.1dx²/tau.53/512stepsを追加。初期圧力整合rhoを使用。",
+        "en": "Periodic[0,2pi)²,nu.1,baseU.2,N24/32/64,dt=.2dx²,tau.56,T=.2pi²and144/256/1024steps. Add N32/U.4,.8andN32/U.2/dt=.1dx²/tau.53/512steps. Use pressure-consistent initial density."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-taylor-green/?lang=ja#lbm-taylor-green-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-taylor-green/?lang=en#lbm-taylor-green-en-measurements"
+      }
     }
   ],
   "reference_note": {
@@ -117,6 +178,19 @@
       "url": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/projection/?lang=ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/projection/?lang=en"
+      }
+    },
+    {
+      "id": "d2q9-bgk",
+      "name": {
+        "ja": "D2Q9–BGK衝突・並進",
+        "en": "D2Q9–BGK collision and streaming"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/d2q9-bgk/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/d2q9-bgk/?lang=en"
       }
     }
   ],
@@ -191,6 +265,63 @@
       ],
       "test_urls": [
         "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/tests/test_recipes.py"
+      ],
+      "source_scope": "package"
+    },
+    {
+      "id": "lbm-taylor-green",
+      "kind": "supplement",
+      "name": {
+        "ja": "LBM Taylor–Green渦：格子・刻み・Machの結合感度",
+        "en": "LBM Taylor–Green vortex: coupled grid/time/Mach sensitivity"
+      },
+      "method_ids": [
+        "d2q9-bgk"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-taylor-green/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-taylor-green/?lang=en"
+      },
+      "scope": {
+        "ja": "周期2Dの非線形渦を実際に時間発展し、連続解析場への速度・圧力・エネルギー誤差を保存します。amplitude感度と同格子のcoupled刻み感度も分けて示します。",
+        "en": "Evolve a nonlinear periodic2D vortex and save velocity/pressure/energy errors against the continuous analytic field. Distinguish amplitude probes from a fixed-grid coupled-step probe."
+      },
+      "assumptions": {
+        "ja": "[0,2pi)²、ν.1、基本U.2、N24/32/64、dt=.2dx²、tau.56、T=.2pi²、144/256/1024steps。N32/U.4,.8とN32/U.2/dt=.1dx²/tau.53/512stepsを追加。初期圧力整合rhoを使用。",
+        "en": "Periodic[0,2pi)²,nu.1,baseU.2,N24/32/64,dt=.2dx²,tau.56,T=.2pi²and144/256/1024steps. Add N32/U.4,.8andN32/U.2/dt=.1dx²/tau.53/512steps. Use pressure-consistent initial density."
+      },
+      "limits": {
+        "ja": "拡散尺度では格子・時間・Machが結合し、amplitude変更はReも変えます。純空間/純時間/純Mach次数や有限Machの厳密非圧縮性を主張しません。平衡初期化のkinetic startupも実誤差へ含めます。",
+        "en": "Diffusive scaling couples grid,time andMach; amplitude changesRe. No isolated spatial/time/Mach order or exact incompressibility atfiniteMach. Kinetic equilibrium-startup transients remain part of the measured errors."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/atlas-lbm-taylor-green-2026-11-24.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "22pytestと79判定、6固定発展。最細速度相対L2.03、圧力.08、combined速度次数1.5以上、エネルギー.03、発散・周期質量・平均運動量を判定。解析PDE5資格を区別して保存します。 最粗N16の初回エネルギー誤差5.0018%未達を保持し、同じ3%基準へ最粗だけN24へ細分化。次数は最細32/64対だけで評価します。",
+        "en": "22pytest and79gates,sixfixed evolutions. Require finest velocity relativeL2.03,pressure.08,combined velocity order≥1.5,energy.03anddivergence/periodic mass/mean momentum. Save five analyticPDEqualifiers distinctly. Retain the initial N16energy failure5.0018%; refine only thatcoarsegrid to24against the unchanged3%gate. Report order only for thefinest32/64pair."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/kernel.cpp",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/native.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/geometry.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/analytic.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/diagnostics.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/experiments.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/test_lbm.py"
       ],
       "source_scope": "package"
     }

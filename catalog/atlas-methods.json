@@ -331,8 +331,8 @@
         "en": "Spatial discretization"
       },
       "summary": {
-        "ja": "流れの上流側の値を用い、1次元の一定速度輸送を1次精度で進める基準法。公開例は周期格子の前進Euler更新で、風向きとCFL条件、数値拡散の関係を比較できる。",
-        "en": "A first-order baseline for one-dimensional constant-speed transport using the upstream value. The released periodic forward-Euler example exposes flow direction, the CFL restriction and numerical diffusion."
+        "ja": "流れの上流側の値を用い、1次元の一定速度輸送を1次精度で進める基準法。公開例は周期格子の前進Euler更新で、風向きとCFL条件、数値拡散の関係を比較できる。 追加固定例：等方散乱平板の反射・透過・吸収。条件と検証範囲は各配布版で確認してください。 追加固定例：Su–Olson1997角度輸送の独立公開表比較。条件と検証範囲は各配布版で確認してください。 追加固定例：2D吸収影と保存的M1輸送、2D反向beamとM1閉包の情報損失。条件と検証範囲は各配布版で確認してください。",
+        "en": "A first-order baseline for one-dimensional constant-speed transport using the upstream value. The released periodic forward-Euler example exposes flow direction, the CFL restriction and numerical diffusion. Additional fixed examples: Isotropic scattering in a finite slab. See each release for assumptions and checked scope. Additional fixed examples: Su–Olson transport with an independently published analytical table. See each release for assumptions and checked scope. Additional fixed examples: Two-dimensional absorber shadow and M1 transport, Opposing beams and information loss in the M1 closure. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "existing-coverage-catalog",
@@ -376,12 +376,16 @@
       "units": "q may have any consistent unit; x is length, t is time, and a is length/time. C=a Δt/Δx is dimensionless. Released periodic benchmarks are nondimensional.",
       "boundary_conditions": "Periodic boundaries are imposed with np.roll. Inflow, outflow and wall boundaries require a separate ghost-state implementation.",
       "limitations": {
-        "ja": "空間・時間とも1次精度で、一般に波形や接触面を拡散させる。|C|>1ではこの陽的更新の安定性は保たれない。一定速度のスカラー例だけから、変係数・非線形系や多次元での保存性・安定性は保証しない。",
-        "en": "First order in both space and time and generally diffusive for waves and contacts. The explicit periodic update is unstable for |C|>1. This constant-speed scalar example establishes no conservation or stability guarantee for variable-coefficient, nonlinear-system or multidimensional extensions."
+        "ja": "空間・時間とも1次精度で、一般に波形や接触面を拡散させる。|C|>1ではこの陽的更新の安定性は保たれない。一定速度のスカラー例だけから、変係数・非線形系や多次元での保存性・安定性は保証しない。 今回の追加固定例：有限の4平板に限定。MC、一般角度phase関数、DISORT再現、普遍的次数や厳密連続体誤差境界は認証しません。 今回の追加固定例：原1997本文・原表と直接照合したとはしません。公開表の転記か再生成かは著者READMEに未記載。source停止後、一般散乱、全時空間の連続体誤差や角度次数は未認証です。 この追加はκhを解像したN∝κ²の半離散周期制御で、固定格子AP性や主SSPRK2の拡散時間次数を認証しません。初期F0と非零Fick流束の初期層を保持し、極限判定は最終s=.25のみ。両行列伝播にSciPy sparse expm_multiplyを共有し、DOP853照合は参照伝播器の資格です。 今回の追加固定例：6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。 6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。",
+        "en": "First order in both space and time and generally diffusive for waves and contacts. The explicit periodic update is unstable for |C|>1. This constant-speed scalar example establishes no conservation or stability guarantee for variable-coefficient, nonlinear-system or multidimensional extensions. Additional fixed examples: Limited to fourfixedisotropic slabs;noMC,generalphase-function/DISORT reproduction,universalorder or rigorouscontinuumerrorbound. Additional fixed examples: No direct original1997fulltext/tablecomparison claim. TheauthorREADMEdoesnotstate transcriptionversusregeneration. Source-offprofiles,generalscattering,globalcontinuumerrorandangularorderarenotcertified. The addition is a resolved N~kappa^2 semidiscrete periodic control,not fixed-grid AP or an SSPRK2 diffusion-time order certificate. Initial F0 versus nonzero Fick flux is retained;limit gates use final s=.25 only. SciPy sparse expm_multiply is shared;DOP853 qualifies the reference propagator. Additional fixed examples: Six aligned directions do not demonstrate general angular convergence. The M1 opposing-beam mismatch is expected information loss and is not required to converge to angular transport. No relativistic, gas-dynamical or multifrequency radiation hydrodynamics is implemented. Six aligned directions do not demonstrate general angular convergence. The M1 opposing-beam mismatch is expected information loss and is not required to converge to angular transport. No relativistic, gas-dynamical or multifrequency radiation hydrodynamics is implemented."
       },
       "metadata_review": {
         "level": "method-specific source-and-code inspection; no numerical rerun; reference access recorded individually",
-        "on": "2026-11-22"
+        "on": "2026-11-22",
+        "supplemental_review": {
+          "on": "2026-11-24",
+          "level": "Frozen fixed-input source,independent review,actual pytest/main and independently extracted ZIP; see each new release for exact reference independence and failed-attempt history."
+        }
       },
       "assumptions_ja": [
         "対象はq_t+a q_x=0、一定の実速度a、一様格子である。",
@@ -505,6 +509,92 @@
           "edition": "2026-11-23",
           "case_ids": [
             "ale-nonuniform-transport"
+          ]
+        },
+        {
+          "group": "radiation-scattering",
+          "edition": "2026-11-24",
+          "case_ids": [
+            "isotropic-scattering-slab"
+          ]
+        },
+        {
+          "group": "radiation-matter",
+          "edition": "2026-11-24-r2",
+          "case_ids": [
+            "su-olson-transport1997"
+          ]
+        },
+        {
+          "group": "radiation-geometry",
+          "edition": "2026-11-24",
+          "case_ids": [
+            "shadow-absorber2d",
+            "opposing-beams2d"
+          ]
+        }
+      ],
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "radiation-scattering",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "isotropic-scattering-slab"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：等方散乱平板の反射・透過・吸収。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Isotropic scattering in a finite slab. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "有限の4平板に限定。MC、一般角度phase関数、DISORT再現、普遍的次数や厳密連続体誤差境界は認証しません。",
+              "en": "Limited to fourfixedisotropic slabs;noMC,generalphase-function/DISORT reproduction,universalorder or rigorouscontinuumerrorbound."
+            }
+          ]
+        },
+        {
+          "release": {
+            "group": "radiation-matter",
+            "edition": "2026-11-24-r2",
+            "case_ids": [
+              "su-olson-transport1997"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：Su–Olson1997角度輸送の独立公開表比較。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Su–Olson transport with an independently published analytical table. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "原1997本文・原表と直接照合したとはしません。公開表の転記か再生成かは著者READMEに未記載。source停止後、一般散乱、全時空間の連続体誤差や角度次数は未認証です。 この追加はκhを解像したN∝κ²の半離散周期制御で、固定格子AP性や主SSPRK2の拡散時間次数を認証しません。初期F0と非零Fick流束の初期層を保持し、極限判定は最終s=.25のみ。両行列伝播にSciPy sparse expm_multiplyを共有し、DOP853照合は参照伝播器の資格です。",
+              "en": "No direct original1997fulltext/tablecomparison claim. TheauthorREADMEdoesnotstate transcriptionversusregeneration. Source-offprofiles,generalscattering,globalcontinuumerrorandangularorderarenotcertified. The addition is a resolved N~kappa^2 semidiscrete periodic control,not fixed-grid AP or an SSPRK2 diffusion-time order certificate. Initial F0 versus nonzero Fick flux is retained;limit gates use final s=.25 only. SciPy sparse expm_multiply is shared;DOP853 qualifies the reference propagator."
+            }
+          ]
+        },
+        {
+          "release": {
+            "group": "radiation-geometry",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "shadow-absorber2d",
+              "opposing-beams2d"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：2D吸収影と保存的M1輸送、2D反向beamとM1閉包の情報損失。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Two-dimensional absorber shadow and M1 transport, Opposing beams and information loss in the M1 closure. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。",
+              "en": "Six aligned directions do not demonstrate general angular convergence. The M1 opposing-beam mismatch is expected information loss and is not required to converge to angular transport. No relativistic, gas-dynamical or multifrequency radiation hydrodynamics is implemented."
+            },
+            {
+              "ja": "6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。",
+              "en": "Six aligned directions do not demonstrate general angular convergence. The M1 opposing-beam mismatch is expected information loss and is not required to converge to angular transport. No relativistic, gas-dynamical or multifrequency radiation hydrodynamics is implemented."
+            }
           ]
         }
       ]
@@ -1525,8 +1615,8 @@
         "en": "Riemann fluxes & corrections"
       },
       "summary": {
-        "ja": "「Rusanov／局所Lax–Friedrichs流束」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。",
-        "en": "Read about Rusanov / local Lax–Friedrichs flux, follow the original references and inspect related educational code and checks."
+        "ja": "「Rusanov／局所Lax–Friedrichs流束」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。 追加固定例：2D吸収影と保存的M1輸送、2D反向beamとM1閉包の情報損失。条件と検証範囲は各配布版で確認してください。",
+        "en": "Read about Rusanov / local Lax–Friedrichs flux, follow the original references and inspect related educational code and checks. Additional fixed examples: Two-dimensional absorber shadow and M1 transport, Opposing beams and information loss in the M1 closure. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "existing-coverage-catalog",
@@ -1571,12 +1661,16 @@
       "units": null,
       "boundary_conditions": null,
       "limitations": {
-        "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。",
-        "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers."
+        "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。 今回の追加固定例：6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。 6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。",
+        "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers. Additional fixed examples: Six aligned directions do not demonstrate general angular convergence. The M1 opposing-beam mismatch is expected information loss and is not required to converge to angular transport. No relativistic, gas-dynamical or multifrequency radiation hydrodynamics is implemented. Six aligned directions do not demonstrate general angular convergence. The M1 opposing-beam mismatch is expected information loss and is not required to converge to angular transport. No relativistic, gas-dynamical or multifrequency radiation hydrodynamics is implemented."
       },
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
-        "on": "2026-11-21"
+        "on": "2026-11-21",
+        "supplemental_review": {
+          "on": "2026-11-24",
+          "level": "Frozen fixed-input source,independent review,actual pytest/main and independently extracted ZIP; see each new release for exact reference independence and failed-attempt history."
+        }
       },
       "aliases": [
         "Rusanov法",
@@ -1612,6 +1706,40 @@
           "edition": "2026-11-23-r2",
           "case_ids": [
             "sedov-blast"
+          ]
+        },
+        {
+          "group": "radiation-geometry",
+          "edition": "2026-11-24",
+          "case_ids": [
+            "shadow-absorber2d",
+            "opposing-beams2d"
+          ]
+        }
+      ],
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "radiation-geometry",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "shadow-absorber2d",
+              "opposing-beams2d"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：2D吸収影と保存的M1輸送、2D反向beamとM1閉包の情報損失。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Two-dimensional absorber shadow and M1 transport, Opposing beams and information loss in the M1 closure. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。",
+              "en": "Six aligned directions do not demonstrate general angular convergence. The M1 opposing-beam mismatch is expected information loss and is not required to converge to angular transport. No relativistic, gas-dynamical or multifrequency radiation hydrodynamics is implemented."
+            },
+            {
+              "ja": "6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。",
+              "en": "Six aligned directions do not demonstrate general angular convergence. The M1 opposing-beam mismatch is expected information loss and is not required to converge to angular transport. No relativistic, gas-dynamical or multifrequency radiation hydrodynamics is implemented."
+            }
           ]
         }
       ]
@@ -2779,8 +2907,8 @@
         "en": "Time integration"
       },
       "summary": {
-        "ja": "「後退Euler法」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。",
-        "en": "Read about Backward Euler, follow the original references and inspect related educational code and checks."
+        "ja": "「後退Euler法」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。 追加固定例：Su–Olson1996非平衡拡散。条件と検証範囲は各配布版で確認してください。",
+        "en": "Read about Backward Euler, follow the original references and inspect related educational code and checks. Additional fixed examples: Su–Olson1996 non-equilibrium diffusion. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "existing-coverage-catalog",
@@ -2810,12 +2938,16 @@
       "units": null,
       "boundary_conditions": null,
       "limitations": {
-        "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。",
-        "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers."
+        "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。 今回の追加固定例：1996拡散であり1997角度輸送とは別です。原典本文は未読、公式ソフトの選択値を資格。物理単位の質量opacity解釈は使わず無次元関数を直接参照します。",
+        "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers. Additional fixed examples: This1996diffusion model is distinct from1997angular transport. Original paper fulltext unread;officialsoftware selected values qualified. Direct dimensionless functions avoid ambiguous mass-opacity physical-wrapper units."
       },
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
-        "on": "2026-11-21"
+        "on": "2026-11-21",
+        "supplemental_review": {
+          "on": "2026-11-24",
+          "level": "Frozen fixed-input source,independent review,actual pytest/main and independently extracted ZIP; see each new release for exact reference independence and failed-attempt history."
+        }
       },
       "aliases": [
         "後退オイラー法",
@@ -2823,6 +2955,38 @@
         "陰的オイラー法",
         "implicit Euler",
         "backward Euler method"
+      ],
+      "depth_release": {
+        "group": "radiation-matter",
+        "edition": "2026-11-24-r2",
+        "case_ids": [
+          "su-olson-diffusion1996"
+        ]
+      },
+      "depth_scope": {
+        "ja": "追加固定例：Su–Olson1996非平衡拡散。条件と検証範囲は各配布版で確認してください。 1996拡散であり1997角度輸送とは別です。原典本文は未読、公式ソフトの選択値を資格。物理単位の質量opacity解釈は使わず無次元関数を直接参照します。",
+        "en": "Additional fixed examples: Su–Olson1996 non-equilibrium diffusion. See each release for assumptions and checked scope. This1996diffusion model is distinct from1997angular transport. Original paper fulltext unread;officialsoftware selected values qualified. Direct dimensionless functions avoid ambiguous mass-opacity physical-wrapper units."
+      },
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "radiation-matter",
+            "edition": "2026-11-24-r2",
+            "case_ids": [
+              "su-olson-diffusion1996"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：Su–Olson1996非平衡拡散。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Su–Olson1996 non-equilibrium diffusion. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "1996拡散であり1997角度輸送とは別です。原典本文は未読、公式ソフトの選択値を資格。物理単位の質量opacity解釈は使わず無次元関数を直接参照します。",
+              "en": "This1996diffusion model is distinct from1997angular transport. Original paper fulltext unread;officialsoftware selected values qualified. Direct dimensionless functions avoid ambiguous mass-opacity physical-wrapper units."
+            }
+          ]
+        }
       ]
     },
     {
@@ -2837,8 +3001,8 @@
         "en": "Time integration"
       },
       "summary": {
-        "ja": "「Heun法／SSPRK(2,2)」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。",
-        "en": "Read about Heun / SSPRK(2,2), follow the original references and inspect related educational code and checks."
+        "ja": "「Heun法／SSPRK(2,2)」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。 追加固定例：Su–Olson1997角度輸送の独立公開表比較。条件と検証範囲は各配布版で確認してください。 追加固定例：2D吸収影と保存的M1輸送、2D反向beamとM1閉包の情報損失。条件と検証範囲は各配布版で確認してください。",
+        "en": "Read about Heun / SSPRK(2,2), follow the original references and inspect related educational code and checks. Additional fixed examples: Su–Olson transport with an independently published analytical table. See each release for assumptions and checked scope. Additional fixed examples: Two-dimensional absorber shadow and M1 transport, Opposing beams and information loss in the M1 closure. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "existing-coverage-catalog",
@@ -2868,12 +3032,16 @@
       "units": null,
       "boundary_conditions": null,
       "limitations": {
-        "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。",
-        "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers."
+        "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。 今回の追加固定例：原1997本文・原表と直接照合したとはしません。公開表の転記か再生成かは著者READMEに未記載。source停止後、一般散乱、全時空間の連続体誤差や角度次数は未認証です。 この追加はκhを解像したN∝κ²の半離散周期制御で、固定格子AP性や主SSPRK2の拡散時間次数を認証しません。初期F0と非零Fick流束の初期層を保持し、極限判定は最終s=.25のみ。両行列伝播にSciPy sparse expm_multiplyを共有し、DOP853照合は参照伝播器の資格です。 今回の追加固定例：6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。 6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。",
+        "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers. Additional fixed examples: No direct original1997fulltext/tablecomparison claim. TheauthorREADMEdoesnotstate transcriptionversusregeneration. Source-offprofiles,generalscattering,globalcontinuumerrorandangularorderarenotcertified. The addition is a resolved N~kappa^2 semidiscrete periodic control,not fixed-grid AP or an SSPRK2 diffusion-time order certificate. Initial F0 versus nonzero Fick flux is retained;limit gates use final s=.25 only. SciPy sparse expm_multiply is shared;DOP853 qualifies the reference propagator. Additional fixed examples: Six aligned directions do not demonstrate general angular convergence. The M1 opposing-beam mismatch is expected information loss and is not required to converge to angular transport. No relativistic, gas-dynamical or multifrequency radiation hydrodynamics is implemented. Six aligned directions do not demonstrate general angular convergence. The M1 opposing-beam mismatch is expected information loss and is not required to converge to angular transport. No relativistic, gas-dynamical or multifrequency radiation hydrodynamics is implemented."
       },
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
-        "on": "2026-11-21"
+        "on": "2026-11-21",
+        "supplemental_review": {
+          "on": "2026-11-24",
+          "level": "Frozen fixed-input source,independent review,actual pytest/main and independently extracted ZIP; see each new release for exact reference independence and failed-attempt history."
+        }
       },
       "aliases": [
         "ホイン法",
@@ -2961,6 +3129,66 @@
           "edition": "2026-11-23",
           "case_ids": [
             "ale-nonuniform-transport"
+          ]
+        },
+        {
+          "group": "radiation-matter",
+          "edition": "2026-11-24-r2",
+          "case_ids": [
+            "su-olson-transport1997"
+          ]
+        },
+        {
+          "group": "radiation-geometry",
+          "edition": "2026-11-24",
+          "case_ids": [
+            "shadow-absorber2d",
+            "opposing-beams2d"
+          ]
+        }
+      ],
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "radiation-matter",
+            "edition": "2026-11-24-r2",
+            "case_ids": [
+              "su-olson-transport1997"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：Su–Olson1997角度輸送の独立公開表比較。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Su–Olson transport with an independently published analytical table. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "原1997本文・原表と直接照合したとはしません。公開表の転記か再生成かは著者READMEに未記載。source停止後、一般散乱、全時空間の連続体誤差や角度次数は未認証です。 この追加はκhを解像したN∝κ²の半離散周期制御で、固定格子AP性や主SSPRK2の拡散時間次数を認証しません。初期F0と非零Fick流束の初期層を保持し、極限判定は最終s=.25のみ。両行列伝播にSciPy sparse expm_multiplyを共有し、DOP853照合は参照伝播器の資格です。",
+              "en": "No direct original1997fulltext/tablecomparison claim. TheauthorREADMEdoesnotstate transcriptionversusregeneration. Source-offprofiles,generalscattering,globalcontinuumerrorandangularorderarenotcertified. The addition is a resolved N~kappa^2 semidiscrete periodic control,not fixed-grid AP or an SSPRK2 diffusion-time order certificate. Initial F0 versus nonzero Fick flux is retained;limit gates use final s=.25 only. SciPy sparse expm_multiply is shared;DOP853 qualifies the reference propagator."
+            }
+          ]
+        },
+        {
+          "release": {
+            "group": "radiation-geometry",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "shadow-absorber2d",
+              "opposing-beams2d"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：2D吸収影と保存的M1輸送、2D反向beamとM1閉包の情報損失。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Two-dimensional absorber shadow and M1 transport, Opposing beams and information loss in the M1 closure. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。",
+              "en": "Six aligned directions do not demonstrate general angular convergence. The M1 opposing-beam mismatch is expected information loss and is not required to converge to angular transport. No relativistic, gas-dynamical or multifrequency radiation hydrodynamics is implemented."
+            },
+            {
+              "ja": "6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。",
+              "en": "Six aligned directions do not demonstrate general angular convergence. The M1 opposing-beam mismatch is expected information loss and is not required to converge to angular transport. No relativistic, gas-dynamical or multifrequency radiation hydrodynamics is implemented."
+            }
           ]
         }
       ]
@@ -6392,8 +6620,8 @@
         "en": "Coupling, constraints & particles"
       },
       "summary": {
-        "ja": "「D2Q9–BGK衝突・並進」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。",
-        "en": "Read about D2Q9–BGK collision and streaming, follow the original references and inspect related educational code and checks."
+        "ja": "「D2Q9–BGK衝突・並進」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。 追加固定例：LBM Re100蓋駆動キャビティ：実2D場とGhia中心線。条件と検証範囲は各配布版で確認してください。 追加固定例：LBM Taylor–Green渦：格子・刻み・Machの結合感度。条件と検証範囲は各配布版で確認してください。 追加固定例：曲面LBMの環状Couette制御：速度・圧力・torque。条件と検証範囲は各配布版で確認してください。 追加固定例：LBMの実円柱Re20：Schäfer–Turek形状と明示出口。条件と検証範囲は各配布版で確認してください。",
+        "en": "Read about D2Q9–BGK collision and streaming, follow the original references and inspect related educational code and checks. Additional fixed examples: LBM Re100 cavity: actual2D fields and Ghia centerlines. See each release for assumptions and checked scope. Additional fixed examples: LBM Taylor–Green vortex: coupled grid/time/Mach sensitivity. See each release for assumptions and checked scope. Additional fixed examples: Curved LBM annular Couette control: velocity,pressure andtorque. See each release for assumptions and checked scope. Additional fixed examples: Actual LBM cylinderRe20: Schäfer–Turek geometry anddeclared outlet. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "existing-coverage-catalog",
@@ -6429,12 +6657,16 @@
       "units": null,
       "boundary_conditions": null,
       "limitations": {
-        "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。",
-        "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers."
+        "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。 今回の追加固定例：有限Machでの3格子教育例。Ghiaは丸めた独立数値参照で厳密解ではありません。蓋角は不連続で点ごとの二次精度や高Reを主張せず、他手法の既存キャビティ結果を本LBMの成功に流用しません。標準C++17compilerが必要です。 今回の追加固定例：拡散尺度では格子・時間・Machが結合し、amplitude変更はReも変えます。純空間/純時間/純Mach次数や有限Machの厳密非圧縮性を主張しません。平衡初期化のkinetic startupも実誤差へ含めます。 今回の追加固定例：固定円弧と低速回転のみ。2次補間は負係数を含み一般の正値性や安定性を保証しません。補間mass非保存は実値を記録。以前の線形版は圧力.617757>.08で不合格として保存し、半径平均への置換なし。移動solidの拓撲変化や円柱の代用ではありません。 2次版旧N80の圧力.352758>.08も不合格として保持し、Ui/tau/Tを変えず両境界を固定細分化します。 今回の追加固定例：原典p3/p7は出口を選択可。採用NEEは独立導出した有限reservoirで、原著NEE全文の同一実装やFEATflow do-nothingと偽りません。Nabh高精度値は同BCの厳密値ではなく、原典範囲も厳密誤差区間ではありません。線形/Zou–He旧試行はstep265出口近傍で不合格として保持。有限Mach/境界/曲面差を含み一般精度保証なし。",
+        "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers. Additional fixed examples: Three finite-Mach educational grids. Ghia is a rounded independent numerical reference, not exact. No pointwise corner order/high-Re claim or borrowed success from another cavity solver. A standard C++17compiler is required. Additional fixed examples: Diffusive scaling couples grid,time andMach; amplitude changesRe. No isolated spatial/time/Mach order or exact incompressibility atfiniteMach. Kinetic equilibrium-startup transients remain part of the measured errors. Additional fixed examples: Fixedcircles andslowrotation only. Negative quadratic coefficients preclude a general positivity/stability guarantee; report actual interpolation massnonconservation. Prior linear attemptfailed pressure.617757>.08 andisretained; no radial-average substitution. No changing-solid topology orsubstitute forcylinderflow. Retain the failedquadraticN80pressure.352758>.08;refinebothboundariesatfixedUi/tau/T. Additional fixed examples: Originalpp3/7allow selectingoutflow. AdoptedNEEis independently derived finite reservoir,not claimed exactunread authorimplementation orFEATflowdo-nothing. Nabhvaluesarenotexact adopted-BCtruth andoriginalrangesarenotrigorousenclosures. Retain failedlinear/Zou–Heattempt(outlet-nearstep265). FiniteMach/BC/curveerrors;nogeneralaccuracyguarantee."
       },
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
-        "on": "2026-11-21"
+        "on": "2026-11-21",
+        "supplemental_review": {
+          "on": "2026-11-24",
+          "level": "Frozen fixed-input source,independent review,actual pytest/main and independently extracted ZIP; see each new release for exact reference independence and failed-attempt history."
+        }
       },
       "aliases": [
         "LBM",
@@ -6447,6 +6679,118 @@
         "D2Q9-BGK法",
         "D2Q9",
         "BGK collision"
+      ],
+      "depth_release": {
+        "group": "lbm-cavity",
+        "edition": "2026-11-24",
+        "case_ids": [
+          "lbm-cavity-re100"
+        ]
+      },
+      "depth_scope": {
+        "ja": "追加固定例：LBM Re100蓋駆動キャビティ：実2D場とGhia中心線。条件と検証範囲は各配布版で確認してください。 有限Machでの3格子教育例。Ghiaは丸めた独立数値参照で厳密解ではありません。蓋角は不連続で点ごとの二次精度や高Reを主張せず、他手法の既存キャビティ結果を本LBMの成功に流用しません。標準C++17compilerが必要です。 追加固定例：LBM Taylor–Green渦：格子・刻み・Machの結合感度。条件と検証範囲は各配布版で確認してください。 拡散尺度では格子・時間・Machが結合し、amplitude変更はReも変えます。純空間/純時間/純Mach次数や有限Machの厳密非圧縮性を主張しません。平衡初期化のkinetic startupも実誤差へ含めます。 追加固定例：曲面LBMの環状Couette制御：速度・圧力・torque。条件と検証範囲は各配布版で確認してください。 固定円弧と低速回転のみ。2次補間は負係数を含み一般の正値性や安定性を保証しません。補間mass非保存は実値を記録。以前の線形版は圧力.617757>.08で不合格として保存し、半径平均への置換なし。移動solidの拓撲変化や円柱の代用ではありません。 2次版旧N80の圧力.352758>.08も不合格として保持し、Ui/tau/Tを変えず両境界を固定細分化します。 追加固定例：LBMの実円柱Re20：Schäfer–Turek形状と明示出口。条件と検証範囲は各配布版で確認してください。 原典p3/p7は出口を選択可。採用NEEは独立導出した有限reservoirで、原著NEE全文の同一実装やFEATflow do-nothingと偽りません。Nabh高精度値は同BCの厳密値ではなく、原典範囲も厳密誤差区間ではありません。線形/Zou–He旧試行はstep265出口近傍で不合格として保持。有限Mach/境界/曲面差を含み一般精度保証なし。",
+        "en": "Additional fixed examples: LBM Re100 cavity: actual2D fields and Ghia centerlines. See each release for assumptions and checked scope. Three finite-Mach educational grids. Ghia is a rounded independent numerical reference, not exact. No pointwise corner order/high-Re claim or borrowed success from another cavity solver. A standard C++17compiler is required. Additional fixed examples: LBM Taylor–Green vortex: coupled grid/time/Mach sensitivity. See each release for assumptions and checked scope. Diffusive scaling couples grid,time andMach; amplitude changesRe. No isolated spatial/time/Mach order or exact incompressibility atfiniteMach. Kinetic equilibrium-startup transients remain part of the measured errors. Additional fixed examples: Curved LBM annular Couette control: velocity,pressure andtorque. See each release for assumptions and checked scope. Fixedcircles andslowrotation only. Negative quadratic coefficients preclude a general positivity/stability guarantee; report actual interpolation massnonconservation. Prior linear attemptfailed pressure.617757>.08 andisretained; no radial-average substitution. No changing-solid topology orsubstitute forcylinderflow. Retain the failedquadraticN80pressure.352758>.08;refinebothboundariesatfixedUi/tau/T. Additional fixed examples: Actual LBM cylinderRe20: Schäfer–Turek geometry anddeclared outlet. See each release for assumptions and checked scope. Originalpp3/7allow selectingoutflow. AdoptedNEEis independently derived finite reservoir,not claimed exactunread authorimplementation orFEATflowdo-nothing. Nabhvaluesarenotexact adopted-BCtruth andoriginalrangesarenotrigorousenclosures. Retain failedlinear/Zou–Heattempt(outlet-nearstep265). FiniteMach/BC/curveerrors;nogeneralaccuracyguarantee."
+      },
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "lbm-cavity",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "lbm-cavity-re100"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：LBM Re100蓋駆動キャビティ：実2D場とGhia中心線。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: LBM Re100 cavity: actual2D fields and Ghia centerlines. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "有限Machでの3格子教育例。Ghiaは丸めた独立数値参照で厳密解ではありません。蓋角は不連続で点ごとの二次精度や高Reを主張せず、他手法の既存キャビティ結果を本LBMの成功に流用しません。標準C++17compilerが必要です。",
+              "en": "Three finite-Mach educational grids. Ghia is a rounded independent numerical reference, not exact. No pointwise corner order/high-Re claim or borrowed success from another cavity solver. A standard C++17compiler is required."
+            }
+          ]
+        },
+        {
+          "release": {
+            "group": "lbm-taylor-green",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "lbm-taylor-green"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：LBM Taylor–Green渦：格子・刻み・Machの結合感度。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: LBM Taylor–Green vortex: coupled grid/time/Mach sensitivity. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "拡散尺度では格子・時間・Machが結合し、amplitude変更はReも変えます。純空間/純時間/純Mach次数や有限Machの厳密非圧縮性を主張しません。平衡初期化のkinetic startupも実誤差へ含めます。",
+              "en": "Diffusive scaling couples grid,time andMach; amplitude changesRe. No isolated spatial/time/Mach order or exact incompressibility atfiniteMach. Kinetic equilibrium-startup transients remain part of the measured errors."
+            }
+          ]
+        },
+        {
+          "release": {
+            "group": "lbm-annulus",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "lbm-annular-couette-control"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：曲面LBMの環状Couette制御：速度・圧力・torque。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Curved LBM annular Couette control: velocity,pressure andtorque. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "固定円弧と低速回転のみ。2次補間は負係数を含み一般の正値性や安定性を保証しません。補間mass非保存は実値を記録。以前の線形版は圧力.617757>.08で不合格として保存し、半径平均への置換なし。移動solidの拓撲変化や円柱の代用ではありません。 2次版旧N80の圧力.352758>.08も不合格として保持し、Ui/tau/Tを変えず両境界を固定細分化します。",
+              "en": "Fixedcircles andslowrotation only. Negative quadratic coefficients preclude a general positivity/stability guarantee; report actual interpolation massnonconservation. Prior linear attemptfailed pressure.617757>.08 andisretained; no radial-average substitution. No changing-solid topology orsubstitute forcylinderflow. Retain the failedquadraticN80pressure.352758>.08;refinebothboundariesatfixedUi/tau/T."
+            }
+          ]
+        },
+        {
+          "release": {
+            "group": "lbm-curved-boundary",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "lbm-cylinder-re20"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：LBMの実円柱Re20：Schäfer–Turek形状と明示出口。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Actual LBM cylinderRe20: Schäfer–Turek geometry anddeclared outlet. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "原典p3/p7は出口を選択可。採用NEEは独立導出した有限reservoirで、原著NEE全文の同一実装やFEATflow do-nothingと偽りません。Nabh高精度値は同BCの厳密値ではなく、原典範囲も厳密誤差区間ではありません。線形/Zou–He旧試行はstep265出口近傍で不合格として保持。有限Mach/境界/曲面差を含み一般精度保証なし。",
+              "en": "Originalpp3/7allow selectingoutflow. AdoptedNEEis independently derived finite reservoir,not claimed exactunread authorimplementation orFEATflowdo-nothing. Nabhvaluesarenotexact adopted-BCtruth andoriginalrangesarenotrigorousenclosures. Retain failedlinear/Zou–Heattempt(outlet-nearstep265). FiniteMach/BC/curveerrors;nogeneralaccuracyguarantee."
+            }
+          ]
+        }
+      ],
+      "depth_additional_releases": [
+        {
+          "group": "lbm-taylor-green",
+          "edition": "2026-11-24",
+          "case_ids": [
+            "lbm-taylor-green"
+          ]
+        },
+        {
+          "group": "lbm-annulus",
+          "edition": "2026-11-24",
+          "case_ids": [
+            "lbm-annular-couette-control"
+          ]
+        },
+        {
+          "group": "lbm-curved-boundary",
+          "edition": "2026-11-24",
+          "case_ids": [
+            "lbm-cylinder-re20"
+          ]
+        }
       ]
     },
     {
@@ -12758,8 +13102,8 @@
         "en": "Optimization & stochastic methods"
       },
       "summary": {
-        "ja": "乱数・標本数・分散と積分誤差をつなぐ。",
-        "en": "Connect random samples, variance and integration error."
+        "ja": "乱数・標本数・分散と積分誤差をつなぐ。 追加固定例：正規稀少尾の通常importance sampling。条件と検証範囲は各配布版で確認してください。",
+        "en": "Connect random samples, variance and integration error. Additional fixed examples: Ordinary importance sampling of a normal rare tail. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "scoped-fixed-input-implementation",
@@ -12784,12 +13128,16 @@
         "en": "Add validation against another reference problem before extending application scope."
       },
       "limitations": {
-        "ja": "U[0,1]でx²を積分。256の独立seedで解析積分・分散と比較し、Nの平方根に反比例するRMS誤差と区間被覆を確認。MCMC・希少事象は対象外。",
-        "en": "Integrate x² under U[0,1]. Compare 256 independent seeds with analytic integral and variance, checking N^-1/2 RMS scaling and interval coverage. Excludes MCMC and rare events."
+        "ja": "U[0,1]でx²を積分。256の独立seedで解析積分・分散と比較し、Nの平方根に反比例するRMS誤差と区間被覆を確認。MCMC・希少事象は対象外。 今回の追加固定例：重み付きISへBernoulliの厳密区間を転用しません。64反復は一般95%被覆の証明でなく、nestedprefixを独立反復へ水増ししません。global weightESSと事象ESSは別です。",
+        "en": "Integrate x² under U[0,1]. Compare 256 independent seeds with analytic integral and variance, checking N^-1/2 RMS scaling and interval coverage. Excludes MCMC and rare events. Additional fixed examples: Bernoulli exact intervals are not applied to weighted IS.64trials do not prove general95%coverage;nested prefixes are not extra independent replicates. Global weightESS and eventESS are distinct."
       },
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
-        "on": "2026-11-21"
+        "on": "2026-11-21",
+        "supplemental_review": {
+          "on": "2026-11-24",
+          "level": "Frozen fixed-input source,independent review,actual pytest/main and independently extracted ZIP; see each new release for exact reference independence and failed-attempt history."
+        }
       },
       "aliases": [
         "モンテカルロ法",
@@ -12803,7 +13151,39 @@
       "example_scope": {
         "ja": "U[0,1]でx²を積分。256の独立seedで解析積分・分散と比較し、Nの平方根に反比例するRMS誤差と区間被覆を確認。MCMC・希少事象は対象外。",
         "en": "Integrate x² under U[0,1]. Compare 256 independent seeds with analytic integral and variance, checking N^-1/2 RMS scaling and interval coverage. Excludes MCMC and rare events."
-      }
+      },
+      "depth_release": {
+        "group": "stochastic-estimation",
+        "edition": "2026-11-24",
+        "case_ids": [
+          "normal-tail-importance"
+        ]
+      },
+      "depth_scope": {
+        "ja": "追加固定例：正規稀少尾の通常importance sampling。条件と検証範囲は各配布版で確認してください。 重み付きISへBernoulliの厳密区間を転用しません。64反復は一般95%被覆の証明でなく、nestedprefixを独立反復へ水増ししません。global weightESSと事象ESSは別です。",
+        "en": "Additional fixed examples: Ordinary importance sampling of a normal rare tail. See each release for assumptions and checked scope. Bernoulli exact intervals are not applied to weighted IS.64trials do not prove general95%coverage;nested prefixes are not extra independent replicates. Global weightESS and eventESS are distinct."
+      },
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "stochastic-estimation",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "normal-tail-importance"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：正規稀少尾の通常importance sampling。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Ordinary importance sampling of a normal rare tail. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "重み付きISへBernoulliの厳密区間を転用しません。64反復は一般95%被覆の証明でなく、nestedprefixを独立反復へ水増ししません。global weightESSと事象ESSは別です。",
+              "en": "Bernoulli exact intervals are not applied to weighted IS.64trials do not prove general95%coverage;nested prefixes are not extra independent replicates. Global weightESS and eventESS are distinct."
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "mcmc",
@@ -12817,8 +13197,8 @@
         "en": "Optimization & stochastic methods"
       },
       "summary": {
-        "ja": "Gaussian標的のMCMC：分布・自己相関・ESS: 32本のMetropolis連鎖を既知の標準正規分布へ照合し、平均・分散・CDF、自己相関時間、ESSと標本予算依存を記録します。 多峰性MCMC：峰への閉じ込め・偽の安心・大域提案: 同じ2峰密度を、分散初期値の局所MH・同じ峰からの局所MH・対称reflectionを混ぜるMHで比較。期待した混合不良の検出と、実際の峰間移動を分けて検証します。 MCMC診断の独立照合：rank Rhat・bulk/tail ESS・退化条件: 同一鎖の62datasetを別環境ArviZ0.20.0で実計算し、固定recipe・入力・鎖・公式ソースSHAで結びます。通常の有限値照合と、不定値のpolicy差を分けて検査します。",
-        "en": "Gaussian-target MCMC: distribution, autocorrelation and ESS: Check 32 Metropolis chains against a known standard-normal target; record mean, variance, CDF, autocorrelation time, ESS and sample-budget dependence. Multimodal MCMC: trapping, false reassurance and a global proposal: Compare dispersed local MH, same-mode local MH and symmetry-informed reflection/local MH on the same bimodal target. Separate detecting expected mixing failures from successful finite-budget mode exploration. Independent MCMC diagnostic checks: rank Rhat, bulk/tail ESS and degeneracies: Actually process62 byte-identical datasets with separately installed ArviZ0.20.0, bound by recipe/input/chain/official-source hashes. Separate finite-value agreement from explicit degeneracy-policy differences."
+        "ja": "Gaussian標的のMCMC：分布・自己相関・ESS: 32本のMetropolis連鎖を既知の標準正規分布へ照合し、平均・分散・CDF、自己相関時間、ESSと標本予算依存を記録します。 多峰性MCMC：峰への閉じ込め・偽の安心・大域提案: 同じ2峰密度を、分散初期値の局所MH・同じ峰からの局所MH・対称reflectionを混ぜるMHで比較。期待した混合不良の検出と、実際の峰間移動を分けて検証します。 MCMC診断の独立照合：rank Rhat・bulk/tail ESS・退化条件: 同一鎖の62datasetを別環境ArviZ0.20.0で実計算し、固定recipe・入力・鎖・公式ソースSHAで結びます。通常の有限値照合と、不定値のpolicy差を分けて検査します。 追加固定例：相関2変量Gaussianのjoint標的とMCSE。条件と検証範囲は各配布版で確認してください。",
+        "en": "Gaussian-target MCMC: distribution, autocorrelation and ESS: Check 32 Metropolis chains against a known standard-normal target; record mean, variance, CDF, autocorrelation time, ESS and sample-budget dependence. Multimodal MCMC: trapping, false reassurance and a global proposal: Compare dispersed local MH, same-mode local MH and symmetry-informed reflection/local MH on the same bimodal target. Separate detecting expected mixing failures from successful finite-budget mode exploration. Independent MCMC diagnostic checks: rank Rhat, bulk/tail ESS and degeneracies: Actually process62 byte-identical datasets with separately installed ArviZ0.20.0, bound by recipe/input/chain/official-source hashes. Separate finite-value agreement from explicit degeneracy-policy differences. Additional fixed examples: Joint target and MCSE for a correlated bivariate Gaussian. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "development-candidate",
@@ -12848,12 +13228,16 @@
         "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
       },
       "limitations": {
-        "ja": "Gaussian標的のMCMC：分布・自己相関・ESS: 固定seed・予算での統計検査です。ESSは平均という観測量だけ、Rhatはrank正規化版ではありません。多峰性・高次元・任意のseedでの混合や所定の偽陽性率は保証しません。 多峰性MCMC：峰への閉じ込め・偽の安心・大域提案: 固定seed・有限予算の教育用実験です。局所Gaussian RWも理論上は既約なMHであり、有限時間のtrappingを非エルゴードなアルゴリズムとは呼びません。小さいRhat・大きいESS・プールCDFの一致は未発見の峰を除外せず、既知対称性のreflection提案も一般多峰ソルバーではありません。量子計算は追加しません。 MCMC診断の独立照合：rank Rhat・bulk/tail ESS・退化条件: 固定seed・有限予算の教育用実験です。局所Gaussian RWも理論上は既約なMHであり、有限時間のtrappingを非エルゴードなアルゴリズムとは呼びません。小さいRhat・大きいESS・プールCDFの一致は未発見の峰を除外せず、既知対称性のreflection提案も一般多峰ソルバーではありません。量子計算は追加しません。 定数observableのESS=NというArviZ raw規約を混合の証拠にしません。全同値はnull＋status、鎖ごとに異なる定数のRhatはnull＋infinite-separationとして、ライブラリの巨大finite/infを残し通常有限値の一致点から除外します。bulk ESSは原スケール平均のMCSEへ流用しません。",
-        "en": "Gaussian-target MCMC: distribution, autocorrelation and ESS: Statistical checks apply to fixed seeds and budgets. ESS concerns the mean only; Rhat is not rank-normalized. No guarantee covers multimodality, high dimensions, every seed, mixing or a specified false-positive rate. Multimodal MCMC: trapping, false reassurance and a global proposal: An educational fixed-seed, finite-budget experiment. The local Gaussian RW is theoretically irreducible MH; finite-time trapping is not called a nonergodic algorithm. Small Rhat, large ESS and pooled-CDF agreement cannot rule out undiscovered modes. Symmetry-informed reflection is not a generic multimodal solver. No quantum calculations. Independent MCMC diagnostic checks: rank Rhat, bulk/tail ESS and degeneracies: An educational fixed-seed, finite-budget experiment. The local Gaussian RW is theoretically irreducible MH; finite-time trapping is not called a nonergodic algorithm. Small Rhat, large ESS and pooled-CDF agreement cannot rule out undiscovered modes. Symmetry-informed reflection is not a generic multimodal solver. No quantum calculations. ArviZ raw constant-ESS=N is not evidence of mixing. Globally identical values yield null/status; differing per-chain constants yield null/infinite-separation Rhat while retaining raw huge-finite/infinite library values outside ordinary finite comparisons. Bulk ESS is not a raw-mean MCSE estimator."
+        "ja": "Gaussian標的のMCMC：分布・自己相関・ESS: 固定seed・予算での統計検査です。ESSは平均という観測量だけ、Rhatはrank正規化版ではありません。多峰性・高次元・任意のseedでの混合や所定の偽陽性率は保証しません。 多峰性MCMC：峰への閉じ込め・偽の安心・大域提案: 固定seed・有限予算の教育用実験です。局所Gaussian RWも理論上は既約なMHであり、有限時間のtrappingを非エルゴードなアルゴリズムとは呼びません。小さいRhat・大きいESS・プールCDFの一致は未発見の峰を除外せず、既知対称性のreflection提案も一般多峰ソルバーではありません。量子計算は追加しません。 MCMC診断の独立照合：rank Rhat・bulk/tail ESS・退化条件: 固定seed・有限予算の教育用実験です。局所Gaussian RWも理論上は既約なMHであり、有限時間のtrappingを非エルゴードなアルゴリズムとは呼びません。小さいRhat・大きいESS・プールCDFの一致は未発見の峰を除外せず、既知対称性のreflection提案も一般多峰ソルバーではありません。量子計算は追加しません。 定数observableのESS=NというArviZ raw規約を混合の証拠にしません。全同値はnull＋status、鎖ごとに異なる定数のRhatはnull＋infinite-separationとして、ライブラリの巨大finite/infを残し通常有限値の一致点から除外します。bulk ESSは原スケール平均のMCSEへ流用しません。 今回の追加固定例：診断engineの独立性とsamplerの独立参照を混同しません。Rhat等は大域収束・被覆の証明ではありません。isotropicは固定比較で失敗を要求せず、banana/funnel/HMC/NUTSは未実装です。",
+        "en": "Gaussian-target MCMC: distribution, autocorrelation and ESS: Statistical checks apply to fixed seeds and budgets. ESS concerns the mean only; Rhat is not rank-normalized. No guarantee covers multimodality, high dimensions, every seed, mixing or a specified false-positive rate. Multimodal MCMC: trapping, false reassurance and a global proposal: An educational fixed-seed, finite-budget experiment. The local Gaussian RW is theoretically irreducible MH; finite-time trapping is not called a nonergodic algorithm. Small Rhat, large ESS and pooled-CDF agreement cannot rule out undiscovered modes. Symmetry-informed reflection is not a generic multimodal solver. No quantum calculations. Independent MCMC diagnostic checks: rank Rhat, bulk/tail ESS and degeneracies: An educational fixed-seed, finite-budget experiment. The local Gaussian RW is theoretically irreducible MH; finite-time trapping is not called a nonergodic algorithm. Small Rhat, large ESS and pooled-CDF agreement cannot rule out undiscovered modes. Symmetry-informed reflection is not a generic multimodal solver. No quantum calculations. ArviZ raw constant-ESS=N is not evidence of mixing. Globally identical values yield null/status; differing per-chain constants yield null/infinite-separation Rhat while retaining raw huge-finite/infinite library values outside ordinary finite comparisons. Bulk ESS is not a raw-mean MCSE estimator. Additional fixed examples: Diagnostic-engine independence is not an independent sampler. Rhat/ESS/MCSE do not prove global convergence/coverage. Isotropic is descriptive with no required failure;banana/funnel/HMC/NUTSremain unimplemented."
       },
       "metadata_review": {
         "level": "scoped Gaussian and multimodal examples; rank/folded diagnostics independently compared with a pinned library, without inferring general convergence",
-        "on": "2026-11-22"
+        "on": "2026-11-22",
+        "supplemental_review": {
+          "on": "2026-11-24",
+          "level": "Frozen fixed-input source,independent review,actual pytest/main and independently extracted ZIP; see each new release for exact reference independence and failed-attempt history."
+        }
       },
       "aliases": [
         "MCMC法",
@@ -12881,6 +13265,34 @@
             "mcmc-multimodal-mixing",
             "mcmc-diagnostic-reference"
           ]
+        },
+        {
+          "group": "stochastic-estimation",
+          "edition": "2026-11-24",
+          "case_ids": [
+            "correlated-gaussian-mcmc"
+          ]
+        }
+      ],
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "stochastic-estimation",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "correlated-gaussian-mcmc"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：相関2変量Gaussianのjoint標的とMCSE。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Joint target and MCSE for a correlated bivariate Gaussian. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "診断engineの独立性とsamplerの独立参照を混同しません。Rhat等は大域収束・被覆の証明ではありません。isotropicは固定比較で失敗を要求せず、banana/funnel/HMC/NUTSは未実装です。",
+              "en": "Diagnostic-engine independence is not an independent sampler. Rhat/ESS/MCSE do not prove global convergence/coverage. Isotropic is descriptive with no required failure;banana/funnel/HMC/NUTSremain unimplemented."
+            }
+          ]
         }
       ]
     },
@@ -12896,8 +13308,8 @@
         "en": "Optimization & stochastic methods"
       },
       "summary": {
-        "ja": "確率積分の規約と強・弱誤差を区別する。",
-        "en": "Distinguish stochastic-integration conventions and strong/weak errors."
+        "ja": "確率積分の規約と強・弱誤差を区別する。 追加固定例：GBMのweak誤差とMonte Carlo標準誤差、OUのweakモーメントと同時Brownian結合、同じBrownian経路のMilstein・EM strong比較。条件と検証範囲は各配布版で確認してください。",
+        "en": "Distinguish stochastic-integration conventions and strong/weak errors. Additional fixed examples: GBM weak bias and Monte Carlo error, OU weak moments with joint Brownian coupling, Milstein and EM on identical Brownian paths. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "scoped-fixed-input-implementation",
@@ -12927,12 +13339,16 @@
         "en": "Add validation against another reference problem before extending application scope."
       },
       "limitations": {
-        "ja": "スカラー幾何Brown運動のEuler–Maruyama。粗細刻みと解析解で同じBrown運動を共有し、4096経路で強RMS誤差を測定。一般SDE・MCMC・弱収束次数は検証しない。",
-        "en": "Euler–Maruyama for scalar geometric Brownian motion. Coarse/fine steps and analytic endpoints share the same Brownian paths; measure strong RMS error across 4096 paths. Does not validate general SDEs, MCMC or weak convergence order."
+        "ja": "スカラー幾何Brown運動のEuler–Maruyama。粗細刻みと解析解で同じBrown運動を共有し、4096経路で強RMS誤差を測定。一般SDE・MCMC・弱収束次数は検証しない。 今回の追加固定例：弱誤差は期待値の差です。3SEや区間を真の誤差上界・一般被覆保証としません。1D状態×時間の保存例であり2D物理流れではありません。GBMやOU浴成分を新しい物理問題として重複計数しません。 弱誤差は期待値の差です。3SEや区間を真の誤差上界・一般被覆保証としません。1D状態×時間の保存例であり2D物理流れではありません。GBMやOU浴成分を新しい物理問題として重複計数しません。 L2終端誤差を扱い、原著のL1定義と区別。GBM以外の非Lipschitz系・正値性の一般保証はしません。既存gbm-sdeへの手法追加です。",
+        "en": "Euler–Maruyama for scalar geometric Brownian motion. Coarse/fine steps and analytic endpoints share the same Brownian paths; measure strong RMS error across 4096 paths. Does not validate general SDEs, MCMC or weak convergence order. Additional fixed examples: Weak error is a difference of expectations. SE/intervals are not true-error bounds or general coverage guarantees. State×time examples are not2Dphysical flow. Existing GBM/OUbath physical families are reused. Weak error is a difference of expectations. SE/intervals are not true-error bounds or general coverage guarantees. State×time examples are not2Dphysical flow. Existing GBM/OUbath physical families are reused. EndpointL2error is distinct from the selected paper L1definition. No general non-Lipschitz/positivity guarantee. This extends existinggbm-sde rather than adding a physical problem."
       },
       "metadata_review": {
         "level": "candidate outline; scientific derivation and literature review incomplete",
-        "on": "2026-11-21"
+        "on": "2026-11-21",
+        "supplemental_review": {
+          "on": "2026-11-24",
+          "level": "Frozen fixed-input source,independent review,actual pytest/main and independently extracted ZIP; see each new release for exact reference independence and failed-attempt history."
+        }
       },
       "aliases": [
         "SDE",
@@ -12946,7 +13362,51 @@
       "example_scope": {
         "ja": "スカラー幾何Brown運動のEuler–Maruyama。粗細刻みと解析解で同じBrown運動を共有し、4096経路で強RMS誤差を測定。一般SDE・MCMC・弱収束次数は検証しない。",
         "en": "Euler–Maruyama for scalar geometric Brownian motion. Coarse/fine steps and analytic endpoints share the same Brownian paths; measure strong RMS error across 4096 paths. Does not validate general SDEs, MCMC or weak convergence order."
-      }
+      },
+      "depth_release": {
+        "group": "stochastic-accuracy",
+        "edition": "2026-11-24",
+        "case_ids": [
+          "gbm-weak-moments",
+          "ou-weak-moments",
+          "gbm-milstein-strong"
+        ]
+      },
+      "depth_scope": {
+        "ja": "追加固定例：GBMのweak誤差とMonte Carlo標準誤差、OUのweakモーメントと同時Brownian結合、同じBrownian経路のMilstein・EM strong比較。条件と検証範囲は各配布版で確認してください。 弱誤差は期待値の差です。3SEや区間を真の誤差上界・一般被覆保証としません。1D状態×時間の保存例であり2D物理流れではありません。GBMやOU浴成分を新しい物理問題として重複計数しません。 弱誤差は期待値の差です。3SEや区間を真の誤差上界・一般被覆保証としません。1D状態×時間の保存例であり2D物理流れではありません。GBMやOU浴成分を新しい物理問題として重複計数しません。 L2終端誤差を扱い、原著のL1定義と区別。GBM以外の非Lipschitz系・正値性の一般保証はしません。既存gbm-sdeへの手法追加です。",
+        "en": "Additional fixed examples: GBM weak bias and Monte Carlo error, OU weak moments with joint Brownian coupling, Milstein and EM on identical Brownian paths. See each release for assumptions and checked scope. Weak error is a difference of expectations. SE/intervals are not true-error bounds or general coverage guarantees. State×time examples are not2Dphysical flow. Existing GBM/OUbath physical families are reused. Weak error is a difference of expectations. SE/intervals are not true-error bounds or general coverage guarantees. State×time examples are not2Dphysical flow. Existing GBM/OUbath physical families are reused. EndpointL2error is distinct from the selected paper L1definition. No general non-Lipschitz/positivity guarantee. This extends existinggbm-sde rather than adding a physical problem."
+      },
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "stochastic-accuracy",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "gbm-weak-moments",
+              "ou-weak-moments",
+              "gbm-milstein-strong"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：GBMのweak誤差とMonte Carlo標準誤差、OUのweakモーメントと同時Brownian結合、同じBrownian経路のMilstein・EM strong比較。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: GBM weak bias and Monte Carlo error, OU weak moments with joint Brownian coupling, Milstein and EM on identical Brownian paths. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "弱誤差は期待値の差です。3SEや区間を真の誤差上界・一般被覆保証としません。1D状態×時間の保存例であり2D物理流れではありません。GBMやOU浴成分を新しい物理問題として重複計数しません。",
+              "en": "Weak error is a difference of expectations. SE/intervals are not true-error bounds or general coverage guarantees. State×time examples are not2Dphysical flow. Existing GBM/OUbath physical families are reused."
+            },
+            {
+              "ja": "弱誤差は期待値の差です。3SEや区間を真の誤差上界・一般被覆保証としません。1D状態×時間の保存例であり2D物理流れではありません。GBMやOU浴成分を新しい物理問題として重複計数しません。",
+              "en": "Weak error is a difference of expectations. SE/intervals are not true-error bounds or general coverage guarantees. State×time examples are not2Dphysical flow. Existing GBM/OUbath physical families are reused."
+            },
+            {
+              "ja": "L2終端誤差を扱い、原著のL1定義と区別。GBM以外の非Lipschitz系・正値性の一般保証はしません。既存gbm-sdeへの手法追加です。",
+              "en": "EndpointL2error is distinct from the selected paper L1definition. No general non-Lipschitz/positivity guarantee. This extends existinggbm-sde rather than adding a physical problem."
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "adjoint",
@@ -13054,8 +13514,8 @@
         "en": "Coupling, constraints & particles"
       },
       "summary": {
-        "ja": "純吸収平板の離散座標放射輸送: 純吸収の定常放射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。 放射輸送：空間・角度収束と光子統計: 純吸収平板で特性解・独立適応求積・光子生存率を比較し、離散収支と標本誤差・区間被覆を別々に測ります。",
-        "en": "Discrete-ordinate radiation transport through an absorbing slab: Discretize steady pure-absorption transfer in angle and space, checking Beer–Lambert rays and integrated exit flux. Radiation transport: space/angle convergence and photon statistics: Compare characteristics, independent adaptive integration and photon survival in a pure-absorption slab; separate discrete balance, sampling error and interval coverage."
+        "ja": "純吸収平板の離散座標放射輸送: 純吸収の定常放射輸送を角度と空間で離散化し、Beer–Lambert解と積分された出射フラックスで検証します。 放射輸送：空間・角度収束と光子統計: 純吸収平板で特性解・独立適応求積・光子生存率を比較し、離散収支と標本誤差・区間被覆を別々に測ります。 追加固定例：等方散乱平板の反射・透過・吸収。条件と検証範囲は各配布版で確認してください。 追加固定例：Su–Olson1996非平衡拡散、Su–Olson1997角度輸送の独立公開表比較。条件と検証範囲は各配布版で確認してください。 追加固定例：2D吸収影と保存的M1輸送、2D反向beamとM1閉包の情報損失。条件と検証範囲は各配布版で確認してください。",
+        "en": "Discrete-ordinate radiation transport through an absorbing slab: Discretize steady pure-absorption transfer in angle and space, checking Beer–Lambert rays and integrated exit flux. Radiation transport: space/angle convergence and photon statistics: Compare characteristics, independent adaptive integration and photon survival in a pure-absorption slab; separate discrete balance, sampling error and interval coverage. Additional fixed examples: Isotropic scattering in a finite slab. See each release for assumptions and checked scope. Additional fixed examples: Su–Olson1996 non-equilibrium diffusion, Su–Olson transport with an independently published analytical table. See each release for assumptions and checked scope. Additional fixed examples: Two-dimensional absorber shadow and M1 transport, Opposing beams and information loss in the M1 closure. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "development-candidate",
@@ -13080,12 +13540,16 @@
         "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
       },
       "limitations": {
-        "ja": "純吸収平板の離散座標放射輸送: 多重散乱、熱放射、周波数再分配、動的媒質、放射流体連成は未実装です。StamnesらのDISORTの全機能・安定化を再現したとは表示しません。 放射輸送：空間・角度収束と光子統計: 区間被覆は有限の固定seedでの観測で、ちょうど95%の実測値や全seedの成功を保証しません。決定論的求積誤差を統計誤差へ含めず、多重散乱・周波数依存・熱放射・放射流体連成は未検証です。",
-        "en": "Discrete-ordinate radiation transport through an absorbing slab: Multiple scattering, thermal emission, frequency redistribution, moving media and radiation–fluid coupling are unimplemented. This does not reproduce full DISORT functionality/stabilization. Radiation transport: space/angle convergence and photon statistics: Coverage is observed over finite fixed seeds; neither exactly 95% empirical coverage nor all-seed success is guaranteed. Keep deterministic quadrature error separate from statistical error. Multiple scattering, frequency dependence, thermal emission and radiation hydrodynamics are unvalidated."
+        "ja": "純吸収平板の離散座標放射輸送: 多重散乱、熱放射、周波数再分配、動的媒質、放射流体連成は未実装です。StamnesらのDISORTの全機能・安定化を再現したとは表示しません。 放射輸送：空間・角度収束と光子統計: 区間被覆は有限の固定seedでの観測で、ちょうど95%の実測値や全seedの成功を保証しません。決定論的求積誤差を統計誤差へ含めず、多重散乱・周波数依存・熱放射・放射流体連成は未検証です。 今回の追加固定例：有限の4平板に限定。MC、一般角度phase関数、DISORT再現、普遍的次数や厳密連続体誤差境界は認証しません。 今回の追加固定例：1996拡散であり1997角度輸送とは別です。原典本文は未読、公式ソフトの選択値を資格。物理単位の質量opacity解釈は使わず無次元関数を直接参照します。 原1997本文・原表と直接照合したとはしません。公開表の転記か再生成かは著者READMEに未記載。source停止後、一般散乱、全時空間の連続体誤差や角度次数は未認証です。 この追加はκhを解像したN∝κ²の半離散周期制御で、固定格子AP性や主SSPRK2の拡散時間次数を認証しません。初期F0と非零Fick流束の初期層を保持し、極限判定は最終s=.25のみ。両行列伝播にSciPy sparse expm_multiplyを共有し、DOP853照合は参照伝播器の資格です。 今回の追加固定例：6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。 6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。",
+        "en": "Discrete-ordinate radiation transport through an absorbing slab: Multiple scattering, thermal emission, frequency redistribution, moving media and radiation–fluid coupling are unimplemented. This does not reproduce full DISORT functionality/stabilization. Radiation transport: space/angle convergence and photon statistics: Coverage is observed over finite fixed seeds; neither exactly 95% empirical coverage nor all-seed success is guaranteed. Keep deterministic quadrature error separate from statistical error. Multiple scattering, frequency dependence, thermal emission and radiation hydrodynamics are unvalidated. Additional fixed examples: Limited to fourfixedisotropic slabs;noMC,generalphase-function/DISORT reproduction,universalorder or rigorouscontinuumerrorbound. Additional fixed examples: This1996diffusion model is distinct from1997angular transport. Original paper fulltext unread;officialsoftware selected values qualified. Direct dimensionless functions avoid ambiguous mass-opacity physical-wrapper units. No direct original1997fulltext/tablecomparison claim. TheauthorREADMEdoesnotstate transcriptionversusregeneration. Source-offprofiles,generalscattering,globalcontinuumerrorandangularorderarenotcertified. The addition is a resolved N~kappa^2 semidiscrete periodic control,not fixed-grid AP or an SSPRK2 diffusion-time order certificate. Initial F0 versus nonzero Fick flux is retained;limit gates use final s=.25 only. SciPy sparse expm_multiply is shared;DOP853 qualifies the reference propagator. Additional fixed examples: Six aligned directions do not demonstrate general angular convergence. The M1 opposing-beam mismatch is expected information loss and is not required to converge to angular transport. No relativistic, gas-dynamical or multifrequency radiation hydrodynamics is implemented. Six aligned directions do not demonstrate general angular convergence. The M1 opposing-beam mismatch is expected information loss and is not required to converge to angular transport. No relativistic, gas-dynamical or multifrequency radiation hydrodynamics is implemented."
       },
       "metadata_review": {
         "level": "scoped deterministic and statistical convergence; independent theta/direct/analytic/reference-integration comparisons, conservation diagnostics and independent-seed uncertainty with explicit limits",
-        "on": "2026-11-22"
+        "on": "2026-11-22",
+        "supplemental_review": {
+          "on": "2026-11-24",
+          "level": "Frozen fixed-input source,independent review,actual pytest/main and independently extracted ZIP; see each new release for exact reference independence and failed-attempt history."
+        }
       },
       "aliases": [
         "放射輸送法",
@@ -13111,6 +13575,98 @@
           "edition": "2026-11-22",
           "case_ids": [
             "radiation-convergence"
+          ]
+        },
+        {
+          "group": "radiation-scattering",
+          "edition": "2026-11-24",
+          "case_ids": [
+            "isotropic-scattering-slab"
+          ]
+        },
+        {
+          "group": "radiation-matter",
+          "edition": "2026-11-24-r2",
+          "case_ids": [
+            "su-olson-diffusion1996",
+            "su-olson-transport1997"
+          ]
+        },
+        {
+          "group": "radiation-geometry",
+          "edition": "2026-11-24",
+          "case_ids": [
+            "shadow-absorber2d",
+            "opposing-beams2d"
+          ]
+        }
+      ],
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "radiation-scattering",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "isotropic-scattering-slab"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：等方散乱平板の反射・透過・吸収。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Isotropic scattering in a finite slab. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "有限の4平板に限定。MC、一般角度phase関数、DISORT再現、普遍的次数や厳密連続体誤差境界は認証しません。",
+              "en": "Limited to fourfixedisotropic slabs;noMC,generalphase-function/DISORT reproduction,universalorder or rigorouscontinuumerrorbound."
+            }
+          ]
+        },
+        {
+          "release": {
+            "group": "radiation-matter",
+            "edition": "2026-11-24-r2",
+            "case_ids": [
+              "su-olson-diffusion1996",
+              "su-olson-transport1997"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：Su–Olson1996非平衡拡散、Su–Olson1997角度輸送の独立公開表比較。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Su–Olson1996 non-equilibrium diffusion, Su–Olson transport with an independently published analytical table. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "1996拡散であり1997角度輸送とは別です。原典本文は未読、公式ソフトの選択値を資格。物理単位の質量opacity解釈は使わず無次元関数を直接参照します。",
+              "en": "This1996diffusion model is distinct from1997angular transport. Original paper fulltext unread;officialsoftware selected values qualified. Direct dimensionless functions avoid ambiguous mass-opacity physical-wrapper units."
+            },
+            {
+              "ja": "原1997本文・原表と直接照合したとはしません。公開表の転記か再生成かは著者READMEに未記載。source停止後、一般散乱、全時空間の連続体誤差や角度次数は未認証です。 この追加はκhを解像したN∝κ²の半離散周期制御で、固定格子AP性や主SSPRK2の拡散時間次数を認証しません。初期F0と非零Fick流束の初期層を保持し、極限判定は最終s=.25のみ。両行列伝播にSciPy sparse expm_multiplyを共有し、DOP853照合は参照伝播器の資格です。",
+              "en": "No direct original1997fulltext/tablecomparison claim. TheauthorREADMEdoesnotstate transcriptionversusregeneration. Source-offprofiles,generalscattering,globalcontinuumerrorandangularorderarenotcertified. The addition is a resolved N~kappa^2 semidiscrete periodic control,not fixed-grid AP or an SSPRK2 diffusion-time order certificate. Initial F0 versus nonzero Fick flux is retained;limit gates use final s=.25 only. SciPy sparse expm_multiply is shared;DOP853 qualifies the reference propagator."
+            }
+          ]
+        },
+        {
+          "release": {
+            "group": "radiation-geometry",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "shadow-absorber2d",
+              "opposing-beams2d"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：2D吸収影と保存的M1輸送、2D反向beamとM1閉包の情報損失。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Two-dimensional absorber shadow and M1 transport, Opposing beams and information loss in the M1 closure. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。",
+              "en": "Six aligned directions do not demonstrate general angular convergence. The M1 opposing-beam mismatch is expected information loss and is not required to converge to angular transport. No relativistic, gas-dynamical or multifrequency radiation hydrodynamics is implemented."
+            },
+            {
+              "ja": "6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。",
+              "en": "Six aligned directions do not demonstrate general angular convergence. The M1 opposing-beam mismatch is expected information loss and is not required to converge to angular transport. No relativistic, gas-dynamical or multifrequency radiation hydrodynamics is implemented."
+            }
           ]
         }
       ]

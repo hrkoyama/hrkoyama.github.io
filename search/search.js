@@ -1,7 +1,7 @@
 // Generated from frontend/search/search.js by scripts/search_assets.py. Edit the source template.
-import {makeSearch,atlasSearch,excerpt,safePath} from './engine.mjs?v=d05430b0283e';
+import {makeSearch,atlasSearch,excerpt,safePath} from './engine.mjs?v=d250c2bb00cb';
 import {unpackSearchIndex,loadSearchDetail} from './compact-index.mjs?v=e4fadfc9d515';
-import {appendMethodCard} from './method-search.mjs?v=887be92cb26b';
+import {appendMethodCard} from './method-search.mjs?v=be5807c726f6';
 import {appendSearchNavigation,publicNavigationPath} from './navigation.mjs?v=49405df7f323';
 const main = document.querySelector('[data-search-index]');
 const input = document.querySelector('#search-query');

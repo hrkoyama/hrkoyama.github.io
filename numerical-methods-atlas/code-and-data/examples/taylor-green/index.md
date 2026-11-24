@@ -51,6 +51,10 @@ CSVは(i,j)をC順に並べ、u面・v面・圧力中心それぞれの座標、
 
 同じν=0.1・周期[0,2π]²の解析モデルですが、参照カードはy=π/4のx断面表示です。2次元速度・圧力場や格子誤差の配列とは一致しません。
 
+- [LBMのTaylor–Green渦：格子・時間・Mach数が結び付く感度](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-lbm-taylor-green-ja) (`lbm-taylor-green`; 関連モデルの参照 · 解析参照)
+
+[0,2pi)²、ν.1、基本U.2、N24/32/64、dt=.2dx²、tau.56、T=.2pi²、144/256/1024steps。N32/U.4,.8とN32/U.2/dt=.1dx²/tau.53/512stepsを追加。初期圧力整合rhoを使用。
+
 
 ### scope
 
@@ -160,6 +164,10 @@ CSV uses C-order (i,j) rows with separate coordinates and numerical/analytic val
 - [Viscous flow / 2D Taylor–Green](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-taylor-green-en) (`taylor-green`; Related-model reference · Analytic reference)
 
 The analytic model shares ν=0.1 and periodic [0,2π]², but the card displays an x-slice at y=π/4, not full 2D velocity/pressure or mesh-error arrays.
+
+- [LBM Taylor–Green vortex: coupled grid/time/Mach sensitivity](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-lbm-taylor-green-en) (`lbm-taylor-green`; Related-model reference · Analytic reference)
+
+Periodic[0,2pi)²,nu.1,baseU.2,N24/32/64,dt=.2dx²,tau.56,T=.2pi²and144/256/1024steps. Add N32/U.4,.8andN32/U.2/dt=.1dx²/tau.53/512steps. Use pressure-consistent initial density.
 
 
 ### scope

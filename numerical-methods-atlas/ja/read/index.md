@@ -121,6 +121,13 @@
 - [PICの独立空間実装との照合](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-pic-spatial/)
 - [有限Knudsen数のCouette・Fourier流](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-wall/)
 - [剛体球DSMCのMach2平面衝撃波](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-dsmc-shock/)
+- [LBMのRe100蓋駆動キャビティ](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-cavity/)
+- [LBMのTaylor–Green渦と低Mach誤差](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-taylor-green/)
+- [曲面LBMの環状Couette流](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-annulus/)
+- [LBMの曲面壁とRe20円柱](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-curved-boundary/)
+- [等方散乱平板と連続角度参照](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-scattering/)
+- [非平衡放射：拡散と輸送を分ける](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-matter/)
+- [2Dの影・ビームとM1閉包](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-geometry/)
 
 ## 電磁場・静電場・電子状態
 
@@ -152,6 +159,8 @@
 - [サーモスタット：温度制御と分布の比較](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/thermostats/)
 - [MCMC・温度制御・生物モデル](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-models/)
 - [CSVRとLangevin：分布・揺らぎ・相関](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/)
+- [SDEの弱誤差・強誤差と標本誤差](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/)
+- [重要度サンプリングと相関Gaussian診断](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/)
 
 ## 検証問題・実験ガイド
 

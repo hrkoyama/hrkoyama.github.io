@@ -1,0 +1,32 @@
+{
+  "version": "1.7.5",
+  "commit": "8718b61f281a9744ea7a3820c51800915e4636e9",
+  "records": [
+    {
+      "url": "https://raw.githubusercontent.com/lanl/ExactPack/8718b61f281a9744ea7a3820c51800915e4636e9/exactpack/solvers/suolson/timmes.py",
+      "file": "exactpack-timmes.py.txt",
+      "sha256": "fb80920b82a6444566261e7bd8f9ba4932d92e69b31604a492a18a8bc663940e",
+      "accessed_at_utc": "2026-11-23T22:10:00.605178+00:00"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/lanl/ExactPack/8718b61f281a9744ea7a3820c51800915e4636e9/exactpack/solvers/suolson/__init__.py",
+      "file": "exactpack-__init__.py.txt",
+      "sha256": "8da20cb9e1d5bda45773de42007c216f57723573f03b003e1071b84e6e4fd754",
+      "accessed_at_utc": "2026-11-23T22:10:00.859677+00:00"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/lanl/ExactPack/8718b61f281a9744ea7a3820c51800915e4636e9/exactpack/solvers/suolson/suolson.py",
+      "file": "exactpack-suolson.py.txt",
+      "sha256": "d860465ce7e1ec344001956bf5f2c7be2cd406a4e65d6f7743d670ef1e0eeb99",
+      "accessed_at_utc": "2026-11-23T22:10:01.132961+00:00"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/lanl/ExactPack/8718b61f281a9744ea7a3820c51800915e4636e9/LICENSE.txt",
+      "file": "exactpack-LICENSE.txt",
+      "sha256": "763767e730623814502f95054919a019f17f5257e0cd8d60aede203d9736dd40",
+      "accessed_at_utc": "2026-11-23T22:10:01.388257+00:00"
+    }
+  ],
+  "executed": false,
+  "scope": "Independent1996diffusion implementation only. Original1996paper not read. No functions executed at source acquisition."
+}

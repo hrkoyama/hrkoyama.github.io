@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "status": "PASS_FOCUSED_STATIC_REFINEMENT_COMPONENT_REVIEW",
+  "reviewer": "batch_weno",
+  "reviewed_at_utc": "2026-11-23T23:01:59.500092+00:00",
+  "protocol_sha256": "243675a36fd8519b320f1b58cf99d4e6a60d9a202860f7defe47d8f313834abc",
+  "local_bindings": 5,
+  "evidence_bindings": 7,
+  "hash_mismatches": [],
+  "native4_exactly_qualified87": true,
+  "expected_checks": 29,
+  "independently_counted_inventory": "1compile+2newN*2variants*7geometry/scalar/ledger/finite/resetchecks=29",
+  "planned_new_N": [
+    160,
+    240
+  ],
+  "retained_coarse_N": 80,
+  "variants": [
+    0,
+    1
+  ],
+  "fixed_physical_parameters": {
+    "Ui": 0.02,
+    "tau": 0.7,
+    "nu": 0.01,
+    "T": 4,
+    "steps_formula": "3*N*N//5",
+    "dt_formula": "(tau-.5)/3*dx^2/nu"
+  },
+  "review_scope": [
+    "Completeprotocol/check_refinement.py/execute-once.pyread;all12source/evidencehashesandASTonly.",
+    "No sourceimport,compile,geometryenumeration,one-step,timing,referencegenerationortrajectorybyreviewer."
+  ],
+  "coverage": [
+    "Truecircle/stairmodeusesunchangedqualifiedgeometry;requiredback1/back2supportenumeratedforeachnewN/variant,notassumed.",
+    "Genericindependentscalarone-stepagainstnativeattau.7withfinitepositivefinaldensityandactualmass/momentumledger.",
+    "Everytimednativeone-stepresetsidenticalf0andmustreproduceoriginalsingle-stepbits;zerostepalsoresetsf0. Nophysicaltimeaccumulation.",
+    "Fixed16one+16zeroallocationcalls×3interleavedblocks×4geometries.Rawblocktimesandmediansretained,nobest-timeorgridselection.",
+    "N80/160/240bothvariantsareprecommitted;organizationalgroupsplitcanchangeworkloadpackagingonly,notphysics/gates."
+  ],
+  "planning_caveat": "Marginaldiagnosticclipsnegative medianone−medianzero tozero;rawone/zeroblockdataretainthesigninformation. Itisnotanunbiasedmeasurementorrigorousruntimebound. Useconservativerawcombinedprojectionfortheparentapprox85sdecisionratherthanpromotingtheallocation-subtracteddiagnostictoaguarantee. Main/Linuxruntimeunmeasureduntilseparateactualrun.",
+  "wrapper": "Explicitprotocol/reviewSHAarguments,freshattempt01,all5+7pre/posthashes,source/protocol/review/compiler/stdoutstderr/partialchecks/arrays/finalreceiptrequired. Child30sprocessgroupwatchdogincludescompile15s;exact29alltrue/noautoretry. Mainneedsseparatefrozencontract/rootreview.",
+  "blocking_findings": [],
+  "retention": "R3executed112/113failureandfinestpressure.352758>.08unchangedinevidence;no pressureaveraging/scaling,Ui/tau/nu/Torcriteriachange.",
+  "execution_boundary": "Reviewonly;thisdoesnotexecutenorqualifynewmeshphysics."
+}

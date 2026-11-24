@@ -1,0 +1,3750 @@
+{
+  "schema_version": 1,
+  "reference": "ArviZ",
+  "version": "0.20.0",
+  "actually_executed": true,
+  "datasets": [
+    {
+      "key": "preconditioned-46001",
+      "prefix": 2048,
+      "observable": "y1",
+      "column": 0,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "4d9ce02d665b304d6572b8b3e8446983e45122f2fc452951085990602b4d4953",
+      "metrics": {
+        "rhat_rank": 1.0028234908080917,
+        "ess_bulk": 842.3933742348013,
+        "ess_tail": 1156.7493143970596,
+        "ess_mean": 844.5065958382513,
+        "mcse_mean": 0.03462914715701663
+      }
+    },
+    {
+      "key": "preconditioned-46001",
+      "prefix": 2048,
+      "observable": "y2",
+      "column": 1,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "d7f17150a19f0222e031b47e5e0182ffbeee31882a3e82ecad3207f3f1472558",
+      "metrics": {
+        "rhat_rank": 1.0027038600453424,
+        "ess_bulk": 843.7879060658638,
+        "ess_tail": 942.3715879183177,
+        "ess_mean": 841.4812978607972,
+        "mcse_mean": 0.03475078746204045
+      }
+    },
+    {
+      "key": "preconditioned-46001",
+      "prefix": 2048,
+      "observable": "y1_squared",
+      "column": 2,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "f33e903f9350cc203d87827ed92803bdbd7ba92bb08ba400c3bc72627cf8f633",
+      "metrics": {
+        "rhat_rank": 1.0020602281225262,
+        "ess_bulk": 1581.362590979278,
+        "ess_tail": 1443.0546173074688,
+        "ess_mean": 1130.832921373483,
+        "mcse_mean": 0.041739701345924876
+      }
+    },
+    {
+      "key": "preconditioned-46001",
+      "prefix": 2048,
+      "observable": "y2_squared",
+      "column": 3,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "990a6e37719a420f9e004261b3c7483d2558f40c5e815c6f32718ad6d4dedbae",
+      "metrics": {
+        "rhat_rank": 1.0028847282903726,
+        "ess_bulk": 1399.839930260622,
+        "ess_tail": 1215.0993978673391,
+        "ess_mean": 925.3926891011612,
+        "mcse_mean": 0.047694395062347045
+      }
+    },
+    {
+      "key": "preconditioned-46001",
+      "prefix": 2048,
+      "observable": "product",
+      "column": 4,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "703b1e28e71b7c5ba2f05d1f65bcee8bf796fcde2f9ffaf0b14ff3a1d25e4fcf",
+      "metrics": {
+        "rhat_rank": 1.0015509118824761,
+        "ess_bulk": 1531.9412928141003,
+        "ess_tail": 1419.2156527412383,
+        "ess_mean": 1015.7530751436617,
+        "mcse_mean": 0.0437461996115656
+      }
+    },
+    {
+      "key": "preconditioned-46001",
+      "prefix": 2048,
+      "observable": "Q",
+      "column": 5,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "3eed07c612d38047d805898554f54be0748ba30f66af778a30bbd12552a19a23",
+      "metrics": {
+        "rhat_rank": 1.005402427536091,
+        "ess_bulk": 1142.0291125531537,
+        "ess_tail": 1336.367916540867,
+        "ess_mean": 947.884892847457,
+        "mcse_mean": 0.06560309805954616
+      }
+    },
+    {
+      "key": "preconditioned-46001",
+      "prefix": 2048,
+      "observable": "sum_direction",
+      "column": 6,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "99163a22521d7aee20252f89df851d2280a00ec20596b11a6d744a4d51bcbf9c",
+      "metrics": {
+        "rhat_rank": 1.0025118393268277,
+        "ess_bulk": 846.1866854415562,
+        "ess_tail": 1002.9082373333366,
+        "ess_mean": 846.7234138747011,
+        "mcse_mean": 0.034610139697186716
+      }
+    },
+    {
+      "key": "preconditioned-46001",
+      "prefix": 2048,
+      "observable": "difference_direction",
+      "column": 7,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "ee50235e0598612c4d0921e48481277e7390b5e4f493ffba9a114bfd59126708",
+      "metrics": {
+        "rhat_rank": 1.007327324383575,
+        "ess_bulk": 684.4433664205947,
+        "ess_tail": 975.6093139374403,
+        "ess_mean": 681.2539670476777,
+        "mcse_mean": 0.03873154704094146
+      }
+    },
+    {
+      "key": "preconditioned-46001",
+      "prefix": 8192,
+      "observable": "y1",
+      "column": 0,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "426bdf2063fc89ce8c70837cc11f3a787587ba9757125ff1b7ca04d7d49c090d",
+      "metrics": {
+        "rhat_rank": 1.0008151205779574,
+        "ess_bulk": 3075.919072632889,
+        "ess_tail": 4422.390392349233,
+        "ess_mean": 3080.6833822167046,
+        "mcse_mean": 0.017897352803688746
+      }
+    },
+    {
+      "key": "preconditioned-46001",
+      "prefix": 8192,
+      "observable": "y2",
+      "column": 1,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "6ea3266396fd94a31b23db17789468acee22616fab7028962168e2064b944c42",
+      "metrics": {
+        "rhat_rank": 1.0006401688227156,
+        "ess_bulk": 3138.34620237403,
+        "ess_tail": 4480.827493577581,
+        "ess_mean": 3140.585905463092,
+        "mcse_mean": 0.017622704535850055
+      }
+    },
+    {
+      "key": "preconditioned-46001",
+      "prefix": 8192,
+      "observable": "y1_squared",
+      "column": 2,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "dadc777c443d5f142021858051191d84f9579ae73ed2e34c19bb8281d40434a5",
+      "metrics": {
+        "rhat_rank": 1.000185470403974,
+        "ess_bulk": 5715.282095859756,
+        "ess_tail": 5213.22317504747,
+        "ess_mean": 4136.553451113297,
+        "mcse_mean": 0.021348136394524268
+      }
+    },
+    {
+      "key": "preconditioned-46001",
+      "prefix": 8192,
+      "observable": "y2_squared",
+      "column": 3,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "33ca8b1b03be4c76dc56d74702bdb03a1d1caa20b61fba08b6e9fcaa0b234bb3",
+      "metrics": {
+        "rhat_rank": 1.0003413588333978,
+        "ess_bulk": 5722.070295267152,
+        "ess_tail": 5174.22412862218,
+        "ess_mean": 4105.673962789242,
+        "mcse_mean": 0.021395001692398777
+      }
+    },
+    {
+      "key": "preconditioned-46001",
+      "prefix": 8192,
+      "observable": "product",
+      "column": 4,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "e5538c71331cd5d63477ee916bab761915878ceb2e8ab9a97d016760464431a1",
+      "metrics": {
+        "rhat_rank": 1.0002215829825107,
+        "ess_bulk": 5820.014739551621,
+        "ess_tail": 5254.549771968715,
+        "ess_mean": 4123.715089815382,
+        "mcse_mean": 0.02081845394522371
+      }
+    },
+    {
+      "key": "preconditioned-46001",
+      "prefix": 8192,
+      "observable": "Q",
+      "column": 5,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "52eeff77bb4e581da9dd2abef22537c4bdea50aa7a315d4d45bebdad2b6c4391",
+      "metrics": {
+        "rhat_rank": 1.0009909900479994,
+        "ess_bulk": 4547.714155437981,
+        "ess_tail": 4943.401692503203,
+        "ess_mean": 3715.937653831554,
+        "mcse_mean": 0.03228957201741417
+      }
+    },
+    {
+      "key": "preconditioned-46001",
+      "prefix": 8192,
+      "observable": "sum_direction",
+      "column": 6,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "4b4ca3bc82975610f8ee2c19b8ed86f4436dbe9ee76ee502cfe419d71f4c8b3e",
+      "metrics": {
+        "rhat_rank": 1.0007424048176283,
+        "ess_bulk": 3109.380177758341,
+        "ess_tail": 4398.384796421081,
+        "ess_mean": 3112.8581610111387,
+        "mcse_mean": 0.017749713259677415
+      }
+    },
+    {
+      "key": "preconditioned-46001",
+      "prefix": 8192,
+      "observable": "difference_direction",
+      "column": 7,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "ed38241651b82d438b2539e36fa8b91abdc0d501f4f803a6c06e4a931eb5c143",
+      "metrics": {
+        "rhat_rank": 1.0009028414784726,
+        "ess_bulk": 2981.855924949351,
+        "ess_tail": 4354.003451817646,
+        "ess_mean": 2981.0809986281074,
+        "mcse_mean": 0.018267317867082515
+      }
+    },
+    {
+      "key": "isotropic-46001",
+      "prefix": 2048,
+      "observable": "y1",
+      "column": 0,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "2ccda40995152c856a9c9e974fd69e4cf5458fa4f78f0aa62206db57b3c2318f",
+      "metrics": {
+        "rhat_rank": 1.0908566955918235,
+        "ess_bulk": 33.807740947488455,
+        "ess_tail": 133.03824836956318,
+        "ess_mean": 32.80472680178321,
+        "mcse_mean": 0.17283949935955803
+      }
+    },
+    {
+      "key": "isotropic-46001",
+      "prefix": 2048,
+      "observable": "y2",
+      "column": 1,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "1a3887d6f2e2ee985d8d9a24ec61e14359e6b00d202d0d4bb99d1bca0c6a9139",
+      "metrics": {
+        "rhat_rank": 1.0992092349239537,
+        "ess_bulk": 31.064029882385405,
+        "ess_tail": 138.5723914068905,
+        "ess_mean": 30.549038303360586,
+        "mcse_mean": 0.18051178340345414
+      }
+    },
+    {
+      "key": "isotropic-46001",
+      "prefix": 2048,
+      "observable": "y1_squared",
+      "column": 2,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "48b419583dd841bb7e160c4911f901d7e00dcfebc44f80e14eaea827e9ba0b55",
+      "metrics": {
+        "rhat_rank": 1.0173080573889652,
+        "ess_bulk": 142.34363486265224,
+        "ess_tail": 223.1807097029824,
+        "ess_mean": 126.64508845343562,
+        "mcse_mean": 0.11176530261672589
+      }
+    },
+    {
+      "key": "isotropic-46001",
+      "prefix": 2048,
+      "observable": "y2_squared",
+      "column": 3,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "9b063cb21573b9762acfe102b1b33e28e7c019e08bbb4bdb5148be58293df385",
+      "metrics": {
+        "rhat_rank": 1.0165492443940272,
+        "ess_bulk": 136.19335404957275,
+        "ess_tail": 241.25941220892676,
+        "ess_mean": 120.48917107160015,
+        "mcse_mean": 0.11533911274750662
+      }
+    },
+    {
+      "key": "isotropic-46001",
+      "prefix": 2048,
+      "observable": "product",
+      "column": 4,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "18a869e468f7a2f12accae3a9a8f60bbafa95dd1b8bf065465fe5167615e703c",
+      "metrics": {
+        "rhat_rank": 1.0184411156453945,
+        "ess_bulk": 130.37357838796888,
+        "ess_tail": 223.73189822645662,
+        "ess_mean": 117.17778031783418,
+        "mcse_mean": 0.11364895857924213
+      }
+    },
+    {
+      "key": "isotropic-46001",
+      "prefix": 2048,
+      "observable": "Q",
+      "column": 5,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "b9452a85f72f586f82a1d5425bb0a50279bb4d4485e4014a1e4f2e38aca21c3f",
+      "metrics": {
+        "rhat_rank": 1.0116717416671954,
+        "ess_bulk": 246.8846380127514,
+        "ess_tail": 610.1063416061705,
+        "ess_mean": 247.96221788765382,
+        "mcse_mean": 0.11651116471672837
+      }
+    },
+    {
+      "key": "isotropic-46001",
+      "prefix": 2048,
+      "observable": "sum_direction",
+      "column": 6,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "429e8847c3448ca94294287d4104f5bb81fe27ef660e8f6daa7b6d439fece86c",
+      "metrics": {
+        "rhat_rank": 1.0975412172201815,
+        "ess_bulk": 31.420154796435934,
+        "ess_tail": 132.67855831062948,
+        "ess_mean": 30.36531111464062,
+        "mcse_mean": 0.18039586553736686
+      }
+    },
+    {
+      "key": "isotropic-46001",
+      "prefix": 2048,
+      "observable": "difference_direction",
+      "column": 7,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "2ee9561072d8cf6b88bb64e4b845454c061046944dd633afd33502cfb1a48f8c",
+      "metrics": {
+        "rhat_rank": 1.0060215814753901,
+        "ess_bulk": 1203.2714338235514,
+        "ess_tail": 1649.2840545902543,
+        "ess_mean": 1194.7015403762014,
+        "mcse_mean": 0.028490929732823113
+      }
+    },
+    {
+      "key": "isotropic-46001",
+      "prefix": 8192,
+      "observable": "y1",
+      "column": 0,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "65e43965269c2c44b67472e085dc00ced71da107b882f2fe73485ea52c6e24ec",
+      "metrics": {
+        "rhat_rank": 1.0112196685210786,
+        "ess_bulk": 198.6679233254331,
+        "ess_tail": 500.90212804942956,
+        "ess_mean": 198.0297565687838,
+        "mcse_mean": 0.07206539372012283
+      }
+    },
+    {
+      "key": "isotropic-46001",
+      "prefix": 8192,
+      "observable": "y2",
+      "column": 1,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "e5d84a0480c6dd1b5699688b5a0a13770bbdc7a5e2c9ea32662d8a3108e42dea",
+      "metrics": {
+        "rhat_rank": 1.0116253339722898,
+        "ess_bulk": 201.96399670675234,
+        "ess_tail": 472.41330730457895,
+        "ess_mean": 201.21294051421,
+        "mcse_mean": 0.07151168059345263
+      }
+    },
+    {
+      "key": "isotropic-46001",
+      "prefix": 8192,
+      "observable": "y1_squared",
+      "column": 2,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "b08885b8b2982239c5da887c9f6f9539b8f106fb1ff67cec20314900bf2da214",
+      "metrics": {
+        "rhat_rank": 1.012777434848511,
+        "ess_bulk": 502.51001147110475,
+        "ess_tail": 745.5555115136002,
+        "ess_mean": 416.91024532669303,
+        "mcse_mean": 0.06685036041888688
+      }
+    },
+    {
+      "key": "isotropic-46001",
+      "prefix": 8192,
+      "observable": "y2_squared",
+      "column": 3,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "15b88804d4b6f5d3f11e9c67cd9226e48fb04c52b190e15e396cdef0b13df8f2",
+      "metrics": {
+        "rhat_rank": 1.0137456554088542,
+        "ess_bulk": 503.66936337693267,
+        "ess_tail": 665.5397191028723,
+        "ess_mean": 410.77482285473684,
+        "mcse_mean": 0.06782929588048103
+      }
+    },
+    {
+      "key": "isotropic-46001",
+      "prefix": 8192,
+      "observable": "product",
+      "column": 4,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "1f9c5c74456599069e090dd3b3c2771c6fcf672696e2ad0ae0c8c4b8d674ec12",
+      "metrics": {
+        "rhat_rank": 1.0131917771475394,
+        "ess_bulk": 483.03641552311973,
+        "ess_tail": 689.2835611949433,
+        "ess_mean": 395.35927880725825,
+        "mcse_mean": 0.06713438189503636
+      }
+    },
+    {
+      "key": "isotropic-46001",
+      "prefix": 8192,
+      "observable": "Q",
+      "column": 5,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "45b1f3af25b2ebc0ab2fc1d360823a1c039c6d48c4c604b3e0077a79a852c00e",
+      "metrics": {
+        "rhat_rank": 1.01000860164403,
+        "ess_bulk": 780.5012512355975,
+        "ess_tail": 1213.9083215634328,
+        "ess_mean": 699.6211564751557,
+        "mcse_mean": 0.0732704331607407
+      }
+    },
+    {
+      "key": "isotropic-46001",
+      "prefix": 8192,
+      "observable": "sum_direction",
+      "column": 6,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "ab9af7dd1614bca0bf86eb9aee420cdd1e4fa484df2e71f9d01f35e037045f5c",
+      "metrics": {
+        "rhat_rank": 1.0117075549543013,
+        "ess_bulk": 195.78439748886132,
+        "ess_tail": 451.4764622641546,
+        "ess_mean": 195.1276423398501,
+        "mcse_mean": 0.07265158764829326
+      }
+    },
+    {
+      "key": "isotropic-46001",
+      "prefix": 8192,
+      "observable": "difference_direction",
+      "column": 7,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "84b462022034ffcf9a87f02040cc87b3232926d7fdcc4b438178ba84977ac579",
+      "metrics": {
+        "rhat_rank": 1.0003440651916806,
+        "ess_bulk": 4454.426962974272,
+        "ess_tail": 6022.403515958944,
+        "ess_mean": 4455.126081873379,
+        "mcse_mean": 0.014841917514795636
+      }
+    },
+    {
+      "key": "preconditioned-46002",
+      "prefix": 2048,
+      "observable": "y1",
+      "column": 0,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "63744de183f8899d82e201b39b08283b5066eb53db3e1c74c220f43995aa87a1",
+      "metrics": {
+        "rhat_rank": 1.007494427941954,
+        "ess_bulk": 660.725274186728,
+        "ess_tail": 1121.4919334976598,
+        "ess_mean": 659.6445694975073,
+        "mcse_mean": 0.03820122560991508
+      }
+    },
+    {
+      "key": "preconditioned-46002",
+      "prefix": 2048,
+      "observable": "y2",
+      "column": 1,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "6bb9217bf54e3c8c219cfd0d99158ac5f16bcb3c526d8dc2d1208e83ebdffa37",
+      "metrics": {
+        "rhat_rank": 1.0089557165839231,
+        "ess_bulk": 640.2511659402683,
+        "ess_tail": 808.7236943239648,
+        "ess_mean": 640.4067026466892,
+        "mcse_mean": 0.03875837058439622
+      }
+    },
+    {
+      "key": "preconditioned-46002",
+      "prefix": 2048,
+      "observable": "y1_squared",
+      "column": 2,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "4568a7df1b47a285d93ce106a7b3238e249f15277803faf93bd5bfef44b95e3a",
+      "metrics": {
+        "rhat_rank": 1.0026874694233563,
+        "ess_bulk": 1227.8035163678837,
+        "ess_tail": 1224.3336124521884,
+        "ess_mean": 933.5651956941813,
+        "mcse_mean": 0.0454020002726433
+      }
+    },
+    {
+      "key": "preconditioned-46002",
+      "prefix": 2048,
+      "observable": "y2_squared",
+      "column": 3,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "eea3ea505fda34ed96647dca27d26e1508889872dd23a01e4099764799915d48",
+      "metrics": {
+        "rhat_rank": 1.003074373059762,
+        "ess_bulk": 1244.490155060595,
+        "ess_tail": 1265.4691866371923,
+        "ess_mean": 895.7355182773676,
+        "mcse_mean": 0.04572964782635543
+      }
+    },
+    {
+      "key": "preconditioned-46002",
+      "prefix": 2048,
+      "observable": "product",
+      "column": 4,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "224a67984013fb29dc08fca1186dc983391bdeb1e3322927536c2e94c20d85e0",
+      "metrics": {
+        "rhat_rank": 1.0032118600203273,
+        "ess_bulk": 1281.0804111729271,
+        "ess_tail": 1284.9219036758566,
+        "ess_mean": 930.6653869240528,
+        "mcse_mean": 0.04398123915946788
+      }
+    },
+    {
+      "key": "preconditioned-46002",
+      "prefix": 2048,
+      "observable": "Q",
+      "column": 5,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "ca33af96ad54fda8f4184b65388bb4d54f8f81d7b23ab6c5959e901eff8ba374",
+      "metrics": {
+        "rhat_rank": 1.0032921652153863,
+        "ess_bulk": 926.0266226006097,
+        "ess_tail": 951.1953208925348,
+        "ess_mean": 724.9539472146176,
+        "mcse_mean": 0.07293784095190121
+      }
+    },
+    {
+      "key": "preconditioned-46002",
+      "prefix": 2048,
+      "observable": "sum_direction",
+      "column": 6,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "b5182618a56929bcbe5d0fda50be4385337d797a2e031f15ab9f6fbc52a7ba44",
+      "metrics": {
+        "rhat_rank": 1.0084180496642219,
+        "ess_bulk": 655.3376041435404,
+        "ess_tail": 906.1436122850866,
+        "ess_mean": 654.5030879302603,
+        "mcse_mean": 0.03832362524080297
+      }
+    },
+    {
+      "key": "preconditioned-46002",
+      "prefix": 2048,
+      "observable": "difference_direction",
+      "column": 7,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "ce3b02ea9d3e1f6b7aec3eb96b530ffd9874df5cdbb762a45d358ad648bfcef1",
+      "metrics": {
+        "rhat_rank": 1.0029079658293794,
+        "ess_bulk": 777.6298228425856,
+        "ess_tail": 898.6477054096705,
+        "ess_mean": 775.4582396730294,
+        "mcse_mean": 0.035979840440358374
+      }
+    },
+    {
+      "key": "preconditioned-46002",
+      "prefix": 8192,
+      "observable": "y1",
+      "column": 0,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "b4e014e5974d7022d70251002f23a322f34110c8f063b6bae6d7877fafaa109a",
+      "metrics": {
+        "rhat_rank": 1.0007090803224639,
+        "ess_bulk": 2769.09516637422,
+        "ess_tail": 4639.572177904277,
+        "ess_mean": 2778.437906496096,
+        "mcse_mean": 0.018631010620892174
+      }
+    },
+    {
+      "key": "preconditioned-46002",
+      "prefix": 8192,
+      "observable": "y2",
+      "column": 1,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "2ee2ac02ad5c777c40a79623b378ef7ba5207292d1f69ff0a1cb41fef53e4389",
+      "metrics": {
+        "rhat_rank": 1.000474748081342,
+        "ess_bulk": 2766.1598785122037,
+        "ess_tail": 4046.2292456748387,
+        "ess_mean": 2770.753062808176,
+        "mcse_mean": 0.01876510092208429
+      }
+    },
+    {
+      "key": "preconditioned-46002",
+      "prefix": 8192,
+      "observable": "y1_squared",
+      "column": 2,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "f2a222063f0b4c80feff0923fabfba090a65808edad2adae8d602479710af785",
+      "metrics": {
+        "rhat_rank": 1.0002797341270144,
+        "ess_bulk": 5490.4221419550795,
+        "ess_tail": 5577.620171551834,
+        "ess_mean": 4276.603645745193,
+        "mcse_mean": 0.020238004397464433
+      }
+    },
+    {
+      "key": "preconditioned-46002",
+      "prefix": 8192,
+      "observable": "y2_squared",
+      "column": 3,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "ae2dfdc14cca11f9b835ddc4c1a5db15b8b4df5c99627ca9f3d38d177950c7f3",
+      "metrics": {
+        "rhat_rank": 1.0001041320125335,
+        "ess_bulk": 5348.869334429785,
+        "ess_tail": 5477.351822380794,
+        "ess_mean": 4008.4251591749244,
+        "mcse_mean": 0.021344507484539685
+      }
+    },
+    {
+      "key": "preconditioned-46002",
+      "prefix": 8192,
+      "observable": "product",
+      "column": 4,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "1569cfe95ad1fcfcc722357f461aaa8d976c258dca1ad05441f5460d69c4fa14",
+      "metrics": {
+        "rhat_rank": 1.0001772768255643,
+        "ess_bulk": 5395.846332617445,
+        "ess_tail": 5558.8627631141735,
+        "ess_mean": 4174.326691132973,
+        "mcse_mean": 0.020105993807784436
+      }
+    },
+    {
+      "key": "preconditioned-46002",
+      "prefix": 8192,
+      "observable": "Q",
+      "column": 5,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "3af4ba5e4a2054780a4ec5c26c5a4fde2c06f3ad77d4df0fafb511ed3f21a28e",
+      "metrics": {
+        "rhat_rank": 1.0005679035610218,
+        "ess_bulk": 4098.938357530426,
+        "ess_tail": 3757.7581154017425,
+        "ess_mean": 2974.9083931328296,
+        "mcse_mean": 0.037215808993997596
+      }
+    },
+    {
+      "key": "preconditioned-46002",
+      "prefix": 8192,
+      "observable": "sum_direction",
+      "column": 6,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "1ac91ef80e9d4a267cf54067d7a7b28d7abfad2238ccfa5ab3068b4fa89c4fab",
+      "metrics": {
+        "rhat_rank": 1.0005810263333332,
+        "ess_bulk": 2766.035560201477,
+        "ess_tail": 4113.859505987089,
+        "ess_mean": 2773.6992193991055,
+        "mcse_mean": 0.018687033411071516
+      }
+    },
+    {
+      "key": "preconditioned-46002",
+      "prefix": 8192,
+      "observable": "difference_direction",
+      "column": 7,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "4bace6feb3e61059901520e28ed3ac7a45a986c47f427d60351521c58a1e3179",
+      "metrics": {
+        "rhat_rank": 1.0008277879683247,
+        "ess_bulk": 2830.384241652918,
+        "ess_tail": 3847.8431435033904,
+        "ess_mean": 2802.074943472269,
+        "mcse_mean": 0.019144150892320282
+      }
+    },
+    {
+      "key": "isotropic-46002",
+      "prefix": 2048,
+      "observable": "y1",
+      "column": 0,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "0ceacc06b8329f5df2a6ad0035b13d0b07422842a3df30e8d1c2415fb9e8db97",
+      "metrics": {
+        "rhat_rank": 1.157848831872826,
+        "ess_bulk": 20.519360576290048,
+        "ess_tail": 96.38333410730968,
+        "ess_mean": 20.433561625654,
+        "mcse_mean": 0.23545531335511383
+      }
+    },
+    {
+      "key": "isotropic-46002",
+      "prefix": 2048,
+      "observable": "y2",
+      "column": 1,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "e61bc883fa49434381c4a107000d963c2a0973602e58c822b02a392c998c0442",
+      "metrics": {
+        "rhat_rank": 1.1611436332540448,
+        "ess_bulk": 20.38388313069405,
+        "ess_tail": 87.08591414778905,
+        "ess_mean": 20.40042814203754,
+        "mcse_mean": 0.23512290499234811
+      }
+    },
+    {
+      "key": "isotropic-46002",
+      "prefix": 2048,
+      "observable": "y1_squared",
+      "column": 2,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "5e996f1ec0c5d016916620c2033336df60faa0d83bd60878da642e6f3926a2b5",
+      "metrics": {
+        "rhat_rank": 1.031443107333629,
+        "ess_bulk": 118.67024327394975,
+        "ess_tail": 130.871195980854,
+        "ess_mean": 93.88016071035301,
+        "mcse_mean": 0.15905899699841092
+      }
+    },
+    {
+      "key": "isotropic-46002",
+      "prefix": 2048,
+      "observable": "y2_squared",
+      "column": 3,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "2b53c8a360baa9bdf4a9f4dd7c1efd5310e18c029eb73bff1464c702c7789df0",
+      "metrics": {
+        "rhat_rank": 1.0246625382486174,
+        "ess_bulk": 119.47973803759028,
+        "ess_tail": 115.69316513453202,
+        "ess_mean": 88.20089398747557,
+        "mcse_mean": 0.167993352519886
+      }
+    },
+    {
+      "key": "isotropic-46002",
+      "prefix": 2048,
+      "observable": "product",
+      "column": 4,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "d022e932a5881a1fb9d4a4c306ef9c1ba1ac1a8fd830d9032d3409a048e975a4",
+      "metrics": {
+        "rhat_rank": 1.0325335073675201,
+        "ess_bulk": 111.88635344839493,
+        "ess_tail": 119.92564153223803,
+        "ess_mean": 87.14411785152184,
+        "mcse_mean": 0.1633410981797276
+      }
+    },
+    {
+      "key": "isotropic-46002",
+      "prefix": 2048,
+      "observable": "Q",
+      "column": 5,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "b84d5b574e133cd4ade2a8ff504e680871b665ba0af5aac62dcbadddc6647bdd",
+      "metrics": {
+        "rhat_rank": 1.0127966074512489,
+        "ess_bulk": 196.84822677592967,
+        "ess_tail": 258.38309095648907,
+        "ess_mean": 161.05456594494584,
+        "mcse_mean": 0.1677421818448607
+      }
+    },
+    {
+      "key": "isotropic-46002",
+      "prefix": 2048,
+      "observable": "sum_direction",
+      "column": 6,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "64f2db8ed117a20f06f0c2bcd48f49ac5920deef230d42bdadae89beb8f6ff05",
+      "metrics": {
+        "rhat_rank": 1.1633323582775137,
+        "ess_bulk": 20.032412867405522,
+        "ess_tail": 87.61753026435248,
+        "ess_mean": 19.932333671192758,
+        "mcse_mean": 0.238504814222719
+      }
+    },
+    {
+      "key": "isotropic-46002",
+      "prefix": 2048,
+      "observable": "difference_direction",
+      "column": 7,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "57dfb1730f159a304b4d2585929e33600527659a6c08b071a7f3afa5be47ed99",
+      "metrics": {
+        "rhat_rank": 1.0028603426748184,
+        "ess_bulk": 1097.408707165636,
+        "ess_tail": 1376.2118421955156,
+        "ess_mean": 1086.5181522466305,
+        "mcse_mean": 0.030222531931782218
+      }
+    },
+    {
+      "key": "isotropic-46002",
+      "prefix": 8192,
+      "observable": "y1",
+      "column": 0,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "da1652a0b72ff83c13321b8abf0d15166e810c044e248e60f99b874ff856101d",
+      "metrics": {
+        "rhat_rank": 1.0184888781025923,
+        "ess_bulk": 169.5368491244277,
+        "ess_tail": 395.58809911489584,
+        "ess_mean": 170.4888044745483,
+        "mcse_mean": 0.07421747397607212
+      }
+    },
+    {
+      "key": "isotropic-46002",
+      "prefix": 8192,
+      "observable": "y2",
+      "column": 1,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "939c26dd2c59f590308f7f3efe4536a25c21ccb8555c35fce2361d1ed1db99e1",
+      "metrics": {
+        "rhat_rank": 1.0175639213503649,
+        "ess_bulk": 173.03593142632238,
+        "ess_tail": 380.68034893639555,
+        "ess_mean": 173.42565353966535,
+        "mcse_mean": 0.07373257880948933
+      }
+    },
+    {
+      "key": "isotropic-46002",
+      "prefix": 8192,
+      "observable": "y1_squared",
+      "column": 2,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "d1cd72bf94d4faf92b248ffa6766aec19ebb41e6b2b86eb4dd36008ab9b40c2e",
+      "metrics": {
+        "rhat_rank": 1.003807834866166,
+        "ess_bulk": 461.5801293830221,
+        "ess_tail": 625.2063895732961,
+        "ess_mean": 376.5046861123004,
+        "mcse_mean": 0.06768185570768416
+      }
+    },
+    {
+      "key": "isotropic-46002",
+      "prefix": 8192,
+      "observable": "y2_squared",
+      "column": 3,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "846b84dcfc1ad07624686e32f1f3b666deb6e65af5979f280884313e1d370ea3",
+      "metrics": {
+        "rhat_rank": 1.002609223679934,
+        "ess_bulk": 456.46404407548476,
+        "ess_tail": 610.6184879988689,
+        "ess_mean": 373.3607243697497,
+        "mcse_mean": 0.06858808078144754
+      }
+    },
+    {
+      "key": "isotropic-46002",
+      "prefix": 8192,
+      "observable": "product",
+      "column": 4,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "b6400c8b744894fd5e02b9651444a14d26c793fa565978f381fcf2b210aed7ab",
+      "metrics": {
+        "rhat_rank": 1.0029001001450526,
+        "ess_bulk": 422.7315097304453,
+        "ess_tail": 584.6883151437854,
+        "ess_mean": 355.49079091578443,
+        "mcse_mean": 0.06828309757084519
+      }
+    },
+    {
+      "key": "isotropic-46002",
+      "prefix": 8192,
+      "observable": "Q",
+      "column": 5,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "6905636f5a976f0d5214e73f89bb02b7488564dd3dc1c3ab74f619eca6774721",
+      "metrics": {
+        "rhat_rank": 1.0021475339598427,
+        "ess_bulk": 847.708292110873,
+        "ess_tail": 1257.1810087745405,
+        "ess_mean": 769.9391679470041,
+        "mcse_mean": 0.06855820670560998
+      }
+    },
+    {
+      "key": "isotropic-46002",
+      "prefix": 8192,
+      "observable": "sum_direction",
+      "column": 6,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "e16d19ac6cb6c317f96dcd81f5866b3ec2978fa42162466a853771f8e929b803",
+      "metrics": {
+        "rhat_rank": 1.0184973239776038,
+        "ess_bulk": 166.96795862000343,
+        "ess_tail": 380.6899992120704,
+        "ess_mean": 167.60003507629258,
+        "mcse_mean": 0.07488522146917222
+      }
+    },
+    {
+      "key": "isotropic-46002",
+      "prefix": 8192,
+      "observable": "difference_direction",
+      "column": 7,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "26c183d20ad142b82beec9ab5d5863466c2fd35edfb9bafa947b705869ee656b",
+      "metrics": {
+        "rhat_rank": 1.0006662949425955,
+        "ess_bulk": 4276.582828188928,
+        "ess_tail": 5663.903284815696,
+        "ess_mean": 4263.857549824809,
+        "mcse_mean": 0.015188119720193906
+      }
+    },
+    {
+      "key": "preconditioned-46003",
+      "prefix": 2048,
+      "observable": "y1",
+      "column": 0,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "f598d3f75d023b69d6e3b0babf3e545b0e1cb7d7d56015b85b01bad8087c956b",
+      "metrics": {
+        "rhat_rank": 1.004590032361422,
+        "ess_bulk": 672.9815280194236,
+        "ess_tail": 988.8649596726187,
+        "ess_mean": 672.6115332323415,
+        "mcse_mean": 0.0392200872502384
+      }
+    },
+    {
+      "key": "preconditioned-46003",
+      "prefix": 2048,
+      "observable": "y2",
+      "column": 1,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "e237b6099aaee277c317ab379f3be6c729c60ac9c43de05aa88377a53ac0a032",
+      "metrics": {
+        "rhat_rank": 1.0060330213495938,
+        "ess_bulk": 613.426351675174,
+        "ess_tail": 975.4529056071348,
+        "ess_mean": 610.725503466386,
+        "mcse_mean": 0.04157566544139482
+      }
+    },
+    {
+      "key": "preconditioned-46003",
+      "prefix": 2048,
+      "observable": "y1_squared",
+      "column": 2,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "fbc82a98f3428beb6a441c5f483bfe1294f4111b986aeb93fb6562321d933f85",
+      "metrics": {
+        "rhat_rank": 1.0003741377531143,
+        "ess_bulk": 1476.315957567882,
+        "ess_tail": 1229.2314102845219,
+        "ess_mean": 997.3331288025263,
+        "mcse_mean": 0.04713318156987705
+      }
+    },
+    {
+      "key": "preconditioned-46003",
+      "prefix": 2048,
+      "observable": "y2_squared",
+      "column": 3,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "fcde0f21fb5d5058d2c5f01a0b870ecb20ad47acdfc00ba7c547092c0ee5fb69",
+      "metrics": {
+        "rhat_rank": 1.0015976246390585,
+        "ess_bulk": 1370.7892209218994,
+        "ess_tail": 1079.1832126724296,
+        "ess_mean": 905.7406611103477,
+        "mcse_mean": 0.0501516042980144
+      }
+    },
+    {
+      "key": "preconditioned-46003",
+      "prefix": 2048,
+      "observable": "product",
+      "column": 4,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "30671e4abd634378354f88e7c69eba3b3ff98f751ffb50a96246f768f7715df0",
+      "metrics": {
+        "rhat_rank": 1.0007050768147345,
+        "ess_bulk": 1446.5275783003883,
+        "ess_tail": 1198.0390116846265,
+        "ess_mean": 956.6775056688409,
+        "mcse_mean": 0.04734369124083927
+      }
+    },
+    {
+      "key": "preconditioned-46003",
+      "prefix": 2048,
+      "observable": "Q",
+      "column": 5,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "e6a17529aba5fad8c2c797b65f61d9b1cc9645329800d09e44636e86b49c817f",
+      "metrics": {
+        "rhat_rank": 1.0012990658299161,
+        "ess_bulk": 1061.0128613364013,
+        "ess_tail": 969.5562011616707,
+        "ess_mean": 857.0945758935665,
+        "mcse_mean": 0.0700280642218898
+      }
+    },
+    {
+      "key": "preconditioned-46003",
+      "prefix": 2048,
+      "observable": "sum_direction",
+      "column": 6,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "833726bde82d75457b395f763ef63320f8915facc1fc8f4d1b14803cc45f52ac",
+      "metrics": {
+        "rhat_rank": 1.0052294220829383,
+        "ess_bulk": 642.1527418660316,
+        "ess_tail": 970.9036039945044,
+        "ess_mean": 640.0940037608657,
+        "mcse_mean": 0.040428761019898604
+      }
+    },
+    {
+      "key": "preconditioned-46003",
+      "prefix": 2048,
+      "observable": "difference_direction",
+      "column": 7,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "7a7394465881278d9abdb7f197ee2a8e5fbdb67efe6bd9d3178fc610046fee1c",
+      "metrics": {
+        "rhat_rank": 1.00865982387959,
+        "ess_bulk": 686.5566442209057,
+        "ess_tail": 1024.1799032305335,
+        "ess_mean": 689.4598480462159,
+        "mcse_mean": 0.038139732369774325
+      }
+    },
+    {
+      "key": "preconditioned-46003",
+      "prefix": 8192,
+      "observable": "y1",
+      "column": 0,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "9eda85cc8070f9459a6e850f03d47803dac0b133add6241c4f416209cd690f73",
+      "metrics": {
+        "rhat_rank": 1.001671808695657,
+        "ess_bulk": 3031.1611069273677,
+        "ess_tail": 4498.926290623421,
+        "ess_mean": 3033.8693523294974,
+        "mcse_mean": 0.018301421801918485
+      }
+    },
+    {
+      "key": "preconditioned-46003",
+      "prefix": 8192,
+      "observable": "y2",
+      "column": 1,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "7fa3ea0d771332cedac3210f7b694dbecdf2ea801401b04850ffa6433f36fab2",
+      "metrics": {
+        "rhat_rank": 1.0017492163962254,
+        "ess_bulk": 3013.663310491296,
+        "ess_tail": 4559.047557576549,
+        "ess_mean": 3015.103219142926,
+        "mcse_mean": 0.018297341152186977
+      }
+    },
+    {
+      "key": "preconditioned-46003",
+      "prefix": 8192,
+      "observable": "y1_squared",
+      "column": 2,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "b2f272fc64289aa2daad848b9ace2cde85dc7f9e17c7f943768b3558b78ba498",
+      "metrics": {
+        "rhat_rank": 1.000678098868957,
+        "ess_bulk": 5752.367017978588,
+        "ess_tail": 5333.89743459998,
+        "ess_mean": 4211.08405802014,
+        "mcse_mean": 0.022003223582467583
+      }
+    },
+    {
+      "key": "preconditioned-46003",
+      "prefix": 8192,
+      "observable": "y2_squared",
+      "column": 3,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "081328c02862b9506db2c830418789c26a9bbee1211e7e8392939448c47229ce",
+      "metrics": {
+        "rhat_rank": 1.0011061898539948,
+        "ess_bulk": 5791.839944674769,
+        "ess_tail": 5119.480250528779,
+        "ess_mean": 4151.106420690445,
+        "mcse_mean": 0.02213413097101888
+      }
+    },
+    {
+      "key": "preconditioned-46003",
+      "prefix": 8192,
+      "observable": "product",
+      "column": 4,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "52cb66fa262168c9aafb0c8eab4a667f7990bc57869b2464f4abcdeec342d998",
+      "metrics": {
+        "rhat_rank": 1.000803390780102,
+        "ess_bulk": 5877.575986536786,
+        "ess_tail": 5251.997272566933,
+        "ess_mean": 4231.96101191803,
+        "mcse_mean": 0.021410944934946368
+      }
+    },
+    {
+      "key": "preconditioned-46003",
+      "prefix": 8192,
+      "observable": "Q",
+      "column": 5,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "52e1461341b23539d23fe34f4a87157cc9165122591b2dea5d540ac18f01f764",
+      "metrics": {
+        "rhat_rank": 1.0007267266601403,
+        "ess_bulk": 4406.656849314222,
+        "ess_tail": 4470.2602780097295,
+        "ess_mean": 3573.9199537817485,
+        "mcse_mean": 0.03342004404572788
+      }
+    },
+    {
+      "key": "preconditioned-46003",
+      "prefix": 8192,
+      "observable": "sum_direction",
+      "column": 6,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "15fe707caf0c3fc4e4fffbf7e3954e41641fe05523595d110eca2696ab4d5630",
+      "metrics": {
+        "rhat_rank": 1.0017233772105976,
+        "ess_bulk": 3020.576976682486,
+        "ess_tail": 4420.669163675446,
+        "ess_mean": 3023.232919568322,
+        "mcse_mean": 0.018306977562105996
+      }
+    },
+    {
+      "key": "preconditioned-46003",
+      "prefix": 8192,
+      "observable": "difference_direction",
+      "column": 7,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "812807f3c67f79e77693770d288960e15cc35c4484c3387376424da4b9be6eca",
+      "metrics": {
+        "rhat_rank": 1.0010368362768822,
+        "ess_bulk": 3099.5218045831734,
+        "ess_tail": 4541.0735510155955,
+        "ess_mean": 3100.011372528985,
+        "mcse_mean": 0.017928260340573744
+      }
+    },
+    {
+      "key": "isotropic-46003",
+      "prefix": 2048,
+      "observable": "y1",
+      "column": 0,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "42d0c9ff805e3a2d919d4bf672f874b3d5b5bdafb5a5253269b4b0ebf9d0e620",
+      "metrics": {
+        "rhat_rank": 1.1973543168908334,
+        "ess_bulk": 14.911316700621738,
+        "ess_tail": 39.96008371442048,
+        "ess_mean": 14.930752732438854,
+        "mcse_mean": 0.2634368854515495
+      }
+    },
+    {
+      "key": "isotropic-46003",
+      "prefix": 2048,
+      "observable": "y2",
+      "column": 1,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "a9127b14b07db39f5274b1348b6609499854eceb1ca501eaa78a9d623a93efcc",
+      "metrics": {
+        "rhat_rank": 1.189672174035844,
+        "ess_bulk": 15.429948772494757,
+        "ess_tail": 35.7916563282073,
+        "ess_mean": 15.13143256068965,
+        "mcse_mean": 0.2609921683242463
+      }
+    },
+    {
+      "key": "isotropic-46003",
+      "prefix": 2048,
+      "observable": "y1_squared",
+      "column": 2,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "b97ceaf64405642fffa465982d174a8f4035de30ca9bafc49b716422a1531b1a",
+      "metrics": {
+        "rhat_rank": 1.0374988499859639,
+        "ess_bulk": 103.5130054522273,
+        "ess_tail": 66.91427467427407,
+        "ess_mean": 72.25924283313901,
+        "mcse_mean": 0.17977253118654937
+      }
+    },
+    {
+      "key": "isotropic-46003",
+      "prefix": 2048,
+      "observable": "y2_squared",
+      "column": 3,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "7dc3d75442c4f8fee7f574c080887fae4acbe81c74d8ef3a681922845c85341a",
+      "metrics": {
+        "rhat_rank": 1.04515069518306,
+        "ess_bulk": 96.42666638845213,
+        "ess_tail": 68.40450655857147,
+        "ess_mean": 71.42790504990522,
+        "mcse_mean": 0.17924998131101413
+      }
+    },
+    {
+      "key": "isotropic-46003",
+      "prefix": 2048,
+      "observable": "product",
+      "column": 4,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "965505cb42318851149698d2c9ae26ca29dc59313655913319bdb416891e4b8f",
+      "metrics": {
+        "rhat_rank": 1.0406265742452505,
+        "ess_bulk": 96.17744535991238,
+        "ess_tail": 65.41459152917669,
+        "ess_mean": 69.37433086900297,
+        "mcse_mean": 0.1785174661433869
+      }
+    },
+    {
+      "key": "isotropic-46003",
+      "prefix": 2048,
+      "observable": "Q",
+      "column": 5,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "100f8beddcd03d70fdb6d6707e218223af81560e0bbe7435b047b03a151b1ffd",
+      "metrics": {
+        "rhat_rank": 1.032599615325656,
+        "ess_bulk": 127.87170335611405,
+        "ess_tail": 169.89818467802309,
+        "ess_mean": 98.93602160392199,
+        "mcse_mean": 0.20916355156203648
+      }
+    },
+    {
+      "key": "isotropic-46003",
+      "prefix": 2048,
+      "observable": "sum_direction",
+      "column": 6,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "f33a172bed73de88b9bb22f64b0b873c20f646195918bacd158a9f3608b6b6c7",
+      "metrics": {
+        "rhat_rank": 1.1994819788279647,
+        "ess_bulk": 14.763563919629183,
+        "ess_tail": 38.59358221469252,
+        "ess_mean": 14.650431847478043,
+        "mcse_mean": 0.26579589823195715
+      }
+    },
+    {
+      "key": "isotropic-46003",
+      "prefix": 2048,
+      "observable": "difference_direction",
+      "column": 7,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "64203d5aeaaa9879bea52b545fd2ec54d4c348008783bfe5704049eba851f481",
+      "metrics": {
+        "rhat_rank": 1.0020109614880288,
+        "ess_bulk": 1288.3756943496544,
+        "ess_tail": 1630.0683225999053,
+        "ess_mean": 1284.39738492173,
+        "mcse_mean": 0.02751092320045485
+      }
+    },
+    {
+      "key": "isotropic-46003",
+      "prefix": 8192,
+      "observable": "y1",
+      "column": 0,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "0663b5a10e9cd9beb3b5456f86c2df034d4993629e868c61bf4fdc69951bd582",
+      "metrics": {
+        "rhat_rank": 1.0286171489637221,
+        "ess_bulk": 124.3418439932121,
+        "ess_tail": 217.36947366820306,
+        "ess_mean": 122.81588547780885,
+        "mcse_mean": 0.09363339571494499
+      }
+    },
+    {
+      "key": "isotropic-46003",
+      "prefix": 8192,
+      "observable": "y2",
+      "column": 1,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "54eafd9cb5d72f1a30fe52c4f2a42861e8e5d3b2b7f338e5681174656daefb1f",
+      "metrics": {
+        "rhat_rank": 1.0258389644834462,
+        "ess_bulk": 127.984450211975,
+        "ess_tail": 213.8674990119993,
+        "ess_mean": 126.05876608874263,
+        "mcse_mean": 0.09196133560003668
+      }
+    },
+    {
+      "key": "isotropic-46003",
+      "prefix": 8192,
+      "observable": "y1_squared",
+      "column": 2,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "37b44f30a1fb002cc0cabb01c3cf78d2f837ea6983ebdc8af2a24366527e5e0b",
+      "metrics": {
+        "rhat_rank": 1.0255631275639467,
+        "ess_bulk": 382.4236408356482,
+        "ess_tail": 370.6770135834728,
+        "ess_mean": 278.0151446857938,
+        "mcse_mean": 0.0898442543547549
+      }
+    },
+    {
+      "key": "isotropic-46003",
+      "prefix": 8192,
+      "observable": "y2_squared",
+      "column": 3,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "286384933204815f2f4ff8f4722852187e676b16aabf07ca53af4c2b9b624a44",
+      "metrics": {
+        "rhat_rank": 1.0231609281333598,
+        "ess_bulk": 386.8519737270075,
+        "ess_tail": 361.9369426276319,
+        "ess_mean": 274.97119384219474,
+        "mcse_mean": 0.0901135751019945
+      }
+    },
+    {
+      "key": "isotropic-46003",
+      "prefix": 8192,
+      "observable": "product",
+      "column": 4,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "8478df1263f25b471c48c477aaf467dbd51c65901b278d11aec76b7006a767c9",
+      "metrics": {
+        "rhat_rank": 1.0262983433867143,
+        "ess_bulk": 365.322167393259,
+        "ess_tail": 340.85775274043453,
+        "ess_mean": 265.0464616632177,
+        "mcse_mean": 0.08975923307484332
+      }
+    },
+    {
+      "key": "isotropic-46003",
+      "prefix": 8192,
+      "observable": "Q",
+      "column": 5,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "433d1d4f5e33d0da681b1be9a4dc00ee8cf7141a00323e30a7b4f2ff682774b5",
+      "metrics": {
+        "rhat_rank": 1.0133320028258404,
+        "ess_bulk": 563.9052404754349,
+        "ess_tail": 723.5423581858375,
+        "ess_mean": 452.64993001704886,
+        "mcse_mean": 0.09543147372711412
+      }
+    },
+    {
+      "key": "isotropic-46003",
+      "prefix": 8192,
+      "observable": "sum_direction",
+      "column": 6,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "8f3b235dbd197d2003a2d17b3484697f6ed753a00ecc716437484b003cda14d7",
+      "metrics": {
+        "rhat_rank": 1.0286188197090844,
+        "ess_bulk": 123.36786076645136,
+        "ess_tail": 195.83985888938247,
+        "ess_mean": 121.62110334592332,
+        "mcse_mean": 0.09396434565536362
+      }
+    },
+    {
+      "key": "isotropic-46003",
+      "prefix": 8192,
+      "observable": "difference_direction",
+      "column": 7,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "f7971ef843b3da03053a7d13f237c32a0c6698cb2e4b3b49f48f7d220efe6e04",
+      "metrics": {
+        "rhat_rank": 1.0012571326245714,
+        "ess_bulk": 4430.182056255697,
+        "ess_tail": 5845.282221077561,
+        "ess_mean": 4429.757259247859,
+        "mcse_mean": 0.014851242694334002
+      }
+    },
+    {
+      "key": "preconditioned-46004",
+      "prefix": 2048,
+      "observable": "y1",
+      "column": 0,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "3a7ea45da9c13209df9070dd434fde3504b5cdf49f83424c5fa7b0e517fda31b",
+      "metrics": {
+        "rhat_rank": 1.0041518783207832,
+        "ess_bulk": 706.3812885952813,
+        "ess_tail": 1343.7929595090422,
+        "ess_mean": 703.7059161813453,
+        "mcse_mean": 0.03680402151029386
+      }
+    },
+    {
+      "key": "preconditioned-46004",
+      "prefix": 2048,
+      "observable": "y2",
+      "column": 1,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "366388ee106ba55fdee3352e22cb32bbbbd29c349ebe2bb23e2783fb09955db6",
+      "metrics": {
+        "rhat_rank": 1.002347923321214,
+        "ess_bulk": 671.8381143723913,
+        "ess_tail": 1357.9292182674685,
+        "ess_mean": 671.3919096060162,
+        "mcse_mean": 0.03813936115673247
+      }
+    },
+    {
+      "key": "preconditioned-46004",
+      "prefix": 2048,
+      "observable": "y1_squared",
+      "column": 2,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "c3f681647e5bfde99db5c9219e5a1c04f62a5bf63849649196863f4e32d8474c",
+      "metrics": {
+        "rhat_rank": 1.001016752119319,
+        "ess_bulk": 1621.8004091043201,
+        "ess_tail": 1627.4076000489522,
+        "ess_mean": 1181.3640866620276,
+        "mcse_mean": 0.040003956984314915
+      }
+    },
+    {
+      "key": "preconditioned-46004",
+      "prefix": 2048,
+      "observable": "y2_squared",
+      "column": 3,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "fa26b258611ad444e62415e27736b5d846b1bb3b1c5a995bd204159efcc67e6d",
+      "metrics": {
+        "rhat_rank": 1.002854129080933,
+        "ess_bulk": 1537.047619538403,
+        "ess_tail": 1613.7709891772051,
+        "ess_mean": 1170.8574000061521,
+        "mcse_mean": 0.040716158832539304
+      }
+    },
+    {
+      "key": "preconditioned-46004",
+      "prefix": 2048,
+      "observable": "product",
+      "column": 4,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "bae24ae30f2c5f42557dbfff5e61395e5335a06b5d2bfafbf12a7924451a5c14",
+      "metrics": {
+        "rhat_rank": 1.0014224823166542,
+        "ess_bulk": 1558.76249541128,
+        "ess_tail": 1742.3355667144333,
+        "ess_mean": 1173.076384454501,
+        "mcse_mean": 0.03960269566186744
+      }
+    },
+    {
+      "key": "preconditioned-46004",
+      "prefix": 2048,
+      "observable": "Q",
+      "column": 5,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "193fb7618b299458f6f9a05c01e18bfa9e2476d14271633d8655c563fc572f99",
+      "metrics": {
+        "rhat_rank": 1.0034838574863325,
+        "ess_bulk": 1201.7444970390316,
+        "ess_tail": 1504.8742993920673,
+        "ess_mean": 1053.2304849407187,
+        "mcse_mean": 0.0600922793369378
+      }
+    },
+    {
+      "key": "preconditioned-46004",
+      "prefix": 2048,
+      "observable": "sum_direction",
+      "column": 6,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "b2b78f051da8e5cc68e3a1ecfc90eed6dd57357340c317f51a8ff13928e0f2b6",
+      "metrics": {
+        "rhat_rank": 1.0031054778571467,
+        "ess_bulk": 685.0497669201989,
+        "ess_tail": 1332.2019324080497,
+        "ess_mean": 683.7726003054775,
+        "mcse_mean": 0.03756037130072007
+      }
+    },
+    {
+      "key": "preconditioned-46004",
+      "prefix": 2048,
+      "observable": "difference_direction",
+      "column": 7,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "58686001f18f2dc7c34f9228817319160ebd7ababe73bb06eb3793da9b55b1cc",
+      "metrics": {
+        "rhat_rank": 1.0076442793120755,
+        "ess_bulk": 822.6744099704983,
+        "ess_tail": 1223.2675253229393,
+        "ess_mean": 816.9115033057151,
+        "mcse_mean": 0.034541753716689355
+      }
+    },
+    {
+      "key": "preconditioned-46004",
+      "prefix": 8192,
+      "observable": "y1",
+      "column": 0,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "0e69c1e0a7310752e1dbe3b7c57d5c01e54fa8303b708f35671cfc2ddebae958",
+      "metrics": {
+        "rhat_rank": 1.0015572136767057,
+        "ess_bulk": 2856.4140325537282,
+        "ess_tail": 4183.759270785683,
+        "ess_mean": 2853.820143436325,
+        "mcse_mean": 0.01870281113712744
+      }
+    },
+    {
+      "key": "preconditioned-46004",
+      "prefix": 8192,
+      "observable": "y2",
+      "column": 1,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "6aeedb1171d2aa78fcb609c9f1a15c3c3ec35cbd7b33a3d0d2ac3fc280c9e7b0",
+      "metrics": {
+        "rhat_rank": 1.001570229811313,
+        "ess_bulk": 2870.6177653488953,
+        "ess_tail": 4617.565459062791,
+        "ess_mean": 2869.34483530617,
+        "mcse_mean": 0.018609784356297246
+      }
+    },
+    {
+      "key": "preconditioned-46004",
+      "prefix": 8192,
+      "observable": "y1_squared",
+      "column": 2,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "66880fb77af26de89f0e6aad6d3511fb098d317afd0208fcd0bfe1ca09e50194",
+      "metrics": {
+        "rhat_rank": 1.001056149998568,
+        "ess_bulk": 5442.036230823676,
+        "ess_tail": 5499.172654981194,
+        "ess_mean": 4172.348319641113,
+        "mcse_mean": 0.02187039609718452
+      }
+    },
+    {
+      "key": "preconditioned-46004",
+      "prefix": 8192,
+      "observable": "y2_squared",
+      "column": 3,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "784471190eb1e831ab430e24dcccd42ff71dd82927a72179b872cdc065b94eec",
+      "metrics": {
+        "rhat_rank": 1.0008467152995515,
+        "ess_bulk": 5628.0355182657295,
+        "ess_tail": 5925.374119338748,
+        "ess_mean": 4392.50225378394,
+        "mcse_mean": 0.02110314153277105
+      }
+    },
+    {
+      "key": "preconditioned-46004",
+      "prefix": 8192,
+      "observable": "product",
+      "column": 4,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "dd1eb8b2b510461466ac60c53034f33a0c4d5c0aae2a6090f4207bfc222fbd5a",
+      "metrics": {
+        "rhat_rank": 1.001100125474699,
+        "ess_bulk": 5599.762280434028,
+        "ess_tail": 5800.807506533611,
+        "ess_mean": 4295.928102899433,
+        "mcse_mean": 0.020949898529884704
+      }
+    },
+    {
+      "key": "preconditioned-46004",
+      "prefix": 8192,
+      "observable": "Q",
+      "column": 5,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "11f98e36cbf50c910d55ed584c38004871f1f1b524d9824ff6a759b3ac534f31",
+      "metrics": {
+        "rhat_rank": 1.0008448468341475,
+        "ess_bulk": 4498.479423589755,
+        "ess_tail": 5046.276073180091,
+        "ess_mean": 3883.2385327761585,
+        "mcse_mean": 0.031572857944807006
+      }
+    },
+    {
+      "key": "preconditioned-46004",
+      "prefix": 8192,
+      "observable": "sum_direction",
+      "column": 6,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "55fba442cf739633cadd580485f668a1967e6862e8a4e782b89db85b5dcd28f8",
+      "metrics": {
+        "rhat_rank": 1.0014984474122044,
+        "ess_bulk": 2857.3562641890517,
+        "ess_tail": 4210.779051560614,
+        "ess_mean": 2855.697212079016,
+        "mcse_mean": 0.018673784084495125
+      }
+    },
+    {
+      "key": "preconditioned-46004",
+      "prefix": 8192,
+      "observable": "difference_direction",
+      "column": 7,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "d1dc484c08b338b2c2c9389f1157e46b4c52b5c3d22555e4b2ea3bfa1a43e2b9",
+      "metrics": {
+        "rhat_rank": 1.0038254483007107,
+        "ess_bulk": 3089.9978869231118,
+        "ess_tail": 5047.3866169079765,
+        "ess_mean": 3094.0702135371253,
+        "mcse_mean": 0.018003709692320062
+      }
+    },
+    {
+      "key": "isotropic-46004",
+      "prefix": 2048,
+      "observable": "y1",
+      "column": 0,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "9eb7119156cf36f3d7ac70b38c8341fb9d471a3786bad1c1eca2c52fbfc0954f",
+      "metrics": {
+        "rhat_rank": 1.1311849894526347,
+        "ess_bulk": 30.12300932649815,
+        "ess_tail": 113.91786349422027,
+        "ess_mean": 29.32247868850623,
+        "mcse_mean": 0.17315730851757763
+      }
+    },
+    {
+      "key": "isotropic-46004",
+      "prefix": 2048,
+      "observable": "y2",
+      "column": 1,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "c4623676f6ff947c6c11a9d6f3dd7a38d601327236bfaf253de9077fa330102a",
+      "metrics": {
+        "rhat_rank": 1.12714903957868,
+        "ess_bulk": 32.9038032004791,
+        "ess_tail": 103.52301462135631,
+        "ess_mean": 31.955099332874415,
+        "mcse_mean": 0.1672688639472825
+      }
+    },
+    {
+      "key": "isotropic-46004",
+      "prefix": 2048,
+      "observable": "y1_squared",
+      "column": 2,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "7e672ba776b8e6c71a60544831471a4d24c8d874069d66689a027fe7f50a18df",
+      "metrics": {
+        "rhat_rank": 1.013126325646844,
+        "ess_bulk": 134.35874958089167,
+        "ess_tail": 158.14447683371012,
+        "ess_mean": 113.4320223113239,
+        "mcse_mean": 0.11225950191089612
+      }
+    },
+    {
+      "key": "isotropic-46004",
+      "prefix": 2048,
+      "observable": "y2_squared",
+      "column": 3,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "af3f17a0d2634ae0f2792f62acf7b07fb3138e47522d0f0957e4d694ecd9f7b9",
+      "metrics": {
+        "rhat_rank": 1.010884564446194,
+        "ess_bulk": 138.91289368706774,
+        "ess_tail": 155.7294313877631,
+        "ess_mean": 106.6993283175633,
+        "mcse_mean": 0.11609776968726873
+      }
+    },
+    {
+      "key": "isotropic-46004",
+      "prefix": 2048,
+      "observable": "product",
+      "column": 4,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "868142c54c917e1e26f90cc347aece04ab69835bdd0b11e2f8802ec0e80216ed",
+      "metrics": {
+        "rhat_rank": 1.0135356741649142,
+        "ess_bulk": 125.62477349780802,
+        "ess_tail": 149.19997962321978,
+        "ess_mean": 104.61975055976433,
+        "mcse_mean": 0.11380280748181273
+      }
+    },
+    {
+      "key": "isotropic-46004",
+      "prefix": 2048,
+      "observable": "Q",
+      "column": 5,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "6fcc86502826710b95bc90fe10f295ba41fc405a4f7024dfd21fa5895f9a6bb9",
+      "metrics": {
+        "rhat_rank": 1.0042590086673333,
+        "ess_bulk": 259.8250112790651,
+        "ess_tail": 405.6122943797451,
+        "ess_mean": 215.45298571254145,
+        "mcse_mean": 0.12255669118830895
+      }
+    },
+    {
+      "key": "isotropic-46004",
+      "prefix": 2048,
+      "observable": "sum_direction",
+      "column": 6,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "184d3fd1a592dac7d5b8cd9f017b08b159a2b65053416513f035f5c47acdf177",
+      "metrics": {
+        "rhat_rank": 1.1330811306732658,
+        "ess_bulk": 30.783348679224538,
+        "ess_tail": 104.96678984602774,
+        "ess_mean": 29.82996793163516,
+        "mcse_mean": 0.17218575087246188
+      }
+    },
+    {
+      "key": "isotropic-46004",
+      "prefix": 2048,
+      "observable": "difference_direction",
+      "column": 7,
+      "shape": [
+        4,
+        2048
+      ],
+      "sha256": "69a9eca69590b9fc076bd09e2a6608074ef3919905c8b628097ce7c2d5d07b70",
+      "metrics": {
+        "rhat_rank": 1.002002591234777,
+        "ess_bulk": 1196.5399215912996,
+        "ess_tail": 1552.8983598085956,
+        "ess_mean": 1195.3252396304038,
+        "mcse_mean": 0.02854041119506119
+      }
+    },
+    {
+      "key": "isotropic-46004",
+      "prefix": 8192,
+      "observable": "y1",
+      "column": 0,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "c83a26ea35efed5b3db0dd9c982b0705aa69502e33401e87a487ee77e841389f",
+      "metrics": {
+        "rhat_rank": 1.0132563873068647,
+        "ess_bulk": 157.0698676914374,
+        "ess_tail": 339.4047495082541,
+        "ess_mean": 157.4054168185264,
+        "mcse_mean": 0.08101063662618588
+      }
+    },
+    {
+      "key": "isotropic-46004",
+      "prefix": 8192,
+      "observable": "y2",
+      "column": 1,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "1dc8626b246ecb5036d31cb34fede7a5cf518a2a53bb469242476c806c8a3205",
+      "metrics": {
+        "rhat_rank": 1.0130895563198592,
+        "ess_bulk": 155.12704912413218,
+        "ess_tail": 323.9840041863531,
+        "ess_mean": 155.67011248035357,
+        "mcse_mean": 0.08137003765495529
+      }
+    },
+    {
+      "key": "isotropic-46004",
+      "prefix": 8192,
+      "observable": "y1_squared",
+      "column": 2,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "a550a8b7cf7941eff97fd5c9c50ac94243a8c1b93664891ae1248151bee5193e",
+      "metrics": {
+        "rhat_rank": 1.0129652940138292,
+        "ess_bulk": 436.68630293934996,
+        "ess_tail": 572.0082698000477,
+        "ess_mean": 367.69045390220737,
+        "mcse_mean": 0.07687935979423682
+      }
+    },
+    {
+      "key": "isotropic-46004",
+      "prefix": 8192,
+      "observable": "y2_squared",
+      "column": 3,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "daf532d29821c764832b03d76a97cb75339eda35169b572fafc7919ac8542195",
+      "metrics": {
+        "rhat_rank": 1.013036482126259,
+        "ess_bulk": 435.9131968053761,
+        "ess_tail": 546.4345211253752,
+        "ess_mean": 368.8954034773245,
+        "mcse_mean": 0.07842395462947316
+      }
+    },
+    {
+      "key": "isotropic-46004",
+      "prefix": 8192,
+      "observable": "product",
+      "column": 4,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "7a2bebb42e40d415a436e1ae4cc36216c21dbd97f70c8907966f818af8867341",
+      "metrics": {
+        "rhat_rank": 1.0139515801400794,
+        "ess_bulk": 410.76594230305926,
+        "ess_tail": 528.1667455409812,
+        "ess_mean": 353.7571964956145,
+        "mcse_mean": 0.07745499763980024
+      }
+    },
+    {
+      "key": "isotropic-46004",
+      "prefix": 8192,
+      "observable": "Q",
+      "column": 5,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "1c232ff7b098ae4b51ffc6052d3939300d94727079f1446aabb8fa74a966d436",
+      "metrics": {
+        "rhat_rank": 1.0072720018167338,
+        "ess_bulk": 711.2706878489126,
+        "ess_tail": 1001.5648302318469,
+        "ess_mean": 619.4789693190152,
+        "mcse_mean": 0.08165408811326871
+      }
+    },
+    {
+      "key": "isotropic-46004",
+      "prefix": 8192,
+      "observable": "sum_direction",
+      "column": 6,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "d622103b9b65f89e103717c5acd39f522eaeeb00d9eda7b48025615651e4b169",
+      "metrics": {
+        "rhat_rank": 1.0137259100672278,
+        "ess_bulk": 152.46907750585842,
+        "ess_tail": 296.8163285757542,
+        "ess_mean": 152.9231607989825,
+        "mcse_mean": 0.08218277835682745
+      }
+    },
+    {
+      "key": "isotropic-46004",
+      "prefix": 8192,
+      "observable": "difference_direction",
+      "column": 7,
+      "shape": [
+        4,
+        8192
+      ],
+      "sha256": "f7d3ecc1bfd98692f2b7c9c44753ef1a65dbcb3739358fe60084fa3d89de9349",
+      "metrics": {
+        "rhat_rank": 1.0008093205529087,
+        "ess_bulk": 4472.327067418409,
+        "ess_tail": 6053.018618831454,
+        "ess_mean": 4477.763505260571,
+        "mcse_mean": 0.014894139634556361
+      }
+    }
+  ],
+  "candidate_input_manifest": {
+    "schema_version": 1,
+    "actual_candidate_MH_evolutions": 8,
+    "datasets": [
+      {
+        "key": "preconditioned-46001",
+        "prefix": 2048,
+        "observable": "y1",
+        "column": 0,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "4d9ce02d665b304d6572b8b3e8446983e45122f2fc452951085990602b4d4953"
+      },
+      {
+        "key": "preconditioned-46001",
+        "prefix": 2048,
+        "observable": "y2",
+        "column": 1,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "d7f17150a19f0222e031b47e5e0182ffbeee31882a3e82ecad3207f3f1472558"
+      },
+      {
+        "key": "preconditioned-46001",
+        "prefix": 2048,
+        "observable": "y1_squared",
+        "column": 2,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "f33e903f9350cc203d87827ed92803bdbd7ba92bb08ba400c3bc72627cf8f633"
+      },
+      {
+        "key": "preconditioned-46001",
+        "prefix": 2048,
+        "observable": "y2_squared",
+        "column": 3,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "990a6e37719a420f9e004261b3c7483d2558f40c5e815c6f32718ad6d4dedbae"
+      },
+      {
+        "key": "preconditioned-46001",
+        "prefix": 2048,
+        "observable": "product",
+        "column": 4,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "703b1e28e71b7c5ba2f05d1f65bcee8bf796fcde2f9ffaf0b14ff3a1d25e4fcf"
+      },
+      {
+        "key": "preconditioned-46001",
+        "prefix": 2048,
+        "observable": "Q",
+        "column": 5,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "3eed07c612d38047d805898554f54be0748ba30f66af778a30bbd12552a19a23"
+      },
+      {
+        "key": "preconditioned-46001",
+        "prefix": 2048,
+        "observable": "sum_direction",
+        "column": 6,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "99163a22521d7aee20252f89df851d2280a00ec20596b11a6d744a4d51bcbf9c"
+      },
+      {
+        "key": "preconditioned-46001",
+        "prefix": 2048,
+        "observable": "difference_direction",
+        "column": 7,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "ee50235e0598612c4d0921e48481277e7390b5e4f493ffba9a114bfd59126708"
+      },
+      {
+        "key": "preconditioned-46001",
+        "prefix": 8192,
+        "observable": "y1",
+        "column": 0,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "426bdf2063fc89ce8c70837cc11f3a787587ba9757125ff1b7ca04d7d49c090d"
+      },
+      {
+        "key": "preconditioned-46001",
+        "prefix": 8192,
+        "observable": "y2",
+        "column": 1,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "6ea3266396fd94a31b23db17789468acee22616fab7028962168e2064b944c42"
+      },
+      {
+        "key": "preconditioned-46001",
+        "prefix": 8192,
+        "observable": "y1_squared",
+        "column": 2,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "dadc777c443d5f142021858051191d84f9579ae73ed2e34c19bb8281d40434a5"
+      },
+      {
+        "key": "preconditioned-46001",
+        "prefix": 8192,
+        "observable": "y2_squared",
+        "column": 3,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "33ca8b1b03be4c76dc56d74702bdb03a1d1caa20b61fba08b6e9fcaa0b234bb3"
+      },
+      {
+        "key": "preconditioned-46001",
+        "prefix": 8192,
+        "observable": "product",
+        "column": 4,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "e5538c71331cd5d63477ee916bab761915878ceb2e8ab9a97d016760464431a1"
+      },
+      {
+        "key": "preconditioned-46001",
+        "prefix": 8192,
+        "observable": "Q",
+        "column": 5,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "52eeff77bb4e581da9dd2abef22537c4bdea50aa7a315d4d45bebdad2b6c4391"
+      },
+      {
+        "key": "preconditioned-46001",
+        "prefix": 8192,
+        "observable": "sum_direction",
+        "column": 6,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "4b4ca3bc82975610f8ee2c19b8ed86f4436dbe9ee76ee502cfe419d71f4c8b3e"
+      },
+      {
+        "key": "preconditioned-46001",
+        "prefix": 8192,
+        "observable": "difference_direction",
+        "column": 7,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "ed38241651b82d438b2539e36fa8b91abdc0d501f4f803a6c06e4a931eb5c143"
+      },
+      {
+        "key": "isotropic-46001",
+        "prefix": 2048,
+        "observable": "y1",
+        "column": 0,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "2ccda40995152c856a9c9e974fd69e4cf5458fa4f78f0aa62206db57b3c2318f"
+      },
+      {
+        "key": "isotropic-46001",
+        "prefix": 2048,
+        "observable": "y2",
+        "column": 1,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "1a3887d6f2e2ee985d8d9a24ec61e14359e6b00d202d0d4bb99d1bca0c6a9139"
+      },
+      {
+        "key": "isotropic-46001",
+        "prefix": 2048,
+        "observable": "y1_squared",
+        "column": 2,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "48b419583dd841bb7e160c4911f901d7e00dcfebc44f80e14eaea827e9ba0b55"
+      },
+      {
+        "key": "isotropic-46001",
+        "prefix": 2048,
+        "observable": "y2_squared",
+        "column": 3,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "9b063cb21573b9762acfe102b1b33e28e7c019e08bbb4bdb5148be58293df385"
+      },
+      {
+        "key": "isotropic-46001",
+        "prefix": 2048,
+        "observable": "product",
+        "column": 4,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "18a869e468f7a2f12accae3a9a8f60bbafa95dd1b8bf065465fe5167615e703c"
+      },
+      {
+        "key": "isotropic-46001",
+        "prefix": 2048,
+        "observable": "Q",
+        "column": 5,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "b9452a85f72f586f82a1d5425bb0a50279bb4d4485e4014a1e4f2e38aca21c3f"
+      },
+      {
+        "key": "isotropic-46001",
+        "prefix": 2048,
+        "observable": "sum_direction",
+        "column": 6,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "429e8847c3448ca94294287d4104f5bb81fe27ef660e8f6daa7b6d439fece86c"
+      },
+      {
+        "key": "isotropic-46001",
+        "prefix": 2048,
+        "observable": "difference_direction",
+        "column": 7,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "2ee9561072d8cf6b88bb64e4b845454c061046944dd633afd33502cfb1a48f8c"
+      },
+      {
+        "key": "isotropic-46001",
+        "prefix": 8192,
+        "observable": "y1",
+        "column": 0,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "65e43965269c2c44b67472e085dc00ced71da107b882f2fe73485ea52c6e24ec"
+      },
+      {
+        "key": "isotropic-46001",
+        "prefix": 8192,
+        "observable": "y2",
+        "column": 1,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "e5d84a0480c6dd1b5699688b5a0a13770bbdc7a5e2c9ea32662d8a3108e42dea"
+      },
+      {
+        "key": "isotropic-46001",
+        "prefix": 8192,
+        "observable": "y1_squared",
+        "column": 2,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "b08885b8b2982239c5da887c9f6f9539b8f106fb1ff67cec20314900bf2da214"
+      },
+      {
+        "key": "isotropic-46001",
+        "prefix": 8192,
+        "observable": "y2_squared",
+        "column": 3,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "15b88804d4b6f5d3f11e9c67cd9226e48fb04c52b190e15e396cdef0b13df8f2"
+      },
+      {
+        "key": "isotropic-46001",
+        "prefix": 8192,
+        "observable": "product",
+        "column": 4,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "1f9c5c74456599069e090dd3b3c2771c6fcf672696e2ad0ae0c8c4b8d674ec12"
+      },
+      {
+        "key": "isotropic-46001",
+        "prefix": 8192,
+        "observable": "Q",
+        "column": 5,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "45b1f3af25b2ebc0ab2fc1d360823a1c039c6d48c4c604b3e0077a79a852c00e"
+      },
+      {
+        "key": "isotropic-46001",
+        "prefix": 8192,
+        "observable": "sum_direction",
+        "column": 6,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "ab9af7dd1614bca0bf86eb9aee420cdd1e4fa484df2e71f9d01f35e037045f5c"
+      },
+      {
+        "key": "isotropic-46001",
+        "prefix": 8192,
+        "observable": "difference_direction",
+        "column": 7,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "84b462022034ffcf9a87f02040cc87b3232926d7fdcc4b438178ba84977ac579"
+      },
+      {
+        "key": "preconditioned-46002",
+        "prefix": 2048,
+        "observable": "y1",
+        "column": 0,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "63744de183f8899d82e201b39b08283b5066eb53db3e1c74c220f43995aa87a1"
+      },
+      {
+        "key": "preconditioned-46002",
+        "prefix": 2048,
+        "observable": "y2",
+        "column": 1,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "6bb9217bf54e3c8c219cfd0d99158ac5f16bcb3c526d8dc2d1208e83ebdffa37"
+      },
+      {
+        "key": "preconditioned-46002",
+        "prefix": 2048,
+        "observable": "y1_squared",
+        "column": 2,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "4568a7df1b47a285d93ce106a7b3238e249f15277803faf93bd5bfef44b95e3a"
+      },
+      {
+        "key": "preconditioned-46002",
+        "prefix": 2048,
+        "observable": "y2_squared",
+        "column": 3,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "eea3ea505fda34ed96647dca27d26e1508889872dd23a01e4099764799915d48"
+      },
+      {
+        "key": "preconditioned-46002",
+        "prefix": 2048,
+        "observable": "product",
+        "column": 4,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "224a67984013fb29dc08fca1186dc983391bdeb1e3322927536c2e94c20d85e0"
+      },
+      {
+        "key": "preconditioned-46002",
+        "prefix": 2048,
+        "observable": "Q",
+        "column": 5,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "ca33af96ad54fda8f4184b65388bb4d54f8f81d7b23ab6c5959e901eff8ba374"
+      },
+      {
+        "key": "preconditioned-46002",
+        "prefix": 2048,
+        "observable": "sum_direction",
+        "column": 6,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "b5182618a56929bcbe5d0fda50be4385337d797a2e031f15ab9f6fbc52a7ba44"
+      },
+      {
+        "key": "preconditioned-46002",
+        "prefix": 2048,
+        "observable": "difference_direction",
+        "column": 7,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "ce3b02ea9d3e1f6b7aec3eb96b530ffd9874df5cdbb762a45d358ad648bfcef1"
+      },
+      {
+        "key": "preconditioned-46002",
+        "prefix": 8192,
+        "observable": "y1",
+        "column": 0,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "b4e014e5974d7022d70251002f23a322f34110c8f063b6bae6d7877fafaa109a"
+      },
+      {
+        "key": "preconditioned-46002",
+        "prefix": 8192,
+        "observable": "y2",
+        "column": 1,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "2ee2ac02ad5c777c40a79623b378ef7ba5207292d1f69ff0a1cb41fef53e4389"
+      },
+      {
+        "key": "preconditioned-46002",
+        "prefix": 8192,
+        "observable": "y1_squared",
+        "column": 2,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "f2a222063f0b4c80feff0923fabfba090a65808edad2adae8d602479710af785"
+      },
+      {
+        "key": "preconditioned-46002",
+        "prefix": 8192,
+        "observable": "y2_squared",
+        "column": 3,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "ae2dfdc14cca11f9b835ddc4c1a5db15b8b4df5c99627ca9f3d38d177950c7f3"
+      },
+      {
+        "key": "preconditioned-46002",
+        "prefix": 8192,
+        "observable": "product",
+        "column": 4,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "1569cfe95ad1fcfcc722357f461aaa8d976c258dca1ad05441f5460d69c4fa14"
+      },
+      {
+        "key": "preconditioned-46002",
+        "prefix": 8192,
+        "observable": "Q",
+        "column": 5,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "3af4ba5e4a2054780a4ec5c26c5a4fde2c06f3ad77d4df0fafb511ed3f21a28e"
+      },
+      {
+        "key": "preconditioned-46002",
+        "prefix": 8192,
+        "observable": "sum_direction",
+        "column": 6,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "1ac91ef80e9d4a267cf54067d7a7b28d7abfad2238ccfa5ab3068b4fa89c4fab"
+      },
+      {
+        "key": "preconditioned-46002",
+        "prefix": 8192,
+        "observable": "difference_direction",
+        "column": 7,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "4bace6feb3e61059901520e28ed3ac7a45a986c47f427d60351521c58a1e3179"
+      },
+      {
+        "key": "isotropic-46002",
+        "prefix": 2048,
+        "observable": "y1",
+        "column": 0,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "0ceacc06b8329f5df2a6ad0035b13d0b07422842a3df30e8d1c2415fb9e8db97"
+      },
+      {
+        "key": "isotropic-46002",
+        "prefix": 2048,
+        "observable": "y2",
+        "column": 1,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "e61bc883fa49434381c4a107000d963c2a0973602e58c822b02a392c998c0442"
+      },
+      {
+        "key": "isotropic-46002",
+        "prefix": 2048,
+        "observable": "y1_squared",
+        "column": 2,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "5e996f1ec0c5d016916620c2033336df60faa0d83bd60878da642e6f3926a2b5"
+      },
+      {
+        "key": "isotropic-46002",
+        "prefix": 2048,
+        "observable": "y2_squared",
+        "column": 3,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "2b53c8a360baa9bdf4a9f4dd7c1efd5310e18c029eb73bff1464c702c7789df0"
+      },
+      {
+        "key": "isotropic-46002",
+        "prefix": 2048,
+        "observable": "product",
+        "column": 4,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "d022e932a5881a1fb9d4a4c306ef9c1ba1ac1a8fd830d9032d3409a048e975a4"
+      },
+      {
+        "key": "isotropic-46002",
+        "prefix": 2048,
+        "observable": "Q",
+        "column": 5,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "b84d5b574e133cd4ade2a8ff504e680871b665ba0af5aac62dcbadddc6647bdd"
+      },
+      {
+        "key": "isotropic-46002",
+        "prefix": 2048,
+        "observable": "sum_direction",
+        "column": 6,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "64f2db8ed117a20f06f0c2bcd48f49ac5920deef230d42bdadae89beb8f6ff05"
+      },
+      {
+        "key": "isotropic-46002",
+        "prefix": 2048,
+        "observable": "difference_direction",
+        "column": 7,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "57dfb1730f159a304b4d2585929e33600527659a6c08b071a7f3afa5be47ed99"
+      },
+      {
+        "key": "isotropic-46002",
+        "prefix": 8192,
+        "observable": "y1",
+        "column": 0,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "da1652a0b72ff83c13321b8abf0d15166e810c044e248e60f99b874ff856101d"
+      },
+      {
+        "key": "isotropic-46002",
+        "prefix": 8192,
+        "observable": "y2",
+        "column": 1,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "939c26dd2c59f590308f7f3efe4536a25c21ccb8555c35fce2361d1ed1db99e1"
+      },
+      {
+        "key": "isotropic-46002",
+        "prefix": 8192,
+        "observable": "y1_squared",
+        "column": 2,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "d1cd72bf94d4faf92b248ffa6766aec19ebb41e6b2b86eb4dd36008ab9b40c2e"
+      },
+      {
+        "key": "isotropic-46002",
+        "prefix": 8192,
+        "observable": "y2_squared",
+        "column": 3,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "846b84dcfc1ad07624686e32f1f3b666deb6e65af5979f280884313e1d370ea3"
+      },
+      {
+        "key": "isotropic-46002",
+        "prefix": 8192,
+        "observable": "product",
+        "column": 4,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "b6400c8b744894fd5e02b9651444a14d26c793fa565978f381fcf2b210aed7ab"
+      },
+      {
+        "key": "isotropic-46002",
+        "prefix": 8192,
+        "observable": "Q",
+        "column": 5,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "6905636f5a976f0d5214e73f89bb02b7488564dd3dc1c3ab74f619eca6774721"
+      },
+      {
+        "key": "isotropic-46002",
+        "prefix": 8192,
+        "observable": "sum_direction",
+        "column": 6,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "e16d19ac6cb6c317f96dcd81f5866b3ec2978fa42162466a853771f8e929b803"
+      },
+      {
+        "key": "isotropic-46002",
+        "prefix": 8192,
+        "observable": "difference_direction",
+        "column": 7,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "26c183d20ad142b82beec9ab5d5863466c2fd35edfb9bafa947b705869ee656b"
+      },
+      {
+        "key": "preconditioned-46003",
+        "prefix": 2048,
+        "observable": "y1",
+        "column": 0,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "f598d3f75d023b69d6e3b0babf3e545b0e1cb7d7d56015b85b01bad8087c956b"
+      },
+      {
+        "key": "preconditioned-46003",
+        "prefix": 2048,
+        "observable": "y2",
+        "column": 1,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "e237b6099aaee277c317ab379f3be6c729c60ac9c43de05aa88377a53ac0a032"
+      },
+      {
+        "key": "preconditioned-46003",
+        "prefix": 2048,
+        "observable": "y1_squared",
+        "column": 2,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "fbc82a98f3428beb6a441c5f483bfe1294f4111b986aeb93fb6562321d933f85"
+      },
+      {
+        "key": "preconditioned-46003",
+        "prefix": 2048,
+        "observable": "y2_squared",
+        "column": 3,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "fcde0f21fb5d5058d2c5f01a0b870ecb20ad47acdfc00ba7c547092c0ee5fb69"
+      },
+      {
+        "key": "preconditioned-46003",
+        "prefix": 2048,
+        "observable": "product",
+        "column": 4,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "30671e4abd634378354f88e7c69eba3b3ff98f751ffb50a96246f768f7715df0"
+      },
+      {
+        "key": "preconditioned-46003",
+        "prefix": 2048,
+        "observable": "Q",
+        "column": 5,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "e6a17529aba5fad8c2c797b65f61d9b1cc9645329800d09e44636e86b49c817f"
+      },
+      {
+        "key": "preconditioned-46003",
+        "prefix": 2048,
+        "observable": "sum_direction",
+        "column": 6,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "833726bde82d75457b395f763ef63320f8915facc1fc8f4d1b14803cc45f52ac"
+      },
+      {
+        "key": "preconditioned-46003",
+        "prefix": 2048,
+        "observable": "difference_direction",
+        "column": 7,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "7a7394465881278d9abdb7f197ee2a8e5fbdb67efe6bd9d3178fc610046fee1c"
+      },
+      {
+        "key": "preconditioned-46003",
+        "prefix": 8192,
+        "observable": "y1",
+        "column": 0,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "9eda85cc8070f9459a6e850f03d47803dac0b133add6241c4f416209cd690f73"
+      },
+      {
+        "key": "preconditioned-46003",
+        "prefix": 8192,
+        "observable": "y2",
+        "column": 1,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "7fa3ea0d771332cedac3210f7b694dbecdf2ea801401b04850ffa6433f36fab2"
+      },
+      {
+        "key": "preconditioned-46003",
+        "prefix": 8192,
+        "observable": "y1_squared",
+        "column": 2,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "b2f272fc64289aa2daad848b9ace2cde85dc7f9e17c7f943768b3558b78ba498"
+      },
+      {
+        "key": "preconditioned-46003",
+        "prefix": 8192,
+        "observable": "y2_squared",
+        "column": 3,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "081328c02862b9506db2c830418789c26a9bbee1211e7e8392939448c47229ce"
+      },
+      {
+        "key": "preconditioned-46003",
+        "prefix": 8192,
+        "observable": "product",
+        "column": 4,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "52cb66fa262168c9aafb0c8eab4a667f7990bc57869b2464f4abcdeec342d998"
+      },
+      {
+        "key": "preconditioned-46003",
+        "prefix": 8192,
+        "observable": "Q",
+        "column": 5,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "52e1461341b23539d23fe34f4a87157cc9165122591b2dea5d540ac18f01f764"
+      },
+      {
+        "key": "preconditioned-46003",
+        "prefix": 8192,
+        "observable": "sum_direction",
+        "column": 6,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "15fe707caf0c3fc4e4fffbf7e3954e41641fe05523595d110eca2696ab4d5630"
+      },
+      {
+        "key": "preconditioned-46003",
+        "prefix": 8192,
+        "observable": "difference_direction",
+        "column": 7,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "812807f3c67f79e77693770d288960e15cc35c4484c3387376424da4b9be6eca"
+      },
+      {
+        "key": "isotropic-46003",
+        "prefix": 2048,
+        "observable": "y1",
+        "column": 0,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "42d0c9ff805e3a2d919d4bf672f874b3d5b5bdafb5a5253269b4b0ebf9d0e620"
+      },
+      {
+        "key": "isotropic-46003",
+        "prefix": 2048,
+        "observable": "y2",
+        "column": 1,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "a9127b14b07db39f5274b1348b6609499854eceb1ca501eaa78a9d623a93efcc"
+      },
+      {
+        "key": "isotropic-46003",
+        "prefix": 2048,
+        "observable": "y1_squared",
+        "column": 2,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "b97ceaf64405642fffa465982d174a8f4035de30ca9bafc49b716422a1531b1a"
+      },
+      {
+        "key": "isotropic-46003",
+        "prefix": 2048,
+        "observable": "y2_squared",
+        "column": 3,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "7dc3d75442c4f8fee7f574c080887fae4acbe81c74d8ef3a681922845c85341a"
+      },
+      {
+        "key": "isotropic-46003",
+        "prefix": 2048,
+        "observable": "product",
+        "column": 4,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "965505cb42318851149698d2c9ae26ca29dc59313655913319bdb416891e4b8f"
+      },
+      {
+        "key": "isotropic-46003",
+        "prefix": 2048,
+        "observable": "Q",
+        "column": 5,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "100f8beddcd03d70fdb6d6707e218223af81560e0bbe7435b047b03a151b1ffd"
+      },
+      {
+        "key": "isotropic-46003",
+        "prefix": 2048,
+        "observable": "sum_direction",
+        "column": 6,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "f33a172bed73de88b9bb22f64b0b873c20f646195918bacd158a9f3608b6b6c7"
+      },
+      {
+        "key": "isotropic-46003",
+        "prefix": 2048,
+        "observable": "difference_direction",
+        "column": 7,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "64203d5aeaaa9879bea52b545fd2ec54d4c348008783bfe5704049eba851f481"
+      },
+      {
+        "key": "isotropic-46003",
+        "prefix": 8192,
+        "observable": "y1",
+        "column": 0,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "0663b5a10e9cd9beb3b5456f86c2df034d4993629e868c61bf4fdc69951bd582"
+      },
+      {
+        "key": "isotropic-46003",
+        "prefix": 8192,
+        "observable": "y2",
+        "column": 1,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "54eafd9cb5d72f1a30fe52c4f2a42861e8e5d3b2b7f338e5681174656daefb1f"
+      },
+      {
+        "key": "isotropic-46003",
+        "prefix": 8192,
+        "observable": "y1_squared",
+        "column": 2,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "37b44f30a1fb002cc0cabb01c3cf78d2f837ea6983ebdc8af2a24366527e5e0b"
+      },
+      {
+        "key": "isotropic-46003",
+        "prefix": 8192,
+        "observable": "y2_squared",
+        "column": 3,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "286384933204815f2f4ff8f4722852187e676b16aabf07ca53af4c2b9b624a44"
+      },
+      {
+        "key": "isotropic-46003",
+        "prefix": 8192,
+        "observable": "product",
+        "column": 4,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "8478df1263f25b471c48c477aaf467dbd51c65901b278d11aec76b7006a767c9"
+      },
+      {
+        "key": "isotropic-46003",
+        "prefix": 8192,
+        "observable": "Q",
+        "column": 5,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "433d1d4f5e33d0da681b1be9a4dc00ee8cf7141a00323e30a7b4f2ff682774b5"
+      },
+      {
+        "key": "isotropic-46003",
+        "prefix": 8192,
+        "observable": "sum_direction",
+        "column": 6,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "8f3b235dbd197d2003a2d17b3484697f6ed753a00ecc716437484b003cda14d7"
+      },
+      {
+        "key": "isotropic-46003",
+        "prefix": 8192,
+        "observable": "difference_direction",
+        "column": 7,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "f7971ef843b3da03053a7d13f237c32a0c6698cb2e4b3b49f48f7d220efe6e04"
+      },
+      {
+        "key": "preconditioned-46004",
+        "prefix": 2048,
+        "observable": "y1",
+        "column": 0,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "3a7ea45da9c13209df9070dd434fde3504b5cdf49f83424c5fa7b0e517fda31b"
+      },
+      {
+        "key": "preconditioned-46004",
+        "prefix": 2048,
+        "observable": "y2",
+        "column": 1,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "366388ee106ba55fdee3352e22cb32bbbbd29c349ebe2bb23e2783fb09955db6"
+      },
+      {
+        "key": "preconditioned-46004",
+        "prefix": 2048,
+        "observable": "y1_squared",
+        "column": 2,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "c3f681647e5bfde99db5c9219e5a1c04f62a5bf63849649196863f4e32d8474c"
+      },
+      {
+        "key": "preconditioned-46004",
+        "prefix": 2048,
+        "observable": "y2_squared",
+        "column": 3,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "fa26b258611ad444e62415e27736b5d846b1bb3b1c5a995bd204159efcc67e6d"
+      },
+      {
+        "key": "preconditioned-46004",
+        "prefix": 2048,
+        "observable": "product",
+        "column": 4,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "bae24ae30f2c5f42557dbfff5e61395e5335a06b5d2bfafbf12a7924451a5c14"
+      },
+      {
+        "key": "preconditioned-46004",
+        "prefix": 2048,
+        "observable": "Q",
+        "column": 5,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "193fb7618b299458f6f9a05c01e18bfa9e2476d14271633d8655c563fc572f99"
+      },
+      {
+        "key": "preconditioned-46004",
+        "prefix": 2048,
+        "observable": "sum_direction",
+        "column": 6,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "b2b78f051da8e5cc68e3a1ecfc90eed6dd57357340c317f51a8ff13928e0f2b6"
+      },
+      {
+        "key": "preconditioned-46004",
+        "prefix": 2048,
+        "observable": "difference_direction",
+        "column": 7,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "58686001f18f2dc7c34f9228817319160ebd7ababe73bb06eb3793da9b55b1cc"
+      },
+      {
+        "key": "preconditioned-46004",
+        "prefix": 8192,
+        "observable": "y1",
+        "column": 0,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "0e69c1e0a7310752e1dbe3b7c57d5c01e54fa8303b708f35671cfc2ddebae958"
+      },
+      {
+        "key": "preconditioned-46004",
+        "prefix": 8192,
+        "observable": "y2",
+        "column": 1,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "6aeedb1171d2aa78fcb609c9f1a15c3c3ec35cbd7b33a3d0d2ac3fc280c9e7b0"
+      },
+      {
+        "key": "preconditioned-46004",
+        "prefix": 8192,
+        "observable": "y1_squared",
+        "column": 2,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "66880fb77af26de89f0e6aad6d3511fb098d317afd0208fcd0bfe1ca09e50194"
+      },
+      {
+        "key": "preconditioned-46004",
+        "prefix": 8192,
+        "observable": "y2_squared",
+        "column": 3,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "784471190eb1e831ab430e24dcccd42ff71dd82927a72179b872cdc065b94eec"
+      },
+      {
+        "key": "preconditioned-46004",
+        "prefix": 8192,
+        "observable": "product",
+        "column": 4,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "dd1eb8b2b510461466ac60c53034f33a0c4d5c0aae2a6090f4207bfc222fbd5a"
+      },
+      {
+        "key": "preconditioned-46004",
+        "prefix": 8192,
+        "observable": "Q",
+        "column": 5,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "11f98e36cbf50c910d55ed584c38004871f1f1b524d9824ff6a759b3ac534f31"
+      },
+      {
+        "key": "preconditioned-46004",
+        "prefix": 8192,
+        "observable": "sum_direction",
+        "column": 6,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "55fba442cf739633cadd580485f668a1967e6862e8a4e782b89db85b5dcd28f8"
+      },
+      {
+        "key": "preconditioned-46004",
+        "prefix": 8192,
+        "observable": "difference_direction",
+        "column": 7,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "d1dc484c08b338b2c2c9389f1157e46b4c52b5c3d22555e4b2ea3bfa1a43e2b9"
+      },
+      {
+        "key": "isotropic-46004",
+        "prefix": 2048,
+        "observable": "y1",
+        "column": 0,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "9eb7119156cf36f3d7ac70b38c8341fb9d471a3786bad1c1eca2c52fbfc0954f"
+      },
+      {
+        "key": "isotropic-46004",
+        "prefix": 2048,
+        "observable": "y2",
+        "column": 1,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "c4623676f6ff947c6c11a9d6f3dd7a38d601327236bfaf253de9077fa330102a"
+      },
+      {
+        "key": "isotropic-46004",
+        "prefix": 2048,
+        "observable": "y1_squared",
+        "column": 2,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "7e672ba776b8e6c71a60544831471a4d24c8d874069d66689a027fe7f50a18df"
+      },
+      {
+        "key": "isotropic-46004",
+        "prefix": 2048,
+        "observable": "y2_squared",
+        "column": 3,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "af3f17a0d2634ae0f2792f62acf7b07fb3138e47522d0f0957e4d694ecd9f7b9"
+      },
+      {
+        "key": "isotropic-46004",
+        "prefix": 2048,
+        "observable": "product",
+        "column": 4,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "868142c54c917e1e26f90cc347aece04ab69835bdd0b11e2f8802ec0e80216ed"
+      },
+      {
+        "key": "isotropic-46004",
+        "prefix": 2048,
+        "observable": "Q",
+        "column": 5,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "6fcc86502826710b95bc90fe10f295ba41fc405a4f7024dfd21fa5895f9a6bb9"
+      },
+      {
+        "key": "isotropic-46004",
+        "prefix": 2048,
+        "observable": "sum_direction",
+        "column": 6,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "184d3fd1a592dac7d5b8cd9f017b08b159a2b65053416513f035f5c47acdf177"
+      },
+      {
+        "key": "isotropic-46004",
+        "prefix": 2048,
+        "observable": "difference_direction",
+        "column": 7,
+        "shape": [
+          4,
+          2048
+        ],
+        "sha256": "69a9eca69590b9fc076bd09e2a6608074ef3919905c8b628097ce7c2d5d07b70"
+      },
+      {
+        "key": "isotropic-46004",
+        "prefix": 8192,
+        "observable": "y1",
+        "column": 0,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "c83a26ea35efed5b3db0dd9c982b0705aa69502e33401e87a487ee77e841389f"
+      },
+      {
+        "key": "isotropic-46004",
+        "prefix": 8192,
+        "observable": "y2",
+        "column": 1,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "1dc8626b246ecb5036d31cb34fede7a5cf518a2a53bb469242476c806c8a3205"
+      },
+      {
+        "key": "isotropic-46004",
+        "prefix": 8192,
+        "observable": "y1_squared",
+        "column": 2,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "a550a8b7cf7941eff97fd5c9c50ac94243a8c1b93664891ae1248151bee5193e"
+      },
+      {
+        "key": "isotropic-46004",
+        "prefix": 8192,
+        "observable": "y2_squared",
+        "column": 3,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "daf532d29821c764832b03d76a97cb75339eda35169b572fafc7919ac8542195"
+      },
+      {
+        "key": "isotropic-46004",
+        "prefix": 8192,
+        "observable": "product",
+        "column": 4,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "7a2bebb42e40d415a436e1ae4cc36216c21dbd97f70c8907966f818af8867341"
+      },
+      {
+        "key": "isotropic-46004",
+        "prefix": 8192,
+        "observable": "Q",
+        "column": 5,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "1c232ff7b098ae4b51ffc6052d3939300d94727079f1446aabb8fa74a966d436"
+      },
+      {
+        "key": "isotropic-46004",
+        "prefix": 8192,
+        "observable": "sum_direction",
+        "column": 6,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "d622103b9b65f89e103717c5acd39f522eaeeb00d9eda7b48025615651e4b169"
+      },
+      {
+        "key": "isotropic-46004",
+        "prefix": 8192,
+        "observable": "difference_direction",
+        "column": 7,
+        "shape": [
+          4,
+          8192
+        ],
+        "sha256": "f7d3ecc1bfd98692f2b7c9c44753ef1a65dbcb3739358fe60084fa3d89de9349"
+      }
+    ],
+    "input_sha256": "879308e8a4ebef90bc4f3258381a84a59cedc3f954afbf3a05f2a33fb86586ca",
+    "source_sha256": {
+      "sampler.py": "921317f2716928e8ffc3bd6cbf58b23c3fd962ab53210668c615e96f8fe6159a",
+      "inputs.json": "879308e8a4ebef90bc4f3258381a84a59cedc3f954afbf3a05f2a33fb86586ca",
+      "acceptance.json": "45ae8a7c0190c12b5f147fb7e1d912f40a6f5629567a4afa6cda324f11b8a49c"
+    },
+    "arrays_sha256": "dda9e4421b41c4ed208238ce43713da629cb0e45b7bad6b4fbc962a6bc4d5c82",
+    "scope": "Same actual scalar observable arrays supplied to ArviZ; independent diagnostic implementation,not an independent sampler or target oracle."
+  },
+  "generator_sha256": "ad3994c2f92e872e9b0ea8b1e6cbfe1c9d73b365508d421f801210692732b0aa",
+  "upstream_source_sha256": "a8622bab6e7c134be5fed2706520af9a9d1d6d0c6fcacadd27ccf322c68ae740",
+  "environment": {
+    "python": "3.12.16",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "packages": {
+      "arviz": "0.20.0",
+      "numpy": "2.0.2",
+      "scipy": "1.14.1",
+      "matplotlib": "3.9.4",
+      "pandas": "2.2.3",
+      "xarray": "2024.11.0"
+    }
+  },
+  "seconds": 1.1405092499917373,
+  "independence": "No atlas sampler or diagnostics imported; supplied scalar arrays plus public ArviZ APIs only. This qualifies diagnostic operators,not independent target sampling."
+}

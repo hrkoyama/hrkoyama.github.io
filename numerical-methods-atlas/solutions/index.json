@@ -1,18 +1,18 @@
 {
   "supplements_source": "/catalog/atlas-reference-supplements.json",
-  "supplements_source_sha256": "bd8b2e7c5b133ae449f3841ba3bc4abb9d910d4fd58d5d0414b87e4a3334dbb2",
+  "supplements_source_sha256": "712911e57373ca46f2e608192a7f678fb887442fcfb6d2aa0604cfcf2567da4d",
   "schema_version": 1,
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/",
   "source": "/numerical-methods-atlas/assets/reference-solutions.json",
   "source_sha256": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
   "translations_source": "/numerical-methods-atlas/locales/messages.json",
-  "translations_source_sha256": "c6a2bcc46ce81d8078ce17447e0fba19d341a09f3b5e8d7b7de9e86f3e070d19",
-  "count": 60,
+  "translations_source_sha256": "139791c8e9bfaffa3eaace0e3bb40bd5efb821f3236427717dda14610e27a08e",
+  "count": 74,
   "counts": {
-    "analytic": 27,
-    "semi-analytic": 12,
+    "analytic": 35,
+    "semi-analytic": 14,
     "manufactured": 7,
-    "numerical-reference": 14
+    "numerical-reference": 18
   },
   "cases": [
     {
@@ -1909,6 +1909,28 @@
               "input": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/taylor-green.json",
               "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
               "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json"
+            },
+            {
+              "id": "lbm-taylor-green",
+              "kind": "supplement",
+              "name": {
+                "ja": "LBM Taylor–Green渦：格子・刻み・Machの結合感度",
+                "en": "LBM Taylor–Green vortex: coupled grid/time/Mach sensitivity"
+              },
+              "scope": {
+                "ja": "周期2Dの非線形渦を実際に時間発展し、連続解析場への速度・圧力・エネルギー誤差を保存します。amplitude感度と同格子のcoupled刻み感度も分けて示します。",
+                "en": "Evolve a nonlinear periodic2D vortex and save velocity/pressure/energy errors against the continuous analytic field. Distinguish amplitude probes from a fixed-grid coupled-step probe."
+              },
+              "method_ids": [
+                "d2q9-bgk"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-taylor-green/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-taylor-green/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/atlas-lbm-taylor-green-2026-11-24.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/verification.json"
             }
           ],
           "relation": "related-model",
@@ -3658,6 +3680,28 @@
               "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/inputs.json",
               "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/atlas-wall-flow-2026-11-23-r2.zip",
               "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/verification.json"
+            },
+            {
+              "id": "lbm-cavity-re100",
+              "kind": "supplement",
+              "name": {
+                "ja": "LBM Re100蓋駆動キャビティ：実2D場とGhia中心線",
+                "en": "LBM Re100 cavity: actual2D fields and Ghia centerlines"
+              },
+              "scope": {
+                "ja": "4壁のBGK更新を3固定格子で実行し、nominal蓋速度で正規化したGhia中心線、主渦、定常性と壁運動量収支を検査します。",
+                "en": "Advance genuine four-wall BGK flow on three fixed grids, checking nominal-lid Ghia centerlines, primary vortex, stationarity and wall momentum budgets."
+              },
+              "method_ids": [
+                "d2q9-bgk"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-cavity-re100/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-cavity-re100/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/atlas-lbm-cavity-2026-11-24.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/verification.json"
             }
           ],
           "relation": "same-problem",
@@ -8151,16 +8195,2369 @@
           }
         }
       ]
+    },
+    {
+      "id": "lbm-cavity-re100",
+      "model": "navier-stokes",
+      "kind": "numerical-reference",
+      "formula": "Ghia1982Re100 centerline tables and primary-vortex location; these are rounded numerical data,not an exact whole-field solution.",
+      "dimension": 2,
+      "bounds": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "u on x=.5",
+        "v on y=.5",
+        "primary vortex location"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "schema_version": 1,
+        "group": "lbm-cavity",
+        "cavity": {
+          "N": [
+            24,
+            32,
+            48
+          ],
+          "lid_lattice": 0.04,
+          "Re": 100,
+          "convective_T": 100,
+          "checkpoints": [
+            90,
+            95,
+            100
+          ]
+        }
+      },
+      "sources": [
+        "https://arxiv.org/abs/comp-gas/9611001",
+        "https://doi.org/10.1016/S0021-9991(02)00022-0",
+        "https://www.sciencedirect.com/science/article/pii/0021999182900584"
+      ],
+      "title": {
+        "ja": "LBMのRe100キャビティ：実2D場とGhia中心線",
+        "en": "LBM Re100 cavity: actual2D fields and Ghia centerlines"
+      },
+      "assumptions": {
+        "ja": "物理単位正方形、蓋U1、ν.01、Re100。N24/32/48、格子蓋速度.04、dt=.04/N。3壁静止、上壁右向き、同時上面/側面crossingは静止側を優先。初期rho1・静止。",
+        "en": "Physical unit square, lid1, viscosity.01, Re100; N24/32/48, lattice lid.04, dt=.04/N. Three stationary walls/rightward lid; stationary side owns a simultaneous top/side link. Initialrho1/rest."
+      },
+      "kind_label": {
+        "ja": "有限格子の数値参照",
+        "en": "Finite-grid numerical reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/lbm-cavity-re100/?lang=ja#lbm-cavity-re100-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/lbm-cavity-re100/?lang=en#lbm-cavity-re100-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-lbm-cavity/#lbm-cavity-re100",
+        "en": "/numerical-methods-atlas/en/read/validation-lbm-cavity/#lbm-cavity-re100"
+      },
+      "citations": [
+        {
+          "role": "case-method-or-independent-reference",
+          "title": "On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model",
+          "url": "https://arxiv.org/abs/comp-gas/9611001",
+          "note": "Selected original preprint pp2-7: standard equilibrium, moment-based flat velocity/density boundaries and corner/finite-Mach limitations. No full-paper audit; special d2q9i accuracy is not credited to this standard BGK."
+        },
+        {
+          "role": "case-method-or-independent-reference",
+          "title": "Lattice Boltzmann method for moving boundaries",
+          "url": "https://doi.org/10.1016/S0021-9991(02)00022-0",
+          "note": "Original article sec3 printed410-414 via author-content mirror; quadratic interpolation paths, q=.5, wall correction, momentum exchange and compromised mass conservation. Our two-point linear implementation is separately derived and qualified; original2001BFL full text was inaccessible."
+        },
+        {
+          "role": "case-method-or-independent-reference",
+          "title": "High-Re solutions for incompressible flow using the Navier-Stokes equations and a multigrid method",
+          "url": "https://www.sciencedirect.com/science/article/pii/0021999182900584",
+          "note": "Exact-byte existing17-point Re100columns and prior original-PDF/rendered-page provenance rechecked. Current session did not reacquire the original PDF. Printed398-399TablesI/II and408TableV provenance retained."
+        }
+      ],
+      "reference_scope": "Independent finite-resolution incompressible NS tables,not exact discrete-kinetic populations. Existing audited transcription/prior primary-page reading preserved; no newly reacquired original PDF is claimed.",
+      "related_problems": [
+        {
+          "id": "lid-driven-cavity",
+          "name": {
+            "ja": "Re100の蓋駆動キャビティ",
+            "en": "Re100 lid-driven cavity"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/results/cavity-ghia-re100-preview.png",
+            "sha256": "ce88c820d7513d83c054892f36ee234d938cf180428f3a6783899deb3b9f77b5",
+            "width": 1038,
+            "height": 909,
+            "caption": {
+              "ja": "保存した最細Re100計算の流線と速さ。赤点は格子上の主渦、白抜き点はGhia表Vの主渦位置です。",
+              "en": "Saved finest Re100 streamlines and speed. Red dot: computed grid primary vortex; hollow dot: original Ghia TableV location."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lid-driven-cavity/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lid-driven-cavity/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lid-driven-cavity/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lid-driven-cavity/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "cavity-ghia-re100",
+              "kind": "supplement",
+              "name": {
+                "ja": "Re=100蓋駆動キャビティ：Ghia中心線との比較",
+                "en": "Re100 lid-driven cavity: Ghia centerline comparison"
+              },
+              "scope": {
+                "ja": "非周期・粘性非圧縮の実際の2D計算を17/33/65点格子で定常化し、Ghia原著の速度中心線と比較します。流線・渦中心・真の残差と発散を同時に保存します。",
+                "en": "March a real nonperiodic 2D viscous incompressible solver to steady state on 17/33/65 node grids and compare against original Ghia centerlines. Retain streamlines, grid vortex center, true PDE residual and discrete divergence."
+              },
+              "method_ids": [
+                "centered-difference",
+                "heun"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/cavity-ghia-re100/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/cavity-ghia-re100/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/atlas-wall-flow-2026-11-23-r2.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/verification.json"
+            },
+            {
+              "id": "lbm-cavity-re100",
+              "kind": "supplement",
+              "name": {
+                "ja": "LBM Re100蓋駆動キャビティ：実2D場とGhia中心線",
+                "en": "LBM Re100 cavity: actual2D fields and Ghia centerlines"
+              },
+              "scope": {
+                "ja": "4壁のBGK更新を3固定格子で実行し、nominal蓋速度で正規化したGhia中心線、主渦、定常性と壁運動量収支を検査します。",
+                "en": "Advance genuine four-wall BGK flow on three fixed grids, checking nominal-lid Ghia centerlines, primary vortex, stationarity and wall momentum budgets."
+              },
+              "method_ids": [
+                "d2q9-bgk"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-cavity-re100/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-cavity-re100/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/atlas-lbm-cavity-2026-11-24.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/verification.json"
+            }
+          ],
+          "relation": "related-model",
+          "note": {
+            "ja": "物理単位正方形、蓋U1、ν.01、Re100。N24/32/48、格子蓋速度.04、dt=.04/N。3壁静止、上壁右向き、同時上面/側面crossingは静止側を優先。初期rho1・静止。",
+            "en": "Physical unit square, lid1, viscosity.01, Re100; N24/32/48, lattice lid.04, dt=.04/N. Three stationary walls/rightward lid; stationary side owns a simultaneous top/side link. Initialrho1/rest."
+          }
+        }
+      ]
+    },
+    {
+      "id": "lbm-taylor-green",
+      "model": "navier-stokes",
+      "kind": "analytic",
+      "formula": "u=U sin(x)cos(y) exp(-2nu t), v=-U cos(x)sin(y) exp(-2nu t); p=U^2 exp(-4nu t)[cos(2x)+cos(2y)]/4.",
+      "dimension": 2,
+      "bounds": [
+        [
+          0,
+          6.283185307179586
+        ],
+        [
+          0,
+          6.283185307179586
+        ]
+      ],
+      "components": [
+        "velocity u",
+        "velocity v",
+        "pressure"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "schema_version": 1,
+        "group": "lbm-taylor-green",
+        "tgv": {
+          "N": [
+            24,
+            32,
+            64
+          ],
+          "U": 0.2,
+          "nu": 0.1,
+          "amplitude_U": [
+            0.4,
+            0.8
+          ],
+          "T_over_pi2": 0.2
+        }
+      },
+      "sources": [
+        "https://arxiv.org/abs/comp-gas/9611001",
+        "https://doi.org/10.1016/S0021-9991(02)00022-0"
+      ],
+      "title": {
+        "ja": "LBMのTaylor–Green渦：格子・時間・Mach数が結び付く感度",
+        "en": "LBM Taylor–Green vortex: coupled grid/time/Mach sensitivity"
+      },
+      "assumptions": {
+        "ja": "[0,2pi)²、ν.1、基本U.2、N24/32/64、dt=.2dx²、tau.56、T=.2pi²、144/256/1024steps。N32/U.4,.8とN32/U.2/dt=.1dx²/tau.53/512stepsを追加。初期圧力整合rhoを使用。",
+        "en": "Periodic[0,2pi)²,nu.1,baseU.2,N24/32/64,dt=.2dx²,tau.56,T=.2pi²and144/256/1024steps. Add N32/U.4,.8andN32/U.2/dt=.1dx²/tau.53/512steps. Use pressure-consistent initial density."
+      },
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/lbm-taylor-green/?lang=ja#lbm-taylor-green-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/lbm-taylor-green/?lang=en#lbm-taylor-green-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-lbm-taylor-green/#lbm-taylor-green",
+        "en": "/numerical-methods-atlas/en/read/validation-lbm-taylor-green/#lbm-taylor-green"
+      },
+      "citations": [
+        {
+          "role": "case-method-or-independent-reference",
+          "title": "On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model",
+          "url": "https://arxiv.org/abs/comp-gas/9611001",
+          "note": "Selected original preprint pp2-7: standard equilibrium, moment-based flat velocity/density boundaries and corner/finite-Mach limitations. No full-paper audit; special d2q9i accuracy is not credited to this standard BGK."
+        },
+        {
+          "role": "case-method-or-independent-reference",
+          "title": "Lattice Boltzmann method for moving boundaries",
+          "url": "https://doi.org/10.1016/S0021-9991(02)00022-0",
+          "note": "Original article sec3 printed410-414 via author-content mirror; quadratic interpolation paths, q=.5, wall correction, momentum exchange and compromised mass conservation. Our two-point linear implementation is separately derived and qualified; original2001BFL full text was inaccessible."
+        }
+      ],
+      "reference_scope": "Exact continuous incompressible NS vortex; Fourier divergence/momentum/energy qualifications. Finite-Mach BGK is compared with its continuum limit,not called an exact kinetic solution. Grid/time/Mach refinement is coupled; order uses finestN32/N64pair.",
+      "related_problems": [
+        {
+          "id": "taylor-green",
+          "name": {
+            "ja": "周期Taylor–Green渦",
+            "en": "Periodic Taylor–Green vortex"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/field-taylor-green.png",
+            "sha256": "89d51b4bdc8650fd270de49d92f3109e0d2b0feb27f3e62ae509ea550fe33a19",
+            "width": 1575,
+            "height": 690,
+            "caption": {
+              "ja": "保存済みTaylor–Green渦の速度と圧力。",
+              "en": "Stored Taylor–Green velocity and pressure fields."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/taylor-green/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/taylor-green/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/taylor-green/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/taylor-green/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "taylor-green",
+              "kind": "common",
+              "name": {
+                "ja": "周期Taylor–Green渦：速度・散逸・発散",
+                "en": "Periodic Taylor–Green vortex: velocity, decay and divergence"
+              },
+              "scope": {
+                "ja": "既存の2次元MAC投影法・中心対流項・明示SSPRK2を使用。16²/32²/64²で解析的減衰渦と比較し、最細格子はCFL半減でも確認。",
+                "en": "Use existing two-dimensional MAC projection, centered convection and explicit SSPRK2. Compare analytic decaying vortex on 16²/32²/64² grids and halve CFL on the finest grid."
+              },
+              "method_ids": [
+                "projection"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/taylor-green/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/taylor-green/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/taylor-green.json",
+              "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
+              "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json"
+            },
+            {
+              "id": "lbm-taylor-green",
+              "kind": "supplement",
+              "name": {
+                "ja": "LBM Taylor–Green渦：格子・刻み・Machの結合感度",
+                "en": "LBM Taylor–Green vortex: coupled grid/time/Mach sensitivity"
+              },
+              "scope": {
+                "ja": "周期2Dの非線形渦を実際に時間発展し、連続解析場への速度・圧力・エネルギー誤差を保存します。amplitude感度と同格子のcoupled刻み感度も分けて示します。",
+                "en": "Evolve a nonlinear periodic2D vortex and save velocity/pressure/energy errors against the continuous analytic field. Distinguish amplitude probes from a fixed-grid coupled-step probe."
+              },
+              "method_ids": [
+                "d2q9-bgk"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-taylor-green/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-taylor-green/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/atlas-lbm-taylor-green-2026-11-24.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/verification.json"
+            }
+          ],
+          "relation": "related-model",
+          "note": {
+            "ja": "[0,2pi)²、ν.1、基本U.2、N24/32/64、dt=.2dx²、tau.56、T=.2pi²、144/256/1024steps。N32/U.4,.8とN32/U.2/dt=.1dx²/tau.53/512stepsを追加。初期圧力整合rhoを使用。",
+            "en": "Periodic[0,2pi)²,nu.1,baseU.2,N24/32/64,dt=.2dx²,tau.56,T=.2pi²and144/256/1024steps. Add N32/U.4,.8andN32/U.2/dt=.1dx²/tau.53/512steps. Use pressure-consistent initial density."
+          }
+        }
+      ]
+    },
+    {
+      "id": "lbm-annular-couette-control",
+      "model": "navier-stokes",
+      "kind": "analytic",
+      "formula": "u_theta=Ar+B/r; p=A^2r^2/2+2AB log(r)-B^2/(2r^2)+C; T_inner=-4pi rho nu B.",
+      "dimension": 2,
+      "bounds": [
+        [
+          0.1,
+          0.9
+        ],
+        [
+          0.1,
+          0.9
+        ]
+      ],
+      "components": [
+        "velocity u",
+        "velocity v",
+        "pressure"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "schema_version": 1,
+        "group": "lbm-annulus",
+        "annulus": {
+          "N": [
+            80,
+            160,
+            240
+          ],
+          "tau": 0.7,
+          "nu": 0.01,
+          "inner_speed": 0.02,
+          "T": 4
+        },
+        "cylinder": {
+          "dx": [
+            0.01,
+            0.005
+          ],
+          "nu": 0.001,
+          "peak_U": 0.3,
+          "mean_U": 0.2,
+          "T": 30,
+          "late_checkpoints": [
+            26,
+            28,
+            30
+          ]
+        }
+      },
+      "sources": [
+        "https://arxiv.org/abs/comp-gas/9611001",
+        "https://doi.org/10.1016/S0021-9991(02)00022-0"
+      ],
+      "title": {
+        "ja": "曲面LBMの環状Couette制御：速度・圧力・トルク",
+        "en": "Curved LBM annular Couette control: velocity,pressure andtorque"
+      },
+      "assumptions": {
+        "ja": "Rin.2/Rout.4、中心(.5,.5)、内壁接線速度.02、外壁静止、ν.01。N80/160/240、tau.7、T4、整数3840/15360/34560steps、両境界法計6runs。初期は解析場の平衡分布。",
+        "en": "Rin.2/Rout.4,center(.5,.5),inner tangential speed.02,stationary outerwall,nu.01. N80/160/240,tau.7,T4,integer3840/15360/34560steps; both boundaries give sixruns. Initialize equilibrium moments of the analytic field."
+      },
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/lbm-annular-couette-control/?lang=ja#lbm-annular-couette-control-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/lbm-annular-couette-control/?lang=en#lbm-annular-couette-control-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-lbm-annulus/#lbm-annular-couette-control",
+        "en": "/numerical-methods-atlas/en/read/validation-lbm-annulus/#lbm-annular-couette-control"
+      },
+      "citations": [
+        {
+          "role": "case-method-or-independent-reference",
+          "title": "On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model",
+          "url": "https://arxiv.org/abs/comp-gas/9611001",
+          "note": "Selected original preprint pp2-7: standard equilibrium, moment-based flat velocity/density boundaries and corner/finite-Mach limitations. No full-paper audit; special d2q9i accuracy is not credited to this standard BGK."
+        },
+        {
+          "role": "case-method-or-independent-reference",
+          "title": "Lattice Boltzmann method for moving boundaries",
+          "url": "https://doi.org/10.1016/S0021-9991(02)00022-0",
+          "note": "Selected original sec3 printed410-414 via disclosed author-content mirror: Eq12/13/14 quadratic reflected-characteristic interpolation,moving-wall coefficient,Eq15 momentum exchange and compromised mass conservation. Generic Lagrange scalar oracle independently qualifies weights andsigns. No localPDF/rendered-symbol audit;2001BFLfulloriginal remains unread."
+        }
+      ],
+      "reference_scope": "Exact continuous annular Couette NS field on .2<r<.4 centered(.5,.5). Bounds are a finite Cartesian viewing box,not a squarefluiddomain. Velocity,full pointwise pressure and torque are separate; radial averaging does not replace pressure acceptance. This control doesnot replace actual cylinder flow. CurrentR4fixedboundaryscope:quadraticcirclelinks;forcylinderall9poststreamNEEreservoir,notlaterdo-nothing. Allpriorfailedarraysretained. Components87and29PASSaredistinctfrommainacceptance;R3annularpFAILisretainedandR4primaryannularmainpassedall80originalgatesafterfixedN80/160/240refinement;independentpublicZIPrerunisseparate.",
+      "related_problems": [
+        {
+          "id": "lbm-annular-couette-control",
+          "name": {
+            "ja": "曲面LBMの環状Couette制御：速度・圧力・torque",
+            "en": "Curved LBM annular Couette control: velocity,pressure andtorque"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/results/lbm-annular-couette-control-preview.png",
+            "sha256": "ee068b5c21a8ae3a92d5d54b829c7646cda91967b5d03439eccd5907ca5a7e5a",
+            "width": 1100,
+            "height": 800,
+            "caption": {
+              "ja": "固定入力を実計算した保存配列の2D場と検証診断。参照・境界・誤差の範囲は本文に明記。",
+              "en": "Actual saved2Dfields anddiagnostics fromfixedinputs; reference,boundary anderror scopesaredeclaredinthecase."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lbm-annular-couette-control/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lbm-annular-couette-control/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lbm-annular-couette-control/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lbm-annular-couette-control/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "lbm-annular-couette-control",
+              "kind": "supplement",
+              "name": {
+                "ja": "曲面LBMの環状Couette制御：速度・圧力・torque",
+                "en": "Curved LBM annular Couette control: velocity,pressure andtorque"
+              },
+              "scope": {
+                "ja": "実円弧交点の2次Lagrange補間とstair-halfwayを、回転内壁の解析Navier–Stokes場に比較します。円柱wakeとは別の追加制御です。",
+                "en": "Compare true-circle quadratic Lagrange link interpolation andstair halfway against analytic rotating-inner-wall Navier–Stokes flow; anadditional control distinct fromcylinderwake."
+              },
+              "method_ids": [
+                "d2q9-bgk"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-annular-couette-control/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-annular-couette-control/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/atlas-lbm-annulus-2026-11-24.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/verification.json"
+            }
+          ],
+          "relation": "same-problem",
+          "note": {
+            "ja": "固定円弧と低速回転のみ。2次補間は負係数を含み一般の正値性や安定性を保証しません。補間mass非保存は実値を記録。以前の線形版は圧力.617757>.08で不合格として保存し、半径平均への置換なし。移動solidの拓撲変化や円柱の代用ではありません。 2次版旧N80の圧力.352758>.08も不合格として保持し、Ui/tau/Tを変えず両境界を固定細分化します。",
+            "en": "Fixedcircles andslowrotation only. Negative quadratic coefficients preclude a general positivity/stability guarantee; report actual interpolation massnonconservation. Prior linear attemptfailed pressure.617757>.08 andisretained; no radial-average substitution. No changing-solid topology orsubstitute forcylinderflow. Retain the failedquadraticN80pressure.352758>.08;refinebothboundariesatfixedUi/tau/T."
+          }
+        }
+      ]
+    },
+    {
+      "id": "lbm-cylinder-re20",
+      "model": "navier-stokes",
+      "kind": "numerical-reference",
+      "formula": "Re=Umean D/nu=20; CD=2Fx/(rho Umean^2 D); CL=2Fy/(rho Umean^2 D); delta p=p(.15,.2)-p(.25,.2).",
+      "dimension": 2,
+      "bounds": [
+        [
+          0,
+          2.2
+        ],
+        [
+          0,
+          0.41
+        ]
+      ],
+      "components": [
+        "drag coefficient",
+        "lift coefficient",
+        "pressure difference",
+        "recirculation length"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "schema_version": 1,
+        "group": "lbm-curved-boundary",
+        "annulus": {
+          "N": [
+            80,
+            160,
+            240
+          ],
+          "tau": 0.7,
+          "nu": 0.01,
+          "inner_speed": 0.02,
+          "T": 4
+        },
+        "cylinder": {
+          "dx": [
+            0.01,
+            0.005
+          ],
+          "nu": 0.001,
+          "peak_U": 0.3,
+          "mean_U": 0.2,
+          "T": 30,
+          "late_checkpoints": [
+            26,
+            28,
+            30
+          ]
+        }
+      },
+      "sources": [
+        "https://arxiv.org/abs/comp-gas/9611001",
+        "https://doi.org/10.1016/S0021-9991(02)00022-0",
+        "https://kent-and.github.io/mek4250/2021/SchaeferTurek1996.pdf",
+        "https://wwwold.mathematik.tu-dortmund.de/~featflow/en/benchmarks/cfdbenchmarking/flow/dfg_benchmark1_re20.html",
+        "https://cpb.iphy.ac.cn/en/article/doi/10.1088/1009-1963/11/4/310"
+      ],
+      "title": {
+        "ja": "実LBMのRe20円柱流：Schäfer–Turek形状と明示した流出境界",
+        "en": "Actual LBM cylinderRe20: Schäfer–Turek geometry anddeclared outlet"
+      },
+      "assumptions": {
+        "ja": "[0,2.2]x[0,.41]、中心(.2,.2)、R.05、ν.001、rho1、平均流速.2/最大.3/Re20。dx.01/.005、x wet nodes221/441、y halfway nodes41/82、dt=dx/6、T30、18k/36ksteps。入口parabola、出口はrho1と隣接内点poststream速度による全9成分NEE。",
+        "en": "[0,2.2]x[0,.41],center(.2,.2),R.05,nu.001,rho1,mean.2/peak.3/Re20. dx.01/.005,xwet221/441,yhalfway41/82,dt=dx/6,T30,18k/36ksteps. Parabolic inlet;all-nine poststream NEE outletwithrho1andadjacent-interiorvelocity."
+      },
+      "kind_label": {
+        "ja": "有限格子の数値参照",
+        "en": "Finite-grid numerical reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/lbm-cylinder-re20/?lang=ja#lbm-cylinder-re20-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/lbm-cylinder-re20/?lang=en#lbm-cylinder-re20-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-lbm-curved-boundary/#lbm-cylinder-re20",
+        "en": "/numerical-methods-atlas/en/read/validation-lbm-curved-boundary/#lbm-cylinder-re20"
+      },
+      "citations": [
+        {
+          "role": "case-method-or-independent-reference",
+          "title": "On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model",
+          "url": "https://arxiv.org/abs/comp-gas/9611001",
+          "note": "Selected original preprint pp2-7: standard equilibrium, moment-based flat velocity/density boundaries and corner/finite-Mach limitations. No full-paper audit; special d2q9i accuracy is not credited to this standard BGK."
+        },
+        {
+          "role": "case-method-or-independent-reference",
+          "title": "Lattice Boltzmann method for moving boundaries",
+          "url": "https://doi.org/10.1016/S0021-9991(02)00022-0",
+          "note": "Selected original sec3 printed410-414 via disclosed author-content mirror: Eq12/13/14 quadratic reflected-characteristic interpolation,moving-wall coefficient,Eq15 momentum exchange and compromised mass conservation. Generic Lagrange scalar oracle independently qualifies weights andsigns. No localPDF/rendered-symbol audit;2001BFLfulloriginal remains unread."
+        },
+        {
+          "role": "case-method-or-independent-reference",
+          "title": "Benchmark Computations of Laminar Flow Around a Cylinder",
+          "url": "https://kent-and.github.io/mek4250/2021/SchaeferTurek1996.pdf",
+          "note": "Original chapter delivered by course mirror after official links404: printed3-4geometry/2D-1/force definitions,7protocol user-selected outlet,11-12Table3 estimated ranges. Not a full-paper or separate local rendered-symbol audit."
+        },
+        {
+          "role": "case-method-or-independent-reference",
+          "title": "DFG flow around cylinder benchmark2D-1, Re20",
+          "url": "https://wwwold.mathematik.tu-dortmund.de/~featflow/en/benchmarks/cfdbenchmarking/flow/dfg_benchmark1_re20.html",
+          "note": "Actual geometry,do-nothingBC,mean-speed normalization,force/probe definitions and Nabh1998attribution read. Nabh original report not read; its precise values are contextual,not the adopted outlet truth."
+        },
+        {
+          "role": "case-method-or-independent-reference",
+          "title": "Non-equilibrium extrapolation method for velocity and pressure boundary conditions in the lattice Boltzmann method",
+          "url": "https://cpb.iphy.ac.cn/en/article/doi/10.1088/1009-1963/11/4/310",
+          "note": "Official primary abstract actually read: equilibrium/nonequilibrium split and adjacent-fluid extrapolation. Full primary equations unavailable; the adopted all-nine poststream density reservoir is independently derived and qualified,not labelled the exact author implementation."
+        }
+      ],
+      "reference_scope": "Original1996two-dimensional steady benchmark estimated intervals,not exact error bounds. The original paper permits an outlet choice; this kinetic outlet is declared separately from later FEATflow do-nothing data. Force/pressure/recirculation comparisons apply to this fixed low-Re case,not arbitrary curved-wall accuracy. CurrentR4fixedboundaryscope:quadraticcirclelinks;forcylinderall9poststreamNEEreservoir,notlaterdo-nothing. Allpriorfailedarraysretained. Components87and29PASSaredistinctfrommainacceptance;R3annularpFAILisretainedandR4primarycylindermainpassedall33originalgates;independentpublicZIPrerunisseparate.",
+      "related_problems": [
+        {
+          "id": "lbm-cylinder-re20",
+          "name": {
+            "ja": "LBMの実円柱Re20：Schäfer–Turek形状と明示出口",
+            "en": "Actual LBM cylinderRe20: Schäfer–Turek geometry anddeclared outlet"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/results/lbm-cylinder-re20-preview.png",
+            "sha256": "25778fa66822e0ee9f3aa0c9c8258bffceccb906506c11470026cd2d5b086c47",
+            "width": 1100,
+            "height": 800,
+            "caption": {
+              "ja": "固定入力を実計算した保存配列の2D場と検証診断。参照・境界・誤差の範囲は本文に明記。",
+              "en": "Actual saved2Dfields anddiagnostics fromfixedinputs; reference,boundary anderror scopesaredeclaredinthecase."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lbm-cylinder-re20/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lbm-cylinder-re20/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lbm-cylinder-re20/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lbm-cylinder-re20/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "lbm-cylinder-re20",
+              "kind": "supplement",
+              "name": {
+                "ja": "LBMの実円柱Re20：Schäfer–Turek形状と明示出口",
+                "en": "Actual LBM cylinderRe20: Schäfer–Turek geometry anddeclared outlet"
+              },
+              "scope": {
+                "ja": "標準2D-1の全長channelと偏心円柱を実際に発展し、抗力・揚力・表面圧力差・再循環長と定常性を2格子で検査します。",
+                "en": "Evolve the full-length original2D-1channel andoff-center cylinder on twogrids,checking drag,lift,surface pressure difference,recirculation length andstationarity."
+              },
+              "method_ids": [
+                "d2q9-bgk"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-cylinder-re20/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-cylinder-re20/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/atlas-lbm-curved-boundary-2026-11-24.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/verification.json"
+            }
+          ],
+          "relation": "same-problem",
+          "note": {
+            "ja": "原典p3/p7は出口を選択可。採用NEEは独立導出した有限reservoirで、原著NEE全文の同一実装やFEATflow do-nothingと偽りません。Nabh高精度値は同BCの厳密値ではなく、原典範囲も厳密誤差区間ではありません。線形/Zou–He旧試行はstep265出口近傍で不合格として保持。有限Mach/境界/曲面差を含み一般精度保証なし。",
+            "en": "Originalpp3/7allow selectingoutflow. AdoptedNEEis independently derived finite reservoir,not claimed exactunread authorimplementation orFEATflowdo-nothing. Nabhvaluesarenotexact adopted-BCtruth andoriginalrangesarenotrigorousenclosures. Retain failedlinear/Zou–Heattempt(outlet-nearstep265). FiniteMach/BC/curveerrors;nogeneralaccuracyguarantee."
+          }
+        }
+      ]
+    },
+    {
+      "id": "isotropic-scattering-slab",
+      "model": "static-grey-transfer",
+      "kind": "semi-analytic",
+      "formula": "J(x)=.5*E2(x)+omega/2*integral_0^L E1(|x-y|)J(y)dy; R=2omega*integral J E2(x)dx; T=2E3(L)+2omega*integral J E2(L-x)dx; A=4(1-omega)*integral J dx.",
+      "dimension": 1,
+      "bounds": [
+        [
+          0.0,
+          3.0
+        ]
+      ],
+      "components": [
+        "scalar radiance",
+        "reflected flux",
+        "transmitted flux",
+        "absorbed flux"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "depths": [
+          0.5,
+          3.0
+        ],
+        "albedos": [
+          0.5,
+          0.9
+        ],
+        "reference_constant_cells": [
+          256,
+          512,
+          1024
+        ],
+        "reference_linear_cells": [
+          256,
+          512
+        ],
+        "normalized_incident_flux": 1.0
+      },
+      "sources": [
+        "https://www.pbr-book.org/4ed/Light_Transport_II_Volume_Rendering/The_Equation_of_Transfer"
+      ],
+      "title": {
+        "ja": "等方散乱平板：連続角Fredholm流束参照",
+        "en": "Isotropically scattering slab: continuous-angle Fredholm flux reference"
+      },
+      "assumptions": {
+        "ja": "平行平板の定常な光学厚さ座標を用い、左の入射放射輝度は1、右の入射は真空、等方散乱の単一散乱アルベドを固定します。入射半球流束はπ、符号付き角度の平均はJ=(1/2)∫I dμです。",
+        "en": "Plane-parallel steady optical-depth slab, unit incoming radiance on the left,vacuum incoming on the right,isotropic single-scattering albedo. Incoming hemispherical flux pi; signed-angle J=.5*integral I."
+      },
+      "kind_label": {
+        "ja": "半解析解",
+        "en": "Semi-analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/isotropic-scattering-slab/?lang=ja#isotropic-scattering-slab-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/isotropic-scattering-slab/?lang=en#isotropic-scattering-slab-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-radiation-scattering/#isotropic-scattering-slab",
+        "en": "/numerical-methods-atlas/en/read/validation-radiation-scattering/#isotropic-scattering-slab"
+      },
+      "citations": [
+        {
+          "role": "transfer-equation-and-boundary-convention",
+          "title": "Pharr,Jakob and Humphreys, Physically Based Rendering4e: The Equation of Transfer",
+          "url": "https://www.pbr-book.org/4ed/Light_Transport_II_Volume_Rendering/The_Equation_of_Transfer",
+          "note": "Read selected transfer/source/finite-ray boundary section. The isotropic Fredholm normalization,independent exact-cell E1weights and flux derivations are documented in this packet; no DISORT reproduction or Monte Carlo claim."
+        }
+      ],
+      "reference_scope": "Independent continuous-angle Fredholm evaluator,not the primary signed-angle FV sweeps. Exact singular E1diagonal weights; constant/linear scalar bases and selected singular-weight quadratures qualify finite reference sensitivity.78reference checks passed before primary execution. No certified continuum bound or stochastic reference.",
+      "related_problems": [
+        {
+          "id": "isotropic-scattering-slab",
+          "name": {
+            "ja": "等方散乱平板の反射・透過・吸収",
+            "en": "Isotropic scattering in a finite slab"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-scattering/results/isotropic-scattering-slab-preview.png",
+            "sha256": "3d477b96516f17ba2f039a120ad56fe2ce913bc03e72bde1b0ef4d6a249b77f1",
+            "width": 1055,
+            "height": 568,
+            "caption": {
+              "ja": "保存した実計算場の科学プレビュー。",
+              "en": "Scientific preview from the actual saved numerical fields."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isotropic-scattering-slab/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isotropic-scattering-slab/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isotropic-scattering-slab/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/isotropic-scattering-slab/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "isotropic-scattering-slab",
+              "kind": "supplement",
+              "name": {
+                "ja": "等方散乱平板の反射・透過・吸収",
+                "en": "Isotropic scattering in a finite slab"
+              },
+              "scope": {
+                "ja": "正負の角度を結合した実際の定常輸送を解き、独立な連続角Fredholm参照とR/T/Aを比較します。",
+                "en": "Solve genuinely coupled signed-angle steady transport and compare R/T/A with an independent continuum-angle Fredholm reference."
+              },
+              "method_ids": [
+                "radiation-transport",
+                "upwind"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/isotropic-scattering-slab/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/isotropic-scattering-slab/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-scattering/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-scattering/atlas-radiation-scattering-2026-11-24.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-scattering/verification.json"
+            }
+          ],
+          "relation": "same-problem",
+          "note": {
+            "ja": "有限の4平板に限定。MC、一般角度phase関数、DISORT再現、普遍的次数や厳密連続体誤差境界は認証しません。",
+            "en": "Limited to fourfixedisotropic slabs;noMC,generalphase-function/DISORT reproduction,universalorder or rigorouscontinuumerrorbound."
+          }
+        }
+      ]
+    },
+    {
+      "id": "su-olson-diffusion1996",
+      "model": "non-equilibrium-diffusion-exchange",
+      "kind": "semi-analytic",
+      "formula": "epsilon*u_tau-u_xx=v-u; v_tau=u-v; u(0,tau)-2/sqrt(3)*u_x(0,tau)=1; u(infinity,tau)=0; epsilon*u+v is the capacity-weighted total.",
+      "dimension": 1,
+      "bounds": [
+        [
+          0.0,
+          16.0
+        ]
+      ],
+      "components": [
+        "radiation u",
+        "material variable v"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "epsilon": 1.0,
+        "reference_times": [
+          0.1,
+          1.0,
+          3.0
+        ],
+        "x_definition": "sqrt(3)*kappa*z",
+        "tau_definition": "epsilon*c*kappa*t",
+        "epsilon_definition": "4a/alpha",
+        "physical_material_energy": "v/epsilon times E0",
+        "nonunit_capacity_controls": [
+          0.25,
+          2.0
+        ]
+      },
+      "sources": [
+        "https://doi.org/10.1016/0022-4073(96)84524-9",
+        "https://doi.org/10.1016/j.softx.2023.101560",
+        "https://github.com/lanl/ExactPack/tree/8718b61f281a9744ea7a3820c51800915e4636e9/exactpack/solvers/suolson",
+        "https://github.com/lanl/ExactPack/blob/8718b61f281a9744ea7a3820c51800915e4636e9/LICENSE.txt"
+      ],
+      "title": {
+        "ja": "Su–Olson1996拡散：固定版の独立積分評価関数",
+        "en": "Su–Olson1996 diffusion: pinned independent integral evaluator"
+      },
+      "assumptions": {
+        "ja": "初期の放射・物質変数が0、ε=1の半無限Marshak拡散です。無次元評価関数を直接用い、物理単位の質量吸収係数ラッパーに起因する曖昧な規約は持ち込みません。",
+        "en": "Half-space Marshak diffusion with zero initial radiation/material variables and epsilon1. Direct dimensionless evaluator; no ambiguous physical mass-opacity wrapper convention."
+      },
+      "kind_label": {
+        "ja": "半解析解",
+        "en": "Semi-analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/su-olson-diffusion1996/?lang=ja#su-olson-diffusion1996-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/su-olson-diffusion1996/?lang=en#su-olson-diffusion1996-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-diffusion1996",
+        "en": "/numerical-methods-atlas/en/read/validation-radiation-matter/#su-olson-diffusion1996"
+      },
+      "citations": [
+        {
+          "role": "original-problem",
+          "title": "B. Su and G. L. Olson (1996), Benchmark results for the non-equilibrium Marshak diffusion problem, JQSRT56(3),337–351",
+          "url": "https://doi.org/10.1016/0022-4073(96)84524-9",
+          "note": "Publisher abstract and bibliographic metadata read; original full text/equations/tables unavailable and not directly checked. Diffusion is distinct from the1997transport problem."
+        },
+        {
+          "role": "reference-software-paper",
+          "title": "J. Thrussell and J. M. Ferguson (2023), ExactPack: A python library of exact analytic solutions, SoftwareX24,101560",
+          "url": "https://doi.org/10.1016/j.softx.2023.101560",
+          "note": "Bibliographic software credit,recorded separately from Su–Olson1996 and the pinned executed source. Full software paper is not claimed read."
+        },
+        {
+          "role": "executed-reference-implementation",
+          "title": "LANL ExactPack1.7.5, pinned SuOlson/Timmes evaluator",
+          "url": "https://github.com/lanl/ExactPack/tree/8718b61f281a9744ea7a3820c51800915e4636e9/exactpack/solvers/suolson",
+          "note": "All55documentation,41wrapper and348Timmes module lines read. Execute nondimensional usolution/vsolution serially; qualify selected original/tight integrals against sensitivity,PDE and Robin checks. No primary solver shares this evaluator. Full ExactPack/base/library audit is not claimed."
+        },
+        {
+          "role": "reference-source-license",
+          "title": "LANL ExactPack pinned BSD-3-Clause license",
+          "url": "https://github.com/lanl/ExactPack/blob/8718b61f281a9744ea7a3820c51800915e4636e9/LICENSE.txt",
+          "note": "Actual license text read and retained as exactpack-LICENSE.txt with redistributed inert source snapshots."
+        }
+      ],
+      "reference_scope": "Pinned official ExactPack1.7.5 implementation of independent1996diffusion integrals. Selected original/tighter evaluator sensitivities plus independent PDE/Robin residuals and transport-table controls jointly passed54checks. Finite numerical integral reference,not a rigorous quadrature bound. Original1996full text is unread; this is not the1997transport oracle.",
+      "related_problems": [
+        {
+          "id": "su-olson-diffusion1996",
+          "name": {
+            "ja": "Su–Olson1996非平衡拡散",
+            "en": "Su–Olson1996 non-equilibrium diffusion"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/results/su-olson-diffusion1996-preview.png",
+            "sha256": "88eb23f634971127b70e93f6a373937d45e1701807685268223f850fb3a7dceb",
+            "width": 1098,
+            "height": 568,
+            "caption": {
+              "ja": "保存した実計算場の科学プレビュー。",
+              "en": "Scientific preview from the actual saved numerical fields."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/su-olson-diffusion1996/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/su-olson-diffusion1996/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/su-olson-diffusion1996/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/su-olson-diffusion1996/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "su-olson-diffusion1996",
+              "kind": "supplement",
+              "name": {
+                "ja": "Su–Olson1996非平衡拡散",
+                "en": "Su–Olson1996 non-equilibrium diffusion"
+              },
+              "scope": {
+                "ja": "実際の放射・物質2場とMarshak境界を進め、固定版ExactPackの独立積分参照と比較します。",
+                "en": "Advance actual radiation/material fields with the Marshak boundary and compare with independently qualified pinned ExactPack integrals."
+              },
+              "method_ids": [
+                "radiation-transport",
+                "backward-euler"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/su-olson-diffusion1996/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/su-olson-diffusion1996/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/atlas-radiation-matter-2026-11-24-r2.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/verification.json"
+            }
+          ],
+          "relation": "same-problem",
+          "note": {
+            "ja": "1996拡散であり1997角度輸送とは別です。原典本文は未読、公式ソフトの選択値を資格。物理単位の質量opacity解釈は使わず無次元関数を直接参照します。",
+            "en": "This1996diffusion model is distinct from1997angular transport. Original paper fulltext unread;officialsoftware selected values qualified. Direct dimensionless functions avoid ambiguous mass-opacity physical-wrapper units."
+          }
+        }
+      ]
+    },
+    {
+      "id": "su-olson-transport1997",
+      "model": "static-grey-transfer",
+      "kind": "numerical-reference",
+      "formula": "epsilon*I_tau+mu*I_x+I=V+Q; V_tau=E-V; E=.5*integral_-1^1 I dmu; I=2U of Crilly2023Appendix4.1; conserved total epsilon*E+V. Separate periodic companion: epsilon*I_t+mu*I_x=kappa*(V-I), V_t=kappa*(E-V); F approximately -E_x/(3*kappa), (epsilon+1)*E_t approximately E_xx/(3*kappa). For h=2*pi/N, A_N=.1*sin(h/2)/(h/2), E_diff=V_diff=1+A_N*exp[-s/(3*(epsilon+1))]*cos(x), t=kappa*s.",
+      "dimension": 1,
+      "bounds": [
+        [
+          0.0,
+          8.0
+        ]
+      ],
+      "components": [
+        "radiation E=W",
+        "material V"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "epsilon": 1.0,
+        "source_half_width": 0.5,
+        "source_off": 10.0,
+        "source_amplitude": 1.0,
+        "elastic_scattering": 0.0,
+        "reference_times": [
+          0.1,
+          1.0,
+          3.16228
+        ],
+        "raw_table_shape": [
+          15,
+          7
+        ],
+        "compared_x_points": 13,
+        "compared_x_limit": 6.0,
+        "data_commit": "3e4f636299d62bc03f7118cfc884230c756f9d87",
+        "matched_periodic_companion": {
+          "edition": "2026-11-24-r2",
+          "physical_domain": [
+            0.0,
+            "2*pi"
+          ],
+          "boundary": "periodic",
+          "c": 1.0,
+          "epsilon": 1.0,
+          "kappa": [
+            4,
+            8,
+            16
+          ],
+          "cells": [
+            128,
+            512,
+            2048
+          ],
+          "ordinates": 32,
+          "source": 0.0,
+          "initial": "actual cell means of I=V=1+.1*cos(x), initial F=0",
+          "scaled_times": [
+            0.0,
+            0.0625,
+            0.125,
+            0.25
+          ],
+          "physical_times": "t=kappa*s",
+          "radiation_diffusivity": "1/(3*kappa)",
+          "effective_diffusivity": "1/[3*kappa*(epsilon+1)]",
+          "reference_angular_rules": [
+            64,
+            128
+          ],
+          "reference_qualification_checks": 141,
+          "final_time_only_asymptotic_gates": true,
+          "different_from_source_driven_1997_benchmark": true
+        }
+      },
+      "sources": [
+        "https://doi.org/10.1016/S0306-4549(96)00100-4",
+        "https://raw.githubusercontent.com/ml4physicalsciences/ml4physicalsciences.github.io/master/2023/files/NeurIPS_ML4PS_2023_16.pdf",
+        "https://github.com/aidancrilly/RTClosureJAX/tree/3e4f636299d62bc03f7118cfc884230c756f9d87/SuOlsonData",
+        "https://github.com/aidancrilly/RTClosureJAX/blob/3e4f636299d62bc03f7118cfc884230c756f9d87/LICENSE",
+        "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.sparse.linalg.expm_multiply.html",
+        "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html"
+      ],
+      "title": {
+        "ja": "Su–Olson輸送：2023著者公開の独立解析ベンチマーク表",
+        "en": "Su–Olson transport: primary2023author-provided analytical benchmark data"
+      },
+      "assumptions": {
+        "ja": "無限領域の対称1次元角度輸送と物質交換で、ε=1、弾性散乱なし、低温の零初期状態です。Q=1を|x|<0.5、0<τ<10に与えます。主計算は左反射・十分遠い右入射真空の半領域で、比較時刻は境界の影響前です。別の同条件比較用の周期セル平均制御は、物理座標x∈[0,2π)、c=ε=1、κ=4/8/16、N=128/512/2048、Q=0、初期I=V=1+0.1cos(x)、s=0/.0625/.125/.25に対するt=κsを用います。この制御は1997のsource駆動問題とは初期・境界・sourceが異なり、制御内のFV・連続角度参照・拡散比較に同じ入力を用います。",
+        "en": "Infinite symmetric1D angular transport/material exchange,epsilon1,no elastic scattering,cold initial state. Source Q1 for |x|<.5 and0<tau<10. Primary half-domain uses reflecting left and distant incoming-vacuum right; comparison times precede boundary influence. A separate matched periodic cell-mean companion uses physical x in [0,2*pi), c=epsilon=1, kappa4/8/16, N128/512/2048, Q0, initial I=V=1+.1cos(x), and t=kappa*s for s=0,.0625,.125,.25. Its IC/BC/source differ from the source-driven1997 benchmark; the FV, continuum-angular and diffusion comparisons within this companion use matched inputs."
+      },
+      "kind_label": {
+        "ja": "有限格子の数値参照",
+        "en": "Finite-grid numerical reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/su-olson-transport1997/?lang=ja#su-olson-transport1997-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/su-olson-transport1997/?lang=en#su-olson-transport1997-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-radiation-matter/#su-olson-transport1997",
+        "en": "/numerical-methods-atlas/en/read/validation-radiation-matter/#su-olson-transport1997"
+      },
+      "citations": [
+        {
+          "role": "original-problem",
+          "title": "B. Su and G. L. Olson (1997), An analytical benchmark for non-equilibrium radiative transfer in an isotropically scattering medium, Annals of Nuclear Energy24(13),1035–1055",
+          "url": "https://doi.org/10.1016/S0306-4549(96)00100-4",
+          "note": "Publisher abstract/metadata read only. Original full text,integral normalization and original numerical tables were not directly read or transcribed. The actual comparison is independently attributed to the selected2023author repository below."
+        },
+        {
+          "role": "primary-author-model-normalization",
+          "title": "A. Crilly (2023), Learning closure relations using differentiable programming: an example in radiation transport",
+          "url": "https://raw.githubusercontent.com/ml4physicalsciences/ml4physicalsciences.github.io/master/2023/files/NeurIPS_ML4PS_2023_16.pdf",
+          "note": "Actually read and visually verified PDFpage6 Appendix4.1 equations7–10: epsilon*d_tau U+mu*d_x U+U=V/2+Q/2,V_tau=W−V. With I=2U, E=W. epsilon1,x0=.5,source duration10; no direct original1997-table verification."
+        },
+        {
+          "role": "qualified-independent-published-data",
+          "title": "A. Crilly RTClosureJAX pinned SuOlsonData analytical benchmark tables",
+          "url": "https://github.com/aidancrilly/RTClosureJAX/tree/3e4f636299d62bc03f7118cfc884230c756f9d87/SuOlsonData",
+          "note": "Pinned W/Vtransport data,coordinates,times and README actually read. Repository calls them analytical Su–Olson data; transcription versus regeneration is undocumented. They are not trained-closure/model predictions. Retain full15×7raw table; compare13points at tau.1,1,3.16228 with matching source/epsilon/units. Rounded five-decimal finite data,not a rigorous exact reference."
+        },
+        {
+          "role": "reference-data-license",
+          "title": "RTClosureJAX pinned MIT license",
+          "url": "https://github.com/aidancrilly/RTClosureJAX/blob/3e4f636299d62bc03f7118cfc884230c756f9d87/LICENSE",
+          "note": "Actual MIT license read and retained with the bundled raw table. No redistribution of the2023paper PDF is required by this packet."
+        },
+        {
+          "role": "shared-exponential-action-API",
+          "title": "SciPy1.14.1 expm_multiply: matrix exponential action and trace preconditioning",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.sparse.linalg.expm_multiply.html",
+          "note": "Actually inspected installed1.14.1 source/API docstring and the versioned official API action/traceA section. Shared by the new FV-mode and continuum-reference propagators; mathematical action equivalence is not bit equivalence or independent-engine evidence. The linked algorithm papers were not read as part of this update."
+        },
+        {
+          "role": "independent-reference-propagator-qualification",
+          "title": "SciPy1.14.1 solve_ivp: DOP853 and complex initial states",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html",
+          "note": "Read selected official API sections for complex initial states,DOP853 and fixed tolerances. Two separately written continuum derivatives are compared to the shared exponential action under frozen141checks. This is finite reference qualification,not a primary SSPRK2 order test or a rigorous bound; original DOP853 papers were not reviewed here."
+        }
+      ],
+      "reference_scope": "Actual comparison uses independently published analytical benchmark tables from the pinned2023primary-author repository,not trained outputs and not the primary transport method. Five-decimal rounding,raw shape/hash,finite coordinates,causal/homogeneous limits and exact source/normalization matching were qualified in the54check reference study. Original1997full text/tables were not directly verified; transcription versus regeneration is unknown. No source-off/general-scattering/global-angular-order certification. A separately recorded matched periodic companion qualifies an independently assembled continuum-space angular matrix before any primary mode probes:141 fixed checks include GL64/128 finite moment sensitivity, capacity-weighted generator identities, exact homogeneous k=0 exchange for epsilon.25/1/2, and two full GL128 final-vector comparisons with a separately written DOP853 derivative. The primary uses the actual FV stencil recovered by real cosine/sine probes and reconstructs all cell means. Both new matrix-action paths share scipy.sparse.linalg.expm_multiply(csr_matrix(t*A),initial,traceA=t*trace(A)); this shared primitive is not an independent primary time engine, and DOP853 qualifies only the reference propagation. The analytic diffusion limit includes material capacity epsilon+1. Initial F0 versus nonzero Fick flux is retained; asymptotic gates use only final scaled time s=.25. N grows as kappa squared and resolves the mean free path, so neither fixed-grid AP behavior nor the primary SSPRK2 temporal accuracy is certified. This companion does not supply the unread original1997 tables or replace the1996 Marshak-boundary reference.",
+      "related_problems": [
+        {
+          "id": "su-olson-transport1997",
+          "name": {
+            "ja": "Su–Olson1997角度輸送の独立公開表比較",
+            "en": "Su–Olson transport with an independently published analytical table"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/results/su-olson-transport1997-preview.png",
+            "sha256": "00ed0c00d9a00b8c994b9aede72db9659dd505b5fecc12fa3b819471e7015dc8",
+            "width": 1098,
+            "height": 568,
+            "caption": {
+              "ja": "保存した実計算場の科学プレビュー。",
+              "en": "Scientific preview from the actual saved numerical fields."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/su-olson-transport1997/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/su-olson-transport1997/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/su-olson-transport1997/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/su-olson-transport1997/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "su-olson-transport1997",
+              "kind": "supplement",
+              "name": {
+                "ja": "Su–Olson1997角度輸送の独立公開表比較",
+                "en": "Su–Olson transport with an independently published analytical table"
+              },
+              "scope": {
+                "ja": "物質交換を含む実際の正負角度輸送を進め、2023原著者公開の解析benchmark表と比較します。",
+                "en": "Evolve actual signed-angle transport/material exchange and compare with pinned analytical benchmark tables provided by the2023primary author."
+              },
+              "method_ids": [
+                "radiation-transport",
+                "upwind",
+                "heun"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/su-olson-transport1997/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/su-olson-transport1997/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/atlas-radiation-matter-2026-11-24-r2.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/radiation-matter/verification.json"
+            }
+          ],
+          "relation": "same-problem",
+          "note": {
+            "ja": "原1997本文・原表と直接照合したとはしません。公開表の転記か再生成かは著者READMEに未記載。source停止後、一般散乱、全時空間の連続体誤差や角度次数は未認証です。 この追加はκhを解像したN∝κ²の半離散周期制御で、固定格子AP性や主SSPRK2の拡散時間次数を認証しません。初期F0と非零Fick流束の初期層を保持し、極限判定は最終s=.25のみ。両行列伝播にSciPy sparse expm_multiplyを共有し、DOP853照合は参照伝播器の資格です。",
+            "en": "No direct original1997fulltext/tablecomparison claim. TheauthorREADMEdoesnotstate transcriptionversusregeneration. Source-offprofiles,generalscattering,globalcontinuumerrorandangularorderarenotcertified. The addition is a resolved N~kappa^2 semidiscrete periodic control,not fixed-grid AP or an SSPRK2 diffusion-time order certificate. Initial F0 versus nonzero Fick flux is retained;limit gates use final s=.25 only. SciPy sparse expm_multiply is shared;DOP853 qualifies the reference propagator."
+          }
+        }
+      ]
+    },
+    {
+      "id": "shadow-absorber2d",
+      "model": "static-grey-transfer",
+      "kind": "analytic",
+      "formula": "I(x,y,t)=I_in(y)*exp(-kappa*ell_circle(x,y))*1_(x<t); Pxx=E,Pyy=Pzz=0 for the+xray.",
+      "dimension": 2,
+      "bounds": [
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "components": [
+        "E",
+        "Fx",
+        "Fy",
+        "Pxx",
+        "Pyy",
+        "Pzz"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "c": 1.0,
+        "angular_dimensions": 3,
+        "directions": "six Cartesian axes",
+        "axis_weights": "1/6",
+        "beam_nodal_intensity": 6.0,
+        "reference_cell_quadratures": [
+          8,
+          16,
+          32
+        ],
+        "main_grids": [
+          24,
+          48,
+          96
+        ],
+        "final_time": 1.1,
+        "disk_center": [
+          0.35,
+          0.5
+        ],
+        "disk_radius": 0.12,
+        "disk_absorption": 40.0,
+        "incoming_stripe": [
+          0.3,
+          0.7
+        ]
+      },
+      "sources": [
+        "https://arxiv.org/html/1304.7126v2",
+        "https://arxiv.org/pdf/1306.0010"
+      ],
+      "title": {
+        "ja": "円形吸収体の特性線参照",
+        "en": "Circular-absorber characteristic reference"
+      },
+      "assumptions": {
+        "ja": "2D空間に3D角度測度を用い、c=1の軸に整列した光線を扱います。実際の符号付き角度輸送と非線形の閉じたM1方程式をともに進めます。解析特性線の参照はRTE/S_Nに適用し、M1解全体の厳密参照とはしません。",
+        "en": "2Dspace with3Dangular measure,c1. Pure aligned rays; actual signed-angle transport and nonlinear closed M1 both evolved. The analytic characteristic reference applies to RTE/S_N,not to the entire M1 solution."
+      },
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/shadow-absorber2d/?lang=ja#shadow-absorber2d-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/shadow-absorber2d/?lang=en#shadow-absorber2d-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-radiation-geometry/#shadow-absorber2d",
+        "en": "/numerical-methods-atlas/en/read/validation-radiation-geometry/#shadow-absorber2d"
+      },
+      "citations": [
+        {
+          "role": "closure-and-model-limitations",
+          "title": "J. Rosdahl etal. (2013), RAMSES-RT: Radiation hydrodynamics in the cosmological context",
+          "url": "https://arxiv.org/html/1304.7126v2",
+          "note": "Read selectedSection2 equations12–14 and opposing-beam limitation text. The static grey equations here are neither GR nor reproductions of RAMSES astrophysical calculations. Original Levermore1984 full text was not read."
+        },
+        {
+          "role": "qualified-M1-numerical-method-context",
+          "title": "A Two-moment Radiation Hydrodynamics Module in Athena Using a Time-Explicit Godunov Method",
+          "url": "https://arxiv.org/pdf/1306.0010",
+          "note": "Independent reviewer actually read selected extracted Section3.3equations37–41and eigenvalue limits;not a whole-paper/rendered-symbol audit. Directional LF cone root/weighted-CFL algebra is separately authored and independently crosschecked,not a transplanted HLL solver or claimed general Riemann-fan bound. Actual generalized directional LF core passed762component checks,then all166fixed geometry gates. The authored LFcone proof is separate from the paper;no general nonlinearRiemannfan bound is claimed."
+        }
+      ],
+      "reference_scope": "Analytic characteristic transport with independently evaluated cell averages and finite quadrature qualification.191component checks jointly cover shadow/opposing/crossed packets,M1MMS forcing,3Dpressure and invalid states. This is NOT an exact full M1 shadow/opposing-beam solution. Actual M1numerics are verified by a separate varying-direction/magnitude manufactured solution using the same PDE solver and analytic forcing checked by independent complex step. At exact equal head-on meeting F0,angular Pxx=E while M1assigns E/3; report that information loss rather than imposing convergence to RTE. Pixelized opacity and finite transport errors remain distinct. No general angular convergence or relativistic radiation claim. For the special pure+xshadow invariant E=Fx,Fy0,continuous M1also reduces to the characteristic RTEbeam equation;that statement does not extend to generalM1shadow/opposing-beam solutions. Preserve the originalc1transverse-diffusion failure and use the separately qualified general directional local-LF redesign.",
+      "related_problems": [
+        {
+          "id": "shadow-absorber2d",
+          "name": {
+            "ja": "2D吸収影と保存的M1輸送",
+            "en": "Two-dimensional absorber shadow and M1 transport"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/results/shadow-absorber2d-preview.png",
+            "sha256": "a44ef843df139cdef9e602b5d46d78478bf3a75452b316ddee2e1baa30a9d17e",
+            "width": 1509,
+            "height": 495,
+            "caption": {
+              "ja": "保存した実計算場の科学プレビュー。",
+              "en": "Scientific preview from the actual saved numerical fields."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/shadow-absorber2d/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/shadow-absorber2d/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/shadow-absorber2d/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/shadow-absorber2d/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "shadow-absorber2d",
+              "kind": "supplement",
+              "name": {
+                "ja": "2D吸収影と保存的M1輸送",
+                "en": "Two-dimensional absorber shadow and M1 transport"
+              },
+              "scope": {
+                "ja": "実際の円形吸収体の影を、特性線の円弦減衰・角度輸送・M1で比較します。",
+                "en": "Compare the actual evolved circular-absorber shadow with characteristic chord attenuation, signed-angle transport and nonlinear M1."
+              },
+              "method_ids": [
+                "radiation-transport",
+                "upwind",
+                "heun",
+                "rusanov"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shadow-absorber2d/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/shadow-absorber2d/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/atlas-radiation-geometry-2026-11-24.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/verification.json"
+            }
+          ],
+          "relation": "same-problem",
+          "note": {
+            "ja": "6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。",
+            "en": "Six aligned directions do not demonstrate general angular convergence. The M1 opposing-beam mismatch is expected information loss and is not required to converge to angular transport. No relativistic, gas-dynamical or multifrequency radiation hydrodynamics is implemented."
+          }
+        }
+      ]
+    },
+    {
+      "id": "opposing-beams2d",
+      "model": "static-grey-transfer",
+      "kind": "analytic",
+      "formula": "Iplus(x,y,t)=6G(x-t,y;.25); Iminus(x,y,t)=6G(x+t,y;.75); E=Gplus+Gminus,Fx=Gplus-Gminus,Fy=0; Pxx=E,Pyy=Pzz=0.",
+      "dimension": 2,
+      "bounds": [
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "components": [
+        "E",
+        "Fx",
+        "Fy",
+        "Pxx",
+        "Pyy",
+        "Pzz"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "c": 1.0,
+        "angular_dimensions": 3,
+        "directions": "six Cartesian axes",
+        "axis_weights": "1/6",
+        "beam_nodal_intensity": 6.0,
+        "reference_cell_quadratures": [
+          8,
+          16,
+          32
+        ],
+        "main_grids": [
+          24,
+          48,
+          96
+        ],
+        "final_time": 0.5,
+        "packet_exponent": 16.0,
+        "meeting_time": 0.25
+      },
+      "sources": [
+        "https://arxiv.org/html/1304.7126v2",
+        "https://arxiv.org/pdf/1306.0010"
+      ],
+      "title": {
+        "ja": "反向伝播packetの特性線参照",
+        "en": "Counterpropagating packet characteristic reference"
+      },
+      "assumptions": {
+        "ja": "2D空間に3D角度測度を用い、c=1の軸に整列した光線を扱います。実際の符号付き角度輸送と非線形の閉じたM1方程式をともに進めます。解析特性線の参照はRTE/S_Nに適用し、M1解全体の厳密参照とはしません。",
+        "en": "2Dspace with3Dangular measure,c1. Pure aligned rays; actual signed-angle transport and nonlinear closed M1 both evolved. The analytic characteristic reference applies to RTE/S_N,not to the entire M1 solution."
+      },
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/opposing-beams2d/?lang=ja#opposing-beams2d-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/opposing-beams2d/?lang=en#opposing-beams2d-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-radiation-geometry/#opposing-beams2d",
+        "en": "/numerical-methods-atlas/en/read/validation-radiation-geometry/#opposing-beams2d"
+      },
+      "citations": [
+        {
+          "role": "closure-and-model-limitations",
+          "title": "J. Rosdahl etal. (2013), RAMSES-RT: Radiation hydrodynamics in the cosmological context",
+          "url": "https://arxiv.org/html/1304.7126v2",
+          "note": "Read selectedSection2 equations12–14 and opposing-beam limitation text. The static grey equations here are neither GR nor reproductions of RAMSES astrophysical calculations. Original Levermore1984 full text was not read."
+        },
+        {
+          "role": "qualified-M1-numerical-method-context",
+          "title": "A Two-moment Radiation Hydrodynamics Module in Athena Using a Time-Explicit Godunov Method",
+          "url": "https://arxiv.org/pdf/1306.0010",
+          "note": "Independent reviewer actually read selected extracted Section3.3equations37–41and eigenvalue limits;not a whole-paper/rendered-symbol audit. Directional LF cone root/weighted-CFL algebra is separately authored and independently crosschecked,not a transplanted HLL solver or claimed general Riemann-fan bound. Actual generalized directional LF core passed762component checks,then all166fixed geometry gates. The authored LFcone proof is separate from the paper;no general nonlinearRiemannfan bound is claimed."
+        }
+      ],
+      "reference_scope": "Analytic characteristic transport with independently evaluated cell averages and finite quadrature qualification.191component checks jointly cover shadow/opposing/crossed packets,M1MMS forcing,3Dpressure and invalid states. This is NOT an exact full M1 shadow/opposing-beam solution. Actual M1numerics are verified by a separate varying-direction/magnitude manufactured solution using the same PDE solver and analytic forcing checked by independent complex step. At exact equal head-on meeting F0,angular Pxx=E while M1assigns E/3; report that information loss rather than imposing convergence to RTE. Pixelized opacity and finite transport errors remain distinct. No general angular convergence or relativistic radiation claim. For the special pure+xshadow invariant E=Fx,Fy0,continuous M1also reduces to the characteristic RTEbeam equation;that statement does not extend to generalM1shadow/opposing-beam solutions. Preserve the originalc1transverse-diffusion failure and use the separately qualified general directional local-LF redesign.",
+      "related_problems": [
+        {
+          "id": "opposing-beams2d",
+          "name": {
+            "ja": "2D反向beamとM1閉包の情報損失",
+            "en": "Opposing beams and information loss in the M1 closure"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/results/opposing-beams2d-preview.png",
+            "sha256": "79f027ee883833d34179e35687564ba63c1dd284494b66f370c8d31ab30a26ee",
+            "width": 1509,
+            "height": 495,
+            "caption": {
+              "ja": "保存した実計算場の科学プレビュー。",
+              "en": "Scientific preview from the actual saved numerical fields."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/opposing-beams2d/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/opposing-beams2d/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/opposing-beams2d/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/opposing-beams2d/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "opposing-beams2d",
+              "kind": "supplement",
+              "name": {
+                "ja": "2D反向beamとM1閉包の情報損失",
+                "en": "Opposing beams and information loss in the M1 closure"
+              },
+              "scope": {
+                "ja": "保存した反向packetの実進行からM1の限界を示し、別の閉M1MMSで数値実装を検証します。",
+                "en": "Show the M1 limitation in actual opposing-packet evolution; validate the same closed M1 solver independently with a manufactured solution."
+              },
+              "method_ids": [
+                "radiation-transport",
+                "upwind",
+                "heun",
+                "rusanov"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/opposing-beams2d/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/opposing-beams2d/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/atlas-radiation-geometry-2026-11-24.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/radiation-geometry/verification.json"
+            }
+          ],
+          "relation": "same-problem",
+          "note": {
+            "ja": "6軸は整列beam用で一般角度収束ではありません。反向beamのM1差はモデル情報損失として示し、角度輸送への収束を要求しません。相対論・気体流体・多周波RHDではありません。",
+            "en": "Six aligned directions do not demonstrate general angular convergence. The M1 opposing-beam mismatch is expected information loss and is not required to converge to angular transport. No relativistic, gas-dynamical or multifrequency radiation hydrodynamics is implemented."
+          }
+        }
+      ]
+    },
+    {
+      "id": "gbm-weak-moments",
+      "model": "scalar-ito-diffusion",
+      "kind": "analytic",
+      "formula": "dX_t=\\mu X_t\\,dt+\\sigma X_t\\,dW_t; b_p(h)=\\mathbb E[X_h(T)^p]-\\mathbb E[X(T)^p],\\quad p=1,2; \\mathbb E[X_h(T)]=X_0(1+\\mu h)^n",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "state X",
+        "weak moment bias",
+        "paired MCSE"
+      ],
+      "field_type": "scalar",
+      "parameters": {
+        "kind": "gbm",
+        "initial": 1.0,
+        "mu": 0.5,
+        "sigma": 0.4,
+        "T": 1.0,
+        "steps": [
+          8,
+          16,
+          32,
+          64
+        ],
+        "paths_per_batch": 1024,
+        "seeds": [
+          44001,
+          44002,
+          44003,
+          44004,
+          44005,
+          44006,
+          44007,
+          44008,
+          44009,
+          44010,
+          44011,
+          44012,
+          44013,
+          44014,
+          44015,
+          44016,
+          44017,
+          44018,
+          44019,
+          44020,
+          44021,
+          44022,
+          44023,
+          44024,
+          44025,
+          44026,
+          44027,
+          44028,
+          44029,
+          44030,
+          44031,
+          44032
+        ]
+      },
+      "sources": [
+        "https://epubs.siam.org/doi/10.1137/S0036144500378302"
+      ],
+      "title": {
+        "ja": "GBMのweak誤差とMonte Carlo標準誤差",
+        "en": "GBM weak bias and Monte Carlo error"
+      },
+      "assumptions": {
+        "ja": "dX=.5Xdt+.4XdW,X0=1。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。",
+        "en": "dX=.5Xdt+.4XdW,X0=1;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping."
+      },
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/gbm-weak-moments/?lang=ja#gbm-weak-moments-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/gbm-weak-moments/?lang=en#gbm-weak-moments-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#gbm-weak-moments",
+        "en": "/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#gbm-weak-moments"
+      },
+      "citations": [
+        {
+          "role": "selected-primary-definition-or-diagnostic-algorithm",
+          "title": "An Algorithmic Introduction to Numerical Simulation of Stochastic Differential Equations",
+          "url": "https://epubs.siam.org/doi/10.1137/S0036144500378302",
+          "note": "Read selected original sections4-6 on linear SDEs,strong/weak definitions,EM and Milstein. No full-paper audit or reproduction of its MATLAB/logistic experiment. Its L1strong definition is distinguished from our L2RMS."
+        }
+      ],
+      "reference_scope": "Independent authored analytic continuous/discrete/mixed moments; Decimal80/120 and independent positive integral/covariance qualifiers. Shared Brownian coupling is declared. Scalar state×time, not2Dphysical space; finite stochastic precision is not a deterministic bound. State distributions have unbounded support; listed bounds are time interval or finite viewing windows,not imposed state boundaries.",
+      "related_problems": [
+        {
+          "id": "gbm-sde",
+          "name": {
+            "ja": "Itô SDE：共有Brown運動による強収束",
+            "en": "Itô SDE: strong convergence with coupled Brownian paths"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/results/gbm-sde/preview.png",
+            "sha256": "461bf8078b5c177d33dd8242126da6ede72e71f9a190478c636b61aff3308c05",
+            "width": 960,
+            "height": 570,
+            "caption": {
+              "ja": "公開した固定入力と同じ計算結果。解・解析参照または独立参照・誤差を図示。数値条件とCSVを実行ページに保存。",
+              "en": "The same public fixed-input calculation. Shows solutions, analytic/independent references or errors; numerical criteria and CSV are linked in the execution entry."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gbm-sde/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gbm-sde/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gbm-sde/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gbm-sde/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "gbm-sde",
+              "kind": "common",
+              "name": {
+                "ja": "Itô SDE：共有Brown運動による強収束",
+                "en": "Itô SDE: strong convergence with coupled Brownian paths"
+              },
+              "scope": {
+                "ja": "スカラー幾何Brown運動のEuler–Maruyama。粗細刻みと解析解で同じBrown運動を共有し、4096経路で強RMS誤差を測定。一般SDE・MCMC・弱収束次数は検証しない。",
+                "en": "Euler–Maruyama for scalar geometric Brownian motion. Coarse/fine steps and analytic endpoints share the same Brownian paths; measure strong RMS error across 4096 paths. Does not validate general SDEs, MCMC or weak convergence order."
+              },
+              "method_ids": [
+                "sde"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/gbm-sde/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/gbm-sde/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/inputs/gbm-sde.json",
+              "download": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/model-benchmarks-2026-11-22.zip",
+              "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json"
+            },
+            {
+              "id": "gbm-weak-moments",
+              "kind": "supplement",
+              "name": {
+                "ja": "GBMのweak誤差とMonte Carlo標準誤差",
+                "en": "GBM weak bias and Monte Carlo error"
+              },
+              "scope": {
+                "ja": "連続真値、離散EM期待値、同一経路差とMCSEを分離する固定入力です。",
+                "en": "Separate continuous truth,exact discrete EM expectation,paired-path weak difference and MCSE."
+              },
+              "method_ids": [
+                "sde"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gbm-weak-moments/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gbm-weak-moments/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/atlas-stochastic-accuracy-2026-11-24.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/verification.json"
+            },
+            {
+              "id": "gbm-milstein-strong",
+              "kind": "supplement",
+              "name": {
+                "ja": "同じBrownian経路のMilstein・EM strong比較",
+                "en": "Milstein and EM on identical Brownian paths"
+              },
+              "scope": {
+                "ja": "補償項を持つMilsteinとEMの終端L2 RMSを、厳密端点と有限モーメントから検査。",
+                "en": "Compare compensated Milstein and EM endpoint L2RMS against exact endpoints and finite-moment identities."
+              },
+              "method_ids": [
+                "sde"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gbm-milstein-strong/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gbm-milstein-strong/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/atlas-stochastic-accuracy-2026-11-24.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/verification.json"
+            }
+          ],
+          "relation": "related-model",
+          "note": {
+            "ja": "dX=.5Xdt+.4XdW,X0=1。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。",
+            "en": "dX=.5Xdt+.4XdW,X0=1;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping."
+          }
+        }
+      ]
+    },
+    {
+      "id": "ou-weak-moments",
+      "model": "scalar-ito-diffusion",
+      "kind": "analytic",
+      "formula": "dX_t=\\kappa(\\theta-X_t)\\,dt+\\sigma\\,dW_t; b_p(h)=\\mathbb E[X_h(T)^p]-\\mathbb E[X(T)^p],\\quad p=1,2; \\operatorname{Cov}(J_h,\\Delta W)=(1-e^{-\\kappa h})/\\kappa",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "state X",
+        "weak moment bias",
+        "paired MCSE"
+      ],
+      "field_type": "scalar",
+      "parameters": {
+        "kind": "ou",
+        "initial": 0.7,
+        "theta": 0.2,
+        "kappa": 1.5,
+        "sigma": 0.8,
+        "T": 1.0,
+        "steps": [
+          8,
+          16,
+          32,
+          64
+        ],
+        "paths_per_batch": 1024,
+        "seeds": [
+          44101,
+          44102,
+          44103,
+          44104,
+          44105,
+          44106,
+          44107,
+          44108,
+          44109,
+          44110,
+          44111,
+          44112,
+          44113,
+          44114,
+          44115,
+          44116,
+          44117,
+          44118,
+          44119,
+          44120,
+          44121,
+          44122,
+          44123,
+          44124,
+          44125,
+          44126,
+          44127,
+          44128,
+          44129,
+          44130,
+          44131,
+          44132
+        ]
+      },
+      "sources": [
+        "https://epubs.siam.org/doi/10.1137/S0036144500378302"
+      ],
+      "title": {
+        "ja": "OUのweakモーメントと同時Brownian結合",
+        "en": "OU weak moments with joint Brownian coupling"
+      },
+      "assumptions": {
+        "ja": "dX=1.5(.2-X)dt+.8dW,X0=.7。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。",
+        "en": "dX=1.5(.2-X)dt+.8dW,X0=.7;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping."
+      },
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/ou-weak-moments/?lang=ja#ou-weak-moments-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/ou-weak-moments/?lang=en#ou-weak-moments-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#ou-weak-moments",
+        "en": "/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#ou-weak-moments"
+      },
+      "citations": [
+        {
+          "role": "selected-primary-definition-or-diagnostic-algorithm",
+          "title": "An Algorithmic Introduction to Numerical Simulation of Stochastic Differential Equations",
+          "url": "https://epubs.siam.org/doi/10.1137/S0036144500378302",
+          "note": "Read selected original sections4-6 on linear SDEs,strong/weak definitions,EM and Milstein. No full-paper audit or reproduction of its MATLAB/logistic experiment. Its L1strong definition is distinguished from our L2RMS."
+        }
+      ],
+      "reference_scope": "Independent authored analytic continuous/discrete/mixed moments; Decimal80/120 and independent positive integral/covariance qualifiers. Shared Brownian coupling is declared. Scalar state×time, not2Dphysical space; finite stochastic precision is not a deterministic bound. State distributions have unbounded support; listed bounds are time interval or finite viewing windows,not imposed state boundaries.",
+      "related_problems": [
+        {
+          "id": "langevin-harmonic",
+          "name": {
+            "ja": "Langevin温度制御：正準分布・刻み偏り・時間相関",
+            "en": "Langevin thermostat: canonical distributions, timestep bias and correlation"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/langevin-harmonic.png",
+            "sha256": "0b199f45202724a444c1195b31cae227b9599d50bc92d6c793a93a90f2ff1c14",
+            "width": 1680,
+            "height": 504,
+            "caption": {
+              "ja": "調和振動子BAOABの刻み0.4/0.2/0.1。離散定常共分散の偏り、有限標本誤差、正準CDF誤差とlag2の位置相関を保存値から分離表示。",
+              "en": "Stored harmonic-BAOAB steps 0.4/0.2/0.1 separate discrete stationary-covariance bias, sampling error, canonical-CDF errors and position correlation at lag 2."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/langevin-harmonic/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/langevin-harmonic/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/langevin-harmonic/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/langevin-harmonic/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "langevin-harmonic",
+              "kind": "supplement",
+              "name": {
+                "ja": "Langevin温度制御：正準分布・刻み偏り・時間相関",
+                "en": "Langevin thermostat: canonical distributions, timestep bias and correlation"
+              },
+              "scope": {
+                "ja": "調和振動子のBAOABを、正準分布と離散Lyapunov定常分布、連続・離散の時間相関へ照合します。",
+                "en": "Compare harmonic BAOAB with canonical and discrete-Lyapunov stationary distributions, and with continuous/discrete time correlations."
+              },
+              "method_ids": [
+                "langevin-thermostat"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/langevin-harmonic/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/langevin-harmonic/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/atlas-models-2026-11-22.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/verification.json"
+            },
+            {
+              "id": "csvr-langevin-harmonic",
+              "kind": "supplement",
+              "name": {
+                "ja": "CSVRとLangevin：調和2自由度の分布・揺らぎ・相関",
+                "en": "CSVR versus Langevin: distributions, fluctuations and correlations of two harmonic modes"
+              },
+              "scope": {
+                "ja": "異なる周波数を持つ2自由度でglobal CSVRとlocal Langevinを同じOBABO分割で比較。位置・運動量・温度・全エネルギーの分布、揺らぎ、相関を記録します。",
+                "en": "Compare global CSVR with local Langevin on two nondegenerate modes using the same OBABO splitting. Record position, momentum, temperature and total-energy distributions, fluctuations and correlations."
+              },
+              "method_ids": [
+                "stochastic-velocity-rescaling",
+                "langevin-thermostat"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-langevin-harmonic/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-langevin-harmonic/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/verification.json"
+            },
+            {
+              "id": "ou-weak-moments",
+              "kind": "supplement",
+              "name": {
+                "ja": "OUのweakモーメントと同時Brownian結合",
+                "en": "OU weak moments with joint Brownian coupling"
+              },
+              "scope": {
+                "ja": "連続真値、離散EM期待値、同一経路差とMCSEを分離する固定入力です。",
+                "en": "Separate continuous truth,exact discrete EM expectation,paired-path weak difference and MCSE."
+              },
+              "method_ids": [
+                "sde"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ou-weak-moments/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/ou-weak-moments/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/atlas-stochastic-accuracy-2026-11-24.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/verification.json"
+            }
+          ],
+          "relation": "related-model",
+          "note": {
+            "ja": "dX=1.5(.2-X)dt+.8dW,X0=.7。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。",
+            "en": "dX=1.5(.2-X)dt+.8dW,X0=.7;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping."
+          }
+        }
+      ]
+    },
+    {
+      "id": "gbm-milstein-strong",
+      "model": "scalar-ito-diffusion",
+      "kind": "analytic",
+      "formula": "X_{j+1}=X_j[1+\\mu h+\\sigma\\Delta W_j+\\tfrac12\\sigma^2((\\Delta W_j)^2-h)]; \\mathbb E[(X_n-X(T))^2]=X_0^2[A^n+e^{(2\\mu+\\sigma^2)T}-2K^n]",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "EM endpoint RMS",
+        "Milstein endpoint RMS"
+      ],
+      "field_type": "scalar",
+      "parameters": {
+        "kind": "gbm",
+        "initial": 1.0,
+        "mu": 0.15,
+        "sigma": 0.4,
+        "T": 1.0,
+        "steps": [
+          16,
+          32,
+          64,
+          128
+        ],
+        "paths_per_batch": 8192,
+        "seeds": [
+          47001,
+          47002,
+          47003,
+          47004
+        ]
+      },
+      "sources": [
+        "https://epubs.siam.org/doi/10.1137/S0036144500378302"
+      ],
+      "title": {
+        "ja": "同じBrownian経路のMilstein・EM strong比較",
+        "en": "Milstein and EM on identical Brownian paths"
+      },
+      "assumptions": {
+        "ja": "既存GBMと同じμ=.15,σ=.4,X0=T=1。4seed×8192経路、16/32/64/128刻み。",
+        "en": "ExistingGBMparametersmu.15,sigma.4,X0=T1;4seeds×8192paths;16/32/64/128steps."
+      },
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/gbm-milstein-strong/?lang=ja#gbm-milstein-strong-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/gbm-milstein-strong/?lang=en#gbm-milstein-strong-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/#gbm-milstein-strong",
+        "en": "/numerical-methods-atlas/en/read/validation-stochastic-accuracy/#gbm-milstein-strong"
+      },
+      "citations": [
+        {
+          "role": "selected-primary-definition-or-diagnostic-algorithm",
+          "title": "An Algorithmic Introduction to Numerical Simulation of Stochastic Differential Equations",
+          "url": "https://epubs.siam.org/doi/10.1137/S0036144500378302",
+          "note": "Read selected original sections4-6 on linear SDEs,strong/weak definitions,EM and Milstein. No full-paper audit or reproduction of its MATLAB/logistic experiment. Its L1strong definition is distinguished from our L2RMS."
+        }
+      ],
+      "reference_scope": "Independent authored analytic continuous/discrete/mixed moments; Decimal80/120 and independent positive integral/covariance qualifiers. Shared Brownian coupling is declared. Scalar state×time, not2Dphysical space; finite stochastic precision is not a deterministic bound. State distributions have unbounded support; listed bounds are time interval or finite viewing windows,not imposed state boundaries.",
+      "related_problems": [
+        {
+          "id": "gbm-sde",
+          "name": {
+            "ja": "Itô SDE：共有Brown運動による強収束",
+            "en": "Itô SDE: strong convergence with coupled Brownian paths"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/results/gbm-sde/preview.png",
+            "sha256": "461bf8078b5c177d33dd8242126da6ede72e71f9a190478c636b61aff3308c05",
+            "width": 960,
+            "height": 570,
+            "caption": {
+              "ja": "公開した固定入力と同じ計算結果。解・解析参照または独立参照・誤差を図示。数値条件とCSVを実行ページに保存。",
+              "en": "The same public fixed-input calculation. Shows solutions, analytic/independent references or errors; numerical criteria and CSV are linked in the execution entry."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gbm-sde/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gbm-sde/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gbm-sde/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gbm-sde/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "gbm-sde",
+              "kind": "common",
+              "name": {
+                "ja": "Itô SDE：共有Brown運動による強収束",
+                "en": "Itô SDE: strong convergence with coupled Brownian paths"
+              },
+              "scope": {
+                "ja": "スカラー幾何Brown運動のEuler–Maruyama。粗細刻みと解析解で同じBrown運動を共有し、4096経路で強RMS誤差を測定。一般SDE・MCMC・弱収束次数は検証しない。",
+                "en": "Euler–Maruyama for scalar geometric Brownian motion. Coarse/fine steps and analytic endpoints share the same Brownian paths; measure strong RMS error across 4096 paths. Does not validate general SDEs, MCMC or weak convergence order."
+              },
+              "method_ids": [
+                "sde"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/gbm-sde/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/gbm-sde/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/inputs/gbm-sde.json",
+              "download": "https://hrkoyama.github.io/code/model-benchmarks/2026-11-22/model-benchmarks-2026-11-22.zip",
+              "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json"
+            },
+            {
+              "id": "gbm-weak-moments",
+              "kind": "supplement",
+              "name": {
+                "ja": "GBMのweak誤差とMonte Carlo標準誤差",
+                "en": "GBM weak bias and Monte Carlo error"
+              },
+              "scope": {
+                "ja": "連続真値、離散EM期待値、同一経路差とMCSEを分離する固定入力です。",
+                "en": "Separate continuous truth,exact discrete EM expectation,paired-path weak difference and MCSE."
+              },
+              "method_ids": [
+                "sde"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gbm-weak-moments/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gbm-weak-moments/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/atlas-stochastic-accuracy-2026-11-24.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/verification.json"
+            },
+            {
+              "id": "gbm-milstein-strong",
+              "kind": "supplement",
+              "name": {
+                "ja": "同じBrownian経路のMilstein・EM strong比較",
+                "en": "Milstein and EM on identical Brownian paths"
+              },
+              "scope": {
+                "ja": "補償項を持つMilsteinとEMの終端L2 RMSを、厳密端点と有限モーメントから検査。",
+                "en": "Compare compensated Milstein and EM endpoint L2RMS against exact endpoints and finite-moment identities."
+              },
+              "method_ids": [
+                "sde"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gbm-milstein-strong/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gbm-milstein-strong/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/atlas-stochastic-accuracy-2026-11-24.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/verification.json"
+            }
+          ],
+          "relation": "related-model",
+          "note": {
+            "ja": "既存GBMと同じμ=.15,σ=.4,X0=T=1。4seed×8192経路、16/32/64/128刻み。",
+            "en": "ExistingGBMparametersmu.15,sigma.4,X0=T1;4seeds×8192paths;16/32/64/128steps."
+          }
+        }
+      ]
+    },
+    {
+      "id": "normal-tail-importance",
+      "model": "gaussian-probability-model",
+      "kind": "analytic",
+      "formula": "\\widehat p=N^{-1}\\sum_i\\mathbf1_{X_i>a}e^{-aX_i+a^2/2}; \\mathbb E_q[Y^r]=e^{r(r-1)a^2/2}\\overline\\Phi(ra)",
+      "dimension": 1,
+      "bounds": [
+        [
+          -10,
+          10
+        ]
+      ],
+      "components": [
+        "ordinary IS contribution",
+        "tail probability",
+        "estimator variance"
+      ],
+      "field_type": "probability",
+      "parameters": {
+        "thresholds": [
+          3.0,
+          6.0
+        ],
+        "samples": [
+          2048,
+          8192
+        ],
+        "seeds": [
+          45001,
+          45002,
+          45003,
+          45004,
+          45005,
+          45006,
+          45007,
+          45008,
+          45009,
+          45010,
+          45011,
+          45012,
+          45013,
+          45014,
+          45015,
+          45016,
+          45017,
+          45018,
+          45019,
+          45020,
+          45021,
+          45022,
+          45023,
+          45024,
+          45025,
+          45026,
+          45027,
+          45028,
+          45029,
+          45030,
+          45031,
+          45032,
+          45033,
+          45034,
+          45035,
+          45036,
+          45037,
+          45038,
+          45039,
+          45040,
+          45041,
+          45042,
+          45043,
+          45044,
+          45045,
+          45046,
+          45047,
+          45048,
+          45049,
+          45050,
+          45051,
+          45052,
+          45053,
+          45054,
+          45055,
+          45056,
+          45057,
+          45058,
+          45059,
+          45060,
+          45061,
+          45062,
+          45063,
+          45064
+        ],
+        "coverage_interval": "known-analytic-variance normal95 IS; Clopper-Pearson95 direct; per-threshold/per-prefix separate64replications"
+      },
+      "sources": [
+        "https://artowen.su.domains/mc/Ch-var-is.pdf"
+      ],
+      "title": {
+        "ja": "正規稀少尾の通常importance sampling",
+        "en": "Ordinary importance sampling of a normal rare tail"
+      },
+      "assumptions": {
+        "ja": "標準正規尾a=3/6、proposal=N(a,1)、64独立seed、N=2048/8192の固定prefix。",
+        "en": "Standard normal tailsa3/6;proposalN(a,1);64independent seeds;fixedN2048/8192prefixes."
+      },
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/normal-tail-importance/?lang=ja#normal-tail-importance-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/normal-tail-importance/?lang=en#normal-tail-importance-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#normal-tail-importance",
+        "en": "/numerical-methods-atlas/en/read/validation-stochastic-estimation/#normal-tail-importance"
+      },
+      "citations": [
+        {
+          "role": "selected-primary-definition-or-diagnostic-algorithm",
+          "title": "Monte Carlo theory,methods and examples,Chapter9: importance sampling",
+          "url": "https://artowen.su.domains/mc/Ch-var-is.pdf",
+          "note": "Selected author-chapter support,ordinary estimator,second moments and diagnostics were read during preparation. Current refetch returned403. No full-book or PERT experiment reproduction."
+        }
+      ],
+      "reference_scope": "Known exact normal-tail contribution moments independently quadrature-qualified;64independent seed batches. Finite repeated interval coverage is descriptive,not a general coverage theorem. State distributions have unbounded support; listed bounds are time interval or finite viewing windows,not imposed state boundaries.",
+      "related_problems": [
+        {
+          "id": "normal-tail-importance",
+          "name": {
+            "ja": "正規稀少尾の通常importance sampling",
+            "en": "Ordinary importance sampling of a normal rare tail"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-estimation/results/normal-tail-importance-preview.png",
+            "sha256": "bb43d99a5fddd23605e1a9c5c757f6ef0119a6b6dac33b8224ac153bf718fba4",
+            "width": 1100,
+            "height": 440,
+            "caption": {
+              "ja": "保存した実データ由来の分布・誤差診断。空間次元と標本/時間軸を区別します。",
+              "en": "Distribution and error diagnostics from actual saved data;sample/time axes are distinguished from spatial dimensions."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/normal-tail-importance/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/normal-tail-importance/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/normal-tail-importance/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/normal-tail-importance/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "normal-tail-importance",
+              "kind": "supplement",
+              "name": {
+                "ja": "正規稀少尾の通常importance sampling",
+                "en": "Ordinary importance sampling of a normal rare tail"
+              },
+              "scope": {
+                "ja": "通常の尤度比平均を解析モーメント・独立seed分散・有限被覆診断で確認。",
+                "en": "Check ordinary likelihood-ratio averages with analytic moments,independent batch variance and finite coverage diagnostics."
+              },
+              "method_ids": [
+                "monte-carlo"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/normal-tail-importance/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/normal-tail-importance/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-estimation/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-estimation/atlas-stochastic-estimation-2026-11-24.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-estimation/verification.json"
+            }
+          ],
+          "relation": "same-problem",
+          "note": {
+            "ja": "重み付きISへBernoulliの厳密区間を転用しません。64反復は一般95%被覆の証明でなく、nestedprefixを独立反復へ水増ししません。global weightESSと事象ESSは別です。",
+            "en": "Bernoulli exact intervals are not applied to weighted IS.64trials do not prove general95%coverage;nested prefixes are not extra independent replicates. Global weightESS and eventESS are distinct."
+          }
+        }
+      ]
+    },
+    {
+      "id": "correlated-gaussian-mcmc",
+      "model": "gaussian-probability-model",
+      "kind": "numerical-reference",
+      "formula": "\\pi(x)\\propto\\exp[-\\tfrac12(x-m)^\\top\\Sigma^{-1}(x-m)]; \\operatorname{MCSE}(g)=s_g/\\sqrt{\\operatorname{ESS}_{\\mathrm{mean}}(g)}",
+      "dimension": 2,
+      "bounds": [
+        [
+          -6,
+          8
+        ],
+        [
+          -8,
+          6
+        ]
+      ],
+      "components": [
+        "joint target density",
+        "observable means",
+        "Rhat",
+        "ESS",
+        "MCSE"
+      ],
+      "field_type": "probability",
+      "parameters": {
+        "mean": [
+          1.0,
+          -1.0
+        ],
+        "rho": 0.95,
+        "chains": 4,
+        "burn": 1024,
+        "draws": 8192,
+        "prefixes": [
+          2048,
+          8192
+        ],
+        "seeds": [
+          46001,
+          46002,
+          46003,
+          46004
+        ],
+        "initial_whitened": [
+          [
+            -4.0,
+            -4.0
+          ],
+          [
+            -4.0,
+            4.0
+          ],
+          [
+            4.0,
+            -4.0
+          ],
+          [
+            4.0,
+            4.0
+          ]
+        ],
+        "proposals": {
+          "preconditioned": 0.9,
+          "isotropic": 0.25
+        },
+        "observables": [
+          "y1",
+          "y2",
+          "y1_squared",
+          "y2_squared",
+          "product",
+          "Q",
+          "sum_direction",
+          "difference_direction"
+        ]
+      },
+      "sources": [
+        "https://arxiv.org/pdf/1903.08008",
+        "https://python.arviz.org/en/v0.20.0/api/generated/arviz.mcse.html"
+      ],
+      "title": {
+        "ja": "相関2変量Gaussianのjoint標的とMCSE",
+        "en": "Joint target and MCSE for a correlated bivariate Gaussian"
+      },
+      "assumptions": {
+        "ja": "平均(1,-1)、相関.95・対角分散1。4独立chainset×4chain、burn1024/draw8192、prefix2048/8192。固定.9Lzと.25z、適応なし。",
+        "en": "Mean(1,-1),unit marginal variances,rho.95;4independent chainsets×4chains;burn1024/draw8192;prefix2048/8192. Fixed.9Lzand.25z,no adaptation."
+      },
+      "kind_label": {
+        "ja": "有限格子の数値参照",
+        "en": "Finite-grid numerical reference"
+      },
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/correlated-gaussian-mcmc/?lang=ja#correlated-gaussian-mcmc-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/correlated-gaussian-mcmc/?lang=en#correlated-gaussian-mcmc-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-stochastic-estimation/#correlated-gaussian-mcmc",
+        "en": "/numerical-methods-atlas/en/read/validation-stochastic-estimation/#correlated-gaussian-mcmc"
+      },
+      "citations": [
+        {
+          "role": "selected-primary-definition-or-diagnostic-algorithm",
+          "title": "Rank-normalization,folding,and localization: An improved R-hat for assessing convergence of MCMC",
+          "url": "https://arxiv.org/pdf/1903.08008",
+          "note": "Read selected original rank/foldedRhat,ESS and corrected Blom equation. No multivariate global-convergence certificate."
+        },
+        {
+          "role": "selected-primary-definition-or-diagnostic-algorithm",
+          "title": "ArviZ0.20.0 public diagnostics API and selected implementation",
+          "url": "https://python.arviz.org/en/v0.20.0/api/generated/arviz.mcse.html",
+          "note": "Read official0.20.0 ESS/MCSE source and API. Cache640values from128same-data observable/prefix arrays of8fixed chainsets in a separate process. Independence is the diagnostic engine,not an independent sampler."
+        }
+      ],
+      "reference_scope": "Independent ArviZ0.20diagnostic engine on exactly the same128datasets/640values. Exact Gaussian joint moments and whitening are separate target controls; diagnostic agreement is not an independent sampler or global convergence proof. Banana/funnel remain unimplemented. State distributions have unbounded support; listed bounds are time interval or finite viewing windows,not imposed state boundaries. New variant explicitly shares pinned SciPytype7 quantile primitive with ArviZ; independent ACF/ESS arithmetic. This is finite-floating compatibility,not mathematical type7 superiority; old637/640failure and causeaudit retained. Portable main compares640diagnostics on the immutable byte-bound reference fixture;8freshchainsets separately receive all unchanged physical/mixing gates. No cross-platform generated-array bit identity is required or promised.",
+      "related_problems": [
+        {
+          "id": "correlated-gaussian-mcmc",
+          "name": {
+            "ja": "相関2変量Gaussianのjoint標的とMCSE",
+            "en": "Joint target and MCSE for a correlated bivariate Gaussian"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-estimation/results/correlated-gaussian-mcmc-preview.png",
+            "sha256": "323b66d08f2a80a174e615b964a416ca79065d6849e60a09b6494dbc7bb9aff6",
+            "width": 1100,
+            "height": 440,
+            "caption": {
+              "ja": "保存した実データ由来の分布・誤差診断。空間次元と標本/時間軸を区別します。",
+              "en": "Distribution and error diagnostics from actual saved data;sample/time axes are distinguished from spatial dimensions."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/correlated-gaussian-mcmc/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/correlated-gaussian-mcmc/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/correlated-gaussian-mcmc/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/correlated-gaussian-mcmc/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "correlated-gaussian-mcmc",
+              "kind": "supplement",
+              "name": {
+                "ja": "相関2変量Gaussianのjoint標的とMCSE",
+                "en": "Joint target and MCSE for a correlated bivariate Gaussian"
+              },
+              "scope": {
+                "ja": "実2D MH軌道を既知のjointモーメントと同一データArviZ診断で検査。",
+                "en": "Test actual2D MH paths against known joint moments and same-data ArviZ diagnostics."
+              },
+              "method_ids": [
+                "mcmc"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/correlated-gaussian-mcmc/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/correlated-gaussian-mcmc/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-estimation/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-estimation/atlas-stochastic-estimation-2026-11-24.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-estimation/verification.json"
+            }
+          ],
+          "relation": "same-problem",
+          "note": {
+            "ja": "診断engineの独立性とsamplerの独立参照を混同しません。Rhat等は大域収束・被覆の証明ではありません。isotropicは固定比較で失敗を要求せず、banana/funnel/HMC/NUTSは未実装です。",
+            "en": "Diagnostic-engine independence is not an independent sampler. Rhat/ESS/MCSE do not prove global convergence/coverage. Isotropic is descriptive with no required failure;banana/funnel/HMC/NUTSremain unimplemented."
+          }
+        }
+      ]
     }
   ],
   "problem_routes_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "28ed0737a4c15dce04bf7c7f5563d1a7b51fadd44fb8bfa6cbed7d2255ff8efb",
-    "catalog/atlas-equations.json": "28ff2cf7ae26b5ffad16b1c6215e8a496d97bb4541ae726f6fb03f1b4f18f866",
+    "catalog/atlas-depth-expansion.json": "808390a31a772b2e1f9c625f8619a05d3387afb5256dd5e31b3c712c6283863a",
+    "catalog/atlas-equations.json": "597ba9e1d7745a59cfcb72fd0b632bc6b0375f68ed62f24e2c23984cb87851bb",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
-    "catalog/atlas-methods.json": "059728dddbfeda2cba7a0bb022735b12a8d30857a0a6ab7881209b25c61041f8",
-    "catalog/atlas-problem-links.json": "e56eeddac0252a43556095457252c048c7348de7c2aafdc8c9753cd4c44c498c",
-    "catalog/atlas-reference-supplements.json": "bd8b2e7c5b133ae449f3841ba3bc4abb9d910d4fd58d5d0414b87e4a3334dbb2",
-    "catalog/atlas-test-problems.json": "6d18326fa3356b0727e8546444239ea8771472a64ae596de7d0d333175d46a72",
+    "catalog/atlas-methods.json": "3f2b7051c980e5492f6f94f01b3e75c4802394856c55a7176d9c9a1a9f35e305",
+    "catalog/atlas-problem-links.json": "b4c8681a5b1b9afaf8bf12801365e941778a73b29f0c35f987e716d0a680f211",
+    "catalog/atlas-reference-supplements.json": "712911e57373ca46f2e608192a7f678fb887442fcfb6d2aa0604cfcf2567da4d",
+    "catalog/atlas-test-problems.json": "a9542061ab829afde53067ae7db77331f462f809ee117822f2c2c9dc1b2ba203",
     "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
     "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
@@ -8346,14 +10743,59 @@
     "code/validated-examples/2026-11-23/zalesak/results/result.json": "51851a31df72eec078e25171deeacd2699a9bfe9eedc55b4bc6831fd233b408d",
     "code/validated-examples/2026-11-23/zalesak/source-manifest.json": "d13a134c2e791740190529a8a4eef07eda5126a14101155d254f450d0438eb55",
     "code/validated-examples/2026-11-23/zalesak/verification.json": "aad9b39c23d83e967588361edfdb05724f1ea3fade93843ebb05b5fd829ba44e",
+    "code/validated-examples/2026-11-24-r2/radiation-matter/atlas-radiation-matter-2026-11-24-r2.zip": "fe1e3d790bd9792d8781243dc4d5ff40d3491a181a11c795569f3f4e542ed7e6",
+    "code/validated-examples/2026-11-24-r2/radiation-matter/cases.json": "c5522498e8c797035b7c093d4371d88a7950e19f26ab6c6495faa81e7e1b8ebb",
+    "code/validated-examples/2026-11-24-r2/radiation-matter/results/result.json": "39c457ec19fa3e73ed021778b4fd4fa19d112cf895c344cf7ffed63847ce9e54",
+    "code/validated-examples/2026-11-24-r2/radiation-matter/source-manifest.json": "9786f8365507f141a6d3bebc3035e5177bc4a8ccec3ac747b8bd5a7eaed50aeb",
+    "code/validated-examples/2026-11-24-r2/radiation-matter/verification.json": "cbbc27e98b13939b705bfdcd85593747dd7ef02e7b5eaf2d9ef2a838007107d0",
     "code/validated-examples/2026-11-24/dsmc-shock/atlas-dsmc-shock-2026-11-24.zip": "92794cc568e7857346a24489eddaae113eb60754de7ba717254955ace9d8d961",
     "code/validated-examples/2026-11-24/dsmc-shock/cases.json": "d5123d6e0f48145bcf0b25a68cffb2f9250bb019e21ea42760db848aed536b22",
     "code/validated-examples/2026-11-24/dsmc-shock/results/result.json": "a4cd1e0092935bccd85bc0cf14086d01c723f05e4ce9474c3563283b3a55562e",
     "code/validated-examples/2026-11-24/dsmc-shock/source-manifest.json": "cc8ff5afec49e7f1ccffd2cce91bcf85e4e116c7389342304667bc7c9bb5eccf",
     "code/validated-examples/2026-11-24/dsmc-shock/verification.json": "7e7919032dafc67b5e857acd4464516cb4b742eed89ff8adae7f3c8cf75a96f5",
+    "code/validated-examples/2026-11-24/lbm-annulus/atlas-lbm-annulus-2026-11-24.zip": "c38c290902c1e344b4905b3141d0212000525f45d97b0104ed35c3b8d4f6eb1b",
+    "code/validated-examples/2026-11-24/lbm-annulus/cases.json": "8b29983bdc91a9b27ec825b857e45718240604a673831a6e5facba65a9d27959",
+    "code/validated-examples/2026-11-24/lbm-annulus/results/result.json": "2efe456b62a078d6e80569f071d46680182cba2709816acc4b68f9fea67a488e",
+    "code/validated-examples/2026-11-24/lbm-annulus/source-manifest.json": "0f5ae6b66e83fbfcf5b142c533caeddcdc78b0c7e4679da6567547231aa48c3c",
+    "code/validated-examples/2026-11-24/lbm-annulus/verification.json": "db353908280ce48e35d925b11a6325dfccb2e40259588f688cde76cfbcacfaa6",
+    "code/validated-examples/2026-11-24/lbm-cavity/atlas-lbm-cavity-2026-11-24.zip": "94781f84128fa97fb59fe1a00a469352db69fcca082ce170fa3b881919f5cdda",
+    "code/validated-examples/2026-11-24/lbm-cavity/cases.json": "a72f6113a8c12758aa53865e02bfbaada371c4ccefb9715cefba4e834202346d",
+    "code/validated-examples/2026-11-24/lbm-cavity/results/result.json": "0fcabbfdce818c2bf84a977cd53b7fcd7fdbe195fd0e1532d3097f7a86712d5e",
+    "code/validated-examples/2026-11-24/lbm-cavity/source-manifest.json": "840d5366e967b00ce902ac881d9785ebdcbd110cfcf0b2f5a2cd15c654e9c690",
+    "code/validated-examples/2026-11-24/lbm-cavity/verification.json": "52d15320dd9a967edcc92c7e66e9bb99b99db89e6f765c7ac33b28213dc64f59",
+    "code/validated-examples/2026-11-24/lbm-curved-boundary/atlas-lbm-curved-boundary-2026-11-24.zip": "69757fbf7ccab53450d7bdf6ce3023cd6f5ca3b42698d2e8c7a383421a1c640d",
+    "code/validated-examples/2026-11-24/lbm-curved-boundary/cases.json": "a6423cddd48d0540aa5121e0ea3d8b84e8db9792d8650582e9f6e22fd168e78b",
+    "code/validated-examples/2026-11-24/lbm-curved-boundary/results/result.json": "954e50130a966eb647e09bb3e6ebd2ce8e73f3cac34fbe5094d0eb5fee77088d",
+    "code/validated-examples/2026-11-24/lbm-curved-boundary/source-manifest.json": "cac10700634effbdb134202fbaee4b257121293a3c501a15430f8cbd3848db6b",
+    "code/validated-examples/2026-11-24/lbm-curved-boundary/verification.json": "2c16481aa5f2081be0aea7ecd234e0c435d14f9e8bd587db9d879b6ff9b93807",
+    "code/validated-examples/2026-11-24/lbm-taylor-green/atlas-lbm-taylor-green-2026-11-24.zip": "90d6999a33f47bbf03f359dc63c5a8d6ab729c0f905a8aad292bd58d1a070a22",
+    "code/validated-examples/2026-11-24/lbm-taylor-green/cases.json": "af286deb690d8f0dd3d11e881f7a2f23c212b8610c0cf91560a15b8ac249d016",
+    "code/validated-examples/2026-11-24/lbm-taylor-green/results/result.json": "e69681e105bfa75f52761a678fc3f6fabf2548bd7cff9fb345a406c031eb8e8d",
+    "code/validated-examples/2026-11-24/lbm-taylor-green/source-manifest.json": "b3970548ea98ed3f4d1f1e5813b12eadb6ebbfebb0c877a54cdaee2cf5902096",
+    "code/validated-examples/2026-11-24/lbm-taylor-green/verification.json": "19eae401bd03c04f643579e45210cad612852b42c134573bbefe22582f1075c1",
+    "code/validated-examples/2026-11-24/radiation-geometry/atlas-radiation-geometry-2026-11-24.zip": "20a166a35e5e87275be4c1bcf12a31742b267ddc9f9a424a293852da53c672e0",
+    "code/validated-examples/2026-11-24/radiation-geometry/cases.json": "297e1e3fd8ebf0bdd504faf9005f7ef58de0564ecbec7cb6405d2c3cca48f3a4",
+    "code/validated-examples/2026-11-24/radiation-geometry/results/result.json": "4453e68f6a856f65097bbfe36a154b74f4437e99a217300e4c010176a3ee7aec",
+    "code/validated-examples/2026-11-24/radiation-geometry/source-manifest.json": "83fec8d3ed8a7b56fe191624cb2222c8720db4553ee2c28f5302ee5da8754d13",
+    "code/validated-examples/2026-11-24/radiation-geometry/verification.json": "d98432e748b5b009d442b3a2fc4becff23c20f43fc9c012cce7d6fe74931e4d9",
+    "code/validated-examples/2026-11-24/radiation-scattering/atlas-radiation-scattering-2026-11-24.zip": "52323265fbea51e79d109b45acc8c4c69d210ac70a8f49ecac6d4fa1f16c33d9",
+    "code/validated-examples/2026-11-24/radiation-scattering/cases.json": "b211e20e6d5d40c1f7d16070b4e111915d7385b03dea26da72ebc1ed744641ed",
+    "code/validated-examples/2026-11-24/radiation-scattering/results/result.json": "7bfe8722dc42743a829debfb52222687f767cee18d1d2aeb9033adb4228e87b5",
+    "code/validated-examples/2026-11-24/radiation-scattering/source-manifest.json": "030a887ec8ff157149733ec9707960cdd5459f7d125352f632cc4f6c05cf6def",
+    "code/validated-examples/2026-11-24/radiation-scattering/verification.json": "7c1bfd3319d1743eb6de888b52c7e7498954761ffb8e8c3f2b6d5c6d3754011f",
+    "code/validated-examples/2026-11-24/stochastic-accuracy/atlas-stochastic-accuracy-2026-11-24.zip": "6a6ecc012df95853e20b2aa6db2fcceb8fce216872805a2b285c1f123a1e9801",
+    "code/validated-examples/2026-11-24/stochastic-accuracy/cases.json": "32bbca261339410393cdbaed888ab3b226374b7dc2b9308f0aaedf0c90cc52bb",
+    "code/validated-examples/2026-11-24/stochastic-accuracy/results/result.json": "9322e0a28a62774d84e4f38504d05063d8e668e11599f4959aab186d06a38016",
+    "code/validated-examples/2026-11-24/stochastic-accuracy/source-manifest.json": "996edb048ee701274828fcbac37f400c6da4748e926c51825f256e64a61b86b4",
+    "code/validated-examples/2026-11-24/stochastic-accuracy/verification.json": "1bf7faf0bc801f9206bbfa6e0072f7f3af2aae809d7154aa77aabae11c3d31a1",
+    "code/validated-examples/2026-11-24/stochastic-estimation/atlas-stochastic-estimation-2026-11-24.zip": "313b9cb048b46d4dedd13dc214b7eb25de4fb72af01e267fa69da7e460f81ec3",
+    "code/validated-examples/2026-11-24/stochastic-estimation/cases.json": "ec2095c7748dec022e754e3f9898b510f2fd3955d82b52c116374a410c7f3f5a",
+    "code/validated-examples/2026-11-24/stochastic-estimation/results/result.json": "267e0b0be6f4a5fbcb8b116837f670d8bfacf09f0a7cda25f8e97956dd180435",
+    "code/validated-examples/2026-11-24/stochastic-estimation/source-manifest.json": "17ec6615e238e14afb92b67337262922ff12e299e9f5358457f16db7e6c81def",
+    "code/validated-examples/2026-11-24/stochastic-estimation/verification.json": "04589e7e1285b60e3d327c5772d392405e04f5fc9623a0850b38c9eaa9478f90",
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "5c8e5a8f66946cfe8452cc26089e627103d6a8103f2f61e73fedd2162e984be1"
+    "numerical-methods-atlas/gallery/preview-manifest.json": "d397dc44e19a3a4a2df97077985c96411ed90c3ef93db185bb1f0a289699984f"
   }
 }

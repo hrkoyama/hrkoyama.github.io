@@ -588,8 +588,8 @@
         "radiation transport convergence"
       ],
       "scope": {
-        "ja": "中性周期Coulombの直接EwaldとB-spline SPME、2次元自由空間対数FMM、静止イオン背景の1次元cold-plasma PIC、等質Maxwell分子の衝突round、定常純吸収平板を別々の固定入力で調べます。旧版と追加版の参照・打切り/格子/刻み収束・保存量・seed不確かさを区別します。原Lagrange PME、3次元Coulomb FMM、Landau減衰、物理時間の空間DSMC、散乱放射輸送の実装や分野間連成の証拠へ広げません。",
-        "en": "Use separate fixed inputs for neutral periodic direct Ewald/B-spline SPME, 2D free-space logarithmic FMM, 1D cold-plasma PIC with stationary ions, homogeneous Maxwell-molecule collision rounds and a steady pure-absorption slab. Distinguish historical and companion references, cutoff/mesh/time refinement, conservation and seed uncertainty. This supplies no implementation evidence for original Lagrange PME, 3D Coulomb FMM, Landau damping, physical-time spatial DSMC, scattering radiation transport or cross-field coupling."
+        "ja": "既存のEwald/SPME、2D対数FMM、cold PIC、等質衝突と純吸収平板を保持し、別配布の中性スラブ、3D1/r FMM、限定した重力軌道、熱的PIC、剛体球DSMCの壁面・衝撃波も案内します。追加の放射例は等方散乱、非平衡拡散・輸送、静止M1と角度法の2D比較です。条件・独立参照・収束・有限seedを各例で区別し、原Lagrange PME、一般の分野間連成、固定格子APや放射流体まで実装したとはしません。",
+        "en": "Preserve Ewald/SPME, 2D logarithmic FMM, cold PIC, homogeneous collisions and pure-absorption slabs, with separate companions for neutral slabs, 3D 1/r FMM, scoped gravity trajectories, warm PIC and hard-sphere DSMC walls/shocks. Added radiation examples cover isotropic scattering, non-equilibrium diffusion/transport and 2D static-M1/angular comparisons. Each example states conditions, reference independence, refinement and finite-seed scope; original Lagrange PME, general cross-field coupling, fixed-grid AP and radiation hydrodynamics remain outside these implementations."
       },
       "methods": [
         "ewald",
@@ -618,7 +618,22 @@
         "fmm-convergence",
         "pic-conservation",
         "dsmc-statistics",
-        "radiation-convergence"
+        "radiation-convergence",
+        "neutral-slab-yb",
+        "fmm3d-inverse-r",
+        "gravity-kepler",
+        "gravity-plummer-short",
+        "thermal-landau-damping",
+        "thermal-two-stream",
+        "pic-independent-spatial",
+        "dsmc-couette",
+        "dsmc-fourier",
+        "dsmc-planar-shock",
+        "isotropic-scattering-slab",
+        "su-olson-diffusion1996",
+        "su-olson-transport1997",
+        "shadow-absorber2d",
+        "opposing-beams2d"
       ]
     },
     {
@@ -965,5 +980,6 @@
         "en": "Stochastic computation"
       }
     }
-  ]
+  ],
+  "reviewed_on": "2026-11-24"
 }

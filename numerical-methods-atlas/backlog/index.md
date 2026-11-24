@@ -1632,13 +1632,13 @@ ID: elliptic-poisson-1 · P1 · 公開済み · 検証の拡充
 
 ### checkerboard係数ジャンプ／回転異方性拡散のMG・AMG比較
 
-ID: elliptic-poisson-3 · P2 · 検証済み · 検証の拡充
+ID: elliptic-poisson-3 · P2 · 公開済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
 調査時の現状：
 
-固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。
+固定範囲をHRで公開。最終SHAの全38群83ケース1047pytest、サイト543件が合格。初期公開の画面確認と新版HTTP差分確認、Linux失敗2件、DSMC性能修正版を区別して保持。Thomas1949原報は未読の文献整理で数値例なし。
 
 追加内容・最小の検証：
 
@@ -1666,7 +1666,7 @@ ID: elliptic-poisson-3 · P2 · 検証済み · 検証の拡充
 
 ```json
 {
-  "verification": "/code/validated-examples/2026-11-23/coefficient-diffusion/verification.json",
+  "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch28-37-public.json",
   "inputs": [
     "/code/validated-examples/2026-11-23/coefficient-diffusion/inputs.json",
     "/code/validated-examples/2026-11-23/coefficient-diffusion/acceptance.json",
@@ -1680,7 +1680,9 @@ ID: elliptic-poisson-3 · P2 · 検証済み · 検証の拡充
     "/code/validated-examples/2026-11-23/coefficient-diffusion/run.py"
   ],
   "references": [
-    "/code/validated-examples/2026-11-23/coefficient-diffusion/README.md"
+    "/code/validated-examples/2026-11-23/coefficient-diffusion/README.md",
+    "/code/validated-examples/2026-11-23/coefficient-diffusion/verification.json",
+    "/numerical-methods-atlas/validation/verification/2026-11-24-batch28-37-public.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#checkerboard-diffusion-ja",
   "execution": "/numerical-methods-atlas/validation/checkerboard-diffusion/?lang=ja"
@@ -1689,13 +1691,13 @@ ID: elliptic-poisson-3 · P2 · 検証済み · 検証の拡充
 
 ### Thomas法の原報と再録・関連章文献の役割整理
 
-ID: elliptic-poisson-4 · P2 · 検証済み · 参照・出典の整備
+ID: elliptic-poisson-4 · P2 · 公開済み · 参照・出典の整備
 
 調査時の範囲：出典整備不足
 
 調査時の現状：
 
-Thomas1949原報は未読のまま、公式収蔵目録・署名付き1996通信・Crank–Nicolson再録・多重格子の関連文献を区別して整理しました。新しい科学計算例には数えません。
+固定範囲をHRで公開。最終SHAの全38群83ケース1047pytest、サイト543件が合格。初期公開の画面確認と新版HTTP差分確認、Linux失敗2件、DSMC性能修正版を区別して保持。Thomas1949原報は未読の文献整理で数値例なし。
 
 追加内容・最小の検証：
 
@@ -1730,7 +1732,8 @@ Thomas1949原報は未読のまま、公式収蔵目録・署名付き1996通信
   "note": {
     "ja": "目録の確認を原報本文の確認と扱わず、不明なDOI・報告番号・頁はnullのまま。原報未読を維持した文献役割の整理です。",
     "en": "Curation of bibliographic roles only; original1949 full text unread,unknown DOI/report/pages remain null. No new scientific case."
-  }
+  },
+  "publication_verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch28-37-public.json"
 }
 ```
 
@@ -1738,13 +1741,13 @@ Thomas1949原報は未読のまま、公式収蔵目録・署名付き1996通信
 
 ### 中性スラブのYeh–Berkowitz補正／2D周期境界ベンチマーク
 
-ID: gravity-electrostatics-multipole-1 · P2 · 検証済み · 新規実装
+ID: gravity-electrostatics-multipole-1 · P2 · 公開済み · 新規実装
 
 調査時の範囲：解説のみ
 
 調査時の現状：
 
-固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。
+固定範囲をHRで公開。最終SHAの全38群83ケース1047pytest、サイト543件が合格。初期公開の画面確認と新版HTTP差分確認、Linux失敗2件、DSMC性能修正版を区別して保持。Thomas1949原報は未読の文献整理で数値例なし。
 
 追加内容・最小の検証：
 
@@ -1772,7 +1775,7 @@ ID: gravity-electrostatics-multipole-1 · P2 · 検証済み · 新規実装
 
 ```json
 {
-  "verification": "/code/validated-examples/2026-11-23/slab-ewald/verification.json",
+  "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch28-37-public.json",
   "inputs": [
     "/code/validated-examples/2026-11-23/slab-ewald/inputs.json",
     "/code/validated-examples/2026-11-23/slab-ewald/acceptance.json",
@@ -1785,7 +1788,9 @@ ID: gravity-electrostatics-multipole-1 · P2 · 検証済み · 新規実装
     "/code/validated-examples/2026-11-23/slab-ewald/run.py"
   ],
   "references": [
-    "/code/validated-examples/2026-11-23/slab-ewald/README.md"
+    "/code/validated-examples/2026-11-23/slab-ewald/README.md",
+    "/code/validated-examples/2026-11-23/slab-ewald/verification.json",
+    "/numerical-methods-atlas/validation/verification/2026-11-24-batch28-37-public.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#neutral-slab-yb-ja",
   "execution": "/numerical-methods-atlas/validation/neutral-slab-yb/?lang=ja"
@@ -1794,13 +1799,13 @@ ID: gravity-electrostatics-multipole-1 · P2 · 検証済み · 新規実装
 
 ### 3D 1/r核／適応木のFMM
 
-ID: gravity-electrostatics-multipole-2 · P3 · 検証済み · 検証の拡充
+ID: gravity-electrostatics-multipole-2 · P3 · 公開済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
 調査時の現状：
 
-固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。
+固定範囲をHRで公開。最終SHAの全38群83ケース1047pytest、サイト543件が合格。初期公開の画面確認と新版HTTP差分確認、Linux失敗2件、DSMC性能修正版を区別して保持。Thomas1949原報は未読の文献整理で数値例なし。
 
 追加内容・最小の検証：
 
@@ -1826,7 +1831,7 @@ ID: gravity-electrostatics-multipole-2 · P3 · 検証済み · 検証の拡充
 
 ```json
 {
-  "verification": "/code/validated-examples/2026-11-23/fmm3d/verification.json",
+  "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch28-37-public.json",
   "inputs": [
     "/code/validated-examples/2026-11-23/fmm3d/inputs.json",
     "/code/validated-examples/2026-11-23/fmm3d/acceptance.json",
@@ -1839,7 +1844,9 @@ ID: gravity-electrostatics-multipole-2 · P3 · 検証済み · 検証の拡充
     "/code/validated-examples/2026-11-23/fmm3d/run.py"
   ],
   "references": [
-    "/code/validated-examples/2026-11-23/fmm3d/README.md"
+    "/code/validated-examples/2026-11-23/fmm3d/README.md",
+    "/code/validated-examples/2026-11-23/fmm3d/verification.json",
+    "/numerical-methods-atlas/validation/verification/2026-11-24-batch28-37-public.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#fmm3d-inverse-r-ja",
   "execution": "/numerical-methods-atlas/validation/fmm3d-inverse-r/?lang=ja"
@@ -1848,13 +1855,13 @@ ID: gravity-electrostatics-multipole-2 · P3 · 検証済み · 検証の拡充
 
 ### Plummer球の短時間力学／2体軌道の重力時間積分
 
-ID: gravity-electrostatics-multipole-3 · P2 · 検証済み · 検証の拡充
+ID: gravity-electrostatics-multipole-3 · P2 · 公開済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
 調査時の現状：
 
-固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。
+固定範囲をHRで公開。最終SHAの全38群83ケース1047pytest、サイト543件が合格。初期公開の画面確認と新版HTTP差分確認、Linux失敗2件、DSMC性能修正版を区別して保持。Thomas1949原報は未読の文献整理で数値例なし。
 
 追加内容・最小の検証：
 
@@ -1882,7 +1889,7 @@ ID: gravity-electrostatics-multipole-3 · P2 · 検証済み · 検証の拡充
 
 ```json
 {
-  "verification": "/code/validated-examples/2026-11-23/gravity-dynamics/verification.json",
+  "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch28-37-public.json",
   "inputs": [
     "/code/validated-examples/2026-11-23/gravity-dynamics/inputs.json",
     "/code/validated-examples/2026-11-23/gravity-dynamics/acceptance.json",
@@ -1896,7 +1903,9 @@ ID: gravity-electrostatics-multipole-3 · P2 · 検証済み · 検証の拡充
     "/code/validated-examples/2026-11-23/gravity-dynamics/run.py"
   ],
   "references": [
-    "/code/validated-examples/2026-11-23/gravity-dynamics/README.md"
+    "/code/validated-examples/2026-11-23/gravity-dynamics/README.md",
+    "/code/validated-examples/2026-11-23/gravity-dynamics/verification.json",
+    "/numerical-methods-atlas/validation/verification/2026-11-24-batch28-37-public.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#gravity-kepler-ja",
   "execution": "/numerical-methods-atlas/validation/gravity-kepler/?lang=ja"
@@ -1907,13 +1916,13 @@ ID: gravity-electrostatics-multipole-3 · P2 · 検証済み · 検証の拡充
 
 ### 線形Landau減衰
 
-ID: pic-1 · P1 · 検証済み · 新規実装
+ID: pic-1 · P1 · 公開済み · 新規実装
 
 調査時の範囲：未収録
 
 調査時の現状：
 
-固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。
+固定範囲をHRで公開。最終SHAの全38群83ケース1047pytest、サイト543件が合格。初期公開の画面確認と新版HTTP差分確認、Linux失敗2件、DSMC性能修正版を区別して保持。Thomas1949原報は未読の文献整理で数値例なし。
 
 追加内容・最小の検証：
 
@@ -1941,7 +1950,7 @@ ID: pic-1 · P1 · 検証済み · 新規実装
 
 ```json
 {
-  "verification": "/code/validated-examples/2026-11-23/warm-pic/verification.json",
+  "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch28-37-public.json",
   "inputs": [
     "/code/validated-examples/2026-11-23/warm-pic/inputs.json",
     "/code/validated-examples/2026-11-23/warm-pic/acceptance.json",
@@ -1954,7 +1963,9 @@ ID: pic-1 · P1 · 検証済み · 新規実装
     "/code/validated-examples/2026-11-23/warm-pic/run.py"
   ],
   "references": [
-    "/code/validated-examples/2026-11-23/warm-pic/README.md"
+    "/code/validated-examples/2026-11-23/warm-pic/README.md",
+    "/code/validated-examples/2026-11-23/warm-pic/verification.json",
+    "/numerical-methods-atlas/validation/verification/2026-11-24-batch28-37-public.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#thermal-landau-damping-ja",
   "execution": "/numerical-methods-atlas/validation/thermal-landau-damping/?lang=ja"
@@ -1963,13 +1974,13 @@ ID: pic-1 · P1 · 検証済み · 新規実装
 
 ### two-stream不安定性
 
-ID: pic-2 · P2 · 検証済み · 新規実装
+ID: pic-2 · P2 · 公開済み · 新規実装
 
 調査時の範囲：未収録
 
 調査時の現状：
 
-固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。
+固定範囲をHRで公開。最終SHAの全38群83ケース1047pytest、サイト543件が合格。初期公開の画面確認と新版HTTP差分確認、Linux失敗2件、DSMC性能修正版を区別して保持。Thomas1949原報は未読の文献整理で数値例なし。
 
 追加内容・最小の検証：
 
@@ -1996,7 +2007,7 @@ ID: pic-2 · P2 · 検証済み · 新規実装
 
 ```json
 {
-  "verification": "/code/validated-examples/2026-11-23/warm-pic/verification.json",
+  "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch28-37-public.json",
   "inputs": [
     "/code/validated-examples/2026-11-23/warm-pic/inputs.json",
     "/code/validated-examples/2026-11-23/warm-pic/acceptance.json",
@@ -2009,7 +2020,9 @@ ID: pic-2 · P2 · 検証済み · 新規実装
     "/code/validated-examples/2026-11-23/warm-pic/run.py"
   ],
   "references": [
-    "/code/validated-examples/2026-11-23/warm-pic/README.md"
+    "/code/validated-examples/2026-11-23/warm-pic/README.md",
+    "/code/validated-examples/2026-11-23/warm-pic/verification.json",
+    "/numerical-methods-atlas/validation/verification/2026-11-24-batch28-37-public.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#thermal-two-stream-ja",
   "execution": "/numerical-methods-atlas/validation/thermal-two-stream/?lang=ja"
@@ -2018,13 +2031,13 @@ ID: pic-2 · P2 · 検証済み · 新規実装
 
 ### PIC空間離散そのものの独立実装照合
 
-ID: pic-3 · P2 · 検証済み · 検証の拡充
+ID: pic-3 · P2 · 公開済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
 調査時の現状：
 
-固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。
+固定範囲をHRで公開。最終SHAの全38群83ケース1047pytest、サイト543件が合格。初期公開の画面確認と新版HTTP差分確認、Linux失敗2件、DSMC性能修正版を区別して保持。Thomas1949原報は未読の文献整理で数値例なし。
 
 追加内容・最小の検証：
 
@@ -2051,7 +2064,7 @@ ID: pic-3 · P2 · 検証済み · 検証の拡充
 
 ```json
 {
-  "verification": "/code/validated-examples/2026-11-23/pic-spatial/verification.json",
+  "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch28-37-public.json",
   "inputs": [
     "/code/validated-examples/2026-11-23/pic-spatial/inputs.json",
     "/code/validated-examples/2026-11-23/pic-spatial/acceptance.json",
@@ -2064,7 +2077,9 @@ ID: pic-3 · P2 · 検証済み · 検証の拡充
     "/code/validated-examples/2026-11-23/pic-spatial/run.py"
   ],
   "references": [
-    "/code/validated-examples/2026-11-23/pic-spatial/README.md"
+    "/code/validated-examples/2026-11-23/pic-spatial/README.md",
+    "/code/validated-examples/2026-11-23/pic-spatial/verification.json",
+    "/numerical-methods-atlas/validation/verification/2026-11-24-batch28-37-public.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#cold-plasma-pic-ja",
   "execution": "/numerical-methods-atlas/validation/pic-independent-spatial/?lang=ja"
@@ -2075,13 +2090,13 @@ ID: pic-3 · P2 · 検証済み · 検証の拡充
 
 ### 平板Couette流／Fourier熱伝導の希薄気体ベンチマーク
 
-ID: dsmc-1 · P1 · 検証済み · 新規実装
+ID: dsmc-1 · P1 · 公開済み · 新規実装
 
 調査時の範囲：未収録
 
 調査時の現状：
 
-固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。
+固定範囲をHRで公開。最終SHAの全38群83ケース1047pytest、サイト543件が合格。初期公開の画面確認と新版HTTP差分確認、Linux失敗2件、DSMC性能修正版を区別して保持。Thomas1949原報は未読の文献整理で数値例なし。
 
 追加内容・最小の検証：
 
@@ -2109,7 +2124,7 @@ ID: dsmc-1 · P1 · 検証済み · 新規実装
 
 ```json
 {
-  "verification": "/code/validated-examples/2026-11-23/dsmc-wall/verification.json",
+  "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch28-37-public.json",
   "inputs": [
     "/code/validated-examples/2026-11-23/dsmc-wall/inputs.json",
     "/code/validated-examples/2026-11-23/dsmc-wall/acceptance.json",
@@ -2123,7 +2138,9 @@ ID: dsmc-1 · P1 · 検証済み · 新規実装
     "/code/validated-examples/2026-11-23/dsmc-wall/run.py"
   ],
   "references": [
-    "/code/validated-examples/2026-11-23/dsmc-wall/README.md"
+    "/code/validated-examples/2026-11-23/dsmc-wall/README.md",
+    "/code/validated-examples/2026-11-23/dsmc-wall/verification.json",
+    "/numerical-methods-atlas/validation/verification/2026-11-24-batch28-37-public.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#dsmc-couette-ja",
   "execution": "/numerical-methods-atlas/validation/dsmc-couette/?lang=ja"
@@ -2132,13 +2149,13 @@ ID: dsmc-1 · P1 · 検証済み · 新規実装
 
 ### 平面定常衝撃波の構造（hard-sphere/VHS）
 
-ID: dsmc-2 · P2 · 検証済み · 新規実装
+ID: dsmc-2 · P2 · 公開済み · 新規実装
 
 調査時の範囲：未収録
 
 調査時の現状：
 
-固定した軽量例を実装し、事前に固定した判定と独立参照の照合、実配列の保存図、ZIPの独立展開追試まで確認しました。実公開と公開ZIPだけのLinux追試は今回の集約公開後に確認します。
+固定範囲をHRで公開。最終SHAの全38群83ケース1047pytest、サイト543件が合格。初期公開の画面確認と新版HTTP差分確認、Linux失敗2件、DSMC性能修正版を区別して保持。Thomas1949原報は未読の文献整理で数値例なし。
 
 追加内容・最小の検証：
 
@@ -2166,7 +2183,7 @@ ID: dsmc-2 · P2 · 検証済み · 新規実装
 
 ```json
 {
-  "verification": "/code/validated-examples/2026-11-24/dsmc-shock/verification.json",
+  "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch28-37-public.json",
   "inputs": [
     "/code/validated-examples/2026-11-24/dsmc-shock/inputs.json",
     "/code/validated-examples/2026-11-24/dsmc-shock/acceptance.json",
@@ -2181,7 +2198,9 @@ ID: dsmc-2 · P2 · 検証済み · 新規実装
   "references": [
     "/code/validated-examples/2026-11-24/dsmc-shock/README.md",
     "/code/validated-examples/2026-11-23/dsmc-shock/README.md",
-    "/code/validated-examples/2026-11-23/dsmc-shock/verification.json"
+    "/code/validated-examples/2026-11-23/dsmc-shock/verification.json",
+    "/code/validated-examples/2026-11-24/dsmc-shock/verification.json",
+    "/numerical-methods-atlas/validation/verification/2026-11-24-batch28-37-public.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#dsmc-planar-shock-ja",
   "execution": "/numerical-methods-atlas/validation/dsmc-planar-shock/?lang=ja"
@@ -2192,13 +2211,13 @@ ID: dsmc-2 · P2 · 検証済み · 新規実装
 
 ### Ghia lid-driven cavity（まずRe=100）
 
-ID: lbm-1 · P1 · 未着手 · 新規実装
+ID: lbm-1 · P1 · 検証済み · 新規実装
 
 調査時の範囲：未収録
 
 調査時の現状：
 
-D2Q9等温BGK、Guo外力の半刻み運動量補正、half-way bounce-backが実装済み。周期せん断波粘性の細分化と低Mach平板Poiseuille壁位置/格子細分化テストがある。BGK/Guo/Poiseuille自体を不足扱いしない。
+Re100の実2D LBMを3格子で計算し、Ghiaの丸めた中心線表・主渦・定常性・壁運動量収支を照合。角と有限Machの制約を残します。
 
 追加内容・最小の検証：
 
@@ -2212,6 +2231,8 @@ D2Q9等温BGK、Guo外力の半刻み運動量補正、half-way bounce-backが�
 - 誤差・収束と制約が分かる図を保存する。
 - 実在する問題ギャラリー・実行入口・入力・図への対応を確認する。
 
+固定入力・参照・受入条件・失敗履歴を保持し、独立に展開したZIPの全固定入力を再実行しました。HR上の実配信と公開ZIP Linux追試は、このローカル検証と別の記録で確認します。
+
 調査時の根拠：
 
 - `code/numerical-methods-atlas/2026-11-21/numart/lattice_boltzmann.py` · step(walls=True)は静止壁
@@ -2219,16 +2240,47 @@ D2Q9等温BGK、Guo外力の半刻み運動量補正、half-way bounce-backが�
 
 - [Ghia, Ghia & Shin (1982), High-Re solutions for incompressible flow ...](<https://www.sciencedirect.com/science/article/abs/pii/0021999182900584>)
   原著出版社の書誌と抄録を確認。cavityベンチマークの原著であり、LBM原著ではない。
+- [On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model](<https://arxiv.org/abs/comp-gas/9611001>)
+  Selected original preprint pp2-7: standard equilibrium, moment-based flat velocity/density boundaries and corner/finite-Mach limitations. No full-paper audit; special d2q9i accuracy is not credited to this standard BGK.
+- [Lattice Boltzmann method for moving boundaries](<https://doi.org/10.1016/S0021-9991(02)00022-0>)
+  Original article sec3 printed410-414 via author-content mirror; quadratic interpolation paths, q=.5, wall correction, momentum exchange and compromised mass conservation. Our two-point linear implementation is separately derived and qualified; original2001BFL full text was inaccessible.
+- [High-Re solutions for incompressible flow using the Navier-Stokes equations and a multigrid method](<https://www.sciencedirect.com/science/article/pii/0021999182900584>)
+  Exact-byte existing17-point Re100columns and prior original-PDF/rendered-page provenance rechecked. Current session did not reacquire the original PDF. Printed398-399TablesI/II and408TableV provenance retained.
+
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-24/lbm-cavity/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-24/lbm-cavity/inputs.json",
+    "/code/validated-examples/2026-11-24/lbm-cavity/acceptance.json",
+    "/code/validated-examples/2026-11-24/lbm-cavity/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-24/lbm-cavity/results/lbm-cavity-re100-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-24/lbm-cavity/run.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-24/lbm-cavity/README.md",
+    "/code/validated-examples/2026-11-24/lbm-cavity/verification.json"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#lid-driven-cavity-ja",
+  "execution": "/numerical-methods-atlas/validation/lbm-cavity-re100/?lang=ja"
+}
+```
 
 ### LBM版2D Taylor–Green渦の時間・空間・Mach数誤差
 
-ID: lbm-2 · P1 · 未着手 · 検証の拡充
+ID: lbm-2 · P1 · 検証済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
 調査時の現状：
 
-D2Q9等温BGK、Guo外力の半刻み運動量補正、half-way bounce-backが実装済み。周期せん断波粘性の細分化と低Mach平板Poiseuille壁位置/格子細分化テストがある。BGK/Guo/Poiseuille自体を不足扱いしない。
+解析Taylor–Green渦で速度・圧力・エネルギーを比較。格子・時間刻み・Mach数の結び付いた細分化と振幅・刻みの比較で、純粋な時間次数やMach次数とは区別します。
 
 追加内容・最小の検証：
 
@@ -2242,21 +2294,52 @@ D2Q9等温BGK、Guo外力の半刻み運動量補正、half-way bounce-backが�
 - 誤差・収束と制約が分かる図を保存する。
 - 実在する問題ギャラリー・実行入口・入力・図への対応を確認する。
 
+固定入力・参照・受入条件・失敗履歴を保持し、独立に展開したZIPの全固定入力を再実行しました。HR上の実配信と公開ZIP Linux追試は、このローカル検証と別の記録で確認します。
+
 調査時の根拠：
 
 - `code/numerical-methods-atlas/2026-11-21/numart/lattice_boltzmann.py` · shear_wave
 - `catalog/atlas-execution-examples.json` · taylor-greenはprojection法
 
+- [On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model](<https://arxiv.org/abs/comp-gas/9611001>)
+  Selected original preprint pp2-7: standard equilibrium, moment-based flat velocity/density boundaries and corner/finite-Mach limitations. No full-paper audit; special d2q9i accuracy is not credited to this standard BGK.
+- [Lattice Boltzmann method for moving boundaries](<https://doi.org/10.1016/S0021-9991(02)00022-0>)
+  Original article sec3 printed410-414 via author-content mirror; quadratic interpolation paths, q=.5, wall correction, momentum exchange and compromised mass conservation. Our two-point linear implementation is separately derived and qualified; original2001BFL full text was inaccessible.
+
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-24/lbm-taylor-green/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-24/lbm-taylor-green/inputs.json",
+    "/code/validated-examples/2026-11-24/lbm-taylor-green/acceptance.json",
+    "/code/validated-examples/2026-11-24/lbm-taylor-green/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-24/lbm-taylor-green/results/lbm-taylor-green-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-24/lbm-taylor-green/run.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-24/lbm-taylor-green/README.md",
+    "/code/validated-examples/2026-11-24/lbm-taylor-green/verification.json"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#taylor-green-ja",
+  "execution": "/numerical-methods-atlas/validation/lbm-taylor-green/?lang=ja"
+}
+```
 
 ### 円柱後流／曲面境界のSchäfer–Turek型基準問題
 
-ID: lbm-3 · P2 · 未着手 · 新規実装
+ID: lbm-3 · P2 · 検証済み · 新規実装
 
 調査時の範囲：未収録
 
 調査時の現状：
 
-D2Q9等温BGK、Guo外力の半刻み運動量補正、half-way bounce-backが実装済み。周期せん断波粘性の細分化と低Mach平板Poiseuille壁位置/格子細分化テストがある。BGK/Guo/Poiseuille自体を不足扱いしない。
+二次曲面補間の環状Couette制御と、実際のRe20円柱流を別配布。点ごとの圧力・トルク、抗力・圧力差・後流を比較し、旧未達・流出不安定化の結果も保持。原著の推定区間を厳密解とはしません。
 
 追加内容・最小の検証：
 
@@ -2270,22 +2353,66 @@ D2Q9等温BGK、Guo外力の半刻み運動量補正、half-way bounce-backが�
 - 誤差・収束と制約が分かる図を保存する。
 - 実在する問題ギャラリー・実行入口・入力・図への対応を確認する。
 
+固定入力・参照・受入条件・失敗履歴を保持し、独立に展開したZIPの全固定入力を再実行しました。HR上の実配信と公開ZIP Linux追試は、このローカル検証と別の記録で確認します。
+
 調査時の根拠：
 
 - `code/numerical-methods-atlas/2026-11-21/numart/lattice_boltzmann.py` · step,poiseuille
 
+- [On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model](<https://arxiv.org/abs/comp-gas/9611001>)
+  Selected original preprint pp2-7: standard equilibrium, moment-based flat velocity/density boundaries and corner/finite-Mach limitations. No full-paper audit; special d2q9i accuracy is not credited to this standard BGK.
+- [Lattice Boltzmann method for moving boundaries](<https://doi.org/10.1016/S0021-9991(02)00022-0>)
+  Selected original sec3 printed410-414 via disclosed author-content mirror: Eq12/13/14 quadratic reflected-characteristic interpolation,moving-wall coefficient,Eq15 momentum exchange and compromised mass conservation. Generic Lagrange scalar oracle independently qualifies weights andsigns. No localPDF/rendered-symbol audit;2001BFLfulloriginal remains unread.
+- [Benchmark Computations of Laminar Flow Around a Cylinder](<https://kent-and.github.io/mek4250/2021/SchaeferTurek1996.pdf>)
+  Original chapter delivered by course mirror after official links404: printed3-4geometry/2D-1/force definitions,7protocol user-selected outlet,11-12Table3 estimated ranges. Not a full-paper or separate local rendered-symbol audit.
+- [DFG flow around cylinder benchmark2D-1, Re20](<https://wwwold.mathematik.tu-dortmund.de/~featflow/en/benchmarks/cfdbenchmarking/flow/dfg_benchmark1_re20.html>)
+  Actual geometry,do-nothingBC,mean-speed normalization,force/probe definitions and Nabh1998attribution read. Nabh original report not read; its precise values are contextual,not the adopted outlet truth.
+- [Non-equilibrium extrapolation method for velocity and pressure boundary conditions in the lattice Boltzmann method](<https://cpb.iphy.ac.cn/en/article/doi/10.1088/1009-1963/11/4/310>)
+  Official primary abstract actually read: equilibrium/nonequilibrium split and adjacent-fluid extrapolation. Full primary equations unavailable; the adopted all-nine poststream density reservoir is independently derived and qualified,not labelled the exact author implementation.
+
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-24/lbm-annulus/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-24/lbm-annulus/inputs.json",
+    "/code/validated-examples/2026-11-24/lbm-annulus/acceptance.json",
+    "/code/validated-examples/2026-11-24/lbm-annulus/pre-run-contract.json",
+    "/code/validated-examples/2026-11-24/lbm-curved-boundary/inputs.json",
+    "/code/validated-examples/2026-11-24/lbm-curved-boundary/acceptance.json",
+    "/code/validated-examples/2026-11-24/lbm-curved-boundary/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-24/lbm-annulus/results/lbm-annular-couette-control-preview.png",
+    "/code/validated-examples/2026-11-24/lbm-curved-boundary/results/lbm-cylinder-re20-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-24/lbm-annulus/run.py",
+    "/code/validated-examples/2026-11-24/lbm-curved-boundary/run.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-24/lbm-annulus/README.md",
+    "/code/validated-examples/2026-11-24/lbm-annulus/verification.json",
+    "/code/validated-examples/2026-11-24/lbm-curved-boundary/README.md",
+    "/code/validated-examples/2026-11-24/lbm-curved-boundary/verification.json"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#lbm-annular-couette-control-ja",
+  "execution": "/numerical-methods-atlas/validation/lbm-annular-couette-control/?lang=ja"
+}
+```
 
 ## 放射輸送
 
 ### 等方散乱平板の多重散乱ベンチマーク
 
-ID: radiation-1 · P1 · 未着手 · 検証の拡充
+ID: radiation-1 · P1 · 検証済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
 調査時の現状：
 
-定常・一様・純吸収平板の離散角法があり、Beer–Lambert/E3、空間/角度細分化、正値性・流束収支を検証。追加版は光子生存Monte Carlo、二項参照と有限seedのClopper–Pearson被覆まである。散乱・放射物質連成は別範囲。
+光学的厚さと散乱アルベドを固定した定常平板。角度離散法を、連続角度のFredholm積分方程式・異なるスカラー基底の参照と比較。有限な参照差を厳密誤差上界とはしません。
 
 追加内容・最小の検証：
 
@@ -2299,22 +2426,51 @@ ID: radiation-1 · P1 · 未着手 · 検証の拡充
 - 誤差・収束と制約が分かる図を保存する。
 - 実在する問題ギャラリー・実行入口・入力・図への対応を確認する。
 
+固定入力・参照・受入条件・失敗履歴を保持し、独立に展開したZIPの全固定入力を再実行しました。HR上の実配信と公開ZIP Linux追試は、このローカル検証と別の記録で確認します。
+
 調査時の根拠：
 
 - `code/validated-examples/2026-11-22/particles/cases.json` · radiation-transport.limits
 
 - [Su & Olson (1997), An analytical benchmark for non-equilibrium radiative transfer ...](<https://www.sciencedirect.com/science/article/abs/pii/S0306454996001004>)
   原著出版社抄録で等方散乱・非平衡輸送の解析ベンチマークを確認。1996拡散問題と1997輸送問題を区別する。
+- [Pharr,Jakob and Humphreys, Physically Based Rendering4e: The Equation of Transfer](<https://www.pbr-book.org/4ed/Light_Transport_II_Volume_Rendering/The_Equation_of_Transfer>)
+  Read selected transfer/source/finite-ray boundary section. The isotropic Fredholm normalization,independent exact-cell E1weights and flux derivations are documented in this packet; no DISORT reproduction or Monte Carlo claim.
+
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-24/radiation-scattering/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-24/radiation-scattering/inputs.json",
+    "/code/validated-examples/2026-11-24/radiation-scattering/acceptance.json",
+    "/code/validated-examples/2026-11-24/radiation-scattering/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-24/radiation-scattering/results/isotropic-scattering-slab-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-24/radiation-scattering/run.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-24/radiation-scattering/README.md",
+    "/code/validated-examples/2026-11-24/radiation-scattering/verification.json"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#isotropic-scattering-slab-ja",
+  "execution": "/numerical-methods-atlas/validation/isotropic-scattering-slab/?lang=ja"
+}
+```
 
 ### Su–Olson非平衡放射輸送／Marshak波
 
-ID: radiation-2 · P2 · 未着手 · 新規実装
+ID: radiation-2 · P2 · 検証済み · 新規実装
 
 調査時の範囲：未収録
 
 調査時の現状：
 
-定常・一様・純吸収平板の離散角法があり、Beer–Lambert/E3、空間/角度細分化、正値性・流束収支を検証。追加版は光子生存Monte Carlo、二項参照と有限seedのClopper–Pearson被覆まである。散乱・放射物質連成は別範囲。
+1996拡散と1997輸送の規格化・境界・参照を分離。固定ExactPack版と著者提供の2023輸送表を照合し、物質交換・重み付き収支を確認。追加の同条件Fourierモードで平均自由行程を解像した拡散極限を調べ、固定格子AP・SSPRK2の硬い極限とは区別。1996/1997原著全文は未読です。
 
 追加内容・最小の検証：
 
@@ -2328,6 +2484,8 @@ ID: radiation-2 · P2 · 未着手 · 新規実装
 - 誤差・収束と制約が分かる図を保存する。
 - 実在する問題ギャラリー・実行入口・入力・図への対応を確認する。
 
+固定入力・参照・受入条件・失敗履歴を保持し、独立に展開したZIPの全固定入力を再実行しました。HR上の実配信と公開ZIP Linux追試は、このローカル検証と別の記録で確認します。
+
 調査時の根拠：
 
 - `catalog/atlas-depth.json` · transport.next
@@ -2335,16 +2493,62 @@ ID: radiation-2 · P2 · 未着手 · 新規実装
 
 - [Su & Olson (1997), An analytical benchmark for non-equilibrium radiative transfer ...](<https://www.sciencedirect.com/science/article/abs/pii/S0306454996001004>)
   原著出版社抄録で等方散乱・非平衡輸送の解析ベンチマークを確認。1996拡散問題と1997輸送問題を区別する。
+- [B. Su and G. L. Olson (1996), Benchmark results for the non-equilibrium Marshak diffusion problem, JQSRT56(3),337–351](<https://doi.org/10.1016/0022-4073(96)84524-9>)
+  Publisher abstract and bibliographic metadata read; original full text/equations/tables unavailable and not directly checked. Diffusion is distinct from the1997transport problem.
+- [J. Thrussell and J. M. Ferguson (2023), ExactPack: A python library of exact analytic solutions, SoftwareX24,101560](<https://doi.org/10.1016/j.softx.2023.101560>)
+  Bibliographic software credit,recorded separately from Su–Olson1996 and the pinned executed source. Full software paper is not claimed read.
+- [LANL ExactPack1.7.5, pinned SuOlson/Timmes evaluator](<https://github.com/lanl/ExactPack/tree/8718b61f281a9744ea7a3820c51800915e4636e9/exactpack/solvers/suolson>)
+  All55documentation,41wrapper and348Timmes module lines read. Execute nondimensional usolution/vsolution serially; qualify selected original/tight integrals against sensitivity,PDE and Robin checks. No primary solver shares this evaluator. Full ExactPack/base/library audit is not claimed.
+- [LANL ExactPack pinned BSD-3-Clause license](<https://github.com/lanl/ExactPack/blob/8718b61f281a9744ea7a3820c51800915e4636e9/LICENSE.txt>)
+  Actual license text read and retained as exactpack-LICENSE.txt with redistributed inert source snapshots.
+- [B. Su and G. L. Olson (1997), An analytical benchmark for non-equilibrium radiative transfer in an isotropically scattering medium, Annals of Nuclear Energy24(13),1035–1055](<https://doi.org/10.1016/S0306-4549(96)00100-4>)
+  Publisher abstract/metadata read only. Original full text,integral normalization and original numerical tables were not directly read or transcribed. The actual comparison is independently attributed to the selected2023author repository below.
+- [A. Crilly (2023), Learning closure relations using differentiable programming: an example in radiation transport](<https://raw.githubusercontent.com/ml4physicalsciences/ml4physicalsciences.github.io/master/2023/files/NeurIPS_ML4PS_2023_16.pdf>)
+  Actually read and visually verified PDFpage6 Appendix4.1 equations7–10: epsilon*d_tau U+mu*d_x U+U=V/2+Q/2,V_tau=W−V. With I=2U, E=W. epsilon1,x0=.5,source duration10; no direct original1997-table verification.
+- [A. Crilly RTClosureJAX pinned SuOlsonData analytical benchmark tables](<https://github.com/aidancrilly/RTClosureJAX/tree/3e4f636299d62bc03f7118cfc884230c756f9d87/SuOlsonData>)
+  Pinned W/Vtransport data,coordinates,times and README actually read. Repository calls them analytical Su–Olson data; transcription versus regeneration is undocumented. They are not trained-closure/model predictions. Retain full15×7raw table; compare13points at tau.1,1,3.16228 with matching source/epsilon/units. Rounded five-decimal finite data,not a rigorous exact reference.
+- [RTClosureJAX pinned MIT license](<https://github.com/aidancrilly/RTClosureJAX/blob/3e4f636299d62bc03f7118cfc884230c756f9d87/LICENSE>)
+  Actual MIT license read and retained with the bundled raw table. No redistribution of the2023paper PDF is required by this packet.
+- [SciPy1.14.1 expm_multiply: matrix exponential action and trace preconditioning](<https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.sparse.linalg.expm_multiply.html>)
+  Actually inspected installed1.14.1 source/API docstring and the versioned official API action/traceA section. Shared by the new FV-mode and continuum-reference propagators; mathematical action equivalence is not bit equivalence or independent-engine evidence. The linked algorithm papers were not read as part of this update.
+- [SciPy1.14.1 solve_ivp: DOP853 and complex initial states](<https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html>)
+  Read selected official API sections for complex initial states,DOP853 and fixed tolerances. Two separately written continuum derivatives are compared to the shared exponential action under frozen141checks. This is finite reference qualification,not a primary SSPRK2 order test or a rigorous bound; original DOP853 papers were not reviewed here.
+
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-24-r2/radiation-matter/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-24-r2/radiation-matter/inputs.json",
+    "/code/validated-examples/2026-11-24-r2/radiation-matter/acceptance.json",
+    "/code/validated-examples/2026-11-24-r2/radiation-matter/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-24-r2/radiation-matter/results/su-olson-diffusion1996-preview.png",
+    "/code/validated-examples/2026-11-24-r2/radiation-matter/results/su-olson-transport1997-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-24-r2/radiation-matter/run.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-24-r2/radiation-matter/README.md",
+    "/code/validated-examples/2026-11-24-r2/radiation-matter/verification.json"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#su-olson-diffusion1996-ja",
+  "execution": "/numerical-methods-atlas/validation/su-olson-diffusion1996/?lang=ja"
+}
+```
 
 ### 影形成・交差ビームの多次元輸送（M1の限界も表示）
 
-ID: radiation-3 · P2 · 未着手 · 新規実装
+ID: radiation-3 · P2 · 検証済み · 新規実装
 
 調査時の範囲：未収録
 
 調査時の現状：
 
-定常・一様・純吸収平板の離散角法があり、Beer–Lambert/E3、空間/角度細分化、正値性・流束収支を検証。追加版は光子生存Monte Carlo、二項参照と有限seedのClopper–Pearson被覆まである。散乱・放射物質連成は別範囲。
+実2D空間の角度輸送と非線形静止M1で影・対向ビームを比較。x/y交差制御とM1製造解、方向別流束の円錐分割を別に検査。角度輸送の厳密参照をM1全体の厳密解とはしません。
 
 追加内容・最小の検証：
 
@@ -2358,23 +2562,55 @@ ID: radiation-3 · P2 · 未着手 · 新規実装
 - 誤差・収束と制約が分かる図を保存する。
 - 実在する問題ギャラリー・実行入口・入力・図への対応を確認する。
 
+固定入力・参照・受入条件・失敗履歴を保持し、独立に展開したZIPの全固定入力を再実行しました。HR上の実配信と公開ZIP Linux追試は、このローカル検証と別の記録で確認します。
+
 調査時の根拠：
 
 - `catalog/atlas-methods.json` · radiation-transport
 - `catalog/atlas-depth.json` · transport.next
 
+- [J. Rosdahl etal. (2013), RAMSES-RT: Radiation hydrodynamics in the cosmological context](<https://arxiv.org/html/1304.7126v2>)
+  Read selectedSection2 equations12–14 and opposing-beam limitation text. The static grey equations here are neither GR nor reproductions of RAMSES astrophysical calculations. Original Levermore1984 full text was not read.
+- [A Two-moment Radiation Hydrodynamics Module in Athena Using a Time-Explicit Godunov Method](<https://arxiv.org/pdf/1306.0010>)
+  Independent reviewer actually read selected extracted Section3.3equations37–41and eigenvalue limits;not a whole-paper/rendered-symbol audit. Directional LF cone root/weighted-CFL algebra is separately authored and independently crosschecked,not a transplanted HLL solver or claimed general Riemann-fan bound. Actual generalized directional LF core passed762component checks,then all166fixed geometry gates. The authored LFcone proof is separate from the paper;no general nonlinearRiemannfan bound is claimed.
+
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-24/radiation-geometry/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-24/radiation-geometry/inputs.json",
+    "/code/validated-examples/2026-11-24/radiation-geometry/acceptance.json",
+    "/code/validated-examples/2026-11-24/radiation-geometry/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-24/radiation-geometry/results/shadow-absorber2d-preview.png",
+    "/code/validated-examples/2026-11-24/radiation-geometry/results/opposing-beams2d-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-24/radiation-geometry/run.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-24/radiation-geometry/README.md",
+    "/code/validated-examples/2026-11-24/radiation-geometry/verification.json"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#shadow-absorber2d-ja",
+  "execution": "/numerical-methods-atlas/validation/shadow-absorber2d/?lang=ja"
+}
+```
 
 ## 確率MC・MCMC・SDE
 
 ### GBM/OUのweak誤差と信頼区間を分けた固定入力
 
-ID: stochastic-1 · P1 · 未着手 · 検証の拡充
+ID: stochastic-1 · P1 · 検証済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
 調査時の現状：
 
-MCのx²積分は256独立seedでN^-1/2と区間被覆、SDEは共通Brown経路4096本のGBM strong収束が既存。MCMCは正規標的に加え1D二峰標的の混合失敗/偽安心と反射提案、rank/folded Rhat・bulk/tail ESS、ArviZ 0.20.0による62同一データ照合まである。診断や多峰性が全くないという不足扱いは誤り。
+GBMとスカラーOUで解析モーメント・離散弱誤差・共有Brown運動・独立seed・MCSEを比較。既存GBM強収束や調和Langevin全体の検証とは区別します。
 
 追加内容・最小の検証：
 
@@ -2388,6 +2624,8 @@ MCのx²積分は256独立seedでN^-1/2と区間被覆、SDEは共通Brown経路
 - 誤差・収束と制約が分かる図を保存する。
 - 実在する問題ギャラリー・実行入口・入力・図への対応を確認する。
 
+固定入力・参照・受入条件・失敗履歴を保持し、独立に展開したZIPの全固定入力を再実行しました。HR上の実配信と公開ZIP Linux追試は、このローカル検証と別の記録で確認します。
+
 調査時の根拠：
 
 - `catalog/atlas-methods.json` · sde.limitations
@@ -2396,15 +2634,41 @@ MCのx²積分は256独立seedでN^-1/2と区間被覆、SDEは共通Brown経路
 - [Higham (2001), An Algorithmic Introduction to Numerical Simulation of SDEs](<https://epubs.siam.org/doi/10.1137/S0036144500378302>)
   SIAMの原論文ページでEM・Milstein・strong/weak convergenceの扱いを確認。
 
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-24/stochastic-accuracy/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-24/stochastic-accuracy/inputs.json",
+    "/code/validated-examples/2026-11-24/stochastic-accuracy/acceptance.json",
+    "/code/validated-examples/2026-11-24/stochastic-accuracy/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-24/stochastic-accuracy/results/gbm-weak-moments-preview.png",
+    "/code/validated-examples/2026-11-24/stochastic-accuracy/results/ou-weak-moments-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-24/stochastic-accuracy/run.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-24/stochastic-accuracy/README.md",
+    "/code/validated-examples/2026-11-24/stochastic-accuracy/verification.json"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#gbm-sde-ja",
+  "execution": "/numerical-methods-atlas/validation/gbm-weak-moments/?lang=ja"
+}
+```
+
 ### 正規尾確率などのimportance sampling／分散削減
 
-ID: stochastic-2 · P1 · 未着手 · 新規実装
+ID: stochastic-2 · P1 · 検証済み · 新規実装
 
 調査時の範囲：未収録
 
 調査時の現状：
 
-MCのx²積分は256独立seedでN^-1/2と区間被覆、SDEは共通Brown経路4096本のGBM strong収束が既存。MCMCは正規標的に加え1D二峰標的の混合失敗/偽安心と反射提案、rank/folded Rhat・bulk/tail ESS、ArviZ 0.20.0による62同一データ照合まである。診断や多峰性が全くないという不足扱いは誤り。
+正規尾確率a=3,6で通常の重要度重み・既知分散・64独立seedの有限な区間被覆を比較。直接MCのゼロヒットをゼロ確率や幅ゼロ区間とはしません。一般の95%被覆保証ではありません。
 
 追加内容・最小の検証：
 
@@ -2418,21 +2682,50 @@ MCのx²積分は256独立seedでN^-1/2と区間被覆、SDEは共通Brown経路
 - 誤差・収束と制約が分かる図を保存する。
 - 実在する問題ギャラリー・実行入口・入力・図への対応を確認する。
 
+固定入力・参照・受入条件・失敗履歴を保持し、独立に展開したZIPの全固定入力を再実行しました。HR上の実配信と公開ZIP Linux追試は、このローカル検証と別の記録で確認します。
+
 調査時の根拠：
 
 - `catalog/atlas-execution-examples.json` · mc-integral.scope
 - `catalog/atlas-detailed-reading.json` · monte-carlo.verificationは提案、全て実行済みではない
 
+- [Monte Carlo theory,methods and examples,Chapter9: importance sampling](<https://artowen.su.domains/mc/Ch-var-is.pdf>)
+  Selected author-chapter support,ordinary estimator,second moments and diagnostics were read during preparation. Current refetch returned403. No full-book or PERT experiment reproduction.
+
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-24/stochastic-estimation/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-24/stochastic-estimation/inputs.json",
+    "/code/validated-examples/2026-11-24/stochastic-estimation/acceptance.json",
+    "/code/validated-examples/2026-11-24/stochastic-estimation/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-24/stochastic-estimation/results/normal-tail-importance-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-24/stochastic-estimation/run.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-24/stochastic-estimation/README.md",
+    "/code/validated-examples/2026-11-24/stochastic-estimation/verification.json"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#normal-tail-importance-ja",
+  "execution": "/numerical-methods-atlas/validation/normal-tail-importance/?lang=ja"
+}
+```
 
 ### 相関多変量Gaussian／banana・funnel型標的
 
-ID: stochastic-3 · P2 · 未着手 · 検証の拡充
+ID: stochastic-3 · P2 · 検証済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
 調査時の現状：
 
-MCのx²積分は256独立seedでN^-1/2と区間被覆、SDEは共通Brown経路4096本のGBM strong収束が既存。MCMCは正規標的に加え1D二峰標的の混合失敗/偽安心と反射提案、rank/folded Rhat・bulk/tail ESS、ArviZ 0.20.0による62同一データ照合まである。診断や多峰性が全くないという不足扱いは誤り。
+相関0.95の2D Gaussianを等方・前処理付き提案で比較。解析の同時モーメントと量別MCSE、保存同一データのArviZ診断640照合を分離。有限演算の分位点互換を明記し、banana・funnel・HMC/NUTSや一般の収束保証は未実装です。
 
 追加内容・最小の検証：
 
@@ -2446,6 +2739,8 @@ MCのx²積分は256独立seedでN^-1/2と区間被覆、SDEは共通Brown経路
 - 誤差・収束と制約が分かる図を保存する。
 - 実在する問題ギャラリー・実行入口・入力・図への対応を確認する。
 
+固定入力・参照・受入条件・失敗履歴を保持し、独立に展開したZIPの全固定入力を再実行しました。HR上の実配信と公開ZIP Linux追試は、このローカル検証と別の記録で確認します。
+
 調査時の根拠：
 
 - `catalog/atlas-depth.json` · probability.next
@@ -2453,16 +2748,45 @@ MCのx²積分は256独立seedでN^-1/2と区間被覆、SDEは共通Brown経路
 
 - [Hoffman & Gelman (2014), The No-U-Turn Sampler](<https://www.jmlr.org/papers/v15/hoffman14a.html>)
   JMLR原著ページで高次元・相関のある標的に対する比較の動機を確認。NUTS実装を今回必須とするものではない。
+- [Rank-normalization,folding,and localization: An improved R-hat for assessing convergence of MCMC](<https://arxiv.org/pdf/1903.08008>)
+  Read selected original rank/foldedRhat,ESS and corrected Blom equation. No multivariate global-convergence certificate.
+- [ArviZ0.20.0 public diagnostics API and selected implementation](<https://python.arviz.org/en/v0.20.0/api/generated/arviz.mcse.html>)
+  Read official0.20.0 ESS/MCSE source and API. Cache640values from128same-data observable/prefix arrays of8fixed chainsets in a separate process. Independence is the diagnostic engine,not an independent sampler.
+
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-24/stochastic-estimation/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-24/stochastic-estimation/inputs.json",
+    "/code/validated-examples/2026-11-24/stochastic-estimation/acceptance.json",
+    "/code/validated-examples/2026-11-24/stochastic-estimation/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-24/stochastic-estimation/results/correlated-gaussian-mcmc-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-24/stochastic-estimation/run.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-24/stochastic-estimation/README.md",
+    "/code/validated-examples/2026-11-24/stochastic-estimation/verification.json"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#correlated-gaussian-mcmc-ja",
+  "execution": "/numerical-methods-atlas/validation/correlated-gaussian-mcmc/?lang=ja"
+}
+```
 
 ### Milstein法のGBM strong次数比較
 
-ID: stochastic-4 · P2 · 未着手 · 新規実装
+ID: stochastic-4 · P2 · 検証済み · 新規実装
 
 調査時の範囲：未収録
 
 調査時の現状：
 
-MCのx²積分は256独立seedでN^-1/2と区間被覆、SDEは共通Brown経路4096本のGBM strong収束が既存。MCMCは正規標的に加え1D二峰標的の混合失敗/偽安心と反射提案、rank/folded Rhat・bulk/tail ESS、ArviZ 0.20.0による62同一データ照合まである。診断や多峰性が全くないという不足扱いは誤り。
+同じBrown運動でEMとMilsteinのGBM強誤差を比較し、解析RMSと有限標本区間を照合。非Lipschitz系や一般の正値性へは広げません。
 
 追加内容・最小の検証：
 
@@ -2476,6 +2800,8 @@ MCのx²積分は256独立seedでN^-1/2と区間被覆、SDEは共通Brown経路
 - 誤差・収束と制約が分かる図を保存する。
 - 実在する問題ギャラリー・実行入口・入力・図への対応を確認する。
 
+固定入力・参照・受入条件・失敗履歴を保持し、独立に展開したZIPの全固定入力を再実行しました。HR上の実配信と公開ZIP Linux追試は、このローカル検証と別の記録で確認します。
+
 調査時の根拠：
 
 - `catalog/atlas-methods.json` · sde.example_scope
@@ -2483,6 +2809,31 @@ MCのx²積分は256独立seedでN^-1/2と区間被覆、SDEは共通Brown経路
 
 - [Higham (2001), An Algorithmic Introduction to Numerical Simulation of SDEs](<https://epubs.siam.org/doi/10.1137/S0036144500378302>)
   SIAMの原論文ページでEM・Milstein・strong/weak convergenceの扱いを確認。
+
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-24/stochastic-accuracy/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-24/stochastic-accuracy/inputs.json",
+    "/code/validated-examples/2026-11-24/stochastic-accuracy/acceptance.json",
+    "/code/validated-examples/2026-11-24/stochastic-accuracy/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-24/stochastic-accuracy/results/gbm-milstein-strong-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-24/stochastic-accuracy/run.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-24/stochastic-accuracy/README.md",
+    "/code/validated-examples/2026-11-24/stochastic-accuracy/verification.json"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#gbm-sde-ja",
+  "execution": "/numerical-methods-atlas/validation/gbm-milstein-strong/?lang=ja"
+}
+```
 
 ## Maxwell・FDTD
 

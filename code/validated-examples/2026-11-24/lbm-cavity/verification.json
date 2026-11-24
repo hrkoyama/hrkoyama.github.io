@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "group": "lbm-cavity",
+  "edition": "2026-11-24",
+  "verified_on": "2026-11-24",
+  "source_manifest_sha256": "840d5366e967b00ce902ac881d9785ebdcbd110cfcf0b2f5a2cd15c654e9c690",
+  "archive": {
+    "file": "atlas-lbm-cavity-2026-11-24.zip",
+    "sha256": "94781f84128fa97fb59fe1a00a469352db69fcca082ce170fa3b881919f5cdda",
+    "bytes": 36961207,
+    "archive_directory": "atlas-lbm-cavity-2026-11-24"
+  },
+  "archive_sha256": "94781f84128fa97fb59fe1a00a469352db69fcca082ce170fa3b881919f5cdda",
+  "returncode": 0,
+  "passed_tests": 22,
+  "tests": 22,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "lbm-cavity-re100"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 14.49458687499282,
+  "independent_rerun_seconds": 14.231184457996278,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

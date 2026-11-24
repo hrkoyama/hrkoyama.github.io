@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "audit_completed": false,
+  "started_at_utc": "2026-11-23T22:39:10.067411+00:00",
+  "protocol_sha256": "af56c42227e648b9e5b0d65c561f80c19ad4134e0db54b9a9824837e09fee766",
+  "records": [
+    {
+      "kind": "annulus-saved-fields",
+      "n": 40,
+      "pressure_error_relative": 1.721546165030285,
+      "exact_pressure_RMS": 1.831149860121946e-05,
+      "radial_bin_mean_error_relative": 0.08475313480590838,
+      "within_radial_bin_angular_error_relative": 1.719458666112987,
+      "diagnostic_best_pressure_scale": 1.0522856176482864,
+      "scale_fit_is_not_used_for_acceptance": true,
+      "qualified_reference_derivation": "u_theta=Ar+B/r; dp/dr=u_theta^2/r integrates to .5A^2r^2+2ABlogr-.5B^2/r^2+C. This audit reads saved exact_p; the original radial/Cartesian analytic tests already ran in retained22pytest, not regenerated here.",
+      "radial_velocity_RMS": 1.1318946903225718e-05,
+      "reference_radial_velocity_RMS": 2.79082106408041e-19,
+      "radial_velocity_maximum": 5.9918050462700815e-05,
+      "angular_projections": [
+        {
+          "mode": 1,
+          "cos_projection": 1.6137222054393223e-15,
+          "sin_projection": 1.989521420161774e-16
+        },
+        {
+          "mode": 2,
+          "cos_projection": 1.5211345260992194e-16,
+          "sin_projection": -4.127381757054793e-16
+        },
+        {
+          "mode": 3,
+          "cos_projection": -4.2478323103298297e-16,
+          "sin_projection": 1.1408743198034724e-15
+        },
+        {
+          "mode": 4,
+          "cos_projection": 3.9841829535665926e-07,
+          "sin_projection": 5.982297461544483e-06
+        },
+        {
+          "mode": 5,
+          "cos_projection": -3.220726665497337e-16,
+          "sin_projection": -3.765934960284083e-16
+        },
+        {
+          "mode": 6,
+          "cos_projection": -2.344345541182899e-16,
+          "sin_projection": -1.4050847296968972e-16
+        },
+        {
+          "mode": 7,
+          "cos_projection": 1.742214164165188e-16,
+          "sin_projection": -7.319096141736241e-17
+        },
+        {
+          "mode": 8,
+          "cos_projection": -2.3882743338711283e-07,
+          "sin_projection": 1.477054379335815e-06
+        }
+      ],
+      "projection_scope": "Descriptive unweighted projections,not an orthogonal complete Fourier energy decomposition on cut geometry.",
+      "interior_centered_FD_residual_RMS": 0.0007344429087722012,
+      "FD_scope": "Postprocess saved fields away from two-link boundary neighborhood; not a new solver/reference or a passed residual gate.",
+      "total_saved_wall_mass": 0.005217821807391637,
+      "max_saved_wall_mass_step": 6.583590603161105e-06
+    },
+    {
+      "kind": "annulus-saved-fields",
+      "n": 60,
+      "pressure_error_relative": 0.9079146478013662,
+      "exact_pressure_RMS": 2.0416203188999347e-05,
+      "radial_bin_mean_error_relative": 0.01954157368567887,
+      "within_radial_bin_angular_error_relative": 0.9077043211256439,
+      "diagnostic_best_pressure_scale": 1.0215053310852171,
+      "scale_fit_is_not_used_for_acceptance": true,
+      "qualified_reference_derivation": "u_theta=Ar+B/r; dp/dr=u_theta^2/r integrates to .5A^2r^2+2ABlogr-.5B^2/r^2+C. This audit reads saved exact_p; the original radial/Cartesian analytic tests already ran in retained22pytest, not regenerated here.",
+      "radial_velocity_RMS": 9.317503410281045e-06,
+      "reference_radial_velocity_RMS": 2.949775345704152e-19,
+      "radial_velocity_maximum": 3.0141326057606284e-05,
+      "angular_projections": [
+        {
+          "mode": 1,
+          "cos_projection": 1.410263023002707e-15,
+          "sin_projection": -5.303982991426838e-16
+        },
+        {
+          "mode": 2,
+          "cos_projection": 9.343769908745976e-16,
+          "sin_projection": -2.1645284021602857e-15
+        },
+        {
+          "mode": 3,
+          "cos_projection": 2.851502885420829e-16,
+          "sin_projection": 2.562216797352641e-16
+        },
+        {
+          "mode": 4,
+          "cos_projection": 2.0895414719416355e-07,
+          "sin_projection": 9.704171471457092e-06
+        },
+        {
+          "mode": 5,
+          "cos_projection": -4.332203229386327e-16,
+          "sin_projection": 2.8693968187318044e-17
+        },
+        {
+          "mode": 6,
+          "cos_projection": 6.413346489993424e-16,
+          "sin_projection": 1.440393129305539e-15
+        },
+        {
+          "mode": 7,
+          "cos_projection": -1.0164652825089613e-15,
+          "sin_projection": -4.595888633634657e-16
+        },
+        {
+          "mode": 8,
+          "cos_projection": -2.039345095008513e-08,
+          "sin_projection": -9.543682146743822e-07
+        }
+      ],
+      "projection_scope": "Descriptive unweighted projections,not an orthogonal complete Fourier energy decomposition on cut geometry.",
+      "interior_centered_FD_residual_RMS": 0.00047093792405338805,
+      "FD_scope": "Postprocess saved fields away from two-link boundary neighborhood; not a new solver/reference or a passed residual gate.",
+      "total_saved_wall_mass": 0.00506559225042447,
+      "max_saved_wall_mass_step": 2.739807320375348e-06
+    },
+    {
+      "kind": "annulus-saved-fields",
+      "n": 80,
+      "pressure_error_relative": 0.617757195425531,
+      "exact_pressure_RMS": 1.9535460726119784e-05,
+      "radial_bin_mean_error_relative": 0.012984468463776815,
+      "within_radial_bin_angular_error_relative": 0.6176207218663661,
+      "diagnostic_best_pressure_scale": 1.0121805619458346,
+      "scale_fit_is_not_used_for_acceptance": true,
+      "qualified_reference_derivation": "u_theta=Ar+B/r; dp/dr=u_theta^2/r integrates to .5A^2r^2+2ABlogr-.5B^2/r^2+C. This audit reads saved exact_p; the original radial/Cartesian analytic tests already ran in retained22pytest, not regenerated here.",
+      "radial_velocity_RMS": 2.5259795417568102e-06,
+      "reference_radial_velocity_RMS": 2.914273550647278e-19,
+      "radial_velocity_maximum": 1.7330749448093006e-05,
+      "angular_projections": [
+        {
+          "mode": 1,
+          "cos_projection": -1.7767267515901426e-15,
+          "sin_projection": -2.1437843899647903e-15
+        },
+        {
+          "mode": 2,
+          "cos_projection": -2.2384431714412346e-15,
+          "sin_projection": 1.5134616865607509e-15
+        },
+        {
+          "mode": 3,
+          "cos_projection": -1.813338006183908e-15,
+          "sin_projection": -1.6021384464986891e-15
+        },
+        {
+          "mode": 4,
+          "cos_projection": 1.0169889396947385e-07,
+          "sin_projection": 2.4013415458973336e-06
+        },
+        {
+          "mode": 5,
+          "cos_projection": 2.3769288231525765e-15,
+          "sin_projection": -1.1925079561438299e-16
+        },
+        {
+          "mode": 6,
+          "cos_projection": -2.661651487750786e-16,
+          "sin_projection": -2.9630114500901906e-15
+        },
+        {
+          "mode": 7,
+          "cos_projection": -4.133718236639021e-16,
+          "sin_projection": 1.403338024350885e-15
+        },
+        {
+          "mode": 8,
+          "cos_projection": -3.4775414662249406e-08,
+          "sin_projection": -5.221464493690135e-07
+        }
+      ],
+      "projection_scope": "Descriptive unweighted projections,not an orthogonal complete Fourier energy decomposition on cut geometry.",
+      "interior_centered_FD_residual_RMS": 0.0004412006696278611,
+      "FD_scope": "Postprocess saved fields away from two-link boundary neighborhood; not a new solver/reference or a passed residual gate.",
+      "total_saved_wall_mass": 0.006519703580845967,
+      "max_saved_wall_mass_step": 1.7534524652043637e-06
+    }
+  ],
+  "checks": {
+    "40/saved-shape-finite": true,
+    "40/orthogonal-radial-bin-decomposition": true,
+    "40/interior-FD-support": true,
+    "60/saved-shape-finite": true,
+    "60/orthogonal-radial-bin-decomposition": true,
+    "60/interior-FD-support": true,
+    "80/saved-shape-finite": true,
+    "80/orthogonal-radial-bin-decomposition": true,
+    "80/interior-FD-support": true
+  },
+  "evolution_executions": 0,
+  "reference_regenerations": 0,
+  "source_or_criteria_changes": false
+}

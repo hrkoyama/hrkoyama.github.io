@@ -1,3 +1,4 @@
+import {projectMethodBeforeBatch38,groupsAddedAfterBatch37,problemCount,examplesAddedAfterBatch37,supplementCaseCount,supplementGroupCount} from './fixtures/atlas-inventory.mjs';
 import {methodCount} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -39,13 +40,13 @@ const baseline=json('scripts/sem-fr-baseline.json'),result=json(base+'results/re
 test('SEM/FR preserve the previous149 method records,24 releases,92 primary pictures and common executions',()=>{
  const rows=json('catalog/atlas-methods.json').methods;
  assert.equal(rows.length,methodCount);
- const original=rows.filter(m=>!methods.includes(m.id)&&m.id!=='q1-fem').map(batch28HistoricalMethod).map(batch18HistoricalMethod).map(m=>Object.fromEntries(Object.entries(m).filter(([k])=>!(['p1-fem','dg'].includes(m.id)&&['depth_release','depth_scope','depth_previous_status'].includes(k)))));
+ const original=rows.filter(m=>!methods.includes(m.id)&&m.id!=='q1-fem').map(projectMethodBeforeBatch38).map(batch28HistoricalMethod).map(batch18HistoricalMethod).map(m=>Object.fromEntries(Object.entries(m).filter(([k])=>!(['p1-fem','dg'].includes(m.id)&&['depth_release','depth_scope','depth_previous_status'].includes(k)))));
  assert.equal(hash(original),baseline.method_records_sha256);
  const registry=json('numerical-methods-atlas/validation/releases.json');
- assert.equal(registry.releases.length,38);assert.equal(registry.case_count,83);assert.equal(registry.releases.filter(r=>!['coefficient-diffusion', 'slab-ewald', 'fmm3d', 'gravity-dynamics', 'warm-pic', 'pic-spatial', 'dsmc-wall', 'dsmc-shock'].includes(r.group)).reduce((n,r)=>n+r.tests,0),893);
- assert.equal(hash(registry.releases.filter(r=>!['sem-fr','instability-growth','mhd-transport','mesh-boundary','moving-waves','relativistic','coefficient-diffusion','slab-ewald','fmm3d','gravity-dynamics','warm-pic','pic-spatial','dsmc-wall','dsmc-shock'].includes(r.group))),baseline.release_records_sha256);
+ assert.equal(registry.releases.length,supplementGroupCount);assert.equal(registry.case_count,supplementCaseCount);assert.equal(registry.releases.filter(r=>!['coefficient-diffusion', 'slab-ewald', 'fmm3d', 'gravity-dynamics', 'warm-pic', 'pic-spatial', 'dsmc-wall', 'dsmc-shock',...groupsAddedAfterBatch37].includes(r.group)).reduce((n,r)=>n+r.tests,0),893);
+ assert.equal(hash(registry.releases.filter(r=>!['sem-fr','instability-growth','mhd-transport','mesh-boundary','moving-waves','relativistic','coefficient-diffusion','slab-ewald','fmm3d','gravity-dynamics','warm-pic','pic-spatial','dsmc-wall','dsmc-shock',...groupsAddedAfterBatch37].includes(r.group))),baseline.release_records_sha256);
  const pictures=json('numerical-methods-atlas/gallery/preview-manifest.json').items;
- assert.equal(pictures.length,113);assert.equal(hash(pictures.filter(p=>!["kh-initial-growth","rt-initial-growth","lshape-fem","annular-viscous-mms","poisson-neumann","poisson-robin","ale-nonuniform-transport","cgrid-rotating-wave","srhd-collision","srmhd-alfven","checkerboard-diffusion","rotated-anisotropic-diffusion","neutral-slab-yb","fmm3d-inverse-r","gravity-kepler","gravity-plummer-short","thermal-landau-damping","thermal-two-stream","dsmc-couette","dsmc-fourier","dsmc-planar-shock"].includes(p.id))),baseline.primary_records_sha256);
+ assert.equal(pictures.length,problemCount);assert.equal(hash(pictures.filter(p=>!["kh-initial-growth","rt-initial-growth","lshape-fem","annular-viscous-mms","poisson-neumann","poisson-robin","ale-nonuniform-transport","cgrid-rotating-wave","srhd-collision","srmhd-alfven","checkerboard-diffusion","rotated-anisotropic-diffusion","neutral-slab-yb","fmm3d-inverse-r","gravity-kepler","gravity-plummer-short","thermal-landau-damping","thermal-two-stream","dsmc-couette","dsmc-fourier","dsmc-planar-shock",...examplesAddedAfterBatch37].includes(p.id))),baseline.primary_records_sha256);
  for(const p of pictures)assert.equal(sha(p.image.replace(/^\//,'')),p.image_sha256);
  assert.equal(sha('numerical-methods-atlas/code-and-data/examples.json'),baseline.common_registry_sha256);
 });
@@ -94,7 +95,7 @@ test('two new methods and two saved-data previews connect to existing physical p
   const c=json('numerical-methods-atlas/validation/'+ids[i]+'/index.json');assert.equal(c.problem_id,['poisson-2d-sine','advection-sine'][i]);
   assert.deepEqual(c.execution_navigation.equations.map(e=>e.id),[['poisson-laplace'],['linear-advection']][i]);
  }
- assert.equal(json('catalog/atlas-test-problems.json').problems.length,113);
+ assert.equal(json('catalog/atlas-test-problems.json').problems.length,problemCount);
  const gallery=json('numerical-methods-atlas/gallery/index.json').items;
  for(let i=0;i<2;i++){
   const p=gallery.find(p=>p.id===['poisson-2d-sine','advection-sine'][i]);const e=p.supplemental_execution_entries.find(e=>e.id===ids[i]);

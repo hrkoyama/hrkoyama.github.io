@@ -17,6 +17,9 @@ Resources explicitly registered to the methods, problems and executions of this 
 - [Stochastic velocity rescaling (CSVR)](<https://hrkoyama.github.io/numerical-methods-atlas/methods/stochastic-velocity-rescaling/?lang=en>)
 
   Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed.
+- [Stochastic differential equations](<https://hrkoyama.github.io/numerical-methods-atlas/methods/sde/?lang=en>)
+
+  Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed.
 - [Centered spatial difference](<https://hrkoyama.github.io/numerical-methods-atlas/methods/centered-difference/?lang=en>)
 
   Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed.
@@ -51,6 +54,9 @@ Resources explicitly registered to the methods, problems and executions of this 
 - [Hamiltonian systems and oscillators](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#hamiltonian-en>)
 
   Canonical equations and a representative separable Hamiltonian. Harmonic and quartic oscillators distinguish energy error from symplecticity. The Hamiltonian link identifies the harmonic mechanical part; the calculations add friction/noise or a CSVR heat bath.
+- [Scalar Ito diffusion: GBM and OU](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#scalar-ito-diffusion-en>)
+
+  Scalar SDEs with deterministic initial states. Separate weak moment bias,strong errors on shared Brownian paths and finite-sample MCSE. OU is a related bath-component check,not the full harmonic Langevin system. The Hamiltonian link identifies the harmonic mechanical part; the calculations add friction/noise or a CSVR heat bath.
 - [Heat / diffusion equation](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#heat-en>)
 
   A representative constant-diffusivity form: mode decay, time integration and boundaries. Linear reaction-diffusion u_t=D u_xx+r u, with published D=0.1 and r=0.1. The heat link covers diffusion; compare using the eigenvalue r-Dk² including reaction.
@@ -140,6 +146,11 @@ Resources explicitly registered to the methods, problems and executions of this 
 - [Langevin thermostat: canonical distributions, timestep bias and correlation — references and comparison conditions](<https://hrkoyama.github.io/numerical-methods-atlas/problems/langevin-harmonic/?lang=en#references-en>)
 
   Use analytic canonical-distribution, moment and correlation standards for the harmonic potential to check timestep bias, separately from frictionless, noiseless harmonic trajectories.
+- [OU weak moments with joint Brownian coupling](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-ou-weak-moments-en>)
+  relation: related-model
+  reference_kind: analytic
+
+  Analytic reference dX=1.5(.2-X)dt+.8dW,X0=.7;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping. dX=1.5(.2-X)dt+.8dW,X0=.7;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping.
 - [Reaction-diffusion: separate second-order space and fourth-order time — references and comparison conditions](<https://hrkoyama.github.io/numerical-methods-atlas/problems/reaction-diffusion-fourier/?lang=en#references-en>)
 
   Separate continuous and semidiscrete Fourier solutions of linear reaction-diffusion to check second-order space/fourth-order time. Do not reuse the pure-diffusion card's decay rate unchanged.
@@ -155,6 +166,11 @@ Resources explicitly registered to the methods, problems and executions of this 
 - [Langevin thermostat: canonical distributions, timestep bias and correlation — references and checks](<https://hrkoyama.github.io/numerical-methods-atlas/validation/langevin-harmonic/?lang=en#langevin-harmonic-en-validation>)
 
   Check against a SciPy discrete-Lyapunov solve and explicit harmonic covariance diag(T/omega²,T(1-h²omega²/4)). Separate second-order momentum bias from sampling error and evaluate burn transients from the map. A separate matrix exponential gives continuous correlation.
+- [OU weak moments with joint Brownian coupling](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-ou-weak-moments-en>)
+  relation: related-model
+  reference_kind: analytic
+
+  Analytic reference dX=1.5(.2-X)dt+.8dW,X0=.7;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping. dX=1.5(.2-X)dt+.8dW,X0=.7;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping.
 - [Reaction-diffusion: separate second-order space and fourth-order time — references and checks](<https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-fourier/?lang=en#reaction-diffusion-fourier-en-validation>)
 
   Measure spatial order against r-Dk² and temporal order against r-4Dsin²(kdx/2)/dx². Both are independent analytic references, rather than a finer-grid run of the same solver.
@@ -179,6 +195,10 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Compare global CSVR with local Langevin on two nondegenerate modes using the same OBABO splitting. Record position, momentum, temperature and total-energy distributions, fluctuations and correlations.
+- [OU weak moments with joint Brownian coupling](<https://hrkoyama.github.io/numerical-methods-atlas/validation/ou-weak-moments/?lang=en>)
+  availability: run
+
+  Separate continuous truth,exact discrete EM expectation,paired-path weak difference and MCSE.
 - [Reaction-diffusion: separate second-order space and fourth-order time](<https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-fourier/?lang=en>)
   availability: run
 

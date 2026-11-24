@@ -1,0 +1,49 @@
+# radiation-matter — matched thick-limit revision R5
+
+Edition 2026-11-24-r2 is a separate, currently UNEXECUTED revision. The original successful edition 2026-11-24 (17 tests,10 PDE records,eight homogeneous operator integrations,63 gates) and its full source,all fields and unpublished canonical ZIP are retained persistently. R5 leaves all original kernels,old tests,primary inputs,reference caches and63 acceptance gates unchanged. It adds four tests,three separately recorded Fourier-mode controls and29 gates (total21 tests/92 gates). The existing10 primary records and both primary/gallery figures are unchanged. Earlier failed temporal-refinement attempts remain preserved and are not reclassified.
+
+The new control matches physical periodic x in [0,2pi),c1,k1,epsilon1,source0 and actual cell means of I=V=1+.1 cos x. Opacities4/8/16 pair with128/512/2048 cells; physical times are t=kappa*s,s=0,.0625,.125,.25. Both physical rate rows are kappa times the actual transport.rhs evaluated at optical cell width kappa*h. Five virtual cells and real cos/sin probes recover that same local FV/S_N generator. Matrix exponentials evolve a single mode exactly in time and reconstruct the actual full-grid fields. This does not revalidate the primary SSPRK2 time integrator.
+
+Before any primary probe,the independent continuum-space matrix reference is qualified by141 fixed checks: GL64/128 sensitivity,weighted moment identity,Fourier conjugacy,exact k0 exchange at epsilon .25/1/2,and two fixed DOP853 final-vector comparisons. Reference and primary share SciPy expm;DOP853 qualifies the reference propagator. The reference module imports no primary stencil. Qualification is separate and must succeed before its cache is installed.
+
+D_rad=1/(3*kappa),D_eff=1/[3*kappa*(epsilon+1)]. Analytic diffusion has E=V=1+A_N exp[-s/(3*(epsilon+1))]cos x and F=-E_x/(3*kappa),with A_N=.1*sinc(h/(2*pi)). Errors use A_N,not the background1. FV-space,angular and continuum-limit errors are separate; no joint fitted order is asserted. Initial F0 versus nonzero Fick flux is a physical fast initial layer and all four times are saved. Only final s=.25 is used for asymptotic gates. N grows as kappa squared and resolves the mean free path,so this is not a fixed-grid asymptotic-preserving claim. Wrong flux sign and missing one-third are explicit negative controls.
+
+All21 tests plus the10 original PDE records,eight homogeneous integrations and three new mode evolutions share the unchanged external120-second group budget. Qualification plus added-control runtime is UNMEASURED at this freeze;the additional20-second design target is not a timing result. No hidden retry,threshold relaxation,grid/window selection or old-record replacement. Completed candidates are saved before diagnostics;partial reference and mode arrays/checkpoints persist on failure. The added figure su-olson-transport1997-thick-limit.png/SVG/PDF reads saved fields/cache only.
+
+    python -B -W error -m pytest -q -p no:cacheprovider
+    python -B -W error run.py --input inputs.json --output rerun-results
+    python plot.py --results rerun-results --output rerun-results
+
+Use a fresh output directory. Bundled results are examples,not an output location to overwrite. Scientific pins are numpy2.0.2,scipy1.14.1,pytest8.3.5;matplotlib3.9.4 is presentation-only.
+
+日本語:本追加は同じ境界・初期値・sourceで比較する光学的厚い極限の限定制御です。既存の成功63判定と原典の1996拡散/1997輸送を維持し、周期単一モードの半離散検査を別計数で追加します。初期層、参照に共有するexpm、空間/角度/極限誤差、固定格子AP性と主時間積分の未認証範囲を明示します。
+
+The full original R4 README is retained verbatim as historical documentation below. Its pre-main statements describe that earlier freeze,not the new revision's execution status.
+
+---
+
+# radiation-matter — fixed lightweight validation
+
+This packet is at the R4 pre-main freeze. Both prior actual main attempts completed17pytest,all10PDE runs and eight homogeneous same-operator integrations. R2 passed62of63gates,with diffusion time-sensitivity0.6368728481against the unchanged0.2limit. R3 used BE dt/8and passed62of63again,with time-sensitivity0.2985746628. R3 finest/half-step radiation RMS values were2.683469495e-5and3.181996278e-5,showing possible spatial-temporal cancellation. Both failed attempts,source/contracts/inputs/allfields/CSV/logs remain persistently preserved. Transport passed34of34in both. R4 is unexecuted at this freeze and is not guaranteed to pass; independent54check reference qualification is unchanged.
+
+Planned primary verification is17meaningful pytest tests and all10fixed primary/control runs under one externally enforced120second shared group budget. Use the three exact scientific pins in requirements.txt; matplotlib3.9.4is only for plotting. No random run selection,output reduction,hidden retry,positive floor,projection or acceptance relaxation. Each run saves actual fields/finite CSV/checkpoint records; failed stages and completed runs persist.
+
+    python -B -W error -m pytest -q -p no:cacheprovider
+    python -B -W error run.py --input inputs.json --output rerun-results
+    python plot.py --results rerun-results --output rerun-results
+
+Use a fresh output directory. The external verifier/parent wrapper enforces the combined timeout; these CLI commands do not themselves grant a new budget. Every metadata case distinguishes model equations,actual algorithm,reference role,validation and limits in Japanese/English. Formulas and references in cases.json are the source of the scientific scope.
+
+radiation-scattering solves the actual signed-angle,source-coupled steady equation; reference is an independent continuous-angle Fredholm integral equation with exact logarithmic diagonal weights. Absorption is independently accumulated,not defined by1-R-T. No MC is claimed. radiation-matter separates1996half-space diffusion/Robin forcing from1997time-dependent angular transport/internal source. Nondimensional capacity-weighted total is epsilon*u+v; material internal energy differs from a*T^4by1/epsilon. Reference1996functions use the pinned ExactPack1.7.5implementation directly in nondimensional variables. Original1996paper fulltext is unread. For1997the pinned2023primary-author repository supplies analytical benchmark tables; original1997fulltext/table direct verification remains unavailable and table-transcription/regeneration history is not documented. The sourcebox/epsilon/time/measure exactly match the selected author data; no customon1/albedo.5case is relabeled. Snapshot times precede the original source shutoff10and boundary influence. Nonunitcapacity controls exercise the actual shared exchange operators.
+
+radiation-geometry has actual2Dspace with3Ddirectionalmeasure/fullPzz,not relativisticM1. Its aligned-six-direction transport is not general angular convergence. The nonlinear closedM1MMS has varying reduced-flux direction/magnitude and independently qualified analyticforcing. Actualcrossedx/ypackets excite both spatial operators. Opposing-beam M1/angle-resolved disagreement is modelerror rather than a numerical convergence target. Shadow opacity is pixelized; geometry/numerical errors are distinguished from analytic circular-chord reference. No gas hydrodynamics,GR,AMR,frequency sweep or radiation-pressure acceleration is implemented.
+
+Original source/reference acquisition records are historical prequalification documents; current qualification.json and installed-reference-provenance.json identify the actual successful selected reference work. The first reference attempt stopped before returning its first field on a MacNumPyBLAS diagnostic matmul warning. Its source/log/failure receipt remain persistently preserved; the approved repair replaced three pure contractions with scalar-sum-qualified einsum without suppressing warnings or changing thresholds. All existing323referencechecks include3new exact contraction goldens; no failed primary physics exists at this freeze.
+
+日本語:未実行の主計算と、実際に合格した独立参照・成分資格を区別します。全固定入力・科学公差を事前固定し、結果を見たseed/grid/window選択はしません。原典未読、表の来歴、有限参照、6軸角度とM1モデルの限界はcaseごとに明記します。旧版・公開用repo・キューはこのソース作成で変更しません。
+
+The10PDE runs are separate from the homogeneous same-operator capacity controls. Each of the two cases evaluates two epsilon values with both actual update paths (eight small homogeneous integrations in total); all eight outcomes are recorded in metrics. These controls are not additional published cases. Exception-only diagnostic additions retain failed candidates and last-valid states; the qualified R4 reference call path does not import these solvers. Two regression tests exercise the failure dumps.
+
+R3 changes only the five diffusion max_dt input values to one eighth,including the half-step and larger-domain companions. Backward Euler has first-order temporal truncation error; reducing dt addresses the observed non-negligible time contribution while retaining every spatial grid,reference,transport input,source,epsilon,seed-free configuration,output and acceptance threshold. The saved original fine/half-step RMS values show possible spatial-temporal error cancellation,so this is a post-failure resolution redesign,not a guaranteed pass or a pure spatial-order certification. Runtime for this new input set is unmeasured. Every original17pytest and all10PDE/8homogeneous integrations with63gates remain required under the same shared120second bound.
+
+R4 continues the first-order Backward Euler time-refinement study by another factor2for all five diffusion runs (original dt/16). Every original spatial grid,reference,transport input,operator,test and acceptance value is unchanged. No temporal criterion is relaxed and no failed attempt is reclassified. Main runs once only after new root review; all17pytest/10PDE+8homogeneous integrations/63gates still share120seconds.

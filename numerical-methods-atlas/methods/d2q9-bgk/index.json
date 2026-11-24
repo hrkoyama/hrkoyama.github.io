@@ -10,8 +10,8 @@
     "en": "Coupling, constraints & particles"
   },
   "summary": {
-    "ja": "「D2Q9–BGK衝突・並進」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。",
-    "en": "Read about D2Q9–BGK collision and streaming, follow the original references and inspect related educational code and checks."
+    "ja": "「D2Q9–BGK衝突・並進」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。 追加固定例：LBM Re100蓋駆動キャビティ：実2D場とGhia中心線。条件と検証範囲は各配布版で確認してください。 追加固定例：LBM Taylor–Green渦：格子・刻み・Machの結合感度。条件と検証範囲は各配布版で確認してください。 追加固定例：曲面LBMの環状Couette制御：速度・圧力・torque。条件と検証範囲は各配布版で確認してください。 追加固定例：LBMの実円柱Re20：Schäfer–Turek形状と明示出口。条件と検証範囲は各配布版で確認してください。",
+    "en": "Read about D2Q9–BGK collision and streaming, follow the original references and inspect related educational code and checks. Additional fixed examples: LBM Re100 cavity: actual2D fields and Ghia centerlines. See each release for assumptions and checked scope. Additional fixed examples: LBM Taylor–Green vortex: coupled grid/time/Mach sensitivity. See each release for assumptions and checked scope. Additional fixed examples: Curved LBM annular Couette control: velocity,pressure andtorque. See each release for assumptions and checked scope. Additional fixed examples: Actual LBM cylinderRe20: Schäfer–Turek geometry anddeclared outlet. See each release for assumptions and checked scope."
   },
   "status": "educational-example",
   "origin": "existing-coverage-catalog",
@@ -25,7 +25,7 @@
   "test_files": [
     "test_new_models"
   ],
-  "code_mapping_scope": "Related chapter modules and test files; not a claim that each test covers every named method.",
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
   "references": [
     {
       "url": "https://doi.org/10.1103/PhysRev.94.511",
@@ -47,12 +47,16 @@
   "units": null,
   "boundary_conditions": null,
   "limitations": {
-    "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。",
-    "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers."
+    "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。 今回の追加固定例：有限Machでの3格子教育例。Ghiaは丸めた独立数値参照で厳密解ではありません。蓋角は不連続で点ごとの二次精度や高Reを主張せず、他手法の既存キャビティ結果を本LBMの成功に流用しません。標準C++17compilerが必要です。 今回の追加固定例：拡散尺度では格子・時間・Machが結合し、amplitude変更はReも変えます。純空間/純時間/純Mach次数や有限Machの厳密非圧縮性を主張しません。平衡初期化のkinetic startupも実誤差へ含めます。 今回の追加固定例：固定円弧と低速回転のみ。2次補間は負係数を含み一般の正値性や安定性を保証しません。補間mass非保存は実値を記録。以前の線形版は圧力.617757>.08で不合格として保存し、半径平均への置換なし。移動solidの拓撲変化や円柱の代用ではありません。 2次版旧N80の圧力.352758>.08も不合格として保持し、Ui/tau/Tを変えず両境界を固定細分化します。 今回の追加固定例：原典p3/p7は出口を選択可。採用NEEは独立導出した有限reservoirで、原著NEE全文の同一実装やFEATflow do-nothingと偽りません。Nabh高精度値は同BCの厳密値ではなく、原典範囲も厳密誤差区間ではありません。線形/Zou–He旧試行はstep265出口近傍で不合格として保持。有限Mach/境界/曲面差を含み一般精度保証なし。",
+    "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers. Additional fixed examples: Three finite-Mach educational grids. Ghia is a rounded independent numerical reference, not exact. No pointwise corner order/high-Re claim or borrowed success from another cavity solver. A standard C++17compiler is required. Additional fixed examples: Diffusive scaling couples grid,time andMach; amplitude changesRe. No isolated spatial/time/Mach order or exact incompressibility atfiniteMach. Kinetic equilibrium-startup transients remain part of the measured errors. Additional fixed examples: Fixedcircles andslowrotation only. Negative quadratic coefficients preclude a general positivity/stability guarantee; report actual interpolation massnonconservation. Prior linear attemptfailed pressure.617757>.08 andisretained; no radial-average substitution. No changing-solid topology orsubstitute forcylinderflow. Retain the failedquadraticN80pressure.352758>.08;refinebothboundariesatfixedUi/tau/T. Additional fixed examples: Originalpp3/7allow selectingoutflow. AdoptedNEEis independently derived finite reservoir,not claimed exactunread authorimplementation orFEATflowdo-nothing. Nabhvaluesarenotexact adopted-BCtruth andoriginalrangesarenotrigorousenclosures. Retain failedlinear/Zou–Heattempt(outlet-nearstep265). FiniteMach/BC/curveerrors;nogeneralaccuracyguarantee."
   },
   "metadata_review": {
     "level": "chapter-linked; detailed method-specific curation in progress",
-    "on": "2026-11-21"
+    "on": "2026-11-21",
+    "supplemental_review": {
+      "on": "2026-11-24",
+      "level": "Frozen fixed-input source,independent review,actual pytest/main and independently extracted ZIP; see each new release for exact reference independence and failed-attempt history."
+    }
   },
   "aliases": [
     "LBM",
@@ -66,14 +70,2008 @@
     "D2Q9",
     "BGK collision"
   ],
+  "depth_release": {
+    "group": "lbm-cavity",
+    "case_ids": [
+      "lbm-cavity-re100"
+    ],
+    "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/",
+    "code_edition": "2026-11-24",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/kernel.cpp",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/native.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/geometry.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/analytic.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/diagnostics.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/experiments.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/evolution.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/reference_step.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/analytic.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/diagnostics.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/evolution.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/experiments.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/geometry.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/kernel.cpp",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/native.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/qualification/component-history-and-execution/proposal-01-unexecuted/source/check_components.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/qualification/component-history-and-execution/proposal-01-unexecuted/source/geometry.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/qualification/component-history-and-execution/proposal-01-unexecuted/source/kernel.cpp",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/qualification/component-history-and-execution/proposal-01-unexecuted/source/native.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/qualification/component-history-and-execution/proposal-01-unexecuted/source/reference_step.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/qualification/component-history-and-execution/proposal-02-unexecuted/source/check_components.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/qualification/component-history-and-execution/proposal-02-unexecuted/source/geometry.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/qualification/component-history-and-execution/proposal-02-unexecuted/source/kernel.cpp",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/qualification/component-history-and-execution/proposal-02-unexecuted/source/native.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/qualification/component-history-and-execution/proposal-02-unexecuted/source/reference_step.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/qualification/component-proposal-and-review/source/check_components.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/qualification/component-proposal-and-review/source/geometry.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/qualification/component-proposal-and-review/source/kernel.cpp",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/qualification/component-proposal-and-review/source/native.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/qualification/component-proposal-and-review/source/reference_step.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/reference_step.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/qualification/component-history-and-execution/proposal-01-unexecuted/source/check_components.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/qualification/component-history-and-execution/proposal-01-unexecuted/source/geometry.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/qualification/component-history-and-execution/proposal-01-unexecuted/source/kernel.cpp",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/qualification/component-history-and-execution/proposal-01-unexecuted/source/native.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/qualification/component-history-and-execution/proposal-01-unexecuted/source/reference_step.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/qualification/component-history-and-execution/proposal-02-unexecuted/source/check_components.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/qualification/component-history-and-execution/proposal-02-unexecuted/source/geometry.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/qualification/component-history-and-execution/proposal-02-unexecuted/source/kernel.cpp",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/qualification/component-history-and-execution/proposal-02-unexecuted/source/native.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/qualification/component-history-and-execution/proposal-02-unexecuted/source/reference_step.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/qualification/component-proposal-and-review/source/check_components.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/qualification/component-proposal-and-review/source/geometry.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/qualification/component-proposal-and-review/source/kernel.cpp",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/qualification/component-proposal-and-review/source/native.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/qualification/component-proposal-and-review/source/reference_step.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/test_lbm.py"
+    ],
+    "run_commands": [
+      "python -m pytest -q",
+      "python run.py --input inputs.json --output output"
+    ],
+    "run_from": "atlas-lbm-cavity-2026-11-24",
+    "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/atlas-lbm-cavity-2026-11-24.zip",
+    "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/source-manifest.json",
+    "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/verification.json",
+    "code_archive_sha256": "94781f84128fa97fb59fe1a00a469352db69fcca082ce170fa3b881919f5cdda",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/results/result.json",
+    "passed_tests": 22,
+    "examples": [
+      {
+        "method_ids": [
+          "d2q9-bgk"
+        ],
+        "domains": [
+          "pde",
+          "kinetic",
+          "coupling"
+        ],
+        "code_files": [
+          "run.py",
+          "kernel.cpp",
+          "native.py",
+          "geometry.py",
+          "analytic.py",
+          "diagnostics.py",
+          "experiments.py"
+        ],
+        "id": "lbm-cavity-re100",
+        "title": {
+          "ja": "LBM Re100蓋駆動キャビティ：実2D場とGhia中心線",
+          "en": "LBM Re100 cavity: actual2D fields and Ghia centerlines"
+        },
+        "summary": {
+          "ja": "4壁のBGK更新を3固定格子で実行し、nominal蓋速度で正規化したGhia中心線、主渦、定常性と壁運動量収支を検査します。",
+          "en": "Advance genuine four-wall BGK flow on three fixed grids, checking nominal-lid Ghia centerlines, primary vortex, stationarity and wall momentum budgets."
+        },
+        "assumptions": {
+          "ja": "物理単位正方形、蓋U1、ν.01、Re100。N24/32/48、格子蓋速度.04、dt=.04/N。3壁静止、上壁右向き、同時上面/側面crossingは静止側を優先。初期rho1・静止。",
+          "en": "Physical unit square, lid1, viscosity.01, Re100; N24/32/48, lattice lid.04, dt=.04/N. Three stationary walls/rightward lid; stationary side owns a simultaneous top/side link. Initialrho1/rest."
+        },
+        "algorithm": {
+          "ja": "標準D2Q9平衡分布とBGK衝突、非周期link streaming、q=.5の移動halfway反射。流出入分布ごとに壁impulseを加算し、密度補正や内部速度resetをしません。C++17を一時領域でcompileしPythonから呼びます。",
+          "en": "Standard D2Q9equilibrium/BGK collision, nonperiodic link streaming and moving halfway reflection atq=.5. Sum actual population wall impulses without density repair/interior reset. Compile shipped C++17temporarily and call fromPython."
+        },
+        "validation": {
+          "ja": "各群22pytestと37判定。60k/80k/120k整数stepsでt*=100へ進み90/95/100を保存。最細u/v中心線最大誤差.03、主渦距離.06、95→100相対L2変化2e-4、質量・壁込み運動量ledgerを事前固定します。",
+          "en": "22pytest and37case gates. Fixed60k/80k/120ksteps reach t*=100with90/95/100saved. Finest u/v max error.03,vortex distance.06,late relativeL2 change2e-4andmass/wall-inclusive momentum gates are frozen."
+        },
+        "limits": {
+          "ja": "有限Machでの3格子教育例。Ghiaは丸めた独立数値参照で厳密解ではありません。蓋角は不連続で点ごとの二次精度や高Reを主張せず、他手法の既存キャビティ結果を本LBMの成功に流用しません。標準C++17compilerが必要です。",
+          "en": "Three finite-Mach educational grids. Ghia is a rounded independent numerical reference, not exact. No pointwise corner order/high-Re claim or borrowed success from another cavity solver. A standard C++17compiler is required."
+        },
+        "references": [
+          {
+            "id": "zou-he-preprint1996",
+            "author": "Qisu Zou and Xiaoyi He",
+            "year": 1996,
+            "title": "On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model",
+            "url": "https://arxiv.org/abs/comp-gas/9611001",
+            "type": "article",
+            "review_level": "primary-selected-extracted-text",
+            "review_scope": "Selected original preprint pp2-7: standard equilibrium, moment-based flat velocity/density boundaries and corner/finite-Mach limitations. No full-paper audit; special d2q9i accuracy is not credited to this standard BGK.",
+            "review": {
+              "ja": "原著preprintの式と平面流入出境界・角・圧縮性の範囲を選択読解。特殊d2q9iの成功を本BGKへ流用しません。",
+              "en": "Selected primary equations and flat-boundary/corner/compressibility discussion read; special d2q9i successes are not borrowed."
+            }
+          },
+          {
+            "id": "lallemand-luo2003",
+            "author": "Pierre Lallemand and Li-Shi Luo",
+            "year": 2003,
+            "title": "Lattice Boltzmann method for moving boundaries",
+            "doi": "10.1016/S0021-9991(02)00022-0",
+            "url": "https://doi.org/10.1016/S0021-9991(02)00022-0",
+            "type": "article",
+            "review_level": "primary-selected-text-via-mirror",
+            "review_scope": "Original article sec3 printed410-414 via author-content mirror; quadratic interpolation paths, q=.5, wall correction, momentum exchange and compromised mass conservation. Our two-point linear implementation is separately derived and qualified; original2001BFL full text was inaccessible.",
+            "review": {
+              "ja": "原著の選択部分を著者資料ミラーから読解。今回の2点線形補間は別導出・単step資格で確認し、2001原著全文を読んだとはしません。",
+              "en": "Selected primary section via author-content mirror. The implemented two-point interpolation is separately derived/qualified; no2001full-text claim."
+            }
+          },
+          {
+            "id": "ghia1982",
+            "author": "U. Ghia, K. N. Ghia and C. T. Shin",
+            "year": 1982,
+            "title": "High-Re solutions for incompressible flow using the Navier-Stokes equations and a multigrid method",
+            "doi": "10.1016/0021-9991(82)90058-4",
+            "url": "https://www.sciencedirect.com/science/article/pii/0021999182900584",
+            "type": "article",
+            "review_level": "existing-audited-primary-transcription",
+            "review_scope": "Exact-byte existing17-point Re100columns and prior original-PDF/rendered-page provenance rechecked. Current session did not reacquire the original PDF. Printed398-399TablesI/II and408TableV provenance retained.",
+            "review": {
+              "ja": "既存の監査済み原表転記と以前のPDF目視出典を再照合。この実装時に原PDFを再取得したとはしません。",
+              "en": "Rechecked existing audited table transcription/prior rendered-original provenance, without claiming a new PDF acquisition."
+            }
+          }
+        ],
+        "formulas": [
+          "f_i^{eq}=w_i\\rho[1+3c_i\\cdot u+\\frac92(c_i\\cdot u)^2-\\frac32|u|^2],\\quad\\nu_\\ell=(\\tau-1/2)/3",
+          "f_{\\bar i}(x,t+1)=f_i^\\star(x,t)-6w_i\\rho_0c_i\\cdot u_w,\\quad\\rho_0=1",
+          "\\mathrm{Re}=UL/\\nu=100,\\quad t_\\star=100"
+        ],
+        "citations": [
+          {
+            "id": "zou-he-preprint1996",
+            "author": "Qisu Zou and Xiaoyi He",
+            "year": 1996,
+            "title": "On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model",
+            "url": "https://arxiv.org/abs/comp-gas/9611001",
+            "type": "article",
+            "review_level": "primary-selected-extracted-text",
+            "review_scope": "Selected original preprint pp2-7: standard equilibrium, moment-based flat velocity/density boundaries and corner/finite-Mach limitations. No full-paper audit; special d2q9i accuracy is not credited to this standard BGK.",
+            "review": {
+              "ja": "原著preprintの式と平面流入出境界・角・圧縮性の範囲を選択読解。特殊d2q9iの成功を本BGKへ流用しません。",
+              "en": "Selected primary equations and flat-boundary/corner/compressibility discussion read; special d2q9i successes are not borrowed."
+            }
+          },
+          {
+            "id": "lallemand-luo2003",
+            "author": "Pierre Lallemand and Li-Shi Luo",
+            "year": 2003,
+            "title": "Lattice Boltzmann method for moving boundaries",
+            "doi": "10.1016/S0021-9991(02)00022-0",
+            "url": "https://doi.org/10.1016/S0021-9991(02)00022-0",
+            "type": "article",
+            "review_level": "primary-selected-text-via-mirror",
+            "review_scope": "Original article sec3 printed410-414 via author-content mirror; quadratic interpolation paths, q=.5, wall correction, momentum exchange and compromised mass conservation. Our two-point linear implementation is separately derived and qualified; original2001BFL full text was inaccessible.",
+            "review": {
+              "ja": "原著の選択部分を著者資料ミラーから読解。今回の2点線形補間は別導出・単step資格で確認し、2001原著全文を読んだとはしません。",
+              "en": "Selected primary section via author-content mirror. The implemented two-point interpolation is separately derived/qualified; no2001full-text claim."
+            }
+          },
+          {
+            "id": "ghia1982",
+            "author": "U. Ghia, K. N. Ghia and C. T. Shin",
+            "year": 1982,
+            "title": "High-Re solutions for incompressible flow using the Navier-Stokes equations and a multigrid method",
+            "doi": "10.1016/0021-9991(82)90058-4",
+            "url": "https://www.sciencedirect.com/science/article/pii/0021999182900584",
+            "type": "article",
+            "review_level": "existing-audited-primary-transcription",
+            "review_scope": "Exact-byte existing17-point Re100columns and prior original-PDF/rendered-page provenance rechecked. Current session did not reacquire the original PDF. Printed398-399TablesI/II and408TableV provenance retained.",
+            "review": {
+              "ja": "既存の監査済み原表転記と以前のPDF目視出典を再照合。この実装時に原PDFを再取得したとはしません。",
+              "en": "Rechecked existing audited table transcription/prior rendered-original provenance, without claiming a new PDF acquisition."
+            }
+          }
+        ],
+        "gallery_figure": "lbm-cavity-re100-preview.png",
+        "additional_figures": [
+          {
+            "file": "lbm-cavity-re100-preview.png",
+            "caption": {
+              "ja": "固定入力を実計算した保存配列の2D場と検証診断。参照・境界・誤差の範囲は本文に明記。",
+              "en": "Actual saved2Dfields anddiagnostics fromfixedinputs; reference,boundary anderror scopesaredeclaredinthecase."
+            }
+          }
+        ],
+        "measured": {
+          "id": "lbm-cavity-re100",
+          "passed": true,
+          "checks": {
+            "Ghia printed table shape and anchors": true,
+            "24 finite arrays": true,
+            "24 positive density": true,
+            "24 actual maximum Mach": true,
+            "24 mass ledger": true,
+            "24 wall-open momentum ledger": true,
+            "24 all fixed integer steps": true,
+            "24 declared physical endpoint": true,
+            "24 closed cavity mass": true,
+            "24 late stationarity": true,
+            "24 vortex search residual distance": true,
+            "32 finite arrays": true,
+            "32 positive density": true,
+            "32 actual maximum Mach": true,
+            "32 mass ledger": true,
+            "32 wall-open momentum ledger": true,
+            "32 all fixed integer steps": true,
+            "32 declared physical endpoint": true,
+            "32 closed cavity mass": true,
+            "32 late stationarity": true,
+            "32 vortex search residual distance": true,
+            "48 finite arrays": true,
+            "48 positive density": true,
+            "48 actual maximum Mach": true,
+            "48 mass ledger": true,
+            "48 wall-open momentum ledger": true,
+            "48 all fixed integer steps": true,
+            "48 declared physical endpoint": true,
+            "48 closed cavity mass": true,
+            "48 late stationarity": true,
+            "48 vortex search residual distance": true,
+            "finest nominal-lid u centerline": true,
+            "finest nominal-lid v centerline": true,
+            "finest primary vortex": true,
+            "u error decreases coarse to fine": true,
+            "v error decreases coarse to fine": true,
+            "all three prescribed cavity grids": true
+          },
+          "metrics": {
+            "finest": {
+              "n": 48,
+              "steps": 120000,
+              "tau": 0.5576,
+              "dx": 0.020833333333333332,
+              "dt": 0.0008333333333333334,
+              "time": 100.0,
+              "nu_physical": 0.01,
+              "u_error": 0.007040567404226761,
+              "v_error": 0.007012356068378106,
+              "vortex_x": 0.6151785336174457,
+              "vortex_y": 0.7373696566057102,
+              "vortex_distance": 0.003592378973832659,
+              "stationarity": 6.585547769458423e-13,
+              "mass_drift": 1.1935933722876744e-11,
+              "mass_ledger": 1.1934784256250985e-11,
+              "momentum_ledger": 1.2265850980789804e-12,
+              "max_mach": 0.06489965337111371,
+              "min_rho": 0.9704718614269573,
+              "max_rho": 1.030441007310979,
+              "min_population": 0.020237879428496697,
+              "wall_mass_exchange": -2.648371105751224e-12,
+              "open_mass_exchange": 0.0,
+              "final_lattice_momentum_x": -7.993605777301127e-14,
+              "final_lattice_momentum_y": 5.898753707711535e-14
+            },
+            "reference": "Ghia1982 printed Re100 tables; limited precision, independent numerical reference"
+          },
+          "records": [
+            {
+              "n": 24,
+              "steps": 60000,
+              "tau": 0.5288,
+              "dx": 0.041666666666666664,
+              "dt": 0.0016666666666666668,
+              "time": 100.0,
+              "nu_physical": 0.01,
+              "u_error": 0.012966433561335228,
+              "v_error": 0.00914970735528689,
+              "vortex_x": 0.6086421441755918,
+              "vortex_y": 0.7405439026689354,
+              "vortex_distance": 0.010534915107237834,
+              "stationarity": 3.9224220197755535e-13,
+              "mass_drift": 6.279816173244194e-12,
+              "mass_ledger": 6.278322955802138e-12,
+              "momentum_ledger": 2.131753794031946e-13,
+              "max_mach": 0.0611884378455196,
+              "min_rho": 0.9688299233750991,
+              "max_rho": 1.031724765059564,
+              "min_population": 0.019685465056186825,
+              "wall_mass_exchange": -1.3148857003209002e-12,
+              "open_mass_exchange": 0.0,
+              "final_lattice_momentum_x": -1.3100631690576847e-14,
+              "final_lattice_momentum_y": -2.6662699825763525e-14
+            },
+            {
+              "n": 32,
+              "steps": 80000,
+              "tau": 0.5384,
+              "dx": 0.03125,
+              "dt": 0.00125,
+              "time": 100.0,
+              "nu_physical": 0.01,
+              "u_error": 0.011261261393872957,
+              "v_error": 0.006509264362504014,
+              "vortex_x": 0.613574808487497,
+              "vortex_y": 0.7362252606614114,
+              "vortex_distance": 0.004058767052248641,
+              "stationarity": 5.111992587511087e-13,
+              "mass_drift": 8.241629601002385e-12,
+              "mass_ledger": 8.239910137671986e-12,
+              "momentum_ledger": 2.7685509050232033e-13,
+              "max_mach": 0.06303100139796827,
+              "min_rho": 0.9702175495623038,
+              "max_rho": 1.0303372623371085,
+              "min_population": 0.019886270170760632,
+              "wall_mass_exchange": -1.7607304503286514e-12,
+              "open_mass_exchange": 0.0,
+              "final_lattice_momentum_x": -1.1546319456101628e-14,
+              "final_lattice_momentum_y": 6.186717804723685e-14
+            },
+            {
+              "n": 48,
+              "steps": 120000,
+              "tau": 0.5576,
+              "dx": 0.020833333333333332,
+              "dt": 0.0008333333333333334,
+              "time": 100.0,
+              "nu_physical": 0.01,
+              "u_error": 0.007040567404226761,
+              "v_error": 0.007012356068378106,
+              "vortex_x": 0.6151785336174457,
+              "vortex_y": 0.7373696566057102,
+              "vortex_distance": 0.003592378973832659,
+              "stationarity": 6.585547769458423e-13,
+              "mass_drift": 1.1935933722876744e-11,
+              "mass_ledger": 1.1934784256250985e-11,
+              "momentum_ledger": 1.2265850980789804e-12,
+              "max_mach": 0.06489965337111371,
+              "min_rho": 0.9704718614269573,
+              "max_rho": 1.030441007310979,
+              "min_population": 0.020237879428496697,
+              "wall_mass_exchange": -2.648371105751224e-12,
+              "open_mass_exchange": 0.0,
+              "final_lattice_momentum_x": -7.993605777301127e-14,
+              "final_lattice_momentum_y": 5.898753707711535e-14
+            }
+          ],
+          "data_files": [
+            "lbm-cavity-re100-N24.npz",
+            "lbm-cavity-re100-N32.npz",
+            "lbm-cavity-re100-N48.npz"
+          ]
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-cavity-re100/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-cavity/#lbm-cavity-re100",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-cavity/#lbm-cavity-re100"
+        }
+      }
+    ]
+  },
+  "depth_scope": {
+    "ja": "追加固定例：LBM Re100蓋駆動キャビティ：実2D場とGhia中心線。条件と検証範囲は各配布版で確認してください。 有限Machでの3格子教育例。Ghiaは丸めた独立数値参照で厳密解ではありません。蓋角は不連続で点ごとの二次精度や高Reを主張せず、他手法の既存キャビティ結果を本LBMの成功に流用しません。標準C++17compilerが必要です。 追加固定例：LBM Taylor–Green渦：格子・刻み・Machの結合感度。条件と検証範囲は各配布版で確認してください。 拡散尺度では格子・時間・Machが結合し、amplitude変更はReも変えます。純空間/純時間/純Mach次数や有限Machの厳密非圧縮性を主張しません。平衡初期化のkinetic startupも実誤差へ含めます。 追加固定例：曲面LBMの環状Couette制御：速度・圧力・torque。条件と検証範囲は各配布版で確認してください。 固定円弧と低速回転のみ。2次補間は負係数を含み一般の正値性や安定性を保証しません。補間mass非保存は実値を記録。以前の線形版は圧力.617757>.08で不合格として保存し、半径平均への置換なし。移動solidの拓撲変化や円柱の代用ではありません。 2次版旧N80の圧力.352758>.08も不合格として保持し、Ui/tau/Tを変えず両境界を固定細分化します。 追加固定例：LBMの実円柱Re20：Schäfer–Turek形状と明示出口。条件と検証範囲は各配布版で確認してください。 原典p3/p7は出口を選択可。採用NEEは独立導出した有限reservoirで、原著NEE全文の同一実装やFEATflow do-nothingと偽りません。Nabh高精度値は同BCの厳密値ではなく、原典範囲も厳密誤差区間ではありません。線形/Zou–He旧試行はstep265出口近傍で不合格として保持。有限Mach/境界/曲面差を含み一般精度保証なし。",
+    "en": "Additional fixed examples: LBM Re100 cavity: actual2D fields and Ghia centerlines. See each release for assumptions and checked scope. Three finite-Mach educational grids. Ghia is a rounded independent numerical reference, not exact. No pointwise corner order/high-Re claim or borrowed success from another cavity solver. A standard C++17compiler is required. Additional fixed examples: LBM Taylor–Green vortex: coupled grid/time/Mach sensitivity. See each release for assumptions and checked scope. Diffusive scaling couples grid,time andMach; amplitude changesRe. No isolated spatial/time/Mach order or exact incompressibility atfiniteMach. Kinetic equilibrium-startup transients remain part of the measured errors. Additional fixed examples: Curved LBM annular Couette control: velocity,pressure andtorque. See each release for assumptions and checked scope. Fixedcircles andslowrotation only. Negative quadratic coefficients preclude a general positivity/stability guarantee; report actual interpolation massnonconservation. Prior linear attemptfailed pressure.617757>.08 andisretained; no radial-average substitution. No changing-solid topology orsubstitute forcylinderflow. Retain the failedquadraticN80pressure.352758>.08;refinebothboundariesatfixedUi/tau/T. Additional fixed examples: Actual LBM cylinderRe20: Schäfer–Turek geometry anddeclared outlet. See each release for assumptions and checked scope. Originalpp3/7allow selectingoutflow. AdoptedNEEis independently derived finite reservoir,not claimed exactunread authorimplementation orFEATflowdo-nothing. Nabhvaluesarenotexact adopted-BCtruth andoriginalrangesarenotrigorousenclosures. Retain failedlinear/Zou–Heattempt(outlet-nearstep265). FiniteMach/BC/curveerrors;nogeneralaccuracyguarantee."
+  },
+  "supplemental_scope_profiles": [
+    {
+      "release": {
+        "group": "lbm-cavity",
+        "edition": "2026-11-24",
+        "case_ids": [
+          "lbm-cavity-re100"
+        ]
+      },
+      "scope": {
+        "ja": "追加固定例：LBM Re100蓋駆動キャビティ：実2D場とGhia中心線。条件と検証範囲は各配布版で確認してください。",
+        "en": "Additional fixed examples: LBM Re100 cavity: actual2D fields and Ghia centerlines. See each release for assumptions and checked scope."
+      },
+      "limits": [
+        {
+          "ja": "有限Machでの3格子教育例。Ghiaは丸めた独立数値参照で厳密解ではありません。蓋角は不連続で点ごとの二次精度や高Reを主張せず、他手法の既存キャビティ結果を本LBMの成功に流用しません。標準C++17compilerが必要です。",
+          "en": "Three finite-Mach educational grids. Ghia is a rounded independent numerical reference, not exact. No pointwise corner order/high-Re claim or borrowed success from another cavity solver. A standard C++17compiler is required."
+        }
+      ]
+    },
+    {
+      "release": {
+        "group": "lbm-taylor-green",
+        "edition": "2026-11-24",
+        "case_ids": [
+          "lbm-taylor-green"
+        ]
+      },
+      "scope": {
+        "ja": "追加固定例：LBM Taylor–Green渦：格子・刻み・Machの結合感度。条件と検証範囲は各配布版で確認してください。",
+        "en": "Additional fixed examples: LBM Taylor–Green vortex: coupled grid/time/Mach sensitivity. See each release for assumptions and checked scope."
+      },
+      "limits": [
+        {
+          "ja": "拡散尺度では格子・時間・Machが結合し、amplitude変更はReも変えます。純空間/純時間/純Mach次数や有限Machの厳密非圧縮性を主張しません。平衡初期化のkinetic startupも実誤差へ含めます。",
+          "en": "Diffusive scaling couples grid,time andMach; amplitude changesRe. No isolated spatial/time/Mach order or exact incompressibility atfiniteMach. Kinetic equilibrium-startup transients remain part of the measured errors."
+        }
+      ]
+    },
+    {
+      "release": {
+        "group": "lbm-annulus",
+        "edition": "2026-11-24",
+        "case_ids": [
+          "lbm-annular-couette-control"
+        ]
+      },
+      "scope": {
+        "ja": "追加固定例：曲面LBMの環状Couette制御：速度・圧力・torque。条件と検証範囲は各配布版で確認してください。",
+        "en": "Additional fixed examples: Curved LBM annular Couette control: velocity,pressure andtorque. See each release for assumptions and checked scope."
+      },
+      "limits": [
+        {
+          "ja": "固定円弧と低速回転のみ。2次補間は負係数を含み一般の正値性や安定性を保証しません。補間mass非保存は実値を記録。以前の線形版は圧力.617757>.08で不合格として保存し、半径平均への置換なし。移動solidの拓撲変化や円柱の代用ではありません。 2次版旧N80の圧力.352758>.08も不合格として保持し、Ui/tau/Tを変えず両境界を固定細分化します。",
+          "en": "Fixedcircles andslowrotation only. Negative quadratic coefficients preclude a general positivity/stability guarantee; report actual interpolation massnonconservation. Prior linear attemptfailed pressure.617757>.08 andisretained; no radial-average substitution. No changing-solid topology orsubstitute forcylinderflow. Retain the failedquadraticN80pressure.352758>.08;refinebothboundariesatfixedUi/tau/T."
+        }
+      ]
+    },
+    {
+      "release": {
+        "group": "lbm-curved-boundary",
+        "edition": "2026-11-24",
+        "case_ids": [
+          "lbm-cylinder-re20"
+        ]
+      },
+      "scope": {
+        "ja": "追加固定例：LBMの実円柱Re20：Schäfer–Turek形状と明示出口。条件と検証範囲は各配布版で確認してください。",
+        "en": "Additional fixed examples: Actual LBM cylinderRe20: Schäfer–Turek geometry anddeclared outlet. See each release for assumptions and checked scope."
+      },
+      "limits": [
+        {
+          "ja": "原典p3/p7は出口を選択可。採用NEEは独立導出した有限reservoirで、原著NEE全文の同一実装やFEATflow do-nothingと偽りません。Nabh高精度値は同BCの厳密値ではなく、原典範囲も厳密誤差区間ではありません。線形/Zou–He旧試行はstep265出口近傍で不合格として保持。有限Mach/境界/曲面差を含み一般精度保証なし。",
+          "en": "Originalpp3/7allow selectingoutflow. AdoptedNEEis independently derived finite reservoir,not claimed exactunread authorimplementation orFEATflowdo-nothing. Nabhvaluesarenotexact adopted-BCtruth andoriginalrangesarenotrigorousenclosures. Retain failedlinear/Zou–Heattempt(outlet-nearstep265). FiniteMach/BC/curveerrors;nogeneralaccuracyguarantee."
+        }
+      ]
+    }
+  ],
+  "depth_additional_releases": [
+    {
+      "group": "lbm-taylor-green",
+      "case_ids": [
+        "lbm-taylor-green"
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/",
+      "code_edition": "2026-11-24",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/kernel.cpp",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/native.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/geometry.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/analytic.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/diagnostics.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/experiments.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/evolution.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/reference_step.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/analytic.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/diagnostics.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/evolution.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/experiments.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/geometry.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/history/lifecycle-r1-unexecuted/experiments.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/history/lifecycle-r1-unexecuted/native.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/kernel.cpp",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/native.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/qualification/component-history-and-execution/proposal-01-unexecuted/source/check_components.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/qualification/component-history-and-execution/proposal-01-unexecuted/source/geometry.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/qualification/component-history-and-execution/proposal-01-unexecuted/source/kernel.cpp",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/qualification/component-history-and-execution/proposal-01-unexecuted/source/native.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/qualification/component-history-and-execution/proposal-01-unexecuted/source/reference_step.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/qualification/component-history-and-execution/proposal-02-unexecuted/source/check_components.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/qualification/component-history-and-execution/proposal-02-unexecuted/source/geometry.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/qualification/component-history-and-execution/proposal-02-unexecuted/source/kernel.cpp",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/qualification/component-history-and-execution/proposal-02-unexecuted/source/native.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/qualification/component-history-and-execution/proposal-02-unexecuted/source/reference_step.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/qualification/component-proposal-and-review/source/check_components.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/qualification/component-proposal-and-review/source/geometry.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/qualification/component-proposal-and-review/source/kernel.cpp",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/qualification/component-proposal-and-review/source/native.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/qualification/component-proposal-and-review/source/reference_step.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/reference_step.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/lifecycle-r1-unexecuted/experiments.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/lifecycle-r1-unexecuted/native.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/qualification/component-history-and-execution/proposal-01-unexecuted/source/check_components.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/qualification/component-history-and-execution/proposal-01-unexecuted/source/geometry.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/qualification/component-history-and-execution/proposal-01-unexecuted/source/kernel.cpp",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/qualification/component-history-and-execution/proposal-01-unexecuted/source/native.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/qualification/component-history-and-execution/proposal-01-unexecuted/source/reference_step.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/qualification/component-history-and-execution/proposal-02-unexecuted/source/check_components.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/qualification/component-history-and-execution/proposal-02-unexecuted/source/geometry.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/qualification/component-history-and-execution/proposal-02-unexecuted/source/kernel.cpp",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/qualification/component-history-and-execution/proposal-02-unexecuted/source/native.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/qualification/component-history-and-execution/proposal-02-unexecuted/source/reference_step.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/qualification/component-proposal-and-review/source/check_components.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/qualification/component-proposal-and-review/source/geometry.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/qualification/component-proposal-and-review/source/kernel.cpp",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/qualification/component-proposal-and-review/source/native.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/qualification/component-proposal-and-review/source/reference_step.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/test_lbm.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-lbm-taylor-green-2026-11-24",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/atlas-lbm-taylor-green-2026-11-24.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/verification.json",
+      "code_archive_sha256": "90d6999a33f47bbf03f359dc63c5a8d6ab729c0f905a8aad292bd58d1a070a22",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/results/result.json",
+      "passed_tests": 22,
+      "examples": [
+        {
+          "method_ids": [
+            "d2q9-bgk"
+          ],
+          "domains": [
+            "pde",
+            "kinetic",
+            "coupling"
+          ],
+          "code_files": [
+            "run.py",
+            "kernel.cpp",
+            "native.py",
+            "geometry.py",
+            "analytic.py",
+            "diagnostics.py",
+            "experiments.py"
+          ],
+          "id": "lbm-taylor-green",
+          "title": {
+            "ja": "LBM Taylor–Green渦：格子・刻み・Machの結合感度",
+            "en": "LBM Taylor–Green vortex: coupled grid/time/Mach sensitivity"
+          },
+          "summary": {
+            "ja": "周期2Dの非線形渦を実際に時間発展し、連続解析場への速度・圧力・エネルギー誤差を保存します。amplitude感度と同格子のcoupled刻み感度も分けて示します。",
+            "en": "Evolve a nonlinear periodic2D vortex and save velocity/pressure/energy errors against the continuous analytic field. Distinguish amplitude probes from a fixed-grid coupled-step probe."
+          },
+          "assumptions": {
+            "ja": "[0,2pi)²、ν.1、基本U.2、N24/32/64、dt=.2dx²、tau.56、T=.2pi²、144/256/1024steps。N32/U.4,.8とN32/U.2/dt=.1dx²/tau.53/512stepsを追加。初期圧力整合rhoを使用。",
+            "en": "Periodic[0,2pi)²,nu.1,baseU.2,N24/32/64,dt=.2dx²,tau.56,T=.2pi²and144/256/1024steps. Add N32/U.4,.8andN32/U.2/dt=.1dx²/tau.53/512steps. Use pressure-consistent initial density."
+          },
+          "algorithm": {
+            "ja": "標準BGKと完全周期streaming。p=cs²(rho−平均rho)(dx/dt)²で圧力単位とゲージを揃えます。解析場は初期値以外に注入せず、微分を独立Fourier演算で資格確認します。",
+            "en": "Standard BGK and fully periodic streaming. Convert/gauge pressure ascs²(rho−meanrho)(dx/dt)². No analytic field injection after initialization; independently qualify the continuum field by Fourier differentiation."
+          },
+          "validation": {
+            "ja": "22pytestと79判定、6固定発展。最細速度相対L2.03、圧力.08、combined速度次数1.5以上、エネルギー.03、発散・周期質量・平均運動量を判定。解析PDE5資格を区別して保存します。 最粗N16の初回エネルギー誤差5.0018%未達を保持し、同じ3%基準へ最粗だけN24へ細分化。次数は最細32/64対だけで評価します。",
+            "en": "22pytest and79gates,sixfixed evolutions. Require finest velocity relativeL2.03,pressure.08,combined velocity order≥1.5,energy.03anddivergence/periodic mass/mean momentum. Save five analyticPDEqualifiers distinctly. Retain the initial N16energy failure5.0018%; refine only thatcoarsegrid to24against the unchanged3%gate. Report order only for thefinest32/64pair."
+          },
+          "limits": {
+            "ja": "拡散尺度では格子・時間・Machが結合し、amplitude変更はReも変えます。純空間/純時間/純Mach次数や有限Machの厳密非圧縮性を主張しません。平衡初期化のkinetic startupも実誤差へ含めます。",
+            "en": "Diffusive scaling couples grid,time andMach; amplitude changesRe. No isolated spatial/time/Mach order or exact incompressibility atfiniteMach. Kinetic equilibrium-startup transients remain part of the measured errors."
+          },
+          "references": [
+            {
+              "id": "zou-he-preprint1996",
+              "author": "Qisu Zou and Xiaoyi He",
+              "year": 1996,
+              "title": "On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model",
+              "url": "https://arxiv.org/abs/comp-gas/9611001",
+              "type": "article",
+              "review_level": "primary-selected-extracted-text",
+              "review_scope": "Selected original preprint pp2-7: standard equilibrium, moment-based flat velocity/density boundaries and corner/finite-Mach limitations. No full-paper audit; special d2q9i accuracy is not credited to this standard BGK.",
+              "review": {
+                "ja": "原著preprintの式と平面流入出境界・角・圧縮性の範囲を選択読解。特殊d2q9iの成功を本BGKへ流用しません。",
+                "en": "Selected primary equations and flat-boundary/corner/compressibility discussion read; special d2q9i successes are not borrowed."
+              }
+            },
+            {
+              "id": "lallemand-luo2003",
+              "author": "Pierre Lallemand and Li-Shi Luo",
+              "year": 2003,
+              "title": "Lattice Boltzmann method for moving boundaries",
+              "doi": "10.1016/S0021-9991(02)00022-0",
+              "url": "https://doi.org/10.1016/S0021-9991(02)00022-0",
+              "type": "article",
+              "review_level": "primary-selected-text-via-mirror",
+              "review_scope": "Original article sec3 printed410-414 via author-content mirror; quadratic interpolation paths, q=.5, wall correction, momentum exchange and compromised mass conservation. Our two-point linear implementation is separately derived and qualified; original2001BFL full text was inaccessible.",
+              "review": {
+                "ja": "原著の選択部分を著者資料ミラーから読解。今回の2点線形補間は別導出・単step資格で確認し、2001原著全文を読んだとはしません。",
+                "en": "Selected primary section via author-content mirror. The implemented two-point interpolation is separately derived/qualified; no2001full-text claim."
+              }
+            }
+          ],
+          "formulas": [
+            "u=U\\sin x\\cos y\\,e^{-2\\nu t},\\quad v=-U\\cos x\\sin y\\,e^{-2\\nu t}",
+            "p=\\frac{U^2}{4}(\\cos2x+\\cos2y)e^{-4\\nu t},\\quad\\langle K\\rangle=\\frac{U^2}{4}e^{-4\\nu t}"
+          ],
+          "citations": [
+            {
+              "id": "zou-he-preprint1996",
+              "author": "Qisu Zou and Xiaoyi He",
+              "year": 1996,
+              "title": "On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model",
+              "url": "https://arxiv.org/abs/comp-gas/9611001",
+              "type": "article",
+              "review_level": "primary-selected-extracted-text",
+              "review_scope": "Selected original preprint pp2-7: standard equilibrium, moment-based flat velocity/density boundaries and corner/finite-Mach limitations. No full-paper audit; special d2q9i accuracy is not credited to this standard BGK.",
+              "review": {
+                "ja": "原著preprintの式と平面流入出境界・角・圧縮性の範囲を選択読解。特殊d2q9iの成功を本BGKへ流用しません。",
+                "en": "Selected primary equations and flat-boundary/corner/compressibility discussion read; special d2q9i successes are not borrowed."
+              }
+            },
+            {
+              "id": "lallemand-luo2003",
+              "author": "Pierre Lallemand and Li-Shi Luo",
+              "year": 2003,
+              "title": "Lattice Boltzmann method for moving boundaries",
+              "doi": "10.1016/S0021-9991(02)00022-0",
+              "url": "https://doi.org/10.1016/S0021-9991(02)00022-0",
+              "type": "article",
+              "review_level": "primary-selected-text-via-mirror",
+              "review_scope": "Original article sec3 printed410-414 via author-content mirror; quadratic interpolation paths, q=.5, wall correction, momentum exchange and compromised mass conservation. Our two-point linear implementation is separately derived and qualified; original2001BFL full text was inaccessible.",
+              "review": {
+                "ja": "原著の選択部分を著者資料ミラーから読解。今回の2点線形補間は別導出・単step資格で確認し、2001原著全文を読んだとはしません。",
+                "en": "Selected primary section via author-content mirror. The implemented two-point interpolation is separately derived/qualified; no2001full-text claim."
+              }
+            }
+          ],
+          "gallery_figure": "lbm-taylor-green-preview.png",
+          "additional_figures": [
+            {
+              "file": "lbm-taylor-green-preview.png",
+              "caption": {
+                "ja": "固定入力を実計算した保存配列の2D場と検証診断。参照・境界・誤差の範囲は本文に明記。",
+                "en": "Actual saved2Dfields anddiagnostics fromfixedinputs; reference,boundary anderror scopesaredeclaredinthecase."
+              }
+            }
+          ],
+          "measured": {
+            "id": "lbm-taylor-green",
+            "passed": true,
+            "checks": {
+              "analytic reference Fourier divergence": true,
+              "analytic reference Fourier NS x": true,
+              "analytic reference Fourier NS y": true,
+              "analytic reference mean pressure gauge": true,
+              "analytic reference analytic mean energy": true,
+              "0 finite arrays": true,
+              "0 positive density": true,
+              "0 actual maximum Mach": true,
+              "0 mass ledger": true,
+              "0 wall-open momentum ledger": true,
+              "0 all fixed integer steps": true,
+              "0 declared physical endpoint": true,
+              "0 periodic mass": true,
+              "0 zero mean momentum": true,
+              "0 normalized divergence": true,
+              "0 mean kinetic energy": true,
+              "1 finite arrays": true,
+              "1 positive density": true,
+              "1 actual maximum Mach": true,
+              "1 mass ledger": true,
+              "1 wall-open momentum ledger": true,
+              "1 all fixed integer steps": true,
+              "1 declared physical endpoint": true,
+              "1 periodic mass": true,
+              "1 zero mean momentum": true,
+              "1 normalized divergence": true,
+              "1 mean kinetic energy": true,
+              "2 finite arrays": true,
+              "2 positive density": true,
+              "2 actual maximum Mach": true,
+              "2 mass ledger": true,
+              "2 wall-open momentum ledger": true,
+              "2 all fixed integer steps": true,
+              "2 declared physical endpoint": true,
+              "2 periodic mass": true,
+              "2 zero mean momentum": true,
+              "2 normalized divergence": true,
+              "2 mean kinetic energy": true,
+              "3 finite arrays": true,
+              "3 positive density": true,
+              "3 actual maximum Mach": true,
+              "3 mass ledger": true,
+              "3 wall-open momentum ledger": true,
+              "3 all fixed integer steps": true,
+              "3 declared physical endpoint": true,
+              "3 periodic mass": true,
+              "3 zero mean momentum": true,
+              "3 normalized divergence": true,
+              "3 mean kinetic energy": true,
+              "4 finite arrays": true,
+              "4 positive density": true,
+              "4 actual maximum Mach": true,
+              "4 mass ledger": true,
+              "4 wall-open momentum ledger": true,
+              "4 all fixed integer steps": true,
+              "4 declared physical endpoint": true,
+              "4 periodic mass": true,
+              "4 zero mean momentum": true,
+              "4 normalized divergence": true,
+              "4 mean kinetic energy": true,
+              "5 finite arrays": true,
+              "5 positive density": true,
+              "5 actual maximum Mach": true,
+              "5 mass ledger": true,
+              "5 wall-open momentum ledger": true,
+              "5 all fixed integer steps": true,
+              "5 declared physical endpoint": true,
+              "5 periodic mass": true,
+              "5 zero mean momentum": true,
+              "5 normalized divergence": true,
+              "5 mean kinetic energy": true,
+              "finest combined velocity error": true,
+              "finest pressure gauge error": true,
+              "combined finest velocity order": true,
+              "first diffusive refinement decreases velocity": true,
+              "second diffusive refinement decreases velocity": true,
+              "same physical endpoint all six runs": true,
+              "amplitude probes change actual Mach": true,
+              "exactly six distinct prescribed runs": true
+            },
+            "metrics": {
+              "combined_velocity_order": 1.9997408571265982,
+              "reference_qualification": {
+                "Fourier divergence": 4.718447854656915e-16,
+                "Fourier NS x": 3.0878077872387166e-16,
+                "Fourier NS y": 3.434752482434078e-16,
+                "mean pressure gauge": 6.505213034913027e-19,
+                "analytic mean energy": 1.734723475976807e-18
+              },
+              "scope": "Diffusive grid/time/Mach refinement, amplitude/Re sensitivity, and coupled dt/Mach/tau probe; no pure time or pure Mach order."
+            },
+            "records": [
+              {
+                "run": 0,
+                "configuration_code": 0,
+                "n": 24,
+                "U": 0.2,
+                "steps": 144,
+                "dx": 0.2617993877991494,
+                "dt": 0.013707783890401884,
+                "tau": 0.56,
+                "time": 1.9739208802178712,
+                "nu": 0.1,
+                "velocity_error": 0.011264615746214828,
+                "pressure_error": 0.025180619260581003,
+                "energy": 0.004438693223283802,
+                "energy_error": 0.02240199068342927,
+                "divergence": 5.061007999504996e-05,
+                "mean_momentum": 1.1699305957206295e-15,
+                "mass_drift": 1.4210854715202004e-14,
+                "mass_ledger": 1.638195751891342e-14,
+                "momentum_ledger": 1.2429793595635596e-15,
+                "max_mach": 0.017831652881863884,
+                "min_rho": 0.9998411115702287,
+                "max_rho": 1.0001590424504039,
+                "min_population": 0.026902534070607553,
+                "wall_mass_exchange": 0.0,
+                "open_mass_exchange": 0.0,
+                "final_lattice_momentum_x": -5.870304242705515e-15,
+                "final_lattice_momentum_y": 7.056855100273651e-15
+              },
+              {
+                "run": 1,
+                "configuration_code": 0,
+                "n": 32,
+                "U": 0.2,
+                "steps": 256,
+                "dx": 0.19634954084936207,
+                "dt": 0.007710628438351061,
+                "tau": 0.56,
+                "time": 1.9739208802178716,
+                "nu": 0.1,
+                "velocity_error": 0.006337842680026607,
+                "pressure_error": 0.006421548825632589,
+                "energy": 0.004483040567201227,
+                "energy_error": 0.012634729701135031,
+                "divergence": 6.402486837550453e-05,
+                "mean_momentum": 3.2699387594256533e-16,
+                "mass_drift": 2.564615186884112e-14,
+                "mass_ledger": 2.76445533131664e-14,
+                "momentum_ledger": 1.0616516209691997e-15,
+                "max_mach": 0.013473435444320513,
+                "min_rho": 0.9999092503495001,
+                "max_rho": 1.0000907784959339,
+                "min_population": 0.027123391409063946,
+                "wall_mass_exchange": 0.0,
+                "open_mass_exchange": 0.0,
+                "final_lattice_momentum_x": -2.6298407895808396e-15,
+                "final_lattice_momentum_y": -2.2447321779139884e-15
+              },
+              {
+                "run": 2,
+                "configuration_code": 0,
+                "n": 64,
+                "U": 0.2,
+                "steps": 1024,
+                "dx": 0.09817477042468103,
+                "dt": 0.0019276571095877652,
+                "tau": 0.56,
+                "time": 1.9739208802178716,
+                "nu": 0.1,
+                "velocity_error": 0.0015847453029736876,
+                "pressure_error": 0.004258365794949117,
+                "energy": 0.004526029597919708,
+                "energy_error": 0.0031666298035384756,
+                "divergence": 2.1820100390549692e-05,
+                "mean_momentum": 2.9992413225470784e-15,
+                "mass_drift": 1.0247358517290196e-13,
+                "mass_ledger": 1.0935696792557793e-13,
+                "momentum_ledger": 4.360924923355401e-15,
+                "max_mach": 0.006785391240383235,
+                "min_rho": 0.9999769795010353,
+                "max_rho": 1.0000230209722079,
+                "min_population": 0.027451164782608572,
+                "wall_mass_exchange": 0.0,
+                "open_mass_exchange": 0.0,
+                "final_lattice_momentum_x": 4.8242659866915005e-14,
+                "final_lattice_momentum_y": 9.50281520140095e-15
+              },
+              {
+                "run": 3,
+                "configuration_code": 1,
+                "n": 32,
+                "U": 0.4,
+                "steps": 256,
+                "dx": 0.19634954084936207,
+                "dt": 0.007710628438351061,
+                "tau": 0.56,
+                "time": 1.9739208802178716,
+                "nu": 0.1,
+                "velocity_error": 0.006302930935286617,
+                "pressure_error": 0.006743318537338339,
+                "energy": 0.017933481581234697,
+                "energy_error": 0.012562086856712729,
+                "divergence": 0.0001363494223486005,
+                "mean_momentum": 2.961494668002257e-16,
+                "mass_drift": 2.5646151868841116e-14,
+                "mass_ledger": 2.864375403532904e-14,
+                "momentum_ledger": 8.33877522687307e-16,
+                "max_mach": 0.026946870888640964,
+                "min_rho": 0.9996370013980002,
+                "max_rho": 1.000363116309417,
+                "min_population": 0.026479687903814123,
+                "wall_mass_exchange": 0.0,
+                "open_mass_exchange": 0.0,
+                "final_lattice_momentum_x": 1.8735013540549517e-15,
+                "final_lattice_momentum_y": -4.763550665032312e-15
+              },
+              {
+                "run": 4,
+                "configuration_code": 1,
+                "n": 32,
+                "U": 0.8,
+                "steps": 256,
+                "dx": 0.19634954084936207,
+                "dt": 0.007710628438351061,
+                "tau": 0.56,
+                "time": 1.9739208802178716,
+                "nu": 0.1,
+                "velocity_error": 0.00616999767184534,
+                "pressure_error": 0.007968000888476066,
+                "energy": 0.07175502609005235,
+                "energy_error": 0.012271642584400394,
+                "divergence": 0.00032908467652513316,
+                "mean_momentum": 3.2677818077373774e-16,
+                "mass_drift": 2.5757174171303632e-14,
+                "mass_ledger": 2.8199664825478976e-14,
+                "momentum_ledger": 5.127074163030856e-16,
+                "max_mach": 0.05389374177728189,
+                "min_rho": 0.9985480055920011,
+                "max_rho": 1.0014525024485874,
+                "min_population": 0.025224238940558318,
+                "wall_mass_exchange": 0.0,
+                "open_mass_exchange": 0.0,
+                "final_lattice_momentum_x": -5.249273238305818e-15,
+                "final_lattice_momentum_y": 1.0512424264419451e-14
+              },
+              {
+                "run": 5,
+                "configuration_code": 2,
+                "n": 32,
+                "U": 0.2,
+                "steps": 512,
+                "dx": 0.19634954084936207,
+                "dt": 0.0038553142191755305,
+                "tau": 0.53,
+                "time": 1.9739208802178716,
+                "nu": 0.1,
+                "velocity_error": 0.006401675235734128,
+                "pressure_error": 0.019093681475255052,
+                "energy": 0.004482461790656697,
+                "energy_error": 0.012762202083052085,
+                "divergence": 3.0192928468927943e-05,
+                "mean_momentum": 3.797097752040184e-15,
+                "mass_drift": 5.3734794391857577e-14,
+                "mass_ledger": 5.573319583618286e-14,
+                "momentum_ledger": 5.261236558041591e-15,
+                "max_mach": 0.006736717722160202,
+                "min_rho": 0.999977312587375,
+                "max_rho": 1.0000226945876447,
+                "min_population": 0.027444045847802134,
+                "wall_mass_exchange": 0.0,
+                "open_mass_exchange": 0.0,
+                "final_lattice_momentum_x": -1.5269036035547856e-14,
+                "final_lattice_momentum_y": -7.473188734508085e-15
+              }
+            ],
+            "data_files": [
+              "lbm-taylor-green-run0.npz",
+              "lbm-taylor-green-run1.npz",
+              "lbm-taylor-green-run2.npz",
+              "lbm-taylor-green-run3.npz",
+              "lbm-taylor-green-run4.npz",
+              "lbm-taylor-green-run5.npz"
+            ]
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-taylor-green/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-taylor-green/#lbm-taylor-green",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-taylor-green/#lbm-taylor-green"
+          }
+        }
+      ]
+    },
+    {
+      "group": "lbm-annulus",
+      "case_ids": [
+        "lbm-annular-couette-control"
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/",
+      "code_edition": "2026-11-24",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/kernel.cpp",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/native.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/geometry.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/analytic.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/diagnostics.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/experiments.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/evolution.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/reference_step.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/qualification/curved-boundary-87/execute-once.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/qualification/curved-boundary-87/source/check_repair.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/qualification/curved-boundary-87/source/geometry.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/qualification/curved-boundary-87/source/kernel.cpp",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/qualification/curved-boundary-87/source/native.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/qualification/curved-boundary-87/source/reference_step.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/qualification/new-mesh-29/execute-once.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/qualification/new-mesh-29/source/check_refinement.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/qualification/new-mesh-29/source/geometry.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/qualification/new-mesh-29/source/kernel.cpp",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/qualification/new-mesh-29/source/native.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/qualification/new-mesh-29/source/reference_step.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/test_lbm.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-lbm-annulus-2026-11-24",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/atlas-lbm-annulus-2026-11-24.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/verification.json",
+      "code_archive_sha256": "c38c290902c1e344b4905b3141d0212000525f45d97b0104ed35c3b8d4f6eb1b",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/results/result.json",
+      "passed_tests": 28,
+      "examples": [
+        {
+          "method_ids": [
+            "d2q9-bgk"
+          ],
+          "domains": [
+            "pde",
+            "kinetic",
+            "coupling"
+          ],
+          "code_files": [
+            "run.py",
+            "kernel.cpp",
+            "native.py",
+            "geometry.py",
+            "analytic.py",
+            "diagnostics.py",
+            "experiments.py"
+          ],
+          "id": "lbm-annular-couette-control",
+          "title": {
+            "ja": "曲面LBMの環状Couette制御：速度・圧力・torque",
+            "en": "Curved LBM annular Couette control: velocity,pressure andtorque"
+          },
+          "summary": {
+            "ja": "実円弧交点の2次Lagrange補間とstair-halfwayを、回転内壁の解析Navier–Stokes場に比較します。円柱wakeとは別の追加制御です。",
+            "en": "Compare true-circle quadratic Lagrange link interpolation andstair halfway against analytic rotating-inner-wall Navier–Stokes flow; anadditional control distinct fromcylinderwake."
+          },
+          "assumptions": {
+            "ja": "Rin.2/Rout.4、中心(.5,.5)、内壁接線速度.02、外壁静止、ν.01。N80/160/240、tau.7、T4、整数3840/15360/34560steps、両境界法計6runs。初期は解析場の平衡分布。",
+            "en": "Rin.2/Rout.4,center(.5,.5),inner tangential speed.02,stationary outerwall,nu.01. N80/160/240,tau.7,T4,integer3840/15360/34560steps; both boundaries give sixruns. Initialize equilibrium moments of the analytic field."
+          },
+          "algorithm": {
+            "ja": "円弧交点qから反射特性上の3点2次補間を行います。q<.5はoutgoingの内側2点、q>.5はincomingの内側1点を使用し、q=.5はhalfway。移動壁補正、実force/torqueと非零wall massを台帳化し、floorやmass補正をしません。",
+            "en": "Three-point quadratic interpolation on the reflected characteristic: twointerior outgoing samples forq<.5,oneinterior incoming sample forq>.5,exacthalfway atq=.5. Record movingwall correction,actual force/torque andnonzero wallmass; nofloor ormassrepair."
+          },
+          "validation": {
+            "ja": "群28pytest、環状80判定。独立半径/Cartesian微分7資格、最細速度.03・全点圧力ゲージ.08・torque相対.05、定常性・細分化・stair差・壁込み収支。別の87成分資格に合格済みですが主計算合格とは分けます。 新160/240格子の別29成分資格に合格。",
+            "en": "Group28pytest;80annular gates. Sevenindependent radial/Cartesian qualifiers,finest velocity.03,fullpointwise pressure-gauge.08,torque relative.05,stationarity/refinement/stair comparison andwallinclusive budgets. Separate87component qualifiers passed; this doesnot imply main success. Separate29newmeshcomponentqualifierspassed."
+          },
+          "limits": {
+            "ja": "固定円弧と低速回転のみ。2次補間は負係数を含み一般の正値性や安定性を保証しません。補間mass非保存は実値を記録。以前の線形版は圧力.617757>.08で不合格として保存し、半径平均への置換なし。移動solidの拓撲変化や円柱の代用ではありません。 2次版旧N80の圧力.352758>.08も不合格として保持し、Ui/tau/Tを変えず両境界を固定細分化します。",
+            "en": "Fixedcircles andslowrotation only. Negative quadratic coefficients preclude a general positivity/stability guarantee; report actual interpolation massnonconservation. Prior linear attemptfailed pressure.617757>.08 andisretained; no radial-average substitution. No changing-solid topology orsubstitute forcylinderflow. Retain the failedquadraticN80pressure.352758>.08;refinebothboundariesatfixedUi/tau/T."
+          },
+          "references": [
+            {
+              "id": "zou-he-preprint1996",
+              "author": "Qisu Zou and Xiaoyi He",
+              "year": 1996,
+              "title": "On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model",
+              "url": "https://arxiv.org/abs/comp-gas/9611001",
+              "type": "article",
+              "review_level": "primary-selected-extracted-text",
+              "review_scope": "Selected original preprint pp2-7: standard equilibrium, moment-based flat velocity/density boundaries and corner/finite-Mach limitations. No full-paper audit; special d2q9i accuracy is not credited to this standard BGK.",
+              "review": {
+                "ja": "原著preprintの式と平面流入出境界・角・圧縮性の範囲を選択読解。特殊d2q9iの成功を本BGKへ流用しません。",
+                "en": "Selected primary equations and flat-boundary/corner/compressibility discussion read; special d2q9i successes are not borrowed."
+              }
+            },
+            {
+              "id": "lallemand-luo2003",
+              "author": "Pierre Lallemand and Li-Shi Luo",
+              "year": 2003,
+              "title": "Lattice Boltzmann method for moving boundaries",
+              "doi": "10.1016/S0021-9991(02)00022-0",
+              "url": "https://doi.org/10.1016/S0021-9991(02)00022-0",
+              "type": "article",
+              "review_level": "primary-selected-text-via-mirror",
+              "review_scope": "Selected original sec3 printed410-414 via disclosed author-content mirror: Eq12/13/14 quadratic reflected-characteristic interpolation,moving-wall coefficient,Eq15 momentum exchange and compromised mass conservation. Generic Lagrange scalar oracle independently qualifies weights andsigns. No localPDF/rendered-symbol audit;2001BFLfulloriginal remains unread.",
+              "review": {
+                "ja": "原著選択部分Eq12–15の2次補間・壁補正・運動量交換・mass非保存を読解。汎用Lagrange式の独立scalarで係数を資格。2001原著全文や局所PDFの画像確認は未実施です。",
+                "en": "Read selected original Eq12–15 on quadratic links,wall correction,momentum exchange andmassnonconservation; qualify by a generic-Lagrange scalar oracle. No2001fulltext orlocalPDFsymbol audit."
+              }
+            }
+          ],
+          "formulas": [
+            "u_\\theta=Ar+B/r,\\quad A=-U_iR_i/(R_o^2-R_i^2),\\quad B=U_iR_iR_o^2/(R_o^2-R_i^2)",
+            "p=\\tfrac12A^2r^2+2AB\\log r-\\tfrac12B^2/r^2+C,\\quad T_{inner}=-4\\pi\\rho\\nu B"
+          ],
+          "citations": [
+            {
+              "id": "zou-he-preprint1996",
+              "author": "Qisu Zou and Xiaoyi He",
+              "year": 1996,
+              "title": "On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model",
+              "url": "https://arxiv.org/abs/comp-gas/9611001",
+              "type": "article",
+              "review_level": "primary-selected-extracted-text",
+              "review_scope": "Selected original preprint pp2-7: standard equilibrium, moment-based flat velocity/density boundaries and corner/finite-Mach limitations. No full-paper audit; special d2q9i accuracy is not credited to this standard BGK.",
+              "review": {
+                "ja": "原著preprintの式と平面流入出境界・角・圧縮性の範囲を選択読解。特殊d2q9iの成功を本BGKへ流用しません。",
+                "en": "Selected primary equations and flat-boundary/corner/compressibility discussion read; special d2q9i successes are not borrowed."
+              }
+            },
+            {
+              "id": "lallemand-luo2003",
+              "author": "Pierre Lallemand and Li-Shi Luo",
+              "year": 2003,
+              "title": "Lattice Boltzmann method for moving boundaries",
+              "doi": "10.1016/S0021-9991(02)00022-0",
+              "url": "https://doi.org/10.1016/S0021-9991(02)00022-0",
+              "type": "article",
+              "review_level": "primary-selected-text-via-mirror",
+              "review_scope": "Selected original sec3 printed410-414 via disclosed author-content mirror: Eq12/13/14 quadratic reflected-characteristic interpolation,moving-wall coefficient,Eq15 momentum exchange and compromised mass conservation. Generic Lagrange scalar oracle independently qualifies weights andsigns. No localPDF/rendered-symbol audit;2001BFLfulloriginal remains unread.",
+              "review": {
+                "ja": "原著選択部分Eq12–15の2次補間・壁補正・運動量交換・mass非保存を読解。汎用Lagrange式の独立scalarで係数を資格。2001原著全文や局所PDFの画像確認は未実施です。",
+                "en": "Read selected original Eq12–15 on quadratic links,wall correction,momentum exchange andmassnonconservation; qualify by a generic-Lagrange scalar oracle. No2001fulltext orlocalPDFsymbol audit."
+              }
+            }
+          ],
+          "gallery_figure": "lbm-annular-couette-control-preview.png",
+          "additional_figures": [
+            {
+              "file": "lbm-annular-couette-control-preview.png",
+              "caption": {
+                "ja": "固定入力を実計算した保存配列の2D場と検証診断。参照・境界・誤差の範囲は本文に明記。",
+                "en": "Actual saved2Dfields anddiagnostics fromfixedinputs; reference,boundary anderror scopesaredeclaredinthecase."
+              }
+            }
+          ],
+          "measured": {
+            "id": "lbm-annular-couette-control",
+            "passed": true,
+            "checks": {
+              "analytic reference radial viscous equation": true,
+              "analytic reference radial pressure equation": true,
+              "analytic reference Cartesian divergence": true,
+              "analytic reference Cartesian x momentum": true,
+              "analytic reference Cartesian y momentum": true,
+              "analytic reference inner wall speed": true,
+              "analytic reference outer wall speed": true,
+              "0-80 finite arrays": true,
+              "0-80 positive density": true,
+              "0-80 actual maximum Mach": true,
+              "0-80 mass ledger": true,
+              "0-80 wall-open momentum ledger": true,
+              "0-80 all fixed integer steps": true,
+              "0-80 declared physical endpoint": true,
+              "0-80 total mass drift diagnostic bound": true,
+              "0-80 late velocity stationarity": true,
+              "0-80 late torque stationarity": true,
+              "0-80 correct inner resisting torque sign": true,
+              "0-160 finite arrays": true,
+              "0-160 positive density": true,
+              "0-160 actual maximum Mach": true,
+              "0-160 mass ledger": true,
+              "0-160 wall-open momentum ledger": true,
+              "0-160 all fixed integer steps": true,
+              "0-160 declared physical endpoint": true,
+              "0-160 total mass drift diagnostic bound": true,
+              "0-160 late velocity stationarity": true,
+              "0-160 late torque stationarity": true,
+              "0-160 correct inner resisting torque sign": true,
+              "0-240 finite arrays": true,
+              "0-240 positive density": true,
+              "0-240 actual maximum Mach": true,
+              "0-240 mass ledger": true,
+              "0-240 wall-open momentum ledger": true,
+              "0-240 all fixed integer steps": true,
+              "0-240 declared physical endpoint": true,
+              "0-240 total mass drift diagnostic bound": true,
+              "0-240 late velocity stationarity": true,
+              "0-240 late torque stationarity": true,
+              "0-240 correct inner resisting torque sign": true,
+              "1-80 finite arrays": true,
+              "1-80 positive density": true,
+              "1-80 actual maximum Mach": true,
+              "1-80 mass ledger": true,
+              "1-80 wall-open momentum ledger": true,
+              "1-80 all fixed integer steps": true,
+              "1-80 declared physical endpoint": true,
+              "1-80 total mass drift diagnostic bound": true,
+              "1-80 late velocity stationarity": true,
+              "1-80 late torque stationarity": true,
+              "1-80 correct inner resisting torque sign": true,
+              "1-160 finite arrays": true,
+              "1-160 positive density": true,
+              "1-160 actual maximum Mach": true,
+              "1-160 mass ledger": true,
+              "1-160 wall-open momentum ledger": true,
+              "1-160 all fixed integer steps": true,
+              "1-160 declared physical endpoint": true,
+              "1-160 total mass drift diagnostic bound": true,
+              "1-160 late velocity stationarity": true,
+              "1-160 late torque stationarity": true,
+              "1-160 correct inner resisting torque sign": true,
+              "1-240 finite arrays": true,
+              "1-240 positive density": true,
+              "1-240 actual maximum Mach": true,
+              "1-240 mass ledger": true,
+              "1-240 wall-open momentum ledger": true,
+              "1-240 all fixed integer steps": true,
+              "1-240 declared physical endpoint": true,
+              "1-240 total mass drift diagnostic bound": true,
+              "1-240 late velocity stationarity": true,
+              "1-240 late torque stationarity": true,
+              "1-240 correct inner resisting torque sign": true,
+              "finest interpolated velocity": true,
+              "finest interpolated pressure gauge": true,
+              "finest interpolated torque": true,
+              "interpolated velocity refinement": true,
+              "interpolated pressure refinement": true,
+              "interpolated improves finest stair velocity": true,
+              "three grids with both boundary variants": true
+            },
+            "metrics": {
+              "finest_interpolated": {
+                "variant": 0,
+                "n": 240,
+                "steps": 34560,
+                "dx": 0.004166666666666667,
+                "dt": 0.00011574074074074072,
+                "time": 3.999999999999999,
+                "tau": 0.7,
+                "nu": 0.01,
+                "velocity_error": 4.1181013570439095e-05,
+                "pressure_error": 0.056576140457462176,
+                "torque": -0.0006702247827550396,
+                "exact_torque": -0.0006702064327658225,
+                "torque_error": 2.7379607714759232e-05,
+                "stationarity": 5.063686002269724e-08,
+                "torque_drift": 4.646498909951803e-09,
+                "mass_drift": 4.200271990063427e-07,
+                "mass_ledger": 2.7512395413137817e-12,
+                "momentum_ledger": 9.763298584209473e-13,
+                "max_mach": 0.0009599923524199409,
+                "min_rho": 0.9999997461691433,
+                "max_rho": 1.0000004573310033,
+                "min_population": 0.027712534590816466,
+                "wall_mass_exchange": 0.00912977083678769,
+                "open_mass_exchange": 0.0,
+                "final_lattice_momentum_x": 4.615197113366776e-13,
+                "final_lattice_momentum_y": 5.0622700475955185e-14
+              },
+              "finest_stair": {
+                "variant": 1,
+                "n": 240,
+                "steps": 34560,
+                "dx": 0.004166666666666667,
+                "dt": 0.00011574074074074072,
+                "time": 3.999999999999999,
+                "tau": 0.7,
+                "nu": 0.01,
+                "velocity_error": 0.0056320234931158345,
+                "pressure_error": 5.0386965555033765,
+                "torque": -0.0006741976046875688,
+                "exact_torque": -0.0006702064327658225,
+                "torque_error": 0.005955138188207717,
+                "stationarity": 2.173500599846503e-07,
+                "torque_drift": 4.07061909864866e-07,
+                "mass_drift": 2.7425432799505342e-12,
+                "mass_ledger": 2.7517486245531947e-12,
+                "momentum_ledger": 8.644174008350578e-13,
+                "max_mach": 0.0009599923524199409,
+                "min_rho": 0.9999925252188234,
+                "max_rho": 1.000007128199855,
+                "min_population": 0.027712460348227712,
+                "wall_mass_exchange": -1.4606371667724716e-15,
+                "open_mass_exchange": 0.0,
+                "final_lattice_momentum_x": -3.0608848788915566e-13,
+                "final_lattice_momentum_y": 5.230781086051906e-13
+              },
+              "reference_qualification": {
+                "radial viscous equation": 5.551115123125783e-17,
+                "radial pressure equation": 2.574980159653073e-19,
+                "Cartesian divergence": 1.3877787807814457e-17,
+                "Cartesian x momentum": 4.336808689942018e-19,
+                "Cartesian y momentum": 2.168404344971009e-19,
+                "inner wall speed": 0.0,
+                "outer wall speed": 1.734723475976807e-18
+              },
+              "scope": "Stationary rotating-wall annulus only; does not substitute for actual cylinder flow."
+            },
+            "records": [
+              {
+                "variant": 0,
+                "n": 80,
+                "steps": 3840,
+                "dx": 0.0125,
+                "dt": 0.0010416666666666664,
+                "time": 3.999999999999999,
+                "tau": 0.7,
+                "nu": 0.01,
+                "velocity_error": 0.0005050996894258009,
+                "pressure_error": 0.352757782623146,
+                "torque": -0.0006704120770698647,
+                "exact_torque": -0.0006702064327658225,
+                "torque_error": 0.0003068372578781604,
+                "stationarity": 4.931843571805993e-07,
+                "torque_drift": 5.10768081088354e-08,
+                "mass_drift": 4.11101154651042e-06,
+                "mass_ledger": 3.051638888926362e-13,
+                "momentum_ledger": 1.4796904044208663e-13,
+                "max_mach": 0.0028449413471623463,
+                "min_rho": 0.9999971449008103,
+                "max_rho": 1.0000045773693027,
+                "min_population": 0.027585003339701222,
+                "wall_mass_exchange": 0.00993220463118651,
+                "open_mass_exchange": 0.0,
+                "final_lattice_momentum_x": 6.855627177060342e-14,
+                "final_lattice_momentum_y": 5.535849556537187e-14
+              },
+              {
+                "variant": 0,
+                "n": 160,
+                "steps": 15360,
+                "dx": 0.00625,
+                "dt": 0.0002604166666666666,
+                "time": 3.999999999999999,
+                "tau": 0.7,
+                "nu": 0.01,
+                "velocity_error": 0.00010460096245937002,
+                "pressure_error": 0.1087827548808667,
+                "torque": -0.0006702461820999667,
+                "exact_torque": -0.0006702064327658225,
+                "torque_error": 5.930909075303664e-05,
+                "stationarity": 1.0493237141219269e-07,
+                "torque_drift": 1.0578531373756996e-08,
+                "mass_drift": 8.736093306067792e-07,
+                "mass_ledger": 1.2239717670597555e-12,
+                "momentum_ledger": 2.428542500928522e-13,
+                "max_mach": 0.001440443768540846,
+                "min_rho": 0.9999993617447078,
+                "max_rho": 1.0000009638497345,
+                "min_population": 0.027679674534775853,
+                "wall_mass_exchange": 0.008442572351893142,
+                "open_mass_exchange": 0.0,
+                "final_lattice_momentum_x": -4.1744385725905886e-14,
+                "final_lattice_momentum_y": -7.141856550596515e-14
+              },
+              {
+                "variant": 0,
+                "n": 240,
+                "steps": 34560,
+                "dx": 0.004166666666666667,
+                "dt": 0.00011574074074074072,
+                "time": 3.999999999999999,
+                "tau": 0.7,
+                "nu": 0.01,
+                "velocity_error": 4.1181013570439095e-05,
+                "pressure_error": 0.056576140457462176,
+                "torque": -0.0006702247827550396,
+                "exact_torque": -0.0006702064327658225,
+                "torque_error": 2.7379607714759232e-05,
+                "stationarity": 5.063686002269724e-08,
+                "torque_drift": 4.646498909951803e-09,
+                "mass_drift": 4.200271990063427e-07,
+                "mass_ledger": 2.7512395413137817e-12,
+                "momentum_ledger": 9.763298584209473e-13,
+                "max_mach": 0.0009599923524199409,
+                "min_rho": 0.9999997461691433,
+                "max_rho": 1.0000004573310033,
+                "min_population": 0.027712534590816466,
+                "wall_mass_exchange": 0.00912977083678769,
+                "open_mass_exchange": 0.0,
+                "final_lattice_momentum_x": 4.615197113366776e-13,
+                "final_lattice_momentum_y": 5.0622700475955185e-14
+              },
+              {
+                "variant": 1,
+                "n": 80,
+                "steps": 3840,
+                "dx": 0.0125,
+                "dt": 0.0010416666666666664,
+                "time": 3.999999999999999,
+                "tau": 0.7,
+                "nu": 0.01,
+                "velocity_error": 0.0281965504760655,
+                "pressure_error": 8.492590866044461,
+                "torque": -0.000691471153176721,
+                "exact_torque": -0.0006702064327658225,
+                "torque_error": 0.031728612814327616,
+                "stationarity": 1.6737804041358078e-06,
+                "torque_drift": 2.6075026126316526e-06,
+                "mass_drift": 3.0454520436022305e-13,
+                "mass_ledger": 3.0981545511552976e-13,
+                "momentum_ledger": 1.9207266158355593e-13,
+                "max_mach": 0.002846753889064316,
+                "min_rho": 0.9999519346817858,
+                "max_rho": 1.0000458619180943,
+                "min_population": 0.027577215774659616,
+                "wall_mass_exchange": 0.0,
+                "open_mass_exchange": 0.0,
+                "final_lattice_momentum_x": 2.1649348980190553e-15,
+                "final_lattice_momentum_y": -2.4934915243690625e-14
+              },
+              {
+                "variant": 1,
+                "n": 160,
+                "steps": 15360,
+                "dx": 0.00625,
+                "dt": 0.0002604166666666666,
+                "time": 3.999999999999999,
+                "tau": 0.7,
+                "nu": 0.01,
+                "velocity_error": 0.014736542891468451,
+                "pressure_error": 6.568659101715712,
+                "torque": -0.0006810164263042999,
+                "exact_torque": -0.0006702064327658225,
+                "torque_error": 0.016129349122876148,
+                "stationarity": 8.803293693677537e-07,
+                "torque_drift": 1.6525015761142858e-06,
+                "mass_drift": 1.2178043709583703e-12,
+                "mass_ledger": 1.21968660337098e-12,
+                "momentum_ledger": 4.707538339551788e-13,
+                "max_mach": 0.001440443768540846,
+                "min_rho": 0.9999844869883908,
+                "max_rho": 1.0000148299645313,
+                "min_population": 0.027678315606823607,
+                "wall_mass_exchange": 0.0,
+                "open_mass_exchange": 0.0,
+                "final_lattice_momentum_x": -1.673106098110111e-13,
+                "final_lattice_momentum_y": -2.4147350785597155e-15
+              },
+              {
+                "variant": 1,
+                "n": 240,
+                "steps": 34560,
+                "dx": 0.004166666666666667,
+                "dt": 0.00011574074074074072,
+                "time": 3.999999999999999,
+                "tau": 0.7,
+                "nu": 0.01,
+                "velocity_error": 0.0056320234931158345,
+                "pressure_error": 5.0386965555033765,
+                "torque": -0.0006741976046875688,
+                "exact_torque": -0.0006702064327658225,
+                "torque_error": 0.005955138188207717,
+                "stationarity": 2.173500599846503e-07,
+                "torque_drift": 4.07061909864866e-07,
+                "mass_drift": 2.7425432799505342e-12,
+                "mass_ledger": 2.7517486245531947e-12,
+                "momentum_ledger": 8.644174008350578e-13,
+                "max_mach": 0.0009599923524199409,
+                "min_rho": 0.9999925252188234,
+                "max_rho": 1.000007128199855,
+                "min_population": 0.027712460348227712,
+                "wall_mass_exchange": -1.4606371667724716e-15,
+                "open_mass_exchange": 0.0,
+                "final_lattice_momentum_x": -3.0608848788915566e-13,
+                "final_lattice_momentum_y": 5.230781086051906e-13
+              }
+            ],
+            "data_files": [
+              "lbm-annular-couette-control-v0-N80.npz",
+              "lbm-annular-couette-control-v0-N160.npz",
+              "lbm-annular-couette-control-v0-N240.npz",
+              "lbm-annular-couette-control-v1-N80.npz",
+              "lbm-annular-couette-control-v1-N160.npz",
+              "lbm-annular-couette-control-v1-N240.npz"
+            ]
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-annular-couette-control/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-annulus/#lbm-annular-couette-control",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-annulus/#lbm-annular-couette-control"
+          }
+        }
+      ]
+    },
+    {
+      "group": "lbm-curved-boundary",
+      "case_ids": [
+        "lbm-cylinder-re20"
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/",
+      "code_edition": "2026-11-24",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/kernel.cpp",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/native.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/geometry.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/analytic.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/diagnostics.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/experiments.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/evolution.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/reference_step.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/qualification/curved-boundary-87/execute-once.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/qualification/curved-boundary-87/source/check_repair.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/qualification/curved-boundary-87/source/geometry.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/qualification/curved-boundary-87/source/kernel.cpp",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/qualification/curved-boundary-87/source/native.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/qualification/curved-boundary-87/source/reference_step.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/qualification/new-mesh-29/execute-once.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/qualification/new-mesh-29/source/check_refinement.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/qualification/new-mesh-29/source/geometry.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/qualification/new-mesh-29/source/kernel.cpp",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/qualification/new-mesh-29/source/native.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/qualification/new-mesh-29/source/reference_step.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/test_lbm.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-lbm-curved-boundary-2026-11-24",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/atlas-lbm-curved-boundary-2026-11-24.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/verification.json",
+      "code_archive_sha256": "69757fbf7ccab53450d7bdf6ce3023cd6f5ca3b42698d2e8c7a383421a1c640d",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/results/result.json",
+      "passed_tests": 28,
+      "examples": [
+        {
+          "method_ids": [
+            "d2q9-bgk"
+          ],
+          "domains": [
+            "pde",
+            "kinetic",
+            "coupling"
+          ],
+          "code_files": [
+            "run.py",
+            "kernel.cpp",
+            "native.py",
+            "geometry.py",
+            "analytic.py",
+            "diagnostics.py",
+            "experiments.py"
+          ],
+          "id": "lbm-cylinder-re20",
+          "title": {
+            "ja": "LBMの実円柱Re20：Schäfer–Turek形状と明示出口",
+            "en": "Actual LBM cylinderRe20: Schäfer–Turek geometry anddeclared outlet"
+          },
+          "summary": {
+            "ja": "標準2D-1の全長channelと偏心円柱を実際に発展し、抗力・揚力・表面圧力差・再循環長と定常性を2格子で検査します。",
+            "en": "Evolve the full-length original2D-1channel andoff-center cylinder on twogrids,checking drag,lift,surface pressure difference,recirculation length andstationarity."
+          },
+          "assumptions": {
+            "ja": "[0,2.2]x[0,.41]、中心(.2,.2)、R.05、ν.001、rho1、平均流速.2/最大.3/Re20。dx.01/.005、x wet nodes221/441、y halfway nodes41/82、dt=dx/6、T30、18k/36ksteps。入口parabola、出口はrho1と隣接内点poststream速度による全9成分NEE。",
+            "en": "[0,2.2]x[0,.41],center(.2,.2),R.05,nu.001,rho1,mean.2/peak.3/Re20. dx.01/.005,xwet221/441,yhalfway41/82,dt=dx/6,T30,18k/36ksteps. Parabolic inlet;all-nine poststream NEE outletwithrho1andadjacent-interiorvelocity."
+          },
+          "algorithm": {
+            "ja": "標準BGK、真円交点の2次補間、半格子channel壁、非周期open streaming。出口全9成分にfeq(1,ua)+fa−feq(rhoa,ua)を設定し、既知6成分を含む変化量を収支へ記録。初期Poiseuille圧力guessから円柱摂動を実発展し、実運動量交換を平均流速基準の力係数へ換算します。",
+            "en": "StandardBGK,true-circle quadratic links,halfwaychannelwalls,nonperiodic openstreaming. Setall9outlet populations tofeq(1,ua)+fa−feq(rhoa,ua); ledgerchanges include theknown6. Evolve fromaPoiseuille pressureguess; normalizeactual momentumexchange bymean speed."
+          },
+          "validation": {
+            "ja": "群28pytest、円柱33判定。原典表3の推定範囲からの距離を別の事前粗格子公差で判定（CD5%、CL絶対.01、dp10%、La絶対.025）。26/28/30で場・力・dpの定常性、2格子差・Ma・wall/open収支も確認します。 元の出口不安定も保存し、境界式の別87成分資格と主計算を区別します。",
+            "en": "Group28pytest;33cylinder gates. Score distance fromoriginalTable3estimated ranges usingseparate frozen coarse-grid tolerances:CD5%,CLabsolute.01,dp10%,Laabsolute.025. Check26/28/30field/force/dp stationarity,twogrid difference,Ma andwall/open budgets. Retain prior outletinstability anddistinguish the87boundarycomponent qualifiers frommain acceptance."
+          },
+          "limits": {
+            "ja": "原典p3/p7は出口を選択可。採用NEEは独立導出した有限reservoirで、原著NEE全文の同一実装やFEATflow do-nothingと偽りません。Nabh高精度値は同BCの厳密値ではなく、原典範囲も厳密誤差区間ではありません。線形/Zou–He旧試行はstep265出口近傍で不合格として保持。有限Mach/境界/曲面差を含み一般精度保証なし。",
+            "en": "Originalpp3/7allow selectingoutflow. AdoptedNEEis independently derived finite reservoir,not claimed exactunread authorimplementation orFEATflowdo-nothing. Nabhvaluesarenotexact adopted-BCtruth andoriginalrangesarenotrigorousenclosures. Retain failedlinear/Zou–Heattempt(outlet-nearstep265). FiniteMach/BC/curveerrors;nogeneralaccuracyguarantee."
+          },
+          "references": [
+            {
+              "id": "zou-he-preprint1996",
+              "author": "Qisu Zou and Xiaoyi He",
+              "year": 1996,
+              "title": "On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model",
+              "url": "https://arxiv.org/abs/comp-gas/9611001",
+              "type": "article",
+              "review_level": "primary-selected-extracted-text",
+              "review_scope": "Selected original preprint pp2-7: standard equilibrium, moment-based flat velocity/density boundaries and corner/finite-Mach limitations. No full-paper audit; special d2q9i accuracy is not credited to this standard BGK.",
+              "review": {
+                "ja": "原著preprintの式と平面流入出境界・角・圧縮性の範囲を選択読解。特殊d2q9iの成功を本BGKへ流用しません。",
+                "en": "Selected primary equations and flat-boundary/corner/compressibility discussion read; special d2q9i successes are not borrowed."
+              }
+            },
+            {
+              "id": "lallemand-luo2003",
+              "author": "Pierre Lallemand and Li-Shi Luo",
+              "year": 2003,
+              "title": "Lattice Boltzmann method for moving boundaries",
+              "doi": "10.1016/S0021-9991(02)00022-0",
+              "url": "https://doi.org/10.1016/S0021-9991(02)00022-0",
+              "type": "article",
+              "review_level": "primary-selected-text-via-mirror",
+              "review_scope": "Selected original sec3 printed410-414 via disclosed author-content mirror: Eq12/13/14 quadratic reflected-characteristic interpolation,moving-wall coefficient,Eq15 momentum exchange and compromised mass conservation. Generic Lagrange scalar oracle independently qualifies weights andsigns. No localPDF/rendered-symbol audit;2001BFLfulloriginal remains unread.",
+              "review": {
+                "ja": "原著選択部分Eq12–15の2次補間・壁補正・運動量交換・mass非保存を読解。汎用Lagrange式の独立scalarで係数を資格。2001原著全文や局所PDFの画像確認は未実施です。",
+                "en": "Read selected original Eq12–15 on quadratic links,wall correction,momentum exchange andmassnonconservation; qualify by a generic-Lagrange scalar oracle. No2001fulltext orlocalPDFsymbol audit."
+              }
+            },
+            {
+              "id": "schaefer-turek1996",
+              "author": "M. Schäfer and S. Turek",
+              "year": 1996,
+              "title": "Benchmark Computations of Laminar Flow Around a Cylinder",
+              "url": "https://kent-and.github.io/mek4250/2021/SchaeferTurek1996.pdf",
+              "type": "book-chapter",
+              "review_level": "primary-selected-extracted-text",
+              "review_scope": "Original chapter delivered by course mirror after official links404: printed3-4geometry/2D-1/force definitions,7protocol user-selected outlet,11-12Table3 estimated ranges. Not a full-paper or separate local rendered-symbol audit.",
+              "review": {
+                "ja": "原論文の形状・定義・出口自由選択・表3の推定範囲を選択読解。公式リンク404後の講義ミラー配送を明記します。",
+                "en": "Read original geometry/definitions/user-selected outflow/Table3estimated intervals via a disclosed course mirror after official404s."
+              }
+            },
+            {
+              "id": "featflow-re20-official",
+              "author": "FEATflow benchmark project",
+              "year": 2026,
+              "title": "DFG flow around cylinder benchmark2D-1, Re20",
+              "url": "https://wwwold.mathematik.tu-dortmund.de/~featflow/en/benchmarks/cfdbenchmarking/flow/dfg_benchmark1_re20.html",
+              "type": "web",
+              "review_level": "official-benchmark-page",
+              "review_scope": "Actual geometry,do-nothingBC,mean-speed normalization,force/probe definitions and Nabh1998attribution read. Nabh original report not read; its precise values are contextual,not the adopted outlet truth.",
+              "review": {
+                "ja": "公式頁のBC・定義とNabhへの帰属を確認。Nabh原報未読で、採用出口と同一条件の厳密値とはしません。",
+                "en": "Official BC/definitions/Nabh attribution read; Nabh original unread and values not labelled exact adopted-outlet truth."
+              }
+            },
+            {
+              "id": "guo-zheng-shi2002-nee",
+              "author": "Zhaoli Guo,Chuguang Zheng and Baochang Shi",
+              "year": 2002,
+              "title": "Non-equilibrium extrapolation method for velocity and pressure boundary conditions in the lattice Boltzmann method",
+              "doi": "10.1088/1009-1963/11/4/310",
+              "url": "https://cpb.iphy.ac.cn/en/article/doi/10.1088/1009-1963/11/4/310",
+              "type": "article",
+              "review_level": "primary-official-abstract-only",
+              "review_scope": "Official primary abstract actually read: equilibrium/nonequilibrium split and adjacent-fluid extrapolation. Full primary equations unavailable; the adopted all-nine poststream density reservoir is independently derived and qualified,not labelled the exact author implementation.",
+              "review": {
+                "ja": "公式の原著抄録のみ読解。全文の式は未読で、採用する全9成分poststream圧力reservoirは別導出・資格です。",
+                "en": "Official primary abstract only. Full equations unread; adopted all-nine poststream pressure reservoir is independently derived and qualified."
+              }
+            }
+          ],
+          "formulas": [
+            "\\mathrm{Re}=\\overline U D/\\nu=20,\\quad C_D=2F_x/(\\rho\\overline U^2D),\\quad C_L=2F_y/(\\rho\\overline U^2D)",
+            "\\Delta p=p(.15,.2)-p(.25,.2),\\quad L_a=x_{reattach}-.25",
+            "f_{i,b}=f_i^{eq}(1,u_a)+f_{i,a}-f_i^{eq}(\\rho_a,u_a),\\quad i=0,\\ldots,8"
+          ],
+          "citations": [
+            {
+              "id": "zou-he-preprint1996",
+              "author": "Qisu Zou and Xiaoyi He",
+              "year": 1996,
+              "title": "On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model",
+              "url": "https://arxiv.org/abs/comp-gas/9611001",
+              "type": "article",
+              "review_level": "primary-selected-extracted-text",
+              "review_scope": "Selected original preprint pp2-7: standard equilibrium, moment-based flat velocity/density boundaries and corner/finite-Mach limitations. No full-paper audit; special d2q9i accuracy is not credited to this standard BGK.",
+              "review": {
+                "ja": "原著preprintの式と平面流入出境界・角・圧縮性の範囲を選択読解。特殊d2q9iの成功を本BGKへ流用しません。",
+                "en": "Selected primary equations and flat-boundary/corner/compressibility discussion read; special d2q9i successes are not borrowed."
+              }
+            },
+            {
+              "id": "lallemand-luo2003",
+              "author": "Pierre Lallemand and Li-Shi Luo",
+              "year": 2003,
+              "title": "Lattice Boltzmann method for moving boundaries",
+              "doi": "10.1016/S0021-9991(02)00022-0",
+              "url": "https://doi.org/10.1016/S0021-9991(02)00022-0",
+              "type": "article",
+              "review_level": "primary-selected-text-via-mirror",
+              "review_scope": "Selected original sec3 printed410-414 via disclosed author-content mirror: Eq12/13/14 quadratic reflected-characteristic interpolation,moving-wall coefficient,Eq15 momentum exchange and compromised mass conservation. Generic Lagrange scalar oracle independently qualifies weights andsigns. No localPDF/rendered-symbol audit;2001BFLfulloriginal remains unread.",
+              "review": {
+                "ja": "原著選択部分Eq12–15の2次補間・壁補正・運動量交換・mass非保存を読解。汎用Lagrange式の独立scalarで係数を資格。2001原著全文や局所PDFの画像確認は未実施です。",
+                "en": "Read selected original Eq12–15 on quadratic links,wall correction,momentum exchange andmassnonconservation; qualify by a generic-Lagrange scalar oracle. No2001fulltext orlocalPDFsymbol audit."
+              }
+            },
+            {
+              "id": "schaefer-turek1996",
+              "author": "M. Schäfer and S. Turek",
+              "year": 1996,
+              "title": "Benchmark Computations of Laminar Flow Around a Cylinder",
+              "url": "https://kent-and.github.io/mek4250/2021/SchaeferTurek1996.pdf",
+              "type": "book-chapter",
+              "review_level": "primary-selected-extracted-text",
+              "review_scope": "Original chapter delivered by course mirror after official links404: printed3-4geometry/2D-1/force definitions,7protocol user-selected outlet,11-12Table3 estimated ranges. Not a full-paper or separate local rendered-symbol audit.",
+              "review": {
+                "ja": "原論文の形状・定義・出口自由選択・表3の推定範囲を選択読解。公式リンク404後の講義ミラー配送を明記します。",
+                "en": "Read original geometry/definitions/user-selected outflow/Table3estimated intervals via a disclosed course mirror after official404s."
+              }
+            },
+            {
+              "id": "featflow-re20-official",
+              "author": "FEATflow benchmark project",
+              "year": 2026,
+              "title": "DFG flow around cylinder benchmark2D-1, Re20",
+              "url": "https://wwwold.mathematik.tu-dortmund.de/~featflow/en/benchmarks/cfdbenchmarking/flow/dfg_benchmark1_re20.html",
+              "type": "web",
+              "review_level": "official-benchmark-page",
+              "review_scope": "Actual geometry,do-nothingBC,mean-speed normalization,force/probe definitions and Nabh1998attribution read. Nabh original report not read; its precise values are contextual,not the adopted outlet truth.",
+              "review": {
+                "ja": "公式頁のBC・定義とNabhへの帰属を確認。Nabh原報未読で、採用出口と同一条件の厳密値とはしません。",
+                "en": "Official BC/definitions/Nabh attribution read; Nabh original unread and values not labelled exact adopted-outlet truth."
+              }
+            },
+            {
+              "id": "guo-zheng-shi2002-nee",
+              "author": "Zhaoli Guo,Chuguang Zheng and Baochang Shi",
+              "year": 2002,
+              "title": "Non-equilibrium extrapolation method for velocity and pressure boundary conditions in the lattice Boltzmann method",
+              "doi": "10.1088/1009-1963/11/4/310",
+              "url": "https://cpb.iphy.ac.cn/en/article/doi/10.1088/1009-1963/11/4/310",
+              "type": "article",
+              "review_level": "primary-official-abstract-only",
+              "review_scope": "Official primary abstract actually read: equilibrium/nonequilibrium split and adjacent-fluid extrapolation. Full primary equations unavailable; the adopted all-nine poststream density reservoir is independently derived and qualified,not labelled the exact author implementation.",
+              "review": {
+                "ja": "公式の原著抄録のみ読解。全文の式は未読で、採用する全9成分poststream圧力reservoirは別導出・資格です。",
+                "en": "Official primary abstract only. Full equations unread; adopted all-nine poststream pressure reservoir is independently derived and qualified."
+              }
+            }
+          ],
+          "gallery_figure": "lbm-cylinder-re20-preview.png",
+          "additional_figures": [
+            {
+              "file": "lbm-cylinder-re20-preview.png",
+              "caption": {
+                "ja": "固定入力を実計算した保存配列の2D場と検証診断。参照・境界・誤差の範囲は本文に明記。",
+                "en": "Actual saved2Dfields anddiagnostics fromfixedinputs; reference,boundary anderror scopesaredeclaredinthecase."
+              }
+            }
+          ],
+          "measured": {
+            "id": "lbm-cylinder-re20",
+            "passed": true,
+            "checks": {
+              "original source definitions and interval anchors": true,
+              "0.01 finite arrays": true,
+              "0.01 positive density": true,
+              "0.01 actual maximum Mach": true,
+              "0.01 mass ledger": true,
+              "0.01 wall-open momentum ledger": true,
+              "0.01 all fixed integer steps": true,
+              "0.01 declared physical endpoint": true,
+              "0.01 velocity stationarity": true,
+              "0.01 drag late block drift": true,
+              "0.01 lift late block drift": true,
+              "0.01 pressure late drift": true,
+              "0.01 positive downstream drag": true,
+              "0.01 pressure front exceeds back": true,
+              "0.005 finite arrays": true,
+              "0.005 positive density": true,
+              "0.005 actual maximum Mach": true,
+              "0.005 mass ledger": true,
+              "0.005 wall-open momentum ledger": true,
+              "0.005 all fixed integer steps": true,
+              "0.005 declared physical endpoint": true,
+              "0.005 velocity stationarity": true,
+              "0.005 drag late block drift": true,
+              "0.005 lift late block drift": true,
+              "0.005 pressure late drift": true,
+              "0.005 positive downstream drag": true,
+              "0.005 pressure front exceeds back": true,
+              "finest original range distance CD": true,
+              "finest original range distance CL": true,
+              "finest original range distance pressure_difference": true,
+              "finest original range distance recirculation_length": true,
+              "two-grid drag sensitivity": true,
+              "both prescribed actual full-domain cylinder grids": true
+            },
+            "metrics": {
+              "finest": {
+                "dx": 0.005,
+                "dt": 0.0008333333333333334,
+                "tau": 0.6,
+                "steps": 36000,
+                "time": 30.000000000000004,
+                "Re": 20,
+                "CD": 5.644519321602302,
+                "CL": 0.011096755643135437,
+                "stationarity": 0.0002032789456526155,
+                "drag_drift": 0.000151098422030169,
+                "lift_drift": 3.478689810392302e-06,
+                "pressure_drift": 1.863260540397613e-06,
+                "pressure_difference": 0.11872124659802585,
+                "recirculation_length": 0.08386681527452555,
+                "mass_drift": 0.0004002747565754678,
+                "mass_ledger": 3.339112580809518e-12,
+                "momentum_ledger": 3.37499434539968e-12,
+                "max_mach": 0.1536578006651768,
+                "min_rho": 0.9010633065006105,
+                "max_rho": 1.1123850424542971,
+                "min_population": 0.020454450201225206,
+                "wall_mass_exchange": 16.570402727464682,
+                "open_mass_exchange": -2.2019060198153952,
+                "final_lattice_momentum_x": 1213.6393581371472,
+                "final_lattice_momentum_y": 0.17207763765525091
+              },
+              "reference_scope": "Schäfer-Turek1996 Table3 estimated numerical-comparison ranges, not exact or rigorous enclosures. Original pp3/7 allow user-selected outflow. This source uses a declared all-nine poststream NEE pressure reservoir, not later FEATflow do-nothing; exact original-author NEE implementation is not claimed. Coarse LBM acceptance separately fixed before execution.",
+              "outlet": "All-nine poststream NEE: rho1,adjacent-poststream velocity; finite reservoir,not later FEATflow do-nothing",
+              "initial_pressure": "Straight Poiseuille-gradient guess, not a cylinder reference or imposed interior field"
+            },
+            "records": [
+              {
+                "dx": 0.01,
+                "dt": 0.0016666666666666668,
+                "tau": 0.55,
+                "steps": 18000,
+                "time": 30.000000000000004,
+                "Re": 20,
+                "CD": 5.703600037275354,
+                "CL": 0.013568025923930879,
+                "stationarity": 0.0001575917131737916,
+                "drag_drift": 0.00015146214382432454,
+                "lift_drift": 3.837822276994349e-06,
+                "pressure_drift": 7.623644820454242e-06,
+                "pressure_difference": 0.12184014872724669,
+                "recirculation_length": 0.07918804676593083,
+                "mass_drift": 0.0004098788298338597,
+                "mass_ledger": 1.8176613170800822e-12,
+                "momentum_ledger": 1.863601362591492e-12,
+                "max_mach": 0.1587061212280776,
+                "min_rho": 0.8968586382392606,
+                "max_rho": 1.1168980821131047,
+                "min_population": 0.020165827771477966,
+                "wall_mass_exchange": -10.90251915678294,
+                "open_mass_exchange": 14.58924518952255,
+                "final_lattice_momentum_x": 303.9958066164069,
+                "final_lattice_momentum_y": 0.04533779741467863
+              },
+              {
+                "dx": 0.005,
+                "dt": 0.0008333333333333334,
+                "tau": 0.6,
+                "steps": 36000,
+                "time": 30.000000000000004,
+                "Re": 20,
+                "CD": 5.644519321602302,
+                "CL": 0.011096755643135437,
+                "stationarity": 0.0002032789456526155,
+                "drag_drift": 0.000151098422030169,
+                "lift_drift": 3.478689810392302e-06,
+                "pressure_drift": 1.863260540397613e-06,
+                "pressure_difference": 0.11872124659802585,
+                "recirculation_length": 0.08386681527452555,
+                "mass_drift": 0.0004002747565754678,
+                "mass_ledger": 3.339112580809518e-12,
+                "momentum_ledger": 3.37499434539968e-12,
+                "max_mach": 0.1536578006651768,
+                "min_rho": 0.9010633065006105,
+                "max_rho": 1.1123850424542971,
+                "min_population": 0.020454450201225206,
+                "wall_mass_exchange": 16.570402727464682,
+                "open_mass_exchange": -2.2019060198153952,
+                "final_lattice_momentum_x": 1213.6393581371472,
+                "final_lattice_momentum_y": 0.17207763765525091
+              }
+            ],
+            "data_files": [
+              "lbm-cylinder-re20-dx0.01.npz",
+              "lbm-cylinder-re20-dx0.005.npz"
+            ]
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-cylinder-re20/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-curved-boundary/#lbm-cylinder-re20",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-curved-boundary/#lbm-cylinder-re20"
+          }
+        }
+      ]
+    }
+  ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/d2q9-bgk/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/d2q9-bgk/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/d2q9-bgk/index.md",
   "code_urls": [
-    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/lattice_boltzmann.py"
+    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/lattice_boltzmann.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/kernel.cpp",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/native.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/geometry.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/analytic.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/diagnostics.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/experiments.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/evolution.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/reference_step.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/analytic.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/diagnostics.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/evolution.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/experiments.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/geometry.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/kernel.cpp",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/native.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/qualification/component-history-and-execution/proposal-01-unexecuted/source/check_components.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/qualification/component-history-and-execution/proposal-01-unexecuted/source/geometry.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/qualification/component-history-and-execution/proposal-01-unexecuted/source/kernel.cpp",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/qualification/component-history-and-execution/proposal-01-unexecuted/source/native.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/qualification/component-history-and-execution/proposal-01-unexecuted/source/reference_step.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/qualification/component-history-and-execution/proposal-02-unexecuted/source/check_components.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/qualification/component-history-and-execution/proposal-02-unexecuted/source/geometry.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/qualification/component-history-and-execution/proposal-02-unexecuted/source/kernel.cpp",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/qualification/component-history-and-execution/proposal-02-unexecuted/source/native.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/qualification/component-history-and-execution/proposal-02-unexecuted/source/reference_step.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/qualification/component-proposal-and-review/source/check_components.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/qualification/component-proposal-and-review/source/geometry.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/qualification/component-proposal-and-review/source/kernel.cpp",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/qualification/component-proposal-and-review/source/native.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/qualification/component-proposal-and-review/source/reference_step.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/reference_step.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/history/attempt-01-pytest-teardown-failure/source/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/qualification/component-history-and-execution/proposal-01-unexecuted/source/check_components.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/qualification/component-history-and-execution/proposal-01-unexecuted/source/geometry.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/qualification/component-history-and-execution/proposal-01-unexecuted/source/kernel.cpp",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/qualification/component-history-and-execution/proposal-01-unexecuted/source/native.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/qualification/component-history-and-execution/proposal-01-unexecuted/source/reference_step.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/qualification/component-history-and-execution/proposal-02-unexecuted/source/check_components.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/qualification/component-history-and-execution/proposal-02-unexecuted/source/geometry.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/qualification/component-history-and-execution/proposal-02-unexecuted/source/kernel.cpp",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/qualification/component-history-and-execution/proposal-02-unexecuted/source/native.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/qualification/component-history-and-execution/proposal-02-unexecuted/source/reference_step.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/qualification/component-proposal-and-review/source/check_components.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/qualification/component-proposal-and-review/source/geometry.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/qualification/component-proposal-and-review/source/kernel.cpp",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/qualification/component-proposal-and-review/source/native.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/qualification/component-proposal-and-review/source/reference_step.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/kernel.cpp",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/native.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/geometry.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/analytic.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/diagnostics.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/experiments.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/evolution.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/reference_step.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/analytic.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/diagnostics.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/evolution.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/experiments.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/geometry.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/history/lifecycle-r1-unexecuted/experiments.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/history/lifecycle-r1-unexecuted/native.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/kernel.cpp",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/native.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/qualification/component-history-and-execution/proposal-01-unexecuted/source/check_components.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/qualification/component-history-and-execution/proposal-01-unexecuted/source/geometry.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/qualification/component-history-and-execution/proposal-01-unexecuted/source/kernel.cpp",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/qualification/component-history-and-execution/proposal-01-unexecuted/source/native.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/qualification/component-history-and-execution/proposal-01-unexecuted/source/reference_step.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/qualification/component-history-and-execution/proposal-02-unexecuted/source/check_components.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/qualification/component-history-and-execution/proposal-02-unexecuted/source/geometry.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/qualification/component-history-and-execution/proposal-02-unexecuted/source/kernel.cpp",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/qualification/component-history-and-execution/proposal-02-unexecuted/source/native.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/qualification/component-history-and-execution/proposal-02-unexecuted/source/reference_step.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/qualification/component-proposal-and-review/source/check_components.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/qualification/component-proposal-and-review/source/geometry.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/qualification/component-proposal-and-review/source/kernel.cpp",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/qualification/component-proposal-and-review/source/native.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/qualification/component-proposal-and-review/source/reference_step.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/reference_step.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/attempt-01-energy-failure/source/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/lifecycle-r1-unexecuted/experiments.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/history/lifecycle-r1-unexecuted/native.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/qualification/component-history-and-execution/proposal-01-unexecuted/source/check_components.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/qualification/component-history-and-execution/proposal-01-unexecuted/source/geometry.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/qualification/component-history-and-execution/proposal-01-unexecuted/source/kernel.cpp",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/qualification/component-history-and-execution/proposal-01-unexecuted/source/native.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/qualification/component-history-and-execution/proposal-01-unexecuted/source/reference_step.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/qualification/component-history-and-execution/proposal-02-unexecuted/source/check_components.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/qualification/component-history-and-execution/proposal-02-unexecuted/source/geometry.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/qualification/component-history-and-execution/proposal-02-unexecuted/source/kernel.cpp",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/qualification/component-history-and-execution/proposal-02-unexecuted/source/native.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/qualification/component-history-and-execution/proposal-02-unexecuted/source/reference_step.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/qualification/component-proposal-and-review/source/check_components.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/qualification/component-proposal-and-review/source/geometry.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/qualification/component-proposal-and-review/source/kernel.cpp",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/qualification/component-proposal-and-review/source/native.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/qualification/component-proposal-and-review/source/reference_step.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/kernel.cpp",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/native.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/geometry.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/analytic.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/diagnostics.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/experiments.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/evolution.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/reference_step.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/qualification/curved-boundary-87/execute-once.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/qualification/curved-boundary-87/source/check_repair.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/qualification/curved-boundary-87/source/geometry.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/qualification/curved-boundary-87/source/kernel.cpp",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/qualification/curved-boundary-87/source/native.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/qualification/curved-boundary-87/source/reference_step.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/qualification/new-mesh-29/execute-once.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/qualification/new-mesh-29/source/check_refinement.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/qualification/new-mesh-29/source/geometry.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/qualification/new-mesh-29/source/kernel.cpp",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/qualification/new-mesh-29/source/native.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/qualification/new-mesh-29/source/reference_step.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/kernel.cpp",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/native.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/geometry.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/analytic.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/diagnostics.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/experiments.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/evolution.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/reference_step.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/qualification/curved-boundary-87/execute-once.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/qualification/curved-boundary-87/source/check_repair.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/qualification/curved-boundary-87/source/geometry.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/qualification/curved-boundary-87/source/kernel.cpp",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/qualification/curved-boundary-87/source/native.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/qualification/curved-boundary-87/source/reference_step.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/qualification/new-mesh-29/execute-once.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/qualification/new-mesh-29/source/check_refinement.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/qualification/new-mesh-29/source/geometry.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/qualification/new-mesh-29/source/kernel.cpp",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/qualification/new-mesh-29/source/native.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/qualification/new-mesh-29/source/reference_step.py"
   ],
   "test_urls": [
-    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_new_models.py"
+    "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_new_models.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/test_lbm.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/test_lbm.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/test_lbm.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/test_lbm.py"
   ],
   "run_commands": [
     "python -m pytest -q tests/test_new_models.py"
@@ -81,26 +2079,48 @@
   "run_from": "Extracted code edition directory",
   "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
   "code_edition": "2026-11-21",
-  "execution_examples": [],
+  "execution_examples": [
+    {
+      "id": "lbm-cavity-re100",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-cavity-re100/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-cavity-re100/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "lbm-taylor-green",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-taylor-green/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-taylor-green/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "lbm-annular-couette-control",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-annular-couette-control/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-annular-couette-control/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "lbm-cylinder-re20",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-cylinder-re20/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-cylinder-re20/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    }
+  ],
   "problem_navigation": {
     "method_id": "d2q9-bgk",
     "status": "educational-example",
     "equations": [
-      {
-        "id": "bgk",
-        "name": {
-          "ja": "等温格子BGK",
-          "en": "Isothermal lattice BGK"
-        },
-        "problem_ids": [
-          "lbm-shear",
-          "channel-poiseuille"
-        ],
-        "url": {
-          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bgk-ja",
-          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bgk-en"
-        }
-      },
       {
         "id": "navier-stokes",
         "name": {
@@ -108,16 +2128,98 @@
           "en": "Incompressible Navier–Stokes"
         },
         "problem_ids": [
+          "taylor-green",
           "lbm-shear",
-          "channel-poiseuille"
+          "channel-poiseuille",
+          "lid-driven-cavity",
+          "lbm-annular-couette-control",
+          "lbm-cylinder-re20"
         ],
         "url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#navier-stokes-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#navier-stokes-en"
         }
+      },
+      {
+        "id": "bgk",
+        "name": {
+          "ja": "等温格子BGK",
+          "en": "Isothermal lattice BGK"
+        },
+        "problem_ids": [
+          "taylor-green",
+          "lbm-shear",
+          "channel-poiseuille",
+          "lid-driven-cavity",
+          "lbm-annular-couette-control",
+          "lbm-cylinder-re20"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bgk-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bgk-en"
+        }
       }
     ],
     "problems": [
+      {
+        "id": "taylor-green",
+        "name": {
+          "ja": "周期Taylor–Green渦",
+          "en": "Periodic Taylor–Green vortex"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/assets/field-taylor-green.png",
+          "sha256": "89d51b4bdc8650fd270de49d92f3109e0d2b0feb27f3e62ae509ea550fe33a19",
+          "width": 1575,
+          "height": 690,
+          "caption": {
+            "ja": "保存済みTaylor–Green渦の速度と圧力。",
+            "en": "Stored Taylor–Green velocity and pressure fields."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/taylor-green/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/taylor-green/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/taylor-green/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/taylor-green/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "lbm-taylor-green",
+            "kind": "supplement",
+            "name": {
+              "ja": "LBM Taylor–Green渦：格子・刻み・Machの結合感度",
+              "en": "LBM Taylor–Green vortex: coupled grid/time/Mach sensitivity"
+            },
+            "scope": {
+              "ja": "周期2Dの非線形渦を実際に時間発展し、連続解析場への速度・圧力・エネルギー誤差を保存します。amplitude感度と同格子のcoupled刻み感度も分けて示します。",
+              "en": "Evolve a nonlinear periodic2D vortex and save velocity/pressure/energy errors against the continuous analytic field. Distinguish amplitude probes from a fixed-grid coupled-step probe."
+            },
+            "method_ids": [
+              "d2q9-bgk"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-taylor-green/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-taylor-green/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/atlas-lbm-taylor-green-2026-11-24.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-taylor-green/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。",
+          "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/taylor-green/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/taylor-green/?lang=en#references-en"
+        }
+      },
       {
         "id": "lbm-shear",
         "name": {
@@ -189,9 +2291,241 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/channel-poiseuille/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/channel-poiseuille/?lang=en#references-en"
         }
+      },
+      {
+        "id": "lid-driven-cavity",
+        "name": {
+          "ja": "Re100の蓋駆動キャビティ",
+          "en": "Re100 lid-driven cavity"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/results/cavity-ghia-re100-preview.png",
+          "sha256": "ce88c820d7513d83c054892f36ee234d938cf180428f3a6783899deb3b9f77b5",
+          "width": 1038,
+          "height": 909,
+          "caption": {
+            "ja": "保存した最細Re100計算の流線と速さ。赤点は格子上の主渦、白抜き点はGhia表Vの主渦位置です。",
+            "en": "Saved finest Re100 streamlines and speed. Red dot: computed grid primary vortex; hollow dot: original Ghia TableV location."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lid-driven-cavity/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lid-driven-cavity/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lid-driven-cavity/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lid-driven-cavity/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "lbm-cavity-re100",
+            "kind": "supplement",
+            "name": {
+              "ja": "LBM Re100蓋駆動キャビティ：実2D場とGhia中心線",
+              "en": "LBM Re100 cavity: actual2D fields and Ghia centerlines"
+            },
+            "scope": {
+              "ja": "4壁のBGK更新を3固定格子で実行し、nominal蓋速度で正規化したGhia中心線、主渦、定常性と壁運動量収支を検査します。",
+              "en": "Advance genuine four-wall BGK flow on three fixed grids, checking nominal-lid Ghia centerlines, primary vortex, stationarity and wall momentum budgets."
+            },
+            "method_ids": [
+              "d2q9-bgk"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-cavity-re100/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-cavity-re100/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/atlas-lbm-cavity-2026-11-24.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-cavity/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "ωt+uωx+vωy=νΔωを中央差分とHeun法で進め、各段で−Δhψ=ωを非周期Dirichlet DSTで解きます。u=ψy,v=−ψx。局所一次のThom壁渦度を使用し、原著のCSI-MGと高次壁公式は実装していません。",
+          "en": "Advance vorticity transport with centered differences and Heun. Each stage solves−Delta_h psi=omega using a nonperiodic Dirichlet DST, then formsu=psi_y,v=−psi_x. Use local first-order Thom wall vorticity; this is an independent method, not Ghia CSI-MG or its higher-order wall formula."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lid-driven-cavity/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lid-driven-cavity/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "lbm-annular-couette-control",
+        "name": {
+          "ja": "曲面LBMの環状Couette制御：速度・圧力・torque",
+          "en": "Curved LBM annular Couette control: velocity,pressure andtorque"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/results/lbm-annular-couette-control-preview.png",
+          "sha256": "ee068b5c21a8ae3a92d5d54b829c7646cda91967b5d03439eccd5907ca5a7e5a",
+          "width": 1100,
+          "height": 800,
+          "caption": {
+            "ja": "固定入力を実計算した保存配列の2D場と検証診断。参照・境界・誤差の範囲は本文に明記。",
+            "en": "Actual saved2Dfields anddiagnostics fromfixedinputs; reference,boundary anderror scopesaredeclaredinthecase."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lbm-annular-couette-control/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lbm-annular-couette-control/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lbm-annular-couette-control/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lbm-annular-couette-control/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "lbm-annular-couette-control",
+            "kind": "supplement",
+            "name": {
+              "ja": "曲面LBMの環状Couette制御：速度・圧力・torque",
+              "en": "Curved LBM annular Couette control: velocity,pressure andtorque"
+            },
+            "scope": {
+              "ja": "実円弧交点の2次Lagrange補間とstair-halfwayを、回転内壁の解析Navier–Stokes場に比較します。円柱wakeとは別の追加制御です。",
+              "en": "Compare true-circle quadratic Lagrange link interpolation andstair halfway against analytic rotating-inner-wall Navier–Stokes flow; anadditional control distinct fromcylinderwake."
+            },
+            "method_ids": [
+              "d2q9-bgk"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-annular-couette-control/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-annular-couette-control/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/atlas-lbm-annulus-2026-11-24.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-annulus/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "円弧交点qから反射特性上の3点2次補間を行います。q<.5はoutgoingの内側2点、q>.5はincomingの内側1点を使用し、q=.5はhalfway。移動壁補正、実force/torqueと非零wall massを台帳化し、floorやmass補正をしません。",
+          "en": "Three-point quadratic interpolation on the reflected characteristic: twointerior outgoing samples forq<.5,oneinterior incoming sample forq>.5,exacthalfway atq=.5. Record movingwall correction,actual force/torque andnonzero wallmass; nofloor ormassrepair."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lbm-annular-couette-control/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lbm-annular-couette-control/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "lbm-cylinder-re20",
+        "name": {
+          "ja": "LBMの実円柱Re20：Schäfer–Turek形状と明示出口",
+          "en": "Actual LBM cylinderRe20: Schäfer–Turek geometry anddeclared outlet"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/results/lbm-cylinder-re20-preview.png",
+          "sha256": "25778fa66822e0ee9f3aa0c9c8258bffceccb906506c11470026cd2d5b086c47",
+          "width": 1100,
+          "height": 800,
+          "caption": {
+            "ja": "固定入力を実計算した保存配列の2D場と検証診断。参照・境界・誤差の範囲は本文に明記。",
+            "en": "Actual saved2Dfields anddiagnostics fromfixedinputs; reference,boundary anderror scopesaredeclaredinthecase."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lbm-cylinder-re20/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lbm-cylinder-re20/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lbm-cylinder-re20/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lbm-cylinder-re20/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "lbm-cylinder-re20",
+            "kind": "supplement",
+            "name": {
+              "ja": "LBMの実円柱Re20：Schäfer–Turek形状と明示出口",
+              "en": "Actual LBM cylinderRe20: Schäfer–Turek geometry anddeclared outlet"
+            },
+            "scope": {
+              "ja": "標準2D-1の全長channelと偏心円柱を実際に発展し、抗力・揚力・表面圧力差・再循環長と定常性を2格子で検査します。",
+              "en": "Evolve the full-length original2D-1channel andoff-center cylinder on twogrids,checking drag,lift,surface pressure difference,recirculation length andstationarity."
+            },
+            "method_ids": [
+              "d2q9-bgk"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-cylinder-re20/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lbm-cylinder-re20/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/atlas-lbm-curved-boundary-2026-11-24.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/lbm-curved-boundary/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "標準BGK、真円交点の2次補間、半格子channel壁、非周期open streaming。出口全9成分にfeq(1,ua)+fa−feq(rhoa,ua)を設定し、既知6成分を含む変化量を収支へ記録。初期Poiseuille圧力guessから円柱摂動を実発展し、実運動量交換を平均流速基準の力係数へ換算します。",
+          "en": "StandardBGK,true-circle quadratic links,halfwaychannelwalls,nonperiodic openstreaming. Setall9outlet populations tofeq(1,ua)+fa−feq(rhoa,ua); ledgerchanges include theknown6. Evolve fromaPoiseuille pressureguess; normalizeactual momentumexchange bymean speed."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lbm-cylinder-re20/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lbm-cylinder-re20/?lang=en#references-en"
+        }
       }
     ],
     "references": [
+      {
+        "problem_id": "taylor-green",
+        "problem_name": {
+          "ja": "周期Taylor–Green渦",
+          "en": "Periodic Taylor–Green vortex"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/taylor-green/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/taylor-green/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "taylor-green",
+            "title": {
+              "ja": "粘性流／2次元Taylor–Green渦",
+              "en": "Viscous flow / 2D Taylor–Green"
+            },
+            "kind": "analytic",
+            "relation": "related-model",
+            "note": {
+              "ja": "同じν=0.1・周期[0,2π]²の解析モデルですが、参照カードはy=π/4のx断面表示です。2次元速度・圧力場や格子誤差の配列とは一致しません。",
+              "en": "The analytic model shares ν=0.1 and periodic [0,2π]², but the card displays an x-slice at y=π/4, not full 2D velocity/pressure or mesh-error arrays."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-taylor-green-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-taylor-green-en"
+            },
+            "view": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=taylor-green",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=taylor-green"
+            }
+          },
+          {
+            "id": "lbm-taylor-green",
+            "title": {
+              "ja": "LBMのTaylor–Green渦：格子・時間・Mach数が結び付く感度",
+              "en": "LBM Taylor–Green vortex: coupled grid/time/Mach sensitivity"
+            },
+            "kind": "analytic",
+            "relation": "related-model",
+            "note": {
+              "ja": "[0,2pi)²、ν.1、基本U.2、N24/32/64、dt=.2dx²、tau.56、T=.2pi²、144/256/1024steps。N32/U.4,.8とN32/U.2/dt=.1dx²/tau.53/512stepsを追加。初期圧力整合rhoを使用。",
+              "en": "Periodic[0,2pi)²,nu.1,baseU.2,N24/32/64,dt=.2dx²,tau.56,T=.2pi²and144/256/1024steps. Add N32/U.4,.8andN32/U.2/dt=.1dx²/tau.53/512steps. Use pressure-consistent initial density."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-lbm-taylor-green-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-lbm-taylor-green-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/lbm-taylor-green/?lang=ja#lbm-taylor-green-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/lbm-taylor-green/?lang=en#lbm-taylor-green-en-measurements"
+            }
+          }
+        ]
+      },
       {
         "problem_id": "lbm-shear",
         "problem_name": {
@@ -256,6 +2590,129 @@
             "view": {
               "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=poiseuille",
               "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=poiseuille"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "lid-driven-cavity",
+        "problem_name": {
+          "ja": "Re100の蓋駆動キャビティ",
+          "en": "Re100 lid-driven cavity"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lid-driven-cavity/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lid-driven-cavity/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "ghia-re100",
+            "title": {
+              "ja": "Ghia Re100：原著の有限格子速度中心線",
+              "en": "Ghia Re100: original finite-grid velocity centerlines"
+            },
+            "kind": "numerical-reference",
+            "relation": "same-problem",
+            "note": {
+              "ja": "Re=100・3固定格子の教育用検査です。蓋と側壁の角に速度の不連続があり、角の速度は静止側を優先します。Ghia値は丸めた数値参照で厳密解ではなく、4桁座標をそのまま使います。高Re・乱流・原著アルゴリズムの再現・キャビティ圧力を検証したとは主張しません。",
+              "en": "Educational Re100 checks on three fixed grids. Lid/sidewall corner velocities are discontinuous; stationary corners take precedence. Ghia values are rounded numerical references, not an exact solution, and printed four-decimal coordinates are preserved. No high-Re, turbulence, original-algorithm reproduction or cavity-pressure validation is claimed."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-ghia-re100-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-ghia-re100-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/cavity-ghia-re100/?lang=ja#cavity-ghia-re100-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/cavity-ghia-re100/?lang=en#cavity-ghia-re100-en-measurements"
+            }
+          },
+          {
+            "id": "lbm-cavity-re100",
+            "title": {
+              "ja": "LBMのRe100キャビティ：実2D場とGhia中心線",
+              "en": "LBM Re100 cavity: actual2D fields and Ghia centerlines"
+            },
+            "kind": "numerical-reference",
+            "relation": "related-model",
+            "note": {
+              "ja": "物理単位正方形、蓋U1、ν.01、Re100。N24/32/48、格子蓋速度.04、dt=.04/N。3壁静止、上壁右向き、同時上面/側面crossingは静止側を優先。初期rho1・静止。",
+              "en": "Physical unit square, lid1, viscosity.01, Re100; N24/32/48, lattice lid.04, dt=.04/N. Three stationary walls/rightward lid; stationary side owns a simultaneous top/side link. Initialrho1/rest."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-lbm-cavity-re100-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-lbm-cavity-re100-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/lbm-cavity-re100/?lang=ja#lbm-cavity-re100-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/lbm-cavity-re100/?lang=en#lbm-cavity-re100-en-measurements"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "lbm-annular-couette-control",
+        "problem_name": {
+          "ja": "曲面LBMの環状Couette制御：速度・圧力・torque",
+          "en": "Curved LBM annular Couette control: velocity,pressure andtorque"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lbm-annular-couette-control/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lbm-annular-couette-control/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "lbm-annular-couette-control",
+            "title": {
+              "ja": "曲面LBMの環状Couette制御：速度・圧力・トルク",
+              "en": "Curved LBM annular Couette control: velocity,pressure andtorque"
+            },
+            "kind": "analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "固定円弧と低速回転のみ。2次補間は負係数を含み一般の正値性や安定性を保証しません。補間mass非保存は実値を記録。以前の線形版は圧力.617757>.08で不合格として保存し、半径平均への置換なし。移動solidの拓撲変化や円柱の代用ではありません。 2次版旧N80の圧力.352758>.08も不合格として保持し、Ui/tau/Tを変えず両境界を固定細分化します。",
+              "en": "Fixedcircles andslowrotation only. Negative quadratic coefficients preclude a general positivity/stability guarantee; report actual interpolation massnonconservation. Prior linear attemptfailed pressure.617757>.08 andisretained; no radial-average substitution. No changing-solid topology orsubstitute forcylinderflow. Retain the failedquadraticN80pressure.352758>.08;refinebothboundariesatfixedUi/tau/T."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-lbm-annular-couette-control-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-lbm-annular-couette-control-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/lbm-annular-couette-control/?lang=ja#lbm-annular-couette-control-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/lbm-annular-couette-control/?lang=en#lbm-annular-couette-control-en-measurements"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "lbm-cylinder-re20",
+        "problem_name": {
+          "ja": "LBMの実円柱Re20：Schäfer–Turek形状と明示出口",
+          "en": "Actual LBM cylinderRe20: Schäfer–Turek geometry anddeclared outlet"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lbm-cylinder-re20/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lbm-cylinder-re20/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "lbm-cylinder-re20",
+            "title": {
+              "ja": "実LBMのRe20円柱流：Schäfer–Turek形状と明示した流出境界",
+              "en": "Actual LBM cylinderRe20: Schäfer–Turek geometry anddeclared outlet"
+            },
+            "kind": "numerical-reference",
+            "relation": "same-problem",
+            "note": {
+              "ja": "原典p3/p7は出口を選択可。採用NEEは独立導出した有限reservoirで、原著NEE全文の同一実装やFEATflow do-nothingと偽りません。Nabh高精度値は同BCの厳密値ではなく、原典範囲も厳密誤差区間ではありません。線形/Zou–He旧試行はstep265出口近傍で不合格として保持。有限Mach/境界/曲面差を含み一般精度保証なし。",
+              "en": "Originalpp3/7allow selectingoutflow. AdoptedNEEis independently derived finite reservoir,not claimed exactunread authorimplementation orFEATflowdo-nothing. Nabhvaluesarenotexact adopted-BCtruth andoriginalrangesarenotrigorousenclosures. Retain failedlinear/Zou–Heattempt(outlet-nearstep265). FiniteMach/BC/curveerrors;nogeneralaccuracyguarantee."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-lbm-cylinder-re20-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-lbm-cylinder-re20-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/lbm-cylinder-re20/?lang=ja#lbm-cylinder-re20-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/lbm-cylinder-re20/?lang=en#lbm-cylinder-re20-en-measurements"
             }
           }
         ]

@@ -7939,5 +7939,113 @@
   "reference.batch28-37.05edfd9cb2e72d01": {
     "ja": "1次元位置・3次元速度、単原子硬球。Mach2、区間[0,16]、RHの開境界reservoir。192セル、粒子重み1/192、dt=.01、burn20/sample20、12seed。 各群20pytestを事前固定。新しい固定計算は15本。境界込みの質量・運動量・エネルギー、局所λ/衝突時間、独立参照への誤差とseed精度、時間block定常性を別に判定します。 群の判定は既存81項目を保持し、新8計算の48項目を追加した129項目です。primary t95はdf11、独立参照4seedはdf3です。 有限粒子・有限格子の独立確率参照との限定比較です。線形応答、連続体極限、全DSMC、VHS一般、空間次数を認証しません。RHは遠方状態・流束だけの参照で、内部構造の厳密解ではありません。図は保存した粒子位相空間であり、2D物理流れではありません。",
     "en": "Monatomic gamma5/3,M1=2, RH inflow/outflow reservoirs at x0/16. Reference lambda2/lambda1=7/16; no profile shifting or shock pinning. All velocities3D; physical position1D. Four independent SPARTA seeds per configuration, fixed native inputs."
+  },
+  "reference.batch38-47.67e9a6dcef38": {
+    "en": "GBM weak bias and Monte Carlo error",
+    "ja": "GBMのweak誤差とMonte Carlo標準誤差"
+  },
+  "reference.batch38-47.4d33827451cd": {
+    "en": "OU weak moments with joint Brownian coupling",
+    "ja": "OUのweakモーメントと同時Brownian結合"
+  },
+  "reference.batch38-47.2144d9433605": {
+    "en": "Milstein and EM on identical Brownian paths",
+    "ja": "同じBrownian経路のMilstein・EM strong比較"
+  },
+  "reference.batch38-47.0fa32dbb7d4a": {
+    "en": "Ordinary importance sampling of a normal rare tail",
+    "ja": "正規稀少尾の通常importance sampling"
+  },
+  "reference.batch38-47.0b61abb3ee17": {
+    "en": "Joint target and MCSE for a correlated bivariate Gaussian",
+    "ja": "相関2変量Gaussianのjoint標的とMCSE"
+  },
+  "reference.batch38-47.f389dfae1256": {
+    "en": "dX=.5Xdt+.4XdW,X0=1;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping.",
+    "ja": "dX=.5Xdt+.4XdW,X0=1。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。"
+  },
+  "reference.batch38-47.a03e264370d3": {
+    "en": "dX=1.5(.2-X)dt+.8dW,X0=.7;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping.",
+    "ja": "dX=1.5(.2-X)dt+.8dW,X0=.7。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。"
+  },
+  "reference.batch38-47.d74330dec0ff": {
+    "en": "ExistingGBMparametersmu.15,sigma.4,X0=T1;4seeds×8192paths;16/32/64/128steps.",
+    "ja": "既存GBMと同じμ=.15,σ=.4,X0=T=1。4seed×8192経路、16/32/64/128刻み。"
+  },
+  "reference.batch38-47.db0c8685490c": {
+    "en": "Standard normal tailsa3/6;proposalN(a,1);64independent seeds;fixedN2048/8192prefixes.",
+    "ja": "標準正規尾a=3/6、proposal=N(a,1)、64独立seed、N=2048/8192の固定prefix。"
+  },
+  "reference.batch38-47.9c557c483072": {
+    "en": "Mean(1,-1),unit marginal variances,rho.95;4independent chainsets×4chains;burn1024/draw8192;prefix2048/8192. Fixed.9Lzand.25z,no adaptation.",
+    "ja": "平均(1,-1)、相関.95・対角分散1。4独立chainset×4chain、burn1024/draw8192、prefix2048/8192。固定.9Lzと.25z、適応なし。"
+  },
+  "reference.batch38-47.3aacb7b83f2d": {
+    "en": "Isotropically scattering slab: continuous-angle Fredholm flux reference",
+    "ja": "等方散乱平板：連続角Fredholm流束参照"
+  },
+  "reference.batch38-47.3b354c1eadfd": {
+    "en": "Plane-parallel steady optical-depth slab, unit incoming radiance on the left,vacuum incoming on the right,isotropic single-scattering albedo. Incoming hemispherical flux pi; signed-angle J=.5*integral I.",
+    "ja": "平行平板の定常な光学厚さ座標を用い、左の入射放射輝度は1、右の入射は真空、等方散乱の単一散乱アルベドを固定します。入射半球流束はπ、符号付き角度の平均はJ=(1/2)∫I dμです。"
+  },
+  "reference.batch38-47.3dc411cfb75d": {
+    "en": "Su–Olson1996 diffusion: pinned independent integral evaluator",
+    "ja": "Su–Olson1996拡散：固定版の独立積分評価関数"
+  },
+  "reference.batch38-47.a97b112af906": {
+    "en": "Half-space Marshak diffusion with zero initial radiation/material variables and epsilon1. Direct dimensionless evaluator; no ambiguous physical mass-opacity wrapper convention.",
+    "ja": "初期の放射・物質変数が0、ε=1の半無限Marshak拡散です。無次元評価関数を直接用い、物理単位の質量吸収係数ラッパーに起因する曖昧な規約は持ち込みません。"
+  },
+  "reference.batch38-47.05b0a538cc4a": {
+    "en": "Su–Olson transport: primary2023author-provided analytical benchmark data",
+    "ja": "Su–Olson輸送：2023著者公開の独立解析ベンチマーク表"
+  },
+  "reference.batch38-47.ec010058e5b2": {
+    "en": "Infinite symmetric1D angular transport/material exchange,epsilon1,no elastic scattering,cold initial state. Source Q1 for |x|<.5 and0<tau<10. Primary half-domain uses reflecting left and distant incoming-vacuum right; comparison times precede boundary influence. A separate matched periodic cell-mean companion uses physical x in [0,2*pi), c=epsilon=1, kappa4/8/16, N128/512/2048, Q0, initial I=V=1+.1cos(x), and t=kappa*s for s=0,.0625,.125,.25. Its IC/BC/source differ from the source-driven1997 benchmark; the FV, continuum-angular and diffusion comparisons within this companion use matched inputs.",
+    "ja": "無限領域の対称1次元角度輸送と物質交換で、ε=1、弾性散乱なし、低温の零初期状態です。Q=1を|x|<0.5、0<τ<10に与えます。主計算は左反射・十分遠い右入射真空の半領域で、比較時刻は境界の影響前です。別の同条件比較用の周期セル平均制御は、物理座標x∈[0,2π)、c=ε=1、κ=4/8/16、N=128/512/2048、Q=0、初期I=V=1+0.1cos(x)、s=0/.0625/.125/.25に対するt=κsを用います。この制御は1997のsource駆動問題とは初期・境界・sourceが異なり、制御内のFV・連続角度参照・拡散比較に同じ入力を用います。"
+  },
+  "reference.batch38-47.09c49720ebc9": {
+    "en": "Circular-absorber characteristic reference",
+    "ja": "円形吸収体の特性線参照"
+  },
+  "reference.batch38-47.839dcab690da": {
+    "en": "2Dspace with3Dangular measure,c1. Pure aligned rays; actual signed-angle transport and nonlinear closed M1 both evolved. The analytic characteristic reference applies to RTE/S_N,not to the entire M1 solution.",
+    "ja": "2D空間に3D角度測度を用い、c=1の軸に整列した光線を扱います。実際の符号付き角度輸送と非線形の閉じたM1方程式をともに進めます。解析特性線の参照はRTE/S_Nに適用し、M1解全体の厳密参照とはしません。"
+  },
+  "reference.batch38-47.144fbacea995": {
+    "en": "Counterpropagating packet characteristic reference",
+    "ja": "反向伝播packetの特性線参照"
+  },
+  "reference.batch38-47.d617a9150bef": {
+    "en": "LBM Re100 cavity: actual2D fields and Ghia centerlines",
+    "ja": "LBMのRe100キャビティ：実2D場とGhia中心線"
+  },
+  "reference.batch38-47.3b4e2b31fc81": {
+    "en": "Physical unit square, lid1, viscosity.01, Re100; N24/32/48, lattice lid.04, dt=.04/N. Three stationary walls/rightward lid; stationary side owns a simultaneous top/side link. Initialrho1/rest.",
+    "ja": "物理単位正方形、蓋U1、ν.01、Re100。N24/32/48、格子蓋速度.04、dt=.04/N。3壁静止、上壁右向き、同時上面/側面crossingは静止側を優先。初期rho1・静止。"
+  },
+  "reference.batch38-47.ab253f9a1932": {
+    "en": "LBM Taylor–Green vortex: coupled grid/time/Mach sensitivity",
+    "ja": "LBMのTaylor–Green渦：格子・時間・Mach数が結び付く感度"
+  },
+  "reference.batch38-47.7380161c164c": {
+    "en": "Periodic[0,2pi)²,nu.1,baseU.2,N24/32/64,dt=.2dx²,tau.56,T=.2pi²and144/256/1024steps. Add N32/U.4,.8andN32/U.2/dt=.1dx²/tau.53/512steps. Use pressure-consistent initial density.",
+    "ja": "[0,2pi)²、ν.1、基本U.2、N24/32/64、dt=.2dx²、tau.56、T=.2pi²、144/256/1024steps。N32/U.4,.8とN32/U.2/dt=.1dx²/tau.53/512stepsを追加。初期圧力整合rhoを使用。"
+  },
+  "reference.batch38-47.3433c206258b": {
+    "en": "Curved LBM annular Couette control: velocity,pressure andtorque",
+    "ja": "曲面LBMの環状Couette制御：速度・圧力・トルク"
+  },
+  "reference.batch38-47.9fb80fbb28ce": {
+    "en": "Rin.2/Rout.4,center(.5,.5),inner tangential speed.02,stationary outerwall,nu.01. N80/160/240,tau.7,T4,integer3840/15360/34560steps; both boundaries give sixruns. Initialize equilibrium moments of the analytic field.",
+    "ja": "Rin.2/Rout.4、中心(.5,.5)、内壁接線速度.02、外壁静止、ν.01。N80/160/240、tau.7、T4、整数3840/15360/34560steps、両境界法計6runs。初期は解析場の平衡分布。"
+  },
+  "reference.batch38-47.5a9101e8b08e": {
+    "en": "Actual LBM cylinderRe20: Schäfer–Turek geometry anddeclared outlet",
+    "ja": "実LBMのRe20円柱流：Schäfer–Turek形状と明示した流出境界"
+  },
+  "reference.batch38-47.a9337d9c9ccb": {
+    "en": "[0,2.2]x[0,.41],center(.2,.2),R.05,nu.001,rho1,mean.2/peak.3/Re20. dx.01/.005,xwet221/441,yhalfway41/82,dt=dx/6,T30,18k/36ksteps. Parabolic inlet;all-nine poststream NEE outletwithrho1andadjacent-interiorvelocity.",
+    "ja": "[0,2.2]x[0,.41]、中心(.2,.2)、R.05、ν.001、rho1、平均流速.2/最大.3/Re20。dx.01/.005、x wet nodes221/441、y halfway nodes41/82、dt=dx/6、T30、18k/36ksteps。入口parabola、出口はrho1と隣接内点poststream速度による全9成分NEE。"
   }
 }

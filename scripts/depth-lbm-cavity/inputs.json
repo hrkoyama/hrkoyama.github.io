@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "group": "lbm-cavity",
+  "cavity": {
+    "N": [
+      24,
+      32,
+      48
+    ],
+    "lid_lattice": 0.04,
+    "Re": 100,
+    "convective_T": 100,
+    "checkpoints": [
+      90,
+      95,
+      100
+    ]
+  }
+}

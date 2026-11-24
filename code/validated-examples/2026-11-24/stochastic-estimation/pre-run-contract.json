@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "status": "UNEXECUTED_FIXED_MAIN_PROPOSAL",
+  "created_at_utc": "2026-11-23T22:37:33.679486+00:00",
+  "baseline_public_commit": "9dde48159c568f985170506ef2eb0a7008f1c4ea",
+  "group": "stochastic-estimation",
+  "case_ids": [
+    "normal-tail-importance",
+    "correlated-gaussian-mcmc"
+  ],
+  "before_first_fixed_main_execution": true,
+  "before_all_scientific_execution": false,
+  "actual_reference_science_before_this_contract": {
+    "analytic_qualifiers": 80,
+    "IS_qualifiers": 22,
+    "MH_chainset_reference_input_evolutions": 8,
+    "ArviZ_data_sets": 128,
+    "ArviZ_values": 640,
+    "original_candidate_passed": 637,
+    "original_candidate_total": 640,
+    "saved_data_cause_audit_checks": 27,
+    "compatibility_regressions": 3,
+    "final_candidate_comparisons_passed": 640
+  },
+  "planned_pytest": 21,
+  "test_ast_inventory": [
+    {
+      "name": "test_real_cli_completes_strict_case_json_and_numeric_csv",
+      "parameterized_cases": 1,
+      "file": "test_driver_contract.py"
+    },
+    {
+      "name": "test_real_cli_retains_partial_candidate_and_failure",
+      "parameterized_cases": 1,
+      "file": "test_driver_contract.py"
+    },
+    {
+      "name": "test_real_cli_rejects_empty_case_records",
+      "parameterized_cases": 1,
+      "file": "test_driver_contract.py"
+    },
+    {
+      "name": "test_csv_guard_rejects_nonfinite_ragged_and_duplicate_columns",
+      "parameterized_cases": 1,
+      "file": "test_driver_contract.py"
+    },
+    {
+      "name": "test_importance_expectation_is_target_tail",
+      "parameterized_cases": 2,
+      "file": "test_estimators.py"
+    },
+    {
+      "name": "test_weight_sign_by_density_ratio",
+      "parameterized_cases": 2,
+      "file": "test_estimators.py"
+    },
+    {
+      "name": "test_zero_hit_interval_is_not_zero_width",
+      "parameterized_cases": 1,
+      "file": "test_estimators.py"
+    },
+    {
+      "name": "test_joint_logpdf_has_correct_covariance",
+      "parameterized_cases": 3,
+      "file": "test_estimators.py"
+    },
+    {
+      "name": "test_joint_Q_matches_independent_whitening",
+      "parameterized_cases": 1,
+      "file": "test_estimators.py"
+    },
+    {
+      "name": "test_correct_marginals_wrong_joint_is_detected",
+      "parameterized_cases": 1,
+      "file": "test_estimators.py"
+    },
+    {
+      "name": "test_rejected_states_are_retained",
+      "parameterized_cases": 1,
+      "file": "test_estimators.py"
+    },
+    {
+      "name": "test_constant_diagnostics_are_explicitly_undefined",
+      "parameterized_cases": 1,
+      "file": "test_estimators.py"
+    },
+    {
+      "name": "test_mcse_uses_original_observable_scale",
+      "parameterized_cases": 1,
+      "file": "test_estimators.py"
+    },
+    {
+      "name": "test_exact_diagnostic_fixture_rejects_forged_data_without_demanding_fresh_identity",
+      "parameterized_cases": 1,
+      "file": "test_fixture_contract.py"
+    },
+    {
+      "name": "test_declared_tail_quantile_tie_mask_and_exact_golden",
+      "parameterized_cases": 3,
+      "file": "test_tail_quantiles.py"
+    }
+  ],
+  "planned_case_gates": 793,
+  "gate_inventory_derivation": {
+    "normal-tail-importance": 17,
+    "correlated-gaussian-mcmc": 776,
+    "within_MCMC_same_data_comparisons": 640
+  },
+  "planned_actual_operations": {
+    "fixed_cases": 2,
+    "IS_independent_seed_streams": 64,
+    "IS_thresholds": 2,
+    "IS_nested_prefixes": 2,
+    "MH_four_chainsets": 8,
+    "MH_chains_per_chainset": 4,
+    "MH_burn_per_chain": 1024,
+    "MH_saved_draws_per_chain": 8192,
+    "same_data_observable_prefix_arrays": 128,
+    "same_data_diagnostic_values": 640
+  },
+  "files_sha256": {
+    "LICENSE": "e1053200337d037d9d81620956ce49263117c6540b1c1352c030c220bee05f59",
+    "README.md": "6274e0ccf11d9e4e85d601829254a2d27cbd00f57b1c574197f95ab9030e6abc",
+    "acceptance.json": "45ae8a7c0190c12b5f147fb7e1d912f40a6f5629567a4afa6cda324f11b8a49c",
+    "cases.json": "ec2095c7748dec022e754e3f9898b510f2fd3955d82b52c116374a410c7f3f5a",
+    "diagnostics.py": "95a0379f8e22ade63cfb651046b77c9ebc05da2a85bc36c83996af47f8585e57",
+    "importance.py": "1d26141b94cd29c18888aadfb3af15706569621cca4686971608348a4c9ebb85",
+    "inputs.json": "879308e8a4ebef90bc4f3258381a84a59cedc3f954afbf3a05f2a33fb86586ca",
+    "plot.py": "da83e47efff580f5fe5274e193784e828dc78b7bf35b01cd530c6548d670057a",
+    "pytest.ini": "9f309ec4b3e4ae626f051b4f5ca52d64a8e48fab8c92c9b9fefcfd4ba45cf76e",
+    "references/__init__.py": "a8689f94c1956a7eae793697cb55d79c4ef72c4465e07ba5f868751b848ed767",
+    "references/arviz-qualification.json": "0adc12173e52f84c97cd7cd04aa104cc961ba0d40302ee51fc9fe95fde2c2c6a",
+    "references/arviz-reference.json": "30b5762bcdffb6c1db044bd9e57135760564ba96647cd408c476060cbfd8efc1",
+    "references/diagnostic-fixture.npz": "dda9e4421b41c4ed208238ce43713da629cb0e45b7bad6b4fbc962a6bc4d5c82",
+    "references/generate_arviz.py": "ad3994c2f92e872e9b0ea8b1e6cbfe1c9d73b365508d421f801210692732b0aa",
+    "references/history/original-637-of640.json": "dffd14c767f2c20166dd4c29414d007624cb3d719c08be11ace14f75e790dd81",
+    "references/history/original-diagnostics.py.txt": "4eafd34a24684223b8064b3500fd0ca76c1e483dfb544ca9861bc898c8c0bdb0",
+    "references/history/original-qualifier.py.txt": "e1ceb385c3db8c3d9d43da7f8df7390defc1f9e00e6985e0a080074b584abba6",
+    "references/is-reference.json": "df5d36730b51fd72630e8ea3314001f287c0aa0bf0e84c383e54f2fc59638681",
+    "references/prepare.py": "00e856e1fd8b74d5e517e2025053bf456ce1ac5d9d1cf52da4b5100ddeed25dd",
+    "references/qualification-provenance.json": "add170662a0f7b57b53bd6f6ac42ff043125a6301def3e6dbf1cff838d2f280f",
+    "references/qualify_arviz.py": "ffd3f629646a5f8dafba496ed91563c5e7cd6c8f630bc670e589065c6cf0fbaa",
+    "references/qualify_is.py": "1a5dad7a407f83f61dbafc08013f874c04b97c9e03ed43246faf96362456675d",
+    "references/requirements-arviz-reference.lock.txt": "2d4f8f87fbc8dd4418dc1fa711f30b0f71a6f6bfc6861bbd9851398e84fa0e1c",
+    "references/tail-quantile-fixtures.json": "96b13f933dee89184aeeb2eaf17b33b4334cd71045911bdba40a6021b3c704ad",
+    "requirements-plotting.txt": "fd70c5b60168fd91d504345ec04061037fb9de084f7ec8fa53255486c9c94ab1",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "4267474a1b22f476924b298dcc5e9910ccb5338ce2d8e1920235d3114bbf0e86",
+    "sampler.py": "921317f2716928e8ffc3bd6cbf58b23c3fd962ab53210668c615e96f8fe6159a",
+    "support.py": "55af46d3156475698fc201b8c3034168bae83c44aef0b08a26e305b2a4b6d03b",
+    "test_driver_contract.py": "1d1cbf2006110755c988d7cb665fa7474b4efc893e3c849eec5dad1a330c3c37",
+    "test_estimators.py": "9344fd0be5f90d3f9741e3fa809db1c9a7dd3b442ec9148123336fb02c632e04",
+    "test_fixture_contract.py": "78f8315c9bc8e4037b96acc9fd23bae55cc52c680da0df5fa9d6ea0968a71cd8",
+    "test_tail_quantiles.py": "145cad0ee7ad2dae7279258964a700251d7547f4d16a61a31aca56b008d12c7b"
+  },
+  "shared_pytest_plus_main_deadline_seconds": 120,
+  "runtime_unmeasured": true,
+  "aggregate_local_runtime_target_seconds": 30,
+  "scientific_runtime_limit_is_not_estimate": true,
+  "environment": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "TMPDIR": "OWN_STOCHASTIC_SCRATCH"
+  },
+  "commands": [
+    [
+      "PINNED_PYTHON",
+      "-B",
+      "-W",
+      "error",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "--junitxml=FRESH/tests.xml"
+    ],
+    [
+      "PINNED_PYTHON",
+      "-B",
+      "-W",
+      "error",
+      "run.py",
+      "--input",
+      "inputs.json",
+      "--output",
+      "FRESH/results"
+    ]
+  ],
+  "plot_command": [
+    "PINNED_PYTHON",
+    "plot.py",
+    "--results",
+    "ACTUAL_RESULTS",
+    "--output",
+    "ACTUAL_RESULTS"
+  ],
+  "scope": "Finite fixed stochastic study. SE/nominal intervals do not bound true error or prove general coverage/global convergence. Scalar state-time and sample/state2Dfigures are not two-spatial-dimensional physics. Shared Brownian timing,commonquantile primitive and independent reference roles declared.",
+  "failure_policy": "One fresh main attempt per reviewed contract;retain exact source/input/acceptance/logs/partial fields and allfailed gates,stop before any change or rerun. No threshold/seed/window adjustment to fit results.",
+  "main_execution_authorized": false,
+  "revision": 2,
+  "previous_unexecuted_contract_sha256": "20d527c8e67f11b645a33bdb3925a9e137d18381433e66804ea0757aa03e36fe",
+  "revision_reason": "Potential cross-platform generated-byte identity was too strong. Use exact immutable reference fixture for640same-data diagnostics and separately fresh8chainsets for unchanged physical/mixing gates. No empirical mismatch claimed; all original numeric thresholds/sourcealgorithms/input retained.",
+  "same_data_reference_fixture": {
+    "file": "references/diagnostic-fixture.npz",
+    "sha256": "dda9e4421b41c4ed208238ce43713da629cb0e45b7bad6b4fbc962a6bc4d5c82",
+    "bytes": 16779374,
+    "raw_dataset_count": 128,
+    "diagnostic_comparisons": 640,
+    "fresh_physical_gates_separate": true,
+    "new_reference_generation": false,
+    "new_sampling_before_main": false
+  },
+  "presentation_revision": {
+    "previous_contract_sha256": "474ec778d947499a0e2c769a4ea7b9279ca896b936c1e3b81841f5d1ae9df4ff",
+    "change": "Accept canonical plot--results result.json path as well as resultsdirectory; plotdata/math andallscientificsource/input/acceptance/tests unchanged.",
+    "before_packaging_rerun": true
+  }
+}

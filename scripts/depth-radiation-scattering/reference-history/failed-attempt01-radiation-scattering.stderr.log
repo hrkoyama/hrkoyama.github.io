@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/radiation/radiation-scattering/references/qualify.py", line 34, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/radiation/radiation-scattering/references/qualify.py", line 19, in main
+    name=('linear' if linear else 'constant')+str(cells);r=solution(depth,albedo,cells,linear)
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/radiation/radiation-scattering/references/fredholm.py", line 43, in solution
+    residual=np.array(np.max(abs(matrix@scalar-source))),balance=np.array(abs(1-R-T-A)))
+                                 ~~~~~~^~~~~~~
+RuntimeWarning: divide by zero encountered in matmul

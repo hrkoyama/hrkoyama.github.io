@@ -1,0 +1,72 @@
+{
+  "group": "lbm-curved-boundary",
+  "started_at_utc": "2026-11-23T22:57:04.425394+00:00",
+  "contract_sha256": "52429b7f7551ca77fd7d99762be4d74bd008359f3e3909250caf4cc5d8e97538",
+  "root_review_sha256": "f4119e17be4f836b67760584ae9fabd7bea64c166fa2ca77b0139b69272d9370",
+  "deadline_seconds": 120,
+  "source_bindings": 254,
+  "passed": false,
+  "steps": [
+    {
+      "name": "pytest",
+      "command": [
+        "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/bin/python",
+        "-B",
+        "-W",
+        "error",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--junitxml=/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/main-attempts/lbm-curved-boundary/02/tests.xml"
+      ],
+      "started_at_utc": "2026-11-23T22:57:04.425643+00:00",
+      "allowed_seconds": 119.99993291699502,
+      "timed_out": false,
+      "returncode": 0,
+      "elapsed_seconds": 1.8850903749989811,
+      "completed_at_utc": "2026-11-23T22:57:06.310740+00:00"
+    },
+    {
+      "name": "main",
+      "command": [
+        "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/bin/python",
+        "-B",
+        "-W",
+        "error",
+        "run.py",
+        "--input",
+        "inputs.json",
+        "--output",
+        "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/main-attempts/lbm-curved-boundary/02/results"
+      ],
+      "started_at_utc": "2026-11-23T22:57:06.311237+00:00",
+      "allowed_seconds": 118.11434000000008,
+      "timed_out": false,
+      "returncode": 1,
+      "elapsed_seconds": 36.506039249987225,
+      "completed_at_utc": "2026-11-23T22:57:42.817314+00:00"
+    }
+  ],
+  "failure": {
+    "type": "RuntimeError",
+    "message": "main failed; retained without retry"
+  },
+  "pytest": {
+    "tests": 28,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "actual_runs": 8,
+  "actual_gates": 113,
+  "case_ids": [
+    "lbm-annular-couette-control",
+    "lbm-cylinder-re20"
+  ],
+  "result_passed": false,
+  "source_posthash_mismatches": [],
+  "elapsed_seconds": 38.41050037500099,
+  "completed_at_utc": "2026-11-23T22:57:42.836107+00:00"
+}

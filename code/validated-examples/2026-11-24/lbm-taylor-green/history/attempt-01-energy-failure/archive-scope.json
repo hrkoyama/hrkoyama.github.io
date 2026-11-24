@@ -1,0 +1,10 @@
+{
+  "state": "FAILED_NUMERICAL_ATTEMPT_RETAINED",
+  "source_test_pathmap": {
+    "source/archived_test_lbm.py.txt": "source/test_lbm.py"
+  },
+  "all6_main_evolutions_retained": true,
+  "all79_gates_retained": true,
+  "sole_failure": "N16meanenergy.0500180623>.03",
+  "unchanged_acceptance": true
+}

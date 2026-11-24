@@ -1,3 +1,4 @@
+import {problemCount,examplesAddedAfterBatch37} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,existsSync} from 'node:fs';
@@ -16,8 +17,8 @@ const supplementalProblemIds=['matrix-factorization','krylov-spectrum','quadratu
 test('all 22 runnable representative problems have one reproduction record within the 83-problem inventory',()=>{
   assert.equal(registry.examples.length,22);
   assert.deepEqual(registry.examples.map(x=>x.problem_id).sort(),[...targets].sort());
-  assert.equal(json('catalog/atlas-test-problems.json').problems.length,113);
-  assert.equal(json('numerical-methods-atlas/coverage.json').counts.test_problems,113);
+  assert.equal(json('catalog/atlas-test-problems.json').problems.length,problemCount);
+  assert.equal(json('numerical-methods-atlas/coverage.json').counts.test_problems,problemCount);
   assert.equal(registry.examples.filter(x=>x.release.family==='numerical-methods-atlas'&&x.release.version==='2026-11-22').length,12);
   for(const id of ['barnes-hut','hydrogenic-atoms','helium-ground-state'])assert.equal(registry.examples.find(x=>x.id===id).release.version,'2026-11-21');
 });
@@ -27,9 +28,9 @@ test('sixteen additional physical problems bind to successful immutable suppleme
   const mapping=json('catalog/atlas-depth-expansion.json').case_problem_ids;
   const selected=inventory.filter(x=>supplementalProblemIds.includes(x.id));
   assert.equal(selected.length,16);
-  const earlier=inventory.filter(x=>!['noh','sedov','guderley','zalesak','swashes-topography','dry-bed-dam-break','lid-driven-cavity','wall-manufactured','level-set-circle', 'kh-initial-growth', 'rt-initial-growth', 'lshape-fem', 'annular-viscous-mms', 'poisson-neumann', 'poisson-robin', 'ale-nonuniform-transport', 'cgrid-rotating-wave', 'srhd-collision', 'srmhd-alfven','checkerboard-diffusion','rotated-anisotropic-diffusion','neutral-slab-yb','fmm3d-inverse-r','gravity-kepler','gravity-plummer-short','thermal-landau-damping','thermal-two-stream','dsmc-couette','dsmc-fourier','dsmc-planar-shock'].includes(x.id));
+  const earlier=inventory.filter(x=>!['noh','sedov','guderley','zalesak','swashes-topography','dry-bed-dam-break','lid-driven-cavity','wall-manufactured','level-set-circle', 'kh-initial-growth', 'rt-initial-growth', 'lshape-fem', 'annular-viscous-mms', 'poisson-neumann', 'poisson-robin', 'ale-nonuniform-transport', 'cgrid-rotating-wave', 'srhd-collision', 'srmhd-alfven','checkerboard-diffusion','rotated-anisotropic-diffusion','neutral-slab-yb','fmm3d-inverse-r','gravity-kepler','gravity-plummer-short','thermal-landau-damping','thermal-two-stream','dsmc-couette','dsmc-fourier','dsmc-planar-shock',...examplesAddedAfterBatch37].includes(x.id));
   assert.equal(earlier.length-selected.length,67,'the historical representative/supplemental distinction remains intact');
-  assert.equal(inventory.filter(x=>!['zalesak','swashes-topography','dry-bed-dam-break','lid-driven-cavity','wall-manufactured','level-set-circle', 'kh-initial-growth', 'rt-initial-growth', 'lshape-fem', 'annular-viscous-mms', 'poisson-neumann', 'poisson-robin', 'ale-nonuniform-transport', 'cgrid-rotating-wave', 'srhd-collision', 'srmhd-alfven','checkerboard-diffusion','rotated-anisotropic-diffusion','neutral-slab-yb','fmm3d-inverse-r','gravity-kepler','gravity-plummer-short','thermal-landau-damping','thermal-two-stream','dsmc-couette','dsmc-fourier','dsmc-planar-shock'].includes(x.id)).length-selected.length,70);
+  assert.equal(inventory.filter(x=>!['zalesak','swashes-topography','dry-bed-dam-break','lid-driven-cavity','wall-manufactured','level-set-circle', 'kh-initial-growth', 'rt-initial-growth', 'lshape-fem', 'annular-viscous-mms', 'poisson-neumann', 'poisson-robin', 'ale-nonuniform-transport', 'cgrid-rotating-wave', 'srhd-collision', 'srmhd-alfven','checkerboard-diffusion','rotated-anisotropic-diffusion','neutral-slab-yb','fmm3d-inverse-r','gravity-kepler','gravity-plummer-short','thermal-landau-damping','thermal-two-stream','dsmc-couette','dsmc-fourier','dsmc-planar-shock',...examplesAddedAfterBatch37].includes(x.id)).length-selected.length,70);
   assert.equal(inventory.filter(x=>x.id==='noh').length,1);
   assert.equal(mapping['noh-shock'],'noh');
   assert.equal(mapping.ewald,mapping.spme);assert.equal(mapping['glm-fourier-mode'],null);

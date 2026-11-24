@@ -1,0 +1,22 @@
+{
+  "command": [
+    "c++",
+    "-O2",
+    "-std=c++17",
+    "-ffp-contract=off",
+    "-fPIC",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-dynamiclib",
+    "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/lbm-taylor-green/kernel.cpp",
+    "-o",
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch38-47/lbm/atlas-lbm-73xr8wzd/kernel.dylib"
+  ],
+  "returncode": 0,
+  "stdout": "",
+  "stderr": "",
+  "timed_out": false,
+  "timeout_seconds": 15,
+  "source_sha256": "f8639d0c614e36571ceb96a7352b0e55f986a538274a2e1a9e6480da14fe2241"
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "group": "lbm-curved-boundary",
+  "annulus": {
+    "N": [
+      40,
+      60,
+      80
+    ],
+    "tau": 0.7,
+    "nu": 0.01,
+    "inner_speed": 0.02,
+    "T": 4
+  },
+  "cylinder": {
+    "dx": [
+      0.01,
+      0.005
+    ],
+    "nu": 0.001,
+    "peak_U": 0.3,
+    "mean_U": 0.2,
+    "T": 30,
+    "late_checkpoints": [
+      26,
+      28,
+      30
+    ]
+  }
+}

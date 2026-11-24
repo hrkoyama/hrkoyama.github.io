@@ -1,6 +1,6 @@
 # 更新と復元の手順
 
-このページは現行の保守ガイド。過去の検証・追加経緯は[保存履歴](docs/maintenance-history/README.md)に分離した。旧原文と各配布版の成功・失敗記録を保持し、過去の件数を現在の総数へ書き換えない。
+このページは現行の保守ガイド。過去の検証・追加経緯は[保存履歴](docs/maintenance-history/README.md)に分離した。旧原文と各配布版の成功・失敗記録を保持し、過去の件数を現在の総数へ書き換えない。 [候補28〜37の公開確認補遺](docs/maintenance-history/batch28-37-public-confirmation-2026-11-24.md)も参照。
 
 ## 公開先と保持するもの
 
@@ -65,8 +65,8 @@ PY
 
 1. 利用者の最新指示と、教材元ルートにあるローカル専用の `LOCAL-WORK-QUEUE.md`、`outputs/atlas-private-work-queue.json`、指定された進捗を読む。実際のHEAD・公開/CIレシートで状態を照合する。準備・実装・実行・公開を区別する。これら私用ファイルをpublisher・サイト・ZIPへ取り込まない。
 2. `atlas-search-publisher/` で `git status`、`git remote get-url --push origin`、`git fetch origin main` を確認する。他作業があれば、最新のHR `origin/main` から `codex/` ブランチの隔離worktreeを作り、今回の変更だけを編集する。既存作業コピーをresetしない。
-3. 正本・本文を編集し、必要な変更をステージする。**索引に入る本文・catalog・frontend・生成器が変わるときだけ、まとめた対象で `python3 scripts/prepare-indexes.py` を明示実行する。** 原則1日1回程度に集約し、通常コミットや変更のない対象では全再生成しない。公開前の変更・修正・鮮度未確認は、理由・実際の成功時刻・対象tree・ログを私用キューへ記録する例外とする。
-4. `prepare-indexes.py` はステージしたsnapshotから隔離生成し、生成差分をステージする。生成中の実質的なindex変更・生成先の未ステージ変更を拒否する。stat/cacheだけの更新は許す。生成中は元の内容・ステージを変更せず、終了後に `git diff --cached` を読む。
+3. 正本・本文を編集し、必要な変更をステージする。**索引に入る本文・catalog・frontend・生成器が変わるときだけ、対象をまとめて明示生成する。** 容量制約時は下記の既存CIによる候補生成を使い、ローカル全生成を重ねない。ローカル生成を選ぶ場合は `python3 scripts/prepare-indexes.py` を使う。原則1日1回程度に集約し、通常コミットや変更のない対象では全再生成しない。公開前の変更・修正・鮮度未確認は、理由・実際の成功時刻・対象tree・ログを私用キューへ記録する例外とする。
+4. ローカルの `prepare-indexes.py` はステージしたsnapshotから隔離生成し、生成差分をステージする。生成中の実質的なindex変更・生成先の未ステージ変更を拒否する。stat/cacheだけの更新は許す。生成中は元の内容・ステージを変更せず、終了後に `git diff --cached` を読む。CI生成を選ぶ場合は、次節の入力tree・patch・出力tree照合で取り込む。
 5. 現行の `MAINTENANCE.md`・ルート `README.md`・`docs/` のMarkdownだけの変更は、検索入力の公開HTML・明示metadataを変えない。全索引のローカル再生成を省く理由を記録し、同じ候補SHAのCIによる `--check` で鮮度を照合する。入力外という判断を将来の別のMarkdown生成元へ無条件で広げない。
 6. 下の静的検査とNode検査、差分・保存物の照合を行う。画面変更時は日本語・英語、狭幅・標準幅の実画面と対象図を確認する。一時previewは自分のプロセスを特定して停止し、変更したviewportも戻す。
 
@@ -83,6 +83,21 @@ CIの基準環境は **Python 3.12、Node.js 22**。上の静的検査・Node検
 ローカルのブラウザー検査が残す自分のHTML reportは、次の直接のsite検査前に作業コピー外の一時領域へ保存する。Gitでignoreされていても静的walkerに見えるためで、他作業のファイルを消したり検査対象を緩めたりしない。
 
 pre-commitは既定で全索引生成をskipする。`ATLAS_REFRESH_INDEXES_ON_COMMIT=1` は実際にprepareを起動するopt-in。日付で自動skipする機構や私用キューを読むガードはない。通常コミットごとの有効化はしない。CIの `prepare-indexes.py --check` は隔離再生成による鮮度照合で、日次のローカル更新とは別に毎回必要。
+
+容量制約に対応する今回の運用では、このローカル全生成のopt-inも使わず、既定skipを保って次節のGitHub `candidate-build` を使う。既存のopt-in実装は保持する。
+
+## 容量制約時の既存CIによる候補生成
+
+既存の **Atlas cold-search performance verification** の `candidate-build` を、HRの固定した `codex/` 候補に明示指定する。新workflow・定期処理・追加worktreeは作らず、通常の全生成をGitHub上で一度行う。公開mainへの更新ではない。別作業の公開leaseがあれば、その必須確認後まで候補push・統合を直列に待つ。
+
+1. 正本の変更を未公開のsource checkpointとしてコミットし、実際のsource SHAとtree、clean、HRのpush先を確認する。科学配布の版・固定入力・参照・図・ZIPは再生成しない。索引が古いsource checkpointをmainへ送らない。
+2. 既存候補CIを確認してから `candidate-build` を一回だけ起動する。`[atlas-search-build]` はjobの条件であり、pushのpathsフィルターを越えない。catalog等だけの変更では既存の明示dispatchを使う。mainではこの生成stageは動かない。操作例と根拠は[検索性能の手順](docs/search-performance.md#容量制約時の候補生成と取得)を参照する。
+3. 同source SHA・候補ref・run attemptのartifactから、`generation.json`、`prepare.log`、`generated.patch` の必要メンバーだけをHTTP Rangeで取得する。大きなartifact ZIP全体やtrace・画像を一括保存しない。patchはCRC検査と復号後SHA-256確認を行いながら圧縮保存できる。取得helperは適用・stage・dispatchをしないものを使う。
+4. `passed`、`source_commit`、`input_tree`、patch/logのSHA、変更パスを照合する。`code/`・ZIP・科学ソース・私用ファイルを含む差分は取り込まない。許可した生成物の差分をreviewし、patchの保存分だけでなく生成物・Git blob・一時indexの追加分も容量予算へ含める。必要量が不明なら適用前に止める。
+5. 対象のHEAD/treeとindexがそのsource checkpointのままcleanであることを再確認する。圧縮patchを標準入力から `git apply --index --binary --check` で確認してから適用し、`git write-tree` と `generation.json` の `output_tree` を完全一致させる。失敗時はreceipt・ログ・部分取得物を保持し、別のsourceへ同じpatchを流用しない。
+6. 生成差分をreview・コミットしてHR候補へpushし、最終候補の同SHAで **Public site checks** の標準 `prepare --check`・全Node検査・日英4ブラウザー条件を確認する。初回source CIの索引未更新失敗、遠隔生成の成功、最終候補全CIの成功を別記する。容量制約を理由に検査を除外しない。生成の実日時・source/input/output tree・run・圧縮patchと復号SHA・ログを私用記録へ残す。
+
+この経路では、手元の全snapshot再生成や全Node fixtureの展開を繰り返さず、最終候補のGitHub全CIで同じ検査を完走させる。必要な差分・軽量検査・保存物照合は手元で行う。artifactは恒久バックアップではないので、小さい生成receipt・ログ・検証済み圧縮patchを保持する。公開後のPages・HTTP・実画面・公開ZIP Linux追試は下記のとおり省略しない。
 
 ## 候補固定・公開・実配信の確認
 

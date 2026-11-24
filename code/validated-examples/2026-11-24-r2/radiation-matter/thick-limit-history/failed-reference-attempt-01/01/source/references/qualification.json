@@ -1,0 +1,388 @@
+{
+  "passed": true,
+  "checks": {
+    "diffusion/0/0/finite-positive": true,
+    "diffusion/0/0/independent-tolerance-sensitivity": true,
+    "diffusion/0/1/finite-positive": true,
+    "diffusion/0/1/independent-tolerance-sensitivity": true,
+    "diffusion/0/2/finite-positive": true,
+    "diffusion/0/2/independent-tolerance-sensitivity": true,
+    "diffusion/0/3/finite-positive": true,
+    "diffusion/0/3/independent-tolerance-sensitivity": true,
+    "diffusion/0/4/finite-positive": true,
+    "diffusion/0/4/independent-tolerance-sensitivity": true,
+    "diffusion/0/5/finite-positive": true,
+    "diffusion/0/5/independent-tolerance-sensitivity": true,
+    "diffusion/0/6/finite-positive": true,
+    "diffusion/0/6/independent-tolerance-sensitivity": true,
+    "diffusion/1/0/finite-positive": true,
+    "diffusion/1/0/independent-tolerance-sensitivity": true,
+    "diffusion/1/1/finite-positive": true,
+    "diffusion/1/1/independent-tolerance-sensitivity": true,
+    "diffusion/1/2/finite-positive": true,
+    "diffusion/1/2/independent-tolerance-sensitivity": true,
+    "diffusion/1/3/finite-positive": true,
+    "diffusion/1/3/independent-tolerance-sensitivity": true,
+    "diffusion/1/4/finite-positive": true,
+    "diffusion/1/4/independent-tolerance-sensitivity": true,
+    "diffusion/1/5/finite-positive": true,
+    "diffusion/1/5/independent-tolerance-sensitivity": true,
+    "diffusion/1/6/finite-positive": true,
+    "diffusion/1/6/independent-tolerance-sensitivity": true,
+    "diffusion/2/0/finite-positive": true,
+    "diffusion/2/0/independent-tolerance-sensitivity": true,
+    "diffusion/2/1/finite-positive": true,
+    "diffusion/2/1/independent-tolerance-sensitivity": true,
+    "diffusion/2/2/finite-positive": true,
+    "diffusion/2/2/independent-tolerance-sensitivity": true,
+    "diffusion/2/3/finite-positive": true,
+    "diffusion/2/3/independent-tolerance-sensitivity": true,
+    "diffusion/2/4/finite-positive": true,
+    "diffusion/2/4/independent-tolerance-sensitivity": true,
+    "diffusion/2/5/finite-positive": true,
+    "diffusion/2/5/independent-tolerance-sensitivity": true,
+    "diffusion/2/6/finite-positive": true,
+    "diffusion/2/6/independent-tolerance-sensitivity": true,
+    "diffusion/PDE/(0.5, 1.0)": true,
+    "diffusion/PDE/(1.5, 1.0)": true,
+    "diffusion/PDE/(0.5, 3.0)": true,
+    "diffusion/Robin/1.0": true,
+    "diffusion/Robin/3.0": true,
+    "transport/shape": true,
+    "transport/finite-positive": true,
+    "transport/unique-ordered-coordinates": true,
+    "transport/distinct-radiation-material": true,
+    "transport/closed-homogeneous-normalization/0": true,
+    "transport/closed-homogeneous-normalization/1": true,
+    "transport/causal-zero": true
+  },
+  "check_count": 54,
+  "details": [
+    {
+      "name": "diffusion/0/0/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "diffusion/0/0/independent-tolerance-sensitivity",
+      "value": 1.975347874161315e-07,
+      "bound": 2e-05,
+      "passed": true
+    },
+    {
+      "name": "diffusion/0/1/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "diffusion/0/1/independent-tolerance-sensitivity",
+      "value": 1.362803030702242e-07,
+      "bound": 2e-05,
+      "passed": true
+    },
+    {
+      "name": "diffusion/0/2/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "diffusion/0/2/independent-tolerance-sensitivity",
+      "value": 1.0919800591535633e-08,
+      "bound": 2e-05,
+      "passed": true
+    },
+    {
+      "name": "diffusion/0/3/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "diffusion/0/3/independent-tolerance-sensitivity",
+      "value": 1.658226304879218e-08,
+      "bound": 2e-05,
+      "passed": true
+    },
+    {
+      "name": "diffusion/0/4/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "diffusion/0/4/independent-tolerance-sensitivity",
+      "value": 3.2231108019944305e-08,
+      "bound": 2e-05,
+      "passed": true
+    },
+    {
+      "name": "diffusion/0/5/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "diffusion/0/5/independent-tolerance-sensitivity",
+      "value": 5.426447425085912e-08,
+      "bound": 2e-05,
+      "passed": true
+    },
+    {
+      "name": "diffusion/0/6/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "diffusion/0/6/independent-tolerance-sensitivity",
+      "value": 7.669507195260804e-08,
+      "bound": 2e-05,
+      "passed": true
+    },
+    {
+      "name": "diffusion/1/0/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "diffusion/1/0/independent-tolerance-sensitivity",
+      "value": 1.9430809874987354e-07,
+      "bound": 2e-05,
+      "passed": true
+    },
+    {
+      "name": "diffusion/1/1/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "diffusion/1/1/independent-tolerance-sensitivity",
+      "value": 1.9948682139503404e-07,
+      "bound": 2e-05,
+      "passed": true
+    },
+    {
+      "name": "diffusion/1/2/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "diffusion/1/2/independent-tolerance-sensitivity",
+      "value": 1.6250714977850134e-07,
+      "bound": 2e-05,
+      "passed": true
+    },
+    {
+      "name": "diffusion/1/3/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "diffusion/1/3/independent-tolerance-sensitivity",
+      "value": 2.3742087428002545e-08,
+      "bound": 2e-05,
+      "passed": true
+    },
+    {
+      "name": "diffusion/1/4/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "diffusion/1/4/independent-tolerance-sensitivity",
+      "value": 2.890508921105095e-08,
+      "bound": 2e-05,
+      "passed": true
+    },
+    {
+      "name": "diffusion/1/5/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "diffusion/1/5/independent-tolerance-sensitivity",
+      "value": 4.4670151130052176e-08,
+      "bound": 2e-05,
+      "passed": true
+    },
+    {
+      "name": "diffusion/1/6/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "diffusion/1/6/independent-tolerance-sensitivity",
+      "value": 6.366294586821774e-08,
+      "bound": 2e-05,
+      "passed": true
+    },
+    {
+      "name": "diffusion/2/0/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "diffusion/2/0/independent-tolerance-sensitivity",
+      "value": 1.2285826378466425e-07,
+      "bound": 2e-05,
+      "passed": true
+    },
+    {
+      "name": "diffusion/2/1/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "diffusion/2/1/independent-tolerance-sensitivity",
+      "value": 1.4588780239410681e-07,
+      "bound": 2e-05,
+      "passed": true
+    },
+    {
+      "name": "diffusion/2/2/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "diffusion/2/2/independent-tolerance-sensitivity",
+      "value": 1.7858327483466496e-07,
+      "bound": 2e-05,
+      "passed": true
+    },
+    {
+      "name": "diffusion/2/3/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "diffusion/2/3/independent-tolerance-sensitivity",
+      "value": 2.0839678921413807e-07,
+      "bound": 2e-05,
+      "passed": true
+    },
+    {
+      "name": "diffusion/2/4/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "diffusion/2/4/independent-tolerance-sensitivity",
+      "value": 2.178543972580771e-07,
+      "bound": 2e-05,
+      "passed": true
+    },
+    {
+      "name": "diffusion/2/5/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "diffusion/2/5/independent-tolerance-sensitivity",
+      "value": 1.7076951438176058e-07,
+      "bound": 2e-05,
+      "passed": true
+    },
+    {
+      "name": "diffusion/2/6/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "diffusion/2/6/independent-tolerance-sensitivity",
+      "value": 1.1474669831836298e-07,
+      "bound": 2e-05,
+      "passed": true
+    },
+    {
+      "name": "diffusion/PDE/(0.5, 1.0)",
+      "value": 2.8954151853888277e-07,
+      "bound": 0.001,
+      "passed": true
+    },
+    {
+      "name": "diffusion/PDE/(1.5, 1.0)",
+      "value": 7.7484052513066e-07,
+      "bound": 0.001,
+      "passed": true
+    },
+    {
+      "name": "diffusion/PDE/(0.5, 3.0)",
+      "value": 8.660233419277574e-09,
+      "bound": 0.001,
+      "passed": true
+    },
+    {
+      "name": "diffusion/Robin/1.0",
+      "value": 1.2147925153582761e-06,
+      "bound": 0.001,
+      "passed": true
+    },
+    {
+      "name": "diffusion/Robin/3.0",
+      "value": 8.402819506869719e-07,
+      "bound": 0.001,
+      "passed": true
+    },
+    {
+      "name": "transport/shape",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "transport/finite-positive",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "transport/unique-ordered-coordinates",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "transport/distinct-radiation-material",
+      "value": 0.0,
+      "bound": 0.0,
+      "passed": true
+    },
+    {
+      "name": "transport/closed-homogeneous-normalization/0",
+      "value": 2.731173050453395e-05,
+      "bound": 0.0002,
+      "passed": true
+    },
+    {
+      "name": "transport/closed-homogeneous-normalization/1",
+      "value": 3.419115698483077e-05,
+      "bound": 0.0002,
+      "passed": true
+    },
+    {
+      "name": "transport/causal-zero",
+      "value": 0.0,
+      "bound": 5e-05,
+      "passed": true
+    }
+  ],
+  "scope": "1996official pinned integral sensitivity/PDE and1997author-provided analytical benchmark table. Original1997table not directly inspected; no primary S_Nreference generation.",
+  "PDE_primary_runs": 0
+}

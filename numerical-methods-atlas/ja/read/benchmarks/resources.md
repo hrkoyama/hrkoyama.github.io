@@ -253,6 +253,14 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/benchmarks/
   availability: run
 
   球対称Euler方程式を半径方向の有限体積法で解く軽量例です。固定した半径0.03の領域に総エネルギー1を与え、128・256・512セルで点爆発の相似参照からの差と保存収支を測ります。図は1次元球対称データの断面表示で、2次元Cartesian計算ではありません。
+- [2D吸収影と保存的M1輸送](<https://hrkoyama.github.io/numerical-methods-atlas/validation/shadow-absorber2d/?lang=ja>)
+  availability: run
+
+  実際の円形吸収体の影を、特性線の円弦減衰・角度輸送・M1で比較します。
+- [2D反向beamとM1閉包の情報損失](<https://hrkoyama.github.io/numerical-methods-atlas/validation/opposing-beams2d/?lang=ja>)
+  availability: run
+
+  保存した反向packetの実進行からM1の限界を示し、別の閉M1MMSで数値実装を検証します。
 - [Double Mach反射：多格子の軽量検証](<https://hrkoyama.github.io/numerical-methods-atlas/validation/double-mach-reflection/?lang=ja>)
   availability: run
 

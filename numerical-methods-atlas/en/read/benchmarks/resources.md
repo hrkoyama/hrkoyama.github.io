@@ -253,6 +253,14 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   A lightweight spherical-radial Euler finite-volume example deposits unit energy inside fixed radius0.03. Three grids of128/256/512 radial cells measure differences from a point-blast similarity reference and conservation budgets. The picture is a section display of1D spherical data, not a2D Cartesian calculation.
+- [Two-dimensional absorber shadow and M1 transport](<https://hrkoyama.github.io/numerical-methods-atlas/validation/shadow-absorber2d/?lang=en>)
+  availability: run
+
+  Compare the actual evolved circular-absorber shadow with characteristic chord attenuation, signed-angle transport and nonlinear M1.
+- [Opposing beams and information loss in the M1 closure](<https://hrkoyama.github.io/numerical-methods-atlas/validation/opposing-beams2d/?lang=en>)
+  availability: run
+
+  Show the M1 limitation in actual opposing-packet evolution; validate the same closed M1 solver independently with a manufactured solution.
 - [Double Mach reflection: lightweight grid verification](<https://hrkoyama.github.io/numerical-methods-atlas/validation/double-mach-reflection/?lang=en>)
   availability: run
 

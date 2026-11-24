@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/execute-curved-r3-once.py", line 49, in main
+    if code!=0 or row['timed_out']:raise RuntimeError(name+' failed; retained without retry')
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: main failed; retained without retry

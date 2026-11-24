@@ -1,0 +1,4744 @@
+{
+  "passed": true,
+  "check_count": 762,
+  "checks": {
+    "interior/0/axis0/independent-pressure-flux": true,
+    "interior/0/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/0/axis0/independent-quadratic-cone-root": true,
+    "interior/0/axis0/selected-causal-speed": true,
+    "interior/0/axis0/plus-split-cone": true,
+    "interior/0/axis0/minus-split-cone": true,
+    "interior/0/axis1/independent-pressure-flux": true,
+    "interior/0/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/0/axis1/independent-quadratic-cone-root": true,
+    "interior/0/axis1/selected-causal-speed": true,
+    "interior/0/axis1/plus-split-cone": true,
+    "interior/0/axis1/minus-split-cone": true,
+    "interior/1/axis0/independent-pressure-flux": true,
+    "interior/1/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/1/axis0/independent-quadratic-cone-root": true,
+    "interior/1/axis0/selected-causal-speed": true,
+    "interior/1/axis0/plus-split-cone": true,
+    "interior/1/axis0/minus-split-cone": true,
+    "interior/1/axis1/independent-pressure-flux": true,
+    "interior/1/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/1/axis1/independent-quadratic-cone-root": true,
+    "interior/1/axis1/selected-causal-speed": true,
+    "interior/1/axis1/plus-split-cone": true,
+    "interior/1/axis1/minus-split-cone": true,
+    "interior/2/axis0/independent-pressure-flux": true,
+    "interior/2/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/2/axis0/independent-quadratic-cone-root": true,
+    "interior/2/axis0/selected-causal-speed": true,
+    "interior/2/axis0/plus-split-cone": true,
+    "interior/2/axis0/minus-split-cone": true,
+    "interior/2/axis1/independent-pressure-flux": true,
+    "interior/2/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/2/axis1/independent-quadratic-cone-root": true,
+    "interior/2/axis1/selected-causal-speed": true,
+    "interior/2/axis1/plus-split-cone": true,
+    "interior/2/axis1/minus-split-cone": true,
+    "interior/3/axis0/independent-pressure-flux": true,
+    "interior/3/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/3/axis0/independent-quadratic-cone-root": true,
+    "interior/3/axis0/selected-causal-speed": true,
+    "interior/3/axis0/plus-split-cone": true,
+    "interior/3/axis0/minus-split-cone": true,
+    "interior/3/axis1/independent-pressure-flux": true,
+    "interior/3/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/3/axis1/independent-quadratic-cone-root": true,
+    "interior/3/axis1/selected-causal-speed": true,
+    "interior/3/axis1/plus-split-cone": true,
+    "interior/3/axis1/minus-split-cone": true,
+    "interior/4/axis0/independent-pressure-flux": true,
+    "interior/4/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/4/axis0/independent-quadratic-cone-root": true,
+    "interior/4/axis0/selected-causal-speed": true,
+    "interior/4/axis0/plus-split-cone": true,
+    "interior/4/axis0/minus-split-cone": true,
+    "interior/4/axis1/independent-pressure-flux": true,
+    "interior/4/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/4/axis1/independent-quadratic-cone-root": true,
+    "interior/4/axis1/selected-causal-speed": true,
+    "interior/4/axis1/plus-split-cone": true,
+    "interior/4/axis1/minus-split-cone": true,
+    "interior/5/axis0/independent-pressure-flux": true,
+    "interior/5/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/5/axis0/independent-quadratic-cone-root": true,
+    "interior/5/axis0/selected-causal-speed": true,
+    "interior/5/axis0/plus-split-cone": true,
+    "interior/5/axis0/minus-split-cone": true,
+    "interior/5/axis1/independent-pressure-flux": true,
+    "interior/5/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/5/axis1/independent-quadratic-cone-root": true,
+    "interior/5/axis1/selected-causal-speed": true,
+    "interior/5/axis1/plus-split-cone": true,
+    "interior/5/axis1/minus-split-cone": true,
+    "interior/6/axis0/independent-pressure-flux": true,
+    "interior/6/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/6/axis0/independent-quadratic-cone-root": true,
+    "interior/6/axis0/selected-causal-speed": true,
+    "interior/6/axis0/plus-split-cone": true,
+    "interior/6/axis0/minus-split-cone": true,
+    "interior/6/axis1/independent-pressure-flux": true,
+    "interior/6/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/6/axis1/independent-quadratic-cone-root": true,
+    "interior/6/axis1/selected-causal-speed": true,
+    "interior/6/axis1/plus-split-cone": true,
+    "interior/6/axis1/minus-split-cone": true,
+    "interior/7/axis0/independent-pressure-flux": true,
+    "interior/7/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/7/axis0/independent-quadratic-cone-root": true,
+    "interior/7/axis0/selected-causal-speed": true,
+    "interior/7/axis0/plus-split-cone": true,
+    "interior/7/axis0/minus-split-cone": true,
+    "interior/7/axis1/independent-pressure-flux": true,
+    "interior/7/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/7/axis1/independent-quadratic-cone-root": true,
+    "interior/7/axis1/selected-causal-speed": true,
+    "interior/7/axis1/plus-split-cone": true,
+    "interior/7/axis1/minus-split-cone": true,
+    "interior/8/axis0/independent-pressure-flux": true,
+    "interior/8/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/8/axis0/independent-quadratic-cone-root": true,
+    "interior/8/axis0/selected-causal-speed": true,
+    "interior/8/axis0/plus-split-cone": true,
+    "interior/8/axis0/minus-split-cone": true,
+    "interior/8/axis1/independent-pressure-flux": true,
+    "interior/8/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/8/axis1/independent-quadratic-cone-root": true,
+    "interior/8/axis1/selected-causal-speed": true,
+    "interior/8/axis1/plus-split-cone": true,
+    "interior/8/axis1/minus-split-cone": true,
+    "interior/9/axis0/independent-pressure-flux": true,
+    "interior/9/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/9/axis0/independent-quadratic-cone-root": true,
+    "interior/9/axis0/selected-causal-speed": true,
+    "interior/9/axis0/plus-split-cone": true,
+    "interior/9/axis0/minus-split-cone": true,
+    "interior/9/axis1/independent-pressure-flux": true,
+    "interior/9/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/9/axis1/independent-quadratic-cone-root": true,
+    "interior/9/axis1/selected-causal-speed": true,
+    "interior/9/axis1/plus-split-cone": true,
+    "interior/9/axis1/minus-split-cone": true,
+    "interior/10/axis0/independent-pressure-flux": true,
+    "interior/10/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/10/axis0/independent-quadratic-cone-root": true,
+    "interior/10/axis0/selected-causal-speed": true,
+    "interior/10/axis0/plus-split-cone": true,
+    "interior/10/axis0/minus-split-cone": true,
+    "interior/10/axis1/independent-pressure-flux": true,
+    "interior/10/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/10/axis1/independent-quadratic-cone-root": true,
+    "interior/10/axis1/selected-causal-speed": true,
+    "interior/10/axis1/plus-split-cone": true,
+    "interior/10/axis1/minus-split-cone": true,
+    "interior/11/axis0/independent-pressure-flux": true,
+    "interior/11/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/11/axis0/independent-quadratic-cone-root": true,
+    "interior/11/axis0/selected-causal-speed": true,
+    "interior/11/axis0/plus-split-cone": true,
+    "interior/11/axis0/minus-split-cone": true,
+    "interior/11/axis1/independent-pressure-flux": true,
+    "interior/11/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/11/axis1/independent-quadratic-cone-root": true,
+    "interior/11/axis1/selected-causal-speed": true,
+    "interior/11/axis1/plus-split-cone": true,
+    "interior/11/axis1/minus-split-cone": true,
+    "interior/12/axis0/independent-pressure-flux": true,
+    "interior/12/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/12/axis0/independent-quadratic-cone-root": true,
+    "interior/12/axis0/selected-causal-speed": true,
+    "interior/12/axis0/plus-split-cone": true,
+    "interior/12/axis0/minus-split-cone": true,
+    "interior/12/axis1/independent-pressure-flux": true,
+    "interior/12/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/12/axis1/independent-quadratic-cone-root": true,
+    "interior/12/axis1/selected-causal-speed": true,
+    "interior/12/axis1/plus-split-cone": true,
+    "interior/12/axis1/minus-split-cone": true,
+    "interior/13/axis0/independent-pressure-flux": true,
+    "interior/13/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/13/axis0/independent-quadratic-cone-root": true,
+    "interior/13/axis0/selected-causal-speed": true,
+    "interior/13/axis0/plus-split-cone": true,
+    "interior/13/axis0/minus-split-cone": true,
+    "interior/13/axis1/independent-pressure-flux": true,
+    "interior/13/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/13/axis1/independent-quadratic-cone-root": true,
+    "interior/13/axis1/selected-causal-speed": true,
+    "interior/13/axis1/plus-split-cone": true,
+    "interior/13/axis1/minus-split-cone": true,
+    "interior/14/axis0/independent-pressure-flux": true,
+    "interior/14/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/14/axis0/independent-quadratic-cone-root": true,
+    "interior/14/axis0/selected-causal-speed": true,
+    "interior/14/axis0/plus-split-cone": true,
+    "interior/14/axis0/minus-split-cone": true,
+    "interior/14/axis1/independent-pressure-flux": true,
+    "interior/14/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/14/axis1/independent-quadratic-cone-root": true,
+    "interior/14/axis1/selected-causal-speed": true,
+    "interior/14/axis1/plus-split-cone": true,
+    "interior/14/axis1/minus-split-cone": true,
+    "interior/15/axis0/independent-pressure-flux": true,
+    "interior/15/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/15/axis0/independent-quadratic-cone-root": true,
+    "interior/15/axis0/selected-causal-speed": true,
+    "interior/15/axis0/plus-split-cone": true,
+    "interior/15/axis0/minus-split-cone": true,
+    "interior/15/axis1/independent-pressure-flux": true,
+    "interior/15/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/15/axis1/independent-quadratic-cone-root": true,
+    "interior/15/axis1/selected-causal-speed": true,
+    "interior/15/axis1/plus-split-cone": true,
+    "interior/15/axis1/minus-split-cone": true,
+    "interior/16/axis0/independent-pressure-flux": true,
+    "interior/16/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/16/axis0/independent-quadratic-cone-root": true,
+    "interior/16/axis0/selected-causal-speed": true,
+    "interior/16/axis0/plus-split-cone": true,
+    "interior/16/axis0/minus-split-cone": true,
+    "interior/16/axis1/independent-pressure-flux": true,
+    "interior/16/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/16/axis1/independent-quadratic-cone-root": true,
+    "interior/16/axis1/selected-causal-speed": true,
+    "interior/16/axis1/plus-split-cone": true,
+    "interior/16/axis1/minus-split-cone": true,
+    "interior/17/axis0/independent-pressure-flux": true,
+    "interior/17/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/17/axis0/independent-quadratic-cone-root": true,
+    "interior/17/axis0/selected-causal-speed": true,
+    "interior/17/axis0/plus-split-cone": true,
+    "interior/17/axis0/minus-split-cone": true,
+    "interior/17/axis1/independent-pressure-flux": true,
+    "interior/17/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/17/axis1/independent-quadratic-cone-root": true,
+    "interior/17/axis1/selected-causal-speed": true,
+    "interior/17/axis1/plus-split-cone": true,
+    "interior/17/axis1/minus-split-cone": true,
+    "interior/18/axis0/independent-pressure-flux": true,
+    "interior/18/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/18/axis0/independent-quadratic-cone-root": true,
+    "interior/18/axis0/selected-causal-speed": true,
+    "interior/18/axis0/plus-split-cone": true,
+    "interior/18/axis0/minus-split-cone": true,
+    "interior/18/axis1/independent-pressure-flux": true,
+    "interior/18/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/18/axis1/independent-quadratic-cone-root": true,
+    "interior/18/axis1/selected-causal-speed": true,
+    "interior/18/axis1/plus-split-cone": true,
+    "interior/18/axis1/minus-split-cone": true,
+    "interior/19/axis0/independent-pressure-flux": true,
+    "interior/19/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/19/axis0/independent-quadratic-cone-root": true,
+    "interior/19/axis0/selected-causal-speed": true,
+    "interior/19/axis0/plus-split-cone": true,
+    "interior/19/axis0/minus-split-cone": true,
+    "interior/19/axis1/independent-pressure-flux": true,
+    "interior/19/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/19/axis1/independent-quadratic-cone-root": true,
+    "interior/19/axis1/selected-causal-speed": true,
+    "interior/19/axis1/plus-split-cone": true,
+    "interior/19/axis1/minus-split-cone": true,
+    "interior/20/axis0/independent-pressure-flux": true,
+    "interior/20/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/20/axis0/independent-quadratic-cone-root": true,
+    "interior/20/axis0/selected-causal-speed": true,
+    "interior/20/axis0/plus-split-cone": true,
+    "interior/20/axis0/minus-split-cone": true,
+    "interior/20/axis1/independent-pressure-flux": true,
+    "interior/20/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/20/axis1/independent-quadratic-cone-root": true,
+    "interior/20/axis1/selected-causal-speed": true,
+    "interior/20/axis1/plus-split-cone": true,
+    "interior/20/axis1/minus-split-cone": true,
+    "interior/21/axis0/independent-pressure-flux": true,
+    "interior/21/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/21/axis0/independent-quadratic-cone-root": true,
+    "interior/21/axis0/selected-causal-speed": true,
+    "interior/21/axis0/plus-split-cone": true,
+    "interior/21/axis0/minus-split-cone": true,
+    "interior/21/axis1/independent-pressure-flux": true,
+    "interior/21/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/21/axis1/independent-quadratic-cone-root": true,
+    "interior/21/axis1/selected-causal-speed": true,
+    "interior/21/axis1/plus-split-cone": true,
+    "interior/21/axis1/minus-split-cone": true,
+    "interior/22/axis0/independent-pressure-flux": true,
+    "interior/22/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/22/axis0/independent-quadratic-cone-root": true,
+    "interior/22/axis0/selected-causal-speed": true,
+    "interior/22/axis0/plus-split-cone": true,
+    "interior/22/axis0/minus-split-cone": true,
+    "interior/22/axis1/independent-pressure-flux": true,
+    "interior/22/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/22/axis1/independent-quadratic-cone-root": true,
+    "interior/22/axis1/selected-causal-speed": true,
+    "interior/22/axis1/plus-split-cone": true,
+    "interior/22/axis1/minus-split-cone": true,
+    "interior/23/axis0/independent-pressure-flux": true,
+    "interior/23/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/23/axis0/independent-quadratic-cone-root": true,
+    "interior/23/axis0/selected-causal-speed": true,
+    "interior/23/axis0/plus-split-cone": true,
+    "interior/23/axis0/minus-split-cone": true,
+    "interior/23/axis1/independent-pressure-flux": true,
+    "interior/23/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/23/axis1/independent-quadratic-cone-root": true,
+    "interior/23/axis1/selected-causal-speed": true,
+    "interior/23/axis1/plus-split-cone": true,
+    "interior/23/axis1/minus-split-cone": true,
+    "interior/24/axis0/independent-pressure-flux": true,
+    "interior/24/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/24/axis0/independent-quadratic-cone-root": true,
+    "interior/24/axis0/selected-causal-speed": true,
+    "interior/24/axis0/plus-split-cone": true,
+    "interior/24/axis0/minus-split-cone": true,
+    "interior/24/axis1/independent-pressure-flux": true,
+    "interior/24/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/24/axis1/independent-quadratic-cone-root": true,
+    "interior/24/axis1/selected-causal-speed": true,
+    "interior/24/axis1/plus-split-cone": true,
+    "interior/24/axis1/minus-split-cone": true,
+    "interior/25/axis0/independent-pressure-flux": true,
+    "interior/25/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/25/axis0/independent-quadratic-cone-root": true,
+    "interior/25/axis0/selected-causal-speed": true,
+    "interior/25/axis0/plus-split-cone": true,
+    "interior/25/axis0/minus-split-cone": true,
+    "interior/25/axis1/independent-pressure-flux": true,
+    "interior/25/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/25/axis1/independent-quadratic-cone-root": true,
+    "interior/25/axis1/selected-causal-speed": true,
+    "interior/25/axis1/plus-split-cone": true,
+    "interior/25/axis1/minus-split-cone": true,
+    "interior/26/axis0/independent-pressure-flux": true,
+    "interior/26/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/26/axis0/independent-quadratic-cone-root": true,
+    "interior/26/axis0/selected-causal-speed": true,
+    "interior/26/axis0/plus-split-cone": true,
+    "interior/26/axis0/minus-split-cone": true,
+    "interior/26/axis1/independent-pressure-flux": true,
+    "interior/26/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/26/axis1/independent-quadratic-cone-root": true,
+    "interior/26/axis1/selected-causal-speed": true,
+    "interior/26/axis1/plus-split-cone": true,
+    "interior/26/axis1/minus-split-cone": true,
+    "interior/27/axis0/independent-pressure-flux": true,
+    "interior/27/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/27/axis0/independent-quadratic-cone-root": true,
+    "interior/27/axis0/selected-causal-speed": true,
+    "interior/27/axis0/plus-split-cone": true,
+    "interior/27/axis0/minus-split-cone": true,
+    "interior/27/axis1/independent-pressure-flux": true,
+    "interior/27/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/27/axis1/independent-quadratic-cone-root": true,
+    "interior/27/axis1/selected-causal-speed": true,
+    "interior/27/axis1/plus-split-cone": true,
+    "interior/27/axis1/minus-split-cone": true,
+    "interior/28/axis0/independent-pressure-flux": true,
+    "interior/28/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/28/axis0/independent-quadratic-cone-root": true,
+    "interior/28/axis0/selected-causal-speed": true,
+    "interior/28/axis0/plus-split-cone": true,
+    "interior/28/axis0/minus-split-cone": true,
+    "interior/28/axis1/independent-pressure-flux": true,
+    "interior/28/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/28/axis1/independent-quadratic-cone-root": true,
+    "interior/28/axis1/selected-causal-speed": true,
+    "interior/28/axis1/plus-split-cone": true,
+    "interior/28/axis1/minus-split-cone": true,
+    "interior/29/axis0/independent-pressure-flux": true,
+    "interior/29/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/29/axis0/independent-quadratic-cone-root": true,
+    "interior/29/axis0/selected-causal-speed": true,
+    "interior/29/axis0/plus-split-cone": true,
+    "interior/29/axis0/minus-split-cone": true,
+    "interior/29/axis1/independent-pressure-flux": true,
+    "interior/29/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/29/axis1/independent-quadratic-cone-root": true,
+    "interior/29/axis1/selected-causal-speed": true,
+    "interior/29/axis1/plus-split-cone": true,
+    "interior/29/axis1/minus-split-cone": true,
+    "interior/30/axis0/independent-pressure-flux": true,
+    "interior/30/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/30/axis0/independent-quadratic-cone-root": true,
+    "interior/30/axis0/selected-causal-speed": true,
+    "interior/30/axis0/plus-split-cone": true,
+    "interior/30/axis0/minus-split-cone": true,
+    "interior/30/axis1/independent-pressure-flux": true,
+    "interior/30/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/30/axis1/independent-quadratic-cone-root": true,
+    "interior/30/axis1/selected-causal-speed": true,
+    "interior/30/axis1/plus-split-cone": true,
+    "interior/30/axis1/minus-split-cone": true,
+    "interior/31/axis0/independent-pressure-flux": true,
+    "interior/31/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/31/axis0/independent-quadratic-cone-root": true,
+    "interior/31/axis0/selected-causal-speed": true,
+    "interior/31/axis0/plus-split-cone": true,
+    "interior/31/axis0/minus-split-cone": true,
+    "interior/31/axis1/independent-pressure-flux": true,
+    "interior/31/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/31/axis1/independent-quadratic-cone-root": true,
+    "interior/31/axis1/selected-causal-speed": true,
+    "interior/31/axis1/plus-split-cone": true,
+    "interior/31/axis1/minus-split-cone": true,
+    "interior/32/axis0/independent-pressure-flux": true,
+    "interior/32/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/32/axis0/independent-quadratic-cone-root": true,
+    "interior/32/axis0/selected-causal-speed": true,
+    "interior/32/axis0/plus-split-cone": true,
+    "interior/32/axis0/minus-split-cone": true,
+    "interior/32/axis1/independent-pressure-flux": true,
+    "interior/32/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/32/axis1/independent-quadratic-cone-root": true,
+    "interior/32/axis1/selected-causal-speed": true,
+    "interior/32/axis1/plus-split-cone": true,
+    "interior/32/axis1/minus-split-cone": true,
+    "interior/33/axis0/independent-pressure-flux": true,
+    "interior/33/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/33/axis0/independent-quadratic-cone-root": true,
+    "interior/33/axis0/selected-causal-speed": true,
+    "interior/33/axis0/plus-split-cone": true,
+    "interior/33/axis0/minus-split-cone": true,
+    "interior/33/axis1/independent-pressure-flux": true,
+    "interior/33/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/33/axis1/independent-quadratic-cone-root": true,
+    "interior/33/axis1/selected-causal-speed": true,
+    "interior/33/axis1/plus-split-cone": true,
+    "interior/33/axis1/minus-split-cone": true,
+    "interior/34/axis0/independent-pressure-flux": true,
+    "interior/34/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/34/axis0/independent-quadratic-cone-root": true,
+    "interior/34/axis0/selected-causal-speed": true,
+    "interior/34/axis0/plus-split-cone": true,
+    "interior/34/axis0/minus-split-cone": true,
+    "interior/34/axis1/independent-pressure-flux": true,
+    "interior/34/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/34/axis1/independent-quadratic-cone-root": true,
+    "interior/34/axis1/selected-causal-speed": true,
+    "interior/34/axis1/plus-split-cone": true,
+    "interior/34/axis1/minus-split-cone": true,
+    "interior/35/axis0/independent-pressure-flux": true,
+    "interior/35/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/35/axis0/independent-quadratic-cone-root": true,
+    "interior/35/axis0/selected-causal-speed": true,
+    "interior/35/axis0/plus-split-cone": true,
+    "interior/35/axis0/minus-split-cone": true,
+    "interior/35/axis1/independent-pressure-flux": true,
+    "interior/35/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/35/axis1/independent-quadratic-cone-root": true,
+    "interior/35/axis1/selected-causal-speed": true,
+    "interior/35/axis1/plus-split-cone": true,
+    "interior/35/axis1/minus-split-cone": true,
+    "interior/36/axis0/independent-pressure-flux": true,
+    "interior/36/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/36/axis0/independent-quadratic-cone-root": true,
+    "interior/36/axis0/selected-causal-speed": true,
+    "interior/36/axis0/plus-split-cone": true,
+    "interior/36/axis0/minus-split-cone": true,
+    "interior/36/axis1/independent-pressure-flux": true,
+    "interior/36/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/36/axis1/independent-quadratic-cone-root": true,
+    "interior/36/axis1/selected-causal-speed": true,
+    "interior/36/axis1/plus-split-cone": true,
+    "interior/36/axis1/minus-split-cone": true,
+    "interior/37/axis0/independent-pressure-flux": true,
+    "interior/37/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/37/axis0/independent-quadratic-cone-root": true,
+    "interior/37/axis0/selected-causal-speed": true,
+    "interior/37/axis0/plus-split-cone": true,
+    "interior/37/axis0/minus-split-cone": true,
+    "interior/37/axis1/independent-pressure-flux": true,
+    "interior/37/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/37/axis1/independent-quadratic-cone-root": true,
+    "interior/37/axis1/selected-causal-speed": true,
+    "interior/37/axis1/plus-split-cone": true,
+    "interior/37/axis1/minus-split-cone": true,
+    "interior/38/axis0/independent-pressure-flux": true,
+    "interior/38/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/38/axis0/independent-quadratic-cone-root": true,
+    "interior/38/axis0/selected-causal-speed": true,
+    "interior/38/axis0/plus-split-cone": true,
+    "interior/38/axis0/minus-split-cone": true,
+    "interior/38/axis1/independent-pressure-flux": true,
+    "interior/38/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/38/axis1/independent-quadratic-cone-root": true,
+    "interior/38/axis1/selected-causal-speed": true,
+    "interior/38/axis1/plus-split-cone": true,
+    "interior/38/axis1/minus-split-cone": true,
+    "interior/39/axis0/independent-pressure-flux": true,
+    "interior/39/axis0/complex-step-Jacobian-spectrum": true,
+    "interior/39/axis0/independent-quadratic-cone-root": true,
+    "interior/39/axis0/selected-causal-speed": true,
+    "interior/39/axis0/plus-split-cone": true,
+    "interior/39/axis0/minus-split-cone": true,
+    "interior/39/axis1/independent-pressure-flux": true,
+    "interior/39/axis1/complex-step-Jacobian-spectrum": true,
+    "interior/39/axis1/independent-quadratic-cone-root": true,
+    "interior/39/axis1/selected-causal-speed": true,
+    "interior/39/axis1/plus-split-cone": true,
+    "interior/39/axis1/minus-split-cone": true,
+    "exact-beam/0/axis0/streaming-flux": true,
+    "exact-beam/0/axis0/coalesced-symbolic-eigenvalue": true,
+    "exact-beam/0/axis0/directional-cone-limit": true,
+    "exact-beam/0/axis0/characteristic-polynomial-limit": true,
+    "exact-beam/0/axis0/plus-split": true,
+    "exact-beam/0/axis0/minus-split": true,
+    "exact-beam/0/axis1/streaming-flux": true,
+    "exact-beam/0/axis1/coalesced-symbolic-eigenvalue": true,
+    "exact-beam/0/axis1/directional-cone-limit": true,
+    "exact-beam/0/axis1/characteristic-polynomial-limit": true,
+    "exact-beam/0/axis1/plus-split": true,
+    "exact-beam/0/axis1/minus-split": true,
+    "exact-beam/1/axis0/streaming-flux": true,
+    "exact-beam/1/axis0/coalesced-symbolic-eigenvalue": true,
+    "exact-beam/1/axis0/directional-cone-limit": true,
+    "exact-beam/1/axis0/characteristic-polynomial-limit": true,
+    "exact-beam/1/axis0/plus-split": true,
+    "exact-beam/1/axis0/minus-split": true,
+    "exact-beam/1/axis1/streaming-flux": true,
+    "exact-beam/1/axis1/coalesced-symbolic-eigenvalue": true,
+    "exact-beam/1/axis1/directional-cone-limit": true,
+    "exact-beam/1/axis1/characteristic-polynomial-limit": true,
+    "exact-beam/1/axis1/plus-split": true,
+    "exact-beam/1/axis1/minus-split": true,
+    "exact-beam/2/axis0/streaming-flux": true,
+    "exact-beam/2/axis0/coalesced-symbolic-eigenvalue": true,
+    "exact-beam/2/axis0/directional-cone-limit": true,
+    "exact-beam/2/axis0/characteristic-polynomial-limit": true,
+    "exact-beam/2/axis0/plus-split": true,
+    "exact-beam/2/axis0/minus-split": true,
+    "exact-beam/2/axis1/streaming-flux": true,
+    "exact-beam/2/axis1/coalesced-symbolic-eigenvalue": true,
+    "exact-beam/2/axis1/directional-cone-limit": true,
+    "exact-beam/2/axis1/characteristic-polynomial-limit": true,
+    "exact-beam/2/axis1/plus-split": true,
+    "exact-beam/2/axis1/minus-split": true,
+    "exact-beam/3/axis0/streaming-flux": true,
+    "exact-beam/3/axis0/coalesced-symbolic-eigenvalue": true,
+    "exact-beam/3/axis0/directional-cone-limit": true,
+    "exact-beam/3/axis0/characteristic-polynomial-limit": true,
+    "exact-beam/3/axis0/plus-split": true,
+    "exact-beam/3/axis0/minus-split": true,
+    "exact-beam/3/axis1/streaming-flux": true,
+    "exact-beam/3/axis1/coalesced-symbolic-eigenvalue": true,
+    "exact-beam/3/axis1/directional-cone-limit": true,
+    "exact-beam/3/axis1/characteristic-polynomial-limit": true,
+    "exact-beam/3/axis1/plus-split": true,
+    "exact-beam/3/axis1/minus-split": true,
+    "exact-beam/4/axis0/streaming-flux": true,
+    "exact-beam/4/axis0/coalesced-symbolic-eigenvalue": true,
+    "exact-beam/4/axis0/directional-cone-limit": true,
+    "exact-beam/4/axis0/characteristic-polynomial-limit": true,
+    "exact-beam/4/axis0/plus-split": true,
+    "exact-beam/4/axis0/minus-split": true,
+    "exact-beam/4/axis1/streaming-flux": true,
+    "exact-beam/4/axis1/coalesced-symbolic-eigenvalue": true,
+    "exact-beam/4/axis1/directional-cone-limit": true,
+    "exact-beam/4/axis1/characteristic-polynomial-limit": true,
+    "exact-beam/4/axis1/plus-split": true,
+    "exact-beam/4/axis1/minus-split": true,
+    "exact-beam/5/axis0/streaming-flux": true,
+    "exact-beam/5/axis0/coalesced-symbolic-eigenvalue": true,
+    "exact-beam/5/axis0/directional-cone-limit": true,
+    "exact-beam/5/axis0/characteristic-polynomial-limit": true,
+    "exact-beam/5/axis0/plus-split": true,
+    "exact-beam/5/axis0/minus-split": true,
+    "exact-beam/5/axis1/streaming-flux": true,
+    "exact-beam/5/axis1/coalesced-symbolic-eigenvalue": true,
+    "exact-beam/5/axis1/directional-cone-limit": true,
+    "exact-beam/5/axis1/characteristic-polynomial-limit": true,
+    "exact-beam/5/axis1/plus-split": true,
+    "exact-beam/5/axis1/minus-split": true,
+    "exact-beam/6/axis0/streaming-flux": true,
+    "exact-beam/6/axis0/coalesced-symbolic-eigenvalue": true,
+    "exact-beam/6/axis0/directional-cone-limit": true,
+    "exact-beam/6/axis0/characteristic-polynomial-limit": true,
+    "exact-beam/6/axis0/plus-split": true,
+    "exact-beam/6/axis0/minus-split": true,
+    "exact-beam/6/axis1/streaming-flux": true,
+    "exact-beam/6/axis1/coalesced-symbolic-eigenvalue": true,
+    "exact-beam/6/axis1/directional-cone-limit": true,
+    "exact-beam/6/axis1/characteristic-polynomial-limit": true,
+    "exact-beam/6/axis1/plus-split": true,
+    "exact-beam/6/axis1/minus-split": true,
+    "exact-beam/7/axis0/streaming-flux": true,
+    "exact-beam/7/axis0/coalesced-symbolic-eigenvalue": true,
+    "exact-beam/7/axis0/directional-cone-limit": true,
+    "exact-beam/7/axis0/characteristic-polynomial-limit": true,
+    "exact-beam/7/axis0/plus-split": true,
+    "exact-beam/7/axis0/minus-split": true,
+    "exact-beam/7/axis1/streaming-flux": true,
+    "exact-beam/7/axis1/coalesced-symbolic-eigenvalue": true,
+    "exact-beam/7/axis1/directional-cone-limit": true,
+    "exact-beam/7/axis1/characteristic-polynomial-limit": true,
+    "exact-beam/7/axis1/plus-split": true,
+    "exact-beam/7/axis1/minus-split": true,
+    "isotropic/0/eigenvalues": true,
+    "isotropic/0/cone-root": true,
+    "isotropic/0/selected-speed": true,
+    "isotropic/1/eigenvalues": true,
+    "isotropic/1/cone-root": true,
+    "isotropic/1/selected-speed": true,
+    "vacuum/0/explicit-speed1": true,
+    "vacuum/0/zero-physical-flux": true,
+    "vacuum/0/counted": true,
+    "tiny-negative/0/speed-only-extension": true,
+    "tiny-negative/0/counted": true,
+    "roundoff-outside/0/speed-only-extension": true,
+    "roundoff-outside/0/count-and-actual-max": true,
+    "vacuum/1/explicit-speed1": true,
+    "vacuum/1/zero-physical-flux": true,
+    "vacuum/1/counted": true,
+    "tiny-negative/1/speed-only-extension": true,
+    "tiny-negative/1/counted": true,
+    "roundoff-outside/1/speed-only-extension": true,
+    "roundoff-outside/1/count-and-actual-max": true,
+    "extension/0/no-state-mutation": true,
+    "extension/1/no-state-mutation": true,
+    "extension/2/no-state-mutation": true,
+    "invalid/0/axis0": true,
+    "invalid/0/axis1": true,
+    "invalid/1/axis0": true,
+    "invalid/1/axis1": true,
+    "invalid/2/axis0": true,
+    "invalid/2/axis1": true,
+    "invalid/3/axis0": true,
+    "invalid/3/axis1": true,
+    "invalid/4/axis0": true,
+    "invalid/4/axis1": true,
+    "invalid/5/axis0": true,
+    "invalid/5/axis1": true,
+    "invalid-axis/-1": true,
+    "invalid-axis/2": true,
+    "face/0/0/scalar-flux-golden": true,
+    "face/0/0/orientation-conservation": true,
+    "face/0/1/scalar-flux-golden": true,
+    "face/0/1/orientation-conservation": true,
+    "face/1/0/scalar-flux-golden": true,
+    "face/1/0/orientation-conservation": true,
+    "face/1/1/scalar-flux-golden": true,
+    "face/1/1/orientation-conservation": true,
+    "face/2/0/scalar-flux-golden": true,
+    "face/2/0/orientation-conservation": true,
+    "face/2/1/scalar-flux-golden": true,
+    "face/2/1/orientation-conservation": true,
+    "face/3/0/scalar-flux-golden": true,
+    "face/3/0/orientation-conservation": true,
+    "face/3/1/scalar-flux-golden": true,
+    "face/3/1/orientation-conservation": true,
+    "face/4/0/scalar-flux-golden": true,
+    "face/4/0/orientation-conservation": true,
+    "face/4/1/scalar-flux-golden": true,
+    "face/4/1/orientation-conservation": true,
+    "nonvacuum-transverse-beam/1/zero-face-flux": true,
+    "nonvacuum-transverse-beam/0/zero-face-flux": true,
+    "operator/0/periodicFalse/actual-boundary-energy-ledger": true,
+    "operator/0/periodicFalse/Euler-cone": true,
+    "operator/0/periodicFalse/SSPRK2-cone": true,
+    "operator/0/periodicFalse/SSPRK2-actual-flux-ledger": true,
+    "operator/0/periodicFalse/explicit-speed-diagnostics": true,
+    "operator/0/periodicTrue/actual-boundary-energy-ledger": true,
+    "operator/0/periodicTrue/Euler-cone": true,
+    "operator/0/periodicTrue/SSPRK2-cone": true,
+    "operator/0/periodicTrue/SSPRK2-actual-flux-ledger": true,
+    "operator/0/periodicTrue/explicit-speed-diagnostics": true,
+    "operator/1/periodicFalse/actual-boundary-energy-ledger": true,
+    "operator/1/periodicFalse/Euler-cone": true,
+    "operator/1/periodicFalse/SSPRK2-cone": true,
+    "operator/1/periodicFalse/SSPRK2-actual-flux-ledger": true,
+    "operator/1/periodicFalse/explicit-speed-diagnostics": true,
+    "operator/1/periodicTrue/actual-boundary-energy-ledger": true,
+    "operator/1/periodicTrue/Euler-cone": true,
+    "operator/1/periodicTrue/SSPRK2-cone": true,
+    "operator/1/periodicTrue/SSPRK2-actual-flux-ledger": true,
+    "operator/1/periodicTrue/explicit-speed-diagnostics": true,
+    "operator/2/periodicFalse/actual-boundary-energy-ledger": true,
+    "operator/2/periodicFalse/Euler-cone": true,
+    "operator/2/periodicFalse/SSPRK2-cone": true,
+    "operator/2/periodicFalse/SSPRK2-actual-flux-ledger": true,
+    "operator/2/periodicFalse/explicit-speed-diagnostics": true,
+    "operator/2/periodicTrue/actual-boundary-energy-ledger": true,
+    "operator/2/periodicTrue/Euler-cone": true,
+    "operator/2/periodicTrue/SSPRK2-cone": true,
+    "operator/2/periodicTrue/SSPRK2-actual-flux-ledger": true,
+    "operator/2/periodicTrue/explicit-speed-diagnostics": true,
+    "operator/3/periodicFalse/actual-boundary-energy-ledger": true,
+    "operator/3/periodicFalse/Euler-cone": true,
+    "operator/3/periodicFalse/SSPRK2-cone": true,
+    "operator/3/periodicFalse/SSPRK2-actual-flux-ledger": true,
+    "operator/3/periodicFalse/explicit-speed-diagnostics": true,
+    "operator/3/periodicTrue/actual-boundary-energy-ledger": true,
+    "operator/3/periodicTrue/Euler-cone": true,
+    "operator/3/periodicTrue/SSPRK2-cone": true,
+    "operator/3/periodicTrue/SSPRK2-actual-flux-ledger": true,
+    "operator/3/periodicTrue/explicit-speed-diagnostics": true,
+    "boost/0/0.25/axis0/independent-stress-flux": true,
+    "boost/0/0.25/axis0/both-cone-splits": true,
+    "boost/0/0.25/axis1/independent-stress-flux": true,
+    "boost/0/0.25/axis1/both-cone-splits": true,
+    "boost/0/2.0/axis0/independent-stress-flux": true,
+    "boost/0/2.0/axis0/both-cone-splits": true,
+    "boost/0/2.0/axis1/independent-stress-flux": true,
+    "boost/0/2.0/axis1/both-cone-splits": true,
+    "boost/1/0.25/axis0/independent-stress-flux": true,
+    "boost/1/0.25/axis0/both-cone-splits": true,
+    "boost/1/0.25/axis1/independent-stress-flux": true,
+    "boost/1/0.25/axis1/both-cone-splits": true,
+    "boost/1/2.0/axis0/independent-stress-flux": true,
+    "boost/1/2.0/axis0/both-cone-splits": true,
+    "boost/1/2.0/axis1/independent-stress-flux": true,
+    "boost/1/2.0/axis1/both-cone-splits": true,
+    "boost/2/0.25/axis0/independent-stress-flux": true,
+    "boost/2/0.25/axis0/both-cone-splits": true,
+    "boost/2/0.25/axis1/independent-stress-flux": true,
+    "boost/2/0.25/axis1/both-cone-splits": true,
+    "boost/2/2.0/axis0/independent-stress-flux": true,
+    "boost/2/2.0/axis0/both-cone-splits": true,
+    "boost/2/2.0/axis1/independent-stress-flux": true,
+    "boost/2/2.0/axis1/both-cone-splits": true,
+    "boost/3/0.25/axis0/independent-stress-flux": true,
+    "boost/3/0.25/axis0/both-cone-splits": true,
+    "boost/3/0.25/axis1/independent-stress-flux": true,
+    "boost/3/0.25/axis1/both-cone-splits": true,
+    "boost/3/2.0/axis0/independent-stress-flux": true,
+    "boost/3/2.0/axis0/both-cone-splits": true,
+    "boost/3/2.0/axis1/independent-stress-flux": true,
+    "boost/3/2.0/axis1/both-cone-splits": true,
+    "near-cone/0/0.0001/axis0/nonnegative-radicand-finite-causal": true,
+    "near-cone/0/0.0001/axis0/both-cone-splits": true,
+    "near-cone/0/0.0001/axis1/nonnegative-radicand-finite-causal": true,
+    "near-cone/0/0.0001/axis1/both-cone-splits": true,
+    "near-cone/0/1e-08/axis0/nonnegative-radicand-finite-causal": true,
+    "near-cone/0/1e-08/axis0/both-cone-splits": true,
+    "near-cone/0/1e-08/axis1/nonnegative-radicand-finite-causal": true,
+    "near-cone/0/1e-08/axis1/both-cone-splits": true,
+    "near-cone/0/1e-12/axis0/nonnegative-radicand-finite-causal": true,
+    "near-cone/0/1e-12/axis0/both-cone-splits": true,
+    "near-cone/0/1e-12/axis1/nonnegative-radicand-finite-causal": true,
+    "near-cone/0/1e-12/axis1/both-cone-splits": true,
+    "near-cone/1/0.0001/axis0/nonnegative-radicand-finite-causal": true,
+    "near-cone/1/0.0001/axis0/both-cone-splits": true,
+    "near-cone/1/0.0001/axis1/nonnegative-radicand-finite-causal": true,
+    "near-cone/1/0.0001/axis1/both-cone-splits": true,
+    "near-cone/1/1e-08/axis0/nonnegative-radicand-finite-causal": true,
+    "near-cone/1/1e-08/axis0/both-cone-splits": true,
+    "near-cone/1/1e-08/axis1/nonnegative-radicand-finite-causal": true,
+    "near-cone/1/1e-08/axis1/both-cone-splits": true,
+    "near-cone/1/1e-12/axis0/nonnegative-radicand-finite-causal": true,
+    "near-cone/1/1e-12/axis0/both-cone-splits": true,
+    "near-cone/1/1e-12/axis1/nonnegative-radicand-finite-causal": true,
+    "near-cone/1/1e-12/axis1/both-cone-splits": true,
+    "fixed-CFL/shadow-sn-n24": true,
+    "fixed-CFL/shadow-sn-n48": true,
+    "fixed-CFL/shadow-sn-n96": true,
+    "fixed-CFL/shadow-m1-n24": true,
+    "fixed-CFL/shadow-m1-n48": true,
+    "fixed-CFL/shadow-m1-n96": true,
+    "fixed-CFL/shadow-sn-n96-half-dt": true,
+    "fixed-CFL/shadow-m1-n96-half-dt": true,
+    "fixed-CFL/beams-sn-n24": true,
+    "fixed-CFL/beams-sn-n48": true,
+    "fixed-CFL/beams-sn-n96": true,
+    "fixed-CFL/beams-m1-n24": true,
+    "fixed-CFL/beams-m1-n48": true,
+    "fixed-CFL/beams-m1-n96": true,
+    "fixed-CFL/beams-sn-n96-half-dt": true,
+    "fixed-CFL/beams-m1-n96-half-dt": true,
+    "fixed-CFL/mms-m1-n16": true,
+    "fixed-CFL/mms-m1-n32": true,
+    "fixed-CFL/mms-m1-n64": true,
+    "fixed-CFL/mms-m1-n64-half-dt": true,
+    "fixed-CFL/crossed-sn-n24": true,
+    "fixed-CFL/crossed-sn-n48": true,
+    "fixed-CFL/crossed-sn-n96": true,
+    "fixed-CFL/crossed-sn-n96-half-dt": true,
+    "unchanged-qualified-AST/pressure": true,
+    "unchanged-qualified-AST/fluxes": true,
+    "unchanged-qualified-AST/angular_rhs": true,
+    "unchanged-qualified-AST/moments": true,
+    "unchanged-qualified-AST/angular_pressure": true,
+    "unchanged-qualified-AST/packet": true,
+    "unchanged-qualified-AST/cell_initial": true
+  },
+  "details": [
+    {
+      "name": "interior/0/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/0/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.1102230246251565e-16
+      }
+    },
+    {
+      "name": "interior/0/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/0/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/0/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/0/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/0/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/0/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.1102230246251565e-16
+      }
+    },
+    {
+      "name": "interior/0/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/0/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/0/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/0/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/1/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/1/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.1102230246251565e-16
+      }
+    },
+    {
+      "name": "interior/1/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/1/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/1/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/1/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/1/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/1/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.1102230246251565e-16
+      }
+    },
+    {
+      "name": "interior/1/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/1/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/1/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/1/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/2/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/2/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.1102230246251565e-16
+      }
+    },
+    {
+      "name": "interior/2/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/2/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/2/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/2/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/2/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/2/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.1102230246251565e-16
+      }
+    },
+    {
+      "name": "interior/2/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/2/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/2/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/2/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/3/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/3/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.1102230246251565e-16
+      }
+    },
+    {
+      "name": "interior/3/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/3/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/3/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/3/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/3/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/3/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.1102230246251565e-16
+      }
+    },
+    {
+      "name": "interior/3/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/3/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/3/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/3/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/4/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/4/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.1102230246251565e-16
+      }
+    },
+    {
+      "name": "interior/4/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/4/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/4/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/4/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/4/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/4/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 2.220446049250313e-16
+      }
+    },
+    {
+      "name": "interior/4/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/4/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/4/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/4/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/5/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/5/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.1102230246251565e-16
+      }
+    },
+    {
+      "name": "interior/5/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/5/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/5/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/5/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/5/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/5/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 2.220446049250313e-16
+      }
+    },
+    {
+      "name": "interior/5/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/5/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/5/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/5/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/6/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/6/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.1102230246251565e-16
+      }
+    },
+    {
+      "name": "interior/6/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/6/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/6/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/6/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/6/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/6/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.1102230246251565e-16
+      }
+    },
+    {
+      "name": "interior/6/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/6/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/6/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/6/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/7/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/7/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.1102230246251565e-16
+      }
+    },
+    {
+      "name": "interior/7/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/7/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/7/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/7/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/7/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/7/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.1102230246251565e-16
+      }
+    },
+    {
+      "name": "interior/7/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/7/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/7/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/7/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/8/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/8/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.6653345369377348e-16
+      }
+    },
+    {
+      "name": "interior/8/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/8/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/8/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/8/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/8/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/8/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 2.220446049250313e-16
+      }
+    },
+    {
+      "name": "interior/8/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/8/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/8/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/8/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/9/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/9/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 3.3306690738754696e-16
+      }
+    },
+    {
+      "name": "interior/9/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/9/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/9/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/9/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/9/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/9/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 6.661338147750939e-16
+      }
+    },
+    {
+      "name": "interior/9/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/9/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/9/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/9/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/10/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/10/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 5.551115123125783e-16
+      }
+    },
+    {
+      "name": "interior/10/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/10/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/10/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/10/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/10/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/10/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 3.3306690738754696e-16
+      }
+    },
+    {
+      "name": "interior/10/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/10/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/10/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/10/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/11/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/11/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 3.3306690738754696e-16
+      }
+    },
+    {
+      "name": "interior/11/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/11/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/11/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/11/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/11/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/11/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 8.881784197001252e-16
+      }
+    },
+    {
+      "name": "interior/11/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/11/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/11/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/11/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/12/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/12/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 9.992007221626409e-16
+      }
+    },
+    {
+      "name": "interior/12/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/12/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/12/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/12/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/12/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/12/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 5.551115123125783e-16
+      }
+    },
+    {
+      "name": "interior/12/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/12/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/12/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/12/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/13/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/13/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.4432899320127035e-15
+      }
+    },
+    {
+      "name": "interior/13/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/13/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/13/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/13/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/13/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/13/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 7.494005416219807e-16
+      }
+    },
+    {
+      "name": "interior/13/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/13/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/13/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/13/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/14/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/14/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.6653345369377348e-15
+      }
+    },
+    {
+      "name": "interior/14/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/14/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/14/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/14/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/14/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/14/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 9.43689570931383e-16
+      }
+    },
+    {
+      "name": "interior/14/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/14/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/14/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/14/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/15/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/15/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 5.551115123125783e-16
+      }
+    },
+    {
+      "name": "interior/15/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/15/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/15/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/15/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/15/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/15/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 8.881784197001252e-16
+      }
+    },
+    {
+      "name": "interior/15/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/15/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/15/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/15/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/16/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/16/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 8.43769498715119e-15
+      }
+    },
+    {
+      "name": "interior/16/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/16/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/16/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/16/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/16/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/16/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.0776587020281824e-14
+      }
+    },
+    {
+      "name": "interior/16/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/16/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/16/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/16/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/17/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/17/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 7.327471962526033e-15
+      }
+    },
+    {
+      "name": "interior/17/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/17/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/17/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/17/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/17/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/17/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 8.43769498715119e-15
+      }
+    },
+    {
+      "name": "interior/17/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/17/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/17/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/17/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/18/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/18/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 7.216449660063518e-15
+      }
+    },
+    {
+      "name": "interior/18/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/18/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/18/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/18/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/18/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/18/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 2.986499936241671e-14
+      }
+    },
+    {
+      "name": "interior/18/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/18/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/18/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/18/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/19/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/19/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 8.770761894538737e-15
+      }
+    },
+    {
+      "name": "interior/19/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/19/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/19/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/19/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/19/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/19/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 5.440092820663267e-15
+      }
+    },
+    {
+      "name": "interior/19/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/19/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/19/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/19/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/20/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/20/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.1102230246251565e-16
+      }
+    },
+    {
+      "name": "interior/20/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/20/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/20/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/20/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/20/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/20/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.1102230246251565e-16
+      }
+    },
+    {
+      "name": "interior/20/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/20/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/20/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/20/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/21/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/21/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.1102230246251565e-16
+      }
+    },
+    {
+      "name": "interior/21/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/21/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/21/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/21/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/21/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/21/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.1102230246251565e-16
+      }
+    },
+    {
+      "name": "interior/21/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/21/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/21/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/21/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/22/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/22/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.1102230246251565e-16
+      }
+    },
+    {
+      "name": "interior/22/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/22/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/22/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/22/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/22/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/22/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.1102230246251565e-16
+      }
+    },
+    {
+      "name": "interior/22/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/22/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/22/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/22/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/23/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/23/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.1102230246251565e-16
+      }
+    },
+    {
+      "name": "interior/23/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/23/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/23/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/23/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/23/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/23/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.1102230246251565e-16
+      }
+    },
+    {
+      "name": "interior/23/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/23/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/23/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/23/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/24/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/24/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.1102230246251565e-16
+      }
+    },
+    {
+      "name": "interior/24/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/24/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/24/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/24/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/24/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/24/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 2.220446049250313e-16
+      }
+    },
+    {
+      "name": "interior/24/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/24/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/24/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/24/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/25/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/25/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.1102230246251565e-16
+      }
+    },
+    {
+      "name": "interior/25/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/25/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/25/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/25/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/25/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/25/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 2.220446049250313e-16
+      }
+    },
+    {
+      "name": "interior/25/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/25/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/25/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/25/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/26/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/26/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.1102230246251565e-16
+      }
+    },
+    {
+      "name": "interior/26/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/26/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/26/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/26/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/26/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/26/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.1102230246251565e-16
+      }
+    },
+    {
+      "name": "interior/26/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/26/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/26/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/26/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/27/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/27/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.1102230246251565e-16
+      }
+    },
+    {
+      "name": "interior/27/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/27/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/27/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/27/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/27/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/27/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.1102230246251565e-16
+      }
+    },
+    {
+      "name": "interior/27/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/27/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/27/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/27/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/28/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/28/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.6653345369377348e-16
+      }
+    },
+    {
+      "name": "interior/28/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/28/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/28/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/28/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/28/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/28/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 2.220446049250313e-16
+      }
+    },
+    {
+      "name": "interior/28/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/28/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/28/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/28/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/29/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/29/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 3.3306690738754696e-16
+      }
+    },
+    {
+      "name": "interior/29/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/29/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/29/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/29/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/29/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/29/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 6.661338147750939e-16
+      }
+    },
+    {
+      "name": "interior/29/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/29/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/29/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/29/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/30/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/30/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 5.551115123125783e-16
+      }
+    },
+    {
+      "name": "interior/30/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/30/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/30/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/30/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/30/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/30/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 3.3306690738754696e-16
+      }
+    },
+    {
+      "name": "interior/30/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/30/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/30/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/30/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/31/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/31/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 3.3306690738754696e-16
+      }
+    },
+    {
+      "name": "interior/31/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/31/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/31/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/31/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/31/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/31/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 8.881784197001252e-16
+      }
+    },
+    {
+      "name": "interior/31/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/31/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/31/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/31/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/32/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/32/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 9.992007221626409e-16
+      }
+    },
+    {
+      "name": "interior/32/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/32/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/32/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/32/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/32/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/32/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 5.551115123125783e-16
+      }
+    },
+    {
+      "name": "interior/32/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/32/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/32/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/32/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/33/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/33/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.4432899320127035e-15
+      }
+    },
+    {
+      "name": "interior/33/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/33/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/33/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/33/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/33/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/33/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 7.494005416219807e-16
+      }
+    },
+    {
+      "name": "interior/33/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/33/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/33/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/33/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/34/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/34/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.6653345369377348e-15
+      }
+    },
+    {
+      "name": "interior/34/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/34/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/34/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/34/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/34/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/34/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 9.43689570931383e-16
+      }
+    },
+    {
+      "name": "interior/34/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/34/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/34/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/34/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/35/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/35/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 5.551115123125783e-16
+      }
+    },
+    {
+      "name": "interior/35/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/35/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/35/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/35/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/35/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/35/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 8.881784197001252e-16
+      }
+    },
+    {
+      "name": "interior/35/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/35/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/35/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/35/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/36/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/36/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 8.43769498715119e-15
+      }
+    },
+    {
+      "name": "interior/36/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/36/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/36/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/36/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/36/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/36/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 1.0776587020281824e-14
+      }
+    },
+    {
+      "name": "interior/36/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/36/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/36/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/36/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/37/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/37/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 7.327471962526033e-15
+      }
+    },
+    {
+      "name": "interior/37/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/37/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/37/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/37/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/37/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/37/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 8.43769498715119e-15
+      }
+    },
+    {
+      "name": "interior/37/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/37/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/37/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/37/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/38/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/38/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 7.216449660063518e-15
+      }
+    },
+    {
+      "name": "interior/38/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/38/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/38/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/38/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/38/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/38/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 2.986499936241671e-14
+      }
+    },
+    {
+      "name": "interior/38/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/38/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/38/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/38/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/39/axis0/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/39/axis0/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 8.770761894538737e-15
+      }
+    },
+    {
+      "name": "interior/39/axis0/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/39/axis0/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/39/axis0/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/39/axis0/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/39/axis1/independent-pressure-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/39/axis1/complex-step-Jacobian-spectrum",
+      "passed": true,
+      "detail": {
+        "maximum_error": 5.440092820663267e-15
+      }
+    },
+    {
+      "name": "interior/39/axis1/independent-quadratic-cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/39/axis1/selected-causal-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/39/axis1/plus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "interior/39/axis1/minus-split-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/0/axis0/streaming-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/0/axis0/coalesced-symbolic-eigenvalue",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/0/axis0/directional-cone-limit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/0/axis0/characteristic-polynomial-limit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/0/axis0/plus-split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/0/axis0/minus-split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/0/axis1/streaming-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/0/axis1/coalesced-symbolic-eigenvalue",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/0/axis1/directional-cone-limit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/0/axis1/characteristic-polynomial-limit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/0/axis1/plus-split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/0/axis1/minus-split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/1/axis0/streaming-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/1/axis0/coalesced-symbolic-eigenvalue",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/1/axis0/directional-cone-limit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/1/axis0/characteristic-polynomial-limit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/1/axis0/plus-split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/1/axis0/minus-split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/1/axis1/streaming-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/1/axis1/coalesced-symbolic-eigenvalue",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/1/axis1/directional-cone-limit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/1/axis1/characteristic-polynomial-limit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/1/axis1/plus-split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/1/axis1/minus-split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/2/axis0/streaming-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/2/axis0/coalesced-symbolic-eigenvalue",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/2/axis0/directional-cone-limit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/2/axis0/characteristic-polynomial-limit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/2/axis0/plus-split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/2/axis0/minus-split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/2/axis1/streaming-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/2/axis1/coalesced-symbolic-eigenvalue",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/2/axis1/directional-cone-limit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/2/axis1/characteristic-polynomial-limit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/2/axis1/plus-split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/2/axis1/minus-split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/3/axis0/streaming-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/3/axis0/coalesced-symbolic-eigenvalue",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/3/axis0/directional-cone-limit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/3/axis0/characteristic-polynomial-limit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/3/axis0/plus-split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/3/axis0/minus-split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/3/axis1/streaming-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/3/axis1/coalesced-symbolic-eigenvalue",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/3/axis1/directional-cone-limit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/3/axis1/characteristic-polynomial-limit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/3/axis1/plus-split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/3/axis1/minus-split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/4/axis0/streaming-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/4/axis0/coalesced-symbolic-eigenvalue",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/4/axis0/directional-cone-limit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/4/axis0/characteristic-polynomial-limit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/4/axis0/plus-split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/4/axis0/minus-split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/4/axis1/streaming-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/4/axis1/coalesced-symbolic-eigenvalue",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/4/axis1/directional-cone-limit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/4/axis1/characteristic-polynomial-limit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/4/axis1/plus-split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/4/axis1/minus-split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/5/axis0/streaming-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/5/axis0/coalesced-symbolic-eigenvalue",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/5/axis0/directional-cone-limit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/5/axis0/characteristic-polynomial-limit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/5/axis0/plus-split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/5/axis0/minus-split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/5/axis1/streaming-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/5/axis1/coalesced-symbolic-eigenvalue",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/5/axis1/directional-cone-limit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/5/axis1/characteristic-polynomial-limit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/5/axis1/plus-split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/5/axis1/minus-split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/6/axis0/streaming-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/6/axis0/coalesced-symbolic-eigenvalue",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/6/axis0/directional-cone-limit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/6/axis0/characteristic-polynomial-limit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/6/axis0/plus-split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/6/axis0/minus-split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/6/axis1/streaming-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/6/axis1/coalesced-symbolic-eigenvalue",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/6/axis1/directional-cone-limit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/6/axis1/characteristic-polynomial-limit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/6/axis1/plus-split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/6/axis1/minus-split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/7/axis0/streaming-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/7/axis0/coalesced-symbolic-eigenvalue",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/7/axis0/directional-cone-limit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/7/axis0/characteristic-polynomial-limit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/7/axis0/plus-split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/7/axis0/minus-split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/7/axis1/streaming-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/7/axis1/coalesced-symbolic-eigenvalue",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/7/axis1/directional-cone-limit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/7/axis1/characteristic-polynomial-limit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/7/axis1/plus-split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "exact-beam/7/axis1/minus-split",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "isotropic/0/eigenvalues",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "isotropic/0/cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "isotropic/0/selected-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "isotropic/1/eigenvalues",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "isotropic/1/cone-root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "isotropic/1/selected-speed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "vacuum/0/explicit-speed1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "vacuum/0/zero-physical-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "vacuum/0/counted",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "tiny-negative/0/speed-only-extension",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "tiny-negative/0/counted",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "roundoff-outside/0/speed-only-extension",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "roundoff-outside/0/count-and-actual-max",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "vacuum/1/explicit-speed1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "vacuum/1/zero-physical-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "vacuum/1/counted",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "tiny-negative/1/speed-only-extension",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "tiny-negative/1/counted",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "roundoff-outside/1/speed-only-extension",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "roundoff-outside/1/count-and-actual-max",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "extension/0/no-state-mutation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "extension/1/no-state-mutation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "extension/2/no-state-mutation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "invalid/0/axis0",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "invalid/0/axis1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "invalid/1/axis0",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "invalid/1/axis1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "invalid/2/axis0",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "invalid/2/axis1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "invalid/3/axis0",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "invalid/3/axis1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "invalid/4/axis0",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "invalid/4/axis1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "invalid/5/axis0",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "invalid/5/axis1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "invalid-axis/-1",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "invalid-axis/2",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "face/0/0/scalar-flux-golden",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "face/0/0/orientation-conservation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "face/0/1/scalar-flux-golden",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "face/0/1/orientation-conservation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "face/1/0/scalar-flux-golden",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "face/1/0/orientation-conservation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "face/1/1/scalar-flux-golden",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "face/1/1/orientation-conservation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "face/2/0/scalar-flux-golden",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "face/2/0/orientation-conservation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "face/2/1/scalar-flux-golden",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "face/2/1/orientation-conservation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "face/3/0/scalar-flux-golden",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "face/3/0/orientation-conservation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "face/3/1/scalar-flux-golden",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "face/3/1/orientation-conservation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "face/4/0/scalar-flux-golden",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "face/4/0/orientation-conservation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "face/4/1/scalar-flux-golden",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "face/4/1/orientation-conservation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "nonvacuum-transverse-beam/1/zero-face-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "nonvacuum-transverse-beam/0/zero-face-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/0/periodicFalse/actual-boundary-energy-ledger",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/0/periodicFalse/Euler-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/0/periodicFalse/SSPRK2-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/0/periodicFalse/SSPRK2-actual-flux-ledger",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/0/periodicFalse/explicit-speed-diagnostics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/0/periodicTrue/actual-boundary-energy-ledger",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/0/periodicTrue/Euler-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/0/periodicTrue/SSPRK2-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/0/periodicTrue/SSPRK2-actual-flux-ledger",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/0/periodicTrue/explicit-speed-diagnostics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/1/periodicFalse/actual-boundary-energy-ledger",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/1/periodicFalse/Euler-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/1/periodicFalse/SSPRK2-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/1/periodicFalse/SSPRK2-actual-flux-ledger",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/1/periodicFalse/explicit-speed-diagnostics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/1/periodicTrue/actual-boundary-energy-ledger",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/1/periodicTrue/Euler-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/1/periodicTrue/SSPRK2-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/1/periodicTrue/SSPRK2-actual-flux-ledger",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/1/periodicTrue/explicit-speed-diagnostics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/2/periodicFalse/actual-boundary-energy-ledger",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/2/periodicFalse/Euler-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/2/periodicFalse/SSPRK2-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/2/periodicFalse/SSPRK2-actual-flux-ledger",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/2/periodicFalse/explicit-speed-diagnostics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/2/periodicTrue/actual-boundary-energy-ledger",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/2/periodicTrue/Euler-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/2/periodicTrue/SSPRK2-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/2/periodicTrue/SSPRK2-actual-flux-ledger",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/2/periodicTrue/explicit-speed-diagnostics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/3/periodicFalse/actual-boundary-energy-ledger",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/3/periodicFalse/Euler-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/3/periodicFalse/SSPRK2-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/3/periodicFalse/SSPRK2-actual-flux-ledger",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/3/periodicFalse/explicit-speed-diagnostics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/3/periodicTrue/actual-boundary-energy-ledger",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/3/periodicTrue/Euler-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/3/periodicTrue/SSPRK2-cone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/3/periodicTrue/SSPRK2-actual-flux-ledger",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "operator/3/periodicTrue/explicit-speed-diagnostics",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "boost/0/0.25/axis0/independent-stress-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "boost/0/0.25/axis0/both-cone-splits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "boost/0/0.25/axis1/independent-stress-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "boost/0/0.25/axis1/both-cone-splits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "boost/0/2.0/axis0/independent-stress-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "boost/0/2.0/axis0/both-cone-splits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "boost/0/2.0/axis1/independent-stress-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "boost/0/2.0/axis1/both-cone-splits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "boost/1/0.25/axis0/independent-stress-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "boost/1/0.25/axis0/both-cone-splits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "boost/1/0.25/axis1/independent-stress-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "boost/1/0.25/axis1/both-cone-splits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "boost/1/2.0/axis0/independent-stress-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "boost/1/2.0/axis0/both-cone-splits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "boost/1/2.0/axis1/independent-stress-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "boost/1/2.0/axis1/both-cone-splits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "boost/2/0.25/axis0/independent-stress-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "boost/2/0.25/axis0/both-cone-splits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "boost/2/0.25/axis1/independent-stress-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "boost/2/0.25/axis1/both-cone-splits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "boost/2/2.0/axis0/independent-stress-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "boost/2/2.0/axis0/both-cone-splits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "boost/2/2.0/axis1/independent-stress-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "boost/2/2.0/axis1/both-cone-splits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "boost/3/0.25/axis0/independent-stress-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "boost/3/0.25/axis0/both-cone-splits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "boost/3/0.25/axis1/independent-stress-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "boost/3/0.25/axis1/both-cone-splits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "boost/3/2.0/axis0/independent-stress-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "boost/3/2.0/axis0/both-cone-splits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "boost/3/2.0/axis1/independent-stress-flux",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "boost/3/2.0/axis1/both-cone-splits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "near-cone/0/0.0001/axis0/nonnegative-radicand-finite-causal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "near-cone/0/0.0001/axis0/both-cone-splits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "near-cone/0/0.0001/axis1/nonnegative-radicand-finite-causal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "near-cone/0/0.0001/axis1/both-cone-splits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "near-cone/0/1e-08/axis0/nonnegative-radicand-finite-causal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "near-cone/0/1e-08/axis0/both-cone-splits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "near-cone/0/1e-08/axis1/nonnegative-radicand-finite-causal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "near-cone/0/1e-08/axis1/both-cone-splits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "near-cone/0/1e-12/axis0/nonnegative-radicand-finite-causal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "near-cone/0/1e-12/axis0/both-cone-splits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "near-cone/0/1e-12/axis1/nonnegative-radicand-finite-causal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "near-cone/0/1e-12/axis1/both-cone-splits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "near-cone/1/0.0001/axis0/nonnegative-radicand-finite-causal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "near-cone/1/0.0001/axis0/both-cone-splits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "near-cone/1/0.0001/axis1/nonnegative-radicand-finite-causal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "near-cone/1/0.0001/axis1/both-cone-splits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "near-cone/1/1e-08/axis0/nonnegative-radicand-finite-causal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "near-cone/1/1e-08/axis0/both-cone-splits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "near-cone/1/1e-08/axis1/nonnegative-radicand-finite-causal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "near-cone/1/1e-08/axis1/both-cone-splits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "near-cone/1/1e-12/axis0/nonnegative-radicand-finite-causal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "near-cone/1/1e-12/axis0/both-cone-splits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "near-cone/1/1e-12/axis1/nonnegative-radicand-finite-causal",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "near-cone/1/1e-12/axis1/both-cone-splits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fixed-CFL/shadow-sn-n24",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fixed-CFL/shadow-sn-n48",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fixed-CFL/shadow-sn-n96",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fixed-CFL/shadow-m1-n24",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fixed-CFL/shadow-m1-n48",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fixed-CFL/shadow-m1-n96",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fixed-CFL/shadow-sn-n96-half-dt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fixed-CFL/shadow-m1-n96-half-dt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fixed-CFL/beams-sn-n24",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fixed-CFL/beams-sn-n48",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fixed-CFL/beams-sn-n96",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fixed-CFL/beams-m1-n24",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fixed-CFL/beams-m1-n48",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fixed-CFL/beams-m1-n96",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fixed-CFL/beams-sn-n96-half-dt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fixed-CFL/beams-m1-n96-half-dt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fixed-CFL/mms-m1-n16",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fixed-CFL/mms-m1-n32",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fixed-CFL/mms-m1-n64",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fixed-CFL/mms-m1-n64-half-dt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fixed-CFL/crossed-sn-n24",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fixed-CFL/crossed-sn-n48",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fixed-CFL/crossed-sn-n96",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fixed-CFL/crossed-sn-n96-half-dt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "unchanged-qualified-AST/pressure",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "unchanged-qualified-AST/fluxes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "unchanged-qualified-AST/angular_rhs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "unchanged-qualified-AST/moments",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "unchanged-qualified-AST/angular_pressure",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "unchanged-qualified-AST/packet",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "unchanged-qualified-AST/cell_initial",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "finished_at_utc": "2026-11-23T22:54:21.862936+00:00",
+  "PDE_time_series": 0,
+  "reference_regenerations": 0,
+  "scope": "Fixed flux/Jacobian/cone/face/one-step components only; not a main PDE success or nonlinear Riemann-fan proof."
+}

@@ -238,6 +238,8 @@ Scoped fixed-input examples; original method variants and earlier releases remai
 - [/code/validated-examples/2026-11-23/mhd-transport/hlld.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/hlld.py)
 - [/code/validated-examples/2026-11-23/mhd-transport/references/analytic.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/analytic.py)
 - [/code/validated-examples/2026-11-23/mhd-transport/references/qualify_saved.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/qualify_saved.py)
+- [/code/validated-examples/2026-11-23/mhd-transport/references/athena-field_loop.cpp](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/athena-field_loop.cpp)
+- [/code/validated-examples/2026-11-23/mhd-transport/references/athena-orszag_tang.cpp](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/athena-orszag_tang.cpp)
 - [/code/validated-examples/2026-11-23/mhd-transport/references/generate.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/generate.py)
 - [/code/validated-examples/2026-11-23/mhd-transport/references/qualify.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/qualify.py)
 
@@ -439,6 +441,8 @@ Scoped fixed-input examples; original method variants and earlier releases remai
 - [/code/validated-examples/2026-11-23/mhd-transport/hlld.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/hlld.py)
 - [/code/validated-examples/2026-11-23/mhd-transport/references/analytic.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/analytic.py)
 - [/code/validated-examples/2026-11-23/mhd-transport/references/qualify_saved.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/qualify_saved.py)
+- [/code/validated-examples/2026-11-23/mhd-transport/references/athena-field_loop.cpp](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/athena-field_loop.cpp)
+- [/code/validated-examples/2026-11-23/mhd-transport/references/athena-orszag_tang.cpp](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/athena-orszag_tang.cpp)
 - [/code/validated-examples/2026-11-23/mhd-transport/references/generate.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/generate.py)
 - [/code/validated-examples/2026-11-23/mhd-transport/references/qualify.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/qualify.py)
 

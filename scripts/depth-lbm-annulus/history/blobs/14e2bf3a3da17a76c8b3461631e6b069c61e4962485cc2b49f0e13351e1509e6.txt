@@ -1,0 +1,66 @@
+{
+  "group": "lbm-curved-boundary",
+  "started_at_utc": "2026-11-23T22:31:57.871443+00:00",
+  "contract_sha256": "d3907d6280b085981c5b1595a8b9805cfb5e11a813feb4f7af89886908a1e6dc",
+  "independent_review_sha256": "21c5d0e9641b06d22e80df58f04c3073e7f144e594b83a124f737b5050875524",
+  "root_r2_review_sha256": "a3890e1fef4619f5432de7a7a4d7f9e659e1f2b67e75d2cb0352f8ad5a619881",
+  "deadline_seconds": 120,
+  "source_bindings": 81,
+  "passed": false,
+  "steps": [
+    {
+      "name": "pytest",
+      "command": [
+        "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/bin/python",
+        "-B",
+        "-W",
+        "error",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--junitxml=/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/main-attempts/lbm-curved-boundary/01/tests.xml"
+      ],
+      "started_at_utc": "2026-11-23T22:31:57.871614+00:00",
+      "allowed_seconds": 119.99993762500526,
+      "timed_out": false,
+      "returncode": 0,
+      "elapsed_seconds": 1.0836315420019673,
+      "completed_at_utc": "2026-11-23T22:31:58.955247+00:00"
+    },
+    {
+      "name": "main",
+      "command": [
+        "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/bin/python",
+        "-B",
+        "-W",
+        "error",
+        "run.py",
+        "--input",
+        "inputs.json",
+        "--output",
+        "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/main-attempts/lbm-curved-boundary/01/results"
+      ],
+      "started_at_utc": "2026-11-23T22:31:58.955979+00:00",
+      "allowed_seconds": 118.9155673339992,
+      "timed_out": false,
+      "returncode": 1,
+      "elapsed_seconds": 1.7971290839923313,
+      "completed_at_utc": "2026-11-23T22:32:00.753102+00:00"
+    }
+  ],
+  "failure": {
+    "type": "RuntimeError",
+    "message": "main failed; retained without retry"
+  },
+  "pytest": {
+    "tests": 22,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "source_posthash_mismatches": [],
+  "elapsed_seconds": 2.8852699999988545,
+  "completed_at_utc": "2026-11-23T22:32:00.756807+00:00"
+}

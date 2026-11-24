@@ -1,0 +1,67 @@
+[
+  {
+    "original_path": "component-protocol.json",
+    "archived_path": "protocol.json",
+    "sha256": "b856bda035d70c175372da2b77507936331361301e53685a587c8216152f411c"
+  },
+  {
+    "original_path": "independent-component-review-by-weno.json",
+    "archived_path": "independent-review.json",
+    "sha256": "59df9b9caa4dcb78f702287ec29af31c708f2cfdc5ba8dc1696c1cb0a5bdcc05"
+  },
+  {
+    "original_path": "root-component-authorization.json",
+    "archived_path": "root-authorization.json",
+    "sha256": "a9b4f841a6b65ac6980ffd3c8271aea84571a41a36426dbe699568937c4e5ffe"
+  },
+  {
+    "original_path": "component-attempts/01/receipt.json",
+    "archived_path": "execution-receipt.json",
+    "sha256": "9621cb99a15a334fc81d077e0963398960fb6be4da2e7fbbd92631358d148cd5"
+  },
+  {
+    "original_path": "component-attempts/01/results/qualification.json",
+    "archived_path": "qualification.json",
+    "sha256": "9d2b6acdb8840f4f0c10e3ae429045da1cff43e1ff80e6a176c10affe2207f7d"
+  },
+  {
+    "original_path": "component-attempts/01/results/component-arrays.npz",
+    "archived_path": "component-arrays.npz",
+    "sha256": "07132c87b300ccc99afb0f69d9488381658bb5fc1a8454ab2a3d3b709b7bdbf2"
+  },
+  {
+    "original_path": "independent-derivation-by-weno.md",
+    "archived_path": "derivation.md",
+    "sha256": "66ac51f2b958e1a4e09b04c6913ee12bde00a64c868c58980fc94f23c2117e15"
+  },
+  {
+    "original_path": "independent-derivation-by-weno.json",
+    "archived_path": "derivation.json",
+    "sha256": "54694acec5d17c3fa52e63fb4dc389f258f56b924d93c16fb1964c950d377324"
+  },
+  {
+    "original_path": "qualify_components.py",
+    "archived_path": "qualify_components.py.txt",
+    "sha256": "151dee82d23e565577632728b89adfbb14cb0dec9a654ea8c11b8602fbb82e40"
+  },
+  {
+    "original_path": "baseline/geometry.py",
+    "archived_path": "baseline-geometry.py.txt",
+    "sha256": "0752951c97b0e5b5b2f19e5e16368cb747bf6e83c0791d1abc4b428842313cbc"
+  },
+  {
+    "original_path": "candidate/geometry.py",
+    "archived_path": "candidate-geometry.py.txt",
+    "sha256": "6e4f116d63a3a4cfa80150c9485f7514de44d26196188c405016942d8a191ead"
+  },
+  {
+    "original_path": "candidate/wavespeeds.py",
+    "archived_path": "candidate-wavespeeds.py.txt",
+    "sha256": "a87bd37209ba34d0cb2cebdd4e7f1395e9e7ccf1ad2c8fac36a9eb4e9322915e"
+  },
+  {
+    "original_path": "candidate/mms.py",
+    "archived_path": "candidate-mms.py.txt",
+    "sha256": "51295a29c1dc52eae6f3496f01237ea4d2345b5f6cb5344efcb4b0044f5ff69f"
+  }
+]

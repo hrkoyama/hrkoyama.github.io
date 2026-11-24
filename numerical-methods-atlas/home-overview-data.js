@@ -1013,6 +1013,22 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "validation-lbm-annulus": [
+    "ja",
+    "en"
+  ],
+  "validation-lbm-cavity": [
+    "ja",
+    "en"
+  ],
+  "validation-lbm-curved-boundary": [
+    "ja",
+    "en"
+  ],
+  "validation-lbm-taylor-green": [
+    "ja",
+    "en"
+  ],
   "validation-level-set": [
     "ja",
     "en"
@@ -1069,6 +1085,18 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "validation-radiation-geometry": [
+    "ja",
+    "en"
+  ],
+  "validation-radiation-matter": [
+    "ja",
+    "en"
+  ],
+  "validation-radiation-scattering": [
+    "ja",
+    "en"
+  ],
   "validation-relativistic": [
     "ja",
     "en"
@@ -1090,6 +1118,14 @@ export const homeReadingLanguages = {
     "en"
   ],
   "validation-splitting": [
+    "ja",
+    "en"
+  ],
+  "validation-stochastic-accuracy": [
+    "ja",
+    "en"
+  ],
+  "validation-stochastic-estimation": [
     "ja",
     "en"
   ],

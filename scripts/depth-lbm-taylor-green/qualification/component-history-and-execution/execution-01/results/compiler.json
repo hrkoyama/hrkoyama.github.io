@@ -1,0 +1,22 @@
+{
+  "command": [
+    "c++",
+    "-O2",
+    "-std=c++17",
+    "-ffp-contract=off",
+    "-fPIC",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-dynamiclib",
+    "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/component/source/kernel.cpp",
+    "-o",
+    "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch38-47/lbm/atlas-lbm-1dhkcu7b/kernel.dylib"
+  ],
+  "returncode": 0,
+  "stdout": "",
+  "stderr": "2026-11-24 07:11:54.165 xcodebuild[51229:1721033]  DVTFilePathFSEvents: Failed to start fs event stream.\n2026-11-24 07:11:54.351 xcodebuild[51229:1721032] [MT] DVTDeveloperPaths: Failed to get length of DARWIN_USER_CACHE_DIR from confstr(3), error = Error Domain=NSPOSIXErrorDomain Code=5 \"Input/output error\". Using NSCachesDirectory instead.\n",
+  "timed_out": false,
+  "timeout_seconds": 15,
+  "source_sha256": "f8639d0c614e36571ceb96a7352b0e55f986a538274a2e1a9e6480da14fe2241"
+}

@@ -1,0 +1,122 @@
+[
+  {
+    "method_ids": [
+      "d2q9-bgk"
+    ],
+    "domains": [
+      "pde",
+      "kinetic",
+      "coupling"
+    ],
+    "code_files": [
+      "run.py",
+      "kernel.cpp",
+      "native.py",
+      "geometry.py",
+      "analytic.py",
+      "diagnostics.py",
+      "experiments.py"
+    ],
+    "id": "lbm-taylor-green",
+    "title": {
+      "ja": "LBM Taylor–Green渦：格子・刻み・Machの結合感度",
+      "en": "LBM Taylor–Green vortex: coupled grid/time/Mach sensitivity"
+    },
+    "summary": {
+      "ja": "周期2Dの非線形渦を実際に時間発展し、連続解析場への速度・圧力・エネルギー誤差を保存します。amplitude感度と同格子のcoupled刻み感度も分けて示します。",
+      "en": "Evolve a nonlinear periodic2D vortex and save velocity/pressure/energy errors against the continuous analytic field. Distinguish amplitude probes from a fixed-grid coupled-step probe."
+    },
+    "assumptions": {
+      "ja": "[0,2pi)²、ν.1、基本U.2、N16/32/64、dt=.2dx²、tau.56、T=.2pi²、64/256/1024steps。N32/U.4,.8とN32/U.2/dt=.1dx²/tau.53/512stepsを追加。初期圧力整合rhoを使用。",
+      "en": "Periodic[0,2pi)²,nu.1,baseU.2,N16/32/64,dt=.2dx²,tau.56,T=.2pi²and64/256/1024steps. Add N32/U.4,.8andN32/U.2/dt=.1dx²/tau.53/512steps. Use pressure-consistent initial density."
+    },
+    "algorithm": {
+      "ja": "標準BGKと完全周期streaming。p=cs²(rho−平均rho)(dx/dt)²で圧力単位とゲージを揃えます。解析場は初期値以外に注入せず、微分を独立Fourier演算で資格確認します。",
+      "en": "Standard BGK and fully periodic streaming. Convert/gauge pressure ascs²(rho−meanrho)(dx/dt)². No analytic field injection after initialization; independently qualify the continuum field by Fourier differentiation."
+    },
+    "validation": {
+      "ja": "22pytestと79判定、6固定発展。最細速度相対L2.03、圧力.08、combined速度次数1.5以上、エネルギー.03、発散・周期質量・平均運動量を判定。解析PDE5資格を区別して保存します。",
+      "en": "22pytest and79gates,sixfixed evolutions. Require finest velocity relativeL2.03,pressure.08,combined velocity order≥1.5,energy.03anddivergence/periodic mass/mean momentum. Save five analyticPDEqualifiers distinctly."
+    },
+    "limits": {
+      "ja": "拡散尺度では格子・時間・Machが結合し、amplitude変更はReも変えます。純空間/純時間/純Mach次数や有限Machの厳密非圧縮性を主張しません。平衡初期化のkinetic startupも実誤差へ含めます。",
+      "en": "Diffusive scaling couples grid,time andMach; amplitude changesRe. No isolated spatial/time/Mach order or exact incompressibility atfiniteMach. Kinetic equilibrium-startup transients remain part of the measured errors."
+    },
+    "references": [
+      {
+        "id": "zou-he-preprint1996",
+        "author": "Qisu Zou and Xiaoyi He",
+        "year": 1996,
+        "title": "On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model",
+        "url": "https://arxiv.org/abs/comp-gas/9611001",
+        "type": "article",
+        "review_level": "primary-selected-extracted-text",
+        "review_scope": "Selected original preprint pp2-7: standard equilibrium, moment-based flat velocity/density boundaries and corner/finite-Mach limitations. No full-paper audit; special d2q9i accuracy is not credited to this standard BGK.",
+        "review": {
+          "ja": "原著preprintの式と平面流入出境界・角・圧縮性の範囲を選択読解。特殊d2q9iの成功を本BGKへ流用しません。",
+          "en": "Selected primary equations and flat-boundary/corner/compressibility discussion read; special d2q9i successes are not borrowed."
+        }
+      },
+      {
+        "id": "lallemand-luo2003",
+        "author": "Pierre Lallemand and Li-Shi Luo",
+        "year": 2003,
+        "title": "Lattice Boltzmann method for moving boundaries",
+        "doi": "10.1016/S0021-9991(02)00022-0",
+        "url": "https://doi.org/10.1016/S0021-9991(02)00022-0",
+        "type": "article",
+        "review_level": "primary-selected-text-via-mirror",
+        "review_scope": "Original article sec3 printed410-414 via author-content mirror; quadratic interpolation paths, q=.5, wall correction, momentum exchange and compromised mass conservation. Our two-point linear implementation is separately derived and qualified; original2001BFL full text was inaccessible.",
+        "review": {
+          "ja": "原著の選択部分を著者資料ミラーから読解。今回の2点線形補間は別導出・単step資格で確認し、2001原著全文を読んだとはしません。",
+          "en": "Selected primary section via author-content mirror. The implemented two-point interpolation is separately derived/qualified; no2001full-text claim."
+        }
+      }
+    ],
+    "formulas": [
+      "u=U\\sin x\\cos y\\,e^{-2\\nu t},\\quad v=-U\\cos x\\sin y\\,e^{-2\\nu t}",
+      "p=\\frac{U^2}{4}(\\cos2x+\\cos2y)e^{-4\\nu t},\\quad\\langle K\\rangle=\\frac{U^2}{4}e^{-4\\nu t}"
+    ],
+    "citations": [
+      {
+        "id": "zou-he-preprint1996",
+        "author": "Qisu Zou and Xiaoyi He",
+        "year": 1996,
+        "title": "On pressure and velocity flow boundary conditions and bounceback for the lattice Boltzmann BGK model",
+        "url": "https://arxiv.org/abs/comp-gas/9611001",
+        "type": "article",
+        "review_level": "primary-selected-extracted-text",
+        "review_scope": "Selected original preprint pp2-7: standard equilibrium, moment-based flat velocity/density boundaries and corner/finite-Mach limitations. No full-paper audit; special d2q9i accuracy is not credited to this standard BGK.",
+        "review": {
+          "ja": "原著preprintの式と平面流入出境界・角・圧縮性の範囲を選択読解。特殊d2q9iの成功を本BGKへ流用しません。",
+          "en": "Selected primary equations and flat-boundary/corner/compressibility discussion read; special d2q9i successes are not borrowed."
+        }
+      },
+      {
+        "id": "lallemand-luo2003",
+        "author": "Pierre Lallemand and Li-Shi Luo",
+        "year": 2003,
+        "title": "Lattice Boltzmann method for moving boundaries",
+        "doi": "10.1016/S0021-9991(02)00022-0",
+        "url": "https://doi.org/10.1016/S0021-9991(02)00022-0",
+        "type": "article",
+        "review_level": "primary-selected-text-via-mirror",
+        "review_scope": "Original article sec3 printed410-414 via author-content mirror; quadratic interpolation paths, q=.5, wall correction, momentum exchange and compromised mass conservation. Our two-point linear implementation is separately derived and qualified; original2001BFL full text was inaccessible.",
+        "review": {
+          "ja": "原著の選択部分を著者資料ミラーから読解。今回の2点線形補間は別導出・単step資格で確認し、2001原著全文を読んだとはしません。",
+          "en": "Selected primary section via author-content mirror. The implemented two-point interpolation is separately derived/qualified; no2001full-text claim."
+        }
+      }
+    ],
+    "gallery_figure": "lbm-taylor-green-preview.png",
+    "additional_figures": [
+      {
+        "file": "lbm-taylor-green-preview.png",
+        "caption": {
+          "ja": "固定入力を実計算した保存配列の2D場と検証診断。参照・境界・誤差の範囲は本文に明記。",
+          "en": "Actual saved2Dfields anddiagnostics fromfixedinputs; reference,boundary anderror scopesaredeclaredinthecase."
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "status": "PASS_STATIC_PRE_RUN_REVIEW_ONLY",
+  "reviewer": "batch_weno",
+  "started_at_utc": "2026-11-23T22:23:14Z",
+  "finished_at_utc": "2026-11-23T22:26:05.874324+00:00",
+  "entrypoint_sha256": "7b0304a49f8a718c7eda43982d7021205057afc4ddaa5576d1673cc83e46bbbe",
+  "groups": {
+    "lbm-cavity": {
+      "contract_sha256": "72386d8eb9d7d5b3c1098273afc3be4239c6957da327094f156425c9fb0683b1",
+      "source_bindings": 74,
+      "source_mismatches": [],
+      "test_ast_count": 22,
+      "test_names_match_contract": true,
+      "main_evolutions": 3,
+      "planned_case_gates": 37,
+      "shared_pytest_main_compile_deadline_seconds": 120
+    },
+    "lbm-taylor-green": {
+      "contract_sha256": "6ec0ba32f9e549004cc454dfb47844272221a992b606bb075453f06287e713e3",
+      "source_bindings": 74,
+      "source_mismatches": [],
+      "test_ast_count": 22,
+      "test_names_match_contract": true,
+      "main_evolutions": 6,
+      "planned_case_gates": 79,
+      "shared_pytest_main_compile_deadline_seconds": 120
+    },
+    "lbm-curved-boundary": {
+      "contract_sha256": "17017c9499aea73860b5563fbcef9ec50c2d360e09a90dae96adbb03f45a322c",
+      "source_bindings": 74,
+      "source_mismatches": [],
+      "test_ast_count": 22,
+      "test_names_match_contract": true,
+      "main_evolutions": 8,
+      "planned_case_gates": 113,
+      "shared_pytest_main_compile_deadline_seconds": 120
+    }
+  },
+  "blocking_findings": [],
+  "inspected_scope": [
+    "Read full shared run.py, experiments.py, evolution.py, diagnostics.py, analytic.py, geometry.py, native.py and plot.py; reviewed qualified-kernel history/closure indexing and compared common-core hashes.",
+    "Read common and case-specific test definitions, each frozen inputs/acceptance/contract, selected source-review and cylinder interval provenance, README scope and case figure metadata.",
+    "Source hash checks, AST-only inventory and standard-library hashing only. No native compilation, project import, pytest, trajectory, reference evaluation or plot was executed by this review."
+  ],
+  "checks": {
+    "all_222_bindings_match": true,
+    "all_test_inventories_22_each": true,
+    "native_core_same_as_qualified_component": true,
+    "strict_result_envelope": true,
+    "nonempty_case_records_on_success": true,
+    "finite_numeric_csv_contract": true,
+    "fresh_output_and_input_hash_guard": true,
+    "actual_saved_field_only_plot_plan": true,
+    "completed_and_failed_candidate_retention": true
+  },
+  "gate_inventory_derivation": {
+    "cavity": "1 table anchor + 3*(7 common + 3 cavity) + 6 final = 37",
+    "tgv": "5 analytic qualifiers + 6*(7 common + 4 TGV) + 8 final = 79",
+    "annulus": "7 analytic qualifiers + 6*(7 common + 4 annulus) + 7 final = 80",
+    "cylinder": "1 source anchor + 2*(7 common + 6 cylinder) + 6 final = 33",
+    "total": 229
+  },
+  "mathematical_scope": {
+    "units": "nu_lattice=(tau-.5)/3; u_phys=u_lattice*dx/dt; p=(rho-mean rho)/3*(dx/dt)^2. Cavity scaling gives nu_phys=1/Re, endpoint100; TGV endpoint .2*pi^2; annulus endpoint4; cylinder endpoint30.",
+    "budgets": "History totals are pre-step and boundary increments are per-step; diagnostics align zero plus cumulative increments with history totals plus final state. Moving/interpolated wall mass is ledgered, not repaired.",
+    "cavity": "Rounded independent Ghia Re100 tables and primary-vortex zero compared at nominal lid. Three fixed-Mach grids, discontinuous lid corners; no borrowed cavity success or universal order.",
+    "tgv": "Actual nonlinear two-component 2D evolution and pressure-consistent equilibrium initialization. Independent Fourier NS/energy/gauge qualifiers; grid,time,Mach coupled; amplitude changes Re and half-step changes tau/Mach. No isolated time/Mach order claim.",
+    "annulus": "Independent radial/Cartesian steady NS and resisting-torque reference, six interpolated/stair runs. Curved interpolation mass error retained; control is distinct from actual cylinder.",
+    "cylinder": "Actual full-domain two-grid Re20 (mean U=.2,D=.1,nu=.001), original1996 estimated intervals; declared Zou-He rho1/previous interior uy outlet differs from later FEATflow do-nothing. Poiseuille pressure initialization is only a starting guess, not imposed cylinder pressure truth."
+  },
+  "retention_and_budget": "Compiler stdout/stderr/command/timeouts are exception receipts; numerical failure includes candidate state/native status, previous streamed ledger chunks and active fields. Each group requires externally enforced shared120s including separate pytest/main compiles; run.py itself does not replace the external watchdog. Runtime remains unmeasured until root-authorized main.",
+  "limitations": [
+    "Static review is not execution authorization or a numerical pass; root separately authorizes and captures the shared watchdog.",
+    "Primary roles verified from recorded actual selected-reading provenance; no new full-paper reading or general finite-Mach continuum certification claimed.",
+    "No generated gallery figure exists yet in this pre-run review; plot.py reads accepted result and saved fields only."
+  ]
+}

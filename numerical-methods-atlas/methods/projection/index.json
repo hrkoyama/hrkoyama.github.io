@@ -93,6 +93,20 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#navier-stokes-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#navier-stokes-en"
         }
+      },
+      {
+        "id": "bgk",
+        "name": {
+          "ja": "等温格子BGK",
+          "en": "Isothermal lattice BGK"
+        },
+        "problem_ids": [
+          "taylor-green"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bgk-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bgk-en"
+        }
       }
     ],
     "problems": [
@@ -187,6 +201,27 @@
             "view": {
               "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=taylor-green",
               "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=taylor-green"
+            }
+          },
+          {
+            "id": "lbm-taylor-green",
+            "title": {
+              "ja": "LBMのTaylor–Green渦：格子・時間・Mach数が結び付く感度",
+              "en": "LBM Taylor–Green vortex: coupled grid/time/Mach sensitivity"
+            },
+            "kind": "analytic",
+            "relation": "related-model",
+            "note": {
+              "ja": "[0,2pi)²、ν.1、基本U.2、N24/32/64、dt=.2dx²、tau.56、T=.2pi²、144/256/1024steps。N32/U.4,.8とN32/U.2/dt=.1dx²/tau.53/512stepsを追加。初期圧力整合rhoを使用。",
+              "en": "Periodic[0,2pi)²,nu.1,baseU.2,N24/32/64,dt=.2dx²,tau.56,T=.2pi²and144/256/1024steps. Add N32/U.4,.8andN32/U.2/dt=.1dx²/tau.53/512steps. Use pressure-consistent initial density."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-lbm-taylor-green-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-lbm-taylor-green-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/lbm-taylor-green/?lang=ja#lbm-taylor-green-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/lbm-taylor-green/?lang=en#lbm-taylor-green-en-measurements"
             }
           }
         ]

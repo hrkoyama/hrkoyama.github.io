@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "group": "radiation-matter",
+  "edition": "2026-11-24-r2",
+  "verified_on": "2026-11-24",
+  "source_manifest_sha256": "9786f8365507f141a6d3bebc3035e5177bc4a8ccec3ac747b8bd5a7eaed50aeb",
+  "archive": {
+    "file": "atlas-radiation-matter-2026-11-24-r2.zip",
+    "sha256": "fe1e3d790bd9792d8781243dc4d5ff40d3491a181a11c795569f3f4e542ed7e6",
+    "bytes": 20332983,
+    "archive_directory": "atlas-radiation-matter-2026-11-24-r2"
+  },
+  "archive_sha256": "fe1e3d790bd9792d8781243dc4d5ff40d3491a181a11c795569f3f4e542ed7e6",
+  "returncode": 0,
+  "passed_tests": 21,
+  "tests": 21,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "su-olson-diffusion1996",
+    "su-olson-transport1997"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 7.598689749996993,
+  "independent_rerun_seconds": 7.572224625007948,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

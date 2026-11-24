@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 if [ "${ATLAS_REFRESH_INDEXES_ON_COMMIT:-0}" != "1" ]; then
-    printf '%s\n' 'Index refresh skipped; before publishing run: python3 scripts/prepare-indexes.py'
+    printf '%s\n' 'Index refresh skipped; before publishing use the GitHub candidate-build workflow documented in MAINTENANCE.md'
     exit 0
 fi
 atlas_index_python=${ATLAS_INDEX_PYTHON:-}

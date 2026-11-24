@@ -1,0 +1,867 @@
+{
+  "passed": true,
+  "check_count": 141,
+  "checks": {
+    "hemisphere32/weight-measure": true,
+    "hemisphere32/odd-first-moment": true,
+    "hemisphere32/one-third-second-moment": true,
+    "hemisphere32/positive-directional-measure": true,
+    "GL64/weight-measure": true,
+    "GL64/odd-first-moment": true,
+    "GL64/one-third-second-moment": true,
+    "GL64/positive-directional-measure": true,
+    "GL128/weight-measure": true,
+    "GL128/odd-first-moment": true,
+    "GL128/one-third-second-moment": true,
+    "GL128/positive-directional-measure": true,
+    "hemisphere32/k4/finite-generator": true,
+    "hemisphere32/k4/weighted-moment-operator-identity": true,
+    "hemisphere32/k4/streaming-conjugacy": true,
+    "hemisphere32/k4/s0.0/finite-amplitude-and-positive-field-bound": true,
+    "hemisphere32/k4/s0.0/even-odd-Fourier-symmetry": true,
+    "hemisphere32/k4/s0.0625/finite-amplitude-and-positive-field-bound": true,
+    "hemisphere32/k4/s0.0625/even-odd-Fourier-symmetry": true,
+    "hemisphere32/k4/s0.125/finite-amplitude-and-positive-field-bound": true,
+    "hemisphere32/k4/s0.125/even-odd-Fourier-symmetry": true,
+    "hemisphere32/k4/s0.25/finite-amplitude-and-positive-field-bound": true,
+    "hemisphere32/k4/s0.25/even-odd-Fourier-symmetry": true,
+    "hemisphere32/k8/finite-generator": true,
+    "hemisphere32/k8/weighted-moment-operator-identity": true,
+    "hemisphere32/k8/streaming-conjugacy": true,
+    "hemisphere32/k8/s0.0/finite-amplitude-and-positive-field-bound": true,
+    "hemisphere32/k8/s0.0/even-odd-Fourier-symmetry": true,
+    "hemisphere32/k8/s0.0625/finite-amplitude-and-positive-field-bound": true,
+    "hemisphere32/k8/s0.0625/even-odd-Fourier-symmetry": true,
+    "hemisphere32/k8/s0.125/finite-amplitude-and-positive-field-bound": true,
+    "hemisphere32/k8/s0.125/even-odd-Fourier-symmetry": true,
+    "hemisphere32/k8/s0.25/finite-amplitude-and-positive-field-bound": true,
+    "hemisphere32/k8/s0.25/even-odd-Fourier-symmetry": true,
+    "hemisphere32/k16/finite-generator": true,
+    "hemisphere32/k16/weighted-moment-operator-identity": true,
+    "hemisphere32/k16/streaming-conjugacy": true,
+    "hemisphere32/k16/s0.0/finite-amplitude-and-positive-field-bound": true,
+    "hemisphere32/k16/s0.0/even-odd-Fourier-symmetry": true,
+    "hemisphere32/k16/s0.0625/finite-amplitude-and-positive-field-bound": true,
+    "hemisphere32/k16/s0.0625/even-odd-Fourier-symmetry": true,
+    "hemisphere32/k16/s0.125/finite-amplitude-and-positive-field-bound": true,
+    "hemisphere32/k16/s0.125/even-odd-Fourier-symmetry": true,
+    "hemisphere32/k16/s0.25/finite-amplitude-and-positive-field-bound": true,
+    "hemisphere32/k16/s0.25/even-odd-Fourier-symmetry": true,
+    "GL64/k4/finite-generator": true,
+    "GL64/k4/weighted-moment-operator-identity": true,
+    "GL64/k4/streaming-conjugacy": true,
+    "GL64/k4/s0.0/finite-amplitude-and-positive-field-bound": true,
+    "GL64/k4/s0.0/even-odd-Fourier-symmetry": true,
+    "GL64/k4/s0.0625/finite-amplitude-and-positive-field-bound": true,
+    "GL64/k4/s0.0625/even-odd-Fourier-symmetry": true,
+    "GL64/k4/s0.125/finite-amplitude-and-positive-field-bound": true,
+    "GL64/k4/s0.125/even-odd-Fourier-symmetry": true,
+    "GL64/k4/s0.25/finite-amplitude-and-positive-field-bound": true,
+    "GL64/k4/s0.25/even-odd-Fourier-symmetry": true,
+    "GL64/k8/finite-generator": true,
+    "GL64/k8/weighted-moment-operator-identity": true,
+    "GL64/k8/streaming-conjugacy": true,
+    "GL64/k8/s0.0/finite-amplitude-and-positive-field-bound": true,
+    "GL64/k8/s0.0/even-odd-Fourier-symmetry": true,
+    "GL64/k8/s0.0625/finite-amplitude-and-positive-field-bound": true,
+    "GL64/k8/s0.0625/even-odd-Fourier-symmetry": true,
+    "GL64/k8/s0.125/finite-amplitude-and-positive-field-bound": true,
+    "GL64/k8/s0.125/even-odd-Fourier-symmetry": true,
+    "GL64/k8/s0.25/finite-amplitude-and-positive-field-bound": true,
+    "GL64/k8/s0.25/even-odd-Fourier-symmetry": true,
+    "GL64/k16/finite-generator": true,
+    "GL64/k16/weighted-moment-operator-identity": true,
+    "GL64/k16/streaming-conjugacy": true,
+    "GL64/k16/s0.0/finite-amplitude-and-positive-field-bound": true,
+    "GL64/k16/s0.0/even-odd-Fourier-symmetry": true,
+    "GL64/k16/s0.0625/finite-amplitude-and-positive-field-bound": true,
+    "GL64/k16/s0.0625/even-odd-Fourier-symmetry": true,
+    "GL64/k16/s0.125/finite-amplitude-and-positive-field-bound": true,
+    "GL64/k16/s0.125/even-odd-Fourier-symmetry": true,
+    "GL64/k16/s0.25/finite-amplitude-and-positive-field-bound": true,
+    "GL64/k16/s0.25/even-odd-Fourier-symmetry": true,
+    "GL128/k4/finite-generator": true,
+    "GL128/k4/weighted-moment-operator-identity": true,
+    "GL128/k4/streaming-conjugacy": true,
+    "GL128/k4/s0.0/finite-amplitude-and-positive-field-bound": true,
+    "GL128/k4/s0.0/even-odd-Fourier-symmetry": true,
+    "GL128/k4/s0.0625/finite-amplitude-and-positive-field-bound": true,
+    "GL128/k4/s0.0625/even-odd-Fourier-symmetry": true,
+    "GL128/k4/s0.125/finite-amplitude-and-positive-field-bound": true,
+    "GL128/k4/s0.125/even-odd-Fourier-symmetry": true,
+    "GL128/k4/s0.25/finite-amplitude-and-positive-field-bound": true,
+    "GL128/k4/s0.25/even-odd-Fourier-symmetry": true,
+    "GL128/k8/finite-generator": true,
+    "GL128/k8/weighted-moment-operator-identity": true,
+    "GL128/k8/streaming-conjugacy": true,
+    "GL128/k8/s0.0/finite-amplitude-and-positive-field-bound": true,
+    "GL128/k8/s0.0/even-odd-Fourier-symmetry": true,
+    "GL128/k8/s0.0625/finite-amplitude-and-positive-field-bound": true,
+    "GL128/k8/s0.0625/even-odd-Fourier-symmetry": true,
+    "GL128/k8/s0.125/finite-amplitude-and-positive-field-bound": true,
+    "GL128/k8/s0.125/even-odd-Fourier-symmetry": true,
+    "GL128/k8/s0.25/finite-amplitude-and-positive-field-bound": true,
+    "GL128/k8/s0.25/even-odd-Fourier-symmetry": true,
+    "GL128/k16/finite-generator": true,
+    "GL128/k16/weighted-moment-operator-identity": true,
+    "GL128/k16/streaming-conjugacy": true,
+    "GL128/k16/s0.0/finite-amplitude-and-positive-field-bound": true,
+    "GL128/k16/s0.0/even-odd-Fourier-symmetry": true,
+    "GL128/k16/s0.0625/finite-amplitude-and-positive-field-bound": true,
+    "GL128/k16/s0.0625/even-odd-Fourier-symmetry": true,
+    "GL128/k16/s0.125/finite-amplitude-and-positive-field-bound": true,
+    "GL128/k16/s0.125/even-odd-Fourier-symmetry": true,
+    "GL128/k16/s0.25/finite-amplitude-and-positive-field-bound": true,
+    "GL128/k16/s0.25/even-odd-Fourier-symmetry": true,
+    "GL64-128/k4/s0.0": true,
+    "GL64-128/k4/s0.0625": true,
+    "GL64-128/k4/s0.125": true,
+    "GL64-128/k4/s0.25": true,
+    "GL64-128/k8/s0.0": true,
+    "GL64-128/k8/s0.0625": true,
+    "GL64-128/k8/s0.125": true,
+    "GL64-128/k8/s0.25": true,
+    "GL64-128/k16/s0.0": true,
+    "GL64-128/k16/s0.0625": true,
+    "GL64-128/k16/s0.125": true,
+    "GL64-128/k16/s0.25": true,
+    "closed-k0/eps0.25/k4/t0.0625": true,
+    "closed-k0/eps0.25/k4/t0.25": true,
+    "closed-k0/eps0.25/k16/t0.0625": true,
+    "closed-k0/eps0.25/k16/t0.25": true,
+    "closed-k0/eps1.0/k4/t0.0625": true,
+    "closed-k0/eps1.0/k4/t0.25": true,
+    "closed-k0/eps1.0/k16/t0.0625": true,
+    "closed-k0/eps1.0/k16/t0.25": true,
+    "closed-k0/eps2.0/k4/t0.0625": true,
+    "closed-k0/eps2.0/k4/t0.25": true,
+    "closed-k0/eps2.0/k16/t0.0625": true,
+    "closed-k0/eps2.0/k16/t0.25": true,
+    "DOP853/k4/success-and-fixed-budget": true,
+    "DOP853/k4/finite-positive-field-bound": true,
+    "DOP853/k4/independent-expm-comparison": true,
+    "DOP853/k16/success-and-fixed-budget": true,
+    "DOP853/k16/finite-positive-field-bound": true,
+    "DOP853/k16/independent-expm-comparison": true
+  },
+  "details": [
+    {
+      "name": "hemisphere32/weight-measure",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/odd-first-moment",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/one-third-second-moment",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/positive-directional-measure",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/weight-measure",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/odd-first-moment",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/one-third-second-moment",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/positive-directional-measure",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/weight-measure",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/odd-first-moment",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/one-third-second-moment",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/positive-directional-measure",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k4/finite-generator",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k4/weighted-moment-operator-identity",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k4/streaming-conjugacy",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k4/s0.0/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k4/s0.0/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k4/s0.0625/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k4/s0.0625/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k4/s0.125/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k4/s0.125/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k4/s0.25/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k4/s0.25/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k8/finite-generator",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k8/weighted-moment-operator-identity",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k8/streaming-conjugacy",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k8/s0.0/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k8/s0.0/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k8/s0.0625/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k8/s0.0625/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k8/s0.125/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k8/s0.125/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k8/s0.25/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k8/s0.25/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k16/finite-generator",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k16/weighted-moment-operator-identity",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k16/streaming-conjugacy",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k16/s0.0/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k16/s0.0/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k16/s0.0625/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k16/s0.0625/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k16/s0.125/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k16/s0.125/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k16/s0.25/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "hemisphere32/k16/s0.25/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/k4/finite-generator",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/k4/weighted-moment-operator-identity",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/k4/streaming-conjugacy",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/k4/s0.0/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/k4/s0.0/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/k4/s0.0625/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/k4/s0.0625/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/k4/s0.125/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/k4/s0.125/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/k4/s0.25/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/k4/s0.25/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/k8/finite-generator",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/k8/weighted-moment-operator-identity",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/k8/streaming-conjugacy",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/k8/s0.0/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/k8/s0.0/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/k8/s0.0625/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/k8/s0.0625/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/k8/s0.125/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/k8/s0.125/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/k8/s0.25/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/k8/s0.25/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/k16/finite-generator",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/k16/weighted-moment-operator-identity",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/k16/streaming-conjugacy",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/k16/s0.0/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/k16/s0.0/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/k16/s0.0625/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/k16/s0.0625/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/k16/s0.125/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/k16/s0.125/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/k16/s0.25/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64/k16/s0.25/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/k4/finite-generator",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/k4/weighted-moment-operator-identity",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/k4/streaming-conjugacy",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/k4/s0.0/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/k4/s0.0/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/k4/s0.0625/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/k4/s0.0625/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/k4/s0.125/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/k4/s0.125/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/k4/s0.25/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/k4/s0.25/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/k8/finite-generator",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/k8/weighted-moment-operator-identity",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/k8/streaming-conjugacy",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/k8/s0.0/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/k8/s0.0/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/k8/s0.0625/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/k8/s0.0625/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/k8/s0.125/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/k8/s0.125/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/k8/s0.25/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/k8/s0.25/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/k16/finite-generator",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/k16/weighted-moment-operator-identity",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/k16/streaming-conjugacy",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/k16/s0.0/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/k16/s0.0/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/k16/s0.0625/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/k16/s0.0625/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/k16/s0.125/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/k16/s0.125/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/k16/s0.25/finite-amplitude-and-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL128/k16/s0.25/even-odd-Fourier-symmetry",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "GL64-128/k4/s0.0",
+      "passed": true,
+      "value": 1.1102230246251565e-16
+    },
+    {
+      "name": "GL64-128/k4/s0.0625",
+      "passed": true,
+      "value": 6.662444845536707e-16
+    },
+    {
+      "name": "GL64-128/k4/s0.125",
+      "passed": true,
+      "value": 8.881936661623154e-16
+    },
+    {
+      "name": "GL64-128/k4/s0.25",
+      "passed": true,
+      "value": 9.503507458471633e-16
+    },
+    {
+      "name": "GL64-128/k8/s0.0",
+      "passed": true,
+      "value": 1.1102230246251565e-16
+    },
+    {
+      "name": "GL64-128/k8/s0.0625",
+      "passed": true,
+      "value": 1.1114018075126418e-15
+    },
+    {
+      "name": "GL64-128/k8/s0.125",
+      "passed": true,
+      "value": 1.0478935990140101e-15
+    },
+    {
+      "name": "GL64-128/k8/s0.25",
+      "passed": true,
+      "value": 1.0861585632386063e-15
+    },
+    {
+      "name": "GL64-128/k16/s0.0",
+      "passed": true,
+      "value": 1.1102230246251565e-16
+    },
+    {
+      "name": "GL64-128/k16/s0.0625",
+      "passed": true,
+      "value": 1.3696023608515343e-15
+    },
+    {
+      "name": "GL64-128/k16/s0.125",
+      "passed": true,
+      "value": 1.4110074829966202e-15
+    },
+    {
+      "name": "GL64-128/k16/s0.25",
+      "passed": true,
+      "value": 2.77555762132669e-15
+    },
+    {
+      "name": "closed-k0/eps0.25/k4/t0.0625",
+      "passed": true,
+      "value": 0.0
+    },
+    {
+      "name": "closed-k0/eps0.25/k4/t0.25",
+      "passed": true,
+      "value": 1.1102230246251565e-16
+    },
+    {
+      "name": "closed-k0/eps0.25/k16/t0.0625",
+      "passed": true,
+      "value": 1.1102230246251565e-16
+    },
+    {
+      "name": "closed-k0/eps0.25/k16/t0.25",
+      "passed": true,
+      "value": 7.771561172376096e-16
+    },
+    {
+      "name": "closed-k0/eps1.0/k4/t0.0625",
+      "passed": true,
+      "value": 4.440892098500626e-16
+    },
+    {
+      "name": "closed-k0/eps1.0/k4/t0.25",
+      "passed": true,
+      "value": 1.1102230246251565e-16
+    },
+    {
+      "name": "closed-k0/eps1.0/k16/t0.0625",
+      "passed": true,
+      "value": 1.1102230246251565e-16
+    },
+    {
+      "name": "closed-k0/eps1.0/k16/t0.25",
+      "passed": true,
+      "value": 6.661338147750939e-16
+    },
+    {
+      "name": "closed-k0/eps2.0/k4/t0.0625",
+      "passed": true,
+      "value": 5.551115123125783e-17
+    },
+    {
+      "name": "closed-k0/eps2.0/k4/t0.25",
+      "passed": true,
+      "value": 1.1102230246251565e-16
+    },
+    {
+      "name": "closed-k0/eps2.0/k16/t0.0625",
+      "passed": true,
+      "value": 1.1102230246251565e-16
+    },
+    {
+      "name": "closed-k0/eps2.0/k16/t0.25",
+      "passed": true,
+      "value": 6.661338147750939e-16
+    },
+    {
+      "name": "DOP853/k4/success-and-fixed-budget",
+      "passed": true,
+      "value": 209
+    },
+    {
+      "name": "DOP853/k4/finite-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "DOP853/k4/independent-expm-comparison",
+      "passed": true,
+      "value": 2.1718006330234372e-14
+    },
+    {
+      "name": "DOP853/k16/success-and-fixed-budget",
+      "passed": true,
+      "value": 3077
+    },
+    {
+      "name": "DOP853/k16/finite-positive-field-bound",
+      "passed": true,
+      "value": null
+    },
+    {
+      "name": "DOP853/k16/independent-expm-comparison",
+      "passed": true,
+      "value": 5.558049685633556e-16
+    }
+  ],
+  "reference_cache_sha256": "b55a6eebca0c46f17016bd915fd810427b7fe39d81fe618d76ef173303e6c31f",
+  "input_sha256": "9032f6d9ba61972884d55c46ea93d6bda13e42d38a40f64c0a9ba619d48a8400",
+  "acceptance_sha256": "d90424437d8296e6dcb03901dbf8a2d049fd70b565ca5c84b27971610d756d9d",
+  "source_sha256": {
+    "references/thick_reference.py": "8a5ef5f737ebb57396caae2efb9c1a55c9a23d24650871cbb6d3f5d31c01d71f",
+    "references/qualify_thick.py": "6a5efa4ec5abc4babf5ba760e01222578bf4ef5a34ed2253f018a32945aec3ec",
+    "references/analytic.py": "38b146765d6533cf7cfd20bfaf561e3a30d75f293c5fe6c23c4e6b1752d53bbb"
+  },
+  "finished_at_utc": "2026-11-23T23:32:48.785193+00:00",
+  "primary_rhs_probes": 0,
+  "primary_mode_evolutions": 0,
+  "propagator": "scipy.sparse.linalg.expm_multiply(csr_matrix(t*A),initial,traceA=t*trace(A))",
+  "scope": "Independent continuum-space angular reference only. GL64/128 finite sensitivity,exact closed k0capacity/exchange,weightedmoment/conjugacy,and two fixed independentDOP853 final vectors qualify the reference. No primary SSPRK2 or fixedgridAPclaim."
+}

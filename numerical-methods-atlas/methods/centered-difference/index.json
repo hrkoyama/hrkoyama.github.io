@@ -20003,6 +20003,20 @@
         }
       },
       {
+        "id": "bgk",
+        "name": {
+          "ja": "等温格子BGK",
+          "en": "Isothermal lattice BGK"
+        },
+        "problem_ids": [
+          "lid-driven-cavity"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bgk-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bgk-en"
+        }
+      },
+      {
         "id": "forced-incompressible",
         "name": {
           "ja": "外力付き非圧縮流と壁面製造解",
@@ -20856,6 +20870,27 @@
             "view": {
               "ja": "/numerical-methods-atlas/validation/cavity-ghia-re100/?lang=ja#cavity-ghia-re100-ja-measurements",
               "en": "/numerical-methods-atlas/validation/cavity-ghia-re100/?lang=en#cavity-ghia-re100-en-measurements"
+            }
+          },
+          {
+            "id": "lbm-cavity-re100",
+            "title": {
+              "ja": "LBMのRe100キャビティ：実2D場とGhia中心線",
+              "en": "LBM Re100 cavity: actual2D fields and Ghia centerlines"
+            },
+            "kind": "numerical-reference",
+            "relation": "related-model",
+            "note": {
+              "ja": "物理単位正方形、蓋U1、ν.01、Re100。N24/32/48、格子蓋速度.04、dt=.04/N。3壁静止、上壁右向き、同時上面/側面crossingは静止側を優先。初期rho1・静止。",
+              "en": "Physical unit square, lid1, viscosity.01, Re100; N24/32/48, lattice lid.04, dt=.04/N. Three stationary walls/rightward lid; stationary side owns a simultaneous top/side link. Initialrho1/rest."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-lbm-cavity-re100-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-lbm-cavity-re100-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/lbm-cavity-re100/?lang=ja#lbm-cavity-re100-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/lbm-cavity-re100/?lang=en#lbm-cavity-re100-en-measurements"
             }
           }
         ]

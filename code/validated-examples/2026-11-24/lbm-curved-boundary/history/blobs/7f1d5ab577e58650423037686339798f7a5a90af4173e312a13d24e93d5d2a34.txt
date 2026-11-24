@@ -1,0 +1,520 @@
+{
+  "checks": {
+    "strict C++17 compile": true,
+    "legacy-periodic scalar-native": true,
+    "legacy-periodic mass ledger": true,
+    "legacy-periodic momentum ledger": true,
+    "legacy-cavity scalar-native": true,
+    "legacy-cavity mass ledger": true,
+    "legacy-cavity momentum ledger": true,
+    "legacy-annulus scalar-native": true,
+    "legacy-annulus mass ledger": true,
+    "legacy-annulus momentum ledger": true,
+    "quadratic-NEE-cylinder scalar-native": true,
+    "quadratic-NEE-cylinder mass ledger": true,
+    "quadratic-NEE-cylinder momentum ledger": true,
+    "quadratic-annulus scalar-native": true,
+    "quadratic-annulus mass ledger": true,
+    "quadratic-annulus momentum ledger": true,
+    "1e-06/scalar-native": true,
+    "1e-06/full ledger": true,
+    "1e-06/polynomial0": true,
+    "1e-06/polynomial1": true,
+    "1e-06/polynomial2": true,
+    "0.1/scalar-native": true,
+    "0.1/full ledger": true,
+    "0.1/polynomial0": true,
+    "0.1/polynomial1": true,
+    "0.1/polynomial2": true,
+    "0.25/scalar-native": true,
+    "0.25/full ledger": true,
+    "0.25/polynomial0": true,
+    "0.25/polynomial1": true,
+    "0.25/polynomial2": true,
+    "0.49999999/scalar-native": true,
+    "0.49999999/full ledger": true,
+    "0.49999999/polynomial0": true,
+    "0.49999999/polynomial1": true,
+    "0.49999999/polynomial2": true,
+    "0.5/scalar-native": true,
+    "0.5/full ledger": true,
+    "0.5/polynomial0": true,
+    "0.5/polynomial1": true,
+    "0.5/polynomial2": true,
+    "0.50000001/scalar-native": true,
+    "0.50000001/full ledger": true,
+    "0.50000001/polynomial0": true,
+    "0.50000001/polynomial1": true,
+    "0.50000001/polynomial2": true,
+    "0.75/scalar-native": true,
+    "0.75/full ledger": true,
+    "0.75/polynomial0": true,
+    "0.75/polynomial1": true,
+    "0.75/polynomial2": true,
+    "0.99999999/scalar-native": true,
+    "0.99999999/full ledger": true,
+    "0.99999999/polynomial0": true,
+    "0.99999999/polynomial1": true,
+    "0.99999999/polynomial2": true,
+    "1.0/scalar-native": true,
+    "1.0/full ledger": true,
+    "1.0/polynomial0": true,
+    "1.0/polynomial1": true,
+    "1.0/polynomial2": true,
+    "0.25/uniform moving-wall equilibrium": true,
+    "0.25/uniform moving-wall ledger": true,
+    "0.25/stationary limit": true,
+    "0.5/uniform moving-wall equilibrium": true,
+    "0.5/uniform moving-wall ledger": true,
+    "0.5/stationary limit": true,
+    "0.75/uniform moving-wall equilibrium": true,
+    "0.75/uniform moving-wall ledger": true,
+    "0.75/stationary limit": true,
+    "half-link quadratic equals legacy halfway": true,
+    "half-link branch continuity": true,
+    "negative quadratic weights explicitly retained": true,
+    "NEE prescribed density all boundary rows": true,
+    "NEE adjacent poststream velocity all rows": true,
+    "NEE actually replaces known six": true,
+    "omitting known-six ledger is detected": true,
+    "outlet corner owns full node without wrap": true,
+    "annulus-40-0.025/actual fixed stencil support": true,
+    "annulus-60-0.016666666666666666/actual fixed stencil support": true,
+    "annulus-80-0.0125/actual fixed stencil support": true,
+    "cylinder-0-0.01/actual fixed stencil support": true,
+    "cylinder-0-0.005/actual fixed stencil support": true,
+    "missing second neighbor rejects without fallback": true,
+    "nonpositive density rejects without floor": true,
+    "old linear fails quadratic reproduction negative control": true,
+    "fixed curved workload projection <=40s": true
+  },
+  "records": [
+    {
+      "name": "strict C++17 compile",
+      "passed": true
+    },
+    {
+      "name": "legacy-periodic scalar-native",
+      "passed": true,
+      "error": 1.6653345369377348e-16
+    },
+    {
+      "name": "legacy-periodic mass ledger",
+      "passed": true
+    },
+    {
+      "name": "legacy-periodic momentum ledger",
+      "passed": true
+    },
+    {
+      "name": "legacy-cavity scalar-native",
+      "passed": true,
+      "error": 1.6653345369377348e-16
+    },
+    {
+      "name": "legacy-cavity mass ledger",
+      "passed": true
+    },
+    {
+      "name": "legacy-cavity momentum ledger",
+      "passed": true
+    },
+    {
+      "name": "legacy-annulus scalar-native",
+      "passed": true,
+      "error": 1.6653345369377348e-16
+    },
+    {
+      "name": "legacy-annulus mass ledger",
+      "passed": true
+    },
+    {
+      "name": "legacy-annulus momentum ledger",
+      "passed": true
+    },
+    {
+      "name": "quadratic-NEE-cylinder scalar-native",
+      "passed": true,
+      "error": 2.220446049250313e-16
+    },
+    {
+      "name": "quadratic-NEE-cylinder mass ledger",
+      "passed": true
+    },
+    {
+      "name": "quadratic-NEE-cylinder momentum ledger",
+      "passed": true
+    },
+    {
+      "name": "quadratic-annulus scalar-native",
+      "passed": true,
+      "error": 1.6653345369377348e-16
+    },
+    {
+      "name": "quadratic-annulus mass ledger",
+      "passed": true
+    },
+    {
+      "name": "quadratic-annulus momentum ledger",
+      "passed": true
+    },
+    {
+      "name": "1e-06/scalar-native",
+      "passed": true,
+      "error": 1.1102230246251565e-16
+    },
+    {
+      "name": "1e-06/full ledger",
+      "passed": true
+    },
+    {
+      "name": "1e-06/polynomial0",
+      "passed": true,
+      "value": 1.0,
+      "target": 1.0
+    },
+    {
+      "name": "1e-06/polynomial1",
+      "passed": true,
+      "value": -0.9999979999999999,
+      "target": -0.999998
+    },
+    {
+      "name": "1e-06/polynomial2",
+      "passed": true,
+      "value": 0.999996000004,
+      "target": 0.9999960000040001
+    },
+    {
+      "name": "0.1/scalar-native",
+      "passed": true,
+      "error": 1.1102230246251565e-16
+    },
+    {
+      "name": "0.1/full ledger",
+      "passed": true
+    },
+    {
+      "name": "0.1/polynomial0",
+      "passed": true,
+      "value": 1.0,
+      "target": 1.0
+    },
+    {
+      "name": "0.1/polynomial1",
+      "passed": true,
+      "value": -0.7999999999999999,
+      "target": -0.8
+    },
+    {
+      "name": "0.1/polynomial2",
+      "passed": true,
+      "value": 0.6399999999999999,
+      "target": 0.6400000000000001
+    },
+    {
+      "name": "0.25/scalar-native",
+      "passed": true,
+      "error": 1.1102230246251565e-16
+    },
+    {
+      "name": "0.25/full ledger",
+      "passed": true
+    },
+    {
+      "name": "0.25/polynomial0",
+      "passed": true,
+      "value": 1.0,
+      "target": 1.0
+    },
+    {
+      "name": "0.25/polynomial1",
+      "passed": true,
+      "value": -0.5,
+      "target": -0.5
+    },
+    {
+      "name": "0.25/polynomial2",
+      "passed": true,
+      "value": 0.25,
+      "target": 0.25
+    },
+    {
+      "name": "0.49999999/scalar-native",
+      "passed": true,
+      "error": 1.1102230246251565e-16
+    },
+    {
+      "name": "0.49999999/full ledger",
+      "passed": true
+    },
+    {
+      "name": "0.49999999/polynomial0",
+      "passed": true,
+      "value": 1.0000000000000002,
+      "target": 1.0
+    },
+    {
+      "name": "0.49999999/polynomial1",
+      "passed": true,
+      "value": -1.9999999945383673e-08,
+      "target": -1.9999999989472883e-08
+    },
+    {
+      "name": "0.49999999/polynomial2",
+      "passed": true,
+      "value": 3.559107904049544e-16,
+      "target": 3.999999995789153e-16
+    },
+    {
+      "name": "0.5/scalar-native",
+      "passed": true,
+      "error": 1.1102230246251565e-16
+    },
+    {
+      "name": "0.5/full ledger",
+      "passed": true
+    },
+    {
+      "name": "0.5/polynomial0",
+      "passed": true,
+      "value": 1.0,
+      "target": 1.0
+    },
+    {
+      "name": "0.5/polynomial1",
+      "passed": true,
+      "value": 0.0,
+      "target": 0.0
+    },
+    {
+      "name": "0.5/polynomial2",
+      "passed": true,
+      "value": 0.0,
+      "target": 0.0
+    },
+    {
+      "name": "0.50000001/scalar-native",
+      "passed": true,
+      "error": 1.1102230246251565e-16
+    },
+    {
+      "name": "0.50000001/full ledger",
+      "passed": true
+    },
+    {
+      "name": "0.50000001/polynomial0",
+      "passed": true,
+      "value": 1.0,
+      "target": 1.0
+    },
+    {
+      "name": "0.50000001/polynomial1",
+      "passed": true,
+      "value": 6.617444900424222e-24,
+      "target": 0.0
+    },
+    {
+      "name": "0.50000001/polynomial2",
+      "passed": true,
+      "value": -6.617444900424222e-24,
+      "target": 0.0
+    },
+    {
+      "name": "0.75/scalar-native",
+      "passed": true,
+      "error": 1.1102230246251565e-16
+    },
+    {
+      "name": "0.75/full ledger",
+      "passed": true
+    },
+    {
+      "name": "0.75/polynomial0",
+      "passed": true,
+      "value": 1.0,
+      "target": 1.0
+    },
+    {
+      "name": "0.75/polynomial1",
+      "passed": true,
+      "value": 5.551115123125783e-17,
+      "target": 0.0
+    },
+    {
+      "name": "0.75/polynomial2",
+      "passed": true,
+      "value": -1.1102230246251565e-16,
+      "target": 0.0
+    },
+    {
+      "name": "0.99999999/scalar-native",
+      "passed": true,
+      "error": 1.1102230246251565e-16
+    },
+    {
+      "name": "0.99999999/full ledger",
+      "passed": true
+    },
+    {
+      "name": "0.99999999/polynomial0",
+      "passed": true,
+      "value": 0.9999999999999998,
+      "target": 1.0
+    },
+    {
+      "name": "0.99999999/polynomial1",
+      "passed": true,
+      "value": -1.1102230246251565e-16,
+      "target": 0.0
+    },
+    {
+      "name": "0.99999999/polynomial2",
+      "passed": true,
+      "value": 0.0,
+      "target": 0.0
+    },
+    {
+      "name": "1.0/scalar-native",
+      "passed": true,
+      "error": 1.1102230246251565e-16
+    },
+    {
+      "name": "1.0/full ledger",
+      "passed": true
+    },
+    {
+      "name": "1.0/polynomial0",
+      "passed": true,
+      "value": 1.0,
+      "target": 1.0
+    },
+    {
+      "name": "1.0/polynomial1",
+      "passed": true,
+      "value": -1.1102230246251565e-16,
+      "target": 0.0
+    },
+    {
+      "name": "1.0/polynomial2",
+      "passed": true,
+      "value": 0.0,
+      "target": 0.0
+    },
+    {
+      "name": "0.25/uniform moving-wall equilibrium",
+      "passed": true
+    },
+    {
+      "name": "0.25/uniform moving-wall ledger",
+      "passed": true
+    },
+    {
+      "name": "0.25/stationary limit",
+      "passed": true
+    },
+    {
+      "name": "0.5/uniform moving-wall equilibrium",
+      "passed": true
+    },
+    {
+      "name": "0.5/uniform moving-wall ledger",
+      "passed": true
+    },
+    {
+      "name": "0.5/stationary limit",
+      "passed": true
+    },
+    {
+      "name": "0.75/uniform moving-wall equilibrium",
+      "passed": true
+    },
+    {
+      "name": "0.75/uniform moving-wall ledger",
+      "passed": true
+    },
+    {
+      "name": "0.75/stationary limit",
+      "passed": true
+    },
+    {
+      "name": "half-link quadratic equals legacy halfway",
+      "passed": true
+    },
+    {
+      "name": "half-link branch continuity",
+      "passed": true
+    },
+    {
+      "name": "negative quadratic weights explicitly retained",
+      "passed": true
+    },
+    {
+      "name": "NEE prescribed density all boundary rows",
+      "passed": true
+    },
+    {
+      "name": "NEE adjacent poststream velocity all rows",
+      "passed": true
+    },
+    {
+      "name": "NEE actually replaces known six",
+      "passed": true
+    },
+    {
+      "name": "omitting known-six ledger is detected",
+      "passed": true
+    },
+    {
+      "name": "outlet corner owns full node without wrap",
+      "passed": true
+    },
+    {
+      "name": "annulus-40-0.025/actual fixed stencil support",
+      "passed": true,
+      "short_links": 242,
+      "long_links": 222
+    },
+    {
+      "name": "annulus-60-0.016666666666666666/actual fixed stencil support",
+      "passed": true,
+      "short_links": 348,
+      "long_links": 340
+    },
+    {
+      "name": "annulus-80-0.0125/actual fixed stencil support",
+      "passed": true,
+      "short_links": 488,
+      "long_links": 440
+    },
+    {
+      "name": "cylinder-0-0.01/actual fixed stencil support",
+      "passed": true,
+      "short_links": 45,
+      "long_links": 49
+    },
+    {
+      "name": "cylinder-0-0.005/actual fixed stencil support",
+      "passed": true,
+      "short_links": 97,
+      "long_links": 93
+    },
+    {
+      "name": "missing second neighbor rejects without fallback",
+      "passed": true
+    },
+    {
+      "name": "nonpositive density rejects without floor",
+      "passed": true
+    },
+    {
+      "name": "old linear fails quadratic reproduction negative control",
+      "passed": true
+    },
+    {
+      "name": "fixed curved workload projection <=40s",
+      "passed": true,
+      "estimated_seconds": 39.758366620626475
+    }
+  ]
+}

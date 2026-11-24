@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/lbm-curved-boundary/run.py", line 24, in main
+    execute(root,args.output,inputs,json.loads((root/'acceptance.json').read_text())['limits'],cases)
+  File "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/lbm-curved-boundary/experiments.py", line 239, in execute
+    run_cylinder(root,out,inputs['cylinder'],acceptance['cylinder'],cases,native)
+  File "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/lbm-curved-boundary/experiments.py", line 195, in run_cylinder
+    label='lbm-cylinder-re20-dx'+str(dx);f,h,states,arrays=trajectory(native,g,tau,steps,checkpoints,f0,out,label)
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/lbm-curved-boundary/evolution.py", line 24, in trajectory
+    h=native.advance(f,g,tau,chunk)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/lbm-curved-boundary/native.py", line 74, in advance
+    if code:raise NativeFailure(code,status,f,h)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+native.NativeFailure: Native LBM failure code=2, status=[265, 265, 4379]

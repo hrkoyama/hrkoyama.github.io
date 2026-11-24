@@ -42,6 +42,10 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Integrate x² under U[0,1]. Compare 256 independent seeds with analytic integral and variance, checking N^-1/2 RMS scaling and interval coverage. Excludes MCMC and rare events.
+- [Ordinary importance sampling of a normal rare tail](<https://hrkoyama.github.io/numerical-methods-atlas/validation/normal-tail-importance/?lang=en>)
+  availability: run
+
+  Check ordinary likelihood-ratio averages with analytic moments,independent batch variance and finite coverage diagnostics.
 - [Monte Carlo integration — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/monte-carlo/?lang=en#method-execution-en>)
   availability: source
 

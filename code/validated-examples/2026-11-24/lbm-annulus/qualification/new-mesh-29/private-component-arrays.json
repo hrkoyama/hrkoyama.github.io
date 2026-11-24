@@ -1,0 +1,29 @@
+{
+  "arrays": [
+    {
+      "path": "attempt01/results/N160-variant0.npz",
+      "sha256": "92e34d4a00f27efe87628c85c962625e3a892993d2de5f0f0debe0917c5f52b6",
+      "bytes": 1833606,
+      "retention": "PRIVATE_FULL_COMPONENT_ARRAYS_NOT_INCLUDED_PUBLIC"
+    },
+    {
+      "path": "attempt01/results/N160-variant1.npz",
+      "sha256": "0875daac9ad52edfbb73fe32a5d80f0d2fdfc80aa7a2686983279d8858824cf2",
+      "bytes": 1820111,
+      "retention": "PRIVATE_FULL_COMPONENT_ARRAYS_NOT_INCLUDED_PUBLIC"
+    },
+    {
+      "path": "attempt01/results/N240-variant0.npz",
+      "sha256": "2970add4eea684b20dd09096bcdcde495398efabe9f417d72e07078f46201d06",
+      "bytes": 4099080,
+      "retention": "PRIVATE_FULL_COMPONENT_ARRAYS_NOT_INCLUDED_PUBLIC"
+    },
+    {
+      "path": "attempt01/results/N240-variant1.npz",
+      "sha256": "70a57309202b905d77d55ea10090dbff2fbc5e68d652a526273d45ead146eb24",
+      "bytes": 4075827,
+      "retention": "PRIVATE_FULL_COMPONENT_ARRAYS_NOT_INCLUDED_PUBLIC"
+    }
+  ],
+  "scope": "Fullarraysretainedprivateatoriginalcomponent;frozenprotocol/source/reviews/results/receipt/timingtextareincluded. Componentqualificationisdistinctfromactivecasemain."
+}

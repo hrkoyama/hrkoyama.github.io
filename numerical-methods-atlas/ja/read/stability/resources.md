@@ -150,6 +150,22 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stability/
   availability: run
 
   質量と格子面位置を同じHeun段で更新し、一様GCLだけでなく非一様な解析波を運びます。
+- [等方散乱平板の反射・透過・吸収](<https://hrkoyama.github.io/numerical-methods-atlas/validation/isotropic-scattering-slab/?lang=ja>)
+  availability: run
+
+  正負の角度を結合した実際の定常輸送を解き、独立な連続角Fredholm参照とR/T/Aを比較します。
+- [Su–Olson1997角度輸送の独立公開表比較](<https://hrkoyama.github.io/numerical-methods-atlas/validation/su-olson-transport1997/?lang=ja>)
+  availability: run
+
+  物質交換を含む実際の正負角度輸送を進め、2023原著者公開の解析benchmark表と比較します。
+- [2D吸収影と保存的M1輸送](<https://hrkoyama.github.io/numerical-methods-atlas/validation/shadow-absorber2d/?lang=ja>)
+  availability: run
+
+  実際の円形吸収体の影を、特性線の円弦減衰・角度輸送・M1で比較します。
+- [2D反向beamとM1閉包の情報損失](<https://hrkoyama.github.io/numerical-methods-atlas/validation/opposing-beams2d/?lang=ja>)
+  availability: run
+
+  保存した反向packetの実進行からM1の限界を示し、別の閉M1MMSで数値実装を検証します。
 - [Euler二重膨張波：段階ごとの正値性](<https://hrkoyama.github.io/numerical-methods-atlas/validation/euler-double-rarefaction-positivity/?lang=ja>)
   availability: run
 

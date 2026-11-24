@@ -1,3 +1,4 @@
+import {problemCount} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -13,7 +14,7 @@ test('method and problem records lead to the same stable execution examples in b
   const problems=json('numerical-methods-atlas/test-cases/index.json').problems;
   const page=read('numerical-methods-atlas/code-and-data/index.html');
   assert.equal(examples.length,22);
-  assert.equal(problems.length,113);
+  assert.equal(problems.length,problemCount);
   for(const e of examples){
     const records=[problems.find(p=>p.id===e.problem_id),...e.method_ids.map(id=>methods.find(m=>m.id===id))];
     for(const record of records){

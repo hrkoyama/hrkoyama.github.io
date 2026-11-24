@@ -1,0 +1,9 @@
+{
+  "run": "lbm-cylinder-re20-dx0.005",
+  "completed_steps": 35600,
+  "next_steps": 400,
+  "fixed_total_steps": 36000,
+  "tau": 0.6,
+  "dx": 0.005,
+  "dt": 0.0008333333333333334
+}

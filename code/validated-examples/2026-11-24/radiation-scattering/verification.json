@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "group": "radiation-scattering",
+  "edition": "2026-11-24",
+  "verified_on": "2026-11-24",
+  "source_manifest_sha256": "030a887ec8ff157149733ec9707960cdd5459f7d125352f632cc4f6c05cf6def",
+  "archive": {
+    "file": "atlas-radiation-scattering-2026-11-24.zip",
+    "sha256": "52323265fbea51e79d109b45acc8c4c69d210ac70a8f49ecac6d4fa1f16c33d9",
+    "bytes": 2761489,
+    "archive_directory": "atlas-radiation-scattering-2026-11-24"
+  },
+  "archive_sha256": "52323265fbea51e79d109b45acc8c4c69d210ac70a8f49ecac6d4fa1f16c33d9",
+  "returncode": 0,
+  "passed_tests": 12,
+  "tests": 12,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "isotropic-scattering-slab"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 0.7225965830002679,
+  "independent_rerun_seconds": 0.5404655000020284,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

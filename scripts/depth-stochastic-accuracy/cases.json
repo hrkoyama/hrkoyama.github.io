@@ -1,0 +1,220 @@
+[
+  {
+    "id": "gbm-weak-moments",
+    "method_ids": [
+      "sde"
+    ],
+    "domains": [
+      "stochastic",
+      "time"
+    ],
+    "code_files": [
+      "run.py",
+      "paths.py",
+      "references/analytic.py"
+    ],
+    "title": {
+      "ja": "GBMのweak誤差とMonte Carlo標準誤差",
+      "en": "GBM weak bias and Monte Carlo error"
+    },
+    "summary": {
+      "ja": "連続真値、離散EM期待値、同一経路差とMCSEを分離する固定入力です。",
+      "en": "Separate continuous truth,exact discrete EM expectation,paired-path weak difference and MCSE."
+    },
+    "assumptions": {
+      "ja": "dX=.5Xdt+.4XdW,X0=1。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。",
+      "en": "dX=.5Xdt+.4XdW,X0=1;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping."
+    },
+    "algorithm": {
+      "ja": "fine Gaussian増分を固定block和で集約し、厳密端点1配列を全刻みで共有。OUの厳密積分はdWとの共分散を保つ独立bridge正規変数から構成。異なる加算順の和のbit一致は主張しません。",
+      "en": "Aggregate fixed fine Gaussian blocks;reuse one exact terminal array. OUexact kicks use the correct jointly sampled integral with independent bridge noise. Different floating reduction orders need not be bit identical."
+    },
+    "validation": {
+      "ja": "軌道前にDecimal80/120・独立GH/OU共分散積分とpaired分散による標本解像を資格。各モーメントの5MCSE校正、MCSE精度、固定3段weak率、最後2段の3SE解像を判定。区間の被覆は離散真値に対する有限32反復の記述値。",
+      "en": "Before paths qualify Decimal80/120,independent GH/OUcovariance integrals and paired-variance allocation. Gate5MCSE calibration,MCSE precision,fixed three-level weak rate and final-two-level3SE resolution. Coverage is descriptive over32batches against discrete truth."
+    },
+    "limits": {
+      "ja": "弱誤差は期待値の差です。3SEや区間を真の誤差上界・一般被覆保証としません。1D状態×時間の保存例であり2D物理流れではありません。GBMやOU浴成分を新しい物理問題として重複計数しません。",
+      "en": "Weak error is a difference of expectations. SE/intervals are not true-error bounds or general coverage guarantees. State×time examples are not2Dphysical flow. Existing GBM/OUbath physical families are reused."
+    },
+    "review_level": {
+      "ja": "一次資料選択確認＋著者導出の有限モーメントを独立資格",
+      "en": "Selected primary text plus independently qualified authored finite-moment identities"
+    },
+    "formulas": [
+      "dX_t=\\mu X_t\\,dt+\\sigma X_t\\,dW_t",
+      "b_p(h)=\\mathbb E[X_h(T)^p]-\\mathbb E[X(T)^p],\\quad p=1,2",
+      "\\mathbb E[X_h(T)]=X_0(1+\\mu h)^n"
+    ],
+    "references": [
+      {
+        "id": "higham2001",
+        "author": "D. J. Higham",
+        "year": 2001,
+        "title": "An Algorithmic Introduction to Numerical Simulation of Stochastic Differential Equations",
+        "url": "https://epubs.siam.org/doi/10.1137/S0036144500378302",
+        "type": "article",
+        "review_level": "selected-primary-full-text-sections4-6",
+        "review": {
+          "ja": "原著の線形SDE厳密解、strong/weak定義、EM、Milstein補正の選択節を確認。論文全体やMATLAB実験の再現ではありません。掲載strong定義L1と本例L2 RMSを区別します。",
+          "en": "Read selected original sections4-6 on linear SDEs,strong/weak definitions,EM and Milstein. No full-paper audit or reproduction of its MATLAB/logistic experiment. Its L1strong definition is distinguished from our L2RMS."
+        }
+      }
+    ],
+    "gallery_figure": "gbm-weak-moments-preview.png",
+    "additional_figures": [
+      {
+        "file": "gbm-weak-moments-preview.png",
+        "caption": {
+          "ja": "保存した実データ由来の分布・誤差診断。空間次元と標本/時間軸を区別します。",
+          "en": "Distribution and error diagnostics from actual saved data;sample/time axes are distinguished from spatial dimensions."
+        }
+      }
+    ]
+  },
+  {
+    "id": "ou-weak-moments",
+    "method_ids": [
+      "sde"
+    ],
+    "domains": [
+      "stochastic",
+      "time"
+    ],
+    "code_files": [
+      "run.py",
+      "paths.py",
+      "references/analytic.py"
+    ],
+    "title": {
+      "ja": "OUのweakモーメントと同時Brownian結合",
+      "en": "OU weak moments with joint Brownian coupling"
+    },
+    "summary": {
+      "ja": "連続真値、離散EM期待値、同一経路差とMCSEを分離する固定入力です。",
+      "en": "Separate continuous truth,exact discrete EM expectation,paired-path weak difference and MCSE."
+    },
+    "assumptions": {
+      "ja": "dX=1.5(.2-X)dt+.8dW,X0=.7。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。",
+      "en": "dX=1.5(.2-X)dt+.8dW,X0=.7;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping."
+    },
+    "algorithm": {
+      "ja": "fine Gaussian増分を固定block和で集約し、厳密端点1配列を全刻みで共有。OUの厳密積分はdWとの共分散を保つ独立bridge正規変数から構成。異なる加算順の和のbit一致は主張しません。",
+      "en": "Aggregate fixed fine Gaussian blocks;reuse one exact terminal array. OUexact kicks use the correct jointly sampled integral with independent bridge noise. Different floating reduction orders need not be bit identical."
+    },
+    "validation": {
+      "ja": "軌道前にDecimal80/120・独立GH/OU共分散積分とpaired分散による標本解像を資格。各モーメントの5MCSE校正、MCSE精度、固定3段weak率、最後2段の3SE解像を判定。区間の被覆は離散真値に対する有限32反復の記述値。",
+      "en": "Before paths qualify Decimal80/120,independent GH/OUcovariance integrals and paired-variance allocation. Gate5MCSE calibration,MCSE precision,fixed three-level weak rate and final-two-level3SE resolution. Coverage is descriptive over32batches against discrete truth."
+    },
+    "limits": {
+      "ja": "弱誤差は期待値の差です。3SEや区間を真の誤差上界・一般被覆保証としません。1D状態×時間の保存例であり2D物理流れではありません。GBMやOU浴成分を新しい物理問題として重複計数しません。",
+      "en": "Weak error is a difference of expectations. SE/intervals are not true-error bounds or general coverage guarantees. State×time examples are not2Dphysical flow. Existing GBM/OUbath physical families are reused."
+    },
+    "review_level": {
+      "ja": "一次資料選択確認＋著者導出の有限モーメントを独立資格",
+      "en": "Selected primary text plus independently qualified authored finite-moment identities"
+    },
+    "formulas": [
+      "dX_t=\\kappa(\\theta-X_t)\\,dt+\\sigma\\,dW_t",
+      "b_p(h)=\\mathbb E[X_h(T)^p]-\\mathbb E[X(T)^p],\\quad p=1,2",
+      "\\operatorname{Cov}(J_h,\\Delta W)=(1-e^{-\\kappa h})/\\kappa"
+    ],
+    "references": [
+      {
+        "id": "higham2001",
+        "author": "D. J. Higham",
+        "year": 2001,
+        "title": "An Algorithmic Introduction to Numerical Simulation of Stochastic Differential Equations",
+        "url": "https://epubs.siam.org/doi/10.1137/S0036144500378302",
+        "type": "article",
+        "review_level": "selected-primary-full-text-sections4-6",
+        "review": {
+          "ja": "原著の線形SDE厳密解、strong/weak定義、EM、Milstein補正の選択節を確認。論文全体やMATLAB実験の再現ではありません。掲載strong定義L1と本例L2 RMSを区別します。",
+          "en": "Read selected original sections4-6 on linear SDEs,strong/weak definitions,EM and Milstein. No full-paper audit or reproduction of its MATLAB/logistic experiment. Its L1strong definition is distinguished from our L2RMS."
+        }
+      }
+    ],
+    "gallery_figure": "ou-weak-moments-preview.png",
+    "additional_figures": [
+      {
+        "file": "ou-weak-moments-preview.png",
+        "caption": {
+          "ja": "保存した実データ由来の分布・誤差診断。空間次元と標本/時間軸を区別します。",
+          "en": "Distribution and error diagnostics from actual saved data;sample/time axes are distinguished from spatial dimensions."
+        }
+      }
+    ]
+  },
+  {
+    "id": "gbm-milstein-strong",
+    "method_ids": [
+      "sde"
+    ],
+    "domains": [
+      "stochastic",
+      "time"
+    ],
+    "code_files": [
+      "run.py",
+      "paths.py",
+      "references/analytic.py"
+    ],
+    "title": {
+      "ja": "同じBrownian経路のMilstein・EM strong比較",
+      "en": "Milstein and EM on identical Brownian paths"
+    },
+    "summary": {
+      "ja": "補償項を持つMilsteinとEMの終端L2 RMSを、厳密端点と有限モーメントから検査。",
+      "en": "Compare compensated Milstein and EM endpoint L2RMS against exact endpoints and finite-moment identities."
+    },
+    "assumptions": {
+      "ja": "既存GBMと同じμ=.15,σ=.4,X0=T=1。4seed×8192経路、16/32/64/128刻み。",
+      "en": "ExistingGBMparametersmu.15,sigma.4,X0=T1;4seeds×8192paths;16/32/64/128steps."
+    },
+    "algorithm": {
+      "ja": "Milsteinは.5σ²X(dW²-h)を追加。全法・刻みでfine driverと厳密端点1配列を共有。負状態を修復しません。",
+      "en": "Milstein adds.5sigma²X(dW²-h). All methods/levels share the fine driver and one exact terminal array. No state repair."
+    },
+    "validation": {
+      "ja": "相殺を含む解析MSEをDecimal80/120と独立1step GHで資格。二乗誤差の5SE校正、固定3段RMS率、最細段の優位性を判定。相関を保つ64pathblock jackknifeで率の不確実性を記述。",
+      "en": "Qualify cancellation-prone analytic MSE by Decimal80/120and independent one-step GH. Gate squared-error5SE calibration,fixed-three-level RMS rates and finest advantage.64paired path-block jackknife describes slope uncertainty."
+    },
+    "limits": {
+      "ja": "L2終端誤差を扱い、原著のL1定義と区別。GBM以外の非Lipschitz系・正値性の一般保証はしません。既存gbm-sdeへの手法追加です。",
+      "en": "EndpointL2error is distinct from the selected paper L1definition. No general non-Lipschitz/positivity guarantee. This extends existinggbm-sde rather than adding a physical problem."
+    },
+    "review_level": {
+      "ja": "一次Milstein補正選択確認・独立精度資格",
+      "en": "Selected primary Milstein correction and independent precision qualification"
+    },
+    "formulas": [
+      "X_{j+1}=X_j[1+\\mu h+\\sigma\\Delta W_j+\\tfrac12\\sigma^2((\\Delta W_j)^2-h)]",
+      "\\mathbb E[(X_n-X(T))^2]=X_0^2[A^n+e^{(2\\mu+\\sigma^2)T}-2K^n]"
+    ],
+    "references": [
+      {
+        "id": "higham2001",
+        "author": "D. J. Higham",
+        "year": 2001,
+        "title": "An Algorithmic Introduction to Numerical Simulation of Stochastic Differential Equations",
+        "url": "https://epubs.siam.org/doi/10.1137/S0036144500378302",
+        "type": "article",
+        "review_level": "selected-primary-full-text-sections4-6",
+        "review": {
+          "ja": "原著の線形SDE厳密解、strong/weak定義、EM、Milstein補正の選択節を確認。論文全体やMATLAB実験の再現ではありません。掲載strong定義L1と本例L2 RMSを区別します。",
+          "en": "Read selected original sections4-6 on linear SDEs,strong/weak definitions,EM and Milstein. No full-paper audit or reproduction of its MATLAB/logistic experiment. Its L1strong definition is distinguished from our L2RMS."
+        }
+      }
+    ],
+    "gallery_figure": "gbm-milstein-strong-preview.png",
+    "additional_figures": [
+      {
+        "file": "gbm-milstein-strong-preview.png",
+        "caption": {
+          "ja": "保存した実データ由来の分布・誤差診断。空間次元と標本/時間軸を区別します。",
+          "en": "Distribution and error diagnostics from actual saved data;sample/time axes are distinguished from spatial dimensions."
+        }
+      }
+    ]
+  }
+]

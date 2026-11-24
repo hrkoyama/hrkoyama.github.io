@@ -1,0 +1,8 @@
+{
+  "state": "UNEXECUTED_R1_SOURCE_PRESERVED",
+  "full_original_source_persistent_path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/main-preflight-revisions/01/lbm-curved-boundary",
+  "source_test_pathmap": {
+    "archived_test_lbm.py.txt": "test_lbm.py"
+  },
+  "reason": "Common TemporaryDirectory teardown failure in independent cavitypytest; this group had neitherpytest nor main execution before lifecycle correction."
+}

@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "status": "FROZEN_COMPONENT_PROPOSAL_AWAITING_INDEPENDENT_REVIEW_AND_ROOT_EXECUTION_AUTHORIZATION",
+  "frozen_at_utc": "2026-11-23T22:50:22.577237+00:00",
+  "publisher_baseline": "9dde48159c568f985170506ef2eb0a7008f1c4ea",
+  "files_sha256": {
+    "DERIVATION.md": "6b7e40a6720ce2820d7249c6b87dab171ae9658f3568a352ce741657547eab71",
+    "reference-scope.json": "0af783e56acaf3627a7119dc3a65b1cead6276b2661b25153aec30b7b8f2568f",
+    "source/check_repair.py": "980506457bb6107161665b6a9032a77d053af9d58083b749a13b6ec9838c362e",
+    "source/geometry.py": "517bd0e411a48847b40028084343c403fe99626733970617945f01f8940a1214",
+    "source/kernel.cpp": "94224e87617ceed1b946bb13829e20242fc9c6f43041eae3b54487f30b589d4d",
+    "source/native.py": "199aff9198a80a7859567283d21f52a2111520d2de9cfab6e25ec4d7de6ac98d",
+    "source/reference_step.py": "8735c74ce0dffc74657f794cf3fb8f0e615ee60ee56af375baf682b409a82e69"
+  },
+  "evidence": {
+    "failed_attempt_contract": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/main-attempts/lbm-curved-boundary/01/source/pre-run-contract.json",
+      "sha256": "d3907d6280b085981c5b1595a8b9805cfb5e11a813feb4f7af89886908a1e6dc"
+    },
+    "fixed_main_inputs": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/lbm-curved-boundary/inputs.json",
+      "sha256": "45d48ba5c59f9cfd94e1c41468af319354fbc204ec2fd8048d520a62a3394ab5"
+    },
+    "fixed_main_acceptance": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/lbm-curved-boundary/acceptance.json",
+      "sha256": "e5e171409fc4e90e55ba1ac34b82f8c0b58a731d4e16e4dda163b9c4e528b967"
+    },
+    "failed_main_result": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/main-attempts/lbm-curved-boundary/01/results/result.json",
+      "sha256": "18ef254013e3ce094674d35592089b156620abf01768c81a730e830fd63ade90"
+    },
+    "saved_only_audit": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/curved-saved-audit/attempt01/results/result.json",
+      "sha256": "c79236510d2af73b68101aa6326c0c5c6eac80b05006862584a865f6161287c2"
+    },
+    "cavity_qualified_contract": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/lbm-cavity/pre-run-contract.json",
+      "sha256": "5c84bcc8e8adab82051284102ecca00ee832a84cfb77a2127377662a0a4acd4a"
+    },
+    "TGV_qualified_contract": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/lbm-taylor-green/pre-run-contract.json",
+      "sha256": "7a0da7c8b1a6e4c241da9d69b020c2158b48ec34eaafe1f971ced4f72b79d12c"
+    },
+    "old_curved_kernel": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/lbm-curved-boundary/kernel.cpp",
+      "sha256": "f8639d0c614e36571ceb96a7352b0e55f986a538274a2e1a9e6480da14fe2241"
+    },
+    "old_curved_geometry": {
+      "path": "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/lbm-curved-boundary/geometry.py",
+      "sha256": "28cad349c8842eb5da7efb138efb23ecfeaa3dac6b47e3337dda1ddfbad4fec4"
+    }
+  },
+  "planned_check_count": 87,
+  "planned_check_names": [
+    "strict C++17 compile",
+    "legacy-periodic scalar-native",
+    "legacy-periodic mass ledger",
+    "legacy-periodic momentum ledger",
+    "legacy-cavity scalar-native",
+    "legacy-cavity mass ledger",
+    "legacy-cavity momentum ledger",
+    "legacy-annulus scalar-native",
+    "legacy-annulus mass ledger",
+    "legacy-annulus momentum ledger",
+    "quadratic-NEE-cylinder scalar-native",
+    "quadratic-NEE-cylinder mass ledger",
+    "quadratic-NEE-cylinder momentum ledger",
+    "quadratic-annulus scalar-native",
+    "quadratic-annulus mass ledger",
+    "quadratic-annulus momentum ledger",
+    "1e-06/scalar-native",
+    "1e-06/full ledger",
+    "1e-06/polynomial0",
+    "1e-06/polynomial1",
+    "1e-06/polynomial2",
+    "0.1/scalar-native",
+    "0.1/full ledger",
+    "0.1/polynomial0",
+    "0.1/polynomial1",
+    "0.1/polynomial2",
+    "0.25/scalar-native",
+    "0.25/full ledger",
+    "0.25/polynomial0",
+    "0.25/polynomial1",
+    "0.25/polynomial2",
+    "0.49999999/scalar-native",
+    "0.49999999/full ledger",
+    "0.49999999/polynomial0",
+    "0.49999999/polynomial1",
+    "0.49999999/polynomial2",
+    "0.5/scalar-native",
+    "0.5/full ledger",
+    "0.5/polynomial0",
+    "0.5/polynomial1",
+    "0.5/polynomial2",
+    "0.50000001/scalar-native",
+    "0.50000001/full ledger",
+    "0.50000001/polynomial0",
+    "0.50000001/polynomial1",
+    "0.50000001/polynomial2",
+    "0.75/scalar-native",
+    "0.75/full ledger",
+    "0.75/polynomial0",
+    "0.75/polynomial1",
+    "0.75/polynomial2",
+    "0.99999999/scalar-native",
+    "0.99999999/full ledger",
+    "0.99999999/polynomial0",
+    "0.99999999/polynomial1",
+    "0.99999999/polynomial2",
+    "1.0/scalar-native",
+    "1.0/full ledger",
+    "1.0/polynomial0",
+    "1.0/polynomial1",
+    "1.0/polynomial2",
+    "0.25/uniform moving-wall equilibrium",
+    "0.25/uniform moving-wall ledger",
+    "0.25/stationary limit",
+    "0.5/uniform moving-wall equilibrium",
+    "0.5/uniform moving-wall ledger",
+    "0.5/stationary limit",
+    "0.75/uniform moving-wall equilibrium",
+    "0.75/uniform moving-wall ledger",
+    "0.75/stationary limit",
+    "half-link quadratic equals legacy halfway",
+    "half-link branch continuity",
+    "negative quadratic weights explicitly retained",
+    "NEE prescribed density all boundary rows",
+    "NEE adjacent poststream velocity all rows",
+    "NEE actually replaces known six",
+    "omitting known-six ledger is detected",
+    "outlet corner owns full node without wrap",
+    "annulus-40-0.025/actual fixed stencil support",
+    "annulus-60-0.016666666666666666/actual fixed stencil support",
+    "annulus-80-0.0125/actual fixed stencil support",
+    "cylinder-0-0.01/actual fixed stencil support",
+    "cylinder-0-0.005/actual fixed stencil support",
+    "missing second neighbor rejects without fallback",
+    "nonpositive density rejects without floor",
+    "old linear fails quadratic reproduction negative control",
+    "fixed curved workload projection <=40s"
+  ],
+  "q_probes": [
+    1e-06,
+    0.1,
+    0.25,
+    0.49999999,
+    0.5,
+    0.50000001,
+    0.75,
+    0.99999999,
+    1.0
+  ],
+  "work": {
+    "physical_trajectories": 0,
+    "reference_generations": 0,
+    "scalar_native_single_steps": true,
+    "reset_one_step_timing_calls_per_fixed_geometry": 16,
+    "geometry_support_only_main_meshes": [
+      "annulus40",
+      "annulus60",
+      "annulus80",
+      "cylinder dx.01",
+      "cylinder dx.005"
+    ]
+  },
+  "accuracy": {
+    "scalar_native_max_abs": 4e-15,
+    "per_node_mass_momentum_ledger": 3e-14,
+    "polynomial_degree_0_1_2_abs": 2e-14,
+    "uniform_moving_equilibrium_abs": 4e-16,
+    "uniform_total_moment_ledger": 3e-14,
+    "halfway_reduction_abs": 3e-15,
+    "half_link_continuity_abs": 1e-10,
+    "NEE_moments_abs": 4e-15,
+    "negative_controls": "Known-six NEE changes>1e-8 and omitted-ledger pernode>3e-14; original linear quadratic-reproduction failure>.01."
+  },
+  "execution": {
+    "outer_shared_deadline_seconds": 30,
+    "compile_timeout_seconds": 15,
+    "reset_step_projection_cap_seconds": 40,
+    "strict_warnings": true,
+    "pinned_python": "/private/tmp/codex-scratch-501/a2aacc1bcdece796d5ad47fc3786ce9899b64a42ed7a69a36d15782d9e5b1459/batch28-37/env/bin/python",
+    "environment": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "command": [
+      "PINNED_PYTHON",
+      "-B",
+      "-W",
+      "error",
+      "/Users/koyamac/Documents/ChatGPT/The Art of numerical algorithm/outputs/atlas-batch-38-47-2026-11-24/lbm/curved-repair/component/source/check_repair.py",
+      "--output",
+      "FRESH_PRIVATE_RESULTS"
+    ]
+  },
+  "failure_policy": "One independently reviewed/root-authorized component attempt only; actual outer30s process-group cap includes compiler. Preserve frozen source/protocol/evidence,compiler stdoutstderr,allpartialNPZ/checks/traceback/outerreceipt. Exceptions/timeouts stop; completed falsechecks remainfailed. No retries/floor/fallback/recentering/criterionchange.",
+  "scientific_scope": "This qualification checks algebra,scalar/native implementation,moments,open/wall ledgers,fixedgeometry support and reset-step cost only. It does not authorize/claim successful new annulus/cylinder evolution,pointwise pressure,stationarity ororiginal benchmark reproduction.",
+  "changes": "Only separate candidate curved geometry/native/kernel/scalar oracle. No qualified cavity/TGV bytes or original curved inputs/acceptance changed.",
+  "static_AST_passed": true,
+  "scientific_or_component_execution_before_review": 0
+}

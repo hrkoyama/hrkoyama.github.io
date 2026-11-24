@@ -24,6 +24,18 @@ $$
 
 正準方程式と分離可能なHamiltonianの代表形。調和・4次ポテンシャルの振動子で、エネルギー誤差とシンプレクティック性を比べます。
 
+#### [スカラーItô拡散：GBMとOU](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#scalar-ito-diffusion-ja)
+
+$$
+\mathrm dX_t=a(X_t,t)\,\mathrm dt+b(X_t,t)\,\mathrm dW_t
+$$
+
+$$
+\mathrm{GBM}:\ a=\mu X,\ b=\sigma X;\quad\mathrm{OU}:\ a=\kappa(\theta-X),\ b=\sigma
+$$
+
+決定論的初期値のスカラーSDE。平均・二次モーメントの弱誤差、共有Brown運動での強誤差、有限標本のMCSEを分けます。OUは調和Langevin系の浴成分に関連する追加検査です。
+
 #### Langevin温度制御：正準分布・刻み偏り・時間相関
 
 補助実行例 · 実行例の定義・検証式
@@ -60,9 +72,37 @@ $$
 
 異なる周波数を持つ2自由度でglobal CSVRとlocal Langevinを同じOBABO分割で比較。位置・運動量・温度・全エネルギーの分布、揺らぎ、相関を記録します。
 
+#### OUのweakモーメントと同時Brownian結合
+
+補助実行例 · 実行例の定義・検証式
+
+$$
+dX_t=\kappa(\theta-X_t)\,dt+\sigma\,dW_t
+$$
+
+$$
+b_p(h)=\mathbb E[X_h(T)^p]-\mathbb E[X(T)^p],\quad p=1,2
+$$
+
+$$
+\operatorname{Cov}(J_h,\Delta W)=(1-e^{-\kappa h})/\kappa
+$$
+
+連続真値、離散EM期待値、同一経路差とMCSEを分離する固定入力です。
+
 ### 厳密解・参照解
 
 調和ポテンシャルの正準分布・モーメントと相関の解析基準を使い、刻み幅バイアスを確認します。摩擦・雑音を持たない調和軌道とは区別します。
+
+#### [OUのweakモーメントと同時Brownian結合](https://hrkoyama.github.io/numerical-methods-atlas/validation/ou-weak-moments/?lang=ja#ou-weak-moments-ja-measurements)
+
+解析解 · 関連モデルの参照
+
+dX_t=\kappa(\theta-X_t)\,dt+\sigma\,dW_t; b_p(h)=\mathbb E[X_h(T)^p]-\mathbb E[X(T)^p],\quad p=1,2; \operatorname{Cov}(J_h,\Delta W)=(1-e^{-\kappa h})/\kappa
+
+dX=1.5(.2-X)dt+.8dW,X0=.7。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。
+
+dX=1.5(.2-X)dt+.8dW,X0=.7。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。
 
 #### Langevin温度制御：正準分布・刻み偏り・時間相関
 
@@ -80,12 +120,21 @@ SciPy離散Lyapunov解および調和系の明示共分散diag(T/omega²,T(1-h²
 
 [参照・検証条件の詳細](https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-langevin-harmonic/?lang=ja)
 
+#### OUのweakモーメントと同時Brownian結合
+
+軌道前にDecimal80/120・独立GH/OU共分散積分とpaired分散による標本解像を資格。各モーメントの5MCSE校正、MCSE精度、固定3段weak率、最後2段の3SE解像を判定。区間の被覆は離散真値に対する有限32反復の記述値。
+
+- [保存結果](https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/results/result.json)
+
+[参照・検証条件の詳細](https://hrkoyama.github.io/numerical-methods-atlas/validation/ou-weak-moments/?lang=ja)
+
 ### 計算法
 
 この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。
 
 - [Langevinサーモスタット](https://hrkoyama.github.io/numerical-methods-atlas/methods/langevin-thermostat/?lang=ja) — この問題の実行例で使用; 手法台帳の状態：教育用例・関連コードあり
 - [確率的速度リスケーリング（CSVR）](https://hrkoyama.github.io/numerical-methods-atlas/methods/stochastic-velocity-rescaling/?lang=ja) — この問題の実行例で使用; 手法台帳の状態：教育用例・関連コードあり
+- [確率微分方程式](https://hrkoyama.github.io/numerical-methods-atlas/methods/sde/?lang=ja) — この問題の実行例で使用; 手法台帳の状態：教育用例・関連コードあり
 
 ### コード・実行
 
@@ -148,6 +197,38 @@ global CSVRとlocal Langevinの運動相関が等しいとは要求しません�
 - [/code/validated-examples/2026-11-22/thermostats/thermostats.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/thermostats.py)
 - [/code/validated-examples/2026-11-22/thermostats/test_thermostats.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/test_thermostats.py)
 
+#### [OUのweakモーメントと同時Brownian結合](https://hrkoyama.github.io/numerical-methods-atlas/validation/ou-weak-moments/?lang=ja)
+
+補助実行例
+
+連続真値、離散EM期待値、同一経路差とMCSEを分離する固定入力です。
+
+dX=1.5(.2-X)dt+.8dW,X0=.7。無次元T=1、8/16/32/64刻み、独立32seed×1024経路。状態軸に境界・clipなし。
+
+[コード / ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/atlas-stochastic-accuracy-2026-11-24.zip) · [検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/verification.json)
+
+[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/inputs.json)
+
+[配布ファイルとハッシュ](https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/source-manifest.json)
+
+ZIPを展開し、実行案内の作業フォルダで実行します。配布版の複数例をまとめて実行する場合があります。
+
+```sh
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+```
+
+弱誤差は期待値の差です。3SEや区間を真の誤差上界・一般被覆保証としません。1D状態×時間の保存例であり2D物理流れではありません。GBMやOU浴成分を新しい物理問題として重複計数しません。
+
+同じ配布版で共有するソースとテストを含みます。すべてがこの問題専用とは限りません。
+
+- [/code/validated-examples/2026-11-24/stochastic-accuracy/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/run.py)
+- [/code/validated-examples/2026-11-24/stochastic-accuracy/paths.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/paths.py)
+- [/code/validated-examples/2026-11-24/stochastic-accuracy/references/analytic.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/references/analytic.py)
+- [/code/validated-examples/2026-11-24/stochastic-accuracy/test_driver_contract.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/test_driver_contract.py)
+- [/code/validated-examples/2026-11-24/stochastic-accuracy/test_paths.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/test_paths.py)
+
 ## English
 
 [Stored harmonic-BAOAB steps 0.4/0.2/0.1 separate discrete stationary-covariance bias, sampling error, canonical-CDF errors and position correlation at lag 2.](https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/results/langevin-harmonic.png)
@@ -169,6 +250,18 @@ H=\frac{p^2}{2}+V(q)
 $$
 
 Canonical equations and a representative separable Hamiltonian. Harmonic and quartic oscillators distinguish energy error from symplecticity.
+
+#### [Scalar Ito diffusion: GBM and OU](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#scalar-ito-diffusion-en)
+
+$$
+\mathrm dX_t=a(X_t,t)\,\mathrm dt+b(X_t,t)\,\mathrm dW_t
+$$
+
+$$
+\mathrm{GBM}:\ a=\mu X,\ b=\sigma X;\quad\mathrm{OU}:\ a=\kappa(\theta-X),\ b=\sigma
+$$
+
+Scalar SDEs with deterministic initial states. Separate weak moment bias,strong errors on shared Brownian paths and finite-sample MCSE. OU is a related bath-component check,not the full harmonic Langevin system.
 
 #### Langevin thermostat: canonical distributions, timestep bias and correlation
 
@@ -206,9 +299,37 @@ $$
 
 Compare global CSVR with local Langevin on two nondegenerate modes using the same OBABO splitting. Record position, momentum, temperature and total-energy distributions, fluctuations and correlations.
 
+#### OU weak moments with joint Brownian coupling
+
+Supplementary execution example · Example definition or validation formula
+
+$$
+dX_t=\kappa(\theta-X_t)\,dt+\sigma\,dW_t
+$$
+
+$$
+b_p(h)=\mathbb E[X_h(T)^p]-\mathbb E[X(T)^p],\quad p=1,2
+$$
+
+$$
+\operatorname{Cov}(J_h,\Delta W)=(1-e^{-\kappa h})/\kappa
+$$
+
+Separate continuous truth,exact discrete EM expectation,paired-path weak difference and MCSE.
+
 ### Exact and reference solutions
 
 Use analytic canonical-distribution, moment and correlation standards for the harmonic potential to check timestep bias, separately from frictionless, noiseless harmonic trajectories.
+
+#### [OU weak moments with joint Brownian coupling](https://hrkoyama.github.io/numerical-methods-atlas/validation/ou-weak-moments/?lang=en#ou-weak-moments-en-measurements)
+
+Analytic reference · Related-model reference
+
+dX_t=\kappa(\theta-X_t)\,dt+\sigma\,dW_t; b_p(h)=\mathbb E[X_h(T)^p]-\mathbb E[X(T)^p],\quad p=1,2; \operatorname{Cov}(J_h,\Delta W)=(1-e^{-\kappa h})/\kappa
+
+dX=1.5(.2-X)dt+.8dW,X0=.7;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping.
+
+dX=1.5(.2-X)dt+.8dW,X0=.7;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping.
 
 #### Langevin thermostat: canonical distributions, timestep bias and correlation
 
@@ -226,12 +347,21 @@ Check canonical Gaussian/Gamma distributions and K/U/H means/variances. For fini
 
 [Reference and validation details](https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-langevin-harmonic/?lang=en)
 
+#### OU weak moments with joint Brownian coupling
+
+Before paths qualify Decimal80/120,independent GH/OUcovariance integrals and paired-variance allocation. Gate5MCSE calibration,MCSE precision,fixed three-level weak rate and final-two-level3SE resolution. Coverage is descriptive over32batches against discrete truth.
+
+- [Saved result](https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/results/result.json)
+
+[Reference and validation details](https://hrkoyama.github.io/numerical-methods-atlas/validation/ou-weak-moments/?lang=en)
+
 ### Numerical methods
 
 Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed.
 
 - [Langevin thermostat](https://hrkoyama.github.io/numerical-methods-atlas/methods/langevin-thermostat/?lang=en) — Used by this problem’s execution examples; Method-registry status: Educational example / related code
 - [Stochastic velocity rescaling (CSVR)](https://hrkoyama.github.io/numerical-methods-atlas/methods/stochastic-velocity-rescaling/?lang=en) — Used by this problem’s execution examples; Method-registry status: Educational example / related code
+- [Stochastic differential equations](https://hrkoyama.github.io/numerical-methods-atlas/methods/sde/?lang=en) — Used by this problem’s execution examples; Method-registry status: Educational example / related code
 
 ### Code and execution
 
@@ -293,3 +423,35 @@ These source and test lists include files shared across the package; they are no
 - [/code/validated-examples/2026-11-22/thermostats/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/run.py)
 - [/code/validated-examples/2026-11-22/thermostats/thermostats.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/thermostats.py)
 - [/code/validated-examples/2026-11-22/thermostats/test_thermostats.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/test_thermostats.py)
+
+#### [OU weak moments with joint Brownian coupling](https://hrkoyama.github.io/numerical-methods-atlas/validation/ou-weak-moments/?lang=en)
+
+Supplementary execution example
+
+Separate continuous truth,exact discrete EM expectation,paired-path weak difference and MCSE.
+
+dX=1.5(.2-X)dt+.8dW,X0=.7;dimensionlessT1;8/16/32/64steps;32independent seeds×1024paths. Unbounded state,no clipping.
+
+[Code / ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/atlas-stochastic-accuracy-2026-11-24.zip) · [Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/verification.json)
+
+[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/inputs.json)
+
+[File manifest and hashes](https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/source-manifest.json)
+
+After extracting the ZIP, run these in the working directory specified by the guide. A command may execute several package cases.
+
+```sh
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+```
+
+Weak error is a difference of expectations. SE/intervals are not true-error bounds or general coverage guarantees. State×time examples are not2Dphysical flow. Existing GBM/OUbath physical families are reused.
+
+These source and test lists include files shared across the package; they are not all dedicated to this problem.
+
+- [/code/validated-examples/2026-11-24/stochastic-accuracy/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/run.py)
+- [/code/validated-examples/2026-11-24/stochastic-accuracy/paths.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/paths.py)
+- [/code/validated-examples/2026-11-24/stochastic-accuracy/references/analytic.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/references/analytic.py)
+- [/code/validated-examples/2026-11-24/stochastic-accuracy/test_driver_contract.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/test_driver_contract.py)
+- [/code/validated-examples/2026-11-24/stochastic-accuracy/test_paths.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-accuracy/test_paths.py)

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_on": "2026-11-23",
+  "reviewed_on": "2026-11-24",
   "title": {
     "ja": "分野別に解説を読む",
     "en": "Learn by field"
@@ -175,7 +175,14 @@
         "validation-warm-pic",
         "validation-pic-spatial",
         "validation-dsmc-wall",
-        "validation-dsmc-shock"
+        "validation-dsmc-shock",
+        "validation-lbm-cavity",
+        "validation-lbm-taylor-green",
+        "validation-lbm-annulus",
+        "validation-lbm-curved-boundary",
+        "validation-radiation-scattering",
+        "validation-radiation-matter",
+        "validation-radiation-geometry"
       ]
     },
     {
@@ -222,7 +229,9 @@
         "validation-biology",
         "thermostats",
         "validation-models",
-        "validation-thermostats"
+        "validation-thermostats",
+        "validation-stochastic-accuracy",
+        "validation-stochastic-estimation"
       ]
     },
     {

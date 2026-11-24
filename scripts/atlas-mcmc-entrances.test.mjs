@@ -1,3 +1,5 @@
+import {examplesAddedAfterBatch37} from './fixtures/atlas-inventory.mjs';
+import {equationCount} from './fixtures/atlas-inventory.mjs';
 import {methodCount,methodStatusCounts} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -24,12 +26,12 @@ test('MCMC preserves its four historical sections and distinguishes poor mixing 
  assert.match(english,/independent ArviZ 0.20 execution/);
  const depth=json('catalog/atlas-depth.json').fields.find(x=>x.id==='probability');
  const goal=json('catalog/atlas-goals.json').goals.find(x=>x.id==='stochastic-calculation');
- assert.deepEqual(depth.supplemental_examples,examples);
+ assert.deepEqual(depth.supplemental_examples.filter(id=>!examplesAddedAfterBatch37.includes(id)),examples);
  assert.deepEqual(goal.supplemental_examples,examples);
  assert.deepEqual(depth.scope,goal.scope);
  assert.deepEqual(depth.examples,['mc-integral','gbm-sde']);
  assert.deepEqual(goal.methods,['monte-carlo','sde','mcmc']);
- assert.equal(json('catalog/atlas-equations.json').equations.length,60);
+ assert.equal(json('catalog/atlas-equations.json').equations.length,equationCount);
  const methods=json('catalog/atlas-methods.json').methods;
  assert.equal(methods.length,methodCount);
  assert.equal(methods.filter(x=>x.status==='educational-example').length,methodStatusCounts['educational-example']);
