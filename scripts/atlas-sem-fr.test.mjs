@@ -12,6 +12,44 @@ const text=p=>readFileSync(new URL(p,root),'utf8'),json=p=>JSON.parse(text(p));
 const sha=p=>createHash('sha256').update(readFileSync(new URL(p,root))).digest('hex');
 const canonical=x=>Array.isArray(x)?x.map(canonical):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,canonical(x[k])])):x;
 const hash=x=>createHash('sha256').update(JSON.stringify(canonical(x))).digest('hex');
+
+// Invert only the exact dated batch48 append, before the older historical projections.
+// Old UTF-8/reference/release prefixes remain in the original whole-record golden;
+// the nine fixed append fingerprints below reject arbitrary future additions.
+const batch48Baseline=json('scripts/fixtures/atlas-batch48-57-baseline.json');
+const batch48NewMethodIds=new Set(["lu-partial-pivoting","cholesky","minres","lobpcg","pseudo-arclength-continuation","jacobian-free-newton-krylov"]);
+assert.deepEqual(batch48Baseline.expected_new_method_ids,[...batch48NewMethodIds]);
+const batch48AppendSHA={"centered-difference":"b0fa5ecfc24bed42c54d3f7f817a7537cdaa2692530fad452311648a09d1f7c8","implicit-midpoint":"00ffd02c8d35a4b7771d107f35ab14d00e02c3a1422783e682919d37afc23588","leapfrog":"2a5a974977d04a9d3c634036cdda96d422b6dbfee41827a819d4e8cf251ff715","thomas":"b4388102fb4f9290f7c0a2a575b2c0f40efd3b705515e69b8b029dca0990ba98","gmres":"573ba798584e44f5a9fb85ea611c6b289f34c94b677a6c266f0a8f01769e6aca","newton":"ea5757d43ccfbd61a5ff562d8821caf9912a6bdef8abc6535e158b699956182e","fdtd":"2a5a974977d04a9d3c634036cdda96d422b6dbfee41827a819d4e8cf251ff715","eigensolvers":"7d02138efc932332491d93ddb9551a6725cd4c894a989b3cc601fd98c7ba3ae7","automatic-differentiation":"b4388102fb4f9290f7c0a2a575b2c0f40efd3b705515e69b8b029dca0990ba98"};
+const batch48Canonical=value=>Array.isArray(value)?value.map(batch48Canonical):value&&typeof value==='object'?Object.fromEntries(Object.keys(value).sort().map(key=>[key,batch48Canonical(value[key])])):value;
+const batch48Hash=value=>createHash('sha256').update(JSON.stringify(batch48Canonical(value))).digest('hex');
+const projectMethodBeforeBatch48=row=>{
+ if(!Object.hasOwn(batch48AppendSHA,row.id))return row;
+ const before=batch48Baseline.methods[row.id],copy={...row},added={};
+ for(const field of ['summary','limitations']){
+  copy[field]={...row[field]};added[field]={};
+  for(const [language,prefix]of Object.entries(before.text_prefixes[field])){
+   const bytes=Buffer.from(row[field][language]),head=bytes.subarray(0,prefix.utf8_bytes);
+   assert.equal(createHash('sha256').update(head).digest('hex'),prefix.sha256,row.id+'/'+field+'/'+language+'/old-prefix');
+   copy[field][language]=head.toString('utf8');added[field][language]=bytes.subarray(prefix.utf8_bytes).toString('utf8');
+  }
+ }
+ const referenceCount=before.reference_prefix_sha256.length;
+ assert.ok(referenceCount>0&&row.references.length>=referenceCount,row.id+'/old-references');
+ copy.references=row.references.slice(0,referenceCount);added.references=row.references.slice(referenceCount);
+ for(const [field,prefix]of [['depth_additional_releases',before.additional_release_prefix_sha256],['supplemental_scope_profiles',before.scope_profile_prefix_sha256]]){
+  const values=row[field]||[];assert.ok(values.length>=prefix.length,row.id+'/'+field+'/old-prefix');
+  added[field]=values.slice(prefix.length);
+  if(prefix.length)copy[field]=values.slice(0,prefix.length);else delete copy[field];
+ }
+ added.metadata_review=Object.fromEntries(Object.entries(row.metadata_review||{}).filter(([key])=>!before.review_keys.includes(key)));
+ copy.metadata_review=Object.fromEntries(before.review_keys.map(key=>[key,row.metadata_review[key]]));
+ added.depth_release=before.primary_release?null:(row.depth_release||null);
+ if(before.primary_release)assert.deepEqual(row.depth_release,before.primary_release,row.id+'/old-primary-release');
+ else{assert.ok(!Object.hasOwn(row,'depth_scope'),row.id+'/first-supplement-keeps-no-primary-scope');delete copy.depth_release;}
+ assert.equal(batch48Hash(added),batch48AppendSHA[row.id],row.id+'/exact-reviewed-batch48-append');
+ return copy;
+};
+
 // Project only named batch28 metadata additions/approved curation for historical hashes.
 // The root-owned new batch test independently protects current scientific fields and bindings.
 const batch28LegacyMethods=new Map(json('scripts/fixtures/atlas-batch28-37-baseline.json').legacy_method_records.map(row=>[row.id,row]));
@@ -40,7 +78,7 @@ const baseline=json('scripts/sem-fr-baseline.json'),result=json(base+'results/re
 test('SEM/FR preserve the previous149 method records,24 releases,92 primary pictures and common executions',()=>{
  const rows=json('catalog/atlas-methods.json').methods;
  assert.equal(rows.length,methodCount);
- const original=rows.filter(m=>!methods.includes(m.id)&&m.id!=='q1-fem').map(projectMethodBeforeBatch38).map(batch28HistoricalMethod).map(batch18HistoricalMethod).map(m=>Object.fromEntries(Object.entries(m).filter(([k])=>!(['p1-fem','dg'].includes(m.id)&&['depth_release','depth_scope','depth_previous_status'].includes(k)))));
+ const original=rows.filter(m=>!batch48NewMethodIds.has(m.id)&&!methods.includes(m.id)&&m.id!=='q1-fem').map(projectMethodBeforeBatch48).map(projectMethodBeforeBatch38).map(batch28HistoricalMethod).map(batch18HistoricalMethod).map(m=>Object.fromEntries(Object.entries(m).filter(([k])=>!(['p1-fem','dg'].includes(m.id)&&['depth_release','depth_scope','depth_previous_status'].includes(k)))));
  assert.equal(hash(original),baseline.method_records_sha256);
  const registry=json('numerical-methods-atlas/validation/releases.json');
  assert.equal(registry.releases.length,supplementGroupCount);assert.equal(registry.case_count,supplementCaseCount);assert.equal(registry.releases.filter(r=>!['coefficient-diffusion', 'slab-ewald', 'fmm3d', 'gravity-dynamics', 'warm-pic', 'pic-spatial', 'dsmc-wall', 'dsmc-shock',...groupsAddedAfterBatch37].includes(r.group)).reduce((n,r)=>n+r.tests,0),893);

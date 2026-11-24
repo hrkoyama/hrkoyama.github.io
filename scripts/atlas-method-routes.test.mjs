@@ -213,7 +213,15 @@ test('HLLC, WENO-Z, Roe and Bratu derivatives do not borrow one another’s exec
     assert.ok(bratu);assert.equal(bratu.role,'related');assert.deepEqual(bratu.executions,[]);
     const context=method(id).references.find(row=>row.problem_id==='bratu');assert.ok(context);assert.deepEqual(context.cases,[]);
   }
-  assert.deepEqual(runs('newton'),['bratu']);
+  assert.deepEqual(runs('newton'),['bratu','bratu-fold-continuation']);
+  assert.deepEqual(runs('automatic-differentiation'),['bratu-matrix-free-jfnk']);
+  assert.deepEqual(runs('jacobian-free-newton-krylov'),['bratu-matrix-free-jfnk']);
+  for(const id of ['adjoint','optimization','newton-krylov'])assert.deepEqual(runs(id),[],id+' keeps no unrelated Bratu runner');
+  for(const [id,caseId]of [['newton','bratu-fold-continuation'],['automatic-differentiation','bratu-matrix-free-jfnk'],['jacobian-free-newton-krylov','bratu-matrix-free-jfnk']]){
+    const own=method(id).problems.find(problem=>problem.id===caseId);
+    assert.ok(own,id+' has its exact qualified Bratu supplement');assert.equal(own.role,'execution');
+    assert.deepEqual(own.executions.map(run=>run.id),[caseId]);
+  }
   const nullControls=Object.entries(json('catalog/atlas-depth-expansion.json').case_problem_ids).filter(([,problemId])=>problemId===null).map(([id])=>id);
   for(const route of Object.values(navigation.methods)){
     assert.ok(route.problems.every(problem=>!nullControls.includes(problem.id)));

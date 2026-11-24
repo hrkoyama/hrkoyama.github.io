@@ -1,4 +1,4 @@
-import {methodCount} from './fixtures/atlas-inventory.mjs';
+import {methodCount,methodIds} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -167,9 +167,18 @@ test('BOMD and CPMD are searchable reading-only methods with equations and prima
   assert.equal(methods.length, methodCount);
   const coverage = json('numerical-methods-atlas/coverage.json');
   const coveredMethods = coverage.items.filter(row => row.kind === 'method');
-  // The legacy inventory remains136; the newly executable slab adds one
-  // unrelated method without supplying any first-principles MD trajectory.
-  assert.equal(coveredMethods.filter(row => row.id !== 'slab-ewald').length, 136);
+  // Retain the historical136 coverage rows. The slab and the exact six
+  // batch48 additions supply no first-principles MD trajectory.
+  const baseline = json('scripts/fixtures/atlas-batch48-57-baseline.json');
+  const addedMethods = ['lu-partial-pivoting','cholesky','minres','lobpcg','pseudo-arclength-continuation','jacobian-free-newton-krylov'];
+  assert.equal(Object.keys(baseline.methods).length,152);
+  assert.deepEqual(baseline.expected_new_method_ids,addedMethods);
+  assert.deepEqual(methodIds.filter(id=>!Object.hasOwn(baseline.methods,id)),addedMethods);
+  assert.deepEqual(coveredMethods.filter(row=>addedMethods.includes(row.id)).map(row=>row.id),addedMethods);
+  assert.deepEqual(coveredMethods.filter(row=>addedMethods.includes(row.id)).map(row=>row.chapter),[
+    ...Array(4).fill('validation-linear-algebra-spectral'),...Array(2).fill('validation-bratu-continuation-jfnk'),
+  ]);
+  assert.equal(coveredMethods.filter(row => row.id !== 'slab-ewald'&&!addedMethods.includes(row.id)).length,136);
   assert.equal(coverage.counts.methods, coveredMethods.length);
   const slab = json('catalog/atlas-methods.json').methods.find(row => row.id === 'slab-ewald');
   assert.equal(slab.depth_previous_status, 'planned');

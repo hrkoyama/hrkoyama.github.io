@@ -1087,9 +1087,56 @@ test('FDTD method and bilingual reading expose the new supplement and retain the
   assert.equal(record.run_commands[0], 'python -m pytest -q test_fdtd.py test_scattering.py test_corner.py test_oblique.py test_polarization.py test_dispersive.py');
   assert.ok(record.run_commands.includes('python run_polarization.py --input inputs/p-polarization.json --output rerun-p-polarization'));
   assert.ok(record.run_commands.includes('python run_dispersive.py --input inputs/loss-dispersion.json --output rerun-loss-dispersion'));
-  assert.deepEqual(record.code_urls, ['solver.py', 'run.py','scattering.py','run_scattering.py','corner.py','run_corner.py','oblique.py','run_oblique.py','polarization.py','run_polarization.py','dispersive.py','run_dispersive.py'].map(name => manifest.public_base_url+name));
-  assert.deepEqual(record.test_urls, ['test_fdtd.py','test_scattering.py','test_corner.py','test_oblique.py','test_polarization.py','test_dispersive.py'].map(name=>manifest.public_base_url+name));
-  assert.deepEqual(record.execution_examples, [], 'Supplement has its own extraction receipt; common registry remains separately verified');
+  const legacyCode = ['solver.py', 'run.py','scattering.py','run_scattering.py','corner.py','run_corner.py','oblique.py','run_oblique.py','polarization.py','run_polarization.py','dispersive.py','run_dispersive.py'].map(name => manifest.public_base_url+name);
+  const legacyTests = ['test_fdtd.py','test_scattering.py','test_corner.py','test_oblique.py','test_polarization.py','test_dispersive.py'].map(name=>manifest.public_base_url+name);
+  // Keep the exact r6 prefix. Only these three separately scoped releases
+  // may append modules, tests and executable entrances to the FDTD method.
+  const additions = [
+    {group:'maxwell-cylinder', id:'cylinder-mie2d', files:['run.py','cylinder_draft.py','cylinder_evolution.py','io_contract.py','poynting.py','reference_draft.py'], tests:['test_cylinder.py']},
+    {group:'maxwell-lorentz', id:'lorentz-oblique-sp', files:['run.py','io_contract.py','modal_yee_draft.py','reference_draft.py','slab_evolution.py','slab_reference.py'], tests:['test_lorentz.py']},
+    {group:'maxwell-grazing', id:'dispersive-grazing-pml', files:['run.py','references/isolated_reference.py','centered_pml.py','io_contract.py','modal_yee_draft.py','pml_evolution.py','specifications.py'], tests:['test_grazing.py']},
+  ];
+  const catalog = JSON.parse(readFileSync(new URL('catalog/atlas-methods.json',root))).methods.find(row=>row.id==='fdtd');
+  const expansion = JSON.parse(readFileSync(new URL('catalog/atlas-depth-expansion.json',root)));
+  const pointers = [catalog.depth_release,...catalog.depth_additional_releases];
+  assert.deepEqual(pointers,additions.map(({group,id})=>({group,edition:'2026-11-24-r2',case_ids:[id]})));
+  assert.deepEqual(catalog.supplemental_scope_profiles.map(row=>row.release),pointers);
+  assert.deepEqual(record.supplemental_scope_profiles,catalog.supplemental_scope_profiles);
+  const releases = [record.depth_release,...record.depth_additional_releases];
+  assert.deepEqual(releases.map(row=>row.group),additions.map(row=>row.group));
+  const addedCode = [], addedTests = [];
+  for (const [i,{group,id,files,tests}] of additions.entries()) {
+    const configured = expansion.groups.find(row=>row.id===group);
+    assert.equal(configured.edition,pointers[i].edition);
+    const prefix = `code/validated-examples/${configured.edition}/${group}/`;
+    const get = name => readFileSync(new URL(prefix+name,root));
+    const packet = JSON.parse(get('source-manifest.json'));
+    const verified = JSON.parse(get('verification.json'));
+    const metadata = JSON.parse(get('cases.json'));
+    const packetCases = Array.isArray(metadata)?metadata:metadata.cases;
+    const release = releases[i];
+    assert.equal(packet.group,group); assert.equal(packet.version,configured.edition);
+    assert.equal(packet.public_base_url,'https://hrkoyama.github.io/'+prefix);
+    assert.deepEqual(packet.case_ids,[id]); assert.deepEqual(packetCases.map(row=>row.id),[id]);
+    assert.ok(packetCases[0].method_ids.includes('fdtd'));
+    assert.equal(verified.passed,true); assert.equal(verified.all_cases_rerun,true);
+    assert.equal(verified.source_manifest_sha256,hash(get('source-manifest.json')));
+    assert.equal(verified.failures+verified.errors+verified.skipped,0);
+    assert.deepEqual(release.case_ids,[id]); assert.equal(release.code_base,packet.public_base_url);
+    assert.equal(release.code_archive_sha256,verified.archive_sha256);
+    assert.deepEqual(release.code_urls,files.map(name=>packet.public_base_url+name));
+    assert.deepEqual(release.test_urls,tests.map(name=>packet.public_base_url+name));
+    for (const name of [...files,...tests]) assert.equal(hash(get(name)),packet.files[name],group+'/'+name);
+    addedCode.push(...release.code_urls); addedTests.push(...release.test_urls);
+  }
+  assert.equal(addedCode.length,19); assert.equal(new Set(addedCode).size,19);
+  assert.deepEqual(record.code_urls,[...legacyCode,...addedCode]);
+  assert.deepEqual(record.test_urls,[...legacyTests,...addedTests]);
+  assert.deepEqual(record.execution_examples,additions.map(({id})=>({
+    id,registry_url:'https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json',
+    guide:Object.fromEntries(['ja','en'].map(lang=>[lang,`https://hrkoyama.github.io/numerical-methods-atlas/validation/${id}/?lang=${lang}`])),
+    kind:'dedicated-supplement',
+  })));
   assert.deepEqual(Object.keys(record.result_urls).sort(), cases.slice().sort());
   for (const extension of ['html', 'md']) {
     const text = readFileSync(new URL('numerical-methods-atlas/methods/fdtd/index.'+extension, root), 'utf8');

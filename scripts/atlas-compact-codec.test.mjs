@@ -1,6 +1,7 @@
 import test,{after} from 'node:test';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import {copyFileSync,mkdirSync,mkdtempSync,rmSync,writeFileSync} from 'node:fs';
 import {join} from 'node:path';
@@ -81,11 +82,16 @@ with tempfile.TemporaryDirectory(prefix='compact-writer-') as path:
     source={'entries':[{'id':'example','headings':{'ja':[{'level':2,'id':'kept','title':'日本'}]},'text':{'ja':'日本 😀x '+('長い本文 '*150),'en':'Unicode α'}}]}
     (root/'numerical-methods-atlas/home-search-index.json').write_text(json.dumps(source,ensure_ascii=False))
     compact=json.loads(write_compact(root,source,'atlas').read_text())
-    key=compact['entries'][0]['text_ref']
-    detail=json.loads((root/'search/details'/(key+'.json')).read_text())
-    print(json.dumps({'source':source,'compact':compact,'detail':detail},ensure_ascii=False))
+    details={file.name:file.read_text() for file in (root/'search/details').glob('*.json')}
+    print(json.dumps({'source':source,'compact':compact,'details':details},ensure_ascii=False))
 `,fileURLToPath(new URL('scripts',root))],{encoding:'utf8'}));
- const {compact,source,detail}=value,entry=unpackSearchIndex(compact).entries[0];
+ const {compact,source,details}=value,expanded=unpackSearchIndex(compact),entry=expanded.entries[0];
+ // The public API resolves pooled references; filenames remain content addressed.
+ assert.match(entry.text_ref,/^[a-f0-9]{64}$/);
+ assert.deepEqual(Object.keys(details),[entry.text_ref+'.json']);
+ assert.deepEqual(expanded.details.keys,[entry.text_ref]);
+ const raw=details[entry.text_ref+'.json'],detail=JSON.parse(raw);
+ assert.equal(createHash('sha256').update(raw).digest('hex'),entry.text_ref);
  assert.equal(compact.vocabulary_encoding,'unicode-prefix-flat-v1');
  assert.equal(compact.term_encoding,'sorted-delta-varint-base64');
  assert.equal(typeof compact.entries[0].search_terms.ja,'string');

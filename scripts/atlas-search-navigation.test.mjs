@@ -294,10 +294,24 @@ test('execution, method and reverse-reference graphs preserve exact runners, nul
   }
   assert.deepEqual(runIds(source.nodes['method:hllc']),['sod']);assert.deepEqual(runIds(source.nodes['method:weno-z']),['weno-critical-epsilon','shu-osher']);assert.deepEqual(runIds(source.nodes['method:roe']),['low-mach-vortex']);
   assert.deepEqual(ids(source.nodes['execution:h2-rhf'].groups.equations),['formulation-h2-rhf','hartree-fock-model']);
-  for(const id of ['automatic-differentiation','adjoint','optimization','fdtd']){
-    const graph=source.nodes['method:'+id];assert.deepEqual(runIds(graph),[]);
+  const qualifiedRunners={
+    'automatic-differentiation':['bratu-matrix-free-jfnk'],
+    'adjoint':[],
+    'optimization':[],
+    'fdtd':['cylinder-mie2d','lorentz-oblique-sp','dispersive-grazing-pml'],
+    'jacobian-free-newton-krylov':['bratu-matrix-free-jfnk']
+  };
+  for(const [id,expected]of Object.entries(qualifiedRunners)){
+    const graph=source.nodes['method:'+id];assert.deepEqual(runIds(graph),expected,id+' exact qualified runners');
     assert.ok(graph.groups.code.some(row=>row.id==='method-'+id&&row.availability==='source'),'independent code editions remain accessible');
     assert.ok(graph.groups.references.some(row=>row.id==='method-'+id),'method-owned validation stays separate from forward-problem references');
+  }
+  assert.deepEqual(runIds(source.nodes['method:newton-krylov']),[],'the old distinct Newton-Krylov method does not borrow the new JFNK runner');
+  for(const id of ['automatic-differentiation','jacobian-free-newton-krylov']){
+    const graph=source.nodes['method:'+id],run=graph.groups.code.find(row=>row.id==='bratu-matrix-free-jfnk');
+    assert.equal(run.availability,'run');assert.ok(run.method_ids.includes(id));
+    assert.deepEqual(run.method_ids,supplementById.get('bratu-matrix-free-jfnk').method_ids);
+    assert.ok(!runIds(graph).includes('bratu'),'the old related Bratu picture is still not a derivative runner');
   }
   for(const [kind,records]of [['equation',equations],['reference',references]])for(const record of records){
     const graph=source.nodes[kind+':'+record.id];

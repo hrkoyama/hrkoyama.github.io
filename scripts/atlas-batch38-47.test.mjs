@@ -21,6 +21,30 @@ const expected={
 };
 const ids=Object.values(expected).flat();
 
+// The 2026-11-24 CI-only extension installs the existing image renderer's
+// dependencies and moves the identical Chromium step after generation. Undo
+// only these exact blocks before checking the unchanged incoming workflow SHA.
+function projectSearchWorkflowBeforeReviewedBatch48Extension(current){
+ const renderer=`      - name: Prepare Japanese sharing-image rendering dependencies
+        if: github.ref != 'refs/heads/main' && (inputs.target == 'candidate-build' || contains(github.event.head_commit.message, '[atlas-search-build]'))
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y fonts-noto-cjk
+          python3 -m pip install --only-binary=:all: --no-cache-dir -r numerical-methods-atlas/share/render-requirements.txt
+`;
+ const chromium=`      - name: Install the pinned Chromium browser
+        run: npx --no-install playwright install --with-deps chromium
+`;
+ const aggregate=`      - name: Explicitly aggregate derived files in this isolated candidate
+`;
+ const bind=`      - name: Bind the measurement to its exact staged tree and target
+`;
+ for(const [label,block] of Object.entries({renderer,chromium,aggregate,bind}))assert.equal(current.split(block).length-1,1,'reviewed-workflow-block/'+label);
+ assert.ok(current.includes(renderer+aggregate),'renderer-immediately-before-generation');
+ assert.ok(current.includes(chromium+bind),'chromium-immediately-before-bind');
+ return current.replace(renderer,'').replace(chromium,'').replace(aggregate,chromium+aggregate);
+}
+
 test('batch38–47 preserves existing scientific files, search details, equations and references',()=>{
  for(const [path,hash] of Object.entries(baseline.immutable_files))assert.equal(sha(path),hash,path);
  for(const [path,hash] of Object.entries(baseline.incoming_ea8564_preservation.immutable_files)){
@@ -29,6 +53,9 @@ test('batch38–47 preserves existing scientific files, search details, equation
    assert.equal(sha(archive),hash,archive+'/preserved-incoming-release');
    assert.ok(current.subarray(0,previous.length).equals(previous),path+'/preserved-full-incoming-prefix');
    assert.ok(current.subarray(previous.length).includes(Buffer.from('## 容量制約時の候補生成と取得')),path+'/appended-generation-guidance');
+  }else if(path==='.github/workflows/atlas-search-quality.yml'){
+   const projected=projectSearchWorkflowBeforeReviewedBatch48Extension(bytes(path).toString('utf8'));
+   assert.equal(createHash('sha256').update(projected).digest('hex'),hash,path+'/preserved-incoming-release-before-reviewed-2026-11-24-extension');
   }else assert.equal(sha(path),hash,path+'/preserved-incoming-release');
  }
  const methods=json('catalog/atlas-methods.json').methods;

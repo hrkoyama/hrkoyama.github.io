@@ -49,11 +49,31 @@ test('AMG algebraic diagnostics remain outside physical counts and the Poisson g
  assert.equal(note.status,'reading-only');assert.deepEqual(note.code_urls,[]);assert.deepEqual(note.test_urls,[]);assert.deepEqual(note.execution_examples,[]);
  for(const lang of ['ja','en'])assert.equal(note.reading[lang],`/numerical-methods-atlas/${lang}/read/validation-foundations-conditioning/#amg-conditioning`);
  const depth=json('catalog/atlas-depth.json').fields.find(x=>x.id==='foundations');
- assert.deepEqual(depth.supplemental_examples.filter(id=>!['checkerboard-diffusion','rotated-anisotropic-diffusion'].includes(id)),[...Object.values(cases).map(x=>x[0]),...Object.values(cases).map(x=>x[1])]);
+ const previous=[...Object.values(cases).map(x=>x[0]),...Object.values(cases).map(x=>x[1])];
+ const added=['pivoted-direct-refinement','symmetric-saddle-minres','restarted-shift-invert','fem-mass-eigen'];
+ const retained=depth.supplemental_examples.filter(id=>!['checkerboard-diffusion','rotated-anisotropic-diffusion'].includes(id));
+ assert.deepEqual(retained.slice(0,previous.length),previous);
+ assert.deepEqual(retained.slice(previous.length),added);
+ const release=config.groups.find(row=>row.id==='linear-algebra-spectral');
+ assert.equal(release.edition,'2026-11-24-r3');
+ const metadata=json(`code/validated-examples/${release.edition}/${release.id}/cases.json`);
+ assert.deepEqual((Array.isArray(metadata)?metadata:metadata.cases).map(row=>row.id),added);
+ const equations=json('catalog/atlas-equations.json').equations;
+ for(const [i,id] of added.entries()){
+  assert.equal(config.case_problem_ids[id],id);
+  const equationId=i<2?'finite-dimensional-linear-system':i===2?'finite-dimensional-eigenproblem':'dirichlet-string-eigenproblem';
+  assert.deepEqual(config.case_equations[id].ids,[equationId]);
+  const equation=equations.find(row=>row.id===equationId);
+  if(i<3){assert.equal(equation.domain_kind,'finite-dimensional-algebra');assert.equal(equation.dimension,null);assert.equal(equation.group,'algebraic');}
+  else {assert.equal(equation.dimension,1);assert.equal(equation.group,'physical');}
+ }
  const problemCatalog=json('catalog/atlas-test-problems.json');
  assert.match(problemCatalog.excluded_examples.en.at(-1),/amg-conditioning/);
  const inventory=problemCatalog.problems;
  assert.equal(inventory.length,problemCount);assert.ok(!inventory.some(x=>x.id==='amg-conditioning'));
+ // Three finite-dimensional controls are separate from the one actual 1D
+ // string PDE; none replaces the original Poisson/AMG conditioning scope.
+ assert.deepEqual(added.map(id=>inventory.find(row=>row.id===id)?.group),['approximation','approximation','approximation','elliptic']);
  const methods=json('catalog/atlas-methods.json').methods;
  assert.equal(methods.length,methodCount);assert.equal(methods.filter(x=>x.status==='educational-example').length,methodStatusCounts['educational-example']);
 });
