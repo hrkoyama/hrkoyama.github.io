@@ -6,50 +6,50 @@
       "source": "frontend/search/home-search.js",
       "output": "numerical-methods-atlas/home-search.js",
       "source_sha256": "bdaf2dfdb9ea693d04280c81d69f7e4ede482ba1f91d42a46e952e2f84ed04ed",
-      "sha256": "90314ad3ee7f024144c7a4b908f52dc32b64d667f64c050a619d5b751b644eff",
+      "sha256": "9d4ef3dbf15193a01ef220f242f965ad0344a05f3e5e2e8b7e07111cafb45dba",
       "dependencies": {
-        "search/atlas-query-index.json": "5aeaa9976264f6e38fa598322f05a188d0e2ab74ee187a549312836769b36392",
-        "search/engine.mjs": "d250c2bb00cba8db09011a3003bc2c9df5156e5006e104e8e89cfffc0c1c729f",
-        "search/method-search.mjs": "be5807c726f654b00098f33ded4f657cad3e9a2f32ec31a74a1892067db75a11",
-        "search/navigation.mjs": "49405df7f32343584f79d403353131395cda11293d009e5e1cdbea4c93391bbc"
+        "search/atlas-query-index.json": "421cf45eaa56060c74fc67e5cd922e1e9beba88131b023fcc5786a2b2afea2af",
+        "search/engine.mjs": "abfccbbf58af6d90c51f21b7799c80b37502ea4ce2d815ae101a2fb33b2bc6cd",
+        "search/method-search.mjs": "387957bf88fe0f474f30af4bb17f2f4694d348078666c5c5e074d33f368ee70b",
+        "search/navigation.mjs": "f7c220bd7839a6b2137c65d3e4d117c7272957b484a43846af7e62830cd1e98c"
       }
     },
     {
       "source": "frontend/search/compact-index.mjs",
       "output": "search/compact-index.mjs",
-      "source_sha256": "957cbb4e144f40b477dc0a5c8f758729875a2d752838d4dfa033ba5f567b4ba2",
-      "sha256": "e4fadfc9d5156692abe8293ee60ce69493f8425ce130f50014942f8b91b3cd56",
+      "source_sha256": "a08719902ea90109f8c68683bf82f4a4de0a09ab437d04c3d4cf5ebed81e490d",
+      "sha256": "ce58bf7efa65f15e2e7ad10a4e95c851dc7b25c1d22d58efc4d7d2a6741446b1",
       "dependencies": {}
     },
     {
       "source": "frontend/search/engine.mjs",
       "output": "search/engine.mjs",
       "source_sha256": "5eed4b75d2acb44025386711ef4a121d3661891e8279260c68be65c650a51de1",
-      "sha256": "d250c2bb00cba8db09011a3003bc2c9df5156e5006e104e8e89cfffc0c1c729f",
+      "sha256": "abfccbbf58af6d90c51f21b7799c80b37502ea4ce2d815ae101a2fb33b2bc6cd",
       "dependencies": {
-        "search/compact-index.mjs": "e4fadfc9d5156692abe8293ee60ce69493f8425ce130f50014942f8b91b3cd56",
-        "search/method-search.mjs": "be5807c726f654b00098f33ded4f657cad3e9a2f32ec31a74a1892067db75a11",
-        "search/navigation.mjs": "49405df7f32343584f79d403353131395cda11293d009e5e1cdbea4c93391bbc"
+        "search/compact-index.mjs": "ce58bf7efa65f15e2e7ad10a4e95c851dc7b25c1d22d58efc4d7d2a6741446b1",
+        "search/method-search.mjs": "387957bf88fe0f474f30af4bb17f2f4694d348078666c5c5e074d33f368ee70b",
+        "search/navigation.mjs": "f7c220bd7839a6b2137c65d3e4d117c7272957b484a43846af7e62830cd1e98c"
       }
     },
     {
       "source": "frontend/search/method-search.mjs",
       "output": "search/method-search.mjs",
       "source_sha256": "8f904685ba2a50ed737fde7c09dd9a314bd25b27659815898137c061a218b213",
-      "sha256": "be5807c726f654b00098f33ded4f657cad3e9a2f32ec31a74a1892067db75a11",
+      "sha256": "387957bf88fe0f474f30af4bb17f2f4694d348078666c5c5e074d33f368ee70b",
       "dependencies": {
         "search/goals-data.mjs": "1656e4edee61ddcb8f79663e27461837283531e36971e86bd93d217497be49ef",
         "search/methods.css": "efa8031daab462ece5e3dd965880ff27f65b759f2bc60818b61ec04355e3305a",
-        "search/navigation.mjs": "49405df7f32343584f79d403353131395cda11293d009e5e1cdbea4c93391bbc"
+        "search/navigation.mjs": "f7c220bd7839a6b2137c65d3e4d117c7272957b484a43846af7e62830cd1e98c"
       }
     },
     {
       "source": "frontend/search/navigation.mjs",
       "output": "search/navigation.mjs",
       "source_sha256": "e6fc21fd6ac95b6d596af9a4e86b9c25ef411b4e41216a825c1693117377f635",
-      "sha256": "49405df7f32343584f79d403353131395cda11293d009e5e1cdbea4c93391bbc",
+      "sha256": "f7c220bd7839a6b2137c65d3e4d117c7272957b484a43846af7e62830cd1e98c",
       "dependencies": {
-        "search/compact-index.mjs": "e4fadfc9d5156692abe8293ee60ce69493f8425ce130f50014942f8b91b3cd56",
+        "search/compact-index.mjs": "ce58bf7efa65f15e2e7ad10a4e95c851dc7b25c1d22d58efc4d7d2a6741446b1",
         "search/navigation.css": "6f60fecbfc1e7e7c794c9483e580c55ac1bccb780aa0ee1bb7a20b3da97a42ac"
       }
     },
@@ -57,12 +57,12 @@
       "source": "frontend/search/search.js",
       "output": "search/search.js",
       "source_sha256": "13057927ce6307f88a74b79ca9512b38c561271892ee52e50f634c5a8267e299",
-      "sha256": "3822f455ad89fe6ac06f3b10569bc56a525dc189c4227fb94dd0664baa929702",
+      "sha256": "1ce407531a855e5d78f7471e695bd432b95c1c1f5a045acd57673a702e0fc1cc",
       "dependencies": {
-        "search/compact-index.mjs": "e4fadfc9d5156692abe8293ee60ce69493f8425ce130f50014942f8b91b3cd56",
-        "search/engine.mjs": "d250c2bb00cba8db09011a3003bc2c9df5156e5006e104e8e89cfffc0c1c729f",
-        "search/method-search.mjs": "be5807c726f654b00098f33ded4f657cad3e9a2f32ec31a74a1892067db75a11",
-        "search/navigation.mjs": "49405df7f32343584f79d403353131395cda11293d009e5e1cdbea4c93391bbc"
+        "search/compact-index.mjs": "ce58bf7efa65f15e2e7ad10a4e95c851dc7b25c1d22d58efc4d7d2a6741446b1",
+        "search/engine.mjs": "abfccbbf58af6d90c51f21b7799c80b37502ea4ce2d815ae101a2fb33b2bc6cd",
+        "search/method-search.mjs": "387957bf88fe0f474f30af4bb17f2f4694d348078666c5c5e074d33f368ee70b",
+        "search/navigation.mjs": "f7c220bd7839a6b2137c65d3e4d117c7272957b484a43846af7e62830cd1e98c"
       }
     }
   ],
