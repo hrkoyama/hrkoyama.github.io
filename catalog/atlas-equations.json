@@ -23,6 +23,11 @@
       "id": "quantum",
       "ja": "電子状態・量子化学",
       "en": "Electronic structure & quantum chemistry"
+    },
+    {
+      "id": "algebraic",
+      "ja": "有限次元の代数問題",
+      "en": "Finite-dimensional algebra"
     }
   ],
   "equations": [
@@ -359,7 +364,11 @@
       },
       "status": "local-example",
       "group": "physical",
-      "coverage_scope": ""
+      "coverage_scope": "",
+      "supplemental_examples": [
+        "bratu-fold-continuation",
+        "bratu-matrix-free-jfnk"
+      ]
     },
     {
       "id": "hyperbolic-diffusion",
@@ -1758,6 +1767,193 @@
       "supplemental_examples": [
         "normal-tail-importance",
         "correlated-gaussian-mcmc"
+      ]
+    },
+    {
+      "id": "finite-dimensional-linear-system",
+      "name": {
+        "ja": "有限次元線形方程式と行列分解",
+        "en": "Finite-dimensional linear systems and factorizations"
+      },
+      "formula": [
+        "A x=b",
+        "P A=L U",
+        "A=L L^\\top\\quad(A=A^\\top>0)",
+        "r=b-Ax"
+      ],
+      "chapter": "validation-linear-algebra-spectral",
+      "note": {
+        "ja": "有限行列Aと右辺bの代数問題です。LU/Cholesky・混合精度改良・対称不定値鞍点系を固定例で検査し、連続PDEの解とは区別します。",
+        "en": "Finite matrices A and right-hand sides b define algebraic problems. Fixed LU, Cholesky, refinement and symmetric-indefinite saddle controls are distinct from continuum PDE solutions."
+      },
+      "status": "local-example",
+      "group": "algebraic",
+      "domain_kind": "finite-dimensional-algebra",
+      "dimension": null,
+      "coverage_scope": "Only the four specified direct matrices and two algebraic saddle sizes are covered. No general stability, scalability or PDE guarantee is implied.",
+      "execution_scope": {
+        "ja": "SPD三重対角・近特異rank1・Hilbert5・Wilkinson12、鞍点速度サイズ12/24。元残差・前進/後退誤差を分けます。",
+        "en": "SPD tridiagonal, nearly singular rank-one, Hilbert 5 and Wilkinson 12 matrices, plus saddle velocity sizes 12 and 24. Residual, forward error and backward error are separate quantities."
+      },
+      "supplemental_examples": [
+        "pivoted-direct-refinement",
+        "symmetric-saddle-minres"
+      ]
+    },
+    {
+      "id": "finite-dimensional-eigenproblem",
+      "name": {
+        "ja": "有限次元の行列固有値問題",
+        "en": "Finite-dimensional matrix eigenproblems"
+      },
+      "formula": [
+        "A x=\\lambda x"
+      ],
+      "chapter": "validation-linear-algebra-spectral",
+      "note": {
+        "ja": "主対象は31×31の固定対称行列の標準固有値問題です。行列の離散スペクトルを参照し、連続PDEの空間収束を検査したとはしません。",
+        "en": "The primary case is a fixed 31 x 31 symmetric standard eigenproblem. Its discrete spectrum provides the reference; continuum PDE spatial convergence is not claimed."
+      },
+      "status": "local-example",
+      "group": "algebraic",
+      "domain_kind": "finite-dimensional-algebra",
+      "dimension": null,
+      "coverage_scope": "Explicitly restarted two-pass Arnoldi, one Ritz pair, restart lengths 8/16 and shifts none/0/950. No implicit restarting, Krylov-Schur, locking, clustered-spectrum or nonnormal extension is claimed.",
+      "execution_scope": {
+        "ja": "再始動長8/16、最大40cycle、shiftなし/0/950、元固有対残差1e−9。",
+        "en": "Restart lengths 8 and 16, at most 40 cycles, shifts none/0/950, and an original eigenpair residual tolerance of 1e-9."
+      },
+      "supplemental_examples": [
+        "restarted-shift-invert"
+      ]
+    },
+    {
+      "id": "dirichlet-string-eigenproblem",
+      "name": {
+        "ja": "固定端弦の固有値と整合質量FEM",
+        "en": "Fixed-end string eigenvalues and consistent-mass FEM"
+      },
+      "formula": [
+        "-T\\phi^{\\prime\\prime}=\\rho\\lambda\\phi,\\quad 0<x<1",
+        "\\phi(0)=\\phi(1)=0,\\quad T=\\rho=1",
+        "\\lambda_j=(j\\pi)^2",
+        "\\lambda_{j,h}=\\frac{6(1-\\cos\\theta_j)}{h^2(2+\\cos\\theta_j)},\\quad\\theta_j=\\frac{j\\pi}{n+1}"
+      ],
+      "chapter": "validation-linear-algebra-spectral",
+      "note": {
+        "ja": "単位弦の定常振動形の固有値問題です。整合質量P1の代数固有値誤差と連続体への離散化誤差を分けます。時間発展を実行した例ではありません。",
+        "en": "A unit-string normal-mode eigenproblem separates consistent-mass P1 algebraic error from continuum discretization error. No time evolution is performed."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "dimension": 1,
+      "coverage_scope": "Unit length, tension and density; homogeneous Dirichlet endpoints at 0 and 1; the lowest three modes on 15/31/63 interior nodes. No 2D, variable-coefficient, nonlinear or time-evolution extension is claimed.",
+      "execution_scope": {
+        "ja": "内部15/31/63点、M内積Krylovと実SciPy1.14.1 LOBPCGを閉離散固有値・generalized LAPACKへ照合。",
+        "en": "Use 15, 31 and 63 interior nodes. Compare M-inner-product Krylov and actual SciPy 1.14.1 LOBPCG with closed discrete eigenvalues and generalized LAPACK."
+      },
+      "supplemental_examples": [
+        "fem-mass-eigen"
+      ],
+      "references": [
+        {
+          "role": "selected-official-documentation",
+          "title": "SciPy 1.14.1 LOBPCG",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.sparse.linalg.lobpcg.html",
+          "note": "Selected SPD B, operator, preconditioner M, history and rod-example discussion was read. This uses the maintained SciPy implementation, not an original LOBPCG implementation."
+        }
+      ]
+    },
+    {
+      "id": "maxwell",
+      "name": {
+        "ja": "線形Maxwell電磁場（真空・誘電体）",
+        "en": "Linear Maxwell fields in vacuum and dielectrics"
+      },
+      "formula": [
+        "\\partial_t\\mathbf B=-\\nabla\\times\\mathbf E,\\quad\\partial_t\\mathbf D=\\nabla\\times\\mathbf H",
+        "\\mathbf D=\\varepsilon(\\mathbf x)\\mathbf E,\\quad\\mathbf B=\\mathbf H"
+      ],
+      "chapter": "validation-maxwell-cylinder",
+      "note": {
+        "ja": "代表式は3D線形電磁場です。今回の実装はz不変の円柱Ez/Hx/Hyに制限した真2D Yee計算です。",
+        "en": "The representative equations describe three-dimensional linear electromagnetics. This implementation is restricted to a z-invariant, genuinely two-dimensional Yee cylinder problem with Ez/Hx/Hy."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "supplemental_examples": [
+        "cylinder-mie2d"
+      ],
+      "execution_scope": {
+        "ja": "s=Ez（TMz、Hz=0）の無損失円柱。p=Hz（TEz、Ez=0）とは成分で区別し、呼称が異なる文献へ式を流用しません。",
+        "en": "The cylinder uses s = Ez, often called TMz, with Hz = 0. Components distinguish it from p = Hz, often called TEz, with Ez = 0; naming conventions vary across the literature."
+      },
+      "references": [
+        {
+          "id": "ansys-cylinder",
+          "author": "Ansys Optics",
+          "year": 2026,
+          "title": "Mie scattering 2D",
+          "url": "https://optics.ansys.com/hc/en-us/articles/360042703373-Mie-scattering-2D",
+          "review_level": "primary-official-documentation-selected-example",
+          "review_scope": "Read the complete substantive benchmark description: two-dimensional dielectric cylinder, TFSF, angular far field and lossless cross sections. Did not read the associated simulation files, theory table or cited book; no external numerical data imported."
+        },
+        {
+          "id": "nist-wronskian",
+          "author": "NIST DLMF",
+          "year": 2026,
+          "title": "Bessel and Hankel Wronskians, section10.5",
+          "url": "https://dlmf.nist.gov/10.5",
+          "review_level": "primary-official-mathematical-identity",
+          "review_scope": "Read section 10.5, especially equation 10.5.3 for the ordinary J/Hankel1 Wronskian; version 1.2.8. Cylinder boundary algebra is independently derived here."
+        }
+      ]
+    },
+    {
+      "id": "maxwell-lorentz",
+      "name": {
+        "ja": "受動Lorentz・Ohmic分散Maxwell場",
+        "en": "Passive Lorentz–Ohmic Maxwell fields"
+      },
+      "formula": [
+        "\\partial_t\\mathbf H=-\\nabla\\times\\mathbf E,\\quad\\varepsilon_\\infty\\partial_t\\mathbf E=\\nabla\\times\\mathbf H-\\sigma\\mathbf E-\\mathbf J",
+        "\\partial_t\\mathbf P=\\mathbf J,\\quad\\partial_t\\mathbf J=f\\mathbf E-\\omega_0^2\\mathbf P-\\gamma\\mathbf J,\\quad f=\\Delta\\varepsilon\\omega_0^2",
+        "\\varepsilon_\\infty>0,\\quad f,\\sigma,\\gamma\\ge0"
+      ],
+      "chapter": "validation-maxwell-lorentz",
+      "note": {
+        "ja": "正の物質エネルギーと直接Ohmic/γ仕事を持つ単一受動Lorentz極。代表式は3Dですが、実装は周期y単一kyの2D s/p成分制限です。PML数値仕事は物理散逸と同一視しません。",
+        "en": "A single passive Lorentz pole with positive material energy and direct Ohmic/gamma work. The representative equations are three-dimensional; the implemented solver is the two-dimensional s/p component restriction at one periodic ky. Numerical PML work is not identified with physical dissipation."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "supplemental_examples": [
+        "lorentz-oblique-sp",
+        "dispersive-grazing-pml"
+      ],
+      "execution_scope": {
+        "ja": "sはEz/Hx/HyとPz/Jz、pはHz/Ex/Eyと両電場のPx/Py/Jx/Jy。任意の3D場や横方向多モードではありません。",
+        "en": "The s mode evolves Ez/Hx/Hy and Pz/Jz. The p mode evolves Hz/Ex/Ey and both Px/Py/Jx/Jy material responses. This does not implement arbitrary three-dimensional fields or arbitrary transverse multimode data."
+      },
+      "references": [
+        {
+          "id": "meep-materials",
+          "author": "Meep developers",
+          "year": 2026,
+          "title": "Meep Materials documentation",
+          "url": "https://meep.readthedocs.io/en/latest/Materials/",
+          "review_level": "primary-official-documentation-selected-sections",
+          "review_scope": "Read Material Dispersion, Numerical Stability, Loss and Gain, and Conductivity. Confirmed the exp(-i omega t) convention, Lorentz polarization and dispersive-PML warning. Our sigma E conductivity and midpoint update differ from Meep. Unversioned latest documentation; no original Yee or Roden-Gedney paper claim."
+        },
+        {
+          "id": "johnson-pml",
+          "author": "Steven G. Johnson",
+          "year": 2021,
+          "title": "Notes on Perfectly Matched Layers",
+          "url": "https://arxiv.org/html/2108.05348v1",
+          "review_level": "primary-author-notes-selected-derivation",
+          "review_scope": "Read sections 3.2–4.2, equations 7–8 and the time-domain ADE discussion, plus sections 5–7.2 on homogeneity, evanescent fields and grazing/discretization limitations. The served text is updated 2026-08-24. The trapezoidal filter is our derivation; no full original Berenger/Roden-Gedney paper review is claimed."
+        }
       ]
     }
   ]

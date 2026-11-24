@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_on": "2026-11-23",
+  "reviewed_on": "2026-11-24",
   "scope": "Primary-method and detailed-reading bibliography. DOI/title identities are deduplicated across the atlas. Origin papers, later variants, author monographs, reviews and official reference documentation retain distinct roles and access-depth notes.",
   "references": [
     {
@@ -558,6 +558,15 @@
       "source": "https://doi.org/10.1090/qam/42792",
       "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
       "source_review": {
+        "level": "full-text",
+        "checked_on": "2026-11-24",
+        "url": "https://www.scribd.com/document/720477021/S0033-569X-1951-42792-9",
+        "representation": "Public OCR transcription of original prose; original scan and equation symbols unverified",
+        "official_source": "https://doi.org/10.1090/qam/42792",
+        "scope": "Selected original-paper OCR prose,pp25-26,section6,and28-29,section8: projection and orthogonality checks. Official PDF returned403; original scan and equation symbols remain unverified. Modern normalized algorithms are separately specified and tested.",
+        "scope_ja": "原著の公開OCR転載で25〜26頁の第6節、28〜29頁の第8節の文章を確認。射影と直交性点検の記述を参照。公式PDFは取得できず、原本画像と数式記号は未照合です。現代の正規化した実装は別に検証します。"
+      },
+      "bibliographic_review": {
         "level": "metadata",
         "checked_on": "2026-11-22",
         "url": "https://api.crossref.org/works/10.1090%2Fqam%2F42792"
@@ -911,6 +920,14 @@
       "source": "https://doi.org/10.6028/jres.045.026",
       "note": "Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.",
       "source_review": {
+        "level": "full-text",
+        "checked_on": "2026-11-24",
+        "url": "https://nvlpubs.nist.gov/nistpubs/jres/045/jresv45n4p255_A1b.pdf",
+        "representation": "Official original PDF; selected pages visually inspected",
+        "scope": "Selected original pages266-267,sectionVII,equations63-78,and271,equation99: symmetric three-term reduction and orthogonality correction. Original vectors are unnormalized; no whole-paper proof or modern-restarting guarantee is claimed.",
+        "scope_ja": "NIST公式原本の266〜267頁（VII節・式63〜78）と271頁（式99）を目視。対称問題の三項化と直交性補正を確認。未正規化の係数を現代の単位ベクトル表示へ直写せず、全証明・再始動法の保証とはしません。"
+      },
+      "bibliographic_review": {
         "level": "metadata",
         "checked_on": "2026-11-22",
         "url": "https://api.crossref.org/works/10.6028%2Fjres.045.026"

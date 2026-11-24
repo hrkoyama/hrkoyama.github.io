@@ -380,7 +380,7 @@
     },
     {
       "id": "mhd-transport",
-      "edition": "2026-11-23",
+      "edition": "2026-11-24",
       "title": {
         "ja": "MHD輸送・波・圧縮構造の独立比較",
         "en": "Independent MHD transport, waves and compression comparisons"
@@ -693,6 +693,81 @@
         "ja": "重要度重み付き尾確率と2D相関GaussianのMCMCを扱い、解析値・同一データの診断照合・新規標本の検査を区別します。",
         "en": "Study importance-weighted tails and 2D correlated-Gaussian MCMC, separating analytic targets, same-data diagnostic comparisons and fresh-sample checks."
       }
+    },
+    {
+      "id": "maxwell-cylinder",
+      "edition": "2026-11-24",
+      "title": {
+        "ja": "2D誘電体円柱のMie散乱幅",
+        "en": "Mie scattering width of a two-dimensional dielectric cylinder"
+      },
+      "fields": [
+        "electromagnetics"
+      ],
+      "intro": {
+        "ja": "実際の2D散乱場を進め、閉曲線Poynting流束と独立な円柱級数を比較します。",
+        "en": "Evolve the actual two-dimensional scattered fields and compare closed-contour Poynting power with an independent cylindrical series."
+      }
+    },
+    {
+      "id": "maxwell-lorentz",
+      "edition": "2026-11-24",
+      "title": {
+        "ja": "Lorentz分散板へのs/p斜め入射",
+        "en": "Oblique s/p incidence on a Lorentz-dispersive slab"
+      },
+      "fields": [
+        "electromagnetics"
+      ],
+      "intro": {
+        "ja": "有限波束の実進行から複素r/t・R/T・直接散逸を求め、複素Fresnel参照と比較します。",
+        "en": "Measure complex r/t, power fractions and direct dissipation from actual finite-pulse evolutions and compare them with complex Fresnel slab references."
+      }
+    },
+    {
+      "id": "maxwell-grazing",
+      "edition": "2026-11-24",
+      "title": {
+        "ja": "分散媒質の浅い入射角と長時間PML",
+        "en": "Long-time grazing PML in a dispersive medium"
+      },
+      "fields": [
+        "electromagnetics"
+      ],
+      "intro": {
+        "ja": "80度の中心位相角を持つ有限波束をT=700まで進め、境界誤差を同格子の無PML参照から分離します。",
+        "en": "Evolve a finite packet with an 80-degree central phase angle to T = 700, isolating boundary error against a no-PML reference on the same grid."
+      }
+    },
+    {
+      "id": "linear-algebra-spectral",
+      "edition": "2026-11-24-r3",
+      "title": {
+        "ja": "線形代数：直接法・鞍点系・再始動と整合質量固有値",
+        "en": "Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs"
+      },
+      "fields": [
+        "foundations"
+      ],
+      "intro": {
+        "ja": "小さい固定行列で、行列分解と反復改良、対称不定値の反復解法、再始動固有値解法、整合質量の弦を比較します。独立参照へ照合し、残差と解誤差・代数誤差と離散化誤差・作用回数を分けます。",
+        "en": "Small fixed matrices compare factorization and refinement, symmetric-indefinite solves, restarted eigenpairs and a consistent-mass string. Independent references distinguish residual from solution error, algebraic from discretization error, and counted operator actions."
+      }
+    },
+    {
+      "id": "bratu-continuation-jfnk",
+      "edition": "2026-11-24-r2",
+      "title": {
+        "ja": "Bratuのfold継続とJacobian不要Newton–Krylov",
+        "en": "Bratu fold continuation and Jacobian-free Newton-Krylov"
+      },
+      "fields": [
+        "elliptic"
+      ],
+      "intro": {
+        "ja": "同じ1次元Bratu境界値問題で、foldを越える継続とJacobianを組み立てない反復を独立解析族へ照合します。",
+        "en": "The same one-dimensional Bratu problem compares fold continuation and matrix-free iteration against an independently evaluated analytic family."
+      }
     }
   ],
   "case_problem_ids": {
@@ -792,7 +867,16 @@
     "ou-weak-moments": "langevin-harmonic",
     "gbm-milstein-strong": "gbm-sde",
     "normal-tail-importance": "normal-tail-importance",
-    "correlated-gaussian-mcmc": "correlated-gaussian-mcmc"
+    "correlated-gaussian-mcmc": "correlated-gaussian-mcmc",
+    "cylinder-mie2d": "cylinder-mie2d",
+    "lorentz-oblique-sp": "lorentz-oblique-sp",
+    "dispersive-grazing-pml": "dispersive-grazing-pml",
+    "pivoted-direct-refinement": "pivoted-direct-refinement",
+    "symmetric-saddle-minres": "symmetric-saddle-minres",
+    "restarted-shift-invert": "restarted-shift-invert",
+    "fem-mass-eigen": "fem-mass-eigen",
+    "bratu-fold-continuation": "bratu-fold-continuation",
+    "bratu-matrix-free-jfnk": "bratu-matrix-free-jfnk"
   },
   "routine_policy": {
     "ja": "通常の補助例CIは、公開レジストリに登録した補助配布グループをNumPy・SciPy・pytestで実行します。保存済みの独立参照は版・入力・実行記録を照合し、新規の参照計算と区別します。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。",
@@ -1078,6 +1162,42 @@
     "correlated-gaussian-mcmc": {
       "ja": "診断engineの独立性とsamplerの独立参照を混同しません。Rhat等は大域収束・被覆の証明ではありません。isotropicは固定比較で失敗を要求せず、banana/funnel/HMC/NUTSは未実装です。",
       "en": "Diagnostic-engine independence is not an independent sampler. Rhat/ESS/MCSE do not prove global convergence/coverage. Isotropic is descriptive with no required failure;banana/funnel/HMC/NUTSremain unimplemented."
+    },
+    "cylinder-mie2d": {
+      "ja": "Ezの無損失2D円柱のみで、3D球ではありません。階段状形状の誤差を記録し、一般の曲面2次精度や任意周波数・材料での精密散乱を保証しません。 図の中央の白抜きは診断用のr<0.4のマスクで、物理円柱の半径0.25とは区別します。",
+      "en": "This is a lossless two-dimensional Ez cylinder, not a three-dimensional sphere. Report staircase geometry error without claiming general second-order curved-boundary accuracy or precision scattering for arbitrary frequencies and materials. The central white region is a diagnostic mask at r<0.4, distinct from the physical cylinder radius0.25."
+    },
+    "lorentz-oblique-sp": {
+      "ja": "任意の横方向分布ではなく単一kyの実空間制限です。1つの受動Lorentz極と有限帯域・有限窓のみ。Gaussian尾は厳密には非零で、窓診断と参照誤差を別記します。 全周波数で厳密にcap反射が未到達という証明ではありません。 周期y方向の1周期を表示しています。波形を見やすくするため、x軸とy軸の表示縮尺は異なります。",
+      "en": "This is a genuine single-ky restriction rather than arbitrary transverse data. It covers one passive Lorentz pole and a fixed finite band/window. Gaussian tails are nonzero; window diagnostics and reference errors are reported separately. No strict all-frequency no-return proof is claimed. One transverse y period is shown. The displayed x and y scales differ to make the fields visible."
+    },
+    "dispersive-grazing-pml": {
+      "ja": "有限kx帯域の中心角が80度で、全成分が厳密に80度ではありません。無PML参照は同じ離散化・初期場を使い、伝播分散を除いた境界誤差用です。任意角度・材料での大域安定性証明ではありません。 固定PMLの空間次数を測る族ではなく、旧100検査だけでpeak12の大域安定性が証明されたとはしません。 周期y方向の1周期を表示しています。波形を見やすくするため、x軸とy軸の表示縮尺は異なります。",
+      "en": "The central angle is 80 degrees; finite kx bandwidth gives neighboring angles. The no-PML reference shares the discretization and initialization to isolate boundary error from bulk dispersion. Small operator and finite-trajectory checks do not prove global stability for arbitrary angles and materials. The joint family does not measure fixed-PML spatial order; the older 100 checks alone do not prove peak-12 global stability. One transverse y period is shown. The displayed x and y scales differ to make the fields visible."
+    },
+    "pivoted-direct-refinement": {
+      "ja": "小さい固定例のみ。一般の高条件数系で混合精度の収束は保証しません。",
+      "en": "Small fixed examples only; convergence of mixed-precision refinement is not guaranteed for arbitrary matrices."
+    },
+    "symmetric-saddle-minres": {
+      "ja": "理想Schurは教育用の稠密制御であり、実Stokes PDEやスケーラブルな近似前処理の完成ではありません。",
+      "en": "A dense, ideal-Schur educational control, not a complete Stokes PDE solver or a scalable approximate preconditioner."
+    },
+    "restarted-shift-invert": {
+      "ja": "単一対称実固有対だけ。暗黙再始動・Krylov-Schur・ロッキング・一般の非正規やクラスターは未実装。",
+      "en": "One eigenpair of a real symmetric matrix only. No implicit restarting, Krylov-Schur, locking, or general nonnormal or clustered-spectrum capability is claimed."
+    },
+    "fem-mass-eigen": {
+      "ja": "小規模1D弦のみ。SciPyが返す前の例外では入力を保存し、未返却の内部反復を保存したとはしません。 成分資格35判定は4科学例の合格を代用せず、元SciPy内部の未返却反復は保存済みとしません。",
+      "en": "A small 1D string only. If SciPy raises before returning, inputs are retained; unreturned internal iterates are not claimed to be saved. The 35 component checks do not replace the four full scientific cases."
+    },
+    "bratu-fold-continuation": {
+      "ja": "小さな1次元の単純foldだけです。分岐曲線の解析族比較では計算した中点値を族の座標に使い、固定λの独立形状比較と区別します。連続foldは離散解そのものではなく、一般の分岐追跡や大規模性能は保証しません。",
+      "en": "A small one-dimensional simple fold only. The whole-curve family comparison uses the computed midpoint as its family coordinate and is distinct from the independent fixed-lambda profile checks. The continuum fold is not an exact discrete solution. No general bifurcation-tracking or large-scale performance claim."
+    },
+    "bratu-matrix-free-jfnk": {
+      "ja": "小1次元BVP向けの教育実装です。ADは四則・exp・境界paddingの方向微分に限ります。小Hessenberg行列と基底は保持します。ηの固定下限があるため、原著EWの漸近収束定理、一般AD/PETScとの同等性、速度向上や大域収束は主張しません。",
+      "en": "An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee."
     }
   },
   "case_equations": {
@@ -1599,6 +1719,87 @@
       "note": {
         "ja": "平均(1,-1)、相関.95・対角分散1。4独立chainset×4chain、burn1024/draw8192、prefix2048/8192。固定.9Lzと.25z、適応なし。",
         "en": "Mean(1,-1),unit marginal variances,rho.95;4independent chainsets×4chains;burn1024/draw8192;prefix2048/8192. Fixed.9Lzand.25z,no adaptation."
+      }
+    },
+    "cylinder-mie2d": {
+      "ids": [
+        "maxwell"
+      ],
+      "note": {
+        "ja": "c=ε0=μ0=1。無限円柱のEz偏光、半径0.25、比誘電率2.25、真空波長1。6×6領域と4辺PML、明示的な節点階段状形状です。",
+        "en": "Use c = epsilon0 = mu0 = 1, an infinite cylinder with Ez polarization, radius 0.25, relative permittivity 2.25 and vacuum wavelength 1. The 6 × 6 domain has four-side PML and an explicitly nodal staircase geometry."
+      }
+    },
+    "lorentz-oblique-sp": {
+      "ids": [
+        "maxwell-lorentz"
+      ],
+      "note": {
+        "ja": "周期y方向のky=4に制限した2D場、c=1。板[4,5]のε∞=1.5、Δε=0.75、ω0=9、γ=0.5、σ=0.04。外側は真空、PEC端は[-24,36]、T=60です。",
+        "en": "Use a two-dimensional field restricted to periodic transverse wave number ky = 4 and c = 1. The slab [4, 5] has epsilon_inf = 1.5, delta_epsilon = 0.75, omega_0 = 9, gamma = 0.5 and sigma = 0.04. Outer vacuum ends at PEC caps [-24, 36]; T = 60."
+      }
+    },
+    "dispersive-grazing-pml": {
+      "ids": [
+        "maxwell-lorentz"
+      ],
+      "note": {
+        "ja": "c=1、均質Lorentz媒質ε∞=1、Δε=0.2、ω0=12はPML内まで連続。512/768/1024点とpeak6/9/12を同時に細分化します。垂直粗格子はpeak6、弱減衰細格子対照はpeak12。長さ64、層幅12、中心32、幅4、carrier6は固定です。",
+        "en": "Use c = 1 and a homogeneous Lorentz medium with epsilon_inf = 1, delta_epsilon = 0.2 and omega_0 = 12 continuing through the PML. Joint refinement uses 512/768/1024 cells and peaks 6/9/12. The normal coarse control has peak 6; the damped fine companion has peak 12. Length 64, layer thickness 12, center 32, width 4 and carrier 6 are fixed."
+      }
+    },
+    "pivoted-direct-refinement": {
+      "ids": [
+        "finite-dimensional-linear-system"
+      ],
+      "note": {
+        "ja": "SPD12、低ランク近特異8、Hilbert5、Wilkinson12を固定。binary32因子・三角解法とbinary64残差・補正の5回です。",
+        "en": "Fixed SPD matrix of size 12, a nearly singular rank-one matrix of size 8, Hilbert matrix of size 5 and Wilkinson matrix of size 12. Factors and triangular corrections use binary32; residuals use binary64, with five updates."
+      }
+    },
+    "symmetric-saddle-minres": {
+      "ids": [
+        "finite-dimensional-linear-system"
+      ],
+      "note": {
+        "ja": "速度12/24、圧力5/11の代数的混合Poisson/Stokes型ブロック。元の真の残差1e-9を共通基準にします。",
+        "en": "Algebraic mixed-Poisson/Stokes-type blocks with velocity sizes 12 and 24 and pressure sizes 5 and 11. The common original-system residual tolerance is 1e-9."
+      }
+    },
+    "restarted-shift-invert": {
+      "ids": [
+        "finite-dimensional-eigenproblem"
+      ],
+      "note": {
+        "ja": "Dirichlet離散Laplacian31、再始動長8/16、最大40cycle、shiftなし/0/950。",
+        "en": "A fixed Dirichlet Laplacian of size 31, restart lengths 8 and 16, and at most 40 cycles. Compare the untransformed problem with shifts 0 and 950."
+      }
+    },
+    "fem-mass-eigen": {
+      "ids": [
+        "dirichlet-string-eigenproblem"
+      ],
+      "note": {
+        "ja": "単位弦・張力密度1、同次Dirichlet、内部15/31/63点、最低3固有対。",
+        "en": "A unit string with unit tension and density and homogeneous Dirichlet endpoints. Use 15, 31 and 63 interior nodes and the lowest three eigenpairs."
+      }
+    },
+    "bratu-fold-continuation": {
+      "ids": [
+        "bratu"
+      ],
+      "note": {
+        "ja": "無次元x∈[0,1]、両端u=0、中心差分の内点31/63/127。零解から固定ds=0.1で80step。λ=2で上下枝を補正し、λ=4は離散無解の意図的な対照です。擬似弧長は物理時間ではありません。",
+        "en": "Dimensionless x in [0,1] with zero Dirichlet endpoints and 31/63/127 interior nodes. Take 80 fixed ds=0.1 steps from the zero solution. Correct both branches at lambda=2; lambda=4 is a deliberate discrete no-solution control. Pseudo-arclength is not physical time."
+      }
+    },
+    "bratu-matrix-free-jfnk": {
+      "ids": [
+        "bratu"
+      ],
+      "note": {
+        "ja": "同じ無次元1次元Dirichlet問題でλ=3、内点63/127、初期値0または4sin(πx)。3Jv×2格子×2枝の12解法と固定η=1e-8の解析Jv対照1本。GMRES restart24/max96、Newton最大24、残差許容1e-9です。",
+        "en": "The same dimensionless one-dimensional Dirichlet problem at lambda=3, 63/127 interior nodes, starting from zero or 4sin(pi*x). Twelve mode/grid/branch solves plus one analytic-Jv constant-eta=1e-8 control. GMRES restart24/max96, at most 24 Newton steps and nonlinear tolerance1e-9."
       }
     }
   }

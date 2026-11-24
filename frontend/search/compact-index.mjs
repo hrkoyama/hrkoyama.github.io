@@ -1,3 +1,71 @@
+/** Restore the optional lossless row-value and details.keys string pool. */
+export const ROW_STRING_LIMITS=Object.freeze({pool:50000,poolUnits:8200000,stringUnits:1000000,expandedUnits:16400000,nodes:1000000,depth:64,rows:2000});
+const ENCODING='shared-raw-strings-v1',PREFIX='~s:';
+const own=(value,key)=>Object.prototype.hasOwnProperty.call(value,key);
+const plain=value=>value!==null&&typeof value==='object'&&!Array.isArray(value)&&Object.getPrototypeOf(value)===Object.prototype;
+const scalarString=value=>typeof value==='string'&&!/[\uD800-\uDFFF]/u.test(value);
+const invalid=()=>{throw Error('Invalid pooled row strings');};
+export function restoreRowStrings(data){
+ if(!data||typeof data!=='object')return data;
+ if(data.row_string_encoding===undefined){
+  if(own(data,'row_strings'))invalid();
+  return data; // Old compact and already-unpacked payloads retain their API.
+ }
+ if(!plain(data)||data.format!=='compact-search-v1'||data.row_string_encoding!==ENCODING||!['atlas','site'].includes(data.kind))invalid();
+ const pool=data.row_strings;
+ if(!Array.isArray(pool)||Object.getPrototypeOf(pool)!==Array.prototype||pool.length>ROW_STRING_LIMITS.pool)invalid();
+ let poolUnits=0;
+ const seen=new Set();
+ for(const text of pool){
+  if(!scalarString(text)||text.length>ROW_STRING_LIMITS.stringUnits||seen.has(text))invalid();
+  seen.add(text);poolUnits+=text.length;if(poolUnits>ROW_STRING_LIMITS.poolUnits)invalid();
+ }
+ const field=data.kind==='atlas'?'entries':'documents';
+ if(!Array.isArray(data[field])||Object.getPrototypeOf(data[field])!==Array.prototype||data[field].length>ROW_STRING_LIMITS.rows)invalid();
+ for(let i=0;i<data[field].length;i++)if(!own(data[field],i)||!plain(data[field][i]))invalid();
+ let nodes=0,units=0;
+ const charge=text=>{units+=text.length;if(units>ROW_STRING_LIMITS.expandedUnits)invalid();return text;};
+ const restore=(value,depth=0)=>{
+  if(++nodes>ROW_STRING_LIMITS.nodes||depth>ROW_STRING_LIMITS.depth)invalid();
+  if(typeof value==='string'){
+   if(!scalarString(value))invalid();
+   if(!value.startsWith(PREFIX))return charge(value);
+   const suffix=value.slice(PREFIX.length);
+   if(suffix.startsWith('~'))return charge(PREFIX+suffix.slice(1));
+   if(!/^(?:0|[1-9a-z][0-9a-z]{0,3})$/.test(suffix))invalid();
+   const index=parseInt(suffix,36);
+   if(index>=pool.length||index.toString(36)!==suffix)invalid();
+   // Pool entries are raw strings, never recursively interpreted as tokens.
+   return charge(pool[index]);
+  }
+  if(Array.isArray(value)){
+   if(Object.getPrototypeOf(value)!==Array.prototype||value.length>ROW_STRING_LIMITS.nodes-nodes)invalid();
+   const result=[];
+   for(let i=0;i<value.length;i++){if(!own(value,i))invalid();result.push(restore(value[i],depth+1));}
+   return result;
+  }
+  if(value&&typeof value==='object'){
+   if(!plain(value))invalid();
+   // CreateDataProperty preserves an own '__proto__' key without invoking a setter.
+   return Object.fromEntries(Object.entries(value).map(([key,item])=>{if(!scalarString(key))invalid();charge(key);return [key,restore(item,depth+1)];}));
+  }
+  if(value!==null&&typeof value!=='boolean'&&(typeof value!=='number'||!Number.isFinite(value)))invalid();
+  return value;
+ };
+ const rows=data[field].map(row=>restore(row));
+ const {row_string_encoding,row_strings,...header}=data;
+ const result={...header,[field]:rows};
+ if(own(data,'details')){
+  if(!plain(data.details))invalid();
+  if(own(data.details,'keys')){
+   if(!Array.isArray(data.details.keys)||data.details.keys.some(key=>typeof key!=='string'))invalid();
+   const keys=restore(data.details.keys);
+   result.details={...data.details,keys};
+  }
+ }
+ return result;
+}
+
 /** Decode a fixed public vocabulary; fetch only fixed same-site detail assets. */
 const decoded=new WeakMap(),pending=new Map();
 const MAX_TERMS=500000,MAX_VOCABULARY_UNITS=8200000;
@@ -39,8 +107,12 @@ function varints(value,limit){
  return values;
 }
 export function unpackSearchIndex(data){
- if(data?.format!=='compact-search-v1')return data;
+ if(data?.format!=='compact-search-v1'){
+  if(data&&typeof data==='object'&&('row_string_encoding' in data||'row_strings' in data))throw Error('Invalid pooled row strings');
+  return data;
+ }
  if(decoded.has(data))return decoded.get(data);
+ const source=data;data=restoreRowStrings(data);
  const words=vocabulary(data),binary=data.term_encoding==='sorted-delta-varint-base64';
  if(data.term_encoding!==undefined&&!['sorted-delta','sorted-delta-varint-base64'].includes(data.term_encoding))throw Error('Invalid search terms');
  const expand=indices=>{
@@ -66,7 +138,7 @@ export function unpackSearchIndex(data){
  // Preserve the legacy unpacked record/header API; storage codecs are private
  // to this loader. Both old numeric arrays and the new byte strings decode here.
  if(binary)rest.term_encoding='sorted-delta';
- const result={...rest,format:'unpacked-search-v1',[field]:rows};decoded.set(data,result);return result;
+ const result={...rest,format:'unpacked-search-v1',[field]:rows};decoded.set(source,result);return result;
 }
 export function searchDetailURL(key){
  if(typeof key!=='string'||! /^[a-f0-9]{64}$/.test(key))throw Error('Invalid search detail key');

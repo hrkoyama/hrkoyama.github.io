@@ -1,0 +1,66 @@
+{
+  "reviewed_at_utc": "2026-11-24T00:09:28.806373+00:00",
+  "references": [
+    {
+      "id": "dickson2007",
+      "title": "Condition Estimates for Pseudo-Arclength Continuation",
+      "author": "K.I.Dickson,C.T.Kelley,I.C.F.Ipsen,I.G.Kevrekidis",
+      "year": 2007,
+      "type": "article",
+      "doi": "10.1137/060654384",
+      "url": "https://ipsen.math.ncsu.edu/ps/sinum65438.pdf",
+      "review_level": "primary-selected-PDF-text",
+      "review_scope": "Selected original PDF sec2.2,Eqs2.2-2.5: tangent equation,normalization,hyperplane augmentation and simple-fold scope. No fullpaper/proof audit; our mesh-weighted norm is an explicitly derived variation.",
+      "review": {
+        "ja": "原著PDFの選択部分2.2節の接線・正規化・超平面制約と単純foldの範囲を読解。全文・全証明の監査ではありません。",
+        "en": "Read selected original sec2.2 tangent,normalization,hyperplane andsimple-fold scope; nofullproof audit."
+      }
+    },
+    {
+      "id": "knoll-keyes2004",
+      "title": "Jacobian-free Newton-Krylov methods: a survey of approaches and applications",
+      "author": "D.A.Knoll,D.E.Keyes",
+      "year": 2004,
+      "type": "article",
+      "doi": "10.1016/j.jcp.2003.08.010",
+      "url": "https://inf.ufes.br/~luciac/comcie/JFNK-Knoll.pdf",
+      "review_level": "primary-selected-PDF-text-via-course-mirror",
+      "review_scope": "Selected original sec2.3-2.4 on matrix-free products,finite-difference scale,inexact forcing Eq16 andpreconditioning; notwhole41pagepaper. Our central ratherthanforward difference andcappedresidual-ratio forcing areexplicitchoices,not exactPETSc/EW defaults.",
+      "review": {
+        "ja": "原著のJv・差分刻み・inexact forcing・前処理の選択部分を講義ミラー配送から読解。中央差分と固定clamp付き比率則は明示的な実装選択です。",
+        "en": "Selected primary Jv,FDscale,inexactforcing andpreconditioning sections readvia disclosedcourse mirror; centralFD/cappedrule areexplicitimplementation choices."
+      }
+    },
+    {
+      "id": "petsc-snes-official",
+      "title": "PETSc SNES nonlinear solvers: matrix-free,inexact Newton and arc length",
+      "author": "PETSc developers",
+      "year": 2026,
+      "type": "official-documentation",
+      "url": "https://petsc.org/release/manual/snes/",
+      "review_level": "official-selected-documentation",
+      "review_scope": "Actual manual3.26.1 selected Matrix-Free Methods,Inexact Newton andArc Length sections read. Context only: no PETSc installed/executed orborrowed validation. PETSc quadraticarc constraint isdistinct from our hyperplane.",
+      "review": {
+        "ja": "公式3.26.1文書の関連節のみ確認。PETScを使用・実行した成功値は借用せず、二次arc制約と採用超平面を区別します。",
+        "en": "Selected official3.26.1sections only; noPETSc execution orborrowed result. Distinguish itsquadraticarcconstraint fromourhyperplane."
+      }
+    },
+    {
+      "id": "langtangen-bratu-official",
+      "title": "Finite differences for the1D Bratu problem,Problem8",
+      "author": "Hans Petter Langtangen",
+      "year": 2014,
+      "type": "author-course-documentation",
+      "url": "https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html",
+      "review_level": "author-selected-exact-solution-exercise",
+      "review_scope": "Author teaching source Problem8/Eq52 exactfamily,two branches androundedcritical3.513830719 actually read. Source uses a parameter twice ourtheta. Independent substitution/Decimal80 roots qualify our formula; originalBratu1914paper unread.",
+      "review": {
+        "ja": "著者教材のBratu解析族と二枝・丸めた臨界値を確認。変数は採用thetaの2倍で、別導出とDecimal80で資格。1914原著は未読です。",
+        "en": "Read author exercise exactfamily/twobranches/roundedcritical; itsparameter istwiceourtheta. Independentderivation/Decimal80qualification;1914originalunread."
+      }
+    }
+  ],
+  "original_Bratu1914_unread": true,
+  "original_Eisenstat_Walker1996_fulltext_unread": true,
+  "reference_role": "IndependentanalyticfamilyinDecimal80,notPETScoroldpublishednonlinearsolvertrajectories."
+}

@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "revision": 1,
-  "created_at_utc": "2026-11-23T12:20:55.941104+00:00",
-  "declared_before_first_primary_pde_run": true,
-  "declared_before_first_pytest_execution": true,
+  "revision": 3,
+  "created_at_utc": "2026-11-24T05:15:04.506979+00:00",
+  "declared_before_first_primary_pde_run": false,
+  "declared_before_first_pytest_execution": false,
   "independent_reference_pdes_already_executed": 6,
   "reference_source_run_contract_sha256": "6b525e503a9091adfb84116fca2d44c1a8cc420a101dfc4b1c77bb04d55392de",
   "reference_post_run_qualification_contract_sha256": "925e43be56b689e86a8757f36944c30235e160afa67733b94db58ea1db93ec5a",
@@ -19,8 +19,8 @@
   "runtime_limit_seconds": 120,
   "shared_pytest_plus_main_budget_seconds": 120,
   "main_internal_budget_seconds": 115,
-  "runtime_status": "Unmeasured before execution. Small fixed inputs, no performance pilot or primary PDE was run.",
-  "scope": "Full8state HLLD/MC/Heun;1D analytic conserved CPAW averages and genuinely2D CT-contact loop/latecompressibleOT.3primaryspatialgrids each sharefixedtime step; finesthalf-dt separately. Allindependentnumericalcomparisonsfinal-only. Loopunmodifiedofficialvz2 variant. Referenceattempt01 failed25/31 dueintermediateschedulersemantics; approved savedfieldrequalificationR3 passed31/31 withunchangedNPZ/physicalbounds andnoPDErerun.",
+  "runtime_status": "LOCAL_EQUIVALENCE_QUALIFIED_PRE_CANONICAL_PACKAGE",
+  "scope": "Only remove two duplicate pure computations;old47tests/inputs/references/125gates/12runs/115main+120shared budgets unchanged. Existing published sources/results are preserved;no candidate bitwise or runtime success claimed.",
   "presentation_files_excluded": [
     "README.md",
     "cases.json",
@@ -30,7 +30,7 @@
   ],
   "files_sha256": {
     "acceptance.json": "36d79fa7704da8a29061ec7d1ccb63761bfb562c9daf39d1328075065d66747f",
-    "hlld.py": "5615a1fbe08d236a8ac3ab7f48ef9c50f6a859a48af36797e03a5940b8384af5",
+    "hlld.py": "af62d59b81cdb456112b2cbe189813a2e33092761441342dda553928a84abe2d",
     "inputs.json": "8a1b3bc9932f0cf9b620953d53294f2fc781f7999b7922a5d54f685e6044004e",
     "references/ATHENA-LICENSE.txt": "31194975612df51ccb646ed5d43d3eeb5f7996e8a1725b409fb3e34f93059d32",
     "references/analytic.py": "1fa660bf1d748bd5a18275ef2026494e9f765f58f8769a8de62b977f7165fc29",
@@ -63,6 +63,38 @@
     "run.py": "da117c1975ea8d8c4177df4668faa2f6e114d5ad324e85457c094a603ade21d9",
     "solver.py": "56654eccb57ea88242eb02877fd9019065882c416f9cff49ea19fbc6321dbded",
     "source-provenance.json": "b88a14f09e78660d0736f8c0b976210e5dade4f28679c9a3991b1da728632ffe",
-    "test_mhd.py": "4f6d275868822638029ab41a2d0b25b9349053089778c1a41524a4c32258085a"
+    "test_mhd.py": "4f6d275868822638029ab41a2d0b25b9349053089778c1a41524a4c32258085a",
+    "performance-equivalence.json": "a65c03d276f54270a0edcc2f603f5caf25c6e5e1862083d8327803e83955e47c"
+  },
+  "performance_revision": 2,
+  "declared_before_this_performance_variant_import_or_execution": false,
+  "lineage": {
+    "old_contract_sha256": "295cffb4e7d6cf09d7412b3f5405d544c42ca487376b296e848ada55aabdaad8",
+    "old_hlld_sha256": "5615a1fbe08d236a8ac3ab7f48ef9c50f6a859a48af36797e03a5940b8384af5",
+    "existing_published_edition": "2026-11-23",
+    "old_cached_success_results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/",
+    "source_copy_method": "APFS cp -cR clone of102files;not a workspace copy",
+    "prior_input_criteria_measurements_unchanged": true,
+    "current_failed_run": {
+      "id": 45325614147,
+      "attempt": 1,
+      "head": "546e9cdb57ba1700c86081757d3a2dc196cd0739",
+      "root_reported": "47pytestPASS;main115s budget failure atlastOT64half-dt step800/1024;11completed fixedruns retained",
+      "scope": "Historical prior-release failure; unchanged same-SHA attempt2 later passed."
+    },
+    "retry_policy": "Old completed public release unchanged; this later user-authorized batch qualifies and packages a new immutable edition.",
+    "prior_private_performance_contract_sha256": "f7292cac1859a512eaf3e140f0b63b6261a3d0ddb7c3f89d549d39e2ac474a57",
+    "equivalence_before_canonical_package": {
+      "NPZ_arrays": 216,
+      "CSV_files": 27,
+      "scientific_JSON_top_keys": 7,
+      "all_equal": true,
+      "excluded_JSON_top_keys": [
+        "duration_seconds",
+        "source_sha256",
+        "files_sha256"
+      ],
+      "NPZ_container_timestamps_not_compared": true
+    }
   }
 }

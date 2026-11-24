@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "runs": [
+    {
+      "id": "loop-n64-cfl0p3",
+      "kind": "loop",
+      "n": 64,
+      "nx": 128,
+      "cfl": 0.3,
+      "final_time": 1.0,
+      "input": "athinput-loop-n64-cfl0p3.txt",
+      "expected_velocity": [
+        2.0,
+        1.0,
+        2.0
+      ],
+      "snapshots": [
+        0,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ]
+    },
+    {
+      "id": "loop-n128-cfl0p3",
+      "kind": "loop",
+      "n": 128,
+      "nx": 256,
+      "cfl": 0.3,
+      "final_time": 1.0,
+      "input": "athinput-loop-n128-cfl0p3.txt",
+      "expected_velocity": [
+        2.0,
+        1.0,
+        2.0
+      ],
+      "snapshots": [
+        0,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ]
+    },
+    {
+      "id": "loop-n128-cfl0p15",
+      "kind": "loop",
+      "n": 128,
+      "nx": 256,
+      "cfl": 0.15,
+      "final_time": 1.0,
+      "input": "athinput-loop-n128-cfl0p15.txt",
+      "expected_velocity": [
+        2.0,
+        1.0,
+        2.0
+      ],
+      "snapshots": [
+        0,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ]
+    },
+    {
+      "id": "ot-n128-cfl0p3",
+      "kind": "ot",
+      "n": 128,
+      "nx": 128,
+      "cfl": 0.3,
+      "final_time": 0.2,
+      "input": "athinput-ot-n128-cfl0p3.txt",
+      "expected_velocity": "official Orszag-Tang sine velocities",
+      "snapshots": [
+        0,
+        0.05,
+        0.1,
+        0.15000000000000002,
+        0.2
+      ]
+    },
+    {
+      "id": "ot-n256-cfl0p3",
+      "kind": "ot",
+      "n": 256,
+      "nx": 256,
+      "cfl": 0.3,
+      "final_time": 0.2,
+      "input": "athinput-ot-n256-cfl0p3.txt",
+      "expected_velocity": "official Orszag-Tang sine velocities",
+      "snapshots": [
+        0,
+        0.05,
+        0.1,
+        0.15000000000000002,
+        0.2
+      ]
+    },
+    {
+      "id": "ot-n256-cfl0p15",
+      "kind": "ot",
+      "n": 256,
+      "nx": 256,
+      "cfl": 0.15,
+      "final_time": 0.2,
+      "input": "athinput-ot-n256-cfl0p15.txt",
+      "expected_velocity": "official Orszag-Tang sine velocities",
+      "snapshots": [
+        0,
+        0.05,
+        0.1,
+        0.15000000000000002,
+        0.2
+      ]
+    }
+  ],
+  "loop_note": "Official unmodified field_loop generator with domain widths2,1,2 and vflow3 gives vx,vy,vz=(2,1,2). This is an explicit 2.5D variant of historical Atlas vz0; spatial evolution is genuinely2D.",
+  "source_version": "1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+  "source_archive_sha256": "8a6cd8658217349fd913c03b549df8b88c2a2fe96cb4ea1b8ba4bf747c6af896",
+  "limits": {
+    "relative_mass_energy_drift": 2e-11,
+    "loop_spatial_relative_B_l1": 0.35,
+    "loop_time_relative_B_l1": 0.03,
+    "ot_spatial_relative_density_l1": 0.15,
+    "ot_spatial_relative_pressure_l1": 0.2,
+    "ot_time_relative_density_l1": 0.03,
+    "ot_time_relative_pressure_l1": 0.03,
+    "ot_final_density_contrast_minimum": 2.0
+  },
+  "reference_batch_budget_seconds": 120,
+  "independent_main_execution": "not yet designed/frozen; these limits qualify only independent references"
+}

@@ -90,6 +90,41 @@ test('names, formulas, dimensions and analytic/semi-analytic/manufactured distin
   assert.ok(rendered.markdown.includes(rendered.record.source_sha256));
 });
 
+test('finite-dimensional algebra references do not invent a spatial dimension',()=>{
+  for(const id of ['pivoted-direct-refinement','symmetric-saddle-minres','restarted-shift-invert']){
+    const original=cases.find(row=>row.id===id),row=rendered.record.cases.find(row=>row.id===id);
+    assert.ok(original&&row,id);
+    assert.equal(original.dimension,null);assert.equal(row.dimension,null);
+    assert.equal(row.domain_kind,'finite-dimensional-algebra');assert.deepEqual(row.bounds,[]);
+    for(const language of ['ja','en']){
+      const section=blocks(rendered.html,'data-site-language',language)[0].body;
+      const card=blocks(section,'data-solution-id',id)[0].body;
+      assert.ok(label(card).includes(language==='ja'?'有限次元の代数問題':'Finite-dimensional algebra'));
+      assert.doesNotMatch(card,/nullD|NoneD|null次元|None次元/);
+    }
+  }
+});
+
+test('the dimension formatter preserves spatial labels and rejects untagged nonspatial data',()=>{
+  const result=JSON.parse(execFileSync('python3',['-B','-c',String.raw`
+import ast,json,pathlib
+path=pathlib.Path('scripts/build-atlas-solutions.py')
+tree=ast.parse(path.read_text());namespace={}
+exec(compile(ast.Module(body=[node for node in tree.body if isinstance(node,ast.FunctionDef) and node.name=='dimension_label'],type_ignores=[]),str(path),'exec'),namespace)
+format_dimension=namespace['dimension_label'];checks=0
+for dimension in [1,2,3]:
+    for language,suffix in [('ja','次元'),('en','D')]:
+        assert format_dimension({'dimension':dimension},language)==str(dimension)+suffix;checks+=1
+assert format_dimension({'dimension':None,'domain_kind':'finite-dimensional-algebra'},'en')=='Finite-dimensional algebra';checks+=1
+for case in [{'dimension':None},{'dimension':None,'domain_kind':'physical'},{'dimension':0},{'dimension':True}]:
+    try:format_dimension(case,'en')
+    except ValueError:checks+=1
+    else:raise AssertionError(case)
+print(json.dumps({'passed':True,'checks':checks}))
+`],{cwd:fileURLToPath(root),encoding:'utf8'}));
+  assert.deepEqual(result,{passed:true,checks:11});
+});
+
 test('each edition exposes all names, formulas and assumptions as visible static cards',()=>{
   for(const language of ['ja','en']){
     const section=blocks(rendered.html,'data-site-language',language)[0]?.body;

@@ -1,0 +1,75 @@
+{
+  "status": "SELECTIVE_PRIMARY_SOURCE_READING_ADDENDUM",
+  "recorded_at_utc": "2026-11-24T05:07:17.775931+00:00",
+  "old_source_review_preserved_sha256": "5830fb890e8c09057dec52d70b6c7280cdeca00e12af0890bb09f861a437c125",
+  "papers": [
+    {
+      "id": "dickson2007",
+      "title": "Condition Estimates for Pseudo-Arclength Continuation",
+      "doi": "10.1137/060654384",
+      "url": "https://ipsen.math.ncsu.edu/ps/sinum65438.pdf",
+      "primary_role": "author-hosted original paper",
+      "accessed_at_utc": "2026-11-24T05:07:17.775931+00:00",
+      "review_level": "primary-selected-PDF-text",
+      "sections_actually_read": "Section2.2, printedpp265–266, Eqs2.2–2.5; tangent null equation, unit Euclidean tangent, augmented system and tangent hyperplane.",
+      "application_scope": "Weighted h-sum metric is the implementation’s stated discrete variation. No full condition-number proof or original paper numerical benchmark is borrowed.",
+      "full_paper_read": false
+    },
+    {
+      "id": "knoll-keyes2004",
+      "title": "Jacobian-free Newton-Krylov methods: a survey of approaches and applications",
+      "doi": "10.1016/j.jcp.2003.08.010",
+      "url": "https://inf.ufes.br/~luciac/comcie/JFNK-Knoll.pdf",
+      "primary_role": "original journal paper served by disclosed university course mirror",
+      "accessed_at_utc": "2026-11-24T05:07:17.775931+00:00",
+      "review_level": "primary-selected-PDF-text-via-course-mirror",
+      "sections_actually_read": "Selectedsec2.3,2.3.1,2.3.2 and2.4.1, printedpp361–363: matrix-free Jv action, perturbation scaling, inexact forcing Eq16 and line-search globalization.",
+      "application_scope": "Actual central difference denominator2h and eps_machine^(1/3) scaling are independently specified/qualified, not an attribution to a PETSc default. No whole41-page audit or paper solver result reuse.",
+      "full_paper_read": false
+    },
+    {
+      "id": "eisenstat-walker1996",
+      "title": "Choosing the Forcing Terms in an Inexact Newton Method",
+      "doi": "10.1137/0917003",
+      "url": "https://users.wpi.edu/~walker/Papers/forcing_terms,SISC_17,1996,16-32.pdf",
+      "bibliographic_url": "https://epubs.siam.org/doi/10.1137/0917003",
+      "primary_role": "author-hosted original SIAM paper; publisher bibliographic record independently checked",
+      "accessed_at_utc": "2026-11-24T05:07:17.775931+00:00",
+      "review_level": "primary-selected-PDF-text",
+      "sections_actually_read": "Section1 AlgorithmIN/Eq1.2; selectedsec2 Choice2/Eq2.6; practical-safeguard paragraphssec2.1, printedpp16,20,22–23.",
+      "application_scope": "Core eta=gamma*(||F_k||/||F_{k-1}||)^alpha is Choice2-style. Our gamma.9/alpha1.5 with eta_initial.3 and fixed[.001,.5] clamp omits the paper’s previous-eta safeguard. This is a declared variant, not its complete safeguarded algorithm or an asymptotic convergence certification.",
+      "full_paper_read": false,
+      "old_frozen_source_unread_flag_preserved_as_historical": true
+    },
+    {
+      "id": "langtangen-bratu-official",
+      "title": "Finite differences for the1D Bratu problem, Problem8",
+      "url": "https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html",
+      "primary_role": "author teaching source, not Bratu1914original",
+      "accessed_at_utc": "2026-11-24T05:07:17.775931+00:00",
+      "review_level": "author-selected-exact-solution-exercise",
+      "sections_actually_read": "Problem8/Eq52: boundary-value equation, analytic cosh family, branch count and printed rounded critical value.",
+      "application_scope": "The author’s parameter equals2 times our theta. Independent Decimal80 exact-family qualification remains the numerical reference; the printed rounded anchor is a separate coarse check.",
+      "full_paper_read": false
+    },
+    {
+      "id": "petsc-snes-official",
+      "title": "PETSc SNES nonlinear solvers",
+      "url": "https://petsc.org/release/manual/snes/",
+      "observed_version": "3.26.1",
+      "primary_role": "official contextual documentation",
+      "accessed_at_utc": "2026-11-24T05:07:17.775931+00:00",
+      "review_level": "official-selected-documentation",
+      "sections_actually_read": "Selected Inexact Newton-like Methods and beginning of Matrix-Free Methods, residual forcing inequality and matrix-free/preconditioner distinction.",
+      "application_scope": "Context only. No PETSc installation/execution or borrowed numerical success. Our hyperplane continuation is not a claim to implement every SNES arc-length scheme.",
+      "full_paper_read": false
+    }
+  ],
+  "unread": [
+    "Bratu1914original",
+    "Unselected proofs/tables/sections in the listed papers"
+  ],
+  "paper_binaries_downloaded_or_bundled": false,
+  "original_science_source_modified": false,
+  "source_access_method": "web primary selected PDF/HTML text, no local scientific import or computation"
+}

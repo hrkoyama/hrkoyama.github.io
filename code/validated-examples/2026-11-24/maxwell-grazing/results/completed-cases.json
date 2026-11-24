@@ -1,0 +1,522 @@
+[
+  {
+    "id": "dispersive-grazing-pml",
+    "passed": true,
+    "checks": {
+      "independent-reference-and-filter-qualified": true,
+      "grazing-n512/all-fields-and-auxiliaries-finite": true,
+      "grazing-n512/same-grid-isolated-boundary-error": true,
+      "grazing-n512/direct-signed-work-ledger": true,
+      "grazing-n512/nonnegative-physical-material-work": true,
+      "grazing-n512/long-time-physical-energy-bounded": true,
+      "grazing-n512/long-time-memory-bounded": true,
+      "grazing-n512/long-time-residual": true,
+      "grazing-n512/five-matched-actual-times": true,
+      "grazing-n768/all-fields-and-auxiliaries-finite": true,
+      "grazing-n768/same-grid-isolated-boundary-error": true,
+      "grazing-n768/direct-signed-work-ledger": true,
+      "grazing-n768/nonnegative-physical-material-work": true,
+      "grazing-n768/long-time-physical-energy-bounded": true,
+      "grazing-n768/long-time-memory-bounded": true,
+      "grazing-n768/long-time-residual": true,
+      "grazing-n768/five-matched-actual-times": true,
+      "grazing-n1024/all-fields-and-auxiliaries-finite": true,
+      "grazing-n1024/same-grid-isolated-boundary-error": true,
+      "grazing-n1024/direct-signed-work-ledger": true,
+      "grazing-n1024/nonnegative-physical-material-work": true,
+      "grazing-n1024/long-time-physical-energy-bounded": true,
+      "grazing-n1024/long-time-memory-bounded": true,
+      "grazing-n1024/long-time-residual": true,
+      "grazing-n1024/five-matched-actual-times": true,
+      "normal-n512/all-fields-and-auxiliaries-finite": true,
+      "normal-n512/same-grid-isolated-boundary-error": true,
+      "normal-n512/direct-signed-work-ledger": true,
+      "normal-n512/nonnegative-physical-material-work": true,
+      "normal-n512/long-time-physical-energy-bounded": true,
+      "normal-n512/long-time-memory-bounded": true,
+      "normal-n512/long-time-residual": true,
+      "normal-n512/five-matched-actual-times": true,
+      "damped-grazing-n1024/all-fields-and-auxiliaries-finite": true,
+      "damped-grazing-n1024/same-grid-isolated-boundary-error": true,
+      "damped-grazing-n1024/direct-signed-work-ledger": true,
+      "damped-grazing-n1024/nonnegative-physical-material-work": true,
+      "damped-grazing-n1024/long-time-physical-energy-bounded": true,
+      "damped-grazing-n1024/long-time-memory-bounded": true,
+      "damped-grazing-n1024/long-time-residual": true,
+      "damped-grazing-n1024/five-matched-actual-times": true,
+      "finest-grazing-boundary-error": true,
+      "grazing-refinement-n768": true,
+      "grazing-refinement-n1024": true
+    },
+    "check_details": [
+      {
+        "name": "independent-reference-and-filter-qualified",
+        "value": 100,
+        "bound": 100,
+        "passed": true
+      },
+      {
+        "name": "grazing-n512/all-fields-and-auxiliaries-finite",
+        "value": 0.0,
+        "bound": 0.0,
+        "passed": true
+      },
+      {
+        "name": "grazing-n512/same-grid-isolated-boundary-error",
+        "value": 0.0022749185241942456,
+        "bound": 0.05,
+        "passed": true
+      },
+      {
+        "name": "grazing-n512/direct-signed-work-ledger",
+        "value": 7.627980232355881e-14,
+        "bound": 5e-10,
+        "passed": true
+      },
+      {
+        "name": "grazing-n512/nonnegative-physical-material-work",
+        "value": 0.0,
+        "bound": -1e-14,
+        "passed": true
+      },
+      {
+        "name": "grazing-n512/long-time-physical-energy-bounded",
+        "value": 1.008605280538968,
+        "bound": 5.0,
+        "passed": true
+      },
+      {
+        "name": "grazing-n512/long-time-memory-bounded",
+        "value": 0.08444989819013007,
+        "bound": 5.0,
+        "passed": true
+      },
+      {
+        "name": "grazing-n512/long-time-residual",
+        "value": 7.76288246605691e-06,
+        "bound": 0.05,
+        "passed": true
+      },
+      {
+        "name": "grazing-n512/five-matched-actual-times",
+        "value": [
+          0.0,
+          175.0,
+          350.0,
+          525.0,
+          700.0
+        ],
+        "bound": [
+          0.0,
+          175.0,
+          350.0,
+          525.0,
+          700.0
+        ],
+        "passed": true
+      },
+      {
+        "name": "grazing-n768/all-fields-and-auxiliaries-finite",
+        "value": 0.0,
+        "bound": 0.0,
+        "passed": true
+      },
+      {
+        "name": "grazing-n768/same-grid-isolated-boundary-error",
+        "value": 0.00025923360096816205,
+        "bound": 0.05,
+        "passed": true
+      },
+      {
+        "name": "grazing-n768/direct-signed-work-ledger",
+        "value": 3.278907546233959e-13,
+        "bound": 5e-10,
+        "passed": true
+      },
+      {
+        "name": "grazing-n768/nonnegative-physical-material-work",
+        "value": 0.0,
+        "bound": -1e-14,
+        "passed": true
+      },
+      {
+        "name": "grazing-n768/long-time-physical-energy-bounded",
+        "value": 1.0038323640188327,
+        "bound": 5.0,
+        "passed": true
+      },
+      {
+        "name": "grazing-n768/long-time-memory-bounded",
+        "value": 0.0898709958388591,
+        "bound": 5.0,
+        "passed": true
+      },
+      {
+        "name": "grazing-n768/long-time-residual",
+        "value": 1.368994980911539e-06,
+        "bound": 0.05,
+        "passed": true
+      },
+      {
+        "name": "grazing-n768/five-matched-actual-times",
+        "value": [
+          0.0,
+          175.0,
+          350.0,
+          525.0,
+          700.0
+        ],
+        "bound": [
+          0.0,
+          175.0,
+          350.0,
+          525.0,
+          700.0
+        ],
+        "passed": true
+      },
+      {
+        "name": "grazing-n1024/all-fields-and-auxiliaries-finite",
+        "value": 0.0,
+        "bound": 0.0,
+        "passed": true
+      },
+      {
+        "name": "grazing-n1024/same-grid-isolated-boundary-error",
+        "value": 3.698206474875288e-05,
+        "bound": 0.05,
+        "passed": true
+      },
+      {
+        "name": "grazing-n1024/direct-signed-work-ledger",
+        "value": 3.7954491251762573e-13,
+        "bound": 5e-10,
+        "passed": true
+      },
+      {
+        "name": "grazing-n1024/nonnegative-physical-material-work",
+        "value": 0.0,
+        "bound": -1e-14,
+        "passed": true
+      },
+      {
+        "name": "grazing-n1024/long-time-physical-energy-bounded",
+        "value": 1.0021568635608469,
+        "bound": 5.0,
+        "passed": true
+      },
+      {
+        "name": "grazing-n1024/long-time-memory-bounded",
+        "value": 0.09395281868259894,
+        "bound": 5.0,
+        "passed": true
+      },
+      {
+        "name": "grazing-n1024/long-time-residual",
+        "value": 1.07357596230308e-06,
+        "bound": 0.05,
+        "passed": true
+      },
+      {
+        "name": "grazing-n1024/five-matched-actual-times",
+        "value": [
+          0.0,
+          175.0,
+          350.0,
+          525.0,
+          700.0
+        ],
+        "bound": [
+          0.0,
+          175.0,
+          350.0,
+          525.0,
+          700.0
+        ],
+        "passed": true
+      },
+      {
+        "name": "normal-n512/all-fields-and-auxiliaries-finite",
+        "value": 0.0,
+        "bound": 0.0,
+        "passed": true
+      },
+      {
+        "name": "normal-n512/same-grid-isolated-boundary-error",
+        "value": 1.1443305211937377e-10,
+        "bound": 0.05,
+        "passed": true
+      },
+      {
+        "name": "normal-n512/direct-signed-work-ledger",
+        "value": 5.580167619648629e-14,
+        "bound": 5e-10,
+        "passed": true
+      },
+      {
+        "name": "normal-n512/nonnegative-physical-material-work",
+        "value": 0.0,
+        "bound": -1e-14,
+        "passed": true
+      },
+      {
+        "name": "normal-n512/long-time-physical-energy-bounded",
+        "value": 1.046709741179309,
+        "bound": 5.0,
+        "passed": true
+      },
+      {
+        "name": "normal-n512/long-time-memory-bounded",
+        "value": 0.19440763232262762,
+        "bound": 5.0,
+        "passed": true
+      },
+      {
+        "name": "normal-n512/long-time-residual",
+        "value": 1.0466875150335664e-18,
+        "bound": 0.05,
+        "passed": true
+      },
+      {
+        "name": "normal-n512/five-matched-actual-times",
+        "value": [
+          0.0,
+          175.0,
+          350.0,
+          525.0,
+          700.0
+        ],
+        "bound": [
+          0.0,
+          175.0,
+          350.0,
+          525.0,
+          700.0
+        ],
+        "passed": true
+      },
+      {
+        "name": "damped-grazing-n1024/all-fields-and-auxiliaries-finite",
+        "value": 0.0,
+        "bound": 0.0,
+        "passed": true
+      },
+      {
+        "name": "damped-grazing-n1024/same-grid-isolated-boundary-error",
+        "value": 3.309246986703788e-05,
+        "bound": 0.05,
+        "passed": true
+      },
+      {
+        "name": "damped-grazing-n1024/direct-signed-work-ledger",
+        "value": 1.4663140868405557e-12,
+        "bound": 5e-10,
+        "passed": true
+      },
+      {
+        "name": "damped-grazing-n1024/nonnegative-physical-material-work",
+        "value": 0.0,
+        "bound": -1e-14,
+        "passed": true
+      },
+      {
+        "name": "damped-grazing-n1024/long-time-physical-energy-bounded",
+        "value": 1.002152831414173,
+        "bound": 5.0,
+        "passed": true
+      },
+      {
+        "name": "damped-grazing-n1024/long-time-memory-bounded",
+        "value": 0.09122895971915622,
+        "bound": 5.0,
+        "passed": true
+      },
+      {
+        "name": "damped-grazing-n1024/long-time-residual",
+        "value": 8.613802383168972e-07,
+        "bound": 0.05,
+        "passed": true
+      },
+      {
+        "name": "damped-grazing-n1024/five-matched-actual-times",
+        "value": [
+          0.0,
+          175.0,
+          350.0,
+          525.0,
+          700.0
+        ],
+        "bound": [
+          0.0,
+          175.0,
+          350.0,
+          525.0,
+          700.0
+        ],
+        "passed": true
+      },
+      {
+        "name": "finest-grazing-boundary-error",
+        "value": 3.698206474875288e-05,
+        "bound": 0.01,
+        "passed": true
+      },
+      {
+        "name": "grazing-refinement-n768",
+        "value": 0.1139529166478523,
+        "bound": 0.9,
+        "passed": true
+      },
+      {
+        "name": "grazing-refinement-n1024",
+        "value": 0.14265922554265972,
+        "bound": 0.9,
+        "passed": true
+      }
+    ],
+    "records": [
+      {
+        "id": "grazing-n512",
+        "cells": 512,
+        "steps": 21852,
+        "dt": 0.032033681127585575,
+        "pml_peak": 6.0,
+        "angle_degrees": 80.0,
+        "gamma": 0.0,
+        "fields": "grazing-n512.npz",
+        "boundary_error": 0.0022749185241942456,
+        "maximum_budget": 7.627980232355881e-14,
+        "physical_work": 0.0,
+        "signed_PML_work": -9.524465621307716,
+        "maximum_energy_growth": 1.008605280538968,
+        "maximum_memory_relative": 0.08444989819013007,
+        "final_positive_energy_fraction": 7.76288246605691e-06,
+        "errors_at_actual_times": [
+          0.0,
+          2.1444234935642056e-07,
+          0.0009582206658863335,
+          0.0022667136469209904,
+          0.0022749185241942456
+        ]
+      },
+      {
+        "id": "grazing-n768",
+        "cells": 768,
+        "steps": 32776,
+        "dt": 0.02135709055406395,
+        "pml_peak": 9.0,
+        "angle_degrees": 80.0,
+        "gamma": 0.0,
+        "fields": "grazing-n768.npz",
+        "boundary_error": 0.00025923360096816205,
+        "maximum_budget": 3.278907546233959e-13,
+        "physical_work": 0.0,
+        "signed_PML_work": -9.57275620067823,
+        "maximum_energy_growth": 1.0038323640188327,
+        "maximum_memory_relative": 0.0898709958388591,
+        "final_positive_energy_fraction": 1.368994980911539e-06,
+        "errors_at_actual_times": [
+          0.0,
+          2.082757558385089e-09,
+          4.0539393535005906e-05,
+          0.00018857583444879824,
+          0.00025923360096816205
+        ]
+      },
+      {
+        "id": "grazing-n1024",
+        "cells": 1024,
+        "steps": 43704,
+        "dt": 0.016016840563792788,
+        "pml_peak": 12.0,
+        "angle_degrees": 80.0,
+        "gamma": 0.0,
+        "fields": "grazing-n1024.npz",
+        "boundary_error": 3.698206474875288e-05,
+        "maximum_budget": 3.7954491251762573e-13,
+        "physical_work": 0.0,
+        "signed_PML_work": -9.58977750651282,
+        "maximum_energy_growth": 1.0021568635608469,
+        "maximum_memory_relative": 0.09395281868259894,
+        "final_positive_energy_fraction": 1.07357596230308e-06,
+        "errors_at_actual_times": [
+          0.0,
+          1.5836496475413641e-09,
+          1.934086358058802e-06,
+          1.8932190510678662e-05,
+          3.698206474875288e-05
+        ]
+      },
+      {
+        "id": "normal-n512",
+        "cells": 512,
+        "steps": 9336,
+        "dt": 0.07497857754927163,
+        "pml_peak": 6.0,
+        "angle_degrees": 0.0,
+        "gamma": 0.0,
+        "fields": "normal-n512.npz",
+        "boundary_error": 1.1443305211937377e-10,
+        "maximum_budget": 5.580167619648629e-14,
+        "physical_work": 0.0,
+        "signed_PML_work": -9.16801796322128,
+        "maximum_energy_growth": 1.046709741179309,
+        "maximum_memory_relative": 0.19440763232262762,
+        "final_positive_energy_fraction": 1.0466875150335664e-18,
+        "errors_at_actual_times": [
+          0.0,
+          1.1443305211937377e-10,
+          1.0074002983851267e-10,
+          9.226364532834625e-11,
+          9.21136696532338e-11
+        ]
+      },
+      {
+        "id": "damped-grazing-n1024",
+        "cells": 1024,
+        "steps": 43704,
+        "dt": 0.016016840563792788,
+        "pml_peak": 12.0,
+        "angle_degrees": 80.0,
+        "gamma": 0.005,
+        "fields": "damped-grazing-n1024.npz",
+        "boundary_error": 3.309246986703788e-05,
+        "maximum_budget": 1.4663140868405557e-12,
+        "physical_work": 0.5534975650290108,
+        "signed_PML_work": -9.036281855690534,
+        "maximum_energy_growth": 1.002152831414173,
+        "maximum_memory_relative": 0.09122895971915622,
+        "final_positive_energy_fraction": 8.613802383168972e-07,
+        "errors_at_actual_times": [
+          0.0,
+          1.5384442220216574e-09,
+          1.8278851677926718e-06,
+          1.7411202391275966e-05,
+          3.309246986703788e-05
+        ]
+      }
+    ],
+    "metrics": {
+      "completed_primary_and_control_runs": 5,
+      "spatial_dimensions": 2,
+      "spatial_restriction": "Actual single-ky Yee evolution; no arbitrary-y scattering claim.",
+      "reference": "Independent no-PML Fourier update matrix; shared discretization and initialization isolate boundary error from bulk dispersion.",
+      "memory_scheme": "Trapezoidal derivative filter; original endpoint-held variant retained separately.",
+      "refinement_family": "Joint grid and layer-strength co-refinement, not fixed-PML spatial order.",
+      "actual_pml_peaks": {
+        "grazing-n512": 6.0,
+        "grazing-n768": 9.0,
+        "grazing-n1024": 12.0,
+        "normal-n512": 6.0,
+        "damped-grazing-n1024": 12.0
+      },
+      "PML_work_is_signed_numerical_work": true,
+      "material_continues_through_PML": true,
+      "finite_band_carrier_not_exactly_monochromatic": true,
+      "finest_grazing_boundary_error": 3.698206474875288e-05,
+      "maximum_energy_budget_defect": 1.4663140868405557e-12,
+      "maximum_positive_energy_ratio": 1.046709741179309,
+      "normal_final_energy_fraction": 1.0466875150335664e-18
+    }
+  }
+]

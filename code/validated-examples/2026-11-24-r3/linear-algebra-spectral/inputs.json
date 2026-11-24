@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "group": "linear-algebra-spectral",
+  "direct": {
+    "fixtures": [
+      "spd-tridiagonal",
+      "near-singular-rank-one",
+      "hilbert5",
+      "wilkinson12"
+    ],
+    "corrections": 5,
+    "factor_precision": "binary32",
+    "residual_and_accumulation_precision": "binary64"
+  },
+  "saddle": {
+    "velocity_sizes": [
+      12,
+      24
+    ],
+    "true_residual_tolerance": 1e-09,
+    "preconditioners": [
+      "none",
+      "exact-Schur-SPD"
+    ],
+    "methods": [
+      "minres",
+      "gmres"
+    ],
+    "scope": "algebraic mixed-Poisson/Stokes-type saddle blocks,not a full fluid PDE discretization"
+  },
+  "restarted": {
+    "size": 31,
+    "restart_lengths": [
+      8,
+      16
+    ],
+    "max_cycles": 40,
+    "shifts": [
+      null,
+      0.0,
+      950.0
+    ],
+    "true_residual_tolerance": 1e-09
+  },
+  "mass": {
+    "interior_nodes": [
+      15,
+      31,
+      63
+    ],
+    "eigenpairs": 3,
+    "krylov_dimension": 24,
+    "lobpcg_absolute_tolerance": 1e-08,
+    "lobpcg_max_iterations": 100,
+    "vector_action_cap": 1000,
+    "boundary": "homogeneous Dirichlet at0,1",
+    "tension": 1.0,
+    "mass_density": 1.0
+  }
+}

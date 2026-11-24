@@ -46,3 +46,29 @@ export function projectMethodBeforeBatch38(row){
 }
 
 export const problemGroupCounts=Object.fromEntries([...new Set(problemRows.map(x=>x.group))].map(g=>[g,problemRows.filter(x=>x.group===g).length]));
+
+// Batch48 historical projections are deliberately narrow: old immutable files
+// remain hash-checked, and the current MHD edition has separate equivalence
+// and real-ZIP tests. Never project other current science or new candidates.
+const batch47=read('scripts/fixtures/atlas-batch48-57-baseline.json');
+const before48Groups=new Set(batch47.release_order);
+export const groupsAddedAfterBatch47=supplementGroupIds.filter(id=>!before48Groups.has(id));
+export const problemsAddedAfterBatch47=problemRows.map(row=>row.id).filter(id=>!Object.hasOwn(batch47.gallery_records_sha256,id));
+export const equationsAddedAfterBatch47=read('catalog/atlas-equations.json').equations.map(row=>row.id).filter(id=>!Object.hasOwn(batch47.equations,id));
+export function projectPointerBeforeBatch48(row){
+ const exception=batch47.current_edition_exception;
+ if(row?.group===exception.group&&row.edition===exception.new_edition){
+  if(!row.case_ids.every(id=>exception.case_ids.includes(id)))throw new Error('Unexpected MHD case association');
+  return {...row,edition:exception.old_edition};
+ }
+ return row;
+}
+export function projectReleaseBeforeBatch48(row){
+ const exception=batch47.current_edition_exception;
+ if(row?.group===exception.group&&row.edition===exception.new_edition){
+  const old=batch47.releases.find(value=>value.release.group===exception.group).release;
+  if(row.tests!==old.tests||JSON.stringify(row.case_ids)!==JSON.stringify(old.case_ids))throw new Error('Changed MHD science inventory');
+  return old;
+ }
+ return row;
+}

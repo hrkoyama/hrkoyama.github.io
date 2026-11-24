@@ -60,14 +60,14 @@ test('compact corpora preserve every normalized text token, source record and fi
    for(const [lang,text]of Object.entries(a))assert.equal(searchVocabulary(b[lang]),searchVocabulary(text),kind+'/'+i+'/'+lang+' retains token membership');
    if(after.text_ref)assert.deepEqual(detail(after.text_ref).text,before.text);
   }
-  for(const key of packed.details.keys){assert.match(key,/^[a-f0-9]{64}$/);assert.equal(digest(readFileSync(new URL('search/details/'+key+'.json',root))),key);}
+  for(const key of expanded.details.keys){assert.match(key,/^[a-f0-9]{64}$/);assert.equal(digest(readFileSync(new URL('search/details/'+key+'.json',root))),key);}
  }
  const search=makeSearch(unpackSearchIndex(site).documents),old=makeSearch(fullSite.documents);
  for(const query of ['Lane Emden','量子力学','HPCI','熱的不安定性','Schrödinger','0.15'])assert.deepEqual(search(query,'ja').map(x=>x.url),old(query,'ja').map(x=>x.url),query);
 });
 
 test('large navigation graphs load on opening, preserve all scoped routes and never transmit query text',async()=>{
- const entry=atlas.entries.find(x=>Object.values(x.search_navigation?.counts||{}).some(n=>n>2));assert.ok(entry);
+ const entry=unpackSearchIndex(atlas).entries.find(x=>Object.values(x.search_navigation?.counts||{}).some(n=>n>2));assert.ok(entry);
  const graph=entry.search_navigation,full=detail(graph.details_ref).search_navigation;
  const dom=searchDOM({fetch:async(url,options)=>{
   assert.equal(options.credentials,'omit');assert.match(new URL(url).pathname,/\/search\/details\/[a-f0-9]{64}[.]json$/);assert.equal(new URL(url).search,'');

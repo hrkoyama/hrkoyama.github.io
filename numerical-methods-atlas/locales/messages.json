@@ -8047,5 +8047,89 @@
   "reference.batch38-47.a9337d9c9ccb": {
     "en": "[0,2.2]x[0,.41],center(.2,.2),R.05,nu.001,rho1,mean.2/peak.3/Re20. dx.01/.005,xwet221/441,yhalfway41/82,dt=dx/6,T30,18k/36ksteps. Parabolic inlet;all-nine poststream NEE outletwithrho1andadjacent-interiorvelocity.",
     "ja": "[0,2.2]x[0,.41]、中心(.2,.2)、R.05、ν.001、rho1、平均流速.2/最大.3/Re20。dx.01/.005、x wet nodes221/441、y halfway nodes41/82、dt=dx/6、T30、18k/36ksteps。入口parabola、出口はrho1と隣接内点poststream速度による全9成分NEE。"
+  },
+  "reference.batch48-57.33bb46123eb0": {
+    "en": "Exterior series and scattering width of a dielectric cylinder",
+    "ja": "誘電体円柱の外部級数と散乱幅"
+  },
+  "reference.batch48-57.14abf7ac0f66": {
+    "en": "Lossless infinite cylinder, Ez polarization, c = epsilon0 = mu0 = 1, radius 0.25, epsilon = 2.25 and vacuum wavelength 1. The analytical field is exterior to the exact circle.",
+    "ja": "無損失無限円柱、Ez偏光、c=ε0=μ0=1、半径0.25、ε=2.25、真空波長1。解析場は厳密な円の外部だけです。"
+  },
+  "reference.batch48-57.68dd7792b0ac": {
+    "en": "Independent ordinary cylindrical Bessel/Hankel boundary algebra and NIST Wronskian controls. Compare the analytical exterior field and total scattering width with actual finite-grid Yee fields. The extinction identity only checks the reference; it is not an additional measured FDTD observable. The exact circle differs from the declared staircase geometry. Retain the original coarse two-point collocation failure; a separate four-point diagnostic uses the unchanged 2% analytic-flux criterion.",
+    "ja": "独立な普通Bessel/Hankel境界式とNIST Wronskianを用い、外部解析場と散乱幅を実Yee場と比較します。消散幅恒等式は参照の検査だけで、追加のFDTD測定ではありません。厳密円と明示した階段形状を区別します。旧2点補間の粗格子未達を保持し、別4点診断も解析流束の同じ2%基準を使います。"
+  },
+  "reference.batch48-57.eda0faf2b4ed": {
+    "en": "Complex oblique Fresnel coefficients and direct Lorentz-slab loss",
+    "ja": "斜め入射の複素Fresnel係数とLorentz板の直接散逸"
+  },
+  "reference.batch48-57.2d7a7a277671": {
+    "en": "Vacuum surroundings, ky = 4, slab [4, 5], epsilon_inf = 1.5, delta_epsilon = 0.75, omega_0 = 9, gamma = 0.5 and sigma = 0.04. Compare omega = 5.1/6/6.9 for both s = Ez and p = Hz.",
+    "ja": "外側真空、ky=4、板[4,5]、ε∞=1.5、Δε=0.75、ω0=9、γ=0.5、σ=0.04。s=Ezとp=Hzをω=5.1/6/6.9で比較します。"
+  },
+  "reference.batch48-57.a85766cb5111": {
+    "en": "Independent continuum complex-root Fresnel slab algebra and direct volume dissipation, qualified for boundary continuity, passivity and quadrature. A separate closed finite-window vacuum geometric sum checks actual discrete monitor sampling. The analytical reference is frequency-domain r/t/R/T/A, not an exact transient Lorentz pulse field. Numerical vacuum propagation is explicitly removed; direct loss is not defined as 1-R-T.",
+    "ja": "独立な連続複素根Fresnel式と直接体積散逸を、境界連続性・受動性・求積で資格確認します。別の有限窓真空幾何級数で離散monitor計測を検査します。解析参照は周波数領域r/t/R/T/Aであり、過渡場全体の厳密解ではありません。数値真空の伝播位相を除き、直接損失を1−R−Tで定義しません。"
+  },
+  "reference.batch48-57.03d4b1fe4ab3": {
+    "en": "Isolated same-grid reference for a long grazing dispersive packet",
+    "ja": "浅角度分散波束の長時間・同格子孤立境界参照"
+  },
+  "reference.batch48-57.2614adeceaeb": {
+    "en": "The homogeneous Lorentz medium continues through the PML: epsilon_inf = 1, delta_epsilon = 0.2, omega_0 = 12, gamma = 0 or 0.005. An Ez-polarized finite-kx Gaussian has carrier omega = 6 and central phase angle 80 degrees. Joint grid/layer refinement uses peaks 6/9/12 on 512/768/1024 cells; the normal control uses 6 and damped fine companion 12. Final time is 700.",
+    "ja": "均質Lorentz媒質はPML内まで連続し、ε∞=1、Δε=0.2、ω0=12、γ=0または0.005。Ez偏光の有限kx Gaussianはcarrierω=6、中心位相角80度。512/768/1024点とpeak6/9/12を同時細分化し、垂直対照は6、弱減衰細格子対照は12。最終時刻は700です。"
+  },
+  "reference.batch48-57.c157d0fb716e": {
+    "en": "An independent 5 × 5 no-PML Fourier update matrix solves the constitutive block by LU instead of the primary scalar elimination, then propagates its eigenmodes. Compare periodic boxes of length 2048 and 4096 at every requested native point and time before cache use. The same discretization and initialization intentionally isolate boundary error from bulk dispersion; this is not an independent continuum time integrator. A separate continuum scalar root is only a carrier-dispersion diagnostic. Small operator checks and finite long trajectories are not a general dispersive-PML stability proof. The revised family changes grid and layer strength together; it is not a fixed-PML spatial-order test. The first fixed-peak experiment and its two unmet ratio gates remain retained.",
+    "ja": "独立な無PMLの5×5 Fourier更新行列は、主計算のスカラー消去とは別に物質blockをLUで解き、固有modeを進めます。全native点・時刻で長さ2048/4096のboxを比較してからcacheを使います。同離散化・初期場を共有して境界誤差を伝播分散から分離し、独立な連続時間積分器とは主張しません。別の連続スカラー根はcarrier分散の診断だけです。小作用素と有限の長時間軌道は一般安定性証明ではありません。 改訂族は格子と層強度の同時細分化で、固定PMLの空間次数検査ではありません。初回固定peak実験と未達の2比判定は保持します。"
+  },
+  "reference.batch48-57.af8a1a78ede1": {
+    "en": "Pivoted LU and Cholesky: exact-rational references for actual binary input",
+    "ja": "部分ピボットLU/Cholesky：実二進入力の厳密有理数参照"
+  },
+  "reference.batch48-57.a58f5765db3c": {
+    "en": "The four fixed matrices use the actual binary64 A and b, converted exactly to Fractions. Rational elimination is exact, followed by a final binary64 rounding. Separate LAPACK comparisons share some numerical infrastructure. This is not a forward-accuracy guarantee for arbitrary ill-conditioned matrices.",
+    "ja": "固定4行列の実binary64 A,bをFractionへ厳密変換し、有理数消去の解を最後にbinary64へ変換。LAPACKは別比較であり共有数値基盤を含みます。任意の悪条件行列に対する前進精度保証ではありません。"
+  },
+  "reference.batch48-57.04789515eb0c": {
+    "en": "Symmetric saddles: independent dense solutions and the ideal-Schur spectrum",
+    "ja": "対称不定値鞍点系：独立dense解と理想Schurスペクトル"
+  },
+  "reference.batch48-57.ded9e9faa446": {
+    "en": "Algebraic saddles A=[[H,B^T],[B,0]] use velocity sizes 12 and 24 and pressure sizes 5 and 11. Explicit dense SPD ideal-Schur controls compare the original residual separately with dense-solution error. This is not a Stokes boundary-value PDE.",
+    "ja": "A=[[H,Bᵀ],[B,0]]、速度サイズ12/24、圧力行数5/11の代数問題。SPD理想Schurは全行列を小さく直接構成し、元の真残差とdense参照解誤差を別に判定。実Stokes境界値問題ではありません。"
+  },
+  "reference.batch48-57.809ea6ee41ac": {
+    "en": "Restarting and shift-invert: the closed spectrum of a fixed discrete matrix",
+    "ja": "再始動/shift-invert：固定離散行列の閉スペクトル"
+  },
+  "reference.batch48-57.7d299a6eeb12": {
+    "en": "A fixed 31 x 31 Dirichlet tridiagonal matrix with h=1/32, restart lengths 8 and 16, and shifts none/0/950. The references are eigenvalues of this finite matrix, not a continuum PDE grid-convergence study.",
+    "ja": "31×31 Dirichlet三重対角行列、h=1/32、再始動長8/16、shiftなし/0/950。参照はこの有限行列の固有値であり、格子細分化による連続PDE収束を認証しません。"
+  },
+  "reference.batch48-57.630d44076f67": {
+    "en": "Consistent-mass P1 string: closed discrete and continuum eigenvalues",
+    "ja": "P1整合質量弦：閉離散固有値と連続体固有値"
+  },
+  "reference.batch48-57.b96b2361ccc2": {
+    "en": "Unit length, tension and density, homogeneous Dirichlet endpoints, 15/31/63 interior nodes, and the lowest three eigenpairs. Compare closed discrete eigenvalues with generalized dense LAPACK, then measure error relative to (j*pi)^2 separately. Displayed vectors are saved numerical modes with arbitrary sign.",
+    "ja": "長さ・張力・密度1、両端Dirichlet0、内部15/31/63点、最低3固有対。閉離散固有値とgeneralized dense LAPACKを比較し、連続(jπ)²への誤差を別に調べます。表示ベクトルは保存した数値解で、符号は任意です。"
+  },
+  "reference.batch48-57.76031bb43b1a": {
+    "en": "Crossing the Bratu fold with pseudo-arclength continuation",
+    "ja": "擬似弧長継続でBratuのfoldを越える"
+  },
+  "reference.batch48-57.9f19079a6dd8": {
+    "en": "Same dimensionless1D Bratu on[0,1] with zero endpoints. The continuous family is evaluated independently in Decimal80;it is not an exact discrete root or Newton/GMRES trajectory.",
+    "ja": "同じ無次元1次元Bratu、x∈[0,1]、両端u=0。連続解析族は独立Decimal80評価であり、離散解やNewton/GMRES反復の厳密解ではありません。"
+  },
+  "reference.batch48-57.32b0c230006e": {
+    "en": "Continuous analytic fields,family lambda/fold and original fixed ODE/endpoint qualifications. Neither the computed continuation path nor JFNK iteration trajectory is an analytic reference.",
+    "ja": "連続解析形状・族のλ・foldと元から固定されたODE/端点資格。計算した継続曲線やJFNK反復軌道そのものは解析参照と呼びません。"
+  },
+  "reference.batch48-57.1d85549d73a3": {
+    "en": "Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products",
+    "ja": "解析・中央差分・方向ADによるJacobian不要Newton–Krylov"
   }
 }

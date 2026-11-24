@@ -1,0 +1,890 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "checks": {
+    "old165/actual-qualified": true,
+    "old165/exact-source/cylinder_draft.py": true,
+    "old165/exact-source/modal_yee_draft.py": true,
+    "old165/exact-source/reference_draft.py": true,
+    "grazing-n512/box-doubling-all-fields-times": true,
+    "grazing-n512/independent-eigen-residual": true,
+    "grazing-n512/passive-branch-eigen-abs": true,
+    "grazing-n512/fixed-analytic-Gaussian-tail": true,
+    "grazing-n512/carrier-continuum-dispersion-diagnostic": true,
+    "grazing-n512/finite-cache": true,
+    "grazing-n512/actual-five-integer-times": true,
+    "grazing-n512/native-staggered-shapes": true,
+    "grazing-n768/box-doubling-all-fields-times": true,
+    "grazing-n768/independent-eigen-residual": true,
+    "grazing-n768/passive-branch-eigen-abs": true,
+    "grazing-n768/fixed-analytic-Gaussian-tail": true,
+    "grazing-n768/carrier-continuum-dispersion-diagnostic": true,
+    "grazing-n768/finite-cache": true,
+    "grazing-n768/actual-five-integer-times": true,
+    "grazing-n768/native-staggered-shapes": true,
+    "grazing-n1024/box-doubling-all-fields-times": true,
+    "grazing-n1024/independent-eigen-residual": true,
+    "grazing-n1024/passive-branch-eigen-abs": true,
+    "grazing-n1024/fixed-analytic-Gaussian-tail": true,
+    "grazing-n1024/carrier-continuum-dispersion-diagnostic": true,
+    "grazing-n1024/finite-cache": true,
+    "grazing-n1024/actual-five-integer-times": true,
+    "grazing-n1024/native-staggered-shapes": true,
+    "normal-n512/box-doubling-all-fields-times": true,
+    "normal-n512/independent-eigen-residual": true,
+    "normal-n512/passive-branch-eigen-abs": true,
+    "normal-n512/fixed-analytic-Gaussian-tail": true,
+    "normal-n512/carrier-continuum-dispersion-diagnostic": true,
+    "normal-n512/finite-cache": true,
+    "normal-n512/actual-five-integer-times": true,
+    "normal-n512/native-staggered-shapes": true,
+    "damped-grazing-n1024/box-doubling-all-fields-times": true,
+    "damped-grazing-n1024/independent-eigen-residual": true,
+    "damped-grazing-n1024/passive-branch-eigen-abs": true,
+    "damped-grazing-n1024/fixed-analytic-Gaussian-tail": true,
+    "damped-grazing-n1024/carrier-continuum-dispersion-diagnostic": true,
+    "damped-grazing-n1024/finite-cache": true,
+    "damped-grazing-n1024/actual-five-integer-times": true,
+    "damped-grazing-n1024/native-staggered-shapes": true,
+    "flux/ppw12/outward-normalization": true,
+    "flux/ppw12/negative-normal-control": true,
+    "flux/ppw24/outward-normalization": true,
+    "flux/ppw24/negative-normal-control": true,
+    "zero-rate-LU-matrix/g0.0/K0.0/q0.2": true,
+    "zero-rate-LU-matrix/g0.0/K0.0/q1.1": true,
+    "zero-rate-LU-matrix/g0.0/K0.0/q3.0": true,
+    "zero-rate-LU-matrix/g0.0/K0.0/q5.0": true,
+    "zero-rate-LU-matrix/g0.0/K4.0/q0.2": true,
+    "zero-rate-LU-matrix/g0.0/K4.0/q1.1": true,
+    "zero-rate-LU-matrix/g0.0/K4.0/q3.0": true,
+    "zero-rate-LU-matrix/g0.0/K4.0/q5.0": true,
+    "zero-rate-LU-matrix/g0.005/K0.0/q0.2": true,
+    "zero-rate-LU-matrix/g0.005/K0.0/q1.1": true,
+    "zero-rate-LU-matrix/g0.005/K0.0/q3.0": true,
+    "zero-rate-LU-matrix/g0.005/K0.0/q5.0": true,
+    "zero-rate-LU-matrix/g0.005/K4.0/q0.2": true,
+    "zero-rate-LU-matrix/g0.005/K4.0/q1.1": true,
+    "zero-rate-LU-matrix/g0.005/K4.0/q3.0": true,
+    "zero-rate-LU-matrix/g0.005/K4.0/q5.0": true,
+    "zero-rate-LU-matrix/g0.5/K0.0/q0.2": true,
+    "zero-rate-LU-matrix/g0.5/K0.0/q1.1": true,
+    "zero-rate-LU-matrix/g0.5/K0.0/q3.0": true,
+    "zero-rate-LU-matrix/g0.5/K0.0/q5.0": true,
+    "zero-rate-LU-matrix/g0.5/K4.0/q0.2": true,
+    "zero-rate-LU-matrix/g0.5/K4.0/q1.1": true,
+    "zero-rate-LU-matrix/g0.5/K4.0/q3.0": true,
+    "zero-rate-LU-matrix/g0.5/K4.0/q5.0": true,
+    "filter/r0.0/w1.0/dt0.01": true,
+    "filter/r0.0/w1.0/dt0.04": true,
+    "filter/r0.0/w6.0/dt0.01": true,
+    "filter/r0.0/w6.0/dt0.04": true,
+    "filter/r0.0/w12.0/dt0.01": true,
+    "filter/r0.0/w12.0/dt0.04": true,
+    "filter/r0.7/w1.0/dt0.01": true,
+    "filter/r0.7/w1.0/dt0.04": true,
+    "filter/r0.7/w6.0/dt0.01": true,
+    "filter/r0.7/w6.0/dt0.04": true,
+    "filter/r0.7/w12.0/dt0.01": true,
+    "filter/r0.7/w12.0/dt0.04": true,
+    "filter/r6.0/w1.0/dt0.01": true,
+    "filter/r6.0/w1.0/dt0.04": true,
+    "filter/r6.0/w6.0/dt0.01": true,
+    "filter/r6.0/w6.0/dt0.04": true,
+    "filter/r6.0/w12.0/dt0.01": true,
+    "filter/r6.0/w12.0/dt0.04": true,
+    "filter/second-order-frequency-refinement": true,
+    "small-coupled-operator/g0.0/ky0.0": true,
+    "small-coupled-operator/g0.0/ky4.0": true,
+    "small-coupled-operator/g0.005/ky0.0": true,
+    "small-coupled-operator/g0.005/ky4.0": true,
+    "small-coupled-operator/g0.5/ky0.0": true,
+    "small-coupled-operator/g0.5/ky4.0": true,
+    "work/g0.0": true,
+    "work/g0.005": true,
+    "work/g0.5": true
+  },
+  "details": [
+    {
+      "name": "old165/actual-qualified",
+      "value": 165,
+      "bound": 165,
+      "passed": true
+    },
+    {
+      "name": "old165/exact-source/cylinder_draft.py",
+      "value": "c133a24605f00019eb858d11b0887fd5d07a88942bbc29841df73ae8426a5945",
+      "bound": "c133a24605f00019eb858d11b0887fd5d07a88942bbc29841df73ae8426a5945",
+      "passed": true
+    },
+    {
+      "name": "old165/exact-source/modal_yee_draft.py",
+      "value": "20661d109f7d137e605eca507140d4abe241020d6d4f527d8ea46ea3290b7d9a",
+      "bound": "20661d109f7d137e605eca507140d4abe241020d6d4f527d8ea46ea3290b7d9a",
+      "passed": true
+    },
+    {
+      "name": "old165/exact-source/reference_draft.py",
+      "value": "d50ed84ce3c4e71ec9ed76105daa6b7f0d77d05ed5eedc69abb98c3d33667f61",
+      "bound": "d50ed84ce3c4e71ec9ed76105daa6b7f0d77d05ed5eedc69abb98c3d33667f61",
+      "passed": true
+    },
+    {
+      "name": "grazing-n512/box-doubling-all-fields-times",
+      "value": 1.1289017373653836e-12,
+      "bound": 2e-09,
+      "passed": true
+    },
+    {
+      "name": "grazing-n512/independent-eigen-residual",
+      "value": 3.266701150621994e-15,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "grazing-n512/passive-branch-eigen-abs",
+      "value": 1.0000000000000027,
+      "bound": 1.000000000002,
+      "passed": true
+    },
+    {
+      "name": "grazing-n512/fixed-analytic-Gaussian-tail",
+      "value": 5.153514218309962e-18,
+      "bound": 1e-16,
+      "passed": true
+    },
+    {
+      "name": "grazing-n512/carrier-continuum-dispersion-diagnostic",
+      "value": 0.004619529255415755,
+      "bound": 0.03,
+      "passed": true
+    },
+    {
+      "name": "grazing-n512/finite-cache",
+      "value": 0,
+      "bound": 0,
+      "passed": true
+    },
+    {
+      "name": "grazing-n512/actual-five-integer-times",
+      "value": [
+        0.0,
+        175.0,
+        350.0,
+        525.0,
+        700.0
+      ],
+      "bound": [
+        0.0,
+        175.0,
+        350.0,
+        525.0,
+        700.0
+      ],
+      "passed": true
+    },
+    {
+      "name": "grazing-n512/native-staggered-shapes",
+      "value": [
+        [
+          5,
+          513
+        ],
+        [
+          5,
+          512
+        ]
+      ],
+      "bound": [
+        [
+          5,
+          513
+        ],
+        [
+          5,
+          512
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "name": "grazing-n768/box-doubling-all-fields-times",
+      "value": 1.3461927134663183e-12,
+      "bound": 2e-09,
+      "passed": true
+    },
+    {
+      "name": "grazing-n768/independent-eigen-residual",
+      "value": 2.3662579139585493e-15,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "grazing-n768/passive-branch-eigen-abs",
+      "value": 1.0000000000000024,
+      "bound": 1.000000000002,
+      "passed": true
+    },
+    {
+      "name": "grazing-n768/fixed-analytic-Gaussian-tail",
+      "value": 5.153514218309962e-18,
+      "bound": 1e-16,
+      "passed": true
+    },
+    {
+      "name": "grazing-n768/carrier-continuum-dispersion-diagnostic",
+      "value": 0.0020511834781014038,
+      "bound": 0.03,
+      "passed": true
+    },
+    {
+      "name": "grazing-n768/finite-cache",
+      "value": 0,
+      "bound": 0,
+      "passed": true
+    },
+    {
+      "name": "grazing-n768/actual-five-integer-times",
+      "value": [
+        0.0,
+        175.0,
+        350.0,
+        525.0,
+        700.0
+      ],
+      "bound": [
+        0.0,
+        175.0,
+        350.0,
+        525.0,
+        700.0
+      ],
+      "passed": true
+    },
+    {
+      "name": "grazing-n768/native-staggered-shapes",
+      "value": [
+        [
+          5,
+          769
+        ],
+        [
+          5,
+          768
+        ]
+      ],
+      "bound": [
+        [
+          5,
+          769
+        ],
+        [
+          5,
+          768
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "name": "grazing-n1024/box-doubling-all-fields-times",
+      "value": 2.5589296293613555e-12,
+      "bound": 2e-09,
+      "passed": true
+    },
+    {
+      "name": "grazing-n1024/independent-eigen-residual",
+      "value": 2.250356816976811e-15,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "grazing-n1024/passive-branch-eigen-abs",
+      "value": 1.0000000000000027,
+      "bound": 1.000000000002,
+      "passed": true
+    },
+    {
+      "name": "grazing-n1024/fixed-analytic-Gaussian-tail",
+      "value": 5.153514218309962e-18,
+      "bound": 1e-16,
+      "passed": true
+    },
+    {
+      "name": "grazing-n1024/carrier-continuum-dispersion-diagnostic",
+      "value": 0.0011534575449916318,
+      "bound": 0.03,
+      "passed": true
+    },
+    {
+      "name": "grazing-n1024/finite-cache",
+      "value": 0,
+      "bound": 0,
+      "passed": true
+    },
+    {
+      "name": "grazing-n1024/actual-five-integer-times",
+      "value": [
+        0.0,
+        175.0,
+        350.0,
+        525.0,
+        700.0
+      ],
+      "bound": [
+        0.0,
+        175.0,
+        350.0,
+        525.0,
+        700.0
+      ],
+      "passed": true
+    },
+    {
+      "name": "grazing-n1024/native-staggered-shapes",
+      "value": [
+        [
+          5,
+          1025
+        ],
+        [
+          5,
+          1024
+        ]
+      ],
+      "bound": [
+        [
+          5,
+          1025
+        ],
+        [
+          5,
+          1024
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "name": "normal-n512/box-doubling-all-fields-times",
+      "value": 3.3393772807419704e-13,
+      "bound": 2e-09,
+      "passed": true
+    },
+    {
+      "name": "normal-n512/independent-eigen-residual",
+      "value": 3.5435474122128174e-15,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "normal-n512/passive-branch-eigen-abs",
+      "value": 1.0000000000000018,
+      "bound": 1.000000000002,
+      "passed": true
+    },
+    {
+      "name": "normal-n512/fixed-analytic-Gaussian-tail",
+      "value": 5.153514218309962e-18,
+      "bound": 1e-16,
+      "passed": true
+    },
+    {
+      "name": "normal-n512/carrier-continuum-dispersion-diagnostic",
+      "value": 0.021192458774132006,
+      "bound": 0.03,
+      "passed": true
+    },
+    {
+      "name": "normal-n512/finite-cache",
+      "value": 0,
+      "bound": 0,
+      "passed": true
+    },
+    {
+      "name": "normal-n512/actual-five-integer-times",
+      "value": [
+        0.0,
+        175.0,
+        350.0,
+        525.0,
+        700.0
+      ],
+      "bound": [
+        0.0,
+        175.0,
+        350.0,
+        525.0,
+        700.0
+      ],
+      "passed": true
+    },
+    {
+      "name": "normal-n512/native-staggered-shapes",
+      "value": [
+        [
+          5,
+          513
+        ],
+        [
+          5,
+          512
+        ]
+      ],
+      "bound": [
+        [
+          5,
+          513
+        ],
+        [
+          5,
+          512
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "name": "damped-grazing-n1024/box-doubling-all-fields-times",
+      "value": 1.9499011890107734e-12,
+      "bound": 2e-09,
+      "passed": true
+    },
+    {
+      "name": "damped-grazing-n1024/independent-eigen-residual",
+      "value": 2.457813587568517e-15,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "damped-grazing-n1024/passive-branch-eigen-abs",
+      "value": 0.9999974873200681,
+      "bound": 1.000000000002,
+      "passed": true
+    },
+    {
+      "name": "damped-grazing-n1024/fixed-analytic-Gaussian-tail",
+      "value": 5.153514218309962e-18,
+      "bound": 1e-16,
+      "passed": true
+    },
+    {
+      "name": "damped-grazing-n1024/carrier-continuum-dispersion-diagnostic",
+      "value": 0.0011534526986798355,
+      "bound": 0.03,
+      "passed": true
+    },
+    {
+      "name": "damped-grazing-n1024/finite-cache",
+      "value": 0,
+      "bound": 0,
+      "passed": true
+    },
+    {
+      "name": "damped-grazing-n1024/actual-five-integer-times",
+      "value": [
+        0.0,
+        175.0,
+        350.0,
+        525.0,
+        700.0
+      ],
+      "bound": [
+        0.0,
+        175.0,
+        350.0,
+        525.0,
+        700.0
+      ],
+      "passed": true
+    },
+    {
+      "name": "damped-grazing-n1024/native-staggered-shapes",
+      "value": [
+        [
+          5,
+          1025
+        ],
+        [
+          5,
+          1024
+        ]
+      ],
+      "bound": [
+        [
+          5,
+          1025
+        ],
+        [
+          5,
+          1024
+        ]
+      ],
+      "passed": true
+    },
+    {
+      "name": "flux/ppw12/outward-normalization",
+      "value": 0.0015506087847138028,
+      "bound": 0.02,
+      "passed": true
+    },
+    {
+      "name": "flux/ppw12/negative-normal-control",
+      "value": 0.31781631207801286,
+      "bound": 0,
+      "passed": true
+    },
+    {
+      "name": "flux/ppw24/outward-normalization",
+      "value": 0.00016715634369246501,
+      "bound": 0.02,
+      "passed": true
+    },
+    {
+      "name": "flux/ppw24/negative-normal-control",
+      "value": 0.31825667866705504,
+      "bound": 0,
+      "passed": true
+    },
+    {
+      "name": "zero-rate-LU-matrix/g0.0/K0.0/q0.2",
+      "value": 2.7755575615628914e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "zero-rate-LU-matrix/g0.0/K0.0/q1.1",
+      "value": 3.376611507232129e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "zero-rate-LU-matrix/g0.0/K0.0/q3.0",
+      "value": 3.1401849173675503e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "zero-rate-LU-matrix/g0.0/K0.0/q5.0",
+      "value": 3.433175098891678e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "zero-rate-LU-matrix/g0.0/K4.0/q0.2",
+      "value": 3.510833468576701e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "zero-rate-LU-matrix/g0.0/K4.0/q1.1",
+      "value": 3.3335590258932494e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "zero-rate-LU-matrix/g0.0/K4.0/q3.0",
+      "value": 4.460365043975677e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "zero-rate-LU-matrix/g0.0/K4.0/q5.0",
+      "value": 5.558049685633556e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "zero-rate-LU-matrix/g0.005/K0.0/q0.2",
+      "value": 3.376611507232129e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "zero-rate-LU-matrix/g0.005/K0.0/q1.1",
+      "value": 4.440892098500626e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "zero-rate-LU-matrix/g0.005/K0.0/q3.0",
+      "value": 5.60334479738423e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "zero-rate-LU-matrix/g0.005/K0.0/q5.0",
+      "value": 4.742874840267547e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "zero-rate-LU-matrix/g0.005/K4.0/q0.2",
+      "value": 4.440892098500626e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "zero-rate-LU-matrix/g0.005/K4.0/q1.1",
+      "value": 3.376611507232129e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "zero-rate-LU-matrix/g0.005/K4.0/q3.0",
+      "value": 5.584220101197091e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "zero-rate-LU-matrix/g0.005/K4.0/q5.0",
+      "value": 3.510833468576701e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "zero-rate-LU-matrix/g0.5/K0.0/q0.2",
+      "value": 3.376611507232129e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "zero-rate-LU-matrix/g0.5/K0.0/q1.1",
+      "value": 2.2887833992611187e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "zero-rate-LU-matrix/g0.5/K0.0/q3.0",
+      "value": 3.3306690738754696e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "zero-rate-LU-matrix/g0.5/K0.0/q5.0",
+      "value": 4.577566798522237e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "zero-rate-LU-matrix/g0.5/K4.0/q0.2",
+      "value": 3.376611507232129e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "zero-rate-LU-matrix/g0.5/K4.0/q1.1",
+      "value": 1.5700924586837752e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "zero-rate-LU-matrix/g0.5/K4.0/q3.0",
+      "value": 3.376611507232129e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "zero-rate-LU-matrix/g0.5/K4.0/q5.0",
+      "value": 3.376611507232129e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "filter/r0.0/w1.0/dt0.01",
+      "value": 0.0,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "filter/r0.0/w1.0/dt0.04",
+      "value": 0.0,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "filter/r0.0/w6.0/dt0.01",
+      "value": 0.0,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "filter/r0.0/w6.0/dt0.04",
+      "value": 0.0,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "filter/r0.0/w12.0/dt0.01",
+      "value": 0.0,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "filter/r0.0/w12.0/dt0.04",
+      "value": 0.0,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "filter/r0.7/w1.0/dt0.01",
+      "value": 5.4672143489065705e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "filter/r0.7/w1.0/dt0.04",
+      "value": 9.930136612989092e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "filter/r0.7/w6.0/dt0.01",
+      "value": 1.1443916996305594e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "filter/r0.7/w6.0/dt0.04",
+      "value": 1.1443916996305594e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "filter/r0.7/w12.0/dt0.01",
+      "value": 1.3877787807814457e-17,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "filter/r0.7/w12.0/dt0.04",
+      "value": 2.0816681711721685e-17,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "filter/r6.0/w1.0/dt0.01",
+      "value": 6.2697235880985e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "filter/r6.0/w1.0/dt0.04",
+      "value": 2.2898349882893854e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "filter/r6.0/w6.0/dt0.01",
+      "value": 2.482534153247273e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "filter/r6.0/w6.0/dt0.04",
+      "value": 2.482534153247273e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "filter/r6.0/w12.0/dt0.01",
+      "value": 3.510833468576701e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "filter/r6.0/w12.0/dt0.04",
+      "value": 1.1102230246251565e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "filter/second-order-frequency-refinement",
+      "value": 0.24993250333201697,
+      "bound": 0.3,
+      "passed": true
+    },
+    {
+      "name": "small-coupled-operator/g0.0/ky0.0",
+      "value": 1.0000000000000016,
+      "bound": 1.0000000002,
+      "passed": true
+    },
+    {
+      "name": "small-coupled-operator/g0.0/ky4.0",
+      "value": 1.0000000000000042,
+      "bound": 1.0000000002,
+      "passed": true
+    },
+    {
+      "name": "small-coupled-operator/g0.005/ky0.0",
+      "value": 1.0000000000000049,
+      "bound": 1.0000000002,
+      "passed": true
+    },
+    {
+      "name": "small-coupled-operator/g0.005/ky4.0",
+      "value": 1.0000000000000122,
+      "bound": 1.0000000002,
+      "passed": true
+    },
+    {
+      "name": "small-coupled-operator/g0.5/ky0.0",
+      "value": 1.000000000000001,
+      "bound": 1.0000000002,
+      "passed": true
+    },
+    {
+      "name": "small-coupled-operator/g0.5/ky4.0",
+      "value": 1.0000000000000056,
+      "bound": 1.0000000002,
+      "passed": true
+    },
+    {
+      "name": "work/g0.0",
+      "value": 7.491430436060154e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "work/g0.005",
+      "value": 2.2471445277477686e-16,
+      "bound": 2e-12,
+      "passed": true
+    },
+    {
+      "name": "work/g0.5",
+      "value": 3.934027582863653e-16,
+      "bound": 2e-12,
+      "passed": true
+    }
+  ],
+  "failure": null,
+  "phase": "component",
+  "full_case_runs": 0,
+  "actual_checks": 100,
+  "historical_two_point_control": [
+    {
+      "name": "flux/ppw12/outward-normalization",
+      "value": 0.02771242476273028,
+      "bound": 0.02,
+      "passed": false
+    },
+    {
+      "name": "flux/ppw12/negative-normal-control",
+      "value": 0.30948874741168914,
+      "bound": 0,
+      "passed": true
+    },
+    {
+      "name": "flux/ppw24/outward-normalization",
+      "value": 0.006955541126474785,
+      "bound": 0.02,
+      "passed": true
+    },
+    {
+      "name": "flux/ppw24/negative-normal-control",
+      "value": 0.3160958686794758,
+      "bound": 0,
+      "passed": true
+    }
+  ],
+  "input_sha256": "dd26a0de9f369e246970f1fffcaaa7435580b62dff8574daa768a59370bf5b7f",
+  "acceptance_sha256": "65e7ffdc2018c703cb14d18c84fff6b3ae31b3e92a18125a0b0f092b015de6f7"
+}

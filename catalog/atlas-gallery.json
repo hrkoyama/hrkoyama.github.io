@@ -1289,6 +1289,87 @@
         "ja": "保存した実データ由来の分布・誤差診断。空間次元と標本/時間軸を区別します。",
         "en": "Distribution and error diagnostics from actual saved data;sample/time axes are distinguished from spatial dimensions."
       }
+    },
+    {
+      "id": "cylinder-mie2d",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-24/maxwell-cylinder/results/cylinder-mie2d-preview.png",
+      "caption": {
+        "ja": "保存した最細格子の実2D散乱電場phasorの実部。 図の中央の白抜きは診断用のr<0.4のマスクで、物理円柱の半径0.25とは区別します。",
+        "en": "Real part of the actual saved scattered electric phasor on the finest two-dimensional grid. The central white region is a diagnostic mask at r<0.4, distinct from the physical cylinder radius0.25."
+      }
+    },
+    {
+      "id": "lorentz-oblique-sp",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-24/maxwell-lorentz/results/lorentz-oblique-sp-preview.png",
+      "caption": {
+        "ja": "保存したp偏光の実電場をky=4の周期y方向へ再構成した場。 周期y方向の1周期を表示しています。波形を見やすくするため、x軸とy軸の表示縮尺は異なります。",
+        "en": "Actual saved p-polarized electric field reconstructed over the periodic y direction at ky=4. One transverse y period is shown. The displayed x and y scales differ to make the fields visible."
+      }
+    },
+    {
+      "id": "dispersive-grazing-pml",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-24/maxwell-grazing/results/dispersive-grazing-pml-preview.png",
+      "caption": {
+        "ja": "保存した浅角度の実電場を周期y方向へ再構成。灰色はPML領域です。 周期y方向の1周期を表示しています。波形を見やすくするため、x軸とy軸の表示縮尺は異なります。",
+        "en": "Actual saved grazing electric field reconstructed over the periodic y direction; gray shading marks the PML. One transverse y period is shown. The displayed x and y scales differ to make the fields visible."
+      }
+    },
+    {
+      "id": "pivoted-direct-refinement",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/pivoted-direct-refinement-preview.png",
+      "caption": {
+        "ja": "保存した12×12 SPD行列。反復改良の固定例に使います。 別の全図に示す誤差は厳密有理数解をbinary64へ丸めた参照との差です。対数表示だけ、厳密なゼロ誤差をfloat64.tinyに置いて表示します。",
+        "en": "The saved 12 x 12 SPD matrix used in the refinement examples. In the companion full figure, errors are measured against the exact-rational solution rounded to binary64; exact zeros are shown at float64.tiny for logarithmic display only."
+      }
+    },
+    {
+      "id": "symmetric-saddle-minres",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/symmetric-saddle-minres-preview.png",
+      "caption": {
+        "ja": "速度サイズ24の固定例で使う、保存した35×35鞍点行列。",
+        "en": "The saved 35 x 35 saddle matrix for velocity size 24."
+      }
+    },
+    {
+      "id": "restarted-shift-invert",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/restarted-shift-invert-preview.png",
+      "caption": {
+        "ja": "固有値比較に使う、保存した31×31 Dirichlet Laplacian。",
+        "en": "The saved 31 x 31 Dirichlet Laplacian used in the eigenvalue comparisons."
+      }
+    },
+    {
+      "id": "fem-mass-eigen",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/fem-mass-eigen-preview.png",
+      "caption": {
+        "ja": "内部63点で計算した、M正規化された最低3モード。",
+        "en": "The first three M-normalized modes computed on the 63-node interior grid."
+      }
+    },
+    {
+      "id": "bratu-fold-continuation",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-fold-continuation-preview.png",
+      "caption": {
+        "ja": "保存した分岐曲線、λ=2の上下枝、Jacobianの最小特異値、3格子のfold誤差を示す縮小図。擬似弧長stepは物理時間ではありません。",
+        "en": "Preview of the stored branch,lambda=2 profiles,smallest Jacobian singular value and three-grid fold error. Arclength steps are not physical time."
+      }
+    },
+    {
+      "id": "bratu-matrix-free-jfnk",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-matrix-free-jfnk-preview.png",
+      "caption": {
+        "ja": "保存したN=127のNewton残差、上枝の解と解析参照、Jv誤差、実評価回数を示す縮小図。run indexは保存CSVに対応します。",
+        "en": "Preview of stored N=127 Newton residuals,upper-branch field/reference,Jv errors and actual evaluation counts. Run indices match the saved CSV."
+      }
     }
   ]
 }

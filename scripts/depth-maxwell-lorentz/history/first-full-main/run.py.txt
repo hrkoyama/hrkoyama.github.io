@@ -1,0 +1,74 @@
+"""Fixed oblique dissipative Lorentz slab with actual matched pulse runs."""
+import json
+import numpy as np
+import reference_draft as ref
+from slab_evolution import solve
+from slab_reference import vacuum_monitors,discrete_q
+from io_contract import ROOT,case,check,save,csv,checkpoint,run
+
+
+def analyze(raw,g,spec,pol):
+    w=raw['omega'];material,vacuum=raw['monitors'];incident=vacuum[0]
+    if np.any(abs(incident)<1e-8):raise ValueError('Fixed incident frequency has inadequate amplitude')
+    q=discrete_q(w,g['h'],g['dt'],g['K']);xleft,xright=raw['monitor_coordinates'];a,b=spec['slab']
+    r=(material[0]-vacuum[0])/incident*np.exp(2j*q*(xleft-a))
+    t=material[1]/vacuum[1]*np.exp(1j*q*(b-a))
+    R=abs(r)**2;T=abs(t)**2;node=g['fraction_node']>0;face=g['fraction_face']>0
+    def loss(E,J,side,mask):
+        f=g['strength_'+side][mask];sigma=g['sigma_'+side][mask]
+        return sigma[None,:]*abs(E)**2+spec['material']['gamma']*abs(J)**2/f[None,:]
+    if pol=='s':integrated=g['h']*np.sum(loss(raw['integral0'],raw['integral1'],'node',node),axis=1)
+    else:integrated=g['h']*(np.sum(loss(raw['integral0'],raw['integral2'],'face',face),axis=1)+np.sum(loss(raw['integral1'],raw['integral3'],'node',node),axis=1))
+    O=2*np.sin(.5*w*g['dt'])/g['dt'];normal_admittance=2*np.sin(.5*q*g['h'])/(g['h']*O)
+    # The discrete leapfrog energy flux pairs H_half with Ebar at that half
+    # time; its Fourier admittance includes cos(omega*dt/2).
+    A=integrated/(np.cos(.5*w*g['dt'])*normal_admittance*abs(incident)**2)
+    exact=ref.slab(w,spec['ky'],spec['material'],b-a,pol);exact_A=ref.direct_absorptance(w,spec['ky'],spec['material'],b-a,pol)
+    calibration=vacuum_monitors(spec,g['h'],g['dy'],g['dt'],g['steps'],pol,raw['monitor_coordinates'])
+    cal_error=float(np.max(abs(vacuum-calibration))/np.max(abs(calibration)))
+    rt_error=float(max(np.max(abs(r-exact['r'])),np.max(abs(t-exact['t']))))
+    rta_error=float(max(np.max(abs(R-exact['R'])),np.max(abs(T-exact['T'])),np.max(abs(A-exact_A))))
+    hist=raw['history'];tail=hist[:,0]>spec['final_time']-2*np.pi/spec['carrier']
+    end_power=hist[tail,1]**2+hist[tail,2]**2+hist[tail,3]**2+hist[tail,4]**2
+    incident_power=hist[:,5]**2+hist[:,6]**2
+    tail_fraction=float(np.sum(end_power)/np.sum(incident_power))
+    state=raw['material_state0'][0] if pol=='s' else raw['material_state1'][0]
+    initial_tail=float(np.max(abs(state[node]))/max(float(np.max(abs(state))),1e-30))
+    return dict(r=r,t=t,R=R,T=T,A_direct=A,reference_r=exact['r'],reference_t=exact['t'],reference_R=exact['R'],reference_T=exact['T'],reference_A=exact_A,
+                complex_rt_error=rt_error,RTA_error=rta_error,vacuum_calibration_error=cal_error,tail_energy_fraction=tail_fraction,initial_material_tail=initial_tail,
+                independent_RTA_budget=float(np.max(abs(R+T+A-1))))
+
+
+def execute(cfg,limits,output,cases):
+    spec=cfg['slab'];c=case(spec['id']);cases.append(c);checkpoint(output,cases);rows=[];summaries=[]
+    proof=json.loads((ROOT/'references/qualification.json').read_text());check(c,'fixed-reference-and-components-qualified',proof['actual_checks'],100,proof['passed'] is True and proof['actual_checks']==100)
+    for pol in spec['polarizations']:
+        selected=[]
+        for h,ny in zip(spec['original_h'],spec['ny']):
+            n=int(round((spec['domain'][1]-spec['domain'][0])/h));name=f'lorentz-{pol}-n{n}'
+            raw,g=solve(spec,h,ny,pol,output,name);a=analyze(raw,g,spec,pol)
+            raw.update({k:v for k,v in a.items() if isinstance(v,np.ndarray)});save(output,name,raw)
+            row=dict(id=name,polarization=pol,cells=n,transverse_cells=ny,steps=g['steps'],h=h,dt=g['dt'],fields=name+'.npz',maximum_budget=float(raw['maximum_budget']),vacuum_budget=float(raw['maximum_vacuum_budget']),minimum_physical_work=float(raw['minimum_work']),**{k:v for k,v in a.items() if not isinstance(v,np.ndarray)})
+            c['records'].append(row);rows.append(row);selected.append(row)
+            gates=[('finite',0.,0.,all(np.isfinite(raw[k]).all() for k in ['monitors','history','A_direct'])),
+                   ('closed-PEC-direct-work-budget',row['maximum_budget'],limits['slab_budget'],row['maximum_budget']<=limits['slab_budget']),
+                   ('vacuum-energy-budget',row['vacuum_budget'],limits['slab_budget'],row['vacuum_budget']<=limits['slab_budget']),
+                   ('nonnegative-material-work',row['minimum_physical_work'],-limits['slab_material_work_negative'],row['minimum_physical_work']>=-limits['slab_material_work_negative']),
+                   ('initial-slab-tail',row['initial_material_tail'],limits['slab_initial_material_tail'],row['initial_material_tail']<=limits['slab_initial_material_tail']),
+                   ('last-carrier-period-monitor-energy',row['tail_energy_fraction'],limits['slab_tail_fraction'],row['tail_energy_fraction']<=limits['slab_tail_fraction']),
+                   ('independent-finite-window-vacuum-DTFT',row['vacuum_calibration_error'],limits['slab_vacuum_calibration'],row['vacuum_calibration_error']<=limits['slab_vacuum_calibration']),
+                   ('independent-direct-spectral-work-budget',row['independent_RTA_budget'],limits['slab_RTA'],row['independent_RTA_budget']<=limits['slab_RTA'])]
+            for suffix,value,bound,passed in gates:check(c,name+'/'+suffix,value,bound,passed)
+            for k,w in enumerate(spec['frequencies']):summaries.append([0 if pol=='s' else 1,n,ny,g['steps'],w,a['r'][k].real,a['r'][k].imag,a['t'][k].real,a['t'][k].imag,a['R'][k],a['T'][k],a['A_direct'][k],a['reference_R'][k],a['reference_T'][k],a['reference_A'][k]])
+            checkpoint(output,cases)
+        fine=selected[-1]
+        check(c,pol+'/finest-complex-rt',fine['complex_rt_error'],limits['slab_complex_rt'],fine['complex_rt_error']<=limits['slab_complex_rt'])
+        check(c,pol+'/finest-RTA',fine['RTA_error'],limits['slab_RTA'],fine['RTA_error']<=limits['slab_RTA'])
+        for old,new in zip(selected,selected[1:]):
+            ratio=new['complex_rt_error']/max(old['complex_rt_error'],1e-30)
+            check(c,pol+'/refinement-n'+str(new['cells']),ratio,limits['slab_refinement_ratio'],ratio<=limits['slab_refinement_ratio'])
+    csv(output,spec['id'],['polarization0s1p','cells','ny','steps','omega','r_real','r_imag','t_real','t_imag','R','T','A_direct','reference_R','reference_T','reference_A'],summaries)
+    c['metrics'].update(completed_matched_pairs=6,completed_primary_and_vacuum_evolutions=12,spatial_dimensions=2,spatial_restriction='Actualsingle-kyYee;bothp-electricADEcomponents',material_energy_included=True,direct_absorption_not_defined_by_RT=True,finite_window='T36,lastonecarrierperiodenergygate;Gaussianhasnonzeroanalytic tails')
+    c['metrics'].update(maximum_energy_budget_defect=max(r['maximum_budget'] for r in rows),maximum_vacuum_calibration_error=max(r['vacuum_calibration_error'] for r in rows),finest_complex_rt_errors={pol:max((r for r in rows if r['polarization']==pol),key=lambda r:r['cells'])['complex_rt_error'] for pol in ['s','p']},finest_RTA_errors={pol:max((r for r in rows if r['polarization']==pol),key=lambda r:r['cells'])['RTA_error'] for pol in ['s','p']})
+    c['passed']=all(c['checks'].values());checkpoint(output,cases)
+if __name__=='__main__':run(execute)

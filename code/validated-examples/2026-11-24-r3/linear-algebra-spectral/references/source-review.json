@@ -1,0 +1,53 @@
+{
+  "status": "SELECTED_PRIMARY_DOCUMENTATION_READ_ORIGINAL_PAPER_GAPS_RETAINED",
+  "reviewed_at_utc": "2026-11-24T00:10:04.586907+00:00",
+  "primary_sources": [
+    {
+      "url": "https://netlib.org/lapack/lug/node38.html",
+      "scope": "Selected factorization,condition/refinement paragraphs;fullpaper/source audit not claimed."
+    },
+    {
+      "url": "https://web.stanford.edu/group/SOL/software/minres/",
+      "scope": "Selected author documentation: symmetry,indefinite A,SPD preconditioner,true residual;1975 original unread."
+    },
+    {
+      "url": "https://slepc.upv.es/release/documentation/manual/eps.html",
+      "scope": "Selected projection recurrence6,generalized problem3,explicit restart context and shift-invert paragraph;not Krylov-Schur implementation."
+    },
+    {
+      "url": "https://slepc.upv.es/release/documentation/manual/st.html",
+      "scope": "Selected spectral transformation and original eigenvalue back-map discussion."
+    },
+    {
+      "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.sparse.linalg.lobpcg.html",
+      "scope": "Selected API for B SPD,M preconditioner,history tuple,5k>n fallback and exact stiffness inverse rod example."
+    }
+  ],
+  "original_paper_status": [
+    {
+      "id": "arnoldi1951",
+      "level": "metadata retained; original text not inspected",
+      "doi": "10.1090/qam/42792",
+      "attempts": [
+        "AMS DOI/PDF endpoints403"
+      ],
+      "new_original_pages_read": []
+    },
+    {
+      "id": "lanczos1950",
+      "level": "metadata retained; original recurrence pages not inspected",
+      "doi": "10.6028/jres.045.026",
+      "official_url": "https://nvlpubs.nist.gov/nistpubs/jres/045/jresv45n4p255_A1b.pdf",
+      "identified_original_scan_mirror": "https://www.cs.umd.edu/~oleary/lanczos1950.pdf",
+      "attempts": [
+        "Official PDF29.4MB exceeds webreader limit.",
+        "Mirror webmetadata identifies29pages,no readable text; screenshot cache miss.",
+        "Restrictedcurl DNSfailure; permittedcurl certificate-chain failure;no insecure retry."
+      ],
+      "new_original_pages_read": []
+    }
+  ],
+  "sequence55_completed": false,
+  "no_original_metadata_upgraded": true,
+  "numerical_execution_performed": false
+}

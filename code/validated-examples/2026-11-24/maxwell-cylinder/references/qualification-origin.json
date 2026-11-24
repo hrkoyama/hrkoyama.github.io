@@ -1,0 +1,14 @@
+{
+  "source_qualification_plan_sha256": "2f2f20002357aafde8591f5fbb3fd3ae51e806ff1aa79df03408a3c4000aaac0",
+  "actual_checks": 100,
+  "reference_checks": 40,
+  "source_unchanged": true,
+  "full_case_runs_at_qualification": 0,
+  "receipt_sha256": "7d41b213864b2a0ed57aa4cd8b881e8c31c7a57ff0b553f67bef12cc86e314b7",
+  "old165_preserved": true,
+  "first100_failure_preserved": true,
+  "first_two_point_coarse_flux_error": 0.02771242476273028,
+  "first_two_point_criterion": 0.02,
+  "first_two_point_passed": false,
+  "current_four_point_qualification_passed": true
+}

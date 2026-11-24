@@ -1,0 +1,40 @@
+"""Fixed boundary-error isolation, normal control and damped grazing companion."""
+import json
+import numpy as np
+from specifications import pml_specs
+from pml_evolution import solve
+from io_contract import ROOT,case,check,csv,checkpoint,run
+
+
+def execute(cfg,limits,output,cases):
+    p=cfg['pml'];c=case(p['id']);cases.append(c);checkpoint(output,cases);rows=[];summary=[]
+    proof=json.loads((ROOT/'references/qualification.json').read_text());check(c,'independent-reference-and-filter-qualified',proof['actual_checks'],100,proof['passed'] is True and proof['actual_checks']==100)
+    for s in pml_specs(cfg):
+        name=s['id']
+        with np.load(ROOT/'references'/(name+'-box4096.npz'),allow_pickle=False) as file:reference={n:file[n] for n in file.files}
+        raw,g=solve(p,s,reference,output,name)
+        mask=(g['x']>=p['pml_thickness'])&(g['x']<=p['length']-p['pml_thickness'])
+        initial_norm=float(np.linalg.norm(reference['E'][0,mask]));errors=np.linalg.norm((raw['E']-reference['E'])[:,mask],axis=1)/initial_norm
+        boundary=float(np.max(errors));initial=float(raw['initial_energy']);growth=float(raw['maximum_positive_energy'])/initial;memory=float(raw['maximum_memory_norm'])/np.sqrt(initial)
+        residual=float(raw['history'][-1,2])/initial;row=dict(id=name,cells=s['cells'],steps=s['steps'],dt=s['dt'],pml_peak=s['pml_peak'],angle_degrees=float(np.degrees(s['angle'])),gamma=s['material']['gamma'],fields=name+'.npz',boundary_error=boundary,maximum_budget=float(raw['maximum_budget']),physical_work=float(raw['history'][-1,3]),signed_PML_work=float(raw['history'][-1,4]),maximum_energy_growth=growth,maximum_memory_relative=memory,final_positive_energy_fraction=residual,errors_at_actual_times=errors.tolist())
+        c['records'].append(row);rows.append(row)
+        checks=[('all-fields-and-auxiliaries-finite',0.,0.,all(np.isfinite(raw[n]).all() for n in ['E','Hx','Hy','P','J','psi_H','psi_E','history'])),
+                ('same-grid-isolated-boundary-error',boundary,limits['pml_reflection_all'],boundary<=limits['pml_reflection_all']),
+                ('direct-signed-work-ledger',row['maximum_budget'],limits['pml_budget'],row['maximum_budget']<=limits['pml_budget']),
+                ('nonnegative-physical-material-work',float(raw['minimum_physical_work']),-limits['pml_work_negative'],float(raw['minimum_physical_work'])>=-limits['pml_work_negative']),
+                ('long-time-physical-energy-bounded',growth,limits['pml_long_norm_growth'],growth<=limits['pml_long_norm_growth']),
+                ('long-time-memory-bounded',memory,limits['pml_long_norm_growth'],memory<=limits['pml_long_norm_growth']),
+                ('long-time-residual',residual,limits['pml_final_energy_fraction'],residual<=limits['pml_final_energy_fraction']),
+                ('five-matched-actual-times',raw['times'].tolist(),s['times'],np.allclose(raw['times'],reference['times'],rtol=0,atol=1e-12))]
+        for suffix,value,bound,passed in checks:check(c,name+'/'+suffix,value,bound,passed)
+        summary.append([s['cells'],s['steps'],s['dt'],s['pml_peak'],row['angle_degrees'],s['material']['gamma'],boundary,row['maximum_budget'],growth,memory,residual,row['physical_work'],row['signed_PML_work']]);checkpoint(output,cases)
+    grazing=rows[:3]
+    check(c,'finest-grazing-boundary-error',grazing[-1]['boundary_error'],limits['pml_reflection_fine'],grazing[-1]['boundary_error']<=limits['pml_reflection_fine'])
+    for old,new in zip(grazing,grazing[1:]):
+        ratio=new['boundary_error']/max(old['boundary_error'],1e-30)
+        check(c,'grazing-refinement-n'+str(new['cells']),ratio,limits['pml_refinement_ratio'],ratio<=limits['pml_refinement_ratio'])
+    csv(output,p['id'],['cells','steps','dt','pml_peak','carrier_angle_deg','gamma','boundary_error','budget','energy_growth','memory_relative','final_energy_fraction','physical_work','signed_PML_work'],summary)
+    c['metrics'].update(completed_primary_and_control_runs=5,spatial_dimensions=2,spatial_restriction='Actual single-ky Yee evolution; no arbitrary-y scattering claim.',reference='Independent no-PML Fourier update matrix; shared discretization and initialization isolate boundary error from bulk dispersion.',memory_scheme='Trapezoidal derivative filter; original endpoint-held variant retained separately.',refinement_family='Joint grid and layer-strength co-refinement, not fixed-PML spatial order.',actual_pml_peaks={r['id']:r['pml_peak'] for r in rows},PML_work_is_signed_numerical_work=True,material_continues_through_PML=True,finite_band_carrier_not_exactly_monochromatic=True)
+    c['metrics'].update(finest_grazing_boundary_error=grazing[-1]['boundary_error'],maximum_energy_budget_defect=max(r['maximum_budget'] for r in rows),maximum_positive_energy_ratio=max(r['maximum_energy_growth'] for r in rows),normal_final_energy_fraction=next(r['final_positive_energy_fraction'] for r in rows if r['angle_degrees']==0.))
+    c['passed']=all(c['checks'].values());checkpoint(output,cases)
+if __name__=='__main__':run(execute)

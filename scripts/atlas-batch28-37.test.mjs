@@ -1,4 +1,4 @@
-import {groupsAddedAfterBatch37} from './fixtures/atlas-inventory.mjs';
+import {groupsAddedAfterBatch37,projectReleaseBeforeBatch48} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -81,8 +81,8 @@ test('batch28–37 preserves all primary gallery records and prior release metad
  const previews=json('numerical-methods-atlas/gallery/preview-manifest.json').items;
  for(const old of baseline.preview_manifest_items) assert.deepEqual(previews.find(x=>x.id===old.id),old,old.id);
  const registry=json('numerical-methods-atlas/validation/releases.json');
- for(const release of beforeRuntimeRepair.release_registry.releases.filter(x=>x.group!=='dsmc-shock'))assert.deepEqual(registry.releases.find(x=>x.group===release.group),release,release.group+'/unmodified-active-release');
- assert.deepEqual(registry.releases.filter(x=>!Object.hasOwn(expected,x.group)&&!groupsAddedAfterBatch37.includes(x.group)),baseline.release_registry.releases);
+ for(const release of beforeRuntimeRepair.release_registry.releases.filter(x=>x.group!=='dsmc-shock'))assert.deepEqual(projectReleaseBeforeBatch48(registry.releases.find(x=>x.group===release.group)),release,release.group+'/unmodified-active-release');
+ assert.deepEqual(registry.releases.filter(x=>!Object.hasOwn(expected,x.group)&&!groupsAddedAfterBatch37.includes(x.group)).map(projectReleaseBeforeBatch48),baseline.release_registry.releases);
  assert.equal(registry.releases.filter(r=>!groupsAddedAfterBatch37.includes(r.group)).reduce((n,r)=>n+r.case_ids.length,0),baseline.release_registry.case_count+newIds.length);
  assert.deepEqual(registry.releases.filter(x=>Object.hasOwn(expected,x.group)).map(x=>x.group),Object.keys(expected));
 });

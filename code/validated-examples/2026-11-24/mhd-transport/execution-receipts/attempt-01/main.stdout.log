@@ -1,0 +1,13 @@
+{"completed": "circular-alfven-refinement-n32", "seconds": 0.5740210000003572}
+{"completed": "circular-alfven-refinement-n64", "seconds": 0.9143059999987599}
+{"completed": "circular-alfven-refinement-n128", "seconds": 1.2980832079992979}
+{"completed": "magnetic-loop-independent-n8", "seconds": 2.9708956249960465}
+{"completed": "magnetic-loop-independent-n16", "seconds": 5.5315849159960635}
+{"completed": "magnetic-loop-independent-n32", "seconds": 11.70703733299888}
+{"completed": "postshock-orszag-tang-n16", "seconds": 12.737879583000904}
+{"completed": "postshock-orszag-tang-n32", "seconds": 14.594512083000154}
+{"completed": "postshock-orszag-tang-n64", "seconds": 19.935720665998815}
+{"completed": "circular-alfven-refinement-half-dt", "seconds": 20.704308832995594}
+{"completed": "magnetic-loop-independent-half-dt", "seconds": 32.7722352080018}
+{"completed": "postshock-orszag-tang-half-dt", "seconds": 43.22542641600012}
+{"passed": true, "runs": 12, "gates": 125, "failed": [], "failure": null}

@@ -1,0 +1,13 @@
+{
+  "case": "bratu-matrix-free-jfnk",
+  "run": 12,
+  "outer_completed": 4,
+  "counts": {
+    "primal_residual": 8,
+    "jv": 40,
+    "zero_jv": 0,
+    "dual_residual": 0,
+    "preconditioner": 20,
+    "validation_analytic_jv": 4
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "status": "QUALIFIED_EQUIVALENCE_BEFORE_CANONICAL_PACKAGE",
+  "checked_on": "2026-11-24",
+  "variant": "Only reuse conserved states and left/right fast speeds already computed for the same inputs. No arithmetic suffix, reconstruction, CT, input, reference, tolerance or budget changes.",
+  "previous_public_edition": "2026-11-23",
+  "previous_public_source": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/",
+  "previous_hlld_sha256": "5615a1fbe08d236a8ac3ab7f48ef9c50f6a859a48af36797e03a5940b8384af5",
+  "candidate_hlld_sha256": "af62d59b81cdb456112b2cbe189813a2e33092761441342dda553928a84abe2d",
+  "original47test_file_unchanged": true,
+  "fixed_input_sha256": "8a1b3bc9932f0cf9b620953d53294f2fc781f7999b7922a5d54f685e6044004e",
+  "acceptance_sha256": "36d79fa7704da8a29061ec7d1ccb63761bfb562c9daf39d1328075065d66747f",
+  "component_checks": 160,
+  "component_Riemann_batches": 108,
+  "full_pytest": 47,
+  "full_records": 12,
+  "case_gates": 125,
+  "main_shared_seconds": 40.89391791699745,
+  "exact_saved_comparison": {
+    "NPZ_arrays": 216,
+    "CSV_files": 27,
+    "scientific_JSON_top_keys": 7,
+    "all_equal": true,
+    "excluded_JSON_top_keys": [
+      "duration_seconds",
+      "source_sha256",
+      "files_sha256"
+    ],
+    "NPZ_container_timestamps_not_compared": true
+  },
+  "budgets_unchanged": {
+    "main_internal_seconds": 115,
+    "pytest_plus_main_shared_seconds": 120
+  },
+  "evidence_hashes": {
+    "component_receipt": "ec43c93673391586b41d7f8eb843603e722a38d7b4f3d8f9919092a44ea5013e",
+    "main_receipt": "09a11734e9f355467581afd3bca76d43967cda5b579627878347a5221d6affe2",
+    "strict_saved_comparison_receipt": "b232ea00619a70462f39a8ecec15d7a1d9239989905829054f2c824e0426b053"
+  },
+  "limitations": "One pinned local environment, selected deterministic component families and all original fixed inputs. Local elapsed time is not a cross-platform speedup guarantee. Canonical ZIP and public Linux remain separate checks."
+}

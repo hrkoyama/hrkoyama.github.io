@@ -1,0 +1,107 @@
+{
+  "passed": true,
+  "reason": "nonlinear residual",
+  "final_residual": 1.6098025411342381e-12,
+  "counts": {
+    "primal_residual": 55,
+    "jv": 22,
+    "zero_jv": 0,
+    "dual_residual": 0,
+    "preconditioner": 11,
+    "validation_analytic_jv": 5
+  },
+  "rows": [
+    {
+      "iteration": 0,
+      "residual": 2.9764702249476644,
+      "eta": 0.3,
+      "linear_iterations": 1,
+      "linear_ratio": 0.1436097304986047,
+      "analytic_linear_ratio": 0.14360973049499184,
+      "basis_columns": 2,
+      "alpha": 1.0,
+      "accepted_residual": 0.6372726886967508
+    },
+    {
+      "iteration": 1,
+      "residual": 0.6372726886967508,
+      "eta": 0.0891616620562702,
+      "linear_iterations": 2,
+      "linear_ratio": 0.009907683786073436,
+      "analytic_linear_ratio": 0.009907683754603169,
+      "basis_columns": 3,
+      "alpha": 1.0,
+      "accepted_residual": 0.02840995748680279
+    },
+    {
+      "iteration": 2,
+      "residual": 0.02840995748680279,
+      "eta": 0.008471502150361328,
+      "linear_iterations": 2,
+      "linear_ratio": 0.0009358157149710591,
+      "analytic_linear_ratio": 0.0009358157130729937,
+      "basis_columns": 3,
+      "alpha": 1.0,
+      "accepted_residual": 0.0001191282097491763
+    },
+    {
+      "iteration": 3,
+      "residual": 0.0001191282097491763,
+      "eta": 0.001,
+      "linear_iterations": 3,
+      "linear_ratio": 4.374531568947719e-05,
+      "analytic_linear_ratio": 4.374519917193967e-05,
+      "basis_columns": 4,
+      "alpha": 1.0,
+      "accepted_residual": 5.360165641578935e-09
+    },
+    {
+      "iteration": 4,
+      "residual": 5.360165641578935e-09,
+      "eta": 0.001,
+      "linear_iterations": 3,
+      "linear_ratio": 0.00029697135348092046,
+      "analytic_linear_ratio": 0.00029697133358955316,
+      "basis_columns": 4,
+      "alpha": 1.0,
+      "accepted_residual": 1.6098025411342381e-12
+    }
+  ],
+  "line_trials": [
+    {
+      "iteration": 0,
+      "backtrack": 0,
+      "accepted": true,
+      "representable": true,
+      "residual": 0.6372726886967508
+    },
+    {
+      "iteration": 1,
+      "backtrack": 0,
+      "accepted": true,
+      "representable": true,
+      "residual": 0.02840995748680279
+    },
+    {
+      "iteration": 2,
+      "backtrack": 0,
+      "accepted": true,
+      "representable": true,
+      "residual": 0.0001191282097491763
+    },
+    {
+      "iteration": 3,
+      "backtrack": 0,
+      "accepted": true,
+      "representable": true,
+      "residual": 5.360165641578935e-09
+    },
+    {
+      "iteration": 4,
+      "backtrack": 0,
+      "accepted": true,
+      "representable": true,
+      "residual": 1.6098025411342381e-12
+    }
+  ]
+}

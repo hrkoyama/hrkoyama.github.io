@@ -1,0 +1,320 @@
+[
+  {
+    "id": "bratu-fold-continuation",
+    "title": {
+      "ja": "擬似弧長継続でBratuのfoldを越える",
+      "en": "Crossing the Bratu fold with pseudo-arclength continuation"
+    },
+    "summary": {
+      "ja": "同じ1次元Bratu境界値問題の下枝から上枝までを追跡し、接線・fold・独立解析族との空間誤差を調べます。",
+      "en": "Follow the lower and upper branches of the same one-dimensional Bratu boundary-value problem; check tangents, the fold and spatial error against an independent analytic family."
+    },
+    "assumptions": {
+      "ja": "無次元x∈[0,1]、両端u=0、中心差分の内点31/63/127。零解から固定ds=0.1で80step。λ=2で上下枝を補正し、λ=4は離散無解の意図的な対照です。擬似弧長は物理時間ではありません。",
+      "en": "Dimensionless x in [0,1] with zero Dirichlet endpoints and 31/63/127 interior nodes. Take 80 fixed ds=0.1 steps from the zero solution. Correct both branches at lambda=2; lambda=4 is a deliberate discrete no-solution control. Pseudo-arclength is not physical time."
+    },
+    "algorithm": {
+      "ja": "hΣdu²+dλ²の重み付き単位接線、予測点と接線超平面によるNewton補正。別の拡大系でfoldと正規化null vectorを解きます。このcaseは疎Jacobianを明示的に組み立てます。",
+      "en": "Use a unit tangent in h-sum(du squared)+d-lambda squared, a predictor and a tangent-hyperplane Newton corrector. A separate augmented system locates the fold and a normalized null vector. This case deliberately assembles sparse Jacobians."
+    },
+    "validation": {
+      "ja": "保存R3では共通27pytestと本caseの67固定判定が合格。離散残差、接線の向き・単位長、fold方程式・null条件・transversality、独立Decimal80解析族、固定3格子の誤差を別々に確認しています。",
+      "en": "The preserved R3 run passed the shared 27 pytest tests and this case’s 67 fixed gates. Discrete residuals, tangent orientation/normalization, fold/null/transversality conditions, an independent Decimal80 family and fixed three-grid errors are checked separately."
+    },
+    "limits": {
+      "ja": "小さな1次元の単純foldだけです。分岐曲線の解析族比較では計算した中点値を族の座標に使い、固定λの独立形状比較と区別します。連続foldは離散解そのものではなく、一般の分岐追跡や大規模性能は保証しません。",
+      "en": "A small one-dimensional simple fold only. The whole-curve family comparison uses the computed midpoint as its family coordinate and is distinct from the independent fixed-lambda profile checks. The continuum fold is not an exact discrete solution. No general bifurcation-tracking or large-scale performance claim."
+    },
+    "method_ids": [
+      "pseudo-arclength-continuation",
+      "newton",
+      "centered-difference"
+    ],
+    "domains": [
+      "pde",
+      "nonlinear",
+      "linear-algebra"
+    ],
+    "code_files": [
+      "run.py",
+      "problem.py",
+      "continuation.py",
+      "matrix_free.py",
+      "dual.py",
+      "experiments.py",
+      "references/analytic_family.py"
+    ],
+    "references": [
+      {
+        "id": "dickson2007",
+        "title": "Condition Estimates for Pseudo-Arclength Continuation",
+        "author": "K.I.Dickson,C.T.Kelley,I.C.F.Ipsen,I.G.Kevrekidis",
+        "year": 2007,
+        "type": "article",
+        "doi": "10.1137/060654384",
+        "url": "https://ipsen.math.ncsu.edu/ps/sinum65438.pdf",
+        "review_level": "primary-selected-PDF-text",
+        "review_scope": "Section2.2, printedpp265–266, Eqs2.2–2.5; tangent null equation, unit Euclidean tangent, augmented system and tangent hyperplane. Weighted h-sum metric is the implementation’s stated discrete variation. No full condition-number proof or original paper numerical benchmark is borrowed.",
+        "review": {
+          "ja": "原著PDFの選択部分2.2節の接線・正規化・超平面制約と単純foldの範囲を読解。全文・全証明の監査ではありません。",
+          "en": "Read selected original sec2.2 tangent,normalization,hyperplane andsimple-fold scope; nofullproof audit."
+        },
+        "role": "algorithm-primary"
+      },
+      {
+        "id": "langtangen-bratu-official",
+        "title": "Finite differences for the1D Bratu problem,Problem8",
+        "author": "Hans Petter Langtangen",
+        "year": 2014,
+        "type": "author-course-documentation",
+        "url": "https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html",
+        "review_level": "author-selected-exact-solution-exercise",
+        "review_scope": "Problem8/Eq52: boundary-value equation, analytic cosh family, branch count and printed rounded critical value. The author’s parameter equals2 times our theta. Independent Decimal80 exact-family qualification remains the numerical reference; the printed rounded anchor is a separate coarse check.",
+        "review": {
+          "ja": "著者教材のBratu解析族と二枝・丸めた臨界値を確認。変数は採用thetaの2倍で、別導出とDecimal80で資格。1914原著は未読です。",
+          "en": "Read author exercise exactfamily/twobranches/roundedcritical; itsparameter istwiceourtheta. Independentderivation/Decimal80qualification;1914originalunread."
+        },
+        "role": "analytic-reference"
+      }
+    ],
+    "citations": [
+      {
+        "id": "dickson2007",
+        "title": "Condition Estimates for Pseudo-Arclength Continuation",
+        "author": "K.I.Dickson,C.T.Kelley,I.C.F.Ipsen,I.G.Kevrekidis",
+        "year": 2007,
+        "type": "article",
+        "doi": "10.1137/060654384",
+        "url": "https://ipsen.math.ncsu.edu/ps/sinum65438.pdf",
+        "review_level": "primary-selected-PDF-text",
+        "review_scope": "Section2.2, printedpp265–266, Eqs2.2–2.5; tangent null equation, unit Euclidean tangent, augmented system and tangent hyperplane. Weighted h-sum metric is the implementation’s stated discrete variation. No full condition-number proof or original paper numerical benchmark is borrowed.",
+        "review": {
+          "ja": "原著PDFの選択部分2.2節の接線・正規化・超平面制約と単純foldの範囲を読解。全文・全証明の監査ではありません。",
+          "en": "Read selected original sec2.2 tangent,normalization,hyperplane andsimple-fold scope; nofullproof audit."
+        },
+        "role": "algorithm-primary"
+      },
+      {
+        "id": "langtangen-bratu-official",
+        "title": "Finite differences for the1D Bratu problem,Problem8",
+        "author": "Hans Petter Langtangen",
+        "year": 2014,
+        "type": "author-course-documentation",
+        "url": "https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html",
+        "review_level": "author-selected-exact-solution-exercise",
+        "review_scope": "Problem8/Eq52: boundary-value equation, analytic cosh family, branch count and printed rounded critical value. The author’s parameter equals2 times our theta. Independent Decimal80 exact-family qualification remains the numerical reference; the printed rounded anchor is a separate coarse check.",
+        "review": {
+          "ja": "著者教材のBratu解析族と二枝・丸めた臨界値を確認。変数は採用thetaの2倍で、別導出とDecimal80で資格。1914原著は未読です。",
+          "en": "Read author exercise exactfamily/twobranches/roundedcritical; itsparameter istwiceourtheta. Independentderivation/Decimal80qualification;1914originalunread."
+        },
+        "role": "analytic-reference"
+      }
+    ],
+    "formulas": [
+      "-u''=\\lambda e^u,\\quad u(0)=u(1)=0",
+      "u_\\theta=2\\log\\frac{\\cosh(\\theta/2)}{\\cosh(\\theta(x-1/2))},\\quad\\lambda(\\theta)=2\\theta^2/\\cosh^2(\\theta/2)"
+    ],
+    "gallery_figure": "bratu-fold-continuation-preview.png",
+    "additional_figures": [
+      {
+        "file": "bratu-fold-continuation-preview.png",
+        "caption": {
+          "ja": "保存した分岐曲線、λ=2の上下枝、Jacobianの最小特異値、3格子のfold誤差を示す縮小図。擬似弧長stepは物理時間ではありません。",
+          "en": "Preview of the stored branch,lambda=2 profiles,smallest Jacobian singular value and three-grid fold error. Arclength steps are not physical time."
+        }
+      }
+    ]
+  },
+  {
+    "id": "bratu-matrix-free-jfnk",
+    "title": {
+      "ja": "解析・中央差分・方向ADによるJacobian不要Newton–Krylov",
+      "en": "Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products"
+    },
+    "summary": {
+      "ja": "非線形Jacobianを組み立てずにBratuの上下枝を3種類のJvで解き、forcingと実際の残差・評価回数を保存します。",
+      "en": "Solve both Bratu branches with three Jv choices without assembling the nonlinear Jacobian; retain forcing, actual residuals and evaluation counts."
+    },
+    "assumptions": {
+      "ja": "同じ無次元1次元Dirichlet問題でλ=3、内点63/127、初期値0または4sin(πx)。3Jv×2格子×2枝の12解法と固定η=1e-8の解析Jv対照1本。GMRES restart24/max96、Newton最大24、残差許容1e-9です。",
+      "en": "The same dimensionless one-dimensional Dirichlet problem at lambda=3, 63/127 interior nodes, starting from zero or 4sin(pi*x). Twelve mode/grid/branch solves plus one analytic-Jv constant-eta=1e-8 control. GMRES restart24/max96, at most 24 Newton steps and nonlinear tolerance1e-9."
+    },
+    "algorithm": {
+      "ja": "解析Jv、残差2評価の中央差分、または方向1本のforward ADを使います。PoissonのThomas右前処理、2回の再直交化とGivensによるGMRES。η0=.3、その後η=clamp(.9(Fk/Fk−1)^1.5,.001,.5)。これはEW Choice 2型の明示的な変形で、原著のsafeguard全体やPETSc既定値ではありません。",
+      "en": "Use analytic Jv, a two-residual central difference, or one-direction forward AD. Apply a Poisson Thomas right preconditioner with two-pass reorthogonalized GMRES/Givens. Start eta=.3, then clamp .9*(Fk/Fk-1)^1.5 to [.001,.5]. This is an explicit EW Choice2-style variant, not the paper’s full safeguards or PETSc defaults."
+    },
+    "validation": {
+      "ja": "保存R3では共通27pytestと本caseの129固定判定が合格。非零Jvの解析検算、離散残差、独立解析上下枝、3modeの一致、forcing、評価回数、Krylov記憶幅、Armijoと固定η対照を確認。解析forcing検算は別計数で、FD/ADの反復制御には使いません。",
+      "en": "The preserved R3 run passed the shared27 pytest tests and this case’s129 fixed gates: nonzero analytic Jv qualification, discrete residuals, independent analytic branches, mode agreement, forcing, evaluation ledgers, Krylov storage, Armijo and the constant-eta control. Analytic forcing validation is counted separately and does not steer FD/AD iterations."
+    },
+    "limits": {
+      "ja": "小1次元BVP向けの教育実装です。ADは四則・exp・境界paddingの方向微分に限ります。小Hessenberg行列と基底は保持します。ηの固定下限があるため、原著EWの漸近収束定理、一般AD/PETScとの同等性、速度向上や大域収束は主張しません。",
+      "en": "An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee."
+    },
+    "method_ids": [
+      "jacobian-free-newton-krylov",
+      "gmres",
+      "thomas",
+      "automatic-differentiation",
+      "centered-difference"
+    ],
+    "domains": [
+      "pde",
+      "nonlinear",
+      "linear-algebra"
+    ],
+    "code_files": [
+      "run.py",
+      "problem.py",
+      "continuation.py",
+      "matrix_free.py",
+      "dual.py",
+      "experiments.py",
+      "references/analytic_family.py"
+    ],
+    "references": [
+      {
+        "id": "knoll-keyes2004",
+        "title": "Jacobian-free Newton-Krylov methods: a survey of approaches and applications",
+        "author": "D.A.Knoll,D.E.Keyes",
+        "year": 2004,
+        "type": "article",
+        "doi": "10.1016/j.jcp.2003.08.010",
+        "url": "https://inf.ufes.br/~luciac/comcie/JFNK-Knoll.pdf",
+        "review_level": "primary-selected-PDF-text-via-course-mirror",
+        "review_scope": "Selectedsec2.3,2.3.1,2.3.2 and2.4.1, printedpp361–363: matrix-free Jv action, perturbation scaling, inexact forcing Eq16 and line-search globalization. Actual central difference denominator2h and eps_machine^(1/3) scaling are independently specified/qualified, not an attribution to a PETSc default. No whole41-page audit or paper solver result reuse.",
+        "review": {
+          "ja": "原著のJv・差分刻み・inexact forcing・前処理の選択部分を講義ミラー配送から読解。中央差分と固定clamp付き比率則は明示的な実装選択です。",
+          "en": "Selected primary Jv,FDscale,inexactforcing andpreconditioning sections readvia disclosedcourse mirror; centralFD/cappedrule areexplicitimplementation choices."
+        },
+        "role": "algorithm-primary"
+      },
+      {
+        "id": "eisenstat-walker1996",
+        "title": "Choosing the Forcing Terms in an Inexact Newton Method",
+        "doi": "10.1137/0917003",
+        "url": "https://users.wpi.edu/~walker/Papers/forcing_terms,SISC_17,1996,16-32.pdf",
+        "review_level": "primary-selected-PDF-text",
+        "author": "S. C. Eisenstat and H. F. Walker",
+        "year": 1996,
+        "type": "article",
+        "review_scope": "Section1 AlgorithmIN/Eq1.2; selectedsec2 Choice2/Eq2.6; practical-safeguard paragraphssec2.1, printedpp16,20,22–23. Core eta=gamma*(||F_k||/||F_{k-1}||)^alpha is Choice2-style. Our gamma.9/alpha1.5 with eta_initial.3 and fixed[.001,.5] clamp omits the paper’s previous-eta safeguard. This is a declared variant, not its complete safeguarded algorithm or an asymptotic convergence certification.",
+        "review": {
+          "ja": "著者公開の原著PDFからAlgorithm IN、Choice 2と実用的safeguardの選択部分を確認。本文全体・全証明・性能表の監査ではありません。",
+          "en": "Read selected Algorithm IN, Choice 2 and safeguard passages from the author-hosted original; not a full proof or performance-table audit."
+        },
+        "role": "algorithm-primary"
+      },
+      {
+        "id": "langtangen-bratu-official",
+        "title": "Finite differences for the1D Bratu problem,Problem8",
+        "author": "Hans Petter Langtangen",
+        "year": 2014,
+        "type": "author-course-documentation",
+        "url": "https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html",
+        "review_level": "author-selected-exact-solution-exercise",
+        "review_scope": "Problem8/Eq52: boundary-value equation, analytic cosh family, branch count and printed rounded critical value. The author’s parameter equals2 times our theta. Independent Decimal80 exact-family qualification remains the numerical reference; the printed rounded anchor is a separate coarse check.",
+        "review": {
+          "ja": "著者教材のBratu解析族と二枝・丸めた臨界値を確認。変数は採用thetaの2倍で、別導出とDecimal80で資格。1914原著は未読です。",
+          "en": "Read author exercise exactfamily/twobranches/roundedcritical; itsparameter istwiceourtheta. Independentderivation/Decimal80qualification;1914originalunread."
+        },
+        "role": "analytic-reference"
+      },
+      {
+        "id": "petsc-snes-official",
+        "title": "PETSc SNES nonlinear solvers: matrix-free,inexact Newton and arc length",
+        "author": "PETSc developers",
+        "year": 2026,
+        "type": "official-documentation",
+        "url": "https://petsc.org/release/manual/snes/",
+        "review_level": "official-selected-documentation",
+        "review_scope": "Selected Inexact Newton-like Methods and beginning of Matrix-Free Methods, residual forcing inequality and matrix-free/preconditioner distinction. Context only. No PETSc installation/execution or borrowed numerical success. Our hyperplane continuation is not a claim to implement every SNES arc-length scheme.",
+        "review": {
+          "ja": "公式3.26.1文書の関連節のみ確認。PETScを使用・実行した成功値は借用せず、二次arc制約と採用超平面を区別します。",
+          "en": "Selected official3.26.1sections only; noPETSc execution orborrowed result. Distinguish itsquadraticarcconstraint fromourhyperplane."
+        },
+        "role": "context-only"
+      }
+    ],
+    "citations": [
+      {
+        "id": "knoll-keyes2004",
+        "title": "Jacobian-free Newton-Krylov methods: a survey of approaches and applications",
+        "author": "D.A.Knoll,D.E.Keyes",
+        "year": 2004,
+        "type": "article",
+        "doi": "10.1016/j.jcp.2003.08.010",
+        "url": "https://inf.ufes.br/~luciac/comcie/JFNK-Knoll.pdf",
+        "review_level": "primary-selected-PDF-text-via-course-mirror",
+        "review_scope": "Selectedsec2.3,2.3.1,2.3.2 and2.4.1, printedpp361–363: matrix-free Jv action, perturbation scaling, inexact forcing Eq16 and line-search globalization. Actual central difference denominator2h and eps_machine^(1/3) scaling are independently specified/qualified, not an attribution to a PETSc default. No whole41-page audit or paper solver result reuse.",
+        "review": {
+          "ja": "原著のJv・差分刻み・inexact forcing・前処理の選択部分を講義ミラー配送から読解。中央差分と固定clamp付き比率則は明示的な実装選択です。",
+          "en": "Selected primary Jv,FDscale,inexactforcing andpreconditioning sections readvia disclosedcourse mirror; centralFD/cappedrule areexplicitimplementation choices."
+        },
+        "role": "algorithm-primary"
+      },
+      {
+        "id": "eisenstat-walker1996",
+        "title": "Choosing the Forcing Terms in an Inexact Newton Method",
+        "doi": "10.1137/0917003",
+        "url": "https://users.wpi.edu/~walker/Papers/forcing_terms,SISC_17,1996,16-32.pdf",
+        "review_level": "primary-selected-PDF-text",
+        "author": "S. C. Eisenstat and H. F. Walker",
+        "year": 1996,
+        "type": "article",
+        "review_scope": "Section1 AlgorithmIN/Eq1.2; selectedsec2 Choice2/Eq2.6; practical-safeguard paragraphssec2.1, printedpp16,20,22–23. Core eta=gamma*(||F_k||/||F_{k-1}||)^alpha is Choice2-style. Our gamma.9/alpha1.5 with eta_initial.3 and fixed[.001,.5] clamp omits the paper’s previous-eta safeguard. This is a declared variant, not its complete safeguarded algorithm or an asymptotic convergence certification.",
+        "review": {
+          "ja": "著者公開の原著PDFからAlgorithm IN、Choice 2と実用的safeguardの選択部分を確認。本文全体・全証明・性能表の監査ではありません。",
+          "en": "Read selected Algorithm IN, Choice 2 and safeguard passages from the author-hosted original; not a full proof or performance-table audit."
+        },
+        "role": "algorithm-primary"
+      },
+      {
+        "id": "langtangen-bratu-official",
+        "title": "Finite differences for the1D Bratu problem,Problem8",
+        "author": "Hans Petter Langtangen",
+        "year": 2014,
+        "type": "author-course-documentation",
+        "url": "https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html",
+        "review_level": "author-selected-exact-solution-exercise",
+        "review_scope": "Problem8/Eq52: boundary-value equation, analytic cosh family, branch count and printed rounded critical value. The author’s parameter equals2 times our theta. Independent Decimal80 exact-family qualification remains the numerical reference; the printed rounded anchor is a separate coarse check.",
+        "review": {
+          "ja": "著者教材のBratu解析族と二枝・丸めた臨界値を確認。変数は採用thetaの2倍で、別導出とDecimal80で資格。1914原著は未読です。",
+          "en": "Read author exercise exactfamily/twobranches/roundedcritical; itsparameter istwiceourtheta. Independentderivation/Decimal80qualification;1914originalunread."
+        },
+        "role": "analytic-reference"
+      },
+      {
+        "id": "petsc-snes-official",
+        "title": "PETSc SNES nonlinear solvers: matrix-free,inexact Newton and arc length",
+        "author": "PETSc developers",
+        "year": 2026,
+        "type": "official-documentation",
+        "url": "https://petsc.org/release/manual/snes/",
+        "review_level": "official-selected-documentation",
+        "review_scope": "Selected Inexact Newton-like Methods and beginning of Matrix-Free Methods, residual forcing inequality and matrix-free/preconditioner distinction. Context only. No PETSc installation/execution or borrowed numerical success. Our hyperplane continuation is not a claim to implement every SNES arc-length scheme.",
+        "review": {
+          "ja": "公式3.26.1文書の関連節のみ確認。PETScを使用・実行した成功値は借用せず、二次arc制約と採用超平面を区別します。",
+          "en": "Selected official3.26.1sections only; noPETSc execution orborrowed result. Distinguish itsquadraticarcconstraint fromourhyperplane."
+        },
+        "role": "context-only"
+      }
+    ],
+    "formulas": [
+      "-u''=\\lambda e^u,\\quad u(0)=u(1)=0",
+      "u_\\theta=2\\log\\frac{\\cosh(\\theta/2)}{\\cosh(\\theta(x-1/2))},\\quad\\lambda(\\theta)=2\\theta^2/\\cosh^2(\\theta/2)",
+      "J(u)v=A_hv-\\lambda e^u\\odot v",
+      "\\eta_k=\\min\\{0.5,\\max\\{0.001,0.9(\\|F_k\\|_2/\\|F_{k-1}\\|_2)^{1.5}\\}\\}"
+    ],
+    "gallery_figure": "bratu-matrix-free-jfnk-preview.png",
+    "additional_figures": [
+      {
+        "file": "bratu-matrix-free-jfnk-preview.png",
+        "caption": {
+          "ja": "保存したN=127のNewton残差、上枝の解と解析参照、Jv誤差、実評価回数を示す縮小図。run indexは保存CSVに対応します。",
+          "en": "Preview of stored N=127 Newton residuals,upper-branch field/reference,Jv errors and actual evaluation counts. Run indices match the saved CSV."
+        }
+      }
+    ]
+  }
+]

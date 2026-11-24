@@ -1,0 +1,99 @@
+[
+  {
+    "id": "cylinder-mie2d",
+    "method_ids": [
+      "fdtd",
+      "leapfrog"
+    ],
+    "title": {
+      "ja": "2D誘電体円柱のMie散乱幅",
+      "en": "Mie scattering width of a two-dimensional dielectric cylinder"
+    },
+    "summary": {
+      "ja": "実際の2D散乱場を進め、閉曲線Poynting流束と独立な円柱級数を比較します。",
+      "en": "Evolve the actual two-dimensional scattered fields and compare closed-contour Poynting power with an independent cylindrical series."
+    },
+    "assumptions": {
+      "ja": "c=ε0=μ0=1。無限円柱のEz偏光、半径0.25、比誘電率2.25、真空波長1。6×6領域と4辺PML、明示的な節点階段状形状です。",
+      "en": "Use c = epsilon0 = mu0 = 1, an infinite cylinder with Ez polarization, radius 0.25, relative permittivity 2.25 and vacuum wavelength 1. The 6 × 6 domain has four-side PML and an explicitly nodal staircase geometry."
+    },
+    "algorithm": {
+      "ja": "Yeeの散乱場を局所分極contrastの厳密な離散入射差分で励起します。EとHはそれぞれの整数・半時刻でFourier集計し、Hの4点補間後に物理流束を積分します。",
+      "en": "Advance the scattered Yee fields with an exact discrete incident difference on the polarization-contrast support. Accumulate E and H at their own integer and half times, then integrate physical power after four-point native-face collocation."
+    },
+    "validation": {
+      "ja": "12/18/24点/波長、32周期の過渡除去と8周期の計測。2本の閉曲線、前後4周期、同じ全時間を進めた半振幅phasorと5保存時刻の真空対照を検査し、円柱級数の散乱幅と外部場を照合します。",
+      "en": "Use 12/18/24 points per wavelength, 32 burn-in periods and 8 measured periods. Check two contours, consecutive four-period windows, half-amplitude phasors after a complete repeated evolution, and a vacuum control at the five saved times. Compare scattering width and exterior fields with the cylindrical series."
+    },
+    "limits": {
+      "ja": "Ezの無損失2D円柱のみで、3D球ではありません。階段状形状の誤差を記録し、一般の曲面2次精度や任意周波数・材料での精密散乱を保証しません。",
+      "en": "This is a lossless two-dimensional Ez cylinder, not a three-dimensional sphere. Report staircase geometry error without claiming general second-order curved-boundary accuracy or precision scattering for arbitrary frequencies and materials."
+    },
+    "formulas": [
+      "\\varepsilon\\partial_tE_z=\\partial_xH_y-\\partial_yH_x,\\quad\\partial_tH_x=-\\partial_yE_z,\\quad\\partial_tH_y=\\partial_xE_z",
+      "\\Sigma_{\\mathrm{sca}}=\\frac4k\\sum_{n=-\\infty}^{\\infty}|a_n|^2,\\quad\\Sigma_{\\mathrm{ext}}=-\\frac4k\\sum_n\\operatorname{Re}a_n"
+    ],
+    "domains": [
+      "pde",
+      "time"
+    ],
+    "code_files": [
+      "run.py"
+    ],
+    "references": [
+      {
+        "id": "ansys-cylinder",
+        "author": "Ansys Optics",
+        "year": 2026,
+        "title": "Mie scattering 2D",
+        "url": "https://optics.ansys.com/hc/en-us/articles/360042703373-Mie-scattering-2D",
+        "review_level": "primary-official-documentation-selected-example",
+        "review_scope": "Read the complete substantive benchmark description: two-dimensional dielectric cylinder, TFSF, angular far field and lossless cross sections. Did not read the associated simulation files, theory table or cited book; no external numerical data imported."
+      },
+      {
+        "id": "nist-wronskian",
+        "author": "NIST DLMF",
+        "year": 2026,
+        "title": "Bessel and Hankel Wronskians, section10.5",
+        "url": "https://dlmf.nist.gov/10.5",
+        "review_level": "primary-official-mathematical-identity",
+        "review_scope": "Read section 10.5, especially equation 10.5.3 for the ordinary J/Hankel1 Wronskian; version 1.2.8. Cylinder boundary algebra is independently derived here."
+      }
+    ],
+    "citations": [
+      {
+        "id": "ansys-cylinder",
+        "author": "Ansys Optics",
+        "year": 2026,
+        "title": "Mie scattering 2D",
+        "url": "https://optics.ansys.com/hc/en-us/articles/360042703373-Mie-scattering-2D",
+        "review_level": "primary-official-documentation-selected-example",
+        "review_scope": "Read the complete substantive benchmark description: two-dimensional dielectric cylinder, TFSF, angular far field and lossless cross sections. Did not read the associated simulation files, theory table or cited book; no external numerical data imported."
+      },
+      {
+        "id": "nist-wronskian",
+        "author": "NIST DLMF",
+        "year": 2026,
+        "title": "Bessel and Hankel Wronskians, section10.5",
+        "url": "https://dlmf.nist.gov/10.5",
+        "review_level": "primary-official-mathematical-identity",
+        "review_scope": "Read section 10.5, especially equation 10.5.3 for the ordinary J/Hankel1 Wronskian; version 1.2.8. Cylinder boundary algebra is independently derived here."
+      }
+    ],
+    "review_level": "selected-primary-sources-independent-derivation-and-fixed-reference-qualification",
+    "gallery_figure": "cylinder-mie2d-preview.png",
+    "additional_figures": [
+      {
+        "file": "cylinder-mie2d-preview.png",
+        "caption": {
+          "ja": "保存した最細格子の実2D散乱電場phasorの実部。",
+          "en": "Real part of the actual saved scattered electric phasor on the finest two-dimensional grid."
+        }
+      }
+    ],
+    "case_notes": {
+      "ja": "初回100資格の99合格・粗格子Hの2点補間2.771%誤差による1未達を保持。元の診断を変更せず別4点補間を追加し、同じ2%基準で再資格します。",
+      "en": "Retain the first 99/100 qualification and its coarse-grid 2.771% error from two-point H collocation. Preserve the original diagnostic, add a separate four-point diagnostic and requalify against the unchanged 2% criterion."
+    }
+  }
+]

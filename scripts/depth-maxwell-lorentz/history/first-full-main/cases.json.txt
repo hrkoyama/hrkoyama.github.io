@@ -1,0 +1,79 @@
+[
+  {
+    "id": "lorentz-oblique-sp",
+    "method_ids": [
+      "fdtd",
+      "leapfrog",
+      "implicit-midpoint"
+    ],
+    "title": {
+      "ja": "Lorentz分散板へのs/p斜め入射",
+      "en": "Oblique s/p incidence on a Lorentz-dispersive slab"
+    },
+    "summary": {
+      "ja": "有限波束の実進行から複素r/t・R/T・直接散逸を求め、複素Fresnel参照と比較します。",
+      "en": "Measure complex r/t, power fractions and direct dissipation from actual finite-pulse evolutions and compare them with complex Fresnel slab references."
+    },
+    "assumptions": {
+      "ja": "周期y方向のky=4に制限した2D場、c=1。板[4,5]のε∞=1.5、Δε=0.75、ω0=9、γ=0.5、σ=0.04。外側は真空、PEC端は[-24,36]、T=36です。",
+      "en": "Use a two-dimensional field restricted to periodic transverse wave number ky = 4 and c = 1. The slab [4, 5] has epsilon_inf = 1.5, delta_epsilon = 0.75, omega_0 = 9, gamma = 0.5 and sigma = 0.04. Outer vacuum ends at PEC caps [-24, 36]; T = 36."
+    },
+    "algorithm": {
+      "ja": "単一ky Yee空間演算と局所の陰的中点Lorentz ADE。p偏光の両電場に分極を結合し、同格子の真空波束で入射・伝播位相を除きます。直接Ohmic・物質減衰仕事と修正エネルギーを別々に集計します。",
+      "en": "Use the single-ky Yee spatial operator and local implicit-midpoint Lorentz ADE. Couple both p-polarized electric components to polarization, and remove incident propagation with a matched vacuum pulse on the same grid. Accumulate direct Ohmic and material-damping work separately from modified energy."
+    },
+    "validation": {
+      "ja": "s/p各3解像度の物質・真空12進行からω=5.1/6/6.9を測定。独立な有限窓の真空幾何級数、複素Fresnel係数、直接体積散逸、全stepのPEC収支と末尾を検査します。",
+      "en": "Measure omega = 5.1/6/6.9 from 12 actual material/vacuum evolutions across three resolutions and both polarizations. Check an independent finite-window vacuum geometric sum, complex Fresnel coefficients, direct volume dissipation, all-step PEC budgets and final monitor tails."
+    },
+    "limits": {
+      "ja": "任意の横方向分布ではなく単一kyの実空間制限です。1つの受動Lorentz極と有限帯域・有限窓のみ。Gaussian尾は厳密には非零で、窓診断と参照誤差を別記します。",
+      "en": "This is a genuine single-ky restriction rather than arbitrary transverse data. It covers one passive Lorentz pole and a fixed finite band/window. Gaussian tails are nonzero; window diagnostics and reference errors are reported separately."
+    },
+    "formulas": [
+      "\\varepsilon_\\infty\\partial_t\\mathbf E=\\nabla\\times\\mathbf H-\\sigma\\mathbf E-\\mathbf J,\\quad\\partial_t\\mathbf P=\\mathbf J",
+      "\\partial_t\\mathbf J=f\\mathbf E-\\omega_0^2\\mathbf P-\\gamma\\mathbf J,\\quad f=\\Delta\\varepsilon\\omega_0^2",
+      "\\varepsilon(\\omega)=\\varepsilon_\\infty+\\frac{f}{\\omega_0^2-\\omega^2-i\\gamma\\omega}+\\frac{i\\sigma}{\\omega}"
+    ],
+    "domains": [
+      "pde",
+      "time"
+    ],
+    "code_files": [
+      "run.py"
+    ],
+    "references": [
+      {
+        "id": "meep-materials",
+        "author": "Meep developers",
+        "year": 2026,
+        "title": "Meep Materials documentation",
+        "url": "https://meep.readthedocs.io/en/latest/Materials/",
+        "review_level": "primary-official-documentation-selected-sections",
+        "review_scope": "Read Material Dispersion, Numerical Stability, Loss and Gain, and Conductivity. Confirmed the exp(-i omega t) convention, Lorentz polarization and dispersive-PML warning. Our sigma E conductivity and midpoint update differ from Meep. Unversioned latest documentation; no original Yee or Roden-Gedney paper claim."
+      }
+    ],
+    "citations": [
+      {
+        "id": "meep-materials",
+        "author": "Meep developers",
+        "year": 2026,
+        "title": "Meep Materials documentation",
+        "url": "https://meep.readthedocs.io/en/latest/Materials/",
+        "review_level": "primary-official-documentation-selected-sections",
+        "review_scope": "Read Material Dispersion, Numerical Stability, Loss and Gain, and Conductivity. Confirmed the exp(-i omega t) convention, Lorentz polarization and dispersive-PML warning. Our sigma E conductivity and midpoint update differ from Meep. Unversioned latest documentation; no original Yee or Roden-Gedney paper claim."
+      }
+    ],
+    "review_level": "selected-primary-sources-independent-derivation-and-fixed-reference-qualification",
+    "gallery_figure": "lorentz-oblique-sp-preview.png",
+    "additional_figures": [
+      {
+        "file": "lorentz-oblique-sp-preview.png",
+        "caption": {
+          "ja": "保存したp偏光の実電場をky=4の周期y方向へ再構成した場。",
+          "en": "Actual saved p-polarized electric field reconstructed over the periodic y direction at ky=4."
+        }
+      }
+    ]
+  }
+]

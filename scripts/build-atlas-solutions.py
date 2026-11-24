@@ -15,12 +15,22 @@ ROUTE = BASE + 'solutions/'
 SOURCE = 'numerical-methods-atlas/assets/reference-solutions.json'
 TRANSLATIONS = 'numerical-methods-atlas/locales/messages.json'
 KIND_NAMES = {'analytic': 'Analytic reference', 'semi-analytic': 'Semi-analytic reference', 'manufactured': 'Manufactured solution', 'numerical-reference': 'Finite-grid numerical reference'}
-CITATION_ROLES = {'official-setup-cross-check': ('公式の設定・境界の照合', 'Official setup and boundary cross-check'), 'original-problem': ('原問題・誤差解析', 'Original problem and error analysis'), 'reference-software-paper': ('参照ソフトの論文', 'Reference-software paper'), 'executed-reference-implementation': ('実際に照合したコード版', 'Executed reference implementation')}
+CITATION_ROLES = {'official-setup-cross-check': ('公式の設定・境界の照合', 'Official setup and boundary cross-check'), 'original-problem': ('原問題・誤差解析', 'Original problem and error analysis'), 'reference-software-paper': ('参照ソフトの論文', 'Reference-software paper'), 'executed-reference-implementation': ('実際に照合したコード版', 'Executed reference implementation'), 'algorithm-primary': ('手法の原著（記載した範囲を確認）', 'Primary method source (stated scope reviewed)'), 'analytic-reference': ('解析参照の出典', 'Source of the analytic reference'), 'selected-primary-documentation-or-authored-identity': ('公式資料・著者の式（記載した範囲を確認）', 'Official documentation or authored identity (stated scope reviewed)'), 'selected-official-documentation': ('公式資料（選択部分を確認）', 'Selected official documentation')}
 
 def citation_role(citation, language):
     return CITATION_ROLES.get(citation['role'], (citation['role'], citation['role']))[language == 'en']
 
 SLICE_NOTE = 'Taylor–Green: x-slice at y = π/4. These are point values, not two-dimensional cell averages.'
+
+
+def dimension_label(case, language):
+    if case['dimension'] is None:
+        if case.get('domain_kind') != 'finite-dimensional-algebra':
+            raise ValueError('A nonspatial reference needs its explicit algebraic domain')
+        return '有限次元の代数問題' if language == 'ja' else 'Finite-dimensional algebra'
+    if type(case['dimension']) is not int or case['dimension'] not in (1, 2, 3):
+        raise ValueError('Invalid spatial reference dimension')
+    return str(case['dimension']) + ('次元' if language == 'ja' else 'D')
 
 
 def digest(path):
@@ -44,9 +54,12 @@ def load(root=ROOT):
         ident, kind = source_case['id'], source_case['kind']
         if not re.fullmatch(r'[a-z0-9-]+', ident) or kind not in KIND_NAMES:
             raise ValueError('Unknown reference-solution identity or kind: ' + ident)
-        if not source_case['formula'].strip() or source_case['dimension'] not in (1, 2, 3):
+        if not source_case['formula'].strip():
             raise ValueError('Missing reference formula or dimension: ' + ident)
+        dimension_label(source_case, 'en')
         case = {key: source_case[key] for key in ['id', 'model', 'kind', 'formula', 'dimension', 'bounds', 'components', 'field_type', 'parameters', 'sources']}
+        if source_case.get('domain_kind') == 'finite-dimensional-algebra':
+            case['domain_kind'] = source_case['domain_kind']
         case.update(title=localized(source_case['title']), assumptions=localized(source_case['assumptions']),
                     kind_label=localized(KIND_NAMES[kind]),
                     view=source_case.get('view', {language: BASE + '?lang=' + language + '#/exact-solutions?case=' + ident for language in ['ja', 'en']}),
@@ -83,13 +96,13 @@ def section(data, language):
     body += link(BASE + language + '/read/reference-solutions/', '参照解の定義と検証' if ja else 'Reference definitions and verification') + '</nav>'
     body += '<details class="solutions-scope"><summary>' + ('参照解の種類と表示範囲' if ja else 'Reference types and display scope') + '</summary><p>' + ('解析解・半解析解・製造解・有限格子の数値参照を区別します。半解析解は有限精度の求根・ODE積分・求積などを含み、製造解は目標解から外力を選びます。数値参照は別計算で得た有限格子の結果で、離散化・境界・時間刻みの誤差や参照自身の感度が残ります。厳密解や保証された誤差上界ではありません。' if ja else
              'Analytic, semi-analytic, manufactured and finite-grid numerical references are distinct. Semi-analytic cases include finite-precision roots, ODE integration or quadrature; manufactured cases choose forcing from a target solution. Numerical references come from separate computations and retain discretization, boundary and time-step errors and their own resolution sensitivity. They are not exact solutions or guaranteed error bounds.') + '</p><p>'
-    body += ('次元は元データの定義に従います。Taylor–Greenは2次元の式ですが、既存の表示は y = π/4 のx方向断面です。' if ja else
-             'Dimensions follow the source metadata. Taylor–Green has a two-dimensional formula; the existing display is an x-slice at y = π/4.') + '</p></details>'
+    body += ('次元は元データの定義に従います。有限次元の代数問題には空間次元を割り当てません。Taylor–Greenは2次元の式ですが、既存の表示は y = π/4 のx方向断面です。' if ja else
+             'Dimensions follow the source metadata. Finite-dimensional algebraic problems have no assigned spatial dimension. Taylor–Green has a two-dimensional formula; the existing display is an x-slice at y = π/4.') + '</p></details>'
     body += '<div class="solutions-summary">' + ''.join('<span>' + escape(next(case['kind_label'][language] for case in data['cases'] if case['kind'] == kind)) + ' · ' + str(data['counts'].get(kind, 0)) + '</span>' for kind in KIND_NAMES if data['counts'].get(kind)) + '</div>'
     body += '<div class="solutions-grid">'
     for case in data['cases']:
         body += '<article class="solution-card" id="solution-' + case['id'] + '-' + language + '" data-solution-id="' + case['id'] + '" data-solution-kind="' + case['kind'] + '">'
-        body += '<div class="solution-badges"><span class="solution-kind">' + escape(case['kind_label'][language]) + '</span><span class="solution-dimension">' + str(case['dimension']) + ('次元' if ja else 'D') + '</span></div>'
+        body += '<div class="solution-badges"><span class="solution-kind">' + escape(case['kind_label'][language]) + '</span><span class="solution-dimension">' + escape(dimension_label(case, language)) + '</span></div>'
         body += '<h2>' + escape(case['title'][language]) + '</h2><p class="solution-formula" dir="ltr">' + escape(case['formula']) + '</p>'
         body += '<p class="solution-assumptions">' + escape(case['assumptions'][language]) + '</p>'
         if case.get('sampling_note'):
@@ -117,7 +130,7 @@ def markdown(data):
         result += '## ' + ('日本語' if ja else 'English') + '\n\n'
         for case in data['cases']:
             result += '### ' + case['title'][language] + '\n\n'
-            result += case['kind_label'][language] + ' · ' + str(case['dimension']) + ('次元' if ja else 'D') + '\n\n'
+            result += case['kind_label'][language] + ' · ' + dimension_label(case, language) + '\n\n'
             result += '`' + case['formula'] + '`\n\n' + case['assumptions'][language] + '\n\n'
             if case.get('sampling_note'):
                 result += case['sampling_note'][language] + '\n\n'

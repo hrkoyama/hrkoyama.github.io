@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "batch": "sequences38-47",
+  "sequences": [
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47
+  ],
+  "published_commit": "546e9cdb57ba1700c86081757d3a2dc196cd0739",
+  "published_tree": "2ed91201093e081476d2f54bcedf13eab7d98919",
+  "verified_at_utc": "2026-11-24T05:01:25.319437+00:00",
+  "verification_record_added_with_next_authorized_batch": true,
+  "repository": "hrkoyama/hrkoyama.github.io",
+  "public_origin": "https://hrkoyama.github.io/",
+  "passed": true,
+  "all_mandatory_checks_complete": true,
+  "scientific_scope": "Published ZIPs only, no source checkout; all fixed inputs and all47 full JUnit XML verified. Not an exhaustive convergence rerun of all historical editions.",
+  "additions": {
+    "new_groups": 9,
+    "new_cases": 14,
+    "total_groups": 47,
+    "total_cases": 97,
+    "new_pytest": 197,
+    "total_pytest": 1244,
+    "new_case_gates": 1449,
+    "models": 65,
+    "problems": 122
+  },
+  "public_Linux": {
+    "run_id": 45325614147,
+    "run_attempt": 2,
+    "groups": 47,
+    "cases": 97,
+    "pytest": 1244,
+    "JUnit_files": 47,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "report_sha256": "055d495223c1548abfcaa2f6d802898c5c6812b6a610d9b9f135faeeb188f510",
+    "source_checkout": false
+  },
+  "site_checks": {
+    "Node_passed": 583,
+    "browser_tests": 12,
+    "specs": 3,
+    "profiles": 4,
+    "generated_indexes_current": true
+  },
+  "cold_search": {
+    "samples": 12,
+    "groups": 4,
+    "repetitions": 3,
+    "target": "actual HR published origin",
+    "scope": "Synthetic shaped Chromium, not a physical-device or p95 claim"
+  },
+  "public_delivery": {
+    "matched_unique_files": 2606,
+    "unique_bytes": 920103466,
+    "scope": "Current batch plus English-integration delta against previously verified8fbf5682; two transient503 responses retained then explicitly rechecked once, all final hashes match"
+  },
+  "public_UI": {
+    "automatic_records": 12,
+    "profiles": 4,
+    "cases": 3,
+    "representative_visual_views": 6,
+    "root_rechecked_views_included_in_six": 2,
+    "ZIP_body_GETs": 0
+  },
+  "workflows": [
+    {
+      "id": 45325614159,
+      "name": "Foundations course public Linux verification",
+      "head_sha": "546e9cdb57ba1700c86081757d3a2dc196cd0739",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "html_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45325614159"
+    },
+    {
+      "id": 45325614139,
+      "name": "Foundations English public Web and PDF verification",
+      "head_sha": "546e9cdb57ba1700c86081757d3a2dc196cd0739",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "html_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45325614139"
+    },
+    {
+      "id": 45325614147,
+      "name": "Atlas lightweight public Linux verification",
+      "head_sha": "546e9cdb57ba1700c86081757d3a2dc196cd0739",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 2,
+      "html_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45325614147"
+    },
+    {
+      "id": 45324691237,
+      "name": "Atlas cold-search performance verification",
+      "head_sha": "546e9cdb57ba1700c86081757d3a2dc196cd0739",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "html_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45324691237"
+    },
+    {
+      "id": 45324691200,
+      "name": "pages build and deployment",
+      "head_sha": "546e9cdb57ba1700c86081757d3a2dc196cd0739",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "html_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45324691200"
+    },
+    {
+      "id": 45324691208,
+      "name": "Public site checks",
+      "head_sha": "546e9cdb57ba1700c86081757d3a2dc196cd0739",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "html_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45324691208"
+    }
+  ],
+  "initial_MHD_attempt": {
+    "conclusion": "failure",
+    "reason": "Unchanged115second budget exhausted in existing final Orszag-Tang input",
+    "same_source_same_criteria_retry_passed": true,
+    "failed_attempt_preserved": true,
+    "source_inputs_references_criteria_and_budget_unchanged": true
+  },
+  "foundations_course": {
+    "unit_tests": 25,
+    "comparison_tests": 2,
+    "fixed_checks": 34,
+    "CSV_files": 15
+  },
+  "English_course": {
+    "pages": 20,
+    "chapters": 19,
+    "questions_with_answers": 38,
+    "PDF_pages": 42,
+    "shared_fragments": 605,
+    "assets": 98,
+    "protected_files": 183
+  }
+}

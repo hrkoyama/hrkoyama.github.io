@@ -1,0 +1,15 @@
+{
+  "reviewer": "root agent, independent of source author",
+  "recorded_at_utc": "2026-11-23T12:26:10.595865+00:00",
+  "passed": true,
+  "authorized_first_main_execution": true,
+  "main_contract_sha256": "295cffb4e7d6cf09d7412b3f5405d544c42ca487376b296e848ada55aabdaad8",
+  "reviewed_scope": [
+    "full solver.py, main driver and inherited HLLD core",
+    "conserved CPAW means, coordinate-shifted OT and official loop vz2",
+    "CT curl and Heun updates, explicit fallback/no cell clipping",
+    "independent final-only conserved restriction and pressure after restriction",
+    "input limits, gate counts, test coverage, runtime guards"
+  ],
+  "authorization": "Run prepared shared120s pytest+main harness now; preserve all failures/partial outputs before any adjustment. Plot only after scientific PASS. No broad integration edits."
+}

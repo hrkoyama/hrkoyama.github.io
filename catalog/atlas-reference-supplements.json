@@ -4309,6 +4309,685 @@
         }
       ],
       "qualification_status": "Actual640/640same-data comparisons and3tie regressions PASS; freshmain8chainsets and unchanged128physical/mixing+8finitegates PASS. Original637/640failure retained."
+    },
+    {
+      "id": "cylinder-mie2d",
+      "model": "maxwell",
+      "kind": "analytic",
+      "title": "Exterior series and scattering width of a dielectric cylinder",
+      "assumptions": "Lossless infinite cylinder, Ez polarization, c = epsilon0 = mu0 = 1, radius 0.25, epsilon = 2.25 and vacuum wavelength 1. The analytical field is exterior to the exact circle.",
+      "formula": "E_z^{\\mathrm{sca}}=\\sum_n i^n a_nH_n^{(1)}(kr)e^{in\\theta},\\quad\\Sigma_{\\mathrm{sca}}=4\\sum_n|a_n|^2/k",
+      "dimension": 2,
+      "bounds": [
+        [
+          -3,
+          3
+        ],
+        [
+          -3,
+          3
+        ]
+      ],
+      "components": [
+        "scattered Ez phasor",
+        "scattering width",
+        "series extinction identity"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "id": "cylinder-mie2d",
+        "length": 6.0,
+        "radius": 0.25,
+        "epsilon": 2.25,
+        "omega": 6.283185307179586,
+        "ppw": [
+          12,
+          18,
+          24
+        ],
+        "courant": 0.6,
+        "pml_thickness": 1.0,
+        "pml_peak": 12.0,
+        "pml_order": 3,
+        "burn_periods": 32,
+        "sample_periods": 8,
+        "contours": [
+          1.0,
+          1.5
+        ]
+      },
+      "sources": [
+        "https://optics.ansys.com/hc/en-us/articles/360042703373-Mie-scattering-2D",
+        "https://dlmf.nist.gov/10.5"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/cylinder-mie2d/?lang=ja#cylinder-mie2d-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/cylinder-mie2d/?lang=en#cylinder-mie2d-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-maxwell-cylinder/#cylinder-mie2d",
+        "en": "/numerical-methods-atlas/en/read/validation-maxwell-cylinder/#cylinder-mie2d"
+      },
+      "reference_scope": "Independent ordinary cylindrical Bessel/Hankel boundary algebra and NIST Wronskian controls. Compare the analytical exterior field and total scattering width with actual finite-grid Yee fields. The extinction identity only checks the reference; it is not an additional measured FDTD observable. The exact circle differs from the declared staircase geometry. Retain the original coarse two-point collocation failure; a separate four-point diagnostic uses the unchanged 2% analytic-flux criterion.",
+      "citations": [
+        {
+          "role": "selected-primary-documentation-or-authored-identity",
+          "title": "Mie scattering 2D",
+          "url": "https://optics.ansys.com/hc/en-us/articles/360042703373-Mie-scattering-2D",
+          "note": "Read the complete substantive benchmark description: two-dimensional dielectric cylinder, TFSF, angular far field and lossless cross sections. Did not read the associated simulation files, theory table or cited book; no external numerical data imported."
+        },
+        {
+          "role": "selected-primary-documentation-or-authored-identity",
+          "title": "Bessel and Hankel Wronskians, section10.5",
+          "url": "https://dlmf.nist.gov/10.5",
+          "note": "Read section 10.5, especially equation 10.5.3 for the ordinary J/Hankel1 Wronskian; version 1.2.8. Cylinder boundary algebra is independently derived here."
+        }
+      ]
+    },
+    {
+      "id": "lorentz-oblique-sp",
+      "model": "maxwell-lorentz",
+      "kind": "analytic",
+      "title": "Complex oblique Fresnel coefficients and direct Lorentz-slab loss",
+      "assumptions": "Vacuum surroundings, ky = 4, slab [4, 5], epsilon_inf = 1.5, delta_epsilon = 0.75, omega_0 = 9, gamma = 0.5 and sigma = 0.04. Compare omega = 5.1/6/6.9 for both s = Ez and p = Hz.",
+      "formula": "\\varepsilon(\\omega)=\\varepsilon_\\infty+f/(\\omega_0^2-\\omega^2-i\\gamma\\omega)+i\\sigma/\\omega",
+      "dimension": 2,
+      "bounds": [
+        [
+          -24,
+          36
+        ],
+        [
+          0,
+          1.5707963267948966
+        ]
+      ],
+      "components": [
+        "complex r",
+        "complex t",
+        "R",
+        "T",
+        "direct volume absorptance"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "id": "lorentz-oblique-sp",
+        "domain": [
+          -24.0,
+          36.0
+        ],
+        "original_h": [
+          0.0625,
+          0.03125,
+          0.015625
+        ],
+        "ny": [
+          32,
+          64,
+          128
+        ],
+        "slab": [
+          4.0,
+          5.0
+        ],
+        "ky": 4.0,
+        "carrier": 6.0,
+        "frequencies": [
+          5.1,
+          6.0,
+          6.9
+        ],
+        "center": -8.0,
+        "width": 2.0,
+        "final_time": 60.0,
+        "courant": 0.6,
+        "polarizations": [
+          "s",
+          "p"
+        ],
+        "material": {
+          "epsilon_inf": 1.5,
+          "delta_epsilon": 0.75,
+          "omega0": 9.0,
+          "gamma": 0.5,
+          "sigma": 0.04
+        },
+        "left_monitor": 0.0,
+        "right_monitor": 8.0,
+        "snapshots": 5
+      },
+      "sources": [
+        "https://meep.readthedocs.io/en/latest/Materials/"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/lorentz-oblique-sp/?lang=ja#lorentz-oblique-sp-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/lorentz-oblique-sp/?lang=en#lorentz-oblique-sp-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-maxwell-lorentz/#lorentz-oblique-sp",
+        "en": "/numerical-methods-atlas/en/read/validation-maxwell-lorentz/#lorentz-oblique-sp"
+      },
+      "reference_scope": "Independent continuum complex-root Fresnel slab algebra and direct volume dissipation, qualified for boundary continuity, passivity and quadrature. A separate closed finite-window vacuum geometric sum checks actual discrete monitor sampling. The analytical reference is frequency-domain r/t/R/T/A, not an exact transient Lorentz pulse field. Numerical vacuum propagation is explicitly removed; direct loss is not defined as 1-R-T.",
+      "citations": [
+        {
+          "role": "selected-primary-documentation-or-authored-identity",
+          "title": "Meep Materials documentation",
+          "url": "https://meep.readthedocs.io/en/latest/Materials/",
+          "note": "Read Material Dispersion, Numerical Stability, Loss and Gain, and Conductivity. Confirmed the exp(-i omega t) convention, Lorentz polarization and dispersive-PML warning. Our sigma E conductivity and midpoint update differ from Meep. Unversioned latest documentation; no original Yee or Roden-Gedney paper claim."
+        }
+      ]
+    },
+    {
+      "id": "dispersive-grazing-pml",
+      "model": "maxwell-lorentz",
+      "kind": "numerical-reference",
+      "title": "Isolated same-grid reference for a long grazing dispersive packet",
+      "assumptions": "The homogeneous Lorentz medium continues through the PML: epsilon_inf = 1, delta_epsilon = 0.2, omega_0 = 12, gamma = 0 or 0.005. An Ez-polarized finite-kx Gaussian has carrier omega = 6 and central phase angle 80 degrees. Joint grid/layer refinement uses peaks 6/9/12 on 512/768/1024 cells; the normal control uses 6 and damped fine companion 12. Final time is 700.",
+      "formula": "\\widehat U^n(k_x)=M(k_x,\\Delta t)^n\\widehat U^0(k_x),\\quad K_y=2\\sin(k_y\\Delta y/2)/\\Delta y",
+      "dimension": 2,
+      "bounds": [
+        [
+          0,
+          64
+        ],
+        [
+          0,
+          0.9448132780424273
+        ]
+      ],
+      "components": [
+        "native E/H/P/J at five times",
+        "boundary-isolated field error",
+        "carrier dispersion diagnostic"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "id": "dispersive-grazing-pml",
+        "length": 64.0,
+        "center": 32.0,
+        "envelope_sigma_x": 4.0,
+        "carrier": 6.0,
+        "angle_degrees": 80.0,
+        "cells": [
+          512,
+          768,
+          1024
+        ],
+        "ny": [
+          16,
+          24,
+          32
+        ],
+        "courant": 0.6,
+        "pml_thickness": 12.0,
+        "pml_peak": 6.0,
+        "pml_order": 3,
+        "final_time": 700.0,
+        "snapshots": 5,
+        "material": {
+          "epsilon_inf": 1.0,
+          "delta_epsilon": 0.2,
+          "omega0": 12.0,
+          "gamma": 0.0,
+          "sigma": 0.0
+        },
+        "damping_companion_gamma": 0.005,
+        "reference_lengths": [
+          2048.0,
+          4096.0
+        ],
+        "spectral_cutoff_sigma": 9.0,
+        "normal_control_cells": 512,
+        "reference_frequency_scope": "Finite Gaussian kx-band carrier80deg, not a strictly monochromatic80deg or5.98-6.02-only packet",
+        "memory": "trapezoidal derivative filter; independent new variant; old endpoint-held source unchanged",
+        "pml_peak_by_cells": {
+          "512": 6.0,
+          "768": 9.0,
+          "1024": 12.0
+        }
+      },
+      "sources": [
+        "https://meep.readthedocs.io/en/latest/Materials/",
+        "https://arxiv.org/html/2108.05348v1"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/dispersive-grazing-pml/?lang=ja#dispersive-grazing-pml-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/dispersive-grazing-pml/?lang=en#dispersive-grazing-pml-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-maxwell-grazing/#dispersive-grazing-pml",
+        "en": "/numerical-methods-atlas/en/read/validation-maxwell-grazing/#dispersive-grazing-pml"
+      },
+      "reference_scope": "An independent 5 × 5 no-PML Fourier update matrix solves the constitutive block by LU instead of the primary scalar elimination, then propagates its eigenmodes. Compare periodic boxes of length 2048 and 4096 at every requested native point and time before cache use. The same discretization and initialization intentionally isolate boundary error from bulk dispersion; this is not an independent continuum time integrator. A separate continuum scalar root is only a carrier-dispersion diagnostic. Small operator checks and finite long trajectories are not a general dispersive-PML stability proof. The revised family changes grid and layer strength together; it is not a fixed-PML spatial-order test. The first fixed-peak experiment and its two unmet ratio gates remain retained.",
+      "citations": [
+        {
+          "role": "selected-primary-documentation-or-authored-identity",
+          "title": "Meep Materials documentation",
+          "url": "https://meep.readthedocs.io/en/latest/Materials/",
+          "note": "Read Material Dispersion, Numerical Stability, Loss and Gain, and Conductivity. Confirmed the exp(-i omega t) convention, Lorentz polarization and dispersive-PML warning. Our sigma E conductivity and midpoint update differ from Meep. Unversioned latest documentation; no original Yee or Roden-Gedney paper claim."
+        },
+        {
+          "role": "selected-primary-documentation-or-authored-identity",
+          "title": "Notes on Perfectly Matched Layers",
+          "url": "https://arxiv.org/html/2108.05348v1",
+          "note": "Read sections 3.2–4.2, equations 7–8 and the time-domain ADE discussion, plus sections 5–7.2 on homogeneity, evanescent fields and grazing/discretization limitations. The served text is updated 2026-08-24. The trapezoidal filter is our derivation; no full original Berenger/Roden-Gedney paper review is claimed."
+        }
+      ]
+    },
+    {
+      "id": "pivoted-direct-refinement",
+      "model": "finite-dimensional-linear-system",
+      "kind": "analytic",
+      "title": "Pivoted LU and Cholesky: exact-rational references for actual binary input",
+      "assumptions": "The four fixed matrices use the actual binary64 A and b, converted exactly to Fractions. Rational elimination is exact, followed by a final binary64 rounding. Separate LAPACK comparisons share some numerical infrastructure. This is not a forward-accuracy guarantee for arbitrary ill-conditioned matrices.",
+      "formula": "x_ref=round_binary64(exact_Fraction_solve(A_binary64,b_binary64)); r=b-Ax; eta_inf=||r||inf/(||A||inf||x||inf+||b||inf)",
+      "dimension": null,
+      "bounds": [],
+      "components": [
+        "solution coefficients",
+        "forward error",
+        "normwise backward error",
+        "componentwise backward error"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "fixtures": [
+          "spd-tridiagonal",
+          "near-singular-rank-one",
+          "hilbert5",
+          "wilkinson12"
+        ],
+        "corrections": 5,
+        "factor_precision": "binary32",
+        "residual_and_accumulation_precision": "binary64"
+      },
+      "sources": [
+        "https://netlib.org/lapack/lug/node38.html"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/pivoted-direct-refinement/?lang=ja#pivoted-direct-refinement-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/pivoted-direct-refinement/?lang=en#pivoted-direct-refinement-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#pivoted-direct-refinement",
+        "en": "/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#pivoted-direct-refinement"
+      },
+      "reference_scope": "Exact-rational algebraic references, not spatial or PDE data and not a universal certified forward-error bound. LAPACK DGESV and DPOSV comparisons are reported separately.",
+      "citations": [
+        {
+          "role": "selected-official-documentation",
+          "title": "LAPACK Users Guide: Linear Equations",
+          "url": "https://netlib.org/lapack/lug/node38.html",
+          "note": "Selected LU, Cholesky, conditioning and refinement paragraphs were read. This source uses mixed precision, unlike the selected same-precision RFS description."
+        }
+      ],
+      "domain_kind": "finite-dimensional-algebra"
+    },
+    {
+      "id": "symmetric-saddle-minres",
+      "model": "finite-dimensional-linear-system",
+      "kind": "numerical-reference",
+      "title": "Symmetric saddles: independent dense solutions and the ideal-Schur spectrum",
+      "assumptions": "Algebraic saddles A=[[H,B^T],[B,0]] use velocity sizes 12 and 24 and pressure sizes 5 and 11. Explicit dense SPD ideal-Schur controls compare the original residual separately with dense-solution error. This is not a Stokes boundary-value PDE.",
+      "formula": "S=B H^{-1} B^T; P=diag(H,S); spectrum(L^{-1} A L^{-T})={1,(1-sqrt(5))/2,(1+sqrt(5))/2}; x_ref=LAPACK_solve(A,b)",
+      "dimension": null,
+      "bounds": [],
+      "components": [
+        "solution coefficients",
+        "original residual",
+        "reference forward error",
+        "ideal preconditioned eigenvalues"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "velocity_sizes": [
+          12,
+          24
+        ],
+        "true_residual_tolerance": 1e-09,
+        "preconditioners": [
+          "none",
+          "exact-Schur-SPD"
+        ],
+        "methods": [
+          "minres",
+          "gmres"
+        ],
+        "scope": "Algebraic mixed-Poisson/Stokes-type saddle blocks, not a full fluid PDE discretization.",
+        "pressure_rows": [
+          5,
+          11
+        ],
+        "total_sizes": [
+          17,
+          35
+        ]
+      },
+      "sources": [
+        "https://web.stanford.edu/group/SOL/software/minres/",
+        "https://netlib.org/lapack/lug/node38.html"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/symmetric-saddle-minres/?lang=ja#symmetric-saddle-minres-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/symmetric-saddle-minres/?lang=en#symmetric-saddle-minres-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#symmetric-saddle-minres",
+        "en": "/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#symmetric-saddle-minres"
+      },
+      "reference_scope": "Dense LAPACK solves provide an independent algorithm relative to the original Lanczos and GMRES implementations. Closed ideal-Schur eigenvalues independently qualify the preconditioner. No external fluid solver or full Stokes PDE is executed.",
+      "citations": [
+        {
+          "role": "selected-author-documentation",
+          "title": "Paige and Saunders: MINRES author documentation",
+          "url": "https://web.stanford.edu/group/SOL/software/minres/",
+          "note": "Selected symmetry, indefinite-system, SPD-preconditioning and original-residual discussion was read. The original 1975 paper was not newly read."
+        },
+        {
+          "role": "selected-official-documentation",
+          "title": "LAPACK Users Guide: Linear Equations",
+          "url": "https://netlib.org/lapack/lug/node38.html",
+          "note": "Selected LU, Cholesky, conditioning and refinement paragraphs were read. This source uses mixed precision, unlike the selected same-precision RFS description."
+        }
+      ],
+      "domain_kind": "finite-dimensional-algebra"
+    },
+    {
+      "id": "restarted-shift-invert",
+      "model": "finite-dimensional-eigenproblem",
+      "kind": "analytic",
+      "title": "Restarting and shift-invert: the closed spectrum of a fixed discrete matrix",
+      "assumptions": "A fixed 31 x 31 Dirichlet tridiagonal matrix with h=1/32, restart lengths 8 and 16, and shifts none/0/950. The references are eigenvalues of this finite matrix, not a continuum PDE grid-convergence study.",
+      "formula": "lambda_j=4/h^2*sin(j*pi/(2*(n+1)))^2,n=31; mu=1/(lambda-sigma); lambda=sigma+1/mu",
+      "dimension": null,
+      "bounds": [],
+      "components": [
+        "Ritz eigenvalue",
+        "original eigenpair residual",
+        "shift solve residual",
+        "operator actions"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "size": 31,
+        "restart_lengths": [
+          8,
+          16
+        ],
+        "max_cycles": 40,
+        "shifts": [
+          null,
+          0.0,
+          950.0
+        ],
+        "true_residual_tolerance": 1e-09
+      },
+      "sources": [
+        "https://slepc.upv.es/release/documentation/manual/eps.html"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/restarted-shift-invert/?lang=ja#restarted-shift-invert-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/restarted-shift-invert/?lang=en#restarted-shift-invert-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#restarted-shift-invert",
+        "en": "/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#restarted-shift-invert"
+      },
+      "reference_scope": "A closed finite-dimensional sine spectrum and a separate dense LAPACK qualification. Original-problem residuals and the spectral back-map are checked. No implicit restarting, Krylov-Schur or general nonnormal capability is claimed.",
+      "citations": [
+        {
+          "role": "selected-official-documentation",
+          "title": "SLEPc EPS manual: projection and spectral transformations",
+          "url": "https://slepc.upv.es/release/documentation/manual/eps.html",
+          "note": "Selected projection, restarting and generalized-problem discussion was read. No SLEPc execution or Krylov-Schur reproduction is claimed."
+        }
+      ],
+      "domain_kind": "finite-dimensional-algebra"
+    },
+    {
+      "id": "fem-mass-eigen",
+      "model": "dirichlet-string-eigenproblem",
+      "kind": "analytic",
+      "title": "Consistent-mass P1 string: closed discrete and continuum eigenvalues",
+      "assumptions": "Unit length, tension and density, homogeneous Dirichlet endpoints, 15/31/63 interior nodes, and the lowest three eigenpairs. Compare closed discrete eigenvalues with generalized dense LAPACK, then measure error relative to (j*pi)^2 separately. Displayed vectors are saved numerical modes with arbitrary sign.",
+      "formula": "Kx=lambda_h Mx; lambda_j,h=6*(1-cos(theta_j))/(h^2*(2+cos(theta_j))),theta_j=j*pi/(n+1); lambda_j=(j*pi)^2,phi_j(x)=sin(j*pi*x)",
+      "dimension": 1,
+      "bounds": [
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "components": [
+        "first three discrete eigenvalues",
+        "M-normalized numerical mode shapes",
+        "continuum eigenvalue error"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "interior_nodes": [
+          15,
+          31,
+          63
+        ],
+        "eigenpairs": 3,
+        "krylov_dimension": 24,
+        "lobpcg_absolute_tolerance": 1e-08,
+        "lobpcg_max_iterations": 100,
+        "vector_action_cap": 1000,
+        "boundary": "homogeneous Dirichlet at0,1",
+        "tension": 1.0,
+        "mass_density": 1.0
+      },
+      "sources": [
+        "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.sparse.linalg.lobpcg.html",
+        "https://slepc.upv.es/release/documentation/manual/eps.html"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/fem-mass-eigen/?lang=ja#fem-mass-eigen-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/fem-mass-eigen/?lang=en#fem-mass-eigen-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#fem-mass-eigen",
+        "en": "/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#fem-mass-eigen"
+      },
+      "reference_scope": "Closed finite-element eigenvalues independently qualify comparisons that share LAPACK. Generalized dense eigenvectors and primary M-normalized vectors are finite-precision numerical objects. Residual, M-orthogonality, discrete eigenvalue error and continuum refinement are distinct. No time integration or analytically exact piecewise-linear mode is claimed.",
+      "citations": [
+        {
+          "role": "selected-official-documentation",
+          "title": "SciPy 1.14.1 LOBPCG",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.sparse.linalg.lobpcg.html",
+          "note": "Selected SPD B, operator, preconditioner M, history and rod-example discussion was read. This uses the maintained SciPy implementation, not an original LOBPCG implementation."
+        },
+        {
+          "role": "selected-official-documentation",
+          "title": "SLEPc EPS manual: projection and spectral transformations",
+          "url": "https://slepc.upv.es/release/documentation/manual/eps.html",
+          "note": "Selected projection, restarting and generalized-problem discussion was read. No SLEPc execution or Krylov-Schur reproduction is claimed."
+        }
+      ]
+    },
+    {
+      "id": "bratu-fold-continuation",
+      "model": "bratu",
+      "kind": "analytic",
+      "title": "Crossing the Bratu fold with pseudo-arclength continuation",
+      "assumptions": "Same dimensionless1D Bratu on[0,1] with zero endpoints. The continuous family is evaluated independently in Decimal80;it is not an exact discrete root or Newton/GMRES trajectory.",
+      "formula": "u_\\theta=2\\log\\frac{\\cosh(\\theta/2)}{\\cosh(\\theta(x-1/2))},\\quad\\lambda(\\theta)=2\\theta^2/\\cosh^2(\\theta/2)",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "u"
+      ],
+      "field_type": "scalar",
+      "parameters": {
+        "fixed_lambda": 2,
+        "interior_nodes": [
+          31,
+          63,
+          127
+        ],
+        "reference_decimal_precision": 80
+      },
+      "sources": [
+        "https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/bratu-fold-continuation/?lang=ja#bratu-fold-continuation-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/bratu-fold-continuation/?lang=en#bratu-fold-continuation-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/#bratu-fold-continuation",
+        "en": "/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/#bratu-fold-continuation"
+      },
+      "reference_scope": "Continuous analytic fields,family lambda/fold and original fixed ODE/endpoint qualifications. Neither the computed continuation path nor JFNK iteration trajectory is an analytic reference.",
+      "citations": [
+        {
+          "id": "dickson2007",
+          "title": "Condition Estimates for Pseudo-Arclength Continuation",
+          "author": "K.I.Dickson,C.T.Kelley,I.C.F.Ipsen,I.G.Kevrekidis",
+          "year": 2007,
+          "type": "article",
+          "doi": "10.1137/060654384",
+          "url": "https://ipsen.math.ncsu.edu/ps/sinum65438.pdf",
+          "review_level": "primary-selected-PDF-text",
+          "review_scope": "Section2.2, printedpp265–266, Eqs2.2–2.5; tangent null equation, unit Euclidean tangent, augmented system and tangent hyperplane. Weighted h-sum metric is the implementation’s stated discrete variation. No full condition-number proof or original paper numerical benchmark is borrowed.",
+          "review": {
+            "ja": "原著PDFの選択部分2.2節の接線・正規化・超平面制約と単純foldの範囲を読解。全文・全証明の監査ではありません。",
+            "en": "Read selected original sec2.2 tangent,normalization,hyperplane andsimple-fold scope; nofullproof audit."
+          },
+          "role": "algorithm-primary",
+          "note": "Section2.2, printedpp265–266, Eqs2.2–2.5; tangent null equation, unit Euclidean tangent, augmented system and tangent hyperplane. Weighted h-sum metric is the implementation’s stated discrete variation. No full condition-number proof or original paper numerical benchmark is borrowed."
+        },
+        {
+          "id": "langtangen-bratu-official",
+          "title": "Finite differences for the1D Bratu problem,Problem8",
+          "author": "Hans Petter Langtangen",
+          "year": 2014,
+          "type": "author-course-documentation",
+          "url": "https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html",
+          "review_level": "author-selected-exact-solution-exercise",
+          "review_scope": "Problem8/Eq52: boundary-value equation, analytic cosh family, branch count and printed rounded critical value. The author’s parameter equals2 times our theta. Independent Decimal80 exact-family qualification remains the numerical reference; the printed rounded anchor is a separate coarse check.",
+          "review": {
+            "ja": "著者教材のBratu解析族と二枝・丸めた臨界値を確認。変数は採用thetaの2倍で、別導出とDecimal80で資格。1914原著は未読です。",
+            "en": "Read author exercise exactfamily/twobranches/roundedcritical; itsparameter istwiceourtheta. Independentderivation/Decimal80qualification;1914originalunread."
+          },
+          "role": "analytic-reference",
+          "note": "Problem8/Eq52: boundary-value equation, analytic cosh family, branch count and printed rounded critical value. The author’s parameter equals2 times our theta. Independent Decimal80 exact-family qualification remains the numerical reference; the printed rounded anchor is a separate coarse check."
+        }
+      ]
+    },
+    {
+      "id": "bratu-matrix-free-jfnk",
+      "model": "bratu",
+      "kind": "analytic",
+      "title": "Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products",
+      "assumptions": "Same dimensionless1D Bratu on[0,1] with zero endpoints. The continuous family is evaluated independently in Decimal80;it is not an exact discrete root or Newton/GMRES trajectory.",
+      "formula": "u_\\theta=2\\log\\frac{\\cosh(\\theta/2)}{\\cosh(\\theta(x-1/2))},\\quad\\lambda(\\theta)=2\\theta^2/\\cosh^2(\\theta/2)",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "u"
+      ],
+      "field_type": "scalar",
+      "parameters": {
+        "fixed_lambda": 3,
+        "interior_nodes": [
+          63,
+          127
+        ],
+        "reference_decimal_precision": 80
+      },
+      "sources": [
+        "https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/?lang=ja#bratu-matrix-free-jfnk-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/?lang=en#bratu-matrix-free-jfnk-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/#bratu-matrix-free-jfnk",
+        "en": "/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/#bratu-matrix-free-jfnk"
+      },
+      "reference_scope": "Continuous analytic fields,family lambda/fold and original fixed ODE/endpoint qualifications. Neither the computed continuation path nor JFNK iteration trajectory is an analytic reference.",
+      "citations": [
+        {
+          "id": "knoll-keyes2004",
+          "title": "Jacobian-free Newton-Krylov methods: a survey of approaches and applications",
+          "author": "D.A.Knoll,D.E.Keyes",
+          "year": 2004,
+          "type": "article",
+          "doi": "10.1016/j.jcp.2003.08.010",
+          "url": "https://inf.ufes.br/~luciac/comcie/JFNK-Knoll.pdf",
+          "review_level": "primary-selected-PDF-text-via-course-mirror",
+          "review_scope": "Selectedsec2.3,2.3.1,2.3.2 and2.4.1, printedpp361–363: matrix-free Jv action, perturbation scaling, inexact forcing Eq16 and line-search globalization. Actual central difference denominator2h and eps_machine^(1/3) scaling are independently specified/qualified, not an attribution to a PETSc default. No whole41-page audit or paper solver result reuse.",
+          "review": {
+            "ja": "原著のJv・差分刻み・inexact forcing・前処理の選択部分を講義ミラー配送から読解。中央差分と固定clamp付き比率則は明示的な実装選択です。",
+            "en": "Selected primary Jv,FDscale,inexactforcing andpreconditioning sections readvia disclosedcourse mirror; centralFD/cappedrule areexplicitimplementation choices."
+          },
+          "role": "algorithm-primary",
+          "note": "Selectedsec2.3,2.3.1,2.3.2 and2.4.1, printedpp361–363: matrix-free Jv action, perturbation scaling, inexact forcing Eq16 and line-search globalization. Actual central difference denominator2h and eps_machine^(1/3) scaling are independently specified/qualified, not an attribution to a PETSc default. No whole41-page audit or paper solver result reuse."
+        },
+        {
+          "id": "eisenstat-walker1996",
+          "title": "Choosing the Forcing Terms in an Inexact Newton Method",
+          "doi": "10.1137/0917003",
+          "url": "https://users.wpi.edu/~walker/Papers/forcing_terms,SISC_17,1996,16-32.pdf",
+          "review_level": "primary-selected-PDF-text",
+          "author": "S. C. Eisenstat and H. F. Walker",
+          "year": 1996,
+          "type": "article",
+          "review_scope": "Section1 AlgorithmIN/Eq1.2; selectedsec2 Choice2/Eq2.6; practical-safeguard paragraphssec2.1, printedpp16,20,22–23. Core eta=gamma*(||F_k||/||F_{k-1}||)^alpha is Choice2-style. Our gamma.9/alpha1.5 with eta_initial.3 and fixed[.001,.5] clamp omits the paper’s previous-eta safeguard. This is a declared variant, not its complete safeguarded algorithm or an asymptotic convergence certification.",
+          "review": {
+            "ja": "著者公開の原著PDFからAlgorithm IN、Choice 2と実用的safeguardの選択部分を確認。本文全体・全証明・性能表の監査ではありません。",
+            "en": "Read selected Algorithm IN, Choice 2 and safeguard passages from the author-hosted original; not a full proof or performance-table audit."
+          },
+          "role": "algorithm-primary",
+          "note": "Section1 AlgorithmIN/Eq1.2; selectedsec2 Choice2/Eq2.6; practical-safeguard paragraphssec2.1, printedpp16,20,22–23. Core eta=gamma*(||F_k||/||F_{k-1}||)^alpha is Choice2-style. Our gamma.9/alpha1.5 with eta_initial.3 and fixed[.001,.5] clamp omits the paper’s previous-eta safeguard. This is a declared variant, not its complete safeguarded algorithm or an asymptotic convergence certification."
+        },
+        {
+          "id": "langtangen-bratu-official",
+          "title": "Finite differences for the1D Bratu problem,Problem8",
+          "author": "Hans Petter Langtangen",
+          "year": 2014,
+          "type": "author-course-documentation",
+          "url": "https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html",
+          "review_level": "author-selected-exact-solution-exercise",
+          "review_scope": "Problem8/Eq52: boundary-value equation, analytic cosh family, branch count and printed rounded critical value. The author’s parameter equals2 times our theta. Independent Decimal80 exact-family qualification remains the numerical reference; the printed rounded anchor is a separate coarse check.",
+          "review": {
+            "ja": "著者教材のBratu解析族と二枝・丸めた臨界値を確認。変数は採用thetaの2倍で、別導出とDecimal80で資格。1914原著は未読です。",
+            "en": "Read author exercise exactfamily/twobranches/roundedcritical; itsparameter istwiceourtheta. Independentderivation/Decimal80qualification;1914originalunread."
+          },
+          "role": "analytic-reference",
+          "note": "Problem8/Eq52: boundary-value equation, analytic cosh family, branch count and printed rounded critical value. The author’s parameter equals2 times our theta. Independent Decimal80 exact-family qualification remains the numerical reference; the printed rounded anchor is a separate coarse check."
+        },
+        {
+          "id": "petsc-snes-official",
+          "title": "PETSc SNES nonlinear solvers: matrix-free,inexact Newton and arc length",
+          "author": "PETSc developers",
+          "year": 2026,
+          "type": "official-documentation",
+          "url": "https://petsc.org/release/manual/snes/",
+          "review_level": "official-selected-documentation",
+          "review_scope": "Selected Inexact Newton-like Methods and beginning of Matrix-Free Methods, residual forcing inequality and matrix-free/preconditioner distinction. Context only. No PETSc installation/execution or borrowed numerical success. Our hyperplane continuation is not a claim to implement every SNES arc-length scheme.",
+          "review": {
+            "ja": "公式3.26.1文書の関連節のみ確認。PETScを使用・実行した成功値は借用せず、二次arc制約と採用超平面を区別します。",
+            "en": "Selected official3.26.1sections only; noPETSc execution orborrowed result. Distinguish itsquadraticarcconstraint fromourhyperplane."
+          },
+          "role": "context-only",
+          "note": "Selected Inexact Newton-like Methods and beginning of Matrix-Free Methods, residual forcing inequality and matrix-free/preconditioner distinction. Context only. No PETSc installation/execution or borrowed numerical success. Our hyperplane continuation is not a claim to implement every SNES arc-length scheme."
+        }
+      ]
     }
   ]
 }

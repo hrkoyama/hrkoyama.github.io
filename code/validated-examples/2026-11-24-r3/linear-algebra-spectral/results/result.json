@@ -1,0 +1,1918 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "checks": {
+    "pivoted-direct-refinement": true,
+    "symmetric-saddle-minres": true,
+    "restarted-shift-invert": true,
+    "fem-mass-eigen": true
+  },
+  "cases": [
+    {
+      "id": "pivoted-direct-refinement",
+      "passed": true,
+      "checks": {
+        "spd-tridiagonal-lu/finite": true,
+        "spd-tridiagonal-lu/binary32-factor": true,
+        "spd-tridiagonal-lu/binary64-factor": true,
+        "spd-tridiagonal-lu/normwise-backward": true,
+        "spd-tridiagonal-lu/componentwise-backward": true,
+        "spd-tridiagonal-lu/condition-aware-forward": true,
+        "spd-tridiagonal-lu/LAPACK-comparison": true,
+        "spd-tridiagonal-lu/refinement-gain-or-roundoff": true,
+        "spd-tridiagonal-cholesky/finite": true,
+        "spd-tridiagonal-cholesky/binary32-factor": true,
+        "spd-tridiagonal-cholesky/binary64-factor": true,
+        "spd-tridiagonal-cholesky/normwise-backward": true,
+        "spd-tridiagonal-cholesky/componentwise-backward": true,
+        "spd-tridiagonal-cholesky/condition-aware-forward": true,
+        "spd-tridiagonal-cholesky/LAPACK-comparison": true,
+        "spd-tridiagonal-cholesky/refinement-gain-or-roundoff": true,
+        "near-singular-rank-one-lu/finite": true,
+        "near-singular-rank-one-lu/binary32-factor": true,
+        "near-singular-rank-one-lu/binary64-factor": true,
+        "near-singular-rank-one-lu/normwise-backward": true,
+        "near-singular-rank-one-lu/componentwise-backward": true,
+        "near-singular-rank-one-lu/condition-aware-forward": true,
+        "near-singular-rank-one-lu/LAPACK-comparison": true,
+        "near-singular-rank-one-lu/refinement-gain-or-roundoff": true,
+        "near-singular-rank-one-cholesky/finite": true,
+        "near-singular-rank-one-cholesky/binary32-factor": true,
+        "near-singular-rank-one-cholesky/binary64-factor": true,
+        "near-singular-rank-one-cholesky/normwise-backward": true,
+        "near-singular-rank-one-cholesky/componentwise-backward": true,
+        "near-singular-rank-one-cholesky/condition-aware-forward": true,
+        "near-singular-rank-one-cholesky/LAPACK-comparison": true,
+        "near-singular-rank-one-cholesky/refinement-gain-or-roundoff": true,
+        "hilbert5-lu/finite": true,
+        "hilbert5-lu/binary32-factor": true,
+        "hilbert5-lu/binary64-factor": true,
+        "hilbert5-lu/normwise-backward": true,
+        "hilbert5-lu/componentwise-backward": true,
+        "hilbert5-lu/condition-aware-forward": true,
+        "hilbert5-lu/LAPACK-comparison": true,
+        "hilbert5-lu/refinement-gain-or-roundoff": true,
+        "hilbert5-cholesky/finite": true,
+        "hilbert5-cholesky/binary32-factor": true,
+        "hilbert5-cholesky/binary64-factor": true,
+        "hilbert5-cholesky/normwise-backward": true,
+        "hilbert5-cholesky/componentwise-backward": true,
+        "hilbert5-cholesky/condition-aware-forward": true,
+        "hilbert5-cholesky/LAPACK-comparison": true,
+        "hilbert5-cholesky/refinement-gain-or-roundoff": true,
+        "wilkinson12-lu/finite": true,
+        "wilkinson12-lu/binary32-factor": true,
+        "wilkinson12-lu/binary64-factor": true,
+        "wilkinson12-lu/normwise-backward": true,
+        "wilkinson12-lu/componentwise-backward": true,
+        "wilkinson12-lu/condition-aware-forward": true,
+        "wilkinson12-lu/LAPACK-comparison": true,
+        "wilkinson12-lu/refinement-gain-or-roundoff": true,
+        "Wilkinson/exact-growth": true,
+        "Hilbert/ill-conditioning-not-residual": true
+      },
+      "check_details": [
+        {
+          "name": "spd-tridiagonal-lu/finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "spd-tridiagonal-lu/binary32-factor",
+          "value": 1.9635767974553648e-08,
+          "bound": 2e-06,
+          "passed": true
+        },
+        {
+          "name": "spd-tridiagonal-lu/binary64-factor",
+          "value": 1.850371707708594e-17,
+          "bound": 2e-14,
+          "passed": true
+        },
+        {
+          "name": "spd-tridiagonal-lu/normwise-backward",
+          "value": 0.0,
+          "bound": 5e-14,
+          "passed": true
+        },
+        {
+          "name": "spd-tridiagonal-lu/componentwise-backward",
+          "value": 0.0,
+          "bound": 5e-13,
+          "passed": true
+        },
+        {
+          "name": "spd-tridiagonal-lu/condition-aware-forward",
+          "value": 0.0,
+          "bound": 5e-12,
+          "passed": true
+        },
+        {
+          "name": "spd-tridiagonal-lu/LAPACK-comparison",
+          "value": 8.479468414379336e-17,
+          "bound": 5e-12,
+          "passed": true
+        },
+        {
+          "name": "spd-tridiagonal-lu/refinement-gain-or-roundoff",
+          "value": 0.0,
+          "bound": 1.9868213740892386e-09,
+          "passed": true
+        },
+        {
+          "name": "spd-tridiagonal-cholesky/finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "spd-tridiagonal-cholesky/binary32-factor",
+          "value": 5.0208003088414443e-08,
+          "bound": 2e-06,
+          "passed": true
+        },
+        {
+          "name": "spd-tridiagonal-cholesky/binary64-factor",
+          "value": 9.251858538542972e-17,
+          "bound": 2e-14,
+          "passed": true
+        },
+        {
+          "name": "spd-tridiagonal-cholesky/normwise-backward",
+          "value": 0.0,
+          "bound": 5e-14,
+          "passed": true
+        },
+        {
+          "name": "spd-tridiagonal-cholesky/componentwise-backward",
+          "value": 0.0,
+          "bound": 5e-13,
+          "passed": true
+        },
+        {
+          "name": "spd-tridiagonal-cholesky/condition-aware-forward",
+          "value": 4.532466518368395e-17,
+          "bound": 5e-12,
+          "passed": true
+        },
+        {
+          "name": "spd-tridiagonal-cholesky/LAPACK-comparison",
+          "value": 1.0629576194313574e-16,
+          "bound": 5e-12,
+          "passed": true
+        },
+        {
+          "name": "spd-tridiagonal-cholesky/refinement-gain-or-roundoff",
+          "value": 0.0,
+          "bound": 3.4769371974145735e-09,
+          "passed": true
+        },
+        {
+          "name": "near-singular-rank-one-lu/finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "near-singular-rank-one-lu/binary32-factor",
+          "value": 1.0695622704735228e-07,
+          "bound": 2e-06,
+          "passed": true
+        },
+        {
+          "name": "near-singular-rank-one-lu/binary64-factor",
+          "value": 1.3481367745882634e-16,
+          "bound": 2e-14,
+          "passed": true
+        },
+        {
+          "name": "near-singular-rank-one-lu/normwise-backward",
+          "value": 8.07438287144266e-17,
+          "bound": 5e-14,
+          "passed": true
+        },
+        {
+          "name": "near-singular-rank-one-lu/componentwise-backward",
+          "value": 8.074382871445692e-17,
+          "bound": 5e-13,
+          "passed": true
+        },
+        {
+          "name": "near-singular-rank-one-lu/condition-aware-forward",
+          "value": 1.0334511039631995e-12,
+          "bound": 2.293745000004508e-09,
+          "passed": true
+        },
+        {
+          "name": "near-singular-rank-one-lu/LAPACK-comparison",
+          "value": 1.4882123331524897e-12,
+          "bound": 2.293745000004508e-09,
+          "passed": true
+        },
+        {
+          "name": "near-singular-rank-one-lu/refinement-gain-or-roundoff",
+          "value": 8.07438287144266e-17,
+          "bound": 2.709271763653249e-09,
+          "passed": true
+        },
+        {
+          "name": "near-singular-rank-one-cholesky/finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "near-singular-rank-one-cholesky/binary32-factor",
+          "value": 5.6655911711122225e-08,
+          "bound": 2e-06,
+          "passed": true
+        },
+        {
+          "name": "near-singular-rank-one-cholesky/binary64-factor",
+          "value": 1.506741101010412e-16,
+          "bound": 2e-14,
+          "passed": true
+        },
+        {
+          "name": "near-singular-rank-one-cholesky/normwise-backward",
+          "value": 8.074382871410594e-17,
+          "bound": 5e-14,
+          "passed": true
+        },
+        {
+          "name": "near-singular-rank-one-cholesky/componentwise-backward",
+          "value": 8.074382871463986e-17,
+          "bound": 5e-13,
+          "passed": true
+        },
+        {
+          "name": "near-singular-rank-one-cholesky/condition-aware-forward",
+          "value": 7.273875946382936e-12,
+          "bound": 2.293745000004508e-09,
+          "passed": true
+        },
+        {
+          "name": "near-singular-rank-one-cholesky/LAPACK-comparison",
+          "value": 5.6654403450015765e-12,
+          "bound": 2.293745000004508e-09,
+          "passed": true
+        },
+        {
+          "name": "near-singular-rank-one-cholesky/refinement-gain-or-roundoff",
+          "value": 8.074382871410594e-17,
+          "bound": 1.0837417781310322e-09,
+          "passed": true
+        },
+        {
+          "name": "hilbert5-lu/finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "hilbert5-lu/binary32-factor",
+          "value": 1.1457550492308062e-08,
+          "bound": 2e-06,
+          "passed": true
+        },
+        {
+          "name": "hilbert5-lu/binary64-factor",
+          "value": 1.2155726546990766e-17,
+          "bound": 2e-14,
+          "passed": true
+        },
+        {
+          "name": "hilbert5-lu/normwise-backward",
+          "value": 4.5253655895046634e-17,
+          "bound": 5e-14,
+          "passed": true
+        },
+        {
+          "name": "hilbert5-lu/componentwise-backward",
+          "value": 1.2810265668752034e-16,
+          "bound": 5e-13,
+          "passed": true
+        },
+        {
+          "name": "hilbert5-lu/condition-aware-forward",
+          "value": 1.4268976535179763e-12,
+          "bound": 1.887312000003368e-08,
+          "passed": true
+        },
+        {
+          "name": "hilbert5-lu/LAPACK-comparison",
+          "value": 1.9295004132814385e-12,
+          "bound": 1.887312000003368e-08,
+          "passed": true
+        },
+        {
+          "name": "hilbert5-lu/refinement-gain-or-roundoff",
+          "value": 4.5253655895046634e-17,
+          "bound": 5.183145064613967e-10,
+          "passed": true
+        },
+        {
+          "name": "hilbert5-cholesky/finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "hilbert5-cholesky/binary32-factor",
+          "value": 1.192155949384612e-08,
+          "bound": 2e-06,
+          "passed": true
+        },
+        {
+          "name": "hilbert5-cholesky/binary64-factor",
+          "value": 0.0,
+          "bound": 2e-14,
+          "passed": true
+        },
+        {
+          "name": "hilbert5-cholesky/normwise-backward",
+          "value": 3.620292471604074e-17,
+          "bound": 5e-14,
+          "passed": true
+        },
+        {
+          "name": "hilbert5-cholesky/componentwise-backward",
+          "value": 8.209395604660024e-17,
+          "bound": 5e-13,
+          "passed": true
+        },
+        {
+          "name": "hilbert5-cholesky/condition-aware-forward",
+          "value": 7.33203121885131e-12,
+          "bound": 1.887312000003368e-08,
+          "passed": true
+        },
+        {
+          "name": "hilbert5-cholesky/LAPACK-comparison",
+          "value": 6.180857514425556e-12,
+          "bound": 1.887312000003368e-08,
+          "passed": true
+        },
+        {
+          "name": "hilbert5-cholesky/refinement-gain-or-roundoff",
+          "value": 3.620292471604074e-17,
+          "bound": 5.900550401334651e-10,
+          "passed": true
+        },
+        {
+          "name": "wilkinson12-lu/finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "wilkinson12-lu/binary32-factor",
+          "value": 0.0,
+          "bound": 2e-06,
+          "passed": true
+        },
+        {
+          "name": "wilkinson12-lu/binary64-factor",
+          "value": 0.0,
+          "bound": 2e-14,
+          "passed": true
+        },
+        {
+          "name": "wilkinson12-lu/normwise-backward",
+          "value": 0.0,
+          "bound": 5e-14,
+          "passed": true
+        },
+        {
+          "name": "wilkinson12-lu/componentwise-backward",
+          "value": 0.0,
+          "bound": 5e-13,
+          "passed": true
+        },
+        {
+          "name": "wilkinson12-lu/condition-aware-forward",
+          "value": 0.0,
+          "bound": 5e-12,
+          "passed": true
+        },
+        {
+          "name": "wilkinson12-lu/LAPACK-comparison",
+          "value": 0.0,
+          "bound": 5e-12,
+          "passed": true
+        },
+        {
+          "name": "wilkinson12-lu/refinement-gain-or-roundoff",
+          "value": 0.0,
+          "bound": 1e-12,
+          "passed": true
+        },
+        {
+          "name": "Wilkinson/exact-growth",
+          "value": 2048.0,
+          "bound": 2048.0,
+          "passed": true
+        },
+        {
+          "name": "Hilbert/ill-conditioning-not-residual",
+          "value": 943656.0000016841,
+          "bound": 100000.0,
+          "passed": true
+        }
+      ],
+      "records": [
+        {
+          "id": "spd-tridiagonal-lu",
+          "fields": "spd-tridiagonal-lu.npz",
+          "matrix": "spd-tridiagonal",
+          "factorization": "lu",
+          "condition_infinity": 2.998592210229939,
+          "initial_backward": 3.973642748178477e-08,
+          "final_backward": 0.0,
+          "component_backward": 0.0,
+          "relative_forward_error": 0.0,
+          "relative_LAPACK_difference": 8.479468414379336e-17,
+          "binary64_pivot_growth": 1.0,
+          "corrections": 5
+        },
+        {
+          "id": "spd-tridiagonal-cholesky",
+          "fields": "spd-tridiagonal-cholesky.npz",
+          "matrix": "spd-tridiagonal",
+          "factorization": "cholesky",
+          "condition_infinity": 2.998592210229939,
+          "initial_backward": 6.953874394829147e-08,
+          "final_backward": 0.0,
+          "component_backward": 0.0,
+          "relative_forward_error": 4.532466518368395e-17,
+          "relative_LAPACK_difference": 1.0629576194313574e-16,
+          "binary64_pivot_growth": 1.0,
+          "corrections": 5
+        },
+        {
+          "id": "near-singular-rank-one-lu",
+          "fields": "near-singular-rank-one-lu.npz",
+          "matrix": "near-singular-rank-one",
+          "factorization": "lu",
+          "condition_infinity": 114687.2500002254,
+          "initial_backward": 5.418543527306498e-08,
+          "final_backward": 8.07438287144266e-17,
+          "component_backward": 8.074382871445692e-17,
+          "relative_forward_error": 1.0334511039631995e-12,
+          "relative_LAPACK_difference": 1.4882123331524897e-12,
+          "binary64_pivot_growth": 1.0,
+          "corrections": 5
+        },
+        {
+          "id": "near-singular-rank-one-cholesky",
+          "fields": "near-singular-rank-one-cholesky.npz",
+          "matrix": "near-singular-rank-one",
+          "factorization": "cholesky",
+          "condition_infinity": 114687.2500002254,
+          "initial_backward": 2.1674835562620642e-08,
+          "final_backward": 8.074382871410594e-17,
+          "component_backward": 8.074382871463986e-17,
+          "relative_forward_error": 7.273875946382936e-12,
+          "relative_LAPACK_difference": 5.6654403450015765e-12,
+          "binary64_pivot_growth": 1.0,
+          "corrections": 5
+        },
+        {
+          "id": "hilbert5-lu",
+          "fields": "hilbert5-lu.npz",
+          "matrix": "hilbert5",
+          "factorization": "lu",
+          "condition_infinity": 943656.0000016841,
+          "initial_backward": 1.0366290129227934e-08,
+          "final_backward": 4.5253655895046634e-17,
+          "component_backward": 1.2810265668752034e-16,
+          "relative_forward_error": 1.4268976535179763e-12,
+          "relative_LAPACK_difference": 1.9295004132814385e-12,
+          "binary64_pivot_growth": 1.0,
+          "corrections": 5
+        },
+        {
+          "id": "hilbert5-cholesky",
+          "fields": "hilbert5-cholesky.npz",
+          "matrix": "hilbert5",
+          "factorization": "cholesky",
+          "condition_infinity": 943656.0000016841,
+          "initial_backward": 1.1801100802669302e-08,
+          "final_backward": 3.620292471604074e-17,
+          "component_backward": 8.209395604660024e-17,
+          "relative_forward_error": 7.33203121885131e-12,
+          "relative_LAPACK_difference": 6.180857514425556e-12,
+          "binary64_pivot_growth": 1.0,
+          "corrections": 5
+        },
+        {
+          "id": "wilkinson12-lu",
+          "fields": "wilkinson12-lu.npz",
+          "matrix": "wilkinson12",
+          "factorization": "lu",
+          "condition_infinity": 12.0,
+          "initial_backward": 0.0,
+          "final_backward": 0.0,
+          "component_backward": 0.0,
+          "relative_forward_error": 0.0,
+          "relative_LAPACK_difference": 0.0,
+          "binary64_pivot_growth": 2048.0,
+          "corrections": 5
+        }
+      ],
+      "metrics": {
+        "max_condition_infinity": 943656.0000016841,
+        "max_relative_forward_error": 7.33203121885131e-12,
+        "max_normwise_backward_error": 8.07438287144266e-17,
+        "max_componentwise_backward_error": 1.2810265668752034e-16,
+        "max_relative_LAPACK_difference": 6.180857514425556e-12,
+        "max_binary64_pivot_growth": 2048.0
+      }
+    },
+    {
+      "id": "symmetric-saddle-minres",
+      "passed": true,
+      "checks": {
+        "n12/ideal-Schur-three-point-spectrum": true,
+        "saddle-12-none-minres/finite": true,
+        "saddle-12-none-minres/same-true-residual": true,
+        "saddle-12-none-minres/independent-reference": true,
+        "saddle-12-none-minres/basis-orthogonality": true,
+        "saddle-12-none-minres/symmetric-congruence": true,
+        "saddle-12-none-minres/fixed-dimension-budget": true,
+        "saddle-12-none-gmres/finite": true,
+        "saddle-12-none-gmres/same-true-residual": true,
+        "saddle-12-none-gmres/independent-reference": true,
+        "saddle-12-none-gmres/basis-orthogonality": true,
+        "saddle-12-none-gmres/symmetric-congruence": true,
+        "saddle-12-none-gmres/fixed-dimension-budget": true,
+        "saddle-12-exact-Schur-minres/finite": true,
+        "saddle-12-exact-Schur-minres/same-true-residual": true,
+        "saddle-12-exact-Schur-minres/independent-reference": true,
+        "saddle-12-exact-Schur-minres/basis-orthogonality": true,
+        "saddle-12-exact-Schur-minres/symmetric-congruence": true,
+        "saddle-12-exact-Schur-minres/fixed-dimension-budget": true,
+        "saddle-12-exact-Schur-minres/ideal-three-step-control": true,
+        "saddle-12-exact-Schur-gmres/finite": true,
+        "saddle-12-exact-Schur-gmres/same-true-residual": true,
+        "saddle-12-exact-Schur-gmres/independent-reference": true,
+        "saddle-12-exact-Schur-gmres/basis-orthogonality": true,
+        "saddle-12-exact-Schur-gmres/symmetric-congruence": true,
+        "saddle-12-exact-Schur-gmres/fixed-dimension-budget": true,
+        "saddle-12-exact-Schur-gmres/ideal-three-step-control": true,
+        "n24/ideal-Schur-three-point-spectrum": true,
+        "saddle-24-none-minres/finite": true,
+        "saddle-24-none-minres/same-true-residual": true,
+        "saddle-24-none-minres/independent-reference": true,
+        "saddle-24-none-minres/basis-orthogonality": true,
+        "saddle-24-none-minres/symmetric-congruence": true,
+        "saddle-24-none-minres/fixed-dimension-budget": true,
+        "saddle-24-none-gmres/finite": true,
+        "saddle-24-none-gmres/same-true-residual": true,
+        "saddle-24-none-gmres/independent-reference": true,
+        "saddle-24-none-gmres/basis-orthogonality": true,
+        "saddle-24-none-gmres/symmetric-congruence": true,
+        "saddle-24-none-gmres/fixed-dimension-budget": true,
+        "saddle-24-exact-Schur-minres/finite": true,
+        "saddle-24-exact-Schur-minres/same-true-residual": true,
+        "saddle-24-exact-Schur-minres/independent-reference": true,
+        "saddle-24-exact-Schur-minres/basis-orthogonality": true,
+        "saddle-24-exact-Schur-minres/symmetric-congruence": true,
+        "saddle-24-exact-Schur-minres/fixed-dimension-budget": true,
+        "saddle-24-exact-Schur-minres/ideal-three-step-control": true,
+        "saddle-24-exact-Schur-gmres/finite": true,
+        "saddle-24-exact-Schur-gmres/same-true-residual": true,
+        "saddle-24-exact-Schur-gmres/independent-reference": true,
+        "saddle-24-exact-Schur-gmres/basis-orthogonality": true,
+        "saddle-24-exact-Schur-gmres/symmetric-congruence": true,
+        "saddle-24-exact-Schur-gmres/fixed-dimension-budget": true,
+        "saddle-24-exact-Schur-gmres/ideal-three-step-control": true,
+        "CG/explicit-negative-curvature-control": true
+      },
+      "check_details": [
+        {
+          "name": "n12/ideal-Schur-three-point-spectrum",
+          "value": 1.7763568394002505e-15,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "saddle-12-none-minres/finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "saddle-12-none-minres/same-true-residual",
+          "value": 1.7996034757256202e-16,
+          "bound": 1e-09,
+          "passed": true
+        },
+        {
+          "name": "saddle-12-none-minres/independent-reference",
+          "value": 1.4741636058238345e-14,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "saddle-12-none-minres/basis-orthogonality",
+          "value": 4.440892098500626e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "saddle-12-none-minres/symmetric-congruence",
+          "value": 0.0,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "saddle-12-none-minres/fixed-dimension-budget",
+          "value": 17,
+          "bound": 17,
+          "passed": true
+        },
+        {
+          "name": "saddle-12-none-gmres/finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "saddle-12-none-gmres/same-true-residual",
+          "value": 1.9391649073952975e-16,
+          "bound": 1e-09,
+          "passed": true
+        },
+        {
+          "name": "saddle-12-none-gmres/independent-reference",
+          "value": 5.865229268588339e-15,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "saddle-12-none-gmres/basis-orthogonality",
+          "value": 4.440892098500626e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "saddle-12-none-gmres/symmetric-congruence",
+          "value": 0.0,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "saddle-12-none-gmres/fixed-dimension-budget",
+          "value": 17,
+          "bound": 17,
+          "passed": true
+        },
+        {
+          "name": "saddle-12-exact-Schur-minres/finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "saddle-12-exact-Schur-minres/same-true-residual",
+          "value": 5.635056443566238e-16,
+          "bound": 1e-09,
+          "passed": true
+        },
+        {
+          "name": "saddle-12-exact-Schur-minres/independent-reference",
+          "value": 1.1337667158717725e-14,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "saddle-12-exact-Schur-minres/basis-orthogonality",
+          "value": 2.220446049250313e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "saddle-12-exact-Schur-minres/symmetric-congruence",
+          "value": 6.7441275935195295e-19,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "saddle-12-exact-Schur-minres/fixed-dimension-budget",
+          "value": 3,
+          "bound": 17,
+          "passed": true
+        },
+        {
+          "name": "saddle-12-exact-Schur-minres/ideal-three-step-control",
+          "value": 3,
+          "bound": 4,
+          "passed": true
+        },
+        {
+          "name": "saddle-12-exact-Schur-gmres/finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "saddle-12-exact-Schur-gmres/same-true-residual",
+          "value": 5.411870627339104e-16,
+          "bound": 1e-09,
+          "passed": true
+        },
+        {
+          "name": "saddle-12-exact-Schur-gmres/independent-reference",
+          "value": 1.1126447409762033e-14,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "saddle-12-exact-Schur-gmres/basis-orthogonality",
+          "value": 2.220446049250313e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "saddle-12-exact-Schur-gmres/symmetric-congruence",
+          "value": 6.7441275935195295e-19,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "saddle-12-exact-Schur-gmres/fixed-dimension-budget",
+          "value": 3,
+          "bound": 17,
+          "passed": true
+        },
+        {
+          "name": "saddle-12-exact-Schur-gmres/ideal-three-step-control",
+          "value": 3,
+          "bound": 4,
+          "passed": true
+        },
+        {
+          "name": "n24/ideal-Schur-three-point-spectrum",
+          "value": 2.220446049250313e-15,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "saddle-24-none-minres/finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "saddle-24-none-minres/same-true-residual",
+          "value": 2.340278567268362e-13,
+          "bound": 1e-09,
+          "passed": true
+        },
+        {
+          "name": "saddle-24-none-minres/independent-reference",
+          "value": 4.2310885906326075e-10,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "saddle-24-none-minres/basis-orthogonality",
+          "value": 3.3306690738754696e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "saddle-24-none-minres/symmetric-congruence",
+          "value": 0.0,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "saddle-24-none-minres/fixed-dimension-budget",
+          "value": 29,
+          "bound": 35,
+          "passed": true
+        },
+        {
+          "name": "saddle-24-none-gmres/finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "saddle-24-none-gmres/same-true-residual",
+          "value": 2.3402574078719236e-13,
+          "bound": 1e-09,
+          "passed": true
+        },
+        {
+          "name": "saddle-24-none-gmres/independent-reference",
+          "value": 4.2310624558030424e-10,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "saddle-24-none-gmres/basis-orthogonality",
+          "value": 4.440892098500626e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "saddle-24-none-gmres/symmetric-congruence",
+          "value": 0.0,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "saddle-24-none-gmres/fixed-dimension-budget",
+          "value": 29,
+          "bound": 35,
+          "passed": true
+        },
+        {
+          "name": "saddle-24-exact-Schur-minres/finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "saddle-24-exact-Schur-minres/same-true-residual",
+          "value": 6.504115074051495e-16,
+          "bound": 1e-09,
+          "passed": true
+        },
+        {
+          "name": "saddle-24-exact-Schur-minres/independent-reference",
+          "value": 2.0314614377314686e-14,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "saddle-24-exact-Schur-minres/basis-orthogonality",
+          "value": 2.220446049250313e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "saddle-24-exact-Schur-minres/symmetric-congruence",
+          "value": 3.4461020655298036e-19,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "saddle-24-exact-Schur-minres/fixed-dimension-budget",
+          "value": 3,
+          "bound": 35,
+          "passed": true
+        },
+        {
+          "name": "saddle-24-exact-Schur-minres/ideal-three-step-control",
+          "value": 3,
+          "bound": 4,
+          "passed": true
+        },
+        {
+          "name": "saddle-24-exact-Schur-gmres/finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "saddle-24-exact-Schur-gmres/same-true-residual",
+          "value": 6.649181252867831e-16,
+          "bound": 1e-09,
+          "passed": true
+        },
+        {
+          "name": "saddle-24-exact-Schur-gmres/independent-reference",
+          "value": 2.0278072543947188e-14,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "saddle-24-exact-Schur-gmres/basis-orthogonality",
+          "value": 2.220446049250313e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "saddle-24-exact-Schur-gmres/symmetric-congruence",
+          "value": 3.4461020655298036e-19,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "saddle-24-exact-Schur-gmres/fixed-dimension-budget",
+          "value": 3,
+          "bound": 35,
+          "passed": true
+        },
+        {
+          "name": "saddle-24-exact-Schur-gmres/ideal-three-step-control",
+          "value": 3,
+          "bound": 4,
+          "passed": true
+        },
+        {
+          "name": "CG/explicit-negative-curvature-control",
+          "value": 1,
+          "bound": 1,
+          "passed": true
+        }
+      ],
+      "records": [
+        {
+          "id": "saddle-12-none-minres",
+          "fields": "saddle-12-none-minres.npz",
+          "method": "minres",
+          "preconditioner": "none",
+          "size": 17,
+          "iterations": 17,
+          "projected_operator_actions": 17,
+          "solver_original_residual_actions": 17,
+          "posthoc_original_residual_actions": 1,
+          "true_relative_residual": 1.7996034757256202e-16,
+          "reference_error": 1.4741636058238345e-14,
+          "converged": true,
+          "condition_infinity_estimate": 1430.7272685427329,
+          "internal_true_residual_target": 1.3978904603091125e-11,
+          "configured_true_residual_tolerance": 1e-09
+        },
+        {
+          "id": "saddle-12-none-gmres",
+          "fields": "saddle-12-none-gmres.npz",
+          "method": "gmres",
+          "preconditioner": "none",
+          "size": 17,
+          "iterations": 17,
+          "projected_operator_actions": 17,
+          "solver_original_residual_actions": 17,
+          "posthoc_original_residual_actions": 1,
+          "true_relative_residual": 1.9391649073952975e-16,
+          "reference_error": 5.865229268588339e-15,
+          "converged": true,
+          "condition_infinity_estimate": 1430.7272685427329,
+          "internal_true_residual_target": 1.3978904603091125e-11,
+          "configured_true_residual_tolerance": 1e-09
+        },
+        {
+          "id": "saddle-12-exact-Schur-minres",
+          "fields": "saddle-12-exact-Schur-minres.npz",
+          "method": "minres",
+          "preconditioner": "exact-Schur",
+          "size": 17,
+          "iterations": 3,
+          "projected_operator_actions": 3,
+          "solver_original_residual_actions": 3,
+          "posthoc_original_residual_actions": 1,
+          "true_relative_residual": 5.635056443566238e-16,
+          "reference_error": 1.1337667158717725e-14,
+          "converged": true,
+          "condition_infinity_estimate": 1430.7272685427329,
+          "internal_true_residual_target": 1.3978904603091125e-11,
+          "configured_true_residual_tolerance": 1e-09
+        },
+        {
+          "id": "saddle-12-exact-Schur-gmres",
+          "fields": "saddle-12-exact-Schur-gmres.npz",
+          "method": "gmres",
+          "preconditioner": "exact-Schur",
+          "size": 17,
+          "iterations": 3,
+          "projected_operator_actions": 3,
+          "solver_original_residual_actions": 3,
+          "posthoc_original_residual_actions": 1,
+          "true_relative_residual": 5.411870627339104e-16,
+          "reference_error": 1.1126447409762033e-14,
+          "converged": true,
+          "condition_infinity_estimate": 1430.7272685427329,
+          "internal_true_residual_target": 1.3978904603091125e-11,
+          "configured_true_residual_tolerance": 1e-09
+        },
+        {
+          "id": "saddle-24-none-minres",
+          "fields": "saddle-24-none-minres.npz",
+          "method": "minres",
+          "preconditioner": "none",
+          "size": 35,
+          "iterations": 29,
+          "projected_operator_actions": 29,
+          "solver_original_residual_actions": 29,
+          "posthoc_original_residual_actions": 1,
+          "true_relative_residual": 2.340278567268362e-13,
+          "reference_error": 4.2310885906326075e-10,
+          "converged": true,
+          "condition_infinity_estimate": 5682.080194251278,
+          "internal_true_residual_target": 3.5198376855424475e-12,
+          "configured_true_residual_tolerance": 1e-09
+        },
+        {
+          "id": "saddle-24-none-gmres",
+          "fields": "saddle-24-none-gmres.npz",
+          "method": "gmres",
+          "preconditioner": "none",
+          "size": 35,
+          "iterations": 29,
+          "projected_operator_actions": 29,
+          "solver_original_residual_actions": 29,
+          "posthoc_original_residual_actions": 1,
+          "true_relative_residual": 2.3402574078719236e-13,
+          "reference_error": 4.2310624558030424e-10,
+          "converged": true,
+          "condition_infinity_estimate": 5682.080194251278,
+          "internal_true_residual_target": 3.5198376855424475e-12,
+          "configured_true_residual_tolerance": 1e-09
+        },
+        {
+          "id": "saddle-24-exact-Schur-minres",
+          "fields": "saddle-24-exact-Schur-minres.npz",
+          "method": "minres",
+          "preconditioner": "exact-Schur",
+          "size": 35,
+          "iterations": 3,
+          "projected_operator_actions": 3,
+          "solver_original_residual_actions": 3,
+          "posthoc_original_residual_actions": 1,
+          "true_relative_residual": 6.504115074051495e-16,
+          "reference_error": 2.0314614377314686e-14,
+          "converged": true,
+          "condition_infinity_estimate": 5682.080194251278,
+          "internal_true_residual_target": 3.5198376855424475e-12,
+          "configured_true_residual_tolerance": 1e-09
+        },
+        {
+          "id": "saddle-24-exact-Schur-gmres",
+          "fields": "saddle-24-exact-Schur-gmres.npz",
+          "method": "gmres",
+          "preconditioner": "exact-Schur",
+          "size": 35,
+          "iterations": 3,
+          "projected_operator_actions": 3,
+          "solver_original_residual_actions": 3,
+          "posthoc_original_residual_actions": 1,
+          "true_relative_residual": 6.649181252867831e-16,
+          "reference_error": 2.0278072543947188e-14,
+          "converged": true,
+          "condition_infinity_estimate": 5682.080194251278,
+          "internal_true_residual_target": 3.5198376855424475e-12,
+          "configured_true_residual_tolerance": 1e-09
+        }
+      ],
+      "metrics": {
+        "max_original_relative_residual": 2.340278567268362e-13,
+        "max_relative_reference_error": 4.2310885906326075e-10,
+        "max_iterations": 29,
+        "max_condition_infinity_estimate": 5682.080194251278
+      }
+    },
+    {
+      "id": "restarted-shift-invert",
+      "passed": true,
+      "checks": {
+        "restart-8-shift-None/finite": true,
+        "restart-8-shift-None/original-problem-residual": true,
+        "restart-8-shift-None/known-spectrum": true,
+        "restart-8-shift-None/shift-linear-residual": true,
+        "restart-8-shift-None/action-budget": true,
+        "restart-8-shift-None/basis-orthogonality": true,
+        "restart-8-shift-None/inverse-spectral-map": true,
+        "restart-16-shift-None/finite": true,
+        "restart-16-shift-None/original-problem-residual": true,
+        "restart-16-shift-None/known-spectrum": true,
+        "restart-16-shift-None/shift-linear-residual": true,
+        "restart-16-shift-None/action-budget": true,
+        "restart-16-shift-None/basis-orthogonality": true,
+        "restart-16-shift-None/inverse-spectral-map": true,
+        "restart-8-shift-0.0/finite": true,
+        "restart-8-shift-0.0/original-problem-residual": true,
+        "restart-8-shift-0.0/known-spectrum": true,
+        "restart-8-shift-0.0/shift-linear-residual": true,
+        "restart-8-shift-0.0/action-budget": true,
+        "restart-8-shift-0.0/basis-orthogonality": true,
+        "restart-8-shift-0.0/inverse-spectral-map": true,
+        "restart-16-shift-0.0/finite": true,
+        "restart-16-shift-0.0/original-problem-residual": true,
+        "restart-16-shift-0.0/known-spectrum": true,
+        "restart-16-shift-0.0/shift-linear-residual": true,
+        "restart-16-shift-0.0/action-budget": true,
+        "restart-16-shift-0.0/basis-orthogonality": true,
+        "restart-16-shift-0.0/inverse-spectral-map": true,
+        "restart-8-shift-950.0/finite": true,
+        "restart-8-shift-950.0/original-problem-residual": true,
+        "restart-8-shift-950.0/known-spectrum": true,
+        "restart-8-shift-950.0/shift-linear-residual": true,
+        "restart-8-shift-950.0/action-budget": true,
+        "restart-8-shift-950.0/basis-orthogonality": true,
+        "restart-8-shift-950.0/inverse-spectral-map": true,
+        "restart-16-shift-950.0/finite": true,
+        "restart-16-shift-950.0/original-problem-residual": true,
+        "restart-16-shift-950.0/known-spectrum": true,
+        "restart-16-shift-950.0/shift-linear-residual": true,
+        "restart-16-shift-950.0/action-budget": true,
+        "restart-16-shift-950.0/basis-orthogonality": true,
+        "restart-16-shift-950.0/inverse-spectral-map": true,
+        "shift/exact-singularity-failure-retained-as-control": true
+      },
+      "check_details": [
+        {
+          "name": "restart-8-shift-None/finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "restart-8-shift-None/original-problem-residual",
+          "value": 5.774117289151498e-10,
+          "bound": 1e-09,
+          "passed": true
+        },
+        {
+          "name": "restart-8-shift-None/known-spectrum",
+          "value": 0.0,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "restart-8-shift-None/shift-linear-residual",
+          "value": 0.0,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "restart-8-shift-None/action-budget",
+          "value": 216,
+          "bound": 320,
+          "passed": true
+        },
+        {
+          "name": "restart-8-shift-None/basis-orthogonality",
+          "value": 6.661338147750939e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "restart-8-shift-None/inverse-spectral-map",
+          "value": 1.891934232085626e-15,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "restart-16-shift-None/finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "restart-16-shift-None/original-problem-residual",
+          "value": 3.2481522026886097e-10,
+          "bound": 1e-09,
+          "passed": true
+        },
+        {
+          "name": "restart-16-shift-None/known-spectrum",
+          "value": 2.2258049789242657e-16,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "restart-16-shift-None/shift-linear-residual",
+          "value": 0.0,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "restart-16-shift-None/action-budget",
+          "value": 144,
+          "bound": 640,
+          "passed": true
+        },
+        {
+          "name": "restart-16-shift-None/basis-orthogonality",
+          "value": 4.440892098500626e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "restart-16-shift-None/inverse-spectral-map",
+          "value": 1.224192738408346e-15,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "restart-8-shift-0.0/finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "restart-8-shift-0.0/original-problem-residual",
+          "value": 1.0898745876442353e-12,
+          "bound": 1e-09,
+          "passed": true
+        },
+        {
+          "name": "restart-8-shift-0.0/known-spectrum",
+          "value": 2.521780905296546e-15,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "restart-8-shift-0.0/shift-linear-residual",
+          "value": 5.216647244256777e-17,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "restart-8-shift-0.0/action-budget",
+          "value": 8,
+          "bound": 320,
+          "passed": true
+        },
+        {
+          "name": "restart-8-shift-0.0/basis-orthogonality",
+          "value": 2.220446049250313e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "restart-8-shift-0.0/inverse-spectral-map",
+          "value": 1.801272075211819e-16,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "restart-16-shift-0.0/finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "restart-16-shift-0.0/original-problem-residual",
+          "value": 6.358403911194432e-17,
+          "bound": 1e-09,
+          "passed": true
+        },
+        {
+          "name": "restart-16-shift-0.0/known-spectrum",
+          "value": 1.0807632451270913e-15,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "restart-16-shift-0.0/shift-linear-residual",
+          "value": 5.216647244256777e-17,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "restart-16-shift-0.0/action-budget",
+          "value": 16,
+          "bound": 640,
+          "passed": true
+        },
+        {
+          "name": "restart-16-shift-0.0/basis-orthogonality",
+          "value": 4.440892098500626e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "restart-16-shift-0.0/inverse-spectral-map",
+          "value": 1.621144867690637e-15,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "restart-8-shift-950.0/finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "restart-8-shift-950.0/original-problem-residual",
+          "value": 2.056289307634322e-15,
+          "bound": 1e-09,
+          "passed": true
+        },
+        {
+          "name": "restart-8-shift-950.0/known-spectrum",
+          "value": 3.7471264543159793e-16,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "restart-8-shift-950.0/shift-linear-residual",
+          "value": 3.4762794216656775e-17,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "restart-8-shift-950.0/action-budget",
+          "value": 16,
+          "bound": 320,
+          "passed": true
+        },
+        {
+          "name": "restart-8-shift-950.0/basis-orthogonality",
+          "value": 2.220446049250313e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "restart-8-shift-950.0/inverse-spectral-map",
+          "value": 3.7471264543159793e-16,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "restart-16-shift-950.0/finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "restart-16-shift-950.0/original-problem-residual",
+          "value": 5.083888487829476e-17,
+          "bound": 1e-09,
+          "passed": true
+        },
+        {
+          "name": "restart-16-shift-950.0/known-spectrum",
+          "value": 0.0,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "restart-16-shift-950.0/shift-linear-residual",
+          "value": 3.3540800934165216e-17,
+          "bound": 2e-12,
+          "passed": true
+        },
+        {
+          "name": "restart-16-shift-950.0/action-budget",
+          "value": 16,
+          "bound": 640,
+          "passed": true
+        },
+        {
+          "name": "restart-16-shift-950.0/basis-orthogonality",
+          "value": 2.220446049250313e-16,
+          "bound": 2e-10,
+          "passed": true
+        },
+        {
+          "name": "restart-16-shift-950.0/inverse-spectral-map",
+          "value": 0.0,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "shift/exact-singularity-failure-retained-as-control",
+          "value": 1,
+          "bound": 1,
+          "passed": true
+        }
+      ],
+      "records": [
+        {
+          "id": "restart-8-shift-None",
+          "fields": "restart-8-shift-None.npz",
+          "shift": null,
+          "restart_length": 8,
+          "cycles": 27,
+          "operator_calls": 216,
+          "original_residual_actions": 27,
+          "shift_residual_matrix_actions": 0,
+          "shift_solve_count": 0,
+          "value": 4086.1383202246593,
+          "exact_target": 4086.1383202246593,
+          "true_normalized_residual": 5.774117289151498e-10
+        },
+        {
+          "id": "restart-16-shift-None",
+          "fields": "restart-16-shift-None.npz",
+          "shift": null,
+          "restart_length": 16,
+          "cycles": 9,
+          "operator_calls": 144,
+          "original_residual_actions": 9,
+          "shift_residual_matrix_actions": 0,
+          "shift_solve_count": 0,
+          "value": 4086.1383202246584,
+          "exact_target": 4086.1383202246593,
+          "true_normalized_residual": 3.2481522026886097e-10
+        },
+        {
+          "id": "restart-8-shift-0.0",
+          "fields": "restart-8-shift-0.0.npz",
+          "shift": 0.0,
+          "restart_length": 8,
+          "cycles": 1,
+          "operator_calls": 8,
+          "original_residual_actions": 1,
+          "shift_residual_matrix_actions": 8,
+          "shift_solve_count": 8,
+          "value": 9.861679775340802,
+          "exact_target": 9.861679775340777,
+          "true_normalized_residual": 1.0898745876442353e-12
+        },
+        {
+          "id": "restart-16-shift-0.0",
+          "fields": "restart-16-shift-0.0.npz",
+          "shift": 0.0,
+          "restart_length": 16,
+          "cycles": 1,
+          "operator_calls": 16,
+          "original_residual_actions": 1,
+          "shift_residual_matrix_actions": 16,
+          "shift_solve_count": 16,
+          "value": 9.861679775340788,
+          "exact_target": 9.861679775340777,
+          "true_normalized_residual": 6.358403911194432e-17
+        },
+        {
+          "id": "restart-8-shift-950.0",
+          "fields": "restart-8-shift-950.0.npz",
+          "shift": 950.0,
+          "restart_length": 8,
+          "cycles": 2,
+          "operator_calls": 16,
+          "original_residual_actions": 2,
+          "shift_residual_matrix_actions": 16,
+          "shift_solve_count": 16,
+          "value": 910.192162775855,
+          "exact_target": 910.1921627758546,
+          "true_normalized_residual": 2.056289307634322e-15
+        },
+        {
+          "id": "restart-16-shift-950.0",
+          "fields": "restart-16-shift-950.0.npz",
+          "shift": 950.0,
+          "restart_length": 16,
+          "cycles": 1,
+          "operator_calls": 16,
+          "original_residual_actions": 1,
+          "shift_residual_matrix_actions": 16,
+          "shift_solve_count": 16,
+          "value": 910.1921627758546,
+          "exact_target": 910.1921627758546,
+          "true_normalized_residual": 5.083888487829476e-17
+        }
+      ],
+      "metrics": {
+        "max_original_eigenpair_residual": 5.774117289151498e-10,
+        "max_operator_calls": 216,
+        "max_restart_cycles": 27,
+        "max_shift_solve_count": 16
+      }
+    },
+    {
+      "id": "fem-mass-eigen",
+      "passed": true,
+      "checks": {
+        "fem-15-mass-Krylov/finite": true,
+        "fem-15-mass-Krylov/original-generalized-residual": true,
+        "fem-15-mass-Krylov/M-orthogonality": true,
+        "fem-15-mass-Krylov/independent-dense-reference": true,
+        "fem-15-mass-Krylov/exact-discrete-spectrum": true,
+        "fem-15-mass-Krylov/fixed-action-budget": true,
+        "fem-15-SciPy-LOBPCG/finite": true,
+        "fem-15-SciPy-LOBPCG/original-generalized-residual": true,
+        "fem-15-SciPy-LOBPCG/M-orthogonality": true,
+        "fem-15-SciPy-LOBPCG/independent-dense-reference": true,
+        "fem-15-SciPy-LOBPCG/exact-discrete-spectrum": true,
+        "fem-15-SciPy-LOBPCG/fixed-action-budget": true,
+        "fem-31-mass-Krylov/finite": true,
+        "fem-31-mass-Krylov/original-generalized-residual": true,
+        "fem-31-mass-Krylov/M-orthogonality": true,
+        "fem-31-mass-Krylov/independent-dense-reference": true,
+        "fem-31-mass-Krylov/exact-discrete-spectrum": true,
+        "fem-31-mass-Krylov/fixed-action-budget": true,
+        "fem-31-SciPy-LOBPCG/finite": true,
+        "fem-31-SciPy-LOBPCG/original-generalized-residual": true,
+        "fem-31-SciPy-LOBPCG/M-orthogonality": true,
+        "fem-31-SciPy-LOBPCG/independent-dense-reference": true,
+        "fem-31-SciPy-LOBPCG/exact-discrete-spectrum": true,
+        "fem-31-SciPy-LOBPCG/fixed-action-budget": true,
+        "fem-63-mass-Krylov/finite": true,
+        "fem-63-mass-Krylov/original-generalized-residual": true,
+        "fem-63-mass-Krylov/M-orthogonality": true,
+        "fem-63-mass-Krylov/independent-dense-reference": true,
+        "fem-63-mass-Krylov/exact-discrete-spectrum": true,
+        "fem-63-mass-Krylov/fixed-action-budget": true,
+        "fem-63-SciPy-LOBPCG/finite": true,
+        "fem-63-SciPy-LOBPCG/original-generalized-residual": true,
+        "fem-63-SciPy-LOBPCG/M-orthogonality": true,
+        "fem-63-SciPy-LOBPCG/independent-dense-reference": true,
+        "fem-63-SciPy-LOBPCG/exact-discrete-spectrum": true,
+        "fem-63-SciPy-LOBPCG/fixed-action-budget": true,
+        "continuum/second-order-ratio-1": true,
+        "continuum/second-order-ratio-2": true,
+        "continuum/finest-three-eigenvalues": true
+      },
+      "check_details": [
+        {
+          "name": "fem-15-mass-Krylov/finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "fem-15-mass-Krylov/original-generalized-residual",
+          "value": 1.3876763633292625e-14,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "fem-15-mass-Krylov/M-orthogonality",
+          "value": 6.661338147750939e-16,
+          "bound": 2e-09,
+          "passed": true
+        },
+        {
+          "name": "fem-15-mass-Krylov/independent-dense-reference",
+          "value": 2.327706997302402e-14,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "fem-15-mass-Krylov/exact-discrete-spectrum",
+          "value": 2.4343195315299957e-14,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "fem-15-mass-Krylov/fixed-action-budget",
+          "value": 15,
+          "bound": 1000,
+          "passed": true
+        },
+        {
+          "name": "fem-15-SciPy-LOBPCG/finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "fem-15-SciPy-LOBPCG/original-generalized-residual",
+          "value": 1.536909708688511e-10,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "fem-15-SciPy-LOBPCG/M-orthogonality",
+          "value": 2.6082722481780453e-16,
+          "bound": 2e-09,
+          "passed": true
+        },
+        {
+          "name": "fem-15-SciPy-LOBPCG/independent-dense-reference",
+          "value": 8.43205627872415e-15,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "fem-15-SciPy-LOBPCG/exact-discrete-spectrum",
+          "value": 1.2558381691716699e-15,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "fem-15-SciPy-LOBPCG/fixed-action-budget",
+          "value": 26,
+          "bound": 1000,
+          "passed": true
+        },
+        {
+          "name": "fem-31-mass-Krylov/finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "fem-31-mass-Krylov/original-generalized-residual",
+          "value": 5.239838789378949e-14,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "fem-31-mass-Krylov/M-orthogonality",
+          "value": 8.881784197001252e-16,
+          "bound": 2e-09,
+          "passed": true
+        },
+        {
+          "name": "fem-31-mass-Krylov/independent-dense-reference",
+          "value": 1.3541807946723635e-13,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "fem-31-mass-Krylov/exact-discrete-spectrum",
+          "value": 3.8751577791582954e-14,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "fem-31-mass-Krylov/fixed-action-budget",
+          "value": 24,
+          "bound": 1000,
+          "passed": true
+        },
+        {
+          "name": "fem-31-SciPy-LOBPCG/finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "fem-31-SciPy-LOBPCG/original-generalized-residual",
+          "value": 1.7283979466767472e-10,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "fem-31-SciPy-LOBPCG/M-orthogonality",
+          "value": 5.551115123125783e-16,
+          "bound": 2e-09,
+          "passed": true
+        },
+        {
+          "name": "fem-31-SciPy-LOBPCG/independent-dense-reference",
+          "value": 1.5843735459579712e-13,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "fem-31-SciPy-LOBPCG/exact-discrete-spectrum",
+          "value": 8.632228173208993e-15,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "fem-31-SciPy-LOBPCG/fixed-action-budget",
+          "value": 27,
+          "bound": 1000,
+          "passed": true
+        },
+        {
+          "name": "fem-63-mass-Krylov/finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "fem-63-mass-Krylov/original-generalized-residual",
+          "value": 1.8340301814489987e-13,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "fem-63-mass-Krylov/M-orthogonality",
+          "value": 1.1102230246251565e-15,
+          "bound": 2e-09,
+          "passed": true
+        },
+        {
+          "name": "fem-63-mass-Krylov/independent-dense-reference",
+          "value": 1.298430987720135e-13,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "fem-63-mass-Krylov/exact-discrete-spectrum",
+          "value": 1.0587825344552464e-13,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "fem-63-mass-Krylov/fixed-action-budget",
+          "value": 24,
+          "bound": 1000,
+          "passed": true
+        },
+        {
+          "name": "fem-63-SciPy-LOBPCG/finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "fem-63-SciPy-LOBPCG/original-generalized-residual",
+          "value": 1.94948028233657e-10,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "fem-63-SciPy-LOBPCG/M-orthogonality",
+          "value": 6.661338147750939e-16,
+          "bound": 2e-09,
+          "passed": true
+        },
+        {
+          "name": "fem-63-SciPy-LOBPCG/independent-dense-reference",
+          "value": 3.113073443508389e-14,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "fem-63-SciPy-LOBPCG/exact-discrete-spectrum",
+          "value": 1.0976732951099406e-14,
+          "bound": 2e-08,
+          "passed": true
+        },
+        {
+          "name": "fem-63-SciPy-LOBPCG/fixed-action-budget",
+          "value": 30,
+          "bound": 1000,
+          "passed": true
+        },
+        {
+          "name": "continuum/second-order-ratio-1",
+          "value": 0.2479562420782905,
+          "bound": [
+            0.2,
+            0.3
+          ],
+          "passed": true
+        },
+        {
+          "name": "continuum/second-order-ratio-2",
+          "value": 0.24946543287909265,
+          "bound": [
+            0.2,
+            0.3
+          ],
+          "passed": true
+        },
+        {
+          "name": "continuum/finest-three-eigenvalues",
+          "value": 0.0018084820192497452,
+          "bound": 0.002,
+          "passed": true
+        }
+      ],
+      "records": [
+        {
+          "id": "fem-15-mass-Krylov",
+          "fields": "fem-15-mass-Krylov.npz",
+          "method": "mass-Krylov",
+          "interior_nodes": 15,
+          "operator_vector_actions": 15,
+          "operator_kind": "K^-1 M",
+          "preconditioner_K_inverse_vector_actions": 15,
+          "true_relative_residual": 1.3876763633292625e-14,
+          "M_orthogonality": 6.661338147750939e-16,
+          "relative_reference_error": 2.327706997302402e-14,
+          "values": [
+            9.901353678398955,
+            39.98832262499005,
+            91.42343409886865
+          ]
+        },
+        {
+          "id": "fem-15-SciPy-LOBPCG",
+          "fields": "fem-15-SciPy-LOBPCG.npz",
+          "method": "SciPy-LOBPCG",
+          "interior_nodes": 15,
+          "operator_vector_actions": 26,
+          "operator_kind": "K",
+          "preconditioner_K_inverse_vector_actions": 20,
+          "true_relative_residual": 1.536909708688511e-10,
+          "M_orthogonality": 2.6082722481780453e-16,
+          "relative_reference_error": 8.43205627872415e-15,
+          "values": [
+            9.901353678398968,
+            39.98832262498907,
+            91.42343409886853
+          ]
+        },
+        {
+          "id": "fem-31-mass-Krylov",
+          "fields": "fem-31-mass-Krylov.npz",
+          "method": "mass-Krylov",
+          "interior_nodes": 31,
+          "operator_vector_actions": 24,
+          "operator_kind": "K^-1 M",
+          "preconditioner_K_inverse_vector_actions": 24,
+          "true_relative_residual": 5.239838789378949e-14,
+          "M_orthogonality": 8.881784197001252e-16,
+          "relative_reference_error": 1.3541807946723635e-13,
+          "values": [
+            9.87753411753409,
+            39.605414713597455,
+            89.47038060401067
+          ]
+        },
+        {
+          "id": "fem-31-SciPy-LOBPCG",
+          "fields": "fem-31-SciPy-LOBPCG.npz",
+          "method": "SciPy-LOBPCG",
+          "interior_nodes": 31,
+          "operator_vector_actions": 27,
+          "operator_kind": "K",
+          "preconditioner_K_inverse_vector_actions": 21,
+          "true_relative_residual": 1.7283979466767472e-10,
+          "M_orthogonality": 5.551115123125783e-16,
+          "relative_reference_error": 1.5843735459579712e-13,
+          "values": [
+            9.877534117534317,
+            39.605414713595884,
+            89.47038060400963
+          ]
+        },
+        {
+          "id": "fem-63-mass-Krylov",
+          "fields": "fem-63-mass-Krylov.npz",
+          "method": "mass-Krylov",
+          "interior_nodes": 63,
+          "operator_vector_actions": 24,
+          "operator_kind": "K^-1 M",
+          "preconditioner_K_inverse_vector_actions": 24,
+          "true_relative_residual": 1.8340301814489987e-13,
+          "M_orthogonality": 1.1102230246251565e-15,
+          "relative_reference_error": 1.298430987720135e-13,
+          "values": [
+            9.871586353257483,
+            39.51013647013335,
+            88.98708062867253
+          ]
+        },
+        {
+          "id": "fem-63-SciPy-LOBPCG",
+          "fields": "fem-63-SciPy-LOBPCG.npz",
+          "method": "SciPy-LOBPCG",
+          "interior_nodes": 63,
+          "operator_vector_actions": 30,
+          "operator_kind": "K",
+          "preconditioner_K_inverse_vector_actions": 24,
+          "true_relative_residual": 1.94948028233657e-10,
+          "M_orthogonality": 6.661338147750939e-16,
+          "relative_reference_error": 3.113073443508389e-14,
+          "values": [
+            9.871586353256738,
+            39.510136470137326,
+            88.98708062866348
+          ]
+        }
+      ],
+      "metrics": {
+        "max_generalized_residual": 1.94948028233657e-10,
+        "max_M_orthogonality_defect": 1.1102230246251565e-15,
+        "max_relative_reference_error": 1.5843735459579712e-13,
+        "max_operator_vector_actions": 30,
+        "max_preconditioner_vector_actions": 24
+      }
+    }
+  ],
+  "termination": "fixed_budget_completed",
+  "failure": null,
+  "reference_qualification": {
+    "passed": true,
+    "checks": {
+      "spd-tridiagonal/exact-binary-rational-vs-LAPACK": true,
+      "spd-tridiagonal/reference-backward": true,
+      "near-singular-rank-one/exact-binary-rational-vs-LAPACK": true,
+      "near-singular-rank-one/reference-backward": true,
+      "hilbert5/exact-binary-rational-vs-LAPACK": true,
+      "hilbert5/reference-backward": true,
+      "wilkinson12/exact-binary-rational-vs-LAPACK": true,
+      "wilkinson12/reference-backward": true,
+      "laplacian/exact-spectrum": true,
+      "laplacian/LAPACK-vectors": true,
+      "fem15/exact-discrete-spectrum": true,
+      "fem15/reference-M-orthogonality": true,
+      "fem31/exact-discrete-spectrum": true,
+      "fem31/reference-M-orthogonality": true,
+      "fem63/exact-discrete-spectrum": true,
+      "fem63/reference-M-orthogonality": true
+    },
+    "check_count": 16,
+    "scope": "Main fixed matrix reference preflight only; small pytest operator/solver fixtures may precede it."
+  },
+  "input_sha256": "fb04e62fe0cdb606dbde77242103280fc5905971efd14bc6885c381ca68fdde9",
+  "duration_seconds": 0.20439437499953783,
+  "finished_at_utc": "2026-11-24T05:57:42.810612+00:00",
+  "source_sha256": {
+    "LICENSE": "66644ec44fae6de4db68325d5389f51e8f7b96ffc80e34bd194f8ff9e1511148",
+    "README.md": "b2b4588362574f7695eb38c3225c5e6a72f0aadd561213be03d739fff1dbdf0f",
+    "acceptance.json": "ce553d8413918e35ae27816f0cf88143cc3f9a449480bb0301bdcf7596c2756a",
+    "cases.json": "604f637dccb85e22735600f1cae8e98cec3332d1eab1c4b12ff8d8e293eb33b3",
+    "fixtures.py": "6edc34a9d2265a52f3692a8e7c26aa1d567915bbe37511ed6f7e929c3a760e66",
+    "inputs.json": "fb04e62fe0cdb606dbde77242103280fc5905971efd14bc6885c381ca68fdde9",
+    "plot.py": "8612ffa4847a73b2bba76ee4b6638ed5b4399e8ad70430c75253093c6d2f68b2",
+    "pytest.ini": "20d7dc29285070f33f67a338c2729e1a5275b9d122020dcb4b2e5c2dcdb5aa73",
+    "references/mass-action-qualification.json": "bca750c53225c4a9336bbe09b81cb3aba18e41818099f8fb4a183862124d698b",
+    "references/oracles.py": "6360b844b4aa9a0be956dc94647447c423533774c717f3ecbeedfa99ad184225",
+    "references/source-review.json": "09b51c6f73075690a686228a0fe27c47a953029159d15085c77bff4305c1aaeb",
+    "requirements-plotting.txt": "fd70c5b60168fd91d504345ec04061037fb9de084f7ec8fa53255486c9c94ab1",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "659a5fd0f1aaf239d36c23f72995d948d0b95a59d823437eb81d38ec5ed0376f",
+    "solvers.py": "e826ceb3a251f5ce729e035d7988518e9101c1deb372670a3241fdf451ae75f7",
+    "test_algorithms.py": "b7ce19603dd8bbb07b537e1c5f55d0ab61ae2a09f7724c696035722a44f37769",
+    "test_mass_action.py": "97786a482b153aaa40e40795c31df2c595e2cc384516f0b4fc59c86e2aed31eb",
+    "pre-run-contract.json": "dcb0ca6cc00c96e5ddae3347a792ea5a3b49e3722613d70700a95b28ecd49590"
+  }
+}

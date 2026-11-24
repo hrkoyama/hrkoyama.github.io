@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "group": "bratu-continuation-jfnk",
+  "continuation": {
+    "N": [
+      31,
+      63,
+      127
+    ],
+    "ds": 0.1,
+    "arc_steps": 80,
+    "tolerance": 1e-10,
+    "max_corrector": 12,
+    "max_fold": 16,
+    "branch_lambda": 2.0,
+    "max_fixed": 30,
+    "failure_N": 63,
+    "failure_lambda": 4.0
+  },
+  "jfnk": {
+    "N": [
+      63,
+      127
+    ],
+    "lambda": 3.0,
+    "branches": [
+      "lower",
+      "upper"
+    ],
+    "modes": [
+      "analytic",
+      "central-fd",
+      "forward-ad"
+    ],
+    "constant_eta": 1e-08,
+    "settings": {
+      "nonlinear_tolerance": 1e-09,
+      "max_newton": 24,
+      "restart": 24,
+      "max_linear": 96,
+      "max_backtracks": 14,
+      "armijo": 0.0001,
+      "eta_initial": 0.3,
+      "eta_min": 0.001,
+      "eta_max": 0.5,
+      "eta_gamma": 0.9,
+      "eta_power": 1.5
+    }
+  }
+}

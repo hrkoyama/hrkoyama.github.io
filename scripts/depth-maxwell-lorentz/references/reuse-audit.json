@@ -1,0 +1,58 @@
+{
+  "status": "STATIC_DEPENDENCY_AUDIT_NO_REFERENCE_REGENERATION",
+  "recorded_at_utc": "2026-11-24T05:55:49.623921+00:00",
+  "old_input_sha256": "dd26a0de9f369e246970f1fffcaaa7435580b62dff8574daa768a59370bf5b7f",
+  "new_input_sha256": "3ee45c0c69c7b399c14ced20a5c06671495e014bea790e419988c6e59316ced6",
+  "old_acceptance_sha256": "65e7ffdc2018c703cb14d18c84fff6b3ae31b3e92a18125a0b0f092b015de6f7",
+  "new_acceptance_sha256": "65e7ffdc2018c703cb14d18c84fff6b3ae31b3e92a18125a0b0f092b015de6f7",
+  "all_original_threshold_bytes_unchanged": true,
+  "old_main_result_sha256": "c5ab25f42408ba2983ea38d452a8db34096bdf6ab1af4913504b93da609d6e18",
+  "old_main_receipt_sha256": "ad32b5de27e816cf16f610d322972ca019ec7d67732a176543d5b5d09b9878eb",
+  "no_new_numerical_evaluation": true,
+  "changed_input_paths": [
+    "/slab/final_time"
+  ],
+  "unchanged_continuum_slab_reference_arguments": {
+    "material": {
+      "epsilon_inf": 1.5,
+      "delta_epsilon": 0.75,
+      "omega0": 9.0,
+      "gamma": 0.5,
+      "sigma": 0.04
+    },
+    "slab": [
+      4.0,
+      5.0
+    ],
+    "ky": 4.0,
+    "frequencies": [
+      5.1,
+      6.0,
+      6.9
+    ]
+  },
+  "reference_source_byte_exact": true,
+  "vacuum_DTFT_source_byte_exact": true,
+  "no_slab_waveform_cache": true,
+  "integer_scheduler_rule_unchanged": true,
+  "old_dt_not_claimed_identical": true,
+  "original_source_sha256": {
+    "LICENSE": "e1053200337d037d9d81620956ce49263117c6540b1c1352c030c220bee05f59",
+    "README.md": "7c3889625ea3b6bfac72fb44c9a798a6935c8848efaeb628b88ffc175f5de827",
+    "acceptance.json": "65e7ffdc2018c703cb14d18c84fff6b3ae31b3e92a18125a0b0f092b015de6f7",
+    "cases.json": "76fc945fb0cd236c509c0dce1df3e711771cc0b761efcd67c2b9625f4971fa6d",
+    "inputs.json": "dd26a0de9f369e246970f1fffcaaa7435580b62dff8574daa768a59370bf5b7f",
+    "io_contract.py": "d24a709621e7a3419ba2ed3264606242ce67cf79879e57466668a40ec2988792",
+    "modal_yee_draft.py": "20661d109f7d137e605eca507140d4abe241020d6d4f527d8ea46ea3290b7d9a",
+    "plot.py": "0aedf965c88a706d6e7769e5b4d6136494a43435d0275e187bcb823921fa5a8e",
+    "reference_draft.py": "d50ed84ce3c4e71ec9ed76105daa6b7f0d77d05ed5eedc69abb98c3d33667f61",
+    "references/qualification-origin.json": "5bde9f1e789a5fa087eaef64fe4d5fcfb15d90148ac24aff01ffeeec5e4b8b3e",
+    "references/qualification.json": "ae9ef359ae7223f001b0f19f94f4e74737b3b6a64ffc6a46e2f8ba1e2ac1a607",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "e394fb09046f38ee3fb451d8ebd5c26b8f7d93b3aa8d74152af99d91abbaf21b",
+    "slab_evolution.py": "add0c50e3835bbff3a1447666ee72a7705c380225390b268c39560c1e7cb7136",
+    "slab_reference.py": "f7e39abf8c89e95cda3aaae7a2ddece3de178a758081fcca0b89b56ab2995c96",
+    "test_lorentz.py": "1e220499ef095e1f016bbba82b6956a39cf3adff746d0599517fa3f258aac640",
+    "pre-run-contract.json": "b854fb53cd95157f954a19ad07d36bbe374b09aafdd36a7efcbfd387d3a5294f"
+  }
+}

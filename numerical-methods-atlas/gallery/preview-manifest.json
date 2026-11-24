@@ -1465,10 +1465,118 @@
         "ja": "保存した実データ由来の分布・誤差診断。空間次元と標本/時間軸を区別します。",
         "en": "Distribution and error diagnostics from actual saved data;sample/time axes are distinguished from spatial dimensions."
       }
+    },
+    {
+      "id": "cylinder-mie2d",
+      "image": "/code/validated-examples/2026-11-24/maxwell-cylinder/results/cylinder-mie2d-preview.png",
+      "image_sha256": "6968b65203b7829eae49e2b0219dd18441bbeb3635c9bb7fbae972b5cc43942e",
+      "width": 648,
+      "height": 520,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "保存した最細格子の実2D散乱電場phasorの実部。 図の中央の白抜きは診断用のr<0.4のマスクで、物理円柱の半径0.25とは区別します。",
+        "en": "Real part of the actual saved scattered electric phasor on the finest two-dimensional grid. The central white region is a diagnostic mask at r<0.4, distinct from the physical cylinder radius0.25."
+      }
+    },
+    {
+      "id": "lorentz-oblique-sp",
+      "image": "/code/validated-examples/2026-11-24/maxwell-lorentz/results/lorentz-oblique-sp-preview.png",
+      "image_sha256": "b85480fcaeb675536ed6da9f82006b72cb86954d36ee08958ba957b850c4c9ca",
+      "width": 1050,
+      "height": 520,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "保存したp偏光の実電場をky=4の周期y方向へ再構成した場。 周期y方向の1周期を表示しています。波形を見やすくするため、x軸とy軸の表示縮尺は異なります。",
+        "en": "Actual saved p-polarized electric field reconstructed over the periodic y direction at ky=4. One transverse y period is shown. The displayed x and y scales differ to make the fields visible."
+      }
+    },
+    {
+      "id": "dispersive-grazing-pml",
+      "image": "/code/validated-examples/2026-11-24/maxwell-grazing/results/dispersive-grazing-pml-preview.png",
+      "image_sha256": "9fc94253f358d6715bb32e4820843d38c9ee998aeea07048df1093ef227b9e65",
+      "width": 1050,
+      "height": 520,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "保存した浅角度の実電場を周期y方向へ再構成。灰色はPML領域です。 周期y方向の1周期を表示しています。波形を見やすくするため、x軸とy軸の表示縮尺は異なります。",
+        "en": "Actual saved grazing electric field reconstructed over the periodic y direction; gray shading marks the PML. One transverse y period is shown. The displayed x and y scales differ to make the fields visible."
+      }
+    },
+    {
+      "id": "pivoted-direct-refinement",
+      "image": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/pivoted-direct-refinement-preview.png",
+      "image_sha256": "c29ca507eef22bc4a38c16c5f6b5ca5ced73a750e013d9554ffaeaedc2b917e8",
+      "width": 755,
+      "height": 590,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "保存した12×12 SPD行列。反復改良の固定例に使います。 別の全図に示す誤差は厳密有理数解をbinary64へ丸めた参照との差です。対数表示だけ、厳密なゼロ誤差をfloat64.tinyに置いて表示します。",
+        "en": "The saved 12 x 12 SPD matrix used in the refinement examples. In the companion full figure, errors are measured against the exact-rational solution rounded to binary64; exact zeros are shown at float64.tiny for logarithmic display only."
+      }
+    },
+    {
+      "id": "symmetric-saddle-minres",
+      "image": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/symmetric-saddle-minres-preview.png",
+      "image_sha256": "35a0cb90e9427029904fb897e2554220ec77e47b2a7572443210f93be204680e",
+      "width": 854,
+      "height": 590,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "速度サイズ24の固定例で使う、保存した35×35鞍点行列。",
+        "en": "The saved 35 x 35 saddle matrix for velocity size 24."
+      }
+    },
+    {
+      "id": "restarted-shift-invert",
+      "image": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/restarted-shift-invert-preview.png",
+      "image_sha256": "d5a6a9d073bc0d7fb85a999137390b9a9b1dcfb765380599a7d9880b8356fbc8",
+      "width": 814,
+      "height": 590,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "固有値比較に使う、保存した31×31 Dirichlet Laplacian。",
+        "en": "The saved 31 x 31 Dirichlet Laplacian used in the eigenvalue comparisons."
+      }
+    },
+    {
+      "id": "fem-mass-eigen",
+      "image": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/fem-mass-eigen-preview.png",
+      "image_sha256": "4f9152e89dcc28539eaa01ef7852f77b4593072cac45d7ff322115dfb756a32a",
+      "width": 912,
+      "height": 590,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "内部63点で計算した、M正規化された最低3モード。",
+        "en": "The first three M-normalized modes computed on the 63-node interior grid."
+      }
+    },
+    {
+      "id": "bratu-fold-continuation",
+      "image": "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-fold-continuation-preview.png",
+      "image_sha256": "3fcf16e0b6e9bbf99904d456e702679335a716a1d36d7d12aee5893150679367",
+      "width": 1100,
+      "height": 800,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "保存した分岐曲線、λ=2の上下枝、Jacobianの最小特異値、3格子のfold誤差を示す縮小図。擬似弧長stepは物理時間ではありません。",
+        "en": "Preview of the stored branch,lambda=2 profiles,smallest Jacobian singular value and three-grid fold error. Arclength steps are not physical time."
+      }
+    },
+    {
+      "id": "bratu-matrix-free-jfnk",
+      "image": "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-matrix-free-jfnk-preview.png",
+      "image_sha256": "3a1e124b0f2af0be276bbb1f6bfbc6168af1fd7dcb975e891ab793c6cc4827b1",
+      "width": 1100,
+      "height": 800,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "保存したN=127のNewton残差、上枝の解と解析参照、Jv誤差、実評価回数を示す縮小図。run indexは保存CSVに対応します。",
+        "en": "Preview of stored N=127 Newton residuals,upper-branch field/reference,Jv errors and actual evaluation counts. Run indices match the saved CSV."
+      }
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "aa5dead054fd801d1848d36f28223a94bf211621e44fd21240bd1c3526cf6f6f",
+    "catalog/atlas-gallery.json": "bf62bb5811d3694fa964b8aba47ddedcaba8172fa53db85b04283a39d933e61d",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -1515,8 +1623,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "a9542061ab829afde53067ae7db77331f462f809ee117822f2c2c9dc1b2ba203",
-    "catalog/atlas-depth-expansion.json": "808390a31a772b2e1f9c625f8619a05d3387afb5256dd5e31b3c712c6283863a",
+    "catalog/atlas-test-problems.json": "8b58b70b196b29db100e65152a9c7511f2b71d9c113aa9d93604cd89b5686117",
+    "catalog/atlas-depth-expansion.json": "bb2c3245eea802143e6000e07c47306cc0b00659c1be67ae981c1352261d5794",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -1955,7 +2063,65 @@
     "code/validated-examples/2026-11-24/stochastic-estimation/results/result.json": "267e0b0be6f4a5fbcb8b116837f670d8bfacf09f0a7cda25f8e97956dd180435",
     "code/validated-examples/2026-11-24/stochastic-estimation/atlas-stochastic-estimation-2026-11-24.zip": "313b9cb048b46d4dedd13dc214b7eb25de4fb72af01e267fa69da7e460f81ec3",
     "code/validated-examples/2026-11-24/stochastic-estimation/results/normal-tail-importance.png": "4e91eb3f42e994cdf26844cbd3fd7188f3397fe0d889a8477786a49440b5fac8",
-    "code/validated-examples/2026-11-24/stochastic-estimation/results/correlated-gaussian-mcmc.png": "a2ce774443577b3da74150837a0c44d6bbb6e5898a996c840d4fdff9f52419a1"
+    "code/validated-examples/2026-11-24/stochastic-estimation/results/correlated-gaussian-mcmc.png": "a2ce774443577b3da74150837a0c44d6bbb6e5898a996c840d4fdff9f52419a1",
+    "code/validated-examples/2026-11-24/maxwell-cylinder/results/cylinder-mie2d-preview.png": "6968b65203b7829eae49e2b0219dd18441bbeb3635c9bb7fbae972b5cc43942e",
+    "code/validated-examples/2026-11-24/maxwell-lorentz/results/lorentz-oblique-sp-preview.png": "b85480fcaeb675536ed6da9f82006b72cb86954d36ee08958ba957b850c4c9ca",
+    "code/validated-examples/2026-11-24/maxwell-grazing/results/dispersive-grazing-pml-preview.png": "9fc94253f358d6715bb32e4820843d38c9ee998aeea07048df1093ef227b9e65",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/pivoted-direct-refinement-preview.png": "c29ca507eef22bc4a38c16c5f6b5ca5ced73a750e013d9554ffaeaedc2b917e8",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/symmetric-saddle-minres-preview.png": "35a0cb90e9427029904fb897e2554220ec77e47b2a7572443210f93be204680e",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/restarted-shift-invert-preview.png": "d5a6a9d073bc0d7fb85a999137390b9a9b1dcfb765380599a7d9880b8356fbc8",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/fem-mass-eigen-preview.png": "4f9152e89dcc28539eaa01ef7852f77b4593072cac45d7ff322115dfb756a32a",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-fold-continuation-preview.png": "3fcf16e0b6e9bbf99904d456e702679335a716a1d36d7d12aee5893150679367",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-matrix-free-jfnk-preview.png": "3a1e124b0f2af0be276bbb1f6bfbc6168af1fd7dcb975e891ab793c6cc4827b1",
+    "code/validated-examples/2026-11-24/maxwell-cylinder/cases.json": "b99cca3a3fc681d77fc1911889d3ed6755ab1b25aaae96a8cf236bbcbdff367a",
+    "code/validated-examples/2026-11-24/maxwell-cylinder/inputs.json": "dd26a0de9f369e246970f1fffcaaa7435580b62dff8574daa768a59370bf5b7f",
+    "code/validated-examples/2026-11-24/maxwell-cylinder/acceptance.json": "65e7ffdc2018c703cb14d18c84fff6b3ae31b3e92a18125a0b0f092b015de6f7",
+    "code/validated-examples/2026-11-24/maxwell-cylinder/pre-run-contract.json": "14f31a0eec3830282d8d1f5344eb603d7b6aa061af097a2ec2347db08071d844",
+    "code/validated-examples/2026-11-24/maxwell-cylinder/source-manifest.json": "64cf6ca29cf652ea22f79bbe09fcb6c96151b5ccd1eedba4b7631f43bc014dd1",
+    "code/validated-examples/2026-11-24/maxwell-cylinder/verification.json": "62bc9a5b55756ab5c11035afaa0ce911ed6cafeb7b0d4d71deb6a9ca8d903974",
+    "code/validated-examples/2026-11-24/maxwell-cylinder/results/result.json": "622211bebdc9195a31b59211c96053b9ebcf6303ac0eadf295537c8c405cd018",
+    "code/validated-examples/2026-11-24/maxwell-cylinder/atlas-maxwell-cylinder-2026-11-24.zip": "e08b1cb9b1e0d059e7a033677e0ce0be097f81caa1b0425f34841295d369d4b9",
+    "code/validated-examples/2026-11-24/maxwell-cylinder/results/cylinder-mie2d.png": "b98bc1a387377a1428efcc57e5e5b987788598f99d9368b924c862118b71121e",
+    "code/validated-examples/2026-11-24/maxwell-lorentz/cases.json": "6b7653de0b6c8bb8d2c051376408c6a85d25cd01dad0f95510cc08119fdf8c4d",
+    "code/validated-examples/2026-11-24/maxwell-lorentz/inputs.json": "3ee45c0c69c7b399c14ced20a5c06671495e014bea790e419988c6e59316ced6",
+    "code/validated-examples/2026-11-24/maxwell-lorentz/acceptance.json": "65e7ffdc2018c703cb14d18c84fff6b3ae31b3e92a18125a0b0f092b015de6f7",
+    "code/validated-examples/2026-11-24/maxwell-lorentz/pre-run-contract.json": "96948188d2c110d668053e4c71ace81c32dcf976c6931f136cf595551e608a48",
+    "code/validated-examples/2026-11-24/maxwell-lorentz/source-manifest.json": "90df3c6487f6a7eaa241d858bb2745e62bd98155d6d8ae93f364820a998ea57b",
+    "code/validated-examples/2026-11-24/maxwell-lorentz/verification.json": "ae6466eb956613052771bdc5e0df63a18705fd71b305035571e910e2a153f8ec",
+    "code/validated-examples/2026-11-24/maxwell-lorentz/results/result.json": "beb4a12df803d4f352408377f4fcc235c1cf3652bc27f5ac16d5223d667694b6",
+    "code/validated-examples/2026-11-24/maxwell-lorentz/atlas-maxwell-lorentz-2026-11-24.zip": "46e64511df179bc6b225953183b7fe60a8c670fe011506eba036f7f5055ecaa3",
+    "code/validated-examples/2026-11-24/maxwell-lorentz/results/lorentz-oblique-sp.png": "dd090402eec36d647d7fc8b598bd79502853a28e7ca0fbdaed13fe707c91f489",
+    "code/validated-examples/2026-11-24/maxwell-grazing/cases.json": "4bf5ddd00a2fce40aa4378ca99fcd15a95407ca9c5090ed48e5ae8bab9670236",
+    "code/validated-examples/2026-11-24/maxwell-grazing/inputs.json": "2f1a1f2da2160b788d5aff8e4735f6594bfac11e77565b76154e35e071c860f7",
+    "code/validated-examples/2026-11-24/maxwell-grazing/acceptance.json": "65e7ffdc2018c703cb14d18c84fff6b3ae31b3e92a18125a0b0f092b015de6f7",
+    "code/validated-examples/2026-11-24/maxwell-grazing/pre-run-contract.json": "670079bf7050f34c48d2aabd7f6ff9de42a8fe236b713953b899167ecd2052ba",
+    "code/validated-examples/2026-11-24/maxwell-grazing/source-manifest.json": "35a666f516cb946b3537ff5bafa087693f1519bcda6602950b237c2caacbfcef",
+    "code/validated-examples/2026-11-24/maxwell-grazing/verification.json": "e580cbc5cea905c464bea9480bc0290251da0c99cdf80b5b29109eb23420647f",
+    "code/validated-examples/2026-11-24/maxwell-grazing/results/result.json": "5db5ac4af6539ea32e6505fef01f493fe5d0e097ac087049353bc2fd2351fc5a",
+    "code/validated-examples/2026-11-24/maxwell-grazing/atlas-maxwell-grazing-2026-11-24.zip": "3c72f7df537e76d6cb431e73cd818fc362b6dab402242c1fe3a2ea920c377432",
+    "code/validated-examples/2026-11-24/maxwell-grazing/results/dispersive-grazing-pml.png": "55fef04a1f81b1527ecd40df74c6093dc48aa744bb7dadf286c217d69b414218",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json": "604f637dccb85e22735600f1cae8e98cec3332d1eab1c4b12ff8d8e293eb33b3",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/inputs.json": "fb04e62fe0cdb606dbde77242103280fc5905971efd14bc6885c381ca68fdde9",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/acceptance.json": "ce553d8413918e35ae27816f0cf88143cc3f9a449480bb0301bdcf7596c2756a",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/pre-run-contract.json": "dcb0ca6cc00c96e5ddae3347a792ea5a3b49e3722613d70700a95b28ecd49590",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/source-manifest.json": "038537fee8708cb5bbc02d18e902ca546db191f7345ecace52147f6675554a95",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json": "4ed120693891dd4f94a207b080fd40fe53d3b1191274ec621de131e83fac16a7",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/result.json": "caffe188cea7298dea1a3592fb4815992fa6a4f2900db99ba8443d1199e21dea",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/atlas-linear-algebra-spectral-2026-11-24-r3.zip": "3d14112335ce8a55cce306ec689d430f172d02a49f4675ae5948a2fab7ca1452",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/pivoted-direct-refinement.png": "8665d2dfac7df143f2866b6631b13473a4a31006ab9a2f1fbae92d47072b147d",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/symmetric-saddle-minres.png": "284a97ea6a236090515681f1691d867300e9a10da2bd0388f647ff6ad4239b46",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/restarted-shift-invert.png": "8f8a5b33041f5c106a34725d399120fe4e26887129fca43c3d147867f474d84b",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/fem-mass-eigen.png": "e11b96d613e8926ff6634cec704cc939a47f027573456eceb6db29c5735aac5b",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/cases.json": "9a2f2e0e780151768247923a36b7274b1b014bbeb620de7bbca5a25d46d5bc56",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/inputs.json": "0bb44002b246cee6c79e7bbd3af9cc400ef1d5a3c313978a9cd6f2852589d8ed",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/acceptance.json": "6106f1f8209916c9be0eb5d4ab8f27f7aa588ca8fed9cafccac36d0783640cca",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/pre-run-contract.json": "688a82d37a94ef672345035f9a11a6e894ed6b3f0a5b4b637a930d65df6000b3",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/source-manifest.json": "cfa8230836913a5f81d8e97c77b87716ce6d801095e9c95463e419ee8b94fe8c",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json": "4e08cc95cbb5ed520d43882c83da3ccbb644138d90ccf0bce1d408cb195beba7",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/result.json": "6a4dbb22ac61f557b30c49ebb2d6067b41c6ad2f9040fd0752f49dc8b9884b5d",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/atlas-bratu-continuation-jfnk-2026-11-24-r2.zip": "aeffa7e1b442f198ef2de55e453f82e5d6cbe30fc3d0bbd1112354a38a20a25d",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-fold-continuation.png": "bbe9b09cfbefe52de3bd35c667fb86452e425d3fc1baf539329fb8198d344295",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-matrix-free-jfnk.png": "c7818b4919abe37736a8bb683df9624c2ab5f4eacfce91a77503461acec35998"
   },
   "calculations_sha256": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
   "maintenance_updates": [
@@ -2284,6 +2450,26 @@
         "catalog/atlas-depth-expansion.json": {
           "before": "28ed0737a4c15dce04bf7c7f5563d1a7b51fadd44fb8bfa6cbed7d2255ff8efb",
           "after": "808390a31a772b2e1f9c625f8619a05d3387afb5256dd5e31b3c712c6283863a"
+        }
+      },
+      "scientific_preview_execution": false
+    },
+    {
+      "on": "2026-11-24",
+      "recorded_at_utc": "2026-11-24T06:08:08.742715+00:00",
+      "scope": "Batch48–57: add9saved primary PNG records and provenance of9new fixed cases; candidate55 is source curation only. Retain all122prior primary records/images and the original preview calculations.",
+      "changed_catalog_bindings": {
+        "catalog/atlas-gallery.json": {
+          "before": "aa5dead054fd801d1848d36f28223a94bf211621e44fd21240bd1c3526cf6f6f",
+          "after": "bf62bb5811d3694fa964b8aba47ddedcaba8172fa53db85b04283a39d933e61d"
+        },
+        "catalog/atlas-test-problems.json": {
+          "before": "a9542061ab829afde53067ae7db77331f462f809ee117822f2c2c9dc1b2ba203",
+          "after": "8b58b70b196b29db100e65152a9c7511f2b71d9c113aa9d93604cd89b5686117"
+        },
+        "catalog/atlas-depth-expansion.json": {
+          "before": "808390a31a772b2e1f9c625f8619a05d3387afb5256dd5e31b3c712c6283863a",
+          "after": "bb2c3245eea802143e6000e07c47306cc0b00659c1be67ae981c1352261d5794"
         }
       },
       "scientific_preview_execution": false

@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "group": "mhd-transport",
+  "gamma": 1.6666666666666667,
+  "method": "full-eight-state HLLD / primitive MC-MUSCL / Heun; CT-contact for two spatial dimensions",
+  "main_budget_seconds": 115,
+  "cases": {
+    "circular-alfven-refinement": {"grids": [32,64,128], "steps":512, "time_probe_factor":2, "final_time":1.0, "domain":[[0,1]], "amplitude":0.1, "reference":"analytic Gauss16 conserved cell means", "reference_field":"all transverse velocity and magnetic components"},
+    "magnetic-loop-independent": {"grids":[8,16,32], "steps":1024, "time_probe_factor":2, "final_time":1.0, "domain":[[-1,1],[-0.5,0.5]], "nx_factor":2, "velocity":[2,1,2], "density":1, "pressure":1, "az_amplitude":0.001, "radius":0.3, "reference_coarse":"loop-n64-cfl0p3", "reference_fine":"loop-n128-cfl0p15", "reference_field":"in-plane cell magnetic field"},
+    "postshock-orszag-tang": {"grids":[16,32,64], "steps":512, "time_probe_factor":2, "final_time":0.2, "domain":[[-0.5,0.5],[-0.5,0.5]], "density":"25/(36*pi)", "pressure":"5/(12*pi)", "velocity":"(sin(2*pi*y),-sin(2*pi*x),0)", "potential":"(cos(4*pi*x)-2*cos(2*pi*y))/(4*pi*sqrt(4*pi))", "reference_coarse":"ot-n128-cfl0p3", "reference_fine":"ot-n256-cfl0p15", "reference_field":"density and pressure derived after conserved restriction"}
+  }
+}

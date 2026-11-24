@@ -1,0 +1,103 @@
+{
+  "passed": true,
+  "checks": {
+    "spd-tridiagonal/exact-binary-rational-vs-LAPACK": true,
+    "spd-tridiagonal/reference-backward": true,
+    "near-singular-rank-one/exact-binary-rational-vs-LAPACK": true,
+    "near-singular-rank-one/reference-backward": true,
+    "hilbert5/exact-binary-rational-vs-LAPACK": true,
+    "hilbert5/reference-backward": true,
+    "wilkinson12/exact-binary-rational-vs-LAPACK": true,
+    "wilkinson12/reference-backward": true,
+    "laplacian/exact-spectrum": true,
+    "laplacian/LAPACK-vectors": true,
+    "fem15/exact-discrete-spectrum": true,
+    "fem15/reference-M-orthogonality": true,
+    "fem31/exact-discrete-spectrum": true,
+    "fem31/reference-M-orthogonality": true,
+    "fem63/exact-discrete-spectrum": true,
+    "fem63/reference-M-orthogonality": true
+  },
+  "details": [
+    {
+      "name": "spd-tridiagonal/exact-binary-rational-vs-LAPACK",
+      "error": 8.479468414379336e-17,
+      "bound": 5e-12
+    },
+    {
+      "name": "spd-tridiagonal/reference-backward",
+      "error": 0.0,
+      "bound": 5e-14
+    },
+    {
+      "name": "near-singular-rank-one/exact-binary-rational-vs-LAPACK",
+      "error": 4.547612403206193e-13,
+      "bound": 2.293745000004508e-09
+    },
+    {
+      "name": "near-singular-rank-one/reference-backward",
+      "error": 0.0,
+      "bound": 5e-14
+    },
+    {
+      "name": "hilbert5/exact-binary-rational-vs-LAPACK",
+      "error": 3.355955800673493e-12,
+      "bound": 1.887312000003368e-08
+    },
+    {
+      "name": "hilbert5/reference-backward",
+      "error": 3.6202924716038275e-17,
+      "bound": 5e-14
+    },
+    {
+      "name": "wilkinson12/exact-binary-rational-vs-LAPACK",
+      "error": 0.0,
+      "bound": 5e-12
+    },
+    {
+      "name": "wilkinson12/reference-backward",
+      "error": 0.0,
+      "bound": 5e-14
+    },
+    {
+      "name": "laplacian/exact-spectrum",
+      "error": 3.281642753674619e-15,
+      "bound": 5e-13
+    },
+    {
+      "name": "laplacian/LAPACK-vectors",
+      "error": 4.440892098500626e-16,
+      "bound": 5e-13
+    },
+    {
+      "name": "fem15/exact-discrete-spectrum",
+      "error": 9.687894447895739e-15,
+      "bound": 2e-11
+    },
+    {
+      "name": "fem15/reference-M-orthogonality",
+      "error": 1.7763568394002505e-15,
+      "bound": 2e-12
+    },
+    {
+      "name": "fem31/exact-discrete-spectrum",
+      "error": 1.498051264225644e-13,
+      "bound": 2e-11
+    },
+    {
+      "name": "fem31/reference-M-orthogonality",
+      "error": 2.1094237467877974e-15,
+      "bound": 2e-12
+    },
+    {
+      "name": "fem63/exact-discrete-spectrum",
+      "error": 4.210746738618461e-14,
+      "bound": 2e-11
+    },
+    {
+      "name": "fem63/reference-M-orthogonality",
+      "error": 1.5543122344752192e-15,
+      "bound": 2e-12
+    }
+  ]
+}

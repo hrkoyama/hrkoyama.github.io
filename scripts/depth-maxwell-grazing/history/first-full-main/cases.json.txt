@@ -1,0 +1,98 @@
+[
+  {
+    "id": "dispersive-grazing-pml",
+    "method_ids": [
+      "fdtd",
+      "leapfrog",
+      "implicit-midpoint"
+    ],
+    "title": {
+      "ja": "分散媒質の浅い入射角と長時間PML",
+      "en": "Long-time grazing PML in a dispersive medium"
+    },
+    "summary": {
+      "ja": "80度の中心位相角を持つ有限波束をT=700まで進め、境界誤差を同格子の無PML参照から分離します。",
+      "en": "Evolve a finite packet with an 80-degree central phase angle to T = 700, isolating boundary error against a no-PML reference on the same grid."
+    },
+    "assumptions": {
+      "ja": "c=1、均質Lorentz媒質ε∞=1、Δε=0.2、ω0=12はPML内まで連続。主γ=0とγ=0.005対照。長さ64、PML幅12・peak6、中心32・幅4、carrier6です。",
+      "en": "Use c = 1 and a homogeneous Lorentz medium with epsilon_inf = 1, delta_epsilon = 0.2 and omega_0 = 12 continuing through the PML. Main damping is gamma = 0, with a gamma = 0.005 companion. Length 64, PML thickness 12, peak 6, packet center 32, width 4 and carrier 6 are fixed."
+    },
+    "algorithm": {
+      "ja": "Yee・中点ADEに時刻配置を保った台形微分memoryを結合。正の物理散逸と符号付きPML数値仕事を区別し、補助場を含め全状態を保存します。",
+      "en": "Couple Yee and midpoint ADE updates to a trapezoidal derivative-memory filter at native times. Separate positive physical dissipation from signed numerical PML work, retaining all physical and auxiliary states."
+    },
+    "validation": {
+      "ja": "512/768/1024点の浅角度、垂直、弱減衰の5長時間計算。独立な5×5 Fourier更新行列の2048/4096周期box比較を先行し、修正収支・補助変数・残留と境界場誤差を検査します。",
+      "en": "Use five long trajectories: three grazing grids with 512/768/1024 cells, a normal control and a weakly damped companion. First compare periodic reference boxes of length 2048/4096 using an independent 5 × 5 Fourier update matrix; then check modified budgets, auxiliaries, residuals and boundary-field errors."
+    },
+    "limits": {
+      "ja": "有限kx帯域の中心角が80度で、全成分が厳密に80度ではありません。無PML参照は同じ離散化・初期場を使い、伝播分散を除いた境界誤差用です。任意角度・材料での大域安定性証明ではありません。",
+      "en": "The central angle is 80 degrees; finite kx bandwidth gives neighboring angles. The no-PML reference shares the discretization and initialization to isolate boundary error from bulk dispersion. Small operator and finite-trajectory checks do not prove global stability for arbitrary angles and materials."
+    },
+    "formulas": [
+      "\\partial_t\\psi=-s_x(\\psi+D_xu),\\quad D_x^{\\mathrm{PML}}u=D_xu+\\psi",
+      "\\psi^n=b\\psi^{n-1}+c(D^n+D^{n-1}),\\quad b=\\frac{1-s_x\\Delta t/2}{1+s_x\\Delta t/2},\\quad c=\\frac{-s_x\\Delta t/2}{1+s_x\\Delta t/2}",
+      "\\Delta\\mathcal E_{\\mathrm{mod}}+W_{\\mathrm{physical}}-W_{\\mathrm{PML}}=0"
+    ],
+    "domains": [
+      "pde",
+      "time"
+    ],
+    "code_files": [
+      "run.py",
+      "references/isolated_reference.py"
+    ],
+    "references": [
+      {
+        "id": "meep-materials",
+        "author": "Meep developers",
+        "year": 2026,
+        "title": "Meep Materials documentation",
+        "url": "https://meep.readthedocs.io/en/latest/Materials/",
+        "review_level": "primary-official-documentation-selected-sections",
+        "review_scope": "Read Material Dispersion, Numerical Stability, Loss and Gain, and Conductivity. Confirmed the exp(-i omega t) convention, Lorentz polarization and dispersive-PML warning. Our sigma E conductivity and midpoint update differ from Meep. Unversioned latest documentation; no original Yee or Roden-Gedney paper claim."
+      },
+      {
+        "id": "johnson-pml",
+        "author": "Steven G. Johnson",
+        "year": 2021,
+        "title": "Notes on Perfectly Matched Layers",
+        "url": "https://arxiv.org/html/2108.05348v1",
+        "review_level": "primary-author-notes-selected-derivation",
+        "review_scope": "Read sections 3.2–4.2, equations 7–8 and the time-domain ADE discussion, plus sections 5–7.2 on homogeneity, evanescent fields and grazing/discretization limitations. The served text is updated 2026-08-24. The trapezoidal filter is our derivation; no full original Berenger/Roden-Gedney paper review is claimed."
+      }
+    ],
+    "citations": [
+      {
+        "id": "meep-materials",
+        "author": "Meep developers",
+        "year": 2026,
+        "title": "Meep Materials documentation",
+        "url": "https://meep.readthedocs.io/en/latest/Materials/",
+        "review_level": "primary-official-documentation-selected-sections",
+        "review_scope": "Read Material Dispersion, Numerical Stability, Loss and Gain, and Conductivity. Confirmed the exp(-i omega t) convention, Lorentz polarization and dispersive-PML warning. Our sigma E conductivity and midpoint update differ from Meep. Unversioned latest documentation; no original Yee or Roden-Gedney paper claim."
+      },
+      {
+        "id": "johnson-pml",
+        "author": "Steven G. Johnson",
+        "year": 2021,
+        "title": "Notes on Perfectly Matched Layers",
+        "url": "https://arxiv.org/html/2108.05348v1",
+        "review_level": "primary-author-notes-selected-derivation",
+        "review_scope": "Read sections 3.2–4.2, equations 7–8 and the time-domain ADE discussion, plus sections 5–7.2 on homogeneity, evanescent fields and grazing/discretization limitations. The served text is updated 2026-08-24. The trapezoidal filter is our derivation; no full original Berenger/Roden-Gedney paper review is claimed."
+      }
+    ],
+    "review_level": "selected-primary-sources-independent-derivation-and-fixed-reference-qualification",
+    "gallery_figure": "dispersive-grazing-pml-preview.png",
+    "additional_figures": [
+      {
+        "file": "dispersive-grazing-pml-preview.png",
+        "caption": {
+          "ja": "保存した浅角度の実電場を周期y方向へ再構成。灰色はPML領域です。",
+          "en": "Actual saved grazing electric field reconstructed over the periodic y direction; gray shading marks the PML."
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "status": "FROZEN_PRESENTATION_R7_BEFORE_CANONICAL_EDITION_R3",
+  "created_at_utc": "2026-11-24T05:56:53.035004+00:00",
+  "group": "linear-algebra-spectral",
+  "sequences": [
+    51,
+    52,
+    53,
+    54
+  ],
+  "baseline_public_commit": "546e9cdb57ba1700c86081757d3a2dc196cd0739",
+  "revision": 7,
+  "planned_pytest_tests": 29,
+  "planned_test_names": [
+    "test_mass_action_selfadjoint_and_actual_three_mode_generalized_comparison",
+    "test_mass_action_preserves_original_exception_before_library_can_replace_it",
+    "test_lu_pivot_permutation_and_factor_reconstruction",
+    "test_lu_solve_multiple_nontrivial_interchanges",
+    "test_singular_pivot_is_failure_not_clipped",
+    "test_cholesky_reconstruction_and_forward_backward_substitution",
+    "test_cholesky_rejects_nonsymmetry_and_negative_pivot",
+    "test_mixed_factor_dtype_is_explicit",
+    "test_refinement_preserves_all_fixed_candidate_updates",
+    "test_exact_binary_rational_reference",
+    "test_wilkinson_growth_is_independent_algebraic_golden",
+    "test_component_backward_zero_scale_is_defined",
+    "test_minres_accepts_indefinite_symmetric_system",
+    "test_spd_congruence_preserves_symmetry_and_solution",
+    "test_minres_indefinite_preconditioner_is_rejected",
+    "test_cg_negative_curvature_is_not_a_universal_minres_failure",
+    "test_arnoldi_two_pass_orthogonality_and_relation",
+    "test_exact_happy_breakdown_is_retained",
+    "test_restarted_shift_inverse_recovers_original_pair",
+    "test_shift_singularity_raises_before_operator_iterations",
+    "test_inexact_shift_solution_guard_retains_candidate",
+    "test_fem_element_assembly_consistent_mass",
+    "test_mass_krylov_uses_M_inner_product",
+    "test_generalized_residual_does_not_omit_mass_matrix",
+    "test_completed_factor_candidate_is_saved_before_diagnostic_failure",
+    "test_actual_input_schema_and_limits_are_consistent",
+    "test_roundoff_Schur_construction_is_exactly_symmetric_and_preserves_raw",
+    "test_structural_Schur_asymmetry_is_rejected_instead_of_hidden",
+    "test_fem_initial_block_avoids_polynomial_image_rank_loss_on_fixed_grids"
+  ],
+  "existing27_tests_byte_identical": true,
+  "planned_record_counts": [
+    7,
+    8,
+    6,
+    6
+  ],
+  "planned_case_gates": [
+    58,
+    55,
+    43,
+    39
+  ],
+  "planned_total_case_gates": 195,
+  "planned_independent_reference_checks": 16,
+  "shared_deadline_seconds": 120,
+  "maximum_attempts": 1,
+  "local_design_target_seconds": 55,
+  "runtime_status": "R7 presentation-only; no new timing claim. See preserved R6 canonical receipt.",
+  "scientific_pins": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "main_reference_first_scope": "16 independent main references before27mainrecords;pytest itself has small qualified arithmetic/LOBPCG fixtures",
+  "files_sha256": {
+    "LICENSE": "66644ec44fae6de4db68325d5389f51e8f7b96ffc80e34bd194f8ff9e1511148",
+    "README.md": "b2b4588362574f7695eb38c3225c5e6a72f0aadd561213be03d739fff1dbdf0f",
+    "acceptance.json": "ce553d8413918e35ae27816f0cf88143cc3f9a449480bb0301bdcf7596c2756a",
+    "cases.json": "604f637dccb85e22735600f1cae8e98cec3332d1eab1c4b12ff8d8e293eb33b3",
+    "fixtures.py": "6edc34a9d2265a52f3692a8e7c26aa1d567915bbe37511ed6f7e929c3a760e66",
+    "inputs.json": "fb04e62fe0cdb606dbde77242103280fc5905971efd14bc6885c381ca68fdde9",
+    "plot.py": "8612ffa4847a73b2bba76ee4b6638ed5b4399e8ad70430c75253093c6d2f68b2",
+    "pytest.ini": "20d7dc29285070f33f67a338c2729e1a5275b9d122020dcb4b2e5c2dcdb5aa73",
+    "references/mass-action-qualification.json": "bca750c53225c4a9336bbe09b81cb3aba18e41818099f8fb4a183862124d698b",
+    "references/oracles.py": "6360b844b4aa9a0be956dc94647447c423533774c717f3ecbeedfa99ad184225",
+    "references/source-review.json": "09b51c6f73075690a686228a0fe27c47a953029159d15085c77bff4305c1aaeb",
+    "requirements-plotting.txt": "fd70c5b60168fd91d504345ec04061037fb9de084f7ec8fa53255486c9c94ab1",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "659a5fd0f1aaf239d36c23f72995d948d0b95a59d823437eb81d38ec5ed0376f",
+    "solvers.py": "e826ceb3a251f5ce729e035d7988518e9101c1deb372670a3241fdf451ae75f7",
+    "test_algorithms.py": "b7ce19603dd8bbb07b537e1c5f55d0ab61ae2a09f7724c696035722a44f37769",
+    "test_mass_action.py": "97786a482b153aaa40e40795c31df2c595e2cc384516f0b4fc59c86e2aed31eb"
+  },
+  "previous_revision": {
+    "contract_sha256": "f8a183f779e0a2ab605c29655d3e91c02b72569d1605caf0990a084c216c29f1",
+    "receipt_sha256": "85e0563a574ef315541d79ffd810a141d24f1b0ce61e01382b22ea36b8565dca",
+    "status": "FAILED_PARTIAL_27pytestPASS16referencesPASS26of27records186of195gates",
+    "old_storage": "Prior source and full failed results remain unchanged in persistent private records;not copied into this distribution."
+  },
+  "repair_scope": "Same mass matrix action exposed to SciPy LOBPCG by qualified S.mv LinearOperator;original action exceptions retained;no warning suppression or LOBPCG bypass",
+  "component_qualification": {
+    "passed": true,
+    "checks": 35,
+    "full_case_executions": 0,
+    "protocol_sha256": "192f2237a3b89650825fa5d5d0cef8a994f0439a0d391adcdd9bff0718764ea0",
+    "receipt_sha256": "3c93a1411c9a6e1523aa0502776f84627deff4738956100c840114d0e05505dd",
+    "historical_exception_identity_recovered": false
+  },
+  "criteria_selected_from_measurements": false,
+  "original_inputs_acceptance_reference_bytes_preserved": true,
+  "before_this_revision_numerical_import_or_execution": true,
+  "scientific_execution_before_this_revision": "R4 primary and R6 canonical package passed; R5 failed the public envelope and remains preserved. No R7 numerical execution or plotting.",
+  "bibliography55": "Separate parent-owned reading task;older selected-scope reference record remains byte-identical",
+  "canonical_method_metadata_revision": {
+    "on": "2026-11-24T05:13:35.009793+00:00",
+    "prior_unexecuted_contract_sha256": "e4b95a1fcd8b167cecf40e7d6bcf34fcde6ef40657bed3e73bfbc162913d7d9f",
+    "scope": "Source case methodIDs use parent canonical lu-partial-pivoting/cholesky/minres/lobpcg;no algorithm/input/criteria/test change"
+  },
+  "scientific_core_revision": 4,
+  "presentation_revision": {
+    "parent_contract_sha256": "95070e841ada20209b067dfeab84955e35948c8285ea9ce49c8c041ff61c75e8",
+    "parent_primary_receipt_sha256": "917e203270d91282088a6a22358dd7752d3b08b23feebd130c8d9ce7cfe2fee2",
+    "changed_files": [
+      "cases.json",
+      "plot.py",
+      "README.md"
+    ],
+    "scope": "Natural-English metadata/documentation and figure titles/labels only. Plot data, series, axes, filenames and numerical expressions are unchanged.",
+    "original_R4_source_preserved": true,
+    "original_R4_failed_lineage_preserved": true,
+    "all14_core_reference_input_test_files_byte_identical": true,
+    "mathematical_gate_counts_unchanged": true,
+    "additional_scientific_execution_performed": false
+  },
+  "serialization_revision": {
+    "previous_presentation_contract_sha256": "9e8b12a3fa2a942fbb0ee0dfacd7e2b90a522ea157cf24451287c5ab90e99bb1",
+    "source_science_contract_sha256": "95070e841ada20209b067dfeab84955e35948c8285ea9ce49c8c041ff61c75e8",
+    "reason": "Prior canonical source main passed27records195gates but public result validation rejected four empty metrics dictionaries.",
+    "changed_source_file": "run.py",
+    "scope": "One pure record-summary function and assignment after each completed case;no scientific computations,checks,inputs,references,test bodies orfigures change.",
+    "metrics": "Per-case maxima of existing measured residual/error/condition/iteration/action/growth record fields;no dummy boolean orcount-only substitute.",
+    "prior_failed_canonical_preserved": true,
+    "prior_edition": "2026-11-24",
+    "new_immutable_edition": "2026-11-24-r2",
+    "data_only_projection_required_before_scientific_execution": true,
+    "scientific_execution_authorized": false
+  },
+  "display_disclosure_revision": {
+    "prior_contract_sha256": "d0ec11910dae64fd6a29c34c4d26ae9c5a8b1489a7b887263caa58696589bf69",
+    "prior_successful_package_receipt_sha256": "406c4487cb0f40ef473eb46c688ea1751e316cb3dbd23e77ecb8aa6ca071b263",
+    "prior_immutable_edition": "2026-11-24-r2",
+    "new_immutable_edition": "2026-11-24-r3",
+    "changed_files": [
+      "cases.json",
+      "plot.py",
+      "README.md"
+    ],
+    "scope": "Visible label/footnote, bilingual caption and README disclose rounded binary64 Fraction reference and existing zero-to-float64.tiny log-display convention only. Existing data expressions, values, series, scientific inputs/references/criteria/tests are unchanged.",
+    "canonical_execution_authorized": false
+  }
+}

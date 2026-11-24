@@ -56,7 +56,9 @@
         "wavelets",
         "validation-foundations",
         "validation-foundations-conditioning",
-        "validation-coefficient-diffusion"
+        "validation-coefficient-diffusion",
+        "validation-linear-algebra-spectral",
+        "validation-bratu-continuation-jfnk"
       ]
     },
     {
@@ -207,7 +209,10 @@
         "h2-hf",
         "periodic-dft",
         "periodic-forces",
-        "validation-slab-ewald"
+        "validation-slab-ewald",
+        "validation-maxwell-cylinder",
+        "validation-maxwell-lorentz",
+        "validation-maxwell-grazing"
       ]
     },
     {

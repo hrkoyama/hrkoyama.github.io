@@ -28,14 +28,19 @@ def fast_speed(w,gamma=5/3,axis=0):
     return np.sqrt(.5*(a2+b2+np.sqrt(np.maximum((a2+b2)**2-4*a2*w[...,5+axis]**2/w[...,0],0.))))
 
 
-def physical_flux(w,gamma=5/3,axis=0):
-    q=conserved(w,gamma);v=w[...,1:4];b=w[...,5:8]
+def _physical_flux_from_conserved(w,q,axis=0):
+    # q is the already computed conserved array for exactly this w/gamma.
+    v=w[...,1:4];b=w[...,5:8]
     vn=v[...,axis];bn=b[...,axis];pt=w[...,4]+.5*np.sum(b*b,axis=-1)
     f=q*vn[...,None]
     f[...,1:4]-=bn[...,None]*b;f[...,1+axis]+=pt
     f[...,4]=(q[...,4]+pt)*vn-bn*np.sum(v*b,axis=-1)
     f[...,5:8]=vn[...,None]*b-bn[...,None]*v
     return f
+
+
+def physical_flux(w,gamma=5/3,axis=0):
+    return _physical_flux_from_conserved(w,conserved(w,gamma),axis=axis)
 
 
 def riemann(left,right,gamma=5/3,axis=0,solver='hlld'):
@@ -52,9 +57,11 @@ def riemann(left,right,gamma=5/3,axis=0,solver='hlld'):
     perm=[0,1+axis,1+(axis+1)%3,1+(axis+2)%3,4,5+axis,5+(axis+1)%3,5+(axis+2)%3]
     l=left[...,perm];r=right[...,perm]
     ul,ur=conserved(l,gamma),conserved(r,gamma)
-    fl,fr=physical_flux(l,gamma),physical_flux(r,gamma)
-    sl=np.minimum(l[...,1]-fast_speed(l,gamma),r[...,1]-fast_speed(r,gamma))
-    sr=np.maximum(l[...,1]+fast_speed(l,gamma),r[...,1]+fast_speed(r,gamma))
+    fl,fr=_physical_flux_from_conserved(l,ul),_physical_flux_from_conserved(r,ur)
+    cl=fast_speed(l,gamma);sl_left=l[...,1]-cl
+    cr=fast_speed(r,gamma);sl_right=r[...,1]-cr
+    sl=np.minimum(sl_left,sl_right)
+    sr=np.maximum(l[...,1]+cl,r[...,1]+cr)
     amax=np.maximum(abs(sl),abs(sr))
     sl0=np.minimum(sl,0);sr0=np.maximum(sr,0)
     fallback=(sr0[...,None]*fl-sl0[...,None]*fr+(sl0*sr0)[...,None]*(ur-ul))/(sr0-sl0)[...,None]

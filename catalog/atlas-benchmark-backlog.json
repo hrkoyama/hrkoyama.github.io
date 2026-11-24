@@ -2562,7 +2562,7 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
+      "state": "published",
       "current": "Re100の実2D LBMを3格子で計算し、Ghiaの丸めた中心線表・主渦・定常性・壁運動量収支を照合。角と有限Machの制約を残します。",
       "tasks": [
         "移動壁条件・中心線速度・主渦位置と格子細分化を追加",
@@ -2621,7 +2621,13 @@
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#lid-driven-cavity-ja",
         "execution": "/numerical-methods-atlas/validation/lbm-cavity-re100/?lang=ja"
       },
-      "sequence": 38
+      "sequence": 38,
+      "published_verification": {
+        "commit": "546e9cdb57ba1700c86081757d3a2dc196cd0739",
+        "url": "/numerical-methods-atlas/validation/verification/2026-11-24-batch38-47-public.json",
+        "passed": true,
+        "verified_at_utc": "2026-11-24T05:01:25.319437+00:00"
+      }
     },
     {
       "id": "lbm-2",
@@ -2634,7 +2640,7 @@
       "priority": "P1",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
+      "state": "published",
       "current": "解析Taylor–Green渦で速度・圧力・エネルギーを比較。格子・時間刻み・Mach数の結び付いた細分化と振幅・刻みの比較で、純粋な時間次数やMach次数とは区別します。",
       "tasks": [
         "せん断単一モードに加え、非線形移流と粘性を含む低Mach渦で速度/圧力誤差を分離",
@@ -2683,7 +2689,13 @@
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#taylor-green-ja",
         "execution": "/numerical-methods-atlas/validation/lbm-taylor-green/?lang=ja"
       },
-      "sequence": 39
+      "sequence": 39,
+      "published_verification": {
+        "commit": "546e9cdb57ba1700c86081757d3a2dc196cd0739",
+        "url": "/numerical-methods-atlas/validation/verification/2026-11-24-batch38-47-public.json",
+        "passed": true,
+        "verified_at_utc": "2026-11-24T05:01:25.319437+00:00"
+      }
     },
     {
       "id": "lbm-3",
@@ -2696,7 +2708,7 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
+      "state": "published",
       "current": "二次曲面補間の環状Couette制御と、実際のRe20円柱流を別配布。点ごとの圧力・トルク、抗力・圧力差・後流を比較し、旧未達・流出不安定化の結果も保持。原著の推定区間を厳密解とはしません。",
       "tasks": [
         "まず定常低Reで抗力・圧力差を比較し、曲面壁の配置誤差を検査",
@@ -2763,7 +2775,13 @@
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#lbm-annular-couette-control-ja",
         "execution": "/numerical-methods-atlas/validation/lbm-annular-couette-control/?lang=ja"
       },
-      "sequence": 40
+      "sequence": 40,
+      "published_verification": {
+        "commit": "546e9cdb57ba1700c86081757d3a2dc196cd0739",
+        "url": "/numerical-methods-atlas/validation/verification/2026-11-24-batch38-47-public.json",
+        "passed": true,
+        "verified_at_utc": "2026-11-24T05:01:25.319437+00:00"
+      }
     },
     {
       "id": "radiation-1",
@@ -2776,7 +2794,7 @@
       "priority": "P1",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
+      "state": "published",
       "current": "光学的厚さと散乱アルベドを固定した定常平板。角度離散法を、連続角度のFredholm積分方程式・異なるスカラー基底の参照と比較。有限な参照差を厳密誤差上界とはしません。",
       "tasks": [
         "単一散乱アルベドと光学的厚さを変え、透過・反射・吸収収支を独立輸送解と比較",
@@ -2821,7 +2839,13 @@
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#isotropic-scattering-slab-ja",
         "execution": "/numerical-methods-atlas/validation/isotropic-scattering-slab/?lang=ja"
       },
-      "sequence": 41
+      "sequence": 41,
+      "published_verification": {
+        "commit": "546e9cdb57ba1700c86081757d3a2dc196cd0739",
+        "url": "/numerical-methods-atlas/validation/verification/2026-11-24-batch38-47-public.json",
+        "passed": true,
+        "verified_at_utc": "2026-11-24T05:01:25.319437+00:00"
+      }
     },
     {
       "id": "radiation-2",
@@ -2834,7 +2858,7 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
+      "state": "published",
       "current": "1996拡散と1997輸送の規格化・境界・参照を分離。固定ExactPack版と著者提供の2023輸送表を照合し、物質交換・重み付き収支を確認。追加の同条件Fourierモードで平均自由行程を解像した拡散極限を調べ、固定格子AP・SSPRK2の硬い極限とは区別。1996/1997原著全文は未読です。",
       "tasks": [
         "Su–Olsonの1997輸送解と拡散近似版を区別し、時間依存・物質エネルギー交換を検証",
@@ -2929,7 +2953,13 @@
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#su-olson-diffusion1996-ja",
         "execution": "/numerical-methods-atlas/validation/su-olson-diffusion1996/?lang=ja"
       },
-      "sequence": 42
+      "sequence": 42,
+      "published_verification": {
+        "commit": "546e9cdb57ba1700c86081757d3a2dc196cd0739",
+        "url": "/numerical-methods-atlas/validation/verification/2026-11-24-batch38-47-public.json",
+        "passed": true,
+        "verified_at_utc": "2026-11-24T05:01:25.319437+00:00"
+      }
     },
     {
       "id": "radiation-3",
@@ -2942,7 +2972,7 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
+      "state": "published",
       "current": "実2D空間の角度輸送と非線形静止M1で影・対向ビームを比較。x/y交差制御とM1製造解、方向別流束の円錐分割を別に検査。角度輸送の厳密参照をM1全体の厳密解とはしません。",
       "tasks": [
         "純吸収平板以外の角度構造を持つ2D固定入力を設ける",
@@ -2992,7 +3022,13 @@
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#shadow-absorber2d-ja",
         "execution": "/numerical-methods-atlas/validation/shadow-absorber2d/?lang=ja"
       },
-      "sequence": 43
+      "sequence": 43,
+      "published_verification": {
+        "commit": "546e9cdb57ba1700c86081757d3a2dc196cd0739",
+        "url": "/numerical-methods-atlas/validation/verification/2026-11-24-batch38-47-public.json",
+        "passed": true,
+        "verified_at_utc": "2026-11-24T05:01:25.319437+00:00"
+      }
     },
     {
       "id": "stochastic-1",
@@ -3005,7 +3041,7 @@
       "priority": "P1",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
+      "state": "published",
       "current": "GBMとスカラーOUで解析モーメント・離散弱誤差・共有Brown運動・独立seed・MCSEを比較。既存GBM強収束や調和Langevin全体の検証とは区別します。",
       "tasks": [
         "GBM strong収束の既存経路比較とは別に、期待値・分散等のweak収束を反復seedで測る",
@@ -3050,7 +3086,13 @@
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#gbm-sde-ja",
         "execution": "/numerical-methods-atlas/validation/gbm-weak-moments/?lang=ja"
       },
-      "sequence": 44
+      "sequence": 44,
+      "published_verification": {
+        "commit": "546e9cdb57ba1700c86081757d3a2dc196cd0739",
+        "url": "/numerical-methods-atlas/validation/verification/2026-11-24-batch38-47-public.json",
+        "passed": true,
+        "verified_at_utc": "2026-11-24T05:01:25.319437+00:00"
+      }
     },
     {
       "id": "stochastic-2",
@@ -3063,7 +3105,7 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
+      "state": "published",
       "current": "正規尾確率a=3,6で通常の重要度重み・既知分散・64独立seedの有限な区間被覆を比較。直接MCのゼロヒットをゼロ確率や幅ゼロ区間とはしません。一般の95%被覆保証ではありません。",
       "tasks": [
         "既知erfc参照を持つ稀な事象で、推定量の不偏性と重み・実測分散・区間被覆を確認",
@@ -3107,7 +3149,13 @@
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#normal-tail-importance-ja",
         "execution": "/numerical-methods-atlas/validation/normal-tail-importance/?lang=ja"
       },
-      "sequence": 45
+      "sequence": 45,
+      "published_verification": {
+        "commit": "546e9cdb57ba1700c86081757d3a2dc196cd0739",
+        "url": "/numerical-methods-atlas/validation/verification/2026-11-24-batch38-47-public.json",
+        "passed": true,
+        "verified_at_utc": "2026-11-24T05:01:25.319437+00:00"
+      }
     },
     {
       "id": "stochastic-3",
@@ -3120,7 +3168,7 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
+      "state": "published",
       "current": "相関0.95の2D Gaussianを等方・前処理付き提案で比較。解析の同時モーメントと量別MCSE、保存同一データのArviZ診断640照合を分離。有限演算の分位点互換を明記し、banana・funnel・HMC/NUTSや一般の収束保証は未実装です。",
       "tasks": [
         "既存1D対称二峰とは異なる相関・次元・局所スケールで診断の限界を示す",
@@ -3174,7 +3222,13 @@
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#correlated-gaussian-mcmc-ja",
         "execution": "/numerical-methods-atlas/validation/correlated-gaussian-mcmc/?lang=ja"
       },
-      "sequence": 46
+      "sequence": 46,
+      "published_verification": {
+        "commit": "546e9cdb57ba1700c86081757d3a2dc196cd0739",
+        "url": "/numerical-methods-atlas/validation/verification/2026-11-24-batch38-47-public.json",
+        "passed": true,
+        "verified_at_utc": "2026-11-24T05:01:25.319437+00:00"
+      }
     },
     {
       "id": "stochastic-4",
@@ -3187,7 +3241,7 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
+      "state": "published",
       "current": "同じBrown運動でEMとMilsteinのGBM強誤差を比較し、解析RMSと有限標本区間を照合。非Lipschitz系や一般の正値性へは広げません。",
       "tasks": [
         "既存EMと同じBrown経路でstrong 1/2と1を比較",
@@ -3231,7 +3285,13 @@
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#gbm-sde-ja",
         "execution": "/numerical-methods-atlas/validation/gbm-milstein-strong/?lang=ja"
       },
-      "sequence": 47
+      "sequence": 47,
+      "published_verification": {
+        "commit": "546e9cdb57ba1700c86081757d3a2dc196cd0739",
+        "url": "/numerical-methods-atlas/validation/verification/2026-11-24-batch38-47-public.json",
+        "passed": true,
+        "verified_at_utc": "2026-11-24T05:01:25.319437+00:00"
+      }
     },
     {
       "id": "maxwell-fdtd-1",
@@ -3244,7 +3304,7 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
+      "state": "verified",
       "current": "最新r6は108テスト、8固定入力。periodic-wave、pec-cavity、dielectric-interface、pml-pulse、pml-corners、dielectric-oblique、p-polarization（Brewster/TIRを含む）、loss-dispersionがある。真空平面波/空洞固有振動/Fresnel/PMLを不足扱いしない。r6の損失分散は1D垂直入射のOhmic・単一受動Lorentz板。",
       "tasks": [
         "既存平面界面とは異なる曲面・散乱断面積を解析級数と比較",
@@ -3256,6 +3316,16 @@
           "title": "Meep公式: Mie Scattering of a Lossless Dielectric Sphere",
           "url": "https://meep.readthedocs.io/en/latest/Scheme_Tutorials/Basics/",
           "review": "球の散乱効率を解析Mie解と比較する公式例を確認。2D円柱への縮小は提案で、球の式を円柱へ流用しない。"
+        },
+        {
+          "title": "Mie scattering 2D",
+          "url": "https://optics.ansys.com/hc/en-us/articles/360042703373-Mie-scattering-2D",
+          "review": "Read the complete substantive benchmark description: two-dimensional dielectric cylinder, TFSF, angular far field and lossless cross sections. Did not read the associated simulation files, theory table or cited book; no external numerical data imported."
+        },
+        {
+          "title": "Bessel and Hankel Wronskians, section10.5",
+          "url": "https://dlmf.nist.gov/10.5",
+          "review": "Read section 10.5, especially equation 10.5.3 for the ordinary J/Hankel1 Wronskian; version 1.2.8. Cylinder boundary algebra is independently derived here."
         }
       ],
       "baseline_evidence": [
@@ -3264,7 +3334,26 @@
           "id": "既存8入力に曲面散乱はない"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24/maxwell-cylinder/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24/maxwell-cylinder/inputs.json",
+          "/code/validated-examples/2026-11-24/maxwell-cylinder/acceptance.json",
+          "/code/validated-examples/2026-11-24/maxwell-cylinder/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24/maxwell-cylinder/results/cylinder-mie2d-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24/maxwell-cylinder/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24/maxwell-cylinder/README.md",
+          "/code/validated-examples/2026-11-24/maxwell-cylinder/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#cylinder-mie2d-ja",
+        "execution": "/numerical-methods-atlas/validation/cylinder-mie2d/?lang=ja"
+      },
       "sequence": 48
     },
     {
@@ -3278,7 +3367,7 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
+      "state": "verified",
       "current": "最新r6は108テスト、8固定入力。periodic-wave、pec-cavity、dielectric-interface、pml-pulse、pml-corners、dielectric-oblique、p-polarization（Brewster/TIRを含む）、loss-dispersionがある。真空平面波/空洞固有振動/Fresnel/PMLを不足扱いしない。r6の損失分散は1D垂直入射のOhmic・単一受動Lorentz板。",
       "tasks": [
         "既存r5の無損失s/p斜め入射とr6の1D分散垂直入射を単に合体しただけでは検証済みにしない",
@@ -3301,7 +3390,26 @@
           "path": "code/fdtd/2026-11-22-r6/inputs/loss-dispersion.json"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24/maxwell-lorentz/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24/maxwell-lorentz/inputs.json",
+          "/code/validated-examples/2026-11-24/maxwell-lorentz/acceptance.json",
+          "/code/validated-examples/2026-11-24/maxwell-lorentz/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24/maxwell-lorentz/results/lorentz-oblique-sp-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24/maxwell-lorentz/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24/maxwell-lorentz/README.md",
+          "/code/validated-examples/2026-11-24/maxwell-lorentz/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#lorentz-oblique-sp-ja",
+        "execution": "/numerical-methods-atlas/validation/lorentz-oblique-sp/?lang=ja"
+      },
       "sequence": 49
     },
     {
@@ -3315,7 +3423,7 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
+      "state": "verified",
       "current": "最新r6は108テスト、8固定入力。periodic-wave、pec-cavity、dielectric-interface、pml-pulse、pml-corners、dielectric-oblique、p-polarization（Brewster/TIRを含む）、loss-dispersionがある。真空平面波/空洞固有振動/Fresnel/PMLを不足扱いしない。r6の損失分散は1D垂直入射のOhmic・単一受動Lorentz板。",
       "tasks": [
         "既存x面・四辺/角PMLは保持し、near-grazingと長時間残留を別固定入力として検査",
@@ -3327,6 +3435,11 @@
           "title": "Meep公式: Materials",
           "url": "https://meep.readthedocs.io/en/latest/Materials/",
           "review": "Lorentz分極・導電率の規約と分散媒質/PML併用時の安定性注意を確認。既存r6はMeepと導電率・更新法の規約が異なる。"
+        },
+        {
+          "title": "Notes on Perfectly Matched Layers",
+          "url": "https://arxiv.org/html/2108.05348v1",
+          "review": "Read sections 3.2–4.2, equations 7–8 and the time-domain ADE discussion, plus sections 5–7.2 on homogeneity, evanescent fields and grazing/discretization limitations. The served text is updated 2026-08-24. The trapezoidal filter is our derivation; no full original Berenger/Roden-Gedney paper review is claimed."
         }
       ],
       "baseline_evidence": [
@@ -3339,7 +3452,26 @@
           "id": "no dispersive PML"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24/maxwell-grazing/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24/maxwell-grazing/inputs.json",
+          "/code/validated-examples/2026-11-24/maxwell-grazing/acceptance.json",
+          "/code/validated-examples/2026-11-24/maxwell-grazing/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24/maxwell-grazing/results/dispersive-grazing-pml-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24/maxwell-grazing/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24/maxwell-grazing/README.md",
+          "/code/validated-examples/2026-11-24/maxwell-grazing/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#dispersive-grazing-pml-ja",
+        "execution": "/numerical-methods-atlas/validation/dispersive-grazing-pml/?lang=ja"
+      },
       "sequence": 50
     },
     {
@@ -3353,7 +3485,7 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
+      "state": "verified",
       "current": "Thomas、定常反復、CG、GMRES/BiCGSTAB、Jacobi/ILU0、幾何 MG、平滑化集約 AMG、QR/SVD がある。AMG の正方 Poisson・異方性・条件数診断と、QR/SVD の独立 LAPACK・80/120桁参照まで保存済み。",
       "tasks": [
         "小さい SPD、ほぼ特異行列、Hilbert 行列、ピボット成長を示す Wilkinson 型行列を固定入力化",
@@ -3388,7 +3520,26 @@
           "id": "amg-conditioning/qr-svd-conditioning"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/inputs.json",
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/acceptance.json",
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/pivoted-direct-refinement-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/README.md",
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#pivoted-direct-refinement-ja",
+        "execution": "/numerical-methods-atlas/validation/pivoted-direct-refinement/?lang=ja"
+      },
       "sequence": 51
     },
     {
@@ -3402,7 +3553,7 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
+      "state": "verified",
       "current": "Thomas、定常反復、CG、GMRES/BiCGSTAB、Jacobi/ILU0、幾何 MG、平滑化集約 AMG、QR/SVD がある。AMG の正方 Poisson・異方性・条件数診断と、QR/SVD の独立 LAPACK・80/120桁参照まで保存済み。",
       "tasks": [
         "小さい混合 Poisson/Stokes 型ブロック系で、CG の適用外を示す",
@@ -3421,6 +3572,11 @@
           "url": "https://petsc.org/release/manual/ksp/",
           "checked_on": "2026-11-23",
           "review": "公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。"
+        },
+        {
+          "title": "Paige and Saunders: Stanford SOL MINRES",
+          "url": "https://web.stanford.edu/group/SOL/software/minres/",
+          "review": "Selected discussion of symmetric indefinite systems, SPD preconditioners and the original residual was read. The original 1975 paper was not read. This stored-basis Lanczos least-squares variant is not a copy of the production short recurrence."
         }
       ],
       "baseline_evidence": [
@@ -3437,7 +3593,26 @@
           "id": "amg-conditioning/qr-svd-conditioning"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/inputs.json",
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/acceptance.json",
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/symmetric-saddle-minres-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/README.md",
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#symmetric-saddle-minres-ja",
+        "execution": "/numerical-methods-atlas/validation/symmetric-saddle-minres/?lang=ja"
+      },
       "sequence": 52
     },
     {
@@ -3451,7 +3626,7 @@
       "priority": "P1",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
+      "state": "verified",
       "current": "再始動なし Arnoldi/Lanczos、直交性・残差・happy breakdown、ギャップ縮小・非正規性・部分空間診断がある。分子 HF では一般化密行列固有値問題 eigh(F,S) も既に使用。",
       "tasks": [
         "離散 Laplacian の既知スペクトルで端点・内部固有値を比較",
@@ -3490,7 +3665,26 @@
           "id": "eigh(F,S)"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/inputs.json",
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/acceptance.json",
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/restarted-shift-invert-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/README.md",
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#restarted-shift-invert-ja",
+        "execution": "/numerical-methods-atlas/validation/restarted-shift-invert/?lang=ja"
+      },
       "sequence": 53
     },
     {
@@ -3504,7 +3698,7 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
+      "state": "verified",
       "current": "再始動なし Arnoldi/Lanczos、直交性・残差・happy breakdown、ギャップ縮小・非正規性・部分空間診断がある。分子 HF では一般化密行列固有値問題 eigh(F,S) も既に使用。",
       "tasks": [
         "1D FEM 弦振動 Kx=λMx で M 直交性・残差と既知固有値への収束を確認",
@@ -3523,6 +3717,16 @@
           "url": "https://slepc.upv.es/release/manualpages/EPS/EPSKRYLOVSCHUR.html",
           "checked_on": "2026-11-23",
           "review": "公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。"
+        },
+        {
+          "title": "SciPy 1.14.1 LOBPCG API",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.sparse.linalg.lobpcg.html",
+          "review": "Selected discussion of SPD B, preconditioner M, the history tuple, the 3k eigensolve, the 5k > n fallback and the rod example was read. This maintained-library comparison shares reduced LAPACK primitives; LOBPCG is not independently authored here."
+        },
+        {
+          "title": "SciPy 1.14.1 LOBPCG adapter and initial B-orthonormalization",
+          "url": "https://raw.githubusercontent.com/scipy/scipy/v1.14.1/scipy/sparse/linalg/_eigen/lobpcg/lobpcg.py",
+          "review": "Selected _makeMatMat, _b_orthonormalize and API lines were read. The installed pinned file is bound separately. No full reading of the original LOBPCG paper or byte equality between wheel and Web source formatting is claimed."
         }
       ],
       "baseline_evidence": [
@@ -3543,7 +3747,26 @@
           "id": "eigh(F,S)"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/inputs.json",
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/acceptance.json",
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/fem-mass-eigen-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/README.md",
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#fem-mass-eigen-ja",
+        "execution": "/numerical-methods-atlas/validation/fem-mass-eigen/?lang=ja"
+      },
       "sequence": 54
     },
     {
@@ -3557,7 +3780,7 @@
       "priority": "P3",
       "kind": "references",
       "initial_coverage": "出典整備不足",
-      "state": "planned",
+      "state": "verified",
       "current": "再始動なし Arnoldi/Lanczos、直交性・残差・happy breakdown、ギャップ縮小・非正規性・部分空間診断がある。分子 HF では一般化密行列固有値問題 eigh(F,S) も既に使用。",
       "tasks": [
         "既存 arnoldi1951/lanczos1950 の metadata レベルを保持し、利用する漸化式・直交化の原文範囲を追加確認"
@@ -3595,7 +3818,17 @@
           "id": "eigh(F,S)"
         }
       ],
-      "completion": null,
+      "completion": {
+        "targets": [
+          "/catalog/atlas-method-primary-references.json",
+          "/catalog/atlas-detailed-reading.json"
+        ],
+        "proof": [
+          "/catalog/atlas-method-primary-references.json",
+          "/catalog/atlas-detailed-reading.json"
+        ],
+        "note": "Selected Lanczos original NIST pages266–267/271 were visually checked. Selected Arnoldi original-paper prose was read from a disclosed public OCR copy; the original scan/equation symbols remain unverified and AMS requests returned403. This is source curation, not another numerical implementation."
+      },
       "sequence": 55
     },
     {
@@ -3609,7 +3842,7 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
+      "state": "verified",
       "current": "Bratu の減衰 Newton、十分減少線探索、組み立て Jacobian と GMRES/ILU 内部解法がある。一般の matrix-free Jv・trust region・continuation は atlas-methods の制限に明記。",
       "tasks": [
         "既存解析解族を用いて λ 最大付近の上下枝と折り返しを照合",
@@ -3622,6 +3855,16 @@
           "url": "https://petsc.org/release/manual/snes/",
           "checked_on": "2026-11-23",
           "review": "公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。"
+        },
+        {
+          "title": "Condition Estimates for Pseudo-Arclength Continuation",
+          "url": "https://ipsen.math.ncsu.edu/ps/sinum65438.pdf",
+          "review": "Section2.2, printedpp265–266, Eqs2.2–2.5; tangent null equation, unit Euclidean tangent, augmented system and tangent hyperplane. Weighted h-sum metric is the implementation’s stated discrete variation. No full condition-number proof or original paper numerical benchmark is borrowed."
+        },
+        {
+          "title": "Finite differences for the1D Bratu problem,Problem8",
+          "url": "https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html",
+          "review": "Problem8/Eq52: boundary-value equation, analytic cosh family, branch count and printed rounded critical value. The author’s parameter equals2 times our theta. Independent Decimal80 exact-family qualification remains the numerical reference; the printed rounded anchor is a separate coarse check."
         }
       ],
       "baseline_evidence": [
@@ -3637,7 +3880,26 @@
           "path": "code/numerical-methods-atlas/2026-11-21/numart/krylov.py"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/inputs.json",
+          "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/acceptance.json",
+          "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-fold-continuation-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/README.md",
+          "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bratu-fold-continuation-ja",
+        "execution": "/numerical-methods-atlas/validation/bratu-fold-continuation/?lang=ja"
+      },
       "sequence": 56
     },
     {
@@ -3651,7 +3913,7 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
+      "state": "verified",
       "current": "Bratu の減衰 Newton、十分減少線探索、組み立て Jacobian と GMRES/ILU 内部解法がある。一般の matrix-free Jv・trust region・continuation は atlas-methods の制限に明記。",
       "tasks": [
         "解析 Jv・有限差分 Jv・AD Jv を既存 Bratu で比較",
@@ -3664,6 +3926,21 @@
           "url": "https://petsc.org/release/manual/snes/",
           "checked_on": "2026-11-23",
           "review": "公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。"
+        },
+        {
+          "title": "Jacobian-free Newton-Krylov methods: a survey of approaches and applications",
+          "url": "https://inf.ufes.br/~luciac/comcie/JFNK-Knoll.pdf",
+          "review": "Selectedsec2.3,2.3.1,2.3.2 and2.4.1, printedpp361–363: matrix-free Jv action, perturbation scaling, inexact forcing Eq16 and line-search globalization. Actual central difference denominator2h and eps_machine^(1/3) scaling are independently specified/qualified, not an attribution to a PETSc default. No whole41-page audit or paper solver result reuse."
+        },
+        {
+          "title": "Choosing the Forcing Terms in an Inexact Newton Method",
+          "url": "https://users.wpi.edu/~walker/Papers/forcing_terms,SISC_17,1996,16-32.pdf",
+          "review": "Section1 AlgorithmIN/Eq1.2; selectedsec2 Choice2/Eq2.6; practical-safeguard paragraphssec2.1, printedpp16,20,22–23. Core eta=gamma*(||F_k||/||F_{k-1}||)^alpha is Choice2-style. Our gamma.9/alpha1.5 with eta_initial.3 and fixed[.001,.5] clamp omits the paper’s previous-eta safeguard. This is a declared variant, not its complete safeguarded algorithm or an asymptotic convergence certification."
+        },
+        {
+          "title": "Finite differences for the1D Bratu problem,Problem8",
+          "url": "https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html",
+          "review": "Problem8/Eq52: boundary-value equation, analytic cosh family, branch count and printed rounded critical value. The author’s parameter equals2 times our theta. Independent Decimal80 exact-family qualification remains the numerical reference; the printed rounded anchor is a separate coarse check."
         }
       ],
       "baseline_evidence": [
@@ -3679,7 +3956,26 @@
           "path": "code/numerical-methods-atlas/2026-11-21/numart/krylov.py"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/inputs.json",
+          "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/acceptance.json",
+          "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-matrix-free-jfnk-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/README.md",
+          "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bratu-matrix-free-jfnk-ja",
+        "execution": "/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/?lang=ja"
+      },
       "sequence": 57
     },
     {

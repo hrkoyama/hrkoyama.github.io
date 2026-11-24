@@ -984,6 +984,170 @@
         "ja": "重要度重み付き尾確率と2D相関GaussianのMCMCを扱い、解析値・同一データの診断照合・新規標本の検査を区別します。",
         "en": "Study importance-weighted tails and 2D correlated-Gaussian MCMC, separating analytic targets, same-data diagnostic comparisons and fresh-sample checks."
       }
+    },
+    {
+      "id": "validation-maxwell-cylinder",
+      "method_ids": [
+        "fdtd",
+        "leapfrog"
+      ],
+      "equation_ids": [
+        "maxwell"
+      ],
+      "problem_ids": [
+        "cylinder-mie2d"
+      ],
+      "execution_ids": [
+        "cylinder-mie2d"
+      ],
+      "reference_ids": [
+        "cylinder-mie2d"
+      ],
+      "code_problem_ids": [
+        "cylinder-mie2d"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "実際の2D散乱場を進め、閉曲線Poynting流束と独立な円柱級数を比較します。",
+        "en": "Evolve the actual two-dimensional scattered fields and compare closed-contour Poynting power with an independent cylindrical series."
+      }
+    },
+    {
+      "id": "validation-maxwell-lorentz",
+      "method_ids": [
+        "fdtd",
+        "leapfrog",
+        "implicit-midpoint"
+      ],
+      "equation_ids": [
+        "maxwell-lorentz"
+      ],
+      "problem_ids": [
+        "lorentz-oblique-sp"
+      ],
+      "execution_ids": [
+        "lorentz-oblique-sp"
+      ],
+      "reference_ids": [
+        "lorentz-oblique-sp"
+      ],
+      "code_problem_ids": [
+        "lorentz-oblique-sp"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "有限波束の実進行から複素r/t・R/T・直接散逸を求め、複素Fresnel参照と比較します。",
+        "en": "Measure complex r/t, power fractions and direct dissipation from actual finite-pulse evolutions and compare them with complex Fresnel slab references."
+      }
+    },
+    {
+      "id": "validation-maxwell-grazing",
+      "method_ids": [
+        "fdtd",
+        "leapfrog",
+        "implicit-midpoint"
+      ],
+      "equation_ids": [
+        "maxwell-lorentz"
+      ],
+      "problem_ids": [
+        "dispersive-grazing-pml"
+      ],
+      "execution_ids": [
+        "dispersive-grazing-pml"
+      ],
+      "reference_ids": [
+        "dispersive-grazing-pml"
+      ],
+      "code_problem_ids": [
+        "dispersive-grazing-pml"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "80度の中心位相角を持つ有限波束をT=700まで進め、境界誤差を同格子の無PML参照から分離します。",
+        "en": "Evolve a finite packet with an 80-degree central phase angle to T = 700, isolating boundary error against a no-PML reference on the same grid."
+      }
+    },
+    {
+      "id": "validation-linear-algebra-spectral",
+      "method_ids": [
+        "lu-partial-pivoting",
+        "cholesky",
+        "minres",
+        "gmres",
+        "eigensolvers",
+        "lobpcg"
+      ],
+      "equation_ids": [
+        "finite-dimensional-linear-system",
+        "finite-dimensional-eigenproblem",
+        "dirichlet-string-eigenproblem"
+      ],
+      "problem_ids": [
+        "pivoted-direct-refinement",
+        "symmetric-saddle-minres",
+        "restarted-shift-invert",
+        "fem-mass-eigen"
+      ],
+      "execution_ids": [
+        "pivoted-direct-refinement",
+        "symmetric-saddle-minres",
+        "restarted-shift-invert",
+        "fem-mass-eigen"
+      ],
+      "reference_ids": [
+        "pivoted-direct-refinement",
+        "symmetric-saddle-minres",
+        "restarted-shift-invert",
+        "fem-mass-eigen"
+      ],
+      "code_problem_ids": [
+        "pivoted-direct-refinement",
+        "symmetric-saddle-minres",
+        "restarted-shift-invert",
+        "fem-mass-eigen"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "小さい固定行列で、行列分解と反復改良、対称不定値の反復解法、再始動固有値解法、整合質量の弦を比較します。独立参照へ照合し、残差と解誤差・代数誤差と離散化誤差・作用回数を分けます。",
+        "en": "Small fixed matrices compare factorization and refinement, symmetric-indefinite solves, restarted eigenpairs and a consistent-mass string. Independent references distinguish residual from solution error, algebraic from discretization error, and counted operator actions."
+      }
+    },
+    {
+      "id": "validation-bratu-continuation-jfnk",
+      "method_ids": [
+        "pseudo-arclength-continuation",
+        "newton",
+        "centered-difference",
+        "jacobian-free-newton-krylov",
+        "gmres",
+        "thomas",
+        "automatic-differentiation"
+      ],
+      "equation_ids": [
+        "bratu"
+      ],
+      "problem_ids": [
+        "bratu-fold-continuation",
+        "bratu-matrix-free-jfnk"
+      ],
+      "execution_ids": [
+        "bratu-fold-continuation",
+        "bratu-matrix-free-jfnk"
+      ],
+      "reference_ids": [
+        "bratu-fold-continuation",
+        "bratu-matrix-free-jfnk"
+      ],
+      "code_problem_ids": [
+        "bratu-fold-continuation",
+        "bratu-matrix-free-jfnk"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "同じ1次元Bratu境界値問題で、foldを越える継続とJacobianを組み立てない反復を独立解析族へ照合します。",
+        "en": "The same one-dimensional Bratu problem compares fold continuation and matrix-free iteration against an independently evaluated analytic family."
+      }
     }
   ]
 }

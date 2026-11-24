@@ -153,7 +153,9 @@
         "poisson-neumann",
         "poisson-robin",
         "checkerboard-diffusion",
-        "rotated-anisotropic-diffusion"
+        "rotated-anisotropic-diffusion",
+        "bratu-fold-continuation",
+        "bratu-matrix-free-jfnk"
       ]
     },
     {
@@ -383,7 +385,11 @@
         "amg-conditioning",
         "qr-svd-conditioning",
         "krylov-eigen-conditioning",
-        "quadrature-conditioning"
+        "quadrature-conditioning",
+        "pivoted-direct-refinement",
+        "symmetric-saddle-minres",
+        "restarted-shift-invert",
+        "fem-mass-eigen"
       ],
       "scope": {
         "ja": "旧版のSA-AMG、QR／SVD、Krylov固有値、求積の固定例を保持し、条件数・残差・精度と、異方性・右辺摂動と階数閾値・非正規性・狭い山の診断対照を別版で比較します。AMG追加例は代数的診断で、Poissonの格子精度へ加算しません。",
@@ -492,6 +498,39 @@
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/validation-particle-transport/",
         "en": "/numerical-methods-atlas/en/read/validation-particle-transport/"
+      }
+    },
+    {
+      "id": "electromagnetics",
+      "name": {
+        "ja": "電磁場とFDTD",
+        "en": "Electromagnetics and FDTD"
+      },
+      "scope": {
+        "ja": "線形電磁場の有限差分時間発展。真の2D誘電体円柱散乱と、周期y方向の単一波数に制限したs/p偏光のLorentz分散板・長時間PMLを扱います。",
+        "en": "Finite-difference time evolution of linear electromagnetic fields. Includes genuine two-dimensional dielectric-cylinder scattering and s/p-polarized Lorentz-slab and long-time PML cases restricted to a single periodic transverse wave number."
+      },
+      "reference": {
+        "ja": "独立な円柱Bessel/Hankel級数、複素Fresnel板と直接体積散逸、無PML同格子の独立Fourier更新行列を区別します。",
+        "en": "Distinguish independent cylindrical Bessel/Hankel series, complex Fresnel slab coefficients with direct volume dissipation, and a separately implemented no-PML Fourier update matrix on the same grid."
+      },
+      "refinement": {
+        "ja": "円柱12/18/24点/波長、板のhと横方向解像度、PML512/768/1024点を固定比較。補間・曲面・窓・伝播分散と境界誤差を分けます。 PMLは格子と層の強度6/9/12の同時細分化であり、固定PMLの空間次数ではありません。",
+        "en": "Fixed refinements use 12/18/24 points per wavelength for the cylinder, three longitudinal and transverse slab resolutions, and 512/768/1024 PML cells. Separate interpolation, geometry, window, bulk-dispersion and boundary errors. The PML path jointly refines the grid and layer strengths6/9/12; it is not a fixed-PML spatial-order test."
+      },
+      "next": {
+        "ja": "一般3D球、任意横方向波束、多重共鳴、一般異方性・非線形媒質、任意角度・任意材料でのPML安定性は別検証です。",
+        "en": "General three-dimensional spheres, arbitrary transverse packets, multiple resonances, general anisotropic or nonlinear media, and PML stability for arbitrary angles and materials require separate validation."
+      },
+      "examples": [],
+      "supplemental_examples": [
+        "cylinder-mie2d",
+        "lorentz-oblique-sp",
+        "dispersive-grazing-pml"
+      ],
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-maxwell-cylinder/",
+        "en": "/numerical-methods-atlas/en/read/validation-maxwell-cylinder/"
       }
     }
   ],

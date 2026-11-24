@@ -1,3 +1,4 @@
+import {groupsAddedAfterBatch47,problemsAddedAfterBatch47,equationsAddedAfterBatch47,projectPointerBeforeBatch48,projectReleaseBeforeBatch48} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -34,7 +35,7 @@ test('batch38–47 preserves existing scientific files, search details, equation
  for(const [id,status] of Object.entries(baseline.method_statuses))assert.equal(methods.find(x=>x.id===id)?.status,status,id);
  const appendFields=new Set(['summary','limitations','depth_release','depth_additional_releases','supplemental_scope_profiles','metadata_review']);
  const firstScopeMethods=new Set(['backward-euler','d2q9-bgk','monte-carlo','sde']);
- for(const m of methods){
+ for(const m of methods.filter(row=>Object.hasOwn(baseline.method_nonappend_fields,row.id))){
   assert.deepEqual(Object.fromEntries(Object.entries(m).filter(([k])=>!appendFields.has(k)&&!(firstScopeMethods.has(m.id)&&k==='depth_scope'))),baseline.method_nonappend_fields[m.id],m.id+'/preserved-science');
   if(firstScopeMethods.has(m.id))for(const lang of ['ja','en'])assert.ok(m.depth_scope[lang].trim(),m.id+'/new-scoped-release-description');
   assert.deepEqual(Object.fromEntries(Object.entries(m.metadata_review||{}).filter(([k])=>k!=='supplemental_review')),baseline.method_review_nonappend_fields[m.id],m.id+'/preserved-review');
@@ -42,8 +43,8 @@ test('batch38–47 preserves existing scientific files, search details, equation
  for(const [id,old] of Object.entries(baseline.method_append_fields_before_batch38)){
   const current=methods.find(x=>x.id===id);
   for(const key of ['summary','limitations'])for(const lang of ['ja','en'])assert.ok(current[key][lang].startsWith(old[key][lang]),id+'/'+key+'/'+lang+'/preserved-description');
-  if(old.depth_release)assert.deepEqual(current.depth_release,old.depth_release,id+'/preserved-primary-release');
-  for(const key of ['depth_additional_releases','supplemental_scope_profiles'])assert.deepEqual((current[key]||[]).slice(0,(old[key]||[]).length),old[key]||[],id+'/'+key+'/preserved-prefix');
+  if(old.depth_release)assert.deepEqual(projectPointerBeforeBatch48(current.depth_release),old.depth_release,id+'/preserved-primary-release');
+  for(const key of ['depth_additional_releases','supplemental_scope_profiles'])assert.deepEqual((current[key]||[]).slice(0,(old[key]||[]).length).map(row=>key==='depth_additional_releases'?projectPointerBeforeBatch48(row):row),old[key]||[],id+'/'+key+'/preserved-prefix');
  }
  const equations=json('catalog/atlas-equations.json').equations;
  for(const [id,formula] of Object.entries(baseline.equation_formulas))assert.deepEqual(equations.find(x=>x.id===id)?.formula,formula,id);
@@ -53,7 +54,7 @@ test('batch38–47 preserves existing scientific files, search details, equation
   assert.deepEqual(fixed(current),fixed(old),old.id+'/preserved-model-or-problem');
   for(const entry of old.supplemental_examples||[])assert.ok(current.supplemental_examples.some(x=>JSON.stringify(x)===JSON.stringify(entry)),old.id+'/preserved-example');
  }
- assert.deepEqual(equations.filter(x=>!Object.hasOwn(baseline.equation_formulas,x.id)).map(x=>x.id).sort(),['static-grey-transfer','non-equilibrium-diffusion-exchange','static-grey-m1','scalar-ito-diffusion','gaussian-probability-model'].sort());
+ assert.deepEqual(equations.filter(x=>!Object.hasOwn(baseline.equation_formulas,x.id)&&!equationsAddedAfterBatch47.includes(x.id)).map(x=>x.id).sort(),['static-grey-transfer','non-equilibrium-diffusion-exchange','static-grey-m1','scalar-ito-diffusion','gaussian-probability-model'].sort());
  const refs=json('catalog/atlas-reference-supplements.json').cases;
  for(const old of baseline.reference_supplements)assert.deepEqual(refs.find(x=>x.id===old.id),old,old.id);
  assert.equal(sha('catalog/atlas-execution-examples.json'),baseline.common_registry_sha256);
@@ -62,12 +63,12 @@ test('batch38–47 preserves existing scientific files, search details, equation
 test('batch38–47 retains all primary gallery records and old release metadata',()=>{
  const gallery=json('catalog/atlas-gallery.json').items;
  for(const old of baseline.gallery_items)assert.deepEqual(gallery.find(x=>x.id===old.id),old,old.id);
- assert.equal(gallery.length,baseline.gallery_items.length+9);
+ assert.equal(gallery.filter(row=>!problemsAddedAfterBatch47.includes(row.id)).length,baseline.gallery_items.length+9);
  const previews=json('numerical-methods-atlas/gallery/preview-manifest.json').items;
  for(const old of baseline.preview_manifest_items)assert.deepEqual(previews.find(x=>x.id===old.id),old,old.id);
  const registry=json('numerical-methods-atlas/validation/releases.json');
- assert.deepEqual(registry.releases.filter(x=>!Object.hasOwn(expected,x.group)),baseline.release_registry.releases);
- assert.equal(registry.case_count,baseline.release_registry.case_count+ids.length);
+ assert.deepEqual(registry.releases.filter(x=>!Object.hasOwn(expected,x.group)&&!groupsAddedAfterBatch47.includes(x.group)).map(projectReleaseBeforeBatch48),baseline.release_registry.releases);
+ assert.equal(registry.releases.filter(row=>!groupsAddedAfterBatch47.includes(row.group)).reduce((n,row)=>n+row.case_ids.length,0),baseline.release_registry.case_count+ids.length);
  assert.deepEqual(registry.releases.filter(x=>Object.hasOwn(expected,x.group)).map(x=>x.group),Object.keys(expected));
 });
 

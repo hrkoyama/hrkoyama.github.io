@@ -1,0 +1,574 @@
+{
+  "schema_version": 1,
+  "passed": false,
+  "cases": [
+    {
+      "id": "lorentz-oblique-sp",
+      "passed": false,
+      "checks": {
+        "fixed-reference-and-components-qualified": true,
+        "lorentz-s-n960/finite": true,
+        "lorentz-s-n960/closed-PEC-direct-work-budget": true,
+        "lorentz-s-n960/vacuum-energy-budget": true,
+        "lorentz-s-n960/nonnegative-material-work": true,
+        "lorentz-s-n960/initial-slab-tail": true,
+        "lorentz-s-n960/last-carrier-period-monitor-energy": false,
+        "lorentz-s-n960/independent-finite-window-vacuum-DTFT": true,
+        "lorentz-s-n960/independent-direct-spectral-work-budget": true,
+        "lorentz-s-n1920/finite": true,
+        "lorentz-s-n1920/closed-PEC-direct-work-budget": true,
+        "lorentz-s-n1920/vacuum-energy-budget": true,
+        "lorentz-s-n1920/nonnegative-material-work": true,
+        "lorentz-s-n1920/initial-slab-tail": true,
+        "lorentz-s-n1920/last-carrier-period-monitor-energy": false,
+        "lorentz-s-n1920/independent-finite-window-vacuum-DTFT": true,
+        "lorentz-s-n1920/independent-direct-spectral-work-budget": true,
+        "lorentz-s-n3840/finite": true,
+        "lorentz-s-n3840/closed-PEC-direct-work-budget": true,
+        "lorentz-s-n3840/vacuum-energy-budget": true,
+        "lorentz-s-n3840/nonnegative-material-work": true,
+        "lorentz-s-n3840/initial-slab-tail": true,
+        "lorentz-s-n3840/last-carrier-period-monitor-energy": false,
+        "lorentz-s-n3840/independent-finite-window-vacuum-DTFT": true,
+        "lorentz-s-n3840/independent-direct-spectral-work-budget": true,
+        "s/finest-complex-rt": true,
+        "s/finest-RTA": false,
+        "s/refinement-n1920": true,
+        "s/refinement-n3840": true,
+        "lorentz-p-n960/finite": true,
+        "lorentz-p-n960/closed-PEC-direct-work-budget": true,
+        "lorentz-p-n960/vacuum-energy-budget": true,
+        "lorentz-p-n960/nonnegative-material-work": true,
+        "lorentz-p-n960/initial-slab-tail": true,
+        "lorentz-p-n960/last-carrier-period-monitor-energy": true,
+        "lorentz-p-n960/independent-finite-window-vacuum-DTFT": true,
+        "lorentz-p-n960/independent-direct-spectral-work-budget": true,
+        "lorentz-p-n1920/finite": true,
+        "lorentz-p-n1920/closed-PEC-direct-work-budget": true,
+        "lorentz-p-n1920/vacuum-energy-budget": true,
+        "lorentz-p-n1920/nonnegative-material-work": true,
+        "lorentz-p-n1920/initial-slab-tail": true,
+        "lorentz-p-n1920/last-carrier-period-monitor-energy": true,
+        "lorentz-p-n1920/independent-finite-window-vacuum-DTFT": true,
+        "lorentz-p-n1920/independent-direct-spectral-work-budget": true,
+        "lorentz-p-n3840/finite": true,
+        "lorentz-p-n3840/closed-PEC-direct-work-budget": true,
+        "lorentz-p-n3840/vacuum-energy-budget": true,
+        "lorentz-p-n3840/nonnegative-material-work": true,
+        "lorentz-p-n3840/initial-slab-tail": true,
+        "lorentz-p-n3840/last-carrier-period-monitor-energy": true,
+        "lorentz-p-n3840/independent-finite-window-vacuum-DTFT": true,
+        "lorentz-p-n3840/independent-direct-spectral-work-budget": true,
+        "p/finest-complex-rt": true,
+        "p/finest-RTA": true,
+        "p/refinement-n1920": true,
+        "p/refinement-n3840": true
+      },
+      "check_details": [
+        {
+          "name": "fixed-reference-and-components-qualified",
+          "value": 100,
+          "bound": 100,
+          "passed": true
+        },
+        {
+          "name": "lorentz-s-n960/finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "lorentz-s-n960/closed-PEC-direct-work-budget",
+          "value": 7.709287091777181e-14,
+          "bound": 5e-10,
+          "passed": true
+        },
+        {
+          "name": "lorentz-s-n960/vacuum-energy-budget",
+          "value": 1.0674397511691481e-13,
+          "bound": 5e-10,
+          "passed": true
+        },
+        {
+          "name": "lorentz-s-n960/nonnegative-material-work",
+          "value": 0.0,
+          "bound": -1e-14,
+          "passed": true
+        },
+        {
+          "name": "lorentz-s-n960/initial-slab-tail",
+          "value": 1.522997807932064e-08,
+          "bound": 1e-07,
+          "passed": true
+        },
+        {
+          "name": "lorentz-s-n960/last-carrier-period-monitor-energy",
+          "value": 2.2096970775511843e-05,
+          "bound": 1e-05,
+          "passed": false
+        },
+        {
+          "name": "lorentz-s-n960/independent-finite-window-vacuum-DTFT",
+          "value": 3.3541310156653026e-14,
+          "bound": 1e-06,
+          "passed": true
+        },
+        {
+          "name": "lorentz-s-n960/independent-direct-spectral-work-budget",
+          "value": 0.01732832797543371,
+          "bound": 0.02,
+          "passed": true
+        },
+        {
+          "name": "lorentz-s-n1920/finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "lorentz-s-n1920/closed-PEC-direct-work-budget",
+          "value": 1.8708639982822662e-13,
+          "bound": 5e-10,
+          "passed": true
+        },
+        {
+          "name": "lorentz-s-n1920/vacuum-energy-budget",
+          "value": 2.1511342771542573e-13,
+          "bound": 5e-10,
+          "passed": true
+        },
+        {
+          "name": "lorentz-s-n1920/nonnegative-material-work",
+          "value": 0.0,
+          "bound": -1e-14,
+          "passed": true
+        },
+        {
+          "name": "lorentz-s-n1920/initial-slab-tail",
+          "value": 1.522997807932064e-08,
+          "bound": 1e-07,
+          "passed": true
+        },
+        {
+          "name": "lorentz-s-n1920/last-carrier-period-monitor-energy",
+          "value": 1.5554353484837664e-05,
+          "bound": 1e-05,
+          "passed": false
+        },
+        {
+          "name": "lorentz-s-n1920/independent-finite-window-vacuum-DTFT",
+          "value": 7.029095165996388e-14,
+          "bound": 1e-06,
+          "passed": true
+        },
+        {
+          "name": "lorentz-s-n1920/independent-direct-spectral-work-budget",
+          "value": 0.011252856512337317,
+          "bound": 0.02,
+          "passed": true
+        },
+        {
+          "name": "lorentz-s-n3840/finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "lorentz-s-n3840/closed-PEC-direct-work-budget",
+          "value": 5.436392111989465e-13,
+          "bound": 5e-10,
+          "passed": true
+        },
+        {
+          "name": "lorentz-s-n3840/vacuum-energy-budget",
+          "value": 7.063440569308786e-13,
+          "bound": 5e-10,
+          "passed": true
+        },
+        {
+          "name": "lorentz-s-n3840/nonnegative-material-work",
+          "value": 0.0,
+          "bound": -1e-14,
+          "passed": true
+        },
+        {
+          "name": "lorentz-s-n3840/initial-slab-tail",
+          "value": 1.522997807932064e-08,
+          "bound": 1e-07,
+          "passed": true
+        },
+        {
+          "name": "lorentz-s-n3840/last-carrier-period-monitor-energy",
+          "value": 1.4244153920449406e-05,
+          "bound": 1e-05,
+          "passed": false
+        },
+        {
+          "name": "lorentz-s-n3840/independent-finite-window-vacuum-DTFT",
+          "value": 2.0490293070979408e-13,
+          "bound": 1e-06,
+          "passed": true
+        },
+        {
+          "name": "lorentz-s-n3840/independent-direct-spectral-work-budget",
+          "value": 0.010728785815975472,
+          "bound": 0.02,
+          "passed": true
+        },
+        {
+          "name": "s/finest-complex-rt",
+          "value": 0.02371552452175312,
+          "bound": 0.03,
+          "passed": true
+        },
+        {
+          "name": "s/finest-RTA",
+          "value": 0.022666853389628094,
+          "bound": 0.02,
+          "passed": false
+        },
+        {
+          "name": "s/refinement-n1920",
+          "value": 0.2093682610165602,
+          "bound": 0.85,
+          "passed": true
+        },
+        {
+          "name": "s/refinement-n3840",
+          "value": 0.5976231452692915,
+          "bound": 0.85,
+          "passed": true
+        },
+        {
+          "name": "lorentz-p-n960/finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "lorentz-p-n960/closed-PEC-direct-work-budget",
+          "value": 7.797439023180036e-14,
+          "bound": 5e-10,
+          "passed": true
+        },
+        {
+          "name": "lorentz-p-n960/vacuum-energy-budget",
+          "value": 1.0706452759474336e-13,
+          "bound": 5e-10,
+          "passed": true
+        },
+        {
+          "name": "lorentz-p-n960/nonnegative-material-work",
+          "value": 0.0,
+          "bound": -1e-14,
+          "passed": true
+        },
+        {
+          "name": "lorentz-p-n960/initial-slab-tail",
+          "value": 1.790732343581236e-08,
+          "bound": 1e-07,
+          "passed": true
+        },
+        {
+          "name": "lorentz-p-n960/last-carrier-period-monitor-energy",
+          "value": 5.612098468528199e-07,
+          "bound": 1e-05,
+          "passed": true
+        },
+        {
+          "name": "lorentz-p-n960/independent-finite-window-vacuum-DTFT",
+          "value": 3.365142274029629e-14,
+          "bound": 1e-06,
+          "passed": true
+        },
+        {
+          "name": "lorentz-p-n960/independent-direct-spectral-work-budget",
+          "value": 0.00996018601158255,
+          "bound": 0.02,
+          "passed": true
+        },
+        {
+          "name": "lorentz-p-n1920/finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "lorentz-p-n1920/closed-PEC-direct-work-budget",
+          "value": 1.856491163468318e-13,
+          "bound": 5e-10,
+          "passed": true
+        },
+        {
+          "name": "lorentz-p-n1920/vacuum-energy-budget",
+          "value": 2.1447463505702805e-13,
+          "bound": 5e-10,
+          "passed": true
+        },
+        {
+          "name": "lorentz-p-n1920/nonnegative-material-work",
+          "value": 0.0,
+          "bound": -1e-14,
+          "passed": true
+        },
+        {
+          "name": "lorentz-p-n1920/initial-slab-tail",
+          "value": 1.7915237415537775e-08,
+          "bound": 1e-07,
+          "passed": true
+        },
+        {
+          "name": "lorentz-p-n1920/last-carrier-period-monitor-energy",
+          "value": 2.851091484501441e-07,
+          "bound": 1e-05,
+          "passed": true
+        },
+        {
+          "name": "lorentz-p-n1920/independent-finite-window-vacuum-DTFT",
+          "value": 6.901846501764576e-14,
+          "bound": 1e-06,
+          "passed": true
+        },
+        {
+          "name": "lorentz-p-n1920/independent-direct-spectral-work-budget",
+          "value": 0.0029119120043978874,
+          "bound": 0.02,
+          "passed": true
+        },
+        {
+          "name": "lorentz-p-n3840/finite",
+          "value": 0.0,
+          "bound": 0.0,
+          "passed": true
+        },
+        {
+          "name": "lorentz-p-n3840/closed-PEC-direct-work-budget",
+          "value": 5.431605502161607e-13,
+          "bound": 5e-10,
+          "passed": true
+        },
+        {
+          "name": "lorentz-p-n3840/vacuum-energy-budget",
+          "value": 7.0618450326995e-13,
+          "bound": 5e-10,
+          "passed": true
+        },
+        {
+          "name": "lorentz-p-n3840/nonnegative-material-work",
+          "value": 0.0,
+          "bound": -1e-14,
+          "passed": true
+        },
+        {
+          "name": "lorentz-p-n3840/initial-slab-tail",
+          "value": 1.7917237855687834e-08,
+          "bound": 1e-07,
+          "passed": true
+        },
+        {
+          "name": "lorentz-p-n3840/last-carrier-period-monitor-energy",
+          "value": 2.320140097015358e-07,
+          "bound": 1e-05,
+          "passed": true
+        },
+        {
+          "name": "lorentz-p-n3840/independent-finite-window-vacuum-DTFT",
+          "value": 2.017477115479318e-13,
+          "bound": 1e-06,
+          "passed": true
+        },
+        {
+          "name": "lorentz-p-n3840/independent-direct-spectral-work-budget",
+          "value": 0.0012649032235354518,
+          "bound": 0.02,
+          "passed": true
+        },
+        {
+          "name": "p/finest-complex-rt",
+          "value": 0.01154700092995995,
+          "bound": 0.03,
+          "passed": true
+        },
+        {
+          "name": "p/finest-RTA",
+          "value": 0.0021844238885259035,
+          "bound": 0.02,
+          "passed": true
+        },
+        {
+          "name": "p/refinement-n1920",
+          "value": 0.23809765238152267,
+          "bound": 0.85,
+          "passed": true
+        },
+        {
+          "name": "p/refinement-n3840",
+          "value": 0.23998546464617837,
+          "bound": 0.85,
+          "passed": true
+        }
+      ],
+      "records": [
+        {
+          "id": "lorentz-s-n960",
+          "polarization": "s",
+          "cells": 960,
+          "transverse_cells": 32,
+          "steps": 1556,
+          "h": 0.0625,
+          "dt": 0.02313624678663239,
+          "fields": "lorentz-s-n960.npz",
+          "maximum_budget": 7.709287091777181e-14,
+          "vacuum_budget": 1.0674397511691481e-13,
+          "minimum_physical_work": 0.0,
+          "complex_rt_error": 0.18953720836502627,
+          "RTA_error": 0.07503156741234424,
+          "vacuum_calibration_error": 3.3541310156653026e-14,
+          "tail_energy_fraction": 2.2096970775511843e-05,
+          "initial_material_tail": 1.522997807932064e-08,
+          "independent_RTA_budget": 0.01732832797543371
+        },
+        {
+          "id": "lorentz-s-n1920",
+          "polarization": "s",
+          "cells": 1920,
+          "transverse_cells": 64,
+          "steps": 3112,
+          "h": 0.03125,
+          "dt": 0.011568123393316195,
+          "fields": "lorentz-s-n1920.npz",
+          "maximum_budget": 1.8708639982822662e-13,
+          "vacuum_budget": 2.1511342771542573e-13,
+          "minimum_physical_work": 0.0,
+          "complex_rt_error": 0.03968307571331898,
+          "RTA_error": 0.024021025940502816,
+          "vacuum_calibration_error": 7.029095165996388e-14,
+          "tail_energy_fraction": 1.5554353484837664e-05,
+          "initial_material_tail": 1.522997807932064e-08,
+          "independent_RTA_budget": 0.011252856512337317
+        },
+        {
+          "id": "lorentz-s-n3840",
+          "polarization": "s",
+          "cells": 3840,
+          "transverse_cells": 128,
+          "steps": 6220,
+          "h": 0.015625,
+          "dt": 0.005787781350482315,
+          "fields": "lorentz-s-n3840.npz",
+          "maximum_budget": 5.436392111989465e-13,
+          "vacuum_budget": 7.063440569308786e-13,
+          "minimum_physical_work": 0.0,
+          "complex_rt_error": 0.02371552452175312,
+          "RTA_error": 0.022666853389628094,
+          "vacuum_calibration_error": 2.0490293070979408e-13,
+          "tail_energy_fraction": 1.4244153920449406e-05,
+          "initial_material_tail": 1.522997807932064e-08,
+          "independent_RTA_budget": 0.010728785815975472
+        },
+        {
+          "id": "lorentz-p-n960",
+          "polarization": "p",
+          "cells": 960,
+          "transverse_cells": 32,
+          "steps": 1556,
+          "h": 0.0625,
+          "dt": 0.02313624678663239,
+          "fields": "lorentz-p-n960.npz",
+          "maximum_budget": 7.797439023180036e-14,
+          "vacuum_budget": 1.0706452759474336e-13,
+          "minimum_physical_work": 0.0,
+          "complex_rt_error": 0.20208270621109362,
+          "RTA_error": 0.03344561801377566,
+          "vacuum_calibration_error": 3.365142274029629e-14,
+          "tail_energy_fraction": 5.612098468528199e-07,
+          "initial_material_tail": 1.790732343581236e-08,
+          "independent_RTA_budget": 0.00996018601158255
+        },
+        {
+          "id": "lorentz-p-n1920",
+          "polarization": "p",
+          "cells": 1920,
+          "transverse_cells": 64,
+          "steps": 3112,
+          "h": 0.03125,
+          "dt": 0.011568123393316195,
+          "fields": "lorentz-p-n1920.npz",
+          "maximum_budget": 1.856491163468318e-13,
+          "vacuum_budget": 2.1447463505702805e-13,
+          "minimum_physical_work": 0.0,
+          "complex_rt_error": 0.04811541793576634,
+          "RTA_error": 0.008631595024530925,
+          "vacuum_calibration_error": 6.901846501764576e-14,
+          "tail_energy_fraction": 2.851091484501441e-07,
+          "initial_material_tail": 1.7915237415537775e-08,
+          "independent_RTA_budget": 0.0029119120043978874
+        },
+        {
+          "id": "lorentz-p-n3840",
+          "polarization": "p",
+          "cells": 3840,
+          "transverse_cells": 128,
+          "steps": 6220,
+          "h": 0.015625,
+          "dt": 0.005787781350482315,
+          "fields": "lorentz-p-n3840.npz",
+          "maximum_budget": 5.431605502161607e-13,
+          "vacuum_budget": 7.0618450326995e-13,
+          "minimum_physical_work": 0.0,
+          "complex_rt_error": 0.01154700092995995,
+          "RTA_error": 0.0021844238885259035,
+          "vacuum_calibration_error": 2.017477115479318e-13,
+          "tail_energy_fraction": 2.320140097015358e-07,
+          "initial_material_tail": 1.7917237855687834e-08,
+          "independent_RTA_budget": 0.0012649032235354518
+        }
+      ],
+      "metrics": {
+        "completed_matched_pairs": 6,
+        "completed_primary_and_vacuum_evolutions": 12,
+        "spatial_dimensions": 2,
+        "spatial_restriction": "Actualsingle-kyYee;bothp-electricADEcomponents",
+        "material_energy_included": true,
+        "direct_absorption_not_defined_by_RT": true,
+        "finite_window": "T36,lastonecarrierperiodenergygate;Gaussianhasnonzeroanalytic tails",
+        "maximum_energy_budget_defect": 5.436392111989465e-13,
+        "maximum_vacuum_calibration_error": 2.0490293070979408e-13,
+        "finest_complex_rt_errors": {
+          "s": 0.02371552452175312,
+          "p": 0.01154700092995995
+        },
+        "finest_RTA_errors": {
+          "s": 0.022666853389628094,
+          "p": 0.0021844238885259035
+        }
+      }
+    }
+  ],
+  "checks": {
+    "lorentz-oblique-sp": false
+  },
+  "termination": "fixed_budget_completed",
+  "failure": null,
+  "input_sha256": "dd26a0de9f369e246970f1fffcaaa7435580b62dff8574daa768a59370bf5b7f",
+  "duration_seconds": 12.627535292001994,
+  "source_sha256": {
+    "LICENSE": "e1053200337d037d9d81620956ce49263117c6540b1c1352c030c220bee05f59",
+    "README.md": "7c3889625ea3b6bfac72fb44c9a798a6935c8848efaeb628b88ffc175f5de827",
+    "acceptance.json": "65e7ffdc2018c703cb14d18c84fff6b3ae31b3e92a18125a0b0f092b015de6f7",
+    "cases.json": "76fc945fb0cd236c509c0dce1df3e711771cc0b761efcd67c2b9625f4971fa6d",
+    "inputs.json": "dd26a0de9f369e246970f1fffcaaa7435580b62dff8574daa768a59370bf5b7f",
+    "io_contract.py": "d24a709621e7a3419ba2ed3264606242ce67cf79879e57466668a40ec2988792",
+    "modal_yee_draft.py": "20661d109f7d137e605eca507140d4abe241020d6d4f527d8ea46ea3290b7d9a",
+    "plot.py": "0aedf965c88a706d6e7769e5b4d6136494a43435d0275e187bcb823921fa5a8e",
+    "reference_draft.py": "d50ed84ce3c4e71ec9ed76105daa6b7f0d77d05ed5eedc69abb98c3d33667f61",
+    "references/qualification-origin.json": "5bde9f1e789a5fa087eaef64fe4d5fcfb15d90148ac24aff01ffeeec5e4b8b3e",
+    "references/qualification.json": "ae9ef359ae7223f001b0f19f94f4e74737b3b6a64ffc6a46e2f8ba1e2ac1a607",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "e394fb09046f38ee3fb451d8ebd5c26b8f7d93b3aa8d74152af99d91abbaf21b",
+    "slab_evolution.py": "add0c50e3835bbff3a1447666ee72a7705c380225390b268c39560c1e7cb7136",
+    "slab_reference.py": "f7e39abf8c89e95cda3aaae7a2ddece3de178a758081fcca0b89b56ab2995c96",
+    "test_lorentz.py": "1e220499ef095e1f016bbba82b6956a39cf3adff746d0599517fa3f258aac640",
+    "pre-run-contract.json": "b854fb53cd95157f954a19ad07d36bbe374b09aafdd36a7efcbfd387d3a5294f"
+  }
+}

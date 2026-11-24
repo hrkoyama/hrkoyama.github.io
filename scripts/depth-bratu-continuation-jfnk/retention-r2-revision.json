@@ -1,0 +1,30 @@
+{
+  "revision": 2,
+  "created_at_utc": "2026-11-24T00:19:05.483290+00:00",
+  "previous_unexecuted_contract_sha256": "8f39310f4bdfadde3e1efcad057ede2dc1408d1b71753f187ce91ad8f5e3ee74",
+  "scope": "Raw completed/current numerical candidates are saved before subsequent solver/reference/diagnostic stages. No mathematical formula,input,reference or196gate threshold changes.",
+  "root_approval": "Parent explicitly authorized retention-only correction and two causal regressions before scientific execution.",
+  "changes": [
+    "Save complete arc/tangents/corrector traces before fold solve;retain completed correctors before next tangent/path diagnostics.",
+    "Current corrector/fold/fixed-lambda iterate and trial callbacks execute before sparse solves or diagnostics.",
+    "Save complete fold and each fixed-lambda root immediately before later work.",
+    "Save returned JFNK states,inner histories,line-trial vectors/counts/reasons before independent reference evaluation.",
+    "Add two genuine diagnostic-fault regressions: completed JFNK survives reference failure; completed arc survives next fold solver failure."
+  ],
+  "old_25_tests_AST_unchanged": true,
+  "original_test_file_prefix_unchanged": true,
+  "unchanged_sha256": {
+    "inputs.json": "0bb44002b246cee6c79e7bbd3af9cc400ef1d5a3c313978a9cd6f2852589d8ed",
+    "acceptance.json": "6106f1f8209916c9be0eb5d4ab8f27f7aa588ca8fed9cafccac36d0783640cca",
+    "problem.py": "c6764fb78c841e09f51eba579b602a763cf5cddaacd63059264146f4dd7612df",
+    "dual.py": "db093c1c782b250ded9ef7666d0029087839bc6b19f41ad85c743d006f77600c",
+    "matrix_free.py": "7eb8831f3556fa0ef55f908b18f4dfe351adbf44187e968793c83d09ab8cf67b",
+    "references/analytic_family.py": "d3c705a9cddfd80659f8bdc398aab995fc1e5e1f2cfc077e9f2f072a1aa34018",
+    "plot.py": "e8e90a7afc3601c0e83716b08fbc8654f2f42272c277f73353e42e2e665e2e01",
+    "run.py": "f35781874ad246e6cede3c494570c79e2896b0f4cb818105520daac23dce1bed",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75"
+  },
+  "planned_pytest": 27,
+  "planned_case_gates": 196,
+  "scientific_imports_or_executions_before_revision": false
+}

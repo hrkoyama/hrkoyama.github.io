@@ -1,0 +1,560 @@
+[
+  {
+    "id": "circular-alfven-refinement",
+    "title": {
+      "ja": "円偏波Alfvén波：全成分の格子収束",
+      "en": "Circular Alfven wave: full-state refinement"
+    },
+    "method_ids": [
+      "hlld",
+      "muscl",
+      "heun"
+    ],
+    "domains": [
+      "fluid",
+      "pde"
+    ],
+    "code_files": [
+      "run.py",
+      "solver.py",
+      "hlld.py",
+      "references/analytic.py"
+    ],
+    "summary": {
+      "ja": "全8保存変数を進め、非零のBz・vzを含む円偏波を解析セル平均と比較します。",
+      "en": "Evolve all eight conserved variables and compare circular polarization, including nonzero Bz/vz, against analytic cell means."
+    },
+    "assumptions": {
+      "ja": "γ=5/3、[0,1]周期、ρ=1、p=.1、Bx=1、振幅.1、速度1、T=1、32/64/128セル。初期値と参照は保存変数の解析セル平均であり、セル平均から復元する圧力は点の定圧と区別します。",
+      "en": "gamma5/3, periodic[0,1], rho1,p.1,Bx1,amplitude.1, speed1,T1,32/64/128 cells. Initialize/reference conserved analytic cell means; pressure recovered from means differs from constant pointwise pressure."
+    },
+    "algorithm": {
+      "ja": "全8変数HLLD流束、MC-MUSCL再構成、固定刻みHeun。Bx一定の1次元有限体積更新。",
+      "en": "Full-eight-state HLLD fluxes, MC-MUSCL reconstruction and fixed-step Heun. One-dimensional finite-volume update with constant Bx."
+    },
+    "validation": {
+      "ja": "実行前契約で47pytest・全12計算を固定。3格子と最細格子の時間刻み半減を分離し、全段の正値性・有限性、保存量、Courant数、5時刻の実場を保存します。解析保存平均を独立Gauss16求積と照合し、横成分誤差・位相・観測次数を検査します。",
+      "en": "Freeze 47 pytest checks and12 primary runs before execution. Separate three grids and a finest-grid half-dt probe; retain stage positivity/finiteness, conservation, Courant number and five actual field snapshots. Qualify conserved analytic means by independent Gauss16 quadrature; measure transverse errors, phase and observed order."
+    },
+    "limits": {
+      "ja": "少数の固定入力に対する教育用検証です。HLLDのHLLE代替と再構成の正値性スケーリングを数え、セル状態の床・クリップ・再試行は行いません。有限格子参照は厳密解ではなく、任意問題の安定性・正値性や普遍的次数を保証しません。1次元整列波の次数であり、斜め2次元伝播の検証ではありません。",
+      "en": "Educational fixed inputs only. Count HLLD-to-HLLE fallbacks and face reconstruction positivity scaling; no cell floor/clipping/retry. Finite-grid references are not exact solutions; no universal stability, positivity or order guarantee. The observed order is for a 1D aligned wave, not oblique 2D propagation."
+    },
+    "formulas": [
+      "\\partial_tU+\\partial_xF_x(U)=0,\\quad U=(\\rho,\\rho\\mathbf v,E,\\mathbf B),\\quad\\gamma=5/3",
+      "\\theta_i=2\\pi(x_i-t),\\quad(\\bar B_y,\\bar B_z)=.1\\frac{\\sin(\\pi h)}{\\pi h}(\\cos\\theta_i,\\sin\\theta_i)",
+      "\\bar\\rho=1,\\quad\\bar B_x=1,\\quad(\\bar m_y,\\bar m_z)=-(\\bar B_y,\\bar B_z),\\quad\\bar E=.66",
+      "e_2=\\frac{\\|U-U^{\\mathrm{exact}}\\|_2}{\\|U^{\\mathrm{exact}}\\|_2},\\qquad p_{\\mathrm{obs}}=\\log_2(e_h/e_{h/2})"
+    ],
+    "references": [
+      {
+        "id": "athena-pinned-2026",
+        "author": "Athena++ collaboration",
+        "year": 2026,
+        "title": "Athena++ official field_loop and orszag_tang problem generators, pinned source",
+        "url": "https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+        "type": "software",
+        "role": "Actually inspected independent engine and fixed initial conditions; finite-grid numerical reference only",
+        "review_level": "Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit",
+        "review": {
+          "ja": "固定コミットの公式アーカイブSHAを照合し、2初期値生成器と設定・保存列を確認。別実装を実行して参照場を作成し、空間・時間感度を検査。全ソース監査や厳密解とは表示しません。",
+          "en": "Verified the official pinned archive SHA and inspected both generators, configuration and saved columns. Executed the independent engine and checked spatial/time sensitivity. No complete code audit or exact-solution claim."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "gardiner-stone2005",
+        "author": "Thomas A. Gardiner and James M. Stone",
+        "year": 2005,
+        "title": "An unsplit Godunov method for ideal MHD via constrained transport",
+        "journal": "Journal of Computational Physics",
+        "volume": "205",
+        "pages": "509–539",
+        "doi": "10.1016/j.jcp.2004.11.016",
+        "url": "https://arxiv.org/abs/astro-ph/0501557",
+        "type": "article",
+        "role": "Primary CT-contact, magnetic-loop and circular-polarization background; selected sections only",
+        "review_level": "Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication",
+        "review": {
+          "ja": "著者公開PDFのCT節・磁場ループ・円偏波の定義を確認。論文のCTU/PPMや斜め伝播実験を再現したとは主張しません。今回の円偏波は1次元整列、公式磁場ループはvz=2の明示的変更です。",
+          "en": "Inspected the author PDF CT section and loop/polarized-wave definitions. Original CTU/PPM and oblique-wave experiments are not replicated. Our wave is 1D aligned; the official loop generator explicitly has vz=2."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "miyoshi-kusano2005",
+        "author": "Takahiro Miyoshi and Kanya Kusano",
+        "year": 2005,
+        "title": "A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics",
+        "journal": "Journal of Computational Physics",
+        "volume": "208",
+        "pages": "315–344",
+        "doi": "10.1016/j.jcp.2005.02.017",
+        "url": "https://doi.org/10.1016/j.jcp.2005.02.017",
+        "type": "article",
+        "role": "Original HLLD attribution; implementation inherited from previously validated Atlas source",
+        "review_level": "Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments",
+        "review": {
+          "ja": "書誌を確認。出版社本文は取得できず、今回新たに原著の式や実験を監査したとは表示しません。全8変数HLLDコードは過去の公開検証済みAtlasから同一バイトで継承します。",
+          "en": "Bibliographic metadata checked; full publisher text unavailable. No new original-equation/experiment audit is claimed. Full-state HLLD is inherited byte-for-byte from the prior public validated Atlas."
+        },
+        "accessed_on": "2026-11-23"
+      }
+    ],
+    "citations": [
+      {
+        "id": "athena-pinned-2026",
+        "author": "Athena++ collaboration",
+        "year": 2026,
+        "title": "Athena++ official field_loop and orszag_tang problem generators, pinned source",
+        "url": "https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+        "type": "software",
+        "role": "Actually inspected independent engine and fixed initial conditions; finite-grid numerical reference only",
+        "review_level": "Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit",
+        "review": {
+          "ja": "固定コミットの公式アーカイブSHAを照合し、2初期値生成器と設定・保存列を確認。別実装を実行して参照場を作成し、空間・時間感度を検査。全ソース監査や厳密解とは表示しません。",
+          "en": "Verified the official pinned archive SHA and inspected both generators, configuration and saved columns. Executed the independent engine and checked spatial/time sensitivity. No complete code audit or exact-solution claim."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "gardiner-stone2005",
+        "author": "Thomas A. Gardiner and James M. Stone",
+        "year": 2005,
+        "title": "An unsplit Godunov method for ideal MHD via constrained transport",
+        "journal": "Journal of Computational Physics",
+        "volume": "205",
+        "pages": "509–539",
+        "doi": "10.1016/j.jcp.2004.11.016",
+        "url": "https://arxiv.org/abs/astro-ph/0501557",
+        "type": "article",
+        "role": "Primary CT-contact, magnetic-loop and circular-polarization background; selected sections only",
+        "review_level": "Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication",
+        "review": {
+          "ja": "著者公開PDFのCT節・磁場ループ・円偏波の定義を確認。論文のCTU/PPMや斜め伝播実験を再現したとは主張しません。今回の円偏波は1次元整列、公式磁場ループはvz=2の明示的変更です。",
+          "en": "Inspected the author PDF CT section and loop/polarized-wave definitions. Original CTU/PPM and oblique-wave experiments are not replicated. Our wave is 1D aligned; the official loop generator explicitly has vz=2."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "miyoshi-kusano2005",
+        "author": "Takahiro Miyoshi and Kanya Kusano",
+        "year": 2005,
+        "title": "A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics",
+        "journal": "Journal of Computational Physics",
+        "volume": "208",
+        "pages": "315–344",
+        "doi": "10.1016/j.jcp.2005.02.017",
+        "url": "https://doi.org/10.1016/j.jcp.2005.02.017",
+        "type": "article",
+        "role": "Original HLLD attribution; implementation inherited from previously validated Atlas source",
+        "review_level": "Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments",
+        "review": {
+          "ja": "書誌を確認。出版社本文は取得できず、今回新たに原著の式や実験を監査したとは表示しません。全8変数HLLDコードは過去の公開検証済みAtlasから同一バイトで継承します。",
+          "en": "Bibliographic metadata checked; full publisher text unavailable. No new original-equation/experiment audit is claimed. Full-state HLLD is inherited byte-for-byte from the prior public validated Atlas."
+        },
+        "accessed_on": "2026-11-23"
+      }
+    ],
+    "gallery_figure": "circular-alfven-refinement-preview.png",
+    "additional_figures": [
+      {
+        "file": "circular-alfven-refinement-preview.png",
+        "caption": {
+          "ja": "保存した主計算の実際のBy(x,t)の5時刻場。1次元空間と時間を表示。",
+          "en": "Actual saved primary By(x,t) at five times: one spatial dimension plus time."
+        }
+      }
+    ],
+    "case_notes": {
+      "ja": "初回主計算は47pytest・12計算・125判定が全合格、共通43.888秒。最細128セルの横成分相対L2=.00304059、最終観測次数1.62943、位相誤差.00121487rad、時間半減差/誤差=.077708です。これは選んだ1次元整列波の観測値であり、厳密な2次収束や斜め伝播を保証しません。",
+      "en": "First primary execution passed47 pytest/12 runs/125 gates in shared43.888s. At128 cells transverse relative L2=.00304059,last observed order1.62943,phase error.00121487rad and half-dt/error=.077708. These are observations for the selected aligned1D wave, not a claim of exact second-order or oblique-wave convergence."
+    }
+  },
+  {
+    "id": "magnetic-loop-independent",
+    "title": {
+      "ja": "磁場ループ：独立2次元参照と細分化",
+      "en": "Magnetic loop: independent 2D reference and refinement"
+    },
+    "method_ids": [
+      "hlld",
+      "muscl",
+      "heun",
+      "ct"
+    ],
+    "domains": [
+      "fluid",
+      "pde"
+    ],
+    "code_files": [
+      "run.py",
+      "solver.py",
+      "hlld.py",
+      "references/qualify_saved.py"
+    ],
+    "summary": {
+      "ja": "実際の2次元磁場ループ輸送を、別実装Athena++の空間・時間感度を検査した終端保存場と比較します。",
+      "en": "Compare genuine 2D magnetic-loop transport with final conserved fields from independent Athena++, qualified in space and time."
+    },
+    "assumptions": {
+      "ja": "[-1,1]×[-.5,.5]周期、ρ=p=1、Az=.001max(.3−r,0)、T=1、(Nx,Ny)=(16,8),(32,16),(64,32)。変更していない公式生成器と同じv=(2,1,2)で、古いvz=0設定とは区別します。",
+      "en": "Periodic[-1,1]x[-.5,.5],rho=p1,Az=.001max(.3-r,0),T1,(Nx,Ny)=(16,8),(32,16),(64,32). Use unchanged official-generator v=(2,1,2), explicitly distinct from old vz0 inputs."
+    },
+    "algorithm": {
+      "ja": "全8変数HLLD流束、MC-MUSCL再構成、固定刻みHeun。共有面流束とCT-contact角電場から面磁場を更新し、セル磁場は隣接面平均。初期状態は公式生成器の離散ベクトルポテンシャルと中心流体値に一致させます。",
+      "en": "Full-eight-state HLLD fluxes, MC-MUSCL reconstruction and fixed-step Heun. Shared face fluxes and CT-contact corner EMFs update native face B; cell B is adjacent-face averaged. Initial discrete vector-potential curl and sampled fluid states match the official generator."
+    },
+    "validation": {
+      "ja": "実行前契約で47pytest・全12計算を固定。3格子と最細格子の時間刻み半減を分離し、全段の正値性・有限性、保存量、Courant数、5時刻の実場を保存します。Athena++の2格子と刻み半減で参照を検定。終端保存変数を保守的に粗視化し、誤差と参照感度を分離します。共通セル発散と主計算の固有面発散は別の検査です。",
+      "en": "Freeze 47 pytest checks and12 primary runs before execution. Separate three grids and a finest-grid half-dt probe; retain stage positivity/finiteness, conservation, Courant number and five actual field snapshots. Qualify Athena++ with two grids and a half-CFL probe. Conservatively restrict final conserved states and separate reference sensitivity from primary error. Common-cell divergence and primary native-face divergence are distinct checks."
+    },
+    "limits": {
+      "ja": "少数の固定入力に対する教育用検証です。HLLDのHLLE代替と再構成の正値性スケーリングを数え、セル状態の床・クリップ・再試行は行いません。有限格子参照は厳密解ではなく、任意問題の安定性・正値性や普遍的次数を保証しません。独立比較は終端のみ。中間Athena時刻は指定四半時刻直後で、正確に整列した場とは表示しません。Athenaの固有面発散は出力しておらず測定を主張しません。密度比は圧縮の診断であり数学的衝撃波の証明ではありません。",
+      "en": "Educational fixed inputs only. Count HLLD-to-HLLE fallbacks and face reconstruction positivity scaling; no cell floor/clipping/retry. Finite-grid references are not exact solutions; no universal stability, positivity or order guarantee. Independent comparisons are final-only. Intermediate Athena outputs occur just after requested quarter times and are not matched frames. Athena native-face divergence is not exported/measured. Density contrast diagnoses compression, not a mathematical proof of shock formation."
+    },
+    "formulas": [
+      "\\partial_tU+\\partial_xF_x(U)+\\partial_yF_y(U)=0,\\quad U=(\\rho,\\rho\\mathbf v,E,\\mathbf B)",
+      "E=\\frac{p}{\\gamma-1}+\\frac12\\rho|\\mathbf v|^2+\\frac12|\\mathbf B|^2,\\quad\\gamma=5/3",
+      "\\frac{dB_x}{dt}=-D_y\\mathcal E_z,\\quad\\frac{dB_y}{dt}=D_x\\mathcal E_z,\\quad D_xB_x+D_yB_y=\\mathrm{constant}",
+      "\\bar U_i^{\\mathrm{ref}}=\\frac1{N_i}\\sum_{j\\in i}\\bar U_j^{\\mathrm{fine}},\\qquad e_1=\\frac{\\sum|U-U^{\\mathrm{ref}}|}{\\sum|U^{\\mathrm{ref}}|}",
+      "A_z=.001\\max(.3-\\sqrt{x^2+y^2},0),\\qquad\\mathbf v=(2,1,2)"
+    ],
+    "references": [
+      {
+        "id": "athena-pinned-2026",
+        "author": "Athena++ collaboration",
+        "year": 2026,
+        "title": "Athena++ official field_loop and orszag_tang problem generators, pinned source",
+        "url": "https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+        "type": "software",
+        "role": "Actually inspected independent engine and fixed initial conditions; finite-grid numerical reference only",
+        "review_level": "Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit",
+        "review": {
+          "ja": "固定コミットの公式アーカイブSHAを照合し、2初期値生成器と設定・保存列を確認。別実装を実行して参照場を作成し、空間・時間感度を検査。全ソース監査や厳密解とは表示しません。",
+          "en": "Verified the official pinned archive SHA and inspected both generators, configuration and saved columns. Executed the independent engine and checked spatial/time sensitivity. No complete code audit or exact-solution claim."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "gardiner-stone2005",
+        "author": "Thomas A. Gardiner and James M. Stone",
+        "year": 2005,
+        "title": "An unsplit Godunov method for ideal MHD via constrained transport",
+        "journal": "Journal of Computational Physics",
+        "volume": "205",
+        "pages": "509–539",
+        "doi": "10.1016/j.jcp.2004.11.016",
+        "url": "https://arxiv.org/abs/astro-ph/0501557",
+        "type": "article",
+        "role": "Primary CT-contact, magnetic-loop and circular-polarization background; selected sections only",
+        "review_level": "Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication",
+        "review": {
+          "ja": "著者公開PDFのCT節・磁場ループ・円偏波の定義を確認。論文のCTU/PPMや斜め伝播実験を再現したとは主張しません。今回の円偏波は1次元整列、公式磁場ループはvz=2の明示的変更です。",
+          "en": "Inspected the author PDF CT section and loop/polarized-wave definitions. Original CTU/PPM and oblique-wave experiments are not replicated. Our wave is 1D aligned; the official loop generator explicitly has vz=2."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "miyoshi-kusano2005",
+        "author": "Takahiro Miyoshi and Kanya Kusano",
+        "year": 2005,
+        "title": "A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics",
+        "journal": "Journal of Computational Physics",
+        "volume": "208",
+        "pages": "315–344",
+        "doi": "10.1016/j.jcp.2005.02.017",
+        "url": "https://doi.org/10.1016/j.jcp.2005.02.017",
+        "type": "article",
+        "role": "Original HLLD attribution; implementation inherited from previously validated Atlas source",
+        "review_level": "Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments",
+        "review": {
+          "ja": "書誌を確認。出版社本文は取得できず、今回新たに原著の式や実験を監査したとは表示しません。全8変数HLLDコードは過去の公開検証済みAtlasから同一バイトで継承します。",
+          "en": "Bibliographic metadata checked; full publisher text unavailable. No new original-equation/experiment audit is claimed. Full-state HLLD is inherited byte-for-byte from the prior public validated Atlas."
+        },
+        "accessed_on": "2026-11-23"
+      }
+    ],
+    "citations": [
+      {
+        "id": "athena-pinned-2026",
+        "author": "Athena++ collaboration",
+        "year": 2026,
+        "title": "Athena++ official field_loop and orszag_tang problem generators, pinned source",
+        "url": "https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+        "type": "software",
+        "role": "Actually inspected independent engine and fixed initial conditions; finite-grid numerical reference only",
+        "review_level": "Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit",
+        "review": {
+          "ja": "固定コミットの公式アーカイブSHAを照合し、2初期値生成器と設定・保存列を確認。別実装を実行して参照場を作成し、空間・時間感度を検査。全ソース監査や厳密解とは表示しません。",
+          "en": "Verified the official pinned archive SHA and inspected both generators, configuration and saved columns. Executed the independent engine and checked spatial/time sensitivity. No complete code audit or exact-solution claim."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "gardiner-stone2005",
+        "author": "Thomas A. Gardiner and James M. Stone",
+        "year": 2005,
+        "title": "An unsplit Godunov method for ideal MHD via constrained transport",
+        "journal": "Journal of Computational Physics",
+        "volume": "205",
+        "pages": "509–539",
+        "doi": "10.1016/j.jcp.2004.11.016",
+        "url": "https://arxiv.org/abs/astro-ph/0501557",
+        "type": "article",
+        "role": "Primary CT-contact, magnetic-loop and circular-polarization background; selected sections only",
+        "review_level": "Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication",
+        "review": {
+          "ja": "著者公開PDFのCT節・磁場ループ・円偏波の定義を確認。論文のCTU/PPMや斜め伝播実験を再現したとは主張しません。今回の円偏波は1次元整列、公式磁場ループはvz=2の明示的変更です。",
+          "en": "Inspected the author PDF CT section and loop/polarized-wave definitions. Original CTU/PPM and oblique-wave experiments are not replicated. Our wave is 1D aligned; the official loop generator explicitly has vz=2."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "miyoshi-kusano2005",
+        "author": "Takahiro Miyoshi and Kanya Kusano",
+        "year": 2005,
+        "title": "A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics",
+        "journal": "Journal of Computational Physics",
+        "volume": "208",
+        "pages": "315–344",
+        "doi": "10.1016/j.jcp.2005.02.017",
+        "url": "https://doi.org/10.1016/j.jcp.2005.02.017",
+        "type": "article",
+        "role": "Original HLLD attribution; implementation inherited from previously validated Atlas source",
+        "review_level": "Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments",
+        "review": {
+          "ja": "書誌を確認。出版社本文は取得できず、今回新たに原著の式や実験を監査したとは表示しません。全8変数HLLDコードは過去の公開検証済みAtlasから同一バイトで継承します。",
+          "en": "Bibliographic metadata checked; full publisher text unavailable. No new original-equation/experiment audit is claimed. Full-state HLLD is inherited byte-for-byte from the prior public validated Atlas."
+        },
+        "accessed_on": "2026-11-23"
+      }
+    ],
+    "gallery_figure": "magnetic-loop-independent-preview.png",
+    "additional_figures": [
+      {
+        "file": "magnetic-loop-independent-preview.png",
+        "caption": {
+          "ja": "保存した主計算の実際の2次元面内磁気エネルギー、T=1。",
+          "en": "Actual saved primary 2D in-plane magnetic energy at T1."
+        }
+      }
+    ],
+    "case_notes": {
+      "ja": "最細64×32格子の独立終端磁場に対する相対L1=.253088。参照自身の格子・刻み感度を合わせた差=.120074で、主誤差の47.44%です。従って精密な厳密解誤差ではなく、有限格子参照との差と細分化を示します。主計算の固有面発散は1.45×10⁻¹⁶以下、共通セル演算子では非零です。",
+      "en": "At64x32 the final independent-field magnetic relative L1 is.253088. Combined coarse/fine-and-CFL reference increment is.120074,47.44% of primary error. This demonstrates refinement against a finite-grid reference, not a precision exact-solution error. Primary native-face divergence is at most1.45e-16; the common cell operator is nonzero."
+    }
+  },
+  {
+    "id": "postshock-orszag-tang",
+    "title": {
+      "ja": "後期Orszag–Tang：独立参照と圧縮構造",
+      "en": "Late Orszag-Tang: independent reference and compression structure"
+    },
+    "method_ids": [
+      "hlld",
+      "muscl",
+      "heun",
+      "ct"
+    ],
+    "domains": [
+      "fluid",
+      "pde"
+    ],
+    "code_files": [
+      "run.py",
+      "solver.py",
+      "hlld.py",
+      "references/qualify_saved.py"
+    ],
+    "summary": {
+      "ja": "圧縮性理想MHDのOrszag–TangをT=.2まで進め、相互作用する圧縮・衝撃波構造の密度と圧力を独立有限格子参照で検査します。",
+      "en": "Evolve compressible ideal-MHD Orszag-Tang to T.2 and check density/pressure in interacting compression/shock structure against an independent finite-grid reference."
+    },
+    "assumptions": {
+      "ja": "γ=5/3、[-.5,.5]²周期、ρ=25/(36π)、p=5/(12π)、vx=sin2πy、vy=−sin2πx、Az=(cos4πx−2cos2πy)/(4π√(4π))、16/32/64²セル。原著の非圧縮・粘性抵抗モデルの再現ではありません。",
+      "en": "gamma5/3,periodic[-.5,.5]²,rho25/(36pi),p5/(12pi),vx=sin2piy,vy=-sin2pix,Az=(cos4pix-2cos2piy)/(4pi sqrt4pi),16/32/64² cells. This does not reproduce the original incompressible viscous/resistive model."
+    },
+    "algorithm": {
+      "ja": "全8変数HLLD流束、MC-MUSCL再構成、固定刻みHeun。共有面流束とCT-contact角電場から面磁場を更新し、セル磁場は隣接面平均。初期状態は公式生成器の離散ベクトルポテンシャルと中心流体値に一致させます。",
+      "en": "Full-eight-state HLLD fluxes, MC-MUSCL reconstruction and fixed-step Heun. Shared face fluxes and CT-contact corner EMFs update native face B; cell B is adjacent-face averaged. Initial discrete vector-potential curl and sampled fluid states match the official generator."
+    },
+    "validation": {
+      "ja": "実行前契約で47pytest・全12計算を固定。3格子と最細格子の時間刻み半減を分離し、全段の正値性・有限性、保存量、Courant数、5時刻の実場を保存します。Athena++の2格子と刻み半減で参照を検定。終端保存変数を保守的に粗視化し、誤差と参照感度を分離します。共通セル発散と主計算の固有面発散は別の検査です。",
+      "en": "Freeze 47 pytest checks and12 primary runs before execution. Separate three grids and a finest-grid half-dt probe; retain stage positivity/finiteness, conservation, Courant number and five actual field snapshots. Qualify Athena++ with two grids and a half-CFL probe. Conservatively restrict final conserved states and separate reference sensitivity from primary error. Common-cell divergence and primary native-face divergence are distinct checks."
+    },
+    "limits": {
+      "ja": "少数の固定入力に対する教育用検証です。HLLDのHLLE代替と再構成の正値性スケーリングを数え、セル状態の床・クリップ・再試行は行いません。有限格子参照は厳密解ではなく、任意問題の安定性・正値性や普遍的次数を保証しません。独立比較は終端のみ。中間Athena時刻は指定四半時刻直後で、正確に整列した場とは表示しません。Athenaの固有面発散は出力しておらず測定を主張しません。密度比は圧縮の診断であり数学的衝撃波の証明ではありません。",
+      "en": "Educational fixed inputs only. Count HLLD-to-HLLE fallbacks and face reconstruction positivity scaling; no cell floor/clipping/retry. Finite-grid references are not exact solutions; no universal stability, positivity or order guarantee. Independent comparisons are final-only. Intermediate Athena outputs occur just after requested quarter times and are not matched frames. Athena native-face divergence is not exported/measured. Density contrast diagnoses compression, not a mathematical proof of shock formation."
+    },
+    "formulas": [
+      "\\partial_tU+\\partial_xF_x(U)+\\partial_yF_y(U)=0,\\quad U=(\\rho,\\rho\\mathbf v,E,\\mathbf B)",
+      "E=\\frac{p}{\\gamma-1}+\\frac12\\rho|\\mathbf v|^2+\\frac12|\\mathbf B|^2,\\quad\\gamma=5/3",
+      "\\frac{dB_x}{dt}=-D_y\\mathcal E_z,\\quad\\frac{dB_y}{dt}=D_x\\mathcal E_z,\\quad D_xB_x+D_yB_y=\\mathrm{constant}",
+      "\\bar U_i^{\\mathrm{ref}}=\\frac1{N_i}\\sum_{j\\in i}\\bar U_j^{\\mathrm{fine}},\\qquad e_1=\\frac{\\sum|U-U^{\\mathrm{ref}}|}{\\sum|U^{\\mathrm{ref}}|}",
+      "\\rho_0=\\frac{25}{36\\pi},\\quad p_0=\\frac5{12\\pi},\\quad\\mathbf v_0=(\\sin2\\pi y,-\\sin2\\pi x,0)"
+    ],
+    "references": [
+      {
+        "id": "athena-pinned-2026",
+        "author": "Athena++ collaboration",
+        "year": 2026,
+        "title": "Athena++ official field_loop and orszag_tang problem generators, pinned source",
+        "url": "https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+        "type": "software",
+        "role": "Actually inspected independent engine and fixed initial conditions; finite-grid numerical reference only",
+        "review_level": "Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit",
+        "review": {
+          "ja": "固定コミットの公式アーカイブSHAを照合し、2初期値生成器と設定・保存列を確認。別実装を実行して参照場を作成し、空間・時間感度を検査。全ソース監査や厳密解とは表示しません。",
+          "en": "Verified the official pinned archive SHA and inspected both generators, configuration and saved columns. Executed the independent engine and checked spatial/time sensitivity. No complete code audit or exact-solution claim."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "gardiner-stone2005",
+        "author": "Thomas A. Gardiner and James M. Stone",
+        "year": 2005,
+        "title": "An unsplit Godunov method for ideal MHD via constrained transport",
+        "journal": "Journal of Computational Physics",
+        "volume": "205",
+        "pages": "509–539",
+        "doi": "10.1016/j.jcp.2004.11.016",
+        "url": "https://arxiv.org/abs/astro-ph/0501557",
+        "type": "article",
+        "role": "Primary CT-contact, magnetic-loop and circular-polarization background; selected sections only",
+        "review_level": "Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication",
+        "review": {
+          "ja": "著者公開PDFのCT節・磁場ループ・円偏波の定義を確認。論文のCTU/PPMや斜め伝播実験を再現したとは主張しません。今回の円偏波は1次元整列、公式磁場ループはvz=2の明示的変更です。",
+          "en": "Inspected the author PDF CT section and loop/polarized-wave definitions. Original CTU/PPM and oblique-wave experiments are not replicated. Our wave is 1D aligned; the official loop generator explicitly has vz=2."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "miyoshi-kusano2005",
+        "author": "Takahiro Miyoshi and Kanya Kusano",
+        "year": 2005,
+        "title": "A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics",
+        "journal": "Journal of Computational Physics",
+        "volume": "208",
+        "pages": "315–344",
+        "doi": "10.1016/j.jcp.2005.02.017",
+        "url": "https://doi.org/10.1016/j.jcp.2005.02.017",
+        "type": "article",
+        "role": "Original HLLD attribution; implementation inherited from previously validated Atlas source",
+        "review_level": "Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments",
+        "review": {
+          "ja": "書誌を確認。出版社本文は取得できず、今回新たに原著の式や実験を監査したとは表示しません。全8変数HLLDコードは過去の公開検証済みAtlasから同一バイトで継承します。",
+          "en": "Bibliographic metadata checked; full publisher text unavailable. No new original-equation/experiment audit is claimed. Full-state HLLD is inherited byte-for-byte from the prior public validated Atlas."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "orszag-tang1979",
+        "author": "Steven A. Orszag and Ching-Mao Tang",
+        "year": 1979,
+        "title": "Small-scale structure of two-dimensional magnetohydrodynamic turbulence",
+        "journal": "Journal of Fluid Mechanics",
+        "volume": "90",
+        "pages": "129–143",
+        "doi": "10.1017/S002211207900210X",
+        "url": "https://doi.org/10.1017/S002211207900210X",
+        "type": "article",
+        "role": "Historical attribution, not a reference table for this compressible ideal-MHD calculation",
+        "review_level": "Original publisher abstract/bibliography inspected only; original incompressible viscous/resistive setup differs from the official compressible ideal-MHD generator used here",
+        "review": {
+          "ja": "出版社の抄録と書誌のみ確認。原著の非圧縮・粘性抵抗モデルと、今回の圧縮性理想MHDの公式初期値を区別します。",
+          "en": "Inspected publisher abstract and bibliography only. Distinguish the original incompressible viscous/resistive study from the official compressible ideal-MHD setup used here."
+        },
+        "accessed_on": "2026-11-23"
+      }
+    ],
+    "citations": [
+      {
+        "id": "athena-pinned-2026",
+        "author": "Athena++ collaboration",
+        "year": 2026,
+        "title": "Athena++ official field_loop and orszag_tang problem generators, pinned source",
+        "url": "https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416",
+        "type": "software",
+        "role": "Actually inspected independent engine and fixed initial conditions; finite-grid numerical reference only",
+        "review_level": "Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit",
+        "review": {
+          "ja": "固定コミットの公式アーカイブSHAを照合し、2初期値生成器と設定・保存列を確認。別実装を実行して参照場を作成し、空間・時間感度を検査。全ソース監査や厳密解とは表示しません。",
+          "en": "Verified the official pinned archive SHA and inspected both generators, configuration and saved columns. Executed the independent engine and checked spatial/time sensitivity. No complete code audit or exact-solution claim."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "gardiner-stone2005",
+        "author": "Thomas A. Gardiner and James M. Stone",
+        "year": 2005,
+        "title": "An unsplit Godunov method for ideal MHD via constrained transport",
+        "journal": "Journal of Computational Physics",
+        "volume": "205",
+        "pages": "509–539",
+        "doi": "10.1016/j.jcp.2004.11.016",
+        "url": "https://arxiv.org/abs/astro-ph/0501557",
+        "type": "article",
+        "role": "Primary CT-contact, magnetic-loop and circular-polarization background; selected sections only",
+        "review_level": "Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication",
+        "review": {
+          "ja": "著者公開PDFのCT節・磁場ループ・円偏波の定義を確認。論文のCTU/PPMや斜め伝播実験を再現したとは主張しません。今回の円偏波は1次元整列、公式磁場ループはvz=2の明示的変更です。",
+          "en": "Inspected the author PDF CT section and loop/polarized-wave definitions. Original CTU/PPM and oblique-wave experiments are not replicated. Our wave is 1D aligned; the official loop generator explicitly has vz=2."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "miyoshi-kusano2005",
+        "author": "Takahiro Miyoshi and Kanya Kusano",
+        "year": 2005,
+        "title": "A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics",
+        "journal": "Journal of Computational Physics",
+        "volume": "208",
+        "pages": "315–344",
+        "doi": "10.1016/j.jcp.2005.02.017",
+        "url": "https://doi.org/10.1016/j.jcp.2005.02.017",
+        "type": "article",
+        "role": "Original HLLD attribution; implementation inherited from previously validated Atlas source",
+        "review_level": "Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments",
+        "review": {
+          "ja": "書誌を確認。出版社本文は取得できず、今回新たに原著の式や実験を監査したとは表示しません。全8変数HLLDコードは過去の公開検証済みAtlasから同一バイトで継承します。",
+          "en": "Bibliographic metadata checked; full publisher text unavailable. No new original-equation/experiment audit is claimed. Full-state HLLD is inherited byte-for-byte from the prior public validated Atlas."
+        },
+        "accessed_on": "2026-11-23"
+      },
+      {
+        "id": "orszag-tang1979",
+        "author": "Steven A. Orszag and Ching-Mao Tang",
+        "year": 1979,
+        "title": "Small-scale structure of two-dimensional magnetohydrodynamic turbulence",
+        "journal": "Journal of Fluid Mechanics",
+        "volume": "90",
+        "pages": "129–143",
+        "doi": "10.1017/S002211207900210X",
+        "url": "https://doi.org/10.1017/S002211207900210X",
+        "type": "article",
+        "role": "Historical attribution, not a reference table for this compressible ideal-MHD calculation",
+        "review_level": "Original publisher abstract/bibliography inspected only; original incompressible viscous/resistive setup differs from the official compressible ideal-MHD generator used here",
+        "review": {
+          "ja": "出版社の抄録と書誌のみ確認。原著の非圧縮・粘性抵抗モデルと、今回の圧縮性理想MHDの公式初期値を区別します。",
+          "en": "Inspected publisher abstract and bibliography only. Distinguish the original incompressible viscous/resistive study from the official compressible ideal-MHD setup used here."
+        },
+        "accessed_on": "2026-11-23"
+      }
+    ],
+    "gallery_figure": "postshock-orszag-tang-preview.png",
+    "additional_figures": [
+      {
+        "file": "postshock-orszag-tang-preview.png",
+        "caption": {
+          "ja": "保存した主計算の実際の2次元密度場、T=.2。",
+          "en": "Actual saved primary 2D density field at T.2."
+        }
+      }
+    ],
+    "case_notes": {
+      "ja": "最細64²の独立終端参照に対する密度/圧力の相対L1=.0110806/.0182227。参照差/主誤差=.30808/.29835、時間半減差/主誤差=.0018955/.0020641、密度比7.14315です。固有面発散は2.74×10⁻¹³以下ですが、共通セル発散は非零です。後期の圧縮構造を調べ、数学的衝撃波・厳密解・原著1979の再現を保証しません。",
+      "en": "At64² density/pressure relative L1 versus final independent reference are.0110806/.0182227. Reference increment/error=.30808/.29835,half-dt/error=.0018955/.0020641,and density contrast7.14315. Native-face divergence is at most2.74e-13; common-cell divergence is nonzero. This checks late compression structure, not a mathematical shock proof, exact solution or reproduction of the1979 model."
+    }
+  }
+]

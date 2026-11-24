@@ -1,5 +1,7 @@
 """Small browser indexes; keep the existing detailed public corpora and URLs."""
 from copy import deepcopy
+from collections import Counter
+import math
 import base64
 import hashlib
 import json
@@ -7,6 +9,106 @@ import re
 import unicodedata
 
 GROUPS = ('methods', 'equations', 'figures', 'references', 'code')
+
+ENCODING = 'shared-raw-strings-v1'
+PREFIX = '~s:'
+MIN_CHARS = 32
+MAX_POOL = 50000
+MAX_POOL_UNITS = 8200000
+MAX_STRING_UNITS = 1000000
+MAX_EXPANDED_UNITS = 16400000
+MAX_NODES = 1000000
+MAX_DEPTH = 64
+
+
+def encode_row_strings(data):
+    if data.get('format') != 'compact-search-v1' or data.get('kind') not in ['atlas', 'site']:
+        raise ValueError('Expected a compact atlas/site index')
+    if 'row_string_encoding' in data or 'row_strings' in data:
+        raise ValueError('Already encoded or reserved header fields')
+    field = 'entries' if data['kind'] == 'atlas' else 'documents'
+    if not isinstance(data.get(field), list) or len(data[field]) > 2000:
+        raise ValueError('Invalid rows')
+    counts = Counter()
+    nodes, units = 0, 0
+
+    def charge(text):
+        nonlocal units
+        length = len(text.encode('utf-16-le')) // 2
+        units += length
+        if units > MAX_EXPANDED_UNITS:
+            raise ValueError('Expanded row strings exceed limit')
+
+    def visit(value, depth=0):
+        nonlocal nodes
+        nodes += 1
+        if nodes > MAX_NODES or depth > MAX_DEPTH:
+            raise ValueError('Row structure exceeds limit')
+        if isinstance(value, str):
+            charge(value)
+            if len(value) >= MIN_CHARS:
+                counts[value] += 1
+        elif isinstance(value, list):
+            for item in value:
+                visit(item, depth + 1)
+        elif isinstance(value, dict):
+            for key, item in value.items():
+                if not isinstance(key, str):
+                    raise ValueError('Non-JSON object key')
+                charge(key)
+                visit(item, depth + 1)
+        elif value is not None and not isinstance(value, (bool, int, float)):
+            raise ValueError('Non-JSON row value')
+        elif isinstance(value, float) and not math.isfinite(value):
+            raise ValueError('Nonfinite row value')
+
+    for row in data[field]:
+        if not isinstance(row, dict):
+            raise ValueError('Rows must be records')
+        visit(row)
+    details = data.get('details')
+    if details is not None and not isinstance(details, dict):
+        raise ValueError('Invalid details header')
+    keys = details.get('keys') if details is not None else None
+    if keys is not None:
+        if not isinstance(keys, list) or any(not isinstance(key, str) for key in keys):
+            raise ValueError('Invalid details keys')
+        visit(keys)
+    pool = sorted(text for text, count in counts.items() if count > 1)
+    if not pool:
+        return data  # Preserve the old format if pooling cannot help.
+    if len(pool) > MAX_POOL or sum(len(v.encode('utf-16-le')) // 2 for v in pool) > MAX_POOL_UNITS:
+        raise ValueError('String pool exceeds limit')
+    if any(len(v.encode('utf-16-le')) // 2 > MAX_STRING_UNITS for v in pool):
+        raise ValueError('String pool entry exceeds limit')
+
+    def base36(number):
+        if number == 0:
+            return '0'
+        digits = ''
+        while number:
+            number, remainder = divmod(number, 36)
+            digits = '0123456789abcdefghijklmnopqrstuvwxyz'[remainder] + digits
+        return digits
+
+    positions = {text: PREFIX + base36(i) for i, text in enumerate(pool)}
+
+    def encode(value):
+        if isinstance(value, str):
+            if value in positions:
+                return positions[value]
+            return PREFIX + '~' + value[len(PREFIX):] if value.startswith(PREFIX) else value
+        if isinstance(value, list):
+            return [encode(item) for item in value]
+        if isinstance(value, dict):
+            return {key: encode(item) for key, item in value.items()}
+        return value
+
+    result = {**data, field: [encode(row) for row in data[field]],
+              'row_string_encoding': ENCODING, 'row_strings': pool}
+    if keys is not None:
+        result['details'] = {**details, 'keys': encode(keys)}
+    return result
 
 
 def encoded(value):
@@ -135,5 +237,5 @@ def write_compact(root, source, kind):
         'scope': 'Same public search terms; original text and explicit navigation are loaded from fixed public files as needed. Search queries are never transmitted.',
     }
     path = root/'search'/('atlas-query-index.json' if kind == 'atlas' else 'query-index.json')
-    path.write_bytes(encoded(payload))
+    path.write_bytes(encoded(encode_row_strings(payload)))
     return path

@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "qualified_at_utc": "2026-11-24T05:07:41.937055+00:00",
+  "scope": "Saved existing n63 k/m/initial action qualification only;zero LOBPCG/eigen/PDE/full-case executions",
+  "passed": true,
+  "checks": 35,
+  "shared_limit_seconds": 20,
+  "actual_shared_seconds": 0.30338558400035254,
+  "input_candidate_sha256": "e99117e83502d1fe1169ceb85ba2d5dd3cfcc213d41500432b2bab82cb63035d",
+  "protocol_sha256": "192f2237a3b89650825fa5d5d0cef8a994f0439a0d391adcdd9bff0718764ea0",
+  "plan_sha256": "26624575029dedda293b7daeeb7f3be0335295df29b5b8a87afc95df176a0594",
+  "receipt_sha256": "3c93a1411c9a6e1523aa0502776f84627deff4738956100c840114d0e05505dd",
+  "all28_source_bindings_unchanged": true,
+  "dense_exceptions": [
+    {
+      "name": "dense-M-block",
+      "type": "RuntimeWarning",
+      "message": "divide by zero encountered in matmul"
+    },
+    {
+      "name": "dense-M-vector",
+      "type": "RuntimeWarning",
+      "message": "divide by zero encountered in matmul"
+    },
+    {
+      "name": "dense-K-block",
+      "type": "RuntimeWarning",
+      "message": "divide by zero encountered in matmul"
+    }
+  ],
+  "candidate_actions": [
+    {
+      "name": "einsum-M-block",
+      "outcome": "returned",
+      "qualified": true,
+      "shape": [
+        63,
+        3
+      ],
+      "dtype": "<f8",
+      "max_absolute_difference": 1.734723475976807e-18,
+      "maximum_bound": 2.2204460492503436e-16
+    },
+    {
+      "name": "einsum-M-vector",
+      "outcome": "returned",
+      "qualified": true,
+      "shape": [
+        63
+      ],
+      "dtype": "<f8",
+      "max_absolute_difference": 1.734723475976807e-18,
+      "maximum_bound": 2.2204460492503436e-16
+    },
+    {
+      "name": "einsum-K-block",
+      "outcome": "returned",
+      "qualified": true,
+      "shape": [
+        63,
+        3
+      ],
+      "dtype": "<f8",
+      "max_absolute_difference": 0.0,
+      "maximum_bound": 3.581135388230955e-12
+    },
+    {
+      "name": "LinearOperator-M-block",
+      "outcome": "returned",
+      "qualified": true,
+      "shape": [
+        63,
+        3
+      ],
+      "dtype": "<f8",
+      "max_absolute_difference": 1.734723475976807e-18,
+      "maximum_bound": 2.2204460492503436e-16
+    },
+    {
+      "name": "LinearOperator-M-vector",
+      "outcome": "returned",
+      "qualified": true,
+      "shape": [
+        63
+      ],
+      "dtype": "<f8",
+      "max_absolute_difference": 1.734723475976807e-18,
+      "maximum_bound": 2.2204460492503436e-16
+    }
+  ],
+  "reference": "Exact Fraction products of saved binary64 entries;round once after exact sum. Bound gamma126*absolute-product-sum+1ulp. Independent of NumPy/BLAS/einsum.",
+  "historical_exception_identity_recovered": false,
+  "raw_evidence_retention": "Original raw NPZ,fulltracebacks,allsource/protocol/operation outputs and stdout/stderr remain in private persistent execution records;this public compact report does not pretend to include those full historical fields.",
+  "primary_documentation": [
+    {
+      "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.sparse.linalg.lobpcg.html",
+      "read_scope": "Selected B SPD/LinearOperator parameters,history/fallback/rod-example paragraphs"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/scipy/scipy/v1.14.1/scipy/sparse/linalg/_eigen/lobpcg/lobpcg.py",
+      "read_scope": "Selected adapter and exception-handling functions; installed and web formatting differ,so not byte-equated."
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "group": "linear-algebra-spectral",
+  "edition": "2026-11-24-r3",
+  "verified_on": "2026-11-24",
+  "source_manifest_sha256": "038537fee8708cb5bbc02d18e902ca546db191f7345ecace52147f6675554a95",
+  "archive": {
+    "file": "atlas-linear-algebra-spectral-2026-11-24-r3.zip",
+    "sha256": "3d14112335ce8a55cce306ec689d430f172d02a49f4675ae5948a2fab7ca1452",
+    "bytes": 954307,
+    "archive_directory": "atlas-linear-algebra-spectral-2026-11-24-r3"
+  },
+  "archive_sha256": "3d14112335ce8a55cce306ec689d430f172d02a49f4675ae5948a2fab7ca1452",
+  "returncode": 0,
+  "passed_tests": 29,
+  "tests": 29,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "fem-mass-eigen",
+    "pivoted-direct-refinement",
+    "restarted-shift-invert",
+    "symmetric-saddle-minres"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 0.456680832998245,
+  "independent_rerun_seconds": 0.3654490419976355,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

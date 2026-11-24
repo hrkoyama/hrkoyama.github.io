@@ -1,0 +1,222 @@
+[
+  {
+    "id": "cylinder-mie2d",
+    "passed": true,
+    "checks": {
+      "reference-and-new-components-qualified": true,
+      "cylinder-ppw12/finite": true,
+      "cylinder-ppw12/outward-scattering-power": true,
+      "cylinder-ppw12/closed-contour-sensitivity": true,
+      "cylinder-ppw12/fixed-window-sensitivity": true,
+      "cylinder-ppw18/finite": true,
+      "cylinder-ppw18/outward-scattering-power": true,
+      "cylinder-ppw18/closed-contour-sensitivity": true,
+      "cylinder-ppw18/fixed-window-sensitivity": true,
+      "cylinder-ppw24/finite": true,
+      "cylinder-ppw24/outward-scattering-power": true,
+      "cylinder-ppw24/closed-contour-sensitivity": true,
+      "cylinder-ppw24/fixed-window-sensitivity": true,
+      "finest-scattering-width": true,
+      "finest-exterior-scattered-field": true,
+      "coarse-to-finest-improvement": true,
+      "complete-run-phasor-linearity": true,
+      "complete-run-power-quadratic": true,
+      "zero-contrast-stored-snapshot-fields": true
+    },
+    "check_details": [
+      {
+        "name": "reference-and-new-components-qualified",
+        "value": 100,
+        "bound": 100,
+        "passed": true
+      },
+      {
+        "name": "cylinder-ppw12/finite",
+        "value": 0,
+        "bound": 0,
+        "passed": true
+      },
+      {
+        "name": "cylinder-ppw12/outward-scattering-power",
+        "value": 0.921516711893712,
+        "bound": 0,
+        "passed": true
+      },
+      {
+        "name": "cylinder-ppw12/closed-contour-sensitivity",
+        "value": 0.00039973309817384713,
+        "bound": 0.01,
+        "passed": true
+      },
+      {
+        "name": "cylinder-ppw12/fixed-window-sensitivity",
+        "value": 1.1207512730945438e-06,
+        "bound": 0.005,
+        "passed": true
+      },
+      {
+        "name": "cylinder-ppw18/finite",
+        "value": 0,
+        "bound": 0,
+        "passed": true
+      },
+      {
+        "name": "cylinder-ppw18/outward-scattering-power",
+        "value": 1.1341926106853863,
+        "bound": 0,
+        "passed": true
+      },
+      {
+        "name": "cylinder-ppw18/closed-contour-sensitivity",
+        "value": 0.00018365005866118528,
+        "bound": 0.01,
+        "passed": true
+      },
+      {
+        "name": "cylinder-ppw18/fixed-window-sensitivity",
+        "value": 1.689622556979945e-06,
+        "bound": 0.005,
+        "passed": true
+      },
+      {
+        "name": "cylinder-ppw24/finite",
+        "value": 0,
+        "bound": 0,
+        "passed": true
+      },
+      {
+        "name": "cylinder-ppw24/outward-scattering-power",
+        "value": 0.9571725126288017,
+        "bound": 0,
+        "passed": true
+      },
+      {
+        "name": "cylinder-ppw24/closed-contour-sensitivity",
+        "value": 0.00010042527452347095,
+        "bound": 0.01,
+        "passed": true
+      },
+      {
+        "name": "cylinder-ppw24/fixed-window-sensitivity",
+        "value": 2.6581479594770165e-07,
+        "bound": 0.005,
+        "passed": true
+      },
+      {
+        "name": "finest-scattering-width",
+        "value": 0.02115770161610031,
+        "bound": 0.1,
+        "passed": true
+      },
+      {
+        "name": "finest-exterior-scattered-field",
+        "value": 0.030278686279997306,
+        "bound": 0.15,
+        "passed": true
+      },
+      {
+        "name": "coarse-to-finest-improvement",
+        "value": 0.02115770161610031,
+        "bound": 0.057620727331704535,
+        "passed": true
+      },
+      {
+        "name": "complete-run-phasor-linearity",
+        "value": 0.0,
+        "bound": 2e-12,
+        "passed": true
+      },
+      {
+        "name": "complete-run-power-quadratic",
+        "value": 0.0,
+        "bound": 2e-12,
+        "passed": true
+      },
+      {
+        "name": "zero-contrast-stored-snapshot-fields",
+        "value": 0.0,
+        "bound": 1e-26,
+        "passed": true
+      }
+    ],
+    "records": [
+      {
+        "id": "cylinder-ppw12",
+        "ppw": 12,
+        "cells": 72,
+        "steps": 1160,
+        "dt": 0.034482758620689655,
+        "fields": "cylinder-ppw12.npz",
+        "width": 0.921516711893712,
+        "reference_width": 0.9778618212649008,
+        "width_relative": 0.057620727331704535,
+        "field_relative": 0.083600071126108,
+        "contour_fraction": 0.00039973309817384713,
+        "window_fraction": 1.1207512730945438e-06,
+        "staircase_area": 0.1736111111111111,
+        "exact_area": 0.19634954084936207
+      },
+      {
+        "id": "cylinder-ppw18",
+        "ppw": 18,
+        "cells": 108,
+        "steps": 1720,
+        "dt": 0.023255813953488372,
+        "fields": "cylinder-ppw18.npz",
+        "width": 1.1341926106853863,
+        "reference_width": 0.9778618212649008,
+        "width_relative": 0.15987002050889543,
+        "field_relative": 0.1468722318940999,
+        "contour_fraction": 0.00018365005866118528,
+        "window_fraction": 1.689622556979945e-06,
+        "staircase_area": 0.21296296296296297,
+        "exact_area": 0.19634954084936207
+      },
+      {
+        "id": "cylinder-ppw24",
+        "ppw": 24,
+        "cells": 144,
+        "steps": 2280,
+        "dt": 0.017543859649122806,
+        "fields": "cylinder-ppw24.npz",
+        "width": 0.9571725126288017,
+        "reference_width": 0.9778618212649008,
+        "width_relative": 0.02115770161610031,
+        "field_relative": 0.030278686279997306,
+        "contour_fraction": 0.00010042527452347095,
+        "window_fraction": 2.6581479594770165e-07,
+        "staircase_area": 0.1892361111111111,
+        "exact_area": 0.19634954084936207
+      },
+      {
+        "id": "cylinder-half-amplitude",
+        "ppw": 24,
+        "steps": 2280,
+        "amplitude": 0.5,
+        "fields": "cylinder-half-amplitude.npz",
+        "linearity": 0.0
+      },
+      {
+        "id": "cylinder-vacuum",
+        "ppw": 12,
+        "steps": 1160,
+        "epsilon": 1.0,
+        "fields": "cylinder-vacuum.npz",
+        "stored_snapshot_scattered_peak": 0.0
+      }
+    ],
+    "metrics": {
+      "completed_primary_and_control_runs": 5,
+      "spatial_dimensions": 2,
+      "geometry": "Explicitnodalstaircase,noorderclaim",
+      "scattering_is_power_integral": true,
+      "reference": "IndependentordinarycylindricalJ/H1,notspherical",
+      "gallery_source": 145,
+      "finest_scattering_width": 0.9571725126288017,
+      "independent_scattering_width": 0.9778618212649008,
+      "finest_width_relative_error": 0.02115770161610031,
+      "finest_exterior_field_relative_error": 0.030278686279997306,
+      "complete_run_phasor_linearity": 0.0
+    }
+  }
+]

@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "frozen_before_first_numerical_execution": true,
+  "continuation": {
+    "discrete_residual": 1e-09,
+    "tangent_norm": 1e-10,
+    "tangent_equation": 1e-08,
+    "fold_null": 1e-08,
+    "fold_normalization": 1e-09,
+    "fold_sigma_ratio": 1e-10,
+    "transversality_min": 0.0001,
+    "reference_ode": 1e-60,
+    "reference_endpoint": 1e-60,
+    "reference_lambda": 2e-14,
+    "path_shape": 0.005,
+    "path_lambda": 0.005,
+    "fold_lambda": 0.001,
+    "fold_order": 1.8,
+    "solution_error": 0.002
+  },
+  "jfnk": {
+    "ad_jv": 1e-12,
+    "ad_primal": 1e-13,
+    "fd_jv": 2e-06,
+    "all_solution_error": 0.05,
+    "forcing_factor": 1.05,
+    "forcing_absolute": 1e-08,
+    "mode_agreement": 2e-08,
+    "finest_solution_error": 0.002
+  }
+}

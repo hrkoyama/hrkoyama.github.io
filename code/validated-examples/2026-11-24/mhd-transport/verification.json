@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "group": "mhd-transport",
+  "edition": "2026-11-24",
+  "verified_on": "2026-11-24",
+  "source_manifest_sha256": "68138759230a5f1b1d874d7503c4932cd3e55dbdf8b0a3d192da53683d89bdd1",
+  "archive": {
+    "file": "atlas-mhd-transport-2026-11-24.zip",
+    "sha256": "54e5f9376beacf41338b3b810657bb4671dabef937d748bc96834e1e3b35f233",
+    "bytes": 51576086,
+    "archive_directory": "atlas-mhd-transport-2026-11-24"
+  },
+  "archive_sha256": "54e5f9376beacf41338b3b810657bb4671dabef937d748bc96834e1e3b35f233",
+  "returncode": 0,
+  "passed_tests": 47,
+  "tests": 47,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "circular-alfven-refinement",
+    "magnetic-loop-independent",
+    "postshock-orszag-tang"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 40.95906037500026,
+  "independent_rerun_seconds": 40.736616750000394,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}
