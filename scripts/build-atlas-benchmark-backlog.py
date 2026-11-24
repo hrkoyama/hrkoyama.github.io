@@ -31,6 +31,12 @@ STATES = {
     'published': {'ja': '公開済み', 'en': 'Published'},
 }
 ID = re.compile(r'[a-z0-9]+(?:-[a-z0-9]+)*')
+# This selected author document is publicly served under its literal dot-file
+# URL. It is allowed only as an external citation, never as local completion
+# evidence. Keep all other hidden and traversal paths rejected.
+PUBLIC_EXTERNAL_DOT_DOCUMENTS = {
+    ('hplgit.github.io', '/INF5620/doc/pub/._main_nonlin005.html', ''),
+}
 
 
 def digest(path):
@@ -47,9 +53,11 @@ def checked_url(value, same_site=False):
         raise ValueError('Backlog links require public HTTPS URLs: ' + value)
     if same_site and parsed.netloc != 'hrkoyama.github.io':
         raise ValueError('Completion evidence must be on the public site: ' + value)
+    selected_public_document = not same_site and (parsed.netloc, parsed.path, parsed.query) in PUBLIC_EXTERNAL_DOT_DOCUMENTS
     for path in (parsed.path, unquote(parsed.path)):
         if any(part.startswith('.') for part in path.split('/') if part):
-            raise ValueError('Non-public backlog path: ' + value)
+            if not selected_public_document:
+                raise ValueError('Non-public backlog path: ' + value)
     return parsed
 
 

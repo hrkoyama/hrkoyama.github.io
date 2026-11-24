@@ -48,8 +48,6 @@ jobs:
           python-version: '3.12'
       - name: Install locked browser tooling
         run: npm ci --ignore-scripts
-      - name: Install the pinned Chromium browser
-        run: npx --no-install playwright install --with-deps chromium
       - name: Explicitly aggregate derived files in this isolated candidate
         if: github.ref != 'refs/heads/main' && (inputs.target == 'candidate-build' || contains(github.event.head_commit.message, '[atlas-search-build]'))
         shell: bash
@@ -72,6 +70,8 @@ jobs:
           data.update(passed=True,output_tree=git('write-tree'),completed_at_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),changed_paths=changed,patch_sha256=hashlib.sha256((out/'generated.patch').read_bytes()).hexdigest(),log_sha256=hashlib.sha256((out/'prepare.log').read_bytes()).hexdigest())
           p.write_text(json.dumps(data,indent=2)+'\n')
           PY
+      - name: Install the pinned Chromium browser
+        run: npx --no-install playwright install --with-deps chromium
       - name: Bind the measurement to its exact staged tree and target
         shell: bash
         run: |

@@ -286,3 +286,24 @@ test('six new method records retain the existing bilingual field types and rende
   for(const value of [...row.assumptions,...row.assumptions_ja,row.units,row.units_ja,row.boundary_conditions,row.boundary_conditions_ja])assert.ok(html.includes(escape(value)),id+'/bilingual-condition-display');
  }
 });
+
+test('the verified author document is an external citation while hidden completion paths stay blocked',()=>{
+ execFileSync('python3',['-B','-c',String.raw`
+import ast,json,re
+from pathlib import Path
+from urllib.parse import urlsplit,unquote
+a=ast.parse(Path('scripts/build-atlas-benchmark-backlog.py').read_text())
+selected=[n for n in a.body if isinstance(n,ast.FunctionDef) and n.name=='checked_url' or isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='PUBLIC_EXTERNAL_DOT_DOCUMENTS' for t in n.targets)]
+ns={'re':re,'urlsplit':urlsplit,'unquote':unquote,'ORIGIN':'https://hrkoyama.github.io'}
+exec(compile(ast.Module(body=selected,type_ignores=[]),'backlog-url-only','exec'),ns);check=ns['checked_url']
+u='https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html'
+assert check(u).netloc=='hplgit.github.io' and check(u+'#problem-8').fragment=='problem-8'
+for value,same in [(u,True),(u+'?redirect=elsewhere',False),('https://hplgit.github.io.attacker.invalid/INF5620/doc/pub/._main_nonlin005.html',False),('https://hplgit.github.io/INF5620/doc/pub/%2e_main_nonlin005.html',False),('https://hplgit.github.io/other/.private',False),('/.git/config',True),('/code/%2e%2e/private',True),('/code/.hidden.json',False),('https://hrkoyama.github.io/INF5620/doc/pub/._main_nonlin005.html',False)]:
+ try:check(value,same_site=same)
+ except ValueError:pass
+ else:raise AssertionError('Unsafe or unverified URL accepted: '+value)
+assert check('/code/public.json',same_site=True).netloc=='hrkoyama.github.io'
+for item in json.loads(Path('catalog/atlas-benchmark-backlog.json').read_text())['items']:
+ for source in item.get('sources',[]):check(source['url'])
+`],{cwd:root,timeout:10_000});
+});
