@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "family": "depth-inverse-optimization",
+  "group": "inverse-optimization",
+  "proposed_edition": "2026-11-24",
+  "status": "PRESENTATION_ONLY_REVISION_AFTER_QUALIFIED_PRIMARY_SCIENCE",
+  "frozen_at_utc": "2026-11-24T09:12:44.086146+00:00",
+  "files_sha256": {
+    "LICENSE": "07cca125623617c85a41e9a21a2b114d693c61737bc353e3ca98587431e26ee6",
+    "README.md": "2b1a0eb850ce414f78965d16da33ac96b8a5da424379e81bb1123897838db9ca",
+    "acceptance.json": "5f176ea719dc8a5bb21c1b47bc1fcb8636d204f31821efc622d830bc4b0ce2db",
+    "cases.json": "9dfc1a14b447d70b2bd903a397cdf77d28ecb0e462cc876bdb3b44db9197150d",
+    "inputs.json": "dca8cf2a84355ebbb881bc17232923c5fa0ee16f34c7d2a8a8c58da702e9b3b1",
+    "least_squares.py": "036ec061d9555e6f321f55b3d6d93d6da9aab50b6c8964b64bd2b37599ff23ec",
+    "legacy/__init__.py": "4511db4ec7aad2bf3c764420dbe2541e8cafcb20b5a7201d2a618acc86063195",
+    "legacy/input-observations.json": "d17059934636617f1fbe58cc84dd04ef9464533ba3ec349751eca54009df1e5e",
+    "legacy/numart/__init__.py": "9f1fcd8aeac10bc22f4805d1a5befc5ae06405a9cead726e155df996de5f72d7",
+    "legacy/numart/autodiff.py": "047acbb1585e08fce345b9b4ac33ee0b85430a262107beb76a89813f487a004a",
+    "legacy/numart/bratu_inverse.py": "aea8b5710c8574118ea2db5f7c77b4cf47ceecfde994ba1ce3418f22e57ec9f4",
+    "legacy/numart/bratu_multinverse.py": "7388b971a87db1f4ce2e4c12ab1f42385d3092e692e60d249c25e4304248e5ec",
+    "legacy/numart/bratu_sensitivity.py": "31f694599475892c75bcff9b4e9bd08921716bb48d6a78d48d12f1484a023609",
+    "legacy/numart/krylov.py": "3241dc174c3e0cf496723152ec92f81e1b741cb4d826c02f88395621b965ae2d",
+    "model.py": "5174a0b62f7bb889875bfa16be9bd7162272277ec19d4709ef4b1a01a4b1474d",
+    "plot.py": "e8917218cdedf5010e90c0105acc91baacb036e00b1340428187cc2d0afc3eae",
+    "public_contract.py": "428f5535efb4b45339a33ad593dba67048a92f5e447eadcf1e9340951f04bb0c",
+    "quasi_newton.py": "2703828891914767718e2106312ab5682050f907df5e766c89257d5a2a56561a",
+    "references/__init__.py": "8c328e2e0e2980730edf4e2081c379f05b1c6b2421ab1121dbcd48d823b623fe",
+    "references/cache/cache-fields.npz": "972e97ae94be0ebf77c26843f66cb2f97bc820907e63debf440242e05dde3e78",
+    "references/cache/execution-receipt.json": "51d98a959a1dd80fb243738583fa5968139700cf5864eb94d5714e62d740c10e",
+    "references/cache/qualification.json": "8c686dfbc8405e7f6f4f42fa6da859c048f67b814dbd1dea17354603291362b2",
+    "references/oracles.py": "cb21bda3142b22ff7775c8e737f4e2f4c213bcc163072440e55d8b51625cd19b",
+    "references/qualify.py": "6647987201848605adb4c8dcf66e604fe9ce4aa08007b140514d1077ffae341e",
+    "references/source-reading.json": "0d678a6c5f633711c043ecac595695a2bd0d55876691d9152d68c9bc53a41137",
+    "references/thomas.py": "911a4dca43e0964ee74d2c1c2eaf03bd4f921f9679e1fe84ffb369b1ea039b3e",
+    "regularization.py": "857414ead5bafaa8c30947660c27bba7a17759c7299dd8d96ccd8276b376428f",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "a379cc488e78f6d27ff097fcbaf43eb3ff2090a62a1393a59d7224f5b95f4af3",
+    "support.py": "1e0987bec71279b96229ed656aa41e8132156f55dc0db438017be0060664e715",
+    "test_inverse_optimization.py": "87135651504cb9f1c37da826a6ce0fd91a602e143f96fc63de6740e0ed5160c2"
+  },
+  "input_sha256": "dca8cf2a84355ebbb881bc17232923c5fa0ee16f34c7d2a8a8c58da702e9b3b1",
+  "acceptance_sha256": "5f176ea719dc8a5bb21c1b47bc1fcb8636d204f31821efc622d830bc4b0ce2db",
+  "case_ids": [
+    "bratu-gn-lm-bounds",
+    "bfgs-lbfgs-controls",
+    "bratu-noise-regularization"
+  ],
+  "expected_pytest": 32,
+  "expected_main_optimizer_fits": 75,
+  "expected_case_fits": [
+    17,
+    16,
+    42
+  ],
+  "expected_scientific_gates": 380,
+  "expected_case_gates": [
+    95,
+    88,
+    197
+  ],
+  "expected_display_records": [
+    17,
+    16,
+    10
+  ],
+  "reference_qualification": {
+    "passed": true,
+    "gates": 48,
+    "fixed_state_points": 4,
+    "independent_local_reference_fits": 4,
+    "main_fits_recounted": 0,
+    "qualification_sha256": "8c686dfbc8405e7f6f4f42fa6da859c048f67b814dbd1dea17354603291362b2",
+    "cache_fields_sha256": "972e97ae94be0ebf77c26843f66cb2f97bc820907e63debf440242e05dde3e78",
+    "execution_receipt_sha256": "51d98a959a1dd80fb243738583fa5968139700cf5864eb94d5714e62d740c10e",
+    "duration_seconds": 0.8013519999949494
+  },
+  "design_lineage": {
+    "revision": 2,
+    "contract_sha256": "349829a76b2d591fb9973137d83fb9db18660120e9fa161d9455a9bcbde7b522",
+    "original_design_sha256": "f5d36bced477a5c76432e2f9afb4e1918927f9bedc66903e6b49988f3d626cdd",
+    "derivation_sha256": "1c333fcb3651d769ee7b45a530331a539ed310cee443dea7255cd9bff0c3d34f",
+    "source_reading_sha256": "0d678a6c5f633711c043ecac595695a2bd0d55876691d9152d68c9bc53a41137"
+  },
+  "chronology": {
+    "before_any_scientific_execution": false,
+    "prior_reference_only_attempts": 1,
+    "before_any_main75fit_execution": false,
+    "prior_main_scientific_batches": 2,
+    "prior_main75fit_attempts": [
+      "01:32pytest/75fits/380gates passed but wrapper failed missing plan.case_ids",
+      "02:32pytest/75fits/380gates and wrapper closure passed"
+    ],
+    "before_this_presentation_version_canonical_reverification": true,
+    "prior_plot_attempts": 1
+  },
+  "budget": {
+    "pytest_plus_main_shared_outer_seconds": 120,
+    "main_target_seconds_unmeasured": 30,
+    "public_group_outer_seconds": 120,
+    "reference_only_actual_seconds": 0.8013519999949494
+  },
+  "scope": "Small dimensionless algebraic objectives and the existing n31 two-coefficient Bratu inverse model. No old fine-grid reference regeneration, no new physics count from noise variants, no selection-conditional inference.",
+  "criteria_relaxed": false,
+  "legacy_original_bytes_unchanged": true,
+  "old_tests_or_fits_recounted": 0,
+  "revision": 2,
+  "previous_contract_sha256": "8c8c67cde0235a278f8ba993743b6218d59985e9e62218dd61f89b169f0a90ec",
+  "revision_reason": "Root-authorized plot-only replacement of case65 clean-path panel by actual active-box PG/TRF paths, showing the infeasible generating truth[2.9,.35]. Existing noisy gallery preview and all other panels/figures retain the same plotting code.",
+  "qualified_science": {
+    "source_before_plot_contract_sha256": "8c8c67cde0235a278f8ba993743b6218d59985e9e62218dd61f89b169f0a90ec",
+    "successful_main02_receipt_sha256": "751437e8072b9ab33377fc68a4df18fa5101374ddd41b216974353047058b996",
+    "successful_result_sha256": "72bcbad9d0180652eeb68981e9dbd6f3e3a0962d179ff1cdad75aec5b92ff2fb",
+    "core_input_acceptance_tests_references_unchanged": true
+  }
+}

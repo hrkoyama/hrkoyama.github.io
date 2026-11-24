@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "kind": "PATH_FREE_TRANSCRIPTION_NOT_BYTE_EXACT_RECEIPT",
+  "passed": false,
+  "elapsed_seconds": 2.3180309169983957,
+  "failure": {
+    "type": "RuntimeError",
+    "message": "main child failed"
+  },
+  "pytest": {
+    "tests": 32,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "original_receipt_sha256": "3b2f2e1fc75f6756887f7ac42062aba80294adc772a3b22290fb925a5cfeb9aa",
+  "children": [
+    {
+      "name": "pins",
+      "returncode": 0
+    },
+    {
+      "name": "pytest",
+      "returncode": 0
+    },
+    {
+      "name": "main",
+      "returncode": 1
+    }
+  ],
+  "omitted": "Private absolute commands/TMPDIR/snapshot locations; original fullreceipt/source/data/log retained persistently outside public packet."
+}

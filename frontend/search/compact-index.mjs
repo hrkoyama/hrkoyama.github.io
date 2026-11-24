@@ -106,15 +106,70 @@ function varints(value,limit){
  if(bytes)throw Error('Invalid search terms');
  return values;
 }
+// Posting-list limits bound both wire decoding and repeated-class expansion.
+// They apply only to this optional codec; old indexes retain their loader API.
+export const TERM_MEMBERSHIP_LIMITS=Object.freeze({channels:8000,memberships:2000000,textUnits:16400000,encodedUnits:16000000});
+const INVERTED='inverted-membership-varint-base64-v1';
+const membershipKeys=['term_channel_count','term_membership_ids','term_membership_classes'];
+function invertTerms(data,words,field){
+ const fail=()=>{throw Error('Invalid inverted search terms');};
+ if(!plain(data)||!Array.isArray(data[field])||Object.getPrototypeOf(data[field])!==Array.prototype||data[field].length>2000)fail();
+ const count=data.term_channel_count,packed=data.term_membership_classes;
+ if(!Number.isInteger(count)||count<0||count>TERM_MEMBERSHIP_LIMITS.channels||!Array.isArray(packed)||Object.getPrototypeOf(packed)!==Array.prototype||packed.length>MAX_TERMS)fail();
+ const channels=Array.from({length:count},()=>[]),seen=new Set();
+ let encodedUnits=0,classMembers=0,expanded=0,textUnits=0;
+ const referencedChannels=new Set();
+ const classes=packed.map(value=>{
+  if(typeof value!=='string'||seen.has(value))fail();
+  seen.add(value);encodedUnits+=value.length;if(encodedUnits>TERM_MEMBERSHIP_LIMITS.encodedUnits)fail();
+  let previous=0;
+  const ids=varints(value,count).map((delta,i)=>{
+   if(i&&delta===0)fail();
+   previous+=delta;if(previous>=count)fail();return previous;
+  });
+  classMembers+=ids.length;if(classMembers>TERM_MEMBERSHIP_LIMITS.memberships)fail();return ids;
+ });
+ const ids=varints(data.term_membership_ids,classes.length);
+ if(ids.length!==words.length)fail();
+ const used=new Set();
+ for(let term=0;term<ids.length;term++){
+  const id=ids[term];used.add(id);
+  for(const channel of classes[id]){
+   if(++expanded>TERM_MEMBERSHIP_LIMITS.memberships)fail();
+   textUnits+=words[term].length+(channels[channel].length?1:0);
+   if(textUnits>TERM_MEMBERSHIP_LIMITS.textUnits)fail();
+   channels[channel].push(words[term]);
+  }
+ }
+ if(used.size!==classes.length)fail();
+ const text=reference=>{
+  // References form a bijection. Python and JS enumerate integer-like object
+  // keys differently, so row/language enumeration need not equal channel order.
+  if(!Number.isInteger(reference)||reference<0||reference>=count||referencedChannels.has(reference))fail();
+  referencedChannels.add(reference);return channels[reference].join(' ');
+ };
+ const rows=[];
+ for(let i=0;i<data[field].length;i++){
+  const row=data[field][i];if(!own(data[field],i)||!plain(row))fail();
+  const value=row.search_terms;
+  const searchText=typeof value==='number'?text(value):plain(value)?Object.fromEntries(Object.entries(value).map(([language,reference])=>{
+   if(!scalarString(language))fail();return [language,text(reference)];
+  })):fail();
+  const {search_terms,...record}=row;rows.push({...record,search_text:searchText});
+ }
+ if(referencedChannels.size!==count)fail();
+ return rows;
+}
 export function unpackSearchIndex(data){
  if(data?.format!=='compact-search-v1'){
-  if(data&&typeof data==='object'&&('row_string_encoding' in data||'row_strings' in data))throw Error('Invalid pooled row strings');
+  if(data&&typeof data==='object'&&('row_string_encoding' in data||'row_strings' in data||membershipKeys.some(key=>own(data,key))))throw Error('Invalid pooled row strings');
   return data;
  }
  if(decoded.has(data))return decoded.get(data);
  const source=data;data=restoreRowStrings(data);
- const words=vocabulary(data),binary=data.term_encoding==='sorted-delta-varint-base64';
- if(data.term_encoding!==undefined&&!['sorted-delta','sorted-delta-varint-base64'].includes(data.term_encoding))throw Error('Invalid search terms');
+ const words=vocabulary(data),binary=data.term_encoding==='sorted-delta-varint-base64',inverted=data.term_encoding===INVERTED;
+ if(data.term_encoding!==undefined&&!['sorted-delta','sorted-delta-varint-base64',INVERTED].includes(data.term_encoding))throw Error('Invalid search terms');
+ if(!inverted&&membershipKeys.some(key=>own(data,key)))throw Error('Invalid inverted search terms');
  const expand=indices=>{
   if(binary)indices=varints(indices,words.length);
   if(!Array.isArray(indices))throw Error('Invalid search terms');
@@ -129,15 +184,15 @@ export function unpackSearchIndex(data){
  };
  const field=data.kind==='atlas'?'entries':'documents';
  if(!Array.isArray(data[field])||data[field].length>2000)throw Error('Invalid search records');
- const rows=data[field].map(row=>{
+ const rows=inverted?invertTerms(data,words,field):data[field].map(row=>{
   const terms=row.search_terms;
   const searchText=Array.isArray(terms)||typeof terms==='string'?expand(terms):Object.fromEntries(Object.entries(terms||{}).map(([language,ids])=>[language,expand(ids)]));
   const {search_terms,...record}=row;return {...record,search_text:searchText};
  });
- const {terms,vocabulary_encoding,...rest}=data;
+ const {terms,vocabulary_encoding,term_channel_count,term_membership_ids,term_membership_classes,...rest}=data;
  // Preserve the legacy unpacked record/header API; storage codecs are private
  // to this loader. Both old numeric arrays and the new byte strings decode here.
- if(binary)rest.term_encoding='sorted-delta';
+ if(binary||inverted)rest.term_encoding='sorted-delta';
  const result={...rest,format:'unpacked-search-v1',[field]:rows};decoded.set(source,result);return result;
 }
 export function searchDetailURL(key){

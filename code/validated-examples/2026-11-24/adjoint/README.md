@@ -1,0 +1,78 @@
+# Discrete adjoints, near-fold sensitivity and distributed VJPs
+
+This educational packet contains three fixed one-dimensional cases, not three new physical equations. All units are dimensionless. The independent67-check reference qualification passed. Preserved R1/R2 primary attempts each passed32pytest and59diffusion gates plus45fold gates before the final state solve stopped on an unmet ordinary-GMRES true target. Two fixedfloat64 linear candidates also failed. A separately reviewed state-only expanded-iterate component then passed20checks on one fixedlinear system. At the R3 pre-execution freeze,this mixed-precision revision had not yet run. Its subsequently authorized local main03 PASSED all32pytest,15principal records and141fixed gates in33.350636333seconds (one shared120s cap). See the actual saved result/verification for the corresponding run; local qualification is distinct from canonicalZIP/platform/publication checks. The execution receipt, reference qualification and result files record the actual outcome after authorization; a planned count is not a PASS claim.
+
+## Reproduce
+
+Use Python>=3.12, which provides math.sumprod, and the three exact direct pins in requirements.txt. Matplotlib is needed only to render the saved-data figures.
+
+```sh
+python -m pip install -r requirements.txt
+python -W error -m pytest -q -p no:cacheprovider
+python -W error run.py --input inputs.json --output output
+python plot.py --results output/result.json --output output
+```
+
+`results/` in a release is the preserved example. Choose a fresh `output/` directory for reproduction. The runner rejects a nonempty output directory to preserve failures. It saves returned states/linear candidates before reference comparisons, updates result.json after every principal record, and retains the current nonlinear/trial state and latest operator input/output on caught exceptions. It does not claim to capture unwritten live arrays after SIGKILL. No network access, private checkout or independent reference regeneration is needed for the primary runner.
+
+## Three scopes
+
+**62 — diffusion-discrete-adjoint.** Actual centered-space backward Euler solves use 7/15 interior nodes and64/128/256 steps to T=.1. The reverse recurrence uses the coordinate transpose, including the terminal h weight. Tangent derivatives, all predetermined finite-difference steps and independent Decimal modes are separate checks. Full-storage and checkpoint/replay ownership windows are separate: the full trajectory is serialized and all its ndarray aliases released before checkpoint evolution. During the checkpoint window, checkpoints plus a16-step replay block and six n-vectors use at most40n evolving elements at N256. Static factors/model arrays are separately listed and included in total owned numeric bytes in both windows. Reference arrays and final validation NPZ assembly are created afterward. Serialization-library buffers are not scientific arrays, and the ledger is not process RSS. Replay states are streamed to disk and then compared byte-for-byte with the full trajectory. This is a fixed-block schedule, not optimal checkpointing or CVODES ASA.
+
+**63 — bratu-fold-sensitivity.** Six lower-branch points use n31/63 and delta=.1/.01/.001 below a separately qualified **discrete** fold. The continuum cosh family/fold is background, not the exact finite-difference solution. Zero-start loose and strict state solves isolate nonlinear-state error from the linear study. The DERIVATIVE callable GMRES body comes unchanged from the previously qualified Bratu JFNK implementation, including the operator-output alias fix. State Newton corrections use the explicit R3 mixed-precision solver below. For both tangent and adjoint, rtol1e-4 and1e-8 must meet the actual true-residual targets. Requested1e-12 is observational: its exact last returned candidate, target_met=false when appropriate, raw termination and history are retained. It is never relabelled converged or replaced by a direct reference. Independent shooting-gradient accuracy is still required. The componentwise roundoff estimate and smallest Jacobian eigenvalue are floating diagnostics, not certified intervals or proof of the cause of stagnation. Finite-reference residual identities retain the direct tangent/adjoint residuals and the approximate-adjoint cross term. All fixed finite-difference curves are saved; no best step is selected for success.
+
+**64 — bratu-distributed-vjp.** At n63, m8/16/32 coefficient controls use a=2+B theta. Bv gathers from two local entries per node; B transpose scatter-adds repeated contributions. Endpoint coefficient controls are not the zero Dirichlet state endpoints. The primary path constructs no n-by-m B or full sensitivity matrix. Named persistent arrays and the fixed GMRES n-by25/n-by24 workspace are reported; this inventory is not a measured peak RSS. One and three objectives on the same solved state actually share one Poisson factor, with its build/solve counts recorded. The state solver has its own separately counted factor. Dense hats and m banded tangent RHS occur only in the post-primary independent-reference window. This verifies derivatives of the same discrete model, not a separate physical forward-PDE oracle or general AD. Actual Bratu J is symmetric; a separate nonsymmetric tridiagonal control tests transpose signs. The m2 affine identity uses theta endpoints[a-b-2,a+b-2], not coefficient endpoints[a-b,a+b].
+
+## References and qualification
+
+The reference-only qualifier imports no primary forward/Newton/VJP operator. Its67 fixed checks cover scalar Decimal50/80 modes and independent geometric formulas; discrete shooting/fold equations, an independent Decimal Thomas-Newton solution and the n1 exact discrete fold; and float banded solves against Decimal elimination including a nonsymmetric matrix. The separate external30s qualification budget is not part of the public primary120s budget. The primary reads only the qualified cache and checks its input/acceptance/source/cache digests. Precision agreement is finite numerical qualification, not interval certification.
+
+source-reading.json records exactly selected official/author-hosted reading and the access date. Unknown publication years remain unspecified; access dates are not publication dates. The new recurrences, identities and local-hat formulas are authored derivations in DERIVATION.md. JAX is terminology only and is not a dependency; SUNDIALS is background for the checkpoint/adjoint distinction and is not executed.
+
+The fixed primary inventory is32 meaningful pytest tests,15 principal records,141 native-boolean gates (59/55/27),18 diffusion finite-difference evolutions,36 fold finite-difference states and18 distributed-control finite-difference states. The actual main plus pytest has one shared120s external deadline; no parameter sweep, hidden retry, seed/window selection or postfailure acceptance relaxation is permitted. R1/R2 failed timings remain in their preserved receipts. The later localR3 qualification measured33.350636333seconds for shared32pytest+allfixedmaininputs; this is not a Linux runtime prediction.
+
+## 日本語の範囲説明
+
+本配布は固定入力の教育用3候補です。62は時間離散写像の随伴とcheckpointの所有配列、63は連続foldとは異なる離散fold近傍の感度、64は局所係数作用の行列非形成VJPを扱います。32pytest・141判定・独立67参照判定は計画件数で、実合否と実時間はレシートへ記録します。1e-12の残差未達は未達のまま保存し、独立勾配の精度判定と区別します。失敗時の入力・source・全候補・ログを保存し、公差や固定入力を後から緩めません。図は保存された1次元場・勾配・誤差・実solve回数だけから描き、plot.pyはsolverや参照生成器をimportしません。
+
+## Historical R2: general Jv association and retained failure
+
+The sole mathematical-operation change is a general binary64 evaluation of the same Dirichlet Jacobian action: compute the two near-neighbor differences before subtracting them, rather than `(2*v_i-v_left)-v_right`. The real discrete operator, coefficients, zero boundaries and precision are unchanged. The original nonlinear residual and diffusion/time-adjoint Laplacian retain their original evaluation. GMRES, dot/norm, Poisson factors, all targets/floors/iteration caps, inputs,32test count and141main gates are unchanged. Already computed nonlinear f/RHS and raw linear status are copied into failure checkpoints; these copies do not steer iterations.
+
+The separate saved-vector qualification passed96fixed checks in its own30s cap, with Fraction-exact stencil/fixed-binary-diagonal comparisons and Decimal80/110 coefficient checks. It is distinct from the67reference checks and141main gates. On the SAME old returned candidate, old true residual was6.674459381744501e-14 and the balanced evaluation was about6.68741e-14, close to the independent residual but still ABOVE the unchanged3.39040710302068e-14 target. This is not a converged candidate, a proof of the sole cause, or a guarantee that a fresh solver run will pass. That R2 full attempt subsequently failed and is retained; it is not replaced by the component result.
+
+`history/main-attempt01/` is a compact public record: exact original inputs/acceptance/contract, selected changed source text with pathmap, failed result and the failed-state NPZ. Its receipt is explicitly a path-free TRANSCRIPTION, not the original bytes. `qualification/linear-operator/` holds the actual96-check results/raw arrays and original candidate/checker source as `.py.txt` reading copies. The archived checker expects the original private evidence layout; it is not the public primary command. Full original33source files, all completed records/NPZ/CSV/logs, original receipts/authorization and component history remain persistently preserved outside this packet. No numerical data were deleted, no failed attempt was relabelled successful, and this compact packet does not claim to duplicate all private history.
+
+## R3: state-only expanded-iterate correction
+
+The historical description at JSON pointer `/solver/gmres/retention_adaptation` in inputs.json is retained BYTE-EXACT to preserve numerical-input/reference lineage. Its statements about an unchanged GMRES body, only retention adaptation and no new precision/stopping behavior describe R1/R2. They are **superseded for the STATE solver by this R3 contract**; they remain true of the separate ordinary derivative GMRES. No numerical input/rtol/floor/restart/max-iteration/acceptance value was changed.
+
+R3 is an explicit NEW mixed-precision state-linear algorithm, not a different name for a converged binary64 candidate. Arnoldi V/Z/H/Givens, dot/norm and Poisson-Thomas preconditioning stay binary64. Only the correction iterate and restart base are represented as the unrounded real sum of two storedfloat64 vectors hi+lo. Reconstruction uses the fullbase_hi/base_lo/Z*y term list,then the same list minus hi for lo. Direction Jv uses the qualified4product sumprod; true residual uses the direct9product b-J(hi+lo) sumprod. Python sumprod uses documented extended-precision intermediate products/sums; this is not all-intermediate-binary64 or a universal correctly-rounded theorem. The target is still max(1e-14,rtol*norm(rhs)),restart24 and at most120totaliterations. Only the expanded actual true residual can qualify the expanded correction; the QR estimate can request restart after true-success/breakdown tests,never declare success.
+
+Projection is explicitly PROJECT=RN(hi+lo),not assumed equal to hi. Its newly measured projected residual/target flag are saved separately and never overwrite historicalrawfalse. On the qualified fixedsystem, expanded true residual was1.5302918906e-15 while the projected residual6.4244518274e-14 remained above3.3904071030e-14. This qualifies that one represented linear correction,not the full nonlinearcase,necessity or an impossible float64floor. State updates use a single3product RN(u+alpha*hi+alpha*lo) operation; physicalu/trials remain binary64. The original nonlinear residual/Armijo/outertolerances/initialstate/branch checks, diffusion code, operators.jac_action and entire derivative() ordinarysolver are unchanged.
+
+State partial modecode2 means expandedstatehi+lo. The compatibility field last_linear_candidate stores the diagnostic PROJECT; last_linear_raw_passed/actual_true_residual refer to the EXPANDED mode,not that projectedvector. last_linear_candidate_hi/lo and last_linear_projected_target_met/residual make this distinction explicit; a companion JSON records the mode. Neither the projectedvector nor the oldA/B candidates are promoted to success.
+
+Extra storage is not claimed to be1n: currentlo,base_lo and newreconstructionlo can coexist,alongsidehi copies,true/projected vectors and ordinarywork. Each state-linear solve reports unique-owner NAMED snapshots including outerretention/factors/Thomasworkspace,and a separate conservative allowance enumerates unobserved old+newV/Z/H/base/Givens/direction/reduction/history buffers. This is not a measured fullpeak/RSS and adds no new memory acceptance gate to63/64. The original62strict40n and total-owned comparison remain unchanged. Durations stay in executionreceipts,not case equality metrics.
+
+`history/main-attempt02/` and `history/fixed-linear-ab/` retain compact exact faileddata and clearly labelled path-free receipt transcriptions. `qualification/expanded-state-linear/` retains the actual20-check component result and both returned/projection arrays. The full originalsource52/previous33,allfailedinput/result/NPZ/CSV/logs/sourcecontracts and AB/C evidence remain privately persistent. No nested archived test.py is collected; this revision still has exactly32pytest and141main gates.
+
+### Full ownership evidence
+
+Main case metrics contain compact named-memory summaries,not the full array inventory. Every completed state-linear solve APPENDS its fullowner inventory/stagecounts/inputdigests/mode/status to a JSONL record; the summary identifies the file,byteoffset,length andrecordSHA. Later Newton/FD solves never replace those completed records. The companion currentpartialJSON retains the active/failed call. These are manifest-bound generated data in the packet.
+
+- [Near-fold n31 point0](results/bratu-fold-sensitivity/n31-point0-partial-linear.memory.jsonl)
+- [Near-fold n31 point1](results/bratu-fold-sensitivity/n31-point1-partial-linear.memory.jsonl)
+- [Near-fold n31 point2](results/bratu-fold-sensitivity/n31-point2-partial-linear.memory.jsonl)
+- [Near-fold n63 point0](results/bratu-fold-sensitivity/n63-point0-partial-linear.memory.jsonl)
+- [Near-fold n63 point1](results/bratu-fold-sensitivity/n63-point1-partial-linear.memory.jsonl)
+- [Near-fold n63 point2](results/bratu-fold-sensitivity/n63-point2-partial-linear.memory.jsonl)
+- [Distributed m8](results/bratu-distributed-vjp/m8-partial-linear.memory.jsonl)
+- [Distributed m16](results/bratu-distributed-vjp/m16-partial-linear.memory.jsonl)
+- [Distributed m32](results/bratu-distributed-vjp/m32-partial-linear.memory.jsonl)
+
+## Presentation R4 and actual qualification
+
+LocalR3 main03 passed32pytest,all15principal records and141gates (59/55/27) with every82frozenpre/post binding unchanged. Its originalsource/docs/contract and allsaveddata remain preserved. The currentmetadata is a presentation-only revision: the scientificcode,inputs,acceptance,tests,qualifiedreference67 and Cmathkernels are unchanged. Figureoutput adds only bbox_inches=tight so the3main suptitles fit; the earlier clipped18formats and visualFAIL receipt are retained. Frozen case metadata contains pre-execution stage wording; actual result/verification is the authority for measured qualification,not an inferredPASS from that wording.
+
+This document records local scientific qualification. Canonical source/ZIP rerun,externalLinux,siteCI,HTTP and realbrowser checks are distinct evidence and must be read from their own actual receipts; none is inferred from localPASS.

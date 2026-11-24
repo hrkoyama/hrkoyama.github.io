@@ -1,0 +1,2267 @@
+{
+  "schema_version": 1,
+  "passed": false,
+  "completed": true,
+  "failure": {
+    "type": "BothTargetsUnmet",
+    "message": "Both fixedsolves retained; no relaxation or further search."
+  },
+  "checks": {
+    "control-zero": true,
+    "control-cancellation": true,
+    "control-tie-even-low": true,
+    "control-tie-even-high": true,
+    "control-ordinary": true,
+    "control-full-width": true,
+    "input-dimensions-finite": true,
+    "input-unchanged-target": true,
+    "A-finite-return": true,
+    "A-fixed-cap": true,
+    "A-true-decision": true,
+    "B-finite-return": true,
+    "B-fixed-cap": true,
+    "B-true-decision": true,
+    "preconditioner-unchanged": true
+  },
+  "records": [
+    {
+      "id": "A",
+      "counts": {
+        "operator": 244,
+        "preconditioner": 120
+      },
+      "samples": [
+        {
+          "iteration": 1,
+          "Arnoldi_column": 0,
+          "true_residual": 0.05476440319975668,
+          "QR_estimated_residual": 0.05476440319975668,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 2,
+          "preconditioner_calls": 1
+        },
+        {
+          "iteration": 2,
+          "Arnoldi_column": 1,
+          "true_residual": 0.002213203116321312,
+          "QR_estimated_residual": 0.0022132031163216537,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 4,
+          "preconditioner_calls": 2
+        },
+        {
+          "iteration": 3,
+          "Arnoldi_column": 2,
+          "true_residual": 1.7456702407923404e-05,
+          "QR_estimated_residual": 1.7456702408066993e-05,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 6,
+          "preconditioner_calls": 3
+        },
+        {
+          "iteration": 4,
+          "Arnoldi_column": 3,
+          "true_residual": 8.810560323181944e-08,
+          "QR_estimated_residual": 8.810560255984516e-08,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 8,
+          "preconditioner_calls": 4
+        },
+        {
+          "iteration": 5,
+          "Arnoldi_column": 4,
+          "true_residual": 3.0748235734547854e-10,
+          "QR_estimated_residual": 3.0748069992744517e-10,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 10,
+          "preconditioner_calls": 5
+        },
+        {
+          "iteration": 6,
+          "Arnoldi_column": 5,
+          "true_residual": 7.915548658846238e-13,
+          "QR_estimated_residual": 7.851203683761064e-13,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 12,
+          "preconditioner_calls": 6
+        },
+        {
+          "iteration": 7,
+          "Arnoldi_column": 6,
+          "true_residual": 1.0414831288749606e-13,
+          "QR_estimated_residual": 1.5299658092259873e-15,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 14,
+          "preconditioner_calls": 7
+        },
+        {
+          "iteration": 8,
+          "Arnoldi_column": 7,
+          "true_residual": 7.462222310737419e-14,
+          "QR_estimated_residual": 1.1354250889439422e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 16,
+          "preconditioner_calls": 8
+        },
+        {
+          "iteration": 9,
+          "Arnoldi_column": 8,
+          "true_residual": 7.462222310737419e-14,
+          "QR_estimated_residual": 5.593264873717393e-19,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 18,
+          "preconditioner_calls": 9
+        },
+        {
+          "iteration": 10,
+          "Arnoldi_column": 9,
+          "true_residual": 7.462222310737419e-14,
+          "QR_estimated_residual": 7.161804017511353e-22,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 20,
+          "preconditioner_calls": 10
+        },
+        {
+          "iteration": 11,
+          "Arnoldi_column": 10,
+          "true_residual": 7.462222310737419e-14,
+          "QR_estimated_residual": 7.327431766424364e-25,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 22,
+          "preconditioner_calls": 11
+        },
+        {
+          "iteration": 12,
+          "Arnoldi_column": 11,
+          "true_residual": 7.462222310737419e-14,
+          "QR_estimated_residual": 3.803804413699599e-27,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 24,
+          "preconditioner_calls": 12
+        },
+        {
+          "iteration": 13,
+          "Arnoldi_column": 12,
+          "true_residual": 7.462222310737419e-14,
+          "QR_estimated_residual": 2.964115873458043e-29,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 26,
+          "preconditioner_calls": 13
+        },
+        {
+          "iteration": 14,
+          "Arnoldi_column": 13,
+          "true_residual": 7.462222310737419e-14,
+          "QR_estimated_residual": 2.1665550269236225e-32,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 28,
+          "preconditioner_calls": 14
+        },
+        {
+          "iteration": 15,
+          "Arnoldi_column": 14,
+          "true_residual": 7.462222310737419e-14,
+          "QR_estimated_residual": 1.4201733704011661e-35,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 30,
+          "preconditioner_calls": 15
+        },
+        {
+          "iteration": 16,
+          "Arnoldi_column": 15,
+          "true_residual": 7.462222310737419e-14,
+          "QR_estimated_residual": 9.255328059545533e-38,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 32,
+          "preconditioner_calls": 16
+        },
+        {
+          "iteration": 17,
+          "Arnoldi_column": 16,
+          "true_residual": 7.462222310737419e-14,
+          "QR_estimated_residual": 1.447020604288974e-40,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 34,
+          "preconditioner_calls": 17
+        },
+        {
+          "iteration": 18,
+          "Arnoldi_column": 17,
+          "true_residual": 7.462222310737419e-14,
+          "QR_estimated_residual": 7.174069833087538e-44,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 36,
+          "preconditioner_calls": 18
+        },
+        {
+          "iteration": 19,
+          "Arnoldi_column": 18,
+          "true_residual": 7.462222310737419e-14,
+          "QR_estimated_residual": 2.5667082828017797e-46,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 38,
+          "preconditioner_calls": 19
+        },
+        {
+          "iteration": 20,
+          "Arnoldi_column": 19,
+          "true_residual": 7.462222310737419e-14,
+          "QR_estimated_residual": 3.0266368243544625e-49,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 40,
+          "preconditioner_calls": 20
+        },
+        {
+          "iteration": 21,
+          "Arnoldi_column": 20,
+          "true_residual": 7.462222310737419e-14,
+          "QR_estimated_residual": 1.099088212317936e-52,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 42,
+          "preconditioner_calls": 21
+        },
+        {
+          "iteration": 22,
+          "Arnoldi_column": 21,
+          "true_residual": 7.462222310737419e-14,
+          "QR_estimated_residual": 8.000722671379178e-56,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 44,
+          "preconditioner_calls": 22
+        },
+        {
+          "iteration": 23,
+          "Arnoldi_column": 22,
+          "true_residual": 7.462222310737419e-14,
+          "QR_estimated_residual": 2.1672460296159847e-58,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 46,
+          "preconditioner_calls": 23
+        },
+        {
+          "iteration": 24,
+          "Arnoldi_column": 23,
+          "true_residual": 7.462222310737419e-14,
+          "QR_estimated_residual": 6.831507221838953e-62,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 48,
+          "preconditioner_calls": 24
+        },
+        {
+          "iteration": 25,
+          "Arnoldi_column": 0,
+          "true_residual": 7.414887291175509e-14,
+          "QR_estimated_residual": 4.4432387242993496e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 51,
+          "preconditioner_calls": 25
+        },
+        {
+          "iteration": 26,
+          "Arnoldi_column": 1,
+          "true_residual": 7.072656861970858e-14,
+          "QR_estimated_residual": 1.5995195856226065e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 53,
+          "preconditioner_calls": 26
+        },
+        {
+          "iteration": 27,
+          "Arnoldi_column": 2,
+          "true_residual": 5.6640461853169324e-14,
+          "QR_estimated_residual": 1.2809228974767749e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 55,
+          "preconditioner_calls": 27
+        },
+        {
+          "iteration": 28,
+          "Arnoldi_column": 3,
+          "true_residual": 5.1565628132421896e-14,
+          "QR_estimated_residual": 1.3958989892973299e-18,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 57,
+          "preconditioner_calls": 28
+        },
+        {
+          "iteration": 29,
+          "Arnoldi_column": 4,
+          "true_residual": 5.890702357206395e-14,
+          "QR_estimated_residual": 4.851672575370046e-20,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 59,
+          "preconditioner_calls": 29
+        },
+        {
+          "iteration": 30,
+          "Arnoldi_column": 5,
+          "true_residual": 5.890702357206395e-14,
+          "QR_estimated_residual": 8.010669762296139e-22,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 61,
+          "preconditioner_calls": 30
+        },
+        {
+          "iteration": 31,
+          "Arnoldi_column": 6,
+          "true_residual": 5.890702357206395e-14,
+          "QR_estimated_residual": 1.1186231490753987e-23,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 63,
+          "preconditioner_calls": 31
+        },
+        {
+          "iteration": 32,
+          "Arnoldi_column": 7,
+          "true_residual": 5.890702357206395e-14,
+          "QR_estimated_residual": 1.5155774445933276e-25,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 65,
+          "preconditioner_calls": 32
+        },
+        {
+          "iteration": 33,
+          "Arnoldi_column": 8,
+          "true_residual": 5.890702357206395e-14,
+          "QR_estimated_residual": 1.4827865767823678e-27,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 67,
+          "preconditioner_calls": 33
+        },
+        {
+          "iteration": 34,
+          "Arnoldi_column": 9,
+          "true_residual": 5.890702357206395e-14,
+          "QR_estimated_residual": 6.2944397416868144e-30,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 69,
+          "preconditioner_calls": 34
+        },
+        {
+          "iteration": 35,
+          "Arnoldi_column": 10,
+          "true_residual": 5.890702357206395e-14,
+          "QR_estimated_residual": 3.3856093588012954e-32,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 71,
+          "preconditioner_calls": 35
+        },
+        {
+          "iteration": 36,
+          "Arnoldi_column": 11,
+          "true_residual": 5.890702357206395e-14,
+          "QR_estimated_residual": 1.2837308585074544e-34,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 73,
+          "preconditioner_calls": 36
+        },
+        {
+          "iteration": 37,
+          "Arnoldi_column": 12,
+          "true_residual": 5.890702357206395e-14,
+          "QR_estimated_residual": 3.5475015380798896e-37,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 75,
+          "preconditioner_calls": 37
+        },
+        {
+          "iteration": 38,
+          "Arnoldi_column": 13,
+          "true_residual": 5.890702357206395e-14,
+          "QR_estimated_residual": 1.2477850533870456e-39,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 77,
+          "preconditioner_calls": 38
+        },
+        {
+          "iteration": 39,
+          "Arnoldi_column": 14,
+          "true_residual": 5.890702357206395e-14,
+          "QR_estimated_residual": 1.9934898369568133e-42,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 79,
+          "preconditioner_calls": 39
+        },
+        {
+          "iteration": 40,
+          "Arnoldi_column": 15,
+          "true_residual": 5.890702357206395e-14,
+          "QR_estimated_residual": 4.267749371376296e-45,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 81,
+          "preconditioner_calls": 40
+        },
+        {
+          "iteration": 41,
+          "Arnoldi_column": 16,
+          "true_residual": 5.890702357206395e-14,
+          "QR_estimated_residual": 8.73838871370112e-48,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 83,
+          "preconditioner_calls": 41
+        },
+        {
+          "iteration": 42,
+          "Arnoldi_column": 17,
+          "true_residual": 5.890702357206395e-14,
+          "QR_estimated_residual": 1.4683482668814017e-50,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 85,
+          "preconditioner_calls": 42
+        },
+        {
+          "iteration": 43,
+          "Arnoldi_column": 18,
+          "true_residual": 5.890702357206395e-14,
+          "QR_estimated_residual": 1.8916166248436515e-53,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 87,
+          "preconditioner_calls": 43
+        },
+        {
+          "iteration": 44,
+          "Arnoldi_column": 19,
+          "true_residual": 5.890702357206395e-14,
+          "QR_estimated_residual": 2.2610078727239476e-56,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 89,
+          "preconditioner_calls": 44
+        },
+        {
+          "iteration": 45,
+          "Arnoldi_column": 20,
+          "true_residual": 5.890702357206395e-14,
+          "QR_estimated_residual": 2.6145567230342445e-59,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 91,
+          "preconditioner_calls": 45
+        },
+        {
+          "iteration": 46,
+          "Arnoldi_column": 21,
+          "true_residual": 5.890702357206395e-14,
+          "QR_estimated_residual": 3.130330561653892e-62,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 93,
+          "preconditioner_calls": 46
+        },
+        {
+          "iteration": 47,
+          "Arnoldi_column": 22,
+          "true_residual": 5.890702357206395e-14,
+          "QR_estimated_residual": 2.0358267347980698e-65,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 95,
+          "preconditioner_calls": 47
+        },
+        {
+          "iteration": 48,
+          "Arnoldi_column": 23,
+          "true_residual": 5.890702357206395e-14,
+          "QR_estimated_residual": 1.9079993227980948e-68,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 97,
+          "preconditioner_calls": 48
+        },
+        {
+          "iteration": 49,
+          "Arnoldi_column": 0,
+          "true_residual": 5.890702357206395e-14,
+          "QR_estimated_residual": 3.26373086962768e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 100,
+          "preconditioner_calls": 49
+        },
+        {
+          "iteration": 50,
+          "Arnoldi_column": 1,
+          "true_residual": 5.890702357206395e-14,
+          "QR_estimated_residual": 1.2080766176716469e-18,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 102,
+          "preconditioner_calls": 50
+        },
+        {
+          "iteration": 51,
+          "Arnoldi_column": 2,
+          "true_residual": 5.890702357206395e-14,
+          "QR_estimated_residual": 3.656147636539488e-19,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 104,
+          "preconditioner_calls": 51
+        },
+        {
+          "iteration": 52,
+          "Arnoldi_column": 3,
+          "true_residual": 5.915044931487977e-14,
+          "QR_estimated_residual": 3.2364942979380915e-19,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 106,
+          "preconditioner_calls": 52
+        },
+        {
+          "iteration": 53,
+          "Arnoldi_column": 4,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 2.798229949305488e-20,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 108,
+          "preconditioner_calls": 53
+        },
+        {
+          "iteration": 54,
+          "Arnoldi_column": 5,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 9.713846588435876e-22,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 110,
+          "preconditioner_calls": 54
+        },
+        {
+          "iteration": 55,
+          "Arnoldi_column": 6,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 1.1806772599435931e-23,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 112,
+          "preconditioner_calls": 55
+        },
+        {
+          "iteration": 56,
+          "Arnoldi_column": 7,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 8.012881336533693e-26,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 114,
+          "preconditioner_calls": 56
+        },
+        {
+          "iteration": 57,
+          "Arnoldi_column": 8,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 6.199943639363972e-28,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 116,
+          "preconditioner_calls": 57
+        },
+        {
+          "iteration": 58,
+          "Arnoldi_column": 9,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 5.668225669003735e-30,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 118,
+          "preconditioner_calls": 58
+        },
+        {
+          "iteration": 59,
+          "Arnoldi_column": 10,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 2.888397346635942e-32,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 120,
+          "preconditioner_calls": 59
+        },
+        {
+          "iteration": 60,
+          "Arnoldi_column": 11,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 1.372152495999843e-34,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 122,
+          "preconditioner_calls": 60
+        },
+        {
+          "iteration": 61,
+          "Arnoldi_column": 12,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 2.9216532532752074e-37,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 124,
+          "preconditioner_calls": 61
+        },
+        {
+          "iteration": 62,
+          "Arnoldi_column": 13,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 8.809902049710638e-40,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 126,
+          "preconditioner_calls": 62
+        },
+        {
+          "iteration": 63,
+          "Arnoldi_column": 14,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 1.6861030346352442e-42,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 128,
+          "preconditioner_calls": 63
+        },
+        {
+          "iteration": 64,
+          "Arnoldi_column": 15,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 3.710243991383897e-45,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 130,
+          "preconditioner_calls": 64
+        },
+        {
+          "iteration": 65,
+          "Arnoldi_column": 16,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 5.3782828308201246e-48,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 132,
+          "preconditioner_calls": 65
+        },
+        {
+          "iteration": 66,
+          "Arnoldi_column": 17,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 6.475802479792095e-51,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 134,
+          "preconditioner_calls": 66
+        },
+        {
+          "iteration": 67,
+          "Arnoldi_column": 18,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 8.792040994155145e-54,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 136,
+          "preconditioner_calls": 67
+        },
+        {
+          "iteration": 68,
+          "Arnoldi_column": 19,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 8.401062936166771e-57,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 138,
+          "preconditioner_calls": 68
+        },
+        {
+          "iteration": 69,
+          "Arnoldi_column": 20,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 1.0647857905765547e-59,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 140,
+          "preconditioner_calls": 69
+        },
+        {
+          "iteration": 70,
+          "Arnoldi_column": 21,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 1.8171065458807256e-62,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 142,
+          "preconditioner_calls": 70
+        },
+        {
+          "iteration": 71,
+          "Arnoldi_column": 22,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 2.0798715235228454e-65,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 144,
+          "preconditioner_calls": 71
+        },
+        {
+          "iteration": 72,
+          "Arnoldi_column": 23,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 1.3505733148748366e-68,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 146,
+          "preconditioner_calls": 72
+        },
+        {
+          "iteration": 73,
+          "Arnoldi_column": 0,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 2.828360552480249e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 149,
+          "preconditioner_calls": 73
+        },
+        {
+          "iteration": 74,
+          "Arnoldi_column": 1,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 7.932235513147022e-19,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 151,
+          "preconditioner_calls": 74
+        },
+        {
+          "iteration": 75,
+          "Arnoldi_column": 2,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 6.630647752373313e-20,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 153,
+          "preconditioner_calls": 75
+        },
+        {
+          "iteration": 76,
+          "Arnoldi_column": 3,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 3.2106976624660287e-20,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 155,
+          "preconditioner_calls": 76
+        },
+        {
+          "iteration": 77,
+          "Arnoldi_column": 4,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 2.3270081213606525e-20,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 157,
+          "preconditioner_calls": 77
+        },
+        {
+          "iteration": 78,
+          "Arnoldi_column": 5,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 8.619632914861446e-22,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 159,
+          "preconditioner_calls": 78
+        },
+        {
+          "iteration": 79,
+          "Arnoldi_column": 6,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 1.416582076485425e-23,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 161,
+          "preconditioner_calls": 79
+        },
+        {
+          "iteration": 80,
+          "Arnoldi_column": 7,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 9.207322054986725e-26,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 163,
+          "preconditioner_calls": 80
+        },
+        {
+          "iteration": 81,
+          "Arnoldi_column": 8,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 9.287479973667201e-28,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 165,
+          "preconditioner_calls": 81
+        },
+        {
+          "iteration": 82,
+          "Arnoldi_column": 9,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 5.119446212199081e-30,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 167,
+          "preconditioner_calls": 82
+        },
+        {
+          "iteration": 83,
+          "Arnoldi_column": 10,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 2.0622209621339252e-32,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 169,
+          "preconditioner_calls": 83
+        },
+        {
+          "iteration": 84,
+          "Arnoldi_column": 11,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 6.825138135573072e-35,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 171,
+          "preconditioner_calls": 84
+        },
+        {
+          "iteration": 85,
+          "Arnoldi_column": 12,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 1.518817715059674e-37,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 173,
+          "preconditioner_calls": 85
+        },
+        {
+          "iteration": 86,
+          "Arnoldi_column": 13,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 4.945896279837184e-40,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 175,
+          "preconditioner_calls": 86
+        },
+        {
+          "iteration": 87,
+          "Arnoldi_column": 14,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 1.9151393485579138e-42,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 177,
+          "preconditioner_calls": 87
+        },
+        {
+          "iteration": 88,
+          "Arnoldi_column": 15,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 3.9246378773443197e-45,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 179,
+          "preconditioner_calls": 88
+        },
+        {
+          "iteration": 89,
+          "Arnoldi_column": 16,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 4.545006935132884e-48,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 181,
+          "preconditioner_calls": 89
+        },
+        {
+          "iteration": 90,
+          "Arnoldi_column": 17,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 6.59536486563285e-51,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 183,
+          "preconditioner_calls": 90
+        },
+        {
+          "iteration": 91,
+          "Arnoldi_column": 18,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 8.300919048692471e-54,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 185,
+          "preconditioner_calls": 91
+        },
+        {
+          "iteration": 92,
+          "Arnoldi_column": 19,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 1.0660718222283662e-56,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 187,
+          "preconditioner_calls": 92
+        },
+        {
+          "iteration": 93,
+          "Arnoldi_column": 20,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 1.5877320399005888e-59,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 189,
+          "preconditioner_calls": 93
+        },
+        {
+          "iteration": 94,
+          "Arnoldi_column": 21,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 1.6404811785957122e-62,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 191,
+          "preconditioner_calls": 94
+        },
+        {
+          "iteration": 95,
+          "Arnoldi_column": 22,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 1.5727870927586988e-65,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 193,
+          "preconditioner_calls": 95
+        },
+        {
+          "iteration": 96,
+          "Arnoldi_column": 23,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 1.370085623971447e-68,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 195,
+          "preconditioner_calls": 96
+        },
+        {
+          "iteration": 97,
+          "Arnoldi_column": 0,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 2.828360552480249e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 198,
+          "preconditioner_calls": 97
+        },
+        {
+          "iteration": 98,
+          "Arnoldi_column": 1,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 7.932235513147022e-19,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 200,
+          "preconditioner_calls": 98
+        },
+        {
+          "iteration": 99,
+          "Arnoldi_column": 2,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 6.630647752373313e-20,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 202,
+          "preconditioner_calls": 99
+        },
+        {
+          "iteration": 100,
+          "Arnoldi_column": 3,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 3.2106976624660287e-20,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 204,
+          "preconditioner_calls": 100
+        },
+        {
+          "iteration": 101,
+          "Arnoldi_column": 4,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 2.3270081213606525e-20,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 206,
+          "preconditioner_calls": 101
+        },
+        {
+          "iteration": 102,
+          "Arnoldi_column": 5,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 8.619632914861446e-22,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 208,
+          "preconditioner_calls": 102
+        },
+        {
+          "iteration": 103,
+          "Arnoldi_column": 6,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 1.416582076485425e-23,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 210,
+          "preconditioner_calls": 103
+        },
+        {
+          "iteration": 104,
+          "Arnoldi_column": 7,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 9.207322054986725e-26,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 212,
+          "preconditioner_calls": 104
+        },
+        {
+          "iteration": 105,
+          "Arnoldi_column": 8,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 9.287479973667201e-28,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 214,
+          "preconditioner_calls": 105
+        },
+        {
+          "iteration": 106,
+          "Arnoldi_column": 9,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 5.119446212199081e-30,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 216,
+          "preconditioner_calls": 106
+        },
+        {
+          "iteration": 107,
+          "Arnoldi_column": 10,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 2.0622209621339252e-32,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 218,
+          "preconditioner_calls": 107
+        },
+        {
+          "iteration": 108,
+          "Arnoldi_column": 11,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 6.825138135573072e-35,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 220,
+          "preconditioner_calls": 108
+        },
+        {
+          "iteration": 109,
+          "Arnoldi_column": 12,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 1.518817715059674e-37,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 222,
+          "preconditioner_calls": 109
+        },
+        {
+          "iteration": 110,
+          "Arnoldi_column": 13,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 4.945896279837184e-40,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 224,
+          "preconditioner_calls": 110
+        },
+        {
+          "iteration": 111,
+          "Arnoldi_column": 14,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 1.9151393485579138e-42,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 226,
+          "preconditioner_calls": 111
+        },
+        {
+          "iteration": 112,
+          "Arnoldi_column": 15,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 3.9246378773443197e-45,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 228,
+          "preconditioner_calls": 112
+        },
+        {
+          "iteration": 113,
+          "Arnoldi_column": 16,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 4.545006935132884e-48,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 230,
+          "preconditioner_calls": 113
+        },
+        {
+          "iteration": 114,
+          "Arnoldi_column": 17,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 6.59536486563285e-51,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 232,
+          "preconditioner_calls": 114
+        },
+        {
+          "iteration": 115,
+          "Arnoldi_column": 18,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 8.300919048692471e-54,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 234,
+          "preconditioner_calls": 115
+        },
+        {
+          "iteration": 116,
+          "Arnoldi_column": 19,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 1.0660718222283662e-56,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 236,
+          "preconditioner_calls": 116
+        },
+        {
+          "iteration": 117,
+          "Arnoldi_column": 20,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 1.5877320399005888e-59,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 238,
+          "preconditioner_calls": 117
+        },
+        {
+          "iteration": 118,
+          "Arnoldi_column": 21,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 1.6404811785957122e-62,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 240,
+          "preconditioner_calls": 118
+        },
+        {
+          "iteration": 119,
+          "Arnoldi_column": 22,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 1.5727870927586988e-65,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 242,
+          "preconditioner_calls": 119
+        },
+        {
+          "iteration": 120,
+          "Arnoldi_column": 23,
+          "true_residual": 6.164945926119612e-14,
+          "QR_estimated_residual": 1.370085623971447e-68,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 244,
+          "preconditioner_calls": 120
+        }
+      ],
+      "returned": true,
+      "entered": true,
+      "rawpassed": false,
+      "target_met": false,
+      "actual_true_residual": 6.164945926119612e-14,
+      "target": 3.390407103010852e-14,
+      "iterations": 120,
+      "last_QR_estimated_residual": 1.370085623971447e-68,
+      "termination": "maximum_iterations"
+    },
+    {
+      "id": "B",
+      "counts": {
+        "operator": 353,
+        "preconditioner": 120
+      },
+      "samples": [
+        {
+          "iteration": 1,
+          "Arnoldi_column": 0,
+          "true_residual": 0.05476440319975668,
+          "QR_estimated_residual": 0.05476440319975668,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 2,
+          "preconditioner_calls": 1
+        },
+        {
+          "iteration": 2,
+          "Arnoldi_column": 1,
+          "true_residual": 0.002213203116321809,
+          "QR_estimated_residual": 0.0022132031163216537,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 4,
+          "preconditioner_calls": 2
+        },
+        {
+          "iteration": 3,
+          "Arnoldi_column": 2,
+          "true_residual": 1.7456702408113922e-05,
+          "QR_estimated_residual": 1.7456702408066993e-05,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 6,
+          "preconditioner_calls": 3
+        },
+        {
+          "iteration": 4,
+          "Arnoldi_column": 3,
+          "true_residual": 8.810560218717436e-08,
+          "QR_estimated_residual": 8.810560255984516e-08,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 8,
+          "preconditioner_calls": 4
+        },
+        {
+          "iteration": 5,
+          "Arnoldi_column": 4,
+          "true_residual": 3.074818943094413e-10,
+          "QR_estimated_residual": 3.0748069992744517e-10,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 10,
+          "preconditioner_calls": 5
+        },
+        {
+          "iteration": 6,
+          "Arnoldi_column": 5,
+          "true_residual": 7.899912220514588e-13,
+          "QR_estimated_residual": 7.851203683761064e-13,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 12,
+          "preconditioner_calls": 6
+        },
+        {
+          "iteration": 7,
+          "Arnoldi_column": 6,
+          "true_residual": 6.424456827087055e-14,
+          "QR_estimated_residual": 1.5299658092259873e-15,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 14,
+          "preconditioner_calls": 7
+        },
+        {
+          "iteration": 8,
+          "Arnoldi_column": 0,
+          "true_residual": 7.184115253893372e-14,
+          "QR_estimated_residual": 2.976512044075519e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 17,
+          "preconditioner_calls": 8
+        },
+        {
+          "iteration": 9,
+          "Arnoldi_column": 0,
+          "true_residual": 7.414887291175509e-14,
+          "QR_estimated_residual": 2.9322300324332303e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 20,
+          "preconditioner_calls": 9
+        },
+        {
+          "iteration": 10,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.94043816717817e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 23,
+          "preconditioner_calls": 10
+        },
+        {
+          "iteration": 11,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 26,
+          "preconditioner_calls": 11
+        },
+        {
+          "iteration": 12,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 29,
+          "preconditioner_calls": 12
+        },
+        {
+          "iteration": 13,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 32,
+          "preconditioner_calls": 13
+        },
+        {
+          "iteration": 14,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 35,
+          "preconditioner_calls": 14
+        },
+        {
+          "iteration": 15,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 38,
+          "preconditioner_calls": 15
+        },
+        {
+          "iteration": 16,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 41,
+          "preconditioner_calls": 16
+        },
+        {
+          "iteration": 17,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 44,
+          "preconditioner_calls": 17
+        },
+        {
+          "iteration": 18,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 47,
+          "preconditioner_calls": 18
+        },
+        {
+          "iteration": 19,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 50,
+          "preconditioner_calls": 19
+        },
+        {
+          "iteration": 20,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 53,
+          "preconditioner_calls": 20
+        },
+        {
+          "iteration": 21,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 56,
+          "preconditioner_calls": 21
+        },
+        {
+          "iteration": 22,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 59,
+          "preconditioner_calls": 22
+        },
+        {
+          "iteration": 23,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 62,
+          "preconditioner_calls": 23
+        },
+        {
+          "iteration": 24,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 65,
+          "preconditioner_calls": 24
+        },
+        {
+          "iteration": 25,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 68,
+          "preconditioner_calls": 25
+        },
+        {
+          "iteration": 26,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 71,
+          "preconditioner_calls": 26
+        },
+        {
+          "iteration": 27,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 74,
+          "preconditioner_calls": 27
+        },
+        {
+          "iteration": 28,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 77,
+          "preconditioner_calls": 28
+        },
+        {
+          "iteration": 29,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 80,
+          "preconditioner_calls": 29
+        },
+        {
+          "iteration": 30,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 83,
+          "preconditioner_calls": 30
+        },
+        {
+          "iteration": 31,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 86,
+          "preconditioner_calls": 31
+        },
+        {
+          "iteration": 32,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 89,
+          "preconditioner_calls": 32
+        },
+        {
+          "iteration": 33,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 92,
+          "preconditioner_calls": 33
+        },
+        {
+          "iteration": 34,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 95,
+          "preconditioner_calls": 34
+        },
+        {
+          "iteration": 35,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 98,
+          "preconditioner_calls": 35
+        },
+        {
+          "iteration": 36,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 101,
+          "preconditioner_calls": 36
+        },
+        {
+          "iteration": 37,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 104,
+          "preconditioner_calls": 37
+        },
+        {
+          "iteration": 38,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 107,
+          "preconditioner_calls": 38
+        },
+        {
+          "iteration": 39,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 110,
+          "preconditioner_calls": 39
+        },
+        {
+          "iteration": 40,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 113,
+          "preconditioner_calls": 40
+        },
+        {
+          "iteration": 41,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 116,
+          "preconditioner_calls": 41
+        },
+        {
+          "iteration": 42,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 119,
+          "preconditioner_calls": 42
+        },
+        {
+          "iteration": 43,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 122,
+          "preconditioner_calls": 43
+        },
+        {
+          "iteration": 44,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 125,
+          "preconditioner_calls": 44
+        },
+        {
+          "iteration": 45,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 128,
+          "preconditioner_calls": 45
+        },
+        {
+          "iteration": 46,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 131,
+          "preconditioner_calls": 46
+        },
+        {
+          "iteration": 47,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 134,
+          "preconditioner_calls": 47
+        },
+        {
+          "iteration": 48,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 137,
+          "preconditioner_calls": 48
+        },
+        {
+          "iteration": 49,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 140,
+          "preconditioner_calls": 49
+        },
+        {
+          "iteration": 50,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 143,
+          "preconditioner_calls": 50
+        },
+        {
+          "iteration": 51,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 146,
+          "preconditioner_calls": 51
+        },
+        {
+          "iteration": 52,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 149,
+          "preconditioner_calls": 52
+        },
+        {
+          "iteration": 53,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 152,
+          "preconditioner_calls": 53
+        },
+        {
+          "iteration": 54,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 155,
+          "preconditioner_calls": 54
+        },
+        {
+          "iteration": 55,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 158,
+          "preconditioner_calls": 55
+        },
+        {
+          "iteration": 56,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 161,
+          "preconditioner_calls": 56
+        },
+        {
+          "iteration": 57,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 164,
+          "preconditioner_calls": 57
+        },
+        {
+          "iteration": 58,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 167,
+          "preconditioner_calls": 58
+        },
+        {
+          "iteration": 59,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 170,
+          "preconditioner_calls": 59
+        },
+        {
+          "iteration": 60,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 173,
+          "preconditioner_calls": 60
+        },
+        {
+          "iteration": 61,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 176,
+          "preconditioner_calls": 61
+        },
+        {
+          "iteration": 62,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 179,
+          "preconditioner_calls": 62
+        },
+        {
+          "iteration": 63,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 182,
+          "preconditioner_calls": 63
+        },
+        {
+          "iteration": 64,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 185,
+          "preconditioner_calls": 64
+        },
+        {
+          "iteration": 65,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 188,
+          "preconditioner_calls": 65
+        },
+        {
+          "iteration": 66,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 191,
+          "preconditioner_calls": 66
+        },
+        {
+          "iteration": 67,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 194,
+          "preconditioner_calls": 67
+        },
+        {
+          "iteration": 68,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 197,
+          "preconditioner_calls": 68
+        },
+        {
+          "iteration": 69,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 200,
+          "preconditioner_calls": 69
+        },
+        {
+          "iteration": 70,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 203,
+          "preconditioner_calls": 70
+        },
+        {
+          "iteration": 71,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 206,
+          "preconditioner_calls": 71
+        },
+        {
+          "iteration": 72,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 209,
+          "preconditioner_calls": 72
+        },
+        {
+          "iteration": 73,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 212,
+          "preconditioner_calls": 73
+        },
+        {
+          "iteration": 74,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 215,
+          "preconditioner_calls": 74
+        },
+        {
+          "iteration": 75,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 218,
+          "preconditioner_calls": 75
+        },
+        {
+          "iteration": 76,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 221,
+          "preconditioner_calls": 76
+        },
+        {
+          "iteration": 77,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 224,
+          "preconditioner_calls": 77
+        },
+        {
+          "iteration": 78,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 227,
+          "preconditioner_calls": 78
+        },
+        {
+          "iteration": 79,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 230,
+          "preconditioner_calls": 79
+        },
+        {
+          "iteration": 80,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 233,
+          "preconditioner_calls": 80
+        },
+        {
+          "iteration": 81,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 236,
+          "preconditioner_calls": 81
+        },
+        {
+          "iteration": 82,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 239,
+          "preconditioner_calls": 82
+        },
+        {
+          "iteration": 83,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 242,
+          "preconditioner_calls": 83
+        },
+        {
+          "iteration": 84,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 245,
+          "preconditioner_calls": 84
+        },
+        {
+          "iteration": 85,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 248,
+          "preconditioner_calls": 85
+        },
+        {
+          "iteration": 86,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 251,
+          "preconditioner_calls": 86
+        },
+        {
+          "iteration": 87,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 254,
+          "preconditioner_calls": 87
+        },
+        {
+          "iteration": 88,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 257,
+          "preconditioner_calls": 88
+        },
+        {
+          "iteration": 89,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 260,
+          "preconditioner_calls": 89
+        },
+        {
+          "iteration": 90,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 263,
+          "preconditioner_calls": 90
+        },
+        {
+          "iteration": 91,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 266,
+          "preconditioner_calls": 91
+        },
+        {
+          "iteration": 92,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 269,
+          "preconditioner_calls": 92
+        },
+        {
+          "iteration": 93,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 272,
+          "preconditioner_calls": 93
+        },
+        {
+          "iteration": 94,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 275,
+          "preconditioner_calls": 94
+        },
+        {
+          "iteration": 95,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 278,
+          "preconditioner_calls": 95
+        },
+        {
+          "iteration": 96,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 281,
+          "preconditioner_calls": 96
+        },
+        {
+          "iteration": 97,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 284,
+          "preconditioner_calls": 97
+        },
+        {
+          "iteration": 98,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 287,
+          "preconditioner_calls": 98
+        },
+        {
+          "iteration": 99,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 290,
+          "preconditioner_calls": 99
+        },
+        {
+          "iteration": 100,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 293,
+          "preconditioner_calls": 100
+        },
+        {
+          "iteration": 101,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 296,
+          "preconditioner_calls": 101
+        },
+        {
+          "iteration": 102,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 299,
+          "preconditioner_calls": 102
+        },
+        {
+          "iteration": 103,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 302,
+          "preconditioner_calls": 103
+        },
+        {
+          "iteration": 104,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 305,
+          "preconditioner_calls": 104
+        },
+        {
+          "iteration": 105,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 308,
+          "preconditioner_calls": 105
+        },
+        {
+          "iteration": 106,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 311,
+          "preconditioner_calls": 106
+        },
+        {
+          "iteration": 107,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 314,
+          "preconditioner_calls": 107
+        },
+        {
+          "iteration": 108,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 317,
+          "preconditioner_calls": 108
+        },
+        {
+          "iteration": 109,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 320,
+          "preconditioner_calls": 109
+        },
+        {
+          "iteration": 110,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 323,
+          "preconditioner_calls": 110
+        },
+        {
+          "iteration": 111,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 326,
+          "preconditioner_calls": 111
+        },
+        {
+          "iteration": 112,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 329,
+          "preconditioner_calls": 112
+        },
+        {
+          "iteration": 113,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 332,
+          "preconditioner_calls": 113
+        },
+        {
+          "iteration": 114,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 335,
+          "preconditioner_calls": 114
+        },
+        {
+          "iteration": 115,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 338,
+          "preconditioner_calls": 115
+        },
+        {
+          "iteration": 116,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 341,
+          "preconditioner_calls": 116
+        },
+        {
+          "iteration": 117,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 344,
+          "preconditioner_calls": 117
+        },
+        {
+          "iteration": 118,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 347,
+          "preconditioner_calls": 118
+        },
+        {
+          "iteration": 119,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 350,
+          "preconditioner_calls": 119
+        },
+        {
+          "iteration": 120,
+          "Arnoldi_column": 0,
+          "true_residual": 7.409504578373121e-14,
+          "QR_estimated_residual": 2.941406389640322e-17,
+          "requested_absolute_target": 3.390407103010852e-14,
+          "operator_calls": 353,
+          "preconditioner_calls": 120
+        }
+      ],
+      "returned": true,
+      "entered": true,
+      "rawpassed": false,
+      "target_met": false,
+      "actual_true_residual": 7.409504578373121e-14,
+      "target": 3.390407103010852e-14,
+      "iterations": 120,
+      "last_QR_estimated_residual": 2.941406389640322e-17,
+      "termination": "maximum_iterations"
+    }
+  ],
+  "selection": null,
+  "solver_calls_started": 2,
+  "scope": "Only6fixed row controls and2linearGMRES calls on exact saved main02 u/coefficient/RHS; no Newton/case/evolution/plot.",
+  "controls": [
+    {
+      "id": "zero",
+      "exact_fraction": "0",
+      "nearest_even_binary64": 0.0,
+      "actual": 0.0
+    },
+    {
+      "id": "cancellation",
+      "exact_fraction": "1/18014398509481984",
+      "nearest_even_binary64": 5.551115123125783e-17,
+      "actual": 5.551115123125783e-17
+    },
+    {
+      "id": "tie-even-low",
+      "exact_fraction": "9007199254740993/9007199254740992",
+      "nearest_even_binary64": 1.0,
+      "actual": 1.0
+    },
+    {
+      "id": "tie-even-high",
+      "exact_fraction": "9007199254740995/9007199254740992",
+      "nearest_even_binary64": 1.0000000000000004,
+      "actual": 1.0000000000000004
+    },
+    {
+      "id": "ordinary",
+      "exact_fraction": "-58413339658516811901831994272645/324518553658426726783156020576256",
+      "nearest_even_binary64": -0.18,
+      "actual": -0.18
+    },
+    {
+      "id": "full-width",
+      "exact_fraction": "72057594037927935/1152921504606846976",
+      "nearest_even_binary64": 0.0625,
+      "actual": 0.0625
+    }
+  ],
+  "selection_rule": "Atrue-target PASS first; else Btrue-target PASS; neither:retain failure and diagnose. B is a combined repair,not attribution to one change.",
+  "duration_seconds": 0.49777104100212455
+}

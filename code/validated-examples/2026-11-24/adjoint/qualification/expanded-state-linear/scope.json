@@ -1,0 +1,10 @@
+{
+  "status": "FIXED_EXPANDED_STATE_LINEAR_COMPONENT_PASS_NOT_FULL_MAIN",
+  "checks": 20,
+  "solver_calls": 1,
+  "original_component_plan_sha256": "37ca9c3893950e674433d451aabfc9718442af55a5ba32967e7a0ef36264af61",
+  "original_receipt_sha256": "ff67be3d827d3f92f70244909f2168c32fc284430bd5e0bf06035deefa21dbee",
+  "source_code": "Current state_expansion/state_krylov/state_jacobian are the qualifiedmathkernels withimportnames relocated; sourcefunctions/AST retained.",
+  "scope": "14fixedFractioncontrols+6protocolchecks,onesavedmain02system. Expandedhi+lo targetmet;explicitRNprojection targetunmet is retained. No oldfloat64candidate relabelled successful,no newfullstate/PDE qualified by thisartifact.",
+  "memory": "Named snapshots and separate conservative bufferinventory bound,not measuredwholepeak/RSS. Completeoldsource/failures/AB/Cdata persist privately."
+}

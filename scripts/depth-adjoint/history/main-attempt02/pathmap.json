@@ -1,0 +1,89 @@
+{
+  "selected_exact_source": {
+    "inputs.json": {
+      "file": "inputs.json",
+      "sha256": "d50b4ccd1559cae3830dd6496bfe5fade4f3587b5c5782bcc0003615c35045f7",
+      "byte_exact": true
+    },
+    "acceptance.json": {
+      "file": "acceptance.json",
+      "sha256": "716a7be9c080b66cbda6a35dd7b8be8d8d00cc4bb69673f3a0184c3406cf792d",
+      "byte_exact": true
+    },
+    "pre-run-contract.json": {
+      "file": "pre-run-contract.json",
+      "sha256": "68ccfc4f1ecebad26a316d2e443a1a82050dfee0ce6440d1fb185181f7caa1c7",
+      "byte_exact": true
+    },
+    "newton.py": {
+      "file": "newton.py.txt",
+      "sha256": "953e0886a3be0f89405dabc3799ca128aa6322ec3c05cba1f724a68787ab58f7",
+      "byte_exact": true
+    },
+    "README.md": {
+      "file": "README.md",
+      "sha256": "ad2e3ded53b55c91a8fdabda5165bce779875f7f762f0ce86b89ec5f5d30cfa3",
+      "byte_exact": true
+    },
+    "cases.json": {
+      "file": "cases.json",
+      "sha256": "0c59d6b6b18f19c37523bee10df3f264c4a0673e89300c8ffac2c0fbb24cd78e",
+      "byte_exact": true
+    }
+  },
+  "full_original_source_sha256": {
+    "DERIVATION.md": "4c6677c437440aa709995cd97362005d85d586eb58a46692afe3414a2a2408d7",
+    "LICENSE": "df33e3fd1710fbf168c38afb1ac97a32f48233f047f61bbf2906c79d97cc4362",
+    "README.md": "ad2e3ded53b55c91a8fdabda5165bce779875f7f762f0ce86b89ec5f5d30cfa3",
+    "REFERENCE-REGENERATION.md": "ddbaec61b2d3ef92d966c7155e4eb2ca62fa1fb7cab17d7ffecd9c1725958e26",
+    "acceptance.json": "716a7be9c080b66cbda6a35dd7b8be8d8d00cc4bb69673f3a0184c3406cf792d",
+    "balanced_operator.py": "5b39dd75999943bb7dbbe9d11cb888eec3df22bd1e9e365e5ba5b8e7f9acfdd4",
+    "cases.json": "0c59d6b6b18f19c37523bee10df3f264c4a0673e89300c8ffac2c0fbb24cd78e",
+    "distributed.py": "423b3fefd3bcdb518135ba2962d7c311d2addb282d5d006cf8cf9ca3d8f86146",
+    "fold_study.py": "a1b55f776632e6fb1688b432c3a6e36f9236934081332a1c6f2b351d6282c89d",
+    "history/main-attempt01/README.md": "43dc7871e2df25141e3b2b5b148abd965c310fcd8c8d24bf23afbf85ae503c2f",
+    "history/main-attempt01/acceptance.json": "716a7be9c080b66cbda6a35dd7b8be8d8d00cc4bb69673f3a0184c3406cf792d",
+    "history/main-attempt01/cases.json": "183872ec95cc544907d36ba39f7616626f15ae771ac726869c7205e7ba3b0658",
+    "history/main-attempt01/failed-result.json": "08fc7dcb123d7ef191a517876da33422372a4094bce8c5b0fd5c7ab86c6e15a3",
+    "history/main-attempt01/failed-state.npz": "29051e228cc4a5c51ab97677ca47164c8f1dfa52e92ec2b08f46f68dc5da9100",
+    "history/main-attempt01/inputs.json": "d50b4ccd1559cae3830dd6496bfe5fade4f3587b5c5782bcc0003615c35045f7",
+    "history/main-attempt01/newton.py.txt": "027e57bcb6f24daac299e27df43da26ad973c5c3afe90051eed92fa8ee6b1542",
+    "history/main-attempt01/operators.py.txt": "4d3e477b9fcccfa21a653c7532d92427ae21a5d0a176af5155f28542805a6875",
+    "history/main-attempt01/pathmap.json": "4c9015baa6a8342a39c171a771356bf25ce59be20ccc23214121ed29e20d4663",
+    "history/main-attempt01/pre-run-contract.json": "20bfeeb689f17ac3451328ecde4c6bd42e9968efe459fa632d3a4fecae07d2d6",
+    "history/main-attempt01/receipt-transcription.json": "6a95ab1e3746fbe6e76ca8a9c8534b5690a82c132c4fef4f6c91ae2bf9b6a245",
+    "inputs.json": "d50b4ccd1559cae3830dd6496bfe5fade4f3587b5c5782bcc0003615c35045f7",
+    "io_contract.py": "3a18d90407cee50c5a8761b841feea8947c14e2bf1449e01fd36f81be4b1149e",
+    "krylov.py": "b2fad003fba2a5a661ab03ded49115702362794484afde203395e3744fe53841",
+    "newton.py": "953e0886a3be0f89405dabc3799ca128aa6322ec3c05cba1f724a68787ab58f7",
+    "operators.py": "fe99f31bf73445dccc0112c6f1de473141196ecbd4e7a1996439df023077e500",
+    "plot.py": "8e0bf1378978374bb0ee4f9ca150b6cb42a781a7b11250d0e3226e8dec6f73fb",
+    "qualification/linear-operator/candidate.py.txt": "f9bc0198d5a1dc6eadc42887a9ffb5d80d78c07df647120b6032c74a7b9c4661",
+    "qualification/linear-operator/check_saved.py.txt": "e9219ec60aea6ed4756d128b7d139a3d34ff956a89f997167718020488eb7239",
+    "qualification/linear-operator/coefficient-110.json": "e5da6fb68cde25720383d9ead2a69a3eaec0baa59a7a29bb9f13b2fb774a1585",
+    "qualification/linear-operator/coefficient-80.json": "5f3d5dab927e470e15e92d54534602b4a1204631e9d6c0cd07dad50bf8cb423c",
+    "qualification/linear-operator/raw.npz": "bb24eb6fff5110a7e67164c6dd1ff96a20970c91a276f3742ea145b8495f4db0",
+    "qualification/linear-operator/result.json": "fad3b4c81a06b3ca2ef6f041281ff2171abd695ca561bedac0d3bd82658dd8f7",
+    "qualification/linear-operator/scope.json": "750e4388334c5f66af06cd4bcd50dad547dbddcafe4ed77ef9abf58587f84ea7",
+    "qualify_references.py": "45f3db3d7b109d3b0a372ceefc3b0a335f171c35ede55b21464bf6c463f48a49",
+    "reference-qualification-plan.json": "2ae86f3ed881a5bbb1b3f045b6ad5eea816cda53c5134c4dcdea426cca9da849",
+    "references/__init__.py": "e9209e2eed2791b792918daa4908429a0649dd1d710ee251bcaac88d11af7b2f",
+    "references/cache-fold.json": "e592834351b6117aec306abf36f4e725952e57cd4fbdfd95bd84f377f2b524a3",
+    "references/cache-time.json": "2c76892ce0fa930c1ac61f954d60a8c21e9836b5e7b79c0c6750ebee9de33713",
+    "references/linear_oracle.py": "04b5f4dc362e63acfe4f5ef3b54152d00ea9ab7b14386adbe49da851a5a03a69",
+    "references/modal_decimal.py": "7d6c77262ebc9b97ad61f3ce2f2a4cfb58f6f52823f123ec1a2f025ee0d0e468",
+    "references/qualification.json": "224b2738c1f8481adc693080b2e338cd02a935a9cc7637a8603d3da85d3badba",
+    "references/shooting_decimal.py": "a9cc825eeaeffdb53a0bfb9b7365e123781f7e32528986aa8704e519fe3fe900",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "dc7db2519e8c111f1c13f1935a99f088c9a47e087116415a812654f57eddbf34",
+    "source-reading.json": "c8d312f71aed5dfd5c28590246a9dd40c19c9076c37d02129ff51e64585a277b",
+    "test-inventory.json": "14568cdeadd4342678e9edae928c09cb0ddf593b92a35bc8b8041af13385b22a",
+    "tests/conftest.py": "61d917466d000f076e8c5ed631cbc461fbb128df7dc8b8dfc89aed11143b7a1e",
+    "tests/test_distributed.py": "37caadf7176d28aae8299c85b9d1adeaee4fb2be4e5d6068cfd769a63b21dd0b",
+    "tests/test_fold.py": "ca31eda30cc0a7681a0849ca24e91be908abb080961f3785a72680ae5081823c",
+    "tests/test_time.py": "0daf8c94674114431b32411448a8120a7f446d87c910dcc1a92d78e2e0702d6e",
+    "time_adjoint.py": "41a8cd6a47cd5e970f3d2af1b9d0d2a7414a699650d73323026cd7fb10d05025",
+    "pre-run-contract.json": "68ccfc4f1ecebad26a316d2e443a1a82050dfee0ce6440d1fb185181f7caa1c7"
+  },
+  "scope": "Compact public lineage;full52originalsource/allresults/logs/rawreceipts persist privately. No claim of full duplication."
+}

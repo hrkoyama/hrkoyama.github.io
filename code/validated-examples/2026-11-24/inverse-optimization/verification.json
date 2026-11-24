@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "group": "inverse-optimization",
+  "edition": "2026-11-24",
+  "verified_on": "2026-11-24",
+  "source_manifest_sha256": "8d39bdf4a727cd5d32467939fc8eda396921f77e83b58b70272af8ac77d5c618",
+  "archive": {
+    "file": "atlas-inverse-optimization-2026-11-24.zip",
+    "sha256": "ffefd2d5876a3db10596d6e1f089f73be7a82288d63f348bcd960b9497412b44",
+    "bytes": 3364555,
+    "archive_directory": "atlas-inverse-optimization-2026-11-24"
+  },
+  "archive_sha256": "ffefd2d5876a3db10596d6e1f089f73be7a82288d63f348bcd960b9497412b44",
+  "returncode": 0,
+  "passed_tests": 32,
+  "tests": 32,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "bfgs-lbfgs-controls",
+    "bratu-gn-lm-bounds",
+    "bratu-noise-regularization"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 1.537812540998857,
+  "independent_rerun_seconds": 1.3932431250068475,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

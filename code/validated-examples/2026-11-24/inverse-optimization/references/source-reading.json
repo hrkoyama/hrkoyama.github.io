@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "status": "SELECTED_PRIMARY_SCOPE_REVIEWED_NOT_FULL_PAPER_REVIEW",
+  "recorded_at_utc": "2026-11-24T08:46:10.734933+00:00",
+  "accessed_on": "2026-11-24",
+  "original_reading_records_unchanged": true,
+  "pdf_acquisition_receipt": {
+    "path": "primary-pdf-acquisition.json",
+    "sha256": "ceeddfa0a78f68a0e51a1a6fd9a31ea93d6dcac6e1934659987145e471be8341"
+  },
+  "sources": [
+    {
+      "id": "scipy-least-squares-1141",
+      "title": "SciPy 1.14.1 least_squares documentation",
+      "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.optimize.least_squares.html",
+      "publication_year": null,
+      "version": "1.14.1",
+      "accessed_on": "2026-11-24",
+      "role": "Official interface and algorithm-scope reference",
+      "read_scope": "Parameters, bounds, callable Jacobian, method-specific ftol/xtol/gtol and x_scale, max_nfev, returned status and Notes on LM and TRF. LM does not handle bounds and requires at least as many residual rows as variables; TRF supports bounds. MINPACK/STIR original papers were not read in this preparation."
+    },
+    {
+      "id": "scipy-bfgs-1141",
+      "title": "SciPy 1.14.1 BFGS documentation",
+      "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/optimize.minimize-bfgs.html",
+      "publication_year": null,
+      "version": "1.14.1",
+      "accessed_on": "2026-11-24",
+      "role": "Maintained implementation companion, not independent analytic optimum",
+      "read_scope": "Options gtol, norm, c1/c2, hess_inv0 and precision-loss notes; no claim of reading a BFGS original paper."
+    },
+    {
+      "id": "scipy-lbfgsb-1141",
+      "title": "SciPy 1.14.1 L-BFGS-B documentation",
+      "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/optimize.minimize-lbfgsb.html",
+      "publication_year": null,
+      "version": "1.14.1",
+      "accessed_on": "2026-11-24",
+      "role": "Separate software companion, with bounds=None; not identical to the original two-loop implementation",
+      "read_scope": "Options maxcor, ftol, gtol/projected-gradient convention, maxfun, maxiter and maxls."
+    },
+    {
+      "id": "scipy-line-search-1141",
+      "title": "SciPy 1.14.1 line_search documentation",
+      "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.optimize.line_search.html",
+      "publication_year": null,
+      "version": "1.14.1",
+      "accessed_on": "2026-11-24",
+      "role": "Strong-Wolfe convention and failure reporting",
+      "read_scope": "Signature, c1/c2, descent-direction requirement, returned failure None and evaluation counts. Cited textbook pages were not read."
+    },
+    {
+      "id": "scipy-curve-fit-1141",
+      "title": "SciPy 1.14.1 curve_fit documentation",
+      "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.optimize.curve_fit.html",
+      "publication_year": null,
+      "version": "1.14.1",
+      "accessed_on": "2026-11-24",
+      "role": "Scope warning about sigma, absolute_sigma and locally linearized covariance",
+      "read_scope": "sigma/absolute_sigma and covariance interpretation sections. The penalized sandwich covariance in this study is derived independently; it is not presented as curve_fit output."
+    },
+    {
+      "id": "liu-nocedal-1989",
+      "title": "On the limited memory BFGS method for large scale optimization",
+      "authors": [
+        "D. C. Liu",
+        "J. Nocedal"
+      ],
+      "year": 1989,
+      "year_role": "bibliographic metadata retained from prior author-source record",
+      "url": "https://users.iems.northwestern.edu/~nocedal/PDFfiles/limited-memory.pdf",
+      "accessed_on": "2026-11-24",
+      "pdf_sha256": "d7ee8fa710ac9e20a4c6581ceab078da07278f4e1f250264052b70810332a7c6",
+      "read_scope": "Author-hosted PDF selected physical pages 3–5 (printed 2–4), rendered locally and visually inspected: limited storage, deletion of oldest correction, Eq. (2.1) inverse-BFGS, Algorithm 2.1 and Eq. (2.6) retained-update construction. No full-paper/proof/experiment or Section 4 scaling review. The selected original uses weak Wolfe; this study deliberately uses a separately specified strong-Wolfe line search. Current-gamma least-squares scaling is independently derived here, not attributed to unread text."
+    },
+    {
+      "id": "hansen-rt41",
+      "title": "Regularization Tools, Version 4.1 for Matlab 7.3",
+      "authors": [
+        "P. C. Hansen"
+      ],
+      "year": 2008,
+      "year_role": "manual version date",
+      "version": "4.1",
+      "url": "https://www2.compute.dtu.dk/~pcha/Regutools/RTv4manual.pdf",
+      "accessed_on": "2026-11-24",
+      "pdf_sha256": "9da9d27db9507734d6f8314f9264df21b8107b6d4dee3a75322779074cbcab53",
+      "read_scope": "Official author manual: selected text around Section 2.5 and Section 2.9; physical pages 20 and 37 (printed 18 and 35) rendered locally and visually inspected. L-curve residual/solution norm tradeoff and discrepancy equation (2.61) were read. Four-point chord curvature here is a finite-list diagnostic, not the manual spline/corner algorithm, a theorem of optimal regularization or coverage. Original software (1994) and later article (2007) are separate bibliographic works and were not read."
+    },
+    {
+      "id": "fletcher-1970",
+      "title": "A new approach to variable metric algorithms",
+      "authors": [
+        "R. Fletcher"
+      ],
+      "year": 1970,
+      "url": "https://academic.oup.com/comjnl/article-abstract/13/3/317/345520?login=false",
+      "accessed_on": null,
+      "role": "Bibliographic background only",
+      "read_scope": "Prior saved publisher metadata/abstract-search record only. Original article full text remains unavailable/unread; no new request was made and no derivation is claimed to have been checked against it."
+    }
+  ],
+  "interpretation_notes": [
+    "W is the declared optimization metric, not automatically inverse noise covariance. Sigma is specified separately.",
+    "The two-parameter spatially varying Bratu coefficient is the existing local educational extension, not an original-paper exact solution.",
+    "Fixed-gamma noise propagation is derived from local linearization of the estimator; it is not post-selection conditional covariance."
+  ],
+  "implementation_started": false,
+  "numerical_imports": 0,
+  "scientific_runs": 0,
+  "reference_evaluations": 0,
+  "plots": 0
+}

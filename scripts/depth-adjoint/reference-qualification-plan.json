@@ -1,0 +1,307 @@
+{
+  "status": "FROZEN_REFERENCE_DESIGN_PENDING_IMPLEMENTATION_REVIEW",
+  "planned_checks": 67,
+  "outer_shared_seconds": 30,
+  "one_fresh_attempt_only": true,
+  "primary_evolutions_allowed_in_this_stage": false,
+  "precision": [
+    50,
+    80
+  ],
+  "linear_oracle_matrices": {
+    "n7-SPD-dyadic": {
+      "diag": 4,
+      "lower": -1,
+      "upper": -1
+    },
+    "n7-nonsymmetric-dyadic": {
+      "diag": 4,
+      "lower": -1,
+      "upper": -2
+    },
+    "n31-shifted-Poisson": {
+      "diag": "2+1/32",
+      "lower": -1,
+      "upper": -1
+    },
+    "RHS": "rhs_i=(i+1)/(n+1)"
+  },
+  "shooting_controls": {
+    "fold_initial": "a=4/(n+1),lambda=3.5;separate n1analytic control a=.8,lambda=3",
+    "fold_limits": "0<a<2,2<lambda<4;max16Newtonupdates/max16linehalvings;accept only residual decrease",
+    "lower_state": "Bracket a in[0,a_fold],requireopposite residual signs; safeguardedNewton midpointfallback,atmost120updates. Every fixed lambda evaluated at its actual binary-float value.",
+    "secondary_Thomas": "Independent Decimal tridiagonal Newton fromzero,max40updates,max20Armijohalvings,no primary solver import."
+  },
+  "checks": [
+    {
+      "id": "62-pi-precision",
+      "criterion": "Machin16atan(1/5)-4atan(1/239),fixed200terms each,50/80precision agree<=1e-40;analytic alternating-series remainder recorded."
+    },
+    {
+      "id": "62-n7-sine-orthogonality",
+      "criterion": "Three independently evaluated sine modes satisfy weighted pairings1/2delta within1e-35;sin remainder<=1e-90."
+    },
+    {
+      "id": "62-n7-discrete-eigenrelation",
+      "criterion": "Independent sine/stencil/eigenvalue formula agree within1e-35at80digits."
+    },
+    {
+      "id": "62-n7-N64-precision-state-objective-gradient",
+      "criterion": "Independent50/80Decimal and closed finite-geometric versus step-recurrence values agree<=1e-35scaled;allrawterms saved."
+    },
+    {
+      "id": "62-n7-N64-closed-vs-recurrence-state",
+      "criterion": "Independent50/80Decimal and closed finite-geometric versus step-recurrence values agree<=1e-35scaled;allrawterms saved."
+    },
+    {
+      "id": "62-n7-N64-closed-vs-recurrence-gradient",
+      "criterion": "Independent50/80Decimal and closed finite-geometric versus step-recurrence values agree<=1e-35scaled;allrawterms saved."
+    },
+    {
+      "id": "62-n7-N128-precision-state-objective-gradient",
+      "criterion": "Independent50/80Decimal and closed finite-geometric versus step-recurrence values agree<=1e-35scaled;allrawterms saved."
+    },
+    {
+      "id": "62-n7-N128-closed-vs-recurrence-state",
+      "criterion": "Independent50/80Decimal and closed finite-geometric versus step-recurrence values agree<=1e-35scaled;allrawterms saved."
+    },
+    {
+      "id": "62-n7-N128-closed-vs-recurrence-gradient",
+      "criterion": "Independent50/80Decimal and closed finite-geometric versus step-recurrence values agree<=1e-35scaled;allrawterms saved."
+    },
+    {
+      "id": "62-n7-N256-precision-state-objective-gradient",
+      "criterion": "Independent50/80Decimal and closed finite-geometric versus step-recurrence values agree<=1e-35scaled;allrawterms saved."
+    },
+    {
+      "id": "62-n7-N256-closed-vs-recurrence-state",
+      "criterion": "Independent50/80Decimal and closed finite-geometric versus step-recurrence values agree<=1e-35scaled;allrawterms saved."
+    },
+    {
+      "id": "62-n7-N256-closed-vs-recurrence-gradient",
+      "criterion": "Independent50/80Decimal and closed finite-geometric versus step-recurrence values agree<=1e-35scaled;allrawterms saved."
+    },
+    {
+      "id": "62-n7-semidiscrete-exact",
+      "criterion": "50/80time-exact modal exponential and stableexpm1/series agree<=1e-35scaled."
+    },
+    {
+      "id": "62-n15-sine-orthogonality",
+      "criterion": "Three independently evaluated sine modes satisfy weighted pairings1/2delta within1e-35;sin remainder<=1e-90."
+    },
+    {
+      "id": "62-n15-discrete-eigenrelation",
+      "criterion": "Independent sine/stencil/eigenvalue formula agree within1e-35at80digits."
+    },
+    {
+      "id": "62-n15-N64-precision-state-objective-gradient",
+      "criterion": "Independent50/80Decimal and closed finite-geometric versus step-recurrence values agree<=1e-35scaled;allrawterms saved."
+    },
+    {
+      "id": "62-n15-N64-closed-vs-recurrence-state",
+      "criterion": "Independent50/80Decimal and closed finite-geometric versus step-recurrence values agree<=1e-35scaled;allrawterms saved."
+    },
+    {
+      "id": "62-n15-N64-closed-vs-recurrence-gradient",
+      "criterion": "Independent50/80Decimal and closed finite-geometric versus step-recurrence values agree<=1e-35scaled;allrawterms saved."
+    },
+    {
+      "id": "62-n15-N128-precision-state-objective-gradient",
+      "criterion": "Independent50/80Decimal and closed finite-geometric versus step-recurrence values agree<=1e-35scaled;allrawterms saved."
+    },
+    {
+      "id": "62-n15-N128-closed-vs-recurrence-state",
+      "criterion": "Independent50/80Decimal and closed finite-geometric versus step-recurrence values agree<=1e-35scaled;allrawterms saved."
+    },
+    {
+      "id": "62-n15-N128-closed-vs-recurrence-gradient",
+      "criterion": "Independent50/80Decimal and closed finite-geometric versus step-recurrence values agree<=1e-35scaled;allrawterms saved."
+    },
+    {
+      "id": "62-n15-N256-precision-state-objective-gradient",
+      "criterion": "Independent50/80Decimal and closed finite-geometric versus step-recurrence values agree<=1e-35scaled;allrawterms saved."
+    },
+    {
+      "id": "62-n15-N256-closed-vs-recurrence-state",
+      "criterion": "Independent50/80Decimal and closed finite-geometric versus step-recurrence values agree<=1e-35scaled;allrawterms saved."
+    },
+    {
+      "id": "62-n15-N256-closed-vs-recurrence-gradient",
+      "criterion": "Independent50/80Decimal and closed finite-geometric versus step-recurrence values agree<=1e-35scaled;allrawterms saved."
+    },
+    {
+      "id": "62-n15-semidiscrete-exact",
+      "criterion": "50/80time-exact modal exponential and stableexpm1/series agree<=1e-35scaled."
+    },
+    {
+      "id": "62-nonsymmetric-Fraction",
+      "criterion": "Exact4step forward tangent/reverse vs independently composed affine-map power derivatives agree as Fraction;wrong transpose detected."
+    },
+    {
+      "id": "63-n31-fold-precision",
+      "criterion": "50/80shootingfold values agree<=1e-35;|R|,|Ra|<=1e-40;storedanchor gap<=1e-10;2x2fold derivative determinant nonzero;positive symmetric fundamental profile."
+    },
+    {
+      "id": "63-n31-fold-anchor",
+      "criterion": "50/80shootingfold values agree<=1e-35;|R|,|Ra|<=1e-40;storedanchor gap<=1e-10;2x2fold derivative determinant nonzero;positive symmetric fundamental profile."
+    },
+    {
+      "id": "63-n31-fold-fold-residuals",
+      "criterion": "50/80shootingfold values agree<=1e-35;|R|,|Ra|<=1e-40;storedanchor gap<=1e-10;2x2fold derivative determinant nonzero;positive symmetric fundamental profile."
+    },
+    {
+      "id": "63-n31-fold-nondegenerate",
+      "criterion": "50/80shootingfold values agree<=1e-35;|R|,|Ra|<=1e-40;storedanchor gap<=1e-10;2x2fold derivative determinant nonzero;positive symmetric fundamental profile."
+    },
+    {
+      "id": "63-n31-fold-positive-symmetric-profile",
+      "criterion": "50/80shootingfold values agree<=1e-35;|R|,|Ra|<=1e-40;storedanchor gap<=1e-10;2x2fold derivative determinant nonzero;positive symmetric fundamental profile."
+    },
+    {
+      "id": "63-n31-point0-precision-state-gradient",
+      "criterion": "50/80shooting and independently zero-start high-precision Thomas Newton agree<=1e-35;weighted residual<=1e-40;positive symmetric state and lower shooting root qualified."
+    },
+    {
+      "id": "63-n31-point0-shooting-vs-Thomas",
+      "criterion": "50/80shooting and independently zero-start high-precision Thomas Newton agree<=1e-35;weighted residual<=1e-40;positive symmetric state and lower shooting root qualified."
+    },
+    {
+      "id": "63-n31-point0-stencil-residual",
+      "criterion": "50/80shooting and independently zero-start high-precision Thomas Newton agree<=1e-35;weighted residual<=1e-40;positive symmetric state and lower shooting root qualified."
+    },
+    {
+      "id": "63-n31-point0-positive-lower-branch",
+      "criterion": "50/80shooting and independently zero-start high-precision Thomas Newton agree<=1e-35;weighted residual<=1e-40;positive symmetric state and lower shooting root qualified."
+    },
+    {
+      "id": "63-n31-point1-precision-state-gradient",
+      "criterion": "50/80shooting and independently zero-start high-precision Thomas Newton agree<=1e-35;weighted residual<=1e-40;positive symmetric state and lower shooting root qualified."
+    },
+    {
+      "id": "63-n31-point1-shooting-vs-Thomas",
+      "criterion": "50/80shooting and independently zero-start high-precision Thomas Newton agree<=1e-35;weighted residual<=1e-40;positive symmetric state and lower shooting root qualified."
+    },
+    {
+      "id": "63-n31-point1-stencil-residual",
+      "criterion": "50/80shooting and independently zero-start high-precision Thomas Newton agree<=1e-35;weighted residual<=1e-40;positive symmetric state and lower shooting root qualified."
+    },
+    {
+      "id": "63-n31-point1-positive-lower-branch",
+      "criterion": "50/80shooting and independently zero-start high-precision Thomas Newton agree<=1e-35;weighted residual<=1e-40;positive symmetric state and lower shooting root qualified."
+    },
+    {
+      "id": "63-n31-point2-precision-state-gradient",
+      "criterion": "50/80shooting and independently zero-start high-precision Thomas Newton agree<=1e-35;weighted residual<=1e-40;positive symmetric state and lower shooting root qualified."
+    },
+    {
+      "id": "63-n31-point2-shooting-vs-Thomas",
+      "criterion": "50/80shooting and independently zero-start high-precision Thomas Newton agree<=1e-35;weighted residual<=1e-40;positive symmetric state and lower shooting root qualified."
+    },
+    {
+      "id": "63-n31-point2-stencil-residual",
+      "criterion": "50/80shooting and independently zero-start high-precision Thomas Newton agree<=1e-35;weighted residual<=1e-40;positive symmetric state and lower shooting root qualified."
+    },
+    {
+      "id": "63-n31-point2-positive-lower-branch",
+      "criterion": "50/80shooting and independently zero-start high-precision Thomas Newton agree<=1e-35;weighted residual<=1e-40;positive symmetric state and lower shooting root qualified."
+    },
+    {
+      "id": "63-n63-fold-precision",
+      "criterion": "50/80shootingfold values agree<=1e-35;|R|,|Ra|<=1e-40;storedanchor gap<=1e-10;2x2fold derivative determinant nonzero;positive symmetric fundamental profile."
+    },
+    {
+      "id": "63-n63-fold-anchor",
+      "criterion": "50/80shootingfold values agree<=1e-35;|R|,|Ra|<=1e-40;storedanchor gap<=1e-10;2x2fold derivative determinant nonzero;positive symmetric fundamental profile."
+    },
+    {
+      "id": "63-n63-fold-fold-residuals",
+      "criterion": "50/80shootingfold values agree<=1e-35;|R|,|Ra|<=1e-40;storedanchor gap<=1e-10;2x2fold derivative determinant nonzero;positive symmetric fundamental profile."
+    },
+    {
+      "id": "63-n63-fold-nondegenerate",
+      "criterion": "50/80shootingfold values agree<=1e-35;|R|,|Ra|<=1e-40;storedanchor gap<=1e-10;2x2fold derivative determinant nonzero;positive symmetric fundamental profile."
+    },
+    {
+      "id": "63-n63-fold-positive-symmetric-profile",
+      "criterion": "50/80shootingfold values agree<=1e-35;|R|,|Ra|<=1e-40;storedanchor gap<=1e-10;2x2fold derivative determinant nonzero;positive symmetric fundamental profile."
+    },
+    {
+      "id": "63-n63-point0-precision-state-gradient",
+      "criterion": "50/80shooting and independently zero-start high-precision Thomas Newton agree<=1e-35;weighted residual<=1e-40;positive symmetric state and lower shooting root qualified."
+    },
+    {
+      "id": "63-n63-point0-shooting-vs-Thomas",
+      "criterion": "50/80shooting and independently zero-start high-precision Thomas Newton agree<=1e-35;weighted residual<=1e-40;positive symmetric state and lower shooting root qualified."
+    },
+    {
+      "id": "63-n63-point0-stencil-residual",
+      "criterion": "50/80shooting and independently zero-start high-precision Thomas Newton agree<=1e-35;weighted residual<=1e-40;positive symmetric state and lower shooting root qualified."
+    },
+    {
+      "id": "63-n63-point0-positive-lower-branch",
+      "criterion": "50/80shooting and independently zero-start high-precision Thomas Newton agree<=1e-35;weighted residual<=1e-40;positive symmetric state and lower shooting root qualified."
+    },
+    {
+      "id": "63-n63-point1-precision-state-gradient",
+      "criterion": "50/80shooting and independently zero-start high-precision Thomas Newton agree<=1e-35;weighted residual<=1e-40;positive symmetric state and lower shooting root qualified."
+    },
+    {
+      "id": "63-n63-point1-shooting-vs-Thomas",
+      "criterion": "50/80shooting and independently zero-start high-precision Thomas Newton agree<=1e-35;weighted residual<=1e-40;positive symmetric state and lower shooting root qualified."
+    },
+    {
+      "id": "63-n63-point1-stencil-residual",
+      "criterion": "50/80shooting and independently zero-start high-precision Thomas Newton agree<=1e-35;weighted residual<=1e-40;positive symmetric state and lower shooting root qualified."
+    },
+    {
+      "id": "63-n63-point1-positive-lower-branch",
+      "criterion": "50/80shooting and independently zero-start high-precision Thomas Newton agree<=1e-35;weighted residual<=1e-40;positive symmetric state and lower shooting root qualified."
+    },
+    {
+      "id": "63-n63-point2-precision-state-gradient",
+      "criterion": "50/80shooting and independently zero-start high-precision Thomas Newton agree<=1e-35;weighted residual<=1e-40;positive symmetric state and lower shooting root qualified."
+    },
+    {
+      "id": "63-n63-point2-shooting-vs-Thomas",
+      "criterion": "50/80shooting and independently zero-start high-precision Thomas Newton agree<=1e-35;weighted residual<=1e-40;positive symmetric state and lower shooting root qualified."
+    },
+    {
+      "id": "63-n63-point2-stencil-residual",
+      "criterion": "50/80shooting and independently zero-start high-precision Thomas Newton agree<=1e-35;weighted residual<=1e-40;positive symmetric state and lower shooting root qualified."
+    },
+    {
+      "id": "63-n63-point2-positive-lower-branch",
+      "criterion": "50/80shooting and independently zero-start high-precision Thomas Newton agree<=1e-35;weighted residual<=1e-40;positive symmetric state and lower shooting root qualified."
+    },
+    {
+      "id": "63-exact-discrete-n1-fold",
+      "criterion": "For n1,h1/2,the exact discrete fold is u1=1,lambda=8/e. Independently check new shooting fold versus this analytic oracle,not continuum3.5138."
+    },
+    {
+      "id": "linear-n7-SPD-dyadic-tangent",
+      "criterion": "Float banded direct oracle vs independent80digit scalar solve<=2e-11scaled and its actual residual recorded;fixednonzero RHS."
+    },
+    {
+      "id": "linear-n7-SPD-dyadic-adjoint",
+      "criterion": "Float banded direct oracle vs independent80digit scalar solve<=2e-11scaled and its actual residual recorded;fixednonzero RHS."
+    },
+    {
+      "id": "linear-n7-nonsymmetric-dyadic-tangent",
+      "criterion": "Float banded direct oracle vs independent80digit scalar solve<=2e-11scaled and its actual residual recorded;fixednonzero RHS."
+    },
+    {
+      "id": "linear-n7-nonsymmetric-dyadic-adjoint",
+      "criterion": "Float banded direct oracle vs independent80digit scalar solve<=2e-11scaled and its actual residual recorded;fixednonzero RHS."
+    },
+    {
+      "id": "linear-n31-shifted-Poisson-tangent",
+      "criterion": "Float banded direct oracle vs independent80digit scalar solve<=2e-11scaled and its actual residual recorded;fixednonzero RHS."
+    },
+    {
+      "id": "linear-n31-shifted-Poisson-adjoint",
+      "criterion": "Float banded direct oracle vs independent80digit scalar solve<=2e-11scaled and its actual residual recorded;fixednonzero RHS."
+    }
+  ],
+  "cache_contract": "Only after all67checks+posthash pass install2private caches(time modal and discrete Bratu)with exact input/acceptance/source bindings and full qualification receipt. Public main rechecks bindings and every fixed configuration. No heavy regeneration inside public main.",
+  "failure_retention": "Fresh directory;raw candidate arrays/Decimal strings/counters before each diagnostic,stdout/stderr/receipt/source snapshot/preposthash. Timeout or failure preserved;noauto retry."
+}

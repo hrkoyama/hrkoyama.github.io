@@ -1,0 +1,143 @@
+[
+  {
+    "h": 1.52587890625e-05,
+    "result": {
+      "kind": "stopped",
+      "theta": 0.5000152587890625,
+      "K": 3,
+      "value": 0.4375133514404297,
+      "status": "STOP_TOL",
+      "classical_slope": 0.875,
+      "frozen_trace_slope": 0.875,
+      "converged_root_derivative": 1.0,
+      "history": [
+        {
+          "k": 0,
+          "x": 0.0,
+          "residual": 0.5000152587890625
+        },
+        {
+          "k": 1,
+          "x": 0.25000762939453125,
+          "residual": 0.25000762939453125
+        },
+        {
+          "k": 2,
+          "x": 0.3750114440917969,
+          "residual": 0.12500381469726562
+        },
+        {
+          "k": 3,
+          "x": 0.4375133514404297,
+          "residual": 0.06250190734863281
+        }
+      ],
+      "work": {
+        "nodes": 11,
+        "primal_rules": 6,
+        "tangent_rules": 6,
+        "pullbacks": 1,
+        "backward_rules": 6,
+        "second_rules": 0,
+        "peak_node_array_bytes": 352,
+        "max_node_rank": 0
+      }
+    },
+    "quotient": 4096.875,
+    "oracle": 4096.875
+  },
+  {
+    "h": 9.5367431640625e-07,
+    "result": {
+      "kind": "stopped",
+      "theta": 0.5000009536743164,
+      "K": 3,
+      "value": 0.43750083446502686,
+      "status": "STOP_TOL",
+      "classical_slope": 0.875,
+      "frozen_trace_slope": 0.875,
+      "converged_root_derivative": 1.0,
+      "history": [
+        {
+          "k": 0,
+          "x": 0.0,
+          "residual": 0.5000009536743164
+        },
+        {
+          "k": 1,
+          "x": 0.2500004768371582,
+          "residual": 0.2500004768371582
+        },
+        {
+          "k": 2,
+          "x": 0.3750007152557373,
+          "residual": 0.1250002384185791
+        },
+        {
+          "k": 3,
+          "x": 0.43750083446502686,
+          "residual": 0.06250011920928955
+        }
+      ],
+      "work": {
+        "nodes": 11,
+        "primal_rules": 6,
+        "tangent_rules": 6,
+        "pullbacks": 1,
+        "backward_rules": 6,
+        "second_rules": 0,
+        "peak_node_array_bytes": 352,
+        "max_node_rank": 0
+      }
+    },
+    "quotient": 65536.875,
+    "oracle": 65536.875
+  },
+  {
+    "h": 5.960464477539063e-08,
+    "result": {
+      "kind": "stopped",
+      "theta": 0.5000000596046448,
+      "K": 3,
+      "value": 0.4375000521540642,
+      "status": "STOP_TOL",
+      "classical_slope": 0.875,
+      "frozen_trace_slope": 0.875,
+      "converged_root_derivative": 1.0,
+      "history": [
+        {
+          "k": 0,
+          "x": 0.0,
+          "residual": 0.5000000596046448
+        },
+        {
+          "k": 1,
+          "x": 0.2500000298023224,
+          "residual": 0.2500000298023224
+        },
+        {
+          "k": 2,
+          "x": 0.3750000447034836,
+          "residual": 0.1250000149011612
+        },
+        {
+          "k": 3,
+          "x": 0.4375000521540642,
+          "residual": 0.0625000074505806
+        }
+      ],
+      "work": {
+        "nodes": 11,
+        "primal_rules": 6,
+        "tangent_rules": 6,
+        "pullbacks": 1,
+        "backward_rules": 6,
+        "second_rules": 0,
+        "peak_node_array_bytes": 352,
+        "max_node_rank": 0
+      }
+    },
+    "quotient": 1048576.875,
+    "oracle": 1048576.875
+  }
+]

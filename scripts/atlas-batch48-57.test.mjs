@@ -37,7 +37,17 @@ const expected=baseline.expected_new_groups,newGroups=Object.keys(expected);
 const newIDs=Object.values(expected).flat();
 const releaseBase=release=>`code/validated-examples/${release.edition}/${release.group}/`;
 const sorted=value=>[...value].sort();
-function current(){return json('numerical-methods-atlas/validation/releases.json');}
+// This regression owns the historical cohort through batch57. Later batches
+// have their own exact inventory checks; all earlier bytes/identities below
+// remain mandatory, including the original baseline rather than new goldens.
+const historicalGroups=new Set([...baseline.release_order,...newGroups]);
+const historicalMethods=new Set([...Object.keys(baseline.methods),...baseline.expected_new_method_ids]);
+const historicalEquations=new Set([...Object.keys(baseline.equations),...baseline.expected_new_equation_ids]);
+function current(){
+ const registry=json('numerical-methods-atlas/validation/releases.json');
+ const releases=registry.releases.filter(row=>historicalGroups.has(row.group));
+ return {...registry,releases,case_count:releases.reduce((n,row)=>n+row.case_ids.length,0)};
+}
 function oldMethodPointer(row){
  const e=baseline.current_edition_exception;
  if(row.group===e.group&&row.edition===e.new_edition){
@@ -69,7 +79,7 @@ test('batch48–57 preserves all 47 earlier immutable editions and every existin
 });
 
 test('all 152 existing method science and formula goldens remain, with exactly six separately scoped methods',()=>{
- const methods=json('catalog/atlas-methods.json').methods;
+ const methods=json('catalog/atlas-methods.json').methods.filter(row=>historicalMethods.has(row.id));
  for(const [id,old] of Object.entries(baseline.methods)){
   const row=methods.find(value=>value.id===id);assert.ok(row,id);assert.equal(row.status,old.status,id+'/status');
   assert.equal(fingerprint(pick(row,old.stable_keys)),old.stable_sha256,id+'/scientific-fields');
@@ -89,7 +99,7 @@ test('all 152 existing method science and formula goldens remain, with exactly s
   for(const field of ['name','summary','limitations'])for(const lang of ['ja','en'])assert.ok(row[field][lang].trim(),id+'/'+field+'/'+lang);
   assert.ok(row.references.length&&row.references.every(ref=>ref.url||ref.source||ref.doi));
  }
- const equations=json('catalog/atlas-equations.json').equations;
+ const equations=json('catalog/atlas-equations.json').equations.filter(row=>historicalEquations.has(row.id));
  for(const [id,old] of Object.entries(baseline.equations))assert.equal(fingerprint(equations.find(row=>row.id===id)?.formula),old.formula_sha256,id+'/formula');
  assert.deepEqual(sorted(equations.filter(row=>!Object.hasOwn(baseline.equations,row.id)).map(row=>row.id)),sorted(baseline.expected_new_equation_ids));
 });

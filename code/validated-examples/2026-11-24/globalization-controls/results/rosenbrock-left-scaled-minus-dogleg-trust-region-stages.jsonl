@@ -1,0 +1,17 @@
+{"stage": "before-current-residual", "record": null}
+{"stage": "before-jacobian", "record": null}
+{"stage": "before-model-solve", "record": null}
+{"stage": "before-trial-residual", "record": null}
+{"stage": "trial-recorded", "record": {"iteration": 0, "trial": 0, "x": [-1.2, 1.0], "candidate": [-0.19999999999999996, 1.00000000002], "f": [-4.3999999999999995, 2.2], "phi": 2420000.00000968, "step": [1.0, 1.9999999999039998e-11], "alpha": 1.0, "delta": 1.0, "accepted": true, "domain_rejected": false, "branch": "cauchy-boundary", "rank": 2, "singular_values": [1000.0000002879998, 0.009999999997120002], "candidate_f": [9.6000000002, 1.2], "trial_phi": 720000.00004608, "pred": 1699999.9998176, "pred_direct": 1699999.9998176, "actual": 1699999.9999636002, "gp": -2200000.0001056, "ap_norm": 1000.000000288, "g_norm": 2200000.0001056, "rho": 1.0000000000858824, "delta_after": 2.0, "F_evaluations": 2, "J_evaluations": 1, "model_solves": 1}}
+{"stage": "before-current-residual", "record": null}
+{"stage": "before-jacobian", "record": null}
+{"stage": "before-model-solve", "record": null}
+{"stage": "before-trial-residual", "record": null}
+{"stage": "trial-recorded", "record": {"iteration": 1, "trial": 0, "x": [-0.19999999999999996, 1.00000000002], "candidate": [0.9999999999999996, -0.44000000005906137], "f": [9.6000000002, 1.2], "phi": 720000.00004608, "step": [1.1999999999999995, -1.4400000000790614], "alpha": 1.0, "delta": 2.0, "accepted": true, "domain_rejected": false, "branch": "gauss-newton", "rank": 2, "singular_values": [1000.000000008, 0.009999999999919998], "candidate_f": [-14.400000000590605, 4.440892098500626e-16], "trial_phi": 0.00010368000000850472, "pred": 720000.0000460799, "pred_direct": 720000.00004608, "actual": 719999.9999424, "gp": -1440000.0000921593, "ap_norm": 1200.0000000383995, "g_norm": 1199999.9999616, "rho": 0.9999999998560002, "delta_after": 2.0, "F_evaluations": 4, "J_evaluations": 2, "model_solves": 2}}
+{"stage": "before-current-residual", "record": null}
+{"stage": "before-jacobian", "record": null}
+{"stage": "before-model-solve", "record": null}
+{"stage": "before-trial-residual", "record": null}
+{"stage": "trial-recorded", "record": {"iteration": 2, "trial": 0, "x": [0.9999999999999996, -0.44000000005906137], "candidate": [1.0, 1.0], "f": [-14.400000000590605, 4.440892098500626e-16], "phi": 0.00010368000000850472, "step": [4.440892321839392e-16, 1.4400000000590614], "alpha": 1.0, "delta": 2.0, "accepted": true, "domain_rejected": false, "branch": "gauss-newton", "rank": 2, "singular_values": [1000.0000002, 0.009999999997999998], "candidate_f": [0.0, 0.0], "trial_phi": 0.0, "pred": 0.0001036800000085047, "pred_direct": 0.00010368000000850472, "actual": 0.00010368000000850472, "gp": -0.00020736000001700942, "ap_norm": 0.014400000000590605, "g_norm": 0.0003219933915677727, "rho": 1.0000000000000002, "delta_after": 2.0, "F_evaluations": 6, "J_evaluations": 3, "model_solves": 3}}
+{"stage": "before-current-residual", "record": null}
+{"stage": "solver-completed-before-diagnostics", "record": null}

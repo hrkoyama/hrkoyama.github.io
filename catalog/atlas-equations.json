@@ -80,7 +80,8 @@
       "group": "physical",
       "coverage_scope": "",
       "supplemental_examples": [
-        "su-olson-transport1997"
+        "su-olson-transport1997",
+        "diffusion-discrete-adjoint"
       ]
     },
     {
@@ -367,7 +368,14 @@
       "coverage_scope": "",
       "supplemental_examples": [
         "bratu-fold-continuation",
-        "bratu-matrix-free-jfnk"
+        "bratu-matrix-free-jfnk",
+        "globalization-difficult-starts",
+        "reverse-vjp-duality",
+        "hessian-vector-products",
+        "bratu-fold-sensitivity",
+        "bratu-distributed-vjp",
+        "bratu-gn-lm-bounds",
+        "bratu-noise-regularization"
       ]
     },
     {
@@ -1958,6 +1966,71 @@
           "review_scope": "Read sections 3.2–4.2, equations 7–8 and the time-domain ADE discussion, plus sections 5–7.2 on homogeneity, evanescent fields and grazing/discretization limitations. The served text is updated 2026-08-24. The trapezoidal filter is our derivation; no full original Berenger/Roden-Gedney paper review is claimed.",
           "year": 2021
         }
+      ]
+    },
+    {
+      "id": "finite-dimensional-nonlinear-map",
+      "name": {
+        "ja": "有限次元非線形写像・根と微分作用",
+        "en": "Finite-dimensional nonlinear maps, roots and differential actions"
+      },
+      "formula": [
+        "F:\\mathbb R^n\\longrightarrow\\mathbb R^m",
+        "F(x)=0\\quad(m=n\\text{ for root controls})",
+        "J(x)v=DF(x)[v],\\quad J(x)^\\top w",
+        "H_f(x)v=D(\\nabla f)(x)[v]\\quad(f\\text{ twice differentiable})"
+      ],
+      "chapter": "validation-reverse-higher-ad",
+      "note": {
+        "ja": "有限の代数写像に対する根・JVP/VJP・HVP・分岐規約です。nは空間次元ではなく変数数で、非滑らか点に古典微分を強制しません。",
+        "en": "Roots, JVP/VJP, HVP and branch conventions for finite algebraic maps. The variable count n is not a spatial dimension, and a classical derivative is not imposed at nonsmooth points."
+      },
+      "status": "local-example",
+      "group": "algebraic",
+      "domain_kind": "finite-dimensional-algebra",
+      "dimension": null,
+      "bounds": [],
+      "coverage_scope": "Only the fixed root/product/implicit-scalar/piecewise maps in these releases; Bratu discretizations are separately related1Dmodel context. No general AD framework or universal nonsmooth derivative.",
+      "execution_scope": {
+        "ja": "Rosenbrock/小Bratuの大域化、重複gather/broadcast矩形写像、固定HVP、正枝陰関数則とliteral停止規約。",
+        "en": "Fixed Rosenbrock/small-Bratu globalization, rectangular repeated-gather/broadcast maps, fixed-state HVPs, positive implicit rules and literal stopping conventions."
+      },
+      "supplemental_examples": [
+        "globalization-difficult-starts",
+        "reverse-vjp-duality",
+        "hessian-vector-products",
+        "kink-branch-derivatives"
+      ]
+    },
+    {
+      "id": "finite-dimensional-optimization",
+      "name": {
+        "ja": "有限次元代数最適化と既知最小点",
+        "en": "Finite-dimensional algebraic optimization and known minima"
+      },
+      "formula": [
+        "\\min_{x\\in\\mathbb R^n} f(x)",
+        "\\nabla f(x_*)=0\\quad\\text{(necessary for a smooth unconstrained local minimum)}",
+        "f_Q(x)=\\tfrac12(x-x_*)^TA(x-x_*),\\quad A=A^T>0",
+        "f_R(x,y)=100(y-x^2)^2+(1-x)^2"
+      ],
+      "chapter": "validation-inverse-optimization",
+      "note": {
+        "ja": "8次元SPD二次関数と2変数Rosenbrockの無次元代数最適化です。物理空間・PDE境界を持たず、既知最小点と局所反復作用を比較します。",
+        "en": "Dimensionless algebraic optimization of an eight-dimensional SPD quadratic and a two-variable Rosenbrock function. There is no physical spatial domain or PDE boundary; compare known minima and local iterative actions."
+      },
+      "status": "local-example",
+      "group": "algebraic",
+      "domain_kind": "finite-dimensional-algebra",
+      "dimension": null,
+      "bounds": [],
+      "coverage_scope": "Fixed BFGS/L-BFGS m3 controls and declared strong-Wolfe/curvature rules; no universal global-convergence/scalability or exact n-step-termination guarantee.",
+      "execution_scope": {
+        "ja": "既知最小点、勾配、Wolfe/曲率ledger、現在保持する3組と現在γ0Iのdense作用参照。",
+        "en": "Known minima, gradients, Wolfe/curvature ledgers, and a dense reference using only the current last three pairs and current gamma0 I."
+      },
+      "supplemental_examples": [
+        "bfgs-lbfgs-controls"
       ]
     }
   ]

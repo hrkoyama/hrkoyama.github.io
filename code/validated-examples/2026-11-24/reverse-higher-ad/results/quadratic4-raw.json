@@ -1,0 +1,43 @@
+{
+  "id": "quadratic4",
+  "gradient": [
+    1.375,
+    -1.1875,
+    2.125,
+    0.6875
+  ],
+  "Hv": [
+    3.625,
+    -0.1875,
+    1.3125,
+    0.9375
+  ],
+  "x": [
+    0.25,
+    -0.5,
+    0.75,
+    1.0
+  ],
+  "v": [
+    1.0,
+    -0.5,
+    0.25,
+    0.75
+  ],
+  "w": [
+    -0.25,
+    0.5,
+    1.0,
+    -1.0
+  ],
+  "work": {
+    "nodes": 114,
+    "primal_rules": 92,
+    "tangent_rules": 92,
+    "pullbacks": 1,
+    "backward_rules": 92,
+    "second_rules": 92,
+    "peak_node_array_bytes": 3744,
+    "max_node_rank": 1
+  }
+}

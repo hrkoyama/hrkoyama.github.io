@@ -768,6 +768,66 @@
         "ja": "同じ1次元Bratu境界値問題で、foldを越える継続とJacobianを組み立てない反復を独立解析族へ照合します。",
         "en": "The same one-dimensional Bratu problem compares fold continuation and matrix-free iteration against an independently evaluated analytic family."
       }
+    },
+    {
+      "id": "globalization-controls",
+      "edition": "2026-11-24",
+      "title": {
+        "ja": "同じ初期値から線探索と信頼領域を比べる",
+        "en": "Line searches and trust regions from identical starts"
+      },
+      "fields": [
+        "differentiation-inverse"
+      ],
+      "intro": {
+        "ja": "原残差・scaled meritと全試行の記録から、根・非根停留・上限終了を区別します。",
+        "en": "Original residuals, scaled merit and complete trial ledgers separate roots, stationary nonroots and budget exhaustion."
+      }
+    },
+    {
+      "id": "reverse-higher-ad",
+      "edition": "2026-11-24",
+      "title": {
+        "ja": "逆モード・HVP・非滑らか分岐の微分",
+        "en": "Reverse mode, HVPs and nonsmooth branches"
+      },
+      "fields": [
+        "differentiation-inverse"
+      ],
+      "intro": {
+        "ja": "小さい独自tapeを独立手計算と照合し、状態固定の偏微分・陰関数全微分・実行分岐を分けます。",
+        "en": "Independent hand-derived references check a small original tape, separating fixed-state partials, implicit total derivatives and executed branches."
+      }
+    },
+    {
+      "id": "adjoint",
+      "edition": "2026-11-24",
+      "title": {
+        "ja": "時間離散・fold近傍・分布係数の随伴",
+        "en": "Adjoints through time steps, folds and distributed coefficients"
+      },
+      "fields": [
+        "differentiation-inverse"
+      ],
+      "intro": {
+        "ja": "離散写像の接線と随伴を比較し、参照精度・要求残差・保存bufferと再計算を分けます。",
+        "en": "Compare tangents and adjoints of discrete maps, separating reference accuracy, requested residuals, owned buffers and recomputation."
+      }
+    },
+    {
+      "id": "inverse-optimization",
+      "edition": "2026-11-24",
+      "title": {
+        "ja": "Bratu逆問題の最適化・雑音・正則化",
+        "en": "Optimization, noise and regularization in the Bratu inverse problem"
+      },
+      "fields": [
+        "differentiation-inverse"
+      ],
+      "intro": {
+        "ja": "既存の合成観測を保持し、小さな固定例でGN/LM・準Newton・正則化選択を比較します。",
+        "en": "Retain existing synthetic observations and compare GN/LM, quasi-Newton methods and regularization selection on small fixed controls."
+      }
     }
   ],
   "case_problem_ids": {
@@ -876,7 +936,17 @@
     "restarted-shift-invert": "restarted-shift-invert",
     "fem-mass-eigen": "fem-mass-eigen",
     "bratu-fold-continuation": "bratu-fold-continuation",
-    "bratu-matrix-free-jfnk": "bratu-matrix-free-jfnk"
+    "bratu-matrix-free-jfnk": "bratu-matrix-free-jfnk",
+    "globalization-difficult-starts": "globalization-difficult-starts",
+    "reverse-vjp-duality": "reverse-vjp-duality",
+    "hessian-vector-products": "hessian-vector-products",
+    "kink-branch-derivatives": "kink-branch-derivatives",
+    "diffusion-discrete-adjoint": "diffusion-discrete-adjoint",
+    "bratu-fold-sensitivity": "bratu-fold-sensitivity",
+    "bratu-distributed-vjp": "bratu-distributed-vjp",
+    "bratu-gn-lm-bounds": "bratu-gn-lm-bounds",
+    "bfgs-lbfgs-controls": "bfgs-lbfgs-controls",
+    "bratu-noise-regularization": "bratu-noise-regularization"
   },
   "routine_policy": {
     "ja": "通常の補助例CIは、公開レジストリに登録した補助配布グループをNumPy・SciPy・pytestで実行します。保存済みの独立参照は版・入力・実行記録を照合し、新規の参照計算と区別します。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。",
@@ -1198,6 +1268,46 @@
     "bratu-matrix-free-jfnk": {
       "ja": "小1次元BVP向けの教育実装です。ADは四則・exp・境界paddingの方向微分に限ります。小Hessenberg行列と基底は保持します。ηの固定下限があるため、原著EWの漸近収束定理、一般AD/PETScとの同等性、速度向上や大域収束は主張しません。",
       "en": "An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee."
+    },
+    "globalization-difficult-starts": {
+      "ja": "全初期値の成功や手法の普遍的優越、PETSc実装との一致を保証しません。 図の座標は有限次元の変数・反復・診断で、物理空間の次元やPDE境界を表しません。",
+      "en": "No all-start guarantee, universal method ranking or equivalence to PETSc implementation. Plot axes describe finite-dimensional variables, iterations or diagnostics, not a physical spatial dimension or PDE boundary."
+    },
+    "reverse-vjp-duality": {
+      "ja": "一般のNumPy/JAX置換や複素数ADではありません。 図の座標は有限次元の変数・反復・診断で、物理空間の次元やPDE境界を表しません。",
+      "en": "Not a general NumPy/JAX replacement or complex AD system. Plot axes describe finite-dimensional variables, iterations or diagnostics, not a physical spatial dimension or PDE boundary."
+    },
+    "hessian-vector-products": {
+      "ja": "一般のreduced inverse Hessianや有限Newton traceの数学的陰関数微分とは主張しません。 図の座標は有限次元の変数・反復・診断で、物理空間の次元やPDE境界を表しません。",
+      "en": "No general reduced inverse Hessian or identification of finite Newton traces with implicit derivatives. Plot axes describe finite-dimensional variables, iterations or diagnostics, not a physical spatial dimension or PDE boundary."
+    },
+    "kink-branch-derivatives": {
+      "ja": "選択した分岐の微分は普遍的なsubgradientや非滑らかな写像の線形微分ではありません。 図の座標は有限次元の変数・反復・診断で、物理空間の次元やPDE境界を表しません。",
+      "en": "An executed-branch derivative is not a universal subgradient or a linear derivative of a nonsmooth map. Plot axes describe finite-dimensional variables, iterations or diagnostics, not a physical spatial dimension or PDE boundary."
+    },
+    "diffusion-discrete-adjoint": {
+      "ja": "固定stepの離散随伴でありCVODESや最適checkpoint法ではありません。40nは状態・随伴・RHS/solve scratchの一意な所有要素数です。静的因子・model配列は別表示し総所有byteへ含めます。検証/NPZ組立は測定後で、RSSではありません。",
+      "en": "Fixed-step discrete adjoints, not CVODES or an optimal checkpoint schedule. The40n limit counts unique evolving state/adjoint/RHS/solve-scratch elements. Static factors/model arrays are separately listed and included in total bytes. Validation/NPZ assembly follows the ownership windows; this is not RSS."
+    },
+    "bratu-fold-sensitivity": {
+      "ja": "連続foldは離散foldではありません。rtol1e-4/1e-8は達成必須、requested1e-12は観測のみで未達を収束と表示しません。返却候補の独立勾配精度は別判定。最小固有値/丸めscaleは浮動小数点の診断で保証区間ではありません。BratuのJは対称であり、非対称転置は別の演算子対照です。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。",
+      "en": "The continuum fold is not the discrete fold. rtol1e-4/1e-8 targets are required; requested1e-12 is observational and unmet is never called converged. Independent accuracy of the returned gradient is a separate gate. Eigenvalue/roundoff scales are floating diagnostics, not certified intervals. Bratu J is symmetric; the nonsymmetric transpose is a separate operator control. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved."
+    },
+    "bratu-distributed-vjp": {
+      "ja": "同じ離散状態の微分検証で、独立した物理PDE解の証明や一般ADではありません。保存arrayと固定Krylov workspaceの記録はRSS測定ではありません。m=2のθ端点は[a-b-2,a+b-2]で、物理係数端点[a-b,a+b]と区別します。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。",
+      "en": "Derivative verification at the same discrete state, not independent physical-PDE truth or general AD. Persistent arrays and fixed Krylov workspace inventories are not RSS measurements. For m=2, theta endpoints are[a-b-2,a+b-2], distinct from physical coefficient endpoints[a-b,a+b]. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved."
+    },
+    "bratu-gn-lm-bounds": {
+      "ja": "小さい滑らかな分枝の局所比較。SciPy最適化ライブラリは参照側でも共有し、大域最小・一意性を証明しません。LMに箱制約があるとは説明しません。",
+      "en": "A local comparison on a small smooth branch. The optimizer library is shared by the reference and a companion; no global minimum or uniqueness proof is claimed. LM is not presented as a box-constrained method."
+    },
+    "bfgs-lbfgs-controls": {
+      "ja": "厳密線形探索ではないためn反復終了や一般的Rosenbrock大域収束を主張しません。原著選択箇所は弱Wolfeであり、本例のstrong Wolfeと区別。Fletcher1970本文は未読です。 図の座標は有限次元の変数・反復・診断で、物理空間の次元やPDE境界を表しません。",
+      "en": "No exact n-step termination or general global convergence on Rosenbrock is claimed. The selected original text uses weak Wolfe, distinct from this study’s strong Wolfe policy. Fletcher’s 1970 original article remains unread. Plot axes describe finite-dimensional variables, iterations or diagnostics, not a physical spatial dimension or PDE boundary."
+    },
+    "bratu-noise-regularization": {
+      "ja": "楕円は選択γを固定した局所Gauss–Newton線形モデルのplug-inです。非線形残差の二階微分、γ選択のランダム性、選択事象で条件づけた共分散、事後分布、被覆率を扱いません。全γ連続経路・実測データも未検証。",
+      "en": "Ellipses are plug-in noise propagation for a local Gauss–Newton linear model with the selected gamma treated as fixed. They omit nonlinear residual Hessians and selection randomness and are not selection-conditional covariance, a posterior or a coverage guarantee. Continuous gamma paths and real data remain unverified."
     }
   },
   "case_equations": {
@@ -1800,6 +1910,99 @@
       "note": {
         "ja": "同じ無次元1次元Dirichlet問題でλ=3、内点63/127、初期値0または4sin(πx)。3Jv×2格子×2枝の12解法と固定η=1e-8の解析Jv対照1本。GMRES restart24/max96、Newton最大24、残差許容1e-9です。",
         "en": "The same dimensionless one-dimensional Dirichlet problem at lambda=3, 63/127 interior nodes, starting from zero or 4sin(pi*x). Twelve mode/grid/branch solves plus one analytic-Jv constant-eta=1e-8 control. GMRES restart24/max96, at most 24 Newton steps and nonlinear tolerance1e-9."
+      }
+    },
+    "globalization-difficult-starts": {
+      "ids": [
+        "finite-dimensional-nonlinear-map",
+        "bratu"
+      ],
+      "note": {
+        "ja": "小さな固定入力・実数・無次元。詳しい入力と適用範囲は対応する契約に限定します。",
+        "en": "Small fixed real dimensionless inputs; assumptions and scope are limited to the matching contract."
+      }
+    },
+    "reverse-vjp-duality": {
+      "ids": [
+        "finite-dimensional-nonlinear-map",
+        "bratu"
+      ],
+      "note": {
+        "ja": "小さな固定入力・実数・無次元。詳しい入力と適用範囲は対応する契約に限定します。",
+        "en": "Small fixed real dimensionless inputs; assumptions and scope are limited to the matching contract."
+      }
+    },
+    "hessian-vector-products": {
+      "ids": [
+        "finite-dimensional-nonlinear-map",
+        "bratu"
+      ],
+      "note": {
+        "ja": "小さな固定入力・実数・無次元。詳しい入力と適用範囲は対応する契約に限定します。",
+        "en": "Small fixed real dimensionless inputs; assumptions and scope are limited to the matching contract."
+      }
+    },
+    "kink-branch-derivatives": {
+      "ids": [
+        "finite-dimensional-nonlinear-map"
+      ],
+      "note": {
+        "ja": "小さな固定入力・実数・無次元。詳しい入力と適用範囲は対応する契約に限定します。",
+        "en": "Small fixed real dimensionless inputs; assumptions and scope are limited to the matching contract."
+      }
+    },
+    "diffusion-discrete-adjoint": {
+      "ids": [
+        "heat"
+      ],
+      "note": {
+        "ja": "無次元x∈[0,1]、u(0,t)=u(1,t)=0。内点7/15、時間step64/128/256、T=.1。κ=.1、θ=.2。目的関数のh重みを含む座標転置です。",
+        "en": "Dimensionless x in [0,1], fixed zero Dirichlet endpoints, 7/15 interior nodes and 64/128/256 time steps to T=.1; kappa=.1 and theta=.2. Coordinate transposes include explicit objective h weights."
+      }
+    },
+    "bratu-fold-sensitivity": {
+      "ids": [
+        "bratu"
+      ],
+      "note": {
+        "ja": "内点31/63、離散fold anchorとの差.1/.01/.001。各状態は零初期値からの下枝。λの文字列を一度binary floatへ変換し、参照はその正確な値をDecimalで評価します。",
+        "en": "31/63 interior nodes; gaps .1/.01/.001 below the discrete-fold anchor. Every state starts at zero on the lower branch. Parse each lambda string once to binary float; the Decimal oracle evaluates exactly that float."
+      }
+    },
+    "bratu-distributed-vjp": {
+      "ids": [
+        "bratu"
+      ],
+      "note": {
+        "ja": "内点63、a(x)=2+Bθ、θ=.2sin(2πξ)+.1cos(πξ)。uと感度は固定零Dirichlet境界ですが、係数の両端controlは固定零ではありません。",
+        "en": "63 interior nodes; a(x)=2+B theta with theta=.2sin(2pi xi)+.1cos(pi xi). State/sensitivity have fixed zero Dirichlet endpoints; endpoint coefficient controls are not fixed zero."
+      }
+    },
+    "bratu-gn-lm-bounds": {
+      "ids": [
+        "bratu"
+      ],
+      "note": {
+        "ja": "無次元1D Bratu、31内点、u(0)=u(1)=0。既存の2係数モデルと保存済み観測を再利用。正則化γとLM減衰μを別に扱います。",
+        "en": "A dimensionless one-dimensional Bratu problem with 31 interior nodes and zero Dirichlet data. The existing two-coefficient extension and saved observations are reused; objective regularization gamma and LM damping mu are distinct."
+      }
+    },
+    "bfgs-lbfgs-controls": {
+      "ids": [
+        "finite-dimensional-optimization"
+      ],
+      "note": {
+        "ja": "無次元の非有界代数的最適化。既知の解析最小点を持ち、物理PDEの境界条件はありません。",
+        "en": "Dimensionless unconstrained algebraic optimization with known analytic minima; there is no physical PDE boundary condition."
+      }
+    },
+    "bratu-noise-regularization": {
+      "ids": [
+        "bratu"
+      ],
+      "note": {
+        "ja": "Bratu推定は31内点、5観測、W=I/5、Σ=σ²I。既存1023格子のデータは保存値を使い再生成しません。σ=1e-4/1e-3、seed67001/67002、γの固定5点です。",
+        "en": "Bratu inference uses 31 interior nodes, five observations, W=I/5 and Sigma=sigma² I. Existing 1023-grid observations are reused without regeneration. Fixed sigma values are 1e-4/1e-3, seeds are 67001/67002 and the gamma list has five entries."
       }
     }
   }

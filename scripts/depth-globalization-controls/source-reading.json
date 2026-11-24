@@ -1,0 +1,29 @@
+{
+  "status": "SELECTED_OFFICIAL_SOURCE_AND_INDEPENDENT_DERIVATION",
+  "references": [
+    {
+      "id": "petsc-snes-selected",
+      "title": "SNES: Nonlinear Solvers",
+      "author": "PETSc developers",
+      "url": "https://petsc.org/release/manual/snes/",
+      "publication_year": null,
+      "publication_year_display": "n.d.",
+      "displayed_version": "3.26.1",
+      "accessed_on": "2026-11-24",
+      "review_level": "official-documentation-selected-sections",
+      "actually_read_this_revision": [
+        "Nonlinear-solver classification and line-search section, lines519–585",
+        "Trust-region paragraph and Delta=Delta0||F0|| description, lines611–616"
+      ],
+      "read_scope": "Read nonlinear solver categories, stopping/domain-error distinctions and selected line-search/trust-region descriptions. Our fixed Euclidean dogleg and Delta0=1 are independently specified; not asserted to reproduce PETSc defaults.",
+      "unread": [
+        "MINPACK original report/paper",
+        "PETSc solver implementation source",
+        "Full manual outside named sections"
+      ],
+      "numerical_reference_data_imported": false
+    }
+  ],
+  "original_reading_date": "2026-11-24",
+  "scope": "Selected official sections only, no original-paper fulltext or library implementation audit. Independent fixed example formulas are derived here. No external benchmark numbers or source code copied."
+}

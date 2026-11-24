@@ -1,0 +1,179 @@
+"""Fixed96checks on saved vectors/operators only. Never calls any solver."""
+import argparse
+from decimal import Decimal as D, localcontext
+from fractions import Fraction as F
+import json
+from pathlib import Path
+import signal
+import struct
+import sys
+import time
+import numpy as np
+
+HERE = Path(__file__).resolve().parent
+ROOT = HERE.parent
+sys.path.insert(0, str(ROOT/'source'))
+import operators as old
+from candidate import laplace_difference, jac_action
+
+
+def native(value):
+    if isinstance(value, (D, F)): return str(value)
+    if isinstance(value, np.ndarray): return native(value.tolist())
+    if isinstance(value, np.generic): return native(value.item())
+    if isinstance(value, dict): return {str(k): native(v) for k, v in value.items()}
+    if isinstance(value, (list, tuple)): return [native(v) for v in value]
+    return value
+
+
+def save(path, value):
+    temp = path.with_name(path.name+'.tmp')
+    temp.write_text(json.dumps(native(value), indent=2, allow_nan=False)+'\n'); temp.replace(path)
+
+
+def rational(v): return [F.from_float(float(x)) for x in v]
+def decimal(v): return D(v.numerator)/D(v.denominator)
+def norm(v): return float(np.sqrt(float(np.sum(np.asarray(v)*np.asarray(v)))))
+def bits(value): return struct.pack('<d', float(value))
+
+
+def exact_stencil(vector):
+    v = rational(vector); scale = (len(v)+1)**2
+    answer, magnitude = [], []
+    for i, value in enumerate(v):
+        left = v[i-1] if i else F(0); right = v[i+1] if i+1 < len(v) else F(0)
+        answer.append(scale*(2*value-left-right))
+        magnitude.append(scale*(2*abs(value)+abs(left)+abs(right)))
+    return answer, magnitude
+
+
+def within(actual, reference, scale, k):
+    unit = F(1, 2**53); gamma = k*unit/(1-k*unit)
+    return all(abs(value-truth) <= gamma*bound for value, truth, bound in zip(rational(actual), reference, scale))
+
+
+def error_summary(actual, reference):
+    errors = [a-b for a, b in zip(rational(actual), reference)]
+    with localcontext() as context:
+        context.prec = 110
+        return {'max_abs': decimal(max(abs(x) for x in errors)),
+                'L2': decimal(sum(x*x for x in errors)).sqrt(),
+                'components': [str(x) for x in errors]}
+
+
+def fixtures(n):
+    i = np.arange(1, n+1, dtype=float); j = np.arange(1, n+1, dtype=np.int64)
+    return [('zero', np.zeros(n)), ('ones', np.ones(n)), ('alternating', (-1.)**j),
+            ('tent', np.minimum(i, n+1-i)/(n+1)),
+            ('quadratic', i*(n+1-i)/(n+1)**2), ('affine', i/(n+1)),
+            ('nearconstant', 1+2.**-40*(j % 3-1)),
+            ('sine', np.sin(np.pi*i/(n+1))),
+            ('small-third-sine', 2.**-6*np.sin(3*np.pi*i/(n+1)))]
+
+
+def check(output):
+    if output.exists(): raise ValueError('Fresh component result directory required')
+    output.mkdir(parents=True); started = time.monotonic()
+    report = {'schema_version': 1, 'passed': False, 'checks': {}, 'failure': None,
+              'scope': 'Saved-vector operator accuracy and failure diagnosis only. No solver/evolution/pytest/reference regeneration.',
+              'records': [], 'diagnostics': {}, 'cause_proven': False}
+    raw, current = {}, {}
+    def flush():
+        np.savez_compressed(output/'raw.npz', **raw)
+        save(output/'current.json', current); save(output/'result.json', report)
+    def add(name, passed):
+        if name in report['checks']: raise ValueError('Duplicate component check')
+        report['checks'][name] = bool(passed); flush()
+    def stop(_sig, _frame): raise TimeoutError('Operator audit terminated')
+    previous = signal.signal(signal.SIGTERM, stop)
+    flush()
+    try:
+        data = np.load(ROOT/'main-attempts/01/results/bratu-fold-sensitivity/n63-point2-partial.npz', allow_pickle=False)
+        u, coefficient = data['u'], data['coefficient']
+        x, history = data['last_linear_candidate'], data['last_linear_residuals']
+        raw.update(saved_state=u, saved_coefficient=coefficient, saved_candidate=x, saved_history=history,
+                   saved_last_Jv_input=data['last_Jv_input'], saved_last_Jv_output=data['last_Jv_output'],
+                   saved_residual_input=data['last_residual_input'])
+        current.update(stage='reconstruct-frozen-context'); flush()
+        rhs = -old.residual(data['last_residual_input'], coefficient)
+        original = old.jac_action(u, coefficient, x)
+        balanced = jac_action(u, coefficient, x)
+        raw.update(reconstructed_rhs=rhs, reconstructed_original_Jv=original, balanced_Jv=balanced)
+        flush()
+        add('context-last-input-equals-candidate', data['last_Jv_input'].tobytes() == x.tobytes())
+        add('context-Jv-reproduces-saved-output', original.tobytes() == data['last_Jv_output'].tobytes())
+        add('context-reconstructed-RHS-norm', bits(norm(rhs)) == bits(history[0]))
+        actual = norm(rhs-original)
+        add('context-reproduces-final-true-residual', bits(actual) == bits(history[-1]))
+        add('context-120iterations', len(history) == 121 and bool(np.isfinite(history).all()))
+        inputs = json.loads((ROOT/'source/inputs.json').read_text())
+        target = max(1e-14, inputs['solver']['gmres']['state_newton_rtol']*norm(rhs))
+        add('context-actual-target-unmet', actual > target)
+        add('context-finite-shape-and-base-state', u.shape == x.shape == coefficient.shape == (63,) and u.dtype == x.dtype == np.dtype('float64') and bool(np.isfinite(u).all() and np.isfinite(x).all()) and data['last_residual_input'].tobytes() == u.tobytes())
+        report['diagnostics'].update(original_true_residual=actual, unchanged_target=target,
+             balanced_residual_at_SAME_old_candidate=norm(rhs-balanced),
+             original_termination='maximum_iterations; rawfalse inferred from exact failing branch',
+             RHS_scope='Reconstructed via original frozen residual expression; never separately saved RHS. Norm equality is checked.',
+             not_claimed='No newly converged solution,linear/Newton solve or proof of rounding as sole cause.')
+        for n in [7, 31, 63]:
+            for name, vector in fixtures(n):
+                key = f'n{n}-{name}'; current.update(stage='fixture', key=key)
+                before = vector.copy(); raw[key+'-input'] = vector; flush()
+                a, b = old.laplace(vector), laplace_difference(vector)
+                raw[key+'-original'] = a; raw[key+'-balanced'] = b; flush()
+                reference, scale = exact_stencil(vector)
+                add(key+'-finite-pure', bool(np.isfinite(vector).all() and np.isfinite(a).all() and np.isfinite(b).all()) and vector.tobytes() == before.tobytes() and not np.shares_memory(vector, a) and not np.shares_memory(vector, b))
+                add(key+'-original-gamma4', within(a, reference, scale, 4))
+                add(key+'-balanced-gamma4', within(b, reference, scale, 4))
+                report['records'].append({'key': key, 'original_error': error_summary(a, reference),
+                                           'balanced_error': error_summary(b, reference)})
+                flush()
+        for name, vector in [('state', u), ('candidate', x)]:
+            reference, scale = exact_stencil(vector)
+            a, b = old.laplace(vector), laplace_difference(vector)
+            raw[name+'-original-A'] = a; raw[name+'-balanced-A'] = b; flush()
+            add('saved-'+name+'-original-A', within(a, reference, scale, 4))
+            add('saved-'+name+'-balanced-A', within(b, reference, scale, 4))
+            report['diagnostics'][name+'-stencil-errors'] = {'original': error_summary(a, reference), 'balanced': error_summary(b, reference)}
+        diagonal = coefficient*np.exp(u)
+        A, scale = exact_stencil(x); c, xx = rational(diagonal), rational(x)
+        exact_J = [a-b*v for a, b, v in zip(A, c, xx)]
+        Jscale = [a+abs(b*v) for a, b, v in zip(scale, c, xx)]
+        add('saved-original-fullJ-gamma8', within(original, exact_J, Jscale, 8))
+        add('saved-balanced-fullJ-gamma8', within(balanced, exact_J, Jscale, 8))
+        report['diagnostics']['fullJ-errors-fixed-binary-diagonal'] = {'original': error_summary(original, exact_J), 'balanced': error_summary(balanced, exact_J)}
+        exact_residual = [b-j for b, j in zip(rational(rhs), exact_J)]
+        with localcontext() as context:
+            context.prec = 110
+            report['diagnostics']['independent_residual_norm_fixed_binary_diagonal'] = decimal(sum(r*r for r in exact_residual)).sqrt()
+        values = {}
+        for precision in [80, 110]:
+            with localcontext() as context:
+                context.prec = precision
+                result = []
+                for i, (v, c0) in enumerate(zip(u, coefficient)):
+                    current.update(stage='coefficient', precision=precision, index=i,
+                                   exact_input_u=str(D.from_float(float(v))), completed=[str(q) for q in result]); flush()
+                    result.append(D.from_float(float(c0))*D.from_float(float(v)).exp())
+                values[precision] = result
+                save(output/f'coefficient-{precision}.json', {'values': result})
+        with localcontext() as context:
+            context.prec = 140
+            add('coefficient-80-110-precision', all(abs(a-b) <= D('1e-60')*max(D(1), abs(b)) for a, b in zip(values[80], values[110])))
+            unit = D(2)**-53; gamma = 4*unit/(1-4*unit)
+            add('coefficient-binary64-accuracy', all(abs(D.from_float(float(a))-b) <= gamma*max(D(1), abs(b)) for a, b in zip(diagonal, values[110])))
+        if len(report['checks']) != 96: raise AssertionError('Exactly96fixed component checks required')
+        report['passed'] = all(report['checks'].values())
+    except BaseException as error:
+        report['failure'] = {'type': type(error).__name__, 'message': str(error)}
+    finally:
+        report['duration_seconds'] = time.monotonic()-started
+        flush(); signal.signal(signal.SIGTERM, previous)
+    return report
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(); parser.add_argument('--output', type=Path, required=True)
+    a = parser.parse_args(); report = check(a.output.resolve())
+    print(json.dumps({'passed': report['passed'], 'checks': len(report['checks']), 'duration_seconds': report['duration_seconds']}))
+    raise SystemExit(0 if report['passed'] else 1)

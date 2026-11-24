@@ -1,0 +1,67 @@
+{
+  "group": "globalization-controls",
+  "cases": [
+    {
+      "id": "globalization-difficult-starts",
+      "title": {
+        "ja": "同じ難しい初期値に対する線探索と信頼領域",
+        "en": "Line search and trust regions from the same difficult starts"
+      },
+      "summary": {
+        "ja": "同じ固定初期値からNewton・Armijo・doglegを比較し、真の根と非根停留・予算終了を区別します。",
+        "en": "Compare Newton, Armijo and dogleg from identical fixed starts, distinguishing roots from stationary nonroots and budget exhaustion."
+      },
+      "assumptions": {
+        "ja": "小さな固定入力・実数・無次元。詳しい入力と適用範囲は対応する契約に限定します。",
+        "en": "Small fixed real dimensionless inputs; assumptions and scope are limited to the matching contract."
+      },
+      "algorithm": {
+        "ja": "原残差とスケール付きmeritを分離し、Euclidean doglegと全試行ledgerを保存します。",
+        "en": "Separate the original residual from the scaled merit and retain Euclidean dogleg and trial ledgers."
+      },
+      "validation": {
+        "ja": "固定入力・独立参照・保存候補・全判定を同じ120秒予算内で検証します。数値合格と診断用非収束を区別します。",
+        "en": "Check fixed inputs, independent references, retained candidates and every gate within the same120-second budget. Numerical success and diagnostic nonconvergence are distinct."
+      },
+      "limits": {
+        "ja": "全初期値の成功や手法の普遍的優越、PETSc実装との一致を保証しません。",
+        "en": "No all-start guarantee, universal method ranking or equivalence to PETSc implementation."
+      },
+      "gallery_figure": "globalization-difficult-starts-preview.png",
+      "additional_figures": [
+        {
+          "file": "globalization-difficult-starts-preview.png",
+          "caption": {
+            "ja": "同一初期値の保存経路、原残差、trust radiusと実測評価回数。失敗・非収束は別記します。",
+            "en": "Saved paths from identical starts, original residuals, trust radii and measured evaluation counts. Failures and nonconvergence remain explicit."
+          }
+        }
+      ],
+      "method_ids": [
+        "newton",
+        "dogleg-trust-region"
+      ],
+      "domains": [
+        "nonlinear"
+      ],
+      "code_files": [
+        "run.py"
+      ],
+      "references": [
+        {
+          "id": "petsc-snes-selected",
+          "author": "PETSc developers",
+          "title": "SNES: Nonlinear Solvers",
+          "url": "https://petsc.org/release/manual/snes/",
+          "accessed_on": "2026-11-24",
+          "review_level": "official-documentation-selected-sections",
+          "review_scope": "Read nonlinear solver categories, stopping/domain-error distinctions and selected line-search/trust-region descriptions. Our fixed Euclidean dogleg and Delta0=1 are independently specified; not asserted to reproduce PETSc defaults. Unread: MINPACK original report/paper, PETSc solver implementation source, Full manual outside named sections. Publication year not established (n.d.)."
+        }
+      ],
+      "formulas": [
+        "phi(x)=.5||S F(x)||_2^2, g=(S J)^T S F",
+        "p_U=-(g^Tg)/(||S J g||_2^2)g, ||p||_2<=Delta"
+      ]
+    }
+  ]
+}

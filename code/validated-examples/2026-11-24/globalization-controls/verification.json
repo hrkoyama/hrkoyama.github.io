@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "group": "globalization-controls",
+  "edition": "2026-11-24",
+  "verified_on": "2026-11-24",
+  "source_manifest_sha256": "3e1ad64fc8d9e844ec4495255e6231f057a4d6750088dd969617ccfbee9f3078",
+  "archive": {
+    "file": "atlas-globalization-controls-2026-11-24.zip",
+    "sha256": "a8d55166dedf528bbb143080998b5bdd0a95ad37d29d589206499e23dbc9fe4d",
+    "bytes": 1154804,
+    "archive_directory": "atlas-globalization-controls-2026-11-24"
+  },
+  "archive_sha256": "a8d55166dedf528bbb143080998b5bdd0a95ad37d29d589206499e23dbc9fe4d",
+  "returncode": 0,
+  "passed_tests": 16,
+  "tests": 16,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "globalization-difficult-starts"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 0.8741812910011504,
+  "independent_rerun_seconds": 0.7333890000008978,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

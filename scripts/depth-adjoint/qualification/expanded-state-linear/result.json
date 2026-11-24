@@ -1,0 +1,1971 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "completed": true,
+  "failure": null,
+  "checks": {
+    "reconstruct-zero": true,
+    "reconstruct-base-low": true,
+    "reconstruct-cancellation": true,
+    "reconstruct-tie": true,
+    "reconstruct-ordinary": true,
+    "reconstruct-width24": true,
+    "residual-low-changes-row": true,
+    "residual-third": true,
+    "residual-interior": true,
+    "residual-signed": true,
+    "update-cancellation": true,
+    "update-positive-tie": true,
+    "update-negative": true,
+    "discard-low-negative": true,
+    "fixed-input-target": true,
+    "solver-finite-fixedcap": true,
+    "solver-expanded-true-decision": true,
+    "projection-explicit-separate": true,
+    "factor-inputs-unchanged": true,
+    "multiple-low-work-owners": true
+  },
+  "controls": [
+    {
+      "id": "zero",
+      "exact_fraction": "0",
+      "expansion_error": "0",
+      "bound": "0"
+    },
+    {
+      "id": "base-low",
+      "exact_fraction": "18014398509481985/18014398509481984",
+      "expansion_error": "0",
+      "bound": "18014398509481985/91343852333181432387730302044767688728495783936"
+    },
+    {
+      "id": "cancellation",
+      "exact_fraction": "67108865/1208925819614629174706176",
+      "expansion_error": "0",
+      "bound": "2417851639229258416521217/6129982163463555433433388108601236734474956488734408704"
+    },
+    {
+      "id": "tie",
+      "exact_fraction": "9007199254740993/9007199254740992",
+      "expansion_error": "0",
+      "bound": "9007199254740993/45671926166590716193865151022383844364247891968"
+    },
+    {
+      "id": "ordinary",
+      "exact_fraction": "-58413339658516811901557116365701/324518553658426726783156020576256",
+      "expansion_error": "0",
+      "bound": "201201503268224565922087998198907/1645504557321206042154969182557350504982735865633579863348609024"
+    },
+    {
+      "id": "width24",
+      "exact_fraction": "2305843009213693919/36893488147419103232",
+      "expansion_error": "0",
+      "bound": "16140901064495857473/187072209578355573530071658587684226515959365500928"
+    },
+    {
+      "id": "low-changes-row",
+      "exact_residual": [
+        "-1/18014398509481984"
+      ]
+    },
+    {
+      "id": "third",
+      "exact_residual": [
+        "1/324518553658426726783156020576256"
+      ]
+    },
+    {
+      "id": "interior",
+      "exact_residual": [
+        "21392263057163489125903239096020499/20769187434139310514121985316880384",
+        "43199909863009757475384599980885939/20769187434139310514121985316880384",
+        "-29975959119778016639/9223372036854775808"
+      ]
+    },
+    {
+      "id": "signed",
+      "exact_residual": [
+        "368934881474191078401/73786976294838206464",
+        "-147573952589676412931/147573952589676412928",
+        "-265633114661417585663/73786976294838206464"
+      ]
+    }
+  ],
+  "solver_calls_started": 1,
+  "counts": {
+    "direction_Jv": 7,
+    "expanded_residual9": 7,
+    "preconditioner": 7
+  },
+  "representation": "State-only correction is hi+lo as an UNROUNDED real sum of two storedfloat64 vectors. Arnoldi/P/dot/norm remainfloat64.",
+  "memory": {
+    "observed_named_peak_owned_bytes": 40192,
+    "peak_low_part_elements": 189,
+    "peak_inventory": [
+      {
+        "stage": "cycle-start",
+        "total_owned_bytes": 38120,
+        "low_part_elements": 126,
+        "arrays": [
+          {
+            "name": "base_state",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "base_state"
+          },
+          {
+            "name": "physical_coefficient",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "physical_coefficient"
+          },
+          {
+            "name": "reaction_float",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "reaction_float"
+          },
+          {
+            "name": "actual_RHS",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "actual_RHS"
+          },
+          {
+            "name": "Thomas_output",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "Thomas_output"
+          },
+          {
+            "name": "Thomas_forward_scratch",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "Thomas_forward_scratch"
+          },
+          {
+            "name": "P.lower",
+            "shape": [
+              62
+            ],
+            "owner_bytes": 496,
+            "owner_alias": "P.lower"
+          },
+          {
+            "name": "P.diagonal",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "P.diagonal"
+          },
+          {
+            "name": "P.upper",
+            "shape": [
+              62
+            ],
+            "owner_bytes": 496,
+            "owner_alias": "P.upper"
+          },
+          {
+            "name": "P.pivot",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "P.pivot"
+          },
+          {
+            "name": "P.cprime",
+            "shape": [
+              62
+            ],
+            "owner_bytes": 496,
+            "owner_alias": "P.cprime"
+          },
+          {
+            "name": "b",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "actual_RHS"
+          },
+          {
+            "name": "hi",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "hi"
+          },
+          {
+            "name": "lo",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "lo"
+          },
+          {
+            "name": "r",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "r"
+          },
+          {
+            "name": "base_hi",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "base_hi"
+          },
+          {
+            "name": "base_lo",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "base_lo"
+          },
+          {
+            "name": "V",
+            "shape": [
+              63,
+              25
+            ],
+            "owner_bytes": 12600,
+            "owner_alias": "V"
+          },
+          {
+            "name": "Z",
+            "shape": [
+              63,
+              24
+            ],
+            "owner_bytes": 12096,
+            "owner_alias": "Z"
+          },
+          {
+            "name": "H",
+            "shape": [
+              25,
+              24
+            ],
+            "owner_bytes": 4800,
+            "owner_alias": "H"
+          },
+          {
+            "name": "cs",
+            "shape": [
+              24
+            ],
+            "owner_bytes": 192,
+            "owner_alias": "cs"
+          },
+          {
+            "name": "sn",
+            "shape": [
+              24
+            ],
+            "owner_bytes": 192,
+            "owner_alias": "sn"
+          },
+          {
+            "name": "g",
+            "shape": [
+              25
+            ],
+            "owner_bytes": 200,
+            "owner_alias": "g"
+          }
+        ]
+      },
+      {
+        "stage": "reconstruct-allocated",
+        "total_owned_bytes": 39640,
+        "low_part_elements": 189,
+        "arrays": [
+          {
+            "name": "base_state",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "base_state"
+          },
+          {
+            "name": "physical_coefficient",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "physical_coefficient"
+          },
+          {
+            "name": "reaction_float",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "reaction_float"
+          },
+          {
+            "name": "actual_RHS",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "actual_RHS"
+          },
+          {
+            "name": "Thomas_output",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "Thomas_output"
+          },
+          {
+            "name": "Thomas_forward_scratch",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "Thomas_forward_scratch"
+          },
+          {
+            "name": "P.lower",
+            "shape": [
+              62
+            ],
+            "owner_bytes": 496,
+            "owner_alias": "P.lower"
+          },
+          {
+            "name": "P.diagonal",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "P.diagonal"
+          },
+          {
+            "name": "P.upper",
+            "shape": [
+              62
+            ],
+            "owner_bytes": 496,
+            "owner_alias": "P.upper"
+          },
+          {
+            "name": "P.pivot",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "P.pivot"
+          },
+          {
+            "name": "P.cprime",
+            "shape": [
+              62
+            ],
+            "owner_bytes": 496,
+            "owner_alias": "P.cprime"
+          },
+          {
+            "name": "b",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "actual_RHS"
+          },
+          {
+            "name": "hi",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "hi"
+          },
+          {
+            "name": "lo",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "lo"
+          },
+          {
+            "name": "r",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "r"
+          },
+          {
+            "name": "base_hi",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "base_hi"
+          },
+          {
+            "name": "base_lo",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "base_lo"
+          },
+          {
+            "name": "V",
+            "shape": [
+              63,
+              25
+            ],
+            "owner_bytes": 12600,
+            "owner_alias": "V"
+          },
+          {
+            "name": "Z",
+            "shape": [
+              63,
+              24
+            ],
+            "owner_bytes": 12096,
+            "owner_alias": "Z"
+          },
+          {
+            "name": "H",
+            "shape": [
+              25,
+              24
+            ],
+            "owner_bytes": 4800,
+            "owner_alias": "H"
+          },
+          {
+            "name": "cs",
+            "shape": [
+              24
+            ],
+            "owner_bytes": 192,
+            "owner_alias": "cs"
+          },
+          {
+            "name": "sn",
+            "shape": [
+              24
+            ],
+            "owner_bytes": 192,
+            "owner_alias": "sn"
+          },
+          {
+            "name": "g",
+            "shape": [
+              25
+            ],
+            "owner_bytes": 200,
+            "owner_alias": "g"
+          },
+          {
+            "name": "w",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "w"
+          },
+          {
+            "name": "y",
+            "shape": [
+              1
+            ],
+            "owner_bytes": 8,
+            "owner_alias": "y"
+          },
+          {
+            "name": "reconstruct_new_hi",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "reconstruct_new_hi"
+          },
+          {
+            "name": "reconstruct_new_lo",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "reconstruct_new_lo"
+          }
+        ]
+      },
+      {
+        "stage": "reconstruct-allocated",
+        "total_owned_bytes": 40152,
+        "low_part_elements": 189,
+        "arrays": [
+          {
+            "name": "base_state",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "base_state"
+          },
+          {
+            "name": "physical_coefficient",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "physical_coefficient"
+          },
+          {
+            "name": "reaction_float",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "reaction_float"
+          },
+          {
+            "name": "actual_RHS",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "actual_RHS"
+          },
+          {
+            "name": "Thomas_output",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "Thomas_output"
+          },
+          {
+            "name": "Thomas_forward_scratch",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "Thomas_forward_scratch"
+          },
+          {
+            "name": "P.lower",
+            "shape": [
+              62
+            ],
+            "owner_bytes": 496,
+            "owner_alias": "P.lower"
+          },
+          {
+            "name": "P.diagonal",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "P.diagonal"
+          },
+          {
+            "name": "P.upper",
+            "shape": [
+              62
+            ],
+            "owner_bytes": 496,
+            "owner_alias": "P.upper"
+          },
+          {
+            "name": "P.pivot",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "P.pivot"
+          },
+          {
+            "name": "P.cprime",
+            "shape": [
+              62
+            ],
+            "owner_bytes": 496,
+            "owner_alias": "P.cprime"
+          },
+          {
+            "name": "b",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "actual_RHS"
+          },
+          {
+            "name": "hi",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "hi"
+          },
+          {
+            "name": "lo",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "lo"
+          },
+          {
+            "name": "r",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "r"
+          },
+          {
+            "name": "base_hi",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "base_hi"
+          },
+          {
+            "name": "base_lo",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "base_lo"
+          },
+          {
+            "name": "V",
+            "shape": [
+              63,
+              25
+            ],
+            "owner_bytes": 12600,
+            "owner_alias": "V"
+          },
+          {
+            "name": "Z",
+            "shape": [
+              63,
+              24
+            ],
+            "owner_bytes": 12096,
+            "owner_alias": "Z"
+          },
+          {
+            "name": "H",
+            "shape": [
+              25,
+              24
+            ],
+            "owner_bytes": 4800,
+            "owner_alias": "H"
+          },
+          {
+            "name": "cs",
+            "shape": [
+              24
+            ],
+            "owner_bytes": 192,
+            "owner_alias": "cs"
+          },
+          {
+            "name": "sn",
+            "shape": [
+              24
+            ],
+            "owner_bytes": 192,
+            "owner_alias": "sn"
+          },
+          {
+            "name": "g",
+            "shape": [
+              25
+            ],
+            "owner_bytes": 200,
+            "owner_alias": "g"
+          },
+          {
+            "name": "w",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "w"
+          },
+          {
+            "name": "y",
+            "shape": [
+              2
+            ],
+            "owner_bytes": 16,
+            "owner_alias": "y"
+          },
+          {
+            "name": "true_vector",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "true_vector"
+          },
+          {
+            "name": "reconstruct_new_hi",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "reconstruct_new_hi"
+          },
+          {
+            "name": "reconstruct_new_lo",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "reconstruct_new_lo"
+          }
+        ]
+      },
+      {
+        "stage": "reconstruct-allocated",
+        "total_owned_bytes": 40160,
+        "low_part_elements": 189,
+        "arrays": [
+          {
+            "name": "base_state",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "base_state"
+          },
+          {
+            "name": "physical_coefficient",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "physical_coefficient"
+          },
+          {
+            "name": "reaction_float",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "reaction_float"
+          },
+          {
+            "name": "actual_RHS",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "actual_RHS"
+          },
+          {
+            "name": "Thomas_output",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "Thomas_output"
+          },
+          {
+            "name": "Thomas_forward_scratch",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "Thomas_forward_scratch"
+          },
+          {
+            "name": "P.lower",
+            "shape": [
+              62
+            ],
+            "owner_bytes": 496,
+            "owner_alias": "P.lower"
+          },
+          {
+            "name": "P.diagonal",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "P.diagonal"
+          },
+          {
+            "name": "P.upper",
+            "shape": [
+              62
+            ],
+            "owner_bytes": 496,
+            "owner_alias": "P.upper"
+          },
+          {
+            "name": "P.pivot",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "P.pivot"
+          },
+          {
+            "name": "P.cprime",
+            "shape": [
+              62
+            ],
+            "owner_bytes": 496,
+            "owner_alias": "P.cprime"
+          },
+          {
+            "name": "b",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "actual_RHS"
+          },
+          {
+            "name": "hi",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "hi"
+          },
+          {
+            "name": "lo",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "lo"
+          },
+          {
+            "name": "r",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "r"
+          },
+          {
+            "name": "base_hi",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "base_hi"
+          },
+          {
+            "name": "base_lo",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "base_lo"
+          },
+          {
+            "name": "V",
+            "shape": [
+              63,
+              25
+            ],
+            "owner_bytes": 12600,
+            "owner_alias": "V"
+          },
+          {
+            "name": "Z",
+            "shape": [
+              63,
+              24
+            ],
+            "owner_bytes": 12096,
+            "owner_alias": "Z"
+          },
+          {
+            "name": "H",
+            "shape": [
+              25,
+              24
+            ],
+            "owner_bytes": 4800,
+            "owner_alias": "H"
+          },
+          {
+            "name": "cs",
+            "shape": [
+              24
+            ],
+            "owner_bytes": 192,
+            "owner_alias": "cs"
+          },
+          {
+            "name": "sn",
+            "shape": [
+              24
+            ],
+            "owner_bytes": 192,
+            "owner_alias": "sn"
+          },
+          {
+            "name": "g",
+            "shape": [
+              25
+            ],
+            "owner_bytes": 200,
+            "owner_alias": "g"
+          },
+          {
+            "name": "w",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "w"
+          },
+          {
+            "name": "y",
+            "shape": [
+              3
+            ],
+            "owner_bytes": 24,
+            "owner_alias": "y"
+          },
+          {
+            "name": "true_vector",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "true_vector"
+          },
+          {
+            "name": "reconstruct_new_hi",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "reconstruct_new_hi"
+          },
+          {
+            "name": "reconstruct_new_lo",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "reconstruct_new_lo"
+          }
+        ]
+      },
+      {
+        "stage": "reconstruct-allocated",
+        "total_owned_bytes": 40168,
+        "low_part_elements": 189,
+        "arrays": [
+          {
+            "name": "base_state",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "base_state"
+          },
+          {
+            "name": "physical_coefficient",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "physical_coefficient"
+          },
+          {
+            "name": "reaction_float",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "reaction_float"
+          },
+          {
+            "name": "actual_RHS",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "actual_RHS"
+          },
+          {
+            "name": "Thomas_output",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "Thomas_output"
+          },
+          {
+            "name": "Thomas_forward_scratch",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "Thomas_forward_scratch"
+          },
+          {
+            "name": "P.lower",
+            "shape": [
+              62
+            ],
+            "owner_bytes": 496,
+            "owner_alias": "P.lower"
+          },
+          {
+            "name": "P.diagonal",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "P.diagonal"
+          },
+          {
+            "name": "P.upper",
+            "shape": [
+              62
+            ],
+            "owner_bytes": 496,
+            "owner_alias": "P.upper"
+          },
+          {
+            "name": "P.pivot",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "P.pivot"
+          },
+          {
+            "name": "P.cprime",
+            "shape": [
+              62
+            ],
+            "owner_bytes": 496,
+            "owner_alias": "P.cprime"
+          },
+          {
+            "name": "b",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "actual_RHS"
+          },
+          {
+            "name": "hi",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "hi"
+          },
+          {
+            "name": "lo",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "lo"
+          },
+          {
+            "name": "r",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "r"
+          },
+          {
+            "name": "base_hi",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "base_hi"
+          },
+          {
+            "name": "base_lo",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "base_lo"
+          },
+          {
+            "name": "V",
+            "shape": [
+              63,
+              25
+            ],
+            "owner_bytes": 12600,
+            "owner_alias": "V"
+          },
+          {
+            "name": "Z",
+            "shape": [
+              63,
+              24
+            ],
+            "owner_bytes": 12096,
+            "owner_alias": "Z"
+          },
+          {
+            "name": "H",
+            "shape": [
+              25,
+              24
+            ],
+            "owner_bytes": 4800,
+            "owner_alias": "H"
+          },
+          {
+            "name": "cs",
+            "shape": [
+              24
+            ],
+            "owner_bytes": 192,
+            "owner_alias": "cs"
+          },
+          {
+            "name": "sn",
+            "shape": [
+              24
+            ],
+            "owner_bytes": 192,
+            "owner_alias": "sn"
+          },
+          {
+            "name": "g",
+            "shape": [
+              25
+            ],
+            "owner_bytes": 200,
+            "owner_alias": "g"
+          },
+          {
+            "name": "w",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "w"
+          },
+          {
+            "name": "y",
+            "shape": [
+              4
+            ],
+            "owner_bytes": 32,
+            "owner_alias": "y"
+          },
+          {
+            "name": "true_vector",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "true_vector"
+          },
+          {
+            "name": "reconstruct_new_hi",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "reconstruct_new_hi"
+          },
+          {
+            "name": "reconstruct_new_lo",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "reconstruct_new_lo"
+          }
+        ]
+      },
+      {
+        "stage": "reconstruct-allocated",
+        "total_owned_bytes": 40176,
+        "low_part_elements": 189,
+        "arrays": [
+          {
+            "name": "base_state",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "base_state"
+          },
+          {
+            "name": "physical_coefficient",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "physical_coefficient"
+          },
+          {
+            "name": "reaction_float",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "reaction_float"
+          },
+          {
+            "name": "actual_RHS",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "actual_RHS"
+          },
+          {
+            "name": "Thomas_output",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "Thomas_output"
+          },
+          {
+            "name": "Thomas_forward_scratch",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "Thomas_forward_scratch"
+          },
+          {
+            "name": "P.lower",
+            "shape": [
+              62
+            ],
+            "owner_bytes": 496,
+            "owner_alias": "P.lower"
+          },
+          {
+            "name": "P.diagonal",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "P.diagonal"
+          },
+          {
+            "name": "P.upper",
+            "shape": [
+              62
+            ],
+            "owner_bytes": 496,
+            "owner_alias": "P.upper"
+          },
+          {
+            "name": "P.pivot",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "P.pivot"
+          },
+          {
+            "name": "P.cprime",
+            "shape": [
+              62
+            ],
+            "owner_bytes": 496,
+            "owner_alias": "P.cprime"
+          },
+          {
+            "name": "b",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "actual_RHS"
+          },
+          {
+            "name": "hi",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "hi"
+          },
+          {
+            "name": "lo",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "lo"
+          },
+          {
+            "name": "r",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "r"
+          },
+          {
+            "name": "base_hi",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "base_hi"
+          },
+          {
+            "name": "base_lo",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "base_lo"
+          },
+          {
+            "name": "V",
+            "shape": [
+              63,
+              25
+            ],
+            "owner_bytes": 12600,
+            "owner_alias": "V"
+          },
+          {
+            "name": "Z",
+            "shape": [
+              63,
+              24
+            ],
+            "owner_bytes": 12096,
+            "owner_alias": "Z"
+          },
+          {
+            "name": "H",
+            "shape": [
+              25,
+              24
+            ],
+            "owner_bytes": 4800,
+            "owner_alias": "H"
+          },
+          {
+            "name": "cs",
+            "shape": [
+              24
+            ],
+            "owner_bytes": 192,
+            "owner_alias": "cs"
+          },
+          {
+            "name": "sn",
+            "shape": [
+              24
+            ],
+            "owner_bytes": 192,
+            "owner_alias": "sn"
+          },
+          {
+            "name": "g",
+            "shape": [
+              25
+            ],
+            "owner_bytes": 200,
+            "owner_alias": "g"
+          },
+          {
+            "name": "w",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "w"
+          },
+          {
+            "name": "y",
+            "shape": [
+              5
+            ],
+            "owner_bytes": 40,
+            "owner_alias": "y"
+          },
+          {
+            "name": "true_vector",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "true_vector"
+          },
+          {
+            "name": "reconstruct_new_hi",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "reconstruct_new_hi"
+          },
+          {
+            "name": "reconstruct_new_lo",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "reconstruct_new_lo"
+          }
+        ]
+      },
+      {
+        "stage": "reconstruct-allocated",
+        "total_owned_bytes": 40184,
+        "low_part_elements": 189,
+        "arrays": [
+          {
+            "name": "base_state",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "base_state"
+          },
+          {
+            "name": "physical_coefficient",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "physical_coefficient"
+          },
+          {
+            "name": "reaction_float",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "reaction_float"
+          },
+          {
+            "name": "actual_RHS",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "actual_RHS"
+          },
+          {
+            "name": "Thomas_output",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "Thomas_output"
+          },
+          {
+            "name": "Thomas_forward_scratch",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "Thomas_forward_scratch"
+          },
+          {
+            "name": "P.lower",
+            "shape": [
+              62
+            ],
+            "owner_bytes": 496,
+            "owner_alias": "P.lower"
+          },
+          {
+            "name": "P.diagonal",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "P.diagonal"
+          },
+          {
+            "name": "P.upper",
+            "shape": [
+              62
+            ],
+            "owner_bytes": 496,
+            "owner_alias": "P.upper"
+          },
+          {
+            "name": "P.pivot",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "P.pivot"
+          },
+          {
+            "name": "P.cprime",
+            "shape": [
+              62
+            ],
+            "owner_bytes": 496,
+            "owner_alias": "P.cprime"
+          },
+          {
+            "name": "b",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "actual_RHS"
+          },
+          {
+            "name": "hi",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "hi"
+          },
+          {
+            "name": "lo",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "lo"
+          },
+          {
+            "name": "r",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "r"
+          },
+          {
+            "name": "base_hi",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "base_hi"
+          },
+          {
+            "name": "base_lo",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "base_lo"
+          },
+          {
+            "name": "V",
+            "shape": [
+              63,
+              25
+            ],
+            "owner_bytes": 12600,
+            "owner_alias": "V"
+          },
+          {
+            "name": "Z",
+            "shape": [
+              63,
+              24
+            ],
+            "owner_bytes": 12096,
+            "owner_alias": "Z"
+          },
+          {
+            "name": "H",
+            "shape": [
+              25,
+              24
+            ],
+            "owner_bytes": 4800,
+            "owner_alias": "H"
+          },
+          {
+            "name": "cs",
+            "shape": [
+              24
+            ],
+            "owner_bytes": 192,
+            "owner_alias": "cs"
+          },
+          {
+            "name": "sn",
+            "shape": [
+              24
+            ],
+            "owner_bytes": 192,
+            "owner_alias": "sn"
+          },
+          {
+            "name": "g",
+            "shape": [
+              25
+            ],
+            "owner_bytes": 200,
+            "owner_alias": "g"
+          },
+          {
+            "name": "w",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "w"
+          },
+          {
+            "name": "y",
+            "shape": [
+              6
+            ],
+            "owner_bytes": 48,
+            "owner_alias": "y"
+          },
+          {
+            "name": "true_vector",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "true_vector"
+          },
+          {
+            "name": "reconstruct_new_hi",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "reconstruct_new_hi"
+          },
+          {
+            "name": "reconstruct_new_lo",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "reconstruct_new_lo"
+          }
+        ]
+      },
+      {
+        "stage": "reconstruct-allocated",
+        "total_owned_bytes": 40192,
+        "low_part_elements": 189,
+        "arrays": [
+          {
+            "name": "base_state",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "base_state"
+          },
+          {
+            "name": "physical_coefficient",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "physical_coefficient"
+          },
+          {
+            "name": "reaction_float",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "reaction_float"
+          },
+          {
+            "name": "actual_RHS",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "actual_RHS"
+          },
+          {
+            "name": "Thomas_output",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "Thomas_output"
+          },
+          {
+            "name": "Thomas_forward_scratch",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "Thomas_forward_scratch"
+          },
+          {
+            "name": "P.lower",
+            "shape": [
+              62
+            ],
+            "owner_bytes": 496,
+            "owner_alias": "P.lower"
+          },
+          {
+            "name": "P.diagonal",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "P.diagonal"
+          },
+          {
+            "name": "P.upper",
+            "shape": [
+              62
+            ],
+            "owner_bytes": 496,
+            "owner_alias": "P.upper"
+          },
+          {
+            "name": "P.pivot",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "P.pivot"
+          },
+          {
+            "name": "P.cprime",
+            "shape": [
+              62
+            ],
+            "owner_bytes": 496,
+            "owner_alias": "P.cprime"
+          },
+          {
+            "name": "b",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "actual_RHS"
+          },
+          {
+            "name": "hi",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "hi"
+          },
+          {
+            "name": "lo",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "lo"
+          },
+          {
+            "name": "r",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "r"
+          },
+          {
+            "name": "base_hi",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "base_hi"
+          },
+          {
+            "name": "base_lo",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "base_lo"
+          },
+          {
+            "name": "V",
+            "shape": [
+              63,
+              25
+            ],
+            "owner_bytes": 12600,
+            "owner_alias": "V"
+          },
+          {
+            "name": "Z",
+            "shape": [
+              63,
+              24
+            ],
+            "owner_bytes": 12096,
+            "owner_alias": "Z"
+          },
+          {
+            "name": "H",
+            "shape": [
+              25,
+              24
+            ],
+            "owner_bytes": 4800,
+            "owner_alias": "H"
+          },
+          {
+            "name": "cs",
+            "shape": [
+              24
+            ],
+            "owner_bytes": 192,
+            "owner_alias": "cs"
+          },
+          {
+            "name": "sn",
+            "shape": [
+              24
+            ],
+            "owner_bytes": 192,
+            "owner_alias": "sn"
+          },
+          {
+            "name": "g",
+            "shape": [
+              25
+            ],
+            "owner_bytes": 200,
+            "owner_alias": "g"
+          },
+          {
+            "name": "w",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "w"
+          },
+          {
+            "name": "y",
+            "shape": [
+              7
+            ],
+            "owner_bytes": 56,
+            "owner_alias": "y"
+          },
+          {
+            "name": "true_vector",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "true_vector"
+          },
+          {
+            "name": "reconstruct_new_hi",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "reconstruct_new_hi"
+          },
+          {
+            "name": "reconstruct_new_lo",
+            "shape": [
+              63
+            ],
+            "owner_bytes": 504,
+            "owner_alias": "reconstruct_new_lo"
+          }
+        ]
+      }
+    ],
+    "stage_counts": {
+      "cycle-start": 1,
+      "reconstruct-allocated": 7,
+      "reconstruct-complete": 7,
+      "true-residual-allocated": 7,
+      "true-residual-complete": 7,
+      "completed-iteration": 7,
+      "returned-projection": 1
+    },
+    "conservative_unobserved_allowances_bytes": {
+      "new_Arnoldi_blocks_while_old_live": 29496,
+      "new_restart_base_hi_lo_while_old_live": 1008,
+      "new_Givens_vectors_while_old_live": 584,
+      "new_backsolve_y_while_old_live": 192,
+      "direction_exp_diagonal_output_copy_family": 2016,
+      "ordinary_elementwise_and_validation_temporary": 1008,
+      "returned_true_and_QR_history_arrays": 1928
+    },
+    "conservative_named_numeric_storage_upper_bytes": 76424,
+    "scope": "Named ndarray snapshots only are measured. Separate bound SUMS all maximum unobserved numeric-allocation families,even when they cannot coincide or were already seen; includes old+new Arnoldi/base/Givens overlap,direction buffers,legacy elementwise and returnedhistories. Assumes fixedfloat64 n63/restart<=24/max120. It is a conservative numeric-buffer bound,NOT a measured fullpeak,Python/I/O/NumPyallocator/serialization/processRSS bound. Lowpart owners include oldcurrent/base/newreconstruction low simultaneously."
+  },
+  "scope": "Fixedprimitive certificates then one saved main02 linear system. No stateNewton/PDE/derivative/fullmain or alternative solver.",
+  "last_completed_or_active": {
+    "iterations": 7,
+    "target": 3.390407103010852e-14,
+    "restart_count": 0
+  },
+  "last_stage": "returned-projection",
+  "solver": {
+    "iterations": 7,
+    "restart_count": 0,
+    "target": 3.390407103010852e-14,
+    "expanded_true_residual": 1.5302918905936487e-15,
+    "expanded_rawpassed": true,
+    "expanded_target_met": true,
+    "projected_true_residual": 6.424451827405164e-14,
+    "projected_target_met": false,
+    "projection_bytes_equal_hi": true,
+    "scope": "Expanded iterate is two components,not a converged old/projectedcandidate. Projectedstatus is newlymeasured,not historicalA/B rawstatus."
+  },
+  "duration_seconds": 0.09051670799817657
+}

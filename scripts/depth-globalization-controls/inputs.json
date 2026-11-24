@@ -1,0 +1,276 @@
+{
+  "schema_version": 1,
+  "case_id": "globalization-difficult-starts",
+  "units": "Dimensionless. Rosenbrock algebraic roots and one1D Dirichlet Bratu stencil are separate controls.",
+  "methods": [
+    "full-newton",
+    "armijo-newton",
+    "dogleg-trust-region"
+  ],
+  "Rosenbrock": {
+    "F": [
+      "10(y-x^2)",
+      "1-x"
+    ],
+    "exact_root": [
+      1,
+      1
+    ],
+    "starts": [
+      [
+        -1.2,
+        1
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "left_scaling": [
+      [
+        1,
+        1
+      ],
+      [
+        0.001,
+        1000
+      ]
+    ]
+  },
+  "Bratu": {
+    "n": 31,
+    "lambda": 3,
+    "starts": [
+      "zero",
+      "4sin(pi*x)",
+      "8sin(pi*x)"
+    ]
+  },
+  "controls": {
+    "max_iterations": 80,
+    "max_trials_per_step": 25,
+    "armijo_c": 0.0001,
+    "line_shrink": 0.5,
+    "trust_initial_radius": 1,
+    "trust_max_radius": 100,
+    "accept_ratio": 0.1,
+    "shrink_ratio": 0.25,
+    "grow_factor": 2
+  },
+  "outcome_matrix": [
+    {
+      "system": "Rosenbrock",
+      "left_scaling": [
+        1,
+        1
+      ],
+      "starts": [
+        [
+          -1.2,
+          1
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "Armijo_Newton": "REQUIRED_ROOT",
+      "dogleg": "REQUIRED_ROOT",
+      "full_Newton": "DIAGNOSTIC_ONLY"
+    },
+    {
+      "system": "Rosenbrock",
+      "left_scaling": [
+        0.001,
+        1000
+      ],
+      "starts": [
+        [
+          -1.2,
+          1
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "all_three_methods": "DIAGNOSTIC_ONLY; no success expected or selected from output"
+    },
+    {
+      "system": "Bratu n31 lambda3",
+      "start": "zero",
+      "Armijo_Newton": "REQUIRED_DISCRETE_ROOT",
+      "dogleg": "REQUIRED_DISCRETE_ROOT",
+      "full_Newton": "DIAGNOSTIC_ONLY"
+    },
+    {
+      "system": "Bratu n31 lambda3",
+      "starts": [
+        "4sin(pi*x)",
+        "8sin(pi*x)"
+      ],
+      "all_three_methods": "DIAGNOSTIC_ONLY; either branch or explicit nonconvergence category is retained"
+    },
+    {
+      "system": "x^2+1, x0=0",
+      "Armijo_Newton": "REQUIRED_STATIONARY_NONROOT",
+      "dogleg": "REQUIRED_STATIONARY_NONROOT"
+    },
+    {
+      "system": "unrepresentable exp trial",
+      "outcome": "REQUIRED_DOMAIN_REJECTION_BEFORE_UNSAFE_EVALUATION; never count as root success"
+    }
+  ],
+  "dogleg": {
+    "variables": "Euclidean state metric D=I; ||p||2<=Delta. S is ONLY the fixed left residual scaling, with no state-dependent rescaling.",
+    "definitions": "f=S F(x), A=S J(x), g=A^T f, B=A^T A; m(p)=.5||f+A p||2^2. Predicted decrease=.5||f||2^2-.5||f+A p||2^2; actual decrease=phi(x)-phi(x+p).",
+    "Gauss_Newton_endpoint": "pB is the minimum-Euclidean-norm least-squares solution of A p=-f, computed with a fixed SVD rank cutoff sigma>1e-12*max(m,n)*sigma_max. Save all singular values, rank and least-squares residual; no hidden regularization. A singular/rank-deficient Jacobian is not itself root success.",
+    "Cauchy_endpoint": "If g nonzero and ||A g||2^2>0, pU=-(g^T g)/(||A g||2^2)*g. If ||pU||>=Delta, choose -Delta*g/||g||. Otherwise take pB when inside the ball, or pU+t(pB-pU) at the unique t in[0,1] on ||p||=Delta.",
+    "degenerate_cases": "At unscaled root criterion, return ROOT first. If g exactly zero and original residual fails, return STATIONARY_NONROOT. Nonzero g with nonpositive/nonfinite ||Ag||2^2, rank-solver failure or unrepresentable model returns MODEL_DEGENERATE/MODEL_FAILURE with current f/A/g/p candidates; no division, floor or fallback Newton step. Coincident pU/pB is handled by the already tested inside-ball endpoint.",
+    "ratio": "rho=actual/predicted only if predicted>0 and finite. Predicted<=0 is MODEL_FAILURE, not a zero/NaN numeric CSV ratio.",
+    "acceptance": "Accept iff predicted>0, actual>0 and rho>=.1. Otherwise reject and keep x unchanged.",
+    "radius_update": "After a finite valid trial: rho<.25 => Delta_new=.25Delta; else if rho>.75 and ||p||>=.99Delta => min(2Delta,100); else Delta_new=Delta. rho<=0 follows the shrink branch. A domain-rejected trial also shrinks by.25 and consumes one trial. Delta<2^-40 terminates TRUST_RADIUS_EXHAUSTED.",
+    "trial_cap": "At most25 trial steps per accepted outer iterate, at most80 outer iterations. Keep all rejected states. No automatic retry with new starts or larger caps.",
+    "stable_predicted_decrease": "Compute pred=-sum(g*p)-.5*sum((A*p)^2) with explicit matrix-vector contraction; save direct .5||f||²-.5||f+Ap||² too. Compare the two under64*eps*max(1,phi,||g||||p||,||Ap||²). Acceptance uses the stable quadratic expression; no postoutput formula switch."
+  },
+  "line_search": "Use the same phi and exact gradient g. A descent Newton/least-squares direction requires g^T p<0; otherwise return NONDESCENT_DIRECTION/STATIONARY_NONROOT as appropriate. Try alpha=2^-j,j=0..24, accept phi(x+alpha*p)<=phi(x)+1e-4*alpha*g^T*p. Preserve all rejected/domain trials and count all F evaluations.",
+  "negative_fixtures": [
+    "F(x)=x^2+1,x0=0: stationary nonroot, not successful convergence",
+    "Reject and save a deliberately unrepresentable exp trial before evaluation"
+  ],
+  "planned_main_records": {
+    "common_start_trajectories": 21,
+    "stationary_nonroot_controls": 2,
+    "pre_evaluation_domain_control": 1,
+    "total": 24
+  },
+  "reference_components": [
+    {
+      "id": "diagonal-dogleg",
+      "A": [
+        [
+          2,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "f": [
+        2,
+        1
+      ],
+      "radii": [
+        0.25,
+        1.2,
+        2
+      ],
+      "exact_pGN": [
+        -1,
+        -1
+      ],
+      "exact_pCauchy": [
+        "-68/65",
+        "-17/65"
+      ],
+      "oracle": "Exact rational endpoints and independent Decimal60 quadratic intersection for the intermediate radius."
+    },
+    {
+      "id": "rank-one",
+      "A": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "f": [
+        1,
+        1
+      ],
+      "radius": 0.5,
+      "oracle": "Minimum-norm pGN=(-1,0), boundary step=(-.5,0), rank1; residual second component is irreducible."
+    },
+    {
+      "id": "zero-gradient-nonroot",
+      "A": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "f": [
+        1,
+        0
+      ],
+      "oracle": "g0 with positive residual =>STATIONARY_NONROOT, never root."
+    },
+    {
+      "id": "zero-residual",
+      "A": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "f": [
+        0,
+        0
+      ],
+      "oracle": "ROOT before stationary-gradient/model checks."
+    }
+  ],
+  "implementation_note": "Use fixed-input arrays; no initial-value/parameter sweep or postfailure start selection. Full Newton diagnostics are retained even when not roots.",
+  "domain_fixture": {
+    "kind": "bratu",
+    "lambda": 3,
+    "n": 31,
+    "candidate": [
+      800,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "expected_status": "DOMAIN_REJECTED_BEFORE_EXP",
+    "unsafe_exp_calls": 0
+  }
+}

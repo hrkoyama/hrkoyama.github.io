@@ -1,0 +1,298 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "verified_at_utc": "2026-11-24T08:32:07.087367+00:00",
+  "final_commit": "f08147fa21f89bf5a1d13d8ae34fcd35090a1c79",
+  "content_tree": "214b619aed591f7cbc1f2fa626d327968c0edec5",
+  "publication_repository": "hrkoyama/hrkoyama.github.io",
+  "publication_branch": "main",
+  "public_origin": "https://hrkoyama.github.io/numerical-methods-atlas/",
+  "backlog_sequences": [
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57
+  ],
+  "new_groups": [
+    {
+      "group": "maxwell-cylinder",
+      "edition": "2026-11-24-r2",
+      "tests": 22,
+      "cases": [
+        "cylinder-mie2d"
+      ],
+      "case_gates": {
+        "cylinder-mie2d": 19
+      },
+      "archive": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/atlas-maxwell-cylinder-2026-11-24-r2.zip",
+        "sha256": "bf2f69032cfe912d23e065582397202a695dde241350774a0c69997b70bd1a06"
+      }
+    },
+    {
+      "group": "maxwell-lorentz",
+      "edition": "2026-11-24-r2",
+      "tests": 15,
+      "cases": [
+        "lorentz-oblique-sp"
+      ],
+      "case_gates": {
+        "lorentz-oblique-sp": 57
+      },
+      "archive": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/atlas-maxwell-lorentz-2026-11-24-r2.zip",
+        "sha256": "7af2a66b6defba64c5392f05292d2b49810140253455945d54112eb4594871a1"
+      }
+    },
+    {
+      "group": "maxwell-grazing",
+      "edition": "2026-11-24-r2",
+      "tests": 15,
+      "cases": [
+        "dispersive-grazing-pml"
+      ],
+      "case_gates": {
+        "dispersive-grazing-pml": 44
+      },
+      "archive": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/atlas-maxwell-grazing-2026-11-24-r2.zip",
+        "sha256": "a9d0c65eb27e26b05eafd3774b9f651b01baf28e617769bb2bbcb7efb0b90d3d"
+      }
+    },
+    {
+      "group": "linear-algebra-spectral",
+      "edition": "2026-11-24-r3",
+      "tests": 29,
+      "cases": [
+        "fem-mass-eigen",
+        "pivoted-direct-refinement",
+        "restarted-shift-invert",
+        "symmetric-saddle-minres"
+      ],
+      "case_gates": {
+        "pivoted-direct-refinement": 58,
+        "symmetric-saddle-minres": 55,
+        "restarted-shift-invert": 43,
+        "fem-mass-eigen": 39
+      },
+      "archive": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/atlas-linear-algebra-spectral-2026-11-24-r3.zip",
+        "sha256": "3d14112335ce8a55cce306ec689d430f172d02a49f4675ae5948a2fab7ca1452"
+      }
+    },
+    {
+      "group": "bratu-continuation-jfnk",
+      "edition": "2026-11-24-r2",
+      "tests": 27,
+      "cases": [
+        "bratu-fold-continuation",
+        "bratu-matrix-free-jfnk"
+      ],
+      "case_gates": {
+        "bratu-fold-continuation": 67,
+        "bratu-matrix-free-jfnk": 129
+      },
+      "archive": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/atlas-bratu-continuation-jfnk-2026-11-24-r2.zip",
+        "sha256": "aeffa7e1b442f198ef2de55e453f82e5d6cbe30fc3d0bbd1112354a38a20a25d"
+      }
+    }
+  ],
+  "new_scientific_cases": 9,
+  "new_pytest": 108,
+  "new_case_gates": 511,
+  "source_curation_only": {
+    "sequence": 55,
+    "new_numerical_cases": 0,
+    "selected_reading": [
+      {
+        "id": "lanczos1950",
+        "title": "An iteration method for the solution of the eigenvalue problem of linear differential and integral operators",
+        "year": 1950,
+        "source_review": {
+          "level": "full-text",
+          "scope": "Selected original pages266-267,sectionVII,equations63-78,and271,equation99: symmetric three-term reduction and orthogonality correction. Original vectors are unnormalized; no whole-paper proof or modern-restarting guarantee is claimed.",
+          "representation": "Official original PDF; selected pages visually inspected"
+        }
+      },
+      {
+        "id": "arnoldi1951",
+        "title": "The principle of minimized iterations in the solution of the matrix eigenvalue problem",
+        "year": 1951,
+        "source_review": {
+          "level": "full-text",
+          "scope": "Selected original-paper OCR prose,pp25-26,section6,and28-29,section8: projection and orthogonality checks. Official PDF returned403; original scan and equation symbols remain unverified. Modern normalized algorithms are separately specified and tested.",
+          "representation": "Public OCR transcription of original prose; original scan and equation symbols unverified"
+        }
+      }
+    ]
+  },
+  "public_linux": {
+    "run_id": 45353730063,
+    "run_attempt": 1,
+    "url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45353730063",
+    "groups": 52,
+    "cases": 106,
+    "pytest": 1352,
+    "source_checkout": false,
+    "all52JUnitVerified": true,
+    "report_sha256": "26d6bad16948c2a804ed48abfaaebb6e4713b2e6ce0d6bb7bcc142f79fdf470e",
+    "junit_sha256": {
+      "foundations": "de7901bbc4cffb948f2515e062e84fdf317964527800cdc3923589c48a4bf2d5",
+      "models": "c901688cdb677bfc87a7ae848897c2d2ddc012c0295379c9d106dae03d6cb019",
+      "particles": "3b1e45530469b7ace84cd2bdf5c77bdeefbe79993f94ce9f18fab95048594dcc",
+      "mhd": "2d03089253a656851a8c5efbf30b62aaaedacacbedd6b0899cf13f6eb5681f7c",
+      "thermostats": "ce410efb72981917f5f9bb3daea07d1dff189864e356df9b80dca9cb034cdaec",
+      "biology": "32f7207e46bcffecaf4761183fbea3f99ed3c4de19d99bb021d62f485e23bed3",
+      "mcmc": "99abb7203a8a2e7bc9bb81473564ca277d2758af607ff17eb34d09f3d9d65904",
+      "mhd-convergence": "3c2cf265ae918f73f3c7d147f4857ecc52f0fa8c7720669d4e780f96129f2e8d",
+      "foundations-conditioning": "eb2ec5650fccb5325e218c6be97460784523f90ebaafcf75ac822cb2d5fbfca4",
+      "particle-transport": "e6781f08386184ca54ac0b8b8e80b0c753ddd007c995a94ea36c0a763df37d36",
+      "splitting": "10555438a28f7527db8d2e52808ab415cc2ffff42f521f17551f1f3fde33e07c",
+      "noh": "50ceac6784f8ed2d826c98348bcd5d7424fb97b5cd3ad9406179116a999fbe2f",
+      "noh-cartesian": "44e1397d7e5288b2ccbe16bad73a6001b3b7702996f090b5ff211bd62435236a",
+      "sedov": "c7f62a1adfbca18b22d08736fe050165b59a92f32165dadecea1e64f154f9dd3",
+      "double-mach": "10b859c65d7afb31517ab775984c7f46bfecda95cf8c2ac380c5fb8e0654bd29",
+      "forward-step": "57c2d9cd528242e9cd8da2cb4fedf5412df36dfd5682f49b9ac782b4b6d4785a",
+      "low-mach": "53c499d206e42747969ae9be29cd3aa0b9fa3a53792ae58ca06bed12f46d458f",
+      "guderley": "8aa3ef805eb1358b75167c9bd28a34fa91246e08d41ed4a19970dbe69a487fc1",
+      "euler-positivity": "aa7a7a8e68378ce1c26eb1d5a9c0e257151ba05c992ea916ee6e4ab35cf47650",
+      "zalesak": "5130fe6e17c905c5fa8d869c69f7efa3a7c36fc8787df568e83381f3f2a96f14",
+      "weno-critical": "c0840c6085a38f7de554fd490b50e71e0ef02169e186b16b4d9828785df37cd7",
+      "shallow-water": "9ac07215ff1f9ef541d75fa6a6fdff238c40cbbf98cb97930c093ba4b21d1c03",
+      "wall-flow": "7f9404a66a2c1ed3741c77662a162a28f0caa6348b26a8f2e0d2c6e8dc6978f9",
+      "level-set": "5f18318e4ada99f1c4e05b8c011af7848aa410e97a3b70b07695ceb45a8d35b8",
+      "sem-fr": "be489706168fcab4e597979c4c5885044fee7a1e9b333db99a1f5acaa083fc72",
+      "instability-growth": "acc2b3728e2011e2dc76cf965a63cace33fb044542de4fd604907bb2a87e8c29",
+      "mhd-transport": "3809b38bd19ce62a2d8119038a8614a26ebfad16caace2dec91c536a47b6c9eb",
+      "mesh-boundary": "4cb41d613bf7961246306540f06909a0de125b2e6a6abab8576aa6d9f419fe2e",
+      "moving-waves": "2ae6bc8206762643ad8f590b1fbdfbb8f4ca7c11afc5620f159a76464ac8da22",
+      "relativistic": "37cc73080236ab247cbdd89c2756851d883c6ff6c1307a5f43ad2e1702542d02",
+      "coefficient-diffusion": "7ff83393695cce895c61a68dd7b2ee842e05532403c24fba430bfc599e5d7685",
+      "slab-ewald": "9c39e6e80c8650c8ae07b60f469420b49866359aea272b73768ad7ba0c6bef38",
+      "fmm3d": "60e560ebdc347fe820ef213d93cdf19c6077fcb7170e54c8c50aa7471d507d38",
+      "gravity-dynamics": "a3c13f02d729116869ea2375803ca29500e2eddfce61796046506bc6801991c7",
+      "warm-pic": "5a2f3ade3102918a3d3da2b9dd5c02977c21e34ad910b85f2f1e944f51da0e27",
+      "pic-spatial": "c03c65686dea15fbfbba72291d96f152d3ad224a183ef55fe28d5cbdff82eaf2",
+      "dsmc-wall": "ddcd87c81ec686fa2e3bf74534a24df4c3ab94b0415ade306461c05b8060de03",
+      "dsmc-shock": "20de797aa6d772d76a03bb6f836dca18215b67d08cfceed11021b7b6b54e9f08",
+      "lbm-cavity": "ffb814c5145095446d9b2ec5a3fec111882244a86abf557966acd291f482c0d2",
+      "lbm-taylor-green": "d451fca5af74477b48be4b51b4f8106637d1de4980e060f0e096aaaf6f12d02b",
+      "lbm-annulus": "2973da3706f0afe95085e981789ef497a7436cd51e4661659d055d49044fe4b2",
+      "lbm-curved-boundary": "33795aa22617d4dff15af220bd72c60e28927e651d5c4214b2efe551403d916c",
+      "radiation-scattering": "c35fb3079821b16639273dde10f21d706b45182bb56ca49539e1c956c9d2028c",
+      "radiation-matter": "fce4073a0ce4c5165a2e328bea467eaeaabb2a7208225ca72d15a5796c484fa2",
+      "radiation-geometry": "63a7e8abbe5e3a09af258843699c851fd85153a5a78c137fbd945df4944e6e3d",
+      "stochastic-accuracy": "b3c15785d11828f6c8bfdf46e020169b2c91214ccf144e50bf79b8dc6e4ffa38",
+      "stochastic-estimation": "015cbf4343f4bbf244d923d9e449ddc76fc7fb5b97cec327be45b6289f59b256",
+      "maxwell-cylinder": "345915005e23c6d3c58f5c099d01fef8296d3aeff733eb58f6597d534c08f801",
+      "maxwell-lorentz": "1a34bc93a70be7c44005b4ced8c9bbbed6af6efd70b564094c80cff89562ec22",
+      "maxwell-grazing": "91883c2e16997c06447fd171069bc75085b689e15c41a89c49fee195e72db608",
+      "linear-algebra-spectral": "9f2c305deb5842360c1179b49c3eafbc49a6fe53a2d7c916d7bddedac5d624c1",
+      "bratu-continuation-jfnk": "064660e7369de14de38ffd5147b91795cce7e5abb5e77102ee118113a176ddbe"
+    }
+  },
+  "public_HTTP": {
+    "files": 1823,
+    "bytes": 558081526,
+    "anonymous": true,
+    "proof_sha256": "40431179139097c2726486a1050cc7d6140fb3a135c0799be8537634eb671f9c"
+  },
+  "public_UI": {
+    "actual_HR_views": 12,
+    "profiles": 4,
+    "cases": 3,
+    "root_visual_review": true,
+    "proof_sha256": "66038420a27bdc283c50f77660692f61d7f5683c0a7e2be3d1f8b6134f2fca2d"
+  },
+  "site_checks": {
+    "actual_node_tests": 603,
+    "browser_tests": 16,
+    "profiles": 4,
+    "generated_indexes_current": true
+  },
+  "cold_search": {
+    "samples": 12,
+    "groups": 4,
+    "repetitions": 3,
+    "scope": "12 synthetic shaped Chromium cold-search samples; 3 per group, min/median/max. Not physical-device equivalence, p95, or a newly imposed latency threshold."
+  },
+  "mandatory_workflows": [
+    {
+      "name": "pages build and deployment",
+      "id": 45352654568,
+      "run_attempt": 1,
+      "head_sha": "f08147fa21f89bf5a1d13d8ae34fcd35090a1c79",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45352654568"
+    },
+    {
+      "name": "Public site checks",
+      "id": 45352656659,
+      "run_attempt": 1,
+      "head_sha": "f08147fa21f89bf5a1d13d8ae34fcd35090a1c79",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45352656659"
+    },
+    {
+      "name": "Atlas cold-search performance verification",
+      "id": 45352656555,
+      "run_attempt": 1,
+      "head_sha": "f08147fa21f89bf5a1d13d8ae34fcd35090a1c79",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45352656555"
+    },
+    {
+      "name": "Atlas lightweight public Linux verification",
+      "id": 45353730063,
+      "run_attempt": 1,
+      "head_sha": "f08147fa21f89bf5a1d13d8ae34fcd35090a1c79",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45353730063"
+    },
+    {
+      "name": "Foundations course public Linux verification",
+      "id": 45353730057,
+      "run_attempt": 1,
+      "head_sha": "f08147fa21f89bf5a1d13d8ae34fcd35090a1c79",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45353730057"
+    },
+    {
+      "name": "Foundations English public Web and PDF verification",
+      "id": 45353730031,
+      "run_attempt": 1,
+      "head_sha": "f08147fa21f89bf5a1d13d8ae34fcd35090a1c79",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45353730031"
+    }
+  ],
+  "proof_sha256": {
+    "final_summary": "16bfc1ec039198cdbaddea83508100b1e93a7b2a0d74db8a1e493e67a3dac490",
+    "status": "31a71271dbc40ae46dd28086b8acc4444e16dbdde5d30be6b1b2f9bb845ac64a",
+    "linux_ci": "4f6846db425cabb3a53268d8941113eff0a6c5873c13ead070ef53a9f621ce70",
+    "linux_report": "26d6bad16948c2a804ed48abfaaebb6e4713b2e6ce0d6bb7bcc142f79fdf470e",
+    "linux_context": "bcafa1920c33da9e71b82bd8f1b456c52c3d40fa84715bc3082570798d2a9d4d",
+    "http": "40431179139097c2726486a1050cc7d6140fb3a135c0799be8537634eb671f9c",
+    "ui": "66038420a27bdc283c50f77660692f61d7f5683c0a7e2be3d1f8b6134f2fca2d",
+    "ui_visual": "e94b97cf60b152f8012689450d9f47e53d5a5bb546ce1c2690c83ca37972486a",
+    "site": "82ed24a9f711fc154e20ae6cf643484494a36cb62b2dc2befb703b1b989c5880",
+    "performance": "8fd280db32660df1b6b52e598a53027e40bf572334234f093e943ea85188ed45",
+    "course": "f757fdd132625d065e7ca4ab4f5c47e935a2f780be4e37ea33468f977db78b71",
+    "english": "b30b7a4e59a187c9b7fad19c8fb300ea4a2ff834d2fdb2b8edf0135f8483a8f1"
+  },
+  "remaining_unfinished_candidates": 53,
+  "scope": "Actual final published files and all52 Linux ZIP/JUnit checks; selected source55 reading adds no tenth solver. Published labels/public proof/index metadata are deferred to the next authorized daily aggregate. Historical failures and prior proofs remain separate."
+}

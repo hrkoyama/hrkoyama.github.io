@@ -1,0 +1,300 @@
+[
+  {
+    "context_index": 0,
+    "sigma": 0.0001,
+    "seed": 67001,
+    "gamma_path_complete": true,
+    "selection_status": "SELECTED",
+    "selected_gamma": 0.0,
+    "noise_norm": 9.200335252915353e-05,
+    "selected_parameters": [
+      2.200220085333617,
+      0.34932386919730085
+    ],
+    "covariance": [
+      [
+        6.71133550056593e-08,
+        -3.307103980862369e-08
+      ],
+      [
+        -3.307103980862369e-08,
+        6.460729429072005e-06
+      ]
+    ],
+    "covariance_scope": "Fixed-gamma local linear-model plug-in; not selection-conditional",
+    "lcurve": {
+      "status": "FOUR_POINT_DIAGNOSTIC_ONLY",
+      "values": [
+        0.17379882146109452,
+        0.04055832769385282
+      ],
+      "gamma_values": [
+        0.0001,
+        0.001
+      ]
+    }
+  },
+  {
+    "context_index": 0,
+    "sigma": 0.0001,
+    "seed": 67002,
+    "gamma_path_complete": true,
+    "selection_status": "SELECTED",
+    "selected_gamma": 0.0,
+    "noise_norm": 6.260815131696813e-05,
+    "selected_parameters": [
+      2.2001037643088956,
+      0.3500636118871734
+    ],
+    "covariance": [
+      [
+        6.712154362671189e-08,
+        -3.314197739577766e-08
+      ],
+      [
+        -3.314197739577766e-08,
+        6.461011933907846e-06
+      ]
+    ],
+    "covariance_scope": "Fixed-gamma local linear-model plug-in; not selection-conditional",
+    "lcurve": {
+      "status": "FOUR_POINT_DIAGNOSTIC_ONLY",
+      "values": [
+        0.17309407106273958,
+        0.04092468815385583
+      ],
+      "gamma_values": [
+        0.0001,
+        0.001
+      ]
+    }
+  },
+  {
+    "context_index": 0,
+    "sigma": 0.001,
+    "seed": 67001,
+    "gamma_path_complete": true,
+    "selection_status": "SELECTED",
+    "selected_gamma": 1e-05,
+    "noise_norm": 0.0009200335252915354,
+    "selected_parameters": [
+      2.202184712814885,
+      0.33253402934999554
+    ],
+    "covariance": [
+      [
+        6.691871169406355e-06,
+        -2.950981966909945e-06
+      ],
+      [
+        -2.950981966909945e-06,
+        0.0006058534897207635
+      ]
+    ],
+    "covariance_scope": "Fixed-gamma local linear-model plug-in; not selection-conditional",
+    "lcurve": {
+      "status": "FOUR_POINT_DIAGNOSTIC_ONLY",
+      "values": [
+        0.1683729015282135,
+        0.008686208913441615
+      ],
+      "gamma_values": [
+        0.0001,
+        0.001
+      ]
+    }
+  },
+  {
+    "context_index": 0,
+    "sigma": 0.001,
+    "seed": 67002,
+    "gamma_path_complete": true,
+    "selection_status": "SELECTED",
+    "selected_gamma": 1e-05,
+    "noise_norm": 0.0006260815131696812,
+    "selected_parameters": [
+      2.2010253323987925,
+      0.33969698868415743
+    ],
+    "covariance": [
+      [
+        6.6999503830905355e-06,
+        -3.0152854753840842e-06
+      ],
+      [
+        -3.0152854753840842e-06,
+        0.0006061016239439646
+      ]
+    ],
+    "covariance_scope": "Fixed-gamma local linear-model plug-in; not selection-conditional",
+    "lcurve": {
+      "status": "FOUR_POINT_DIAGNOSTIC_ONLY",
+      "values": [
+        0.1936134863115132,
+        0.02544039478660502
+      ],
+      "gamma_values": [
+        0.0001,
+        0.001
+      ]
+    }
+  },
+  {
+    "context_index": 1,
+    "sigma": 0.0001,
+    "seed": 67001,
+    "gamma_path_complete": true,
+    "selection_status": "SELECTED",
+    "selected_gamma": 0.0,
+    "noise_norm": 9.200335252915353e-05,
+    "selected_parameters": [
+      2.1997582124871027,
+      0.34901817294339915
+    ],
+    "covariance": [
+      [
+        6.71440999711942e-08,
+        -3.3045793328168715e-08
+      ],
+      [
+        -3.3045793328168715e-08,
+        6.461883560606835e-06
+      ]
+    ],
+    "covariance_scope": "Fixed-gamma local linear-model plug-in; not selection-conditional",
+    "lcurve": {
+      "status": "FOUR_POINT_DIAGNOSTIC_ONLY",
+      "values": [
+        0.17416931836394622,
+        0.04067186893824234
+      ],
+      "gamma_values": [
+        0.0001,
+        0.001
+      ]
+    }
+  },
+  {
+    "context_index": 1,
+    "sigma": 0.0001,
+    "seed": 67002,
+    "gamma_path_complete": true,
+    "selection_status": "SELECTED",
+    "selected_gamma": 0.0,
+    "noise_norm": 6.260815131696813e-05,
+    "selected_parameters": [
+      2.199641867096857,
+      0.3497579973516197
+    ],
+    "covariance": [
+      [
+        6.715229096694613e-08,
+        -3.311674579081892e-08
+      ],
+      [
+        -3.311674579081892e-08,
+        6.46216611661916e-06
+      ]
+    ],
+    "covariance_scope": "Fixed-gamma local linear-model plug-in; not selection-conditional",
+    "lcurve": {
+      "status": "FOUR_POINT_DIAGNOSTIC_ONLY",
+      "values": [
+        0.17343201397801675,
+        0.041045126933730955
+      ],
+      "gamma_values": [
+        0.0001,
+        0.001
+      ]
+    }
+  },
+  {
+    "context_index": 1,
+    "sigma": 0.001,
+    "seed": 67001,
+    "gamma_path_complete": true,
+    "selection_status": "SELECTED",
+    "selected_gamma": 1e-05,
+    "noise_norm": 0.0009200335252915354,
+    "selected_parameters": [
+      2.201723324258229,
+      0.33223522242459785
+    ],
+    "covariance": [
+      [
+        6.69493918572348e-06,
+        -2.9486259773687237e-06
+      ],
+      [
+        -2.9486259773687237e-06,
+        0.0006059549214237783
+      ]
+    ],
+    "covariance_scope": "Fixed-gamma local linear-model plug-in; not selection-conditional",
+    "lcurve": {
+      "status": "FOUR_POINT_DIAGNOSTIC_ONLY",
+      "values": [
+        0.16849227191481955,
+        0.008596796366878396
+      ],
+      "gamma_values": [
+        0.0001,
+        0.001
+      ]
+    }
+  },
+  {
+    "context_index": 1,
+    "sigma": 0.001,
+    "seed": 67002,
+    "gamma_path_complete": true,
+    "selection_status": "SELECTED",
+    "selected_gamma": 1e-05,
+    "noise_norm": 0.0006260815131696812,
+    "selected_parameters": [
+      2.2005636992382875,
+      0.33939893320236936
+    ],
+    "covariance": [
+      [
+        6.703020805564911e-06,
+        -3.012941938932233e-06
+      ],
+      [
+        -3.012941938932233e-06,
+        0.0006062030950111333
+      ]
+    ],
+    "covariance_scope": "Fixed-gamma local linear-model plug-in; not selection-conditional",
+    "lcurve": {
+      "status": "FOUR_POINT_DIAGNOSTIC_ONLY",
+      "values": [
+        0.1939292362618839,
+        0.02546195700297179
+      ],
+      "gamma_values": [
+        0.0001,
+        0.001
+      ]
+    }
+  },
+  {
+    "context_index": 0,
+    "control": "noiseless-gamma0",
+    "parameters": [
+      2.2000000000001045,
+      0.349999999983151
+    ],
+    "qualified": true
+  },
+  {
+    "context_index": 1,
+    "control": "noiseless-gamma0",
+    "parameters": [
+      2.199538077135199,
+      0.3496943851946416
+    ],
+    "qualified": true
+  }
+]

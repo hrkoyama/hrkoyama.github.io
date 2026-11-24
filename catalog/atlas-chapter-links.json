@@ -1148,6 +1148,144 @@
         "ja": "同じ1次元Bratu境界値問題で、foldを越える継続とJacobianを組み立てない反復を独立解析族へ照合します。",
         "en": "The same one-dimensional Bratu problem compares fold continuation and matrix-free iteration against an independently evaluated analytic family."
       }
+    },
+    {
+      "id": "validation-globalization-controls",
+      "method_ids": [
+        "newton",
+        "dogleg-trust-region"
+      ],
+      "equation_ids": [
+        "finite-dimensional-nonlinear-map",
+        "bratu"
+      ],
+      "problem_ids": [
+        "globalization-difficult-starts"
+      ],
+      "execution_ids": [
+        "globalization-difficult-starts"
+      ],
+      "reference_ids": [
+        "globalization-difficult-starts"
+      ],
+      "code_problem_ids": [
+        "globalization-difficult-starts"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "原残差・scaled meritと全試行の記録から、根・非根停留・上限終了を区別します。",
+        "en": "Original residuals, scaled merit and complete trial ledgers separate roots, stationary nonroots and budget exhaustion."
+      }
+    },
+    {
+      "id": "validation-reverse-higher-ad",
+      "method_ids": [
+        "automatic-differentiation"
+      ],
+      "equation_ids": [
+        "finite-dimensional-nonlinear-map",
+        "bratu"
+      ],
+      "problem_ids": [
+        "reverse-vjp-duality",
+        "hessian-vector-products",
+        "kink-branch-derivatives"
+      ],
+      "execution_ids": [
+        "reverse-vjp-duality",
+        "hessian-vector-products",
+        "kink-branch-derivatives"
+      ],
+      "reference_ids": [
+        "reverse-vjp-duality",
+        "hessian-vector-products",
+        "kink-branch-derivatives"
+      ],
+      "code_problem_ids": [
+        "reverse-vjp-duality",
+        "hessian-vector-products",
+        "kink-branch-derivatives"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "小さい独自tapeを独立手計算と照合し、状態固定の偏微分・陰関数全微分・実行分岐を分けます。",
+        "en": "Independent hand-derived references check a small original tape, separating fixed-state partials, implicit total derivatives and executed branches."
+      }
+    },
+    {
+      "id": "validation-adjoint",
+      "method_ids": [
+        "adjoint",
+        "backward-euler",
+        "thomas",
+        "gmres",
+        "centered-difference",
+        "newton"
+      ],
+      "equation_ids": [
+        "heat",
+        "bratu"
+      ],
+      "problem_ids": [
+        "diffusion-discrete-adjoint",
+        "bratu-fold-sensitivity",
+        "bratu-distributed-vjp"
+      ],
+      "execution_ids": [
+        "diffusion-discrete-adjoint",
+        "bratu-fold-sensitivity",
+        "bratu-distributed-vjp"
+      ],
+      "reference_ids": [
+        "diffusion-discrete-adjoint",
+        "bratu-fold-sensitivity",
+        "bratu-distributed-vjp"
+      ],
+      "code_problem_ids": [
+        "diffusion-discrete-adjoint",
+        "bratu-fold-sensitivity",
+        "bratu-distributed-vjp"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "離散写像の接線と随伴を比較し、参照精度・要求残差・保存bufferと再計算を分けます。",
+        "en": "Compare tangents and adjoints of discrete maps, separating reference accuracy, requested residuals, owned buffers and recomputation."
+      }
+    },
+    {
+      "id": "validation-inverse-optimization",
+      "method_ids": [
+        "optimization"
+      ],
+      "equation_ids": [
+        "bratu",
+        "finite-dimensional-optimization"
+      ],
+      "problem_ids": [
+        "bratu-gn-lm-bounds",
+        "bfgs-lbfgs-controls",
+        "bratu-noise-regularization"
+      ],
+      "execution_ids": [
+        "bratu-gn-lm-bounds",
+        "bfgs-lbfgs-controls",
+        "bratu-noise-regularization"
+      ],
+      "reference_ids": [
+        "bratu-gn-lm-bounds",
+        "bfgs-lbfgs-controls",
+        "bratu-noise-regularization"
+      ],
+      "code_problem_ids": [
+        "bratu-gn-lm-bounds",
+        "bfgs-lbfgs-controls",
+        "bratu-noise-regularization"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "既存の合成観測を保持し、小さな固定例でGN/LM・準Newton・正則化選択を比較します。",
+        "en": "Retain existing synthetic observations and compare GN/LM, quasi-Newton methods and regularization selection on small fixed controls."
+      }
     }
   ]
 }

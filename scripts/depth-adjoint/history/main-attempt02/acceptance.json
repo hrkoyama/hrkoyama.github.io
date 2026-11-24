@@ -1,0 +1,769 @@
+{
+  "status": "FROZEN_DESIGN_FOR_REVIEW_NOT_EXECUTION_AUTHORIZATION",
+  "limits": {
+    "reference": {
+      "decimal_precisions": [
+        50,
+        80
+      ],
+      "agreement_scaled": 1e-35,
+      "oracle_residual": 1e-40,
+      "fold_anchor_abs": 1e-10,
+      "linear_float_vs_decimal_scaled": 2e-11,
+      "sin_tail_abs": "1e-90",
+      "fold_newton_max": 16,
+      "fold_line_halvings": 16,
+      "shooting_max": 120,
+      "Thomas_Newton_max": 40
+    },
+    "62": {
+      "field_scaled": 5e-12,
+      "gradient_scaled": 5e-10,
+      "adjoint_tangent_scaled": 5e-11,
+      "replay_gradient_scaled": 5e-13,
+      "FD_finest_scaled": 1e-07,
+      "time_ratio": [
+        0.4,
+        0.65
+      ],
+      "time_error_roundoff_scale": 1e-12,
+      "checkpoint_peak_state_elements_factor": 40
+    },
+    "63": {
+      "strict_state_scaled": 5e-09,
+      "gradient_reference_absolute": 5e-12,
+      "gradient_reference_relative": 1e-08,
+      "direct_duality_scaled": 1e-10,
+      "residual_identity_scaled": 1e-09,
+      "reference_error_bound_roundoff_scaled": 1e-09,
+      "symmetry_scaled": 1e-09,
+      "FD_accuracy": "All predetermined curves retained; no best-step or monotonic-order PASS gate. FD states must be finite/same lower branch/converged. Accuracy is qualified by separate tangent/adjoint/reference gates."
+    },
+    "64": {
+      "dot_product_scaled": 1e-10,
+      "VJP_absolute": 5e-12,
+      "VJP_relative": 1e-08,
+      "FD_finest_scaled": 2e-07,
+      "affine_identity_scaled": 1e-13,
+      "allocation": "Primary has no n-by-m parameter Jacobian/sensitivity. Explicit GMRES basis(n,25)/(n,24),local hats(n,2),states(n),gradients(3,m) are counted; dense reference arrays separately."
+    }
+  },
+  "planned_main_gate_count": 141,
+  "planned_main_gates_by_case": {
+    "diffusion-discrete-adjoint": 59,
+    "bratu-fold-sensitivity": 55,
+    "bratu-distributed-vjp": 27
+  },
+  "gates": [
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n7-N64-finite-boundary",
+      "criterion": "All saved states/tangents/adjoints finite; fixed endpoint values exactly0."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n7-N64-state-modal",
+      "criterion": "Terminal/full saved field vs qualified same-time-discrete modal reference<=5e-12*max(1,reference_hnorm)."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n7-N64-adjoint-modal",
+      "criterion": "Two-component adjoint gradient vs modal<=5e-10*max(1,normreference)."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n7-N64-tangent-modal",
+      "criterion": "Tangent gradient vs modal,same threshold."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n7-N64-adjoint-tangent",
+      "criterion": "Difference<=5e-11*max(1,normreference)."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n7-N64-replay-state",
+      "criterion": "Every replayed state bit-identical to same-order full-storage state."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n7-N64-replay-gradient",
+      "criterion": "Difference<=5e-13*max(1,normreference)."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n7-N64-exact-work",
+      "criterion": "Checkpoint=Nprimal+Nreplay+Ntranspose;full=Nprimal+Ntranspose;tangent2NRHS separately counted."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n7-N128-finite-boundary",
+      "criterion": "All saved states/tangents/adjoints finite; fixed endpoint values exactly0."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n7-N128-state-modal",
+      "criterion": "Terminal/full saved field vs qualified same-time-discrete modal reference<=5e-12*max(1,reference_hnorm)."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n7-N128-adjoint-modal",
+      "criterion": "Two-component adjoint gradient vs modal<=5e-10*max(1,normreference)."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n7-N128-tangent-modal",
+      "criterion": "Tangent gradient vs modal,same threshold."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n7-N128-adjoint-tangent",
+      "criterion": "Difference<=5e-11*max(1,normreference)."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n7-N128-replay-state",
+      "criterion": "Every replayed state bit-identical to same-order full-storage state."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n7-N128-replay-gradient",
+      "criterion": "Difference<=5e-13*max(1,normreference)."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n7-N128-exact-work",
+      "criterion": "Checkpoint=Nprimal+Nreplay+Ntranspose;full=Nprimal+Ntranspose;tangent2NRHS separately counted."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n7-N256-finite-boundary",
+      "criterion": "All saved states/tangents/adjoints finite; fixed endpoint values exactly0."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n7-N256-state-modal",
+      "criterion": "Terminal/full saved field vs qualified same-time-discrete modal reference<=5e-12*max(1,reference_hnorm)."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n7-N256-adjoint-modal",
+      "criterion": "Two-component adjoint gradient vs modal<=5e-10*max(1,normreference)."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n7-N256-tangent-modal",
+      "criterion": "Tangent gradient vs modal,same threshold."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n7-N256-adjoint-tangent",
+      "criterion": "Difference<=5e-11*max(1,normreference)."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n7-N256-replay-state",
+      "criterion": "Every replayed state bit-identical to same-order full-storage state."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n7-N256-replay-gradient",
+      "criterion": "Difference<=5e-13*max(1,normreference)."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n7-N256-exact-work",
+      "criterion": "Checkpoint=Nprimal+Nreplay+Ntranspose;full=Nprimal+Ntranspose;tangent2NRHS separately counted."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n7-time-ratio-64-128",
+      "criterion": "Positive terminal field error ratio E_fine/E_coarse in[.4,.65] at fixed spatial grid; denominator above1e-12*max(1,reference_hnorm),otherwise fail."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n7-time-ratio-128-256",
+      "criterion": "Positive terminal field error ratio E_fine/E_coarse in[.4,.65] at fixed spatial grid; denominator above1e-12*max(1,reference_hnorm),otherwise fail."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n7-N256-storage",
+      "criterion": "Peak evolving trajectory/checkpoint/state/adjoint/RHS/Thomas-RHS-output scratch<=40*n float64 elements by unique owning roots. Static factors/model/reference arrays excluded ONLY from40n,reported separately and included in total-owned bytes. Total checkpoint peak bytes incl ALL factors/work/live arrays must be strictly below full-storage total in separate ownership window. No hidden fulltrajectory/cache/mmap."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n15-N64-finite-boundary",
+      "criterion": "All saved states/tangents/adjoints finite; fixed endpoint values exactly0."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n15-N64-state-modal",
+      "criterion": "Terminal/full saved field vs qualified same-time-discrete modal reference<=5e-12*max(1,reference_hnorm)."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n15-N64-adjoint-modal",
+      "criterion": "Two-component adjoint gradient vs modal<=5e-10*max(1,normreference)."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n15-N64-tangent-modal",
+      "criterion": "Tangent gradient vs modal,same threshold."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n15-N64-adjoint-tangent",
+      "criterion": "Difference<=5e-11*max(1,normreference)."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n15-N64-replay-state",
+      "criterion": "Every replayed state bit-identical to same-order full-storage state."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n15-N64-replay-gradient",
+      "criterion": "Difference<=5e-13*max(1,normreference)."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n15-N64-exact-work",
+      "criterion": "Checkpoint=Nprimal+Nreplay+Ntranspose;full=Nprimal+Ntranspose;tangent2NRHS separately counted."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n15-N128-finite-boundary",
+      "criterion": "All saved states/tangents/adjoints finite; fixed endpoint values exactly0."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n15-N128-state-modal",
+      "criterion": "Terminal/full saved field vs qualified same-time-discrete modal reference<=5e-12*max(1,reference_hnorm)."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n15-N128-adjoint-modal",
+      "criterion": "Two-component adjoint gradient vs modal<=5e-10*max(1,normreference)."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n15-N128-tangent-modal",
+      "criterion": "Tangent gradient vs modal,same threshold."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n15-N128-adjoint-tangent",
+      "criterion": "Difference<=5e-11*max(1,normreference)."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n15-N128-replay-state",
+      "criterion": "Every replayed state bit-identical to same-order full-storage state."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n15-N128-replay-gradient",
+      "criterion": "Difference<=5e-13*max(1,normreference)."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n15-N128-exact-work",
+      "criterion": "Checkpoint=Nprimal+Nreplay+Ntranspose;full=Nprimal+Ntranspose;tangent2NRHS separately counted."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n15-N256-finite-boundary",
+      "criterion": "All saved states/tangents/adjoints finite; fixed endpoint values exactly0."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n15-N256-state-modal",
+      "criterion": "Terminal/full saved field vs qualified same-time-discrete modal reference<=5e-12*max(1,reference_hnorm)."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n15-N256-adjoint-modal",
+      "criterion": "Two-component adjoint gradient vs modal<=5e-10*max(1,normreference)."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n15-N256-tangent-modal",
+      "criterion": "Tangent gradient vs modal,same threshold."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n15-N256-adjoint-tangent",
+      "criterion": "Difference<=5e-11*max(1,normreference)."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n15-N256-replay-state",
+      "criterion": "Every replayed state bit-identical to same-order full-storage state."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n15-N256-replay-gradient",
+      "criterion": "Difference<=5e-13*max(1,normreference)."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n15-N256-exact-work",
+      "criterion": "Checkpoint=Nprimal+Nreplay+Ntranspose;full=Nprimal+Ntranspose;tangent2NRHS separately counted."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n15-time-ratio-64-128",
+      "criterion": "Positive terminal field error ratio E_fine/E_coarse in[.4,.65] at fixed spatial grid; denominator above1e-12*max(1,reference_hnorm),otherwise fail."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n15-time-ratio-128-256",
+      "criterion": "Positive terminal field error ratio E_fine/E_coarse in[.4,.65] at fixed spatial grid; denominator above1e-12*max(1,reference_hnorm),otherwise fail."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "n15-N256-storage",
+      "criterion": "Peak evolving trajectory/checkpoint/state/adjoint/RHS/Thomas-RHS-output scratch<=40*n float64 elements by unique owning roots. Static factors/model/reference arrays excluded ONLY from40n,reported separately and included in total-owned bytes. Total checkpoint peak bytes incl ALL factors/work/live arrays must be strictly below full-storage total in separate ownership window. No hidden fulltrajectory/cache/mmap."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "FD-direction0",
+      "criterion": "Finest fixed central difference vs actual adjoint dotdirection<=1e-7*max(1,abs(reference directional gradient))."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "FD-direction1",
+      "criterion": "Finest fixed central difference vs actual adjoint dotdirection<=1e-7*max(1,abs(reference directional gradient))."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "FD-direction2",
+      "criterion": "Finest fixed central difference vs actual adjoint dotdirection<=1e-7*max(1,abs(reference directional gradient))."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "FD-all-finite",
+      "criterion": "All18FDforward controls/quotients finite and complete; no selected step subset."
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "id": "qualified-cache",
+      "criterion": "All67reference checks true and cache input/criteria/source hashes and exact configurations match."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n31-point0-finite-state-branches",
+      "criterion": "All state/linear/FD fields finite,zero boundary,same declared lower branch."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n31-point0-strict-state-reference",
+      "criterion": "Strict u vs qualified independent shooting state<=5e-9*max(1,reference_inf)."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n31-point0-state-residuals",
+      "criterion": "Loose and strict states meet their fixed sqrt(h)*L2 targets1e-8/1e-11."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n31-point0-below-discrete-fold",
+      "criterion": "Qualified discrete fold-anchor gap<=1e-10;lambda below actual discrete fold;J smallest eigenvalue positive and state symmetry<=1e-9scale."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n31-point0-strict-gradient-reference",
+      "criterion": "Returned candidate from requestedrtol1e-12adjoint,even if explicitly target-unmet,vs independent shooting gradient<=5e-12+1e-8*abs(reference). This is an independent accuracy gate,not a claim of true-residual convergence."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n31-point0-direct-duality",
+      "criterion": "Independent banded tangent/adjoint gradients agree<=1e-10*max(1,abs(reference))."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n31-point0-GMRES-fixed-targets",
+      "criterion": "For BOTH tangent/adjoint,requestedrtol1e-4and1e-8 MUST meet unchanged true-residual targets within120iterations. The1e-12 requestedtarget is diagnostic:save exact returned finite candidate/actualresidual/history/target_met=false when unmet/raw termination/roundoff diagnostic,with no converged relabeling or replacement. All unchanged independent-gradient/identity gates still required."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n31-point0-residual-identities",
+      "criterion": "At same float state corrected finite-reference identities agree<=1e-9scaled terms; definitions in DERIVATION.md."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n31-point0-FD-complete",
+      "criterion": "All3steps and both sides converge at1e-11on same branch,full errors saved; no arbitrary FDaccuracy/order pass claim."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n31-point1-finite-state-branches",
+      "criterion": "All state/linear/FD fields finite,zero boundary,same declared lower branch."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n31-point1-strict-state-reference",
+      "criterion": "Strict u vs qualified independent shooting state<=5e-9*max(1,reference_inf)."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n31-point1-state-residuals",
+      "criterion": "Loose and strict states meet their fixed sqrt(h)*L2 targets1e-8/1e-11."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n31-point1-below-discrete-fold",
+      "criterion": "Qualified discrete fold-anchor gap<=1e-10;lambda below actual discrete fold;J smallest eigenvalue positive and state symmetry<=1e-9scale."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n31-point1-strict-gradient-reference",
+      "criterion": "Returned candidate from requestedrtol1e-12adjoint,even if explicitly target-unmet,vs independent shooting gradient<=5e-12+1e-8*abs(reference). This is an independent accuracy gate,not a claim of true-residual convergence."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n31-point1-direct-duality",
+      "criterion": "Independent banded tangent/adjoint gradients agree<=1e-10*max(1,abs(reference))."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n31-point1-GMRES-fixed-targets",
+      "criterion": "For BOTH tangent/adjoint,requestedrtol1e-4and1e-8 MUST meet unchanged true-residual targets within120iterations. The1e-12 requestedtarget is diagnostic:save exact returned finite candidate/actualresidual/history/target_met=false when unmet/raw termination/roundoff diagnostic,with no converged relabeling or replacement. All unchanged independent-gradient/identity gates still required."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n31-point1-residual-identities",
+      "criterion": "At same float state corrected finite-reference identities agree<=1e-9scaled terms; definitions in DERIVATION.md."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n31-point1-FD-complete",
+      "criterion": "All3steps and both sides converge at1e-11on same branch,full errors saved; no arbitrary FDaccuracy/order pass claim."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n31-point2-finite-state-branches",
+      "criterion": "All state/linear/FD fields finite,zero boundary,same declared lower branch."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n31-point2-strict-state-reference",
+      "criterion": "Strict u vs qualified independent shooting state<=5e-9*max(1,reference_inf)."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n31-point2-state-residuals",
+      "criterion": "Loose and strict states meet their fixed sqrt(h)*L2 targets1e-8/1e-11."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n31-point2-below-discrete-fold",
+      "criterion": "Qualified discrete fold-anchor gap<=1e-10;lambda below actual discrete fold;J smallest eigenvalue positive and state symmetry<=1e-9scale."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n31-point2-strict-gradient-reference",
+      "criterion": "Returned candidate from requestedrtol1e-12adjoint,even if explicitly target-unmet,vs independent shooting gradient<=5e-12+1e-8*abs(reference). This is an independent accuracy gate,not a claim of true-residual convergence."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n31-point2-direct-duality",
+      "criterion": "Independent banded tangent/adjoint gradients agree<=1e-10*max(1,abs(reference))."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n31-point2-GMRES-fixed-targets",
+      "criterion": "For BOTH tangent/adjoint,requestedrtol1e-4and1e-8 MUST meet unchanged true-residual targets within120iterations. The1e-12 requestedtarget is diagnostic:save exact returned finite candidate/actualresidual/history/target_met=false when unmet/raw termination/roundoff diagnostic,with no converged relabeling or replacement. All unchanged independent-gradient/identity gates still required."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n31-point2-residual-identities",
+      "criterion": "At same float state corrected finite-reference identities agree<=1e-9scaled terms; definitions in DERIVATION.md."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n31-point2-FD-complete",
+      "criterion": "All3steps and both sides converge at1e-11on same branch,full errors saved; no arbitrary FDaccuracy/order pass claim."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n63-point0-finite-state-branches",
+      "criterion": "All state/linear/FD fields finite,zero boundary,same declared lower branch."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n63-point0-strict-state-reference",
+      "criterion": "Strict u vs qualified independent shooting state<=5e-9*max(1,reference_inf)."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n63-point0-state-residuals",
+      "criterion": "Loose and strict states meet their fixed sqrt(h)*L2 targets1e-8/1e-11."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n63-point0-below-discrete-fold",
+      "criterion": "Qualified discrete fold-anchor gap<=1e-10;lambda below actual discrete fold;J smallest eigenvalue positive and state symmetry<=1e-9scale."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n63-point0-strict-gradient-reference",
+      "criterion": "Returned candidate from requestedrtol1e-12adjoint,even if explicitly target-unmet,vs independent shooting gradient<=5e-12+1e-8*abs(reference). This is an independent accuracy gate,not a claim of true-residual convergence."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n63-point0-direct-duality",
+      "criterion": "Independent banded tangent/adjoint gradients agree<=1e-10*max(1,abs(reference))."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n63-point0-GMRES-fixed-targets",
+      "criterion": "For BOTH tangent/adjoint,requestedrtol1e-4and1e-8 MUST meet unchanged true-residual targets within120iterations. The1e-12 requestedtarget is diagnostic:save exact returned finite candidate/actualresidual/history/target_met=false when unmet/raw termination/roundoff diagnostic,with no converged relabeling or replacement. All unchanged independent-gradient/identity gates still required."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n63-point0-residual-identities",
+      "criterion": "At same float state corrected finite-reference identities agree<=1e-9scaled terms; definitions in DERIVATION.md."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n63-point0-FD-complete",
+      "criterion": "All3steps and both sides converge at1e-11on same branch,full errors saved; no arbitrary FDaccuracy/order pass claim."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n63-point1-finite-state-branches",
+      "criterion": "All state/linear/FD fields finite,zero boundary,same declared lower branch."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n63-point1-strict-state-reference",
+      "criterion": "Strict u vs qualified independent shooting state<=5e-9*max(1,reference_inf)."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n63-point1-state-residuals",
+      "criterion": "Loose and strict states meet their fixed sqrt(h)*L2 targets1e-8/1e-11."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n63-point1-below-discrete-fold",
+      "criterion": "Qualified discrete fold-anchor gap<=1e-10;lambda below actual discrete fold;J smallest eigenvalue positive and state symmetry<=1e-9scale."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n63-point1-strict-gradient-reference",
+      "criterion": "Returned candidate from requestedrtol1e-12adjoint,even if explicitly target-unmet,vs independent shooting gradient<=5e-12+1e-8*abs(reference). This is an independent accuracy gate,not a claim of true-residual convergence."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n63-point1-direct-duality",
+      "criterion": "Independent banded tangent/adjoint gradients agree<=1e-10*max(1,abs(reference))."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n63-point1-GMRES-fixed-targets",
+      "criterion": "For BOTH tangent/adjoint,requestedrtol1e-4and1e-8 MUST meet unchanged true-residual targets within120iterations. The1e-12 requestedtarget is diagnostic:save exact returned finite candidate/actualresidual/history/target_met=false when unmet/raw termination/roundoff diagnostic,with no converged relabeling or replacement. All unchanged independent-gradient/identity gates still required."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n63-point1-residual-identities",
+      "criterion": "At same float state corrected finite-reference identities agree<=1e-9scaled terms; definitions in DERIVATION.md."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n63-point1-FD-complete",
+      "criterion": "All3steps and both sides converge at1e-11on same branch,full errors saved; no arbitrary FDaccuracy/order pass claim."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n63-point2-finite-state-branches",
+      "criterion": "All state/linear/FD fields finite,zero boundary,same declared lower branch."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n63-point2-strict-state-reference",
+      "criterion": "Strict u vs qualified independent shooting state<=5e-9*max(1,reference_inf)."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n63-point2-state-residuals",
+      "criterion": "Loose and strict states meet their fixed sqrt(h)*L2 targets1e-8/1e-11."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n63-point2-below-discrete-fold",
+      "criterion": "Qualified discrete fold-anchor gap<=1e-10;lambda below actual discrete fold;J smallest eigenvalue positive and state symmetry<=1e-9scale."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n63-point2-strict-gradient-reference",
+      "criterion": "Returned candidate from requestedrtol1e-12adjoint,even if explicitly target-unmet,vs independent shooting gradient<=5e-12+1e-8*abs(reference). This is an independent accuracy gate,not a claim of true-residual convergence."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n63-point2-direct-duality",
+      "criterion": "Independent banded tangent/adjoint gradients agree<=1e-10*max(1,abs(reference))."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n63-point2-GMRES-fixed-targets",
+      "criterion": "For BOTH tangent/adjoint,requestedrtol1e-4and1e-8 MUST meet unchanged true-residual targets within120iterations. The1e-12 requestedtarget is diagnostic:save exact returned finite candidate/actualresidual/history/target_met=false when unmet/raw termination/roundoff diagnostic,with no converged relabeling or replacement. All unchanged independent-gradient/identity gates still required."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n63-point2-residual-identities",
+      "criterion": "At same float state corrected finite-reference identities agree<=1e-9scaled terms; definitions in DERIVATION.md."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "n63-point2-FD-complete",
+      "criterion": "All3steps and both sides converge at1e-11on same branch,full errors saved; no arbitrary FDaccuracy/order pass claim."
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "id": "qualified-cache",
+      "criterion": "Same67check receipt/source/input/criteria match; continuous family never substitutes for discrete oracle."
+    },
+    {
+      "case": "bratu-distributed-vjp",
+      "id": "m8-state-residual",
+      "criterion": "Primary zero-start state reaches sqrt(h)*L2residual<=1e-11."
+    },
+    {
+      "case": "bratu-distributed-vjp",
+      "id": "m8-coefficient",
+      "criterion": "Physical coefficient within[1.7,2.3]up to1e-13roundoff;offset not hidden."
+    },
+    {
+      "case": "bratu-distributed-vjp",
+      "id": "m8-duality",
+      "criterion": "Separate J/JT and B/BT scalar products<=1e-10declared normproduct scale."
+    },
+    {
+      "case": "bratu-distributed-vjp",
+      "id": "m8-VJP-dense-reference",
+      "criterion": "All3objective gradients vs separately assembled full sensitivity<=5e-12+1e-8*normreference."
+    },
+    {
+      "case": "bratu-distributed-vjp",
+      "id": "m8-FD-finest",
+      "criterion": "All3objective directional derivatives vs finest fixed central FD<=2e-7*max(1,abs(reference))."
+    },
+    {
+      "case": "bratu-distributed-vjp",
+      "id": "m8-objective-count",
+      "criterion": "One vs three independent adjoint RHS exactly counted;dense reference=mRHS separately."
+    },
+    {
+      "case": "bratu-distributed-vjp",
+      "id": "m8-allocation",
+      "criterion": "No primary parameter Jacobian/sensitivity allocation;allallowed arrays/aliases and reference allocations inventoried."
+    },
+    {
+      "case": "bratu-distributed-vjp",
+      "id": "m8-finite-boundary",
+      "criterion": "All fields and derivatives finite;u/sensitivity Dirichlet endpoints0;all6FDstates saved."
+    },
+    {
+      "case": "bratu-distributed-vjp",
+      "id": "m16-state-residual",
+      "criterion": "Primary zero-start state reaches sqrt(h)*L2residual<=1e-11."
+    },
+    {
+      "case": "bratu-distributed-vjp",
+      "id": "m16-coefficient",
+      "criterion": "Physical coefficient within[1.7,2.3]up to1e-13roundoff;offset not hidden."
+    },
+    {
+      "case": "bratu-distributed-vjp",
+      "id": "m16-duality",
+      "criterion": "Separate J/JT and B/BT scalar products<=1e-10declared normproduct scale."
+    },
+    {
+      "case": "bratu-distributed-vjp",
+      "id": "m16-VJP-dense-reference",
+      "criterion": "All3objective gradients vs separately assembled full sensitivity<=5e-12+1e-8*normreference."
+    },
+    {
+      "case": "bratu-distributed-vjp",
+      "id": "m16-FD-finest",
+      "criterion": "All3objective directional derivatives vs finest fixed central FD<=2e-7*max(1,abs(reference))."
+    },
+    {
+      "case": "bratu-distributed-vjp",
+      "id": "m16-objective-count",
+      "criterion": "One vs three independent adjoint RHS exactly counted;dense reference=mRHS separately."
+    },
+    {
+      "case": "bratu-distributed-vjp",
+      "id": "m16-allocation",
+      "criterion": "No primary parameter Jacobian/sensitivity allocation;allallowed arrays/aliases and reference allocations inventoried."
+    },
+    {
+      "case": "bratu-distributed-vjp",
+      "id": "m16-finite-boundary",
+      "criterion": "All fields and derivatives finite;u/sensitivity Dirichlet endpoints0;all6FDstates saved."
+    },
+    {
+      "case": "bratu-distributed-vjp",
+      "id": "m32-state-residual",
+      "criterion": "Primary zero-start state reaches sqrt(h)*L2residual<=1e-11."
+    },
+    {
+      "case": "bratu-distributed-vjp",
+      "id": "m32-coefficient",
+      "criterion": "Physical coefficient within[1.7,2.3]up to1e-13roundoff;offset not hidden."
+    },
+    {
+      "case": "bratu-distributed-vjp",
+      "id": "m32-duality",
+      "criterion": "Separate J/JT and B/BT scalar products<=1e-10declared normproduct scale."
+    },
+    {
+      "case": "bratu-distributed-vjp",
+      "id": "m32-VJP-dense-reference",
+      "criterion": "All3objective gradients vs separately assembled full sensitivity<=5e-12+1e-8*normreference."
+    },
+    {
+      "case": "bratu-distributed-vjp",
+      "id": "m32-FD-finest",
+      "criterion": "All3objective directional derivatives vs finest fixed central FD<=2e-7*max(1,abs(reference))."
+    },
+    {
+      "case": "bratu-distributed-vjp",
+      "id": "m32-objective-count",
+      "criterion": "One vs three independent adjoint RHS exactly counted;dense reference=mRHS separately."
+    },
+    {
+      "case": "bratu-distributed-vjp",
+      "id": "m32-allocation",
+      "criterion": "No primary parameter Jacobian/sensitivity allocation;allallowed arrays/aliases and reference allocations inventoried."
+    },
+    {
+      "case": "bratu-distributed-vjp",
+      "id": "m32-finite-boundary",
+      "criterion": "All fields and derivatives finite;u/sensitivity Dirichlet endpoints0;all6FDstates saved."
+    },
+    {
+      "case": "bratu-distributed-vjp",
+      "id": "nonsymmetric-transpose",
+      "criterion": "Actual transpose action on fixed nonsymmetric n7control passes independent exact loop oracle/dotpairing; wrong transpose must fail."
+    },
+    {
+      "case": "bratu-distributed-vjp",
+      "id": "affine-offset",
+      "criterion": "m2coefficient identity matches old a+b(2x-1)within1e-13scale;unshifted-theta negative control rejected."
+    },
+    {
+      "case": "bratu-distributed-vjp",
+      "id": "qualified-cache",
+      "criterion": "Same67check receipt/source/input/criteria binding valid;reference dense arrays outside primary accounting."
+    }
+  ],
+  "norm_rules": "scaled means tolerance*max(1,normreference); explicit absolute+relative formulas take precedence. Every gate is JSON-native bool; all rows/failed controls retained.",
+  "failure_policy": "A failed required gate remains failed; freeze a new reviewed revision with original source/input/results retained before any change. No hidden retry/tolerance relaxation.",
+  "revision": 2,
+  "root_preexecution_revision_reason": "Root mathematical review identified attainable-float residual versus requested target distinction BEFORE any implementation/import/numerical result. This is not a postfailure or postoutput relaxation.",
+  "unchanged_science": "All numerical accuracy thresholds,input n/lambda/delta/rtol,seeds(none),reference criteria,141gate IDs,32pytest count and120s budget remain. Only meaning of diagnostic1e-12status and40n scope clarified."
+}

@@ -1,0 +1,49 @@
+{
+  "status": "SELECTED_OFFICIAL_SOURCE_AND_INDEPENDENT_DERIVATION",
+  "references": [
+    {
+      "id": "jax-cookbook-selected",
+      "title": "The Autodiff Cookbook",
+      "author": "The JAX authors",
+      "url": "https://docs.jax.dev/en/latest/notebooks/autodiff_cookbook.html",
+      "publication_year": null,
+      "publication_year_display": "n.d.",
+      "accessed_on": "2026-11-24",
+      "review_level": "official-documentation-selected-mathematical-sections",
+      "actually_read_this_revision": [
+        "JVP linearization and shapes, lines568–605",
+        "VJP cotangent/transpose definition, lines614–653",
+        "Forward-over-reverse HVP relation and example, lines671–723"
+      ],
+      "read_scope": "Selected definitions and composition formulas only. A new educational tape will implement the stated finite subset. No JAX installation, execution, timing replication or implementation-source audit.",
+      "unread": [
+        "Original reverse-mode/HVP papers",
+        "JAX transformation implementation",
+        "Unselected cookbook sections"
+      ],
+      "numerical_reference_data_imported": false
+    },
+    {
+      "id": "jax-faq-selected",
+      "title": "Frequently asked questions: undefined branches and ordering",
+      "author": "The JAX authors",
+      "url": "https://docs.jax.dev/en/latest/faq.html",
+      "publication_year": null,
+      "publication_year_display": "n.d.",
+      "accessed_on": "2026-11-24",
+      "review_level": "official-documentation-selected-sections",
+      "actually_read_this_revision": [
+        "Gradients contain NaN where using where, lines404–431",
+        "Ordering/discontinuity example and stated library convention, lines432–455"
+      ],
+      "read_scope": "Read invalid inactive-branch and ordering discussions. We use an explicitly different strict nondifferentiability policy, not a universal JAX tie rule.",
+      "unread": [
+        "Linked issue threads",
+        "Generalized derivative original papers"
+      ],
+      "numerical_reference_data_imported": false
+    }
+  ],
+  "original_reading_date": "2026-11-24",
+  "scope": "Selected official sections only, no original-paper fulltext or library implementation audit. Independent fixed example formulas are derived here. No external benchmark numbers or source code copied."
+}

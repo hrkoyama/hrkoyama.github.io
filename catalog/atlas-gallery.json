@@ -1370,6 +1370,96 @@
         "ja": "保存したN=127のNewton残差、上枝の解と解析参照、Jv誤差、実評価回数を示す縮小図。run indexは保存CSVに対応します。",
         "en": "Preview of stored N=127 Newton residuals,upper-branch field/reference,Jv errors and actual evaluation counts. Run indices match the saved CSV."
       }
+    },
+    {
+      "id": "globalization-difficult-starts",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-24/globalization-controls/results/globalization-difficult-starts-preview.png",
+      "caption": {
+        "ja": "同一初期値の保存経路、原残差、trust radiusと実測評価回数。失敗・非収束は別記します。 図の座標は有限次元の変数・反復・診断で、物理空間の次元やPDE境界を表しません。",
+        "en": "Saved paths from identical starts, original residuals, trust radii and measured evaluation counts. Failures and nonconvergence remain explicit. Plot axes describe finite-dimensional variables, iterations or diagnostics, not a physical spatial dimension or PDE boundary."
+      }
+    },
+    {
+      "id": "reverse-vjp-duality",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-24/reverse-higher-ad/results/reverse-vjp-duality-preview.png",
+      "caption": {
+        "ja": "独立矩形Jacobianと実際の逆微分誤差、固定wide写像の実測sweep数。 図の座標は有限次元の変数・反復・診断で、物理空間の次元やPDE境界を表しません。",
+        "en": "Independent rectangular Jacobian, actual reverse differentiation error and measured sweep counts for fixed wide maps. Plot axes describe finite-dimensional variables, iterations or diagnostics, not a physical spatial dimension or PDE boundary."
+      }
+    },
+    {
+      "id": "hessian-vector-products",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-24/reverse-higher-ad/results/hessian-vector-products-preview.png",
+      "caption": {
+        "ja": "保存HVPと独立参照、状態固定と陰関数全微分の二階曲率を区別した比較。 図の座標は有限次元の変数・反復・診断で、物理空間の次元やPDE境界を表しません。",
+        "en": "Saved HVPs and independent references, with fixed-state and total implicit second derivatives shown separately. Plot axes describe finite-dimensional variables, iterations or diagnostics, not a physical spatial dimension or PDE boundary."
+      }
+    },
+    {
+      "id": "kink-branch-derivatives",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-24/reverse-higher-ad/results/kink-branch-derivatives-preview.png",
+      "caption": {
+        "ja": "保存した非滑らか関数値と停止写像、古典微分が未定義な点とtrace微分を分けた表示。 図の座標は有限次元の変数・反復・診断で、物理空間の次元やPDE境界を表しません。",
+        "en": "Saved nonsmooth values and stopped-map samples, distinguishing undefined classical derivatives from trace derivatives. Plot axes describe finite-dimensional variables, iterations or diagnostics, not a physical spatial dimension or PDE boundary."
+      }
+    },
+    {
+      "id": "diffusion-discrete-adjoint",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-24/adjoint/results/diffusion-discrete-adjoint-preview.png",
+      "caption": {
+        "ja": "時間離散拡散の随伴とcheckpoint。実際の保存数値データの縮小図で、1次元問題です。",
+        "en": "Discrete diffusion adjoint and checkpoint replay. Preview from actual saved numerical data for a one-dimensional problem."
+      }
+    },
+    {
+      "id": "bratu-fold-sensitivity",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-24/adjoint/results/bratu-fold-sensitivity-preview.png",
+      "caption": {
+        "ja": "離散fold近傍のBratu感度。実際の保存数値データの縮小図で、1次元問題です。",
+        "en": "Bratu sensitivity near the discrete fold. Preview from actual saved numerical data for a one-dimensional problem."
+      }
+    },
+    {
+      "id": "bratu-distributed-vjp",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-24/adjoint/results/bratu-distributed-vjp-preview.png",
+      "caption": {
+        "ja": "分布係数Bratuの行列非形成VJP。実際の保存数値データの縮小図で、1次元問題です。",
+        "en": "Matrix-free VJP for distributed Bratu coefficients. Preview from actual saved numerical data for a one-dimensional problem."
+      }
+    },
+    {
+      "id": "bratu-gn-lm-bounds",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-24/inverse-optimization/results/bratu-gn-lm-bounds-preview.png",
+      "caption": {
+        "ja": "保存した2変数の反復点・残差評価点です。SciPy曲線は受理反復だけでなく残差評価を含み、これは2D物理空間の流れではありません。",
+        "en": "Saved two-parameter iterates and residual evaluations. SciPy paths include residual evaluations, not only accepted iterates; these are parameter coordinates, not a two-dimensional physical flow."
+      }
+    },
+    {
+      "id": "bfgs-lbfgs-controls",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-24/inverse-optimization/results/bfgs-lbfgs-controls-preview.png",
+      "caption": {
+        "ja": "実際のRosenbrock反復点と解析目的関数の等高線。3つの固定初期値・4手法を示し、全問題での収束保証ではありません。 図の座標は有限次元の変数・反復・診断で、物理空間の次元やPDE境界を表しません。",
+        "en": "Actual Rosenbrock iterates on analytic objective contours for three fixed starts and four methods; this is not a general convergence guarantee. Plot axes describe finite-dimensional variables, iterations or diagnostics, not a physical spatial dimension or PDE boundary."
+      }
+    },
+    {
+      "id": "bratu-noise-regularization",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-24/inverse-optimization/results/bratu-noise-regularization-preview.png",
+      "caption": {
+        "ja": "保存した2変数推定値と固定γの局所1標準偏差楕円。楕円は選択事象で条件づけた区間でも、少数反復で保証した信頼領域でもありません。",
+        "en": "Saved two-parameter estimates and fixed-gamma local one-standard-deviation ellipses. These are neither selection-conditional intervals nor confidence regions with coverage established by this small ensemble."
+      }
     }
   ]
 }

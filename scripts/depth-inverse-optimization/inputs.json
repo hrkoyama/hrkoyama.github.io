@@ -1,0 +1,383 @@
+{
+  "schema_version": 1,
+  "group_id": "inverse-optimization",
+  "case_ids": [
+    "bratu-gn-lm-bounds",
+    "bfgs-lbfgs-controls",
+    "bratu-noise-regularization"
+  ],
+  "dimensionless": true,
+  "legacy_data": {
+    "file": "code/bratu-multinverse/2026-11-22/inputs/synthetic-observations.json",
+    "sha256": "d17059934636617f1fbe58cc84dd04ef9464533ba3ec349751eca54009df1e5e",
+    "same_grid_data": [
+      0.15299335634096212,
+      0.2707210686077935,
+      0.37681342487841424,
+      0.2856693673020629,
+      0.1654730263354867
+    ],
+    "fine_1023_data": [
+      0.15295422083929727,
+      0.270645103735003,
+      0.37669455257470297,
+      0.2855785700702442,
+      0.16542237741047047
+    ],
+    "old_fixed_noise": [
+      0.001,
+      -0.0006,
+      0.0004,
+      -0.001,
+      0.0003
+    ],
+    "old_noisy_data": [
+      0.15395422083929727,
+      0.270045103735003,
+      0.377094552574703,
+      0.2845785700702442,
+      0.16572237741047047
+    ],
+    "already_qualified_not_new_runs": "Old n=255/511/1023 observations, old two-parameter/four-gamma studies and 30 tests/17 fits are reused evidence and are not regenerated or added to new counts."
+  },
+  "bratu": {
+    "n": 31,
+    "equation": "-u_xx-(a+b*(2*x-1))*exp(u)=0; u(0)=u(1)=0",
+    "grid": "x_i=i/(n+1), i=1,...,n; second-order finite differences",
+    "branch": "Fresh zero-start Newton, tested smooth smaller branch; no general uniqueness claim",
+    "truth": [
+      2.2,
+      0.35
+    ],
+    "prior": [
+      2.0,
+      0.0
+    ],
+    "initial": [
+      2.0,
+      0.0
+    ],
+    "positions": [
+      0.125,
+      0.25,
+      0.5,
+      0.75,
+      0.875
+    ],
+    "weights": [
+      0.2,
+      0.2,
+      0.2,
+      0.2,
+      0.2
+    ],
+    "box": {
+      "lower": [
+        1.0,
+        -0.5
+      ],
+      "upper": [
+        2.8,
+        0.5
+      ],
+      "scipy_lower_upper": [
+        [
+          1.0,
+          -0.5
+        ],
+        [
+          2.8,
+          0.5
+        ]
+      ],
+      "legacy_parameter_pairs": [
+        [
+          1.0,
+          2.8
+        ],
+        [
+          -0.5,
+          0.5
+        ]
+      ]
+    },
+    "forward_domain": "a-|b|>0 and a+|b|<=3.3+1e-14, inherited. This mathematical forward-model domain is distinct from the inference box. No unbounded method is silently clipped to the inference box.",
+    "state_tolerance_l2": 1e-10,
+    "newton_maxiter": 40
+  },
+  "case65": {
+    "id": "bratu-gn-lm-bounds",
+    "contexts": [
+      {
+        "id": "same-grid-clean",
+        "data": "legacy.same_grid_data",
+        "positions": "bratu.positions",
+        "weights": "bratu.weights",
+        "gamma": 0.0,
+        "scales": [
+          1.0,
+          1.0
+        ],
+        "methods": [
+          "gn",
+          "lm",
+          "legacy-pg",
+          "scipy-trf",
+          "scipy-lm"
+        ]
+      },
+      {
+        "id": "weighted-scaled-fine-noisy",
+        "data": "legacy.old_noisy_data",
+        "positions": "bratu.positions",
+        "weights": [
+          0.09090909090909091,
+          0.36363636363636365,
+          0.09090909090909091,
+          0.36363636363636365,
+          0.09090909090909091
+        ],
+        "gamma": 0.0001,
+        "scales": [
+          1.0,
+          0.1
+        ],
+        "methods": [
+          "gn",
+          "lm",
+          "legacy-pg",
+          "scipy-trf",
+          "scipy-lm"
+        ]
+      },
+      {
+        "id": "active-box",
+        "data": "independent Thomas n31 at [2.9,0.35], generated only after reference authorization",
+        "positions": "bratu.positions",
+        "weights": "bratu.weights",
+        "gamma": 0.0,
+        "scales": [
+          1.0,
+          1.0
+        ],
+        "methods": [
+          "legacy-pg",
+          "scipy-trf"
+        ]
+      },
+      {
+        "id": "one-center",
+        "data": "legacy.same_grid_data[2]",
+        "positions": [
+          0.5
+        ],
+        "weights": [
+          1.0
+        ],
+        "gamma": 0.0001,
+        "scales": [
+          1.0,
+          1.0
+        ],
+        "methods": [
+          "gn",
+          "lm",
+          "legacy-pg",
+          "scipy-trf",
+          "scipy-lm"
+        ]
+      }
+    ],
+    "fit_count": 17,
+    "own_controls": {
+      "maxiter": 100,
+      "physical_gradient_inf_stop": 1e-09,
+      "gn_backtracks": 40,
+      "gn_armijo": 0.0001,
+      "gn_initial_step": 1.0,
+      "lm_initial_mu": 0.001,
+      "lm_max_rejected_steps_per_iteration": 30,
+      "lm_gain_accept": 0.0001,
+      "lm_damping": "Augment scaled least-squares Jacobian with sqrt(mu)*I in z coordinates; gamma is part of objective and must not be changed by damping. Accept only positive actual reduction and gain ratio>1e-4; rho>.75 divides mu by3, rho<.25 multiplies mu by2; rejected step multiplies mu by2. No retry after max rejected steps.",
+      "gn_linear_solve": "SVD/QR least-squares step for augmented residual; never normal-equation inverse",
+      "parameterization": "theta=prior+D*z; gradients/Jacobians transformed with D. All reported convergence gates in physical theta."
+    },
+    "legacy_pg_controls": {
+      "maxiter": 1000,
+      "backtracks": 50,
+      "metric": [
+        1.0,
+        100.0
+      ],
+      "initial_step": 10.0,
+      "gradient_tolerance": 1e-09,
+      "policy": "Call exact retained legacy fit_parameters through a canonical-box adapter; retain raw Newton residual-input states and completed evaluate outputs through serial observation-only callbacks, with no arithmetic changes."
+    },
+    "scipy_controls": {
+      "least_squares_xtol": 1e-12,
+      "least_squares_ftol": 1e-12,
+      "least_squares_gtol": 1e-12,
+      "max_nfev": 100,
+      "jacobian": "Explicit analytic augmented Jacobian",
+      "lm_bounds": "No bounds; contexts with active-box truth use no LM companion",
+      "trf_bounds": "Canonical box transformed explicitly to z coordinates; x_scale=1 because D is explicit."
+    },
+    "failure_policy": "Own domain-invalid trial is recorded and rejected by the declared line/damping loop, never clipped. Any SciPy residual/Jacobian domain error aborts that fit and is retained/classified; no penalty surrogate, restart or method replacement."
+  },
+  "case66": {
+    "id": "bfgs-lbfgs-controls",
+    "quadratic": {
+      "n": 8,
+      "A": "diag(1,2,4,8,16,32,64,128)+ones(8,8)/16",
+      "x_star": [
+        1.0,
+        -1.0,
+        1.0,
+        -1.0,
+        1.0,
+        -1.0,
+        1.0,
+        -1.0
+      ],
+      "initial": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "objective": "0.5*(x-x_star)^T A (x-x_star)"
+    },
+    "rosenbrock": {
+      "objective": "100*(y-x*x)^2+(1-x)^2",
+      "initials": [
+        [
+          -1.2,
+          1.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.2,
+          1.2
+        ]
+      ],
+      "known_minimum": [
+        1.0,
+        1.0
+      ]
+    },
+    "methods": [
+      "bfgs",
+      "lbfgs-m3",
+      "scipy-bfgs",
+      "scipy-lbfgsb-unbounded"
+    ],
+    "fit_count": 16,
+    "controls": {
+      "bfgs_maxiter": 200,
+      "lbfgs_maxiter": 500,
+      "gradient_stop_inf": 1e-08,
+      "memory_pairs": 3,
+      "strong_wolfe_c1": 0.0001,
+      "strong_wolfe_c2": 0.9,
+      "first_trial": 1.0,
+      "max_bracket_iterations": 30,
+      "max_zoom_iterations": 30,
+      "armijo_only_fallback": false,
+      "curvature_rule": "Accept an update only if yTs>64*eps*||s||2*||y||2; exact-positive but numerically unresolved curvature is a classified stop, not silently skipped/repaired.",
+      "bfgs_initial": "Identity; inverse-BFGS V H V^T + rho*s*s^T. Symmetric representation is explicitly constructed as 0.5*(Hraw+Hraw.T), with raw antisymmetry recorded. No eigenvalue clipping.",
+      "lbfgs_initial_scaling": "Identity for empty history, else CURRENT newest (sTy)/(yTy), positive by the curvature guard; last<=3 chronological pairs only.",
+      "scipy_lbfgsb": "bounds=None,maxcor=3,maxls=30,maxiter=500,maxfun=20000,gtol=1e-8,ftol=1e-15",
+      "scipy_bfgs": "maxiter=200,gtol=1e-8,norm=inf,c1=1e-4,c2=.9; explicit gradient"
+    }
+  },
+  "case67": {
+    "id": "bratu-noise-regularization",
+    "contexts": [
+      "same-grid-31",
+      "fixed-fine-1023-data"
+    ],
+    "noise_sigmas": [
+      0.0001,
+      0.001
+    ],
+    "seeds": [
+      67001,
+      67002
+    ],
+    "rng": "NumPy 2.0.2 Generator(PCG64(seed)); exactly one standard_normal(5) vector per seed, reused across both sigma and both contexts. Two independent base vectors, not eight independent replicates.",
+    "gamma_values": [
+      0.0,
+      1e-05,
+      0.0001,
+      0.001,
+      0.01
+    ],
+    "fit_count": 42,
+    "fit_count_formula": "2 contexts * 2 sigma * 2 seeds * 5 gamma + 2 noiseless gamma0 controls",
+    "optimizer": "SciPy TRF in physical coordinates with explicit Jacobian, canonical box and the same fixed controls as case65; zero-start state every evaluation, no warm-start across gamma.",
+    "data_covariance": "Sigma=sigma^2 I_5, independent from declared W=I_5/5.",
+    "discrepancy": "On a COMPLETE, qualified five-gamma path select largest gamma whose weighted residual norm<=1.05*realized weighted noise norm. Realized noise is a synthetic known-noise diagnostic, not a usable unknown-real-data noise estimator.",
+    "incomplete_path": "Any unqualified/missing required fit means INCOMPLETE_GAMMA_PATH, selected_gamma=None and ellipse=None; no selection from a completed subset.",
+    "no_admissible_gamma": "Only a complete qualified path with no admissible gamma gets NO_ADMISSIBLE_GAMMA.",
+    "l_curve": "Four positive gamma points, log weighted residual versus log unweighted parameter deviation from prior; nonzero finite points only. Chord curvature is a descriptive finite-list diagnostic, not a spline L-curve corner implementation.",
+    "covariance": "At an interior, full-data-rank selected estimate, G=K^T W K+gamma I, C=G^-1 K^T W Sigma W K G^-T. Treat selected gamma as fixed for this plug-in local linearization. Not covariance conditional on selection event and not a Bayesian posterior.",
+    "linear_control": {
+      "K": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          2.0,
+          -1.0
+        ],
+        [
+          -1.0,
+          2.0
+        ]
+      ],
+      "W_diagonal": [
+        0.2,
+        0.2,
+        0.2,
+        0.2,
+        0.2
+      ],
+      "gamma": 0.001,
+      "sigma": 0.001,
+      "truth": [
+        2.2,
+        0.35
+      ],
+      "prior": [
+        2.0,
+        0.0
+      ]
+    },
+    "no_coverage_claim": true
+  },
+  "counts": {
+    "case65_fits": 17,
+    "case66_fits": 16,
+    "case67_fits": 42,
+    "main_optimizer_fits": 75,
+    "old_fits_recounted": 0,
+    "old_fine_reference_regenerations": 0
+  },
+  "edition": "2026-11-24"
+}

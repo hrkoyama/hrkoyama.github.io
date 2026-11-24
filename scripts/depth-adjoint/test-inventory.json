@@ -1,0 +1,49 @@
+{
+  "status": "PLANNED_MEANINGFUL_TESTS_NOT_IMPLEMENTED_OR_RUN",
+  "planned_pytest_tests": 32,
+  "by_case": {
+    "diffusion-discrete-adjoint": [
+      "BE_step_against_exact_nonsymmetric_Fraction",
+      "transpose_solve_not_symmetric_shortcut",
+      "terminal_h_weight_and_penalty_derivatives",
+      "tangent_vs_reverse_affine_exact_control",
+      "replay_uses_correct_block_boundaries",
+      "replay_corruption_detected",
+      "state_buffer_alias_ownership_counted",
+      "full_trajectory_not_live_in_checkpoint_window",
+      "streamed_failure_candidate_retained",
+      "reference_binding_or_fresh_output_corruption_rejected"
+    ],
+    "bratu-fold-sensitivity": [
+      "shooting_discrete_n1_analytic_fold",
+      "shooting_a_lambda_derivatives",
+      "fold_anchor_is_not_continuum_fold",
+      "same_state_tangent_adjoint_sign",
+      "finite_reference_residual_correction_identity",
+      "approximate_adjoint_cross_term_needed",
+      "GMRES_callable_identity_alias_regression",
+      "GMRES_true_residual_and_iteration_cap",
+      "Poisson_preconditioner_boundary_control",
+      "nonlinear_trial_candidate_retained",
+      "loose_strict_state_errors_separated",
+      "FD_steps_saved_without_best_selection"
+    ],
+    "bratu-distributed-vjp": [
+      "hat_partition_unity_scalar_golden",
+      "m2_coefficient_offset",
+      "coefficient_endpoint_not_state_boundary",
+      "Bv_independent_explicit_loop",
+      "BT_repeated_scatter_golden",
+      "nonsymmetric_J_transpose_action",
+      "dense_reference_outside_primary_allocation",
+      "objective_q_h_weights_and_midpoint",
+      "one_vs_three_RHS_counters",
+      "parameter_Jacobian_allocation_negative_control"
+    ]
+  },
+  "collection_rule": "32explicit tests,no hidden parametrization/skips;actual source collection must be statically reviewed and bound before first pytest. No scientific test execution authorized by this design.",
+  "revision2_meaningful_conditions": {
+    "GMRES_true_residual_and_iteration_cap": "Include a target-unmet finite candidate control:target_met/rawpassed remainfalse;termination and roundoff estimate are separate; required1e-4/1e-8 unmet fails. No change to numerical GMRES body.",
+    "state_buffer_alias_ownership_counted": "40n includes dynamic RHS/output work; static factors also appear in total-owned ledger. An unreported factor/live full trajectory must fail the ledger."
+  }
+}

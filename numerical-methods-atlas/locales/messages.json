@@ -8131,5 +8131,217 @@
   "reference.batch48-57.1d85549d73a3": {
     "en": "Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products",
     "ja": "解析・中央差分・方向ADによるJacobian不要Newton–Krylov"
+  },
+  "reference.batch58-67.9495aa7d78e5": {
+    "en": "Globalization from identical starts: analytic controls and discrete Bratu corrections",
+    "ja": "同一初期値の大域化：解析対照と離散Bratu修正"
+  },
+  "reference.batch58-67.64f7e209b22a": {
+    "en": "Fixed real dimensionless systems: two Rosenbrock starts and two residual scalings, plus three starts for a 31-interior-node Dirichlet Bratu problem at lambda 3, compared by three methods. The Euclidean state radius is distinct from residual scaling.",
+    "ja": "実数・無次元の固定系。Rosenbrockの2初期値と2残差スケール、31内点・λ=3の同次Dirichlet Bratuの3初期値を3法で比較します。状態半径はEuclideanで、残差スケールとは別です。"
+  },
+  "reference.batch58-67.63ca331c7bf1": {
+    "en": "The primary reference is a numerical discrete correction. The known Rosenbrock root and rational/high-precision dogleg components are separate analytic controls; Bratu uses an independently assembled discrete Jacobian correction and original residual. No continuum family is an exact discrete root. Required-root rows, diagnostic starts, stationary nonroots and domain rejection remain distinct; no all-start guarantee.",
+    "ja": "主参照は数値的な離散修正です。Rosenbrockの既知根と有理数・高精度dogleg部分参照は解析対照として分け、Bratuは別組立て離散Jacobianの修正で原残差を検査します。連続解析族を離散厳密解とはしません。必須成功行と診断行、非根停留・領域拒否を区別し、全初期値保証はしません。"
+  },
+  "reference.batch58-67.2ad6250fd97c": {
+    "en": "Independent Jacobians, JVPs and VJPs of discrete nonlinear maps",
+    "ja": "離散非線形写像の独立Jacobian・JVP・VJP"
+  },
+  "reference.batch58-67.847c9c35bfa5": {
+    "en": "The fixed R4-to-R3 map includes repeated-index gather[0,0,2] and scalar broadcast. Wide maps and fixed Bratu states have sizes 7 and 31. Euclidean pullbacks and adjoints under specified SPD metrics are distinct.",
+    "ja": "固定R4→R3写像は重複gather[0,0,2]とscalar broadcastを含みます。wide写像と固定Bratu状態はサイズ7/31。Euclidean pullbackと指定SPD計量の随伴を区別します。"
+  },
+  "reference.batch58-67.b8d0a8d8b99c": {
+    "en": "A hand-derived nonsymmetric rectangular Jacobian with separately evaluated high-precision exponentials is the reference. Independent stencil/transpose actions supplement it; symmetric Bratu alone cannot qualify transposition. These are analytic derivatives of finite discrete maps, not exact continuum PDE solutions or a general AD framework.",
+    "ja": "手導出した非対称矩形Jacobianと、別のexp高精度評価を参照にします。線形stencil/transposeも別評価しますが、対称Bratuだけでは転置を資格しません。解析対象は有限離散写像の微分であり、連続PDEの厳密解や一般AD frameworkではありません。"
+  },
+  "reference.batch58-67.36af65130ee1": {
+    "en": "Independent references for fixed-state HVPs and second-order implicit rules",
+    "ja": "固定状態HVPと二階陰関数則の独立参照"
+  },
+  "reference.batch58-67.866e25fc5815": {
+    "en": "Use a four-variable dyadic quadratic and fixed-state Bratu energies of sizes 7 and 31. A separate positive implicit branch u²-theta=0 is solved at theta 4 from initial u 3, distinguishing fixed-state partials from total derivatives.",
+    "ja": "4変数のdyadic二次関数とサイズ7/31の固定Bratu energyを用います。別の正枝陰関数u²−θ=0はθ=4、初期値u=3から解き、状態固定偏微分と全微分を分けます。"
+  },
+  "reference.batch58-67.4206f20baf1c": {
+    "en": "References are rational Qv, an independently evaluated fixed-state Bratu stencil formula, and an oracle-only square-root family with rational values at theta 4. The primary solves F/R1/R2 without embedding that family. These are not continuum PDE solutions, general reduced inverse Hessians or derivatives of a finite Newton trace.",
+    "ja": "二次関数は有理数Qv、固定Bratu energyは別stencil式、陰関数はoracle専用sqrt族とθ=4の有理数値で照合します。primaryはF/R1/R2を解き、sqrt族を埋め込みません。連続PDE厳密解、一般のreduced inverse Hessian、有限Newton traceの感度とは扱いません。"
+  },
+  "reference.batch58-67.90b888460fb3": {
+    "en": "Nonsmooth discrete maps: directional derivatives and executed traces",
+    "ja": "非滑らかな離散写像：一方向微分と実行trace"
+  },
+  "reference.batch58-67.6bc77cecc3f3": {
+    "en": "Use seven fixed points and directions ±1 for abs, ReLU, clip and a polynomial branch. The stopped iteration starts at x0 = 0, tests |xk - theta| <= 1/8 before updating and allows at mostfive updates. Theta 1/4, 1/2 and 1 are switching points.",
+    "ja": "abs・ReLU・clip・多項式分岐の固定7点と方向±1を用います。停止反復はx0=0、更新前に|xk−θ|≤1/8を検査し最大5更新。θ=1/4,1/2,1は切替点です。"
+  },
+  "reference.batch58-67.ce9dd210f848": {
+    "en": "Rational piecewise formulas and the literal stopping rule provide references. Strict kinks retain undefined classical derivatives with null/validity, separately from directional maps and chosen-trace slopes. Finite quotients across a switch are not derivative limits, continuum PDE references or universal subgradients.",
+    "ja": "有理数の区分式とliteral停止規約が参照です。strict kinkでは古典微分を未定義としてnull/validityを保存し、一方向写像や選択traceの傾きと区別します。切替の有限差分商は微分極限ではなく、連続PDE参照でも普遍的subgradientでもありません。"
+  },
+  "reference.batch58-67.465f00c498f1": {
+    "en": "Backward-Euler discrete modes and time-exact semidiscrete diffusion references",
+    "ja": "後退Euler離散モードと時間厳密半離散拡散の参照"
+  },
+  "reference.batch58-67.d75780cdd8ad": {
+    "en": "Dimensionless x in [0,1] with zero Dirichlet data, kappa = .1, theta = .2 and T = .1. Use 7/15 interior nodes and 64/128/256 time steps. The objective has an h-weighted terminal error and specified quadratic penalties.",
+    "ja": "無次元x∈[0,1]、同次Dirichlet、κ=.1、θ=.2、T=.1。内点7/15、時間step64/128/256。目的関数はh重み付き終端誤差と指定二次正則化です。"
+  },
+  "reference.batch58-67.f9fb39d5ec45": {
+    "en": "Analytic references are scalar modal solutions and parameter derivatives of the same finite backward-Euler map. A separate time-exact semidiscrete exponential measures temporal error only and never substitutes continuum spatial eigenvalues. Checkpoint replay follows that same discrete reverse map; it is not CVODES or an optimal schedule. Qualification, primary execution and final packet evidence remain separate receipts.",
+    "ja": "解析参照は同じ空間差分の有限BE写像に対するscalar mode解とパラメータ微分です。時間厳密semidiscrete指数は時間誤差だけを測る別参照で、連続空間の固有値に置換しません。checkpointは同じ離散逆写像の再計算でありCVODESや最適scheduleではありません。資格・主計算・最終配布の実証は別レシートです。"
+  },
+  "reference.batch58-67.1f0a7acd4a20": {
+    "en": "Discrete Bratu shooting, tangent and adjoint references near a fold",
+    "ja": "離散fold近傍のBratu shooting・接線・随伴参照"
+  },
+  "reference.batch58-67.e31b02e1d05e": {
+    "en": "One-dimensional Dirichlet Bratu with 31/63 interior nodes. Fixed gaps .1/.01/.001 below the discrete-fold anchor use lower-branch states. Each lambda string is converted once to binary64 and that exact value is passed to the high-precision reference.",
+    "ja": "1D同次Dirichlet Bratu、内点31/63。検証する離散fold anchorの下.1/.01/.001に固定し、下枝状態を用います。λ文字列は一度binary64へ変換し、その正確な値を高精度参照へ渡します。"
+  },
+  "reference.batch58-67.57d7ee4e3b43": {
+    "en": "Independent dense sensitivities and matrix-free VJPs for distributed Bratu coefficients",
+    "ja": "分布Bratu係数の独立dense感度と行列不要VJP"
+  },
+  "reference.batch58-67.6a829f6f5358": {
+    "en": "A one-dimensional zero-Dirichlet problem with 63 interior nodes. The coefficient a(x)=2+Btheta uses 8/16/32 linear-hat controls and stays between 1.7 and 2.3 in the fixed main cases. Endpoint coefficient controls are not zeroed like state Dirichlet values.",
+    "ja": "1D同次Dirichlet、63内点。a(x)=2+Bθは8/16/32個の線形hat制御で、主固定例は1.7≤a≤2.3。端点係数は零Dirichlet状態と異なり固定零にしません。"
+  },
+  "reference.batch58-67.2487bc30e7ea": {
+    "en": "A separately evaluated full dense-hat matrix and banded tangent solves for all controls form the numerical reference. They differ from the primary two-neighbor gather/scatter action but share the discrete forward model. This is not an independent exact continuum PDE solution or a claim of m-fold wall-time speedup. Coefficient-profile figures remain one-dimensional.",
+    "ja": "別に評価した全dense hat行列と、全係数のbanded接線解を数値参照にします。primaryの2近傍gather/scatterとは別の作用で、同じ離散前進モデルです。独立な連続PDE厳密解やm倍のwall-time向上とはしません。係数分布図の空間次元は1です。"
+  },
+  "reference.batch58-67.6f81635cbebe": {
+    "en": "Independent Thomas-based local references for Bratu inverse least squares",
+    "ja": "Bratu逆最小二乗の独立Thomas局所参照"
+  },
+  "reference.batch58-67.55d7bb8f946e": {
+    "en": "A two-coefficient inverse problem uses 31 interior nodes and five observations of the one-dimensional zero-Dirichlet Bratu model. Reuse existing synthetic data; the physical box is a in[1,2.8],b in[-.5,.5]. Objective regularization gamma, LM damping mu and variable scaling are distinct.",
+    "ja": "1D零Dirichlet Bratuの31内点と5観測を用いる2係数逆問題。既存合成観測を再利用し、物理boxはa∈[1,2.8],b∈[-.5,.5]。目的正則化γ、LM減衰μ、変数尺度は別です。"
+  },
+  "reference.batch58-67.54098338d1e5": {
+    "en": "Use separate Thomas state/sensitivity evaluations and small local optimizer references. Some optimizer infrastructure is shared with a companion, so independence is not claimed at every layer. A common reference for unbounded GN/LM must be interior and unbounded-stationary. Bounded solutions, truth recovery and global minima are distinct; plotted a,b planes are coefficient space.",
+    "ja": "別Thomas状態・感度と小さな局所最適化参照を用います。最適化libraryは一部companionと共有するため全層独立とはしません。非有界GN/LMの共通参照は内点かつ非有界停留であることが条件で、有界解・真値回復・大域最小を混同しません。図のa,b平面は係数空間です。"
+  },
+  "reference.batch58-67.286ccabbc64a": {
+    "en": "Analytic known minima and the current limited-memory action",
+    "ja": "既知最小点と現在の有限記憶作用に対する解析参照"
+  },
+  "reference.batch58-67.46347c98d2a5": {
+    "en": "Dimensionless unconstrained algebraic optimization uses an eight-dimensional SPD quadratic and three Rosenbrock starts. L-BFGS retains only the current last three pairs. There is no physical PDE boundary condition.",
+    "ja": "無次元・非有界の代数最適化。8次元SPD二次関数とRosenbrockの3初期値を用い、L-BFGSは現在の最大3組だけを保持します。物理PDE境界条件はありません。"
+  },
+  "reference.batch58-67.34ed99674f3b": {
+    "en": "Known analytic minima and gradients are references. L-BFGS actions are checked by a separate dense oracle initialized with the current gamma0 I and only the currently retained last three pairs in chronological order, distinct from all-history BFGS. The selected original weak-Wolfe discussion differs from the strong-Wolfe policy here; Fletcher 1970 full text remains unread. No exact n-step termination or general global-convergence guarantee.",
+    "ja": "既知の解析最小点・勾配を参照にし、L-BFGS作用は現在γ0Iと現在保持する3組だけを古い順に再生する別dense oracleへ照合します。全履歴BFGSとは別です。選択原著の弱Wolfeと本例のstrong Wolfeを区別し、Fletcher1970本文未読を保持します。厳密n-step終了や一般的大域収束は保証しません。"
+  },
+  "reference.batch58-67.7afaa8b9399a": {
+    "en": "Bratu references for finite gamma paths and local linear noise propagation",
+    "ja": "有限γ経路と局所線形雑音伝播のBratu参照"
+  },
+  "reference.batch58-67.72458a9748ea": {
+    "en": "Independent small 2-by-2 linear-estimator formulas check fixed-gamma noise propagation and bias in a local Gauss–Newton linear model; nonlinear fits have separate Thomas/KKT audits. Evaluation at a selected gamma is not selection-conditional covariance, covariance including nonlinear residual Hessians, a posterior or a coverage guarantee. Selection requires all five fits qualified, never a successful subset. Ellipses are diagnostics in coefficient space.",
+    "ja": "独立な小2×2線形推定式で固定γの局所Gauss–Newton線形モデルの雑音伝播とbiasを照合し、非線形fitは別Thomas参照とKKTで検査します。選択γで式を評価しても選択事象の条件付き共分散、非線形残差Hessian込み共分散、posterior、被覆率にはなりません。全5fitの資格前にsubsetからγを選ばず、図の楕円は係数平面の診断です。"
+  },
+  "reference.batch58-67.1aeb64a042d2": {
+    "en": "Use 31 interior nodes, five observations, W=I/5 and Sigma=sigma² I. Reuse existing 31/1023-grid observations. The noise standard deviations sigma are 1e-4 and 1e-3; two seeds provide independent base noises, while scaled/grid-context variants are paired. Gamma has five fixed values.",
+    "ja": "31内点、5観測、W=I/5、Σ=σ²I。既存の31/1023格子観測を再利用します。雑音の標準偏差σは1e-4と1e-3で、独立な基底雑音は2 seedです。尺度・格子文脈をまたぐ比較は同じ雑音ベクトルを共有します。γは固定5点です。"
+  },
+  "reference.batch58-67.750d20cc9d35": {
+    "en": "The primary reference is independent high-precision discrete shooting/fold evaluation with zero-start Thomas Newton. The continuum cosh family is a separate shape/discretization diagnostic, not the exact discrete fold or state. Same-fixed-state residual identities are separate from state error and include the cross term for an approximate adjoint. Error/conditioning plot axes are not a two-dimensional physical domain. The displayed finite-reference identity retains both direct-reference residuals and does not assume the banded solves are exact.",
+    "ja": "主参照は独立な高精度離散shooting/foldと零初期Thomas Newtonです。連続cosh族は形状・離散化の別診断で、離散foldや離散状態の厳密値ではありません。同一固定状態の残差恒等式と状態誤差を分け、近似随伴にはcross項を含めます。図の誤差/条件数軸は物理2D空間ではありません。 表示する有限参照の恒等式では直接参照の両残差を保持し、帯行列の参照解が厳密であるとは仮定しません。"
+  },
+  "reference.batch58-67.5a133524e2cc": {
+    "en": "Real small systems with a fixed positive diagonal residual scaling; the trust radius uses the unscaled Euclidean state norm.",
+    "ja": "固定した正の対角残差スケーリングを持つ小さな実数系。trust radiusは変数のEuclideanノルムです。"
+  },
+  "reference.batch58-67.6abe61b8e7af": {
+    "en": "The Gauss–Newton endpoint is the minimum-norm SVD least-squares solution under the fixed rank cutoff; the other endpoint is the Cauchy step.",
+    "ja": "Gauss–Newton端点は固定rank cutoffの最小ノルムSVD最小二乗解、他端はCauchy stepです。"
+  },
+  "reference.batch58-67.b9f82d23eca6": {
+    "en": "Accept only a positive model decrease, positive actual decrease and rho >= .1; all radius/domain/model/iteration failures are explicit.",
+    "ja": "正の予測減少・正の実減少とρ≥.1を要求し、半径/領域/model/反復上限の失敗を明示します。"
+  },
+  "reference.batch58-67.fc344283f309": {
+    "en": "Dimensionless fixtures; residual scaling is explicit and does not alter the original root tolerance.",
+    "ja": "無次元固定例。残差スケールを明示し、原残差の根判定は変えません。"
+  },
+  "reference.batch58-67.1c668c5d38d4": {
+    "en": "The method has no intrinsic physical boundary. Rosenbrock controls are algebraic; the related Bratu fixture has zero Dirichlet endpoints on[0,1].",
+    "ja": "方法固有の物理境界はありません。Rosenbrockは代数系で、関連Bratu固定例は[0,1]両端零Dirichletです。"
+  },
+  "reference.batch58-67.d09da9c7d442": {
+    "en": "Maps only to this dedicated globalization-controls release; no execution is borrowed from existing Bratu continuation or JFNK.",
+    "ja": "今回の専用globalization-controls配布だけに対応し、既存Bratu継続やJFNKの実行を借用しません。"
+  },
+  "reference.batch58-67.f3cdf3774aac": {
+    "en": "Dogleg trust regions for fixed small systems",
+    "ja": "小固定系のdogleg信頼領域法"
+  },
+  "reference.batch58-67.1d7775e5345b": {
+    "en": "Fixed small nonlinear systems separate the original residual from a left-scaled merit and check a Euclidean Cauchy–Gauss–Newton dogleg with every rejected trial retained.",
+    "ja": "固定した小非線形系で、原残差と左スケールmeritを分け、Euclidean Cauchy–Gauss–Newton doglegと全拒否試行を検証します。"
+  },
+  "reference.batch58-67.0a33aec24ab3": {
+    "en": "Only six required-root controls and declared diagnostic starts are covered. No exact optimal trust-region subproblem, all-start guarantee, PETSc implementation equivalence or large-scale performance is claimed.",
+    "ja": "固定6必須rootと診断startの比較だけです。正確なTR部分問題解・全初期値成功・PETSc実装同等・大規模性能を保証しません。"
+  },
+  "reference.batch58-67.b2f36aeee025": {
+    "en": "Separately qualify larger sparse systems, other fixed radii/scales and broader nonlinear models with new inputs and references; no all-start convergence guarantee is claimed.",
+    "ja": "より大きい疎系、別の固定半径・尺度、一般の非線形モデルは、入力と参照を別途固定して検証します。全初期値での収束を保証しません。"
+  },
+  "reference.batch58-67.b6db0ef3b5e7": {
+    "en": "Only the fixed root/product/implicit-scalar/piecewise maps in these releases; Bratu discretizations are separately related1Dmodel context. No general AD framework or universal nonsmooth derivative.",
+    "ja": "この配布版の固定した根・微分作用・陰関数スカラー・区分写像に限ります。Bratu離散化は別の1Dモデル文脈として関連づけ、一般的なADフレームワークや普遍的な非滑らか微分は主張しません。"
+  },
+  "reference.batch58-67.5d9ba1c64659": {
+    "en": "Finite-dimensional nonlinear maps, roots and differential actions",
+    "ja": "有限次元非線形写像・根と微分作用"
+  },
+  "reference.batch58-67.612213a17089": {
+    "en": "Roots, JVP/VJP, HVP and branch conventions for finite algebraic maps. The variable count n is not a spatial dimension, and a classical derivative is not imposed at nonsmooth points.",
+    "ja": "有限の代数写像に対する根・JVP/VJP・HVP・分岐規約です。nは空間次元ではなく変数数で、非滑らか点に古典微分を強制しません。"
+  },
+  "reference.batch58-67.01ca55cb5210": {
+    "en": "Fixed Rosenbrock/small-Bratu globalization, rectangular repeated-gather/broadcast maps, fixed-state HVPs, positive implicit rules and literal stopping conventions.",
+    "ja": "Rosenbrock/小Bratuの大域化、重複gather/broadcast矩形写像、固定HVP、正枝陰関数則とliteral停止規約。"
+  },
+  "reference.batch58-67.f6b65d47060c": {
+    "en": "Fixed BFGS/L-BFGS m3 controls and declared strong-Wolfe/curvature rules; no universal global-convergence/scalability or exact n-step-termination guarantee.",
+    "ja": "固定BFGS/L-BFGS（3組）の制御例と明示したstrong-Wolfe・曲率規約だけを扱い、普遍的な大域収束・スケーラビリティ・厳密n段終了を保証しません。"
+  },
+  "reference.batch58-67.68ecfa8160a4": {
+    "en": "Finite-dimensional algebraic optimization and known minima",
+    "ja": "有限次元代数最適化と既知最小点"
+  },
+  "reference.batch58-67.99db68fb427b": {
+    "en": "Dimensionless algebraic optimization of an eight-dimensional SPD quadratic and a two-variable Rosenbrock function. There is no physical spatial domain or PDE boundary; compare known minima and local iterative actions.",
+    "ja": "8次元SPD二次関数と2変数Rosenbrockの無次元代数最適化です。物理空間・PDE境界を持たず、既知最小点と局所反復作用を比較します。"
+  },
+  "reference.batch58-67.5eee771af650": {
+    "en": "Known minima, gradients, Wolfe/curvature ledgers, and a dense reference using only the current last three pairs and current gamma0 I.",
+    "ja": "既知最小点、勾配、Wolfe/曲率ledger、現在保持する3組と現在γ0Iのdense作用参照。"
+  },
+  "reference.batch58-67.0035de0ce540": {
+    "en": "Shared foundations: differentiation, adjoints and inverse problems",
+    "ja": "共通基盤：微分・随伴・逆問題"
+  },
+  "reference.batch58-67.82d20eee3334": {
+    "en": "Small fixed cases check differential actions and nonlinear/inverse iterations.",
+    "ja": "小さな固定例で微分作用と非線形・逆問題の反復を確かめます。"
+  },
+  "reference.batch58-67.af51e977f3f9": {
+    "en": "Distinguish analytic, rational, high-precision and separate-implementation references; disclose shared libraries and unread originals.",
+    "ja": "手計算・有理数・高精度・別実装を役割別に照合し、共有ライブラリと未読原典を明記します。"
+  },
+  "reference.batch58-67.999bf54ad247": {
+    "en": "Grids, time steps, solver tolerances, coefficient counts, noise and regularization are distinct controlled comparisons.",
+    "ja": "格子・時間・許容誤差・係数数・雑音・正則化をそれぞれ固定した比較です。"
+  },
+  "reference.batch58-67.1ad76e8b2125": {
+    "en": "No general large-scale performance, convergence, universal nonsmooth derivative or statistical coverage guarantee.",
+    "ja": "大規模性能や一般的収束、非滑らかな点の普遍的な微分、雑音の被覆保証へは広げません。"
   }
 }

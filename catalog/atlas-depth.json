@@ -532,6 +532,46 @@
         "ja": "/numerical-methods-atlas/ja/read/validation-maxwell-cylinder/",
         "en": "/numerical-methods-atlas/en/read/validation-maxwell-cylinder/"
       }
+    },
+    {
+      "id": "differentiation-inverse",
+      "name": {
+        "ja": "共通基盤：微分・随伴・逆問題",
+        "en": "Shared foundations: differentiation, adjoints and inverse problems"
+      },
+      "supplemental_examples": [
+        "globalization-difficult-starts",
+        "reverse-vjp-duality",
+        "hessian-vector-products",
+        "kink-branch-derivatives",
+        "diffusion-discrete-adjoint",
+        "bratu-fold-sensitivity",
+        "bratu-distributed-vjp",
+        "bratu-gn-lm-bounds",
+        "bfgs-lbfgs-controls",
+        "bratu-noise-regularization"
+      ],
+      "scope": {
+        "ja": "小さな固定例で微分作用と非線形・逆問題の反復を確かめます。",
+        "en": "Small fixed cases check differential actions and nonlinear/inverse iterations."
+      },
+      "reference": {
+        "ja": "手計算・有理数・高精度・別実装を役割別に照合し、共有ライブラリと未読原典を明記します。",
+        "en": "Distinguish analytic, rational, high-precision and separate-implementation references; disclose shared libraries and unread originals."
+      },
+      "refinement": {
+        "ja": "格子・時間・許容誤差・係数数・雑音・正則化をそれぞれ固定した比較です。",
+        "en": "Grids, time steps, solver tolerances, coefficient counts, noise and regularization are distinct controlled comparisons."
+      },
+      "next": {
+        "ja": "大規模性能や一般的収束、非滑らかな点の普遍的な微分、雑音の被覆保証へは広げません。",
+        "en": "No general large-scale performance, convergence, universal nonsmooth derivative or statistical coverage guarantee."
+      },
+      "examples": [],
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/automatic-differentiation/",
+        "en": "/numerical-methods-atlas/en/read/automatic-differentiation/"
+      }
     }
   ],
   "supplemental_edition": "2026-11-22"

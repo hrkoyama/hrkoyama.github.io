@@ -1,0 +1,70 @@
+{
+  "status": "SELECTED_PRIMARY_READING_NO_NUMERICAL_QUALIFICATION",
+  "started_at_utc": "2026-11-24T08:37:00.468309+00:00",
+  "completed_at_utc": "2026-11-24T08:43:20.002772+00:00",
+  "sources": [
+    {
+      "id": "cvodes-adjoint",
+      "url": "https://sundials.readthedocs.io/en/latest/cvodes/Usage/ADJ.html",
+      "title": "SUNDIALS CVODES adjoint usage",
+      "publication_year": null,
+      "review_level": "official-documentation-selected-sections",
+      "read_scope": "Skeleton forward/backward tolerance and solver setup; Nd checkpoint spacing/interpolation; selected sections only. Our fixed-step discrete transpose/replay is not CVODES interpolation-based ASA or an optimal schedule.",
+      "accessed_on": "2026-11-24",
+      "full_original_read": false
+    },
+    {
+      "id": "jax-vjp",
+      "url": "https://docs.jax.dev/en/latest/_autosummary/jax.vjp.html",
+      "title": "JAX vjp API",
+      "publication_year": null,
+      "review_level": "official-documentation-selected-API",
+      "read_scope": "Reverse-mode cotangent map definition and input/output shapes. Terminology only; no JAX implementation, library-equivalence or framework execution claim.",
+      "accessed_on": "2026-11-24",
+      "full_original_read": false
+    },
+    {
+      "id": "decimal",
+      "url": "https://docs.python.org/3.12/library/decimal.html",
+      "title": "Python3.12.16 decimal documentation",
+      "publication_year": null,
+      "review_level": "official-documentation-selected-API",
+      "read_scope": "Decimal.exp correctly rounded half-even and from_float exact binary-float conversion. This supports arithmetic choices, not an already qualified numerical oracle.",
+      "accessed_on": "2026-11-24",
+      "full_original_read": false
+    },
+    {
+      "id": "arclength",
+      "url": "https://ipsen.math.ncsu.edu/ps/sinum65438.pdf",
+      "title": "Dickson,Kelley,Ipsen,Kevrekidis:Condition Estimates for Pseudo-Arclength Continuation",
+      "publication_year": null,
+      "review_level": "author-paper-selected-equations",
+      "read_scope": "Section2.1 implicit sensitivity and2.2 simple-fold definition/arclength equations, printed265–267. Full proofs/experiments not audited; no reference table copied. Continuation already exists in56.",
+      "accessed_on": "2026-11-24",
+      "full_original_read": false
+    },
+    {
+      "id": "bratu-family",
+      "url": "https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html",
+      "title": "Author-hosted INF5620 nonlinear exercises,Problem8,Eq52",
+      "publication_year": null,
+      "review_level": "author-teaching-source-selected-equation",
+      "read_scope": "Bratu BVP/cosh family/critical value and FD exercise. Source theta=2*the alpha in old sensitivity module. Continuum family only, never the exact discrete fold/state.",
+      "accessed_on": "2026-11-24",
+      "full_original_read": false
+    },
+    {
+      "id": "python312-sumprod",
+      "url": "https://docs.python.org/3.12/library/math.html#math.sumprod",
+      "title": "Python3.12.16 math documentation,math.sumprod",
+      "publication_year": null,
+      "review_level": "official-selected-API",
+      "read_scope": "Selected math.sumprod definition,matching-length error,added-in3.12 and builtinfloat/mixedfloat intermediate arithmetic semantics only. No full CPython C implementation audit by this author. Documented extended intermediate precision; no wholeCPython audit or universal correctrounding claim.",
+      "accessed_on": "2026-11-24",
+      "full_original_read": false
+    }
+  ],
+  "new_math_attribution": "Discrete modal derivatives, shooting/fold recurrences, residual identities and local-hat actions below are authored derivations requiring independent review and numerical qualification. Not quotations/results ascribed to unread papers.",
+  "unknown_year_policy": "n.d. in future display; access date is not publication year.",
+  "scientific_imports_or_execution": 0
+}

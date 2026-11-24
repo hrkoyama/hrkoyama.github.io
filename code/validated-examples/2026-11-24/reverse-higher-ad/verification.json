@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "group": "reverse-higher-ad",
+  "edition": "2026-11-24",
+  "verified_on": "2026-11-24",
+  "source_manifest_sha256": "a6933b5568bf03c5306f25f74bc36435cee98f890bd8b30364390cbb3f0fefb5",
+  "archive": {
+    "file": "atlas-reverse-higher-ad-2026-11-24.zip",
+    "sha256": "9ba9d564393bf64d33ec79add1648082e72356335051da99f228e9b0ee5e850a",
+    "bytes": 628987,
+    "archive_directory": "atlas-reverse-higher-ad-2026-11-24"
+  },
+  "archive_sha256": "9ba9d564393bf64d33ec79add1648082e72356335051da99f228e9b0ee5e850a",
+  "returncode": 0,
+  "passed_tests": 24,
+  "tests": 24,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "hessian-vector-products",
+    "kink-branch-derivatives",
+    "reverse-vjp-duality"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 0.24291174999962095,
+  "independent_rerun_seconds": 0.3925177920027636,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

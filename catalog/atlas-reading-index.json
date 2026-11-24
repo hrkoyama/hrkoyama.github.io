@@ -77,7 +77,11 @@
         "optimization",
         "bratu-inverse",
         "bratu-multi-inverse",
-        "pinn-operators"
+        "pinn-operators",
+        "validation-globalization-controls",
+        "validation-reverse-higher-ad",
+        "validation-adjoint",
+        "validation-inverse-optimization"
       ]
     },
     {

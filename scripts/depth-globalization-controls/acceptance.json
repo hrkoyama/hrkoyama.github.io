@@ -1,0 +1,64 @@
+{
+  "expected_case_gate_count": 145,
+  "construction": [
+    {
+      "scope": "21 common-start records",
+      "count_per_record": 6,
+      "gate_suffixes": [
+        "finite_saved_history",
+        "original_residual_recomputed",
+        "scaled_merit_recomputed",
+        "method_step_ledger",
+        "work_caps",
+        "termination_category"
+      ],
+      "total": 126
+    },
+    {
+      "scope": "6 mandatory positive trajectories",
+      "count_per_record": 2,
+      "gate_suffixes": [
+        "original_root_residual",
+        "independent_state_or_correction_error"
+      ],
+      "total": 12
+    },
+    {
+      "scope": "exact24 main records",
+      "total": 1
+    },
+    {
+      "scope": "2 stationary-nonroot fixtures",
+      "count_per_record": 2,
+      "gate_suffixes": [
+        "stationary_nonroot_status",
+        "not_false_root"
+      ],
+      "total": 4
+    },
+    {
+      "scope": "domain guard fixture",
+      "gate_suffixes": [
+        "rejected_before_exp_evaluation",
+        "finite_candidate_retained"
+      ],
+      "total": 2
+    }
+  ],
+  "thresholds": {
+    "root_RMS_residual": 1e-09,
+    "Rosenbrock_root_L2_error": 1e-08,
+    "Bratu_independent_discrete_correction_L2_error": 1e-08,
+    "model_reduction_ledger_factor_eps": 64,
+    "line_armijo_c": 0.0001,
+    "trust_accept_ratio": 0.1,
+    "trust_shrink_ratio": 0.25,
+    "trust_expand_ratio": 0.75,
+    "trust_boundary_factor": 0.99,
+    "trust_shrink_factor": 0.25,
+    "trust_expand_factor": 2,
+    "radius_min": "2^-40",
+    "reference_component_scaled_error": 1e-12
+  },
+  "mandatory_outcomes": "Use globalization-inputs outcome_matrix exactly. A diagnostic solver nonconvergence is not promoted to a root; its valid trace can satisfy structural case checks. Failure of any required root/negative-control gate fails the case."
+}

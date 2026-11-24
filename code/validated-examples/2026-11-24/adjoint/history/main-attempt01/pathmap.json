@@ -1,0 +1,78 @@
+{
+  "original_source_sha256": {
+    "DERIVATION.md": "4c6677c437440aa709995cd97362005d85d586eb58a46692afe3414a2a2408d7",
+    "LICENSE": "df33e3fd1710fbf168c38afb1ac97a32f48233f047f61bbf2906c79d97cc4362",
+    "README.md": "43dc7871e2df25141e3b2b5b148abd965c310fcd8c8d24bf23afbf85ae503c2f",
+    "REFERENCE-REGENERATION.md": "ddbaec61b2d3ef92d966c7155e4eb2ca62fa1fb7cab17d7ffecd9c1725958e26",
+    "acceptance.json": "716a7be9c080b66cbda6a35dd7b8be8d8d00cc4bb69673f3a0184c3406cf792d",
+    "cases.json": "183872ec95cc544907d36ba39f7616626f15ae771ac726869c7205e7ba3b0658",
+    "distributed.py": "423b3fefd3bcdb518135ba2962d7c311d2addb282d5d006cf8cf9ca3d8f86146",
+    "fold_study.py": "a1b55f776632e6fb1688b432c3a6e36f9236934081332a1c6f2b351d6282c89d",
+    "inputs.json": "d50b4ccd1559cae3830dd6496bfe5fade4f3587b5c5782bcc0003615c35045f7",
+    "io_contract.py": "3a18d90407cee50c5a8761b841feea8947c14e2bf1449e01fd36f81be4b1149e",
+    "krylov.py": "b2fad003fba2a5a661ab03ded49115702362794484afde203395e3744fe53841",
+    "newton.py": "027e57bcb6f24daac299e27df43da26ad973c5c3afe90051eed92fa8ee6b1542",
+    "operators.py": "4d3e477b9fcccfa21a653c7532d92427ae21a5d0a176af5155f28542805a6875",
+    "plot.py": "8e0bf1378978374bb0ee4f9ca150b6cb42a781a7b11250d0e3226e8dec6f73fb",
+    "qualify_references.py": "45f3db3d7b109d3b0a372ceefc3b0a335f171c35ede55b21464bf6c463f48a49",
+    "reference-qualification-plan.json": "2ae86f3ed881a5bbb1b3f045b6ad5eea816cda53c5134c4dcdea426cca9da849",
+    "references/__init__.py": "e9209e2eed2791b792918daa4908429a0649dd1d710ee251bcaac88d11af7b2f",
+    "references/cache-fold.json": "e592834351b6117aec306abf36f4e725952e57cd4fbdfd95bd84f377f2b524a3",
+    "references/cache-time.json": "2c76892ce0fa930c1ac61f954d60a8c21e9836b5e7b79c0c6750ebee9de33713",
+    "references/linear_oracle.py": "04b5f4dc362e63acfe4f5ef3b54152d00ea9ab7b14386adbe49da851a5a03a69",
+    "references/modal_decimal.py": "7d6c77262ebc9b97ad61f3ce2f2a4cfb58f6f52823f123ec1a2f025ee0d0e468",
+    "references/qualification.json": "224b2738c1f8481adc693080b2e338cd02a935a9cc7637a8603d3da85d3badba",
+    "references/shooting_decimal.py": "a9cc825eeaeffdb53a0bfb9b7365e123781f7e32528986aa8704e519fe3fe900",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "dc7db2519e8c111f1c13f1935a99f088c9a47e087116415a812654f57eddbf34",
+    "source-reading.json": "c8d312f71aed5dfd5c28590246a9dd40c19c9076c37d02129ff51e64585a277b",
+    "test-inventory.json": "14568cdeadd4342678e9edae928c09cb0ddf593b92a35bc8b8041af13385b22a",
+    "tests/conftest.py": "61d917466d000f076e8c5ed631cbc461fbb128df7dc8b8dfc89aed11143b7a1e",
+    "tests/test_distributed.py": "37caadf7176d28aae8299c85b9d1adeaee4fb2be4e5d6068cfd769a63b21dd0b",
+    "tests/test_fold.py": "ae4083b7927bdcb5c81ec84cd31ed1cc692a53dc5c25c8c8971bf990f65d9034",
+    "tests/test_time.py": "0daf8c94674114431b32411448a8120a7f446d87c910dcc1a92d78e2e0702d6e",
+    "time_adjoint.py": "41a8cd6a47cd5e970f3d2af1b9d0d2a7414a699650d73323026cd7fb10d05025",
+    "pre-run-contract.json": "20bfeeb689f17ac3451328ecde4c6bd42e9968efe459fa632d3a4fecae07d2d6"
+  },
+  "exact_selected_source_copies": {
+    "inputs.json": {
+      "retained_file": "inputs.json",
+      "sha256": "d50b4ccd1559cae3830dd6496bfe5fade4f3587b5c5782bcc0003615c35045f7",
+      "byte_exact": true
+    },
+    "acceptance.json": {
+      "retained_file": "acceptance.json",
+      "sha256": "716a7be9c080b66cbda6a35dd7b8be8d8d00cc4bb69673f3a0184c3406cf792d",
+      "byte_exact": true
+    },
+    "pre-run-contract.json": {
+      "retained_file": "pre-run-contract.json",
+      "sha256": "20bfeeb689f17ac3451328ecde4c6bd42e9968efe459fa632d3a4fecae07d2d6",
+      "byte_exact": true
+    },
+    "operators.py": {
+      "retained_file": "operators.py.txt",
+      "sha256": "4d3e477b9fcccfa21a653c7532d92427ae21a5d0a176af5155f28542805a6875",
+      "byte_exact": true
+    },
+    "newton.py": {
+      "retained_file": "newton.py.txt",
+      "sha256": "027e57bcb6f24daac299e27df43da26ad973c5c3afe90051eed92fa8ee6b1542",
+      "byte_exact": true
+    },
+    "cases.json": {
+      "retained_file": "cases.json",
+      "sha256": "183872ec95cc544907d36ba39f7616626f15ae771ac726869c7205e7ba3b0658",
+      "byte_exact": true
+    },
+    "README.md": {
+      "retained_file": "README.md",
+      "sha256": "43dc7871e2df25141e3b2b5b148abd965c310fcd8c8d24bf23afbf85ae503c2f",
+      "byte_exact": true
+    }
+  },
+  "failed_result_sha256": "08fc7dcb123d7ef191a517876da33422372a4094bce8c5b0fd5c7ab86c6e15a3",
+  "failed_state_sha256": "29051e228cc4a5c51ab97677ca47164c8f1dfa52e92ec2b08f46f68dc5da9100",
+  "scope": "Public compact lineage; not a fullcopy of33oldsource/wholeNPZ/CSV history. Unchanged old files remain readable at current source where hashes match. Full original33source/allfailedrecords/data/logs persist privately.",
+  "private_path_disclosure": false
+}

@@ -1,0 +1,238 @@
+{
+  "schema_version": 1,
+  "group": "adjoint",
+  "units": "dimensionless",
+  "contractions": "Euclidean coordinate transpose; h weights are included explicitly in objective gradients. No unstated weighted-adjoint identification.",
+  "solver": {
+    "nonlinear_initial": "zero interior state for every Bratu base/FD solve; no cross-run warm starts",
+    "nonlinear_norm": "sqrt(h)*||G||2",
+    "nonlinear_max_updates": 40,
+    "armijo": 0.0001,
+    "backtrack_alphas": "2^-j,j=0..19",
+    "gmres": {
+      "algorithm": "Reviewed callable-only right-preconditioned GMRES with two-pass modified Gram-Schmidt; no state Jacobian assembly in primary derivative path.",
+      "restart": 24,
+      "max_iterations": 120,
+      "true_residual_target": "max(1e-14,rtol*||rhs||2)",
+      "state_newton_rtol": 5e-13,
+      "strict_tangent_adjoint_rtol": 1e-12,
+      "preconditioner": "Constant Poisson A_h^-1, homogeneous Dirichlet, Thomas factorization; no parameter-dependent approximation to J.",
+      "retention_adaptation": "Reuse the current reviewed GMRES numerical body byte-identically; external nonmutating operator/outer-state checkpoint wrappers and result-status interpretation only. No new target/floor,stopping rule,precision or iteration."
+    }
+  },
+  "cases": {
+    "diffusion-discrete-adjoint": {
+      "sequence": 62,
+      "n": [
+        7,
+        15
+      ],
+      "steps": [
+        64,
+        128,
+        256
+      ],
+      "T": 0.1,
+      "kappa": 0.1,
+      "theta": 0.2,
+      "initial_sine_modes": [
+        1,
+        0.2,
+        0
+      ],
+      "forcing_sine_modes": [
+        1,
+        0,
+        -0.1
+      ],
+      "target_sine_modes": [
+        0.5,
+        0,
+        0
+      ],
+      "boundary": "Fixed zero Dirichlet; state and parameter sensitivities zero at endpoints.",
+      "objective": "0.5*h*||u_N-d||2^2+0.005*kappa^2+0.01*theta^2",
+      "checkpoint_block": 16,
+      "linear_solver": "Actual tridiagonal backward-Euler Thomas solve and transpose solve; cache one factorization per(n,N,kappa).",
+      "FD": {
+        "n": 15,
+        "steps": 128,
+        "directions": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            -0.5
+          ]
+        ],
+        "increments": [
+          "2^-10",
+          "2^-14",
+          "2^-18"
+        ],
+        "extra_forward_evolutions": 18
+      },
+      "nonsymmetric_control": {
+        "M": [
+          [
+            "3/4",
+            "1/8"
+          ],
+          [
+            "-1/4",
+            "1/2"
+          ]
+        ],
+        "u0": [
+          1,
+          "-1/2"
+        ],
+        "b": [
+          "1/4",
+          1
+        ],
+        "theta": "1/2",
+        "d": [
+          "1/8",
+          "-1/4"
+        ],
+        "steps": 4
+      },
+      "storage_accounting": {
+        "40n_scope": "Peak UNIQUE owning float64 elements in evolving checkpoint/trajectory/current or replayed state,adjoint,RHS,forward-elimination/back-substitution RHS/output scratch. Views count their owning root once,not zero and not twice. All live aliases are inventoried.",
+        "40n_excludes_but_reports": "Static tridiagonal coefficients/factorization/pivots and fixed model/forcing/coordinate/target arrays,reference-validation arrays and other numeric work are NOT absorbed into the40n state-buffer limit. Every such live array is still included in the separate total-owned-numeric-byte ledger.",
+        "separate_total_requirement": "At N256,checkpoint total peak owned numeric bytes INCLUDING static factors,all solve work,model arrays and any live reference/evidence buffers must be strictly smaller than full-storage total measured in its separate ownership window. Equal/common factors are included in BOTH windows.",
+        "ownership_windows": "Serialize and release full-storage trajectory/aliases/closures before checkpoint window;no fulltrajectory mmap or live validation cache hidden outside ledger. Assemble validationNPZ only AFTER the claimed ownership measurement window;streamed file bytes are identified separately from resident numeric buffers.",
+        "failure": "If source allocation inventory cannot establish these categories and both limits,fail the storage gate. No retrospective exclusion of an inconvenient buffer."
+      }
+    },
+    "bratu-fold-sensitivity": {
+      "sequence": 63,
+      "n": [
+        31,
+        63
+      ],
+      "stored_discrete_anchor_decimal": {
+        "31": "3.5120449324441494",
+        "63": "3.5133843732325247"
+      },
+      "delta_decimal": [
+        "0.1",
+        "0.01",
+        "0.001"
+      ],
+      "lambda_decimal": {
+        "31": [
+          "3.4120449324441494",
+          "3.5020449324441494",
+          "3.5110449324441494"
+        ],
+        "63": [
+          "3.4133843732325247",
+          "3.5033843732325247",
+          "3.5123843732325247"
+        ]
+      },
+      "input_rounding": "Each lambda_decimal is converted once to binary float; independent cache evaluates exactly that float via Decimal.from_float. Anchors are checked against high-precision discrete fold, not treated as exact.",
+      "state_tolerances": [
+        1e-08,
+        1e-11
+      ],
+      "linear_rtol": [
+        0.0001,
+        1e-08,
+        1e-12
+      ],
+      "objective": "0.5*h*sum(u^2)+0.025*lambda^2",
+      "FD_steps": [
+        0.0001,
+        1e-05,
+        1e-06
+      ],
+      "FD_state_tolerance": 1e-11,
+      "FD_extra_state_solves": 36,
+      "branch": "Strict positive lower branch: symmetric state, positive smallest J eigenvalue; actual lambda below qualified discrete fold.",
+      "linear_reference": "Separate scipy.linalg.solve_banded direct tangent/transpose solves at the SAME actual float state, with their own residuals reported.",
+      "sigma": "Smallest absolute eigenvalue of symmetric tridiagonal J using scipy.linalg.eigh_tridiagonal in reference/diagnostic window; floating estimate, not an interval-certified lower bound.",
+      "linear_result_policy": {
+        "scope": "Only the case63 derivative tolerance study; nonlinear state requirements and other case scientific thresholds unchanged.",
+        "raw_fields": [
+          "requested_rtol",
+          "requested_absolute_target",
+          "actual_true_residual",
+          "target_met",
+          "raw_solver_passed",
+          "iterations",
+          "termination_reason",
+          "finite_candidate",
+          "roundoff_scale_estimate",
+          "roundoff_diagnostic"
+        ],
+        "requested_absolute_target": "max(1e-14,requested_rtol*||rhs||2),unchanged GMRES body.",
+        "target_met": "Exactly actual_true_residual<=requested_absolute_target; raw_solver_passed must equal this decision. Never set true because the candidate is accurate against an independent reference.",
+        "required_targets": {
+          "1e-4": "Both tangent and adjoint MUST meet the actual requested true-residual target within120iterations.",
+          "1e-8": "Both tangent and adjoint MUST meet the actual requested true-residual target within120iterations."
+        },
+        "tight_requested_1e_12": "An OBSERVATIONAL diagnostic target. Keep the exact returned last candidate,its actual residual and full history. Unmet target is explicitly UNMET,never renamed converged. No direct-reference replacement,best-iterate selection,fallback,extra iterations or retry.",
+        "termination_reason": "target_met if true;otherwise maximum_iterations when iterations==120,arnoldi_breakdown when returned early with rawpassedfalse;exception/nonfinite is a failure. Preserve raw reason separately from roundoff interpretation.",
+        "roundoff_estimate": "Diagnostic only:unitroundoff u=2^-53,gamma12=12u/(1-12u);scale_i=(2/h^2+|c_i|)|x_i|+(|x_(i-1)|+|x_(i+1)|)/h^2+|rhs_i|,c_i=lambda*exp(u_state_i),zero endpoint x. rho_est=||gamma12*scale||2. This accounts approximately for stencil arithmetic,not a certified total error bound or exp error theorem.",
+        "roundoff_diagnostic": "If target unmet and residual<=10*rho_est,label UNMET_ROUNDOFF_SCALE_CONSISTENT,cause_not_proven. Otherwise UNMET_ABOVE_ROUNDOFF_ESTIMATE. Keep maximum_iterations/breakdown as independent termination fields. Zero-scale ratios use explicit validity/category,never NaN/Inf.",
+        "case_success_meaning": "The same141case-gate inventory may pass only when required1e-4/1e-8targets,all finite saved candidates,independent shooting-gradient1e-8accuracy and same-state corrected identities/bounds all pass. It does NOT mean that the1e-12diagnostic solve converged."
+      }
+    },
+    "bratu-distributed-vjp": {
+      "sequence": 64,
+      "n": 63,
+      "m": [
+        8,
+        16,
+        32
+      ],
+      "control_nodes": "xi_j=j/(m-1),j=0..m-1",
+      "theta": "0.2*sin(2*pi*xi)+0.1*cos(pi*xi)",
+      "coefficient": "a(x)=2+Btheta; linear partition-unity endpoint hats. Main cases1.7<=a<=2.3.",
+      "primary_basis_storage": "Two indices and two weights per state node; Bv gather/interpolation and B^T w scatter-add. No n-by-m B or sensitivity in primary.",
+      "boundary": "u(0)=u(1)=0 and du/dtheta endpoints0. Coefficient controls at endpoints are not fixed-zero Dirichlet parameters.",
+      "objectives": [
+        "h*sum(u)",
+        "u at x=1/2",
+        "0.5*h*sum(u^2)"
+      ],
+      "counter_modes": [
+        "one-objective:one adjoint RHS",
+        "three-objective:three separate adjoint RHS on same already solved state"
+      ],
+      "tangent_direction": "vtheta_j=(j+1)/(m+1)",
+      "FD_steps": [
+        "2^-8",
+        "2^-12",
+        "2^-16"
+      ],
+      "FD_extra_state_solves": 18,
+      "state_tolerance": 1e-11,
+      "duality_vectors": "State v_i=(i+1)/(n+1),w_i=(-1)^i*(2i+1)/(2*n+2); parameter direction as above.",
+      "affine_control": {
+        "m": 2,
+        "a_old": 2.2,
+        "b_old": 0.35,
+        "coefficient_endpoints": "[a_old-b_old,a_old+b_old]",
+        "theta_endpoints": "[a_old-b_old-2,a_old+b_old-2]",
+        "scope": "Coefficient identity only; these values are not the main1.7..2.3coefficient-bound cases."
+      },
+      "nonsymmetric_control": {
+        "n": 7,
+        "diagonal": 4,
+        "lower": -1,
+        "upper": -2
+      },
+      "reference": "Separate directly evaluated dense hat formula and banded J solve of all m tangent RHS; explicitly allowed only in independent reference window. Same discrete model, not separate forward PDE truth."
+    }
+  }
+}

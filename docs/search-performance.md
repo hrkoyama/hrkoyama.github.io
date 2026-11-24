@@ -47,3 +47,9 @@ gh workflow run atlas-search-quality.yml \
 生成差分をコミットした最終候補をpushし、その同SHAで標準の **Public site checks**（索引鮮度・全Node・日英4ブラウザー）を通す。遠隔生成runが成功しても、最終候補CIや公開後確認の代替にはならない。失敗・中断・部分取得は保持する。生成後に正本を変更したら古いpatchを使い回さず、必要性と理由を記録して再度reviewする。公開までの残りの確認は[保守手順](../MAINTENANCE.md#候補固定公開実配信の確認)に従う。
 
 これらのcommit markerだけではworkflowのpush pathsフィルターを越えない。
+
+## 検索語の可逆な格納形式
+
+`compact_search.py` は、語彙IDと各レコード・言語の所属関係を転置し、同じ所属リストを共有する `inverted-membership-varint-base64-v1` を生成する。クラスID列は符号なしvarint、各所属リストは昇順のchannel IDの差分varintである。語彙のUnicode接頭辞符号化と、重複行文字列を共有する既存形式を使い、4文字以上の反復文字列を共有候補にする。ブラウザーの `compact-index.mjs` は語順を復元し、旧形式と同じ全文検索語・レコード・見出し・URLを返す。旧数値配列と旧base64差分列も引き続き読み込める。
+
+復元時はchannelの重複・欠落、非正規varint、範囲外ID、重複クラス、未使用クラスを拒否する。所属の総数と展開後文字数にも上限を設け、共有リストの反復参照による過大な展開を防ぐ。公開AI JSON・Markdown・長文detailsは維持する。保存済み旧索引での同値比較に加え、更新した索引のサイズ・日英検索結果・実ブラウザーの初回性能は同じ候補SHAのGitHub CIと公開後の実HR測定で確認する。

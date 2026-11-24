@@ -1,0 +1,358 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "checks": {
+    "active-data-finite": true,
+    "active-data-state-residual": true,
+    "point-0-residual": true,
+    "point-0-state": true,
+    "point-0-jacobian": true,
+    "point-0-finite-difference": true,
+    "point-1-residual": true,
+    "point-1-state": true,
+    "point-1-jacobian": true,
+    "point-1-finite-difference": true,
+    "point-2-residual": true,
+    "point-2-state": true,
+    "point-2-jacobian": true,
+    "point-2-finite-difference": true,
+    "point-3-residual": true,
+    "point-3-state": true,
+    "point-3-jacobian": true,
+    "point-3-finite-difference": true,
+    "context-0-complete": true,
+    "context-0-finite": true,
+    "context-0-residual": true,
+    "context-0-stationary": true,
+    "context-0-feasible": true,
+    "context-0-nonincrease": true,
+    "context-0-strictly-interior": true,
+    "context-0-unbounded-stationary": true,
+    "context-1-complete": true,
+    "context-1-finite": true,
+    "context-1-residual": true,
+    "context-1-stationary": true,
+    "context-1-feasible": true,
+    "context-1-nonincrease": true,
+    "context-1-strictly-interior": true,
+    "context-1-unbounded-stationary": true,
+    "context-2-complete": true,
+    "context-2-finite": true,
+    "context-2-residual": true,
+    "context-2-stationary": true,
+    "context-2-feasible": true,
+    "context-2-nonincrease": true,
+    "context-3-complete": true,
+    "context-3-finite": true,
+    "context-3-residual": true,
+    "context-3-stationary": true,
+    "context-3-feasible": true,
+    "context-3-nonincrease": true,
+    "context-3-strictly-interior": true,
+    "context-3-unbounded-stationary": true
+  },
+  "details": {
+    "active-data-finite": {
+      "passed": true,
+      "actual": [
+        0.24022467691571558,
+        0.4280152638284242,
+        0.5974210386112855,
+        0.44592154388911487,
+        0.25477262408445683
+      ],
+      "limit": null
+    },
+    "active-data-state-residual": {
+      "passed": true,
+      "actual": 1.717376241217039e-16,
+      "limit": 2e-14
+    },
+    "point-0-residual": {
+      "passed": true,
+      "actual": 7.37257477290143e-17,
+      "limit": 2e-14
+    },
+    "point-0-state": {
+      "passed": true,
+      "actual": 3.3741337400789216e-15,
+      "limit": 2e-10
+    },
+    "point-0-jacobian": {
+      "passed": true,
+      "actual": 7.84960692337534e-16,
+      "limit": 2e-08
+    },
+    "point-0-finite-difference": {
+      "passed": true,
+      "actual": 2.8862497284614516e-11,
+      "limit": 2e-06
+    },
+    "point-1-residual": {
+      "passed": true,
+      "actual": 8.023096076392733e-17,
+      "limit": 2e-14
+    },
+    "point-1-state": {
+      "passed": true,
+      "actual": 3.0936641289586657e-15,
+      "limit": 2e-10
+    },
+    "point-1-jacobian": {
+      "passed": true,
+      "actual": 1.3612826669648551e-15,
+      "limit": 2e-08
+    },
+    "point-1-finite-difference": {
+      "passed": true,
+      "actual": 6.718857789945468e-11,
+      "limit": 2e-06
+    },
+    "point-2-residual": {
+      "passed": true,
+      "actual": 1.717376241217039e-16,
+      "limit": 2e-14
+    },
+    "point-2-state": {
+      "passed": true,
+      "actual": 4.009224648154309e-12,
+      "limit": 2e-10
+    },
+    "point-2-jacobian": {
+      "passed": true,
+      "actual": 3.999925324490438e-12,
+      "limit": 2e-08
+    },
+    "point-2-finite-difference": {
+      "passed": true,
+      "actual": 2.341319941942689e-10,
+      "limit": 2e-06
+    },
+    "point-3-residual": {
+      "passed": true,
+      "actual": 3.404394821604484e-17,
+      "limit": 2e-14
+    },
+    "point-3-state": {
+      "passed": true,
+      "actual": 1.5497290025278237e-12,
+      "limit": 2e-10
+    },
+    "point-3-jacobian": {
+      "passed": true,
+      "actual": 3.507122652609709e-13,
+      "limit": 2e-08
+    },
+    "point-3-finite-difference": {
+      "passed": true,
+      "actual": 2.8730618961007943e-11,
+      "limit": 2e-06
+    },
+    "context-0-complete": {
+      "passed": true,
+      "actual": {
+        "status": 1,
+        "message": "`gtol` termination condition is satisfied."
+      },
+      "limit": null
+    },
+    "context-0-finite": {
+      "passed": true,
+      "actual": 4.3960383433163236e-26,
+      "limit": null
+    },
+    "context-0-residual": {
+      "passed": true,
+      "actual": 8.196568423990414e-17,
+      "limit": 2e-14
+    },
+    "context-0-stationary": {
+      "passed": true,
+      "actual": 5.218048215738236e-15,
+      "limit": 1e-08
+    },
+    "context-0-feasible": {
+      "passed": true,
+      "actual": [
+        2.2000000000000983,
+        0.3499999999831442
+      ],
+      "limit": null
+    },
+    "context-0-nonincrease": {
+      "passed": true,
+      "actual": 4.3960383433163236e-26,
+      "limit": 0.0005661753899450277
+    },
+    "context-0-strictly-interior": {
+      "passed": true,
+      "actual": [
+        2.2000000000000983,
+        0.3499999999831442
+      ],
+      "limit": null
+    },
+    "context-0-unbounded-stationary": {
+      "passed": true,
+      "actual": 5.2141257427012106e-15,
+      "limit": 1e-08
+    },
+    "context-1-complete": {
+      "passed": true,
+      "actual": {
+        "status": 1,
+        "message": "`gtol` termination condition is satisfied."
+      },
+      "limit": null
+    },
+    "context-1-finite": {
+      "passed": true,
+      "actual": 6.67630924830705e-06,
+      "limit": null
+    },
+    "context-1-residual": {
+      "passed": true,
+      "actual": 5.074066167232161e-17,
+      "limit": 2e-14
+    },
+    "context-1-stationary": {
+      "passed": true,
+      "actual": 7.593925488436071e-14,
+      "limit": 1e-08
+    },
+    "context-1-feasible": {
+      "passed": true,
+      "actual": [
+        2.1966031549185407,
+        0.2697993027632386
+      ],
+      "limit": null
+    },
+    "context-1-nonincrease": {
+      "passed": true,
+      "actual": 6.67630924830705e-06,
+      "limit": 0.0005826580544031701
+    },
+    "context-1-strictly-interior": {
+      "passed": true,
+      "actual": [
+        2.1966031549185407,
+        0.2697993027632386
+      ],
+      "limit": null
+    },
+    "context-1-unbounded-stationary": {
+      "passed": true,
+      "actual": 7.614594244045213e-14,
+      "limit": 1e-08
+    },
+    "context-2-complete": {
+      "passed": true,
+      "actual": {
+        "status": 2,
+        "message": "`ftol` termination condition is satisfied."
+      },
+      "limit": null
+    },
+    "context-2-finite": {
+      "passed": true,
+      "actual": 0.0003567373252731796,
+      "limit": null
+    },
+    "context-2-residual": {
+      "passed": true,
+      "actual": 1.2663481374630692e-16,
+      "limit": 2e-14
+    },
+    "context-2-stationary": {
+      "passed": true,
+      "actual": 1.660527271241108e-11,
+      "limit": 1e-08
+    },
+    "context-2-feasible": {
+      "passed": true,
+      "actual": [
+        2.7999999999999994,
+        0.47474227883911513
+      ],
+      "limit": null
+    },
+    "context-2-nonincrease": {
+      "passed": true,
+      "actual": 0.0003567373252731796,
+      "limit": 0.017050258678697566
+    },
+    "context-3-complete": {
+      "passed": true,
+      "actual": {
+        "status": 1,
+        "message": "`gtol` termination condition is satisfied."
+      },
+      "limit": null
+    },
+    "context-3-finite": {
+      "passed": true,
+      "actual": 2.01091334502386e-06,
+      "limit": null
+    },
+    "context-3-residual": {
+      "passed": true,
+      "actual": 8.933825901280557e-17,
+      "limit": 2e-14
+    },
+    "context-3-stationary": {
+      "passed": true,
+      "actual": 5.773159728050814e-15,
+      "limit": 1e-08
+    },
+    "context-3-feasible": {
+      "passed": true,
+      "actual": [
+        2.200384625322468,
+        -4.4529918628452406e-17
+      ],
+      "limit": null
+    },
+    "context-3-nonincrease": {
+      "passed": true,
+      "actual": 2.01091334502386e-06,
+      "limit": 0.0011411775475326823
+    },
+    "context-3-strictly-interior": {
+      "passed": true,
+      "actual": [
+        2.200384625322468,
+        -4.4529918628452406e-17
+      ],
+      "limit": null
+    },
+    "context-3-unbounded-stationary": {
+      "passed": true,
+      "actual": 5.749066983391174e-15,
+      "limit": 1e-08
+    }
+  },
+  "input_sha256": "dca8cf2a84355ebbb881bc17232923c5fa0ee16f34c7d2a8a8c58da702e9b3b1",
+  "acceptance_sha256": "5f176ea719dc8a5bb21c1b47bc1fcb8636d204f31821efc622d830bc4b0ce2db",
+  "source_sha256": {
+    "support.py": "1e0987bec71279b96229ed656aa41e8132156f55dc0db438017be0060664e715",
+    "model.py": "5174a0b62f7bb889875bfa16be9bd7162272277ec19d4709ef4b1a01a4b1474d",
+    "references/thomas.py": "911a4dca43e0964ee74d2c1c2eaf03bd4f921f9679e1fe84ffb369b1ea039b3e",
+    "references/oracles.py": "cb21bda3142b22ff7775c8e737f4e2f4c213bcc163072440e55d8b51625cd19b",
+    "references/qualify.py": "6647987201848605adb4c8dcf66e604fe9ce4aa08007b140514d1077ffae341e",
+    "references/__init__.py": "8c328e2e0e2980730edf4e2081c379f05b1c6b2421ab1121dbcd48d823b623fe",
+    "legacy/__init__.py": "4511db4ec7aad2bf3c764420dbe2541e8cafcb20b5a7201d2a618acc86063195",
+    "legacy/numart/__init__.py": "9f1fcd8aeac10bc22f4805d1a5befc5ae06405a9cead726e155df996de5f72d7",
+    "legacy/numart/autodiff.py": "047acbb1585e08fce345b9b4ac33ee0b85430a262107beb76a89813f487a004a",
+    "legacy/numart/bratu_inverse.py": "aea8b5710c8574118ea2db5f7c77b4cf47ceecfde994ba1ce3418f22e57ec9f4",
+    "legacy/numart/bratu_multinverse.py": "7388b971a87db1f4ce2e4c12ab1f42385d3092e692e60d249c25e4304248e5ec",
+    "legacy/numart/bratu_sensitivity.py": "31f694599475892c75bcff9b4e9bd08921716bb48d6a78d48d12f1484a023609",
+    "legacy/numart/krylov.py": "3241dc174c3e0cf496723152ec92f81e1b741cb4d826c02f88395621b965ae2d",
+    "legacy/input-observations.json": "d17059934636617f1fbe58cc84dd04ef9464533ba3ec349751eca54009df1e5e"
+  },
+  "reference_optimizer_fits": 4,
+  "fixed_state_points": 4,
+  "failure": null,
+  "fields_sha256": "972e97ae94be0ebf77c26843f66cb2f97bc820907e63debf440242e05dde3e78",
+  "gate_count": 48
+}

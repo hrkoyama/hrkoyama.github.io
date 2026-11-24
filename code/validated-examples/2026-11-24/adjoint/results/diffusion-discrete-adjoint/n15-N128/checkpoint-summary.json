@@ -1,0 +1,292 @@
+{
+  "gradient": [
+    -0.22616041556093783,
+    0.024253330334786497
+  ],
+  "primal_solves": 128,
+  "transpose_solves": 128,
+  "replay_solves": 128,
+  "ledger": {
+    "peak_state_elements": 480,
+    "peak_total_bytes": 5472,
+    "ownership": [
+      {
+        "state_elements": 480,
+        "total_bytes": 5472,
+        "arrays": [
+          {
+            "name": "checkpoints",
+            "category": "state",
+            "shape": [
+              9,
+              15
+            ],
+            "owner_shape": [
+              9,
+              15
+            ],
+            "owner_bytes": 1080,
+            "alias_owner": "checkpoints"
+          },
+          {
+            "name": "replay_block",
+            "category": "state",
+            "shape": [
+              17,
+              15
+            ],
+            "owner_shape": [
+              17,
+              15
+            ],
+            "owner_bytes": 2040,
+            "alias_owner": "replay_block"
+          },
+          {
+            "name": "current",
+            "category": "state",
+            "shape": [
+              15
+            ],
+            "owner_shape": [
+              15
+            ],
+            "owner_bytes": 120,
+            "alias_owner": "current"
+          },
+          {
+            "name": "rhs",
+            "category": "state",
+            "shape": [
+              15
+            ],
+            "owner_shape": [
+              15
+            ],
+            "owner_bytes": 120,
+            "alias_owner": "rhs"
+          },
+          {
+            "name": "Thomas_scratch",
+            "category": "state",
+            "shape": [
+              15
+            ],
+            "owner_shape": [
+              15
+            ],
+            "owner_bytes": 120,
+            "alias_owner": "Thomas_scratch"
+          },
+          {
+            "name": "p",
+            "category": "state",
+            "shape": [
+              15
+            ],
+            "owner_shape": [
+              15
+            ],
+            "owner_bytes": 120,
+            "alias_owner": "p"
+          },
+          {
+            "name": "z",
+            "category": "state",
+            "shape": [
+              15
+            ],
+            "owner_shape": [
+              15
+            ],
+            "owner_bytes": 120,
+            "alias_owner": "z"
+          },
+          {
+            "name": "Au",
+            "category": "state",
+            "shape": [
+              15
+            ],
+            "owner_shape": [
+              15
+            ],
+            "owner_bytes": 120,
+            "alias_owner": "Au"
+          },
+          {
+            "name": "x",
+            "category": "factor-model-work",
+            "shape": [
+              15
+            ],
+            "owner_shape": [
+              15
+            ],
+            "owner_bytes": 120,
+            "alias_owner": "x"
+          },
+          {
+            "name": "u0",
+            "category": "factor-model-work",
+            "shape": [
+              15
+            ],
+            "owner_shape": [
+              15
+            ],
+            "owner_bytes": 120,
+            "alias_owner": "u0"
+          },
+          {
+            "name": "b",
+            "category": "factor-model-work",
+            "shape": [
+              15
+            ],
+            "owner_shape": [
+              15
+            ],
+            "owner_bytes": 120,
+            "alias_owner": "b"
+          },
+          {
+            "name": "target",
+            "category": "factor-model-work",
+            "shape": [
+              15
+            ],
+            "owner_shape": [
+              15
+            ],
+            "owner_bytes": 120,
+            "alias_owner": "target"
+          },
+          {
+            "name": "B.lower",
+            "category": "factor-model-work",
+            "shape": [
+              14
+            ],
+            "owner_shape": [
+              14
+            ],
+            "owner_bytes": 112,
+            "alias_owner": "B.lower"
+          },
+          {
+            "name": "B.diagonal",
+            "category": "factor-model-work",
+            "shape": [
+              15
+            ],
+            "owner_shape": [
+              15
+            ],
+            "owner_bytes": 120,
+            "alias_owner": "B.diagonal"
+          },
+          {
+            "name": "B.upper",
+            "category": "factor-model-work",
+            "shape": [
+              14
+            ],
+            "owner_shape": [
+              14
+            ],
+            "owner_bytes": 112,
+            "alias_owner": "B.upper"
+          },
+          {
+            "name": "B.pivot",
+            "category": "factor-model-work",
+            "shape": [
+              15
+            ],
+            "owner_shape": [
+              15
+            ],
+            "owner_bytes": 120,
+            "alias_owner": "B.pivot"
+          },
+          {
+            "name": "B.cprime",
+            "category": "factor-model-work",
+            "shape": [
+              14
+            ],
+            "owner_shape": [
+              14
+            ],
+            "owner_bytes": 112,
+            "alias_owner": "B.cprime"
+          },
+          {
+            "name": "BT.lower",
+            "category": "factor-model-work",
+            "shape": [
+              14
+            ],
+            "owner_shape": [
+              14
+            ],
+            "owner_bytes": 112,
+            "alias_owner": "BT.lower"
+          },
+          {
+            "name": "BT.diagonal",
+            "category": "factor-model-work",
+            "shape": [
+              15
+            ],
+            "owner_shape": [
+              15
+            ],
+            "owner_bytes": 120,
+            "alias_owner": "BT.diagonal"
+          },
+          {
+            "name": "BT.upper",
+            "category": "factor-model-work",
+            "shape": [
+              14
+            ],
+            "owner_shape": [
+              14
+            ],
+            "owner_bytes": 112,
+            "alias_owner": "BT.upper"
+          },
+          {
+            "name": "BT.pivot",
+            "category": "factor-model-work",
+            "shape": [
+              15
+            ],
+            "owner_shape": [
+              15
+            ],
+            "owner_bytes": 120,
+            "alias_owner": "BT.pivot"
+          },
+          {
+            "name": "BT.cprime",
+            "category": "factor-model-work",
+            "shape": [
+              14
+            ],
+            "owner_shape": [
+              14
+            ],
+            "owner_bytes": 112,
+            "alias_owner": "BT.cprime"
+          }
+        ]
+      }
+    ],
+    "scope": "Explicit unique owned numeric buffers; not total process RSS."
+  },
+  "resident_full_trajectory": false,
+  "streamed_replay_file": "replayed-states.npy-stream"
+}

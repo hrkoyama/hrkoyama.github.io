@@ -1,0 +1,132 @@
+"""Actual zero-start matrix-free Newton state solve, with immutable GMRES body."""
+import numpy as np
+from operators import dot, norm, hnorm, residual, jac_action, poisson_factor
+from krylov import gmres, norm as krylov_norm
+from io_contract import checkpoint
+
+
+def state(n, coefficient, tolerance, settings, partial=None):
+    u = np.zeros(n)
+    factor = poisson_factor(n)
+    counts = {'residual': 0, 'Jv': 0, 'preconditioner': 0, 'factor_builds': 1}
+    rows, trials = [], []
+    last = {}
+
+    def save():
+        if partial is not None:
+            checkpoint(partial, u=u, coefficient=np.broadcast_to(coefficient, (n,)),
+                       **last)
+
+    def function(x):
+        counts['residual'] += 1
+        last['last_residual_input'] = x.copy()
+        return residual(x, coefficient)
+
+    try:
+        for step in range(settings['nonlinear_max_updates']+1):
+            save()
+            f = function(u)
+            current = hnorm(f)
+            if current <= tolerance:
+                return {'u': u, 'residual': current, 'counts': counts,
+                        'newton': rows, 'trials': trials, 'passed': True}
+            if step == settings['nonlinear_max_updates']:
+                raise ArithmeticError('Newton update limit')
+
+            def operator(v):
+                counts['Jv'] += 1
+                last['last_Jv_input'] = v.copy()
+                last.pop('last_Jv_output', None)
+                out = jac_action(u, coefficient, v)
+                last['last_Jv_output'] = out.copy()
+                return out
+
+            def precondition(v):
+                counts['preconditioner'] += 1
+                return factor.solve(v)
+
+            cfg = settings['gmres']
+            inner = gmres(operator, -f, precondition, cfg['restart'], cfg['max_iterations'], cfg['state_newton_rtol'])
+            last['last_linear_candidate'] = inner['x'].copy()
+            last['last_linear_residuals'] = inner['residuals'].copy()
+            save()
+            if not inner['passed']:
+                raise ArithmeticError('State Newton inner target unmet')
+            accepted = False
+            for backtrack in range(20):
+                alpha = 2.0**(-backtrack)
+                trial = u+alpha*inner['x']
+                last['trial'] = trial.copy()
+                try:
+                    value = hnorm(function(trial))
+                    ok = np.isfinite(value) and value <= (1-settings['armijo']*alpha)*current
+                    trials.append({'step': step, 'backtrack': backtrack, 'alpha': alpha,
+                                   'residual': value, 'accepted': bool(ok), 'representable': True})
+                except FloatingPointError:
+                    ok = False
+                    trials.append({'step': step, 'backtrack': backtrack, 'alpha': alpha,
+                                   'accepted': False, 'representable': False})
+                if ok:
+                    u = trial
+                    accepted = True
+                    break
+            rows.append({'step': step, 'residual': current, 'linear_iterations': inner['iterations'],
+                         'alpha': alpha, 'accepted': accepted})
+            save()
+            if not accepted:
+                raise ArithmeticError('Newton line search exhausted')
+    except BaseException:
+        save()
+        raise
+
+
+def derivative(u, coefficient, rhs, rtol, settings, partial=None, factor=None):
+    """Return the real GMRES candidate; never turn an unmet target into success."""
+    factor_builds = int(factor is None)
+    if factor is None:
+        factor = poisson_factor(len(u))
+    last = {}
+    counts = {'Jv': 0, 'preconditioner': 0, 'factor_builds': factor_builds}
+
+    def operator(v):
+        counts['Jv'] += 1
+        last['operator_input'] = v.copy()
+        last.pop('operator_output', None)
+        out = jac_action(u, coefficient, v)
+        last['operator_output'] = out.copy()
+        return out
+
+    def precondition(v):
+        counts['preconditioner'] += 1
+        return factor.solve(v)
+
+    try:
+        cfg = settings['gmres']
+        result = gmres(operator, rhs, precondition, cfg['restart'], cfg['max_iterations'], rtol)
+        x = result['x']
+        actual = krylov_norm(rhs-operator(x))
+        target = max(1e-14, rtol*krylov_norm(rhs))
+        met = actual <= target
+        if met != result['passed']:
+            raise ArithmeticError('Raw GMRES target decision inconsistent')
+        c = np.abs(coefficient*np.exp(u))
+        h2 = (len(u)+1)**2
+        scale = (2*h2+c)*np.abs(x)+np.abs(rhs)
+        scale[1:] += h2*np.abs(x[:-1])
+        scale[:-1] += h2*np.abs(x[1:])
+        unit = 2.0**-53
+        estimate = norm((12*unit/(1-12*unit))*scale)
+        reason = 'target_met' if met else ('maximum_iterations' if result['iterations'] == cfg['max_iterations'] else 'arnoldi_breakdown')
+        diagnostic = 'TARGET_MET' if met else ('UNMET_ROUNDOFF_SCALE_CONSISTENT' if actual <= 10*estimate else 'UNMET_ABOVE_ROUNDOFF_ESTIMATE')
+        result.update(requested_rtol=rtol, requested_absolute_target=target,
+                      actual_true_residual=actual, target_met=bool(met), raw_solver_passed=bool(result['passed']),
+                      termination_reason=reason, finite_candidate=bool(np.isfinite(x).all()),
+                      roundoff_scale_estimate=estimate, roundoff_diagnostic=diagnostic,
+                      cause_proven=False, counts=counts)
+        if partial is not None:
+            checkpoint(partial, u=u, rhs=rhs, candidate=x, residual_history=result['residuals'], **last)
+        return result
+    except BaseException:
+        if partial is not None:
+            checkpoint(partial, u=u, rhs=rhs, **last)
+        raise

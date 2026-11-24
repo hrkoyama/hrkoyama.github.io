@@ -21,22 +21,37 @@ for(const name of ['i18n.js','reading-urls.js'])copyFileSync(new URL('numerical-
 copyFileSync(new URL('search/goals-data.mjs',root),join(client,'search/goals-data.mjs'));
 const {atlasSearch}=await import(pathToFileURL(join(client,'search/engine.mjs')));
 const {searchChapters}=await import(pathToFileURL(join(client,'numerical-methods-atlas/home-search.js')));
-function pack(index){
+function pack(index,inverted=false){
  // Exercise the production Python encoder and JS decoder together, without
  // generating indexes, opening scientific assets, or depending on NumPy.
  return JSON.parse(execFileSync('python3',['-B','-c',`
 import json,sys
 sys.path.insert(0,sys.argv[1])
-from compact_search import pack_vocabulary,pack_deltas
+from compact_search import pack_vocabulary,pack_deltas,pack_term_memberships,encode_row_strings
 index=json.load(sys.stdin)
+if sys.argv[2]=='inverted':
+    field='entries' if index['kind']=='atlas' else 'documents'
+    def absolute(ids):
+        result=[];previous=0
+        for delta in ids:
+            previous+=delta;result.append(previous)
+        return result
+    for row in index[field]:
+        value=row['search_terms']
+        row['search_terms']={key:absolute(ids) for key,ids in value.items()} if isinstance(value,dict) else absolute(value)
+    index[field],header=pack_term_memberships(index[field],len(index['terms']))
+    index.update(header)
 index['terms']=pack_vocabulary(index['terms'])
 index['vocabulary_encoding']='unicode-prefix-flat-v1'
-index['term_encoding']='sorted-delta-varint-base64'
-for row in index['entries']:
-    value=row['search_terms']
-    row['search_terms']={key:pack_deltas(ids) for key,ids in value.items()} if isinstance(value,dict) else pack_deltas(value)
+if sys.argv[2]!='inverted':
+    index['term_encoding']='sorted-delta-varint-base64'
+    for row in index['entries']:
+        value=row['search_terms']
+        row['search_terms']={key:pack_deltas(ids) for key,ids in value.items()} if isinstance(value,dict) else pack_deltas(value)
+else:
+    index=encode_row_strings(index)
 json.dump(index,sys.stdout,ensure_ascii=False,separators=(',',':'))
-`,fileURLToPath(new URL('scripts',root))],{input:JSON.stringify(index),encoding:'utf8',maxBuffer:32*1024*1024}));
+`,fileURLToPath(new URL('scripts',root)),inverted?'inverted':'legacy'],{input:JSON.stringify(index),encoding:'utf8',maxBuffer:32*1024*1024}));
 }
 const fixture=()=>({
  format:'compact-search-v1',kind:'atlas',term_encoding:'sorted-delta',
@@ -93,8 +108,8 @@ with tempfile.TemporaryDirectory(prefix='compact-writer-') as path:
  const raw=details[entry.text_ref+'.json'],detail=JSON.parse(raw);
  assert.equal(createHash('sha256').update(raw).digest('hex'),entry.text_ref);
  assert.equal(compact.vocabulary_encoding,'unicode-prefix-flat-v1');
- assert.equal(compact.term_encoding,'sorted-delta-varint-base64');
- assert.equal(typeof compact.entries[0].search_terms.ja,'string');
+ assert.equal(compact.term_encoding,'inverted-membership-varint-base64-v1');
+ assert.equal(typeof compact.entries[0].search_terms.ja,'number');
  assert.deepEqual(entry.headings,source.entries[0].headings);
  assert.deepEqual(detail.text,source.entries[0].text);
  assert.equal(entry.text.ja,Array.from(source.entries[0].text.ja).slice(0,500).join(''));
@@ -125,4 +140,78 @@ test('both homepage and global consumers retain all heading fields, section IDs,
   const before=searchChapters(old,query,language),after=searchChapters(next,query,language);
   assert.ok(before.length);assert.equal(before[0].section,section);assert.deepEqual(after,before);
  }
+});
+
+test('inverted memberships preserve atlas/site full APIs, empty channels, Unicode and both search consumers',()=>{
+ for(const kind of ['atlas','site']){
+  const old=fixture();old.kind=kind;
+  const field=kind==='atlas'?'entries':'documents';
+  if(kind==='site'){old.documents=old.entries;delete old.entries;}
+  // Repeated posting lists, an empty language and a non-language text channel.
+  old[field].push({...structuredClone(old[field][0]),id:'second',search_terms:{ja:[6,1,2],en:[]}});
+  const before=structuredClone(old),next=pack(old,true);
+  assert.deepEqual(old,before);
+  assert.deepEqual(unpackSearchIndex(next),unpackSearchIndex(old));
+  assert.equal(unpackSearchIndex(next),unpackSearchIndex(next),'cached without caller mutation');
+  assert.deepEqual(next,pack(old,true),'canonical deterministic Python encoding');
+  if(kind==='atlas')for(const query of ['日本','日','Unicode','α','😀','no-such-term'])for(const language of ['ja','en']){
+   assert.deepEqual(atlasSearch(next)(query,language,'atlas'),atlasSearch(old)(query,language,'atlas'));
+   assert.deepEqual(searchChapters(next,query,language),searchChapters(old,query,language));
+  }
+ }
+ const empty={format:'compact-search-v1',kind:'atlas',term_encoding:'sorted-delta',terms:[],entries:[{search_terms:[]},{search_terms:{ja:[]}}]};
+ assert.deepEqual(unpackSearchIndex(pack(empty,true)),unpackSearchIndex(empty));
+});
+
+test('inverted posting corruption, aliases, missing channels and reserved headers fail closed',()=>{
+ const b64=bytes=>Buffer.from(bytes).toString('base64');
+ const mutations=[
+  x=>x.term_channel_count=-1,x=>x.term_channel_count=1.5,x=>x.term_channel_count=8001,
+  x=>x.term_membership_ids=b64([128]),x=>x.term_membership_ids=b64([128,0]),
+  x=>x.term_membership_ids=b64([0]),x=>x.term_membership_ids=b64([127]),
+  x=>x.term_membership_classes.push(x.term_membership_classes[0]),
+  x=>x.term_membership_classes[0]=b64([0,0]),
+  x=>x.term_membership_classes[0]=b64([3]),
+  x=>x.term_membership_classes[0]='AB==',
+  x=>x.term_membership_classes=Object.create([]),
+  x=>x.entries[0].search_terms.ja=1,
+  x=>x.entries[0].search_terms.en=0,
+  x=>x.entries[0].search_terms=null,
+  x=>x.entries[0].search_terms=Object.create({ja:0}),
+  x=>delete x.entries[0],x=>x.entries.push({search_terms:3}),
+  x=>x.term_channel_count=4,
+ ];
+ for(const mutate of mutations){const x=pack(fixture(),true);mutate(x);assert.throws(()=>unpackSearchIndex(x));}
+ for(const key of ['term_channel_count','term_membership_ids','term_membership_classes']){
+  const x=pack(fixture());x[key]=null;assert.throws(()=>unpackSearchIndex(x));
+  assert.throws(()=>unpackSearchIndex({format:'unpacked-search-v1',[key]:null}));
+ }
+});
+
+test('Python insertion order and JavaScript numeric language-key order preserve channel identity',()=>{
+ const value=JSON.parse(execFileSync('python3',['-B','-c',`
+import json,sys
+sys.path.insert(0,sys.argv[1])
+from compact_search import pack_term_memberships,pack_vocabulary
+rows=[{'search_terms':{'10':[0],'2':[1],'ja':[0,1]}}]
+projected,header=pack_term_memberships(rows,2)
+print(json.dumps({'format':'compact-search-v1','kind':'atlas','entries':projected,
+                 'terms':pack_vocabulary(['a','日本']),'vocabulary_encoding':'unicode-prefix-flat-v1',**header},ensure_ascii=False))
+`,fileURLToPath(new URL('scripts',root))],{encoding:'utf8'}));
+ assert.deepEqual(unpackSearchIndex(value).entries[0].search_text,{'2':'日本','10':'a',ja:'a 日本'});
+ const reordered=structuredClone(value);
+ reordered.entries[0].search_terms={ja:2,'10':0,'2':1};
+ assert.deepEqual(unpackSearchIndex(reordered),unpackSearchIndex(value));
+});
+
+test('inverted expansion bounds account for reused classes and decoded characters before joining',()=>{
+ const b64=bytes=>Buffer.from(bytes).toString('base64');
+ const base={format:'compact-search-v1',kind:'atlas',term_encoding:'inverted-membership-varint-base64-v1',term_channel_count:4,
+  term_membership_classes:[b64([0,1,1,1])],term_membership_ids:b64([0,0,0]),
+  vocabulary_encoding:'unicode-prefix-flat-v1',terms:[0,'x'.repeat(2000000),0,'y'.repeat(2000000),0,'z'.repeat(2000000)],
+  entries:[{search_terms:0},{search_terms:1},{search_terms:2},{search_terms:3}]};
+ assert.throws(()=>unpackSearchIndex(base),/Invalid inverted search terms/);
+ const many={...base,terms:Array.from({length:500000},()=>[0,'x']).flat(),term_membership_ids:Buffer.alloc(500000).toString('base64'),term_channel_count:5,
+  term_membership_classes:[b64([0,1,1,1,1])],entries:Array.from({length:5},(_,i)=>({search_terms:i}))};
+ assert.throws(()=>unpackSearchIndex(many),/Invalid inverted search terms/);
 });

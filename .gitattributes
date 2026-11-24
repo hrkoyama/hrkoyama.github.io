@@ -78,3 +78,9 @@ code/validated-examples/2026-11-24-r2/radiation-matter/**/exactpack-LICENSE.txt 
 code/validated-examples/2026-11-24-r2/radiation-matter/**/exactpack-timmes.py.txt -whitespace
 code/validated-examples/2026-11-24-r2/radiation-matter/**/exactpack-timmes-tight.py.txt -whitespace
 code/validated-examples/2026-11-24-r2/radiation-matter/**/diffusion.py.patch -whitespace
+
+# Batch58–67: keep hash-checked scientific SVG bytes and binary diffs.
+code/validated-examples/2026-11-24/globalization-controls/results/*.svg binary
+code/validated-examples/2026-11-24/reverse-higher-ad/results/*.svg binary
+code/validated-examples/2026-11-24/adjoint/results/*.svg binary
+code/validated-examples/2026-11-24/inverse-optimization/results/*.svg binary

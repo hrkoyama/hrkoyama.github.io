@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "status": "FIXED_COMPONENT_QUALIFICATION_ONLY_NOT_NEW_SOLVER_PASS",
+  "checks": 96,
+  "passed": true,
+  "elapsed_seconds": 1.100177790998714,
+  "original_component_plan_sha256": "474a6fc97b1783bfaaf56af8d8905993205ebaa621e7f51e91fac96c3b0c87cf",
+  "original_receipt_sha256": "ecdd368fb30a4c344c00889a4875b70c535e5e25b207b90b30fb2575d814bfb2",
+  "candidate_sha256": "f9bc0198d5a1dc6eadc42887a9ffb5d80d78c07df647120b6032c74a7b9c4661",
+  "checker_sha256": "e9219ec60aea6ed4756d128b7d139a3d34ff956a89f997167718020488eb7239",
+  "source_snapshot_suffix": ".py.txt preserves original sourcebytes and is not collected/executed by pytest. Originalchecker expects private evidence layout; it is an archived reading copy,not the public primaryrunner.",
+  "scope": "Savedvectors and fixed27operator fixtures; no solver/evolution/pytest in qualification. Fraction exact stencil/fixedbinarydiagonalJ; Decimal80/110exponential.",
+  "limitation": "Same oldcandidate balanced true residual remains ABOVE unchanged target. Improved operator evaluation is not a newly converged solution or proof of the sole cause.",
+  "retention": "Full original source/plan/rootauthorization/receipt/alloutputs/logs remain privately preserved. This path-free packet adds selected exact source/raw results plus this clearly labelled summary."
+}

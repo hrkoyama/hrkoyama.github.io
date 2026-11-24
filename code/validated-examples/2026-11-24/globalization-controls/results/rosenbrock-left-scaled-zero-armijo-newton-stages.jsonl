@@ -1,0 +1,12 @@
+{"stage": "before-current-residual", "record": null}
+{"stage": "before-jacobian", "record": null}
+{"stage": "before-model-solve", "record": null}
+{"stage": "before-trial-residual", "record": null}
+{"stage": "trial-recorded", "record": {"iteration": 0, "trial": 0, "x": [0.0, 0.0], "candidate": [1.0, 0.0], "f": [0.0, 1.0], "phi": 500000.0, "step": [1.0, 0.0], "alpha": 1.0, "delta": 1.0, "accepted": true, "domain_rejected": false, "branch": "newton", "rank": 2, "singular_values": [1000.0, 0.01], "candidate_f": [-10.0, 0.0], "trial_phi": 5e-05, "pred": 500000.0, "pred_direct": 500000.0, "actual": 499999.99995, "gp": -1000000.0, "ap_norm": 1000.0, "g_norm": 1000000.0, "delta_after": 1.0, "F_evaluations": 2, "J_evaluations": 1, "model_solves": 1}}
+{"stage": "before-current-residual", "record": null}
+{"stage": "before-jacobian", "record": null}
+{"stage": "before-model-solve", "record": null}
+{"stage": "before-trial-residual", "record": null}
+{"stage": "trial-recorded", "record": {"iteration": 1, "trial": 0, "x": [1.0, 0.0], "candidate": [1.0, 1.0], "f": [-10.0, 0.0], "phi": 5e-05, "step": [1.553548587951155e-23, 1.0], "alpha": 1.0, "delta": 1.0, "accepted": true, "domain_rejected": false, "branch": "newton", "rank": 2, "singular_values": [1000.0000002, 0.009999999997999998], "candidate_f": [0.0, 0.0], "trial_phi": 0.0, "pred": 5e-05, "pred_direct": 5e-05, "actual": 5e-05, "gp": -0.0001, "ap_norm": 0.01, "g_norm": 0.00022360679774997898, "delta_after": 1.0, "F_evaluations": 4, "J_evaluations": 2, "model_solves": 2}}
+{"stage": "before-current-residual", "record": null}
+{"stage": "solver-completed-before-diagnostics", "record": null}

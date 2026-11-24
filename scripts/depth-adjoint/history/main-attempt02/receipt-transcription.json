@@ -1,0 +1,17 @@
+{
+  "kind": "PATH_FREE_TRANSCRIPTION_NOT_ORIGINAL_BYTES",
+  "original_receipt_sha256": "1876a69bb8a8d1ff51dd29d53f33d1864922ac9d804240a58b0b625277db7f80",
+  "passed": false,
+  "elapsed_seconds": 2.5522959580048337,
+  "pytest": {
+    "tests": 32,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "failure": {
+    "type": "RuntimeError",
+    "message": "main child failed"
+  },
+  "omitted": "Private absolute executionpaths/commands;complete originals retained persistently outside packet."
+}

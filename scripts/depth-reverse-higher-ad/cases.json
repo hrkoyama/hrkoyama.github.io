@@ -1,0 +1,215 @@
+{
+  "group": "reverse-higher-ad",
+  "cases": [
+    {
+      "id": "reverse-vjp-duality",
+      "title": {
+        "ja": "独自逆モードVJPとJVP/VJP双対性",
+        "en": "Original reverse-mode VJP and JVP/VJP duality"
+      },
+      "summary": {
+        "ja": "重複gatherとbroadcastを含む真の逆tapeを独立Jacobianと照合します。",
+        "en": "Check a genuine reverse tape, including repeated-index gather and broadcast, against independent Jacobians."
+      },
+      "assumptions": {
+        "ja": "小さな固定入力・実数・無次元。詳しい入力と適用範囲は対応する契約に限定します。",
+        "en": "Small fixed real dimensionless inputs; assumptions and scope are limited to the matching contract."
+      },
+      "algorithm": {
+        "ja": "逆topological順のcotangent加算と独立の前向き方向計算です。",
+        "en": "Accumulate cotangents in reverse topological order with a separate forward directional path."
+      },
+      "validation": {
+        "ja": "固定入力・独立参照・保存候補・全判定を同じ120秒予算内で検証します。数値合格と診断用非収束を区別します。",
+        "en": "Check fixed inputs, independent references, retained candidates and every gate within the same120-second budget. Numerical success and diagnostic nonconvergence are distinct."
+      },
+      "limits": {
+        "ja": "一般のNumPy/JAX置換や複素数ADではありません。",
+        "en": "Not a general NumPy/JAX replacement or complex AD system."
+      },
+      "gallery_figure": "reverse-vjp-duality-preview.png",
+      "additional_figures": [
+        {
+          "file": "reverse-vjp-duality-preview.png",
+          "caption": {
+            "ja": "独立矩形Jacobianと実際の逆微分誤差、固定wide写像の実測sweep数。",
+            "en": "Independent rectangular Jacobian, actual reverse differentiation error and measured sweep counts for fixed wide maps."
+          }
+        }
+      ],
+      "method_ids": [
+        "automatic-differentiation"
+      ],
+      "domains": [
+        "linear-algebra"
+      ],
+      "code_files": [
+        "run.py"
+      ],
+      "references": [
+        {
+          "id": "jax-cookbook-selected",
+          "author": "The JAX authors",
+          "title": "The Autodiff Cookbook",
+          "url": "https://docs.jax.dev/en/latest/notebooks/autodiff_cookbook.html",
+          "accessed_on": "2026-11-24",
+          "review_level": "official-documentation-selected-mathematical-sections",
+          "review_scope": "Selected definitions and composition formulas only. A new educational tape will implement the stated finite subset. No JAX installation, execution, timing replication or implementation-source audit. Unread: Original reverse-mode/HVP papers, JAX transformation implementation, Unselected cookbook sections. Publication year not established (n.d.)."
+        },
+        {
+          "id": "jax-faq-selected",
+          "author": "The JAX authors",
+          "title": "Frequently asked questions: undefined branches and ordering",
+          "url": "https://docs.jax.dev/en/latest/faq.html",
+          "accessed_on": "2026-11-24",
+          "review_level": "official-documentation-selected-sections",
+          "review_scope": "Read invalid inactive-branch and ordering discussions. We use an explicitly different strict nondifferentiability policy, not a universal JAX tie rule. Unread: Linked issue threads, Generalized derivative original papers. Publication year not established (n.d.)."
+        }
+      ],
+      "formulas": [
+        "Jv=Df(x)v, VJP=J^T w",
+        "<Jv,w>_Gy=<v,Gx^-1 J^T Gy w>_Gx"
+      ]
+    },
+    {
+      "id": "hessian-vector-products",
+      "title": {
+        "ja": "HVPと状態固定・陰関数全微分の区別",
+        "en": "Hessian-vector products and fixed-state versus implicit derivatives"
+      },
+      "summary": {
+        "ja": "forward-over-reverse HVPと二階陰関数則を別々の独立参照へ照合します。",
+        "en": "Check forward-over-reverse HVPs and second-order implicit rules against separate independent references."
+      },
+      "assumptions": {
+        "ja": "小さな固定入力・実数・無次元。詳しい入力と適用範囲は対応する契約に限定します。",
+        "en": "Small fixed real dimensionless inputs; assumptions and scope are limited to the matching contract."
+      },
+      "algorithm": {
+        "ja": "値と方向接線、cotangentとその方向接線を伝播し、陰関数はF/R1/R2を解きます。",
+        "en": "Transport values, tangents, cotangents and cotangent tangents; solve F/R1/R2 for implicit derivatives."
+      },
+      "validation": {
+        "ja": "固定入力・独立参照・保存候補・全判定を同じ120秒予算内で検証します。数値合格と診断用非収束を区別します。",
+        "en": "Check fixed inputs, independent references, retained candidates and every gate within the same120-second budget. Numerical success and diagnostic nonconvergence are distinct."
+      },
+      "limits": {
+        "ja": "一般のreduced inverse Hessianや有限Newton traceの数学的陰関数微分とは主張しません。",
+        "en": "No general reduced inverse Hessian or identification of finite Newton traces with implicit derivatives."
+      },
+      "gallery_figure": "hessian-vector-products-preview.png",
+      "additional_figures": [
+        {
+          "file": "hessian-vector-products-preview.png",
+          "caption": {
+            "ja": "保存HVPと独立参照、状態固定と陰関数全微分の二階曲率を区別した比較。",
+            "en": "Saved HVPs and independent references, with fixed-state and total implicit second derivatives shown separately."
+          }
+        }
+      ],
+      "method_ids": [
+        "automatic-differentiation"
+      ],
+      "domains": [
+        "linear-algebra"
+      ],
+      "code_files": [
+        "run.py"
+      ],
+      "references": [
+        {
+          "id": "jax-cookbook-selected",
+          "author": "The JAX authors",
+          "title": "The Autodiff Cookbook",
+          "url": "https://docs.jax.dev/en/latest/notebooks/autodiff_cookbook.html",
+          "accessed_on": "2026-11-24",
+          "review_level": "official-documentation-selected-mathematical-sections",
+          "review_scope": "Selected definitions and composition formulas only. A new educational tape will implement the stated finite subset. No JAX installation, execution, timing replication or implementation-source audit. Unread: Original reverse-mode/HVP papers, JAX transformation implementation, Unselected cookbook sections. Publication year not established (n.d.)."
+        },
+        {
+          "id": "jax-faq-selected",
+          "author": "The JAX authors",
+          "title": "Frequently asked questions: undefined branches and ordering",
+          "url": "https://docs.jax.dev/en/latest/faq.html",
+          "accessed_on": "2026-11-24",
+          "review_level": "official-documentation-selected-sections",
+          "review_scope": "Read invalid inactive-branch and ordering discussions. We use an explicitly different strict nondifferentiability policy, not a universal JAX tie rule. Unread: Linked issue threads, Generalized derivative original papers. Publication year not established (n.d.)."
+        }
+      ],
+      "formulas": [
+        "Hv=D(grad f)(x)v",
+        "F=u^2-theta=0, 2u*s=1, 2u*t+2s^2=0"
+      ]
+    },
+    {
+      "id": "kink-branch-derivatives",
+      "title": {
+        "ja": "非滑らか点・分岐・停止条件の微分範囲",
+        "en": "Derivative scope at kinks, branches and stopping decisions"
+      },
+      "summary": {
+        "ja": "古典微分・一方向微分・実行trace微分を、kinkと停止分岐の固定例で区別します。",
+        "en": "Distinguish classical, one-sided directional and executed-trace derivatives at fixed kinks and stopping switches."
+      },
+      "assumptions": {
+        "ja": "小さな固定入力・実数・無次元。詳しい入力と適用範囲は対応する契約に限定します。",
+        "en": "Small fixed real dimensionless inputs; assumptions and scope are limited to the matching contract."
+      },
+      "algorithm": {
+        "ja": "strict nondifferentiableを明示し、停止前<=判定の実行分岐だけを記録します。",
+        "en": "Report strict nondifferentiability explicitly and record the literal top-of-loop stopping branch."
+      },
+      "validation": {
+        "ja": "固定入力・独立参照・保存候補・全判定を同じ120秒予算内で検証します。数値合格と診断用非収束を区別します。",
+        "en": "Check fixed inputs, independent references, retained candidates and every gate within the same120-second budget. Numerical success and diagnostic nonconvergence are distinct."
+      },
+      "limits": {
+        "ja": "選択した分岐の微分は普遍的なsubgradientや非滑らかな写像の線形微分ではありません。",
+        "en": "An executed-branch derivative is not a universal subgradient or a linear derivative of a nonsmooth map."
+      },
+      "gallery_figure": "kink-branch-derivatives-preview.png",
+      "additional_figures": [
+        {
+          "file": "kink-branch-derivatives-preview.png",
+          "caption": {
+            "ja": "保存した非滑らか関数値と停止写像、古典微分が未定義な点とtrace微分を分けた表示。",
+            "en": "Saved nonsmooth values and stopped-map samples, distinguishing undefined classical derivatives from trace derivatives."
+          }
+        }
+      ],
+      "method_ids": [
+        "automatic-differentiation"
+      ],
+      "domains": [
+        "nonlinear"
+      ],
+      "code_files": [
+        "run.py"
+      ],
+      "references": [
+        {
+          "id": "jax-cookbook-selected",
+          "author": "The JAX authors",
+          "title": "The Autodiff Cookbook",
+          "url": "https://docs.jax.dev/en/latest/notebooks/autodiff_cookbook.html",
+          "accessed_on": "2026-11-24",
+          "review_level": "official-documentation-selected-mathematical-sections",
+          "review_scope": "Selected definitions and composition formulas only. A new educational tape will implement the stated finite subset. No JAX installation, execution, timing replication or implementation-source audit. Unread: Original reverse-mode/HVP papers, JAX transformation implementation, Unselected cookbook sections. Publication year not established (n.d.)."
+        },
+        {
+          "id": "jax-faq-selected",
+          "author": "The JAX authors",
+          "title": "Frequently asked questions: undefined branches and ordering",
+          "url": "https://docs.jax.dev/en/latest/faq.html",
+          "accessed_on": "2026-11-24",
+          "review_level": "official-documentation-selected-sections",
+          "review_scope": "Read invalid inactive-branch and ordering discussions. We use an explicitly different strict nondifferentiability policy, not a universal JAX tie rule. Unread: Linked issue threads, Generalized derivative original papers. Publication year not established (n.d.)."
+        }
+      ],
+      "formulas": [
+        "x_(k+1)=.5(x_k+theta), |x_k-theta|<=1/8",
+        "D max(0,0)[da,db]=max(da,db)"
+      ]
+    }
+  ]
+}

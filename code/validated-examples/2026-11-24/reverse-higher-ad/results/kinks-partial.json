@@ -1,0 +1,1431 @@
+[
+  {
+    "id": "abs-0--1",
+    "kind": "abs",
+    "x": -2.0,
+    "direction": -1.0,
+    "value": 2.0,
+    "status": "SMOOTH",
+    "classical_slope": -1.0,
+    "one_sided_directional": 1.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 2,
+      "primal_rules": 1,
+      "tangent_rules": 1,
+      "pullbacks": 1,
+      "backward_rules": 1,
+      "second_rules": 0,
+      "peak_node_array_bytes": 64,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "abs-0-1",
+    "kind": "abs",
+    "x": -2.0,
+    "direction": 1.0,
+    "value": 2.0,
+    "status": "SMOOTH",
+    "classical_slope": -1.0,
+    "one_sided_directional": -1.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 2,
+      "primal_rules": 1,
+      "tangent_rules": 1,
+      "pullbacks": 1,
+      "backward_rules": 1,
+      "second_rules": 0,
+      "peak_node_array_bytes": 64,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "abs-1--1",
+    "kind": "abs",
+    "x": -1.0,
+    "direction": -1.0,
+    "value": 1.0,
+    "status": "SMOOTH",
+    "classical_slope": -1.0,
+    "one_sided_directional": 1.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 2,
+      "primal_rules": 1,
+      "tangent_rules": 1,
+      "pullbacks": 1,
+      "backward_rules": 1,
+      "second_rules": 0,
+      "peak_node_array_bytes": 64,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "abs-1-1",
+    "kind": "abs",
+    "x": -1.0,
+    "direction": 1.0,
+    "value": 1.0,
+    "status": "SMOOTH",
+    "classical_slope": -1.0,
+    "one_sided_directional": -1.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 2,
+      "primal_rules": 1,
+      "tangent_rules": 1,
+      "pullbacks": 1,
+      "backward_rules": 1,
+      "second_rules": 0,
+      "peak_node_array_bytes": 64,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "abs-2--1",
+    "kind": "abs",
+    "x": -0.25,
+    "direction": -1.0,
+    "value": 0.25,
+    "status": "SMOOTH",
+    "classical_slope": -1.0,
+    "one_sided_directional": 1.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 2,
+      "primal_rules": 1,
+      "tangent_rules": 1,
+      "pullbacks": 1,
+      "backward_rules": 1,
+      "second_rules": 0,
+      "peak_node_array_bytes": 64,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "abs-2-1",
+    "kind": "abs",
+    "x": -0.25,
+    "direction": 1.0,
+    "value": 0.25,
+    "status": "SMOOTH",
+    "classical_slope": -1.0,
+    "one_sided_directional": -1.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 2,
+      "primal_rules": 1,
+      "tangent_rules": 1,
+      "pullbacks": 1,
+      "backward_rules": 1,
+      "second_rules": 0,
+      "peak_node_array_bytes": 64,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "abs-3--1",
+    "kind": "abs",
+    "x": 0.0,
+    "direction": -1.0,
+    "value": 0.0,
+    "status": "NONDIFFERENTIABLE",
+    "classical_slope": null,
+    "one_sided_directional": 1.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 1,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 32,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "abs-3-1",
+    "kind": "abs",
+    "x": 0.0,
+    "direction": 1.0,
+    "value": 0.0,
+    "status": "NONDIFFERENTIABLE",
+    "classical_slope": null,
+    "one_sided_directional": 1.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 1,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 32,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "abs-4--1",
+    "kind": "abs",
+    "x": 0.25,
+    "direction": -1.0,
+    "value": 0.25,
+    "status": "SMOOTH",
+    "classical_slope": 1.0,
+    "one_sided_directional": -1.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 1,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 32,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "abs-4-1",
+    "kind": "abs",
+    "x": 0.25,
+    "direction": 1.0,
+    "value": 0.25,
+    "status": "SMOOTH",
+    "classical_slope": 1.0,
+    "one_sided_directional": 1.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 1,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 32,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "abs-5--1",
+    "kind": "abs",
+    "x": 1.0,
+    "direction": -1.0,
+    "value": 1.0,
+    "status": "SMOOTH",
+    "classical_slope": 1.0,
+    "one_sided_directional": -1.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 1,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 32,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "abs-5-1",
+    "kind": "abs",
+    "x": 1.0,
+    "direction": 1.0,
+    "value": 1.0,
+    "status": "SMOOTH",
+    "classical_slope": 1.0,
+    "one_sided_directional": 1.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 1,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 32,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "abs-6--1",
+    "kind": "abs",
+    "x": 2.0,
+    "direction": -1.0,
+    "value": 2.0,
+    "status": "SMOOTH",
+    "classical_slope": 1.0,
+    "one_sided_directional": -1.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 1,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 32,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "abs-6-1",
+    "kind": "abs",
+    "x": 2.0,
+    "direction": 1.0,
+    "value": 2.0,
+    "status": "SMOOTH",
+    "classical_slope": 1.0,
+    "one_sided_directional": 1.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 1,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 32,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "relu-0--1",
+    "kind": "relu",
+    "x": -2.0,
+    "direction": -1.0,
+    "value": 0.0,
+    "status": "SMOOTH",
+    "classical_slope": 0.0,
+    "one_sided_directional": -0.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 2,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 64,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "relu-0-1",
+    "kind": "relu",
+    "x": -2.0,
+    "direction": 1.0,
+    "value": 0.0,
+    "status": "SMOOTH",
+    "classical_slope": 0.0,
+    "one_sided_directional": 0.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 2,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 64,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "relu-1--1",
+    "kind": "relu",
+    "x": -1.0,
+    "direction": -1.0,
+    "value": 0.0,
+    "status": "SMOOTH",
+    "classical_slope": 0.0,
+    "one_sided_directional": -0.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 2,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 64,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "relu-1-1",
+    "kind": "relu",
+    "x": -1.0,
+    "direction": 1.0,
+    "value": 0.0,
+    "status": "SMOOTH",
+    "classical_slope": 0.0,
+    "one_sided_directional": 0.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 2,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 64,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "relu-2--1",
+    "kind": "relu",
+    "x": -0.25,
+    "direction": -1.0,
+    "value": 0.0,
+    "status": "SMOOTH",
+    "classical_slope": 0.0,
+    "one_sided_directional": -0.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 2,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 64,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "relu-2-1",
+    "kind": "relu",
+    "x": -0.25,
+    "direction": 1.0,
+    "value": 0.0,
+    "status": "SMOOTH",
+    "classical_slope": 0.0,
+    "one_sided_directional": 0.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 2,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 64,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "relu-3--1",
+    "kind": "relu",
+    "x": 0.0,
+    "direction": -1.0,
+    "value": 0.0,
+    "status": "NONDIFFERENTIABLE",
+    "classical_slope": null,
+    "one_sided_directional": 0.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 1,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 32,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "relu-3-1",
+    "kind": "relu",
+    "x": 0.0,
+    "direction": 1.0,
+    "value": 0.0,
+    "status": "NONDIFFERENTIABLE",
+    "classical_slope": null,
+    "one_sided_directional": 1.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 1,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 32,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "relu-4--1",
+    "kind": "relu",
+    "x": 0.25,
+    "direction": -1.0,
+    "value": 0.25,
+    "status": "SMOOTH",
+    "classical_slope": 1.0,
+    "one_sided_directional": -1.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 1,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 32,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "relu-4-1",
+    "kind": "relu",
+    "x": 0.25,
+    "direction": 1.0,
+    "value": 0.25,
+    "status": "SMOOTH",
+    "classical_slope": 1.0,
+    "one_sided_directional": 1.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 1,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 32,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "relu-5--1",
+    "kind": "relu",
+    "x": 1.0,
+    "direction": -1.0,
+    "value": 1.0,
+    "status": "SMOOTH",
+    "classical_slope": 1.0,
+    "one_sided_directional": -1.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 1,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 32,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "relu-5-1",
+    "kind": "relu",
+    "x": 1.0,
+    "direction": 1.0,
+    "value": 1.0,
+    "status": "SMOOTH",
+    "classical_slope": 1.0,
+    "one_sided_directional": 1.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 1,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 32,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "relu-6--1",
+    "kind": "relu",
+    "x": 2.0,
+    "direction": -1.0,
+    "value": 2.0,
+    "status": "SMOOTH",
+    "classical_slope": 1.0,
+    "one_sided_directional": -1.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 1,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 32,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "relu-6-1",
+    "kind": "relu",
+    "x": 2.0,
+    "direction": 1.0,
+    "value": 2.0,
+    "status": "SMOOTH",
+    "classical_slope": 1.0,
+    "one_sided_directional": 1.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 1,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 32,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "clip-0--1",
+    "kind": "clip",
+    "x": -2.0,
+    "direction": -1.0,
+    "value": -1.0,
+    "status": "SMOOTH",
+    "classical_slope": 0.0,
+    "one_sided_directional": -0.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 2,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 64,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "clip-0-1",
+    "kind": "clip",
+    "x": -2.0,
+    "direction": 1.0,
+    "value": -1.0,
+    "status": "SMOOTH",
+    "classical_slope": 0.0,
+    "one_sided_directional": 0.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 2,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 64,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "clip-1--1",
+    "kind": "clip",
+    "x": -1.0,
+    "direction": -1.0,
+    "value": -1.0,
+    "status": "NONDIFFERENTIABLE",
+    "classical_slope": null,
+    "one_sided_directional": 0.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 2,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 64,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "clip-1-1",
+    "kind": "clip",
+    "x": -1.0,
+    "direction": 1.0,
+    "value": -1.0,
+    "status": "NONDIFFERENTIABLE",
+    "classical_slope": null,
+    "one_sided_directional": 1.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 2,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 64,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "clip-2--1",
+    "kind": "clip",
+    "x": -0.25,
+    "direction": -1.0,
+    "value": -0.25,
+    "status": "SMOOTH",
+    "classical_slope": 1.0,
+    "one_sided_directional": -1.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 1,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 32,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "clip-2-1",
+    "kind": "clip",
+    "x": -0.25,
+    "direction": 1.0,
+    "value": -0.25,
+    "status": "SMOOTH",
+    "classical_slope": 1.0,
+    "one_sided_directional": 1.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 1,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 32,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "clip-3--1",
+    "kind": "clip",
+    "x": 0.0,
+    "direction": -1.0,
+    "value": 0.0,
+    "status": "SMOOTH",
+    "classical_slope": 1.0,
+    "one_sided_directional": -1.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 1,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 32,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "clip-3-1",
+    "kind": "clip",
+    "x": 0.0,
+    "direction": 1.0,
+    "value": 0.0,
+    "status": "SMOOTH",
+    "classical_slope": 1.0,
+    "one_sided_directional": 1.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 1,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 32,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "clip-4--1",
+    "kind": "clip",
+    "x": 0.25,
+    "direction": -1.0,
+    "value": 0.25,
+    "status": "SMOOTH",
+    "classical_slope": 1.0,
+    "one_sided_directional": -1.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 1,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 32,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "clip-4-1",
+    "kind": "clip",
+    "x": 0.25,
+    "direction": 1.0,
+    "value": 0.25,
+    "status": "SMOOTH",
+    "classical_slope": 1.0,
+    "one_sided_directional": 1.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 1,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 32,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "clip-5--1",
+    "kind": "clip",
+    "x": 1.0,
+    "direction": -1.0,
+    "value": 1.0,
+    "status": "NONDIFFERENTIABLE",
+    "classical_slope": null,
+    "one_sided_directional": -1.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 2,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 64,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "clip-5-1",
+    "kind": "clip",
+    "x": 1.0,
+    "direction": 1.0,
+    "value": 1.0,
+    "status": "NONDIFFERENTIABLE",
+    "classical_slope": null,
+    "one_sided_directional": 0.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 2,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 64,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "clip-6--1",
+    "kind": "clip",
+    "x": 2.0,
+    "direction": -1.0,
+    "value": 1.0,
+    "status": "SMOOTH",
+    "classical_slope": 0.0,
+    "one_sided_directional": -0.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 2,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 64,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "clip-6-1",
+    "kind": "clip",
+    "x": 2.0,
+    "direction": 1.0,
+    "value": 1.0,
+    "status": "SMOOTH",
+    "classical_slope": 0.0,
+    "one_sided_directional": 0.0,
+    "executed_branch_trace_slope": null,
+    "work": {
+      "nodes": 2,
+      "primal_rules": 0,
+      "tangent_rules": 0,
+      "pullbacks": 1,
+      "backward_rules": 0,
+      "second_rules": 0,
+      "peak_node_array_bytes": 64,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "branch-0--1",
+    "kind": "branch",
+    "x": -2.0,
+    "direction": -1.0,
+    "value": -4.0,
+    "status": "SMOOTH",
+    "classical_slope": 2.0,
+    "one_sided_directional": -2.0,
+    "executed_branch_trace_slope": 2.0,
+    "work": {
+      "nodes": 3,
+      "primal_rules": 1,
+      "tangent_rules": 1,
+      "pullbacks": 1,
+      "backward_rules": 1,
+      "second_rules": 0,
+      "peak_node_array_bytes": 96,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "branch-0-1",
+    "kind": "branch",
+    "x": -2.0,
+    "direction": 1.0,
+    "value": -4.0,
+    "status": "SMOOTH",
+    "classical_slope": 2.0,
+    "one_sided_directional": 2.0,
+    "executed_branch_trace_slope": 2.0,
+    "work": {
+      "nodes": 3,
+      "primal_rules": 1,
+      "tangent_rules": 1,
+      "pullbacks": 1,
+      "backward_rules": 1,
+      "second_rules": 0,
+      "peak_node_array_bytes": 96,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "branch-1--1",
+    "kind": "branch",
+    "x": -1.0,
+    "direction": -1.0,
+    "value": -2.0,
+    "status": "SMOOTH",
+    "classical_slope": 2.0,
+    "one_sided_directional": -2.0,
+    "executed_branch_trace_slope": 2.0,
+    "work": {
+      "nodes": 3,
+      "primal_rules": 1,
+      "tangent_rules": 1,
+      "pullbacks": 1,
+      "backward_rules": 1,
+      "second_rules": 0,
+      "peak_node_array_bytes": 96,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "branch-1-1",
+    "kind": "branch",
+    "x": -1.0,
+    "direction": 1.0,
+    "value": -2.0,
+    "status": "SMOOTH",
+    "classical_slope": 2.0,
+    "one_sided_directional": 2.0,
+    "executed_branch_trace_slope": 2.0,
+    "work": {
+      "nodes": 3,
+      "primal_rules": 1,
+      "tangent_rules": 1,
+      "pullbacks": 1,
+      "backward_rules": 1,
+      "second_rules": 0,
+      "peak_node_array_bytes": 96,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "branch-2--1",
+    "kind": "branch",
+    "x": -0.25,
+    "direction": -1.0,
+    "value": -0.5,
+    "status": "SMOOTH",
+    "classical_slope": 2.0,
+    "one_sided_directional": -2.0,
+    "executed_branch_trace_slope": 2.0,
+    "work": {
+      "nodes": 3,
+      "primal_rules": 1,
+      "tangent_rules": 1,
+      "pullbacks": 1,
+      "backward_rules": 1,
+      "second_rules": 0,
+      "peak_node_array_bytes": 96,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "branch-2-1",
+    "kind": "branch",
+    "x": -0.25,
+    "direction": 1.0,
+    "value": -0.5,
+    "status": "SMOOTH",
+    "classical_slope": 2.0,
+    "one_sided_directional": 2.0,
+    "executed_branch_trace_slope": 2.0,
+    "work": {
+      "nodes": 3,
+      "primal_rules": 1,
+      "tangent_rules": 1,
+      "pullbacks": 1,
+      "backward_rules": 1,
+      "second_rules": 0,
+      "peak_node_array_bytes": 96,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "branch-3--1",
+    "kind": "branch",
+    "x": 0.0,
+    "direction": -1.0,
+    "value": 0.0,
+    "status": "NONDIFFERENTIABLE",
+    "classical_slope": null,
+    "one_sided_directional": -2.0,
+    "executed_branch_trace_slope": 0.0,
+    "work": {
+      "nodes": 2,
+      "primal_rules": 1,
+      "tangent_rules": 1,
+      "pullbacks": 1,
+      "backward_rules": 1,
+      "second_rules": 0,
+      "peak_node_array_bytes": 64,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "branch-3-1",
+    "kind": "branch",
+    "x": 0.0,
+    "direction": 1.0,
+    "value": 0.0,
+    "status": "NONDIFFERENTIABLE",
+    "classical_slope": null,
+    "one_sided_directional": 0.0,
+    "executed_branch_trace_slope": 0.0,
+    "work": {
+      "nodes": 2,
+      "primal_rules": 1,
+      "tangent_rules": 1,
+      "pullbacks": 1,
+      "backward_rules": 1,
+      "second_rules": 0,
+      "peak_node_array_bytes": 64,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "branch-4--1",
+    "kind": "branch",
+    "x": 0.25,
+    "direction": -1.0,
+    "value": 0.0625,
+    "status": "SMOOTH",
+    "classical_slope": 0.5,
+    "one_sided_directional": -0.5,
+    "executed_branch_trace_slope": 0.5,
+    "work": {
+      "nodes": 2,
+      "primal_rules": 1,
+      "tangent_rules": 1,
+      "pullbacks": 1,
+      "backward_rules": 1,
+      "second_rules": 0,
+      "peak_node_array_bytes": 64,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "branch-4-1",
+    "kind": "branch",
+    "x": 0.25,
+    "direction": 1.0,
+    "value": 0.0625,
+    "status": "SMOOTH",
+    "classical_slope": 0.5,
+    "one_sided_directional": 0.5,
+    "executed_branch_trace_slope": 0.5,
+    "work": {
+      "nodes": 2,
+      "primal_rules": 1,
+      "tangent_rules": 1,
+      "pullbacks": 1,
+      "backward_rules": 1,
+      "second_rules": 0,
+      "peak_node_array_bytes": 64,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "branch-5--1",
+    "kind": "branch",
+    "x": 1.0,
+    "direction": -1.0,
+    "value": 1.0,
+    "status": "SMOOTH",
+    "classical_slope": 2.0,
+    "one_sided_directional": -2.0,
+    "executed_branch_trace_slope": 2.0,
+    "work": {
+      "nodes": 2,
+      "primal_rules": 1,
+      "tangent_rules": 1,
+      "pullbacks": 1,
+      "backward_rules": 1,
+      "second_rules": 0,
+      "peak_node_array_bytes": 64,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "branch-5-1",
+    "kind": "branch",
+    "x": 1.0,
+    "direction": 1.0,
+    "value": 1.0,
+    "status": "SMOOTH",
+    "classical_slope": 2.0,
+    "one_sided_directional": 2.0,
+    "executed_branch_trace_slope": 2.0,
+    "work": {
+      "nodes": 2,
+      "primal_rules": 1,
+      "tangent_rules": 1,
+      "pullbacks": 1,
+      "backward_rules": 1,
+      "second_rules": 0,
+      "peak_node_array_bytes": 64,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "branch-6--1",
+    "kind": "branch",
+    "x": 2.0,
+    "direction": -1.0,
+    "value": 4.0,
+    "status": "SMOOTH",
+    "classical_slope": 4.0,
+    "one_sided_directional": -4.0,
+    "executed_branch_trace_slope": 4.0,
+    "work": {
+      "nodes": 2,
+      "primal_rules": 1,
+      "tangent_rules": 1,
+      "pullbacks": 1,
+      "backward_rules": 1,
+      "second_rules": 0,
+      "peak_node_array_bytes": 64,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "branch-6-1",
+    "kind": "branch",
+    "x": 2.0,
+    "direction": 1.0,
+    "value": 4.0,
+    "status": "SMOOTH",
+    "classical_slope": 4.0,
+    "one_sided_directional": 4.0,
+    "executed_branch_trace_slope": 4.0,
+    "work": {
+      "nodes": 2,
+      "primal_rules": 1,
+      "tangent_rules": 1,
+      "pullbacks": 1,
+      "backward_rules": 1,
+      "second_rules": 0,
+      "peak_node_array_bytes": 64,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "max-tie-0",
+    "kind": "max-tie",
+    "x": 0.0,
+    "status": "NONDIFFERENTIABLE",
+    "value": 0.0,
+    "classical_slope": null,
+    "direction": [
+      1,
+      -1
+    ],
+    "one_sided_directional": 1
+  },
+  {
+    "id": "max-tie-1",
+    "kind": "max-tie",
+    "x": 0.0,
+    "status": "NONDIFFERENTIABLE",
+    "value": 0.0,
+    "classical_slope": null,
+    "direction": [
+      -1,
+      1
+    ],
+    "one_sided_directional": 1
+  },
+  {
+    "id": "max-tie-2",
+    "kind": "max-tie",
+    "x": 0.0,
+    "status": "NONDIFFERENTIABLE",
+    "value": 0.0,
+    "classical_slope": null,
+    "direction": [
+      1,
+      1
+    ],
+    "one_sided_directional": 1
+  },
+  {
+    "id": "stop-0",
+    "kind": "stopped",
+    "theta": 0.25,
+    "K": 1,
+    "value": 0.125,
+    "status": "STOP_TOL",
+    "classical_slope": null,
+    "frozen_trace_slope": 0.5,
+    "converged_root_derivative": 1.0,
+    "history": [
+      {
+        "k": 0,
+        "x": 0.0,
+        "residual": 0.25
+      },
+      {
+        "k": 1,
+        "x": 0.125,
+        "residual": 0.125
+      }
+    ],
+    "work": {
+      "nodes": 5,
+      "primal_rules": 2,
+      "tangent_rules": 2,
+      "pullbacks": 1,
+      "backward_rules": 2,
+      "second_rules": 0,
+      "peak_node_array_bytes": 160,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "stop-1",
+    "kind": "stopped",
+    "theta": 0.5,
+    "K": 2,
+    "value": 0.375,
+    "status": "STOP_TOL",
+    "classical_slope": null,
+    "frozen_trace_slope": 0.75,
+    "converged_root_derivative": 1.0,
+    "history": [
+      {
+        "k": 0,
+        "x": 0.0,
+        "residual": 0.5
+      },
+      {
+        "k": 1,
+        "x": 0.25,
+        "residual": 0.25
+      },
+      {
+        "k": 2,
+        "x": 0.375,
+        "residual": 0.125
+      }
+    ],
+    "work": {
+      "nodes": 8,
+      "primal_rules": 4,
+      "tangent_rules": 4,
+      "pullbacks": 1,
+      "backward_rules": 4,
+      "second_rules": 0,
+      "peak_node_array_bytes": 256,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "stop-2",
+    "kind": "stopped",
+    "theta": 1.0,
+    "K": 3,
+    "value": 0.875,
+    "status": "STOP_TOL",
+    "classical_slope": null,
+    "frozen_trace_slope": 0.875,
+    "converged_root_derivative": 1.0,
+    "history": [
+      {
+        "k": 0,
+        "x": 0.0,
+        "residual": 1.0
+      },
+      {
+        "k": 1,
+        "x": 0.5,
+        "residual": 0.5
+      },
+      {
+        "k": 2,
+        "x": 0.75,
+        "residual": 0.25
+      },
+      {
+        "k": 3,
+        "x": 0.875,
+        "residual": 0.125
+      }
+    ],
+    "work": {
+      "nodes": 11,
+      "primal_rules": 6,
+      "tangent_rules": 6,
+      "pullbacks": 1,
+      "backward_rules": 6,
+      "second_rules": 0,
+      "peak_node_array_bytes": 352,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "stop-3",
+    "kind": "stopped",
+    "theta": 0.4999990463256836,
+    "K": 2,
+    "value": 0.3749992847442627,
+    "status": "STOP_TOL",
+    "classical_slope": 0.75,
+    "frozen_trace_slope": 0.75,
+    "converged_root_derivative": 1.0,
+    "history": [
+      {
+        "k": 0,
+        "x": 0.0,
+        "residual": 0.4999990463256836
+      },
+      {
+        "k": 1,
+        "x": 0.2499995231628418,
+        "residual": 0.2499995231628418
+      },
+      {
+        "k": 2,
+        "x": 0.3749992847442627,
+        "residual": 0.1249997615814209
+      }
+    ],
+    "work": {
+      "nodes": 8,
+      "primal_rules": 4,
+      "tangent_rules": 4,
+      "pullbacks": 1,
+      "backward_rules": 4,
+      "second_rules": 0,
+      "peak_node_array_bytes": 256,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "stop-4",
+    "kind": "stopped",
+    "theta": 0.5000009536743164,
+    "K": 3,
+    "value": 0.43750083446502686,
+    "status": "STOP_TOL",
+    "classical_slope": 0.875,
+    "frozen_trace_slope": 0.875,
+    "converged_root_derivative": 1.0,
+    "history": [
+      {
+        "k": 0,
+        "x": 0.0,
+        "residual": 0.5000009536743164
+      },
+      {
+        "k": 1,
+        "x": 0.2500004768371582,
+        "residual": 0.2500004768371582
+      },
+      {
+        "k": 2,
+        "x": 0.3750007152557373,
+        "residual": 0.1250002384185791
+      },
+      {
+        "k": 3,
+        "x": 0.43750083446502686,
+        "residual": 0.06250011920928955
+      }
+    ],
+    "work": {
+      "nodes": 11,
+      "primal_rules": 6,
+      "tangent_rules": 6,
+      "pullbacks": 1,
+      "backward_rules": 6,
+      "second_rules": 0,
+      "peak_node_array_bytes": 352,
+      "max_node_rank": 0
+    }
+  },
+  {
+    "id": "inactive-log",
+    "kind": "inactive-log",
+    "x": -1.0,
+    "value": 1.0,
+    "classical_slope": -2.0,
+    "status": "SMOOTH_EXECUTED_BRANCH",
+    "invalid_log_calls": 0,
+    "work": {
+      "nodes": 2,
+      "primal_rules": 1,
+      "tangent_rules": 1,
+      "pullbacks": 1,
+      "backward_rules": 1,
+      "second_rules": 0,
+      "peak_node_array_bytes": 64,
+      "max_node_rank": 0
+    }
+  }
+]

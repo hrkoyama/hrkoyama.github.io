@@ -12,7 +12,7 @@ GROUPS = ('methods', 'equations', 'figures', 'references', 'code')
 
 ENCODING = 'shared-raw-strings-v1'
 PREFIX = '~s:'
-MIN_CHARS = 32
+MIN_CHARS = 4
 MAX_POOL = 50000
 MAX_POOL_UNITS = 8200000
 MAX_STRING_UNITS = 1000000
@@ -143,6 +143,49 @@ def pack_deltas(deltas):
     return base64.b64encode(raw).decode('ascii')
 
 
+def pack_term_memberships(rows, term_count):
+    """Transpose sorted term IDs, sharing identical posting lists losslessly.
+
+    A channel is one row's text (or one language in a bilingual row). Class
+    IDs are unsigned varints, NOT deltas; each class contains delta channel IDs.
+    The public vocabulary and each channel's ascending term order are unchanged.
+    """
+    if type(term_count) is not int or not 0 <= term_count <= 500000 or len(rows) > 2000:
+        raise ValueError('Invalid term vocabulary or rows')
+    members = [[] for _ in range(term_count)]
+    projected, channels, expanded = [], 0, 0
+    for row in rows:
+        values = row['search_terms']
+        mapping = isinstance(values, dict)
+        refs = {}
+        for language, indices in (values.items() if mapping else [(None, values)]):
+            if channels >= 8000 or not isinstance(indices, list):
+                raise ValueError('Invalid term channels')
+            previous = -1
+            for index in indices:
+                if type(index) is not int or not previous < index < term_count:
+                    raise ValueError('Term IDs must be unique, sorted and in range')
+                members[index].append(channels)
+                previous = index
+            expanded += len(indices)
+            if expanded > 2000000:
+                raise ValueError('Expanded term memberships exceed limit')
+            refs[language] = channels
+            channels += 1
+        projected.append({**row, 'search_terms': refs if mapping else refs[None]})
+    counts = Counter(tuple(posting) for posting in members)
+    classes = sorted(counts, key=lambda posting: (-counts[posting], posting))
+    positions = {posting: index for index, posting in enumerate(classes)}
+    packed = [pack_deltas([channel - (posting[i-1] if i else 0)
+                          for i, channel in enumerate(posting)]) for posting in classes]
+    return projected, {
+        'term_encoding': 'inverted-membership-varint-base64-v1',
+        'term_channel_count': channels,
+        'term_membership_ids': pack_deltas([positions[tuple(posting)] for posting in members]),
+        'term_membership_classes': packed,
+    }
+
+
 def write_compact(root, source, kind):
     """Project source records without executing or changing any scientific asset."""
     directory = root/'search/details'
@@ -214,23 +257,19 @@ def write_compact(root, source, kind):
     positions = {word: index for index, word in enumerate(ordered)}
     remap = {old: positions[word] for word, old in words.items()}
 
-    def deltas(indices):
-        result, previous = [], 0
-        for index in sorted(remap[index] for index in indices):
-            result.append(index-previous)
-            previous = index
-        return pack_deltas(result)
-
     for row in rows:
         values = row['search_terms']
-        row['search_terms'] = ({language: deltas(indices) for language, indices in values.items()}
-                               if isinstance(values, dict) else deltas(values))
+        def ordered_ids(indices):
+            return sorted(remap[index] for index in indices)
+        row['search_terms'] = ({language: ordered_ids(indices) for language, indices in values.items()}
+                               if isinstance(values, dict) else ordered_ids(values))
+    rows, membership_header = pack_term_memberships(rows, len(ordered))
     source_path = 'numerical-methods-atlas/home-search-index.json' if kind == 'atlas' else 'search/index.json'
     payload = {
         'format': 'compact-search-v1', 'kind': kind, field: rows,
         'terms': pack_vocabulary(ordered),
         'vocabulary_encoding': 'unicode-prefix-flat-v1',
-        'term_encoding': 'sorted-delta-varint-base64',
+        **membership_header,
         'source_index': {'url': '/'+source_path,
                          'sha256': hashlib.sha256((root/source_path).read_bytes()).hexdigest()},
         'details': {'directory': '/search/details/', 'keys': sorted(references)},

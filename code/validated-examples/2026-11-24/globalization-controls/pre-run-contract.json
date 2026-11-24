@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "group": "globalization-controls",
+  "status": "PRESENTATION_ONLY_REVISION_AFTER_FIRST_SCIENTIFIC_PASS",
+  "frozen_at_utc": "2026-11-24T08:59:09.387670+00:00",
+  "base_public_commit": "f08147fa21f89bf5a1d13d8ae34fcd35090a1c79",
+  "design_contract_sha256": "2e07755e0d1147798748b0ad05f2c73f92d35d5867ca649559f69d4840a35565",
+  "design_review_sha256": "78448b908804428f607ca9b3ef70eb26fab02d0b53aab5d0fc1fcae8f9dc7d69",
+  "implementation_authorized_after_design_review": true,
+  "scientific_execution_before_freeze": false,
+  "expected_pytest": 16,
+  "expected_case_ids": [
+    "globalization-difficult-starts"
+  ],
+  "expected_records": [
+    24
+  ],
+  "expected_gate_counts": {
+    "globalization-difficult-starts": 145
+  },
+  "shared_pytest_main_budget_seconds": 120,
+  "independent_reference_qualification": "Named independent references/components are exercised by the frozen pytest functions before main, under the same shared budget. Not yet executed or numerically qualified.",
+  "inputs": "Only this one raw inputs.json SHA is supported and pinned in run.py; frozen spec numbers are explicitly implemented, not silently accepting edited JSON.",
+  "output_contract": "Exact passed/checks/cases/inputSHA/termination, nonempty measured metrics and records; finite root CSV; raw NPZ/partial rows/candidates retained before later work. Plot accepts result file or directory and reads saved fields only.",
+  "failure_policy": "Single fresh reviewed attempt, no auto retry, every failure and revision preserved; no tolerance/start/seed/cap changes after output.",
+  "scope_limits": [
+    "Diagnostic nonconvergence is explicitly distinct from root convergence.",
+    "No old public method/source/input/golden was modified.",
+    "Fixed-state, implicit and trace derivatives remain separate; unsupported/nondifferentiable outputs have explicit categories."
+  ],
+  "files_sha256": {
+    "LICENSE": "66644ec44fae6de4db68325d5389f51e8f7b96ffc80e34bd194f8ff9e1511148",
+    "README.md": "015fe6fddb659b05aae8efede274110180cca7d02b95a584e3bf56721fab1537",
+    "acceptance.json": "4927a8d6d5c9d1cdba042fd42171f18f2e152f2ab70c845e552d644b7fc9ef31",
+    "cases.json": "257b16d3e1af5cf9a9b53c747314e9c58d6b0fb2c98f445d4809f8f4eb0e7e66",
+    "experiments.py": "d8856097420db0f40a392031d94e7246af378eef44bd5d6c343fd470522bad0c",
+    "gate-keys.json": "1f627b7618f6c042fe05977afad24b30c5220e842e56f95ac12136c647c7511a",
+    "globalization.py": "5ed93cc0b5244681ce8deb79f5fbe00c99c060dc3b981ec3de83a55d6b091d84",
+    "inputs.json": "04ee3e49e6e2192ee4e58ae20e03905fc56f0c793ce4bbf7d00c13ae3586a9fb",
+    "io_contract.py": "b5a2b90fe92b2d620e7fcb2327d63829a4588f63d9f936895533dbca0d7c8ca2",
+    "plot.py": "355ed5f759c68582d43a79e201983519c1efddd86e645f2bd05c8df8946d81e6",
+    "problems.py": "ed2d95d375337cdb4fd83adb890ea903b3c8a5bbf9d79f52d6d7c02b6c77e6d8",
+    "references.py": "1f6a3b1cdcf50cebc67f9952ab7ac9b0d5f515a8c06869c20ed40ea5f2f4b750",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "d74b193b106ee9cc025e7baa7f213a5def1acac21cf2b8bf4a4642f42f78d189",
+    "source-reading.json": "aab6182d85b7918d72534de88eaa6fbb5dd49996e847b9f6f8c7c923b96054aa",
+    "test_globalization.py": "f8a89e76da7945d1780d310c8b72fd192f60990629c4e16657ada23c46ad0aff"
+  },
+  "test_functions": {
+    "test_globalization.py": [
+      "test_rosenbrock_residual_jacobian",
+      "test_bratu_stencil_boundary",
+      "test_root_test_is_unscaled",
+      "test_cauchy_boundary",
+      "test_intermediate_dogleg",
+      "test_interior_gauss_newton",
+      "test_rank_one_minimum_norm",
+      "test_stationary_is_not_root",
+      "test_zero_residual_precedes_model",
+      "test_radius_literal_boundaries",
+      "test_armijo_ledger",
+      "test_domain_before_exp",
+      "test_rejected_candidate_ownership",
+      "test_fixed_caps_counts_and_gate_inventory",
+      "test_candidate_saved_before_failing_linear_solve",
+      "test_finite_json_csv_serialization"
+    ]
+  },
+  "runtime_status": "UNMEASURED",
+  "numerical_execution_authorization": "NOT_GRANTED: requires new root review bound to this contract, actual files, private plan and wrapper.",
+  "presentation_revision": 2,
+  "presentation_revised_at_utc": "2026-11-24T09:05:33.234568+00:00",
+  "previous_contract_sha256": "2e5bb588b694539f25c226f32c941f0b5d5ee1ac26ad150fdf135fc19107939e",
+  "previous_main_receipt_sha256": "c86d31a336165c89b9cb01204d02cf74bcec8aa9b4dee2c8cd10b281742bbb70",
+  "presentation_delta": "Only plot.py: show the saved full-Newton y=-3.84 excursion with ylim[-5,4] and matching analytic contour context; constrained-layout bottom caption; label diagnostic starts without implying any failed common-start trajectory. No data/solver/test/input/acceptance change.",
+  "prior_scientific_outcome": "Initial16pytest/24records145gates passed once. Source/math/input/test bytes retained; current presentation revision will be tested by canonical source/ZIP executions later."
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "group": "adjoint",
+  "edition": "2026-11-24",
+  "verified_on": "2026-11-24",
+  "source_manifest_sha256": "3536c89cf5356d8f0bb9eda75674cafd4741862cf7f7d479a0a3c377aa0b3a34",
+  "archive": {
+    "file": "atlas-adjoint-2026-11-24.zip",
+    "sha256": "6b78fd9d4320e9790bd6ebe2a0ef61a25c55c7fdc0a14dd37d0ca1a37b80a5ee",
+    "bytes": 2228071,
+    "archive_directory": "atlas-adjoint-2026-11-24"
+  },
+  "archive_sha256": "6b78fd9d4320e9790bd6ebe2a0ef61a25c55c7fdc0a14dd37d0ca1a37b80a5ee",
+  "returncode": 0,
+  "passed_tests": 32,
+  "tests": 32,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "bratu-distributed-vjp",
+    "bratu-fold-sensitivity",
+    "diffusion-discrete-adjoint"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 31.792453458998352,
+  "independent_rerun_seconds": 32.22692145899782,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

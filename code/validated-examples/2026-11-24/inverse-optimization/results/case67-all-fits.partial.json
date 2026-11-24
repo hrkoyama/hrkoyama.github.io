@@ -1,0 +1,2228 @@
+[
+  {
+    "context_index": 0,
+    "sigma_index": 0,
+    "seed_index": 0,
+    "gamma_index": 0,
+    "gamma": 0.0,
+    "parameters": [
+      2.200220085333617,
+      0.34932386919730085
+    ],
+    "objective": 3.460671190298988e-09,
+    "weighted_residual_norm": 8.319460547774703e-05,
+    "parameter_deviation_norm": 0.4026353786765065,
+    "physical_projected_gradient_inf": 2.398081733190338e-14,
+    "final_primal_residual_l2": 2.6053014963326514e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.17284812992026222,
+      0.017594157360339317
+    ],
+    "forward_evaluations": 7,
+    "data_jacobian": [
+      [
+        0.10095964317183656,
+        -0.017324045287366387
+      ],
+      [
+        0.18014237100573396,
+        -0.020523752234554958
+      ],
+      [
+        0.2500631342234281,
+        0.0010059761586043454
+      ],
+      [
+        0.18321019482476084,
+        0.022201098266662406
+      ],
+      [
+        0.10313464569366765,
+        0.018343367708735746
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 1,
+    "library_message": "`gtol` termination condition is satisfied.",
+    "nfev": 7,
+    "njev": 7,
+    "artifact": "case67-00-fit.npz"
+  },
+  {
+    "context_index": 0,
+    "sigma_index": 0,
+    "seed_index": 0,
+    "gamma_index": 1,
+    "gamma": 1e-05,
+    "parameters": [
+      2.200207871023332,
+      0.3384231500971443
+    ],
+    "objective": 7.94986248859735e-07,
+    "weighted_residual_norm": 0.00020937596878767192,
+    "parameter_deviation_norm": 0.39320913028739474,
+    "physical_projected_gradient_inf": 4.241051954068098e-13,
+    "final_primal_residual_l2": 3.451482509122938e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.17284106740018013,
+      0.017593984282639825
+    ],
+    "forward_evaluations": 7,
+    "data_jacobian": [
+      [
+        0.10098964137652566,
+        -0.017339479843931863
+      ],
+      [
+        0.180183187055216,
+        -0.020549286242439867
+      ],
+      [
+        0.25005369309038367,
+        0.0009745345925854886
+      ],
+      [
+        0.18315512683218385,
+        0.022174210357111267
+      ],
+      [
+        0.10309666714759352,
+        0.018326947731754625
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 1,
+    "library_message": "`gtol` termination condition is satisfied.",
+    "nfev": 7,
+    "njev": 7,
+    "artifact": "case67-01-fit.npz"
+  },
+  {
+    "context_index": 0,
+    "sigma_index": 0,
+    "seed_index": 0,
+    "gamma_index": 2,
+    "gamma": 0.0001,
+    "parameters": [
+      2.1999258031165754,
+      0.26421174576833867
+    ],
+    "objective": 6.6202892998925485e-06,
+    "weighted_residual_norm": 0.001504247740370252,
+    "parameter_deviation_norm": 0.33132789401703094,
+    "physical_projected_gradient_inf": 2.573719015686038e-11,
+    "final_primal_residual_l2": 3.471635976454311e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.1727808975045,
+      0.017592242368820118
+    ],
+    "forward_evaluations": 9,
+    "data_jacobian": [
+      [
+        0.10118720238617317,
+        -0.017444317070942655
+      ],
+      [
+        0.18044830724999206,
+        -0.020722766883899336
+      ],
+      [
+        0.24997044898463897,
+        0.0007604848144069508
+      ],
+      [
+        0.1827674905351484,
+        0.021990817995649014
+      ],
+      [
+        0.10283146309340656,
+        0.018214930998946444
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 2,
+    "library_message": "`ftol` termination condition is satisfied.",
+    "nfev": 9,
+    "njev": 7,
+    "artifact": "case67-02-fit.npz"
+  },
+  {
+    "context_index": 0,
+    "sigma_index": 0,
+    "seed_index": 0,
+    "gamma_index": 3,
+    "gamma": 0.001,
+    "parameters": [
+      2.194450517212778,
+      0.08267579062402909
+    ],
+    "objective": 3.396883548709826e-05,
+    "weighted_residual_norm": 0.004826114480052382,
+    "parameter_deviation_norm": 0.21129668714777627,
+    "physical_projected_gradient_inf": 5.702549543684654e-12,
+    "final_primal_residual_l2": 2.8477408864449757e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.17225995309954076,
+      0.017572607443362236
+    ],
+    "forward_evaluations": 6,
+    "data_jacobian": [
+      [
+        0.1014632137408227,
+        -0.017688689184007872
+      ],
+      [
+        0.18070693723512107,
+        -0.02112998296787032
+      ],
+      [
+        0.24920219396620438,
+        0.00023693775719597747
+      ],
+      [
+        0.18142957697774997,
+        0.02152518979829086
+      ],
+      [
+        0.10197564306096679,
+        0.017928928170464174
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 2,
+    "library_message": "`ftol` termination condition is satisfied.",
+    "nfev": 6,
+    "njev": 6,
+    "artifact": "case67-03-fit.npz"
+  },
+  {
+    "context_index": 0,
+    "sigma_index": 0,
+    "seed_index": 0,
+    "gamma_index": 4,
+    "gamma": 0.01,
+    "parameters": [
+      2.1491224900724455,
+      0.010410846594322395
+    ],
+    "objective": 0.00016868417193192215,
+    "weighted_residual_norm": 0.010672830746417426,
+    "parameter_deviation_norm": 0.14948546006959043,
+    "physical_projected_gradient_inf": 2.8491609072034407e-10,
+    "final_primal_residual_l2": 3.1392270148653376e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.16847492724981333,
+      0.017421753057227558
+    ],
+    "forward_evaluations": 16,
+    "data_jacobian": [
+      [
+        0.09958499367166856,
+        -0.017655333470882717
+      ],
+      [
+        0.1770899247802373,
+        -0.021107900006700802
+      ],
+      [
+        0.24355547808970276,
+        2.88832352931351e-05
+      ],
+      [
+        0.1771780886250988,
+        0.021156203069184993
+      ],
+      [
+        0.09964759831457383,
+        0.017684758477616476
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 3,
+    "library_message": "`xtol` termination condition is satisfied.",
+    "nfev": 15,
+    "njev": 6,
+    "artifact": "case67-04-fit.npz"
+  },
+  {
+    "context_index": 0,
+    "sigma_index": 0,
+    "seed_index": 1,
+    "gamma_index": 0,
+    "gamma": 0.0,
+    "parameters": [
+      2.2001037643088956,
+      0.3500636118871734
+    ],
+    "objective": 1.7974408267012512e-09,
+    "weighted_residual_norm": 5.995733194032655e-05,
+    "parameter_deviation_norm": 0.4032196037621232,
+    "physical_projected_gradient_inf": 1.2101430968414206e-14,
+    "final_primal_residual_l2": 3.1848813701880997e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.17283849789410374,
+      0.01759377172789646
+    ],
+    "forward_evaluations": 7,
+    "data_jacobian": [
+      [
+        0.10095207839079252,
+        -0.01732267036986708
+      ],
+      [
+        0.1801292199492083,
+        -0.02052157089010789
+      ],
+      [
+        0.25004868442538514,
+        0.001008023941738174
+      ],
+      [
+        0.18320329530861593,
+        0.02220234270571066
+      ],
+      [
+        0.10313152084710402,
+        0.018344080165493944
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 1,
+    "library_message": "`gtol` termination condition is satisfied.",
+    "nfev": 7,
+    "njev": 7,
+    "artifact": "case67-05-fit.npz"
+  },
+  {
+    "context_index": 0,
+    "sigma_index": 0,
+    "seed_index": 1,
+    "gamma_index": 1,
+    "gamma": 1e-05,
+    "parameters": [
+      2.2000918176980218,
+      0.3391395576124532
+    ],
+    "objective": 7.955961377022924e-07,
+    "weighted_residual_norm": 0.00020166438687060348,
+    "parameter_deviation_norm": 0.3937669044590579,
+    "physical_projected_gradient_inf": 4.39648317751562e-13,
+    "final_primal_residual_l2": 3.198136895856217e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.17283143390513528,
+      0.01759359901515515
+    ],
+    "forward_evaluations": 7,
+    "data_jacobian": [
+      [
+        0.10098214564737494,
+        -0.017338136849787373
+      ],
+      [
+        0.18017013414226737,
+        -0.020547157613283844
+      ],
+      [
+        0.2500392456866727,
+        0.0009765176678080383
+      ],
+      [
+        0.18314812790258114,
+        0.022175399253053396
+      ],
+      [
+        0.10309347104164697,
+        0.018327626149491377
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 1,
+    "library_message": "`gtol` termination condition is satisfied.",
+    "nfev": 7,
+    "njev": 7,
+    "artifact": "case67-06-fit.npz"
+  },
+  {
+    "context_index": 0,
+    "sigma_index": 0,
+    "seed_index": 1,
+    "gamma_index": 2,
+    "gamma": 0.0001,
+    "parameters": [
+      2.1998114076162723,
+      0.2647697347988899
+    ],
+    "objective": 6.6358599268488295e-06,
+    "weighted_residual_norm": 0.0015063063253503923,
+    "parameter_deviation_norm": 0.3317041016916592,
+    "physical_projected_gradient_inf": 5.7131632758000706e-11,
+    "final_primal_residual_l2": 2.6606503471425336e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.17277126324536615,
+      0.0175918595472046
+    ],
+    "forward_evaluations": 12,
+    "data_jacobian": [
+      [
+        0.10118018068582606,
+        -0.017443191886301248
+      ],
+      [
+        0.18043592932377533,
+        -0.020720997600201563
+      ],
+      [
+        0.2499560277685373,
+        0.0007620286521422857
+      ],
+      [
+        0.18275982562513945,
+        0.02199163142348951
+      ],
+      [
+        0.10282778864628346,
+        0.01821537951251554
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 2,
+    "library_message": "`ftol` termination condition is satisfied.",
+    "nfev": 12,
+    "njev": 7,
+    "artifact": "case67-07-fit.npz"
+  },
+  {
+    "context_index": 0,
+    "sigma_index": 0,
+    "seed_index": 1,
+    "gamma_index": 3,
+    "gamma": 0.001,
+    "parameters": [
+      2.194340514219948,
+      0.08284946253670265
+    ],
+    "objective": 3.400604388710862e-05,
+    "weighted_residual_norm": 0.004835268230855758,
+    "parameter_deviation_norm": 0.211263505863872,
+    "physical_projected_gradient_inf": 5.596412222530489e-12,
+    "final_primal_residual_l2": 2.5465447641730586e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.1722505539237268,
+      0.017572236382953535
+    ],
+    "forward_evaluations": 11,
+    "data_jacobian": [
+      [
+        0.10145747422811145,
+        -0.017688105859592115
+      ],
+      [
+        0.18069643641616787,
+        -0.021129103979361873
+      ],
+      [
+        0.24918816246814468,
+        0.0002374165662850645
+      ],
+      [
+        0.1814205379478756,
+        0.021525112001589377
+      ],
+      [
+        0.10197094186245699,
+        0.017928833128623756
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 2,
+    "library_message": "`ftol` termination condition is satisfied.",
+    "nfev": 11,
+    "njev": 7,
+    "artifact": "case67-08-fit.npz"
+  },
+  {
+    "context_index": 0,
+    "sigma_index": 0,
+    "seed_index": 1,
+    "gamma_index": 4,
+    "gamma": 0.01,
+    "parameters": [
+      2.149035107743078,
+      0.01043275947660171
+    ],
+    "objective": 0.0001685870122971707,
+    "weighted_residual_norm": 0.010675718546845753,
+    "parameter_deviation_norm": 0.1493998186420837,
+    "physical_projected_gradient_inf": 2.839084523031943e-10,
+    "final_primal_residual_l2": 3.1363672720627855e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.16846783393970186,
+      0.017421466964612654
+    ],
+    "forward_evaluations": 16,
+    "data_jacobian": [
+      [
+        0.09958098691418762,
+        -0.01765504057995064
+      ],
+      [
+        0.17708246047767598,
+        -0.021107480592608436
+      ],
+      [
+        0.24354489609912366,
+        2.894224588794543e-05
+      ],
+      [
+        0.17717080458628168,
+        0.021155882583288516
+      ],
+      [
+        0.09964371972769556,
+        0.01768452597062004
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 3,
+    "library_message": "`xtol` termination condition is satisfied.",
+    "nfev": 15,
+    "njev": 6,
+    "artifact": "case67-09-fit.npz"
+  },
+  {
+    "context_index": 0,
+    "sigma_index": 1,
+    "seed_index": 0,
+    "gamma_index": 0,
+    "gamma": 0.0,
+    "parameters": [
+      2.202199405919038,
+      0.343240071080306
+    ],
+    "objective": 3.460702377306828e-07,
+    "weighted_residual_norm": 0.000831949803450524,
+    "parameter_deviation_norm": 0.39836960997197757,
+    "physical_projected_gradient_inf": 1.6253665080512292e-13,
+    "final_primal_residual_l2": 4.067794742003374e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.17301591396617214,
+      0.017600804655975723
+    ],
+    "forward_evaluations": 7,
+    "data_jacobian": [
+      [
+        0.10107031465179851,
+        -0.01733823331774306
+      ],
+      [
+        0.18034149614976433,
+        -0.020545641881895702
+      ],
+      [
+        0.25031414128055696,
+        0.0009898604054072934
+      ],
+      [
+        0.1833600629978052,
+        0.022195925845347814
+      ],
+      [
+        0.10321026455242345,
+        0.01834101670716574
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 1,
+    "library_message": "`gtol` termination condition is satisfied.",
+    "nfev": 7,
+    "njev": 7,
+    "artifact": "case67-10-fit.npz"
+  },
+  {
+    "context_index": 0,
+    "sigma_index": 1,
+    "seed_index": 0,
+    "gamma_index": 1,
+    "gamma": 1e-05,
+    "parameters": [
+      2.202184712814885,
+      0.33253402934999554
+    ],
+    "objective": 1.121174349563753e-06,
+    "weighted_residual_norm": 0.0008530963084023365,
+    "parameter_deviation_norm": 0.3891754601356323,
+    "physical_projected_gradient_inf": 3.6548541970660153e-13,
+    "final_primal_residual_l2": 3.651218195455833e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.17300882967001213,
+      0.01760062745966393
+    ],
+    "forward_evaluations": 7,
+    "data_jacobian": [
+      [
+        0.10109974061023447,
+        -0.017353409886494867
+      ],
+      [
+        0.18038149195791311,
+        -0.02057075139069256
+      ],
+      [
+        0.2503046308778286,
+        0.0009589360763810381
+      ],
+      [
+        0.1833057557298357,
+        0.022169481952802588
+      ],
+      [
+        0.10317283877735481,
+        0.018324869481541207
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 1,
+    "library_message": "`gtol` termination condition is satisfied.",
+    "nfev": 7,
+    "njev": 7,
+    "artifact": "case67-11-fit.npz"
+  },
+  {
+    "context_index": 0,
+    "sigma_index": 1,
+    "seed_index": 0,
+    "gamma_index": 2,
+    "gamma": 0.0001,
+    "parameters": [
+      2.2018865479331096,
+      0.25963952823538883
+    ],
+    "objective": 6.843653872474345e-06,
+    "weighted_residual_norm": 0.0016941727949310208,
+    "parameter_deviation_norm": 0.32889339132710316,
+    "physical_projected_gradient_inf": 6.927791673660977e-14,
+    "final_primal_residual_l2": 2.642819624706975e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.17294836856672477,
+      0.01759885543875328
+    ],
+    "forward_evaluations": 7,
+    "data_jacobian": [
+      [
+        0.10129335133094054,
+        -0.017456491698213283
+      ],
+      [
+        0.18064092324720826,
+        -0.02074134677089435
+      ],
+      [
+        0.2502207334183963,
+        0.0007483832120345003
+      ],
+      [
+        0.18292311878763193,
+        0.02198907603246258
+      ],
+      [
+        0.1029112901529388,
+        0.018214685474134
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 1,
+    "library_message": "`gtol` termination condition is satisfied.",
+    "nfev": 7,
+    "njev": 7,
+    "artifact": "case67-12-fit.npz"
+  },
+  {
+    "context_index": 0,
+    "sigma_index": 1,
+    "seed_index": 0,
+    "gamma_index": 3,
+    "gamma": 0.001,
+    "parameters": [
+      2.196351122477786,
+      0.08126340353235542
+    ],
+    "objective": 3.4200735605296224e-05,
+    "weighted_residual_norm": 0.004821199763403655,
+    "parameter_deviation_norm": 0.21250295068998215,
+    "physical_projected_gradient_inf": 3.019806626980426e-14,
+    "final_primal_residual_l2": 2.8515818498598807e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.17242275675256258,
+      0.017579027654776105
+    ],
+    "forward_evaluations": 7,
+    "data_jacobian": [
+      [
+        0.10155769002207257,
+        -0.017696482450496494
+      ],
+      [
+        0.18088184930066933,
+        -0.021141405750076413
+      ],
+      [
+        0.249445197733674,
+        0.00023321132298376526
+      ],
+      [
+        0.18159309890908998,
+        0.021530353671476377
+      ],
+      [
+        0.10206201281168716,
+        0.01793289547822719
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 1,
+    "library_message": "`gtol` termination condition is satisfied.",
+    "nfev": 7,
+    "njev": 7,
+    "artifact": "case67-13-fit.npz"
+  },
+  {
+    "context_index": 0,
+    "sigma_index": 1,
+    "seed_index": 0,
+    "gamma_index": 4,
+    "gamma": 0.01,
+    "parameters": [
+      2.1506333023947706,
+      0.010232503648413223
+    ],
+    "objective": 0.00017140376791992728,
+    "weighted_residual_norm": 0.010717116059237333,
+    "parameter_deviation_norm": 0.15098044880470182,
+    "physical_projected_gradient_inf": 2.2784307773804358e-10,
+    "final_primal_residual_l2": 3.097390919218704e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.16859768549648563,
+      0.01742670225468311
+    ],
+    "forward_evaluations": 8,
+    "data_jacobian": [
+      [
+        0.09965373119217197,
+        -0.017660116956498138
+      ],
+      [
+        0.1772182531586409,
+        -0.021114690637313537
+      ],
+      [
+        0.24373861281653728,
+        2.8418723152145067e-05
+      ],
+      [
+        0.17730499676452025,
+        0.021162212769195513
+      ],
+      [
+        0.09971532450652995,
+        0.01768906421284919
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 2,
+    "library_message": "`ftol` termination condition is satisfied.",
+    "nfev": 8,
+    "njev": 7,
+    "artifact": "case67-14-fit.npz"
+  },
+  {
+    "context_index": 0,
+    "sigma_index": 1,
+    "seed_index": 1,
+    "gamma_index": 0,
+    "gamma": 0.0,
+    "parameters": [
+      2.2010373701392414,
+      0.3506362394443743
+    ],
+    "objective": 1.7974446438462785e-07,
+    "weighted_residual_norm": 0.0005995739560465045,
+    "parameter_deviation_norm": 0.40418040106392455,
+    "physical_projected_gradient_inf": 9.547918011776346e-14,
+    "final_primal_residual_l2": 2.8914197949255003e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.17291949503227674,
+      0.017596947725545396
+    ],
+    "forward_evaluations": 7,
+    "data_jacobian": [
+      [
+        0.1009945887722978,
+        -0.017324471923270177
+      ],
+      [
+        0.18020984880123048,
+        -0.02052380716698318
+      ],
+      [
+        0.2501694990891794,
+        0.0010103625203467482
+      ],
+      [
+        0.18329100295345854,
+        0.02220838574175706
+      ],
+      [
+        0.1031789864377559,
+        0.018348149575765117
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 1,
+    "library_message": "`gtol` termination condition is satisfied.",
+    "nfev": 7,
+    "njev": 7,
+    "artifact": "case67-15-fit.npz"
+  },
+  {
+    "context_index": 0,
+    "sigma_index": 1,
+    "seed_index": 1,
+    "gamma_index": 1,
+    "gamma": 1e-05,
+    "parameters": [
+      2.2010253323987925,
+      0.33969698868415743
+    ],
+    "objective": 9.773638413804802e-07,
+    "weighted_residual_norm": 0.0006298217199253007,
+    "parameter_deviation_norm": 0.39472171005295564,
+    "physical_projected_gradient_inf": 5.235811784132238e-13,
+    "final_primal_residual_l2": 3.034543167057505e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.17291239629131666,
+      0.017596774155445142
+    ],
+    "forward_evaluations": 7,
+    "data_jacobian": [
+      [
+        0.10102470586100819,
+        -0.0173399679814609
+      ],
+      [
+        0.18025082693793976,
+        -0.020549444274333858
+      ],
+      [
+        0.2501600126750581,
+        0.0009787906265979812
+      ],
+      [
+        0.18323570103545087,
+        0.022181386176763646
+      ],
+      [
+        0.10314084776599487,
+        0.01833166185808303
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 1,
+    "library_message": "`gtol` termination condition is satisfied.",
+    "nfev": 7,
+    "njev": 7,
+    "artifact": "case67-16-fit.npz"
+  },
+  {
+    "context_index": 0,
+    "sigma_index": 1,
+    "seed_index": 1,
+    "gamma_index": 2,
+    "gamma": 0.0001,
+    "parameters": [
+      2.2007436273514713,
+      0.26521909214195344
+    ],
+    "objective": 6.847967972164831e-06,
+    "weighted_residual_norm": 0.0016223497984241327,
+    "parameter_deviation_norm": 0.3326246694982625,
+    "physical_projected_gradient_inf": 7.993605777301127e-14,
+    "final_primal_residual_l2": 3.534104789293304e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.17285192994953766,
+      0.017595026490155517
+    ],
+    "forward_evaluations": 7,
+    "data_jacobian": [
+      [
+        0.10122306195904145,
+        -0.01744522983929367
+      ],
+      [
+        0.1805170157554045,
+        -0.020723636500179866
+      ],
+      [
+        0.2500763788209748,
+        0.0007638415925698221
+      ],
+      [
+        0.182846400861036,
+        0.02199722346146595
+      ],
+      [
+        0.10287451352228326,
+        0.01821917781686215
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 1,
+    "library_message": "`gtol` termination condition is satisfied.",
+    "nfev": 7,
+    "njev": 7,
+    "artifact": "case67-17-fit.npz"
+  },
+  {
+    "context_index": 0,
+    "sigma_index": 1,
+    "seed_index": 1,
+    "gamma_index": 3,
+    "gamma": 0.001,
+    "parameters": [
+      2.195251863040625,
+      0.08300041682030539
+    ],
+    "objective": 3.441697700040681e-05,
+    "weighted_residual_norm": 0.004880737115194198,
+    "parameter_deviation_norm": 0.21216116330087237,
+    "physical_projected_gradient_inf": 5.841993555577574e-12,
+    "final_primal_residual_l2": 2.4614403121686573e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.17232867054713313,
+      0.017575315982922304
+    ],
+    "forward_evaluations": 15,
+    "data_jacobian": [
+      [
+        0.10150023632897609,
+        -0.017690645089370176
+      ],
+      [
+        0.18077673304615094,
+        -0.02113260877664862
+      ],
+      [
+        0.24930474031339273,
+        0.00023800654582242174
+      ],
+      [
+        0.1815026218229594,
+        0.021529579685590234
+      ],
+      [
+        0.10201495677906525,
+        0.0179319472624222
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 3,
+    "library_message": "`xtol` termination condition is satisfied.",
+    "nfev": 14,
+    "njev": 6,
+    "artifact": "case67-18-fit.npz"
+  },
+  {
+    "context_index": 0,
+    "sigma_index": 1,
+    "seed_index": 1,
+    "gamma_index": 4,
+    "gamma": 0.01,
+    "parameters": [
+      2.149759628905932,
+      0.010451676967199371
+    ],
+    "objective": 0.00017026463322104788,
+    "weighted_residual_norm": 0.010731142829512786,
+    "parameter_deviation_norm": 0.1501238955045772,
+    "physical_projected_gradient_inf": 5.503153488461976e-12,
+    "final_primal_residual_l2": 3.431421891937015e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.16852667228213167,
+      0.017423839652348935
+    ],
+    "forward_evaluations": 7,
+    "data_jacobian": [
+      [
+        0.09961361904652308,
+        -0.01765718624490542
+      ],
+      [
+        0.17714352618369372,
+        -0.02111049372573519
+      ],
+      [
+        0.24363267237529296,
+        2.9009545199494982e-05
+      ],
+      [
+        0.1772320745676972,
+        0.021159006258433963
+      ],
+      [
+        0.09967649553256154,
+        0.017686737983045337
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 2,
+    "library_message": "`ftol` termination condition is satisfied.",
+    "nfev": 7,
+    "njev": 7,
+    "artifact": "case67-19-fit.npz"
+  },
+  {
+    "context_index": 1,
+    "sigma_index": 0,
+    "seed_index": 0,
+    "gamma_index": 0,
+    "gamma": 0.0,
+    "parameters": [
+      2.1997582124871027,
+      0.34901817294339915
+    ],
+    "objective": 3.5765639876329243e-09,
+    "weighted_residual_norm": 8.457616670945692e-05,
+    "parameter_deviation_norm": 0.4021405581395527,
+    "physical_projected_gradient_inf": 2.353672812205332e-14,
+    "final_primal_residual_l2": 3.6196158429672476e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.17280807561132136,
+      0.017592586516449755
+    ],
+    "forward_evaluations": 7,
+    "data_jacobian": [
+      [
+        0.10093868936814437,
+        -0.017323185678143116
+      ],
+      [
+        0.18010259571246298,
+        -0.020522698042038857
+      ],
+      [
+        0.2500033919960811,
+        0.0010047563905951399
+      ],
+      [
+        0.1831667257692354,
+        0.022198055787940565
+      ],
+      [
+        0.10311110433977738,
+        0.018341322213489542
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 1,
+    "library_message": "`gtol` termination condition is satisfied.",
+    "nfev": 7,
+    "njev": 7,
+    "artifact": "case67-20-fit.npz"
+  },
+  {
+    "context_index": 1,
+    "sigma_index": 0,
+    "seed_index": 0,
+    "gamma_index": 1,
+    "gamma": 1e-05,
+    "parameters": [
+      2.1997460319739024,
+      0.3381250223037293
+    ],
+    "objective": 7.931409708573287e-07,
+    "weighted_residual_norm": 0.00020979004204797373,
+    "parameter_deviation_norm": 0.392717465867278,
+    "physical_projected_gradient_inf": 4.1255887595070817e-13,
+    "final_primal_residual_l2": 2.7585170629725e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.1728010296707636,
+      0.017592413832746855
+    ],
+    "forward_evaluations": 7,
+    "data_jacobian": [
+      [
+        0.1009686624782495,
+        -0.017338605542844335
+      ],
+      [
+        0.18014337933262564,
+        -0.02054820703054122
+      ],
+      [
+        0.24999397346686095,
+        0.0009733473814482622
+      ],
+      [
+        0.18311172381716626,
+        0.02217119570884965
+      ],
+      [
+        0.10307316952695897,
+        0.01832491895388215
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 1,
+    "library_message": "`gtol` termination condition is satisfied.",
+    "nfev": 7,
+    "njev": 7,
+    "artifact": "case67-21-fit.npz"
+  },
+  {
+    "context_index": 1,
+    "sigma_index": 0,
+    "seed_index": 0,
+    "gamma_index": 2,
+    "gamma": 0.0001,
+    "parameters": [
+      2.1994645292041786,
+      0.2639685347513889
+    ],
+    "objective": 6.602895996920874e-06,
+    "weighted_residual_norm": 0.0015030779816422597,
+    "parameter_deviation_norm": 0.330855687195248,
+    "physical_projected_gradient_inf": 3.2009950245992513e-12,
+    "final_primal_residual_l2": 2.60105518202216e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.17274100240494222,
+      0.01759067578232235
+    ],
+    "forward_evaluations": 8,
+    "data_jacobian": [
+      [
+        0.10116605848605704,
+        -0.01744333846830349
+      ],
+      [
+        0.18040829502598543,
+        -0.02072151016306061
+      ],
+      [
+        0.24991092914312313,
+        0.0007595290181344476
+      ],
+      [
+        0.18272458316414097,
+        0.021988001903029023
+      ],
+      [
+        0.10280829013743482,
+        0.01821302162964965
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 1,
+    "library_message": "`gtol` termination condition is satisfied.",
+    "nfev": 8,
+    "njev": 7,
+    "artifact": "case67-22-fit.npz"
+  },
+  {
+    "context_index": 1,
+    "sigma_index": 0,
+    "seed_index": 0,
+    "gamma_index": 3,
+    "gamma": 0.001,
+    "parameters": [
+      2.193999465503878,
+      0.08259183660549008
+    ],
+    "objective": 3.385146860483064e-05,
+    "weighted_residual_norm": 0.0048213829053501845,
+    "parameter_deviation_norm": 0.21084877066195643,
+    "physical_projected_gradient_inf": 5.611955344875241e-12,
+    "final_primal_residual_l2": 3.4427512970489966e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.1722213163966375,
+      0.01757108384543904
+    ],
+    "forward_evaluations": 6,
+    "data_jacobian": [
+      [
+        0.10144209169670547,
+        -0.01768744614747195
+      ],
+      [
+        0.1806672622743445,
+        -0.02112827078969677
+      ],
+      [
+        0.24914453473716447,
+        0.0002366196970377427
+      ],
+      [
+        0.18138893793517546,
+        0.021522957527481967
+      ],
+      [
+        0.10195384453075164,
+        0.017927374105494238
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 2,
+    "library_message": "`ftol` termination condition is satisfied.",
+    "nfev": 6,
+    "njev": 6,
+    "artifact": "case67-23-fit.npz"
+  },
+  {
+    "context_index": 1,
+    "sigma_index": 0,
+    "seed_index": 0,
+    "gamma_index": 4,
+    "gamma": 0.01,
+    "parameters": [
+      2.1487643981090847,
+      0.010400089902725562
+    ],
+    "objective": 0.00016794123194449642,
+    "weighted_residual_norm": 0.010653280421614866,
+    "parameter_deviation_norm": 0.1491274891317594,
+    "physical_projected_gradient_inf": 2.804028120806379e-10,
+    "final_primal_residual_l2": 2.491150475325665e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.16844586193464342,
+      0.017420580724801748
+    ],
+    "forward_evaluations": 16,
+    "data_jacobian": [
+      [
+        0.09956887795053272,
+        -0.017654275274416247
+      ],
+      [
+        0.17705976503757087,
+        -0.021106414481070937
+      ],
+      [
+        0.24351211801585715,
+        2.8846108865943574e-05
+      ],
+      [
+        0.1771478161223674,
+        0.02115465644106848
+      ],
+      [
+        0.09963140320256107,
+        0.01768366354662272
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 3,
+    "library_message": "`xtol` termination condition is satisfied.",
+    "nfev": 15,
+    "njev": 6,
+    "artifact": "case67-24-fit.npz"
+  },
+  {
+    "context_index": 1,
+    "sigma_index": 0,
+    "seed_index": 1,
+    "gamma_index": 0,
+    "gamma": 0.0,
+    "parameters": [
+      2.199641867096857,
+      0.3497579973516197
+    ],
+    "objective": 1.8658031643922438e-09,
+    "weighted_residual_norm": 6.108687525798392e-05,
+    "parameter_deviation_norm": 0.4027251318322893,
+    "physical_projected_gradient_inf": 1.2212453270876722e-14,
+    "final_primal_residual_l2": 3.2489375080111916e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.17279844654221865,
+      0.017592200918338886
+    ],
+    "forward_evaluations": 7,
+    "data_jacobian": [
+      [
+        0.10093112655189575,
+        -0.01732181091232339
+      ],
+      [
+        0.1800894482785917,
+        -0.02052051698694072
+      ],
+      [
+        0.2499889467553207,
+        0.0010068037937254208
+      ],
+      [
+        0.18315982876177012,
+        0.022199299961634184
+      ],
+      [
+        0.10310798072279019,
+        0.018342034524219186
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 1,
+    "library_message": "`gtol` termination condition is satisfied.",
+    "nfev": 7,
+    "njev": 7,
+    "artifact": "case67-25-fit.npz"
+  },
+  {
+    "context_index": 1,
+    "sigma_index": 0,
+    "seed_index": 1,
+    "gamma_index": 1,
+    "gamma": 1e-05,
+    "parameters": [
+      2.1996299541693123,
+      0.3388415049732608
+    ],
+    "objective": 7.937018892651491e-07,
+    "weighted_residual_norm": 0.00020185870699189042,
+    "parameter_deviation_norm": 0.3932755828858258,
+    "physical_projected_gradient_inf": 4.2810199829546036e-13,
+    "final_primal_residual_l2": 2.760203786931689e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.172791399138162,
+      0.017592028599457257
+    ],
+    "forward_evaluations": 7,
+    "data_jacobian": [
+      [
+        0.10096116871723348,
+        -0.01733726270236488
+      ],
+      [
+        0.18013033004593443,
+        -0.02054607869261844
+      ],
+      [
+        0.2499795306239703,
+        0.0009753300779156872
+      ],
+      [
+        0.18310472740222378,
+        0.02217238434085415
+      ],
+      [
+        0.10306997465384869,
+        0.018325597226011684
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 1,
+    "library_message": "`gtol` termination condition is satisfied.",
+    "nfev": 7,
+    "njev": 7,
+    "artifact": "case67-26-fit.npz"
+  },
+  {
+    "context_index": 1,
+    "sigma_index": 0,
+    "seed_index": 1,
+    "gamma_index": 2,
+    "gamma": 0.0001,
+    "parameters": [
+      2.1993501087957608,
+      0.26452655912152934
+    ],
+    "objective": 6.618408129346739e-06,
+    "weighted_residual_norm": 0.001505104522263393,
+    "parameter_deviation_norm": 0.3312321940234035,
+    "physical_projected_gradient_inf": 2.6548985232466293e-11,
+    "final_primal_residual_l2": 3.6626753965489284e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.17273137116133383,
+      0.017590292994930326
+    ],
+    "forward_evaluations": 9,
+    "data_jacobian": [
+      [
+        0.10115903877162008,
+        -0.017442213444490914
+      ],
+      [
+        0.18039592074835176,
+        -0.020719741172957433
+      ],
+      [
+        0.24989651253857073,
+        0.0007610724985242586
+      ],
+      [
+        0.18271692084666485,
+        0.021988815087698416
+      ],
+      [
+        0.10280461696833713,
+        0.018213470007293592
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 2,
+    "library_message": "`ftol` termination condition is satisfied.",
+    "nfev": 9,
+    "njev": 7,
+    "artifact": "case67-27-fit.npz"
+  },
+  {
+    "context_index": 1,
+    "sigma_index": 0,
+    "seed_index": 1,
+    "gamma_index": 3,
+    "gamma": 0.001,
+    "parameters": [
+      2.193889439281274,
+      0.08276550452553053
+    ],
+    "objective": 3.388862082785711e-05,
+    "weighted_residual_norm": 0.0048305277404794775,
+    "parameter_deviation_norm": 0.21081566214153172,
+    "physical_projected_gradient_inf": 5.607958541986591e-12,
+    "final_primal_residual_l2": 3.15209816198374e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.17221192030050372,
+      0.017570712822637405
+    ],
+    "forward_evaluations": 6,
+    "data_jacobian": [
+      [
+        0.10143635400665053,
+        -0.017686862917722413
+      ],
+      [
+        0.18065676485526272,
+        -0.021127391963955706
+      ],
+      [
+        0.2491305078965665,
+        0.00023709835857810047
+      ],
+      [
+        0.18137990186526526,
+        0.021522879665065765
+      ],
+      [
+        0.10194914485513878,
+        0.017927279028201435
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 2,
+    "library_message": "`ftol` termination condition is satisfied.",
+    "nfev": 6,
+    "njev": 6,
+    "artifact": "case67-28-fit.npz"
+  },
+  {
+    "context_index": 1,
+    "sigma_index": 0,
+    "seed_index": 1,
+    "gamma_index": 4,
+    "gamma": 0.01,
+    "parameters": [
+      2.1486770191924056,
+      0.010422002638727938
+    ],
+    "objective": 0.00016784433648539275,
+    "weighted_residual_norm": 0.010656168693361582,
+    "parameter_deviation_norm": 0.14904185376913626,
+    "physical_projected_gradient_inf": 5.2309268028238876e-12,
+    "final_primal_residual_l2": 3.7785807401305606e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.168438771852991,
+      0.017420294712693112
+    ],
+    "forward_evaluations": 7,
+    "data_jacobian": [
+      [
+        0.09956487297858277,
+        -0.017653982461191497
+      ],
+      [
+        0.17705230409771255,
+        -0.021105995182439597
+      ],
+      [
+        0.2435015408744154,
+        2.890510646103628e-05
+      ],
+      [
+        0.177140535407522,
+        0.021154336050547767
+      ],
+      [
+        0.09962752637485774,
+        0.017683431105923964
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 2,
+    "library_message": "`ftol` termination condition is satisfied.",
+    "nfev": 7,
+    "njev": 7,
+    "artifact": "case67-29-fit.npz"
+  },
+  {
+    "context_index": 1,
+    "sigma_index": 1,
+    "seed_index": 0,
+    "gamma_index": 0,
+    "gamma": 0.0,
+    "parameters": [
+      2.2017379829965984,
+      0.34293364179014885
+    ],
+    "objective": 3.472071607823268e-07,
+    "weighted_residual_norm": 0.0008333152594094588,
+    "parameter_deviation_norm": 0.39787145720067674,
+    "physical_projected_gradient_inf": 1.580957587066223e-13,
+    "final_primal_residual_l2": 3.787620182933906e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.17297580727089037,
+      0.01759923324930848
+    ],
+    "forward_evaluations": 7,
+    "data_jacobian": [
+      [
+        0.10104933059240527,
+        -0.017337372708294406
+      ],
+      [
+        0.18030166378010218,
+        -0.020544585766676074
+      ],
+      [
+        0.2502543191854831,
+        0.0009886426408182492
+      ],
+      [
+        0.18331654269434117,
+        0.022192884289582465
+      ],
+      [
+        0.1031866967285052,
+        0.018338971688829014
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 1,
+    "library_message": "`gtol` termination condition is satisfied.",
+    "nfev": 7,
+    "njev": 7,
+    "artifact": "case67-30-fit.npz"
+  },
+  {
+    "context_index": 1,
+    "sigma_index": 1,
+    "seed_index": 0,
+    "gamma_index": 1,
+    "gamma": 1e-05,
+    "parameters": [
+      2.201723324258229,
+      0.33223522242459785
+    ],
+    "objective": 1.1203575621671201e-06,
+    "weighted_residual_norm": 0.000854394346096177,
+    "parameter_deviation_norm": 0.3886805147795714,
+    "physical_projected_gradient_inf": 3.566036355096003e-13,
+    "final_primal_residual_l2": 3.9637325408648934e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.1729687395133853,
+      0.01759905644752054
+    ],
+    "forward_evaluations": 7,
+    "data_jacobian": [
+      [
+        0.1010787314080018,
+        -0.017352534559336632
+      ],
+      [
+        0.18034162709878368,
+        -0.020569670223512793
+      ],
+      [
+        0.2502448313612222,
+        0.0009577508812020082
+      ],
+      [
+        0.18326230145448372,
+        0.022166468232842542
+      ],
+      [
+        0.10314931468421334,
+        0.01832284118649249
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 1,
+    "library_message": "`gtol` termination condition is satisfied.",
+    "nfev": 7,
+    "njev": 7,
+    "artifact": "case67-31-fit.npz"
+  },
+  {
+    "context_index": 1,
+    "sigma_index": 1,
+    "seed_index": 0,
+    "gamma_index": 2,
+    "gamma": 0.0001,
+    "parameters": [
+      2.201425725546423,
+      0.2593959472482484
+    ],
+    "objective": 6.827327871059543e-06,
+    "weighted_residual_norm": 0.001693752551598725,
+    "parameter_deviation_norm": 0.3284183008918945,
+    "physical_projected_gradient_inf": 6.838973831690964e-14,
+    "final_primal_residual_l2": 3.127157529062499e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.17290842069121368,
+      0.01759728828713
+    ],
+    "forward_evaluations": 7,
+    "data_jacobian": [
+      [
+        0.10127217691710146,
+        -0.017455511967212574
+      ],
+      [
+        0.1806008536217927,
+        -0.020740087993524312
+      ],
+      [
+        0.2501611333904246,
+        0.0007474293721271126
+      ],
+      [
+        0.18288015977357377,
+        0.021986260781206808
+      ],
+      [
+        0.10288809051075945,
+        0.01821277655217619
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 1,
+    "library_message": "`gtol` termination condition is satisfied.",
+    "nfev": 7,
+    "njev": 7,
+    "artifact": "case67-32-fit.npz"
+  },
+  {
+    "context_index": 1,
+    "sigma_index": 1,
+    "seed_index": 0,
+    "gamma_index": 3,
+    "gamma": 0.001,
+    "parameters": [
+      2.1959004755966314,
+      0.08117945139563673
+    ],
+    "objective": 3.4084036452049205e-05,
+    "weighted_residual_norm": 0.004816738859043066,
+    "parameter_deviation_norm": 0.21205447335032315,
+    "physical_projected_gradient_inf": 5.789146939605416e-12,
+    "final_primal_residual_l2": 3.572550718496403e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.17238406670527937,
+      0.01757750341114132
+    ],
+    "forward_evaluations": 6,
+    "data_jacobian": [
+      [
+        0.10153653811799833,
+        -0.017695238507411837
+      ],
+      [
+        0.18084211797469604,
+        -0.02113969204335849
+      ],
+      [
+        0.24938745788639977,
+        0.00023289413181455762
+      ],
+      [
+        0.18155240609168283,
+        0.021528121217060676
+      ],
+      [
+        0.10204018618513055,
+        0.01793134127112036
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 2,
+    "library_message": "`ftol` termination condition is satisfied.",
+    "nfev": 6,
+    "njev": 6,
+    "artifact": "case67-33-fit.npz"
+  },
+  {
+    "context_index": 1,
+    "sigma_index": 1,
+    "seed_index": 0,
+    "gamma_index": 4,
+    "gamma": 0.01,
+    "parameters": [
+      2.150275284962937,
+      0.010221752010570698
+    ],
+    "objective": 0.0001706558019153349,
+    "weighted_residual_norm": 0.010697670259551593,
+    "parameter_deviation_norm": 0.15062252648544147,
+    "physical_projected_gradient_inf": 5.624389842751043e-12,
+    "final_primal_residual_l2": 3.035417157875175e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.16856857512764367,
+      0.0174255289663425
+    ],
+    "forward_evaluations": 7,
+    "data_jacobian": [
+      [
+        0.09963759071543019,
+        -0.017659057872906444
+      ],
+      [
+        0.17718804666196025,
+        -0.021113203778725883
+      ],
+      [
+        0.24369518496223513,
+        2.838169098330626e-05
+      ],
+      [
+        0.17727467778974323,
+        0.021160664955745853
+      ],
+      [
+        0.09969910483212718,
+        0.017687968479582324
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 2,
+    "library_message": "`ftol` termination condition is satisfied.",
+    "nfev": 7,
+    "njev": 7,
+    "artifact": "case67-34-fit.npz"
+  },
+  {
+    "context_index": 1,
+    "sigma_index": 1,
+    "seed_index": 1,
+    "gamma_index": 0,
+    "gamma": 0.0,
+    "parameters": [
+      2.200575703757923,
+      0.3503306272009363
+    ],
+    "objective": 1.8040769602560752e-07,
+    "weighted_residual_norm": 0.0006006791090517591,
+    "parameter_deviation_norm": 0.4036857209426506,
+    "physical_projected_gradient_inf": 9.325873406851315e-14,
+    "final_primal_residual_l2": 2.9283971188060053e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.17287941794732464,
+      0.017595376662269405
+    ],
+    "forward_evaluations": 7,
+    "data_jacobian": [
+      [
+        0.1009736243877057,
+        -0.01732361283264506
+      ],
+      [
+        0.18017005270747455,
+        -0.020522753949215572
+      ],
+      [
+        0.250109722627585,
+        0.001009140949907059
+      ],
+      [
+        0.18324750776941742,
+        0.022205341528418354
+      ],
+      [
+        0.10315543092562855,
+        0.018346103095007393
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 1,
+    "library_message": "`gtol` termination condition is satisfied.",
+    "nfev": 7,
+    "njev": 7,
+    "artifact": "case67-35-fit.npz"
+  },
+  {
+    "context_index": 1,
+    "sigma_index": 1,
+    "seed_index": 1,
+    "gamma_index": 1,
+    "gamma": 1e-05,
+    "parameters": [
+      2.2005636992382875,
+      0.33939893320236936
+    ],
+    "objective": 9.760589065496588e-07,
+    "weighted_residual_norm": 0.0006308276151127112,
+    "parameter_deviation_norm": 0.39423017808261795,
+    "physical_projected_gradient_inf": 5.098144129078719e-13,
+    "final_primal_residual_l2": 3.440600319743298e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.1728723357989471,
+      0.0175952034853197
+    ],
+    "forward_evaluations": 7,
+    "data_jacobian": [
+      [
+        0.10100371636697243,
+        -0.01733909419298543
+      ],
+      [
+        0.18021099839074084,
+        -0.02054836602344674
+      ],
+      [
+        0.2501002588273315,
+        0.0009776016380911834
+      ],
+      [
+        0.18319227193942192,
+        0.02217836981343709
+      ],
+      [
+        0.1031173360173046,
+        0.01832963210484852
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 1,
+    "library_message": "`gtol` termination condition is satisfied.",
+    "nfev": 7,
+    "njev": 7,
+    "artifact": "case67-36-fit.npz"
+  },
+  {
+    "context_index": 1,
+    "sigma_index": 1,
+    "seed_index": 1,
+    "gamma_index": 2,
+    "gamma": 0.0001,
+    "parameters": [
+      2.200282553993982,
+      0.2649758859159558
+    ],
+    "objective": 6.83105822484174e-06,
+    "weighted_residual_norm": 0.0016215993014779243,
+    "parameter_deviation_norm": 0.33215255764678053,
+    "physical_projected_gradient_inf": 7.860379014346108e-14,
+    "final_primal_residual_l2": 2.4856264578911155e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.17281201210218392,
+      0.017593459674087944
+    ],
+    "forward_evaluations": 7,
+    "data_jacobian": [
+      [
+        0.10120190727307428,
+        -0.017444251682313335
+      ],
+      [
+        0.18047698239893828,
+        -0.020722380604269505
+      ],
+      [
+        0.250016824718187,
+        0.0007628842340276453
+      ],
+      [
+        0.18280346772354442,
+        0.021994405817035847
+      ],
+      [
+        0.10285132664933712,
+        0.018217267558603187
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 1,
+    "library_message": "`gtol` termination condition is satisfied.",
+    "nfev": 7,
+    "njev": 7,
+    "artifact": "case67-37-fit.npz"
+  },
+  {
+    "context_index": 1,
+    "sigma_index": 1,
+    "seed_index": 1,
+    "gamma_index": 3,
+    "gamma": 0.001,
+    "parameters": [
+      2.1948009841366654,
+      0.08291642551916065
+    ],
+    "objective": 3.42997160271352e-05,
+    "weighted_residual_norm": 0.004876153710947034,
+    "parameter_deviation_norm": 0.21171338418127436,
+    "physical_projected_gradient_inf": 5.749622999928761e-12,
+    "final_primal_residual_l2": 2.740789661752081e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.17229001135626784,
+      0.017573792116135262
+    ],
+    "forward_evaluations": 6,
+    "data_jacobian": [
+      [
+        0.10147910268408025,
+        -0.017689402093574544
+      ],
+      [
+        0.18073703578088668,
+        -0.021130896698705597
+      ],
+      [
+        0.24924704713067936,
+        0.00023768787875660746
+      ],
+      [
+        0.1814619586662543,
+        0.021527346574993243
+      ],
+      [
+        0.10199314541377917,
+        0.01793039270157618
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 2,
+    "library_message": "`ftol` termination condition is satisfied.",
+    "nfev": 6,
+    "njev": 6,
+    "artifact": "case67-38-fit.npz"
+  },
+  {
+    "context_index": 1,
+    "sigma_index": 1,
+    "seed_index": 1,
+    "gamma_index": 4,
+    "gamma": 0.01,
+    "parameters": [
+      2.149401566785412,
+      0.010440914868589179
+    ],
+    "objective": 0.00016951930456979137,
+    "weighted_residual_norm": 0.010711685232832977,
+    "parameter_deviation_norm": 0.149765953611724,
+    "physical_projected_gradient_inf": 5.403677505455562e-12,
+    "final_primal_residual_l2": 3.237355513514332e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.16849758785021526,
+      0.017422666911762415
+    ],
+    "forward_evaluations": 7,
+    "data_jacobian": [
+      [
+        0.09959749292524638,
+        -0.017656127715586015
+      ],
+      [
+        0.17711334675559506,
+        -0.021109007711323513
+      ],
+      [
+        0.24358928354367543,
+        2.8972356194805283e-05
+      ],
+      [
+        0.17720178219242125,
+        0.021157459043692102
+      ],
+      [
+        0.09966028989218279,
+        0.017685642662905877
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 2,
+    "library_message": "`ftol` termination condition is satisfied.",
+    "nfev": 7,
+    "njev": 7,
+    "artifact": "case67-39-fit.npz"
+  },
+  {
+    "context_index": 0,
+    "sigma_index": -1,
+    "seed_index": -1,
+    "gamma_index": 0,
+    "gamma": 0.0,
+    "parameters": [
+      2.2000000000001045,
+      0.349999999983151
+    ],
+    "objective": 4.396104063749747e-26,
+    "weighted_residual_norm": 2.965165784150946e-13,
+    "parameter_deviation_norm": 0.40311288740035034,
+    "physical_projected_gradient_inf": 5.218048215738236e-15,
+    "final_primal_residual_l2": 2.5673119474077546e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.17282950129624788,
+      0.017593418865870066
+    ],
+    "forward_evaluations": 7,
+    "data_jacobian": [
+      [
+        0.10094735647420049,
+        -0.017322470129954144
+      ],
+      [
+        0.18012026405319823,
+        -0.020521322295330862
+      ],
+      [
+        0.25003526522432573,
+        0.0010077643099556301
+      ],
+      [
+        0.18319355350641453,
+        0.02220167146211247
+      ],
+      [
+        0.10312624877822305,
+        0.018343628126216857
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 1,
+    "library_message": "`gtol` termination condition is satisfied.",
+    "nfev": 7,
+    "njev": 7,
+    "artifact": "case67-40-fit.npz"
+  },
+  {
+    "context_index": 1,
+    "sigma_index": -1,
+    "seed_index": -1,
+    "gamma_index": 0,
+    "gamma": 0.0,
+    "parameters": [
+      2.199538077135199,
+      0.3496943851946416
+    ],
+    "objective": 2.2284678307145123e-12,
+    "weighted_residual_norm": 2.111145580349452e-06,
+    "parameter_deviation_norm": 0.4026184388021381,
+    "physical_projected_gradient_inf": 5.495603971894525e-15,
+    "final_primal_residual_l2": 3.2271637770887483e-13,
+    "box_violation": 0.0,
+    "qualified": true,
+    "data_rank": 2,
+    "data_singular_values": [
+      0.1727894528022217,
+      0.017591848084501392
+    ],
+    "forward_evaluations": 7,
+    "data_jacobian": [
+      [
+        0.10092640602863064,
+        -0.01732161063167736
+      ],
+      [
+        0.18008049509500998,
+        -0.020520268316075924
+      ],
+      [
+        0.2499755318623668,
+        0.0010065443198839545
+      ],
+      [
+        0.18315009013991568,
+        0.02219862888120277
+      ],
+      [
+        0.10310271036282301,
+        0.018341582578171766
+      ]
+    ],
+    "solver_reason": "LIBRARY_SUCCESS",
+    "library_success": true,
+    "library_status": 1,
+    "library_message": "`gtol` termination condition is satisfied.",
+    "nfev": 7,
+    "njev": 7,
+    "artifact": "case67-41-fit.npz"
+  }
+]

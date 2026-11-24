@@ -212,8 +212,8 @@
         "en": "Spatial discretization"
       },
       "summary": {
-        "ja": "「空間中心差分」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。 追加固定例：擬似弧長継続でBratuのfoldを越える、解析・中央差分・方向ADによるJacobian不要Newton–Krylov。条件と検証範囲は各配布版で確認してください。",
-        "en": "Read about Centered spatial difference, follow the original references and inspect related educational code and checks. Additional fixed examples: Crossing the Bratu fold with pseudo-arclength continuation, Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products. See each release for assumptions and checked scope."
+        "ja": "「空間中心差分」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。 追加固定例：擬似弧長継続でBratuのfoldを越える、解析・中央差分・方向ADによるJacobian不要Newton–Krylov。条件と検証範囲は各配布版で確認してください。 追加固定例：離散fold近傍のBratu感度、分布係数Bratuの行列非形成VJP。条件と検証範囲は各配布版で確認してください。",
+        "en": "Read about Centered spatial difference, follow the original references and inspect related educational code and checks. Additional fixed examples: Crossing the Bratu fold with pseudo-arclength continuation, Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products. See each release for assumptions and checked scope. Additional fixed examples: Bratu sensitivity near the discrete fold, Matrix-free VJP for distributed Bratu coefficients. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "existing-coverage-catalog",
@@ -250,8 +250,8 @@
       "units": null,
       "boundary_conditions": null,
       "limitations": {
-        "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。 追加固定例：小さな1次元の単純foldだけです。分岐曲線の解析族比較では計算した中点値を族の座標に使い、固定λの独立形状比較と区別します。連続foldは離散解そのものではなく、一般の分岐追跡や大規模性能は保証しません。 小1次元BVP向けの教育実装です。ADは四則・exp・境界paddingの方向微分に限ります。小Hessenberg行列と基底は保持します。ηの固定下限があるため、原著EWの漸近収束定理、一般AD/PETScとの同等性、速度向上や大域収束は主張しません。",
-        "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers. Additional fixed examples: A small one-dimensional simple fold only. The whole-curve family comparison uses the computed midpoint as its family coordinate and is distinct from the independent fixed-lambda profile checks. The continuum fold is not an exact discrete solution. No general bifurcation-tracking or large-scale performance claim. An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee."
+        "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。 追加固定例：小さな1次元の単純foldだけです。分岐曲線の解析族比較では計算した中点値を族の座標に使い、固定λの独立形状比較と区別します。連続foldは離散解そのものではなく、一般の分岐追跡や大規模性能は保証しません。 小1次元BVP向けの教育実装です。ADは四則・exp・境界paddingの方向微分に限ります。小Hessenberg行列と基底は保持します。ηの固定下限があるため、原著EWの漸近収束定理、一般AD/PETScとの同等性、速度向上や大域収束は主張しません。 上記の制限は既存配布版の範囲です。今回の追加配布版：連続foldは離散foldではありません。rtol1e-4/1e-8は達成必須、requested1e-12は観測のみで未達を収束と表示しません。返却候補の独立勾配精度は別判定。最小固有値/丸めscaleは浮動小数点の診断で保証区間ではありません。BratuのJは対称であり、非対称転置は別の演算子対照です。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。 同じ離散状態の微分検証で、独立した物理PDE解の証明や一般ADではありません。保存arrayと固定Krylov workspaceの記録はRSS測定ではありません。m=2のθ端点は[a-b-2,a+b-2]で、物理係数端点[a-b,a+b]と区別します。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。",
+        "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers. Additional fixed examples: A small one-dimensional simple fold only. The whole-curve family comparison uses the computed midpoint as its family coordinate and is distinct from the independent fixed-lambda profile checks. The continuum fold is not an exact discrete solution. No general bifurcation-tracking or large-scale performance claim. An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee. The preceding limitations describe earlier editions. This additional release: The continuum fold is not the discrete fold. rtol1e-4/1e-8 targets are required; requested1e-12 is observational and unmet is never called converged. Independent accuracy of the returned gradient is a separate gate. Eigenvalue/roundoff scales are floating diagnostics, not certified intervals. Bratu J is symmetric; the nonsymmetric transpose is a separate operator control. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved. Derivative verification at the same discrete state, not independent physical-PDE truth or general AD. Persistent arrays and fixed Krylov workspace inventories are not RSS measurements. For m=2, theta endpoints are[a-b-2,a+b-2], distinct from physical coefficient endpoints[a-b,a+b]. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved."
       },
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
@@ -328,6 +328,14 @@
             "bratu-fold-continuation",
             "bratu-matrix-free-jfnk"
           ]
+        },
+        {
+          "group": "adjoint",
+          "edition": "2026-11-24",
+          "case_ids": [
+            "bratu-fold-sensitivity",
+            "bratu-distributed-vjp"
+          ]
         }
       ],
       "supplemental_scope_profiles": [
@@ -352,6 +360,30 @@
             {
               "ja": "小1次元BVP向けの教育実装です。ADは四則・exp・境界paddingの方向微分に限ります。小Hessenberg行列と基底は保持します。ηの固定下限があるため、原著EWの漸近収束定理、一般AD/PETScとの同等性、速度向上や大域収束は主張しません。",
               "en": "An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee."
+            }
+          ]
+        },
+        {
+          "release": {
+            "group": "adjoint",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "bratu-fold-sensitivity",
+              "bratu-distributed-vjp"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：離散fold近傍のBratu感度、分布係数Bratuの行列非形成VJP。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Bratu sensitivity near the discrete fold, Matrix-free VJP for distributed Bratu coefficients. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "連続foldは離散foldではありません。rtol1e-4/1e-8は達成必須、requested1e-12は観測のみで未達を収束と表示しません。返却候補の独立勾配精度は別判定。最小固有値/丸めscaleは浮動小数点の診断で保証区間ではありません。BratuのJは対称であり、非対称転置は別の演算子対照です。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。",
+              "en": "The continuum fold is not the discrete fold. rtol1e-4/1e-8 targets are required; requested1e-12 is observational and unmet is never called converged. Independent accuracy of the returned gradient is a separate gate. Eigenvalue/roundoff scales are floating diagnostics, not certified intervals. Bratu J is symmetric; the nonsymmetric transpose is a separate operator control. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved."
+            },
+            {
+              "ja": "同じ離散状態の微分検証で、独立した物理PDE解の証明や一般ADではありません。保存arrayと固定Krylov workspaceの記録はRSS測定ではありません。m=2のθ端点は[a-b-2,a+b-2]で、物理係数端点[a-b,a+b]と区別します。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。",
+              "en": "Derivative verification at the same discrete state, not independent physical-PDE truth or general AD. Persistent arrays and fixed Krylov workspace inventories are not RSS measurements. For m=2, theta endpoints are[a-b-2,a+b-2], distinct from physical coefficient endpoints[a-b,a+b]. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved."
             }
           ]
         }
@@ -2945,8 +2977,8 @@
         "en": "Time integration"
       },
       "summary": {
-        "ja": "「後退Euler法」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。 追加固定例：Su–Olson1996非平衡拡散。条件と検証範囲は各配布版で確認してください。",
-        "en": "Read about Backward Euler, follow the original references and inspect related educational code and checks. Additional fixed examples: Su–Olson1996 non-equilibrium diffusion. See each release for assumptions and checked scope."
+        "ja": "「後退Euler法」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。 追加固定例：Su–Olson1996非平衡拡散。条件と検証範囲は各配布版で確認してください。 追加固定例：時間離散拡散の随伴とcheckpoint。条件と検証範囲は各配布版で確認してください。",
+        "en": "Read about Backward Euler, follow the original references and inspect related educational code and checks. Additional fixed examples: Su–Olson1996 non-equilibrium diffusion. See each release for assumptions and checked scope. Additional fixed examples: Discrete diffusion adjoint and checkpoint replay. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "existing-coverage-catalog",
@@ -2976,15 +3008,15 @@
       "units": null,
       "boundary_conditions": null,
       "limitations": {
-        "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。 今回の追加固定例：1996拡散であり1997角度輸送とは別です。原典本文は未読、公式ソフトの選択値を資格。物理単位の質量opacity解釈は使わず無次元関数を直接参照します。",
-        "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers. Additional fixed examples: This1996diffusion model is distinct from1997angular transport. Original paper fulltext unread;officialsoftware selected values qualified. Direct dimensionless functions avoid ambiguous mass-opacity physical-wrapper units."
+        "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。 今回の追加固定例：1996拡散であり1997角度輸送とは別です。原典本文は未読、公式ソフトの選択値を資格。物理単位の質量opacity解釈は使わず無次元関数を直接参照します。 上記の制限は既存配布版の範囲です。今回の追加配布版：固定stepの離散随伴でありCVODESや最適checkpoint法ではありません。40nは状態・随伴・RHS/solve scratchの一意な所有要素数です。静的因子・model配列は別表示し総所有byteへ含めます。検証/NPZ組立は測定後で、RSSではありません。",
+        "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers. Additional fixed examples: This1996diffusion model is distinct from1997angular transport. Original paper fulltext unread;officialsoftware selected values qualified. Direct dimensionless functions avoid ambiguous mass-opacity physical-wrapper units. The preceding limitations describe earlier editions. This additional release: Fixed-step discrete adjoints, not CVODES or an optimal checkpoint schedule. The40n limit counts unique evolving state/adjoint/RHS/solve-scratch elements. Static factors/model arrays are separately listed and included in total bytes. Validation/NPZ assembly follows the ownership windows; this is not RSS."
       },
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
         "on": "2026-11-21",
         "supplemental_review": {
           "on": "2026-11-24",
-          "level": "Frozen fixed-input source,independent review,actual pytest/main and independently extracted ZIP; see each new release for exact reference independence and failed-attempt history."
+          "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
         }
       },
       "aliases": [
@@ -3023,6 +3055,34 @@
               "ja": "1996拡散であり1997角度輸送とは別です。原典本文は未読、公式ソフトの選択値を資格。物理単位の質量opacity解釈は使わず無次元関数を直接参照します。",
               "en": "This1996diffusion model is distinct from1997angular transport. Original paper fulltext unread;officialsoftware selected values qualified. Direct dimensionless functions avoid ambiguous mass-opacity physical-wrapper units."
             }
+          ]
+        },
+        {
+          "release": {
+            "group": "adjoint",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "diffusion-discrete-adjoint"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：時間離散拡散の随伴とcheckpoint。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Discrete diffusion adjoint and checkpoint replay. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "固定stepの離散随伴でありCVODESや最適checkpoint法ではありません。40nは状態・随伴・RHS/solve scratchの一意な所有要素数です。静的因子・model配列は別表示し総所有byteへ含めます。検証/NPZ組立は測定後で、RSSではありません。",
+              "en": "Fixed-step discrete adjoints, not CVODES or an optimal checkpoint schedule. The40n limit counts unique evolving state/adjoint/RHS/solve-scratch elements. Static factors/model arrays are separately listed and included in total bytes. Validation/NPZ assembly follows the ownership windows; this is not RSS."
+            }
+          ]
+        }
+      ],
+      "depth_additional_releases": [
+        {
+          "group": "adjoint",
+          "edition": "2026-11-24",
+          "case_ids": [
+            "diffusion-discrete-adjoint"
           ]
         }
       ]
@@ -4935,8 +4995,8 @@
         "en": "Linear & nonlinear solvers"
       },
       "summary": {
-        "ja": "Thomas法は三重対角消去。1949年原報は未読で、公式収蔵目録とMolerの1996年通信から書誌を追跡しています。Crank–Nicolsonと多重格子の文献は関連章の背景資料で、Thomas原報やその再録ではありません。 追加固定例：解析・中央差分・方向ADによるJacobian不要Newton–Krylov。条件と検証範囲は各配布版で確認してください。",
-        "en": "Thomas is tridiagonal elimination. Its1949 original remains unread; an official archival finding aid and Moler's signed1996 correspondence provide bibliographic leads. Crank–Nicolson and multigrid references are related chapter context, not Thomas originals or reprints. Additional fixed examples: Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products. See each release for assumptions and checked scope."
+        "ja": "Thomas法は三重対角消去。1949年原報は未読で、公式収蔵目録とMolerの1996年通信から書誌を追跡しています。Crank–Nicolsonと多重格子の文献は関連章の背景資料で、Thomas原報やその再録ではありません。 追加固定例：解析・中央差分・方向ADによるJacobian不要Newton–Krylov。条件と検証範囲は各配布版で確認してください。 追加固定例：時間離散拡散の随伴とcheckpoint。条件と検証範囲は各配布版で確認してください。",
+        "en": "Thomas is tridiagonal elimination. Its1949 original remains unread; an official archival finding aid and Moler's signed1996 correspondence provide bibliographic leads. Crank–Nicolson and multigrid references are related chapter context, not Thomas originals or reprints. Additional fixed examples: Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products. See each release for assumptions and checked scope. Additional fixed examples: Discrete diffusion adjoint and checkpoint replay. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "existing-coverage-catalog",
@@ -5001,8 +5061,8 @@
       "units": null,
       "boundary_conditions": null,
       "limitations": {
-        "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。 追加固定例：小1次元BVP向けの教育実装です。ADは四則・exp・境界paddingの方向微分に限ります。小Hessenberg行列と基底は保持します。ηの固定下限があるため、原著EWの漸近収束定理、一般AD/PETScとの同等性、速度向上や大域収束は主張しません。",
-        "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers. Additional fixed examples: An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee."
+        "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。 追加固定例：小1次元BVP向けの教育実装です。ADは四則・exp・境界paddingの方向微分に限ります。小Hessenberg行列と基底は保持します。ηの固定下限があるため、原著EWの漸近収束定理、一般AD/PETScとの同等性、速度向上や大域収束は主張しません。 上記の制限は既存配布版の範囲です。今回の追加配布版：固定stepの離散随伴でありCVODESや最適checkpoint法ではありません。40nは状態・随伴・RHS/solve scratchの一意な所有要素数です。静的因子・model配列は別表示し総所有byteへ含めます。検証/NPZ組立は測定後で、RSSではありません。",
+        "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers. Additional fixed examples: An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee. The preceding limitations describe earlier editions. This additional release: Fixed-step discrete adjoints, not CVODES or an optimal checkpoint schedule. The40n limit counts unique evolving state/adjoint/RHS/solve-scratch elements. Static factors/model arrays are separately listed and included in total bytes. Validation/NPZ assembly follows the ownership windows; this is not RSS."
       },
       "metadata_review": {
         "level": "method-specific bibliographic roles curated;1949 original full text unread",
@@ -5060,6 +5120,34 @@
               "ja": "小1次元BVP向けの教育実装です。ADは四則・exp・境界paddingの方向微分に限ります。小Hessenberg行列と基底は保持します。ηの固定下限があるため、原著EWの漸近収束定理、一般AD/PETScとの同等性、速度向上や大域収束は主張しません。",
               "en": "An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee."
             }
+          ]
+        },
+        {
+          "release": {
+            "group": "adjoint",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "diffusion-discrete-adjoint"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：時間離散拡散の随伴とcheckpoint。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Discrete diffusion adjoint and checkpoint replay. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "固定stepの離散随伴でありCVODESや最適checkpoint法ではありません。40nは状態・随伴・RHS/solve scratchの一意な所有要素数です。静的因子・model配列は別表示し総所有byteへ含めます。検証/NPZ組立は測定後で、RSSではありません。",
+              "en": "Fixed-step discrete adjoints, not CVODES or an optimal checkpoint schedule. The40n limit counts unique evolving state/adjoint/RHS/solve-scratch elements. Static factors/model arrays are separately listed and included in total bytes. Validation/NPZ assembly follows the ownership windows; this is not RSS."
+            }
+          ]
+        }
+      ],
+      "depth_additional_releases": [
+        {
+          "group": "adjoint",
+          "edition": "2026-11-24",
+          "case_ids": [
+            "diffusion-discrete-adjoint"
           ]
         }
       ]
@@ -5805,8 +5893,8 @@
         "en": "Linear & nonlinear solvers"
       },
       "summary": {
-        "ja": "「再始動GMRES」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。 追加固定例：対称不定値鞍点系とSchur前処理。条件と検証範囲は各配布版で確認してください。 追加固定例：解析・中央差分・方向ADによるJacobian不要Newton–Krylov。条件と検証範囲は各配布版で確認してください。",
-        "en": "Read about Restarted GMRES, follow the original references and inspect related educational code and checks. Additional fixed examples: Symmetric saddle systems and Schur preconditioning. See each release for assumptions and checked scope. Additional fixed examples: Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products. See each release for assumptions and checked scope."
+        "ja": "「再始動GMRES」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。 追加固定例：対称不定値鞍点系とSchur前処理。条件と検証範囲は各配布版で確認してください。 追加固定例：解析・中央差分・方向ADによるJacobian不要Newton–Krylov。条件と検証範囲は各配布版で確認してください。 追加固定例：離散fold近傍のBratu感度、分布係数Bratuの行列非形成VJP。条件と検証範囲は各配布版で確認してください。",
+        "en": "Read about Restarted GMRES, follow the original references and inspect related educational code and checks. Additional fixed examples: Symmetric saddle systems and Schur preconditioning. See each release for assumptions and checked scope. Additional fixed examples: Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products. See each release for assumptions and checked scope. Additional fixed examples: Bratu sensitivity near the discrete fold, Matrix-free VJP for distributed Bratu coefficients. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "existing-coverage-catalog",
@@ -5837,8 +5925,8 @@
       "units": null,
       "boundary_conditions": null,
       "limitations": {
-        "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。 追加固定例：理想Schurは教育用の稠密制御であり、実Stokes PDEやスケーラブルな近似前処理の完成ではありません。 追加固定例：小1次元BVP向けの教育実装です。ADは四則・exp・境界paddingの方向微分に限ります。小Hessenberg行列と基底は保持します。ηの固定下限があるため、原著EWの漸近収束定理、一般AD/PETScとの同等性、速度向上や大域収束は主張しません。",
-        "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers. Additional fixed examples: A dense, ideal-Schur educational control, not a complete Stokes PDE solver or a scalable approximate preconditioner. Additional fixed examples: An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee."
+        "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。 追加固定例：理想Schurは教育用の稠密制御であり、実Stokes PDEやスケーラブルな近似前処理の完成ではありません。 追加固定例：小1次元BVP向けの教育実装です。ADは四則・exp・境界paddingの方向微分に限ります。小Hessenberg行列と基底は保持します。ηの固定下限があるため、原著EWの漸近収束定理、一般AD/PETScとの同等性、速度向上や大域収束は主張しません。 上記の制限は既存配布版の範囲です。今回の追加配布版：連続foldは離散foldではありません。rtol1e-4/1e-8は達成必須、requested1e-12は観測のみで未達を収束と表示しません。返却候補の独立勾配精度は別判定。最小固有値/丸めscaleは浮動小数点の診断で保証区間ではありません。BratuのJは対称であり、非対称転置は別の演算子対照です。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。 同じ離散状態の微分検証で、独立した物理PDE解の証明や一般ADではありません。保存arrayと固定Krylov workspaceの記録はRSS測定ではありません。m=2のθ端点は[a-b-2,a+b-2]で、物理係数端点[a-b,a+b]と区別します。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。",
+        "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers. Additional fixed examples: A dense, ideal-Schur educational control, not a complete Stokes PDE solver or a scalable approximate preconditioner. Additional fixed examples: An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee. The preceding limitations describe earlier editions. This additional release: The continuum fold is not the discrete fold. rtol1e-4/1e-8 targets are required; requested1e-12 is observational and unmet is never called converged. Independent accuracy of the returned gradient is a separate gate. Eigenvalue/roundoff scales are floating diagnostics, not certified intervals. Bratu J is symmetric; the nonsymmetric transpose is a separate operator control. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved. Derivative verification at the same discrete state, not independent physical-PDE truth or general AD. Persistent arrays and fixed Krylov workspace inventories are not RSS measurements. For m=2, theta endpoints are[a-b-2,a+b-2], distinct from physical coefficient endpoints[a-b,a+b]. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved."
       },
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
@@ -5899,6 +5987,30 @@
               "en": "An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee."
             }
           ]
+        },
+        {
+          "release": {
+            "group": "adjoint",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "bratu-fold-sensitivity",
+              "bratu-distributed-vjp"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：離散fold近傍のBratu感度、分布係数Bratuの行列非形成VJP。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Bratu sensitivity near the discrete fold, Matrix-free VJP for distributed Bratu coefficients. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "連続foldは離散foldではありません。rtol1e-4/1e-8は達成必須、requested1e-12は観測のみで未達を収束と表示しません。返却候補の独立勾配精度は別判定。最小固有値/丸めscaleは浮動小数点の診断で保証区間ではありません。BratuのJは対称であり、非対称転置は別の演算子対照です。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。",
+              "en": "The continuum fold is not the discrete fold. rtol1e-4/1e-8 targets are required; requested1e-12 is observational and unmet is never called converged. Independent accuracy of the returned gradient is a separate gate. Eigenvalue/roundoff scales are floating diagnostics, not certified intervals. Bratu J is symmetric; the nonsymmetric transpose is a separate operator control. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved."
+            },
+            {
+              "ja": "同じ離散状態の微分検証で、独立した物理PDE解の証明や一般ADではありません。保存arrayと固定Krylov workspaceの記録はRSS測定ではありません。m=2のθ端点は[a-b-2,a+b-2]で、物理係数端点[a-b,a+b]と区別します。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。",
+              "en": "Derivative verification at the same discrete state, not independent physical-PDE truth or general AD. Persistent arrays and fixed Krylov workspace inventories are not RSS measurements. For m=2, theta endpoints are[a-b-2,a+b-2], distinct from physical coefficient endpoints[a-b,a+b]. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved."
+            }
+          ]
         }
       ],
       "depth_additional_releases": [
@@ -5907,6 +6019,14 @@
           "edition": "2026-11-24-r2",
           "case_ids": [
             "bratu-matrix-free-jfnk"
+          ]
+        },
+        {
+          "group": "adjoint",
+          "edition": "2026-11-24",
+          "case_ids": [
+            "bratu-fold-sensitivity",
+            "bratu-distributed-vjp"
           ]
         }
       ]
@@ -6098,8 +6218,8 @@
         "en": "Linear & nonlinear solvers"
       },
       "summary": {
-        "ja": "非線形方程式 F(x)=0 を、Jacobianから求めたNewton方向と残差ノルムの十分減少による減衰で解く。公開例は密行列解法または前処理付きGMRESの内部解法を選べる。 追加固定例：擬似弧長継続でBratuのfoldを越える。条件と検証範囲は各配布版で確認してください。",
-        "en": "Solve F(x)=0 using a Jacobian-based Newton direction and damping that requires sufficient decrease of the residual norm. The example supports a dense or preconditioned GMRES inner solve. Additional fixed examples: Crossing the Bratu fold with pseudo-arclength continuation. See each release for assumptions and checked scope."
+        "ja": "非線形方程式 F(x)=0 を、Jacobianから求めたNewton方向と残差ノルムの十分減少による減衰で解く。公開例は密行列解法または前処理付きGMRESの内部解法を選べる。 追加固定例：擬似弧長継続でBratuのfoldを越える。条件と検証範囲は各配布版で確認してください。 追加固定例：同じ難しい初期値に対する線探索と信頼領域。条件と検証範囲は各配布版で確認してください。 追加固定例：離散fold近傍のBratu感度、分布係数Bratuの行列非形成VJP。条件と検証範囲は各配布版で確認してください。",
+        "en": "Solve F(x)=0 using a Jacobian-based Newton direction and damping that requires sufficient decrease of the residual norm. The example supports a dense or preconditioned GMRES inner solve. Additional fixed examples: Crossing the Bratu fold with pseudo-arclength continuation. See each release for assumptions and checked scope. Additional fixed examples: Line search and trust regions from the same difficult starts. See each release for assumptions and checked scope. Additional fixed examples: Bratu sensitivity near the discrete fold, Matrix-free VJP for distributed Bratu coefficients. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "existing-coverage-catalog",
@@ -6160,8 +6280,8 @@
       "units": "No intrinsic physical unit; the caller defines unknown and residual scales. Components are not nondimensionalized automatically, so scale them consistently before using the norm and absolute tolerance.",
       "boundary_conditions": "Newton has no intrinsic physical boundary. F/Jacobian assembly supplies it; the existing Bratu test encodes zero Dirichlet values at both ends of [0,1].",
       "limitations": {
-        "ja": "初期値、Jacobianの非特異性、残差の尺度に依存し、大域的収束は保証しない。特異な密行列解法や前処理構築は例外となることがあり、すべてが失敗理由の戻り値に変換されるわけではない。行列なしJv、信頼領域、継続法は備えない。 追加固定例：小さな1次元の単純foldだけです。分岐曲線の解析族比較では計算した中点値を族の座標に使い、固定λの独立形状比較と区別します。連続foldは離散解そのものではなく、一般の分岐追跡や大規模性能は保証しません。",
-        "en": "Convergence depends on the initial guess, Jacobian nonsingularity and residual scaling; global convergence is not guaranteed. Singular dense solves or preconditioner construction may raise exceptions rather than return a failure reason. No matrix-free Jv, trust region or continuation is provided. Additional fixed examples: A small one-dimensional simple fold only. The whole-curve family comparison uses the computed midpoint as its family coordinate and is distinct from the independent fixed-lambda profile checks. The continuum fold is not an exact discrete solution. No general bifurcation-tracking or large-scale performance claim."
+        "ja": "初期値、Jacobianの非特異性、残差の尺度に依存し、大域的収束は保証しない。特異な密行列解法や前処理構築は例外となることがあり、すべてが失敗理由の戻り値に変換されるわけではない。行列なしJv、信頼領域、継続法は備えない。 追加固定例：小さな1次元の単純foldだけです。分岐曲線の解析族比較では計算した中点値を族の座標に使い、固定λの独立形状比較と区別します。連続foldは離散解そのものではなく、一般の分岐追跡や大規模性能は保証しません。 上記の制限は既存配布版の範囲です。今回の追加配布版：全初期値の成功や手法の普遍的優越、PETSc実装との一致を保証しません。 上記の制限は既存配布版の範囲です。今回の追加配布版：連続foldは離散foldではありません。rtol1e-4/1e-8は達成必須、requested1e-12は観測のみで未達を収束と表示しません。返却候補の独立勾配精度は別判定。最小固有値/丸めscaleは浮動小数点の診断で保証区間ではありません。BratuのJは対称であり、非対称転置は別の演算子対照です。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。 同じ離散状態の微分検証で、独立した物理PDE解の証明や一般ADではありません。保存arrayと固定Krylov workspaceの記録はRSS測定ではありません。m=2のθ端点は[a-b-2,a+b-2]で、物理係数端点[a-b,a+b]と区別します。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。",
+        "en": "Convergence depends on the initial guess, Jacobian nonsingularity and residual scaling; global convergence is not guaranteed. Singular dense solves or preconditioner construction may raise exceptions rather than return a failure reason. No matrix-free Jv, trust region or continuation is provided. Additional fixed examples: A small one-dimensional simple fold only. The whole-curve family comparison uses the computed midpoint as its family coordinate and is distinct from the independent fixed-lambda profile checks. The continuum fold is not an exact discrete solution. No general bifurcation-tracking or large-scale performance claim. The preceding limitations describe earlier editions. This additional release: No all-start guarantee, universal method ranking or equivalence to PETSc implementation. The preceding limitations describe earlier editions. This additional release: The continuum fold is not the discrete fold. rtol1e-4/1e-8 targets are required; requested1e-12 is observational and unmet is never called converged. Independent accuracy of the returned gradient is a separate gate. Eigenvalue/roundoff scales are floating diagnostics, not certified intervals. Bratu J is symmetric; the nonsymmetric transpose is a separate operator control. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved. Derivative verification at the same discrete state, not independent physical-PDE truth or general AD. Persistent arrays and fixed Krylov workspace inventories are not RSS measurements. For m=2, theta endpoints are[a-b-2,a+b-2], distinct from physical coefficient endpoints[a-b,a+b]. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved."
       },
       "metadata_review": {
         "level": "method-specific sources and implementation inspected; no new numerical rerun",
@@ -6302,6 +6422,66 @@
               "ja": "小さな1次元の単純foldだけです。分岐曲線の解析族比較では計算した中点値を族の座標に使い、固定λの独立形状比較と区別します。連続foldは離散解そのものではなく、一般の分岐追跡や大規模性能は保証しません。",
               "en": "A small one-dimensional simple fold only. The whole-curve family comparison uses the computed midpoint as its family coordinate and is distinct from the independent fixed-lambda profile checks. The continuum fold is not an exact discrete solution. No general bifurcation-tracking or large-scale performance claim."
             }
+          ]
+        },
+        {
+          "release": {
+            "group": "globalization-controls",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "globalization-difficult-starts"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：同じ難しい初期値に対する線探索と信頼領域。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Line search and trust regions from the same difficult starts. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "全初期値の成功や手法の普遍的優越、PETSc実装との一致を保証しません。",
+              "en": "No all-start guarantee, universal method ranking or equivalence to PETSc implementation."
+            }
+          ]
+        },
+        {
+          "release": {
+            "group": "adjoint",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "bratu-fold-sensitivity",
+              "bratu-distributed-vjp"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：離散fold近傍のBratu感度、分布係数Bratuの行列非形成VJP。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Bratu sensitivity near the discrete fold, Matrix-free VJP for distributed Bratu coefficients. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "連続foldは離散foldではありません。rtol1e-4/1e-8は達成必須、requested1e-12は観測のみで未達を収束と表示しません。返却候補の独立勾配精度は別判定。最小固有値/丸めscaleは浮動小数点の診断で保証区間ではありません。BratuのJは対称であり、非対称転置は別の演算子対照です。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。",
+              "en": "The continuum fold is not the discrete fold. rtol1e-4/1e-8 targets are required; requested1e-12 is observational and unmet is never called converged. Independent accuracy of the returned gradient is a separate gate. Eigenvalue/roundoff scales are floating diagnostics, not certified intervals. Bratu J is symmetric; the nonsymmetric transpose is a separate operator control. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved."
+            },
+            {
+              "ja": "同じ離散状態の微分検証で、独立した物理PDE解の証明や一般ADではありません。保存arrayと固定Krylov workspaceの記録はRSS測定ではありません。m=2のθ端点は[a-b-2,a+b-2]で、物理係数端点[a-b,a+b]と区別します。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。",
+              "en": "Derivative verification at the same discrete state, not independent physical-PDE truth or general AD. Persistent arrays and fixed Krylov workspace inventories are not RSS measurements. For m=2, theta endpoints are[a-b-2,a+b-2], distinct from physical coefficient endpoints[a-b,a+b]. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved."
+            }
+          ]
+        }
+      ],
+      "depth_additional_releases": [
+        {
+          "group": "globalization-controls",
+          "edition": "2026-11-24",
+          "case_ids": [
+            "globalization-difficult-starts"
+          ]
+        },
+        {
+          "group": "adjoint",
+          "edition": "2026-11-24",
+          "case_ids": [
+            "bratu-fold-sensitivity",
+            "bratu-distributed-vjp"
           ]
         }
       ]
@@ -13427,8 +13607,8 @@
         "en": "Optimization & stochastic methods"
       },
       "summary": {
-        "ja": "Bratuの合成観測から係数を推定し、2パラメータの随伴勾配、正則化の偏り、観測感度の特異値と識別不能例を検証する。",
-        "en": "Fit Bratu coefficients from synthetic observations and verify two-parameter adjoint gradients, regularization bias, data-sensitivity singular values and nonidentifiable observations."
+        "ja": "Bratuの合成観測から係数を推定し、2パラメータの随伴勾配、正則化の偏り、観測感度の特異値と識別不能例を検証する。 追加固定例：GN・LMと有界最小二乗のBratu比較、既知最小点でのBFGSと3組L-BFGS、雑音・モデル差と有限γ経路の正則化。条件と検証範囲は各配布版で確認してください。",
+        "en": "Fit Bratu coefficients from synthetic observations and verify two-parameter adjoint gradients, regularization bias, data-sensitivity singular values and nonidentifiable observations. Additional fixed examples: Bratu comparisons of GN, LM and bounded least squares, BFGS and three-pair L-BFGS at known minima, Noise, model discrepancy and finite gamma paths. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "development-candidate",
@@ -13467,12 +13647,16 @@
         "en": "Separate validation for data-driven regularization selection, many coefficients, real data and more general optimization methods."
       },
       "limitations": {
-        "ja": "小規模な滑らかなBratu下側分枝と固定合成観測による教育用検証。2パラメータ空間係数の推定、Tikhonov正則化、局所的なデータ感度のSVD、中央観測の階数不足と反射対称性による曖昧さを扱う。正則化による事前値の選択を観測情報の増加と解釈しない。実測データ、多数係数の関数推定、大域的一意性、統計的信頼区間、準Newton法全般は検証しない。",
-        "en": "Educational tests use small smooth lower-branch Bratu problems and fixed synthetic observations. They cover two spatial coefficients, Tikhonov regularization, local data-sensitivity SVD, rank loss with central observations and reflection ambiguity. Prior selection through regularization does not add observational information. Real data, high-dimensional function estimation, global uniqueness, statistical confidence intervals and quasi-Newton methods generally are outside scope."
+        "ja": "小規模な滑らかなBratu下側分枝と固定合成観測による教育用検証。2パラメータ空間係数の推定、Tikhonov正則化、局所的なデータ感度のSVD、中央観測の階数不足と反射対称性による曖昧さを扱う。正則化による事前値の選択を観測情報の増加と解釈しない。実測データ、多数係数の関数推定、大域的一意性、統計的信頼区間、準Newton法全般は検証しない。 上記の制限は既存配布版の範囲です。今回の追加配布版：小さい滑らかな分枝の局所比較。SciPy最適化ライブラリは参照側でも共有し、大域最小・一意性を証明しません。LMに箱制約があるとは説明しません。 厳密線形探索ではないためn反復終了や一般的Rosenbrock大域収束を主張しません。原著選択箇所は弱Wolfeであり、本例のstrong Wolfeと区別。Fletcher1970本文は未読です。 楕円は選択γを固定した局所Gauss–Newton線形モデルのplug-inです。非線形残差の二階微分、γ選択のランダム性、選択事象で条件づけた共分散、事後分布、被覆率を扱いません。全γ連続経路・実測データも未検証。",
+        "en": "Educational tests use small smooth lower-branch Bratu problems and fixed synthetic observations. They cover two spatial coefficients, Tikhonov regularization, local data-sensitivity SVD, rank loss with central observations and reflection ambiguity. Prior selection through regularization does not add observational information. Real data, high-dimensional function estimation, global uniqueness, statistical confidence intervals and quasi-Newton methods generally are outside scope. The preceding limitations describe earlier editions. This additional release: A local comparison on a small smooth branch. The optimizer library is shared by the reference and a companion; no global minimum or uniqueness proof is claimed. LM is not presented as a box-constrained method. No exact n-step termination or general global convergence on Rosenbrock is claimed. The selected original text uses weak Wolfe, distinct from this study’s strong Wolfe policy. Fletcher’s 1970 original article remains unread. Ellipses are plug-in noise propagation for a local Gauss–Newton linear model with the selected gamma treated as fixed. They omit nonlinear residual Hessians and selection randomness and are not selection-conditional covariance, a posterior or a coverage guarantee. Continuous gamma paths and real data remain unverified."
       },
       "metadata_review": {
         "level": "two-parameter adjoint fitting; regularization and data-only identifiability checks; earlier scalar supplement retained",
-        "on": "2026-11-22"
+        "on": "2026-11-22",
+        "supplemental_review": {
+          "on": "2026-11-24",
+          "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
+        }
       },
       "aliases": [
         "数値最適化",
@@ -13520,7 +13704,47 @@
         "manifest": "source-manifest.json",
         "verification": "verification.json",
         "evidence": "docs/figures/bratu-multinverse.json"
-      }
+      },
+      "depth_release": {
+        "group": "inverse-optimization",
+        "edition": "2026-11-24",
+        "case_ids": [
+          "bratu-gn-lm-bounds",
+          "bfgs-lbfgs-controls",
+          "bratu-noise-regularization"
+        ]
+      },
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "inverse-optimization",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "bratu-gn-lm-bounds",
+              "bfgs-lbfgs-controls",
+              "bratu-noise-regularization"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：GN・LMと有界最小二乗のBratu比較、既知最小点でのBFGSと3組L-BFGS、雑音・モデル差と有限γ経路の正則化。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Bratu comparisons of GN, LM and bounded least squares, BFGS and three-pair L-BFGS at known minima, Noise, model discrepancy and finite gamma paths. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "小さい滑らかな分枝の局所比較。SciPy最適化ライブラリは参照側でも共有し、大域最小・一意性を証明しません。LMに箱制約があるとは説明しません。",
+              "en": "A local comparison on a small smooth branch. The optimizer library is shared by the reference and a companion; no global minimum or uniqueness proof is claimed. LM is not presented as a box-constrained method."
+            },
+            {
+              "ja": "厳密線形探索ではないためn反復終了や一般的Rosenbrock大域収束を主張しません。原著選択箇所は弱Wolfeであり、本例のstrong Wolfeと区別。Fletcher1970本文は未読です。",
+              "en": "No exact n-step termination or general global convergence on Rosenbrock is claimed. The selected original text uses weak Wolfe, distinct from this study’s strong Wolfe policy. Fletcher’s 1970 original article remains unread."
+            },
+            {
+              "ja": "楕円は選択γを固定した局所Gauss–Newton線形モデルのplug-inです。非線形残差の二階微分、γ選択のランダム性、選択事象で条件づけた共分散、事後分布、被覆率を扱いません。全γ連続経路・実測データも未検証。",
+              "en": "Ellipses are plug-in noise propagation for a local Gauss–Newton linear model with the selected gamma treated as fixed. They omit nonlinear residual Hessians and selection randomness and are not selection-conditional covariance, a posterior or a coverage guarantee. Continuous gamma paths and real data remain unverified."
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "monte-carlo",
@@ -13852,8 +14076,8 @@
         "en": "Linear & nonlinear solvers"
       },
       "summary": {
-        "ja": "Bratuのパラメータ感度で陰関数微分と離散随伴を照合し、別配布版で1個・2個の係数を推定する合成逆問題へ進む。",
-        "en": "Compare implicit sensitivities and discrete adjoints on Bratu, then follow separate synthetic inverse editions for one and two fitted coefficients."
+        "ja": "Bratuのパラメータ感度で陰関数微分と離散随伴を照合し、別配布版で1個・2個の係数を推定する合成逆問題へ進む。 追加固定例：時間離散拡散の随伴とcheckpoint、離散fold近傍のBratu感度、分布係数Bratuの行列非形成VJP。条件と検証範囲は各配布版で確認してください。",
+        "en": "Compare implicit sensitivities and discrete adjoints on Bratu, then follow separate synthetic inverse editions for one and two fitted coefficients. Additional fixed examples: Discrete diffusion adjoint and checkpoint replay, Bratu sensitivity near the discrete fold, Matrix-free VJP for distributed Bratu coefficients. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "development-candidate",
@@ -13897,12 +14121,16 @@
         "en": "Separate validation for time-dependent adjoints, high-dimensional inverse problems and nonsmooth models. Dedicated chapters and editions cover one- and two-coefficient synthetic inversions."
       },
       "limitations": {
-        "ja": "感度配布版は滑らかなBratu下側分枝と非対称の小規模線形例による教育用検証。離散随伴の内積と目的関数の積分重みを明記する。定数λの推定と2パラメータ空間係数の正則化・識別可能性は別の逆問題配布版で扱う。時間依存随伴と衝撃波感度は未実装。",
-        "en": "The sensitivity edition verifies smooth lower-branch Bratu and a small nonsymmetric linear example with explicit adjoint pairing and objective quadrature. Separate inverse editions fit constant lambda and two spatial coefficients with regularization and identifiability checks. Time-dependent adjoints and shock sensitivities remain unimplemented."
+        "ja": "感度配布版は滑らかなBratu下側分枝と非対称の小規模線形例による教育用検証。離散随伴の内積と目的関数の積分重みを明記する。定数λの推定と2パラメータ空間係数の正則化・識別可能性は別の逆問題配布版で扱う。時間依存随伴と衝撃波感度は未実装。 上記の制限は既存配布版の範囲です。今回の追加配布版：固定stepの離散随伴でありCVODESや最適checkpoint法ではありません。40nは状態・随伴・RHS/solve scratchの一意な所有要素数です。静的因子・model配列は別表示し総所有byteへ含めます。検証/NPZ組立は測定後で、RSSではありません。 連続foldは離散foldではありません。rtol1e-4/1e-8は達成必須、requested1e-12は観測のみで未達を収束と表示しません。返却候補の独立勾配精度は別判定。最小固有値/丸めscaleは浮動小数点の診断で保証区間ではありません。BratuのJは対称であり、非対称転置は別の演算子対照です。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。 同じ離散状態の微分検証で、独立した物理PDE解の証明や一般ADではありません。保存arrayと固定Krylov workspaceの記録はRSS測定ではありません。m=2のθ端点は[a-b-2,a+b-2]で、物理係数端点[a-b,a+b]と区別します。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。",
+        "en": "The sensitivity edition verifies smooth lower-branch Bratu and a small nonsymmetric linear example with explicit adjoint pairing and objective quadrature. Separate inverse editions fit constant lambda and two spatial coefficients with regularization and identifiability checks. Time-dependent adjoints and shock sensitivities remain unimplemented. The preceding limitations describe earlier editions. This additional release: Fixed-step discrete adjoints, not CVODES or an optimal checkpoint schedule. The40n limit counts unique evolving state/adjoint/RHS/solve-scratch elements. Static factors/model arrays are separately listed and included in total bytes. Validation/NPZ assembly follows the ownership windows; this is not RSS. The continuum fold is not the discrete fold. rtol1e-4/1e-8 targets are required; requested1e-12 is observational and unmet is never called converged. Independent accuracy of the returned gradient is a separate gate. Eigenvalue/roundoff scales are floating diagnostics, not certified intervals. Bratu J is symmetric; the nonsymmetric transpose is a separate operator control. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved. Derivative verification at the same discrete state, not independent physical-PDE truth or general AD. Persistent arrays and fixed Krylov workspace inventories are not RSS measurements. For m=2, theta endpoints are[a-b-2,a+b-2], distinct from physical coefficient endpoints[a-b,a+b]. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved."
       },
       "metadata_review": {
         "level": "implicit and discrete-adjoint implementation; analytic, re-solved finite-difference and spatial-refinement checks",
-        "on": "2026-11-22"
+        "on": "2026-11-22",
+        "supplemental_review": {
+          "on": "2026-11-24",
+          "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
+        }
       },
       "aliases": [
         "随伴法",
@@ -13932,7 +14160,47 @@
         "収束した離散方程式を微分し、有限回のNewton反復は展開して微分しない。"
       ],
       "boundary_conditions_ja": "区間[0,1]でu(0)=u(1)=0をlambdaに依存せず固定し、境界の感度はゼロとする。",
-      "units_ja": "Bratuの変数とパラメータは無次元。目的関数の求積重みh=1/(n+1)を明記する。"
+      "units_ja": "Bratuの変数とパラメータは無次元。目的関数の求積重みh=1/(n+1)を明記する。",
+      "depth_release": {
+        "group": "adjoint",
+        "edition": "2026-11-24",
+        "case_ids": [
+          "diffusion-discrete-adjoint",
+          "bratu-fold-sensitivity",
+          "bratu-distributed-vjp"
+        ]
+      },
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "adjoint",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "diffusion-discrete-adjoint",
+              "bratu-fold-sensitivity",
+              "bratu-distributed-vjp"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：時間離散拡散の随伴とcheckpoint、離散fold近傍のBratu感度、分布係数Bratuの行列非形成VJP。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Discrete diffusion adjoint and checkpoint replay, Bratu sensitivity near the discrete fold, Matrix-free VJP for distributed Bratu coefficients. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "固定stepの離散随伴でありCVODESや最適checkpoint法ではありません。40nは状態・随伴・RHS/solve scratchの一意な所有要素数です。静的因子・model配列は別表示し総所有byteへ含めます。検証/NPZ組立は測定後で、RSSではありません。",
+              "en": "Fixed-step discrete adjoints, not CVODES or an optimal checkpoint schedule. The40n limit counts unique evolving state/adjoint/RHS/solve-scratch elements. Static factors/model arrays are separately listed and included in total bytes. Validation/NPZ assembly follows the ownership windows; this is not RSS."
+            },
+            {
+              "ja": "連続foldは離散foldではありません。rtol1e-4/1e-8は達成必須、requested1e-12は観測のみで未達を収束と表示しません。返却候補の独立勾配精度は別判定。最小固有値/丸めscaleは浮動小数点の診断で保証区間ではありません。BratuのJは対称であり、非対称転置は別の演算子対照です。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。",
+              "en": "The continuum fold is not the discrete fold. rtol1e-4/1e-8 targets are required; requested1e-12 is observational and unmet is never called converged. Independent accuracy of the returned gradient is a separate gate. Eigenvalue/roundoff scales are floating diagnostics, not certified intervals. Bratu J is symmetric; the nonsymmetric transpose is a separate operator control. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved."
+            },
+            {
+              "ja": "同じ離散状態の微分検証で、独立した物理PDE解の証明や一般ADではありません。保存arrayと固定Krylov workspaceの記録はRSS測定ではありません。m=2のθ端点は[a-b-2,a+b-2]で、物理係数端点[a-b,a+b]と区別します。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。",
+              "en": "Derivative verification at the same discrete state, not independent physical-PDE truth or general AD. Persistent arrays and fixed Krylov workspace inventories are not RSS measurements. For m=2, theta endpoints are[a-b-2,a+b-2], distinct from physical coefficient endpoints[a-b,a+b]. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved."
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "radiation-transport",
@@ -14308,8 +14576,8 @@
         "en": "Linear & nonlinear solvers"
       },
       "summary": {
-        "ja": "共通基盤として連鎖律・前進／逆モード・JVPを学び、同じBratu方程式で解析微分・有限差分・前進モード自動微分を検証する。 追加固定例：解析・中央差分・方向ADによるJacobian不要Newton–Krylov。条件と検証範囲は各配布版で確認してください。",
-        "en": "A shared foundation for the chain rule, forward/reverse modes and JVPs, with analytic, finite-difference and forward-AD verification on the same Bratu equation. Additional fixed examples: Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products. See each release for assumptions and checked scope."
+        "ja": "共通基盤として連鎖律・前進／逆モード・JVPを学び、同じBratu方程式で解析微分・有限差分・前進モード自動微分を検証する。 追加固定例：解析・中央差分・方向ADによるJacobian不要Newton–Krylov。条件と検証範囲は各配布版で確認してください。 追加固定例：独自逆モードVJPとJVP/VJP双対性、HVPと状態固定・陰関数全微分の区別、非滑らか点・分岐・停止条件の微分範囲。条件と検証範囲は各配布版で確認してください。",
+        "en": "A shared foundation for the chain rule, forward/reverse modes and JVPs, with analytic, finite-difference and forward-AD verification on the same Bratu equation. Additional fixed examples: Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products. See each release for assumptions and checked scope. Additional fixed examples: Original reverse-mode VJP and JVP/VJP duality, Hessian-vector products and fixed-state versus implicit derivatives, Derivative scope at kinks, branches and stopping decisions. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "development-candidate",
@@ -14339,8 +14607,8 @@
         "en": "Separate executable checks for reverse mode and Hessian-vector products. Implicit differentiation and adjoints now have a separate Bratu sensitivity chapter."
       },
       "limitations": {
-        "ja": "教育用の実数前進モードとBratuの小規模密行列Newton比較に限定。逆モード、HVP、行列不要Newton–Krylovは解説のみ。陰関数微分・随伴法の実行検証は別の専用配布版で扱う。 追加固定例：小1次元BVP向けの教育実装です。ADは四則・exp・境界paddingの方向微分に限ります。小Hessenberg行列と基底は保持します。ηの固定下限があるため、原著EWの漸近収束定理、一般AD/PETScとの同等性、速度向上や大域収束は主張しません。",
-        "en": "Limited to educational real forward mode and small dense-Newton Bratu comparisons. Reverse mode, HVPs and matrix-free Newton–Krylov remain explanatory only. A separate dedicated supplement verifies implicit sensitivities and discrete adjoints. Additional fixed examples: An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee."
+        "ja": "教育用の実数前進モードとBratuの小規模密行列Newton比較に限定。逆モード、HVP、行列不要Newton–Krylovは解説のみ。陰関数微分・随伴法の実行検証は別の専用配布版で扱う。 追加固定例：小1次元BVP向けの教育実装です。ADは四則・exp・境界paddingの方向微分に限ります。小Hessenberg行列と基底は保持します。ηの固定下限があるため、原著EWの漸近収束定理、一般AD/PETScとの同等性、速度向上や大域収束は主張しません。 上記の制限は既存配布版の範囲です。今回の追加配布版：一般のNumPy/JAX置換や複素数ADではありません。 一般のreduced inverse Hessianや有限Newton traceの数学的陰関数微分とは主張しません。 選択した分岐の微分は普遍的なsubgradientや非滑らかな写像の線形微分ではありません。",
+        "en": "Limited to educational real forward mode and small dense-Newton Bratu comparisons. Reverse mode, HVPs and matrix-free Newton–Krylov remain explanatory only. A separate dedicated supplement verifies implicit sensitivities and discrete adjoints. Additional fixed examples: An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee. The preceding limitations describe earlier editions. This additional release: Not a general NumPy/JAX replacement or complex AD system. No general reduced inverse Hessian or identification of finite Newton traces with implicit derivatives. An executed-branch derivative is not a universal subgradient or a linear derivative of a nonsmooth map."
       },
       "metadata_review": {
         "level": "scoped forward-mode implementation; analytic/finite-difference/AD derivatives and Bratu refinement checked",
@@ -14395,6 +14663,46 @@
               "ja": "小1次元BVP向けの教育実装です。ADは四則・exp・境界paddingの方向微分に限ります。小Hessenberg行列と基底は保持します。ηの固定下限があるため、原著EWの漸近収束定理、一般AD/PETScとの同等性、速度向上や大域収束は主張しません。",
               "en": "An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee."
             }
+          ]
+        },
+        {
+          "release": {
+            "group": "reverse-higher-ad",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "reverse-vjp-duality",
+              "hessian-vector-products",
+              "kink-branch-derivatives"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：独自逆モードVJPとJVP/VJP双対性、HVPと状態固定・陰関数全微分の区別、非滑らか点・分岐・停止条件の微分範囲。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Original reverse-mode VJP and JVP/VJP duality, Hessian-vector products and fixed-state versus implicit derivatives, Derivative scope at kinks, branches and stopping decisions. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "一般のNumPy/JAX置換や複素数ADではありません。",
+              "en": "Not a general NumPy/JAX replacement or complex AD system."
+            },
+            {
+              "ja": "一般のreduced inverse Hessianや有限Newton traceの数学的陰関数微分とは主張しません。",
+              "en": "No general reduced inverse Hessian or identification of finite Newton traces with implicit derivatives."
+            },
+            {
+              "ja": "選択した分岐の微分は普遍的なsubgradientや非滑らかな写像の線形微分ではありません。",
+              "en": "An executed-branch derivative is not a universal subgradient or a linear derivative of a nonsmooth map."
+            }
+          ]
+        }
+      ],
+      "depth_additional_releases": [
+        {
+          "group": "reverse-higher-ad",
+          "edition": "2026-11-24",
+          "case_ids": [
+            "reverse-vjp-duality",
+            "hessian-vector-products",
+            "kink-branch-derivatives"
           ]
         }
       ]
@@ -16621,6 +16929,117 @@
       ],
       "units_ja": "無次元。擬似弧長は物理時間ではありません。",
       "boundary_conditions_ja": "x=0,1で同次Dirichlet条件。"
+    },
+    {
+      "id": "dogleg-trust-region",
+      "name": {
+        "ja": "小固定系のdogleg信頼領域法",
+        "en": "Dogleg trust regions for fixed small systems"
+      },
+      "group": {
+        "id": "solvers",
+        "ja": "線形・非線形解法",
+        "en": "Linear & nonlinear solvers"
+      },
+      "summary": {
+        "ja": "固定した小非線形系で、原残差と左スケールmeritを分け、Euclidean Cauchy–Gauss–Newton doglegと全拒否試行を検証します。",
+        "en": "Fixed small nonlinear systems separate the original residual from a left-scaled merit and check a Euclidean Cauchy–Gauss–Newton dogleg with every rejected trial retained."
+      },
+      "status": "educational-example",
+      "origin": "development-candidate",
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-globalization-controls/#globalization-difficult-starts",
+        "en": "/numerical-methods-atlas/en/read/validation-globalization-controls/#globalization-difficult-starts"
+      },
+      "code_modules": [],
+      "test_files": [],
+      "references": [
+        {
+          "role": "selected-official-method-scope",
+          "title": "SNES: Nonlinear Solvers",
+          "url": "https://petsc.org/release/manual/snes/",
+          "note": "The source owner records this selected reading: Read nonlinear solver categories, stopping/domain-error distinctions and selected line-search/trust-region descriptions. Our fixed Euclidean dogleg and Delta0=1 are independently specified; not asserted to reproduce PETSc defaults. Unread: MINPACK original report/paper, PETSc solver implementation source, Full manual outside named sections. Publication year is not established; display n.d. Access date is separate.",
+          "review_level": "official-documentation-selected-sections",
+          "full_text_read_by_integration_author": false,
+          "accessed_on": "2026-11-24",
+          "displayed_version": "3.26.1",
+          "publication_year": null,
+          "publication_year_display": "n.d.",
+          "label": "SNES: Nonlinear Solvers",
+          "scope": "The source owner records this selected reading: Read nonlinear solver categories, stopping/domain-error distinctions and selected line-search/trust-region descriptions. Our fixed Euclidean dogleg and Delta0=1 are independently specified; not asserted to reproduce PETSc defaults. Unread: MINPACK original report/paper, PETSc solver implementation source, Full manual outside named sections. Publication year is not established; display n.d. Access date is separate."
+        }
+      ],
+      "assumptions": [
+        "Real small systems with a fixed positive diagonal residual scaling; the trust radius uses the unscaled Euclidean state norm.",
+        "The Gauss–Newton endpoint is the minimum-norm SVD least-squares solution under the fixed rank cutoff; the other endpoint is the Cauchy step.",
+        "Accept only a positive model decrease, positive actual decrease and rho >= .1; all radius/domain/model/iteration failures are explicit."
+      ],
+      "assumptions_ja": [
+        "固定した正の対角残差スケーリングを持つ小さな実数系。trust radiusは変数のEuclideanノルムです。",
+        "Gauss–Newton端点は固定rank cutoffの最小ノルムSVD最小二乗解、他端はCauchy stepです。",
+        "正の予測減少・正の実減少とρ≥.1を要求し、半径/領域/model/反復上限の失敗を明示します。"
+      ],
+      "units": "Dimensionless fixtures; residual scaling is explicit and does not alter the original root tolerance.",
+      "units_ja": "無次元固定例。残差スケールを明示し、原残差の根判定は変えません。",
+      "boundary_conditions": "The method has no intrinsic physical boundary. Rosenbrock controls are algebraic; the related Bratu fixture has zero Dirichlet endpoints on[0,1].",
+      "boundary_conditions_ja": "方法固有の物理境界はありません。Rosenbrockは代数系で、関連Bratu固定例は[0,1]両端零Dirichletです。",
+      "limitations": {
+        "ja": "固定6必須rootと診断startの比較だけです。正確なTR部分問題解・全初期値成功・PETSc実装同等・大規模性能を保証しません。",
+        "en": "Only six required-root controls and declared diagnostic starts are covered. No exact optimal trust-region subproblem, all-start guarantee, PETSc implementation equivalence or large-scale performance is claimed."
+      },
+      "metadata_review": {
+        "on": "2026-11-24",
+        "level": "Canonical source main, fixed numerical gates and independently extracted ZIP pytest/main passed for the declared small controls (16 pytest tests). Selected official source scope is disclosed; general all-start convergence and large-scale performance remain unverified.",
+        "supplemental_review": {
+          "on": "2026-11-24",
+          "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
+        }
+      },
+      "depth_scope": {
+        "ja": "固定した小非線形系で、原残差と左スケールmeritを分け、Euclidean Cauchy–Gauss–Newton doglegと全拒否試行を検証します。",
+        "en": "Fixed small nonlinear systems separate the original residual from a left-scaled merit and check a Euclidean Cauchy–Gauss–Newton dogleg with every rejected trial retained."
+      },
+      "aliases": [
+        "信頼領域",
+        "dogleg",
+        "ドッグレッグ",
+        "trust region",
+        "Cauchy Gauss Newton"
+      ],
+      "next_deliverable": {
+        "ja": "より大きい疎系、別の固定半径・尺度、一般の非線形モデルは、入力と参照を別途固定して検証します。全初期値での収束を保証しません。",
+        "en": "Separately qualify larger sparse systems, other fixed radii/scales and broader nonlinear models with new inputs and references; no all-start convergence guarantee is claimed."
+      },
+      "code_mapping_scope": "Maps only to this dedicated globalization-controls release; no execution is borrowed from existing Bratu continuation or JFNK.",
+      "code_mapping_scope_ja": "今回の専用globalization-controls配布だけに対応し、既存Bratu継続やJFNKの実行を借用しません。",
+      "depth_release": {
+        "group": "globalization-controls",
+        "edition": "2026-11-24",
+        "case_ids": [
+          "globalization-difficult-starts"
+        ]
+      },
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "globalization-controls",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "globalization-difficult-starts"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：同じ難しい初期値に対する線探索と信頼領域。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Line search and trust regions from the same difficult starts. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "全初期値の成功や手法の普遍的優越、PETSc実装との一致を保証しません。",
+              "en": "No all-start guarantee, universal method ranking or equivalence to PETSc implementation."
+            }
+          ]
+        }
+      ]
     }
   ],
   "editorial_policy": {

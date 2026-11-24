@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "group": "reverse-higher-ad",
+  "status": "SOURCE_FROZEN_BEFORE_FIRST_QUALIFICATION_PYTEST_MAIN",
+  "frozen_at_utc": "2026-11-24T08:59:09.387670+00:00",
+  "base_public_commit": "f08147fa21f89bf5a1d13d8ae34fcd35090a1c79",
+  "design_contract_sha256": "2e07755e0d1147798748b0ad05f2c73f92d35d5867ca649559f69d4840a35565",
+  "design_review_sha256": "78448b908804428f607ca9b3ef70eb26fab02d0b53aab5d0fc1fcae8f9dc7d69",
+  "implementation_authorized_after_design_review": true,
+  "scientific_execution_before_freeze": false,
+  "expected_pytest": 24,
+  "expected_case_ids": [
+    "reverse-vjp-duality",
+    "hessian-vector-products",
+    "kink-branch-derivatives"
+  ],
+  "expected_records": [
+    5,
+    4,
+    65
+  ],
+  "expected_gate_counts": {
+    "reverse-vjp-duality": 46,
+    "hessian-vector-products": 27,
+    "kink-branch-derivatives": 144
+  },
+  "shared_pytest_main_budget_seconds": 120,
+  "independent_reference_qualification": "Named independent references/components are exercised by the frozen pytest functions before main, under the same shared budget. Not yet executed or numerically qualified.",
+  "inputs": "Only this one raw inputs.json SHA is supported and pinned in run.py; frozen spec numbers are explicitly implemented, not silently accepting edited JSON.",
+  "output_contract": "Exact passed/checks/cases/inputSHA/termination, nonempty measured metrics and records; finite root CSV; raw NPZ/partial rows/candidates retained before later work. Plot accepts result file or directory and reads saved fields only.",
+  "failure_policy": "Single fresh reviewed attempt, no auto retry, every failure and revision preserved; no tolerance/start/seed/cap changes after output.",
+  "scope_limits": [
+    "Diagnostic nonconvergence is explicitly distinct from root convergence.",
+    "No old public method/source/input/golden was modified.",
+    "Fixed-state, implicit and trace derivatives remain separate; unsupported/nondifferentiable outputs have explicit categories."
+  ],
+  "files_sha256": {
+    "LICENSE": "66644ec44fae6de4db68325d5389f51e8f7b96ffc80e34bd194f8ff9e1511148",
+    "README.md": "808544ceae738139b08500c99ed7d385c0483367bb3c8b0b2a6945a243879f9e",
+    "acceptance.json": "f5b597ac6f2dda0cdddc3a46559f7cc7b0f786f0eb870496b5e7b16983c06337",
+    "cases.json": "444d6805b5f8c87636e6bd1de91ae02ffa9ce3c8aaec7b501d5754e49e3395ca",
+    "experiments.py": "13f32c14ced1353d5fe44a441f0a7e746136b5a2cfd438e4cdda52c86430fe64",
+    "fixtures.py": "73b2fedaa37620fe4b2aeb821f9786894c3384152c7d7b539aeebe60feafdd09",
+    "gate-keys.json": "9f89e21ade6cd89e8b2e7da2b6aca33b7b6c21af3d576b1466fa85ee31b35587",
+    "hessians.py": "9d5cda41a70d9fe1ad8b412e29620dd21074ccdcb1e81347d86a948cf4e3c9de",
+    "inputs.json": "760e23bd914d37ebab5142bc741a2d443207d7d2c6d0a8630031439ecfedec2e",
+    "io_contract.py": "b5a2b90fe92b2d620e7fcb2327d63829a4588f63d9f936895533dbca0d7c8ca2",
+    "kinks.py": "de09b9ec54645312c12c0eb9a75d189eb8d69c83845112831f7ca64b36257234",
+    "plot.py": "2ea7e6575991a21a3783ba37481f026bfcc73128d82419392d8d7b95d60cae13",
+    "references.py": "08056b29f4b56902c90cc6599bcbb7c0801462b9483a2fd9a45c289e78432820",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "d05c0a0e9d22e8bf113e8da8020e68cc1e8fbd709efa7e6b5c58184d2ada432b",
+    "source-reading.json": "cc96dbe4d6ed4187820747f119ffa39032e508c8b03e7139624ff38ef14f620e",
+    "tape.py": "b321346e375baf8598fd5f5d2a9d0d4b83bf11eb6ce33e854cef173307ed5bfa",
+    "test_ad.py": "23b346619345793d49706fa4217875a43642448f8f9eca863672b5470083e751"
+  },
+  "test_functions": {
+    "test_ad.py": [
+      "test_forward_primitives",
+      "test_reverse_repeated_parent",
+      "test_broadcast_unreduce",
+      "test_duplicate_index_scatter_add",
+      "test_division_rule",
+      "test_exp_rule",
+      "test_sum_shape_rule",
+      "test_input_and_readonly_ownership",
+      "test_reset_and_old_return_ownership",
+      "test_rectangular_independent_jacobian",
+      "test_weighted_adjoint_pairing",
+      "test_bratu_transpose_stencil",
+      "test_all_four_real_mutants_detected",
+      "test_actual_rule_and_gate_counts",
+      "test_exact_dyadic_quadratic_hvp",
+      "test_forward_over_reverse_exp_curvature",
+      "test_implicit_state_first_second_rules",
+      "test_live_type_cannot_be_erased",
+      "test_primary_hvp_no_dense_hessian",
+      "test_strict_kink_categories",
+      "test_max_directional_map_is_not_linear",
+      "test_literal_stop_predicate_and_jump",
+      "test_inactive_invalid_log_not_evaluated",
+      "test_completed_products_preserved_before_reference_failure"
+    ]
+  },
+  "runtime_status": "UNMEASURED",
+  "numerical_execution_authorization": "NOT_GRANTED: requires new root review bound to this contract, actual files, private plan and wrapper."
+}

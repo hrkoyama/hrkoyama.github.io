@@ -4997,6 +4997,820 @@
           "note": "Selected Inexact Newton-like Methods and beginning of Matrix-Free Methods, residual forcing inequality and matrix-free/preconditioner distinction. Context only. No PETSc installation/execution or borrowed numerical success. Our hyperplane continuation is not a claim to implement every SNES arc-length scheme."
         }
       ]
+    },
+    {
+      "id": "globalization-difficult-starts",
+      "model": "finite-dimensional-nonlinear-map",
+      "kind": "numerical-reference",
+      "title": "Globalization from identical starts: analytic controls and discrete Bratu corrections",
+      "assumptions": "Fixed real dimensionless systems: two Rosenbrock starts and two residual scalings, plus three starts for a 31-interior-node Dirichlet Bratu problem at lambda 3, compared by three methods. The Euclidean state radius is distinct from residual scaling.",
+      "formula": "F_R(x,y)=(10(y-x^2),1-x)^\\top,\\quad (x_*,y_*)=(1,1);\\quad \\phi=\\tfrac12\\|SF\\|_2^2,\\quad J_h\\delta=-F_h.",
+      "dimension": null,
+      "bounds": [],
+      "components": [
+        "original residual",
+        "state or correction error",
+        "merit reduction",
+        "trial/radius ledger"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "case_id": "globalization-difficult-starts",
+        "inputs_sha256": "04ee3e49e6e2192ee4e58ae20e03905fc56f0c793ce4bbf7d00c13ae3586a9fb",
+        "public_inputs": {
+          "registry_group": "globalization-controls",
+          "edition": "2026-11-24",
+          "member": "inputs.json",
+          "json_pointer": "",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/globalization-controls/inputs.json",
+          "sha256": "04ee3e49e6e2192ee4e58ae20e03905fc56f0c793ce4bbf7d00c13ae3586a9fb"
+        },
+        "Rosenbrock_dimension": 2,
+        "Bratu_interior_nodes": 31,
+        "Bratu_lambda": 3,
+        "Bratu_start_amplitudes": [
+          0,
+          4,
+          8
+        ],
+        "methods": [
+          "full Newton diagnostic",
+          "Armijo Newton",
+          "Euclidean dogleg"
+        ]
+      },
+      "sources": [
+        "https://petsc.org/release/manual/snes/"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/globalization-difficult-starts/?lang=ja#globalization-difficult-starts-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/globalization-difficult-starts/?lang=en#globalization-difficult-starts-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-globalization-controls/#globalization-difficult-starts",
+        "en": "/numerical-methods-atlas/en/read/validation-globalization-controls/#globalization-difficult-starts"
+      },
+      "reference_scope": "The primary reference is a numerical discrete correction. The known Rosenbrock root and rational/high-precision dogleg components are separate analytic controls; Bratu uses an independently assembled discrete Jacobian correction and original residual. No continuum family is an exact discrete root. Required-root rows, diagnostic starts, stationary nonroots and domain rejection remain distinct; no all-start guarantee.",
+      "citations": [
+        {
+          "role": "selected-official-method-scope",
+          "title": "SNES: Nonlinear Solvers",
+          "url": "https://petsc.org/release/manual/snes/",
+          "note": "The source owner records this selected reading: Read nonlinear solver categories, stopping/domain-error distinctions and selected line-search/trust-region descriptions. Our fixed Euclidean dogleg and Delta0=1 are independently specified; not asserted to reproduce PETSc defaults. Unread: MINPACK original report/paper, PETSc solver implementation source, Full manual outside named sections. Publication year is not established; display n.d. Access date is separate.",
+          "review_level": "official-documentation-selected-sections",
+          "full_text_read_by_integration_author": false,
+          "accessed_on": "2026-11-24",
+          "displayed_version": "3.26.1",
+          "publication_year": null,
+          "publication_year_display": "n.d."
+        }
+      ],
+      "domain_kind": "finite-dimensional-algebra"
+    },
+    {
+      "id": "reverse-vjp-duality",
+      "model": "finite-dimensional-nonlinear-map",
+      "kind": "analytic",
+      "title": "Independent Jacobians, JVPs and VJPs of discrete nonlinear maps",
+      "assumptions": "The fixed R4-to-R3 map includes repeated-index gather[0,0,2] and scalar broadcast. Wide maps and fixed Bratu states have sizes 7 and 31. Euclidean pullbacks and adjoints under specified SPD metrics are distinct.",
+      "formula": "Jv=Df(x)v,\\quad \\operatorname{VJP}(w)=J^\\top w,\\quad (Jv)^\\top G_yw=v^\\top G_x(G_x^{-1}J^\\top G_yw).",
+      "dimension": null,
+      "bounds": [],
+      "components": [
+        "primal values",
+        "JVP",
+        "VJP",
+        "metric adjoint",
+        "duality defect"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "case_id": "reverse-vjp-duality",
+        "inputs_sha256": "760e23bd914d37ebab5142bc741a2d443207d7d2c6d0a8630031439ecfedec2e",
+        "public_inputs": {
+          "registry_group": "reverse-higher-ad",
+          "edition": "2026-11-24",
+          "member": "inputs.json",
+          "json_pointer": "/reverse",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/inputs.json",
+          "sha256": "760e23bd914d37ebab5142bc741a2d443207d7d2c6d0a8630031439ecfedec2e"
+        },
+        "rectangular_shape": [
+          3,
+          4
+        ],
+        "other_input_sizes": [
+          7,
+          31
+        ],
+        "gather_indices": [
+          0,
+          0,
+          2
+        ]
+      },
+      "sources": [
+        "https://docs.jax.dev/en/latest/notebooks/autodiff_cookbook.html"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/reverse-vjp-duality/?lang=ja#reverse-vjp-duality-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/reverse-vjp-duality/?lang=en#reverse-vjp-duality-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-reverse-higher-ad/#reverse-vjp-duality",
+        "en": "/numerical-methods-atlas/en/read/validation-reverse-higher-ad/#reverse-vjp-duality"
+      },
+      "reference_scope": "A hand-derived nonsymmetric rectangular Jacobian with separately evaluated high-precision exponentials is the reference. Independent stencil/transpose actions supplement it; symmetric Bratu alone cannot qualify transposition. These are analytic derivatives of finite discrete maps, not exact continuum PDE solutions or a general AD framework.",
+      "citations": [
+        {
+          "role": "selected-official-JVP-VJP-definitions",
+          "title": "The Autodiff Cookbook",
+          "url": "https://docs.jax.dev/en/latest/notebooks/autodiff_cookbook.html",
+          "note": "The source owner records this selected reading: Selected definitions and composition formulas only. A new educational tape will implement the stated finite subset. No JAX installation, execution, timing replication or implementation-source audit. Unread: Original reverse-mode/HVP papers, JAX transformation implementation, Unselected cookbook sections. Publication year is not established; display n.d. Access date is separate.",
+          "review_level": "official-documentation-selected-mathematical-sections",
+          "full_text_read_by_integration_author": false,
+          "accessed_on": "2026-11-24",
+          "publication_year": null,
+          "publication_year_display": "n.d."
+        }
+      ],
+      "domain_kind": "finite-dimensional-algebra"
+    },
+    {
+      "id": "hessian-vector-products",
+      "model": "finite-dimensional-nonlinear-map",
+      "kind": "analytic",
+      "title": "Independent references for fixed-state HVPs and second-order implicit rules",
+      "assumptions": "Use a four-variable dyadic quadratic and fixed-state Bratu energies of sizes 7 and 31. A separate positive implicit branch u²-theta=0 is solved at theta 4 from initial u 3, distinguishing fixed-state partials from total derivatives.",
+      "formula": "Hv=D(\\nabla f)(x)v;\\quad H_Bv=h(A_hv-\\lambda e^u\\odot v);\\quad 2us=1,\\quad 2ut+2s^2=0,\\quad j^{\\prime\\prime}=0.2+s^2+(u-1)t.",
+      "dimension": null,
+      "bounds": [],
+      "components": [
+        "gradient",
+        "Hessian-vector product",
+        "implicit state/tangents",
+        "fixed partial curvature",
+        "total curvature"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "case_id": "hessian-vector-products",
+        "inputs_sha256": "760e23bd914d37ebab5142bc741a2d443207d7d2c6d0a8630031439ecfedec2e",
+        "public_inputs": {
+          "registry_group": "reverse-higher-ad",
+          "edition": "2026-11-24",
+          "member": "inputs.json",
+          "json_pointer": "/HVP",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/inputs.json",
+          "sha256": "760e23bd914d37ebab5142bc741a2d443207d7d2c6d0a8630031439ecfedec2e"
+        },
+        "quadratic_dimension": 4,
+        "Bratu_state_sizes": [
+          7,
+          31
+        ],
+        "implicit_theta": 4,
+        "implicit_initial_u": 3
+      },
+      "sources": [
+        "https://docs.jax.dev/en/latest/notebooks/autodiff_cookbook.html"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/hessian-vector-products/?lang=ja#hessian-vector-products-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/hessian-vector-products/?lang=en#hessian-vector-products-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-reverse-higher-ad/#hessian-vector-products",
+        "en": "/numerical-methods-atlas/en/read/validation-reverse-higher-ad/#hessian-vector-products"
+      },
+      "reference_scope": "References are rational Qv, an independently evaluated fixed-state Bratu stencil formula, and an oracle-only square-root family with rational values at theta 4. The primary solves F/R1/R2 without embedding that family. These are not continuum PDE solutions, general reduced inverse Hessians or derivatives of a finite Newton trace.",
+      "citations": [
+        {
+          "role": "selected-official-smooth-HVP-composition",
+          "title": "The Autodiff Cookbook",
+          "url": "https://docs.jax.dev/en/latest/notebooks/autodiff_cookbook.html",
+          "note": "The source owner records this selected reading: Selected definitions and composition formulas only. A new educational tape will implement the stated finite subset. No JAX installation, execution, timing replication or implementation-source audit. Unread: Original reverse-mode/HVP papers, JAX transformation implementation, Unselected cookbook sections. Publication year is not established; display n.d. Access date is separate.",
+          "review_level": "official-documentation-selected-mathematical-sections",
+          "full_text_read_by_integration_author": false,
+          "accessed_on": "2026-11-24",
+          "publication_year": null,
+          "publication_year_display": "n.d."
+        }
+      ],
+      "domain_kind": "finite-dimensional-algebra"
+    },
+    {
+      "id": "kink-branch-derivatives",
+      "model": "finite-dimensional-nonlinear-map",
+      "kind": "analytic",
+      "title": "Nonsmooth discrete maps: directional derivatives and executed traces",
+      "assumptions": "Use seven fixed points and directions ±1 for abs, ReLU, clip and a polynomial branch. The stopped iteration starts at x0 = 0, tests |xk - theta| <= 1/8 before updating and allows at mostfive updates. Theta 1/4, 1/2 and 1 are switching points.",
+      "formula": "x_{k+1}=\\tfrac12(x_k+\\theta),\\quad x_K=(1-2^{-K})\\theta;\\quad D^+\\max(0,0)[a,b]=\\max(a,b);\\quad q_+(h)=\\frac1{16h}+\\frac78\\ (\\theta=1/2).",
+      "dimension": null,
+      "bounds": [],
+      "components": [
+        "function value",
+        "classical validity",
+        "one-sided directional value",
+        "trace slope",
+        "stop count"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "case_id": "kink-branch-derivatives",
+        "inputs_sha256": "760e23bd914d37ebab5142bc741a2d443207d7d2c6d0a8630031439ecfedec2e",
+        "public_inputs": {
+          "registry_group": "reverse-higher-ad",
+          "edition": "2026-11-24",
+          "member": "inputs.json",
+          "json_pointer": "/kinks",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/inputs.json",
+          "sha256": "760e23bd914d37ebab5142bc741a2d443207d7d2c6d0a8630031439ecfedec2e"
+        },
+        "piecewise_points": 7,
+        "directions": [
+          -1,
+          1
+        ],
+        "stop_tolerance": 0.125,
+        "max_updates": 5
+      },
+      "sources": [
+        "https://docs.jax.dev/en/latest/faq.html"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/kink-branch-derivatives/?lang=ja#kink-branch-derivatives-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/kink-branch-derivatives/?lang=en#kink-branch-derivatives-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-reverse-higher-ad/#kink-branch-derivatives",
+        "en": "/numerical-methods-atlas/en/read/validation-reverse-higher-ad/#kink-branch-derivatives"
+      },
+      "reference_scope": "Rational piecewise formulas and the literal stopping rule provide references. Strict kinks retain undefined classical derivatives with null/validity, separately from directional maps and chosen-trace slopes. Finite quotients across a switch are not derivative limits, continuum PDE references or universal subgradients.",
+      "citations": [
+        {
+          "role": "selected-official-branch-limitations",
+          "title": "Frequently asked questions: undefined branches and ordering",
+          "url": "https://docs.jax.dev/en/latest/faq.html",
+          "note": "The source owner records this selected reading: Read invalid inactive-branch and ordering discussions. We use an explicitly different strict nondifferentiability policy, not a universal JAX tie rule. Unread: Linked issue threads, Generalized derivative original papers. Publication year is not established; display n.d. Access date is separate.",
+          "review_level": "official-documentation-selected-sections",
+          "full_text_read_by_integration_author": false,
+          "accessed_on": "2026-11-24",
+          "publication_year": null,
+          "publication_year_display": "n.d."
+        }
+      ],
+      "domain_kind": "finite-dimensional-algebra"
+    },
+    {
+      "id": "diffusion-discrete-adjoint",
+      "model": "heat",
+      "kind": "analytic",
+      "title": "Backward-Euler discrete modes and time-exact semidiscrete diffusion references",
+      "assumptions": "Dimensionless x in [0,1] with zero Dirichlet data, kappa = .1, theta = .2 and T = .1. Use 7/15 interior nodes and 64/128/256 time steps. The objective has an h-weighted terminal error and specified quadratic penalties.",
+      "formula": "\\lambda_{\\ell,h}=4h^{-2}\\sin^2(\\ell\\pi h/2),\\quad a_{\\ell,k+1}=\\frac{a_{\\ell,k}+\\Delta t\\,\\theta\\beta_\\ell}{1+\\Delta t\\,\\kappa\\lambda_{\\ell,h}};\\quad a_{\\ell}^{\\rm sd}(T)=a_{\\ell,0}e^{-\\kappa\\lambda_{\\ell,h}T}+\\frac{\\theta\\beta_\\ell}{\\kappa\\lambda_{\\ell,h}}(1-e^{-\\kappa\\lambda_{\\ell,h}T}).",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "state",
+        "terminal field error",
+        "discrete gradient",
+        "checkpoint/replay work"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "case_id": "diffusion-discrete-adjoint",
+        "inputs_sha256": "d50b4ccd1559cae3830dd6496bfe5fade4f3587b5c5782bcc0003615c35045f7",
+        "public_inputs": {
+          "registry_group": "adjoint",
+          "edition": "2026-11-24",
+          "member": "inputs.json",
+          "json_pointer": "/cases/diffusion-discrete-adjoint",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/inputs.json",
+          "sha256": "d50b4ccd1559cae3830dd6496bfe5fade4f3587b5c5782bcc0003615c35045f7"
+        },
+        "interior_nodes": [
+          7,
+          15
+        ],
+        "time_steps": [
+          64,
+          128,
+          256
+        ],
+        "T": 0.1,
+        "kappa": 0.1,
+        "theta": 0.2
+      },
+      "sources": [
+        "https://sundials.readthedocs.io/en/latest/cvodes/Usage/ADJ.html",
+        "https://docs.python.org/3.12/library/decimal.html"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/diffusion-discrete-adjoint/?lang=ja#diffusion-discrete-adjoint-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/diffusion-discrete-adjoint/?lang=en#diffusion-discrete-adjoint-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-adjoint/#diffusion-discrete-adjoint",
+        "en": "/numerical-methods-atlas/en/read/validation-adjoint/#diffusion-discrete-adjoint"
+      },
+      "reference_scope": "Analytic references are scalar modal solutions and parameter derivatives of the same finite backward-Euler map. A separate time-exact semidiscrete exponential measures temporal error only and never substitutes continuum spatial eigenvalues. Checkpoint replay follows that same discrete reverse map; it is not CVODES or an optimal schedule. Qualification, primary execution and final packet evidence remain separate receipts.",
+      "citations": [
+        {
+          "role": "selected-official-adjoint-context",
+          "title": "SUNDIALS CVODES adjoint usage",
+          "url": "https://sundials.readthedocs.io/en/latest/cvodes/Usage/ADJ.html",
+          "note": "The source owner records this selected reading: Skeleton forward/backward tolerance and solver setup; Nd checkpoint spacing/interpolation; selected sections only. Our fixed-step discrete transpose/replay is not CVODES interpolation-based ASA or an optimal schedule. Publication year is not established; display n.d. Access date is separate.",
+          "review_level": "official-documentation-selected-sections",
+          "full_text_read_by_integration_author": false,
+          "accessed_on": "2026-11-24",
+          "publication_year": null
+        },
+        {
+          "role": "selected-official-arithmetic-scope",
+          "title": "Python3.12.16 decimal documentation",
+          "url": "https://docs.python.org/3.12/library/decimal.html",
+          "note": "The source owner records this selected reading: Decimal.exp correctly rounded half-even and from_float exact binary-float conversion. This supports arithmetic choices, not an already qualified numerical oracle. Publication year is not established; display n.d. Access date is separate.",
+          "review_level": "official-documentation-selected-API",
+          "full_text_read_by_integration_author": false,
+          "accessed_on": "2026-11-24",
+          "publication_year": null
+        }
+      ]
+    },
+    {
+      "id": "bratu-fold-sensitivity",
+      "model": "bratu",
+      "kind": "numerical-reference",
+      "title": "Discrete Bratu shooting, tangent and adjoint references near a fold",
+      "assumptions": "One-dimensional Dirichlet Bratu with 31/63 interior nodes. Fixed gaps .1/.01/.001 below the discrete-fold anchor use lower-branch states. Each lambda string is converted once to binary64 and that exact value is passed to the high-precision reference.",
+      "formula": "F_h=A_hu-\\lambda e^u=0,\\quad J_hs=e^u,\\quad J_h^\\top p=h u,\\quad g=0.05\\lambda+p^Te^u;\\quad q^T(s_D-\\widehat s)=p_D^T(r_s-r_D)+r_{pD}^T(s_D-\\widehat s),\\quad b=e^u,\\ q=hu,\\ r_s=b-J_h\\widehat s,\\ r_D=b-J_hs_D,\\ r_{pD}=q-J_h^Tp_D.",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "lower-branch state",
+        "parameter sensitivity",
+        "adjoint gradient",
+        "linear residual defect"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "case_id": "bratu-fold-sensitivity",
+        "inputs_sha256": "d50b4ccd1559cae3830dd6496bfe5fade4f3587b5c5782bcc0003615c35045f7",
+        "public_inputs": {
+          "registry_group": "adjoint",
+          "edition": "2026-11-24",
+          "member": "inputs.json",
+          "json_pointer": "/cases/bratu-fold-sensitivity",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/inputs.json",
+          "sha256": "d50b4ccd1559cae3830dd6496bfe5fade4f3587b5c5782bcc0003615c35045f7"
+        },
+        "interior_nodes": [
+          31,
+          63
+        ],
+        "gaps_below_discrete_fold": [
+          0.1,
+          0.01,
+          0.001
+        ],
+        "branch": "lower"
+      },
+      "sources": [
+        "https://ipsen.math.ncsu.edu/ps/sinum65438.pdf",
+        "https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html",
+        "https://docs.python.org/3.12/library/decimal.html"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/bratu-fold-sensitivity/?lang=ja#bratu-fold-sensitivity-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/bratu-fold-sensitivity/?lang=en#bratu-fold-sensitivity-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-adjoint/#bratu-fold-sensitivity",
+        "en": "/numerical-methods-atlas/en/read/validation-adjoint/#bratu-fold-sensitivity"
+      },
+      "reference_scope": "The primary reference is independent high-precision discrete shooting/fold evaluation with zero-start Thomas Newton. The continuum cosh family is a separate shape/discretization diagnostic, not the exact discrete fold or state. Same-fixed-state residual identities are separate from state error and include the cross term for an approximate adjoint. Error/conditioning plot axes are not a two-dimensional physical domain. The displayed finite-reference identity retains both direct-reference residuals and does not assume the banded solves are exact.",
+      "citations": [
+        {
+          "role": "selected-author-equations-simple-fold",
+          "title": "Dickson,Kelley,Ipsen,Kevrekidis:Condition Estimates for Pseudo-Arclength Continuation",
+          "url": "https://ipsen.math.ncsu.edu/ps/sinum65438.pdf",
+          "note": "The source owner records this selected reading: Section2.1 implicit sensitivity and2.2 simple-fold definition/arclength equations, printed265–267. Full proofs/experiments not audited; no reference table copied. Continuation already exists in56. Publication year is not established; display n.d. Access date is separate.",
+          "review_level": "author-paper-selected-equations",
+          "full_text_read_by_integration_author": false,
+          "accessed_on": "2026-11-24",
+          "publication_year": null
+        },
+        {
+          "role": "continuum-context-only",
+          "title": "Author-hosted INF5620 nonlinear exercises,Problem8,Eq52",
+          "url": "https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html",
+          "note": "The source owner records this selected reading: Bratu BVP/cosh family/critical value and FD exercise. Source theta=2*the alpha in old sensitivity module. Continuum family only, never the exact discrete fold/state. Publication year is not established; display n.d. Access date is separate.",
+          "review_level": "author-teaching-source-selected-equation",
+          "full_text_read_by_integration_author": false,
+          "accessed_on": "2026-11-24",
+          "publication_year": null
+        },
+        {
+          "role": "selected-official-arithmetic-scope",
+          "title": "Python3.12.16 decimal documentation",
+          "url": "https://docs.python.org/3.12/library/decimal.html",
+          "note": "The source owner records this selected reading: Decimal.exp correctly rounded half-even and from_float exact binary-float conversion. This supports arithmetic choices, not an already qualified numerical oracle. Publication year is not established; display n.d. Access date is separate.",
+          "review_level": "official-documentation-selected-API",
+          "full_text_read_by_integration_author": false,
+          "accessed_on": "2026-11-24",
+          "publication_year": null
+        }
+      ]
+    },
+    {
+      "id": "bratu-distributed-vjp",
+      "model": "bratu",
+      "kind": "numerical-reference",
+      "title": "Independent dense sensitivities and matrix-free VJPs for distributed Bratu coefficients",
+      "assumptions": "A one-dimensional zero-Dirichlet problem with 63 interior nodes. The coefficient a(x)=2+Btheta uses 8/16/32 linear-hat controls and stays between 1.7 and 2.3 in the fixed main cases. Endpoint coefficient controls are not zeroed like state Dirichlet values.",
+      "formula": "J_hU_\\theta=\\operatorname{diag}(e^u)B,\\quad J_h^\\top p=q,\\quad \\nabla_\\theta\\Psi=B^\\top(e^u\\odot p).",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "state",
+        "coefficient field",
+        "parameter gradient",
+        "duality error",
+        "work counters"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "case_id": "bratu-distributed-vjp",
+        "inputs_sha256": "d50b4ccd1559cae3830dd6496bfe5fade4f3587b5c5782bcc0003615c35045f7",
+        "public_inputs": {
+          "registry_group": "adjoint",
+          "edition": "2026-11-24",
+          "member": "inputs.json",
+          "json_pointer": "/cases/bratu-distributed-vjp",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/inputs.json",
+          "sha256": "d50b4ccd1559cae3830dd6496bfe5fade4f3587b5c5782bcc0003615c35045f7"
+        },
+        "interior_nodes": 63,
+        "coefficient_controls": [
+          8,
+          16,
+          32
+        ],
+        "coefficient_baseline": 2,
+        "fixed_coefficient_range": [
+          1.7,
+          2.3
+        ]
+      },
+      "sources": [
+        "https://docs.jax.dev/en/latest/_autosummary/jax.vjp.html",
+        "https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html",
+        "https://docs.python.org/3.12/library/decimal.html"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/bratu-distributed-vjp/?lang=ja#bratu-distributed-vjp-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/bratu-distributed-vjp/?lang=en#bratu-distributed-vjp-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-adjoint/#bratu-distributed-vjp",
+        "en": "/numerical-methods-atlas/en/read/validation-adjoint/#bratu-distributed-vjp"
+      },
+      "reference_scope": "A separately evaluated full dense-hat matrix and banded tangent solves for all controls form the numerical reference. They differ from the primary two-neighbor gather/scatter action but share the discrete forward model. This is not an independent exact continuum PDE solution or a claim of m-fold wall-time speedup. Coefficient-profile figures remain one-dimensional.",
+      "citations": [
+        {
+          "role": "terminology-only",
+          "title": "JAX vjp API",
+          "url": "https://docs.jax.dev/en/latest/_autosummary/jax.vjp.html",
+          "note": "The source owner records this selected reading: Reverse-mode cotangent map definition and input/output shapes. Terminology only; no JAX implementation, library-equivalence or framework execution claim. Publication year is not established; display n.d. Access date is separate.",
+          "review_level": "official-documentation-selected-API",
+          "full_text_read_by_integration_author": false,
+          "accessed_on": "2026-11-24",
+          "publication_year": null
+        },
+        {
+          "role": "continuum-model-context-only",
+          "title": "Author-hosted INF5620 nonlinear exercises,Problem8,Eq52",
+          "url": "https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html",
+          "note": "The source owner records this selected reading: Bratu BVP/cosh family/critical value and FD exercise. Source theta=2*the alpha in old sensitivity module. Continuum family only, never the exact discrete fold/state. Publication year is not established; display n.d. Access date is separate.",
+          "review_level": "author-teaching-source-selected-equation",
+          "full_text_read_by_integration_author": false,
+          "accessed_on": "2026-11-24",
+          "publication_year": null
+        },
+        {
+          "role": "selected-official-arithmetic-scope",
+          "title": "Python3.12.16 decimal documentation",
+          "url": "https://docs.python.org/3.12/library/decimal.html",
+          "note": "The source owner records this selected reading: Decimal.exp correctly rounded half-even and from_float exact binary-float conversion. This supports arithmetic choices, not an already qualified numerical oracle. Publication year is not established; display n.d. Access date is separate.",
+          "review_level": "official-documentation-selected-API",
+          "full_text_read_by_integration_author": false,
+          "accessed_on": "2026-11-24",
+          "publication_year": null
+        }
+      ]
+    },
+    {
+      "id": "bratu-gn-lm-bounds",
+      "model": "bratu",
+      "kind": "numerical-reference",
+      "title": "Independent Thomas-based local references for Bratu inverse least squares",
+      "assumptions": "A two-coefficient inverse problem uses 31 interior nodes and five observations of the one-dimensional zero-Dirichlet Bratu model. Reuse existing synthetic data; the physical box is a in[1,2.8],b in[-.5,.5]. Objective regularization gamma, LM damping mu and variable scaling are distinct.",
+      "formula": "F_h(u,a,b)=A_hu-(a+b(2x-1))\\odot e^u=0,\\quad \\mathcal L=\\tfrac12\\|Hu-d\\|_W^2+\\tfrac\\gamma2\\|\\theta-\\theta_0\\|^2,\\quad K=-HF_u^{-1}F_\\theta.",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "inferred coefficients",
+        "physical gradient/KKT",
+        "objective gap",
+        "data-only singular values"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "case_id": "bratu-gn-lm-bounds",
+        "inputs_sha256": "dca8cf2a84355ebbb881bc17232923c5fa0ee16f34c7d2a8a8c58da702e9b3b1",
+        "public_inputs": {
+          "registry_group": "inverse-optimization",
+          "edition": "2026-11-24",
+          "member": "inputs.json",
+          "json_pointer": "/case65",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/inputs.json",
+          "sha256": "dca8cf2a84355ebbb881bc17232923c5fa0ee16f34c7d2a8a8c58da702e9b3b1"
+        },
+        "interior_nodes": 31,
+        "observations": 5,
+        "truth": [
+          2.2,
+          0.35
+        ],
+        "prior": [
+          2,
+          0
+        ],
+        "physical_box_lower": [
+          1,
+          -0.5
+        ],
+        "physical_box_upper": [
+          2.8,
+          0.5
+        ],
+        "fixed_fits": 17
+      },
+      "sources": [
+        "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.optimize.least_squares.html"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/bratu-gn-lm-bounds/?lang=ja#bratu-gn-lm-bounds-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/bratu-gn-lm-bounds/?lang=en#bratu-gn-lm-bounds-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-inverse-optimization/#bratu-gn-lm-bounds",
+        "en": "/numerical-methods-atlas/en/read/validation-inverse-optimization/#bratu-gn-lm-bounds"
+      },
+      "reference_scope": "Use separate Thomas state/sensitivity evaluations and small local optimizer references. Some optimizer infrastructure is shared with a companion, so independence is not claimed at every layer. A common reference for unbounded GN/LM must be interior and unbounded-stationary. Bounded solutions, truth recovery and global minima are distinct; plotted a,b planes are coefficient space.",
+      "citations": [
+        {
+          "role": "selected-official-bounds-and-algorithm-scope",
+          "title": "SciPy 1.14.1 least_squares documentation",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.optimize.least_squares.html",
+          "note": "The source owner records this selected reading: Parameters, bounds, callable Jacobian, method-specific ftol/xtol/gtol and x_scale, max_nfev, returned status and Notes on LM and TRF. LM does not handle bounds and requires at least as many residual rows as variables; TRF supports bounds. MINPACK/STIR original papers were not read in this preparation. Publication year is not established; display n.d. Access date is separate.",
+          "review_level": "selected-primary-scope-recorded-by-source-owner",
+          "full_text_read_by_integration_author": false,
+          "accessed_on": "2026-11-24",
+          "version": "1.14.1",
+          "publication_year": null
+        }
+      ]
+    },
+    {
+      "id": "bfgs-lbfgs-controls",
+      "model": "finite-dimensional-optimization",
+      "kind": "analytic",
+      "title": "Analytic known minima and the current limited-memory action",
+      "assumptions": "Dimensionless unconstrained algebraic optimization uses an eight-dimensional SPD quadratic and three Rosenbrock starts. L-BFGS retains only the current last three pairs. There is no physical PDE boundary condition.",
+      "formula": "f_Q=\\tfrac12(x-x_*)^TA(x-x_*),\\quad x_*=(1,-1,\\ldots)^T;\\quad f_R=100(y-x^2)^2+(1-x)^2,\\quad (x_*,y_*)=(1,1);\\quad H_+=(I-\\rho sy^T)H(I-\\rho ys^T)+\\rho ss^T.",
+      "dimension": null,
+      "bounds": [],
+      "components": [
+        "objective",
+        "gradient",
+        "inverse-Hessian action",
+        "curvature/Wolfe ledger"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "case_id": "bfgs-lbfgs-controls",
+        "inputs_sha256": "dca8cf2a84355ebbb881bc17232923c5fa0ee16f34c7d2a8a8c58da702e9b3b1",
+        "public_inputs": {
+          "registry_group": "inverse-optimization",
+          "edition": "2026-11-24",
+          "member": "inputs.json",
+          "json_pointer": "/case66",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/inputs.json",
+          "sha256": "dca8cf2a84355ebbb881bc17232923c5fa0ee16f34c7d2a8a8c58da702e9b3b1"
+        },
+        "quadratic_dimension": 8,
+        "Rosenbrock_dimension": 2,
+        "Rosenbrock_starts": 3,
+        "limited_memory_pairs": 3,
+        "fixed_fits": 16
+      },
+      "sources": [
+        "https://users.iems.northwestern.edu/~nocedal/PDFfiles/limited-memory.pdf",
+        "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.optimize.line_search.html",
+        "https://docs.scipy.org/doc/scipy-1.14.1/reference/optimize.minimize-bfgs.html",
+        "https://docs.scipy.org/doc/scipy-1.14.1/reference/optimize.minimize-lbfgsb.html",
+        "https://academic.oup.com/comjnl/article-abstract/13/3/317/345520?login=false"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/bfgs-lbfgs-controls/?lang=ja#bfgs-lbfgs-controls-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/bfgs-lbfgs-controls/?lang=en#bfgs-lbfgs-controls-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-inverse-optimization/#bfgs-lbfgs-controls",
+        "en": "/numerical-methods-atlas/en/read/validation-inverse-optimization/#bfgs-lbfgs-controls"
+      },
+      "reference_scope": "Known analytic minima and gradients are references. L-BFGS actions are checked by a separate dense oracle initialized with the current gamma0 I and only the currently retained last three pairs in chronological order, distinct from all-history BFGS. The selected original weak-Wolfe discussion differs from the strong-Wolfe policy here; Fletcher 1970 full text remains unread. No exact n-step termination or general global-convergence guarantee.",
+      "citations": [
+        {
+          "role": "selected-original-equations-only",
+          "title": "On the limited memory BFGS method for large scale optimization",
+          "url": "https://users.iems.northwestern.edu/~nocedal/PDFfiles/limited-memory.pdf",
+          "note": "The source owner records this selected reading: Author-hosted PDF selected physical pages 3–5 (printed 2–4), rendered locally and visually inspected: limited storage, deletion of oldest correction, Eq. (2.1) inverse-BFGS, Algorithm 2.1 and Eq. (2.6) retained-update construction. No full-paper/proof/experiment or Section 4 scaling review. The selected original uses weak Wolfe; this study deliberately uses a separately specified strong-Wolfe line search. Current-gamma least-squares scaling is independently derived here, not attributed to unread text.",
+          "review_level": "selected-primary-scope-recorded-by-source-owner",
+          "full_text_read_by_integration_author": false,
+          "accessed_on": "2026-11-24",
+          "year": 1989,
+          "year_role": "bibliographic metadata retained from prior author-source record"
+        },
+        {
+          "role": "selected-official-strong-Wolfe-scope",
+          "title": "SciPy 1.14.1 line_search documentation",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.optimize.line_search.html",
+          "note": "The source owner records this selected reading: Signature, c1/c2, descent-direction requirement, returned failure None and evaluation counts. Cited textbook pages were not read. Publication year is not established; display n.d. Access date is separate.",
+          "review_level": "selected-primary-scope-recorded-by-source-owner",
+          "full_text_read_by_integration_author": false,
+          "accessed_on": "2026-11-24",
+          "version": "1.14.1",
+          "publication_year": null
+        },
+        {
+          "role": "maintained-software-companion",
+          "title": "SciPy 1.14.1 BFGS documentation",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/optimize.minimize-bfgs.html",
+          "note": "The source owner records this selected reading: Options gtol, norm, c1/c2, hess_inv0 and precision-loss notes; no claim of reading a BFGS original paper. Publication year is not established; display n.d. Access date is separate.",
+          "review_level": "selected-primary-scope-recorded-by-source-owner",
+          "full_text_read_by_integration_author": false,
+          "accessed_on": "2026-11-24",
+          "version": "1.14.1",
+          "publication_year": null
+        },
+        {
+          "role": "unbounded-software-companion",
+          "title": "SciPy 1.14.1 L-BFGS-B documentation",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/optimize.minimize-lbfgsb.html",
+          "note": "The source owner records this selected reading: Options maxcor, ftol, gtol/projected-gradient convention, maxfun, maxiter and maxls. Publication year is not established; display n.d. Access date is separate.",
+          "review_level": "selected-primary-scope-recorded-by-source-owner",
+          "full_text_read_by_integration_author": false,
+          "accessed_on": "2026-11-24",
+          "version": "1.14.1",
+          "publication_year": null
+        },
+        {
+          "role": "bibliography-only-original-unread",
+          "title": "A new approach to variable metric algorithms",
+          "url": "https://academic.oup.com/comjnl/article-abstract/13/3/317/345520?login=false",
+          "note": "Bibliographic background only; the original article full text remains unread. Prior saved publisher metadata/abstract-search record only. Original article full text remains unavailable/unread; no new request was made and no derivation is claimed to have been checked against it.",
+          "review_level": "selected-primary-scope-recorded-by-source-owner",
+          "full_text_read_by_integration_author": false,
+          "accessed_on": null,
+          "year": 1970
+        }
+      ],
+      "domain_kind": "finite-dimensional-algebra"
+    },
+    {
+      "id": "bratu-noise-regularization",
+      "model": "bratu",
+      "kind": "numerical-reference",
+      "title": "Bratu references for finite gamma paths and local linear noise propagation",
+      "assumptions": "Use 31 interior nodes, five observations, W=I/5 and Sigma=sigma² I. Reuse existing 31/1023-grid observations. The noise standard deviations sigma are 1e-4 and 1e-3; two seeds provide independent base noises, while scaled/grid-context variants are paired. Gamma has five fixed values.",
+      "formula": "G=K^TWK+\\gamma I,\\quad C_\\gamma=G^{-1}K^TW\\Sigma WKG^{-T},\\quad b_\\gamma=-\\gamma G^{-1}(\\theta_*-\\theta_0).",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "inferred coefficients",
+        "residual/penalty path",
+        "selected gamma status",
+        "fixed-gamma plug-in covariance"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "case_id": "bratu-noise-regularization",
+        "inputs_sha256": "dca8cf2a84355ebbb881bc17232923c5fa0ee16f34c7d2a8a8c58da702e9b3b1",
+        "public_inputs": {
+          "registry_group": "inverse-optimization",
+          "edition": "2026-11-24",
+          "member": "inputs.json",
+          "json_pointer": "/case67",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/inputs.json",
+          "sha256": "dca8cf2a84355ebbb881bc17232923c5fa0ee16f34c7d2a8a8c58da702e9b3b1"
+        },
+        "interior_nodes": 31,
+        "observations": 5,
+        "sigmas": [
+          0.0001,
+          0.001
+        ],
+        "base_seeds": [
+          67001,
+          67002
+        ],
+        "gamma_values": [
+          0,
+          1e-05,
+          0.0001,
+          0.001,
+          0.01
+        ],
+        "fixed_fits": 42
+      },
+      "sources": [
+        "https://www2.compute.dtu.dk/~pcha/Regutools/RTv4manual.pdf",
+        "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.optimize.curve_fit.html",
+        "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.optimize.least_squares.html"
+      ],
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/bratu-noise-regularization/?lang=ja#bratu-noise-regularization-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/bratu-noise-regularization/?lang=en#bratu-noise-regularization-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-inverse-optimization/#bratu-noise-regularization",
+        "en": "/numerical-methods-atlas/en/read/validation-inverse-optimization/#bratu-noise-regularization"
+      },
+      "reference_scope": "Independent small 2-by-2 linear-estimator formulas check fixed-gamma noise propagation and bias in a local Gauss–Newton linear model; nonlinear fits have separate Thomas/KKT audits. Evaluation at a selected gamma is not selection-conditional covariance, covariance including nonlinear residual Hessians, a posterior or a coverage guarantee. Selection requires all five fits qualified, never a successful subset. Ellipses are diagnostics in coefficient space.",
+      "citations": [
+        {
+          "role": "selected-official-manual-finite-list-context",
+          "title": "Regularization Tools, Version 4.1 for Matlab 7.3",
+          "url": "https://www2.compute.dtu.dk/~pcha/Regutools/RTv4manual.pdf",
+          "note": "The source owner records this selected reading: Official author manual: selected text around Section 2.5 and Section 2.9; physical pages 20 and 37 (printed 18 and 35) rendered locally and visually inspected. L-curve residual/solution norm tradeoff and discrepancy equation (2.61) were read. Four-point chord curvature here is a finite-list diagnostic, not the manual spline/corner algorithm, a theorem of optimal regularization or coverage. Original software (1994) and later article (2007) are separate bibliographic works and were not read.",
+          "review_level": "selected-primary-scope-recorded-by-source-owner",
+          "full_text_read_by_integration_author": false,
+          "accessed_on": "2026-11-24",
+          "version": "4.1",
+          "year": 2008,
+          "year_role": "manual version date"
+        },
+        {
+          "role": "selected-official-local-covariance-limitations",
+          "title": "SciPy 1.14.1 curve_fit documentation",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.optimize.curve_fit.html",
+          "note": "The source owner records this selected reading: sigma/absolute_sigma and covariance interpretation sections. The penalized sandwich covariance in this study is derived independently; it is not presented as curve_fit output. Publication year is not established; display n.d. Access date is separate.",
+          "review_level": "selected-primary-scope-recorded-by-source-owner",
+          "full_text_read_by_integration_author": false,
+          "accessed_on": "2026-11-24",
+          "version": "1.14.1",
+          "publication_year": null
+        },
+        {
+          "role": "selected-official-software-scope",
+          "title": "SciPy 1.14.1 least_squares documentation",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.optimize.least_squares.html",
+          "note": "The source owner records this selected reading: Parameters, bounds, callable Jacobian, method-specific ftol/xtol/gtol and x_scale, max_nfev, returned status and Notes on LM and TRF. LM does not handle bounds and requires at least as many residual rows as variables; TRF supports bounds. MINPACK/STIR original papers were not read in this preparation. Publication year is not established; display n.d. Access date is separate.",
+          "review_level": "selected-primary-scope-recorded-by-source-owner",
+          "full_text_read_by_integration_author": false,
+          "accessed_on": "2026-11-24",
+          "version": "1.14.1",
+          "publication_year": null
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,44 @@
+{
+  "expected_case_gate_counts": {
+    "reverse-vjp-duality": 46,
+    "hessian-vector-products": 27,
+    "kink-branch-derivatives": 144
+  },
+  "total": 217,
+  "construction": {
+    "reverse": [
+      "5records×8: primal, independentJVP, independentVJP, fullforwardJacobian, fullreverseJacobian, duality, reset/ownership, measuredsweepcounts =40",
+      "rectangular metric-adjoint product and pairing =2",
+      "four predeclared mutant controls rejected =4"
+    ],
+    "HVP": [
+      "4records×4: finite saved values, independent product/curvature, primary path/ownership, explicit work counters =16",
+      "3smooth objectives×2: independent gradient and bilinear symmetry =6",
+      "implicit scalar: state, first-tangent, second-tangent residuals, fixed-state partial and total-curvature oracle =5"
+    ],
+    "kinks": [
+      "65records×2: exact status/trace category and valid finite-oracle values =130",
+      "5stopK and5frozen-trace AD slopes =10",
+      "3positive h jump-quotient identities =3",
+      "inactive invalid-log call count zero =1"
+    ]
+  },
+  "thresholds": {
+    "VJP_JVP_scaled_L2": 3e-11,
+    "duality_scaled_abs": 3e-11,
+    "HVP_scaled_L2": 5e-11,
+    "dyadic_quadratic_abs": 1e-13,
+    "bilinear_symmetry_scaled_abs": 1e-11,
+    "implicit_F_R1_R2_abs": 1e-12,
+    "implicit_partial_curvature_abs": 1e-12,
+    "implicit_total_curvature_abs": 1e-12,
+    "piecewise_smooth_abs": 1e-10,
+    "Decimal60_vs90_reference_abs": 1e-50
+  },
+  "scales": {
+    "product": "max(1,||oracle||2)",
+    "duality": "max(1,||w||||Jv||,||v||||J^T w||)",
+    "symmetry": "max(1,||w||||Hv||,||v||||Hw||)"
+  },
+  "categorical": "At strict nondifferentiability use explicit status/validity and JSON null or empty CSV cell for unavailable derivative, not fabricated numeric zero or NaN/Inf. Finite one-sided directional outputs and frozen-trace slopes have separate fields."
+}

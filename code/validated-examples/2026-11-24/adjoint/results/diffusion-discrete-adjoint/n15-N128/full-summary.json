@@ -1,0 +1,265 @@
+{
+  "objective": 0.05027939037960034,
+  "gradient": [
+    -0.22616041556093783,
+    0.024253330334786497
+  ],
+  "primal_solves": 128,
+  "transpose_solves": 128,
+  "replay_solves": 0,
+  "ledger": {
+    "peak_state_elements": 2010,
+    "peak_total_bytes": 17712,
+    "ownership": [
+      {
+        "state_elements": 2010,
+        "total_bytes": 17712,
+        "arrays": [
+          {
+            "name": "states",
+            "category": "state",
+            "shape": [
+              129,
+              15
+            ],
+            "owner_shape": [
+              129,
+              15
+            ],
+            "owner_bytes": 15480,
+            "alias_owner": "states"
+          },
+          {
+            "name": "rhs",
+            "category": "state",
+            "shape": [
+              15
+            ],
+            "owner_shape": [
+              15
+            ],
+            "owner_bytes": 120,
+            "alias_owner": "rhs"
+          },
+          {
+            "name": "Thomas_scratch",
+            "category": "state",
+            "shape": [
+              15
+            ],
+            "owner_shape": [
+              15
+            ],
+            "owner_bytes": 120,
+            "alias_owner": "Thomas_scratch"
+          },
+          {
+            "name": "p",
+            "category": "state",
+            "shape": [
+              15
+            ],
+            "owner_shape": [
+              15
+            ],
+            "owner_bytes": 120,
+            "alias_owner": "p"
+          },
+          {
+            "name": "z",
+            "category": "state",
+            "shape": [
+              15
+            ],
+            "owner_shape": [
+              15
+            ],
+            "owner_bytes": 120,
+            "alias_owner": "z"
+          },
+          {
+            "name": "Au",
+            "category": "state",
+            "shape": [
+              15
+            ],
+            "owner_shape": [
+              15
+            ],
+            "owner_bytes": 120,
+            "alias_owner": "Au"
+          },
+          {
+            "name": "x",
+            "category": "factor-model-work",
+            "shape": [
+              15
+            ],
+            "owner_shape": [
+              15
+            ],
+            "owner_bytes": 120,
+            "alias_owner": "x"
+          },
+          {
+            "name": "u0",
+            "category": "factor-model-work",
+            "shape": [
+              15
+            ],
+            "owner_shape": [
+              15
+            ],
+            "owner_bytes": 120,
+            "alias_owner": "u0"
+          },
+          {
+            "name": "b",
+            "category": "factor-model-work",
+            "shape": [
+              15
+            ],
+            "owner_shape": [
+              15
+            ],
+            "owner_bytes": 120,
+            "alias_owner": "b"
+          },
+          {
+            "name": "target",
+            "category": "factor-model-work",
+            "shape": [
+              15
+            ],
+            "owner_shape": [
+              15
+            ],
+            "owner_bytes": 120,
+            "alias_owner": "target"
+          },
+          {
+            "name": "B.lower",
+            "category": "factor-model-work",
+            "shape": [
+              14
+            ],
+            "owner_shape": [
+              14
+            ],
+            "owner_bytes": 112,
+            "alias_owner": "B.lower"
+          },
+          {
+            "name": "B.diagonal",
+            "category": "factor-model-work",
+            "shape": [
+              15
+            ],
+            "owner_shape": [
+              15
+            ],
+            "owner_bytes": 120,
+            "alias_owner": "B.diagonal"
+          },
+          {
+            "name": "B.upper",
+            "category": "factor-model-work",
+            "shape": [
+              14
+            ],
+            "owner_shape": [
+              14
+            ],
+            "owner_bytes": 112,
+            "alias_owner": "B.upper"
+          },
+          {
+            "name": "B.pivot",
+            "category": "factor-model-work",
+            "shape": [
+              15
+            ],
+            "owner_shape": [
+              15
+            ],
+            "owner_bytes": 120,
+            "alias_owner": "B.pivot"
+          },
+          {
+            "name": "B.cprime",
+            "category": "factor-model-work",
+            "shape": [
+              14
+            ],
+            "owner_shape": [
+              14
+            ],
+            "owner_bytes": 112,
+            "alias_owner": "B.cprime"
+          },
+          {
+            "name": "BT.lower",
+            "category": "factor-model-work",
+            "shape": [
+              14
+            ],
+            "owner_shape": [
+              14
+            ],
+            "owner_bytes": 112,
+            "alias_owner": "BT.lower"
+          },
+          {
+            "name": "BT.diagonal",
+            "category": "factor-model-work",
+            "shape": [
+              15
+            ],
+            "owner_shape": [
+              15
+            ],
+            "owner_bytes": 120,
+            "alias_owner": "BT.diagonal"
+          },
+          {
+            "name": "BT.upper",
+            "category": "factor-model-work",
+            "shape": [
+              14
+            ],
+            "owner_shape": [
+              14
+            ],
+            "owner_bytes": 112,
+            "alias_owner": "BT.upper"
+          },
+          {
+            "name": "BT.pivot",
+            "category": "factor-model-work",
+            "shape": [
+              15
+            ],
+            "owner_shape": [
+              15
+            ],
+            "owner_bytes": 120,
+            "alias_owner": "BT.pivot"
+          },
+          {
+            "name": "BT.cprime",
+            "category": "factor-model-work",
+            "shape": [
+              14
+            ],
+            "owner_shape": [
+              14
+            ],
+            "owner_bytes": 112,
+            "alias_owner": "BT.cprime"
+          }
+        ]
+      }
+    ],
+    "scope": "Explicit unique owned numeric buffers; not total process RSS."
+  }
+}

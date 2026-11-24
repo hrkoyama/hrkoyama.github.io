@@ -413,3 +413,21 @@ The English source is bound to the Japanese source SHA. `scripts/foundations_en_
 `.github/workflows/foundations-course-english-authoring.yml` generates the English PDF on an isolated GitHub candidate, using ReportLab 4.4.9, svglib 1.6.0, pypdf 6.21.4 and embedded DejaVu fonts. It extracts every shared manuscript fragment, renders every page with Poppler, and retains source-bound PDF/PNG/contact-sheet hashes. Review the complete rendered output before publication. Ordinary index refresh only validates the frozen PDF/assets and generates HTML; it never builds a PDF or reruns science. English book assets are versioned separately, and Japanese frozen edition bytes are preserved. Revisions to a published English PDF require a new immutable edition, not a silent replacement.
 
 Use the existing explicit GitHub candidate-build for index generation; retrieve only the verified compressed patch, source-bound PDF and selected QA evidence. The course browser scenario checks all 19 English chapters, loaded images, horizontal overflow, answer toggles, and chapter-preserving language links in the four existing locale/viewport profiles. Run all normal candidate and same-SHA main checks, then verify public English pages, shared figures, PDF and language navigation. Existing public-ZIP Linux workflows still run; do not dispatch duplicates. Preserve failures and record actual receipts in the private queue, with no metadata-only second publication.
+
+
+## 候補48〜57の実公開確認（表示更新は次回集約）
+
+最終 f08147fa21f89bf5a1d13d8ae34fcd35090a1c79 をHR mainで公開。追加5群9科学例・108pytest/511判定、公開ZIP Linux全52群106例1352pytestと全52JUnit、実サイトNode 603件・ブラウザ16件、匿名HTTP 1823件、実HR日英390/1280の12表示と実際の代表画面目視が合格。55は選択原典の文献読解であり、Arnoldi原本画像・式記号の未確認とAMS403を保持し、数値例を追加しない。実験・参照・失敗履歴は各配布に保持する。
+
+published表示・この公開記録・対応索引だけの更新は日次集約方針により次回の承認済み集約へ保留。科学公開の必須作業に未完了はなく、残る候補53件とは区別する。詳細は /numerical-methods-atlas/validation/verification/2026-11-24-batch48-57-public.json 。
+
+
+## 候補58〜67のローカル科学検証と登録（2026-11-24）
+
+非線形解法の大域化、逆モード/VJP・Hessian-vector積・非滑らか点、時間離散随伴・離散fold近傍感度・分布係数、GN/LM・BFGS/L-BFGS・雑音/正則化の4補助群10候補を登録。固定入力の主計算と独立展開ZIPの再実行で、104pytest・883固定判定が合格し、主図とギャラリー用の20PNG（各SVG/PDFも配布）を確認した。これはローカルの正規配布確認時点の記録で、公開後の同一SHA CI/Linux/HTTP/UIの完了宣言ではない。各版のverification.jsonが実行環境・合否・ハッシュを記録する。
+
+Bratuの状態補正では、通常精度で指定残差に届かなかった2主試行と固定線形比較の未達を保持した。新しい状態専用法は補正をhi+loで持ち、積和の内部拡張精度を使って元の目標を満たす。物理状態の保存はfloat64のままとし、通常の感度/随伴GMRES、独立参照、入力、公差・反復上限・受入条件は保持。射影した通常精度ベクトルの未達を拡張候補の成功へ読み替えない。Python 3.12で確認し、詳しい数値範囲と過去入力の説明文の上書き規約は、[随伴配布のREADME](code/validated-examples/2026-11-24/adjoint/README.md)とpre-run-contract.jsonに明示した。
+
+新しい有限次元モデル2項目は物理空間の次元を割り当てず、既存モデル・手法の科学記述と配布版を保持する。専用dogleg例の範囲を明示し、出典は実際の選択閲読範囲と未読原典を区別する。雑音の標準偏差sigmaと共分散Sigma、直接参照の有限残差、選択後の局所線形共分散の限界も区別する。
+
+索引・派生ページ生成と全体検査は、既存の明示GitHub candidate-buildへ集約する。今回の追加10候補の反映を同日集約の例外理由として私用キューに残す。検索の圧縮表現を改善するが、内容・AI JSON/Markdown・旧形式の読取り・検索/性能予算は保持する。公開後のpublished表示と確認記録だけの更新は、実必須確認後に私用提案へ保存し、次の承認済み集約へ送る。

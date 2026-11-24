@@ -1,0 +1,52 @@
+{
+  "u": 2.0,
+  "s": 0.25,
+  "t": -0.03125,
+  "F": 0.0,
+  "R1": 0.0,
+  "R2": 0.0,
+  "total_curvature": 0.23125,
+  "fixed_state_partial": 0.2,
+  "iterations": [
+    {
+      "iteration": 0,
+      "u": 3.0,
+      "F": 5.0
+    },
+    {
+      "iteration": 1,
+      "u": 2.1666666666666665,
+      "F": 0.6944444444444438
+    },
+    {
+      "iteration": 2,
+      "u": 2.0064102564102564,
+      "F": 0.02568211702827039
+    },
+    {
+      "iteration": 3,
+      "u": 2.0000102400262145,
+      "F": 4.0960209716445206e-05
+    },
+    {
+      "iteration": 4,
+      "u": 2.000000000026214,
+      "F": 1.0485656787295738e-10
+    },
+    {
+      "iteration": 5,
+      "u": 2.0,
+      "F": 0.0
+    }
+  ],
+  "work": {
+    "nodes": 6,
+    "primal_rules": 3,
+    "tangent_rules": 3,
+    "pullbacks": 1,
+    "backward_rules": 3,
+    "second_rules": 3,
+    "peak_node_array_bytes": 192,
+    "max_node_rank": 0
+  }
+}

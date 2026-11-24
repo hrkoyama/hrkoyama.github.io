@@ -1,0 +1,285 @@
+[
+  {
+    "method_ids": [
+      "optimization"
+    ],
+    "domains": [
+      "optimization",
+      "inverse-problems"
+    ],
+    "validation_count": 32,
+    "review_level": {
+      "ja": "一次資料の選択箇所、独立Thomas参照48判定、固定入力の科学判定。実際の成否はresult.jsonとverification.jsonに記録します。",
+      "en": "Selected primary passages, 48 qualified independent-reference decisions and fixed-input scientific gates. Actual outcomes are recorded in result.json and verification.json."
+    },
+    "id": "bratu-gn-lm-bounds",
+    "title": {
+      "ja": "GN・LMと有界最小二乗のBratu比較",
+      "en": "Bratu comparisons of GN, LM and bounded least squares"
+    },
+    "summary": {
+      "ja": "同じ観測からの17固定fitで、変数尺度・重み・境界と物理座標の停止条件を分けます。",
+      "en": "Seventeen fixed fits separate parameter scaling, weights, bounds and physical-coordinate stopping conditions."
+    },
+    "assumptions": {
+      "ja": "無次元1D Bratu、31内点、u(0)=u(1)=0。既存の2係数モデルと保存済み観測を再利用。正則化γとLM減衰μを別に扱います。",
+      "en": "A dimensionless one-dimensional Bratu problem with 31 interior nodes and zero Dirichlet data. The existing two-coefficient extension and saved observations are reused; objective regularization gamma and LM damping mu are distinct."
+    },
+    "algorithm": {
+      "ja": "独自SVD最小二乗GN/LM、元の投影勾配、SciPy TRF、非有界SciPy LM。lower/upperベクトルを元PGの係数別区間へ明示変換。",
+      "en": "Original SVD least-squares GN/LM, the retained projected-gradient solver, SciPy TRF and explicitly unbounded SciPy LM. A canonical lower/upper box is explicitly adapted to the legacy per-parameter intervals."
+    },
+    "validation": {
+      "ja": "独立Thomas状態・感度と4局所参照fit。最終状態残差、物理勾配または投影勾配、目的値差、データのみのSVD、活性境界を検査。非有界法の共通参照は内点かつ非有界停留が条件です。",
+      "en": "Independent Thomas states/sensitivities and four local reference fits. Gate final state residuals, physical gradient or projected gradient, objective gaps, data-only SVD and active bounds. Common references for unbounded methods must be strictly interior and unbounded-stationary."
+    },
+    "limits": {
+      "ja": "小さい滑らかな分枝の局所比較。SciPy最適化ライブラリは参照側でも共有し、大域最小・一意性を証明しません。LMに箱制約があるとは説明しません。",
+      "en": "A local comparison on a small smooth branch. The optimizer library is shared by the reference and a companion; no global minimum or uniqueness proof is claimed. LM is not presented as a box-constrained method."
+    },
+    "formulas": [
+      "F(u,\\theta)=A_hu-(a+b(2x-1))e^u=0",
+      "\\mathcal L=\\tfrac12\\|H u-d\\|_W^2+\\tfrac\\gamma2\\|\\theta-\\theta_0\\|^2",
+      "K=-H F_u^{-1}F_\\theta,\\quad\\theta=\\theta_0+D z"
+    ],
+    "source_files": [
+      "least_squares.py",
+      "model.py",
+      "run.py",
+      "references/thomas.py",
+      "references/oracles.py"
+    ],
+    "code_files": [
+      "least_squares.py",
+      "model.py",
+      "run.py",
+      "references/thomas.py",
+      "references/oracles.py"
+    ],
+    "references": [
+      {
+        "id": "scipy-least-squares-1141",
+        "title": "SciPy 1.14.1 least_squares documentation",
+        "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.optimize.least_squares.html",
+        "review_level": "selected-primary-scope",
+        "review_scope": "Parameters, bounds, callable Jacobian, method-specific ftol/xtol/gtol and x_scale, max_nfev, returned status and Notes on LM and TRF. LM does not handle bounds and requires at least as many residual rows as variables; TRF supports bounds. MINPACK/STIR original papers were not read in this preparation.",
+        "version": "1.14.1",
+        "accessed_on": "2026-11-24"
+      }
+    ],
+    "gallery_figure": "bratu-gn-lm-bounds-preview.png",
+    "additional_figures": [
+      {
+        "file": "bratu-gn-lm-bounds-preview.png",
+        "caption": {
+          "ja": "保存した2変数の反復点・残差評価点です。SciPy曲線は受理反復だけでなく残差評価を含み、これは2D物理空間の流れではありません。",
+          "en": "Saved two-parameter iterates and residual evaluations. SciPy paths include residual evaluations, not only accepted iterates; these are parameter coordinates, not a two-dimensional physical flow."
+        }
+      }
+    ]
+  },
+  {
+    "method_ids": [
+      "optimization"
+    ],
+    "domains": [
+      "optimization",
+      "inverse-problems"
+    ],
+    "validation_count": 32,
+    "review_level": {
+      "ja": "一次資料の選択箇所、独立Thomas参照48判定、固定入力の科学判定。実際の成否はresult.jsonとverification.jsonに記録します。",
+      "en": "Selected primary passages, 48 qualified independent-reference decisions and fixed-input scientific gates. Actual outcomes are recorded in result.json and verification.json."
+    },
+    "id": "bfgs-lbfgs-controls",
+    "title": {
+      "ja": "既知最小点でのBFGSと3組L-BFGS",
+      "en": "BFGS and three-pair L-BFGS at known minima"
+    },
+    "summary": {
+      "ja": "8次元SPD二次関数と3初期値のRosenbrockを用い、曲率・strong Wolfe・現在の有限記憶作用を検査します。",
+      "en": "An eight-dimensional SPD quadratic and three Rosenbrock starts test curvature, strong Wolfe conditions and the current finite-memory action."
+    },
+    "assumptions": {
+      "ja": "無次元の非有界代数的最適化。既知の解析最小点を持ち、物理PDEの境界条件はありません。",
+      "en": "Dimensionless unconstrained algebraic optimization with known analytic minima; there is no physical PDE boundary condition."
+    },
+    "algorithm": {
+      "ja": "独自逆BFGSとベクトルだけの2-loop L-BFGS（3組）。独立な小稠密oracleは現在γ₀Iから現在保持する組だけを古い順に再生。SciPy BFGS/L-BFGS-B（bounds=None）を別実装として比較。",
+      "en": "Original inverse-BFGS and vector-only two-loop L-BFGS with three pairs. A separate small dense oracle replays only currently retained pairs from the current gamma0 I. SciPy BFGS and unbounded L-BFGS-B are distinct software companions."
+    },
+    "validation": {
+      "ja": "16固定fit、解析的な最小点・勾配、各受理stepのstrong Wolfeと解像された正曲率、BFGSの対称SPD、L-BFGS作用差を判定。保持組とoracle稠密行列の記憶を分離。",
+      "en": "Sixteen fixed fits check analytic minima/gradients, strong Wolfe and resolved positive curvature at every accepted step, symmetric SPD BFGS matrices and L-BFGS action defects. Retained-pair and dense-oracle storage are reported separately."
+    },
+    "limits": {
+      "ja": "厳密線形探索ではないためn反復終了や一般的Rosenbrock大域収束を主張しません。原著選択箇所は弱Wolfeであり、本例のstrong Wolfeと区別。Fletcher1970本文は未読です。",
+      "en": "No exact n-step termination or general global convergence on Rosenbrock is claimed. The selected original text uses weak Wolfe, distinct from this study’s strong Wolfe policy. Fletcher’s 1970 original article remains unread."
+    },
+    "formulas": [
+      "H_+=(I-\\rho s y^T)H(I-\\rho y s^T)+\\rho s s^T",
+      "\\rho=(y^Ts)^{-1},\\quad\\gamma_0=(s^Ty)/(y^Ty)",
+      "f(x,y)=100(y-x^2)^2+(1-x)^2"
+    ],
+    "source_files": [
+      "quasi_newton.py",
+      "run.py"
+    ],
+    "code_files": [
+      "quasi_newton.py",
+      "run.py"
+    ],
+    "references": [
+      {
+        "id": "liu-nocedal-1989",
+        "title": "On the limited memory BFGS method for large scale optimization",
+        "url": "https://users.iems.northwestern.edu/~nocedal/PDFfiles/limited-memory.pdf",
+        "review_level": "selected-primary-scope",
+        "review_scope": "Author-hosted PDF selected physical pages 3–5 (printed 2–4), rendered locally and visually inspected: limited storage, deletion of oldest correction, Eq. (2.1) inverse-BFGS, Algorithm 2.1 and Eq. (2.6) retained-update construction. No full-paper/proof/experiment or Section 4 scaling review. The selected original uses weak Wolfe; this study deliberately uses a separately specified strong-Wolfe line search. Current-gamma least-squares scaling is independently derived here, not attributed to unread text.",
+        "year": 1989,
+        "year_role": "bibliographic metadata retained from prior author-source record",
+        "accessed_on": "2026-11-24"
+      },
+      {
+        "id": "scipy-line-search-1141",
+        "title": "SciPy 1.14.1 line_search documentation",
+        "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.optimize.line_search.html",
+        "review_level": "selected-primary-scope",
+        "review_scope": "Signature, c1/c2, descent-direction requirement, returned failure None and evaluation counts. Cited textbook pages were not read.",
+        "version": "1.14.1",
+        "accessed_on": "2026-11-24"
+      },
+      {
+        "id": "scipy-bfgs-1141",
+        "title": "SciPy 1.14.1 BFGS documentation",
+        "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/optimize.minimize-bfgs.html",
+        "review_level": "selected-primary-scope",
+        "review_scope": "Options gtol, norm, c1/c2, hess_inv0 and precision-loss notes; no claim of reading a BFGS original paper.",
+        "version": "1.14.1",
+        "accessed_on": "2026-11-24"
+      },
+      {
+        "id": "scipy-lbfgsb-1141",
+        "title": "SciPy 1.14.1 L-BFGS-B documentation",
+        "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/optimize.minimize-lbfgsb.html",
+        "review_level": "selected-primary-scope",
+        "review_scope": "Options maxcor, ftol, gtol/projected-gradient convention, maxfun, maxiter and maxls.",
+        "version": "1.14.1",
+        "accessed_on": "2026-11-24"
+      },
+      {
+        "id": "fletcher-1970",
+        "title": "A new approach to variable metric algorithms",
+        "url": "https://academic.oup.com/comjnl/article-abstract/13/3/317/345520?login=false",
+        "review_level": "bibliography-only-original-unread",
+        "review_scope": "Prior saved publisher metadata/abstract-search record only. Original article full text remains unavailable/unread; no new request was made and no derivation is claimed to have been checked against it.",
+        "year": 1970
+      }
+    ],
+    "gallery_figure": "bfgs-lbfgs-controls-preview.png",
+    "additional_figures": [
+      {
+        "file": "bfgs-lbfgs-controls-preview.png",
+        "caption": {
+          "ja": "実際のRosenbrock反復点と解析目的関数の等高線。3つの固定初期値・4手法を示し、全問題での収束保証ではありません。",
+          "en": "Actual Rosenbrock iterates on analytic objective contours for three fixed starts and four methods; this is not a general convergence guarantee."
+        }
+      }
+    ]
+  },
+  {
+    "method_ids": [
+      "optimization"
+    ],
+    "domains": [
+      "optimization",
+      "inverse-problems"
+    ],
+    "validation_count": 32,
+    "review_level": {
+      "ja": "一次資料の選択箇所、独立Thomas参照48判定、固定入力の科学判定。実際の成否はresult.jsonとverification.jsonに記録します。",
+      "en": "Selected primary passages, 48 qualified independent-reference decisions and fixed-input scientific gates. Actual outcomes are recorded in result.json and verification.json."
+    },
+    "id": "bratu-noise-regularization",
+    "title": {
+      "ja": "雑音・モデル差と有限γ経路の正則化",
+      "en": "Noise, model discrepancy and finite gamma paths"
+    },
+    "summary": {
+      "ja": "2独立ノイズベクトルを尺度・データ文脈で共有し、42固定fitから有限γ選択と固定γの局所共分散を分けます。",
+      "en": "Two independent noise vectors are reused across scales and data contexts. Forty-two fixed fits separate finite-list gamma selection from fixed-gamma local covariance."
+    },
+    "assumptions": {
+      "ja": "Bratu推定は31内点、5観測、W=I/5、Σ=σ²I。既存1023格子のデータは保存値を使い再生成しません。σ=1e-4/1e-3、seed67001/67002、γの固定5点です。",
+      "en": "Bratu inference uses 31 interior nodes, five observations, W=I/5 and Sigma=sigma² I. Existing 1023-grid observations are reused without regeneration. Fixed sigma values are 1e-4/1e-3, seeds are 67001/67002 and the gamma list has five entries."
+    },
+    "algorithm": {
+      "ja": "全γのfitを資格した完全経路だけから、実現雑音ノルムの1.05倍を満たす最大γを選択。不完全経路と完全だが候補なしを分離。4点L-curveは記述診断。",
+      "en": "Select the largest admissible gamma using 1.05 times the realized noise norm only after the full gamma path qualifies. Incomplete paths and complete paths with no admissible gamma are distinct. Four-point L-curves are descriptive diagnostics."
+    },
+    "validation": {
+      "ja": "42 fitの最終残差・物理KKT・実行完了、選択規則、明示的2×2代数による固定線形モデルの共分散・偏り・モデル差応答、対称PSDを検査。",
+      "en": "Gate final residuals, physical KKT conditions and completion for all 42 fits, the selection rule, and covariance/bias/model-shift response against explicit scalar 2x2 algebra, including symmetry and PSD."
+    },
+    "limits": {
+      "ja": "楕円は選択γを固定した局所Gauss–Newton線形モデルのplug-inです。非線形残差の二階微分、γ選択のランダム性、選択事象で条件づけた共分散、事後分布、被覆率を扱いません。全γ連続経路・実測データも未検証。",
+      "en": "Ellipses are plug-in noise propagation for a local Gauss–Newton linear model with the selected gamma treated as fixed. They omit nonlinear residual Hessians and selection randomness and are not selection-conditional covariance, a posterior or a coverage guarantee. Continuous gamma paths and real data remain unverified."
+    },
+    "formulas": [
+      "G=K^TWK+\\gamma I",
+      "C_\\gamma=G^{-1}K^TW\\Sigma WKG^{-T}",
+      "\\operatorname{bias}_\\gamma=-\\gamma G^{-1}(\\theta_* -\\theta_0)"
+    ],
+    "source_files": [
+      "regularization.py",
+      "least_squares.py",
+      "run.py"
+    ],
+    "code_files": [
+      "regularization.py",
+      "least_squares.py",
+      "run.py"
+    ],
+    "references": [
+      {
+        "id": "hansen-rt41",
+        "title": "Regularization Tools, Version 4.1 for Matlab 7.3",
+        "url": "https://www2.compute.dtu.dk/~pcha/Regutools/RTv4manual.pdf",
+        "review_level": "selected-primary-scope",
+        "review_scope": "Official author manual: selected text around Section 2.5 and Section 2.9; physical pages 20 and 37 (printed 18 and 35) rendered locally and visually inspected. L-curve residual/solution norm tradeoff and discrepancy equation (2.61) were read. Four-point chord curvature here is a finite-list diagnostic, not the manual spline/corner algorithm, a theorem of optimal regularization or coverage. Original software (1994) and later article (2007) are separate bibliographic works and were not read.",
+        "year": 2008,
+        "year_role": "manual version date",
+        "version": "4.1",
+        "accessed_on": "2026-11-24"
+      },
+      {
+        "id": "scipy-curve-fit-1141",
+        "title": "SciPy 1.14.1 curve_fit documentation",
+        "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.optimize.curve_fit.html",
+        "review_level": "selected-primary-scope",
+        "review_scope": "sigma/absolute_sigma and covariance interpretation sections. The penalized sandwich covariance in this study is derived independently; it is not presented as curve_fit output.",
+        "version": "1.14.1",
+        "accessed_on": "2026-11-24"
+      },
+      {
+        "id": "scipy-least-squares-1141",
+        "title": "SciPy 1.14.1 least_squares documentation",
+        "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.optimize.least_squares.html",
+        "review_level": "selected-primary-scope",
+        "review_scope": "Parameters, bounds, callable Jacobian, method-specific ftol/xtol/gtol and x_scale, max_nfev, returned status and Notes on LM and TRF. LM does not handle bounds and requires at least as many residual rows as variables; TRF supports bounds. MINPACK/STIR original papers were not read in this preparation.",
+        "version": "1.14.1",
+        "accessed_on": "2026-11-24"
+      }
+    ],
+    "gallery_figure": "bratu-noise-regularization-preview.png",
+    "additional_figures": [
+      {
+        "file": "bratu-noise-regularization-preview.png",
+        "caption": {
+          "ja": "保存した2変数推定値と固定γの局所1標準偏差楕円。楕円は選択事象で条件づけた区間でも、少数反復で保証した信頼領域でもありません。",
+          "en": "Saved two-parameter estimates and fixed-gamma local one-standard-deviation ellipses. These are neither selection-conditional intervals nor confidence regions with coverage established by this small ensemble."
+        }
+      }
+    ]
+  }
+]
