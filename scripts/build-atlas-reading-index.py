@@ -111,14 +111,18 @@ def build(root=ROOT):
         head += '<link rel="stylesheet" href="/styles/atlas-reading-index.css?v='+digest(root/'styles/atlas-reading-index.css')+'"><script type="module" src="'+BASE+'reading-index.mjs?v='+digest(atlas/'reading-index.mjs')+'"></script>'
         related = '<p class="reading-related">'+('適用条件・コード・検証例を手法名から調べる：' if ja else 'Look up a method’s conditions, code and checks: ')+'<a href="'+BASE+'methods/?lang='+language+'">'+('手法・コードの対応表' if ja else 'Methods and code reference')+'</a></p>'
         intro = '<nav class="reading-breadcrumb" aria-label="'+('アトラスの案内' if ja else 'Atlas navigation')+'"><a href="'+BASE+'?lang='+language+'">'+('アトラス' if ja else 'Atlas home')+'</a><span aria-hidden="true">/</span><a href="'+BASE+'explore/?lang='+language+'">'+('体系的に読む' if ja else 'Read systematically')+'</a></nav><header class="reading-heading"><h1>'+escape(title)+'</h1><p>'+escape(catalog['description'][language])+'</p>'+related+'</header>'
+        packages = catalog.get('learning_packages', [])
+        featured = ''.join('<section class="reading-group"><h2><a href="'+p['url']+'">'+escape(p['title'][language])+'</a></h2><p>'+escape(p['description'][language])+'</p></section>' for p in packages)
         tail = '<footer class="reading-footer"><a href="index.json">JSON</a><a href="index.md">Markdown</a><a href="'+BASE+'methods/?lang='+language+'">'+('手法・コードの対応表' if ja else 'Methods and code reference')+'</a></footer>'
-        page = '<!doctype html><html lang="'+language+'"><head>'+head+'</head><body class="atlas-reading-index"><main class="reading-index" id="reading-index" data-language="'+language+'">'+intro+controls+jump+''.join(body)+tail+'</main></body></html>\n'
+        page = '<!doctype html><html lang="'+language+'"><head>'+head+'</head><body class="atlas-reading-index"><main class="reading-index" id="reading-index" data-language="'+language+'">'+intro+featured+controls+jump+''.join(body)+tail+'</main></body></html>\n'
         directory = atlas / language / 'read'
         (directory/'index.html').write_text(page)
         record = dict(schema_version=1,language=language,title=title,description=catalog['description'][language],
-                      source='/catalog/atlas-reading-index.json',source_sha256=source_sha,chapter_count=len(ordered),groups=groups)
+                      source='/catalog/atlas-reading-index.json',source_sha256=source_sha,chapter_count=len(ordered),groups=groups,learning_packages=packages)
         (directory/'index.json').write_text(json.dumps(record,ensure_ascii=False,indent=2)+'\n')
         markdown = '# '+title+'\n\n'+catalog['description'][language]+'\n\n'
+        for p in packages:
+            markdown += '## ['+p['title'][language]+']('+ORIGIN+p['url']+')\n\n'+p['description'][language]+'\n\n'
         for group in groups:
             markdown += '## '+group['title']+'\n\n'+group['description']+'\n\n'
             markdown += '\n'.join('- ['+c['title']+']('+ORIGIN+c['url']+')'+((' (English)' if c['language']=='en' else ' (Japanese)') if c['language']!=language else '') for c in group['chapters'])+'\n\n'

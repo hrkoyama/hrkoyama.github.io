@@ -24,7 +24,7 @@ jobs:
        (github.event.workflow_run.conclusion == 'success' &&
         github.event.workflow_run.head_repository.full_name == github.repository))
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 30
     env:
       ATLAS_DEPTH_BOOTSTRAP_SHA256: 'e70a29ed40cb148357c53110ee74c01d789b721cdc9adf528dae0fbe51eb81c4'
       ATLAS_DEPTH_REGISTRY_SHA256: '646ad1049a82af2e1f7ac0f5070623c7e83f50481874f7e0fa40160163180458'

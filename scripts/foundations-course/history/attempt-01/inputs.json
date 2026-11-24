@@ -1,0 +1,14 @@
+{
+  "edition":"2026-11-24",
+  "scope":"Small educational exercises for the 19-chapter Japanese course; independent of the atlas common and supplement problem counts.",
+  "derivative":{"x":1.0,"hs":[0.2,0.1,0.05,0.025],"decades":16,"min_order":1.99,"min_roundoff_to_best_ratio":1000},
+  "norms":{"meshes":[16,64,256],"length":1.0},
+  "conditioning":{"epsilon":0.0001,"rhs_perturbation":0.000001,"max_decimal_difference":2e-8,"min_amplification":1000},
+  "ode":{"lambda":-1.0,"end":1.0,"steps":[10,20,40,80],"min_euler_order":0.95,"min_trapezoidal_order":1.95,"max_euler_fine_error":0.003,"max_trapezoidal_fine_error":0.00001,"stiff_lambda":-40.0,"stiff_dt":0.25,"stiff_steps":8},
+  "advection":{"length":1.0,"speed":1.0,"end":0.6,"courant":0.6,"meshes":[40,80,160],"modes":[[1,1.0],[3,0.25]],"min_upwind_order":0.85,"min_lw_order":1.85,"max_upwind_fine_l2":0.06,"max_lw_fine_l2":0.006,"max_symbol_error":1e-12,"diagnostic_steps":30},
+  "heat":{"diffusivity":0.1,"end":0.2,"r":0.4,"meshes":[20,40,80],"time_n":40,"time_steps":[80,160,320,640],"min_joint_order":1.8,"min_time_order":0.98,"max_joint_fine_l2":0.0001},
+  "boundary":{"meshes":[8,16,32,64],"robin_alpha":2.0,"robin_beta":1.0,"min_good_order":1.8,"naive_order_range":[0.8,1.2],"max_fine_errors":{"dirichlet":0.0003,"neumann":0.001,"robin":0.001,"mixed-good":0.001,"mixed-naive":0.02},"max_equation_residual":1e-10,"max_compatibility_residual":1e-10},
+  "splitting":{"end":1.0,"steps":[10,20,40,80],"min_lie_order":0.9,"min_strang_order":1.9,"max_lie_fine_error":0.01,"max_strang_fine_error":0.0001,"max_commuting_error":1e-12},
+  "oscillator":{"dt":0.1,"steps":6000,"initial_q":1.0,"initial_p":0.0,"max_symplectic_energy_relative_error":0.06,"max_verlet_energy_relative_error":0.003,"max_modified_energy_relative_drift":2e-11,"max_symplectic_defect":1e-13,"min_forward_energy_growth":1000000,"max_backward_energy_fraction":0.000001},
+  "reproduction":{"relative_tolerance":1e-9,"absolute_tolerance":1e-10}
+}

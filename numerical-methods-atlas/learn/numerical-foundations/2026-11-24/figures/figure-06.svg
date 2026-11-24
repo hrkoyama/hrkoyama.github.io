@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="760" height="350" preserveAspectRatio="xMinYMin meet" viewBox="0 0 760 350" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="760" height="350"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-350)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="0" width="760" height="350" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="226.676" y="325" style="font-family: Times-Roman; font-size: 18px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,650) scale(1,-1)">Absolute stability regions in z = lambda dt</text>
+			<rect x="24" y="62" width="204" height="204" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<circle cx="126" cy="164" r="34" style="stroke: rgb(9%,42%,47%); stroke-linecap: butt; stroke-width: 1.5; fill: rgb(82%,90%,88%); fill-rule: evenodd;"/>
+			<path d="M 160,62 L 160,266 Z" style="stroke: rgb(14%,20%,21%); stroke-linecap: butt; stroke-width: 0.7;"/>
+			<path d="M 24,164 L 228,164 Z" style="stroke: rgb(14%,20%,21%); stroke-linecap: butt; stroke-width: 0.7;"/>
+			<rect x="24" y="62" width="204" height="204" style="stroke: rgb(14%,20%,21%); stroke-linecap: butt; stroke-width: 0.8; fill: none; fill-rule: evenodd;"/>
+			<text x="82.47" y="286" style="font-family: Times-Roman; font-size: 15px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,572) scale(1,-1)">Forward Euler</text>
+			<text x="96.336" y="30" style="font-family: Times-Roman; font-size: 12px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,60) scale(1,-1)">Re z: -4 to 2</text>
+			<text x="28" y="52" style="font-family: Times-Roman; font-size: 11px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,104) scale(1,-1)">Im z: -3 to 3</text>
+			<rect x="274" y="62" width="204" height="204" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(90%,94%,92%); fill-rule: evenodd;"/>
+			<circle cx="444" cy="164" r="34" style="stroke: rgb(9%,42%,47%); stroke-linecap: butt; stroke-width: 1.5; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<path d="M 410,62 L 410,266 Z" style="stroke: rgb(14%,20%,21%); stroke-linecap: butt; stroke-width: 0.7;"/>
+			<path d="M 274,164 L 478,164 Z" style="stroke: rgb(14%,20%,21%); stroke-linecap: butt; stroke-width: 0.7;"/>
+			<rect x="274" y="62" width="204" height="204" style="stroke: rgb(14%,20%,21%); stroke-linecap: butt; stroke-width: 0.8; fill: none; fill-rule: evenodd;"/>
+			<text x="327.475" y="286" style="font-family: Times-Roman; font-size: 15px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,572) scale(1,-1)">Backward Euler</text>
+			<text x="346.336" y="30" style="font-family: Times-Roman; font-size: 12px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,60) scale(1,-1)">Re z: -4 to 2</text>
+			<text x="278" y="52" style="font-family: Times-Roman; font-size: 11px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,104) scale(1,-1)">Im z: -3 to 3</text>
+			<rect x="524" y="62" width="204" height="204" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="524" y="62" width="136" height="204" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(82%,90%,88%); fill-rule: evenodd;"/>
+			<path d="M 660,62 L 660,266 Z" style="stroke: rgb(14%,20%,21%); stroke-linecap: butt; stroke-width: 0.7;"/>
+			<path d="M 524,164 L 728,164 Z" style="stroke: rgb(14%,20%,21%); stroke-linecap: butt; stroke-width: 0.7;"/>
+			<rect x="524" y="62" width="204" height="204" style="stroke: rgb(14%,20%,21%); stroke-linecap: butt; stroke-width: 0.8; fill: none; fill-rule: evenodd;"/>
+			<text x="590.18" y="286" style="font-family: Times-Roman; font-size: 15px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,572) scale(1,-1)">Trapezoidal</text>
+			<text x="596.336" y="30" style="font-family: Times-Roman; font-size: 12px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,60) scale(1,-1)">Re z: -4 to 2</text>
+			<text x="528" y="52" style="font-family: Times-Roman; font-size: 11px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,104) scale(1,-1)">Im z: -3 to 3</text>
+			<text x="258.4435" y="5" style="font-family: Times-Roman; font-size: 13px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,10) scale(1,-1)">Shaded = |R(z)| &lt;= 1. Stability is not accuracy.</text>
+		</g>
+	</g>
+</svg>

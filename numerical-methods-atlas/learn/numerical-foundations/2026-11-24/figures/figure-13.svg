@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="760" height="350" preserveAspectRatio="xMinYMin meet" viewBox="0 0 760 350" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="760" height="350"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-350)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="0" width="760" height="350" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="177.21550000000002" y="323" style="font-family: Times-Roman; font-size: 17px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,646) scale(1,-1)">Boundary data: value, outward derivative, or a combination</text>
+			<text x="30" y="268" style="font-family: Times-Roman; font-size: 16px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,536) scale(1,-1)">Dirichlet</text>
+			<path d="M 160,250 L 690,250 Z" style="stroke: rgb(14%,20%,21%); stroke-linecap: butt; stroke-width: 2;"/>
+			<circle cx="160.0" cy="250" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,42%,47%); fill-rule: evenodd;"/>
+			<circle cx="226.25" cy="250" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,42%,47%); fill-rule: evenodd;"/>
+			<circle cx="292.5" cy="250" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,42%,47%); fill-rule: evenodd;"/>
+			<circle cx="358.75" cy="250" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,42%,47%); fill-rule: evenodd;"/>
+			<circle cx="425.0" cy="250" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,42%,47%); fill-rule: evenodd;"/>
+			<circle cx="491.25" cy="250" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,42%,47%); fill-rule: evenodd;"/>
+			<circle cx="557.5" cy="250" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,42%,47%); fill-rule: evenodd;"/>
+			<circle cx="623.75" cy="250" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,42%,47%); fill-rule: evenodd;"/>
+			<circle cx="690.0" cy="250" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,42%,47%); fill-rule: evenodd;"/>
+			<path d="M 160,232 L 130,232 Z" style="stroke: rgb(73%,35%,19%); stroke-linecap: butt; stroke-width: 1.5;"/>
+			<path d="M 130,232 L 137,236 Z" style="stroke: rgb(73%,35%,19%); stroke-linecap: butt; stroke-width: 1;"/>
+			<path d="M 130,232 L 137,228 Z" style="stroke: rgb(73%,35%,19%); stroke-linecap: butt; stroke-width: 1;"/>
+			<path d="M 690,232 L 720,232 Z" style="stroke: rgb(73%,35%,19%); stroke-linecap: butt; stroke-width: 1.5;"/>
+			<path d="M 720,232 L 713,236 Z" style="stroke: rgb(73%,35%,19%); stroke-linecap: butt; stroke-width: 1;"/>
+			<path d="M 720,232 L 713,228 Z" style="stroke: rgb(73%,35%,19%); stroke-linecap: butt; stroke-width: 1;"/>
+			<text x="411.584" y="270" style="font-family: Times-Roman; font-size: 13px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,540) scale(1,-1)">u = g</text>
+			<text x="136.234" y="210" style="font-family: Times-Roman; font-size: 12px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,420) scale(1,-1)">x=0, n=-1</text>
+			<text x="664.848" y="210" style="font-family: Times-Roman; font-size: 12px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,420) scale(1,-1)">x=1, n=+1</text>
+			<text x="30" y="176" style="font-family: Times-Roman; font-size: 16px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,352) scale(1,-1)">Neumann</text>
+			<path d="M 160,158 L 690,158 Z" style="stroke: rgb(14%,20%,21%); stroke-linecap: butt; stroke-width: 2;"/>
+			<circle cx="160.0" cy="158" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,42%,47%); fill-rule: evenodd;"/>
+			<circle cx="226.25" cy="158" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,42%,47%); fill-rule: evenodd;"/>
+			<circle cx="292.5" cy="158" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,42%,47%); fill-rule: evenodd;"/>
+			<circle cx="358.75" cy="158" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,42%,47%); fill-rule: evenodd;"/>
+			<circle cx="425.0" cy="158" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,42%,47%); fill-rule: evenodd;"/>
+			<circle cx="491.25" cy="158" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,42%,47%); fill-rule: evenodd;"/>
+			<circle cx="557.5" cy="158" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,42%,47%); fill-rule: evenodd;"/>
+			<circle cx="623.75" cy="158" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,42%,47%); fill-rule: evenodd;"/>
+			<circle cx="690.0" cy="158" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,42%,47%); fill-rule: evenodd;"/>
+			<path d="M 160,140 L 130,140 Z" style="stroke: rgb(73%,35%,19%); stroke-linecap: butt; stroke-width: 1.5;"/>
+			<path d="M 130,140 L 137,144 Z" style="stroke: rgb(73%,35%,19%); stroke-linecap: butt; stroke-width: 1;"/>
+			<path d="M 130,140 L 137,136 Z" style="stroke: rgb(73%,35%,19%); stroke-linecap: butt; stroke-width: 1;"/>
+			<path d="M 690,140 L 720,140 Z" style="stroke: rgb(73%,35%,19%); stroke-linecap: butt; stroke-width: 1.5;"/>
+			<path d="M 720,140 L 713,144 Z" style="stroke: rgb(73%,35%,19%); stroke-linecap: butt; stroke-width: 1;"/>
+			<path d="M 720,140 L 713,136 Z" style="stroke: rgb(73%,35%,19%); stroke-linecap: butt; stroke-width: 1;"/>
+			<text x="368.801" y="178" style="font-family: Times-Roman; font-size: 13px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,356) scale(1,-1)">normal derivative = g</text>
+			<text x="136.234" y="118" style="font-family: Times-Roman; font-size: 12px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,236) scale(1,-1)">x=0, n=-1</text>
+			<text x="664.848" y="118" style="font-family: Times-Roman; font-size: 12px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,236) scale(1,-1)">x=1, n=+1</text>
+			<text x="30" y="84" style="font-family: Times-Roman; font-size: 16px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,168) scale(1,-1)">Robin</text>
+			<path d="M 160,66 L 690,66 Z" style="stroke: rgb(14%,20%,21%); stroke-linecap: butt; stroke-width: 2;"/>
+			<circle cx="160.0" cy="66" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,42%,47%); fill-rule: evenodd;"/>
+			<circle cx="226.25" cy="66" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,42%,47%); fill-rule: evenodd;"/>
+			<circle cx="292.5" cy="66" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,42%,47%); fill-rule: evenodd;"/>
+			<circle cx="358.75" cy="66" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,42%,47%); fill-rule: evenodd;"/>
+			<circle cx="425.0" cy="66" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,42%,47%); fill-rule: evenodd;"/>
+			<circle cx="491.25" cy="66" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,42%,47%); fill-rule: evenodd;"/>
+			<circle cx="557.5" cy="66" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,42%,47%); fill-rule: evenodd;"/>
+			<circle cx="623.75" cy="66" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,42%,47%); fill-rule: evenodd;"/>
+			<circle cx="690.0" cy="66" r="3.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,42%,47%); fill-rule: evenodd;"/>
+			<path d="M 160,48 L 130,48 Z" style="stroke: rgb(73%,35%,19%); stroke-linecap: butt; stroke-width: 1.5;"/>
+			<path d="M 130,48 L 137,52 Z" style="stroke: rgb(73%,35%,19%); stroke-linecap: butt; stroke-width: 1;"/>
+			<path d="M 130,48 L 137,44 Z" style="stroke: rgb(73%,35%,19%); stroke-linecap: butt; stroke-width: 1;"/>
+			<path d="M 690,48 L 720,48 Z" style="stroke: rgb(73%,35%,19%); stroke-linecap: butt; stroke-width: 1.5;"/>
+			<path d="M 720,48 L 713,52 Z" style="stroke: rgb(73%,35%,19%); stroke-linecap: butt; stroke-width: 1;"/>
+			<path d="M 720,48 L 713,44 Z" style="stroke: rgb(73%,35%,19%); stroke-linecap: butt; stroke-width: 1;"/>
+			<text x="330.477" y="86" style="font-family: Times-Roman; font-size: 13px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,172) scale(1,-1)">alpha u + beta normal derivative = g</text>
+			<text x="136.234" y="26" style="font-family: Times-Roman; font-size: 12px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,52) scale(1,-1)">x=0, n=-1</text>
+			<text x="664.848" y="26" style="font-family: Times-Roman; font-size: 12px;fill: rgb(14%,20%,21%); stroke:none;" transform="translate(0,52) scale(1,-1)">x=1, n=+1</text>
+		</g>
+	</g>
+</svg>

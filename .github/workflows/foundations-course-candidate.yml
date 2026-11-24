@@ -1,0 +1,56 @@
+name: Foundations course candidate Linux verification
+on:
+  push:
+    branches: ['codex/**']
+    paths:
+      - 'code/numerical-foundations/**'
+      - 'scripts/foundations-course/**'
+      - '.github/workflows/foundations-course-candidate.yml'
+permissions:
+  contents: read
+jobs:
+  candidate-course:
+    if: github.repository == 'hrkoyama/hrkoyama.github.io'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: code/numerical-foundations/2026-11-24
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify the frozen candidate ZIP before publication
+        shell: bash
+        run: |
+          python - <<'PY'
+          import hashlib,json,os,pathlib,subprocess,sys,zipfile
+          source=pathlib.Path('code/numerical-foundations/2026-11-24')
+          release=json.loads((source/'release.json').read_text())
+          archive=source/pathlib.Path(release['zip']).name
+          digest=hashlib.sha256(archive.read_bytes()).hexdigest()
+          assert digest==release['zip_sha256']
+          out=pathlib.Path(os.environ['RUNNER_TEMP'])/'foundations-course-candidate'
+          out.mkdir()
+          with zipfile.ZipFile(archive) as z:
+              for name in z.namelist():
+                  p=pathlib.PurePosixPath(name)
+                  assert not p.is_absolute() and '..' not in p.parts
+              z.extractall(out)
+          package=out/release['prefix']
+          result=subprocess.run([sys.executable,'verify_release.py'],cwd=package,capture_output=True,text=True)
+          (out/'verification.log').write_text(result.stdout+result.stderr)
+          receipt={'target_sha':os.environ['GITHUB_SHA'],'zip_sha256':digest,'source_checkout':True,'scope':'Only the frozen candidate ZIP is executed; no website build or public-download claim.','passed':result.returncode==0}
+          if result.returncode==0:
+              receipt.update(json.loads(result.stdout.strip().splitlines()[-1]))
+          (out/'receipt.json').write_text(json.dumps(receipt,indent=2)+'\n')
+          print(result.stdout+result.stderr)
+          assert result.returncode==0
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: foundations-course-candidate-${{ github.sha }}-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/foundations-course-candidate/receipt.json
+            ${{ runner.temp }}/foundations-course-candidate/verification.log

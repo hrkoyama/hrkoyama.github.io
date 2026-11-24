@@ -110,6 +110,8 @@ pre-commitは既定で全索引生成をskipする。`ATLAS_REFRESH_INDEXES_ON_C
 
 軽量Linuxの自動起動と週次設定は既存workflowにある。共通22例を対象とする手動の **Atlas public Linux verification**（`atlas-public-linux.yml`）やRKDG専用検査は対象が異なる。全体を同じ件数・同じ実行として記録しない。今回の変更に必要な検証範囲を確認し、重い科学実行を追加しない。
 
+軽量Linuxジョブの外枠は30分とし、配信一致待ち・依存導入・全登録群の検証・結果保存の時間を含める。各群の入力、科学計算側の既存時間制限、受入条件は変更しない。
+
 外部CI中は、別の隔離workspaceで次batchの調査・独立実装・軽量検査を進めてよい。数値実行前のreview/freezeは必要。現在のCI失敗修正を優先し、公開backlog登録・索引統合・次のpushは現在の必須公開確認後に直列化する。定期ジョブ・常駐処理・容量の定期監視を新設しない。
 
 量子化学の追加開発は小さな教育用モデルと少数の固定入力を基本にする。大規模な基底/k点走査、重い独立参照の再生成、長時間の第一原理MD、実物質の精密計算は利用者の改めての指定範囲で扱う。保存結果の照合・代表固定caseの再実行・詳細収束検証を区別し、既存の成功履歴・配布版・公差を保持する。
@@ -390,3 +392,13 @@ pre-commitは既定で全索引生成をskipする。`ATLAS_REFRESH_INDEXES_ON_C
 [当時の記録を読む](docs/maintenance-history/through-9dde4815.md)。
 
 </details>
+
+### 初学者向け19章教材（2026-11-24版）
+
+`catalog/atlas-foundations-course.json` が本文・数式・例題・図の説明・38問の解答の共通原稿。公開入口は `/numerical-methods-atlas/learn/numerical-foundations/`。日本語のWeb/PDF教材であり、英語目次では言語を明記して案内する。既存の読み物章数や科学検証群数へ19章・19図を加算しない。
+
+`build-atlas-foundations-course.py` は固定PDF/図/ZIPのSHAと原稿の一致を確認し、Webだけを生成する。通常の `refresh-site.py` は科学計算、MathJax、ReportLab、PDF生成を実行しない。公開版の原稿を変えるときは、先に小さな計算例の固定条件をレビューし、`scripts/foundations-course/` の実行・テスト・独立ZIP展開確認、共通数式SVG、PDFの再生成・全ページの目視確認、`verify-foundations-book.py` の抽出照合を行う。既刊PDFとZIPは保存し、公開済み版を黙って差し替えず版を追加する。
+
+本教材の計算はPython 3.12標準ライブラリのみ。25計算テスト・2照合テスト・34固定判定・15CSVを `verify_release.py` で照合する。最初の風上法の粗い格子系列の失敗は履歴へ保存し、閾値を変えず系列を細かくした。意図的な不安定・低次対照の検出合格と、高精度法の合格を区別する。PDF制作時のみReportLab 4.4.9・svglib 1.6.0・MathJax 3.2.2・日本語TrueTypeフォントを使う。図は保存CSVから描き、WebとPDFで同じSVGを使う。公開前は `Foundations course candidate Linux verification` が候補ZIPをLinuxで実行する。公開ZIPだけのLinux追試は `Foundations course public Linux verification` に記録する。
+
+初公開前R2では、丸めの影響を観察するderivative.csvのOS間等値照合を、80桁の独立Taylor参照とULP由来の境界へ修正した。初候補ZIPとLinux失敗を保持し、元の25計算テスト・34条件・他14CSVの公差・保存値・図を保持した。新しい2照合テストは両OSの記録値の検査と破損値の拒否を確認する。Pythonのlibm全般に1ULP精度を仮定せず、固定入力のsin/cosを参照式で検査する。

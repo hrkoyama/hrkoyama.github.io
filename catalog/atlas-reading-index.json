@@ -272,5 +272,21 @@
         "release-notes-v0.1.0"
       ]
     }
+  ],
+  "learning_packages": [
+    {
+      "id": "numerical-foundations",
+      "title": {
+        "ja": "初学者のための数値計算の基礎：全19章",
+        "en": "Numerical foundations: a 19-chapter beginner course (Japanese)"
+      },
+      "description": {
+        "ja": "誤差・安定性・散逸と分散・境界条件・分割法・シンプレクティック積分を、小さな計算例と確認問題で学びます。同じ内容のWeb版・PDF版とコードZIP。",
+        "en": "A Japanese course with matching Web/PDF editions, figures, small verified examples and exercises with answers."
+      },
+      "url": "/numerical-methods-atlas/learn/numerical-foundations/",
+      "language": "ja",
+      "chapters": 19
+    }
   ]
 }

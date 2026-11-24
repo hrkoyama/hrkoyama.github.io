@@ -1,0 +1,59 @@
+name: Foundations course public Linux verification
+on:
+  workflow_run:
+    workflows: [Public site checks]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  public-course:
+    if: github.repository == 'hrkoyama/hrkoyama.github.io' && (github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify and rerun only the published course ZIP, without a checkout
+        env:
+          ZIP_SHA256: '88aad757f41507f70db3e1f4ff4cfd167c32d73577050b7feb589524d6f40a84'
+          TARGET_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+        shell: bash
+        run: |
+          python - <<'PY'
+          import hashlib,json,os,pathlib,subprocess,sys,time,urllib.request,zipfile
+          root=pathlib.Path('public-course-verification');root.mkdir()
+          url='https://hrkoyama.github.io/code/numerical-foundations/2026-11-24/numerical-foundations-lab-2026-11-24.zip'
+          for attempt in range(60):
+              try:
+                  data=urllib.request.urlopen(url+'?sha='+os.environ['TARGET_SHA'],timeout=30).read()
+                  if hashlib.sha256(data).hexdigest()==os.environ['ZIP_SHA256']:break
+              except Exception as exc:
+                  print(type(exc).__name__,flush=True)
+              time.sleep(5)
+          else:raise RuntimeError('Published ZIP did not reach the pinned SHA')
+          archive=root/'course.zip';archive.write_bytes(data)
+          with zipfile.ZipFile(archive) as z:
+              for name in z.namelist():
+                  p=pathlib.PurePosixPath(name)
+                  assert not p.is_absolute() and '..' not in p.parts
+              z.extractall(root)
+          package=root/'numerical-foundations-lab-2026-11-24'
+          run=subprocess.run([sys.executable,'verify_release.py'],cwd=package,capture_output=True,text=True)
+          (root/'verification.log').write_text(run.stdout+run.stderr)
+          print(run.stdout+run.stderr)
+          receipt={'target_sha':os.environ['TARGET_SHA'],'source_checkout':False,'url':url,'zip_sha256':hashlib.sha256(data).hexdigest(),'unit_tests':25,'fixed_checks':34,'csv_files':15,'passed':run.returncode==0,'python':sys.version}
+          if run.returncode==0:
+              measured=json.loads(run.stdout.strip().splitlines()[-1])
+              assert measured['comparison_tests']==2
+              receipt['comparison_tests']=measured['comparison_tests']
+          (root/'receipt.json').write_text(json.dumps(receipt,indent=2)+'\n')
+          assert run.returncode==0
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: foundations-course-public-${{ github.event.workflow_run.head_sha || github.sha }}-${{ github.run_id }}
+          path: public-course-verification/

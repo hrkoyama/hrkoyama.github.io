@@ -2,6 +2,10 @@
 
 Read the theory, derivations and worked examples by field, from foundations to related methods and verification.
 
+## [Numerical foundations: a 19-chapter beginner course (Japanese)](https://hrkoyama.github.io/numerical-methods-atlas/learn/numerical-foundations/)
+
+A Japanese course with matching Web/PDF editions, figures, small verified examples and exercises with answers.
+
 ## Foundations, error and time integration
 
 Start with error and stability, then follow time integration and equations with constraints.
