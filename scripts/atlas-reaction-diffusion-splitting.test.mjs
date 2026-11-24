@@ -69,8 +69,23 @@ test('the two methods acquire only the verified dedicated release and the physic
   assert.equal(method.depth_previous_status,'reading-only');
   assert.equal(method.depth_release.group,'splitting');
   assert.deepEqual(method.depth_release.case_ids,[id]);
-  assert.deepEqual(method.execution_examples.map(x=>x.id),[id]);
-  assert.ok(method.code_urls.every(url=>url.includes('/splitting/')));
+  const expectedRunners=[id,'strang-boundary-order-reduction',...(methodId==='strang-splitting'?['multifrequency-resonance']:[])];
+  assert.deepEqual(method.execution_examples.map(x=>x.id),expectedRunners);
+    const expectedAdditions=[{group:'ode-adaptivity',edition:'2026-11-24-r2',case_ids:['strang-boundary-order-reduction']},...(methodId==='strang-splitting'?[{group:'geometric-controls',edition:'2026-11-24',case_ids:['multifrequency-resonance']}]:[])];
+    assert.deepEqual(method.depth_additional_releases.map(r=>({group:r.group,edition:r.code_edition,case_ids:r.case_ids})),expectedAdditions);
+    for(const release of method.depth_additional_releases){
+      const packetBase=`code/validated-examples/${release.code_edition}/${release.group}/`;
+      assert.equal(release.code_base,'https://hrkoyama.github.io/'+packetBase);
+      assert.deepEqual(release.examples.map(x=>x.id),release.case_ids);
+      const metadata=JSON.parse(read(packetBase+'cases.json'));
+      for(const caseId of release.case_ids)assert.ok(metadata.find(x=>x.id===caseId)?.method_ids.includes(methodId),caseId+'/actual-method-owner');
+    }
+  assert.equal(method.depth_release.code_edition,'2026-11-22');
+  assert.deepEqual(method.depth_release.code_urls,['run.py','splitting.py','reference.py'].map(p=>'https://hrkoyama.github.io/'+base+p));
+  assert.deepEqual(method.depth_release.test_urls,['https://hrkoyama.github.io/'+base+'test_splitting.py']);
+  const releases=[method.depth_release,...method.depth_additional_releases];
+  assert.deepEqual(method.code_urls,[...new Set(releases.flatMap(r=>r.code_urls))]);
+  assert.deepEqual(method.test_urls,[...new Set(releases.flatMap(r=>r.test_urls))]);
  }
  const registry=json('numerical-methods-atlas/validation/releases.json');
  assert.equal(registry.releases.length,supplementGroupCount);assert.equal(registry.case_count,supplementCaseCount);

@@ -119,7 +119,24 @@ test('each new case connects equations, methods, reference, gallery and bilingua
  const expansion=json('catalog/atlas-depth-expansion.json');const refs=json('catalog/atlas-reference-supplements.json').cases;const problems=json('catalog/atlas-test-problems.json').problems;const links=json('catalog/atlas-problem-links.json').problems;const gallery=json('catalog/atlas-gallery.json').items;const equations=json('catalog/atlas-equations.json').equations;
  for(const id of newIds){
   const pid=expansion.case_problem_ids[id];assert.ok(problems.some(x=>x.id===pid),id);assert.ok(gallery.some(x=>x.id===pid),id);
-  if(pid===id)for(const lang of ['ja','en']){const tile=galleryHtml.match(new RegExp(`<li class="gallery-tile" id="${id}-${lang}"[\\s\\S]*?</li>`))?.[0];assert.ok(tile,id+'/'+lang);assert.equal((tile.match(/<img /g)||[]).length,1,id+'/'+lang+'/one-primary-preview');assert.ok(tile.includes(`data-supplemental-execution="${id}"`),id);}
+  if(pid===id)for(const lang of ['ja','en']){
+   const tile=galleryHtml.match(new RegExp(`<li class="gallery-tile" id="${id}-${lang}"[\\s\\S]*?</li>`))?.[0];assert.ok(tile,id+'/'+lang);
+   assert.ok(tile.includes(`data-supplemental-execution="${id}"`),id);
+   if(id==='gravity-kepler'){
+    const primary=tile.match(/<a class="gallery-image-link"[^>]*>[\s\S]*?<\/a>/g)||[];
+    assert.equal(primary.length,1,id+'/'+lang+'/one-unchanged-primary');
+    assert.equal((primary[0].match(/<img /g)||[]).length,1);
+    assert.ok(primary[0].includes('src="/code/validated-examples/2026-11-23/gravity-dynamics/results/gravity-kepler-preview.png"'));
+    const supplements=tile.match(/<figure class="gallery-supplement-preview"[^>]*>[\s\S]*?<\/figure>/g)||[];
+    assert.equal(supplements.length,1,id+'/'+lang+'/one-distinct-kepler-supplement');
+    assert.ok(supplements[0].includes('data-supplemental-preview="kepler-eccentricity"'));
+    assert.equal((supplements[0].match(/<img /g)||[]).length,1);
+    assert.ok(supplements[0].includes('src="/code/validated-examples/2026-11-24/geometric-controls/results/kepler-eccentricity-preview.png"'));
+    assert.ok(supplements[0].includes(`/validation/kepler-eccentricity/?lang=${lang}`));
+    assert.deepEqual([...tile.matchAll(/data-supplemental-execution="([^"]+)"/g)].map(x=>x[1]),['gravity-kepler','kepler-eccentricity']);
+    assert.equal((tile.match(/<img /g)||[]).length,2,id+'/'+lang+'/primary-plus-own-supplement');
+   }else assert.equal((tile.match(/<img /g)||[]).length,1,id+'/'+lang+'/one-primary-preview');
+  }
   const link=links.find(x=>x.id===pid);assert.ok(link.references.some(x=>x.id===id),id);
   const reference=refs.find(x=>x.id===id);assert.ok(reference,id);assert.ok(reference.citations.every(x=>x.role&&x.title&&x.url));
   if(['neutral-slab-yb','fmm3d-inverse-r','gravity-kepler','gravity-plummer-short'].includes(id))assert.equal(reference.dimension,3,id);

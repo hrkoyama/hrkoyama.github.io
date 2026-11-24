@@ -77,7 +77,14 @@ test('the new thermostat comparisons add one quartic problem and retain the orig
   const receipt=JSON.parse(read(base+'verification.json'));
   const mapping=JSON.parse(read('catalog/atlas-depth-expansion.json')).case_problem_ids;
   assert.equal(catalog.problems.length,problemCount);
-  assert.equal(inventory.counts.groups.time,8);
+  const oldTimeIds=['harmonic-oscillator','quartic-oscillator','nonlinear-exp-ode','stiff-cosine','nonlinear-rational-ode','nonlinear-rational-decay','langevin-harmonic','thermostatted-quartic'];
+  const batch68TimeIds=['robertson-stiff-kinetics','van-der-pol-stiff-transition','rk45-dense-events','strang-boundary-order-reduction','jameson-steady-linear-modes','index1-dae-consistent-initialization','high-index-pendulum','multifrequency-resonance'];
+  const timeIds=inventory.problems.filter(x=>x.group==='time').map(x=>x.id);
+  assert.equal(new Set(timeIds).size,timeIds.length,'No duplicated time problems');
+  assert.deepEqual(timeIds.filter(id=>!batch68TimeIds.includes(id)).sort(),[...oldTimeIds].sort(),'Historical eight time problems remain exact');
+  assert.deepEqual(timeIds.filter(id=>batch68TimeIds.includes(id)).sort(),[...batch68TimeIds].sort(),'Exactly eight new physical time problems');
+  assert.equal(inventory.counts.groups.time,oldTimeIds.length+batch68TimeIds.length);
+  assert.deepEqual(catalog.problems.filter(x=>x.group==='time').map(x=>x.id).sort(),[...oldTimeIds,...batch68TimeIds].sort());
   assert.equal(mapping['csvr-kinetic-kernel'],null);
   assert.equal(mapping['csvr-langevin-harmonic'],'langevin-harmonic');
   assert.equal(mapping['csvr-langevin-quartic'],'thermostatted-quartic');

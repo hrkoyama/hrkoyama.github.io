@@ -102,7 +102,32 @@ test('registered chapter links follow only reviewed method, problem, equation, r
     assert.ok(graph.groups.code.length&&graph.groups.code.every(row=>row.availability==='source'));
     for(const group of groups.filter(group=>group!=='code'))assert.deepEqual(graph.groups[group],[],id+' pointwise/geometry checks do not become a PDE solver, picture or exact-solution claim');
   }
-  assert.deepEqual(aggregate.chapters['steady-runge-kutta'].resource_navigation.groups.code,[],'related RK4 and multigrid definitions do not become a Jameson solver');
+  const jamesonCode=aggregate.chapters['steady-runge-kutta'].resource_navigation.groups.code;
+  assert.deepEqual(jamesonCode.map(row=>[row.id,row.availability]),[
+    ['jameson-steady-linear-modes','run'],['method-jameson-steady-rk','source'],
+  ],'only the new qualified steady-RK run and its method-specific source are added');
+  for(const item of jamesonCode)assert.deepEqual(item.method_ids,['jameson-steady-rk']);
+  assert.deepEqual(jamesonCode.filter(row=>row.method_ids.some(id=>['rk4','multigrid','dual-time','low-mach-preconditioning'].includes(id))),[],
+    'related RK4 and multigrid definitions do not become a Jameson solver');
+  const jamesonEntry=json('numerical-methods-atlas/validation/jameson-steady-linear-modes/index.json');
+  const jamesonRelease=json('numerical-methods-atlas/validation/releases.json').releases.find(row=>row.group==='steady-rk');
+  assert.deepEqual(jamesonRelease.case_ids,['jameson-steady-linear-modes']);assert.equal(jamesonEntry.group,'steady-rk');
+  assert.deepEqual(jamesonEntry.method_ids,['jameson-steady-rk']);assert.equal(jamesonEntry.release.base,jamesonRelease.base);
+  assert.deepEqual(jamesonCode[0].note,jamesonEntry.summary,'the run carries only its own canonical limited-study scope');
+  assert.match(jamesonEntry.limits.en,/no JST compressible flux/,'the linear supplement is not a complete compressible-flow solver');
+  const jamesonBase=`code/validated-examples/${jamesonRelease.edition}/steady-rk/`,jamesonProof=json(jamesonBase+'verification.json');
+  assert.equal(sha(jamesonBase+'verification.json'),jamesonRelease.verification_sha256);
+  assert.equal(jamesonProof.passed,true);assert.equal(jamesonProof.all_cases_rerun,true);
+  assert.equal(jamesonProof.tests,jamesonRelease.tests);assert.equal(jamesonProof.passed_tests,jamesonRelease.tests);
+  assert.equal(jamesonEntry.release.passed_tests,jamesonRelease.tests);
+  const jamesonManifest=json(jamesonBase+'source-manifest.json');assert.equal(sha(jamesonBase+'source-manifest.json'),jamesonRelease.manifest_sha256);
+  for(const file of ['run.py','steady.py']){assert.equal(sha(jamesonBase+file),jamesonManifest.files[file]);assert.ok(jamesonEntry.release.code_urls.includes(jamesonRelease.base+file));}
+  for(const language of ['ja','en']){
+    assert.equal(jamesonCode[0].url[language],`${origin}/numerical-methods-atlas/validation/jameson-steady-linear-modes/?lang=${language}`);
+    assert.equal(jamesonCode[1].url[language],`${origin}/numerical-methods-atlas/methods/jameson-steady-rk/?lang=${language}#method-execution-${language}`);
+  }
+  assert.deepEqual(jamesonCode[1].url,nodes['method:jameson-steady-rk'].groups.code.find(row=>row.id==='method-jameson-steady-rk').url);
+  assert.deepEqual(jamesonCode[1].note,nodes['method:jameson-steady-rk'].groups.code.find(row=>row.id==='method-jameson-steady-rk').note);
   assert.deepEqual(aggregate.chapters['chapman-enskog'].resource_navigation.groups.code.filter(row=>row.availability==='run'),[],'the shear-wave source check is not a new fixed-input PDE entry');
   const methods=new Map(json('numerical-methods-atlas/methods/index.json').methods.map(row=>[row.id,row]));
   const problems=new Map(json('numerical-methods-atlas/problems/index.json').problems.map(row=>[row.id,row]));

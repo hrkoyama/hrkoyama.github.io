@@ -78,7 +78,21 @@ test('both methods and their Japanese/Unicode aliases are canonical hits in both
     assert.equal(original.group.id, 'time');
     assert.ok(method.code_urls.some(url=>url.endsWith('/splitting/splitting.py')));
     assert.ok(method.test_urls.some(url=>url.endsWith('/splitting/test_splitting.py')));
-    assert.deepEqual(method.execution_examples.map(x=>x.id), ['reaction-diffusion-splitting']);
+    const expectedRunners=['reaction-diffusion-splitting','strang-boundary-order-reduction',...(id==='strang-splitting'?['multifrequency-resonance']:[])];
+    assert.deepEqual(method.execution_examples.map(x=>x.id),expectedRunners);
+    assert.equal(method.depth_release.group,'splitting');
+    assert.equal(method.depth_release.code_edition,'2026-11-22');
+    assert.deepEqual(method.depth_release.case_ids,['reaction-diffusion-splitting']);
+    assert.deepEqual(method.depth_release.code_urls,['run.py','splitting.py','reference.py'].map(p=>'https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/'+p));
+    const expectedAdditions=[{group:'ode-adaptivity',edition:'2026-11-24-r2',case_ids:['strang-boundary-order-reduction']},...(id==='strang-splitting'?[{group:'geometric-controls',edition:'2026-11-24',case_ids:['multifrequency-resonance']}]:[])];
+    assert.deepEqual(method.depth_additional_releases.map(r=>({group:r.group,edition:r.code_edition,case_ids:r.case_ids})),expectedAdditions);
+    for(const release of method.depth_additional_releases){
+      const packetBase=`code/validated-examples/${release.code_edition}/${release.group}/`;
+      assert.equal(release.code_base,'https://hrkoyama.github.io/'+packetBase);
+      assert.deepEqual(release.examples.map(x=>x.id),release.case_ids);
+      const metadata=JSON.parse(text(packetBase+'cases.json'));
+      for(const caseId of release.case_ids)assert.ok(metadata.find(x=>x.id===caseId)?.method_ids.includes(id),caseId+'/actual-method-owner');
+    }
     for (const lang of ['ja','en']) {
       assert.equal(method.reading[lang], `https://hrkoyama.github.io/numerical-methods-atlas/${lang}/read/operator-splitting/`);
       for (const query of queries) {
