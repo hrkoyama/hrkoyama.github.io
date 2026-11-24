@@ -1,0 +1,1740 @@
+{
+  "schema_version": 1,
+  "edition": "2026-11-24",
+  "language": "en",
+  "title": "Numerical Foundations Across Disciplines",
+  "subtitle": "Error, stability, dissipation and dispersion, boundary conditions, splitting, and geometric integration",
+  "base": "/numerical-methods-atlas/learn/numerical-foundations/en/",
+  "parts": [
+    {
+      "id": "error",
+      "title": "I Measuring error and reading results",
+      "range": "1-4"
+    },
+    {
+      "id": "stability",
+      "title": "II Understanding stability and numerical instability",
+      "range": "5-12"
+    },
+    {
+      "id": "boundary",
+      "title": "III Working with initial and boundary conditions",
+      "range": "13-15"
+    },
+    {
+      "id": "combine",
+      "title": "IV Combining methods and checking results",
+      "range": "16-19"
+    }
+  ],
+  "audience": "Beginners who have studied elementary differentiation, integration, and matrices. No background in a particular branch of physics or engineering is assumed.",
+  "chapters": [
+    {
+      "n": 1,
+      "id": "01",
+      "title": "Approximation and the sources of error",
+      "part": "error",
+      "goals": [
+        "Distinguish absolute and relative error, roundoff, truncation, and iteration error; do not confuse displayed digits with accuracy."
+      ],
+      "lead": [
+        "The number of digits returned by a computer is not the number of correct digits. First separate what is being approximated from the stage at which error enters. Approximating a function on a grid and performing arithmetic with finitely many digits introduce error for different reasons.",
+        "Replacing a derivative with a difference suggests that a smaller spacing should improve the approximation. However, subtracting nearby numbers loses significant digits. With very small spacing, division by that spacing amplifies roundoff."
+      ],
+      "sections": [
+        {
+          "title": "Absolute and relative error",
+          "paragraphs": [
+            "Let u be the reference value and U the computed value. Absolute error measures their distance. Relative error divides this distance by the magnitude of the reference value, but becomes a poor indicator near a zero reference. In that case, also report an error normalized by a representative problem scale."
+          ],
+          "equations": [
+            {
+              "tex": "e=U-u,\\qquad E_{\\rm abs}=|e|,\\qquad E_{\\rm rel}=\\frac{|e|}{|u|}\\quad(u\\ne0).",
+              "plain": "e=U-u; absolute error=|e|; relative error=|e|/|u| (u≠0)."
+            }
+          ]
+        },
+        {
+          "title": "Keep three sources of error separate",
+          "paragraphs": [
+            "Distinguish truncation error from discretization, roundoff from arithmetic, and the error caused by stopping an iteration. Uncertainty in the physical model or input data is another issue. Reducing an iterative residual alone does not remove coarse-grid error."
+          ],
+          "equations": []
+        },
+        {
+          "title": "What happens when the spacing is halved?",
+          "paragraphs": [
+            "For a smooth sine function, the truncation error of the centered difference decreases quadratically with the spacing. The roundoff contribution is roughly machine precision divided by the spacing. Their competition produces the bottom of the error curve."
+          ],
+          "equations": [
+            {
+              "tex": "D_h\\sin x=\\frac{\\sin(x+h)-\\sin(x-h)}{2h},\\qquad E(h)\\approx C_1h^2+C_2\\frac{\\epsilon_{\\rm mach}}h.",
+              "plain": "D_h sin x=[sin(x+h)-sin(x-h)]/(2h); E(h)≈C₁h²+C₂ εmach/h."
+            }
+          ]
+        }
+      ],
+      "worked": {
+        "paragraphs": [
+          "At x=1, use cos 1 as the reference. First check the order with h=0.2,0.1,0.05,0.025, and then reduce the spacing through negative powers of 10.",
+          "Instead of choosing the smallest h, identify where the error curve changes from decreasing to increasing. The best spacing observed here changes with the function and the arithmetic precision."
+        ],
+        "code": "from math import sin, cos\nx = 1.0\nfor k in range(1, 17):\n    h = 10.0**(-k)\n    d = (sin(x+h)-sin(x-h))/(2*h)\n    print(h, abs(d-cos(x)))",
+        "result": "The saved data approach second order for the sufficiently large-spacing sequence, while the error grows again at extremely small spacings. The best spacing and the final roundoff digits can vary slightly between environments."
+      },
+      "figure": {
+        "id": "figure-01",
+        "caption": "Figure 1: Absolute error of the centered difference, with logarithmic axes. Roundoff dominates at the small-spacing left end, where the curve departs from a truncation-only prediction.",
+        "alt": "Figure 1: Absolute error of the centered difference, with logarithmic axes. Roundoff dominates at the small-spacing left end, where the curve departs from a truncation-only prediction."
+      },
+      "experiment": {
+        "data": "derivative.csv",
+        "instructions": "Extract the code ZIP and run python lab.py --input inputs.json --output my-results. Use a new or empty output directory. Compare the relevant CSV with the saved figure."
+      },
+      "questions": [
+        {
+          "question": "Can relative error be evaluated directly where the true value is 0?",
+          "answer": "No: division by zero is undefined. Use absolute error or normalize by a nonzero representative scale for the problem."
+        },
+        {
+          "question": "If error grows as the spacing decreases, must the stated order of the difference formula be wrong?",
+          "answer": "No. The calculation may have moved from a truncation-dominated range into a roundoff-dominated range."
+        }
+      ],
+      "pitfalls": [
+        "Do not call displayed digits correct digits.",
+        "Do not infer convergence order from one spacing."
+      ],
+      "summary": [
+        "Separate the sources of error.",
+        "A smaller step is not always better."
+      ],
+      "readings": [
+        "accuracy-stability"
+      ]
+    },
+    {
+      "n": 2,
+      "id": "02",
+      "title": "Error norms: L1, L2, and L∞",
+      "part": "error",
+      "goals": [
+        "Use continuous norms and grid-weighted discrete norms appropriately, and detect large localized errors."
+      ],
+      "lead": [
+        "The error in a field varies from place to place. An approximation can be good on average and still have a large error at one point. A norm specifies how to summarize the error distribution as one magnitude.",
+        "L1 measures integrated absolute error, L2 uses squared error, and L∞ measures the largest error. The same error distribution can receive different assessments depending on which question matters."
+      ],
+      "sections": [
+        {
+          "title": "Continuous definitions",
+          "paragraphs": [
+            "Consider an error e(x) on a domain Ω. Strictly, L∞ uses the essential supremum; for the smooth examples here, it can be read as the maximum. The norms can also have different units, so their numerical magnitudes alone do not rank their usefulness."
+          ],
+          "equations": [
+            {
+              "tex": "\\|e\\|_1=\\int_\\Omega|e|\\,dx,\\quad\\|e\\|_2=\\left(\\int_\\Omega|e|^2\\,dx\\right)^{1/2},\\quad\\|e\\|_\\infty=\\mathop{\\rm ess\\,sup}_{\\Omega}|e|.",
+              "plain": "||e||₁=∫Ω |e| dx; ||e||₂=√(∫Ω |e|² dx); ||e||∞=ess supΩ |e|."
+            }
+          ]
+        },
+        {
+          "title": "Weight arrays by the grid",
+          "paragraphs": [
+            "For uniform cell averages, the weight is the cell width h. For trapezoidal quadrature of nodal values, the two endpoint weights are h/2. On nonuniform grids, use cell volumes or quadrature weights. Match the reference representation too: point values and cell averages differ."
+          ],
+          "equations": [
+            {
+              "tex": "\\|e\\|_{1,h}=\\sum_jw_j|e_j|,\\quad\\|e\\|_{2,h}=\\sqrt{\\sum_jw_j|e_j|^2},\\quad\\|e\\|_{\\infty,h}=\\max_j|e_j|.",
+              "plain": "||e||₁,h=Σwⱼ|eⱼ|; ||e||₂,h=√(Σwⱼ|eⱼ|²); ||e||∞,h=max|eⱼ|."
+            }
+          ]
+        },
+        {
+          "title": "The distinction from RMS",
+          "paragraphs": [
+            "For N uniform cells over a length L=Nh, the discrete L2 norm differs from the root mean square, RMS, by a factor √L. They happen to coincide when L=1, but are not the same definition on a general domain."
+          ],
+          "equations": [
+            {
+              "tex": "\\|e\\|_{2,h}=\\sqrt{L}\\,\\sqrt{\\frac1N\\sum_j|e_j|^2}.",
+              "plain": "For L=Nh: ||e||₂,h=√L × RMS(e)."
+            }
+          ]
+        }
+      ],
+      "worked": {
+        "paragraphs": [
+          "Divide a unit interval into N cells and set the error to 1 in one cell and 0 elsewhere. This represents an error of height 1 and width h.",
+          "As N increases, L1=h and L2=√h decrease, but the maximum error stays at 1. Convergence in L2 alone does not show that the maximum error vanishes."
+        ],
+        "code": "from math import sqrt\nN = 64\nh = 1.0/N\ne = [0.0]*N\ne[N//2] = 1.0\nprint(h*sum(abs(x) for x in e))\nprint(sqrt(h*sum(x*x for x in e)))\nprint(max(abs(x) for x in e))",
+        "result": "For N=64, L1=1/64, L2=1/8, and L∞=1. When the array length changes with grid resolution, do not confuse an unweighted array sum with a PDE L1 or L2 norm."
+      },
+      "figure": {
+        "id": "figure-02",
+        "caption": "Figure 2: An error of height 1 in a single cell of width 1/N. Average and maximum error show different convergence behavior.",
+        "alt": "Figure 2: An error of height 1 in a single cell of width 1/N. Average and maximum error show different convergence behavior."
+      },
+      "experiment": {
+        "data": "norms.csv",
+        "instructions": "Extract the code ZIP and run python lab.py --input inputs.json --output my-results. Use a new or empty output directory. Compare the relevant CSV with the saved figure."
+      },
+      "questions": [
+        {
+          "question": "Does an unweighted sum of squared array entries approximate the same continuous quantity as the grid is refined?",
+          "answer": "Generally no. On a uniform grid, multiply the sum by h before taking the square root."
+        },
+        {
+          "question": "Why also report L∞?",
+          "answer": "It detects large local errors that an average can miss. For weak solutions or problems with discontinuities, assess the expected kind of convergence separately."
+        }
+      ],
+      "pitfalls": [
+        "Do not compare nodal values directly with cell averages.",
+        "Check that the denominator in a relative norm is not near zero."
+      ],
+      "summary": [
+        "Match the weights and reference representation.",
+        "Use several norms to examine the shape of the error."
+      ],
+      "readings": [
+        "accuracy-stability"
+      ]
+    },
+    {
+      "n": 3,
+      "id": "03",
+      "title": "Residuals, conditioning, and backward error",
+      "part": "error",
+      "goals": [
+        "Separate sensitivity of the problem from stability of the algorithm, and understand why a small residual alone does not guarantee an accurate solution."
+      ],
+      "lead": [
+        "A linear solver can report a small residual while its solution is inaccurate. The residual measures how well the equation is satisfied; solution error measures distance from a reference solution.",
+        "A condition number describes how sensitive the solution is to small input changes. Separate this sensitivity of the problem from the algorithmic question of whether a solver introduces unnecessary error."
+      ],
+      "sections": [
+        {
+          "title": "Relating error to residual",
+          "paragraphs": [
+            "For a nonsingular A, solve Ax=b and denote the approximation by x̂. With residual r=b-Ax̂, we have A(x-x̂)=r. If the inverse has a large effect, even a small residual can correspond to a large solution error."
+          ],
+          "equations": [
+            {
+              "tex": "r=b-A\\widehat x,\\quad x-\\widehat x=A^{-1}r,\\quad\\frac{\\|x-\\widehat x\\|}{\\|x\\|}\\le\\kappa(A)\\frac{\\|r\\|}{\\|b\\|}.",
+              "plain": "r=b-Ax̂; x-x̂=A⁻¹r; ||x-x̂||/||x|| ≤ κ(A)||r||/||b||."
+            }
+          ]
+        },
+        {
+          "title": "Condition number and backward error",
+          "paragraphs": [
+            "Using the same induced matrix norm, define κ(A)=||A|| ||A⁻¹||. Backward error asks how little the input must change to make the computed answer an exact solution. Even a backward-stable method cannot guarantee a uniformly small forward error for an ill-conditioned problem."
+          ],
+          "equations": [
+            {
+              "tex": "\\eta=\\frac{\\|b-A\\widehat x\\|}{\\|A\\|\\,\\|\\widehat x\\|+\\|b\\|}.",
+              "plain": "Normalized backward-error indicator η=||b-Ax̂||/(||A||||x̂||+||b||)."
+            }
+          ]
+        },
+        {
+          "title": "A further layer for PDEs",
+          "paragraphs": [
+            "Even an accurate solution of a linear system solves only an approximation to the continuous PDE. Examine algebraic residuals and discretization error separately, rather than reducing the iterative tolerance far beyond what is useful."
+          ],
+          "equations": []
+        }
+      ],
+      "worked": {
+        "paragraphs": [
+          "Nearly identical rows make a matrix sensitive to small input changes. Take A=[[1,1],[1,1+ε]], with ε=10⁻⁴, and choose the exact solution (1,1).",
+          "Adding δ=10⁻⁶ to the second right-hand-side entry gives the solution (1-δ/ε,1+δ/ε). Its relative residual for the original problem is about 5×10⁻⁷, but its relative solution error is about 10⁻²."
+        ],
+        "code": "eps, delta = 1.0e-4, 1.0e-6\nxhat = [1-delta/eps, 1+delta/eps]\nb = [2.0, 2.0+eps]\nr = [2.0-xhat[0]-xhat[1],\n     b[1]-xhat[0]-(1+eps)*xhat[1]]\nprint(xhat, r)",
+        "result": "The infinity-norm condition number is about 4.0×10⁴. The code also checks a high-precision analytic expression using Decimal. This is an illustration of input sensitivity, not an evaluation of every linear solver."
+      },
+      "figure": {
+        "id": "figure-03",
+        "caption": "Figure 3: Relative residual for the original equation, relative solution error, and a backward-error indicator. The vertical axis is logarithmic; these quantities measure different things.",
+        "alt": "Figure 3: Relative residual for the original equation, relative solution error, and a backward-error indicator. The vertical axis is logarithmic; these quantities measure different things."
+      },
+      "experiment": {
+        "data": "conditioning.csv",
+        "instructions": "Extract the code ZIP and run python lab.py --input inputs.json --output my-results. Use a new or empty output directory. Compare the relevant CSV with the saved figure."
+      },
+      "questions": [
+        {
+          "question": "Does making the residual ten times smaller always reduce total PDE error by a factor of ten?",
+          "answer": "No. Amplification associated with conditioning, and spatial and temporal discretization errors, remain."
+        },
+        {
+          "question": "Does a large condition number prove that the implementation is wrong?",
+          "answer": "The problem itself may be sensitive. Examine this separately from the backward error of the algorithm."
+        }
+      ],
+      "pitfalls": [
+        "Do not mix condition numbers based on different matrix norms.",
+        "Do not apply nonsingular-matrix formulas directly to a singular pure-Neumann matrix."
+      ],
+      "summary": [
+        "A residual measures how well the equation is satisfied.",
+        "Solution error also depends on sensitivity of the problem."
+      ],
+      "readings": [
+        "sparse-nonlinear",
+        "validation-foundations-conditioning"
+      ]
+    },
+    {
+      "n": 4,
+      "id": "04",
+      "title": "Consistency, truncation error, and convergence order",
+      "part": "error",
+      "goals": [
+        "Distinguish local and global error, and investigate accuracy using Taylor expansions and refinement in space and time."
+      ],
+      "lead": [
+        "Convergence means that a computed solution approaches a reference solution. Consistency is a local property: the defect obtained by substituting a smooth exact solution into the discrete equation vanishes as the steps shrink. These are different concepts.",
+        "Second-order accuracy describes a regime where the leading error behaves like Ch². Coarse grids, roundoff, boundaries, incomplete iteration, or cancellation between error terms can make an observed slope differ from the theoretical order."
+      ],
+      "sections": [
+        {
+          "title": "State the local-error convention",
+          "paragraphs": [
+            "In time integration, local error may mean the one-step solution defect itself, while local truncation error may mean that defect divided by Δt. For forward Euler these are O(Δt²) and O(Δt), respectively. For a stable calculation over finite time, the global error is usually O(Δt)."
+          ],
+          "equations": []
+        },
+        {
+          "title": "Measure slopes with three spacings",
+          "paragraphs": [
+            "Halve the spacing while keeping the physical comparison time, norm, and reference solution the same. The p below is an observed order, not a proof of theoretical order. Do not force this formula onto errors close to zero or the roundoff floor."
+          ],
+          "equations": [
+            {
+              "tex": "E(h)\\approx Ch^p,\\qquad p_{\\rm obs}=\\frac{\\log(E(h)/E(h/2))}{\\log2}.",
+              "plain": "E(h)≈Chᵖ; p_obs=log(E(h)/E(h/2))/log 2."
+            }
+          ]
+        },
+        {
+          "title": "Question the reference error too",
+          "paragraphs": [
+            "Without an exact solution, comparison with a finer computation or a different method is useful. That reference is still approximate. Separate temporal and spatial errors, and check refinement of the reference itself. Richardson-type estimates assume a smooth asymptotic error expansion."
+          ],
+          "equations": []
+        }
+      ],
+      "worked": {
+        "paragraphs": [
+          "Solve periodic advection to the same time T=0.6, halving the grid spacing and time step together. The upwind and Lax-Wendroff methods use the same initial waveform and Courant number 0.6.",
+          "For the first sequence N=40,80,160, the first observed upwind order was about 0.75, below the prescribed lower bound 0.85. We refined to N=80,160,320 without lowering that bound. The initial input and failed results remain in the ZIP history."
+        ],
+        "code": "from math import log2\nerrors = [0.020, 0.005, 0.00125]\nfor a, b in zip(errors, errors[1:]):\n    print(log2(a/b))  # 2 for this illustrative array\n# Use advection.csv for measured errors",
+        "result": "The measured upwind order approaches 1 and the Lax-Wendroff order approaches 2. Distinguish the illustrative number sequence from errors computed by the actual experiment; the sequence in the prose is not a measurement."
+      },
+      "figure": {
+        "id": "figure-04",
+        "caption": "Figure 4: L2 error versus grid spacing at the same time, for the adopted sequence N=80,160,320. The original coarse sequence is preserved in the history and has not been relabeled as a pass.",
+        "alt": "Figure 4: L2 error versus grid spacing at the same time, for the adopted sequence N=80,160,320. The original coarse sequence is preserved in the history and has not been relabeled as a pass."
+      },
+      "experiment": {
+        "data": "advection.csv",
+        "instructions": "Extract the code ZIP and run python lab.py --input inputs.json --output my-results. Use a new or empty output directory. Compare the relevant CSV with the saved figure."
+      },
+      "questions": [
+        {
+          "question": "What observed order results if halving the spacing halves the error?",
+          "answer": "log₂2=1. A reduction to one quarter gives 2. Compare the same problem, time, and norm."
+        },
+        {
+          "question": "Can a single extremely small error establish that a method has high order?",
+          "answer": "No. Error cancellation or roundoff may be involved. With several steps, examine the slope separately from the error magnitude."
+        }
+      ],
+      "pitfalls": [
+        "Consistency alone does not establish convergence.",
+        "A slope over finitely many grids is not a general guarantee."
+      ],
+      "summary": [
+        "Fix the definitions, comparison time, and reference.",
+        "Find the range where observed order approaches theory."
+      ],
+      "readings": [
+        "stability",
+        "validation-foundations-conditioning"
+      ]
+    },
+    {
+      "n": 5,
+      "id": "05",
+      "title": "Stability, convergence, and the Lax equivalence theorem",
+      "part": "stability",
+      "goals": [
+        "For a well-posed linear initial-value problem and a consistent linear approximation, relate uniform stability to convergence in a specified norm."
+      ],
+      "lead": [
+        "A formula may approximate the right differential equation and still fail to approach the reference solution if it amplifies small input errors severely. Consistency must be connected with stability to discuss convergence.",
+        "The Lax-Richtmyer equivalence theorem considered here concerns a well-posed linear initial-value problem and a consistent linear approximation. It does not say that consistency alone suffices for every numerical calculation."
+      ],
+      "sections": [
+        {
+          "title": "A uniform bound over finite time",
+          "paragraphs": [
+            "Let B_h advance the discrete solution, and consider a fixed finite time T. The powers of B_h that amplify initial error must be bounded by a constant independent of the grid spacing and time step. The chosen norm is part of the definition."
+          ],
+          "equations": [
+            {
+              "tex": "U^{n+1}=B_hU^n+b^n,\\qquad\\|B_h^n\\|\\le C_T\\quad(n\\Delta t\\le T).",
+              "plain": "Uⁿ⁺¹=B_h Uⁿ+bⁿ; ||B_hⁿ||≤C_T for nΔt≤T, with C_T independent of h,Δt."
+            }
+          ]
+        },
+        {
+          "title": "Error accumulates from local defects",
+          "paragraphs": [
+            "Denote the signed one-step defect by δ. Repeated substitution into the error recurrence gives the expression below. Stability bounds amplification of every defect by C_T. If each defect is bounded by Δt×ε(h,Δt), with ε tending to zero, the finite-time error tends to zero too."
+          ],
+          "equations": [
+            {
+              "tex": "e^N=B_h^Ne^0+\\sum_{j=0}^{N-1}B_h^{N-1-j}\\delta^j,\\quad\\|e^N\\|\\le C_T\\left(\\|e^0\\|+T\\max_j\\frac{\\|\\delta^j\\|}{\\Delta t}\\right).",
+              "plain": "eᴺ=B_hᴺe⁰+ΣB_hᴺ⁻¹⁻ʲδʲ; ||eᴺ||≤C_T (||e⁰||+T max||δʲ||/Δt)."
+            }
+          ]
+        },
+        {
+          "title": "How to read the equivalence theorem",
+          "paragraphs": [
+            "Within the setting of a well-posed linear problem and a consistent linear approximation, stability and convergence are equivalent. The estimate above shows the key direction from stability to convergence; a rigorous converse requires the function-space setting. Do not apply the result unchanged to nonlinear conservation laws or discontinuous solutions."
+          ],
+          "equations": []
+        }
+      ],
+      "worked": {
+        "paragraphs": [
+          "FTCS advection, combining centered spatial differences and forward Euler, is consistent for smooth solutions. However, at a fixed Courant number it amplifies some grid wavenumbers.",
+          "Refinement also increases the number of steps required to reach the same physical time. A mode with a fixed one-step amplification greater than 1 has unbounded powers along that sequence."
+        ],
+        "code": "from math import sqrt\nnu = 0.6\nG_abs = sqrt(1+nu*nu)  # theta=pi/2\nfor n in [10, 20, 30]:\n    print(n, G_abs**n)",
+        "result": "The saved diagnostic detects amplification by FTCS even when the CFL condition is satisfied. Passing this diagnostic means detecting an intentionally unstable example; it does not qualify FTCS as a stable advection scheme."
+      },
+      "figure": {
+        "id": "figure-05",
+        "caption": "Figure 5: Amplification that consistency alone cannot prevent. Two unstable controls are normalized by their initial norms.",
+        "alt": "Figure 5: Amplification that consistency alone cannot prevent. Two unstable controls are normalized by their initial norms."
+      },
+      "experiment": {
+        "data": "unstable.csv",
+        "instructions": "Extract the code ZIP and run python lab.py --input inputs.json --output my-results. Use a new or empty output directory. Compare the relevant CSV with the saved figure."
+      },
+      "questions": [
+        {
+          "question": "May the stability constant grow without bound as h decreases?",
+          "answer": "Not in the Lax-Richtmyer sense. The estimate must be independent of the steps at fixed finite time T."
+        },
+        {
+          "question": "Does this theorem alone establish convergence for a nonlinear problem containing shocks?",
+          "answer": "No. The classes of problems, solutions, and discretizations differ, and require separate analysis."
+        }
+      ],
+      "pitfalls": [
+        "Eigenvalues of one fixed matrix alone do not establish uniform stability for an entire grid family.",
+        "Do not call a few experiments a proof of the theorem."
+      ],
+      "summary": [
+        "Consider consistency and stability together.",
+        "Specify the norm, finite time, and uniformity."
+      ],
+      "readings": [
+        "stability"
+      ]
+    },
+    {
+      "n": 6,
+      "id": "06",
+      "title": "Absolute stability and stability regions",
+      "part": "stability",
+      "goals": [
+        "Use the test equation y′=λy and amplification function R(λΔt) to relate the time step to growth and decay."
+      ],
+      "lead": [
+        "First isolate a single decaying component. The test equation y′=λy has an exact exponential solution, which decays when Re λ<0. Examine how a time integrator treats this component one step at a time in the complex plane.",
+        "The one-step multiplier R(z) is the stability function. The product z=λΔt combines the problem's time scale with the selected step."
+      ],
+      "sections": [
+        {
+          "title": "From amplification to a stability region",
+          "paragraphs": [
+            "Apply a linear one-step method to the test equation. Its absolute stability region consists of z for which |R(z)|≤1. This prevents growth in the repeated test-equation update; it does not guarantee accurate phase or accurate values."
+          ],
+          "equations": [
+            {
+              "tex": "y_{n+1}=R(z)y_n,\\qquad z=\\lambda\\Delta t,\\qquad\\mathcal S=\\{z:|R(z)|\\le1\\}.",
+              "plain": "y_n₊₁=R(z)y_n; z=λΔt; absolute stability region S={z:|R(z)|≤1}."
+            }
+          ]
+        },
+        {
+          "title": "Three basic formulas",
+          "paragraphs": [
+            "Forward Euler uses the slope at the old time, backward Euler uses the new time, and the trapezoidal rule averages the endpoint slopes. The formulas below describe the linear test equation. For a general nonlinear problem, backward Euler and the trapezoidal rule require solving equations."
+          ],
+          "equations": [
+            {
+              "tex": "R_{\\rm FE}=1+z,\\quad R_{\\rm BE}=\\frac1{1-z},\\quad R_{\\rm TR}=\\frac{1+z/2}{1-z/2}.",
+              "plain": "R_FE=1+z; R_BE=1/(1-z); R_TR=(1+z/2)/(1-z/2)."
+            }
+          ]
+        },
+        {
+          "title": "Being inside the region does not eliminate error",
+          "paragraphs": [
+            "The forward-Euler region is the disk centered at -1 with radius 1. On the negative real axis it gives -2≤z≤0. On a boundary where |R|=1, the numerical solution may not decay even when the exact solution does. Investigate accuracy separately by changing the step."
+          ],
+          "equations": []
+        }
+      ],
+      "worked": {
+        "paragraphs": [
+          "Take λ=-1 and T=1, with 10,20,40,80 steps. Compare each value R(-Δt)^N with exp(-1).",
+          "The forward- and backward-Euler errors are approximately first order, while the trapezoidal error is approximately second order. Size of the stability region and approximation order are separate properties."
+        ],
+        "code": "from math import exp\nN = 20\ndt = 1.0/N\nz = -dt\nforward = (1+z)**N\nbackward = (1/(1-z))**N\ntrapezoidal = ((1+z/2)/(1-z/2))**N\nprint(exp(-1), forward, backward, trapezoidal)",
+        "result": "For this fixed sequence, global error order is checked separately for all three methods. The colored regions depict stability in complex z, not measured error magnitude."
+      },
+      "figure": {
+        "id": "figure-06",
+        "caption": "Figure 6: Three stability regions, shaded where |R(z)|≤1. Backward Euler also shades part of the right half-plane; this does not mean that it accurately represents physically growing solutions.",
+        "alt": "Figure 6: Three stability regions, shaded where |R(z)|≤1. Backward Euler also shades part of the right half-plane; this does not mean that it accurately represents physically growing solutions."
+      },
+      "experiment": {
+        "data": "ode.csv",
+        "instructions": "Extract the code ZIP and run python lab.py --input inputs.json --output my-results. Use a new or empty output directory. Compare the relevant CSV with the saved figure."
+      },
+      "questions": [
+        {
+          "question": "What happens with λ=-10 and a forward-Euler step Δt=0.3?",
+          "answer": "z=-3 gives R=-2, so the magnitude doubles each step."
+        },
+        {
+          "question": "Does |R|≤1 imply that a coarse-step solution is close to the exact solution?",
+          "answer": "No. Stability limits unwanted amplification; it is separate from an accuracy check."
+        }
+      ],
+      "pitfalls": [
+        "Do not replace a complex λ by its real part when testing region membership.",
+        "Do not extend eigenvalue-only reasoning unconditionally to a general nonnormal matrix."
+      ],
+      "summary": [
+        "Compare λΔt with the stability region.",
+        "Measure accuracy and stability separately."
+      ],
+      "readings": [
+        "accuracy-stability"
+      ]
+    },
+    {
+      "n": 7,
+      "id": "07",
+      "title": "A-stability, L-stability, and stiff problems",
+      "part": "stability",
+      "goals": [
+        "Separate stability over the left half-plane from damping of very stiff modes; accuracy remains a separate question."
+      ],
+      "lead": [
+        "Diffusion on a fine grid contains components that decay very quickly alongside components that change slowly. Stability of the fast components can require steps much smaller than the slow evolution of interest. This is an entry point to understanding stiff problems.",
+        "A-stability includes the whole left half-plane of decaying linear components in the stability region. L-stability additionally requires sufficiently strong damping of extremely stiff components. Distinguish these two requirements."
+      ],
+      "sections": [
+        {
+          "title": "A-stability",
+          "paragraphs": [
+            "A method is A-stable when R is defined and |R(z)|≤1 for every z with Re z≤0. Backward Euler and the trapezoidal rule are A-stable. Forward Euler has a bounded stability region and is not A-stable. This classification concerns the linear test equation."
+          ],
+          "equations": [
+            {
+              "tex": "\\Re z\\le0\\ \\Longrightarrow\\ |R(z)|\\le1.",
+              "plain": "A-stability: Re z≤0 implies |R(z)|≤1."
+            }
+          ]
+        },
+        {
+          "title": "L-stability",
+          "paragraphs": [
+            "L-stability additionally requires R(z) to tend to 0 as |z| grows within the left half-plane. Backward Euler satisfies this condition. For the trapezoidal rule, R tends to -1 along the negative real axis, so a component that should rapidly disappear can persist with alternating sign."
+          ],
+          "equations": [
+            {
+              "tex": "R_{\\rm BE}(z)\\to0,\\qquad R_{\\rm TR}(z)\\to-1\\quad(z\\to-\\infty).",
+              "plain": "As z→-∞: R_BE→0 but R_TR→-1. L-stability also requires A-stability."
+            }
+          ]
+        },
+        {
+          "title": "Relate stiffness to the purpose of the calculation",
+          "paragraphs": [
+            "Stiffness depends on the problem, tolerance, and method. Even with A- or L-stability, examine nonlinear-solve error, temporal accuracy, positivity, and wave phase separately. Removing a stiff decaying transient and preserving the geometry of an oscillation are different goals."
+          ],
+          "equations": []
+        }
+      ],
+      "worked": {
+        "paragraphs": [
+          "With λ=-40 and Δt=0.25, z=-10. The exact one-step multiplier is exp(-10), compared with 1/11 for backward Euler and -2/3 for the trapezoidal rule.",
+          "Both numerical multipliers have magnitude at most 1. Yet the trapezoidal rule produces artificial sign alternation. Read this as a stiff-transient damping and accuracy issue, rather than unbounded instability."
+        ],
+        "code": "from math import exp\nz = -10.0\nprint(\"exact\", exp(z))\nprint(\"backward\", 1/(1-z))\nprint(\"trapezoidal\", (1+z/2)/(1-z/2))",
+        "result": "The figure compares backward Euler, the trapezoidal rule, and the exact solution. Forward Euler amplifies at this step and is recorded as a separate diagnostic. Visible trapezoidal oscillation and unbounded growth are different observations."
+      },
+      "figure": {
+        "id": "figure-07",
+        "caption": "Figure 7: A stiff decaying mode. Two A-stable methods remove its transient differently. The horizontal axis is time and the vertical axis is the solution value.",
+        "alt": "Figure 7: A stiff decaying mode. Two A-stable methods remove its transient differently. The horizontal axis is time and the vertical axis is the solution value."
+      },
+      "experiment": {
+        "data": "stiff.csv",
+        "instructions": "Extract the code ZIP and run python lab.py --input inputs.json --output my-results. Use a new or empty output directory. Compare the relevant CSV with the saved figure."
+      },
+      "questions": [
+        {
+          "question": "Does L-stability imply A-stability?",
+          "answer": "Yes, under this definition. L-stability adds a strong-damping condition to A-stability."
+        },
+        {
+          "question": "Does a negative trapezoidal value in this example violate A-stability?",
+          "answer": "No. The sign can alternate while |R|≤1. Damping of stiff components and positivity are separate requirements."
+        }
+      ],
+      "pitfalls": [
+        "Do not interpret A-stability as accuracy for any step size.",
+        "Do not confuse stiff-decay arguments with preservation of Hamiltonian structure."
+      ],
+      "summary": [
+        "A-stability covers the whole left half-plane.",
+        "L-stability also asks how stiff components disappear."
+      ],
+      "readings": [
+        "accuracy-stability"
+      ]
+    },
+    {
+      "n": 8,
+      "id": "08",
+      "title": "von Neumann Fourier stability analysis",
+      "part": "stability",
+      "goals": [
+        "Examine amplification by wavenumber, primarily for constant coefficients on a uniform grid with periodic or infinite domains."
+      ],
+      "lead": [
+        "Insert a periodic sinusoidal wave and examine how the difference scheme changes its amplitude and phase. A linear, constant-coefficient scheme on a uniform grid can be decomposed into Fourier modes. This is von Neumann analysis.",
+        "Neumann is a person's name here. This analysis is not the procedure for imposing the normal-derivative Neumann boundary condition introduced later. Boundary treatments on finite domains require checks beyond the interior Fourier analysis."
+      ],
+      "sections": [
+        {
+          "title": "Substitute a single mode",
+          "paragraphs": [
+            "Insert a complex grid mode exp(i jθ) into the difference equation. Linearity and constant coefficients preserve its shape at the next time, multiplied by a complex number G. Real waves can be represented using the real and imaginary parts. Here i is the imaginary unit satisfying i²=-1, and exp(i jθ)=cos(jθ)+i sin(jθ). Complex notation handles sine and cosine together."
+          ],
+          "equations": [
+            {
+              "tex": "U_j^n=\\widehat U^n e^{ij\\theta},\\qquad\\widehat U^{n+1}=G(\\theta)\\widehat U^n.",
+              "plain": "Uⱼⁿ=Ûⁿ exp(i jθ); Ûⁿ⁺¹=G(θ)Ûⁿ."
+            }
+          ]
+        },
+        {
+          "title": "Upwind and Lax-Wendroff schemes",
+          "paragraphs": [
+            "Consider advection with speed a>0 and Courant number ν=aΔt/h. For a continuous wavenumber k, θ=kh. Examine the full range representable by the grid, not just low wavenumbers."
+          ],
+          "equations": [
+            {
+              "tex": "G_{\\rm up}=1-\\nu+\\nu e^{-i\\theta},\\qquad G_{\\rm LW}=1-i\\nu\\sin\\theta+\\nu^2(\\cos\\theta-1).",
+              "plain": "G_up=1-ν+ν exp(-iθ); G_LW=1-iν sinθ+ν²(cosθ-1)."
+            }
+          ]
+        },
+        {
+          "title": "The roles of magnitude and argument",
+          "paragraphs": [
+            "For a scalar periodic problem, |G|≤1 for every mode ensures that discrete L2 does not grow. This is a useful sufficient condition. Lax-type uniform stability can also allow bounds such as 1+CΔt; a value of |G| slightly greater than 1 alone is not a universal instability test. The argument describes phase error, examined in Chapter 11."
+          ],
+          "equations": []
+        }
+      ],
+      "worked": {
+        "paragraphs": [
+          "The code checks both the analytic G and the result of advancing a complex Fourier array by one step of the actual difference update. These provide separate paths for checking the derived formula and implementation signs.",
+          "For FTCS with Courant number 0.6, θ=π/2 gives |G|=√(1+0.6²)>1. This fixed factor is raised to an increasing number of steps, destroying uniform stability at fixed physical time."
+        ],
+        "code": "from cmath import exp\nfrom math import pi\nnu, theta = 0.6, pi/2\ng_up = 1-nu+nu*exp(-1j*theta)\nprint(abs(g_up), g_up.real, g_up.imag)",
+        "result": "symbols.csv contains amplitude, phase, and group-speed data by wavenumber. The implemented mode update must agree with the analytic formula within the fixed absolute bound 1e -12."
+      },
+      "figure": {
+        "id": "figure-08",
+        "caption": "Figure 8: One-step amplitude multipliers at Courant number 0.6. Two stable methods and the intentionally unstable FTCS control are compared at the same wavenumbers.",
+        "alt": "Figure 8: One-step amplitude multipliers at Courant number 0.6. Two stable methods and the intentionally unstable FTCS control are compared at the same wavenumbers."
+      },
+      "experiment": {
+        "data": "symbols.csv",
+        "instructions": "Extract the code ZIP and run python lab.py --input inputs.json --output my-results. Use a new or empty output directory. Compare the relevant CSV with the saved figure."
+      },
+      "questions": [
+        {
+          "question": "Is checking only long waves enough to establish stability?",
+          "answer": "No. Short grid-wavelength modes may be unstable."
+        },
+        {
+          "question": "With finite-domain boundaries, is the interior |G| generally sufficient?",
+          "answer": "No. Also examine a matrix or energy estimate including the boundaries, and actual boundary-condition examples."
+        }
+      ],
+      "pitfalls": [
+        "Do not extend this analysis unconditionally to variable coefficients, nonlinear equations, or nonuniform grids.",
+        "For multiple components or nonnormal systems, consider more than eigenvalues."
+      ],
+      "summary": [
+        "Substitute the mode into the actual difference equation.",
+        "Read amplitude and phase separately."
+      ],
+      "readings": [
+        "stability"
+      ]
+    },
+    {
+      "n": 9,
+      "id": "09",
+      "title": "CFL conditions and domains of dependence",
+      "part": "stability",
+      "goals": [
+        "Connect information speed to the reach of a stencil, and distinguish necessary from sufficient conditions."
+      ],
+      "lead": [
+        "Advection transports information at finite speed. The grid points available to a numerical solution must cover the range from which physical information arrives. Otherwise, the discretization cannot approximate the correct dependence. This idea motivates the CFL condition.",
+        "Covering the physical domain of dependence is different from preventing error amplification. In the appropriate setting, CFL is necessary; it is not a sufficient condition that stabilizes every difference scheme."
+      ],
+      "sections": [
+        {
+          "title": "Advection and the upwind direction",
+          "paragraphs": [
+            "For a>0, the exact advection solution is the initial waveform shifted to the right by a t. The upwind scheme uses the value to the left. For 0≤ν≤1, its new value is a convex combination of two old values. Reverse the direction when a<0."
+          ],
+          "equations": [
+            {
+              "tex": "u_t+a u_x=0,\\quad u(x,t)=u_0(x-at),\\qquad U_j^{n+1}=(1-\\nu)U_j^n+\\nu U_{j-1}^n.",
+              "plain": "u_t+a u_x=0; u(x,t)=u₀(x-at); Uⱼⁿ⁺¹=(1-ν)Uⱼⁿ+νUⱼ₋₁ⁿ."
+            }
+          ]
+        },
+        {
+          "title": "An example where CFL is not sufficient",
+          "paragraphs": [
+            "FTCS with centered spatial differences is unstable at ν=0.6 despite satisfying the domain-of-dependence requirement. Check amplification for the particular method. A large implicit stability region also does not restore temporal accuracy lost through coarse steps."
+          ],
+          "equations": []
+        },
+        {
+          "title": "Derive diffusion restrictions separately",
+          "paragraphs": [
+            "For the one-dimensional heat equation with centered space and forward Euler in time, r=κΔt/h²≤1/2. This explicit stability restriction follows from amplification factors or discrete eigenvalues. It is not obtained simply by reusing the finite-speed advection argument."
+          ],
+          "equations": [
+            {
+              "tex": "\\nu=\\frac{a\\Delta t}{h},\\qquad r=\\frac{\\kappa\\Delta t}{h^2}\\le\\frac12\\quad\\text{(1D explicit heat scheme)}.",
+              "plain": "ν=aΔt/h; explicit 1D heat scheme: r=κΔt/h²≤1/2."
+            }
+          ]
+        }
+      ],
+      "worked": {
+        "paragraphs": [
+          "For upwind with ν=1.2, the coefficient 1-ν is negative. The figure compares this example with FTCS at ν=0.6. Both amplify, but their diagnoses differ.",
+          "The first violates the upwind stability condition; the second satisfies the necessary CFL condition but uses an unsuitable scheme. A mode with a four-grid-spacing period makes amplification easy to measure."
+        ],
+        "code": "from math import sqrt\nnu = 1.2\nprint(\"upwind, theta=pi:\", abs(1-2*nu))\nnu = 0.6\nprint(\"FTCS, theta=pi/2:\", sqrt(1+nu*nu))",
+        "result": "Unstable controls are saved as diagnostics. A pass flag can mean that the intended instability was detected, so read the meaning of each criterion."
+      },
+      "figure": {
+        "id": "figure-09",
+        "caption": "Figure 9: Revisit the same amplification data through the necessity and sufficiency of CFL. The condition ν<1 alone does not prevent FTCS amplification.",
+        "alt": "Figure 9: Revisit the same amplification data through the necessity and sufficiency of CFL. The condition ν<1 alone does not prevent FTCS amplification."
+      },
+      "experiment": {
+        "data": "unstable.csv",
+        "instructions": "Extract the code ZIP and run python lab.py --input inputs.json --output my-results. Use a new or empty output directory. Compare the relevant CSV with the saved figure."
+      },
+      "questions": [
+        {
+          "question": "In advection, how must the time step change when grid spacing is halved at fixed Courant number?",
+          "answer": "Halve the time step."
+        },
+        {
+          "question": "What if the explicit diffusion ratio r is held fixed?",
+          "answer": "The step scales with the square of grid spacing, so reduce it to one quarter."
+        }
+      ],
+      "pitfalls": [
+        "Do not carry the one-dimensional coefficient 1/2 unchanged into multiple dimensions.",
+        "Do not substitute implicit stability for temporal resolution of the model."
+      ],
+      "summary": [
+        "Distinguish advection and diffusion step restrictions.",
+        "Check method-specific stability as well as CFL."
+      ],
+      "readings": [
+        "stability"
+      ]
+    },
+    {
+      "n": 10,
+      "id": "10",
+      "title": "Numerical dissipation: amplitude, norms, and energy",
+      "part": "stability",
+      "goals": [
+        "Read artificial amplitude decay from the magnitude of the amplification factor, distinguish it from physical diffusion and dissipation, and understand the role of artificial viscosity."
+      ],
+      "lead": [
+        "Numerical dissipation is artificial wave-amplitude reduction introduced by discretization. For periodic advection without physical damping, the exact waveform translates unchanged, preserving its amplitude and L2 norm. Measure extra decay relative to that reference.",
+        "Amplitude decay in a diffusion equation, by contrast, can be correct physical behavior. For each problem, distinguish quantities that should be conserved, quantities that physically dissipate, and changes introduced by the numerical method."
+      ],
+      "sections": [
+        {
+          "title": "Read the amplitude multiplier",
+          "paragraphs": [
+            "A Fourier mode is multiplied in amplitude by |G| per step and by |G|ⁿ after n steps. A quantity proportional to amplitude has a different multiplier from an energy-like quantity proportional to amplitude squared. Where |G|=0, the logarithmic damping rate is not finite."
+          ],
+          "equations": [
+            {
+              "tex": "A_n=|G|^nA_0,\\qquad\\alpha_{\\rm num}=-\\frac{\\log|G|}{\\Delta t}\\quad(|G|>0).",
+              "plain": "A_n=|G|ⁿ A₀; numerical damping rate αnum=-log|G|/Δt for |G|>0."
+            }
+          ]
+        },
+        {
+          "title": "Artificial diffusion in the upwind scheme",
+          "paragraphs": [
+            "For smooth solutions at fixed Courant number, a Taylor expansion makes the leading upwind error look like diffusion. Accounting for temporal as well as spatial truncation produces the factor 1-ν. This is a small-spacing approximation, not an exact description of every wavenumber."
+          ],
+          "equations": [
+            {
+              "tex": "u_t+a u_x\\approx\\mu_{\\rm num}u_{xx},\\qquad\\mu_{\\rm num}=\\frac{a h}{2}(1-\\nu)\\quad(a>0).",
+              "plain": "Modified-equation leading term: u_t+a u_x≈μnum u_xx, μnum=a h(1-ν)/2 (a>0)."
+            }
+          ]
+        },
+        {
+          "title": "Benefits and costs of dissipation",
+          "paragraphs": [
+            "Dissipation can suppress unresolved oscillations, but can also smear or remove structures of interest. Stable linear first-order upwind preserves monotonicity at the cost of smearing the waveform. Less numerical dissipation is not automatically best in every situation."
+          ],
+          "equations": []
+        }
+      ],
+      "worked": {
+        "paragraphs": [
+          "Use the same advection speed, Courant number 0.6, and initial sum of two sine waves. Relate |G| in symbols.csv to the norm changes in advection.csv.",
+          "Upwind and Lax-Wendroff are both stable under these conditions, but damp high wavenumbers differently. Examine poorly resolved components as well as the leading low-wavenumber error."
+        ],
+        "code": "from lab import symbol\nfrom math import pi\nfor method in [\"upwind\", \"lax-wendroff\"]:\n    G = symbol(method, pi/2, 0.6)\n    print(method, abs(G), abs(G)**20)",
+        "result": "Artificial dissipation weakens as the grid is refined, but the upwind method in this fixed sequence has first-order error. Check grid dependence before interpreting numerical decay as a physical diffusion coefficient."
+      },
+      "figure": {
+        "id": "figure-10",
+        "caption": "Figure 10: |G| viewed as a measure of dissipation. Exact lossless advection has multiplier 1. The same symbols as Figure 8 are used, now focusing on amplitude decay.",
+        "alt": "Figure 10: |G| viewed as a measure of dissipation. Exact lossless advection has multiplier 1. The same symbols as Figure 8 are used, now focusing on amplitude decay."
+      },
+      "experiment": {
+        "data": "symbols.csv",
+        "instructions": "Extract the code ZIP and run python lab.py --input inputs.json --output my-results. Use a new or empty output directory. Compare the relevant CSV with the saved figure."
+      },
+      "questions": [
+        {
+          "question": "If amplitude is multiplied by 0.9, what happens to a quantity proportional to its square?",
+          "answer": "It is multiplied by 0.81. Keep amplitude and energy-like multipliers distinct."
+        },
+        {
+          "question": "Is every amplitude decrease in a diffusion equation numerical dissipation?",
+          "answer": "No. Compare with the analytic physical decay, and examine the difference as numerical error."
+        }
+      ],
+      "pitfalls": [
+        "Do not combine physical and artificial dissipation into one undifferentiated quantity.",
+        "Do not call a leading modified-equation term exact all the way to the grid limit."
+      ],
+      "summary": [
+        "Use |G| to read the amplitude response.",
+        "Separate conserved quantities, norms, and physical dissipation."
+      ],
+      "readings": [
+        "stability"
+      ]
+    },
+    {
+      "n": 11,
+      "id": "11",
+      "title": "Numerical dispersion: phase speed, group speed, and waveforms",
+      "part": "stability",
+      "goals": [
+        "Use the argument of amplification to examine phase and propagation-speed error, understand waveform distortion without amplitude loss, and distinguish physical dispersion."
+      ],
+      "lead": [
+        "A waveform changes if its crests travel at the wrong speeds, even when amplitude is nearly preserved. Numerical dispersion is a wavenumber-dependent departure of phase evolution from the exact equation. Measure it separately from numerical dissipation.",
+        "Phase speed describes motion of a wave crest, while group speed describes an envelope occupying a narrow wavenumber band. One group speed does not describe every arbitrary broadband waveform."
+      ],
+      "sections": [
+        {
+          "title": "Read the argument of a complex multiplier",
+          "paragraphs": [
+            "With time dependence exp(-iωt), write G=|G|exp(iφ) and read the real numerical angular frequency as-φ/Δt. Choose a continuous phase branch; do not turn a jump from π to-π into a physical speed discontinuity."
+          ],
+          "equations": [
+            {
+              "tex": "\\omega_{\\rm num}=-\\frac{\\phi(\\theta)}{\\Delta t},\\quad c_{\\rm ph}=\\frac{\\omega_{\\rm num}}k,\\quad c_{\\rm gr}=\\frac{d\\omega_{\\rm num}}{dk},\\quad\\theta=kh.",
+              "plain": "ωnum=-φ(θ)/Δt; phase speed=ωnum/k; group speed=dωnum/dk; θ=kh."
+            }
+          ]
+        },
+        {
+          "title": "Constant-speed advection has a constant reference speed",
+          "paragraphs": [
+            "For exact constant-speed advection, both phase and group speed equal a. Using the discrete G expresses speed ratios in terms of θ. The figure uses 0<θ<π, avoiding the sign and branch ambiguity at the Nyquist endpoint."
+          ],
+          "equations": [
+            {
+              "tex": "\\frac{c_{\\rm ph}}a=-\\frac{\\phi}{\\nu\\theta},\\qquad\\frac{c_{\\rm gr}}a=-\\frac1\\nu\\frac{d\\phi}{d\\theta}.",
+              "plain": "c_ph/a=-φ/(νθ); c_gr/a=-(dφ/dθ)/ν."
+            }
+          ]
+        },
+        {
+          "title": "Distinguish physical dispersion",
+          "paragraphs": [
+            "If a medium or equation itself has wavenumber-dependent propagation speed, dispersion is physical. Our reference is nondispersive constant-speed advection, so deviations of the plotted ratios are numerical. Always show their dependence on steps and grid resolution."
+          ],
+          "equations": []
+        }
+      ],
+      "worked": {
+        "paragraphs": [
+          "Compute the argument of complex G to obtain the phase-speed ratio. Evaluate group speed from the derivative of G, and test it against a separate small-difference derivative of the phase.",
+          "The advection runs in this edition transport a sum of two sine waves. Group speeds in the figure are evaluated from the discrete symbol; they are not direct measurements tracking the center of a localized wave packet."
+        ],
+        "code": "from cmath import phase\nfrom lab import symbol\nnu, theta = 0.6, 0.4\nG = symbol(\"lax-wendroff\", theta, nu)\nphase_speed_ratio = -phase(G)/(nu*theta)\nprint(phase_speed_ratio)",
+        "result": "At high wavenumbers, amplitude damping and phase error can both become large. Phase measurements of extremely weak components can also become unreliable, so read them together with |G|."
+      },
+      "figure": {
+        "id": "figure-11",
+        "caption": "Figure 11: Phase- and group-speed ratios obtained from G. The exact value is 1. Do not confuse short grid-wavelength behavior with the physical speeds of the continuous equation.",
+        "alt": "Figure 11: Phase- and group-speed ratios obtained from G. The exact value is 1. Do not confuse short grid-wavelength behavior with the physical speeds of the continuous equation."
+      },
+      "experiment": {
+        "data": "symbols.csv",
+        "instructions": "Extract the code ZIP and run python lab.py --input inputs.json --output my-results. Use a new or empty output directory. Compare the relevant CSV with the saved figure."
+      },
+      "questions": [
+        {
+          "question": "Does |G|=1 guarantee accurate wave transport?",
+          "answer": "No: an incorrect phase is still an error. Amplitude preservation and propagation-speed accuracy are separate."
+        },
+        {
+          "question": "What can go wrong when directly differencing arg G?",
+          "answer": "A branch jump from π to-π can produce an artificially huge derivative. Check continuity of the phase branch."
+        }
+      ],
+      "pitfalls": [
+        "Do not assign the group-speed formula uniformly to an arbitrary broadband waveform.",
+        "Do not try to remove physical dispersion as if it were numerical error."
+      ],
+      "summary": [
+        "Measure phase and amplitude separately.",
+        "Relate speed at each wavenumber to its resolution."
+      ],
+      "readings": [
+        "stability"
+      ]
+    },
+    {
+      "n": 12,
+      "id": "12",
+      "title": "Diagnosing numerical instability, oscillation, and divergence",
+      "part": "stability",
+      "goals": [
+        "Distinguish error amplification and divergence from stable oscillations and physical instability, and isolate their causes."
+      ],
+      "lead": [
+        "A visibly wavy solution is not enough to diagnose numerical instability. Stable linear methods can create oscillations or overshoots near sharp changes. Conversely, an initially small error can keep amplifying over time.",
+        "First measure the difference from a reference solution, then isolate its dependence on time, grid, step, and boundary treatment. Distinguish physical growth, numerical amplification, phase error, and lack of monotonicity."
+      ],
+      "sections": [
+        {
+          "title": "Isolate the cause with four questions",
+          "paragraphs": [
+            "Is the solution growing, or is its difference from the reference growing? Does reducing the time step change the behavior? Are only short grid wavelengths growing? Is error concentrated near boundaries? Changing one factor at a time makes the cause easier to trace."
+          ],
+          "equations": []
+        },
+        {
+          "title": "Stability and monotonicity differ",
+          "paragraphs": [
+            "Expanding the Lax-Wendroff stencil reveals a negative right-neighbor coefficient even for 0<ν<1. The new value can therefore leave the range of old values. L2 stability for a periodic linear problem differs from a maximum principle, positivity, and monotonicity."
+          ],
+          "equations": [
+            {
+              "tex": "U_j^{n+1}=\\tfrac12\\nu(1+\\nu)U_{j-1}^n+(1-\\nu^2)U_j^n+\\tfrac12\\nu(\\nu-1)U_{j+1}^n.",
+              "plain": "L-W: Uⱼⁿ⁺¹=ν(1+ν)Uⱼ₋₁ⁿ/2+(1-ν²)Uⱼⁿ+ν(ν-1)Uⱼ₊₁ⁿ/2."
+            }
+          ]
+        },
+        {
+          "title": "Some unstable growth is physically correct",
+          "paragraphs": [
+            "When the physical model amplifies perturbations, growing waves are not necessarily numerical errors. Compare analytic growth rates or independent references, and examine resolution and time-step dependence. This edition does not run a new benchmark of physical instability."
+          ],
+          "equations": []
+        }
+      ],
+      "worked": {
+        "paragraphs": [
+          "For a hand calculation, insert ν=0.6 and neighboring values (left,center,right)=(0,0,1) into Lax-Wendroff. The updated center is 0.6(0.6-1)/2=-0.12, demonstrating lack of monotonicity.",
+          "This one-step negative value differs from the FTCS norm growing over time in Chapter 5. The figure also shows a smooth wave's error at finite time."
+        ],
+        "code": "nu = 0.6\nleft, center, right = 0.0, 0.0, 1.0\nvalue = (nu*(1+nu)*left/2\n         + (1-nu*nu)*center\n         + nu*(nu-1)*right/2)\nprint(value)  # -0.12 by hand",
+        "result": "The smooth-wave figure shows the difference between numerical and exact solutions on the finest adopted grid. It is not a long-time test of a discontinuous wave."
+      },
+      "figure": {
+        "id": "figure-12",
+        "caption": "Figure 12: Spatial error distribution for smooth advection. It shows finite amplitude and phase errors; assess divergence separately using a norm time series.",
+        "alt": "Figure 12: Spatial error distribution for smooth advection. It shows finite amplitude and phase errors; assess divergence separately using a norm time series."
+      },
+      "experiment": {
+        "data": "advection-field.csv",
+        "instructions": "Extract the code ZIP and run python lab.py --input inputs.json --output my-results. Use a new or empty output directory. Compare the relevant CSV with the saved figure."
+      },
+      "questions": [
+        {
+          "question": "Does overshoot necessarily imply L2 instability?",
+          "answer": "No. Monotonicity and an L2 amplification bound are different properties."
+        },
+        {
+          "question": "Should grid, step, and boundaries all be changed at once when diagnosing a problem?",
+          "answer": "Start with one at a time. Otherwise an improvement may not reveal which change helped."
+        }
+      ],
+      "pitfalls": [
+        "Do not equate stable oscillation with unbounded amplification.",
+        "Separate physically growing solutions from amplification of error."
+      ],
+      "summary": [
+        "Define what you mean by unstable.",
+        "Use time, wavenumber, and boundary dependence to locate error sources."
+      ],
+      "readings": [
+        "stability"
+      ]
+    },
+    {
+      "n": 13,
+      "id": "13",
+      "title": "Initial conditions and Dirichlet, Neumann, and Robin boundaries",
+      "part": "boundary",
+      "goals": [
+        "Understand prescribed values, outward normal derivatives, and linear combinations of the two."
+      ],
+      "lead": [
+        "A differential equation alone does not determine a unique solution. Initial conditions specify the starting state in time, and boundary conditions constrain the spatial edges. Both are part of the model and should not be chosen merely for computational convenience.",
+        "Elliptic problems such as Poisson and transport problems such as advection require different boundary information. For advection in particular, what is prescribed at inflow matters."
+      ],
+      "sections": [
+        {
+          "title": "Three basic forms",
+          "paragraphs": [
+            "Dirichlet specifies a value, Neumann an outward normal derivative, and Robin a linear combination. When Neumann data represent physical flux, state the coefficient and sign relation explicitly. A diffusion flux is conventionally-κ∂_n u. In the equations, g_D, g_N, and g_R denote prescribed Dirichlet, Neumann, and Robin data."
+          ],
+          "equations": [
+            {
+              "tex": "u=g_D,\\qquad\\partial_nu=g_N,\\qquad\\alpha u+\\beta\\partial_nu=g_R.",
+              "plain": "Dirichlet: u=g_D; Neumann: ∂_nu=g_N; Robin: αu+β∂_nu=g_R."
+            }
+          ]
+        },
+        {
+          "title": "The outward-normal direction",
+          "paragraphs": [
+            "On[0,1], the left normal is -1 and the right normal is +1. Thus ∂_n u is-u′(0) on the left and u′(1) on the right. Using the same +x derivative at both ends changes the boundary-flux balance."
+          ],
+          "equations": [
+            {
+              "tex": "\\partial_nu(0)=-u_x(0),\\qquad\\partial_nu(1)=u_x(1).",
+              "plain": "On [0,1]: ∂_nu(0)=-u_x(0), ∂_nu(1)=u_x(1)."
+            }
+          ]
+        },
+        {
+          "title": "Consider conditions together with the equation",
+          "paragraphs": [
+            "For a time-dependent problem, initial and boundary data should also be compatible where they meet. Incompatibility can create initial layers or nonsmoothness, preventing smooth-solution orders from appearing directly. Periodic boundaries are a different condition that joins the endpoints."
+          ],
+          "equations": []
+        }
+      ],
+      "worked": {
+        "paragraphs": [
+          "Choose an exact solution of-u″=f first, then derive the right-hand side and boundary data. Use sin(πx)+0.3x +1 for Dirichlet, cos(2πx) for Neumann, and exp(x) for Robin.",
+          "These are separate manufactured solutions checking each boundary type, not a comparison that changes only the boundary condition while holding f fixed. Whenever the problem changes, use its matching reference."
+        ],
+        "code": "from math import exp\nalpha, beta = 2.0, 1.0\nu_left, ux_left = 1.0, 1.0\nu_right, ux_right = exp(1), exp(1)\ng_left = alpha*u_left-beta*ux_left\ng_right = alpha*u_right+beta*ux_right\nprint(g_left, g_right)",
+        "result": "For the Robin example, g_left=1 and g_right=3e. Checking the signs alone can prevent serious boundary-treatment errors."
+      },
+      "figure": {
+        "id": "figure-13",
+        "caption": "Figure 13: Boundary types and outward normals. Boundary data are model-specified quantities, not merely the values at the ends of an array.",
+        "alt": "Figure 13: Boundary types and outward normals. Boundary data are model-specified quantities, not merely the values at the ends of an array."
+      },
+      "experiment": {
+        "data": "boundary-field.csv",
+        "instructions": "Extract the code ZIP and run python lab.py --input inputs.json --output my-results. Use a new or empty output directory. Compare the relevant CSV with the saved figure."
+      },
+      "questions": [
+        {
+          "question": "Is the outward normal derivative at the left endpoint +u′(0)?",
+          "answer": "No. On[0,1], it is-u′(0)."
+        },
+        {
+          "question": "Does a Neumann condition always specify the physical flux itself?",
+          "answer": "No. Signs and coefficients can relate the normal derivative to physical flux. Check the definition."
+        }
+      ],
+      "pitfalls": [
+        "Do not transfer elliptic boundary prescriptions unconditionally to advection.",
+        "Do not immediately blame the numerical method for incompatible initial and boundary data."
+      ],
+      "summary": [
+        "Boundary conditions are part of the problem.",
+        "State the signs of normals and fluxes explicitly."
+      ],
+      "readings": [
+        "elliptic"
+      ]
+    },
+    {
+      "n": 14,
+      "id": "14",
+      "title": "Turning boundary conditions into discrete equations",
+      "part": "boundary",
+      "goals": [
+        "Use boundary nodes, half cells, ghost points, and normal directions to identify errors caused by low-order boundary closures."
+      ],
+      "lead": [
+        "Second-order interior differences do not prevent an inaccurate boundary approximation from dominating the total error. Whether unknowns lie at boundary nodes or cell centers changes the distance from the boundary data to the first unknown.",
+        "This chapter uses a nodal grid including both endpoints. Do not paste half-cell or ghost-point formulas for a cell-centered grid directly onto this grid."
+      ],
+      "sections": [
+        {
+          "title": "The half control volume at an endpoint",
+          "paragraphs": [
+            "Integrate-u″=f over the left half cell and approximate the derivative by a difference between neighboring nodes. This gives the relation below involving the left outward normal derivative g_L. The right-hand-side contribution from f also has half weight at the endpoint."
+          ],
+          "equations": [
+            {
+              "tex": "u_0-u_1=h g_L+\\frac{h^2}{2}f_0.",
+              "plain": "Left Neumann closure for -u″=f: u₀-u₁=h g_L+h²f₀/2."
+            }
+          ]
+        },
+        {
+          "title": "An omitted term can affect the whole solution",
+          "paragraphs": [
+            "Dropping h²f₀/2 leaves a first-order error in the boundary-derivative approximation. The resulting solution can have first-order error even with second-order interior equations. The manufactured solution exp(x) demonstrates this difference."
+          ],
+          "equations": []
+        },
+        {
+          "title": "Robin conditions retain an unknown boundary value",
+          "paragraphs": [
+            "Write the Robin data as g_R and substitute ∂_n u=(g_R-αu)/β. This adds αh/β to the endpoint diagonal coefficient. Here α>0 and β>0 are fixed, and interior and boundary equations are solved together. Nonuniform grids or curved boundaries require a new derivation."
+          ],
+          "equations": [
+            {
+              "tex": "(1+h\\alpha/\\beta)u_0-u_1=\\frac{h^2}{2}f_0+\\frac h\\beta g_R.",
+              "plain": "Robin left row: (1+hα/β)u₀-u₁=h²f₀/2+h g_R/β."
+            }
+          ]
+        }
+      ],
+      "worked": {
+        "paragraphs": [
+          "Take u=exp(x), f=-exp(x), left Neumann data, and right Dirichlet data on N=8,16,32,64 intervals. Both methods use the same interior equation.",
+          "Compare mixed-good, which retains the half-cell f term, with mixed-naive, which omits it. A small residual of the implemented boundary equation alone does not guarantee accuracy relative to the continuous boundary condition."
+        ],
+        "code": "from lab import poisson\nfor kind in [\"mixed-good\", \"mixed-naive\"]:\n    x, u, ref, residual = poisson(64, kind)\n    error = max(abs(a-b) for a,b in zip(u,ref))\n    print(kind, error, residual)",
+        "result": "In this fixed example, the appropriate closure is approximately second order and the omitted-term closure approximately first order. This is a measurement for a selected smooth one-dimensional example, not a guarantee for every boundary geometry."
+      },
+      "figure": {
+        "id": "figure-14",
+        "caption": "Figure 14: The interior scheme is identical and only the left boundary treatment changes. Low-order boundary error appears in the maximum error over the whole solution.",
+        "alt": "Figure 14: The interior scheme is identical and only the left boundary treatment changes. Low-order boundary error appears in the maximum error over the whole solution."
+      },
+      "experiment": {
+        "data": "boundary.csv",
+        "instructions": "Extract the code ZIP and run python lab.py --input inputs.json --output my-results. Use a new or empty output directory. Compare the relevant CSV with the saved figure."
+      },
+      "questions": [
+        {
+          "question": "If the endpoint f term is omitted, must the whole method still be second order because its interior is second order?",
+          "answer": "No. In this manufactured example the boundary approximation dominates, giving approximately first-order convergence."
+        },
+        {
+          "question": "Can nodal and cell-centered boundary formulas be reused unchanged?",
+          "answer": "No. Distances from the boundary to unknowns and quadrature weights differ."
+        }
+      ],
+      "pitfalls": [
+        "Keep the endpoint half weights.",
+        "Distinguish solving a discrete boundary equation from achieving boundary accuracy for the PDE."
+      ],
+      "summary": [
+        "Derive interior and boundary equations together.",
+        "Keep the interior scheme fixed when measuring boundary-treatment differences."
+      ],
+      "readings": [
+        "elliptic",
+        "validation-mesh-boundary"
+      ]
+    },
+    {
+      "n": 15,
+      "id": "15",
+      "title": "Well-posedness, pure-Neumann compatibility, and uniqueness",
+      "part": "boundary",
+      "goals": [
+        "Understand the arbitrary constant, integral compatibility, mean-value gauge, and boundary-inclusive stability of a pure-Neumann problem."
+      ],
+      "lead": [
+        "When only the normal derivative is prescribed at both ends, adding a constant does not change either derivative. A pure-Neumann Poisson solution is therefore undetermined by an additive constant. Moreover, no solution exists unless the source and boundary data balance.",
+        "Nonexistence and nonuniqueness are different problems. Check both before responding to a stalled calculation by merely increasing the iteration count."
+      ],
+      "sections": [
+        {
+          "title": "Integrate to obtain compatibility",
+          "paragraphs": [
+            "Integrating-u″=f over[0,1] requires the right-hand side and outward normal derivatives g_L,g_R to satisfy the balance below. Check the corresponding discrete balance too, with half weights at the endpoints."
+          ],
+          "equations": [
+            {
+              "tex": "\\int_0^1f(x)\\,dx+g_L+g_R=0,\\qquad h\\sum_jw_jf_j+g_L+g_R=0,\\quad w_0=w_N=\\tfrac12.",
+              "plain": "Compatibility: ∫₀¹ f dx+g_L+g_R=0. Discrete: h Σwⱼfⱼ+g_L+g_R=0; endpoint weights=1/2."
+            }
+          ]
+        },
+        {
+          "title": "Fix the mean",
+          "paragraphs": [
+            "Even with compatibility, the matrix retains the constant-vector nullspace. Choose a gauge, such as zero mean, to select one solution for comparison. This selects the undetermined additive constant rather than arbitrarily changing physical data."
+          ],
+          "equations": [
+            {
+              "tex": "K\\mathbf1=0,\\qquad\\sum_jh w_jU_j=0.",
+              "plain": "Pure Neumann: K·1=0. Choose the gauge Σh wⱼ Uⱼ=0."
+            }
+          ]
+        },
+        {
+          "title": "Include boundaries in stability considerations",
+          "paragraphs": [
+            "The same interior operator can have different nullspaces and definiteness under different boundary conditions. Robin conditions with α,β>0 add positive endpoint terms to the discrete energy. Interior Fourier analysis alone does not settle every boundary treatment.",
+            "For the mean constraint in this chapter, w denotes dimensionless weights:1/2 at endpoints and 1 inside. The integration-norm weights in Chapter 2 include an additional factor h."
+          ],
+          "equations": []
+        }
+      ],
+      "worked": {
+        "paragraphs": [
+          "Choose u=cos(2πx), giving zero normal derivatives at both ends and f=4π²cos(2πx). The grid's trapezoidal weights also satisfy compatibility.",
+          "The code temporarily fixes one value to solve the linear system, then shifts the entire solution by a constant to obtain zero mean. It also checks the residual of the original boundary row that was omitted; satisfying the gauge alone is not enough."
+        ],
+        "code": "from lab import poisson, neumann_compatibility\nx, u, ref, residual = poisson(32, \"neumann\")\nh = 1/32\nmean = h*(sum(u)-(u[0]+u[-1])/2)\nprint(mean, residual)\n# f=1, g_left=g_right=0 is incompatible",
+        "result": "A dedicated check rejects an incompatible constant source. The exact +1 curve has the same Neumann data but is not selected by the zero-mean gauge."
+      },
+      "figure": {
+        "id": "figure-15",
+        "caption": "Figure 15: The arbitrary additive constant. The numerical solution is compared at zero mean; exact +1 is an analytic alternative with the same normal derivatives.",
+        "alt": "Figure 15: The arbitrary additive constant. The numerical solution is compared at zero mean; exact +1 is an analytic alternative with the same normal derivatives."
+      },
+      "experiment": {
+        "data": "boundary-field.csv",
+        "instructions": "Extract the code ZIP and run python lab.py --input inputs.json --output my-results. Use a new or empty output directory. Compare the relevant CSV with the saved figure."
+      },
+      "questions": [
+        {
+          "question": "Does-u″=f have a solution with f=1 and zero normal derivatives at both endpoints?",
+          "answer": "No. The left side of the integral compatibility condition is 1."
+        },
+        {
+          "question": "Does compatibility alone give uniqueness?",
+          "answer": "An arbitrary constant remains. Fix a mean value or another gauge to select one solution."
+        }
+      ],
+      "pitfalls": [
+        "Do not treat a singular matrix as merely a nonsingular matrix with a large condition number.",
+        "Use the same mean-value convention for the reference and numerical solution."
+      ],
+      "summary": [
+        "Separate existence from uniqueness.",
+        "Check the source, boundary data, and gauge together."
+      ],
+      "readings": [
+        "elliptic",
+        "validation-mesh-boundary"
+      ]
+    },
+    {
+      "n": 16,
+      "id": "16",
+      "title": "The method of lines: separating space and time error",
+      "part": "combine",
+      "goals": [
+        "Distinguish the spatially discrete ODE from the fully discrete system, and design comparisons that vary time or space separately."
+      ],
+      "lead": [
+        "Discretizing only the space variables of a PDE produces an ODE with many unknowns. Integrating that ODE in time is the method of lines. Space and time methods can be selected separately, but both contribute error to the final result.",
+        "When reducing the time step, comparison against the continuous PDE and comparison against exact evolution of the fixed spatial discretization reveal different convergence behavior. Decide first which reference you intend to use."
+      ],
+      "sections": [
+        {
+          "title": "Semidiscrete and fully discrete systems",
+          "paragraphs": [
+            "Use centered spatial differences for the heat equation with Dirichlet endpoints. Let u_h(t) be the exact solution of the grid ODE and U its time-discrete approximation. The total error then separates into two terms."
+          ],
+          "equations": [
+            {
+              "tex": "\\frac{d u_h}{dt}=A_hu_h,\\qquad U-u=(U-u_h)+(u_h-u).",
+              "plain": "Semidiscrete: du_h/dt=A_hu_h. Total error U-u=(U-u_h)+(u_h-u)."
+            }
+          ]
+        },
+        {
+          "title": "A single sine mode provides a known reference",
+          "paragraphs": [
+            "With u(x,0)=sin(πx) and zero Dirichlet data on[0,1], the grid sine vector is an eigenvector of the discrete matrix. The continuous and discrete decay rates provide separate references for temporal and total error."
+          ],
+          "equations": [
+            {
+              "tex": "\\lambda=-\\kappa\\pi^2,\\qquad\\lambda_h=-\\frac{4\\kappa}{h^2}\\sin^2\\frac{\\pi h}{2},\\qquad u_{h,j}(t)=e^{\\lambda_h t}\\sin(\\pi x_j).",
+              "plain": "λ=-κπ²; λ_h=-(4κ/h²)sin²(πh/2); u_h,j(t)=exp(λ_h t)sin(πxⱼ)."
+            }
+          ]
+        },
+        {
+          "title": "Plan what to refine first",
+          "paragraphs": [
+            "For temporal convergence, fix the spatial grid and compare with the semidiscrete reference. For spatial convergence, make temporal error sufficiently small or study total order along an explicitly stated coupled sequence. Errors can cancel; one unusually small total error is not sufficient evidence."
+          ],
+          "equations": []
+        }
+      ],
+      "worked": {
+        "paragraphs": [
+          "Fix κ=0.1, T=0.2, and N=40, and use 80,160,320,640 time steps. Compare forward Euler with the semidiscrete amplitude exp(λ_h T).",
+          "Compare the same numerical solution with the continuous amplitude exp(-κπ²T) as well. Temporal error can decrease at first order while spatial error and cancellation still influence the difference from the continuous reference."
+        ],
+        "code": "from math import pi, sin, exp\nN, kappa, T = 40, 0.1, 0.2\nh = 1.0/N\nlam_h = -4*kappa*sin(pi*h/2)**2/h**2\nfor steps in [80, 160, 320, 640]:\n    dt = T/steps\n    amplitude = (1+dt*lam_h)**steps\n    print(dt, abs(amplitude-exp(lam_h*T)))",
+        "result": "For the heat-grid sequence N=20,40,80, r=0.4 is held fixed and the total error under coupled space-time refinement is saved separately. Do not confuse that second-order sequence with first-order time convergence at fixed space."
+      },
+      "figure": {
+        "id": "figure-16",
+        "caption": "Figure 16: Time-step comparisons at fixed N=40. Errors against the semidiscrete and continuous PDE references follow different curves, revealing cancellation or a spatial-error floor.",
+        "alt": "Figure 16: Time-step comparisons at fixed N=40. Errors against the semidiscrete and continuous PDE references follow different curves, revealing cancellation or a spatial-error floor."
+      },
+      "experiment": {
+        "data": "heat-time.csv",
+        "instructions": "Extract the code ZIP and run python lab.py --input inputs.json --output my-results. Use a new or empty output directory. Compare the relevant CSV with the saved figure."
+      },
+      "questions": [
+        {
+          "question": "At fixed spatial grid, does Δt tending to 0 necessarily recover the continuous PDE solution?",
+          "answer": "It approaches the fixed-grid semidiscrete solution. Spatial error remains."
+        },
+        {
+          "question": "Is the semidiscrete reference an independent general PDE solver?",
+          "answer": "No. It is an analytic reference obtained from the eigenvalue of a discrete sine mode."
+        }
+      ],
+      "pitfalls": [
+        "Do not call coupled space-time refinement a measurement of temporal order alone.",
+        "Do not use cancellation of total error as evidence of high order."
+      ],
+      "summary": [
+        "State what is fixed and what is refined.",
+        "Specify the equation solved by the reference."
+      ],
+      "readings": [
+        "stability",
+        "accuracy-stability"
+      ]
+    },
+    {
+      "n": 17,
+      "id": "17",
+      "title": "Lie-Trotter and Strang splitting",
+      "part": "combine",
+      "goals": [
+        "Understand composition of subproblems and noncommutativity; distinguish first and second order under smooth conditions from boundary-induced order reduction."
+      ],
+      "lead": [
+        "When a right-hand side splits into two actions, it is tempting to solve each with a suitable method and compose the results. This is operator splitting. Even exact solutions of both subproblems need not compose into the exact solution of the original problem.",
+        "The cause is noncommutativity of the order. Use a small matrix or oscillator to compare advancing A then B with advancing in the reverse order."
+      ],
+      "sections": [
+        {
+          "title": "Lie splitting: consecutive full substeps",
+          "paragraphs": [
+            "Compose the partial flows φ_A and φ_B. In these formulas the rightmost map acts first. For a smooth finite-time problem with the required stability, Lie splitting usually has an O(h²) local defect and first-order global error."
+          ],
+          "equations": [
+            {
+              "tex": "\\Phi_{\\rm Lie}^h=\\varphi_A^h\\circ\\varphi_B^h,\\qquad[A,B]=AB-BA.",
+              "plain": "Lie step Φ_Lie(h)=φ_A(h)∘φ_B(h), rightmost first. Linear commutator [A,B]=AB-BA."
+            }
+          ]
+        },
+        {
+          "title": "Symmetric half-full-half composition",
+          "paragraphs": [
+            "Strang splitting advances B by a half step, A by a full step, and B by a half step. For smooth problems its local defect is usually O(h³), giving second-order global error. Subsolver errors, stiffness, nonsmooth solutions, and boundary treatments can alter this order."
+          ],
+          "equations": [
+            {
+              "tex": "\\Phi_{\\rm Strang}^h=\\varphi_B^{h/2}\\circ\\varphi_A^h\\circ\\varphi_B^{h/2}.",
+              "plain": "Strang step Φ_Strang(h)=φ_B(h/2)∘φ_A(h)∘φ_B(h/2)."
+            }
+          ]
+        },
+        {
+          "title": "What changes when the operators commute?",
+          "paragraphs": [
+            "For constant matrices satisfying AB=BA, composition of exact partial exponentials equals exp(h(A+B)). Thus examples using only commuting matrices hide the general ordering error. The code retains a commuting case as a control."
+          ],
+          "equations": []
+        }
+      ],
+      "worked": {
+        "paragraphs": [
+          "Use the unit-mass, unit-frequency oscillator q′=p, p′=-q. A kick changes only p and a drift only q, so each partial flow can be computed exactly.",
+          "A full kick followed by a full drift is the Lie step used here. A half kick, full drift, and half kick give Strang. Matching the initial state, final time T=1, and exact partial flows isolates the error due to composition order."
+        ],
+        "code": "q, p, dt = 1.0, 0.0, 0.1\n# Strang: kick / drift / kick\np -= 0.5*dt*q\nq += dt*p\np -= 0.5*dt*q\nprint(q, p)",
+        "result": "For 10,20,40,80 steps, Lie approaches first order and Strang second order. Both use exact partial flows in this comparison. Other partial solvers or boundary conditions cannot be substituted without rechecking the assumptions."
+      },
+      "figure": {
+        "id": "figure-17",
+        "caption": "Figure 17: State error measured with the same oscillator, final time, and exact partial flows. Match step counting and execution order as well as method names.",
+        "alt": "Figure 17: State error measured with the same oscillator, final time, and exact partial flows. Match step counting and execution order as well as method names."
+      },
+      "experiment": {
+        "data": "splitting.csv",
+        "instructions": "Extract the code ZIP and run python lab.py --input inputs.json --output my-results. Use a new or empty output directory. Compare the relevant CSV with the saved figure."
+      },
+      "questions": [
+        {
+          "question": "If every subproblem is solved exactly, is their composition necessarily exact?",
+          "answer": "Generally no when the flows do not commute. Splitting error due to ordering remains."
+        },
+        {
+          "question": "Can the two Strang half steps be counted as extra physical time, doubling the final time?",
+          "answer": "No. The complete composition approximates one physical step h."
+        }
+      ],
+      "pitfalls": [
+        "Keep the reference, final time, and partial solvers the same when comparing Lie and Strang.",
+        "Do not treat formal splitting order as a guarantee for arbitrary stiff boundary-value problems."
+      ],
+      "summary": [
+        "State the composition order.",
+        "Separate noncommutativity from subproblem-solver error."
+      ],
+      "readings": [
+        "operator-splitting"
+      ]
+    },
+    {
+      "n": 18,
+      "id": "18",
+      "title": "Symplectic integration and long-time behavior",
+      "part": "combine",
+      "goals": [
+        "Introduce Hamiltonian phase space through the harmonic oscillator, and distinguish preservation of geometric structure from exact energy conservation."
+      ],
+      "lead": [
+        "For long computations of oscillations or orbits, examine the geometric structure preserved by time evolution as well as one-step accuracy. Symplectic integration preserves the canonical structure of a Hamiltonian system.",
+        "Symplecticity differs from exact conservation of the original energy at every step. It supports useful long-time behavior but does not guarantee an accurate orbit for every step size or system."
+      ],
+      "sections": [
+        {
+          "title": "Phase space and canonical structure",
+          "paragraphs": [
+            "Work in phase space, pairing position q with momentum p. With multiple degrees of freedom, the condition preserves the canonical two-form; volume preservation alone is insufficient. For a linear map with one degree of freedom, determinant 1 corresponds to the symplectic condition."
+          ],
+          "equations": [
+            {
+              "tex": "\\dot q=\\partial_pH,\\quad\\dot p=-\\partial_qH,\\qquad(D\\Phi_h)^T J(D\\Phi_h)=J,\\quad J=\\begin{pmatrix}0&I\\\\-I&0\\end{pmatrix}.",
+              "plain": "q̇=∂H/∂p, ṗ=-∂H/∂q; (DΦ_h)ᵀJ(DΦ_h)=J; J=[[0,I],[-I,0]]."
+            }
+          ]
+        },
+        {
+          "title": "Two methods obtained by splitting",
+          "paragraphs": [
+            "For the previous chapter's oscillator, kick then drift gives first-order symplectic Euler, while half kick, drift, and half kick give second-order Störmer-Verlet. Verlet is also time-symmetric; symplectic Euler is generally not."
+          ],
+          "equations": []
+        },
+        {
+          "title": "Preserved quadratic forms and physical energy",
+          "paragraphs": [
+            "For this unit oscillator at fixed step h, the modified quadratic forms below are conserved in exact arithmetic. They are positive definite for |h|<2, helping explain bounded physical-energy error. These simple quadratic expressions do not apply to general Hamiltonian systems."
+          ],
+          "equations": [
+            {
+              "tex": "H=\\tfrac12(q^2+p^2),\\quad\\widetilde H_{\\rm SE}=\\tfrac12(q^2+p^2-hqp),\\quad\\widetilde H_{\\rm VV}=\\tfrac12\\left[(1-h^2/4)q^2+p^2\\right].",
+              "plain": "Unit oscillator: H=(q²+p²)/2; H̃_SE=(q²+p²-hqp)/2; H̃_VV=[(1-h²/4)q²+p²]/2."
+            }
+          ]
+        }
+      ],
+      "worked": {
+        "paragraphs": [
+          "Start at q(0)=1, p(0)=0 and take 6000 steps of h=0.1 to time 600. Forward Euler increases energy and backward Euler decreases it. Both introduce large errors for the purpose of sustaining Hamiltonian oscillations over long times.",
+          "Symplectic Euler and Verlet have oscillatory energy errors. Their measured maximum relative errors here are about 5.26% and 0.25%, respectively; the modified quadratic forms are preserved to roundoff. Yet both retain a final-time phase error of about 0.25 rad."
+        ],
+        "code": "from lab import oscillator_step\nq, p, h = 1.0, 0.0, 0.1\nfor _ in range(6000):\n    q, p = oscillator_step(q, p, h, \"verlet\")\nprint(q, p, (q*q+p*p)/2)",
+        "result": "Good energy behavior does not imply accurate phase. Do not transfer fixed-step geometric or long-time estimates unchanged to ordinary state-dependent step changes. This course does not verify guarantees for general nonlinear Hamiltonian systems or adaptive steps."
+      },
+      "figure": {
+        "id": "figure-18",
+        "caption": "Figure 18: Physical energy for two symplectic methods. Small bounded oscillations are visible, rather than exact conservation of H. The large changes from forward and backward Euler are saved separately in the CSV.",
+        "alt": "Figure 18: Physical energy for two symplectic methods. Small bounded oscillations are visible, rather than exact conservation of H. The large changes from forward and backward Euler are saved separately in the CSV."
+      },
+      "experiment": {
+        "data": "oscillator.csv",
+        "instructions": "Extract the code ZIP and run python lab.py --input inputs.json --output my-results. Use a new or empty output directory. Compare the relevant CSV with the saved figure."
+      },
+      "questions": [
+        {
+          "question": "Does symplecticity make H exactly the same at every step?",
+          "answer": "Generally no. Preserving canonical structure differs from exact conservation of the original Hamiltonian."
+        },
+        {
+          "question": "For this oscillator, does a small energy error ensure correct phase?",
+          "answer": "No. The measured long-time phase error remains, so examine the orbit and phase separately."
+        }
+      ],
+      "pitfalls": [
+        "Do not replace one-degree-of-freedom area preservation with a volume-only condition for multiple degrees of freedom.",
+        "Do not treat A/L-stability and Hamiltonian structure preservation as the same goal."
+      ],
+      "summary": [
+        "State what the numerical map preserves.",
+        "Separate energy, phase, and time symmetry."
+      ],
+      "readings": [
+        "symplectic",
+        "operator-splitting"
+      ]
+    },
+    {
+      "n": 19,
+      "id": "19",
+      "title": "A common verification procedure using small problems",
+      "part": "combine",
+      "goals": [
+        "Combine analytic and manufactured solutions, error norms, convergence, residuals, conserved quantities, energy budgets, and boundary error into one procedure."
+      ],
+      "lead": [
+        "Finally, assemble a small verification procedure usable across disciplines. A calculation that finishes and produces a smooth-looking figure has not necessarily solved the intended equation correctly.",
+        "Start with a small problem and choose inputs, reference, and acceptance criteria before running it. Preserve failed experiments; do not relax criteria afterward and relabel past failures as successes."
+      ],
+      "sections": [
+        {
+          "title": "Choose the comparison reference",
+          "paragraphs": [
+            "When an analytic solution is available, compare at the same variable locations and time. A manufactured solution begins with the desired solution and derives the matching source and boundary data. If the reference is numerical, examine its error and scope as well."
+          ],
+          "equations": []
+        },
+        {
+          "title": "Ask several separate questions",
+          "paragraphs": [
+            "Record error norms and order, algebraic residuals, conservation or energy budgets, and boundary, positivity, and phase behavior separately. One indicator cannot establish every requirement. Also distinguish theoretical stability from observations for a few fixed inputs."
+          ],
+          "equations": [
+            {
+              "tex": "\\text{model/input}\\ \\longrightarrow\\ \\text{reference}\\ \\longrightarrow\\ \\text{error/budget}\\ \\longrightarrow\\ \\text{refinement}.",
+              "plain": "Problem and inputs → reference → error and budgets → refinement and reproduction."
+            }
+          ]
+        },
+        {
+          "title": "Make a reproducible record",
+          "paragraphs": [
+            "Bind code, inputs, environment, outputs, and criteria to the same edition. Produce figures from saved numerical tables, distinguishing schematic illustrations from measurements. Extract the ZIP independently and rerun its tests and examples. This verifies an implementation; it does not establish the physical validity of the model."
+          ],
+          "equations": []
+        }
+      ],
+      "worked": {
+        "paragraphs": [
+          "The calculations use only standard Python; regenerating figures requires separate plotting dependencies. The first coarse upwind sequence failed one order criterion. Its record is retained, and the sequence was refined one level without changing the criterion.",
+          "For unstable controls and low-order boundary examples, the criteria check whether the expected problem is detected. Do not read passed as meaning that every method is practically accurate."
+        ],
+        "code": "python -m unittest -v test_lab.py\npython lab.py --input inputs.json --output my-results\npython verify_release.py\n# Read the individual checks in my-results/result.json",
+        "result": "The figures, tables, and questions are generated from the same canonical manuscript for Web and PDF. Generation also checks correspondence of equations, chapter numbers, and answers."
+      },
+      "figure": {
+        "id": "figure-19",
+        "caption": "Figure 19: Observed orders for the fixed smooth examples. These are checks for the stated inputs and step sequences, not universal measured guarantees attached to method names.",
+        "alt": "Figure 19: Observed orders for the fixed smooth examples. These are checks for the stated inputs and step sequences, not universal measured guarantees attached to method names."
+      },
+      "experiment": {
+        "data": "result.json",
+        "instructions": "Extract the code ZIP and run python lab.py --input inputs.json --output my-results. Use a new or empty output directory. Compare the relevant CSV with the saved figure."
+      },
+      "questions": [
+        {
+          "question": "Is visual similarity of figures enough to complete verification?",
+          "answer": "No. You need matched comparison conditions, errors, convergence, budgets, reference accuracy, and reproducible records."
+        },
+        {
+          "question": "Does agreement with a manufactured solution prove that the physical model agrees with experiment?",
+          "answer": "No. Checking that the intended equations are discretized and implemented correctly differs from validating the model itself."
+        }
+      ],
+      "pitfalls": [
+        "Do not mix illustrative numbers with measured results.",
+        "Do not erase failures, relax tolerances, or relabel them as past successes."
+      ],
+      "summary": [
+        "Fix the problem, reference, and criteria before execution.",
+        "Use small examples to check several indicators and reproducibility."
+      ],
+      "readings": [
+        "validation-foundations-conditioning"
+      ]
+    }
+  ],
+  "readings": {
+    "accuracy-stability": {
+      "title": "A-stability, L-stability, and error norms",
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/accuracy-stability/"
+    },
+    "stability": {
+      "title": "Finite differences, CFL conditions, von Neumann analysis, and the Lax theorem",
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/stability/"
+    },
+    "operator-splitting": {
+      "title": "Operator splitting: comparing Lie-Trotter and Strang",
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/operator-splitting/"
+    },
+    "elliptic": {
+      "title": "Diffusion, elliptic equations, boundary conditions, and iterative methods",
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/elliptic/"
+    },
+    "sparse-nonlinear": {
+      "title": "Sparse and nonlinear systems: measuring the true residual",
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/sparse-nonlinear/"
+    },
+    "validation-foundations-conditioning": {
+      "title": "Foundational methods: conditioning, residuals, convergence, and independent references",
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/"
+    },
+    "validation-mesh-boundary": {
+      "title": "Corner singularities, curvilinear coordinates, and Neumann/Robin boundaries",
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/"
+    },
+    "symplectic": {
+      "title": "Symplectic integration: separating canonical maps from energy conservation",
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/symplectic/"
+    }
+  },
+  "preface": [
+    "This course introduces error, stability, boundary conditions, and time integration before you move into a particular application. It assumes elementary calculus and matrices, and explains the notation again within each chapter.",
+    "Start with the intuition, check the definitions and assumptions, and then work through the small calculations, code, and figures. Each review question has a short answer. On the Web, expand the answers to read them; the PDF displays those same answers in full.",
+    "We reuse a small set of one-dimensional problems and small matrices. The number of figures is not the number of independent physical validation problems. The course does not include new real-material calculations, large parameter sweeps, or performance studies of general multidimensional solvers.",
+    "The first coarse-grid sequence for the upwind method did not reach the prescribed observed order. We preserved its input and failed results and refined the grid sequence without changing the acceptance criterion. This also illustrates the relationship between observed and theoretical order."
+  ],
+  "glossary": [
+    [
+      "h, Δx",
+      "Grid spacing. Also state whether the unknowns are located at nodes or cell centers."
+    ],
+    [
+      "Δt, n, T",
+      "Time step, step number, and the final time used for comparison."
+    ],
+    [
+      "u, U, e",
+      "Reference continuous solution, numerical solution, and their difference."
+    ],
+    [
+      "λ, z, R(z)",
+      "Linear growth or decay rate, the product λΔt, and the stability function of a time integrator."
+    ],
+    [
+      "k, θ, G(θ)",
+      "Continuous wavenumber, dimensionless grid wavenumber kh, and the Fourier amplification factor of a discretization."
+    ],
+    [
+      "κ(A)",
+      "Matrix condition number. Distinguish it from a thermal diffusivity also denoted by κ."
+    ],
+    [
+      "∂n, g",
+      "Outward normal derivative and prescribed boundary data."
+    ],
+    [
+      "q, p, H",
+      "Position, momentum, and Hamiltonian. Distinguish the momentum p from an error order also denoted by p."
+    ]
+  ],
+  "references": [
+    {
+      "id": "persson",
+      "title": "Per-Olof Persson, Finite Difference Methods for PDEs",
+      "url": "https://persson.berkeley.edu/math228b/html/finite_difference_methods_for_PDEs.html",
+      "scope": "Relevant sections of the author's lecture notes were consulted for finite differences, consistency, uniform finite-time stability, the Lax equivalence theorem, and the method of lines for heat diffusion. This is distinct from reading the original research paper or auditing the complete notes."
+    },
+    {
+      "id": "fnc",
+      "title": "T. A. Driscoll and R. J. Braun, Fundamentals of Numerical Computation: Stiffness",
+      "url": "https://fncbook.com/stiffness/",
+      "scope": "The relevant sections of the authors' textbook were consulted for semidiscrete diffusion, stiffness, and linearization."
+    },
+    {
+      "id": "hairer",
+      "title": "Ernst Hairer, Lecture 2: Symplectic integrators (2010)",
+      "url": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+      "scope": "Pages 1-3 of the author's lecture-note PDF were consulted for the definition, symplectic Euler, Störmer-Verlet, composition, and separable systems. This does not claim an audit or reproduction of all long-time theorems or general nonlinear problems."
+    },
+    {
+      "id": "rosales",
+      "title": "R. R. Rosales, Notes: von Neumann Stability Analysis (2022)",
+      "url": "https://math.mit.edu/classes/18.300/Notes/Notes_vNSA.pdf",
+      "scope": "Provided as related reading already listed in the atlas. Earlier reading records are separate; we do not claim to have reread the original during preparation of this course."
+    }
+  ],
+  "rights": "The prose, explanations of equations, and figures were created for this course. See the site terms of use. The accompanying code has an MIT License. The referenced books and lecture notes themselves are not redistributed.",
+  "source_version": "1.0-en.1",
+  "execution_scope": "Fixed small educational exercises. Intentional unstable/low-order controls and successful accurate-method checks have distinct meanings. Existing atlas scientific releases and their criteria are unchanged.",
+  "assets_base": "/numerical-methods-atlas/learn/numerical-foundations/2026-11-24/",
+  "translation": {
+    "source": "/catalog/atlas-foundations-course.json",
+    "source_sha256": "231338afd44d8126863eba326dbc98ff9a2a9efd85cc5a228a503835f51cf9d9",
+    "scope": "Same 19-chapter sequence, equations, worked examples, saved data,38 questions and answers. Existing Japanese PDF, figures, equation SVGs and scientific ZIP remain unchanged."
+  },
+  "lab_guide": [
+    "Use Python 3.12 and only its standard library for the calculations. After extracting the shared code ZIP, run python verify_release.py from its directory. It reruns 25 calculation tests, 2 comparison tests, 34 fixed acceptance checks, and the comparison of 15 saved CSV files. No NumPy, network connection, randomness, or external solver is required.",
+    "To inspect a fresh run, use python lab.py --input inputs.json --output my-results with a new or empty my-results directory. Read the individual criteria in my-results/result.json and compare its CSV files with the figures. The archive README and some provenance records are in Japanese; the English chapters and these instructions explain how to run and interpret the same unchanged code.",
+    "The deliberately cancellation-sensitive derivative.csv is checked against an independent 80-digit Decimal Taylor reference and ULP-derived bounds, including checks of the floating-point sine and cosine assumptions at the fixed arguments. The other 14 CSV files retain relative tolerance 1e -9 and absolute tolerance 1e -10. This reproduction policy does not relax the original 34 scientific acceptance criteria. Regenerating plots additionally requires ReportLab 4.4.9 and Poppler; plot-byte equality is not required."
+  ]
+}
