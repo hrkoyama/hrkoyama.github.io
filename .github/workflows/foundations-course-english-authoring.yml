@@ -1,0 +1,78 @@
+name: Foundations English PDF authoring
+on:
+  push:
+    branches: ['codex/numerical-foundations-english-*']
+    paths:
+      - 'catalog/atlas-foundations-course.en.json'
+      - 'scripts/foundations_en_contract.py'
+      - 'scripts/foundations-course/build_book_en.py'
+      - 'scripts/verify-foundations-book-en.py'
+      - '.github/workflows/foundations-course-english-authoring.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  english-book:
+    if: github.repository == 'hrkoyama/hrkoyama.github.io' && startsWith(github.ref, 'refs/heads/codex/')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      PIP_NO_CACHE_DIR: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /catalog/atlas-foundations-course*.json
+            /scripts/foundations_en_contract.py
+            /scripts/verify-foundations-book-en.py
+            /scripts/foundations-course/build_book*.py
+            /numerical-methods-atlas/learn/numerical-foundations/2026-11-24/
+            /code/numerical-foundations/2026-11-24/
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned PDF authoring dependencies on GitHub
+        run: |
+          python -m pip install --no-cache-dir reportlab==4.4.9 svglib==1.6.0 pypdf==6.21.4
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y poppler-utils fonts-dejavu-core
+      - name: Generate the English PDF and verify all shared text
+        run: |
+          mkdir -p test-results/foundations-en/pages test-results/foundations-en/contacts
+          python -m pip freeze > test-results/foundations-en/pip-freeze.txt
+          python scripts/foundations-course/build_book_en.py --font /usr/share/fonts/truetype/dejavu/DejaVuSans.ttf --mono /usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf > test-results/foundations-en/build.log 2>&1
+          python scripts/verify-foundations-book-en.py > test-results/foundations-en/verification.log 2>&1
+          cp numerical-methods-atlas/learn/numerical-foundations/en/2026-11-24/numerical-foundations-en.pdf test-results/foundations-en/
+          cp numerical-methods-atlas/learn/numerical-foundations/en/2026-11-24/book-verification.json test-results/foundations-en/
+      - name: Render every PDF page and record source-bound artifacts
+        run: |
+          pdftoppm -r 110 -png test-results/foundations-en/numerical-foundations-en.pdf test-results/foundations-en/pages/page
+          python - <<'PY'
+          import datetime,hashlib,json,os,pathlib
+          from PIL import Image,ImageOps,ImageDraw
+          out=pathlib.Path('test-results/foundations-en')
+          pages=sorted((out/'pages').glob('*.png'))
+          assert pages
+          for start in range(0,len(pages),4):
+              sheet=Image.new('RGB',(1220,1770),'#e8eeee');draw=ImageDraw.Draw(sheet)
+              for index,path in enumerate(pages[start:start+4]):
+                  image=Image.open(path).convert('RGB');image.thumbnail((595,850))
+                  x=10+(index%2)*610;y=30+(index//2)*880
+                  sheet.paste(image,(x,y));draw.text((x,y-20),'Page '+str(start+index+1),fill='#19343b')
+              sheet.save(out/'contacts'/('contact-%02d.png'%(start//4+1)))
+          def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+          receipt=json.loads((out/'book-verification.json').read_text())
+          receipt={'passed':True,'source_commit':os.environ['GITHUB_SHA'],'run_id':os.environ['GITHUB_RUN_ID'],'completed_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'pdf_pages':receipt['pdf_pages'],'fragments':receipt['prose_and_code_fragments_checked'],'rendered_pages':len(pages),'artifacts':{str(p.relative_to(out)):sha(p) for p in sorted(out.rglob('*')) if p.is_file()}}
+          assert receipt['pdf_pages']==receipt['rendered_pages']
+          (out/'authoring-receipt.json').write_text(json.dumps(receipt,indent=2)+'\n')
+          PY
+      - name: Retain source-bound PDF and every rendered page
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: foundations-en-authoring-${{ github.sha }}-${{ github.run_id }}
+          path: test-results/foundations-en/
+          if-no-files-found: error
+          retention-days: 90
