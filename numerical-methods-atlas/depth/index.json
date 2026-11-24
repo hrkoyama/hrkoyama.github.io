@@ -532,16 +532,56 @@
         "ja": "/numerical-methods-atlas/ja/read/validation-maxwell-cylinder/",
         "en": "/numerical-methods-atlas/en/read/validation-maxwell-cylinder/"
       }
+    },
+    {
+      "id": "differentiation-inverse",
+      "name": {
+        "ja": "共通基盤：微分・随伴・逆問題",
+        "en": "Shared foundations: differentiation, adjoints and inverse problems"
+      },
+      "supplemental_examples": [
+        "globalization-difficult-starts",
+        "reverse-vjp-duality",
+        "hessian-vector-products",
+        "kink-branch-derivatives",
+        "diffusion-discrete-adjoint",
+        "bratu-fold-sensitivity",
+        "bratu-distributed-vjp",
+        "bratu-gn-lm-bounds",
+        "bfgs-lbfgs-controls",
+        "bratu-noise-regularization"
+      ],
+      "scope": {
+        "ja": "小さな固定例で微分作用と非線形・逆問題の反復を確かめます。",
+        "en": "Small fixed cases check differential actions and nonlinear/inverse iterations."
+      },
+      "reference": {
+        "ja": "手計算・有理数・高精度・別実装を役割別に照合し、共有ライブラリと未読原典を明記します。",
+        "en": "Distinguish analytic, rational, high-precision and separate-implementation references; disclose shared libraries and unread originals."
+      },
+      "refinement": {
+        "ja": "格子・時間・許容誤差・係数数・雑音・正則化をそれぞれ固定した比較です。",
+        "en": "Grids, time steps, solver tolerances, coefficient counts, noise and regularization are distinct controlled comparisons."
+      },
+      "next": {
+        "ja": "大規模性能や一般的収束、非滑らかな点の普遍的な微分、雑音の被覆保証へは広げません。",
+        "en": "No general large-scale performance, convergence, universal nonsmooth derivative or statistical coverage guarantee."
+      },
+      "examples": [],
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/automatic-differentiation/",
+        "en": "/numerical-methods-atlas/en/read/automatic-differentiation/"
+      }
     }
   ],
   "supplemental_edition": "2026-11-22",
   "registry": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
   "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
   "source_sha256": {
-    "catalog/atlas-depth.json": "21b45674949b0c30e29256f7516d7aa11cd0c3fab9c0b2e51e748fbb37a11abc",
+    "catalog/atlas-depth.json": "3db46c1f4b58cc33841117d7ccfcfa196745ef8b7cf5afc6afc0ccb44f6bc16a",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "catalog/atlas-depth-expansion.json": "9c46bb250bbeb60e965c0d9b86d07a0c744ea847ad9c3926886e138a6458b072",
+    "catalog/atlas-depth-expansion.json": "5d3f5ab6f626a0bc4627b680dbe64ab75f738f8660f25862cf58a97ac2e39b90",
     "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
     "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
     "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
@@ -802,6 +842,26 @@
     "code/validated-examples/2026-11-24-r2/maxwell-grazing/cases.json": "6b8417bd334606a183298f805a4337b9bda947fff47de60c34bd7844b69e4c7c",
     "code/validated-examples/2026-11-24-r2/maxwell-grazing/results/result.json": "01ca786df2c0659e190cee13012170367e8fdd86b9a0e9dcf1c9a71a9a3e2c2d",
     "code/validated-examples/2026-11-24-r2/maxwell-grazing/atlas-maxwell-grazing-2026-11-24-r2.zip": "a9d0c65eb27e26b05eafd3774b9f651b01baf28e617769bb2bbcb7efb0b90d3d",
+    "code/validated-examples/2026-11-24/globalization-controls/source-manifest.json": "3e1ad64fc8d9e844ec4495255e6231f057a4d6750088dd969617ccfbee9f3078",
+    "code/validated-examples/2026-11-24/globalization-controls/verification.json": "bb03e72bf192c56a1d2c720660880340c0bff4fc01217f907bb7d949880e09c9",
+    "code/validated-examples/2026-11-24/globalization-controls/cases.json": "257b16d3e1af5cf9a9b53c747314e9c58d6b0fb2c98f445d4809f8f4eb0e7e66",
+    "code/validated-examples/2026-11-24/globalization-controls/results/result.json": "64a4ee192598660d6aefcb3bac2693a59bf568a5e2ab4fa7cbe9fe529ffa0218",
+    "code/validated-examples/2026-11-24/globalization-controls/atlas-globalization-controls-2026-11-24.zip": "a8d55166dedf528bbb143080998b5bdd0a95ad37d29d589206499e23dbc9fe4d",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/source-manifest.json": "a6933b5568bf03c5306f25f74bc36435cee98f890bd8b30364390cbb3f0fefb5",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/verification.json": "1cb830974a5e0b4571ae3cec9219bddd4ca856a3f5c47130787daaf9ab81f641",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/cases.json": "444d6805b5f8c87636e6bd1de91ae02ffa9ce3c8aaec7b501d5754e49e3395ca",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/results/result.json": "c7e23a2174d768b1bd95e1170e0e633efbec172c4e3cf3eab8e5f61d020d8374",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/atlas-reverse-higher-ad-2026-11-24.zip": "9ba9d564393bf64d33ec79add1648082e72356335051da99f228e9b0ee5e850a",
+    "code/validated-examples/2026-11-24/adjoint/source-manifest.json": "3536c89cf5356d8f0bb9eda75674cafd4741862cf7f7d479a0a3c377aa0b3a34",
+    "code/validated-examples/2026-11-24/adjoint/verification.json": "4a2d6bb02db35895f7621ead01f1603269523980a83aa3120a04412032dbf604",
+    "code/validated-examples/2026-11-24/adjoint/cases.json": "2ee30f6ebfc8e1e49d9fb581e19dcd821f2b6f2b02a2f27400272d0301071645",
+    "code/validated-examples/2026-11-24/adjoint/results/result.json": "adbb489d0cf730f76cd1bfb1b7b9fe85948c42b4ed90dac7595aa71f1fbbc036",
+    "code/validated-examples/2026-11-24/adjoint/atlas-adjoint-2026-11-24.zip": "6b78fd9d4320e9790bd6ebe2a0ef61a25c55c7fdc0a14dd37d0ca1a37b80a5ee",
+    "code/validated-examples/2026-11-24/inverse-optimization/source-manifest.json": "8d39bdf4a727cd5d32467939fc8eda396921f77e83b58b70272af8ac77d5c618",
+    "code/validated-examples/2026-11-24/inverse-optimization/verification.json": "76f3f6b1550ce190e3d3afdd4b9a4e2f75373c58d97ccd655b2ac0bad4a3a74f",
+    "code/validated-examples/2026-11-24/inverse-optimization/cases.json": "9dfc1a14b447d70b2bd903a397cdf77d28ecb0e462cc876bdb3b44db9197150d",
+    "code/validated-examples/2026-11-24/inverse-optimization/results/result.json": "48ded080378cf6e3f6aebf005f41b70c7f6f7065f741d15f3f700e821c919218",
+    "code/validated-examples/2026-11-24/inverse-optimization/atlas-inverse-optimization-2026-11-24.zip": "ffefd2d5876a3db10596d6e1f089f73be7a82288d63f348bcd960b9497412b44",
     "code/model-benchmarks/2026-11-22/results/logistic-growth/result.json": "4991cd0ef46e069581a131f995fb9bdb65251d9d59923b89abb2b4a14cbfe30d",
     "code/model-benchmarks/2026-11-22/results/sir-epidemic/result.json": "03c7e2a52bc0412e9eec10588777c0a70253804c149d5b7e5792581e8f3a3942",
     "code/model-benchmarks/2026-11-22/results/mc-integral/result.json": "c7b0ef9397376242b375817db2152b8b5855e81200e2fad6adce1a6adc0268a8",

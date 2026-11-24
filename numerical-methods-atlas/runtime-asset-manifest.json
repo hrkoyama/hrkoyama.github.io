@@ -6,15 +6,15 @@
       "source": "frontend/atlas/app.js",
       "output": "numerical-methods-atlas/app.js",
       "source_sha256": "2ea7d909f5c50a8a037fa6ba9f1f066db253cd6f2fe8cf11c7c57a41a5f1e05d",
-      "sha256": "3b5dab9b2aafc6a8f106a7fdc96568a7c409a28b80606444aa909111c63ebbfc",
+      "sha256": "a1a400fa18e332ee031d0ffad2c46ca6848ca42f662b8fb9b1e23a445f4ab1aa",
       "dependencies": {
-        "numerical-methods-atlas/atlas-runtime-data.mjs": "60378ff71a842d2968497c95c59209294c64882fe0cb7e22e3731132c589343a",
-        "numerical-methods-atlas/chapter-resources.mjs": "707b3760ed7d82c4c70c3fd96b61eeefcd2c7baef478757045f60fc7f12a1531",
+        "numerical-methods-atlas/atlas-runtime-data.mjs": "fdf7714c5ce33983a05defe94b72b73149f5744ded6719715f0a8c5ecc1ea20b",
+        "numerical-methods-atlas/chapter-resources.mjs": "5c2519353c6abff52d89136c1034b689a4de82bd4941d4a391e4b3debdd9dc45",
         "numerical-methods-atlas/coverage.js": "6ff11947c360a1292179c333c5226356494ba5a1ebedc1dae7b5cf0f3ae92d0b",
-        "numerical-methods-atlas/coverage.json": "fcb1b3728d7ba91ca792ff4a650f7063172f1201c7a48410218debc4753ddb99",
-        "numerical-methods-atlas/home-navigation.mjs": "ec52654f16ff01fb640a0b350242b2957ac2f63b7df1393c34bc495a45e60873",
-        "numerical-methods-atlas/home-overview.js": "e941e7552d5f768a1ccf012f3a24e88dcc3e5e183bc48aa8735011142dfb00d1",
-        "numerical-methods-atlas/locales/messages.json": "66a414b78d93c747e9f58cff801844e089f8ae94562c54faf66d2423c2aea581",
+        "numerical-methods-atlas/coverage.json": "ff468f78b663316c6356d7916bfa935b8810b60a5d80465114bd6a4954162b4b",
+        "numerical-methods-atlas/home-navigation.mjs": "b1d598bee4aa44c88ace156c193f5f93fb34de8a82178d9e7d50a53bdf0e1001",
+        "numerical-methods-atlas/home-overview.js": "7f9d4c07152a2a45084d192c653fd7cec8baa3fea03e1476dca07af79a115b76",
+        "numerical-methods-atlas/locales/messages.json": "093881fe9e3d0de0fb64ea27241ff4bb104b3b16dedee58f7e244f8a582bbbbd",
         "numerical-methods-atlas/references.json": "3da6820a557d33dfb884a1f3c063fa945bbee8cfa30b6008b75a35a5c4aedac0",
         "numerical-methods-atlas/wave-evolution.js": "f53bf3879d2a8531da1bc22422b074c3850324afde54898ecc9e036b5bfdb7e8"
       }
@@ -22,11 +22,11 @@
   ],
   "data_sources": {
     "catalog/atlas-purpose.json": "b63721b9f464c53ea017af39932f57e8391f8d364ed4ce80f028e569b9863a4f",
-    "numerical-methods-atlas/content.ja.json": "2234bebd3801684e4e484ef93065f5639a275bff7af2b343fdf6bfb69fbf9cac",
-    "numerical-methods-atlas/content.en.json": "b0f8c2b9df5cb293b5e1bd986f4e51c7ccb7e898700455bfac07932c30333a4b"
+    "numerical-methods-atlas/content.ja.json": "368156e9dfd3647acf509b0702b36ce62f0819763fbca1dabdf6240a79aaf83b",
+    "numerical-methods-atlas/content.en.json": "d3a88e2defa33768eedc465039ff2cdc91291133ddba374fccae749dc5ab4d9f"
   },
   "generated_data": {
     "url": "/numerical-methods-atlas/atlas-runtime-data.mjs",
-    "sha256": "60378ff71a842d2968497c95c59209294c64882fe0cb7e22e3731132c589343a"
+    "sha256": "fdf7714c5ce33983a05defe94b72b73149f5744ded6719715f0a8c5ecc1ea20b"
   }
 }

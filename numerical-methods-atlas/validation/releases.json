@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "edition": "2026-11-22",
-  "case_count": 106,
+  "case_count": 116,
   "releases": [
     {
       "group": "foundations",
@@ -784,6 +784,68 @@
         "bratu-matrix-free-jfnk"
       ],
       "tests": 27
+    },
+    {
+      "group": "globalization-controls",
+      "edition": "2026-11-24",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/globalization-controls/",
+      "archive": "atlas-globalization-controls-2026-11-24.zip",
+      "archive_sha256": "a8d55166dedf528bbb143080998b5bdd0a95ad37d29d589206499e23dbc9fe4d",
+      "manifest_sha256": "3e1ad64fc8d9e844ec4495255e6231f057a4d6750088dd969617ccfbee9f3078",
+      "verification_sha256": "bb03e72bf192c56a1d2c720660880340c0bff4fc01217f907bb7d949880e09c9",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "globalization-difficult-starts"
+      ],
+      "tests": 16
+    },
+    {
+      "group": "reverse-higher-ad",
+      "edition": "2026-11-24",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/",
+      "archive": "atlas-reverse-higher-ad-2026-11-24.zip",
+      "archive_sha256": "9ba9d564393bf64d33ec79add1648082e72356335051da99f228e9b0ee5e850a",
+      "manifest_sha256": "a6933b5568bf03c5306f25f74bc36435cee98f890bd8b30364390cbb3f0fefb5",
+      "verification_sha256": "1cb830974a5e0b4571ae3cec9219bddd4ca856a3f5c47130787daaf9ab81f641",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "hessian-vector-products",
+        "kink-branch-derivatives",
+        "reverse-vjp-duality"
+      ],
+      "tests": 24
+    },
+    {
+      "group": "adjoint",
+      "edition": "2026-11-24",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/",
+      "archive": "atlas-adjoint-2026-11-24.zip",
+      "archive_sha256": "6b78fd9d4320e9790bd6ebe2a0ef61a25c55c7fdc0a14dd37d0ca1a37b80a5ee",
+      "manifest_sha256": "3536c89cf5356d8f0bb9eda75674cafd4741862cf7f7d479a0a3c377aa0b3a34",
+      "verification_sha256": "4a2d6bb02db35895f7621ead01f1603269523980a83aa3120a04412032dbf604",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "bratu-distributed-vjp",
+        "bratu-fold-sensitivity",
+        "diffusion-discrete-adjoint"
+      ],
+      "tests": 32
+    },
+    {
+      "group": "inverse-optimization",
+      "edition": "2026-11-24",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/",
+      "archive": "atlas-inverse-optimization-2026-11-24.zip",
+      "archive_sha256": "ffefd2d5876a3db10596d6e1f089f73be7a82288d63f348bcd960b9497412b44",
+      "manifest_sha256": "8d39bdf4a727cd5d32467939fc8eda396921f77e83b58b70272af8ac77d5c618",
+      "verification_sha256": "76f3f6b1550ce190e3d3afdd4b9a4e2f75373c58d97ccd655b2ac0bad4a3a74f",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "bfgs-lbfgs-controls",
+        "bratu-gn-lm-bounds",
+        "bratu-noise-regularization"
+      ],
+      "tests": 32
     }
   ]
 }

@@ -58,6 +58,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/time-integration/
   availability: run
 
   実際の放射・物質2場とMarshak境界を進め、固定版ExactPackの独立積分参照と比較します。
+- [時間離散拡散の随伴とcheckpoint](<https://hrkoyama.github.io/numerical-methods-atlas/validation/diffusion-discrete-adjoint/?lang=ja>)
+  availability: run
+
+  後退Eulerの離散写像を実際に逆伝播し、接線・独立高精度mode解・block replayと比較します。
 - [Double Mach反射：多格子の軽量検証](<https://hrkoyama.github.io/numerical-methods-atlas/validation/double-mach-reflection/?lang=ja>)
   availability: run
 

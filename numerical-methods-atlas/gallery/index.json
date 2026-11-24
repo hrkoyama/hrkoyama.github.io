@@ -4,12 +4,12 @@
   "reviewed_on": "2026-11-24",
   "scope": "One explicitly mapped visual per atlas test problem. Existing shared figures are identified. Derived plots use stored numerical values; computed previews record fixed inputs and numerical checks.",
   "counts": {
-    "test_problems": 131,
-    "runnable_problems": 93,
+    "test_problems": 141,
+    "runnable_problems": 103,
     "common_runnable_problems": 22,
-    "supplemental_runnable_problems": 77,
-    "supplemental_case_count": 101,
-    "supplemental_release_case_count": 106,
+    "supplemental_runnable_problems": 87,
+    "supplemental_case_count": 111,
+    "supplemental_release_case_count": 116,
     "groups": {
       "transport": 17,
       "fluid": 23,
@@ -23,11 +23,12 @@
       "biology": 5,
       "probability": 6,
       "kinetic": 7,
-      "electromagnetics": 3
+      "electromagnetics": 3,
+      "differentiation-inverse": 10
     },
     "visual_sources": {
       "stored-data-plot": 27,
-      "existing-figure": 95,
+      "existing-figure": 105,
       "computed-preview": 9
     }
   },
@@ -13786,10 +13787,1279 @@
           }
         }
       ]
+    },
+    {
+      "id": "globalization-difficult-starts",
+      "group": "differentiation-inverse",
+      "name": {
+        "ja": "同じ難しい初期値に対する線探索と信頼領域",
+        "en": "Line search and trust regions from the same difficult starts"
+      },
+      "chapter": "validation-globalization-controls",
+      "reading_section": "globalization-difficult-starts",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24/globalization-controls/",
+      "verification": "/code/validated-examples/2026-11-24/globalization-controls/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24/globalization-controls/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "globalization-difficult-starts"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/globalization-controls/results/globalization-difficult-starts-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/globalization-controls/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "globalization-difficult-starts",
+          "url": "/numerical-methods-atlas/validation/globalization-difficult-starts/",
+          "name": {
+            "ja": "同じ難しい初期値に対する線探索と信頼領域",
+            "en": "Line search and trust regions from the same difficult starts"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-globalization-controls/#globalization-difficult-starts",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-globalization-controls/#globalization-difficult-starts"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/globalization-controls/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#globalization-difficult-starts",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "image": "/code/validated-examples/2026-11-24/globalization-controls/results/globalization-difficult-starts-preview.png",
+      "image_sha256": "3bf21a53385abb412ec8cf23b3381150e15c0ab9a0aaebb7816bede00c08fca9",
+      "width": 990,
+      "height": 720,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "同一初期値の保存経路、原残差、trust radiusと実測評価回数。失敗・非収束は別記します。 図の座標は有限次元の変数・反復・診断で、物理空間の次元やPDE境界を表しません。",
+        "en": "Saved paths from identical starts, original residuals, trust radii and measured evaluation counts. Failures and nonconvergence remain explicit. Plot axes describe finite-dimensional variables, iterations or diagnostics, not a physical spatial dimension or PDE boundary."
+      },
+      "visual_input": {
+        "id": "globalization-difficult-starts",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-24/globalization-controls/results/globalization-difficult-starts-preview.png",
+        "caption": {
+          "ja": "同一初期値の保存経路、原残差、trust radiusと実測評価回数。失敗・非収束は別記します。 図の座標は有限次元の変数・反復・診断で、物理空間の次元やPDE境界を表しません。",
+          "en": "Saved paths from identical starts, original residuals, trust radii and measured evaluation counts. Failures and nonconvergence remain explicit. Plot axes describe finite-dimensional variables, iterations or diagnostics, not a physical spatial dimension or PDE boundary."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#globalization-difficult-starts-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/globalization-difficult-starts/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/globalization-difficult-starts/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "globalization-difficult-starts",
+          "title": {
+            "ja": "同じ難しい初期値に対する線探索と信頼領域",
+            "en": "Line search and trust regions from the same difficult starts"
+          },
+          "group": "globalization-controls",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/globalization-difficult-starts/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/globalization-difficult-starts/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/globalization-controls/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/globalization-controls/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/globalization-controls/globalization.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/globalization-controls/io_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/globalization-controls/problems.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/globalization-controls/references.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/globalization-controls/test_globalization.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/globalization-controls/atlas-globalization-controls-2026-11-24.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/globalization-controls/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/globalization-controls/verification.json",
+          "preview": {
+            "file": "globalization-difficult-starts-preview.png",
+            "caption": {
+              "ja": "同一初期値の保存経路、原残差、trust radiusと実測評価回数。失敗・非収束は別記します。",
+              "en": "Saved paths from identical starts, original residuals, trust radii and measured evaluation counts. Failures and nonconvergence remain explicit."
+            },
+            "width": 990,
+            "height": 720,
+            "sha256": "3bf21a53385abb412ec8cf23b3381150e15c0ab9a0aaebb7816bede00c08fca9",
+            "url": "/code/validated-examples/2026-11-24/globalization-controls/results/globalization-difficult-starts-preview.png"
+          }
+        }
+      ]
+    },
+    {
+      "id": "reverse-vjp-duality",
+      "group": "differentiation-inverse",
+      "name": {
+        "ja": "独自逆モードVJPとJVP/VJP双対性",
+        "en": "Original reverse-mode VJP and JVP/VJP duality"
+      },
+      "chapter": "validation-reverse-higher-ad",
+      "reading_section": "reverse-vjp-duality",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24/reverse-higher-ad/",
+      "verification": "/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24/reverse-higher-ad/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "reverse-vjp-duality"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/reverse-higher-ad/results/reverse-vjp-duality-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "reverse-vjp-duality",
+          "url": "/numerical-methods-atlas/validation/reverse-vjp-duality/",
+          "name": {
+            "ja": "独自逆モードVJPとJVP/VJP双対性",
+            "en": "Original reverse-mode VJP and JVP/VJP duality"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-reverse-higher-ad/#reverse-vjp-duality",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-reverse-higher-ad/#reverse-vjp-duality"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#reverse-vjp-duality",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "image": "/code/validated-examples/2026-11-24/reverse-higher-ad/results/reverse-vjp-duality-preview.png",
+      "image_sha256": "19e54c65550a0c7ed69e9acce2a361658bbd2d8a2863cb6be4b9a48a3f49a2f5",
+      "width": 900,
+      "height": 630,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "独立矩形Jacobianと実際の逆微分誤差、固定wide写像の実測sweep数。 図の座標は有限次元の変数・反復・診断で、物理空間の次元やPDE境界を表しません。",
+        "en": "Independent rectangular Jacobian, actual reverse differentiation error and measured sweep counts for fixed wide maps. Plot axes describe finite-dimensional variables, iterations or diagnostics, not a physical spatial dimension or PDE boundary."
+      },
+      "visual_input": {
+        "id": "reverse-vjp-duality",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-24/reverse-higher-ad/results/reverse-vjp-duality-preview.png",
+        "caption": {
+          "ja": "独立矩形Jacobianと実際の逆微分誤差、固定wide写像の実測sweep数。 図の座標は有限次元の変数・反復・診断で、物理空間の次元やPDE境界を表しません。",
+          "en": "Independent rectangular Jacobian, actual reverse differentiation error and measured sweep counts for fixed wide maps. Plot axes describe finite-dimensional variables, iterations or diagnostics, not a physical spatial dimension or PDE boundary."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#reverse-vjp-duality-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/reverse-vjp-duality/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/reverse-vjp-duality/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "reverse-vjp-duality",
+          "title": {
+            "ja": "独自逆モードVJPとJVP/VJP双対性",
+            "en": "Original reverse-mode VJP and JVP/VJP duality"
+          },
+          "group": "reverse-higher-ad",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reverse-vjp-duality/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reverse-vjp-duality/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/fixtures.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/hessians.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/io_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/kinks.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/references.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/tape.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/test_ad.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/atlas-reverse-higher-ad-2026-11-24.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+          "preview": {
+            "file": "reverse-vjp-duality-preview.png",
+            "caption": {
+              "ja": "独立矩形Jacobianと実際の逆微分誤差、固定wide写像の実測sweep数。",
+              "en": "Independent rectangular Jacobian, actual reverse differentiation error and measured sweep counts for fixed wide maps."
+            },
+            "width": 900,
+            "height": 630,
+            "sha256": "19e54c65550a0c7ed69e9acce2a361658bbd2d8a2863cb6be4b9a48a3f49a2f5",
+            "url": "/code/validated-examples/2026-11-24/reverse-higher-ad/results/reverse-vjp-duality-preview.png"
+          }
+        }
+      ]
+    },
+    {
+      "id": "hessian-vector-products",
+      "group": "differentiation-inverse",
+      "name": {
+        "ja": "HVPと状態固定・陰関数全微分の区別",
+        "en": "Hessian-vector products and fixed-state versus implicit derivatives"
+      },
+      "chapter": "validation-reverse-higher-ad",
+      "reading_section": "hessian-vector-products",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24/reverse-higher-ad/",
+      "verification": "/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24/reverse-higher-ad/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "hessian-vector-products"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/reverse-higher-ad/results/hessian-vector-products-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "hessian-vector-products",
+          "url": "/numerical-methods-atlas/validation/hessian-vector-products/",
+          "name": {
+            "ja": "HVPと状態固定・陰関数全微分の区別",
+            "en": "Hessian-vector products and fixed-state versus implicit derivatives"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-reverse-higher-ad/#hessian-vector-products",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-reverse-higher-ad/#hessian-vector-products"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#hessian-vector-products",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "image": "/code/validated-examples/2026-11-24/reverse-higher-ad/results/hessian-vector-products-preview.png",
+      "image_sha256": "f0f8223d65b5f7cc544797aacb52a93d6c251976f73517d88cbce56f14534a4f",
+      "width": 1080,
+      "height": 360,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "保存HVPと独立参照、状態固定と陰関数全微分の二階曲率を区別した比較。 図の座標は有限次元の変数・反復・診断で、物理空間の次元やPDE境界を表しません。",
+        "en": "Saved HVPs and independent references, with fixed-state and total implicit second derivatives shown separately. Plot axes describe finite-dimensional variables, iterations or diagnostics, not a physical spatial dimension or PDE boundary."
+      },
+      "visual_input": {
+        "id": "hessian-vector-products",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-24/reverse-higher-ad/results/hessian-vector-products-preview.png",
+        "caption": {
+          "ja": "保存HVPと独立参照、状態固定と陰関数全微分の二階曲率を区別した比較。 図の座標は有限次元の変数・反復・診断で、物理空間の次元やPDE境界を表しません。",
+          "en": "Saved HVPs and independent references, with fixed-state and total implicit second derivatives shown separately. Plot axes describe finite-dimensional variables, iterations or diagnostics, not a physical spatial dimension or PDE boundary."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#hessian-vector-products-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/hessian-vector-products/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/hessian-vector-products/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "hessian-vector-products",
+          "title": {
+            "ja": "HVPと状態固定・陰関数全微分の区別",
+            "en": "Hessian-vector products and fixed-state versus implicit derivatives"
+          },
+          "group": "reverse-higher-ad",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/hessian-vector-products/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/hessian-vector-products/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/fixtures.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/hessians.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/io_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/kinks.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/references.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/tape.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/test_ad.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/atlas-reverse-higher-ad-2026-11-24.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+          "preview": {
+            "file": "hessian-vector-products-preview.png",
+            "caption": {
+              "ja": "保存HVPと独立参照、状態固定と陰関数全微分の二階曲率を区別した比較。",
+              "en": "Saved HVPs and independent references, with fixed-state and total implicit second derivatives shown separately."
+            },
+            "width": 1080,
+            "height": 360,
+            "sha256": "f0f8223d65b5f7cc544797aacb52a93d6c251976f73517d88cbce56f14534a4f",
+            "url": "/code/validated-examples/2026-11-24/reverse-higher-ad/results/hessian-vector-products-preview.png"
+          }
+        }
+      ]
+    },
+    {
+      "id": "kink-branch-derivatives",
+      "group": "differentiation-inverse",
+      "name": {
+        "ja": "非滑らか点・分岐・停止条件の微分範囲",
+        "en": "Derivative scope at kinks, branches and stopping decisions"
+      },
+      "chapter": "validation-reverse-higher-ad",
+      "reading_section": "kink-branch-derivatives",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24/reverse-higher-ad/",
+      "verification": "/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24/reverse-higher-ad/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "kink-branch-derivatives"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/reverse-higher-ad/results/kink-branch-derivatives-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "kink-branch-derivatives",
+          "url": "/numerical-methods-atlas/validation/kink-branch-derivatives/",
+          "name": {
+            "ja": "非滑らか点・分岐・停止条件の微分範囲",
+            "en": "Derivative scope at kinks, branches and stopping decisions"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-reverse-higher-ad/#kink-branch-derivatives",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-reverse-higher-ad/#kink-branch-derivatives"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#kink-branch-derivatives",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "image": "/code/validated-examples/2026-11-24/reverse-higher-ad/results/kink-branch-derivatives-preview.png",
+      "image_sha256": "b299ec917c1c29c046ca5c2bf87e8ea904005f5caf3e39ccf4dd2e5944af5356",
+      "width": 1080,
+      "height": 360,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "保存した非滑らか関数値と停止写像、古典微分が未定義な点とtrace微分を分けた表示。 図の座標は有限次元の変数・反復・診断で、物理空間の次元やPDE境界を表しません。",
+        "en": "Saved nonsmooth values and stopped-map samples, distinguishing undefined classical derivatives from trace derivatives. Plot axes describe finite-dimensional variables, iterations or diagnostics, not a physical spatial dimension or PDE boundary."
+      },
+      "visual_input": {
+        "id": "kink-branch-derivatives",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-24/reverse-higher-ad/results/kink-branch-derivatives-preview.png",
+        "caption": {
+          "ja": "保存した非滑らか関数値と停止写像、古典微分が未定義な点とtrace微分を分けた表示。 図の座標は有限次元の変数・反復・診断で、物理空間の次元やPDE境界を表しません。",
+          "en": "Saved nonsmooth values and stopped-map samples, distinguishing undefined classical derivatives from trace derivatives. Plot axes describe finite-dimensional variables, iterations or diagnostics, not a physical spatial dimension or PDE boundary."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#kink-branch-derivatives-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/kink-branch-derivatives/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/kink-branch-derivatives/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "kink-branch-derivatives",
+          "title": {
+            "ja": "非滑らか点・分岐・停止条件の微分範囲",
+            "en": "Derivative scope at kinks, branches and stopping decisions"
+          },
+          "group": "reverse-higher-ad",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kink-branch-derivatives/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kink-branch-derivatives/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/fixtures.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/hessians.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/io_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/kinks.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/references.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/tape.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/test_ad.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/atlas-reverse-higher-ad-2026-11-24.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+          "preview": {
+            "file": "kink-branch-derivatives-preview.png",
+            "caption": {
+              "ja": "保存した非滑らか関数値と停止写像、古典微分が未定義な点とtrace微分を分けた表示。",
+              "en": "Saved nonsmooth values and stopped-map samples, distinguishing undefined classical derivatives from trace derivatives."
+            },
+            "width": 1080,
+            "height": 360,
+            "sha256": "b299ec917c1c29c046ca5c2bf87e8ea904005f5caf3e39ccf4dd2e5944af5356",
+            "url": "/code/validated-examples/2026-11-24/reverse-higher-ad/results/kink-branch-derivatives-preview.png"
+          }
+        }
+      ]
+    },
+    {
+      "id": "diffusion-discrete-adjoint",
+      "group": "differentiation-inverse",
+      "name": {
+        "ja": "時間離散拡散の随伴とcheckpoint",
+        "en": "Discrete diffusion adjoint and checkpoint replay"
+      },
+      "chapter": "validation-adjoint",
+      "reading_section": "diffusion-discrete-adjoint",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24/adjoint/",
+      "verification": "/code/validated-examples/2026-11-24/adjoint/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24/adjoint/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "diffusion-discrete-adjoint"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/adjoint/results/diffusion-discrete-adjoint-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/adjoint/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "diffusion-discrete-adjoint",
+          "url": "/numerical-methods-atlas/validation/diffusion-discrete-adjoint/",
+          "name": {
+            "ja": "時間離散拡散の随伴とcheckpoint",
+            "en": "Discrete diffusion adjoint and checkpoint replay"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-adjoint/#diffusion-discrete-adjoint",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-adjoint/#diffusion-discrete-adjoint"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#diffusion-discrete-adjoint",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "image": "/code/validated-examples/2026-11-24/adjoint/results/diffusion-discrete-adjoint-preview.png",
+      "image_sha256": "509aa302e0f76569e3c506a680afd381593edc73f6cef82e07a829c467d2fc23",
+      "width": 1030,
+      "height": 645,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "時間離散拡散の随伴とcheckpoint。実際の保存数値データの縮小図で、1次元問題です。",
+        "en": "Discrete diffusion adjoint and checkpoint replay. Preview from actual saved numerical data for a one-dimensional problem."
+      },
+      "visual_input": {
+        "id": "diffusion-discrete-adjoint",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-24/adjoint/results/diffusion-discrete-adjoint-preview.png",
+        "caption": {
+          "ja": "時間離散拡散の随伴とcheckpoint。実際の保存数値データの縮小図で、1次元問題です。",
+          "en": "Discrete diffusion adjoint and checkpoint replay. Preview from actual saved numerical data for a one-dimensional problem."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#diffusion-discrete-adjoint-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/diffusion-discrete-adjoint/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/diffusion-discrete-adjoint/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "diffusion-discrete-adjoint",
+          "title": {
+            "ja": "時間離散拡散の随伴とcheckpoint",
+            "en": "Discrete diffusion adjoint and checkpoint replay"
+          },
+          "group": "adjoint",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/diffusion-discrete-adjoint/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/diffusion-discrete-adjoint/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/operators.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/krylov.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/newton.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/time_adjoint.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/references/modal_decimal.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/references/shooting_decimal.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/references/linear_oracle.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/fold_study.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/balanced_operator.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/state_linear.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/state_expansion.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/state_krylov.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/state_jacobian.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/distributed.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/io_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/qualify_references.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/conftest.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_distributed.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_fold.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_time.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/atlas-adjoint-2026-11-24.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/verification.json",
+          "preview": {
+            "file": "diffusion-discrete-adjoint-preview.png",
+            "caption": {
+              "ja": "時間離散拡散の随伴とcheckpoint。実際の保存数値データの縮小図で、1次元問題です。",
+              "en": "Discrete diffusion adjoint and checkpoint replay. Preview from actual saved numerical data for a one-dimensional problem."
+            },
+            "width": 1030,
+            "height": 645,
+            "sha256": "509aa302e0f76569e3c506a680afd381593edc73f6cef82e07a829c467d2fc23",
+            "url": "/code/validated-examples/2026-11-24/adjoint/results/diffusion-discrete-adjoint-preview.png"
+          }
+        }
+      ]
+    },
+    {
+      "id": "bratu-fold-sensitivity",
+      "group": "differentiation-inverse",
+      "name": {
+        "ja": "離散fold近傍のBratu感度",
+        "en": "Bratu sensitivity near the discrete fold"
+      },
+      "chapter": "validation-adjoint",
+      "reading_section": "bratu-fold-sensitivity",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24/adjoint/",
+      "verification": "/code/validated-examples/2026-11-24/adjoint/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24/adjoint/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "bratu-fold-sensitivity"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/adjoint/results/bratu-fold-sensitivity-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/adjoint/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "bratu-fold-sensitivity",
+          "url": "/numerical-methods-atlas/validation/bratu-fold-sensitivity/",
+          "name": {
+            "ja": "離散fold近傍のBratu感度",
+            "en": "Bratu sensitivity near the discrete fold"
+          }
+        }
+      ],
+      "parent_problem_id": "bratu",
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-adjoint/#bratu-fold-sensitivity",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-adjoint/#bratu-fold-sensitivity"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#bratu-fold-sensitivity",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "image": "/code/validated-examples/2026-11-24/adjoint/results/bratu-fold-sensitivity-preview.png",
+      "image_sha256": "99700121735f00cb3e4207a2e2d27236770b928d8cb547ff5893d81cda75fc28",
+      "width": 1067,
+      "height": 643,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "離散fold近傍のBratu感度。実際の保存数値データの縮小図で、1次元問題です。",
+        "en": "Bratu sensitivity near the discrete fold. Preview from actual saved numerical data for a one-dimensional problem."
+      },
+      "visual_input": {
+        "id": "bratu-fold-sensitivity",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-24/adjoint/results/bratu-fold-sensitivity-preview.png",
+        "caption": {
+          "ja": "離散fold近傍のBratu感度。実際の保存数値データの縮小図で、1次元問題です。",
+          "en": "Bratu sensitivity near the discrete fold. Preview from actual saved numerical data for a one-dimensional problem."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#bratu-fold-sensitivity-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-fold-sensitivity/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-fold-sensitivity/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "bratu-fold-sensitivity",
+          "title": {
+            "ja": "離散fold近傍のBratu感度",
+            "en": "Bratu sensitivity near the discrete fold"
+          },
+          "group": "adjoint",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-sensitivity/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-sensitivity/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/operators.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/krylov.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/newton.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/fold_study.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/references/modal_decimal.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/references/shooting_decimal.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/references/linear_oracle.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/balanced_operator.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/state_linear.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/state_expansion.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/state_krylov.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/state_jacobian.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/time_adjoint.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/distributed.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/io_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/qualify_references.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/conftest.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_distributed.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_fold.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_time.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/atlas-adjoint-2026-11-24.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/verification.json",
+          "preview": {
+            "file": "bratu-fold-sensitivity-preview.png",
+            "caption": {
+              "ja": "離散fold近傍のBratu感度。実際の保存数値データの縮小図で、1次元問題です。",
+              "en": "Bratu sensitivity near the discrete fold. Preview from actual saved numerical data for a one-dimensional problem."
+            },
+            "width": 1067,
+            "height": 643,
+            "sha256": "99700121735f00cb3e4207a2e2d27236770b928d8cb547ff5893d81cda75fc28",
+            "url": "/code/validated-examples/2026-11-24/adjoint/results/bratu-fold-sensitivity-preview.png"
+          }
+        }
+      ]
+    },
+    {
+      "id": "bratu-distributed-vjp",
+      "group": "differentiation-inverse",
+      "name": {
+        "ja": "分布係数Bratuの行列非形成VJP",
+        "en": "Matrix-free VJP for distributed Bratu coefficients"
+      },
+      "chapter": "validation-adjoint",
+      "reading_section": "bratu-distributed-vjp",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24/adjoint/",
+      "verification": "/code/validated-examples/2026-11-24/adjoint/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24/adjoint/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "bratu-distributed-vjp"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/adjoint/results/bratu-distributed-vjp-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/adjoint/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "bratu-distributed-vjp",
+          "url": "/numerical-methods-atlas/validation/bratu-distributed-vjp/",
+          "name": {
+            "ja": "分布係数Bratuの行列非形成VJP",
+            "en": "Matrix-free VJP for distributed Bratu coefficients"
+          }
+        }
+      ],
+      "parent_problem_id": "bratu",
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-adjoint/#bratu-distributed-vjp",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-adjoint/#bratu-distributed-vjp"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#bratu-distributed-vjp",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "image": "/code/validated-examples/2026-11-24/adjoint/results/bratu-distributed-vjp-preview.png",
+      "image_sha256": "35e108b2ceca8fca74577a9858ac1bda6a5a8cf04c1e68810b90308f39c77ad0",
+      "width": 1068,
+      "height": 645,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "分布係数Bratuの行列非形成VJP。実際の保存数値データの縮小図で、1次元問題です。",
+        "en": "Matrix-free VJP for distributed Bratu coefficients. Preview from actual saved numerical data for a one-dimensional problem."
+      },
+      "visual_input": {
+        "id": "bratu-distributed-vjp",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-24/adjoint/results/bratu-distributed-vjp-preview.png",
+        "caption": {
+          "ja": "分布係数Bratuの行列非形成VJP。実際の保存数値データの縮小図で、1次元問題です。",
+          "en": "Matrix-free VJP for distributed Bratu coefficients. Preview from actual saved numerical data for a one-dimensional problem."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#bratu-distributed-vjp-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-distributed-vjp/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-distributed-vjp/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "bratu-distributed-vjp",
+          "title": {
+            "ja": "分布係数Bratuの行列非形成VJP",
+            "en": "Matrix-free VJP for distributed Bratu coefficients"
+          },
+          "group": "adjoint",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-distributed-vjp/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-distributed-vjp/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/operators.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/krylov.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/newton.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/distributed.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/references/modal_decimal.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/references/shooting_decimal.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/references/linear_oracle.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/balanced_operator.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/state_linear.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/state_expansion.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/state_krylov.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/state_jacobian.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/time_adjoint.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/fold_study.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/io_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/qualify_references.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/conftest.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_distributed.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_fold.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_time.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/atlas-adjoint-2026-11-24.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/verification.json",
+          "preview": {
+            "file": "bratu-distributed-vjp-preview.png",
+            "caption": {
+              "ja": "分布係数Bratuの行列非形成VJP。実際の保存数値データの縮小図で、1次元問題です。",
+              "en": "Matrix-free VJP for distributed Bratu coefficients. Preview from actual saved numerical data for a one-dimensional problem."
+            },
+            "width": 1068,
+            "height": 645,
+            "sha256": "35e108b2ceca8fca74577a9858ac1bda6a5a8cf04c1e68810b90308f39c77ad0",
+            "url": "/code/validated-examples/2026-11-24/adjoint/results/bratu-distributed-vjp-preview.png"
+          }
+        }
+      ]
+    },
+    {
+      "id": "bratu-gn-lm-bounds",
+      "group": "differentiation-inverse",
+      "name": {
+        "ja": "GN・LMと有界最小二乗のBratu比較",
+        "en": "Bratu comparisons of GN, LM and bounded least squares"
+      },
+      "chapter": "validation-inverse-optimization",
+      "reading_section": "bratu-gn-lm-bounds",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24/inverse-optimization/",
+      "verification": "/code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24/inverse-optimization/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "bratu-gn-lm-bounds"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/inverse-optimization/results/bratu-gn-lm-bounds-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "bratu-gn-lm-bounds",
+          "url": "/numerical-methods-atlas/validation/bratu-gn-lm-bounds/",
+          "name": {
+            "ja": "GN・LMと有界最小二乗のBratu比較",
+            "en": "Bratu comparisons of GN, LM and bounded least squares"
+          }
+        }
+      ],
+      "parent_problem_id": "bratu",
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-inverse-optimization/#bratu-gn-lm-bounds",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-inverse-optimization/#bratu-gn-lm-bounds"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#bratu-gn-lm-bounds",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "image": "/code/validated-examples/2026-11-24/inverse-optimization/results/bratu-gn-lm-bounds-preview.png",
+      "image_sha256": "ca68334a2b0b59377458def88e7ab2a1971c9af461d1334f2fbc5fc9bef0274e",
+      "width": 960,
+      "height": 736,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "保存した2変数の反復点・残差評価点です。SciPy曲線は受理反復だけでなく残差評価を含み、これは2D物理空間の流れではありません。",
+        "en": "Saved two-parameter iterates and residual evaluations. SciPy paths include residual evaluations, not only accepted iterates; these are parameter coordinates, not a two-dimensional physical flow."
+      },
+      "visual_input": {
+        "id": "bratu-gn-lm-bounds",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-24/inverse-optimization/results/bratu-gn-lm-bounds-preview.png",
+        "caption": {
+          "ja": "保存した2変数の反復点・残差評価点です。SciPy曲線は受理反復だけでなく残差評価を含み、これは2D物理空間の流れではありません。",
+          "en": "Saved two-parameter iterates and residual evaluations. SciPy paths include residual evaluations, not only accepted iterates; these are parameter coordinates, not a two-dimensional physical flow."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#bratu-gn-lm-bounds-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-gn-lm-bounds/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-gn-lm-bounds/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "bratu-gn-lm-bounds",
+          "title": {
+            "ja": "GN・LMと有界最小二乗のBratu比較",
+            "en": "Bratu comparisons of GN, LM and bounded least squares"
+          },
+          "group": "inverse-optimization",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-gn-lm-bounds/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-gn-lm-bounds/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/least_squares.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/model.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/references/thomas.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/references/oracles.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/quasi_newton.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/regularization.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/public_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/support.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/legacy/numart/autodiff.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/legacy/numart/bratu_inverse.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/legacy/numart/bratu_multinverse.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/legacy/numart/bratu_sensitivity.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/legacy/numart/krylov.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/references/qualify.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/test_inverse_optimization.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/atlas-inverse-optimization-2026-11-24.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+          "preview": {
+            "file": "bratu-gn-lm-bounds-preview.png",
+            "caption": {
+              "ja": "保存した2変数の反復点・残差評価点です。SciPy曲線は受理反復だけでなく残差評価を含み、これは2D物理空間の流れではありません。",
+              "en": "Saved two-parameter iterates and residual evaluations. SciPy paths include residual evaluations, not only accepted iterates; these are parameter coordinates, not a two-dimensional physical flow."
+            },
+            "width": 960,
+            "height": 736,
+            "sha256": "ca68334a2b0b59377458def88e7ab2a1971c9af461d1334f2fbc5fc9bef0274e",
+            "url": "/code/validated-examples/2026-11-24/inverse-optimization/results/bratu-gn-lm-bounds-preview.png"
+          }
+        }
+      ]
+    },
+    {
+      "id": "bfgs-lbfgs-controls",
+      "group": "differentiation-inverse",
+      "name": {
+        "ja": "既知最小点でのBFGSと3組L-BFGS",
+        "en": "BFGS and three-pair L-BFGS at known minima"
+      },
+      "chapter": "validation-inverse-optimization",
+      "reading_section": "bfgs-lbfgs-controls",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24/inverse-optimization/",
+      "verification": "/code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24/inverse-optimization/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "bfgs-lbfgs-controls"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/inverse-optimization/results/bfgs-lbfgs-controls-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "bfgs-lbfgs-controls",
+          "url": "/numerical-methods-atlas/validation/bfgs-lbfgs-controls/",
+          "name": {
+            "ja": "既知最小点でのBFGSと3組L-BFGS",
+            "en": "BFGS and three-pair L-BFGS at known minima"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-inverse-optimization/#bfgs-lbfgs-controls",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-inverse-optimization/#bfgs-lbfgs-controls"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#bfgs-lbfgs-controls",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "image": "/code/validated-examples/2026-11-24/inverse-optimization/results/bfgs-lbfgs-controls-preview.png",
+      "image_sha256": "1d14d1186acab1ef8a9a7ca638a1d196e51f61a17319d42423e0dd5257c92363",
+      "width": 960,
+      "height": 736,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "実際のRosenbrock反復点と解析目的関数の等高線。3つの固定初期値・4手法を示し、全問題での収束保証ではありません。 図の座標は有限次元の変数・反復・診断で、物理空間の次元やPDE境界を表しません。",
+        "en": "Actual Rosenbrock iterates on analytic objective contours for three fixed starts and four methods; this is not a general convergence guarantee. Plot axes describe finite-dimensional variables, iterations or diagnostics, not a physical spatial dimension or PDE boundary."
+      },
+      "visual_input": {
+        "id": "bfgs-lbfgs-controls",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-24/inverse-optimization/results/bfgs-lbfgs-controls-preview.png",
+        "caption": {
+          "ja": "実際のRosenbrock反復点と解析目的関数の等高線。3つの固定初期値・4手法を示し、全問題での収束保証ではありません。 図の座標は有限次元の変数・反復・診断で、物理空間の次元やPDE境界を表しません。",
+          "en": "Actual Rosenbrock iterates on analytic objective contours for three fixed starts and four methods; this is not a general convergence guarantee. Plot axes describe finite-dimensional variables, iterations or diagnostics, not a physical spatial dimension or PDE boundary."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#bfgs-lbfgs-controls-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bfgs-lbfgs-controls/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bfgs-lbfgs-controls/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "bfgs-lbfgs-controls",
+          "title": {
+            "ja": "既知最小点でのBFGSと3組L-BFGS",
+            "en": "BFGS and three-pair L-BFGS at known minima"
+          },
+          "group": "inverse-optimization",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bfgs-lbfgs-controls/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bfgs-lbfgs-controls/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/quasi_newton.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/least_squares.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/model.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/regularization.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/public_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/support.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/references/thomas.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/references/oracles.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/legacy/numart/autodiff.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/legacy/numart/bratu_inverse.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/legacy/numart/bratu_multinverse.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/legacy/numart/bratu_sensitivity.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/legacy/numart/krylov.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/references/qualify.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/test_inverse_optimization.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/atlas-inverse-optimization-2026-11-24.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+          "preview": {
+            "file": "bfgs-lbfgs-controls-preview.png",
+            "caption": {
+              "ja": "実際のRosenbrock反復点と解析目的関数の等高線。3つの固定初期値・4手法を示し、全問題での収束保証ではありません。",
+              "en": "Actual Rosenbrock iterates on analytic objective contours for three fixed starts and four methods; this is not a general convergence guarantee."
+            },
+            "width": 960,
+            "height": 736,
+            "sha256": "1d14d1186acab1ef8a9a7ca638a1d196e51f61a17319d42423e0dd5257c92363",
+            "url": "/code/validated-examples/2026-11-24/inverse-optimization/results/bfgs-lbfgs-controls-preview.png"
+          }
+        }
+      ]
+    },
+    {
+      "id": "bratu-noise-regularization",
+      "group": "differentiation-inverse",
+      "name": {
+        "ja": "雑音・モデル差と有限γ経路の正則化",
+        "en": "Noise, model discrepancy and finite gamma paths"
+      },
+      "chapter": "validation-inverse-optimization",
+      "reading_section": "bratu-noise-regularization",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24/inverse-optimization/",
+      "verification": "/code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24/inverse-optimization/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "bratu-noise-regularization"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/inverse-optimization/results/bratu-noise-regularization-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "bratu-noise-regularization",
+          "url": "/numerical-methods-atlas/validation/bratu-noise-regularization/",
+          "name": {
+            "ja": "雑音・モデル差と有限γ経路の正則化",
+            "en": "Noise, model discrepancy and finite gamma paths"
+          }
+        }
+      ],
+      "parent_problem_id": "bratu",
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-inverse-optimization/#bratu-noise-regularization",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-inverse-optimization/#bratu-noise-regularization"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#bratu-noise-regularization",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "image": "/code/validated-examples/2026-11-24/inverse-optimization/results/bratu-noise-regularization-preview.png",
+      "image_sha256": "b43caf14cf8ba49af80aecad69e5f7394dcb5f6a2afc3c01f4320b29f194ff0a",
+      "width": 960,
+      "height": 736,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "保存した2変数推定値と固定γの局所1標準偏差楕円。楕円は選択事象で条件づけた区間でも、少数反復で保証した信頼領域でもありません。",
+        "en": "Saved two-parameter estimates and fixed-gamma local one-standard-deviation ellipses. These are neither selection-conditional intervals nor confidence regions with coverage established by this small ensemble."
+      },
+      "visual_input": {
+        "id": "bratu-noise-regularization",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-24/inverse-optimization/results/bratu-noise-regularization-preview.png",
+        "caption": {
+          "ja": "保存した2変数推定値と固定γの局所1標準偏差楕円。楕円は選択事象で条件づけた区間でも、少数反復で保証した信頼領域でもありません。",
+          "en": "Saved two-parameter estimates and fixed-gamma local one-standard-deviation ellipses. These are neither selection-conditional intervals nor confidence regions with coverage established by this small ensemble."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#bratu-noise-regularization-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-noise-regularization/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-noise-regularization/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "bratu-noise-regularization",
+          "title": {
+            "ja": "雑音・モデル差と有限γ経路の正則化",
+            "en": "Noise, model discrepancy and finite gamma paths"
+          },
+          "group": "inverse-optimization",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-noise-regularization/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-noise-regularization/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/regularization.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/least_squares.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/model.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/quasi_newton.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/public_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/support.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/references/thomas.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/references/oracles.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/legacy/numart/autodiff.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/legacy/numart/bratu_inverse.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/legacy/numart/bratu_multinverse.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/legacy/numart/bratu_sensitivity.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/legacy/numart/krylov.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/references/qualify.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/test_inverse_optimization.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/atlas-inverse-optimization-2026-11-24.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+          "preview": {
+            "file": "bratu-noise-regularization-preview.png",
+            "caption": {
+              "ja": "保存した2変数推定値と固定γの局所1標準偏差楕円。楕円は選択事象で条件づけた区間でも、少数反復で保証した信頼領域でもありません。",
+              "en": "Saved two-parameter estimates and fixed-gamma local one-standard-deviation ellipses. These are neither selection-conditional intervals nor confidence regions with coverage established by this small ensemble."
+            },
+            "width": 960,
+            "height": 736,
+            "sha256": "b43caf14cf8ba49af80aecad69e5f7394dcb5f6a2afc3c01f4320b29f194ff0a",
+            "url": "/code/validated-examples/2026-11-24/inverse-optimization/results/bratu-noise-regularization-preview.png"
+          }
+        }
+      ]
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "e749d0b17e45548684c8d3f146c4cddcb9bd9e4ef4a5dc6595c2918e7abcfef6",
+    "catalog/atlas-gallery.json": "2e92b75491beee611146acaa68d0c54fccc12fb29698bffb63255ff92b17c843",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -13836,8 +15106,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "3811c925b0b23402e78b6623663d04ef2cf7a1a5f52d11c974ecfe9365779790",
-    "catalog/atlas-depth-expansion.json": "9c46bb250bbeb60e965c0d9b86d07a0c744ea847ad9c3926886e138a6458b072",
+    "catalog/atlas-test-problems.json": "76dd9b5103fb4a87e1c9b930862ceee229cf14c641b3d9a04c9bf46658ab7837",
+    "catalog/atlas-depth-expansion.json": "5d3f5ab6f626a0bc4627b680dbe64ab75f738f8660f25862cf58a97ac2e39b90",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -14335,15 +15605,68 @@
     "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/atlas-bratu-continuation-jfnk-2026-11-24-r2.zip": "aeffa7e1b442f198ef2de55e453f82e5d6cbe30fc3d0bbd1112354a38a20a25d",
     "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-fold-continuation.png": "bbe9b09cfbefe52de3bd35c667fb86452e425d3fc1baf539329fb8198d344295",
     "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-matrix-free-jfnk.png": "c7818b4919abe37736a8bb683df9624c2ab5f4eacfce91a77503461acec35998",
+    "code/validated-examples/2026-11-24/globalization-controls/cases.json": "257b16d3e1af5cf9a9b53c747314e9c58d6b0fb2c98f445d4809f8f4eb0e7e66",
+    "code/validated-examples/2026-11-24/globalization-controls/inputs.json": "04ee3e49e6e2192ee4e58ae20e03905fc56f0c793ce4bbf7d00c13ae3586a9fb",
+    "code/validated-examples/2026-11-24/globalization-controls/acceptance.json": "4927a8d6d5c9d1cdba042fd42171f18f2e152f2ab70c845e552d644b7fc9ef31",
+    "code/validated-examples/2026-11-24/globalization-controls/pre-run-contract.json": "d83b156eab1a27e4c02261e8e3732746653db06a0fdaca8277c42433463bf4fc",
+    "code/validated-examples/2026-11-24/globalization-controls/results/result.json": "64a4ee192598660d6aefcb3bac2693a59bf568a5e2ab4fa7cbe9fe529ffa0218",
+    "code/validated-examples/2026-11-24/globalization-controls/results/globalization-difficult-starts.png": "47b63b55ad7ff1fe1fc698e63b13c7b464a915a2f51a353f9ad3abfa63438feb",
+    "code/validated-examples/2026-11-24/globalization-controls/results/globalization-difficult-starts-preview.png": "3bf21a53385abb412ec8cf23b3381150e15c0ab9a0aaebb7816bede00c08fca9",
+    "code/validated-examples/2026-11-24/globalization-controls/source-manifest.json": "3e1ad64fc8d9e844ec4495255e6231f057a4d6750088dd969617ccfbee9f3078",
+    "code/validated-examples/2026-11-24/globalization-controls/verification.json": "bb03e72bf192c56a1d2c720660880340c0bff4fc01217f907bb7d949880e09c9",
+    "code/validated-examples/2026-11-24/globalization-controls/atlas-globalization-controls-2026-11-24.zip": "a8d55166dedf528bbb143080998b5bdd0a95ad37d29d589206499e23dbc9fe4d",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/cases.json": "444d6805b5f8c87636e6bd1de91ae02ffa9ce3c8aaec7b501d5754e49e3395ca",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/inputs.json": "760e23bd914d37ebab5142bc741a2d443207d7d2c6d0a8630031439ecfedec2e",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/acceptance.json": "f5b597ac6f2dda0cdddc3a46559f7cc7b0f786f0eb870496b5e7b16983c06337",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/pre-run-contract.json": "296beb97c7673ad6c368a9cdc033b7b030198475b80a1e31801562edf7afa947",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/results/result.json": "c7e23a2174d768b1bd95e1170e0e633efbec172c4e3cf3eab8e5f61d020d8374",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/results/reverse-vjp-duality.png": "e75030219736de92e19b2f2ded569a0d19de5fbf3916c1db2ce3d55e9ea0f433",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/results/reverse-vjp-duality-preview.png": "19e54c65550a0c7ed69e9acce2a361658bbd2d8a2863cb6be4b9a48a3f49a2f5",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/source-manifest.json": "a6933b5568bf03c5306f25f74bc36435cee98f890bd8b30364390cbb3f0fefb5",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/verification.json": "1cb830974a5e0b4571ae3cec9219bddd4ca856a3f5c47130787daaf9ab81f641",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/atlas-reverse-higher-ad-2026-11-24.zip": "9ba9d564393bf64d33ec79add1648082e72356335051da99f228e9b0ee5e850a",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/results/hessian-vector-products.png": "b8a41fc333194a9cc5b39df62c894f9ffaaef5827b9375a1ee88e7839d3d6c61",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/results/hessian-vector-products-preview.png": "f0f8223d65b5f7cc544797aacb52a93d6c251976f73517d88cbce56f14534a4f",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/results/kink-branch-derivatives.png": "7fe40a7026b4a60350785f57d21a937604a2a163a5e10da0a23a641de5f173f5",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/results/kink-branch-derivatives-preview.png": "b299ec917c1c29c046ca5c2bf87e8ea904005f5caf3e39ccf4dd2e5944af5356",
+    "code/validated-examples/2026-11-24/adjoint/cases.json": "2ee30f6ebfc8e1e49d9fb581e19dcd821f2b6f2b02a2f27400272d0301071645",
+    "code/validated-examples/2026-11-24/adjoint/inputs.json": "d50b4ccd1559cae3830dd6496bfe5fade4f3587b5c5782bcc0003615c35045f7",
+    "code/validated-examples/2026-11-24/adjoint/acceptance.json": "716a7be9c080b66cbda6a35dd7b8be8d8d00cc4bb69673f3a0184c3406cf792d",
+    "code/validated-examples/2026-11-24/adjoint/pre-run-contract.json": "0d35633b941ea8a7b2be6b04c78f4a108747a0b7e0d9d971ecbd863dcc76fb91",
+    "code/validated-examples/2026-11-24/adjoint/results/result.json": "adbb489d0cf730f76cd1bfb1b7b9fe85948c42b4ed90dac7595aa71f1fbbc036",
+    "code/validated-examples/2026-11-24/adjoint/results/diffusion-discrete-adjoint.png": "acea428c2a5451bf7f9af8238c0fe3a41efa89178960bd8b97efee04f72d1f20",
+    "code/validated-examples/2026-11-24/adjoint/results/diffusion-discrete-adjoint-preview.png": "509aa302e0f76569e3c506a680afd381593edc73f6cef82e07a829c467d2fc23",
+    "code/validated-examples/2026-11-24/adjoint/source-manifest.json": "3536c89cf5356d8f0bb9eda75674cafd4741862cf7f7d479a0a3c377aa0b3a34",
+    "code/validated-examples/2026-11-24/adjoint/verification.json": "4a2d6bb02db35895f7621ead01f1603269523980a83aa3120a04412032dbf604",
+    "code/validated-examples/2026-11-24/adjoint/atlas-adjoint-2026-11-24.zip": "6b78fd9d4320e9790bd6ebe2a0ef61a25c55c7fdc0a14dd37d0ca1a37b80a5ee",
+    "code/validated-examples/2026-11-24/adjoint/results/bratu-fold-sensitivity.png": "3737963ef529d6e392bbbcd7b3a9cb4e0e50c85ee51bc996cab879d7a2d06678",
+    "code/validated-examples/2026-11-24/adjoint/results/bratu-fold-sensitivity-preview.png": "99700121735f00cb3e4207a2e2d27236770b928d8cb547ff5893d81cda75fc28",
+    "code/validated-examples/2026-11-24/adjoint/results/bratu-distributed-vjp.png": "0ac69bd544a89a7f831f8b4f1a5a5beccd853d70523b5d99c96aab49f70acef3",
+    "code/validated-examples/2026-11-24/adjoint/results/bratu-distributed-vjp-preview.png": "35e108b2ceca8fca74577a9858ac1bda6a5a8cf04c1e68810b90308f39c77ad0",
+    "code/validated-examples/2026-11-24/inverse-optimization/cases.json": "9dfc1a14b447d70b2bd903a397cdf77d28ecb0e462cc876bdb3b44db9197150d",
+    "code/validated-examples/2026-11-24/inverse-optimization/inputs.json": "dca8cf2a84355ebbb881bc17232923c5fa0ee16f34c7d2a8a8c58da702e9b3b1",
+    "code/validated-examples/2026-11-24/inverse-optimization/acceptance.json": "5f176ea719dc8a5bb21c1b47bc1fcb8636d204f31821efc622d830bc4b0ce2db",
+    "code/validated-examples/2026-11-24/inverse-optimization/pre-run-contract.json": "583e383cc384552e78a5f18383ff443d9111b521b4ef7f5eab79cf0663ee352c",
+    "code/validated-examples/2026-11-24/inverse-optimization/results/result.json": "48ded080378cf6e3f6aebf005f41b70c7f6f7065f741d15f3f700e821c919218",
+    "code/validated-examples/2026-11-24/inverse-optimization/results/bratu-gn-lm-bounds.png": "04478d0ed7086362be1708314eb1d8bf5648f7017bb9efcb729bdec42f67fbe1",
+    "code/validated-examples/2026-11-24/inverse-optimization/results/bratu-gn-lm-bounds-preview.png": "ca68334a2b0b59377458def88e7ab2a1971c9af461d1334f2fbc5fc9bef0274e",
+    "code/validated-examples/2026-11-24/inverse-optimization/source-manifest.json": "8d39bdf4a727cd5d32467939fc8eda396921f77e83b58b70272af8ac77d5c618",
+    "code/validated-examples/2026-11-24/inverse-optimization/verification.json": "76f3f6b1550ce190e3d3afdd4b9a4e2f75373c58d97ccd655b2ac0bad4a3a74f",
+    "code/validated-examples/2026-11-24/inverse-optimization/atlas-inverse-optimization-2026-11-24.zip": "ffefd2d5876a3db10596d6e1f089f73be7a82288d63f348bcd960b9497412b44",
+    "code/validated-examples/2026-11-24/inverse-optimization/results/bfgs-lbfgs-controls.png": "59f4889b7cf7902b90266e488c6fddb2efcc9b7e84826120d9989d2b403f69c6",
+    "code/validated-examples/2026-11-24/inverse-optimization/results/bfgs-lbfgs-controls-preview.png": "1d14d1186acab1ef8a9a7ca638a1d196e51f61a17319d42423e0dd5257c92363",
+    "code/validated-examples/2026-11-24/inverse-optimization/results/bratu-noise-regularization.png": "507419bc07f14a0101bc449dddfcd1b89de53895ced77d238b4532681872fede",
+    "code/validated-examples/2026-11-24/inverse-optimization/results/bratu-noise-regularization-preview.png": "b43caf14cf8ba49af80aecad69e5f7394dcb5f6a2afc3c01f4320b29f194ff0a",
+    "scripts/prime-atlas-gallery-metadata.py": "5cd0859fb6bc008a5b6b55435441630d29e3398edb93bb7ae212bd94cd9ef668",
     "code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py": "4ad61ac54dfa59d7d61959c5699f290e2386c23bf5b4b930a5d98576feaa54d1",
     "code/numerical-methods-atlas/2026-11-21/tests/test_linear.py": "5e7323f2734fb7328c35706ccd90fc25076bd46d01d32cd9c78c8cd25dd0421f",
     "code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py": "4076e514e0b9b5fd94dead4af33fe7e7548fba6a7b48b3e21a406034f7170afb",
     "code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py": "920a5eb560afe7f560cae8d22f879f125851f4ee0451b24720d0eca0082c31ce",
     "code/numerical-methods-atlas/2026-11-21/tests/test_new_models.py": "2937daf8fa8ad86882ac06e47835a6309ca1df3d0283c7dfb7b9606dc3906b1f",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "4c55e4b5f0b9b339bf8aa8885fdd383d5aa13f5e87eab7e8f8c79769649215e7",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "97b55e9b7a8eb7b487026a91124dd7315866e2ff6679156489cda37ec6205b05",
     "numerical-methods-atlas/gallery/calculations.json": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
     "numerical-methods-atlas/gallery/verification.json": "46c39543afa9d943dfef896fadbc8f84d847f1a145d9b1427a2336de7a3a50f9",
-    "numerical-methods-atlas/test-cases/index.json": "b864ea9dbb151525104012662b3c19a968c16b820a3d0f563c020791e173a39b",
+    "numerical-methods-atlas/test-cases/index.json": "ab1109155673a63365f731c56f7e1ccf81176e71eb7032b600b6b08ee5e13f84",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "scripts/atlas_execution_discovery.py": "3431dae95fb0adc68e1deca07b406b70bd99480f9ad6023a31765cb07ccf84be",
     "scripts/atlas_depth_release.py": "5eef2754321b4e71024dfa458d56802054a455333cd6b0510ec7e86a5618cba6",

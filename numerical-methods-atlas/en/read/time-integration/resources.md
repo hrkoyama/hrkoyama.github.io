@@ -58,6 +58,10 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Advance actual radiation/material fields with the Marshak boundary and compare with independently qualified pinned ExactPack integrals.
+- [Discrete diffusion adjoint and checkpoint replay](<https://hrkoyama.github.io/numerical-methods-atlas/validation/diffusion-discrete-adjoint/?lang=en>)
+  availability: run
+
+  Reverse the actual backward-Euler map and compare tangent derivatives, independent high-precision modes and block replay.
 - [Double Mach reflection: lightweight grid verification](<https://hrkoyama.github.io/numerical-methods-atlas/validation/double-mach-reflection/?lang=en>)
   availability: run
 

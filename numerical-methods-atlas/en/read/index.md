@@ -51,6 +51,10 @@ Distinguish derivatives of residuals and solutions, then connect objectives, obs
 - [Bratu inverse problem: estimate λ from synthetic observations with adjoint gradients](https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-inverse/)
 - [Multi-parameter Bratu inversion: regularization and identifiability](https://hrkoyama.github.io/numerical-methods-atlas/en/read/bratu-multi-inverse/)
 - [PINNs and neural operators](https://hrkoyama.github.io/numerical-methods-atlas/en/read/pinn-operators/)
+- [Line searches and trust regions from identical starts](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-globalization-controls/)
+- [Reverse mode, HVPs and nonsmooth branches](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-reverse-higher-ad/)
+- [Adjoints through time steps, folds and distributed coefficients](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-adjoint/)
+- [Optimization, noise and regularization in the Bratu inverse problem](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-inverse-optimization/)
 
 ## Fluids, shocks and steady solvers
 

@@ -26103,14 +26103,2065 @@
         }
       ],
       "code_checks": []
+    },
+    {
+      "schema_version": 1,
+      "id": "globalization-difficult-starts",
+      "name": {
+        "ja": "同じ難しい初期値に対する線探索と信頼領域",
+        "en": "Line search and trust regions from the same difficult starts"
+      },
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/globalization-difficult-starts/",
+      "hub": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/globalization-difficult-starts/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/globalization-difficult-starts/?lang=en"
+      },
+      "image": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/globalization-controls/results/globalization-difficult-starts-preview.png",
+        "sha256": "3bf21a53385abb412ec8cf23b3381150e15c0ab9a0aaebb7816bede00c08fca9",
+        "width": 990,
+        "height": 720,
+        "caption": {
+          "ja": "同一初期値の保存経路、原残差、trust radiusと実測評価回数。失敗・非収束は別記します。 図の座標は有限次元の変数・反復・診断で、物理空間の次元やPDE境界を表しません。",
+          "en": "Saved paths from identical starts, original residuals, trust radii and measured evaluation counts. Failures and nonconvergence remain explicit. Plot axes describe finite-dimensional variables, iterations or diagnostics, not a physical spatial dimension or PDE boundary."
+        },
+        "source_kind": "existing-figure"
+      },
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-globalization-controls/#globalization-difficult-starts",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-globalization-controls/#globalization-difficult-starts"
+      },
+      "conditions": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#globalization-difficult-starts",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#globalization-difficult-starts-en"
+      },
+      "equations": [
+        {
+          "id": "finite-dimensional-nonlinear-map",
+          "name": {
+            "ja": "有限次元非線形写像・根と微分作用",
+            "en": "Finite-dimensional nonlinear maps, roots and differential actions"
+          },
+          "formula": [
+            "F:\\mathbb R^n\\longrightarrow\\mathbb R^m",
+            "F(x)=0\\quad(m=n\\text{ for root controls})",
+            "J(x)v=DF(x)[v],\\quad J(x)^\\top w",
+            "H_f(x)v=D(\\nabla f)(x)[v]\\quad(f\\text{ twice differentiable})"
+          ],
+          "note": {
+            "ja": "有限の代数写像に対する根・JVP/VJP・HVP・分岐規約です。nは空間次元ではなく変数数で、非滑らか点に古典微分を強制しません。",
+            "en": "Roots, JVP/VJP, HVP and branch conventions for finite algebraic maps. The variable count n is not a spatial dimension, and a classical derivative is not imposed at nonsmooth points."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#finite-dimensional-nonlinear-map-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#finite-dimensional-nonlinear-map-en"
+          }
+        },
+        {
+          "id": "bratu",
+          "name": {
+            "ja": "Bratu非線形境界値問題",
+            "en": "Bratu nonlinear boundary-value problem"
+          },
+          "formula": [
+            "-\\frac{d^2u}{dx^2}=\\lambda e^u,\\qquad 0<x<1",
+            "u(0)=u(1)=0"
+          ],
+          "note": {
+            "ja": "ここでは−u″=λexp(u)の符号規約。Newton–Krylov法で残差・格子収束・内側線形解法の失敗を確認します。",
+            "en": "The convention here is −u″=λ exp(u). Newton–Krylov checks cover residuals, refinement and inner-solver failures."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bratu-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bratu-en"
+          }
+        }
+      ],
+      "equation_note": {
+        "ja": "小さな固定入力・実数・無次元。詳しい入力と適用範囲は対応する契約に限定します。",
+        "en": "Small fixed real dimensionless inputs; assumptions and scope are limited to the matching contract."
+      },
+      "formulations": [
+        {
+          "id": "supplement-globalization-difficult-starts",
+          "name": {
+            "ja": "同じ難しい初期値に対する線探索と信頼領域",
+            "en": "Line search and trust regions from the same difficult starts"
+          },
+          "source": "supplement",
+          "role": "example-definition",
+          "latex": [
+            "phi(x)=.5||S F(x)||_2^2, g=(S J)^T S F",
+            "p_U=-(g^Tg)/(||S J g||_2^2)g, ||p||_2<=Delta"
+          ],
+          "note": {
+            "ja": "同じ固定初期値からNewton・Armijo・doglegを比較し、真の根と非根停留・予算終了を区別します。",
+            "en": "Compare Newton, Armijo and dogleg from identical fixed starts, distinguishing roots from stationary nonroots and budget exhaustion."
+          }
+        }
+      ],
+      "references": [
+        {
+          "id": "globalization-difficult-starts",
+          "kind": "numerical-reference",
+          "kind_label": {
+            "ja": "有限格子の数値参照",
+            "en": "Finite-grid numerical reference"
+          },
+          "title": {
+            "ja": "同一初期値の大域化：解析対照と離散Bratu修正",
+            "en": "Globalization from identical starts: analytic controls and discrete Bratu corrections"
+          },
+          "formula": "F_R(x,y)=(10(y-x^2),1-x)^\\top,\\quad (x_*,y_*)=(1,1);\\quad \\phi=\\tfrac12\\|SF\\|_2^2,\\quad J_h\\delta=-F_h.",
+          "assumptions": {
+            "ja": "実数・無次元の固定系。Rosenbrockの2初期値と2残差スケール、31内点・λ=3の同次Dirichlet Bratuの3初期値を3法で比較します。状態半径はEuclideanで、残差スケールとは別です。",
+            "en": "Fixed real dimensionless systems: two Rosenbrock starts and two residual scalings, plus three starts for a 31-interior-node Dirichlet Bratu problem at lambda 3, compared by three methods. The Euclidean state radius is distinct from residual scaling."
+          },
+          "relation": "same-problem",
+          "note": {
+            "ja": "全初期値の成功や手法の普遍的優越、PETSc実装との一致を保証しません。",
+            "en": "No all-start guarantee, universal method ranking or equivalence to PETSc implementation."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/globalization-difficult-starts/?lang=ja#globalization-difficult-starts-ja-measurements",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/globalization-difficult-starts/?lang=en#globalization-difficult-starts-en-measurements"
+          }
+        }
+      ],
+      "reference_note": {
+        "ja": "固定入力・独立参照・保存候補・全判定を同じ120秒予算内で検証します。数値合格と診断用非収束を区別します。",
+        "en": "Check fixed inputs, independent references, retained candidates and every gate within the same120-second budget. Numerical success and diagnostic nonconvergence are distinct."
+      },
+      "methods": [
+        {
+          "id": "newton",
+          "name": {
+            "ja": "Armijo減衰Newton法",
+            "en": "Armijo-damped Newton"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/newton/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/newton/?lang=en"
+          }
+        },
+        {
+          "id": "dogleg-trust-region",
+          "name": {
+            "ja": "小固定系のdogleg信頼領域法",
+            "en": "Dogleg trust regions for fixed small systems"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dogleg-trust-region/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dogleg-trust-region/?lang=en"
+          }
+        }
+      ],
+      "method_note": {
+        "ja": "原残差とスケール付きmeritを分離し、Euclidean doglegと全試行ledgerを保存します。",
+        "en": "Separate the original residual from the scaled merit and retain Euclidean dogleg and trial ledgers."
+      },
+      "executions": [
+        {
+          "id": "globalization-difficult-starts",
+          "kind": "supplement",
+          "name": {
+            "ja": "同じ難しい初期値に対する線探索と信頼領域",
+            "en": "Line search and trust regions from the same difficult starts"
+          },
+          "method_ids": [
+            "newton",
+            "dogleg-trust-region"
+          ],
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/globalization-difficult-starts/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/globalization-difficult-starts/?lang=en"
+          },
+          "scope": {
+            "ja": "同じ固定初期値からNewton・Armijo・doglegを比較し、真の根と非根停留・予算終了を区別します。",
+            "en": "Compare Newton, Armijo and dogleg from identical fixed starts, distinguishing roots from stationary nonroots and budget exhaustion."
+          },
+          "assumptions": {
+            "ja": "小さな固定入力・実数・無次元。詳しい入力と適用範囲は対応する契約に限定します。",
+            "en": "Small fixed real dimensionless inputs; assumptions and scope are limited to the matching contract."
+          },
+          "limits": {
+            "ja": "全初期値の成功や手法の普遍的優越、PETSc実装との一致を保証しません。",
+            "en": "No all-start guarantee, universal method ranking or equivalence to PETSc implementation."
+          },
+          "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/globalization-controls/inputs.json",
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/globalization-controls/atlas-globalization-controls-2026-11-24.zip",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/globalization-controls/verification.json",
+          "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/globalization-controls/source-manifest.json",
+          "commands": [
+            "python -m pip install -r requirements.txt",
+            "python -m pytest -q",
+            "python run.py --input inputs.json --output output"
+          ],
+          "reference_note": {
+            "ja": "固定入力・独立参照・保存候補・全判定を同じ120秒予算内で検証します。数値合格と診断用非収束を区別します。",
+            "en": "Check fixed inputs, independent references, retained candidates and every gate within the same120-second budget. Numerical success and diagnostic nonconvergence are distinct."
+          },
+          "reference_data": [],
+          "results": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/globalization-controls/results/result.json"
+          ],
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/globalization-controls/run.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/globalization-controls/test_globalization.py"
+          ],
+          "source_scope": "package"
+        }
+      ],
+      "code_checks": []
+    },
+    {
+      "schema_version": 1,
+      "id": "reverse-vjp-duality",
+      "name": {
+        "ja": "独自逆モードVJPとJVP/VJP双対性",
+        "en": "Original reverse-mode VJP and JVP/VJP duality"
+      },
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/reverse-vjp-duality/",
+      "hub": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/reverse-vjp-duality/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/reverse-vjp-duality/?lang=en"
+      },
+      "image": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/results/reverse-vjp-duality-preview.png",
+        "sha256": "19e54c65550a0c7ed69e9acce2a361658bbd2d8a2863cb6be4b9a48a3f49a2f5",
+        "width": 900,
+        "height": 630,
+        "caption": {
+          "ja": "独立矩形Jacobianと実際の逆微分誤差、固定wide写像の実測sweep数。 図の座標は有限次元の変数・反復・診断で、物理空間の次元やPDE境界を表しません。",
+          "en": "Independent rectangular Jacobian, actual reverse differentiation error and measured sweep counts for fixed wide maps. Plot axes describe finite-dimensional variables, iterations or diagnostics, not a physical spatial dimension or PDE boundary."
+        },
+        "source_kind": "existing-figure"
+      },
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-reverse-higher-ad/#reverse-vjp-duality",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-reverse-higher-ad/#reverse-vjp-duality"
+      },
+      "conditions": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#reverse-vjp-duality",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#reverse-vjp-duality-en"
+      },
+      "equations": [
+        {
+          "id": "finite-dimensional-nonlinear-map",
+          "name": {
+            "ja": "有限次元非線形写像・根と微分作用",
+            "en": "Finite-dimensional nonlinear maps, roots and differential actions"
+          },
+          "formula": [
+            "F:\\mathbb R^n\\longrightarrow\\mathbb R^m",
+            "F(x)=0\\quad(m=n\\text{ for root controls})",
+            "J(x)v=DF(x)[v],\\quad J(x)^\\top w",
+            "H_f(x)v=D(\\nabla f)(x)[v]\\quad(f\\text{ twice differentiable})"
+          ],
+          "note": {
+            "ja": "有限の代数写像に対する根・JVP/VJP・HVP・分岐規約です。nは空間次元ではなく変数数で、非滑らか点に古典微分を強制しません。",
+            "en": "Roots, JVP/VJP, HVP and branch conventions for finite algebraic maps. The variable count n is not a spatial dimension, and a classical derivative is not imposed at nonsmooth points."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#finite-dimensional-nonlinear-map-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#finite-dimensional-nonlinear-map-en"
+          }
+        },
+        {
+          "id": "bratu",
+          "name": {
+            "ja": "Bratu非線形境界値問題",
+            "en": "Bratu nonlinear boundary-value problem"
+          },
+          "formula": [
+            "-\\frac{d^2u}{dx^2}=\\lambda e^u,\\qquad 0<x<1",
+            "u(0)=u(1)=0"
+          ],
+          "note": {
+            "ja": "ここでは−u″=λexp(u)の符号規約。Newton–Krylov法で残差・格子収束・内側線形解法の失敗を確認します。",
+            "en": "The convention here is −u″=λ exp(u). Newton–Krylov checks cover residuals, refinement and inner-solver failures."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bratu-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bratu-en"
+          }
+        }
+      ],
+      "equation_note": {
+        "ja": "小さな固定入力・実数・無次元。詳しい入力と適用範囲は対応する契約に限定します。",
+        "en": "Small fixed real dimensionless inputs; assumptions and scope are limited to the matching contract."
+      },
+      "formulations": [
+        {
+          "id": "supplement-reverse-vjp-duality",
+          "name": {
+            "ja": "独自逆モードVJPとJVP/VJP双対性",
+            "en": "Original reverse-mode VJP and JVP/VJP duality"
+          },
+          "source": "supplement",
+          "role": "example-definition",
+          "latex": [
+            "Jv=Df(x)v, VJP=J^T w",
+            "<Jv,w>_Gy=<v,Gx^-1 J^T Gy w>_Gx"
+          ],
+          "note": {
+            "ja": "重複gatherとbroadcastを含む真の逆tapeを独立Jacobianと照合します。",
+            "en": "Check a genuine reverse tape, including repeated-index gather and broadcast, against independent Jacobians."
+          }
+        }
+      ],
+      "references": [
+        {
+          "id": "reverse-vjp-duality",
+          "kind": "analytic",
+          "kind_label": {
+            "ja": "解析解",
+            "en": "Analytic reference"
+          },
+          "title": {
+            "ja": "離散非線形写像の独立Jacobian・JVP・VJP",
+            "en": "Independent Jacobians, JVPs and VJPs of discrete nonlinear maps"
+          },
+          "formula": "Jv=Df(x)v,\\quad \\operatorname{VJP}(w)=J^\\top w,\\quad (Jv)^\\top G_yw=v^\\top G_x(G_x^{-1}J^\\top G_yw).",
+          "assumptions": {
+            "ja": "固定R4→R3写像は重複gather[0,0,2]とscalar broadcastを含みます。wide写像と固定Bratu状態はサイズ7/31。Euclidean pullbackと指定SPD計量の随伴を区別します。",
+            "en": "The fixed R4-to-R3 map includes repeated-index gather[0,0,2] and scalar broadcast. Wide maps and fixed Bratu states have sizes 7 and 31. Euclidean pullbacks and adjoints under specified SPD metrics are distinct."
+          },
+          "relation": "same-problem",
+          "note": {
+            "ja": "一般のNumPy/JAX置換や複素数ADではありません。",
+            "en": "Not a general NumPy/JAX replacement or complex AD system."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reverse-vjp-duality/?lang=ja#reverse-vjp-duality-ja-measurements",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reverse-vjp-duality/?lang=en#reverse-vjp-duality-en-measurements"
+          }
+        }
+      ],
+      "reference_note": {
+        "ja": "固定入力・独立参照・保存候補・全判定を同じ120秒予算内で検証します。数値合格と診断用非収束を区別します。",
+        "en": "Check fixed inputs, independent references, retained candidates and every gate within the same120-second budget. Numerical success and diagnostic nonconvergence are distinct."
+      },
+      "methods": [
+        {
+          "id": "automatic-differentiation",
+          "name": {
+            "ja": "自動微分",
+            "en": "Automatic differentiation"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/automatic-differentiation/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/automatic-differentiation/?lang=en"
+          }
+        }
+      ],
+      "method_note": {
+        "ja": "逆topological順のcotangent加算と独立の前向き方向計算です。",
+        "en": "Accumulate cotangents in reverse topological order with a separate forward directional path."
+      },
+      "executions": [
+        {
+          "id": "reverse-vjp-duality",
+          "kind": "supplement",
+          "name": {
+            "ja": "独自逆モードVJPとJVP/VJP双対性",
+            "en": "Original reverse-mode VJP and JVP/VJP duality"
+          },
+          "method_ids": [
+            "automatic-differentiation"
+          ],
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reverse-vjp-duality/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reverse-vjp-duality/?lang=en"
+          },
+          "scope": {
+            "ja": "重複gatherとbroadcastを含む真の逆tapeを独立Jacobianと照合します。",
+            "en": "Check a genuine reverse tape, including repeated-index gather and broadcast, against independent Jacobians."
+          },
+          "assumptions": {
+            "ja": "小さな固定入力・実数・無次元。詳しい入力と適用範囲は対応する契約に限定します。",
+            "en": "Small fixed real dimensionless inputs; assumptions and scope are limited to the matching contract."
+          },
+          "limits": {
+            "ja": "一般のNumPy/JAX置換や複素数ADではありません。",
+            "en": "Not a general NumPy/JAX replacement or complex AD system."
+          },
+          "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/inputs.json",
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/atlas-reverse-higher-ad-2026-11-24.zip",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+          "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/source-manifest.json",
+          "commands": [
+            "python -m pip install -r requirements.txt",
+            "python -m pytest -q",
+            "python run.py --input inputs.json --output output"
+          ],
+          "reference_note": {
+            "ja": "固定入力・独立参照・保存候補・全判定を同じ120秒予算内で検証します。数値合格と診断用非収束を区別します。",
+            "en": "Check fixed inputs, independent references, retained candidates and every gate within the same120-second budget. Numerical success and diagnostic nonconvergence are distinct."
+          },
+          "reference_data": [],
+          "results": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/results/result.json"
+          ],
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/run.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/test_ad.py"
+          ],
+          "source_scope": "package"
+        }
+      ],
+      "code_checks": []
+    },
+    {
+      "schema_version": 1,
+      "id": "hessian-vector-products",
+      "name": {
+        "ja": "HVPと状態固定・陰関数全微分の区別",
+        "en": "Hessian-vector products and fixed-state versus implicit derivatives"
+      },
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/hessian-vector-products/",
+      "hub": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/hessian-vector-products/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/hessian-vector-products/?lang=en"
+      },
+      "image": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/results/hessian-vector-products-preview.png",
+        "sha256": "f0f8223d65b5f7cc544797aacb52a93d6c251976f73517d88cbce56f14534a4f",
+        "width": 1080,
+        "height": 360,
+        "caption": {
+          "ja": "保存HVPと独立参照、状態固定と陰関数全微分の二階曲率を区別した比較。 図の座標は有限次元の変数・反復・診断で、物理空間の次元やPDE境界を表しません。",
+          "en": "Saved HVPs and independent references, with fixed-state and total implicit second derivatives shown separately. Plot axes describe finite-dimensional variables, iterations or diagnostics, not a physical spatial dimension or PDE boundary."
+        },
+        "source_kind": "existing-figure"
+      },
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-reverse-higher-ad/#hessian-vector-products",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-reverse-higher-ad/#hessian-vector-products"
+      },
+      "conditions": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#hessian-vector-products",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#hessian-vector-products-en"
+      },
+      "equations": [
+        {
+          "id": "finite-dimensional-nonlinear-map",
+          "name": {
+            "ja": "有限次元非線形写像・根と微分作用",
+            "en": "Finite-dimensional nonlinear maps, roots and differential actions"
+          },
+          "formula": [
+            "F:\\mathbb R^n\\longrightarrow\\mathbb R^m",
+            "F(x)=0\\quad(m=n\\text{ for root controls})",
+            "J(x)v=DF(x)[v],\\quad J(x)^\\top w",
+            "H_f(x)v=D(\\nabla f)(x)[v]\\quad(f\\text{ twice differentiable})"
+          ],
+          "note": {
+            "ja": "有限の代数写像に対する根・JVP/VJP・HVP・分岐規約です。nは空間次元ではなく変数数で、非滑らか点に古典微分を強制しません。",
+            "en": "Roots, JVP/VJP, HVP and branch conventions for finite algebraic maps. The variable count n is not a spatial dimension, and a classical derivative is not imposed at nonsmooth points."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#finite-dimensional-nonlinear-map-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#finite-dimensional-nonlinear-map-en"
+          }
+        },
+        {
+          "id": "bratu",
+          "name": {
+            "ja": "Bratu非線形境界値問題",
+            "en": "Bratu nonlinear boundary-value problem"
+          },
+          "formula": [
+            "-\\frac{d^2u}{dx^2}=\\lambda e^u,\\qquad 0<x<1",
+            "u(0)=u(1)=0"
+          ],
+          "note": {
+            "ja": "ここでは−u″=λexp(u)の符号規約。Newton–Krylov法で残差・格子収束・内側線形解法の失敗を確認します。",
+            "en": "The convention here is −u″=λ exp(u). Newton–Krylov checks cover residuals, refinement and inner-solver failures."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bratu-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bratu-en"
+          }
+        }
+      ],
+      "equation_note": {
+        "ja": "小さな固定入力・実数・無次元。詳しい入力と適用範囲は対応する契約に限定します。",
+        "en": "Small fixed real dimensionless inputs; assumptions and scope are limited to the matching contract."
+      },
+      "formulations": [
+        {
+          "id": "supplement-hessian-vector-products",
+          "name": {
+            "ja": "HVPと状態固定・陰関数全微分の区別",
+            "en": "Hessian-vector products and fixed-state versus implicit derivatives"
+          },
+          "source": "supplement",
+          "role": "example-definition",
+          "latex": [
+            "Hv=D(grad f)(x)v",
+            "F=u^2-theta=0, 2u*s=1, 2u*t+2s^2=0"
+          ],
+          "note": {
+            "ja": "forward-over-reverse HVPと二階陰関数則を別々の独立参照へ照合します。",
+            "en": "Check forward-over-reverse HVPs and second-order implicit rules against separate independent references."
+          }
+        }
+      ],
+      "references": [
+        {
+          "id": "hessian-vector-products",
+          "kind": "analytic",
+          "kind_label": {
+            "ja": "解析解",
+            "en": "Analytic reference"
+          },
+          "title": {
+            "ja": "固定状態HVPと二階陰関数則の独立参照",
+            "en": "Independent references for fixed-state HVPs and second-order implicit rules"
+          },
+          "formula": "Hv=D(\\nabla f)(x)v;\\quad H_Bv=h(A_hv-\\lambda e^u\\odot v);\\quad 2us=1,\\quad 2ut+2s^2=0,\\quad j^{\\prime\\prime}=0.2+s^2+(u-1)t.",
+          "assumptions": {
+            "ja": "4変数のdyadic二次関数とサイズ7/31の固定Bratu energyを用います。別の正枝陰関数u²−θ=0はθ=4、初期値u=3から解き、状態固定偏微分と全微分を分けます。",
+            "en": "Use a four-variable dyadic quadratic and fixed-state Bratu energies of sizes 7 and 31. A separate positive implicit branch u²-theta=0 is solved at theta 4 from initial u 3, distinguishing fixed-state partials from total derivatives."
+          },
+          "relation": "same-problem",
+          "note": {
+            "ja": "一般のreduced inverse Hessianや有限Newton traceの数学的陰関数微分とは主張しません。",
+            "en": "No general reduced inverse Hessian or identification of finite Newton traces with implicit derivatives."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/hessian-vector-products/?lang=ja#hessian-vector-products-ja-measurements",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/hessian-vector-products/?lang=en#hessian-vector-products-en-measurements"
+          }
+        }
+      ],
+      "reference_note": {
+        "ja": "固定入力・独立参照・保存候補・全判定を同じ120秒予算内で検証します。数値合格と診断用非収束を区別します。",
+        "en": "Check fixed inputs, independent references, retained candidates and every gate within the same120-second budget. Numerical success and diagnostic nonconvergence are distinct."
+      },
+      "methods": [
+        {
+          "id": "automatic-differentiation",
+          "name": {
+            "ja": "自動微分",
+            "en": "Automatic differentiation"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/automatic-differentiation/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/automatic-differentiation/?lang=en"
+          }
+        }
+      ],
+      "method_note": {
+        "ja": "値と方向接線、cotangentとその方向接線を伝播し、陰関数はF/R1/R2を解きます。",
+        "en": "Transport values, tangents, cotangents and cotangent tangents; solve F/R1/R2 for implicit derivatives."
+      },
+      "executions": [
+        {
+          "id": "hessian-vector-products",
+          "kind": "supplement",
+          "name": {
+            "ja": "HVPと状態固定・陰関数全微分の区別",
+            "en": "Hessian-vector products and fixed-state versus implicit derivatives"
+          },
+          "method_ids": [
+            "automatic-differentiation"
+          ],
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/hessian-vector-products/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/hessian-vector-products/?lang=en"
+          },
+          "scope": {
+            "ja": "forward-over-reverse HVPと二階陰関数則を別々の独立参照へ照合します。",
+            "en": "Check forward-over-reverse HVPs and second-order implicit rules against separate independent references."
+          },
+          "assumptions": {
+            "ja": "小さな固定入力・実数・無次元。詳しい入力と適用範囲は対応する契約に限定します。",
+            "en": "Small fixed real dimensionless inputs; assumptions and scope are limited to the matching contract."
+          },
+          "limits": {
+            "ja": "一般のreduced inverse Hessianや有限Newton traceの数学的陰関数微分とは主張しません。",
+            "en": "No general reduced inverse Hessian or identification of finite Newton traces with implicit derivatives."
+          },
+          "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/inputs.json",
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/atlas-reverse-higher-ad-2026-11-24.zip",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+          "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/source-manifest.json",
+          "commands": [
+            "python -m pip install -r requirements.txt",
+            "python -m pytest -q",
+            "python run.py --input inputs.json --output output"
+          ],
+          "reference_note": {
+            "ja": "固定入力・独立参照・保存候補・全判定を同じ120秒予算内で検証します。数値合格と診断用非収束を区別します。",
+            "en": "Check fixed inputs, independent references, retained candidates and every gate within the same120-second budget. Numerical success and diagnostic nonconvergence are distinct."
+          },
+          "reference_data": [],
+          "results": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/results/result.json"
+          ],
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/run.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/test_ad.py"
+          ],
+          "source_scope": "package"
+        }
+      ],
+      "code_checks": []
+    },
+    {
+      "schema_version": 1,
+      "id": "kink-branch-derivatives",
+      "name": {
+        "ja": "非滑らか点・分岐・停止条件の微分範囲",
+        "en": "Derivative scope at kinks, branches and stopping decisions"
+      },
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/kink-branch-derivatives/",
+      "hub": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/kink-branch-derivatives/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/kink-branch-derivatives/?lang=en"
+      },
+      "image": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/results/kink-branch-derivatives-preview.png",
+        "sha256": "b299ec917c1c29c046ca5c2bf87e8ea904005f5caf3e39ccf4dd2e5944af5356",
+        "width": 1080,
+        "height": 360,
+        "caption": {
+          "ja": "保存した非滑らか関数値と停止写像、古典微分が未定義な点とtrace微分を分けた表示。 図の座標は有限次元の変数・反復・診断で、物理空間の次元やPDE境界を表しません。",
+          "en": "Saved nonsmooth values and stopped-map samples, distinguishing undefined classical derivatives from trace derivatives. Plot axes describe finite-dimensional variables, iterations or diagnostics, not a physical spatial dimension or PDE boundary."
+        },
+        "source_kind": "existing-figure"
+      },
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-reverse-higher-ad/#kink-branch-derivatives",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-reverse-higher-ad/#kink-branch-derivatives"
+      },
+      "conditions": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#kink-branch-derivatives",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#kink-branch-derivatives-en"
+      },
+      "equations": [
+        {
+          "id": "finite-dimensional-nonlinear-map",
+          "name": {
+            "ja": "有限次元非線形写像・根と微分作用",
+            "en": "Finite-dimensional nonlinear maps, roots and differential actions"
+          },
+          "formula": [
+            "F:\\mathbb R^n\\longrightarrow\\mathbb R^m",
+            "F(x)=0\\quad(m=n\\text{ for root controls})",
+            "J(x)v=DF(x)[v],\\quad J(x)^\\top w",
+            "H_f(x)v=D(\\nabla f)(x)[v]\\quad(f\\text{ twice differentiable})"
+          ],
+          "note": {
+            "ja": "有限の代数写像に対する根・JVP/VJP・HVP・分岐規約です。nは空間次元ではなく変数数で、非滑らか点に古典微分を強制しません。",
+            "en": "Roots, JVP/VJP, HVP and branch conventions for finite algebraic maps. The variable count n is not a spatial dimension, and a classical derivative is not imposed at nonsmooth points."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#finite-dimensional-nonlinear-map-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#finite-dimensional-nonlinear-map-en"
+          }
+        }
+      ],
+      "equation_note": {
+        "ja": "小さな固定入力・実数・無次元。詳しい入力と適用範囲は対応する契約に限定します。",
+        "en": "Small fixed real dimensionless inputs; assumptions and scope are limited to the matching contract."
+      },
+      "formulations": [
+        {
+          "id": "supplement-kink-branch-derivatives",
+          "name": {
+            "ja": "非滑らか点・分岐・停止条件の微分範囲",
+            "en": "Derivative scope at kinks, branches and stopping decisions"
+          },
+          "source": "supplement",
+          "role": "example-definition",
+          "latex": [
+            "x_(k+1)=.5(x_k+theta), |x_k-theta|<=1/8",
+            "D max(0,0)[da,db]=max(da,db)"
+          ],
+          "note": {
+            "ja": "古典微分・一方向微分・実行trace微分を、kinkと停止分岐の固定例で区別します。",
+            "en": "Distinguish classical, one-sided directional and executed-trace derivatives at fixed kinks and stopping switches."
+          }
+        }
+      ],
+      "references": [
+        {
+          "id": "kink-branch-derivatives",
+          "kind": "analytic",
+          "kind_label": {
+            "ja": "解析解",
+            "en": "Analytic reference"
+          },
+          "title": {
+            "ja": "非滑らかな離散写像：一方向微分と実行trace",
+            "en": "Nonsmooth discrete maps: directional derivatives and executed traces"
+          },
+          "formula": "x_{k+1}=\\tfrac12(x_k+\\theta),\\quad x_K=(1-2^{-K})\\theta;\\quad D^+\\max(0,0)[a,b]=\\max(a,b);\\quad q_+(h)=\\frac1{16h}+\\frac78\\ (\\theta=1/2).",
+          "assumptions": {
+            "ja": "abs・ReLU・clip・多項式分岐の固定7点と方向±1を用います。停止反復はx0=0、更新前に|xk−θ|≤1/8を検査し最大5更新。θ=1/4,1/2,1は切替点です。",
+            "en": "Use seven fixed points and directions ±1 for abs, ReLU, clip and a polynomial branch. The stopped iteration starts at x0 = 0, tests |xk - theta| <= 1/8 before updating and allows at mostfive updates. Theta 1/4, 1/2 and 1 are switching points."
+          },
+          "relation": "same-problem",
+          "note": {
+            "ja": "選択した分岐の微分は普遍的なsubgradientや非滑らかな写像の線形微分ではありません。",
+            "en": "An executed-branch derivative is not a universal subgradient or a linear derivative of a nonsmooth map."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kink-branch-derivatives/?lang=ja#kink-branch-derivatives-ja-measurements",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kink-branch-derivatives/?lang=en#kink-branch-derivatives-en-measurements"
+          }
+        }
+      ],
+      "reference_note": {
+        "ja": "固定入力・独立参照・保存候補・全判定を同じ120秒予算内で検証します。数値合格と診断用非収束を区別します。",
+        "en": "Check fixed inputs, independent references, retained candidates and every gate within the same120-second budget. Numerical success and diagnostic nonconvergence are distinct."
+      },
+      "methods": [
+        {
+          "id": "automatic-differentiation",
+          "name": {
+            "ja": "自動微分",
+            "en": "Automatic differentiation"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/automatic-differentiation/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/automatic-differentiation/?lang=en"
+          }
+        }
+      ],
+      "method_note": {
+        "ja": "strict nondifferentiableを明示し、停止前<=判定の実行分岐だけを記録します。",
+        "en": "Report strict nondifferentiability explicitly and record the literal top-of-loop stopping branch."
+      },
+      "executions": [
+        {
+          "id": "kink-branch-derivatives",
+          "kind": "supplement",
+          "name": {
+            "ja": "非滑らか点・分岐・停止条件の微分範囲",
+            "en": "Derivative scope at kinks, branches and stopping decisions"
+          },
+          "method_ids": [
+            "automatic-differentiation"
+          ],
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kink-branch-derivatives/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kink-branch-derivatives/?lang=en"
+          },
+          "scope": {
+            "ja": "古典微分・一方向微分・実行trace微分を、kinkと停止分岐の固定例で区別します。",
+            "en": "Distinguish classical, one-sided directional and executed-trace derivatives at fixed kinks and stopping switches."
+          },
+          "assumptions": {
+            "ja": "小さな固定入力・実数・無次元。詳しい入力と適用範囲は対応する契約に限定します。",
+            "en": "Small fixed real dimensionless inputs; assumptions and scope are limited to the matching contract."
+          },
+          "limits": {
+            "ja": "選択した分岐の微分は普遍的なsubgradientや非滑らかな写像の線形微分ではありません。",
+            "en": "An executed-branch derivative is not a universal subgradient or a linear derivative of a nonsmooth map."
+          },
+          "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/inputs.json",
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/atlas-reverse-higher-ad-2026-11-24.zip",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+          "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/source-manifest.json",
+          "commands": [
+            "python -m pip install -r requirements.txt",
+            "python -m pytest -q",
+            "python run.py --input inputs.json --output output"
+          ],
+          "reference_note": {
+            "ja": "固定入力・独立参照・保存候補・全判定を同じ120秒予算内で検証します。数値合格と診断用非収束を区別します。",
+            "en": "Check fixed inputs, independent references, retained candidates and every gate within the same120-second budget. Numerical success and diagnostic nonconvergence are distinct."
+          },
+          "reference_data": [],
+          "results": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/results/result.json"
+          ],
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/run.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/test_ad.py"
+          ],
+          "source_scope": "package"
+        }
+      ],
+      "code_checks": []
+    },
+    {
+      "schema_version": 1,
+      "id": "diffusion-discrete-adjoint",
+      "name": {
+        "ja": "時間離散拡散の随伴とcheckpoint",
+        "en": "Discrete diffusion adjoint and checkpoint replay"
+      },
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/diffusion-discrete-adjoint/",
+      "hub": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/diffusion-discrete-adjoint/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/diffusion-discrete-adjoint/?lang=en"
+      },
+      "image": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/results/diffusion-discrete-adjoint-preview.png",
+        "sha256": "509aa302e0f76569e3c506a680afd381593edc73f6cef82e07a829c467d2fc23",
+        "width": 1030,
+        "height": 645,
+        "caption": {
+          "ja": "時間離散拡散の随伴とcheckpoint。実際の保存数値データの縮小図で、1次元問題です。",
+          "en": "Discrete diffusion adjoint and checkpoint replay. Preview from actual saved numerical data for a one-dimensional problem."
+        },
+        "source_kind": "existing-figure"
+      },
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-adjoint/#diffusion-discrete-adjoint",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-adjoint/#diffusion-discrete-adjoint"
+      },
+      "conditions": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#diffusion-discrete-adjoint",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#diffusion-discrete-adjoint-en"
+      },
+      "equations": [
+        {
+          "id": "heat",
+          "name": {
+            "ja": "熱・拡散方程式",
+            "en": "Heat / diffusion equation"
+          },
+          "formula": [
+            "\\partial_tu=\\nu\\nabla^2u"
+          ],
+          "note": {
+            "ja": "一定拡散係数νの代表形。モードの減衰、時間積分、境界条件へ。",
+            "en": "A representative constant-diffusivity form: mode decay, time integration and boundaries."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#heat-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#heat-en"
+          }
+        }
+      ],
+      "equation_note": {
+        "ja": "無次元x∈[0,1]、u(0,t)=u(1,t)=0。内点7/15、時間step64/128/256、T=.1。κ=.1、θ=.2。目的関数のh重みを含む座標転置です。",
+        "en": "Dimensionless x in [0,1], fixed zero Dirichlet endpoints, 7/15 interior nodes and 64/128/256 time steps to T=.1; kappa=.1 and theta=.2. Coordinate transposes include explicit objective h weights."
+      },
+      "formulations": [
+        {
+          "id": "supplement-diffusion-discrete-adjoint",
+          "name": {
+            "ja": "時間離散拡散の随伴とcheckpoint",
+            "en": "Discrete diffusion adjoint and checkpoint replay"
+          },
+          "source": "supplement",
+          "role": "example-definition",
+          "latex": [
+            "B=I+\\Delta t\\,\\kappa A_h,\\quad Bu_{k+1}=u_k+\\Delta t\\,\\theta b",
+            "p_N=h(u_N-d),\\quad z_k=B^{-T}p_{k+1},\\quad p_k=z_k",
+            "J_\\kappa=0.01\\kappa-\\Delta t\\sum_k z_k^TA_hu_{k+1},\\quad J_\\theta=0.02\\theta+\\Delta t\\sum_kz_k^Tb"
+          ],
+          "note": {
+            "ja": "後退Eulerの離散写像を実際に逆伝播し、接線・独立高精度mode解・block replayと比較します。",
+            "en": "Reverse the actual backward-Euler map and compare tangent derivatives, independent high-precision modes and block replay."
+          }
+        }
+      ],
+      "references": [
+        {
+          "id": "diffusion-discrete-adjoint",
+          "kind": "analytic",
+          "kind_label": {
+            "ja": "解析解",
+            "en": "Analytic reference"
+          },
+          "title": {
+            "ja": "後退Euler離散モードと時間厳密半離散拡散の参照",
+            "en": "Backward-Euler discrete modes and time-exact semidiscrete diffusion references"
+          },
+          "formula": "\\lambda_{\\ell,h}=4h^{-2}\\sin^2(\\ell\\pi h/2),\\quad a_{\\ell,k+1}=\\frac{a_{\\ell,k}+\\Delta t\\,\\theta\\beta_\\ell}{1+\\Delta t\\,\\kappa\\lambda_{\\ell,h}};\\quad a_{\\ell}^{\\rm sd}(T)=a_{\\ell,0}e^{-\\kappa\\lambda_{\\ell,h}T}+\\frac{\\theta\\beta_\\ell}{\\kappa\\lambda_{\\ell,h}}(1-e^{-\\kappa\\lambda_{\\ell,h}T}).",
+          "assumptions": {
+            "ja": "無次元x∈[0,1]、同次Dirichlet、κ=.1、θ=.2、T=.1。内点7/15、時間step64/128/256。目的関数はh重み付き終端誤差と指定二次正則化です。",
+            "en": "Dimensionless x in [0,1] with zero Dirichlet data, kappa = .1, theta = .2 and T = .1. Use 7/15 interior nodes and 64/128/256 time steps. The objective has an h-weighted terminal error and specified quadratic penalties."
+          },
+          "relation": "same-problem",
+          "note": {
+            "ja": "固定stepの離散随伴でありCVODESや最適checkpoint法ではありません。40nは状態・随伴・RHS/solve scratchの一意な所有要素数です。静的因子・model配列は別表示し総所有byteへ含めます。検証/NPZ組立は測定後で、RSSではありません。",
+            "en": "Fixed-step discrete adjoints, not CVODES or an optimal checkpoint schedule. The40n limit counts unique evolving state/adjoint/RHS/solve-scratch elements. Static factors/model arrays are separately listed and included in total bytes. Validation/NPZ assembly follows the ownership windows; this is not RSS."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/diffusion-discrete-adjoint/?lang=ja#diffusion-discrete-adjoint-ja-measurements",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/diffusion-discrete-adjoint/?lang=en#diffusion-discrete-adjoint-en-measurements"
+          }
+        }
+      ],
+      "reference_note": {
+        "ja": "実行前凍結:独立67項目の参照資格後、共有32pytestと本群141固定判定。各候補の全入力・全許容差・失敗を保存します。実合否は同梱result/verificationを参照。 初回は32pytestと拡散59/近fold45判定後に内側残差未達で停止し保存。R2の一般Jv演算順は別96成分で資格済みですが、本試験の成功を意味しません。 R2本試験も保存済み未達。R3の状態専用hi+loは別20成分で資格済み、本3caseの合否は実result/verificationで確認します。",
+        "en": "Pre-run freeze:independent67-check reference qualification, then shared32pytest and141fixed group gates. Retain all inputs, tolerances and failures. Actual outcomes are recorded in the bundled result/verification. Initial attempt retained32passing tests and59diffusion/45fold gates before an unmet inner target. R2 general Jv association has separate96component checks; this does not imply primary success. R2 primary failure is also retained. R3 state-onlyhi+lo has separate20component checks;actual three-caseoutcomes are inresult/verification."
+      },
+      "methods": [
+        {
+          "id": "adjoint",
+          "name": {
+            "ja": "陰関数微分・随伴法",
+            "en": "Implicit differentiation and adjoint methods"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/adjoint/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/adjoint/?lang=en"
+          }
+        },
+        {
+          "id": "backward-euler",
+          "name": {
+            "ja": "後退Euler法",
+            "en": "Backward Euler"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/backward-euler/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/backward-euler/?lang=en"
+          }
+        },
+        {
+          "id": "thomas",
+          "name": {
+            "ja": "Thomas法／三重対角消去",
+            "en": "Thomas tridiagonal elimination"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/thomas/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/thomas/?lang=en"
+          }
+        }
+      ],
+      "method_note": {
+        "ja": "ThomasでB u次=u現在+dt θbを解き、Bの転置を逆順に解きます。16stepごとにcheckpointを保存し、1blockを同じ順で再計算します。full配列を保存・解放した後で別の所有期間を測ります。",
+        "en": "Thomas solves B u_next=u_current+dt theta b; reverse solves use B transpose. Save checkpoints every16steps and replay one block in the original order. Serialize and release the full trajectory before the separate checkpoint ownership window."
+      },
+      "executions": [
+        {
+          "id": "diffusion-discrete-adjoint",
+          "kind": "supplement",
+          "name": {
+            "ja": "時間離散拡散の随伴とcheckpoint",
+            "en": "Discrete diffusion adjoint and checkpoint replay"
+          },
+          "method_ids": [
+            "adjoint",
+            "backward-euler",
+            "thomas"
+          ],
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/diffusion-discrete-adjoint/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/diffusion-discrete-adjoint/?lang=en"
+          },
+          "scope": {
+            "ja": "後退Eulerの離散写像を実際に逆伝播し、接線・独立高精度mode解・block replayと比較します。",
+            "en": "Reverse the actual backward-Euler map and compare tangent derivatives, independent high-precision modes and block replay."
+          },
+          "assumptions": {
+            "ja": "無次元x∈[0,1]、u(0,t)=u(1,t)=0。内点7/15、時間step64/128/256、T=.1。κ=.1、θ=.2。目的関数のh重みを含む座標転置です。",
+            "en": "Dimensionless x in [0,1], fixed zero Dirichlet endpoints, 7/15 interior nodes and 64/128/256 time steps to T=.1; kappa=.1 and theta=.2. Coordinate transposes include explicit objective h weights."
+          },
+          "limits": {
+            "ja": "固定stepの離散随伴でありCVODESや最適checkpoint法ではありません。40nは状態・随伴・RHS/solve scratchの一意な所有要素数です。静的因子・model配列は別表示し総所有byteへ含めます。検証/NPZ組立は測定後で、RSSではありません。",
+            "en": "Fixed-step discrete adjoints, not CVODES or an optimal checkpoint schedule. The40n limit counts unique evolving state/adjoint/RHS/solve-scratch elements. Static factors/model arrays are separately listed and included in total bytes. Validation/NPZ assembly follows the ownership windows; this is not RSS."
+          },
+          "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/inputs.json",
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/atlas-adjoint-2026-11-24.zip",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/verification.json",
+          "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/source-manifest.json",
+          "commands": [
+            "python -m pip install -r requirements.txt",
+            "python -m pytest -q",
+            "python run.py --input inputs.json --output output"
+          ],
+          "reference_note": {
+            "ja": "実行前凍結:独立67項目の参照資格後、共有32pytestと本群141固定判定。各候補の全入力・全許容差・失敗を保存します。実合否は同梱result/verificationを参照。 初回は32pytestと拡散59/近fold45判定後に内側残差未達で停止し保存。R2の一般Jv演算順は別96成分で資格済みですが、本試験の成功を意味しません。 R2本試験も保存済み未達。R3の状態専用hi+loは別20成分で資格済み、本3caseの合否は実result/verificationで確認します。",
+            "en": "Pre-run freeze:independent67-check reference qualification, then shared32pytest and141fixed group gates. Retain all inputs, tolerances and failures. Actual outcomes are recorded in the bundled result/verification. Initial attempt retained32passing tests and59diffusion/45fold gates before an unmet inner target. R2 general Jv association has separate96component checks; this does not imply primary success. R2 primary failure is also retained. R3 state-onlyhi+lo has separate20component checks;actual three-caseoutcomes are inresult/verification."
+          },
+          "reference_data": [],
+          "results": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/results/result.json"
+          ],
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/operators.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/krylov.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/newton.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/time_adjoint.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/references/modal_decimal.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/references/shooting_decimal.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/references/linear_oracle.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_distributed.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_fold.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_time.py"
+          ],
+          "source_scope": "package"
+        }
+      ],
+      "code_checks": []
+    },
+    {
+      "schema_version": 1,
+      "id": "bratu-fold-sensitivity",
+      "name": {
+        "ja": "離散fold近傍のBratu感度",
+        "en": "Bratu sensitivity near the discrete fold"
+      },
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-fold-sensitivity/",
+      "hub": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-fold-sensitivity/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-fold-sensitivity/?lang=en"
+      },
+      "image": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/results/bratu-fold-sensitivity-preview.png",
+        "sha256": "99700121735f00cb3e4207a2e2d27236770b928d8cb547ff5893d81cda75fc28",
+        "width": 1067,
+        "height": 643,
+        "caption": {
+          "ja": "離散fold近傍のBratu感度。実際の保存数値データの縮小図で、1次元問題です。",
+          "en": "Bratu sensitivity near the discrete fold. Preview from actual saved numerical data for a one-dimensional problem."
+        },
+        "source_kind": "existing-figure"
+      },
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-adjoint/#bratu-fold-sensitivity",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-adjoint/#bratu-fold-sensitivity"
+      },
+      "conditions": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#bratu-fold-sensitivity",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#bratu-fold-sensitivity-en"
+      },
+      "equations": [
+        {
+          "id": "bratu",
+          "name": {
+            "ja": "Bratu非線形境界値問題",
+            "en": "Bratu nonlinear boundary-value problem"
+          },
+          "formula": [
+            "-\\frac{d^2u}{dx^2}=\\lambda e^u,\\qquad 0<x<1",
+            "u(0)=u(1)=0"
+          ],
+          "note": {
+            "ja": "ここでは−u″=λexp(u)の符号規約。Newton–Krylov法で残差・格子収束・内側線形解法の失敗を確認します。",
+            "en": "The convention here is −u″=λ exp(u). Newton–Krylov checks cover residuals, refinement and inner-solver failures."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bratu-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bratu-en"
+          }
+        }
+      ],
+      "equation_note": {
+        "ja": "内点31/63、離散fold anchorとの差.1/.01/.001。各状態は零初期値からの下枝。λの文字列を一度binary floatへ変換し、参照はその正確な値をDecimalで評価します。",
+        "en": "31/63 interior nodes; gaps .1/.01/.001 below the discrete-fold anchor. Every state starts at zero on the lower branch. Parse each lambda string once to binary float; the Decimal oracle evaluates exactly that float."
+      },
+      "formulations": [
+        {
+          "id": "supplement-bratu-fold-sensitivity",
+          "name": {
+            "ja": "離散fold近傍のBratu感度",
+            "en": "Bratu sensitivity near the discrete fold"
+          },
+          "source": "supplement",
+          "role": "example-definition",
+          "latex": [
+            "G(u,\\lambda)=A_hu-\\lambda e^u=0,\\quad Js=e^u,\\quad J^Tp=hu",
+            "\\mathcal J=\\tfrac12h\\sum_i u_i^2+0.025\\lambda^2,\\quad \\mathcal J_\\lambda=0.05\\lambda+p^Te^u",
+            "q^T(s_D-\\hat s)-p_D^Tr=-p_D^Tr_D+r_{p,D}^T(s_D-\\hat s)"
+          ],
+          "note": {
+            "ja": "離散Bratuのfoldへ近づく6固定点で、状態誤差と線形許容差の影響を分け、独立shooting勾配と照合します。",
+            "en": "At six fixed points approaching the discrete Bratu fold, separate state error from linear-solve tolerance and compare against independent shooting gradients."
+          }
+        }
+      ],
+      "references": [
+        {
+          "id": "bratu-fold-sensitivity",
+          "kind": "numerical-reference",
+          "kind_label": {
+            "ja": "有限格子の数値参照",
+            "en": "Finite-grid numerical reference"
+          },
+          "title": {
+            "ja": "離散fold近傍のBratu shooting・接線・随伴参照",
+            "en": "Discrete Bratu shooting, tangent and adjoint references near a fold"
+          },
+          "formula": "F_h=A_hu-\\lambda e^u=0,\\quad J_hs=e^u,\\quad J_h^\\top p=h u,\\quad g=0.05\\lambda+p^Te^u;\\quad q^T(s_D-\\widehat s)=p_D^T(r_s-r_D)+r_{pD}^T(s_D-\\widehat s),\\quad b=e^u,\\ q=hu,\\ r_s=b-J_h\\widehat s,\\ r_D=b-J_hs_D,\\ r_{pD}=q-J_h^Tp_D.",
+          "assumptions": {
+            "ja": "1D同次Dirichlet Bratu、内点31/63。検証する離散fold anchorの下.1/.01/.001に固定し、下枝状態を用います。λ文字列は一度binary64へ変換し、その正確な値を高精度参照へ渡します。",
+            "en": "One-dimensional Dirichlet Bratu with 31/63 interior nodes. Fixed gaps .1/.01/.001 below the discrete-fold anchor use lower-branch states. Each lambda string is converted once to binary64 and that exact value is passed to the high-precision reference."
+          },
+          "relation": "same-problem",
+          "note": {
+            "ja": "連続foldは離散foldではありません。rtol1e-4/1e-8は達成必須、requested1e-12は観測のみで未達を収束と表示しません。返却候補の独立勾配精度は別判定。最小固有値/丸めscaleは浮動小数点の診断で保証区間ではありません。BratuのJは対称であり、非対称転置は別の演算子対照です。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。",
+            "en": "The continuum fold is not the discrete fold. rtol1e-4/1e-8 targets are required; requested1e-12 is observational and unmet is never called converged. Independent accuracy of the returned gradient is a separate gate. Eigenvalue/roundoff scales are floating diagnostics, not certified intervals. Bratu J is symmetric; the nonsymmetric transpose is a separate operator control. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-sensitivity/?lang=ja#bratu-fold-sensitivity-ja-measurements",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-sensitivity/?lang=en#bratu-fold-sensitivity-en-measurements"
+          }
+        }
+      ],
+      "reference_note": {
+        "ja": "実行前凍結:独立67項目の参照資格後、共有32pytestと本群141固定判定。各候補の全入力・全許容差・失敗を保存します。実合否は同梱result/verificationを参照。 初回は32pytestと拡散59/近fold45判定後に内側残差未達で停止し保存。R2の一般Jv演算順は別96成分で資格済みですが、本試験の成功を意味しません。 R2本試験も保存済み未達。R3の状態専用hi+loは別20成分で資格済み、本3caseの合否は実result/verificationで確認します。 所有配列の全詳細はrecordsのlinear_memory内のfile/byteoffset/recordSHAからJSONLへ辿れ、本文には要約だけを表示します。",
+        "en": "Pre-run freeze:independent67-check reference qualification, then shared32pytest and141fixed group gates. Retain all inputs, tolerances and failures. Actual outcomes are recorded in the bundled result/verification. Initial attempt retained32passing tests and59diffusion/45fold gates before an unmet inner target. R2 general Jv association has separate96component checks; this does not imply primary success. R2 primary failure is also retained. R3 state-onlyhi+lo has separate20component checks;actual three-caseoutcomes are inresult/verification. Fullownership evidence is in the JSONL file/byteoffset/recordSHA referenced by each linear_memory summary;only compact summaries enter case metrics."
+      },
+      "methods": [
+        {
+          "id": "adjoint",
+          "name": {
+            "ja": "陰関数微分・随伴法",
+            "en": "Implicit differentiation and adjoint methods"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/adjoint/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/adjoint/?lang=en"
+          }
+        },
+        {
+          "id": "gmres",
+          "name": {
+            "ja": "再始動GMRES",
+            "en": "Restarted GMRES"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/gmres/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/gmres/?lang=en"
+          }
+        },
+        {
+          "id": "centered-difference",
+          "name": {
+            "ja": "空間中心差分",
+            "en": "Centered spatial difference"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/centered-difference/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/centered-difference/?lang=en"
+          }
+        },
+        {
+          "id": "newton",
+          "name": {
+            "ja": "Armijo減衰Newton法",
+            "en": "Armijo-damped Newton"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/newton/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/newton/?lang=en"
+          }
+        }
+      ],
+      "method_note": {
+        "ja": "解析Jv、Poisson-Thomas右前処理、固定GMRES本体で接線と随伴を解きます。全rtol・最終候補・true residual・終了状態・丸めscaleを保存します。shootingと別の高精度Thomas-Newtonで離散参照を資格します。 R2は同じfloat64の隣接差を先に取る一般Jvで、元の非線形残差・GMRES・許容差は変更しません。 R3は状態Newton補正だけをhi+loで保持し、直接9積残差と3積状態更新を使います。物理状態はfloat64、感度/随伴GMRESは旧方式です。",
+        "en": "Analytic Jv, Poisson-Thomas right preconditioning and the preserved GMRES body solve tangents/adjoints. Save every rtol, returned candidate, true residual, termination and roundoff scale. Qualify the discrete oracle through shooting and separate high-precision Thomas-Newton. R2 uses a general near-neighbor-difference association in binary64 Jv; the original nonlinear residual,GMRES and tolerances are unchanged. R3 expands only stateNewtoncorrections ashi+lo,direct9productresidual and3productstateupdate. Physicalstates stayfloat64;derivative/adjointGMRES staysordinary."
+      },
+      "executions": [
+        {
+          "id": "bratu-fold-sensitivity",
+          "kind": "supplement",
+          "name": {
+            "ja": "離散fold近傍のBratu感度",
+            "en": "Bratu sensitivity near the discrete fold"
+          },
+          "method_ids": [
+            "adjoint",
+            "gmres",
+            "centered-difference",
+            "newton"
+          ],
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-sensitivity/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-sensitivity/?lang=en"
+          },
+          "scope": {
+            "ja": "離散Bratuのfoldへ近づく6固定点で、状態誤差と線形許容差の影響を分け、独立shooting勾配と照合します。",
+            "en": "At six fixed points approaching the discrete Bratu fold, separate state error from linear-solve tolerance and compare against independent shooting gradients."
+          },
+          "assumptions": {
+            "ja": "内点31/63、離散fold anchorとの差.1/.01/.001。各状態は零初期値からの下枝。λの文字列を一度binary floatへ変換し、参照はその正確な値をDecimalで評価します。",
+            "en": "31/63 interior nodes; gaps .1/.01/.001 below the discrete-fold anchor. Every state starts at zero on the lower branch. Parse each lambda string once to binary float; the Decimal oracle evaluates exactly that float."
+          },
+          "limits": {
+            "ja": "連続foldは離散foldではありません。rtol1e-4/1e-8は達成必須、requested1e-12は観測のみで未達を収束と表示しません。返却候補の独立勾配精度は別判定。最小固有値/丸めscaleは浮動小数点の診断で保証区間ではありません。BratuのJは対称であり、非対称転置は別の演算子対照です。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。",
+            "en": "The continuum fold is not the discrete fold. rtol1e-4/1e-8 targets are required; requested1e-12 is observational and unmet is never called converged. Independent accuracy of the returned gradient is a separate gate. Eigenvalue/roundoff scales are floating diagnostics, not certified intervals. Bratu J is symmetric; the nonsymmetric transpose is a separate operator control. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved."
+          },
+          "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/inputs.json",
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/atlas-adjoint-2026-11-24.zip",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/verification.json",
+          "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/source-manifest.json",
+          "commands": [
+            "python -m pip install -r requirements.txt",
+            "python -m pytest -q",
+            "python run.py --input inputs.json --output output"
+          ],
+          "reference_note": {
+            "ja": "実行前凍結:独立67項目の参照資格後、共有32pytestと本群141固定判定。各候補の全入力・全許容差・失敗を保存します。実合否は同梱result/verificationを参照。 初回は32pytestと拡散59/近fold45判定後に内側残差未達で停止し保存。R2の一般Jv演算順は別96成分で資格済みですが、本試験の成功を意味しません。 R2本試験も保存済み未達。R3の状態専用hi+loは別20成分で資格済み、本3caseの合否は実result/verificationで確認します。 所有配列の全詳細はrecordsのlinear_memory内のfile/byteoffset/recordSHAからJSONLへ辿れ、本文には要約だけを表示します。",
+            "en": "Pre-run freeze:independent67-check reference qualification, then shared32pytest and141fixed group gates. Retain all inputs, tolerances and failures. Actual outcomes are recorded in the bundled result/verification. Initial attempt retained32passing tests and59diffusion/45fold gates before an unmet inner target. R2 general Jv association has separate96component checks; this does not imply primary success. R2 primary failure is also retained. R3 state-onlyhi+lo has separate20component checks;actual three-caseoutcomes are inresult/verification. Fullownership evidence is in the JSONL file/byteoffset/recordSHA referenced by each linear_memory summary;only compact summaries enter case metrics."
+          },
+          "reference_data": [],
+          "results": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/results/result.json"
+          ],
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/operators.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/krylov.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/newton.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/fold_study.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/references/modal_decimal.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/references/shooting_decimal.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/references/linear_oracle.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/balanced_operator.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/state_linear.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/state_expansion.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/state_krylov.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/state_jacobian.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_distributed.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_fold.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_time.py"
+          ],
+          "source_scope": "package"
+        }
+      ],
+      "code_checks": []
+    },
+    {
+      "schema_version": 1,
+      "id": "bratu-distributed-vjp",
+      "name": {
+        "ja": "分布係数Bratuの行列非形成VJP",
+        "en": "Matrix-free VJP for distributed Bratu coefficients"
+      },
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-distributed-vjp/",
+      "hub": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-distributed-vjp/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-distributed-vjp/?lang=en"
+      },
+      "image": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/results/bratu-distributed-vjp-preview.png",
+        "sha256": "35e108b2ceca8fca74577a9858ac1bda6a5a8cf04c1e68810b90308f39c77ad0",
+        "width": 1068,
+        "height": 645,
+        "caption": {
+          "ja": "分布係数Bratuの行列非形成VJP。実際の保存数値データの縮小図で、1次元問題です。",
+          "en": "Matrix-free VJP for distributed Bratu coefficients. Preview from actual saved numerical data for a one-dimensional problem."
+        },
+        "source_kind": "existing-figure"
+      },
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-adjoint/#bratu-distributed-vjp",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-adjoint/#bratu-distributed-vjp"
+      },
+      "conditions": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#bratu-distributed-vjp",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#bratu-distributed-vjp-en"
+      },
+      "equations": [
+        {
+          "id": "bratu",
+          "name": {
+            "ja": "Bratu非線形境界値問題",
+            "en": "Bratu nonlinear boundary-value problem"
+          },
+          "formula": [
+            "-\\frac{d^2u}{dx^2}=\\lambda e^u,\\qquad 0<x<1",
+            "u(0)=u(1)=0"
+          ],
+          "note": {
+            "ja": "ここでは−u″=λexp(u)の符号規約。Newton–Krylov法で残差・格子収束・内側線形解法の失敗を確認します。",
+            "en": "The convention here is −u″=λ exp(u). Newton–Krylov checks cover residuals, refinement and inner-solver failures."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bratu-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bratu-en"
+          }
+        }
+      ],
+      "equation_note": {
+        "ja": "内点63、a(x)=2+Bθ、θ=.2sin(2πξ)+.1cos(πξ)。uと感度は固定零Dirichlet境界ですが、係数の両端controlは固定零ではありません。",
+        "en": "63 interior nodes; a(x)=2+B theta with theta=.2sin(2pi xi)+.1cos(pi xi). State/sensitivity have fixed zero Dirichlet endpoints; endpoint coefficient controls are not fixed zero."
+      },
+      "formulations": [
+        {
+          "id": "supplement-bratu-distributed-vjp",
+          "name": {
+            "ja": "分布係数Bratuの行列非形成VJP",
+            "en": "Matrix-free VJP for distributed Bratu coefficients"
+          },
+          "source": "supplement",
+          "role": "example-definition",
+          "latex": [
+            "G=A_hu-(2+B\\theta)e^u,\\quad J^Tp=q,\\quad \\nabla_\\theta\\mathcal J=B^T(e^u\\odot p)",
+            "a_{\\rm endpoints}=[a-b,a+b],\\quad\\theta_{\\rm endpoints}=[a-b-2,a+b-2]"
+          ],
+          "note": {
+            "ja": "2重みだけの局所hat作用で8/16/32個の空間係数を表し、目的関数ごとの随伴VJPを全感度参照と比較します。",
+            "en": "Represent8/16/32 spatial controls with two local hat weights per node; compare objective-wise adjoint VJPs with a separate full-sensitivity reference."
+          }
+        }
+      ],
+      "references": [
+        {
+          "id": "bratu-distributed-vjp",
+          "kind": "numerical-reference",
+          "kind_label": {
+            "ja": "有限格子の数値参照",
+            "en": "Finite-grid numerical reference"
+          },
+          "title": {
+            "ja": "分布Bratu係数の独立dense感度と行列不要VJP",
+            "en": "Independent dense sensitivities and matrix-free VJPs for distributed Bratu coefficients"
+          },
+          "formula": "J_hU_\\theta=\\operatorname{diag}(e^u)B,\\quad J_h^\\top p=q,\\quad \\nabla_\\theta\\Psi=B^\\top(e^u\\odot p).",
+          "assumptions": {
+            "ja": "1D同次Dirichlet、63内点。a(x)=2+Bθは8/16/32個の線形hat制御で、主固定例は1.7≤a≤2.3。端点係数は零Dirichlet状態と異なり固定零にしません。",
+            "en": "A one-dimensional zero-Dirichlet problem with 63 interior nodes. The coefficient a(x)=2+Btheta uses 8/16/32 linear-hat controls and stays between 1.7 and 2.3 in the fixed main cases. Endpoint coefficient controls are not zeroed like state Dirichlet values."
+          },
+          "relation": "same-problem",
+          "note": {
+            "ja": "同じ離散状態の微分検証で、独立した物理PDE解の証明や一般ADではありません。保存arrayと固定Krylov workspaceの記録はRSS測定ではありません。m=2のθ端点は[a-b-2,a+b-2]で、物理係数端点[a-b,a+b]と区別します。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。",
+            "en": "Derivative verification at the same discrete state, not independent physical-PDE truth or general AD. Persistent arrays and fixed Krylov workspace inventories are not RSS measurements. For m=2, theta endpoints are[a-b-2,a+b-2], distinct from physical coefficient endpoints[a-b,a+b]. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-distributed-vjp/?lang=ja#bratu-distributed-vjp-ja-measurements",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-distributed-vjp/?lang=en#bratu-distributed-vjp-en-measurements"
+          }
+        }
+      ],
+      "reference_note": {
+        "ja": "実行前凍結:独立67項目の参照資格後、共有32pytestと本群141固定判定。各候補の全入力・全許容差・失敗を保存します。実合否は同梱result/verificationを参照。 初回は32pytestと拡散59/近fold45判定後に内側残差未達で停止し保存。R2の一般Jv演算順は別96成分で資格済みですが、本試験の成功を意味しません。 R2本試験も保存済み未達。R3の状態専用hi+loは別20成分で資格済み、本3caseの合否は実result/verificationで確認します。 所有配列の全詳細はrecordsのlinear_memory内のfile/byteoffset/recordSHAからJSONLへ辿れ、本文には要約だけを表示します。",
+        "en": "Pre-run freeze:independent67-check reference qualification, then shared32pytest and141fixed group gates. Retain all inputs, tolerances and failures. Actual outcomes are recorded in the bundled result/verification. Initial attempt retained32passing tests and59diffusion/45fold gates before an unmet inner target. R2 general Jv association has separate96component checks; this does not imply primary success. R2 primary failure is also retained. R3 state-onlyhi+lo has separate20component checks;actual three-caseoutcomes are inresult/verification. Fullownership evidence is in the JSONL file/byteoffset/recordSHA referenced by each linear_memory summary;only compact summaries enter case metrics."
+      },
+      "methods": [
+        {
+          "id": "adjoint",
+          "name": {
+            "ja": "陰関数微分・随伴法",
+            "en": "Implicit differentiation and adjoint methods"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/adjoint/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/adjoint/?lang=en"
+          }
+        },
+        {
+          "id": "gmres",
+          "name": {
+            "ja": "再始動GMRES",
+            "en": "Restarted GMRES"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/gmres/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/gmres/?lang=en"
+          }
+        },
+        {
+          "id": "centered-difference",
+          "name": {
+            "ja": "空間中心差分",
+            "en": "Centered spatial difference"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/centered-difference/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/centered-difference/?lang=en"
+          }
+        },
+        {
+          "id": "newton",
+          "name": {
+            "ja": "Armijo減衰Newton法",
+            "en": "Armijo-damped Newton"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/newton/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/newton/?lang=en"
+          }
+        }
+      ],
+      "method_note": {
+        "ja": "Bvは局所gather、B転置はscatter-add。一次実装はn×m行列を作らずJvで解き、同一状態の1/3目的関数で実際に1個のPoisson因子を共有します。別の参照期間のみdense hatとm本の接線RHSを許可します。 R2は同じfloat64の隣接差を先に取る一般Jvで、元の非線形残差・GMRES・許容差は変更しません。 R3は状態Newton補正だけをhi+loで保持し、直接9積残差と3積状態更新を使います。物理状態はfloat64、感度/随伴GMRESは旧方式です。",
+        "en": "Bv uses local gather and B transpose scatter-add. Primary solves use Jv without an n-by-m matrix. One shared Poisson factor serves the one/three-objective runs on the same state. Dense hats and m tangent RHS are allowed only in the separate reference window. R2 uses a general near-neighbor-difference association in binary64 Jv; the original nonlinear residual,GMRES and tolerances are unchanged. R3 expands only stateNewtoncorrections ashi+lo,direct9productresidual and3productstateupdate. Physicalstates stayfloat64;derivative/adjointGMRES staysordinary."
+      },
+      "executions": [
+        {
+          "id": "bratu-distributed-vjp",
+          "kind": "supplement",
+          "name": {
+            "ja": "分布係数Bratuの行列非形成VJP",
+            "en": "Matrix-free VJP for distributed Bratu coefficients"
+          },
+          "method_ids": [
+            "adjoint",
+            "gmres",
+            "centered-difference",
+            "newton"
+          ],
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-distributed-vjp/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-distributed-vjp/?lang=en"
+          },
+          "scope": {
+            "ja": "2重みだけの局所hat作用で8/16/32個の空間係数を表し、目的関数ごとの随伴VJPを全感度参照と比較します。",
+            "en": "Represent8/16/32 spatial controls with two local hat weights per node; compare objective-wise adjoint VJPs with a separate full-sensitivity reference."
+          },
+          "assumptions": {
+            "ja": "内点63、a(x)=2+Bθ、θ=.2sin(2πξ)+.1cos(πξ)。uと感度は固定零Dirichlet境界ですが、係数の両端controlは固定零ではありません。",
+            "en": "63 interior nodes; a(x)=2+B theta with theta=.2sin(2pi xi)+.1cos(pi xi). State/sensitivity have fixed zero Dirichlet endpoints; endpoint coefficient controls are not fixed zero."
+          },
+          "limits": {
+            "ja": "同じ離散状態の微分検証で、独立した物理PDE解の証明や一般ADではありません。保存arrayと固定Krylov workspaceの記録はRSS測定ではありません。m=2のθ端点は[a-b-2,a+b-2]で、物理係数端点[a-b,a+b]と区別します。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。",
+            "en": "Derivative verification at the same discrete state, not independent physical-PDE truth or general AD. Persistent arrays and fixed Krylov workspace inventories are not RSS measurements. For m=2, theta endpoints are[a-b-2,a+b-2], distinct from physical coefficient endpoints[a-b,a+b]. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved."
+          },
+          "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/inputs.json",
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/atlas-adjoint-2026-11-24.zip",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/verification.json",
+          "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/source-manifest.json",
+          "commands": [
+            "python -m pip install -r requirements.txt",
+            "python -m pytest -q",
+            "python run.py --input inputs.json --output output"
+          ],
+          "reference_note": {
+            "ja": "実行前凍結:独立67項目の参照資格後、共有32pytestと本群141固定判定。各候補の全入力・全許容差・失敗を保存します。実合否は同梱result/verificationを参照。 初回は32pytestと拡散59/近fold45判定後に内側残差未達で停止し保存。R2の一般Jv演算順は別96成分で資格済みですが、本試験の成功を意味しません。 R2本試験も保存済み未達。R3の状態専用hi+loは別20成分で資格済み、本3caseの合否は実result/verificationで確認します。 所有配列の全詳細はrecordsのlinear_memory内のfile/byteoffset/recordSHAからJSONLへ辿れ、本文には要約だけを表示します。",
+            "en": "Pre-run freeze:independent67-check reference qualification, then shared32pytest and141fixed group gates. Retain all inputs, tolerances and failures. Actual outcomes are recorded in the bundled result/verification. Initial attempt retained32passing tests and59diffusion/45fold gates before an unmet inner target. R2 general Jv association has separate96component checks; this does not imply primary success. R2 primary failure is also retained. R3 state-onlyhi+lo has separate20component checks;actual three-caseoutcomes are inresult/verification. Fullownership evidence is in the JSONL file/byteoffset/recordSHA referenced by each linear_memory summary;only compact summaries enter case metrics."
+          },
+          "reference_data": [],
+          "results": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/results/result.json"
+          ],
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/operators.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/krylov.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/newton.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/distributed.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/references/modal_decimal.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/references/shooting_decimal.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/references/linear_oracle.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/balanced_operator.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/state_linear.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/state_expansion.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/state_krylov.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/state_jacobian.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_distributed.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_fold.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_time.py"
+          ],
+          "source_scope": "package"
+        }
+      ],
+      "code_checks": []
+    },
+    {
+      "schema_version": 1,
+      "id": "bratu-gn-lm-bounds",
+      "name": {
+        "ja": "GN・LMと有界最小二乗のBratu比較",
+        "en": "Bratu comparisons of GN, LM and bounded least squares"
+      },
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-gn-lm-bounds/",
+      "hub": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-gn-lm-bounds/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-gn-lm-bounds/?lang=en"
+      },
+      "image": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/results/bratu-gn-lm-bounds-preview.png",
+        "sha256": "ca68334a2b0b59377458def88e7ab2a1971c9af461d1334f2fbc5fc9bef0274e",
+        "width": 960,
+        "height": 736,
+        "caption": {
+          "ja": "保存した2変数の反復点・残差評価点です。SciPy曲線は受理反復だけでなく残差評価を含み、これは2D物理空間の流れではありません。",
+          "en": "Saved two-parameter iterates and residual evaluations. SciPy paths include residual evaluations, not only accepted iterates; these are parameter coordinates, not a two-dimensional physical flow."
+        },
+        "source_kind": "existing-figure"
+      },
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-inverse-optimization/#bratu-gn-lm-bounds",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-inverse-optimization/#bratu-gn-lm-bounds"
+      },
+      "conditions": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#bratu-gn-lm-bounds",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#bratu-gn-lm-bounds-en"
+      },
+      "equations": [
+        {
+          "id": "bratu",
+          "name": {
+            "ja": "Bratu非線形境界値問題",
+            "en": "Bratu nonlinear boundary-value problem"
+          },
+          "formula": [
+            "-\\frac{d^2u}{dx^2}=\\lambda e^u,\\qquad 0<x<1",
+            "u(0)=u(1)=0"
+          ],
+          "note": {
+            "ja": "ここでは−u″=λexp(u)の符号規約。Newton–Krylov法で残差・格子収束・内側線形解法の失敗を確認します。",
+            "en": "The convention here is −u″=λ exp(u). Newton–Krylov checks cover residuals, refinement and inner-solver failures."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bratu-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bratu-en"
+          }
+        }
+      ],
+      "equation_note": {
+        "ja": "無次元1D Bratu、31内点、u(0)=u(1)=0。既存の2係数モデルと保存済み観測を再利用。正則化γとLM減衰μを別に扱います。",
+        "en": "A dimensionless one-dimensional Bratu problem with 31 interior nodes and zero Dirichlet data. The existing two-coefficient extension and saved observations are reused; objective regularization gamma and LM damping mu are distinct."
+      },
+      "formulations": [
+        {
+          "id": "supplement-bratu-gn-lm-bounds",
+          "name": {
+            "ja": "GN・LMと有界最小二乗のBratu比較",
+            "en": "Bratu comparisons of GN, LM and bounded least squares"
+          },
+          "source": "supplement",
+          "role": "example-definition",
+          "latex": [
+            "F(u,\\theta)=A_hu-(a+b(2x-1))e^u=0",
+            "\\mathcal L=\\tfrac12\\|H u-d\\|_W^2+\\tfrac\\gamma2\\|\\theta-\\theta_0\\|^2",
+            "K=-H F_u^{-1}F_\\theta,\\quad\\theta=\\theta_0+D z"
+          ],
+          "note": {
+            "ja": "同じ観測からの17固定fitで、変数尺度・重み・境界と物理座標の停止条件を分けます。",
+            "en": "Seventeen fixed fits separate parameter scaling, weights, bounds and physical-coordinate stopping conditions."
+          }
+        }
+      ],
+      "references": [
+        {
+          "id": "bratu-gn-lm-bounds",
+          "kind": "numerical-reference",
+          "kind_label": {
+            "ja": "有限格子の数値参照",
+            "en": "Finite-grid numerical reference"
+          },
+          "title": {
+            "ja": "Bratu逆最小二乗の独立Thomas局所参照",
+            "en": "Independent Thomas-based local references for Bratu inverse least squares"
+          },
+          "formula": "F_h(u,a,b)=A_hu-(a+b(2x-1))\\odot e^u=0,\\quad \\mathcal L=\\tfrac12\\|Hu-d\\|_W^2+\\tfrac\\gamma2\\|\\theta-\\theta_0\\|^2,\\quad K=-HF_u^{-1}F_\\theta.",
+          "assumptions": {
+            "ja": "1D零Dirichlet Bratuの31内点と5観測を用いる2係数逆問題。既存合成観測を再利用し、物理boxはa∈[1,2.8],b∈[-.5,.5]。目的正則化γ、LM減衰μ、変数尺度は別です。",
+            "en": "A two-coefficient inverse problem uses 31 interior nodes and five observations of the one-dimensional zero-Dirichlet Bratu model. Reuse existing synthetic data; the physical box is a in[1,2.8],b in[-.5,.5]. Objective regularization gamma, LM damping mu and variable scaling are distinct."
+          },
+          "relation": "same-problem",
+          "note": {
+            "ja": "小さい滑らかな分枝の局所比較。SciPy最適化ライブラリは参照側でも共有し、大域最小・一意性を証明しません。LMに箱制約があるとは説明しません。",
+            "en": "A local comparison on a small smooth branch. The optimizer library is shared by the reference and a companion; no global minimum or uniqueness proof is claimed. LM is not presented as a box-constrained method."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-gn-lm-bounds/?lang=ja#bratu-gn-lm-bounds-ja-measurements",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-gn-lm-bounds/?lang=en#bratu-gn-lm-bounds-en-measurements"
+          }
+        }
+      ],
+      "reference_note": {
+        "ja": "独立Thomas状態・感度と4局所参照fit。最終状態残差、物理勾配または投影勾配、目的値差、データのみのSVD、活性境界を検査。非有界法の共通参照は内点かつ非有界停留が条件です。",
+        "en": "Independent Thomas states/sensitivities and four local reference fits. Gate final state residuals, physical gradient or projected gradient, objective gaps, data-only SVD and active bounds. Common references for unbounded methods must be strictly interior and unbounded-stationary."
+      },
+      "methods": [
+        {
+          "id": "optimization",
+          "name": {
+            "ja": "勾配法・準Newton法",
+            "en": "Gradient and quasi-Newton optimization"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/optimization/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/optimization/?lang=en"
+          }
+        }
+      ],
+      "method_note": {
+        "ja": "独自SVD最小二乗GN/LM、元の投影勾配、SciPy TRF、非有界SciPy LM。lower/upperベクトルを元PGの係数別区間へ明示変換。",
+        "en": "Original SVD least-squares GN/LM, the retained projected-gradient solver, SciPy TRF and explicitly unbounded SciPy LM. A canonical lower/upper box is explicitly adapted to the legacy per-parameter intervals."
+      },
+      "executions": [
+        {
+          "id": "bratu-gn-lm-bounds",
+          "kind": "supplement",
+          "name": {
+            "ja": "GN・LMと有界最小二乗のBratu比較",
+            "en": "Bratu comparisons of GN, LM and bounded least squares"
+          },
+          "method_ids": [
+            "optimization"
+          ],
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-gn-lm-bounds/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-gn-lm-bounds/?lang=en"
+          },
+          "scope": {
+            "ja": "同じ観測からの17固定fitで、変数尺度・重み・境界と物理座標の停止条件を分けます。",
+            "en": "Seventeen fixed fits separate parameter scaling, weights, bounds and physical-coordinate stopping conditions."
+          },
+          "assumptions": {
+            "ja": "無次元1D Bratu、31内点、u(0)=u(1)=0。既存の2係数モデルと保存済み観測を再利用。正則化γとLM減衰μを別に扱います。",
+            "en": "A dimensionless one-dimensional Bratu problem with 31 interior nodes and zero Dirichlet data. The existing two-coefficient extension and saved observations are reused; objective regularization gamma and LM damping mu are distinct."
+          },
+          "limits": {
+            "ja": "小さい滑らかな分枝の局所比較。SciPy最適化ライブラリは参照側でも共有し、大域最小・一意性を証明しません。LMに箱制約があるとは説明しません。",
+            "en": "A local comparison on a small smooth branch. The optimizer library is shared by the reference and a companion; no global minimum or uniqueness proof is claimed. LM is not presented as a box-constrained method."
+          },
+          "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/inputs.json",
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/atlas-inverse-optimization-2026-11-24.zip",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+          "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/source-manifest.json",
+          "commands": [
+            "python -m pip install -r requirements.txt",
+            "python -m pytest -q",
+            "python run.py --input inputs.json --output output"
+          ],
+          "reference_note": {
+            "ja": "独立Thomas状態・感度と4局所参照fit。最終状態残差、物理勾配または投影勾配、目的値差、データのみのSVD、活性境界を検査。非有界法の共通参照は内点かつ非有界停留が条件です。",
+            "en": "Independent Thomas states/sensitivities and four local reference fits. Gate final state residuals, physical gradient or projected gradient, objective gaps, data-only SVD and active bounds. Common references for unbounded methods must be strictly interior and unbounded-stationary."
+          },
+          "reference_data": [],
+          "results": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/results/result.json"
+          ],
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/least_squares.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/model.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/references/thomas.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/references/oracles.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/test_inverse_optimization.py"
+          ],
+          "source_scope": "package"
+        }
+      ],
+      "code_checks": []
+    },
+    {
+      "schema_version": 1,
+      "id": "bfgs-lbfgs-controls",
+      "name": {
+        "ja": "既知最小点でのBFGSと3組L-BFGS",
+        "en": "BFGS and three-pair L-BFGS at known minima"
+      },
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bfgs-lbfgs-controls/",
+      "hub": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bfgs-lbfgs-controls/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bfgs-lbfgs-controls/?lang=en"
+      },
+      "image": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/results/bfgs-lbfgs-controls-preview.png",
+        "sha256": "1d14d1186acab1ef8a9a7ca638a1d196e51f61a17319d42423e0dd5257c92363",
+        "width": 960,
+        "height": 736,
+        "caption": {
+          "ja": "実際のRosenbrock反復点と解析目的関数の等高線。3つの固定初期値・4手法を示し、全問題での収束保証ではありません。 図の座標は有限次元の変数・反復・診断で、物理空間の次元やPDE境界を表しません。",
+          "en": "Actual Rosenbrock iterates on analytic objective contours for three fixed starts and four methods; this is not a general convergence guarantee. Plot axes describe finite-dimensional variables, iterations or diagnostics, not a physical spatial dimension or PDE boundary."
+        },
+        "source_kind": "existing-figure"
+      },
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-inverse-optimization/#bfgs-lbfgs-controls",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-inverse-optimization/#bfgs-lbfgs-controls"
+      },
+      "conditions": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#bfgs-lbfgs-controls",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#bfgs-lbfgs-controls-en"
+      },
+      "equations": [
+        {
+          "id": "finite-dimensional-optimization",
+          "name": {
+            "ja": "有限次元代数最適化と既知最小点",
+            "en": "Finite-dimensional algebraic optimization and known minima"
+          },
+          "formula": [
+            "\\min_{x\\in\\mathbb R^n} f(x)",
+            "\\nabla f(x_*)=0\\quad\\text{(necessary for a smooth unconstrained local minimum)}",
+            "f_Q(x)=\\tfrac12(x-x_*)^TA(x-x_*),\\quad A=A^T>0",
+            "f_R(x,y)=100(y-x^2)^2+(1-x)^2"
+          ],
+          "note": {
+            "ja": "8次元SPD二次関数と2変数Rosenbrockの無次元代数最適化です。物理空間・PDE境界を持たず、既知最小点と局所反復作用を比較します。",
+            "en": "Dimensionless algebraic optimization of an eight-dimensional SPD quadratic and a two-variable Rosenbrock function. There is no physical spatial domain or PDE boundary; compare known minima and local iterative actions."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#finite-dimensional-optimization-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#finite-dimensional-optimization-en"
+          }
+        }
+      ],
+      "equation_note": {
+        "ja": "無次元の非有界代数的最適化。既知の解析最小点を持ち、物理PDEの境界条件はありません。",
+        "en": "Dimensionless unconstrained algebraic optimization with known analytic minima; there is no physical PDE boundary condition."
+      },
+      "formulations": [
+        {
+          "id": "supplement-bfgs-lbfgs-controls",
+          "name": {
+            "ja": "既知最小点でのBFGSと3組L-BFGS",
+            "en": "BFGS and three-pair L-BFGS at known minima"
+          },
+          "source": "supplement",
+          "role": "example-definition",
+          "latex": [
+            "H_+=(I-\\rho s y^T)H(I-\\rho y s^T)+\\rho s s^T",
+            "\\rho=(y^Ts)^{-1},\\quad\\gamma_0=(s^Ty)/(y^Ty)",
+            "f(x,y)=100(y-x^2)^2+(1-x)^2"
+          ],
+          "note": {
+            "ja": "8次元SPD二次関数と3初期値のRosenbrockを用い、曲率・strong Wolfe・現在の有限記憶作用を検査します。",
+            "en": "An eight-dimensional SPD quadratic and three Rosenbrock starts test curvature, strong Wolfe conditions and the current finite-memory action."
+          }
+        }
+      ],
+      "references": [
+        {
+          "id": "bfgs-lbfgs-controls",
+          "kind": "analytic",
+          "kind_label": {
+            "ja": "解析解",
+            "en": "Analytic reference"
+          },
+          "title": {
+            "ja": "既知最小点と現在の有限記憶作用に対する解析参照",
+            "en": "Analytic known minima and the current limited-memory action"
+          },
+          "formula": "f_Q=\\tfrac12(x-x_*)^TA(x-x_*),\\quad x_*=(1,-1,\\ldots)^T;\\quad f_R=100(y-x^2)^2+(1-x)^2,\\quad (x_*,y_*)=(1,1);\\quad H_+=(I-\\rho sy^T)H(I-\\rho ys^T)+\\rho ss^T.",
+          "assumptions": {
+            "ja": "無次元・非有界の代数最適化。8次元SPD二次関数とRosenbrockの3初期値を用い、L-BFGSは現在の最大3組だけを保持します。物理PDE境界条件はありません。",
+            "en": "Dimensionless unconstrained algebraic optimization uses an eight-dimensional SPD quadratic and three Rosenbrock starts. L-BFGS retains only the current last three pairs. There is no physical PDE boundary condition."
+          },
+          "relation": "same-problem",
+          "note": {
+            "ja": "厳密線形探索ではないためn反復終了や一般的Rosenbrock大域収束を主張しません。原著選択箇所は弱Wolfeであり、本例のstrong Wolfeと区別。Fletcher1970本文は未読です。",
+            "en": "No exact n-step termination or general global convergence on Rosenbrock is claimed. The selected original text uses weak Wolfe, distinct from this study’s strong Wolfe policy. Fletcher’s 1970 original article remains unread."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bfgs-lbfgs-controls/?lang=ja#bfgs-lbfgs-controls-ja-measurements",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bfgs-lbfgs-controls/?lang=en#bfgs-lbfgs-controls-en-measurements"
+          }
+        }
+      ],
+      "reference_note": {
+        "ja": "16固定fit、解析的な最小点・勾配、各受理stepのstrong Wolfeと解像された正曲率、BFGSの対称SPD、L-BFGS作用差を判定。保持組とoracle稠密行列の記憶を分離。",
+        "en": "Sixteen fixed fits check analytic minima/gradients, strong Wolfe and resolved positive curvature at every accepted step, symmetric SPD BFGS matrices and L-BFGS action defects. Retained-pair and dense-oracle storage are reported separately."
+      },
+      "methods": [
+        {
+          "id": "optimization",
+          "name": {
+            "ja": "勾配法・準Newton法",
+            "en": "Gradient and quasi-Newton optimization"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/optimization/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/optimization/?lang=en"
+          }
+        }
+      ],
+      "method_note": {
+        "ja": "独自逆BFGSとベクトルだけの2-loop L-BFGS（3組）。独立な小稠密oracleは現在γ₀Iから現在保持する組だけを古い順に再生。SciPy BFGS/L-BFGS-B（bounds=None）を別実装として比較。",
+        "en": "Original inverse-BFGS and vector-only two-loop L-BFGS with three pairs. A separate small dense oracle replays only currently retained pairs from the current gamma0 I. SciPy BFGS and unbounded L-BFGS-B are distinct software companions."
+      },
+      "executions": [
+        {
+          "id": "bfgs-lbfgs-controls",
+          "kind": "supplement",
+          "name": {
+            "ja": "既知最小点でのBFGSと3組L-BFGS",
+            "en": "BFGS and three-pair L-BFGS at known minima"
+          },
+          "method_ids": [
+            "optimization"
+          ],
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bfgs-lbfgs-controls/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bfgs-lbfgs-controls/?lang=en"
+          },
+          "scope": {
+            "ja": "8次元SPD二次関数と3初期値のRosenbrockを用い、曲率・strong Wolfe・現在の有限記憶作用を検査します。",
+            "en": "An eight-dimensional SPD quadratic and three Rosenbrock starts test curvature, strong Wolfe conditions and the current finite-memory action."
+          },
+          "assumptions": {
+            "ja": "無次元の非有界代数的最適化。既知の解析最小点を持ち、物理PDEの境界条件はありません。",
+            "en": "Dimensionless unconstrained algebraic optimization with known analytic minima; there is no physical PDE boundary condition."
+          },
+          "limits": {
+            "ja": "厳密線形探索ではないためn反復終了や一般的Rosenbrock大域収束を主張しません。原著選択箇所は弱Wolfeであり、本例のstrong Wolfeと区別。Fletcher1970本文は未読です。",
+            "en": "No exact n-step termination or general global convergence on Rosenbrock is claimed. The selected original text uses weak Wolfe, distinct from this study’s strong Wolfe policy. Fletcher’s 1970 original article remains unread."
+          },
+          "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/inputs.json",
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/atlas-inverse-optimization-2026-11-24.zip",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+          "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/source-manifest.json",
+          "commands": [
+            "python -m pip install -r requirements.txt",
+            "python -m pytest -q",
+            "python run.py --input inputs.json --output output"
+          ],
+          "reference_note": {
+            "ja": "16固定fit、解析的な最小点・勾配、各受理stepのstrong Wolfeと解像された正曲率、BFGSの対称SPD、L-BFGS作用差を判定。保持組とoracle稠密行列の記憶を分離。",
+            "en": "Sixteen fixed fits check analytic minima/gradients, strong Wolfe and resolved positive curvature at every accepted step, symmetric SPD BFGS matrices and L-BFGS action defects. Retained-pair and dense-oracle storage are reported separately."
+          },
+          "reference_data": [],
+          "results": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/results/result.json"
+          ],
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/quasi_newton.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/run.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/test_inverse_optimization.py"
+          ],
+          "source_scope": "package"
+        }
+      ],
+      "code_checks": []
+    },
+    {
+      "schema_version": 1,
+      "id": "bratu-noise-regularization",
+      "name": {
+        "ja": "雑音・モデル差と有限γ経路の正則化",
+        "en": "Noise, model discrepancy and finite gamma paths"
+      },
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-noise-regularization/",
+      "hub": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-noise-regularization/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-noise-regularization/?lang=en"
+      },
+      "image": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/results/bratu-noise-regularization-preview.png",
+        "sha256": "b43caf14cf8ba49af80aecad69e5f7394dcb5f6a2afc3c01f4320b29f194ff0a",
+        "width": 960,
+        "height": 736,
+        "caption": {
+          "ja": "保存した2変数推定値と固定γの局所1標準偏差楕円。楕円は選択事象で条件づけた区間でも、少数反復で保証した信頼領域でもありません。",
+          "en": "Saved two-parameter estimates and fixed-gamma local one-standard-deviation ellipses. These are neither selection-conditional intervals nor confidence regions with coverage established by this small ensemble."
+        },
+        "source_kind": "existing-figure"
+      },
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-inverse-optimization/#bratu-noise-regularization",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-inverse-optimization/#bratu-noise-regularization"
+      },
+      "conditions": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#bratu-noise-regularization",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#bratu-noise-regularization-en"
+      },
+      "equations": [
+        {
+          "id": "bratu",
+          "name": {
+            "ja": "Bratu非線形境界値問題",
+            "en": "Bratu nonlinear boundary-value problem"
+          },
+          "formula": [
+            "-\\frac{d^2u}{dx^2}=\\lambda e^u,\\qquad 0<x<1",
+            "u(0)=u(1)=0"
+          ],
+          "note": {
+            "ja": "ここでは−u″=λexp(u)の符号規約。Newton–Krylov法で残差・格子収束・内側線形解法の失敗を確認します。",
+            "en": "The convention here is −u″=λ exp(u). Newton–Krylov checks cover residuals, refinement and inner-solver failures."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bratu-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bratu-en"
+          }
+        }
+      ],
+      "equation_note": {
+        "ja": "Bratu推定は31内点、5観測、W=I/5、Σ=σ²I。既存1023格子のデータは保存値を使い再生成しません。σ=1e-4/1e-3、seed67001/67002、γの固定5点です。",
+        "en": "Bratu inference uses 31 interior nodes, five observations, W=I/5 and Sigma=sigma² I. Existing 1023-grid observations are reused without regeneration. Fixed sigma values are 1e-4/1e-3, seeds are 67001/67002 and the gamma list has five entries."
+      },
+      "formulations": [
+        {
+          "id": "supplement-bratu-noise-regularization",
+          "name": {
+            "ja": "雑音・モデル差と有限γ経路の正則化",
+            "en": "Noise, model discrepancy and finite gamma paths"
+          },
+          "source": "supplement",
+          "role": "example-definition",
+          "latex": [
+            "G=K^TWK+\\gamma I",
+            "C_\\gamma=G^{-1}K^TW\\Sigma WKG^{-T}",
+            "\\operatorname{bias}_\\gamma=-\\gamma G^{-1}(\\theta_* -\\theta_0)"
+          ],
+          "note": {
+            "ja": "2独立ノイズベクトルを尺度・データ文脈で共有し、42固定fitから有限γ選択と固定γの局所共分散を分けます。",
+            "en": "Two independent noise vectors are reused across scales and data contexts. Forty-two fixed fits separate finite-list gamma selection from fixed-gamma local covariance."
+          }
+        }
+      ],
+      "references": [
+        {
+          "id": "bratu-noise-regularization",
+          "kind": "numerical-reference",
+          "kind_label": {
+            "ja": "有限格子の数値参照",
+            "en": "Finite-grid numerical reference"
+          },
+          "title": {
+            "ja": "有限γ経路と局所線形雑音伝播のBratu参照",
+            "en": "Bratu references for finite gamma paths and local linear noise propagation"
+          },
+          "formula": "G=K^TWK+\\gamma I,\\quad C_\\gamma=G^{-1}K^TW\\Sigma WKG^{-T},\\quad b_\\gamma=-\\gamma G^{-1}(\\theta_*-\\theta_0).",
+          "assumptions": {
+            "ja": "31内点、5観測、W=I/5、Σ=σ²I。既存の31/1023格子観測を再利用します。雑音の標準偏差σは1e-4と1e-3で、独立な基底雑音は2 seedです。尺度・格子文脈をまたぐ比較は同じ雑音ベクトルを共有します。γは固定5点です。",
+            "en": "Use 31 interior nodes, five observations, W=I/5 and Sigma=sigma² I. Reuse existing 31/1023-grid observations. The noise standard deviations sigma are 1e-4 and 1e-3; two seeds provide independent base noises, while scaled/grid-context variants are paired. Gamma has five fixed values."
+          },
+          "relation": "same-problem",
+          "note": {
+            "ja": "楕円は選択γを固定した局所Gauss–Newton線形モデルのplug-inです。非線形残差の二階微分、γ選択のランダム性、選択事象で条件づけた共分散、事後分布、被覆率を扱いません。全γ連続経路・実測データも未検証。",
+            "en": "Ellipses are plug-in noise propagation for a local Gauss–Newton linear model with the selected gamma treated as fixed. They omit nonlinear residual Hessians and selection randomness and are not selection-conditional covariance, a posterior or a coverage guarantee. Continuous gamma paths and real data remain unverified."
+          },
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-noise-regularization/?lang=ja#bratu-noise-regularization-ja-measurements",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-noise-regularization/?lang=en#bratu-noise-regularization-en-measurements"
+          }
+        }
+      ],
+      "reference_note": {
+        "ja": "42 fitの最終残差・物理KKT・実行完了、選択規則、明示的2×2代数による固定線形モデルの共分散・偏り・モデル差応答、対称PSDを検査。",
+        "en": "Gate final residuals, physical KKT conditions and completion for all 42 fits, the selection rule, and covariance/bias/model-shift response against explicit scalar 2x2 algebra, including symmetry and PSD."
+      },
+      "methods": [
+        {
+          "id": "optimization",
+          "name": {
+            "ja": "勾配法・準Newton法",
+            "en": "Gradient and quasi-Newton optimization"
+          },
+          "status": "educational-example",
+          "role": "execution",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/optimization/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/optimization/?lang=en"
+          }
+        }
+      ],
+      "method_note": {
+        "ja": "全γのfitを資格した完全経路だけから、実現雑音ノルムの1.05倍を満たす最大γを選択。不完全経路と完全だが候補なしを分離。4点L-curveは記述診断。",
+        "en": "Select the largest admissible gamma using 1.05 times the realized noise norm only after the full gamma path qualifies. Incomplete paths and complete paths with no admissible gamma are distinct. Four-point L-curves are descriptive diagnostics."
+      },
+      "executions": [
+        {
+          "id": "bratu-noise-regularization",
+          "kind": "supplement",
+          "name": {
+            "ja": "雑音・モデル差と有限γ経路の正則化",
+            "en": "Noise, model discrepancy and finite gamma paths"
+          },
+          "method_ids": [
+            "optimization"
+          ],
+          "guide": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-noise-regularization/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-noise-regularization/?lang=en"
+          },
+          "scope": {
+            "ja": "2独立ノイズベクトルを尺度・データ文脈で共有し、42固定fitから有限γ選択と固定γの局所共分散を分けます。",
+            "en": "Two independent noise vectors are reused across scales and data contexts. Forty-two fixed fits separate finite-list gamma selection from fixed-gamma local covariance."
+          },
+          "assumptions": {
+            "ja": "Bratu推定は31内点、5観測、W=I/5、Σ=σ²I。既存1023格子のデータは保存値を使い再生成しません。σ=1e-4/1e-3、seed67001/67002、γの固定5点です。",
+            "en": "Bratu inference uses 31 interior nodes, five observations, W=I/5 and Sigma=sigma² I. Existing 1023-grid observations are reused without regeneration. Fixed sigma values are 1e-4/1e-3, seeds are 67001/67002 and the gamma list has five entries."
+          },
+          "limits": {
+            "ja": "楕円は選択γを固定した局所Gauss–Newton線形モデルのplug-inです。非線形残差の二階微分、γ選択のランダム性、選択事象で条件づけた共分散、事後分布、被覆率を扱いません。全γ連続経路・実測データも未検証。",
+            "en": "Ellipses are plug-in noise propagation for a local Gauss–Newton linear model with the selected gamma treated as fixed. They omit nonlinear residual Hessians and selection randomness and are not selection-conditional covariance, a posterior or a coverage guarantee. Continuous gamma paths and real data remain unverified."
+          },
+          "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/inputs.json",
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/atlas-inverse-optimization-2026-11-24.zip",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+          "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/source-manifest.json",
+          "commands": [
+            "python -m pip install -r requirements.txt",
+            "python -m pytest -q",
+            "python run.py --input inputs.json --output output"
+          ],
+          "reference_note": {
+            "ja": "42 fitの最終残差・物理KKT・実行完了、選択規則、明示的2×2代数による固定線形モデルの共分散・偏り・モデル差応答、対称PSDを検査。",
+            "en": "Gate final residuals, physical KKT conditions and completion for all 42 fits, the selection rule, and covariance/bias/model-shift response against explicit scalar 2x2 algebra, including symmetry and PSD."
+          },
+          "reference_data": [],
+          "results": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/results/result.json"
+          ],
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/regularization.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/least_squares.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/run.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/test_inverse_optimization.py"
+          ],
+          "source_scope": "package"
+        }
+      ],
+      "code_checks": []
     }
   ],
   "source_sha256": {
-    "catalog/atlas-depth-expansion.json": "9c46bb250bbeb60e965c0d9b86d07a0c744ea847ad9c3926886e138a6458b072",
-    "catalog/atlas-equations.json": "aa6066b02dba1c00f1e3009aa494bf762e3a42834a9f85a10a9261746b50ffc9",
+    "catalog/atlas-depth-expansion.json": "5d3f5ab6f626a0bc4627b680dbe64ab75f738f8660f25862cf58a97ac2e39b90",
+    "catalog/atlas-equations.json": "7ee122ac83cae11b26e42faaf8ae5fc24f508dfb694eadc2513b27c96781c6eb",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
-    "catalog/atlas-problem-links.json": "9b022bc48ef0268f73f0c1dd15c196d0c276b92dd9a888cb60800b256faa4c9b",
-    "catalog/atlas-reference-supplements.json": "1d696385b5c02c1a668dde29f78169ae039e8a992113ec1bdcc27f60cedbd52b",
+    "catalog/atlas-problem-links.json": "73e8f336dc644b50c604ac4ca8889d7638d2c36ddec3ad70f3c93e5a3c0d8d64",
+    "catalog/atlas-reference-supplements.json": "b9f3735a1d296e84f3f92febeaf335904d35531f3d33cef760da73b8ad78bc07",
     "code/model-benchmarks/2026-11-22/model-benchmarks-2026-11-22.zip": "8c9c70c4577de3737d739dfd39e11beecd37006808ffd79c3dfcda7f3ced1db5",
     "code/molecular-hf/2026-11-22/molecular-hf-2026-11-22.zip": "293988ec209a867491cf8356f12ce5cb8484a51d5c1d444acd5f217062b5ba79",
     "code/numerical-methods-atlas/2026-11-21/atlas-code-2026-11-21.zip": "f17c0cfcf6956a2677dcdc874235806ae9c5453514be02e6d3274732bcdebe4f",
@@ -26327,11 +28378,26 @@
     "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/result.json": "caffe188cea7298dea1a3592fb4815992fa6a4f2900db99ba8443d1199e21dea",
     "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/source-manifest.json": "038537fee8708cb5bbc02d18e902ca546db191f7345ecace52147f6675554a95",
     "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json": "4ed120693891dd4f94a207b080fd40fe53d3b1191274ec621de131e83fac16a7",
+    "code/validated-examples/2026-11-24/adjoint/atlas-adjoint-2026-11-24.zip": "6b78fd9d4320e9790bd6ebe2a0ef61a25c55c7fdc0a14dd37d0ca1a37b80a5ee",
+    "code/validated-examples/2026-11-24/adjoint/cases.json": "2ee30f6ebfc8e1e49d9fb581e19dcd821f2b6f2b02a2f27400272d0301071645",
+    "code/validated-examples/2026-11-24/adjoint/results/result.json": "adbb489d0cf730f76cd1bfb1b7b9fe85948c42b4ed90dac7595aa71f1fbbc036",
+    "code/validated-examples/2026-11-24/adjoint/source-manifest.json": "3536c89cf5356d8f0bb9eda75674cafd4741862cf7f7d479a0a3c377aa0b3a34",
+    "code/validated-examples/2026-11-24/adjoint/verification.json": "4a2d6bb02db35895f7621ead01f1603269523980a83aa3120a04412032dbf604",
     "code/validated-examples/2026-11-24/dsmc-shock/atlas-dsmc-shock-2026-11-24.zip": "92794cc568e7857346a24489eddaae113eb60754de7ba717254955ace9d8d961",
     "code/validated-examples/2026-11-24/dsmc-shock/cases.json": "d5123d6e0f48145bcf0b25a68cffb2f9250bb019e21ea42760db848aed536b22",
     "code/validated-examples/2026-11-24/dsmc-shock/results/result.json": "a4cd1e0092935bccd85bc0cf14086d01c723f05e4ce9474c3563283b3a55562e",
     "code/validated-examples/2026-11-24/dsmc-shock/source-manifest.json": "cc8ff5afec49e7f1ccffd2cce91bcf85e4e116c7389342304667bc7c9bb5eccf",
     "code/validated-examples/2026-11-24/dsmc-shock/verification.json": "7e7919032dafc67b5e857acd4464516cb4b742eed89ff8adae7f3c8cf75a96f5",
+    "code/validated-examples/2026-11-24/globalization-controls/atlas-globalization-controls-2026-11-24.zip": "a8d55166dedf528bbb143080998b5bdd0a95ad37d29d589206499e23dbc9fe4d",
+    "code/validated-examples/2026-11-24/globalization-controls/cases.json": "257b16d3e1af5cf9a9b53c747314e9c58d6b0fb2c98f445d4809f8f4eb0e7e66",
+    "code/validated-examples/2026-11-24/globalization-controls/results/result.json": "64a4ee192598660d6aefcb3bac2693a59bf568a5e2ab4fa7cbe9fe529ffa0218",
+    "code/validated-examples/2026-11-24/globalization-controls/source-manifest.json": "3e1ad64fc8d9e844ec4495255e6231f057a4d6750088dd969617ccfbee9f3078",
+    "code/validated-examples/2026-11-24/globalization-controls/verification.json": "bb03e72bf192c56a1d2c720660880340c0bff4fc01217f907bb7d949880e09c9",
+    "code/validated-examples/2026-11-24/inverse-optimization/atlas-inverse-optimization-2026-11-24.zip": "ffefd2d5876a3db10596d6e1f089f73be7a82288d63f348bcd960b9497412b44",
+    "code/validated-examples/2026-11-24/inverse-optimization/cases.json": "9dfc1a14b447d70b2bd903a397cdf77d28ecb0e462cc876bdb3b44db9197150d",
+    "code/validated-examples/2026-11-24/inverse-optimization/results/result.json": "48ded080378cf6e3f6aebf005f41b70c7f6f7065f741d15f3f700e821c919218",
+    "code/validated-examples/2026-11-24/inverse-optimization/source-manifest.json": "8d39bdf4a727cd5d32467939fc8eda396921f77e83b58b70272af8ac77d5c618",
+    "code/validated-examples/2026-11-24/inverse-optimization/verification.json": "76f3f6b1550ce190e3d3afdd4b9a4e2f75373c58d97ccd655b2ac0bad4a3a74f",
     "code/validated-examples/2026-11-24/lbm-annulus/atlas-lbm-annulus-2026-11-24.zip": "c38c290902c1e344b4905b3141d0212000525f45d97b0104ed35c3b8d4f6eb1b",
     "code/validated-examples/2026-11-24/lbm-annulus/cases.json": "8b29983bdc91a9b27ec825b857e45718240604a673831a6e5facba65a9d27959",
     "code/validated-examples/2026-11-24/lbm-annulus/results/result.json": "2efe456b62a078d6e80569f071d46680182cba2709816acc4b68f9fea67a488e",
@@ -26367,6 +28433,11 @@
     "code/validated-examples/2026-11-24/radiation-scattering/results/result.json": "7bfe8722dc42743a829debfb52222687f767cee18d1d2aeb9033adb4228e87b5",
     "code/validated-examples/2026-11-24/radiation-scattering/source-manifest.json": "030a887ec8ff157149733ec9707960cdd5459f7d125352f632cc4f6c05cf6def",
     "code/validated-examples/2026-11-24/radiation-scattering/verification.json": "7c1bfd3319d1743eb6de888b52c7e7498954761ffb8e8c3f2b6d5c6d3754011f",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/atlas-reverse-higher-ad-2026-11-24.zip": "9ba9d564393bf64d33ec79add1648082e72356335051da99f228e9b0ee5e850a",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/cases.json": "444d6805b5f8c87636e6bd1de91ae02ffa9ce3c8aaec7b501d5754e49e3395ca",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/results/result.json": "c7e23a2174d768b1bd95e1170e0e633efbec172c4e3cf3eab8e5f61d020d8374",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/source-manifest.json": "a6933b5568bf03c5306f25f74bc36435cee98f890bd8b30364390cbb3f0fefb5",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/verification.json": "1cb830974a5e0b4571ae3cec9219bddd4ca856a3f5c47130787daaf9ab81f641",
     "code/validated-examples/2026-11-24/stochastic-accuracy/atlas-stochastic-accuracy-2026-11-24.zip": "6a6ecc012df95853e20b2aa6db2fcceb8fce216872805a2b285c1f123a1e9801",
     "code/validated-examples/2026-11-24/stochastic-accuracy/cases.json": "32bbca261339410393cdbaed888ab3b226374b7dc2b9308f0aaedf0c90cc52bb",
     "code/validated-examples/2026-11-24/stochastic-accuracy/results/result.json": "9322e0a28a62774d84e4f38504d05063d8e668e11599f4959aab186d06a38016",
@@ -26380,9 +28451,9 @@
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/gallery/index.json": "f8d45d5164b3a77dd64ff15b826958aac6c5c7124986c5adeb290d1d440cbc3d",
-    "numerical-methods-atlas/methods/index.json": "f5c72a9e109a43eafed25021a015c3f86ea9ebb1f470cf6a3bb7fabdfdd6494d",
-    "numerical-methods-atlas/solutions/index.json": "9b19afb9580effa2849506fc9d3cd94580a6fc651bf528211b8b1c925eaea0cd",
-    "numerical-methods-atlas/test-cases/index.json": "b864ea9dbb151525104012662b3c19a968c16b820a3d0f563c020791e173a39b"
+    "numerical-methods-atlas/gallery/index.json": "d89f6cb48685e672fb1eb04f8bfedd86a9e216ba66f7bf578f9c5ecd545c5941",
+    "numerical-methods-atlas/methods/index.json": "0ecf7fa8d6892535afd5313243559d48ed85ddd54ae09a1a8c74cea1800db7ae",
+    "numerical-methods-atlas/solutions/index.json": "58133031d175f44a0ebe4d32e281d0e242072f73fe085da25280900f41ad066c",
+    "numerical-methods-atlas/test-cases/index.json": "ab1109155673a63365f731c56f7e1ccf81176e71eb7032b600b6b08ee5e13f84"
   }
 }

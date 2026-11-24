@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "id": "globalization-difficult-starts",
+  "name": {
+    "ja": "同じ難しい初期値に対する線探索と信頼領域",
+    "en": "Line search and trust regions from the same difficult starts"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/globalization-difficult-starts/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/globalization-difficult-starts/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/globalization-difficult-starts/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/globalization-controls/results/globalization-difficult-starts-preview.png",
+    "sha256": "3bf21a53385abb412ec8cf23b3381150e15c0ab9a0aaebb7816bede00c08fca9",
+    "width": 990,
+    "height": 720,
+    "caption": {
+      "ja": "同一初期値の保存経路、原残差、trust radiusと実測評価回数。失敗・非収束は別記します。 図の座標は有限次元の変数・反復・診断で、物理空間の次元やPDE境界を表しません。",
+      "en": "Saved paths from identical starts, original residuals, trust radii and measured evaluation counts. Failures and nonconvergence remain explicit. Plot axes describe finite-dimensional variables, iterations or diagnostics, not a physical spatial dimension or PDE boundary."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-globalization-controls/#globalization-difficult-starts",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-globalization-controls/#globalization-difficult-starts"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#globalization-difficult-starts",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#globalization-difficult-starts-en"
+  },
+  "equations": [
+    {
+      "id": "finite-dimensional-nonlinear-map",
+      "name": {
+        "ja": "有限次元非線形写像・根と微分作用",
+        "en": "Finite-dimensional nonlinear maps, roots and differential actions"
+      },
+      "formula": [
+        "F:\\mathbb R^n\\longrightarrow\\mathbb R^m",
+        "F(x)=0\\quad(m=n\\text{ for root controls})",
+        "J(x)v=DF(x)[v],\\quad J(x)^\\top w",
+        "H_f(x)v=D(\\nabla f)(x)[v]\\quad(f\\text{ twice differentiable})"
+      ],
+      "note": {
+        "ja": "有限の代数写像に対する根・JVP/VJP・HVP・分岐規約です。nは空間次元ではなく変数数で、非滑らか点に古典微分を強制しません。",
+        "en": "Roots, JVP/VJP, HVP and branch conventions for finite algebraic maps. The variable count n is not a spatial dimension, and a classical derivative is not imposed at nonsmooth points."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#finite-dimensional-nonlinear-map-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#finite-dimensional-nonlinear-map-en"
+      }
+    },
+    {
+      "id": "bratu",
+      "name": {
+        "ja": "Bratu非線形境界値問題",
+        "en": "Bratu nonlinear boundary-value problem"
+      },
+      "formula": [
+        "-\\frac{d^2u}{dx^2}=\\lambda e^u,\\qquad 0<x<1",
+        "u(0)=u(1)=0"
+      ],
+      "note": {
+        "ja": "ここでは−u″=λexp(u)の符号規約。Newton–Krylov法で残差・格子収束・内側線形解法の失敗を確認します。",
+        "en": "The convention here is −u″=λ exp(u). Newton–Krylov checks cover residuals, refinement and inner-solver failures."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bratu-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bratu-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "小さな固定入力・実数・無次元。詳しい入力と適用範囲は対応する契約に限定します。",
+    "en": "Small fixed real dimensionless inputs; assumptions and scope are limited to the matching contract."
+  },
+  "formulations": [
+    {
+      "id": "supplement-globalization-difficult-starts",
+      "name": {
+        "ja": "同じ難しい初期値に対する線探索と信頼領域",
+        "en": "Line search and trust regions from the same difficult starts"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "phi(x)=.5||S F(x)||_2^2, g=(S J)^T S F",
+        "p_U=-(g^Tg)/(||S J g||_2^2)g, ||p||_2<=Delta"
+      ],
+      "note": {
+        "ja": "同じ固定初期値からNewton・Armijo・doglegを比較し、真の根と非根停留・予算終了を区別します。",
+        "en": "Compare Newton, Armijo and dogleg from identical fixed starts, distinguishing roots from stationary nonroots and budget exhaustion."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "globalization-difficult-starts",
+      "kind": "numerical-reference",
+      "kind_label": {
+        "ja": "有限格子の数値参照",
+        "en": "Finite-grid numerical reference"
+      },
+      "title": {
+        "ja": "同一初期値の大域化：解析対照と離散Bratu修正",
+        "en": "Globalization from identical starts: analytic controls and discrete Bratu corrections"
+      },
+      "formula": "F_R(x,y)=(10(y-x^2),1-x)^\\top,\\quad (x_*,y_*)=(1,1);\\quad \\phi=\\tfrac12\\|SF\\|_2^2,\\quad J_h\\delta=-F_h.",
+      "assumptions": {
+        "ja": "実数・無次元の固定系。Rosenbrockの2初期値と2残差スケール、31内点・λ=3の同次Dirichlet Bratuの3初期値を3法で比較します。状態半径はEuclideanで、残差スケールとは別です。",
+        "en": "Fixed real dimensionless systems: two Rosenbrock starts and two residual scalings, plus three starts for a 31-interior-node Dirichlet Bratu problem at lambda 3, compared by three methods. The Euclidean state radius is distinct from residual scaling."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "全初期値の成功や手法の普遍的優越、PETSc実装との一致を保証しません。",
+        "en": "No all-start guarantee, universal method ranking or equivalence to PETSc implementation."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/globalization-difficult-starts/?lang=ja#globalization-difficult-starts-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/globalization-difficult-starts/?lang=en#globalization-difficult-starts-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "固定入力・独立参照・保存候補・全判定を同じ120秒予算内で検証します。数値合格と診断用非収束を区別します。",
+    "en": "Check fixed inputs, independent references, retained candidates and every gate within the same120-second budget. Numerical success and diagnostic nonconvergence are distinct."
+  },
+  "methods": [
+    {
+      "id": "newton",
+      "name": {
+        "ja": "Armijo減衰Newton法",
+        "en": "Armijo-damped Newton"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/newton/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/newton/?lang=en"
+      }
+    },
+    {
+      "id": "dogleg-trust-region",
+      "name": {
+        "ja": "小固定系のdogleg信頼領域法",
+        "en": "Dogleg trust regions for fixed small systems"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dogleg-trust-region/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/dogleg-trust-region/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "原残差とスケール付きmeritを分離し、Euclidean doglegと全試行ledgerを保存します。",
+    "en": "Separate the original residual from the scaled merit and retain Euclidean dogleg and trial ledgers."
+  },
+  "executions": [
+    {
+      "id": "globalization-difficult-starts",
+      "kind": "supplement",
+      "name": {
+        "ja": "同じ難しい初期値に対する線探索と信頼領域",
+        "en": "Line search and trust regions from the same difficult starts"
+      },
+      "method_ids": [
+        "newton",
+        "dogleg-trust-region"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/globalization-difficult-starts/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/globalization-difficult-starts/?lang=en"
+      },
+      "scope": {
+        "ja": "同じ固定初期値からNewton・Armijo・doglegを比較し、真の根と非根停留・予算終了を区別します。",
+        "en": "Compare Newton, Armijo and dogleg from identical fixed starts, distinguishing roots from stationary nonroots and budget exhaustion."
+      },
+      "assumptions": {
+        "ja": "小さな固定入力・実数・無次元。詳しい入力と適用範囲は対応する契約に限定します。",
+        "en": "Small fixed real dimensionless inputs; assumptions and scope are limited to the matching contract."
+      },
+      "limits": {
+        "ja": "全初期値の成功や手法の普遍的優越、PETSc実装との一致を保証しません。",
+        "en": "No all-start guarantee, universal method ranking or equivalence to PETSc implementation."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/globalization-controls/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/globalization-controls/atlas-globalization-controls-2026-11-24.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/globalization-controls/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/globalization-controls/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "固定入力・独立参照・保存候補・全判定を同じ120秒予算内で検証します。数値合格と診断用非収束を区別します。",
+        "en": "Check fixed inputs, independent references, retained candidates and every gate within the same120-second budget. Numerical success and diagnostic nonconvergence are distinct."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/globalization-controls/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/globalization-controls/run.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/globalization-controls/test_globalization.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

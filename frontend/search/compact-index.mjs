@@ -69,24 +69,62 @@ export function restoreRowStrings(data){
 /** Decode a fixed public vocabulary; fetch only fixed same-site detail assets. */
 const decoded=new WeakMap(),pending=new Map();
 const MAX_TERMS=500000,MAX_VOCABULARY_UNITS=8200000;
+const ALPHABET='unicode-prefix-alphabet-v1';
+export const VOCABULARY_ALPHABET_LIMIT=8192;
+const alphabetASCII=Array.from({length:95},(_,i)=>String.fromCharCode(i+32)).filter(c=>c!=='"'&&c!=='\\');
+function suffixAlphabet(data){
+ const fail=()=>{throw Error('Invalid vocabulary alphabet');};
+ const value=data.vocabulary_alphabet;
+ if(!plain(data)||data.format!=='compact-search-v1'||!['atlas','site'].includes(data.kind)||typeof value!=='string'||value.length>2*VOCABULARY_ALPHABET_LIMIT||!scalarString(value))fail();
+ const symbols=Array.from(value);
+ if(!symbols.length||symbols.length>VOCABULARY_ALPHABET_LIMIT||new Set(symbols).size!==symbols.length)fail();
+ const counts=new Array(symbols.length).fill(0);
+ return {
+  decode(value,remaining){
+   if(typeof value!=='string'||!scalarString(value))fail();
+   const out=[];let units=0;
+   for(const character of value){
+    const cp=character.codePointAt(0);
+    const index=cp>=32&&cp<=126?alphabetASCII.indexOf(character):cp>=128?alphabetASCII.length+cp-128:-1;
+    if(index<0||index>=symbols.length)fail();
+    const symbol=symbols[index];units+=symbol.length;
+    if(units>remaining)fail();
+    out.push(symbol);counts[index]++;
+   }
+   return out.join('');
+  },
+  finish(){
+   for(let i=0;i<symbols.length;i++){
+    if(!counts[i]||(i&&(counts[i]>counts[i-1]||(counts[i]===counts[i-1]&&symbols[i].codePointAt(0)<symbols[i-1].codePointAt(0)))))fail();
+   }
+  }
+ };
+}
 function vocabulary(data){
- const packed=data.terms;
+ const packed=data.terms,alphabet=data.vocabulary_encoding===ALPHABET?suffixAlphabet(data):null;
+ if(!alphabet&&own(data,'vocabulary_alphabet'))throw Error('Invalid vocabulary alphabet');
  if(!Array.isArray(packed))throw Error('Invalid search vocabulary');
  if(data.vocabulary_encoding===undefined){
   if(packed.length>MAX_TERMS||packed.some(word=>typeof word!=='string'))throw Error('Invalid search vocabulary');
   return packed;
  }
- if(data.vocabulary_encoding!=='unicode-prefix-flat-v1'||packed.length%2||packed.length>2*MAX_TERMS)throw Error('Invalid search vocabulary');
+ if(!['unicode-prefix-flat-v1',ALPHABET].includes(data.vocabulary_encoding)||packed.length%2||packed.length>2*MAX_TERMS)throw Error('Invalid search vocabulary');
  const words=[];let previous=[],units=0;
  for(let i=0;i<packed.length;i+=2){
-  const prefix=packed[i],suffix=packed[i+1];
+  const prefix=packed[i];
+  const suffix=alphabet?alphabet.decode(packed[i+1],MAX_VOCABULARY_UNITS-units):packed[i+1];
   if(!Number.isInteger(prefix)||prefix<0||prefix>previous.length||typeof suffix!=='string'||/[\uD800-\uDFFF]/u.test(suffix))throw Error('Invalid search vocabulary');
   if(suffix.length>MAX_VOCABULARY_UNITS-units)throw Error('Invalid search vocabulary');
+  if(alphabet){
+   let wordUnits=suffix.length;
+   for(let j=0;j<prefix;j++){wordUnits+=previous[j].length;if(wordUnits>MAX_VOCABULARY_UNITS-units)throw Error('Invalid search vocabulary');}
+  }
   // Python len/slicing count Unicode code points, unlike JS string offsets.
   const points=previous.slice(0,prefix).concat(Array.from(suffix)),word=points.join('');
   units+=word.length;if(units>MAX_VOCABULARY_UNITS)throw Error('Invalid search vocabulary');
   words.push(word);previous=points;
  }
+ if(alphabet)alphabet.finish();
  return words;
 }
 function varints(value,limit){
@@ -162,7 +200,7 @@ function invertTerms(data,words,field){
 }
 export function unpackSearchIndex(data){
  if(data?.format!=='compact-search-v1'){
-  if(data&&typeof data==='object'&&('row_string_encoding' in data||'row_strings' in data||membershipKeys.some(key=>own(data,key))))throw Error('Invalid pooled row strings');
+  if(data&&typeof data==='object'&&('row_string_encoding' in data||'row_strings' in data||own(data,'vocabulary_alphabet')||data.vocabulary_encoding===ALPHABET||membershipKeys.some(key=>own(data,key))))throw Error('Invalid pooled row strings');
   return data;
  }
  if(decoded.has(data))return decoded.get(data);
@@ -189,7 +227,7 @@ export function unpackSearchIndex(data){
   const searchText=Array.isArray(terms)||typeof terms==='string'?expand(terms):Object.fromEntries(Object.entries(terms||{}).map(([language,ids])=>[language,expand(ids)]));
   const {search_terms,...record}=row;return {...record,search_text:searchText};
  });
- const {terms,vocabulary_encoding,term_channel_count,term_membership_ids,term_membership_classes,...rest}=data;
+ const {terms,vocabulary_encoding,vocabulary_alphabet,term_channel_count,term_membership_ids,term_membership_classes,...rest}=data;
  // Preserve the legacy unpacked record/header API; storage codecs are private
  // to this loader. Both old numeric arrays and the new byte strings decode here.
  if(binary||inverted)rest.term_encoding='sorted-delta';

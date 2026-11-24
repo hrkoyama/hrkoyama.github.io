@@ -279,6 +279,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/elliptic/
   availability: run
 
   非線形Jacobianを組み立てずにBratuの上下枝を3種類のJvで解き、forcingと実際の残差・評価回数を保存します。
+- [時間離散拡散の随伴とcheckpoint](<https://hrkoyama.github.io/numerical-methods-atlas/validation/diffusion-discrete-adjoint/?lang=ja>)
+  availability: run
+
+  後退Eulerの離散写像を実際に逆伝播し、接線・独立高精度mode解・block replayと比較します。
 - [2次元Poisson：CG・多重格子とP1 FEM](<https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-2d-sine/?lang=ja>)
   availability: run
 

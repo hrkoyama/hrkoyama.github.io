@@ -4,8 +4,8 @@
   "title": "Learn by field",
   "description": "Read the theory, derivations and worked examples by field, from foundations to related methods and verification.",
   "source": "/catalog/atlas-reading-index.json",
-  "source_sha256": "f92494aed4814df284073e393b3ab468e28f1abfe3fd6ed8efdbf42e86f5052a",
-  "chapter_count": 137,
+  "source_sha256": "ce6e7d0b574fee3207dba539e46f2750220a1f3f81deec88de72dbfb55e25f8a",
+  "chapter_count": 141,
   "groups": [
     {
       "id": "foundations-time",
@@ -366,6 +366,50 @@
             "en"
           ],
           "search_text": "pinn-operators PINN・ニューラル演算子 PINNs and neural operators 自動微分・最適化・逆問題 Differentiation, optimization and inverse problems"
+        },
+        {
+          "id": "validation-globalization-controls",
+          "title": "Line searches and trust regions from identical starts",
+          "url": "/numerical-methods-atlas/en/read/validation-globalization-controls/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-globalization-controls 同じ初期値から線探索と信頼領域を比べる Line searches and trust regions from identical starts 自動微分・最適化・逆問題 Differentiation, optimization and inverse problems"
+        },
+        {
+          "id": "validation-reverse-higher-ad",
+          "title": "Reverse mode, HVPs and nonsmooth branches",
+          "url": "/numerical-methods-atlas/en/read/validation-reverse-higher-ad/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-reverse-higher-ad 逆モード・HVP・非滑らか分岐の微分 Reverse mode, HVPs and nonsmooth branches 自動微分・最適化・逆問題 Differentiation, optimization and inverse problems"
+        },
+        {
+          "id": "validation-adjoint",
+          "title": "Adjoints through time steps, folds and distributed coefficients",
+          "url": "/numerical-methods-atlas/en/read/validation-adjoint/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-adjoint 時間離散・fold近傍・分布係数の随伴 Adjoints through time steps, folds and distributed coefficients 自動微分・最適化・逆問題 Differentiation, optimization and inverse problems"
+        },
+        {
+          "id": "validation-inverse-optimization",
+          "title": "Optimization, noise and regularization in the Bratu inverse problem",
+          "url": "/numerical-methods-atlas/en/read/validation-inverse-optimization/",
+          "language": "en",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-inverse-optimization Bratu逆問題の最適化・雑音・正則化 Optimization, noise and regularization in the Bratu inverse problem 自動微分・最適化・逆問題 Differentiation, optimization and inverse problems"
         }
       ]
     },

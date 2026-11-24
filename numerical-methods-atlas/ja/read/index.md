@@ -51,6 +51,10 @@
 - [Bratu逆問題：合成観測からλを随伴勾配で推定する](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-inverse/)
 - [Bratu逆問題の複数パラメータ化：正則化と識別可能性](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/bratu-multi-inverse/)
 - [PINN・ニューラル演算子](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/pinn-operators/)
+- [同じ初期値から線探索と信頼領域を比べる](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-globalization-controls/)
+- [逆モード・HVP・非滑らか分岐の微分](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-reverse-higher-ad/)
+- [時間離散・fold近傍・分布係数の随伴](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-adjoint/)
+- [Bratu逆問題の最適化・雑音・正則化](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-inverse-optimization/)
 
 ## 流体・衝撃波・定常解法
 

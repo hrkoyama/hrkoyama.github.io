@@ -24,6 +24,18 @@ No chapter-specific association is registered. Atlas-wide index: [Exact and refe
 
 ## Code and validation
 
+- [Bratu comparisons of GN, LM and bounded least squares](<https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-gn-lm-bounds/?lang=en>)
+  availability: run
+
+  Seventeen fixed fits separate parameter scaling, weights, bounds and physical-coordinate stopping conditions.
+- [BFGS and three-pair L-BFGS at known minima](<https://hrkoyama.github.io/numerical-methods-atlas/validation/bfgs-lbfgs-controls/?lang=en>)
+  availability: run
+
+  An eight-dimensional SPD quadratic and three Rosenbrock starts test curvature, strong Wolfe conditions and the current finite-memory action.
+- [Noise, model discrepancy and finite gamma paths](<https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-noise-regularization/?lang=en>)
+  availability: run
+
+  Two independent noise vectors are reused across scales and data contexts. Forty-two fixed fits separate finite-list gamma selection from fixed-gamma local covariance.
 - [Gradient and quasi-Newton optimization — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/optimization/?lang=en#method-execution-en>)
   availability: source
 

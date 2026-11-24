@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "id": "kink-branch-derivatives",
+  "name": {
+    "ja": "非滑らか点・分岐・停止条件の微分範囲",
+    "en": "Derivative scope at kinks, branches and stopping decisions"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/kink-branch-derivatives/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/kink-branch-derivatives/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/kink-branch-derivatives/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/results/kink-branch-derivatives-preview.png",
+    "sha256": "b299ec917c1c29c046ca5c2bf87e8ea904005f5caf3e39ccf4dd2e5944af5356",
+    "width": 1080,
+    "height": 360,
+    "caption": {
+      "ja": "保存した非滑らか関数値と停止写像、古典微分が未定義な点とtrace微分を分けた表示。 図の座標は有限次元の変数・反復・診断で、物理空間の次元やPDE境界を表しません。",
+      "en": "Saved nonsmooth values and stopped-map samples, distinguishing undefined classical derivatives from trace derivatives. Plot axes describe finite-dimensional variables, iterations or diagnostics, not a physical spatial dimension or PDE boundary."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-reverse-higher-ad/#kink-branch-derivatives",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-reverse-higher-ad/#kink-branch-derivatives"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#kink-branch-derivatives",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#kink-branch-derivatives-en"
+  },
+  "equations": [
+    {
+      "id": "finite-dimensional-nonlinear-map",
+      "name": {
+        "ja": "有限次元非線形写像・根と微分作用",
+        "en": "Finite-dimensional nonlinear maps, roots and differential actions"
+      },
+      "formula": [
+        "F:\\mathbb R^n\\longrightarrow\\mathbb R^m",
+        "F(x)=0\\quad(m=n\\text{ for root controls})",
+        "J(x)v=DF(x)[v],\\quad J(x)^\\top w",
+        "H_f(x)v=D(\\nabla f)(x)[v]\\quad(f\\text{ twice differentiable})"
+      ],
+      "note": {
+        "ja": "有限の代数写像に対する根・JVP/VJP・HVP・分岐規約です。nは空間次元ではなく変数数で、非滑らか点に古典微分を強制しません。",
+        "en": "Roots, JVP/VJP, HVP and branch conventions for finite algebraic maps. The variable count n is not a spatial dimension, and a classical derivative is not imposed at nonsmooth points."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#finite-dimensional-nonlinear-map-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#finite-dimensional-nonlinear-map-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "小さな固定入力・実数・無次元。詳しい入力と適用範囲は対応する契約に限定します。",
+    "en": "Small fixed real dimensionless inputs; assumptions and scope are limited to the matching contract."
+  },
+  "formulations": [
+    {
+      "id": "supplement-kink-branch-derivatives",
+      "name": {
+        "ja": "非滑らか点・分岐・停止条件の微分範囲",
+        "en": "Derivative scope at kinks, branches and stopping decisions"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "x_(k+1)=.5(x_k+theta), |x_k-theta|<=1/8",
+        "D max(0,0)[da,db]=max(da,db)"
+      ],
+      "note": {
+        "ja": "古典微分・一方向微分・実行trace微分を、kinkと停止分岐の固定例で区別します。",
+        "en": "Distinguish classical, one-sided directional and executed-trace derivatives at fixed kinks and stopping switches."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "kink-branch-derivatives",
+      "kind": "analytic",
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "title": {
+        "ja": "非滑らかな離散写像：一方向微分と実行trace",
+        "en": "Nonsmooth discrete maps: directional derivatives and executed traces"
+      },
+      "formula": "x_{k+1}=\\tfrac12(x_k+\\theta),\\quad x_K=(1-2^{-K})\\theta;\\quad D^+\\max(0,0)[a,b]=\\max(a,b);\\quad q_+(h)=\\frac1{16h}+\\frac78\\ (\\theta=1/2).",
+      "assumptions": {
+        "ja": "abs・ReLU・clip・多項式分岐の固定7点と方向±1を用います。停止反復はx0=0、更新前に|xk−θ|≤1/8を検査し最大5更新。θ=1/4,1/2,1は切替点です。",
+        "en": "Use seven fixed points and directions ±1 for abs, ReLU, clip and a polynomial branch. The stopped iteration starts at x0 = 0, tests |xk - theta| <= 1/8 before updating and allows at mostfive updates. Theta 1/4, 1/2 and 1 are switching points."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "選択した分岐の微分は普遍的なsubgradientや非滑らかな写像の線形微分ではありません。",
+        "en": "An executed-branch derivative is not a universal subgradient or a linear derivative of a nonsmooth map."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kink-branch-derivatives/?lang=ja#kink-branch-derivatives-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kink-branch-derivatives/?lang=en#kink-branch-derivatives-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "固定入力・独立参照・保存候補・全判定を同じ120秒予算内で検証します。数値合格と診断用非収束を区別します。",
+    "en": "Check fixed inputs, independent references, retained candidates and every gate within the same120-second budget. Numerical success and diagnostic nonconvergence are distinct."
+  },
+  "methods": [
+    {
+      "id": "automatic-differentiation",
+      "name": {
+        "ja": "自動微分",
+        "en": "Automatic differentiation"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/automatic-differentiation/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/automatic-differentiation/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "strict nondifferentiableを明示し、停止前<=判定の実行分岐だけを記録します。",
+    "en": "Report strict nondifferentiability explicitly and record the literal top-of-loop stopping branch."
+  },
+  "executions": [
+    {
+      "id": "kink-branch-derivatives",
+      "kind": "supplement",
+      "name": {
+        "ja": "非滑らか点・分岐・停止条件の微分範囲",
+        "en": "Derivative scope at kinks, branches and stopping decisions"
+      },
+      "method_ids": [
+        "automatic-differentiation"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kink-branch-derivatives/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/kink-branch-derivatives/?lang=en"
+      },
+      "scope": {
+        "ja": "古典微分・一方向微分・実行trace微分を、kinkと停止分岐の固定例で区別します。",
+        "en": "Distinguish classical, one-sided directional and executed-trace derivatives at fixed kinks and stopping switches."
+      },
+      "assumptions": {
+        "ja": "小さな固定入力・実数・無次元。詳しい入力と適用範囲は対応する契約に限定します。",
+        "en": "Small fixed real dimensionless inputs; assumptions and scope are limited to the matching contract."
+      },
+      "limits": {
+        "ja": "選択した分岐の微分は普遍的なsubgradientや非滑らかな写像の線形微分ではありません。",
+        "en": "An executed-branch derivative is not a universal subgradient or a linear derivative of a nonsmooth map."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/atlas-reverse-higher-ad-2026-11-24.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "固定入力・独立参照・保存候補・全判定を同じ120秒予算内で検証します。数値合格と診断用非収束を区別します。",
+        "en": "Check fixed inputs, independent references, retained candidates and every gate within the same120-second budget. Numerical success and diagnostic nonconvergence are distinct."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/run.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/test_ad.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

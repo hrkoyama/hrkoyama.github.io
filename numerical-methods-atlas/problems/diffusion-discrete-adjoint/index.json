@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "id": "diffusion-discrete-adjoint",
+  "name": {
+    "ja": "時間離散拡散の随伴とcheckpoint",
+    "en": "Discrete diffusion adjoint and checkpoint replay"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/diffusion-discrete-adjoint/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/diffusion-discrete-adjoint/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/diffusion-discrete-adjoint/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/results/diffusion-discrete-adjoint-preview.png",
+    "sha256": "509aa302e0f76569e3c506a680afd381593edc73f6cef82e07a829c467d2fc23",
+    "width": 1030,
+    "height": 645,
+    "caption": {
+      "ja": "時間離散拡散の随伴とcheckpoint。実際の保存数値データの縮小図で、1次元問題です。",
+      "en": "Discrete diffusion adjoint and checkpoint replay. Preview from actual saved numerical data for a one-dimensional problem."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-adjoint/#diffusion-discrete-adjoint",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-adjoint/#diffusion-discrete-adjoint"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#diffusion-discrete-adjoint",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#diffusion-discrete-adjoint-en"
+  },
+  "equations": [
+    {
+      "id": "heat",
+      "name": {
+        "ja": "熱・拡散方程式",
+        "en": "Heat / diffusion equation"
+      },
+      "formula": [
+        "\\partial_tu=\\nu\\nabla^2u"
+      ],
+      "note": {
+        "ja": "一定拡散係数νの代表形。モードの減衰、時間積分、境界条件へ。",
+        "en": "A representative constant-diffusivity form: mode decay, time integration and boundaries."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#heat-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#heat-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "無次元x∈[0,1]、u(0,t)=u(1,t)=0。内点7/15、時間step64/128/256、T=.1。κ=.1、θ=.2。目的関数のh重みを含む座標転置です。",
+    "en": "Dimensionless x in [0,1], fixed zero Dirichlet endpoints, 7/15 interior nodes and 64/128/256 time steps to T=.1; kappa=.1 and theta=.2. Coordinate transposes include explicit objective h weights."
+  },
+  "formulations": [
+    {
+      "id": "supplement-diffusion-discrete-adjoint",
+      "name": {
+        "ja": "時間離散拡散の随伴とcheckpoint",
+        "en": "Discrete diffusion adjoint and checkpoint replay"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "B=I+\\Delta t\\,\\kappa A_h,\\quad Bu_{k+1}=u_k+\\Delta t\\,\\theta b",
+        "p_N=h(u_N-d),\\quad z_k=B^{-T}p_{k+1},\\quad p_k=z_k",
+        "J_\\kappa=0.01\\kappa-\\Delta t\\sum_k z_k^TA_hu_{k+1},\\quad J_\\theta=0.02\\theta+\\Delta t\\sum_kz_k^Tb"
+      ],
+      "note": {
+        "ja": "後退Eulerの離散写像を実際に逆伝播し、接線・独立高精度mode解・block replayと比較します。",
+        "en": "Reverse the actual backward-Euler map and compare tangent derivatives, independent high-precision modes and block replay."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "diffusion-discrete-adjoint",
+      "kind": "analytic",
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "title": {
+        "ja": "後退Euler離散モードと時間厳密半離散拡散の参照",
+        "en": "Backward-Euler discrete modes and time-exact semidiscrete diffusion references"
+      },
+      "formula": "\\lambda_{\\ell,h}=4h^{-2}\\sin^2(\\ell\\pi h/2),\\quad a_{\\ell,k+1}=\\frac{a_{\\ell,k}+\\Delta t\\,\\theta\\beta_\\ell}{1+\\Delta t\\,\\kappa\\lambda_{\\ell,h}};\\quad a_{\\ell}^{\\rm sd}(T)=a_{\\ell,0}e^{-\\kappa\\lambda_{\\ell,h}T}+\\frac{\\theta\\beta_\\ell}{\\kappa\\lambda_{\\ell,h}}(1-e^{-\\kappa\\lambda_{\\ell,h}T}).",
+      "assumptions": {
+        "ja": "無次元x∈[0,1]、同次Dirichlet、κ=.1、θ=.2、T=.1。内点7/15、時間step64/128/256。目的関数はh重み付き終端誤差と指定二次正則化です。",
+        "en": "Dimensionless x in [0,1] with zero Dirichlet data, kappa = .1, theta = .2 and T = .1. Use 7/15 interior nodes and 64/128/256 time steps. The objective has an h-weighted terminal error and specified quadratic penalties."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "固定stepの離散随伴でありCVODESや最適checkpoint法ではありません。40nは状態・随伴・RHS/solve scratchの一意な所有要素数です。静的因子・model配列は別表示し総所有byteへ含めます。検証/NPZ組立は測定後で、RSSではありません。",
+        "en": "Fixed-step discrete adjoints, not CVODES or an optimal checkpoint schedule. The40n limit counts unique evolving state/adjoint/RHS/solve-scratch elements. Static factors/model arrays are separately listed and included in total bytes. Validation/NPZ assembly follows the ownership windows; this is not RSS."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/diffusion-discrete-adjoint/?lang=ja#diffusion-discrete-adjoint-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/diffusion-discrete-adjoint/?lang=en#diffusion-discrete-adjoint-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "実行前凍結:独立67項目の参照資格後、共有32pytestと本群141固定判定。各候補の全入力・全許容差・失敗を保存します。実合否は同梱result/verificationを参照。 初回は32pytestと拡散59/近fold45判定後に内側残差未達で停止し保存。R2の一般Jv演算順は別96成分で資格済みですが、本試験の成功を意味しません。 R2本試験も保存済み未達。R3の状態専用hi+loは別20成分で資格済み、本3caseの合否は実result/verificationで確認します。",
+    "en": "Pre-run freeze:independent67-check reference qualification, then shared32pytest and141fixed group gates. Retain all inputs, tolerances and failures. Actual outcomes are recorded in the bundled result/verification. Initial attempt retained32passing tests and59diffusion/45fold gates before an unmet inner target. R2 general Jv association has separate96component checks; this does not imply primary success. R2 primary failure is also retained. R3 state-onlyhi+lo has separate20component checks;actual three-caseoutcomes are inresult/verification."
+  },
+  "methods": [
+    {
+      "id": "adjoint",
+      "name": {
+        "ja": "陰関数微分・随伴法",
+        "en": "Implicit differentiation and adjoint methods"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/adjoint/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/adjoint/?lang=en"
+      }
+    },
+    {
+      "id": "backward-euler",
+      "name": {
+        "ja": "後退Euler法",
+        "en": "Backward Euler"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/backward-euler/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/backward-euler/?lang=en"
+      }
+    },
+    {
+      "id": "thomas",
+      "name": {
+        "ja": "Thomas法／三重対角消去",
+        "en": "Thomas tridiagonal elimination"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/thomas/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/thomas/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "ThomasでB u次=u現在+dt θbを解き、Bの転置を逆順に解きます。16stepごとにcheckpointを保存し、1blockを同じ順で再計算します。full配列を保存・解放した後で別の所有期間を測ります。",
+    "en": "Thomas solves B u_next=u_current+dt theta b; reverse solves use B transpose. Save checkpoints every16steps and replay one block in the original order. Serialize and release the full trajectory before the separate checkpoint ownership window."
+  },
+  "executions": [
+    {
+      "id": "diffusion-discrete-adjoint",
+      "kind": "supplement",
+      "name": {
+        "ja": "時間離散拡散の随伴とcheckpoint",
+        "en": "Discrete diffusion adjoint and checkpoint replay"
+      },
+      "method_ids": [
+        "adjoint",
+        "backward-euler",
+        "thomas"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/diffusion-discrete-adjoint/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/diffusion-discrete-adjoint/?lang=en"
+      },
+      "scope": {
+        "ja": "後退Eulerの離散写像を実際に逆伝播し、接線・独立高精度mode解・block replayと比較します。",
+        "en": "Reverse the actual backward-Euler map and compare tangent derivatives, independent high-precision modes and block replay."
+      },
+      "assumptions": {
+        "ja": "無次元x∈[0,1]、u(0,t)=u(1,t)=0。内点7/15、時間step64/128/256、T=.1。κ=.1、θ=.2。目的関数のh重みを含む座標転置です。",
+        "en": "Dimensionless x in [0,1], fixed zero Dirichlet endpoints, 7/15 interior nodes and 64/128/256 time steps to T=.1; kappa=.1 and theta=.2. Coordinate transposes include explicit objective h weights."
+      },
+      "limits": {
+        "ja": "固定stepの離散随伴でありCVODESや最適checkpoint法ではありません。40nは状態・随伴・RHS/solve scratchの一意な所有要素数です。静的因子・model配列は別表示し総所有byteへ含めます。検証/NPZ組立は測定後で、RSSではありません。",
+        "en": "Fixed-step discrete adjoints, not CVODES or an optimal checkpoint schedule. The40n limit counts unique evolving state/adjoint/RHS/solve-scratch elements. Static factors/model arrays are separately listed and included in total bytes. Validation/NPZ assembly follows the ownership windows; this is not RSS."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/atlas-adjoint-2026-11-24.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "実行前凍結:独立67項目の参照資格後、共有32pytestと本群141固定判定。各候補の全入力・全許容差・失敗を保存します。実合否は同梱result/verificationを参照。 初回は32pytestと拡散59/近fold45判定後に内側残差未達で停止し保存。R2の一般Jv演算順は別96成分で資格済みですが、本試験の成功を意味しません。 R2本試験も保存済み未達。R3の状態専用hi+loは別20成分で資格済み、本3caseの合否は実result/verificationで確認します。",
+        "en": "Pre-run freeze:independent67-check reference qualification, then shared32pytest and141fixed group gates. Retain all inputs, tolerances and failures. Actual outcomes are recorded in the bundled result/verification. Initial attempt retained32passing tests and59diffusion/45fold gates before an unmet inner target. R2 general Jv association has separate96component checks; this does not imply primary success. R2 primary failure is also retained. R3 state-onlyhi+lo has separate20component checks;actual three-caseoutcomes are inresult/verification."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/operators.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/krylov.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/newton.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/time_adjoint.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/references/modal_decimal.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/references/shooting_decimal.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/references/linear_oracle.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_distributed.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_fold.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_time.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

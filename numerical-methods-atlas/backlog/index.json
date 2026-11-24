@@ -4541,8 +4541,8 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
-      "current": "最新r6は108テスト、8固定入力。periodic-wave、pec-cavity、dielectric-interface、pml-pulse、pml-corners、dielectric-oblique、p-polarization（Brewster/TIRを含む）、loss-dispersionがある。真空平面波/空洞固有振動/Fresnel/PMLを不足扱いしない。r6の損失分散は1D垂直入射のOhmic・単一受動Lorentz板。",
+      "state": "published",
+      "current": "固定入力のコード・保存図をHRで公開。匿名公開ファイル照合、実HR日英画面、全52群106例1352pytestの公開ZIP Linux/JUnit検査が合格。条件と履歴は各配布記録を参照。",
       "tasks": [
         "既存平面界面とは異なる曲面・散乱断面積を解析級数と比較",
         "2D円柱と3D球の参照式を区別し、格子曲面近似・入射場除去・流束積分を検査"
@@ -4586,7 +4586,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/README.md",
-          "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/cases.json"
+          "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/cases.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-24-batch48-57-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#cylinder-mie2d-ja",
         "execution": "/numerical-methods-atlas/validation/cylinder-mie2d/?lang=ja"
@@ -4612,7 +4613,8 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/README.md",
-            "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/cases.json"
+            "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/cases.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-24-batch48-57-public.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#cylinder-mie2d-ja",
           "execution": "/numerical-methods-atlas/validation/cylinder-mie2d/?lang=ja"
@@ -4630,8 +4632,8 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
-      "current": "最新r6は108テスト、8固定入力。periodic-wave、pec-cavity、dielectric-interface、pml-pulse、pml-corners、dielectric-oblique、p-polarization（Brewster/TIRを含む）、loss-dispersionがある。真空平面波/空洞固有振動/Fresnel/PMLを不足扱いしない。r6の損失分散は1D垂直入射のOhmic・単一受動Lorentz板。",
+      "state": "published",
+      "current": "固定入力のコード・保存図をHRで公開。匿名公開ファイル照合、実HR日英画面、全52群106例1352pytestの公開ZIP Linux/JUnit検査が合格。条件と履歴は各配布記録を参照。",
       "tasks": [
         "既存r5の無損失s/p斜め入射とr6の1D分散垂直入射を単に合体しただけでは検証済みにしない",
         "複素角/波数、R/T/直接散逸/物質エネルギーを帯域参照で比較"
@@ -4668,7 +4670,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/README.md",
-          "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/cases.json"
+          "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/cases.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-24-batch48-57-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#lorentz-oblique-sp-ja",
         "execution": "/numerical-methods-atlas/validation/lorentz-oblique-sp/?lang=ja"
@@ -4694,7 +4697,8 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/README.md",
-            "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/cases.json"
+            "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/cases.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-24-batch48-57-public.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#lorentz-oblique-sp-ja",
           "execution": "/numerical-methods-atlas/validation/lorentz-oblique-sp/?lang=ja"
@@ -4712,8 +4716,8 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
-      "current": "最新r6は108テスト、8固定入力。periodic-wave、pec-cavity、dielectric-interface、pml-pulse、pml-corners、dielectric-oblique、p-polarization（Brewster/TIRを含む）、loss-dispersionがある。真空平面波/空洞固有振動/Fresnel/PMLを不足扱いしない。r6の損失分散は1D垂直入射のOhmic・単一受動Lorentz板。",
+      "state": "published",
+      "current": "固定入力のコード・保存図をHRで公開。匿名公開ファイル照合、実HR日英画面、全52群106例1352pytestの公開ZIP Linux/JUnit検査が合格。条件と履歴は各配布記録を参照。",
       "tasks": [
         "既存x面・四辺/角PMLは保持し、near-grazingと長時間残留を別固定入力として検査",
         "分散媒質との併用で補助変数の安定性・直接仕事/散逸の解釈を確認"
@@ -4756,7 +4760,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-24-r2/maxwell-grazing/README.md",
-          "/code/validated-examples/2026-11-24-r2/maxwell-grazing/cases.json"
+          "/code/validated-examples/2026-11-24-r2/maxwell-grazing/cases.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-24-batch48-57-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#dispersive-grazing-pml-ja",
         "execution": "/numerical-methods-atlas/validation/dispersive-grazing-pml/?lang=ja"
@@ -4782,7 +4787,8 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-24-r2/maxwell-grazing/README.md",
-            "/code/validated-examples/2026-11-24-r2/maxwell-grazing/cases.json"
+            "/code/validated-examples/2026-11-24-r2/maxwell-grazing/cases.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-24-batch48-57-public.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#dispersive-grazing-pml-ja",
           "execution": "/numerical-methods-atlas/validation/dispersive-grazing-pml/?lang=ja"
@@ -4800,8 +4806,8 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
-      "current": "Thomas、定常反復、CG、GMRES/BiCGSTAB、Jacobi/ILU0、幾何 MG、平滑化集約 AMG、QR/SVD がある。AMG の正方 Poisson・異方性・条件数診断と、QR/SVD の独立 LAPACK・80/120桁参照まで保存済み。",
+      "state": "published",
+      "current": "固定入力のコード・保存図をHRで公開。匿名公開ファイル照合、実HR日英画面、全52群106例1352pytestの公開ZIP Linux/JUnit検査が合格。条件と履歴は各配布記録を参照。",
       "tasks": [
         "小さい SPD、ほぼ特異行列、Hilbert 行列、ピボット成長を示す Wilkinson 型行列を固定入力化",
         "残差・成分別後退誤差・前進誤差・条件数を分け、LAPACK と比較"
@@ -4850,7 +4856,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/README.md",
-          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json"
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-24-batch48-57-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#pivoted-direct-refinement-ja",
         "execution": "/numerical-methods-atlas/validation/pivoted-direct-refinement/?lang=ja"
@@ -4876,7 +4883,8 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/README.md",
-            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json"
+            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-24-batch48-57-public.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#pivoted-direct-refinement-ja",
           "execution": "/numerical-methods-atlas/validation/pivoted-direct-refinement/?lang=ja"
@@ -4894,8 +4902,8 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
-      "current": "Thomas、定常反復、CG、GMRES/BiCGSTAB、Jacobi/ILU0、幾何 MG、平滑化集約 AMG、QR/SVD がある。AMG の正方 Poisson・異方性・条件数診断と、QR/SVD の独立 LAPACK・80/120桁参照まで保存済み。",
+      "state": "published",
+      "current": "固定入力のコード・保存図をHRで公開。匿名公開ファイル照合、実HR日英画面、全52群106例1352pytestの公開ZIP Linux/JUnit検査が合格。条件と履歴は各配布記録を参照。",
       "tasks": [
         "小さい混合 Poisson/Stokes 型ブロック系で、CG の適用外を示す",
         "MINRES/GMRES と Schur 補前処理を同じ収束基準で比較"
@@ -4949,7 +4957,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/README.md",
-          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json"
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-24-batch48-57-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#symmetric-saddle-minres-ja",
         "execution": "/numerical-methods-atlas/validation/symmetric-saddle-minres/?lang=ja"
@@ -4975,7 +4984,8 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/README.md",
-            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json"
+            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-24-batch48-57-public.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#symmetric-saddle-minres-ja",
           "execution": "/numerical-methods-atlas/validation/symmetric-saddle-minres/?lang=ja"
@@ -4993,8 +5003,8 @@
       "priority": "P1",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
-      "current": "再始動なし Arnoldi/Lanczos、直交性・残差・happy breakdown、ギャップ縮小・非正規性・部分空間診断がある。分子 HF では一般化密行列固有値問題 eigh(F,S) も既に使用。",
+      "state": "published",
+      "current": "固定入力のコード・保存図をHRで公開。匿名公開ファイル照合、実HR日英画面、全52群106例1352pytestの公開ZIP Linux/JUnit検査が合格。条件と履歴は各配布記録を参照。",
       "tasks": [
         "離散 Laplacian の既知スペクトルで端点・内部固有値を比較",
         "再始動長、行列作用回数、shift 線形解法の誤差・失敗を記録"
@@ -5047,7 +5057,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/README.md",
-          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json"
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-24-batch48-57-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#restarted-shift-invert-ja",
         "execution": "/numerical-methods-atlas/validation/restarted-shift-invert/?lang=ja"
@@ -5073,7 +5084,8 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/README.md",
-            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json"
+            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-24-batch48-57-public.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#restarted-shift-invert-ja",
           "execution": "/numerical-methods-atlas/validation/restarted-shift-invert/?lang=ja"
@@ -5091,8 +5103,8 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
-      "current": "再始動なし Arnoldi/Lanczos、直交性・残差・happy breakdown、ギャップ縮小・非正規性・部分空間診断がある。分子 HF では一般化密行列固有値問題 eigh(F,S) も既に使用。",
+      "state": "published",
+      "current": "固定入力のコード・保存図をHRで公開。匿名公開ファイル照合、実HR日英画面、全52群106例1352pytestの公開ZIP Linux/JUnit検査が合格。条件と履歴は各配布記録を参照。",
       "tasks": [
         "1D FEM 弦振動 Kx=λMx で M 直交性・残差と既知固有値への収束を確認",
         "小さな dense eigh を参照、一般化 Krylov/LOBPCG を比較"
@@ -5155,7 +5167,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/README.md",
-          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json"
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-24-batch48-57-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#fem-mass-eigen-ja",
         "execution": "/numerical-methods-atlas/validation/fem-mass-eigen/?lang=ja"
@@ -5181,7 +5194,8 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/README.md",
-            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json"
+            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-24-batch48-57-public.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#fem-mass-eigen-ja",
           "execution": "/numerical-methods-atlas/validation/fem-mass-eigen/?lang=ja"
@@ -5199,8 +5213,8 @@
       "priority": "P3",
       "kind": "references",
       "initial_coverage": "出典整備不足",
-      "state": "verified",
-      "current": "再始動なし Arnoldi/Lanczos、直交性・残差・happy breakdown、ギャップ縮小・非正規性・部分空間診断がある。分子 HF では一般化密行列固有値問題 eigh(F,S) も既に使用。",
+      "state": "published",
+      "current": "選択した原典の読解範囲を公開。Lanczosの原文選択頁とArnoldiの公開OCR本文を区別し、未確認の原本画像・式記号とAMS403を明示。新しい数値例ではありません。",
       "tasks": [
         "既存 arnoldi1951/lanczos1950 の metadata レベルを保持し、利用する漸化式・直交化の原文範囲を追加確認"
       ],
@@ -5246,7 +5260,10 @@
           "/catalog/atlas-method-primary-references.json",
           "/catalog/atlas-detailed-reading.json"
         ],
-        "note": "Selected Lanczos original NIST pages266–267/271 were visually checked. Selected Arnoldi original-paper prose was read from a disclosed public OCR copy; the original scan/equation symbols remain unverified and AMS requests returned403. This is source curation, not another numerical implementation."
+        "note": "Selected Lanczos original NIST pages266–267/271 were visually checked. Selected Arnoldi original-paper prose was read from a disclosed public OCR copy; the original scan/equation symbols remain unverified and AMS requests returned403. This is source curation, not another numerical implementation.",
+        "references": [
+          "/numerical-methods-atlas/validation/verification/2026-11-24-batch48-57-public.json"
+        ]
       },
       "sequence": 55,
       "completion_evidence": {
@@ -5262,7 +5279,10 @@
             "/catalog/atlas-method-primary-references.json",
             "/catalog/atlas-detailed-reading.json"
           ],
-          "note": "Selected Lanczos original NIST pages266–267/271 were visually checked. Selected Arnoldi original-paper prose was read from a disclosed public OCR copy; the original scan/equation symbols remain unverified and AMS requests returned403. This is source curation, not another numerical implementation."
+          "note": "Selected Lanczos original NIST pages266–267/271 were visually checked. Selected Arnoldi original-paper prose was read from a disclosed public OCR copy; the original scan/equation symbols remain unverified and AMS requests returned403. This is source curation, not another numerical implementation.",
+          "references": [
+            "/numerical-methods-atlas/validation/verification/2026-11-24-batch48-57-public.json"
+          ]
         }
       }
     },
@@ -5277,8 +5297,8 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
-      "current": "Bratu の減衰 Newton、十分減少線探索、組み立て Jacobian と GMRES/ILU 内部解法がある。一般の matrix-free Jv・trust region・continuation は atlas-methods の制限に明記。",
+      "state": "published",
+      "current": "固定入力のコード・保存図をHRで公開。匿名公開ファイル照合、実HR日英画面、全52群106例1352pytestの公開ZIP Linux/JUnit検査が合格。条件と履歴は各配布記録を参照。",
       "tasks": [
         "既存解析解族を用いて λ 最大付近の上下枝と折り返しを照合",
         "固定 λ Newton の失敗と、継続ステップ・接線・特異値の変化を保存"
@@ -5330,7 +5350,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/README.md",
-          "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/cases.json"
+          "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/cases.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-24-batch48-57-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bratu-fold-continuation-ja",
         "execution": "/numerical-methods-atlas/validation/bratu-fold-continuation/?lang=ja"
@@ -5356,7 +5377,8 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/README.md",
-            "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/cases.json"
+            "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/cases.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-24-batch48-57-public.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bratu-fold-continuation-ja",
           "execution": "/numerical-methods-atlas/validation/bratu-fold-continuation/?lang=ja"
@@ -5374,8 +5396,8 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
-      "current": "Bratu の減衰 Newton、十分減少線探索、組み立て Jacobian と GMRES/ILU 内部解法がある。一般の matrix-free Jv・trust region・continuation は atlas-methods の制限に明記。",
+      "state": "published",
+      "current": "固定入力のコード・保存図をHRで公開。匿名公開ファイル照合、実HR日英画面、全52群106例1352pytestの公開ZIP Linux/JUnit検査が合格。条件と履歴は各配布記録を参照。",
       "tasks": [
         "解析 Jv・有限差分 Jv・AD Jv を既存 Bratu で比較",
         "線形許容誤差と非線形収束、関数評価回数・停止理由を記録"
@@ -5432,7 +5454,8 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/README.md",
-          "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/cases.json"
+          "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/cases.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-24-batch48-57-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bratu-matrix-free-jfnk-ja",
         "execution": "/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/?lang=ja"
@@ -5458,7 +5481,8 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/README.md",
-            "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/cases.json"
+            "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/cases.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-24-batch48-57-public.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bratu-matrix-free-jfnk-ja",
           "execution": "/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/?lang=ja"
@@ -5476,7 +5500,7 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
+      "state": "verified",
       "current": "Bratu の減衰 Newton、十分減少線探索、組み立て Jacobian と GMRES/ILU 内部解法がある。一般の matrix-free Jv・trust region・continuation は atlas-methods の制限に明記。",
       "tasks": [
         "Bratu と小さいスケール不良の連立系で同じ初期値集合を使用",
@@ -5504,9 +5528,63 @@
           "path": "code/numerical-methods-atlas/2026-11-21/numart/krylov.py"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24/globalization-controls/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24/globalization-controls/inputs.json",
+          "/code/validated-examples/2026-11-24/globalization-controls/acceptance.json",
+          "/code/validated-examples/2026-11-24/globalization-controls/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24/globalization-controls/results/globalization-difficult-starts.png",
+          "/code/validated-examples/2026-11-24/globalization-controls/results/globalization-difficult-starts-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24/globalization-controls/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24/globalization-controls/README.md",
+          "/code/validated-examples/2026-11-24/globalization-controls/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#globalization-difficult-starts-ja",
+        "execution": "/numerical-methods-atlas/validation/globalization-difficult-starts/?lang=ja#globalization-difficult-starts-ja-measurements",
+        "note": {
+          "ja": "固定入力の正規source実行と独立展開ZIPのpytest/全入力再実行が合格。これは保存した局所科学検証で、同一SHAのHR公開後HTTP/UI/外部Linux確認の完了を意味しません。",
+          "en": "Canonical source execution and independently extracted ZIP pytest/all-input reruns passed. This is saved local scientific verification, not a claim that same-SHA post-publication HR HTTP/UI/external Linux checks are complete."
+        }
+      },
       "sequence": 58,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-24/globalization-controls/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-24/globalization-controls/inputs.json",
+            "/code/validated-examples/2026-11-24/globalization-controls/acceptance.json",
+            "/code/validated-examples/2026-11-24/globalization-controls/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-24/globalization-controls/results/globalization-difficult-starts.png",
+            "/code/validated-examples/2026-11-24/globalization-controls/results/globalization-difficult-starts-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-24/globalization-controls/run.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-24/globalization-controls/README.md",
+            "/code/validated-examples/2026-11-24/globalization-controls/cases.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#globalization-difficult-starts-ja",
+          "execution": "/numerical-methods-atlas/validation/globalization-difficult-starts/?lang=ja#globalization-difficult-starts-ja-measurements",
+          "note": {
+            "ja": "固定入力の正規source実行と独立展開ZIPのpytest/全入力再実行が合格。これは保存した局所科学検証で、同一SHAのHR公開後HTTP/UI/外部Linux確認の完了を意味しません。",
+            "en": "Canonical source execution and independently extracted ZIP pytest/all-input reruns passed. This is saved local scientific verification, not a claim that same-SHA post-publication HR HTTP/UI/external Linux checks are complete."
+          }
+        }
+      }
     },
     {
       "id": "automatic-differentiation-1",
@@ -5519,7 +5597,7 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "planned",
+      "state": "verified",
       "current": "独自の forward dual-number、JVP/Jacobian と解析微分・有限差分の Bratu 比較は実装・配布・検証済み。逆モード/VJP/HVP は章内説明がある。",
       "tasks": [
         "Bratu 残差で dot(Jv,w)=dot(v,Jᵀw) を解析値・方向差分と比較",
@@ -5532,6 +5610,20 @@
           "url": "https://docs.jax.dev/en/latest/301/index.html",
           "checked_on": "2026-11-23",
           "review": "公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。"
+        },
+        {
+          "title": "The Autodiff Cookbook",
+          "url": "https://docs.jax.dev/en/latest/notebooks/autodiff_cookbook.html",
+          "review": "Selected definitions and composition formulas only. A new educational tape will implement the stated finite subset. No JAX installation, execution, timing replication or implementation-source audit. Unread: Original reverse-mode/HVP papers, JAX transformation implementation, Unselected cookbook sections. Publication year not established (n.d.).",
+          "checked_on": "2026-11-24",
+          "review_level": "official-documentation-selected-mathematical-sections"
+        },
+        {
+          "title": "Frequently asked questions: undefined branches and ordering",
+          "url": "https://docs.jax.dev/en/latest/faq.html",
+          "review": "Read invalid inactive-branch and ordering discussions. We use an explicitly different strict nondifferentiability policy, not a universal JAX tie rule. Unread: Linked issue threads, Generalized derivative original papers. Publication year not established (n.d.).",
+          "checked_on": "2026-11-24",
+          "review_level": "official-documentation-selected-sections"
         }
       ],
       "baseline_evidence": [
@@ -5546,9 +5638,63 @@
           "path": "code/autodiff/2026-11-22/numart/autodiff.py"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24/reverse-higher-ad/inputs.json",
+          "/code/validated-examples/2026-11-24/reverse-higher-ad/acceptance.json",
+          "/code/validated-examples/2026-11-24/reverse-higher-ad/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24/reverse-higher-ad/results/reverse-vjp-duality.png",
+          "/code/validated-examples/2026-11-24/reverse-higher-ad/results/reverse-vjp-duality-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24/reverse-higher-ad/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24/reverse-higher-ad/README.md",
+          "/code/validated-examples/2026-11-24/reverse-higher-ad/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#reverse-vjp-duality-ja",
+        "execution": "/numerical-methods-atlas/validation/reverse-vjp-duality/?lang=ja#reverse-vjp-duality-ja-measurements",
+        "note": {
+          "ja": "固定入力の正規source実行と独立展開ZIPのpytest/全入力再実行が合格。これは保存した局所科学検証で、同一SHAのHR公開後HTTP/UI/外部Linux確認の完了を意味しません。",
+          "en": "Canonical source execution and independently extracted ZIP pytest/all-input reruns passed. This is saved local scientific verification, not a claim that same-SHA post-publication HR HTTP/UI/external Linux checks are complete."
+        }
+      },
       "sequence": 59,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-24/reverse-higher-ad/inputs.json",
+            "/code/validated-examples/2026-11-24/reverse-higher-ad/acceptance.json",
+            "/code/validated-examples/2026-11-24/reverse-higher-ad/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-24/reverse-higher-ad/results/reverse-vjp-duality.png",
+            "/code/validated-examples/2026-11-24/reverse-higher-ad/results/reverse-vjp-duality-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-24/reverse-higher-ad/run.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-24/reverse-higher-ad/README.md",
+            "/code/validated-examples/2026-11-24/reverse-higher-ad/cases.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#reverse-vjp-duality-ja",
+          "execution": "/numerical-methods-atlas/validation/reverse-vjp-duality/?lang=ja#reverse-vjp-duality-ja-measurements",
+          "note": {
+            "ja": "固定入力の正規source実行と独立展開ZIPのpytest/全入力再実行が合格。これは保存した局所科学検証で、同一SHAのHR公開後HTTP/UI/外部Linux確認の完了を意味しません。",
+            "en": "Canonical source execution and independently extracted ZIP pytest/all-input reruns passed. This is saved local scientific verification, not a claim that same-SHA post-publication HR HTTP/UI/external Linux checks are complete."
+          }
+        }
+      }
     },
     {
       "id": "automatic-differentiation-2",
@@ -5561,7 +5707,7 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "planned",
+      "state": "verified",
       "current": "独自の forward dual-number、JVP/Jacobian と解析微分・有限差分の Bratu 比較は実装・配布・検証済み。逆モード/VJP/HVP は章内説明がある。",
       "tasks": [
         "小さな既知二次関数と Bratu 目的関数で HVP を照合",
@@ -5574,6 +5720,20 @@
           "url": "https://docs.jax.dev/en/latest/301/index.html",
           "checked_on": "2026-11-23",
           "review": "公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。"
+        },
+        {
+          "title": "The Autodiff Cookbook",
+          "url": "https://docs.jax.dev/en/latest/notebooks/autodiff_cookbook.html",
+          "review": "Selected definitions and composition formulas only. A new educational tape will implement the stated finite subset. No JAX installation, execution, timing replication or implementation-source audit. Unread: Original reverse-mode/HVP papers, JAX transformation implementation, Unselected cookbook sections. Publication year not established (n.d.).",
+          "checked_on": "2026-11-24",
+          "review_level": "official-documentation-selected-mathematical-sections"
+        },
+        {
+          "title": "Frequently asked questions: undefined branches and ordering",
+          "url": "https://docs.jax.dev/en/latest/faq.html",
+          "review": "Read invalid inactive-branch and ordering discussions. We use an explicitly different strict nondifferentiability policy, not a universal JAX tie rule. Unread: Linked issue threads, Generalized derivative original papers. Publication year not established (n.d.).",
+          "checked_on": "2026-11-24",
+          "review_level": "official-documentation-selected-sections"
         }
       ],
       "baseline_evidence": [
@@ -5588,9 +5748,63 @@
           "path": "code/autodiff/2026-11-22/numart/autodiff.py"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24/reverse-higher-ad/inputs.json",
+          "/code/validated-examples/2026-11-24/reverse-higher-ad/acceptance.json",
+          "/code/validated-examples/2026-11-24/reverse-higher-ad/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24/reverse-higher-ad/results/hessian-vector-products.png",
+          "/code/validated-examples/2026-11-24/reverse-higher-ad/results/hessian-vector-products-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24/reverse-higher-ad/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24/reverse-higher-ad/README.md",
+          "/code/validated-examples/2026-11-24/reverse-higher-ad/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#hessian-vector-products-ja",
+        "execution": "/numerical-methods-atlas/validation/hessian-vector-products/?lang=ja#hessian-vector-products-ja-measurements",
+        "note": {
+          "ja": "固定入力の正規source実行と独立展開ZIPのpytest/全入力再実行が合格。これは保存した局所科学検証で、同一SHAのHR公開後HTTP/UI/外部Linux確認の完了を意味しません。",
+          "en": "Canonical source execution and independently extracted ZIP pytest/all-input reruns passed. This is saved local scientific verification, not a claim that same-SHA post-publication HR HTTP/UI/external Linux checks are complete."
+        }
+      },
       "sequence": 60,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-24/reverse-higher-ad/inputs.json",
+            "/code/validated-examples/2026-11-24/reverse-higher-ad/acceptance.json",
+            "/code/validated-examples/2026-11-24/reverse-higher-ad/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-24/reverse-higher-ad/results/hessian-vector-products.png",
+            "/code/validated-examples/2026-11-24/reverse-higher-ad/results/hessian-vector-products-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-24/reverse-higher-ad/run.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-24/reverse-higher-ad/README.md",
+            "/code/validated-examples/2026-11-24/reverse-higher-ad/cases.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#hessian-vector-products-ja",
+          "execution": "/numerical-methods-atlas/validation/hessian-vector-products/?lang=ja#hessian-vector-products-ja-measurements",
+          "note": {
+            "ja": "固定入力の正規source実行と独立展開ZIPのpytest/全入力再実行が合格。これは保存した局所科学検証で、同一SHAのHR公開後HTTP/UI/外部Linux確認の完了を意味しません。",
+            "en": "Canonical source execution and independently extracted ZIP pytest/all-input reruns passed. This is saved local scientific verification, not a claim that same-SHA post-publication HR HTTP/UI/external Linux checks are complete."
+          }
+        }
+      }
     },
     {
       "id": "automatic-differentiation-3",
@@ -5603,7 +5817,7 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
+      "state": "verified",
       "current": "独自の forward dual-number、JVP/Jacobian と解析微分・有限差分の Bratu 比較は実装・配布・検証済み。逆モード/VJP/HVP は章内説明がある。",
       "tasks": [
         "abs/max、箱制約境界、反復停止条件を含む簡単な例で方向依存・失敗を表示",
@@ -5616,6 +5830,20 @@
           "url": "https://docs.jax.dev/en/latest/301/index.html",
           "checked_on": "2026-11-23",
           "review": "公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。"
+        },
+        {
+          "title": "The Autodiff Cookbook",
+          "url": "https://docs.jax.dev/en/latest/notebooks/autodiff_cookbook.html",
+          "review": "Selected definitions and composition formulas only. A new educational tape will implement the stated finite subset. No JAX installation, execution, timing replication or implementation-source audit. Unread: Original reverse-mode/HVP papers, JAX transformation implementation, Unselected cookbook sections. Publication year not established (n.d.).",
+          "checked_on": "2026-11-24",
+          "review_level": "official-documentation-selected-mathematical-sections"
+        },
+        {
+          "title": "Frequently asked questions: undefined branches and ordering",
+          "url": "https://docs.jax.dev/en/latest/faq.html",
+          "review": "Read invalid inactive-branch and ordering discussions. We use an explicitly different strict nondifferentiability policy, not a universal JAX tie rule. Unread: Linked issue threads, Generalized derivative original papers. Publication year not established (n.d.).",
+          "checked_on": "2026-11-24",
+          "review_level": "official-documentation-selected-sections"
         }
       ],
       "baseline_evidence": [
@@ -5630,9 +5858,63 @@
           "path": "code/autodiff/2026-11-22/numart/autodiff.py"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24/reverse-higher-ad/inputs.json",
+          "/code/validated-examples/2026-11-24/reverse-higher-ad/acceptance.json",
+          "/code/validated-examples/2026-11-24/reverse-higher-ad/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24/reverse-higher-ad/results/kink-branch-derivatives.png",
+          "/code/validated-examples/2026-11-24/reverse-higher-ad/results/kink-branch-derivatives-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24/reverse-higher-ad/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24/reverse-higher-ad/README.md",
+          "/code/validated-examples/2026-11-24/reverse-higher-ad/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#kink-branch-derivatives-ja",
+        "execution": "/numerical-methods-atlas/validation/kink-branch-derivatives/?lang=ja#kink-branch-derivatives-ja-measurements",
+        "note": {
+          "ja": "固定入力の正規source実行と独立展開ZIPのpytest/全入力再実行が合格。これは保存した局所科学検証で、同一SHAのHR公開後HTTP/UI/外部Linux確認の完了を意味しません。",
+          "en": "Canonical source execution and independently extracted ZIP pytest/all-input reruns passed. This is saved local scientific verification, not a claim that same-SHA post-publication HR HTTP/UI/external Linux checks are complete."
+        }
+      },
       "sequence": 61,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-24/reverse-higher-ad/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-24/reverse-higher-ad/inputs.json",
+            "/code/validated-examples/2026-11-24/reverse-higher-ad/acceptance.json",
+            "/code/validated-examples/2026-11-24/reverse-higher-ad/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-24/reverse-higher-ad/results/kink-branch-derivatives.png",
+            "/code/validated-examples/2026-11-24/reverse-higher-ad/results/kink-branch-derivatives-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-24/reverse-higher-ad/run.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-24/reverse-higher-ad/README.md",
+            "/code/validated-examples/2026-11-24/reverse-higher-ad/cases.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#kink-branch-derivatives-ja",
+          "execution": "/numerical-methods-atlas/validation/kink-branch-derivatives/?lang=ja#kink-branch-derivatives-ja-measurements",
+          "note": {
+            "ja": "固定入力の正規source実行と独立展開ZIPのpytest/全入力再実行が合格。これは保存した局所科学検証で、同一SHAのHR公開後HTTP/UI/外部Linux確認の完了を意味しません。",
+            "en": "Canonical source execution and independently extracted ZIP pytest/all-input reruns passed. This is saved local scientific verification, not a claim that same-SHA post-publication HR HTTP/UI/external Linux checks are complete."
+          }
+        }
+      }
     },
     {
       "id": "sensitivity-adjoint-1",
@@ -5645,7 +5927,7 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
+      "state": "verified",
       "current": "Bratu の陰関数感度と離散随伴、解析パラメータ微分、有限差分、前進/随伴一致がある。現在の実例は定常・小規模密行列で、逆問題も一つ又は二つのパラメータ。",
       "tasks": [
         "小さい拡散 ODE 半離散系又は既知線形 ODE の終端目的関数を使用",
@@ -5664,6 +5946,34 @@
           "url": "https://docs.jax.dev/en/latest/301/index.html",
           "checked_on": "2026-11-23",
           "review": "公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。"
+        },
+        {
+          "title": "JAX vjp API",
+          "url": "https://docs.jax.dev/en/latest/_autosummary/jax.vjp.html",
+          "review": "Reverse-mode cotangent map definition and input/output shapes. Terminology only; no JAX implementation, library-equivalence or framework execution claim.",
+          "checked_on": "2026-11-24",
+          "review_level": "official-documentation-selected-API"
+        },
+        {
+          "title": "Python3.12.16 decimal documentation",
+          "url": "https://docs.python.org/3.12/library/decimal.html",
+          "review": "Decimal.exp correctly rounded half-even and from_float exact binary-float conversion. This supports arithmetic choices, not an already qualified numerical oracle.",
+          "checked_on": "2026-11-24",
+          "review_level": "official-documentation-selected-API"
+        },
+        {
+          "title": "Dickson,Kelley,Ipsen,Kevrekidis:Condition Estimates for Pseudo-Arclength Continuation",
+          "url": "https://ipsen.math.ncsu.edu/ps/sinum65438.pdf",
+          "review": "Section2.1 implicit sensitivity and2.2 simple-fold definition/arclength equations, printed265–267. Full proofs/experiments not audited; no reference table copied. Continuation already exists in56.",
+          "checked_on": "2026-11-24",
+          "review_level": "author-paper-selected-equations"
+        },
+        {
+          "title": "Author-hosted INF5620 nonlinear exercises,Problem8,Eq52",
+          "url": "https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html",
+          "review": "Bratu BVP/cosh family/critical value and FD exercise. Source theta=2*the alpha in old sensitivity module. Continuum family only, never the exact discrete fold/state.",
+          "checked_on": "2026-11-24",
+          "review_level": "author-teaching-source-selected-equation"
         }
       ],
       "baseline_evidence": [
@@ -5681,9 +5991,77 @@
           "path": "code/bratu-multinverse/2026-11-22/numart/bratu_multinverse.py"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24/adjoint/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24/adjoint/inputs.json",
+          "/code/validated-examples/2026-11-24/adjoint/acceptance.json",
+          "/code/validated-examples/2026-11-24/adjoint/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24/adjoint/results/diffusion-discrete-adjoint.png",
+          "/code/validated-examples/2026-11-24/adjoint/results/diffusion-discrete-adjoint-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24/adjoint/run.py",
+          "/code/validated-examples/2026-11-24/adjoint/operators.py",
+          "/code/validated-examples/2026-11-24/adjoint/krylov.py",
+          "/code/validated-examples/2026-11-24/adjoint/newton.py",
+          "/code/validated-examples/2026-11-24/adjoint/time_adjoint.py",
+          "/code/validated-examples/2026-11-24/adjoint/references/modal_decimal.py",
+          "/code/validated-examples/2026-11-24/adjoint/references/shooting_decimal.py",
+          "/code/validated-examples/2026-11-24/adjoint/references/linear_oracle.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24/adjoint/README.md",
+          "/code/validated-examples/2026-11-24/adjoint/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#diffusion-discrete-adjoint-ja",
+        "execution": "/numerical-methods-atlas/validation/diffusion-discrete-adjoint/?lang=ja#diffusion-discrete-adjoint-ja-measurements",
+        "note": {
+          "ja": "固定入力の正規source実行と独立展開ZIPのpytest/全入力再実行が合格。これは保存した局所科学検証で、同一SHAのHR公開後HTTP/UI/外部Linux確認の完了を意味しません。",
+          "en": "Canonical source execution and independently extracted ZIP pytest/all-input reruns passed. This is saved local scientific verification, not a claim that same-SHA post-publication HR HTTP/UI/external Linux checks are complete."
+        }
+      },
       "sequence": 62,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-24/adjoint/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-24/adjoint/inputs.json",
+            "/code/validated-examples/2026-11-24/adjoint/acceptance.json",
+            "/code/validated-examples/2026-11-24/adjoint/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-24/adjoint/results/diffusion-discrete-adjoint.png",
+            "/code/validated-examples/2026-11-24/adjoint/results/diffusion-discrete-adjoint-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-24/adjoint/run.py",
+            "/code/validated-examples/2026-11-24/adjoint/operators.py",
+            "/code/validated-examples/2026-11-24/adjoint/krylov.py",
+            "/code/validated-examples/2026-11-24/adjoint/newton.py",
+            "/code/validated-examples/2026-11-24/adjoint/time_adjoint.py",
+            "/code/validated-examples/2026-11-24/adjoint/references/modal_decimal.py",
+            "/code/validated-examples/2026-11-24/adjoint/references/shooting_decimal.py",
+            "/code/validated-examples/2026-11-24/adjoint/references/linear_oracle.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-24/adjoint/README.md",
+            "/code/validated-examples/2026-11-24/adjoint/cases.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#diffusion-discrete-adjoint-ja",
+          "execution": "/numerical-methods-atlas/validation/diffusion-discrete-adjoint/?lang=ja#diffusion-discrete-adjoint-ja-measurements",
+          "note": {
+            "ja": "固定入力の正規source実行と独立展開ZIPのpytest/全入力再実行が合格。これは保存した局所科学検証で、同一SHAのHR公開後HTTP/UI/外部Linux確認の完了を意味しません。",
+            "en": "Canonical source execution and independently extracted ZIP pytest/all-input reruns passed. This is saved local scientific verification, not a claim that same-SHA post-publication HR HTTP/UI/external Linux checks are complete."
+          }
+        }
+      }
     },
     {
       "id": "sensitivity-adjoint-2",
@@ -5696,7 +6074,7 @@
       "priority": "P1",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
+      "state": "verified",
       "current": "Bratu の陰関数感度と離散随伴、解析パラメータ微分、有限差分、前進/随伴一致がある。現在の実例は定常・小規模密行列で、逆問題も一つ又は二つのパラメータ。",
       "tasks": [
         "Bratu 臨界 λ へ近づく列で最小特異値、感度、差分刻み依存を保存",
@@ -5715,6 +6093,41 @@
           "url": "https://docs.jax.dev/en/latest/301/index.html",
           "checked_on": "2026-11-23",
           "review": "公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。"
+        },
+        {
+          "title": "JAX vjp API",
+          "url": "https://docs.jax.dev/en/latest/_autosummary/jax.vjp.html",
+          "review": "Reverse-mode cotangent map definition and input/output shapes. Terminology only; no JAX implementation, library-equivalence or framework execution claim.",
+          "checked_on": "2026-11-24",
+          "review_level": "official-documentation-selected-API"
+        },
+        {
+          "title": "Python3.12.16 decimal documentation",
+          "url": "https://docs.python.org/3.12/library/decimal.html",
+          "review": "Decimal.exp correctly rounded half-even and from_float exact binary-float conversion. This supports arithmetic choices, not an already qualified numerical oracle.",
+          "checked_on": "2026-11-24",
+          "review_level": "official-documentation-selected-API"
+        },
+        {
+          "title": "Dickson,Kelley,Ipsen,Kevrekidis:Condition Estimates for Pseudo-Arclength Continuation",
+          "url": "https://ipsen.math.ncsu.edu/ps/sinum65438.pdf",
+          "review": "Section2.1 implicit sensitivity and2.2 simple-fold definition/arclength equations, printed265–267. Full proofs/experiments not audited; no reference table copied. Continuation already exists in56.",
+          "checked_on": "2026-11-24",
+          "review_level": "author-paper-selected-equations"
+        },
+        {
+          "title": "Author-hosted INF5620 nonlinear exercises,Problem8,Eq52",
+          "url": "https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html",
+          "review": "Bratu BVP/cosh family/critical value and FD exercise. Source theta=2*the alpha in old sensitivity module. Continuum family only, never the exact discrete fold/state.",
+          "checked_on": "2026-11-24",
+          "review_level": "author-teaching-source-selected-equation"
+        },
+        {
+          "title": "Python3.12.16 math documentation,math.sumprod",
+          "url": "https://docs.python.org/3.12/library/math.html#math.sumprod",
+          "review": "Selected math.sumprod definition,matching-length error,added-in3.12 and builtinfloat/mixedfloat intermediate arithmetic semantics only. No full CPython C implementation audit by this author. Documented extended intermediate precision; no wholeCPython audit or universal correctrounding claim.",
+          "checked_on": "2026-11-24",
+          "review_level": "official-selected-API"
         }
       ],
       "baseline_evidence": [
@@ -5732,9 +6145,87 @@
           "path": "code/bratu-multinverse/2026-11-22/numart/bratu_multinverse.py"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24/adjoint/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24/adjoint/inputs.json",
+          "/code/validated-examples/2026-11-24/adjoint/acceptance.json",
+          "/code/validated-examples/2026-11-24/adjoint/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24/adjoint/results/bratu-fold-sensitivity.png",
+          "/code/validated-examples/2026-11-24/adjoint/results/bratu-fold-sensitivity-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24/adjoint/run.py",
+          "/code/validated-examples/2026-11-24/adjoint/operators.py",
+          "/code/validated-examples/2026-11-24/adjoint/krylov.py",
+          "/code/validated-examples/2026-11-24/adjoint/newton.py",
+          "/code/validated-examples/2026-11-24/adjoint/fold_study.py",
+          "/code/validated-examples/2026-11-24/adjoint/references/modal_decimal.py",
+          "/code/validated-examples/2026-11-24/adjoint/references/shooting_decimal.py",
+          "/code/validated-examples/2026-11-24/adjoint/references/linear_oracle.py",
+          "/code/validated-examples/2026-11-24/adjoint/balanced_operator.py",
+          "/code/validated-examples/2026-11-24/adjoint/state_linear.py",
+          "/code/validated-examples/2026-11-24/adjoint/state_expansion.py",
+          "/code/validated-examples/2026-11-24/adjoint/state_krylov.py",
+          "/code/validated-examples/2026-11-24/adjoint/state_jacobian.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24/adjoint/README.md",
+          "/code/validated-examples/2026-11-24/adjoint/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bratu-fold-sensitivity-ja",
+        "execution": "/numerical-methods-atlas/validation/bratu-fold-sensitivity/?lang=ja#bratu-fold-sensitivity-ja-measurements",
+        "note": {
+          "ja": "固定入力の正規source実行と独立展開ZIPのpytest/全入力再実行が合格。これは保存した局所科学検証で、同一SHAのHR公開後HTTP/UI/外部Linux確認の完了を意味しません。",
+          "en": "Canonical source execution and independently extracted ZIP pytest/all-input reruns passed. This is saved local scientific verification, not a claim that same-SHA post-publication HR HTTP/UI/external Linux checks are complete."
+        }
+      },
       "sequence": 63,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-24/adjoint/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-24/adjoint/inputs.json",
+            "/code/validated-examples/2026-11-24/adjoint/acceptance.json",
+            "/code/validated-examples/2026-11-24/adjoint/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-24/adjoint/results/bratu-fold-sensitivity.png",
+            "/code/validated-examples/2026-11-24/adjoint/results/bratu-fold-sensitivity-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-24/adjoint/run.py",
+            "/code/validated-examples/2026-11-24/adjoint/operators.py",
+            "/code/validated-examples/2026-11-24/adjoint/krylov.py",
+            "/code/validated-examples/2026-11-24/adjoint/newton.py",
+            "/code/validated-examples/2026-11-24/adjoint/fold_study.py",
+            "/code/validated-examples/2026-11-24/adjoint/references/modal_decimal.py",
+            "/code/validated-examples/2026-11-24/adjoint/references/shooting_decimal.py",
+            "/code/validated-examples/2026-11-24/adjoint/references/linear_oracle.py",
+            "/code/validated-examples/2026-11-24/adjoint/balanced_operator.py",
+            "/code/validated-examples/2026-11-24/adjoint/state_linear.py",
+            "/code/validated-examples/2026-11-24/adjoint/state_expansion.py",
+            "/code/validated-examples/2026-11-24/adjoint/state_krylov.py",
+            "/code/validated-examples/2026-11-24/adjoint/state_jacobian.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-24/adjoint/README.md",
+            "/code/validated-examples/2026-11-24/adjoint/cases.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bratu-fold-sensitivity-ja",
+          "execution": "/numerical-methods-atlas/validation/bratu-fold-sensitivity/?lang=ja#bratu-fold-sensitivity-ja-measurements",
+          "note": {
+            "ja": "固定入力の正規source実行と独立展開ZIPのpytest/全入力再実行が合格。これは保存した局所科学検証で、同一SHAのHR公開後HTTP/UI/外部Linux確認の完了を意味しません。",
+            "en": "Canonical source execution and independently extracted ZIP pytest/all-input reruns passed. This is saved local scientific verification, not a claim that same-SHA post-publication HR HTTP/UI/external Linux checks are complete."
+          }
+        }
+      }
     },
     {
       "id": "sensitivity-adjoint-3",
@@ -5747,7 +6238,7 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
+      "state": "verified",
       "current": "Bratu の陰関数感度と離散随伴、解析パラメータ微分、有限差分、前進/随伴一致がある。現在の実例は定常・小規模密行列で、逆問題も一つ又は二つのパラメータ。",
       "tasks": [
         "二つの基底から小さな分布係数へ拡張し、全 Jacobian を作る場合と比較",
@@ -5766,6 +6257,41 @@
           "url": "https://docs.jax.dev/en/latest/301/index.html",
           "checked_on": "2026-11-23",
           "review": "公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。"
+        },
+        {
+          "title": "JAX vjp API",
+          "url": "https://docs.jax.dev/en/latest/_autosummary/jax.vjp.html",
+          "review": "Reverse-mode cotangent map definition and input/output shapes. Terminology only; no JAX implementation, library-equivalence or framework execution claim.",
+          "checked_on": "2026-11-24",
+          "review_level": "official-documentation-selected-API"
+        },
+        {
+          "title": "Python3.12.16 decimal documentation",
+          "url": "https://docs.python.org/3.12/library/decimal.html",
+          "review": "Decimal.exp correctly rounded half-even and from_float exact binary-float conversion. This supports arithmetic choices, not an already qualified numerical oracle.",
+          "checked_on": "2026-11-24",
+          "review_level": "official-documentation-selected-API"
+        },
+        {
+          "title": "Dickson,Kelley,Ipsen,Kevrekidis:Condition Estimates for Pseudo-Arclength Continuation",
+          "url": "https://ipsen.math.ncsu.edu/ps/sinum65438.pdf",
+          "review": "Section2.1 implicit sensitivity and2.2 simple-fold definition/arclength equations, printed265–267. Full proofs/experiments not audited; no reference table copied. Continuation already exists in56.",
+          "checked_on": "2026-11-24",
+          "review_level": "author-paper-selected-equations"
+        },
+        {
+          "title": "Author-hosted INF5620 nonlinear exercises,Problem8,Eq52",
+          "url": "https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html",
+          "review": "Bratu BVP/cosh family/critical value and FD exercise. Source theta=2*the alpha in old sensitivity module. Continuum family only, never the exact discrete fold/state.",
+          "checked_on": "2026-11-24",
+          "review_level": "author-teaching-source-selected-equation"
+        },
+        {
+          "title": "Python3.12.16 math documentation,math.sumprod",
+          "url": "https://docs.python.org/3.12/library/math.html#math.sumprod",
+          "review": "Selected math.sumprod definition,matching-length error,added-in3.12 and builtinfloat/mixedfloat intermediate arithmetic semantics only. No full CPython C implementation audit by this author. Documented extended intermediate precision; no wholeCPython audit or universal correctrounding claim.",
+          "checked_on": "2026-11-24",
+          "review_level": "official-selected-API"
         }
       ],
       "baseline_evidence": [
@@ -5783,9 +6309,87 @@
           "path": "code/bratu-multinverse/2026-11-22/numart/bratu_multinverse.py"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24/adjoint/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24/adjoint/inputs.json",
+          "/code/validated-examples/2026-11-24/adjoint/acceptance.json",
+          "/code/validated-examples/2026-11-24/adjoint/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24/adjoint/results/bratu-distributed-vjp.png",
+          "/code/validated-examples/2026-11-24/adjoint/results/bratu-distributed-vjp-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24/adjoint/run.py",
+          "/code/validated-examples/2026-11-24/adjoint/operators.py",
+          "/code/validated-examples/2026-11-24/adjoint/krylov.py",
+          "/code/validated-examples/2026-11-24/adjoint/newton.py",
+          "/code/validated-examples/2026-11-24/adjoint/distributed.py",
+          "/code/validated-examples/2026-11-24/adjoint/references/modal_decimal.py",
+          "/code/validated-examples/2026-11-24/adjoint/references/shooting_decimal.py",
+          "/code/validated-examples/2026-11-24/adjoint/references/linear_oracle.py",
+          "/code/validated-examples/2026-11-24/adjoint/balanced_operator.py",
+          "/code/validated-examples/2026-11-24/adjoint/state_linear.py",
+          "/code/validated-examples/2026-11-24/adjoint/state_expansion.py",
+          "/code/validated-examples/2026-11-24/adjoint/state_krylov.py",
+          "/code/validated-examples/2026-11-24/adjoint/state_jacobian.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24/adjoint/README.md",
+          "/code/validated-examples/2026-11-24/adjoint/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bratu-distributed-vjp-ja",
+        "execution": "/numerical-methods-atlas/validation/bratu-distributed-vjp/?lang=ja#bratu-distributed-vjp-ja-measurements",
+        "note": {
+          "ja": "固定入力の正規source実行と独立展開ZIPのpytest/全入力再実行が合格。これは保存した局所科学検証で、同一SHAのHR公開後HTTP/UI/外部Linux確認の完了を意味しません。",
+          "en": "Canonical source execution and independently extracted ZIP pytest/all-input reruns passed. This is saved local scientific verification, not a claim that same-SHA post-publication HR HTTP/UI/external Linux checks are complete."
+        }
+      },
       "sequence": 64,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-24/adjoint/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-24/adjoint/inputs.json",
+            "/code/validated-examples/2026-11-24/adjoint/acceptance.json",
+            "/code/validated-examples/2026-11-24/adjoint/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-24/adjoint/results/bratu-distributed-vjp.png",
+            "/code/validated-examples/2026-11-24/adjoint/results/bratu-distributed-vjp-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-24/adjoint/run.py",
+            "/code/validated-examples/2026-11-24/adjoint/operators.py",
+            "/code/validated-examples/2026-11-24/adjoint/krylov.py",
+            "/code/validated-examples/2026-11-24/adjoint/newton.py",
+            "/code/validated-examples/2026-11-24/adjoint/distributed.py",
+            "/code/validated-examples/2026-11-24/adjoint/references/modal_decimal.py",
+            "/code/validated-examples/2026-11-24/adjoint/references/shooting_decimal.py",
+            "/code/validated-examples/2026-11-24/adjoint/references/linear_oracle.py",
+            "/code/validated-examples/2026-11-24/adjoint/balanced_operator.py",
+            "/code/validated-examples/2026-11-24/adjoint/state_linear.py",
+            "/code/validated-examples/2026-11-24/adjoint/state_expansion.py",
+            "/code/validated-examples/2026-11-24/adjoint/state_krylov.py",
+            "/code/validated-examples/2026-11-24/adjoint/state_jacobian.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-24/adjoint/README.md",
+            "/code/validated-examples/2026-11-24/adjoint/cases.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bratu-distributed-vjp-ja",
+          "execution": "/numerical-methods-atlas/validation/bratu-distributed-vjp/?lang=ja#bratu-distributed-vjp-ja-measurements",
+          "note": {
+            "ja": "固定入力の正規source実行と独立展開ZIPのpytest/全入力再実行が合格。これは保存した局所科学検証で、同一SHAのHR公開後HTTP/UI/外部Linux確認の完了を意味しません。",
+            "en": "Canonical source execution and independently extracted ZIP pytest/all-input reruns passed. This is saved local scientific verification, not a claim that same-SHA post-publication HR HTTP/UI/external Linux checks are complete."
+          }
+        }
+      }
     },
     {
       "id": "inverse-optimization-1",
@@ -5798,7 +6402,7 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
+      "state": "verified",
       "current": "Bratu λ 推定、二パラメータ空間係数推定、箱制約投影勾配・Armijo、Tikhonov 正則化とデータのみの感度 SVD による識別可能性を実装済み。BFGS と Rosenbrock の検証案は章にあるが未実行。SVD 診断は統計的 Fisher 情報・厳密 Hessian とは呼んでいない。",
       "tasks": [
         "既存二パラメータ Bratu で投影勾配と同じ観測・誤差基準で比較",
@@ -5811,6 +6415,13 @@
           "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.least_squares.html",
           "checked_on": "2026-11-23",
           "review": "公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。"
+        },
+        {
+          "title": "SciPy 1.14.1 least_squares documentation",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.optimize.least_squares.html",
+          "review": "Parameters, bounds, callable Jacobian, method-specific ftol/xtol/gtol and x_scale, max_nfev, returned status and Notes on LM and TRF. LM does not handle bounds and requires at least as many residual rows as variables; TRF supports bounds. MINPACK/STIR original papers were not read in this preparation.",
+          "checked_on": "2026-11-24",
+          "review_level": "selected-primary-scope"
         }
       ],
       "baseline_evidence": [
@@ -5835,9 +6446,71 @@
           "id": "fletcher1970"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24/inverse-optimization/inputs.json",
+          "/code/validated-examples/2026-11-24/inverse-optimization/acceptance.json",
+          "/code/validated-examples/2026-11-24/inverse-optimization/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24/inverse-optimization/results/bratu-gn-lm-bounds.png",
+          "/code/validated-examples/2026-11-24/inverse-optimization/results/bratu-gn-lm-bounds-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24/inverse-optimization/run.py",
+          "/code/validated-examples/2026-11-24/inverse-optimization/least_squares.py",
+          "/code/validated-examples/2026-11-24/inverse-optimization/model.py",
+          "/code/validated-examples/2026-11-24/inverse-optimization/references/thomas.py",
+          "/code/validated-examples/2026-11-24/inverse-optimization/references/oracles.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24/inverse-optimization/README.md",
+          "/code/validated-examples/2026-11-24/inverse-optimization/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bratu-gn-lm-bounds-ja",
+        "execution": "/numerical-methods-atlas/validation/bratu-gn-lm-bounds/?lang=ja#bratu-gn-lm-bounds-ja-measurements",
+        "note": {
+          "ja": "固定入力の正規source実行と独立展開ZIPのpytest/全入力再実行が合格。これは保存した局所科学検証で、同一SHAのHR公開後HTTP/UI/外部Linux確認の完了を意味しません。",
+          "en": "Canonical source execution and independently extracted ZIP pytest/all-input reruns passed. This is saved local scientific verification, not a claim that same-SHA post-publication HR HTTP/UI/external Linux checks are complete."
+        }
+      },
       "sequence": 65,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-24/inverse-optimization/inputs.json",
+            "/code/validated-examples/2026-11-24/inverse-optimization/acceptance.json",
+            "/code/validated-examples/2026-11-24/inverse-optimization/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-24/inverse-optimization/results/bratu-gn-lm-bounds.png",
+            "/code/validated-examples/2026-11-24/inverse-optimization/results/bratu-gn-lm-bounds-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-24/inverse-optimization/run.py",
+            "/code/validated-examples/2026-11-24/inverse-optimization/least_squares.py",
+            "/code/validated-examples/2026-11-24/inverse-optimization/model.py",
+            "/code/validated-examples/2026-11-24/inverse-optimization/references/thomas.py",
+            "/code/validated-examples/2026-11-24/inverse-optimization/references/oracles.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-24/inverse-optimization/README.md",
+            "/code/validated-examples/2026-11-24/inverse-optimization/cases.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bratu-gn-lm-bounds-ja",
+          "execution": "/numerical-methods-atlas/validation/bratu-gn-lm-bounds/?lang=ja#bratu-gn-lm-bounds-ja-measurements",
+          "note": {
+            "ja": "固定入力の正規source実行と独立展開ZIPのpytest/全入力再実行が合格。これは保存した局所科学検証で、同一SHAのHR公開後HTTP/UI/外部Linux確認の完了を意味しません。",
+            "en": "Canonical source execution and independently extracted ZIP pytest/all-input reruns passed. This is saved local scientific verification, not a claim that same-SHA post-publication HR HTTP/UI/external Linux checks are complete."
+          }
+        }
+      }
     },
     {
       "id": "inverse-optimization-2",
@@ -5850,7 +6523,7 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "planned",
+      "state": "verified",
       "current": "Bratu λ 推定、二パラメータ空間係数推定、箱制約投影勾配・Armijo、Tikhonov 正則化とデータのみの感度 SVD による識別可能性を実装済み。BFGS と Rosenbrock の検証案は章にあるが未実行。SVD 診断は統計的 Fisher 情報・厳密 Hessian とは呼んでいない。",
       "tasks": [
         "既知 SPD 二次関数と Rosenbrock の複数初期値で勾配検査・曲率条件を保存",
@@ -5863,6 +6536,40 @@
           "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.least_squares.html",
           "checked_on": "2026-11-23",
           "review": "公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。"
+        },
+        {
+          "title": "On the limited memory BFGS method for large scale optimization",
+          "url": "https://users.iems.northwestern.edu/~nocedal/PDFfiles/limited-memory.pdf",
+          "review": "Author-hosted PDF selected physical pages 3–5 (printed 2–4), rendered locally and visually inspected: limited storage, deletion of oldest correction, Eq. (2.1) inverse-BFGS, Algorithm 2.1 and Eq. (2.6) retained-update construction. No full-paper/proof/experiment or Section 4 scaling review. The selected original uses weak Wolfe; this study deliberately uses a separately specified strong-Wolfe line search. Current-gamma least-squares scaling is independently derived here, not attributed to unread text.",
+          "checked_on": "2026-11-24",
+          "review_level": "selected-primary-scope"
+        },
+        {
+          "title": "SciPy 1.14.1 line_search documentation",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.optimize.line_search.html",
+          "review": "Signature, c1/c2, descent-direction requirement, returned failure None and evaluation counts. Cited textbook pages were not read.",
+          "checked_on": "2026-11-24",
+          "review_level": "selected-primary-scope"
+        },
+        {
+          "title": "SciPy 1.14.1 BFGS documentation",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/optimize.minimize-bfgs.html",
+          "review": "Options gtol, norm, c1/c2, hess_inv0 and precision-loss notes; no claim of reading a BFGS original paper.",
+          "checked_on": "2026-11-24",
+          "review_level": "selected-primary-scope"
+        },
+        {
+          "title": "SciPy 1.14.1 L-BFGS-B documentation",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/optimize.minimize-lbfgsb.html",
+          "review": "Options maxcor, ftol, gtol/projected-gradient convention, maxfun, maxiter and maxls.",
+          "checked_on": "2026-11-24",
+          "review_level": "selected-primary-scope"
+        },
+        {
+          "title": "A new approach to variable metric algorithms",
+          "url": "https://academic.oup.com/comjnl/article-abstract/13/3/317/345520?login=false",
+          "review": "Prior saved publisher metadata/abstract-search record only. Original article full text remains unavailable/unread; no new request was made and no derivation is claimed to have been checked against it.",
+          "review_level": "bibliography-only-original-unread"
         }
       ],
       "baseline_evidence": [
@@ -5887,9 +6594,65 @@
           "id": "fletcher1970"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24/inverse-optimization/inputs.json",
+          "/code/validated-examples/2026-11-24/inverse-optimization/acceptance.json",
+          "/code/validated-examples/2026-11-24/inverse-optimization/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24/inverse-optimization/results/bfgs-lbfgs-controls.png",
+          "/code/validated-examples/2026-11-24/inverse-optimization/results/bfgs-lbfgs-controls-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24/inverse-optimization/run.py",
+          "/code/validated-examples/2026-11-24/inverse-optimization/quasi_newton.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24/inverse-optimization/README.md",
+          "/code/validated-examples/2026-11-24/inverse-optimization/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bfgs-lbfgs-controls-ja",
+        "execution": "/numerical-methods-atlas/validation/bfgs-lbfgs-controls/?lang=ja#bfgs-lbfgs-controls-ja-measurements",
+        "note": {
+          "ja": "固定入力の正規source実行と独立展開ZIPのpytest/全入力再実行が合格。これは保存した局所科学検証で、同一SHAのHR公開後HTTP/UI/外部Linux確認の完了を意味しません。",
+          "en": "Canonical source execution and independently extracted ZIP pytest/all-input reruns passed. This is saved local scientific verification, not a claim that same-SHA post-publication HR HTTP/UI/external Linux checks are complete."
+        }
+      },
       "sequence": 66,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-24/inverse-optimization/inputs.json",
+            "/code/validated-examples/2026-11-24/inverse-optimization/acceptance.json",
+            "/code/validated-examples/2026-11-24/inverse-optimization/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-24/inverse-optimization/results/bfgs-lbfgs-controls.png",
+            "/code/validated-examples/2026-11-24/inverse-optimization/results/bfgs-lbfgs-controls-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-24/inverse-optimization/run.py",
+            "/code/validated-examples/2026-11-24/inverse-optimization/quasi_newton.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-24/inverse-optimization/README.md",
+            "/code/validated-examples/2026-11-24/inverse-optimization/cases.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bfgs-lbfgs-controls-ja",
+          "execution": "/numerical-methods-atlas/validation/bfgs-lbfgs-controls/?lang=ja#bfgs-lbfgs-controls-ja-measurements",
+          "note": {
+            "ja": "固定入力の正規source実行と独立展開ZIPのpytest/全入力再実行が合格。これは保存した局所科学検証で、同一SHAのHR公開後HTTP/UI/外部Linux確認の完了を意味しません。",
+            "en": "Canonical source execution and independently extracted ZIP pytest/all-input reruns passed. This is saved local scientific verification, not a claim that same-SHA post-publication HR HTTP/UI/external Linux checks are complete."
+          }
+        }
+      }
     },
     {
       "id": "inverse-optimization-3",
@@ -5902,7 +6665,7 @@
       "priority": "P1",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
+      "state": "verified",
       "current": "Bratu λ 推定、二パラメータ空間係数推定、箱制約投影勾配・Armijo、Tikhonov 正則化とデータのみの感度 SVD による識別可能性を実装済み。BFGS と Rosenbrock の検証案は章にあるが未実行。SVD 診断は統計的 Fisher 情報・厳密 Hessian とは呼んでいない。",
       "tasks": [
         "観測を細かい別格子で作り、粗格子で推定して inverse crime を分離",
@@ -5916,6 +6679,27 @@
           "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.least_squares.html",
           "checked_on": "2026-11-23",
           "review": "公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。"
+        },
+        {
+          "title": "Regularization Tools, Version 4.1 for Matlab 7.3",
+          "url": "https://www2.compute.dtu.dk/~pcha/Regutools/RTv4manual.pdf",
+          "review": "Official author manual: selected text around Section 2.5 and Section 2.9; physical pages 20 and 37 (printed 18 and 35) rendered locally and visually inspected. L-curve residual/solution norm tradeoff and discrepancy equation (2.61) were read. Four-point chord curvature here is a finite-list diagnostic, not the manual spline/corner algorithm, a theorem of optimal regularization or coverage. Original software (1994) and later article (2007) are separate bibliographic works and were not read.",
+          "checked_on": "2026-11-24",
+          "review_level": "selected-primary-scope"
+        },
+        {
+          "title": "SciPy 1.14.1 curve_fit documentation",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.optimize.curve_fit.html",
+          "review": "sigma/absolute_sigma and covariance interpretation sections. The penalized sandwich covariance in this study is derived independently; it is not presented as curve_fit output.",
+          "checked_on": "2026-11-24",
+          "review_level": "selected-primary-scope"
+        },
+        {
+          "title": "SciPy 1.14.1 least_squares documentation",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.optimize.least_squares.html",
+          "review": "Parameters, bounds, callable Jacobian, method-specific ftol/xtol/gtol and x_scale, max_nfev, returned status and Notes on LM and TRF. LM does not handle bounds and requires at least as many residual rows as variables; TRF supports bounds. MINPACK/STIR original papers were not read in this preparation.",
+          "checked_on": "2026-11-24",
+          "review_level": "selected-primary-scope"
         }
       ],
       "baseline_evidence": [
@@ -5940,9 +6724,67 @@
           "id": "fletcher1970"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24/inverse-optimization/inputs.json",
+          "/code/validated-examples/2026-11-24/inverse-optimization/acceptance.json",
+          "/code/validated-examples/2026-11-24/inverse-optimization/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24/inverse-optimization/results/bratu-noise-regularization.png",
+          "/code/validated-examples/2026-11-24/inverse-optimization/results/bratu-noise-regularization-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24/inverse-optimization/run.py",
+          "/code/validated-examples/2026-11-24/inverse-optimization/regularization.py",
+          "/code/validated-examples/2026-11-24/inverse-optimization/least_squares.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24/inverse-optimization/README.md",
+          "/code/validated-examples/2026-11-24/inverse-optimization/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bratu-noise-regularization-ja",
+        "execution": "/numerical-methods-atlas/validation/bratu-noise-regularization/?lang=ja#bratu-noise-regularization-ja-measurements",
+        "note": {
+          "ja": "固定入力の正規source実行と独立展開ZIPのpytest/全入力再実行が合格。これは保存した局所科学検証で、同一SHAのHR公開後HTTP/UI/外部Linux確認の完了を意味しません。",
+          "en": "Canonical source execution and independently extracted ZIP pytest/all-input reruns passed. This is saved local scientific verification, not a claim that same-SHA post-publication HR HTTP/UI/external Linux checks are complete."
+        }
+      },
       "sequence": 67,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-24/inverse-optimization/inputs.json",
+            "/code/validated-examples/2026-11-24/inverse-optimization/acceptance.json",
+            "/code/validated-examples/2026-11-24/inverse-optimization/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-24/inverse-optimization/results/bratu-noise-regularization.png",
+            "/code/validated-examples/2026-11-24/inverse-optimization/results/bratu-noise-regularization-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-24/inverse-optimization/run.py",
+            "/code/validated-examples/2026-11-24/inverse-optimization/regularization.py",
+            "/code/validated-examples/2026-11-24/inverse-optimization/least_squares.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-24/inverse-optimization/README.md",
+            "/code/validated-examples/2026-11-24/inverse-optimization/cases.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bratu-noise-regularization-ja",
+          "execution": "/numerical-methods-atlas/validation/bratu-noise-regularization/?lang=ja#bratu-noise-regularization-ja-measurements",
+          "note": {
+            "ja": "固定入力の正規source実行と独立展開ZIPのpytest/全入力再実行が合格。これは保存した局所科学検証で、同一SHAのHR公開後HTTP/UI/外部Linux確認の完了を意味しません。",
+            "en": "Canonical source execution and independently extracted ZIP pytest/all-input reruns passed. This is saved local scientific verification, not a claim that same-SHA post-publication HR HTTP/UI/external Linux checks are complete."
+          }
+        }
+      }
     },
     {
       "id": "ode-time-1",
@@ -7501,10 +8343,10 @@
     "total": 103,
     "fields": 36,
     "states": {
-      "planned": 51,
+      "planned": 41,
       "in-progress": 2,
       "verified": 10,
-      "published": 40
+      "published": 50
     },
     "kinds": {
       "implementation": 58,
@@ -7519,10 +8361,10 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-benchmark-backlog.json": "739c1df914166a043ac94c1f36289da723b3358a24ae4e9db4d5fd28c2bc21bb",
+    "catalog/atlas-benchmark-backlog.json": "8fc2c9287a7f22c20fa68222097378dc46b855691442d047fbeb8c8a37a93111",
     "catalog/atlas-detailed-reading.json": "4e50c7c9810337a166e8d3243b5f9de0daaf143a881e955921d9bf7e4be8f20c",
     "catalog/atlas-method-primary-references.json": "0b0f4df551b17a83672b3251a8155be2d7f3648f6e48f550cc99d8d49b2ef13c",
-    "catalog/atlas-methods.json": "1bf729b9e73fc797619dae3e5dc7ec0d1fe729efc1ad36485d760ddc77a4a246",
+    "catalog/atlas-methods.json": "36bd0014995be691a9a9d62d8c45d4f4b3782823b147740dc2ede4f5ae9ced7b",
     "code/validated-examples/2026-11-23-r2/euler-positivity/acceptance.json": "f08558b2703369a2260db1252dc40272f76556a2f6205688faa88a4c37c79050",
     "code/validated-examples/2026-11-23-r2/euler-positivity/euler_positivity.py": "c22015d9435095b3f08189d1b09be4a040c79062b1cc76fd15648cca00f73a58",
     "code/validated-examples/2026-11-23-r2/euler-positivity/inputs.json": "a1185e4b8be0f49f8f3f551f934614110c227d39b2bb0dc4438c5301428d751b",
@@ -7845,6 +8687,33 @@
     "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/symmetric-saddle-minres-preview.png": "35a0cb90e9427029904fb897e2554220ec77e47b2a7572443210f93be204680e",
     "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/run.py": "659a5fd0f1aaf239d36c23f72995d948d0b95a59d823437eb81d38ec5ed0376f",
     "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json": "4ed120693891dd4f94a207b080fd40fe53d3b1191274ec621de131e83fac16a7",
+    "code/validated-examples/2026-11-24/adjoint/README.md": "21ba342efda091250610a3eeebfdf68675e017b3cc6e5fa0c06e131bb981a8b0",
+    "code/validated-examples/2026-11-24/adjoint/acceptance.json": "716a7be9c080b66cbda6a35dd7b8be8d8d00cc4bb69673f3a0184c3406cf792d",
+    "code/validated-examples/2026-11-24/adjoint/balanced_operator.py": "5b39dd75999943bb7dbbe9d11cb888eec3df22bd1e9e365e5ba5b8e7f9acfdd4",
+    "code/validated-examples/2026-11-24/adjoint/cases.json": "2ee30f6ebfc8e1e49d9fb581e19dcd821f2b6f2b02a2f27400272d0301071645",
+    "code/validated-examples/2026-11-24/adjoint/distributed.py": "423b3fefd3bcdb518135ba2962d7c311d2addb282d5d006cf8cf9ca3d8f86146",
+    "code/validated-examples/2026-11-24/adjoint/fold_study.py": "a1b55f776632e6fb1688b432c3a6e36f9236934081332a1c6f2b351d6282c89d",
+    "code/validated-examples/2026-11-24/adjoint/inputs.json": "d50b4ccd1559cae3830dd6496bfe5fade4f3587b5c5782bcc0003615c35045f7",
+    "code/validated-examples/2026-11-24/adjoint/krylov.py": "b2fad003fba2a5a661ab03ded49115702362794484afde203395e3744fe53841",
+    "code/validated-examples/2026-11-24/adjoint/newton.py": "a91d69a45e0683ab9974d3888956836f5a204d2dc1a077f4c9484483416d0880",
+    "code/validated-examples/2026-11-24/adjoint/operators.py": "fe99f31bf73445dccc0112c6f1de473141196ecbd4e7a1996439df023077e500",
+    "code/validated-examples/2026-11-24/adjoint/pre-run-contract.json": "0d35633b941ea8a7b2be6b04c78f4a108747a0b7e0d9d971ecbd863dcc76fb91",
+    "code/validated-examples/2026-11-24/adjoint/references/linear_oracle.py": "04b5f4dc362e63acfe4f5ef3b54152d00ea9ab7b14386adbe49da851a5a03a69",
+    "code/validated-examples/2026-11-24/adjoint/references/modal_decimal.py": "7d6c77262ebc9b97ad61f3ce2f2a4cfb58f6f52823f123ec1a2f025ee0d0e468",
+    "code/validated-examples/2026-11-24/adjoint/references/shooting_decimal.py": "a9cc825eeaeffdb53a0bfb9b7365e123781f7e32528986aa8704e519fe3fe900",
+    "code/validated-examples/2026-11-24/adjoint/results/bratu-distributed-vjp-preview.png": "35e108b2ceca8fca74577a9858ac1bda6a5a8cf04c1e68810b90308f39c77ad0",
+    "code/validated-examples/2026-11-24/adjoint/results/bratu-distributed-vjp.png": "0ac69bd544a89a7f831f8b4f1a5a5beccd853d70523b5d99c96aab49f70acef3",
+    "code/validated-examples/2026-11-24/adjoint/results/bratu-fold-sensitivity-preview.png": "99700121735f00cb3e4207a2e2d27236770b928d8cb547ff5893d81cda75fc28",
+    "code/validated-examples/2026-11-24/adjoint/results/bratu-fold-sensitivity.png": "3737963ef529d6e392bbbcd7b3a9cb4e0e50c85ee51bc996cab879d7a2d06678",
+    "code/validated-examples/2026-11-24/adjoint/results/diffusion-discrete-adjoint-preview.png": "509aa302e0f76569e3c506a680afd381593edc73f6cef82e07a829c467d2fc23",
+    "code/validated-examples/2026-11-24/adjoint/results/diffusion-discrete-adjoint.png": "acea428c2a5451bf7f9af8238c0fe3a41efa89178960bd8b97efee04f72d1f20",
+    "code/validated-examples/2026-11-24/adjoint/run.py": "dc7db2519e8c111f1c13f1935a99f088c9a47e087116415a812654f57eddbf34",
+    "code/validated-examples/2026-11-24/adjoint/state_expansion.py": "2fd937f90f0d34c9c363a845623f37cde8b0d11b97e843fa7b5ad22586c5b123",
+    "code/validated-examples/2026-11-24/adjoint/state_jacobian.py": "1168bcbb543f047a7329852493145203d20f371b0d36e86fe4dcbdc3bd6d8b07",
+    "code/validated-examples/2026-11-24/adjoint/state_krylov.py": "ef0158fff677ed4a0be33dc9ace0935a7ccfd787daf17e43aa1979d35c8d6fc0",
+    "code/validated-examples/2026-11-24/adjoint/state_linear.py": "5d145f5cbd48ab16193d2284c08277a20682233ef9e31e93ad1229cdde7ff3fd",
+    "code/validated-examples/2026-11-24/adjoint/time_adjoint.py": "41a8cd6a47cd5e970f3d2af1b9d0d2a7414a699650d73323026cd7fb10d05025",
+    "code/validated-examples/2026-11-24/adjoint/verification.json": "4a2d6bb02db35895f7621ead01f1603269523980a83aa3120a04412032dbf604",
     "code/validated-examples/2026-11-24/dsmc-shock/README.md": "86ad36d722e09fe9b812418433596bf043ca6be296dc98ff73204bdd8f98d802",
     "code/validated-examples/2026-11-24/dsmc-shock/acceptance.json": "ca835b4e4606640d6da9cc49b1332fed4c44c5e47c3b49e547a8687f0881986b",
     "code/validated-examples/2026-11-24/dsmc-shock/inputs.json": "ef53152d7f42f153843ec505116be67377db77336bf14dd724c4f253d4d0f166",
@@ -7852,6 +8721,34 @@
     "code/validated-examples/2026-11-24/dsmc-shock/results/dsmc-planar-shock-preview.png": "89e25d3088c177ac0cb027fe58f02627b049626d0198bda02abc0eb6fec6555c",
     "code/validated-examples/2026-11-24/dsmc-shock/run.py": "badd9a284810dcfba7467726a6e042be6766dde1b7cea65dd3e856e39c9addec",
     "code/validated-examples/2026-11-24/dsmc-shock/verification.json": "7e7919032dafc67b5e857acd4464516cb4b742eed89ff8adae7f3c8cf75a96f5",
+    "code/validated-examples/2026-11-24/globalization-controls/README.md": "015fe6fddb659b05aae8efede274110180cca7d02b95a584e3bf56721fab1537",
+    "code/validated-examples/2026-11-24/globalization-controls/acceptance.json": "4927a8d6d5c9d1cdba042fd42171f18f2e152f2ab70c845e552d644b7fc9ef31",
+    "code/validated-examples/2026-11-24/globalization-controls/cases.json": "257b16d3e1af5cf9a9b53c747314e9c58d6b0fb2c98f445d4809f8f4eb0e7e66",
+    "code/validated-examples/2026-11-24/globalization-controls/inputs.json": "04ee3e49e6e2192ee4e58ae20e03905fc56f0c793ce4bbf7d00c13ae3586a9fb",
+    "code/validated-examples/2026-11-24/globalization-controls/pre-run-contract.json": "d83b156eab1a27e4c02261e8e3732746653db06a0fdaca8277c42433463bf4fc",
+    "code/validated-examples/2026-11-24/globalization-controls/results/globalization-difficult-starts-preview.png": "3bf21a53385abb412ec8cf23b3381150e15c0ab9a0aaebb7816bede00c08fca9",
+    "code/validated-examples/2026-11-24/globalization-controls/results/globalization-difficult-starts.png": "47b63b55ad7ff1fe1fc698e63b13c7b464a915a2f51a353f9ad3abfa63438feb",
+    "code/validated-examples/2026-11-24/globalization-controls/run.py": "d74b193b106ee9cc025e7baa7f213a5def1acac21cf2b8bf4a4642f42f78d189",
+    "code/validated-examples/2026-11-24/globalization-controls/verification.json": "bb03e72bf192c56a1d2c720660880340c0bff4fc01217f907bb7d949880e09c9",
+    "code/validated-examples/2026-11-24/inverse-optimization/README.md": "2b1a0eb850ce414f78965d16da33ac96b8a5da424379e81bb1123897838db9ca",
+    "code/validated-examples/2026-11-24/inverse-optimization/acceptance.json": "5f176ea719dc8a5bb21c1b47bc1fcb8636d204f31821efc622d830bc4b0ce2db",
+    "code/validated-examples/2026-11-24/inverse-optimization/cases.json": "9dfc1a14b447d70b2bd903a397cdf77d28ecb0e462cc876bdb3b44db9197150d",
+    "code/validated-examples/2026-11-24/inverse-optimization/inputs.json": "dca8cf2a84355ebbb881bc17232923c5fa0ee16f34c7d2a8a8c58da702e9b3b1",
+    "code/validated-examples/2026-11-24/inverse-optimization/least_squares.py": "036ec061d9555e6f321f55b3d6d93d6da9aab50b6c8964b64bd2b37599ff23ec",
+    "code/validated-examples/2026-11-24/inverse-optimization/model.py": "5174a0b62f7bb889875bfa16be9bd7162272277ec19d4709ef4b1a01a4b1474d",
+    "code/validated-examples/2026-11-24/inverse-optimization/pre-run-contract.json": "583e383cc384552e78a5f18383ff443d9111b521b4ef7f5eab79cf0663ee352c",
+    "code/validated-examples/2026-11-24/inverse-optimization/quasi_newton.py": "2703828891914767718e2106312ab5682050f907df5e766c89257d5a2a56561a",
+    "code/validated-examples/2026-11-24/inverse-optimization/references/oracles.py": "cb21bda3142b22ff7775c8e737f4e2f4c213bcc163072440e55d8b51625cd19b",
+    "code/validated-examples/2026-11-24/inverse-optimization/references/thomas.py": "911a4dca43e0964ee74d2c1c2eaf03bd4f921f9679e1fe84ffb369b1ea039b3e",
+    "code/validated-examples/2026-11-24/inverse-optimization/regularization.py": "857414ead5bafaa8c30947660c27bba7a17759c7299dd8d96ccd8276b376428f",
+    "code/validated-examples/2026-11-24/inverse-optimization/results/bfgs-lbfgs-controls-preview.png": "1d14d1186acab1ef8a9a7ca638a1d196e51f61a17319d42423e0dd5257c92363",
+    "code/validated-examples/2026-11-24/inverse-optimization/results/bfgs-lbfgs-controls.png": "59f4889b7cf7902b90266e488c6fddb2efcc9b7e84826120d9989d2b403f69c6",
+    "code/validated-examples/2026-11-24/inverse-optimization/results/bratu-gn-lm-bounds-preview.png": "ca68334a2b0b59377458def88e7ab2a1971c9af461d1334f2fbc5fc9bef0274e",
+    "code/validated-examples/2026-11-24/inverse-optimization/results/bratu-gn-lm-bounds.png": "04478d0ed7086362be1708314eb1d8bf5648f7017bb9efcb729bdec42f67fbe1",
+    "code/validated-examples/2026-11-24/inverse-optimization/results/bratu-noise-regularization-preview.png": "b43caf14cf8ba49af80aecad69e5f7394dcb5f6a2afc3c01f4320b29f194ff0a",
+    "code/validated-examples/2026-11-24/inverse-optimization/results/bratu-noise-regularization.png": "507419bc07f14a0101bc449dddfcd1b89de53895ced77d238b4532681872fede",
+    "code/validated-examples/2026-11-24/inverse-optimization/run.py": "a379cc488e78f6d27ff097fcbaf43eb3ff2090a62a1393a59d7224f5b95f4af3",
+    "code/validated-examples/2026-11-24/inverse-optimization/verification.json": "76f3f6b1550ce190e3d3afdd4b9a4e2f75373c58d97ccd655b2ac0bad4a3a74f",
     "code/validated-examples/2026-11-24/lbm-annulus/README.md": "cfde2043b8581a0faeaa4779e12b52ce9db42a0ea949293b5c3a7b6f07820583",
     "code/validated-examples/2026-11-24/lbm-annulus/acceptance.json": "e5e171409fc4e90e55ba1ac34b82f8c0b58a731d4e16e4dda163b9c4e528b967",
     "code/validated-examples/2026-11-24/lbm-annulus/inputs.json": "b7966f15a1c08f255d75012e3311d78343bd1b1611aa84ad9c79afb4fa1ed0c1",
@@ -7895,6 +8792,19 @@
     "code/validated-examples/2026-11-24/radiation-scattering/results/isotropic-scattering-slab-preview.png": "3d477b96516f17ba2f039a120ad56fe2ce913bc03e72bde1b0ef4d6a249b77f1",
     "code/validated-examples/2026-11-24/radiation-scattering/run.py": "7b71d76b84f299b9745c648d912ed8f7c0869a2e668c12cdbe9620294dff0328",
     "code/validated-examples/2026-11-24/radiation-scattering/verification.json": "7c1bfd3319d1743eb6de888b52c7e7498954761ffb8e8c3f2b6d5c6d3754011f",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/README.md": "808544ceae738139b08500c99ed7d385c0483367bb3c8b0b2a6945a243879f9e",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/acceptance.json": "f5b597ac6f2dda0cdddc3a46559f7cc7b0f786f0eb870496b5e7b16983c06337",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/cases.json": "444d6805b5f8c87636e6bd1de91ae02ffa9ce3c8aaec7b501d5754e49e3395ca",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/inputs.json": "760e23bd914d37ebab5142bc741a2d443207d7d2c6d0a8630031439ecfedec2e",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/pre-run-contract.json": "296beb97c7673ad6c368a9cdc033b7b030198475b80a1e31801562edf7afa947",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/results/hessian-vector-products-preview.png": "f0f8223d65b5f7cc544797aacb52a93d6c251976f73517d88cbce56f14534a4f",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/results/hessian-vector-products.png": "b8a41fc333194a9cc5b39df62c894f9ffaaef5827b9375a1ee88e7839d3d6c61",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/results/kink-branch-derivatives-preview.png": "b299ec917c1c29c046ca5c2bf87e8ea904005f5caf3e39ccf4dd2e5944af5356",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/results/kink-branch-derivatives.png": "7fe40a7026b4a60350785f57d21a937604a2a163a5e10da0a23a641de5f173f5",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/results/reverse-vjp-duality-preview.png": "19e54c65550a0c7ed69e9acce2a361658bbd2d8a2863cb6be4b9a48a3f49a2f5",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/results/reverse-vjp-duality.png": "e75030219736de92e19b2f2ded569a0d19de5fbf3916c1db2ce3d55e9ea0f433",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/run.py": "d05c0a0e9d22e8bf113e8da8020e68cc1e8fbd709efa7e6b5c58184d2ada432b",
+    "code/validated-examples/2026-11-24/reverse-higher-ad/verification.json": "1cb830974a5e0b4571ae3cec9219bddd4ca856a3f5c47130787daaf9ab81f641",
     "code/validated-examples/2026-11-24/stochastic-accuracy/README.md": "bd7b38de542db9c58ea9eb134f41510b3a1bff3b5aa1d3cc978526b3ff2d2ebb",
     "code/validated-examples/2026-11-24/stochastic-accuracy/acceptance.json": "cd8ad3c6391de11eb562f3027493c519cf69954d13a67b49c01df3eb221b45c9",
     "code/validated-examples/2026-11-24/stochastic-accuracy/inputs.json": "c6ccd5eaa236bd52c053c8f1cd20efa081d89a7e7715ed7e77e8ecc89efdd9d1",
@@ -7912,20 +8822,26 @@
     "code/validated-examples/2026-11-24/stochastic-estimation/results/normal-tail-importance-preview.png": "bb43d99a5fddd23605e1a9c5c757f6ef0119a6b6dac33b8224ac153bf718fba4",
     "code/validated-examples/2026-11-24/stochastic-estimation/run.py": "4267474a1b22f476924b298dcc5e9910ccb5338ce2d8e1920235d3114bbf0e86",
     "code/validated-examples/2026-11-24/stochastic-estimation/verification.json": "04589e7e1285b60e3d327c5772d392405e04f5fc9623a0850b38c9eaa9478f90",
-    "numerical-methods-atlas/gallery/index.html": "d6af98dbc0de611fda1035ff5e1013bd3ad41c190fa941ead050e00e13b04260",
-    "numerical-methods-atlas/methods/thomas/index.html": "02b0d1ae0fa0a72ec488e19f4a58dea8abda2b7e970fc1d4d2562061c9111937",
+    "numerical-methods-atlas/gallery/index.html": "f6e8a26a7571e17e90555c0fa4ada624f8f38a1cbbee74d6b3b2a96b2bb01cb4",
+    "numerical-methods-atlas/methods/thomas/index.html": "67aef687451948913dacc077e38dfee86df93ccc2baf33990b3a851ea0c6cd0b",
     "numerical-methods-atlas/reading/thomas-provenance.json": "a9eff54993f6f992bcddbb01ddf306adf59a234c8745a7a86557d38a3ab65ee2",
-    "numerical-methods-atlas/solutions/index.html": "b4796215f7fe26680100eb717797e69a2f48efe31736f64029d1471b039f3a34",
+    "numerical-methods-atlas/solutions/index.html": "014fb490cfc3fd3ec430654cb152563319e92338d17f660e13b811411b3561fd",
     "numerical-methods-atlas/validation/ale-nonuniform-transport/index.html": "7aa6c5eb188f78d0dfe31500b2fbc2e029abb79f844d658ce3a35afd68004a46",
     "numerical-methods-atlas/validation/annular-viscous-mms/index.html": "fcd250bb18308ab5934e70fa6c15f2d810d6544459dd5c38adb6914d00be1024",
+    "numerical-methods-atlas/validation/bfgs-lbfgs-controls/index.html": "e937246a0ab08fc8ff00178d4f61ff7686ddff22baf2372bcbc68bc03f8022e7",
+    "numerical-methods-atlas/validation/bratu-distributed-vjp/index.html": "8f1962dfd6cfc936f7eca9724d19c8a1c8421832276403bb0d624cf33f67e509",
     "numerical-methods-atlas/validation/bratu-fold-continuation/index.html": "5c14ee2814c8a350ede9b5414be7ed65effc44d1cfe2905ed01377ff6be35b9c",
+    "numerical-methods-atlas/validation/bratu-fold-sensitivity/index.html": "f5f77c479facabec9890db0010fc669bcaaa054a88fd89909207f5522e7a5750",
+    "numerical-methods-atlas/validation/bratu-gn-lm-bounds/index.html": "42b9a38b063bef6139c873358239aafe5deda2250dff4c34c76c8b78bf3a2948",
     "numerical-methods-atlas/validation/bratu-matrix-free-jfnk/index.html": "fadf5a92becd94d9754c2d8e310aeaa79d153d455f24119cf755d1abcb28e7b2",
+    "numerical-methods-atlas/validation/bratu-noise-regularization/index.html": "713be67a6054e01b59bd9f62733438a15074e4f4e947be869cfe26a1abcb6cb2",
     "numerical-methods-atlas/validation/cavity-ghia-re100/index.html": "554b7d29a023e6727fc5be942989713a0111b133fa9843ed9ed4882a085cbd69",
     "numerical-methods-atlas/validation/cgrid-rotating-wave/index.html": "d897197c371bc70ab9ace6a9c752b0c3bfd0e965076fd74e9fad40a97a23432f",
     "numerical-methods-atlas/validation/checkerboard-diffusion/index.html": "b8b16dfdbb4c6b5f9db2d4f1a0fb704f5f220c876faa1314efa7802e93213158",
     "numerical-methods-atlas/validation/circular-alfven-refinement/index.html": "2ee2196b0c4abae8eea31dce4140a630f19e7af96c9f6dd169cc8eee2837014a",
     "numerical-methods-atlas/validation/correlated-gaussian-mcmc/index.html": "4ba73eb58b8ce6a2c52321fcce37a4920b0c7a1a43d75ab626a4465de36368b8",
     "numerical-methods-atlas/validation/cylinder-mie2d/index.html": "18b79ac5334093103e1e5722e247f4db7d99ffba50ef64dcf45b8ddbc7751a5e",
+    "numerical-methods-atlas/validation/diffusion-discrete-adjoint/index.html": "cfd3103cf6243f0e971c5b231438ae6586a1fdf5485324c02217ac6755330f90",
     "numerical-methods-atlas/validation/dispersive-grazing-pml/index.html": "312f3aead8ae2534ee2c50fca46d1e2d3e0ee013383ecf97adb5e3f3d8c008af",
     "numerical-methods-atlas/validation/double-mach-reflection/index.html": "fbc8d5d5a0246acf6b809d1a22375f5fe61e8e2d052113159a4d7567886800b7",
     "numerical-methods-atlas/validation/dry-bed-dam-break/index.html": "bb98e74ec14bdec09a7c804752f2c2cd35fc69f3d9eba3ec34bbe42a3369859a",
@@ -7937,10 +8853,13 @@
     "numerical-methods-atlas/validation/forward-step-m3/index.html": "ca49671c5b742c52c6df00924b61fb0de1eefed1f31b9933480b8f7668147d69",
     "numerical-methods-atlas/validation/gbm-milstein-strong/index.html": "8a66c6dfc62f0d81d7c39a35588efbbe8eb1b962bfcfc7b71385c2589a1e1c49",
     "numerical-methods-atlas/validation/gbm-weak-moments/index.html": "d94a2724f77c74c24277d62ef47a3f116ecfbe580e0362e5274ef14773b1d8e2",
+    "numerical-methods-atlas/validation/globalization-difficult-starts/index.html": "d3611557558ad94ed19632262a1e1e1096373d3d7895e692793ae1691e6cd464",
     "numerical-methods-atlas/validation/gravity-kepler/index.html": "3ba3f565f2ce101dc36afff6765692e9edb449b87440da4689d6915495bd6172",
     "numerical-methods-atlas/validation/guderley-implosion/index.html": "3c09d4266144f40a1be9ab64711f3b5b20541f3b463ed50a2f4d68aad3f9f674",
+    "numerical-methods-atlas/validation/hessian-vector-products/index.html": "4bd7665cf7c972d386c8097efa3ac996e0b1f24ffe5906f4b841d51c99bc4d17",
     "numerical-methods-atlas/validation/isotropic-scattering-slab/index.html": "47de967da787880337329def851acf578012b65acd7edbf6eb54baeb608f332a",
     "numerical-methods-atlas/validation/kh-initial-growth/index.html": "3d145babd1acca96d0d8bc4024c3a2b0e4eadfe3658264cf159b0f76f07f4a05",
+    "numerical-methods-atlas/validation/kink-branch-derivatives/index.html": "957f3958c2c23aa6ab668192a5fac96f6f3e802f9472026d186dd34343e9fbc9",
     "numerical-methods-atlas/validation/lbm-annular-couette-control/index.html": "2d0b0069a29f5c983f3bea89a3de11c6b0cb4df613b282e8817898d0d2671256",
     "numerical-methods-atlas/validation/lbm-cavity-re100/index.html": "cc90a520775d7945609ed76fa1f7b51df9c8848aec611cb2ebe015f7494d7b4e",
     "numerical-methods-atlas/validation/lbm-taylor-green/index.html": "173377d22c99960e3b148cc227f89d74a9f1776d63c16ee29dc3f6e9a13ca198",
@@ -7955,6 +8874,7 @@
     "numerical-methods-atlas/validation/poisson-neumann/index.html": "2c7e2c603960726cbfdbd90cb6bc457d9786b8175a99b09f34b1daf2503beec4",
     "numerical-methods-atlas/validation/postshock-orszag-tang/index.html": "abf9b97b408e9d8029ff6c9fd91c1ef78092140dbccba7edc46e5af2de7b603b",
     "numerical-methods-atlas/validation/restarted-shift-invert/index.html": "5c6c17a68a6dd2c8edabf2c3f6f915be9edbf8e25ebcf3eaa0ccf466ac73cae9",
+    "numerical-methods-atlas/validation/reverse-vjp-duality/index.html": "e9dd3d82da466d27e8e141bf279553b5b5339f3f405d664de768a9fb91c2f188",
     "numerical-methods-atlas/validation/sedov-blast/index.html": "28f10d4721bf48266e595e278e09a99d404e90659825e9055d8ba62d44cf1285",
     "numerical-methods-atlas/validation/shadow-absorber2d/index.html": "88d246ab837e65f959e0979a33eec07c0b24c507a2fc7928d878e54f0a28e895",
     "numerical-methods-atlas/validation/srhd-collision/index.html": "78e6141371b3d586bc728237ec023b506dd330715fd68d6968c7a0aca4fc6de5",
@@ -7969,6 +8889,7 @@
     "numerical-methods-atlas/validation/verification/2026-11-23-euler-positivity-public.json": "6d219b1fe34353e9a6634d64c8379d3a7dab6b324b538b35ecb695f5a584e757",
     "numerical-methods-atlas/validation/verification/2026-11-23-zalesak-public.json": "85da729371ecceeb80953fabe8c4932d6b476bcdacd492f9102c08c8fa09a3dc",
     "numerical-methods-atlas/validation/verification/2026-11-24-batch28-37-public.json": "e6c80f9c769e876cf0aebfc6dd9ae765701b77635762ccd83801629e971ad0f3",
+    "numerical-methods-atlas/validation/verification/2026-11-24-batch48-57-public.json": "34e51bb48f51768f2cd359f25522bf555776f4ccfd53b65c08aec277f7ff50ae",
     "numerical-methods-atlas/validation/wall-manufactured/index.html": "e33d4f70c30285c157c31b831e3b77df0329702cab0a0aacbade139daba5fdea",
     "numerical-methods-atlas/validation/weno-critical-epsilon/index.html": "23740e895d653ab2ab7d76dd9e3bf89ce5f8618ec75e65bdb0efae9d5e674fd7",
     "numerical-methods-atlas/validation/zalesak-rotation/index.html": "02d3ddc9b3f8cc8f30c28f38fded450264568dc6c7d92ea9bc534e75e3b38a48"

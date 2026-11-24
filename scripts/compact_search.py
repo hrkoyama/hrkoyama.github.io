@@ -132,6 +132,56 @@ def pack_vocabulary(words):
     return packed
 
 
+VOCABULARY_ALPHABET_ENCODING = 'unicode-prefix-alphabet-v1'
+MAX_VOCABULARY_ALPHABET = 8192
+MAX_VOCABULARY_TERMS = 500000
+MAX_VOCABULARY_UNITS = 8200000
+_ALPHABET_ASCII = ''.join(chr(i) for i in range(32, 127) if i not in (34, 92))
+
+
+def encode_vocabulary_alphabet(data):
+    """Lossless scalar substitution AFTER fixed term IDs/code-point prefixes.
+
+    Frequency ties use original scalar order. An oversized or empty alphabet
+    retains the existing wire format; no public term/expansion cap is increased.
+    """
+    if data.get('format') != 'compact-search-v1' or data.get('kind') not in ['atlas', 'site']:
+        raise ValueError('Expected compact atlas/site vocabulary')
+    if 'vocabulary_alphabet' in data or data.get('vocabulary_encoding') != 'unicode-prefix-flat-v1':
+        raise ValueError('Reserved or unsupported vocabulary header')
+    terms = data.get('terms')
+    if not isinstance(terms, list) or len(terms) % 2 or len(terms) > 2 * MAX_VOCABULARY_TERMS:
+        raise ValueError('Invalid search vocabulary')
+    counts, previous, units, oversized = Counter(), '', 0, False
+    for prefix, suffix in zip(terms[::2], terms[1::2]):
+        if type(prefix) is not int or not 0 <= prefix <= len(previous) or not isinstance(suffix, str):
+            raise ValueError('Invalid vocabulary prefix/suffix')
+        if any(0xD800 <= ord(c) <= 0xDFFF for c in suffix):
+            raise ValueError('Non-scalar vocabulary suffix')
+        suffix_units = len(suffix.encode('utf-16-le')) // 2
+        if suffix_units > MAX_VOCABULARY_UNITS - units:
+            raise ValueError('Expanded search vocabulary exceeds limit')
+        word = previous[:prefix] + suffix
+        units += len(word.encode('utf-16-le')) // 2
+        if units > MAX_VOCABULARY_UNITS:
+            raise ValueError('Expanded search vocabulary exceeds limit')
+        previous = word
+        if not oversized:
+            for character in suffix:
+                counts[character] += 1
+                if len(counts) > MAX_VOCABULARY_ALPHABET:
+                    counts.clear(); oversized = True; break
+    if oversized or not counts:
+        return data
+    alphabet = sorted(counts, key=lambda c: (-counts[c], ord(c)))
+    def symbol(index):
+        return _ALPHABET_ASCII[index] if index < len(_ALPHABET_ASCII) else chr(128 + index - len(_ALPHABET_ASCII))
+    translation = {ord(character): symbol(i) for i, character in enumerate(alphabet)}
+    packed = [value.translate(translation) if isinstance(value, str) else value for value in terms]
+    return {**data, 'terms': packed, 'vocabulary_encoding': VOCABULARY_ALPHABET_ENCODING,
+            'vocabulary_alphabet': ''.join(alphabet)}
+
+
 def pack_deltas(deltas):
     """Canonical unsigned LEB128 bytes; base64 keeps the JSON transport simple."""
     raw = bytearray()
@@ -276,5 +326,5 @@ def write_compact(root, source, kind):
         'scope': 'Same public search terms; original text and explicit navigation are loaded from fixed public files as needed. Search queries are never transmitted.',
     }
     path = root/'search'/('atlas-query-index.json' if kind == 'atlas' else 'query-index.json')
-    path.write_bytes(encoded(encode_row_strings(payload)))
+    path.write_bytes(encoded(encode_vocabulary_alphabet(encode_row_strings(payload))))
     return path

@@ -279,6 +279,10 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Solve both Bratu branches with three Jv choices without assembling the nonlinear Jacobian; retain forcing, actual residuals and evaluation counts.
+- [Discrete diffusion adjoint and checkpoint replay](<https://hrkoyama.github.io/numerical-methods-atlas/validation/diffusion-discrete-adjoint/?lang=en>)
+  availability: run
+
+  Reverse the actual backward-Euler map and compare tangent derivatives, independent high-precision modes and block replay.
 - [2D Poisson: CG, multigrid and P1 FEM](<https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-2d-sine/?lang=en>)
   availability: run
 

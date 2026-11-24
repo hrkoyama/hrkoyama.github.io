@@ -28,6 +28,18 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/automatic-differentia
   availability: run
 
   非線形Jacobianを組み立てずにBratuの上下枝を3種類のJvで解き、forcingと実際の残差・評価回数を保存します。
+- [独自逆モードVJPとJVP/VJP双対性](<https://hrkoyama.github.io/numerical-methods-atlas/validation/reverse-vjp-duality/?lang=ja>)
+  availability: run
+
+  重複gatherとbroadcastを含む真の逆tapeを独立Jacobianと照合します。
+- [HVPと状態固定・陰関数全微分の区別](<https://hrkoyama.github.io/numerical-methods-atlas/validation/hessian-vector-products/?lang=ja>)
+  availability: run
+
+  forward-over-reverse HVPと二階陰関数則を別々の独立参照へ照合します。
+- [非滑らか点・分岐・停止条件の微分範囲](<https://hrkoyama.github.io/numerical-methods-atlas/validation/kink-branch-derivatives/?lang=ja>)
+  availability: run
+
+  古典微分・一方向微分・実行trace微分を、kinkと停止分岐の固定例で区別します。
 - [自動微分：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/automatic-differentiation/?lang=ja#method-execution-ja>)
   availability: source
 

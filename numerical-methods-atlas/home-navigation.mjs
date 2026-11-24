@@ -1,4 +1,4 @@
-import {homeAreas} from './home-overview-data.js?v=b0e49f7a49de';
+import {homeAreas} from './home-overview-data.js?v=accbd41d4e74';
 import {homeNavigationData} from './atlas-home-data.js?v=c09eaa7e4d66';
 
 /** Preserve existing home bookmarks after moving detailed navigation. */

@@ -107,7 +107,7 @@ with tempfile.TemporaryDirectory(prefix='compact-writer-') as path:
  assert.deepEqual(expanded.details.keys,[entry.text_ref]);
  const raw=details[entry.text_ref+'.json'],detail=JSON.parse(raw);
  assert.equal(createHash('sha256').update(raw).digest('hex'),entry.text_ref);
- assert.equal(compact.vocabulary_encoding,'unicode-prefix-flat-v1');
+ assert.equal(compact.vocabulary_encoding,'unicode-prefix-alphabet-v1');
  assert.equal(compact.term_encoding,'inverted-membership-varint-base64-v1');
  assert.equal(typeof compact.entries[0].search_terms.ja,'number');
  assert.deepEqual(entry.headings,source.entries[0].headings);

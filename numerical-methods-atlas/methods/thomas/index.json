@@ -10,8 +10,8 @@
     "en": "Linear & nonlinear solvers"
   },
   "summary": {
-    "ja": "Thomas法は三重対角消去。1949年原報は未読で、公式収蔵目録とMolerの1996年通信から書誌を追跡しています。Crank–Nicolsonと多重格子の文献は関連章の背景資料で、Thomas原報やその再録ではありません。 追加固定例：解析・中央差分・方向ADによるJacobian不要Newton–Krylov。条件と検証範囲は各配布版で確認してください。",
-    "en": "Thomas is tridiagonal elimination. Its1949 original remains unread; an official archival finding aid and Moler's signed1996 correspondence provide bibliographic leads. Crank–Nicolson and multigrid references are related chapter context, not Thomas originals or reprints. Additional fixed examples: Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products. See each release for assumptions and checked scope."
+    "ja": "Thomas法は三重対角消去。1949年原報は未読で、公式収蔵目録とMolerの1996年通信から書誌を追跡しています。Crank–Nicolsonと多重格子の文献は関連章の背景資料で、Thomas原報やその再録ではありません。 追加固定例：解析・中央差分・方向ADによるJacobian不要Newton–Krylov。条件と検証範囲は各配布版で確認してください。 追加固定例：時間離散拡散の随伴とcheckpoint。条件と検証範囲は各配布版で確認してください。",
+    "en": "Thomas is tridiagonal elimination. Its1949 original remains unread; an official archival finding aid and Moler's signed1996 correspondence provide bibliographic leads. Crank–Nicolson and multigrid references are related chapter context, not Thomas originals or reprints. Additional fixed examples: Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products. See each release for assumptions and checked scope. Additional fixed examples: Discrete diffusion adjoint and checkpoint replay. See each release for assumptions and checked scope."
   },
   "status": "educational-example",
   "origin": "existing-coverage-catalog",
@@ -76,8 +76,8 @@
   "units": null,
   "boundary_conditions": null,
   "limitations": {
-    "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。 追加固定例：小1次元BVP向けの教育実装です。ADは四則・exp・境界paddingの方向微分に限ります。小Hessenberg行列と基底は保持します。ηの固定下限があるため、原著EWの漸近収束定理、一般AD/PETScとの同等性、速度向上や大域収束は主張しません。",
-    "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers. Additional fixed examples: An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee."
+    "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。 追加固定例：小1次元BVP向けの教育実装です。ADは四則・exp・境界paddingの方向微分に限ります。小Hessenberg行列と基底は保持します。ηの固定下限があるため、原著EWの漸近収束定理、一般AD/PETScとの同等性、速度向上や大域収束は主張しません。 上記の制限は既存配布版の範囲です。今回の追加配布版：固定stepの離散随伴でありCVODESや最適checkpoint法ではありません。40nは状態・随伴・RHS/solve scratchの一意な所有要素数です。静的因子・model配列は別表示し総所有byteへ含めます。検証/NPZ組立は測定後で、RSSではありません。",
+    "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers. Additional fixed examples: An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee. The preceding limitations describe earlier editions. This additional release: Fixed-step discrete adjoints, not CVODES or an optimal checkpoint schedule. The40n limit counts unique evolving state/adjoint/RHS/solve-scratch elements. Static factors/model arrays are separately listed and included in total bytes. Validation/NPZ assembly follows the ownership windows; this is not RSS."
   },
   "metadata_review": {
     "level": "method-specific bibliographic roles curated;1949 original full text unread",
@@ -741,6 +741,3714 @@
           "en": "An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee."
         }
       ]
+    },
+    {
+      "release": {
+        "group": "adjoint",
+        "edition": "2026-11-24",
+        "case_ids": [
+          "diffusion-discrete-adjoint"
+        ]
+      },
+      "scope": {
+        "ja": "追加固定例：時間離散拡散の随伴とcheckpoint。条件と検証範囲は各配布版で確認してください。",
+        "en": "Additional fixed examples: Discrete diffusion adjoint and checkpoint replay. See each release for assumptions and checked scope."
+      },
+      "limits": [
+        {
+          "ja": "固定stepの離散随伴でありCVODESや最適checkpoint法ではありません。40nは状態・随伴・RHS/solve scratchの一意な所有要素数です。静的因子・model配列は別表示し総所有byteへ含めます。検証/NPZ組立は測定後で、RSSではありません。",
+          "en": "Fixed-step discrete adjoints, not CVODES or an optimal checkpoint schedule. The40n limit counts unique evolving state/adjoint/RHS/solve-scratch elements. Static factors/model arrays are separately listed and included in total bytes. Validation/NPZ assembly follows the ownership windows; this is not RSS."
+        }
+      ]
+    }
+  ],
+  "depth_additional_releases": [
+    {
+      "group": "adjoint",
+      "case_ids": [
+        "diffusion-discrete-adjoint"
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/",
+      "code_edition": "2026-11-24",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/operators.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/krylov.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/newton.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/time_adjoint.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/references/modal_decimal.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/references/shooting_decimal.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/references/linear_oracle.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/fold_study.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/balanced_operator.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/state_linear.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/state_expansion.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/state_krylov.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/state_jacobian.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/distributed.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/io_contract.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/qualify_references.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/conftest.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_distributed.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_fold.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_time.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-adjoint-2026-11-24",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/atlas-adjoint-2026-11-24.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/verification.json",
+      "code_archive_sha256": "6b78fd9d4320e9790bd6ebe2a0ef61a25c55c7fdc0a14dd37d0ca1a37b80a5ee",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/results/result.json",
+      "passed_tests": 32,
+      "examples": [
+        {
+          "id": "diffusion-discrete-adjoint",
+          "sequence": 62,
+          "method_ids": [
+            "adjoint",
+            "backward-euler",
+            "thomas"
+          ],
+          "title": {
+            "ja": "時間離散拡散の随伴とcheckpoint",
+            "en": "Discrete diffusion adjoint and checkpoint replay"
+          },
+          "summary": {
+            "ja": "後退Eulerの離散写像を実際に逆伝播し、接線・独立高精度mode解・block replayと比較します。",
+            "en": "Reverse the actual backward-Euler map and compare tangent derivatives, independent high-precision modes and block replay."
+          },
+          "assumptions": {
+            "ja": "無次元x∈[0,1]、u(0,t)=u(1,t)=0。内点7/15、時間step64/128/256、T=.1。κ=.1、θ=.2。目的関数のh重みを含む座標転置です。",
+            "en": "Dimensionless x in [0,1], fixed zero Dirichlet endpoints, 7/15 interior nodes and 64/128/256 time steps to T=.1; kappa=.1 and theta=.2. Coordinate transposes include explicit objective h weights."
+          },
+          "algorithm": {
+            "ja": "ThomasでB u次=u現在+dt θbを解き、Bの転置を逆順に解きます。16stepごとにcheckpointを保存し、1blockを同じ順で再計算します。full配列を保存・解放した後で別の所有期間を測ります。",
+            "en": "Thomas solves B u_next=u_current+dt theta b; reverse solves use B transpose. Save checkpoints every16steps and replay one block in the original order. Serialize and release the full trajectory before the separate checkpoint ownership window."
+          },
+          "validation": {
+            "ja": "実行前凍結:独立67項目の参照資格後、共有32pytestと本群141固定判定。各候補の全入力・全許容差・失敗を保存します。実合否は同梱result/verificationを参照。 初回は32pytestと拡散59/近fold45判定後に内側残差未達で停止し保存。R2の一般Jv演算順は別96成分で資格済みですが、本試験の成功を意味しません。 R2本試験も保存済み未達。R3の状態専用hi+loは別20成分で資格済み、本3caseの合否は実result/verificationで確認します。",
+            "en": "Pre-run freeze:independent67-check reference qualification, then shared32pytest and141fixed group gates. Retain all inputs, tolerances and failures. Actual outcomes are recorded in the bundled result/verification. Initial attempt retained32passing tests and59diffusion/45fold gates before an unmet inner target. R2 general Jv association has separate96component checks; this does not imply primary success. R2 primary failure is also retained. R3 state-onlyhi+lo has separate20component checks;actual three-caseoutcomes are inresult/verification."
+          },
+          "limits": {
+            "ja": "固定stepの離散随伴でありCVODESや最適checkpoint法ではありません。40nは状態・随伴・RHS/solve scratchの一意な所有要素数です。静的因子・model配列は別表示し総所有byteへ含めます。検証/NPZ組立は測定後で、RSSではありません。",
+            "en": "Fixed-step discrete adjoints, not CVODES or an optimal checkpoint schedule. The40n limit counts unique evolving state/adjoint/RHS/solve-scratch elements. Static factors/model arrays are separately listed and included in total bytes. Validation/NPZ assembly follows the ownership windows; this is not RSS."
+          },
+          "gallery_figure": "diffusion-discrete-adjoint-preview.png",
+          "additional_figures": [
+            {
+              "file": "diffusion-discrete-adjoint-preview.png",
+              "caption": {
+                "ja": "時間離散拡散の随伴とcheckpoint。実際の保存数値データの縮小図で、1次元問題です。",
+                "en": "Discrete diffusion adjoint and checkpoint replay. Preview from actual saved numerical data for a one-dimensional problem."
+              }
+            }
+          ],
+          "review_level": "selected-primary-reading-and-authored-derivations-awaiting-numerical-qualification",
+          "formulas": [
+            "B=I+\\Delta t\\,\\kappa A_h,\\quad Bu_{k+1}=u_k+\\Delta t\\,\\theta b",
+            "p_N=h(u_N-d),\\quad z_k=B^{-T}p_{k+1},\\quad p_k=z_k",
+            "J_\\kappa=0.01\\kappa-\\Delta t\\sum_k z_k^TA_hu_{k+1},\\quad J_\\theta=0.02\\theta+\\Delta t\\sum_kz_k^Tb"
+          ],
+          "domains": [
+            "pde",
+            "linear-algebra",
+            "inverse-problems"
+          ],
+          "references": [
+            {
+              "id": "cvodes-adjoint",
+              "title": "SUNDIALS CVODES adjoint usage",
+              "url": "https://sundials.readthedocs.io/en/latest/cvodes/Usage/ADJ.html",
+              "review_level": "official-documentation-selected-sections",
+              "review_scope": "Skeleton forward/backward tolerance and solver setup; Nd checkpoint spacing/interpolation; selected sections only. Our fixed-step discrete transpose/replay is not CVODES interpolation-based ASA or an optimal schedule.",
+              "accessed_on": "2026-11-24",
+              "role": "selected-primary-method-or-equation",
+              "review": {
+                "ja": "選択部分のみを確認。閲覧日は出版年ではありません。独立数値参照の資格は別途記録します。",
+                "en": "Selected scope only. Access date is not publication year. Numerical oracle qualification is recorded separately."
+              }
+            },
+            {
+              "id": "jax-vjp",
+              "title": "JAX vjp API",
+              "url": "https://docs.jax.dev/en/latest/_autosummary/jax.vjp.html",
+              "review_level": "official-documentation-selected-API",
+              "review_scope": "Reverse-mode cotangent map definition and input/output shapes. Terminology only; no JAX implementation, library-equivalence or framework execution claim.",
+              "accessed_on": "2026-11-24",
+              "role": "terminology-only",
+              "review": {
+                "ja": "選択部分のみを確認。閲覧日は出版年ではありません。独立数値参照の資格は別途記録します。",
+                "en": "Selected scope only. Access date is not publication year. Numerical oracle qualification is recorded separately."
+              }
+            },
+            {
+              "id": "decimal",
+              "title": "Python3.12.16 decimal documentation",
+              "url": "https://docs.python.org/3.12/library/decimal.html",
+              "review_level": "official-documentation-selected-API",
+              "review_scope": "Decimal.exp correctly rounded half-even and from_float exact binary-float conversion. This supports arithmetic choices, not an already qualified numerical oracle.",
+              "accessed_on": "2026-11-24",
+              "role": "selected-primary-method-or-equation",
+              "review": {
+                "ja": "選択部分のみを確認。閲覧日は出版年ではありません。独立数値参照の資格は別途記録します。",
+                "en": "Selected scope only. Access date is not publication year. Numerical oracle qualification is recorded separately."
+              }
+            },
+            {
+              "id": "arclength",
+              "title": "Dickson,Kelley,Ipsen,Kevrekidis:Condition Estimates for Pseudo-Arclength Continuation",
+              "url": "https://ipsen.math.ncsu.edu/ps/sinum65438.pdf",
+              "review_level": "author-paper-selected-equations",
+              "review_scope": "Section2.1 implicit sensitivity and2.2 simple-fold definition/arclength equations, printed265–267. Full proofs/experiments not audited; no reference table copied. Continuation already exists in56.",
+              "accessed_on": "2026-11-24",
+              "role": "selected-primary-method-or-equation",
+              "review": {
+                "ja": "選択部分のみを確認。閲覧日は出版年ではありません。独立数値参照の資格は別途記録します。",
+                "en": "Selected scope only. Access date is not publication year. Numerical oracle qualification is recorded separately."
+              }
+            },
+            {
+              "id": "bratu-family",
+              "title": "Author-hosted INF5620 nonlinear exercises,Problem8,Eq52",
+              "url": "https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html",
+              "review_level": "author-teaching-source-selected-equation",
+              "review_scope": "Bratu BVP/cosh family/critical value and FD exercise. Source theta=2*the alpha in old sensitivity module. Continuum family only, never the exact discrete fold/state.",
+              "accessed_on": "2026-11-24",
+              "role": "selected-primary-method-or-equation",
+              "review": {
+                "ja": "選択部分のみを確認。閲覧日は出版年ではありません。独立数値参照の資格は別途記録します。",
+                "en": "Selected scope only. Access date is not publication year. Numerical oracle qualification is recorded separately."
+              }
+            }
+          ],
+          "citations": [
+            {
+              "id": "cvodes-adjoint",
+              "title": "SUNDIALS CVODES adjoint usage",
+              "url": "https://sundials.readthedocs.io/en/latest/cvodes/Usage/ADJ.html",
+              "review_level": "official-documentation-selected-sections",
+              "review_scope": "Skeleton forward/backward tolerance and solver setup; Nd checkpoint spacing/interpolation; selected sections only. Our fixed-step discrete transpose/replay is not CVODES interpolation-based ASA or an optimal schedule.",
+              "accessed_on": "2026-11-24",
+              "role": "selected-primary-method-or-equation",
+              "review": {
+                "ja": "選択部分のみを確認。閲覧日は出版年ではありません。独立数値参照の資格は別途記録します。",
+                "en": "Selected scope only. Access date is not publication year. Numerical oracle qualification is recorded separately."
+              }
+            },
+            {
+              "id": "jax-vjp",
+              "title": "JAX vjp API",
+              "url": "https://docs.jax.dev/en/latest/_autosummary/jax.vjp.html",
+              "review_level": "official-documentation-selected-API",
+              "review_scope": "Reverse-mode cotangent map definition and input/output shapes. Terminology only; no JAX implementation, library-equivalence or framework execution claim.",
+              "accessed_on": "2026-11-24",
+              "role": "terminology-only",
+              "review": {
+                "ja": "選択部分のみを確認。閲覧日は出版年ではありません。独立数値参照の資格は別途記録します。",
+                "en": "Selected scope only. Access date is not publication year. Numerical oracle qualification is recorded separately."
+              }
+            },
+            {
+              "id": "decimal",
+              "title": "Python3.12.16 decimal documentation",
+              "url": "https://docs.python.org/3.12/library/decimal.html",
+              "review_level": "official-documentation-selected-API",
+              "review_scope": "Decimal.exp correctly rounded half-even and from_float exact binary-float conversion. This supports arithmetic choices, not an already qualified numerical oracle.",
+              "accessed_on": "2026-11-24",
+              "role": "selected-primary-method-or-equation",
+              "review": {
+                "ja": "選択部分のみを確認。閲覧日は出版年ではありません。独立数値参照の資格は別途記録します。",
+                "en": "Selected scope only. Access date is not publication year. Numerical oracle qualification is recorded separately."
+              }
+            },
+            {
+              "id": "arclength",
+              "title": "Dickson,Kelley,Ipsen,Kevrekidis:Condition Estimates for Pseudo-Arclength Continuation",
+              "url": "https://ipsen.math.ncsu.edu/ps/sinum65438.pdf",
+              "review_level": "author-paper-selected-equations",
+              "review_scope": "Section2.1 implicit sensitivity and2.2 simple-fold definition/arclength equations, printed265–267. Full proofs/experiments not audited; no reference table copied. Continuation already exists in56.",
+              "accessed_on": "2026-11-24",
+              "role": "selected-primary-method-or-equation",
+              "review": {
+                "ja": "選択部分のみを確認。閲覧日は出版年ではありません。独立数値参照の資格は別途記録します。",
+                "en": "Selected scope only. Access date is not publication year. Numerical oracle qualification is recorded separately."
+              }
+            },
+            {
+              "id": "bratu-family",
+              "title": "Author-hosted INF5620 nonlinear exercises,Problem8,Eq52",
+              "url": "https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html",
+              "review_level": "author-teaching-source-selected-equation",
+              "review_scope": "Bratu BVP/cosh family/critical value and FD exercise. Source theta=2*the alpha in old sensitivity module. Continuum family only, never the exact discrete fold/state.",
+              "accessed_on": "2026-11-24",
+              "role": "selected-primary-method-or-equation",
+              "review": {
+                "ja": "選択部分のみを確認。閲覧日は出版年ではありません。独立数値参照の資格は別途記録します。",
+                "en": "Selected scope only. Access date is not publication year. Numerical oracle qualification is recorded separately."
+              }
+            }
+          ],
+          "code_files": [
+            "run.py",
+            "operators.py",
+            "krylov.py",
+            "newton.py",
+            "time_adjoint.py",
+            "references/modal_decimal.py",
+            "references/shooting_decimal.py",
+            "references/linear_oracle.py"
+          ],
+          "measured": {
+            "id": "diffusion-discrete-adjoint",
+            "passed": true,
+            "checks": {
+              "n7-N64-finite-boundary": true,
+              "n7-N64-state-modal": true,
+              "n7-N64-adjoint-modal": true,
+              "n7-N64-tangent-modal": true,
+              "n7-N64-adjoint-tangent": true,
+              "n7-N64-replay-state": true,
+              "n7-N64-replay-gradient": true,
+              "n7-N64-exact-work": true,
+              "n7-N128-finite-boundary": true,
+              "n7-N128-state-modal": true,
+              "n7-N128-adjoint-modal": true,
+              "n7-N128-tangent-modal": true,
+              "n7-N128-adjoint-tangent": true,
+              "n7-N128-replay-state": true,
+              "n7-N128-replay-gradient": true,
+              "n7-N128-exact-work": true,
+              "n7-N256-finite-boundary": true,
+              "n7-N256-state-modal": true,
+              "n7-N256-adjoint-modal": true,
+              "n7-N256-tangent-modal": true,
+              "n7-N256-adjoint-tangent": true,
+              "n7-N256-replay-state": true,
+              "n7-N256-replay-gradient": true,
+              "n7-N256-exact-work": true,
+              "n7-time-ratio-64-128": true,
+              "n7-time-ratio-128-256": true,
+              "n7-N256-storage": true,
+              "n15-N64-finite-boundary": true,
+              "n15-N64-state-modal": true,
+              "n15-N64-adjoint-modal": true,
+              "n15-N64-tangent-modal": true,
+              "n15-N64-adjoint-tangent": true,
+              "n15-N64-replay-state": true,
+              "n15-N64-replay-gradient": true,
+              "n15-N64-exact-work": true,
+              "n15-N128-finite-boundary": true,
+              "n15-N128-state-modal": true,
+              "n15-N128-adjoint-modal": true,
+              "n15-N128-tangent-modal": true,
+              "n15-N128-adjoint-tangent": true,
+              "n15-N128-replay-state": true,
+              "n15-N128-replay-gradient": true,
+              "n15-N128-exact-work": true,
+              "n15-N256-finite-boundary": true,
+              "n15-N256-state-modal": true,
+              "n15-N256-adjoint-modal": true,
+              "n15-N256-tangent-modal": true,
+              "n15-N256-adjoint-tangent": true,
+              "n15-N256-replay-state": true,
+              "n15-N256-replay-gradient": true,
+              "n15-N256-exact-work": true,
+              "n15-time-ratio-64-128": true,
+              "n15-time-ratio-128-256": true,
+              "n15-N256-storage": true,
+              "FD-direction0": true,
+              "FD-direction1": true,
+              "FD-direction2": true,
+              "FD-all-finite": true,
+              "qualified-cache": true
+            },
+            "records": [
+              {
+                "n": 7,
+                "steps": 64,
+                "metrics": {
+                  "state_error": 1.547855565231369e-15,
+                  "gradient_error": 1.2220779076790623e-15,
+                  "tangent_error": 1.2500846347099685e-15,
+                  "replay_error": 0.0,
+                  "time_error": 0.00011295826203078933,
+                  "reference_scale": 1.0,
+                  "full_ledger": {
+                    "peak_state_elements": 490,
+                    "peak_total_bytes": 4656,
+                    "ownership": [
+                      {
+                        "state_elements": 490,
+                        "total_bytes": 4656,
+                        "arrays": [
+                          {
+                            "name": "states",
+                            "category": "state",
+                            "shape": [
+                              65,
+                              7
+                            ],
+                            "owner_shape": [
+                              65,
+                              7
+                            ],
+                            "owner_bytes": 3640,
+                            "alias_owner": "states"
+                          },
+                          {
+                            "name": "rhs",
+                            "category": "state",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "rhs"
+                          },
+                          {
+                            "name": "Thomas_scratch",
+                            "category": "state",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "Thomas_scratch"
+                          },
+                          {
+                            "name": "p",
+                            "category": "state",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "p"
+                          },
+                          {
+                            "name": "z",
+                            "category": "state",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "z"
+                          },
+                          {
+                            "name": "Au",
+                            "category": "state",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "Au"
+                          },
+                          {
+                            "name": "x",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "x"
+                          },
+                          {
+                            "name": "u0",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "u0"
+                          },
+                          {
+                            "name": "b",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "b"
+                          },
+                          {
+                            "name": "target",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "target"
+                          },
+                          {
+                            "name": "B.lower",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "B.lower"
+                          },
+                          {
+                            "name": "B.diagonal",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "B.diagonal"
+                          },
+                          {
+                            "name": "B.upper",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "B.upper"
+                          },
+                          {
+                            "name": "B.pivot",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "B.pivot"
+                          },
+                          {
+                            "name": "B.cprime",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "B.cprime"
+                          },
+                          {
+                            "name": "BT.lower",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "BT.lower"
+                          },
+                          {
+                            "name": "BT.diagonal",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "BT.diagonal"
+                          },
+                          {
+                            "name": "BT.upper",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "BT.upper"
+                          },
+                          {
+                            "name": "BT.pivot",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "BT.pivot"
+                          },
+                          {
+                            "name": "BT.cprime",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "BT.cprime"
+                          }
+                        ]
+                      }
+                    ],
+                    "scope": "Explicit unique owned numeric buffers; not total process RSS."
+                  },
+                  "checkpoint_ledger": {
+                    "peak_state_elements": 196,
+                    "peak_total_bytes": 2304,
+                    "ownership": [
+                      {
+                        "state_elements": 196,
+                        "total_bytes": 2304,
+                        "arrays": [
+                          {
+                            "name": "checkpoints",
+                            "category": "state",
+                            "shape": [
+                              5,
+                              7
+                            ],
+                            "owner_shape": [
+                              5,
+                              7
+                            ],
+                            "owner_bytes": 280,
+                            "alias_owner": "checkpoints"
+                          },
+                          {
+                            "name": "replay_block",
+                            "category": "state",
+                            "shape": [
+                              17,
+                              7
+                            ],
+                            "owner_shape": [
+                              17,
+                              7
+                            ],
+                            "owner_bytes": 952,
+                            "alias_owner": "replay_block"
+                          },
+                          {
+                            "name": "current",
+                            "category": "state",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "current"
+                          },
+                          {
+                            "name": "rhs",
+                            "category": "state",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "rhs"
+                          },
+                          {
+                            "name": "Thomas_scratch",
+                            "category": "state",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "Thomas_scratch"
+                          },
+                          {
+                            "name": "p",
+                            "category": "state",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "p"
+                          },
+                          {
+                            "name": "z",
+                            "category": "state",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "z"
+                          },
+                          {
+                            "name": "Au",
+                            "category": "state",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "Au"
+                          },
+                          {
+                            "name": "x",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "x"
+                          },
+                          {
+                            "name": "u0",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "u0"
+                          },
+                          {
+                            "name": "b",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "b"
+                          },
+                          {
+                            "name": "target",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "target"
+                          },
+                          {
+                            "name": "B.lower",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "B.lower"
+                          },
+                          {
+                            "name": "B.diagonal",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "B.diagonal"
+                          },
+                          {
+                            "name": "B.upper",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "B.upper"
+                          },
+                          {
+                            "name": "B.pivot",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "B.pivot"
+                          },
+                          {
+                            "name": "B.cprime",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "B.cprime"
+                          },
+                          {
+                            "name": "BT.lower",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "BT.lower"
+                          },
+                          {
+                            "name": "BT.diagonal",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "BT.diagonal"
+                          },
+                          {
+                            "name": "BT.upper",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "BT.upper"
+                          },
+                          {
+                            "name": "BT.pivot",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "BT.pivot"
+                          },
+                          {
+                            "name": "BT.cprime",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "BT.cprime"
+                          }
+                        ]
+                      }
+                    ],
+                    "scope": "Explicit unique owned numeric buffers; not total process RSS."
+                  },
+                  "objective": 0.05061235383998635,
+                  "full_primal_solves": 64,
+                  "full_transpose_solves": 64,
+                  "replay_solves": 64,
+                  "checkpoint_primal_solves": 64,
+                  "checkpoint_transpose_solves": 64,
+                  "tangent_RHS_solves": 128
+                },
+                "field_file": "n7-N64.npz"
+              },
+              {
+                "n": 7,
+                "steps": 128,
+                "metrics": {
+                  "state_error": 8.582376752572088e-15,
+                  "gradient_error": 5.336365819329637e-15,
+                  "tangent_error": 5.3367639296346506e-15,
+                  "replay_error": 0.0,
+                  "time_error": 5.6566274927753076e-05,
+                  "reference_scale": 1.0,
+                  "full_ledger": {
+                    "peak_state_elements": 938,
+                    "peak_total_bytes": 8240,
+                    "ownership": [
+                      {
+                        "state_elements": 938,
+                        "total_bytes": 8240,
+                        "arrays": [
+                          {
+                            "name": "states",
+                            "category": "state",
+                            "shape": [
+                              129,
+                              7
+                            ],
+                            "owner_shape": [
+                              129,
+                              7
+                            ],
+                            "owner_bytes": 7224,
+                            "alias_owner": "states"
+                          },
+                          {
+                            "name": "rhs",
+                            "category": "state",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "rhs"
+                          },
+                          {
+                            "name": "Thomas_scratch",
+                            "category": "state",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "Thomas_scratch"
+                          },
+                          {
+                            "name": "p",
+                            "category": "state",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "p"
+                          },
+                          {
+                            "name": "z",
+                            "category": "state",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "z"
+                          },
+                          {
+                            "name": "Au",
+                            "category": "state",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "Au"
+                          },
+                          {
+                            "name": "x",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "x"
+                          },
+                          {
+                            "name": "u0",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "u0"
+                          },
+                          {
+                            "name": "b",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "b"
+                          },
+                          {
+                            "name": "target",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "target"
+                          },
+                          {
+                            "name": "B.lower",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "B.lower"
+                          },
+                          {
+                            "name": "B.diagonal",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "B.diagonal"
+                          },
+                          {
+                            "name": "B.upper",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "B.upper"
+                          },
+                          {
+                            "name": "B.pivot",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "B.pivot"
+                          },
+                          {
+                            "name": "B.cprime",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "B.cprime"
+                          },
+                          {
+                            "name": "BT.lower",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "BT.lower"
+                          },
+                          {
+                            "name": "BT.diagonal",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "BT.diagonal"
+                          },
+                          {
+                            "name": "BT.upper",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "BT.upper"
+                          },
+                          {
+                            "name": "BT.pivot",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "BT.pivot"
+                          },
+                          {
+                            "name": "BT.cprime",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "BT.cprime"
+                          }
+                        ]
+                      }
+                    ],
+                    "scope": "Explicit unique owned numeric buffers; not total process RSS."
+                  },
+                  "checkpoint_ledger": {
+                    "peak_state_elements": 224,
+                    "peak_total_bytes": 2528,
+                    "ownership": [
+                      {
+                        "state_elements": 224,
+                        "total_bytes": 2528,
+                        "arrays": [
+                          {
+                            "name": "checkpoints",
+                            "category": "state",
+                            "shape": [
+                              9,
+                              7
+                            ],
+                            "owner_shape": [
+                              9,
+                              7
+                            ],
+                            "owner_bytes": 504,
+                            "alias_owner": "checkpoints"
+                          },
+                          {
+                            "name": "replay_block",
+                            "category": "state",
+                            "shape": [
+                              17,
+                              7
+                            ],
+                            "owner_shape": [
+                              17,
+                              7
+                            ],
+                            "owner_bytes": 952,
+                            "alias_owner": "replay_block"
+                          },
+                          {
+                            "name": "current",
+                            "category": "state",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "current"
+                          },
+                          {
+                            "name": "rhs",
+                            "category": "state",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "rhs"
+                          },
+                          {
+                            "name": "Thomas_scratch",
+                            "category": "state",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "Thomas_scratch"
+                          },
+                          {
+                            "name": "p",
+                            "category": "state",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "p"
+                          },
+                          {
+                            "name": "z",
+                            "category": "state",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "z"
+                          },
+                          {
+                            "name": "Au",
+                            "category": "state",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "Au"
+                          },
+                          {
+                            "name": "x",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "x"
+                          },
+                          {
+                            "name": "u0",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "u0"
+                          },
+                          {
+                            "name": "b",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "b"
+                          },
+                          {
+                            "name": "target",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "target"
+                          },
+                          {
+                            "name": "B.lower",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "B.lower"
+                          },
+                          {
+                            "name": "B.diagonal",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "B.diagonal"
+                          },
+                          {
+                            "name": "B.upper",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "B.upper"
+                          },
+                          {
+                            "name": "B.pivot",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "B.pivot"
+                          },
+                          {
+                            "name": "B.cprime",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "B.cprime"
+                          },
+                          {
+                            "name": "BT.lower",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "BT.lower"
+                          },
+                          {
+                            "name": "BT.diagonal",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "BT.diagonal"
+                          },
+                          {
+                            "name": "BT.upper",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "BT.upper"
+                          },
+                          {
+                            "name": "BT.pivot",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "BT.pivot"
+                          },
+                          {
+                            "name": "BT.cprime",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "BT.cprime"
+                          }
+                        ]
+                      }
+                    ],
+                    "scope": "Explicit unique owned numeric buffers; not total process RSS."
+                  },
+                  "objective": 0.050601499830043965,
+                  "full_primal_solves": 128,
+                  "full_transpose_solves": 128,
+                  "replay_solves": 128,
+                  "checkpoint_primal_solves": 128,
+                  "checkpoint_transpose_solves": 128,
+                  "tangent_RHS_solves": 256
+                },
+                "field_file": "n7-N128.npz"
+              },
+              {
+                "n": 7,
+                "steps": 256,
+                "metrics": {
+                  "state_error": 1.9805659963986532e-14,
+                  "gradient_error": 1.2828891290020764e-14,
+                  "tangent_error": 1.2827671001881525e-14,
+                  "replay_error": 0.0,
+                  "time_error": 2.8304986977667328e-05,
+                  "reference_scale": 1.0,
+                  "full_ledger": {
+                    "peak_state_elements": 1834,
+                    "peak_total_bytes": 15408,
+                    "ownership": [
+                      {
+                        "state_elements": 1834,
+                        "total_bytes": 15408,
+                        "arrays": [
+                          {
+                            "name": "states",
+                            "category": "state",
+                            "shape": [
+                              257,
+                              7
+                            ],
+                            "owner_shape": [
+                              257,
+                              7
+                            ],
+                            "owner_bytes": 14392,
+                            "alias_owner": "states"
+                          },
+                          {
+                            "name": "rhs",
+                            "category": "state",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "rhs"
+                          },
+                          {
+                            "name": "Thomas_scratch",
+                            "category": "state",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "Thomas_scratch"
+                          },
+                          {
+                            "name": "p",
+                            "category": "state",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "p"
+                          },
+                          {
+                            "name": "z",
+                            "category": "state",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "z"
+                          },
+                          {
+                            "name": "Au",
+                            "category": "state",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "Au"
+                          },
+                          {
+                            "name": "x",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "x"
+                          },
+                          {
+                            "name": "u0",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "u0"
+                          },
+                          {
+                            "name": "b",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "b"
+                          },
+                          {
+                            "name": "target",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "target"
+                          },
+                          {
+                            "name": "B.lower",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "B.lower"
+                          },
+                          {
+                            "name": "B.diagonal",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "B.diagonal"
+                          },
+                          {
+                            "name": "B.upper",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "B.upper"
+                          },
+                          {
+                            "name": "B.pivot",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "B.pivot"
+                          },
+                          {
+                            "name": "B.cprime",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "B.cprime"
+                          },
+                          {
+                            "name": "BT.lower",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "BT.lower"
+                          },
+                          {
+                            "name": "BT.diagonal",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "BT.diagonal"
+                          },
+                          {
+                            "name": "BT.upper",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "BT.upper"
+                          },
+                          {
+                            "name": "BT.pivot",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "BT.pivot"
+                          },
+                          {
+                            "name": "BT.cprime",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "BT.cprime"
+                          }
+                        ]
+                      }
+                    ],
+                    "scope": "Explicit unique owned numeric buffers; not total process RSS."
+                  },
+                  "checkpoint_ledger": {
+                    "peak_state_elements": 280,
+                    "peak_total_bytes": 2976,
+                    "ownership": [
+                      {
+                        "state_elements": 280,
+                        "total_bytes": 2976,
+                        "arrays": [
+                          {
+                            "name": "checkpoints",
+                            "category": "state",
+                            "shape": [
+                              17,
+                              7
+                            ],
+                            "owner_shape": [
+                              17,
+                              7
+                            ],
+                            "owner_bytes": 952,
+                            "alias_owner": "checkpoints"
+                          },
+                          {
+                            "name": "replay_block",
+                            "category": "state",
+                            "shape": [
+                              17,
+                              7
+                            ],
+                            "owner_shape": [
+                              17,
+                              7
+                            ],
+                            "owner_bytes": 952,
+                            "alias_owner": "replay_block"
+                          },
+                          {
+                            "name": "current",
+                            "category": "state",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "current"
+                          },
+                          {
+                            "name": "rhs",
+                            "category": "state",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "rhs"
+                          },
+                          {
+                            "name": "Thomas_scratch",
+                            "category": "state",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "Thomas_scratch"
+                          },
+                          {
+                            "name": "p",
+                            "category": "state",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "p"
+                          },
+                          {
+                            "name": "z",
+                            "category": "state",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "z"
+                          },
+                          {
+                            "name": "Au",
+                            "category": "state",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "Au"
+                          },
+                          {
+                            "name": "x",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "x"
+                          },
+                          {
+                            "name": "u0",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "u0"
+                          },
+                          {
+                            "name": "b",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "b"
+                          },
+                          {
+                            "name": "target",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "target"
+                          },
+                          {
+                            "name": "B.lower",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "B.lower"
+                          },
+                          {
+                            "name": "B.diagonal",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "B.diagonal"
+                          },
+                          {
+                            "name": "B.upper",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "B.upper"
+                          },
+                          {
+                            "name": "B.pivot",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "B.pivot"
+                          },
+                          {
+                            "name": "B.cprime",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "B.cprime"
+                          },
+                          {
+                            "name": "BT.lower",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "BT.lower"
+                          },
+                          {
+                            "name": "BT.diagonal",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "BT.diagonal"
+                          },
+                          {
+                            "name": "BT.upper",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "BT.upper"
+                          },
+                          {
+                            "name": "BT.pivot",
+                            "category": "factor-model-work",
+                            "shape": [
+                              7
+                            ],
+                            "owner_shape": [
+                              7
+                            ],
+                            "owner_bytes": 56,
+                            "alias_owner": "BT.pivot"
+                          },
+                          {
+                            "name": "BT.cprime",
+                            "category": "factor-model-work",
+                            "shape": [
+                              6
+                            ],
+                            "owner_shape": [
+                              6
+                            ],
+                            "owner_bytes": 48,
+                            "alias_owner": "BT.cprime"
+                          }
+                        ]
+                      }
+                    ],
+                    "scope": "Explicit unique owned numeric buffers; not total process RSS."
+                  },
+                  "objective": 0.050596065449545556,
+                  "full_primal_solves": 256,
+                  "full_transpose_solves": 256,
+                  "replay_solves": 256,
+                  "checkpoint_primal_solves": 256,
+                  "checkpoint_transpose_solves": 256,
+                  "tangent_RHS_solves": 512
+                },
+                "field_file": "n7-N256.npz"
+              },
+              {
+                "n": 15,
+                "steps": 64,
+                "metrics": {
+                  "state_error": 1.0281277401067118e-15,
+                  "gradient_error": 6.687398374172639e-16,
+                  "tangent_error": 7.791361360319881e-16,
+                  "replay_error": 0.0,
+                  "time_error": 0.00011971557684064543,
+                  "reference_scale": 1.0,
+                  "full_ledger": {
+                    "peak_state_elements": 1050,
+                    "peak_total_bytes": 10032,
+                    "ownership": [
+                      {
+                        "state_elements": 1050,
+                        "total_bytes": 10032,
+                        "arrays": [
+                          {
+                            "name": "states",
+                            "category": "state",
+                            "shape": [
+                              65,
+                              15
+                            ],
+                            "owner_shape": [
+                              65,
+                              15
+                            ],
+                            "owner_bytes": 7800,
+                            "alias_owner": "states"
+                          },
+                          {
+                            "name": "rhs",
+                            "category": "state",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "rhs"
+                          },
+                          {
+                            "name": "Thomas_scratch",
+                            "category": "state",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "Thomas_scratch"
+                          },
+                          {
+                            "name": "p",
+                            "category": "state",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "p"
+                          },
+                          {
+                            "name": "z",
+                            "category": "state",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "z"
+                          },
+                          {
+                            "name": "Au",
+                            "category": "state",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "Au"
+                          },
+                          {
+                            "name": "x",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "x"
+                          },
+                          {
+                            "name": "u0",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "u0"
+                          },
+                          {
+                            "name": "b",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "b"
+                          },
+                          {
+                            "name": "target",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "target"
+                          },
+                          {
+                            "name": "B.lower",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "B.lower"
+                          },
+                          {
+                            "name": "B.diagonal",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "B.diagonal"
+                          },
+                          {
+                            "name": "B.upper",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "B.upper"
+                          },
+                          {
+                            "name": "B.pivot",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "B.pivot"
+                          },
+                          {
+                            "name": "B.cprime",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "B.cprime"
+                          },
+                          {
+                            "name": "BT.lower",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "BT.lower"
+                          },
+                          {
+                            "name": "BT.diagonal",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "BT.diagonal"
+                          },
+                          {
+                            "name": "BT.upper",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "BT.upper"
+                          },
+                          {
+                            "name": "BT.pivot",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "BT.pivot"
+                          },
+                          {
+                            "name": "BT.cprime",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "BT.cprime"
+                          }
+                        ]
+                      }
+                    ],
+                    "scope": "Explicit unique owned numeric buffers; not total process RSS."
+                  },
+                  "checkpoint_ledger": {
+                    "peak_state_elements": 420,
+                    "peak_total_bytes": 4992,
+                    "ownership": [
+                      {
+                        "state_elements": 420,
+                        "total_bytes": 4992,
+                        "arrays": [
+                          {
+                            "name": "checkpoints",
+                            "category": "state",
+                            "shape": [
+                              5,
+                              15
+                            ],
+                            "owner_shape": [
+                              5,
+                              15
+                            ],
+                            "owner_bytes": 600,
+                            "alias_owner": "checkpoints"
+                          },
+                          {
+                            "name": "replay_block",
+                            "category": "state",
+                            "shape": [
+                              17,
+                              15
+                            ],
+                            "owner_shape": [
+                              17,
+                              15
+                            ],
+                            "owner_bytes": 2040,
+                            "alias_owner": "replay_block"
+                          },
+                          {
+                            "name": "current",
+                            "category": "state",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "current"
+                          },
+                          {
+                            "name": "rhs",
+                            "category": "state",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "rhs"
+                          },
+                          {
+                            "name": "Thomas_scratch",
+                            "category": "state",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "Thomas_scratch"
+                          },
+                          {
+                            "name": "p",
+                            "category": "state",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "p"
+                          },
+                          {
+                            "name": "z",
+                            "category": "state",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "z"
+                          },
+                          {
+                            "name": "Au",
+                            "category": "state",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "Au"
+                          },
+                          {
+                            "name": "x",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "x"
+                          },
+                          {
+                            "name": "u0",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "u0"
+                          },
+                          {
+                            "name": "b",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "b"
+                          },
+                          {
+                            "name": "target",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "target"
+                          },
+                          {
+                            "name": "B.lower",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "B.lower"
+                          },
+                          {
+                            "name": "B.diagonal",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "B.diagonal"
+                          },
+                          {
+                            "name": "B.upper",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "B.upper"
+                          },
+                          {
+                            "name": "B.pivot",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "B.pivot"
+                          },
+                          {
+                            "name": "B.cprime",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "B.cprime"
+                          },
+                          {
+                            "name": "BT.lower",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "BT.lower"
+                          },
+                          {
+                            "name": "BT.diagonal",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "BT.diagonal"
+                          },
+                          {
+                            "name": "BT.upper",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "BT.upper"
+                          },
+                          {
+                            "name": "BT.pivot",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "BT.pivot"
+                          },
+                          {
+                            "name": "BT.cprime",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "BT.cprime"
+                          }
+                        ]
+                      }
+                    ],
+                    "scope": "Explicit unique owned numeric buffers; not total process RSS."
+                  },
+                  "objective": 0.05029060553946731,
+                  "full_primal_solves": 64,
+                  "full_transpose_solves": 64,
+                  "replay_solves": 64,
+                  "checkpoint_primal_solves": 64,
+                  "checkpoint_transpose_solves": 64,
+                  "tangent_RHS_solves": 128
+                },
+                "field_file": "n15-N64.npz"
+              },
+              {
+                "n": 15,
+                "steps": 128,
+                "metrics": {
+                  "state_error": 3.661330233864481e-15,
+                  "gradient_error": 3.760869293812167e-15,
+                  "tangent_error": 3.8450254436292525e-15,
+                  "replay_error": 0.0,
+                  "time_error": 5.99536828281022e-05,
+                  "reference_scale": 1.0,
+                  "full_ledger": {
+                    "peak_state_elements": 2010,
+                    "peak_total_bytes": 17712,
+                    "ownership": [
+                      {
+                        "state_elements": 2010,
+                        "total_bytes": 17712,
+                        "arrays": [
+                          {
+                            "name": "states",
+                            "category": "state",
+                            "shape": [
+                              129,
+                              15
+                            ],
+                            "owner_shape": [
+                              129,
+                              15
+                            ],
+                            "owner_bytes": 15480,
+                            "alias_owner": "states"
+                          },
+                          {
+                            "name": "rhs",
+                            "category": "state",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "rhs"
+                          },
+                          {
+                            "name": "Thomas_scratch",
+                            "category": "state",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "Thomas_scratch"
+                          },
+                          {
+                            "name": "p",
+                            "category": "state",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "p"
+                          },
+                          {
+                            "name": "z",
+                            "category": "state",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "z"
+                          },
+                          {
+                            "name": "Au",
+                            "category": "state",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "Au"
+                          },
+                          {
+                            "name": "x",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "x"
+                          },
+                          {
+                            "name": "u0",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "u0"
+                          },
+                          {
+                            "name": "b",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "b"
+                          },
+                          {
+                            "name": "target",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "target"
+                          },
+                          {
+                            "name": "B.lower",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "B.lower"
+                          },
+                          {
+                            "name": "B.diagonal",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "B.diagonal"
+                          },
+                          {
+                            "name": "B.upper",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "B.upper"
+                          },
+                          {
+                            "name": "B.pivot",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "B.pivot"
+                          },
+                          {
+                            "name": "B.cprime",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "B.cprime"
+                          },
+                          {
+                            "name": "BT.lower",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "BT.lower"
+                          },
+                          {
+                            "name": "BT.diagonal",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "BT.diagonal"
+                          },
+                          {
+                            "name": "BT.upper",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "BT.upper"
+                          },
+                          {
+                            "name": "BT.pivot",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "BT.pivot"
+                          },
+                          {
+                            "name": "BT.cprime",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "BT.cprime"
+                          }
+                        ]
+                      }
+                    ],
+                    "scope": "Explicit unique owned numeric buffers; not total process RSS."
+                  },
+                  "checkpoint_ledger": {
+                    "peak_state_elements": 480,
+                    "peak_total_bytes": 5472,
+                    "ownership": [
+                      {
+                        "state_elements": 480,
+                        "total_bytes": 5472,
+                        "arrays": [
+                          {
+                            "name": "checkpoints",
+                            "category": "state",
+                            "shape": [
+                              9,
+                              15
+                            ],
+                            "owner_shape": [
+                              9,
+                              15
+                            ],
+                            "owner_bytes": 1080,
+                            "alias_owner": "checkpoints"
+                          },
+                          {
+                            "name": "replay_block",
+                            "category": "state",
+                            "shape": [
+                              17,
+                              15
+                            ],
+                            "owner_shape": [
+                              17,
+                              15
+                            ],
+                            "owner_bytes": 2040,
+                            "alias_owner": "replay_block"
+                          },
+                          {
+                            "name": "current",
+                            "category": "state",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "current"
+                          },
+                          {
+                            "name": "rhs",
+                            "category": "state",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "rhs"
+                          },
+                          {
+                            "name": "Thomas_scratch",
+                            "category": "state",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "Thomas_scratch"
+                          },
+                          {
+                            "name": "p",
+                            "category": "state",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "p"
+                          },
+                          {
+                            "name": "z",
+                            "category": "state",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "z"
+                          },
+                          {
+                            "name": "Au",
+                            "category": "state",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "Au"
+                          },
+                          {
+                            "name": "x",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "x"
+                          },
+                          {
+                            "name": "u0",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "u0"
+                          },
+                          {
+                            "name": "b",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "b"
+                          },
+                          {
+                            "name": "target",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "target"
+                          },
+                          {
+                            "name": "B.lower",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "B.lower"
+                          },
+                          {
+                            "name": "B.diagonal",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "B.diagonal"
+                          },
+                          {
+                            "name": "B.upper",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "B.upper"
+                          },
+                          {
+                            "name": "B.pivot",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "B.pivot"
+                          },
+                          {
+                            "name": "B.cprime",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "B.cprime"
+                          },
+                          {
+                            "name": "BT.lower",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "BT.lower"
+                          },
+                          {
+                            "name": "BT.diagonal",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "BT.diagonal"
+                          },
+                          {
+                            "name": "BT.upper",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "BT.upper"
+                          },
+                          {
+                            "name": "BT.pivot",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "BT.pivot"
+                          },
+                          {
+                            "name": "BT.cprime",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "BT.cprime"
+                          }
+                        ]
+                      }
+                    ],
+                    "scope": "Explicit unique owned numeric buffers; not total process RSS."
+                  },
+                  "objective": 0.05027939037960034,
+                  "full_primal_solves": 128,
+                  "full_transpose_solves": 128,
+                  "replay_solves": 128,
+                  "checkpoint_primal_solves": 128,
+                  "checkpoint_transpose_solves": 128,
+                  "tangent_RHS_solves": 256
+                },
+                "field_file": "n15-N128.npz"
+              },
+              {
+                "n": 15,
+                "steps": 256,
+                "metrics": {
+                  "state_error": 9.725874099409389e-15,
+                  "gradient_error": 5.793624260582929e-15,
+                  "tangent_error": 5.812262908433877e-15,
+                  "replay_error": 0.0,
+                  "time_error": 3.0000887379973184e-05,
+                  "reference_scale": 1.0,
+                  "full_ledger": {
+                    "peak_state_elements": 3930,
+                    "peak_total_bytes": 33072,
+                    "ownership": [
+                      {
+                        "state_elements": 3930,
+                        "total_bytes": 33072,
+                        "arrays": [
+                          {
+                            "name": "states",
+                            "category": "state",
+                            "shape": [
+                              257,
+                              15
+                            ],
+                            "owner_shape": [
+                              257,
+                              15
+                            ],
+                            "owner_bytes": 30840,
+                            "alias_owner": "states"
+                          },
+                          {
+                            "name": "rhs",
+                            "category": "state",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "rhs"
+                          },
+                          {
+                            "name": "Thomas_scratch",
+                            "category": "state",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "Thomas_scratch"
+                          },
+                          {
+                            "name": "p",
+                            "category": "state",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "p"
+                          },
+                          {
+                            "name": "z",
+                            "category": "state",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "z"
+                          },
+                          {
+                            "name": "Au",
+                            "category": "state",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "Au"
+                          },
+                          {
+                            "name": "x",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "x"
+                          },
+                          {
+                            "name": "u0",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "u0"
+                          },
+                          {
+                            "name": "b",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "b"
+                          },
+                          {
+                            "name": "target",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "target"
+                          },
+                          {
+                            "name": "B.lower",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "B.lower"
+                          },
+                          {
+                            "name": "B.diagonal",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "B.diagonal"
+                          },
+                          {
+                            "name": "B.upper",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "B.upper"
+                          },
+                          {
+                            "name": "B.pivot",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "B.pivot"
+                          },
+                          {
+                            "name": "B.cprime",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "B.cprime"
+                          },
+                          {
+                            "name": "BT.lower",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "BT.lower"
+                          },
+                          {
+                            "name": "BT.diagonal",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "BT.diagonal"
+                          },
+                          {
+                            "name": "BT.upper",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "BT.upper"
+                          },
+                          {
+                            "name": "BT.pivot",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "BT.pivot"
+                          },
+                          {
+                            "name": "BT.cprime",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "BT.cprime"
+                          }
+                        ]
+                      }
+                    ],
+                    "scope": "Explicit unique owned numeric buffers; not total process RSS."
+                  },
+                  "checkpoint_ledger": {
+                    "peak_state_elements": 600,
+                    "peak_total_bytes": 6432,
+                    "ownership": [
+                      {
+                        "state_elements": 600,
+                        "total_bytes": 6432,
+                        "arrays": [
+                          {
+                            "name": "checkpoints",
+                            "category": "state",
+                            "shape": [
+                              17,
+                              15
+                            ],
+                            "owner_shape": [
+                              17,
+                              15
+                            ],
+                            "owner_bytes": 2040,
+                            "alias_owner": "checkpoints"
+                          },
+                          {
+                            "name": "replay_block",
+                            "category": "state",
+                            "shape": [
+                              17,
+                              15
+                            ],
+                            "owner_shape": [
+                              17,
+                              15
+                            ],
+                            "owner_bytes": 2040,
+                            "alias_owner": "replay_block"
+                          },
+                          {
+                            "name": "current",
+                            "category": "state",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "current"
+                          },
+                          {
+                            "name": "rhs",
+                            "category": "state",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "rhs"
+                          },
+                          {
+                            "name": "Thomas_scratch",
+                            "category": "state",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "Thomas_scratch"
+                          },
+                          {
+                            "name": "p",
+                            "category": "state",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "p"
+                          },
+                          {
+                            "name": "z",
+                            "category": "state",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "z"
+                          },
+                          {
+                            "name": "Au",
+                            "category": "state",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "Au"
+                          },
+                          {
+                            "name": "x",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "x"
+                          },
+                          {
+                            "name": "u0",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "u0"
+                          },
+                          {
+                            "name": "b",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "b"
+                          },
+                          {
+                            "name": "target",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "target"
+                          },
+                          {
+                            "name": "B.lower",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "B.lower"
+                          },
+                          {
+                            "name": "B.diagonal",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "B.diagonal"
+                          },
+                          {
+                            "name": "B.upper",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "B.upper"
+                          },
+                          {
+                            "name": "B.pivot",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "B.pivot"
+                          },
+                          {
+                            "name": "B.cprime",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "B.cprime"
+                          },
+                          {
+                            "name": "BT.lower",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "BT.lower"
+                          },
+                          {
+                            "name": "BT.diagonal",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "BT.diagonal"
+                          },
+                          {
+                            "name": "BT.upper",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "BT.upper"
+                          },
+                          {
+                            "name": "BT.pivot",
+                            "category": "factor-model-work",
+                            "shape": [
+                              15
+                            ],
+                            "owner_shape": [
+                              15
+                            ],
+                            "owner_bytes": 120,
+                            "alias_owner": "BT.pivot"
+                          },
+                          {
+                            "name": "BT.cprime",
+                            "category": "factor-model-work",
+                            "shape": [
+                              14
+                            ],
+                            "owner_shape": [
+                              14
+                            ],
+                            "owner_bytes": 112,
+                            "alias_owner": "BT.cprime"
+                          }
+                        ]
+                      }
+                    ],
+                    "scope": "Explicit unique owned numeric buffers; not total process RSS."
+                  },
+                  "objective": 0.05027377497112398,
+                  "full_primal_solves": 256,
+                  "full_transpose_solves": 256,
+                  "replay_solves": 256,
+                  "checkpoint_primal_solves": 256,
+                  "checkpoint_transpose_solves": 256,
+                  "tangent_RHS_solves": 512
+                },
+                "field_file": "n15-N256.npz"
+              }
+            ],
+            "metrics": {
+              "time_ratios": [
+                {
+                  "n": 7,
+                  "coarse": 64,
+                  "fine": 128,
+                  "ratio": 0.5007714700172587,
+                  "denominator": 0.00011295826203078933
+                },
+                {
+                  "n": 7,
+                  "coarse": 128,
+                  "fine": 256,
+                  "ratio": 0.5003862639676856,
+                  "denominator": 5.6566274927753076e-05
+                },
+                {
+                  "n": 15,
+                  "coarse": 64,
+                  "fine": 128,
+                  "ratio": 0.500801018633583,
+                  "denominator": 0.00011971557684064543
+                },
+                {
+                  "n": 15,
+                  "coarse": 128,
+                  "fine": 256,
+                  "ratio": 0.500401075710245,
+                  "denominator": 5.99536828281022e-05
+                }
+              ],
+              "principal_records": 6,
+              "FD_forward_evolutions": 18,
+              "ownership_scope": "Unique explicit scientific arrays; validation loaded after the separate ownership windows; serialization internals are not process RSS."
+            }
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/diffusion-discrete-adjoint/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-adjoint/#diffusion-discrete-adjoint",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-adjoint/#diffusion-discrete-adjoint"
+          }
+        }
+      ]
     }
   ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/thomas/",
@@ -757,13 +4465,34 @@
     "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/dual.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/experiments.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/references/analytic_family.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/io_contract.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/io_contract.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/operators.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/krylov.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/newton.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/time_adjoint.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/references/modal_decimal.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/references/shooting_decimal.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/references/linear_oracle.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/fold_study.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/balanced_operator.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/state_linear.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/state_expansion.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/state_krylov.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/state_jacobian.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/distributed.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/io_contract.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/qualify_references.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/conftest.py"
   ],
   "test_urls": [
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_linear.py",
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_multigrid.py",
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_poisson_comparison.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/test_bratu.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/test_bratu.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_distributed.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_fold.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_time.py"
   ],
   "run_commands": [
     "python -m pytest -q tests/test_linear.py tests/test_multigrid.py tests/test_poisson_comparison.py"
@@ -788,6 +4517,15 @@
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/?lang=en"
       },
       "kind": "dedicated-supplement"
+    },
+    {
+      "id": "diffusion-discrete-adjoint",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/diffusion-discrete-adjoint/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/diffusion-discrete-adjoint/?lang=en"
+      },
+      "kind": "dedicated-supplement"
     }
   ],
   "problem_navigation": {
@@ -801,7 +4539,8 @@
           "en": "Heat / diffusion equation"
         },
         "problem_ids": [
-          "heat-dirichlet"
+          "heat-dirichlet",
+          "diffusion-discrete-adjoint"
         ],
         "url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#heat-ja",
@@ -1180,6 +4919,67 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-matrix-free-jfnk/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-matrix-free-jfnk/?lang=en#references-en"
         }
+      },
+      {
+        "id": "diffusion-discrete-adjoint",
+        "name": {
+          "ja": "時間離散拡散の随伴とcheckpoint",
+          "en": "Discrete diffusion adjoint and checkpoint replay"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/results/diffusion-discrete-adjoint-preview.png",
+          "sha256": "509aa302e0f76569e3c506a680afd381593edc73f6cef82e07a829c467d2fc23",
+          "width": 1030,
+          "height": 645,
+          "caption": {
+            "ja": "時間離散拡散の随伴とcheckpoint。実際の保存数値データの縮小図で、1次元問題です。",
+            "en": "Discrete diffusion adjoint and checkpoint replay. Preview from actual saved numerical data for a one-dimensional problem."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/diffusion-discrete-adjoint/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/diffusion-discrete-adjoint/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/diffusion-discrete-adjoint/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/diffusion-discrete-adjoint/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "diffusion-discrete-adjoint",
+            "kind": "supplement",
+            "name": {
+              "ja": "時間離散拡散の随伴とcheckpoint",
+              "en": "Discrete diffusion adjoint and checkpoint replay"
+            },
+            "scope": {
+              "ja": "後退Eulerの離散写像を実際に逆伝播し、接線・独立高精度mode解・block replayと比較します。",
+              "en": "Reverse the actual backward-Euler map and compare tangent derivatives, independent high-precision modes and block replay."
+            },
+            "method_ids": [
+              "adjoint",
+              "backward-euler",
+              "thomas"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/diffusion-discrete-adjoint/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/diffusion-discrete-adjoint/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/atlas-adjoint-2026-11-24.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "ThomasでB u次=u現在+dt θbを解き、Bの転置を逆順に解きます。16stepごとにcheckpointを保存し、1blockを同じ順で再計算します。full配列を保存・解放した後で別の所有期間を測ります。",
+          "en": "Thomas solves B u_next=u_current+dt theta b; reverse solves use B transpose. Save checkpoints every16steps and replay one block in the original order. Serialize and release the full trajectory before the separate checkpoint ownership window."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/diffusion-discrete-adjoint/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/diffusion-discrete-adjoint/?lang=en#references-en"
+        }
       }
     ],
     "references": [
@@ -1429,6 +5229,40 @@
             "view": {
               "ja": "/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/?lang=ja#bratu-matrix-free-jfnk-ja-measurements",
               "en": "/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/?lang=en#bratu-matrix-free-jfnk-en-measurements"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "diffusion-discrete-adjoint",
+        "problem_name": {
+          "ja": "時間離散拡散の随伴とcheckpoint",
+          "en": "Discrete diffusion adjoint and checkpoint replay"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/diffusion-discrete-adjoint/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/diffusion-discrete-adjoint/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "diffusion-discrete-adjoint",
+            "title": {
+              "ja": "後退Euler離散モードと時間厳密半離散拡散の参照",
+              "en": "Backward-Euler discrete modes and time-exact semidiscrete diffusion references"
+            },
+            "kind": "analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "固定stepの離散随伴でありCVODESや最適checkpoint法ではありません。40nは状態・随伴・RHS/solve scratchの一意な所有要素数です。静的因子・model配列は別表示し総所有byteへ含めます。検証/NPZ組立は測定後で、RSSではありません。",
+              "en": "Fixed-step discrete adjoints, not CVODES or an optimal checkpoint schedule. The40n limit counts unique evolving state/adjoint/RHS/solve-scratch elements. Static factors/model arrays are separately listed and included in total bytes. Validation/NPZ assembly follows the ownership windows; this is not RSS."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-diffusion-discrete-adjoint-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-diffusion-discrete-adjoint-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/diffusion-discrete-adjoint/?lang=ja#diffusion-discrete-adjoint-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/diffusion-discrete-adjoint/?lang=en#diffusion-discrete-adjoint-en-measurements"
             }
           }
         ]

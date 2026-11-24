@@ -26,6 +26,18 @@ No chapter-specific association is registered. Atlas-wide index: [Exact and refe
 
 ## Code and validation
 
+- [Discrete diffusion adjoint and checkpoint replay](<https://hrkoyama.github.io/numerical-methods-atlas/validation/diffusion-discrete-adjoint/?lang=en>)
+  availability: run
+
+  Reverse the actual backward-Euler map and compare tangent derivatives, independent high-precision modes and block replay.
+- [Bratu sensitivity near the discrete fold](<https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-sensitivity/?lang=en>)
+  availability: run
+
+  At six fixed points approaching the discrete Bratu fold, separate state error from linear-solve tolerance and compare against independent shooting gradients.
+- [Matrix-free VJP for distributed Bratu coefficients](<https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-distributed-vjp/?lang=en>)
+  availability: run
+
+  Represent8/16/32 spatial controls with two local hat weights per node; compare objective-wise adjoint VJPs with a separate full-sensitivity reference.
 - [Implicit differentiation and adjoint methods — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/adjoint/?lang=en#method-execution-en>)
   availability: source
 

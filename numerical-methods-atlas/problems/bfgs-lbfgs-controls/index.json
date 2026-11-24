@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "id": "bfgs-lbfgs-controls",
+  "name": {
+    "ja": "既知最小点でのBFGSと3組L-BFGS",
+    "en": "BFGS and three-pair L-BFGS at known minima"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bfgs-lbfgs-controls/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bfgs-lbfgs-controls/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bfgs-lbfgs-controls/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/results/bfgs-lbfgs-controls-preview.png",
+    "sha256": "1d14d1186acab1ef8a9a7ca638a1d196e51f61a17319d42423e0dd5257c92363",
+    "width": 960,
+    "height": 736,
+    "caption": {
+      "ja": "実際のRosenbrock反復点と解析目的関数の等高線。3つの固定初期値・4手法を示し、全問題での収束保証ではありません。 図の座標は有限次元の変数・反復・診断で、物理空間の次元やPDE境界を表しません。",
+      "en": "Actual Rosenbrock iterates on analytic objective contours for three fixed starts and four methods; this is not a general convergence guarantee. Plot axes describe finite-dimensional variables, iterations or diagnostics, not a physical spatial dimension or PDE boundary."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-inverse-optimization/#bfgs-lbfgs-controls",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-inverse-optimization/#bfgs-lbfgs-controls"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#bfgs-lbfgs-controls",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#bfgs-lbfgs-controls-en"
+  },
+  "equations": [
+    {
+      "id": "finite-dimensional-optimization",
+      "name": {
+        "ja": "有限次元代数最適化と既知最小点",
+        "en": "Finite-dimensional algebraic optimization and known minima"
+      },
+      "formula": [
+        "\\min_{x\\in\\mathbb R^n} f(x)",
+        "\\nabla f(x_*)=0\\quad\\text{(necessary for a smooth unconstrained local minimum)}",
+        "f_Q(x)=\\tfrac12(x-x_*)^TA(x-x_*),\\quad A=A^T>0",
+        "f_R(x,y)=100(y-x^2)^2+(1-x)^2"
+      ],
+      "note": {
+        "ja": "8次元SPD二次関数と2変数Rosenbrockの無次元代数最適化です。物理空間・PDE境界を持たず、既知最小点と局所反復作用を比較します。",
+        "en": "Dimensionless algebraic optimization of an eight-dimensional SPD quadratic and a two-variable Rosenbrock function. There is no physical spatial domain or PDE boundary; compare known minima and local iterative actions."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#finite-dimensional-optimization-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#finite-dimensional-optimization-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "無次元の非有界代数的最適化。既知の解析最小点を持ち、物理PDEの境界条件はありません。",
+    "en": "Dimensionless unconstrained algebraic optimization with known analytic minima; there is no physical PDE boundary condition."
+  },
+  "formulations": [
+    {
+      "id": "supplement-bfgs-lbfgs-controls",
+      "name": {
+        "ja": "既知最小点でのBFGSと3組L-BFGS",
+        "en": "BFGS and three-pair L-BFGS at known minima"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "H_+=(I-\\rho s y^T)H(I-\\rho y s^T)+\\rho s s^T",
+        "\\rho=(y^Ts)^{-1},\\quad\\gamma_0=(s^Ty)/(y^Ty)",
+        "f(x,y)=100(y-x^2)^2+(1-x)^2"
+      ],
+      "note": {
+        "ja": "8次元SPD二次関数と3初期値のRosenbrockを用い、曲率・strong Wolfe・現在の有限記憶作用を検査します。",
+        "en": "An eight-dimensional SPD quadratic and three Rosenbrock starts test curvature, strong Wolfe conditions and the current finite-memory action."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "bfgs-lbfgs-controls",
+      "kind": "analytic",
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "title": {
+        "ja": "既知最小点と現在の有限記憶作用に対する解析参照",
+        "en": "Analytic known minima and the current limited-memory action"
+      },
+      "formula": "f_Q=\\tfrac12(x-x_*)^TA(x-x_*),\\quad x_*=(1,-1,\\ldots)^T;\\quad f_R=100(y-x^2)^2+(1-x)^2,\\quad (x_*,y_*)=(1,1);\\quad H_+=(I-\\rho sy^T)H(I-\\rho ys^T)+\\rho ss^T.",
+      "assumptions": {
+        "ja": "無次元・非有界の代数最適化。8次元SPD二次関数とRosenbrockの3初期値を用い、L-BFGSは現在の最大3組だけを保持します。物理PDE境界条件はありません。",
+        "en": "Dimensionless unconstrained algebraic optimization uses an eight-dimensional SPD quadratic and three Rosenbrock starts. L-BFGS retains only the current last three pairs. There is no physical PDE boundary condition."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "厳密線形探索ではないためn反復終了や一般的Rosenbrock大域収束を主張しません。原著選択箇所は弱Wolfeであり、本例のstrong Wolfeと区別。Fletcher1970本文は未読です。",
+        "en": "No exact n-step termination or general global convergence on Rosenbrock is claimed. The selected original text uses weak Wolfe, distinct from this study’s strong Wolfe policy. Fletcher’s 1970 original article remains unread."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bfgs-lbfgs-controls/?lang=ja#bfgs-lbfgs-controls-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bfgs-lbfgs-controls/?lang=en#bfgs-lbfgs-controls-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "16固定fit、解析的な最小点・勾配、各受理stepのstrong Wolfeと解像された正曲率、BFGSの対称SPD、L-BFGS作用差を判定。保持組とoracle稠密行列の記憶を分離。",
+    "en": "Sixteen fixed fits check analytic minima/gradients, strong Wolfe and resolved positive curvature at every accepted step, symmetric SPD BFGS matrices and L-BFGS action defects. Retained-pair and dense-oracle storage are reported separately."
+  },
+  "methods": [
+    {
+      "id": "optimization",
+      "name": {
+        "ja": "勾配法・準Newton法",
+        "en": "Gradient and quasi-Newton optimization"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/optimization/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/optimization/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "独自逆BFGSとベクトルだけの2-loop L-BFGS（3組）。独立な小稠密oracleは現在γ₀Iから現在保持する組だけを古い順に再生。SciPy BFGS/L-BFGS-B（bounds=None）を別実装として比較。",
+    "en": "Original inverse-BFGS and vector-only two-loop L-BFGS with three pairs. A separate small dense oracle replays only currently retained pairs from the current gamma0 I. SciPy BFGS and unbounded L-BFGS-B are distinct software companions."
+  },
+  "executions": [
+    {
+      "id": "bfgs-lbfgs-controls",
+      "kind": "supplement",
+      "name": {
+        "ja": "既知最小点でのBFGSと3組L-BFGS",
+        "en": "BFGS and three-pair L-BFGS at known minima"
+      },
+      "method_ids": [
+        "optimization"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bfgs-lbfgs-controls/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bfgs-lbfgs-controls/?lang=en"
+      },
+      "scope": {
+        "ja": "8次元SPD二次関数と3初期値のRosenbrockを用い、曲率・strong Wolfe・現在の有限記憶作用を検査します。",
+        "en": "An eight-dimensional SPD quadratic and three Rosenbrock starts test curvature, strong Wolfe conditions and the current finite-memory action."
+      },
+      "assumptions": {
+        "ja": "無次元の非有界代数的最適化。既知の解析最小点を持ち、物理PDEの境界条件はありません。",
+        "en": "Dimensionless unconstrained algebraic optimization with known analytic minima; there is no physical PDE boundary condition."
+      },
+      "limits": {
+        "ja": "厳密線形探索ではないためn反復終了や一般的Rosenbrock大域収束を主張しません。原著選択箇所は弱Wolfeであり、本例のstrong Wolfeと区別。Fletcher1970本文は未読です。",
+        "en": "No exact n-step termination or general global convergence on Rosenbrock is claimed. The selected original text uses weak Wolfe, distinct from this study’s strong Wolfe policy. Fletcher’s 1970 original article remains unread."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/atlas-inverse-optimization-2026-11-24.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "16固定fit、解析的な最小点・勾配、各受理stepのstrong Wolfeと解像された正曲率、BFGSの対称SPD、L-BFGS作用差を判定。保持組とoracle稠密行列の記憶を分離。",
+        "en": "Sixteen fixed fits check analytic minima/gradients, strong Wolfe and resolved positive curvature at every accepted step, symmetric SPD BFGS matrices and L-BFGS action defects. Retained-pair and dense-oracle storage are reported separately."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/quasi_newton.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/run.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/test_inverse_optimization.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

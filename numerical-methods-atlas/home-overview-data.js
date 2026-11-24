@@ -961,6 +961,10 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "validation-adjoint": [
+    "ja",
+    "en"
+  ],
   "validation-biology": [
     "ja",
     "en"
@@ -1005,6 +1009,10 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "validation-globalization-controls": [
+    "ja",
+    "en"
+  ],
   "validation-gravity-dynamics": [
     "ja",
     "en"
@@ -1014,6 +1022,10 @@ export const homeReadingLanguages = {
     "en"
   ],
   "validation-instability-growth": [
+    "ja",
+    "en"
+  ],
+  "validation-inverse-optimization": [
     "ja",
     "en"
   ],
@@ -1118,6 +1130,10 @@ export const homeReadingLanguages = {
     "en"
   ],
   "validation-relativistic": [
+    "ja",
+    "en"
+  ],
+  "validation-reverse-higher-ad": [
     "ja",
     "en"
   ],

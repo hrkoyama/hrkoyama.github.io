@@ -733,6 +733,9 @@
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/en/read/time-integration/</loc>
   </url>
   <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-adjoint/</loc>
+  </url>
+  <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology/</loc>
   </url>
   <url>
@@ -766,6 +769,9 @@
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/</loc>
   </url>
   <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-globalization-controls/</loc>
+  </url>
+  <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-gravity-dynamics/</loc>
   </url>
   <url>
@@ -773,6 +779,9 @@
   </url>
   <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-instability-growth/</loc>
+  </url>
+  <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-inverse-optimization/</loc>
   </url>
   <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lbm-annulus/</loc>
@@ -851,6 +860,9 @@
   </url>
   <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-relativistic/</loc>
+  </url>
+  <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-reverse-higher-ad/</loc>
   </url>
   <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-sedov/</loc>
@@ -1156,6 +1168,9 @@
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/ja/read/time-integration/</loc>
   </url>
   <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-adjoint/</loc>
+  </url>
+  <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology/</loc>
   </url>
   <url>
@@ -1189,6 +1204,9 @@
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/</loc>
   </url>
   <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-globalization-controls/</loc>
+  </url>
+  <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-gravity-dynamics/</loc>
   </url>
   <url>
@@ -1196,6 +1214,9 @@
   </url>
   <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-instability-growth/</loc>
+  </url>
+  <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-inverse-optimization/</loc>
   </url>
   <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lbm-annulus/</loc>
@@ -1274,6 +1295,9 @@
   </url>
   <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-relativistic/</loc>
+  </url>
+  <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-reverse-higher-ad/</loc>
   </url>
   <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-sedov/</loc>
@@ -1532,6 +1556,9 @@
   </url>
   <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/methods/dmrg/</loc>
+  </url>
+  <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/methods/dogleg-trust-region/</loc>
   </url>
   <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/methods/dpd-thermostat/</loc>
@@ -1930,10 +1957,25 @@
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/annular-viscous-mms/</loc>
   </url>
   <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/bfgs-lbfgs-controls/</loc>
+  </url>
+  <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-distributed-vjp/</loc>
+  </url>
+  <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-fold-continuation/</loc>
   </url>
   <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-fold-sensitivity/</loc>
+  </url>
+  <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-gn-lm-bounds/</loc>
+  </url>
+  <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-matrix-free-jfnk/</loc>
+  </url>
+  <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-noise-regularization/</loc>
   </url>
   <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu/</loc>
@@ -1976,6 +2018,9 @@
   </url>
   <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/dam-break/</loc>
+  </url>
+  <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/diffusion-discrete-adjoint/</loc>
   </url>
   <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/dispersive-grazing-pml/</loc>
@@ -2023,6 +2068,9 @@
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/gbm-sde/</loc>
   </url>
   <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/globalization-difficult-starts/</loc>
+  </url>
+  <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/gravity-kepler/</loc>
   </url>
   <url>
@@ -2047,6 +2095,9 @@
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/helium-ground-state/</loc>
   </url>
   <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/hessian-vector-products/</loc>
+  </url>
+  <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/hydrogenic-atoms/</loc>
   </url>
   <url>
@@ -2069,6 +2120,9 @@
   </url>
   <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/kh-initial-growth/</loc>
+  </url>
+  <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/kink-branch-derivatives/</loc>
   </url>
   <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/krylov-spectrum/</loc>
@@ -2221,6 +2275,9 @@
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/restarted-shift-invert/</loc>
   </url>
   <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/reverse-vjp-duality/</loc>
+  </url>
+  <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/problems/rotated-anisotropic-diffusion/</loc>
   </url>
   <url>
@@ -2335,10 +2392,25 @@
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/annular-viscous-mms/</loc>
   </url>
   <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/bfgs-lbfgs-controls/</loc>
+  </url>
+  <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-distributed-vjp/</loc>
+  </url>
+  <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-continuation/</loc>
   </url>
   <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-sensitivity/</loc>
+  </url>
+  <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-gn-lm-bounds/</loc>
+  </url>
+  <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/</loc>
+  </url>
+  <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-noise-regularization/</loc>
   </url>
   <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/brio-independent/</loc>
@@ -2381,6 +2453,9 @@
   </url>
   <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/cylinder-mie2d/</loc>
+  </url>
+  <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/diffusion-discrete-adjoint/</loc>
   </url>
   <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/dispersive-grazing-pml/</loc>
@@ -2452,6 +2527,9 @@
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/glm-fourier-mode/</loc>
   </url>
   <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/globalization-difficult-starts/</loc>
+  </url>
+  <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/gravity-kepler/</loc>
   </url>
   <url>
@@ -2461,10 +2539,16 @@
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/guderley-implosion/</loc>
   </url>
   <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/hessian-vector-products/</loc>
+  </url>
+  <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/isotropic-scattering-slab/</loc>
   </url>
   <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/kh-initial-growth/</loc>
+  </url>
+  <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/kink-branch-derivatives/</loc>
   </url>
   <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/krylov-eigen-conditioning/</loc>
@@ -2573,6 +2657,9 @@
   </url>
   <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/restarted-shift-invert/</loc>
+  </url>
+  <url>
+    <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/reverse-vjp-duality/</loc>
   </url>
   <url>
     <loc>https://hrkoyama.github.io/numerical-methods-atlas/validation/rotated-anisotropic-diffusion/</loc>

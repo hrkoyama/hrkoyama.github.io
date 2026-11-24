@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "id": "bratu-distributed-vjp",
+  "name": {
+    "ja": "分布係数Bratuの行列非形成VJP",
+    "en": "Matrix-free VJP for distributed Bratu coefficients"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-distributed-vjp/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-distributed-vjp/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-distributed-vjp/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/results/bratu-distributed-vjp-preview.png",
+    "sha256": "35e108b2ceca8fca74577a9858ac1bda6a5a8cf04c1e68810b90308f39c77ad0",
+    "width": 1068,
+    "height": 645,
+    "caption": {
+      "ja": "分布係数Bratuの行列非形成VJP。実際の保存数値データの縮小図で、1次元問題です。",
+      "en": "Matrix-free VJP for distributed Bratu coefficients. Preview from actual saved numerical data for a one-dimensional problem."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-adjoint/#bratu-distributed-vjp",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-adjoint/#bratu-distributed-vjp"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#bratu-distributed-vjp",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#bratu-distributed-vjp-en"
+  },
+  "equations": [
+    {
+      "id": "bratu",
+      "name": {
+        "ja": "Bratu非線形境界値問題",
+        "en": "Bratu nonlinear boundary-value problem"
+      },
+      "formula": [
+        "-\\frac{d^2u}{dx^2}=\\lambda e^u,\\qquad 0<x<1",
+        "u(0)=u(1)=0"
+      ],
+      "note": {
+        "ja": "ここでは−u″=λexp(u)の符号規約。Newton–Krylov法で残差・格子収束・内側線形解法の失敗を確認します。",
+        "en": "The convention here is −u″=λ exp(u). Newton–Krylov checks cover residuals, refinement and inner-solver failures."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bratu-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bratu-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "内点63、a(x)=2+Bθ、θ=.2sin(2πξ)+.1cos(πξ)。uと感度は固定零Dirichlet境界ですが、係数の両端controlは固定零ではありません。",
+    "en": "63 interior nodes; a(x)=2+B theta with theta=.2sin(2pi xi)+.1cos(pi xi). State/sensitivity have fixed zero Dirichlet endpoints; endpoint coefficient controls are not fixed zero."
+  },
+  "formulations": [
+    {
+      "id": "supplement-bratu-distributed-vjp",
+      "name": {
+        "ja": "分布係数Bratuの行列非形成VJP",
+        "en": "Matrix-free VJP for distributed Bratu coefficients"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "G=A_hu-(2+B\\theta)e^u,\\quad J^Tp=q,\\quad \\nabla_\\theta\\mathcal J=B^T(e^u\\odot p)",
+        "a_{\\rm endpoints}=[a-b,a+b],\\quad\\theta_{\\rm endpoints}=[a-b-2,a+b-2]"
+      ],
+      "note": {
+        "ja": "2重みだけの局所hat作用で8/16/32個の空間係数を表し、目的関数ごとの随伴VJPを全感度参照と比較します。",
+        "en": "Represent8/16/32 spatial controls with two local hat weights per node; compare objective-wise adjoint VJPs with a separate full-sensitivity reference."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "bratu-distributed-vjp",
+      "kind": "numerical-reference",
+      "kind_label": {
+        "ja": "有限格子の数値参照",
+        "en": "Finite-grid numerical reference"
+      },
+      "title": {
+        "ja": "分布Bratu係数の独立dense感度と行列不要VJP",
+        "en": "Independent dense sensitivities and matrix-free VJPs for distributed Bratu coefficients"
+      },
+      "formula": "J_hU_\\theta=\\operatorname{diag}(e^u)B,\\quad J_h^\\top p=q,\\quad \\nabla_\\theta\\Psi=B^\\top(e^u\\odot p).",
+      "assumptions": {
+        "ja": "1D同次Dirichlet、63内点。a(x)=2+Bθは8/16/32個の線形hat制御で、主固定例は1.7≤a≤2.3。端点係数は零Dirichlet状態と異なり固定零にしません。",
+        "en": "A one-dimensional zero-Dirichlet problem with 63 interior nodes. The coefficient a(x)=2+Btheta uses 8/16/32 linear-hat controls and stays between 1.7 and 2.3 in the fixed main cases. Endpoint coefficient controls are not zeroed like state Dirichlet values."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "同じ離散状態の微分検証で、独立した物理PDE解の証明や一般ADではありません。保存arrayと固定Krylov workspaceの記録はRSS測定ではありません。m=2のθ端点は[a-b-2,a+b-2]で、物理係数端点[a-b,a+b]と区別します。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。",
+        "en": "Derivative verification at the same discrete state, not independent physical-PDE truth or general AD. Persistent arrays and fixed Krylov workspace inventories are not RSS measurements. For m=2, theta endpoints are[a-b-2,a+b-2], distinct from physical coefficient endpoints[a-b,a+b]. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-distributed-vjp/?lang=ja#bratu-distributed-vjp-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-distributed-vjp/?lang=en#bratu-distributed-vjp-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "実行前凍結:独立67項目の参照資格後、共有32pytestと本群141固定判定。各候補の全入力・全許容差・失敗を保存します。実合否は同梱result/verificationを参照。 初回は32pytestと拡散59/近fold45判定後に内側残差未達で停止し保存。R2の一般Jv演算順は別96成分で資格済みですが、本試験の成功を意味しません。 R2本試験も保存済み未達。R3の状態専用hi+loは別20成分で資格済み、本3caseの合否は実result/verificationで確認します。 所有配列の全詳細はrecordsのlinear_memory内のfile/byteoffset/recordSHAからJSONLへ辿れ、本文には要約だけを表示します。",
+    "en": "Pre-run freeze:independent67-check reference qualification, then shared32pytest and141fixed group gates. Retain all inputs, tolerances and failures. Actual outcomes are recorded in the bundled result/verification. Initial attempt retained32passing tests and59diffusion/45fold gates before an unmet inner target. R2 general Jv association has separate96component checks; this does not imply primary success. R2 primary failure is also retained. R3 state-onlyhi+lo has separate20component checks;actual three-caseoutcomes are inresult/verification. Fullownership evidence is in the JSONL file/byteoffset/recordSHA referenced by each linear_memory summary;only compact summaries enter case metrics."
+  },
+  "methods": [
+    {
+      "id": "adjoint",
+      "name": {
+        "ja": "陰関数微分・随伴法",
+        "en": "Implicit differentiation and adjoint methods"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/adjoint/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/adjoint/?lang=en"
+      }
+    },
+    {
+      "id": "gmres",
+      "name": {
+        "ja": "再始動GMRES",
+        "en": "Restarted GMRES"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/gmres/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/gmres/?lang=en"
+      }
+    },
+    {
+      "id": "centered-difference",
+      "name": {
+        "ja": "空間中心差分",
+        "en": "Centered spatial difference"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/centered-difference/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/centered-difference/?lang=en"
+      }
+    },
+    {
+      "id": "newton",
+      "name": {
+        "ja": "Armijo減衰Newton法",
+        "en": "Armijo-damped Newton"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/newton/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/newton/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "Bvは局所gather、B転置はscatter-add。一次実装はn×m行列を作らずJvで解き、同一状態の1/3目的関数で実際に1個のPoisson因子を共有します。別の参照期間のみdense hatとm本の接線RHSを許可します。 R2は同じfloat64の隣接差を先に取る一般Jvで、元の非線形残差・GMRES・許容差は変更しません。 R3は状態Newton補正だけをhi+loで保持し、直接9積残差と3積状態更新を使います。物理状態はfloat64、感度/随伴GMRESは旧方式です。",
+    "en": "Bv uses local gather and B transpose scatter-add. Primary solves use Jv without an n-by-m matrix. One shared Poisson factor serves the one/three-objective runs on the same state. Dense hats and m tangent RHS are allowed only in the separate reference window. R2 uses a general near-neighbor-difference association in binary64 Jv; the original nonlinear residual,GMRES and tolerances are unchanged. R3 expands only stateNewtoncorrections ashi+lo,direct9productresidual and3productstateupdate. Physicalstates stayfloat64;derivative/adjointGMRES staysordinary."
+  },
+  "executions": [
+    {
+      "id": "bratu-distributed-vjp",
+      "kind": "supplement",
+      "name": {
+        "ja": "分布係数Bratuの行列非形成VJP",
+        "en": "Matrix-free VJP for distributed Bratu coefficients"
+      },
+      "method_ids": [
+        "adjoint",
+        "gmres",
+        "centered-difference",
+        "newton"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-distributed-vjp/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-distributed-vjp/?lang=en"
+      },
+      "scope": {
+        "ja": "2重みだけの局所hat作用で8/16/32個の空間係数を表し、目的関数ごとの随伴VJPを全感度参照と比較します。",
+        "en": "Represent8/16/32 spatial controls with two local hat weights per node; compare objective-wise adjoint VJPs with a separate full-sensitivity reference."
+      },
+      "assumptions": {
+        "ja": "内点63、a(x)=2+Bθ、θ=.2sin(2πξ)+.1cos(πξ)。uと感度は固定零Dirichlet境界ですが、係数の両端controlは固定零ではありません。",
+        "en": "63 interior nodes; a(x)=2+B theta with theta=.2sin(2pi xi)+.1cos(pi xi). State/sensitivity have fixed zero Dirichlet endpoints; endpoint coefficient controls are not fixed zero."
+      },
+      "limits": {
+        "ja": "同じ離散状態の微分検証で、独立した物理PDE解の証明や一般ADではありません。保存arrayと固定Krylov workspaceの記録はRSS測定ではありません。m=2のθ端点は[a-b-2,a+b-2]で、物理係数端点[a-b,a+b]と区別します。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。",
+        "en": "Derivative verification at the same discrete state, not independent physical-PDE truth or general AD. Persistent arrays and fixed Krylov workspace inventories are not RSS measurements. For m=2, theta endpoints are[a-b-2,a+b-2], distinct from physical coefficient endpoints[a-b,a+b]. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/atlas-adjoint-2026-11-24.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "実行前凍結:独立67項目の参照資格後、共有32pytestと本群141固定判定。各候補の全入力・全許容差・失敗を保存します。実合否は同梱result/verificationを参照。 初回は32pytestと拡散59/近fold45判定後に内側残差未達で停止し保存。R2の一般Jv演算順は別96成分で資格済みですが、本試験の成功を意味しません。 R2本試験も保存済み未達。R3の状態専用hi+loは別20成分で資格済み、本3caseの合否は実result/verificationで確認します。 所有配列の全詳細はrecordsのlinear_memory内のfile/byteoffset/recordSHAからJSONLへ辿れ、本文には要約だけを表示します。",
+        "en": "Pre-run freeze:independent67-check reference qualification, then shared32pytest and141fixed group gates. Retain all inputs, tolerances and failures. Actual outcomes are recorded in the bundled result/verification. Initial attempt retained32passing tests and59diffusion/45fold gates before an unmet inner target. R2 general Jv association has separate96component checks; this does not imply primary success. R2 primary failure is also retained. R3 state-onlyhi+lo has separate20component checks;actual three-caseoutcomes are inresult/verification. Fullownership evidence is in the JSONL file/byteoffset/recordSHA referenced by each linear_memory summary;only compact summaries enter case metrics."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/operators.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/krylov.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/newton.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/distributed.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/references/modal_decimal.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/references/shooting_decimal.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/references/linear_oracle.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/balanced_operator.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/state_linear.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/state_expansion.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/state_krylov.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/state_jacobian.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_distributed.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_fold.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_time.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}
