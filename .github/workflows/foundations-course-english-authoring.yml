@@ -35,9 +35,10 @@ jobs:
           python-version: '3.12'
       - name: Install pinned PDF authoring dependencies on GitHub
         run: |
-          python -m pip install --no-cache-dir reportlab==4.4.9 svglib==1.6.0 pypdf==6.21.4
+          mkdir -p test-results/foundations-en
           sudo apt-get update
-          sudo apt-get install --no-install-recommends -y poppler-utils fonts-dejavu-core
+          sudo apt-get install --no-install-recommends -y poppler-utils fonts-dejavu-core libcairo2-dev pkg-config
+          python -m pip install --no-cache-dir reportlab==4.4.9 svglib==1.6.0 pypdf==6.21.4 > test-results/foundations-en/dependency-install.log 2>&1
       - name: Generate the English PDF and verify all shared text
         run: |
           mkdir -p test-results/foundations-en/pages test-results/foundations-en/contacts
