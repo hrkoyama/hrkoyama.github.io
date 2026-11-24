@@ -213,10 +213,18 @@ test('HLLC, WENO-Z, Roe and Bratu derivatives do not borrow one another’s exec
     assert.ok(bratu);assert.equal(bratu.role,'related');assert.deepEqual(bratu.executions,[]);
     const context=method(id).references.find(row=>row.problem_id==='bratu');assert.ok(context);assert.deepEqual(context.cases,[]);
   }
-  assert.deepEqual(runs('newton'),['bratu','bratu-fold-continuation']);
-  assert.deepEqual(runs('automatic-differentiation'),['bratu-matrix-free-jfnk']);
-  assert.deepEqual(runs('jacobian-free-newton-krylov'),['bratu-matrix-free-jfnk']);
-  for(const id of ['adjoint','optimization','newton-krylov'])assert.deepEqual(runs(id),[],id+' keeps no unrelated Bratu runner');
+  // Fixed approved runners, preserving old prefixes and each new case's
+  // actual method IDs. Shared Bratu/AD names do not create extra runners.
+  const qualifiedRunners={
+    'newton':['bratu','bratu-fold-continuation','globalization-difficult-starts','bratu-fold-sensitivity','bratu-distributed-vjp'],
+    'automatic-differentiation':['bratu-matrix-free-jfnk','reverse-vjp-duality','hessian-vector-products','kink-branch-derivatives'],
+    'adjoint':['diffusion-discrete-adjoint','bratu-fold-sensitivity','bratu-distributed-vjp'],
+    'optimization':['bratu-gn-lm-bounds','bfgs-lbfgs-controls','bratu-noise-regularization'],
+    'dogleg-trust-region':['globalization-difficult-starts'],
+    'jacobian-free-newton-krylov':['bratu-matrix-free-jfnk']
+  };
+  for(const [id,expected]of Object.entries(qualifiedRunners))assert.deepEqual(runs(id),expected,id+' exact qualified runners');
+  assert.deepEqual(runs('newton-krylov'),[],'the distinct Newton-Krylov method keeps no unrelated Bratu runner');
   for(const [id,caseId]of [['newton','bratu-fold-continuation'],['automatic-differentiation','bratu-matrix-free-jfnk'],['jacobian-free-newton-krylov','bratu-matrix-free-jfnk']]){
     const own=method(id).problems.find(problem=>problem.id===caseId);
     assert.ok(own,id+' has its exact qualified Bratu supplement');assert.equal(own.role,'execution');

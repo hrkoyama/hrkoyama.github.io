@@ -295,9 +295,11 @@ test('execution, method and reverse-reference graphs preserve exact runners, nul
   assert.deepEqual(runIds(source.nodes['method:hllc']),['sod']);assert.deepEqual(runIds(source.nodes['method:weno-z']),['weno-critical-epsilon','shu-osher']);assert.deepEqual(runIds(source.nodes['method:roe']),['low-mach-vortex']);
   assert.deepEqual(ids(source.nodes['execution:h2-rhf'].groups.equations),['formulation-h2-rhf','hartree-fock-model']);
   const qualifiedRunners={
-    'automatic-differentiation':['bratu-matrix-free-jfnk'],
-    'adjoint':[],
-    'optimization':[],
+    'newton':['bratu','bratu-fold-continuation','globalization-difficult-starts','bratu-fold-sensitivity','bratu-distributed-vjp'],
+    'automatic-differentiation':['bratu-matrix-free-jfnk','reverse-vjp-duality','hessian-vector-products','kink-branch-derivatives'],
+    'adjoint':['diffusion-discrete-adjoint','bratu-fold-sensitivity','bratu-distributed-vjp'],
+    'optimization':['bratu-gn-lm-bounds','bfgs-lbfgs-controls','bratu-noise-regularization'],
+    'dogleg-trust-region':['globalization-difficult-starts'],
     'fdtd':['cylinder-mie2d','lorentz-oblique-sp','dispersive-grazing-pml'],
     'jacobian-free-newton-krylov':['bratu-matrix-free-jfnk']
   };

@@ -82,12 +82,21 @@
       ]
     },
     {
+      "id": "prime-atlas-gallery-metadata",
+      "runner": "python",
+      "script": "scripts/prime-atlas-gallery-metadata.py",
+      "args": [],
+      "depends_on": [
+        "build-atlas-detailed-reading"
+      ]
+    },
+    {
       "id": "build-atlas-depth-examples",
       "runner": "python",
       "script": "scripts/build-atlas-depth-examples.py",
       "args": [],
       "depends_on": [
-        "build-atlas-detailed-reading"
+        "prime-atlas-gallery-metadata"
       ]
     },
     {
