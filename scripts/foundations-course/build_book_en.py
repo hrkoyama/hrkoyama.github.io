@@ -11,7 +11,7 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib import colors
-from reportlab.platypus import SimpleDocTemplate,Paragraph,Spacer,PageBreak,Preformatted,KeepTogether
+from reportlab.platypus import SimpleDocTemplate,Paragraph,Spacer,PageBreak,Preformatted,KeepTogether,CondPageBreak
 
 def build(font,mono):
     d=load(); assets=ROOT/d['assets_base'].lstrip('/')
@@ -19,13 +19,13 @@ def build(font,mono):
     dest.parent.mkdir(parents=True,exist_ok=True)
     pdfmetrics.registerFont(TTFont('BookEN',font))
     pdfmetrics.registerFont(TTFont('CodeEN',mono))
-    base=dict(fontName='BookEN',textColor=colors.HexColor('#19343b'))
+    base=dict(fontName='BookEN',textColor=colors.HexColor('#19343b'),allowWidows=0,allowOrphans=0)
     styles={
       'body':ParagraphStyle('body',**base,fontSize=9.5,leading=14.5,spaceAfter=6),
       'h1':ParagraphStyle('h1',**base,fontSize=20,leading=26,spaceAfter=16,keepWithNext=True),
       'h2':ParagraphStyle('h2',**base,fontSize=12,leading=17,spaceBefore=10,spaceAfter=6,keepWithNext=True),
       'small':ParagraphStyle('small',**base,fontSize=8,leading=11.5,spaceAfter=5),
-      'code':ParagraphStyle('code',fontName='CodeEN',fontSize=7.3,leading=10.5,backColor=colors.HexColor('#f0f5f5'),borderPadding=7,spaceBefore=8,spaceAfter=12),
+      'code':ParagraphStyle('code',fontName='CodeEN',fontSize=8,leading=11,backColor=colors.HexColor('#f0f5f5'),borderPadding=7,spaceBefore=8,spaceAfter=12),
     }
     story=[]
     def paragraph(text,kind='body'):return Paragraph(escape(text),styles[kind])
@@ -48,7 +48,7 @@ def build(font,mono):
     p('Run code snippets from the extracted ZIP directory. Enter the Chapter 19 commands in a shell rather than Python.')
     for t in d['lab_guide']:p(t)
     for c in d['chapters']:
-        story.append(PageBreak());p('Chapter '+str(c['n'])+': '+c['title'],'h1')
+        story.append(Spacer(1,18));story.append(CondPageBreak(420));p('Chapter '+str(c['n'])+': '+c['title'],'h1')
         for t in c['goals']:p('Learning goal: '+t,'small')
         for t in c['lead']:p(t)
         eq=0
