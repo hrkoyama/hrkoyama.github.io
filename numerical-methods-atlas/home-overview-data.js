@@ -965,6 +965,10 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "validation-bratu-continuation-jfnk": [
+    "ja",
+    "en"
+  ],
   "validation-coefficient-diffusion": [
     "ja",
     "en"
@@ -1033,7 +1037,23 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "validation-linear-algebra-spectral": [
+    "ja",
+    "en"
+  ],
   "validation-low-mach": [
+    "ja",
+    "en"
+  ],
+  "validation-maxwell-cylinder": [
+    "ja",
+    "en"
+  ],
+  "validation-maxwell-grazing": [
+    "ja",
+    "en"
+  ],
+  "validation-maxwell-lorentz": [
     "ja",
     "en"
   ],

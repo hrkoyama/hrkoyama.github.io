@@ -182,6 +182,18 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Compare the selected1D pattern at t=100 with an independent reference. Separate reference90→100 change/full-PDE residual from the finite-step primary FD residual.
+- [Oblique s/p incidence on a Lorentz-dispersive slab](<https://hrkoyama.github.io/numerical-methods-atlas/validation/lorentz-oblique-sp/?lang=en>)
+  availability: run
+
+  Measure complex r/t, power fractions and direct dissipation from actual finite-pulse evolutions and compare them with complex Fresnel slab references.
+- [Long-time grazing PML in a dispersive medium](<https://hrkoyama.github.io/numerical-methods-atlas/validation/dispersive-grazing-pml/?lang=en>)
+  availability: run
+
+  Evolve a finite packet with an 80-degree central phase angle to T = 700, isolating boundary error against a no-PML reference on the same grid.
+- [Mie scattering width of a two-dimensional dielectric cylinder](<https://hrkoyama.github.io/numerical-methods-atlas/validation/cylinder-mie2d/?lang=en>)
+  availability: run
+
+  Evolve the actual two-dimensional scattered fields and compare closed-contour Poynting power with an independent cylindrical series.
 - [Harmonic oscillator: Verlet phase error and energy](<https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/harmonic-oscillator/?lang=en>)
   availability: run
 

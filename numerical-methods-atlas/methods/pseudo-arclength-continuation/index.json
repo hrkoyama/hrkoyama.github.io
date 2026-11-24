@@ -1,0 +1,537 @@
+{
+  "id": "pseudo-arclength-continuation",
+  "name": {
+    "ja": "重み付き擬似弧長継続",
+    "en": "Weighted pseudo-arclength continuation"
+  },
+  "group": {
+    "ja": "線形・非線形解法",
+    "en": "Linear & nonlinear solvers",
+    "id": "solvers"
+  },
+  "summary": {
+    "ja": "同じ1次元Bratu境界値問題の下枝から上枝までを追跡し、接線・fold・独立解析族との空間誤差を調べます。",
+    "en": "Follow the lower and upper branches of the same one-dimensional Bratu boundary-value problem; check tangents, the fold and spatial error against an independent analytic family."
+  },
+  "status": "educational-example",
+  "origin": "development-candidate",
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/#bratu-fold-continuation",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/#bratu-fold-continuation"
+  },
+  "code_modules": [],
+  "test_files": [],
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
+  "references": [
+    {
+      "label": "Condition Estimates for Pseudo-Arclength Continuation",
+      "url": "https://ipsen.math.ncsu.edu/ps/sinum65438.pdf",
+      "scope": "Section2.2, printedpp265–266, Eqs2.2–2.5; tangent null equation, unit Euclidean tangent, augmented system and tangent hyperplane. Weighted h-sum metric is the implementation’s stated discrete variation. No full condition-number proof or original paper numerical benchmark is borrowed."
+    },
+    {
+      "label": "Finite differences for the1D Bratu problem,Problem8",
+      "url": "https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html",
+      "scope": "Problem8/Eq52: boundary-value equation, analytic cosh family, branch count and printed rounded critical value. The author’s parameter equals2 times our theta. Independent Decimal80 exact-family qualification remains the numerical reference; the printed rounded anchor is a separate coarse check."
+    }
+  ],
+  "assumptions": [
+    "Dimensionless x in [0,1] with zero Dirichlet endpoints and 31/63/127 interior nodes. Take 80 fixed ds=0.1 steps from the zero solution. Correct both branches at lambda=2; lambda=4 is a deliberate discrete no-solution control. Pseudo-arclength is not physical time."
+  ],
+  "units": "Dimensionless. Pseudo-arclength is not physical time.",
+  "boundary_conditions": "Homogeneous Dirichlet endpoints at x=0 and x=1.",
+  "limitations": {
+    "ja": "小さな1次元の単純foldだけです。分岐曲線の解析族比較では計算した中点値を族の座標に使い、固定λの独立形状比較と区別します。連続foldは離散解そのものではなく、一般の分岐追跡や大規模性能は保証しません。",
+    "en": "A small one-dimensional simple fold only. The whole-curve family comparison uses the computed midpoint as its family coordinate and is distinct from the independent fixed-lambda profile checks. The continuum fold is not an exact discrete solution. No general bifurcation-tracking or large-scale performance claim."
+  },
+  "depth_scope": {
+    "ja": "同じ1次元Bratu境界値問題の下枝から上枝までを追跡し、接線・fold・独立解析族との空間誤差を調べます。",
+    "en": "Follow the lower and upper branches of the same one-dimensional Bratu boundary-value problem; check tangents, the fold and spatial error against an independent analytic family."
+  },
+  "metadata_review": {
+    "on": "2026-11-24",
+    "level": "Selected original-paper passages and author documentation, fixed independent analytic-family qualification and canonical ZIP verification.",
+    "supplemental_review": {
+      "on": "2026-11-24",
+      "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
+    }
+  },
+  "aliases": [
+    "PALC",
+    "擬似弧長法"
+  ],
+  "depth_release": {
+    "group": "bratu-continuation-jfnk",
+    "case_ids": [
+      "bratu-fold-continuation"
+    ],
+    "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/",
+    "code_edition": "2026-11-24-r2",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/problem.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/continuation.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/matrix_free.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/dual.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/experiments.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/references/analytic_family.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/io_contract.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/test_bratu.py"
+    ],
+    "run_commands": [
+      "python -m pytest -q",
+      "python run.py --input inputs.json --output output"
+    ],
+    "run_from": "atlas-bratu-continuation-jfnk-2026-11-24-r2",
+    "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/atlas-bratu-continuation-jfnk-2026-11-24-r2.zip",
+    "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/source-manifest.json",
+    "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json",
+    "code_archive_sha256": "aeffa7e1b442f198ef2de55e453f82e5d6cbe30fc3d0bbd1112354a38a20a25d",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/result.json",
+    "passed_tests": 27,
+    "examples": [
+      {
+        "id": "bratu-fold-continuation",
+        "title": {
+          "ja": "擬似弧長継続でBratuのfoldを越える",
+          "en": "Crossing the Bratu fold with pseudo-arclength continuation"
+        },
+        "summary": {
+          "ja": "同じ1次元Bratu境界値問題の下枝から上枝までを追跡し、接線・fold・独立解析族との空間誤差を調べます。",
+          "en": "Follow the lower and upper branches of the same one-dimensional Bratu boundary-value problem; check tangents, the fold and spatial error against an independent analytic family."
+        },
+        "assumptions": {
+          "ja": "無次元x∈[0,1]、両端u=0、中心差分の内点31/63/127。零解から固定ds=0.1で80step。λ=2で上下枝を補正し、λ=4は離散無解の意図的な対照です。擬似弧長は物理時間ではありません。",
+          "en": "Dimensionless x in [0,1] with zero Dirichlet endpoints and 31/63/127 interior nodes. Take 80 fixed ds=0.1 steps from the zero solution. Correct both branches at lambda=2; lambda=4 is a deliberate discrete no-solution control. Pseudo-arclength is not physical time."
+        },
+        "algorithm": {
+          "ja": "hΣdu²+dλ²の重み付き単位接線、予測点と接線超平面によるNewton補正。別の拡大系でfoldと正規化null vectorを解きます。このcaseは疎Jacobianを明示的に組み立てます。",
+          "en": "Use a unit tangent in h-sum(du squared)+d-lambda squared, a predictor and a tangent-hyperplane Newton corrector. A separate augmented system locates the fold and a normalized null vector. This case deliberately assembles sparse Jacobians."
+        },
+        "validation": {
+          "ja": "保存R3では共通27pytestと本caseの67固定判定が合格。離散残差、接線の向き・単位長、fold方程式・null条件・transversality、独立Decimal80解析族、固定3格子の誤差を別々に確認しています。",
+          "en": "The preserved R3 run passed the shared 27 pytest tests and this case’s 67 fixed gates. Discrete residuals, tangent orientation/normalization, fold/null/transversality conditions, an independent Decimal80 family and fixed three-grid errors are checked separately."
+        },
+        "limits": {
+          "ja": "小さな1次元の単純foldだけです。分岐曲線の解析族比較では計算した中点値を族の座標に使い、固定λの独立形状比較と区別します。連続foldは離散解そのものではなく、一般の分岐追跡や大規模性能は保証しません。",
+          "en": "A small one-dimensional simple fold only. The whole-curve family comparison uses the computed midpoint as its family coordinate and is distinct from the independent fixed-lambda profile checks. The continuum fold is not an exact discrete solution. No general bifurcation-tracking or large-scale performance claim."
+        },
+        "method_ids": [
+          "pseudo-arclength-continuation",
+          "newton",
+          "centered-difference"
+        ],
+        "domains": [
+          "pde",
+          "nonlinear",
+          "linear-algebra"
+        ],
+        "code_files": [
+          "run.py",
+          "problem.py",
+          "continuation.py",
+          "matrix_free.py",
+          "dual.py",
+          "experiments.py",
+          "references/analytic_family.py"
+        ],
+        "references": [
+          {
+            "id": "dickson2007",
+            "title": "Condition Estimates for Pseudo-Arclength Continuation",
+            "author": "K.I.Dickson,C.T.Kelley,I.C.F.Ipsen,I.G.Kevrekidis",
+            "year": 2007,
+            "type": "article",
+            "doi": "10.1137/060654384",
+            "url": "https://ipsen.math.ncsu.edu/ps/sinum65438.pdf",
+            "review_level": "primary-selected-PDF-text",
+            "review_scope": "Section2.2, printedpp265–266, Eqs2.2–2.5; tangent null equation, unit Euclidean tangent, augmented system and tangent hyperplane. Weighted h-sum metric is the implementation’s stated discrete variation. No full condition-number proof or original paper numerical benchmark is borrowed.",
+            "review": {
+              "ja": "原著PDFの選択部分2.2節の接線・正規化・超平面制約と単純foldの範囲を読解。全文・全証明の監査ではありません。",
+              "en": "Read selected original sec2.2 tangent,normalization,hyperplane andsimple-fold scope; nofullproof audit."
+            },
+            "role": "algorithm-primary"
+          },
+          {
+            "id": "langtangen-bratu-official",
+            "title": "Finite differences for the1D Bratu problem,Problem8",
+            "author": "Hans Petter Langtangen",
+            "year": 2014,
+            "type": "author-course-documentation",
+            "url": "https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html",
+            "review_level": "author-selected-exact-solution-exercise",
+            "review_scope": "Problem8/Eq52: boundary-value equation, analytic cosh family, branch count and printed rounded critical value. The author’s parameter equals2 times our theta. Independent Decimal80 exact-family qualification remains the numerical reference; the printed rounded anchor is a separate coarse check.",
+            "review": {
+              "ja": "著者教材のBratu解析族と二枝・丸めた臨界値を確認。変数は採用thetaの2倍で、別導出とDecimal80で資格。1914原著は未読です。",
+              "en": "Read author exercise exactfamily/twobranches/roundedcritical; itsparameter istwiceourtheta. Independentderivation/Decimal80qualification;1914originalunread."
+            },
+            "role": "analytic-reference"
+          }
+        ],
+        "citations": [
+          {
+            "id": "dickson2007",
+            "title": "Condition Estimates for Pseudo-Arclength Continuation",
+            "author": "K.I.Dickson,C.T.Kelley,I.C.F.Ipsen,I.G.Kevrekidis",
+            "year": 2007,
+            "type": "article",
+            "doi": "10.1137/060654384",
+            "url": "https://ipsen.math.ncsu.edu/ps/sinum65438.pdf",
+            "review_level": "primary-selected-PDF-text",
+            "review_scope": "Section2.2, printedpp265–266, Eqs2.2–2.5; tangent null equation, unit Euclidean tangent, augmented system and tangent hyperplane. Weighted h-sum metric is the implementation’s stated discrete variation. No full condition-number proof or original paper numerical benchmark is borrowed.",
+            "review": {
+              "ja": "原著PDFの選択部分2.2節の接線・正規化・超平面制約と単純foldの範囲を読解。全文・全証明の監査ではありません。",
+              "en": "Read selected original sec2.2 tangent,normalization,hyperplane andsimple-fold scope; nofullproof audit."
+            },
+            "role": "algorithm-primary"
+          },
+          {
+            "id": "langtangen-bratu-official",
+            "title": "Finite differences for the1D Bratu problem,Problem8",
+            "author": "Hans Petter Langtangen",
+            "year": 2014,
+            "type": "author-course-documentation",
+            "url": "https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html",
+            "review_level": "author-selected-exact-solution-exercise",
+            "review_scope": "Problem8/Eq52: boundary-value equation, analytic cosh family, branch count and printed rounded critical value. The author’s parameter equals2 times our theta. Independent Decimal80 exact-family qualification remains the numerical reference; the printed rounded anchor is a separate coarse check.",
+            "review": {
+              "ja": "著者教材のBratu解析族と二枝・丸めた臨界値を確認。変数は採用thetaの2倍で、別導出とDecimal80で資格。1914原著は未読です。",
+              "en": "Read author exercise exactfamily/twobranches/roundedcritical; itsparameter istwiceourtheta. Independentderivation/Decimal80qualification;1914originalunread."
+            },
+            "role": "analytic-reference"
+          }
+        ],
+        "formulas": [
+          "-u''=\\lambda e^u,\\quad u(0)=u(1)=0",
+          "u_\\theta=2\\log\\frac{\\cosh(\\theta/2)}{\\cosh(\\theta(x-1/2))},\\quad\\lambda(\\theta)=2\\theta^2/\\cosh^2(\\theta/2)"
+        ],
+        "gallery_figure": "bratu-fold-continuation-preview.png",
+        "additional_figures": [
+          {
+            "file": "bratu-fold-continuation-preview.png",
+            "caption": {
+              "ja": "保存した分岐曲線、λ=2の上下枝、Jacobianの最小特異値、3格子のfold誤差を示す縮小図。擬似弧長stepは物理時間ではありません。",
+              "en": "Preview of the stored branch,lambda=2 profiles,smallest Jacobian singular value and three-grid fold error. Arclength steps are not physical time."
+            }
+          }
+        ],
+        "measured": {
+          "id": "bratu-fold-continuation",
+          "passed": true,
+          "checks": {
+            "N31/finite complete branch": true,
+            "N31/discrete residual": true,
+            "N31/unit tangent": true,
+            "N31/tangent equation": true,
+            "N31/tangent orientation": true,
+            "N31/turning tangent": true,
+            "N31/lower and upper lambda2 neighborhoods": true,
+            "N31/fold discrete equation": true,
+            "N31/fold null equation": true,
+            "N31/fold null normalization": true,
+            "N31/fold sigma_min": true,
+            "N31/simple fold parameter transversality": true,
+            "N31/simple fold quadratic transversality": true,
+            "N31/lower discrete root": true,
+            "N31/upper discrete root": true,
+            "N31/ordered distinct branches": true,
+            "N31/nonzero reference fields": true,
+            "N63/finite complete branch": true,
+            "N63/discrete residual": true,
+            "N63/unit tangent": true,
+            "N63/tangent equation": true,
+            "N63/tangent orientation": true,
+            "N63/turning tangent": true,
+            "N63/lower and upper lambda2 neighborhoods": true,
+            "N63/fold discrete equation": true,
+            "N63/fold null equation": true,
+            "N63/fold null normalization": true,
+            "N63/fold sigma_min": true,
+            "N63/simple fold parameter transversality": true,
+            "N63/simple fold quadratic transversality": true,
+            "N63/lower discrete root": true,
+            "N63/upper discrete root": true,
+            "N63/ordered distinct branches": true,
+            "N63/nonzero reference fields": true,
+            "N127/finite complete branch": true,
+            "N127/discrete residual": true,
+            "N127/unit tangent": true,
+            "N127/tangent equation": true,
+            "N127/tangent orientation": true,
+            "N127/turning tangent": true,
+            "N127/lower and upper lambda2 neighborhoods": true,
+            "N127/fold discrete equation": true,
+            "N127/fold null equation": true,
+            "N127/fold null normalization": true,
+            "N127/fold sigma_min": true,
+            "N127/simple fold parameter transversality": true,
+            "N127/simple fold quadratic transversality": true,
+            "N127/lower discrete root": true,
+            "N127/upper discrete root": true,
+            "N127/ordered distinct branches": true,
+            "N127/nonzero reference fields": true,
+            "Decimal80 continuum ODE": true,
+            "Decimal80 zero endpoints": true,
+            "reference fixed lambda": true,
+            "reference fold printed anchor": true,
+            "no-solution lambda4 proof bound": true,
+            "lambda4 Newton reports failure": true,
+            "lambda4 finite retained states": true,
+            "lambda4 remains above tolerance": true,
+            "finest full path shape": true,
+            "finest family curve lambda": true,
+            "finest continuous fold error": true,
+            "fold first refinement order": true,
+            "fold second refinement order": true,
+            "finest lower exact solution": true,
+            "finest upper exact solution": true,
+            "both branch errors refine": true
+          },
+          "metrics": {
+            "fold_orders": [
+              2.0003257002223824,
+              2.000081417263765
+            ],
+            "intended_failure_reason": "line search exhausted",
+            "discrete_nonexistence_bound": 3.6300955492983498,
+            "matching": "Fullpathfamilycoordinatefrommidpointisexplicit;separatefixedlambda2rootsvalidatebothbrancheswithoutparameterfitting.",
+            "reference_qualification_max_ODE": 6e-78
+          },
+          "records": [
+            {
+              "n": 31,
+              "arc_steps": 80,
+              "fold_lambda": 3.5120449324441494,
+              "continuous_fold_lambda": 3.513830719125161,
+              "fold_error": 0.001785786681011814,
+              "sigma_min": 9.094947017729282e-13,
+              "lower_error": 8.70033372852852e-05,
+              "upper_error": 0.0017010704094850837,
+              "path_shape_error": 0.005035706691654873,
+              "path_lambda_error": 0.0019424028515313552
+            },
+            {
+              "n": 63,
+              "arc_steps": 80,
+              "fold_lambda": 3.5133843732325247,
+              "continuous_fold_lambda": 3.513830719125161,
+              "fold_error": 0.0004463458926364794,
+              "sigma_min": 1.8189894035458565e-12,
+              "lower_error": 2.1738662503600903e-05,
+              "upper_error": 0.0004244278162488513,
+              "path_shape_error": 0.0012460197134274154,
+              "path_lambda_error": 0.00048549194515201677
+            },
+            {
+              "n": 127,
+              "arc_steps": 80,
+              "fold_lambda": 3.513719138949112,
+              "continuous_fold_lambda": 3.513830719125161,
+              "fold_error": 0.0001115801760493973,
+              "sigma_min": 1.4551915228366852e-11,
+              "lower_error": 5.43390532348198e-06,
+              "upper_error": 0.00010607061016809638,
+              "path_shape_error": 0.0003109038215773907,
+              "path_lambda_error": 0.00012136612354796128
+            }
+          ],
+          "data_files": [
+            "bratu-fold-continuation-N31.npz",
+            "bratu-fold-continuation-N63.npz",
+            "bratu-fold-continuation-N127.npz"
+          ]
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-continuation/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/#bratu-fold-continuation",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/#bratu-fold-continuation"
+        }
+      }
+    ]
+  },
+  "supplemental_scope_profiles": [
+    {
+      "release": {
+        "group": "bratu-continuation-jfnk",
+        "edition": "2026-11-24-r2",
+        "case_ids": [
+          "bratu-fold-continuation"
+        ]
+      },
+      "scope": {
+        "ja": "追加固定例：擬似弧長継続でBratuのfoldを越える。条件と検証範囲は各配布版で確認してください。",
+        "en": "Additional fixed examples: Crossing the Bratu fold with pseudo-arclength continuation. See each release for assumptions and checked scope."
+      },
+      "limits": [
+        {
+          "ja": "小さな1次元の単純foldだけです。分岐曲線の解析族比較では計算した中点値を族の座標に使い、固定λの独立形状比較と区別します。連続foldは離散解そのものではなく、一般の分岐追跡や大規模性能は保証しません。",
+          "en": "A small one-dimensional simple fold only. The whole-curve family comparison uses the computed midpoint as its family coordinate and is distinct from the independent fixed-lambda profile checks. The continuum fold is not an exact discrete solution. No general bifurcation-tracking or large-scale performance claim."
+        }
+      ]
+    }
+  ],
+  "assumptions_ja": [
+    "無次元x∈[0,1]、両端u=0、中心差分の内点31/63/127。零解から固定ds=0.1で80step。λ=2で上下枝を補正し、λ=4は離散無解の意図的な対照です。擬似弧長は物理時間ではありません。"
+  ],
+  "units_ja": "無次元。擬似弧長は物理時間ではありません。",
+  "boundary_conditions_ja": "x=0,1で同次Dirichlet条件。",
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pseudo-arclength-continuation/",
+  "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pseudo-arclength-continuation/index.json",
+  "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pseudo-arclength-continuation/index.md",
+  "code_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/problem.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/continuation.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/matrix_free.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/dual.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/experiments.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/references/analytic_family.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/io_contract.py"
+  ],
+  "test_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/test_bratu.py"
+  ],
+  "run_commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "run_from": "atlas-bratu-continuation-jfnk-2026-11-24-r2",
+  "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/",
+  "code_edition": "2026-11-24-r2",
+  "execution_examples": [
+    {
+      "id": "bratu-fold-continuation",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-continuation/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-continuation/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    }
+  ],
+  "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/atlas-bratu-continuation-jfnk-2026-11-24-r2.zip",
+  "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/source-manifest.json",
+  "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json",
+  "code_archive_sha256": "aeffa7e1b442f198ef2de55e453f82e5d6cbe30fc3d0bbd1112354a38a20a25d",
+  "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/result.json",
+  "problem_navigation": {
+    "method_id": "pseudo-arclength-continuation",
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "bratu",
+        "name": {
+          "ja": "Bratu非線形境界値問題",
+          "en": "Bratu nonlinear boundary-value problem"
+        },
+        "problem_ids": [
+          "bratu-fold-continuation"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bratu-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bratu-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "bratu-fold-continuation",
+        "name": {
+          "ja": "擬似弧長継続でBratuのfoldを越える",
+          "en": "Crossing the Bratu fold with pseudo-arclength continuation"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-fold-continuation-preview.png",
+          "sha256": "3fcf16e0b6e9bbf99904d456e702679335a716a1d36d7d12aee5893150679367",
+          "width": 1100,
+          "height": 800,
+          "caption": {
+            "ja": "保存した分岐曲線、λ=2の上下枝、Jacobianの最小特異値、3格子のfold誤差を示す縮小図。擬似弧長stepは物理時間ではありません。",
+            "en": "Preview of the stored branch,lambda=2 profiles,smallest Jacobian singular value and three-grid fold error. Arclength steps are not physical time."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-fold-continuation/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-fold-continuation/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-fold-continuation/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-fold-continuation/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "bratu-fold-continuation",
+            "kind": "supplement",
+            "name": {
+              "ja": "擬似弧長継続でBratuのfoldを越える",
+              "en": "Crossing the Bratu fold with pseudo-arclength continuation"
+            },
+            "scope": {
+              "ja": "同じ1次元Bratu境界値問題の下枝から上枝までを追跡し、接線・fold・独立解析族との空間誤差を調べます。",
+              "en": "Follow the lower and upper branches of the same one-dimensional Bratu boundary-value problem; check tangents, the fold and spatial error against an independent analytic family."
+            },
+            "method_ids": [
+              "pseudo-arclength-continuation",
+              "newton",
+              "centered-difference"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-continuation/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-continuation/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/atlas-bratu-continuation-jfnk-2026-11-24-r2.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "hΣdu²+dλ²の重み付き単位接線、予測点と接線超平面によるNewton補正。別の拡大系でfoldと正規化null vectorを解きます。このcaseは疎Jacobianを明示的に組み立てます。",
+          "en": "Use a unit tangent in h-sum(du squared)+d-lambda squared, a predictor and a tangent-hyperplane Newton corrector. A separate augmented system locates the fold and a normalized null vector. This case deliberately assembles sparse Jacobians."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-fold-continuation/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-fold-continuation/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "bratu-fold-continuation",
+        "problem_name": {
+          "ja": "擬似弧長継続でBratuのfoldを越える",
+          "en": "Crossing the Bratu fold with pseudo-arclength continuation"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-fold-continuation/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-fold-continuation/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "bratu-fold-continuation",
+            "title": {
+              "ja": "擬似弧長継続でBratuのfoldを越える",
+              "en": "Crossing the Bratu fold with pseudo-arclength continuation"
+            },
+            "kind": "analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "小さな1次元の単純foldだけです。分岐曲線の解析族比較では計算した中点値を族の座標に使い、固定λの独立形状比較と区別します。連続foldは離散解そのものではなく、一般の分岐追跡や大規模性能は保証しません。",
+              "en": "A small one-dimensional simple fold only. The whole-curve family comparison uses the computed midpoint as its family coordinate and is distinct from the independent fixed-lambda profile checks. The continuum fold is not an exact discrete solution. No general bifurcation-tracking or large-scale performance claim."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-bratu-fold-continuation-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-bratu-fold-continuation-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/bratu-fold-continuation/?lang=ja#bratu-fold-continuation-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/bratu-fold-continuation/?lang=en#bratu-fold-continuation-en-measurements"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

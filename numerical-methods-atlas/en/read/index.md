@@ -38,6 +38,8 @@ Go from boundary-value problems and sparse solvers to eigenvalues, basis functio
 - [AMG, factorizations, eigenvalues and quadrature](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations/)
 - [Numerical foundations: conditioning, residuals, convergence and independent references](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-foundations-conditioning/)
 - [MG/AMG for coefficient jumps and rotated anisotropy](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-coefficient-diffusion/)
+- [Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/)
+- [Bratu fold continuation and Jacobian-free Newton-Krylov](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/)
 
 ## Differentiation, optimization and inverse problems
 
@@ -149,6 +151,9 @@ Follow periodic electrostatics and electromagnetic fields, then atomic, molecula
 - [Periodic DFT: Γ points, k-point integration, basis sets, SCF and an independent reference](https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/)
 - [From DFT to atomic forces: finite differences, independent references, force convergence and the BOMD interface](https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/)
 - [Neutral slabs: corrected3P and genuine2P references](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-slab-ewald/)
+- [Mie scattering width of a two-dimensional dielectric cylinder](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-cylinder/)
+- [Oblique s/p incidence on a Lorentz-dispersive slab](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-lorentz/)
+- [Long-time grazing PML in a dispersive medium](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-grazing/)
 
 ## Stochastic computation, biology and temperature control
 

@@ -1,0 +1,865 @@
+{
+  "id": "lu-partial-pivoting",
+  "name": {
+    "ja": "部分ピボットLUと混合精度反復改良",
+    "en": "Partial-pivot LU and mixed-precision refinement"
+  },
+  "group": {
+    "id": "solvers",
+    "ja": "線形・非線形解法",
+    "en": "Linear & nonlinear solvers"
+  },
+  "summary": {
+    "ja": "自作LU・三角解法で固定4行列を分解し、binary32因子とbinary64残差の5回改良を独立有理数解へ照合します。",
+    "en": "Original LU and triangular solves on four fixed matrices compare five refinement steps, using binary32 factors and binary64 residuals, with exact-rational solutions."
+  },
+  "status": "educational-example",
+  "origin": "development-candidate",
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/"
+  },
+  "code_modules": [],
+  "test_files": [],
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
+  "references": [
+    {
+      "url": "https://netlib.org/lapack/lug/node38.html",
+      "label": "LAPACK Users Guide: Linear Equations",
+      "scope": "Selected official LU, Cholesky, conditioning and refinement paragraphs were read. LAPACK writes A=PLU; this source records PA=LU. The implemented mixed-precision refinement differs from the selected same-precision RFS description."
+    }
+  ],
+  "assumptions": [
+    "Real, square, nonsingular matrices from a small fixed set; row partial pivoting."
+  ],
+  "units": "Dimensionless algebraic controls. The FEM string has unit length, tension and density.",
+  "boundary_conditions": "No physical boundary conditions apply to the algebraic matrices. The string has homogeneous Dirichlet endpoints.",
+  "limitations": {
+    "ja": "全スケールでの安定性・任意の高条件数系の収束を保証せず、binary64再構成の増大率とbinary32補正因子を区別。",
+    "en": "No guarantee for arbitrary scaling or convergence on every ill-conditioned matrix. Binary64 reconstruction growth is distinct from the binary32 correction factor."
+  },
+  "metadata_review": {
+    "level": "Selected official documentation and fixed independent rational or closed-spectrum references; original-paper reading gaps are explicit.",
+    "on": "2026-11-24",
+    "supplemental_review": {
+      "on": "2026-11-24",
+      "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
+    }
+  },
+  "aliases": [
+    "LU分解",
+    "部分ピボット",
+    "Gaussian elimination with partial pivoting"
+  ],
+  "depth_scope": {
+    "ja": "自作LU・三角解法で固定4行列を分解し、binary32因子とbinary64残差の5回改良を独立有理数解へ照合します。",
+    "en": "Original LU and triangular solves on four fixed matrices compare five refinement steps, using binary32 factors and binary64 residuals, with exact-rational solutions."
+  },
+  "depth_release": {
+    "group": "linear-algebra-spectral",
+    "case_ids": [
+      "pivoted-direct-refinement"
+    ],
+    "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/",
+    "code_edition": "2026-11-24-r3",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/fixtures.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/solvers.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/references/oracles.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/test_algorithms.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/test_mass_action.py"
+    ],
+    "run_commands": [
+      "python -m pytest -q",
+      "python run.py --input inputs.json --output output"
+    ],
+    "run_from": "atlas-linear-algebra-spectral-2026-11-24-r3",
+    "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/atlas-linear-algebra-spectral-2026-11-24-r3.zip",
+    "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/source-manifest.json",
+    "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+    "code_archive_sha256": "3d14112335ce8a55cce306ec689d430f172d02a49f4675ae5948a2fab7ca1452",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/result.json",
+    "passed_tests": 29,
+    "examples": [
+      {
+        "id": "pivoted-direct-refinement",
+        "title": {
+          "ja": "部分ピボットLU・Choleskyと反復改良",
+          "en": "Pivoted LU, Cholesky and iterative refinement"
+        },
+        "domains": [
+          "linear-algebra"
+        ],
+        "method_ids": [
+          "lu-partial-pivoting",
+          "cholesky"
+        ],
+        "source_files": [
+          "solvers.py",
+          "fixtures.py",
+          "run.py",
+          "references/oracles.py"
+        ],
+        "assumptions": {
+          "ja": "SPD12、低ランク近特異8、Hilbert5、Wilkinson12を固定。binary32因子・三角解法とbinary64残差・補正の5回です。",
+          "en": "Fixed SPD matrix of size 12, a nearly singular rank-one matrix of size 8, Hilbert matrix of size 5 and Wilkinson matrix of size 12. Factors and triangular corrections use binary32; residuals use binary64, with five updates."
+        },
+        "algorithm": {
+          "ja": "手書き部分ピボットLU・下三角Cholesky・前後代入。",
+          "en": "Original implementations of LU with partial pivoting, lower Cholesky factorization and triangular substitution."
+        },
+        "validation": {
+          "ja": "実binary64入力をFraction有理数で厳密に解き、別のLAPACK DGESV/DPOSVへ照合。条件数・前進誤差・後退誤差を分離。 保存する有理数参照ベクトルは、厳密Fraction解の各成分をbinary64へ丸めたものです。",
+          "en": "Exact-rational solutions for the actual binary64 inputs and separate LAPACK DGESV/DPOSV comparisons. Conditioning, forward error and backward error are reported separately. Each saved reference component is the exact Fraction solution rounded to binary64."
+        },
+        "limits": {
+          "ja": "小さい固定例のみ。一般の高条件数系で混合精度の収束は保証しません。",
+          "en": "Small fixed examples only; convergence of mixed-precision refinement is not guaranteed for arbitrary matrices."
+        },
+        "review_level": {
+          "ja": "入力・16独立参照・195科学判定は旧版から不変。R4科学実行の実際の成否はresult.json/verification.jsonへ記録し、旧失敗と別に保持します。",
+          "en": "The fixed inputs, 16 independent reference checks and 195 scientific gates are unchanged. R4 passed the primary validation; actual package checks are recorded in result.json and verification.json. Earlier failed attempts remain separate."
+        },
+        "formulas": [
+          "PA=LU",
+          "A=LL^T",
+          "x_(j+1)=x_j+solve_factor32(b-A*x_j)"
+        ],
+        "references": [
+          {
+            "id": "lapack-linear-equations",
+            "title": "LAPACK Users Guide: Linear Equations",
+            "url": "https://netlib.org/lapack/lug/node38.html",
+            "review_level": "selected-official-documentation",
+            "review_scope": "Selected LU/Cholesky, CON/RFS and same-precision refinement paragraphs were read. This example uses binary32 factors and binary64 residuals; a full LAPACK source audit is not claimed."
+          }
+        ],
+        "validation_count": 29,
+        "gallery_figure": "pivoted-direct-refinement-preview.png",
+        "additional_figures": [
+          {
+            "file": "pivoted-direct-refinement-preview.png",
+            "caption": {
+              "ja": "保存した12×12 SPD行列。反復改良の固定例に使います。 別の全図に示す誤差は厳密有理数解をbinary64へ丸めた参照との差です。対数表示だけ、厳密なゼロ誤差をfloat64.tinyに置いて表示します。",
+              "en": "The saved 12 x 12 SPD matrix used in the refinement examples. In the companion full figure, errors are measured against the exact-rational solution rounded to binary64; exact zeros are shown at float64.tiny for logarithmic display only."
+            }
+          }
+        ],
+        "summary": {
+          "ja": "独立の厳密有理数解と比較し、条件数・前進誤差・後退誤差・ピボット増大を分けます。",
+          "en": "Exact-rational comparisons separate conditioning, forward and backward error, and pivot growth."
+        },
+        "measured": {
+          "id": "pivoted-direct-refinement",
+          "passed": true,
+          "checks": {
+            "spd-tridiagonal-lu/finite": true,
+            "spd-tridiagonal-lu/binary32-factor": true,
+            "spd-tridiagonal-lu/binary64-factor": true,
+            "spd-tridiagonal-lu/normwise-backward": true,
+            "spd-tridiagonal-lu/componentwise-backward": true,
+            "spd-tridiagonal-lu/condition-aware-forward": true,
+            "spd-tridiagonal-lu/LAPACK-comparison": true,
+            "spd-tridiagonal-lu/refinement-gain-or-roundoff": true,
+            "spd-tridiagonal-cholesky/finite": true,
+            "spd-tridiagonal-cholesky/binary32-factor": true,
+            "spd-tridiagonal-cholesky/binary64-factor": true,
+            "spd-tridiagonal-cholesky/normwise-backward": true,
+            "spd-tridiagonal-cholesky/componentwise-backward": true,
+            "spd-tridiagonal-cholesky/condition-aware-forward": true,
+            "spd-tridiagonal-cholesky/LAPACK-comparison": true,
+            "spd-tridiagonal-cholesky/refinement-gain-or-roundoff": true,
+            "near-singular-rank-one-lu/finite": true,
+            "near-singular-rank-one-lu/binary32-factor": true,
+            "near-singular-rank-one-lu/binary64-factor": true,
+            "near-singular-rank-one-lu/normwise-backward": true,
+            "near-singular-rank-one-lu/componentwise-backward": true,
+            "near-singular-rank-one-lu/condition-aware-forward": true,
+            "near-singular-rank-one-lu/LAPACK-comparison": true,
+            "near-singular-rank-one-lu/refinement-gain-or-roundoff": true,
+            "near-singular-rank-one-cholesky/finite": true,
+            "near-singular-rank-one-cholesky/binary32-factor": true,
+            "near-singular-rank-one-cholesky/binary64-factor": true,
+            "near-singular-rank-one-cholesky/normwise-backward": true,
+            "near-singular-rank-one-cholesky/componentwise-backward": true,
+            "near-singular-rank-one-cholesky/condition-aware-forward": true,
+            "near-singular-rank-one-cholesky/LAPACK-comparison": true,
+            "near-singular-rank-one-cholesky/refinement-gain-or-roundoff": true,
+            "hilbert5-lu/finite": true,
+            "hilbert5-lu/binary32-factor": true,
+            "hilbert5-lu/binary64-factor": true,
+            "hilbert5-lu/normwise-backward": true,
+            "hilbert5-lu/componentwise-backward": true,
+            "hilbert5-lu/condition-aware-forward": true,
+            "hilbert5-lu/LAPACK-comparison": true,
+            "hilbert5-lu/refinement-gain-or-roundoff": true,
+            "hilbert5-cholesky/finite": true,
+            "hilbert5-cholesky/binary32-factor": true,
+            "hilbert5-cholesky/binary64-factor": true,
+            "hilbert5-cholesky/normwise-backward": true,
+            "hilbert5-cholesky/componentwise-backward": true,
+            "hilbert5-cholesky/condition-aware-forward": true,
+            "hilbert5-cholesky/LAPACK-comparison": true,
+            "hilbert5-cholesky/refinement-gain-or-roundoff": true,
+            "wilkinson12-lu/finite": true,
+            "wilkinson12-lu/binary32-factor": true,
+            "wilkinson12-lu/binary64-factor": true,
+            "wilkinson12-lu/normwise-backward": true,
+            "wilkinson12-lu/componentwise-backward": true,
+            "wilkinson12-lu/condition-aware-forward": true,
+            "wilkinson12-lu/LAPACK-comparison": true,
+            "wilkinson12-lu/refinement-gain-or-roundoff": true,
+            "Wilkinson/exact-growth": true,
+            "Hilbert/ill-conditioning-not-residual": true
+          },
+          "check_details": [
+            {
+              "name": "spd-tridiagonal-lu/finite",
+              "value": 0.0,
+              "bound": 0.0,
+              "passed": true
+            },
+            {
+              "name": "spd-tridiagonal-lu/binary32-factor",
+              "value": 1.9635767974553648e-08,
+              "bound": 2e-06,
+              "passed": true
+            },
+            {
+              "name": "spd-tridiagonal-lu/binary64-factor",
+              "value": 1.850371707708594e-17,
+              "bound": 2e-14,
+              "passed": true
+            },
+            {
+              "name": "spd-tridiagonal-lu/normwise-backward",
+              "value": 0.0,
+              "bound": 5e-14,
+              "passed": true
+            },
+            {
+              "name": "spd-tridiagonal-lu/componentwise-backward",
+              "value": 0.0,
+              "bound": 5e-13,
+              "passed": true
+            },
+            {
+              "name": "spd-tridiagonal-lu/condition-aware-forward",
+              "value": 0.0,
+              "bound": 5e-12,
+              "passed": true
+            },
+            {
+              "name": "spd-tridiagonal-lu/LAPACK-comparison",
+              "value": 8.479468414379336e-17,
+              "bound": 5e-12,
+              "passed": true
+            },
+            {
+              "name": "spd-tridiagonal-lu/refinement-gain-or-roundoff",
+              "value": 0.0,
+              "bound": 1.9868213740892386e-09,
+              "passed": true
+            },
+            {
+              "name": "spd-tridiagonal-cholesky/finite",
+              "value": 0.0,
+              "bound": 0.0,
+              "passed": true
+            },
+            {
+              "name": "spd-tridiagonal-cholesky/binary32-factor",
+              "value": 5.0208003088414443e-08,
+              "bound": 2e-06,
+              "passed": true
+            },
+            {
+              "name": "spd-tridiagonal-cholesky/binary64-factor",
+              "value": 9.251858538542972e-17,
+              "bound": 2e-14,
+              "passed": true
+            },
+            {
+              "name": "spd-tridiagonal-cholesky/normwise-backward",
+              "value": 0.0,
+              "bound": 5e-14,
+              "passed": true
+            },
+            {
+              "name": "spd-tridiagonal-cholesky/componentwise-backward",
+              "value": 0.0,
+              "bound": 5e-13,
+              "passed": true
+            },
+            {
+              "name": "spd-tridiagonal-cholesky/condition-aware-forward",
+              "value": 4.532466518368395e-17,
+              "bound": 5e-12,
+              "passed": true
+            },
+            {
+              "name": "spd-tridiagonal-cholesky/LAPACK-comparison",
+              "value": 1.0629576194313574e-16,
+              "bound": 5e-12,
+              "passed": true
+            },
+            {
+              "name": "spd-tridiagonal-cholesky/refinement-gain-or-roundoff",
+              "value": 0.0,
+              "bound": 3.4769371974145735e-09,
+              "passed": true
+            },
+            {
+              "name": "near-singular-rank-one-lu/finite",
+              "value": 0.0,
+              "bound": 0.0,
+              "passed": true
+            },
+            {
+              "name": "near-singular-rank-one-lu/binary32-factor",
+              "value": 1.0695622704735228e-07,
+              "bound": 2e-06,
+              "passed": true
+            },
+            {
+              "name": "near-singular-rank-one-lu/binary64-factor",
+              "value": 1.3481367745882634e-16,
+              "bound": 2e-14,
+              "passed": true
+            },
+            {
+              "name": "near-singular-rank-one-lu/normwise-backward",
+              "value": 8.07438287144266e-17,
+              "bound": 5e-14,
+              "passed": true
+            },
+            {
+              "name": "near-singular-rank-one-lu/componentwise-backward",
+              "value": 8.074382871445692e-17,
+              "bound": 5e-13,
+              "passed": true
+            },
+            {
+              "name": "near-singular-rank-one-lu/condition-aware-forward",
+              "value": 1.0334511039631995e-12,
+              "bound": 2.293745000004508e-09,
+              "passed": true
+            },
+            {
+              "name": "near-singular-rank-one-lu/LAPACK-comparison",
+              "value": 1.4882123331524897e-12,
+              "bound": 2.293745000004508e-09,
+              "passed": true
+            },
+            {
+              "name": "near-singular-rank-one-lu/refinement-gain-or-roundoff",
+              "value": 8.07438287144266e-17,
+              "bound": 2.709271763653249e-09,
+              "passed": true
+            },
+            {
+              "name": "near-singular-rank-one-cholesky/finite",
+              "value": 0.0,
+              "bound": 0.0,
+              "passed": true
+            },
+            {
+              "name": "near-singular-rank-one-cholesky/binary32-factor",
+              "value": 5.6655911711122225e-08,
+              "bound": 2e-06,
+              "passed": true
+            },
+            {
+              "name": "near-singular-rank-one-cholesky/binary64-factor",
+              "value": 1.506741101010412e-16,
+              "bound": 2e-14,
+              "passed": true
+            },
+            {
+              "name": "near-singular-rank-one-cholesky/normwise-backward",
+              "value": 8.074382871410594e-17,
+              "bound": 5e-14,
+              "passed": true
+            },
+            {
+              "name": "near-singular-rank-one-cholesky/componentwise-backward",
+              "value": 8.074382871463986e-17,
+              "bound": 5e-13,
+              "passed": true
+            },
+            {
+              "name": "near-singular-rank-one-cholesky/condition-aware-forward",
+              "value": 7.273875946382936e-12,
+              "bound": 2.293745000004508e-09,
+              "passed": true
+            },
+            {
+              "name": "near-singular-rank-one-cholesky/LAPACK-comparison",
+              "value": 5.6654403450015765e-12,
+              "bound": 2.293745000004508e-09,
+              "passed": true
+            },
+            {
+              "name": "near-singular-rank-one-cholesky/refinement-gain-or-roundoff",
+              "value": 8.074382871410594e-17,
+              "bound": 1.0837417781310322e-09,
+              "passed": true
+            },
+            {
+              "name": "hilbert5-lu/finite",
+              "value": 0.0,
+              "bound": 0.0,
+              "passed": true
+            },
+            {
+              "name": "hilbert5-lu/binary32-factor",
+              "value": 1.1457550492308062e-08,
+              "bound": 2e-06,
+              "passed": true
+            },
+            {
+              "name": "hilbert5-lu/binary64-factor",
+              "value": 1.2155726546990766e-17,
+              "bound": 2e-14,
+              "passed": true
+            },
+            {
+              "name": "hilbert5-lu/normwise-backward",
+              "value": 4.5253655895046634e-17,
+              "bound": 5e-14,
+              "passed": true
+            },
+            {
+              "name": "hilbert5-lu/componentwise-backward",
+              "value": 1.2810265668752034e-16,
+              "bound": 5e-13,
+              "passed": true
+            },
+            {
+              "name": "hilbert5-lu/condition-aware-forward",
+              "value": 1.4268976535179763e-12,
+              "bound": 1.887312000003368e-08,
+              "passed": true
+            },
+            {
+              "name": "hilbert5-lu/LAPACK-comparison",
+              "value": 1.9295004132814385e-12,
+              "bound": 1.887312000003368e-08,
+              "passed": true
+            },
+            {
+              "name": "hilbert5-lu/refinement-gain-or-roundoff",
+              "value": 4.5253655895046634e-17,
+              "bound": 5.183145064613967e-10,
+              "passed": true
+            },
+            {
+              "name": "hilbert5-cholesky/finite",
+              "value": 0.0,
+              "bound": 0.0,
+              "passed": true
+            },
+            {
+              "name": "hilbert5-cholesky/binary32-factor",
+              "value": 1.192155949384612e-08,
+              "bound": 2e-06,
+              "passed": true
+            },
+            {
+              "name": "hilbert5-cholesky/binary64-factor",
+              "value": 0.0,
+              "bound": 2e-14,
+              "passed": true
+            },
+            {
+              "name": "hilbert5-cholesky/normwise-backward",
+              "value": 3.620292471604074e-17,
+              "bound": 5e-14,
+              "passed": true
+            },
+            {
+              "name": "hilbert5-cholesky/componentwise-backward",
+              "value": 8.209395604660024e-17,
+              "bound": 5e-13,
+              "passed": true
+            },
+            {
+              "name": "hilbert5-cholesky/condition-aware-forward",
+              "value": 7.33203121885131e-12,
+              "bound": 1.887312000003368e-08,
+              "passed": true
+            },
+            {
+              "name": "hilbert5-cholesky/LAPACK-comparison",
+              "value": 6.180857514425556e-12,
+              "bound": 1.887312000003368e-08,
+              "passed": true
+            },
+            {
+              "name": "hilbert5-cholesky/refinement-gain-or-roundoff",
+              "value": 3.620292471604074e-17,
+              "bound": 5.900550401334651e-10,
+              "passed": true
+            },
+            {
+              "name": "wilkinson12-lu/finite",
+              "value": 0.0,
+              "bound": 0.0,
+              "passed": true
+            },
+            {
+              "name": "wilkinson12-lu/binary32-factor",
+              "value": 0.0,
+              "bound": 2e-06,
+              "passed": true
+            },
+            {
+              "name": "wilkinson12-lu/binary64-factor",
+              "value": 0.0,
+              "bound": 2e-14,
+              "passed": true
+            },
+            {
+              "name": "wilkinson12-lu/normwise-backward",
+              "value": 0.0,
+              "bound": 5e-14,
+              "passed": true
+            },
+            {
+              "name": "wilkinson12-lu/componentwise-backward",
+              "value": 0.0,
+              "bound": 5e-13,
+              "passed": true
+            },
+            {
+              "name": "wilkinson12-lu/condition-aware-forward",
+              "value": 0.0,
+              "bound": 5e-12,
+              "passed": true
+            },
+            {
+              "name": "wilkinson12-lu/LAPACK-comparison",
+              "value": 0.0,
+              "bound": 5e-12,
+              "passed": true
+            },
+            {
+              "name": "wilkinson12-lu/refinement-gain-or-roundoff",
+              "value": 0.0,
+              "bound": 1e-12,
+              "passed": true
+            },
+            {
+              "name": "Wilkinson/exact-growth",
+              "value": 2048.0,
+              "bound": 2048.0,
+              "passed": true
+            },
+            {
+              "name": "Hilbert/ill-conditioning-not-residual",
+              "value": 943656.0000016841,
+              "bound": 100000.0,
+              "passed": true
+            }
+          ],
+          "records": [
+            {
+              "id": "spd-tridiagonal-lu",
+              "fields": "spd-tridiagonal-lu.npz",
+              "matrix": "spd-tridiagonal",
+              "factorization": "lu",
+              "condition_infinity": 2.998592210229939,
+              "initial_backward": 3.973642748178477e-08,
+              "final_backward": 0.0,
+              "component_backward": 0.0,
+              "relative_forward_error": 0.0,
+              "relative_LAPACK_difference": 8.479468414379336e-17,
+              "binary64_pivot_growth": 1.0,
+              "corrections": 5
+            },
+            {
+              "id": "spd-tridiagonal-cholesky",
+              "fields": "spd-tridiagonal-cholesky.npz",
+              "matrix": "spd-tridiagonal",
+              "factorization": "cholesky",
+              "condition_infinity": 2.998592210229939,
+              "initial_backward": 6.953874394829147e-08,
+              "final_backward": 0.0,
+              "component_backward": 0.0,
+              "relative_forward_error": 4.532466518368395e-17,
+              "relative_LAPACK_difference": 1.0629576194313574e-16,
+              "binary64_pivot_growth": 1.0,
+              "corrections": 5
+            },
+            {
+              "id": "near-singular-rank-one-lu",
+              "fields": "near-singular-rank-one-lu.npz",
+              "matrix": "near-singular-rank-one",
+              "factorization": "lu",
+              "condition_infinity": 114687.2500002254,
+              "initial_backward": 5.418543527306498e-08,
+              "final_backward": 8.07438287144266e-17,
+              "component_backward": 8.074382871445692e-17,
+              "relative_forward_error": 1.0334511039631995e-12,
+              "relative_LAPACK_difference": 1.4882123331524897e-12,
+              "binary64_pivot_growth": 1.0,
+              "corrections": 5
+            },
+            {
+              "id": "near-singular-rank-one-cholesky",
+              "fields": "near-singular-rank-one-cholesky.npz",
+              "matrix": "near-singular-rank-one",
+              "factorization": "cholesky",
+              "condition_infinity": 114687.2500002254,
+              "initial_backward": 2.1674835562620642e-08,
+              "final_backward": 8.074382871410594e-17,
+              "component_backward": 8.074382871463986e-17,
+              "relative_forward_error": 7.273875946382936e-12,
+              "relative_LAPACK_difference": 5.6654403450015765e-12,
+              "binary64_pivot_growth": 1.0,
+              "corrections": 5
+            },
+            {
+              "id": "hilbert5-lu",
+              "fields": "hilbert5-lu.npz",
+              "matrix": "hilbert5",
+              "factorization": "lu",
+              "condition_infinity": 943656.0000016841,
+              "initial_backward": 1.0366290129227934e-08,
+              "final_backward": 4.5253655895046634e-17,
+              "component_backward": 1.2810265668752034e-16,
+              "relative_forward_error": 1.4268976535179763e-12,
+              "relative_LAPACK_difference": 1.9295004132814385e-12,
+              "binary64_pivot_growth": 1.0,
+              "corrections": 5
+            },
+            {
+              "id": "hilbert5-cholesky",
+              "fields": "hilbert5-cholesky.npz",
+              "matrix": "hilbert5",
+              "factorization": "cholesky",
+              "condition_infinity": 943656.0000016841,
+              "initial_backward": 1.1801100802669302e-08,
+              "final_backward": 3.620292471604074e-17,
+              "component_backward": 8.209395604660024e-17,
+              "relative_forward_error": 7.33203121885131e-12,
+              "relative_LAPACK_difference": 6.180857514425556e-12,
+              "binary64_pivot_growth": 1.0,
+              "corrections": 5
+            },
+            {
+              "id": "wilkinson12-lu",
+              "fields": "wilkinson12-lu.npz",
+              "matrix": "wilkinson12",
+              "factorization": "lu",
+              "condition_infinity": 12.0,
+              "initial_backward": 0.0,
+              "final_backward": 0.0,
+              "component_backward": 0.0,
+              "relative_forward_error": 0.0,
+              "relative_LAPACK_difference": 0.0,
+              "binary64_pivot_growth": 2048.0,
+              "corrections": 5
+            }
+          ],
+          "metrics": {
+            "max_condition_infinity": 943656.0000016841,
+            "max_relative_forward_error": 7.33203121885131e-12,
+            "max_normwise_backward_error": 8.07438287144266e-17,
+            "max_componentwise_backward_error": 1.2810265668752034e-16,
+            "max_relative_LAPACK_difference": 6.180857514425556e-12,
+            "max_binary64_pivot_growth": 2048.0
+          }
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pivoted-direct-refinement/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#pivoted-direct-refinement",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#pivoted-direct-refinement"
+        }
+      }
+    ]
+  },
+  "supplemental_scope_profiles": [
+    {
+      "release": {
+        "group": "linear-algebra-spectral",
+        "edition": "2026-11-24-r3",
+        "case_ids": [
+          "pivoted-direct-refinement"
+        ]
+      },
+      "scope": {
+        "ja": "追加固定例：部分ピボットLU・Choleskyと反復改良。条件と検証範囲は各配布版で確認してください。",
+        "en": "Additional fixed examples: Pivoted LU, Cholesky and iterative refinement. See each release for assumptions and checked scope."
+      },
+      "limits": [
+        {
+          "ja": "小さい固定例のみ。一般の高条件数系で混合精度の収束は保証しません。",
+          "en": "Small fixed examples only; convergence of mixed-precision refinement is not guaranteed for arbitrary matrices."
+        }
+      ]
+    }
+  ],
+  "assumptions_ja": [
+    "実正方行列、行部分ピボット、固定された小さい非特異例。"
+  ],
+  "units_ja": "無次元の代数系。FEM弦では長さ・張力・密度1。",
+  "boundary_conditions_ja": "代数例に物理境界なし。弦は同次Dirichlet端点。",
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/lu-partial-pivoting/",
+  "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/lu-partial-pivoting/index.json",
+  "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/lu-partial-pivoting/index.md",
+  "code_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/fixtures.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/solvers.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/references/oracles.py"
+  ],
+  "test_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/test_algorithms.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/test_mass_action.py"
+  ],
+  "run_commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "run_from": "atlas-linear-algebra-spectral-2026-11-24-r3",
+  "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/",
+  "code_edition": "2026-11-24-r3",
+  "execution_examples": [
+    {
+      "id": "pivoted-direct-refinement",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pivoted-direct-refinement/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pivoted-direct-refinement/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    }
+  ],
+  "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/atlas-linear-algebra-spectral-2026-11-24-r3.zip",
+  "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/source-manifest.json",
+  "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+  "code_archive_sha256": "3d14112335ce8a55cce306ec689d430f172d02a49f4675ae5948a2fab7ca1452",
+  "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/result.json",
+  "problem_navigation": {
+    "method_id": "lu-partial-pivoting",
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "finite-dimensional-linear-system",
+        "name": {
+          "ja": "有限次元線形方程式と行列分解",
+          "en": "Finite-dimensional linear systems and factorizations"
+        },
+        "problem_ids": [
+          "pivoted-direct-refinement"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#finite-dimensional-linear-system-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#finite-dimensional-linear-system-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "pivoted-direct-refinement",
+        "name": {
+          "ja": "部分ピボットLU・Choleskyと反復改良",
+          "en": "Pivoted LU, Cholesky and iterative refinement"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/pivoted-direct-refinement-preview.png",
+          "sha256": "c29ca507eef22bc4a38c16c5f6b5ca5ced73a750e013d9554ffaeaedc2b917e8",
+          "width": 755,
+          "height": 590,
+          "caption": {
+            "ja": "保存した12×12 SPD行列。反復改良の固定例に使います。 別の全図に示す誤差は厳密有理数解をbinary64へ丸めた参照との差です。対数表示だけ、厳密なゼロ誤差をfloat64.tinyに置いて表示します。",
+            "en": "The saved 12 x 12 SPD matrix used in the refinement examples. In the companion full figure, errors are measured against the exact-rational solution rounded to binary64; exact zeros are shown at float64.tiny for logarithmic display only."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/pivoted-direct-refinement/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/pivoted-direct-refinement/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/pivoted-direct-refinement/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/pivoted-direct-refinement/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "pivoted-direct-refinement",
+            "kind": "supplement",
+            "name": {
+              "ja": "部分ピボットLU・Choleskyと反復改良",
+              "en": "Pivoted LU, Cholesky and iterative refinement"
+            },
+            "scope": {
+              "ja": "独立の厳密有理数解と比較し、条件数・前進誤差・後退誤差・ピボット増大を分けます。",
+              "en": "Exact-rational comparisons separate conditioning, forward and backward error, and pivot growth."
+            },
+            "method_ids": [
+              "lu-partial-pivoting",
+              "cholesky"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pivoted-direct-refinement/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pivoted-direct-refinement/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/atlas-linear-algebra-spectral-2026-11-24-r3.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "手書き部分ピボットLU・下三角Cholesky・前後代入。",
+          "en": "Original implementations of LU with partial pivoting, lower Cholesky factorization and triangular substitution."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/pivoted-direct-refinement/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/pivoted-direct-refinement/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "pivoted-direct-refinement",
+        "problem_name": {
+          "ja": "部分ピボットLU・Choleskyと反復改良",
+          "en": "Pivoted LU, Cholesky and iterative refinement"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/pivoted-direct-refinement/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/pivoted-direct-refinement/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "pivoted-direct-refinement",
+            "title": {
+              "ja": "部分ピボットLU/Cholesky：実二進入力の厳密有理数参照",
+              "en": "Pivoted LU and Cholesky: exact-rational references for actual binary input"
+            },
+            "kind": "analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "小さい固定例のみ。一般の高条件数系で混合精度の収束は保証しません。",
+              "en": "Small fixed examples only; convergence of mixed-precision refinement is not guaranteed for arbitrary matrices."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-pivoted-direct-refinement-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-pivoted-direct-refinement-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/pivoted-direct-refinement/?lang=ja#pivoted-direct-refinement-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/pivoted-direct-refinement/?lang=en#pivoted-direct-refinement-en-measurements"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

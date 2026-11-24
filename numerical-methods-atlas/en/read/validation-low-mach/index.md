@@ -277,19 +277,19 @@ This command executes every fixed case in the distribution group. Bundled result
 
 ### Sources and review scope
 
-- Fabian Miczek, Friedrich K. Röpke and Philipp V. F. Edelmann (2015). New numerical solver for flows at various Mach numbers. https://arxiv.org/html/1409.8289; review_level=selected-author-version-full-text: Section8 Eq56; Section4 explicit-RK3 discussion; AppendixA variable transforms; Section6 smooth piecewise-linear reconstruction without a limiter
+- Fabian Miczek, Friedrich K. Röpke and Philipp V. F. Edelmann (2015). New numerical solver for flows at various Mach numbers [accessed 2026-11-23]. https://arxiv.org/html/1409.8289; review_level=selected-author-version-full-text: Section8 Eq56; Section4 explicit-RK3 discussion; AppendixA variable transforms; Section6 smooth piecewise-linear reconstruction without a limiter
 Selected author-version equations and RK3 discussion were checked. This short isentropic-vortex application does not reproduce the paper’s Gresho or implicit-integration experiments. Section 6 also motivates unlimited piecewise-linear reconstruction for smooth tests; this is independent motivation for the revision.
 
-- Wasilij Barsukow, Philipp V. F. Edelmann, Christian Klingenberg, Fabian Miczek and Friedrich K. Röpke (2017). A Numerical Scheme for the Compressible Low-Mach Number Regime of Ideal Fluid Dynamics. https://arxiv.org/html/1612.03910; review_level=selected-full-text: Section3 Eqs21,31,32; Section5 Eq83 and Fourier-mode stability discussion
+- Wasilij Barsukow, Philipp V. F. Edelmann, Christian Klingenberg, Fabian Miczek and Friedrich K. Röpke (2017). A Numerical Scheme for the Compressible Low-Mach Number Regime of Ideal Fluid Dynamics [accessed 2026-11-23]. https://arxiv.org/html/1612.03910; review_level=selected-full-text: Section3 Eqs21,31,32; Section5 Eq83 and Fourier-mode stability discussion
 Checked the modified dissipation, primitive matrix and restrictive forward-Euler stability result. The present SSPRK33 Fourier/stage checks are separate fixed-input evidence, not a general nonlinear or SSP guarantee.
 
-- Seth C. Spiegel, H. T. Huynh and James R. DeBonis (2015). A Survey of the Isentropic Euler Vortex Problem using High-Order Methods. https://ntrs.nasa.gov/citations/20150018403; review_level=selected-primary-report: parameterized vortex definitions and Sections IV.B/IV.C boundary discussion
+- Seth C. Spiegel, H. T. Huynh and James R. DeBonis (2015). A Survey of the Isentropic Euler Vortex Problem using High-Order Methods [accessed 2026-11-23]. https://ntrs.nasa.gov/citations/20150018403; review_level=selected-primary-report: parameterized vortex definitions and Sections IV.B/IV.C boundary discussion
 Checked the generalized vortex and finite-periodic-boundary qualifications. The selected beta3, mean velocity(1,.5) and background Mach values are explicit adaptations, not NASA/FR execution or figure reuse.
 
-- Sigal Gottlieb and Chi-Wang Shu (1998). Total Variation Diminishing Runge-Kutta Schemes. https://www.cfm.brown.edu/people/sg/SSP1.pdf; review_level=author-bibliography and indexed author-PDF excerpts; direct PDF fetch unavailable
+- Sigal Gottlieb and Chi-Wang Shu (1998). Total Variation Diminishing Runge-Kutta Schemes [accessed 2026-11-23]. https://www.cfm.brown.edu/people/sg/SSP1.pdf; review_level=author-bibliography and indexed author-PDF excerpts; direct PDF fetch unavailable
 Bibliography and indexed author-PDF excerpts were checked. No direct full-PDF reading is claimed; coefficients are also cross-checked against the author review below.
 
-- Sigal Gottlieb, Chi-Wang Shu and Eitan Tadmor (2001). Strong Stability-Preserving High-Order Time Discretization Methods. https://math.umd.edu/~tadmor/pub/linear-stability/Gottlieb-Shu-Tadmor.SIREV-01.pdf; review_level=selected-full-author-PDF: Section4 Proposition4.1 Eq4.2 printedp100/PDFpage12; Section2.2 Lemma2.1 printedp92/PDFpage4
+- Sigal Gottlieb, Chi-Wang Shu and Eitan Tadmor (2001). Strong Stability-Preserving High-Order Time Discretization Methods [accessed 2026-11-23]. https://math.umd.edu/~tadmor/pub/linear-stability/Gottlieb-Shu-Tadmor.SIREV-01.pdf; review_level=selected-full-author-PDF: Section4 Proposition4.1 Eq4.2 printedp100/PDFpage12; Section2.2 Lemma2.1 printedp92/PDFpage4
 Checked the three-stage updates and the forward-Euler hypothesis behind SSP. No general SSP/TVD/nonlinear stability guarantee is borrowed for this Miczek flux; the stated Fourier matrices and actual stage states are checked separately.
 
 

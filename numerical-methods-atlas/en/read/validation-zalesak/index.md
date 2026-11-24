@@ -340,19 +340,19 @@ This command executes every fixed case in the distribution group. Bundled result
 
 ### Sources and review scope
 
-- Steven T. Zalesak (1979). Fully multidimensional flux-corrected transport algorithms for fluids. https://www.sciencedirect.com/science/article/pii/0021999179900512; review_level=publisher bibliography and abstract inspected; direct full-paper open returned403; original test geometry and boundary conditions not audited
+- Steven T. Zalesak (1979). Fully multidimensional flux-corrected transport algorithms for fluids [accessed 2026-11-23]. https://www.sciencedirect.com/science/article/pii/0021999179900512; review_level=publisher bibliography and abstract inspected; direct full-paper open returned403; original test geometry and boundary conditions not audited
 Publisher record and abstract checked. The full original test geometry/grid/boundaries were not audited. This example does not implement or reproduce Zalesak FCT.
 
-- Firedrake developers (n.d.). DG advection equation with upwinding. https://www.firedrakeproject.org/demos/DG_advection.py.html; review_level=official documentation equations and source lines46,63–92: disk(.5,.75),R.15,slot(.475,.525),y<.85,velocity(.5−y,x−.5),T2pi; SSP equations43–45 and135–143
+- Firedrake developers (n.d.). DG advection equation with upwinding [accessed 2026-11-23]. https://www.firedrakeproject.org/demos/DG_advection.py.html; review_level=official documentation equations and source lines46,63–92: disk(.5,.75),R.15,slot(.475,.525),y<.85,velocity(.5−y,x−.5),T2pi; SSP equations43–45 and135–143
 Inspected official geometry, velocity, period and SSP formulas. The demo includes a bell, cone, background1, DQ1 elements and inflow1. This is an explicit isolated0–1 slotted-disk FV/periodic variant. No Firedrake software was executed or copied.
 
-- Randall J. LeVeque (1996). High-Resolution Conservative Algorithms for Advection in Incompressible Flow. https://faculty.washington.edu/rjl/pubs/hiresadv/0733033.pdf; review_level=author-hosted paper selected sections1–3 actually inspected: PDE/incompressibility, FV means, minmod definition, donor-cell flux; no full-paper or numerical-table reproduction
+- Randall J. LeVeque (1996). High-Resolution Conservative Algorithms for Advection in Incompressible Flow [accessed 2026-11-23]. https://faculty.washington.edu/rjl/pubs/hiresadv/0733033.pdf; review_level=author-hosted paper selected sections1–3 actually inspected: PDE/incompressibility, FV means, minmod definition, donor-cell flux; no full-paper or numerical-table reproduction
 Read sections1–3 on conservative transport, incompressibility, means, minmod and donor-cell fluxes. Firedrake cites this paper for its composite-shape test. Our MUSCL/SSPRK update is not the paper’s CTU/wave-propagation algorithm.
 
-- Chi-Wang Shu and Stanley Osher (1988). Efficient implementation of essentially non-oscillatory shock-capturing schemes. https://www.sciencedirect.com/science/article/pii/0021999188901775; review_level=publisher bibliography/abstract inspected; actual three-stage convex formulas checked in official Firedrake demo, not a full original-paper audit
+- Chi-Wang Shu and Stanley Osher (1988). Efficient implementation of essentially non-oscillatory shock-capturing schemes [accessed 2026-11-23]. https://www.sciencedirect.com/science/article/pii/0021999188901775; review_level=publisher bibliography/abstract inspected; actual three-stage convex formulas checked in official Firedrake demo, not a full original-paper audit
 Publisher bibliography/abstract checked; the actual three-stage convex formulas were also inspected in the official Firedrake demo. The original full paper was not audited.
 
-- SciPy developers (n.d.). scipy.integrate.quad — SciPy v1.14.1 Manual. https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.quad.html; review_level=official versioned API: QUADPACK integration, break points, epsabs/epsrel, reported error; use is evidenced by qualification receipts
+- SciPy developers (n.d.). scipy.integrate.quad — SciPy v1.14.1 Manual [accessed 2026-11-23]. https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.quad.html; review_level=official versioned API: QUADPACK integration, break points, epsabs/epsrel, reported error; use is evidenced by qualification receipts
 Versioned official API checked for QUADPACK, break points, tolerances and reported error. Independently integrated vertical sections are compared with circle/polygon areas; execution is established by saved receipts.
 
 

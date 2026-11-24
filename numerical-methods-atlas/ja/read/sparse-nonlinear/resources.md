@@ -95,10 +95,22 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/sparse-nonlinear/
 
 ## コード・検証
 
+- [対称不定値鞍点系とSchur前処理](<https://hrkoyama.github.io/numerical-methods-atlas/validation/symmetric-saddle-minres/?lang=ja>)
+  availability: run
+
+  同じ元残差の基準でMINRESとGMRESを比較し、理想Schurの三点スペクトルを検査します。
+- [解析・中央差分・方向ADによるJacobian不要Newton–Krylov](<https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/?lang=ja>)
+  availability: run
+
+  非線形Jacobianを組み立てずにBratuの上下枝を3種類のJvで解き、forcingと実際の残差・評価回数を保存します。
 - [1次元Bratu：小さい枝のNewton–GMRES](<https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/bratu/?lang=ja>)
   availability: run
 
   −u''=λexp(u)、β=1・λ=2β²/cosh²(β/2)の小さい枝を零初期値から解く。31/63/127内部点で解析解、独立に再評価した非線形残差、2次格子収束を確認する。
+- [擬似弧長継続でBratuのfoldを越える](<https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-continuation/?lang=ja>)
+  availability: run
+
+  同じ1次元Bratu境界値問題の下枝から上枝までを追跡し、接線・fold・独立解析族との空間誤差を調べます。
 - [再始動GMRES：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/gmres/?lang=ja#method-execution-ja>)
   availability: source
 

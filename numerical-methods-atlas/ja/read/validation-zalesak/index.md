@@ -340,19 +340,19 @@ python run.py --input inputs.json --output output
 
 ### 出典と確認範囲
 
-- Steven T. Zalesak (1979). Fully multidimensional flux-corrected transport algorithms for fluids. https://www.sciencedirect.com/science/article/pii/0021999179900512; review_level=publisher bibliography and abstract inspected; direct full-paper open returned403; original test geometry and boundary conditions not audited
+- Steven T. Zalesak (1979). Fully multidimensional flux-corrected transport algorithms for fluids [accessed 2026-11-23]. https://www.sciencedirect.com/science/article/pii/0021999179900512; review_level=publisher bibliography and abstract inspected; direct full-paper open returned403; original test geometry and boundary conditions not audited
 出版社の書誌と多次元FCTの抄録を確認。原著全文とその格子・境界・具体形状は今回未確認です。本例をZalesakのFCTアルゴリズム再現とは表示しません。
 
-- Firedrake developers (n.d.). DG advection equation with upwinding. https://www.firedrakeproject.org/demos/DG_advection.py.html; review_level=official documentation equations and source lines46,63–92: disk(.5,.75),R.15,slot(.475,.525),y<.85,velocity(.5−y,x−.5),T2pi; SSP equations43–45 and135–143
+- Firedrake developers (n.d.). DG advection equation with upwinding [accessed 2026-11-23]. https://www.firedrakeproject.org/demos/DG_advection.py.html; review_level=official documentation equations and source lines46,63–92: disk(.5,.75),R.15,slot(.475,.525),y<.85,velocity(.5−y,x−.5),T2pi; SSP equations43–45 and135–143
 公式デモの形状・回転速度・周期とSSPRK式を確認。元デモはbell・coneと背景1を加え、DQ1・流入値1を使います。本例はスロット円板だけの0–1指示関数・有限体積・周期境界という明示的な変形です。Firedrakeは実行・転載しません。
 
-- Randall J. LeVeque (1996). High-Resolution Conservative Algorithms for Advection in Incompressible Flow. https://faculty.washington.edu/rjl/pubs/hiresadv/0733033.pdf; review_level=author-hosted paper selected sections1–3 actually inspected: PDE/incompressibility, FV means, minmod definition, donor-cell flux; no full-paper or numerical-table reproduction
+- Randall J. LeVeque (1996). High-Resolution Conservative Algorithms for Advection in Incompressible Flow [accessed 2026-11-23]. https://faculty.washington.edu/rjl/pubs/hiresadv/0733033.pdf; review_level=author-hosted paper selected sections1–3 actually inspected: PDE/incompressibility, FV means, minmod definition, donor-cell flux; no full-paper or numerical-table reproduction
 著者公開論文の節1–3で保存形・非圧縮条件・セル平均・minmod・donor-cellを確認。Firedrakeが標準複合図形の出典として引用しています。本例のMUSCL＋SSPRKは同論文のCTU／波動伝播法そのものではありません。
 
-- Chi-Wang Shu and Stanley Osher (1988). Efficient implementation of essentially non-oscillatory shock-capturing schemes. https://www.sciencedirect.com/science/article/pii/0021999188901775; review_level=publisher bibliography/abstract inspected; actual three-stage convex formulas checked in official Firedrake demo, not a full original-paper audit
+- Chi-Wang Shu and Stanley Osher (1988). Efficient implementation of essentially non-oscillatory shock-capturing schemes [accessed 2026-11-23]. https://www.sciencedirect.com/science/article/pii/0021999188901775; review_level=publisher bibliography/abstract inspected; actual three-stage convex formulas checked in official Firedrake demo, not a full original-paper audit
 出版社の書誌とTVD Runge–Kuttaの抄録を確認。使う三段凸結合はFiredrake公式記述でも確認しました。原著全文の監査とは区別します。
 
-- SciPy developers (n.d.). scipy.integrate.quad — SciPy v1.14.1 Manual. https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.quad.html; review_level=official versioned API: QUADPACK integration, break points, epsabs/epsrel, reported error; use is evidenced by qualification receipts
+- SciPy developers (n.d.). scipy.integrate.quad — SciPy v1.14.1 Manual [accessed 2026-11-23]. https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.quad.html; review_level=official versioned API: QUADPACK integration, break points, epsabs/epsrel, reported error; use is evidenced by qualification receipts
 版を固定した公式APIでQUADPACK、分割点、絶対・相対公差と推定誤差の意味を確認。解析的な円・多角形の面積計算とは異なる垂直断面求積を、実行記録付きで照合します。
 
 

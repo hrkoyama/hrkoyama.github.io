@@ -1,6 +1,6 @@
 // Generated from frontend/search/navigation.mjs by scripts/search_assets.py. Edit the source template.
 /** Explicit, source-built cross-navigation shared by both search interfaces. */
-import {loadSearchDetail} from './compact-index.mjs?v=ce58bf7efa65';
+import {loadSearchDetail} from './compact-index.mjs?v=b8e7e135a773';
 const origin='https://hrkoyama.github.io';
 const groups=['methods','equations','figures','references','code'];
 const copy={

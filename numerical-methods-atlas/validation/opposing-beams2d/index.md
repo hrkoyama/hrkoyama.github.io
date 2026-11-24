@@ -245,10 +245,10 @@ python run.py --input inputs.json --output output
 
 ## 出典と確認範囲
 
-- Rosdahl etal. (2013). RAMSES-RT: Radiation hydrodynamics in the cosmological context. https://arxiv.org/html/1304.7126v2; review_level=primary-paper-selected-M1-equations-and-limitations
+- Rosdahl etal. (2013). RAMSES-RT: Radiation hydrodynamics in the cosmological context [accessed 2026-11-24]. https://arxiv.org/html/1304.7126v2; review_level=primary-paper-selected-M1-equations-and-limitations
 ReadSection2equations12-14and two-opposing-beams limitation text. Levermore1984original not read. Educational staticgrey cases/MMS here do not reproduce RAMSESastrophysical runs.
 
-- M. A. Skinner and E. C. Ostriker (2013). A Two-moment Radiation Hydrodynamics Module in Athena Using a Time-Explicit Godunov Method. https://arxiv.org/pdf/1306.0010; review_level=primary-selected-section-by-independent-mathematical-reviewer
+- M. A. Skinner and E. C. Ostriker (2013). A Two-moment Radiation Hydrodynamics Module in Athena Using a Time-Explicit Godunov Method [accessed 2026-11-24]. https://arxiv.org/pdf/1306.0010; review_level=primary-selected-section-by-independent-mathematical-reviewer
 Independent reviewer actually read selected extracted Section3.3equations37–41and eigenvalue limits;not a whole-paper/rendered-symbol audit. Directional LF cone root/weighted-CFL algebra is separately authored and independently crosschecked,not a transplanted HLL solver or claimed general Riemann-fan bound.
 
 
@@ -501,10 +501,10 @@ This command executes every fixed case in the distribution group. Bundled result
 
 ## Sources and review scope
 
-- Rosdahl etal. (2013). RAMSES-RT: Radiation hydrodynamics in the cosmological context. https://arxiv.org/html/1304.7126v2; review_level=primary-paper-selected-M1-equations-and-limitations
+- Rosdahl etal. (2013). RAMSES-RT: Radiation hydrodynamics in the cosmological context [accessed 2026-11-24]. https://arxiv.org/html/1304.7126v2; review_level=primary-paper-selected-M1-equations-and-limitations
 ReadSection2equations12-14and two-opposing-beams limitation text. Levermore1984original not read. Educational staticgrey cases/MMS here do not reproduce RAMSESastrophysical runs.
 
-- M. A. Skinner and E. C. Ostriker (2013). A Two-moment Radiation Hydrodynamics Module in Athena Using a Time-Explicit Godunov Method. https://arxiv.org/pdf/1306.0010; review_level=primary-selected-section-by-independent-mathematical-reviewer
+- M. A. Skinner and E. C. Ostriker (2013). A Two-moment Radiation Hydrodynamics Module in Athena Using a Time-Explicit Godunov Method [accessed 2026-11-24]. https://arxiv.org/pdf/1306.0010; review_level=primary-selected-section-by-independent-mathematical-reviewer
 Independent reviewer actually read selected extracted Section3.3equations37–41and eigenvalue limits;not a whole-paper/rendered-symbol audit. Directional LF cone root/weighted-CFL algebra is separately authored and independently crosschecked,not a transplanted HLL solver or claimed general Riemann-fan bound.
 
 

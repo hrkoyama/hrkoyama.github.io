@@ -1454,7 +1454,15 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/run.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/transport.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/references/exact.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/experiments.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/experiments.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/problem.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/continuation.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/matrix_free.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/dual.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/experiments.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/references/analytic_family.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/io_contract.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
@@ -1466,7 +1474,8 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/test_wall_flow.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/instability-growth/test_instability.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/test_geometry.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/test_moving.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/test_moving.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/test_bratu.py"
                 ],
                 "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
@@ -1521,13 +1530,28 @@
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/runge_kutta.py",
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/hamiltonian.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/run.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/biology.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/biology.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/io_contract.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/modal_yee_draft.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/reference_draft.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/slab_evolution.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/slab_reference.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/references/isolated_reference.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/centered_pml.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/io_contract.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/modal_yee_draft.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/pml_evolution.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/specifications.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py",
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_hamiltonian.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/test_biology.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/test_biology.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/test_lorentz.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/test_grazing.py"
                 ],
                 "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               }
@@ -1994,7 +2018,15 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/run.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/transport.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/references/exact.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/experiments.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/experiments.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/problem.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/continuation.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/matrix_free.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/dual.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/experiments.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/references/analytic_family.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/io_contract.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
@@ -2006,7 +2038,8 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/wall-flow/test_wall_flow.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/instability-growth/test_instability.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mesh-boundary/test_geometry.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/test_moving.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/test_moving.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/test_bratu.py"
                 ],
                 "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
@@ -2061,13 +2094,28 @@
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/runge_kutta.py",
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/hamiltonian.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/run.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/biology.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/biology.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/io_contract.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/modal_yee_draft.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/reference_draft.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/slab_evolution.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/slab_reference.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/references/isolated_reference.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/centered_pml.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/io_contract.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/modal_yee_draft.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/pml_evolution.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/specifications.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py",
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_hamiltonian.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/test_biology.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/biology/test_biology.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/test_lorentz.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/test_grazing.py"
                 ],
                 "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               }
@@ -2949,14 +2997,23 @@
                 "code_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/linear.py",
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/multigrid.py",
-                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/poisson_comparison.py"
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/poisson_comparison.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/problem.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/continuation.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/matrix_free.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/dual.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/experiments.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/references/analytic_family.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/io_contract.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_linear.py",
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_multigrid.py",
-                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_poisson_comparison.py"
+                  "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_poisson_comparison.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/test_bratu.py"
                 ],
-                "code_mapping_scope": "Related chapter modules and test files; not a claim that each test covers every named method."
+                "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
               {
                 "id": "cg",
@@ -3785,14 +3842,14 @@
   "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
   "source_sha256": {
     "catalog/atlas-crossovers.json": "04358952828bd2732864c794205f60e351d0a7a669abec0222c2821fc03fd71f",
-    "catalog/atlas-methods.json": "3f2b7051c980e5492f6f94f01b3e75c4802394856c55a7176d9c9a1a9f35e305",
-    "numerical-methods-atlas/methods/index.json": "de079c1c94fadf12efb70825ce477a4362330a9a4585932b2409e8f0c3efb41c",
+    "catalog/atlas-methods.json": "1bf729b9e73fc797619dae3e5dc7ec0d1fe729efc1ad36485d760ddc77a4a246",
+    "numerical-methods-atlas/methods/index.json": "f5c72a9e109a43eafed25021a015c3f86ea9ebb1f470cf6a3bb7fabdfdd6494d",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
     "numerical-methods-atlas/assets/biological-models.json": "3ee3489ca4d2632d672576fcd75c062137053e203b55cbf51ee0cbe8cfc9556f"
   },
   "supplemental_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "808390a31a772b2e1f9c625f8619a05d3387afb5256dd5e31b3c712c6283863a",
+    "catalog/atlas-depth-expansion.json": "9c46bb250bbeb60e965c0d9b86d07a0c744ea847ad9c3926886e138a6458b072",
     "code/validated-examples/2026-11-22/biology/source-manifest.json": "56947a4fb54ae757408ddddfc5de0884bfe35266032ee425a8d96a815f3362ba",
     "code/validated-examples/2026-11-22/biology/verification.json": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",

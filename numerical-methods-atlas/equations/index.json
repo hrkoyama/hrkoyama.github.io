@@ -23,6 +23,11 @@
       "id": "quantum",
       "ja": "電子状態・量子化学",
       "en": "Electronic structure & quantum chemistry"
+    },
+    {
+      "id": "algebraic",
+      "ja": "有限次元の代数問題",
+      "en": "Finite-dimensional algebra"
     }
   ],
   "equations": [
@@ -2863,19 +2868,19 @@
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=en"
           },
           "code_urls": [
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/run.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/solver.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/hlld.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/analytic.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/qualify_saved.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/generate.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/qualify.py"
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/solver.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/hlld.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/references/analytic.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/references/qualify_saved.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/references/generate.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/references/qualify.py"
           ],
           "test_urls": [
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/test_mhd.py"
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/test_mhd.py"
           ],
-          "verification": "/code/validated-examples/2026-11-23/mhd-transport/verification.json",
-          "results": "/code/validated-examples/2026-11-23/mhd-transport/results/result.json"
+          "verification": "/code/validated-examples/2026-11-24/mhd-transport/verification.json",
+          "results": "/code/validated-examples/2026-11-24/mhd-transport/results/result.json"
         },
         {
           "id": "magnetic-loop-independent",
@@ -2888,19 +2893,19 @@
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=en"
           },
           "code_urls": [
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/run.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/solver.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/hlld.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/qualify_saved.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/analytic.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/generate.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/qualify.py"
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/solver.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/hlld.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/references/qualify_saved.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/references/analytic.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/references/generate.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/references/qualify.py"
           ],
           "test_urls": [
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/test_mhd.py"
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/test_mhd.py"
           ],
-          "verification": "/code/validated-examples/2026-11-23/mhd-transport/verification.json",
-          "results": "/code/validated-examples/2026-11-23/mhd-transport/results/result.json"
+          "verification": "/code/validated-examples/2026-11-24/mhd-transport/verification.json",
+          "results": "/code/validated-examples/2026-11-24/mhd-transport/results/result.json"
         },
         {
           "id": "postshock-orszag-tang",
@@ -2913,19 +2918,19 @@
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=en"
           },
           "code_urls": [
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/run.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/solver.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/hlld.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/qualify_saved.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/analytic.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/generate.py",
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/qualify.py"
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/solver.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/hlld.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/references/qualify_saved.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/references/analytic.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/references/generate.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/references/qualify.py"
           ],
           "test_urls": [
-            "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/test_mhd.py"
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/test_mhd.py"
           ],
-          "verification": "/code/validated-examples/2026-11-23/mhd-transport/verification.json",
-          "results": "/code/validated-examples/2026-11-23/mhd-transport/results/result.json"
+          "verification": "/code/validated-examples/2026-11-24/mhd-transport/verification.json",
+          "results": "/code/validated-examples/2026-11-24/mhd-transport/results/result.json"
         }
       ],
       "related_problems": [
@@ -3022,9 +3027,9 @@
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=en"
               },
-              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/inputs.json",
-              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip",
-              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/verification.json"
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/verification.json"
             }
           ]
         },
@@ -3147,9 +3152,9 @@
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=en"
               },
-              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/inputs.json",
-              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip",
-              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/verification.json"
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/verification.json"
             }
           ]
         },
@@ -3200,9 +3205,9 @@
                 "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=ja",
                 "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=en"
               },
-              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/inputs.json",
-              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip",
-              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/verification.json"
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/verification.json"
             }
           ]
         },
@@ -5104,6 +5109,10 @@
       "status": "local-example",
       "group": "physical",
       "coverage_scope": "",
+      "supplemental_examples": [
+        "bratu-fold-continuation",
+        "bratu-matrix-free-jfnk"
+      ],
       "reading": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/sparse-nonlinear/",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/sparse-nonlinear/"
@@ -5121,7 +5130,60 @@
           }
         }
       ],
-      "supplemental_execution_examples": [],
+      "supplemental_execution_examples": [
+        {
+          "id": "bratu-fold-continuation",
+          "name": {
+            "ja": "擬似弧長継続でBratuのfoldを越える",
+            "en": "Crossing the Bratu fold with pseudo-arclength continuation"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-continuation/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-continuation/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/problem.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/continuation.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/matrix_free.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/dual.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/references/analytic_family.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/io_contract.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/test_bratu.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json",
+          "results": "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/result.json"
+        },
+        {
+          "id": "bratu-matrix-free-jfnk",
+          "name": {
+            "ja": "解析・中央差分・方向ADによるJacobian不要Newton–Krylov",
+            "en": "Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/problem.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/continuation.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/matrix_free.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/dual.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/references/analytic_family.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/io_contract.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/test_bratu.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json",
+          "results": "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/result.json"
+        }
+      ],
       "related_problems": [
         {
           "id": "bratu",
@@ -5172,6 +5234,120 @@
               "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json"
             }
           ]
+        },
+        {
+          "id": "bratu-fold-continuation",
+          "name": {
+            "ja": "擬似弧長継続でBratuのfoldを越える",
+            "en": "Crossing the Bratu fold with pseudo-arclength continuation"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-fold-continuation-preview.png",
+            "sha256": "3fcf16e0b6e9bbf99904d456e702679335a716a1d36d7d12aee5893150679367",
+            "width": 1100,
+            "height": 800,
+            "caption": {
+              "ja": "保存した分岐曲線、λ=2の上下枝、Jacobianの最小特異値、3格子のfold誤差を示す縮小図。擬似弧長stepは物理時間ではありません。",
+              "en": "Preview of the stored branch,lambda=2 profiles,smallest Jacobian singular value and three-grid fold error. Arclength steps are not physical time."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-fold-continuation/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-fold-continuation/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-fold-continuation/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-fold-continuation/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "bratu-fold-continuation",
+              "kind": "supplement",
+              "name": {
+                "ja": "擬似弧長継続でBratuのfoldを越える",
+                "en": "Crossing the Bratu fold with pseudo-arclength continuation"
+              },
+              "scope": {
+                "ja": "同じ1次元Bratu境界値問題の下枝から上枝までを追跡し、接線・fold・独立解析族との空間誤差を調べます。",
+                "en": "Follow the lower and upper branches of the same one-dimensional Bratu boundary-value problem; check tangents, the fold and spatial error against an independent analytic family."
+              },
+              "method_ids": [
+                "pseudo-arclength-continuation",
+                "newton",
+                "centered-difference"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-continuation/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-continuation/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/atlas-bratu-continuation-jfnk-2026-11-24-r2.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "無次元x∈[0,1]、両端u=0、中心差分の内点31/63/127。零解から固定ds=0.1で80step。λ=2で上下枝を補正し、λ=4は離散無解の意図的な対照です。擬似弧長は物理時間ではありません。",
+            "en": "Dimensionless x in [0,1] with zero Dirichlet endpoints and 31/63/127 interior nodes. Take 80 fixed ds=0.1 steps from the zero solution. Correct both branches at lambda=2; lambda=4 is a deliberate discrete no-solution control. Pseudo-arclength is not physical time."
+          }
+        },
+        {
+          "id": "bratu-matrix-free-jfnk",
+          "name": {
+            "ja": "解析・中央差分・方向ADによるJacobian不要Newton–Krylov",
+            "en": "Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-matrix-free-jfnk-preview.png",
+            "sha256": "3a1e124b0f2af0be276bbb1f6bfbc6168af1fd7dcb975e891ab793c6cc4827b1",
+            "width": 1100,
+            "height": 800,
+            "caption": {
+              "ja": "保存したN=127のNewton残差、上枝の解と解析参照、Jv誤差、実評価回数を示す縮小図。run indexは保存CSVに対応します。",
+              "en": "Preview of stored N=127 Newton residuals,upper-branch field/reference,Jv errors and actual evaluation counts. Run indices match the saved CSV."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-matrix-free-jfnk/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-matrix-free-jfnk/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-matrix-free-jfnk/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-matrix-free-jfnk/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "bratu-matrix-free-jfnk",
+              "kind": "supplement",
+              "name": {
+                "ja": "解析・中央差分・方向ADによるJacobian不要Newton–Krylov",
+                "en": "Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products"
+              },
+              "scope": {
+                "ja": "非線形Jacobianを組み立てずにBratuの上下枝を3種類のJvで解き、forcingと実際の残差・評価回数を保存します。",
+                "en": "Solve both Bratu branches with three Jv choices without assembling the nonlinear Jacobian; retain forcing, actual residuals and evaluation counts."
+              },
+              "method_ids": [
+                "jacobian-free-newton-krylov",
+                "gmres",
+                "thomas",
+                "automatic-differentiation",
+                "centered-difference"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/atlas-bratu-continuation-jfnk-2026-11-24-r2.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "同じ無次元1次元Dirichlet問題でλ=3、内点63/127、初期値0または4sin(πx)。3Jv×2格子×2枝の12解法と固定η=1e-8の解析Jv対照1本。GMRES restart24/max96、Newton最大24、残差許容1e-9です。",
+            "en": "The same dimensionless one-dimensional Dirichlet problem at lambda=3, 63/127 interior nodes, starting from zero or 4sin(pi*x). Twelve mode/grid/branch solves plus one analytic-Jv constant-eta=1e-8 control. GMRES restart24/max96, at most 24 Newton steps and nonlinear tolerance1e-9."
+          }
         }
       ]
     },
@@ -10673,18 +10849,806 @@
           }
         }
       ]
+    },
+    {
+      "id": "finite-dimensional-linear-system",
+      "name": {
+        "ja": "有限次元線形方程式と行列分解",
+        "en": "Finite-dimensional linear systems and factorizations"
+      },
+      "formula": [
+        "A x=b",
+        "P A=L U",
+        "A=L L^\\top\\quad(A=A^\\top>0)",
+        "r=b-Ax"
+      ],
+      "chapter": "validation-linear-algebra-spectral",
+      "note": {
+        "ja": "有限行列Aと右辺bの代数問題です。LU/Cholesky・混合精度改良・対称不定値鞍点系を固定例で検査し、連続PDEの解とは区別します。",
+        "en": "Finite matrices A and right-hand sides b define algebraic problems. Fixed LU, Cholesky, refinement and symmetric-indefinite saddle controls are distinct from continuum PDE solutions."
+      },
+      "status": "local-example",
+      "group": "algebraic",
+      "domain_kind": "finite-dimensional-algebra",
+      "dimension": null,
+      "coverage_scope": "Only the four specified direct matrices and two algebraic saddle sizes are covered. No general stability, scalability or PDE guarantee is implied.",
+      "execution_scope": {
+        "ja": "SPD三重対角・近特異rank1・Hilbert5・Wilkinson12、鞍点速度サイズ12/24。元残差・前進/後退誤差を分けます。",
+        "en": "SPD tridiagonal, nearly singular rank-one, Hilbert 5 and Wilkinson 12 matrices, plus saddle velocity sizes 12 and 24. Residual, forward error and backward error are separate quantities."
+      },
+      "supplemental_examples": [
+        "pivoted-direct-refinement",
+        "symmetric-saddle-minres"
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/"
+      },
+      "execution_examples": [],
+      "supplemental_execution_examples": [
+        {
+          "id": "pivoted-direct-refinement",
+          "name": {
+            "ja": "部分ピボットLU・Choleskyと反復改良",
+            "en": "Pivoted LU, Cholesky and iterative refinement"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pivoted-direct-refinement/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pivoted-direct-refinement/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/fixtures.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/solvers.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/references/oracles.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/test_algorithms.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/test_mass_action.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+          "results": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/result.json"
+        },
+        {
+          "id": "symmetric-saddle-minres",
+          "name": {
+            "ja": "対称不定値鞍点系とSchur前処理",
+            "en": "Symmetric saddle systems and Schur preconditioning"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/symmetric-saddle-minres/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/symmetric-saddle-minres/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/fixtures.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/solvers.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/references/oracles.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/test_algorithms.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/test_mass_action.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+          "results": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/result.json"
+        }
+      ],
+      "related_problems": [
+        {
+          "id": "pivoted-direct-refinement",
+          "name": {
+            "ja": "部分ピボットLU・Choleskyと反復改良",
+            "en": "Pivoted LU, Cholesky and iterative refinement"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/pivoted-direct-refinement-preview.png",
+            "sha256": "c29ca507eef22bc4a38c16c5f6b5ca5ced73a750e013d9554ffaeaedc2b917e8",
+            "width": 755,
+            "height": 590,
+            "caption": {
+              "ja": "保存した12×12 SPD行列。反復改良の固定例に使います。 別の全図に示す誤差は厳密有理数解をbinary64へ丸めた参照との差です。対数表示だけ、厳密なゼロ誤差をfloat64.tinyに置いて表示します。",
+              "en": "The saved 12 x 12 SPD matrix used in the refinement examples. In the companion full figure, errors are measured against the exact-rational solution rounded to binary64; exact zeros are shown at float64.tiny for logarithmic display only."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/pivoted-direct-refinement/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/pivoted-direct-refinement/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/pivoted-direct-refinement/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/pivoted-direct-refinement/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "pivoted-direct-refinement",
+              "kind": "supplement",
+              "name": {
+                "ja": "部分ピボットLU・Choleskyと反復改良",
+                "en": "Pivoted LU, Cholesky and iterative refinement"
+              },
+              "scope": {
+                "ja": "独立の厳密有理数解と比較し、条件数・前進誤差・後退誤差・ピボット増大を分けます。",
+                "en": "Exact-rational comparisons separate conditioning, forward and backward error, and pivot growth."
+              },
+              "method_ids": [
+                "lu-partial-pivoting",
+                "cholesky"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pivoted-direct-refinement/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pivoted-direct-refinement/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/atlas-linear-algebra-spectral-2026-11-24-r3.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "SPD12、低ランク近特異8、Hilbert5、Wilkinson12を固定。binary32因子・三角解法とbinary64残差・補正の5回です。",
+            "en": "Fixed SPD matrix of size 12, a nearly singular rank-one matrix of size 8, Hilbert matrix of size 5 and Wilkinson matrix of size 12. Factors and triangular corrections use binary32; residuals use binary64, with five updates."
+          }
+        },
+        {
+          "id": "symmetric-saddle-minres",
+          "name": {
+            "ja": "対称不定値鞍点系とSchur前処理",
+            "en": "Symmetric saddle systems and Schur preconditioning"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/symmetric-saddle-minres-preview.png",
+            "sha256": "35a0cb90e9427029904fb897e2554220ec77e47b2a7572443210f93be204680e",
+            "width": 854,
+            "height": 590,
+            "caption": {
+              "ja": "速度サイズ24の固定例で使う、保存した35×35鞍点行列。",
+              "en": "The saved 35 x 35 saddle matrix for velocity size 24."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/symmetric-saddle-minres/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/symmetric-saddle-minres/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/symmetric-saddle-minres/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/symmetric-saddle-minres/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "symmetric-saddle-minres",
+              "kind": "supplement",
+              "name": {
+                "ja": "対称不定値鞍点系とSchur前処理",
+                "en": "Symmetric saddle systems and Schur preconditioning"
+              },
+              "scope": {
+                "ja": "同じ元残差の基準でMINRESとGMRESを比較し、理想Schurの三点スペクトルを検査します。",
+                "en": "MINRES and GMRES use the same original-system residual criterion and are checked against the ideal Schur three-point spectrum."
+              },
+              "method_ids": [
+                "minres",
+                "gmres"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/symmetric-saddle-minres/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/symmetric-saddle-minres/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/atlas-linear-algebra-spectral-2026-11-24-r3.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "速度12/24、圧力5/11の代数的混合Poisson/Stokes型ブロック。元の真の残差1e-9を共通基準にします。",
+            "en": "Algebraic mixed-Poisson/Stokes-type blocks with velocity sizes 12 and 24 and pressure sizes 5 and 11. The common original-system residual tolerance is 1e-9."
+          }
+        }
+      ]
+    },
+    {
+      "id": "finite-dimensional-eigenproblem",
+      "name": {
+        "ja": "有限次元の行列固有値問題",
+        "en": "Finite-dimensional matrix eigenproblems"
+      },
+      "formula": [
+        "A x=\\lambda x"
+      ],
+      "chapter": "validation-linear-algebra-spectral",
+      "note": {
+        "ja": "主対象は31×31の固定対称行列の標準固有値問題です。行列の離散スペクトルを参照し、連続PDEの空間収束を検査したとはしません。",
+        "en": "The primary case is a fixed 31 x 31 symmetric standard eigenproblem. Its discrete spectrum provides the reference; continuum PDE spatial convergence is not claimed."
+      },
+      "status": "local-example",
+      "group": "algebraic",
+      "domain_kind": "finite-dimensional-algebra",
+      "dimension": null,
+      "coverage_scope": "Explicitly restarted two-pass Arnoldi, one Ritz pair, restart lengths 8/16 and shifts none/0/950. No implicit restarting, Krylov-Schur, locking, clustered-spectrum or nonnormal extension is claimed.",
+      "execution_scope": {
+        "ja": "再始動長8/16、最大40cycle、shiftなし/0/950、元固有対残差1e−9。",
+        "en": "Restart lengths 8 and 16, at most 40 cycles, shifts none/0/950, and an original eigenpair residual tolerance of 1e-9."
+      },
+      "supplemental_examples": [
+        "restarted-shift-invert"
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/"
+      },
+      "execution_examples": [],
+      "supplemental_execution_examples": [
+        {
+          "id": "restarted-shift-invert",
+          "name": {
+            "ja": "明示的再始動Krylovと内部固有値",
+            "en": "Explicitly restarted Krylov and interior eigenvalues"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/restarted-shift-invert/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/restarted-shift-invert/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/fixtures.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/solvers.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/references/oracles.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/test_algorithms.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/test_mass_action.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+          "results": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/result.json"
+        }
+      ],
+      "related_problems": [
+        {
+          "id": "restarted-shift-invert",
+          "name": {
+            "ja": "明示的再始動Krylovと内部固有値",
+            "en": "Explicitly restarted Krylov and interior eigenvalues"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/restarted-shift-invert-preview.png",
+            "sha256": "d5a6a9d073bc0d7fb85a999137390b9a9b1dcfb765380599a7d9880b8356fbc8",
+            "width": 814,
+            "height": 590,
+            "caption": {
+              "ja": "固有値比較に使う、保存した31×31 Dirichlet Laplacian。",
+              "en": "The saved 31 x 31 Dirichlet Laplacian used in the eigenvalue comparisons."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/restarted-shift-invert/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/restarted-shift-invert/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/restarted-shift-invert/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/restarted-shift-invert/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "restarted-shift-invert",
+              "kind": "supplement",
+              "name": {
+                "ja": "明示的再始動Krylovと内部固有値",
+                "en": "Explicitly restarted Krylov and interior eigenvalues"
+              },
+              "scope": {
+                "ja": "固定長の明示的再始動とshift-invertを、元の固有値問題の残差と作用回数で比較します。",
+                "en": "Explicit restarting and shift-invert are compared using original eigenproblem residuals and counted operator actions."
+              },
+              "method_ids": [
+                "eigensolvers"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/restarted-shift-invert/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/restarted-shift-invert/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/atlas-linear-algebra-spectral-2026-11-24-r3.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "Dirichlet離散Laplacian31、再始動長8/16、最大40cycle、shiftなし/0/950。",
+            "en": "A fixed Dirichlet Laplacian of size 31, restart lengths 8 and 16, and at most 40 cycles. Compare the untransformed problem with shifts 0 and 950."
+          }
+        }
+      ]
+    },
+    {
+      "id": "dirichlet-string-eigenproblem",
+      "name": {
+        "ja": "固定端弦の固有値と整合質量FEM",
+        "en": "Fixed-end string eigenvalues and consistent-mass FEM"
+      },
+      "formula": [
+        "-T\\phi^{\\prime\\prime}=\\rho\\lambda\\phi,\\quad 0<x<1",
+        "\\phi(0)=\\phi(1)=0,\\quad T=\\rho=1",
+        "\\lambda_j=(j\\pi)^2",
+        "\\lambda_{j,h}=\\frac{6(1-\\cos\\theta_j)}{h^2(2+\\cos\\theta_j)},\\quad\\theta_j=\\frac{j\\pi}{n+1}"
+      ],
+      "chapter": "validation-linear-algebra-spectral",
+      "note": {
+        "ja": "単位弦の定常振動形の固有値問題です。整合質量P1の代数固有値誤差と連続体への離散化誤差を分けます。時間発展を実行した例ではありません。",
+        "en": "A unit-string normal-mode eigenproblem separates consistent-mass P1 algebraic error from continuum discretization error. No time evolution is performed."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "dimension": 1,
+      "coverage_scope": "Unit length, tension and density; homogeneous Dirichlet endpoints at 0 and 1; the lowest three modes on 15/31/63 interior nodes. No 2D, variable-coefficient, nonlinear or time-evolution extension is claimed.",
+      "execution_scope": {
+        "ja": "内部15/31/63点、M内積Krylovと実SciPy1.14.1 LOBPCGを閉離散固有値・generalized LAPACKへ照合。",
+        "en": "Use 15, 31 and 63 interior nodes. Compare M-inner-product Krylov and actual SciPy 1.14.1 LOBPCG with closed discrete eigenvalues and generalized LAPACK."
+      },
+      "supplemental_examples": [
+        "fem-mass-eigen"
+      ],
+      "references": [
+        {
+          "role": "selected-official-documentation",
+          "title": "SciPy 1.14.1 LOBPCG",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.sparse.linalg.lobpcg.html",
+          "note": "Selected SPD B, operator, preconditioner M, history and rod-example discussion was read. This uses the maintained SciPy implementation, not an original LOBPCG implementation."
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/"
+      },
+      "execution_examples": [],
+      "supplemental_execution_examples": [
+        {
+          "id": "fem-mass-eigen",
+          "name": {
+            "ja": "整合質量FEM弦の一般化固有値",
+            "en": "Consistent-mass FEM string eigenpairs"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fem-mass-eigen/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fem-mass-eigen/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/fixtures.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/solvers.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/references/oracles.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/test_algorithms.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/test_mass_action.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+          "results": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/result.json"
+        }
+      ],
+      "related_problems": [
+        {
+          "id": "fem-mass-eigen",
+          "name": {
+            "ja": "整合質量FEM弦の一般化固有値",
+            "en": "Consistent-mass FEM string eigenpairs"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/fem-mass-eigen-preview.png",
+            "sha256": "4f9152e89dcc28539eaa01ef7852f77b4593072cac45d7ff322115dfb756a32a",
+            "width": 912,
+            "height": 590,
+            "caption": {
+              "ja": "内部63点で計算した、M正規化された最低3モード。",
+              "en": "The first three M-normalized modes computed on the 63-node interior grid."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fem-mass-eigen/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fem-mass-eigen/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fem-mass-eigen/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fem-mass-eigen/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "fem-mass-eigen",
+              "kind": "supplement",
+              "name": {
+                "ja": "整合質量FEM弦の一般化固有値",
+                "en": "Consistent-mass FEM string eigenpairs"
+              },
+              "scope": {
+                "ja": "整合質量のP1弦で、M内積Krylovと実際のSciPy LOBPCGを独立離散スペクトルへ照合します。",
+                "en": "Consistent-mass P1 string eigenpairs compare an M-inner-product Krylov method and actual SciPy LOBPCG with an independent discrete spectrum."
+              },
+              "method_ids": [
+                "eigensolvers",
+                "lobpcg"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fem-mass-eigen/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fem-mass-eigen/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/atlas-linear-algebra-spectral-2026-11-24-r3.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "単位弦・張力密度1、同次Dirichlet、内部15/31/63点、最低3固有対。",
+            "en": "A unit string with unit tension and density and homogeneous Dirichlet endpoints. Use 15, 31 and 63 interior nodes and the lowest three eigenpairs."
+          }
+        }
+      ]
+    },
+    {
+      "id": "maxwell",
+      "name": {
+        "ja": "線形Maxwell電磁場（真空・誘電体）",
+        "en": "Linear Maxwell fields in vacuum and dielectrics"
+      },
+      "formula": [
+        "\\partial_t\\mathbf B=-\\nabla\\times\\mathbf E,\\quad\\partial_t\\mathbf D=\\nabla\\times\\mathbf H",
+        "\\mathbf D=\\varepsilon(\\mathbf x)\\mathbf E,\\quad\\mathbf B=\\mathbf H"
+      ],
+      "chapter": "validation-maxwell-cylinder",
+      "note": {
+        "ja": "代表式は3D線形電磁場です。今回の実装はz不変の円柱Ez/Hx/Hyに制限した真2D Yee計算です。",
+        "en": "The representative equations describe three-dimensional linear electromagnetics. This implementation is restricted to a z-invariant, genuinely two-dimensional Yee cylinder problem with Ez/Hx/Hy."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "supplemental_examples": [
+        "cylinder-mie2d"
+      ],
+      "execution_scope": {
+        "ja": "s=Ez（TMz、Hz=0）の無損失円柱。p=Hz（TEz、Ez=0）とは成分で区別し、呼称が異なる文献へ式を流用しません。",
+        "en": "The cylinder uses s = Ez, often called TMz, with Hz = 0. Components distinguish it from p = Hz, often called TEz, with Ez = 0; naming conventions vary across the literature."
+      },
+      "references": [
+        {
+          "id": "ansys-cylinder",
+          "author": "Ansys Optics",
+          "title": "Mie scattering 2D",
+          "url": "https://optics.ansys.com/hc/en-us/articles/360042703373-Mie-scattering-2D",
+          "review_level": "primary-official-documentation-selected-example",
+          "review_scope": "Read the complete substantive benchmark description: two-dimensional dielectric cylinder, TFSF, angular far field and lossless cross sections. Did not read the associated simulation files, theory table or cited book; no external numerical data imported. Publication and revision dates have not been verified. Accessed on 2026-11-24; this is a consultation date, not a publication year.",
+          "accessed_on": "2026-11-24"
+        },
+        {
+          "id": "nist-wronskian",
+          "author": "NIST DLMF",
+          "title": "Bessel and Hankel Wronskians, section10.5",
+          "url": "https://dlmf.nist.gov/10.5",
+          "review_level": "primary-official-mathematical-identity",
+          "review_scope": "Read section 10.5, especially equation 10.5.3 for the ordinary J/Hankel1 Wronskian; version 1.2.8. Cylinder boundary algebra is independently derived here. The year 2026 denotes DLMF version 1.2.8, released on 2026-09-15, not its initial publication year. Accessed on 2026-11-24.",
+          "year": 2026,
+          "year_role": "version",
+          "version": "1.2.8",
+          "release_date": "2026-09-15",
+          "accessed_on": "2026-11-24"
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-cylinder/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-cylinder/"
+      },
+      "execution_examples": [],
+      "supplemental_execution_examples": [
+        {
+          "id": "cylinder-mie2d",
+          "name": {
+            "ja": "2D誘電体円柱のMie散乱幅",
+            "en": "Mie scattering width of a two-dimensional dielectric cylinder"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/cylinder-mie2d/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/cylinder-mie2d/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/cylinder_draft.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/cylinder_evolution.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/io_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/poynting.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/reference_draft.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/test_cylinder.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/verification.json",
+          "results": "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/results/result.json"
+        }
+      ],
+      "related_problems": [
+        {
+          "id": "cylinder-mie2d",
+          "name": {
+            "ja": "2D誘電体円柱のMie散乱幅",
+            "en": "Mie scattering width of a two-dimensional dielectric cylinder"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/results/cylinder-mie2d-preview.png",
+            "sha256": "6968b65203b7829eae49e2b0219dd18441bbeb3635c9bb7fbae972b5cc43942e",
+            "width": 648,
+            "height": 520,
+            "caption": {
+              "ja": "保存した最細格子の実2D散乱電場phasorの実部。 図の中央の白抜きは診断用のr<0.4のマスクで、物理円柱の半径0.25とは区別します。",
+              "en": "Real part of the actual saved scattered electric phasor on the finest two-dimensional grid. The central white region is a diagnostic mask at r<0.4, distinct from the physical cylinder radius0.25."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-mie2d/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-mie2d/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-mie2d/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-mie2d/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "cylinder-mie2d",
+              "kind": "supplement",
+              "name": {
+                "ja": "2D誘電体円柱のMie散乱幅",
+                "en": "Mie scattering width of a two-dimensional dielectric cylinder"
+              },
+              "scope": {
+                "ja": "実際の2D散乱場を進め、閉曲線Poynting流束と独立な円柱級数を比較します。",
+                "en": "Evolve the actual two-dimensional scattered fields and compare closed-contour Poynting power with an independent cylindrical series."
+              },
+              "method_ids": [
+                "fdtd",
+                "leapfrog"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/cylinder-mie2d/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/cylinder-mie2d/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/atlas-maxwell-cylinder-2026-11-24-r2.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "c=ε0=μ0=1。無限円柱のEz偏光、半径0.25、比誘電率2.25、真空波長1。6×6領域と4辺PML、明示的な節点階段状形状です。",
+            "en": "Use c = epsilon0 = mu0 = 1, an infinite cylinder with Ez polarization, radius 0.25, relative permittivity 2.25 and vacuum wavelength 1. The 6 × 6 domain has four-side PML and an explicitly nodal staircase geometry."
+          }
+        }
+      ]
+    },
+    {
+      "id": "maxwell-lorentz",
+      "name": {
+        "ja": "受動Lorentz・Ohmic分散Maxwell場",
+        "en": "Passive Lorentz–Ohmic Maxwell fields"
+      },
+      "formula": [
+        "\\partial_t\\mathbf H=-\\nabla\\times\\mathbf E,\\quad\\varepsilon_\\infty\\partial_t\\mathbf E=\\nabla\\times\\mathbf H-\\sigma\\mathbf E-\\mathbf J",
+        "\\partial_t\\mathbf P=\\mathbf J,\\quad\\partial_t\\mathbf J=f\\mathbf E-\\omega_0^2\\mathbf P-\\gamma\\mathbf J,\\quad f=\\Delta\\varepsilon\\omega_0^2",
+        "\\varepsilon_\\infty>0,\\quad f,\\sigma,\\gamma\\ge0"
+      ],
+      "chapter": "validation-maxwell-lorentz",
+      "note": {
+        "ja": "正の物質エネルギーと直接Ohmic/γ仕事を持つ単一受動Lorentz極。代表式は3Dですが、実装は周期y単一kyの2D s/p成分制限です。PML数値仕事は物理散逸と同一視しません。",
+        "en": "A single passive Lorentz pole with positive material energy and direct Ohmic/gamma work. The representative equations are three-dimensional; the implemented solver is the two-dimensional s/p component restriction at one periodic ky. Numerical PML work is not identified with physical dissipation."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "supplemental_examples": [
+        "lorentz-oblique-sp",
+        "dispersive-grazing-pml"
+      ],
+      "execution_scope": {
+        "ja": "sはEz/Hx/HyとPz/Jz、pはHz/Ex/Eyと両電場のPx/Py/Jx/Jy。任意の3D場や横方向多モードではありません。",
+        "en": "The s mode evolves Ez/Hx/Hy and Pz/Jz. The p mode evolves Hz/Ex/Ey and both Px/Py/Jx/Jy material responses. This does not implement arbitrary three-dimensional fields or arbitrary transverse multimode data."
+      },
+      "references": [
+        {
+          "id": "meep-materials",
+          "author": "Meep developers",
+          "title": "Meep Materials documentation",
+          "url": "https://meep.readthedocs.io/en/latest/Materials/",
+          "review_level": "primary-official-documentation-selected-sections",
+          "review_scope": "Read Material Dispersion, Numerical Stability, Loss and Gain, and Conductivity. Confirmed the exp(-i omega t) convention, Lorentz polarization and dispersive-PML warning. Our sigma E conductivity and midpoint update differ from Meep. Unversioned latest documentation; no original Yee or Roden-Gedney paper claim. Publication and revision dates have not been verified. Accessed on 2026-11-24; this is a consultation date, not a publication year.",
+          "accessed_on": "2026-11-24"
+        },
+        {
+          "id": "johnson-pml",
+          "author": "Steven G. Johnson",
+          "title": "Notes on Perfectly Matched Layers",
+          "url": "https://arxiv.org/html/2108.05348v1",
+          "review_level": "primary-author-notes-selected-derivation",
+          "review_scope": "Read sections 3.2–4.2, equations 7–8 and the time-domain ADE discussion, plus sections 5–7.2 on homogeneity, evanescent fields and grazing/discretization limitations. The served text is updated 2026-08-24. The trapezoidal filter is our derivation; no full original Berenger/Roden-Gedney paper review is claimed.",
+          "year": 2021
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-lorentz/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-lorentz/"
+      },
+      "execution_examples": [],
+      "supplemental_execution_examples": [
+        {
+          "id": "lorentz-oblique-sp",
+          "name": {
+            "ja": "Lorentz分散板へのs/p斜め入射",
+            "en": "Oblique s/p incidence on a Lorentz-dispersive slab"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lorentz-oblique-sp/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lorentz-oblique-sp/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/io_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/modal_yee_draft.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/reference_draft.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/slab_evolution.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/slab_reference.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/test_lorentz.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/verification.json",
+          "results": "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/results/result.json"
+        },
+        {
+          "id": "dispersive-grazing-pml",
+          "name": {
+            "ja": "分散媒質の浅い入射角と長時間PML",
+            "en": "Long-time grazing PML in a dispersive medium"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dispersive-grazing-pml/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dispersive-grazing-pml/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/references/isolated_reference.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/centered_pml.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/io_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/modal_yee_draft.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/pml_evolution.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/specifications.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/test_grazing.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-24-r2/maxwell-grazing/verification.json",
+          "results": "/code/validated-examples/2026-11-24-r2/maxwell-grazing/results/result.json"
+        }
+      ],
+      "related_problems": [
+        {
+          "id": "lorentz-oblique-sp",
+          "name": {
+            "ja": "Lorentz分散板へのs/p斜め入射",
+            "en": "Oblique s/p incidence on a Lorentz-dispersive slab"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/results/lorentz-oblique-sp-preview.png",
+            "sha256": "b85480fcaeb675536ed6da9f82006b72cb86954d36ee08958ba957b850c4c9ca",
+            "width": 1050,
+            "height": 520,
+            "caption": {
+              "ja": "保存したp偏光の実電場をky=4の周期y方向へ再構成した場。 周期y方向の1周期を表示しています。波形を見やすくするため、x軸とy軸の表示縮尺は異なります。",
+              "en": "Actual saved p-polarized electric field reconstructed over the periodic y direction at ky=4. One transverse y period is shown. The displayed x and y scales differ to make the fields visible."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lorentz-oblique-sp/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lorentz-oblique-sp/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lorentz-oblique-sp/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lorentz-oblique-sp/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "lorentz-oblique-sp",
+              "kind": "supplement",
+              "name": {
+                "ja": "Lorentz分散板へのs/p斜め入射",
+                "en": "Oblique s/p incidence on a Lorentz-dispersive slab"
+              },
+              "scope": {
+                "ja": "有限波束の実進行から複素r/t・R/T・直接散逸を求め、複素Fresnel参照と比較します。",
+                "en": "Measure complex r/t, power fractions and direct dissipation from actual finite-pulse evolutions and compare them with complex Fresnel slab references."
+              },
+              "method_ids": [
+                "fdtd",
+                "leapfrog",
+                "implicit-midpoint"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lorentz-oblique-sp/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lorentz-oblique-sp/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/atlas-maxwell-lorentz-2026-11-24-r2.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "周期y方向のky=4に制限した2D場、c=1。板[4,5]のε∞=1.5、Δε=0.75、ω0=9、γ=0.5、σ=0.04。外側は真空、PEC端は[-24,36]、T=60です。",
+            "en": "Use a two-dimensional field restricted to periodic transverse wave number ky = 4 and c = 1. The slab [4, 5] has epsilon_inf = 1.5, delta_epsilon = 0.75, omega_0 = 9, gamma = 0.5 and sigma = 0.04. Outer vacuum ends at PEC caps [-24, 36]; T = 60."
+          }
+        },
+        {
+          "id": "dispersive-grazing-pml",
+          "name": {
+            "ja": "分散媒質の浅い入射角と長時間PML",
+            "en": "Long-time grazing PML in a dispersive medium"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/results/dispersive-grazing-pml-preview.png",
+            "sha256": "9fc94253f358d6715bb32e4820843d38c9ee998aeea07048df1093ef227b9e65",
+            "width": 1050,
+            "height": 520,
+            "caption": {
+              "ja": "保存した浅角度の実電場を周期y方向へ再構成。灰色はPML領域です。 周期y方向の1周期を表示しています。波形を見やすくするため、x軸とy軸の表示縮尺は異なります。",
+              "en": "Actual saved grazing electric field reconstructed over the periodic y direction; gray shading marks the PML. One transverse y period is shown. The displayed x and y scales differ to make the fields visible."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dispersive-grazing-pml/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dispersive-grazing-pml/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dispersive-grazing-pml/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dispersive-grazing-pml/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "dispersive-grazing-pml",
+              "kind": "supplement",
+              "name": {
+                "ja": "分散媒質の浅い入射角と長時間PML",
+                "en": "Long-time grazing PML in a dispersive medium"
+              },
+              "scope": {
+                "ja": "80度の中心位相角を持つ有限波束をT=700まで進め、境界誤差を同格子の無PML参照から分離します。",
+                "en": "Evolve a finite packet with an 80-degree central phase angle to T = 700, isolating boundary error against a no-PML reference on the same grid."
+              },
+              "method_ids": [
+                "fdtd",
+                "leapfrog",
+                "implicit-midpoint"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dispersive-grazing-pml/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dispersive-grazing-pml/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/atlas-maxwell-grazing-2026-11-24-r2.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "c=1、均質Lorentz媒質ε∞=1、Δε=0.2、ω0=12はPML内まで連続。512/768/1024点とpeak6/9/12を同時に細分化します。垂直粗格子はpeak6、弱減衰細格子対照はpeak12。長さ64、層幅12、中心32、幅4、carrier6は固定です。",
+            "en": "Use c = 1 and a homogeneous Lorentz medium with epsilon_inf = 1, delta_epsilon = 0.2 and omega_0 = 12 continuing through the PML. Joint refinement uses 512/768/1024 cells and peaks 6/9/12. The normal coarse control has peak 6; the damped fine companion has peak 12. Length 64, layer thickness 12, center 32, width 4 and carrier 6 are fixed."
+          }
+        }
+      ]
     }
   ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/equations/",
   "counts": {
-    "total": 65,
-    "local_example": 43,
+    "total": 70,
+    "local_example": 48,
     "reading_only": 22,
     "groups": {
-      "physical": 33,
+      "physical": 36,
       "relativistic": 6,
       "biology": 22,
-      "quantum": 4
+      "quantum": 4,
+      "algebraic": 2
     }
   },
   "formula_renderer": {
@@ -10693,13 +11657,13 @@
   },
   "execution_example_count": 22,
   "problem_routes_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "808390a31a772b2e1f9c625f8619a05d3387afb5256dd5e31b3c712c6283863a",
-    "catalog/atlas-equations.json": "597ba9e1d7745a59cfcb72fd0b632bc6b0375f68ed62f24e2c23984cb87851bb",
+    "catalog/atlas-depth-expansion.json": "9c46bb250bbeb60e965c0d9b86d07a0c744ea847ad9c3926886e138a6458b072",
+    "catalog/atlas-equations.json": "aa6066b02dba1c00f1e3009aa494bf762e3a42834a9f85a10a9261746b50ffc9",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
-    "catalog/atlas-methods.json": "3f2b7051c980e5492f6f94f01b3e75c4802394856c55a7176d9c9a1a9f35e305",
-    "catalog/atlas-problem-links.json": "b4c8681a5b1b9afaf8bf12801365e941778a73b29f0c35f987e716d0a680f211",
-    "catalog/atlas-reference-supplements.json": "712911e57373ca46f2e608192a7f678fb887442fcfb6d2aa0604cfcf2567da4d",
-    "catalog/atlas-test-problems.json": "a9542061ab829afde53067ae7db77331f462f809ee117822f2c2c9dc1b2ba203",
+    "catalog/atlas-methods.json": "1bf729b9e73fc797619dae3e5dc7ec0d1fe729efc1ad36485d760ddc77a4a246",
+    "catalog/atlas-problem-links.json": "9b022bc48ef0268f73f0c1dd15c196d0c276b92dd9a888cb60800b256faa4c9b",
+    "catalog/atlas-reference-supplements.json": "1d696385b5c02c1a668dde29f78169ae039e8a992113ec1bdcc27f60cedbd52b",
+    "catalog/atlas-test-problems.json": "3811c925b0b23402e78b6623663d04ef2cf7a1a5f52d11c974ecfe9365779790",
     "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
     "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
@@ -10835,11 +11799,6 @@
     "code/validated-examples/2026-11-23/mesh-boundary/results/result.json": "fd91eff20f607bd816815f8458f6e5b1017139d5c2b6a7521bff3a38287a6402",
     "code/validated-examples/2026-11-23/mesh-boundary/source-manifest.json": "96e55d4c564baf804d3ae7feb86a36c7d7a3d4079f5e47180326fd2c09ee675a",
     "code/validated-examples/2026-11-23/mesh-boundary/verification.json": "1191781061a2ec3339d26d8e9e4db605e9c40e8d5d5dfa6433712b38f43f7d01",
-    "code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip": "8b6d4d9d30c9ed12fd29b7b91a11c16dc183b9aea49234966a66c376713ebf90",
-    "code/validated-examples/2026-11-23/mhd-transport/cases.json": "351ec0540ab5aea5c75aebfd90c9800d7e7fc8eb742dbbd534d80f61437a3914",
-    "code/validated-examples/2026-11-23/mhd-transport/results/result.json": "c43acea7e89a837e34b2e171bc292c75bc68766b98614697ec755f05ce944ba4",
-    "code/validated-examples/2026-11-23/mhd-transport/source-manifest.json": "c7d853b1b958f830ac30f45b076410ba55045ddedc88006cf8dda2c3e7dfee8d",
-    "code/validated-examples/2026-11-23/mhd-transport/verification.json": "56767d3b24b0c2fd9e6e660db523be8f8565876b38867f819c57ed983d468752",
     "code/validated-examples/2026-11-23/moving-waves/atlas-moving-waves-2026-11-23.zip": "d9f2f8bff3bf5d9fa7c1118c0968e9c0374fd5e9a6d3f7f99352abc0841e3b7d",
     "code/validated-examples/2026-11-23/moving-waves/cases.json": "0b7092f12334f3ce018f0f837deb59803b8b14e50999a10e34de452b1038f989",
     "code/validated-examples/2026-11-23/moving-waves/results/result.json": "e53ff99821e9977c975cda2a33d99b00d895901f1e428780ef27c10dd5242426",
@@ -10885,11 +11844,36 @@
     "code/validated-examples/2026-11-23/zalesak/results/result.json": "51851a31df72eec078e25171deeacd2699a9bfe9eedc55b4bc6831fd233b408d",
     "code/validated-examples/2026-11-23/zalesak/source-manifest.json": "d13a134c2e791740190529a8a4eef07eda5126a14101155d254f450d0438eb55",
     "code/validated-examples/2026-11-23/zalesak/verification.json": "aad9b39c23d83e967588361edfdb05724f1ea3fade93843ebb05b5fd829ba44e",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/atlas-bratu-continuation-jfnk-2026-11-24-r2.zip": "aeffa7e1b442f198ef2de55e453f82e5d6cbe30fc3d0bbd1112354a38a20a25d",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/cases.json": "9a2f2e0e780151768247923a36b7274b1b014bbeb620de7bbca5a25d46d5bc56",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/result.json": "6a4dbb22ac61f557b30c49ebb2d6067b41c6ad2f9040fd0752f49dc8b9884b5d",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/source-manifest.json": "cfa8230836913a5f81d8e97c77b87716ce6d801095e9c95463e419ee8b94fe8c",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json": "4e08cc95cbb5ed520d43882c83da3ccbb644138d90ccf0bce1d408cb195beba7",
+    "code/validated-examples/2026-11-24-r2/maxwell-cylinder/atlas-maxwell-cylinder-2026-11-24-r2.zip": "bf2f69032cfe912d23e065582397202a695dde241350774a0c69997b70bd1a06",
+    "code/validated-examples/2026-11-24-r2/maxwell-cylinder/cases.json": "68902102c6f2dbf82608ef802b1dbc502aeb95f2c08590e762d4028d2950f2b8",
+    "code/validated-examples/2026-11-24-r2/maxwell-cylinder/results/result.json": "f0f035c4af8fd5d0b4fbf432f01abbbdca73dab2b6f62df90bba0735376ac1cf",
+    "code/validated-examples/2026-11-24-r2/maxwell-cylinder/source-manifest.json": "bd55f11428730f3ad2a4048b74efd4dc4eae9997e55c8bc151d5ed4c0adf2dd6",
+    "code/validated-examples/2026-11-24-r2/maxwell-cylinder/verification.json": "85cfc10421948d42deda85916ac2a6d4a41b7ad7af91db890fd91b5c745bf51a",
+    "code/validated-examples/2026-11-24-r2/maxwell-grazing/atlas-maxwell-grazing-2026-11-24-r2.zip": "a9d0c65eb27e26b05eafd3774b9f651b01baf28e617769bb2bbcb7efb0b90d3d",
+    "code/validated-examples/2026-11-24-r2/maxwell-grazing/cases.json": "6b8417bd334606a183298f805a4337b9bda947fff47de60c34bd7844b69e4c7c",
+    "code/validated-examples/2026-11-24-r2/maxwell-grazing/results/result.json": "01ca786df2c0659e190cee13012170367e8fdd86b9a0e9dcf1c9a71a9a3e2c2d",
+    "code/validated-examples/2026-11-24-r2/maxwell-grazing/source-manifest.json": "6ea7a32ee58596fde26b74b5992fd76b95cfa17895b0f40b7af7438d183fbc0b",
+    "code/validated-examples/2026-11-24-r2/maxwell-grazing/verification.json": "4c8133a8a4042ed925fd21af37d62fe472978af2ac4fecd3518a9d2242db1de0",
+    "code/validated-examples/2026-11-24-r2/maxwell-lorentz/atlas-maxwell-lorentz-2026-11-24-r2.zip": "7af2a66b6defba64c5392f05292d2b49810140253455945d54112eb4594871a1",
+    "code/validated-examples/2026-11-24-r2/maxwell-lorentz/cases.json": "efbaea689701c155491c147a7ed1a7c4f55f6d253fc2a718ba5cd11ca5061c20",
+    "code/validated-examples/2026-11-24-r2/maxwell-lorentz/results/result.json": "6d8ed5f5a1ecfb389610850e093860ef029faa5b1ecd60e719e1a70423429051",
+    "code/validated-examples/2026-11-24-r2/maxwell-lorentz/source-manifest.json": "f2a3b94d686d7114f9675e6d4f3afba01ffc63abdf137f739aa2052bfbdd64b4",
+    "code/validated-examples/2026-11-24-r2/maxwell-lorentz/verification.json": "7703e35d6a56ca69a6aaf17e7bd910bccad1c7cf21632e4625eda29c09d37d6d",
     "code/validated-examples/2026-11-24-r2/radiation-matter/atlas-radiation-matter-2026-11-24-r2.zip": "fe1e3d790bd9792d8781243dc4d5ff40d3491a181a11c795569f3f4e542ed7e6",
     "code/validated-examples/2026-11-24-r2/radiation-matter/cases.json": "c5522498e8c797035b7c093d4371d88a7950e19f26ab6c6495faa81e7e1b8ebb",
     "code/validated-examples/2026-11-24-r2/radiation-matter/results/result.json": "39c457ec19fa3e73ed021778b4fd4fa19d112cf895c344cf7ffed63847ce9e54",
     "code/validated-examples/2026-11-24-r2/radiation-matter/source-manifest.json": "9786f8365507f141a6d3bebc3035e5177bc4a8ccec3ac747b8bd5a7eaed50aeb",
     "code/validated-examples/2026-11-24-r2/radiation-matter/verification.json": "cbbc27e98b13939b705bfdcd85593747dd7ef02e7b5eaf2d9ef2a838007107d0",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/atlas-linear-algebra-spectral-2026-11-24-r3.zip": "3d14112335ce8a55cce306ec689d430f172d02a49f4675ae5948a2fab7ca1452",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json": "604f637dccb85e22735600f1cae8e98cec3332d1eab1c4b12ff8d8e293eb33b3",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/result.json": "caffe188cea7298dea1a3592fb4815992fa6a4f2900db99ba8443d1199e21dea",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/source-manifest.json": "038537fee8708cb5bbc02d18e902ca546db191f7345ecace52147f6675554a95",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json": "4ed120693891dd4f94a207b080fd40fe53d3b1191274ec621de131e83fac16a7",
     "code/validated-examples/2026-11-24/dsmc-shock/atlas-dsmc-shock-2026-11-24.zip": "92794cc568e7857346a24489eddaae113eb60754de7ba717254955ace9d8d961",
     "code/validated-examples/2026-11-24/dsmc-shock/cases.json": "d5123d6e0f48145bcf0b25a68cffb2f9250bb019e21ea42760db848aed536b22",
     "code/validated-examples/2026-11-24/dsmc-shock/results/result.json": "a4cd1e0092935bccd85bc0cf14086d01c723f05e4ce9474c3563283b3a55562e",
@@ -10915,6 +11899,11 @@
     "code/validated-examples/2026-11-24/lbm-taylor-green/results/result.json": "e69681e105bfa75f52761a678fc3f6fabf2548bd7cff9fb345a406c031eb8e8d",
     "code/validated-examples/2026-11-24/lbm-taylor-green/source-manifest.json": "b3970548ea98ed3f4d1f1e5813b12eadb6ebbfebb0c877a54cdaee2cf5902096",
     "code/validated-examples/2026-11-24/lbm-taylor-green/verification.json": "19eae401bd03c04f643579e45210cad612852b42c134573bbefe22582f1075c1",
+    "code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip": "54e5f9376beacf41338b3b810657bb4671dabef937d748bc96834e1e3b35f233",
+    "code/validated-examples/2026-11-24/mhd-transport/cases.json": "351ec0540ab5aea5c75aebfd90c9800d7e7fc8eb742dbbd534d80f61437a3914",
+    "code/validated-examples/2026-11-24/mhd-transport/results/result.json": "e2aa4b6fdced4ae24243459acffcdc20110481094b837c457fb434432df4da61",
+    "code/validated-examples/2026-11-24/mhd-transport/source-manifest.json": "68138759230a5f1b1d874d7503c4932cd3e55dbdf8b0a3d192da53683d89bdd1",
+    "code/validated-examples/2026-11-24/mhd-transport/verification.json": "ee680eda66d874deeabe27abfdb59958894a18be83445ed9f48c82f3080fa21e",
     "code/validated-examples/2026-11-24/radiation-geometry/atlas-radiation-geometry-2026-11-24.zip": "20a166a35e5e87275be4c1bcf12a31742b267ddc9f9a424a293852da53c672e0",
     "code/validated-examples/2026-11-24/radiation-geometry/cases.json": "297e1e3fd8ebf0bdd504faf9005f7ef58de0564ecbec7cb6405d2c3cca48f3a4",
     "code/validated-examples/2026-11-24/radiation-geometry/results/result.json": "4453e68f6a856f65097bbfe36a154b74f4437e99a217300e4c010176a3ee7aec",
@@ -10938,20 +11927,25 @@
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "d397dc44e19a3a4a2df97077985c96411ed90c3ef93db185bb1f0a289699984f"
+    "numerical-methods-atlas/gallery/preview-manifest.json": "4c55e4b5f0b9b339bf8aa8885fdd383d5aa13f5e87eab7e8f8c79769649215e7"
   },
   "supplemental_case_ids": [
     "ale-nonuniform-transport",
     "annular-viscous-mms",
+    "bratu-fold-continuation",
+    "bratu-matrix-free-jfnk",
     "cavity-ghia-re100",
     "cgrid-rotating-wave",
     "checkerboard-diffusion",
     "circular-alfven-refinement",
     "correlated-gaussian-mcmc",
+    "cylinder-mie2d",
+    "dispersive-grazing-pml",
     "dry-bed-dam-break",
     "dsmc-couette",
     "dsmc-fourier",
     "dsmc-planar-shock",
+    "fem-mass-eigen",
     "fitzhugh-nagumo",
     "fmm3d-inverse-r",
     "gbm-milstein-strong",
@@ -10966,6 +11960,7 @@
     "lbm-taylor-green",
     "level-set-rotation",
     "level-set-translation",
+    "lorentz-oblique-sp",
     "lshape-fem",
     "magnetic-loop-independent",
     "neutral-slab-yb",
@@ -10973,9 +11968,11 @@
     "opposing-beams2d",
     "ou-weak-moments",
     "pic-independent-spatial",
+    "pivoted-direct-refinement",
     "poisson-neumann",
     "poisson-robin",
     "postshock-orszag-tang",
+    "restarted-shift-invert",
     "rotated-anisotropic-diffusion",
     "rt-initial-growth",
     "schnakenberg-nonlinear",
@@ -10986,6 +11983,7 @@
     "su-olson-diffusion1996",
     "su-olson-transport1997",
     "swashes-topography",
+    "symmetric-saddle-minres",
     "thermal-landau-damping",
     "thermal-two-stream",
     "turing-schnakenberg",
@@ -10997,7 +11995,7 @@
     "numerical-methods-atlas/assets/biological-models.json": "3ee3489ca4d2632d672576fcd75c062137053e203b55cbf51ee0cbe8cfc9556f",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "catalog/atlas-equations.json": "597ba9e1d7745a59cfcb72fd0b632bc6b0375f68ed62f24e2c23984cb87851bb",
+    "catalog/atlas-equations.json": "aa6066b02dba1c00f1e3009aa494bf762e3a42834a9f85a10a9261746b50ffc9",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "code/validated-examples/2026-11-23/weno-critical/source-manifest.json": "abd8b0a29bb81b7d98b897ec0a0eb409f77873857ec8199c3767f1ede11b43a5",
     "code/validated-examples/2026-11-23/weno-critical/verification.json": "ccbf3c6a2fe7055b324a0d98c152da909242f36e0c82ca3281038e4c9b0c165f",
@@ -11019,11 +12017,11 @@
     "code/validated-examples/2026-11-23/shallow-water/cases.json": "9296c20b7609cb4acdcd5a0ce437781dcd2e7635dbfea0a924f8468a3e5a5792",
     "code/validated-examples/2026-11-23/shallow-water/results/result.json": "49a56493e429dd3b4c9d6f8eba72c53ddd3469689699217157b9823a392c015f",
     "code/validated-examples/2026-11-23/shallow-water/atlas-shallow-water-2026-11-23.zip": "259244fc5c237542ba577df62308fd2a3191979dd43717d58df33d8abb902644",
-    "code/validated-examples/2026-11-23/mhd-transport/source-manifest.json": "c7d853b1b958f830ac30f45b076410ba55045ddedc88006cf8dda2c3e7dfee8d",
-    "code/validated-examples/2026-11-23/mhd-transport/verification.json": "56767d3b24b0c2fd9e6e660db523be8f8565876b38867f819c57ed983d468752",
-    "code/validated-examples/2026-11-23/mhd-transport/cases.json": "351ec0540ab5aea5c75aebfd90c9800d7e7fc8eb742dbbd534d80f61437a3914",
-    "code/validated-examples/2026-11-23/mhd-transport/results/result.json": "c43acea7e89a837e34b2e171bc292c75bc68766b98614697ec755f05ce944ba4",
-    "code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip": "8b6d4d9d30c9ed12fd29b7b91a11c16dc183b9aea49234966a66c376713ebf90",
+    "code/validated-examples/2026-11-24/mhd-transport/source-manifest.json": "68138759230a5f1b1d874d7503c4932cd3e55dbdf8b0a3d192da53683d89bdd1",
+    "code/validated-examples/2026-11-24/mhd-transport/verification.json": "ee680eda66d874deeabe27abfdb59958894a18be83445ed9f48c82f3080fa21e",
+    "code/validated-examples/2026-11-24/mhd-transport/cases.json": "351ec0540ab5aea5c75aebfd90c9800d7e7fc8eb742dbbd534d80f61437a3914",
+    "code/validated-examples/2026-11-24/mhd-transport/results/result.json": "e2aa4b6fdced4ae24243459acffcdc20110481094b837c457fb434432df4da61",
+    "code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip": "54e5f9376beacf41338b3b810657bb4671dabef937d748bc96834e1e3b35f233",
     "code/validated-examples/2026-11-23-r2/wall-flow/source-manifest.json": "5defc88a20d06c6806f1aa18c5a5a9f027c7891d8a237bb5fe980169d1bbdfe4",
     "code/validated-examples/2026-11-23-r2/wall-flow/verification.json": "6daf2fa12cf2e7f604bb54413b82e36bbe72891132e1846abf598f9c9600b096",
     "code/validated-examples/2026-11-23-r2/wall-flow/cases.json": "ed51f9003bbf5ddfa88602dd579ad962c81f95fb5dd3e7ef32973b17f9844d70",
@@ -11059,6 +12057,11 @@
     "code/validated-examples/2026-11-23/gravity-dynamics/cases.json": "de18f8a723bdd60efac585abf95e17f125e6f4e68823d147445cb0f3e0f172a7",
     "code/validated-examples/2026-11-23/gravity-dynamics/results/result.json": "d5129ce2c86fa37b8baa3abd0c9822323768e8ff0915abf86b23ef041bae837b",
     "code/validated-examples/2026-11-23/gravity-dynamics/atlas-gravity-dynamics-2026-11-23.zip": "47f1a4bdb8a6a5fdac82e66ffbe8b32c59242ffb7f9f05b418a37bd5913ffacd",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/source-manifest.json": "cfa8230836913a5f81d8e97c77b87716ce6d801095e9c95463e419ee8b94fe8c",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json": "4e08cc95cbb5ed520d43882c83da3ccbb644138d90ccf0bce1d408cb195beba7",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/cases.json": "9a2f2e0e780151768247923a36b7274b1b014bbeb620de7bbca5a25d46d5bc56",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/result.json": "6a4dbb22ac61f557b30c49ebb2d6067b41c6ad2f9040fd0752f49dc8b9884b5d",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/atlas-bratu-continuation-jfnk-2026-11-24-r2.zip": "aeffa7e1b442f198ef2de55e453f82e5d6cbe30fc3d0bbd1112354a38a20a25d",
     "code/validated-examples/2026-11-23/relativistic/source-manifest.json": "89496dc623ddb7a3c381539d403b1ad657cee8ad772509788f185b7364dd6584",
     "code/validated-examples/2026-11-23/relativistic/verification.json": "d2d62b2d0aa0e5f9f7e3a7e7991f24586fcc7c3baa3a567cd51f0d6f00367737",
     "code/validated-examples/2026-11-23/relativistic/cases.json": "8e0f3c1834cf74a57e20628fcf6580b19b8a7153c6f7c33c9b0b0986ca680a58",
@@ -11143,7 +12146,27 @@
     "code/validated-examples/2026-11-24/stochastic-estimation/verification.json": "04589e7e1285b60e3d327c5772d392405e04f5fc9623a0850b38c9eaa9478f90",
     "code/validated-examples/2026-11-24/stochastic-estimation/cases.json": "ec2095c7748dec022e754e3f9898b510f2fd3955d82b52c116374a410c7f3f5a",
     "code/validated-examples/2026-11-24/stochastic-estimation/results/result.json": "267e0b0be6f4a5fbcb8b116837f670d8bfacf09f0a7cda25f8e97956dd180435",
-    "code/validated-examples/2026-11-24/stochastic-estimation/atlas-stochastic-estimation-2026-11-24.zip": "313b9cb048b46d4dedd13dc214b7eb25de4fb72af01e267fa69da7e460f81ec3"
+    "code/validated-examples/2026-11-24/stochastic-estimation/atlas-stochastic-estimation-2026-11-24.zip": "313b9cb048b46d4dedd13dc214b7eb25de4fb72af01e267fa69da7e460f81ec3",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/source-manifest.json": "038537fee8708cb5bbc02d18e902ca546db191f7345ecace52147f6675554a95",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json": "4ed120693891dd4f94a207b080fd40fe53d3b1191274ec621de131e83fac16a7",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json": "604f637dccb85e22735600f1cae8e98cec3332d1eab1c4b12ff8d8e293eb33b3",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/result.json": "caffe188cea7298dea1a3592fb4815992fa6a4f2900db99ba8443d1199e21dea",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/atlas-linear-algebra-spectral-2026-11-24-r3.zip": "3d14112335ce8a55cce306ec689d430f172d02a49f4675ae5948a2fab7ca1452",
+    "code/validated-examples/2026-11-24-r2/maxwell-cylinder/source-manifest.json": "bd55f11428730f3ad2a4048b74efd4dc4eae9997e55c8bc151d5ed4c0adf2dd6",
+    "code/validated-examples/2026-11-24-r2/maxwell-cylinder/verification.json": "85cfc10421948d42deda85916ac2a6d4a41b7ad7af91db890fd91b5c745bf51a",
+    "code/validated-examples/2026-11-24-r2/maxwell-cylinder/cases.json": "68902102c6f2dbf82608ef802b1dbc502aeb95f2c08590e762d4028d2950f2b8",
+    "code/validated-examples/2026-11-24-r2/maxwell-cylinder/results/result.json": "f0f035c4af8fd5d0b4fbf432f01abbbdca73dab2b6f62df90bba0735376ac1cf",
+    "code/validated-examples/2026-11-24-r2/maxwell-cylinder/atlas-maxwell-cylinder-2026-11-24-r2.zip": "bf2f69032cfe912d23e065582397202a695dde241350774a0c69997b70bd1a06",
+    "code/validated-examples/2026-11-24-r2/maxwell-lorentz/source-manifest.json": "f2a3b94d686d7114f9675e6d4f3afba01ffc63abdf137f739aa2052bfbdd64b4",
+    "code/validated-examples/2026-11-24-r2/maxwell-lorentz/verification.json": "7703e35d6a56ca69a6aaf17e7bd910bccad1c7cf21632e4625eda29c09d37d6d",
+    "code/validated-examples/2026-11-24-r2/maxwell-lorentz/cases.json": "efbaea689701c155491c147a7ed1a7c4f55f6d253fc2a718ba5cd11ca5061c20",
+    "code/validated-examples/2026-11-24-r2/maxwell-lorentz/results/result.json": "6d8ed5f5a1ecfb389610850e093860ef029faa5b1ecd60e719e1a70423429051",
+    "code/validated-examples/2026-11-24-r2/maxwell-lorentz/atlas-maxwell-lorentz-2026-11-24-r2.zip": "7af2a66b6defba64c5392f05292d2b49810140253455945d54112eb4594871a1",
+    "code/validated-examples/2026-11-24-r2/maxwell-grazing/source-manifest.json": "6ea7a32ee58596fde26b74b5992fd76b95cfa17895b0f40b7af7438d183fbc0b",
+    "code/validated-examples/2026-11-24-r2/maxwell-grazing/verification.json": "4c8133a8a4042ed925fd21af37d62fe472978af2ac4fecd3518a9d2242db1de0",
+    "code/validated-examples/2026-11-24-r2/maxwell-grazing/cases.json": "6b8417bd334606a183298f805a4337b9bda947fff47de60c34bd7844b69e4c7c",
+    "code/validated-examples/2026-11-24-r2/maxwell-grazing/results/result.json": "01ca786df2c0659e190cee13012170367e8fdd86b9a0e9dcf1c9a71a9a3e2c2d",
+    "code/validated-examples/2026-11-24-r2/maxwell-grazing/atlas-maxwell-grazing-2026-11-24-r2.zip": "a9d0c65eb27e26b05eafd3774b9f651b01baf28e617769bb2bbcb7efb0b90d3d"
   },
   "execution_formula_scope": {
     "ja": "公開済み22問題を文字・数式・保存図から探すための案内。実行条件・配布物・数値判定は既存実行台帳を参照し、画像や式の掲載を新しい数値検証として数えない。",

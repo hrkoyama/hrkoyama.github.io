@@ -230,7 +230,7 @@ This command executes every fixed case in the distribution group. Bundled result
 
 ### Sources and review scope
 
-- Pharr,Jakob,Humphreys (2023). Physically Based Rendering4e,14.1The Equation of Transfer. https://www.pbr-book.org/4ed/Light_Transport_II_Volume_Rendering/The_Equation_of_Transfer; review_level=primary-author-book-selected-equations
+- Pharr,Jakob,Humphreys (2023). Physically Based Rendering4e,14.1The Equation of Transfer [accessed 2026-11-24]. https://www.pbr-book.org/4ed/Light_Transport_II_Volume_Rendering/The_Equation_of_Transfer; review_level=primary-author-book-selected-equations
 Read14.1transfer/source/finite-ray boundary formulation. Isotropic slab/Fredholm normalization independently derived here;not DISORTpaper/table reproduction.
 
 

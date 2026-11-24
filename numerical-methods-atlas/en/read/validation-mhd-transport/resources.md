@@ -30,21 +30,21 @@ Resources explicitly registered to the methods, problems and executions of this 
 
 ## Problem figures
 
-- [Circular Alfven wave: full-state refinement](<https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/circular-alfven-refinement.png>)
+- [Circular Alfven wave: full-state refinement](<https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/results/circular-alfven-refinement.png>)
 
   The saved validation figure for this execution itself.
 
-  https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/circular-alfven-refinement.png
-- [Magnetic loop: independent 2D reference and refinement](<https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/magnetic-loop-independent.png>)
+  https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/results/circular-alfven-refinement.png
+- [Magnetic loop: independent 2D reference and refinement](<https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/results/magnetic-loop-independent.png>)
 
   The saved validation figure for this execution itself.
 
-  https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/magnetic-loop-independent.png
-- [Late Orszag-Tang: independent reference and compression structure](<https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/postshock-orszag-tang.png>)
+  https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/results/magnetic-loop-independent.png
+- [Late Orszag-Tang: independent reference and compression structure](<https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/results/postshock-orszag-tang.png>)
 
   The saved validation figure for this execution itself.
 
-  https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/postshock-orszag-tang.png
+  https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/results/postshock-orszag-tang.png
 - [Circularly polarized Alfvén wave](<https://hrkoyama.github.io/numerical-methods-atlas/problems/circular-alfven/?lang=en>)
 
   Evolve all8conserved components with HLLD/MUSCL/Heun and2D CT. Compare wave means or unmodified Athena++ loop/late-OT fields, separating independent reference spatial/time increments. Representative test-problem figure; the problem page records conditions and provenance.

@@ -65,6 +65,11 @@
       "id": "kinetic",
       "ja": "粒子・プラズマ・気体運動論",
       "en": "Particles, plasma and gas kinetics"
+    },
+    {
+      "id": "electromagnetics",
+      "ja": "電磁場・分散媒質・吸収境界",
+      "en": "Electromagnetic fields, dispersive media and absorbing boundaries"
     }
   ],
   "problems": [
@@ -6133,6 +6138,503 @@
         "python -W error -m pytest -q -p no:cacheprovider",
         "python -W error run.py --input inputs.json --output output"
       ]
+    },
+    {
+      "id": "cylinder-mie2d",
+      "group": "electromagnetics",
+      "name": {
+        "ja": "2D誘電体円柱のMie散乱幅",
+        "en": "Mie scattering width of a two-dimensional dielectric cylinder"
+      },
+      "chapter": "validation-maxwell-cylinder",
+      "reading_section": "cylinder-mie2d",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/",
+      "verification": "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24-r2/maxwell-cylinder/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "cylinder-mie2d"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r2/maxwell-cylinder/results/cylinder-mie2d-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r2/maxwell-cylinder/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "cylinder-mie2d",
+          "url": "/numerical-methods-atlas/validation/cylinder-mie2d/",
+          "name": {
+            "ja": "2D誘電体円柱のMie散乱幅",
+            "en": "Mie scattering width of a two-dimensional dielectric cylinder"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-cylinder/#cylinder-mie2d",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-cylinder/#cylinder-mie2d"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#cylinder-mie2d",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ]
+    },
+    {
+      "id": "lorentz-oblique-sp",
+      "group": "electromagnetics",
+      "name": {
+        "ja": "Lorentz分散板へのs/p斜め入射",
+        "en": "Oblique s/p incidence on a Lorentz-dispersive slab"
+      },
+      "chapter": "validation-maxwell-lorentz",
+      "reading_section": "lorentz-oblique-sp",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/",
+      "verification": "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24-r2/maxwell-lorentz/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "lorentz-oblique-sp"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r2/maxwell-lorentz/results/lorentz-oblique-sp-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r2/maxwell-lorentz/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "lorentz-oblique-sp",
+          "url": "/numerical-methods-atlas/validation/lorentz-oblique-sp/",
+          "name": {
+            "ja": "Lorentz分散板へのs/p斜め入射",
+            "en": "Oblique s/p incidence on a Lorentz-dispersive slab"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-lorentz/#lorentz-oblique-sp",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-lorentz/#lorentz-oblique-sp"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#lorentz-oblique-sp",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ]
+    },
+    {
+      "id": "dispersive-grazing-pml",
+      "group": "electromagnetics",
+      "name": {
+        "ja": "分散媒質の浅い入射角と長時間PML",
+        "en": "Long-time grazing PML in a dispersive medium"
+      },
+      "chapter": "validation-maxwell-grazing",
+      "reading_section": "dispersive-grazing-pml",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24-r2/maxwell-grazing/",
+      "verification": "/code/validated-examples/2026-11-24-r2/maxwell-grazing/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24-r2/maxwell-grazing/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "dispersive-grazing-pml"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r2/maxwell-grazing/results/dispersive-grazing-pml-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r2/maxwell-grazing/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "dispersive-grazing-pml",
+          "url": "/numerical-methods-atlas/validation/dispersive-grazing-pml/",
+          "name": {
+            "ja": "分散媒質の浅い入射角と長時間PML",
+            "en": "Long-time grazing PML in a dispersive medium"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-grazing/#dispersive-grazing-pml",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-grazing/#dispersive-grazing-pml"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#dispersive-grazing-pml",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ]
+    },
+    {
+      "id": "pivoted-direct-refinement",
+      "group": "approximation",
+      "name": {
+        "ja": "部分ピボットLU・Choleskyと反復改良",
+        "en": "Pivoted LU, Cholesky and iterative refinement"
+      },
+      "chapter": "validation-linear-algebra-spectral",
+      "reading_section": "pivoted-direct-refinement",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/",
+      "verification": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "pivoted-direct-refinement"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/pivoted-direct-refinement-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "pivoted-direct-refinement",
+          "url": "/numerical-methods-atlas/validation/pivoted-direct-refinement/",
+          "name": {
+            "ja": "部分ピボットLU・Choleskyと反復改良",
+            "en": "Pivoted LU, Cholesky and iterative refinement"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#pivoted-direct-refinement",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#pivoted-direct-refinement"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#pivoted-direct-refinement",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ]
+    },
+    {
+      "id": "symmetric-saddle-minres",
+      "group": "approximation",
+      "name": {
+        "ja": "対称不定値鞍点系とSchur前処理",
+        "en": "Symmetric saddle systems and Schur preconditioning"
+      },
+      "chapter": "validation-linear-algebra-spectral",
+      "reading_section": "symmetric-saddle-minres",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/",
+      "verification": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "symmetric-saddle-minres"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/symmetric-saddle-minres-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "symmetric-saddle-minres",
+          "url": "/numerical-methods-atlas/validation/symmetric-saddle-minres/",
+          "name": {
+            "ja": "対称不定値鞍点系とSchur前処理",
+            "en": "Symmetric saddle systems and Schur preconditioning"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#symmetric-saddle-minres",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#symmetric-saddle-minres"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#symmetric-saddle-minres",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ]
+    },
+    {
+      "id": "restarted-shift-invert",
+      "group": "approximation",
+      "name": {
+        "ja": "明示的再始動Krylovと内部固有値",
+        "en": "Explicitly restarted Krylov and interior eigenvalues"
+      },
+      "chapter": "validation-linear-algebra-spectral",
+      "reading_section": "restarted-shift-invert",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/",
+      "verification": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "restarted-shift-invert"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/restarted-shift-invert-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "restarted-shift-invert",
+          "url": "/numerical-methods-atlas/validation/restarted-shift-invert/",
+          "name": {
+            "ja": "明示的再始動Krylovと内部固有値",
+            "en": "Explicitly restarted Krylov and interior eigenvalues"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#restarted-shift-invert",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#restarted-shift-invert"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#restarted-shift-invert",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ]
+    },
+    {
+      "id": "fem-mass-eigen",
+      "group": "elliptic",
+      "name": {
+        "ja": "整合質量FEM弦の一般化固有値",
+        "en": "Consistent-mass FEM string eigenpairs"
+      },
+      "chapter": "validation-linear-algebra-spectral",
+      "reading_section": "fem-mass-eigen",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/",
+      "verification": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "fem-mass-eigen"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/fem-mass-eigen-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "fem-mass-eigen",
+          "url": "/numerical-methods-atlas/validation/fem-mass-eigen/",
+          "name": {
+            "ja": "整合質量FEM弦の一般化固有値",
+            "en": "Consistent-mass FEM string eigenpairs"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#fem-mass-eigen",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#fem-mass-eigen"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#fem-mass-eigen",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ]
+    },
+    {
+      "id": "bratu-fold-continuation",
+      "group": "elliptic",
+      "name": {
+        "ja": "擬似弧長継続でBratuのfoldを越える",
+        "en": "Crossing the Bratu fold with pseudo-arclength continuation"
+      },
+      "chapter": "validation-bratu-continuation-jfnk",
+      "reading_section": "bratu-fold-continuation",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/",
+      "verification": "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "bratu-fold-continuation"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-fold-continuation-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "bratu-fold-continuation",
+          "url": "/numerical-methods-atlas/validation/bratu-fold-continuation/",
+          "name": {
+            "ja": "擬似弧長継続でBratuのfoldを越える",
+            "en": "Crossing the Bratu fold with pseudo-arclength continuation"
+          }
+        }
+      ],
+      "parent_problem_id": "bratu",
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/#bratu-fold-continuation",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/#bratu-fold-continuation"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#bratu-fold-continuation",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ]
+    },
+    {
+      "id": "bratu-matrix-free-jfnk",
+      "group": "elliptic",
+      "name": {
+        "ja": "解析・中央差分・方向ADによるJacobian不要Newton–Krylov",
+        "en": "Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products"
+      },
+      "chapter": "validation-bratu-continuation-jfnk",
+      "reading_section": "bratu-matrix-free-jfnk",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/",
+      "verification": "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "bratu-matrix-free-jfnk"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-matrix-free-jfnk-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "bratu-matrix-free-jfnk",
+          "url": "/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/",
+          "name": {
+            "ja": "解析・中央差分・方向ADによるJacobian不要Newton–Krylov",
+            "en": "Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products"
+          }
+        }
+      ],
+      "parent_problem_id": "bratu",
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/#bratu-matrix-free-jfnk",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/#bratu-matrix-free-jfnk"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#bratu-matrix-free-jfnk",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ]
     }
   ],
   "excluded_examples": {
@@ -6161,26 +6663,27 @@
   },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/",
   "counts": {
-    "test_problems": 122,
-    "saved_test_problems": 122,
+    "test_problems": 131,
+    "saved_test_problems": 131,
     "code_test_problems": 0,
     "groups": {
       "transport": 17,
       "fluid": 23,
       "mhd": 6,
       "viscous": 9,
-      "elliptic": 19,
+      "elliptic": 22,
       "gravity": 11,
       "time": 8,
-      "approximation": 6,
+      "approximation": 9,
       "quantum": 5,
       "biology": 5,
       "probability": 6,
-      "kinetic": 7
+      "kinetic": 7,
+      "electromagnetics": 3
     }
   },
   "source_sha256": {
-    "catalog/atlas-test-problems.json": "a9542061ab829afde53067ae7db77331f462f809ee117822f2c2c9dc1b2ba203",
+    "catalog/atlas-test-problems.json": "3811c925b0b23402e78b6623663d04ef2cf7a1a5f52d11c974ecfe9365779790",
     "numerical-methods-atlas/equation-gallery.json": "e99af38238a50232f92875817c4556ab6c730289db13014efdd41913096c902e",
     "numerical-methods-atlas/cip.json": "3aa33fbffad6b9ad76310e9b713629a1a35b4e30e419db0c531180cf769e6b6f",
     "numerical-methods-atlas/limiters.json": "3242180ba171420220fd349cac93dff552466070f886f3d00a70927939255312",
@@ -6412,7 +6915,26 @@
     "code/validated-examples/2026-11-24/stochastic-estimation/results/result.json": "267e0b0be6f4a5fbcb8b116837f670d8bfacf09f0a7cda25f8e97956dd180435",
     "code/validated-examples/2026-11-24/stochastic-estimation/results/normal-tail-importance-preview.png": "bb43d99a5fddd23605e1a9c5c757f6ef0119a6b6dac33b8224ac153bf718fba4",
     "code/validated-examples/2026-11-24/stochastic-estimation/verification.json": "04589e7e1285b60e3d327c5772d392405e04f5fc9623a0850b38c9eaa9478f90",
-    "code/validated-examples/2026-11-24/stochastic-estimation/results/correlated-gaussian-mcmc-preview.png": "323b66d08f2a80a174e615b964a416ca79065d6849e60a09b6494dbc7bb9aff6"
+    "code/validated-examples/2026-11-24/stochastic-estimation/results/correlated-gaussian-mcmc-preview.png": "323b66d08f2a80a174e615b964a416ca79065d6849e60a09b6494dbc7bb9aff6",
+    "code/validated-examples/2026-11-24-r2/maxwell-cylinder/results/result.json": "f0f035c4af8fd5d0b4fbf432f01abbbdca73dab2b6f62df90bba0735376ac1cf",
+    "code/validated-examples/2026-11-24-r2/maxwell-cylinder/results/cylinder-mie2d-preview.png": "6968b65203b7829eae49e2b0219dd18441bbeb3635c9bb7fbae972b5cc43942e",
+    "code/validated-examples/2026-11-24-r2/maxwell-cylinder/verification.json": "85cfc10421948d42deda85916ac2a6d4a41b7ad7af91db890fd91b5c745bf51a",
+    "code/validated-examples/2026-11-24-r2/maxwell-lorentz/results/result.json": "6d8ed5f5a1ecfb389610850e093860ef029faa5b1ecd60e719e1a70423429051",
+    "code/validated-examples/2026-11-24-r2/maxwell-lorentz/results/lorentz-oblique-sp-preview.png": "b85480fcaeb675536ed6da9f82006b72cb86954d36ee08958ba957b850c4c9ca",
+    "code/validated-examples/2026-11-24-r2/maxwell-lorentz/verification.json": "7703e35d6a56ca69a6aaf17e7bd910bccad1c7cf21632e4625eda29c09d37d6d",
+    "code/validated-examples/2026-11-24-r2/maxwell-grazing/results/result.json": "01ca786df2c0659e190cee13012170367e8fdd86b9a0e9dcf1c9a71a9a3e2c2d",
+    "code/validated-examples/2026-11-24-r2/maxwell-grazing/results/dispersive-grazing-pml-preview.png": "9fc94253f358d6715bb32e4820843d38c9ee998aeea07048df1093ef227b9e65",
+    "code/validated-examples/2026-11-24-r2/maxwell-grazing/verification.json": "4c8133a8a4042ed925fd21af37d62fe472978af2ac4fecd3518a9d2242db1de0",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/result.json": "caffe188cea7298dea1a3592fb4815992fa6a4f2900db99ba8443d1199e21dea",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/pivoted-direct-refinement-preview.png": "c29ca507eef22bc4a38c16c5f6b5ca5ced73a750e013d9554ffaeaedc2b917e8",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json": "4ed120693891dd4f94a207b080fd40fe53d3b1191274ec621de131e83fac16a7",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/symmetric-saddle-minres-preview.png": "35a0cb90e9427029904fb897e2554220ec77e47b2a7572443210f93be204680e",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/restarted-shift-invert-preview.png": "d5a6a9d073bc0d7fb85a999137390b9a9b1dcfb765380599a7d9880b8356fbc8",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/fem-mass-eigen-preview.png": "4f9152e89dcc28539eaa01ef7852f77b4593072cac45d7ff322115dfb756a32a",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/result.json": "6a4dbb22ac61f557b30c49ebb2d6067b41c6ad2f9040fd0752f49dc8b9884b5d",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-fold-continuation-preview.png": "3fcf16e0b6e9bbf99904d456e702679335a716a1d36d7d12aee5893150679367",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json": "4e08cc95cbb5ed520d43882c83da3ccbb644138d90ccf0bce1d408cb195beba7",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-matrix-free-jfnk-preview.png": "3a1e124b0f2af0be276bbb1f6bfbc6168af1fd7dcb975e891ab793c6cc4827b1"
   },
   "code_edition": "2026-11-21",
   "code_verification": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/verification.json"

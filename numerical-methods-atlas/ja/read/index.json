@@ -4,8 +4,8 @@
   "title": "分野別に解説を読む",
   "description": "理論・導出・計算例を、分野ごとにまとめた読み物です。基礎から関連する手法と検証例へ進めます。",
   "source": "/catalog/atlas-reading-index.json",
-  "source_sha256": "555d211c8942e441defa8e8d75d3174ed2b9567467f6cf0e5faf54b5a6492bec",
-  "chapter_count": 132,
+  "source_sha256": "f92494aed4814df284073e393b3ab468e28f1abfe3fd6ed8efdbf42e86f5052a",
+  "chapter_count": 137,
   "groups": [
     {
       "id": "foundations-time",
@@ -271,6 +271,28 @@
             "en"
           ],
           "search_text": "validation-coefficient-diffusion 係数ジャンプ・回転異方性のMG／AMG MG/AMG for coefficient jumps and rotated anisotropy 楕円型問題・線形代数・近似 Elliptic problems, linear algebra and approximation"
+        },
+        {
+          "id": "validation-linear-algebra-spectral",
+          "title": "線形代数：直接法・鞍点系・再始動と整合質量固有値",
+          "url": "/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-linear-algebra-spectral 線形代数：直接法・鞍点系・再始動と整合質量固有値 Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs 楕円型問題・線形代数・近似 Elliptic problems, linear algebra and approximation"
+        },
+        {
+          "id": "validation-bratu-continuation-jfnk",
+          "title": "Bratuのfold継続とJacobian不要Newton–Krylov",
+          "url": "/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-bratu-continuation-jfnk Bratuのfold継続とJacobian不要Newton–Krylov Bratu fold continuation and Jacobian-free Newton-Krylov 楕円型問題・線形代数・近似 Elliptic problems, linear algebra and approximation"
         }
       ]
     },
@@ -1252,6 +1274,39 @@
             "en"
           ],
           "search_text": "validation-slab-ewald 中性スラブ：3周期補正と真の2周期参照 Neutral slabs: corrected3P and genuine2P references 電磁場・静電場・電子状態 Electromagnetic fields, electrostatics and electronic structure"
+        },
+        {
+          "id": "validation-maxwell-cylinder",
+          "title": "2D誘電体円柱のMie散乱幅",
+          "url": "/numerical-methods-atlas/ja/read/validation-maxwell-cylinder/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-maxwell-cylinder 2D誘電体円柱のMie散乱幅 Mie scattering width of a two-dimensional dielectric cylinder 電磁場・静電場・電子状態 Electromagnetic fields, electrostatics and electronic structure"
+        },
+        {
+          "id": "validation-maxwell-lorentz",
+          "title": "Lorentz分散板へのs/p斜め入射",
+          "url": "/numerical-methods-atlas/ja/read/validation-maxwell-lorentz/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-maxwell-lorentz Lorentz分散板へのs/p斜め入射 Oblique s/p incidence on a Lorentz-dispersive slab 電磁場・静電場・電子状態 Electromagnetic fields, electrostatics and electronic structure"
+        },
+        {
+          "id": "validation-maxwell-grazing",
+          "title": "分散媒質の浅い入射角と長時間PML",
+          "url": "/numerical-methods-atlas/ja/read/validation-maxwell-grazing/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-maxwell-grazing 分散媒質の浅い入射角と長時間PML Long-time grazing PML in a dispersive medium 電磁場・静電場・電子状態 Electromagnetic fields, electrostatics and electronic structure"
         }
       ]
     },

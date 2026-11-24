@@ -343,7 +343,7 @@ python run.py --input inputs.json --output output
 
 ## 出典と確認範囲
 
-- Aidan Crilly (2023). Learning closure relations using differentiable programming:an example in radiation transport;author-provided analytic benchmark data. https://github.com/aidancrilly/RTClosureJAX/tree/3e4f636299d62bc03f7118cfc884230c756f9d87/SuOlsonData; review_level=primary-author-paper-selected-equations-and-pinned-data-qualification
+- Aidan Crilly (2023). Learning closure relations using differentiable programming:an example in radiation transport;author-provided analytic benchmark data [accessed 2026-11-24]. https://github.com/aidancrilly/RTClosureJAX/tree/3e4f636299d62bc03f7118cfc884230c756f9d87/SuOlsonData; review_level=primary-author-paper-selected-equations-and-pinned-data-qualification
 Read official2023paperpage6Appendix4.1equations7-10,README,pinned W/Vtransport tables andMITlicense. Whether author tables were transcribed or regenerated is unstated. Original1997fulltext/tables not directly checked;not trained-model outputs. Shape,normalization,causal/homogeneous controls qualified.
 
 
@@ -694,7 +694,7 @@ This command executes every fixed case in the distribution group. Bundled result
 
 ## Sources and review scope
 
-- Aidan Crilly (2023). Learning closure relations using differentiable programming:an example in radiation transport;author-provided analytic benchmark data. https://github.com/aidancrilly/RTClosureJAX/tree/3e4f636299d62bc03f7118cfc884230c756f9d87/SuOlsonData; review_level=primary-author-paper-selected-equations-and-pinned-data-qualification
+- Aidan Crilly (2023). Learning closure relations using differentiable programming:an example in radiation transport;author-provided analytic benchmark data [accessed 2026-11-24]. https://github.com/aidancrilly/RTClosureJAX/tree/3e4f636299d62bc03f7118cfc884230c756f9d87/SuOlsonData; review_level=primary-author-paper-selected-equations-and-pinned-data-qualification
 Read official2023paperpage6Appendix4.1equations7-10,README,pinned W/Vtransport tables andMITlicense. Whether author tables were transcribed or regenerated is unstated. Original1997fulltext/tables not directly checked;not trained-model outputs. Shape,normalization,causal/homogeneous controls qualified.
 
 

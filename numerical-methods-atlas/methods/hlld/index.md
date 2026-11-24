@@ -42,9 +42,9 @@ Results: https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/resul
 - Magnetic loop: independent 2D reference and refinement: https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/
 - Late Orszag-Tang: independent reference and compression structure: https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/
 
-Download: https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip
-Verification: https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/verification.json
-Results: https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/result.json
+Download: https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip
+Verification: https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/verification.json
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/results/result.json
 
 Common execution records: [{"id": "brio-wu", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#brio-wu-ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#brio-wu-en"}}, {"id": "brio-independent", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/brio-independent/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/brio-independent/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "circular-alfven-refinement", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "magnetic-loop-independent", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "postshock-orszag-tang", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=en"}, "kind": "dedicated-supplement"}]
 
@@ -71,7 +71,7 @@ Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-d
 
 [この問題の参照・検証資料](https://hrkoyama.github.io/numerical-methods-atlas/problems/orszag-tang/?lang=ja#references-ja) · [この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/orszag-tang/?lang=ja#code-ja)
 
-- [後期Orszag–Tang：独立参照と圧縮構造](https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=ja) (`postshock-orszag-tang`) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip)
+- [後期Orszag–Tang：独立参照と圧縮構造](https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=ja) (`postshock-orszag-tang`) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip)
 
 圧縮性理想MHDのOrszag–TangをT=.2まで進め、相互作用する圧縮・衝撃波構造の密度と圧力を独立有限格子参照で検査します。
 
@@ -99,7 +99,7 @@ Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-d
 
 [この問題の参照・検証資料](https://hrkoyama.github.io/numerical-methods-atlas/problems/circular-alfven/?lang=ja#references-ja) · [この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/circular-alfven/?lang=ja#code-ja)
 
-- [円偏波Alfvén波：全成分の格子収束](https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=ja) (`circular-alfven-refinement`) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip)
+- [円偏波Alfvén波：全成分の格子収束](https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=ja) (`circular-alfven-refinement`) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip)
 
 全8保存変数を進め、非零のBz・vzを含む円偏波を解析セル平均と比較します。
 
@@ -111,7 +111,7 @@ Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-d
 
 [この問題の参照・検証資料](https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=ja#references-ja) · [この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=ja#code-ja)
 
-- [磁場ループ：独立2次元参照と細分化](https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=ja) (`magnetic-loop-independent`) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip)
+- [磁場ループ：独立2次元参照と細分化](https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=ja) (`magnetic-loop-independent`) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip)
 
 実際の2次元磁場ループ輸送を、別実装Athena++の空間・時間感度を検査した終端保存場と比較します。
 
@@ -159,11 +159,11 @@ Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-d
 
 ##### 後期Orszag–Tang：独立参照と圧縮構造 (`postshock-orszag-tang`)
 
-[Orszag–Tang渦（CT・GLM・発散誤差摂動を統合）](https://hrkoyama.github.io/numerical-methods-atlas/problems/orszag-tang/?lang=ja) · [実行・検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=ja) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip)
+[Orszag–Tang渦（CT・GLM・発散誤差摂動を統合）](https://hrkoyama.github.io/numerical-methods-atlas/problems/orszag-tang/?lang=ja) · [実行・検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=ja) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip)
 
-[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/inputs.json)
+[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/inputs.json)
 
-[検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/verification.json)
+[検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/verification.json)
 
 圧縮性理想MHDのOrszag–TangをT=.2まで進め、相互作用する圧縮・衝撃波構造の密度と圧力を独立有限格子参照で検査します。
 
@@ -189,21 +189,21 @@ Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-d
 
 ##### 円偏波Alfvén波：全成分の格子収束 (`circular-alfven-refinement`)
 
-[円偏波Alfvén波](https://hrkoyama.github.io/numerical-methods-atlas/problems/circular-alfven/?lang=ja) · [実行・検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=ja) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip)
+[円偏波Alfvén波](https://hrkoyama.github.io/numerical-methods-atlas/problems/circular-alfven/?lang=ja) · [実行・検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=ja) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip)
 
-[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/inputs.json)
+[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/inputs.json)
 
-[検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/verification.json)
+[検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/verification.json)
 
 全8保存変数を進め、非零のBz・vzを含む円偏波を解析セル平均と比較します。
 
 ##### 磁場ループ：独立2次元参照と細分化 (`magnetic-loop-independent`)
 
-[磁場ループの移流](https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=ja) · [実行・検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=ja) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip)
+[磁場ループの移流](https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=ja) · [実行・検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=ja) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip)
 
-[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/inputs.json)
+[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/inputs.json)
 
-[検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/verification.json)
+[検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/verification.json)
 
 実際の2次元磁場ループ輸送を、別実装Athena++の空間・時間感度を検査した終端保存場と比較します。
 
@@ -233,19 +233,19 @@ Scoped fixed-input examples; original method variants and earlier releases remai
 - [/code/validated-examples/2026-11-22/mhd/legacy/limited.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/limited.py)
 - [/code/validated-examples/2026-11-22/mhd/legacy/limiters.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/limiters.py)
 - [/code/validated-examples/2026-11-22/mhd/legacy/snapshots.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/snapshots.py)
-- [/code/validated-examples/2026-11-23/mhd-transport/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/run.py)
-- [/code/validated-examples/2026-11-23/mhd-transport/solver.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/solver.py)
-- [/code/validated-examples/2026-11-23/mhd-transport/hlld.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/hlld.py)
-- [/code/validated-examples/2026-11-23/mhd-transport/references/analytic.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/analytic.py)
-- [/code/validated-examples/2026-11-23/mhd-transport/references/qualify_saved.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/qualify_saved.py)
-- [/code/validated-examples/2026-11-23/mhd-transport/references/generate.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/generate.py)
-- [/code/validated-examples/2026-11-23/mhd-transport/references/qualify.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/qualify.py)
+- [/code/validated-examples/2026-11-24/mhd-transport/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/run.py)
+- [/code/validated-examples/2026-11-24/mhd-transport/solver.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/solver.py)
+- [/code/validated-examples/2026-11-24/mhd-transport/hlld.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/hlld.py)
+- [/code/validated-examples/2026-11-24/mhd-transport/references/analytic.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/references/analytic.py)
+- [/code/validated-examples/2026-11-24/mhd-transport/references/qualify_saved.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/references/qualify_saved.py)
+- [/code/validated-examples/2026-11-24/mhd-transport/references/generate.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/references/generate.py)
+- [/code/validated-examples/2026-11-24/mhd-transport/references/qualify.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/references/qualify.py)
 
 ###### 配布版のテスト
 
 - [/code/numerical-methods-atlas/2026-11-21/tests/test_hlld.py](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_hlld.py)
 - [/code/validated-examples/2026-11-22/mhd/test_validation.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/test_validation.py)
-- [/code/validated-examples/2026-11-23/mhd-transport/test_mhd.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/test_mhd.py)
+- [/code/validated-examples/2026-11-24/mhd-transport/test_mhd.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/test_mhd.py)
 
 配布版の案内で条件と作業フォルダを確認してください。複数例の検査や図生成を含む場合があります。
 
@@ -272,7 +272,7 @@ Methods from explicitly bound supplementary examples and, where present, the com
 
 [This problem’s references and checks](https://hrkoyama.github.io/numerical-methods-atlas/problems/orszag-tang/?lang=en#references-en) · [This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/orszag-tang/?lang=en#code-en)
 
-- [Late Orszag-Tang: independent reference and compression structure](https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=en) (`postshock-orszag-tang`) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip)
+- [Late Orszag-Tang: independent reference and compression structure](https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=en) (`postshock-orszag-tang`) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip)
 
 Evolve compressible ideal-MHD Orszag-Tang to T.2 and check density/pressure in interacting compression/shock structure against an independent finite-grid reference.
 
@@ -300,7 +300,7 @@ Methods used by this problem’s stored comparison data or corresponding public 
 
 [This problem’s references and checks](https://hrkoyama.github.io/numerical-methods-atlas/problems/circular-alfven/?lang=en#references-en) · [This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/circular-alfven/?lang=en#code-en)
 
-- [Circular Alfven wave: full-state refinement](https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=en) (`circular-alfven-refinement`) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip)
+- [Circular Alfven wave: full-state refinement](https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=en) (`circular-alfven-refinement`) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip)
 
 Evolve all eight conserved variables and compare circular polarization, including nonzero Bz/vz, against analytic cell means.
 
@@ -312,7 +312,7 @@ Methods used by this problem’s stored comparison data or corresponding public 
 
 [This problem’s references and checks](https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=en#references-en) · [This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=en#code-en)
 
-- [Magnetic loop: independent 2D reference and refinement](https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=en) (`magnetic-loop-independent`) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip)
+- [Magnetic loop: independent 2D reference and refinement](https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=en) (`magnetic-loop-independent`) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip)
 
 Compare genuine 2D magnetic-loop transport with final conserved fields from independent Athena++, qualified in space and time.
 
@@ -360,11 +360,11 @@ Matched problem executions are separate from existing editions and related sourc
 
 ##### Late Orszag-Tang: independent reference and compression structure (`postshock-orszag-tang`)
 
-[Orszag–Tang vortex (CT/GLM/error variants merged)](https://hrkoyama.github.io/numerical-methods-atlas/problems/orszag-tang/?lang=en) · [Run and validate](https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=en) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip)
+[Orszag–Tang vortex (CT/GLM/error variants merged)](https://hrkoyama.github.io/numerical-methods-atlas/problems/orszag-tang/?lang=en) · [Run and validate](https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=en) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip)
 
-[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/inputs.json)
+[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/inputs.json)
 
-[Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/verification.json)
+[Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/verification.json)
 
 Evolve compressible ideal-MHD Orszag-Tang to T.2 and check density/pressure in interacting compression/shock structure against an independent finite-grid reference.
 
@@ -390,21 +390,21 @@ Compare the published HLLD-MC finite-volume code with Brio–Wu reference data i
 
 ##### Circular Alfven wave: full-state refinement (`circular-alfven-refinement`)
 
-[Circularly polarized Alfvén wave](https://hrkoyama.github.io/numerical-methods-atlas/problems/circular-alfven/?lang=en) · [Run and validate](https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=en) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip)
+[Circularly polarized Alfvén wave](https://hrkoyama.github.io/numerical-methods-atlas/problems/circular-alfven/?lang=en) · [Run and validate](https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=en) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip)
 
-[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/inputs.json)
+[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/inputs.json)
 
-[Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/verification.json)
+[Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/verification.json)
 
 Evolve all eight conserved variables and compare circular polarization, including nonzero Bz/vz, against analytic cell means.
 
 ##### Magnetic loop: independent 2D reference and refinement (`magnetic-loop-independent`)
 
-[Magnetic field-loop advection](https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=en) · [Run and validate](https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=en) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip)
+[Magnetic field-loop advection](https://hrkoyama.github.io/numerical-methods-atlas/problems/magnetic-loop/?lang=en) · [Run and validate](https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=en) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip)
 
-[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/inputs.json)
+[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/inputs.json)
 
-[Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/verification.json)
+[Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/verification.json)
 
 Compare genuine 2D magnetic-loop transport with final conserved fields from independent Athena++, qualified in space and time.
 
@@ -434,19 +434,19 @@ Scoped fixed-input examples; original method variants and earlier releases remai
 - [/code/validated-examples/2026-11-22/mhd/legacy/limited.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/limited.py)
 - [/code/validated-examples/2026-11-22/mhd/legacy/limiters.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/limiters.py)
 - [/code/validated-examples/2026-11-22/mhd/legacy/snapshots.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/snapshots.py)
-- [/code/validated-examples/2026-11-23/mhd-transport/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/run.py)
-- [/code/validated-examples/2026-11-23/mhd-transport/solver.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/solver.py)
-- [/code/validated-examples/2026-11-23/mhd-transport/hlld.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/hlld.py)
-- [/code/validated-examples/2026-11-23/mhd-transport/references/analytic.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/analytic.py)
-- [/code/validated-examples/2026-11-23/mhd-transport/references/qualify_saved.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/qualify_saved.py)
-- [/code/validated-examples/2026-11-23/mhd-transport/references/generate.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/generate.py)
-- [/code/validated-examples/2026-11-23/mhd-transport/references/qualify.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/qualify.py)
+- [/code/validated-examples/2026-11-24/mhd-transport/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/run.py)
+- [/code/validated-examples/2026-11-24/mhd-transport/solver.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/solver.py)
+- [/code/validated-examples/2026-11-24/mhd-transport/hlld.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/hlld.py)
+- [/code/validated-examples/2026-11-24/mhd-transport/references/analytic.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/references/analytic.py)
+- [/code/validated-examples/2026-11-24/mhd-transport/references/qualify_saved.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/references/qualify_saved.py)
+- [/code/validated-examples/2026-11-24/mhd-transport/references/generate.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/references/generate.py)
+- [/code/validated-examples/2026-11-24/mhd-transport/references/qualify.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/references/qualify.py)
 
 ###### Package tests
 
 - [/code/numerical-methods-atlas/2026-11-21/tests/test_hlld.py](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_hlld.py)
 - [/code/validated-examples/2026-11-22/mhd/test_validation.py](https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/test_validation.py)
-- [/code/validated-examples/2026-11-23/mhd-transport/test_mhd.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/test_mhd.py)
+- [/code/validated-examples/2026-11-24/mhd-transport/test_mhd.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/test_mhd.py)
 
 Consult the edition’s guide for conditions and working directory; commands may check or generate figures for several cases.
 

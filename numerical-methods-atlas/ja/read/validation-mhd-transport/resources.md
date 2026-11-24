@@ -30,21 +30,21 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transp
 
 ## 問題の図
 
-- [円偏波Alfvén波：全成分の格子収束](<https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/circular-alfven-refinement.png>)
+- [円偏波Alfvén波：全成分の格子収束](<https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/results/circular-alfven-refinement.png>)
 
   この実行例自身の保存済み検証図です。
 
-  https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/circular-alfven-refinement.png
-- [磁場ループ：独立2次元参照と細分化](<https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/magnetic-loop-independent.png>)
+  https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/results/circular-alfven-refinement.png
+- [磁場ループ：独立2次元参照と細分化](<https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/results/magnetic-loop-independent.png>)
 
   この実行例自身の保存済み検証図です。
 
-  https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/magnetic-loop-independent.png
-- [後期Orszag–Tang：独立参照と圧縮構造](<https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/postshock-orszag-tang.png>)
+  https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/results/magnetic-loop-independent.png
+- [後期Orszag–Tang：独立参照と圧縮構造](<https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/results/postshock-orszag-tang.png>)
 
   この実行例自身の保存済み検証図です。
 
-  https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/postshock-orszag-tang.png
+  https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/results/postshock-orszag-tang.png
 - [円偏波Alfvén波](<https://hrkoyama.github.io/numerical-methods-atlas/problems/circular-alfven/?lang=ja>)
 
   全8保存量のHLLD・MUSCL・Heunと2D CTで、円偏波・磁場ループ・圧縮後OTを計算します。解析平均または未改変Athena++の保存場を、独立参照の格子・時間誤差を区別して比較します。 テスト問題の代表図。条件と出典は問題別ページで確認できます。

@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "id": "dispersive-grazing-pml",
+  "name": {
+    "ja": "分散媒質の浅い入射角と長時間PML",
+    "en": "Long-time grazing PML in a dispersive medium"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dispersive-grazing-pml/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dispersive-grazing-pml/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dispersive-grazing-pml/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/results/dispersive-grazing-pml-preview.png",
+    "sha256": "9fc94253f358d6715bb32e4820843d38c9ee998aeea07048df1093ef227b9e65",
+    "width": 1050,
+    "height": 520,
+    "caption": {
+      "ja": "保存した浅角度の実電場を周期y方向へ再構成。灰色はPML領域です。 周期y方向の1周期を表示しています。波形を見やすくするため、x軸とy軸の表示縮尺は異なります。",
+      "en": "Actual saved grazing electric field reconstructed over the periodic y direction; gray shading marks the PML. One transverse y period is shown. The displayed x and y scales differ to make the fields visible."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-grazing/#dispersive-grazing-pml",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-grazing/#dispersive-grazing-pml"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#dispersive-grazing-pml",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#dispersive-grazing-pml-en"
+  },
+  "equations": [
+    {
+      "id": "maxwell-lorentz",
+      "name": {
+        "ja": "受動Lorentz・Ohmic分散Maxwell場",
+        "en": "Passive Lorentz–Ohmic Maxwell fields"
+      },
+      "formula": [
+        "\\partial_t\\mathbf H=-\\nabla\\times\\mathbf E,\\quad\\varepsilon_\\infty\\partial_t\\mathbf E=\\nabla\\times\\mathbf H-\\sigma\\mathbf E-\\mathbf J",
+        "\\partial_t\\mathbf P=\\mathbf J,\\quad\\partial_t\\mathbf J=f\\mathbf E-\\omega_0^2\\mathbf P-\\gamma\\mathbf J,\\quad f=\\Delta\\varepsilon\\omega_0^2",
+        "\\varepsilon_\\infty>0,\\quad f,\\sigma,\\gamma\\ge0"
+      ],
+      "note": {
+        "ja": "正の物質エネルギーと直接Ohmic/γ仕事を持つ単一受動Lorentz極。代表式は3Dですが、実装は周期y単一kyの2D s/p成分制限です。PML数値仕事は物理散逸と同一視しません。",
+        "en": "A single passive Lorentz pole with positive material energy and direct Ohmic/gamma work. The representative equations are three-dimensional; the implemented solver is the two-dimensional s/p component restriction at one periodic ky. Numerical PML work is not identified with physical dissipation."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#maxwell-lorentz-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#maxwell-lorentz-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "c=1、均質Lorentz媒質ε∞=1、Δε=0.2、ω0=12はPML内まで連続。512/768/1024点とpeak6/9/12を同時に細分化します。垂直粗格子はpeak6、弱減衰細格子対照はpeak12。長さ64、層幅12、中心32、幅4、carrier6は固定です。",
+    "en": "Use c = 1 and a homogeneous Lorentz medium with epsilon_inf = 1, delta_epsilon = 0.2 and omega_0 = 12 continuing through the PML. Joint refinement uses 512/768/1024 cells and peaks 6/9/12. The normal coarse control has peak 6; the damped fine companion has peak 12. Length 64, layer thickness 12, center 32, width 4 and carrier 6 are fixed."
+  },
+  "formulations": [
+    {
+      "id": "supplement-dispersive-grazing-pml",
+      "name": {
+        "ja": "分散媒質の浅い入射角と長時間PML",
+        "en": "Long-time grazing PML in a dispersive medium"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "\\partial_t\\psi=-s_x(\\psi+D_xu),\\quad D_x^{\\mathrm{PML}}u=D_xu+\\psi",
+        "\\psi^n=b\\psi^{n-1}+c(D^n+D^{n-1}),\\quad b=\\frac{1-s_x\\Delta t/2}{1+s_x\\Delta t/2},\\quad c=\\frac{-s_x\\Delta t/2}{1+s_x\\Delta t/2}",
+        "\\Delta\\mathcal E_{\\mathrm{mod}}+W_{\\mathrm{physical}}-W_{\\mathrm{PML}}=0"
+      ],
+      "note": {
+        "ja": "80度の中心位相角を持つ有限波束をT=700まで進め、境界誤差を同格子の無PML参照から分離します。",
+        "en": "Evolve a finite packet with an 80-degree central phase angle to T = 700, isolating boundary error against a no-PML reference on the same grid."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "dispersive-grazing-pml",
+      "kind": "numerical-reference",
+      "kind_label": {
+        "ja": "有限格子の数値参照",
+        "en": "Finite-grid numerical reference"
+      },
+      "title": {
+        "ja": "浅角度分散波束の長時間・同格子孤立境界参照",
+        "en": "Isolated same-grid reference for a long grazing dispersive packet"
+      },
+      "formula": "\\widehat U^n(k_x)=M(k_x,\\Delta t)^n\\widehat U^0(k_x),\\quad K_y=2\\sin(k_y\\Delta y/2)/\\Delta y",
+      "assumptions": {
+        "ja": "均質Lorentz媒質はPML内まで連続し、ε∞=1、Δε=0.2、ω0=12、γ=0または0.005。Ez偏光の有限kx Gaussianはcarrierω=6、中心位相角80度。512/768/1024点とpeak6/9/12を同時細分化し、垂直対照は6、弱減衰細格子対照は12。最終時刻は700です。",
+        "en": "The homogeneous Lorentz medium continues through the PML: epsilon_inf = 1, delta_epsilon = 0.2, omega_0 = 12, gamma = 0 or 0.005. An Ez-polarized finite-kx Gaussian has carrier omega = 6 and central phase angle 80 degrees. Joint grid/layer refinement uses peaks 6/9/12 on 512/768/1024 cells; the normal control uses 6 and damped fine companion 12. Final time is 700."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "有限kx帯域の中心角が80度で、全成分が厳密に80度ではありません。無PML参照は同じ離散化・初期場を使い、伝播分散を除いた境界誤差用です。任意角度・材料での大域安定性証明ではありません。 固定PMLの空間次数を測る族ではなく、旧100検査だけでpeak12の大域安定性が証明されたとはしません。",
+        "en": "The central angle is 80 degrees; finite kx bandwidth gives neighboring angles. The no-PML reference shares the discretization and initialization to isolate boundary error from bulk dispersion. Small operator and finite-trajectory checks do not prove global stability for arbitrary angles and materials. The joint family does not measure fixed-PML spatial order; the older 100 checks alone do not prove peak-12 global stability."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dispersive-grazing-pml/?lang=ja#dispersive-grazing-pml-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dispersive-grazing-pml/?lang=en#dispersive-grazing-pml-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "3つの格子・層強度の同時細分化、垂直・弱減衰対照の5長時間計算。参照入力が全て不変なことを確認して同一byteの無PML参照を再利用します。旧13検査本体を保持し、policy・peak12直接仕事の2回帰を追加。全44長時間判定は不変です。",
+    "en": "Use five long trajectories: three joint grid/layer-strength resolutions, a normal control and a weakly damped companion. Reuse the byte-bound no-PML reference only after checking every unchanged reference argument. Retain the old 13 test bodies and add two parameter-policy/peak-12 work regressions; all original 44 long-trajectory gates remain unchanged."
+  },
+  "methods": [
+    {
+      "id": "fdtd",
+      "name": {
+        "ja": "Yee FDTD",
+        "en": "Yee finite-difference time-domain method"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/fdtd/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/fdtd/?lang=en"
+      }
+    },
+    {
+      "id": "leapfrog",
+      "name": {
+        "ja": "2ステップleapfrog法",
+        "en": "Two-step leapfrog"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/leapfrog/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/leapfrog/?lang=en"
+      }
+    },
+    {
+      "id": "implicit-midpoint",
+      "name": {
+        "ja": "陰的中点則",
+        "en": "Implicit midpoint"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/implicit-midpoint/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/implicit-midpoint/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "Yee・中点ADEに時刻配置を保った台形微分memoryを結合。正の物理散逸と符号付きPML数値仕事を区別し、補助場を含め全状態を保存します。",
+    "en": "Couple Yee and midpoint ADE updates to a trapezoidal derivative-memory filter at native times. Separate positive physical dissipation from signed numerical PML work, retaining all physical and auxiliary states."
+  },
+  "executions": [
+    {
+      "id": "dispersive-grazing-pml",
+      "kind": "supplement",
+      "name": {
+        "ja": "分散媒質の浅い入射角と長時間PML",
+        "en": "Long-time grazing PML in a dispersive medium"
+      },
+      "method_ids": [
+        "fdtd",
+        "leapfrog",
+        "implicit-midpoint"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dispersive-grazing-pml/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dispersive-grazing-pml/?lang=en"
+      },
+      "scope": {
+        "ja": "80度の中心位相角を持つ有限波束をT=700まで進め、境界誤差を同格子の無PML参照から分離します。",
+        "en": "Evolve a finite packet with an 80-degree central phase angle to T = 700, isolating boundary error against a no-PML reference on the same grid."
+      },
+      "assumptions": {
+        "ja": "c=1、均質Lorentz媒質ε∞=1、Δε=0.2、ω0=12はPML内まで連続。512/768/1024点とpeak6/9/12を同時に細分化します。垂直粗格子はpeak6、弱減衰細格子対照はpeak12。長さ64、層幅12、中心32、幅4、carrier6は固定です。",
+        "en": "Use c = 1 and a homogeneous Lorentz medium with epsilon_inf = 1, delta_epsilon = 0.2 and omega_0 = 12 continuing through the PML. Joint refinement uses 512/768/1024 cells and peaks 6/9/12. The normal coarse control has peak 6; the damped fine companion has peak 12. Length 64, layer thickness 12, center 32, width 4 and carrier 6 are fixed."
+      },
+      "limits": {
+        "ja": "有限kx帯域の中心角が80度で、全成分が厳密に80度ではありません。無PML参照は同じ離散化・初期場を使い、伝播分散を除いた境界誤差用です。任意角度・材料での大域安定性証明ではありません。 固定PMLの空間次数を測る族ではなく、旧100検査だけでpeak12の大域安定性が証明されたとはしません。",
+        "en": "The central angle is 80 degrees; finite kx bandwidth gives neighboring angles. The no-PML reference shares the discretization and initialization to isolate boundary error from bulk dispersion. Small operator and finite-trajectory checks do not prove global stability for arbitrary angles and materials. The joint family does not measure fixed-PML spatial order; the older 100 checks alone do not prove peak-12 global stability."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/atlas-maxwell-grazing-2026-11-24-r2.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "3つの格子・層強度の同時細分化、垂直・弱減衰対照の5長時間計算。参照入力が全て不変なことを確認して同一byteの無PML参照を再利用します。旧13検査本体を保持し、policy・peak12直接仕事の2回帰を追加。全44長時間判定は不変です。",
+        "en": "Use five long trajectories: three joint grid/layer-strength resolutions, a normal control and a weakly damped companion. Reuse the byte-bound no-PML reference only after checking every unchanged reference argument. Retain the old 13 test bodies and add two parameter-policy/peak-12 work regressions; all original 44 long-trajectory gates remain unchanged."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/references/isolated_reference.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/test_grazing.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

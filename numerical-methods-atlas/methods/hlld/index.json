@@ -251,30 +251,30 @@
         "magnetic-loop-independent",
         "postshock-orszag-tang"
       ],
-      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/",
-      "code_edition": "2026-11-23",
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/",
+      "code_edition": "2026-11-24",
       "code_urls": [
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/run.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/solver.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/hlld.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/analytic.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/qualify_saved.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/generate.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/qualify.py"
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/solver.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/hlld.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/references/analytic.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/references/qualify_saved.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/references/generate.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/references/qualify.py"
       ],
       "test_urls": [
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/test_mhd.py"
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/test_mhd.py"
       ],
       "run_commands": [
         "python -m pytest -q",
         "python run.py --input inputs.json --output output"
       ],
-      "run_from": "atlas-mhd-transport-2026-11-23",
-      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip",
-      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/source-manifest.json",
-      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/verification.json",
-      "code_archive_sha256": "8b6d4d9d30c9ed12fd29b7b91a11c16dc183b9aea49234966a66c376713ebf90",
-      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/result.json",
+      "run_from": "atlas-mhd-transport-2026-11-24",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/verification.json",
+      "code_archive_sha256": "54e5f9376beacf41338b3b810657bb4671dabef937d748bc96834e1e3b35f233",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/results/result.json",
       "passed_tests": 47,
       "examples": [
         {
@@ -2541,18 +2541,18 @@
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/limited.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/limiters.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/legacy/snapshots.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/run.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/solver.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/hlld.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/analytic.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/qualify_saved.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/generate.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/qualify.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/solver.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/hlld.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/references/analytic.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/references/qualify_saved.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/references/generate.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/references/qualify.py"
   ],
   "test_urls": [
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_hlld.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/mhd/test_validation.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/test_mhd.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/test_mhd.py"
   ],
   "run_commands": [
     "python -m pytest -q tests/test_hlld.py"
@@ -2676,9 +2676,9 @@
               "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=ja",
               "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=en"
             },
-            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/inputs.json",
-            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip",
-            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/verification.json"
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/verification.json"
           }
         ],
         "role": "execution",
@@ -2819,9 +2819,9 @@
               "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=ja",
               "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=en"
             },
-            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/inputs.json",
-            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip",
-            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/verification.json"
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/verification.json"
           }
         ],
         "role": "execution",
@@ -2881,9 +2881,9 @@
               "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=ja",
               "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=en"
             },
-            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/inputs.json",
-            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip",
-            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/verification.json"
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/verification.json"
           }
         ],
         "role": "execution",

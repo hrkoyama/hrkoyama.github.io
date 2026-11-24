@@ -32,6 +32,14 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/eigensolvers/
   availability: run
 
   48次のクラスター固有値と強い非正規上三角行列で、次元4/8/16/32のLanczos・Arnoldiを測ります。残差・前進誤差・固有値条件数・不変部分空間を分けます。
+- [明示的再始動Krylovと内部固有値](<https://hrkoyama.github.io/numerical-methods-atlas/validation/restarted-shift-invert/?lang=ja>)
+  availability: run
+
+  固定長の明示的再始動とshift-invertを、元の固有値問題の残差と作用回数で比較します。
+- [整合質量FEM弦の一般化固有値](<https://hrkoyama.github.io/numerical-methods-atlas/validation/fem-mass-eigen/?lang=ja>)
+  availability: run
+
+  整合質量のP1弦で、M内積Krylovと実際のSciPy LOBPCGを独立離散スペクトルへ照合します。
 - [Krylov固有値解法：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/eigensolvers/?lang=ja#method-execution-ja>)
   availability: source
 

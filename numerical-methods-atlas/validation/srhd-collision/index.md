@@ -192,10 +192,10 @@ python run.py --input inputs.json --output output
 
 ## 出典と確認範囲
 
-- Luciano Rezzolla and Olindo Zanotti (2001). An Improved Exact Riemann Solver for Relativistic Hydrodynamics. https://arxiv.org/abs/gr-qc/0103005; review_level=primary-selected-mathematical-sections
+- Luciano Rezzolla and Olindo Zanotti (2001). An Improved Exact Riemann Solver for Relativistic Hydrodynamics [accessed 2026-11-23]. https://arxiv.org/abs/gr-qc/0103005; review_level=primary-selected-mathematical-sections
 原著プレプリントの2–4節、状態方程式、相対速度式3.1とTaub二次式4.5を直接確認。対称二衝撃波への特殊化です。
 
-- José A. Font (2008). Numerical Hydrodynamics and Magnetohydrodynamics in General Relativity. https://link.springer.com/article/10.12942/lrr-2008-7; review_level=primary-author-review-selected-equations
+- José A. Font (2008). Numerical Hydrodynamics and Magnetohydrodynamics in General Relativity [accessed 2026-11-23]. https://link.springer.com/article/10.12942/lrr-2008-7; review_level=primary-author-review-selected-equations
 公式の著者レビュー3.1–3.2節、テンソル式49–51と変換式68–69を直接確認。平坦時空の実装に使用します。
 
 
@@ -395,10 +395,10 @@ This command executes every fixed case in the distribution group. Bundled result
 
 ## Sources and review scope
 
-- Luciano Rezzolla and Olindo Zanotti (2001). An Improved Exact Riemann Solver for Relativistic Hydrodynamics. https://arxiv.org/abs/gr-qc/0103005; review_level=primary-selected-mathematical-sections
+- Luciano Rezzolla and Olindo Zanotti (2001). An Improved Exact Riemann Solver for Relativistic Hydrodynamics [accessed 2026-11-23]. https://arxiv.org/abs/gr-qc/0103005; review_level=primary-selected-mathematical-sections
 Read original preprint sections2–4: EOS, relative-velocity equation3.1 and Taub quadratic4.5. Restricted symmetric two-shock specialization.
 
-- José A. Font (2008). Numerical Hydrodynamics and Magnetohydrodynamics in General Relativity. https://link.springer.com/article/10.12942/lrr-2008-7; review_level=primary-author-review-selected-equations
+- José A. Font (2008). Numerical Hydrodynamics and Magnetohydrodynamics in General Relativity [accessed 2026-11-23]. https://link.springer.com/article/10.12942/lrr-2008-7; review_level=primary-author-review-selected-equations
 Read official author-review sections3.1–3.2, stress tensor49–51 and recovery68–69; flat-spacetime use only.
 
 

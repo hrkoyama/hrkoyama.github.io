@@ -2,8 +2,8 @@
   "schema_version": 1,
   "sources": {
     "catalog/atlas-sharing.json": "2c82bdf4de3a7aeedeee77cac3b28f7a809e611b1d24af47f6eaa8f0595a4322",
-    "catalog/atlas-methods.json": "3f2b7051c980e5492f6f94f01b3e75c4802394856c55a7176d9c9a1a9f35e305",
-    "numerical-methods-atlas/coverage.json": "de13c389cc3184322cd20d953941f5e17534d6787cf4e2b27232f554d934b01c",
+    "catalog/atlas-methods.json": "1bf729b9e73fc797619dae3e5dc7ec0d1fe729efc1ad36485d760ddc77a4a246",
+    "numerical-methods-atlas/coverage.json": "fcb1b3728d7ba91ca792ff4a650f7063172f1201c7a48410218debc4753ddb99",
     "catalog/atlas-execution-examples.json": "b67c3635f42660eaa208073af8addf82777b26337e1b7f2792987f4116fb37c2",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f"
   },
@@ -14,23 +14,23 @@
     "freetype": "2.14.3"
   },
   "font": {
-    "filename": "ヒラギノ角ゴシック W6.ttc",
-    "sha256": "790fe535987adc662e83489e162dc54c1e50be8de15169300082f6cc7a082e4e"
+    "filename": "NotoSansCJK-Bold.ttc",
+    "sha256": "faa5f3656a78b2e2d450d27fe8382c778bc2b6bb5ea29c986664a6a435056ceb"
   },
   "images": {
     "ja": {
-      "svg_sha256": "f821b9d12f9791668ec040ea8a551038287fb64a166f30b8a5ec7cad7c42a6ac",
-      "png_sha256": "d8f4327336961a5b572475135cb1fb0363829fded44a303b51e452cdebd8de9a",
-      "content_input_sha256": "5bc102ab12d7f080b93d78205d706c19f9d825fb74f87680dcba5953e9c6f779",
-      "render_input_sha256": "b82523a340dd23c7fb1b458a458a4b61697b78faa1767594d5e495a170cb7e5f",
+      "svg_sha256": "fab71ca182520ee2ea8634d4be02d40a24c1a812993b1c87b5a6c30358b1e961",
+      "png_sha256": "ba0fd7d0b1d3d41ca081923a53ad2a3bde6c0ec54eed766c6920658abbd95323",
+      "content_input_sha256": "02bddd748b307a720d3ce84d5285264f41eca07f6b519e4b47e483218916171d",
+      "render_input_sha256": "45a6341fbd7abdcffed288cd21f9edb455f2656ac53833d0b9ef8093c68a20a2",
       "width": 1200,
       "height": 630
     },
     "en": {
-      "svg_sha256": "7fe87ebfe349a4ad7225b14abd1cd2755aaad2688e0d35e440675116bb914e9a",
-      "png_sha256": "e5513b5fccdd01372f67956eea6986170b806b63f0c78c688bec44ececb3db2f",
-      "content_input_sha256": "80b70580e1ff3e71813f059b5c08c2417847dd653dbe19f76a96aa66b99c5e49",
-      "render_input_sha256": "8dd72761632bc20388ced5d50536d0bedc4762bff47d754a8448a8b0c6ce7309",
+      "svg_sha256": "5eec6119d1d1e68dd9aafede86af162b744776bd98b09894a94f02a4e3febc34",
+      "png_sha256": "92a02223f43621273ef6ed1bbaf75640a26dbc57ef4e8475b79eccab4de17df3",
+      "content_input_sha256": "a0c409c9de011ae4aa3a589c10c4445b4dab1d9aefcbeeb727e684c07e92bfbb",
+      "render_input_sha256": "49da23a73db7a352c485e21ce3c97ca16810a55376ac33861dcfe1407f7861ca",
       "width": 1200,
       "height": 630
     }

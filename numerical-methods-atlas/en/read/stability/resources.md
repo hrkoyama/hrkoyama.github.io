@@ -138,6 +138,14 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Time-advance actual2D staggered fields and distinguish continuous-wave references from semidiscrete symbols.
+- [Crossing the Bratu fold with pseudo-arclength continuation](<https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-continuation/?lang=en>)
+  availability: run
+
+  Follow the lower and upper branches of the same one-dimensional Bratu boundary-value problem; check tangents, the fold and spatial error against an independent analytic family.
+- [Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products](<https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/?lang=en>)
+  availability: run
+
+  Solve both Bratu branches with three Jv choices without assembling the nonlinear Jacobian; retain forcing, actual residuals and evaluation counts.
 - [Periodic sine advection: upwind and analytic transport](<https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/advection-sine/?lang=en>)
   availability: run
 

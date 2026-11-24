@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "id": "symmetric-saddle-minres",
+  "name": {
+    "ja": "対称不定値鞍点系とSchur前処理",
+    "en": "Symmetric saddle systems and Schur preconditioning"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/symmetric-saddle-minres/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/symmetric-saddle-minres/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/symmetric-saddle-minres/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/symmetric-saddle-minres-preview.png",
+    "sha256": "35a0cb90e9427029904fb897e2554220ec77e47b2a7572443210f93be204680e",
+    "width": 854,
+    "height": 590,
+    "caption": {
+      "ja": "速度サイズ24の固定例で使う、保存した35×35鞍点行列。",
+      "en": "The saved 35 x 35 saddle matrix for velocity size 24."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#symmetric-saddle-minres",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#symmetric-saddle-minres"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#symmetric-saddle-minres",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#symmetric-saddle-minres-en"
+  },
+  "equations": [
+    {
+      "id": "finite-dimensional-linear-system",
+      "name": {
+        "ja": "有限次元線形方程式と行列分解",
+        "en": "Finite-dimensional linear systems and factorizations"
+      },
+      "formula": [
+        "A x=b",
+        "P A=L U",
+        "A=L L^\\top\\quad(A=A^\\top>0)",
+        "r=b-Ax"
+      ],
+      "note": {
+        "ja": "有限行列Aと右辺bの代数問題です。LU/Cholesky・混合精度改良・対称不定値鞍点系を固定例で検査し、連続PDEの解とは区別します。",
+        "en": "Finite matrices A and right-hand sides b define algebraic problems. Fixed LU, Cholesky, refinement and symmetric-indefinite saddle controls are distinct from continuum PDE solutions."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#finite-dimensional-linear-system-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#finite-dimensional-linear-system-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "速度12/24、圧力5/11の代数的混合Poisson/Stokes型ブロック。元の真の残差1e-9を共通基準にします。",
+    "en": "Algebraic mixed-Poisson/Stokes-type blocks with velocity sizes 12 and 24 and pressure sizes 5 and 11. The common original-system residual tolerance is 1e-9."
+  },
+  "formulations": [
+    {
+      "id": "supplement-symmetric-saddle-minres",
+      "name": {
+        "ja": "対称不定値鞍点系とSchur前処理",
+        "en": "Symmetric saddle systems and Schur preconditioning"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "A=[[H,B^T],[B,0]]",
+        "P=diag(H,BH^-1B^T)",
+        "A_tilde=L^-1 A L^-T"
+      ],
+      "note": {
+        "ja": "同じ元残差の基準でMINRESとGMRESを比較し、理想Schurの三点スペクトルを検査します。",
+        "en": "MINRES and GMRES use the same original-system residual criterion and are checked against the ideal Schur three-point spectrum."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "symmetric-saddle-minres",
+      "kind": "numerical-reference",
+      "kind_label": {
+        "ja": "有限格子の数値参照",
+        "en": "Finite-grid numerical reference"
+      },
+      "title": {
+        "ja": "対称不定値鞍点系：独立dense解と理想Schurスペクトル",
+        "en": "Symmetric saddles: independent dense solutions and the ideal-Schur spectrum"
+      },
+      "formula": "S=B H^{-1} B^T; P=diag(H,S); spectrum(L^{-1} A L^{-T})={1,(1-sqrt(5))/2,(1+sqrt(5))/2}; x_ref=LAPACK_solve(A,b)",
+      "assumptions": {
+        "ja": "A=[[H,Bᵀ],[B,0]]、速度サイズ12/24、圧力行数5/11の代数問題。SPD理想Schurは全行列を小さく直接構成し、元の真残差とdense参照解誤差を別に判定。実Stokes境界値問題ではありません。",
+        "en": "Algebraic saddles A=[[H,B^T],[B,0]] use velocity sizes 12 and 24 and pressure sizes 5 and 11. Explicit dense SPD ideal-Schur controls compare the original residual separately with dense-solution error. This is not a Stokes boundary-value PDE."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "理想Schurは教育用の稠密制御であり、実Stokes PDEやスケーラブルな近似前処理の完成ではありません。",
+        "en": "A dense, ideal-Schur educational control, not a complete Stokes PDE solver or a scalable approximate preconditioner."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/symmetric-saddle-minres/?lang=ja#symmetric-saddle-minres-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/symmetric-saddle-minres/?lang=en#symmetric-saddle-minres-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "LAPACK全系解、理想Schurの3点スペクトル、CGの明示的負曲率対照。",
+    "en": "Global LAPACK solutions, the analytic ideal-Schur spectrum and an explicit negative-curvature control for CG."
+  },
+  "methods": [
+    {
+      "id": "minres",
+      "name": {
+        "ja": "対称不定値系の教育用MINRES",
+        "en": "Educational MINRES for symmetric-indefinite systems"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/minres/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/minres/?lang=en"
+      }
+    },
+    {
+      "id": "gmres",
+      "name": {
+        "ja": "再始動GMRES",
+        "en": "Restarted GMRES"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/gmres/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/gmres/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "全基底保存のLanczos最小残差LSと二重MGS GMRES。SPD合同変換で対称性を保持。 元入力の残差1e-9と固定前進上限2e-8から、行列のみのκ∞推定で内部目標min(rtol,2e-8/κ∞)を導出。独立解を停止に使わない。",
+    "en": "Stored-basis Lanczos least squares provides the educational MINRES variant; GMRES uses two-pass modified Gram-Schmidt. An SPD congruence preserves symmetry. The internal target is min(configured rtol, fixed forward-error limit / kappa_infinity), using only the matrix. The independent solution is not a stopping input."
+  },
+  "executions": [
+    {
+      "id": "symmetric-saddle-minres",
+      "kind": "supplement",
+      "name": {
+        "ja": "対称不定値鞍点系とSchur前処理",
+        "en": "Symmetric saddle systems and Schur preconditioning"
+      },
+      "method_ids": [
+        "minres",
+        "gmres"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/symmetric-saddle-minres/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/symmetric-saddle-minres/?lang=en"
+      },
+      "scope": {
+        "ja": "同じ元残差の基準でMINRESとGMRESを比較し、理想Schurの三点スペクトルを検査します。",
+        "en": "MINRES and GMRES use the same original-system residual criterion and are checked against the ideal Schur three-point spectrum."
+      },
+      "assumptions": {
+        "ja": "速度12/24、圧力5/11の代数的混合Poisson/Stokes型ブロック。元の真の残差1e-9を共通基準にします。",
+        "en": "Algebraic mixed-Poisson/Stokes-type blocks with velocity sizes 12 and 24 and pressure sizes 5 and 11. The common original-system residual tolerance is 1e-9."
+      },
+      "limits": {
+        "ja": "理想Schurは教育用の稠密制御であり、実Stokes PDEやスケーラブルな近似前処理の完成ではありません。",
+        "en": "A dense, ideal-Schur educational control, not a complete Stokes PDE solver or a scalable approximate preconditioner."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/atlas-linear-algebra-spectral-2026-11-24-r3.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "LAPACK全系解、理想Schurの3点スペクトル、CGの明示的負曲率対照。",
+        "en": "Global LAPACK solutions, the analytic ideal-Schur spectrum and an explicit negative-curvature control for CG."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/run.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/test_algorithms.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/test_mass_action.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "edition": "2026-11-22",
-  "case_count": 97,
+  "case_count": 106,
   "releases": [
     {
       "group": "foundations",
@@ -403,12 +403,12 @@
     },
     {
       "group": "mhd-transport",
-      "edition": "2026-11-23",
-      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/",
-      "archive": "atlas-mhd-transport-2026-11-23.zip",
-      "archive_sha256": "8b6d4d9d30c9ed12fd29b7b91a11c16dc183b9aea49234966a66c376713ebf90",
-      "manifest_sha256": "c7d853b1b958f830ac30f45b076410ba55045ddedc88006cf8dda2c3e7dfee8d",
-      "verification_sha256": "56767d3b24b0c2fd9e6e660db523be8f8565876b38867f819c57ed983d468752",
+      "edition": "2026-11-24",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/",
+      "archive": "atlas-mhd-transport-2026-11-24.zip",
+      "archive_sha256": "54e5f9376beacf41338b3b810657bb4671dabef937d748bc96834e1e3b35f233",
+      "manifest_sha256": "68138759230a5f1b1d874d7503c4932cd3e55dbdf8b0a3d192da53683d89bdd1",
+      "verification_sha256": "ee680eda66d874deeabe27abfdb59958894a18be83445ed9f48c82f3080fa21e",
       "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
       "case_ids": [
         "circular-alfven-refinement",
@@ -710,6 +710,80 @@
         "normal-tail-importance"
       ],
       "tests": 21
+    },
+    {
+      "group": "maxwell-cylinder",
+      "edition": "2026-11-24-r2",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/",
+      "archive": "atlas-maxwell-cylinder-2026-11-24-r2.zip",
+      "archive_sha256": "bf2f69032cfe912d23e065582397202a695dde241350774a0c69997b70bd1a06",
+      "manifest_sha256": "bd55f11428730f3ad2a4048b74efd4dc4eae9997e55c8bc151d5ed4c0adf2dd6",
+      "verification_sha256": "85cfc10421948d42deda85916ac2a6d4a41b7ad7af91db890fd91b5c745bf51a",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "cylinder-mie2d"
+      ],
+      "tests": 22
+    },
+    {
+      "group": "maxwell-lorentz",
+      "edition": "2026-11-24-r2",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/",
+      "archive": "atlas-maxwell-lorentz-2026-11-24-r2.zip",
+      "archive_sha256": "7af2a66b6defba64c5392f05292d2b49810140253455945d54112eb4594871a1",
+      "manifest_sha256": "f2a3b94d686d7114f9675e6d4f3afba01ffc63abdf137f739aa2052bfbdd64b4",
+      "verification_sha256": "7703e35d6a56ca69a6aaf17e7bd910bccad1c7cf21632e4625eda29c09d37d6d",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "lorentz-oblique-sp"
+      ],
+      "tests": 15
+    },
+    {
+      "group": "maxwell-grazing",
+      "edition": "2026-11-24-r2",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/",
+      "archive": "atlas-maxwell-grazing-2026-11-24-r2.zip",
+      "archive_sha256": "a9d0c65eb27e26b05eafd3774b9f651b01baf28e617769bb2bbcb7efb0b90d3d",
+      "manifest_sha256": "6ea7a32ee58596fde26b74b5992fd76b95cfa17895b0f40b7af7438d183fbc0b",
+      "verification_sha256": "4c8133a8a4042ed925fd21af37d62fe472978af2ac4fecd3518a9d2242db1de0",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "dispersive-grazing-pml"
+      ],
+      "tests": 15
+    },
+    {
+      "group": "linear-algebra-spectral",
+      "edition": "2026-11-24-r3",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/",
+      "archive": "atlas-linear-algebra-spectral-2026-11-24-r3.zip",
+      "archive_sha256": "3d14112335ce8a55cce306ec689d430f172d02a49f4675ae5948a2fab7ca1452",
+      "manifest_sha256": "038537fee8708cb5bbc02d18e902ca546db191f7345ecace52147f6675554a95",
+      "verification_sha256": "4ed120693891dd4f94a207b080fd40fe53d3b1191274ec621de131e83fac16a7",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "fem-mass-eigen",
+        "pivoted-direct-refinement",
+        "restarted-shift-invert",
+        "symmetric-saddle-minres"
+      ],
+      "tests": 29
+    },
+    {
+      "group": "bratu-continuation-jfnk",
+      "edition": "2026-11-24-r2",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/",
+      "archive": "atlas-bratu-continuation-jfnk-2026-11-24-r2.zip",
+      "archive_sha256": "aeffa7e1b442f198ef2de55e453f82e5d6cbe30fc3d0bbd1112354a38a20a25d",
+      "manifest_sha256": "cfa8230836913a5f81d8e97c77b87716ce6d801095e9c95463e419ee8b94fe8c",
+      "verification_sha256": "4e08cc95cbb5ed520d43882c83da3ccbb644138d90ccf0bce1d408cb195beba7",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "bratu-fold-continuation",
+        "bratu-matrix-free-jfnk"
+      ],
+      "tests": 27
     }
   ]
 }

@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "id": "pivoted-direct-refinement",
+  "name": {
+    "ja": "部分ピボットLU・Choleskyと反復改良",
+    "en": "Pivoted LU, Cholesky and iterative refinement"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/pivoted-direct-refinement/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/pivoted-direct-refinement/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/pivoted-direct-refinement/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/pivoted-direct-refinement-preview.png",
+    "sha256": "c29ca507eef22bc4a38c16c5f6b5ca5ced73a750e013d9554ffaeaedc2b917e8",
+    "width": 755,
+    "height": 590,
+    "caption": {
+      "ja": "保存した12×12 SPD行列。反復改良の固定例に使います。 別の全図に示す誤差は厳密有理数解をbinary64へ丸めた参照との差です。対数表示だけ、厳密なゼロ誤差をfloat64.tinyに置いて表示します。",
+      "en": "The saved 12 x 12 SPD matrix used in the refinement examples. In the companion full figure, errors are measured against the exact-rational solution rounded to binary64; exact zeros are shown at float64.tiny for logarithmic display only."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#pivoted-direct-refinement",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#pivoted-direct-refinement"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#pivoted-direct-refinement",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#pivoted-direct-refinement-en"
+  },
+  "equations": [
+    {
+      "id": "finite-dimensional-linear-system",
+      "name": {
+        "ja": "有限次元線形方程式と行列分解",
+        "en": "Finite-dimensional linear systems and factorizations"
+      },
+      "formula": [
+        "A x=b",
+        "P A=L U",
+        "A=L L^\\top\\quad(A=A^\\top>0)",
+        "r=b-Ax"
+      ],
+      "note": {
+        "ja": "有限行列Aと右辺bの代数問題です。LU/Cholesky・混合精度改良・対称不定値鞍点系を固定例で検査し、連続PDEの解とは区別します。",
+        "en": "Finite matrices A and right-hand sides b define algebraic problems. Fixed LU, Cholesky, refinement and symmetric-indefinite saddle controls are distinct from continuum PDE solutions."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#finite-dimensional-linear-system-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#finite-dimensional-linear-system-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "SPD12、低ランク近特異8、Hilbert5、Wilkinson12を固定。binary32因子・三角解法とbinary64残差・補正の5回です。",
+    "en": "Fixed SPD matrix of size 12, a nearly singular rank-one matrix of size 8, Hilbert matrix of size 5 and Wilkinson matrix of size 12. Factors and triangular corrections use binary32; residuals use binary64, with five updates."
+  },
+  "formulations": [
+    {
+      "id": "supplement-pivoted-direct-refinement",
+      "name": {
+        "ja": "部分ピボットLU・Choleskyと反復改良",
+        "en": "Pivoted LU, Cholesky and iterative refinement"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "PA=LU",
+        "A=LL^T",
+        "x_(j+1)=x_j+solve_factor32(b-A*x_j)"
+      ],
+      "note": {
+        "ja": "独立の厳密有理数解と比較し、条件数・前進誤差・後退誤差・ピボット増大を分けます。",
+        "en": "Exact-rational comparisons separate conditioning, forward and backward error, and pivot growth."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "pivoted-direct-refinement",
+      "kind": "analytic",
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "title": {
+        "ja": "部分ピボットLU/Cholesky：実二進入力の厳密有理数参照",
+        "en": "Pivoted LU and Cholesky: exact-rational references for actual binary input"
+      },
+      "formula": "x_ref=round_binary64(exact_Fraction_solve(A_binary64,b_binary64)); r=b-Ax; eta_inf=||r||inf/(||A||inf||x||inf+||b||inf)",
+      "assumptions": {
+        "ja": "固定4行列の実binary64 A,bをFractionへ厳密変換し、有理数消去の解を最後にbinary64へ変換。LAPACKは別比較であり共有数値基盤を含みます。任意の悪条件行列に対する前進精度保証ではありません。",
+        "en": "The four fixed matrices use the actual binary64 A and b, converted exactly to Fractions. Rational elimination is exact, followed by a final binary64 rounding. Separate LAPACK comparisons share some numerical infrastructure. This is not a forward-accuracy guarantee for arbitrary ill-conditioned matrices."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "小さい固定例のみ。一般の高条件数系で混合精度の収束は保証しません。",
+        "en": "Small fixed examples only; convergence of mixed-precision refinement is not guaranteed for arbitrary matrices."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pivoted-direct-refinement/?lang=ja#pivoted-direct-refinement-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pivoted-direct-refinement/?lang=en#pivoted-direct-refinement-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "実binary64入力をFraction有理数で厳密に解き、別のLAPACK DGESV/DPOSVへ照合。条件数・前進誤差・後退誤差を分離。 保存する有理数参照ベクトルは、厳密Fraction解の各成分をbinary64へ丸めたものです。",
+    "en": "Exact-rational solutions for the actual binary64 inputs and separate LAPACK DGESV/DPOSV comparisons. Conditioning, forward error and backward error are reported separately. Each saved reference component is the exact Fraction solution rounded to binary64."
+  },
+  "methods": [
+    {
+      "id": "lu-partial-pivoting",
+      "name": {
+        "ja": "部分ピボットLUと混合精度反復改良",
+        "en": "Partial-pivot LU and mixed-precision refinement"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/lu-partial-pivoting/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/lu-partial-pivoting/?lang=en"
+      }
+    },
+    {
+      "id": "cholesky",
+      "name": {
+        "ja": "Cholesky分解と三角代入",
+        "en": "Cholesky factorization and triangular solves"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cholesky/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/cholesky/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "手書き部分ピボットLU・下三角Cholesky・前後代入。",
+    "en": "Original implementations of LU with partial pivoting, lower Cholesky factorization and triangular substitution."
+  },
+  "executions": [
+    {
+      "id": "pivoted-direct-refinement",
+      "kind": "supplement",
+      "name": {
+        "ja": "部分ピボットLU・Choleskyと反復改良",
+        "en": "Pivoted LU, Cholesky and iterative refinement"
+      },
+      "method_ids": [
+        "lu-partial-pivoting",
+        "cholesky"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pivoted-direct-refinement/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pivoted-direct-refinement/?lang=en"
+      },
+      "scope": {
+        "ja": "独立の厳密有理数解と比較し、条件数・前進誤差・後退誤差・ピボット増大を分けます。",
+        "en": "Exact-rational comparisons separate conditioning, forward and backward error, and pivot growth."
+      },
+      "assumptions": {
+        "ja": "SPD12、低ランク近特異8、Hilbert5、Wilkinson12を固定。binary32因子・三角解法とbinary64残差・補正の5回です。",
+        "en": "Fixed SPD matrix of size 12, a nearly singular rank-one matrix of size 8, Hilbert matrix of size 5 and Wilkinson matrix of size 12. Factors and triangular corrections use binary32; residuals use binary64, with five updates."
+      },
+      "limits": {
+        "ja": "小さい固定例のみ。一般の高条件数系で混合精度の収束は保証しません。",
+        "en": "Small fixed examples only; convergence of mixed-precision refinement is not guaranteed for arbitrary matrices."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/atlas-linear-algebra-spectral-2026-11-24-r3.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "実binary64入力をFraction有理数で厳密に解き、別のLAPACK DGESV/DPOSVへ照合。条件数・前進誤差・後退誤差を分離。 保存する有理数参照ベクトルは、厳密Fraction解の各成分をbinary64へ丸めたものです。",
+        "en": "Exact-rational solutions for the actual binary64 inputs and separate LAPACK DGESV/DPOSV comparisons. Conditioning, forward error and backward error are reported separately. Each saved reference component is the exact Fraction solution rounded to binary64."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/run.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/test_algorithms.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/test_mass_action.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

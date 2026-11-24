@@ -182,6 +182,18 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/time-integration/
   availability: run
 
   t=100の1D選択パターンを独立参照で照合。参照の90→100の変化・全PDE残差と、有限刻みprimaryのFD残差を分けて測ります。
+- [Lorentz分散板へのs/p斜め入射](<https://hrkoyama.github.io/numerical-methods-atlas/validation/lorentz-oblique-sp/?lang=ja>)
+  availability: run
+
+  有限波束の実進行から複素r/t・R/T・直接散逸を求め、複素Fresnel参照と比較します。
+- [分散媒質の浅い入射角と長時間PML](<https://hrkoyama.github.io/numerical-methods-atlas/validation/dispersive-grazing-pml/?lang=ja>)
+  availability: run
+
+  80度の中心位相角を持つ有限波束をT=700まで進め、境界誤差を同格子の無PML参照から分離します。
+- [2D誘電体円柱のMie散乱幅](<https://hrkoyama.github.io/numerical-methods-atlas/validation/cylinder-mie2d/?lang=ja>)
+  availability: run
+
+  実際の2D散乱場を進め、閉曲線Poynting流束と独立な円柱級数を比較します。
 - [調和振動子：Verletの位相誤差とエネルギー](<https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/harmonic-oscillator/?lang=ja>)
   availability: run
 

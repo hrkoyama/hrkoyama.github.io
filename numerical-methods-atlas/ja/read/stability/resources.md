@@ -138,6 +138,14 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stability/
   availability: run
 
   実際の2D staggered場を時間積分し、連続波と離散symbolの参照を分けて比較します。
+- [擬似弧長継続でBratuのfoldを越える](<https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-continuation/?lang=ja>)
+  availability: run
+
+  同じ1次元Bratu境界値問題の下枝から上枝までを追跡し、接線・fold・独立解析族との空間誤差を調べます。
+- [解析・中央差分・方向ADによるJacobian不要Newton–Krylov](<https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/?lang=ja>)
+  availability: run
+
+  非線形Jacobianを組み立てずにBratuの上下枝を3種類のJvで解き、forcingと実際の残差・評価回数を保存します。
 - [周期正弦波の線形移流：風上法と解析解](<https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/advection-sine/?lang=ja>)
   availability: run
 

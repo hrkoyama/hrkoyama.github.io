@@ -216,13 +216,13 @@ python run.py --input inputs.json --output output
 
 ### 出典と確認範囲
 
-- Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton (2013). On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme. https://arxiv.org/abs/1311.2098; review_level=primary-selected-original-pdf-text
+- Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton (2013). On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme [accessed 2026-11-23]. https://arxiv.org/abs/1311.2098; review_level=primary-selected-original-pdf-text
 原著の規格化方程式、再帰・雑音、Landauと二流の線形窓の議論を選択して確認。原著の計算値は転用しません。
 
-- PlasmaPy developers (2026). Plasma dispersion function: official API mathematics. https://docs.plasmapy.org/en/stable/api/plasmapy.dispersion.dispersion_functions.plasma_dispersion_func.html; review_level=official-mathematical-definition-read
+- PlasmaPy developers (2026). Plasma dispersion function: official API mathematics [accessed 2026-11-23]. https://docs.plasmapy.org/en/stable/api/plasmapy.dispersion.dispersion_functions.plasma_dispersion_func.html; review_level=official-mathematical-definition-read
 公式のZ関数の定義を確認。PlasmaPy実行値を参照したものではありません。
 
-- SciPy developers (2024). SciPy1.14.1 roots_hermitenorm. https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.special.roots_hermitenorm.html; review_level=official-pinned-version-definition-read
+- SciPy developers (2024). SciPy1.14.1 roots_hermitenorm [accessed 2026-11-23]. https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.special.roots_hermitenorm.html; review_level=official-pinned-version-definition-read
 公式1.14.1文書の重みと多項式積分次数を確認。初期粒子重みだけに用います。
 
 
@@ -425,13 +425,13 @@ python run.py --input inputs.json --output output
 
 ### 出典と確認範囲
 
-- Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton (2013). On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme. https://arxiv.org/abs/1311.2098; review_level=primary-selected-original-pdf-text
+- Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton (2013). On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme [accessed 2026-11-23]. https://arxiv.org/abs/1311.2098; review_level=primary-selected-original-pdf-text
 原著の規格化方程式、再帰・雑音、Landauと二流の線形窓の議論を選択して確認。原著の計算値は転用しません。
 
-- PlasmaPy developers (2026). Plasma dispersion function: official API mathematics. https://docs.plasmapy.org/en/stable/api/plasmapy.dispersion.dispersion_functions.plasma_dispersion_func.html; review_level=official-mathematical-definition-read
+- PlasmaPy developers (2026). Plasma dispersion function: official API mathematics [accessed 2026-11-23]. https://docs.plasmapy.org/en/stable/api/plasmapy.dispersion.dispersion_functions.plasma_dispersion_func.html; review_level=official-mathematical-definition-read
 公式のZ関数の定義を確認。PlasmaPy実行値を参照したものではありません。
 
-- SciPy developers (2024). SciPy1.14.1 roots_hermitenorm. https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.special.roots_hermitenorm.html; review_level=official-pinned-version-definition-read
+- SciPy developers (2024). SciPy1.14.1 roots_hermitenorm [accessed 2026-11-23]. https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.special.roots_hermitenorm.html; review_level=official-pinned-version-definition-read
 公式1.14.1文書の重みと多項式積分次数を確認。初期粒子重みだけに用います。
 
 

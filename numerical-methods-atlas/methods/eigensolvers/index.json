@@ -10,8 +10,8 @@
     "en": "Linear & nonlinear solvers"
   },
   "summary": {
-    "ja": "Lanczos・Arnoldi：Ritz値と固有対残差の収束: 32・48次の対称／非対称行列でLanczosとArnoldiを自作し、Krylov次元4・8・16による最大実部の固有対の収束を測ります。行列全体を解く独立LAPACK参照と照合します。 Krylov固有値：クラスター部分空間と非正規感度: 48次のクラスター固有値と強い非正規上三角行列で、次元4/8/16/32のLanczos・Arnoldiを測ります。残差・前進誤差・固有値条件数・不変部分空間を分けます。",
-    "en": "Lanczos and Arnoldi: convergence of Ritz values and eigenpair residuals: Original Lanczos and Arnoldi on symmetric/nonsymmetric 32×32 and 48×48 matrices measure convergence of the largest-real-part eigenpair over Krylov dimensions 4, 8 and 16, against independent full-matrix LAPACK references. Krylov eigenvalues: cluster subspaces and nonnormal sensitivity: Measure Lanczos and Arnoldi with dimensions4/8/16/32 on 48-dimensional clustered symmetric and strongly nonnormal triangular matrices. Distinguish residual, forward error, eigenvalue condition number and invariant subspace."
+    "ja": "Lanczos・Arnoldi：Ritz値と固有対残差の収束: 32・48次の対称／非対称行列でLanczosとArnoldiを自作し、Krylov次元4・8・16による最大実部の固有対の収束を測ります。行列全体を解く独立LAPACK参照と照合します。 Krylov固有値：クラスター部分空間と非正規感度: 48次のクラスター固有値と強い非正規上三角行列で、次元4/8/16/32のLanczos・Arnoldiを測ります。残差・前進誤差・固有値条件数・不変部分空間を分けます。 追加固定例：明示的再始動Krylovと内部固有値、整合質量FEM弦の一般化固有値。条件と検証範囲は各配布版で確認してください。",
+    "en": "Lanczos and Arnoldi: convergence of Ritz values and eigenpair residuals: Original Lanczos and Arnoldi on symmetric/nonsymmetric 32×32 and 48×48 matrices measure convergence of the largest-real-part eigenpair over Krylov dimensions 4, 8 and 16, against independent full-matrix LAPACK references. Krylov eigenvalues: cluster subspaces and nonnormal sensitivity: Measure Lanczos and Arnoldi with dimensions4/8/16/32 on 48-dimensional clustered symmetric and strongly nonnormal triangular matrices. Distinguish residual, forward error, eigenvalue condition number and invariant subspace. Additional fixed examples: Explicitly restarted Krylov and interior eigenvalues, Consistent-mass FEM string eigenpairs. See each release for assumptions and checked scope."
   },
   "status": "educational-example",
   "origin": "development-candidate",
@@ -41,12 +41,16 @@
     "en": "Preserve the published fixed-input scope; validate conditions, references and criteria separately for extensions."
   },
   "limitations": {
-    "ja": "Lanczos・Arnoldi：Ritz値と固有対残差の収束: 非再始動・小行列・分離した極端固有対の教材です。内部固有値、クラスタ、巨大な疎行列、強い非正規性、shift-invertやimplicitly restarted Arnoldiは対象外です。小さな固有対残差だけで非正規行列の固有値誤差の厳密上界とはしません。 Krylov固有値：クラスター部分空間と非正規感度: NumPyの射影コアとSciPyの密参照はLAPACK基盤を共有し得るため、全面的に独立なバックエンドとはしません。解析固有値と独立構成対照を併用します。再始動、内部固有値、大規模疎行列、普遍的な単調収束は対象外です。",
-    "en": "Lanczos and Arnoldi: convergence of Ritz values and eigenpair residuals: Unrestarted small-matrix educational examples with separated extreme eigenpairs. Interior/clustered eigenvalues, very large sparse matrices, strong nonnormality, shift-invert and implicitly restarted Arnoldi are outside scope. A small eigenpair residual alone is not treated as a rigorous eigenvalue-error bound for nonnormal matrices. Krylov eigenvalues: cluster subspaces and nonnormal sensitivity: NumPy projected solves and SciPy dense references may share LAPACK infrastructure and are not claimed fully independent backends. Analytic eigenvalues and constructed controls provide additional checks. Restarting, interior eigenvalues, large sparse systems and universal monotonic convergence are outside scope."
+    "ja": "Lanczos・Arnoldi：Ritz値と固有対残差の収束: 非再始動・小行列・分離した極端固有対の教材です。内部固有値、クラスタ、巨大な疎行列、強い非正規性、shift-invertやimplicitly restarted Arnoldiは対象外です。小さな固有対残差だけで非正規行列の固有値誤差の厳密上界とはしません。 Krylov固有値：クラスター部分空間と非正規感度: NumPyの射影コアとSciPyの密参照はLAPACK基盤を共有し得るため、全面的に独立なバックエンドとはしません。解析固有値と独立構成対照を併用します。再始動、内部固有値、大規模疎行列、普遍的な単調収束は対象外です。 追加固定例：単一対称実固有対だけ。暗黙再始動・Krylov-Schur・ロッキング・一般の非正規やクラスターは未実装。 小規模1D弦のみ。SciPyが返す前の例外では入力を保存し、未返却の内部反復を保存したとはしません。 成分資格35判定は4科学例の合格を代用せず、元SciPy内部の未返却反復は保存済みとしません。",
+    "en": "Lanczos and Arnoldi: convergence of Ritz values and eigenpair residuals: Unrestarted small-matrix educational examples with separated extreme eigenpairs. Interior/clustered eigenvalues, very large sparse matrices, strong nonnormality, shift-invert and implicitly restarted Arnoldi are outside scope. A small eigenpair residual alone is not treated as a rigorous eigenvalue-error bound for nonnormal matrices. Krylov eigenvalues: cluster subspaces and nonnormal sensitivity: NumPy projected solves and SciPy dense references may share LAPACK infrastructure and are not claimed fully independent backends. Analytic eigenvalues and constructed controls provide additional checks. Restarting, interior eigenvalues, large sparse systems and universal monotonic convergence are outside scope. Additional fixed examples: One eigenpair of a real symmetric matrix only. No implicit restarting, Krylov-Schur, locking, or general nonnormal or clustered-spectrum capability is claimed. A small 1D string only. If SciPy raises before returning, inputs are retained; unreturned internal iterates are not claimed to be saved. The 35 component checks do not replace the four full scientific cases."
   },
   "metadata_review": {
     "level": "scoped conditioned matrix/integral families with analytic or independently computed references; residual versus forward error, convergence and explicit failure controls",
-    "on": "2026-11-22"
+    "on": "2026-11-22",
+    "supplemental_review": {
+      "on": "2026-11-24",
+      "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
+    }
   },
   "aliases": [
     "固有値解法",
@@ -803,6 +807,1024 @@
           }
         }
       ]
+    },
+    {
+      "group": "linear-algebra-spectral",
+      "case_ids": [
+        "restarted-shift-invert",
+        "fem-mass-eigen"
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/",
+      "code_edition": "2026-11-24-r3",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/fixtures.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/solvers.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/references/oracles.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/test_algorithms.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/test_mass_action.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-linear-algebra-spectral-2026-11-24-r3",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/atlas-linear-algebra-spectral-2026-11-24-r3.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+      "code_archive_sha256": "3d14112335ce8a55cce306ec689d430f172d02a49f4675ae5948a2fab7ca1452",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/result.json",
+      "passed_tests": 29,
+      "examples": [
+        {
+          "id": "restarted-shift-invert",
+          "title": {
+            "ja": "明示的再始動Krylovと内部固有値",
+            "en": "Explicitly restarted Krylov and interior eigenvalues"
+          },
+          "domains": [
+            "eigenvalues"
+          ],
+          "method_ids": [
+            "eigensolvers"
+          ],
+          "source_files": [
+            "solvers.py",
+            "fixtures.py",
+            "run.py",
+            "references/oracles.py"
+          ],
+          "assumptions": {
+            "ja": "Dirichlet離散Laplacian31、再始動長8/16、最大40cycle、shiftなし/0/950。",
+            "en": "A fixed Dirichlet Laplacian of size 31, restart lengths 8 and 16, and at most 40 cycles. Compare the untransformed problem with shifts 0 and 950."
+          },
+          "algorithm": {
+            "ja": "二重MGS Arnoldiを単一Ritzベクトルから明示的に再始動。自前LUでshift線形解を求め、元の固有残差で停止。",
+            "en": "Two-pass Arnoldi is explicitly restarted from one Ritz vector. Original LU routines perform the shifted solves, and stopping uses the original eigenproblem."
+          },
+          "validation": {
+            "ja": "既知の正弦スペクトルと独立な全行列LAPACK。shift解・Krylov作用・元残差作用を別計数。",
+            "en": "The known discrete sine spectrum and an independent global LAPACK comparison. Shift-solve, Krylov and original-residual actions are counted separately."
+          },
+          "limits": {
+            "ja": "単一対称実固有対だけ。暗黙再始動・Krylov-Schur・ロッキング・一般の非正規やクラスターは未実装。",
+            "en": "One eigenpair of a real symmetric matrix only. No implicit restarting, Krylov-Schur, locking, or general nonnormal or clustered-spectrum capability is claimed."
+          },
+          "review_level": {
+            "ja": "入力・16独立参照・195科学判定は旧版から不変。R4科学実行の実際の成否はresult.json/verification.jsonへ記録し、旧失敗と別に保持します。",
+            "en": "The fixed inputs, 16 independent reference checks and 195 scientific gates are unchanged. R4 passed the primary validation; actual package checks are recorded in result.json and verification.json. Earlier failed attempts remain separate."
+          },
+          "formulas": [
+            "lambda_j=4(n+1)^2 sin^2(j*pi/[2(n+1)])",
+            "T=(A-sigma I)^-1",
+            "lambda=sigma+1/theta"
+          ],
+          "references": [
+            {
+              "id": "slepc-eps",
+              "title": "SLEPc EPS: projection, Krylov methods and shift-invert",
+              "url": "https://slepc.upv.es/release/documentation/manual/eps.html",
+              "review_level": "selected-official-documentation",
+              "review_scope": "Selected projection, Arnoldi, restarting, shift-invert and generalized-problem paragraphs were read. No SLEPc execution or Krylov-Schur reproduction is claimed."
+            }
+          ],
+          "validation_count": 29,
+          "gallery_figure": "restarted-shift-invert-preview.png",
+          "additional_figures": [
+            {
+              "file": "restarted-shift-invert-preview.png",
+              "caption": {
+                "ja": "固有値比較に使う、保存した31×31 Dirichlet Laplacian。",
+                "en": "The saved 31 x 31 Dirichlet Laplacian used in the eigenvalue comparisons."
+              }
+            }
+          ],
+          "summary": {
+            "ja": "固定長の明示的再始動とshift-invertを、元の固有値問題の残差と作用回数で比較します。",
+            "en": "Explicit restarting and shift-invert are compared using original eigenproblem residuals and counted operator actions."
+          },
+          "measured": {
+            "id": "restarted-shift-invert",
+            "passed": true,
+            "checks": {
+              "restart-8-shift-None/finite": true,
+              "restart-8-shift-None/original-problem-residual": true,
+              "restart-8-shift-None/known-spectrum": true,
+              "restart-8-shift-None/shift-linear-residual": true,
+              "restart-8-shift-None/action-budget": true,
+              "restart-8-shift-None/basis-orthogonality": true,
+              "restart-8-shift-None/inverse-spectral-map": true,
+              "restart-16-shift-None/finite": true,
+              "restart-16-shift-None/original-problem-residual": true,
+              "restart-16-shift-None/known-spectrum": true,
+              "restart-16-shift-None/shift-linear-residual": true,
+              "restart-16-shift-None/action-budget": true,
+              "restart-16-shift-None/basis-orthogonality": true,
+              "restart-16-shift-None/inverse-spectral-map": true,
+              "restart-8-shift-0.0/finite": true,
+              "restart-8-shift-0.0/original-problem-residual": true,
+              "restart-8-shift-0.0/known-spectrum": true,
+              "restart-8-shift-0.0/shift-linear-residual": true,
+              "restart-8-shift-0.0/action-budget": true,
+              "restart-8-shift-0.0/basis-orthogonality": true,
+              "restart-8-shift-0.0/inverse-spectral-map": true,
+              "restart-16-shift-0.0/finite": true,
+              "restart-16-shift-0.0/original-problem-residual": true,
+              "restart-16-shift-0.0/known-spectrum": true,
+              "restart-16-shift-0.0/shift-linear-residual": true,
+              "restart-16-shift-0.0/action-budget": true,
+              "restart-16-shift-0.0/basis-orthogonality": true,
+              "restart-16-shift-0.0/inverse-spectral-map": true,
+              "restart-8-shift-950.0/finite": true,
+              "restart-8-shift-950.0/original-problem-residual": true,
+              "restart-8-shift-950.0/known-spectrum": true,
+              "restart-8-shift-950.0/shift-linear-residual": true,
+              "restart-8-shift-950.0/action-budget": true,
+              "restart-8-shift-950.0/basis-orthogonality": true,
+              "restart-8-shift-950.0/inverse-spectral-map": true,
+              "restart-16-shift-950.0/finite": true,
+              "restart-16-shift-950.0/original-problem-residual": true,
+              "restart-16-shift-950.0/known-spectrum": true,
+              "restart-16-shift-950.0/shift-linear-residual": true,
+              "restart-16-shift-950.0/action-budget": true,
+              "restart-16-shift-950.0/basis-orthogonality": true,
+              "restart-16-shift-950.0/inverse-spectral-map": true,
+              "shift/exact-singularity-failure-retained-as-control": true
+            },
+            "check_details": [
+              {
+                "name": "restart-8-shift-None/finite",
+                "value": 0.0,
+                "bound": 0.0,
+                "passed": true
+              },
+              {
+                "name": "restart-8-shift-None/original-problem-residual",
+                "value": 5.774117289151498e-10,
+                "bound": 1e-09,
+                "passed": true
+              },
+              {
+                "name": "restart-8-shift-None/known-spectrum",
+                "value": 0.0,
+                "bound": 2e-08,
+                "passed": true
+              },
+              {
+                "name": "restart-8-shift-None/shift-linear-residual",
+                "value": 0.0,
+                "bound": 2e-12,
+                "passed": true
+              },
+              {
+                "name": "restart-8-shift-None/action-budget",
+                "value": 216,
+                "bound": 320,
+                "passed": true
+              },
+              {
+                "name": "restart-8-shift-None/basis-orthogonality",
+                "value": 6.661338147750939e-16,
+                "bound": 2e-10,
+                "passed": true
+              },
+              {
+                "name": "restart-8-shift-None/inverse-spectral-map",
+                "value": 1.891934232085626e-15,
+                "bound": 2e-08,
+                "passed": true
+              },
+              {
+                "name": "restart-16-shift-None/finite",
+                "value": 0.0,
+                "bound": 0.0,
+                "passed": true
+              },
+              {
+                "name": "restart-16-shift-None/original-problem-residual",
+                "value": 3.2481522026886097e-10,
+                "bound": 1e-09,
+                "passed": true
+              },
+              {
+                "name": "restart-16-shift-None/known-spectrum",
+                "value": 2.2258049789242657e-16,
+                "bound": 2e-08,
+                "passed": true
+              },
+              {
+                "name": "restart-16-shift-None/shift-linear-residual",
+                "value": 0.0,
+                "bound": 2e-12,
+                "passed": true
+              },
+              {
+                "name": "restart-16-shift-None/action-budget",
+                "value": 144,
+                "bound": 640,
+                "passed": true
+              },
+              {
+                "name": "restart-16-shift-None/basis-orthogonality",
+                "value": 4.440892098500626e-16,
+                "bound": 2e-10,
+                "passed": true
+              },
+              {
+                "name": "restart-16-shift-None/inverse-spectral-map",
+                "value": 1.224192738408346e-15,
+                "bound": 2e-08,
+                "passed": true
+              },
+              {
+                "name": "restart-8-shift-0.0/finite",
+                "value": 0.0,
+                "bound": 0.0,
+                "passed": true
+              },
+              {
+                "name": "restart-8-shift-0.0/original-problem-residual",
+                "value": 1.0898745876442353e-12,
+                "bound": 1e-09,
+                "passed": true
+              },
+              {
+                "name": "restart-8-shift-0.0/known-spectrum",
+                "value": 2.521780905296546e-15,
+                "bound": 2e-08,
+                "passed": true
+              },
+              {
+                "name": "restart-8-shift-0.0/shift-linear-residual",
+                "value": 5.216647244256777e-17,
+                "bound": 2e-12,
+                "passed": true
+              },
+              {
+                "name": "restart-8-shift-0.0/action-budget",
+                "value": 8,
+                "bound": 320,
+                "passed": true
+              },
+              {
+                "name": "restart-8-shift-0.0/basis-orthogonality",
+                "value": 2.220446049250313e-16,
+                "bound": 2e-10,
+                "passed": true
+              },
+              {
+                "name": "restart-8-shift-0.0/inverse-spectral-map",
+                "value": 1.801272075211819e-16,
+                "bound": 2e-08,
+                "passed": true
+              },
+              {
+                "name": "restart-16-shift-0.0/finite",
+                "value": 0.0,
+                "bound": 0.0,
+                "passed": true
+              },
+              {
+                "name": "restart-16-shift-0.0/original-problem-residual",
+                "value": 6.358403911194432e-17,
+                "bound": 1e-09,
+                "passed": true
+              },
+              {
+                "name": "restart-16-shift-0.0/known-spectrum",
+                "value": 1.0807632451270913e-15,
+                "bound": 2e-08,
+                "passed": true
+              },
+              {
+                "name": "restart-16-shift-0.0/shift-linear-residual",
+                "value": 5.216647244256777e-17,
+                "bound": 2e-12,
+                "passed": true
+              },
+              {
+                "name": "restart-16-shift-0.0/action-budget",
+                "value": 16,
+                "bound": 640,
+                "passed": true
+              },
+              {
+                "name": "restart-16-shift-0.0/basis-orthogonality",
+                "value": 4.440892098500626e-16,
+                "bound": 2e-10,
+                "passed": true
+              },
+              {
+                "name": "restart-16-shift-0.0/inverse-spectral-map",
+                "value": 1.621144867690637e-15,
+                "bound": 2e-08,
+                "passed": true
+              },
+              {
+                "name": "restart-8-shift-950.0/finite",
+                "value": 0.0,
+                "bound": 0.0,
+                "passed": true
+              },
+              {
+                "name": "restart-8-shift-950.0/original-problem-residual",
+                "value": 2.056289307634322e-15,
+                "bound": 1e-09,
+                "passed": true
+              },
+              {
+                "name": "restart-8-shift-950.0/known-spectrum",
+                "value": 3.7471264543159793e-16,
+                "bound": 2e-08,
+                "passed": true
+              },
+              {
+                "name": "restart-8-shift-950.0/shift-linear-residual",
+                "value": 3.4762794216656775e-17,
+                "bound": 2e-12,
+                "passed": true
+              },
+              {
+                "name": "restart-8-shift-950.0/action-budget",
+                "value": 16,
+                "bound": 320,
+                "passed": true
+              },
+              {
+                "name": "restart-8-shift-950.0/basis-orthogonality",
+                "value": 2.220446049250313e-16,
+                "bound": 2e-10,
+                "passed": true
+              },
+              {
+                "name": "restart-8-shift-950.0/inverse-spectral-map",
+                "value": 3.7471264543159793e-16,
+                "bound": 2e-08,
+                "passed": true
+              },
+              {
+                "name": "restart-16-shift-950.0/finite",
+                "value": 0.0,
+                "bound": 0.0,
+                "passed": true
+              },
+              {
+                "name": "restart-16-shift-950.0/original-problem-residual",
+                "value": 5.083888487829476e-17,
+                "bound": 1e-09,
+                "passed": true
+              },
+              {
+                "name": "restart-16-shift-950.0/known-spectrum",
+                "value": 0.0,
+                "bound": 2e-08,
+                "passed": true
+              },
+              {
+                "name": "restart-16-shift-950.0/shift-linear-residual",
+                "value": 3.3540800934165216e-17,
+                "bound": 2e-12,
+                "passed": true
+              },
+              {
+                "name": "restart-16-shift-950.0/action-budget",
+                "value": 16,
+                "bound": 640,
+                "passed": true
+              },
+              {
+                "name": "restart-16-shift-950.0/basis-orthogonality",
+                "value": 2.220446049250313e-16,
+                "bound": 2e-10,
+                "passed": true
+              },
+              {
+                "name": "restart-16-shift-950.0/inverse-spectral-map",
+                "value": 0.0,
+                "bound": 2e-08,
+                "passed": true
+              },
+              {
+                "name": "shift/exact-singularity-failure-retained-as-control",
+                "value": 1,
+                "bound": 1,
+                "passed": true
+              }
+            ],
+            "records": [
+              {
+                "id": "restart-8-shift-None",
+                "fields": "restart-8-shift-None.npz",
+                "shift": null,
+                "restart_length": 8,
+                "cycles": 27,
+                "operator_calls": 216,
+                "original_residual_actions": 27,
+                "shift_residual_matrix_actions": 0,
+                "shift_solve_count": 0,
+                "value": 4086.1383202246593,
+                "exact_target": 4086.1383202246593,
+                "true_normalized_residual": 5.774117289151498e-10
+              },
+              {
+                "id": "restart-16-shift-None",
+                "fields": "restart-16-shift-None.npz",
+                "shift": null,
+                "restart_length": 16,
+                "cycles": 9,
+                "operator_calls": 144,
+                "original_residual_actions": 9,
+                "shift_residual_matrix_actions": 0,
+                "shift_solve_count": 0,
+                "value": 4086.1383202246584,
+                "exact_target": 4086.1383202246593,
+                "true_normalized_residual": 3.2481522026886097e-10
+              },
+              {
+                "id": "restart-8-shift-0.0",
+                "fields": "restart-8-shift-0.0.npz",
+                "shift": 0.0,
+                "restart_length": 8,
+                "cycles": 1,
+                "operator_calls": 8,
+                "original_residual_actions": 1,
+                "shift_residual_matrix_actions": 8,
+                "shift_solve_count": 8,
+                "value": 9.861679775340802,
+                "exact_target": 9.861679775340777,
+                "true_normalized_residual": 1.0898745876442353e-12
+              },
+              {
+                "id": "restart-16-shift-0.0",
+                "fields": "restart-16-shift-0.0.npz",
+                "shift": 0.0,
+                "restart_length": 16,
+                "cycles": 1,
+                "operator_calls": 16,
+                "original_residual_actions": 1,
+                "shift_residual_matrix_actions": 16,
+                "shift_solve_count": 16,
+                "value": 9.861679775340788,
+                "exact_target": 9.861679775340777,
+                "true_normalized_residual": 6.358403911194432e-17
+              },
+              {
+                "id": "restart-8-shift-950.0",
+                "fields": "restart-8-shift-950.0.npz",
+                "shift": 950.0,
+                "restart_length": 8,
+                "cycles": 2,
+                "operator_calls": 16,
+                "original_residual_actions": 2,
+                "shift_residual_matrix_actions": 16,
+                "shift_solve_count": 16,
+                "value": 910.192162775855,
+                "exact_target": 910.1921627758546,
+                "true_normalized_residual": 2.056289307634322e-15
+              },
+              {
+                "id": "restart-16-shift-950.0",
+                "fields": "restart-16-shift-950.0.npz",
+                "shift": 950.0,
+                "restart_length": 16,
+                "cycles": 1,
+                "operator_calls": 16,
+                "original_residual_actions": 1,
+                "shift_residual_matrix_actions": 16,
+                "shift_solve_count": 16,
+                "value": 910.1921627758546,
+                "exact_target": 910.1921627758546,
+                "true_normalized_residual": 5.083888487829476e-17
+              }
+            ],
+            "metrics": {
+              "max_original_eigenpair_residual": 5.774117289151498e-10,
+              "max_operator_calls": 216,
+              "max_restart_cycles": 27,
+              "max_shift_solve_count": 16
+            }
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/restarted-shift-invert/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#restarted-shift-invert",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#restarted-shift-invert"
+          }
+        },
+        {
+          "id": "fem-mass-eigen",
+          "title": {
+            "ja": "整合質量FEM弦の一般化固有値",
+            "en": "Consistent-mass FEM string eigenpairs"
+          },
+          "domains": [
+            "eigenvalues"
+          ],
+          "method_ids": [
+            "eigensolvers",
+            "lobpcg"
+          ],
+          "source_files": [
+            "solvers.py",
+            "fixtures.py",
+            "run.py",
+            "references/oracles.py"
+          ],
+          "assumptions": {
+            "ja": "単位弦・張力密度1、同次Dirichlet、内部15/31/63点、最低3固有対。",
+            "en": "A unit string with unit tension and density and homogeneous Dirichlet endpoints. Use 15, 31 and 63 interior nodes and the lowest three eigenpairs."
+          },
+          "algorithm": {
+            "ja": "要素からK,Mを組み立て、M内積のK^-1M KrylovとSciPy LOBPCGを比較。小規模な厳密K逆前処理。 LOBPCG初期列は{1,x³,x⁶}。K逆Mの次数+2像を初期spanから独立にし、{1,x,x²}の構造的階数欠落を避ける。 同じMの作用を資格済einsumのLinearOperatorで与え、dense-B adapterを通さない。固有値solver自体はSciPy LOBPCG。",
+            "en": "Elementwise K and M assembly, M-inner-product Krylov iteration on K^-1 M, and actual SciPy LOBPCG with a small exact-K-inverse preconditioner. LOBPCG starts from {1, x^3, x^6}; degree-plus-two images avoid the structural rank defect of {1, x, x^2}. The same M is applied through a qualified einsum LinearOperator, avoiding the dense-B adapter. The eigensolver itself remains SciPy LOBPCG."
+          },
+          "validation": {
+            "ja": "一般化dense eigh、独立離散スペクトル、連続体(jπ)^2への細分化。M直交性と元残差は別量。",
+            "en": "Generalized dense eigh, an independent discrete spectrum and refinement toward (j*pi)^2. M-orthogonality and original residuals are distinct quantities."
+          },
+          "limits": {
+            "ja": "小規模1D弦のみ。SciPyが返す前の例外では入力を保存し、未返却の内部反復を保存したとはしません。 成分資格35判定は4科学例の合格を代用せず、元SciPy内部の未返却反復は保存済みとしません。",
+            "en": "A small 1D string only. If SciPy raises before returning, inputs are retained; unreturned internal iterates are not claimed to be saved. The 35 component checks do not replace the four full scientific cases."
+          },
+          "review_level": {
+            "ja": "入力・16独立参照・195科学判定は旧版から不変。R4科学実行の実際の成否はresult.json/verification.jsonへ記録し、旧失敗と別に保持します。",
+            "en": "The fixed inputs, 16 independent reference checks and 195 scientific gates are unchanged. R4 passed the primary validation; actual package checks are recorded in result.json and verification.json. Earlier failed attempts remain separate."
+          },
+          "formulas": [
+            "K x=lambda M x",
+            "lambda_j,h=6(1-cos(theta_j))/[h^2(2+cos(theta_j))]",
+            "X^T M X=I"
+          ],
+          "references": [
+            {
+              "id": "slepc-eps",
+              "title": "SLEPc EPS: projection, Krylov methods and shift-invert",
+              "url": "https://slepc.upv.es/release/documentation/manual/eps.html",
+              "review_level": "selected-official-documentation",
+              "review_scope": "Selected projection, Arnoldi, restarting, shift-invert and generalized-problem paragraphs were read. No SLEPc execution or Krylov-Schur reproduction is claimed."
+            },
+            {
+              "id": "scipy-lobpcg-1141",
+              "title": "SciPy 1.14.1 LOBPCG API",
+              "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.sparse.linalg.lobpcg.html",
+              "review_level": "selected-official-documentation",
+              "review_scope": "Selected discussion of SPD B, preconditioner M, the history tuple, the 3k eigensolve, the 5k > n fallback and the rod example was read. This maintained-library comparison shares reduced LAPACK primitives; LOBPCG is not independently authored here."
+            },
+            {
+              "id": "scipy-lobpcg-source-1141",
+              "title": "SciPy 1.14.1 LOBPCG adapter and initial B-orthonormalization",
+              "url": "https://raw.githubusercontent.com/scipy/scipy/v1.14.1/scipy/sparse/linalg/_eigen/lobpcg/lobpcg.py",
+              "review_level": "selected-official-source",
+              "review_scope": "Selected _makeMatMat, _b_orthonormalize and API lines were read. The installed pinned file is bound separately. No full reading of the original LOBPCG paper or byte equality between wheel and Web source formatting is claimed."
+            }
+          ],
+          "validation_count": 29,
+          "gallery_figure": "fem-mass-eigen-preview.png",
+          "additional_figures": [
+            {
+              "file": "fem-mass-eigen-preview.png",
+              "caption": {
+                "ja": "内部63点で計算した、M正規化された最低3モード。",
+                "en": "The first three M-normalized modes computed on the 63-node interior grid."
+              }
+            }
+          ],
+          "summary": {
+            "ja": "整合質量のP1弦で、M内積Krylovと実際のSciPy LOBPCGを独立離散スペクトルへ照合します。",
+            "en": "Consistent-mass P1 string eigenpairs compare an M-inner-product Krylov method and actual SciPy LOBPCG with an independent discrete spectrum."
+          },
+          "measured": {
+            "id": "fem-mass-eigen",
+            "passed": true,
+            "checks": {
+              "fem-15-mass-Krylov/finite": true,
+              "fem-15-mass-Krylov/original-generalized-residual": true,
+              "fem-15-mass-Krylov/M-orthogonality": true,
+              "fem-15-mass-Krylov/independent-dense-reference": true,
+              "fem-15-mass-Krylov/exact-discrete-spectrum": true,
+              "fem-15-mass-Krylov/fixed-action-budget": true,
+              "fem-15-SciPy-LOBPCG/finite": true,
+              "fem-15-SciPy-LOBPCG/original-generalized-residual": true,
+              "fem-15-SciPy-LOBPCG/M-orthogonality": true,
+              "fem-15-SciPy-LOBPCG/independent-dense-reference": true,
+              "fem-15-SciPy-LOBPCG/exact-discrete-spectrum": true,
+              "fem-15-SciPy-LOBPCG/fixed-action-budget": true,
+              "fem-31-mass-Krylov/finite": true,
+              "fem-31-mass-Krylov/original-generalized-residual": true,
+              "fem-31-mass-Krylov/M-orthogonality": true,
+              "fem-31-mass-Krylov/independent-dense-reference": true,
+              "fem-31-mass-Krylov/exact-discrete-spectrum": true,
+              "fem-31-mass-Krylov/fixed-action-budget": true,
+              "fem-31-SciPy-LOBPCG/finite": true,
+              "fem-31-SciPy-LOBPCG/original-generalized-residual": true,
+              "fem-31-SciPy-LOBPCG/M-orthogonality": true,
+              "fem-31-SciPy-LOBPCG/independent-dense-reference": true,
+              "fem-31-SciPy-LOBPCG/exact-discrete-spectrum": true,
+              "fem-31-SciPy-LOBPCG/fixed-action-budget": true,
+              "fem-63-mass-Krylov/finite": true,
+              "fem-63-mass-Krylov/original-generalized-residual": true,
+              "fem-63-mass-Krylov/M-orthogonality": true,
+              "fem-63-mass-Krylov/independent-dense-reference": true,
+              "fem-63-mass-Krylov/exact-discrete-spectrum": true,
+              "fem-63-mass-Krylov/fixed-action-budget": true,
+              "fem-63-SciPy-LOBPCG/finite": true,
+              "fem-63-SciPy-LOBPCG/original-generalized-residual": true,
+              "fem-63-SciPy-LOBPCG/M-orthogonality": true,
+              "fem-63-SciPy-LOBPCG/independent-dense-reference": true,
+              "fem-63-SciPy-LOBPCG/exact-discrete-spectrum": true,
+              "fem-63-SciPy-LOBPCG/fixed-action-budget": true,
+              "continuum/second-order-ratio-1": true,
+              "continuum/second-order-ratio-2": true,
+              "continuum/finest-three-eigenvalues": true
+            },
+            "check_details": [
+              {
+                "name": "fem-15-mass-Krylov/finite",
+                "value": 0.0,
+                "bound": 0.0,
+                "passed": true
+              },
+              {
+                "name": "fem-15-mass-Krylov/original-generalized-residual",
+                "value": 1.3876763633292625e-14,
+                "bound": 2e-08,
+                "passed": true
+              },
+              {
+                "name": "fem-15-mass-Krylov/M-orthogonality",
+                "value": 6.661338147750939e-16,
+                "bound": 2e-09,
+                "passed": true
+              },
+              {
+                "name": "fem-15-mass-Krylov/independent-dense-reference",
+                "value": 2.327706997302402e-14,
+                "bound": 2e-08,
+                "passed": true
+              },
+              {
+                "name": "fem-15-mass-Krylov/exact-discrete-spectrum",
+                "value": 2.4343195315299957e-14,
+                "bound": 2e-08,
+                "passed": true
+              },
+              {
+                "name": "fem-15-mass-Krylov/fixed-action-budget",
+                "value": 15,
+                "bound": 1000,
+                "passed": true
+              },
+              {
+                "name": "fem-15-SciPy-LOBPCG/finite",
+                "value": 0.0,
+                "bound": 0.0,
+                "passed": true
+              },
+              {
+                "name": "fem-15-SciPy-LOBPCG/original-generalized-residual",
+                "value": 1.536909708688511e-10,
+                "bound": 2e-08,
+                "passed": true
+              },
+              {
+                "name": "fem-15-SciPy-LOBPCG/M-orthogonality",
+                "value": 2.6082722481780453e-16,
+                "bound": 2e-09,
+                "passed": true
+              },
+              {
+                "name": "fem-15-SciPy-LOBPCG/independent-dense-reference",
+                "value": 8.43205627872415e-15,
+                "bound": 2e-08,
+                "passed": true
+              },
+              {
+                "name": "fem-15-SciPy-LOBPCG/exact-discrete-spectrum",
+                "value": 1.2558381691716699e-15,
+                "bound": 2e-08,
+                "passed": true
+              },
+              {
+                "name": "fem-15-SciPy-LOBPCG/fixed-action-budget",
+                "value": 26,
+                "bound": 1000,
+                "passed": true
+              },
+              {
+                "name": "fem-31-mass-Krylov/finite",
+                "value": 0.0,
+                "bound": 0.0,
+                "passed": true
+              },
+              {
+                "name": "fem-31-mass-Krylov/original-generalized-residual",
+                "value": 5.239838789378949e-14,
+                "bound": 2e-08,
+                "passed": true
+              },
+              {
+                "name": "fem-31-mass-Krylov/M-orthogonality",
+                "value": 8.881784197001252e-16,
+                "bound": 2e-09,
+                "passed": true
+              },
+              {
+                "name": "fem-31-mass-Krylov/independent-dense-reference",
+                "value": 1.3541807946723635e-13,
+                "bound": 2e-08,
+                "passed": true
+              },
+              {
+                "name": "fem-31-mass-Krylov/exact-discrete-spectrum",
+                "value": 3.8751577791582954e-14,
+                "bound": 2e-08,
+                "passed": true
+              },
+              {
+                "name": "fem-31-mass-Krylov/fixed-action-budget",
+                "value": 24,
+                "bound": 1000,
+                "passed": true
+              },
+              {
+                "name": "fem-31-SciPy-LOBPCG/finite",
+                "value": 0.0,
+                "bound": 0.0,
+                "passed": true
+              },
+              {
+                "name": "fem-31-SciPy-LOBPCG/original-generalized-residual",
+                "value": 1.7283979466767472e-10,
+                "bound": 2e-08,
+                "passed": true
+              },
+              {
+                "name": "fem-31-SciPy-LOBPCG/M-orthogonality",
+                "value": 5.551115123125783e-16,
+                "bound": 2e-09,
+                "passed": true
+              },
+              {
+                "name": "fem-31-SciPy-LOBPCG/independent-dense-reference",
+                "value": 1.5843735459579712e-13,
+                "bound": 2e-08,
+                "passed": true
+              },
+              {
+                "name": "fem-31-SciPy-LOBPCG/exact-discrete-spectrum",
+                "value": 8.632228173208993e-15,
+                "bound": 2e-08,
+                "passed": true
+              },
+              {
+                "name": "fem-31-SciPy-LOBPCG/fixed-action-budget",
+                "value": 27,
+                "bound": 1000,
+                "passed": true
+              },
+              {
+                "name": "fem-63-mass-Krylov/finite",
+                "value": 0.0,
+                "bound": 0.0,
+                "passed": true
+              },
+              {
+                "name": "fem-63-mass-Krylov/original-generalized-residual",
+                "value": 1.8340301814489987e-13,
+                "bound": 2e-08,
+                "passed": true
+              },
+              {
+                "name": "fem-63-mass-Krylov/M-orthogonality",
+                "value": 1.1102230246251565e-15,
+                "bound": 2e-09,
+                "passed": true
+              },
+              {
+                "name": "fem-63-mass-Krylov/independent-dense-reference",
+                "value": 1.298430987720135e-13,
+                "bound": 2e-08,
+                "passed": true
+              },
+              {
+                "name": "fem-63-mass-Krylov/exact-discrete-spectrum",
+                "value": 1.0587825344552464e-13,
+                "bound": 2e-08,
+                "passed": true
+              },
+              {
+                "name": "fem-63-mass-Krylov/fixed-action-budget",
+                "value": 24,
+                "bound": 1000,
+                "passed": true
+              },
+              {
+                "name": "fem-63-SciPy-LOBPCG/finite",
+                "value": 0.0,
+                "bound": 0.0,
+                "passed": true
+              },
+              {
+                "name": "fem-63-SciPy-LOBPCG/original-generalized-residual",
+                "value": 1.94948028233657e-10,
+                "bound": 2e-08,
+                "passed": true
+              },
+              {
+                "name": "fem-63-SciPy-LOBPCG/M-orthogonality",
+                "value": 6.661338147750939e-16,
+                "bound": 2e-09,
+                "passed": true
+              },
+              {
+                "name": "fem-63-SciPy-LOBPCG/independent-dense-reference",
+                "value": 3.113073443508389e-14,
+                "bound": 2e-08,
+                "passed": true
+              },
+              {
+                "name": "fem-63-SciPy-LOBPCG/exact-discrete-spectrum",
+                "value": 1.0976732951099406e-14,
+                "bound": 2e-08,
+                "passed": true
+              },
+              {
+                "name": "fem-63-SciPy-LOBPCG/fixed-action-budget",
+                "value": 30,
+                "bound": 1000,
+                "passed": true
+              },
+              {
+                "name": "continuum/second-order-ratio-1",
+                "value": 0.2479562420782905,
+                "bound": [
+                  0.2,
+                  0.3
+                ],
+                "passed": true
+              },
+              {
+                "name": "continuum/second-order-ratio-2",
+                "value": 0.24946543287909265,
+                "bound": [
+                  0.2,
+                  0.3
+                ],
+                "passed": true
+              },
+              {
+                "name": "continuum/finest-three-eigenvalues",
+                "value": 0.0018084820192497452,
+                "bound": 0.002,
+                "passed": true
+              }
+            ],
+            "records": [
+              {
+                "id": "fem-15-mass-Krylov",
+                "fields": "fem-15-mass-Krylov.npz",
+                "method": "mass-Krylov",
+                "interior_nodes": 15,
+                "operator_vector_actions": 15,
+                "operator_kind": "K^-1 M",
+                "preconditioner_K_inverse_vector_actions": 15,
+                "true_relative_residual": 1.3876763633292625e-14,
+                "M_orthogonality": 6.661338147750939e-16,
+                "relative_reference_error": 2.327706997302402e-14,
+                "values": [
+                  9.901353678398955,
+                  39.98832262499005,
+                  91.42343409886865
+                ]
+              },
+              {
+                "id": "fem-15-SciPy-LOBPCG",
+                "fields": "fem-15-SciPy-LOBPCG.npz",
+                "method": "SciPy-LOBPCG",
+                "interior_nodes": 15,
+                "operator_vector_actions": 26,
+                "operator_kind": "K",
+                "preconditioner_K_inverse_vector_actions": 20,
+                "true_relative_residual": 1.536909708688511e-10,
+                "M_orthogonality": 2.6082722481780453e-16,
+                "relative_reference_error": 8.43205627872415e-15,
+                "values": [
+                  9.901353678398968,
+                  39.98832262498907,
+                  91.42343409886853
+                ]
+              },
+              {
+                "id": "fem-31-mass-Krylov",
+                "fields": "fem-31-mass-Krylov.npz",
+                "method": "mass-Krylov",
+                "interior_nodes": 31,
+                "operator_vector_actions": 24,
+                "operator_kind": "K^-1 M",
+                "preconditioner_K_inverse_vector_actions": 24,
+                "true_relative_residual": 5.239838789378949e-14,
+                "M_orthogonality": 8.881784197001252e-16,
+                "relative_reference_error": 1.3541807946723635e-13,
+                "values": [
+                  9.87753411753409,
+                  39.605414713597455,
+                  89.47038060401067
+                ]
+              },
+              {
+                "id": "fem-31-SciPy-LOBPCG",
+                "fields": "fem-31-SciPy-LOBPCG.npz",
+                "method": "SciPy-LOBPCG",
+                "interior_nodes": 31,
+                "operator_vector_actions": 27,
+                "operator_kind": "K",
+                "preconditioner_K_inverse_vector_actions": 21,
+                "true_relative_residual": 1.7283979466767472e-10,
+                "M_orthogonality": 5.551115123125783e-16,
+                "relative_reference_error": 1.5843735459579712e-13,
+                "values": [
+                  9.877534117534317,
+                  39.605414713595884,
+                  89.47038060400963
+                ]
+              },
+              {
+                "id": "fem-63-mass-Krylov",
+                "fields": "fem-63-mass-Krylov.npz",
+                "method": "mass-Krylov",
+                "interior_nodes": 63,
+                "operator_vector_actions": 24,
+                "operator_kind": "K^-1 M",
+                "preconditioner_K_inverse_vector_actions": 24,
+                "true_relative_residual": 1.8340301814489987e-13,
+                "M_orthogonality": 1.1102230246251565e-15,
+                "relative_reference_error": 1.298430987720135e-13,
+                "values": [
+                  9.871586353257483,
+                  39.51013647013335,
+                  88.98708062867253
+                ]
+              },
+              {
+                "id": "fem-63-SciPy-LOBPCG",
+                "fields": "fem-63-SciPy-LOBPCG.npz",
+                "method": "SciPy-LOBPCG",
+                "interior_nodes": 63,
+                "operator_vector_actions": 30,
+                "operator_kind": "K",
+                "preconditioner_K_inverse_vector_actions": 24,
+                "true_relative_residual": 1.94948028233657e-10,
+                "M_orthogonality": 6.661338147750939e-16,
+                "relative_reference_error": 3.113073443508389e-14,
+                "values": [
+                  9.871586353256738,
+                  39.510136470137326,
+                  88.98708062866348
+                ]
+              }
+            ],
+            "metrics": {
+              "max_generalized_residual": 1.94948028233657e-10,
+              "max_M_orthogonality_defect": 1.1102230246251565e-15,
+              "max_relative_reference_error": 1.5843735459579712e-13,
+              "max_operator_vector_actions": 30,
+              "max_preconditioner_vector_actions": 24
+            }
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fem-mass-eigen/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#fem-mass-eigen",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#fem-mass-eigen"
+          }
+        }
+      ]
+    }
+  ],
+  "supplemental_scope_profiles": [
+    {
+      "release": {
+        "group": "linear-algebra-spectral",
+        "edition": "2026-11-24-r3",
+        "case_ids": [
+          "restarted-shift-invert",
+          "fem-mass-eigen"
+        ]
+      },
+      "scope": {
+        "ja": "追加固定例：明示的再始動Krylovと内部固有値、整合質量FEM弦の一般化固有値。条件と検証範囲は各配布版で確認してください。",
+        "en": "Additional fixed examples: Explicitly restarted Krylov and interior eigenvalues, Consistent-mass FEM string eigenpairs. See each release for assumptions and checked scope."
+      },
+      "limits": [
+        {
+          "ja": "単一対称実固有対だけ。暗黙再始動・Krylov-Schur・ロッキング・一般の非正規やクラスターは未実装。",
+          "en": "One eigenpair of a real symmetric matrix only. No implicit restarting, Krylov-Schur, locking, or general nonnormal or clustered-spectrum capability is claimed."
+        },
+        {
+          "ja": "小規模1D弦のみ。SciPyが返す前の例外では入力を保存し、未返却の内部反復を保存したとはしません。 成分資格35判定は4科学例の合格を代用せず、元SciPy内部の未返却反復は保存済みとしません。",
+          "en": "A small 1D string only. If SciPy raises before returning, inputs are retained; unreturned internal iterates are not claimed to be saved. The 35 component checks do not replace the four full scientific cases."
+        }
+      ]
     }
   ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/eigensolvers/",
@@ -815,11 +1837,17 @@
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/experiments.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/fixtures.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/mpmath_reference.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/solvers.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/solvers.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/fixtures.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/solvers.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/references/oracles.py"
   ],
   "test_urls": [
     "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/test_foundations.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/test_conditioning.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations-conditioning/test_conditioning.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/test_algorithms.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/test_mass_action.py"
   ],
   "run_commands": [
     "python -m pytest -q",
@@ -846,6 +1874,24 @@
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/krylov-eigen-conditioning/?lang=en"
       },
       "kind": "dedicated-supplement"
+    },
+    {
+      "id": "restarted-shift-invert",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/restarted-shift-invert/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/restarted-shift-invert/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "fem-mass-eigen",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fem-mass-eigen/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fem-mass-eigen/?lang=en"
+      },
+      "kind": "dedicated-supplement"
     }
   ],
   "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/foundations/atlas-foundations-2026-11-22.zip",
@@ -857,7 +1903,36 @@
   "problem_navigation": {
     "method_id": "eigensolvers",
     "status": "educational-example",
-    "equations": [],
+    "equations": [
+      {
+        "id": "finite-dimensional-eigenproblem",
+        "name": {
+          "ja": "有限次元の行列固有値問題",
+          "en": "Finite-dimensional matrix eigenproblems"
+        },
+        "problem_ids": [
+          "restarted-shift-invert"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#finite-dimensional-eigenproblem-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#finite-dimensional-eigenproblem-en"
+        }
+      },
+      {
+        "id": "dirichlet-string-eigenproblem",
+        "name": {
+          "ja": "固定端弦の固有値と整合質量FEM",
+          "en": "Fixed-end string eigenvalues and consistent-mass FEM"
+        },
+        "problem_ids": [
+          "fem-mass-eigen"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#dirichlet-string-eigenproblem-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#dirichlet-string-eigenproblem-en"
+        }
+      }
+    ],
     "problems": [
       {
         "id": "krylov-spectrum",
@@ -939,6 +2014,125 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/krylov-spectrum/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/krylov-spectrum/?lang=en#references-en"
         }
+      },
+      {
+        "id": "restarted-shift-invert",
+        "name": {
+          "ja": "明示的再始動Krylovと内部固有値",
+          "en": "Explicitly restarted Krylov and interior eigenvalues"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/restarted-shift-invert-preview.png",
+          "sha256": "d5a6a9d073bc0d7fb85a999137390b9a9b1dcfb765380599a7d9880b8356fbc8",
+          "width": 814,
+          "height": 590,
+          "caption": {
+            "ja": "固有値比較に使う、保存した31×31 Dirichlet Laplacian。",
+            "en": "The saved 31 x 31 Dirichlet Laplacian used in the eigenvalue comparisons."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/restarted-shift-invert/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/restarted-shift-invert/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/restarted-shift-invert/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/restarted-shift-invert/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "restarted-shift-invert",
+            "kind": "supplement",
+            "name": {
+              "ja": "明示的再始動Krylovと内部固有値",
+              "en": "Explicitly restarted Krylov and interior eigenvalues"
+            },
+            "scope": {
+              "ja": "固定長の明示的再始動とshift-invertを、元の固有値問題の残差と作用回数で比較します。",
+              "en": "Explicit restarting and shift-invert are compared using original eigenproblem residuals and counted operator actions."
+            },
+            "method_ids": [
+              "eigensolvers"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/restarted-shift-invert/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/restarted-shift-invert/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/atlas-linear-algebra-spectral-2026-11-24-r3.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "二重MGS Arnoldiを単一Ritzベクトルから明示的に再始動。自前LUでshift線形解を求め、元の固有残差で停止。",
+          "en": "Two-pass Arnoldi is explicitly restarted from one Ritz vector. Original LU routines perform the shifted solves, and stopping uses the original eigenproblem."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/restarted-shift-invert/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/restarted-shift-invert/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "fem-mass-eigen",
+        "name": {
+          "ja": "整合質量FEM弦の一般化固有値",
+          "en": "Consistent-mass FEM string eigenpairs"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/fem-mass-eigen-preview.png",
+          "sha256": "4f9152e89dcc28539eaa01ef7852f77b4593072cac45d7ff322115dfb756a32a",
+          "width": 912,
+          "height": 590,
+          "caption": {
+            "ja": "内部63点で計算した、M正規化された最低3モード。",
+            "en": "The first three M-normalized modes computed on the 63-node interior grid."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fem-mass-eigen/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fem-mass-eigen/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fem-mass-eigen/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fem-mass-eigen/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "fem-mass-eigen",
+            "kind": "supplement",
+            "name": {
+              "ja": "整合質量FEM弦の一般化固有値",
+              "en": "Consistent-mass FEM string eigenpairs"
+            },
+            "scope": {
+              "ja": "整合質量のP1弦で、M内積Krylovと実際のSciPy LOBPCGを独立離散スペクトルへ照合します。",
+              "en": "Consistent-mass P1 string eigenpairs compare an M-inner-product Krylov method and actual SciPy LOBPCG with an independent discrete spectrum."
+            },
+            "method_ids": [
+              "eigensolvers",
+              "lobpcg"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fem-mass-eigen/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fem-mass-eigen/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/atlas-linear-algebra-spectral-2026-11-24-r3.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "要素からK,Mを組み立て、M内積のK^-1M KrylovとSciPy LOBPCGを比較。小規模な厳密K逆前処理。 LOBPCG初期列は{1,x³,x⁶}。K逆Mの次数+2像を初期spanから独立にし、{1,x,x²}の構造的階数欠落を避ける。 同じMの作用を資格済einsumのLinearOperatorで与え、dense-B adapterを通さない。固有値solver自体はSciPy LOBPCG。",
+          "en": "Elementwise K and M assembly, M-inner-product Krylov iteration on K^-1 M, and actual SciPy LOBPCG with a small exact-K-inverse preconditioner. LOBPCG starts from {1, x^3, x^6}; degree-plus-two images avoid the structural rank defect of {1, x, x^2}. The same M is applied through a qualified einsum LinearOperator, avoiding the dense-B adapter. The eigensolver itself remains SciPy LOBPCG."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fem-mass-eigen/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fem-mass-eigen/?lang=en#references-en"
+        }
       }
     ],
     "references": [
@@ -953,6 +2147,74 @@
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/krylov-spectrum/?lang=en#references-en"
         },
         "cases": []
+      },
+      {
+        "problem_id": "restarted-shift-invert",
+        "problem_name": {
+          "ja": "明示的再始動Krylovと内部固有値",
+          "en": "Explicitly restarted Krylov and interior eigenvalues"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/restarted-shift-invert/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/restarted-shift-invert/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "restarted-shift-invert",
+            "title": {
+              "ja": "再始動/shift-invert：固定離散行列の閉スペクトル",
+              "en": "Restarting and shift-invert: the closed spectrum of a fixed discrete matrix"
+            },
+            "kind": "analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "単一対称実固有対だけ。暗黙再始動・Krylov-Schur・ロッキング・一般の非正規やクラスターは未実装。",
+              "en": "One eigenpair of a real symmetric matrix only. No implicit restarting, Krylov-Schur, locking, or general nonnormal or clustered-spectrum capability is claimed."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-restarted-shift-invert-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-restarted-shift-invert-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/restarted-shift-invert/?lang=ja#restarted-shift-invert-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/restarted-shift-invert/?lang=en#restarted-shift-invert-en-measurements"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "fem-mass-eigen",
+        "problem_name": {
+          "ja": "整合質量FEM弦の一般化固有値",
+          "en": "Consistent-mass FEM string eigenpairs"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fem-mass-eigen/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fem-mass-eigen/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "fem-mass-eigen",
+            "title": {
+              "ja": "P1整合質量弦：閉離散固有値と連続体固有値",
+              "en": "Consistent-mass P1 string: closed discrete and continuum eigenvalues"
+            },
+            "kind": "analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "小規模1D弦のみ。SciPyが返す前の例外では入力を保存し、未返却の内部反復を保存したとはしません。 成分資格35判定は4科学例の合格を代用せず、元SciPy内部の未返却反復は保存済みとしません。",
+              "en": "A small 1D string only. If SciPy raises before returning, inputs are retained; unreturned internal iterates are not claimed to be saved. The 35 component checks do not replace the four full scientific cases."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-fem-mass-eigen-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-fem-mass-eigen-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/fem-mass-eigen/?lang=ja#fem-mass-eigen-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/fem-mass-eigen/?lang=en#fem-mass-eigen-en-measurements"
+            }
+          }
+        ]
       }
     ]
   }

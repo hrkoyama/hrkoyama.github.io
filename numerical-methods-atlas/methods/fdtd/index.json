@@ -10,8 +10,8 @@
     "en": "Coupling, constraints & particles"
   },
   "summary": {
-    "ja": "Yee FDTDの真空・Fresnel界面・PMLと一次元の損失・Lorentz分散板を固定入力で検証。",
-    "en": "Fixed-input Yee FDTD checks for vacuum, Fresnel interfaces, PML and 1D lossy/Lorentz slabs."
+    "ja": "Yee FDTDの真空・Fresnel界面・PMLと一次元の損失・Lorentz分散板を固定入力で検証。 追加固定例：2D誘電体円柱のMie散乱幅。条件と検証範囲は各配布版で確認してください。 追加固定例：Lorentz分散板へのs/p斜め入射。条件と検証範囲は各配布版で確認してください。 追加固定例：分散媒質の浅い入射角と長時間PML。条件と検証範囲は各配布版で確認してください。",
+    "en": "Fixed-input Yee FDTD checks for vacuum, Fresnel interfaces, PML and 1D lossy/Lorentz slabs. Additional fixed examples: Mie scattering width of a two-dimensional dielectric cylinder. See each release for assumptions and checked scope. Additional fixed examples: Oblique s/p incidence on a Lorentz-dispersive slab. See each release for assumptions and checked scope. Additional fixed examples: Long-time grazing PML in a dispersive medium. See each release for assumptions and checked scope."
   },
   "status": "educational-example",
   "origin": "development-candidate",
@@ -63,12 +63,16 @@
     "en": "Separately validate multiple resonances, oblique dispersive interfaces and dispersive-media PML."
   },
   "limitations": {
-    "ja": "教育用Yee FDTD。真空・Fresnel界面・s/p偏光・PMLの既存例を保持し、第6版で一次元垂直入射のOhmic・受動Lorentz板を追加。帯域解析解、反射・透過・直接散逸・物質蓄積、修正離散収支・物理流束と格子・時間収束を分けて検査。一般分散、多共鳴、斜め分散入射、分散PML、一般2/3次元の包括的検証ではない。",
-    "en": "Educational Yee FDTD: retained vacuum/Fresnel/s-p/PML examples plus r6 1D normal-incidence Ohmic and passive Lorentz slabs. Spectral references, R/T, direct dissipation, material storage, modified/physical budgets and space/time refinement are separate checks. Not blanket validation of general dispersion, multiple resonances, oblique dispersive incidence, dispersive PML or general 2D/3D."
+    "ja": "教育用Yee FDTD。真空・Fresnel界面・s/p偏光・PMLの既存例を保持し、第6版で一次元垂直入射のOhmic・受動Lorentz板を追加。帯域解析解、反射・透過・直接散逸・物質蓄積、修正離散収支・物理流束と格子・時間収束を分けて検査。一般分散、多共鳴、斜め分散入射、分散PML、一般2/3次元の包括的検証ではない。 追加固定例：Ezの無損失2D円柱のみで、3D球ではありません。階段状形状の誤差を記録し、一般の曲面2次精度や任意周波数・材料での精密散乱を保証しません。 追加固定例：任意の横方向分布ではなく単一kyの実空間制限です。1つの受動Lorentz極と有限帯域・有限窓のみ。Gaussian尾は厳密には非零で、窓診断と参照誤差を別記します。 全周波数で厳密にcap反射が未到達という証明ではありません。 追加固定例：有限kx帯域の中心角が80度で、全成分が厳密に80度ではありません。無PML参照は同じ離散化・初期場を使い、伝播分散を除いた境界誤差用です。任意角度・材料での大域安定性証明ではありません。 固定PMLの空間次数を測る族ではなく、旧100検査だけでpeak12の大域安定性が証明されたとはしません。",
+    "en": "Educational Yee FDTD: retained vacuum/Fresnel/s-p/PML examples plus r6 1D normal-incidence Ohmic and passive Lorentz slabs. Spectral references, R/T, direct dissipation, material storage, modified/physical budgets and space/time refinement are separate checks. Not blanket validation of general dispersion, multiple resonances, oblique dispersive incidence, dispersive PML or general 2D/3D. Additional fixed examples: This is a lossless two-dimensional Ez cylinder, not a three-dimensional sphere. Report staircase geometry error without claiming general second-order curved-boundary accuracy or precision scattering for arbitrary frequencies and materials. Additional fixed examples: This is a genuine single-ky restriction rather than arbitrary transverse data. It covers one passive Lorentz pole and a fixed finite band/window. Gaussian tails are nonzero; window diagnostics and reference errors are reported separately. No strict all-frequency no-return proof is claimed. Additional fixed examples: The central angle is 80 degrees; finite kx bandwidth gives neighboring angles. The no-PML reference shares the discretization and initialization to isolate boundary error from bulk dispersion. Small operator and finite-trajectory checks do not prove global stability for arbitrary angles and materials. The joint family does not measure fixed-PML spatial order; the older 100 checks alone do not prove peak-12 global stability."
   },
   "metadata_review": {
     "level": "Original educational Yee code: continuum slab/packet checks, direct dissipative work and oscillator storage, discrete/physical energy budgets, spatial/temporal refinement and independent ZIP reruns.",
-    "on": "2026-11-22"
+    "on": "2026-11-22",
+    "supplemental_review": {
+      "on": "2026-11-24",
+      "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
+    }
   },
   "aliases": [
     "FDTD法",
@@ -98,6 +102,1748 @@
   ],
   "units_ja": "無次元。長さ・時間・場を規格化。",
   "boundary_conditions_ja": "第6版は遠方PEC外端、PMLなし、半体積平均の整合界面と真空モニター。旧周期/PEC・PML例を保持。",
+  "depth_release": {
+    "group": "maxwell-cylinder",
+    "case_ids": [
+      "cylinder-mie2d"
+    ],
+    "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/",
+    "code_edition": "2026-11-24-r2",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/cylinder_draft.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/cylinder_evolution.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/io_contract.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/poynting.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/reference_draft.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/test_cylinder.py"
+    ],
+    "run_commands": [
+      "python -m pytest -q",
+      "python run.py --input inputs.json --output output"
+    ],
+    "run_from": "atlas-maxwell-cylinder-2026-11-24-r2",
+    "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/atlas-maxwell-cylinder-2026-11-24-r2.zip",
+    "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/source-manifest.json",
+    "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/verification.json",
+    "code_archive_sha256": "bf2f69032cfe912d23e065582397202a695dde241350774a0c69997b70bd1a06",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/results/result.json",
+    "passed_tests": 22,
+    "examples": [
+      {
+        "id": "cylinder-mie2d",
+        "method_ids": [
+          "fdtd",
+          "leapfrog"
+        ],
+        "title": {
+          "ja": "2D誘電体円柱のMie散乱幅",
+          "en": "Mie scattering width of a two-dimensional dielectric cylinder"
+        },
+        "summary": {
+          "ja": "実際の2D散乱場を進め、閉曲線Poynting流束と独立な円柱級数を比較します。",
+          "en": "Evolve the actual two-dimensional scattered fields and compare closed-contour Poynting power with an independent cylindrical series."
+        },
+        "assumptions": {
+          "ja": "c=ε0=μ0=1。無限円柱のEz偏光、半径0.25、比誘電率2.25、真空波長1。6×6領域と4辺PML、明示的な節点階段状形状です。",
+          "en": "Use c = epsilon0 = mu0 = 1, an infinite cylinder with Ez polarization, radius 0.25, relative permittivity 2.25 and vacuum wavelength 1. The 6 × 6 domain has four-side PML and an explicitly nodal staircase geometry."
+        },
+        "algorithm": {
+          "ja": "Yeeの散乱場を局所分極contrastの厳密な離散入射差分で励起します。EとHはそれぞれの整数・半時刻でFourier集計し、Hの4点補間後に物理流束を積分します。",
+          "en": "Advance the scattered Yee fields with an exact discrete incident difference on the polarization-contrast support. Accumulate E and H at their own integer and half times, then integrate physical power after four-point native-face collocation."
+        },
+        "validation": {
+          "ja": "12/18/24点/波長、32周期の過渡除去と8周期の計測。2本の閉曲線、前後4周期、同じ全時間を進めた半振幅phasorと5保存時刻の真空対照を検査し、円柱級数の散乱幅と外部場を照合します。",
+          "en": "Use 12/18/24 points per wavelength, 32 burn-in periods and 8 measured periods. Check two contours, consecutive four-period windows, half-amplitude phasors after a complete repeated evolution, and a vacuum control at the five saved times. Compare scattering width and exterior fields with the cylindrical series."
+        },
+        "limits": {
+          "ja": "Ezの無損失2D円柱のみで、3D球ではありません。階段状形状の誤差を記録し、一般の曲面2次精度や任意周波数・材料での精密散乱を保証しません。",
+          "en": "This is a lossless two-dimensional Ez cylinder, not a three-dimensional sphere. Report staircase geometry error without claiming general second-order curved-boundary accuracy or precision scattering for arbitrary frequencies and materials."
+        },
+        "formulas": [
+          "\\varepsilon\\partial_tE_z=\\partial_xH_y-\\partial_yH_x,\\quad\\partial_tH_x=-\\partial_yE_z,\\quad\\partial_tH_y=\\partial_xE_z",
+          "\\Sigma_{\\mathrm{sca}}=\\frac4k\\sum_{n=-\\infty}^{\\infty}|a_n|^2,\\quad\\Sigma_{\\mathrm{ext}}=-\\frac4k\\sum_n\\operatorname{Re}a_n"
+        ],
+        "domains": [
+          "pde",
+          "time"
+        ],
+        "code_files": [
+          "run.py"
+        ],
+        "references": [
+          {
+            "id": "ansys-cylinder",
+            "author": "Ansys Optics",
+            "title": "Mie scattering 2D",
+            "url": "https://optics.ansys.com/hc/en-us/articles/360042703373-Mie-scattering-2D",
+            "review_level": "primary-official-documentation-selected-example",
+            "review_scope": "Read the complete substantive benchmark description: two-dimensional dielectric cylinder, TFSF, angular far field and lossless cross sections. Did not read the associated simulation files, theory table or cited book; no external numerical data imported. Publication and revision dates have not been verified. Accessed on 2026-11-24; this is a consultation date, not a publication year.",
+            "accessed_on": "2026-11-24"
+          },
+          {
+            "id": "nist-wronskian",
+            "author": "NIST DLMF",
+            "year": 2026,
+            "title": "Bessel and Hankel Wronskians, section10.5",
+            "url": "https://dlmf.nist.gov/10.5",
+            "review_level": "primary-official-mathematical-identity",
+            "review_scope": "Read section 10.5, especially equation 10.5.3 for the ordinary J/Hankel1 Wronskian; version 1.2.8. Cylinder boundary algebra is independently derived here. The year 2026 denotes DLMF version 1.2.8, released on 2026-09-15, not its initial publication year. Accessed on 2026-11-24.",
+            "year_role": "version",
+            "version": "1.2.8",
+            "release_date": "2026-09-15",
+            "accessed_on": "2026-11-24"
+          }
+        ],
+        "citations": [
+          {
+            "id": "ansys-cylinder",
+            "author": "Ansys Optics",
+            "title": "Mie scattering 2D",
+            "url": "https://optics.ansys.com/hc/en-us/articles/360042703373-Mie-scattering-2D",
+            "review_level": "primary-official-documentation-selected-example",
+            "review_scope": "Read the complete substantive benchmark description: two-dimensional dielectric cylinder, TFSF, angular far field and lossless cross sections. Did not read the associated simulation files, theory table or cited book; no external numerical data imported. Publication and revision dates have not been verified. Accessed on 2026-11-24; this is a consultation date, not a publication year.",
+            "accessed_on": "2026-11-24"
+          },
+          {
+            "id": "nist-wronskian",
+            "author": "NIST DLMF",
+            "year": 2026,
+            "title": "Bessel and Hankel Wronskians, section10.5",
+            "url": "https://dlmf.nist.gov/10.5",
+            "review_level": "primary-official-mathematical-identity",
+            "review_scope": "Read section 10.5, especially equation 10.5.3 for the ordinary J/Hankel1 Wronskian; version 1.2.8. Cylinder boundary algebra is independently derived here. The year 2026 denotes DLMF version 1.2.8, released on 2026-09-15, not its initial publication year. Accessed on 2026-11-24.",
+            "year_role": "version",
+            "version": "1.2.8",
+            "release_date": "2026-09-15",
+            "accessed_on": "2026-11-24"
+          }
+        ],
+        "review_level": "selected-primary-sources-independent-derivation-and-fixed-reference-qualification",
+        "gallery_figure": "cylinder-mie2d-preview.png",
+        "additional_figures": [
+          {
+            "file": "cylinder-mie2d-preview.png",
+            "caption": {
+              "ja": "保存した最細格子の実2D散乱電場phasorの実部。",
+              "en": "Real part of the actual saved scattered electric phasor on the finest two-dimensional grid."
+            }
+          }
+        ],
+        "case_notes": {
+          "ja": "初回100資格の99合格・粗格子Hの2点補間2.771%誤差による1未達を保持。元の診断を変更せず別4点補間を追加し、同じ2%基準で再資格します。",
+          "en": "Retain the first 99/100 qualification and its coarse-grid 2.771% error from two-point H collocation. Preserve the original diagnostic, add a separate four-point diagnostic and requalify against the unchanged 2% criterion."
+        },
+        "measured": {
+          "id": "cylinder-mie2d",
+          "passed": true,
+          "checks": {
+            "reference-and-new-components-qualified": true,
+            "cylinder-ppw12/finite": true,
+            "cylinder-ppw12/outward-scattering-power": true,
+            "cylinder-ppw12/closed-contour-sensitivity": true,
+            "cylinder-ppw12/fixed-window-sensitivity": true,
+            "cylinder-ppw18/finite": true,
+            "cylinder-ppw18/outward-scattering-power": true,
+            "cylinder-ppw18/closed-contour-sensitivity": true,
+            "cylinder-ppw18/fixed-window-sensitivity": true,
+            "cylinder-ppw24/finite": true,
+            "cylinder-ppw24/outward-scattering-power": true,
+            "cylinder-ppw24/closed-contour-sensitivity": true,
+            "cylinder-ppw24/fixed-window-sensitivity": true,
+            "finest-scattering-width": true,
+            "finest-exterior-scattered-field": true,
+            "coarse-to-finest-improvement": true,
+            "complete-run-phasor-linearity": true,
+            "complete-run-power-quadratic": true,
+            "zero-contrast-stored-snapshot-fields": true
+          },
+          "check_details": [
+            {
+              "name": "reference-and-new-components-qualified",
+              "value": 100,
+              "bound": 100,
+              "passed": true
+            },
+            {
+              "name": "cylinder-ppw12/finite",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "cylinder-ppw12/outward-scattering-power",
+              "value": 0.921516711893712,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "cylinder-ppw12/closed-contour-sensitivity",
+              "value": 0.00039973309817384713,
+              "bound": 0.01,
+              "passed": true
+            },
+            {
+              "name": "cylinder-ppw12/fixed-window-sensitivity",
+              "value": 1.1207512730945438e-06,
+              "bound": 0.005,
+              "passed": true
+            },
+            {
+              "name": "cylinder-ppw18/finite",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "cylinder-ppw18/outward-scattering-power",
+              "value": 1.1341926106853863,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "cylinder-ppw18/closed-contour-sensitivity",
+              "value": 0.00018365005866118528,
+              "bound": 0.01,
+              "passed": true
+            },
+            {
+              "name": "cylinder-ppw18/fixed-window-sensitivity",
+              "value": 1.689622556979945e-06,
+              "bound": 0.005,
+              "passed": true
+            },
+            {
+              "name": "cylinder-ppw24/finite",
+              "value": 0,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "cylinder-ppw24/outward-scattering-power",
+              "value": 0.9571725126288017,
+              "bound": 0,
+              "passed": true
+            },
+            {
+              "name": "cylinder-ppw24/closed-contour-sensitivity",
+              "value": 0.00010042527452347095,
+              "bound": 0.01,
+              "passed": true
+            },
+            {
+              "name": "cylinder-ppw24/fixed-window-sensitivity",
+              "value": 2.6581479594770165e-07,
+              "bound": 0.005,
+              "passed": true
+            },
+            {
+              "name": "finest-scattering-width",
+              "value": 0.02115770161610031,
+              "bound": 0.1,
+              "passed": true
+            },
+            {
+              "name": "finest-exterior-scattered-field",
+              "value": 0.030278686279997306,
+              "bound": 0.15,
+              "passed": true
+            },
+            {
+              "name": "coarse-to-finest-improvement",
+              "value": 0.02115770161610031,
+              "bound": 0.057620727331704535,
+              "passed": true
+            },
+            {
+              "name": "complete-run-phasor-linearity",
+              "value": 0.0,
+              "bound": 2e-12,
+              "passed": true
+            },
+            {
+              "name": "complete-run-power-quadratic",
+              "value": 0.0,
+              "bound": 2e-12,
+              "passed": true
+            },
+            {
+              "name": "zero-contrast-stored-snapshot-fields",
+              "value": 0.0,
+              "bound": 1e-26,
+              "passed": true
+            }
+          ],
+          "records": [
+            {
+              "id": "cylinder-ppw12",
+              "ppw": 12,
+              "cells": 72,
+              "steps": 1160,
+              "dt": 0.034482758620689655,
+              "fields": "cylinder-ppw12.npz",
+              "width": 0.921516711893712,
+              "reference_width": 0.9778618212649008,
+              "width_relative": 0.057620727331704535,
+              "field_relative": 0.083600071126108,
+              "contour_fraction": 0.00039973309817384713,
+              "window_fraction": 1.1207512730945438e-06,
+              "staircase_area": 0.1736111111111111,
+              "exact_area": 0.19634954084936207
+            },
+            {
+              "id": "cylinder-ppw18",
+              "ppw": 18,
+              "cells": 108,
+              "steps": 1720,
+              "dt": 0.023255813953488372,
+              "fields": "cylinder-ppw18.npz",
+              "width": 1.1341926106853863,
+              "reference_width": 0.9778618212649008,
+              "width_relative": 0.15987002050889543,
+              "field_relative": 0.1468722318940999,
+              "contour_fraction": 0.00018365005866118528,
+              "window_fraction": 1.689622556979945e-06,
+              "staircase_area": 0.21296296296296297,
+              "exact_area": 0.19634954084936207
+            },
+            {
+              "id": "cylinder-ppw24",
+              "ppw": 24,
+              "cells": 144,
+              "steps": 2280,
+              "dt": 0.017543859649122806,
+              "fields": "cylinder-ppw24.npz",
+              "width": 0.9571725126288017,
+              "reference_width": 0.9778618212649008,
+              "width_relative": 0.02115770161610031,
+              "field_relative": 0.030278686279997306,
+              "contour_fraction": 0.00010042527452347095,
+              "window_fraction": 2.6581479594770165e-07,
+              "staircase_area": 0.1892361111111111,
+              "exact_area": 0.19634954084936207
+            },
+            {
+              "id": "cylinder-half-amplitude",
+              "ppw": 24,
+              "steps": 2280,
+              "amplitude": 0.5,
+              "fields": "cylinder-half-amplitude.npz",
+              "linearity": 0.0
+            },
+            {
+              "id": "cylinder-vacuum",
+              "ppw": 12,
+              "steps": 1160,
+              "epsilon": 1.0,
+              "fields": "cylinder-vacuum.npz",
+              "stored_snapshot_scattered_peak": 0.0
+            }
+          ],
+          "metrics": {
+            "completed_primary_and_control_runs": 5,
+            "spatial_dimensions": 2,
+            "geometry": "Explicitnodalstaircase,noorderclaim",
+            "scattering_is_power_integral": true,
+            "reference": "IndependentordinarycylindricalJ/H1,notspherical",
+            "gallery_source": 145,
+            "finest_scattering_width": 0.9571725126288017,
+            "independent_scattering_width": 0.9778618212649008,
+            "finest_width_relative_error": 0.02115770161610031,
+            "finest_exterior_field_relative_error": 0.030278686279997306,
+            "complete_run_phasor_linearity": 0.0
+          }
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/cylinder-mie2d/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-cylinder/#cylinder-mie2d",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-cylinder/#cylinder-mie2d"
+        }
+      }
+    ]
+  },
+  "supplemental_scope_profiles": [
+    {
+      "release": {
+        "group": "maxwell-cylinder",
+        "edition": "2026-11-24-r2",
+        "case_ids": [
+          "cylinder-mie2d"
+        ]
+      },
+      "scope": {
+        "ja": "追加固定例：2D誘電体円柱のMie散乱幅。条件と検証範囲は各配布版で確認してください。",
+        "en": "Additional fixed examples: Mie scattering width of a two-dimensional dielectric cylinder. See each release for assumptions and checked scope."
+      },
+      "limits": [
+        {
+          "ja": "Ezの無損失2D円柱のみで、3D球ではありません。階段状形状の誤差を記録し、一般の曲面2次精度や任意周波数・材料での精密散乱を保証しません。",
+          "en": "This is a lossless two-dimensional Ez cylinder, not a three-dimensional sphere. Report staircase geometry error without claiming general second-order curved-boundary accuracy or precision scattering for arbitrary frequencies and materials."
+        }
+      ]
+    },
+    {
+      "release": {
+        "group": "maxwell-lorentz",
+        "edition": "2026-11-24-r2",
+        "case_ids": [
+          "lorentz-oblique-sp"
+        ]
+      },
+      "scope": {
+        "ja": "追加固定例：Lorentz分散板へのs/p斜め入射。条件と検証範囲は各配布版で確認してください。",
+        "en": "Additional fixed examples: Oblique s/p incidence on a Lorentz-dispersive slab. See each release for assumptions and checked scope."
+      },
+      "limits": [
+        {
+          "ja": "任意の横方向分布ではなく単一kyの実空間制限です。1つの受動Lorentz極と有限帯域・有限窓のみ。Gaussian尾は厳密には非零で、窓診断と参照誤差を別記します。 全周波数で厳密にcap反射が未到達という証明ではありません。",
+          "en": "This is a genuine single-ky restriction rather than arbitrary transverse data. It covers one passive Lorentz pole and a fixed finite band/window. Gaussian tails are nonzero; window diagnostics and reference errors are reported separately. No strict all-frequency no-return proof is claimed."
+        }
+      ]
+    },
+    {
+      "release": {
+        "group": "maxwell-grazing",
+        "edition": "2026-11-24-r2",
+        "case_ids": [
+          "dispersive-grazing-pml"
+        ]
+      },
+      "scope": {
+        "ja": "追加固定例：分散媒質の浅い入射角と長時間PML。条件と検証範囲は各配布版で確認してください。",
+        "en": "Additional fixed examples: Long-time grazing PML in a dispersive medium. See each release for assumptions and checked scope."
+      },
+      "limits": [
+        {
+          "ja": "有限kx帯域の中心角が80度で、全成分が厳密に80度ではありません。無PML参照は同じ離散化・初期場を使い、伝播分散を除いた境界誤差用です。任意角度・材料での大域安定性証明ではありません。 固定PMLの空間次数を測る族ではなく、旧100検査だけでpeak12の大域安定性が証明されたとはしません。",
+          "en": "The central angle is 80 degrees; finite kx bandwidth gives neighboring angles. The no-PML reference shares the discretization and initialization to isolate boundary error from bulk dispersion. Small operator and finite-trajectory checks do not prove global stability for arbitrary angles and materials. The joint family does not measure fixed-PML spatial order; the older 100 checks alone do not prove peak-12 global stability."
+        }
+      ]
+    }
+  ],
+  "depth_additional_releases": [
+    {
+      "group": "maxwell-lorentz",
+      "case_ids": [
+        "lorentz-oblique-sp"
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/",
+      "code_edition": "2026-11-24-r2",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/io_contract.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/modal_yee_draft.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/reference_draft.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/slab_evolution.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/slab_reference.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/test_lorentz.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-maxwell-lorentz-2026-11-24-r2",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/atlas-maxwell-lorentz-2026-11-24-r2.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/verification.json",
+      "code_archive_sha256": "7af2a66b6defba64c5392f05292d2b49810140253455945d54112eb4594871a1",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/results/result.json",
+      "passed_tests": 15,
+      "examples": [
+        {
+          "id": "lorentz-oblique-sp",
+          "method_ids": [
+            "fdtd",
+            "leapfrog",
+            "implicit-midpoint"
+          ],
+          "title": {
+            "ja": "Lorentz分散板へのs/p斜め入射",
+            "en": "Oblique s/p incidence on a Lorentz-dispersive slab"
+          },
+          "summary": {
+            "ja": "有限波束の実進行から複素r/t・R/T・直接散逸を求め、複素Fresnel参照と比較します。",
+            "en": "Measure complex r/t, power fractions and direct dissipation from actual finite-pulse evolutions and compare them with complex Fresnel slab references."
+          },
+          "assumptions": {
+            "ja": "周期y方向のky=4に制限した2D場、c=1。板[4,5]のε∞=1.5、Δε=0.75、ω0=9、γ=0.5、σ=0.04。外側は真空、PEC端は[-24,36]、T=60です。",
+            "en": "Use a two-dimensional field restricted to periodic transverse wave number ky = 4 and c = 1. The slab [4, 5] has epsilon_inf = 1.5, delta_epsilon = 0.75, omega_0 = 9, gamma = 0.5 and sigma = 0.04. Outer vacuum ends at PEC caps [-24, 36]; T = 60."
+          },
+          "algorithm": {
+            "ja": "単一ky Yee空間演算と局所の陰的中点Lorentz ADE。p偏光の両電場に分極を結合し、同格子の真空波束で入射・伝播位相を除きます。直接Ohmic・物質減衰仕事と修正エネルギーを別々に集計します。",
+            "en": "Use the single-ky Yee spatial operator and local implicit-midpoint Lorentz ADE. Couple both p-polarized electric components to polarization, and remove incident propagation with a matched vacuum pulse on the same grid. Accumulate direct Ohmic and material-damping work separately from modified energy."
+          },
+          "validation": {
+            "ja": "s/p各3解像度の物質・真空12進行からω=5.1/6/6.9を測定。独立な有限窓の真空幾何級数、複素Fresnel係数、直接体積散逸、全stepのPEC収支と末尾を検査します。",
+            "en": "Measure omega = 5.1/6/6.9 from 12 actual material/vacuum evolutions across three resolutions and both polarizations. Check an independent finite-window vacuum geometric sum, complex Fresnel coefficients, direct volume dissipation, all-step PEC budgets and final monitor tails."
+          },
+          "limits": {
+            "ja": "任意の横方向分布ではなく単一kyの実空間制限です。1つの受動Lorentz極と有限帯域・有限窓のみ。Gaussian尾は厳密には非零で、窓診断と参照誤差を別記します。 全周波数で厳密にcap反射が未到達という証明ではありません。",
+            "en": "This is a genuine single-ky restriction rather than arbitrary transverse data. It covers one passive Lorentz pole and a fixed finite band/window. Gaussian tails are nonzero; window diagnostics and reference errors are reported separately. No strict all-frequency no-return proof is claimed."
+          },
+          "formulas": [
+            "\\varepsilon_\\infty\\partial_t\\mathbf E=\\nabla\\times\\mathbf H-\\sigma\\mathbf E-\\mathbf J,\\quad\\partial_t\\mathbf P=\\mathbf J",
+            "\\partial_t\\mathbf J=f\\mathbf E-\\omega_0^2\\mathbf P-\\gamma\\mathbf J,\\quad f=\\Delta\\varepsilon\\omega_0^2",
+            "\\varepsilon(\\omega)=\\varepsilon_\\infty+\\frac{f}{\\omega_0^2-\\omega^2-i\\gamma\\omega}+\\frac{i\\sigma}{\\omega}"
+          ],
+          "domains": [
+            "pde",
+            "time"
+          ],
+          "code_files": [
+            "run.py"
+          ],
+          "references": [
+            {
+              "id": "meep-materials",
+              "author": "Meep developers",
+              "title": "Meep Materials documentation",
+              "url": "https://meep.readthedocs.io/en/latest/Materials/",
+              "review_level": "primary-official-documentation-selected-sections",
+              "review_scope": "Read Material Dispersion, Numerical Stability, Loss and Gain, and Conductivity. Confirmed the exp(-i omega t) convention, Lorentz polarization and dispersive-PML warning. Our sigma E conductivity and midpoint update differ from Meep. Unversioned latest documentation; no original Yee or Roden-Gedney paper claim. Publication and revision dates have not been verified. Accessed on 2026-11-24; this is a consultation date, not a publication year.",
+              "accessed_on": "2026-11-24"
+            }
+          ],
+          "citations": [
+            {
+              "id": "meep-materials",
+              "author": "Meep developers",
+              "title": "Meep Materials documentation",
+              "url": "https://meep.readthedocs.io/en/latest/Materials/",
+              "review_level": "primary-official-documentation-selected-sections",
+              "review_scope": "Read Material Dispersion, Numerical Stability, Loss and Gain, and Conductivity. Confirmed the exp(-i omega t) convention, Lorentz polarization and dispersive-PML warning. Our sigma E conductivity and midpoint update differ from Meep. Unversioned latest documentation; no original Yee or Roden-Gedney paper claim. Publication and revision dates have not been verified. Accessed on 2026-11-24; this is a consultation date, not a publication year.",
+              "accessed_on": "2026-11-24"
+            }
+          ],
+          "review_level": "selected-primary-sources-independent-derivation-and-fixed-reference-qualification",
+          "gallery_figure": "lorentz-oblique-sp-preview.png",
+          "additional_figures": [
+            {
+              "file": "lorentz-oblique-sp-preview.png",
+              "caption": {
+                "ja": "保存したp偏光の実電場をky=4の周期y方向へ再構成した場。",
+                "en": "Actual saved p-polarized electric field reconstructed over the periodic y direction at ky=4."
+              }
+            }
+          ],
+          "case_notes": {
+            "ja": "初回T36は12進行を完了し57判定中53合格。s偏光の末尾3件と最細RTA1件の未達を全て保持します。新しい固定窓T60で元の全基準を再検査し、Gaussianの非コンパクト尾とcapの影響は診断で判断します。",
+            "en": "The first T = 36 experiment completed 12 evolutions with 53/57 scientific gates passing. Retain all three s-polarized tail failures and the finest s RTA failure. The revised fixed T = 60 window must satisfy every original criterion. Gaussian tails are noncompact; diagnostics still decide window and cap adequacy."
+          },
+          "measured": {
+            "id": "lorentz-oblique-sp",
+            "passed": true,
+            "checks": {
+              "fixed-reference-and-components-qualified": true,
+              "lorentz-s-n960/finite": true,
+              "lorentz-s-n960/closed-PEC-direct-work-budget": true,
+              "lorentz-s-n960/vacuum-energy-budget": true,
+              "lorentz-s-n960/nonnegative-material-work": true,
+              "lorentz-s-n960/initial-slab-tail": true,
+              "lorentz-s-n960/last-carrier-period-monitor-energy": true,
+              "lorentz-s-n960/independent-finite-window-vacuum-DTFT": true,
+              "lorentz-s-n960/independent-direct-spectral-work-budget": true,
+              "lorentz-s-n1920/finite": true,
+              "lorentz-s-n1920/closed-PEC-direct-work-budget": true,
+              "lorentz-s-n1920/vacuum-energy-budget": true,
+              "lorentz-s-n1920/nonnegative-material-work": true,
+              "lorentz-s-n1920/initial-slab-tail": true,
+              "lorentz-s-n1920/last-carrier-period-monitor-energy": true,
+              "lorentz-s-n1920/independent-finite-window-vacuum-DTFT": true,
+              "lorentz-s-n1920/independent-direct-spectral-work-budget": true,
+              "lorentz-s-n3840/finite": true,
+              "lorentz-s-n3840/closed-PEC-direct-work-budget": true,
+              "lorentz-s-n3840/vacuum-energy-budget": true,
+              "lorentz-s-n3840/nonnegative-material-work": true,
+              "lorentz-s-n3840/initial-slab-tail": true,
+              "lorentz-s-n3840/last-carrier-period-monitor-energy": true,
+              "lorentz-s-n3840/independent-finite-window-vacuum-DTFT": true,
+              "lorentz-s-n3840/independent-direct-spectral-work-budget": true,
+              "s/finest-complex-rt": true,
+              "s/finest-RTA": true,
+              "s/refinement-n1920": true,
+              "s/refinement-n3840": true,
+              "lorentz-p-n960/finite": true,
+              "lorentz-p-n960/closed-PEC-direct-work-budget": true,
+              "lorentz-p-n960/vacuum-energy-budget": true,
+              "lorentz-p-n960/nonnegative-material-work": true,
+              "lorentz-p-n960/initial-slab-tail": true,
+              "lorentz-p-n960/last-carrier-period-monitor-energy": true,
+              "lorentz-p-n960/independent-finite-window-vacuum-DTFT": true,
+              "lorentz-p-n960/independent-direct-spectral-work-budget": true,
+              "lorentz-p-n1920/finite": true,
+              "lorentz-p-n1920/closed-PEC-direct-work-budget": true,
+              "lorentz-p-n1920/vacuum-energy-budget": true,
+              "lorentz-p-n1920/nonnegative-material-work": true,
+              "lorentz-p-n1920/initial-slab-tail": true,
+              "lorentz-p-n1920/last-carrier-period-monitor-energy": true,
+              "lorentz-p-n1920/independent-finite-window-vacuum-DTFT": true,
+              "lorentz-p-n1920/independent-direct-spectral-work-budget": true,
+              "lorentz-p-n3840/finite": true,
+              "lorentz-p-n3840/closed-PEC-direct-work-budget": true,
+              "lorentz-p-n3840/vacuum-energy-budget": true,
+              "lorentz-p-n3840/nonnegative-material-work": true,
+              "lorentz-p-n3840/initial-slab-tail": true,
+              "lorentz-p-n3840/last-carrier-period-monitor-energy": true,
+              "lorentz-p-n3840/independent-finite-window-vacuum-DTFT": true,
+              "lorentz-p-n3840/independent-direct-spectral-work-budget": true,
+              "p/finest-complex-rt": true,
+              "p/finest-RTA": true,
+              "p/refinement-n1920": true,
+              "p/refinement-n3840": true
+            },
+            "check_details": [
+              {
+                "name": "fixed-reference-and-components-qualified",
+                "value": 100,
+                "bound": 100,
+                "passed": true
+              },
+              {
+                "name": "lorentz-s-n960/finite",
+                "value": 0.0,
+                "bound": 0.0,
+                "passed": true
+              },
+              {
+                "name": "lorentz-s-n960/closed-PEC-direct-work-budget",
+                "value": 4.4356669711149845e-14,
+                "bound": 5e-10,
+                "passed": true
+              },
+              {
+                "name": "lorentz-s-n960/vacuum-energy-budget",
+                "value": 5.3532530021767114e-14,
+                "bound": 5e-10,
+                "passed": true
+              },
+              {
+                "name": "lorentz-s-n960/nonnegative-material-work",
+                "value": 0.0,
+                "bound": -1e-14,
+                "passed": true
+              },
+              {
+                "name": "lorentz-s-n960/initial-slab-tail",
+                "value": 1.522997807932064e-08,
+                "bound": 1e-07,
+                "passed": true
+              },
+              {
+                "name": "lorentz-s-n960/last-carrier-period-monitor-energy",
+                "value": 1.4043031566102012e-15,
+                "bound": 1e-05,
+                "passed": true
+              },
+              {
+                "name": "lorentz-s-n960/independent-finite-window-vacuum-DTFT",
+                "value": 2.6470813096612056e-14,
+                "bound": 1e-06,
+                "passed": true
+              },
+              {
+                "name": "lorentz-s-n960/independent-direct-spectral-work-budget",
+                "value": 0.009248474276659424,
+                "bound": 0.02,
+                "passed": true
+              },
+              {
+                "name": "lorentz-s-n1920/finite",
+                "value": 0.0,
+                "bound": 0.0,
+                "passed": true
+              },
+              {
+                "name": "lorentz-s-n1920/closed-PEC-direct-work-budget",
+                "value": 6.256183378413779e-14,
+                "bound": 5e-10,
+                "passed": true
+              },
+              {
+                "name": "lorentz-s-n1920/vacuum-energy-budget",
+                "value": 1.0747699843452388e-13,
+                "bound": 5e-10,
+                "passed": true
+              },
+              {
+                "name": "lorentz-s-n1920/nonnegative-material-work",
+                "value": 0.0,
+                "bound": -1e-14,
+                "passed": true
+              },
+              {
+                "name": "lorentz-s-n1920/initial-slab-tail",
+                "value": 1.522997807932064e-08,
+                "bound": 1e-07,
+                "passed": true
+              },
+              {
+                "name": "lorentz-s-n1920/last-carrier-period-monitor-energy",
+                "value": 1.649492017703364e-15,
+                "bound": 1e-05,
+                "passed": true
+              },
+              {
+                "name": "lorentz-s-n1920/independent-finite-window-vacuum-DTFT",
+                "value": 4.0687271033523553e-14,
+                "bound": 1e-06,
+                "passed": true
+              },
+              {
+                "name": "lorentz-s-n1920/independent-direct-spectral-work-budget",
+                "value": 0.00248891265735518,
+                "bound": 0.02,
+                "passed": true
+              },
+              {
+                "name": "lorentz-s-n3840/finite",
+                "value": 0.0,
+                "bound": 0.0,
+                "passed": true
+              },
+              {
+                "name": "lorentz-s-n3840/closed-PEC-direct-work-budget",
+                "value": 1.0696080209887492e-12,
+                "bound": 5e-10,
+                "passed": true
+              },
+              {
+                "name": "lorentz-s-n3840/vacuum-energy-budget",
+                "value": 1.457203812148461e-12,
+                "bound": 5e-10,
+                "passed": true
+              },
+              {
+                "name": "lorentz-s-n3840/nonnegative-material-work",
+                "value": 0.0,
+                "bound": -1e-14,
+                "passed": true
+              },
+              {
+                "name": "lorentz-s-n3840/initial-slab-tail",
+                "value": 1.522997807932064e-08,
+                "bound": 1e-07,
+                "passed": true
+              },
+              {
+                "name": "lorentz-s-n3840/last-carrier-period-monitor-energy",
+                "value": 1.56309506216629e-15,
+                "bound": 1e-05,
+                "passed": true
+              },
+              {
+                "name": "lorentz-s-n3840/independent-finite-window-vacuum-DTFT",
+                "value": 2.7029789938778615e-13,
+                "bound": 1e-06,
+                "passed": true
+              },
+              {
+                "name": "lorentz-s-n3840/independent-direct-spectral-work-budget",
+                "value": 0.0009747877572782171,
+                "bound": 0.02,
+                "passed": true
+              },
+              {
+                "name": "s/finest-complex-rt",
+                "value": 0.011507167077779438,
+                "bound": 0.03,
+                "passed": true
+              },
+              {
+                "name": "s/finest-RTA",
+                "value": 0.004990411900537867,
+                "bound": 0.02,
+                "passed": true
+              },
+              {
+                "name": "s/refinement-n1920",
+                "value": 0.23549764534426382,
+                "bound": 0.85,
+                "passed": true
+              },
+              {
+                "name": "s/refinement-n3840",
+                "value": 0.24569704062721928,
+                "bound": 0.85,
+                "passed": true
+              },
+              {
+                "name": "lorentz-p-n960/finite",
+                "value": 0.0,
+                "bound": 0.0,
+                "passed": true
+              },
+              {
+                "name": "lorentz-p-n960/closed-PEC-direct-work-budget",
+                "value": 4.363542304917991e-14,
+                "bound": 5e-10,
+                "passed": true
+              },
+              {
+                "name": "lorentz-p-n960/vacuum-energy-budget",
+                "value": 5.449419223772698e-14,
+                "bound": 5e-10,
+                "passed": true
+              },
+              {
+                "name": "lorentz-p-n960/nonnegative-material-work",
+                "value": 0.0,
+                "bound": -1e-14,
+                "passed": true
+              },
+              {
+                "name": "lorentz-p-n960/initial-slab-tail",
+                "value": 1.790732343581236e-08,
+                "bound": 1e-07,
+                "passed": true
+              },
+              {
+                "name": "lorentz-p-n960/last-carrier-period-monitor-energy",
+                "value": 6.912223683050338e-19,
+                "bound": 1e-05,
+                "passed": true
+              },
+              {
+                "name": "lorentz-p-n960/independent-finite-window-vacuum-DTFT",
+                "value": 3.111695829940679e-14,
+                "bound": 1e-06,
+                "passed": true
+              },
+              {
+                "name": "lorentz-p-n960/independent-direct-spectral-work-budget",
+                "value": 0.009283883244233682,
+                "bound": 0.02,
+                "passed": true
+              },
+              {
+                "name": "lorentz-p-n1920/finite",
+                "value": 0.0,
+                "bound": 0.0,
+                "passed": true
+              },
+              {
+                "name": "lorentz-p-n1920/closed-PEC-direct-work-budget",
+                "value": 6.455806332415494e-14,
+                "bound": 5e-10,
+                "passed": true
+              },
+              {
+                "name": "lorentz-p-n1920/vacuum-energy-budget",
+                "value": 1.0923368042973898e-13,
+                "bound": 5e-10,
+                "passed": true
+              },
+              {
+                "name": "lorentz-p-n1920/nonnegative-material-work",
+                "value": 0.0,
+                "bound": -1e-14,
+                "passed": true
+              },
+              {
+                "name": "lorentz-p-n1920/initial-slab-tail",
+                "value": 1.7915237415537775e-08,
+                "bound": 1e-07,
+                "passed": true
+              },
+              {
+                "name": "lorentz-p-n1920/last-carrier-period-monitor-energy",
+                "value": 2.1907297303172226e-19,
+                "bound": 1e-05,
+                "passed": true
+              },
+              {
+                "name": "lorentz-p-n1920/independent-finite-window-vacuum-DTFT",
+                "value": 3.846489371783336e-14,
+                "bound": 1e-06,
+                "passed": true
+              },
+              {
+                "name": "lorentz-p-n1920/independent-direct-spectral-work-budget",
+                "value": 0.0025247117228505145,
+                "bound": 0.02,
+                "passed": true
+              },
+              {
+                "name": "lorentz-p-n3840/finite",
+                "value": 0.0,
+                "bound": 0.0,
+                "passed": true
+              },
+              {
+                "name": "lorentz-p-n3840/closed-PEC-direct-work-budget",
+                "value": 1.0729586483899446e-12,
+                "bound": 5e-10,
+                "passed": true
+              },
+              {
+                "name": "lorentz-p-n3840/vacuum-energy-budget",
+                "value": 1.457203812148461e-12,
+                "bound": 5e-10,
+                "passed": true
+              },
+              {
+                "name": "lorentz-p-n3840/nonnegative-material-work",
+                "value": 0.0,
+                "bound": -1e-14,
+                "passed": true
+              },
+              {
+                "name": "lorentz-p-n3840/initial-slab-tail",
+                "value": 1.7917237855687834e-08,
+                "bound": 1e-07,
+                "passed": true
+              },
+              {
+                "name": "lorentz-p-n3840/last-carrier-period-monitor-energy",
+                "value": 1.5017118559103457e-19,
+                "bound": 1e-05,
+                "passed": true
+              },
+              {
+                "name": "lorentz-p-n3840/independent-finite-window-vacuum-DTFT",
+                "value": 2.7424705908990964e-13,
+                "bound": 1e-06,
+                "passed": true
+              },
+              {
+                "name": "lorentz-p-n3840/independent-direct-spectral-work-budget",
+                "value": 0.0009548318766878783,
+                "bound": 0.02,
+                "passed": true
+              },
+              {
+                "name": "p/finest-complex-rt",
+                "value": 0.012023386314063115,
+                "bound": 0.03,
+                "passed": true
+              },
+              {
+                "name": "p/finest-RTA",
+                "value": 0.0022696015641971365,
+                "bound": 0.02,
+                "passed": true
+              },
+              {
+                "name": "p/refinement-n1920",
+                "value": 0.23984657805682102,
+                "bound": 0.85,
+                "passed": true
+              },
+              {
+                "name": "p/refinement-n3840",
+                "value": 0.24706764575719375,
+                "bound": 0.85,
+                "passed": true
+              }
+            ],
+            "records": [
+              {
+                "id": "lorentz-s-n960",
+                "polarization": "s",
+                "cells": 960,
+                "transverse_cells": 32,
+                "steps": 2592,
+                "h": 0.0625,
+                "dt": 0.023148148148148147,
+                "fields": "lorentz-s-n960.npz",
+                "maximum_budget": 4.4356669711149845e-14,
+                "vacuum_budget": 5.3532530021767114e-14,
+                "minimum_physical_work": 0.0,
+                "complex_rt_error": 0.19887579292477245,
+                "RTA_error": 0.06852436854024187,
+                "vacuum_calibration_error": 2.6470813096612056e-14,
+                "tail_energy_fraction": 1.4043031566102012e-15,
+                "initial_material_tail": 1.522997807932064e-08,
+                "independent_RTA_budget": 0.009248474276659424
+              },
+              {
+                "id": "lorentz-s-n1920",
+                "polarization": "s",
+                "cells": 1920,
+                "transverse_cells": 64,
+                "steps": 5184,
+                "h": 0.03125,
+                "dt": 0.011574074074074073,
+                "fields": "lorentz-s-n1920.npz",
+                "maximum_budget": 6.256183378413779e-14,
+                "vacuum_budget": 1.0747699843452388e-13,
+                "minimum_physical_work": 0.0,
+                "complex_rt_error": 0.046834780949757314,
+                "RTA_error": 0.019345433104416387,
+                "vacuum_calibration_error": 4.0687271033523553e-14,
+                "tail_energy_fraction": 1.649492017703364e-15,
+                "initial_material_tail": 1.522997807932064e-08,
+                "independent_RTA_budget": 0.00248891265735518
+              },
+              {
+                "id": "lorentz-s-n3840",
+                "polarization": "s",
+                "cells": 3840,
+                "transverse_cells": 128,
+                "steps": 10364,
+                "h": 0.015625,
+                "dt": 0.005789270551910459,
+                "fields": "lorentz-s-n3840.npz",
+                "maximum_budget": 1.0696080209887492e-12,
+                "vacuum_budget": 1.457203812148461e-12,
+                "minimum_physical_work": 0.0,
+                "complex_rt_error": 0.011507167077779438,
+                "RTA_error": 0.004990411900537867,
+                "vacuum_calibration_error": 2.7029789938778615e-13,
+                "tail_energy_fraction": 1.56309506216629e-15,
+                "initial_material_tail": 1.522997807932064e-08,
+                "independent_RTA_budget": 0.0009747877572782171
+              },
+              {
+                "id": "lorentz-p-n960",
+                "polarization": "p",
+                "cells": 960,
+                "transverse_cells": 32,
+                "steps": 2592,
+                "h": 0.0625,
+                "dt": 0.023148148148148147,
+                "fields": "lorentz-p-n960.npz",
+                "maximum_budget": 4.363542304917991e-14,
+                "vacuum_budget": 5.449419223772698e-14,
+                "minimum_physical_work": 0.0,
+                "complex_rt_error": 0.20289782785249447,
+                "RTA_error": 0.03345388336964239,
+                "vacuum_calibration_error": 3.111695829940679e-14,
+                "tail_energy_fraction": 6.912223683050338e-19,
+                "initial_material_tail": 1.790732343581236e-08,
+                "independent_RTA_budget": 0.009283883244233682
+              },
+              {
+                "id": "lorentz-p-n1920",
+                "polarization": "p",
+                "cells": 1920,
+                "transverse_cells": 64,
+                "steps": 5184,
+                "h": 0.03125,
+                "dt": 0.011574074074074073,
+                "fields": "lorentz-p-n1920.npz",
+                "maximum_budget": 6.455806332415494e-14,
+                "vacuum_budget": 1.0923368042973898e-13,
+                "minimum_physical_work": 0.0,
+                "complex_rt_error": 0.04866434970558275,
+                "RTA_error": 0.008669701514755976,
+                "vacuum_calibration_error": 3.846489371783336e-14,
+                "tail_energy_fraction": 2.1907297303172226e-19,
+                "initial_material_tail": 1.7915237415537775e-08,
+                "independent_RTA_budget": 0.0025247117228505145
+              },
+              {
+                "id": "lorentz-p-n3840",
+                "polarization": "p",
+                "cells": 3840,
+                "transverse_cells": 128,
+                "steps": 10364,
+                "h": 0.015625,
+                "dt": 0.005789270551910459,
+                "fields": "lorentz-p-n3840.npz",
+                "maximum_budget": 1.0729586483899446e-12,
+                "vacuum_budget": 1.457203812148461e-12,
+                "minimum_physical_work": 0.0,
+                "complex_rt_error": 0.012023386314063115,
+                "RTA_error": 0.0022696015641971365,
+                "vacuum_calibration_error": 2.7424705908990964e-13,
+                "tail_energy_fraction": 1.5017118559103457e-19,
+                "initial_material_tail": 1.7917237855687834e-08,
+                "independent_RTA_budget": 0.0009548318766878783
+              }
+            ],
+            "metrics": {
+              "completed_matched_pairs": 6,
+              "completed_primary_and_vacuum_evolutions": 12,
+              "spatial_dimensions": 2,
+              "spatial_restriction": "Actual single-ky Yee evolution with both p electric ADE components.",
+              "material_energy_included": true,
+              "direct_absorption_not_defined_by_RT": true,
+              "final_time": 60.0,
+              "finite_window": "One final carrier period is checked; Gaussian tails remain noncompact.",
+              "maximum_energy_budget_defect": 1.0729586483899446e-12,
+              "maximum_vacuum_calibration_error": 2.7424705908990964e-13,
+              "finest_complex_rt_errors": {
+                "s": 0.011507167077779438,
+                "p": 0.012023386314063115
+              },
+              "finest_RTA_errors": {
+                "s": 0.004990411900537867,
+                "p": 0.0022696015641971365
+              }
+            }
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lorentz-oblique-sp/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-lorentz/#lorentz-oblique-sp",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-lorentz/#lorentz-oblique-sp"
+          }
+        }
+      ]
+    },
+    {
+      "group": "maxwell-grazing",
+      "case_ids": [
+        "dispersive-grazing-pml"
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/",
+      "code_edition": "2026-11-24-r2",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/references/isolated_reference.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/centered_pml.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/io_contract.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/modal_yee_draft.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/pml_evolution.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/specifications.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/test_grazing.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-maxwell-grazing-2026-11-24-r2",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/atlas-maxwell-grazing-2026-11-24-r2.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/verification.json",
+      "code_archive_sha256": "a9d0c65eb27e26b05eafd3774b9f651b01baf28e617769bb2bbcb7efb0b90d3d",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/results/result.json",
+      "passed_tests": 15,
+      "examples": [
+        {
+          "id": "dispersive-grazing-pml",
+          "method_ids": [
+            "fdtd",
+            "leapfrog",
+            "implicit-midpoint"
+          ],
+          "title": {
+            "ja": "分散媒質の浅い入射角と長時間PML",
+            "en": "Long-time grazing PML in a dispersive medium"
+          },
+          "summary": {
+            "ja": "80度の中心位相角を持つ有限波束をT=700まで進め、境界誤差を同格子の無PML参照から分離します。",
+            "en": "Evolve a finite packet with an 80-degree central phase angle to T = 700, isolating boundary error against a no-PML reference on the same grid."
+          },
+          "assumptions": {
+            "ja": "c=1、均質Lorentz媒質ε∞=1、Δε=0.2、ω0=12はPML内まで連続。512/768/1024点とpeak6/9/12を同時に細分化します。垂直粗格子はpeak6、弱減衰細格子対照はpeak12。長さ64、層幅12、中心32、幅4、carrier6は固定です。",
+            "en": "Use c = 1 and a homogeneous Lorentz medium with epsilon_inf = 1, delta_epsilon = 0.2 and omega_0 = 12 continuing through the PML. Joint refinement uses 512/768/1024 cells and peaks 6/9/12. The normal coarse control has peak 6; the damped fine companion has peak 12. Length 64, layer thickness 12, center 32, width 4 and carrier 6 are fixed."
+          },
+          "algorithm": {
+            "ja": "Yee・中点ADEに時刻配置を保った台形微分memoryを結合。正の物理散逸と符号付きPML数値仕事を区別し、補助場を含め全状態を保存します。",
+            "en": "Couple Yee and midpoint ADE updates to a trapezoidal derivative-memory filter at native times. Separate positive physical dissipation from signed numerical PML work, retaining all physical and auxiliary states."
+          },
+          "validation": {
+            "ja": "3つの格子・層強度の同時細分化、垂直・弱減衰対照の5長時間計算。参照入力が全て不変なことを確認して同一byteの無PML参照を再利用します。旧13検査本体を保持し、policy・peak12直接仕事の2回帰を追加。全44長時間判定は不変です。",
+            "en": "Use five long trajectories: three joint grid/layer-strength resolutions, a normal control and a weakly damped companion. Reuse the byte-bound no-PML reference only after checking every unchanged reference argument. Retain the old 13 test bodies and add two parameter-policy/peak-12 work regressions; all original 44 long-trajectory gates remain unchanged."
+          },
+          "limits": {
+            "ja": "有限kx帯域の中心角が80度で、全成分が厳密に80度ではありません。無PML参照は同じ離散化・初期場を使い、伝播分散を除いた境界誤差用です。任意角度・材料での大域安定性証明ではありません。 固定PMLの空間次数を測る族ではなく、旧100検査だけでpeak12の大域安定性が証明されたとはしません。",
+            "en": "The central angle is 80 degrees; finite kx bandwidth gives neighboring angles. The no-PML reference shares the discretization and initialization to isolate boundary error from bulk dispersion. Small operator and finite-trajectory checks do not prove global stability for arbitrary angles and materials. The joint family does not measure fixed-PML spatial order; the older 100 checks alone do not prove peak-12 global stability."
+          },
+          "formulas": [
+            "\\partial_t\\psi=-s_x(\\psi+D_xu),\\quad D_x^{\\mathrm{PML}}u=D_xu+\\psi",
+            "\\psi^n=b\\psi^{n-1}+c(D^n+D^{n-1}),\\quad b=\\frac{1-s_x\\Delta t/2}{1+s_x\\Delta t/2},\\quad c=\\frac{-s_x\\Delta t/2}{1+s_x\\Delta t/2}",
+            "\\Delta\\mathcal E_{\\mathrm{mod}}+W_{\\mathrm{physical}}-W_{\\mathrm{PML}}=0"
+          ],
+          "domains": [
+            "pde",
+            "time"
+          ],
+          "code_files": [
+            "run.py",
+            "references/isolated_reference.py"
+          ],
+          "references": [
+            {
+              "id": "meep-materials",
+              "author": "Meep developers",
+              "title": "Meep Materials documentation",
+              "url": "https://meep.readthedocs.io/en/latest/Materials/",
+              "review_level": "primary-official-documentation-selected-sections",
+              "review_scope": "Read Material Dispersion, Numerical Stability, Loss and Gain, and Conductivity. Confirmed the exp(-i omega t) convention, Lorentz polarization and dispersive-PML warning. Our sigma E conductivity and midpoint update differ from Meep. Unversioned latest documentation; no original Yee or Roden-Gedney paper claim. Publication and revision dates have not been verified. Accessed on 2026-11-24; this is a consultation date, not a publication year.",
+              "accessed_on": "2026-11-24"
+            },
+            {
+              "id": "johnson-pml",
+              "author": "Steven G. Johnson",
+              "year": 2021,
+              "title": "Notes on Perfectly Matched Layers",
+              "url": "https://arxiv.org/html/2108.05348v1",
+              "review_level": "primary-author-notes-selected-derivation",
+              "review_scope": "Read sections 3.2–4.2, equations 7–8 and the time-domain ADE discussion, plus sections 5–7.2 on homogeneity, evanescent fields and grazing/discretization limitations. The served text is updated 2026-08-24. The trapezoidal filter is our derivation; no full original Berenger/Roden-Gedney paper review is claimed."
+            }
+          ],
+          "citations": [
+            {
+              "id": "meep-materials",
+              "author": "Meep developers",
+              "title": "Meep Materials documentation",
+              "url": "https://meep.readthedocs.io/en/latest/Materials/",
+              "review_level": "primary-official-documentation-selected-sections",
+              "review_scope": "Read Material Dispersion, Numerical Stability, Loss and Gain, and Conductivity. Confirmed the exp(-i omega t) convention, Lorentz polarization and dispersive-PML warning. Our sigma E conductivity and midpoint update differ from Meep. Unversioned latest documentation; no original Yee or Roden-Gedney paper claim. Publication and revision dates have not been verified. Accessed on 2026-11-24; this is a consultation date, not a publication year.",
+              "accessed_on": "2026-11-24"
+            },
+            {
+              "id": "johnson-pml",
+              "author": "Steven G. Johnson",
+              "year": 2021,
+              "title": "Notes on Perfectly Matched Layers",
+              "url": "https://arxiv.org/html/2108.05348v1",
+              "review_level": "primary-author-notes-selected-derivation",
+              "review_scope": "Read sections 3.2–4.2, equations 7–8 and the time-domain ADE discussion, plus sections 5–7.2 on homogeneity, evanescent fields and grazing/discretization limitations. The served text is updated 2026-08-24. The trapezoidal filter is our derivation; no full original Berenger/Roden-Gedney paper review is claimed."
+            }
+          ],
+          "review_level": "selected-primary-sources-independent-derivation-and-fixed-reference-qualification",
+          "gallery_figure": "dispersive-grazing-pml-preview.png",
+          "additional_figures": [
+            {
+              "file": "dispersive-grazing-pml-preview.png",
+              "caption": {
+                "ja": "保存した浅角度の実電場を周期y方向へ再構成。灰色はPML領域です。",
+                "en": "Actual saved grazing electric field reconstructed over the periodic y direction; gray shading marks the PML."
+              }
+            }
+          ],
+          "case_notes": {
+            "ja": "初回の固定peak6は5進行を完了し44判定中42合格。細分化比1.00905/1.00306の未達を保持します。新しい事前固定のpeak=N比例の族はσpeak hを一定にし、有限層/cap反射床を減らす設計で、元の44判定と閾値を変更しません。",
+            "en": "The first fixed-peak-6 experiment completed five evolutions with 42/44 gates passing. Preserve the unmet refinement ratios 1.00905 and 1.00306. The revised, predeclared peak proportional to N keeps peak times h fixed and targets the finite-layer/cap floor; every original gate and bound remains unchanged."
+          },
+          "measured": {
+            "id": "dispersive-grazing-pml",
+            "passed": true,
+            "checks": {
+              "independent-reference-and-filter-qualified": true,
+              "grazing-n512/all-fields-and-auxiliaries-finite": true,
+              "grazing-n512/same-grid-isolated-boundary-error": true,
+              "grazing-n512/direct-signed-work-ledger": true,
+              "grazing-n512/nonnegative-physical-material-work": true,
+              "grazing-n512/long-time-physical-energy-bounded": true,
+              "grazing-n512/long-time-memory-bounded": true,
+              "grazing-n512/long-time-residual": true,
+              "grazing-n512/five-matched-actual-times": true,
+              "grazing-n768/all-fields-and-auxiliaries-finite": true,
+              "grazing-n768/same-grid-isolated-boundary-error": true,
+              "grazing-n768/direct-signed-work-ledger": true,
+              "grazing-n768/nonnegative-physical-material-work": true,
+              "grazing-n768/long-time-physical-energy-bounded": true,
+              "grazing-n768/long-time-memory-bounded": true,
+              "grazing-n768/long-time-residual": true,
+              "grazing-n768/five-matched-actual-times": true,
+              "grazing-n1024/all-fields-and-auxiliaries-finite": true,
+              "grazing-n1024/same-grid-isolated-boundary-error": true,
+              "grazing-n1024/direct-signed-work-ledger": true,
+              "grazing-n1024/nonnegative-physical-material-work": true,
+              "grazing-n1024/long-time-physical-energy-bounded": true,
+              "grazing-n1024/long-time-memory-bounded": true,
+              "grazing-n1024/long-time-residual": true,
+              "grazing-n1024/five-matched-actual-times": true,
+              "normal-n512/all-fields-and-auxiliaries-finite": true,
+              "normal-n512/same-grid-isolated-boundary-error": true,
+              "normal-n512/direct-signed-work-ledger": true,
+              "normal-n512/nonnegative-physical-material-work": true,
+              "normal-n512/long-time-physical-energy-bounded": true,
+              "normal-n512/long-time-memory-bounded": true,
+              "normal-n512/long-time-residual": true,
+              "normal-n512/five-matched-actual-times": true,
+              "damped-grazing-n1024/all-fields-and-auxiliaries-finite": true,
+              "damped-grazing-n1024/same-grid-isolated-boundary-error": true,
+              "damped-grazing-n1024/direct-signed-work-ledger": true,
+              "damped-grazing-n1024/nonnegative-physical-material-work": true,
+              "damped-grazing-n1024/long-time-physical-energy-bounded": true,
+              "damped-grazing-n1024/long-time-memory-bounded": true,
+              "damped-grazing-n1024/long-time-residual": true,
+              "damped-grazing-n1024/five-matched-actual-times": true,
+              "finest-grazing-boundary-error": true,
+              "grazing-refinement-n768": true,
+              "grazing-refinement-n1024": true
+            },
+            "check_details": [
+              {
+                "name": "independent-reference-and-filter-qualified",
+                "value": 100,
+                "bound": 100,
+                "passed": true
+              },
+              {
+                "name": "grazing-n512/all-fields-and-auxiliaries-finite",
+                "value": 0.0,
+                "bound": 0.0,
+                "passed": true
+              },
+              {
+                "name": "grazing-n512/same-grid-isolated-boundary-error",
+                "value": 0.0022749185241942456,
+                "bound": 0.05,
+                "passed": true
+              },
+              {
+                "name": "grazing-n512/direct-signed-work-ledger",
+                "value": 7.627980232355881e-14,
+                "bound": 5e-10,
+                "passed": true
+              },
+              {
+                "name": "grazing-n512/nonnegative-physical-material-work",
+                "value": 0.0,
+                "bound": -1e-14,
+                "passed": true
+              },
+              {
+                "name": "grazing-n512/long-time-physical-energy-bounded",
+                "value": 1.008605280538968,
+                "bound": 5.0,
+                "passed": true
+              },
+              {
+                "name": "grazing-n512/long-time-memory-bounded",
+                "value": 0.08444989819013007,
+                "bound": 5.0,
+                "passed": true
+              },
+              {
+                "name": "grazing-n512/long-time-residual",
+                "value": 7.76288246605691e-06,
+                "bound": 0.05,
+                "passed": true
+              },
+              {
+                "name": "grazing-n512/five-matched-actual-times",
+                "value": [
+                  0.0,
+                  175.0,
+                  350.0,
+                  525.0,
+                  700.0
+                ],
+                "bound": [
+                  0.0,
+                  175.0,
+                  350.0,
+                  525.0,
+                  700.0
+                ],
+                "passed": true
+              },
+              {
+                "name": "grazing-n768/all-fields-and-auxiliaries-finite",
+                "value": 0.0,
+                "bound": 0.0,
+                "passed": true
+              },
+              {
+                "name": "grazing-n768/same-grid-isolated-boundary-error",
+                "value": 0.00025923360096816205,
+                "bound": 0.05,
+                "passed": true
+              },
+              {
+                "name": "grazing-n768/direct-signed-work-ledger",
+                "value": 3.278907546233959e-13,
+                "bound": 5e-10,
+                "passed": true
+              },
+              {
+                "name": "grazing-n768/nonnegative-physical-material-work",
+                "value": 0.0,
+                "bound": -1e-14,
+                "passed": true
+              },
+              {
+                "name": "grazing-n768/long-time-physical-energy-bounded",
+                "value": 1.0038323640188327,
+                "bound": 5.0,
+                "passed": true
+              },
+              {
+                "name": "grazing-n768/long-time-memory-bounded",
+                "value": 0.0898709958388591,
+                "bound": 5.0,
+                "passed": true
+              },
+              {
+                "name": "grazing-n768/long-time-residual",
+                "value": 1.368994980911539e-06,
+                "bound": 0.05,
+                "passed": true
+              },
+              {
+                "name": "grazing-n768/five-matched-actual-times",
+                "value": [
+                  0.0,
+                  175.0,
+                  350.0,
+                  525.0,
+                  700.0
+                ],
+                "bound": [
+                  0.0,
+                  175.0,
+                  350.0,
+                  525.0,
+                  700.0
+                ],
+                "passed": true
+              },
+              {
+                "name": "grazing-n1024/all-fields-and-auxiliaries-finite",
+                "value": 0.0,
+                "bound": 0.0,
+                "passed": true
+              },
+              {
+                "name": "grazing-n1024/same-grid-isolated-boundary-error",
+                "value": 3.698206474875288e-05,
+                "bound": 0.05,
+                "passed": true
+              },
+              {
+                "name": "grazing-n1024/direct-signed-work-ledger",
+                "value": 3.7954491251762573e-13,
+                "bound": 5e-10,
+                "passed": true
+              },
+              {
+                "name": "grazing-n1024/nonnegative-physical-material-work",
+                "value": 0.0,
+                "bound": -1e-14,
+                "passed": true
+              },
+              {
+                "name": "grazing-n1024/long-time-physical-energy-bounded",
+                "value": 1.0021568635608469,
+                "bound": 5.0,
+                "passed": true
+              },
+              {
+                "name": "grazing-n1024/long-time-memory-bounded",
+                "value": 0.09395281868259894,
+                "bound": 5.0,
+                "passed": true
+              },
+              {
+                "name": "grazing-n1024/long-time-residual",
+                "value": 1.07357596230308e-06,
+                "bound": 0.05,
+                "passed": true
+              },
+              {
+                "name": "grazing-n1024/five-matched-actual-times",
+                "value": [
+                  0.0,
+                  175.0,
+                  350.0,
+                  525.0,
+                  700.0
+                ],
+                "bound": [
+                  0.0,
+                  175.0,
+                  350.0,
+                  525.0,
+                  700.0
+                ],
+                "passed": true
+              },
+              {
+                "name": "normal-n512/all-fields-and-auxiliaries-finite",
+                "value": 0.0,
+                "bound": 0.0,
+                "passed": true
+              },
+              {
+                "name": "normal-n512/same-grid-isolated-boundary-error",
+                "value": 1.1443305211937377e-10,
+                "bound": 0.05,
+                "passed": true
+              },
+              {
+                "name": "normal-n512/direct-signed-work-ledger",
+                "value": 5.580167619648629e-14,
+                "bound": 5e-10,
+                "passed": true
+              },
+              {
+                "name": "normal-n512/nonnegative-physical-material-work",
+                "value": 0.0,
+                "bound": -1e-14,
+                "passed": true
+              },
+              {
+                "name": "normal-n512/long-time-physical-energy-bounded",
+                "value": 1.046709741179309,
+                "bound": 5.0,
+                "passed": true
+              },
+              {
+                "name": "normal-n512/long-time-memory-bounded",
+                "value": 0.19440763232262762,
+                "bound": 5.0,
+                "passed": true
+              },
+              {
+                "name": "normal-n512/long-time-residual",
+                "value": 1.0466875150335664e-18,
+                "bound": 0.05,
+                "passed": true
+              },
+              {
+                "name": "normal-n512/five-matched-actual-times",
+                "value": [
+                  0.0,
+                  175.0,
+                  350.0,
+                  525.0,
+                  700.0
+                ],
+                "bound": [
+                  0.0,
+                  175.0,
+                  350.0,
+                  525.0,
+                  700.0
+                ],
+                "passed": true
+              },
+              {
+                "name": "damped-grazing-n1024/all-fields-and-auxiliaries-finite",
+                "value": 0.0,
+                "bound": 0.0,
+                "passed": true
+              },
+              {
+                "name": "damped-grazing-n1024/same-grid-isolated-boundary-error",
+                "value": 3.309246986703788e-05,
+                "bound": 0.05,
+                "passed": true
+              },
+              {
+                "name": "damped-grazing-n1024/direct-signed-work-ledger",
+                "value": 1.4663140868405557e-12,
+                "bound": 5e-10,
+                "passed": true
+              },
+              {
+                "name": "damped-grazing-n1024/nonnegative-physical-material-work",
+                "value": 0.0,
+                "bound": -1e-14,
+                "passed": true
+              },
+              {
+                "name": "damped-grazing-n1024/long-time-physical-energy-bounded",
+                "value": 1.002152831414173,
+                "bound": 5.0,
+                "passed": true
+              },
+              {
+                "name": "damped-grazing-n1024/long-time-memory-bounded",
+                "value": 0.09122895971915622,
+                "bound": 5.0,
+                "passed": true
+              },
+              {
+                "name": "damped-grazing-n1024/long-time-residual",
+                "value": 8.613802383168972e-07,
+                "bound": 0.05,
+                "passed": true
+              },
+              {
+                "name": "damped-grazing-n1024/five-matched-actual-times",
+                "value": [
+                  0.0,
+                  175.0,
+                  350.0,
+                  525.0,
+                  700.0
+                ],
+                "bound": [
+                  0.0,
+                  175.0,
+                  350.0,
+                  525.0,
+                  700.0
+                ],
+                "passed": true
+              },
+              {
+                "name": "finest-grazing-boundary-error",
+                "value": 3.698206474875288e-05,
+                "bound": 0.01,
+                "passed": true
+              },
+              {
+                "name": "grazing-refinement-n768",
+                "value": 0.1139529166478523,
+                "bound": 0.9,
+                "passed": true
+              },
+              {
+                "name": "grazing-refinement-n1024",
+                "value": 0.14265922554265972,
+                "bound": 0.9,
+                "passed": true
+              }
+            ],
+            "records": [
+              {
+                "id": "grazing-n512",
+                "cells": 512,
+                "steps": 21852,
+                "dt": 0.032033681127585575,
+                "pml_peak": 6.0,
+                "angle_degrees": 80.0,
+                "gamma": 0.0,
+                "fields": "grazing-n512.npz",
+                "boundary_error": 0.0022749185241942456,
+                "maximum_budget": 7.627980232355881e-14,
+                "physical_work": 0.0,
+                "signed_PML_work": -9.524465621307716,
+                "maximum_energy_growth": 1.008605280538968,
+                "maximum_memory_relative": 0.08444989819013007,
+                "final_positive_energy_fraction": 7.76288246605691e-06,
+                "errors_at_actual_times": [
+                  0.0,
+                  2.1444234935642056e-07,
+                  0.0009582206658863335,
+                  0.0022667136469209904,
+                  0.0022749185241942456
+                ]
+              },
+              {
+                "id": "grazing-n768",
+                "cells": 768,
+                "steps": 32776,
+                "dt": 0.02135709055406395,
+                "pml_peak": 9.0,
+                "angle_degrees": 80.0,
+                "gamma": 0.0,
+                "fields": "grazing-n768.npz",
+                "boundary_error": 0.00025923360096816205,
+                "maximum_budget": 3.278907546233959e-13,
+                "physical_work": 0.0,
+                "signed_PML_work": -9.57275620067823,
+                "maximum_energy_growth": 1.0038323640188327,
+                "maximum_memory_relative": 0.0898709958388591,
+                "final_positive_energy_fraction": 1.368994980911539e-06,
+                "errors_at_actual_times": [
+                  0.0,
+                  2.082757558385089e-09,
+                  4.0539393535005906e-05,
+                  0.00018857583444879824,
+                  0.00025923360096816205
+                ]
+              },
+              {
+                "id": "grazing-n1024",
+                "cells": 1024,
+                "steps": 43704,
+                "dt": 0.016016840563792788,
+                "pml_peak": 12.0,
+                "angle_degrees": 80.0,
+                "gamma": 0.0,
+                "fields": "grazing-n1024.npz",
+                "boundary_error": 3.698206474875288e-05,
+                "maximum_budget": 3.7954491251762573e-13,
+                "physical_work": 0.0,
+                "signed_PML_work": -9.58977750651282,
+                "maximum_energy_growth": 1.0021568635608469,
+                "maximum_memory_relative": 0.09395281868259894,
+                "final_positive_energy_fraction": 1.07357596230308e-06,
+                "errors_at_actual_times": [
+                  0.0,
+                  1.5836496475413641e-09,
+                  1.934086358058802e-06,
+                  1.8932190510678662e-05,
+                  3.698206474875288e-05
+                ]
+              },
+              {
+                "id": "normal-n512",
+                "cells": 512,
+                "steps": 9336,
+                "dt": 0.07497857754927163,
+                "pml_peak": 6.0,
+                "angle_degrees": 0.0,
+                "gamma": 0.0,
+                "fields": "normal-n512.npz",
+                "boundary_error": 1.1443305211937377e-10,
+                "maximum_budget": 5.580167619648629e-14,
+                "physical_work": 0.0,
+                "signed_PML_work": -9.16801796322128,
+                "maximum_energy_growth": 1.046709741179309,
+                "maximum_memory_relative": 0.19440763232262762,
+                "final_positive_energy_fraction": 1.0466875150335664e-18,
+                "errors_at_actual_times": [
+                  0.0,
+                  1.1443305211937377e-10,
+                  1.0074002983851267e-10,
+                  9.226364532834625e-11,
+                  9.21136696532338e-11
+                ]
+              },
+              {
+                "id": "damped-grazing-n1024",
+                "cells": 1024,
+                "steps": 43704,
+                "dt": 0.016016840563792788,
+                "pml_peak": 12.0,
+                "angle_degrees": 80.0,
+                "gamma": 0.005,
+                "fields": "damped-grazing-n1024.npz",
+                "boundary_error": 3.309246986703788e-05,
+                "maximum_budget": 1.4663140868405557e-12,
+                "physical_work": 0.5534975650290108,
+                "signed_PML_work": -9.036281855690534,
+                "maximum_energy_growth": 1.002152831414173,
+                "maximum_memory_relative": 0.09122895971915622,
+                "final_positive_energy_fraction": 8.613802383168972e-07,
+                "errors_at_actual_times": [
+                  0.0,
+                  1.5384442220216574e-09,
+                  1.8278851677926718e-06,
+                  1.7411202391275966e-05,
+                  3.309246986703788e-05
+                ]
+              }
+            ],
+            "metrics": {
+              "completed_primary_and_control_runs": 5,
+              "spatial_dimensions": 2,
+              "spatial_restriction": "Actual single-ky Yee evolution; no arbitrary-y scattering claim.",
+              "reference": "Independent no-PML Fourier update matrix; shared discretization and initialization isolate boundary error from bulk dispersion.",
+              "memory_scheme": "Trapezoidal derivative filter; original endpoint-held variant retained separately.",
+              "refinement_family": "Joint grid and layer-strength co-refinement, not fixed-PML spatial order.",
+              "actual_pml_peaks": {
+                "grazing-n512": 6.0,
+                "grazing-n768": 9.0,
+                "grazing-n1024": 12.0,
+                "normal-n512": 6.0,
+                "damped-grazing-n1024": 12.0
+              },
+              "PML_work_is_signed_numerical_work": true,
+              "material_continues_through_PML": true,
+              "finite_band_carrier_not_exactly_monochromatic": true,
+              "finest_grazing_boundary_error": 3.698206474875288e-05,
+              "maximum_energy_budget_defect": 1.4663140868405557e-12,
+              "maximum_positive_energy_ratio": 1.046709741179309,
+              "normal_final_energy_fraction": 1.0466875150335664e-18
+            }
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dispersive-grazing-pml/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-grazing/#dispersive-grazing-pml",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-grazing/#dispersive-grazing-pml"
+          }
+        }
+      ]
+    }
+  ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/fdtd/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/fdtd/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/fdtd/index.md",
@@ -113,7 +1859,26 @@
     "https://hrkoyama.github.io/code/fdtd/2026-11-22-r6/polarization.py",
     "https://hrkoyama.github.io/code/fdtd/2026-11-22-r6/run_polarization.py",
     "https://hrkoyama.github.io/code/fdtd/2026-11-22-r6/dispersive.py",
-    "https://hrkoyama.github.io/code/fdtd/2026-11-22-r6/run_dispersive.py"
+    "https://hrkoyama.github.io/code/fdtd/2026-11-22-r6/run_dispersive.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/cylinder_draft.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/cylinder_evolution.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/io_contract.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/poynting.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/reference_draft.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/io_contract.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/modal_yee_draft.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/reference_draft.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/slab_evolution.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/slab_reference.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/references/isolated_reference.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/centered_pml.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/io_contract.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/modal_yee_draft.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/pml_evolution.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/specifications.py"
   ],
   "test_urls": [
     "https://hrkoyama.github.io/code/fdtd/2026-11-22-r6/test_fdtd.py",
@@ -121,7 +1886,10 @@
     "https://hrkoyama.github.io/code/fdtd/2026-11-22-r6/test_corner.py",
     "https://hrkoyama.github.io/code/fdtd/2026-11-22-r6/test_oblique.py",
     "https://hrkoyama.github.io/code/fdtd/2026-11-22-r6/test_polarization.py",
-    "https://hrkoyama.github.io/code/fdtd/2026-11-22-r6/test_dispersive.py"
+    "https://hrkoyama.github.io/code/fdtd/2026-11-22-r6/test_dispersive.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/test_cylinder.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/test_lorentz.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/test_grazing.py"
   ],
   "run_commands": [
     "python -m pytest -q test_fdtd.py test_scattering.py test_corner.py test_oblique.py test_polarization.py test_dispersive.py",
@@ -163,12 +1931,357 @@
     "loss-dispersion"
   ],
   "passed_tests": 108,
-  "execution_examples": [],
+  "execution_examples": [
+    {
+      "id": "cylinder-mie2d",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/cylinder-mie2d/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/cylinder-mie2d/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "lorentz-oblique-sp",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lorentz-oblique-sp/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lorentz-oblique-sp/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "dispersive-grazing-pml",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dispersive-grazing-pml/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dispersive-grazing-pml/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    }
+  ],
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
   "problem_navigation": {
     "method_id": "fdtd",
     "status": "educational-example",
-    "equations": [],
-    "problems": [],
-    "references": []
+    "equations": [
+      {
+        "id": "maxwell",
+        "name": {
+          "ja": "線形Maxwell電磁場（真空・誘電体）",
+          "en": "Linear Maxwell fields in vacuum and dielectrics"
+        },
+        "problem_ids": [
+          "cylinder-mie2d"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#maxwell-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#maxwell-en"
+        }
+      },
+      {
+        "id": "maxwell-lorentz",
+        "name": {
+          "ja": "受動Lorentz・Ohmic分散Maxwell場",
+          "en": "Passive Lorentz–Ohmic Maxwell fields"
+        },
+        "problem_ids": [
+          "lorentz-oblique-sp",
+          "dispersive-grazing-pml"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#maxwell-lorentz-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#maxwell-lorentz-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "cylinder-mie2d",
+        "name": {
+          "ja": "2D誘電体円柱のMie散乱幅",
+          "en": "Mie scattering width of a two-dimensional dielectric cylinder"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/results/cylinder-mie2d-preview.png",
+          "sha256": "6968b65203b7829eae49e2b0219dd18441bbeb3635c9bb7fbae972b5cc43942e",
+          "width": 648,
+          "height": 520,
+          "caption": {
+            "ja": "保存した最細格子の実2D散乱電場phasorの実部。 図の中央の白抜きは診断用のr<0.4のマスクで、物理円柱の半径0.25とは区別します。",
+            "en": "Real part of the actual saved scattered electric phasor on the finest two-dimensional grid. The central white region is a diagnostic mask at r<0.4, distinct from the physical cylinder radius0.25."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-mie2d/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-mie2d/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-mie2d/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-mie2d/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "cylinder-mie2d",
+            "kind": "supplement",
+            "name": {
+              "ja": "2D誘電体円柱のMie散乱幅",
+              "en": "Mie scattering width of a two-dimensional dielectric cylinder"
+            },
+            "scope": {
+              "ja": "実際の2D散乱場を進め、閉曲線Poynting流束と独立な円柱級数を比較します。",
+              "en": "Evolve the actual two-dimensional scattered fields and compare closed-contour Poynting power with an independent cylindrical series."
+            },
+            "method_ids": [
+              "fdtd",
+              "leapfrog"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/cylinder-mie2d/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/cylinder-mie2d/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/atlas-maxwell-cylinder-2026-11-24-r2.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "Yeeの散乱場を局所分極contrastの厳密な離散入射差分で励起します。EとHはそれぞれの整数・半時刻でFourier集計し、Hの4点補間後に物理流束を積分します。",
+          "en": "Advance the scattered Yee fields with an exact discrete incident difference on the polarization-contrast support. Accumulate E and H at their own integer and half times, then integrate physical power after four-point native-face collocation."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-mie2d/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-mie2d/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "lorentz-oblique-sp",
+        "name": {
+          "ja": "Lorentz分散板へのs/p斜め入射",
+          "en": "Oblique s/p incidence on a Lorentz-dispersive slab"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/results/lorentz-oblique-sp-preview.png",
+          "sha256": "b85480fcaeb675536ed6da9f82006b72cb86954d36ee08958ba957b850c4c9ca",
+          "width": 1050,
+          "height": 520,
+          "caption": {
+            "ja": "保存したp偏光の実電場をky=4の周期y方向へ再構成した場。 周期y方向の1周期を表示しています。波形を見やすくするため、x軸とy軸の表示縮尺は異なります。",
+            "en": "Actual saved p-polarized electric field reconstructed over the periodic y direction at ky=4. One transverse y period is shown. The displayed x and y scales differ to make the fields visible."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lorentz-oblique-sp/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lorentz-oblique-sp/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lorentz-oblique-sp/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lorentz-oblique-sp/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "lorentz-oblique-sp",
+            "kind": "supplement",
+            "name": {
+              "ja": "Lorentz分散板へのs/p斜め入射",
+              "en": "Oblique s/p incidence on a Lorentz-dispersive slab"
+            },
+            "scope": {
+              "ja": "有限波束の実進行から複素r/t・R/T・直接散逸を求め、複素Fresnel参照と比較します。",
+              "en": "Measure complex r/t, power fractions and direct dissipation from actual finite-pulse evolutions and compare them with complex Fresnel slab references."
+            },
+            "method_ids": [
+              "fdtd",
+              "leapfrog",
+              "implicit-midpoint"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lorentz-oblique-sp/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lorentz-oblique-sp/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/atlas-maxwell-lorentz-2026-11-24-r2.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "単一ky Yee空間演算と局所の陰的中点Lorentz ADE。p偏光の両電場に分極を結合し、同格子の真空波束で入射・伝播位相を除きます。直接Ohmic・物質減衰仕事と修正エネルギーを別々に集計します。",
+          "en": "Use the single-ky Yee spatial operator and local implicit-midpoint Lorentz ADE. Couple both p-polarized electric components to polarization, and remove incident propagation with a matched vacuum pulse on the same grid. Accumulate direct Ohmic and material-damping work separately from modified energy."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lorentz-oblique-sp/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lorentz-oblique-sp/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "dispersive-grazing-pml",
+        "name": {
+          "ja": "分散媒質の浅い入射角と長時間PML",
+          "en": "Long-time grazing PML in a dispersive medium"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/results/dispersive-grazing-pml-preview.png",
+          "sha256": "9fc94253f358d6715bb32e4820843d38c9ee998aeea07048df1093ef227b9e65",
+          "width": 1050,
+          "height": 520,
+          "caption": {
+            "ja": "保存した浅角度の実電場を周期y方向へ再構成。灰色はPML領域です。 周期y方向の1周期を表示しています。波形を見やすくするため、x軸とy軸の表示縮尺は異なります。",
+            "en": "Actual saved grazing electric field reconstructed over the periodic y direction; gray shading marks the PML. One transverse y period is shown. The displayed x and y scales differ to make the fields visible."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dispersive-grazing-pml/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dispersive-grazing-pml/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dispersive-grazing-pml/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dispersive-grazing-pml/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "dispersive-grazing-pml",
+            "kind": "supplement",
+            "name": {
+              "ja": "分散媒質の浅い入射角と長時間PML",
+              "en": "Long-time grazing PML in a dispersive medium"
+            },
+            "scope": {
+              "ja": "80度の中心位相角を持つ有限波束をT=700まで進め、境界誤差を同格子の無PML参照から分離します。",
+              "en": "Evolve a finite packet with an 80-degree central phase angle to T = 700, isolating boundary error against a no-PML reference on the same grid."
+            },
+            "method_ids": [
+              "fdtd",
+              "leapfrog",
+              "implicit-midpoint"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dispersive-grazing-pml/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/dispersive-grazing-pml/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/atlas-maxwell-grazing-2026-11-24-r2.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "Yee・中点ADEに時刻配置を保った台形微分memoryを結合。正の物理散逸と符号付きPML数値仕事を区別し、補助場を含め全状態を保存します。",
+          "en": "Couple Yee and midpoint ADE updates to a trapezoidal derivative-memory filter at native times. Separate positive physical dissipation from signed numerical PML work, retaining all physical and auxiliary states."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dispersive-grazing-pml/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dispersive-grazing-pml/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "cylinder-mie2d",
+        "problem_name": {
+          "ja": "2D誘電体円柱のMie散乱幅",
+          "en": "Mie scattering width of a two-dimensional dielectric cylinder"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-mie2d/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-mie2d/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "cylinder-mie2d",
+            "title": {
+              "ja": "誘電体円柱の外部級数と散乱幅",
+              "en": "Exterior series and scattering width of a dielectric cylinder"
+            },
+            "kind": "analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "Ezの無損失2D円柱のみで、3D球ではありません。階段状形状の誤差を記録し、一般の曲面2次精度や任意周波数・材料での精密散乱を保証しません。",
+              "en": "This is a lossless two-dimensional Ez cylinder, not a three-dimensional sphere. Report staircase geometry error without claiming general second-order curved-boundary accuracy or precision scattering for arbitrary frequencies and materials."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-cylinder-mie2d-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-cylinder-mie2d-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/cylinder-mie2d/?lang=ja#cylinder-mie2d-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/cylinder-mie2d/?lang=en#cylinder-mie2d-en-measurements"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "lorentz-oblique-sp",
+        "problem_name": {
+          "ja": "Lorentz分散板へのs/p斜め入射",
+          "en": "Oblique s/p incidence on a Lorentz-dispersive slab"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lorentz-oblique-sp/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lorentz-oblique-sp/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "lorentz-oblique-sp",
+            "title": {
+              "ja": "斜め入射の複素Fresnel係数とLorentz板の直接散逸",
+              "en": "Complex oblique Fresnel coefficients and direct Lorentz-slab loss"
+            },
+            "kind": "analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "任意の横方向分布ではなく単一kyの実空間制限です。1つの受動Lorentz極と有限帯域・有限窓のみ。Gaussian尾は厳密には非零で、窓診断と参照誤差を別記します。 全周波数で厳密にcap反射が未到達という証明ではありません。",
+              "en": "This is a genuine single-ky restriction rather than arbitrary transverse data. It covers one passive Lorentz pole and a fixed finite band/window. Gaussian tails are nonzero; window diagnostics and reference errors are reported separately. No strict all-frequency no-return proof is claimed."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-lorentz-oblique-sp-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-lorentz-oblique-sp-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/lorentz-oblique-sp/?lang=ja#lorentz-oblique-sp-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/lorentz-oblique-sp/?lang=en#lorentz-oblique-sp-en-measurements"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "dispersive-grazing-pml",
+        "problem_name": {
+          "ja": "分散媒質の浅い入射角と長時間PML",
+          "en": "Long-time grazing PML in a dispersive medium"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dispersive-grazing-pml/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/dispersive-grazing-pml/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "dispersive-grazing-pml",
+            "title": {
+              "ja": "浅角度分散波束の長時間・同格子孤立境界参照",
+              "en": "Isolated same-grid reference for a long grazing dispersive packet"
+            },
+            "kind": "numerical-reference",
+            "relation": "same-problem",
+            "note": {
+              "ja": "有限kx帯域の中心角が80度で、全成分が厳密に80度ではありません。無PML参照は同じ離散化・初期場を使い、伝播分散を除いた境界誤差用です。任意角度・材料での大域安定性証明ではありません。 固定PMLの空間次数を測る族ではなく、旧100検査だけでpeak12の大域安定性が証明されたとはしません。",
+              "en": "The central angle is 80 degrees; finite kx bandwidth gives neighboring angles. The no-PML reference shares the discretization and initialization to isolate boundary error from bulk dispersion. Small operator and finite-trajectory checks do not prove global stability for arbitrary angles and materials. The joint family does not measure fixed-PML spatial order; the older 100 checks alone do not prove peak-12 global stability."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-dispersive-grazing-pml-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-dispersive-grazing-pml-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/dispersive-grazing-pml/?lang=ja#dispersive-grazing-pml-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/dispersive-grazing-pml/?lang=en#dispersive-grazing-pml-en-measurements"
+            }
+          }
+        ]
+      }
+    ]
   }
 }

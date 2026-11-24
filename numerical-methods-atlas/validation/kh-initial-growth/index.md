@@ -164,7 +164,7 @@ python run.py --input inputs.json --output output
 
 ## 出典と確認範囲
 
-- Colin P. McNally, Wladimir Lyra and Jean-Claude Passy (2012). A Well-Posed Kelvin-Helmholtz Instability Test and Comparison. https://arxiv.org/abs/1111.1764; review_level=primary-selected-original-pdf-text
+- Colin P. McNally, Wladimir Lyra and Jean-Claude Passy (2012). A Well-Posed Kelvin-Helmholtz Instability Test and Comparison [accessed 2026-11-23]. https://arxiv.org/abs/1111.1764; review_level=primary-selected-original-pdf-text
 原著の滑らかな層・有限領域・成長測定の議論を確認。本例は独自の強制非圧縮系です。
 
 
@@ -336,7 +336,7 @@ This command executes every fixed case in the distribution group. Bundled result
 
 ## Sources and review scope
 
-- Colin P. McNally, Wladimir Lyra and Jean-Claude Passy (2012). A Well-Posed Kelvin-Helmholtz Instability Test and Comparison. https://arxiv.org/abs/1111.1764; review_level=primary-selected-original-pdf-text
+- Colin P. McNally, Wladimir Lyra and Jean-Claude Passy (2012). A Well-Posed Kelvin-Helmholtz Instability Test and Comparison [accessed 2026-11-23]. https://arxiv.org/abs/1111.1764; review_level=primary-selected-original-pdf-text
 Selected original methodology read; our incompressible forced inputs differ from its compressible benchmark.
 
 

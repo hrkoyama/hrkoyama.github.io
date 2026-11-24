@@ -241,19 +241,19 @@ This command executes every fixed case in the distribution group. Bundled result
 
 ### Sources and review scope
 
-- Xiangxiong Zhang and Chi-Wang Shu (2010). On positivity-preserving high order discontinuous Galerkin schemes for compressible Euler equations on rectangular meshes. https://www.math.purdue.edu/~zhan1966/research/paper/euler.pdf; review_level=author manuscript selected sections actually inspected: §2 Theorem2.1, Remarks2.2/2.4/2.6/2.7; §4.3 distinguishes vacuum input
+- Xiangxiong Zhang and Chi-Wang Shu (2010). On positivity-preserving high order discontinuous Galerkin schemes for compressible Euler equations on rectangular meshes [accessed 2026-11-23]. https://www.math.purdue.edu/~zhan1966/research/paper/euler.pdf; review_level=author manuscript selected sections actually inspected: §2 Theorem2.1, Remarks2.2/2.4/2.6/2.7; §4.3 distinguishes vacuum input
 Inspected positivity conditions, LF proof, stage limiting and speed-bound caution. This applies the framework to P1 FV; it does not reproduce the paper’s vacuum test or third-order DG scheme.
 
-- David I. Ketcheson, Randall J. LeVeque and Mauricio J. del Razo (2020). Riemann Problems and Jupyter Solutions: The Euler equations of gas dynamics. https://www.clawpack.org/riemann_book/html/Euler.html; review_level=official chapter sections Riemann invariants, exact solution, symmetric expansion and vacuum; official exact_solvers/euler.py integral_curve_1/3 inspected read-only
+- David I. Ketcheson, Randall J. LeVeque and Mauricio J. del Razo (2020). Riemann Problems and Jupyter Solutions: The Euler equations of gas dynamics [accessed 2026-11-23]. https://www.clawpack.org/riemann_book/html/Euler.html; review_level=official chapter sections Riemann invariants, exact solution, symmetric expansion and vacuum; official exact_solvers/euler.py integral_curve_1/3 inspected read-only
 Read the official invariants, symmetric expansion and vacuum conditions. The fixed values inherit the existing atlas case and differ from this chapter’s example. No Clawpack software is executed or copied.
 
-- Chi-Wang Shu and Stanley Osher (1988). Efficient implementation of essentially non-oscillatory shock-capturing schemes. https://www.sciencedirect.com/science/article/pii/0021999188901775; review_level=publisher bibliographic record and abstract only; no full-paper audit
+- Chi-Wang Shu and Stanley Osher (1988). Efficient implementation of essentially non-oscillatory shock-capturing schemes [accessed 2026-11-23]. https://www.sciencedirect.com/science/article/pii/0021999188901775; review_level=publisher bibliographic record and abstract only; no full-paper audit
 Publisher record and abstract reviewed; the full paper and numerical experiments were not audited. The convex-combination positivity application was also checked in the Zhang–Shu manuscript.
 
-- Eleuterio F. Toro (2009). Riemann Solvers and Numerical Methods for Fluid Dynamics: A Practical Introduction. https://link.springer.com/book/10.1007/b79761; review_level=publisher bibliography and chapter4 title/pages115–162 only; full text not inspected
+- Eleuterio F. Toro (2009). Riemann Solvers and Numerical Methods for Fluid Dynamics: A Practical Introduction [accessed 2026-11-23]. https://link.springer.com/book/10.1007/b79761; review_level=publisher bibliography and chapter4 title/pages115–162 only; full text not inspected
 Publisher metadata and Euler Riemann chapter listing checked. This inspection alone does not establish the first historical source of the fixed numerical data.
 
-- Hiroshi Koyama (2026). Numerical Methods Atlas: released independent Euler Riemann evaluator. https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/reference_riemann.py; review_level=local immutable source inspected; copied without changes with SHA and MIT license; execution recorded by tests, not presumed
+- Hiroshi Koyama (2026). Numerical Methods Atlas: released independent Euler Riemann evaluator [accessed 2026-11-23]. https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/numart/reference_riemann.py; review_level=local immutable source inspected; copied without changes with SHA and MIT license; execution recorded by tests, not presumed
 The prior logarithmic-pressure root and fan evaluator provide a separate algebraic check, with SHA and MIT terms. It is not a different PDE engine; execution is established by test receipts.
 
 

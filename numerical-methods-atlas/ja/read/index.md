@@ -38,6 +38,8 @@
 - [AMG・行列分解・固有値・求積](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations/)
 - [基盤手法：条件数・残差・収束と独立参照](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-foundations-conditioning/)
 - [係数ジャンプ・回転異方性のMG／AMG](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/)
+- [線形代数：直接法・鞍点系・再始動と整合質量固有値](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/)
+- [Bratuのfold継続とJacobian不要Newton–Krylov](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/)
 
 ## 自動微分・最適化・逆問題
 
@@ -149,6 +151,9 @@
 - [周期DFT：Γ点・k点積分・基底・SCFと独立参照](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-dft/)
 - [DFTから原子間力へ：有限差分・独立参照・力の収束とBOMDへの接続](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/)
 - [中性スラブ：3周期補正と真の2周期参照](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-slab-ewald/)
+- [2D誘電体円柱のMie散乱幅](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-cylinder/)
+- [Lorentz分散板へのs/p斜め入射](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-lorentz/)
+- [分散媒質の浅い入射角と長時間PML](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-grazing/)
 
 ## 確率計算・生物・温度制御
 

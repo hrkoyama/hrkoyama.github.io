@@ -72,7 +72,7 @@ sinc(h)=sin(pi*h)/(pi*h); theta=2*pi*(x-t); (Bybar,Bzbar)=.1*sinc(h)*(cos(theta)
 
 実行前契約で47pytest・全12計算を固定。3格子と最細格子の時間刻み半減を分離し、全段の正値性・有限性、保存量、Courant数、5時刻の実場を保存します。解析保存平均を独立Gauss16求積と照合し、横成分誤差・位相・観測次数を検査します。
 
-- [保存結果](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/result.json)
+- [保存結果](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/results/result.json)
 
 [参照・検証条件の詳細](https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=ja)
 
@@ -95,11 +95,11 @@ sinc(h)=sin(pi*h)/(pi*h); theta=2*pi*(x-t); (Bybar,Bzbar)=.1*sinc(h)*(cos(theta)
 
 γ=5/3、[0,1]周期、ρ=1、p=.1、Bx=1、振幅.1、速度1、T=1、32/64/128セル。初期値と参照は保存変数の解析セル平均であり、セル平均から復元する圧力は点の定圧と区別します。
 
-[コード / ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip) · [検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/verification.json)
+[コード / ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip) · [検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/verification.json)
 
-[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/inputs.json)
+[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/inputs.json)
 
-[配布ファイルとハッシュ](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/source-manifest.json)
+[配布ファイルとハッシュ](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/source-manifest.json)
 
 ZIPを展開し、実行案内の作業フォルダで実行します。配布版の複数例をまとめて実行する場合があります。
 
@@ -113,11 +113,11 @@ python run.py --input inputs.json --output output
 
 同じ配布版で共有するソースとテストを含みます。すべてがこの問題専用とは限りません。
 
-- [/code/validated-examples/2026-11-23/mhd-transport/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/run.py)
-- [/code/validated-examples/2026-11-23/mhd-transport/solver.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/solver.py)
-- [/code/validated-examples/2026-11-23/mhd-transport/hlld.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/hlld.py)
-- [/code/validated-examples/2026-11-23/mhd-transport/references/analytic.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/analytic.py)
-- [/code/validated-examples/2026-11-23/mhd-transport/test_mhd.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/test_mhd.py)
+- [/code/validated-examples/2026-11-24/mhd-transport/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/run.py)
+- [/code/validated-examples/2026-11-24/mhd-transport/solver.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/solver.py)
+- [/code/validated-examples/2026-11-24/mhd-transport/hlld.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/hlld.py)
+- [/code/validated-examples/2026-11-24/mhd-transport/references/analytic.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/references/analytic.py)
+- [/code/validated-examples/2026-11-24/mhd-transport/test_mhd.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/test_mhd.py)
 
 ## English
 
@@ -189,7 +189,7 @@ gamma5/3, periodic[0,1], rho1,p.1,Bx1,amplitude.1, speed1,T1,32/64/128 cells. In
 
 Freeze 47 pytest checks and12 primary runs before execution. Separate three grids and a finest-grid half-dt probe; retain stage positivity/finiteness, conservation, Courant number and five actual field snapshots. Qualify conserved analytic means by independent Gauss16 quadrature; measure transverse errors, phase and observed order.
 
-- [Saved result](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/result.json)
+- [Saved result](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/results/result.json)
 
 [Reference and validation details](https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=en)
 
@@ -212,11 +212,11 @@ Evolve all eight conserved variables and compare circular polarization, includin
 
 gamma5/3, periodic[0,1], rho1,p.1,Bx1,amplitude.1, speed1,T1,32/64/128 cells. Initialize/reference conserved analytic cell means; pressure recovered from means differs from constant pointwise pressure.
 
-[Code / ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip) · [Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/verification.json)
+[Code / ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip) · [Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/verification.json)
 
-[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/inputs.json)
+[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/inputs.json)
 
-[File manifest and hashes](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/source-manifest.json)
+[File manifest and hashes](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/source-manifest.json)
 
 After extracting the ZIP, run these in the working directory specified by the guide. A command may execute several package cases.
 
@@ -230,8 +230,8 @@ Educational fixed inputs only. Count HLLD-to-HLLE fallbacks and face reconstruct
 
 These source and test lists include files shared across the package; they are not all dedicated to this problem.
 
-- [/code/validated-examples/2026-11-23/mhd-transport/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/run.py)
-- [/code/validated-examples/2026-11-23/mhd-transport/solver.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/solver.py)
-- [/code/validated-examples/2026-11-23/mhd-transport/hlld.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/hlld.py)
-- [/code/validated-examples/2026-11-23/mhd-transport/references/analytic.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/analytic.py)
-- [/code/validated-examples/2026-11-23/mhd-transport/test_mhd.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/test_mhd.py)
+- [/code/validated-examples/2026-11-24/mhd-transport/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/run.py)
+- [/code/validated-examples/2026-11-24/mhd-transport/solver.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/solver.py)
+- [/code/validated-examples/2026-11-24/mhd-transport/hlld.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/hlld.py)
+- [/code/validated-examples/2026-11-24/mhd-transport/references/analytic.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/references/analytic.py)
+- [/code/validated-examples/2026-11-24/mhd-transport/test_mhd.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/test_mhd.py)

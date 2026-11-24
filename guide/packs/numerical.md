@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-24-e156fad009
-Captured (UTC): 2026-11-24T00:26:27+00:00
+Snapshot: 2026-11-24-e88f17c299
+Captured (UTC): 2026-11-24T07:20:26+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -2986,18 +2986,18 @@ Coverage: reading
 
 Distinguish original research, later variants, author monographs, pedagogical articles and official references. Bibliographic verification differs from consulting selected passages; neither implies a full-paper audit or numerical reproduction. Access-depth notes accompany each source.
 W. E. Arnoldi (1951). The principle of minimized iterations in the solution of the matrix eigenvalue problem. Quarterly of Applied Mathematics
-Research publication: proposal or related formulation · Bibliography checked · Consulted record
-Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.
+Research publication: proposal or related formulation · Selected source passages consulted · Consulted record
+Selected original-paper OCR prose,pp25-26,section6,and28-29,section8: projection and orthogonality checks. Official PDF returned403; original scan and equation symbols remain unverified. Modern normalized algorithms are separately specified and tested.
 C. Lanczos (1950). An iteration method for the solution of the eigenvalue problem of linear differential and integral operators. Journal of Research of the National Bureau of Standards
-Research publication: proposal or related formulation · Bibliography checked · Consulted record
-Bibliographic identity checked against the DOI registration on 2026-11-22. Relevant abstracts or selected passages are separately identified in the detailed-reading source notes; this is not a claim of a full-paper audit or numerical reproduction.
-LAPACK authors (1999). Error Bounds for the Nonsymmetric Eigenproblem; Overview.
+Research publication: proposal or related formulation · Selected source passages consulted · Consulted record
+Selected original pages266-267,sectionVII,equations63-78,and271,equation99: symmetric three-term reduction and orthogonality correction. Original vectors are unnormalized; no whole-paper proof or modern-restarting guarantee is claimed.
 
 ## Krylov eigenvalue solvers — Primary publications, supporting sources and review scope [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/eigensolvers/#sources
 Coverage: reading
 
+LAPACK authors (1999). Error Bounds for the Nonsymmetric Eigenproblem; Overview.
 Official reference documentation · Selected source passages consulted · Consulted record
 Do not equate a small eigenpair residual with small forward eigenvalue error for nonnormal matrices; distinguish eigenvalue sensitivity, individual vectors, and clustered invariant subspaces.
 
@@ -9153,7 +9153,7 @@ R. Car; M. Parrinello (1985)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#verification
 Coverage: reading
 
-Two hydrogenic/He problem families were executed, independently compared and added to the 122-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; molecular DFT, FCI and other periodic materials are not validated.
+Two hydrogenic/He problem families were executed, independently compared and added to the 131-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; molecular DFT, FCI and other periodic materials are not validated.
 Runnable and checked
 
 ## Quantum chemistry and DFT: approximations and equations — One electron: hydrogenic atoms [en]
@@ -12873,9 +12873,9 @@ THE READING ROOM公開コード・データ / Public code and data
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage/
 Coverage: reading
 
-Published web edition, counted 2026-11-23. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
-65 equation/model entries · 137 methods and building blocks · 249 journal/conference papers · 310 total sources.
-There are 9 saved-profile equation-gallery cases across 7 equation families, and 132 reading chapters including this inventory.
+Published web edition, counted 2026-11-24. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
+70 equation/model entries · 143 methods and building blocks · 249 journal/conference papers · 310 total sources.
+There are 9 saved-profile equation-gallery cases across 7 equation families, and 137 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
 
@@ -12883,7 +12883,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Named equation/model entries, not scalar component equations or mathematically disjoint families. Includes frameworks and auxiliary formulations; variants share one entry except the three separately explained SR/GR fluid systems. Biological entries are imported once from their own catalog.
-43 entries have scoped local examples; 22 are reading-only, including all 22 biological survey entries. A coupled system is one entry; its individual component equations do not increase the count. Poisson/Laplace and dimensional variants share entries. Named frameworks and specialized kinetic laws can both appear, so this is not a count of mathematically disjoint families.
+48 entries have scoped local examples; 22 are reading-only, including all 22 biological survey entries. A coupled system is one entry; its individual component equations do not increase the count. Poisson/Laplace and dimensional variants share entries. Named frameworks and specialized kinetic laws can both appear, so this is not a count of mathematically disjoint families.
 
 ## Site coverage and counting rules — Physics & mathematical models# [en]
 
@@ -12969,7 +12969,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Named numerical methods and building blocks with a reading chapter. Aliases count once; RK stages, dimensions, parameter combinations, mesh layouts and theoretical conditions do not add methods. A family and a separately explained algorithm may both appear. Not a count of mutually exclusive end-to-end solvers.
-122 entries have scoped local examples; 15 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
+128 entries have scoped local examples; 15 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
 
 ## Site coverage and counting rules — Spatial discretization# [en]
 
@@ -15361,6 +15361,469 @@ The SciPy community (2024). SciPy1.14.1 solve_ivp and Radau reference
 Review scope / review_level: official-versioned-api-specification
 Checked official Radau IIA order5, local rtol/atol scaling, analytic Jacobians and termination status. ODE tolerances do not certify global continuum-PDE accuracy.
 
+## Bratu fold continuation and Jacobian-free Newton-Krylov — Bratu fold continuation and Jacobian-free Newton-Krylov [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/
+Coverage: reading
+
+The same one-dimensional Bratu problem compares fold continuation and matrix-free iteration against an independently evaluated analytic family.
+
+## Bratu fold continuation and Jacobian-free Newton-Krylov — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/#run-all
+Coverage: reading
+
+Run inside atlas-bratu-continuation-jfnk-2026-11-24-r2 from the ZIP. This command executes all 2 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Bratu fold continuation and Jacobian-free Newton-Krylov — Crossing the Bratu fold with pseudo-arclength continuation [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/
+Coverage: reading
+
+Follow the lower and upper branches of the same one-dimensional Bratu boundary-value problem; check tangents, the fold and spatial error against an independent analytic family.
+Methods, equations, figures and references
+Methods used
+Weighted pseudo-arclength continuation
+Armijo-damped Newton
+Centered spatial difference
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Use a unit tangent in h-sum(du squared)+d-lambda squared, a predictor and a tangent-hyperplane Newton corrector. A separate augmented system locates the fold and a normalized null vector. This case deliberately assembles sparse Jacobians.
+Bratu nonlinear boundary-value problem
+Dimensionless x in [0,1] with zero Dirichlet endpoints and 31/63/127 interior nodes. Take 80 fixed ds=0.1 steps from the zero solution. Correct both branches at lambda=2; lambda=4 is a deliberate discrete no-solution control. Pseudo-arclength is not physical time.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Crossing the Bratu fold with pseudo-arclength continuation
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## Bratu fold continuation and Jacobian-free Newton-Krylov — Crossing the Bratu fold with pseudo-arclength continuation [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/
+Coverage: reading
+
+The preserved R3 run passed the shared 27 pytest tests and this case’s 67 fixed gates. Discrete residuals, tangent orientation/normalization, fold/null/transversality conditions, an independent Decimal80 family and fixed three-grid errors are checked separately.
+Same-problem reference · Analytic reference
+Crossing the Bratu fold with pseudo-arclength continuation
+A small one-dimensional simple fold only. The whole-curve family comparison uses the computed midpoint as its family coordinate and is distinct from the independent fixed-lambda profile checks. The continuum fold is not an exact discrete solution. No general bifurcation-tracking or large-scale performance claim.
+
+## Bratu fold continuation and Jacobian-free Newton-Krylov — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/#bratu-fold-continuation-assumptions
+Coverage: reading
+
+Dimensionless x in [0,1] with zero Dirichlet endpoints and 31/63/127 interior nodes. Take 80 fixed ds=0.1 steps from the zero solution. Correct both branches at lambda=2; lambda=4 is a deliberate discrete no-solution control. Pseudo-arclength is not physical time.
+
+## Bratu fold continuation and Jacobian-free Newton-Krylov — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/#bratu-fold-continuation-algorithm
+Coverage: reading
+
+Use a unit tangent in h-sum(du squared)+d-lambda squared, a predictor and a tangent-hyperplane Newton corrector. A separate augmented system locates the fold and a normalized null vector. This case deliberately assembles sparse Jacobians.
+-u''=\lambda e^u,\quad u(0)=u(1)=0u_\theta=2\log\frac{\cosh(\theta/2)}{\cosh(\theta(x-1/2))},\quad\lambda(\theta)=2\theta^2/\cosh^2(\theta/2)
+
+## Bratu fold continuation and Jacobian-free Newton-Krylov — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/#bratu-fold-continuation-validation
+Coverage: reading
+
+The preserved R3 run passed the shared 27 pytest tests and this case’s 67 fixed gates. Discrete residuals, tangent orientation/normalization, fold/null/transversality conditions, an independent Decimal80 family and fixed three-grid errors are checked separately.
+
+## Bratu fold continuation and Jacobian-free Newton-Krylov — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/#bratu-fold-continuation-limits
+Coverage: reading
+
+A small one-dimensional simple fold only. The whole-curve family comparison uses the computed midpoint as its family coordinate and is distinct from the independent fixed-lambda profile checks. The continuum fold is not an exact discrete solution. No general bifurcation-tracking or large-scale performance claim.
+
+## Bratu fold continuation and Jacobian-free Newton-Krylov — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/#bratu-fold-continuation-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+fold_orders[2.0003257002223824,2.000081417263765]
+intended_failure_reasonline search exhausted
+discrete_nonexistence_bound3.6300955493
+matchingFullpathfamilycoordinatefrommidpointisexplicit;separatefixedlambda2rootsvalidatebothbrancheswithoutparameterfitting.
+reference_qualification_max_ODE6e-78
+判定 / checkPassed
+N31/finite complete branchtrue
+N31/discrete residualtrue
+N31/unit tangenttrue
+N31/tangent equationtrue
+N31/tangent orientationtrue
+N31/turning tangenttrue
+N31/lower and upper lambda2 neighborhoodstrue
+N31/fold discrete equationtrue
+N31/fold null equationtrue
+N31/fold null normalizationtrue
+N31/fold sigma_mintrue
+N31/simple fold parameter transversalitytrue
+N31/simple fold quadratic transversalitytrue
+N31/lower discrete roottrue
+N31/upper discrete roottrue
+N31/ordered distinct branchestrue
+N31/nonzero reference fieldstrue
+N63/finite complete branchtrue
+N63/discrete residualtrue
+N63/unit tangenttrue
+N63/tangent equationtrue
+N63/tangent orientationtrue
+N63/turning tangenttrue
+N63/lower and upper lambda2 neighborhoodstrue
+N63/fold discrete equationtrue
+N63/fold null equationtrue
+N63/fold null normalizationtrue
+N63/fold sigma_mintrue
+N63/simple fold parameter transversalitytrue
+
+## Bratu fold continuation and Jacobian-free Newton-Krylov — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/#bratu-fold-continuation-measurements
+Coverage: reading
+
+N63/simple fold quadratic transversalitytrue
+N63/lower discrete roottrue
+N63/upper discrete roottrue
+N63/ordered distinct branchestrue
+N63/nonzero reference fieldstrue
+N127/finite complete branchtrue
+N127/discrete residualtrue
+N127/unit tangenttrue
+N127/tangent equationtrue
+N127/tangent orientationtrue
+N127/turning tangenttrue
+N127/lower and upper lambda2 neighborhoodstrue
+N127/fold discrete equationtrue
+N127/fold null equationtrue
+N127/fold null normalizationtrue
+N127/fold sigma_mintrue
+N127/simple fold parameter transversalitytrue
+N127/simple fold quadratic transversalitytrue
+N127/lower discrete roottrue
+N127/upper discrete roottrue
+N127/ordered distinct branchestrue
+N127/nonzero reference fieldstrue
+Decimal80 continuum ODEtrue
+Decimal80 zero endpointstrue
+reference fixed lambdatrue
+reference fold printed anchortrue
+no-solution lambda4 proof boundtrue
+lambda4 Newton reports failuretrue
+lambda4 finite retained statestrue
+lambda4 remains above tolerancetrue
+finest full path shapetrue
+finest family curve lambdatrue
+finest continuous fold errortrue
+fold first refinement ordertrue
+fold second refinement ordertrue
+finest lower exact solutiontrue
+finest upper exact solutiontrue
+both branch errors refinetrue
+
+## Bratu fold continuation and Jacobian-free Newton-Krylov — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/#bratu-fold-continuation-measurements
+Coverage: reading
+
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Preview of the stored branch,lambda=2 profiles,smallest Jacobian singular value and three-grid fold error. Arclength steps are not physical time.Read every stored record
+narc_stepsfold_lambdacontinuous_fold_lambdafold_errorsigma_minlower_errorupper_errorpath_shape_errorpath_lambda_error
+31803.512044932443.513830719130.001785786681019.09494701773e-138.70033372853e-050.001701070409490.005035706691650.00194240285153
+63803.513384373233.513830719130.0004463458926361.81898940355e-122.17386625036e-050.0004244278162490.001246019713430.000485491945152
+127803.513719138953.513830719130.0001115801760491.45519152284e-115.43390532348e-060.0001060706101680.0003109038215770.000121366123548
+Measurements and complete records / JSON
+
+## Bratu fold continuation and Jacobian-free Newton-Krylov — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/#bratu-fold-continuation-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+K.I.Dickson,C.T.Kelley,I.C.F.Ipsen,I.G.Kevrekidis (2007). Condition Estimates for Pseudo-Arclength Continuation · DOI: 10.1137/060654384
+Review scope / review_level: primary-selected-PDF-text
+Read selected original sec2.2 tangent,normalization,hyperplane andsimple-fold scope; nofullproof audit.
+Hans Petter Langtangen (2014). Finite differences for the1D Bratu problem,Problem8
+Review scope / review_level: author-selected-exact-solution-exercise
+Read author exercise exactfamily/twobranches/roundedcritical; itsparameter istwiceourtheta. Independentderivation/Decimal80qualification;1914originalunread.
+
+## Bratu fold continuation and Jacobian-free Newton-Krylov — Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/
+Coverage: reading
+
+Solve both Bratu branches with three Jv choices without assembling the nonlinear Jacobian; retain forcing, actual residuals and evaluation counts.
+Methods, equations, figures and references
+Methods used
+Jacobian-free Newton-Krylov
+Restarted GMRES
+Thomas tridiagonal elimination
+Automatic differentiation
+Centered spatial difference
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Use analytic Jv, a two-residual central difference, or one-direction forward AD. Apply a Poisson Thomas right preconditioner with two-pass reorthogonalized GMRES/Givens. Start eta=.3, then clamp .9*(Fk/Fk-1)^1.5 to [.001,.5]. This is an explicit EW Choice2-style variant, not the paper’s full safeguards or PETSc defaults.
+Bratu nonlinear boundary-value problem
+The same dimensionless one-dimensional Dirichlet problem at lambda=3, 63/127 interior nodes, starting from zero or 4sin(pi*x). Twelve mode/grid/branch solves plus one analytic-Jv constant-eta=1e-8 control. GMRES restart24/max96, at most 24 Newton steps and nonlinear tolerance1e-9.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+
+## Bratu fold continuation and Jacobian-free Newton-Krylov — Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/
+Coverage: reading
+
+Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+The preserved R3 run passed the shared27 pytest tests and this case’s129 fixed gates: nonzero analytic Jv qualification, discrete residuals, independent analytic branches, mode agreement, forcing, evaluation ledgers, Krylov storage, Armijo and the constant-eta control. Analytic forcing validation is counted separately and does not steer FD/AD iterations.
+Same-problem reference · Analytic reference
+Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products
+An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee.
+
+## Bratu fold continuation and Jacobian-free Newton-Krylov — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/#bratu-matrix-free-jfnk-assumptions
+Coverage: reading
+
+The same dimensionless one-dimensional Dirichlet problem at lambda=3, 63/127 interior nodes, starting from zero or 4sin(pi*x). Twelve mode/grid/branch solves plus one analytic-Jv constant-eta=1e-8 control. GMRES restart24/max96, at most 24 Newton steps and nonlinear tolerance1e-9.
+
+## Bratu fold continuation and Jacobian-free Newton-Krylov — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/#bratu-matrix-free-jfnk-algorithm
+Coverage: reading
+
+Use analytic Jv, a two-residual central difference, or one-direction forward AD. Apply a Poisson Thomas right preconditioner with two-pass reorthogonalized GMRES/Givens. Start eta=.3, then clamp .9*(Fk/Fk-1)^1.5 to [.001,.5]. This is an explicit EW Choice2-style variant, not the paper’s full safeguards or PETSc defaults.
+-u''=\lambda e^u,\quad u(0)=u(1)=0u_\theta=2\log\frac{\cosh(\theta/2)}{\cosh(\theta(x-1/2))},\quad\lambda(\theta)=2\theta^2/\cosh^2(\theta/2)J(u)v=A_hv-\lambda e^u\odot v\eta_k=\min\{0.5,\max\{0.001,0.9(\|F_k\|_2/\|F_{k-1}\|_2)^{1.5}\}\}
+
+## Bratu fold continuation and Jacobian-free Newton-Krylov — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/#bratu-matrix-free-jfnk-validation
+Coverage: reading
+
+The preserved R3 run passed the shared27 pytest tests and this case’s129 fixed gates: nonzero analytic Jv qualification, discrete residuals, independent analytic branches, mode agreement, forcing, evaluation ledgers, Krylov storage, Armijo and the constant-eta control. Analytic forcing validation is counted separately and does not steer FD/AD iterations.
+
+## Bratu fold continuation and Jacobian-free Newton-Krylov — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/#bratu-matrix-free-jfnk-limits
+Coverage: reading
+
+An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee.
+
+## Bratu fold continuation and Jacobian-free Newton-Krylov — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/#bratu-matrix-free-jfnk-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+mode_gap_max4.88498130835e-15
+qualification_AD_relative1.1692887409e-17
+qualification_FD_relative8.65106940768e-11
+reasons["nonlinear residual","nonlinear residual","nonlinear residual","nonlinear residual","nonlinear residual","nonlinear residual","nonlinear residual","nonlinear residual","nonlinear residual","nonlinear residual","nonlinear residual","nonlinear residual","nonlinear residual"]
+evaluation_scopeActualsolverevaluations;analyticlinear-forcingvalidationcountedseparately.NoPETScorassemblednonlinearJacobianusedbyJFNK.
+判定 / checkPassed
+nonzero Jv referencetrue
+AD Jv exacttrue
+AD primal exacttrue
+central FD Jvtrue
+zero Jv branchtrue
+0/nonlinear convergedtrue
+0/finite statestrue
+0/discrete residualtrue
+0/continuous branch errortrue
+0/analytic verified forcingtrue
+0/declared etatrue
+0/evaluation count ledgertrue
+0/bounded Krylov storagetrue
+0/accepted Armijo stepstrue
+1/nonlinear convergedtrue
+1/finite statestrue
+1/discrete residualtrue
+1/continuous branch errortrue
+1/analytic verified forcingtrue
+1/declared etatrue
+1/evaluation count ledgertrue
+1/bounded Krylov storagetrue
+1/accepted Armijo stepstrue
+2/nonlinear convergedtrue
+2/finite statestrue
+2/discrete residualtrue
+
+## Bratu fold continuation and Jacobian-free Newton-Krylov — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/#bratu-matrix-free-jfnk-measurements
+Coverage: reading
+
+2/continuous branch errortrue
+2/analytic verified forcingtrue
+2/declared etatrue
+2/evaluation count ledgertrue
+2/bounded Krylov storagetrue
+2/accepted Armijo stepstrue
+3/nonlinear convergedtrue
+3/finite statestrue
+3/discrete residualtrue
+3/continuous branch errortrue
+3/analytic verified forcingtrue
+3/declared etatrue
+3/evaluation count ledgertrue
+3/bounded Krylov storagetrue
+3/accepted Armijo stepstrue
+4/nonlinear convergedtrue
+4/finite statestrue
+4/discrete residualtrue
+4/continuous branch errortrue
+4/analytic verified forcingtrue
+4/declared etatrue
+4/evaluation count ledgertrue
+4/bounded Krylov storagetrue
+4/accepted Armijo stepstrue
+5/nonlinear convergedtrue
+5/finite statestrue
+5/discrete residualtrue
+5/continuous branch errortrue
+5/analytic verified forcingtrue
+5/declared etatrue
+5/evaluation count ledgertrue
+5/bounded Krylov storagetrue
+5/accepted Armijo stepstrue
+6/nonlinear convergedtrue
+6/finite statestrue
+6/discrete residualtrue
+6/continuous branch errortrue
+6/analytic verified forcingtrue
+6/declared etatrue
+6/evaluation count ledgertrue
+6/bounded Krylov storagetrue
+6/accepted Armijo stepstrue
+7/nonlinear convergedtrue
+7/finite statestrue
+7/discrete residualtrue
+7/continuous branch errortrue
+7/analytic verified forcingtrue
+7/declared etatrue
+7/evaluation count ledgertrue
+7/bounded Krylov storagetrue
+7/accepted Armijo stepstrue
+8/nonlinear convergedtrue
+
+## Bratu fold continuation and Jacobian-free Newton-Krylov — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/#bratu-matrix-free-jfnk-measurements
+Coverage: reading
+
+8/finite statestrue
+8/discrete residualtrue
+8/continuous branch errortrue
+8/analytic verified forcingtrue
+8/declared etatrue
+8/evaluation count ledgertrue
+8/bounded Krylov storagetrue
+8/accepted Armijo stepstrue
+9/nonlinear convergedtrue
+9/finite statestrue
+9/discrete residualtrue
+9/continuous branch errortrue
+9/analytic verified forcingtrue
+9/declared etatrue
+9/evaluation count ledgertrue
+9/bounded Krylov storagetrue
+9/accepted Armijo stepstrue
+10/nonlinear convergedtrue
+10/finite statestrue
+10/discrete residualtrue
+10/continuous branch errortrue
+10/analytic verified forcingtrue
+10/declared etatrue
+10/evaluation count ledgertrue
+10/bounded Krylov storagetrue
+10/accepted Armijo stepstrue
+11/nonlinear convergedtrue
+11/finite statestrue
+11/discrete residualtrue
+11/continuous branch errortrue
+11/analytic verified forcingtrue
+11/declared etatrue
+11/evaluation count ledgertrue
+11/bounded Krylov storagetrue
+11/accepted Armijo stepstrue
+12/nonlinear convergedtrue
+12/finite statestrue
+12/discrete residualtrue
+12/continuous branch errortrue
+12/analytic verified forcingtrue
+12/declared etatrue
+12/evaluation count ledgertrue
+12/bounded Krylov storagetrue
+12/accepted Armijo stepstrue
+mode agreement N63 lowertrue
+mode agreement N63 uppertrue
+mode agreement N127 lowertrue
+mode agreement N127 uppertrue
+finest exact branchestrue
+all mode errors refinetrue
+constant forcing companion matchestrue
+
+## Bratu fold continuation and Jacobian-free Newton-Krylov — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/#bratu-matrix-free-jfnk-measurements
+Coverage: reading
+
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Preview of stored N=127 Newton residuals,upper-branch field/reference,Jv errors and actual evaluation counts. Run indices match the saved CSV.Read every stored record
+runnmode_codebranch_codeconstant_eta_codeerrorresidualnewton_stepsprimal_residualjvzero_jvdual_residualpreconditionervalidation_analytic_jv
+0630000.0001155823409381.62009811273e-125112200115
+1631000.0001155823409351.60980254113e-125552200115
+2632000.0001155823409331.60297509401e-1251122022115
+3630100.0004426947113625.98113455851e-138174000208
+4631100.0004426947113645.12273494077e-138974000208
+5632100.0004426947113635.21282329971e-1381740040208
+61270002.8885506252e-052.1757068076e-125112200115
+71271002.88855062529e-052.27154535829e-125552200115
+81272002.88855062518e-052.18007413615e-1251122022115
+91270100.0001106571453422.06313282436e-128174000208
+101271100.0001106571453422.07949194463e-128974000208
+111272100.0001106571453432.20439143511e-1281740040208
+12630010.0001155823134349.18147527837e-11494000204
+Measurements and complete records / JSON
+
+## Bratu fold continuation and Jacobian-free Newton-Krylov — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/#bratu-matrix-free-jfnk-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+D.A.Knoll,D.E.Keyes (2004). Jacobian-free Newton-Krylov methods: a survey of approaches and applications · DOI: 10.1016/j.jcp.2003.08.010
+Review scope / review_level: primary-selected-PDF-text-via-course-mirror
+Selected primary Jv,FDscale,inexactforcing andpreconditioning sections readvia disclosedcourse mirror; centralFD/cappedrule areexplicitimplementation choices.
+S. C. Eisenstat and H. F. Walker (1996). Choosing the Forcing Terms in an Inexact Newton Method · DOI: 10.1137/0917003
+Review scope / review_level: primary-selected-PDF-text
+Read selected Algorithm IN, Choice 2 and safeguard passages from the author-hosted original; not a full proof or performance-table audit.
+Hans Petter Langtangen (2014). Finite differences for the1D Bratu problem,Problem8
+Review scope / review_level: author-selected-exact-solution-exercise
+Read author exercise exactfamily/twobranches/roundedcritical; itsparameter istwiceourtheta. Independentderivation/Decimal80qualification;1914originalunread.
+PETSc developers (2026). PETSc SNES nonlinear solvers: matrix-free,inexact Newton and arc length
+Review scope / review_level: official-selected-documentation
+
+## Bratu fold continuation and Jacobian-free Newton-Krylov — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/#bratu-matrix-free-jfnk-references
+Coverage: reading
+
+Selected official3.26.1sections only; noPETSc execution orborrowed result. Distinguish itsquadraticarcconstraint fromourhyperplane.
+
 ## MG/AMG for coefficient jumps and rotated anisotropy — MG/AMG for coefficient jumps and rotated anisotropy [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-coefficient-diffusion/
@@ -15879,11 +16342,17 @@ Bibliography, abstracts, selected original sections and executed official code h
 Paul Woodward and Phillip Colella (1984). The numerical simulation of two-dimensional fluid flow with strong shocks · DOI: 10.1016/0021-9991(84)90142-6
 Review scope / review_level: publisher-metadata-and-abstract; official-NASA-setup-cross-check
 Publisher metadata/abstract and the official NASA setup were checked. No direct full-paper review is claimed; cited for the original strong-shock comparison and benchmark.
-NASA Advanced Supercomputing Division, LAVA team (n.d.). Double Mach Reflection — LAVA tutorial
+NASA Advanced Supercomputing Division, LAVA team (n.d.). Double Mach Reflection — LAVA tutorial [accessed 2026-11-23]
 Review scope / review_level: official-tutorial-selected-setup-and-boundaries
 Checked Mach10, gamma1.4, domain, shock foot x=1/6, upstream state, boundaries and T=.2. No LAVA execution or figure redistribution.
 Hiroshi Koyama (2026). Independent finite-volume references distributed with the RKDG2D agent kit, 2026-11-23-r2
 Review scope / review_level: hash-checked-selected-public-archive-artifacts
+
+## Double Mach reflection: lightweight grid verification — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-double-mach/#double-mach-reflection-references
+Coverage: reading
+
 Selected source, two-grid data and execution records were copied from the immutable archive. No reference PDE, Athena or LAVA was rerun here. The flux family HLL is shared, while the reference is a separate implementation without imports of primary spatial operators.
 
 ## Mach2 planar shock with hard-sphere DSMC — Mach2 planar shock with hard-sphere DSMC [en]
@@ -16211,7 +16680,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ds
 Coverage: reading
 
 Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
-Sandia SPARTA developers (2026). SPARTA, pinned official HS collision/boundary implementation and independently evolved fields
+Sandia SPARTA developers (2026). SPARTA, pinned official HS collision/boundary implementation and independently evolved fields [accessed 2026-11-23]
 Review scope / review_level: primary-source-selected-functions-and-actual-reference-execution
 Read selected official HS rate,boundary and moment definitions; execute36independent runs and87qualifiers. No full-original-book or whole-source audit claim.
 
@@ -16411,7 +16880,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ds
 Coverage: reading
 
 Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
-Sandia SPARTA developers (2026). SPARTA, pinned official HS collision/boundary implementation and independently evolved fields
+Sandia SPARTA developers (2026). SPARTA, pinned official HS collision/boundary implementation and independently evolved fields [accessed 2026-11-23]
 Review scope / review_level: primary-source-selected-functions-and-actual-reference-execution
 Read selected official HS rate,boundary and moment definitions; execute36independent runs and87qualifiers. No full-original-book or whole-source audit claim.
 
@@ -16588,7 +17057,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ds
 Coverage: reading
 
 Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
-Sandia SPARTA developers (2026). SPARTA, pinned official HS collision/boundary implementation and independently evolved fields
+Sandia SPARTA developers (2026). SPARTA, pinned official HS collision/boundary implementation and independently evolved fields [accessed 2026-11-23]
 Review scope / review_level: primary-source-selected-functions-and-actual-reference-execution
 Read selected official HS rate,boundary and moment definitions; execute36independent runs and87qualifiers. No full-original-book or whole-source audit claim.
 
@@ -16823,10 +17292,10 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-eu
 Coverage: reading
 
 Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
-Xiangxiong Zhang and Chi-Wang Shu (2010). On positivity-preserving high order discontinuous Galerkin schemes for compressible Euler equations on rectangular meshes · DOI: 10.1016/j.jcp.2010.08.016
+Xiangxiong Zhang and Chi-Wang Shu (2010). On positivity-preserving high order discontinuous Galerkin schemes for compressible Euler equations on rectangular meshes [accessed 2026-11-23] · DOI: 10.1016/j.jcp.2010.08.016
 Review scope / review_level: author manuscript selected sections actually inspected: §2 Theorem2.1, Remarks2.2/2.4/2.6/2.7; §4.3 distinguishes vacuum input
 Inspected positivity conditions, LF proof, stage limiting and speed-bound caution. This applies the framework to P1 FV; it does not reproduce the paper’s vacuum test or third-order DG scheme.
-David I. Ketcheson, Randall J. LeVeque and Mauricio J. del Razo (2020). Riemann Problems and Jupyter Solutions: The Euler equations of gas dynamics · DOI: 10.1137/1.9781611976212
+David I. Ketcheson, Randall J. LeVeque and Mauricio J. del Razo (2020). Riemann Problems and Jupyter Solutions: The Euler equations of gas dynamics [accessed 2026-11-23] · DOI: 10.1137/1.9781611976212
 Review scope / review_level: official chapter sections Riemann invariants, exact solution, symmetric expansion and vacuum; official exact_solvers/euler.py integral_curve_1/3 inspected read-only
 Read the official invariants, symmetric expansion and vacuum conditions. The fixed values inherit the existing atlas case and differ from this chapter’s example. No Clawpack software is executed or copied.
 
@@ -16835,13 +17304,13 @@ Read the official invariants, symmetric expansion and vacuum conditions. The fix
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-euler-positivity/#euler-double-rarefaction-positivity-references
 Coverage: reading
 
-Chi-Wang Shu and Stanley Osher (1988). Efficient implementation of essentially non-oscillatory shock-capturing schemes · DOI: 10.1016/0021-9991(88)90177-5
+Chi-Wang Shu and Stanley Osher (1988). Efficient implementation of essentially non-oscillatory shock-capturing schemes [accessed 2026-11-23] · DOI: 10.1016/0021-9991(88)90177-5
 Review scope / review_level: publisher bibliographic record and abstract only; no full-paper audit
 Publisher record and abstract reviewed; the full paper and numerical experiments were not audited. The convex-combination positivity application was also checked in the Zhang–Shu manuscript.
-Eleuterio F. Toro (2009). Riemann Solvers and Numerical Methods for Fluid Dynamics: A Practical Introduction · DOI: 10.1007/b79761
+Eleuterio F. Toro (2009). Riemann Solvers and Numerical Methods for Fluid Dynamics: A Practical Introduction [accessed 2026-11-23] · DOI: 10.1007/b79761
 Review scope / review_level: publisher bibliography and chapter4 title/pages115–162 only; full text not inspected
 Publisher metadata and Euler Riemann chapter listing checked. This inspection alone does not establish the first historical source of the fixed numerical data.
-Hiroshi Koyama (2026). Numerical Methods Atlas: released independent Euler Riemann evaluator
+Hiroshi Koyama (2026). Numerical Methods Atlas: released independent Euler Riemann evaluator [accessed 2026-11-23]
 Review scope / review_level: local immutable source inspected; copied without changes with SHA and MIT license; execution recorded by tests, not presumed
 The prior logarithmic-pressure root and fan evaluator provide a separate algebraic check, with SHA and MIT terms. It is not a different PDE engine; execution is established by test receipts.
 
@@ -18964,10 +19433,10 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-gu
 Coverage: reading
 
 Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
-G. Guderley (1942). Starke kugelige und zylindrische Verdichtungsstöße in der Nähe des Kugelmittelpunktes bzw. der Zylinderachse
+G. Guderley (1942). Starke kugelige und zylindrische Verdichtungsstöße in der Nähe des Kugelmittelpunktes bzw. der Zylinderachse [accessed 2026-11-23]
 Review scope / review_level: bibliographic attribution only: year/volume/first page in pinned ExactPack bibliography, title in Lazarus1981 publisher bibliography; original1942 article not inspected
 Historical original-problem attribution. Author/year/volume/first page302 were checked in the pinned ExactPack bibliography and the title in the Lazarus1981 publisher references. The original1942 text was not inspected and is not claimed as the directly transcribed source of the present fields or measurements.
-Scott D. Ramsey, James R. Kamm and John H. Bolstad (2012). The Guderley problem revisited · DOI: 10.1080/10618562.2011.647768
+Scott D. Ramsey, James R. Kamm and John H. Bolstad (2012). The Guderley problem revisited [accessed 2026-11-23] · DOI: 10.1080/10618562.2011.647768
 Review scope / review_level: primary institutional bibliographic record and abstract; actual implementation equations reviewed in pinned ExactPack source, not full original paper
 
 ## Guderley converging shock: lightweight spherical-radial verification — Primary sources and review scope [en]
@@ -18976,10 +19445,10 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-gu
 Coverage: reading
 
 The LANL record and abstract distinguish the convergence exponent from the reflected trajectory eigenvalue. This is not a claim to have read the entire paper or reproduced its PDE experiment; the present field is constructed using the pinned ExactPack source.
-Roger B. Lazarus (1981). Self-Similar Solutions for Converging Shocks and Collapsing Cavities · DOI: 10.1137/0718022
+Roger B. Lazarus (1981). Self-Similar Solutions for Converging Shocks and Collapsing Cavities [accessed 2026-11-23] · DOI: 10.1137/0718022
 Review scope / review_level: publisher bibliographic record/abstract plus equations2.5,2.8,2.9 and sphericalTable6.5 as explicitly transcribed in pinned ExactPack; original full text not inspected
 Checked the publisher record/abstract and the explicitly attributed equations/table in ExactPack. The tabulated lambda1.3943607838 is the value transcribed in that code, not an independent retranscription of the original table.
-R. F. Chisnell (1998). An analytic description of converging shock waves · DOI: 10.1017/S0022112097007775
+R. F. Chisnell (1998). An analytic description of converging shock waves [accessed 2026-11-23] · DOI: 10.1017/S0022112097007775
 Review scope / review_level: publisher bibliographic record/abstract and equation3.1 implementation/comments in actual pinned ExactPack eexp source
 Checked the publisher record/abstract and the critical-point phase matching and equation3.1 implementation in ExactPack eexp. The exponent is computed through that eigenvalue routine rather than fixed by dimensional analysis.
 
@@ -18988,10 +19457,10 @@ Checked the publisher record/abstract and the critical-point phase matching and 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-guderley/#guderley-implosion-references
 Coverage: reading
 
-Jasper Thrussell and Jim Michael Ferguson (2023). ExactPack: A python library of exact analytic solutions · DOI: 10.1016/j.softx.2023.101560
+Jasper Thrussell and Jim Michael Ferguson (2023). ExactPack: A python library of exact analytic solutions [accessed 2026-11-23] · DOI: 10.1016/j.softx.2023.101560
 Review scope / review_level: primary OSTI accepted manuscript/search text; software metadata and Guderley registry; selected actual source files pinned separately
 Cites the ExactPack software paper and its Guderley solver listing. The paper version1.7.5 is distinguished from the exact source commit used here, whose source, SHA receipts and BSD license are retained.
-Los Alamos National Laboratory / ExactPack contributors (2025). ExactPack Guderley solver, pinned source
+Los Alamos National Laboratory / ExactPack contributors (2025). ExactPack Guderley solver, pinned source [accessed 2026-11-23]
 Review scope / review_level: selected source files and license inspected; eexp,ramsey.state/g,interp_laz and official test fixtures; actual execution recorded separately
 Inspected pinned eexp, the pre-collapse ODE/state, transcribed tables, official regression values and BSD3 terms. This is not a claim to have run the complete ExactPack suite; actual reference execution is recorded separately.
 
@@ -19157,7 +19626,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-in
 Coverage: reading
 
 Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
-Colin P. McNally, Wladimir Lyra and Jean-Claude Passy (2012). A Well-Posed Kelvin-Helmholtz Instability Test and Comparison · DOI: 10.1088/0067-0049/201/2/18
+Colin P. McNally, Wladimir Lyra and Jean-Claude Passy (2012). A Well-Posed Kelvin-Helmholtz Instability Test and Comparison [accessed 2026-11-23] · DOI: 10.1088/0067-0049/201/2/18
 Review scope / review_level: primary-selected-original-pdf-text
 Selected original methodology read; our incompressible forced inputs differ from its compressible benchmark.
 
@@ -19305,7 +19774,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-in
 Coverage: reading
 
 Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
-Antonio Celani, Andrea Mazzino and Lara Vozella (2006). Rayleigh–Taylor turbulence in two dimensions · DOI: 10.1103/PhysRevLett.96.134504
+Antonio Celani, Andrea Mazzino and Lara Vozella (2006). Rayleigh–Taylor turbulence in two dimensions [accessed 2026-11-23] · DOI: 10.1103/PhysRevLett.96.134504
 Review scope / review_level: primary-selected-original-pdf-text
 Original Boussinesq equations and periodic setup read; our smooth maintained layers and linear reference are constructed here.
 
@@ -21407,6 +21876,669 @@ M. Sussman and E. G. Puckett (2000). A Coupled Level Set and Volume-of-Fluid Met
 Review scope / review_level: full-text
 Author-hosted pp.302–305, equations(1)–(6),(9),(12),(15): signed-distance geometry, enclosed-mass issue and volume-fraction conservation. Sign is reversed here to make phi negative inside. No CLSVOF or two-phase fluid experiment executed.
 
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/
+Coverage: reading
+
+Small fixed matrices compare factorization and refinement, symmetric-indefinite solves, restarted eigenpairs and a consistent-mass string. Independent references distinguish residual from solution error, algebraic from discretization error, and counted operator actions.
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#run-all
+Coverage: reading
+
+Run inside atlas-linear-algebra-spectral-2026-11-24-r3 from the ZIP. This command executes all 4 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Pivoted LU, Cholesky and iterative refinement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/
+Coverage: reading
+
+Exact-rational comparisons separate conditioning, forward and backward error, and pivot growth.
+Methods, equations, figures and references
+Methods used
+Partial-pivot LU and mixed-precision refinement
+Cholesky factorization and triangular solves
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Original implementations of LU with partial pivoting, lower Cholesky factorization and triangular substitution.
+Finite-dimensional linear systems and factorizations
+Fixed SPD matrix of size 12, a nearly singular rank-one matrix of size 8, Hilbert matrix of size 5 and Wilkinson matrix of size 12. Factors and triangular corrections use binary32; residuals use binary64, with five updates.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Pivoted LU, Cholesky and iterative refinement
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+Exact-rational solutions for the actual binary64 inputs and separate LAPACK DGESV/DPOSV comparisons. Conditioning, forward error and backward error are reported separately. Each saved reference component is the exact Fraction solution rounded to binary64.
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Pivoted LU, Cholesky and iterative refinement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/
+Coverage: reading
+
+Same-problem reference · Analytic reference
+Pivoted LU and Cholesky: exact-rational references for actual binary input
+Small fixed examples only; convergence of mixed-precision refinement is not guaranteed for arbitrary matrices.
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#pivoted-direct-refinement-assumptions
+Coverage: reading
+
+Fixed SPD matrix of size 12, a nearly singular rank-one matrix of size 8, Hilbert matrix of size 5 and Wilkinson matrix of size 12. Factors and triangular corrections use binary32; residuals use binary64, with five updates.
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#pivoted-direct-refinement-algorithm
+Coverage: reading
+
+Original implementations of LU with partial pivoting, lower Cholesky factorization and triangular substitution.
+PA=LUA=LL^Tx_(j+1)=x_j+solve_factor32(b-A*x_j)
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#pivoted-direct-refinement-validation
+Coverage: reading
+
+Exact-rational solutions for the actual binary64 inputs and separate LAPACK DGESV/DPOSV comparisons. Conditioning, forward error and backward error are reported separately. Each saved reference component is the exact Fraction solution rounded to binary64.
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#pivoted-direct-refinement-limits
+Coverage: reading
+
+Small fixed examples only; convergence of mixed-precision refinement is not guaranteed for arbitrary matrices.
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#pivoted-direct-refinement-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+max_condition_infinity943656.000002
+max_relative_forward_error7.33203121885e-12
+max_normwise_backward_error8.07438287144e-17
+max_componentwise_backward_error1.28102656688e-16
+max_relative_LAPACK_difference6.18085751443e-12
+max_binary64_pivot_growth2048
+判定 / checkPassed
+spd-tridiagonal-lu/finitetrue
+spd-tridiagonal-lu/binary32-factortrue
+spd-tridiagonal-lu/binary64-factortrue
+spd-tridiagonal-lu/normwise-backwardtrue
+spd-tridiagonal-lu/componentwise-backwardtrue
+spd-tridiagonal-lu/condition-aware-forwardtrue
+spd-tridiagonal-lu/LAPACK-comparisontrue
+spd-tridiagonal-lu/refinement-gain-or-roundofftrue
+spd-tridiagonal-cholesky/finitetrue
+spd-tridiagonal-cholesky/binary32-factortrue
+spd-tridiagonal-cholesky/binary64-factortrue
+spd-tridiagonal-cholesky/normwise-backwardtrue
+spd-tridiagonal-cholesky/componentwise-backwardtrue
+spd-tridiagonal-cholesky/condition-aware-forwardtrue
+spd-tridiagonal-cholesky/LAPACK-comparisontrue
+spd-tridiagonal-cholesky/refinement-gain-or-roundofftrue
+near-singular-rank-one-lu/finitetrue
+near-singular-rank-one-lu/binary32-factortrue
+near-singular-rank-one-lu/binary64-factortrue
+near-singular-rank-one-lu/normwise-backwardtrue
+near-singular-rank-one-lu/componentwise-backwardtrue
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#pivoted-direct-refinement-measurements
+Coverage: reading
+
+near-singular-rank-one-lu/condition-aware-forwardtrue
+near-singular-rank-one-lu/LAPACK-comparisontrue
+near-singular-rank-one-lu/refinement-gain-or-roundofftrue
+near-singular-rank-one-cholesky/finitetrue
+near-singular-rank-one-cholesky/binary32-factortrue
+near-singular-rank-one-cholesky/binary64-factortrue
+near-singular-rank-one-cholesky/normwise-backwardtrue
+near-singular-rank-one-cholesky/componentwise-backwardtrue
+near-singular-rank-one-cholesky/condition-aware-forwardtrue
+near-singular-rank-one-cholesky/LAPACK-comparisontrue
+near-singular-rank-one-cholesky/refinement-gain-or-roundofftrue
+hilbert5-lu/finitetrue
+hilbert5-lu/binary32-factortrue
+hilbert5-lu/binary64-factortrue
+hilbert5-lu/normwise-backwardtrue
+hilbert5-lu/componentwise-backwardtrue
+hilbert5-lu/condition-aware-forwardtrue
+hilbert5-lu/LAPACK-comparisontrue
+hilbert5-lu/refinement-gain-or-roundofftrue
+hilbert5-cholesky/finitetrue
+hilbert5-cholesky/binary32-factortrue
+hilbert5-cholesky/binary64-factortrue
+hilbert5-cholesky/normwise-backwardtrue
+hilbert5-cholesky/componentwise-backwardtrue
+hilbert5-cholesky/condition-aware-forwardtrue
+hilbert5-cholesky/LAPACK-comparisontrue
+hilbert5-cholesky/refinement-gain-or-roundofftrue
+wilkinson12-lu/finitetrue
+wilkinson12-lu/binary32-factortrue
+wilkinson12-lu/binary64-factortrue
+wilkinson12-lu/normwise-backwardtrue
+wilkinson12-lu/componentwise-backwardtrue
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#pivoted-direct-refinement-measurements
+Coverage: reading
+
+wilkinson12-lu/condition-aware-forwardtrue
+wilkinson12-lu/LAPACK-comparisontrue
+wilkinson12-lu/refinement-gain-or-roundofftrue
+Wilkinson/exact-growthtrue
+Hilbert/ill-conditioning-not-residualtrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.The saved 12 x 12 SPD matrix used in the refinement examples. In the companion full figure, errors are measured against the exact-rational solution rounded to binary64; exact zeros are shown at float64.tiny for logarithmic display only.Read every stored record
+idfieldsmatrixfactorizationcondition_infinityinitial_backwardfinal_backwardcomponent_backwardrelative_forward_errorrelative_LAPACK_differencebinary64_pivot_growthcorrections
+spd-tridiagonal-luspd-tridiagonal-lu.npzspd-tridiagonallu2.998592210233.97364274818e-080008.47946841438e-1715
+spd-tridiagonal-choleskyspd-tridiagonal-cholesky.npzspd-tridiagonalcholesky2.998592210236.95387439483e-08004.53246651837e-171.06295761943e-1615
+near-singular-rank-one-lunear-singular-rank-one-lu.npznear-singular-rank-onelu114687.255.41854352731e-088.07438287144e-178.07438287145e-171.03345110396e-121.48821233315e-1215
+near-singular-rank-one-choleskynear-singular-rank-one-cholesky.npznear-singular-rank-onecholesky114687.252.16748355626e-088.07438287141e-178.07438287146e-177.27387594638e-125.665440345e-1215
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#pivoted-direct-refinement-measurements
+Coverage: reading
+
+hilbert5-luhilbert5-lu.npzhilbert5lu943656.0000021.03662901292e-084.5253655895e-171.28102656688e-161.42689765352e-121.92950041328e-1215
+hilbert5-choleskyhilbert5-cholesky.npzhilbert5cholesky943656.0000021.18011008027e-083.6202924716e-178.20939560466e-177.33203121885e-126.18085751443e-1215
+wilkinson12-luwilkinson12-lu.npzwilkinson12lu120000020485
+Measurements and complete records / JSON
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#pivoted-direct-refinement-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+LAPACK Users Guide: Linear Equations
+Review scope / review_level: selected-official-documentation
+Selected LU/Cholesky, CON/RFS and same-precision refinement paragraphs were read. This example uses binary32 factors and binary64 residuals; a full LAPACK source audit is not claimed.
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Symmetric saddle systems and Schur preconditioning [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/
+Coverage: reading
+
+MINRES and GMRES use the same original-system residual criterion and are checked against the ideal Schur three-point spectrum.
+Methods, equations, figures and references
+Methods used
+Educational MINRES for symmetric-indefinite systems
+Restarted GMRES
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Stored-basis Lanczos least squares provides the educational MINRES variant; GMRES uses two-pass modified Gram-Schmidt. An SPD congruence preserves symmetry. The internal target is min(configured rtol, fixed forward-error limit / kappa_infinity), using only the matrix. The independent solution is not a stopping input.
+Finite-dimensional linear systems and factorizations
+Algebraic mixed-Poisson/Stokes-type blocks with velocity sizes 12 and 24 and pressure sizes 5 and 11. The common original-system residual tolerance is 1e-9.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Symmetric saddle systems and Schur preconditioning
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Symmetric saddle systems and Schur preconditioning [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/
+Coverage: reading
+
+Global LAPACK solutions, the analytic ideal-Schur spectrum and an explicit negative-curvature control for CG.
+Same-problem reference · Finite-grid numerical reference
+Symmetric saddles: independent dense solutions and the ideal-Schur spectrum
+A dense, ideal-Schur educational control, not a complete Stokes PDE solver or a scalable approximate preconditioner.
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#symmetric-saddle-minres-assumptions
+Coverage: reading
+
+Algebraic mixed-Poisson/Stokes-type blocks with velocity sizes 12 and 24 and pressure sizes 5 and 11. The common original-system residual tolerance is 1e-9.
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#symmetric-saddle-minres-algorithm
+Coverage: reading
+
+Stored-basis Lanczos least squares provides the educational MINRES variant; GMRES uses two-pass modified Gram-Schmidt. An SPD congruence preserves symmetry. The internal target is min(configured rtol, fixed forward-error limit / kappa_infinity), using only the matrix. The independent solution is not a stopping input.
+A=[[H,B^T],[B,0]]P=diag(H,BH^-1B^T)A_tilde=L^-1 A L^-T
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#symmetric-saddle-minres-validation
+Coverage: reading
+
+Global LAPACK solutions, the analytic ideal-Schur spectrum and an explicit negative-curvature control for CG.
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#symmetric-saddle-minres-limits
+Coverage: reading
+
+A dense, ideal-Schur educational control, not a complete Stokes PDE solver or a scalable approximate preconditioner.
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#symmetric-saddle-minres-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+max_original_relative_residual2.34027856727e-13
+max_relative_reference_error4.23108859063e-10
+max_iterations29
+max_condition_infinity_estimate5682.08019425
+判定 / checkPassed
+n12/ideal-Schur-three-point-spectrumtrue
+saddle-12-none-minres/finitetrue
+saddle-12-none-minres/same-true-residualtrue
+saddle-12-none-minres/independent-referencetrue
+saddle-12-none-minres/basis-orthogonalitytrue
+saddle-12-none-minres/symmetric-congruencetrue
+saddle-12-none-minres/fixed-dimension-budgettrue
+saddle-12-none-gmres/finitetrue
+saddle-12-none-gmres/same-true-residualtrue
+saddle-12-none-gmres/independent-referencetrue
+saddle-12-none-gmres/basis-orthogonalitytrue
+saddle-12-none-gmres/symmetric-congruencetrue
+saddle-12-none-gmres/fixed-dimension-budgettrue
+saddle-12-exact-Schur-minres/finitetrue
+saddle-12-exact-Schur-minres/same-true-residualtrue
+saddle-12-exact-Schur-minres/independent-referencetrue
+saddle-12-exact-Schur-minres/basis-orthogonalitytrue
+saddle-12-exact-Schur-minres/symmetric-congruencetrue
+saddle-12-exact-Schur-minres/fixed-dimension-budgettrue
+saddle-12-exact-Schur-minres/ideal-three-step-controltrue
+saddle-12-exact-Schur-gmres/finitetrue
+saddle-12-exact-Schur-gmres/same-true-residualtrue
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#symmetric-saddle-minres-measurements
+Coverage: reading
+
+saddle-12-exact-Schur-gmres/independent-referencetrue
+saddle-12-exact-Schur-gmres/basis-orthogonalitytrue
+saddle-12-exact-Schur-gmres/symmetric-congruencetrue
+saddle-12-exact-Schur-gmres/fixed-dimension-budgettrue
+saddle-12-exact-Schur-gmres/ideal-three-step-controltrue
+n24/ideal-Schur-three-point-spectrumtrue
+saddle-24-none-minres/finitetrue
+saddle-24-none-minres/same-true-residualtrue
+saddle-24-none-minres/independent-referencetrue
+saddle-24-none-minres/basis-orthogonalitytrue
+saddle-24-none-minres/symmetric-congruencetrue
+saddle-24-none-minres/fixed-dimension-budgettrue
+saddle-24-none-gmres/finitetrue
+saddle-24-none-gmres/same-true-residualtrue
+saddle-24-none-gmres/independent-referencetrue
+saddle-24-none-gmres/basis-orthogonalitytrue
+saddle-24-none-gmres/symmetric-congruencetrue
+saddle-24-none-gmres/fixed-dimension-budgettrue
+saddle-24-exact-Schur-minres/finitetrue
+saddle-24-exact-Schur-minres/same-true-residualtrue
+saddle-24-exact-Schur-minres/independent-referencetrue
+saddle-24-exact-Schur-minres/basis-orthogonalitytrue
+saddle-24-exact-Schur-minres/symmetric-congruencetrue
+saddle-24-exact-Schur-minres/fixed-dimension-budgettrue
+saddle-24-exact-Schur-minres/ideal-three-step-controltrue
+saddle-24-exact-Schur-gmres/finitetrue
+saddle-24-exact-Schur-gmres/same-true-residualtrue
+saddle-24-exact-Schur-gmres/independent-referencetrue
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#symmetric-saddle-minres-measurements
+Coverage: reading
+
+saddle-24-exact-Schur-gmres/basis-orthogonalitytrue
+saddle-24-exact-Schur-gmres/symmetric-congruencetrue
+saddle-24-exact-Schur-gmres/fixed-dimension-budgettrue
+saddle-24-exact-Schur-gmres/ideal-three-step-controltrue
+CG/explicit-negative-curvature-controltrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.The saved 35 x 35 saddle matrix for velocity size 24.Read every stored record
+idfieldsmethodpreconditionersizeiterationsprojected_operator_actionssolver_original_residual_actionsposthoc_original_residual_actionstrue_relative_residualreference_errorconvergedcondition_infinity_estimateinternal_true_residual_targetconfigured_true_residual_tolerance
+saddle-12-none-minressaddle-12-none-minres.npzminresnone1717171711.79960347573e-161.47416360582e-14true1430.727268541.39789046031e-111e-09
+saddle-12-none-gmressaddle-12-none-gmres.npzgmresnone1717171711.9391649074e-165.86522926859e-15true1430.727268541.39789046031e-111e-09
+saddle-12-exact-Schur-minressaddle-12-exact-Schur-minres.npzminresexact-Schur1733315.63505644357e-161.13376671587e-14true1430.727268541.39789046031e-111e-09
+saddle-12-exact-Schur-gmressaddle-12-exact-Schur-gmres.npzgmresexact-Schur1733315.41187062734e-161.11264474098e-14true1430.727268541.39789046031e-111e-09
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#symmetric-saddle-minres-measurements
+Coverage: reading
+
+saddle-24-none-minressaddle-24-none-minres.npzminresnone3529292912.34027856727e-134.23108859063e-10true5682.080194253.51983768554e-121e-09
+saddle-24-none-gmressaddle-24-none-gmres.npzgmresnone3529292912.34025740787e-134.2310624558e-10true5682.080194253.51983768554e-121e-09
+saddle-24-exact-Schur-minressaddle-24-exact-Schur-minres.npzminresexact-Schur3533316.50411507405e-162.03146143773e-14true5682.080194253.51983768554e-121e-09
+saddle-24-exact-Schur-gmressaddle-24-exact-Schur-gmres.npzgmresexact-Schur3533316.64918125287e-162.02780725439e-14true5682.080194253.51983768554e-121e-09
+Measurements and complete records / JSON
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#symmetric-saddle-minres-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Paige and Saunders: Stanford SOL MINRES
+Review scope / review_level: selected-author-official-documentation
+Selected discussion of symmetric indefinite systems, SPD preconditioners and the original residual was read. The original 1975 paper was not read. This stored-basis Lanczos least-squares variant is not a copy of the production short recurrence.
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Explicitly restarted Krylov and interior eigenvalues [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/
+Coverage: reading
+
+Explicit restarting and shift-invert are compared using original eigenproblem residuals and counted operator actions.
+Methods, equations, figures and references
+Methods used
+Krylov eigenvalue solvers
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Two-pass Arnoldi is explicitly restarted from one Ritz vector. Original LU routines perform the shifted solves, and stopping uses the original eigenproblem.
+Finite-dimensional matrix eigenproblems
+A fixed Dirichlet Laplacian of size 31, restart lengths 8 and 16, and at most 40 cycles. Compare the untransformed problem with shifts 0 and 950.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Explicitly restarted Krylov and interior eigenvalues
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+The known discrete sine spectrum and an independent global LAPACK comparison. Shift-solve, Krylov and original-residual actions are counted separately.
+Same-problem reference · Analytic reference
+Restarting and shift-invert: the closed spectrum of a fixed discrete matrix
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Explicitly restarted Krylov and interior eigenvalues [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/
+Coverage: reading
+
+One eigenpair of a real symmetric matrix only. No implicit restarting, Krylov-Schur, locking, or general nonnormal or clustered-spectrum capability is claimed.
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#restarted-shift-invert-assumptions
+Coverage: reading
+
+A fixed Dirichlet Laplacian of size 31, restart lengths 8 and 16, and at most 40 cycles. Compare the untransformed problem with shifts 0 and 950.
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#restarted-shift-invert-algorithm
+Coverage: reading
+
+Two-pass Arnoldi is explicitly restarted from one Ritz vector. Original LU routines perform the shifted solves, and stopping uses the original eigenproblem.
+lambda_j=4(n+1)^2 sin^2(j*pi/[2(n+1)])T=(A-sigma I)^-1lambda=sigma+1/theta
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#restarted-shift-invert-validation
+Coverage: reading
+
+The known discrete sine spectrum and an independent global LAPACK comparison. Shift-solve, Krylov and original-residual actions are counted separately.
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#restarted-shift-invert-limits
+Coverage: reading
+
+One eigenpair of a real symmetric matrix only. No implicit restarting, Krylov-Schur, locking, or general nonnormal or clustered-spectrum capability is claimed.
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#restarted-shift-invert-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+max_original_eigenpair_residual5.77411728915e-10
+max_operator_calls216
+max_restart_cycles27
+max_shift_solve_count16
+判定 / checkPassed
+restart-8-shift-None/finitetrue
+restart-8-shift-None/original-problem-residualtrue
+restart-8-shift-None/known-spectrumtrue
+restart-8-shift-None/shift-linear-residualtrue
+restart-8-shift-None/action-budgettrue
+restart-8-shift-None/basis-orthogonalitytrue
+restart-8-shift-None/inverse-spectral-maptrue
+restart-16-shift-None/finitetrue
+restart-16-shift-None/original-problem-residualtrue
+restart-16-shift-None/known-spectrumtrue
+restart-16-shift-None/shift-linear-residualtrue
+restart-16-shift-None/action-budgettrue
+restart-16-shift-None/basis-orthogonalitytrue
+restart-16-shift-None/inverse-spectral-maptrue
+restart-8-shift-0.0/finitetrue
+restart-8-shift-0.0/original-problem-residualtrue
+restart-8-shift-0.0/known-spectrumtrue
+restart-8-shift-0.0/shift-linear-residualtrue
+restart-8-shift-0.0/action-budgettrue
+restart-8-shift-0.0/basis-orthogonalitytrue
+restart-8-shift-0.0/inverse-spectral-maptrue
+restart-16-shift-0.0/finitetrue
+restart-16-shift-0.0/original-problem-residualtrue
+restart-16-shift-0.0/known-spectrumtrue
+restart-16-shift-0.0/shift-linear-residualtrue
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#restarted-shift-invert-measurements
+Coverage: reading
+
+restart-16-shift-0.0/action-budgettrue
+restart-16-shift-0.0/basis-orthogonalitytrue
+restart-16-shift-0.0/inverse-spectral-maptrue
+restart-8-shift-950.0/finitetrue
+restart-8-shift-950.0/original-problem-residualtrue
+restart-8-shift-950.0/known-spectrumtrue
+restart-8-shift-950.0/shift-linear-residualtrue
+restart-8-shift-950.0/action-budgettrue
+restart-8-shift-950.0/basis-orthogonalitytrue
+restart-8-shift-950.0/inverse-spectral-maptrue
+restart-16-shift-950.0/finitetrue
+restart-16-shift-950.0/original-problem-residualtrue
+restart-16-shift-950.0/known-spectrumtrue
+restart-16-shift-950.0/shift-linear-residualtrue
+restart-16-shift-950.0/action-budgettrue
+restart-16-shift-950.0/basis-orthogonalitytrue
+restart-16-shift-950.0/inverse-spectral-maptrue
+shift/exact-singularity-failure-retained-as-controltrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.The saved 31 x 31 Dirichlet Laplacian used in the eigenvalue comparisons.Read every stored record
+idfieldsshiftrestart_lengthcyclesoperator_callsoriginal_residual_actionsshift_residual_matrix_actionsshift_solve_countvalueexact_targettrue_normalized_residual
+restart-8-shift-Nonerestart-8-shift-None.npz—82721627004086.138320224086.138320225.77411728915e-10
+restart-16-shift-Nonerestart-16-shift-None.npz—1691449004086.138320224086.138320223.24815220269e-10
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#restarted-shift-invert-measurements
+Coverage: reading
+
+restart-8-shift-0.0restart-8-shift-0.0.npz08181889.861679775349.861679775341.08987458764e-12
+restart-16-shift-0.0restart-16-shift-0.0.npz016116116169.861679775349.861679775346.35840391119e-17
+restart-8-shift-950.0restart-8-shift-950.0.npz950821621616910.192162776910.1921627762.05628930763e-15
+restart-16-shift-950.0restart-16-shift-950.0.npz9501611611616910.192162776910.1921627765.08388848783e-17
+Measurements and complete records / JSON
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#restarted-shift-invert-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+SLEPc EPS: projection, Krylov methods and shift-invert
+Review scope / review_level: selected-official-documentation
+Selected projection, Arnoldi, restarting, shift-invert and generalized-problem paragraphs were read. No SLEPc execution or Krylov-Schur reproduction is claimed.
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Consistent-mass FEM string eigenpairs [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/
+Coverage: reading
+
+Consistent-mass P1 string eigenpairs compare an M-inner-product Krylov method and actual SciPy LOBPCG with an independent discrete spectrum.
+Methods, equations, figures and references
+Methods used
+Krylov eigenvalue solvers
+Generalized eigenpairs with SciPy LOBPCG
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Elementwise K and M assembly, M-inner-product Krylov iteration on K^-1 M, and actual SciPy LOBPCG with a small exact-K-inverse preconditioner. LOBPCG starts from {1, x^3, x^6}; degree-plus-two images avoid the structural rank defect of {1, x, x^2}. The same M is applied through a qualified einsum LinearOperator, avoiding the dense-B adapter. The eigensolver itself remains SciPy LOBPCG.
+Fixed-end string eigenvalues and consistent-mass FEM
+A unit string with unit tension and density and homogeneous Dirichlet endpoints. Use 15, 31 and 63 interior nodes and the lowest three eigenpairs.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Consistent-mass FEM string eigenpairs
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Consistent-mass FEM string eigenpairs [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/
+Coverage: reading
+
+Generalized dense eigh, an independent discrete spectrum and refinement toward (j*pi)^2. M-orthogonality and original residuals are distinct quantities.
+Same-problem reference · Analytic reference
+Consistent-mass P1 string: closed discrete and continuum eigenvalues
+A small 1D string only. If SciPy raises before returning, inputs are retained; unreturned internal iterates are not claimed to be saved. The 35 component checks do not replace the four full scientific cases.
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#fem-mass-eigen-assumptions
+Coverage: reading
+
+A unit string with unit tension and density and homogeneous Dirichlet endpoints. Use 15, 31 and 63 interior nodes and the lowest three eigenpairs.
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#fem-mass-eigen-algorithm
+Coverage: reading
+
+Elementwise K and M assembly, M-inner-product Krylov iteration on K^-1 M, and actual SciPy LOBPCG with a small exact-K-inverse preconditioner. LOBPCG starts from {1, x^3, x^6}; degree-plus-two images avoid the structural rank defect of {1, x, x^2}. The same M is applied through a qualified einsum LinearOperator, avoiding the dense-B adapter. The eigensolver itself remains SciPy LOBPCG.
+K x=lambda M xlambda_j,h=6(1-cos(theta_j))/[h^2(2+cos(theta_j))]X^T M X=I
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#fem-mass-eigen-validation
+Coverage: reading
+
+Generalized dense eigh, an independent discrete spectrum and refinement toward (j*pi)^2. M-orthogonality and original residuals are distinct quantities.
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#fem-mass-eigen-limits
+Coverage: reading
+
+A small 1D string only. If SciPy raises before returning, inputs are retained; unreturned internal iterates are not claimed to be saved. The 35 component checks do not replace the four full scientific cases.
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#fem-mass-eigen-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+max_generalized_residual1.94948028234e-10
+max_M_orthogonality_defect1.11022302463e-15
+max_relative_reference_error1.58437354596e-13
+max_operator_vector_actions30
+max_preconditioner_vector_actions24
+判定 / checkPassed
+fem-15-mass-Krylov/finitetrue
+fem-15-mass-Krylov/original-generalized-residualtrue
+fem-15-mass-Krylov/M-orthogonalitytrue
+fem-15-mass-Krylov/independent-dense-referencetrue
+fem-15-mass-Krylov/exact-discrete-spectrumtrue
+fem-15-mass-Krylov/fixed-action-budgettrue
+fem-15-SciPy-LOBPCG/finitetrue
+fem-15-SciPy-LOBPCG/original-generalized-residualtrue
+fem-15-SciPy-LOBPCG/M-orthogonalitytrue
+fem-15-SciPy-LOBPCG/independent-dense-referencetrue
+fem-15-SciPy-LOBPCG/exact-discrete-spectrumtrue
+fem-15-SciPy-LOBPCG/fixed-action-budgettrue
+fem-31-mass-Krylov/finitetrue
+fem-31-mass-Krylov/original-generalized-residualtrue
+fem-31-mass-Krylov/M-orthogonalitytrue
+fem-31-mass-Krylov/independent-dense-referencetrue
+fem-31-mass-Krylov/exact-discrete-spectrumtrue
+fem-31-mass-Krylov/fixed-action-budgettrue
+fem-31-SciPy-LOBPCG/finitetrue
+fem-31-SciPy-LOBPCG/original-generalized-residualtrue
+fem-31-SciPy-LOBPCG/M-orthogonalitytrue
+fem-31-SciPy-LOBPCG/independent-dense-referencetrue
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#fem-mass-eigen-measurements
+Coverage: reading
+
+fem-31-SciPy-LOBPCG/exact-discrete-spectrumtrue
+fem-31-SciPy-LOBPCG/fixed-action-budgettrue
+fem-63-mass-Krylov/finitetrue
+fem-63-mass-Krylov/original-generalized-residualtrue
+fem-63-mass-Krylov/M-orthogonalitytrue
+fem-63-mass-Krylov/independent-dense-referencetrue
+fem-63-mass-Krylov/exact-discrete-spectrumtrue
+fem-63-mass-Krylov/fixed-action-budgettrue
+fem-63-SciPy-LOBPCG/finitetrue
+fem-63-SciPy-LOBPCG/original-generalized-residualtrue
+fem-63-SciPy-LOBPCG/M-orthogonalitytrue
+fem-63-SciPy-LOBPCG/independent-dense-referencetrue
+fem-63-SciPy-LOBPCG/exact-discrete-spectrumtrue
+fem-63-SciPy-LOBPCG/fixed-action-budgettrue
+continuum/second-order-ratio-1true
+continuum/second-order-ratio-2true
+continuum/finest-three-eigenvaluestrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.The first three M-normalized modes computed on the 63-node interior grid.Read every stored record
+idfieldsmethodinterior_nodesoperator_vector_actionsoperator_kindpreconditioner_K_inverse_vector_actionstrue_relative_residualM_orthogonalityrelative_reference_errorvalues
+fem-15-mass-Krylovfem-15-mass-Krylov.npzmass-Krylov1515K^-1 M151.38767636333e-146.66133814775e-162.3277069973e-14[9.901353678398955,39.98832262499005,91.42343409886865]
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#fem-mass-eigen-measurements
+Coverage: reading
+
+fem-15-SciPy-LOBPCGfem-15-SciPy-LOBPCG.npzSciPy-LOBPCG1526K201.53690970869e-102.60827224818e-168.43205627872e-15[9.901353678398968,39.98832262498907,91.42343409886853]
+fem-31-mass-Krylovfem-31-mass-Krylov.npzmass-Krylov3124K^-1 M245.23983878938e-148.881784197e-161.35418079467e-13[9.87753411753409,39.605414713597455,89.47038060401067]
+fem-31-SciPy-LOBPCGfem-31-SciPy-LOBPCG.npzSciPy-LOBPCG3127K211.72839794668e-105.55111512313e-161.58437354596e-13[9.877534117534317,39.605414713595884,89.47038060400963]
+fem-63-mass-Krylovfem-63-mass-Krylov.npzmass-Krylov6324K^-1 M241.83403018145e-131.11022302463e-151.29843098772e-13[9.871586353257483,39.51013647013335,88.98708062867253]
+fem-63-SciPy-LOBPCGfem-63-SciPy-LOBPCG.npzSciPy-LOBPCG6330K241.94948028234e-106.66133814775e-163.11307344351e-14[9.871586353256738,39.510136470137326,88.98708062866348]
+Measurements and complete records / JSON
+
+## Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#fem-mass-eigen-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+SLEPc EPS: projection, Krylov methods and shift-invert
+Review scope / review_level: selected-official-documentation
+Selected projection, Arnoldi, restarting, shift-invert and generalized-problem paragraphs were read. No SLEPc execution or Krylov-Schur reproduction is claimed.
+SciPy 1.14.1 LOBPCG API
+Review scope / review_level: selected-official-documentation
+Selected discussion of SPD B, preconditioner M, the history tuple, the 3k eigensolve, the 5k > n fallback and the rod example was read. This maintained-library comparison shares reduced LAPACK primitives; LOBPCG is not independently authored here.
+SciPy 1.14.1 LOBPCG adapter and initial B-orthonormalization
+Review scope / review_level: selected-official-source
+Selected _makeMatMat, _b_orthonormalize and API lines were read. The installed pinned file is bound separately. No full reading of the original LOBPCG paper or byte equality between wheel and Web source formatting is claimed.
+
 ## Low-Mach isentropic vortex: preconditioned Roe flux verification — Low-Mach isentropic vortex: preconditioned Roe flux verification [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-low-mach/
@@ -21795,10 +22927,10 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lo
 Coverage: reading
 
 Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
-Fabian Miczek, Friedrich K. Röpke and Philipp V. F. Edelmann (2015). New numerical solver for flows at various Mach numbers · DOI: 10.1051/0004-6361/201425059
+Fabian Miczek, Friedrich K. Röpke and Philipp V. F. Edelmann (2015). New numerical solver for flows at various Mach numbers [accessed 2026-11-23] · DOI: 10.1051/0004-6361/201425059
 Review scope / review_level: selected-author-version-full-text: Section8 Eq56; Section4 explicit-RK3 discussion; AppendixA variable transforms; Section6 smooth piecewise-linear reconstruction without a limiter
 Selected author-version equations and RK3 discussion were checked. This short isentropic-vortex application does not reproduce the paper’s Gresho or implicit-integration experiments. Section 6 also motivates unlimited piecewise-linear reconstruction for smooth tests; this is independent motivation for the revision.
-Wasilij Barsukow, Philipp V. F. Edelmann, Christian Klingenberg, Fabian Miczek and Friedrich K. Röpke (2017). A Numerical Scheme for the Compressible Low-Mach Number Regime of Ideal Fluid Dynamics · DOI: 10.1007/s10915-017-0372-4
+Wasilij Barsukow, Philipp V. F. Edelmann, Christian Klingenberg, Fabian Miczek and Friedrich K. Röpke (2017). A Numerical Scheme for the Compressible Low-Mach Number Regime of Ideal Fluid Dynamics [accessed 2026-11-23] · DOI: 10.1007/s10915-017-0372-4
 Review scope / review_level: selected-full-text: Section3 Eqs21,31,32; Section5 Eq83 and Fourier-mode stability discussion
 
 ## Low-Mach isentropic vortex: preconditioned Roe flux verification — Primary sources and review scope [en]
@@ -21807,13 +22939,13 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-lo
 Coverage: reading
 
 Checked the modified dissipation, primitive matrix and restrictive forward-Euler stability result. The present SSPRK33 Fourier/stage checks are separate fixed-input evidence, not a general nonlinear or SSP guarantee.
-Seth C. Spiegel, H. T. Huynh and James R. DeBonis (2015). A Survey of the Isentropic Euler Vortex Problem using High-Order Methods · DOI: 10.2514/6.2015-2444
+Seth C. Spiegel, H. T. Huynh and James R. DeBonis (2015). A Survey of the Isentropic Euler Vortex Problem using High-Order Methods [accessed 2026-11-23] · DOI: 10.2514/6.2015-2444
 Review scope / review_level: selected-primary-report: parameterized vortex definitions and Sections IV.B/IV.C boundary discussion
 Checked the generalized vortex and finite-periodic-boundary qualifications. The selected beta3, mean velocity(1,.5) and background Mach values are explicit adaptations, not NASA/FR execution or figure reuse.
-Sigal Gottlieb and Chi-Wang Shu (1998). Total Variation Diminishing Runge-Kutta Schemes · DOI: 10.1090/S0025-5718-98-00913-2
+Sigal Gottlieb and Chi-Wang Shu (1998). Total Variation Diminishing Runge-Kutta Schemes [accessed 2026-11-23] · DOI: 10.1090/S0025-5718-98-00913-2
 Review scope / review_level: author-bibliography and indexed author-PDF excerpts; direct PDF fetch unavailable
 Bibliography and indexed author-PDF excerpts were checked. No direct full-PDF reading is claimed; coefficients are also cross-checked against the author review below.
-Sigal Gottlieb, Chi-Wang Shu and Eitan Tadmor (2001). Strong Stability-Preserving High-Order Time Discretization Methods · DOI: 10.1137/S003614450036757X
+Sigal Gottlieb, Chi-Wang Shu and Eitan Tadmor (2001). Strong Stability-Preserving High-Order Time Discretization Methods [accessed 2026-11-23] · DOI: 10.1137/S003614450036757X
 
 ## Low-Mach isentropic vortex: preconditioned Roe flux verification — Primary sources and review scope [en]
 
@@ -21822,6 +22954,540 @@ Coverage: reading
 
 Review scope / review_level: selected-full-author-PDF: Section4 Proposition4.1 Eq4.2 printedp100/PDFpage12; Section2.2 Lemma2.1 printedp92/PDFpage4
 Checked the three-stage updates and the forward-Euler hypothesis behind SSP. No general SSP/TVD/nonlinear stability guarantee is borrowed for this Miczek flux; the stated Fourier matrices and actual stage states are checked separately.
+
+## Mie scattering width of a two-dimensional dielectric cylinder — Mie scattering width of a two-dimensional dielectric cylinder [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-cylinder/
+Coverage: reading
+
+Evolve the actual two-dimensional scattered fields and compare closed-contour Poynting power with an independent cylindrical series.
+
+## Mie scattering width of a two-dimensional dielectric cylinder — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-cylinder/#run-all
+Coverage: reading
+
+Run inside atlas-maxwell-cylinder-2026-11-24-r2 from the ZIP. This command executes all 1 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Mie scattering width of a two-dimensional dielectric cylinder — Mie scattering width of a two-dimensional dielectric cylinder [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-cylinder/
+Coverage: reading
+
+Evolve the actual two-dimensional scattered fields and compare closed-contour Poynting power with an independent cylindrical series.
+Methods, equations, figures and references
+Methods used
+Yee finite-difference time-domain method
+Two-step leapfrog
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Advance the scattered Yee fields with an exact discrete incident difference on the polarization-contrast support. Accumulate E and H at their own integer and half times, then integrate physical power after four-point native-face collocation.
+Linear Maxwell fields in vacuum and dielectrics
+Use c = epsilon0 = mu0 = 1, an infinite cylinder with Ez polarization, radius 0.25, relative permittivity 2.25 and vacuum wavelength 1. The 6 × 6 domain has four-side PML and an explicitly nodal staircase geometry.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Mie scattering width of a two-dimensional dielectric cylinder
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## Mie scattering width of a two-dimensional dielectric cylinder — Mie scattering width of a two-dimensional dielectric cylinder [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-cylinder/
+Coverage: reading
+
+Use 12/18/24 points per wavelength, 32 burn-in periods and 8 measured periods. Check two contours, consecutive four-period windows, half-amplitude phasors after a complete repeated evolution, and a vacuum control at the five saved times. Compare scattering width and exterior fields with the cylindrical series.
+Same-problem reference · Analytic reference
+Exterior series and scattering width of a dielectric cylinder
+This is a lossless two-dimensional Ez cylinder, not a three-dimensional sphere. Report staircase geometry error without claiming general second-order curved-boundary accuracy or precision scattering for arbitrary frequencies and materials.
+
+## Mie scattering width of a two-dimensional dielectric cylinder — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-cylinder/#cylinder-mie2d-assumptions
+Coverage: reading
+
+Use c = epsilon0 = mu0 = 1, an infinite cylinder with Ez polarization, radius 0.25, relative permittivity 2.25 and vacuum wavelength 1. The 6 × 6 domain has four-side PML and an explicitly nodal staircase geometry.
+
+## Mie scattering width of a two-dimensional dielectric cylinder — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-cylinder/#cylinder-mie2d-algorithm
+Coverage: reading
+
+Advance the scattered Yee fields with an exact discrete incident difference on the polarization-contrast support. Accumulate E and H at their own integer and half times, then integrate physical power after four-point native-face collocation.
+\varepsilon\partial_tE_z=\partial_xH_y-\partial_yH_x,\quad\partial_tH_x=-\partial_yE_z,\quad\partial_tH_y=\partial_xE_z\Sigma_{\mathrm{sca}}=\frac4k\sum_{n=-\infty}^{\infty}|a_n|^2,\quad\Sigma_{\mathrm{ext}}=-\frac4k\sum_n\operatorname{Re}a_n
+
+## Mie scattering width of a two-dimensional dielectric cylinder — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-cylinder/#cylinder-mie2d-validation
+Coverage: reading
+
+Use 12/18/24 points per wavelength, 32 burn-in periods and 8 measured periods. Check two contours, consecutive four-period windows, half-amplitude phasors after a complete repeated evolution, and a vacuum control at the five saved times. Compare scattering width and exterior fields with the cylindrical series.
+
+## Mie scattering width of a two-dimensional dielectric cylinder — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-cylinder/#cylinder-mie2d-limits
+Coverage: reading
+
+This is a lossless two-dimensional Ez cylinder, not a three-dimensional sphere. Report staircase geometry error without claiming general second-order curved-boundary accuracy or precision scattering for arbitrary frequencies and materials.
+
+## Mie scattering width of a two-dimensional dielectric cylinder — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-cylinder/#cylinder-mie2d-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+completed_primary_and_control_runs5
+spatial_dimensions2
+geometryExplicitnodalstaircase,noorderclaim
+scattering_is_power_integraltrue
+referenceIndependentordinarycylindricalJ/H1,notspherical
+gallery_source145
+finest_scattering_width0.957172512629
+independent_scattering_width0.977861821265
+finest_width_relative_error0.0211577016161
+finest_exterior_field_relative_error0.03027868628
+complete_run_phasor_linearity0
+判定 / checkPassed
+reference-and-new-components-qualifiedtrue
+cylinder-ppw12/finitetrue
+cylinder-ppw12/outward-scattering-powertrue
+cylinder-ppw12/closed-contour-sensitivitytrue
+cylinder-ppw12/fixed-window-sensitivitytrue
+cylinder-ppw18/finitetrue
+cylinder-ppw18/outward-scattering-powertrue
+cylinder-ppw18/closed-contour-sensitivitytrue
+cylinder-ppw18/fixed-window-sensitivitytrue
+cylinder-ppw24/finitetrue
+cylinder-ppw24/outward-scattering-powertrue
+cylinder-ppw24/closed-contour-sensitivitytrue
+cylinder-ppw24/fixed-window-sensitivitytrue
+finest-scattering-widthtrue
+finest-exterior-scattered-fieldtrue
+coarse-to-finest-improvementtrue
+complete-run-phasor-linearitytrue
+complete-run-power-quadratictrue
+zero-contrast-stored-snapshot-fieldstrue
+
+## Mie scattering width of a two-dimensional dielectric cylinder — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-cylinder/#cylinder-mie2d-measurements
+Coverage: reading
+
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Real part of the actual saved scattered electric phasor on the finest two-dimensional grid.Read every stored record
+idppwcellsstepsdtfieldswidthreference_widthwidth_relativefield_relativecontour_fractionwindow_fractionstaircase_areaexact_areaamplitudelinearityepsilonstored_snapshot_scattered_peak
+cylinder-ppw12127211600.0344827586207cylinder-ppw12.npz0.9215167118940.9778618212650.05762072733170.08360007112610.0003997330981741.12075127309e-060.1736111111110.196349540849————
+cylinder-ppw181810817200.0232558139535cylinder-ppw18.npz1.134192610690.9778618212650.1598700205090.1468722318940.0001836500586611.68962255698e-060.2129629629630.196349540849————
+cylinder-ppw242414422800.0175438596491cylinder-ppw24.npz0.9571725126290.9778618212650.02115770161610.030278686280.0001004252745232.65814795948e-070.1892361111110.196349540849————
+cylinder-half-amplitude24—2280—cylinder-half-amplitude.npz————————0.50——
+cylinder-vacuum12—1160—cylinder-vacuum.npz——————————10
+Measurements and complete records / JSON
+
+## Mie scattering width of a two-dimensional dielectric cylinder — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-cylinder/#cylinder-mie2d-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Ansys Optics (n.d.). Mie scattering 2D [accessed 2026-11-24]
+Review scope / review_level: primary-official-documentation-selected-example
+Read the complete substantive benchmark description: two-dimensional dielectric cylinder, TFSF, angular far field and lossless cross sections. Did not read the associated simulation files, theory table or cited book; no external numerical data imported. Publication and revision dates have not been verified. Accessed on 2026-11-24; this is a consultation date, not a publication year.
+NIST DLMF. Bessel and Hankel Wronskians, section10.5 (version 1.2.8, released 2026-09-15) [accessed 2026-11-24]
+Review scope / review_level: primary-official-mathematical-identity
+Read section 10.5, especially equation 10.5.3 for the ordinary J/Hankel1 Wronskian; version 1.2.8. Cylinder boundary algebra is independently derived here. The year 2026 denotes DLMF version 1.2.8, released on 2026-09-15, not its initial publication year. Accessed on 2026-11-24.
+
+## Long-time grazing PML in a dispersive medium — Long-time grazing PML in a dispersive medium [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-grazing/
+Coverage: reading
+
+Evolve a finite packet with an 80-degree central phase angle to T = 700, isolating boundary error against a no-PML reference on the same grid.
+
+## Long-time grazing PML in a dispersive medium — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-grazing/#run-all
+Coverage: reading
+
+Run inside atlas-maxwell-grazing-2026-11-24-r2 from the ZIP. This command executes all 1 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Long-time grazing PML in a dispersive medium — Long-time grazing PML in a dispersive medium [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-grazing/
+Coverage: reading
+
+Evolve a finite packet with an 80-degree central phase angle to T = 700, isolating boundary error against a no-PML reference on the same grid.
+Methods, equations, figures and references
+Methods used
+Yee finite-difference time-domain method
+Two-step leapfrog
+Implicit midpoint
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Couple Yee and midpoint ADE updates to a trapezoidal derivative-memory filter at native times. Separate positive physical dissipation from signed numerical PML work, retaining all physical and auxiliary states.
+Passive Lorentz–Ohmic Maxwell fields
+Use c = 1 and a homogeneous Lorentz medium with epsilon_inf = 1, delta_epsilon = 0.2 and omega_0 = 12 continuing through the PML. Joint refinement uses 512/768/1024 cells and peaks 6/9/12. The normal coarse control has peak 6; the damped fine companion has peak 12. Length 64, layer thickness 12, center 32, width 4 and carrier 6 are fixed.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Long-time grazing PML in a dispersive medium
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## Long-time grazing PML in a dispersive medium — Long-time grazing PML in a dispersive medium [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-grazing/
+Coverage: reading
+
+Use five long trajectories: three joint grid/layer-strength resolutions, a normal control and a weakly damped companion. Reuse the byte-bound no-PML reference only after checking every unchanged reference argument. Retain the old 13 test bodies and add two parameter-policy/peak-12 work regressions; all original 44 long-trajectory gates remain unchanged.
+Same-problem reference · Finite-grid numerical reference
+Isolated same-grid reference for a long grazing dispersive packet
+The central angle is 80 degrees; finite kx bandwidth gives neighboring angles. The no-PML reference shares the discretization and initialization to isolate boundary error from bulk dispersion. Small operator and finite-trajectory checks do not prove global stability for arbitrary angles and materials. The joint family does not measure fixed-PML spatial order; the older 100 checks alone do not prove peak-12 global stability.
+
+## Long-time grazing PML in a dispersive medium — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-grazing/#dispersive-grazing-pml-assumptions
+Coverage: reading
+
+Use c = 1 and a homogeneous Lorentz medium with epsilon_inf = 1, delta_epsilon = 0.2 and omega_0 = 12 continuing through the PML. Joint refinement uses 512/768/1024 cells and peaks 6/9/12. The normal coarse control has peak 6; the damped fine companion has peak 12. Length 64, layer thickness 12, center 32, width 4 and carrier 6 are fixed.
+
+## Long-time grazing PML in a dispersive medium — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-grazing/#dispersive-grazing-pml-algorithm
+Coverage: reading
+
+Couple Yee and midpoint ADE updates to a trapezoidal derivative-memory filter at native times. Separate positive physical dissipation from signed numerical PML work, retaining all physical and auxiliary states.
+\partial_t\psi=-s_x(\psi+D_xu),\quad D_x^{\mathrm{PML}}u=D_xu+\psi\psi^n=b\psi^{n-1}+c(D^n+D^{n-1}),\quad b=\frac{1-s_x\Delta t/2}{1+s_x\Delta t/2},\quad c=\frac{-s_x\Delta t/2}{1+s_x\Delta t/2}\Delta\mathcal E_{\mathrm{mod}}+W_{\mathrm{physical}}-W_{\mathrm{PML}}=0
+
+## Long-time grazing PML in a dispersive medium — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-grazing/#dispersive-grazing-pml-validation
+Coverage: reading
+
+Use five long trajectories: three joint grid/layer-strength resolutions, a normal control and a weakly damped companion. Reuse the byte-bound no-PML reference only after checking every unchanged reference argument. Retain the old 13 test bodies and add two parameter-policy/peak-12 work regressions; all original 44 long-trajectory gates remain unchanged.
+
+## Long-time grazing PML in a dispersive medium — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-grazing/#dispersive-grazing-pml-limits
+Coverage: reading
+
+The central angle is 80 degrees; finite kx bandwidth gives neighboring angles. The no-PML reference shares the discretization and initialization to isolate boundary error from bulk dispersion. Small operator and finite-trajectory checks do not prove global stability for arbitrary angles and materials. The joint family does not measure fixed-PML spatial order; the older 100 checks alone do not prove peak-12 global stability.
+
+## Long-time grazing PML in a dispersive medium — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-grazing/#dispersive-grazing-pml-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+completed_primary_and_control_runs5
+spatial_dimensions2
+spatial_restrictionActual single-ky Yee evolution; no arbitrary-y scattering claim.
+referenceIndependent no-PML Fourier update matrix; shared discretization and initialization isolate boundary error from bulk dispersion.
+memory_schemeTrapezoidal derivative filter; original endpoint-held variant retained separately.
+refinement_familyJoint grid and layer-strength co-refinement, not fixed-PML spatial order.
+actual_pml_peaks{"grazing-n512":6.0,"grazing-n768":9.0,"grazing-n1024":12.0,"normal-n512":6.0,"damped-grazing-n1024":12.0}
+PML_work_is_signed_numerical_worktrue
+material_continues_through_PMLtrue
+finite_band_carrier_not_exactly_monochromatictrue
+finest_grazing_boundary_error3.69820647488e-05
+maximum_energy_budget_defect1.46631408684e-12
+maximum_positive_energy_ratio1.04670974118
+normal_final_energy_fraction1.04668751503e-18
+判定 / checkPassed
+independent-reference-and-filter-qualifiedtrue
+grazing-n512/all-fields-and-auxiliaries-finitetrue
+grazing-n512/same-grid-isolated-boundary-errortrue
+grazing-n512/direct-signed-work-ledgertrue
+grazing-n512/nonnegative-physical-material-worktrue
+grazing-n512/long-time-physical-energy-boundedtrue
+
+## Long-time grazing PML in a dispersive medium — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-grazing/#dispersive-grazing-pml-measurements
+Coverage: reading
+
+grazing-n512/long-time-memory-boundedtrue
+grazing-n512/long-time-residualtrue
+grazing-n512/five-matched-actual-timestrue
+grazing-n768/all-fields-and-auxiliaries-finitetrue
+grazing-n768/same-grid-isolated-boundary-errortrue
+grazing-n768/direct-signed-work-ledgertrue
+grazing-n768/nonnegative-physical-material-worktrue
+grazing-n768/long-time-physical-energy-boundedtrue
+grazing-n768/long-time-memory-boundedtrue
+grazing-n768/long-time-residualtrue
+grazing-n768/five-matched-actual-timestrue
+grazing-n1024/all-fields-and-auxiliaries-finitetrue
+grazing-n1024/same-grid-isolated-boundary-errortrue
+grazing-n1024/direct-signed-work-ledgertrue
+grazing-n1024/nonnegative-physical-material-worktrue
+grazing-n1024/long-time-physical-energy-boundedtrue
+grazing-n1024/long-time-memory-boundedtrue
+grazing-n1024/long-time-residualtrue
+grazing-n1024/five-matched-actual-timestrue
+normal-n512/all-fields-and-auxiliaries-finitetrue
+normal-n512/same-grid-isolated-boundary-errortrue
+normal-n512/direct-signed-work-ledgertrue
+normal-n512/nonnegative-physical-material-worktrue
+normal-n512/long-time-physical-energy-boundedtrue
+normal-n512/long-time-memory-boundedtrue
+normal-n512/long-time-residualtrue
+normal-n512/five-matched-actual-timestrue
+damped-grazing-n1024/all-fields-and-auxiliaries-finitetrue
+damped-grazing-n1024/same-grid-isolated-boundary-errortrue
+damped-grazing-n1024/direct-signed-work-ledgertrue
+
+## Long-time grazing PML in a dispersive medium — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-grazing/#dispersive-grazing-pml-measurements
+Coverage: reading
+
+damped-grazing-n1024/nonnegative-physical-material-worktrue
+damped-grazing-n1024/long-time-physical-energy-boundedtrue
+damped-grazing-n1024/long-time-memory-boundedtrue
+damped-grazing-n1024/long-time-residualtrue
+damped-grazing-n1024/five-matched-actual-timestrue
+finest-grazing-boundary-errortrue
+grazing-refinement-n768true
+grazing-refinement-n1024true
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Actual saved grazing electric field reconstructed over the periodic y direction; gray shading marks the PML.Read every stored record
+idcellsstepsdtpml_peakangle_degreesgammafieldsboundary_errormaximum_budgetphysical_worksigned_PML_workmaximum_energy_growthmaximum_memory_relativefinal_positive_energy_fractionerrors_at_actual_times
+grazing-n512512218520.03203368112766800grazing-n512.npz0.002274918524197.62798023236e-140-9.524465621311.008605280540.08444989819017.76288246606e-06[0.0,2.1444234935642056e-07,0.0009582206658863335,0.0022667136469209904,0.0022749185241942456]
+grazing-n768768327760.02135709055419800grazing-n768.npz0.0002592336009683.27890754623e-130-9.572756200681.003832364020.08987099583891.36899498091e-06[0.0,2.082757558385089e-09,4.0539393535005906e-05,0.00018857583444879824,0.00025923360096816205]
+
+## Long-time grazing PML in a dispersive medium — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-grazing/#dispersive-grazing-pml-measurements
+Coverage: reading
+
+grazing-n10241024437040.016016840563812800grazing-n1024.npz3.69820647488e-053.79544912518e-130-9.589777506511.002156863560.09395281868261.0735759623e-06[0.0,1.5836496475413641e-09,1.934086358058802e-06,1.8932190510678662e-05,3.698206474875288e-05]
+normal-n51251293360.0749785775493600normal-n512.npz1.14433052119e-105.58016761965e-140-9.168017963221.046709741180.1944076323231.04668751503e-18[0.0,1.1443305211937377e-10,1.0074002983851267e-10,9.226364532834625e-11,9.21136696532338e-11]
+damped-grazing-n10241024437040.016016840563812800.005damped-grazing-n1024.npz3.3092469867e-051.46631408684e-120.553497565029-9.036281855691.002152831410.09122895971928.61380238317e-07[0.0,1.5384442220216574e-09,1.8278851677926718e-06,1.7411202391275966e-05,3.309246986703788e-05]
+Measurements and complete records / JSON
+
+## Long-time grazing PML in a dispersive medium — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-grazing/#dispersive-grazing-pml-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Meep developers (n.d.). Meep Materials documentation [accessed 2026-11-24]
+Review scope / review_level: primary-official-documentation-selected-sections
+Read Material Dispersion, Numerical Stability, Loss and Gain, and Conductivity. Confirmed the exp(-i omega t) convention, Lorentz polarization and dispersive-PML warning. Our sigma E conductivity and midpoint update differ from Meep. Unversioned latest documentation; no original Yee or Roden-Gedney paper claim. Publication and revision dates have not been verified. Accessed on 2026-11-24; this is a consultation date, not a publication year.
+Steven G. Johnson (2021). Notes on Perfectly Matched Layers
+Review scope / review_level: primary-author-notes-selected-derivation
+Read sections 3.2–4.2, equations 7–8 and the time-domain ADE discussion, plus sections 5–7.2 on homogeneity, evanescent fields and grazing/discretization limitations. The served text is updated 2026-08-24. The trapezoidal filter is our derivation; no full original Berenger/Roden-Gedney paper review is claimed.
+
+## Oblique s/p incidence on a Lorentz-dispersive slab — Oblique s/p incidence on a Lorentz-dispersive slab [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-lorentz/
+Coverage: reading
+
+Measure complex r/t, power fractions and direct dissipation from actual finite-pulse evolutions and compare them with complex Fresnel slab references.
+
+## Oblique s/p incidence on a Lorentz-dispersive slab — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-lorentz/#run-all
+Coverage: reading
+
+Run inside atlas-maxwell-lorentz-2026-11-24-r2 from the ZIP. This command executes all 1 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Oblique s/p incidence on a Lorentz-dispersive slab — Oblique s/p incidence on a Lorentz-dispersive slab [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-lorentz/
+Coverage: reading
+
+Measure complex r/t, power fractions and direct dissipation from actual finite-pulse evolutions and compare them with complex Fresnel slab references.
+Methods, equations, figures and references
+Methods used
+Yee finite-difference time-domain method
+Two-step leapfrog
+Implicit midpoint
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Use the single-ky Yee spatial operator and local implicit-midpoint Lorentz ADE. Couple both p-polarized electric components to polarization, and remove incident propagation with a matched vacuum pulse on the same grid. Accumulate direct Ohmic and material-damping work separately from modified energy.
+Passive Lorentz–Ohmic Maxwell fields
+Use a two-dimensional field restricted to periodic transverse wave number ky = 4 and c = 1. The slab [4, 5] has epsilon_inf = 1.5, delta_epsilon = 0.75, omega_0 = 9, gamma = 0.5 and sigma = 0.04. Outer vacuum ends at PEC caps [-24, 36]; T = 60.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Oblique s/p incidence on a Lorentz-dispersive slab
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+
+## Oblique s/p incidence on a Lorentz-dispersive slab — Oblique s/p incidence on a Lorentz-dispersive slab [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-lorentz/
+Coverage: reading
+
+Reference and validation scope
+Measure omega = 5.1/6/6.9 from 12 actual material/vacuum evolutions across three resolutions and both polarizations. Check an independent finite-window vacuum geometric sum, complex Fresnel coefficients, direct volume dissipation, all-step PEC budgets and final monitor tails.
+Same-problem reference · Analytic reference
+Complex oblique Fresnel coefficients and direct Lorentz-slab loss
+This is a genuine single-ky restriction rather than arbitrary transverse data. It covers one passive Lorentz pole and a fixed finite band/window. Gaussian tails are nonzero; window diagnostics and reference errors are reported separately. No strict all-frequency no-return proof is claimed.
+
+## Oblique s/p incidence on a Lorentz-dispersive slab — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-lorentz/#lorentz-oblique-sp-assumptions
+Coverage: reading
+
+Use a two-dimensional field restricted to periodic transverse wave number ky = 4 and c = 1. The slab [4, 5] has epsilon_inf = 1.5, delta_epsilon = 0.75, omega_0 = 9, gamma = 0.5 and sigma = 0.04. Outer vacuum ends at PEC caps [-24, 36]; T = 60.
+
+## Oblique s/p incidence on a Lorentz-dispersive slab — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-lorentz/#lorentz-oblique-sp-algorithm
+Coverage: reading
+
+Use the single-ky Yee spatial operator and local implicit-midpoint Lorentz ADE. Couple both p-polarized electric components to polarization, and remove incident propagation with a matched vacuum pulse on the same grid. Accumulate direct Ohmic and material-damping work separately from modified energy.
+\varepsilon_\infty\partial_t\mathbf E=\nabla\times\mathbf H-\sigma\mathbf E-\mathbf J,\quad\partial_t\mathbf P=\mathbf J\partial_t\mathbf J=f\mathbf E-\omega_0^2\mathbf P-\gamma\mathbf J,\quad f=\Delta\varepsilon\omega_0^2\varepsilon(\omega)=\varepsilon_\infty+\frac{f}{\omega_0^2-\omega^2-i\gamma\omega}+\frac{i\sigma}{\omega}
+
+## Oblique s/p incidence on a Lorentz-dispersive slab — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-lorentz/#lorentz-oblique-sp-validation
+Coverage: reading
+
+Measure omega = 5.1/6/6.9 from 12 actual material/vacuum evolutions across three resolutions and both polarizations. Check an independent finite-window vacuum geometric sum, complex Fresnel coefficients, direct volume dissipation, all-step PEC budgets and final monitor tails.
+
+## Oblique s/p incidence on a Lorentz-dispersive slab — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-lorentz/#lorentz-oblique-sp-limits
+Coverage: reading
+
+This is a genuine single-ky restriction rather than arbitrary transverse data. It covers one passive Lorentz pole and a fixed finite band/window. Gaussian tails are nonzero; window diagnostics and reference errors are reported separately. No strict all-frequency no-return proof is claimed.
+
+## Oblique s/p incidence on a Lorentz-dispersive slab — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-lorentz/#lorentz-oblique-sp-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+completed_matched_pairs6
+completed_primary_and_vacuum_evolutions12
+spatial_dimensions2
+spatial_restrictionActual single-ky Yee evolution with both p electric ADE components.
+material_energy_includedtrue
+direct_absorption_not_defined_by_RTtrue
+final_time60
+finite_windowOne final carrier period is checked; Gaussian tails remain noncompact.
+maximum_energy_budget_defect1.07295864839e-12
+maximum_vacuum_calibration_error2.7424705909e-13
+finest_complex_rt_errors{"s":0.011507167077779438,"p":0.012023386314063115}
+finest_RTA_errors{"s":0.004990411900537867,"p":0.0022696015641971365}
+判定 / checkPassed
+fixed-reference-and-components-qualifiedtrue
+lorentz-s-n960/finitetrue
+lorentz-s-n960/closed-PEC-direct-work-budgettrue
+lorentz-s-n960/vacuum-energy-budgettrue
+lorentz-s-n960/nonnegative-material-worktrue
+lorentz-s-n960/initial-slab-tailtrue
+lorentz-s-n960/last-carrier-period-monitor-energytrue
+lorentz-s-n960/independent-finite-window-vacuum-DTFTtrue
+lorentz-s-n960/independent-direct-spectral-work-budgettrue
+lorentz-s-n1920/finitetrue
+lorentz-s-n1920/closed-PEC-direct-work-budgettrue
+lorentz-s-n1920/vacuum-energy-budgettrue
+lorentz-s-n1920/nonnegative-material-worktrue
+lorentz-s-n1920/initial-slab-tailtrue
+
+## Oblique s/p incidence on a Lorentz-dispersive slab — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-lorentz/#lorentz-oblique-sp-measurements
+Coverage: reading
+
+lorentz-s-n1920/last-carrier-period-monitor-energytrue
+lorentz-s-n1920/independent-finite-window-vacuum-DTFTtrue
+lorentz-s-n1920/independent-direct-spectral-work-budgettrue
+lorentz-s-n3840/finitetrue
+lorentz-s-n3840/closed-PEC-direct-work-budgettrue
+lorentz-s-n3840/vacuum-energy-budgettrue
+lorentz-s-n3840/nonnegative-material-worktrue
+lorentz-s-n3840/initial-slab-tailtrue
+lorentz-s-n3840/last-carrier-period-monitor-energytrue
+lorentz-s-n3840/independent-finite-window-vacuum-DTFTtrue
+lorentz-s-n3840/independent-direct-spectral-work-budgettrue
+s/finest-complex-rttrue
+s/finest-RTAtrue
+s/refinement-n1920true
+s/refinement-n3840true
+lorentz-p-n960/finitetrue
+lorentz-p-n960/closed-PEC-direct-work-budgettrue
+lorentz-p-n960/vacuum-energy-budgettrue
+lorentz-p-n960/nonnegative-material-worktrue
+lorentz-p-n960/initial-slab-tailtrue
+lorentz-p-n960/last-carrier-period-monitor-energytrue
+lorentz-p-n960/independent-finite-window-vacuum-DTFTtrue
+lorentz-p-n960/independent-direct-spectral-work-budgettrue
+lorentz-p-n1920/finitetrue
+lorentz-p-n1920/closed-PEC-direct-work-budgettrue
+lorentz-p-n1920/vacuum-energy-budgettrue
+lorentz-p-n1920/nonnegative-material-worktrue
+lorentz-p-n1920/initial-slab-tailtrue
+lorentz-p-n1920/last-carrier-period-monitor-energytrue
+lorentz-p-n1920/independent-finite-window-vacuum-DTFTtrue
+lorentz-p-n1920/independent-direct-spectral-work-budgettrue
+
+## Oblique s/p incidence on a Lorentz-dispersive slab — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-lorentz/#lorentz-oblique-sp-measurements
+Coverage: reading
+
+lorentz-p-n3840/finitetrue
+lorentz-p-n3840/closed-PEC-direct-work-budgettrue
+lorentz-p-n3840/vacuum-energy-budgettrue
+lorentz-p-n3840/nonnegative-material-worktrue
+lorentz-p-n3840/initial-slab-tailtrue
+lorentz-p-n3840/last-carrier-period-monitor-energytrue
+lorentz-p-n3840/independent-finite-window-vacuum-DTFTtrue
+lorentz-p-n3840/independent-direct-spectral-work-budgettrue
+p/finest-complex-rttrue
+p/finest-RTAtrue
+p/refinement-n1920true
+p/refinement-n3840true
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Actual saved p-polarized electric field reconstructed over the periodic y direction at ky=4.Read every stored record
+idpolarizationcellstransverse_cellsstepshdtfieldsmaximum_budgetvacuum_budgetminimum_physical_workcomplex_rt_errorRTA_errorvacuum_calibration_errortail_energy_fractioninitial_material_tailindependent_RTA_budget
+lorentz-s-n960s9603225920.06250.0231481481481lorentz-s-n960.npz4.43566697111e-145.35325300218e-1400.1988757929250.06852436854022.64708130966e-141.40430315661e-151.52299780793e-080.00924847427666
+lorentz-s-n1920s19206451840.031250.0115740740741lorentz-s-n1920.npz6.25618337841e-141.07476998435e-1300.04683478094980.01934543310444.06872710335e-141.6494920177e-151.52299780793e-080.00248891265736
+
+## Oblique s/p incidence on a Lorentz-dispersive slab — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-lorentz/#lorentz-oblique-sp-measurements
+Coverage: reading
+
+lorentz-s-n3840s3840128103640.0156250.00578927055191lorentz-s-n3840.npz1.06960802099e-121.45720381215e-1200.01150716707780.004990411900542.70297899388e-131.56309506217e-151.52299780793e-080.000974787757278
+lorentz-p-n960p9603225920.06250.0231481481481lorentz-p-n960.npz4.36354230492e-145.44941922377e-1400.2028978278520.03345388336963.11169582994e-146.91222368305e-191.79073234358e-080.00928388324423
+lorentz-p-n1920p19206451840.031250.0115740740741lorentz-p-n1920.npz6.45580633242e-141.0923368043e-1300.04866434970560.008669701514763.84648937178e-142.19072973032e-191.79152374155e-080.00252471172285
+lorentz-p-n3840p3840128103640.0156250.00578927055191lorentz-p-n3840.npz1.07295864839e-121.45720381215e-1200.01202338631410.00226960156422.7424705909e-131.50171185591e-191.79172378557e-080.000954831876688
+Measurements and complete records / JSON
+
+## Oblique s/p incidence on a Lorentz-dispersive slab — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-lorentz/#lorentz-oblique-sp-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Meep developers (n.d.). Meep Materials documentation [accessed 2026-11-24]
+Review scope / review_level: primary-official-documentation-selected-sections
+Read Material Dispersion, Numerical Stability, Loss and Gain, and Conductivity. Confirmed the exp(-i omega t) convention, Lorentz polarization and dispersive-PML warning. Our sigma E conductivity and midpoint update differ from Meep. Unversioned latest documentation; no original Yee or Roden-Gedney paper claim. Publication and revision dates have not been verified. Accessed on 2026-11-24; this is a consultation date, not a publication year.
 
 ## Multimodal MCMC: independent checks of poor mixing and convergence diagnostics — Multimodal MCMC: independent checks of poor mixing and convergence diagnostics [en]
 
@@ -24531,7 +26197,7 @@ Evolve all8conserved components with HLLD/MUSCL/Heun and2D CT. Compare wave mean
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#run-all
 Coverage: reading
 
-Run inside atlas-mhd-transport-2026-11-23 from the ZIP. This command executes all 3 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
+Run inside atlas-mhd-transport-2026-11-24 from the ZIP. This command executes all 3 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -24685,10 +26351,10 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mh
 Coverage: reading
 
 Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
-Athena++ collaboration (2026). Athena++ official field_loop and orszag_tang problem generators, pinned source
+Athena++ collaboration (2026). Athena++ official field_loop and orszag_tang problem generators, pinned source [accessed 2026-11-23]
 Review scope / review_level: Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit
 Verified the official pinned archive SHA and inspected both generators, configuration and saved columns. Executed the independent engine and checked spatial/time sensitivity. No complete code audit or exact-solution claim.
-Thomas A. Gardiner and James M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport · DOI: 10.1016/j.jcp.2004.11.016
+Thomas A. Gardiner and James M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport [accessed 2026-11-23] · DOI: 10.1016/j.jcp.2004.11.016
 Review scope / review_level: Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication
 Inspected the author PDF CT section and loop/polarized-wave definitions. Original CTU/PPM and oblique-wave experiments are not replicated. Our wave is 1D aligned; the official loop generator explicitly has vz=2.
 
@@ -24697,7 +26363,7 @@ Inspected the author PDF CT section and loop/polarized-wave definitions. Origina
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#circular-alfven-refinement-references
 Coverage: reading
 
-Takahiro Miyoshi and Kanya Kusano (2005). A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics · DOI: 10.1016/j.jcp.2005.02.017
+Takahiro Miyoshi and Kanya Kusano (2005). A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics [accessed 2026-11-23] · DOI: 10.1016/j.jcp.2005.02.017
 Review scope / review_level: Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments
 Bibliographic metadata checked; full publisher text unavailable. No new original-equation/experiment audit is claimed. Full-state HLLD is inherited byte-for-byte from the prior public validated Atlas.
 
@@ -24849,10 +26515,10 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mh
 Coverage: reading
 
 Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
-Athena++ collaboration (2026). Athena++ official field_loop and orszag_tang problem generators, pinned source
+Athena++ collaboration (2026). Athena++ official field_loop and orszag_tang problem generators, pinned source [accessed 2026-11-23]
 Review scope / review_level: Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit
 Verified the official pinned archive SHA and inspected both generators, configuration and saved columns. Executed the independent engine and checked spatial/time sensitivity. No complete code audit or exact-solution claim.
-Thomas A. Gardiner and James M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport · DOI: 10.1016/j.jcp.2004.11.016
+Thomas A. Gardiner and James M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport [accessed 2026-11-23] · DOI: 10.1016/j.jcp.2004.11.016
 Review scope / review_level: Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication
 Inspected the author PDF CT section and loop/polarized-wave definitions. Original CTU/PPM and oblique-wave experiments are not replicated. Our wave is 1D aligned; the official loop generator explicitly has vz=2.
 
@@ -24861,7 +26527,7 @@ Inspected the author PDF CT section and loop/polarized-wave definitions. Origina
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#magnetic-loop-independent-references
 Coverage: reading
 
-Takahiro Miyoshi and Kanya Kusano (2005). A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics · DOI: 10.1016/j.jcp.2005.02.017
+Takahiro Miyoshi and Kanya Kusano (2005). A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics [accessed 2026-11-23] · DOI: 10.1016/j.jcp.2005.02.017
 Review scope / review_level: Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments
 Bibliographic metadata checked; full publisher text unavailable. No new original-equation/experiment audit is claimed. Full-state HLLD is inherited byte-for-byte from the prior public validated Atlas.
 
@@ -25025,10 +26691,10 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mh
 Coverage: reading
 
 Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
-Athena++ collaboration (2026). Athena++ official field_loop and orszag_tang problem generators, pinned source
+Athena++ collaboration (2026). Athena++ official field_loop and orszag_tang problem generators, pinned source [accessed 2026-11-23]
 Review scope / review_level: Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit
 Verified the official pinned archive SHA and inspected both generators, configuration and saved columns. Executed the independent engine and checked spatial/time sensitivity. No complete code audit or exact-solution claim.
-Thomas A. Gardiner and James M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport · DOI: 10.1016/j.jcp.2004.11.016
+Thomas A. Gardiner and James M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport [accessed 2026-11-23] · DOI: 10.1016/j.jcp.2004.11.016
 Review scope / review_level: Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication
 Inspected the author PDF CT section and loop/polarized-wave definitions. Original CTU/PPM and oblique-wave experiments are not replicated. Our wave is 1D aligned; the official loop generator explicitly has vz=2.
 
@@ -25037,10 +26703,10 @@ Inspected the author PDF CT section and loop/polarized-wave definitions. Origina
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mhd-transport/#postshock-orszag-tang-references
 Coverage: reading
 
-Takahiro Miyoshi and Kanya Kusano (2005). A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics · DOI: 10.1016/j.jcp.2005.02.017
+Takahiro Miyoshi and Kanya Kusano (2005). A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics [accessed 2026-11-23] · DOI: 10.1016/j.jcp.2005.02.017
 Review scope / review_level: Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments
 Bibliographic metadata checked; full publisher text unavailable. No new original-equation/experiment audit is claimed. Full-state HLLD is inherited byte-for-byte from the prior public validated Atlas.
-Steven A. Orszag and Ching-Mao Tang (1979). Small-scale structure of two-dimensional magnetohydrodynamic turbulence · DOI: 10.1017/S002211207900210X
+Steven A. Orszag and Ching-Mao Tang (1979). Small-scale structure of two-dimensional magnetohydrodynamic turbulence [accessed 2026-11-23] · DOI: 10.1017/S002211207900210X
 Review scope / review_level: Original publisher abstract/bibliography inspected only; original incompressible viscous/resistive setup differs from the official compressible ideal-MHD generator used here
 Inspected publisher abstract and bibliography only. Distinguish the original incompressible viscous/resistive study from the official compressible ideal-MHD setup used here.
 
@@ -33188,7 +34854,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-pi
 Coverage: reading
 
 Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
-Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton (2013). On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme
+Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton (2013). On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme [accessed 2026-11-23]
 Review scope / review_level: primary-selected-original-pdf-text
 Selected original equations and diagnostic limitations inspected; independently derived continuum references are evaluated here.
 
@@ -33389,10 +35055,10 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ra
 Coverage: reading
 
 Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
-Rosdahl etal. (2013). RAMSES-RT: Radiation hydrodynamics in the cosmological context
+Rosdahl etal. (2013). RAMSES-RT: Radiation hydrodynamics in the cosmological context [accessed 2026-11-24]
 Review scope / review_level: primary-paper-selected-M1-equations-and-limitations
 ReadSection2equations12-14and two-opposing-beams limitation text. Levermore1984original not read. Educational staticgrey cases/MMS here do not reproduce RAMSESastrophysical runs.
-M. A. Skinner and E. C. Ostriker (2013). A Two-moment Radiation Hydrodynamics Module in Athena Using a Time-Explicit Godunov Method
+M. A. Skinner and E. C. Ostriker (2013). A Two-moment Radiation Hydrodynamics Module in Athena Using a Time-Explicit Godunov Method [accessed 2026-11-24]
 Review scope / review_level: primary-selected-section-by-independent-mathematical-reviewer
 Independent reviewer actually read selected extracted Section3.3equations37–41and eigenvalue limits;not a whole-paper/rendered-symbol audit. Directional LF cone root/weighted-CFL algebra is separately authored and independently crosschecked,not a transplanted HLL solver or claimed general Riemann-fan bound.
 
@@ -33657,10 +35323,10 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ra
 Coverage: reading
 
 Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
-Rosdahl etal. (2013). RAMSES-RT: Radiation hydrodynamics in the cosmological context
+Rosdahl etal. (2013). RAMSES-RT: Radiation hydrodynamics in the cosmological context [accessed 2026-11-24]
 Review scope / review_level: primary-paper-selected-M1-equations-and-limitations
 ReadSection2equations12-14and two-opposing-beams limitation text. Levermore1984original not read. Educational staticgrey cases/MMS here do not reproduce RAMSESastrophysical runs.
-M. A. Skinner and E. C. Ostriker (2013). A Two-moment Radiation Hydrodynamics Module in Athena Using a Time-Explicit Godunov Method
+M. A. Skinner and E. C. Ostriker (2013). A Two-moment Radiation Hydrodynamics Module in Athena Using a Time-Explicit Godunov Method [accessed 2026-11-24]
 Review scope / review_level: primary-selected-section-by-independent-mathematical-reviewer
 Independent reviewer actually read selected extracted Section3.3equations37–41and eigenvalue limits;not a whole-paper/rendered-symbol audit. Directional LF cone root/weighted-CFL algebra is separately authored and independently crosschecked,not a transplanted HLL solver or claimed general Riemann-fan bound.
 
@@ -33811,7 +35477,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ra
 Coverage: reading
 
 Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
-LANL ExactPack developers;Timmes implementation provenance (2023). ExactPack1.7.5SuOlson pinned independent diffusion solution
+LANL ExactPack developers;Timmes implementation provenance (2023). ExactPack1.7.5SuOlson pinned independent diffusion solution [accessed 2026-11-24]
 Review scope / review_level: primary-official-software-full-three-module-text-and-qualified-selected-values
 Read doc55/wrapper41/Timmes348lines;original1996paper abstract only. Serial original/tight selected integrals and independent PDE/Robin qualifiers passed before main. FullExactPack/base/libraries not audited.
 
@@ -34016,7 +35682,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ra
 Coverage: reading
 
 Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
-Aidan Crilly (2023). Learning closure relations using differentiable programming:an example in radiation transport;author-provided analytic benchmark data
+Aidan Crilly (2023). Learning closure relations using differentiable programming:an example in radiation transport;author-provided analytic benchmark data [accessed 2026-11-24]
 Review scope / review_level: primary-author-paper-selected-equations-and-pinned-data-qualification
 Read official2023paperpage6Appendix4.1equations7-10,README,pinned W/Vtransport tables andMITlicense. Whether author tables were transcribed or regenerated is unstated. Original1997fulltext/tables not directly checked;not trained-model outputs. Shape,normalization,causal/homogeneous controls qualified.
 
@@ -34269,7 +35935,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-ra
 Coverage: reading
 
 Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
-Pharr,Jakob,Humphreys (2023). Physically Based Rendering4e,14.1The Equation of Transfer
+Pharr,Jakob,Humphreys (2023). Physically Based Rendering4e,14.1The Equation of Transfer [accessed 2026-11-24]
 Review scope / review_level: primary-author-book-selected-equations
 Read14.1transfer/source/finite-ray boundary formulation. Isotropic slab/Fredholm normalization independently derived here;not DISORTpaper/table reproduction.
 
@@ -34455,10 +36121,10 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-re
 Coverage: reading
 
 Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
-Luciano Rezzolla and Olindo Zanotti (2001). An Improved Exact Riemann Solver for Relativistic Hydrodynamics
+Luciano Rezzolla and Olindo Zanotti (2001). An Improved Exact Riemann Solver for Relativistic Hydrodynamics [accessed 2026-11-23]
 Review scope / review_level: primary-selected-mathematical-sections
 Read original preprint sections2–4: EOS, relative-velocity equation3.1 and Taub quadratic4.5. Restricted symmetric two-shock specialization.
-José A. Font (2008). Numerical Hydrodynamics and Magnetohydrodynamics in General Relativity · DOI: 10.12942/lrr-2008-7
+José A. Font (2008). Numerical Hydrodynamics and Magnetohydrodynamics in General Relativity [accessed 2026-11-23] · DOI: 10.12942/lrr-2008-7
 Review scope / review_level: primary-author-review-selected-equations
 Read official author-review sections3.1–3.2, stress tensor49–51 and recovery68–69; flat-spacetime use only.
 
@@ -34625,10 +36291,10 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-re
 Coverage: reading
 
 Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
-L. Del Zanna, O. Zanotti, N. Bucciantini and P. Londrillo (2007). ECHO: a Eulerian Conservative High Order scheme for general relativistic magnetohydrodynamics and magnetodynamics · DOI: 10.1051/0004-6361:20077093
+L. Del Zanna, O. Zanotti, N. Bucciantini and P. Londrillo (2007). ECHO: a Eulerian Conservative High Order scheme for general relativistic magnetohydrodynamics and magnetodynamics [accessed 2026-11-23] · DOI: 10.1051/0004-6361:20077093
 Review scope / review_level: primary-original-selected-section-and-rendered-pages
 Read original journal section4.1 equations82–85 via the university repository; rendered and visually inspected original preprint pages9–10, including normalization and period. No ECHO-algorithm reproduction.
-José A. Font (2008). Numerical Hydrodynamics and Magnetohydrodynamics in General Relativity · DOI: 10.12942/lrr-2008-7
+José A. Font (2008). Numerical Hydrodynamics and Magnetohydrodynamics in General Relativity [accessed 2026-11-23] · DOI: 10.12942/lrr-2008-7
 Review scope / review_level: primary-author-review-selected-equations
 Read official author-review sections3.1–3.2, stress tensor49–51 and recovery68–69; flat-spacetime use only.
 
@@ -39282,10 +40948,10 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wa
 Coverage: reading
 
 Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
-U. Ghia, K. N. Ghia and C. T. Shin (1982). High-Re solutions for incompressible flow using the Navier-Stokes equations and a multigrid method · DOI: 10.1016/0021-9991(82)90058-4
+U. Ghia, K. N. Ghia and C. T. Shin (1982). High-Re solutions for incompressible flow using the Navier-Stokes equations and a multigrid method [accessed 2026-11-23] · DOI: 10.1016/0021-9991(82)90058-4
 Review scope / review_level: primary-original-selected-pages
 Visually inspected original equations/boundary figure, Re100 columns in TablesI/II and primary vortex in TableV. The public mirror delivers the original paper; its PDF is not redistributed. This independently written solver differs from CSI-MG.
-Kambiz Salari and Patrick Knupp (2000). Code Verification by the Method of Manufactured Solutions · DOI: 10.2172/759450
+Kambiz Salari and Patrick Knupp (2000). Code Verification by the Method of Manufactured Solutions [accessed 2026-11-23] · DOI: 10.2172/759450
 Review scope / review_level: primary-selected-section-and-official-abstract
 Read official Sandia/OSTI metadata/abstract and original report printed12 on MMS together with mesh refinement. The polynomial and pressure field are constructed for this example.
 
@@ -39457,10 +41123,10 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wa
 Coverage: reading
 
 Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
-U. Ghia, K. N. Ghia and C. T. Shin (1982). High-Re solutions for incompressible flow using the Navier-Stokes equations and a multigrid method · DOI: 10.1016/0021-9991(82)90058-4
+U. Ghia, K. N. Ghia and C. T. Shin (1982). High-Re solutions for incompressible flow using the Navier-Stokes equations and a multigrid method [accessed 2026-11-23] · DOI: 10.1016/0021-9991(82)90058-4
 Review scope / review_level: primary-original-selected-pages
 Visually inspected original equations/boundary figure, Re100 columns in TablesI/II and primary vortex in TableV. The public mirror delivers the original paper; its PDF is not redistributed. This independently written solver differs from CSI-MG.
-Kambiz Salari and Patrick Knupp (2000). Code Verification by the Method of Manufactured Solutions · DOI: 10.2172/759450
+Kambiz Salari and Patrick Knupp (2000). Code Verification by the Method of Manufactured Solutions [accessed 2026-11-23] · DOI: 10.2172/759450
 Review scope / review_level: primary-selected-section-and-official-abstract
 Read official Sandia/OSTI metadata/abstract and original report printed12 on MMS together with mesh refinement. The polynomial and pressure field are constructed for this example.
 
@@ -39753,13 +41419,13 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wa
 Coverage: reading
 
 Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
-Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton (2013). On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme
+Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton (2013). On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme [accessed 2026-11-23]
 Review scope / review_level: primary-selected-original-pdf-text
 Selected original equations and diagnostic limitations inspected; independently derived continuum references are evaluated here.
-PlasmaPy developers (2026). Plasma dispersion function: official API mathematics
+PlasmaPy developers (2026). Plasma dispersion function: official API mathematics [accessed 2026-11-23]
 Review scope / review_level: official-mathematical-definition-read
 Official Z definition inspected; no PlasmaPy execution.
-SciPy developers (2024). SciPy1.14.1 roots_hermitenorm
+SciPy developers (2024). SciPy1.14.1 roots_hermitenorm [accessed 2026-11-23]
 Review scope / review_level: official-pinned-version-definition-read
 Pinned official quadrature definition read; initialization only.
 
@@ -40006,13 +41672,13 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wa
 Coverage: reading
 
 Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
-Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton (2013). On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme
+Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton (2013). On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme [accessed 2026-11-23]
 Review scope / review_level: primary-selected-original-pdf-text
 Selected original equations and diagnostic limitations inspected; independently derived continuum references are evaluated here.
-PlasmaPy developers (2026). Plasma dispersion function: official API mathematics
+PlasmaPy developers (2026). Plasma dispersion function: official API mathematics [accessed 2026-11-23]
 Review scope / review_level: official-mathematical-definition-read
 Official Z definition inspected; no PlasmaPy execution.
-SciPy developers (2024). SciPy1.14.1 roots_hermitenorm
+SciPy developers (2024). SciPy1.14.1 roots_hermitenorm [accessed 2026-11-23]
 Review scope / review_level: official-pinned-version-definition-read
 Pinned official quadrature definition read; initialization only.
 
@@ -40451,19 +42117,19 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-we
 Coverage: reading
 
 Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
-Guang-Shan Jiang and Chi-Wang Shu (1996). Efficient Implementation of Weighted ENO Schemes · DOI: 10.1006/jcph.1996.0130
+Guang-Shan Jiang and Chi-Wang Shu (1996). Efficient Implementation of Weighted ENO Schemes [accessed 2026-11-23] · DOI: 10.1006/jcph.1996.0130
 Review scope / review_level: NASA-hosted ICASE95-73 preprint selected sections1–3: candidate Table1, optimal Table2, equations2.15–2.16 and3.1–3.9; text layer inspected, not full paper/numerical tables
 Inspected selected sections1–3 of the NASA preprint for candidates, weights, indicators and finite-difference point-value conventions. Original experiments/Euler characteristic reconstruction are not reproduced.
-Rafael Borges, Monique Carmona, Bruno Costa and Wai Sun Don (2008). An improved weighted essentially non-oscillatory scheme for hyperbolic conservation laws · DOI: 10.1016/j.jcp.2007.11.038
+Rafael Borges, Monique Carmona, Bruno Costa and Wai Sun Don (2008). An improved weighted essentially non-oscillatory scheme for hyperbolic conservation laws [accessed 2026-11-23] · DOI: 10.1016/j.jcp.2007.11.038
 Review scope / review_level: Author-institution publication record and abstract inspected; publisher full text returned403; original full paper and numerical experiments not audited
-Inspected the author institution bibliography/abstract. Full publisher text was unavailable; no full-paper audit or replication of original power-one experiments is claimed. The implemented power-two formula was checked in another primary research paper.
 
 ## WENO critical points and epsilon dependence — Primary sources and review scope [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-weno-critical/#weno-critical-epsilon-references
 Coverage: reading
 
-Bart S. van Lith, Jan H. M. ten Thije Boonkkamp and Wilbert L. IJzerman (2017). Embedded WENO: A design strategy to improve existing WENO schemes · DOI: 10.1016/j.jcp.2016.11.026
+Inspected the author institution bibliography/abstract. Full publisher text was unavailable; no full-paper audit or replication of original power-one experiments is claimed. The implemented power-two formula was checked in another primary research paper.
+Bart S. van Lith, Jan H. M. ten Thije Boonkkamp and Wilbert L. IJzerman (2017). Embedded WENO: A design strategy to improve existing WENO schemes [accessed 2026-11-23] · DOI: 10.1016/j.jcp.2016.11.026
 Review scope / review_level: Institution-hosted accepted manuscript section2 equations2–15 (PDF pages4–8) and selected section4.2 (PDF page22) text inspected; screenshot requests cache-missed; not a full-paper review
 Inspected cell-average equations2–3, candidate/linear weights4–7, JS indicators/weights8–13, Z weights15 and selected power-two discussion in section4.2. The paper’s new embedded schemes are not implemented and its PDF is not redistributed.
 
@@ -40972,13 +42638,13 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-za
 Coverage: reading
 
 Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
-Steven T. Zalesak (1979). Fully multidimensional flux-corrected transport algorithms for fluids · DOI: 10.1016/0021-9991(79)90051-2
+Steven T. Zalesak (1979). Fully multidimensional flux-corrected transport algorithms for fluids [accessed 2026-11-23] · DOI: 10.1016/0021-9991(79)90051-2
 Review scope / review_level: publisher bibliography and abstract inspected; direct full-paper open returned403; original test geometry and boundary conditions not audited
 Publisher record and abstract checked. The full original test geometry/grid/boundaries were not audited. This example does not implement or reproduce Zalesak FCT.
-Firedrake developers (n.d.). DG advection equation with upwinding
+Firedrake developers (n.d.). DG advection equation with upwinding [accessed 2026-11-23]
 Review scope / review_level: official documentation equations and source lines46,63–92: disk(.5,.75),R.15,slot(.475,.525),y<.85,velocity(.5−y,x−.5),T2pi; SSP equations43–45 and135–143
 Inspected official geometry, velocity, period and SSP formulas. The demo includes a bell, cone, background1, DQ1 elements and inflow1. This is an explicit isolated0–1 slotted-disk FV/periodic variant. No Firedrake software was executed or copied.
-Randall J. LeVeque (1996). High-Resolution Conservative Algorithms for Advection in Incompressible Flow · DOI: 10.1137/0733033
+Randall J. LeVeque (1996). High-Resolution Conservative Algorithms for Advection in Incompressible Flow [accessed 2026-11-23] · DOI: 10.1137/0733033
 
 ## Zalesak-type 2D rotation: conservation, bounds and shape error — Primary sources and review scope [en]
 
@@ -40987,11 +42653,17 @@ Coverage: reading
 
 Review scope / review_level: author-hosted paper selected sections1–3 actually inspected: PDE/incompressibility, FV means, minmod definition, donor-cell flux; no full-paper or numerical-table reproduction
 Read sections1–3 on conservative transport, incompressibility, means, minmod and donor-cell fluxes. Firedrake cites this paper for its composite-shape test. Our MUSCL/SSPRK update is not the paper’s CTU/wave-propagation algorithm.
-Chi-Wang Shu and Stanley Osher (1988). Efficient implementation of essentially non-oscillatory shock-capturing schemes · DOI: 10.1016/0021-9991(88)90177-5
+Chi-Wang Shu and Stanley Osher (1988). Efficient implementation of essentially non-oscillatory shock-capturing schemes [accessed 2026-11-23] · DOI: 10.1016/0021-9991(88)90177-5
 Review scope / review_level: publisher bibliography/abstract inspected; actual three-stage convex formulas checked in official Firedrake demo, not a full original-paper audit
 Publisher bibliography/abstract checked; the actual three-stage convex formulas were also inspected in the official Firedrake demo. The original full paper was not audited.
-SciPy developers (n.d.). scipy.integrate.quad — SciPy v1.14.1 Manual
+SciPy developers (n.d.). scipy.integrate.quad — SciPy v1.14.1 Manual [accessed 2026-11-23]
 Review scope / review_level: official versioned API: QUADPACK integration, break points, epsabs/epsrel, reported error; use is evidenced by qualification receipts
+
+## Zalesak-type 2D rotation: conservation, bounds and shape error — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-zalesak/#zalesak-rotation-references
+Coverage: reading
+
 Versioned official API checked for QUADPACK, break points, tolerances and reported error. Independently integrated vertical sections are compared with circle/polygon areas; execution is established by saved receipts.
 
 ## Wavelets — Wavelets [en]
@@ -43243,11 +44915,11 @@ Coverage: reading
 
 原著、後続の変種、著者による著書、概説、公式資料を区別して参照します。DOI・書誌の確認と原文の該当箇所の閲覧を区別し、論文全体の監査や数値再現を行ったという意味ではありません。確認範囲の注記は引用ごとに示します。
 W. E. Arnoldi (1951). The principle of minimized iterations in the solution of the matrix eigenvalue problem. Quarterly of Applied Mathematics
-研究論文・提案または関連する定式化 · 書誌確認 · 確認した資料
-DOI登録等で著者・題名・刊行年と書誌的な同一性を確認。原文全体の監査や数値再現は未実施です。
+研究論文・提案または関連する定式化 · 原文の該当箇所を参照 · 確認した資料
+原著の公開OCR転載で25〜26頁の第6節、28〜29頁の第8節の文章を確認。射影と直交性点検の記述を参照。公式PDFは取得できず、原本画像と数式記号は未照合です。現代の正規化した実装は別に検証します。
 C. Lanczos (1950). An iteration method for the solution of the eigenvalue problem of linear differential and integral operators. Journal of Research of the National Bureau of Standards
-研究論文・提案または関連する定式化 · 書誌確認 · 確認した資料
-DOI登録等で著者・題名・刊行年と書誌的な同一性を確認。原文全体の監査や数値再現は未実施です。
+研究論文・提案または関連する定式化 · 原文の該当箇所を参照 · 確認した資料
+NIST公式原本の266〜267頁（VII節・式63〜78）と271頁（式99）を目視。対称問題の三項化と直交性補正を確認。未正規化の係数を現代の単位ベクトル表示へ直写せず、全証明・再始動法の保証とはしません。
 LAPACK authors (1999). Error Bounds for the Nonsymmetric Eigenproblem; Overview.
 公式の参照資料 · 原文の該当箇所を参照 · 確認した資料
 非正規行列では小さな固有対残差と前進固有値誤差を同一視しません。固有値感度、個別固有ベクトル、固有値クラスターの不変部分空間を区別します。
@@ -48114,7 +49786,7 @@ R. Car; M. Parrinello (1985)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/#verification
 Coverage: reading
 
-水素型原子・Heの2問題群を実行し、独立参照と比較して全122問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。分子DFT・FCIや他の周期物質へ検証を拡張していません。
+水素型原子・Heの2問題群を実行し、独立参照と比較して全131問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。分子DFT・FCIや他の周期物質へ検証を拡張していません。
 実行・検証例あり
 
 ## 量子化学・DFT：何を近似し、何を解くか — 1電子：水素型原子 [ja]
@@ -51266,9 +52938,9 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage/
 Coverage: reading
 
-公開Web版、集計日2026-11-23。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
-方程式・モデル65項目・計算法と構成要素137項目・学術誌／会議論文249件・全参考資料310件。
-保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め132章です。
+公開Web版、集計日2026-11-24。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
+方程式・モデル70項目・計算法と構成要素143項目・学術誌／会議論文249件・全参考資料310件。
+保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め137章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]
 
@@ -51276,7 +52948,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 名前付きの方程式・モデルを数えます。スカラー成分や数学的に互いに独立な系統の数ではありません。枠組みや補助定式化を含み、通常は派生形を一つにまとめます。ただし個別に説明するSR／GRの流体系3種類は分けます。生物モデルは専用カタログから一度だけ取り込みます。
-ローカル実験のある項目は43、文献解説のみは22で、後者には生物調査22項目すべてを含みます。連成系は一項目とし、成分方程式では増やしません。Poisson／Laplaceや次元の違いもまとめます。枠組みと個別反応則が並ぶため、数学的に独立した系統数ではありません。
+ローカル実験のある項目は48、文献解説のみは22で、後者には生物調査22項目すべてを含みます。連成系は一項目とし、成分方程式では増やしません。Poisson／Laplaceや次元の違いもまとめます。枠組みと個別反応則が並ぶため、数学的に独立した系統数ではありません。
 一覧の詳細な範囲注記は原文（英語）を保持します。各章の日本語本文も併せて参照できます。
 
 ## 収録範囲と数え方 — 物理・数学モデル# [ja]
@@ -51363,7 +53035,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 名前付きの離散化法、積分法、線形・非線形解法、連成演算子を数えます。パラメータの違いでは増やしません。
-ローカル実験のある項目は122、文献解説のみは15です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
+ローカル実験のある項目は128、文献解説のみは15です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
 
 ## 収録範囲と数え方 — 空間離散化# [ja]
 
@@ -53579,6 +55251,448 @@ The SciPy community (2024). SciPy1.14.1 solve_ivp and Radau reference
 確認範囲 / review_level: official-versioned-api-specification
 Radau IIAの5次式、rtol/atolの局所誤差制御、analytic Jacobian、終了状態の公式仕様を確認。ODE公差は連続PDEの全域誤差保証ではありません。
 
+## Bratuのfold継続とJacobian不要Newton–Krylov — Bratuのfold継続とJacobian不要Newton–Krylov [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/
+Coverage: reading
+
+同じ1次元Bratu境界値問題で、foldを越える継続とJacobianを組み立てない反復を独立解析族へ照合します。
+
+## Bratuのfold継続とJacobian不要Newton–Krylov — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/#run-all
+Coverage: reading
+
+ZIPの atlas-bratu-continuation-jfnk-2026-11-24-r2 フォルダで実行します。このコマンドは配布版の全2例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## Bratuのfold継続とJacobian不要Newton–Krylov — 擬似弧長継続でBratuのfoldを越える [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/
+Coverage: reading
+
+同じ1次元Bratu境界値問題の下枝から上枝までを追跡し、接線・fold・独立解析族との空間誤差を調べます。
+手法・式・図・参照解
+使用手法
+重み付き擬似弧長継続
+Armijo減衰Newton法
+空間中心差分
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+hΣdu²+dλ²の重み付き単位接線、予測点と接線超平面によるNewton補正。別の拡大系でfoldと正規化null vectorを解きます。このcaseは疎Jacobianを明示的に組み立てます。
+Bratu非線形境界値問題
+無次元x∈[0,1]、両端u=0、中心差分の内点31/63/127。零解から固定ds=0.1で80step。λ=2で上下枝を補正し、λ=4は離散無解の意図的な対照です。擬似弧長は物理時間ではありません。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+擬似弧長継続でBratuのfoldを越える
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+保存R3では共通27pytestと本caseの67固定判定が合格。離散残差、接線の向き・単位長、fold方程式・null条件・transversality、独立Decimal80解析族、固定3格子の誤差を別々に確認しています。
+同じ問題の参照 · 解析参照
+擬似弧長継続でBratuのfoldを越える
+小さな1次元の単純foldだけです。分岐曲線の解析族比較では計算した中点値を族の座標に使い、固定λの独立形状比較と区別します。連続foldは離散解そのものではなく、一般の分岐追跡や大規模性能は保証しません。
+
+## Bratuのfold継続とJacobian不要Newton–Krylov — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/#bratu-fold-continuation-assumptions
+Coverage: reading
+
+無次元x∈[0,1]、両端u=0、中心差分の内点31/63/127。零解から固定ds=0.1で80step。λ=2で上下枝を補正し、λ=4は離散無解の意図的な対照です。擬似弧長は物理時間ではありません。
+
+## Bratuのfold継続とJacobian不要Newton–Krylov — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/#bratu-fold-continuation-algorithm
+Coverage: reading
+
+hΣdu²+dλ²の重み付き単位接線、予測点と接線超平面によるNewton補正。別の拡大系でfoldと正規化null vectorを解きます。このcaseは疎Jacobianを明示的に組み立てます。
+-u''=\lambda e^u,\quad u(0)=u(1)=0u_\theta=2\log\frac{\cosh(\theta/2)}{\cosh(\theta(x-1/2))},\quad\lambda(\theta)=2\theta^2/\cosh^2(\theta/2)
+
+## Bratuのfold継続とJacobian不要Newton–Krylov — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/#bratu-fold-continuation-validation
+Coverage: reading
+
+保存R3では共通27pytestと本caseの67固定判定が合格。離散残差、接線の向き・単位長、fold方程式・null条件・transversality、独立Decimal80解析族、固定3格子の誤差を別々に確認しています。
+
+## Bratuのfold継続とJacobian不要Newton–Krylov — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/#bratu-fold-continuation-limits
+Coverage: reading
+
+小さな1次元の単純foldだけです。分岐曲線の解析族比較では計算した中点値を族の座標に使い、固定λの独立形状比較と区別します。連続foldは離散解そのものではなく、一般の分岐追跡や大規模性能は保証しません。
+
+## Bratuのfold継続とJacobian不要Newton–Krylov — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/#bratu-fold-continuation-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+fold_orders[2.0003257002223824,2.000081417263765]
+intended_failure_reasonline search exhausted
+discrete_nonexistence_bound3.6300955493
+matchingFullpathfamilycoordinatefrommidpointisexplicit;separatefixedlambda2rootsvalidatebothbrancheswithoutparameterfitting.
+reference_qualification_max_ODE6e-78
+判定 / check合格
+N31/finite complete branchtrue
+N31/discrete residualtrue
+N31/unit tangenttrue
+N31/tangent equationtrue
+N31/tangent orientationtrue
+N31/turning tangenttrue
+N31/lower and upper lambda2 neighborhoodstrue
+N31/fold discrete equationtrue
+N31/fold null equationtrue
+N31/fold null normalizationtrue
+N31/fold sigma_mintrue
+N31/simple fold parameter transversalitytrue
+N31/simple fold quadratic transversalitytrue
+N31/lower discrete roottrue
+N31/upper discrete roottrue
+N31/ordered distinct branchestrue
+N31/nonzero reference fieldstrue
+N63/finite complete branchtrue
+N63/discrete residualtrue
+N63/unit tangenttrue
+N63/tangent equationtrue
+N63/tangent orientationtrue
+N63/turning tangenttrue
+N63/lower and upper lambda2 neighborhoodstrue
+N63/fold discrete equationtrue
+N63/fold null equationtrue
+N63/fold null normalizationtrue
+N63/fold sigma_mintrue
+N63/simple fold parameter transversalitytrue
+N63/simple fold quadratic transversalitytrue
+N63/lower discrete roottrue
+N63/upper discrete roottrue
+N63/ordered distinct branchestrue
+
+## Bratuのfold継続とJacobian不要Newton–Krylov — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/#bratu-fold-continuation-measurements
+Coverage: reading
+
+N63/nonzero reference fieldstrue
+N127/finite complete branchtrue
+N127/discrete residualtrue
+N127/unit tangenttrue
+N127/tangent equationtrue
+N127/tangent orientationtrue
+N127/turning tangenttrue
+N127/lower and upper lambda2 neighborhoodstrue
+N127/fold discrete equationtrue
+N127/fold null equationtrue
+N127/fold null normalizationtrue
+N127/fold sigma_mintrue
+N127/simple fold parameter transversalitytrue
+N127/simple fold quadratic transversalitytrue
+N127/lower discrete roottrue
+N127/upper discrete roottrue
+N127/ordered distinct branchestrue
+N127/nonzero reference fieldstrue
+Decimal80 continuum ODEtrue
+Decimal80 zero endpointstrue
+reference fixed lambdatrue
+reference fold printed anchortrue
+no-solution lambda4 proof boundtrue
+lambda4 Newton reports failuretrue
+lambda4 finite retained statestrue
+lambda4 remains above tolerancetrue
+finest full path shapetrue
+finest family curve lambdatrue
+finest continuous fold errortrue
+fold first refinement ordertrue
+fold second refinement ordertrue
+finest lower exact solutiontrue
+finest upper exact solutiontrue
+both branch errors refinetrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存した分岐曲線、λ=2の上下枝、Jacobianの最小特異値、3格子のfold誤差を示す縮小図。擬似弧長stepは物理時間ではありません。全記録を表で読む
+narc_stepsfold_lambdacontinuous_fold_lambdafold_errorsigma_minlower_errorupper_errorpath_shape_errorpath_lambda_error
+
+## Bratuのfold継続とJacobian不要Newton–Krylov — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/#bratu-fold-continuation-measurements
+Coverage: reading
+
+31803.512044932443.513830719130.001785786681019.09494701773e-138.70033372853e-050.001701070409490.005035706691650.00194240285153
+63803.513384373233.513830719130.0004463458926361.81898940355e-122.17386625036e-050.0004244278162490.001246019713430.000485491945152
+127803.513719138953.513830719130.0001115801760491.45519152284e-115.43390532348e-060.0001060706101680.0003109038215770.000121366123548
+この例の実測値・全記録 / JSON
+
+## Bratuのfold継続とJacobian不要Newton–Krylov — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/#bratu-fold-continuation-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+K.I.Dickson,C.T.Kelley,I.C.F.Ipsen,I.G.Kevrekidis (2007). Condition Estimates for Pseudo-Arclength Continuation · DOI: 10.1137/060654384
+確認範囲 / review_level: primary-selected-PDF-text
+原著PDFの選択部分2.2節の接線・正規化・超平面制約と単純foldの範囲を読解。全文・全証明の監査ではありません。
+Hans Petter Langtangen (2014). Finite differences for the1D Bratu problem,Problem8
+確認範囲 / review_level: author-selected-exact-solution-exercise
+著者教材のBratu解析族と二枝・丸めた臨界値を確認。変数は採用thetaの2倍で、別導出とDecimal80で資格。1914原著は未読です。
+
+## Bratuのfold継続とJacobian不要Newton–Krylov — 解析・中央差分・方向ADによるJacobian不要Newton–Krylov [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/
+Coverage: reading
+
+非線形Jacobianを組み立てずにBratuの上下枝を3種類のJvで解き、forcingと実際の残差・評価回数を保存します。
+手法・式・図・参照解
+使用手法
+Jacobian不要Newton–Krylov
+再始動GMRES
+Thomas法／三重対角消去
+自動微分
+空間中心差分
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+解析Jv、残差2評価の中央差分、または方向1本のforward ADを使います。PoissonのThomas右前処理、2回の再直交化とGivensによるGMRES。η0=.3、その後η=clamp(.9(Fk/Fk−1)^1.5,.001,.5)。これはEW Choice 2型の明示的な変形で、原著のsafeguard全体やPETSc既定値ではありません。
+Bratu非線形境界値問題
+同じ無次元1次元Dirichlet問題でλ=3、内点63/127、初期値0または4sin(πx)。3Jv×2格子×2枝の12解法と固定η=1e-8の解析Jv対照1本。GMRES restart24/max96、Newton最大24、残差許容1e-9です。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+解析・中央差分・方向ADによるJacobian不要Newton–Krylov
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+保存R3では共通27pytestと本caseの129固定判定が合格。非零Jvの解析検算、離散残差、独立解析上下枝、3modeの一致、forcing、評価回数、Krylov記憶幅、Armijoと固定η対照を確認。解析forcing検算は別計数で、FD/ADの反復制御には使いません。
+同じ問題の参照 · 解析参照
+解析・中央差分・方向ADによるJacobian不要Newton–Krylov
+小1次元BVP向けの教育実装です。ADは四則・exp・境界paddingの方向微分に限ります。小Hessenberg行列と基底は保持します。ηの固定下限があるため、原著EWの漸近収束定理、一般AD/PETScとの同等性、速度向上や大域収束は主張しません。
+
+## Bratuのfold継続とJacobian不要Newton–Krylov — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/#bratu-matrix-free-jfnk-assumptions
+Coverage: reading
+
+同じ無次元1次元Dirichlet問題でλ=3、内点63/127、初期値0または4sin(πx)。3Jv×2格子×2枝の12解法と固定η=1e-8の解析Jv対照1本。GMRES restart24/max96、Newton最大24、残差許容1e-9です。
+
+## Bratuのfold継続とJacobian不要Newton–Krylov — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/#bratu-matrix-free-jfnk-algorithm
+Coverage: reading
+
+解析Jv、残差2評価の中央差分、または方向1本のforward ADを使います。PoissonのThomas右前処理、2回の再直交化とGivensによるGMRES。η0=.3、その後η=clamp(.9(Fk/Fk−1)^1.5,.001,.5)。これはEW Choice 2型の明示的な変形で、原著のsafeguard全体やPETSc既定値ではありません。
+-u''=\lambda e^u,\quad u(0)=u(1)=0u_\theta=2\log\frac{\cosh(\theta/2)}{\cosh(\theta(x-1/2))},\quad\lambda(\theta)=2\theta^2/\cosh^2(\theta/2)J(u)v=A_hv-\lambda e^u\odot v\eta_k=\min\{0.5,\max\{0.001,0.9(\|F_k\|_2/\|F_{k-1}\|_2)^{1.5}\}\}
+
+## Bratuのfold継続とJacobian不要Newton–Krylov — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/#bratu-matrix-free-jfnk-validation
+Coverage: reading
+
+保存R3では共通27pytestと本caseの129固定判定が合格。非零Jvの解析検算、離散残差、独立解析上下枝、3modeの一致、forcing、評価回数、Krylov記憶幅、Armijoと固定η対照を確認。解析forcing検算は別計数で、FD/ADの反復制御には使いません。
+
+## Bratuのfold継続とJacobian不要Newton–Krylov — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/#bratu-matrix-free-jfnk-limits
+Coverage: reading
+
+小1次元BVP向けの教育実装です。ADは四則・exp・境界paddingの方向微分に限ります。小Hessenberg行列と基底は保持します。ηの固定下限があるため、原著EWの漸近収束定理、一般AD/PETScとの同等性、速度向上や大域収束は主張しません。
+
+## Bratuのfold継続とJacobian不要Newton–Krylov — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/#bratu-matrix-free-jfnk-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+mode_gap_max4.88498130835e-15
+qualification_AD_relative1.1692887409e-17
+qualification_FD_relative8.65106940768e-11
+reasons["nonlinear residual","nonlinear residual","nonlinear residual","nonlinear residual","nonlinear residual","nonlinear residual","nonlinear residual","nonlinear residual","nonlinear residual","nonlinear residual","nonlinear residual","nonlinear residual","nonlinear residual"]
+evaluation_scopeActualsolverevaluations;analyticlinear-forcingvalidationcountedseparately.NoPETScorassemblednonlinearJacobianusedbyJFNK.
+判定 / check合格
+nonzero Jv referencetrue
+AD Jv exacttrue
+AD primal exacttrue
+central FD Jvtrue
+zero Jv branchtrue
+0/nonlinear convergedtrue
+0/finite statestrue
+0/discrete residualtrue
+0/continuous branch errortrue
+0/analytic verified forcingtrue
+0/declared etatrue
+0/evaluation count ledgertrue
+0/bounded Krylov storagetrue
+0/accepted Armijo stepstrue
+1/nonlinear convergedtrue
+1/finite statestrue
+1/discrete residualtrue
+1/continuous branch errortrue
+1/analytic verified forcingtrue
+1/declared etatrue
+1/evaluation count ledgertrue
+1/bounded Krylov storagetrue
+1/accepted Armijo stepstrue
+2/nonlinear convergedtrue
+2/finite statestrue
+2/discrete residualtrue
+2/continuous branch errortrue
+2/analytic verified forcingtrue
+2/declared etatrue
+2/evaluation count ledgertrue
+2/bounded Krylov storagetrue
+
+## Bratuのfold継続とJacobian不要Newton–Krylov — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/#bratu-matrix-free-jfnk-measurements
+Coverage: reading
+
+2/accepted Armijo stepstrue
+3/nonlinear convergedtrue
+3/finite statestrue
+3/discrete residualtrue
+3/continuous branch errortrue
+3/analytic verified forcingtrue
+3/declared etatrue
+3/evaluation count ledgertrue
+3/bounded Krylov storagetrue
+3/accepted Armijo stepstrue
+4/nonlinear convergedtrue
+4/finite statestrue
+4/discrete residualtrue
+4/continuous branch errortrue
+4/analytic verified forcingtrue
+4/declared etatrue
+4/evaluation count ledgertrue
+4/bounded Krylov storagetrue
+4/accepted Armijo stepstrue
+5/nonlinear convergedtrue
+5/finite statestrue
+5/discrete residualtrue
+5/continuous branch errortrue
+5/analytic verified forcingtrue
+5/declared etatrue
+5/evaluation count ledgertrue
+5/bounded Krylov storagetrue
+5/accepted Armijo stepstrue
+6/nonlinear convergedtrue
+6/finite statestrue
+6/discrete residualtrue
+6/continuous branch errortrue
+6/analytic verified forcingtrue
+6/declared etatrue
+6/evaluation count ledgertrue
+6/bounded Krylov storagetrue
+6/accepted Armijo stepstrue
+7/nonlinear convergedtrue
+7/finite statestrue
+7/discrete residualtrue
+7/continuous branch errortrue
+7/analytic verified forcingtrue
+7/declared etatrue
+7/evaluation count ledgertrue
+7/bounded Krylov storagetrue
+7/accepted Armijo stepstrue
+8/nonlinear convergedtrue
+8/finite statestrue
+8/discrete residualtrue
+8/continuous branch errortrue
+8/analytic verified forcingtrue
+8/declared etatrue
+8/evaluation count ledgertrue
+
+## Bratuのfold継続とJacobian不要Newton–Krylov — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/#bratu-matrix-free-jfnk-measurements
+Coverage: reading
+
+8/bounded Krylov storagetrue
+8/accepted Armijo stepstrue
+9/nonlinear convergedtrue
+9/finite statestrue
+9/discrete residualtrue
+9/continuous branch errortrue
+9/analytic verified forcingtrue
+9/declared etatrue
+9/evaluation count ledgertrue
+9/bounded Krylov storagetrue
+9/accepted Armijo stepstrue
+10/nonlinear convergedtrue
+10/finite statestrue
+10/discrete residualtrue
+10/continuous branch errortrue
+10/analytic verified forcingtrue
+10/declared etatrue
+10/evaluation count ledgertrue
+10/bounded Krylov storagetrue
+10/accepted Armijo stepstrue
+11/nonlinear convergedtrue
+11/finite statestrue
+11/discrete residualtrue
+11/continuous branch errortrue
+11/analytic verified forcingtrue
+11/declared etatrue
+11/evaluation count ledgertrue
+11/bounded Krylov storagetrue
+11/accepted Armijo stepstrue
+12/nonlinear convergedtrue
+12/finite statestrue
+12/discrete residualtrue
+12/continuous branch errortrue
+12/analytic verified forcingtrue
+12/declared etatrue
+12/evaluation count ledgertrue
+12/bounded Krylov storagetrue
+12/accepted Armijo stepstrue
+mode agreement N63 lowertrue
+mode agreement N63 uppertrue
+mode agreement N127 lowertrue
+mode agreement N127 uppertrue
+finest exact branchestrue
+all mode errors refinetrue
+constant forcing companion matchestrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存したN=127のNewton残差、上枝の解と解析参照、Jv誤差、実評価回数を示す縮小図。run indexは保存CSVに対応します。全記録を表で読む
+
+## Bratuのfold継続とJacobian不要Newton–Krylov — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/#bratu-matrix-free-jfnk-measurements
+Coverage: reading
+
+runnmode_codebranch_codeconstant_eta_codeerrorresidualnewton_stepsprimal_residualjvzero_jvdual_residualpreconditionervalidation_analytic_jv
+0630000.0001155823409381.62009811273e-125112200115
+1631000.0001155823409351.60980254113e-125552200115
+2632000.0001155823409331.60297509401e-1251122022115
+3630100.0004426947113625.98113455851e-138174000208
+4631100.0004426947113645.12273494077e-138974000208
+5632100.0004426947113635.21282329971e-1381740040208
+61270002.8885506252e-052.1757068076e-125112200115
+71271002.88855062529e-052.27154535829e-125552200115
+81272002.88855062518e-052.18007413615e-1251122022115
+91270100.0001106571453422.06313282436e-128174000208
+101271100.0001106571453422.07949194463e-128974000208
+111272100.0001106571453432.20439143511e-1281740040208
+12630010.0001155823134349.18147527837e-11494000204
+この例の実測値・全記録 / JSON
+
+## Bratuのfold継続とJacobian不要Newton–Krylov — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/#bratu-matrix-free-jfnk-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+D.A.Knoll,D.E.Keyes (2004). Jacobian-free Newton-Krylov methods: a survey of approaches and applications · DOI: 10.1016/j.jcp.2003.08.010
+確認範囲 / review_level: primary-selected-PDF-text-via-course-mirror
+原著のJv・差分刻み・inexact forcing・前処理の選択部分を講義ミラー配送から読解。中央差分と固定clamp付き比率則は明示的な実装選択です。
+S. C. Eisenstat and H. F. Walker (1996). Choosing the Forcing Terms in an Inexact Newton Method · DOI: 10.1137/0917003
+確認範囲 / review_level: primary-selected-PDF-text
+著者公開の原著PDFからAlgorithm IN、Choice 2と実用的safeguardの選択部分を確認。本文全体・全証明・性能表の監査ではありません。
+Hans Petter Langtangen (2014). Finite differences for the1D Bratu problem,Problem8
+確認範囲 / review_level: author-selected-exact-solution-exercise
+著者教材のBratu解析族と二枝・丸めた臨界値を確認。変数は採用thetaの2倍で、別導出とDecimal80で資格。1914原著は未読です。
+PETSc developers (2026). PETSc SNES nonlinear solvers: matrix-free,inexact Newton and arc length
+確認範囲 / review_level: official-selected-documentation
+公式3.26.1文書の関連節のみ確認。PETScを使用・実行した成功値は借用せず、二次arc制約と採用超平面を区別します。
+
 ## 係数ジャンプ・回転異方性のMG／AMG — 係数ジャンプ・回転異方性のMG／AMG [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/
@@ -54084,7 +56198,7 @@ Coverage: reading
 Paul Woodward and Phillip Colella (1984). The numerical simulation of two-dimensional fluid flow with strong shocks · DOI: 10.1016/0021-9991(84)90142-6
 確認範囲 / review_level: publisher-metadata-and-abstract; official-NASA-setup-cross-check
 出版社の書誌・抄録とNASA公式の設定説明を確認。原著本文を直接読んだという記録ではなく、元の強衝撃波比較と問題設定の出典として引用します。
-NASA Advanced Supercomputing Division, LAVA team (n.d.). Double Mach Reflection — LAVA tutorial
+NASA Advanced Supercomputing Division, LAVA team (n.d.). Double Mach Reflection — LAVA tutorial [accessed 2026-11-23]
 確認範囲 / review_level: official-tutorial-selected-setup-and-boundaries
 公式チュートリアルのMach10・γ=1.4、領域、衝撃脚x=1/6、初期密度/圧力、境界とT=.2を確認。LAVA自体を実行した意味ではなく、図も転載しません。
 Hiroshi Koyama (2026). Independent finite-volume references distributed with the RKDG2D agent kit, 2026-11-23-r2
@@ -54392,7 +56506,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ds
 Coverage: reading
 
 原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
-Sandia SPARTA developers (2026). SPARTA, pinned official HS collision/boundary implementation and independently evolved fields
+Sandia SPARTA developers (2026). SPARTA, pinned official HS collision/boundary implementation and independently evolved fields [accessed 2026-11-23]
 確認範囲 / review_level: primary-source-selected-functions-and-actual-reference-execution
 公式固定版のHS衝突率・境界・分子モーメントを選択確認し、独立36計算と87判定を実施。原著書籍全読や全コード監査は主張しません。
 
@@ -54578,7 +56692,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ds
 Coverage: reading
 
 原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
-Sandia SPARTA developers (2026). SPARTA, pinned official HS collision/boundary implementation and independently evolved fields
+Sandia SPARTA developers (2026). SPARTA, pinned official HS collision/boundary implementation and independently evolved fields [accessed 2026-11-23]
 確認範囲 / review_level: primary-source-selected-functions-and-actual-reference-execution
 公式固定版のHS衝突率・境界・分子モーメントを選択確認し、独立36計算と87判定を実施。原著書籍全読や全コード監査は主張しません。
 
@@ -54741,7 +56855,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ds
 Coverage: reading
 
 原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
-Sandia SPARTA developers (2026). SPARTA, pinned official HS collision/boundary implementation and independently evolved fields
+Sandia SPARTA developers (2026). SPARTA, pinned official HS collision/boundary implementation and independently evolved fields [accessed 2026-11-23]
 確認範囲 / review_level: primary-source-selected-functions-and-actual-reference-execution
 公式固定版のHS衝突率・境界・分子モーメントを選択確認し、独立36計算と87判定を実施。原著書籍全読や全コード監査は主張しません。
 
@@ -54968,13 +57082,13 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-eu
 Coverage: reading
 
 原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
-Xiangxiong Zhang and Chi-Wang Shu (2010). On positivity-preserving high order discontinuous Galerkin schemes for compressible Euler equations on rectangular meshes · DOI: 10.1016/j.jcp.2010.08.016
+Xiangxiong Zhang and Chi-Wang Shu (2010). On positivity-preserving high order discontinuous Galerkin schemes for compressible Euler equations on rectangular meshes [accessed 2026-11-23] · DOI: 10.1016/j.jcp.2010.08.016
 確認範囲 / review_level: author manuscript selected sections actually inspected: §2 Theorem2.1, Remarks2.2/2.4/2.6/2.7; §4.3 distinguishes vacuum input
 著者稿の定理・LF条件・各SSP段階への適用と波速見積りの注意を確認。P1有限体積への限定適用で、原著の真空例・3次DGを再現したとは扱いません。
-David I. Ketcheson, Randall J. LeVeque and Mauricio J. del Razo (2020). Riemann Problems and Jupyter Solutions: The Euler equations of gas dynamics · DOI: 10.1137/1.9781611976212
+David I. Ketcheson, Randall J. LeVeque and Mauricio J. del Razo (2020). Riemann Problems and Jupyter Solutions: The Euler equations of gas dynamics [accessed 2026-11-23] · DOI: 10.1137/1.9781611976212
 確認範囲 / review_level: official chapter sections Riemann invariants, exact solution, symmetric expansion and vacuum; official exact_solvers/euler.py integral_curve_1/3 inspected read-only
 公式章の希薄波不変量と対称膨張・真空条件を確認。今回の固定値は既存アトラスの入力を継承し、同章の数値例そのものとは区別します。Clawpackコードは実行・転載しません。
-Chi-Wang Shu and Stanley Osher (1988). Efficient implementation of essentially non-oscillatory shock-capturing schemes · DOI: 10.1016/0021-9991(88)90177-5
+Chi-Wang Shu and Stanley Osher (1988). Efficient implementation of essentially non-oscillatory shock-capturing schemes [accessed 2026-11-23] · DOI: 10.1016/0021-9991(88)90177-5
 確認範囲 / review_level: publisher bibliographic record and abstract only; no full-paper audit
 出版社の書誌とTVD型Runge–Kuttaの抄録を確認。原著全文・全数値実験の監査ではありません。SSP凸結合による正値性の議論はZhang–Shu著者稿でも確認。
 
@@ -54983,10 +57097,10 @@ Chi-Wang Shu and Stanley Osher (1988). Efficient implementation of essentially n
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-euler-positivity/#euler-double-rarefaction-positivity-references
 Coverage: reading
 
-Eleuterio F. Toro (2009). Riemann Solvers and Numerical Methods for Fluid Dynamics: A Practical Introduction · DOI: 10.1007/b79761
+Eleuterio F. Toro (2009). Riemann Solvers and Numerical Methods for Fluid Dynamics: A Practical Introduction [accessed 2026-11-23] · DOI: 10.1007/b79761
 確認範囲 / review_level: publisher bibliography and chapter4 title/pages115–162 only; full text not inspected
 出版社で第3版・著者・年とEulerのRiemann問題の章を確認。固定数値の原典をこの閲覧だけで断定しません。
-Hiroshi Koyama (2026). Numerical Methods Atlas: released independent Euler Riemann evaluator
+Hiroshi Koyama (2026). Numerical Methods Atlas: released independent Euler Riemann evaluator [accessed 2026-11-23]
 確認範囲 / review_level: local immutable source inspected; copied without changes with SHA and MIT license; execution recorded by tests, not presumed
 既存の対数圧力根探索と希薄波評価を独立な式経路の照合に使います。実行記録とSHA・MIT条項を別に保存し、異なるPDE計算エンジンの検証とは表示しません。
 
@@ -56964,13 +59078,13 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-gu
 Coverage: reading
 
 原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
-G. Guderley (1942). Starke kugelige und zylindrische Verdichtungsstöße in der Nähe des Kugelmittelpunktes bzw. der Zylinderachse
+G. Guderley (1942). Starke kugelige und zylindrische Verdichtungsstöße in der Nähe des Kugelmittelpunktes bzw. der Zylinderachse [accessed 2026-11-23]
 確認範囲 / review_level: bibliographic attribution only: year/volume/first page in pinned ExactPack bibliography, title in Lazarus1981 publisher bibliography; original1942 article not inspected
 原問題の歴史的出典。固定ExactPackの書誌で著者・年・巻・開始頁302を、Lazarus1981の出版社参考文献で題名を確認。原著1942本文は未閲覧で、相似場の式や今回の実測を原著から直接再現したとは主張しません。
-Scott D. Ramsey, James R. Kamm and John H. Bolstad (2012). The Guderley problem revisited · DOI: 10.1080/10618562.2011.647768
+Scott D. Ramsey, James R. Kamm and John H. Bolstad (2012). The Guderley problem revisited [accessed 2026-11-23] · DOI: 10.1080/10618562.2011.647768
 確認範囲 / review_level: primary institutional bibliographic record and abstract; actual implementation equations reviewed in pinned ExactPack source, not full original paper
 LANLの書誌・抄録で収束側の相似指数と反射後の軌道係数が別の固有値問題であることを確認。原論文の全文通読や原著のPDE計算再現とは扱わず、今回の場は固定ExactPackソースを実際に用いて構成します。
-Roger B. Lazarus (1981). Self-Similar Solutions for Converging Shocks and Collapsing Cavities · DOI: 10.1137/0718022
+Roger B. Lazarus (1981). Self-Similar Solutions for Converging Shocks and Collapsing Cavities [accessed 2026-11-23] · DOI: 10.1137/0718022
 確認範囲 / review_level: publisher bibliographic record/abstract plus equations2.5,2.8,2.9 and sphericalTable6.5 as explicitly transcribed in pinned ExactPack; original full text not inspected
 出版社の書誌・抄録と、ExactPackが明示する式2.5/2.8/2.9・球対称表6.5の転記を確認。λ=1.3943607838の表値はコード内の転記値で、元論文を独立に再転記した値とは区別します。
 
@@ -56979,13 +59093,13 @@ Roger B. Lazarus (1981). Self-Similar Solutions for Converging Shocks and Collap
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-guderley/#guderley-implosion-references
 Coverage: reading
 
-R. F. Chisnell (1998). An analytic description of converging shock waves · DOI: 10.1017/S0022112097007775
+R. F. Chisnell (1998). An analytic description of converging shock waves [accessed 2026-11-23] · DOI: 10.1017/S0022112097007775
 確認範囲 / review_level: publisher bibliographic record/abstract and equation3.1 implementation/comments in actual pinned ExactPack eexp source
 出版社の書誌・抄録と、ExactPack eexpが採用する臨界点の位相差・式3.1の実装を確認。相似指数は寸法解析から固定せず、固定コードの固有値計算で求めます。
-Jasper Thrussell and Jim Michael Ferguson (2023). ExactPack: A python library of exact analytic solutions · DOI: 10.1016/j.softx.2023.101560
+Jasper Thrussell and Jim Michael Ferguson (2023). ExactPack: A python library of exact analytic solutions [accessed 2026-11-23] · DOI: 10.1016/j.softx.2023.101560
 確認範囲 / review_level: primary OSTI accepted manuscript/search text; software metadata and Guderley registry; selected actual source files pinned separately
 ExactPackのソフトウェア論文とGuderley収録を参照。論文記載版1.7.5と今回用いるソースの固定コミットは区別し、配布物内にソース・SHA・BSDライセンスを保存します。
-Los Alamos National Laboratory / ExactPack contributors (2025). ExactPack Guderley solver, pinned source
+Los Alamos National Laboratory / ExactPack contributors (2025). ExactPack Guderley solver, pinned source [accessed 2026-11-23]
 確認範囲 / review_level: selected source files and license inspected; eexp,ramsey.state/g,interp_laz and official test fixtures; actual execution recorded separately
 固定版のeexp・ramseyの前収束ODEとstate、表の転記、公式回帰値、BSD3条項を確認。全ExactPackテストを実行したとは扱いません。参照の実行成否はqualification.jsonに別記します。
 
@@ -57144,7 +59258,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-in
 Coverage: reading
 
 原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
-Colin P. McNally, Wladimir Lyra and Jean-Claude Passy (2012). A Well-Posed Kelvin-Helmholtz Instability Test and Comparison · DOI: 10.1088/0067-0049/201/2/18
+Colin P. McNally, Wladimir Lyra and Jean-Claude Passy (2012). A Well-Posed Kelvin-Helmholtz Instability Test and Comparison [accessed 2026-11-23] · DOI: 10.1088/0067-0049/201/2/18
 確認範囲 / review_level: primary-selected-original-pdf-text
 原著の滑らかな層・有限領域・成長測定の議論を確認。本例は独自の強制非圧縮系です。
 
@@ -57285,7 +59399,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-in
 Coverage: reading
 
 原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
-Antonio Celani, Andrea Mazzino and Lara Vozella (2006). Rayleigh–Taylor turbulence in two dimensions · DOI: 10.1103/PhysRevLett.96.134504
+Antonio Celani, Andrea Mazzino and Lara Vozella (2006). Rayleigh–Taylor turbulence in two dimensions [accessed 2026-11-23] · DOI: 10.1103/PhysRevLett.96.134504
 確認範囲 / review_level: primary-selected-original-pdf-text
 原著のBoussinesq方程式と周期設定を確認。本例の滑らかな定常維持二層と線形参照は独自です。
 
@@ -59324,6 +61438,636 @@ M. Sussman and E. G. Puckett (2000). A Coupled Level Set and Volume-of-Fluid Met
 確認範囲 / review_level: full-text
 著者公開PDFの302–305頁、式(1)–(6),(9),(12),(15)の界面幾何・囲まれた質量の誤差・体積率の保存を参照。本教材は内部を負とするため符号規約を反転。CLSVOFや二相流の原著実験は実行していません。
 
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 線形代数：直接法・鞍点系・再始動と整合質量固有値 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/
+Coverage: reading
+
+小さい固定行列で、行列分解と反復改良、対称不定値の反復解法、再始動固有値解法、整合質量の弦を比較します。独立参照へ照合し、残差と解誤差・代数誤差と離散化誤差・作用回数を分けます。
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#run-all
+Coverage: reading
+
+ZIPの atlas-linear-algebra-spectral-2026-11-24-r3 フォルダで実行します。このコマンドは配布版の全4例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 部分ピボットLU・Choleskyと反復改良 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/
+Coverage: reading
+
+独立の厳密有理数解と比較し、条件数・前進誤差・後退誤差・ピボット増大を分けます。
+手法・式・図・参照解
+使用手法
+部分ピボットLUと混合精度反復改良
+Cholesky分解と三角代入
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+手書き部分ピボットLU・下三角Cholesky・前後代入。
+有限次元線形方程式と行列分解
+SPD12、低ランク近特異8、Hilbert5、Wilkinson12を固定。binary32因子・三角解法とbinary64残差・補正の5回です。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+部分ピボットLU・Choleskyと反復改良
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+実binary64入力をFraction有理数で厳密に解き、別のLAPACK DGESV/DPOSVへ照合。条件数・前進誤差・後退誤差を分離。 保存する有理数参照ベクトルは、厳密Fraction解の各成分をbinary64へ丸めたものです。
+同じ問題の参照 · 解析参照
+部分ピボットLU/Cholesky：実二進入力の厳密有理数参照
+小さい固定例のみ。一般の高条件数系で混合精度の収束は保証しません。
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#pivoted-direct-refinement-assumptions
+Coverage: reading
+
+SPD12、低ランク近特異8、Hilbert5、Wilkinson12を固定。binary32因子・三角解法とbinary64残差・補正の5回です。
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#pivoted-direct-refinement-algorithm
+Coverage: reading
+
+手書き部分ピボットLU・下三角Cholesky・前後代入。
+PA=LUA=LL^Tx_(j+1)=x_j+solve_factor32(b-A*x_j)
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#pivoted-direct-refinement-validation
+Coverage: reading
+
+実binary64入力をFraction有理数で厳密に解き、別のLAPACK DGESV/DPOSVへ照合。条件数・前進誤差・後退誤差を分離。 保存する有理数参照ベクトルは、厳密Fraction解の各成分をbinary64へ丸めたものです。
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#pivoted-direct-refinement-limits
+Coverage: reading
+
+小さい固定例のみ。一般の高条件数系で混合精度の収束は保証しません。
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#pivoted-direct-refinement-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+max_condition_infinity943656.000002
+max_relative_forward_error7.33203121885e-12
+max_normwise_backward_error8.07438287144e-17
+max_componentwise_backward_error1.28102656688e-16
+max_relative_LAPACK_difference6.18085751443e-12
+max_binary64_pivot_growth2048
+判定 / check合格
+spd-tridiagonal-lu/finitetrue
+spd-tridiagonal-lu/binary32-factortrue
+spd-tridiagonal-lu/binary64-factortrue
+spd-tridiagonal-lu/normwise-backwardtrue
+spd-tridiagonal-lu/componentwise-backwardtrue
+spd-tridiagonal-lu/condition-aware-forwardtrue
+spd-tridiagonal-lu/LAPACK-comparisontrue
+spd-tridiagonal-lu/refinement-gain-or-roundofftrue
+spd-tridiagonal-cholesky/finitetrue
+spd-tridiagonal-cholesky/binary32-factortrue
+spd-tridiagonal-cholesky/binary64-factortrue
+spd-tridiagonal-cholesky/normwise-backwardtrue
+spd-tridiagonal-cholesky/componentwise-backwardtrue
+spd-tridiagonal-cholesky/condition-aware-forwardtrue
+spd-tridiagonal-cholesky/LAPACK-comparisontrue
+spd-tridiagonal-cholesky/refinement-gain-or-roundofftrue
+near-singular-rank-one-lu/finitetrue
+near-singular-rank-one-lu/binary32-factortrue
+near-singular-rank-one-lu/binary64-factortrue
+near-singular-rank-one-lu/normwise-backwardtrue
+near-singular-rank-one-lu/componentwise-backwardtrue
+near-singular-rank-one-lu/condition-aware-forwardtrue
+near-singular-rank-one-lu/LAPACK-comparisontrue
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#pivoted-direct-refinement-measurements
+Coverage: reading
+
+near-singular-rank-one-lu/refinement-gain-or-roundofftrue
+near-singular-rank-one-cholesky/finitetrue
+near-singular-rank-one-cholesky/binary32-factortrue
+near-singular-rank-one-cholesky/binary64-factortrue
+near-singular-rank-one-cholesky/normwise-backwardtrue
+near-singular-rank-one-cholesky/componentwise-backwardtrue
+near-singular-rank-one-cholesky/condition-aware-forwardtrue
+near-singular-rank-one-cholesky/LAPACK-comparisontrue
+near-singular-rank-one-cholesky/refinement-gain-or-roundofftrue
+hilbert5-lu/finitetrue
+hilbert5-lu/binary32-factortrue
+hilbert5-lu/binary64-factortrue
+hilbert5-lu/normwise-backwardtrue
+hilbert5-lu/componentwise-backwardtrue
+hilbert5-lu/condition-aware-forwardtrue
+hilbert5-lu/LAPACK-comparisontrue
+hilbert5-lu/refinement-gain-or-roundofftrue
+hilbert5-cholesky/finitetrue
+hilbert5-cholesky/binary32-factortrue
+hilbert5-cholesky/binary64-factortrue
+hilbert5-cholesky/normwise-backwardtrue
+hilbert5-cholesky/componentwise-backwardtrue
+hilbert5-cholesky/condition-aware-forwardtrue
+hilbert5-cholesky/LAPACK-comparisontrue
+hilbert5-cholesky/refinement-gain-or-roundofftrue
+wilkinson12-lu/finitetrue
+wilkinson12-lu/binary32-factortrue
+wilkinson12-lu/binary64-factortrue
+wilkinson12-lu/normwise-backwardtrue
+wilkinson12-lu/componentwise-backwardtrue
+wilkinson12-lu/condition-aware-forwardtrue
+wilkinson12-lu/LAPACK-comparisontrue
+wilkinson12-lu/refinement-gain-or-roundofftrue
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#pivoted-direct-refinement-measurements
+Coverage: reading
+
+Wilkinson/exact-growthtrue
+Hilbert/ill-conditioning-not-residualtrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存した12×12 SPD行列。反復改良の固定例に使います。 別の全図に示す誤差は厳密有理数解をbinary64へ丸めた参照との差です。対数表示だけ、厳密なゼロ誤差をfloat64.tinyに置いて表示します。全記録を表で読む
+idfieldsmatrixfactorizationcondition_infinityinitial_backwardfinal_backwardcomponent_backwardrelative_forward_errorrelative_LAPACK_differencebinary64_pivot_growthcorrections
+spd-tridiagonal-luspd-tridiagonal-lu.npzspd-tridiagonallu2.998592210233.97364274818e-080008.47946841438e-1715
+spd-tridiagonal-choleskyspd-tridiagonal-cholesky.npzspd-tridiagonalcholesky2.998592210236.95387439483e-08004.53246651837e-171.06295761943e-1615
+near-singular-rank-one-lunear-singular-rank-one-lu.npznear-singular-rank-onelu114687.255.41854352731e-088.07438287144e-178.07438287145e-171.03345110396e-121.48821233315e-1215
+near-singular-rank-one-choleskynear-singular-rank-one-cholesky.npznear-singular-rank-onecholesky114687.252.16748355626e-088.07438287141e-178.07438287146e-177.27387594638e-125.665440345e-1215
+hilbert5-luhilbert5-lu.npzhilbert5lu943656.0000021.03662901292e-084.5253655895e-171.28102656688e-161.42689765352e-121.92950041328e-1215
+hilbert5-choleskyhilbert5-cholesky.npzhilbert5cholesky943656.0000021.18011008027e-083.6202924716e-178.20939560466e-177.33203121885e-126.18085751443e-1215
+wilkinson12-luwilkinson12-lu.npzwilkinson12lu120000020485
+この例の実測値・全記録 / JSON
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#pivoted-direct-refinement-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+LAPACK Users Guide: Linear Equations
+確認範囲 / review_level: selected-official-documentation
+Selected LU/Cholesky, CON/RFS and same-precision refinement paragraphs were read. This example uses binary32 factors and binary64 residuals; a full LAPACK source audit is not claimed.
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 対称不定値鞍点系とSchur前処理 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/
+Coverage: reading
+
+同じ元残差の基準でMINRESとGMRESを比較し、理想Schurの三点スペクトルを検査します。
+手法・式・図・参照解
+使用手法
+対称不定値系の教育用MINRES
+再始動GMRES
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+全基底保存のLanczos最小残差LSと二重MGS GMRES。SPD合同変換で対称性を保持。 元入力の残差1e-9と固定前進上限2e-8から、行列のみのκ∞推定で内部目標min(rtol,2e-8/κ∞)を導出。独立解を停止に使わない。
+有限次元線形方程式と行列分解
+速度12/24、圧力5/11の代数的混合Poisson/Stokes型ブロック。元の真の残差1e-9を共通基準にします。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+対称不定値鞍点系とSchur前処理
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+LAPACK全系解、理想Schurの3点スペクトル、CGの明示的負曲率対照。
+同じ問題の参照 · 有限格子の数値参照
+対称不定値鞍点系：独立dense解と理想Schurスペクトル
+理想Schurは教育用の稠密制御であり、実Stokes PDEやスケーラブルな近似前処理の完成ではありません。
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#symmetric-saddle-minres-assumptions
+Coverage: reading
+
+速度12/24、圧力5/11の代数的混合Poisson/Stokes型ブロック。元の真の残差1e-9を共通基準にします。
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#symmetric-saddle-minres-algorithm
+Coverage: reading
+
+全基底保存のLanczos最小残差LSと二重MGS GMRES。SPD合同変換で対称性を保持。 元入力の残差1e-9と固定前進上限2e-8から、行列のみのκ∞推定で内部目標min(rtol,2e-8/κ∞)を導出。独立解を停止に使わない。
+A=[[H,B^T],[B,0]]P=diag(H,BH^-1B^T)A_tilde=L^-1 A L^-T
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#symmetric-saddle-minres-validation
+Coverage: reading
+
+LAPACK全系解、理想Schurの3点スペクトル、CGの明示的負曲率対照。
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#symmetric-saddle-minres-limits
+Coverage: reading
+
+理想Schurは教育用の稠密制御であり、実Stokes PDEやスケーラブルな近似前処理の完成ではありません。
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#symmetric-saddle-minres-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+max_original_relative_residual2.34027856727e-13
+max_relative_reference_error4.23108859063e-10
+max_iterations29
+max_condition_infinity_estimate5682.08019425
+判定 / check合格
+n12/ideal-Schur-three-point-spectrumtrue
+saddle-12-none-minres/finitetrue
+saddle-12-none-minres/same-true-residualtrue
+saddle-12-none-minres/independent-referencetrue
+saddle-12-none-minres/basis-orthogonalitytrue
+saddle-12-none-minres/symmetric-congruencetrue
+saddle-12-none-minres/fixed-dimension-budgettrue
+saddle-12-none-gmres/finitetrue
+saddle-12-none-gmres/same-true-residualtrue
+saddle-12-none-gmres/independent-referencetrue
+saddle-12-none-gmres/basis-orthogonalitytrue
+saddle-12-none-gmres/symmetric-congruencetrue
+saddle-12-none-gmres/fixed-dimension-budgettrue
+saddle-12-exact-Schur-minres/finitetrue
+saddle-12-exact-Schur-minres/same-true-residualtrue
+saddle-12-exact-Schur-minres/independent-referencetrue
+saddle-12-exact-Schur-minres/basis-orthogonalitytrue
+saddle-12-exact-Schur-minres/symmetric-congruencetrue
+saddle-12-exact-Schur-minres/fixed-dimension-budgettrue
+saddle-12-exact-Schur-minres/ideal-three-step-controltrue
+saddle-12-exact-Schur-gmres/finitetrue
+saddle-12-exact-Schur-gmres/same-true-residualtrue
+saddle-12-exact-Schur-gmres/independent-referencetrue
+saddle-12-exact-Schur-gmres/basis-orthogonalitytrue
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#symmetric-saddle-minres-measurements
+Coverage: reading
+
+saddle-12-exact-Schur-gmres/symmetric-congruencetrue
+saddle-12-exact-Schur-gmres/fixed-dimension-budgettrue
+saddle-12-exact-Schur-gmres/ideal-three-step-controltrue
+n24/ideal-Schur-three-point-spectrumtrue
+saddle-24-none-minres/finitetrue
+saddle-24-none-minres/same-true-residualtrue
+saddle-24-none-minres/independent-referencetrue
+saddle-24-none-minres/basis-orthogonalitytrue
+saddle-24-none-minres/symmetric-congruencetrue
+saddle-24-none-minres/fixed-dimension-budgettrue
+saddle-24-none-gmres/finitetrue
+saddle-24-none-gmres/same-true-residualtrue
+saddle-24-none-gmres/independent-referencetrue
+saddle-24-none-gmres/basis-orthogonalitytrue
+saddle-24-none-gmres/symmetric-congruencetrue
+saddle-24-none-gmres/fixed-dimension-budgettrue
+saddle-24-exact-Schur-minres/finitetrue
+saddle-24-exact-Schur-minres/same-true-residualtrue
+saddle-24-exact-Schur-minres/independent-referencetrue
+saddle-24-exact-Schur-minres/basis-orthogonalitytrue
+saddle-24-exact-Schur-minres/symmetric-congruencetrue
+saddle-24-exact-Schur-minres/fixed-dimension-budgettrue
+saddle-24-exact-Schur-minres/ideal-three-step-controltrue
+saddle-24-exact-Schur-gmres/finitetrue
+saddle-24-exact-Schur-gmres/same-true-residualtrue
+saddle-24-exact-Schur-gmres/independent-referencetrue
+saddle-24-exact-Schur-gmres/basis-orthogonalitytrue
+saddle-24-exact-Schur-gmres/symmetric-congruencetrue
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#symmetric-saddle-minres-measurements
+Coverage: reading
+
+saddle-24-exact-Schur-gmres/fixed-dimension-budgettrue
+saddle-24-exact-Schur-gmres/ideal-three-step-controltrue
+CG/explicit-negative-curvature-controltrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。速度サイズ24の固定例で使う、保存した35×35鞍点行列。全記録を表で読む
+idfieldsmethodpreconditionersizeiterationsprojected_operator_actionssolver_original_residual_actionsposthoc_original_residual_actionstrue_relative_residualreference_errorconvergedcondition_infinity_estimateinternal_true_residual_targetconfigured_true_residual_tolerance
+saddle-12-none-minressaddle-12-none-minres.npzminresnone1717171711.79960347573e-161.47416360582e-14true1430.727268541.39789046031e-111e-09
+saddle-12-none-gmressaddle-12-none-gmres.npzgmresnone1717171711.9391649074e-165.86522926859e-15true1430.727268541.39789046031e-111e-09
+saddle-12-exact-Schur-minressaddle-12-exact-Schur-minres.npzminresexact-Schur1733315.63505644357e-161.13376671587e-14true1430.727268541.39789046031e-111e-09
+saddle-12-exact-Schur-gmressaddle-12-exact-Schur-gmres.npzgmresexact-Schur1733315.41187062734e-161.11264474098e-14true1430.727268541.39789046031e-111e-09
+saddle-24-none-minressaddle-24-none-minres.npzminresnone3529292912.34027856727e-134.23108859063e-10true5682.080194253.51983768554e-121e-09
+saddle-24-none-gmressaddle-24-none-gmres.npzgmresnone3529292912.34025740787e-134.2310624558e-10true5682.080194253.51983768554e-121e-09
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#symmetric-saddle-minres-measurements
+Coverage: reading
+
+saddle-24-exact-Schur-minressaddle-24-exact-Schur-minres.npzminresexact-Schur3533316.50411507405e-162.03146143773e-14true5682.080194253.51983768554e-121e-09
+saddle-24-exact-Schur-gmressaddle-24-exact-Schur-gmres.npzgmresexact-Schur3533316.64918125287e-162.02780725439e-14true5682.080194253.51983768554e-121e-09
+この例の実測値・全記録 / JSON
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#symmetric-saddle-minres-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Paige and Saunders: Stanford SOL MINRES
+確認範囲 / review_level: selected-author-official-documentation
+Selected discussion of symmetric indefinite systems, SPD preconditioners and the original residual was read. The original 1975 paper was not read. This stored-basis Lanczos least-squares variant is not a copy of the production short recurrence.
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 明示的再始動Krylovと内部固有値 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/
+Coverage: reading
+
+固定長の明示的再始動とshift-invertを、元の固有値問題の残差と作用回数で比較します。
+手法・式・図・参照解
+使用手法
+Krylov固有値解法
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+二重MGS Arnoldiを単一Ritzベクトルから明示的に再始動。自前LUでshift線形解を求め、元の固有残差で停止。
+有限次元の行列固有値問題
+Dirichlet離散Laplacian31、再始動長8/16、最大40cycle、shiftなし/0/950。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+明示的再始動Krylovと内部固有値
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+既知の正弦スペクトルと独立な全行列LAPACK。shift解・Krylov作用・元残差作用を別計数。
+同じ問題の参照 · 解析参照
+再始動/shift-invert：固定離散行列の閉スペクトル
+単一対称実固有対だけ。暗黙再始動・Krylov-Schur・ロッキング・一般の非正規やクラスターは未実装。
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#restarted-shift-invert-assumptions
+Coverage: reading
+
+Dirichlet離散Laplacian31、再始動長8/16、最大40cycle、shiftなし/0/950。
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#restarted-shift-invert-algorithm
+Coverage: reading
+
+二重MGS Arnoldiを単一Ritzベクトルから明示的に再始動。自前LUでshift線形解を求め、元の固有残差で停止。
+lambda_j=4(n+1)^2 sin^2(j*pi/[2(n+1)])T=(A-sigma I)^-1lambda=sigma+1/theta
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#restarted-shift-invert-validation
+Coverage: reading
+
+既知の正弦スペクトルと独立な全行列LAPACK。shift解・Krylov作用・元残差作用を別計数。
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#restarted-shift-invert-limits
+Coverage: reading
+
+単一対称実固有対だけ。暗黙再始動・Krylov-Schur・ロッキング・一般の非正規やクラスターは未実装。
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#restarted-shift-invert-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+max_original_eigenpair_residual5.77411728915e-10
+max_operator_calls216
+max_restart_cycles27
+max_shift_solve_count16
+判定 / check合格
+restart-8-shift-None/finitetrue
+restart-8-shift-None/original-problem-residualtrue
+restart-8-shift-None/known-spectrumtrue
+restart-8-shift-None/shift-linear-residualtrue
+restart-8-shift-None/action-budgettrue
+restart-8-shift-None/basis-orthogonalitytrue
+restart-8-shift-None/inverse-spectral-maptrue
+restart-16-shift-None/finitetrue
+restart-16-shift-None/original-problem-residualtrue
+restart-16-shift-None/known-spectrumtrue
+restart-16-shift-None/shift-linear-residualtrue
+restart-16-shift-None/action-budgettrue
+restart-16-shift-None/basis-orthogonalitytrue
+restart-16-shift-None/inverse-spectral-maptrue
+restart-8-shift-0.0/finitetrue
+restart-8-shift-0.0/original-problem-residualtrue
+restart-8-shift-0.0/known-spectrumtrue
+restart-8-shift-0.0/shift-linear-residualtrue
+restart-8-shift-0.0/action-budgettrue
+restart-8-shift-0.0/basis-orthogonalitytrue
+restart-8-shift-0.0/inverse-spectral-maptrue
+restart-16-shift-0.0/finitetrue
+restart-16-shift-0.0/original-problem-residualtrue
+restart-16-shift-0.0/known-spectrumtrue
+restart-16-shift-0.0/shift-linear-residualtrue
+restart-16-shift-0.0/action-budgettrue
+restart-16-shift-0.0/basis-orthogonalitytrue
+restart-16-shift-0.0/inverse-spectral-maptrue
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#restarted-shift-invert-measurements
+Coverage: reading
+
+restart-8-shift-950.0/finitetrue
+restart-8-shift-950.0/original-problem-residualtrue
+restart-8-shift-950.0/known-spectrumtrue
+restart-8-shift-950.0/shift-linear-residualtrue
+restart-8-shift-950.0/action-budgettrue
+restart-8-shift-950.0/basis-orthogonalitytrue
+restart-8-shift-950.0/inverse-spectral-maptrue
+restart-16-shift-950.0/finitetrue
+restart-16-shift-950.0/original-problem-residualtrue
+restart-16-shift-950.0/known-spectrumtrue
+restart-16-shift-950.0/shift-linear-residualtrue
+restart-16-shift-950.0/action-budgettrue
+restart-16-shift-950.0/basis-orthogonalitytrue
+restart-16-shift-950.0/inverse-spectral-maptrue
+shift/exact-singularity-failure-retained-as-controltrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。固有値比較に使う、保存した31×31 Dirichlet Laplacian。全記録を表で読む
+idfieldsshiftrestart_lengthcyclesoperator_callsoriginal_residual_actionsshift_residual_matrix_actionsshift_solve_countvalueexact_targettrue_normalized_residual
+restart-8-shift-Nonerestart-8-shift-None.npz—82721627004086.138320224086.138320225.77411728915e-10
+restart-16-shift-Nonerestart-16-shift-None.npz—1691449004086.138320224086.138320223.24815220269e-10
+restart-8-shift-0.0restart-8-shift-0.0.npz08181889.861679775349.861679775341.08987458764e-12
+restart-16-shift-0.0restart-16-shift-0.0.npz016116116169.861679775349.861679775346.35840391119e-17
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#restarted-shift-invert-measurements
+Coverage: reading
+
+restart-8-shift-950.0restart-8-shift-950.0.npz950821621616910.192162776910.1921627762.05628930763e-15
+restart-16-shift-950.0restart-16-shift-950.0.npz9501611611616910.192162776910.1921627765.08388848783e-17
+この例の実測値・全記録 / JSON
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#restarted-shift-invert-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+SLEPc EPS: projection, Krylov methods and shift-invert
+確認範囲 / review_level: selected-official-documentation
+Selected projection, Arnoldi, restarting, shift-invert and generalized-problem paragraphs were read. No SLEPc execution or Krylov-Schur reproduction is claimed.
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 整合質量FEM弦の一般化固有値 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/
+Coverage: reading
+
+整合質量のP1弦で、M内積Krylovと実際のSciPy LOBPCGを独立離散スペクトルへ照合します。
+手法・式・図・参照解
+使用手法
+Krylov固有値解法
+SciPy LOBPCGによる一般化固有値比較
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+要素からK,Mを組み立て、M内積のK^-1M KrylovとSciPy LOBPCGを比較。小規模な厳密K逆前処理。 LOBPCG初期列は{1,x³,x⁶}。K逆Mの次数+2像を初期spanから独立にし、{1,x,x²}の構造的階数欠落を避ける。 同じMの作用を資格済einsumのLinearOperatorで与え、dense-B adapterを通さない。固有値solver自体はSciPy LOBPCG。
+固定端弦の固有値と整合質量FEM
+単位弦・張力密度1、同次Dirichlet、内部15/31/63点、最低3固有対。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+整合質量FEM弦の一般化固有値
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+一般化dense eigh、独立離散スペクトル、連続体(jπ)^2への細分化。M直交性と元残差は別量。
+同じ問題の参照 · 解析参照
+P1整合質量弦：閉離散固有値と連続体固有値
+小規模1D弦のみ。SciPyが返す前の例外では入力を保存し、未返却の内部反復を保存したとはしません。 成分資格35判定は4科学例の合格を代用せず、元SciPy内部の未返却反復は保存済みとしません。
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#fem-mass-eigen-assumptions
+Coverage: reading
+
+単位弦・張力密度1、同次Dirichlet、内部15/31/63点、最低3固有対。
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#fem-mass-eigen-algorithm
+Coverage: reading
+
+要素からK,Mを組み立て、M内積のK^-1M KrylovとSciPy LOBPCGを比較。小規模な厳密K逆前処理。 LOBPCG初期列は{1,x³,x⁶}。K逆Mの次数+2像を初期spanから独立にし、{1,x,x²}の構造的階数欠落を避ける。 同じMの作用を資格済einsumのLinearOperatorで与え、dense-B adapterを通さない。固有値solver自体はSciPy LOBPCG。
+K x=lambda M xlambda_j,h=6(1-cos(theta_j))/[h^2(2+cos(theta_j))]X^T M X=I
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#fem-mass-eigen-validation
+Coverage: reading
+
+一般化dense eigh、独立離散スペクトル、連続体(jπ)^2への細分化。M直交性と元残差は別量。
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#fem-mass-eigen-limits
+Coverage: reading
+
+小規模1D弦のみ。SciPyが返す前の例外では入力を保存し、未返却の内部反復を保存したとはしません。 成分資格35判定は4科学例の合格を代用せず、元SciPy内部の未返却反復は保存済みとしません。
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#fem-mass-eigen-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+max_generalized_residual1.94948028234e-10
+max_M_orthogonality_defect1.11022302463e-15
+max_relative_reference_error1.58437354596e-13
+max_operator_vector_actions30
+max_preconditioner_vector_actions24
+判定 / check合格
+fem-15-mass-Krylov/finitetrue
+fem-15-mass-Krylov/original-generalized-residualtrue
+fem-15-mass-Krylov/M-orthogonalitytrue
+fem-15-mass-Krylov/independent-dense-referencetrue
+fem-15-mass-Krylov/exact-discrete-spectrumtrue
+fem-15-mass-Krylov/fixed-action-budgettrue
+fem-15-SciPy-LOBPCG/finitetrue
+fem-15-SciPy-LOBPCG/original-generalized-residualtrue
+fem-15-SciPy-LOBPCG/M-orthogonalitytrue
+fem-15-SciPy-LOBPCG/independent-dense-referencetrue
+fem-15-SciPy-LOBPCG/exact-discrete-spectrumtrue
+fem-15-SciPy-LOBPCG/fixed-action-budgettrue
+fem-31-mass-Krylov/finitetrue
+fem-31-mass-Krylov/original-generalized-residualtrue
+fem-31-mass-Krylov/M-orthogonalitytrue
+fem-31-mass-Krylov/independent-dense-referencetrue
+fem-31-mass-Krylov/exact-discrete-spectrumtrue
+fem-31-mass-Krylov/fixed-action-budgettrue
+fem-31-SciPy-LOBPCG/finitetrue
+fem-31-SciPy-LOBPCG/original-generalized-residualtrue
+fem-31-SciPy-LOBPCG/M-orthogonalitytrue
+fem-31-SciPy-LOBPCG/independent-dense-referencetrue
+fem-31-SciPy-LOBPCG/exact-discrete-spectrumtrue
+fem-31-SciPy-LOBPCG/fixed-action-budgettrue
+fem-63-mass-Krylov/finitetrue
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#fem-mass-eigen-measurements
+Coverage: reading
+
+fem-63-mass-Krylov/original-generalized-residualtrue
+fem-63-mass-Krylov/M-orthogonalitytrue
+fem-63-mass-Krylov/independent-dense-referencetrue
+fem-63-mass-Krylov/exact-discrete-spectrumtrue
+fem-63-mass-Krylov/fixed-action-budgettrue
+fem-63-SciPy-LOBPCG/finitetrue
+fem-63-SciPy-LOBPCG/original-generalized-residualtrue
+fem-63-SciPy-LOBPCG/M-orthogonalitytrue
+fem-63-SciPy-LOBPCG/independent-dense-referencetrue
+fem-63-SciPy-LOBPCG/exact-discrete-spectrumtrue
+fem-63-SciPy-LOBPCG/fixed-action-budgettrue
+continuum/second-order-ratio-1true
+continuum/second-order-ratio-2true
+continuum/finest-three-eigenvaluestrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。内部63点で計算した、M正規化された最低3モード。全記録を表で読む
+idfieldsmethodinterior_nodesoperator_vector_actionsoperator_kindpreconditioner_K_inverse_vector_actionstrue_relative_residualM_orthogonalityrelative_reference_errorvalues
+fem-15-mass-Krylovfem-15-mass-Krylov.npzmass-Krylov1515K^-1 M151.38767636333e-146.66133814775e-162.3277069973e-14[9.901353678398955,39.98832262499005,91.42343409886865]
+fem-15-SciPy-LOBPCGfem-15-SciPy-LOBPCG.npzSciPy-LOBPCG1526K201.53690970869e-102.60827224818e-168.43205627872e-15[9.901353678398968,39.98832262498907,91.42343409886853]
+fem-31-mass-Krylovfem-31-mass-Krylov.npzmass-Krylov3124K^-1 M245.23983878938e-148.881784197e-161.35418079467e-13[9.87753411753409,39.605414713597455,89.47038060401067]
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#fem-mass-eigen-measurements
+Coverage: reading
+
+fem-31-SciPy-LOBPCGfem-31-SciPy-LOBPCG.npzSciPy-LOBPCG3127K211.72839794668e-105.55111512313e-161.58437354596e-13[9.877534117534317,39.605414713595884,89.47038060400963]
+fem-63-mass-Krylovfem-63-mass-Krylov.npzmass-Krylov6324K^-1 M241.83403018145e-131.11022302463e-151.29843098772e-13[9.871586353257483,39.51013647013335,88.98708062867253]
+fem-63-SciPy-LOBPCGfem-63-SciPy-LOBPCG.npzSciPy-LOBPCG6330K241.94948028234e-106.66133814775e-163.11307344351e-14[9.871586353256738,39.510136470137326,88.98708062866348]
+この例の実測値・全記録 / JSON
+
+## 線形代数：直接法・鞍点系・再始動と整合質量固有値 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#fem-mass-eigen-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+SLEPc EPS: projection, Krylov methods and shift-invert
+確認範囲 / review_level: selected-official-documentation
+Selected projection, Arnoldi, restarting, shift-invert and generalized-problem paragraphs were read. No SLEPc execution or Krylov-Schur reproduction is claimed.
+SciPy 1.14.1 LOBPCG API
+確認範囲 / review_level: selected-official-documentation
+Selected discussion of SPD B, preconditioner M, the history tuple, the 3k eigensolve, the 5k > n fallback and the rod example was read. This maintained-library comparison shares reduced LAPACK primitives; LOBPCG is not independently authored here.
+SciPy 1.14.1 LOBPCG adapter and initial B-orthonormalization
+確認範囲 / review_level: selected-official-source
+Selected _makeMatMat, _b_orthonormalize and API lines were read. The installed pinned file is bound separately. No full reading of the original LOBPCG paper or byte equality between wheel and Web source formatting is claimed.
+
 ## 低Mach等エントロピー渦：前処理Roe流束の軽量検証 — 低Mach等エントロピー渦：前処理Roe流束の軽量検証 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-low-mach/
@@ -59686,27 +62430,538 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-lo
 Coverage: reading
 
 原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
-Fabian Miczek, Friedrich K. Röpke and Philipp V. F. Edelmann (2015). New numerical solver for flows at various Mach numbers · DOI: 10.1051/0004-6361/201425059
+Fabian Miczek, Friedrich K. Röpke and Philipp V. F. Edelmann (2015). New numerical solver for flows at various Mach numbers [accessed 2026-11-23] · DOI: 10.1051/0004-6361/201425059
 確認範囲 / review_level: selected-author-version-full-text: Section8 Eq56; Section4 explicit-RK3 discussion; AppendixA variable transforms; Section6 smooth piecewise-linear reconstruction without a limiter
 著者版の前処理行列・散逸項とRK3への言及を確認。今回は等エントロピー渦の短い時間区間に適用し、原著のGresho実験や暗黙積分を再現したとは扱いません。 6節の滑らかな問題に対するlimiterなしの区分線形再構築も確認し、改訂の独立した根拠とします。
-Wasilij Barsukow, Philipp V. F. Edelmann, Christian Klingenberg, Fabian Miczek and Friedrich K. Röpke (2017). A Numerical Scheme for the Compressible Low-Mach Number Regime of Ideal Fluid Dynamics · DOI: 10.1007/s10915-017-0372-4
+Wasilij Barsukow, Philipp V. F. Edelmann, Christian Klingenberg, Fabian Miczek and Friedrich K. Röpke (2017). A Numerical Scheme for the Compressible Low-Mach Number Regime of Ideal Fluid Dynamics [accessed 2026-11-23] · DOI: 10.1007/s10915-017-0372-4
 確認範囲 / review_level: selected-full-text: Section3 Eqs21,31,32; Section5 Eq83 and Fourier-mode stability discussion
 前処理散逸P⁻¹|PA|、原始変数行列と前進Eulerの厳しい刻み制限を確認。SSPRK33での本固定入力のFourier診断・実段検査は別に実施し、一般の非線形安定性やSSP保証を借用しません。
-Seth C. Spiegel, H. T. Huynh and James R. DeBonis (2015). A Survey of the Isentropic Euler Vortex Problem using High-Order Methods · DOI: 10.2514/6.2015-2444
+Seth C. Spiegel, H. T. Huynh and James R. DeBonis (2015). A Survey of the Isentropic Euler Vortex Problem using High-Order Methods [accessed 2026-11-23] · DOI: 10.2514/6.2015-2444
 確認範囲 / review_level: selected-primary-report: parameterized vortex definitions and Sections IV.B/IV.C boundary discussion
-一般化された渦の定義と周期境界の相互作用・せん断層の説明を確認。独自のβ3・流速(1,.5)・M∞.1/.01を明示し、全平面解と有限周期箱の違いを保持します。NASA/FRソルバーや論文図の転載ではありません。
 
 ## 低Mach等エントロピー渦：前処理Roe流束の軽量検証 — 一次文献・関連資料と確認範囲 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-low-mach/#low-mach-vortex-references
 Coverage: reading
 
-Sigal Gottlieb and Chi-Wang Shu (1998). Total Variation Diminishing Runge-Kutta Schemes · DOI: 10.1090/S0025-5718-98-00913-2
+一般化された渦の定義と周期境界の相互作用・せん断層の説明を確認。独自のβ3・流速(1,.5)・M∞.1/.01を明示し、全平面解と有限周期箱の違いを保持します。NASA/FRソルバーや論文図の転載ではありません。
+Sigal Gottlieb and Chi-Wang Shu (1998). Total Variation Diminishing Runge-Kutta Schemes [accessed 2026-11-23] · DOI: 10.1090/S0025-5718-98-00913-2
 確認範囲 / review_level: author-bibliography and indexed author-PDF excerpts; direct PDF fetch unavailable
 著者の書誌と著者PDFの索引抜粋で書誌・3次TVD法の位置付けを確認。PDFを直接通読したとは記録しません。係数は次の著者レビューのSSPRK(3,3)表示とも照合します。
-Sigal Gottlieb, Chi-Wang Shu and Eitan Tadmor (2001). Strong Stability-Preserving High-Order Time Discretization Methods · DOI: 10.1137/S003614450036757X
+Sigal Gottlieb, Chi-Wang Shu and Eitan Tadmor (2001). Strong Stability-Preserving High-Order Time Discretization Methods [accessed 2026-11-23] · DOI: 10.1137/S003614450036757X
 確認範囲 / review_level: selected-full-author-PDF: Section4 Proposition4.1 Eq4.2 printedp100/PDFpage12; Section2.2 Lemma2.1 printedp92/PDFpage4
 3段3次の更新係数と、前進Eulerの強安定性を前提にするSSPの条件を確認。今回のMiczek流束についてSSP・TVD・非線形安定性を一般保証せず、指定したFourier行列と実際の段状態を別途確認します。
+
+## 2D誘電体円柱のMie散乱幅 — 2D誘電体円柱のMie散乱幅 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-cylinder/
+Coverage: reading
+
+実際の2D散乱場を進め、閉曲線Poynting流束と独立な円柱級数を比較します。
+
+## 2D誘電体円柱のMie散乱幅 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-cylinder/#run-all
+Coverage: reading
+
+ZIPの atlas-maxwell-cylinder-2026-11-24-r2 フォルダで実行します。このコマンドは配布版の全1例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## 2D誘電体円柱のMie散乱幅 — 2D誘電体円柱のMie散乱幅 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-cylinder/
+Coverage: reading
+
+実際の2D散乱場を進め、閉曲線Poynting流束と独立な円柱級数を比較します。
+手法・式・図・参照解
+使用手法
+Yee FDTD
+2ステップleapfrog法
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+Yeeの散乱場を局所分極contrastの厳密な離散入射差分で励起します。EとHはそれぞれの整数・半時刻でFourier集計し、Hの4点補間後に物理流束を積分します。
+線形Maxwell電磁場（真空・誘電体）
+c=ε0=μ0=1。無限円柱のEz偏光、半径0.25、比誘電率2.25、真空波長1。6×6領域と4辺PML、明示的な節点階段状形状です。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+2D誘電体円柱のMie散乱幅
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+12/18/24点/波長、32周期の過渡除去と8周期の計測。2本の閉曲線、前後4周期、同じ全時間を進めた半振幅phasorと5保存時刻の真空対照を検査し、円柱級数の散乱幅と外部場を照合します。
+同じ問題の参照 · 解析参照
+誘電体円柱の外部級数と散乱幅
+Ezの無損失2D円柱のみで、3D球ではありません。階段状形状の誤差を記録し、一般の曲面2次精度や任意周波数・材料での精密散乱を保証しません。
+
+## 2D誘電体円柱のMie散乱幅 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-cylinder/#cylinder-mie2d-assumptions
+Coverage: reading
+
+c=ε0=μ0=1。無限円柱のEz偏光、半径0.25、比誘電率2.25、真空波長1。6×6領域と4辺PML、明示的な節点階段状形状です。
+
+## 2D誘電体円柱のMie散乱幅 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-cylinder/#cylinder-mie2d-algorithm
+Coverage: reading
+
+Yeeの散乱場を局所分極contrastの厳密な離散入射差分で励起します。EとHはそれぞれの整数・半時刻でFourier集計し、Hの4点補間後に物理流束を積分します。
+\varepsilon\partial_tE_z=\partial_xH_y-\partial_yH_x,\quad\partial_tH_x=-\partial_yE_z,\quad\partial_tH_y=\partial_xE_z\Sigma_{\mathrm{sca}}=\frac4k\sum_{n=-\infty}^{\infty}|a_n|^2,\quad\Sigma_{\mathrm{ext}}=-\frac4k\sum_n\operatorname{Re}a_n
+
+## 2D誘電体円柱のMie散乱幅 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-cylinder/#cylinder-mie2d-validation
+Coverage: reading
+
+12/18/24点/波長、32周期の過渡除去と8周期の計測。2本の閉曲線、前後4周期、同じ全時間を進めた半振幅phasorと5保存時刻の真空対照を検査し、円柱級数の散乱幅と外部場を照合します。
+
+## 2D誘電体円柱のMie散乱幅 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-cylinder/#cylinder-mie2d-limits
+Coverage: reading
+
+Ezの無損失2D円柱のみで、3D球ではありません。階段状形状の誤差を記録し、一般の曲面2次精度や任意周波数・材料での精密散乱を保証しません。
+
+## 2D誘電体円柱のMie散乱幅 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-cylinder/#cylinder-mie2d-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+completed_primary_and_control_runs5
+spatial_dimensions2
+geometryExplicitnodalstaircase,noorderclaim
+scattering_is_power_integraltrue
+referenceIndependentordinarycylindricalJ/H1,notspherical
+gallery_source145
+finest_scattering_width0.957172512629
+independent_scattering_width0.977861821265
+finest_width_relative_error0.0211577016161
+finest_exterior_field_relative_error0.03027868628
+complete_run_phasor_linearity0
+判定 / check合格
+reference-and-new-components-qualifiedtrue
+cylinder-ppw12/finitetrue
+cylinder-ppw12/outward-scattering-powertrue
+cylinder-ppw12/closed-contour-sensitivitytrue
+cylinder-ppw12/fixed-window-sensitivitytrue
+cylinder-ppw18/finitetrue
+cylinder-ppw18/outward-scattering-powertrue
+cylinder-ppw18/closed-contour-sensitivitytrue
+cylinder-ppw18/fixed-window-sensitivitytrue
+cylinder-ppw24/finitetrue
+cylinder-ppw24/outward-scattering-powertrue
+cylinder-ppw24/closed-contour-sensitivitytrue
+cylinder-ppw24/fixed-window-sensitivitytrue
+finest-scattering-widthtrue
+finest-exterior-scattered-fieldtrue
+coarse-to-finest-improvementtrue
+complete-run-phasor-linearitytrue
+complete-run-power-quadratictrue
+zero-contrast-stored-snapshot-fieldstrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存した最細格子の実2D散乱電場phasorの実部。全記録を表で読む
+
+## 2D誘電体円柱のMie散乱幅 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-cylinder/#cylinder-mie2d-measurements
+Coverage: reading
+
+idppwcellsstepsdtfieldswidthreference_widthwidth_relativefield_relativecontour_fractionwindow_fractionstaircase_areaexact_areaamplitudelinearityepsilonstored_snapshot_scattered_peak
+cylinder-ppw12127211600.0344827586207cylinder-ppw12.npz0.9215167118940.9778618212650.05762072733170.08360007112610.0003997330981741.12075127309e-060.1736111111110.196349540849————
+cylinder-ppw181810817200.0232558139535cylinder-ppw18.npz1.134192610690.9778618212650.1598700205090.1468722318940.0001836500586611.68962255698e-060.2129629629630.196349540849————
+cylinder-ppw242414422800.0175438596491cylinder-ppw24.npz0.9571725126290.9778618212650.02115770161610.030278686280.0001004252745232.65814795948e-070.1892361111110.196349540849————
+cylinder-half-amplitude24—2280—cylinder-half-amplitude.npz————————0.50——
+cylinder-vacuum12—1160—cylinder-vacuum.npz——————————10
+この例の実測値・全記録 / JSON
+
+## 2D誘電体円柱のMie散乱幅 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-cylinder/#cylinder-mie2d-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Ansys Optics (n.d.). Mie scattering 2D [accessed 2026-11-24]
+確認範囲 / review_level: primary-official-documentation-selected-example
+Read the complete substantive benchmark description: two-dimensional dielectric cylinder, TFSF, angular far field and lossless cross sections. Did not read the associated simulation files, theory table or cited book; no external numerical data imported. Publication and revision dates have not been verified. Accessed on 2026-11-24; this is a consultation date, not a publication year.
+NIST DLMF. Bessel and Hankel Wronskians, section10.5 (version 1.2.8, released 2026-09-15) [accessed 2026-11-24]
+確認範囲 / review_level: primary-official-mathematical-identity
+Read section 10.5, especially equation 10.5.3 for the ordinary J/Hankel1 Wronskian; version 1.2.8. Cylinder boundary algebra is independently derived here. The year 2026 denotes DLMF version 1.2.8, released on 2026-09-15, not its initial publication year. Accessed on 2026-11-24.
+
+## 分散媒質の浅い入射角と長時間PML — 分散媒質の浅い入射角と長時間PML [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-grazing/
+Coverage: reading
+
+80度の中心位相角を持つ有限波束をT=700まで進め、境界誤差を同格子の無PML参照から分離します。
+
+## 分散媒質の浅い入射角と長時間PML — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-grazing/#run-all
+Coverage: reading
+
+ZIPの atlas-maxwell-grazing-2026-11-24-r2 フォルダで実行します。このコマンドは配布版の全1例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## 分散媒質の浅い入射角と長時間PML — 分散媒質の浅い入射角と長時間PML [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-grazing/
+Coverage: reading
+
+80度の中心位相角を持つ有限波束をT=700まで進め、境界誤差を同格子の無PML参照から分離します。
+手法・式・図・参照解
+使用手法
+Yee FDTD
+2ステップleapfrog法
+陰的中点則
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+Yee・中点ADEに時刻配置を保った台形微分memoryを結合。正の物理散逸と符号付きPML数値仕事を区別し、補助場を含め全状態を保存します。
+受動Lorentz・Ohmic分散Maxwell場
+c=1、均質Lorentz媒質ε∞=1、Δε=0.2、ω0=12はPML内まで連続。512/768/1024点とpeak6/9/12を同時に細分化します。垂直粗格子はpeak6、弱減衰細格子対照はpeak12。長さ64、層幅12、中心32、幅4、carrier6は固定です。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+分散媒質の浅い入射角と長時間PML
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+3つの格子・層強度の同時細分化、垂直・弱減衰対照の5長時間計算。参照入力が全て不変なことを確認して同一byteの無PML参照を再利用します。旧13検査本体を保持し、policy・peak12直接仕事の2回帰を追加。全44長時間判定は不変です。
+同じ問題の参照 · 有限格子の数値参照
+浅角度分散波束の長時間・同格子孤立境界参照
+有限kx帯域の中心角が80度で、全成分が厳密に80度ではありません。無PML参照は同じ離散化・初期場を使い、伝播分散を除いた境界誤差用です。任意角度・材料での大域安定性証明ではありません。 固定PMLの空間次数を測る族ではなく、旧100検査だけでpeak12の大域安定性が証明されたとはしません。
+
+## 分散媒質の浅い入射角と長時間PML — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-grazing/#dispersive-grazing-pml-assumptions
+Coverage: reading
+
+c=1、均質Lorentz媒質ε∞=1、Δε=0.2、ω0=12はPML内まで連続。512/768/1024点とpeak6/9/12を同時に細分化します。垂直粗格子はpeak6、弱減衰細格子対照はpeak12。長さ64、層幅12、中心32、幅4、carrier6は固定です。
+
+## 分散媒質の浅い入射角と長時間PML — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-grazing/#dispersive-grazing-pml-algorithm
+Coverage: reading
+
+Yee・中点ADEに時刻配置を保った台形微分memoryを結合。正の物理散逸と符号付きPML数値仕事を区別し、補助場を含め全状態を保存します。
+\partial_t\psi=-s_x(\psi+D_xu),\quad D_x^{\mathrm{PML}}u=D_xu+\psi\psi^n=b\psi^{n-1}+c(D^n+D^{n-1}),\quad b=\frac{1-s_x\Delta t/2}{1+s_x\Delta t/2},\quad c=\frac{-s_x\Delta t/2}{1+s_x\Delta t/2}\Delta\mathcal E_{\mathrm{mod}}+W_{\mathrm{physical}}-W_{\mathrm{PML}}=0
+
+## 分散媒質の浅い入射角と長時間PML — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-grazing/#dispersive-grazing-pml-validation
+Coverage: reading
+
+3つの格子・層強度の同時細分化、垂直・弱減衰対照の5長時間計算。参照入力が全て不変なことを確認して同一byteの無PML参照を再利用します。旧13検査本体を保持し、policy・peak12直接仕事の2回帰を追加。全44長時間判定は不変です。
+
+## 分散媒質の浅い入射角と長時間PML — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-grazing/#dispersive-grazing-pml-limits
+Coverage: reading
+
+有限kx帯域の中心角が80度で、全成分が厳密に80度ではありません。無PML参照は同じ離散化・初期場を使い、伝播分散を除いた境界誤差用です。任意角度・材料での大域安定性証明ではありません。 固定PMLの空間次数を測る族ではなく、旧100検査だけでpeak12の大域安定性が証明されたとはしません。
+
+## 分散媒質の浅い入射角と長時間PML — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-grazing/#dispersive-grazing-pml-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+completed_primary_and_control_runs5
+spatial_dimensions2
+spatial_restrictionActual single-ky Yee evolution; no arbitrary-y scattering claim.
+referenceIndependent no-PML Fourier update matrix; shared discretization and initialization isolate boundary error from bulk dispersion.
+memory_schemeTrapezoidal derivative filter; original endpoint-held variant retained separately.
+refinement_familyJoint grid and layer-strength co-refinement, not fixed-PML spatial order.
+actual_pml_peaks{"grazing-n512":6.0,"grazing-n768":9.0,"grazing-n1024":12.0,"normal-n512":6.0,"damped-grazing-n1024":12.0}
+PML_work_is_signed_numerical_worktrue
+material_continues_through_PMLtrue
+finite_band_carrier_not_exactly_monochromatictrue
+finest_grazing_boundary_error3.69820647488e-05
+maximum_energy_budget_defect1.46631408684e-12
+maximum_positive_energy_ratio1.04670974118
+normal_final_energy_fraction1.04668751503e-18
+判定 / check合格
+independent-reference-and-filter-qualifiedtrue
+grazing-n512/all-fields-and-auxiliaries-finitetrue
+grazing-n512/same-grid-isolated-boundary-errortrue
+grazing-n512/direct-signed-work-ledgertrue
+grazing-n512/nonnegative-physical-material-worktrue
+grazing-n512/long-time-physical-energy-boundedtrue
+grazing-n512/long-time-memory-boundedtrue
+grazing-n512/long-time-residualtrue
+grazing-n512/five-matched-actual-timestrue
+
+## 分散媒質の浅い入射角と長時間PML — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-grazing/#dispersive-grazing-pml-measurements
+Coverage: reading
+
+grazing-n768/all-fields-and-auxiliaries-finitetrue
+grazing-n768/same-grid-isolated-boundary-errortrue
+grazing-n768/direct-signed-work-ledgertrue
+grazing-n768/nonnegative-physical-material-worktrue
+grazing-n768/long-time-physical-energy-boundedtrue
+grazing-n768/long-time-memory-boundedtrue
+grazing-n768/long-time-residualtrue
+grazing-n768/five-matched-actual-timestrue
+grazing-n1024/all-fields-and-auxiliaries-finitetrue
+grazing-n1024/same-grid-isolated-boundary-errortrue
+grazing-n1024/direct-signed-work-ledgertrue
+grazing-n1024/nonnegative-physical-material-worktrue
+grazing-n1024/long-time-physical-energy-boundedtrue
+grazing-n1024/long-time-memory-boundedtrue
+grazing-n1024/long-time-residualtrue
+grazing-n1024/five-matched-actual-timestrue
+normal-n512/all-fields-and-auxiliaries-finitetrue
+normal-n512/same-grid-isolated-boundary-errortrue
+normal-n512/direct-signed-work-ledgertrue
+normal-n512/nonnegative-physical-material-worktrue
+normal-n512/long-time-physical-energy-boundedtrue
+normal-n512/long-time-memory-boundedtrue
+normal-n512/long-time-residualtrue
+normal-n512/five-matched-actual-timestrue
+damped-grazing-n1024/all-fields-and-auxiliaries-finitetrue
+damped-grazing-n1024/same-grid-isolated-boundary-errortrue
+damped-grazing-n1024/direct-signed-work-ledgertrue
+damped-grazing-n1024/nonnegative-physical-material-worktrue
+damped-grazing-n1024/long-time-physical-energy-boundedtrue
+
+## 分散媒質の浅い入射角と長時間PML — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-grazing/#dispersive-grazing-pml-measurements
+Coverage: reading
+
+damped-grazing-n1024/long-time-memory-boundedtrue
+damped-grazing-n1024/long-time-residualtrue
+damped-grazing-n1024/five-matched-actual-timestrue
+finest-grazing-boundary-errortrue
+grazing-refinement-n768true
+grazing-refinement-n1024true
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存した浅角度の実電場を周期y方向へ再構成。灰色はPML領域です。全記録を表で読む
+idcellsstepsdtpml_peakangle_degreesgammafieldsboundary_errormaximum_budgetphysical_worksigned_PML_workmaximum_energy_growthmaximum_memory_relativefinal_positive_energy_fractionerrors_at_actual_times
+grazing-n512512218520.03203368112766800grazing-n512.npz0.002274918524197.62798023236e-140-9.524465621311.008605280540.08444989819017.76288246606e-06[0.0,2.1444234935642056e-07,0.0009582206658863335,0.0022667136469209904,0.0022749185241942456]
+grazing-n768768327760.02135709055419800grazing-n768.npz0.0002592336009683.27890754623e-130-9.572756200681.003832364020.08987099583891.36899498091e-06[0.0,2.082757558385089e-09,4.0539393535005906e-05,0.00018857583444879824,0.00025923360096816205]
+grazing-n10241024437040.016016840563812800grazing-n1024.npz3.69820647488e-053.79544912518e-130-9.589777506511.002156863560.09395281868261.0735759623e-06[0.0,1.5836496475413641e-09,1.934086358058802e-06,1.8932190510678662e-05,3.698206474875288e-05]
+
+## 分散媒質の浅い入射角と長時間PML — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-grazing/#dispersive-grazing-pml-measurements
+Coverage: reading
+
+normal-n51251293360.0749785775493600normal-n512.npz1.14433052119e-105.58016761965e-140-9.168017963221.046709741180.1944076323231.04668751503e-18[0.0,1.1443305211937377e-10,1.0074002983851267e-10,9.226364532834625e-11,9.21136696532338e-11]
+damped-grazing-n10241024437040.016016840563812800.005damped-grazing-n1024.npz3.3092469867e-051.46631408684e-120.553497565029-9.036281855691.002152831410.09122895971928.61380238317e-07[0.0,1.5384442220216574e-09,1.8278851677926718e-06,1.7411202391275966e-05,3.309246986703788e-05]
+この例の実測値・全記録 / JSON
+
+## 分散媒質の浅い入射角と長時間PML — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-grazing/#dispersive-grazing-pml-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Meep developers (n.d.). Meep Materials documentation [accessed 2026-11-24]
+確認範囲 / review_level: primary-official-documentation-selected-sections
+Read Material Dispersion, Numerical Stability, Loss and Gain, and Conductivity. Confirmed the exp(-i omega t) convention, Lorentz polarization and dispersive-PML warning. Our sigma E conductivity and midpoint update differ from Meep. Unversioned latest documentation; no original Yee or Roden-Gedney paper claim. Publication and revision dates have not been verified. Accessed on 2026-11-24; this is a consultation date, not a publication year.
+Steven G. Johnson (2021). Notes on Perfectly Matched Layers
+確認範囲 / review_level: primary-author-notes-selected-derivation
+Read sections 3.2–4.2, equations 7–8 and the time-domain ADE discussion, plus sections 5–7.2 on homogeneity, evanescent fields and grazing/discretization limitations. The served text is updated 2026-08-24. The trapezoidal filter is our derivation; no full original Berenger/Roden-Gedney paper review is claimed.
+
+## Lorentz分散板へのs/p斜め入射 — Lorentz分散板へのs/p斜め入射 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-lorentz/
+Coverage: reading
+
+有限波束の実進行から複素r/t・R/T・直接散逸を求め、複素Fresnel参照と比較します。
+
+## Lorentz分散板へのs/p斜め入射 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-lorentz/#run-all
+Coverage: reading
+
+ZIPの atlas-maxwell-lorentz-2026-11-24-r2 フォルダで実行します。このコマンドは配布版の全1例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## Lorentz分散板へのs/p斜め入射 — Lorentz分散板へのs/p斜め入射 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-lorentz/
+Coverage: reading
+
+有限波束の実進行から複素r/t・R/T・直接散逸を求め、複素Fresnel参照と比較します。
+手法・式・図・参照解
+使用手法
+Yee FDTD
+2ステップleapfrog法
+陰的中点則
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+単一ky Yee空間演算と局所の陰的中点Lorentz ADE。p偏光の両電場に分極を結合し、同格子の真空波束で入射・伝播位相を除きます。直接Ohmic・物質減衰仕事と修正エネルギーを別々に集計します。
+受動Lorentz・Ohmic分散Maxwell場
+周期y方向のky=4に制限した2D場、c=1。板[4,5]のε∞=1.5、Δε=0.75、ω0=9、γ=0.5、σ=0.04。外側は真空、PEC端は[-24,36]、T=60です。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Lorentz分散板へのs/p斜め入射
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+s/p各3解像度の物質・真空12進行からω=5.1/6/6.9を測定。独立な有限窓の真空幾何級数、複素Fresnel係数、直接体積散逸、全stepのPEC収支と末尾を検査します。
+同じ問題の参照 · 解析参照
+斜め入射の複素Fresnel係数とLorentz板の直接散逸
+任意の横方向分布ではなく単一kyの実空間制限です。1つの受動Lorentz極と有限帯域・有限窓のみ。Gaussian尾は厳密には非零で、窓診断と参照誤差を別記します。 全周波数で厳密にcap反射が未到達という証明ではありません。
+
+## Lorentz分散板へのs/p斜め入射 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-lorentz/#lorentz-oblique-sp-assumptions
+Coverage: reading
+
+周期y方向のky=4に制限した2D場、c=1。板[4,5]のε∞=1.5、Δε=0.75、ω0=9、γ=0.5、σ=0.04。外側は真空、PEC端は[-24,36]、T=60です。
+
+## Lorentz分散板へのs/p斜め入射 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-lorentz/#lorentz-oblique-sp-algorithm
+Coverage: reading
+
+単一ky Yee空間演算と局所の陰的中点Lorentz ADE。p偏光の両電場に分極を結合し、同格子の真空波束で入射・伝播位相を除きます。直接Ohmic・物質減衰仕事と修正エネルギーを別々に集計します。
+\varepsilon_\infty\partial_t\mathbf E=\nabla\times\mathbf H-\sigma\mathbf E-\mathbf J,\quad\partial_t\mathbf P=\mathbf J\partial_t\mathbf J=f\mathbf E-\omega_0^2\mathbf P-\gamma\mathbf J,\quad f=\Delta\varepsilon\omega_0^2\varepsilon(\omega)=\varepsilon_\infty+\frac{f}{\omega_0^2-\omega^2-i\gamma\omega}+\frac{i\sigma}{\omega}
+
+## Lorentz分散板へのs/p斜め入射 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-lorentz/#lorentz-oblique-sp-validation
+Coverage: reading
+
+s/p各3解像度の物質・真空12進行からω=5.1/6/6.9を測定。独立な有限窓の真空幾何級数、複素Fresnel係数、直接体積散逸、全stepのPEC収支と末尾を検査します。
+
+## Lorentz分散板へのs/p斜め入射 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-lorentz/#lorentz-oblique-sp-limits
+Coverage: reading
+
+任意の横方向分布ではなく単一kyの実空間制限です。1つの受動Lorentz極と有限帯域・有限窓のみ。Gaussian尾は厳密には非零で、窓診断と参照誤差を別記します。 全周波数で厳密にcap反射が未到達という証明ではありません。
+
+## Lorentz分散板へのs/p斜め入射 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-lorentz/#lorentz-oblique-sp-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+completed_matched_pairs6
+completed_primary_and_vacuum_evolutions12
+spatial_dimensions2
+spatial_restrictionActual single-ky Yee evolution with both p electric ADE components.
+material_energy_includedtrue
+direct_absorption_not_defined_by_RTtrue
+final_time60
+finite_windowOne final carrier period is checked; Gaussian tails remain noncompact.
+maximum_energy_budget_defect1.07295864839e-12
+maximum_vacuum_calibration_error2.7424705909e-13
+finest_complex_rt_errors{"s":0.011507167077779438,"p":0.012023386314063115}
+finest_RTA_errors{"s":0.004990411900537867,"p":0.0022696015641971365}
+判定 / check合格
+fixed-reference-and-components-qualifiedtrue
+lorentz-s-n960/finitetrue
+lorentz-s-n960/closed-PEC-direct-work-budgettrue
+lorentz-s-n960/vacuum-energy-budgettrue
+lorentz-s-n960/nonnegative-material-worktrue
+lorentz-s-n960/initial-slab-tailtrue
+lorentz-s-n960/last-carrier-period-monitor-energytrue
+lorentz-s-n960/independent-finite-window-vacuum-DTFTtrue
+lorentz-s-n960/independent-direct-spectral-work-budgettrue
+lorentz-s-n1920/finitetrue
+lorentz-s-n1920/closed-PEC-direct-work-budgettrue
+lorentz-s-n1920/vacuum-energy-budgettrue
+lorentz-s-n1920/nonnegative-material-worktrue
+lorentz-s-n1920/initial-slab-tailtrue
+lorentz-s-n1920/last-carrier-period-monitor-energytrue
+lorentz-s-n1920/independent-finite-window-vacuum-DTFTtrue
+
+## Lorentz分散板へのs/p斜め入射 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-lorentz/#lorentz-oblique-sp-measurements
+Coverage: reading
+
+lorentz-s-n1920/independent-direct-spectral-work-budgettrue
+lorentz-s-n3840/finitetrue
+lorentz-s-n3840/closed-PEC-direct-work-budgettrue
+lorentz-s-n3840/vacuum-energy-budgettrue
+lorentz-s-n3840/nonnegative-material-worktrue
+lorentz-s-n3840/initial-slab-tailtrue
+lorentz-s-n3840/last-carrier-period-monitor-energytrue
+lorentz-s-n3840/independent-finite-window-vacuum-DTFTtrue
+lorentz-s-n3840/independent-direct-spectral-work-budgettrue
+s/finest-complex-rttrue
+s/finest-RTAtrue
+s/refinement-n1920true
+s/refinement-n3840true
+lorentz-p-n960/finitetrue
+lorentz-p-n960/closed-PEC-direct-work-budgettrue
+lorentz-p-n960/vacuum-energy-budgettrue
+lorentz-p-n960/nonnegative-material-worktrue
+lorentz-p-n960/initial-slab-tailtrue
+lorentz-p-n960/last-carrier-period-monitor-energytrue
+lorentz-p-n960/independent-finite-window-vacuum-DTFTtrue
+lorentz-p-n960/independent-direct-spectral-work-budgettrue
+lorentz-p-n1920/finitetrue
+lorentz-p-n1920/closed-PEC-direct-work-budgettrue
+lorentz-p-n1920/vacuum-energy-budgettrue
+lorentz-p-n1920/nonnegative-material-worktrue
+lorentz-p-n1920/initial-slab-tailtrue
+lorentz-p-n1920/last-carrier-period-monitor-energytrue
+lorentz-p-n1920/independent-finite-window-vacuum-DTFTtrue
+lorentz-p-n1920/independent-direct-spectral-work-budgettrue
+lorentz-p-n3840/finitetrue
+lorentz-p-n3840/closed-PEC-direct-work-budgettrue
+lorentz-p-n3840/vacuum-energy-budgettrue
+
+## Lorentz分散板へのs/p斜め入射 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-lorentz/#lorentz-oblique-sp-measurements
+Coverage: reading
+
+lorentz-p-n3840/nonnegative-material-worktrue
+lorentz-p-n3840/initial-slab-tailtrue
+lorentz-p-n3840/last-carrier-period-monitor-energytrue
+lorentz-p-n3840/independent-finite-window-vacuum-DTFTtrue
+lorentz-p-n3840/independent-direct-spectral-work-budgettrue
+p/finest-complex-rttrue
+p/finest-RTAtrue
+p/refinement-n1920true
+p/refinement-n3840true
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存したp偏光の実電場をky=4の周期y方向へ再構成した場。全記録を表で読む
+idpolarizationcellstransverse_cellsstepshdtfieldsmaximum_budgetvacuum_budgetminimum_physical_workcomplex_rt_errorRTA_errorvacuum_calibration_errortail_energy_fractioninitial_material_tailindependent_RTA_budget
+lorentz-s-n960s9603225920.06250.0231481481481lorentz-s-n960.npz4.43566697111e-145.35325300218e-1400.1988757929250.06852436854022.64708130966e-141.40430315661e-151.52299780793e-080.00924847427666
+lorentz-s-n1920s19206451840.031250.0115740740741lorentz-s-n1920.npz6.25618337841e-141.07476998435e-1300.04683478094980.01934543310444.06872710335e-141.6494920177e-151.52299780793e-080.00248891265736
+lorentz-s-n3840s3840128103640.0156250.00578927055191lorentz-s-n3840.npz1.06960802099e-121.45720381215e-1200.01150716707780.004990411900542.70297899388e-131.56309506217e-151.52299780793e-080.000974787757278
+
+## Lorentz分散板へのs/p斜め入射 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-lorentz/#lorentz-oblique-sp-measurements
+Coverage: reading
+
+lorentz-p-n960p9603225920.06250.0231481481481lorentz-p-n960.npz4.36354230492e-145.44941922377e-1400.2028978278520.03345388336963.11169582994e-146.91222368305e-191.79073234358e-080.00928388324423
+lorentz-p-n1920p19206451840.031250.0115740740741lorentz-p-n1920.npz6.45580633242e-141.0923368043e-1300.04866434970560.008669701514763.84648937178e-142.19072973032e-191.79152374155e-080.00252471172285
+lorentz-p-n3840p3840128103640.0156250.00578927055191lorentz-p-n3840.npz1.07295864839e-121.45720381215e-1200.01202338631410.00226960156422.7424705909e-131.50171185591e-191.79172378557e-080.000954831876688
+この例の実測値・全記録 / JSON
+
+## Lorentz分散板へのs/p斜め入射 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-lorentz/#lorentz-oblique-sp-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Meep developers (n.d.). Meep Materials documentation [accessed 2026-11-24]
+確認範囲 / review_level: primary-official-documentation-selected-sections
+Read Material Dispersion, Numerical Stability, Loss and Gain, and Conductivity. Confirmed the exp(-i omega t) convention, Lorentz polarization and dispersive-PML warning. Our sigma E conductivity and midpoint update differ from Meep. Unversioned latest documentation; no original Yee or Roden-Gedney paper claim. Publication and revision dates have not been verified. Accessed on 2026-11-24; this is a consultation date, not a publication year.
 
 ## 多峰性MCMC：混合不良と収束診断の独立検証 — 多峰性MCMC：混合不良と収束診断の独立検証 [ja]
 
@@ -62341,7 +65596,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#run-all
 Coverage: reading
 
-ZIPの atlas-mhd-transport-2026-11-23 フォルダで実行します。このコマンドは配布版の全3例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
+ZIPの atlas-mhd-transport-2026-11-24 フォルダで実行します。このコマンドは配布版の全3例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run.py --input inputs.json --output output
@@ -62488,13 +65743,13 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mh
 Coverage: reading
 
 原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
-Athena++ collaboration (2026). Athena++ official field_loop and orszag_tang problem generators, pinned source
+Athena++ collaboration (2026). Athena++ official field_loop and orszag_tang problem generators, pinned source [accessed 2026-11-23]
 確認範囲 / review_level: Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit
 固定コミットの公式アーカイブSHAを照合し、2初期値生成器と設定・保存列を確認。別実装を実行して参照場を作成し、空間・時間感度を検査。全ソース監査や厳密解とは表示しません。
-Thomas A. Gardiner and James M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport · DOI: 10.1016/j.jcp.2004.11.016
+Thomas A. Gardiner and James M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport [accessed 2026-11-23] · DOI: 10.1016/j.jcp.2004.11.016
 確認範囲 / review_level: Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication
 著者公開PDFのCT節・磁場ループ・円偏波の定義を確認。論文のCTU/PPMや斜め伝播実験を再現したとは主張しません。今回の円偏波は1次元整列、公式磁場ループはvz=2の明示的変更です。
-Takahiro Miyoshi and Kanya Kusano (2005). A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics · DOI: 10.1016/j.jcp.2005.02.017
+Takahiro Miyoshi and Kanya Kusano (2005). A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics [accessed 2026-11-23] · DOI: 10.1016/j.jcp.2005.02.017
 確認範囲 / review_level: Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments
 書誌を確認。出版社本文は取得できず、今回新たに原著の式や実験を監査したとは表示しません。全8変数HLLDコードは過去の公開検証済みAtlasから同一バイトで継承します。
 
@@ -62638,13 +65893,13 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mh
 Coverage: reading
 
 原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
-Athena++ collaboration (2026). Athena++ official field_loop and orszag_tang problem generators, pinned source
+Athena++ collaboration (2026). Athena++ official field_loop and orszag_tang problem generators, pinned source [accessed 2026-11-23]
 確認範囲 / review_level: Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit
 固定コミットの公式アーカイブSHAを照合し、2初期値生成器と設定・保存列を確認。別実装を実行して参照場を作成し、空間・時間感度を検査。全ソース監査や厳密解とは表示しません。
-Thomas A. Gardiner and James M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport · DOI: 10.1016/j.jcp.2004.11.016
+Thomas A. Gardiner and James M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport [accessed 2026-11-23] · DOI: 10.1016/j.jcp.2004.11.016
 確認範囲 / review_level: Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication
 著者公開PDFのCT節・磁場ループ・円偏波の定義を確認。論文のCTU/PPMや斜め伝播実験を再現したとは主張しません。今回の円偏波は1次元整列、公式磁場ループはvz=2の明示的変更です。
-Takahiro Miyoshi and Kanya Kusano (2005). A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics · DOI: 10.1016/j.jcp.2005.02.017
+Takahiro Miyoshi and Kanya Kusano (2005). A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics [accessed 2026-11-23] · DOI: 10.1016/j.jcp.2005.02.017
 確認範囲 / review_level: Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments
 書誌を確認。出版社本文は取得できず、今回新たに原著の式や実験を監査したとは表示しません。全8変数HLLDコードは過去の公開検証済みAtlasから同一バイトで継承します。
 
@@ -62800,13 +66055,13 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mh
 Coverage: reading
 
 原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
-Athena++ collaboration (2026). Athena++ official field_loop and orszag_tang problem generators, pinned source
+Athena++ collaboration (2026). Athena++ official field_loop and orszag_tang problem generators, pinned source [accessed 2026-11-23]
 確認範囲 / review_level: Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit
 固定コミットの公式アーカイブSHAを照合し、2初期値生成器と設定・保存列を確認。別実装を実行して参照場を作成し、空間・時間感度を検査。全ソース監査や厳密解とは表示しません。
-Thomas A. Gardiner and James M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport · DOI: 10.1016/j.jcp.2004.11.016
+Thomas A. Gardiner and James M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport [accessed 2026-11-23] · DOI: 10.1016/j.jcp.2004.11.016
 確認範囲 / review_level: Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication
 著者公開PDFのCT節・磁場ループ・円偏波の定義を確認。論文のCTU/PPMや斜め伝播実験を再現したとは主張しません。今回の円偏波は1次元整列、公式磁場ループはvz=2の明示的変更です。
-Takahiro Miyoshi and Kanya Kusano (2005). A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics · DOI: 10.1016/j.jcp.2005.02.017
+Takahiro Miyoshi and Kanya Kusano (2005). A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics [accessed 2026-11-23] · DOI: 10.1016/j.jcp.2005.02.017
 確認範囲 / review_level: Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments
 書誌を確認。出版社本文は取得できず、今回新たに原著の式や実験を監査したとは表示しません。全8変数HLLDコードは過去の公開検証済みAtlasから同一バイトで継承します。
 
@@ -62815,7 +66070,7 @@ Takahiro Miyoshi and Kanya Kusano (2005). A multi-state HLL approximate Riemann 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mhd-transport/#postshock-orszag-tang-references
 Coverage: reading
 
-Steven A. Orszag and Ching-Mao Tang (1979). Small-scale structure of two-dimensional magnetohydrodynamic turbulence · DOI: 10.1017/S002211207900210X
+Steven A. Orszag and Ching-Mao Tang (1979). Small-scale structure of two-dimensional magnetohydrodynamic turbulence [accessed 2026-11-23] · DOI: 10.1017/S002211207900210X
 確認範囲 / review_level: Original publisher abstract/bibliography inspected only; original incompressible viscous/resistive setup differs from the official compressible ideal-MHD generator used here
 出版社の抄録と書誌のみ確認。原著の非圧縮・粘性抵抗モデルと、今回の圧縮性理想MHDの公式初期値を区別します。
 
@@ -70793,7 +74048,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-pi
 Coverage: reading
 
 原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
-Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton (2013). On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme
+Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton (2013). On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme [accessed 2026-11-23]
 確認範囲 / review_level: primary-selected-original-pdf-text
 原著の規格化方程式、再帰・雑音、Landauと二流の線形窓の議論を選択して確認。原著の計算値は転用しません。
 
@@ -70975,10 +74230,10 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ra
 Coverage: reading
 
 原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
-Rosdahl etal. (2013). RAMSES-RT: Radiation hydrodynamics in the cosmological context
+Rosdahl etal. (2013). RAMSES-RT: Radiation hydrodynamics in the cosmological context [accessed 2026-11-24]
 確認範囲 / review_level: primary-paper-selected-M1-equations-and-limitations
 ReadSection2equations12-14and two-opposing-beams limitation text. Levermore1984original not read. Educational staticgrey cases/MMS here do not reproduce RAMSESastrophysical runs.
-M. A. Skinner and E. C. Ostriker (2013). A Two-moment Radiation Hydrodynamics Module in Athena Using a Time-Explicit Godunov Method
+M. A. Skinner and E. C. Ostriker (2013). A Two-moment Radiation Hydrodynamics Module in Athena Using a Time-Explicit Godunov Method [accessed 2026-11-24]
 確認範囲 / review_level: primary-selected-section-by-independent-mathematical-reviewer
 Independent reviewer actually read selected extracted Section3.3equations37–41and eigenvalue limits;not a whole-paper/rendered-symbol audit. Directional LF cone root/weighted-CFL algebra is separately authored and independently crosschecked,not a transplanted HLL solver or claimed general Riemann-fan bound.
 
@@ -71224,10 +74479,10 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ra
 Coverage: reading
 
 原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
-Rosdahl etal. (2013). RAMSES-RT: Radiation hydrodynamics in the cosmological context
+Rosdahl etal. (2013). RAMSES-RT: Radiation hydrodynamics in the cosmological context [accessed 2026-11-24]
 確認範囲 / review_level: primary-paper-selected-M1-equations-and-limitations
 ReadSection2equations12-14and two-opposing-beams limitation text. Levermore1984original not read. Educational staticgrey cases/MMS here do not reproduce RAMSESastrophysical runs.
-M. A. Skinner and E. C. Ostriker (2013). A Two-moment Radiation Hydrodynamics Module in Athena Using a Time-Explicit Godunov Method
+M. A. Skinner and E. C. Ostriker (2013). A Two-moment Radiation Hydrodynamics Module in Athena Using a Time-Explicit Godunov Method [accessed 2026-11-24]
 確認範囲 / review_level: primary-selected-section-by-independent-mathematical-reviewer
 Independent reviewer actually read selected extracted Section3.3equations37–41and eigenvalue limits;not a whole-paper/rendered-symbol audit. Directional LF cone root/weighted-CFL algebra is separately authored and independently crosschecked,not a transplanted HLL solver or claimed general Riemann-fan bound.
 
@@ -71372,7 +74627,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ra
 Coverage: reading
 
 原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
-LANL ExactPack developers;Timmes implementation provenance (2023). ExactPack1.7.5SuOlson pinned independent diffusion solution
+LANL ExactPack developers;Timmes implementation provenance (2023). ExactPack1.7.5SuOlson pinned independent diffusion solution [accessed 2026-11-24]
 確認範囲 / review_level: primary-official-software-full-three-module-text-and-qualified-selected-values
 Read doc55/wrapper41/Timmes348lines;original1996paper abstract only. Serial original/tight selected integrals and independent PDE/Robin qualifiers passed before main. FullExactPack/base/libraries not audited.
 
@@ -71557,7 +74812,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ra
 Coverage: reading
 
 原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
-Aidan Crilly (2023). Learning closure relations using differentiable programming:an example in radiation transport;author-provided analytic benchmark data
+Aidan Crilly (2023). Learning closure relations using differentiable programming:an example in radiation transport;author-provided analytic benchmark data [accessed 2026-11-24]
 確認範囲 / review_level: primary-author-paper-selected-equations-and-pinned-data-qualification
 Read official2023paperpage6Appendix4.1equations7-10,README,pinned W/Vtransport tables andMITlicense. Whether author tables were transcribed or regenerated is unstated. Original1997fulltext/tables not directly checked;not trained-model outputs. Shape,normalization,causal/homogeneous controls qualified.
 
@@ -71804,7 +75059,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-ra
 Coverage: reading
 
 原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
-Pharr,Jakob,Humphreys (2023). Physically Based Rendering4e,14.1The Equation of Transfer
+Pharr,Jakob,Humphreys (2023). Physically Based Rendering4e,14.1The Equation of Transfer [accessed 2026-11-24]
 確認範囲 / review_level: primary-author-book-selected-equations
 Read14.1transfer/source/finite-ray boundary formulation. Isotropic slab/Fredholm normalization independently derived here;not DISORTpaper/table reproduction.
 
@@ -71977,10 +75232,10 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-re
 Coverage: reading
 
 原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
-Luciano Rezzolla and Olindo Zanotti (2001). An Improved Exact Riemann Solver for Relativistic Hydrodynamics
+Luciano Rezzolla and Olindo Zanotti (2001). An Improved Exact Riemann Solver for Relativistic Hydrodynamics [accessed 2026-11-23]
 確認範囲 / review_level: primary-selected-mathematical-sections
 原著プレプリントの2–4節、状態方程式、相対速度式3.1とTaub二次式4.5を直接確認。対称二衝撃波への特殊化です。
-José A. Font (2008). Numerical Hydrodynamics and Magnetohydrodynamics in General Relativity · DOI: 10.12942/lrr-2008-7
+José A. Font (2008). Numerical Hydrodynamics and Magnetohydrodynamics in General Relativity [accessed 2026-11-23] · DOI: 10.12942/lrr-2008-7
 確認範囲 / review_level: primary-author-review-selected-equations
 公式の著者レビュー3.1–3.2節、テンソル式49–51と変換式68–69を直接確認。平坦時空の実装に使用します。
 
@@ -72134,10 +75389,10 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-re
 Coverage: reading
 
 原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
-L. Del Zanna, O. Zanotti, N. Bucciantini and P. Londrillo (2007). ECHO: a Eulerian Conservative High Order scheme for general relativistic magnetohydrodynamics and magnetodynamics · DOI: 10.1051/0004-6361:20077093
+L. Del Zanna, O. Zanotti, N. Bucciantini and P. Londrillo (2007). ECHO: a Eulerian Conservative High Order scheme for general relativistic magnetohydrodynamics and magnetodynamics [accessed 2026-11-23] · DOI: 10.1051/0004-6361:20077093
 確認範囲 / review_level: primary-original-selected-section-and-rendered-pages
 大学リポジトリの原著4.1節・式82–85を読み、原著プレプリント9–10頁の式・規格化・周期を描画して目視確認。ECHO法自体の再現ではありません。
-José A. Font (2008). Numerical Hydrodynamics and Magnetohydrodynamics in General Relativity · DOI: 10.12942/lrr-2008-7
+José A. Font (2008). Numerical Hydrodynamics and Magnetohydrodynamics in General Relativity [accessed 2026-11-23] · DOI: 10.12942/lrr-2008-7
 確認範囲 / review_level: primary-author-review-selected-equations
 公式の著者レビュー3.1–3.2節、テンソル式49–51と変換式68–69を直接確認。平坦時空の実装に使用します。
 
@@ -76625,10 +79880,10 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wa
 Coverage: reading
 
 原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
-U. Ghia, K. N. Ghia and C. T. Shin (1982). High-Re solutions for incompressible flow using the Navier-Stokes equations and a multigrid method · DOI: 10.1016/0021-9991(82)90058-4
+U. Ghia, K. N. Ghia and C. T. Shin (1982). High-Re solutions for incompressible flow using the Navier-Stokes equations and a multigrid method [accessed 2026-11-23] · DOI: 10.1016/0021-9991(82)90058-4
 確認範囲 / review_level: primary-original-selected-pages
 原著の式・境界図・表I/IIのRe100列と表Vの主渦を直接目視確認。公開ミラーは原著の配送元として記録し、論文PDFは配布しません。本実装は原著のCSI-MG法とは異なります。
-Kambiz Salari and Patrick Knupp (2000). Code Verification by the Method of Manufactured Solutions · DOI: 10.2172/759450
+Kambiz Salari and Patrick Knupp (2000). Code Verification by the Method of Manufactured Solutions [accessed 2026-11-23] · DOI: 10.2172/759450
 確認範囲 / review_level: primary-selected-section-and-official-abstract
 Sandia/OSTI公式書誌・抄録と、原著報告の印刷12頁で製造解と格子細分化の併用を確認。本例の多項式と圧力場は独自に構成しました。
 
@@ -76792,10 +80047,10 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wa
 Coverage: reading
 
 原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
-U. Ghia, K. N. Ghia and C. T. Shin (1982). High-Re solutions for incompressible flow using the Navier-Stokes equations and a multigrid method · DOI: 10.1016/0021-9991(82)90058-4
+U. Ghia, K. N. Ghia and C. T. Shin (1982). High-Re solutions for incompressible flow using the Navier-Stokes equations and a multigrid method [accessed 2026-11-23] · DOI: 10.1016/0021-9991(82)90058-4
 確認範囲 / review_level: primary-original-selected-pages
 原著の式・境界図・表I/IIのRe100列と表Vの主渦を直接目視確認。公開ミラーは原著の配送元として記録し、論文PDFは配布しません。本実装は原著のCSI-MG法とは異なります。
-Kambiz Salari and Patrick Knupp (2000). Code Verification by the Method of Manufactured Solutions · DOI: 10.2172/759450
+Kambiz Salari and Patrick Knupp (2000). Code Verification by the Method of Manufactured Solutions [accessed 2026-11-23] · DOI: 10.2172/759450
 確認範囲 / review_level: primary-selected-section-and-official-abstract
 Sandia/OSTI公式書誌・抄録と、原著報告の印刷12頁で製造解と格子細分化の併用を確認。本例の多項式と圧力場は独自に構成しました。
 
@@ -77080,13 +80335,13 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wa
 Coverage: reading
 
 原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
-Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton (2013). On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme
+Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton (2013). On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme [accessed 2026-11-23]
 確認範囲 / review_level: primary-selected-original-pdf-text
 原著の規格化方程式、再帰・雑音、Landauと二流の線形窓の議論を選択して確認。原著の計算値は転用しません。
-PlasmaPy developers (2026). Plasma dispersion function: official API mathematics
+PlasmaPy developers (2026). Plasma dispersion function: official API mathematics [accessed 2026-11-23]
 確認範囲 / review_level: official-mathematical-definition-read
 公式のZ関数の定義を確認。PlasmaPy実行値を参照したものではありません。
-SciPy developers (2024). SciPy1.14.1 roots_hermitenorm
+SciPy developers (2024). SciPy1.14.1 roots_hermitenorm [accessed 2026-11-23]
 確認範囲 / review_level: official-pinned-version-definition-read
 公式1.14.1文書の重みと多項式積分次数を確認。初期粒子重みだけに用います。
 
@@ -77325,13 +80580,13 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wa
 Coverage: reading
 
 原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
-Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton (2013). On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme
+Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton (2013). On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme [accessed 2026-11-23]
 確認範囲 / review_level: primary-selected-original-pdf-text
 原著の規格化方程式、再帰・雑音、Landauと二流の線形窓の議論を選択して確認。原著の計算値は転用しません。
-PlasmaPy developers (2026). Plasma dispersion function: official API mathematics
+PlasmaPy developers (2026). Plasma dispersion function: official API mathematics [accessed 2026-11-23]
 確認範囲 / review_level: official-mathematical-definition-read
 公式のZ関数の定義を確認。PlasmaPy実行値を参照したものではありません。
-SciPy developers (2024). SciPy1.14.1 roots_hermitenorm
+SciPy developers (2024). SciPy1.14.1 roots_hermitenorm [accessed 2026-11-23]
 確認範囲 / review_level: official-pinned-version-definition-read
 公式1.14.1文書の重みと多項式積分次数を確認。初期粒子重みだけに用います。
 
@@ -77762,13 +81017,13 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-we
 Coverage: reading
 
 原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
-Guang-Shan Jiang and Chi-Wang Shu (1996). Efficient Implementation of Weighted ENO Schemes · DOI: 10.1006/jcph.1996.0130
+Guang-Shan Jiang and Chi-Wang Shu (1996). Efficient Implementation of Weighted ENO Schemes [accessed 2026-11-23] · DOI: 10.1006/jcph.1996.0130
 確認範囲 / review_level: NASA-hosted ICASE95-73 preprint selected sections1–3: candidate Table1, optimal Table2, equations2.15–2.16 and3.1–3.9; text layer inspected, not full paper/numerical tables
 NASA公開プレプリントの節1–3で係数・重み・滑らかさ指標と有限差分の点値の規約を確認。原著の全実験やEuler特性分解を再現したとは表示しません。
-Rafael Borges, Monique Carmona, Bruno Costa and Wai Sun Don (2008). An improved weighted essentially non-oscillatory scheme for hyperbolic conservation laws · DOI: 10.1016/j.jcp.2007.11.038
+Rafael Borges, Monique Carmona, Bruno Costa and Wai Sun Don (2008). An improved weighted essentially non-oscillatory scheme for hyperbolic conservation laws [accessed 2026-11-23] · DOI: 10.1016/j.jcp.2007.11.038
 確認範囲 / review_level: Author-institution publication record and abstract inspected; publisher full text returned403; original full paper and numerical experiments not audited
 著者所属機関の書誌と抄録を確認。出版社全文は取得不能であり、全文読了・元の実験・指数1の再現は主張しません。実装する指数2の式は別の一次研究論文でも確認しました。
-Bart S. van Lith, Jan H. M. ten Thije Boonkkamp and Wilbert L. IJzerman (2017). Embedded WENO: A design strategy to improve existing WENO schemes · DOI: 10.1016/j.jcp.2016.11.026
+Bart S. van Lith, Jan H. M. ten Thije Boonkkamp and Wilbert L. IJzerman (2017). Embedded WENO: A design strategy to improve existing WENO schemes [accessed 2026-11-23] · DOI: 10.1016/j.jcp.2016.11.026
 確認範囲 / review_level: Institution-hosted accepted manuscript section2 equations2–15 (PDF pages4–8) and selected section4.2 (PDF page22) text inspected; screenshot requests cache-missed; not a full-paper review
 
 ## WENOの臨界点・ε依存性 — 一次文献・関連資料と確認範囲 [ja]
@@ -78275,13 +81530,13 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-za
 Coverage: reading
 
 原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
-Steven T. Zalesak (1979). Fully multidimensional flux-corrected transport algorithms for fluids · DOI: 10.1016/0021-9991(79)90051-2
+Steven T. Zalesak (1979). Fully multidimensional flux-corrected transport algorithms for fluids [accessed 2026-11-23] · DOI: 10.1016/0021-9991(79)90051-2
 確認範囲 / review_level: publisher bibliography and abstract inspected; direct full-paper open returned403; original test geometry and boundary conditions not audited
 出版社の書誌と多次元FCTの抄録を確認。原著全文とその格子・境界・具体形状は今回未確認です。本例をZalesakのFCTアルゴリズム再現とは表示しません。
-Firedrake developers (n.d.). DG advection equation with upwinding
+Firedrake developers (n.d.). DG advection equation with upwinding [accessed 2026-11-23]
 確認範囲 / review_level: official documentation equations and source lines46,63–92: disk(.5,.75),R.15,slot(.475,.525),y<.85,velocity(.5−y,x−.5),T2pi; SSP equations43–45 and135–143
 公式デモの形状・回転速度・周期とSSPRK式を確認。元デモはbell・coneと背景1を加え、DQ1・流入値1を使います。本例はスロット円板だけの0–1指示関数・有限体積・周期境界という明示的な変形です。Firedrakeは実行・転載しません。
-Randall J. LeVeque (1996). High-Resolution Conservative Algorithms for Advection in Incompressible Flow · DOI: 10.1137/0733033
+Randall J. LeVeque (1996). High-Resolution Conservative Algorithms for Advection in Incompressible Flow [accessed 2026-11-23] · DOI: 10.1137/0733033
 確認範囲 / review_level: author-hosted paper selected sections1–3 actually inspected: PDE/incompressibility, FV means, minmod definition, donor-cell flux; no full-paper or numerical-table reproduction
 著者公開論文の節1–3で保存形・非圧縮条件・セル平均・minmod・donor-cellを確認。Firedrakeが標準複合図形の出典として引用しています。本例のMUSCL＋SSPRKは同論文のCTU／波動伝播法そのものではありません。
 
@@ -78290,10 +81545,10 @@ Randall J. LeVeque (1996). High-Resolution Conservative Algorithms for Advection
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-zalesak/#zalesak-rotation-references
 Coverage: reading
 
-Chi-Wang Shu and Stanley Osher (1988). Efficient implementation of essentially non-oscillatory shock-capturing schemes · DOI: 10.1016/0021-9991(88)90177-5
+Chi-Wang Shu and Stanley Osher (1988). Efficient implementation of essentially non-oscillatory shock-capturing schemes [accessed 2026-11-23] · DOI: 10.1016/0021-9991(88)90177-5
 確認範囲 / review_level: publisher bibliography/abstract inspected; actual three-stage convex formulas checked in official Firedrake demo, not a full original-paper audit
 出版社の書誌とTVD Runge–Kuttaの抄録を確認。使う三段凸結合はFiredrake公式記述でも確認しました。原著全文の監査とは区別します。
-SciPy developers (n.d.). scipy.integrate.quad — SciPy v1.14.1 Manual
+SciPy developers (n.d.). scipy.integrate.quad — SciPy v1.14.1 Manual [accessed 2026-11-23]
 確認範囲 / review_level: official versioned API: QUADPACK integration, break points, epsabs/epsrel, reported error; use is evidenced by qualification receipts
 版を固定した公式APIでQUADPACK、分割点、絶対・相対公差と推定誤差の意味を確認。解析的な円・多角形の面積計算とは異なる垂直断面求積を、実行記録付きで照合します。
 

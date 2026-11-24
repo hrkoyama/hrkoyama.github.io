@@ -170,7 +170,7 @@ This command executes every fixed case in the distribution group. Bundled result
 
 ### Sources and review scope
 
-- Colin P. McNally, Wladimir Lyra and Jean-Claude Passy (2012). A Well-Posed Kelvin-Helmholtz Instability Test and Comparison. https://arxiv.org/abs/1111.1764; review_level=primary-selected-original-pdf-text
+- Colin P. McNally, Wladimir Lyra and Jean-Claude Passy (2012). A Well-Posed Kelvin-Helmholtz Instability Test and Comparison [accessed 2026-11-23]. https://arxiv.org/abs/1111.1764; review_level=primary-selected-original-pdf-text
 Selected original methodology read; our incompressible forced inputs differ from its compressible benchmark.
 
 
@@ -342,7 +342,7 @@ This command executes every fixed case in the distribution group. Bundled result
 
 ### Sources and review scope
 
-- Antonio Celani, Andrea Mazzino and Lara Vozella (2006). Rayleigh–Taylor turbulence in two dimensions. https://arxiv.org/abs/nlin/0510067; review_level=primary-selected-original-pdf-text
+- Antonio Celani, Andrea Mazzino and Lara Vozella (2006). Rayleigh–Taylor turbulence in two dimensions [accessed 2026-11-23]. https://arxiv.org/abs/nlin/0510067; review_level=primary-selected-original-pdf-text
 Original Boussinesq equations and periodic setup read; our smooth maintained layers and linear reference are constructed here.
 
 

@@ -153,7 +153,9 @@
         "poisson-neumann",
         "poisson-robin",
         "checkerboard-diffusion",
-        "rotated-anisotropic-diffusion"
+        "rotated-anisotropic-diffusion",
+        "bratu-fold-continuation",
+        "bratu-matrix-free-jfnk"
       ]
     },
     {
@@ -383,7 +385,11 @@
         "amg-conditioning",
         "qr-svd-conditioning",
         "krylov-eigen-conditioning",
-        "quadrature-conditioning"
+        "quadrature-conditioning",
+        "pivoted-direct-refinement",
+        "symmetric-saddle-minres",
+        "restarted-shift-invert",
+        "fem-mass-eigen"
       ],
       "scope": {
         "ja": "旧版のSA-AMG、QR／SVD、Krylov固有値、求積の固定例を保持し、条件数・残差・精度と、異方性・右辺摂動と階数閾値・非正規性・狭い山の診断対照を別版で比較します。AMG追加例は代数的診断で、Poissonの格子精度へ加算しません。",
@@ -493,16 +499,49 @@
         "ja": "/numerical-methods-atlas/ja/read/validation-particle-transport/",
         "en": "/numerical-methods-atlas/en/read/validation-particle-transport/"
       }
+    },
+    {
+      "id": "electromagnetics",
+      "name": {
+        "ja": "電磁場とFDTD",
+        "en": "Electromagnetics and FDTD"
+      },
+      "scope": {
+        "ja": "線形電磁場の有限差分時間発展。真の2D誘電体円柱散乱と、周期y方向の単一波数に制限したs/p偏光のLorentz分散板・長時間PMLを扱います。",
+        "en": "Finite-difference time evolution of linear electromagnetic fields. Includes genuine two-dimensional dielectric-cylinder scattering and s/p-polarized Lorentz-slab and long-time PML cases restricted to a single periodic transverse wave number."
+      },
+      "reference": {
+        "ja": "独立な円柱Bessel/Hankel級数、複素Fresnel板と直接体積散逸、無PML同格子の独立Fourier更新行列を区別します。",
+        "en": "Distinguish independent cylindrical Bessel/Hankel series, complex Fresnel slab coefficients with direct volume dissipation, and a separately implemented no-PML Fourier update matrix on the same grid."
+      },
+      "refinement": {
+        "ja": "円柱12/18/24点/波長、板のhと横方向解像度、PML512/768/1024点を固定比較。補間・曲面・窓・伝播分散と境界誤差を分けます。 PMLは格子と層の強度6/9/12の同時細分化であり、固定PMLの空間次数ではありません。",
+        "en": "Fixed refinements use 12/18/24 points per wavelength for the cylinder, three longitudinal and transverse slab resolutions, and 512/768/1024 PML cells. Separate interpolation, geometry, window, bulk-dispersion and boundary errors. The PML path jointly refines the grid and layer strengths6/9/12; it is not a fixed-PML spatial-order test."
+      },
+      "next": {
+        "ja": "一般3D球、任意横方向波束、多重共鳴、一般異方性・非線形媒質、任意角度・任意材料でのPML安定性は別検証です。",
+        "en": "General three-dimensional spheres, arbitrary transverse packets, multiple resonances, general anisotropic or nonlinear media, and PML stability for arbitrary angles and materials require separate validation."
+      },
+      "examples": [],
+      "supplemental_examples": [
+        "cylinder-mie2d",
+        "lorentz-oblique-sp",
+        "dispersive-grazing-pml"
+      ],
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-maxwell-cylinder/",
+        "en": "/numerical-methods-atlas/en/read/validation-maxwell-cylinder/"
+      }
     }
   ],
   "supplemental_edition": "2026-11-22",
   "registry": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
   "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
   "source_sha256": {
-    "catalog/atlas-depth.json": "350ab2d1f5fdda6a43e77324777ff2c7fcf0e8e8f1e6f3c71cffb3beac568e9c",
+    "catalog/atlas-depth.json": "21b45674949b0c30e29256f7516d7aa11cd0c3fab9c0b2e51e748fbb37a11abc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "catalog/atlas-depth-expansion.json": "808390a31a772b2e1f9c625f8619a05d3387afb5256dd5e31b3c712c6283863a",
+    "catalog/atlas-depth-expansion.json": "9c46bb250bbeb60e965c0d9b86d07a0c744ea847ad9c3926886e138a6458b072",
     "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
     "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
     "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
@@ -618,11 +657,11 @@
     "code/validated-examples/2026-11-22/mhd-convergence/cases.json": "a1ebd3a1344c90cc49e11dd790a522434f7fdec27f77d8621a2197a7be738434",
     "code/validated-examples/2026-11-22/mhd-convergence/results/result.json": "7b1ddd177a96b1ede21b568b0f8e72e4b23d970d96ace3ab2441b0df0efbfe6b",
     "code/validated-examples/2026-11-22/mhd-convergence/atlas-mhd-convergence-2026-11-22.zip": "5db2fc202014a576145e98c84e1802540df7d8e26353d469fbd55c8e393fd866",
-    "code/validated-examples/2026-11-23/mhd-transport/source-manifest.json": "c7d853b1b958f830ac30f45b076410ba55045ddedc88006cf8dda2c3e7dfee8d",
-    "code/validated-examples/2026-11-23/mhd-transport/verification.json": "56767d3b24b0c2fd9e6e660db523be8f8565876b38867f819c57ed983d468752",
-    "code/validated-examples/2026-11-23/mhd-transport/cases.json": "351ec0540ab5aea5c75aebfd90c9800d7e7fc8eb742dbbd534d80f61437a3914",
-    "code/validated-examples/2026-11-23/mhd-transport/results/result.json": "c43acea7e89a837e34b2e171bc292c75bc68766b98614697ec755f05ce944ba4",
-    "code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip": "8b6d4d9d30c9ed12fd29b7b91a11c16dc183b9aea49234966a66c376713ebf90",
+    "code/validated-examples/2026-11-24/mhd-transport/source-manifest.json": "68138759230a5f1b1d874d7503c4932cd3e55dbdf8b0a3d192da53683d89bdd1",
+    "code/validated-examples/2026-11-24/mhd-transport/verification.json": "ee680eda66d874deeabe27abfdb59958894a18be83445ed9f48c82f3080fa21e",
+    "code/validated-examples/2026-11-24/mhd-transport/cases.json": "351ec0540ab5aea5c75aebfd90c9800d7e7fc8eb742dbbd534d80f61437a3914",
+    "code/validated-examples/2026-11-24/mhd-transport/results/result.json": "e2aa4b6fdced4ae24243459acffcdc20110481094b837c457fb434432df4da61",
+    "code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip": "54e5f9376beacf41338b3b810657bb4671dabef937d748bc96834e1e3b35f233",
     "code/validated-examples/2026-11-23/mesh-boundary/source-manifest.json": "96e55d4c564baf804d3ae7feb86a36c7d7a3d4079f5e47180326fd2c09ee675a",
     "code/validated-examples/2026-11-23/mesh-boundary/verification.json": "1191781061a2ec3339d26d8e9e4db605e9c40e8d5d5dfa6433712b38f43f7d01",
     "code/validated-examples/2026-11-23/mesh-boundary/cases.json": "30c7d39639f74d4f263a045cccc8ced3e14a466e4e279c4c156fc21ce176f796",
@@ -633,6 +672,11 @@
     "code/validated-examples/2026-11-23/coefficient-diffusion/cases.json": "c861a45e8f07dbce47bb74c62a57427117cd1e5d20d3d914a588be0a1c26785a",
     "code/validated-examples/2026-11-23/coefficient-diffusion/results/result.json": "13f91d2a2e927aa59a5a043005d98d267cebc1b6a5c57a7ab966b2670f86635c",
     "code/validated-examples/2026-11-23/coefficient-diffusion/atlas-coefficient-diffusion-2026-11-23.zip": "c53624aa03cf7f945297e7bd09d72030e111e035c3ce7174fd2da9e86756b666",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/source-manifest.json": "cfa8230836913a5f81d8e97c77b87716ce6d801095e9c95463e419ee8b94fe8c",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json": "4e08cc95cbb5ed520d43882c83da3ccbb644138d90ccf0bce1d408cb195beba7",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/cases.json": "9a2f2e0e780151768247923a36b7274b1b014bbeb620de7bbca5a25d46d5bc56",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/result.json": "6a4dbb22ac61f557b30c49ebb2d6067b41c6ad2f9040fd0752f49dc8b9884b5d",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/atlas-bratu-continuation-jfnk-2026-11-24-r2.zip": "aeffa7e1b442f198ef2de55e453f82e5d6cbe30fc3d0bbd1112354a38a20a25d",
     "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
     "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
     "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
@@ -678,6 +722,11 @@
     "code/validated-examples/2026-11-22/foundations-conditioning/cases.json": "fe1b43a92ad60c91a1fdbd79342db0269e27cc0ef2f7d1ddcee58e183cf5b66c",
     "code/validated-examples/2026-11-22/foundations-conditioning/results/result.json": "0b8ef84da85f950afa9779feb79052401dcdda707d1ac6bb314c3afa3a1973e9",
     "code/validated-examples/2026-11-22/foundations-conditioning/atlas-foundations-conditioning-2026-11-22.zip": "71d8f0d3b0bed4a6a97f976aabfd02cc0baf08a30c1655f6b1ea42ea16df3c9d",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/source-manifest.json": "038537fee8708cb5bbc02d18e902ca546db191f7345ecace52147f6675554a95",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json": "4ed120693891dd4f94a207b080fd40fe53d3b1191274ec621de131e83fac16a7",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json": "604f637dccb85e22735600f1cae8e98cec3332d1eab1c4b12ff8d8e293eb33b3",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/result.json": "caffe188cea7298dea1a3592fb4815992fa6a4f2900db99ba8443d1199e21dea",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/atlas-linear-algebra-spectral-2026-11-24-r3.zip": "3d14112335ce8a55cce306ec689d430f172d02a49f4675ae5948a2fab7ca1452",
     "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
     "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
     "code/validated-examples/2026-11-22/particles/cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",
@@ -738,6 +787,21 @@
     "code/validated-examples/2026-11-24/radiation-geometry/cases.json": "297e1e3fd8ebf0bdd504faf9005f7ef58de0564ecbec7cb6405d2c3cca48f3a4",
     "code/validated-examples/2026-11-24/radiation-geometry/results/result.json": "4453e68f6a856f65097bbfe36a154b74f4437e99a217300e4c010176a3ee7aec",
     "code/validated-examples/2026-11-24/radiation-geometry/atlas-radiation-geometry-2026-11-24.zip": "20a166a35e5e87275be4c1bcf12a31742b267ddc9f9a424a293852da53c672e0",
+    "code/validated-examples/2026-11-24-r2/maxwell-cylinder/source-manifest.json": "bd55f11428730f3ad2a4048b74efd4dc4eae9997e55c8bc151d5ed4c0adf2dd6",
+    "code/validated-examples/2026-11-24-r2/maxwell-cylinder/verification.json": "85cfc10421948d42deda85916ac2a6d4a41b7ad7af91db890fd91b5c745bf51a",
+    "code/validated-examples/2026-11-24-r2/maxwell-cylinder/cases.json": "68902102c6f2dbf82608ef802b1dbc502aeb95f2c08590e762d4028d2950f2b8",
+    "code/validated-examples/2026-11-24-r2/maxwell-cylinder/results/result.json": "f0f035c4af8fd5d0b4fbf432f01abbbdca73dab2b6f62df90bba0735376ac1cf",
+    "code/validated-examples/2026-11-24-r2/maxwell-cylinder/atlas-maxwell-cylinder-2026-11-24-r2.zip": "bf2f69032cfe912d23e065582397202a695dde241350774a0c69997b70bd1a06",
+    "code/validated-examples/2026-11-24-r2/maxwell-lorentz/source-manifest.json": "f2a3b94d686d7114f9675e6d4f3afba01ffc63abdf137f739aa2052bfbdd64b4",
+    "code/validated-examples/2026-11-24-r2/maxwell-lorentz/verification.json": "7703e35d6a56ca69a6aaf17e7bd910bccad1c7cf21632e4625eda29c09d37d6d",
+    "code/validated-examples/2026-11-24-r2/maxwell-lorentz/cases.json": "efbaea689701c155491c147a7ed1a7c4f55f6d253fc2a718ba5cd11ca5061c20",
+    "code/validated-examples/2026-11-24-r2/maxwell-lorentz/results/result.json": "6d8ed5f5a1ecfb389610850e093860ef029faa5b1ecd60e719e1a70423429051",
+    "code/validated-examples/2026-11-24-r2/maxwell-lorentz/atlas-maxwell-lorentz-2026-11-24-r2.zip": "7af2a66b6defba64c5392f05292d2b49810140253455945d54112eb4594871a1",
+    "code/validated-examples/2026-11-24-r2/maxwell-grazing/source-manifest.json": "6ea7a32ee58596fde26b74b5992fd76b95cfa17895b0f40b7af7438d183fbc0b",
+    "code/validated-examples/2026-11-24-r2/maxwell-grazing/verification.json": "4c8133a8a4042ed925fd21af37d62fe472978af2ac4fecd3518a9d2242db1de0",
+    "code/validated-examples/2026-11-24-r2/maxwell-grazing/cases.json": "6b8417bd334606a183298f805a4337b9bda947fff47de60c34bd7844b69e4c7c",
+    "code/validated-examples/2026-11-24-r2/maxwell-grazing/results/result.json": "01ca786df2c0659e190cee13012170367e8fdd86b9a0e9dcf1c9a71a9a3e2c2d",
+    "code/validated-examples/2026-11-24-r2/maxwell-grazing/atlas-maxwell-grazing-2026-11-24-r2.zip": "a9d0c65eb27e26b05eafd3774b9f651b01baf28e617769bb2bbcb7efb0b90d3d",
     "code/model-benchmarks/2026-11-22/results/logistic-growth/result.json": "4991cd0ef46e069581a131f995fb9bdb65251d9d59923b89abb2b4a14cbfe30d",
     "code/model-benchmarks/2026-11-22/results/sir-epidemic/result.json": "03c7e2a52bc0412e9eec10588777c0a70253804c149d5b7e5792581e8f3a3942",
     "code/model-benchmarks/2026-11-22/results/mc-integral/result.json": "c7b0ef9397376242b375817db2152b8b5855e81200e2fad6adce1a6adc0268a8",

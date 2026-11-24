@@ -216,13 +216,13 @@ This command executes every fixed case in the distribution group. Bundled result
 
 ### Sources and review scope
 
-- Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton (2013). On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme. https://arxiv.org/abs/1311.2098; review_level=primary-selected-original-pdf-text
+- Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton (2013). On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme [accessed 2026-11-23]. https://arxiv.org/abs/1311.2098; review_level=primary-selected-original-pdf-text
 Selected original equations and diagnostic limitations inspected; independently derived continuum references are evaluated here.
 
-- PlasmaPy developers (2026). Plasma dispersion function: official API mathematics. https://docs.plasmapy.org/en/stable/api/plasmapy.dispersion.dispersion_functions.plasma_dispersion_func.html; review_level=official-mathematical-definition-read
+- PlasmaPy developers (2026). Plasma dispersion function: official API mathematics [accessed 2026-11-23]. https://docs.plasmapy.org/en/stable/api/plasmapy.dispersion.dispersion_functions.plasma_dispersion_func.html; review_level=official-mathematical-definition-read
 Official Z definition inspected; no PlasmaPy execution.
 
-- SciPy developers (2024). SciPy1.14.1 roots_hermitenorm. https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.special.roots_hermitenorm.html; review_level=official-pinned-version-definition-read
+- SciPy developers (2024). SciPy1.14.1 roots_hermitenorm [accessed 2026-11-23]. https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.special.roots_hermitenorm.html; review_level=official-pinned-version-definition-read
 Pinned official quadrature definition read; initialization only.
 
 
@@ -425,13 +425,13 @@ This command executes every fixed case in the distribution group. Bundled result
 
 ### Sources and review scope
 
-- Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton (2013). On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme. https://arxiv.org/abs/1311.2098; review_level=primary-selected-original-pdf-text
+- Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton (2013). On the velocity space discretization for the Vlasov–Poisson system: comparison between Hermite spectral and Particle-in-Cell methods. Part 1: semi-implicit scheme [accessed 2026-11-23]. https://arxiv.org/abs/1311.2098; review_level=primary-selected-original-pdf-text
 Selected original equations and diagnostic limitations inspected; independently derived continuum references are evaluated here.
 
-- PlasmaPy developers (2026). Plasma dispersion function: official API mathematics. https://docs.plasmapy.org/en/stable/api/plasmapy.dispersion.dispersion_functions.plasma_dispersion_func.html; review_level=official-mathematical-definition-read
+- PlasmaPy developers (2026). Plasma dispersion function: official API mathematics [accessed 2026-11-23]. https://docs.plasmapy.org/en/stable/api/plasmapy.dispersion.dispersion_functions.plasma_dispersion_func.html; review_level=official-mathematical-definition-read
 Official Z definition inspected; no PlasmaPy execution.
 
-- SciPy developers (2024). SciPy1.14.1 roots_hermitenorm. https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.special.roots_hermitenorm.html; review_level=official-pinned-version-definition-read
+- SciPy developers (2024). SciPy1.14.1 roots_hermitenorm [accessed 2026-11-23]. https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.special.roots_hermitenorm.html; review_level=official-pinned-version-definition-read
 Pinned official quadrature definition read; initialization only.
 
 

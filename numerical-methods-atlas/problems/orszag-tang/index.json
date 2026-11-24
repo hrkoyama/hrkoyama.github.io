@@ -352,10 +352,10 @@
         "ja": "少数の固定入力に対する教育用検証です。HLLDのHLLE代替と再構成の正値性スケーリングを数え、セル状態の床・クリップ・再試行は行いません。有限格子参照は厳密解ではなく、任意問題の安定性・正値性や普遍的次数を保証しません。独立比較は終端のみ。中間Athena時刻は指定四半時刻直後で、正確に整列した場とは表示しません。Athenaの固有面発散は出力しておらず測定を主張しません。密度比は圧縮の診断であり数学的衝撃波の証明ではありません。",
         "en": "Educational fixed inputs only. Count HLLD-to-HLLE fallbacks and face reconstruction positivity scaling; no cell floor/clipping/retry. Finite-grid references are not exact solutions; no universal stability, positivity or order guarantee. Independent comparisons are final-only. Intermediate Athena outputs occur just after requested quarter times and are not matched frames. Athena native-face divergence is not exported/measured. Density contrast diagnoses compression, not a mathematical proof of shock formation."
       },
-      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/inputs.json",
-      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip",
-      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/verification.json",
-      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/source-manifest.json",
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/source-manifest.json",
       "commands": [
         "python -m pip install -r requirements.txt",
         "python -m pytest -q",
@@ -367,16 +367,16 @@
       },
       "reference_data": [],
       "results": [
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/result.json"
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/results/result.json"
       ],
       "code_urls": [
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/run.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/solver.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/hlld.py",
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/references/qualify_saved.py"
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/solver.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/hlld.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/references/qualify_saved.py"
       ],
       "test_urls": [
-        "https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/test_mhd.py"
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/test_mhd.py"
       ],
       "source_scope": "package"
     }

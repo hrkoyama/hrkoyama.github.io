@@ -1,0 +1,879 @@
+{
+  "id": "minres",
+  "name": {
+    "ja": "対称不定値系の教育用MINRES",
+    "en": "Educational MINRES for symmetric-indefinite systems"
+  },
+  "group": {
+    "id": "solvers",
+    "ja": "線形・非線形解法",
+    "en": "Linear & nonlinear solvers"
+  },
+  "summary": {
+    "ja": "全再直交化のLanczos最小二乗で代数鞍点系を解き、GMRESと同じ元残差および理想Schurの三点スペクトルを検査します。",
+    "en": "Stored-basis, fully reorthogonalized Lanczos least squares solves algebraic saddle controls, checking the original residual against GMRES and the ideal-Schur spectrum."
+  },
+  "status": "educational-example",
+  "origin": "development-candidate",
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/"
+  },
+  "code_modules": [],
+  "test_files": [],
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
+  "references": [
+    {
+      "url": "https://web.stanford.edu/group/SOL/software/minres/",
+      "label": "Paige and Saunders: MINRES author documentation",
+      "scope": "Selected author discussion of symmetry, indefinite A, SPD preconditioning, Lanczos and the original residual was read. The original 1975 paper was not read."
+    }
+  ],
+  "assumptions": [
+    "Real symmetric nonsingular A, with SPD congruence preconditioning."
+  ],
+  "units": "Dimensionless algebraic controls. The FEM string has unit length, tension and density.",
+  "boundary_conditions": "No physical boundary conditions apply to the algebraic matrices. The string has homogeneous Dirichlet endpoints.",
+  "limitations": {
+    "ja": "短漸化式のproductionPaige–Saunders実装やMINRES-QLP、特異系の最小ノルム解、完全なStokesPDEではありません。",
+    "en": "This is not compact production Paige–Saunders MINRES, MINRES-QLP, a singular minimum-norm solver, or a full Stokes PDE solver."
+  },
+  "metadata_review": {
+    "level": "Selected official documentation and fixed independent rational or closed-spectrum references; original-paper reading gaps are explicit.",
+    "on": "2026-11-24",
+    "supplemental_review": {
+      "on": "2026-11-24",
+      "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
+    }
+  },
+  "aliases": [
+    "MINRES法",
+    "最小残差法"
+  ],
+  "depth_scope": {
+    "ja": "全再直交化のLanczos最小二乗で代数鞍点系を解き、GMRESと同じ元残差および理想Schurの三点スペクトルを検査します。",
+    "en": "Stored-basis, fully reorthogonalized Lanczos least squares solves algebraic saddle controls, checking the original residual against GMRES and the ideal-Schur spectrum."
+  },
+  "depth_release": {
+    "group": "linear-algebra-spectral",
+    "case_ids": [
+      "symmetric-saddle-minres"
+    ],
+    "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/",
+    "code_edition": "2026-11-24-r3",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/fixtures.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/solvers.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/references/oracles.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/test_algorithms.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/test_mass_action.py"
+    ],
+    "run_commands": [
+      "python -m pytest -q",
+      "python run.py --input inputs.json --output output"
+    ],
+    "run_from": "atlas-linear-algebra-spectral-2026-11-24-r3",
+    "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/atlas-linear-algebra-spectral-2026-11-24-r3.zip",
+    "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/source-manifest.json",
+    "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+    "code_archive_sha256": "3d14112335ce8a55cce306ec689d430f172d02a49f4675ae5948a2fab7ca1452",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/result.json",
+    "passed_tests": 29,
+    "examples": [
+      {
+        "id": "symmetric-saddle-minres",
+        "title": {
+          "ja": "対称不定値鞍点系とSchur前処理",
+          "en": "Symmetric saddle systems and Schur preconditioning"
+        },
+        "domains": [
+          "linear-algebra"
+        ],
+        "method_ids": [
+          "minres",
+          "gmres"
+        ],
+        "source_files": [
+          "solvers.py",
+          "fixtures.py",
+          "run.py",
+          "references/oracles.py"
+        ],
+        "assumptions": {
+          "ja": "速度12/24、圧力5/11の代数的混合Poisson/Stokes型ブロック。元の真の残差1e-9を共通基準にします。",
+          "en": "Algebraic mixed-Poisson/Stokes-type blocks with velocity sizes 12 and 24 and pressure sizes 5 and 11. The common original-system residual tolerance is 1e-9."
+        },
+        "algorithm": {
+          "ja": "全基底保存のLanczos最小残差LSと二重MGS GMRES。SPD合同変換で対称性を保持。 元入力の残差1e-9と固定前進上限2e-8から、行列のみのκ∞推定で内部目標min(rtol,2e-8/κ∞)を導出。独立解を停止に使わない。",
+          "en": "Stored-basis Lanczos least squares provides the educational MINRES variant; GMRES uses two-pass modified Gram-Schmidt. An SPD congruence preserves symmetry. The internal target is min(configured rtol, fixed forward-error limit / kappa_infinity), using only the matrix. The independent solution is not a stopping input."
+        },
+        "validation": {
+          "ja": "LAPACK全系解、理想Schurの3点スペクトル、CGの明示的負曲率対照。",
+          "en": "Global LAPACK solutions, the analytic ideal-Schur spectrum and an explicit negative-curvature control for CG."
+        },
+        "limits": {
+          "ja": "理想Schurは教育用の稠密制御であり、実Stokes PDEやスケーラブルな近似前処理の完成ではありません。",
+          "en": "A dense, ideal-Schur educational control, not a complete Stokes PDE solver or a scalable approximate preconditioner."
+        },
+        "review_level": {
+          "ja": "入力・16独立参照・195科学判定は旧版から不変。R4科学実行の実際の成否はresult.json/verification.jsonへ記録し、旧失敗と別に保持します。",
+          "en": "The fixed inputs, 16 independent reference checks and 195 scientific gates are unchanged. R4 passed the primary validation; actual package checks are recorded in result.json and verification.json. Earlier failed attempts remain separate."
+        },
+        "formulas": [
+          "A=[[H,B^T],[B,0]]",
+          "P=diag(H,BH^-1B^T)",
+          "A_tilde=L^-1 A L^-T"
+        ],
+        "references": [
+          {
+            "id": "minres-sol",
+            "title": "Paige and Saunders: Stanford SOL MINRES",
+            "url": "https://web.stanford.edu/group/SOL/software/minres/",
+            "review_level": "selected-author-official-documentation",
+            "review_scope": "Selected discussion of symmetric indefinite systems, SPD preconditioners and the original residual was read. The original 1975 paper was not read. This stored-basis Lanczos least-squares variant is not a copy of the production short recurrence."
+          }
+        ],
+        "validation_count": 29,
+        "gallery_figure": "symmetric-saddle-minres-preview.png",
+        "additional_figures": [
+          {
+            "file": "symmetric-saddle-minres-preview.png",
+            "caption": {
+              "ja": "速度サイズ24の固定例で使う、保存した35×35鞍点行列。",
+              "en": "The saved 35 x 35 saddle matrix for velocity size 24."
+            }
+          }
+        ],
+        "summary": {
+          "ja": "同じ元残差の基準でMINRESとGMRESを比較し、理想Schurの三点スペクトルを検査します。",
+          "en": "MINRES and GMRES use the same original-system residual criterion and are checked against the ideal Schur three-point spectrum."
+        },
+        "measured": {
+          "id": "symmetric-saddle-minres",
+          "passed": true,
+          "checks": {
+            "n12/ideal-Schur-three-point-spectrum": true,
+            "saddle-12-none-minres/finite": true,
+            "saddle-12-none-minres/same-true-residual": true,
+            "saddle-12-none-minres/independent-reference": true,
+            "saddle-12-none-minres/basis-orthogonality": true,
+            "saddle-12-none-minres/symmetric-congruence": true,
+            "saddle-12-none-minres/fixed-dimension-budget": true,
+            "saddle-12-none-gmres/finite": true,
+            "saddle-12-none-gmres/same-true-residual": true,
+            "saddle-12-none-gmres/independent-reference": true,
+            "saddle-12-none-gmres/basis-orthogonality": true,
+            "saddle-12-none-gmres/symmetric-congruence": true,
+            "saddle-12-none-gmres/fixed-dimension-budget": true,
+            "saddle-12-exact-Schur-minres/finite": true,
+            "saddle-12-exact-Schur-minres/same-true-residual": true,
+            "saddle-12-exact-Schur-minres/independent-reference": true,
+            "saddle-12-exact-Schur-minres/basis-orthogonality": true,
+            "saddle-12-exact-Schur-minres/symmetric-congruence": true,
+            "saddle-12-exact-Schur-minres/fixed-dimension-budget": true,
+            "saddle-12-exact-Schur-minres/ideal-three-step-control": true,
+            "saddle-12-exact-Schur-gmres/finite": true,
+            "saddle-12-exact-Schur-gmres/same-true-residual": true,
+            "saddle-12-exact-Schur-gmres/independent-reference": true,
+            "saddle-12-exact-Schur-gmres/basis-orthogonality": true,
+            "saddle-12-exact-Schur-gmres/symmetric-congruence": true,
+            "saddle-12-exact-Schur-gmres/fixed-dimension-budget": true,
+            "saddle-12-exact-Schur-gmres/ideal-three-step-control": true,
+            "n24/ideal-Schur-three-point-spectrum": true,
+            "saddle-24-none-minres/finite": true,
+            "saddle-24-none-minres/same-true-residual": true,
+            "saddle-24-none-minres/independent-reference": true,
+            "saddle-24-none-minres/basis-orthogonality": true,
+            "saddle-24-none-minres/symmetric-congruence": true,
+            "saddle-24-none-minres/fixed-dimension-budget": true,
+            "saddle-24-none-gmres/finite": true,
+            "saddle-24-none-gmres/same-true-residual": true,
+            "saddle-24-none-gmres/independent-reference": true,
+            "saddle-24-none-gmres/basis-orthogonality": true,
+            "saddle-24-none-gmres/symmetric-congruence": true,
+            "saddle-24-none-gmres/fixed-dimension-budget": true,
+            "saddle-24-exact-Schur-minres/finite": true,
+            "saddle-24-exact-Schur-minres/same-true-residual": true,
+            "saddle-24-exact-Schur-minres/independent-reference": true,
+            "saddle-24-exact-Schur-minres/basis-orthogonality": true,
+            "saddle-24-exact-Schur-minres/symmetric-congruence": true,
+            "saddle-24-exact-Schur-minres/fixed-dimension-budget": true,
+            "saddle-24-exact-Schur-minres/ideal-three-step-control": true,
+            "saddle-24-exact-Schur-gmres/finite": true,
+            "saddle-24-exact-Schur-gmres/same-true-residual": true,
+            "saddle-24-exact-Schur-gmres/independent-reference": true,
+            "saddle-24-exact-Schur-gmres/basis-orthogonality": true,
+            "saddle-24-exact-Schur-gmres/symmetric-congruence": true,
+            "saddle-24-exact-Schur-gmres/fixed-dimension-budget": true,
+            "saddle-24-exact-Schur-gmres/ideal-three-step-control": true,
+            "CG/explicit-negative-curvature-control": true
+          },
+          "check_details": [
+            {
+              "name": "n12/ideal-Schur-three-point-spectrum",
+              "value": 1.7763568394002505e-15,
+              "bound": 2e-10,
+              "passed": true
+            },
+            {
+              "name": "saddle-12-none-minres/finite",
+              "value": 0.0,
+              "bound": 0.0,
+              "passed": true
+            },
+            {
+              "name": "saddle-12-none-minres/same-true-residual",
+              "value": 1.7996034757256202e-16,
+              "bound": 1e-09,
+              "passed": true
+            },
+            {
+              "name": "saddle-12-none-minres/independent-reference",
+              "value": 1.4741636058238345e-14,
+              "bound": 2e-08,
+              "passed": true
+            },
+            {
+              "name": "saddle-12-none-minres/basis-orthogonality",
+              "value": 4.440892098500626e-16,
+              "bound": 2e-10,
+              "passed": true
+            },
+            {
+              "name": "saddle-12-none-minres/symmetric-congruence",
+              "value": 0.0,
+              "bound": 2e-12,
+              "passed": true
+            },
+            {
+              "name": "saddle-12-none-minres/fixed-dimension-budget",
+              "value": 17,
+              "bound": 17,
+              "passed": true
+            },
+            {
+              "name": "saddle-12-none-gmres/finite",
+              "value": 0.0,
+              "bound": 0.0,
+              "passed": true
+            },
+            {
+              "name": "saddle-12-none-gmres/same-true-residual",
+              "value": 1.9391649073952975e-16,
+              "bound": 1e-09,
+              "passed": true
+            },
+            {
+              "name": "saddle-12-none-gmres/independent-reference",
+              "value": 5.865229268588339e-15,
+              "bound": 2e-08,
+              "passed": true
+            },
+            {
+              "name": "saddle-12-none-gmres/basis-orthogonality",
+              "value": 4.440892098500626e-16,
+              "bound": 2e-10,
+              "passed": true
+            },
+            {
+              "name": "saddle-12-none-gmres/symmetric-congruence",
+              "value": 0.0,
+              "bound": 2e-12,
+              "passed": true
+            },
+            {
+              "name": "saddle-12-none-gmres/fixed-dimension-budget",
+              "value": 17,
+              "bound": 17,
+              "passed": true
+            },
+            {
+              "name": "saddle-12-exact-Schur-minres/finite",
+              "value": 0.0,
+              "bound": 0.0,
+              "passed": true
+            },
+            {
+              "name": "saddle-12-exact-Schur-minres/same-true-residual",
+              "value": 5.635056443566238e-16,
+              "bound": 1e-09,
+              "passed": true
+            },
+            {
+              "name": "saddle-12-exact-Schur-minres/independent-reference",
+              "value": 1.1337667158717725e-14,
+              "bound": 2e-08,
+              "passed": true
+            },
+            {
+              "name": "saddle-12-exact-Schur-minres/basis-orthogonality",
+              "value": 2.220446049250313e-16,
+              "bound": 2e-10,
+              "passed": true
+            },
+            {
+              "name": "saddle-12-exact-Schur-minres/symmetric-congruence",
+              "value": 6.7441275935195295e-19,
+              "bound": 2e-12,
+              "passed": true
+            },
+            {
+              "name": "saddle-12-exact-Schur-minres/fixed-dimension-budget",
+              "value": 3,
+              "bound": 17,
+              "passed": true
+            },
+            {
+              "name": "saddle-12-exact-Schur-minres/ideal-three-step-control",
+              "value": 3,
+              "bound": 4,
+              "passed": true
+            },
+            {
+              "name": "saddle-12-exact-Schur-gmres/finite",
+              "value": 0.0,
+              "bound": 0.0,
+              "passed": true
+            },
+            {
+              "name": "saddle-12-exact-Schur-gmres/same-true-residual",
+              "value": 5.411870627339104e-16,
+              "bound": 1e-09,
+              "passed": true
+            },
+            {
+              "name": "saddle-12-exact-Schur-gmres/independent-reference",
+              "value": 1.1126447409762033e-14,
+              "bound": 2e-08,
+              "passed": true
+            },
+            {
+              "name": "saddle-12-exact-Schur-gmres/basis-orthogonality",
+              "value": 2.220446049250313e-16,
+              "bound": 2e-10,
+              "passed": true
+            },
+            {
+              "name": "saddle-12-exact-Schur-gmres/symmetric-congruence",
+              "value": 6.7441275935195295e-19,
+              "bound": 2e-12,
+              "passed": true
+            },
+            {
+              "name": "saddle-12-exact-Schur-gmres/fixed-dimension-budget",
+              "value": 3,
+              "bound": 17,
+              "passed": true
+            },
+            {
+              "name": "saddle-12-exact-Schur-gmres/ideal-three-step-control",
+              "value": 3,
+              "bound": 4,
+              "passed": true
+            },
+            {
+              "name": "n24/ideal-Schur-three-point-spectrum",
+              "value": 2.220446049250313e-15,
+              "bound": 2e-10,
+              "passed": true
+            },
+            {
+              "name": "saddle-24-none-minres/finite",
+              "value": 0.0,
+              "bound": 0.0,
+              "passed": true
+            },
+            {
+              "name": "saddle-24-none-minres/same-true-residual",
+              "value": 2.340278567268362e-13,
+              "bound": 1e-09,
+              "passed": true
+            },
+            {
+              "name": "saddle-24-none-minres/independent-reference",
+              "value": 4.2310885906326075e-10,
+              "bound": 2e-08,
+              "passed": true
+            },
+            {
+              "name": "saddle-24-none-minres/basis-orthogonality",
+              "value": 3.3306690738754696e-16,
+              "bound": 2e-10,
+              "passed": true
+            },
+            {
+              "name": "saddle-24-none-minres/symmetric-congruence",
+              "value": 0.0,
+              "bound": 2e-12,
+              "passed": true
+            },
+            {
+              "name": "saddle-24-none-minres/fixed-dimension-budget",
+              "value": 29,
+              "bound": 35,
+              "passed": true
+            },
+            {
+              "name": "saddle-24-none-gmres/finite",
+              "value": 0.0,
+              "bound": 0.0,
+              "passed": true
+            },
+            {
+              "name": "saddle-24-none-gmres/same-true-residual",
+              "value": 2.3402574078719236e-13,
+              "bound": 1e-09,
+              "passed": true
+            },
+            {
+              "name": "saddle-24-none-gmres/independent-reference",
+              "value": 4.2310624558030424e-10,
+              "bound": 2e-08,
+              "passed": true
+            },
+            {
+              "name": "saddle-24-none-gmres/basis-orthogonality",
+              "value": 4.440892098500626e-16,
+              "bound": 2e-10,
+              "passed": true
+            },
+            {
+              "name": "saddle-24-none-gmres/symmetric-congruence",
+              "value": 0.0,
+              "bound": 2e-12,
+              "passed": true
+            },
+            {
+              "name": "saddle-24-none-gmres/fixed-dimension-budget",
+              "value": 29,
+              "bound": 35,
+              "passed": true
+            },
+            {
+              "name": "saddle-24-exact-Schur-minres/finite",
+              "value": 0.0,
+              "bound": 0.0,
+              "passed": true
+            },
+            {
+              "name": "saddle-24-exact-Schur-minres/same-true-residual",
+              "value": 6.504115074051495e-16,
+              "bound": 1e-09,
+              "passed": true
+            },
+            {
+              "name": "saddle-24-exact-Schur-minres/independent-reference",
+              "value": 2.0314614377314686e-14,
+              "bound": 2e-08,
+              "passed": true
+            },
+            {
+              "name": "saddle-24-exact-Schur-minres/basis-orthogonality",
+              "value": 2.220446049250313e-16,
+              "bound": 2e-10,
+              "passed": true
+            },
+            {
+              "name": "saddle-24-exact-Schur-minres/symmetric-congruence",
+              "value": 3.4461020655298036e-19,
+              "bound": 2e-12,
+              "passed": true
+            },
+            {
+              "name": "saddle-24-exact-Schur-minres/fixed-dimension-budget",
+              "value": 3,
+              "bound": 35,
+              "passed": true
+            },
+            {
+              "name": "saddle-24-exact-Schur-minres/ideal-three-step-control",
+              "value": 3,
+              "bound": 4,
+              "passed": true
+            },
+            {
+              "name": "saddle-24-exact-Schur-gmres/finite",
+              "value": 0.0,
+              "bound": 0.0,
+              "passed": true
+            },
+            {
+              "name": "saddle-24-exact-Schur-gmres/same-true-residual",
+              "value": 6.649181252867831e-16,
+              "bound": 1e-09,
+              "passed": true
+            },
+            {
+              "name": "saddle-24-exact-Schur-gmres/independent-reference",
+              "value": 2.0278072543947188e-14,
+              "bound": 2e-08,
+              "passed": true
+            },
+            {
+              "name": "saddle-24-exact-Schur-gmres/basis-orthogonality",
+              "value": 2.220446049250313e-16,
+              "bound": 2e-10,
+              "passed": true
+            },
+            {
+              "name": "saddle-24-exact-Schur-gmres/symmetric-congruence",
+              "value": 3.4461020655298036e-19,
+              "bound": 2e-12,
+              "passed": true
+            },
+            {
+              "name": "saddle-24-exact-Schur-gmres/fixed-dimension-budget",
+              "value": 3,
+              "bound": 35,
+              "passed": true
+            },
+            {
+              "name": "saddle-24-exact-Schur-gmres/ideal-three-step-control",
+              "value": 3,
+              "bound": 4,
+              "passed": true
+            },
+            {
+              "name": "CG/explicit-negative-curvature-control",
+              "value": 1,
+              "bound": 1,
+              "passed": true
+            }
+          ],
+          "records": [
+            {
+              "id": "saddle-12-none-minres",
+              "fields": "saddle-12-none-minres.npz",
+              "method": "minres",
+              "preconditioner": "none",
+              "size": 17,
+              "iterations": 17,
+              "projected_operator_actions": 17,
+              "solver_original_residual_actions": 17,
+              "posthoc_original_residual_actions": 1,
+              "true_relative_residual": 1.7996034757256202e-16,
+              "reference_error": 1.4741636058238345e-14,
+              "converged": true,
+              "condition_infinity_estimate": 1430.7272685427329,
+              "internal_true_residual_target": 1.3978904603091125e-11,
+              "configured_true_residual_tolerance": 1e-09
+            },
+            {
+              "id": "saddle-12-none-gmres",
+              "fields": "saddle-12-none-gmres.npz",
+              "method": "gmres",
+              "preconditioner": "none",
+              "size": 17,
+              "iterations": 17,
+              "projected_operator_actions": 17,
+              "solver_original_residual_actions": 17,
+              "posthoc_original_residual_actions": 1,
+              "true_relative_residual": 1.9391649073952975e-16,
+              "reference_error": 5.865229268588339e-15,
+              "converged": true,
+              "condition_infinity_estimate": 1430.7272685427329,
+              "internal_true_residual_target": 1.3978904603091125e-11,
+              "configured_true_residual_tolerance": 1e-09
+            },
+            {
+              "id": "saddle-12-exact-Schur-minres",
+              "fields": "saddle-12-exact-Schur-minres.npz",
+              "method": "minres",
+              "preconditioner": "exact-Schur",
+              "size": 17,
+              "iterations": 3,
+              "projected_operator_actions": 3,
+              "solver_original_residual_actions": 3,
+              "posthoc_original_residual_actions": 1,
+              "true_relative_residual": 5.635056443566238e-16,
+              "reference_error": 1.1337667158717725e-14,
+              "converged": true,
+              "condition_infinity_estimate": 1430.7272685427329,
+              "internal_true_residual_target": 1.3978904603091125e-11,
+              "configured_true_residual_tolerance": 1e-09
+            },
+            {
+              "id": "saddle-12-exact-Schur-gmres",
+              "fields": "saddle-12-exact-Schur-gmres.npz",
+              "method": "gmres",
+              "preconditioner": "exact-Schur",
+              "size": 17,
+              "iterations": 3,
+              "projected_operator_actions": 3,
+              "solver_original_residual_actions": 3,
+              "posthoc_original_residual_actions": 1,
+              "true_relative_residual": 5.411870627339104e-16,
+              "reference_error": 1.1126447409762033e-14,
+              "converged": true,
+              "condition_infinity_estimate": 1430.7272685427329,
+              "internal_true_residual_target": 1.3978904603091125e-11,
+              "configured_true_residual_tolerance": 1e-09
+            },
+            {
+              "id": "saddle-24-none-minres",
+              "fields": "saddle-24-none-minres.npz",
+              "method": "minres",
+              "preconditioner": "none",
+              "size": 35,
+              "iterations": 29,
+              "projected_operator_actions": 29,
+              "solver_original_residual_actions": 29,
+              "posthoc_original_residual_actions": 1,
+              "true_relative_residual": 2.340278567268362e-13,
+              "reference_error": 4.2310885906326075e-10,
+              "converged": true,
+              "condition_infinity_estimate": 5682.080194251278,
+              "internal_true_residual_target": 3.5198376855424475e-12,
+              "configured_true_residual_tolerance": 1e-09
+            },
+            {
+              "id": "saddle-24-none-gmres",
+              "fields": "saddle-24-none-gmres.npz",
+              "method": "gmres",
+              "preconditioner": "none",
+              "size": 35,
+              "iterations": 29,
+              "projected_operator_actions": 29,
+              "solver_original_residual_actions": 29,
+              "posthoc_original_residual_actions": 1,
+              "true_relative_residual": 2.3402574078719236e-13,
+              "reference_error": 4.2310624558030424e-10,
+              "converged": true,
+              "condition_infinity_estimate": 5682.080194251278,
+              "internal_true_residual_target": 3.5198376855424475e-12,
+              "configured_true_residual_tolerance": 1e-09
+            },
+            {
+              "id": "saddle-24-exact-Schur-minres",
+              "fields": "saddle-24-exact-Schur-minres.npz",
+              "method": "minres",
+              "preconditioner": "exact-Schur",
+              "size": 35,
+              "iterations": 3,
+              "projected_operator_actions": 3,
+              "solver_original_residual_actions": 3,
+              "posthoc_original_residual_actions": 1,
+              "true_relative_residual": 6.504115074051495e-16,
+              "reference_error": 2.0314614377314686e-14,
+              "converged": true,
+              "condition_infinity_estimate": 5682.080194251278,
+              "internal_true_residual_target": 3.5198376855424475e-12,
+              "configured_true_residual_tolerance": 1e-09
+            },
+            {
+              "id": "saddle-24-exact-Schur-gmres",
+              "fields": "saddle-24-exact-Schur-gmres.npz",
+              "method": "gmres",
+              "preconditioner": "exact-Schur",
+              "size": 35,
+              "iterations": 3,
+              "projected_operator_actions": 3,
+              "solver_original_residual_actions": 3,
+              "posthoc_original_residual_actions": 1,
+              "true_relative_residual": 6.649181252867831e-16,
+              "reference_error": 2.0278072543947188e-14,
+              "converged": true,
+              "condition_infinity_estimate": 5682.080194251278,
+              "internal_true_residual_target": 3.5198376855424475e-12,
+              "configured_true_residual_tolerance": 1e-09
+            }
+          ],
+          "metrics": {
+            "max_original_relative_residual": 2.340278567268362e-13,
+            "max_relative_reference_error": 4.2310885906326075e-10,
+            "max_iterations": 29,
+            "max_condition_infinity_estimate": 5682.080194251278
+          }
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/symmetric-saddle-minres/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#symmetric-saddle-minres",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#symmetric-saddle-minres"
+        }
+      }
+    ]
+  },
+  "supplemental_scope_profiles": [
+    {
+      "release": {
+        "group": "linear-algebra-spectral",
+        "edition": "2026-11-24-r3",
+        "case_ids": [
+          "symmetric-saddle-minres"
+        ]
+      },
+      "scope": {
+        "ja": "追加固定例：対称不定値鞍点系とSchur前処理。条件と検証範囲は各配布版で確認してください。",
+        "en": "Additional fixed examples: Symmetric saddle systems and Schur preconditioning. See each release for assumptions and checked scope."
+      },
+      "limits": [
+        {
+          "ja": "理想Schurは教育用の稠密制御であり、実Stokes PDEやスケーラブルな近似前処理の完成ではありません。",
+          "en": "A dense, ideal-Schur educational control, not a complete Stokes PDE solver or a scalable approximate preconditioner."
+        }
+      ]
+    }
+  ],
+  "assumptions_ja": [
+    "実対称非特異A、前処理はSPD合同変換。"
+  ],
+  "units_ja": "無次元の代数系。FEM弦では長さ・張力・密度1。",
+  "boundary_conditions_ja": "代数例に物理境界なし。弦は同次Dirichlet端点。",
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/minres/",
+  "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/minres/index.json",
+  "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/minres/index.md",
+  "code_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/fixtures.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/solvers.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/references/oracles.py"
+  ],
+  "test_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/test_algorithms.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/test_mass_action.py"
+  ],
+  "run_commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "run_from": "atlas-linear-algebra-spectral-2026-11-24-r3",
+  "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/",
+  "code_edition": "2026-11-24-r3",
+  "execution_examples": [
+    {
+      "id": "symmetric-saddle-minres",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/symmetric-saddle-minres/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/symmetric-saddle-minres/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    }
+  ],
+  "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/atlas-linear-algebra-spectral-2026-11-24-r3.zip",
+  "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/source-manifest.json",
+  "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+  "code_archive_sha256": "3d14112335ce8a55cce306ec689d430f172d02a49f4675ae5948a2fab7ca1452",
+  "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/result.json",
+  "problem_navigation": {
+    "method_id": "minres",
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "finite-dimensional-linear-system",
+        "name": {
+          "ja": "有限次元線形方程式と行列分解",
+          "en": "Finite-dimensional linear systems and factorizations"
+        },
+        "problem_ids": [
+          "symmetric-saddle-minres"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#finite-dimensional-linear-system-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#finite-dimensional-linear-system-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "symmetric-saddle-minres",
+        "name": {
+          "ja": "対称不定値鞍点系とSchur前処理",
+          "en": "Symmetric saddle systems and Schur preconditioning"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/symmetric-saddle-minres-preview.png",
+          "sha256": "35a0cb90e9427029904fb897e2554220ec77e47b2a7572443210f93be204680e",
+          "width": 854,
+          "height": 590,
+          "caption": {
+            "ja": "速度サイズ24の固定例で使う、保存した35×35鞍点行列。",
+            "en": "The saved 35 x 35 saddle matrix for velocity size 24."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/symmetric-saddle-minres/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/symmetric-saddle-minres/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/symmetric-saddle-minres/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/symmetric-saddle-minres/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "symmetric-saddle-minres",
+            "kind": "supplement",
+            "name": {
+              "ja": "対称不定値鞍点系とSchur前処理",
+              "en": "Symmetric saddle systems and Schur preconditioning"
+            },
+            "scope": {
+              "ja": "同じ元残差の基準でMINRESとGMRESを比較し、理想Schurの三点スペクトルを検査します。",
+              "en": "MINRES and GMRES use the same original-system residual criterion and are checked against the ideal Schur three-point spectrum."
+            },
+            "method_ids": [
+              "minres",
+              "gmres"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/symmetric-saddle-minres/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/symmetric-saddle-minres/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/atlas-linear-algebra-spectral-2026-11-24-r3.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "全基底保存のLanczos最小残差LSと二重MGS GMRES。SPD合同変換で対称性を保持。 元入力の残差1e-9と固定前進上限2e-8から、行列のみのκ∞推定で内部目標min(rtol,2e-8/κ∞)を導出。独立解を停止に使わない。",
+          "en": "Stored-basis Lanczos least squares provides the educational MINRES variant; GMRES uses two-pass modified Gram-Schmidt. An SPD congruence preserves symmetry. The internal target is min(configured rtol, fixed forward-error limit / kappa_infinity), using only the matrix. The independent solution is not a stopping input."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/symmetric-saddle-minres/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/symmetric-saddle-minres/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "symmetric-saddle-minres",
+        "problem_name": {
+          "ja": "対称不定値鞍点系とSchur前処理",
+          "en": "Symmetric saddle systems and Schur preconditioning"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/symmetric-saddle-minres/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/symmetric-saddle-minres/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "symmetric-saddle-minres",
+            "title": {
+              "ja": "対称不定値鞍点系：独立dense解と理想Schurスペクトル",
+              "en": "Symmetric saddles: independent dense solutions and the ideal-Schur spectrum"
+            },
+            "kind": "numerical-reference",
+            "relation": "same-problem",
+            "note": {
+              "ja": "理想Schurは教育用の稠密制御であり、実Stokes PDEやスケーラブルな近似前処理の完成ではありません。",
+              "en": "A dense, ideal-Schur educational control, not a complete Stokes PDE solver or a scalable approximate preconditioner."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-symmetric-saddle-minres-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-symmetric-saddle-minres-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/symmetric-saddle-minres/?lang=ja#symmetric-saddle-minres-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/symmetric-saddle-minres/?lang=en#symmetric-saddle-minres-en-measurements"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

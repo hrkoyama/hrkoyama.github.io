@@ -24,6 +24,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/automatic-differentia
 
 ## コード・検証
 
+- [解析・中央差分・方向ADによるJacobian不要Newton–Krylov](<https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/?lang=ja>)
+  availability: run
+
+  非線形Jacobianを組み立てずにBratuの上下枝を3種類のJvで解き、forcingと実際の残差・評価回数を保存します。
 - [自動微分：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/automatic-differentiation/?lang=ja#method-execution-ja>)
   availability: source
 

@@ -95,10 +95,22 @@ Resources explicitly registered to the methods, problems and executions of this 
 
 ## Code and validation
 
+- [Symmetric saddle systems and Schur preconditioning](<https://hrkoyama.github.io/numerical-methods-atlas/validation/symmetric-saddle-minres/?lang=en>)
+  availability: run
+
+  MINRES and GMRES use the same original-system residual criterion and are checked against the ideal Schur three-point spectrum.
+- [Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products](<https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/?lang=en>)
+  availability: run
+
+  Solve both Bratu branches with three Jv choices without assembling the nonlinear Jacobian; retain forcing, actual residuals and evaluation counts.
 - [1D Bratu: Newton–GMRES on the lower branch](<https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/bratu/?lang=en>)
   availability: run
 
   Solve the lower branch of −u''=λexp(u), with β=1 and λ=2β²/cosh²(β/2), starting at zero. Check the analytic solution, recomputed nonlinear residual and second-order refinement on 31/63/127 interior nodes.
+- [Crossing the Bratu fold with pseudo-arclength continuation](<https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-continuation/?lang=en>)
+  availability: run
+
+  Follow the lower and upper branches of the same one-dimensional Bratu boundary-value problem; check tangents, the fold and spatial error against an independent analytic family.
 - [Restarted GMRES — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/gmres/?lang=en#method-execution-en>)
   availability: source
 

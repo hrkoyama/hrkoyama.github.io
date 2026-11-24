@@ -2211,7 +2211,7 @@ ID: dsmc-2 · P2 · 公開済み · 新規実装
 
 ### Ghia lid-driven cavity（まずRe=100）
 
-ID: lbm-1 · P1 · 検証済み · 新規実装
+ID: lbm-1 · P1 · 公開済み · 新規実装
 
 調査時の範囲：未収録
 
@@ -2274,7 +2274,7 @@ Re100の実2D LBMを3格子で計算し、Ghiaの丸めた中心線表・主渦�
 
 ### LBM版2D Taylor–Green渦の時間・空間・Mach数誤差
 
-ID: lbm-2 · P1 · 検証済み · 検証の拡充
+ID: lbm-2 · P1 · 公開済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
@@ -2333,7 +2333,7 @@ ID: lbm-2 · P1 · 検証済み · 検証の拡充
 
 ### 円柱後流／曲面境界のSchäfer–Turek型基準問題
 
-ID: lbm-3 · P2 · 検証済み · 新規実装
+ID: lbm-3 · P2 · 公開済み · 新規実装
 
 調査時の範囲：未収録
 
@@ -2406,7 +2406,7 @@ ID: lbm-3 · P2 · 検証済み · 新規実装
 
 ### 等方散乱平板の多重散乱ベンチマーク
 
-ID: radiation-1 · P1 · 検証済み · 検証の拡充
+ID: radiation-1 · P1 · 公開済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
@@ -2464,7 +2464,7 @@ ID: radiation-1 · P1 · 検証済み · 検証の拡充
 
 ### Su–Olson非平衡放射輸送／Marshak波
 
-ID: radiation-2 · P2 · 検証済み · 新規実装
+ID: radiation-2 · P2 · 公開済み · 新規実装
 
 調査時の範囲：未収録
 
@@ -2542,7 +2542,7 @@ ID: radiation-2 · P2 · 検証済み · 新規実装
 
 ### 影形成・交差ビームの多次元輸送（M1の限界も表示）
 
-ID: radiation-3 · P2 · 検証済み · 新規実装
+ID: radiation-3 · P2 · 公開済み · 新規実装
 
 調査時の範囲：未収録
 
@@ -2604,7 +2604,7 @@ ID: radiation-3 · P2 · 検証済み · 新規実装
 
 ### GBM/OUのweak誤差と信頼区間を分けた固定入力
 
-ID: stochastic-1 · P1 · 検証済み · 検証の拡充
+ID: stochastic-1 · P1 · 公開済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
@@ -2662,7 +2662,7 @@ GBMとスカラーOUで解析モーメント・離散弱誤差・共有Brown運�
 
 ### 正規尾確率などのimportance sampling／分散削減
 
-ID: stochastic-2 · P1 · 検証済み · 新規実装
+ID: stochastic-2 · P1 · 公開済み · 新規実装
 
 調査時の範囲：未収録
 
@@ -2719,7 +2719,7 @@ ID: stochastic-2 · P1 · 検証済み · 新規実装
 
 ### 相関多変量Gaussian／banana・funnel型標的
 
-ID: stochastic-3 · P2 · 検証済み · 検証の拡充
+ID: stochastic-3 · P2 · 公開済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
@@ -2780,7 +2780,7 @@ ID: stochastic-3 · P2 · 検証済み · 検証の拡充
 
 ### Milstein法のGBM strong次数比較
 
-ID: stochastic-4 · P2 · 検証済み · 新規実装
+ID: stochastic-4 · P2 · 公開済み · 新規実装
 
 調査時の範囲：未収録
 
@@ -2839,7 +2839,7 @@ ID: stochastic-4 · P2 · 検証済み · 新規実装
 
 ### Mie散乱（まず2D円柱、用途があれば3D球）
 
-ID: maxwell-fdtd-1 · P2 · 未着手 · 新規実装
+ID: maxwell-fdtd-1 · P2 · 検証済み · 新規実装
 
 調査時の範囲：未収録
 
@@ -2865,10 +2865,39 @@ ID: maxwell-fdtd-1 · P2 · 未着手 · 新規実装
 
 - [Meep公式: Mie Scattering of a Lossless Dielectric Sphere](<https://meep.readthedocs.io/en/latest/Scheme_Tutorials/Basics/>)
   球の散乱効率を解析Mie解と比較する公式例を確認。2D円柱への縮小は提案で、球の式を円柱へ流用しない。
+- [Mie scattering 2D](<https://optics.ansys.com/hc/en-us/articles/360042703373-Mie-scattering-2D>)
+  Read the complete substantive benchmark description: two-dimensional dielectric cylinder, TFSF, angular far field and lossless cross sections. Did not read the associated simulation files, theory table or cited book; no external numerical data imported. Publication and revision dates have not been verified. Accessed on 2026-11-24; this is a consultation date, not a publication year.
+- [Bessel and Hankel Wronskians, section10.5](<https://dlmf.nist.gov/10.5>)
+  Read section 10.5, especially equation 10.5.3 for the ordinary J/Hankel1 Wronskian; version 1.2.8. Cylinder boundary algebra is independently derived here. The year 2026 denotes DLMF version 1.2.8, released on 2026-09-15, not its initial publication year. Accessed on 2026-11-24.
+
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/inputs.json",
+    "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/acceptance.json",
+    "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/results/cylinder-mie2d-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/run.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/README.md",
+    "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/cases.json"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#cylinder-mie2d-ja",
+  "execution": "/numerical-methods-atlas/validation/cylinder-mie2d/?lang=ja"
+}
+```
 
 ### 損失・Lorentz分散板への斜め入射Fresnel
 
-ID: maxwell-fdtd-2 · P2 · 未着手 · 検証の拡充
+ID: maxwell-fdtd-2 · P2 · 検証済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
@@ -2894,11 +2923,36 @@ ID: maxwell-fdtd-2 · P2 · 未着手 · 検証の拡充
 - `code/fdtd/2026-11-22-r6/inputs/loss-dispersion.json`
 
 - [Meep公式: Materials](<https://meep.readthedocs.io/en/latest/Materials/>)
-  Lorentz分極・導電率の規約と分散媒質/PML併用時の安定性注意を確認。既存r6はMeepと導電率・更新法の規約が異なる。
+  Read Material Dispersion, Numerical Stability, Loss and Gain, and Conductivity. Confirmed the exp(-i omega t) convention, Lorentz polarization and dispersive-PML warning. Our sigma E conductivity and midpoint update differ from Meep. Unversioned latest documentation; no original Yee or Roden-Gedney paper claim. Publication and revision dates have not been verified. Accessed on 2026-11-24; this is a consultation date, not a publication year.
+
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/inputs.json",
+    "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/acceptance.json",
+    "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/results/lorentz-oblique-sp-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/run.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/README.md",
+    "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/cases.json"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#lorentz-oblique-sp-ja",
+  "execution": "/numerical-methods-atlas/validation/lorentz-oblique-sp/?lang=ja"
+}
+```
 
 ### PMLの浅い入射角・長時間・分散媒質との併用
 
-ID: maxwell-fdtd-3 · P2 · 未着手 · 検証の拡充
+ID: maxwell-fdtd-3 · P2 · 検証済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
@@ -2924,13 +2978,40 @@ ID: maxwell-fdtd-3 · P2 · 未着手 · 検証の拡充
 - `code/fdtd/2026-11-22-r6/README.md` · no dispersive PML
 
 - [Meep公式: Materials](<https://meep.readthedocs.io/en/latest/Materials/>)
-  Lorentz分極・導電率の規約と分散媒質/PML併用時の安定性注意を確認。既存r6はMeepと導電率・更新法の規約が異なる。
+  Read Material Dispersion, Numerical Stability, Loss and Gain, and Conductivity. Confirmed the exp(-i omega t) convention, Lorentz polarization and dispersive-PML warning. Our sigma E conductivity and midpoint update differ from Meep. Unversioned latest documentation; no original Yee or Roden-Gedney paper claim. Publication and revision dates have not been verified. Accessed on 2026-11-24; this is a consultation date, not a publication year.
+- [Notes on Perfectly Matched Layers](<https://arxiv.org/html/2108.05348v1>)
+  Read sections 3.2–4.2, equations 7–8 and the time-domain ADE discussion, plus sections 5–7.2 on homogeneity, evanescent fields and grazing/discretization limitations. The served text is updated 2026-08-24. The trapezoidal filter is our derivation; no full original Berenger/Roden-Gedney paper review is claimed.
+
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-24-r2/maxwell-grazing/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-24-r2/maxwell-grazing/inputs.json",
+    "/code/validated-examples/2026-11-24-r2/maxwell-grazing/acceptance.json",
+    "/code/validated-examples/2026-11-24-r2/maxwell-grazing/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-24-r2/maxwell-grazing/results/dispersive-grazing-pml-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-24-r2/maxwell-grazing/run.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-24-r2/maxwell-grazing/README.md",
+    "/code/validated-examples/2026-11-24-r2/maxwell-grazing/cases.json"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#dispersive-grazing-pml-ja",
+  "execution": "/numerical-methods-atlas/validation/dispersive-grazing-pml/?lang=ja"
+}
+```
 
 ## 線形代数・連立一次方程式
 
 ### 一般直接法の独立教材：部分ピボット LU・Cholesky と反復改良
 
-ID: linear-algebra-1 · P1 · 未着手 · 新規実装
+ID: linear-algebra-1 · P1 · 検証済み · 新規実装
 
 調査時の範囲：未収録
 
@@ -2963,9 +3044,34 @@ Thomas、定常反復、CG、GMRES/BiCGSTAB、Jacobi/ILU0、幾何 MG、平滑�
 - [PETSc KSP manual](<https://petsc.org/release/manual/ksp/>)
   公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。
 
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/inputs.json",
+    "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/acceptance.json",
+    "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/pivoted-direct-refinement-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/run.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/README.md",
+    "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#pivoted-direct-refinement-ja",
+  "execution": "/numerical-methods-atlas/validation/pivoted-direct-refinement/?lang=ja"
+}
+```
+
 ### 鞍点系・対称不定値系：MINRES とブロック前処理
 
-ID: linear-algebra-2 · P2 · 未着手 · 新規実装
+ID: linear-algebra-2 · P2 · 検証済み · 新規実装
 
 調査時の範囲：未収録
 
@@ -2995,12 +3101,39 @@ Thomas、定常反復、CG、GMRES/BiCGSTAB、Jacobi/ILU0、幾何 MG、平滑�
   公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。
 - [PETSc KSP manual](<https://petsc.org/release/manual/ksp/>)
   公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。
+- [Paige and Saunders: Stanford SOL MINRES](<https://web.stanford.edu/group/SOL/software/minres/>)
+  Selected discussion of symmetric indefinite systems, SPD preconditioners and the original residual was read. The original 1975 paper was not read. This stored-basis Lanczos least-squares variant is not a copy of the production short recurrence.
+
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/inputs.json",
+    "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/acceptance.json",
+    "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/symmetric-saddle-minres-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/run.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/README.md",
+    "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#symmetric-saddle-minres-ja",
+  "execution": "/numerical-methods-atlas/validation/symmetric-saddle-minres/?lang=ja"
+}
+```
 
 ## 固有値・特異値問題
 
 ### 再始動 Krylov と shift-invert による内部固有値
 
-ID: eigenvalues-1 · P1 · 未着手 · 検証の拡充
+ID: eigenvalues-1 · P1 · 検証済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
@@ -3034,9 +3167,34 @@ ID: eigenvalues-1 · P1 · 未着手 · 検証の拡充
 - [SLEPc: Krylov-Schur](<https://slepc.upv.es/release/manualpages/EPS/EPSKRYLOVSCHUR.html>)
   公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。
 
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/inputs.json",
+    "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/acceptance.json",
+    "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/restarted-shift-invert-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/run.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/README.md",
+    "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#restarted-shift-invert-ja",
+  "execution": "/numerical-methods-atlas/validation/restarted-shift-invert/?lang=ja"
+}
+```
+
 ### 質量行列付き一般化固有値の独立検証例
 
-ID: eigenvalues-2 · P2 · 未着手 · 検証の拡充
+ID: eigenvalues-2 · P2 · 検証済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
@@ -3069,10 +3227,39 @@ ID: eigenvalues-2 · P2 · 未着手 · 検証の拡充
   公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。
 - [SLEPc: Krylov-Schur](<https://slepc.upv.es/release/manualpages/EPS/EPSKRYLOVSCHUR.html>)
   公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。
+- [SciPy 1.14.1 LOBPCG API](<https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.sparse.linalg.lobpcg.html>)
+  Selected discussion of SPD B, preconditioner M, the history tuple, the 3k eigensolve, the 5k > n fallback and the rod example was read. This maintained-library comparison shares reduced LAPACK primitives; LOBPCG is not independently authored here.
+- [SciPy 1.14.1 LOBPCG adapter and initial B-orthonormalization](<https://raw.githubusercontent.com/scipy/scipy/v1.14.1/scipy/sparse/linalg/_eigen/lobpcg/lobpcg.py>)
+  Selected _makeMatMat, _b_orthonormalize and API lines were read. The installed pinned file is bound separately. No full reading of the original LOBPCG paper or byte equality between wheel and Web source formatting is claimed.
+
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/inputs.json",
+    "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/acceptance.json",
+    "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/fem-mass-eigen-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/run.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/README.md",
+    "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#fem-mass-eigen-ja",
+  "execution": "/numerical-methods-atlas/validation/fem-mass-eigen/?lang=ja"
+}
+```
 
 ### Arnoldi/Lanczos 原著の参照箇所を明示
 
-ID: eigenvalues-3 · P3 · 未着手 · 参照・出典の整備
+ID: eigenvalues-3 · P3 · 検証済み · 参照・出典の整備
 
 調査時の範囲：出典整備不足
 
@@ -3104,11 +3291,27 @@ ID: eigenvalues-3 · P3 · 未着手 · 参照・出典の整備
 - [SLEPc: Krylov-Schur](<https://slepc.upv.es/release/manualpages/EPS/EPSKRYLOVSCHUR.html>)
   公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。
 
+完了の根拠：
+
+```json
+{
+  "targets": [
+    "/catalog/atlas-method-primary-references.json",
+    "/catalog/atlas-detailed-reading.json"
+  ],
+  "proof": [
+    "/catalog/atlas-method-primary-references.json",
+    "/catalog/atlas-detailed-reading.json"
+  ],
+  "note": "Selected Lanczos original NIST pages266–267/271 were visually checked. Selected Arnoldi original-paper prose was read from a disclosed public OCR copy; the original scan/equation symbols remain unverified and AMS requests returned403. This is source curation, not another numerical implementation."
+}
+```
+
 ## 非線形方程式・大域化
 
 ### Bratu の折り返し点・上下枝をたどる擬似弧長継続
 
-ID: nonlinear-1 · P1 · 未着手 · 新規実装
+ID: nonlinear-1 · P1 · 検証済み · 新規実装
 
 調査時の範囲：未収録
 
@@ -3136,10 +3339,39 @@ Bratu の減衰 Newton、十分減少線探索、組み立て Jacobian と GMRES
 
 - [PETSc SNES: nonlinear solvers](<https://petsc.org/release/manual/snes/>)
   公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。
+- [Condition Estimates for Pseudo-Arclength Continuation](<https://ipsen.math.ncsu.edu/ps/sinum65438.pdf>)
+  Section2.2, printedpp265–266, Eqs2.2–2.5; tangent null equation, unit Euclidean tangent, augmented system and tangent hyperplane. Weighted h-sum metric is the implementation’s stated discrete variation. No full condition-number proof or original paper numerical benchmark is borrowed.
+- [Finite differences for the1D Bratu problem,Problem8](<https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html>)
+  Problem8/Eq52: boundary-value equation, analytic cosh family, branch count and printed rounded critical value. The author’s parameter equals2 times our theta. Independent Decimal80 exact-family qualification remains the numerical reference; the printed rounded anchor is a separate coarse check.
+
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/inputs.json",
+    "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/acceptance.json",
+    "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-fold-continuation-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/run.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/README.md",
+    "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/cases.json"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bratu-fold-continuation-ja",
+  "execution": "/numerical-methods-atlas/validation/bratu-fold-continuation/?lang=ja"
+}
+```
 
 ### 真の matrix-free JFNK と inexact Newton forcing
 
-ID: nonlinear-2 · P2 · 未着手 · 新規実装
+ID: nonlinear-2 · P2 · 検証済み · 新規実装
 
 調査時の範囲：未収録
 
@@ -3169,6 +3401,37 @@ Bratu の減衰 Newton、十分減少線探索、組み立て Jacobian と GMRES
 
 - [PETSc SNES: nonlinear solvers](<https://petsc.org/release/manual/snes/>)
   公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。
+- [Jacobian-free Newton-Krylov methods: a survey of approaches and applications](<https://inf.ufes.br/~luciac/comcie/JFNK-Knoll.pdf>)
+  Selectedsec2.3,2.3.1,2.3.2 and2.4.1, printedpp361–363: matrix-free Jv action, perturbation scaling, inexact forcing Eq16 and line-search globalization. Actual central difference denominator2h and eps_machine^(1/3) scaling are independently specified/qualified, not an attribution to a PETSc default. No whole41-page audit or paper solver result reuse.
+- [Choosing the Forcing Terms in an Inexact Newton Method](<https://users.wpi.edu/~walker/Papers/forcing_terms,SISC_17,1996,16-32.pdf>)
+  Section1 AlgorithmIN/Eq1.2; selectedsec2 Choice2/Eq2.6; practical-safeguard paragraphssec2.1, printedpp16,20,22–23. Core eta=gamma*(||F_k||/||F_{k-1}||)^alpha is Choice2-style. Our gamma.9/alpha1.5 with eta_initial.3 and fixed[.001,.5] clamp omits the paper’s previous-eta safeguard. This is a declared variant, not its complete safeguarded algorithm or an asymptotic convergence certification.
+- [Finite differences for the1D Bratu problem,Problem8](<https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html>)
+  Problem8/Eq52: boundary-value equation, analytic cosh family, branch count and printed rounded critical value. The author’s parameter equals2 times our theta. Independent Decimal80 exact-family qualification remains the numerical reference; the printed rounded anchor is a separate coarse check.
+
+完了の根拠：
+
+```json
+{
+  "verification": "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json",
+  "inputs": [
+    "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/inputs.json",
+    "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/acceptance.json",
+    "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/pre-run-contract.json"
+  ],
+  "plots": [
+    "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-matrix-free-jfnk-preview.png"
+  ],
+  "code": [
+    "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/run.py"
+  ],
+  "references": [
+    "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/README.md",
+    "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/cases.json"
+  ],
+  "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bratu-matrix-free-jfnk-ja",
+  "execution": "/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/?lang=ja"
+}
+```
 
 ### 信頼領域と線探索の難しい初期値比較
 

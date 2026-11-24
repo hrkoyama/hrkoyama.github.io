@@ -170,7 +170,7 @@ python run.py --input inputs.json --output output
 
 ### 出典と確認範囲
 
-- Colin P. McNally, Wladimir Lyra and Jean-Claude Passy (2012). A Well-Posed Kelvin-Helmholtz Instability Test and Comparison. https://arxiv.org/abs/1111.1764; review_level=primary-selected-original-pdf-text
+- Colin P. McNally, Wladimir Lyra and Jean-Claude Passy (2012). A Well-Posed Kelvin-Helmholtz Instability Test and Comparison [accessed 2026-11-23]. https://arxiv.org/abs/1111.1764; review_level=primary-selected-original-pdf-text
 原著の滑らかな層・有限領域・成長測定の議論を確認。本例は独自の強制非圧縮系です。
 
 
@@ -342,7 +342,7 @@ python run.py --input inputs.json --output output
 
 ### 出典と確認範囲
 
-- Antonio Celani, Andrea Mazzino and Lara Vozella (2006). Rayleigh–Taylor turbulence in two dimensions. https://arxiv.org/abs/nlin/0510067; review_level=primary-selected-original-pdf-text
+- Antonio Celani, Andrea Mazzino and Lara Vozella (2006). Rayleigh–Taylor turbulence in two dimensions [accessed 2026-11-23]. https://arxiv.org/abs/nlin/0510067; review_level=primary-selected-original-pdf-text
 原著のBoussinesq方程式と周期設定を確認。本例の滑らかな定常維持二層と線形参照は独自です。
 
 

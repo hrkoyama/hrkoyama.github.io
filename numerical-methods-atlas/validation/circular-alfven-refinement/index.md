@@ -37,7 +37,7 @@ $$
 
 **問題の図**
 
-![円偏波Alfvén波：全成分の格子収束：この実行例の保存済み検証図。](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/circular-alfven-refinement.png)
+![円偏波Alfvén波：全成分の格子収束：この実行例の保存済み検証図。](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/results/circular-alfven-refinement.png)
 
 この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
 
@@ -147,16 +147,16 @@ $$
 
 全recordsとreference_records：https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/index.json
 
-![保存した主計算の実際のBy(x,t)の5時刻場。1次元空間と時間を表示。](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/circular-alfven-refinement-preview.png)
+![保存した主計算の実際のBy(x,t)の5時刻場。1次元空間と時間を表示。](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/results/circular-alfven-refinement-preview.png)
 
 保存した主計算の実際のBy(x,t)の5時刻場。1次元空間と時間を表示。
 
 ## 取得・実行
 
-ZIP: https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip
-Input: https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/inputs.json
-Results: https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/result.json
-Receipt: https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/verification.json
+ZIP: https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip
+Input: https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/inputs.json
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/results/result.json
+Receipt: https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/verification.json
 
 ```sh
 python -m pip install -r requirements.txt
@@ -168,13 +168,13 @@ python run.py --input inputs.json --output output
 
 ## 出典と確認範囲
 
-- Athena++ collaboration (2026). Athena++ official field_loop and orszag_tang problem generators, pinned source. https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416; review_level=Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit
+- Athena++ collaboration (2026). Athena++ official field_loop and orszag_tang problem generators, pinned source [accessed 2026-11-23]. https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416; review_level=Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit
 固定コミットの公式アーカイブSHAを照合し、2初期値生成器と設定・保存列を確認。別実装を実行して参照場を作成し、空間・時間感度を検査。全ソース監査や厳密解とは表示しません。
 
-- Thomas A. Gardiner and James M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport. https://arxiv.org/abs/astro-ph/0501557; review_level=Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication
+- Thomas A. Gardiner and James M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport [accessed 2026-11-23]. https://arxiv.org/abs/astro-ph/0501557; review_level=Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication
 著者公開PDFのCT節・磁場ループ・円偏波の定義を確認。論文のCTU/PPMや斜め伝播実験を再現したとは主張しません。今回の円偏波は1次元整列、公式磁場ループはvz=2の明示的変更です。
 
-- Takahiro Miyoshi and Kanya Kusano (2005). A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics. https://doi.org/10.1016/j.jcp.2005.02.017; review_level=Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments
+- Takahiro Miyoshi and Kanya Kusano (2005). A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics [accessed 2026-11-23]. https://doi.org/10.1016/j.jcp.2005.02.017; review_level=Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments
 書誌を確認。出版社本文は取得できず、今回新たに原著の式や実験を監査したとは表示しません。全8変数HLLDコードは過去の公開検証済みAtlasから同一バイトで継承します。
 
 
@@ -219,7 +219,7 @@ gamma5/3, periodic[0,1], rho1,p.1,Bx1,amplitude.1, speed1,T1,32/64/128 cells. In
 
 **Problem figure**
 
-![Circular Alfven wave: full-state refinement: saved validation figure for this execution.](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/circular-alfven-refinement.png)
+![Circular Alfven wave: full-state refinement: saved validation figure for this execution.](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/results/circular-alfven-refinement.png)
 
 A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
 
@@ -329,16 +329,16 @@ Educational fixed inputs only. Count HLLD-to-HLLE fallbacks and face reconstruct
 
 Complete records and reference_records: https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/index.json
 
-![Actual saved primary By(x,t) at five times: one spatial dimension plus time.](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/circular-alfven-refinement-preview.png)
+![Actual saved primary By(x,t) at five times: one spatial dimension plus time.](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/results/circular-alfven-refinement-preview.png)
 
 Actual saved primary By(x,t) at five times: one spatial dimension plus time.
 
 ## Download and run
 
-ZIP: https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip
-Input: https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/inputs.json
-Results: https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/result.json
-Receipt: https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/verification.json
+ZIP: https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip
+Input: https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/inputs.json
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/results/result.json
+Receipt: https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/verification.json
 
 ```sh
 python -m pip install -r requirements.txt
@@ -350,13 +350,13 @@ This command executes every fixed case in the distribution group. Bundled result
 
 ## Sources and review scope
 
-- Athena++ collaboration (2026). Athena++ official field_loop and orszag_tang problem generators, pinned source. https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416; review_level=Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit
+- Athena++ collaboration (2026). Athena++ official field_loop and orszag_tang problem generators, pinned source [accessed 2026-11-23]. https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416; review_level=Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit
 Verified the official pinned archive SHA and inspected both generators, configuration and saved columns. Executed the independent engine and checked spatial/time sensitivity. No complete code audit or exact-solution claim.
 
-- Thomas A. Gardiner and James M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport. https://arxiv.org/abs/astro-ph/0501557; review_level=Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication
+- Thomas A. Gardiner and James M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport [accessed 2026-11-23]. https://arxiv.org/abs/astro-ph/0501557; review_level=Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication
 Inspected the author PDF CT section and loop/polarized-wave definitions. Original CTU/PPM and oblique-wave experiments are not replicated. Our wave is 1D aligned; the official loop generator explicitly has vz=2.
 
-- Takahiro Miyoshi and Kanya Kusano (2005). A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics. https://doi.org/10.1016/j.jcp.2005.02.017; review_level=Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments
+- Takahiro Miyoshi and Kanya Kusano (2005). A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics [accessed 2026-11-23]. https://doi.org/10.1016/j.jcp.2005.02.017; review_level=Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments
 Bibliographic metadata checked; full publisher text unavailable. No new original-equation/experiment audit is claimed. Full-state HLLD is inherited byte-for-byte from the prior public validated Atlas.
 
 

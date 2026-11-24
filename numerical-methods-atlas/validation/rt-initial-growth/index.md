@@ -164,7 +164,7 @@ python run.py --input inputs.json --output output
 
 ## 出典と確認範囲
 
-- Antonio Celani, Andrea Mazzino and Lara Vozella (2006). Rayleigh–Taylor turbulence in two dimensions. https://arxiv.org/abs/nlin/0510067; review_level=primary-selected-original-pdf-text
+- Antonio Celani, Andrea Mazzino and Lara Vozella (2006). Rayleigh–Taylor turbulence in two dimensions [accessed 2026-11-23]. https://arxiv.org/abs/nlin/0510067; review_level=primary-selected-original-pdf-text
 原著のBoussinesq方程式と周期設定を確認。本例の滑らかな定常維持二層と線形参照は独自です。
 
 
@@ -336,7 +336,7 @@ This command executes every fixed case in the distribution group. Bundled result
 
 ## Sources and review scope
 
-- Antonio Celani, Andrea Mazzino and Lara Vozella (2006). Rayleigh–Taylor turbulence in two dimensions. https://arxiv.org/abs/nlin/0510067; review_level=primary-selected-original-pdf-text
+- Antonio Celani, Andrea Mazzino and Lara Vozella (2006). Rayleigh–Taylor turbulence in two dimensions [accessed 2026-11-23]. https://arxiv.org/abs/nlin/0510067; review_level=primary-selected-original-pdf-text
 Original Boussinesq equations and periodic setup read; our smooth maintained layers and linear reference are constructed here.
 
 

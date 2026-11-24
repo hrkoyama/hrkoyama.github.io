@@ -3529,7 +3529,7 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
+      "state": "published",
       "current": "Re100の実2D LBMを3格子で計算し、Ghiaの丸めた中心線表・主渦・定常性・壁運動量収支を照合。角と有限Machの制約を残します。",
       "tasks": [
         "移動壁条件・中心線速度・主渦位置と格子細分化を追加",
@@ -3589,6 +3589,12 @@
         "execution": "/numerical-methods-atlas/validation/lbm-cavity-re100/?lang=ja"
       },
       "sequence": 38,
+      "published_verification": {
+        "commit": "546e9cdb57ba1700c86081757d3a2dc196cd0739",
+        "url": "/numerical-methods-atlas/validation/verification/2026-11-24-batch38-47-public.json",
+        "passed": true,
+        "verified_at_utc": "2026-11-24T05:01:25.319437+00:00"
+      },
       "completion_evidence": {
         "kind": "scientific",
         "partial": false,
@@ -3627,7 +3633,7 @@
       "priority": "P1",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
+      "state": "published",
       "current": "解析Taylor–Green渦で速度・圧力・エネルギーを比較。格子・時間刻み・Mach数の結び付いた細分化と振幅・刻みの比較で、純粋な時間次数やMach次数とは区別します。",
       "tasks": [
         "せん断単一モードに加え、非線形移流と粘性を含む低Mach渦で速度/圧力誤差を分離",
@@ -3677,6 +3683,12 @@
         "execution": "/numerical-methods-atlas/validation/lbm-taylor-green/?lang=ja"
       },
       "sequence": 39,
+      "published_verification": {
+        "commit": "546e9cdb57ba1700c86081757d3a2dc196cd0739",
+        "url": "/numerical-methods-atlas/validation/verification/2026-11-24-batch38-47-public.json",
+        "passed": true,
+        "verified_at_utc": "2026-11-24T05:01:25.319437+00:00"
+      },
       "completion_evidence": {
         "kind": "scientific",
         "partial": false,
@@ -3715,7 +3727,7 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
+      "state": "published",
       "current": "二次曲面補間の環状Couette制御と、実際のRe20円柱流を別配布。点ごとの圧力・トルク、抗力・圧力差・後流を比較し、旧未達・流出不安定化の結果も保持。原著の推定区間を厳密解とはしません。",
       "tasks": [
         "まず定常低Reで抗力・圧力差を比較し、曲面壁の配置誤差を検査",
@@ -3783,6 +3795,12 @@
         "execution": "/numerical-methods-atlas/validation/lbm-annular-couette-control/?lang=ja"
       },
       "sequence": 40,
+      "published_verification": {
+        "commit": "546e9cdb57ba1700c86081757d3a2dc196cd0739",
+        "url": "/numerical-methods-atlas/validation/verification/2026-11-24-batch38-47-public.json",
+        "passed": true,
+        "verified_at_utc": "2026-11-24T05:01:25.319437+00:00"
+      },
       "completion_evidence": {
         "kind": "scientific",
         "partial": false,
@@ -3828,7 +3846,7 @@
       "priority": "P1",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
+      "state": "published",
       "current": "光学的厚さと散乱アルベドを固定した定常平板。角度離散法を、連続角度のFredholm積分方程式・異なるスカラー基底の参照と比較。有限な参照差を厳密誤差上界とはしません。",
       "tasks": [
         "単一散乱アルベドと光学的厚さを変え、透過・反射・吸収収支を独立輸送解と比較",
@@ -3874,6 +3892,12 @@
         "execution": "/numerical-methods-atlas/validation/isotropic-scattering-slab/?lang=ja"
       },
       "sequence": 41,
+      "published_verification": {
+        "commit": "546e9cdb57ba1700c86081757d3a2dc196cd0739",
+        "url": "/numerical-methods-atlas/validation/verification/2026-11-24-batch38-47-public.json",
+        "passed": true,
+        "verified_at_utc": "2026-11-24T05:01:25.319437+00:00"
+      },
       "completion_evidence": {
         "kind": "scientific",
         "partial": false,
@@ -3912,7 +3936,7 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
+      "state": "published",
       "current": "1996拡散と1997輸送の規格化・境界・参照を分離。固定ExactPack版と著者提供の2023輸送表を照合し、物質交換・重み付き収支を確認。追加の同条件Fourierモードで平均自由行程を解像した拡散極限を調べ、固定格子AP・SSPRK2の硬い極限とは区別。1996/1997原著全文は未読です。",
       "tasks": [
         "Su–Olsonの1997輸送解と拡散近似版を区別し、時間依存・物質エネルギー交換を検証",
@@ -4008,6 +4032,12 @@
         "execution": "/numerical-methods-atlas/validation/su-olson-diffusion1996/?lang=ja"
       },
       "sequence": 42,
+      "published_verification": {
+        "commit": "546e9cdb57ba1700c86081757d3a2dc196cd0739",
+        "url": "/numerical-methods-atlas/validation/verification/2026-11-24-batch38-47-public.json",
+        "passed": true,
+        "verified_at_utc": "2026-11-24T05:01:25.319437+00:00"
+      },
       "completion_evidence": {
         "kind": "scientific",
         "partial": false,
@@ -4047,7 +4077,7 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
+      "state": "published",
       "current": "実2D空間の角度輸送と非線形静止M1で影・対向ビームを比較。x/y交差制御とM1製造解、方向別流束の円錐分割を別に検査。角度輸送の厳密参照をM1全体の厳密解とはしません。",
       "tasks": [
         "純吸収平板以外の角度構造を持つ2D固定入力を設ける",
@@ -4098,6 +4128,12 @@
         "execution": "/numerical-methods-atlas/validation/shadow-absorber2d/?lang=ja"
       },
       "sequence": 43,
+      "published_verification": {
+        "commit": "546e9cdb57ba1700c86081757d3a2dc196cd0739",
+        "url": "/numerical-methods-atlas/validation/verification/2026-11-24-batch38-47-public.json",
+        "passed": true,
+        "verified_at_utc": "2026-11-24T05:01:25.319437+00:00"
+      },
       "completion_evidence": {
         "kind": "scientific",
         "partial": false,
@@ -4137,7 +4173,7 @@
       "priority": "P1",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
+      "state": "published",
       "current": "GBMとスカラーOUで解析モーメント・離散弱誤差・共有Brown運動・独立seed・MCSEを比較。既存GBM強収束や調和Langevin全体の検証とは区別します。",
       "tasks": [
         "GBM strong収束の既存経路比較とは別に、期待値・分散等のweak収束を反復seedで測る",
@@ -4183,6 +4219,12 @@
         "execution": "/numerical-methods-atlas/validation/gbm-weak-moments/?lang=ja"
       },
       "sequence": 44,
+      "published_verification": {
+        "commit": "546e9cdb57ba1700c86081757d3a2dc196cd0739",
+        "url": "/numerical-methods-atlas/validation/verification/2026-11-24-batch38-47-public.json",
+        "passed": true,
+        "verified_at_utc": "2026-11-24T05:01:25.319437+00:00"
+      },
       "completion_evidence": {
         "kind": "scientific",
         "partial": false,
@@ -4222,7 +4264,7 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
+      "state": "published",
       "current": "正規尾確率a=3,6で通常の重要度重み・既知分散・64独立seedの有限な区間被覆を比較。直接MCのゼロヒットをゼロ確率や幅ゼロ区間とはしません。一般の95%被覆保証ではありません。",
       "tasks": [
         "既知erfc参照を持つ稀な事象で、推定量の不偏性と重み・実測分散・区間被覆を確認",
@@ -4267,6 +4309,12 @@
         "execution": "/numerical-methods-atlas/validation/normal-tail-importance/?lang=ja"
       },
       "sequence": 45,
+      "published_verification": {
+        "commit": "546e9cdb57ba1700c86081757d3a2dc196cd0739",
+        "url": "/numerical-methods-atlas/validation/verification/2026-11-24-batch38-47-public.json",
+        "passed": true,
+        "verified_at_utc": "2026-11-24T05:01:25.319437+00:00"
+      },
       "completion_evidence": {
         "kind": "scientific",
         "partial": false,
@@ -4305,7 +4353,7 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
+      "state": "published",
       "current": "相関0.95の2D Gaussianを等方・前処理付き提案で比較。解析の同時モーメントと量別MCSE、保存同一データのArviZ診断640照合を分離。有限演算の分位点互換を明記し、banana・funnel・HMC/NUTSや一般の収束保証は未実装です。",
       "tasks": [
         "既存1D対称二峰とは異なる相関・次元・局所スケールで診断の限界を示す",
@@ -4360,6 +4408,12 @@
         "execution": "/numerical-methods-atlas/validation/correlated-gaussian-mcmc/?lang=ja"
       },
       "sequence": 46,
+      "published_verification": {
+        "commit": "546e9cdb57ba1700c86081757d3a2dc196cd0739",
+        "url": "/numerical-methods-atlas/validation/verification/2026-11-24-batch38-47-public.json",
+        "passed": true,
+        "verified_at_utc": "2026-11-24T05:01:25.319437+00:00"
+      },
       "completion_evidence": {
         "kind": "scientific",
         "partial": false,
@@ -4398,7 +4452,7 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
+      "state": "published",
       "current": "同じBrown運動でEMとMilsteinのGBM強誤差を比較し、解析RMSと有限標本区間を照合。非Lipschitz系や一般の正値性へは広げません。",
       "tasks": [
         "既存EMと同じBrown経路でstrong 1/2と1を比較",
@@ -4443,6 +4497,12 @@
         "execution": "/numerical-methods-atlas/validation/gbm-milstein-strong/?lang=ja"
       },
       "sequence": 47,
+      "published_verification": {
+        "commit": "546e9cdb57ba1700c86081757d3a2dc196cd0739",
+        "url": "/numerical-methods-atlas/validation/verification/2026-11-24-batch38-47-public.json",
+        "passed": true,
+        "verified_at_utc": "2026-11-24T05:01:25.319437+00:00"
+      },
       "completion_evidence": {
         "kind": "scientific",
         "partial": false,
@@ -4481,7 +4541,7 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
+      "state": "verified",
       "current": "最新r6は108テスト、8固定入力。periodic-wave、pec-cavity、dielectric-interface、pml-pulse、pml-corners、dielectric-oblique、p-polarization（Brewster/TIRを含む）、loss-dispersionがある。真空平面波/空洞固有振動/Fresnel/PMLを不足扱いしない。r6の損失分散は1D垂直入射のOhmic・単一受動Lorentz板。",
       "tasks": [
         "既存平面界面とは異なる曲面・散乱断面積を解析級数と比較",
@@ -4493,6 +4553,16 @@
           "title": "Meep公式: Mie Scattering of a Lossless Dielectric Sphere",
           "url": "https://meep.readthedocs.io/en/latest/Scheme_Tutorials/Basics/",
           "review": "球の散乱効率を解析Mie解と比較する公式例を確認。2D円柱への縮小は提案で、球の式を円柱へ流用しない。"
+        },
+        {
+          "title": "Mie scattering 2D",
+          "url": "https://optics.ansys.com/hc/en-us/articles/360042703373-Mie-scattering-2D",
+          "review": "Read the complete substantive benchmark description: two-dimensional dielectric cylinder, TFSF, angular far field and lossless cross sections. Did not read the associated simulation files, theory table or cited book; no external numerical data imported. Publication and revision dates have not been verified. Accessed on 2026-11-24; this is a consultation date, not a publication year."
+        },
+        {
+          "title": "Bessel and Hankel Wronskians, section10.5",
+          "url": "https://dlmf.nist.gov/10.5",
+          "review": "Read section 10.5, especially equation 10.5.3 for the ordinary J/Hankel1 Wronskian; version 1.2.8. Cylinder boundary algebra is independently derived here. The year 2026 denotes DLMF version 1.2.8, released on 2026-09-15, not its initial publication year. Accessed on 2026-11-24."
         }
       ],
       "baseline_evidence": [
@@ -4501,9 +4571,53 @@
           "id": "既存8入力に曲面散乱はない"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/inputs.json",
+          "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/acceptance.json",
+          "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/results/cylinder-mie2d-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/README.md",
+          "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#cylinder-mie2d-ja",
+        "execution": "/numerical-methods-atlas/validation/cylinder-mie2d/?lang=ja"
+      },
       "sequence": 48,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/inputs.json",
+            "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/acceptance.json",
+            "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/results/cylinder-mie2d-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/run.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/README.md",
+            "/code/validated-examples/2026-11-24-r2/maxwell-cylinder/cases.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#cylinder-mie2d-ja",
+          "execution": "/numerical-methods-atlas/validation/cylinder-mie2d/?lang=ja"
+        }
+      }
     },
     {
       "id": "maxwell-fdtd-2",
@@ -4516,7 +4630,7 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
+      "state": "verified",
       "current": "最新r6は108テスト、8固定入力。periodic-wave、pec-cavity、dielectric-interface、pml-pulse、pml-corners、dielectric-oblique、p-polarization（Brewster/TIRを含む）、loss-dispersionがある。真空平面波/空洞固有振動/Fresnel/PMLを不足扱いしない。r6の損失分散は1D垂直入射のOhmic・単一受動Lorentz板。",
       "tasks": [
         "既存r5の無損失s/p斜め入射とr6の1D分散垂直入射を単に合体しただけでは検証済みにしない",
@@ -4527,7 +4641,7 @@
         {
           "title": "Meep公式: Materials",
           "url": "https://meep.readthedocs.io/en/latest/Materials/",
-          "review": "Lorentz分極・導電率の規約と分散媒質/PML併用時の安定性注意を確認。既存r6はMeepと導電率・更新法の規約が異なる。"
+          "review": "Read Material Dispersion, Numerical Stability, Loss and Gain, and Conductivity. Confirmed the exp(-i omega t) convention, Lorentz polarization and dispersive-PML warning. Our sigma E conductivity and midpoint update differ from Meep. Unversioned latest documentation; no original Yee or Roden-Gedney paper claim. Publication and revision dates have not been verified. Accessed on 2026-11-24; this is a consultation date, not a publication year."
         }
       ],
       "baseline_evidence": [
@@ -4539,9 +4653,53 @@
           "path": "code/fdtd/2026-11-22-r6/inputs/loss-dispersion.json"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/inputs.json",
+          "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/acceptance.json",
+          "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/results/lorentz-oblique-sp-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/README.md",
+          "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#lorentz-oblique-sp-ja",
+        "execution": "/numerical-methods-atlas/validation/lorentz-oblique-sp/?lang=ja"
+      },
       "sequence": 49,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/inputs.json",
+            "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/acceptance.json",
+            "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/results/lorentz-oblique-sp-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/run.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/README.md",
+            "/code/validated-examples/2026-11-24-r2/maxwell-lorentz/cases.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#lorentz-oblique-sp-ja",
+          "execution": "/numerical-methods-atlas/validation/lorentz-oblique-sp/?lang=ja"
+        }
+      }
     },
     {
       "id": "maxwell-fdtd-3",
@@ -4554,7 +4712,7 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
+      "state": "verified",
       "current": "最新r6は108テスト、8固定入力。periodic-wave、pec-cavity、dielectric-interface、pml-pulse、pml-corners、dielectric-oblique、p-polarization（Brewster/TIRを含む）、loss-dispersionがある。真空平面波/空洞固有振動/Fresnel/PMLを不足扱いしない。r6の損失分散は1D垂直入射のOhmic・単一受動Lorentz板。",
       "tasks": [
         "既存x面・四辺/角PMLは保持し、near-grazingと長時間残留を別固定入力として検査",
@@ -4565,7 +4723,12 @@
         {
           "title": "Meep公式: Materials",
           "url": "https://meep.readthedocs.io/en/latest/Materials/",
-          "review": "Lorentz分極・導電率の規約と分散媒質/PML併用時の安定性注意を確認。既存r6はMeepと導電率・更新法の規約が異なる。"
+          "review": "Read Material Dispersion, Numerical Stability, Loss and Gain, and Conductivity. Confirmed the exp(-i omega t) convention, Lorentz polarization and dispersive-PML warning. Our sigma E conductivity and midpoint update differ from Meep. Unversioned latest documentation; no original Yee or Roden-Gedney paper claim. Publication and revision dates have not been verified. Accessed on 2026-11-24; this is a consultation date, not a publication year."
+        },
+        {
+          "title": "Notes on Perfectly Matched Layers",
+          "url": "https://arxiv.org/html/2108.05348v1",
+          "review": "Read sections 3.2–4.2, equations 7–8 and the time-domain ADE discussion, plus sections 5–7.2 on homogeneity, evanescent fields and grazing/discretization limitations. The served text is updated 2026-08-24. The trapezoidal filter is our derivation; no full original Berenger/Roden-Gedney paper review is claimed."
         }
       ],
       "baseline_evidence": [
@@ -4578,9 +4741,53 @@
           "id": "no dispersive PML"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24-r2/maxwell-grazing/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24-r2/maxwell-grazing/inputs.json",
+          "/code/validated-examples/2026-11-24-r2/maxwell-grazing/acceptance.json",
+          "/code/validated-examples/2026-11-24-r2/maxwell-grazing/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24-r2/maxwell-grazing/results/dispersive-grazing-pml-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24-r2/maxwell-grazing/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24-r2/maxwell-grazing/README.md",
+          "/code/validated-examples/2026-11-24-r2/maxwell-grazing/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#dispersive-grazing-pml-ja",
+        "execution": "/numerical-methods-atlas/validation/dispersive-grazing-pml/?lang=ja"
+      },
       "sequence": 50,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-24-r2/maxwell-grazing/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-24-r2/maxwell-grazing/inputs.json",
+            "/code/validated-examples/2026-11-24-r2/maxwell-grazing/acceptance.json",
+            "/code/validated-examples/2026-11-24-r2/maxwell-grazing/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-24-r2/maxwell-grazing/results/dispersive-grazing-pml-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-24-r2/maxwell-grazing/run.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-24-r2/maxwell-grazing/README.md",
+            "/code/validated-examples/2026-11-24-r2/maxwell-grazing/cases.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#dispersive-grazing-pml-ja",
+          "execution": "/numerical-methods-atlas/validation/dispersive-grazing-pml/?lang=ja"
+        }
+      }
     },
     {
       "id": "linear-algebra-1",
@@ -4593,7 +4800,7 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
+      "state": "verified",
       "current": "Thomas、定常反復、CG、GMRES/BiCGSTAB、Jacobi/ILU0、幾何 MG、平滑化集約 AMG、QR/SVD がある。AMG の正方 Poisson・異方性・条件数診断と、QR/SVD の独立 LAPACK・80/120桁参照まで保存済み。",
       "tasks": [
         "小さい SPD、ほぼ特異行列、Hilbert 行列、ピボット成長を示す Wilkinson 型行列を固定入力化",
@@ -4628,9 +4835,53 @@
           "id": "amg-conditioning/qr-svd-conditioning"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/inputs.json",
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/acceptance.json",
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/pivoted-direct-refinement-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/README.md",
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#pivoted-direct-refinement-ja",
+        "execution": "/numerical-methods-atlas/validation/pivoted-direct-refinement/?lang=ja"
+      },
       "sequence": 51,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/inputs.json",
+            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/acceptance.json",
+            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/pivoted-direct-refinement-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/run.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/README.md",
+            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#pivoted-direct-refinement-ja",
+          "execution": "/numerical-methods-atlas/validation/pivoted-direct-refinement/?lang=ja"
+        }
+      }
     },
     {
       "id": "linear-algebra-2",
@@ -4643,7 +4894,7 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
+      "state": "verified",
       "current": "Thomas、定常反復、CG、GMRES/BiCGSTAB、Jacobi/ILU0、幾何 MG、平滑化集約 AMG、QR/SVD がある。AMG の正方 Poisson・異方性・条件数診断と、QR/SVD の独立 LAPACK・80/120桁参照まで保存済み。",
       "tasks": [
         "小さい混合 Poisson/Stokes 型ブロック系で、CG の適用外を示す",
@@ -4662,6 +4913,11 @@
           "url": "https://petsc.org/release/manual/ksp/",
           "checked_on": "2026-11-23",
           "review": "公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。"
+        },
+        {
+          "title": "Paige and Saunders: Stanford SOL MINRES",
+          "url": "https://web.stanford.edu/group/SOL/software/minres/",
+          "review": "Selected discussion of symmetric indefinite systems, SPD preconditioners and the original residual was read. The original 1975 paper was not read. This stored-basis Lanczos least-squares variant is not a copy of the production short recurrence."
         }
       ],
       "baseline_evidence": [
@@ -4678,9 +4934,53 @@
           "id": "amg-conditioning/qr-svd-conditioning"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/inputs.json",
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/acceptance.json",
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/symmetric-saddle-minres-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/README.md",
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#symmetric-saddle-minres-ja",
+        "execution": "/numerical-methods-atlas/validation/symmetric-saddle-minres/?lang=ja"
+      },
       "sequence": 52,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/inputs.json",
+            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/acceptance.json",
+            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/symmetric-saddle-minres-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/run.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/README.md",
+            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#symmetric-saddle-minres-ja",
+          "execution": "/numerical-methods-atlas/validation/symmetric-saddle-minres/?lang=ja"
+        }
+      }
     },
     {
       "id": "eigenvalues-1",
@@ -4693,7 +4993,7 @@
       "priority": "P1",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
+      "state": "verified",
       "current": "再始動なし Arnoldi/Lanczos、直交性・残差・happy breakdown、ギャップ縮小・非正規性・部分空間診断がある。分子 HF では一般化密行列固有値問題 eigh(F,S) も既に使用。",
       "tasks": [
         "離散 Laplacian の既知スペクトルで端点・内部固有値を比較",
@@ -4732,9 +5032,53 @@
           "id": "eigh(F,S)"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/inputs.json",
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/acceptance.json",
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/restarted-shift-invert-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/README.md",
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#restarted-shift-invert-ja",
+        "execution": "/numerical-methods-atlas/validation/restarted-shift-invert/?lang=ja"
+      },
       "sequence": 53,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/inputs.json",
+            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/acceptance.json",
+            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/restarted-shift-invert-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/run.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/README.md",
+            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#restarted-shift-invert-ja",
+          "execution": "/numerical-methods-atlas/validation/restarted-shift-invert/?lang=ja"
+        }
+      }
     },
     {
       "id": "eigenvalues-2",
@@ -4747,7 +5091,7 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
+      "state": "verified",
       "current": "再始動なし Arnoldi/Lanczos、直交性・残差・happy breakdown、ギャップ縮小・非正規性・部分空間診断がある。分子 HF では一般化密行列固有値問題 eigh(F,S) も既に使用。",
       "tasks": [
         "1D FEM 弦振動 Kx=λMx で M 直交性・残差と既知固有値への収束を確認",
@@ -4766,6 +5110,16 @@
           "url": "https://slepc.upv.es/release/manualpages/EPS/EPSKRYLOVSCHUR.html",
           "checked_on": "2026-11-23",
           "review": "公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。"
+        },
+        {
+          "title": "SciPy 1.14.1 LOBPCG API",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.sparse.linalg.lobpcg.html",
+          "review": "Selected discussion of SPD B, preconditioner M, the history tuple, the 3k eigensolve, the 5k > n fallback and the rod example was read. This maintained-library comparison shares reduced LAPACK primitives; LOBPCG is not independently authored here."
+        },
+        {
+          "title": "SciPy 1.14.1 LOBPCG adapter and initial B-orthonormalization",
+          "url": "https://raw.githubusercontent.com/scipy/scipy/v1.14.1/scipy/sparse/linalg/_eigen/lobpcg/lobpcg.py",
+          "review": "Selected _makeMatMat, _b_orthonormalize and API lines were read. The installed pinned file is bound separately. No full reading of the original LOBPCG paper or byte equality between wheel and Web source formatting is claimed."
         }
       ],
       "baseline_evidence": [
@@ -4786,9 +5140,53 @@
           "id": "eigh(F,S)"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/inputs.json",
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/acceptance.json",
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/fem-mass-eigen-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/README.md",
+          "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#fem-mass-eigen-ja",
+        "execution": "/numerical-methods-atlas/validation/fem-mass-eigen/?lang=ja"
+      },
       "sequence": 54,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/inputs.json",
+            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/acceptance.json",
+            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/fem-mass-eigen-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/run.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/README.md",
+            "/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#fem-mass-eigen-ja",
+          "execution": "/numerical-methods-atlas/validation/fem-mass-eigen/?lang=ja"
+        }
+      }
     },
     {
       "id": "eigenvalues-3",
@@ -4801,7 +5199,7 @@
       "priority": "P3",
       "kind": "references",
       "initial_coverage": "出典整備不足",
-      "state": "planned",
+      "state": "verified",
       "current": "再始動なし Arnoldi/Lanczos、直交性・残差・happy breakdown、ギャップ縮小・非正規性・部分空間診断がある。分子 HF では一般化密行列固有値問題 eigh(F,S) も既に使用。",
       "tasks": [
         "既存 arnoldi1951/lanczos1950 の metadata レベルを保持し、利用する漸化式・直交化の原文範囲を追加確認"
@@ -4839,9 +5237,34 @@
           "id": "eigh(F,S)"
         }
       ],
-      "completion": null,
+      "completion": {
+        "targets": [
+          "/catalog/atlas-method-primary-references.json",
+          "/catalog/atlas-detailed-reading.json"
+        ],
+        "proof": [
+          "/catalog/atlas-method-primary-references.json",
+          "/catalog/atlas-detailed-reading.json"
+        ],
+        "note": "Selected Lanczos original NIST pages266–267/271 were visually checked. Selected Arnoldi original-paper prose was read from a disclosed public OCR copy; the original scan/equation symbols remain unverified and AMS requests returned403. This is source curation, not another numerical implementation."
+      },
       "sequence": 55,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "curation",
+        "partial": false,
+        "local_evidence_checked": true,
+        "links": {
+          "targets": [
+            "/catalog/atlas-method-primary-references.json",
+            "/catalog/atlas-detailed-reading.json"
+          ],
+          "proof": [
+            "/catalog/atlas-method-primary-references.json",
+            "/catalog/atlas-detailed-reading.json"
+          ],
+          "note": "Selected Lanczos original NIST pages266–267/271 were visually checked. Selected Arnoldi original-paper prose was read from a disclosed public OCR copy; the original scan/equation symbols remain unverified and AMS requests returned403. This is source curation, not another numerical implementation."
+        }
+      }
     },
     {
       "id": "nonlinear-1",
@@ -4854,7 +5277,7 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
+      "state": "verified",
       "current": "Bratu の減衰 Newton、十分減少線探索、組み立て Jacobian と GMRES/ILU 内部解法がある。一般の matrix-free Jv・trust region・continuation は atlas-methods の制限に明記。",
       "tasks": [
         "既存解析解族を用いて λ 最大付近の上下枝と折り返しを照合",
@@ -4867,6 +5290,16 @@
           "url": "https://petsc.org/release/manual/snes/",
           "checked_on": "2026-11-23",
           "review": "公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。"
+        },
+        {
+          "title": "Condition Estimates for Pseudo-Arclength Continuation",
+          "url": "https://ipsen.math.ncsu.edu/ps/sinum65438.pdf",
+          "review": "Section2.2, printedpp265–266, Eqs2.2–2.5; tangent null equation, unit Euclidean tangent, augmented system and tangent hyperplane. Weighted h-sum metric is the implementation’s stated discrete variation. No full condition-number proof or original paper numerical benchmark is borrowed."
+        },
+        {
+          "title": "Finite differences for the1D Bratu problem,Problem8",
+          "url": "https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html",
+          "review": "Problem8/Eq52: boundary-value equation, analytic cosh family, branch count and printed rounded critical value. The author’s parameter equals2 times our theta. Independent Decimal80 exact-family qualification remains the numerical reference; the printed rounded anchor is a separate coarse check."
         }
       ],
       "baseline_evidence": [
@@ -4882,9 +5315,53 @@
           "path": "code/numerical-methods-atlas/2026-11-21/numart/krylov.py"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/inputs.json",
+          "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/acceptance.json",
+          "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-fold-continuation-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/README.md",
+          "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bratu-fold-continuation-ja",
+        "execution": "/numerical-methods-atlas/validation/bratu-fold-continuation/?lang=ja"
+      },
       "sequence": 56,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/inputs.json",
+            "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/acceptance.json",
+            "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-fold-continuation-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/run.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/README.md",
+            "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/cases.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bratu-fold-continuation-ja",
+          "execution": "/numerical-methods-atlas/validation/bratu-fold-continuation/?lang=ja"
+        }
+      }
     },
     {
       "id": "nonlinear-2",
@@ -4897,7 +5374,7 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
+      "state": "verified",
       "current": "Bratu の減衰 Newton、十分減少線探索、組み立て Jacobian と GMRES/ILU 内部解法がある。一般の matrix-free Jv・trust region・continuation は atlas-methods の制限に明記。",
       "tasks": [
         "解析 Jv・有限差分 Jv・AD Jv を既存 Bratu で比較",
@@ -4910,6 +5387,21 @@
           "url": "https://petsc.org/release/manual/snes/",
           "checked_on": "2026-11-23",
           "review": "公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。"
+        },
+        {
+          "title": "Jacobian-free Newton-Krylov methods: a survey of approaches and applications",
+          "url": "https://inf.ufes.br/~luciac/comcie/JFNK-Knoll.pdf",
+          "review": "Selectedsec2.3,2.3.1,2.3.2 and2.4.1, printedpp361–363: matrix-free Jv action, perturbation scaling, inexact forcing Eq16 and line-search globalization. Actual central difference denominator2h and eps_machine^(1/3) scaling are independently specified/qualified, not an attribution to a PETSc default. No whole41-page audit or paper solver result reuse."
+        },
+        {
+          "title": "Choosing the Forcing Terms in an Inexact Newton Method",
+          "url": "https://users.wpi.edu/~walker/Papers/forcing_terms,SISC_17,1996,16-32.pdf",
+          "review": "Section1 AlgorithmIN/Eq1.2; selectedsec2 Choice2/Eq2.6; practical-safeguard paragraphssec2.1, printedpp16,20,22–23. Core eta=gamma*(||F_k||/||F_{k-1}||)^alpha is Choice2-style. Our gamma.9/alpha1.5 with eta_initial.3 and fixed[.001,.5] clamp omits the paper’s previous-eta safeguard. This is a declared variant, not its complete safeguarded algorithm or an asymptotic convergence certification."
+        },
+        {
+          "title": "Finite differences for the1D Bratu problem,Problem8",
+          "url": "https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html",
+          "review": "Problem8/Eq52: boundary-value equation, analytic cosh family, branch count and printed rounded critical value. The author’s parameter equals2 times our theta. Independent Decimal80 exact-family qualification remains the numerical reference; the printed rounded anchor is a separate coarse check."
         }
       ],
       "baseline_evidence": [
@@ -4925,9 +5417,53 @@
           "path": "code/numerical-methods-atlas/2026-11-21/numart/krylov.py"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/inputs.json",
+          "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/acceptance.json",
+          "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-matrix-free-jfnk-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/README.md",
+          "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/cases.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bratu-matrix-free-jfnk-ja",
+        "execution": "/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/?lang=ja"
+      },
       "sequence": 57,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/inputs.json",
+            "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/acceptance.json",
+            "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-matrix-free-jfnk-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/run.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/README.md",
+            "/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/cases.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#bratu-matrix-free-jfnk-ja",
+          "execution": "/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/?lang=ja"
+        }
+      }
     },
     {
       "id": "nonlinear-3",
@@ -6965,10 +7501,10 @@
     "total": 103,
     "fields": 36,
     "states": {
-      "planned": 61,
+      "planned": 51,
       "in-progress": 2,
       "verified": 10,
-      "published": 30
+      "published": 40
     },
     "kinds": {
       "implementation": 58,
@@ -6983,8 +7519,10 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-benchmark-backlog.json": "3ac4c748300c111f00d8371d329c260ec8ea6948fb62773d642dbd98190a3dee",
-    "catalog/atlas-methods.json": "3f2b7051c980e5492f6f94f01b3e75c4802394856c55a7176d9c9a1a9f35e305",
+    "catalog/atlas-benchmark-backlog.json": "739c1df914166a043ac94c1f36289da723b3358a24ae4e9db4d5fd28c2bc21bb",
+    "catalog/atlas-detailed-reading.json": "4e50c7c9810337a166e8d3243b5f9de0daaf143a881e955921d9bf7e4be8f20c",
+    "catalog/atlas-method-primary-references.json": "0b0f4df551b17a83672b3251a8155be2d7f3648f6e48f550cc99d8d49b2ef13c",
+    "catalog/atlas-methods.json": "1bf729b9e73fc797619dae3e5dc7ec0d1fe729efc1ad36485d760ddc77a4a246",
     "code/validated-examples/2026-11-23-r2/euler-positivity/acceptance.json": "f08558b2703369a2260db1252dc40272f76556a2f6205688faa88a4c37c79050",
     "code/validated-examples/2026-11-23-r2/euler-positivity/euler_positivity.py": "c22015d9435095b3f08189d1b09be4a040c79062b1cc76fd15648cca00f73a58",
     "code/validated-examples/2026-11-23-r2/euler-positivity/inputs.json": "a1185e4b8be0f49f8f3f551f934614110c227d39b2bb0dc4438c5301428d751b",
@@ -7255,6 +7793,39 @@
     "code/validated-examples/2026-11-23/zalesak/run.py": "eb80d86d24904f12971f6cca407bd2b289576810491701aa82ff1698ca82c01f",
     "code/validated-examples/2026-11-23/zalesak/source-provenance.json": "6a435417d628c17e5caf742ddc01799f953bc1e66e9fa59a3834d6a22647d1ed",
     "code/validated-examples/2026-11-23/zalesak/verification.json": "aad9b39c23d83e967588361edfdb05724f1ea3fade93843ebb05b5fd829ba44e",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/README.md": "2ddd71626a7d79820fcac954e893915a1fed04eb6d7638ce8286f2bf534f6a72",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/acceptance.json": "6106f1f8209916c9be0eb5d4ab8f27f7aa588ca8fed9cafccac36d0783640cca",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/cases.json": "9a2f2e0e780151768247923a36b7274b1b014bbeb620de7bbca5a25d46d5bc56",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/inputs.json": "0bb44002b246cee6c79e7bbd3af9cc400ef1d5a3c313978a9cd6f2852589d8ed",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/pre-run-contract.json": "688a82d37a94ef672345035f9a11a6e894ed6b3f0a5b4b637a930d65df6000b3",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-fold-continuation-preview.png": "3fcf16e0b6e9bbf99904d456e702679335a716a1d36d7d12aee5893150679367",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-matrix-free-jfnk-preview.png": "3a1e124b0f2af0be276bbb1f6bfbc6168af1fd7dcb975e891ab793c6cc4827b1",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/run.py": "f35781874ad246e6cede3c494570c79e2896b0f4cb818105520daac23dce1bed",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json": "4e08cc95cbb5ed520d43882c83da3ccbb644138d90ccf0bce1d408cb195beba7",
+    "code/validated-examples/2026-11-24-r2/maxwell-cylinder/README.md": "6410d14d81cc8f8a6e8f6c8f1d3d40dc4a9324839ab71160b175bde3ed7f501c",
+    "code/validated-examples/2026-11-24-r2/maxwell-cylinder/acceptance.json": "65e7ffdc2018c703cb14d18c84fff6b3ae31b3e92a18125a0b0f092b015de6f7",
+    "code/validated-examples/2026-11-24-r2/maxwell-cylinder/cases.json": "68902102c6f2dbf82608ef802b1dbc502aeb95f2c08590e762d4028d2950f2b8",
+    "code/validated-examples/2026-11-24-r2/maxwell-cylinder/inputs.json": "dd26a0de9f369e246970f1fffcaaa7435580b62dff8574daa768a59370bf5b7f",
+    "code/validated-examples/2026-11-24-r2/maxwell-cylinder/pre-run-contract.json": "79b080b830ab18885695acf71a16d6d40f0940216f96a8f857ca0f05ba5106c7",
+    "code/validated-examples/2026-11-24-r2/maxwell-cylinder/results/cylinder-mie2d-preview.png": "6968b65203b7829eae49e2b0219dd18441bbeb3635c9bb7fbae972b5cc43942e",
+    "code/validated-examples/2026-11-24-r2/maxwell-cylinder/run.py": "84bbb727df853a90bf1ba4ec994d307a0c013746d3b623215382f3eb3a319a9a",
+    "code/validated-examples/2026-11-24-r2/maxwell-cylinder/verification.json": "85cfc10421948d42deda85916ac2a6d4a41b7ad7af91db890fd91b5c745bf51a",
+    "code/validated-examples/2026-11-24-r2/maxwell-grazing/README.md": "fd80da5d1475177f3157403f94715585c923d78bf95d977e7fc010ec0921a1e2",
+    "code/validated-examples/2026-11-24-r2/maxwell-grazing/acceptance.json": "65e7ffdc2018c703cb14d18c84fff6b3ae31b3e92a18125a0b0f092b015de6f7",
+    "code/validated-examples/2026-11-24-r2/maxwell-grazing/cases.json": "6b8417bd334606a183298f805a4337b9bda947fff47de60c34bd7844b69e4c7c",
+    "code/validated-examples/2026-11-24-r2/maxwell-grazing/inputs.json": "2f1a1f2da2160b788d5aff8e4735f6594bfac11e77565b76154e35e071c860f7",
+    "code/validated-examples/2026-11-24-r2/maxwell-grazing/pre-run-contract.json": "f310f4be972956fe5b273e9dcb833ce3430ea105d7f8f7ec63e521f261ece972",
+    "code/validated-examples/2026-11-24-r2/maxwell-grazing/results/dispersive-grazing-pml-preview.png": "9fc94253f358d6715bb32e4820843d38c9ee998aeea07048df1093ef227b9e65",
+    "code/validated-examples/2026-11-24-r2/maxwell-grazing/run.py": "c16968303ca751c8d6233d77c6fe8c02ab755d59bb7ae9d5f45d299b6a83f0d3",
+    "code/validated-examples/2026-11-24-r2/maxwell-grazing/verification.json": "4c8133a8a4042ed925fd21af37d62fe472978af2ac4fecd3518a9d2242db1de0",
+    "code/validated-examples/2026-11-24-r2/maxwell-lorentz/README.md": "5af374b7efb97d2adf8be795cc8f13aa9868006efa2964d685c7328688242f97",
+    "code/validated-examples/2026-11-24-r2/maxwell-lorentz/acceptance.json": "65e7ffdc2018c703cb14d18c84fff6b3ae31b3e92a18125a0b0f092b015de6f7",
+    "code/validated-examples/2026-11-24-r2/maxwell-lorentz/cases.json": "efbaea689701c155491c147a7ed1a7c4f55f6d253fc2a718ba5cd11ca5061c20",
+    "code/validated-examples/2026-11-24-r2/maxwell-lorentz/inputs.json": "3ee45c0c69c7b399c14ced20a5c06671495e014bea790e419988c6e59316ced6",
+    "code/validated-examples/2026-11-24-r2/maxwell-lorentz/pre-run-contract.json": "be95571e00a8a40414c3a0011d47c619713578c7c2eb6cad2509d681f2a192c0",
+    "code/validated-examples/2026-11-24-r2/maxwell-lorentz/results/lorentz-oblique-sp-preview.png": "b85480fcaeb675536ed6da9f82006b72cb86954d36ee08958ba957b850c4c9ca",
+    "code/validated-examples/2026-11-24-r2/maxwell-lorentz/run.py": "441f9de109dab9a8a814456e4d9b05a6b2be35d6c4055f530adb28302c80838f",
+    "code/validated-examples/2026-11-24-r2/maxwell-lorentz/verification.json": "7703e35d6a56ca69a6aaf17e7bd910bccad1c7cf21632e4625eda29c09d37d6d",
     "code/validated-examples/2026-11-24-r2/radiation-matter/README.md": "26be52ae84a5919fb59b7d9af71cb7db30583ea4c213d1ccc6650f104cdf8498",
     "code/validated-examples/2026-11-24-r2/radiation-matter/acceptance.json": "d90424437d8296e6dcb03901dbf8a2d049fd70b565ca5c84b27971610d756d9d",
     "code/validated-examples/2026-11-24-r2/radiation-matter/inputs.json": "9032f6d9ba61972884d55c46ea93d6bda13e42d38a40f64c0a9ba619d48a8400",
@@ -7263,6 +7834,17 @@
     "code/validated-examples/2026-11-24-r2/radiation-matter/results/su-olson-transport1997-preview.png": "00ed0c00d9a00b8c994b9aede72db9659dd505b5fecc12fa3b819471e7015dc8",
     "code/validated-examples/2026-11-24-r2/radiation-matter/run.py": "5cbc2ab546187df7162c73b8e2cf4e247d5afedce579b13fc53706a683e7efbe",
     "code/validated-examples/2026-11-24-r2/radiation-matter/verification.json": "cbbc27e98b13939b705bfdcd85593747dd7ef02e7b5eaf2d9ef2a838007107d0",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/README.md": "b2b4588362574f7695eb38c3225c5e6a72f0aadd561213be03d739fff1dbdf0f",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/acceptance.json": "ce553d8413918e35ae27816f0cf88143cc3f9a449480bb0301bdcf7596c2756a",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json": "604f637dccb85e22735600f1cae8e98cec3332d1eab1c4b12ff8d8e293eb33b3",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/inputs.json": "fb04e62fe0cdb606dbde77242103280fc5905971efd14bc6885c381ca68fdde9",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/pre-run-contract.json": "dcb0ca6cc00c96e5ddae3347a792ea5a3b49e3722613d70700a95b28ecd49590",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/fem-mass-eigen-preview.png": "4f9152e89dcc28539eaa01ef7852f77b4593072cac45d7ff322115dfb756a32a",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/pivoted-direct-refinement-preview.png": "c29ca507eef22bc4a38c16c5f6b5ca5ced73a750e013d9554ffaeaedc2b917e8",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/restarted-shift-invert-preview.png": "d5a6a9d073bc0d7fb85a999137390b9a9b1dcfb765380599a7d9880b8356fbc8",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/symmetric-saddle-minres-preview.png": "35a0cb90e9427029904fb897e2554220ec77e47b2a7572443210f93be204680e",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/run.py": "659a5fd0f1aaf239d36c23f72995d948d0b95a59d823437eb81d38ec5ed0376f",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json": "4ed120693891dd4f94a207b080fd40fe53d3b1191274ec621de131e83fac16a7",
     "code/validated-examples/2026-11-24/dsmc-shock/README.md": "86ad36d722e09fe9b812418433596bf043ca6be296dc98ff73204bdd8f98d802",
     "code/validated-examples/2026-11-24/dsmc-shock/acceptance.json": "ca835b4e4606640d6da9cc49b1332fed4c44c5e47c3b49e547a8687f0881986b",
     "code/validated-examples/2026-11-24/dsmc-shock/inputs.json": "ef53152d7f42f153843ec505116be67377db77336bf14dd724c4f253d4d0f166",
@@ -7330,56 +7912,65 @@
     "code/validated-examples/2026-11-24/stochastic-estimation/results/normal-tail-importance-preview.png": "bb43d99a5fddd23605e1a9c5c757f6ef0119a6b6dac33b8224ac153bf718fba4",
     "code/validated-examples/2026-11-24/stochastic-estimation/run.py": "4267474a1b22f476924b298dcc5e9910ccb5338ce2d8e1920235d3114bbf0e86",
     "code/validated-examples/2026-11-24/stochastic-estimation/verification.json": "04589e7e1285b60e3d327c5772d392405e04f5fc9623a0850b38c9eaa9478f90",
-    "numerical-methods-atlas/gallery/index.html": "0705d94103ec828a45602131b6546f28e2352e5c891ae08d868e9abbb80cafd6",
-    "numerical-methods-atlas/methods/thomas/index.html": "cf92964a5b2eab9c90daf72376e94298f9d780fec46c632d28b3ff7642e2de2e",
+    "numerical-methods-atlas/gallery/index.html": "d6af98dbc0de611fda1035ff5e1013bd3ad41c190fa941ead050e00e13b04260",
+    "numerical-methods-atlas/methods/thomas/index.html": "02b0d1ae0fa0a72ec488e19f4a58dea8abda2b7e970fc1d4d2562061c9111937",
     "numerical-methods-atlas/reading/thomas-provenance.json": "a9eff54993f6f992bcddbb01ddf306adf59a234c8745a7a86557d38a3ab65ee2",
-    "numerical-methods-atlas/solutions/index.html": "2d48d55d16a40f5022e7fd0eec09754d73f25a7f47e9cbddda8c4217d3194781",
+    "numerical-methods-atlas/solutions/index.html": "b4796215f7fe26680100eb717797e69a2f48efe31736f64029d1471b039f3a34",
     "numerical-methods-atlas/validation/ale-nonuniform-transport/index.html": "7aa6c5eb188f78d0dfe31500b2fbc2e029abb79f844d658ce3a35afd68004a46",
     "numerical-methods-atlas/validation/annular-viscous-mms/index.html": "fcd250bb18308ab5934e70fa6c15f2d810d6544459dd5c38adb6914d00be1024",
-    "numerical-methods-atlas/validation/cavity-ghia-re100/index.html": "576f6bc904353efbd3644d1b5e65254dba27a28f5bc4767690e89187195d70b5",
+    "numerical-methods-atlas/validation/bratu-fold-continuation/index.html": "5c14ee2814c8a350ede9b5414be7ed65effc44d1cfe2905ed01377ff6be35b9c",
+    "numerical-methods-atlas/validation/bratu-matrix-free-jfnk/index.html": "fadf5a92becd94d9754c2d8e310aeaa79d153d455f24119cf755d1abcb28e7b2",
+    "numerical-methods-atlas/validation/cavity-ghia-re100/index.html": "554b7d29a023e6727fc5be942989713a0111b133fa9843ed9ed4882a085cbd69",
     "numerical-methods-atlas/validation/cgrid-rotating-wave/index.html": "d897197c371bc70ab9ace6a9c752b0c3bfd0e965076fd74e9fad40a97a23432f",
     "numerical-methods-atlas/validation/checkerboard-diffusion/index.html": "b8b16dfdbb4c6b5f9db2d4f1a0fb704f5f220c876faa1314efa7802e93213158",
-    "numerical-methods-atlas/validation/circular-alfven-refinement/index.html": "32958278475edcfdcb07f54ab20c7c572b1cb6fae6cadbe64f6d6f4bb624ecca",
+    "numerical-methods-atlas/validation/circular-alfven-refinement/index.html": "2ee2196b0c4abae8eea31dce4140a630f19e7af96c9f6dd169cc8eee2837014a",
     "numerical-methods-atlas/validation/correlated-gaussian-mcmc/index.html": "4ba73eb58b8ce6a2c52321fcce37a4920b0c7a1a43d75ab626a4465de36368b8",
-    "numerical-methods-atlas/validation/double-mach-reflection/index.html": "2ab935a6cb4710b7eea6d72d54db00a0b475b1e07f54530d3dd33cf7f5a2fd37",
+    "numerical-methods-atlas/validation/cylinder-mie2d/index.html": "18b79ac5334093103e1e5722e247f4db7d99ffba50ef64dcf45b8ddbc7751a5e",
+    "numerical-methods-atlas/validation/dispersive-grazing-pml/index.html": "312f3aead8ae2534ee2c50fca46d1e2d3e0ee013383ecf97adb5e3f3d8c008af",
+    "numerical-methods-atlas/validation/double-mach-reflection/index.html": "fbc8d5d5a0246acf6b809d1a22375f5fe61e8e2d052113159a4d7567886800b7",
     "numerical-methods-atlas/validation/dry-bed-dam-break/index.html": "bb98e74ec14bdec09a7c804752f2c2cd35fc69f3d9eba3ec34bbe42a3369859a",
-    "numerical-methods-atlas/validation/dsmc-couette/index.html": "c5c40ac4f238e57549672403759e21395f56f3058bf791f0b9961e87e51381b5",
-    "numerical-methods-atlas/validation/dsmc-planar-shock/index.html": "dda0273a46f3684182afbc58ee4ddb4062ab6b481995c53858749205f84a2bca",
-    "numerical-methods-atlas/validation/euler-double-rarefaction-positivity/index.html": "4d466052eefedc32d8ba2d5719f03631042701c2b0ca09ec1a7f6c539c4bb5ca",
+    "numerical-methods-atlas/validation/dsmc-couette/index.html": "8cca50ba3e4b0660d67aab7dbe987af43851a3b3c1fb75070832c741304659c9",
+    "numerical-methods-atlas/validation/dsmc-planar-shock/index.html": "57b308f30bd2cf529c9ab37fbe4ebb16efef97a00453642ad1f0e36f3fd2547f",
+    "numerical-methods-atlas/validation/euler-double-rarefaction-positivity/index.html": "4d4fcab49ac266c0ee9856fd36aee352e75d8bfd07791d80a8e16737fa58f458",
+    "numerical-methods-atlas/validation/fem-mass-eigen/index.html": "5c2849a3813fb51eb67ea4dda4ac8150aa385db25f2df405b54682bd25c837c1",
     "numerical-methods-atlas/validation/fmm3d-inverse-r/index.html": "3f08ba996f5682e7df3187dd0d3243e58ac33ace110ddd7f77536e4dea2a3e32",
     "numerical-methods-atlas/validation/forward-step-m3/index.html": "ca49671c5b742c52c6df00924b61fb0de1eefed1f31b9933480b8f7668147d69",
     "numerical-methods-atlas/validation/gbm-milstein-strong/index.html": "8a66c6dfc62f0d81d7c39a35588efbbe8eb1b962bfcfc7b71385c2589a1e1c49",
     "numerical-methods-atlas/validation/gbm-weak-moments/index.html": "d94a2724f77c74c24277d62ef47a3f116ecfbe580e0362e5274ef14773b1d8e2",
     "numerical-methods-atlas/validation/gravity-kepler/index.html": "3ba3f565f2ce101dc36afff6765692e9edb449b87440da4689d6915495bd6172",
-    "numerical-methods-atlas/validation/guderley-implosion/index.html": "5d235bdc78c35cad1b0d7ab01aa070638a5b92192f044c54af2df43a02bbe62c",
-    "numerical-methods-atlas/validation/isotropic-scattering-slab/index.html": "20893ce9ec213ec15f8a925a0bcd171c764fe60ecb2d3639707cc2b1714ae159",
-    "numerical-methods-atlas/validation/kh-initial-growth/index.html": "b895b864d9971e2992228bd417128856301a8776c84b5147d9d84e5c1168569d",
+    "numerical-methods-atlas/validation/guderley-implosion/index.html": "3c09d4266144f40a1be9ab64711f3b5b20541f3b463ed50a2f4d68aad3f9f674",
+    "numerical-methods-atlas/validation/isotropic-scattering-slab/index.html": "47de967da787880337329def851acf578012b65acd7edbf6eb54baeb608f332a",
+    "numerical-methods-atlas/validation/kh-initial-growth/index.html": "3d145babd1acca96d0d8bc4024c3a2b0e4eadfe3658264cf159b0f76f07f4a05",
     "numerical-methods-atlas/validation/lbm-annular-couette-control/index.html": "2d0b0069a29f5c983f3bea89a3de11c6b0cb4df613b282e8817898d0d2671256",
     "numerical-methods-atlas/validation/lbm-cavity-re100/index.html": "cc90a520775d7945609ed76fa1f7b51df9c8848aec611cb2ebe015f7494d7b4e",
     "numerical-methods-atlas/validation/lbm-taylor-green/index.html": "173377d22c99960e3b148cc227f89d74a9f1776d63c16ee29dc3f6e9a13ca198",
-    "numerical-methods-atlas/validation/low-mach-vortex/index.html": "0740a77cfe2b12fb90c4a44b477ab2d49064439dd2e601e8f07094f7495ee43d",
+    "numerical-methods-atlas/validation/lorentz-oblique-sp/index.html": "a61839d2d3e41a5758402020d9872f92b09ac9e5180368dab3175414c1b70c15",
+    "numerical-methods-atlas/validation/low-mach-vortex/index.html": "ccc91b913e449ed7f143641095d4640b62307932587224bf16f4b1aed03a49b6",
     "numerical-methods-atlas/validation/lshape-fem/index.html": "ee9a88feef70afb1227ff3472510f8c696c3626eafed9872333ad3cf832ebbfe",
     "numerical-methods-atlas/validation/neutral-slab-yb/index.html": "957250d32b8b37ae555ec7c3e66943dd8e9da3408bcb120c0194448d72437353",
     "numerical-methods-atlas/validation/noh-cartesian-2d/index.html": "0037c7d552ba9c7b88b35a2011132d20a11c687b6a5baba1dcaa2241055de0d2",
     "numerical-methods-atlas/validation/normal-tail-importance/index.html": "513b6a58efd38c58c0ae4372939d56267a87e99ced4e58fe36f4610675789c96",
-    "numerical-methods-atlas/validation/pic-independent-spatial/index.html": "0ebaa890f492ca77e553542c8b14802e2f74e4ecc1ba1c2c545abb06f21d6f19",
+    "numerical-methods-atlas/validation/pic-independent-spatial/index.html": "0e57cd9fdb3d5cae20040477888e0a7b521287badf074bbb46d8cd5cf62c5007",
+    "numerical-methods-atlas/validation/pivoted-direct-refinement/index.html": "c278b4c01e7ae1ca04e0dbc5f46d422c88ff49aa15b48391c6b71e39daa7499a",
     "numerical-methods-atlas/validation/poisson-neumann/index.html": "2c7e2c603960726cbfdbd90cb6bc457d9786b8175a99b09f34b1daf2503beec4",
-    "numerical-methods-atlas/validation/postshock-orszag-tang/index.html": "07f56b022c4e790fc7bc4314896f2a0778776446c014bceeb9e9658f5aacc161",
+    "numerical-methods-atlas/validation/postshock-orszag-tang/index.html": "abf9b97b408e9d8029ff6c9fd91c1ef78092140dbccba7edc46e5af2de7b603b",
+    "numerical-methods-atlas/validation/restarted-shift-invert/index.html": "5c6c17a68a6dd2c8edabf2c3f6f915be9edbf8e25ebcf3eaa0ccf466ac73cae9",
     "numerical-methods-atlas/validation/sedov-blast/index.html": "28f10d4721bf48266e595e278e09a99d404e90659825e9055d8ba62d44cf1285",
-    "numerical-methods-atlas/validation/shadow-absorber2d/index.html": "f525272f5bb0a9029187e7428244b32ecb416c310637699acc5e8fdc774dadcb",
-    "numerical-methods-atlas/validation/srhd-collision/index.html": "53076190f9543908daa82943d7fe52c26da5e9037d8e698626d7b49c1f27a003",
-    "numerical-methods-atlas/validation/srmhd-alfven/index.html": "75347ecc18de50265b11205cbb0352329a68b695c203d8db5ee567474d24abda",
-    "numerical-methods-atlas/validation/su-olson-diffusion1996/index.html": "cafff84fc631c8cff72b00731957019d39cd18fcca4cce4f33a196ce4b9afc2e",
+    "numerical-methods-atlas/validation/shadow-absorber2d/index.html": "88d246ab837e65f959e0979a33eec07c0b24c507a2fc7928d878e54f0a28e895",
+    "numerical-methods-atlas/validation/srhd-collision/index.html": "78e6141371b3d586bc728237ec023b506dd330715fd68d6968c7a0aca4fc6de5",
+    "numerical-methods-atlas/validation/srmhd-alfven/index.html": "6f4049edc3a8a562129d48f6c5f5e89b3de4b936bb20792a4d6e0e9aa94712e4",
+    "numerical-methods-atlas/validation/su-olson-diffusion1996/index.html": "a5ee4de84ded150bb9b58b612fdf83d3e839c551a2cb565717d578c36f776c2c",
     "numerical-methods-atlas/validation/swashes-topography/index.html": "eadbd0c32d58f2200dfc55b309aa0ac20424dd83f0919b28586ff1f435009f10",
-    "numerical-methods-atlas/validation/thermal-landau-damping/index.html": "3ab9f5a401c23374e26e7aca49e3b6f36b224fdacab50cca947fe57444c61122",
-    "numerical-methods-atlas/validation/thermal-two-stream/index.html": "ec881b0ce5cfa7c2e1ccae172d3469f111e6c91fdc4def9973e6921f90b830c7",
+    "numerical-methods-atlas/validation/symmetric-saddle-minres/index.html": "43c4aff7bea5444567b544b3016b51de405f1502652afa48b5eacbdc33f17189",
+    "numerical-methods-atlas/validation/thermal-landau-damping/index.html": "ef80dae934f74ee56ecc35aefc02975e22c3cadc5da906c6257c1cac4c135367",
+    "numerical-methods-atlas/validation/thermal-two-stream/index.html": "31ff498c6a56819b9a14490c67188d234c027058bd80afbd5157e7514b93e3a7",
     "numerical-methods-atlas/validation/verification/2026-11-23-batch13-17-public.json": "d84d08cb4d25c00250a273cdf3c200da4c16d1958948701f2cc957ffcf74f48d",
     "numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json": "cc6cdf4f041243e21657d56ead41d8ccf0c78bc13861fa9d20407e1e58ed8b2b",
     "numerical-methods-atlas/validation/verification/2026-11-23-euler-positivity-public.json": "6d219b1fe34353e9a6634d64c8379d3a7dab6b324b538b35ecb695f5a584e757",
     "numerical-methods-atlas/validation/verification/2026-11-23-zalesak-public.json": "85da729371ecceeb80953fabe8c4932d6b476bcdacd492f9102c08c8fa09a3dc",
     "numerical-methods-atlas/validation/verification/2026-11-24-batch28-37-public.json": "e6c80f9c769e876cf0aebfc6dd9ae765701b77635762ccd83801629e971ad0f3",
-    "numerical-methods-atlas/validation/wall-manufactured/index.html": "59dead432f0c90dd079f8bb4c1f29fc04d2fff15cf26bc35d3f56c5caa58c47f",
-    "numerical-methods-atlas/validation/weno-critical-epsilon/index.html": "8aaa09ba22a6771fe10376c84af4587852486c07d2cf706ba1058d26ee0a8533",
-    "numerical-methods-atlas/validation/zalesak-rotation/index.html": "76293734bdec6e065d5d66251076ba1f81edfba1b951cdf20ece015975418ed9"
+    "numerical-methods-atlas/validation/wall-manufactured/index.html": "e33d4f70c30285c157c31b831e3b77df0329702cab0a0aacbade139daba5fdea",
+    "numerical-methods-atlas/validation/weno-critical-epsilon/index.html": "23740e895d653ab2ab7d76dd9e3bf89ce5f8618ec75e65bdb0efae9d5e674fd7",
+    "numerical-methods-atlas/validation/zalesak-rotation/index.html": "02d3ddc9b3f8cc8f30c28f38fded450264568dc6c7d92ea9bc534e75e3b38a48"
   }
 }

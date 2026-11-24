@@ -43,7 +43,7 @@ gamma5/3, periodic[0,1], rho1,p.1,Bx1,amplitude.1, speed1,T1,32/64/128 cells. In
 
 **Problem figure**
 
-![Circular Alfven wave: full-state refinement: saved validation figure for this execution.](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/circular-alfven-refinement.png)
+![Circular Alfven wave: full-state refinement: saved validation figure for this execution.](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/results/circular-alfven-refinement.png)
 
 A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
 
@@ -153,16 +153,16 @@ Educational fixed inputs only. Count HLLD-to-HLLE fallbacks and face reconstruct
 
 Complete records and reference_records: https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/index.json
 
-![Actual saved primary By(x,t) at five times: one spatial dimension plus time.](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/circular-alfven-refinement-preview.png)
+![Actual saved primary By(x,t) at five times: one spatial dimension plus time.](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/results/circular-alfven-refinement-preview.png)
 
 Actual saved primary By(x,t) at five times: one spatial dimension plus time.
 
 ### Download and run
 
-ZIP: https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip
-Input: https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/inputs.json
-Results: https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/result.json
-Receipt: https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/verification.json
+ZIP: https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip
+Input: https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/inputs.json
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/results/result.json
+Receipt: https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/verification.json
 
 ```sh
 python -m pip install -r requirements.txt
@@ -174,13 +174,13 @@ This command executes every fixed case in the distribution group. Bundled result
 
 ### Sources and review scope
 
-- Athena++ collaboration (2026). Athena++ official field_loop and orszag_tang problem generators, pinned source. https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416; review_level=Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit
+- Athena++ collaboration (2026). Athena++ official field_loop and orszag_tang problem generators, pinned source [accessed 2026-11-23]. https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416; review_level=Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit
 Verified the official pinned archive SHA and inspected both generators, configuration and saved columns. Executed the independent engine and checked spatial/time sensitivity. No complete code audit or exact-solution claim.
 
-- Thomas A. Gardiner and James M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport. https://arxiv.org/abs/astro-ph/0501557; review_level=Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication
+- Thomas A. Gardiner and James M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport [accessed 2026-11-23]. https://arxiv.org/abs/astro-ph/0501557; review_level=Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication
 Inspected the author PDF CT section and loop/polarized-wave definitions. Original CTU/PPM and oblique-wave experiments are not replicated. Our wave is 1D aligned; the official loop generator explicitly has vz=2.
 
-- Takahiro Miyoshi and Kanya Kusano (2005). A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics. https://doi.org/10.1016/j.jcp.2005.02.017; review_level=Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments
+- Takahiro Miyoshi and Kanya Kusano (2005). A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics [accessed 2026-11-23]. https://doi.org/10.1016/j.jcp.2005.02.017; review_level=Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments
 Bibliographic metadata checked; full publisher text unavailable. No new original-equation/experiment audit is claimed. Full-state HLLD is inherited byte-for-byte from the prior public validated Atlas.
 
 
@@ -230,7 +230,7 @@ Periodic[-1,1]x[-.5,.5],rho=p1,Az=.001max(.3-r,0),T1,(Nx,Ny)=(16,8),(32,16),(64,
 
 **Problem figure**
 
-![Magnetic loop: independent 2D reference and refinement: saved validation figure for this execution.](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/magnetic-loop-independent.png)
+![Magnetic loop: independent 2D reference and refinement: saved validation figure for this execution.](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/results/magnetic-loop-independent.png)
 
 A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
 
@@ -342,16 +342,16 @@ Educational fixed inputs only. Count HLLD-to-HLLE fallbacks and face reconstruct
 
 Complete records and reference_records: https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/index.json
 
-![Actual saved primary 2D in-plane magnetic energy at T1.](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/magnetic-loop-independent-preview.png)
+![Actual saved primary 2D in-plane magnetic energy at T1.](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/results/magnetic-loop-independent-preview.png)
 
 Actual saved primary 2D in-plane magnetic energy at T1.
 
 ### Download and run
 
-ZIP: https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip
-Input: https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/inputs.json
-Results: https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/result.json
-Receipt: https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/verification.json
+ZIP: https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip
+Input: https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/inputs.json
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/results/result.json
+Receipt: https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/verification.json
 
 ```sh
 python -m pip install -r requirements.txt
@@ -363,13 +363,13 @@ This command executes every fixed case in the distribution group. Bundled result
 
 ### Sources and review scope
 
-- Athena++ collaboration (2026). Athena++ official field_loop and orszag_tang problem generators, pinned source. https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416; review_level=Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit
+- Athena++ collaboration (2026). Athena++ official field_loop and orszag_tang problem generators, pinned source [accessed 2026-11-23]. https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416; review_level=Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit
 Verified the official pinned archive SHA and inspected both generators, configuration and saved columns. Executed the independent engine and checked spatial/time sensitivity. No complete code audit or exact-solution claim.
 
-- Thomas A. Gardiner and James M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport. https://arxiv.org/abs/astro-ph/0501557; review_level=Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication
+- Thomas A. Gardiner and James M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport [accessed 2026-11-23]. https://arxiv.org/abs/astro-ph/0501557; review_level=Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication
 Inspected the author PDF CT section and loop/polarized-wave definitions. Original CTU/PPM and oblique-wave experiments are not replicated. Our wave is 1D aligned; the official loop generator explicitly has vz=2.
 
-- Takahiro Miyoshi and Kanya Kusano (2005). A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics. https://doi.org/10.1016/j.jcp.2005.02.017; review_level=Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments
+- Takahiro Miyoshi and Kanya Kusano (2005). A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics [accessed 2026-11-23]. https://doi.org/10.1016/j.jcp.2005.02.017; review_level=Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments
 Bibliographic metadata checked; full publisher text unavailable. No new original-equation/experiment audit is claimed. Full-state HLLD is inherited byte-for-byte from the prior public validated Atlas.
 
 
@@ -419,7 +419,7 @@ gamma5/3,periodic[-.5,.5]²,rho25/(36pi),p5/(12pi),vx=sin2piy,vy=-sin2pix,Az=(co
 
 **Problem figure**
 
-![Late Orszag-Tang: independent reference and compression structure: saved validation figure for this execution.](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/postshock-orszag-tang.png)
+![Late Orszag-Tang: independent reference and compression structure: saved validation figure for this execution.](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/results/postshock-orszag-tang.png)
 
 A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
 
@@ -537,16 +537,16 @@ Educational fixed inputs only. Count HLLD-to-HLLE fallbacks and face reconstruct
 
 Complete records and reference_records: https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/index.json
 
-![Actual saved primary 2D density field at T.2.](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/postshock-orszag-tang-preview.png)
+![Actual saved primary 2D density field at T.2.](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/results/postshock-orszag-tang-preview.png)
 
 Actual saved primary 2D density field at T.2.
 
 ### Download and run
 
-ZIP: https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip
-Input: https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/inputs.json
-Results: https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/results/result.json
-Receipt: https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/verification.json
+ZIP: https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip
+Input: https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/inputs.json
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/results/result.json
+Receipt: https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/verification.json
 
 ```sh
 python -m pip install -r requirements.txt
@@ -558,16 +558,16 @@ This command executes every fixed case in the distribution group. Bundled result
 
 ### Sources and review scope
 
-- Athena++ collaboration (2026). Athena++ official field_loop and orszag_tang problem generators, pinned source. https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416; review_level=Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit
+- Athena++ collaboration (2026). Athena++ official field_loop and orszag_tang problem generators, pinned source [accessed 2026-11-23]. https://github.com/PrincetonUniversity/athena/tree/1395e2f543f4368d448cb1a2cf92ba1f910e3416; review_level=Official archive SHA verified; selected src/pgen/field_loop.cpp and orszag_tang.cpp, PLM/RK2/output configuration and actual conserved tab headers inspected; not a full Athena code audit
 Verified the official pinned archive SHA and inspected both generators, configuration and saved columns. Executed the independent engine and checked spatial/time sensitivity. No complete code audit or exact-solution claim.
 
-- Thomas A. Gardiner and James M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport. https://arxiv.org/abs/astro-ph/0501557; review_level=Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication
+- Thomas A. Gardiner and James M. Stone (2005). An unsplit Godunov method for ideal MHD via constrained transport [accessed 2026-11-23]. https://arxiv.org/abs/astro-ph/0501557; review_level=Author arXiv PDF selected section2.2 equations13–20,3.3.1–3.3.2 and5.1–5.2 inspected; not the full paper or original experiment replication
 Inspected the author PDF CT section and loop/polarized-wave definitions. Original CTU/PPM and oblique-wave experiments are not replicated. Our wave is 1D aligned; the official loop generator explicitly has vz=2.
 
-- Takahiro Miyoshi and Kanya Kusano (2005). A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics. https://doi.org/10.1016/j.jcp.2005.02.017; review_level=Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments
+- Takahiro Miyoshi and Kanya Kusano (2005). A multi-state HLL approximate Riemann solver for ideal magnetohydrodynamics [accessed 2026-11-23]. https://doi.org/10.1016/j.jcp.2005.02.017; review_level=Bibliographic metadata checked; publisher full text returned403. This addition did not newly audit original equations or experiments
 Bibliographic metadata checked; full publisher text unavailable. No new original-equation/experiment audit is claimed. Full-state HLLD is inherited byte-for-byte from the prior public validated Atlas.
 
-- Steven A. Orszag and Ching-Mao Tang (1979). Small-scale structure of two-dimensional magnetohydrodynamic turbulence. https://doi.org/10.1017/S002211207900210X; review_level=Original publisher abstract/bibliography inspected only; original incompressible viscous/resistive setup differs from the official compressible ideal-MHD generator used here
+- Steven A. Orszag and Ching-Mao Tang (1979). Small-scale structure of two-dimensional magnetohydrodynamic turbulence [accessed 2026-11-23]. https://doi.org/10.1017/S002211207900210X; review_level=Original publisher abstract/bibliography inspected only; original incompressible viscous/resistive setup differs from the official compressible ideal-MHD generator used here
 Inspected publisher abstract and bibliography only. Distinguish the original incompressible viscous/resistive study from the official compressible ideal-MHD setup used here.
 
 

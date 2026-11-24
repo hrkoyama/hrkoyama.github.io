@@ -1,0 +1,870 @@
+{
+  "id": "jacobian-free-newton-krylov",
+  "name": {
+    "ja": "Jacobian不要Newton–Krylov",
+    "en": "Jacobian-free Newton-Krylov"
+  },
+  "group": {
+    "ja": "線形・非線形解法",
+    "en": "Linear & nonlinear solvers",
+    "id": "solvers"
+  },
+  "summary": {
+    "ja": "非線形Jacobianを組み立てずにBratuの上下枝を3種類のJvで解き、forcingと実際の残差・評価回数を保存します。",
+    "en": "Solve both Bratu branches with three Jv choices without assembling the nonlinear Jacobian; retain forcing, actual residuals and evaluation counts."
+  },
+  "status": "educational-example",
+  "origin": "development-candidate",
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/#bratu-matrix-free-jfnk",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/#bratu-matrix-free-jfnk"
+  },
+  "code_modules": [],
+  "test_files": [],
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
+  "references": [
+    {
+      "label": "Jacobian-free Newton-Krylov methods: a survey of approaches and applications",
+      "url": "https://inf.ufes.br/~luciac/comcie/JFNK-Knoll.pdf",
+      "scope": "Selectedsec2.3,2.3.1,2.3.2 and2.4.1, printedpp361–363: matrix-free Jv action, perturbation scaling, inexact forcing Eq16 and line-search globalization. Actual central difference denominator2h and eps_machine^(1/3) scaling are independently specified/qualified, not an attribution to a PETSc default. No whole41-page audit or paper solver result reuse."
+    },
+    {
+      "label": "Choosing the Forcing Terms in an Inexact Newton Method",
+      "url": "https://users.wpi.edu/~walker/Papers/forcing_terms,SISC_17,1996,16-32.pdf",
+      "scope": "Section1 AlgorithmIN/Eq1.2; selectedsec2 Choice2/Eq2.6; practical-safeguard paragraphssec2.1, printedpp16,20,22–23. Core eta=gamma*(||F_k||/||F_{k-1}||)^alpha is Choice2-style. Our gamma.9/alpha1.5 with eta_initial.3 and fixed[.001,.5] clamp omits the paper’s previous-eta safeguard. This is a declared variant, not its complete safeguarded algorithm or an asymptotic convergence certification."
+    },
+    {
+      "label": "Finite differences for the1D Bratu problem,Problem8",
+      "url": "https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html",
+      "scope": "Problem8/Eq52: boundary-value equation, analytic cosh family, branch count and printed rounded critical value. The author’s parameter equals2 times our theta. Independent Decimal80 exact-family qualification remains the numerical reference; the printed rounded anchor is a separate coarse check."
+    },
+    {
+      "label": "PETSc SNES nonlinear solvers: matrix-free,inexact Newton and arc length",
+      "url": "https://petsc.org/release/manual/snes/",
+      "scope": "Selected Inexact Newton-like Methods and beginning of Matrix-Free Methods, residual forcing inequality and matrix-free/preconditioner distinction. Context only. No PETSc installation/execution or borrowed numerical success. Our hyperplane continuation is not a claim to implement every SNES arc-length scheme."
+    }
+  ],
+  "assumptions": [
+    "The same dimensionless one-dimensional Dirichlet problem at lambda=3, 63/127 interior nodes, starting from zero or 4sin(pi*x). Twelve mode/grid/branch solves plus one analytic-Jv constant-eta=1e-8 control. GMRES restart24/max96, at most 24 Newton steps and nonlinear tolerance1e-9."
+  ],
+  "units": "Dimensionless. Pseudo-arclength is not physical time.",
+  "boundary_conditions": "Homogeneous Dirichlet endpoints at x=0 and x=1.",
+  "limitations": {
+    "ja": "小1次元BVP向けの教育実装です。ADは四則・exp・境界paddingの方向微分に限ります。小Hessenberg行列と基底は保持します。ηの固定下限があるため、原著EWの漸近収束定理、一般AD/PETScとの同等性、速度向上や大域収束は主張しません。",
+    "en": "An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee."
+  },
+  "depth_scope": {
+    "ja": "非線形Jacobianを組み立てずにBratuの上下枝を3種類のJvで解き、forcingと実際の残差・評価回数を保存します。",
+    "en": "Solve both Bratu branches with three Jv choices without assembling the nonlinear Jacobian; retain forcing, actual residuals and evaluation counts."
+  },
+  "metadata_review": {
+    "on": "2026-11-24",
+    "level": "Selected original-paper passages and author documentation, fixed independent analytic-family qualification and canonical ZIP verification.",
+    "supplemental_review": {
+      "on": "2026-11-24",
+      "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
+    }
+  },
+  "aliases": [
+    "JFNK",
+    "Jacobian不要Newton–Krylov法"
+  ],
+  "depth_release": {
+    "group": "bratu-continuation-jfnk",
+    "case_ids": [
+      "bratu-matrix-free-jfnk"
+    ],
+    "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/",
+    "code_edition": "2026-11-24-r2",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/problem.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/continuation.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/matrix_free.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/dual.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/experiments.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/references/analytic_family.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/io_contract.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/test_bratu.py"
+    ],
+    "run_commands": [
+      "python -m pytest -q",
+      "python run.py --input inputs.json --output output"
+    ],
+    "run_from": "atlas-bratu-continuation-jfnk-2026-11-24-r2",
+    "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/atlas-bratu-continuation-jfnk-2026-11-24-r2.zip",
+    "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/source-manifest.json",
+    "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json",
+    "code_archive_sha256": "aeffa7e1b442f198ef2de55e453f82e5d6cbe30fc3d0bbd1112354a38a20a25d",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/result.json",
+    "passed_tests": 27,
+    "examples": [
+      {
+        "id": "bratu-matrix-free-jfnk",
+        "title": {
+          "ja": "解析・中央差分・方向ADによるJacobian不要Newton–Krylov",
+          "en": "Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products"
+        },
+        "summary": {
+          "ja": "非線形Jacobianを組み立てずにBratuの上下枝を3種類のJvで解き、forcingと実際の残差・評価回数を保存します。",
+          "en": "Solve both Bratu branches with three Jv choices without assembling the nonlinear Jacobian; retain forcing, actual residuals and evaluation counts."
+        },
+        "assumptions": {
+          "ja": "同じ無次元1次元Dirichlet問題でλ=3、内点63/127、初期値0または4sin(πx)。3Jv×2格子×2枝の12解法と固定η=1e-8の解析Jv対照1本。GMRES restart24/max96、Newton最大24、残差許容1e-9です。",
+          "en": "The same dimensionless one-dimensional Dirichlet problem at lambda=3, 63/127 interior nodes, starting from zero or 4sin(pi*x). Twelve mode/grid/branch solves plus one analytic-Jv constant-eta=1e-8 control. GMRES restart24/max96, at most 24 Newton steps and nonlinear tolerance1e-9."
+        },
+        "algorithm": {
+          "ja": "解析Jv、残差2評価の中央差分、または方向1本のforward ADを使います。PoissonのThomas右前処理、2回の再直交化とGivensによるGMRES。η0=.3、その後η=clamp(.9(Fk/Fk−1)^1.5,.001,.5)。これはEW Choice 2型の明示的な変形で、原著のsafeguard全体やPETSc既定値ではありません。",
+          "en": "Use analytic Jv, a two-residual central difference, or one-direction forward AD. Apply a Poisson Thomas right preconditioner with two-pass reorthogonalized GMRES/Givens. Start eta=.3, then clamp .9*(Fk/Fk-1)^1.5 to [.001,.5]. This is an explicit EW Choice2-style variant, not the paper’s full safeguards or PETSc defaults."
+        },
+        "validation": {
+          "ja": "保存R3では共通27pytestと本caseの129固定判定が合格。非零Jvの解析検算、離散残差、独立解析上下枝、3modeの一致、forcing、評価回数、Krylov記憶幅、Armijoと固定η対照を確認。解析forcing検算は別計数で、FD/ADの反復制御には使いません。",
+          "en": "The preserved R3 run passed the shared27 pytest tests and this case’s129 fixed gates: nonzero analytic Jv qualification, discrete residuals, independent analytic branches, mode agreement, forcing, evaluation ledgers, Krylov storage, Armijo and the constant-eta control. Analytic forcing validation is counted separately and does not steer FD/AD iterations."
+        },
+        "limits": {
+          "ja": "小1次元BVP向けの教育実装です。ADは四則・exp・境界paddingの方向微分に限ります。小Hessenberg行列と基底は保持します。ηの固定下限があるため、原著EWの漸近収束定理、一般AD/PETScとの同等性、速度向上や大域収束は主張しません。",
+          "en": "An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee."
+        },
+        "method_ids": [
+          "jacobian-free-newton-krylov",
+          "gmres",
+          "thomas",
+          "automatic-differentiation",
+          "centered-difference"
+        ],
+        "domains": [
+          "pde",
+          "nonlinear",
+          "linear-algebra"
+        ],
+        "code_files": [
+          "run.py",
+          "problem.py",
+          "continuation.py",
+          "matrix_free.py",
+          "dual.py",
+          "experiments.py",
+          "references/analytic_family.py"
+        ],
+        "references": [
+          {
+            "id": "knoll-keyes2004",
+            "title": "Jacobian-free Newton-Krylov methods: a survey of approaches and applications",
+            "author": "D.A.Knoll,D.E.Keyes",
+            "year": 2004,
+            "type": "article",
+            "doi": "10.1016/j.jcp.2003.08.010",
+            "url": "https://inf.ufes.br/~luciac/comcie/JFNK-Knoll.pdf",
+            "review_level": "primary-selected-PDF-text-via-course-mirror",
+            "review_scope": "Selectedsec2.3,2.3.1,2.3.2 and2.4.1, printedpp361–363: matrix-free Jv action, perturbation scaling, inexact forcing Eq16 and line-search globalization. Actual central difference denominator2h and eps_machine^(1/3) scaling are independently specified/qualified, not an attribution to a PETSc default. No whole41-page audit or paper solver result reuse.",
+            "review": {
+              "ja": "原著のJv・差分刻み・inexact forcing・前処理の選択部分を講義ミラー配送から読解。中央差分と固定clamp付き比率則は明示的な実装選択です。",
+              "en": "Selected primary Jv,FDscale,inexactforcing andpreconditioning sections readvia disclosedcourse mirror; centralFD/cappedrule areexplicitimplementation choices."
+            },
+            "role": "algorithm-primary"
+          },
+          {
+            "id": "eisenstat-walker1996",
+            "title": "Choosing the Forcing Terms in an Inexact Newton Method",
+            "doi": "10.1137/0917003",
+            "url": "https://users.wpi.edu/~walker/Papers/forcing_terms,SISC_17,1996,16-32.pdf",
+            "review_level": "primary-selected-PDF-text",
+            "author": "S. C. Eisenstat and H. F. Walker",
+            "year": 1996,
+            "type": "article",
+            "review_scope": "Section1 AlgorithmIN/Eq1.2; selectedsec2 Choice2/Eq2.6; practical-safeguard paragraphssec2.1, printedpp16,20,22–23. Core eta=gamma*(||F_k||/||F_{k-1}||)^alpha is Choice2-style. Our gamma.9/alpha1.5 with eta_initial.3 and fixed[.001,.5] clamp omits the paper’s previous-eta safeguard. This is a declared variant, not its complete safeguarded algorithm or an asymptotic convergence certification.",
+            "review": {
+              "ja": "著者公開の原著PDFからAlgorithm IN、Choice 2と実用的safeguardの選択部分を確認。本文全体・全証明・性能表の監査ではありません。",
+              "en": "Read selected Algorithm IN, Choice 2 and safeguard passages from the author-hosted original; not a full proof or performance-table audit."
+            },
+            "role": "algorithm-primary"
+          },
+          {
+            "id": "langtangen-bratu-official",
+            "title": "Finite differences for the1D Bratu problem,Problem8",
+            "author": "Hans Petter Langtangen",
+            "year": 2014,
+            "type": "author-course-documentation",
+            "url": "https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html",
+            "review_level": "author-selected-exact-solution-exercise",
+            "review_scope": "Problem8/Eq52: boundary-value equation, analytic cosh family, branch count and printed rounded critical value. The author’s parameter equals2 times our theta. Independent Decimal80 exact-family qualification remains the numerical reference; the printed rounded anchor is a separate coarse check.",
+            "review": {
+              "ja": "著者教材のBratu解析族と二枝・丸めた臨界値を確認。変数は採用thetaの2倍で、別導出とDecimal80で資格。1914原著は未読です。",
+              "en": "Read author exercise exactfamily/twobranches/roundedcritical; itsparameter istwiceourtheta. Independentderivation/Decimal80qualification;1914originalunread."
+            },
+            "role": "analytic-reference"
+          },
+          {
+            "id": "petsc-snes-official",
+            "title": "PETSc SNES nonlinear solvers: matrix-free,inexact Newton and arc length",
+            "author": "PETSc developers",
+            "year": 2026,
+            "type": "official-documentation",
+            "url": "https://petsc.org/release/manual/snes/",
+            "review_level": "official-selected-documentation",
+            "review_scope": "Selected Inexact Newton-like Methods and beginning of Matrix-Free Methods, residual forcing inequality and matrix-free/preconditioner distinction. Context only. No PETSc installation/execution or borrowed numerical success. Our hyperplane continuation is not a claim to implement every SNES arc-length scheme.",
+            "review": {
+              "ja": "公式3.26.1文書の関連節のみ確認。PETScを使用・実行した成功値は借用せず、二次arc制約と採用超平面を区別します。",
+              "en": "Selected official3.26.1sections only; noPETSc execution orborrowed result. Distinguish itsquadraticarcconstraint fromourhyperplane."
+            },
+            "role": "context-only"
+          }
+        ],
+        "citations": [
+          {
+            "id": "knoll-keyes2004",
+            "title": "Jacobian-free Newton-Krylov methods: a survey of approaches and applications",
+            "author": "D.A.Knoll,D.E.Keyes",
+            "year": 2004,
+            "type": "article",
+            "doi": "10.1016/j.jcp.2003.08.010",
+            "url": "https://inf.ufes.br/~luciac/comcie/JFNK-Knoll.pdf",
+            "review_level": "primary-selected-PDF-text-via-course-mirror",
+            "review_scope": "Selectedsec2.3,2.3.1,2.3.2 and2.4.1, printedpp361–363: matrix-free Jv action, perturbation scaling, inexact forcing Eq16 and line-search globalization. Actual central difference denominator2h and eps_machine^(1/3) scaling are independently specified/qualified, not an attribution to a PETSc default. No whole41-page audit or paper solver result reuse.",
+            "review": {
+              "ja": "原著のJv・差分刻み・inexact forcing・前処理の選択部分を講義ミラー配送から読解。中央差分と固定clamp付き比率則は明示的な実装選択です。",
+              "en": "Selected primary Jv,FDscale,inexactforcing andpreconditioning sections readvia disclosedcourse mirror; centralFD/cappedrule areexplicitimplementation choices."
+            },
+            "role": "algorithm-primary"
+          },
+          {
+            "id": "eisenstat-walker1996",
+            "title": "Choosing the Forcing Terms in an Inexact Newton Method",
+            "doi": "10.1137/0917003",
+            "url": "https://users.wpi.edu/~walker/Papers/forcing_terms,SISC_17,1996,16-32.pdf",
+            "review_level": "primary-selected-PDF-text",
+            "author": "S. C. Eisenstat and H. F. Walker",
+            "year": 1996,
+            "type": "article",
+            "review_scope": "Section1 AlgorithmIN/Eq1.2; selectedsec2 Choice2/Eq2.6; practical-safeguard paragraphssec2.1, printedpp16,20,22–23. Core eta=gamma*(||F_k||/||F_{k-1}||)^alpha is Choice2-style. Our gamma.9/alpha1.5 with eta_initial.3 and fixed[.001,.5] clamp omits the paper’s previous-eta safeguard. This is a declared variant, not its complete safeguarded algorithm or an asymptotic convergence certification.",
+            "review": {
+              "ja": "著者公開の原著PDFからAlgorithm IN、Choice 2と実用的safeguardの選択部分を確認。本文全体・全証明・性能表の監査ではありません。",
+              "en": "Read selected Algorithm IN, Choice 2 and safeguard passages from the author-hosted original; not a full proof or performance-table audit."
+            },
+            "role": "algorithm-primary"
+          },
+          {
+            "id": "langtangen-bratu-official",
+            "title": "Finite differences for the1D Bratu problem,Problem8",
+            "author": "Hans Petter Langtangen",
+            "year": 2014,
+            "type": "author-course-documentation",
+            "url": "https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html",
+            "review_level": "author-selected-exact-solution-exercise",
+            "review_scope": "Problem8/Eq52: boundary-value equation, analytic cosh family, branch count and printed rounded critical value. The author’s parameter equals2 times our theta. Independent Decimal80 exact-family qualification remains the numerical reference; the printed rounded anchor is a separate coarse check.",
+            "review": {
+              "ja": "著者教材のBratu解析族と二枝・丸めた臨界値を確認。変数は採用thetaの2倍で、別導出とDecimal80で資格。1914原著は未読です。",
+              "en": "Read author exercise exactfamily/twobranches/roundedcritical; itsparameter istwiceourtheta. Independentderivation/Decimal80qualification;1914originalunread."
+            },
+            "role": "analytic-reference"
+          },
+          {
+            "id": "petsc-snes-official",
+            "title": "PETSc SNES nonlinear solvers: matrix-free,inexact Newton and arc length",
+            "author": "PETSc developers",
+            "year": 2026,
+            "type": "official-documentation",
+            "url": "https://petsc.org/release/manual/snes/",
+            "review_level": "official-selected-documentation",
+            "review_scope": "Selected Inexact Newton-like Methods and beginning of Matrix-Free Methods, residual forcing inequality and matrix-free/preconditioner distinction. Context only. No PETSc installation/execution or borrowed numerical success. Our hyperplane continuation is not a claim to implement every SNES arc-length scheme.",
+            "review": {
+              "ja": "公式3.26.1文書の関連節のみ確認。PETScを使用・実行した成功値は借用せず、二次arc制約と採用超平面を区別します。",
+              "en": "Selected official3.26.1sections only; noPETSc execution orborrowed result. Distinguish itsquadraticarcconstraint fromourhyperplane."
+            },
+            "role": "context-only"
+          }
+        ],
+        "formulas": [
+          "-u''=\\lambda e^u,\\quad u(0)=u(1)=0",
+          "u_\\theta=2\\log\\frac{\\cosh(\\theta/2)}{\\cosh(\\theta(x-1/2))},\\quad\\lambda(\\theta)=2\\theta^2/\\cosh^2(\\theta/2)",
+          "J(u)v=A_hv-\\lambda e^u\\odot v",
+          "\\eta_k=\\min\\{0.5,\\max\\{0.001,0.9(\\|F_k\\|_2/\\|F_{k-1}\\|_2)^{1.5}\\}\\}"
+        ],
+        "gallery_figure": "bratu-matrix-free-jfnk-preview.png",
+        "additional_figures": [
+          {
+            "file": "bratu-matrix-free-jfnk-preview.png",
+            "caption": {
+              "ja": "保存したN=127のNewton残差、上枝の解と解析参照、Jv誤差、実評価回数を示す縮小図。run indexは保存CSVに対応します。",
+              "en": "Preview of stored N=127 Newton residuals,upper-branch field/reference,Jv errors and actual evaluation counts. Run indices match the saved CSV."
+            }
+          }
+        ],
+        "measured": {
+          "id": "bratu-matrix-free-jfnk",
+          "passed": true,
+          "checks": {
+            "nonzero Jv reference": true,
+            "AD Jv exact": true,
+            "AD primal exact": true,
+            "central FD Jv": true,
+            "zero Jv branch": true,
+            "0/nonlinear converged": true,
+            "0/finite states": true,
+            "0/discrete residual": true,
+            "0/continuous branch error": true,
+            "0/analytic verified forcing": true,
+            "0/declared eta": true,
+            "0/evaluation count ledger": true,
+            "0/bounded Krylov storage": true,
+            "0/accepted Armijo steps": true,
+            "1/nonlinear converged": true,
+            "1/finite states": true,
+            "1/discrete residual": true,
+            "1/continuous branch error": true,
+            "1/analytic verified forcing": true,
+            "1/declared eta": true,
+            "1/evaluation count ledger": true,
+            "1/bounded Krylov storage": true,
+            "1/accepted Armijo steps": true,
+            "2/nonlinear converged": true,
+            "2/finite states": true,
+            "2/discrete residual": true,
+            "2/continuous branch error": true,
+            "2/analytic verified forcing": true,
+            "2/declared eta": true,
+            "2/evaluation count ledger": true,
+            "2/bounded Krylov storage": true,
+            "2/accepted Armijo steps": true,
+            "3/nonlinear converged": true,
+            "3/finite states": true,
+            "3/discrete residual": true,
+            "3/continuous branch error": true,
+            "3/analytic verified forcing": true,
+            "3/declared eta": true,
+            "3/evaluation count ledger": true,
+            "3/bounded Krylov storage": true,
+            "3/accepted Armijo steps": true,
+            "4/nonlinear converged": true,
+            "4/finite states": true,
+            "4/discrete residual": true,
+            "4/continuous branch error": true,
+            "4/analytic verified forcing": true,
+            "4/declared eta": true,
+            "4/evaluation count ledger": true,
+            "4/bounded Krylov storage": true,
+            "4/accepted Armijo steps": true,
+            "5/nonlinear converged": true,
+            "5/finite states": true,
+            "5/discrete residual": true,
+            "5/continuous branch error": true,
+            "5/analytic verified forcing": true,
+            "5/declared eta": true,
+            "5/evaluation count ledger": true,
+            "5/bounded Krylov storage": true,
+            "5/accepted Armijo steps": true,
+            "6/nonlinear converged": true,
+            "6/finite states": true,
+            "6/discrete residual": true,
+            "6/continuous branch error": true,
+            "6/analytic verified forcing": true,
+            "6/declared eta": true,
+            "6/evaluation count ledger": true,
+            "6/bounded Krylov storage": true,
+            "6/accepted Armijo steps": true,
+            "7/nonlinear converged": true,
+            "7/finite states": true,
+            "7/discrete residual": true,
+            "7/continuous branch error": true,
+            "7/analytic verified forcing": true,
+            "7/declared eta": true,
+            "7/evaluation count ledger": true,
+            "7/bounded Krylov storage": true,
+            "7/accepted Armijo steps": true,
+            "8/nonlinear converged": true,
+            "8/finite states": true,
+            "8/discrete residual": true,
+            "8/continuous branch error": true,
+            "8/analytic verified forcing": true,
+            "8/declared eta": true,
+            "8/evaluation count ledger": true,
+            "8/bounded Krylov storage": true,
+            "8/accepted Armijo steps": true,
+            "9/nonlinear converged": true,
+            "9/finite states": true,
+            "9/discrete residual": true,
+            "9/continuous branch error": true,
+            "9/analytic verified forcing": true,
+            "9/declared eta": true,
+            "9/evaluation count ledger": true,
+            "9/bounded Krylov storage": true,
+            "9/accepted Armijo steps": true,
+            "10/nonlinear converged": true,
+            "10/finite states": true,
+            "10/discrete residual": true,
+            "10/continuous branch error": true,
+            "10/analytic verified forcing": true,
+            "10/declared eta": true,
+            "10/evaluation count ledger": true,
+            "10/bounded Krylov storage": true,
+            "10/accepted Armijo steps": true,
+            "11/nonlinear converged": true,
+            "11/finite states": true,
+            "11/discrete residual": true,
+            "11/continuous branch error": true,
+            "11/analytic verified forcing": true,
+            "11/declared eta": true,
+            "11/evaluation count ledger": true,
+            "11/bounded Krylov storage": true,
+            "11/accepted Armijo steps": true,
+            "12/nonlinear converged": true,
+            "12/finite states": true,
+            "12/discrete residual": true,
+            "12/continuous branch error": true,
+            "12/analytic verified forcing": true,
+            "12/declared eta": true,
+            "12/evaluation count ledger": true,
+            "12/bounded Krylov storage": true,
+            "12/accepted Armijo steps": true,
+            "mode agreement N63 lower": true,
+            "mode agreement N63 upper": true,
+            "mode agreement N127 lower": true,
+            "mode agreement N127 upper": true,
+            "finest exact branches": true,
+            "all mode errors refine": true,
+            "constant forcing companion matches": true
+          },
+          "metrics": {
+            "mode_gap_max": 4.884981308350689e-15,
+            "qualification_AD_relative": 1.1692887409033045e-17,
+            "qualification_FD_relative": 8.651069407676375e-11,
+            "reasons": [
+              "nonlinear residual",
+              "nonlinear residual",
+              "nonlinear residual",
+              "nonlinear residual",
+              "nonlinear residual",
+              "nonlinear residual",
+              "nonlinear residual",
+              "nonlinear residual",
+              "nonlinear residual",
+              "nonlinear residual",
+              "nonlinear residual",
+              "nonlinear residual",
+              "nonlinear residual"
+            ],
+            "evaluation_scope": "Actualsolverevaluations;analyticlinear-forcingvalidationcountedseparately.NoPETScorassemblednonlinearJacobianusedbyJFNK."
+          },
+          "records": [
+            {
+              "run": 0,
+              "n": 63,
+              "mode_code": 0,
+              "branch_code": 0,
+              "constant_eta_code": 0,
+              "error": 0.00011558234093789199,
+              "residual": 1.620098112725219e-12,
+              "newton_steps": 5,
+              "primal_residual": 11,
+              "jv": 22,
+              "zero_jv": 0,
+              "dual_residual": 0,
+              "preconditioner": 11,
+              "validation_analytic_jv": 5
+            },
+            {
+              "run": 1,
+              "n": 63,
+              "mode_code": 1,
+              "branch_code": 0,
+              "constant_eta_code": 0,
+              "error": 0.00011558234093533848,
+              "residual": 1.6098025411342381e-12,
+              "newton_steps": 5,
+              "primal_residual": 55,
+              "jv": 22,
+              "zero_jv": 0,
+              "dual_residual": 0,
+              "preconditioner": 11,
+              "validation_analytic_jv": 5
+            },
+            {
+              "run": 2,
+              "n": 63,
+              "mode_code": 2,
+              "branch_code": 0,
+              "constant_eta_code": 0,
+              "error": 0.0001155823409334511,
+              "residual": 1.6029750940143104e-12,
+              "newton_steps": 5,
+              "primal_residual": 11,
+              "jv": 22,
+              "zero_jv": 0,
+              "dual_residual": 22,
+              "preconditioner": 11,
+              "validation_analytic_jv": 5
+            },
+            {
+              "run": 3,
+              "n": 63,
+              "mode_code": 0,
+              "branch_code": 1,
+              "constant_eta_code": 0,
+              "error": 0.000442694711361602,
+              "residual": 5.981134558509083e-13,
+              "newton_steps": 8,
+              "primal_residual": 17,
+              "jv": 40,
+              "zero_jv": 0,
+              "dual_residual": 0,
+              "preconditioner": 20,
+              "validation_analytic_jv": 8
+            },
+            {
+              "run": 4,
+              "n": 63,
+              "mode_code": 1,
+              "branch_code": 1,
+              "constant_eta_code": 0,
+              "error": 0.0004426947113636004,
+              "residual": 5.122734940774252e-13,
+              "newton_steps": 8,
+              "primal_residual": 97,
+              "jv": 40,
+              "zero_jv": 0,
+              "dual_residual": 0,
+              "preconditioner": 20,
+              "validation_analytic_jv": 8
+            },
+            {
+              "run": 5,
+              "n": 63,
+              "mode_code": 2,
+              "branch_code": 1,
+              "constant_eta_code": 0,
+              "error": 0.00044269471136293426,
+              "residual": 5.212823299708089e-13,
+              "newton_steps": 8,
+              "primal_residual": 17,
+              "jv": 40,
+              "zero_jv": 0,
+              "dual_residual": 40,
+              "preconditioner": 20,
+              "validation_analytic_jv": 8
+            },
+            {
+              "run": 6,
+              "n": 127,
+              "mode_code": 0,
+              "branch_code": 0,
+              "constant_eta_code": 0,
+              "error": 2.88855062520188e-05,
+              "residual": 2.1757068075959737e-12,
+              "newton_steps": 5,
+              "primal_residual": 11,
+              "jv": 22,
+              "zero_jv": 0,
+              "dual_residual": 0,
+              "preconditioner": 11,
+              "validation_analytic_jv": 5
+            },
+            {
+              "run": 7,
+              "n": 127,
+              "mode_code": 1,
+              "branch_code": 0,
+              "constant_eta_code": 0,
+              "error": 2.888550625290698e-05,
+              "residual": 2.2715453582870073e-12,
+              "newton_steps": 5,
+              "primal_residual": 55,
+              "jv": 22,
+              "zero_jv": 0,
+              "dual_residual": 0,
+              "preconditioner": 11,
+              "validation_analytic_jv": 5
+            },
+            {
+              "run": 8,
+              "n": 127,
+              "mode_code": 2,
+              "branch_code": 0,
+              "constant_eta_code": 0,
+              "error": 2.8885506251796755e-05,
+              "residual": 2.1800741361536573e-12,
+              "newton_steps": 5,
+              "primal_residual": 11,
+              "jv": 22,
+              "zero_jv": 0,
+              "dual_residual": 22,
+              "preconditioner": 11,
+              "validation_analytic_jv": 5
+            },
+            {
+              "run": 9,
+              "n": 127,
+              "mode_code": 0,
+              "branch_code": 1,
+              "constant_eta_code": 0,
+              "error": 0.00011065714534197468,
+              "residual": 2.06313282436204e-12,
+              "newton_steps": 8,
+              "primal_residual": 17,
+              "jv": 40,
+              "zero_jv": 0,
+              "dual_residual": 0,
+              "preconditioner": 20,
+              "validation_analytic_jv": 8
+            },
+            {
+              "run": 10,
+              "n": 127,
+              "mode_code": 1,
+              "branch_code": 1,
+              "constant_eta_code": 0,
+              "error": 0.00011065714534219673,
+              "residual": 2.079491944634289e-12,
+              "newton_steps": 8,
+              "primal_residual": 97,
+              "jv": 40,
+              "zero_jv": 0,
+              "dual_residual": 0,
+              "preconditioner": 20,
+              "validation_analytic_jv": 8
+            },
+            {
+              "run": 11,
+              "n": 127,
+              "mode_code": 2,
+              "branch_code": 1,
+              "constant_eta_code": 0,
+              "error": 0.00011065714534286286,
+              "residual": 2.204391435109879e-12,
+              "newton_steps": 8,
+              "primal_residual": 17,
+              "jv": 40,
+              "zero_jv": 0,
+              "dual_residual": 40,
+              "preconditioner": 20,
+              "validation_analytic_jv": 8
+            },
+            {
+              "run": 12,
+              "n": 63,
+              "mode_code": 0,
+              "branch_code": 0,
+              "constant_eta_code": 1,
+              "error": 0.00011558231343378189,
+              "residual": 9.181475278365571e-11,
+              "newton_steps": 4,
+              "primal_residual": 9,
+              "jv": 40,
+              "zero_jv": 0,
+              "dual_residual": 0,
+              "preconditioner": 20,
+              "validation_analytic_jv": 4
+            }
+          ],
+          "data_files": [
+            "bratu-matrix-free-jfnk-run0.npz",
+            "bratu-matrix-free-jfnk-run1.npz",
+            "bratu-matrix-free-jfnk-run2.npz",
+            "bratu-matrix-free-jfnk-run3.npz",
+            "bratu-matrix-free-jfnk-run4.npz",
+            "bratu-matrix-free-jfnk-run5.npz",
+            "bratu-matrix-free-jfnk-run6.npz",
+            "bratu-matrix-free-jfnk-run7.npz",
+            "bratu-matrix-free-jfnk-run8.npz",
+            "bratu-matrix-free-jfnk-run9.npz",
+            "bratu-matrix-free-jfnk-run10.npz",
+            "bratu-matrix-free-jfnk-run11.npz",
+            "bratu-matrix-free-jfnk-run12.npz"
+          ]
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/#bratu-matrix-free-jfnk",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/#bratu-matrix-free-jfnk"
+        }
+      }
+    ]
+  },
+  "supplemental_scope_profiles": [
+    {
+      "release": {
+        "group": "bratu-continuation-jfnk",
+        "edition": "2026-11-24-r2",
+        "case_ids": [
+          "bratu-matrix-free-jfnk"
+        ]
+      },
+      "scope": {
+        "ja": "追加固定例：解析・中央差分・方向ADによるJacobian不要Newton–Krylov。条件と検証範囲は各配布版で確認してください。",
+        "en": "Additional fixed examples: Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products. See each release for assumptions and checked scope."
+      },
+      "limits": [
+        {
+          "ja": "小1次元BVP向けの教育実装です。ADは四則・exp・境界paddingの方向微分に限ります。小Hessenberg行列と基底は保持します。ηの固定下限があるため、原著EWの漸近収束定理、一般AD/PETScとの同等性、速度向上や大域収束は主張しません。",
+          "en": "An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee."
+        }
+      ]
+    }
+  ],
+  "assumptions_ja": [
+    "同じ無次元1次元Dirichlet問題でλ=3、内点63/127、初期値0または4sin(πx)。3Jv×2格子×2枝の12解法と固定η=1e-8の解析Jv対照1本。GMRES restart24/max96、Newton最大24、残差許容1e-9です。"
+  ],
+  "units_ja": "無次元。擬似弧長は物理時間ではありません。",
+  "boundary_conditions_ja": "x=0,1で同次Dirichlet条件。",
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/jacobian-free-newton-krylov/",
+  "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/jacobian-free-newton-krylov/index.json",
+  "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/jacobian-free-newton-krylov/index.md",
+  "code_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/problem.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/continuation.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/matrix_free.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/dual.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/experiments.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/references/analytic_family.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/io_contract.py"
+  ],
+  "test_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/test_bratu.py"
+  ],
+  "run_commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "run_from": "atlas-bratu-continuation-jfnk-2026-11-24-r2",
+  "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/",
+  "code_edition": "2026-11-24-r2",
+  "execution_examples": [
+    {
+      "id": "bratu-matrix-free-jfnk",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    }
+  ],
+  "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/atlas-bratu-continuation-jfnk-2026-11-24-r2.zip",
+  "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/source-manifest.json",
+  "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json",
+  "code_archive_sha256": "aeffa7e1b442f198ef2de55e453f82e5d6cbe30fc3d0bbd1112354a38a20a25d",
+  "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/result.json",
+  "problem_navigation": {
+    "method_id": "jacobian-free-newton-krylov",
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "bratu",
+        "name": {
+          "ja": "Bratu非線形境界値問題",
+          "en": "Bratu nonlinear boundary-value problem"
+        },
+        "problem_ids": [
+          "bratu-matrix-free-jfnk"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bratu-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bratu-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "bratu-matrix-free-jfnk",
+        "name": {
+          "ja": "解析・中央差分・方向ADによるJacobian不要Newton–Krylov",
+          "en": "Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-matrix-free-jfnk-preview.png",
+          "sha256": "3a1e124b0f2af0be276bbb1f6bfbc6168af1fd7dcb975e891ab793c6cc4827b1",
+          "width": 1100,
+          "height": 800,
+          "caption": {
+            "ja": "保存したN=127のNewton残差、上枝の解と解析参照、Jv誤差、実評価回数を示す縮小図。run indexは保存CSVに対応します。",
+            "en": "Preview of stored N=127 Newton residuals,upper-branch field/reference,Jv errors and actual evaluation counts. Run indices match the saved CSV."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-matrix-free-jfnk/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-matrix-free-jfnk/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-matrix-free-jfnk/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-matrix-free-jfnk/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "bratu-matrix-free-jfnk",
+            "kind": "supplement",
+            "name": {
+              "ja": "解析・中央差分・方向ADによるJacobian不要Newton–Krylov",
+              "en": "Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products"
+            },
+            "scope": {
+              "ja": "非線形Jacobianを組み立てずにBratuの上下枝を3種類のJvで解き、forcingと実際の残差・評価回数を保存します。",
+              "en": "Solve both Bratu branches with three Jv choices without assembling the nonlinear Jacobian; retain forcing, actual residuals and evaluation counts."
+            },
+            "method_ids": [
+              "jacobian-free-newton-krylov",
+              "gmres",
+              "thomas",
+              "automatic-differentiation",
+              "centered-difference"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/atlas-bratu-continuation-jfnk-2026-11-24-r2.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "解析Jv、残差2評価の中央差分、または方向1本のforward ADを使います。PoissonのThomas右前処理、2回の再直交化とGivensによるGMRES。η0=.3、その後η=clamp(.9(Fk/Fk−1)^1.5,.001,.5)。これはEW Choice 2型の明示的な変形で、原著のsafeguard全体やPETSc既定値ではありません。",
+          "en": "Use analytic Jv, a two-residual central difference, or one-direction forward AD. Apply a Poisson Thomas right preconditioner with two-pass reorthogonalized GMRES/Givens. Start eta=.3, then clamp .9*(Fk/Fk-1)^1.5 to [.001,.5]. This is an explicit EW Choice2-style variant, not the paper’s full safeguards or PETSc defaults."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-matrix-free-jfnk/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-matrix-free-jfnk/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "bratu-matrix-free-jfnk",
+        "problem_name": {
+          "ja": "解析・中央差分・方向ADによるJacobian不要Newton–Krylov",
+          "en": "Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-matrix-free-jfnk/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-matrix-free-jfnk/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "bratu-matrix-free-jfnk",
+            "title": {
+              "ja": "解析・中央差分・方向ADによるJacobian不要Newton–Krylov",
+              "en": "Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products"
+            },
+            "kind": "analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "小1次元BVP向けの教育実装です。ADは四則・exp・境界paddingの方向微分に限ります。小Hessenberg行列と基底は保持します。ηの固定下限があるため、原著EWの漸近収束定理、一般AD/PETScとの同等性、速度向上や大域収束は主張しません。",
+              "en": "An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-bratu-matrix-free-jfnk-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-bratu-matrix-free-jfnk-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/?lang=ja#bratu-matrix-free-jfnk-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/?lang=en#bratu-matrix-free-jfnk-en-measurements"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

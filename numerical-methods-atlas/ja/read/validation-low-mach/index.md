@@ -277,19 +277,19 @@ python run.py --input inputs.json --output output
 
 ### 出典と確認範囲
 
-- Fabian Miczek, Friedrich K. Röpke and Philipp V. F. Edelmann (2015). New numerical solver for flows at various Mach numbers. https://arxiv.org/html/1409.8289; review_level=selected-author-version-full-text: Section8 Eq56; Section4 explicit-RK3 discussion; AppendixA variable transforms; Section6 smooth piecewise-linear reconstruction without a limiter
+- Fabian Miczek, Friedrich K. Röpke and Philipp V. F. Edelmann (2015). New numerical solver for flows at various Mach numbers [accessed 2026-11-23]. https://arxiv.org/html/1409.8289; review_level=selected-author-version-full-text: Section8 Eq56; Section4 explicit-RK3 discussion; AppendixA variable transforms; Section6 smooth piecewise-linear reconstruction without a limiter
 著者版の前処理行列・散逸項とRK3への言及を確認。今回は等エントロピー渦の短い時間区間に適用し、原著のGresho実験や暗黙積分を再現したとは扱いません。 6節の滑らかな問題に対するlimiterなしの区分線形再構築も確認し、改訂の独立した根拠とします。
 
-- Wasilij Barsukow, Philipp V. F. Edelmann, Christian Klingenberg, Fabian Miczek and Friedrich K. Röpke (2017). A Numerical Scheme for the Compressible Low-Mach Number Regime of Ideal Fluid Dynamics. https://arxiv.org/html/1612.03910; review_level=selected-full-text: Section3 Eqs21,31,32; Section5 Eq83 and Fourier-mode stability discussion
+- Wasilij Barsukow, Philipp V. F. Edelmann, Christian Klingenberg, Fabian Miczek and Friedrich K. Röpke (2017). A Numerical Scheme for the Compressible Low-Mach Number Regime of Ideal Fluid Dynamics [accessed 2026-11-23]. https://arxiv.org/html/1612.03910; review_level=selected-full-text: Section3 Eqs21,31,32; Section5 Eq83 and Fourier-mode stability discussion
 前処理散逸P⁻¹|PA|、原始変数行列と前進Eulerの厳しい刻み制限を確認。SSPRK33での本固定入力のFourier診断・実段検査は別に実施し、一般の非線形安定性やSSP保証を借用しません。
 
-- Seth C. Spiegel, H. T. Huynh and James R. DeBonis (2015). A Survey of the Isentropic Euler Vortex Problem using High-Order Methods. https://ntrs.nasa.gov/citations/20150018403; review_level=selected-primary-report: parameterized vortex definitions and Sections IV.B/IV.C boundary discussion
+- Seth C. Spiegel, H. T. Huynh and James R. DeBonis (2015). A Survey of the Isentropic Euler Vortex Problem using High-Order Methods [accessed 2026-11-23]. https://ntrs.nasa.gov/citations/20150018403; review_level=selected-primary-report: parameterized vortex definitions and Sections IV.B/IV.C boundary discussion
 一般化された渦の定義と周期境界の相互作用・せん断層の説明を確認。独自のβ3・流速(1,.5)・M∞.1/.01を明示し、全平面解と有限周期箱の違いを保持します。NASA/FRソルバーや論文図の転載ではありません。
 
-- Sigal Gottlieb and Chi-Wang Shu (1998). Total Variation Diminishing Runge-Kutta Schemes. https://www.cfm.brown.edu/people/sg/SSP1.pdf; review_level=author-bibliography and indexed author-PDF excerpts; direct PDF fetch unavailable
+- Sigal Gottlieb and Chi-Wang Shu (1998). Total Variation Diminishing Runge-Kutta Schemes [accessed 2026-11-23]. https://www.cfm.brown.edu/people/sg/SSP1.pdf; review_level=author-bibliography and indexed author-PDF excerpts; direct PDF fetch unavailable
 著者の書誌と著者PDFの索引抜粋で書誌・3次TVD法の位置付けを確認。PDFを直接通読したとは記録しません。係数は次の著者レビューのSSPRK(3,3)表示とも照合します。
 
-- Sigal Gottlieb, Chi-Wang Shu and Eitan Tadmor (2001). Strong Stability-Preserving High-Order Time Discretization Methods. https://math.umd.edu/~tadmor/pub/linear-stability/Gottlieb-Shu-Tadmor.SIREV-01.pdf; review_level=selected-full-author-PDF: Section4 Proposition4.1 Eq4.2 printedp100/PDFpage12; Section2.2 Lemma2.1 printedp92/PDFpage4
+- Sigal Gottlieb, Chi-Wang Shu and Eitan Tadmor (2001). Strong Stability-Preserving High-Order Time Discretization Methods [accessed 2026-11-23]. https://math.umd.edu/~tadmor/pub/linear-stability/Gottlieb-Shu-Tadmor.SIREV-01.pdf; review_level=selected-full-author-PDF: Section4 Proposition4.1 Eq4.2 printedp100/PDFpage12; Section2.2 Lemma2.1 printedp92/PDFpage4
 3段3次の更新係数と、前進Eulerの強安定性を前提にするSSPの条件を確認。今回のMiczek流束についてSSP・TVD・非線形安定性を一般保証せず、指定したFourier行列と実際の段状態を別途確認します。
 
 

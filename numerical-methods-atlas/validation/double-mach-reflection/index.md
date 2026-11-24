@@ -190,7 +190,7 @@ python run.py --input inputs.json --output output
 - Paul Woodward and Phillip Colella (1984). The numerical simulation of two-dimensional fluid flow with strong shocks. https://www.sciencedirect.com/science/article/pii/0021999184901426; review_level=publisher-metadata-and-abstract; official-NASA-setup-cross-check
 出版社の書誌・抄録とNASA公式の設定説明を確認。原著本文を直接読んだという記録ではなく、元の強衝撃波比較と問題設定の出典として引用します。
 
-- NASA Advanced Supercomputing Division, LAVA team (n.d.). Double Mach Reflection — LAVA tutorial. https://www.nas.nasa.gov/LAVA/unst_docs/tutorials/double_mach/double_mach/; review_level=official-tutorial-selected-setup-and-boundaries
+- NASA Advanced Supercomputing Division, LAVA team (n.d.). Double Mach Reflection — LAVA tutorial [accessed 2026-11-23]. https://www.nas.nasa.gov/LAVA/unst_docs/tutorials/double_mach/double_mach/; review_level=official-tutorial-selected-setup-and-boundaries
 公式チュートリアルのMach10・γ=1.4、領域、衝撃脚x=1/6、初期密度/圧力、境界とT=.2を確認。LAVA自体を実行した意味ではなく、図も転載しません。
 
 - Hiroshi Koyama (2026). Independent finite-volume references distributed with the RKDG2D agent kit, 2026-11-23-r2. https://hrkoyama.github.io/code/rkdg2d/2026-11-23-r2/atlas-rkdg-agent-kit.zip; review_level=hash-checked-selected-public-archive-artifacts
@@ -391,7 +391,7 @@ This command executes every fixed case in the distribution group. Bundled result
 - Paul Woodward and Phillip Colella (1984). The numerical simulation of two-dimensional fluid flow with strong shocks. https://www.sciencedirect.com/science/article/pii/0021999184901426; review_level=publisher-metadata-and-abstract; official-NASA-setup-cross-check
 Publisher metadata/abstract and the official NASA setup were checked. No direct full-paper review is claimed; cited for the original strong-shock comparison and benchmark.
 
-- NASA Advanced Supercomputing Division, LAVA team (n.d.). Double Mach Reflection — LAVA tutorial. https://www.nas.nasa.gov/LAVA/unst_docs/tutorials/double_mach/double_mach/; review_level=official-tutorial-selected-setup-and-boundaries
+- NASA Advanced Supercomputing Division, LAVA team (n.d.). Double Mach Reflection — LAVA tutorial [accessed 2026-11-23]. https://www.nas.nasa.gov/LAVA/unst_docs/tutorials/double_mach/double_mach/; review_level=official-tutorial-selected-setup-and-boundaries
 Checked Mach10, gamma1.4, domain, shock foot x=1/6, upstream state, boundaries and T=.2. No LAVA execution or figure redistribution.
 
 - Hiroshi Koyama (2026). Independent finite-volume references distributed with the RKDG2D agent kit, 2026-11-23-r2. https://hrkoyama.github.io/code/rkdg2d/2026-11-23-r2/atlas-rkdg-agent-kit.zip; review_level=hash-checked-selected-public-archive-artifacts

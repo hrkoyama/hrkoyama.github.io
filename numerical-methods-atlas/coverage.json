@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "edition": "Published web edition",
-  "counted_on": "2026-11-23",
+  "counted_on": "2026-11-24",
   "policy": {
     "equations": "Named equation/model entries, not scalar component equations or mathematically disjoint families. Includes frameworks and auxiliary formulations; variants share one entry except the three separately explained SR/GR fluid systems. Biological entries are imported once from their own catalog.",
     "methods": "Named numerical methods and building blocks with a reading chapter. Aliases count once; RK stages, dimensions, parameter combinations, mesh layouts and theoretical conditions do not add methods. A family and a separately explained algorithm may both appear. Not a count of mutually exclusive end-to-end solvers.",
@@ -10,8 +10,8 @@
     "test_problems": "Count independent problems across published atlas results and the verified public code edition. Distinguish governing equations, dimensions, boundary conditions and named initial/source problems; merge solver, mesh, step-size, parameter-sweep, random-seed and presentation variants of the same problem. Repeated Sod exhibits, wedge Mach variants and CT/GLM variants do not add problems. Exclude reference-only evaluations, planned/literature-only entries, diagrams, and local identity/invariant/input-error unit checks. Static-force, boundary-value, approximation and algebraic problems are included; not every entry is a time-evolving simulation."
   },
   "counts": {
-    "equations": 65,
-    "methods": 137,
+    "equations": 70,
+    "methods": 143,
     "papers": 249,
     "references": 310,
     "journal_articles": 242,
@@ -20,16 +20,16 @@
     "chapters": 3,
     "reports": 4,
     "other_sources": 29,
-    "local_equations": 43,
+    "local_equations": 48,
     "reading_equations": 22,
-    "local_methods": 122,
+    "local_methods": 128,
     "reading_methods": 15,
     "biological_entries": 22,
     "gallery_cases": 9,
     "gallery_equations": 7,
-    "reading_chapters": 132,
-    "test_problems": 122,
-    "saved_test_problems": 122,
+    "reading_chapters": 137,
+    "test_problems": 131,
+    "saved_test_problems": 131,
     "code_test_problems": 0
   },
   "items": [
@@ -395,15 +395,6 @@
     },
     {
       "kind": "method",
-      "id": "leapfrog",
-      "label": "Two-step leapfrog",
-      "chapter": "time-integration",
-      "status": "local-example",
-      "group": "Time integration",
-      "scope": ""
-    },
-    {
-      "kind": "method",
       "id": "crank-nicolson",
       "label": "Crank–Nicolson",
       "chapter": "elliptic",
@@ -467,15 +458,6 @@
     },
     {
       "kind": "method",
-      "id": "thomas",
-      "label": "Thomas tridiagonal elimination",
-      "chapter": "elliptic",
-      "status": "local-example",
-      "group": "Linear & nonlinear solvers",
-      "scope": ""
-    },
-    {
-      "kind": "method",
       "id": "jacobi-iteration",
       "label": "Jacobi iteration",
       "chapter": "elliptic",
@@ -512,15 +494,6 @@
     },
     {
       "kind": "method",
-      "id": "gmres",
-      "label": "Restarted GMRES",
-      "chapter": "sparse-nonlinear",
-      "status": "local-example",
-      "group": "Linear & nonlinear solvers",
-      "scope": ""
-    },
-    {
-      "kind": "method",
       "id": "bicgstab",
       "label": "BiCGSTAB",
       "chapter": "sparse-nonlinear",
@@ -541,15 +514,6 @@
       "kind": "method",
       "id": "ilu0",
       "label": "Unpivoted ILU(0)",
-      "chapter": "sparse-nonlinear",
-      "status": "local-example",
-      "group": "Linear & nonlinear solvers",
-      "scope": ""
-    },
-    {
-      "kind": "method",
-      "id": "newton",
-      "label": "Armijo-damped Newton",
       "chapter": "sparse-nonlinear",
       "status": "local-example",
       "group": "Linear & nonlinear solvers",
@@ -1373,14 +1337,54 @@
       "origin": "curated-equation-catalog"
     },
     {
-      "kind": "method",
-      "id": "automatic-differentiation",
-      "label": "Automatic differentiation",
-      "chapter": "automatic-differentiation",
+      "kind": "equation",
+      "id": "finite-dimensional-linear-system",
+      "label": "Finite-dimensional linear systems and factorizations",
+      "chapter": "validation-linear-algebra-spectral",
       "status": "local-example",
-      "group": "Linear & nonlinear solvers",
-      "scope": "Limited to educational real forward mode and small dense-Newton Bratu comparisons. Reverse mode, HVPs and matrix-free Newton–Krylov remain explanatory only. A separate dedicated supplement verifies implicit sensitivities and discrete adjoints.",
-      "origin": "curated-autodiff-example"
+      "group": "Physics & mathematical models",
+      "scope": "Only the four specified direct matrices and two algebraic saddle sizes are covered. No general stability, scalability or PDE guarantee is implied.",
+      "origin": "curated-equation-catalog"
+    },
+    {
+      "kind": "equation",
+      "id": "finite-dimensional-eigenproblem",
+      "label": "Finite-dimensional matrix eigenproblems",
+      "chapter": "validation-linear-algebra-spectral",
+      "status": "local-example",
+      "group": "Physics & mathematical models",
+      "scope": "Explicitly restarted two-pass Arnoldi, one Ritz pair, restart lengths 8/16 and shifts none/0/950. No implicit restarting, Krylov-Schur, locking, clustered-spectrum or nonnormal extension is claimed.",
+      "origin": "curated-equation-catalog"
+    },
+    {
+      "kind": "equation",
+      "id": "dirichlet-string-eigenproblem",
+      "label": "Fixed-end string eigenvalues and consistent-mass FEM",
+      "chapter": "validation-linear-algebra-spectral",
+      "status": "local-example",
+      "group": "Physics & mathematical models",
+      "scope": "Unit length, tension and density; homogeneous Dirichlet endpoints at 0 and 1; the lowest three modes on 15/31/63 interior nodes. No 2D, variable-coefficient, nonlinear or time-evolution extension is claimed.",
+      "origin": "curated-equation-catalog"
+    },
+    {
+      "kind": "equation",
+      "id": "maxwell",
+      "label": "Linear Maxwell fields in vacuum and dielectrics",
+      "chapter": "validation-maxwell-cylinder",
+      "status": "local-example",
+      "group": "Physics & mathematical models",
+      "scope": "The representative equations describe three-dimensional linear electromagnetics. This implementation is restricted to a z-invariant, genuinely two-dimensional Yee cylinder problem with Ez/Hx/Hy.",
+      "origin": "curated-equation-catalog"
+    },
+    {
+      "kind": "equation",
+      "id": "maxwell-lorentz",
+      "label": "Passive Lorentz–Ohmic Maxwell fields",
+      "chapter": "validation-maxwell-lorentz",
+      "status": "local-example",
+      "group": "Physics & mathematical models",
+      "scope": "A single passive Lorentz pole with positive material energy and direct Ohmic/gamma work. The representative equations are three-dimensional; the implemented solver is the two-dimensional s/p component restriction at one periodic ky. Numerical PML work is not identified with physical dissipation.",
+      "origin": "curated-equation-catalog"
     },
     {
       "kind": "method",
@@ -1401,16 +1405,6 @@
       "group": "Optimization & stochastic methods",
       "scope": "Educational tests use small smooth lower-branch Bratu problems and fixed synthetic observations. They cover two spatial coefficients, Tikhonov regularization, local data-sensitivity SVD, rank loss with central observations and reflection ambiguity. Prior selection through regularization does not add observational information. Real data, high-dimensional function estimation, global uniqueness, statistical confidence intervals and quasi-Newton methods generally are outside scope.",
       "origin": "curated-inverse-example"
-    },
-    {
-      "kind": "method",
-      "id": "fdtd",
-      "label": "Yee finite-difference time-domain method",
-      "chapter": "fdtd",
-      "status": "local-example",
-      "group": "Coupling, constraints & particles",
-      "scope": "Educational Yee FDTD: retained vacuum/Fresnel/s-p/PML examples plus r6 1D normal-incidence Ohmic and passive Lorentz slabs. Spectral references, R/T, direct dissipation, material storage, modified/physical budgets and space/time refinement are separate checks. Not blanket validation of general dispersion, multiple resonances, oblique dispersive incidence, dispersive PML or general 2D/3D.",
-      "origin": "curated-fdtd-example"
     },
     {
       "kind": "method",
@@ -1594,12 +1588,32 @@
     },
     {
       "kind": "method",
+      "id": "leapfrog",
+      "label": "Two-step leapfrog",
+      "chapter": "validation-maxwell-cylinder",
+      "status": "local-example",
+      "group": "Time integration",
+      "scope": "Additional fixed examples: Mie scattering width of a two-dimensional dielectric cylinder. See each release for assumptions and checked scope. This is a lossless two-dimensional Ez cylinder, not a three-dimensional sphere. Report staircase geometry error without claiming general second-order curved-boundary accuracy or precision scattering for arbitrary frequencies and materials.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
       "id": "verlet",
       "label": "Velocity Verlet / particle leapfrog",
       "chapter": "validation-gravity-dynamics",
       "status": "local-example",
       "group": "Time integration",
       "scope": "Additional fixed examples: Unsoftened Kepler two-body time error, Short-time32body dynamics from a cold Plummer-density sample. See each release for assumptions and checked scope. Additional fixed examples: Warm PIC linear Landau damping, Warm PIC two-stream initial growth. See each release for assumptions and checked scope. Additional fixed examples: Independently coded PIC spatial pipeline. See each release for assumptions and checked scope.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "thomas",
+      "label": "Thomas tridiagonal elimination",
+      "chapter": "validation-bratu-continuation-jfnk",
+      "status": "local-example",
+      "group": "Linear & nonlinear solvers",
+      "scope": "Additional fixed examples: Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products. See each release for assumptions and checked scope. An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee.",
       "origin": "curated-depth-example"
     },
     {
@@ -1620,6 +1634,26 @@
       "status": "local-example",
       "group": "Linear & nonlinear solvers",
       "scope": "Additional fixed examples: Checkerboard diffusion: shared flux, MG and AMG, Rotated diffusion: full-tensor Q1, MG and AMG. See each release for assumptions and checked scope.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "gmres",
+      "label": "Restarted GMRES",
+      "chapter": "validation-linear-algebra-spectral",
+      "status": "local-example",
+      "group": "Linear & nonlinear solvers",
+      "scope": "Additional fixed examples: Symmetric saddle systems and Schur preconditioning. See each release for assumptions and checked scope. A dense, ideal-Schur educational control, not a complete Stokes PDE solver or a scalable approximate preconditioner.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "newton",
+      "label": "Armijo-damped Newton",
+      "chapter": "validation-bratu-continuation-jfnk",
+      "status": "local-example",
+      "group": "Linear & nonlinear solvers",
+      "scope": "Additional fixed examples: Crossing the Bratu fold with pseudo-arclength continuation. See each release for assumptions and checked scope. A small one-dimensional simple fold only. The whole-curve family comparison uses the computed midpoint as its family coordinate and is distinct from the independent fixed-lambda profile checks. The continuum fold is not an exact discrete solution. No general bifurcation-tracking or large-scale performance claim.",
       "origin": "curated-depth-example"
     },
     {
@@ -1764,6 +1798,16 @@
     },
     {
       "kind": "method",
+      "id": "fdtd",
+      "label": "Yee finite-difference time-domain method",
+      "chapter": "validation-maxwell-cylinder",
+      "status": "local-example",
+      "group": "Coupling, constraints & particles",
+      "scope": "Additional fixed examples: Mie scattering width of a two-dimensional dielectric cylinder. See each release for assumptions and checked scope. This is a lossless two-dimensional Ez cylinder, not a three-dimensional sphere. Report staircase geometry error without claiming general second-order curved-boundary accuracy or precision scattering for arbitrary frequencies and materials.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
       "id": "pic",
       "label": "Particle-in-cell / PIC",
       "chapter": "validation-particles",
@@ -1864,6 +1908,16 @@
     },
     {
       "kind": "method",
+      "id": "automatic-differentiation",
+      "label": "Automatic differentiation",
+      "chapter": "validation-bratu-continuation-jfnk",
+      "status": "local-example",
+      "group": "Linear & nonlinear solvers",
+      "scope": "Additional fixed examples: Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products. See each release for assumptions and checked scope. An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
       "id": "langevin-thermostat",
       "label": "Langevin thermostat",
       "chapter": "validation-models",
@@ -1940,6 +1994,66 @@
       "status": "local-example",
       "group": "Spatial discretization",
       "scope": "Mapped polarQ1 couples both Cartesian components of variable-viscosity stress. Fixed cases check exact curved geometry,inner/outer physical traction,nonzero net force,work and MMS errors.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "lu-partial-pivoting",
+      "label": "Partial-pivot LU and mixed-precision refinement",
+      "chapter": "validation-linear-algebra-spectral",
+      "status": "local-example",
+      "group": "Linear & nonlinear solvers",
+      "scope": "Original LU and triangular solves on four fixed matrices compare five refinement steps, using binary32 factors and binary64 residuals, with exact-rational solutions.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "cholesky",
+      "label": "Cholesky factorization and triangular solves",
+      "chapter": "validation-linear-algebra-spectral",
+      "status": "local-example",
+      "group": "Linear & nonlinear solvers",
+      "scope": "Original lower Cholesky factorization and substitution are checked on fixed real SPD systems, then used for refinement and exact stiffness inversion in the small string example.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "minres",
+      "label": "Educational MINRES for symmetric-indefinite systems",
+      "chapter": "validation-linear-algebra-spectral",
+      "status": "local-example",
+      "group": "Linear & nonlinear solvers",
+      "scope": "Stored-basis, fully reorthogonalized Lanczos least squares solves algebraic saddle controls, checking the original residual against GMRES and the ideal-Schur spectrum.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "lobpcg",
+      "label": "Generalized eigenpairs with SciPy LOBPCG",
+      "chapter": "validation-linear-algebra-spectral",
+      "status": "local-example",
+      "group": "Linear & nonlinear solvers",
+      "scope": "Actual SciPy 1.14.1 LOBPCG computes the lowest three consistent-mass P1 string modes, compared with an original M-inner-product Krylov method, generalized LAPACK and closed discrete spectra.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "pseudo-arclength-continuation",
+      "label": "Weighted pseudo-arclength continuation",
+      "chapter": "validation-bratu-continuation-jfnk",
+      "status": "local-example",
+      "group": "Linear & nonlinear solvers",
+      "scope": "Follow the lower and upper branches of the same one-dimensional Bratu boundary-value problem; check tangents, the fold and spatial error against an independent analytic family.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "jacobian-free-newton-krylov",
+      "label": "Jacobian-free Newton-Krylov",
+      "chapter": "validation-bratu-continuation-jfnk",
+      "status": "local-example",
+      "group": "Linear & nonlinear solvers",
+      "scope": "Solve both Bratu branches with three Jv choices without assembling the nonlinear Jacobian; retain forcing, actual residuals and evaluation counts.",
       "origin": "curated-depth-example"
     },
     {
@@ -3652,15 +3766,15 @@
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "415dd98efe103ad5a2d950c22b98980f53539f6243b93e4e193dbca2c67169fe",
-    "catalog/atlas-methods.json": "3f2b7051c980e5492f6f94f01b3e75c4802394856c55a7176d9c9a1a9f35e305",
-    "catalog/atlas-equations.json": "597ba9e1d7745a59cfcb72fd0b632bc6b0375f68ed62f24e2c23984cb87851bb",
-    "catalog/atlas-method-primary-references.json": "1e9de6c042875cb95060bf63386cb051f0dbdbce4d5a63ce5600b52fef2e2082"
+    "catalog/atlas-methods.json": "1bf729b9e73fc797619dae3e5dc7ec0d1fe729efc1ad36485d760ddc77a4a246",
+    "catalog/atlas-equations.json": "aa6066b02dba1c00f1e3009aa494bf762e3a42834a9f85a10a9261746b50ffc9",
+    "catalog/atlas-method-primary-references.json": "0b0f4df551b17a83672b3251a8155be2d7f3648f6e48f550cc99d8d49b2ef13c"
   },
   "equation_execution_source_sha256": {
     "numerical-methods-atlas/assets/biological-models.json": "3ee3489ca4d2632d672576fcd75c062137053e203b55cbf51ee0cbe8cfc9556f",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "catalog/atlas-equations.json": "597ba9e1d7745a59cfcb72fd0b632bc6b0375f68ed62f24e2c23984cb87851bb",
+    "catalog/atlas-equations.json": "aa6066b02dba1c00f1e3009aa494bf762e3a42834a9f85a10a9261746b50ffc9",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "code/validated-examples/2026-11-23/weno-critical/source-manifest.json": "abd8b0a29bb81b7d98b897ec0a0eb409f77873857ec8199c3767f1ede11b43a5",
     "code/validated-examples/2026-11-23/weno-critical/verification.json": "ccbf3c6a2fe7055b324a0d98c152da909242f36e0c82ca3281038e4c9b0c165f",
@@ -3682,11 +3796,11 @@
     "code/validated-examples/2026-11-23/shallow-water/cases.json": "9296c20b7609cb4acdcd5a0ce437781dcd2e7635dbfea0a924f8468a3e5a5792",
     "code/validated-examples/2026-11-23/shallow-water/results/result.json": "49a56493e429dd3b4c9d6f8eba72c53ddd3469689699217157b9823a392c015f",
     "code/validated-examples/2026-11-23/shallow-water/atlas-shallow-water-2026-11-23.zip": "259244fc5c237542ba577df62308fd2a3191979dd43717d58df33d8abb902644",
-    "code/validated-examples/2026-11-23/mhd-transport/source-manifest.json": "c7d853b1b958f830ac30f45b076410ba55045ddedc88006cf8dda2c3e7dfee8d",
-    "code/validated-examples/2026-11-23/mhd-transport/verification.json": "56767d3b24b0c2fd9e6e660db523be8f8565876b38867f819c57ed983d468752",
-    "code/validated-examples/2026-11-23/mhd-transport/cases.json": "351ec0540ab5aea5c75aebfd90c9800d7e7fc8eb742dbbd534d80f61437a3914",
-    "code/validated-examples/2026-11-23/mhd-transport/results/result.json": "c43acea7e89a837e34b2e171bc292c75bc68766b98614697ec755f05ce944ba4",
-    "code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip": "8b6d4d9d30c9ed12fd29b7b91a11c16dc183b9aea49234966a66c376713ebf90",
+    "code/validated-examples/2026-11-24/mhd-transport/source-manifest.json": "68138759230a5f1b1d874d7503c4932cd3e55dbdf8b0a3d192da53683d89bdd1",
+    "code/validated-examples/2026-11-24/mhd-transport/verification.json": "ee680eda66d874deeabe27abfdb59958894a18be83445ed9f48c82f3080fa21e",
+    "code/validated-examples/2026-11-24/mhd-transport/cases.json": "351ec0540ab5aea5c75aebfd90c9800d7e7fc8eb742dbbd534d80f61437a3914",
+    "code/validated-examples/2026-11-24/mhd-transport/results/result.json": "e2aa4b6fdced4ae24243459acffcdc20110481094b837c457fb434432df4da61",
+    "code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip": "54e5f9376beacf41338b3b810657bb4671dabef937d748bc96834e1e3b35f233",
     "code/validated-examples/2026-11-23-r2/wall-flow/source-manifest.json": "5defc88a20d06c6806f1aa18c5a5a9f027c7891d8a237bb5fe980169d1bbdfe4",
     "code/validated-examples/2026-11-23-r2/wall-flow/verification.json": "6daf2fa12cf2e7f604bb54413b82e36bbe72891132e1846abf598f9c9600b096",
     "code/validated-examples/2026-11-23-r2/wall-flow/cases.json": "ed51f9003bbf5ddfa88602dd579ad962c81f95fb5dd3e7ef32973b17f9844d70",
@@ -3722,6 +3836,11 @@
     "code/validated-examples/2026-11-23/gravity-dynamics/cases.json": "de18f8a723bdd60efac585abf95e17f125e6f4e68823d147445cb0f3e0f172a7",
     "code/validated-examples/2026-11-23/gravity-dynamics/results/result.json": "d5129ce2c86fa37b8baa3abd0c9822323768e8ff0915abf86b23ef041bae837b",
     "code/validated-examples/2026-11-23/gravity-dynamics/atlas-gravity-dynamics-2026-11-23.zip": "47f1a4bdb8a6a5fdac82e66ffbe8b32c59242ffb7f9f05b418a37bd5913ffacd",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/source-manifest.json": "cfa8230836913a5f81d8e97c77b87716ce6d801095e9c95463e419ee8b94fe8c",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/verification.json": "4e08cc95cbb5ed520d43882c83da3ccbb644138d90ccf0bce1d408cb195beba7",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/cases.json": "9a2f2e0e780151768247923a36b7274b1b014bbeb620de7bbca5a25d46d5bc56",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/result.json": "6a4dbb22ac61f557b30c49ebb2d6067b41c6ad2f9040fd0752f49dc8b9884b5d",
+    "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/atlas-bratu-continuation-jfnk-2026-11-24-r2.zip": "aeffa7e1b442f198ef2de55e453f82e5d6cbe30fc3d0bbd1112354a38a20a25d",
     "code/validated-examples/2026-11-23/relativistic/source-manifest.json": "89496dc623ddb7a3c381539d403b1ad657cee8ad772509788f185b7364dd6584",
     "code/validated-examples/2026-11-23/relativistic/verification.json": "d2d62b2d0aa0e5f9f7e3a7e7991f24586fcc7c3baa3a567cd51f0d6f00367737",
     "code/validated-examples/2026-11-23/relativistic/cases.json": "8e0f3c1834cf74a57e20628fcf6580b19b8a7153c6f7c33c9b0b0986ca680a58",
@@ -3806,6 +3925,26 @@
     "code/validated-examples/2026-11-24/stochastic-estimation/verification.json": "04589e7e1285b60e3d327c5772d392405e04f5fc9623a0850b38c9eaa9478f90",
     "code/validated-examples/2026-11-24/stochastic-estimation/cases.json": "ec2095c7748dec022e754e3f9898b510f2fd3955d82b52c116374a410c7f3f5a",
     "code/validated-examples/2026-11-24/stochastic-estimation/results/result.json": "267e0b0be6f4a5fbcb8b116837f670d8bfacf09f0a7cda25f8e97956dd180435",
-    "code/validated-examples/2026-11-24/stochastic-estimation/atlas-stochastic-estimation-2026-11-24.zip": "313b9cb048b46d4dedd13dc214b7eb25de4fb72af01e267fa69da7e460f81ec3"
+    "code/validated-examples/2026-11-24/stochastic-estimation/atlas-stochastic-estimation-2026-11-24.zip": "313b9cb048b46d4dedd13dc214b7eb25de4fb72af01e267fa69da7e460f81ec3",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/source-manifest.json": "038537fee8708cb5bbc02d18e902ca546db191f7345ecace52147f6675554a95",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/verification.json": "4ed120693891dd4f94a207b080fd40fe53d3b1191274ec621de131e83fac16a7",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/cases.json": "604f637dccb85e22735600f1cae8e98cec3332d1eab1c4b12ff8d8e293eb33b3",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/result.json": "caffe188cea7298dea1a3592fb4815992fa6a4f2900db99ba8443d1199e21dea",
+    "code/validated-examples/2026-11-24-r3/linear-algebra-spectral/atlas-linear-algebra-spectral-2026-11-24-r3.zip": "3d14112335ce8a55cce306ec689d430f172d02a49f4675ae5948a2fab7ca1452",
+    "code/validated-examples/2026-11-24-r2/maxwell-cylinder/source-manifest.json": "bd55f11428730f3ad2a4048b74efd4dc4eae9997e55c8bc151d5ed4c0adf2dd6",
+    "code/validated-examples/2026-11-24-r2/maxwell-cylinder/verification.json": "85cfc10421948d42deda85916ac2a6d4a41b7ad7af91db890fd91b5c745bf51a",
+    "code/validated-examples/2026-11-24-r2/maxwell-cylinder/cases.json": "68902102c6f2dbf82608ef802b1dbc502aeb95f2c08590e762d4028d2950f2b8",
+    "code/validated-examples/2026-11-24-r2/maxwell-cylinder/results/result.json": "f0f035c4af8fd5d0b4fbf432f01abbbdca73dab2b6f62df90bba0735376ac1cf",
+    "code/validated-examples/2026-11-24-r2/maxwell-cylinder/atlas-maxwell-cylinder-2026-11-24-r2.zip": "bf2f69032cfe912d23e065582397202a695dde241350774a0c69997b70bd1a06",
+    "code/validated-examples/2026-11-24-r2/maxwell-lorentz/source-manifest.json": "f2a3b94d686d7114f9675e6d4f3afba01ffc63abdf137f739aa2052bfbdd64b4",
+    "code/validated-examples/2026-11-24-r2/maxwell-lorentz/verification.json": "7703e35d6a56ca69a6aaf17e7bd910bccad1c7cf21632e4625eda29c09d37d6d",
+    "code/validated-examples/2026-11-24-r2/maxwell-lorentz/cases.json": "efbaea689701c155491c147a7ed1a7c4f55f6d253fc2a718ba5cd11ca5061c20",
+    "code/validated-examples/2026-11-24-r2/maxwell-lorentz/results/result.json": "6d8ed5f5a1ecfb389610850e093860ef029faa5b1ecd60e719e1a70423429051",
+    "code/validated-examples/2026-11-24-r2/maxwell-lorentz/atlas-maxwell-lorentz-2026-11-24-r2.zip": "7af2a66b6defba64c5392f05292d2b49810140253455945d54112eb4594871a1",
+    "code/validated-examples/2026-11-24-r2/maxwell-grazing/source-manifest.json": "6ea7a32ee58596fde26b74b5992fd76b95cfa17895b0f40b7af7438d183fbc0b",
+    "code/validated-examples/2026-11-24-r2/maxwell-grazing/verification.json": "4c8133a8a4042ed925fd21af37d62fe472978af2ac4fecd3518a9d2242db1de0",
+    "code/validated-examples/2026-11-24-r2/maxwell-grazing/cases.json": "6b8417bd334606a183298f805a4337b9bda947fff47de60c34bd7844b69e4c7c",
+    "code/validated-examples/2026-11-24-r2/maxwell-grazing/results/result.json": "01ca786df2c0659e190cee13012170367e8fdd86b9a0e9dcf1c9a71a9a3e2c2d",
+    "code/validated-examples/2026-11-24-r2/maxwell-grazing/atlas-maxwell-grazing-2026-11-24-r2.zip": "a9d0c65eb27e26b05eafd3774b9f651b01baf28e617769bb2bbcb7efb0b90d3d"
   }
 }

@@ -1246,7 +1246,7 @@ Thomの壁渦度局所打切りは一次で、壁剪断の二次精度は主張�
 
 γ=5/3、[0,1]周期、ρ=1、p=.1、Bx=1、振幅.1、速度1、T=1、32/64/128セル。初期値と参照は保存変数の解析セル平均であり、セル平均から復元する圧力は点の定圧と区別します。
 
-- [実行・検証：円偏波Alfvén波：全成分の格子収束](https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=ja) (`circular-alfven-refinement`) · [コードZIP：円偏波Alfvén波：全成分の格子収束](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip)
+- [実行・検証：円偏波Alfvén波：全成分の格子収束](https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=ja) (`circular-alfven-refinement`) · [コードZIP：円偏波Alfvén波：全成分の格子収束](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip)
 
 この実行例の範囲：全8保存変数を進め、非零のBz・vzを含む円偏波を解析セル平均と比較します。
 
@@ -1278,7 +1278,7 @@ Thomの壁渦度局所打切りは一次で、壁剪断の二次精度は主張�
 
 [-1,1]×[-.5,.5]周期、ρ=p=1、Az=.001max(.3−r,0)、T=1、(Nx,Ny)=(16,8),(32,16),(64,32)。変更していない公式生成器と同じv=(2,1,2)で、古いvz=0設定とは区別します。
 
-- [実行・検証：磁場ループ：独立2次元参照と細分化](https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=ja) (`magnetic-loop-independent`) · [コードZIP：磁場ループ：独立2次元参照と細分化](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip)
+- [実行・検証：磁場ループ：独立2次元参照と細分化](https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=ja) (`magnetic-loop-independent`) · [コードZIP：磁場ループ：独立2次元参照と細分化](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip)
 
 この実行例の範囲：実際の2次元磁場ループ輸送を、別実装Athena++の空間・時間感度を検査した終端保存場と比較します。
 
@@ -1319,7 +1319,7 @@ Thomの壁渦度局所打切りは一次で、壁剪断の二次精度は主張�
 
 この実行例の範囲：同じOT初期セル平均と同じdt列でCT/GLMを計算し、別に実行したAthena++の格子・時間感度を分離した参照と比較します。
 
-- [実行・検証：後期Orszag–Tang：独立参照と圧縮構造](https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=ja) (`postshock-orszag-tang`) · [コードZIP：後期Orszag–Tang：独立参照と圧縮構造](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip)
+- [実行・検証：後期Orszag–Tang：独立参照と圧縮構造](https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=ja) (`postshock-orszag-tang`) · [コードZIP：後期Orszag–Tang：独立参照と圧縮構造](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip)
 
 この実行例の範囲：圧縮性理想MHDのOrszag–TangをT=.2まで進め、相互作用する圧縮・衝撃波構造の密度と圧力を独立有限格子参照で検査します。
 
@@ -2422,6 +2422,284 @@ dX=1.5(.2-X)dt+.8dW,X0=.7。無次元T=1、8/16/32/64刻み、独立32seed×1024
 - [実行・検証：相関2変量Gaussianのjoint標的とMCSE](https://hrkoyama.github.io/numerical-methods-atlas/validation/correlated-gaussian-mcmc/?lang=ja) (`correlated-gaussian-mcmc`) · [コードZIP：相関2変量Gaussianのjoint標的とMCSE](https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-estimation/atlas-stochastic-estimation-2026-11-24.zip)
 
 この実行例の範囲：実2D MH軌道を既知のjointモーメントと同一データArviZ診断で検査。
+
+
+
+
+### 誘電体円柱の外部級数と散乱幅
+
+解析解 · 2次元
+
+`E_z^{\mathrm{sca}}=\sum_n i^n a_nH_n^{(1)}(kr)e^{in\theta},\quad\Sigma_{\mathrm{sca}}=4\sum_n|a_n|^2/k`
+
+無損失無限円柱、Ez偏光、c=ε0=μ0=1、半径0.25、ε=2.25、真空波長1。解析場は厳密な円の外部だけです。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/cylinder-mie2d/?lang=ja#cylinder-mie2d-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-cylinder/#cylinder-mie2d)
+
+- selected-primary-documentation-or-authored-identity: [Mie scattering 2D](https://optics.ansys.com/hc/en-us/articles/360042703373-Mie-scattering-2D) — Read the complete substantive benchmark description: two-dimensional dielectric cylinder, TFSF, angular far field and lossless cross sections. Did not read the associated simulation files, theory table or cited book; no external numerical data imported. Publication and revision dates have not been verified. Accessed on 2026-11-24; this is a consultation date, not a publication year.
+- selected-primary-documentation-or-authored-identity: [Bessel and Hankel Wronskians, section10.5](https://dlmf.nist.gov/10.5) — Read section 10.5, especially equation 10.5.3 for the ordinary J/Hankel1 Wronskian; version 1.2.8. Cylinder boundary algebra is independently derived here. The year 2026 denotes DLMF version 1.2.8, released on 2026-09-15, not its initial publication year. Accessed on 2026-11-24.
+#### 関連するテスト問題の図とコード
+
+##### [2D誘電体円柱のMie散乱幅](https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-mie2d/?lang=ja) (`cylinder-mie2d`)
+
+![保存した最細格子の実2D散乱電場phasorの実部。 図の中央の白抜きは診断用のr<0.4のマスクで、物理円柱の半径0.25とは区別します。](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/results/cylinder-mie2d-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-mie2d/?lang=ja#code-ja)
+
+同じ問題への対応
+
+Ezの無損失2D円柱のみで、3D球ではありません。階段状形状の誤差を記録し、一般の曲面2次精度や任意周波数・材料での精密散乱を保証しません。
+
+- [実行・検証：2D誘電体円柱のMie散乱幅](https://hrkoyama.github.io/numerical-methods-atlas/validation/cylinder-mie2d/?lang=ja) (`cylinder-mie2d`) · [コードZIP：2D誘電体円柱のMie散乱幅](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/atlas-maxwell-cylinder-2026-11-24-r2.zip)
+
+この実行例の範囲：実際の2D散乱場を進め、閉曲線Poynting流束と独立な円柱級数を比較します。
+
+
+
+
+### 斜め入射の複素Fresnel係数とLorentz板の直接散逸
+
+解析解 · 2次元
+
+`\varepsilon(\omega)=\varepsilon_\infty+f/(\omega_0^2-\omega^2-i\gamma\omega)+i\sigma/\omega`
+
+外側真空、ky=4、板[4,5]、ε∞=1.5、Δε=0.75、ω0=9、γ=0.5、σ=0.04。s=Ezとp=Hzをω=5.1/6/6.9で比較します。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/lorentz-oblique-sp/?lang=ja#lorentz-oblique-sp-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-lorentz/#lorentz-oblique-sp)
+
+- selected-primary-documentation-or-authored-identity: [Meep Materials documentation](https://meep.readthedocs.io/en/latest/Materials/) — Read Material Dispersion, Numerical Stability, Loss and Gain, and Conductivity. Confirmed the exp(-i omega t) convention, Lorentz polarization and dispersive-PML warning. Our sigma E conductivity and midpoint update differ from Meep. Unversioned latest documentation; no original Yee or Roden-Gedney paper claim. Publication and revision dates have not been verified. Accessed on 2026-11-24; this is a consultation date, not a publication year.
+#### 関連するテスト問題の図とコード
+
+##### [Lorentz分散板へのs/p斜め入射](https://hrkoyama.github.io/numerical-methods-atlas/problems/lorentz-oblique-sp/?lang=ja) (`lorentz-oblique-sp`)
+
+![保存したp偏光の実電場をky=4の周期y方向へ再構成した場。 周期y方向の1周期を表示しています。波形を見やすくするため、x軸とy軸の表示縮尺は異なります。](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/results/lorentz-oblique-sp-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/lorentz-oblique-sp/?lang=ja#code-ja)
+
+同じ問題への対応
+
+任意の横方向分布ではなく単一kyの実空間制限です。1つの受動Lorentz極と有限帯域・有限窓のみ。Gaussian尾は厳密には非零で、窓診断と参照誤差を別記します。 全周波数で厳密にcap反射が未到達という証明ではありません。
+
+- [実行・検証：Lorentz分散板へのs/p斜め入射](https://hrkoyama.github.io/numerical-methods-atlas/validation/lorentz-oblique-sp/?lang=ja) (`lorentz-oblique-sp`) · [コードZIP：Lorentz分散板へのs/p斜め入射](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/atlas-maxwell-lorentz-2026-11-24-r2.zip)
+
+この実行例の範囲：有限波束の実進行から複素r/t・R/T・直接散逸を求め、複素Fresnel参照と比較します。
+
+
+
+
+### 浅角度分散波束の長時間・同格子孤立境界参照
+
+有限格子の数値参照 · 2次元
+
+`\widehat U^n(k_x)=M(k_x,\Delta t)^n\widehat U^0(k_x),\quad K_y=2\sin(k_y\Delta y/2)/\Delta y`
+
+均質Lorentz媒質はPML内まで連続し、ε∞=1、Δε=0.2、ω0=12、γ=0または0.005。Ez偏光の有限kx Gaussianはcarrierω=6、中心位相角80度。512/768/1024点とpeak6/9/12を同時細分化し、垂直対照は6、弱減衰細格子対照は12。最終時刻は700です。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/dispersive-grazing-pml/?lang=ja#dispersive-grazing-pml-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-grazing/#dispersive-grazing-pml)
+
+- selected-primary-documentation-or-authored-identity: [Meep Materials documentation](https://meep.readthedocs.io/en/latest/Materials/) — Read Material Dispersion, Numerical Stability, Loss and Gain, and Conductivity. Confirmed the exp(-i omega t) convention, Lorentz polarization and dispersive-PML warning. Our sigma E conductivity and midpoint update differ from Meep. Unversioned latest documentation; no original Yee or Roden-Gedney paper claim. Publication and revision dates have not been verified. Accessed on 2026-11-24; this is a consultation date, not a publication year.
+- selected-primary-documentation-or-authored-identity: [Notes on Perfectly Matched Layers](https://arxiv.org/html/2108.05348v1) — Read sections 3.2–4.2, equations 7–8 and the time-domain ADE discussion, plus sections 5–7.2 on homogeneity, evanescent fields and grazing/discretization limitations. The served text is updated 2026-08-24. The trapezoidal filter is our derivation; no full original Berenger/Roden-Gedney paper review is claimed.
+#### 関連するテスト問題の図とコード
+
+##### [分散媒質の浅い入射角と長時間PML](https://hrkoyama.github.io/numerical-methods-atlas/problems/dispersive-grazing-pml/?lang=ja) (`dispersive-grazing-pml`)
+
+![保存した浅角度の実電場を周期y方向へ再構成。灰色はPML領域です。 周期y方向の1周期を表示しています。波形を見やすくするため、x軸とy軸の表示縮尺は異なります。](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/results/dispersive-grazing-pml-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/dispersive-grazing-pml/?lang=ja#code-ja)
+
+同じ問題への対応
+
+有限kx帯域の中心角が80度で、全成分が厳密に80度ではありません。無PML参照は同じ離散化・初期場を使い、伝播分散を除いた境界誤差用です。任意角度・材料での大域安定性証明ではありません。 固定PMLの空間次数を測る族ではなく、旧100検査だけでpeak12の大域安定性が証明されたとはしません。
+
+- [実行・検証：分散媒質の浅い入射角と長時間PML](https://hrkoyama.github.io/numerical-methods-atlas/validation/dispersive-grazing-pml/?lang=ja) (`dispersive-grazing-pml`) · [コードZIP：分散媒質の浅い入射角と長時間PML](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/atlas-maxwell-grazing-2026-11-24-r2.zip)
+
+この実行例の範囲：80度の中心位相角を持つ有限波束をT=700まで進め、境界誤差を同格子の無PML参照から分離します。
+
+
+
+
+### 部分ピボットLU/Cholesky：実二進入力の厳密有理数参照
+
+解析解 · 有限次元の代数問題
+
+`x_ref=round_binary64(exact_Fraction_solve(A_binary64,b_binary64)); r=b-Ax; eta_inf=||r||inf/(||A||inf||x||inf+||b||inf)`
+
+固定4行列の実binary64 A,bをFractionへ厳密変換し、有理数消去の解を最後にbinary64へ変換。LAPACKは別比較であり共有数値基盤を含みます。任意の悪条件行列に対する前進精度保証ではありません。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/pivoted-direct-refinement/?lang=ja#pivoted-direct-refinement-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#pivoted-direct-refinement)
+
+- selected-official-documentation: [LAPACK Users Guide: Linear Equations](https://netlib.org/lapack/lug/node38.html) — Selected LU, Cholesky, conditioning and refinement paragraphs were read. This source uses mixed precision, unlike the selected same-precision RFS description.
+#### 関連するテスト問題の図とコード
+
+##### [部分ピボットLU・Choleskyと反復改良](https://hrkoyama.github.io/numerical-methods-atlas/problems/pivoted-direct-refinement/?lang=ja) (`pivoted-direct-refinement`)
+
+![保存した12×12 SPD行列。反復改良の固定例に使います。 別の全図に示す誤差は厳密有理数解をbinary64へ丸めた参照との差です。対数表示だけ、厳密なゼロ誤差をfloat64.tinyに置いて表示します。](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/pivoted-direct-refinement-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/pivoted-direct-refinement/?lang=ja#code-ja)
+
+同じ問題への対応
+
+小さい固定例のみ。一般の高条件数系で混合精度の収束は保証しません。
+
+- [実行・検証：部分ピボットLU・Choleskyと反復改良](https://hrkoyama.github.io/numerical-methods-atlas/validation/pivoted-direct-refinement/?lang=ja) (`pivoted-direct-refinement`) · [コードZIP：部分ピボットLU・Choleskyと反復改良](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/atlas-linear-algebra-spectral-2026-11-24-r3.zip)
+
+この実行例の範囲：独立の厳密有理数解と比較し、条件数・前進誤差・後退誤差・ピボット増大を分けます。
+
+
+
+
+### 対称不定値鞍点系：独立dense解と理想Schurスペクトル
+
+有限格子の数値参照 · 有限次元の代数問題
+
+`S=B H^{-1} B^T; P=diag(H,S); spectrum(L^{-1} A L^{-T})={1,(1-sqrt(5))/2,(1+sqrt(5))/2}; x_ref=LAPACK_solve(A,b)`
+
+A=[[H,Bᵀ],[B,0]]、速度サイズ12/24、圧力行数5/11の代数問題。SPD理想Schurは全行列を小さく直接構成し、元の真残差とdense参照解誤差を別に判定。実Stokes境界値問題ではありません。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/symmetric-saddle-minres/?lang=ja#symmetric-saddle-minres-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#symmetric-saddle-minres)
+
+- selected-author-documentation: [Paige and Saunders: MINRES author documentation](https://web.stanford.edu/group/SOL/software/minres/) — Selected symmetry, indefinite-system, SPD-preconditioning and original-residual discussion was read. The original 1975 paper was not newly read.
+- selected-official-documentation: [LAPACK Users Guide: Linear Equations](https://netlib.org/lapack/lug/node38.html) — Selected LU, Cholesky, conditioning and refinement paragraphs were read. This source uses mixed precision, unlike the selected same-precision RFS description.
+#### 関連するテスト問題の図とコード
+
+##### [対称不定値鞍点系とSchur前処理](https://hrkoyama.github.io/numerical-methods-atlas/problems/symmetric-saddle-minres/?lang=ja) (`symmetric-saddle-minres`)
+
+![速度サイズ24の固定例で使う、保存した35×35鞍点行列。](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/symmetric-saddle-minres-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/symmetric-saddle-minres/?lang=ja#code-ja)
+
+同じ問題への対応
+
+理想Schurは教育用の稠密制御であり、実Stokes PDEやスケーラブルな近似前処理の完成ではありません。
+
+- [実行・検証：対称不定値鞍点系とSchur前処理](https://hrkoyama.github.io/numerical-methods-atlas/validation/symmetric-saddle-minres/?lang=ja) (`symmetric-saddle-minres`) · [コードZIP：対称不定値鞍点系とSchur前処理](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/atlas-linear-algebra-spectral-2026-11-24-r3.zip)
+
+この実行例の範囲：同じ元残差の基準でMINRESとGMRESを比較し、理想Schurの三点スペクトルを検査します。
+
+
+
+
+### 再始動/shift-invert：固定離散行列の閉スペクトル
+
+解析解 · 有限次元の代数問題
+
+`lambda_j=4/h^2*sin(j*pi/(2*(n+1)))^2,n=31; mu=1/(lambda-sigma); lambda=sigma+1/mu`
+
+31×31 Dirichlet三重対角行列、h=1/32、再始動長8/16、shiftなし/0/950。参照はこの有限行列の固有値であり、格子細分化による連続PDE収束を認証しません。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/restarted-shift-invert/?lang=ja#restarted-shift-invert-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#restarted-shift-invert)
+
+- selected-official-documentation: [SLEPc EPS manual: projection and spectral transformations](https://slepc.upv.es/release/documentation/manual/eps.html) — Selected projection, restarting and generalized-problem discussion was read. No SLEPc execution or Krylov-Schur reproduction is claimed.
+#### 関連するテスト問題の図とコード
+
+##### [明示的再始動Krylovと内部固有値](https://hrkoyama.github.io/numerical-methods-atlas/problems/restarted-shift-invert/?lang=ja) (`restarted-shift-invert`)
+
+![固有値比較に使う、保存した31×31 Dirichlet Laplacian。](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/restarted-shift-invert-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/restarted-shift-invert/?lang=ja#code-ja)
+
+同じ問題への対応
+
+単一対称実固有対だけ。暗黙再始動・Krylov-Schur・ロッキング・一般の非正規やクラスターは未実装。
+
+- [実行・検証：明示的再始動Krylovと内部固有値](https://hrkoyama.github.io/numerical-methods-atlas/validation/restarted-shift-invert/?lang=ja) (`restarted-shift-invert`) · [コードZIP：明示的再始動Krylovと内部固有値](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/atlas-linear-algebra-spectral-2026-11-24-r3.zip)
+
+この実行例の範囲：固定長の明示的再始動とshift-invertを、元の固有値問題の残差と作用回数で比較します。
+
+
+
+
+### P1整合質量弦：閉離散固有値と連続体固有値
+
+解析解 · 1次元
+
+`Kx=lambda_h Mx; lambda_j,h=6*(1-cos(theta_j))/(h^2*(2+cos(theta_j))),theta_j=j*pi/(n+1); lambda_j=(j*pi)^2,phi_j(x)=sin(j*pi*x)`
+
+長さ・張力・密度1、両端Dirichlet0、内部15/31/63点、最低3固有対。閉離散固有値とgeneralized dense LAPACKを比較し、連続(jπ)²への誤差を別に調べます。表示ベクトルは保存した数値解で、符号は任意です。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/fem-mass-eigen/?lang=ja#fem-mass-eigen-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#fem-mass-eigen)
+
+- selected-official-documentation: [SciPy 1.14.1 LOBPCG](https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.sparse.linalg.lobpcg.html) — Selected SPD B, operator, preconditioner M, history and rod-example discussion was read. This uses the maintained SciPy implementation, not an original LOBPCG implementation.
+- selected-official-documentation: [SLEPc EPS manual: projection and spectral transformations](https://slepc.upv.es/release/documentation/manual/eps.html) — Selected projection, restarting and generalized-problem discussion was read. No SLEPc execution or Krylov-Schur reproduction is claimed.
+#### 関連するテスト問題の図とコード
+
+##### [整合質量FEM弦の一般化固有値](https://hrkoyama.github.io/numerical-methods-atlas/problems/fem-mass-eigen/?lang=ja) (`fem-mass-eigen`)
+
+![内部63点で計算した、M正規化された最低3モード。](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/fem-mass-eigen-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/fem-mass-eigen/?lang=ja#code-ja)
+
+同じ問題への対応
+
+小規模1D弦のみ。SciPyが返す前の例外では入力を保存し、未返却の内部反復を保存したとはしません。 成分資格35判定は4科学例の合格を代用せず、元SciPy内部の未返却反復は保存済みとしません。
+
+- [実行・検証：整合質量FEM弦の一般化固有値](https://hrkoyama.github.io/numerical-methods-atlas/validation/fem-mass-eigen/?lang=ja) (`fem-mass-eigen`) · [コードZIP：整合質量FEM弦の一般化固有値](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/atlas-linear-algebra-spectral-2026-11-24-r3.zip)
+
+この実行例の範囲：整合質量のP1弦で、M内積Krylovと実際のSciPy LOBPCGを独立離散スペクトルへ照合します。
+
+
+
+
+### 擬似弧長継続でBratuのfoldを越える
+
+解析解 · 1次元
+
+`u_\theta=2\log\frac{\cosh(\theta/2)}{\cosh(\theta(x-1/2))},\quad\lambda(\theta)=2\theta^2/\cosh^2(\theta/2)`
+
+同じ無次元1次元Bratu、x∈[0,1]、両端u=0。連続解析族は独立Decimal80評価であり、離散解やNewton/GMRES反復の厳密解ではありません。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-continuation/?lang=ja#bratu-fold-continuation-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/#bratu-fold-continuation)
+
+- algorithm-primary: [Condition Estimates for Pseudo-Arclength Continuation](https://ipsen.math.ncsu.edu/ps/sinum65438.pdf) — Section2.2, printedpp265–266, Eqs2.2–2.5; tangent null equation, unit Euclidean tangent, augmented system and tangent hyperplane. Weighted h-sum metric is the implementation’s stated discrete variation. No full condition-number proof or original paper numerical benchmark is borrowed.
+- analytic-reference: [Finite differences for the1D Bratu problem,Problem8](https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html) — Problem8/Eq52: boundary-value equation, analytic cosh family, branch count and printed rounded critical value. The author’s parameter equals2 times our theta. Independent Decimal80 exact-family qualification remains the numerical reference; the printed rounded anchor is a separate coarse check.
+#### 関連するテスト問題の図とコード
+
+##### [擬似弧長継続でBratuのfoldを越える](https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-fold-continuation/?lang=ja) (`bratu-fold-continuation`)
+
+![保存した分岐曲線、λ=2の上下枝、Jacobianの最小特異値、3格子のfold誤差を示す縮小図。擬似弧長stepは物理時間ではありません。](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-fold-continuation-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-fold-continuation/?lang=ja#code-ja)
+
+同じ問題への対応
+
+小さな1次元の単純foldだけです。分岐曲線の解析族比較では計算した中点値を族の座標に使い、固定λの独立形状比較と区別します。連続foldは離散解そのものではなく、一般の分岐追跡や大規模性能は保証しません。
+
+- [実行・検証：擬似弧長継続でBratuのfoldを越える](https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-continuation/?lang=ja) (`bratu-fold-continuation`) · [コードZIP：擬似弧長継続でBratuのfoldを越える](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/atlas-bratu-continuation-jfnk-2026-11-24-r2.zip)
+
+この実行例の範囲：同じ1次元Bratu境界値問題の下枝から上枝までを追跡し、接線・fold・独立解析族との空間誤差を調べます。
+
+
+
+
+### 解析・中央差分・方向ADによるJacobian不要Newton–Krylov
+
+解析解 · 1次元
+
+`u_\theta=2\log\frac{\cosh(\theta/2)}{\cosh(\theta(x-1/2))},\quad\lambda(\theta)=2\theta^2/\cosh^2(\theta/2)`
+
+同じ無次元1次元Bratu、x∈[0,1]、両端u=0。連続解析族は独立Decimal80評価であり、離散解やNewton/GMRES反復の厳密解ではありません。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/?lang=ja#bratu-matrix-free-jfnk-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/#bratu-matrix-free-jfnk)
+
+- algorithm-primary: [Jacobian-free Newton-Krylov methods: a survey of approaches and applications](https://inf.ufes.br/~luciac/comcie/JFNK-Knoll.pdf) — Selectedsec2.3,2.3.1,2.3.2 and2.4.1, printedpp361–363: matrix-free Jv action, perturbation scaling, inexact forcing Eq16 and line-search globalization. Actual central difference denominator2h and eps_machine^(1/3) scaling are independently specified/qualified, not an attribution to a PETSc default. No whole41-page audit or paper solver result reuse.
+- algorithm-primary: [Choosing the Forcing Terms in an Inexact Newton Method](https://users.wpi.edu/~walker/Papers/forcing_terms,SISC_17,1996,16-32.pdf) — Section1 AlgorithmIN/Eq1.2; selectedsec2 Choice2/Eq2.6; practical-safeguard paragraphssec2.1, printedpp16,20,22–23. Core eta=gamma*(||F_k||/||F_{k-1}||)^alpha is Choice2-style. Our gamma.9/alpha1.5 with eta_initial.3 and fixed[.001,.5] clamp omits the paper’s previous-eta safeguard. This is a declared variant, not its complete safeguarded algorithm or an asymptotic convergence certification.
+- analytic-reference: [Finite differences for the1D Bratu problem,Problem8](https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html) — Problem8/Eq52: boundary-value equation, analytic cosh family, branch count and printed rounded critical value. The author’s parameter equals2 times our theta. Independent Decimal80 exact-family qualification remains the numerical reference; the printed rounded anchor is a separate coarse check.
+- context-only: [PETSc SNES nonlinear solvers: matrix-free,inexact Newton and arc length](https://petsc.org/release/manual/snes/) — Selected Inexact Newton-like Methods and beginning of Matrix-Free Methods, residual forcing inequality and matrix-free/preconditioner distinction. Context only. No PETSc installation/execution or borrowed numerical success. Our hyperplane continuation is not a claim to implement every SNES arc-length scheme.
+#### 関連するテスト問題の図とコード
+
+##### [解析・中央差分・方向ADによるJacobian不要Newton–Krylov](https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-matrix-free-jfnk/?lang=ja) (`bratu-matrix-free-jfnk`)
+
+![保存したN=127のNewton残差、上枝の解と解析参照、Jv誤差、実評価回数を示す縮小図。run indexは保存CSVに対応します。](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-matrix-free-jfnk-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-matrix-free-jfnk/?lang=ja#code-ja)
+
+同じ問題への対応
+
+小1次元BVP向けの教育実装です。ADは四則・exp・境界paddingの方向微分に限ります。小Hessenberg行列と基底は保持します。ηの固定下限があるため、原著EWの漸近収束定理、一般AD/PETScとの同等性、速度向上や大域収束は主張しません。
+
+- [実行・検証：解析・中央差分・方向ADによるJacobian不要Newton–Krylov](https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/?lang=ja) (`bratu-matrix-free-jfnk`) · [コードZIP：解析・中央差分・方向ADによるJacobian不要Newton–Krylov](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/atlas-bratu-continuation-jfnk-2026-11-24-r2.zip)
+
+この実行例の範囲：非線形Jacobianを組み立てずにBratuの上下枝を3種類のJvで解き、forcingと実際の残差・評価回数を保存します。
 
 
 
@@ -3668,7 +3946,7 @@ Related-model problem
 
 gamma5/3, periodic[0,1], rho1,p.1,Bx1,amplitude.1, speed1,T1,32/64/128 cells. Initialize/reference conserved analytic cell means; pressure recovered from means differs from constant pointwise pressure.
 
-- [Run and validate: Circular Alfven wave: full-state refinement](https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=en) (`circular-alfven-refinement`) · [Code ZIP: Circular Alfven wave: full-state refinement](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip)
+- [Run and validate: Circular Alfven wave: full-state refinement](https://hrkoyama.github.io/numerical-methods-atlas/validation/circular-alfven-refinement/?lang=en) (`circular-alfven-refinement`) · [Code ZIP: Circular Alfven wave: full-state refinement](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip)
 
 Scope of this execution example: Evolve all eight conserved variables and compare circular polarization, including nonzero Bz/vz, against analytic cell means.
 
@@ -3700,7 +3978,7 @@ Related-model problem
 
 Periodic[-1,1]x[-.5,.5],rho=p1,Az=.001max(.3-r,0),T1,(Nx,Ny)=(16,8),(32,16),(64,32). Use unchanged official-generator v=(2,1,2), explicitly distinct from old vz0 inputs.
 
-- [Run and validate: Magnetic loop: independent 2D reference and refinement](https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=en) (`magnetic-loop-independent`) · [Code ZIP: Magnetic loop: independent 2D reference and refinement](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip)
+- [Run and validate: Magnetic loop: independent 2D reference and refinement](https://hrkoyama.github.io/numerical-methods-atlas/validation/magnetic-loop-independent/?lang=en) (`magnetic-loop-independent`) · [Code ZIP: Magnetic loop: independent 2D reference and refinement](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip)
 
 Scope of this execution example: Compare genuine 2D magnetic-loop transport with final conserved fields from independent Athena++, qualified in space and time.
 
@@ -3741,7 +4019,7 @@ Scope of this execution example: Compare CT and GLM density, magnetic field, con
 
 Scope of this execution example: Run CT/GLM with the same OT initial cell averages and dt sequence, comparing with separately executed Athena++ references whose mesh/time sensitivities are separated.
 
-- [Run and validate: Late Orszag-Tang: independent reference and compression structure](https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=en) (`postshock-orszag-tang`) · [Code ZIP: Late Orszag-Tang: independent reference and compression structure](https://hrkoyama.github.io/code/validated-examples/2026-11-23/mhd-transport/atlas-mhd-transport-2026-11-23.zip)
+- [Run and validate: Late Orszag-Tang: independent reference and compression structure](https://hrkoyama.github.io/numerical-methods-atlas/validation/postshock-orszag-tang/?lang=en) (`postshock-orszag-tang`) · [Code ZIP: Late Orszag-Tang: independent reference and compression structure](https://hrkoyama.github.io/code/validated-examples/2026-11-24/mhd-transport/atlas-mhd-transport-2026-11-24.zip)
 
 Scope of this execution example: Evolve compressible ideal-MHD Orszag-Tang to T.2 and check density/pressure in interacting compression/shock structure against an independent finite-grid reference.
 
@@ -4844,3 +5122,281 @@ Diagnostic-engine independence is not an independent sampler. Rhat/ESS/MCSE do n
 - [Run and validate: Joint target and MCSE for a correlated bivariate Gaussian](https://hrkoyama.github.io/numerical-methods-atlas/validation/correlated-gaussian-mcmc/?lang=en) (`correlated-gaussian-mcmc`) · [Code ZIP: Joint target and MCSE for a correlated bivariate Gaussian](https://hrkoyama.github.io/code/validated-examples/2026-11-24/stochastic-estimation/atlas-stochastic-estimation-2026-11-24.zip)
 
 Scope of this execution example: Test actual2D MH paths against known joint moments and same-data ArviZ diagnostics.
+
+
+
+
+### Exterior series and scattering width of a dielectric cylinder
+
+Analytic reference · 2D
+
+`E_z^{\mathrm{sca}}=\sum_n i^n a_nH_n^{(1)}(kr)e^{in\theta},\quad\Sigma_{\mathrm{sca}}=4\sum_n|a_n|^2/k`
+
+Lossless infinite cylinder, Ez polarization, c = epsilon0 = mu0 = 1, radius 0.25, epsilon = 2.25 and vacuum wavelength 1. The analytical field is exterior to the exact circle.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/cylinder-mie2d/?lang=en#cylinder-mie2d-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-cylinder/#cylinder-mie2d)
+
+- selected-primary-documentation-or-authored-identity: [Mie scattering 2D](https://optics.ansys.com/hc/en-us/articles/360042703373-Mie-scattering-2D) — Read the complete substantive benchmark description: two-dimensional dielectric cylinder, TFSF, angular far field and lossless cross sections. Did not read the associated simulation files, theory table or cited book; no external numerical data imported. Publication and revision dates have not been verified. Accessed on 2026-11-24; this is a consultation date, not a publication year.
+- selected-primary-documentation-or-authored-identity: [Bessel and Hankel Wronskians, section10.5](https://dlmf.nist.gov/10.5) — Read section 10.5, especially equation 10.5.3 for the ordinary J/Hankel1 Wronskian; version 1.2.8. Cylinder boundary algebra is independently derived here. The year 2026 denotes DLMF version 1.2.8, released on 2026-09-15, not its initial publication year. Accessed on 2026-11-24.
+#### Related test problem figures and code
+
+##### [Mie scattering width of a two-dimensional dielectric cylinder](https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-mie2d/?lang=en) (`cylinder-mie2d`)
+
+![Real part of the actual saved scattered electric phasor on the finest two-dimensional grid. The central white region is a diagnostic mask at r<0.4, distinct from the physical cylinder radius0.25.](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/results/cylinder-mie2d-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/cylinder-mie2d/?lang=en#code-en)
+
+Same-problem link
+
+This is a lossless two-dimensional Ez cylinder, not a three-dimensional sphere. Report staircase geometry error without claiming general second-order curved-boundary accuracy or precision scattering for arbitrary frequencies and materials.
+
+- [Run and validate: Mie scattering width of a two-dimensional dielectric cylinder](https://hrkoyama.github.io/numerical-methods-atlas/validation/cylinder-mie2d/?lang=en) (`cylinder-mie2d`) · [Code ZIP: Mie scattering width of a two-dimensional dielectric cylinder](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-cylinder/atlas-maxwell-cylinder-2026-11-24-r2.zip)
+
+Scope of this execution example: Evolve the actual two-dimensional scattered fields and compare closed-contour Poynting power with an independent cylindrical series.
+
+
+
+
+### Complex oblique Fresnel coefficients and direct Lorentz-slab loss
+
+Analytic reference · 2D
+
+`\varepsilon(\omega)=\varepsilon_\infty+f/(\omega_0^2-\omega^2-i\gamma\omega)+i\sigma/\omega`
+
+Vacuum surroundings, ky = 4, slab [4, 5], epsilon_inf = 1.5, delta_epsilon = 0.75, omega_0 = 9, gamma = 0.5 and sigma = 0.04. Compare omega = 5.1/6/6.9 for both s = Ez and p = Hz.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/lorentz-oblique-sp/?lang=en#lorentz-oblique-sp-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-lorentz/#lorentz-oblique-sp)
+
+- selected-primary-documentation-or-authored-identity: [Meep Materials documentation](https://meep.readthedocs.io/en/latest/Materials/) — Read Material Dispersion, Numerical Stability, Loss and Gain, and Conductivity. Confirmed the exp(-i omega t) convention, Lorentz polarization and dispersive-PML warning. Our sigma E conductivity and midpoint update differ from Meep. Unversioned latest documentation; no original Yee or Roden-Gedney paper claim. Publication and revision dates have not been verified. Accessed on 2026-11-24; this is a consultation date, not a publication year.
+#### Related test problem figures and code
+
+##### [Oblique s/p incidence on a Lorentz-dispersive slab](https://hrkoyama.github.io/numerical-methods-atlas/problems/lorentz-oblique-sp/?lang=en) (`lorentz-oblique-sp`)
+
+![Actual saved p-polarized electric field reconstructed over the periodic y direction at ky=4. One transverse y period is shown. The displayed x and y scales differ to make the fields visible.](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/results/lorentz-oblique-sp-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/lorentz-oblique-sp/?lang=en#code-en)
+
+Same-problem link
+
+This is a genuine single-ky restriction rather than arbitrary transverse data. It covers one passive Lorentz pole and a fixed finite band/window. Gaussian tails are nonzero; window diagnostics and reference errors are reported separately. No strict all-frequency no-return proof is claimed.
+
+- [Run and validate: Oblique s/p incidence on a Lorentz-dispersive slab](https://hrkoyama.github.io/numerical-methods-atlas/validation/lorentz-oblique-sp/?lang=en) (`lorentz-oblique-sp`) · [Code ZIP: Oblique s/p incidence on a Lorentz-dispersive slab](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-lorentz/atlas-maxwell-lorentz-2026-11-24-r2.zip)
+
+Scope of this execution example: Measure complex r/t, power fractions and direct dissipation from actual finite-pulse evolutions and compare them with complex Fresnel slab references.
+
+
+
+
+### Isolated same-grid reference for a long grazing dispersive packet
+
+Finite-grid numerical reference · 2D
+
+`\widehat U^n(k_x)=M(k_x,\Delta t)^n\widehat U^0(k_x),\quad K_y=2\sin(k_y\Delta y/2)/\Delta y`
+
+The homogeneous Lorentz medium continues through the PML: epsilon_inf = 1, delta_epsilon = 0.2, omega_0 = 12, gamma = 0 or 0.005. An Ez-polarized finite-kx Gaussian has carrier omega = 6 and central phase angle 80 degrees. Joint grid/layer refinement uses peaks 6/9/12 on 512/768/1024 cells; the normal control uses 6 and damped fine companion 12. Final time is 700.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/dispersive-grazing-pml/?lang=en#dispersive-grazing-pml-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-grazing/#dispersive-grazing-pml)
+
+- selected-primary-documentation-or-authored-identity: [Meep Materials documentation](https://meep.readthedocs.io/en/latest/Materials/) — Read Material Dispersion, Numerical Stability, Loss and Gain, and Conductivity. Confirmed the exp(-i omega t) convention, Lorentz polarization and dispersive-PML warning. Our sigma E conductivity and midpoint update differ from Meep. Unversioned latest documentation; no original Yee or Roden-Gedney paper claim. Publication and revision dates have not been verified. Accessed on 2026-11-24; this is a consultation date, not a publication year.
+- selected-primary-documentation-or-authored-identity: [Notes on Perfectly Matched Layers](https://arxiv.org/html/2108.05348v1) — Read sections 3.2–4.2, equations 7–8 and the time-domain ADE discussion, plus sections 5–7.2 on homogeneity, evanescent fields and grazing/discretization limitations. The served text is updated 2026-08-24. The trapezoidal filter is our derivation; no full original Berenger/Roden-Gedney paper review is claimed.
+#### Related test problem figures and code
+
+##### [Long-time grazing PML in a dispersive medium](https://hrkoyama.github.io/numerical-methods-atlas/problems/dispersive-grazing-pml/?lang=en) (`dispersive-grazing-pml`)
+
+![Actual saved grazing electric field reconstructed over the periodic y direction; gray shading marks the PML. One transverse y period is shown. The displayed x and y scales differ to make the fields visible.](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/results/dispersive-grazing-pml-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/dispersive-grazing-pml/?lang=en#code-en)
+
+Same-problem link
+
+The central angle is 80 degrees; finite kx bandwidth gives neighboring angles. The no-PML reference shares the discretization and initialization to isolate boundary error from bulk dispersion. Small operator and finite-trajectory checks do not prove global stability for arbitrary angles and materials. The joint family does not measure fixed-PML spatial order; the older 100 checks alone do not prove peak-12 global stability.
+
+- [Run and validate: Long-time grazing PML in a dispersive medium](https://hrkoyama.github.io/numerical-methods-atlas/validation/dispersive-grazing-pml/?lang=en) (`dispersive-grazing-pml`) · [Code ZIP: Long-time grazing PML in a dispersive medium](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/maxwell-grazing/atlas-maxwell-grazing-2026-11-24-r2.zip)
+
+Scope of this execution example: Evolve a finite packet with an 80-degree central phase angle to T = 700, isolating boundary error against a no-PML reference on the same grid.
+
+
+
+
+### Pivoted LU and Cholesky: exact-rational references for actual binary input
+
+Analytic reference · Finite-dimensional algebra
+
+`x_ref=round_binary64(exact_Fraction_solve(A_binary64,b_binary64)); r=b-Ax; eta_inf=||r||inf/(||A||inf||x||inf+||b||inf)`
+
+The four fixed matrices use the actual binary64 A and b, converted exactly to Fractions. Rational elimination is exact, followed by a final binary64 rounding. Separate LAPACK comparisons share some numerical infrastructure. This is not a forward-accuracy guarantee for arbitrary ill-conditioned matrices.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/pivoted-direct-refinement/?lang=en#pivoted-direct-refinement-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#pivoted-direct-refinement)
+
+- selected-official-documentation: [LAPACK Users Guide: Linear Equations](https://netlib.org/lapack/lug/node38.html) — Selected LU, Cholesky, conditioning and refinement paragraphs were read. This source uses mixed precision, unlike the selected same-precision RFS description.
+#### Related test problem figures and code
+
+##### [Pivoted LU, Cholesky and iterative refinement](https://hrkoyama.github.io/numerical-methods-atlas/problems/pivoted-direct-refinement/?lang=en) (`pivoted-direct-refinement`)
+
+![The saved 12 x 12 SPD matrix used in the refinement examples. In the companion full figure, errors are measured against the exact-rational solution rounded to binary64; exact zeros are shown at float64.tiny for logarithmic display only.](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/pivoted-direct-refinement-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/pivoted-direct-refinement/?lang=en#code-en)
+
+Same-problem link
+
+Small fixed examples only; convergence of mixed-precision refinement is not guaranteed for arbitrary matrices.
+
+- [Run and validate: Pivoted LU, Cholesky and iterative refinement](https://hrkoyama.github.io/numerical-methods-atlas/validation/pivoted-direct-refinement/?lang=en) (`pivoted-direct-refinement`) · [Code ZIP: Pivoted LU, Cholesky and iterative refinement](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/atlas-linear-algebra-spectral-2026-11-24-r3.zip)
+
+Scope of this execution example: Exact-rational comparisons separate conditioning, forward and backward error, and pivot growth.
+
+
+
+
+### Symmetric saddles: independent dense solutions and the ideal-Schur spectrum
+
+Finite-grid numerical reference · Finite-dimensional algebra
+
+`S=B H^{-1} B^T; P=diag(H,S); spectrum(L^{-1} A L^{-T})={1,(1-sqrt(5))/2,(1+sqrt(5))/2}; x_ref=LAPACK_solve(A,b)`
+
+Algebraic saddles A=[[H,B^T],[B,0]] use velocity sizes 12 and 24 and pressure sizes 5 and 11. Explicit dense SPD ideal-Schur controls compare the original residual separately with dense-solution error. This is not a Stokes boundary-value PDE.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/symmetric-saddle-minres/?lang=en#symmetric-saddle-minres-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#symmetric-saddle-minres)
+
+- selected-author-documentation: [Paige and Saunders: MINRES author documentation](https://web.stanford.edu/group/SOL/software/minres/) — Selected symmetry, indefinite-system, SPD-preconditioning and original-residual discussion was read. The original 1975 paper was not newly read.
+- selected-official-documentation: [LAPACK Users Guide: Linear Equations](https://netlib.org/lapack/lug/node38.html) — Selected LU, Cholesky, conditioning and refinement paragraphs were read. This source uses mixed precision, unlike the selected same-precision RFS description.
+#### Related test problem figures and code
+
+##### [Symmetric saddle systems and Schur preconditioning](https://hrkoyama.github.io/numerical-methods-atlas/problems/symmetric-saddle-minres/?lang=en) (`symmetric-saddle-minres`)
+
+![The saved 35 x 35 saddle matrix for velocity size 24.](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/symmetric-saddle-minres-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/symmetric-saddle-minres/?lang=en#code-en)
+
+Same-problem link
+
+A dense, ideal-Schur educational control, not a complete Stokes PDE solver or a scalable approximate preconditioner.
+
+- [Run and validate: Symmetric saddle systems and Schur preconditioning](https://hrkoyama.github.io/numerical-methods-atlas/validation/symmetric-saddle-minres/?lang=en) (`symmetric-saddle-minres`) · [Code ZIP: Symmetric saddle systems and Schur preconditioning](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/atlas-linear-algebra-spectral-2026-11-24-r3.zip)
+
+Scope of this execution example: MINRES and GMRES use the same original-system residual criterion and are checked against the ideal Schur three-point spectrum.
+
+
+
+
+### Restarting and shift-invert: the closed spectrum of a fixed discrete matrix
+
+Analytic reference · Finite-dimensional algebra
+
+`lambda_j=4/h^2*sin(j*pi/(2*(n+1)))^2,n=31; mu=1/(lambda-sigma); lambda=sigma+1/mu`
+
+A fixed 31 x 31 Dirichlet tridiagonal matrix with h=1/32, restart lengths 8 and 16, and shifts none/0/950. The references are eigenvalues of this finite matrix, not a continuum PDE grid-convergence study.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/restarted-shift-invert/?lang=en#restarted-shift-invert-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#restarted-shift-invert)
+
+- selected-official-documentation: [SLEPc EPS manual: projection and spectral transformations](https://slepc.upv.es/release/documentation/manual/eps.html) — Selected projection, restarting and generalized-problem discussion was read. No SLEPc execution or Krylov-Schur reproduction is claimed.
+#### Related test problem figures and code
+
+##### [Explicitly restarted Krylov and interior eigenvalues](https://hrkoyama.github.io/numerical-methods-atlas/problems/restarted-shift-invert/?lang=en) (`restarted-shift-invert`)
+
+![The saved 31 x 31 Dirichlet Laplacian used in the eigenvalue comparisons.](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/restarted-shift-invert-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/restarted-shift-invert/?lang=en#code-en)
+
+Same-problem link
+
+One eigenpair of a real symmetric matrix only. No implicit restarting, Krylov-Schur, locking, or general nonnormal or clustered-spectrum capability is claimed.
+
+- [Run and validate: Explicitly restarted Krylov and interior eigenvalues](https://hrkoyama.github.io/numerical-methods-atlas/validation/restarted-shift-invert/?lang=en) (`restarted-shift-invert`) · [Code ZIP: Explicitly restarted Krylov and interior eigenvalues](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/atlas-linear-algebra-spectral-2026-11-24-r3.zip)
+
+Scope of this execution example: Explicit restarting and shift-invert are compared using original eigenproblem residuals and counted operator actions.
+
+
+
+
+### Consistent-mass P1 string: closed discrete and continuum eigenvalues
+
+Analytic reference · 1D
+
+`Kx=lambda_h Mx; lambda_j,h=6*(1-cos(theta_j))/(h^2*(2+cos(theta_j))),theta_j=j*pi/(n+1); lambda_j=(j*pi)^2,phi_j(x)=sin(j*pi*x)`
+
+Unit length, tension and density, homogeneous Dirichlet endpoints, 15/31/63 interior nodes, and the lowest three eigenpairs. Compare closed discrete eigenvalues with generalized dense LAPACK, then measure error relative to (j*pi)^2 separately. Displayed vectors are saved numerical modes with arbitrary sign.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/fem-mass-eigen/?lang=en#fem-mass-eigen-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#fem-mass-eigen)
+
+- selected-official-documentation: [SciPy 1.14.1 LOBPCG](https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.sparse.linalg.lobpcg.html) — Selected SPD B, operator, preconditioner M, history and rod-example discussion was read. This uses the maintained SciPy implementation, not an original LOBPCG implementation.
+- selected-official-documentation: [SLEPc EPS manual: projection and spectral transformations](https://slepc.upv.es/release/documentation/manual/eps.html) — Selected projection, restarting and generalized-problem discussion was read. No SLEPc execution or Krylov-Schur reproduction is claimed.
+#### Related test problem figures and code
+
+##### [Consistent-mass FEM string eigenpairs](https://hrkoyama.github.io/numerical-methods-atlas/problems/fem-mass-eigen/?lang=en) (`fem-mass-eigen`)
+
+![The first three M-normalized modes computed on the 63-node interior grid.](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/results/fem-mass-eigen-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/fem-mass-eigen/?lang=en#code-en)
+
+Same-problem link
+
+A small 1D string only. If SciPy raises before returning, inputs are retained; unreturned internal iterates are not claimed to be saved. The 35 component checks do not replace the four full scientific cases.
+
+- [Run and validate: Consistent-mass FEM string eigenpairs](https://hrkoyama.github.io/numerical-methods-atlas/validation/fem-mass-eigen/?lang=en) (`fem-mass-eigen`) · [Code ZIP: Consistent-mass FEM string eigenpairs](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r3/linear-algebra-spectral/atlas-linear-algebra-spectral-2026-11-24-r3.zip)
+
+Scope of this execution example: Consistent-mass P1 string eigenpairs compare an M-inner-product Krylov method and actual SciPy LOBPCG with an independent discrete spectrum.
+
+
+
+
+### Crossing the Bratu fold with pseudo-arclength continuation
+
+Analytic reference · 1D
+
+`u_\theta=2\log\frac{\cosh(\theta/2)}{\cosh(\theta(x-1/2))},\quad\lambda(\theta)=2\theta^2/\cosh^2(\theta/2)`
+
+Same dimensionless1D Bratu on[0,1] with zero endpoints. The continuous family is evaluated independently in Decimal80;it is not an exact discrete root or Newton/GMRES trajectory.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-continuation/?lang=en#bratu-fold-continuation-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/#bratu-fold-continuation)
+
+- algorithm-primary: [Condition Estimates for Pseudo-Arclength Continuation](https://ipsen.math.ncsu.edu/ps/sinum65438.pdf) — Section2.2, printedpp265–266, Eqs2.2–2.5; tangent null equation, unit Euclidean tangent, augmented system and tangent hyperplane. Weighted h-sum metric is the implementation’s stated discrete variation. No full condition-number proof or original paper numerical benchmark is borrowed.
+- analytic-reference: [Finite differences for the1D Bratu problem,Problem8](https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html) — Problem8/Eq52: boundary-value equation, analytic cosh family, branch count and printed rounded critical value. The author’s parameter equals2 times our theta. Independent Decimal80 exact-family qualification remains the numerical reference; the printed rounded anchor is a separate coarse check.
+#### Related test problem figures and code
+
+##### [Crossing the Bratu fold with pseudo-arclength continuation](https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-fold-continuation/?lang=en) (`bratu-fold-continuation`)
+
+![Preview of the stored branch,lambda=2 profiles,smallest Jacobian singular value and three-grid fold error. Arclength steps are not physical time.](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-fold-continuation-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-fold-continuation/?lang=en#code-en)
+
+Same-problem link
+
+A small one-dimensional simple fold only. The whole-curve family comparison uses the computed midpoint as its family coordinate and is distinct from the independent fixed-lambda profile checks. The continuum fold is not an exact discrete solution. No general bifurcation-tracking or large-scale performance claim.
+
+- [Run and validate: Crossing the Bratu fold with pseudo-arclength continuation](https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-continuation/?lang=en) (`bratu-fold-continuation`) · [Code ZIP: Crossing the Bratu fold with pseudo-arclength continuation](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/atlas-bratu-continuation-jfnk-2026-11-24-r2.zip)
+
+Scope of this execution example: Follow the lower and upper branches of the same one-dimensional Bratu boundary-value problem; check tangents, the fold and spatial error against an independent analytic family.
+
+
+
+
+### Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products
+
+Analytic reference · 1D
+
+`u_\theta=2\log\frac{\cosh(\theta/2)}{\cosh(\theta(x-1/2))},\quad\lambda(\theta)=2\theta^2/\cosh^2(\theta/2)`
+
+Same dimensionless1D Bratu on[0,1] with zero endpoints. The continuous family is evaluated independently in Decimal80;it is not an exact discrete root or Newton/GMRES trajectory.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/?lang=en#bratu-matrix-free-jfnk-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/#bratu-matrix-free-jfnk)
+
+- algorithm-primary: [Jacobian-free Newton-Krylov methods: a survey of approaches and applications](https://inf.ufes.br/~luciac/comcie/JFNK-Knoll.pdf) — Selectedsec2.3,2.3.1,2.3.2 and2.4.1, printedpp361–363: matrix-free Jv action, perturbation scaling, inexact forcing Eq16 and line-search globalization. Actual central difference denominator2h and eps_machine^(1/3) scaling are independently specified/qualified, not an attribution to a PETSc default. No whole41-page audit or paper solver result reuse.
+- algorithm-primary: [Choosing the Forcing Terms in an Inexact Newton Method](https://users.wpi.edu/~walker/Papers/forcing_terms,SISC_17,1996,16-32.pdf) — Section1 AlgorithmIN/Eq1.2; selectedsec2 Choice2/Eq2.6; practical-safeguard paragraphssec2.1, printedpp16,20,22–23. Core eta=gamma*(||F_k||/||F_{k-1}||)^alpha is Choice2-style. Our gamma.9/alpha1.5 with eta_initial.3 and fixed[.001,.5] clamp omits the paper’s previous-eta safeguard. This is a declared variant, not its complete safeguarded algorithm or an asymptotic convergence certification.
+- analytic-reference: [Finite differences for the1D Bratu problem,Problem8](https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html) — Problem8/Eq52: boundary-value equation, analytic cosh family, branch count and printed rounded critical value. The author’s parameter equals2 times our theta. Independent Decimal80 exact-family qualification remains the numerical reference; the printed rounded anchor is a separate coarse check.
+- context-only: [PETSc SNES nonlinear solvers: matrix-free,inexact Newton and arc length](https://petsc.org/release/manual/snes/) — Selected Inexact Newton-like Methods and beginning of Matrix-Free Methods, residual forcing inequality and matrix-free/preconditioner distinction. Context only. No PETSc installation/execution or borrowed numerical success. Our hyperplane continuation is not a claim to implement every SNES arc-length scheme.
+#### Related test problem figures and code
+
+##### [Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products](https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-matrix-free-jfnk/?lang=en) (`bratu-matrix-free-jfnk`)
+
+![Preview of stored N=127 Newton residuals,upper-branch field/reference,Jv errors and actual evaluation counts. Run indices match the saved CSV.](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/bratu-matrix-free-jfnk-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu-matrix-free-jfnk/?lang=en#code-en)
+
+Same-problem link
+
+An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee.
+
+- [Run and validate: Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products](https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/?lang=en) (`bratu-matrix-free-jfnk`) · [Code ZIP: Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/atlas-bratu-continuation-jfnk-2026-11-24-r2.zip)
+
+Scope of this execution example: Solve both Bratu branches with three Jv choices without assembling the nonlinear Jacobian; retain forcing, actual residuals and evaluation counts.
