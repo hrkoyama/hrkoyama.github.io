@@ -6591,7 +6591,15 @@
         "note": {
           "ja": "選択閲読の役割を追記します。既存2019論文の抄録/書誌記録を保持し、別の数値例を加算しません。",
           "en": "Append the roles of selected original passages. Preserve the existing 2019 abstract/bibliographic record and add no numerical case."
-        }
+        },
+        "targets": [
+          "/numerical-methods-atlas/ja/read/pinn-operators/#selected-original-source-roles",
+          "/numerical-methods-atlas/en/read/pinn-operators/#selected-original-source-roles"
+        ],
+        "proof": [
+          "/code/validated-examples/2026-11-25/small-models/source-reading.json",
+          "/catalog/atlas-detailed-reading.json"
+        ]
       },
       "sequence": 86
     },
