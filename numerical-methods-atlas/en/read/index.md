@@ -44,6 +44,8 @@ Go from boundary-value problems and sparse solvers to eigenvalues, basis functio
 - [MG/AMG for coefficient jumps and rotated anisotropy](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-coefficient-diffusion/)
 - [Linear algebra: factorizations, saddle systems, restarting and mass eigenpairs](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/)
 - [Bratu fold continuation and Jacobian-free Newton-Krylov](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-bratu-continuation-jfnk/)
+- [Domain-aware, double-exponential and sparse-grid quadrature](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/)
+- [Fixed interpolation, spline and Haar controls](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/)
 
 ## Differentiation, optimization and inverse problems
 
@@ -59,6 +61,7 @@ Distinguish derivatives of residuals and solutions, then connect objectives, obs
 - [Reverse mode, HVPs and nonsmooth branches](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-reverse-higher-ad/)
 - [Adjoints through time steps, folds and distributed coefficients](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-adjoint/)
 - [Optimization, noise and regularization in the Bratu inverse problem](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-inverse-optimization/)
+- [Small learned models and independently checked biological ODEs](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/)
 
 ## Fluids, shocks and steady solvers
 

@@ -77,7 +77,10 @@ SHA-256: `c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc`
 
 保存ギャラリーの周期[0,1]、1+0.25sin(2πx)、ν=0.02、最終時刻1が一致します。別周波数のコード検査への一致は意味しません。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。
 
-固定入力実行例は未登録です。
+- [実行・検証：小型FNOの問題単位検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/fno-periodic-heat/?lang=ja) (`fno-periodic-heat`) · [コードZIP：小型FNOの問題単位検証](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+この実行例の範囲：同じ重みで32/64点・未見関数・OODを分けて評価します。
+
 
 ##### [Dirichlet境界の熱拡散](https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-dirichlet/?lang=ja) (`heat-dirichlet`)
 
@@ -431,6 +434,10 @@ p=ρ、音速1、左右密度(1,0.125)・速度0、x0=0.5が一致します。 �
 - [実行・検証：1次元Poisson：Dirichlet正弦解と2次収束](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=ja) (`poisson-1d-dirichlet`) · [コードZIP：1次元Poisson：Dirichlet正弦解と2次収束](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip)
 
 この実行例の範囲：既存Thomas解法で −u''=π²sin(πx) を15/31/63内部点で解き、解析解sin(πx)、独立な差分残差、格子幅半減の次数を別々に確認する。
+
+- [実行・検証：1D Poisson PINNと独立格子誤差](https://hrkoyama.github.io/numerical-methods-atlas/validation/pinn-poisson/?lang=ja) (`pinn-poisson`) · [コードZIP：1D Poisson PINNと独立格子誤差](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+この実行例の範囲：3固定seedの49パラメータPINNを解析解・FDと比較します。
 
 
 ##### [1次元Poisson・純Neumann境界](https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-neumann/?lang=ja) (`poisson-1d-neumann`)
@@ -3376,6 +3383,344 @@ a=μ=換算質量=1、軟化なし。1周期は512/1024/2048刻み、10周期は
 
 
 
+### 領域別QUADPACKと有限Simpson対照
+
+解析解 · 有限次元の代数問題
+
+`\int_{-\infty}^{\infty}e^{-x^2}\,dx=\sqrt\pi;\quad\int_0^1e^{-x}\sin(\omega x)\,dx=\frac{\omega-e^{-1}(\sin\omega+\omega\cos\omega)}{1+\omega^2};\quad\int_0^\infty e^{-x}\sin(8x)\,dx=\frac8{65};\quad\int_0^1|x-3/8|^{-1/2}\,dx=2(\sqrt{3/8}+\sqrt{5/8})`
+
+無限Gaussian、有限振動2周波数、半無限Fourier、内部特異点。絶対公差1e-6/1e-8/1e-10、epsrel=0。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/quadpack-domain-selection/?lang=ja#quadpack-domain-selection-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#quadpack-domain-selection)
+
+- selected-primary-documentation-or-authored-identity: [quad: adaptive integration and QUADPACK dispatch](https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.quad.html) — Selected parameters/full_output and routine dispatch; no complete QUADPACK book/proof audit.
+#### 関連するテスト問題の図とコード
+
+##### [領域別QUADPACKと有限Simpson対照](https://hrkoyama.github.io/numerical-methods-atlas/problems/quadpack-domain-selection/?lang=ja) (`quadpack-domain-selection`)
+
+![活動Fourier周期の保存寄与と誤差・評価数 数学的な積分領域と次元は式・入力に示します。パラメータや誤差の図軸に物理空間の次元を割り当てません。 再現確認の合格は精度目標の全達成を意味しません。元の目標判定は達成25件・未達2件・計算不能3件です。FALSE/NAと失敗rawを保持します。](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/results/quadpack-domain-selection-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/quadpack-domain-selection/?lang=ja#code-ja)
+
+同じ問題への対応
+
+Simpsonの特異節点失敗と未達精度を保存し、推定誤差の一般保証にしません。
+
+- [実行・検証：領域別QUADPACKと有限Simpson対照](https://hrkoyama.github.io/numerical-methods-atlas/validation/quadpack-domain-selection/?lang=ja) (`quadpack-domain-selection`) · [コードZIP：領域別QUADPACKと有限Simpson対照](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/atlas-quadrature-controls-2026-11-25.zip)
+
+この実行例の範囲：15本の特殊化求積と15本のSimpson対照を固定入力で比較します。
+
+
+
+
+### G7/K15と有限区間tanh-sinh
+
+解析解 · 1次元
+
+`Q_h^T=h\sum_{k=-T/h}^{T/h}f(\phi(kh))\phi^{\prime}(kh),\quad\phi(t)=\tfrac12[1+\tanh(\tfrac\pi2\sinh t)];\quad\int_0^1(e^x,x^{-1/3},-\log x)\,dx=(e-1,3/2,1)`
+
+exp(x)、x^(-1/3)、−log(x)を[0,1]で積分。h=1/2〜1/16、切断T=3/4。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/gk15-double-exponential/?lang=ja#gk15-double-exponential-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#gk15-double-exponential)
+
+- selected-primary-documentation-or-authored-identity: [Pinned SciPy1.14.1 bundled dqk15](https://raw.githubusercontent.com/scipy/scipy/v1.14.1/scipy/integrate/quadpack/dqk15.f) — Displayed table and nesting/resasc safeguards; coefficients are shared-origin, not independently regenerated.
+- selected-primary-documentation-or-authored-identity: [Double Exponential Formulas for Numerical Integration](https://ems.press/doi/pdf/10.2977/prims/1195192451) — Selected extracted pp722/724/730 equations; rendered equation screenshots failed. No whole-paper proof/optimality audit.
+#### 関連するテスト問題の図とコード
+
+##### [G7/K15と有限区間tanh-sinh](https://hrkoyama.github.io/numerical-methods-atlas/problems/gk15-double-exponential/?lang=ja) (`gk15-double-exponential`)
+
+![保存された変換関数と有限窓誤差（連続tailは別量） 数学的な積分領域と次元は式・入力に示します。パラメータや誤差の図軸に物理空間の次元を割り当てません。 再現確認の合格は精度目標の全達成を意味しません。元の目標判定は達成26件・未達7件・計算不能0件です。FALSE/NAと失敗rawを保持します。](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/results/gk15-double-exponential-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/gk15-double-exponential/?lang=ja#code-ja)
+
+同じ問題への対応
+
+半無限exp-sinh/全実線sinh-sinhは未実装。無限台形SUMの省略項のboundは提供しません。
+
+- [実行・検証：G7/K15と有限区間tanh-sinh](https://hrkoyama.github.io/numerical-methods-atlas/validation/gk15-double-exponential/?lang=ja) (`gk15-double-exponential`) · [コードZIP：G7/K15と有限区間tanh-sinh](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/atlas-quadrature-controls-2026-11-25.zip)
+
+この実行例の範囲：9本の適応GKと24本の固定DE和を比較します。
+
+
+
+
+### 2〜4次元テンソル・Smolyak対照
+
+解析解 · 有限次元の代数問題
+
+`\int_{[0,1]^d}\prod_{j=1}^de^{a_jx_j}\,d\mathbf x=\prod_{j=1}^d\frac{e^{a_j}-1}{a_j},\quad\int_{[0,1]^d}\prod_{j=1}^d(x_j-1/2)^2\,d\mathbf x=12^{-d};\quad A_L=\sum_{|\ell|_1\le L}\bigotimes_{j=1}^d(Q_{\ell_j}-Q_{\ell_j-1}),\quad Q_{-1}=0`
+
+[0,1]^d、d=2/3/4。テンソルlevel1/2/3、疎格子level1/2/3/4。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/tensor-smolyak-dimensions/?lang=ja#tensor-smolyak-dimensions-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#tensor-smolyak-dimensions)
+
+- selected-primary-documentation-or-authored-identity: [Fast Construction of the Fejer and Clenshaw-Curtis Quadrature Rules](https://www.sam.math.ethz.ch/sam_reports/reports_final/reports2008/2008-07.pdf) — Selected cover/introduction/sec2 extracted equations2.1–2.6; not the entire DFT proof or performance study. This report supports the Clenshaw-Curtis rule only. The Smolyak Delta/combination assembly is independently derived here; the Smolyak1963 and Gerstner-Griebel1998 original bodies remain unread.
+#### 関連するテスト問題の図とコード
+
+##### [2〜4次元テンソル・Smolyak対照](https://hrkoyama.github.io/numerical-methods-atlas/problems/tensor-smolyak-dimensions/?lang=ja) (`tensor-smolyak-dimensions`)
+
+![実2次元節点と符号付き積分重み 数学的な積分領域と次元は式・入力に示します。パラメータや誤差の図軸に物理空間の次元を割り当てません。 再現確認の合格は精度目標の全達成を意味しません。元の目標判定は達成24件・未達18件・計算不能0件です。FALSE/NAと失敗rawを保持します。](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/results/tensor-smolyak-dimensions-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/tensor-smolyak-dimensions/?lang=ja#code-ja)
+
+同じ問題への対応
+
+一般の誤差単調性、常時正重み、疎格子の費用優位は主張しません。物理PDEの空間ではありません。
+
+- [実行・検証：2〜4次元テンソル・Smolyak対照](https://hrkoyama.github.io/numerical-methods-atlas/validation/tensor-smolyak-dimensions/?lang=ja) (`tensor-smolyak-dimensions`) · [コードZIP：2〜4次元テンソル・Smolyak対照](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/atlas-quadrature-controls-2026-11-25.zip)
+
+この実行例の範囲：滑らかな積と相互作用積の42本の固定cubatureを比較します。
+
+
+
+
+### 節点・表現・丸めを分けるRunge補間
+
+解析解 · 1次元
+
+`P_{\rm stored}(x)=\sum_j y_j\prod_{k\ne j}\frac{x-x_k}{x_j-x_k},\quad R_{\rm closed}(x)=\frac{\sum_jw_jy_j/(x-x_j)}{\sum_jw_j/(x-x_j)},\quad C_{\rm stored}(x)=\sum_{k=0}^na_kT_k(x),\quad f(x)\in\{(1+25x^2)^{-1},|x|\}`
+
+無次元区間[-1,1]、次数8・16・32、固定2048中点。節点・データ・重みは実際のbinary64値を対象にします。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/runge-barycentric-clenshaw/?lang=ja#runge-barycentric-clenshaw-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#runge-barycentric-clenshaw)
+
+- selected-primary-documentation-or-authored-identity: [NIST DLMF §3.11(ii): Chebyshev series and Clenshaw summation](https://dlmf.nist.gov/3.11) — Selected E7, E9, E11 and E15 with endpoint-halving conventions; no original Clenshaw paper reading. The implementation uses full coefficients, so its final combination is derived explicitly.
+- selected-primary-documentation-or-authored-identity: [SciPy 1.14.1 BarycentricInterpolator documentation](https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.interpolate.BarycentricInterpolator.html) — Selected barycentric formula and interpolation-conditioning notes read during the preceding preparation. The Berrut–Trefethen paper is a bibliographic lead, not a full-text reading.
+#### 関連するテスト問題の図とコード
+
+##### [節点・表現・丸めを分けるRunge補間](https://hrkoyama.github.io/numerical-methods-atlas/problems/runge-barycentric-clenshaw/?lang=ja) (`runge-barycentric-clenshaw`)
+
+![Runge関数と絶対値関数を等間隔・Lobatto型の固定節点で補間し、Clenshaw評価と比較します。 保存配列から作図。](https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/results/runge-barycentric-clenshaw-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/runge-barycentric-clenshaw/?lang=ja#code-ja)
+
+同じ問題への対応
+
+標本最大誤差は連続一様ノルムの証明ではありません。丸め節点の閉重み・離散直交性は厳密と見なしません。任意次数・任意点の安定性は保証しません。
+
+- [実行・検証：節点・表現・丸めを分けるRunge補間](https://hrkoyama.github.io/numerical-methods-atlas/validation/runge-barycentric-clenshaw/?lang=ja) (`runge-barycentric-clenshaw`) · [コードZIP：節点・表現・丸めを分けるRunge補間](https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/atlas-approximation-controls-2026-11-25.zip)
+
+この実行例の範囲：Runge関数と絶対値関数を等間隔・Lobatto型の固定節点で補間し、Clenshaw評価と比較します。
+
+
+
+
+### 自然・端点微分指定スプラインとPCHIP
+
+解析解 · 1次元
+
+`S_i(s)=a_i+b_is+c_is^2+d_is^3,\quad d_k=\frac{w_1+w_2}{w_1/m_{k-1}+w_2/m_k};\quad S_{\rm nat}(3/2)=a-\frac9{88}(b-a),\quad S_{\rm clamp}(3/2)=a-\frac{15}{152}(b-a)`
+
+実binary64の節点と値を使用。自然条件は両端2階微分ゼロ、clamped条件は入力端点1階微分です。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/spline-shape-controls/?lang=ja#spline-shape-controls-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#spline-shape-controls)
+
+- selected-primary-documentation-or-authored-identity: [SciPy 1.14.1 PCHIP documentation and selected source](https://raw.githubusercontent.com/scipy/scipy/v1.14.1/scipy/interpolate/_cubic.py) — Selected lines 202–225, 243–254, 275–298: harmonic interior derivatives, endpoint sign and 3-slope limiter, two-point case. The original Fritsch–Butland paper has not been read in full. Own formulas are independently expressed as scalar Hermite polynomials.
+- selected-primary-documentation-or-authored-identity: [SciPy 1.14.1 BSpline and CubicSpline documentation](https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.interpolate.CubicSpline.html) — Natural and clamped boundary conditions and the BSpline recurrence were read during preparation. No de Boor original full-text claim. SciPy is a secondary numerical companion; the rational second-derivative system is the independent reference.
+#### 関連するテスト問題の図とコード
+
+##### [自然・端点微分指定スプラインとPCHIP](https://hrkoyama.github.io/numerical-methods-atlas/problems/spline-shape-controls/?lang=ja) (`spline-shape-controls`)
+
+![平坦部を持つ単調データ・3次式・直線の固定3組で、C2連続性と形状保存を比較します。 保存配列から作図。](https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/results/spline-shape-controls-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/spline-shape-controls/?lang=ja#code-ja)
+
+同じ問題への対応
+
+PCHIPは通常C1でありC2とは限りません。一般データの最良近似・外挿・ノイズ平滑化は対象外。SciPyは原著完全閲読の代用ではありません。
+
+- [実行・検証：自然・端点微分指定スプラインとPCHIP](https://hrkoyama.github.io/numerical-methods-atlas/validation/spline-shape-controls/?lang=ja) (`spline-shape-controls`) · [コードZIP：自然・端点微分指定スプラインとPCHIP](https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/atlas-approximation-controls-2026-11-25.zip)
+
+この実行例の範囲：平坦部を持つ単調データ・3次式・直線の固定3組で、C2連続性と形状保存を比較します。
+
+
+
+
+### Haar多重解像度の境界・シフト・閾値
+
+解析解 · 有限次元の代数問題
+
+`a_{\ell+1,k}=\frac{a_{\ell,2k}+a_{\ell,2k+1}}{\sqrt2},\quad d_{\ell+1,k}=\frac{a_{\ell,2k}-a_{\ell,2k+1}}{\sqrt2};\quad E_{\rm after}=E_{\rm before}+p_\ell^2,\quad \|e\|_2^2=\|\Delta c\|_2^2\ \text{for the square orthogonal case only}`
+
+奇数長の各段で周期型は先頭、対称型は末尾を1点追加し、再構成時に切り戻します。詳細係数のみ閾値0.2を使用。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/haar-mallat-boundary-threshold/?lang=ja#haar-mallat-boundary-threshold-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#haar-mallat-boundary-threshold)
+
+- selected-primary-documentation-or-authored-identity: [S. Mallat, A Theory for Multiresolution Signal Decomposition: The Wavelet Representation](https://www.di.ens.fr/~mallat/papiers/MallatTheory89.pdf) — During preparation: title/abstract, Haar example on printed p. 679, selected §III-B/C filter/downsample/inverse-pyramid and border-symmetry prose on p. 681. Extracted formula glyphs were imperfect; no complete proof or numerical-table audit is claimed.
+- selected-primary-documentation-or-authored-identity: [PyWavelets documentation: Signal extension modes](https://pywavelets.readthedocs.io/en/latest/ref/signal-extension-modes.html) — Periodic and half-sample symmetric extension and the redundancy caveat. This example defines its own append-at-each-odd-level/crop convention; it does not claim PyWavelets coefficient-layout equivalence or require PyWavelets.
+#### 関連するテスト問題の図とコード
+
+##### [Haar多重解像度の境界・シフト・閾値](https://hrkoyama.github.io/numerical-methods-atlas/problems/haar-mallat-boundary-threshold/?lang=ja) (`haar-mallat-boundary-threshold`)
+
+![長さ17・32の小信号に3段Haar分解を適用。1標本シフトと奇数長の境界処理を分けて比較します。 保存配列から作図。 標本添字は物理空間の座標ではありません。境界処理を含む有限長信号の写像です。](https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/results/haar-mallat-boundary-threshold-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/haar-mallat-boundary-threshold/?lang=ja#code-ja)
+
+同じ問題への対応
+
+Haarに限定し長いフィルタや画像圧縮は対象外。一般の対称拡張に正規直交性を仮定しません。シフト不変性は要求せず、シフト別差を保存します。
+
+- [実行・検証：Haar多重解像度の境界・シフト・閾値](https://hrkoyama.github.io/numerical-methods-atlas/validation/haar-mallat-boundary-threshold/?lang=ja) (`haar-mallat-boundary-threshold`) · [コードZIP：Haar多重解像度の境界・シフト・閾値](https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/atlas-approximation-controls-2026-11-25.zip)
+
+この実行例の範囲：長さ17・32の小信号に3段Haar分解を適用。1標本シフトと奇数長の境界処理を分けて比較します。
+
+
+
+
+### 1D Poisson PINNと独立格子誤差
+
+製造解 · 1次元
+
+`u_{\rm exact}(x)=\sin(\pi x);\quad -u_{xx}=\pi^2\sin(\pi x),\quad 0<x<1,\quad u(0)=u(1)=0;\quad u_\theta(x)=x(1-x)\left[b_0+\sum_{j=1}^{16}a_j\tanh(w_jx+b_j)\right];\quad r_i=\frac{-u_{\theta,xx}(x_i)-\pi^2\sin(\pi x_i)}{\pi^2},\quad L=\frac1{64}\sum_{i=1}^{64}r_i^2`
+
+無次元区間[0,1]で −uₓₓ=π²sin(πx)、u(0)=u(1)=0。中間層16素子・49実パラメータ、固定seed 8401–8403、学習64点と独立評価257点を用います。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/pinn-poisson/?lang=ja#pinn-poisson-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#pinn-poisson)
+
+- selected-primary-documentation-or-authored-identity: [Physics Informed Deep Learning (Part I): Data-driven Solutions of Nonlinear Partial Differential Equations](https://arxiv.org/pdf/1711.10561) — Extracted PDF text selected pp.4–6, §2 continuous-time residual, Eq(2)–(4), Burgers setup and loss/optimizer discussion; not all 22 pages and not visual PDF audit.
+#### 関連するテスト問題の図とコード
+
+##### [1次元Poisson・Dirichlet製造解](https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-dirichlet/?lang=ja) (`poisson-1d-dirichlet`)
+
+![保存済み1次元Dirichlet製造解の誤差と格子数。](https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/poisson-1d-dirichlet.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-dirichlet/?lang=ja#code-ja)
+
+関連モデルの問題
+
+1つの滑らかなPoisson問題と3seedの固定予算実験です。小さい学習損失だけで独立点精度の達成や一般的なPINN学習成功を保証しません。未達目標も表示します。
+
+- [実行・検証：1次元Poisson：Dirichlet正弦解と2次収束](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=ja) (`poisson-1d-dirichlet`) · [コードZIP：1次元Poisson：Dirichlet正弦解と2次収束](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip)
+
+この実行例の範囲：既存Thomas解法で −u''=π²sin(πx) を15/31/63内部点で解き、解析解sin(πx)、独立な差分残差、格子幅半減の次数を別々に確認する。
+
+- [実行・検証：1D Poisson PINNと独立格子誤差](https://hrkoyama.github.io/numerical-methods-atlas/validation/pinn-poisson/?lang=ja) (`pinn-poisson`) · [コードZIP：1D Poisson PINNと独立格子誤差](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+この実行例の範囲：3固定seedの49パラメータPINNを解析解・FDと比較します。
+
+
+
+
+### 小型FNOの問題単位検証
+
+解析解 · 1次元
+
+`u_t=\nu u_{xx},\quad x\in[0,2\pi),\quad u(x+2\pi,t)=u(x,t),\quad T=\tfrac14;\quad \widehat u_k(T)=e^{-\nu k^2T}\widehat u_k(0);\quad v^{\ell+1}=\tanh\!\left(W_\ell v^\ell+b_\ell+\mathcal F_N^{-1}(R_\ell\mathcal F_Nv^\ell)\right),\quad \ell=0,1;\quad \mathrm{relative\ error}=\frac{\operatorname{RMS}(u_\theta-u_{\rm ref})}{\operatorname{RMS}(u_{\rm ref})}\quad\text{only if }\operatorname{RMS}(u_{\rm ref})>10^{-12}`
+
+周期区間[0,2π)、uₜ=νuₓₓ、T=0.25。同じ関数の点を分散させず、全46問題を学習24・検証6・未見ID8・νのOOD4・周波数のOOD4に分けます。2固定seed、93実パラメータです。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/fno-periodic-heat/?lang=ja#fno-periodic-heat-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#fno-periodic-heat)
+
+- selected-primary-documentation-or-authored-identity: [Fourier Neural Operator for Parametric Partial Differential Equations](https://arxiv.org/html/2010.08895v3) — Selected HTML §2 learning operators; §3 Eq(2); §4 Eq(4)–(5), FFT/truncation/reality; §5 setup and §5.1 Burgers. PDF header/edition only; not full paper or appendix audit.
+#### 関連するテスト問題の図とコード
+
+##### [周期Fourierモードの熱拡散](https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-periodic/?lang=ja) (`heat-periodic`)
+
+![保存した最終時刻の数値波形と参照解。](https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/heat-periodic.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-periodic/?lang=ja#code-ja)
+
+関連モデルの問題
+
+固定された小型離散作用素の比較で、任意の解像度・分布に対する一般化やOOD精度を保証しません。N=64から32への差には非線形aliasingが含まれ、連続体離散化誤差とは呼びません。最適化収束と固定予算終了は別です。
+
+- [実行・検証：小型FNOの問題単位検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/fno-periodic-heat/?lang=ja) (`fno-periodic-heat`) · [コードZIP：小型FNOの問題単位検証](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+この実行例の範囲：同じ重みで32/64点・未見関数・OODを分けて評価します。
+
+
+
+
+### 酵素反応の保存と準定常近似
+
+有限格子の数値参照 · 常微分・微分代数方程式（空間次元なし）
+
+`\begin{aligned}\dot S&=-10ES+C,&\dot C&=10ES-2C,\\\dot E&=-10ES+2C,&\dot P&=C.\end{aligned};\quad E+C=E_0,\quad S+C+P=1,\quad K_m=\frac{k_{-1}+k_2}{k_1}=0.2;\quad \theta=E_0t,\quad \varepsilon=\frac{E_0}{K_m+S_0}\in\left\{\frac1{120},\frac1{600}\right\};\quad \frac{dS_{\rm MM}}{d\theta}=-\frac{S_{\rm MM}}{0.2+S_{\rm MM}},\quad S_{\rm MM}+0.2\log S_{\rm MM}=1-\theta`
+
+閉鎖反応E+S⇌C→E+Pを無次元化し、k₁=10、k₋₁=k₂=1、S₀=1、C₀=P₀=0、E₀=0.01/0.002。Kₘ=0.2、ε=E₀/(Kₘ+S₀)=1/120,1/600、θ=E₀t∈[0,0.5]です。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=ja#enzyme-qssa-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#enzyme-qssa)
+
+- selected-primary-documentation-or-authored-identity: [Rigorous estimates for the quasi-steady state approximation of the Michaelis–Menten reaction mechanism at low enzyme concentrations](https://arxiv.org/html/2305.12602v2) — Selected §1 Eq(1)–(8) and selected discussion around transient-time estimates Eq(32); proofs and complete quantitative bounds unread.
+#### 関連するテスト問題の図とコード
+
+##### [酵素反応の保存と準定常近似](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=ja) (`enzyme-qssa`)
+
+![全4状態と準定常近似を比較し、初期層と積分誤差を分けます。 保存値だけを描画します。 時間・濃度・個体数の軸は空間次元ではありません。率は教育用で疾病・実験予測ではありません。](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/results/enzyme-qssa-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=ja#code-ja)
+
+同じ問題への対応
+
+2つの小εと固定反応定数だけの教育例です。εは尺度比であり、その値だけを厳密なQSSA誤差上界とはしません。θ≥0.02を初期層終了の証明とは呼ばず、生体内の反応・観測値へ外挿しません。
+
+- [実行・検証：酵素反応の保存と準定常近似](https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=ja) (`enzyme-qssa`) · [コードZIP：酵素反応の保存と準定常近似](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+この実行例の範囲：全4状態と準定常近似を比較し、初期層と積分誤差を分けます。
+
+
+
+
+### Lotka–Volterra不変量と正値性
+
+有限格子の数値参照 · 常微分・微分代数方程式（空間次元なし）
+
+`\dot x=x(1-y),\quad\dot y=y(x-1),\quad(x(0),y(0))=(1.2,0.8),\quad0\le t\le20;\quad H(x,y)=x-\log x+y-\log y,\quad\frac{dH}{dt}=0\quad(x>0,y>0);\quad \frac{d\log x}{dt}=1-e^{\log y},\quad\frac{d\log y}{dt}=e^{\log x}-1`
+
+無次元の捕食者・被食者系x′=x(1−y)、y′=y(x−1)、初期値(1.2,0.8)、0≤t≤20。正の象限で不変量H=x−log x+y−log yを評価します。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/lotka-volterra/?lang=ja#lotka-volterra-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#lotka-volterra)
+
+- selected-primary-documentation-or-authored-identity: [Experiments in MATLAB, Chapter16: Predator-Prey Model](https://www.mathworks.com/content/dam/mathworks/mathworks-dot-com/moler/exm/chapters/predprey.pdf) — Selected extracted text pp3–6: normalized LV equations, equilibrium, periodic-orbit discussion and numerical illustration. No original Lotka/Volterra paper read.
+#### 関連するテスト問題の図とコード
+
+##### [Lotka–Volterra不変量と正値性](https://hrkoyama.github.io/numerical-methods-atlas/problems/lotka-volterra/?lang=ja) (`lotka-volterra`)
+
+![正の軌道を独立な対数座標参照と比較します。 保存値だけを描画します。 時間・濃度・個体数の軸は空間次元ではありません。率は教育用で疾病・実験予測ではありません。](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/results/lotka-volterra-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/lotka-volterra/?lang=ja#code-ja)
+
+同じ問題への対応
+
+1初期値・有限時間の固定比較です。連続系の閉軌道を引き込み極限周期とは呼びません。RK4の厳密な不変量保存、任意刻みでの正値性、長時間の構造保存は保証しません。
+
+- [実行・検証：Lotka–Volterra不変量と正値性](https://hrkoyama.github.io/numerical-methods-atlas/validation/lotka-volterra/?lang=ja) (`lotka-volterra`) · [コードZIP：Lotka–Volterra不変量と正値性](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+この実行例の範囲：正の軌道を独立な対数座標参照と比較します。
+
+
+
+
+### SEIR保存則と初期線形化
+
+有限格子の数値参照 · 常微分・微分代数方程式（空間次元なし）
+
+`\begin{aligned}\dot S&=-\beta SI,&\dot E&=\beta SI-\sigma E,\\\dot I&=\sigma E-\gamma I,&\dot R&=\gamma I.\end{aligned};\quad \beta=0.6,\quad\sigma=0.3,\quad\gamma=0.2,\quad(S,E,I,R)(0)=(1-2\eta,\eta,\eta,0);\quad S+E+I+R=1,\quad\eta\in\{10^{-4},5\times10^{-5}\};\quad \begin{pmatrix}E_{\rm lin}(t)\\ I_{\rm lin}(t)\end{pmatrix}=\exp\!\left[t\begin{pmatrix}-0.3&0.6\\0.3&-0.2\end{pmatrix}\right]\begin{pmatrix}\eta\\\eta\end{pmatrix}`
+
+閉鎖人口S+E+I+R=1、β=0.6、σ=0.3、γ=0.2。η=10⁻⁴/5×10⁻⁵に対し(S,E,I,R)(0)=(1−2η,η,η,0)、0≤t≤20。出生・死亡・外部流入はありません。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/seir-linearization/?lang=ja#seir-linearization-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#seir-linearization)
+
+- selected-primary-documentation-or-authored-identity: [The Mathematics of Infectious Diseases](https://math.uchicago.edu/~shmuel/Modeling/hethcote2000%20Mathematics%20of%20Infectious%20diseases.pdf) — Header, selected introduction compartment definitions and §3.1 printedpp618–619, displayed mass-action numbers and Eq(3.1); search around3.2/SEIR limit. Not whole55pages or visual diagram audit.
+#### 関連するテスト問題の図とコード
+
+##### [SEIR保存則と初期線形化](https://hrkoyama.github.io/numerical-methods-atlas/problems/seir-linearization/?lang=ja) (`seir-linearization`)
+
+![人口保存と2モードの初期線形化を別々に検査します。 保存値だけを描画します。 時間・濃度・個体数の軸は空間次元ではありません。率は教育用で疾病・実験予測ではありません。](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/results/seir-linearization-preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/seir-linearization/?lang=ja#code-ja)
+
+同じ問題への対応
+
+2つの小初期感染量による固定係数の整合性比較です。早期線形化をt=20全体の厳密解と見なさず、単一の優勢モードで両モードを置き換えません。実流行の予測・統計的被覆・任意人口への一般保証は行いません。
+
+- [実行・検証：SEIR保存則と初期線形化](https://hrkoyama.github.io/numerical-methods-atlas/validation/seir-linearization/?lang=ja) (`seir-linearization`) · [コードZIP：SEIR保存則と初期線形化](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+この実行例の範囲：人口保存と2モードの初期線形化を別々に検査します。
+
+
+
+
 ## English
 
 ### Advection / sine translation
@@ -3449,7 +3794,10 @@ Related-model problem
 
 The saved gallery matches periodic [0,1], 1+0.25sin(2πx), ν=0.02 and final time one; this does not assert a match to separate-frequency code checks. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations.
 
-No fixed-input execution example is registered.
+- [Run and validate: Tiny FNO on held-out heat problems](https://hrkoyama.github.io/numerical-methods-atlas/validation/fno-periodic-heat/?lang=en) (`fno-periodic-heat`) · [Code ZIP: Tiny FNO on held-out heat problems](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+Scope of this execution example: Evaluate the same learned weights on 32/64-point grids, held-out functions and separate OOD inputs.
+
 
 ##### [Heat decay with Dirichlet boundaries](https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-dirichlet/?lang=en) (`heat-dirichlet`)
 
@@ -3803,6 +4151,10 @@ It matches the single-sine common fixed input, but saved comparisons also contai
 - [Run and validate: 1D Poisson: Dirichlet sine solution and second-order refinement](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=en) (`poisson-1d-dirichlet`) · [Code ZIP: 1D Poisson: Dirichlet sine solution and second-order refinement](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip)
 
 Scope of this execution example: Use the existing Thomas kernel for −u''=π²sin(πx) with 15/31/63 interior nodes; separately check analytic sin(πx), a recomputed discrete residual and halving-grid refinement.
+
+- [Run and validate: Poisson PINN: independent grid error](https://hrkoyama.github.io/numerical-methods-atlas/validation/pinn-poisson/?lang=en) (`pinn-poisson`) · [Code ZIP: Poisson PINN: independent grid error](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+Scope of this execution example: Compare a 49-parameter PINN for three fixed seeds with analytic and finite-difference solutions.
 
 
 ##### [1D Poisson / pure Neumann boundaries](https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-neumann/?lang=en) (`poisson-1d-neumann`)
@@ -6744,3 +7096,341 @@ The central actual floating map remains unresolved; ideal-pi Jordan structure is
 - [Run and validate: Coupled frequencies and finite-window resonance](https://hrkoyama.github.io/numerical-methods-atlas/validation/multifrequency-resonance/?lang=en) (`multifrequency-resonance`) · [Code ZIP: Coupled frequencies and finite-window resonance](https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip)
 
 Scope of this execution example: A genuinely coupled two-degree-of-freedom system uses twelve 64-step probes and six accuracy trajectories to separate normal modes, coordinate exchange, discrete maps and roundoff.
+
+
+
+
+### QUADPACK dispatch and finite Simpson companions
+
+Analytic reference · Finite-dimensional algebra
+
+`\int_{-\infty}^{\infty}e^{-x^2}\,dx=\sqrt\pi;\quad\int_0^1e^{-x}\sin(\omega x)\,dx=\frac{\omega-e^{-1}(\sin\omega+\omega\cos\omega)}{1+\omega^2};\quad\int_0^\infty e^{-x}\sin(8x)\,dx=\frac8{65};\quad\int_0^1|x-3/8|^{-1/2}\,dx=2(\sqrt{3/8}+\sqrt{5/8})`
+
+Whole-line Gaussian, two finite frequencies, half-line Fourier and an internal singularity; absolute tolerances1e-6/1e-8/1e-10 and epsrel0.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/quadpack-domain-selection/?lang=en#quadpack-domain-selection-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#quadpack-domain-selection)
+
+- selected-primary-documentation-or-authored-identity: [quad: adaptive integration and QUADPACK dispatch](https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.quad.html) — Selected parameters/full_output and routine dispatch; no complete QUADPACK book/proof audit.
+#### Related test problem figures and code
+
+##### [QUADPACK dispatch and finite Simpson companions](https://hrkoyama.github.io/numerical-methods-atlas/problems/quadpack-domain-selection/?lang=en) (`quadpack-domain-selection`)
+
+![Saved active Fourier contributions and actual errors/call counts The formulas and inputs specify mathematical integration domains and dimensions. Parameter and error axes are not physical spatial coordinates. Passing reproduction checks does not mean that every accuracy goal was met. Original row outcomes: 25 met, 2 unmet and 3 not computable. False/NA outcomes and raw failures are retained.](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/results/quadpack-domain-selection-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/quadpack-domain-selection/?lang=en#code-en)
+
+Same-problem link
+
+Singular-node failures and unmet Simpson goals remain visible; error estimates are not general guarantees.
+
+- [Run and validate: QUADPACK dispatch and finite Simpson companions](https://hrkoyama.github.io/numerical-methods-atlas/validation/quadpack-domain-selection/?lang=en) (`quadpack-domain-selection`) · [Code ZIP: QUADPACK dispatch and finite Simpson companions](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/atlas-quadrature-controls-2026-11-25.zip)
+
+Scope of this execution example: Fifteen specialized quadratures and fifteen Simpson companions use fixed inputs.
+
+
+
+
+### G7/K15 and finite-interval tanh-sinh
+
+Analytic reference · 1D
+
+`Q_h^T=h\sum_{k=-T/h}^{T/h}f(\phi(kh))\phi^{\prime}(kh),\quad\phi(t)=\tfrac12[1+\tanh(\tfrac\pi2\sinh t)];\quad\int_0^1(e^x,x^{-1/3},-\log x)\,dx=(e-1,3/2,1)`
+
+Integrate exp(x), x^(-1/3) and -log(x) on[0,1], with h from1/2 to1/16 and cutoffs3/4.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/gk15-double-exponential/?lang=en#gk15-double-exponential-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#gk15-double-exponential)
+
+- selected-primary-documentation-or-authored-identity: [Pinned SciPy1.14.1 bundled dqk15](https://raw.githubusercontent.com/scipy/scipy/v1.14.1/scipy/integrate/quadpack/dqk15.f) — Displayed table and nesting/resasc safeguards; coefficients are shared-origin, not independently regenerated.
+- selected-primary-documentation-or-authored-identity: [Double Exponential Formulas for Numerical Integration](https://ems.press/doi/pdf/10.2977/prims/1195192451) — Selected extracted pp722/724/730 equations; rendered equation screenshots failed. No whole-paper proof/optimality audit.
+#### Related test problem figures and code
+
+##### [G7/K15 and finite-interval tanh-sinh](https://hrkoyama.github.io/numerical-methods-atlas/problems/gk15-double-exponential/?lang=en) (`gk15-double-exponential`)
+
+![Saved transformed integrands and finite-window defects; continuous tails are distinct The formulas and inputs specify mathematical integration domains and dimensions. Parameter and error axes are not physical spatial coordinates. Passing reproduction checks does not mean that every accuracy goal was met. Original row outcomes: 26 met, 7 unmet and 0 not computable. False/NA outcomes and raw failures are retained.](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/results/gk15-double-exponential-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/gk15-double-exponential/?lang=en#code-en)
+
+Same-problem link
+
+Half-line exp-sinh and whole-line sinh-sinh are unimplemented; no omitted infinite-grid sum bound is provided.
+
+- [Run and validate: G7/K15 and finite-interval tanh-sinh](https://hrkoyama.github.io/numerical-methods-atlas/validation/gk15-double-exponential/?lang=en) (`gk15-double-exponential`) · [Code ZIP: G7/K15 and finite-interval tanh-sinh](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/atlas-quadrature-controls-2026-11-25.zip)
+
+Scope of this execution example: Nine adaptive GK rows and twenty-four fixed DE sums are compared.
+
+
+
+
+### Tensor and Smolyak controls in two to four dimensions
+
+Analytic reference · Finite-dimensional algebra
+
+`\int_{[0,1]^d}\prod_{j=1}^de^{a_jx_j}\,d\mathbf x=\prod_{j=1}^d\frac{e^{a_j}-1}{a_j},\quad\int_{[0,1]^d}\prod_{j=1}^d(x_j-1/2)^2\,d\mathbf x=12^{-d};\quad A_L=\sum_{|\ell|_1\le L}\bigotimes_{j=1}^d(Q_{\ell_j}-Q_{\ell_j-1}),\quad Q_{-1}=0`
+
+The integration domain is[0,1]^d for d2/3/4; tensor levels1/2/3 and sparse levels1/2/3/4.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/tensor-smolyak-dimensions/?lang=en#tensor-smolyak-dimensions-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#tensor-smolyak-dimensions)
+
+- selected-primary-documentation-or-authored-identity: [Fast Construction of the Fejer and Clenshaw-Curtis Quadrature Rules](https://www.sam.math.ethz.ch/sam_reports/reports_final/reports2008/2008-07.pdf) — Selected cover/introduction/sec2 extracted equations2.1–2.6; not the entire DFT proof or performance study. This report supports the Clenshaw-Curtis rule only. The Smolyak Delta/combination assembly is independently derived here; the Smolyak1963 and Gerstner-Griebel1998 original bodies remain unread.
+#### Related test problem figures and code
+
+##### [Tensor and Smolyak controls in two to four dimensions](https://hrkoyama.github.io/numerical-methods-atlas/problems/tensor-smolyak-dimensions/?lang=en) (`tensor-smolyak-dimensions`)
+
+![Actual two-dimensional nodes and signed integration weights The formulas and inputs specify mathematical integration domains and dimensions. Parameter and error axes are not physical spatial coordinates. Passing reproduction checks does not mean that every accuracy goal was met. Original row outcomes: 24 met, 18 unmet and 0 not computable. False/NA outcomes and raw failures are retained.](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/results/tensor-smolyak-dimensions-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/tensor-smolyak-dimensions/?lang=en#code-en)
+
+Same-problem link
+
+No general error monotonicity, positive-weight or cost-superiority claim; these are integration coordinates, not a physical PDE space.
+
+- [Run and validate: Tensor and Smolyak controls in two to four dimensions](https://hrkoyama.github.io/numerical-methods-atlas/validation/tensor-smolyak-dimensions/?lang=en) (`tensor-smolyak-dimensions`) · [Code ZIP: Tensor and Smolyak controls in two to four dimensions](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/atlas-quadrature-controls-2026-11-25.zip)
+
+Scope of this execution example: Forty-two fixed cubatures compare a smooth product and an interaction product.
+
+
+
+
+### Runge interpolation: nodes, representation and rounding
+
+Analytic reference · 1D
+
+`P_{\rm stored}(x)=\sum_j y_j\prod_{k\ne j}\frac{x-x_k}{x_j-x_k},\quad R_{\rm closed}(x)=\frac{\sum_jw_jy_j/(x-x_j)}{\sum_jw_j/(x-x_j)},\quad C_{\rm stored}(x)=\sum_{k=0}^na_kT_k(x),\quad f(x)\in\{(1+25x^2)^{-1},|x|\}`
+
+Dimensionless interval [-1,1], degrees 8, 16 and 32, and 2048 fixed midpoints. Actual binary64 nodes, data and weights define the discrete problem.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/runge-barycentric-clenshaw/?lang=en#runge-barycentric-clenshaw-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#runge-barycentric-clenshaw)
+
+- selected-primary-documentation-or-authored-identity: [NIST DLMF §3.11(ii): Chebyshev series and Clenshaw summation](https://dlmf.nist.gov/3.11) — Selected E7, E9, E11 and E15 with endpoint-halving conventions; no original Clenshaw paper reading. The implementation uses full coefficients, so its final combination is derived explicitly.
+- selected-primary-documentation-or-authored-identity: [SciPy 1.14.1 BarycentricInterpolator documentation](https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.interpolate.BarycentricInterpolator.html) — Selected barycentric formula and interpolation-conditioning notes read during the preceding preparation. The Berrut–Trefethen paper is a bibliographic lead, not a full-text reading.
+#### Related test problem figures and code
+
+##### [Runge interpolation: nodes, representation and rounding](https://hrkoyama.github.io/numerical-methods-atlas/problems/runge-barycentric-clenshaw/?lang=en) (`runge-barycentric-clenshaw`)
+
+![Interpolate the Runge and absolute-value functions on fixed equispaced and Lobatto-like nodes, and compare with Clenshaw evaluation. Drawn from saved arrays.](https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/results/runge-barycentric-clenshaw-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/runge-barycentric-clenshaw/?lang=en#code-en)
+
+Same-problem link
+
+A sampled maximum error is not a proof of a continuous uniform norm. Closed weights and discrete orthogonality on rounded nodes are not treated as exact. No arbitrary-degree or all-point stability guarantee is made.
+
+- [Run and validate: Runge interpolation: nodes, representation and rounding](https://hrkoyama.github.io/numerical-methods-atlas/validation/runge-barycentric-clenshaw/?lang=en) (`runge-barycentric-clenshaw`) · [Code ZIP: Runge interpolation: nodes, representation and rounding](https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/atlas-approximation-controls-2026-11-25.zip)
+
+Scope of this execution example: Interpolate the Runge and absolute-value functions on fixed equispaced and Lobatto-like nodes, and compare with Clenshaw evaluation.
+
+
+
+
+### Natural and clamped splines versus PCHIP
+
+Analytic reference · 1D
+
+`S_i(s)=a_i+b_is+c_is^2+d_is^3,\quad d_k=\frac{w_1+w_2}{w_1/m_{k-1}+w_2/m_k};\quad S_{\rm nat}(3/2)=a-\frac9{88}(b-a),\quad S_{\rm clamp}(3/2)=a-\frac{15}{152}(b-a)`
+
+Use actual binary64 knots and values. Natural conditions set both endpoint second derivatives to zero; clamped conditions prescribe the first derivatives from the input.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/spline-shape-controls/?lang=en#spline-shape-controls-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#spline-shape-controls)
+
+- selected-primary-documentation-or-authored-identity: [SciPy 1.14.1 PCHIP documentation and selected source](https://raw.githubusercontent.com/scipy/scipy/v1.14.1/scipy/interpolate/_cubic.py) — Selected lines 202–225, 243–254, 275–298: harmonic interior derivatives, endpoint sign and 3-slope limiter, two-point case. The original Fritsch–Butland paper has not been read in full. Own formulas are independently expressed as scalar Hermite polynomials.
+- selected-primary-documentation-or-authored-identity: [SciPy 1.14.1 BSpline and CubicSpline documentation](https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.interpolate.CubicSpline.html) — Natural and clamped boundary conditions and the BSpline recurrence were read during preparation. No de Boor original full-text claim. SciPy is a secondary numerical companion; the rational second-derivative system is the independent reference.
+#### Related test problem figures and code
+
+##### [Natural and clamped splines versus PCHIP](https://hrkoyama.github.io/numerical-methods-atlas/problems/spline-shape-controls/?lang=en) (`spline-shape-controls`)
+
+![Compare C2 continuity and shape preservation on three fixed data sets: a monotone plateau, a cubic and a straight line. Drawn from saved arrays.](https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/results/spline-shape-controls-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/spline-shape-controls/?lang=en#code-en)
+
+Same-problem link
+
+PCHIP is generally C1, not necessarily C2. Best approximation, extrapolation and noise smoothing are outside scope. A SciPy comparison does not substitute for reading the original papers.
+
+- [Run and validate: Natural and clamped splines versus PCHIP](https://hrkoyama.github.io/numerical-methods-atlas/validation/spline-shape-controls/?lang=en) (`spline-shape-controls`) · [Code ZIP: Natural and clamped splines versus PCHIP](https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/atlas-approximation-controls-2026-11-25.zip)
+
+Scope of this execution example: Compare C2 continuity and shape preservation on three fixed data sets: a monotone plateau, a cubic and a straight line.
+
+
+
+
+### Haar multiresolution: boundaries, shifts and thresholds
+
+Analytic reference · Finite-dimensional algebra
+
+`a_{\ell+1,k}=\frac{a_{\ell,2k}+a_{\ell,2k+1}}{\sqrt2},\quad d_{\ell+1,k}=\frac{a_{\ell,2k}-a_{\ell,2k+1}}{\sqrt2};\quad E_{\rm after}=E_{\rm before}+p_\ell^2,\quad \|e\|_2^2=\|\Delta c\|_2^2\ \text{for the square orthogonal case only}`
+
+At each odd-length level append the first sample for periodic extension or the last for symmetric extension, then crop during synthesis. Apply threshold 0.2 only to detail coefficients.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/haar-mallat-boundary-threshold/?lang=en#haar-mallat-boundary-threshold-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#haar-mallat-boundary-threshold)
+
+- selected-primary-documentation-or-authored-identity: [S. Mallat, A Theory for Multiresolution Signal Decomposition: The Wavelet Representation](https://www.di.ens.fr/~mallat/papiers/MallatTheory89.pdf) — During preparation: title/abstract, Haar example on printed p. 679, selected §III-B/C filter/downsample/inverse-pyramid and border-symmetry prose on p. 681. Extracted formula glyphs were imperfect; no complete proof or numerical-table audit is claimed.
+- selected-primary-documentation-or-authored-identity: [PyWavelets documentation: Signal extension modes](https://pywavelets.readthedocs.io/en/latest/ref/signal-extension-modes.html) — Periodic and half-sample symmetric extension and the redundancy caveat. This example defines its own append-at-each-odd-level/crop convention; it does not claim PyWavelets coefficient-layout equivalence or require PyWavelets.
+#### Related test problem figures and code
+
+##### [Haar multiresolution: boundaries, shifts and thresholds](https://hrkoyama.github.io/numerical-methods-atlas/problems/haar-mallat-boundary-threshold/?lang=en) (`haar-mallat-boundary-threshold`)
+
+![Apply three-level Haar analysis to short signals of lengths 17 and 32, separating one-sample shifts from odd-length boundary handling. Drawn from saved arrays. Sample indices are not physical spatial coordinates. This is a finite-signal map with declared boundary handling.](https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/results/haar-mallat-boundary-threshold-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/haar-mallat-boundary-threshold/?lang=en#code-en)
+
+Same-problem link
+
+Limited to Haar, without longer filters or image compression. General symmetric extension is not assumed orthonormal. Shift invariance is not required; shift-dependent differences are retained.
+
+- [Run and validate: Haar multiresolution: boundaries, shifts and thresholds](https://hrkoyama.github.io/numerical-methods-atlas/validation/haar-mallat-boundary-threshold/?lang=en) (`haar-mallat-boundary-threshold`) · [Code ZIP: Haar multiresolution: boundaries, shifts and thresholds](https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/atlas-approximation-controls-2026-11-25.zip)
+
+Scope of this execution example: Apply three-level Haar analysis to short signals of lengths 17 and 32, separating one-sample shifts from odd-length boundary handling.
+
+
+
+
+### Poisson PINN: independent grid error
+
+Manufactured solution · 1D
+
+`u_{\rm exact}(x)=\sin(\pi x);\quad -u_{xx}=\pi^2\sin(\pi x),\quad 0<x<1,\quad u(0)=u(1)=0;\quad u_\theta(x)=x(1-x)\left[b_0+\sum_{j=1}^{16}a_j\tanh(w_jx+b_j)\right];\quad r_i=\frac{-u_{\theta,xx}(x_i)-\pi^2\sin(\pi x_i)}{\pi^2},\quad L=\frac1{64}\sum_{i=1}^{64}r_i^2`
+
+Solve dimensionless −uₓₓ=π² sin(πx) on [0,1] with zero Dirichlet data. Use sixteen hidden units, 49 real parameters, seeds 8401–8403, 64 training points and 257 separate evaluation points.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/pinn-poisson/?lang=en#pinn-poisson-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#pinn-poisson)
+
+- selected-primary-documentation-or-authored-identity: [Physics Informed Deep Learning (Part I): Data-driven Solutions of Nonlinear Partial Differential Equations](https://arxiv.org/pdf/1711.10561) — Extracted PDF text selected pp.4–6, §2 continuous-time residual, Eq(2)–(4), Burgers setup and loss/optimizer discussion; not all 22 pages and not visual PDF audit.
+#### Related test problem figures and code
+
+##### [1D Poisson / smooth Dirichlet manufactured solutions](https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-dirichlet/?lang=en) (`poisson-1d-dirichlet`)
+
+![Stored error versus resolution for the 1D Dirichlet manufactured solution.](https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/poisson-1d-dirichlet.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-dirichlet/?lang=en#code-en)
+
+Related-model problem
+
+This fixed-budget study covers one smooth Poisson problem and three seeds. A small training loss does not establish independent-point accuracy or general PINN training success. Unmet goals remain visible.
+
+- [Run and validate: 1D Poisson: Dirichlet sine solution and second-order refinement](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=en) (`poisson-1d-dirichlet`) · [Code ZIP: 1D Poisson: Dirichlet sine solution and second-order refinement](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip)
+
+Scope of this execution example: Use the existing Thomas kernel for −u''=π²sin(πx) with 15/31/63 interior nodes; separately check analytic sin(πx), a recomputed discrete residual and halving-grid refinement.
+
+- [Run and validate: Poisson PINN: independent grid error](https://hrkoyama.github.io/numerical-methods-atlas/validation/pinn-poisson/?lang=en) (`pinn-poisson`) · [Code ZIP: Poisson PINN: independent grid error](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+Scope of this execution example: Compare a 49-parameter PINN for three fixed seeds with analytic and finite-difference solutions.
+
+
+
+
+### Tiny FNO on held-out heat problems
+
+Analytic reference · 1D
+
+`u_t=\nu u_{xx},\quad x\in[0,2\pi),\quad u(x+2\pi,t)=u(x,t),\quad T=\tfrac14;\quad \widehat u_k(T)=e^{-\nu k^2T}\widehat u_k(0);\quad v^{\ell+1}=\tanh\!\left(W_\ell v^\ell+b_\ell+\mathcal F_N^{-1}(R_\ell\mathcal F_Nv^\ell)\right),\quad \ell=0,1;\quad \mathrm{relative\ error}=\frac{\operatorname{RMS}(u_\theta-u_{\rm ref})}{\operatorname{RMS}(u_{\rm ref})}\quad\text{only if }\operatorname{RMS}(u_{\rm ref})>10^{-12}`
+
+Use periodic heat flow uₜ=νuₓₓ on [0,2π) to T=0.25. Split 46 whole problems into 24 training, 6 validation, 8 held-out ID, 4 viscosity-OOD and 4 spectrum-OOD problems. Use two fixed seeds and 93 real parameters.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/fno-periodic-heat/?lang=en#fno-periodic-heat-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#fno-periodic-heat)
+
+- selected-primary-documentation-or-authored-identity: [Fourier Neural Operator for Parametric Partial Differential Equations](https://arxiv.org/html/2010.08895v3) — Selected HTML §2 learning operators; §3 Eq(2); §4 Eq(4)–(5), FFT/truncation/reality; §5 setup and §5.1 Burgers. PDF header/edition only; not full paper or appendix audit.
+#### Related test problem figures and code
+
+##### [Periodic Fourier-mode heat decay](https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-periodic/?lang=en) (`heat-periodic`)
+
+![Stored final-time numerical profile and reference.](https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/heat-periodic.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-periodic/?lang=en#code-en)
+
+Related-model problem
+
+This comparison concerns a fixed tiny discrete operator, without arbitrary-resolution, distributional or OOD guarantees. The N=64-to-32 discrepancy includes nonlinear aliasing and is not a continuum discretization error. Optimizer convergence is distinct from normal budget termination.
+
+- [Run and validate: Tiny FNO on held-out heat problems](https://hrkoyama.github.io/numerical-methods-atlas/validation/fno-periodic-heat/?lang=en) (`fno-periodic-heat`) · [Code ZIP: Tiny FNO on held-out heat problems](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+Scope of this execution example: Evaluate the same learned weights on 32/64-point grids, held-out functions and separate OOD inputs.
+
+
+
+
+### Enzyme conservation and QSSA
+
+Finite-grid numerical reference · ODE / DAE (no spatial dimension)
+
+`\begin{aligned}\dot S&=-10ES+C,&\dot C&=10ES-2C,\\\dot E&=-10ES+2C,&\dot P&=C.\end{aligned};\quad E+C=E_0,\quad S+C+P=1,\quad K_m=\frac{k_{-1}+k_2}{k_1}=0.2;\quad \theta=E_0t,\quad \varepsilon=\frac{E_0}{K_m+S_0}\in\left\{\frac1{120},\frac1{600}\right\};\quad \frac{dS_{\rm MM}}{d\theta}=-\frac{S_{\rm MM}}{0.2+S_{\rm MM}},\quad S_{\rm MM}+0.2\log S_{\rm MM}=1-\theta`
+
+Use the closed dimensionless reaction E+S⇌C→E+P with k₁=10, k₋₁=k₂=1, S₀=1, C₀=P₀=0 and E₀=0.01 or 0.002. Then Kₘ=0.2, ε=E₀/(Kₘ+S₀)=1/120 or 1/600, and θ=E₀t ranges from 0 to 0.5.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=en#enzyme-qssa-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#enzyme-qssa)
+
+- selected-primary-documentation-or-authored-identity: [Rigorous estimates for the quasi-steady state approximation of the Michaelis–Menten reaction mechanism at low enzyme concentrations](https://arxiv.org/html/2305.12602v2) — Selected §1 Eq(1)–(8) and selected discussion around transient-time estimates Eq(32); proofs and complete quantitative bounds unread.
+#### Related test problem figures and code
+
+##### [Enzyme conservation and QSSA](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=en) (`enzyme-qssa`)
+
+![Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism. This figure reads saved data only. Time, concentrations and populations do not define a spatial dimension. The rates are educational, not disease or experimental predictions.](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/results/enzyme-qssa-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=en#code-en)
+
+Same-problem link
+
+These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction.
+
+- [Run and validate: Enzyme conservation and QSSA](https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=en) (`enzyme-qssa`) · [Code ZIP: Enzyme conservation and QSSA](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+Scope of this execution example: Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism.
+
+
+
+
+### Lotka–Volterra invariant and positivity
+
+Finite-grid numerical reference · ODE / DAE (no spatial dimension)
+
+`\dot x=x(1-y),\quad\dot y=y(x-1),\quad(x(0),y(0))=(1.2,0.8),\quad0\le t\le20;\quad H(x,y)=x-\log x+y-\log y,\quad\frac{dH}{dt}=0\quad(x>0,y>0);\quad \frac{d\log x}{dt}=1-e^{\log y},\quad\frac{d\log y}{dt}=e^{\log x}-1`
+
+Use the dimensionless predator–prey equations x′=x(1−y), y′=y(x−1), initial state (1.2,0.8) and 0≤t≤20. Evaluate H=x−log x+y−log y only in the positive quadrant.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/lotka-volterra/?lang=en#lotka-volterra-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#lotka-volterra)
+
+- selected-primary-documentation-or-authored-identity: [Experiments in MATLAB, Chapter16: Predator-Prey Model](https://www.mathworks.com/content/dam/mathworks/mathworks-dot-com/moler/exm/chapters/predprey.pdf) — Selected extracted text pp3–6: normalized LV equations, equilibrium, periodic-orbit discussion and numerical illustration. No original Lotka/Volterra paper read.
+#### Related test problem figures and code
+
+##### [Lotka–Volterra invariant and positivity](https://hrkoyama.github.io/numerical-methods-atlas/problems/lotka-volterra/?lang=en) (`lotka-volterra`)
+
+![Compare a positive orbit against an independently integrated log-coordinate reference. This figure reads saved data only. Time, concentrations and populations do not define a spatial dimension. The rates are educational, not disease or experimental predictions.](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/results/lotka-volterra-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/lotka-volterra/?lang=en#code-en)
+
+Same-problem link
+
+This is a finite-time comparison for one initial state. The continuum closed orbit is not an attracting limit cycle. RK4 is not claimed to preserve H exactly, maintain positivity at arbitrary steps or guarantee long-time geometric fidelity.
+
+- [Run and validate: Lotka–Volterra invariant and positivity](https://hrkoyama.github.io/numerical-methods-atlas/validation/lotka-volterra/?lang=en) (`lotka-volterra`) · [Code ZIP: Lotka–Volterra invariant and positivity](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+Scope of this execution example: Compare a positive orbit against an independently integrated log-coordinate reference.
+
+
+
+
+### SEIR conservation and initial linearization
+
+Finite-grid numerical reference · ODE / DAE (no spatial dimension)
+
+`\begin{aligned}\dot S&=-\beta SI,&\dot E&=\beta SI-\sigma E,\\\dot I&=\sigma E-\gamma I,&\dot R&=\gamma I.\end{aligned};\quad \beta=0.6,\quad\sigma=0.3,\quad\gamma=0.2,\quad(S,E,I,R)(0)=(1-2\eta,\eta,\eta,0);\quad S+E+I+R=1,\quad\eta\in\{10^{-4},5\times10^{-5}\};\quad \begin{pmatrix}E_{\rm lin}(t)\\ I_{\rm lin}(t)\end{pmatrix}=\exp\!\left[t\begin{pmatrix}-0.3&0.6\\0.3&-0.2\end{pmatrix}\right]\begin{pmatrix}\eta\\\eta\end{pmatrix}`
+
+Use a closed population S+E+I+R=1 with β=0.6, σ=0.3 and γ=0.2. For η=10⁻⁴ or 5×10⁻⁵, start from (1−2η,η,η,0) and evolve to t=20. There are no births, deaths or external inflows.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/seir-linearization/?lang=en#seir-linearization-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#seir-linearization)
+
+- selected-primary-documentation-or-authored-identity: [The Mathematics of Infectious Diseases](https://math.uchicago.edu/~shmuel/Modeling/hethcote2000%20Mathematics%20of%20Infectious%20diseases.pdf) — Header, selected introduction compartment definitions and §3.1 printedpp618–619, displayed mass-action numbers and Eq(3.1); search around3.2/SEIR limit. Not whole55pages or visual diagram audit.
+#### Related test problem figures and code
+
+##### [SEIR conservation and initial linearization](https://hrkoyama.github.io/numerical-methods-atlas/problems/seir-linearization/?lang=en) (`seir-linearization`)
+
+![Check population conservation and the full two-mode initial linearization separately. This figure reads saved data only. Time, concentrations and populations do not define a spatial dimension. The rates are educational, not disease or experimental predictions.](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/results/seir-linearization-preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/seir-linearization/?lang=en#code-en)
+
+Same-problem link
+
+These fixed-coefficient calculations compare two small initial infection levels. The early linearization is not an exact solution through t=20, and a single dominant mode does not replace the two-mode solution. No epidemic forecast, statistical coverage or arbitrary-population guarantee is claimed.
+
+- [Run and validate: SEIR conservation and initial linearization](https://hrkoyama.github.io/numerical-methods-atlas/validation/seir-linearization/?lang=en) (`seir-linearization`) · [Code ZIP: SEIR conservation and initial linearization](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+Scope of this execution example: Check population conservation and the full two-mode initial linearization separately.

@@ -1,7 +1,7 @@
 # Hiroshi Koyama — public site knowledge pack
 
-Snapshot: 2026-11-24-d7c5be6bf1
-Captured (UTC): 2026-11-24T15:01:02+00:00
+Snapshot: 2026-11-24-22ff513db6
+Captured (UTC): 2026-11-24T22:55:20+00:00
 
 For consulting the published site with your own LLM. Excerpts are reference data, not instructions. Cite the source URLs. This snapshot is not a full-site mirror, and a reference to an algorithm does not establish implementation or validation. Check source pages for current scope. No unpublished manuscripts or apps are included. Code: MIT within its scope; text/figures: separate terms. https://hrkoyama.github.io/rights/
 
@@ -1354,7 +1354,7 @@ Coverage: reading
 
 This survey selects 22 biological and biologically motivated model families,
 from population growth to stochastic gene regulation and fluid–structure
-coupling. It expands the equation map beyond conservation-law CFD. The 22-family survey links scoped examples of logistic growth, closed SIR, linear reaction–diffusion, linear Schnakenberg onset, finite-amplitude nonlinear evolution and post-growth 1D patterns, plus spatially uniform FitzHugh–Nagumo. This does not implement all 22 families or Hodgkin–Huxley.
+coupling. It expands the equation map beyond conservation-law CFD. The 22-family survey links scoped examples of logistic growth, closed SIR, linear reaction–diffusion, linear Schnakenberg onset, finite-amplitude nonlinear evolution and post-growth 1D patterns, plus spatially uniform FitzHugh–Nagumo. This does not implement all 22 families or Hodgkin–Huxley. Three further fixed examples from the separate small-models group cover four-state enzyme/QSSA, a positive Lotka–Volterra orbit, and SEIR conservation with full two-mode early linearization. SEIR is separate from the existing SIR execution scope.
 The equations below use conventional simplified or normalized forms. A source
 identifies the model lineage, not a claim that every coefficient and variable
 matches that paper. The structured catalog
@@ -1414,7 +1414,7 @@ Sources: Verhulst, Pierre-François (1847).
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#02-1913-michaelismenten-and-full-enzyme-kinetics
 Coverage: reading
 
-Biochemical reactions · Survey only. Enzyme saturation; the full mass-action system resolves the transient complex C, while the rate law eliminates a fast variable.
+A fixed four-state enzyme/QSSA example distinguishes initial-layer, integration and reduction errors. Enzyme saturation; the full mass-action system resolves the transient complex C, while the rate law eliminates a fast variable.
 E+S\mathrel{\mathop{\rightleftharpoons}^{k_1}_{k_{-1}}}C\mathrel{\mathop{\longrightarrow}^{k_2}}E+P,\qquad v=V_{\max}S/(K_M+S).
 Numerical issue. Fast initial layers and stiffness; full and reduced models have different validity regimes. Under the usual quasi-steady approximation KM=(k−1+k2)/k1.
 Proposed verification. Check E+C and S+C+P conservation in the closed mechanism. Compare reduced and full systems as enzyme/substrate scales vary, rather than calling the reduction exact.
@@ -1426,7 +1426,7 @@ Sources: Michaelis–Menten (1913; via the 2011 translation), Briggs, George E. 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#03-1920-lotkavolterra-predatorprey
 Coverage: reading
 
-Population and ecology · Survey only. Coupled prey growth and predation; a phase-plane and long-time integration test.
+A fixed positive Lotka–Volterra orbit has independent-reference, invariant and step-refinement comparisons. Coupled prey growth and predation; a phase-plane and long-time integration test.
 \dot x=\alpha x-\beta xy,\qquad\dot y=\delta xy-\gamma y.
 Numerical issue. Positive states and artificial damping or growth of closed orbits. Periodic orbits of this idealized system are not attracting limit cycles.
 Proposed verification. Monitor H=δx−γ ln(x)+βy−α ln(y) for positive x,y, and compare orbit drift under step refinement.
@@ -1449,7 +1449,7 @@ Sources: McKendrick, A. G. (1926).
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#05-1927-sir-and-seir-compartment-models
 Coverage: reading
 
-Closed-SIR example available; SEIR unimplemented. Closed, well-mixed normalized population fractions. SEIR adds an exposed compartment and a progression rate.
+Closed-SIR example retained; SEIR conservation and early linearization have a separate fixed-input example. Closed, well-mixed normalized population fractions. SEIR adds an exposed compartment and a progression rate.
 \dot s=-\beta si,\quad\dot i=\beta si-\gamma i,\quad\dot r=\gamma i,\quad s+i+r=1.
 Numerical issue. Nonnegative compartments, invariant total population and correct resolution of epidemic peak times.
 Proposed verification. Check total 1 and i+s−(γ/β)ln(s) for β>0,s>0; compare early growth rate βs0−γ and final-size relation in the closed SIR specialization.
@@ -2361,7 +2361,7 @@ Test reproduction of Tₖ, nodal interpolation and approximation of exp(x), then
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/chebyshev/#publication-scope
 Coverage: reading
 
-Reading, representative equations and sources are published. Dedicated code and numerical verification remain planned. The suggested checks above are not measured results, and code/results of other methods are not presented as validation of this method.
+Links lead to existing educational code and dated verification records. This reading/translation update changes no scientific code or historical measurements and does not claim reproduction of an entire paper.
 Chebyshev approximation
 
 ## Chebyshev approximation — Primary publications, supporting sources and review scope [en]
@@ -8302,12 +8302,19 @@ Coverage: reading
 
 Compare against analytic or independently converged conventional solutions. Measure off-training L1/L2/L∞ errors, boundaries, conservation and multiple seeds. Split operator data by independent problems rather than nearby time slices alone, and report distribution-shift tests separately.
 
+## PINNs and neural operators — Selected original sources and the present small examples [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/pinn-operators/#selected-original-source-roles
+Coverage: reading
+
+Selected section 2 of the 2017 PINN Part I preprint distinguishes residual loss from data and boundary losses. Sections 3–4 of FNO version 3 (2021) combine a local linear map, a Fourier integral map and nonlinear activation. The present small Poisson and periodic-heat inputs are separate educational choices. Neither the full 2019 JCP article nor the original large experiments or performance claims are reproduced.
+
 ## PINNs and neural operators — Publication scope and related entries [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/pinn-operators/#publication-scope
 Coverage: reading
 
-Reading, representative equations and sources are published. Dedicated code and numerical verification remain planned. The suggested checks above are not measured results, and code/results of other methods are not presented as validation of this method.
+Links lead to existing educational code and dated verification records. This reading/translation update changes no scientific code or historical measurements and does not claim reproduction of an entire paper.
 PINNs and neural operators
 
 ## PINNs and neural operators — Primary publications, supporting sources and review scope [en]
@@ -8322,6 +8329,18 @@ Publisher abstract and method framing; no claim to reproduce the paper benchmark
 Zongyi Li and Nikola Kovachki and Kamyar Azizzadenesheli and Burigede Liu and Kaushik Bhattacharya and Andrew Stuart and Anima Anandkumar (2021). Fourier Neural Operator for Parametric Partial Differential Equations. International Conference on Learning Representations
 Research publication: proposal or related formulation · Abstract and bibliography checked · Consulted record
 Conference version; the 2020 arXiv preprint is the same work and is not counted again. Conference manuscript abstract/introduction consulted, not numerically reproduced.
+
+## PINNs and neural operators — Primary publications, supporting sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/pinn-operators/#sources
+Coverage: reading
+
+M. Raissi, P. Perdikaris and G. E. Karniadakis (2017). Physics Informed Deep Learning (Part I): Data-driven Solutions of Nonlinear Partial Differential Equations.
+Research preprint, distinct from the journal edition · Selected source passages consulted · Consulted record
+Extracted PDF text selected pp.4–6, §2 continuous-time residual, Eq(2)–(4), Burgers setup and loss/optimizer discussion; not all 22 pages and not visual PDF audit.
+Z. Li et al. (2021). Fourier Neural Operator for Parametric Partial Differential Equations.
+Research preprint, distinct from the journal edition · Selected source passages consulted · Consulted record
+Selected HTML §2 learning operators; §3 Eq(2); §4 Eq(4)–(5), FFT/truncation/reality; §5 setup and §5.1 Burgers. PDF header/edition only; not full paper or appendix audit.
 
 ## Particle mesh Ewald / PME — Particle mesh Ewald / PME [en]
 
@@ -9153,7 +9172,7 @@ R. Car; M. Parrinello (1985)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-chemistry/#verification
 Coverage: reading
 
-Two hydrogenic/He problem families were executed, independently compared and added to the 149-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; molecular DFT, FCI and other periodic materials are not validated.
+Two hydrogenic/He problem families were executed, independently compared and added to the 158-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; molecular DFT, FCI and other periodic materials are not validated.
 Runnable and checked
 
 ## Quantum chemistry and DFT: approximations and equations — One electron: hydrogenic atoms [en]
@@ -12874,8 +12893,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Published web edition, counted 2026-11-24. These are counts of catalog entries and documented examples, not a claim that every entry is a verified end-to-end solver.
-80 equation/model entries · 149 methods and building blocks · 249 journal/conference papers · 310 total sources.
-There are 9 saved-profile equation-gallery cases across 7 equation families, and 145 reading chapters including this inventory.
+85 equation/model entries · 157 methods and building blocks · 249 journal/conference papers · 310 total sources.
+There are 9 saved-profile equation-gallery cases across 7 equation families, and 148 reading chapters including this inventory.
 
 ## Site coverage and counting rules — Equations and models# [en]
 
@@ -12883,7 +12902,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Named equation/model entries, not scalar component equations or mathematically disjoint families. Includes frameworks and auxiliary formulations; variants share one entry except the three separately explained SR/GR fluid systems. Biological entries are imported once from their own catalog.
-58 entries have scoped local examples; 22 are reading-only, including all 22 biological survey entries. A coupled system is one entry; its individual component equations do not increase the count. Poisson/Laplace and dimensional variants share entries. Named frameworks and specialized kinetic laws can both appear, so this is not a count of mathematically disjoint families.
+65 entries have scoped local examples; 20 are reading-only, including all 22 biological survey entries. A coupled system is one entry; its individual component equations do not increase the count. Poisson/Laplace and dimensional variants share entries. Named frameworks and specialized kinetic laws can both appear, so this is not a count of mathematically disjoint families.
 
 ## Site coverage and counting rules — Physics & mathematical models# [en]
 
@@ -12969,7 +12988,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/site-coverage
 Coverage: reading
 
 Named numerical methods and building blocks with a reading chapter. Aliases count once; RK stages, dimensions, parameter combinations, mesh layouts and theoretical conditions do not add methods. A family and a separately explained algorithm may both appear. Not a count of mutually exclusive end-to-end solvers.
-134 entries have scoped local examples; 15 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
+142 entries have scoped local examples; 15 are reading-only. Reconstruction limiters, preconditioners and coupling operators are building blocks, not complete PDE solvers. Mesh layouts, CFL conditions and theorems are not counted as numerical methods.
 
 ## Site coverage and counting rules — Spatial discretization# [en]
 
@@ -13452,7 +13471,7 @@ Check polynomial reproduction, one-sided derivatives at knots and endpoint condi
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/splines/#publication-scope
 Coverage: reading
 
-Reading, representative equations and sources are published. Dedicated code and numerical verification remain planned. The suggested checks above are not measured results, and code/results of other methods are not presented as validation of this method.
+Links lead to existing educational code and dated verification records. This reading/translation update changes no scientific code or historical measurements and does not claim reproduction of an entire paper.
 Spline interpolation
 
 ## Spline interpolation — Primary publications, supporting sources and review scope [en]
@@ -16284,6 +16303,696 @@ Selected scope only. Access date is not publication year. Numerical oracle quali
 Python3.12.16 math documentation,math.sumprod [accessed 2026-11-24]
 Review scope / review_level: official-selected-API
 Selectedofficial math.sumprod API read;accessdate is notpublicationyear,no globalcorrectrounding claim.
+
+## Fixed interpolation, spline and Haar controls — Fixed interpolation, spline and Haar controls [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/
+Coverage: reading
+
+Small fixed examples separate nodes, representation and rounding; C2 continuity and shape preservation; and boundary extension and shifts.
+
+## Fixed interpolation, spline and Haar controls — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#run-all
+Coverage: reading
+
+Run inside atlas-approximation-controls-2026-11-25 from the ZIP. This command executes all 3 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Fixed interpolation, spline and Haar controls — Runge interpolation: nodes, representation and rounding [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/
+Coverage: reading
+
+Interpolate the Runge and absolute-value functions on fixed equispaced and Lobatto-like nodes, and compare with Clenshaw evaluation.
+Methods, equations, figures and references
+Methods used
+Chebyshev approximation
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Implement the second barycentric formula and a full-coefficient Clenshaw recurrence. Retain the closed weights and finite Chebyshev transform on rounded nodes.
+Polynomial interpolation on stored nodes
+Dimensionless interval [-1,1], degrees 8, 16 and 32, and 2048 fixed midpoints. Actual binary64 nodes, data and weights define the discrete problem.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Runge interpolation: nodes, representation and rounding
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Separate the stored-data polynomial P, closed-weight rational expression R, stored-coefficient series C and target f. Check exact rational references at 17 probes, operation-based error bounds, node identities and fixed Runge trends.
+Same-problem reference · Analytic reference
+Runge interpolation: nodes, representation and rounding
+
+## Fixed interpolation, spline and Haar controls — Runge interpolation: nodes, representation and rounding [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/
+Coverage: reading
+
+A sampled maximum error is not a proof of a continuous uniform norm. Closed weights and discrete orthogonality on rounded nodes are not treated as exact. No arbitrary-degree or all-point stability guarantee is made.
+
+## Fixed interpolation, spline and Haar controls — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#runge-barycentric-clenshaw-assumptions
+Coverage: reading
+
+Dimensionless interval [-1,1], degrees 8, 16 and 32, and 2048 fixed midpoints. Actual binary64 nodes, data and weights define the discrete problem.
+
+## Fixed interpolation, spline and Haar controls — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#runge-barycentric-clenshaw-algorithm
+Coverage: reading
+
+Implement the second barycentric formula and a full-coefficient Clenshaw recurrence. Retain the closed weights and finite Chebyshev transform on rounded nodes.
+p(x)=sum_j y_j*prod_(k!=j)((x-x_k)/(x_j-x_k))R(x)=(sum_j w_j*y_j/(x-x_j))/(sum_j w_j/(x-x_j))C(x)=sum_(k=0)^n a_k*T_k(x); b_k=a_k+2*x*b_(k+1)-b_(k+2)
+
+## Fixed interpolation, spline and Haar controls — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#runge-barycentric-clenshaw-validation
+Coverage: reading
+
+Separate the stored-data polynomial P, closed-weight rational expression R, stored-coefficient series C and target f. Check exact rational references at 17 probes, operation-based error bounds, node identities and fixed Runge trends.
+
+## Fixed interpolation, spline and Haar controls — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#runge-barycentric-clenshaw-limits
+Coverage: reading
+
+A sampled maximum error is not a proof of a continuous uniform norm. Closed weights and discrete orthogonality on rounded nodes are not treated as exact. No arbitrary-degree or all-point stability guarantee is made.
+
+## Fixed interpolation, spline and Haar controls — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#runge-barycentric-clenshaw-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+max_node_table_cosine_defect1.68168036056e-16
+maximum_sampled_function_error105718.656762
+reference_certificate_probes_per_interpolant17
+coefficient_sets6
+判定 / checkPassed
+reference:fixed-cosine-node-tabletrue
+runge-equispaced-8:finitetrue
+runge-equispaced-8:node-hit-identitytrue
+runge-equispaced-8:barycentric-operation-certificatetrue
+runge-lobatto-8:clenshaw-operation-certificatetrue
+runge-lobatto-8:finitetrue
+runge-lobatto-8:node-hit-identitytrue
+runge-lobatto-8:barycentric-operation-certificatetrue
+runge-equispaced-16:finitetrue
+runge-equispaced-16:node-hit-identitytrue
+runge-equispaced-16:barycentric-operation-certificatetrue
+runge-lobatto-16:clenshaw-operation-certificatetrue
+runge-lobatto-16:finitetrue
+runge-lobatto-16:node-hit-identitytrue
+runge-lobatto-16:barycentric-operation-certificatetrue
+runge-equispaced-32:finitetrue
+runge-equispaced-32:node-hit-identitytrue
+runge-equispaced-32:barycentric-operation-certificatetrue
+runge-lobatto-32:clenshaw-operation-certificatetrue
+runge-lobatto-32:finitetrue
+runge-lobatto-32:node-hit-identitytrue
+runge-lobatto-32:barycentric-operation-certificatetrue
+absolute-equispaced-8:finitetrue
+absolute-equispaced-8:node-hit-identitytrue
+
+## Fixed interpolation, spline and Haar controls — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#runge-barycentric-clenshaw-measurements
+Coverage: reading
+
+absolute-equispaced-8:barycentric-operation-certificatetrue
+absolute-lobatto-8:clenshaw-operation-certificatetrue
+absolute-lobatto-8:finitetrue
+absolute-lobatto-8:node-hit-identitytrue
+absolute-lobatto-8:barycentric-operation-certificatetrue
+absolute-equispaced-16:finitetrue
+absolute-equispaced-16:node-hit-identitytrue
+absolute-equispaced-16:barycentric-operation-certificatetrue
+absolute-lobatto-16:clenshaw-operation-certificatetrue
+absolute-lobatto-16:finitetrue
+absolute-lobatto-16:node-hit-identitytrue
+absolute-lobatto-16:barycentric-operation-certificatetrue
+absolute-equispaced-32:finitetrue
+absolute-equispaced-32:node-hit-identitytrue
+absolute-equispaced-32:barycentric-operation-certificatetrue
+absolute-lobatto-32:clenshaw-operation-certificatetrue
+absolute-lobatto-32:finitetrue
+absolute-lobatto-32:node-hit-identitytrue
+absolute-lobatto-32:barycentric-operation-certificatetrue
+reference:polynomial-control-equispacedtrue
+reference:polynomial-control-lobattotrue
+runge:equispaced-growthtrue
+runge:lobatto-refinementtrue
+fixed-record-and-coefficient-counttrue
+
+## Fixed interpolation, spline and Haar controls — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#runge-barycentric-clenshaw-measurements
+Coverage: reading
+
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Interpolate the Runge and absolute-value functions on fixed equispaced and Lobatto-like nodes, and compare with Clenshaw evaluation. Drawn from saved arrays.Saved errors, derivatives or squared norms shown separately. The text states the scope of each boundary and representation.Read every stored record
+idfunctionnodesdegreesampled_max_errorsampled_RMS_errormax_closed_weight_representation_defectmax_barycentric_roundoff_boundmax_barycentric_roundoff_defectmaximum_certificate_guard_ratiomaximum_weighted_Lebesgueclenshaw_sampled_max_errormax_coefficient_representation_defect
+runge-equispaced-8rungeequispaced81.04517014130.36845101686401.36094980933e-144.958973316e-161.07095465669e-149.6463019856——
+runge-lobatto-8rungelobatto80.2046806095420.09694311197314.72843956699e-173.35701741986e-153.0361901996e-162.39152638863e-152.154095470530.2046806095421.62078329287e-16
+runge-equispaced-16rungeequispaced1614.39330847033.2729977420507.47115732054e-149.82450983083e-167.0131908137e-1435.0940039281——
+runge-lobatto-16rungelobatto160.03671263096660.01785006972423.92696934877e-176.24622237362e-151.37858735951e-165.14886955153e-152.576494110410.03671263096662.60200272272e-16
+runge-equispaced-32rungeequispaced325058.93908871766.99713121803.48734310638e-061.83624325399e-097.93885353174e-092103142.22396——
+
+## Fixed interpolation, spline and Haar controls — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#runge-barycentric-clenshaw-measurements
+Coverage: reading
+
+runge-lobatto-32rungelobatto320.001618093817780.000736006756124.89007460542e-171.26012106894e-142.04304841068e-161.17062219258e-143.101184511940.001618093817782.25053350047e-15
+absolute-equispaced-8absoluteequispaced80.3157509336360.11261435842101.66479972772e-143.13612469722e-161.07095465669e-149.6463019856——
+absolute-lobatto-8absolutelobatto80.07369681521830.03501790558091.33392081217e-173.44045286642e-151.33091267417e-162.39152638863e-152.154095470530.07369681521832.55067535847e-16
+absolute-equispaced-16absoluteequispaced1611.13644233242.5343501307801.16432255843e-139.33231238069e-167.0131908137e-1435.0940039281——
+absolute-lobatto-16absolutelobatto160.03719153077330.01338480655221.37347737096e-177.83757504144e-152.91283952783e-165.14886955153e-152.576494110410.03719153077336.9848361346e-16
+absolute-equispaced-32absoluteequispaced32105718.65676216034.084470307.27016293663e-053.86636355139e-087.93885353174e-092103142.22396——
+absolute-lobatto-32absolutelobatto320.01863947303130.004932087476343.65276265835e-171.56595973143e-143.02173403439e-161.17062219258e-143.101184511940.01863947303137.42863279557e-15
+Measurements and complete records / JSON
+
+## Fixed interpolation, spline and Haar controls — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#runge-barycentric-clenshaw-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+NIST DLMF §3.11(ii): Chebyshev series and Clenshaw summation [accessed 2026-11-25]
+Review scope / review_level: official-reference-selected-equations
+Selected E7, E9, E11 and E15 with endpoint-halving conventions; no original Clenshaw paper reading. The implementation uses full coefficients, so its final combination is derived explicitly.
+SciPy 1.14.1 BarycentricInterpolator documentation [accessed 2026-11-24]
+Review scope / review_level: official-documentation-selected-notes
+Selected barycentric formula and interpolation-conditioning notes read during the preceding preparation. The Berrut–Trefethen paper is a bibliographic lead, not a full-text reading.
+
+## Fixed interpolation, spline and Haar controls — Natural and clamped splines versus PCHIP [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/
+Coverage: reading
+
+Compare C2 continuity and shape preservation on three fixed data sets: a monotone plateau, a cubic and a straight line.
+Methods, equations, figures and references
+Methods used
+Spline interpolation
+PCHIP monotone cubic Hermite interpolation
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Solve a cubic B-spline collocation system and evaluate it with de Boor recursion. A separate path implements PCHIP harmonic slopes, endpoint limiting and Hermite evaluation.
+Cubic splines and shape-preserving interpolation
+Use actual binary64 knots and values. Natural conditions set both endpoint second derivatives to zero; clamped conditions prescribe the first derivatives from the input.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Natural and clamped splines versus PCHIP
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+Compare with exact rational second-derivative systems, rational PCHIP and SciPy 1.14.1. Fifteen endpoint records contain sixteen scalar outputs from thirteen distinct inputs. Independent Fraction formulas show plateau undershoot for the actual binary64 data.
+
+## Fixed interpolation, spline and Haar controls — Natural and clamped splines versus PCHIP [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/
+Coverage: reading
+
+Same-problem reference · Analytic reference
+Natural and clamped splines versus PCHIP
+PCHIP is generally C1, not necessarily C2. Best approximation, extrapolation and noise smoothing are outside scope. A SciPy comparison does not substitute for reading the original papers.
+
+## Fixed interpolation, spline and Haar controls — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#spline-shape-controls-assumptions
+Coverage: reading
+
+Use actual binary64 knots and values. Natural conditions set both endpoint second derivatives to zero; clamped conditions prescribe the first derivatives from the input.
+
+## Fixed interpolation, spline and Haar controls — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#spline-shape-controls-algorithm
+Coverage: reading
+
+Solve a cubic B-spline collocation system and evaluate it with de Boor recursion. A separate path implements PCHIP harmonic slopes, endpoint limiting and Hermite evaluation.
+S_i(s)=a_i+b_i*s+c_i*s^2+d_i*s^3d_k=(w_1+w_2)/(w_1/m_(k-1)+w_2/m_k)S_natural(1.5)=a-9*(b-a)/88; S_clamped(1.5)=a-15*(b-a)/152
+
+## Fixed interpolation, spline and Haar controls — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#spline-shape-controls-validation
+Coverage: reading
+
+Compare with exact rational second-derivative systems, rational PCHIP and SciPy 1.14.1. Fifteen endpoint records contain sixteen scalar outputs from thirteen distinct inputs. Independent Fraction formulas show plateau undershoot for the actual binary64 data.
+
+## Fixed interpolation, spline and Haar controls — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#spline-shape-controls-limits
+Coverage: reading
+
+PCHIP is generally C1, not necessarily C2. Best approximation, extrapolation and noise smoothing are outside scope. A SciPy comparison does not substitute for reading the original papers.
+
+## Fixed interpolation, spline and Haar controls — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#spline-shape-controls-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+maximum_value_scaled_reference_defect2.94092632398e-16
+maximum_derivative_scaled_reference_defect5.23060430947e-15
+endpoint_fixture_records15
+endpoint_scalar_outputs16
+endpoint_distinct_datasets13
+判定 / checkPassed
+reference:endpoint-branch-valuestrue
+reference:endpoint-record-counttrue
+reference:endpoint-output-counttrue
+reference:endpoint-distinct-datasetstrue
+reference:negative-natural-witnesstrue
+reference:negative-clamped-witnesstrue
+plateau-natural:finitetrue
+plateau-natural:value-referencetrue
+plateau-natural:derivative-referencetrue
+plateau-natural:nodaltrue
+plateau-natural:boundary-or-shapetrue
+plateau-clamped:finitetrue
+plateau-clamped:value-referencetrue
+plateau-clamped:derivative-referencetrue
+plateau-clamped:nodaltrue
+plateau-clamped:boundary-or-shapetrue
+reference:pchip-actual-input-plateautrue
+plateau-pchip:finitetrue
+plateau-pchip:value-referencetrue
+plateau-pchip:derivative-referencetrue
+plateau-pchip:nodaltrue
+plateau-pchip:boundary-or-shapetrue
+cubic-natural:finitetrue
+cubic-natural:value-referencetrue
+cubic-natural:derivative-referencetrue
+cubic-natural:nodaltrue
+cubic-natural:boundary-or-shapetrue
+cubic-clamped:finitetrue
+cubic-clamped:value-referencetrue
+
+## Fixed interpolation, spline and Haar controls — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#spline-shape-controls-measurements
+Coverage: reading
+
+cubic-clamped:derivative-referencetrue
+cubic-clamped:nodaltrue
+cubic-clamped:boundary-or-shapetrue
+cubic-pchip:finitetrue
+cubic-pchip:value-referencetrue
+cubic-pchip:derivative-referencetrue
+cubic-pchip:nodaltrue
+cubic-pchip:boundary-or-shapetrue
+linear-natural:finitetrue
+linear-natural:value-referencetrue
+linear-natural:derivative-referencetrue
+linear-natural:nodaltrue
+linear-natural:boundary-or-shapetrue
+linear-clamped:finitetrue
+linear-clamped:value-referencetrue
+linear-clamped:derivative-referencetrue
+linear-clamped:nodaltrue
+linear-clamped:boundary-or-shapetrue
+linear-pchip:finitetrue
+linear-pchip:value-referencetrue
+linear-pchip:derivative-referencetrue
+linear-pchip:nodaltrue
+linear-pchip:boundary-or-shapetrue
+reference:exact-piece-continuitytrue
+reference:polynomial-cubic-clampedtrue
+reference:polynomial-linear-naturaltrue
+reference:polynomial-linear-clampedtrue
+fixed-fit-counttrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Compare C2 continuity and shape preservation on three fixed data sets: a monotone plateau, a cubic and a straight line. Drawn from saved arrays.Saved errors, derivatives or squared norms shown separately. The text states the scope of each boundary and representation.Read every stored record
+
+## Fixed interpolation, spline and Haar controls — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#spline-shape-controls-measurements
+Coverage: reading
+
+iddatasetmethodvalue_scaled_defectderivative_scaled_defectcompanion_scaled_defectminimum_valuemaximum_valuenodal_maxabsboundary_or_shape_defect
+plateau-naturalplateaunatural2.244688029e-169.14651174594e-163.92660968036e-16-0.09923917539521.11923917542.22044604925e-166.66133814775e-16
+plateau-clampedplateauclamped2.20642543627e-163.16816330818e-164.64409219157e-16-0.09639656306541.116396563078.67361737988e-185.20417042793e-18
+plateau-pchipplateaupchip1.10999826656e-169.22572265388e-172.9281633885e-160.011.0100
+cubic-naturalcubicnatural2.94092632398e-162.7416294383e-152.84137242217e-1502.040498364832.22044604925e-167.93016446161e-17
+cubic-clampedcubicclamped2.89926648212e-161.49654742539e-153.84673919297e-15-0.08866192962392.088661929621.11022302463e-162.22044604925e-16
+cubic-pchipcubicpchip2.10566586084e-161.98771853869e-151.36262608024e-150200
+linear-naturallinearnatural2.04687209586e-161.26158887549e-151.63005542148e-150.51.51.66533453694e-163.17206578464e-16
+linear-clampedlinearclamped2.04687209586e-165.23060430947e-151.91503308183e-150.51.52.22044604925e-161.11022302463e-16
+linear-pchiplinearpchip9.16118696666e-171.46544056964e-159.59172272975e-160.51.500
+Measurements and complete records / JSON
+
+## Fixed interpolation, spline and Haar controls — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#spline-shape-controls-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+SciPy 1.14.1 PCHIP documentation and selected source [accessed 2026-11-25]
+Review scope / review_level: official-source-selected-lines
+Selected lines 202–225, 243–254, 275–298: harmonic interior derivatives, endpoint sign and 3-slope limiter, two-point case. The original Fritsch–Butland paper has not been read in full. Own formulas are independently expressed as scalar Hermite polynomials.
+SciPy 1.14.1 BSpline and CubicSpline documentation [accessed 2026-11-24]
+Review scope / review_level: official-documentation-selected-definitions
+Natural and clamped boundary conditions and the BSpline recurrence were read during preparation. No de Boor original full-text claim. SciPy is a secondary numerical companion; the rational second-derivative system is the independent reference.
+
+## Fixed interpolation, spline and Haar controls — Haar multiresolution: boundaries, shifts and thresholds [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/
+Coverage: reading
+
+Apply three-level Haar analysis to short signals of lengths 17 and 32, separating one-sample shifts from odd-length boundary handling.
+Methods, equations, figures and references
+Methods used
+Wavelets
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Implement pair-sum and pair-difference filters, downsampling and inverse pyramids. Reconstruct with no threshold, hard thresholding and soft thresholding from the same analysis coefficients.
+Discrete Haar transforms of finite signals
+At each odd-length level append the first sample for periodic extension or the last for symmetric extension, then crop during synthesis. Apply threshold 0.2 only to detail coefficients.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Haar multiresolution: boundaries, shifts and thresholds
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+Use twelve analyses and thirty-six reconstructions. Check independent matrices, Fraction/Decimal coefficients, perfect reconstruction and squared L2 errors. Require the orthogonal error identity only at length 32; retain level-by-level padding energy at length 17.
+
+## Fixed interpolation, spline and Haar controls — Haar multiresolution: boundaries, shifts and thresholds [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/
+Coverage: reading
+
+Same-problem reference · Analytic reference
+Haar multiresolution: boundaries, shifts and thresholds
+Limited to Haar, without longer filters or image compression. General symmetric extension is not assumed orthonormal. Shift invariance is not required; shift-dependent differences are retained.
+
+## Fixed interpolation, spline and Haar controls — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#haar-mallat-boundary-threshold-assumptions
+Coverage: reading
+
+At each odd-length level append the first sample for periodic extension or the last for symmetric extension, then crop during synthesis. Apply threshold 0.2 only to detail coefficients.
+
+## Fixed interpolation, spline and Haar controls — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#haar-mallat-boundary-threshold-algorithm
+Coverage: reading
+
+Implement pair-sum and pair-difference filters, downsampling and inverse pyramids. Reconstruct with no threshold, hard thresholding and soft thresholding from the same analysis coefficients.
+a_(l+1,k)=(a_(l,2k)+a_(l,2k+1))/sqrt(2)d_(l+1,k)=(a_(l,2k)-a_(l,2k+1))/sqrt(2)E_after=E_before+padding^2; ||e||_2^2=||delta_coeff||_2^2 only for square orthogonal transform
+
+## Fixed interpolation, spline and Haar controls — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#haar-mallat-boundary-threshold-validation
+Coverage: reading
+
+Use twelve analyses and thirty-six reconstructions. Check independent matrices, Fraction/Decimal coefficients, perfect reconstruction and squared L2 errors. Require the orthogonal error identity only at length 32; retain level-by-level padding energy at length 17.
+
+## Fixed interpolation, spline and Haar controls — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#haar-mallat-boundary-threshold-limits
+Coverage: reading
+
+Limited to Haar, without longer filters or image compression. General symmetric extension is not assumed orthonormal. Shift invariance is not required; shift-dependent differences are retained.
+
+## Fixed interpolation, spline and Haar controls — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#haar-mallat-boundary-threshold-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+analysis_records12
+maximum_reconstruction_l2_squared0.609539426627
+maximum_shift_back_equivariance_l2_squared0.24
+判定 / checkPassed
+reference:golden-0true
+reference:golden-1true
+periodic-smooth32-periodic:independent-analysistrue
+periodic-smooth32-periodic:left-inversetrue
+periodic-smooth32-periodic:coefficient-counttrue
+periodic-smooth32-periodic:padding-energy-ledgertrue
+periodic-smooth32-periodic-none:finite-and-owned-shapetrue
+periodic-smooth32-periodic-none:independent-synthesistrue
+periodic-smooth32-periodic-none:perfect-reconstructiontrue
+periodic-smooth32-periodic-none:critical-squared-error-identitytrue
+periodic-smooth32-periodic-hard:finite-and-owned-shapetrue
+periodic-smooth32-periodic-hard:independent-synthesistrue
+periodic-smooth32-periodic-hard:critical-squared-error-identitytrue
+periodic-smooth32-periodic-soft:finite-and-owned-shapetrue
+periodic-smooth32-periodic-soft:independent-synthesistrue
+periodic-smooth32-periodic-soft:critical-squared-error-identitytrue
+periodic-smooth32-symmetric:independent-analysistrue
+periodic-smooth32-symmetric:left-inversetrue
+periodic-smooth32-symmetric:coefficient-counttrue
+periodic-smooth32-symmetric:padding-energy-ledgertrue
+
+## Fixed interpolation, spline and Haar controls — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#haar-mallat-boundary-threshold-measurements
+Coverage: reading
+
+periodic-smooth32-symmetric-none:finite-and-owned-shapetrue
+periodic-smooth32-symmetric-none:independent-synthesistrue
+periodic-smooth32-symmetric-none:perfect-reconstructiontrue
+periodic-smooth32-symmetric-none:critical-squared-error-identitytrue
+periodic-smooth32-symmetric-hard:finite-and-owned-shapetrue
+periodic-smooth32-symmetric-hard:independent-synthesistrue
+periodic-smooth32-symmetric-hard:critical-squared-error-identitytrue
+periodic-smooth32-symmetric-soft:finite-and-owned-shapetrue
+periodic-smooth32-symmetric-soft:independent-synthesistrue
+periodic-smooth32-symmetric-soft:critical-squared-error-identitytrue
+step32-periodic:independent-analysistrue
+step32-periodic:left-inversetrue
+step32-periodic:coefficient-counttrue
+step32-periodic:padding-energy-ledgertrue
+step32-periodic-none:finite-and-owned-shapetrue
+step32-periodic-none:independent-synthesistrue
+step32-periodic-none:perfect-reconstructiontrue
+step32-periodic-none:critical-squared-error-identitytrue
+step32-periodic-hard:finite-and-owned-shapetrue
+step32-periodic-hard:independent-synthesistrue
+step32-periodic-hard:critical-squared-error-identitytrue
+step32-periodic-soft:finite-and-owned-shapetrue
+step32-periodic-soft:independent-synthesistrue
+step32-periodic-soft:critical-squared-error-identitytrue
+step32-symmetric:independent-analysistrue
+step32-symmetric:left-inversetrue
+step32-symmetric:coefficient-counttrue
+
+## Fixed interpolation, spline and Haar controls — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#haar-mallat-boundary-threshold-measurements
+Coverage: reading
+
+step32-symmetric:padding-energy-ledgertrue
+step32-symmetric-none:finite-and-owned-shapetrue
+step32-symmetric-none:independent-synthesistrue
+step32-symmetric-none:perfect-reconstructiontrue
+step32-symmetric-none:critical-squared-error-identitytrue
+step32-symmetric-hard:finite-and-owned-shapetrue
+step32-symmetric-hard:independent-synthesistrue
+step32-symmetric-hard:critical-squared-error-identitytrue
+step32-symmetric-soft:finite-and-owned-shapetrue
+step32-symmetric-soft:independent-synthesistrue
+step32-symmetric-soft:critical-squared-error-identitytrue
+ramp17-periodic:independent-analysistrue
+ramp17-periodic:left-inversetrue
+ramp17-periodic:coefficient-counttrue
+ramp17-periodic:padding-energy-ledgertrue
+ramp17-periodic-none:finite-and-owned-shapetrue
+ramp17-periodic-none:independent-synthesistrue
+ramp17-periodic-none:perfect-reconstructiontrue
+ramp17-periodic-hard:finite-and-owned-shapetrue
+ramp17-periodic-hard:independent-synthesistrue
+ramp17-periodic-soft:finite-and-owned-shapetrue
+ramp17-periodic-soft:independent-synthesistrue
+ramp17-symmetric:independent-analysistrue
+ramp17-symmetric:left-inversetrue
+ramp17-symmetric:coefficient-counttrue
+ramp17-symmetric:padding-energy-ledgertrue
+ramp17-symmetric-none:finite-and-owned-shapetrue
+ramp17-symmetric-none:independent-synthesistrue
+ramp17-symmetric-none:perfect-reconstructiontrue
+ramp17-symmetric-hard:finite-and-owned-shapetrue
+
+## Fixed interpolation, spline and Haar controls — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#haar-mallat-boundary-threshold-measurements
+Coverage: reading
+
+ramp17-symmetric-hard:independent-synthesistrue
+ramp17-symmetric-soft:finite-and-owned-shapetrue
+ramp17-symmetric-soft:independent-synthesistrue
+step17-periodic:independent-analysistrue
+step17-periodic:left-inversetrue
+step17-periodic:coefficient-counttrue
+step17-periodic:padding-energy-ledgertrue
+step17-periodic-none:finite-and-owned-shapetrue
+step17-periodic-none:independent-synthesistrue
+step17-periodic-none:perfect-reconstructiontrue
+step17-periodic-hard:finite-and-owned-shapetrue
+step17-periodic-hard:independent-synthesistrue
+step17-periodic-soft:finite-and-owned-shapetrue
+step17-periodic-soft:independent-synthesistrue
+step17-symmetric:independent-analysistrue
+step17-symmetric:left-inversetrue
+step17-symmetric:coefficient-counttrue
+step17-symmetric:padding-energy-ledgertrue
+step17-symmetric-none:finite-and-owned-shapetrue
+step17-symmetric-none:independent-synthesistrue
+step17-symmetric-none:perfect-reconstructiontrue
+step17-symmetric-hard:finite-and-owned-shapetrue
+step17-symmetric-hard:independent-synthesistrue
+step17-symmetric-soft:finite-and-owned-shapetrue
+step17-symmetric-soft:independent-synthesistrue
+step32-shift1-periodic:independent-analysistrue
+step32-shift1-periodic:left-inversetrue
+step32-shift1-periodic:coefficient-counttrue
+step32-shift1-periodic:padding-energy-ledgertrue
+step32-shift1-periodic-none:finite-and-owned-shapetrue
+
+## Fixed interpolation, spline and Haar controls — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#haar-mallat-boundary-threshold-measurements
+Coverage: reading
+
+step32-shift1-periodic-none:independent-synthesistrue
+step32-shift1-periodic-none:perfect-reconstructiontrue
+step32-shift1-periodic-none:critical-squared-error-identitytrue
+step32-shift1-periodic-hard:finite-and-owned-shapetrue
+step32-shift1-periodic-hard:independent-synthesistrue
+step32-shift1-periodic-hard:critical-squared-error-identitytrue
+step32-shift1-periodic-soft:finite-and-owned-shapetrue
+step32-shift1-periodic-soft:independent-synthesistrue
+step32-shift1-periodic-soft:critical-squared-error-identitytrue
+step32-shift1-symmetric:independent-analysistrue
+step32-shift1-symmetric:left-inversetrue
+step32-shift1-symmetric:coefficient-counttrue
+step32-shift1-symmetric:padding-energy-ledgertrue
+step32-shift1-symmetric-none:finite-and-owned-shapetrue
+step32-shift1-symmetric-none:independent-synthesistrue
+step32-shift1-symmetric-none:perfect-reconstructiontrue
+step32-shift1-symmetric-none:critical-squared-error-identitytrue
+step32-shift1-symmetric-hard:finite-and-owned-shapetrue
+step32-shift1-symmetric-hard:independent-synthesistrue
+step32-shift1-symmetric-hard:critical-squared-error-identitytrue
+step32-shift1-symmetric-soft:finite-and-owned-shapetrue
+step32-shift1-symmetric-soft:independent-synthesistrue
+step32-shift1-symmetric-soft:critical-squared-error-identitytrue
+step17-shift1-periodic:independent-analysistrue
+step17-shift1-periodic:left-inversetrue
+
+## Fixed interpolation, spline and Haar controls — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#haar-mallat-boundary-threshold-measurements
+Coverage: reading
+
+step17-shift1-periodic:coefficient-counttrue
+step17-shift1-periodic:padding-energy-ledgertrue
+step17-shift1-periodic-none:finite-and-owned-shapetrue
+step17-shift1-periodic-none:independent-synthesistrue
+step17-shift1-periodic-none:perfect-reconstructiontrue
+step17-shift1-periodic-hard:finite-and-owned-shapetrue
+step17-shift1-periodic-hard:independent-synthesistrue
+step17-shift1-periodic-soft:finite-and-owned-shapetrue
+step17-shift1-periodic-soft:independent-synthesistrue
+step17-shift1-symmetric:independent-analysistrue
+step17-shift1-symmetric:left-inversetrue
+step17-shift1-symmetric:coefficient-counttrue
+step17-shift1-symmetric:padding-energy-ledgertrue
+step17-shift1-symmetric-none:finite-and-owned-shapetrue
+step17-shift1-symmetric-none:independent-synthesistrue
+step17-shift1-symmetric-none:perfect-reconstructiontrue
+step17-shift1-symmetric-hard:finite-and-owned-shapetrue
+step17-shift1-symmetric-hard:independent-synthesistrue
+step17-shift1-symmetric-soft:finite-and-owned-shapetrue
+step17-shift1-symmetric-soft:independent-synthesistrue
+fixed-analysis-and-reconstruction-counttrue
+
+## Fixed interpolation, spline and Haar controls — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#haar-mallat-boundary-threshold-measurements
+Coverage: reading
+
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Apply three-level Haar analysis to short signals of lengths 17 and 32, separating one-sample shifts from odd-length boundary handling. Drawn from saved arrays.Saved errors, derivatives or squared norms shown separately. The text states the scope of each boundary and representation.Read every stored record
+idsignallengthboundaryshift_samplesthresholdtaureconstruction_l2_squaredreconstruction_Linfcoefficient_delta_l2_squaredshift_back_equivariance_l2_squaredsignal_l2_squaredpadding_energyretained_detailstotal_coefficients
+periodic-smooth32-periodic-noneperiodic-smooth3232periodic0none01.12705420346e-303.33066907388e-16001702832
+periodic-smooth32-periodic-hardperiodic-smooth3232periodic0hard0.20.2095394266270.1595274170160.20953942662701701032
+periodic-smooth32-periodic-softperiodic-smooth3232periodic0soft0.20.6095394266270.3121320343560.60953942662701701032
+periodic-smooth32-symmetric-noneperiodic-smooth3232symmetric0none01.12705420346e-303.33066907388e-16001702832
+periodic-smooth32-symmetric-hardperiodic-smooth3232symmetric0hard0.20.2095394266270.1595274170160.20953942662701701032
+periodic-smooth32-symmetric-softperiodic-smooth3232symmetric0soft0.20.6095394266270.3121320343560.60953942662701701032
+step32-periodic-nonestep3232periodic0none03.15544362088e-304.4408920985e-1600160032
+
+## Fixed interpolation, spline and Haar controls — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#haar-mallat-boundary-threshold-measurements
+Coverage: reading
+
+step32-periodic-hardstep3232periodic0hard0.23.15544362088e-304.4408920985e-1600160032
+step32-periodic-softstep3232periodic0soft0.23.15544362088e-304.4408920985e-1600160032
+step32-symmetric-nonestep3232symmetric0none03.15544362088e-304.4408920985e-1600160032
+step32-symmetric-hardstep3232symmetric0hard0.23.15544362088e-304.4408920985e-1600160032
+step32-symmetric-softstep3232symmetric0soft0.23.15544362088e-304.4408920985e-1600160032
+ramp17-periodic-noneramp1717periodic0none07.32118194235e-313.33066907388e-16005.843750.0371093751720
+ramp17-periodic-hardramp1717periodic0hard0.20.0781250.093750.07812505.843750.037109375520
+ramp17-periodic-softramp1717periodic0soft0.20.2555514068710.3121320343560.27812505.843750.037109375520
+ramp17-symmetric-noneramp1717symmetric0none09.17007468896e-314.4408920985e-16005.8437571420
+ramp17-symmetric-hardramp1717symmetric0hard0.20.0781250.093750.07812505.843757220
+ramp17-symmetric-softramp1717symmetric0soft0.20.1581250.1644606781190.15812505.843757220
+step17-periodic-nonestep1717periodic0none01.59004776209e-304.4408920985e-160090320
+step17-periodic-hardstep1717periodic0hard0.21.59004776209e-304.4408920985e-160090320
+step17-periodic-softstep1717periodic0soft0.20.09742640687120.3121320343560.12090320
+step17-symmetric-nonestep1717symmetric0none01.77493703675e-304.4408920985e-160097020
+
+## Fixed interpolation, spline and Haar controls — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#haar-mallat-boundary-threshold-measurements
+Coverage: reading
+
+step17-symmetric-hardstep1717symmetric0hard0.21.77493703675e-304.4408920985e-160097020
+step17-symmetric-softstep1717symmetric0soft0.21.77493703675e-304.4408920985e-160097020
+step32-shift1-periodic-nonestep32-shift132periodic1none02.52065711121e-304.4408920985e-1602.52682008704e-31160632
+step32-shift1-periodic-hardstep32-shift132periodic1hard0.22.52065711121e-304.4408920985e-1602.52682008704e-31160632
+step32-shift1-periodic-softstep32-shift132periodic1soft0.20.240.3121320343560.240.24160632
+step32-shift1-symmetric-nonestep32-shift132symmetric1none02.52065711121e-304.4408920985e-1602.52682008704e-31160632
+step32-shift1-symmetric-hardstep32-shift132symmetric1hard0.22.52065711121e-304.4408920985e-1602.52682008704e-31160632
+step32-shift1-symmetric-softstep32-shift132symmetric1soft0.20.240.3121320343560.240.24160632
+step17-shift1-periodic-nonestep17-shift117periodic1none01.05386886557e-304.4408920985e-1601.54074395551e-3191.75820
+step17-shift1-periodic-hardstep17-shift117periodic1hard0.21.05386886557e-304.4408920985e-1601.54074395551e-3191.75820
+step17-shift1-periodic-softstep17-shift117periodic1soft0.20.2691421356240.3121320343560.320.17171572875391.75820
+step17-shift1-symmetric-nonestep17-shift117symmetric1none01.14015052708e-304.4408920985e-1602.52682008704e-3197620
+step17-shift1-symmetric-hardstep17-shift117symmetric1hard0.21.14015052708e-304.4408920985e-1602.52682008704e-3197620
+
+## Fixed interpolation, spline and Haar controls — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#haar-mallat-boundary-threshold-measurements
+Coverage: reading
+
+step17-shift1-symmetric-softstep17-shift117symmetric1soft0.20.240.3121320343560.240.2497620
+Measurements and complete records / JSON
+
+## Fixed interpolation, spline and Haar controls — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#haar-mallat-boundary-threshold-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+S. Mallat, A Theory for Multiresolution Signal Decomposition: The Wavelet Representation [accessed 2026-11-24]
+Review scope / review_level: primary-paper-selected-body
+During preparation: title/abstract, Haar example on printed p. 679, selected §III-B/C filter/downsample/inverse-pyramid and border-symmetry prose on p. 681. Extracted formula glyphs were imperfect; no complete proof or numerical-table audit is claimed.
+PyWavelets documentation: Signal extension modes [accessed 2026-11-25]
+Review scope / review_level: official-documentation-selected-terminology
+Periodic and half-sample symmetric extension and the redundancy caveat. This example defines its own append-at-each-odd-level/crop convention; it does not claim PyWavelets coefficient-layout equivalence or require PyWavelets.
 
 ## Independent validation of nonlinear reaction–diffusion and pattern formation — Independent validation of nonlinear reaction–diffusion and pattern formation [en]
 
@@ -41929,6 +42638,1261 @@ Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton (
 Review scope / review_level: primary-selected-original-pdf-text
 Selected original equations and diagnostic limitations inspected; independently derived continuum references are evaluated here.
 
+## Domain-aware, double-exponential and sparse-grid quadrature — Domain-aware, double-exponential and sparse-grid quadrature [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/
+Coverage: reading
+
+Compare fixed integrals with domain-aware methods, separating estimated errors, actual errors, budget exits and underresolution controls.
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#run-all
+Coverage: reading
+
+Run inside atlas-quadrature-controls-2026-11-25 from the ZIP. This command executes all 3 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Domain-aware, double-exponential and sparse-grid quadrature — QUADPACK dispatch and finite Simpson companions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/
+Coverage: reading
+
+Fifteen specialized quadratures and fifteen Simpson companions use fixed inputs.
+Methods, equations, figures and references
+Methods used
+Gaussian and adaptive quadrature
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Explicit domain/weight dispatch retains active full_output prefixes. The existing Simpson function is unchanged.
+Finite, improper and multivariate definite integrals
+Whole-line Gaussian, two finite frequencies, half-line Fourier and an internal singularity; absolute tolerances1e-6/1e-8/1e-10 and epsrel0.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+QUADPACK dispatch and finite Simpson companions
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Independent analytic interval references and actual callback counts are checked. The finite Gaussian target is an interval, not an invented erf value.
+Same-problem reference · Analytic reference
+QUADPACK dispatch and finite Simpson companions
+Singular-node failures and unmet Simpson goals remain visible; error estimates are not general guarantees.
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#quadpack-domain-selection-assumptions
+Coverage: reading
+
+Whole-line Gaussian, two finite frequencies, half-line Fourier and an internal singularity; absolute tolerances1e-6/1e-8/1e-10 and epsrel0.
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#quadpack-domain-selection-algorithm
+Coverage: reading
+
+Explicit domain/weight dispatch retains active full_output prefixes. The existing Simpson function is unchanged.
+
+## Domain-aware, double-exponential and sparse-grid quadrature — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#quadpack-domain-selection-validation
+Coverage: reading
+
+Independent analytic interval references and actual callback counts are checked. The finite Gaussian target is an interval, not an invented erf value.
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#quadpack-domain-selection-limits
+Coverage: reading
+
+Singular-node failures and unmet Simpson goals remain visible; error estimates are not general guarantees.
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+records30
+integrand_evaluations34351
+accuracy_goals_met25
+accuracy_goals_unmet2
+accuracy_goals_unresolved3
+estimated_converged_rows26
+判定 / checkPassed
+q78:gaussian-whole-line:specialized-quadpack:a0:callback-ledgertrue
+q78:gaussian-whole-line:specialized-quadpack:a0:finite-returntrue
+q78:gaussian-whole-line:specialized-quadpack:a0:native-successtrue
+q78:gaussian-whole-line:specialized-quadpack:a0:required-analytic-accuracytrue
+q78:gaussian-whole-line:specialized-quadpack:a0:absolute-seriestrue
+q78:gaussian-whole-line:specialized-quadpack:a1:callback-ledgertrue
+q78:gaussian-whole-line:specialized-quadpack:a1:finite-returntrue
+q78:gaussian-whole-line:specialized-quadpack:a1:native-successtrue
+q78:gaussian-whole-line:specialized-quadpack:a1:required-analytic-accuracytrue
+q78:gaussian-whole-line:specialized-quadpack:a1:absolute-seriestrue
+q78:gaussian-whole-line:specialized-quadpack:a2:callback-ledgertrue
+q78:gaussian-whole-line:specialized-quadpack:a2:finite-returntrue
+q78:gaussian-whole-line:specialized-quadpack:a2:native-successtrue
+q78:gaussian-whole-line:specialized-quadpack:a2:required-analytic-accuracytrue
+q78:gaussian-whole-line:specialized-quadpack:a2:absolute-seriestrue
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:gaussian-whole-line:simpson-companion:a0:callback-ledgertrue
+q78:gaussian-whole-line:simpson-companion:a0:evaluation-captrue
+q78:gaussian-whole-line:simpson-companion:a0:finite-returntrue
+q78:gaussian-whole-line:simpson-companion:a0:native-statustrue
+q78:gaussian-whole-line:simpson-companion:a1:callback-ledgertrue
+q78:gaussian-whole-line:simpson-companion:a1:evaluation-captrue
+q78:gaussian-whole-line:simpson-companion:a1:finite-returntrue
+q78:gaussian-whole-line:simpson-companion:a1:native-statustrue
+q78:gaussian-whole-line:simpson-companion:a2:callback-ledgertrue
+q78:gaussian-whole-line:simpson-companion:a2:evaluation-captrue
+q78:gaussian-whole-line:simpson-companion:a2:finite-returntrue
+q78:gaussian-whole-line:simpson-companion:a2:native-statustrue
+q78:finite-sine-40:specialized-quadpack:a0:callback-ledgertrue
+q78:finite-sine-40:specialized-quadpack:a0:finite-returntrue
+q78:finite-sine-40:specialized-quadpack:a0:native-successtrue
+q78:finite-sine-40:specialized-quadpack:a0:required-analytic-accuracytrue
+q78:finite-sine-40:specialized-quadpack:a0:absolute-seriestrue
+q78:finite-sine-40:specialized-quadpack:a1:callback-ledgertrue
+q78:finite-sine-40:specialized-quadpack:a1:finite-returntrue
+q78:finite-sine-40:specialized-quadpack:a1:native-successtrue
+q78:finite-sine-40:specialized-quadpack:a1:required-analytic-accuracytrue
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:finite-sine-40:specialized-quadpack:a1:absolute-seriestrue
+q78:finite-sine-40:specialized-quadpack:a2:callback-ledgertrue
+q78:finite-sine-40:specialized-quadpack:a2:finite-returntrue
+q78:finite-sine-40:specialized-quadpack:a2:native-successtrue
+q78:finite-sine-40:specialized-quadpack:a2:required-analytic-accuracytrue
+q78:finite-sine-40:specialized-quadpack:a2:absolute-seriestrue
+q78:finite-sine-40:simpson-companion:a0:callback-ledgertrue
+q78:finite-sine-40:simpson-companion:a0:evaluation-captrue
+q78:finite-sine-40:simpson-companion:a0:finite-returntrue
+q78:finite-sine-40:simpson-companion:a0:native-statustrue
+q78:finite-sine-40:simpson-companion:a1:callback-ledgertrue
+q78:finite-sine-40:simpson-companion:a1:evaluation-captrue
+q78:finite-sine-40:simpson-companion:a1:finite-returntrue
+q78:finite-sine-40:simpson-companion:a1:native-statustrue
+q78:finite-sine-40:simpson-companion:a2:callback-ledgertrue
+q78:finite-sine-40:simpson-companion:a2:evaluation-captrue
+q78:finite-sine-40:simpson-companion:a2:finite-returntrue
+q78:finite-sine-40:simpson-companion:a2:native-statustrue
+q78:finite-sine-120:specialized-quadpack:a0:callback-ledgertrue
+q78:finite-sine-120:specialized-quadpack:a0:finite-returntrue
+q78:finite-sine-120:specialized-quadpack:a0:native-successtrue
+q78:finite-sine-120:specialized-quadpack:a0:required-analytic-accuracytrue
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:finite-sine-120:specialized-quadpack:a0:absolute-seriestrue
+q78:finite-sine-120:specialized-quadpack:a1:callback-ledgertrue
+q78:finite-sine-120:specialized-quadpack:a1:finite-returntrue
+q78:finite-sine-120:specialized-quadpack:a1:native-successtrue
+q78:finite-sine-120:specialized-quadpack:a1:required-analytic-accuracytrue
+q78:finite-sine-120:specialized-quadpack:a1:absolute-seriestrue
+q78:finite-sine-120:specialized-quadpack:a2:callback-ledgertrue
+q78:finite-sine-120:specialized-quadpack:a2:finite-returntrue
+q78:finite-sine-120:specialized-quadpack:a2:native-successtrue
+q78:finite-sine-120:specialized-quadpack:a2:required-analytic-accuracytrue
+q78:finite-sine-120:specialized-quadpack:a2:absolute-seriestrue
+q78:finite-sine-120:simpson-companion:a0:callback-ledgertrue
+q78:finite-sine-120:simpson-companion:a0:evaluation-captrue
+q78:finite-sine-120:simpson-companion:a0:finite-returntrue
+q78:finite-sine-120:simpson-companion:a0:native-statustrue
+q78:finite-sine-120:simpson-companion:a1:callback-ledgertrue
+q78:finite-sine-120:simpson-companion:a1:evaluation-captrue
+q78:finite-sine-120:simpson-companion:a1:finite-returntrue
+q78:finite-sine-120:simpson-companion:a1:native-statustrue
+q78:finite-sine-120:simpson-companion:a2:callback-ledgertrue
+q78:finite-sine-120:simpson-companion:a2:evaluation-captrue
+q78:finite-sine-120:simpson-companion:a2:finite-returntrue
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:finite-sine-120:simpson-companion:a2:native-statustrue
+q78:fourier-half-line:specialized-quadpack:a0:callback-ledgertrue
+q78:fourier-half-line:specialized-quadpack:a0:finite-returntrue
+q78:fourier-half-line:specialized-quadpack:a0:native-successtrue
+q78:fourier-half-line:specialized-quadpack:a0:required-analytic-accuracytrue
+q78:fourier-half-line:specialized-quadpack:a0:absolute-seriestrue
+q78:fourier-half-line:specialized-quadpack:a1:callback-ledgertrue
+q78:fourier-half-line:specialized-quadpack:a1:finite-returntrue
+q78:fourier-half-line:specialized-quadpack:a1:native-successtrue
+q78:fourier-half-line:specialized-quadpack:a1:required-analytic-accuracytrue
+q78:fourier-half-line:specialized-quadpack:a1:absolute-seriestrue
+q78:fourier-half-line:specialized-quadpack:a2:callback-ledgertrue
+q78:fourier-half-line:specialized-quadpack:a2:finite-returntrue
+q78:fourier-half-line:specialized-quadpack:a2:native-successtrue
+q78:fourier-half-line:specialized-quadpack:a2:required-analytic-accuracytrue
+q78:fourier-half-line:specialized-quadpack:a2:absolute-seriestrue
+q78:fourier-half-line:simpson-companion:a0:callback-ledgertrue
+q78:fourier-half-line:simpson-companion:a0:evaluation-captrue
+q78:fourier-half-line:simpson-companion:a0:finite-returntrue
+q78:fourier-half-line:simpson-companion:a0:native-statustrue
+q78:fourier-half-line:simpson-companion:a1:callback-ledgertrue
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:fourier-half-line:simpson-companion:a1:evaluation-captrue
+q78:fourier-half-line:simpson-companion:a1:finite-returntrue
+q78:fourier-half-line:simpson-companion:a1:native-statustrue
+q78:fourier-half-line:simpson-companion:a2:callback-ledgertrue
+q78:fourier-half-line:simpson-companion:a2:evaluation-captrue
+q78:fourier-half-line:simpson-companion:a2:finite-returntrue
+q78:fourier-half-line:simpson-companion:a2:native-statustrue
+q78:internal-root:specialized-quadpack:a0:callback-ledgertrue
+q78:internal-root:specialized-quadpack:a0:finite-returntrue
+q78:internal-root:specialized-quadpack:a0:native-successtrue
+q78:internal-root:specialized-quadpack:a0:required-analytic-accuracytrue
+q78:internal-root:specialized-quadpack:a0:absolute-seriestrue
+q78:internal-root:specialized-quadpack:a1:callback-ledgertrue
+q78:internal-root:specialized-quadpack:a1:finite-returntrue
+q78:internal-root:specialized-quadpack:a1:native-successtrue
+q78:internal-root:specialized-quadpack:a1:required-analytic-accuracytrue
+q78:internal-root:specialized-quadpack:a1:absolute-seriestrue
+q78:internal-root:specialized-quadpack:a2:callback-ledgertrue
+q78:internal-root:specialized-quadpack:a2:finite-returntrue
+q78:internal-root:specialized-quadpack:a2:native-successtrue
+q78:internal-root:specialized-quadpack:a2:required-analytic-accuracytrue
+q78:internal-root:specialized-quadpack:a2:absolute-seriestrue
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:internal-root:simpson-companion:a0:callback-ledgertrue
+q78:internal-root:simpson-companion:a0:evaluation-captrue
+q78:internal-root:simpson-companion:a0:declared-singular-nodetrue
+q78:internal-root:simpson-companion:a1:callback-ledgertrue
+q78:internal-root:simpson-companion:a1:evaluation-captrue
+q78:internal-root:simpson-companion:a1:declared-singular-nodetrue
+q78:internal-root:simpson-companion:a2:callback-ledgertrue
+q78:internal-root:simpson-companion:a2:evaluation-captrue
+q78:internal-root:simpson-companion:a2:declared-singular-nodetrue
+quadpack-domain-selection:fixed-record-counttrue
+quadpack-domain-selection:unique-record-idstrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Saved active Fourier contributions and actual errors/call countsRead every stored record
+row_idsequenceintegrand_idmethod_iddimensionabsolute_tolerancestepcutoffmethod_codelevelvalueevaluationsestimated_errorconvergedterminationaccuracy_goal_meterror_lowererror_upperraw_fileroutinenative_messagesactive_partition_or_cyclesaccuracy_goal_statebaseline_accuracy_is_not_mandatoryfull_improper_error_interval
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:gaussian-whole-line:specialized-quadpack:a078gaussian-whole-linespecialized-quadpack—1e-06——0—1.772453850912103.42954887496e-08truelibrary_successtrue2.22044604925e-152.6645352591e-15raw/q78__gaussian-whole-line__specialized-quadpack__a0.npzqagie[]{"alist":[0.125,0.5,0.25,0.0],"blist":[0.25,1.0,0.5,0.125],"rlist":[3.9154386473573276e-05,1.4936482656248538,0.2787664308941864,7.43647065379499e-23],"elist":[6.921731761280723e-10,1.350971374075594e-08,2.0093601818829513e-08,1.421161611468685e-22]}met——
+q78:gaussian-whole-line:specialized-quadpack:a178gaussian-whole-linespecialized-quadpack—1e-08——0—1.772453850913306.93191076833e-10truelibrary_successtrue04.4408920985e-16raw/q78__gaussian-whole-line__specialized-quadpack__a1.npzqagie[]{"alist":[0.125,0.5,0.25,0.75,0.0,0.375],"blist":[0.25,0.75,0.375,1.0,0.125,0.5],"rlist":[3.9154386473573276e-05,0.8508712234014818,0.032613212816508766,0.6427770422233723,7.43647065379499e-23,0.24615321807767965],"elist":[6.921731761280723e-10,2.6062187768219587e-13,7.473957954696515e-13,7.136258719768444e-15,1.421161611468685e-22,2.7328497029541727e-15]}met——
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:gaussian-whole-line:specialized-quadpack:a278gaussian-whole-linespecialized-quadpack—1e-10——0—1.772453850913901.03068814179e-12truelibrary_successtrue02.22044604925e-16raw/q78__gaussian-whole-line__specialized-quadpack__a2.npzqagie[]{"alist":[0.125,0.5,0.25,0.75,0.0,0.375,0.1875],"blist":[0.1875,0.75,0.375,1.0,0.125,0.5,0.25],"rlist":[1.574754422354945e-09,0.8508712234014818,0.032613212816508766,0.6427770422233723,7.43647065379499e-23,0.24615321807767965,3.915281171913715e-05],"elist":[1.205092855126857e-14,2.6062187768219587e-13,7.473957954696515e-13,7.136258719768444e-15,1.421161611468685e-22,2.7328497029541727e-15,7.365078267278642e-16]}met——
+q78:gaussian-whole-line:simpson-companion:a078gaussian-whole-linesimpson-companion—1e-06——1—1.772453852972091.53312891099e-07trueestimated_tolerancetrue2.06019645788e-092.06019712401e-09raw/q78__gaussian-whole-line__simpson-companion__a0.npz———mettrue[2.0601964578759176e-09,2.0601969019651282e-09]
+q78:gaussian-whole-line:simpson-companion:a178gaussian-whole-linesimpson-companion—1e-08——1—1.772453851025772.59643305885e-09trueestimated_tolerancetrue1.18221210599e-101.18221876733e-10raw/q78__gaussian-whole-line__simpson-companion__a1.npz———mettrue[1.1822121059879007e-10,1.1822165468799997e-10]
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:gaussian-whole-line:simpson-companion:a278gaussian-whole-linesimpson-companion—1e-10——1—1.7724538509817775.22590412822e-11trueestimated_tolerancetrue7.75999264846e-117.76005926184e-11raw/q78__gaussian-whole-line__simpson-companion__a2.npz———mettrue[7.7599926484595e-11,7.760037057380488e-11]
+q78:finite-sine-40:specialized-quadpack:a078finite-sine-40specialized-quadpack—1e-06——0—0.0309431606768251.06186429913e-18truelibrary_successtrue6.93889390391e-181.38777878078e-17raw/q78__finite-sine-40__specialized-quadpack__a0.npzqawoe[]{"alist":[],"blist":[],"rlist":[],"elist":[]}met——
+q78:finite-sine-40:specialized-quadpack:a178finite-sine-40specialized-quadpack—1e-08——0—0.0309431606768251.06186429913e-18truelibrary_successtrue6.93889390391e-181.38777878078e-17raw/q78__finite-sine-40__specialized-quadpack__a1.npzqawoe[]{"alist":[],"blist":[],"rlist":[],"elist":[]}met——
+q78:finite-sine-40:specialized-quadpack:a278finite-sine-40specialized-quadpack—1e-10——0—0.0309431606768251.06186429913e-18truelibrary_successtrue6.93889390391e-181.38777878078e-17raw/q78__finite-sine-40__specialized-quadpack__a2.npzqawoe[]{"alist":[],"blist":[],"rlist":[],"elist":[]}met——
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:finite-sine-40:simpson-companion:a078finite-sine-40simpson-companion—1e-06——1—0.03094316441034132.82172329255e-07trueestimated_tolerancetrue3.73349895791e-093.73349896485e-09raw/q78__finite-sine-40__simpson-companion__a0.npz———mettrue—
+q78:finite-sine-40:simpson-companion:a178finite-sine-40simpson-companion—1e-08——1—0.030943160676510934.58017448288e-09trueestimated_tolerancetrue2.82933398932e-132.82940337826e-13raw/q78__finite-sine-40__simpson-companion__a1.npz———mettrue—
+q78:finite-sine-40:simpson-companion:a278finite-sine-40simpson-companion—1e-10——1—0.030943160676838052.7760176641e-11trueestimated_tolerancetrue1.1622647289e-151.16920362281e-15raw/q78__finite-sine-40__simpson-companion__a2.npz———mettrue—
+q78:finite-sine-120:specialized-quadpack:a078finite-sine-120specialized-quadpack—1e-06——0—0.00582209237053252.04874476107e-18truelibrary_successtrue8.67361737988e-192.60208521397e-18raw/q78__finite-sine-120__specialized-quadpack__a0.npzqawoe[]{"alist":[],"blist":[],"rlist":[],"elist":[]}met——
+q78:finite-sine-120:specialized-quadpack:a178finite-sine-120specialized-quadpack—1e-08——0—0.00582209237053252.04874476107e-18truelibrary_successtrue8.67361737988e-192.60208521397e-18raw/q78__finite-sine-120__specialized-quadpack__a1.npzqawoe[]{"alist":[],"blist":[],"rlist":[],"elist":[]}met——
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:finite-sine-120:specialized-quadpack:a278finite-sine-120specialized-quadpack—1e-10——0—0.00582209237053252.04874476107e-18truelibrary_successtrue8.67361737988e-192.60208521397e-18raw/q78__finite-sine-120__specialized-quadpack__a2.npzqawoe[]{"alist":[],"blist":[],"rlist":[],"elist":[]}met——
+q78:finite-sine-120:simpson-companion:a078finite-sine-120simpson-companion—1e-06——1—0.00582209230779974.37486670586e-07trueestimated_tolerancetrue6.28320321119e-116.28320338467e-11raw/q78__finite-sine-120__simpson-companion__a0.npz———mettrue—
+q78:finite-sine-120:simpson-companion:a178finite-sine-120simpson-companion—1e-08——1—0.005822092370937412.43353911221e-09trueestimated_tolerancetrue3.71298478075e-133.71300212798e-13raw/q78__finite-sine-120__simpson-companion__a1.npz———mettrue—
+q78:finite-sine-120:simpson-companion:a278finite-sine-120simpson-companion—1e-10——1—-0.001629203998168193—falseevaluation_budgetfalse0.007451296368690.00745129636869raw/q78__finite-sine-120__simpson-companion__a2.npz———unmettrue—
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:fourier-half-line:specialized-quadpack:a078fourier-half-linespecialized-quadpack—1e-06——0—0.1230769230771255.1044560226e-09truelibrary_successtrue01.38777878078e-17raw/q78__fourier-half-line__specialized-quadpack__a0.npzqawfe[]{"ierlst":[0,0,0,0,0],"rslst":[0.12323211777431406,-0.0001553903912180218,1.959405885331852e-07,-2.4707264029513714e-10,3.1154795460906496e-13],"erlst":[5.10445588595601e-10,6.436498002310715e-13,8.116147661278235e-16,1.023411739295527e-18,1.2904781702235121e-21]}met——
+q78:fourier-half-line:specialized-quadpack:a178fourier-half-linespecialized-quadpack—1e-08——0—0.1230769230771255.1044560226e-09truelibrary_successtrue01.38777878078e-17raw/q78__fourier-half-line__specialized-quadpack__a1.npzqawfe[]{"ierlst":[0,0,0,0,0],"rslst":[0.12323211777431406,-0.0001553903912180218,1.959405885331852e-07,-2.4707264029513714e-10,3.1154795460906496e-13],"erlst":[5.10445588595601e-10,6.436498002310715e-13,8.116147661278235e-16,1.023411739295527e-18,1.2904781702235121e-21]}met——
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:fourier-half-line:specialized-quadpack:a278fourier-half-linespecialized-quadpack—1e-10——0—0.1230769230772256.43663464514e-12truelibrary_successtrue4.16333634234e-176.93889390391e-17raw/q78__fourier-half-line__specialized-quadpack__a2.npzqawfe[]{"ierlst":[0,0,0,0,0],"rslst":[0.123232117774314,-0.0001553903912180218,1.959405885331852e-07,-2.4707264029513714e-10,3.1154795460906496e-13],"erlst":[3.5317225614938334e-13,6.436498002310715e-13,8.116147661278235e-16,1.023411739295527e-18,1.2904781702235121e-21]}met——
+q78:fourier-half-line:simpson-companion:a078fourier-half-linesimpson-companion—1e-06——1—0.1230830451927294.9988428053e-07trueestimated_tolerancetrue6.12211023134e-066.12211023136e-06raw/q78__fourier-half-line__simpson-companion__a0.npz———mettrue[6.122114781265119e-06,6.122114781292876e-06]
+q78:fourier-half-line:simpson-companion:a178fourier-half-linesimpson-companion—1e-08——1—0.12307696311224012.55650929171e-09trueestimated_tolerancetrue4.0030894502e-084.00308945298e-08raw/q78__fourier-half-line__simpson-companion__a1.npz———mettrue[4.0035444431874006e-08,4.0035444459629594e-08]
+q78:fourier-half-line:simpson-companion:a278fourier-half-linesimpson-companion—1e-10——1—0.12307691077674574.25477573116e-11trueestimated_tolerancefalse1.23052558282e-081.23052558559e-08raw/q78__fourier-half-line__simpson-companion__a2.npz———unmettrue[1.2300705898304896e-08,1.2300705926060475e-08]
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:internal-root:specialized-quadpack:a078internal-rootspecialized-quadpack—1e-06——0—2.805883701484621.34114941375e-13truelibrary_successtrue1.11022302463e-141.1990408666e-14raw/q78__internal-root__specialized-quadpack__a0.npzqagpe[]{"alist":[0.36328125,0.375,0.6875,0.0,0.53125,0.1875,0.453125,0.28125,0.4140625,0.328125,0.39453125,0.3515625],"blist":[0.375,0.39453125,1.0,0.1875,0.6875,0.28125,0.53125,0.328125,0.453125,0.3515625,0.4140625,0.36328125],"rlist":[0.21299090646061108,0.27497007787184324,0.4631048413342948,0.3587194676071504,0.32746457370779997,0.2536529680886441,0.2315524206671474,0.1793597338035752,0.16373228685389998,0.12682648404432206,0.11577621033357371,0.0896798669017876],"elist":[0.10313136738172785,0.13314202278032422,5.14149657664714e-15,3.982586123187364e-15,3.635587094794612e-15,2.816113654365228e-15,2.57074828832357e-15,1.991293061593682e-15,1.817793547397306e-15,1.408056827182614e-15,1.285374144161785e-15,9.95646530796841e-16]}met——
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:internal-root:specialized-quadpack:a178internal-rootspecialized-quadpack—1e-08——0—2.805883701484621.34114941375e-13truelibrary_successtrue1.11022302463e-141.1990408666e-14raw/q78__internal-root__specialized-quadpack__a1.npzqagpe[]{"alist":[0.36328125,0.375,0.6875,0.0,0.53125,0.1875,0.453125,0.28125,0.4140625,0.328125,0.39453125,0.3515625],"blist":[0.375,0.39453125,1.0,0.1875,0.6875,0.28125,0.53125,0.328125,0.453125,0.3515625,0.4140625,0.36328125],"rlist":[0.21299090646061108,0.27497007787184324,0.4631048413342948,0.3587194676071504,0.32746457370779997,0.2536529680886441,0.2315524206671474,0.1793597338035752,0.16373228685389998,0.12682648404432206,0.11577621033357371,0.0896798669017876],"elist":[0.10313136738172785,0.13314202278032422,5.14149657664714e-15,3.982586123187364e-15,3.635587094794612e-15,2.816113654365228e-15,2.57074828832357e-15,1.991293061593682e-15,1.817793547397306e-15,1.408056827182614e-15,1.285374144161785e-15,9.95646530796841e-16]}met——
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:internal-root:specialized-quadpack:a278internal-rootspecialized-quadpack—1e-10——0—2.805883701484621.34114941375e-13truelibrary_successtrue1.11022302463e-141.1990408666e-14raw/q78__internal-root__specialized-quadpack__a2.npzqagpe[]{"alist":[0.36328125,0.375,0.6875,0.0,0.53125,0.1875,0.453125,0.28125,0.4140625,0.328125,0.39453125,0.3515625],"blist":[0.375,0.39453125,1.0,0.1875,0.6875,0.28125,0.53125,0.328125,0.453125,0.3515625,0.4140625,0.36328125],"rlist":[0.21299090646061108,0.27497007787184324,0.4631048413342948,0.3587194676071504,0.32746457370779997,0.2536529680886441,0.2315524206671474,0.1793597338035752,0.16373228685389998,0.12682648404432206,0.11577621033357371,0.0896798669017876],"elist":[0.10313136738172785,0.13314202278032422,5.14149657664714e-15,3.982586123187364e-15,3.635587094794612e-15,2.816113654365228e-15,2.57074828832357e-15,1.991293061593682e-15,1.817793547397306e-15,1.408056827182614e-15,1.285374144161785e-15,9.95646530796841e-16]}met——
+q78:internal-root:simpson-companion:a078internal-rootsimpson-companion—1e-06——1——6—falsesingular_node_control———raw/q78__internal-root__simpson-companion__a0.npz———not_computable_at_sampled_singularity——
+q78:internal-root:simpson-companion:a178internal-rootsimpson-companion—1e-08——1——6—falsesingular_node_control———raw/q78__internal-root__simpson-companion__a1.npz———not_computable_at_sampled_singularity——
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:internal-root:simpson-companion:a278internal-rootsimpson-companion—1e-10——1——6—falsesingular_node_control———raw/q78__internal-root__simpson-companion__a2.npz———not_computable_at_sampled_singularity——
+Measurements and complete records / JSON
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#quadpack-domain-selection-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+quad: adaptive integration and QUADPACK dispatch [accessed 2026-11-25]
+Review scope / review_level: selected-official-documentation
+
+## Domain-aware, double-exponential and sparse-grid quadrature — G7/K15 and finite-interval tanh-sinh [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/
+Coverage: reading
+
+Nine adaptive GK rows and twenty-four fixed DE sums are compared.
+Methods, equations, figures and references
+Methods used
+Gaussian and adaptive quadrature
+Gauss–Kronrod G7/K15
+Tanh–sinh double-exponential quadrature
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Shared15-node G7 degree13/K15 degree23; DE uses stable logarithmic products and full endpoint weights.
+Finite, improper and multivariate definite integrals
+Integrate exp(x), x^(-1/3) and -log(x) on[0,1], with h from1/2 to1/16 and cutoffs3/4.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+G7/K15 and finite-interval tanh-sinh
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Analytic interval references separate total error, continuous tail and finite-window defect.
+Same-problem reference · Analytic reference
+G7/K15 and finite-interval tanh-sinh
+Half-line exp-sinh and whole-line sinh-sinh are unimplemented; no omitted infinite-grid sum bound is provided.
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#gk15-double-exponential-assumptions
+Coverage: reading
+
+Integrate exp(x), x^(-1/3) and -log(x) on[0,1], with h from1/2 to1/16 and cutoffs3/4.
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#gk15-double-exponential-algorithm
+Coverage: reading
+
+Shared15-node G7 degree13/K15 degree23; DE uses stable logarithmic products and full endpoint weights.
+
+## Domain-aware, double-exponential and sparse-grid quadrature — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#gk15-double-exponential-validation
+Coverage: reading
+
+Analytic interval references separate total error, continuous tail and finite-window defect.
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#gk15-double-exponential-limits
+Coverage: reading
+
+Half-line exp-sinh and whole-line sinh-sinh are unimplemented; no omitted infinite-grid sum bound is provided.
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#gk15-double-exponential-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+records33
+integrand_evaluations5619
+accuracy_goals_met26
+accuracy_goals_unmet7
+accuracy_goals_unresolved0
+estimated_converged_rows28
+判定 / checkPassed
+q79:smooth-exponential:gk:a0:callback-ledgertrue
+q79:smooth-exponential:gk:a0:evaluation-captrue
+q79:smooth-exponential:gk:a0:finite-returntrue
+q79:smooth-exponential:gk:a0:panel-call-identitytrue
+q79:smooth-exponential:gk:a0:panel-capstrue
+q79:smooth-exponential:gk:a0:success-accuracy-or-explicit-budgettrue
+q79:smooth-exponential:gk:a1:callback-ledgertrue
+q79:smooth-exponential:gk:a1:evaluation-captrue
+q79:smooth-exponential:gk:a1:finite-returntrue
+q79:smooth-exponential:gk:a1:panel-call-identitytrue
+q79:smooth-exponential:gk:a1:panel-capstrue
+q79:smooth-exponential:gk:a1:success-accuracy-or-explicit-budgettrue
+q79:smooth-exponential:gk:a2:callback-ledgertrue
+q79:smooth-exponential:gk:a2:evaluation-captrue
+q79:smooth-exponential:gk:a2:finite-returntrue
+q79:smooth-exponential:gk:a2:panel-call-identitytrue
+q79:smooth-exponential:gk:a2:panel-capstrue
+q79:smooth-exponential:gk:a2:success-accuracy-or-explicit-budgettrue
+q79:smooth-exponential:de:T3:h0:callback-ledgertrue
+q79:smooth-exponential:de:T3:h0:evaluation-captrue
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#gk15-double-exponential-measurements
+Coverage: reading
+
+q79:smooth-exponential:de:T3:h0:finite-returntrue
+q79:smooth-exponential:de:T3:h0:fixed-sample-counttrue
+q79:smooth-exponential:de:T3:h1:callback-ledgertrue
+q79:smooth-exponential:de:T3:h1:evaluation-captrue
+q79:smooth-exponential:de:T3:h1:finite-returntrue
+q79:smooth-exponential:de:T3:h1:fixed-sample-counttrue
+q79:smooth-exponential:de:T3:h2:callback-ledgertrue
+q79:smooth-exponential:de:T3:h2:evaluation-captrue
+q79:smooth-exponential:de:T3:h2:finite-returntrue
+q79:smooth-exponential:de:T3:h2:fixed-sample-counttrue
+q79:smooth-exponential:de:T3:h3:callback-ledgertrue
+q79:smooth-exponential:de:T3:h3:evaluation-captrue
+q79:smooth-exponential:de:T3:h3:finite-returntrue
+q79:smooth-exponential:de:T3:h3:fixed-sample-counttrue
+q79:smooth-exponential:de:T4:h0:callback-ledgertrue
+q79:smooth-exponential:de:T4:h0:evaluation-captrue
+q79:smooth-exponential:de:T4:h0:finite-returntrue
+q79:smooth-exponential:de:T4:h0:fixed-sample-counttrue
+q79:smooth-exponential:de:T4:h1:callback-ledgertrue
+q79:smooth-exponential:de:T4:h1:evaluation-captrue
+q79:smooth-exponential:de:T4:h1:finite-returntrue
+q79:smooth-exponential:de:T4:h1:fixed-sample-counttrue
+q79:smooth-exponential:de:T4:h2:callback-ledgertrue
+q79:smooth-exponential:de:T4:h2:evaluation-captrue
+q79:smooth-exponential:de:T4:h2:finite-returntrue
+q79:smooth-exponential:de:T4:h2:fixed-sample-counttrue
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#gk15-double-exponential-measurements
+Coverage: reading
+
+q79:smooth-exponential:de:T4:h3:callback-ledgertrue
+q79:smooth-exponential:de:T4:h3:evaluation-captrue
+q79:smooth-exponential:de:T4:h3:finite-returntrue
+q79:smooth-exponential:de:T4:h3:fixed-sample-counttrue
+q79:smooth-exponential:de:T4:h3:required-finest-accuracytrue
+q79:algebraic-inverse-cuberoot:gk:a0:callback-ledgertrue
+q79:algebraic-inverse-cuberoot:gk:a0:evaluation-captrue
+q79:algebraic-inverse-cuberoot:gk:a0:finite-returntrue
+q79:algebraic-inverse-cuberoot:gk:a0:panel-call-identitytrue
+q79:algebraic-inverse-cuberoot:gk:a0:panel-capstrue
+q79:algebraic-inverse-cuberoot:gk:a0:success-accuracy-or-explicit-budgettrue
+q79:algebraic-inverse-cuberoot:gk:a1:callback-ledgertrue
+q79:algebraic-inverse-cuberoot:gk:a1:evaluation-captrue
+q79:algebraic-inverse-cuberoot:gk:a1:finite-returntrue
+q79:algebraic-inverse-cuberoot:gk:a1:panel-call-identitytrue
+q79:algebraic-inverse-cuberoot:gk:a1:panel-capstrue
+q79:algebraic-inverse-cuberoot:gk:a1:success-accuracy-or-explicit-budgettrue
+q79:algebraic-inverse-cuberoot:gk:a2:callback-ledgertrue
+q79:algebraic-inverse-cuberoot:gk:a2:evaluation-captrue
+q79:algebraic-inverse-cuberoot:gk:a2:finite-returntrue
+q79:algebraic-inverse-cuberoot:gk:a2:panel-call-identitytrue
+q79:algebraic-inverse-cuberoot:gk:a2:panel-capstrue
+q79:algebraic-inverse-cuberoot:gk:a2:success-accuracy-or-explicit-budgettrue
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#gk15-double-exponential-measurements
+Coverage: reading
+
+q79:algebraic-inverse-cuberoot:de:T3:h0:callback-ledgertrue
+q79:algebraic-inverse-cuberoot:de:T3:h0:evaluation-captrue
+q79:algebraic-inverse-cuberoot:de:T3:h0:finite-returntrue
+q79:algebraic-inverse-cuberoot:de:T3:h0:fixed-sample-counttrue
+q79:algebraic-inverse-cuberoot:de:T3:h1:callback-ledgertrue
+q79:algebraic-inverse-cuberoot:de:T3:h1:evaluation-captrue
+q79:algebraic-inverse-cuberoot:de:T3:h1:finite-returntrue
+q79:algebraic-inverse-cuberoot:de:T3:h1:fixed-sample-counttrue
+q79:algebraic-inverse-cuberoot:de:T3:h2:callback-ledgertrue
+q79:algebraic-inverse-cuberoot:de:T3:h2:evaluation-captrue
+q79:algebraic-inverse-cuberoot:de:T3:h2:finite-returntrue
+q79:algebraic-inverse-cuberoot:de:T3:h2:fixed-sample-counttrue
+q79:algebraic-inverse-cuberoot:de:T3:h3:callback-ledgertrue
+q79:algebraic-inverse-cuberoot:de:T3:h3:evaluation-captrue
+q79:algebraic-inverse-cuberoot:de:T3:h3:finite-returntrue
+q79:algebraic-inverse-cuberoot:de:T3:h3:fixed-sample-counttrue
+q79:algebraic-inverse-cuberoot:de:T4:h0:callback-ledgertrue
+q79:algebraic-inverse-cuberoot:de:T4:h0:evaluation-captrue
+q79:algebraic-inverse-cuberoot:de:T4:h0:finite-returntrue
+q79:algebraic-inverse-cuberoot:de:T4:h0:fixed-sample-counttrue
+q79:algebraic-inverse-cuberoot:de:T4:h1:callback-ledgertrue
+q79:algebraic-inverse-cuberoot:de:T4:h1:evaluation-captrue
+q79:algebraic-inverse-cuberoot:de:T4:h1:finite-returntrue
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#gk15-double-exponential-measurements
+Coverage: reading
+
+q79:algebraic-inverse-cuberoot:de:T4:h1:fixed-sample-counttrue
+q79:algebraic-inverse-cuberoot:de:T4:h2:callback-ledgertrue
+q79:algebraic-inverse-cuberoot:de:T4:h2:evaluation-captrue
+q79:algebraic-inverse-cuberoot:de:T4:h2:finite-returntrue
+q79:algebraic-inverse-cuberoot:de:T4:h2:fixed-sample-counttrue
+q79:algebraic-inverse-cuberoot:de:T4:h3:callback-ledgertrue
+q79:algebraic-inverse-cuberoot:de:T4:h3:evaluation-captrue
+q79:algebraic-inverse-cuberoot:de:T4:h3:finite-returntrue
+q79:algebraic-inverse-cuberoot:de:T4:h3:fixed-sample-counttrue
+q79:algebraic-inverse-cuberoot:de:T4:h3:required-finest-accuracytrue
+q79:log-endpoint:gk:a0:callback-ledgertrue
+q79:log-endpoint:gk:a0:evaluation-captrue
+q79:log-endpoint:gk:a0:finite-returntrue
+q79:log-endpoint:gk:a0:panel-call-identitytrue
+q79:log-endpoint:gk:a0:panel-capstrue
+q79:log-endpoint:gk:a0:success-accuracy-or-explicit-budgettrue
+q79:log-endpoint:gk:a1:callback-ledgertrue
+q79:log-endpoint:gk:a1:evaluation-captrue
+q79:log-endpoint:gk:a1:finite-returntrue
+q79:log-endpoint:gk:a1:panel-call-identitytrue
+q79:log-endpoint:gk:a1:panel-capstrue
+q79:log-endpoint:gk:a1:success-accuracy-or-explicit-budgettrue
+q79:log-endpoint:gk:a2:callback-ledgertrue
+q79:log-endpoint:gk:a2:evaluation-captrue
+q79:log-endpoint:gk:a2:finite-returntrue
+q79:log-endpoint:gk:a2:panel-call-identitytrue
+q79:log-endpoint:gk:a2:panel-capstrue
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#gk15-double-exponential-measurements
+Coverage: reading
+
+q79:log-endpoint:gk:a2:success-accuracy-or-explicit-budgettrue
+q79:log-endpoint:de:T3:h0:callback-ledgertrue
+q79:log-endpoint:de:T3:h0:evaluation-captrue
+q79:log-endpoint:de:T3:h0:finite-returntrue
+q79:log-endpoint:de:T3:h0:fixed-sample-counttrue
+q79:log-endpoint:de:T3:h1:callback-ledgertrue
+q79:log-endpoint:de:T3:h1:evaluation-captrue
+q79:log-endpoint:de:T3:h1:finite-returntrue
+q79:log-endpoint:de:T3:h1:fixed-sample-counttrue
+q79:log-endpoint:de:T3:h2:callback-ledgertrue
+q79:log-endpoint:de:T3:h2:evaluation-captrue
+q79:log-endpoint:de:T3:h2:finite-returntrue
+q79:log-endpoint:de:T3:h2:fixed-sample-counttrue
+q79:log-endpoint:de:T3:h3:callback-ledgertrue
+q79:log-endpoint:de:T3:h3:evaluation-captrue
+q79:log-endpoint:de:T3:h3:finite-returntrue
+q79:log-endpoint:de:T3:h3:fixed-sample-counttrue
+q79:log-endpoint:de:T4:h0:callback-ledgertrue
+q79:log-endpoint:de:T4:h0:evaluation-captrue
+q79:log-endpoint:de:T4:h0:finite-returntrue
+q79:log-endpoint:de:T4:h0:fixed-sample-counttrue
+q79:log-endpoint:de:T4:h1:callback-ledgertrue
+q79:log-endpoint:de:T4:h1:evaluation-captrue
+q79:log-endpoint:de:T4:h1:finite-returntrue
+q79:log-endpoint:de:T4:h1:fixed-sample-counttrue
+q79:log-endpoint:de:T4:h2:callback-ledgertrue
+q79:log-endpoint:de:T4:h2:evaluation-captrue
+q79:log-endpoint:de:T4:h2:finite-returntrue
+q79:log-endpoint:de:T4:h2:fixed-sample-counttrue
+q79:log-endpoint:de:T4:h3:callback-ledgertrue
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#gk15-double-exponential-measurements
+Coverage: reading
+
+q79:log-endpoint:de:T4:h3:evaluation-captrue
+q79:log-endpoint:de:T4:h3:finite-returntrue
+q79:log-endpoint:de:T4:h3:fixed-sample-counttrue
+q79:log-endpoint:de:T4:h3:required-finest-accuracytrue
+gk15-double-exponential:fixed-record-counttrue
+gk15-double-exponential:unique-record-idstrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Saved transformed integrands and finite-window defects; continuous tails are distinctRead every stored record
+row_idsequenceintegrand_idmethod_iddimensionabsolute_tolerancestepcutoffmethod_codelevelvalueevaluationsestimated_errorconvergedterminationaccuracy_goal_meterror_lowererror_upperraw_fileaccuracy_goal_statesigned_continuous_tailsigned_finite_window_defectsigned_full_integral_defecthalf_endpoint_correctionomitted_infinite_grid_sum_bound_provided
+q79:smooth-exponential:gk:a079smooth-exponentialadaptive-g7-k15—1e-06——2—1.71828182846151.90767604875e-14trueestimated_tolerancetrue02.22044604925e-16raw/q79__smooth-exponential__gk__a0.npzmet—————
+q79:smooth-exponential:gk:a179smooth-exponentialadaptive-g7-k15—1e-08——2—1.71828182846151.90767604875e-14trueestimated_tolerancetrue02.22044604925e-16raw/q79__smooth-exponential__gk__a1.npzmet—————
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#gk15-double-exponential-measurements
+Coverage: reading
+
+q79:smooth-exponential:gk:a279smooth-exponentialadaptive-g7-k15—1e-10——2—1.71828182846151.90767604875e-14trueestimated_tolerancetrue02.22044604925e-16raw/q79__smooth-exponential__gk__a2.npzmet—————
+q79:smooth-exponential:de:T3:h079smooth-exponentialfinite-tanh-sinh——0.533—1.7182207916613—truefixed_sum_completedfalse6.10368014977e-056.10368014982e-05raw/q79__smooth-exponential__de__T3__h0.npzunmet7.98345051127e-146.1036801418e-056.10368014979e-056.31261270826e-13false
+q79:smooth-exponential:de:T3:h179smooth-exponentialfinite-tanh-sinh——0.2533—1.7182818284725—truefixed_sum_completedtrue1.54165569199e-111.54170010092e-11raw/q79__smooth-exponential__de__T3__h1.npzmet7.98345051127e-14-1.54967150223e-11-1.54167789645e-113.15630635413e-13false
+q79:smooth-exponential:de:T3:h279smooth-exponentialfinite-tanh-sinh——0.12533—1.7182818284649—truefixed_sum_completedtrue5.10702591328e-155.55111512313e-15raw/q79__smooth-exponential__de__T3__h2.npzmet7.98345051127e-14-7.46069872548e-145.3290705182e-151.57815317706e-13false
+q79:smooth-exponential:de:T3:h379smooth-exponentialfinite-tanh-sinh——0.062533—1.7182818284697—truefixed_sum_completedtrue2.44249065418e-142.48689957516e-14raw/q79__smooth-exponential__de__T3__h3.npzmet7.98345051127e-14-5.52891066263e-142.46469511467e-147.89076588532e-14false
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#gk15-double-exponential-measurements
+Coverage: reading
+
+q79:smooth-exponential:de:T4:h079smooth-exponentialfinite-tanh-sinh——0.543—1.7182207916617—truefixed_sum_completedfalse6.10368014977e-056.10368014982e-05raw/q79__smooth-exponential__de__T4__h0.npzunmet2.17082383882e-376.10368014979e-056.10368014979e-054.65594734954e-36false
+q79:smooth-exponential:de:T4:h179smooth-exponentialfinite-tanh-sinh——0.2543—1.7182818284733—truefixed_sum_completedtrue1.54167789645e-111.54172230538e-11raw/q79__smooth-exponential__de__T4__h1.npzmet2.17082383882e-37-1.54170010092e-11-1.54170010092e-112.32797367477e-36false
+q79:smooth-exponential:de:T4:h279smooth-exponentialfinite-tanh-sinh——0.12543—1.7182818284665—truefixed_sum_completedtrue02.22044604925e-16raw/q79__smooth-exponential__de__T4__h2.npzmet2.17082383882e-37001.16398683738e-36false
+q79:smooth-exponential:de:T4:h379smooth-exponentialfinite-tanh-sinh——0.062543—1.71828182846129—truefixed_sum_completedtrue02.22044604925e-16raw/q79__smooth-exponential__de__T4__h3.npzmet2.17082383882e-37005.81993418692e-37false
+q79:algebraic-inverse-cuberoot:gk:a079algebraic-inverse-cuberootadaptive-g7-k15—1e-06——2—1.499999880297356.58424652044e-06falsedepth_budgettrue1.19705341861e-071.19705342305e-07raw/q79__algebraic-inverse-cuberoot__gk__a0.npzmet—————
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#gk15-double-exponential-measurements
+Coverage: reading
+
+q79:algebraic-inverse-cuberoot:gk:a179algebraic-inverse-cuberootadaptive-g7-k15—1e-08——2—1.499999880297356.58424652044e-06falsedepth_budgettrue1.19705341861e-071.19705342305e-07raw/q79__algebraic-inverse-cuberoot__gk__a1.npzmet—————
+q79:algebraic-inverse-cuberoot:gk:a279algebraic-inverse-cuberootadaptive-g7-k15—1e-10——2—1.499999880297356.58424652044e-06falsedepth_budgetfalse1.19705341861e-071.19705342305e-07raw/q79__algebraic-inverse-cuberoot__gk__a2.npzunmet—————
+q79:algebraic-inverse-cuberoot:de:T3:h079algebraic-inverse-cuberootfinite-tanh-sinh——0.533—1.5000011084913—truefixed_sum_completedfalse1.10848713852e-061.10848713897e-06raw/q79__algebraic-inverse-cuberoot__de__T3__h0.npzunmet1.1587725401e-09-1.10964591138e-06-1.10848713875e-066.10842811283e-09false
+q79:algebraic-inverse-cuberoot:de:T3:h179algebraic-inverse-cuberootfinite-tanh-sinh——0.2533—1.4999999999825—truefixed_sum_completedtrue1.97082350439e-111.97086791331e-11raw/q79__algebraic-inverse-cuberoot__de__T3__h1.npzmet1.1587725401e-09-1.13906417631e-091.97084570885e-113.05421405642e-09false
+q79:algebraic-inverse-cuberoot:de:T3:h279algebraic-inverse-cuberootfinite-tanh-sinh——0.12533—1.4999999997849—truefixed_sum_completedtrue2.19092965992e-102.19093410081e-10raw/q79__algebraic-inverse-cuberoot__de__T3__h2.npzmet1.1587725401e-09-9.39679445366e-102.19093188036e-101.52710702821e-09false
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#gk15-double-exponential-measurements
+Coverage: reading
+
+q79:algebraic-inverse-cuberoot:de:T3:h379algebraic-inverse-cuberootfinite-tanh-sinh——0.062533—1.4999999994597—truefixed_sum_completedtrue5.51543921645e-105.51544365734e-10raw/q79__algebraic-inverse-cuberoot__de__T3__h3.npzmet1.1587725401e-09-6.07228489713e-105.5154414369e-107.63553514104e-10false
+q79:algebraic-inverse-cuberoot:de:T4:h079algebraic-inverse-cuberootfinite-tanh-sinh——0.543—1.5000011084917—truefixed_sum_completedfalse1.10848716184e-061.10848716228e-06raw/q79__algebraic-inverse-cuberoot__de__T4__h0.npzunmet2.25742212723e-25-1.10848716206e-06-1.10848716206e-063.22778795839e-24false
+q79:algebraic-inverse-cuberoot:de:T4:h179algebraic-inverse-cuberootfinite-tanh-sinh——0.2543—1.533—truefixed_sum_completedtrue7.32747196253e-157.77156117238e-15raw/q79__algebraic-inverse-cuberoot__de__T4__h1.npzmet2.25742212723e-25-7.54951656745e-15-7.54951656745e-151.6138939792e-24false
+q79:algebraic-inverse-cuberoot:de:T4:h279algebraic-inverse-cuberootfinite-tanh-sinh——0.12543—1.565—truefixed_sum_completedtrue04.4408920985e-16raw/q79__algebraic-inverse-cuberoot__de__T4__h2.npzmet2.25742212723e-25-2.22044604925e-16-2.22044604925e-168.06946989598e-25false
+q79:algebraic-inverse-cuberoot:de:T4:h379algebraic-inverse-cuberootfinite-tanh-sinh——0.062543—1.5129—truefixed_sum_completedtrue02.22044604925e-16raw/q79__algebraic-inverse-cuberoot__de__T4__h3.npzmet2.25742212723e-25004.03473494799e-25false
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#gk15-double-exponential-measurements
+Coverage: reading
+
+q79:log-endpoint:gk:a079log-endpointadaptive-g7-k15—1e-06——2—0.9999999983866157.00494250045e-07trueestimated_tolerancetrue1.61425872669e-091.61425905976e-09raw/q79__log-endpoint__gk__a0.npzmet—————
+q79:log-endpoint:gk:a179log-endpointadaptive-g7-k15—1e-08——2—0.9999999998997354.37809107767e-08falsedepth_budgettrue1.00891073274e-101.00891406341e-10raw/q79__log-endpoint__gk__a1.npzmet—————
+q79:log-endpoint:gk:a279log-endpointadaptive-g7-k15—1e-10——2—0.9999999998997354.37809107767e-08falsedepth_budgettrue1.00891073274e-101.00891406341e-10raw/q79__log-endpoint__gk__a2.npzmet—————
+q79:log-endpoint:de:T3:h079log-endpointfinite-tanh-sinh——0.533—0.9999898648213—truefixed_sum_completedfalse1.01351795853e-051.01351795856e-05raw/q79__log-endpoint__de__T3__h0.npzunmet6.97201755576e-131.01351788881e-051.01351795854e-055.34308790188e-12false
+q79:log-endpoint:de:T3:h179log-endpointfinite-tanh-sinh——0.2533—125—truefixed_sum_completedtrue1.52322598979e-131.52655665886e-13raw/q79__log-endpoint__de__T3__h1.npzmet6.97201755576e-13-5.44786438184e-131.52433621281e-132.67154395094e-12false
+q79:log-endpoint:de:T3:h279log-endpointfinite-tanh-sinh——0.12533—149—truefixed_sum_completedtrue5.12923037377e-145.16253706451e-14raw/q79__log-endpoint__de__T3__h2.npzmet6.97201755576e-13-6.45816733424e-135.14033260401e-141.33577197547e-12false
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#gk15-double-exponential-measurements
+Coverage: reading
+
+q79:log-endpoint:de:T3:h379log-endpointfinite-tanh-sinh——0.062533—197—truefixed_sum_completedtrue2.25375273999e-132.25708340906e-13raw/q79__log-endpoint__de__T3__h3.npzmet6.97201755576e-13-4.71733763163e-132.25486296301e-136.67885987735e-13false
+q79:log-endpoint:de:T4:h079log-endpointfinite-tanh-sinh——0.543—0.9999898648217—truefixed_sum_completedfalse1.01351795853e-051.01351795856e-05raw/q79__log-endpoint__de__T4__h0.npzunmet5.06373149488e-361.01351795854e-051.01351795854e-051.07353905122e-34false
+q79:log-endpoint:de:T4:h179log-endpointfinite-tanh-sinh——0.2543—133—truefixed_sum_completedtrue1.51212375954e-131.51545442861e-13raw/q79__log-endpoint__de__T4__h1.npzmet5.06373149488e-361.51323398256e-131.51323398256e-135.3676952561e-35false
+q79:log-endpoint:de:T4:h279log-endpointfinite-tanh-sinh——0.12543—165—truefixed_sum_completedtrue02.22044604925e-16raw/q79__log-endpoint__de__T4__h2.npzmet5.06373149488e-36002.68384762805e-35false
+q79:log-endpoint:de:T4:h379log-endpointfinite-tanh-sinh——0.062543—1129—truefixed_sum_completedtrue02.22044604925e-16raw/q79__log-endpoint__de__T4__h3.npzmet5.06373149488e-36001.34192381403e-35false
+Measurements and complete records / JSON
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#gk15-double-exponential-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Pinned SciPy1.14.1 bundled dqk15 [accessed 2026-11-25]
+Review scope / review_level: primary-software-source
+Double Exponential Formulas for Numerical Integration [accessed 2026-11-25]
+Review scope / review_level: selected-primary-body-text
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Tensor and Smolyak controls in two to four dimensions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/
+Coverage: reading
+
+Forty-two fixed cubatures compare a smooth product and an interaction product.
+Methods, equations, figures and references
+Methods used
+Gaussian and adaptive quadrature
+Smolyak sparse-grid quadrature
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Canonical dyadic angle keys own shared nodes; signed weights and call ledgers are retained.
+Finite, improper and multivariate definite integrals
+The integration domain is[0,1]^d for d2/3/4; tensor levels1/2/3 and sparse levels1/2/3/4.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Tensor and Smolyak controls in two to four dimensions
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Analytic integrals are distinct from companion Delta/combination assembly; interaction underresolution at L<d remains visible.
+Same-problem reference · Analytic reference
+Tensor and Smolyak controls in two to four dimensions
+No general error monotonicity, positive-weight or cost-superiority claim; these are integration coordinates, not a physical PDE space.
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#tensor-smolyak-dimensions-assumptions
+Coverage: reading
+
+The integration domain is[0,1]^d for d2/3/4; tensor levels1/2/3 and sparse levels1/2/3/4.
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#tensor-smolyak-dimensions-algorithm
+Coverage: reading
+
+Canonical dyadic angle keys own shared nodes; signed weights and call ledgers are retained.
+
+## Domain-aware, double-exponential and sparse-grid quadrature — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#tensor-smolyak-dimensions-validation
+Coverage: reading
+
+Analytic integrals are distinct from companion Delta/combination assembly; interaction underresolution at L<d remains visible.
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#tensor-smolyak-dimensions-limits
+Coverage: reading
+
+No general error monotonicity, positive-weight or cost-superiority claim; these are integration coordinates, not a physical PDE space.
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.
+量 / metricMeasured value
+records42
+integrand_evaluations18482
+accuracy_goals_met24
+accuracy_goals_unmet18
+accuracy_goals_unresolved0
+estimated_converged_rows42
+判定 / checkPassed
+q80:d2:smooth-product:tensor-clenshaw-curtis:L1:callback-ledgertrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L1:evaluation-captrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L1:finite-returntrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L1:canonical-inventorytrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L1:masstrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L1:low-momentstrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L2:callback-ledgertrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L2:evaluation-captrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L2:finite-returntrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L2:canonical-inventorytrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L2:masstrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L2:low-momentstrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L3:callback-ledgertrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L3:evaluation-captrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L3:finite-returntrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L3:canonical-inventorytrue
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d2:smooth-product:tensor-clenshaw-curtis:L3:masstrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L3:low-momentstrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L3:required-finest-accuracytrue
+q80:d2:smooth-product:smolyak-delta:L1:callback-ledgertrue
+q80:d2:smooth-product:smolyak-delta:L1:evaluation-captrue
+q80:d2:smooth-product:smolyak-delta:L1:finite-returntrue
+q80:d2:smooth-product:smolyak-delta:L1:canonical-inventorytrue
+q80:d2:smooth-product:smolyak-delta:L1:masstrue
+q80:d2:smooth-product:smolyak-delta:L1:low-momentstrue
+q80:d2:smooth-product:smolyak-delta:L1:delta-combinationtrue
+q80:d2:smooth-product:smolyak-delta:L2:callback-ledgertrue
+q80:d2:smooth-product:smolyak-delta:L2:evaluation-captrue
+q80:d2:smooth-product:smolyak-delta:L2:finite-returntrue
+q80:d2:smooth-product:smolyak-delta:L2:canonical-inventorytrue
+q80:d2:smooth-product:smolyak-delta:L2:masstrue
+q80:d2:smooth-product:smolyak-delta:L2:low-momentstrue
+q80:d2:smooth-product:smolyak-delta:L2:delta-combinationtrue
+q80:d2:smooth-product:smolyak-delta:L3:callback-ledgertrue
+q80:d2:smooth-product:smolyak-delta:L3:evaluation-captrue
+q80:d2:smooth-product:smolyak-delta:L3:finite-returntrue
+q80:d2:smooth-product:smolyak-delta:L3:canonical-inventorytrue
+q80:d2:smooth-product:smolyak-delta:L3:masstrue
+q80:d2:smooth-product:smolyak-delta:L3:low-momentstrue
+q80:d2:smooth-product:smolyak-delta:L4:callback-ledgertrue
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d2:smooth-product:smolyak-delta:L4:evaluation-captrue
+q80:d2:smooth-product:smolyak-delta:L4:finite-returntrue
+q80:d2:smooth-product:smolyak-delta:L4:canonical-inventorytrue
+q80:d2:smooth-product:smolyak-delta:L4:masstrue
+q80:d2:smooth-product:smolyak-delta:L4:low-momentstrue
+q80:d2:smooth-product:smolyak-delta:L4:required-finest-accuracytrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L1:callback-ledgertrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L1:evaluation-captrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L1:finite-returntrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L1:canonical-inventorytrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L1:masstrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L1:low-momentstrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L1:required-product-momenttrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L2:callback-ledgertrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L2:evaluation-captrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L2:finite-returntrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L2:canonical-inventorytrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L2:masstrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L2:low-momentstrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L2:required-product-momenttrue
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d2:interaction-product:tensor-clenshaw-curtis:L3:callback-ledgertrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L3:evaluation-captrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L3:finite-returntrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L3:canonical-inventorytrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L3:masstrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L3:low-momentstrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L3:required-product-momenttrue
+q80:d2:interaction-product:smolyak-delta:L1:callback-ledgertrue
+q80:d2:interaction-product:smolyak-delta:L1:evaluation-captrue
+q80:d2:interaction-product:smolyak-delta:L1:finite-returntrue
+q80:d2:interaction-product:smolyak-delta:L1:canonical-inventorytrue
+q80:d2:interaction-product:smolyak-delta:L1:masstrue
+q80:d2:interaction-product:smolyak-delta:L1:low-momentstrue
+q80:d2:interaction-product:smolyak-delta:L1:delta-combinationtrue
+q80:d2:interaction-product:smolyak-delta:L1:underresolution-identitytrue
+q80:d2:interaction-product:smolyak-delta:L2:callback-ledgertrue
+q80:d2:interaction-product:smolyak-delta:L2:evaluation-captrue
+q80:d2:interaction-product:smolyak-delta:L2:finite-returntrue
+q80:d2:interaction-product:smolyak-delta:L2:canonical-inventorytrue
+q80:d2:interaction-product:smolyak-delta:L2:masstrue
+q80:d2:interaction-product:smolyak-delta:L2:low-momentstrue
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d2:interaction-product:smolyak-delta:L2:delta-combinationtrue
+q80:d2:interaction-product:smolyak-delta:L2:required-product-momenttrue
+q80:d2:interaction-product:smolyak-delta:L3:callback-ledgertrue
+q80:d2:interaction-product:smolyak-delta:L3:evaluation-captrue
+q80:d2:interaction-product:smolyak-delta:L3:finite-returntrue
+q80:d2:interaction-product:smolyak-delta:L3:canonical-inventorytrue
+q80:d2:interaction-product:smolyak-delta:L3:masstrue
+q80:d2:interaction-product:smolyak-delta:L3:low-momentstrue
+q80:d2:interaction-product:smolyak-delta:L3:required-product-momenttrue
+q80:d2:interaction-product:smolyak-delta:L4:callback-ledgertrue
+q80:d2:interaction-product:smolyak-delta:L4:evaluation-captrue
+q80:d2:interaction-product:smolyak-delta:L4:finite-returntrue
+q80:d2:interaction-product:smolyak-delta:L4:canonical-inventorytrue
+q80:d2:interaction-product:smolyak-delta:L4:masstrue
+q80:d2:interaction-product:smolyak-delta:L4:low-momentstrue
+q80:d2:interaction-product:smolyak-delta:L4:required-product-momenttrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L1:callback-ledgertrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L1:evaluation-captrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L1:finite-returntrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L1:canonical-inventorytrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L1:masstrue
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d3:smooth-product:tensor-clenshaw-curtis:L1:low-momentstrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L2:callback-ledgertrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L2:evaluation-captrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L2:finite-returntrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L2:canonical-inventorytrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L2:masstrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L2:low-momentstrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L3:callback-ledgertrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L3:evaluation-captrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L3:finite-returntrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L3:canonical-inventorytrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L3:masstrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L3:low-momentstrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L3:required-finest-accuracytrue
+q80:d3:smooth-product:smolyak-delta:L1:callback-ledgertrue
+q80:d3:smooth-product:smolyak-delta:L1:evaluation-captrue
+q80:d3:smooth-product:smolyak-delta:L1:finite-returntrue
+q80:d3:smooth-product:smolyak-delta:L1:canonical-inventorytrue
+q80:d3:smooth-product:smolyak-delta:L1:masstrue
+q80:d3:smooth-product:smolyak-delta:L1:low-momentstrue
+q80:d3:smooth-product:smolyak-delta:L1:delta-combinationtrue
+q80:d3:smooth-product:smolyak-delta:L2:callback-ledgertrue
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d3:smooth-product:smolyak-delta:L2:evaluation-captrue
+q80:d3:smooth-product:smolyak-delta:L2:finite-returntrue
+q80:d3:smooth-product:smolyak-delta:L2:canonical-inventorytrue
+q80:d3:smooth-product:smolyak-delta:L2:masstrue
+q80:d3:smooth-product:smolyak-delta:L2:low-momentstrue
+q80:d3:smooth-product:smolyak-delta:L2:delta-combinationtrue
+q80:d3:smooth-product:smolyak-delta:L3:callback-ledgertrue
+q80:d3:smooth-product:smolyak-delta:L3:evaluation-captrue
+q80:d3:smooth-product:smolyak-delta:L3:finite-returntrue
+q80:d3:smooth-product:smolyak-delta:L3:canonical-inventorytrue
+q80:d3:smooth-product:smolyak-delta:L3:masstrue
+q80:d3:smooth-product:smolyak-delta:L3:low-momentstrue
+q80:d3:smooth-product:smolyak-delta:L4:callback-ledgertrue
+q80:d3:smooth-product:smolyak-delta:L4:evaluation-captrue
+q80:d3:smooth-product:smolyak-delta:L4:finite-returntrue
+q80:d3:smooth-product:smolyak-delta:L4:canonical-inventorytrue
+q80:d3:smooth-product:smolyak-delta:L4:masstrue
+q80:d3:smooth-product:smolyak-delta:L4:low-momentstrue
+q80:d3:smooth-product:smolyak-delta:L4:required-finest-accuracytrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L1:callback-ledgertrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L1:evaluation-captrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L1:finite-returntrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L1:canonical-inventorytrue
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d3:interaction-product:tensor-clenshaw-curtis:L1:masstrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L1:low-momentstrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L1:required-product-momenttrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L2:callback-ledgertrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L2:evaluation-captrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L2:finite-returntrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L2:canonical-inventorytrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L2:masstrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L2:low-momentstrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L2:required-product-momenttrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L3:callback-ledgertrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L3:evaluation-captrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L3:finite-returntrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L3:canonical-inventorytrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L3:masstrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L3:low-momentstrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L3:required-product-momenttrue
+q80:d3:interaction-product:smolyak-delta:L1:callback-ledgertrue
+q80:d3:interaction-product:smolyak-delta:L1:evaluation-captrue
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d3:interaction-product:smolyak-delta:L1:finite-returntrue
+q80:d3:interaction-product:smolyak-delta:L1:canonical-inventorytrue
+q80:d3:interaction-product:smolyak-delta:L1:masstrue
+q80:d3:interaction-product:smolyak-delta:L1:low-momentstrue
+q80:d3:interaction-product:smolyak-delta:L1:delta-combinationtrue
+q80:d3:interaction-product:smolyak-delta:L1:underresolution-identitytrue
+q80:d3:interaction-product:smolyak-delta:L2:callback-ledgertrue
+q80:d3:interaction-product:smolyak-delta:L2:evaluation-captrue
+q80:d3:interaction-product:smolyak-delta:L2:finite-returntrue
+q80:d3:interaction-product:smolyak-delta:L2:canonical-inventorytrue
+q80:d3:interaction-product:smolyak-delta:L2:masstrue
+q80:d3:interaction-product:smolyak-delta:L2:low-momentstrue
+q80:d3:interaction-product:smolyak-delta:L2:delta-combinationtrue
+q80:d3:interaction-product:smolyak-delta:L2:underresolution-identitytrue
+q80:d3:interaction-product:smolyak-delta:L3:callback-ledgertrue
+q80:d3:interaction-product:smolyak-delta:L3:evaluation-captrue
+q80:d3:interaction-product:smolyak-delta:L3:finite-returntrue
+q80:d3:interaction-product:smolyak-delta:L3:canonical-inventorytrue
+q80:d3:interaction-product:smolyak-delta:L3:masstrue
+q80:d3:interaction-product:smolyak-delta:L3:low-momentstrue
+q80:d3:interaction-product:smolyak-delta:L3:required-product-momenttrue
+q80:d3:interaction-product:smolyak-delta:L4:callback-ledgertrue
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d3:interaction-product:smolyak-delta:L4:evaluation-captrue
+q80:d3:interaction-product:smolyak-delta:L4:finite-returntrue
+q80:d3:interaction-product:smolyak-delta:L4:canonical-inventorytrue
+q80:d3:interaction-product:smolyak-delta:L4:masstrue
+q80:d3:interaction-product:smolyak-delta:L4:low-momentstrue
+q80:d3:interaction-product:smolyak-delta:L4:required-product-momenttrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L1:callback-ledgertrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L1:evaluation-captrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L1:finite-returntrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L1:canonical-inventorytrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L1:masstrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L1:low-momentstrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L2:callback-ledgertrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L2:evaluation-captrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L2:finite-returntrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L2:canonical-inventorytrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L2:masstrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L2:low-momentstrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L3:callback-ledgertrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L3:evaluation-captrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L3:finite-returntrue
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d4:smooth-product:tensor-clenshaw-curtis:L3:canonical-inventorytrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L3:masstrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L3:low-momentstrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L3:required-finest-accuracytrue
+q80:d4:smooth-product:smolyak-delta:L1:callback-ledgertrue
+q80:d4:smooth-product:smolyak-delta:L1:evaluation-captrue
+q80:d4:smooth-product:smolyak-delta:L1:finite-returntrue
+q80:d4:smooth-product:smolyak-delta:L1:canonical-inventorytrue
+q80:d4:smooth-product:smolyak-delta:L1:masstrue
+q80:d4:smooth-product:smolyak-delta:L1:low-momentstrue
+q80:d4:smooth-product:smolyak-delta:L2:callback-ledgertrue
+q80:d4:smooth-product:smolyak-delta:L2:evaluation-captrue
+q80:d4:smooth-product:smolyak-delta:L2:finite-returntrue
+q80:d4:smooth-product:smolyak-delta:L2:canonical-inventorytrue
+q80:d4:smooth-product:smolyak-delta:L2:masstrue
+q80:d4:smooth-product:smolyak-delta:L2:low-momentstrue
+q80:d4:smooth-product:smolyak-delta:L3:callback-ledgertrue
+q80:d4:smooth-product:smolyak-delta:L3:evaluation-captrue
+q80:d4:smooth-product:smolyak-delta:L3:finite-returntrue
+q80:d4:smooth-product:smolyak-delta:L3:canonical-inventorytrue
+q80:d4:smooth-product:smolyak-delta:L3:masstrue
+q80:d4:smooth-product:smolyak-delta:L3:low-momentstrue
+q80:d4:smooth-product:smolyak-delta:L4:callback-ledgertrue
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d4:smooth-product:smolyak-delta:L4:evaluation-captrue
+q80:d4:smooth-product:smolyak-delta:L4:finite-returntrue
+q80:d4:smooth-product:smolyak-delta:L4:canonical-inventorytrue
+q80:d4:smooth-product:smolyak-delta:L4:masstrue
+q80:d4:smooth-product:smolyak-delta:L4:low-momentstrue
+q80:d4:smooth-product:smolyak-delta:L4:required-finest-accuracytrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L1:callback-ledgertrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L1:evaluation-captrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L1:finite-returntrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L1:canonical-inventorytrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L1:masstrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L1:low-momentstrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L1:required-product-momenttrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L2:callback-ledgertrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L2:evaluation-captrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L2:finite-returntrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L2:canonical-inventorytrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L2:masstrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L2:low-momentstrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L2:required-product-momenttrue
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d4:interaction-product:tensor-clenshaw-curtis:L3:callback-ledgertrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L3:evaluation-captrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L3:finite-returntrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L3:canonical-inventorytrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L3:masstrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L3:low-momentstrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L3:required-product-momenttrue
+q80:d4:interaction-product:smolyak-delta:L1:callback-ledgertrue
+q80:d4:interaction-product:smolyak-delta:L1:evaluation-captrue
+q80:d4:interaction-product:smolyak-delta:L1:finite-returntrue
+q80:d4:interaction-product:smolyak-delta:L1:canonical-inventorytrue
+q80:d4:interaction-product:smolyak-delta:L1:masstrue
+q80:d4:interaction-product:smolyak-delta:L1:low-momentstrue
+q80:d4:interaction-product:smolyak-delta:L1:underresolution-identitytrue
+q80:d4:interaction-product:smolyak-delta:L2:callback-ledgertrue
+q80:d4:interaction-product:smolyak-delta:L2:evaluation-captrue
+q80:d4:interaction-product:smolyak-delta:L2:finite-returntrue
+q80:d4:interaction-product:smolyak-delta:L2:canonical-inventorytrue
+q80:d4:interaction-product:smolyak-delta:L2:masstrue
+q80:d4:interaction-product:smolyak-delta:L2:low-momentstrue
+q80:d4:interaction-product:smolyak-delta:L2:underresolution-identitytrue
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d4:interaction-product:smolyak-delta:L3:callback-ledgertrue
+q80:d4:interaction-product:smolyak-delta:L3:evaluation-captrue
+q80:d4:interaction-product:smolyak-delta:L3:finite-returntrue
+q80:d4:interaction-product:smolyak-delta:L3:canonical-inventorytrue
+q80:d4:interaction-product:smolyak-delta:L3:masstrue
+q80:d4:interaction-product:smolyak-delta:L3:low-momentstrue
+q80:d4:interaction-product:smolyak-delta:L3:underresolution-identitytrue
+q80:d4:interaction-product:smolyak-delta:L4:callback-ledgertrue
+q80:d4:interaction-product:smolyak-delta:L4:evaluation-captrue
+q80:d4:interaction-product:smolyak-delta:L4:finite-returntrue
+q80:d4:interaction-product:smolyak-delta:L4:canonical-inventorytrue
+q80:d4:interaction-product:smolyak-delta:L4:masstrue
+q80:d4:interaction-product:smolyak-delta:L4:low-momentstrue
+q80:d4:interaction-product:smolyak-delta:L4:required-product-momenttrue
+tensor-smolyak-dimensions:fixed-record-counttrue
+tensor-smolyak-dimensions:unique-record-idstrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Actual two-dimensional nodes and signed integration weightsRead every stored record
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+row_idsequenceintegrand_idmethod_iddimensionabsolute_tolerancestepcutoffmethod_codelevelvalueevaluationsestimated_errorconvergedterminationaccuracy_goal_meterror_lowererror_upperraw_filesum_weightssum_absolute_weightsassembly_contributionsassembly_duplicatescache_hitszero_weights_retainedmaximum_low_moment_defectaccuracy_goal_stateindependent_assembly_weight_defectanalytic_underresolution_control
+q80:d2:smooth-product:tensor-clenshaw-curtis:L180smooth-producttensor-clenshaw-curtis2———412.230171620249—truefixed_rule_completedfalse0.0007996778793010.000799677879302raw/q80__d2__smooth-product__tensor-clenshaw-curtis__L1.npz1190000unmet——
+q80:d2:smooth-product:tensor-clenshaw-curtis:L280smooth-producttensor-clenshaw-curtis2———422.229371490825—truefixed_rule_completedfalse4.51554665659e-074.51554666547e-07raw/q80__d2__smooth-product__tensor-clenshaw-curtis__L2.npz11250005.55111512313e-17unmet——
+q80:d2:smooth-product:tensor-clenshaw-curtis:L380smooth-producttensor-clenshaw-curtis2———432.2293719423681—truefixed_rule_completedtrue2.04281036531e-142.13162820728e-14raw/q80__d2__smooth-product__tensor-clenshaw-curtis__L3.npz11810005.55111512313e-17met——
+q80:d2:smooth-product:smolyak-delta:L180smooth-productsmolyak-delta2———512.229228584425—truefixed_rule_completedfalse0.0001433579354320.000143357935433raw/q80__d2__smooth-product__smolyak-delta__L1.npz1172005.55111512313e-17unmet0—
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d2:smooth-product:smolyak-delta:L280smooth-productsmolyak-delta2———522.2293812288213—truefixed_rule_completedfalse9.2864662018e-069.28646620268e-06raw/q80__d2__smooth-product__smolyak-delta__L2.npz11.355555555562613005.55111512313e-17unmet2.77555756156e-17—
+q80:d2:smooth-product:smolyak-delta:L380smooth-productsmolyak-delta2———532.2293719212729—truefixed_rule_completedtrue2.10876907047e-082.10876915929e-08raw/q80__d2__smooth-product__smolyak-delta__L3.npz12.149206349217445000met——
+q80:d2:smooth-product:smolyak-delta:L480smooth-productsmolyak-delta2———542.2293719423765—truefixed_rule_completedtrue1.19797505249e-111.19806387033e-11raw/q80__d2__smooth-product__smolyak-delta__L4.npz12.60455648926187122001.11022302463e-16met——
+q80:d2:interaction-product:tensor-clenshaw-curtis:L180interaction-producttensor-clenshaw-curtis2———410.006944444444449—truefixed_rule_completedtrue08.67361737988e-19raw/q80__d2__interaction-product__tensor-clenshaw-curtis__L1.npz1190000met—false
+q80:d2:interaction-product:tensor-clenshaw-curtis:L280interaction-producttensor-clenshaw-curtis2———420.0069444444444425—truefixed_rule_completedtrue8.67361737988e-192.60208521397e-18raw/q80__d2__interaction-product__tensor-clenshaw-curtis__L2.npz11250005.55111512313e-17met—false
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d2:interaction-product:tensor-clenshaw-curtis:L380interaction-producttensor-clenshaw-curtis2———430.0069444444444481—truefixed_rule_completedtrue01.73472347598e-18raw/q80__d2__interaction-product__tensor-clenshaw-curtis__L3.npz11810005.55111512313e-17met—false
+q80:d2:interaction-product:smolyak-delta:L180interaction-productsmolyak-delta2———5105—truefixed_rule_completedfalse0.006944444444440.00694444444444raw/q80__d2__interaction-product__smolyak-delta__L1.npz1172005.55111512313e-17unmet0true
+q80:d2:interaction-product:smolyak-delta:L280interaction-productsmolyak-delta2———520.0069444444444413—truefixed_rule_completedtrue08.67361737988e-19raw/q80__d2__interaction-product__smolyak-delta__L2.npz11.355555555562613005.55111512313e-17met2.77555756156e-17false
+q80:d2:interaction-product:smolyak-delta:L380interaction-productsmolyak-delta2———530.0069444444444429—truefixed_rule_completedtrue8.67361737988e-192.60208521397e-18raw/q80__d2__interaction-product__smolyak-delta__L3.npz12.149206349217445000met—false
+q80:d2:interaction-product:smolyak-delta:L480interaction-productsmolyak-delta2———540.0069444444444465—truefixed_rule_completedtrue8.67361737988e-192.60208521397e-18raw/q80__d2__interaction-product__smolyak-delta__L4.npz12.60455648926187122001.11022302463e-16met—false
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d3:smooth-product:tensor-clenshaw-curtis:L180smooth-producttensor-clenshaw-curtis3———412.5337051250627—truefixed_rule_completedfalse0.0009119455424750.000911945542476raw/q80__d3__smooth-product__tensor-clenshaw-curtis__L1.npz11270000unmet——
+q80:d3:smooth-product:tensor-clenshaw-curtis:L280smooth-producttensor-clenshaw-curtis3———422.53279266638125—truefixed_rule_completedfalse5.13139519764e-075.13139520653e-07raw/q80__d3__smooth-product__tensor-clenshaw-curtis__L2.npz111250005.55111512313e-17unmet——
+q80:d3:smooth-product:tensor-clenshaw-curtis:L380smooth-producttensor-clenshaw-curtis3———432.53279317952729—truefixed_rule_completedtrue2.30926389122e-142.39808173319e-14raw/q80__d3__smooth-product__tensor-clenshaw-curtis__L3.npz117290001.11022302463e-16met——
+q80:d3:smooth-product:smolyak-delta:L180smooth-productsmolyak-delta3———512.532302131497—truefixed_rule_completedfalse0.0004910480270570.000491048027058raw/q80__d3__smooth-product__smolyak-delta__L1.npz11103001.11022302463e-16unmet0—
+q80:d3:smooth-product:smolyak-delta:L280smooth-productsmolyak-delta3———522.5328034515925—truefixed_rule_completedfalse1.02720730508e-051.02720730517e-05raw/q80__d3__smooth-product__smolyak-delta__L2.npz12.866666666675227005.55111512313e-17unmet5.55111512313e-17—
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d3:smooth-product:smolyak-delta:L380smooth-productsmolyak-delta3———532.5327931832869—truefixed_rule_completedtrue3.75779407591e-093.75779496409e-09raw/q80__d3__smooth-product__smolyak-delta__L3.npz14.25502645503196127001.11022302463e-16met——
+q80:d3:smooth-product:smolyak-delta:L480smooth-productsmolyak-delta3———542.53279317946177—truefixed_rule_completedtrue6.30251406619e-116.30260288403e-11raw/q80__d3__smooth-product__smolyak-delta__L4.npz16.10573295985619442001.11022302463e-16met——
+q80:d3:interaction-product:tensor-clenshaw-curtis:L180interaction-producttensor-clenshaw-curtis3———410.00057870370370427—truefixed_rule_completedtrue01.08420217249e-19raw/q80__d3__interaction-product__tensor-clenshaw-curtis__L1.npz11270000met—false
+q80:d3:interaction-product:tensor-clenshaw-curtis:L280interaction-producttensor-clenshaw-curtis3———420.000578703703704125—truefixed_rule_completedtrue02.16840434497e-19raw/q80__d3__interaction-product__tensor-clenshaw-curtis__L2.npz111250005.55111512313e-17met—false
+q80:d3:interaction-product:tensor-clenshaw-curtis:L380interaction-producttensor-clenshaw-curtis3———430.000578703703704729—truefixed_rule_completedtrue01.08420217249e-19raw/q80__d3__interaction-product__tensor-clenshaw-curtis__L3.npz117290001.11022302463e-16met—false
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d3:interaction-product:smolyak-delta:L180interaction-productsmolyak-delta3———5107—truefixed_rule_completedfalse0.0005787037037040.000578703703704raw/q80__d3__interaction-product__smolyak-delta__L1.npz11103001.11022302463e-16unmet0true
+q80:d3:interaction-product:smolyak-delta:L280interaction-productsmolyak-delta3———52025—truefixed_rule_completedfalse0.0005787037037040.000578703703704raw/q80__d3__interaction-product__smolyak-delta__L2.npz12.866666666675227005.55111512313e-17unmet5.55111512313e-17true
+q80:d3:interaction-product:smolyak-delta:L380interaction-productsmolyak-delta3———530.00057870370370469—truefixed_rule_completedtrue01.08420217249e-19raw/q80__d3__interaction-product__smolyak-delta__L3.npz14.25502645503196127001.11022302463e-16met—false
+q80:d3:interaction-product:smolyak-delta:L480interaction-productsmolyak-delta3———540.000578703703704177—truefixed_rule_completedtrue1.08420217249e-193.25260651746e-19raw/q80__d3__interaction-product__smolyak-delta__L4.npz16.10573295985619442001.11022302463e-16met—false
+q80:d4:smooth-product:tensor-clenshaw-curtis:L180smooth-producttensor-clenshaw-curtis4———412.6988715721281—truefixed_rule_completedfalse0.0009716217859030.000971621785904raw/q80__d4__smooth-product__tensor-clenshaw-curtis__L1.npz11810000unmet——
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d4:smooth-product:tensor-clenshaw-curtis:L280smooth-producttensor-clenshaw-curtis4———422.69789940374625—truefixed_rule_completedfalse5.46591991668e-075.46591992556e-07raw/q80__d4__smooth-product__tensor-clenshaw-curtis__L2.npz116250005.55111512313e-17unmet——
+q80:d4:smooth-product:tensor-clenshaw-curtis:L380smooth-producttensor-clenshaw-curtis4———432.697899950336561—truefixed_rule_completedtrue2.44249065418e-142.53130849615e-14raw/q80__d4__smooth-product__tensor-clenshaw-curtis__L3.npz1165610001.11022302463e-16met——
+q80:d4:smooth-product:smolyak-delta:L180smooth-productsmolyak-delta4———512.697284621669—truefixed_rule_completedfalse0.0006153286668680.000615328666869raw/q80__d4__smooth-product__smolyak-delta__L1.npz11.66666666667134001.11022302463e-16unmet——
+q80:d4:smooth-product:smolyak-delta:L280smooth-productsmolyak-delta4———522.6979105565641—truefixed_rule_completedfalse1.06062276743e-051.06062276752e-05raw/q80__d4__smooth-product__smolyak-delta__L2.npz14.68746005.55111512313e-17unmet——
+q80:d4:smooth-product:smolyak-delta:L380smooth-productsmolyak-delta4———532.6978999615137—truefixed_rule_completedtrue1.11655333868e-081.11655342749e-08raw/q80__d4__smooth-product__smolyak-delta__L3.npz17.62645502646411274001.11022302463e-16met——
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d4:smooth-product:smolyak-delta:L480smooth-productsmolyak-delta4———542.69789995027401—truefixed_rule_completedtrue6.54116760757e-116.54125642541e-11raw/q80__d4__smooth-product__smolyak-delta__L4.npz111.939425251615741173001.66533453694e-16met——
+q80:d4:interaction-product:tensor-clenshaw-curtis:L180interaction-producttensor-clenshaw-curtis4———414.8225308642e-0581—truefixed_rule_completedtrue06.77626357803e-21raw/q80__d4__interaction-product__tensor-clenshaw-curtis__L1.npz11810000met—false
+q80:d4:interaction-product:tensor-clenshaw-curtis:L280interaction-producttensor-clenshaw-curtis4———424.8225308642e-05625—truefixed_rule_completedtrue6.77626357803e-212.03287907341e-20raw/q80__d4__interaction-product__tensor-clenshaw-curtis__L2.npz116250005.55111512313e-17met—false
+q80:d4:interaction-product:tensor-clenshaw-curtis:L380interaction-producttensor-clenshaw-curtis4———434.8225308642e-056561—truefixed_rule_completedtrue01.35525271561e-20raw/q80__d4__interaction-product__tensor-clenshaw-curtis__L3.npz1165610001.11022302463e-16met—false
+q80:d4:interaction-product:smolyak-delta:L180interaction-productsmolyak-delta4———5109—truefixed_rule_completedfalse4.8225308642e-054.8225308642e-05raw/q80__d4__interaction-product__smolyak-delta__L1.npz11.66666666667134001.11022302463e-16unmet—true
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d4:interaction-product:smolyak-delta:L280interaction-productsmolyak-delta4———52041—truefixed_rule_completedfalse4.8225308642e-054.8225308642e-05raw/q80__d4__interaction-product__smolyak-delta__L2.npz14.68746005.55111512313e-17unmet—true
+q80:d4:interaction-product:smolyak-delta:L380interaction-productsmolyak-delta4———530137—truefixed_rule_completedfalse4.8225308642e-054.8225308642e-05raw/q80__d4__interaction-product__smolyak-delta__L3.npz17.62645502646411274001.11022302463e-16unmet—true
+q80:d4:interaction-product:smolyak-delta:L480interaction-productsmolyak-delta4———544.8225308642e-05401—truefixed_rule_completedtrue06.77626357803e-21raw/q80__d4__interaction-product__smolyak-delta__L4.npz111.939425251615741173001.66533453694e-16met—false
+Measurements and complete records / JSON
+
+## Domain-aware, double-exponential and sparse-grid quadrature — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#tensor-smolyak-dimensions-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Fast Construction of the Fejer and Clenshaw-Curtis Quadrature Rules [accessed 2026-11-25]
+Review scope / review_level: selected-primary-body-text
+
 ## 2D shadows,beams and M1 closure — 2D shadows,beams and M1 closure [en]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-radiation-geometry/
@@ -45413,6 +47377,536 @@ Original publisher full text unavailable; no original-text review claimed. Neutr
 LAMMPS slab Ewald documentation and neutral correction
 Review scope / review_level: official-selected-docs-and-formulas
 Slab geometry restrictions and official Ewald::slabcorr neutral formula inspected. No LAMMPS code copied or executed; mutable stable source is contextual, not a numerical dependency.
+
+## Small learned models and independently checked biological ODEs — Small learned models and independently checked biological ODEs [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/
+Coverage: reading
+
+Study a Poisson PINN, periodic-heat FNO and enzyme, predator–prey and SEIR systems under fixed budgets. Original learning and approximation goals remain separate from reproduction checks.
+
+## Small learned models and independently checked biological ODEs — Download and execute the supplement [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#run-all
+Coverage: reading
+
+Run inside atlas-small-models-2026-11-25 from the ZIP. This command executes all 5 fixed cases in the supplement. The bundled results/ contains stored outputs. Rerun into a new output/ directory, and choose another fresh directory for subsequent runs.
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlib is optional for redrawing saved figures; ordinary scientific execution does not require it.
+
+## Small learned models and independently checked biological ODEs — Poisson PINN: independent grid error [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/
+Coverage: reading
+
+Compare a 49-parameter PINN for three fixed seeds with analytic and finite-difference solutions.
+Methods, equations, figures and references
+Methods used
+PINNs and neural operators
+Thomas tridiagonal elimination
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Train a hard-boundary tanh ansatz with trust-region reflective least squares and an analytic parameter Jacobian. Retain every returned model under the fixed budget. Also solve second-order finite differences with 31, 63 and 127 unknowns using the Thomas algorithm.
+Poisson / Laplace equations
+Solve dimensionless −uₓₓ=π² sin(πx) on [0,1] with zero Dirichlet data. Use sixteen hidden units, 49 real parameters, seeds 8401–8403, 64 training points and 257 separate evaluation points.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+1D Poisson / smooth Dirichlet manufactured solutions
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## Small learned models and independently checked biological ODEs — Poisson PINN: independent grid error [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/
+Coverage: reading
+
+Independently qualify all 49 residual-Jacobian columns, loss-gradient coordinates and spatial derivatives. Save off-training solution error against sin(πx), PDE residual, boundary error and finite-difference error separately. Preserve actual convergence and accuracy decisions; a normal budget return is not convergence.
+Related-model reference · Manufactured solution
+Poisson / manufactured sine
+It matches the single-sine common fixed input, but saved comparisons also contain composite-sine manufactured forcing. Zero Dirichlet boundaries do not make all sources identical.
+Related-model reference · Manufactured solution
+Poisson PINN: independent grid error
+This fixed-budget study covers one smooth Poisson problem and three seeds. A small training loss does not establish independent-point accuracy or general PINN training success. Unmet goals remain visible.
+
+## Small learned models and independently checked biological ODEs — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#pinn-poisson-assumptions
+Coverage: reading
+
+Solve dimensionless −uₓₓ=π² sin(πx) on [0,1] with zero Dirichlet data. Use sixteen hidden units, 49 real parameters, seeds 8401–8403, 64 training points and 257 separate evaluation points.
+
+## Small learned models and independently checked biological ODEs — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#pinn-poisson-algorithm
+Coverage: reading
+
+Train a hard-boundary tanh ansatz with trust-region reflective least squares and an analytic parameter Jacobian. Retain every returned model under the fixed budget. Also solve second-order finite differences with 31, 63 and 127 unknowns using the Thomas algorithm.
+-u_{xx}=\pi^2\sin(\pi x),\quad 0<x<1,\quad u(0)=u(1)=0u_\theta(x)=x(1-x)\left[b_0+\sum_{j=1}^{16}a_j\tanh(w_jx+b_j)\right]r_i=\frac{-u_{\theta,xx}(x_i)-\pi^2\sin(\pi x_i)}{\pi^2},\quad L=\frac1{64}\sum_{i=1}^{64}r_i^2
+
+## Small learned models and independently checked biological ODEs — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#pinn-poisson-validation
+Coverage: reading
+
+Independently qualify all 49 residual-Jacobian columns, loss-gradient coordinates and spatial derivatives. Save off-training solution error against sin(πx), PDE residual, boundary error and finite-difference error separately. Preserve actual convergence and accuracy decisions; a normal budget return is not convergence.
+
+## Small learned models and independently checked biological ODEs — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#pinn-poisson-limits
+Coverage: reading
+
+This fixed-budget study covers one smooth Poisson problem and three seeds. A small training loss does not establish independent-point accuracy or general PINN training success. Unmet goals remain visible.
+
+## Small learned models and independently checked biological ODEs — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#pinn-poisson-measurements
+Coverage: reading
+
+量 / metricMeasured value
+training_seeds3
+parameters49
+independent_grid_points257
+FD_runs3
+判定 / checkPassed
+seed-8401:finite-shapetrue
+seed-8401:optimizer-return-statustrue
+seed-8401:actual-worktrue
+seed-8402:finite-shapetrue
+seed-8402:optimizer-return-statustrue
+seed-8402:actual-worktrue
+seed-8403:finite-shapetrue
+seed-8403:optimizer-return-statustrue
+seed-8403:actual-worktrue
+fd-31:true-residualtrue
+fd-63:true-residualtrue
+fd-127:true-residualtrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Compare a 49-parameter PINN for three fixed seeds with analytic and finite-difference solutions. This figure reads saved data only.Read every stored record
+kindseedparameter_countsolution_LinfPDE_normalized_RMSboundary_Linftraining_lossstatusoptimizer_successnfevnjevfun_callsjac_callsreturned_final_parameter_vectorsnodestrue_linear_residual
+PINN8401492.25899960959e-083.32775686711e-0704.40362097973e-14003002763002761——
+PINN8402495.56788840589e-081.0321910211e-0605.73817732081e-13003002253002251——
+PINN8403497.84035796286e-081.24355985815e-0608.52634308436e-13003002863002861——
+FD2——0.00080357767937——————————312.02504679692e-13
+FD2——0.000200821809696——————————631.2576606423e-12
+FD2——5.02009159131e-05——————————1277.22799597952e-12
+Measurements and complete records / JSON
+
+## Small learned models and independently checked biological ODEs — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#pinn-poisson-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Physics Informed Deep Learning (Part I): Data-driven Solutions of Nonlinear Partial Differential Equations [accessed 2026-11-24]
+Review scope / review_level: selected-primary-body
+Extracted PDF text selected pp.4–6, §2 continuous-time residual, Eq(2)–(4), Burgers setup and loss/optimizer discussion; not all 22 pages and not visual PDF audit.
+
+## Small learned models and independently checked biological ODEs — Tiny FNO on held-out heat problems [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/
+Coverage: reading
+
+Evaluate the same learned weights on 32/64-point grids, held-out functions and separate OOD inputs.
+Methods, equations, figures and references
+Methods used
+PINNs and neural operators
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Lift (u₀,ν) to width two and apply two blocks containing a local linear map, real DC and complex Fourier modes 1–4, then tanh. Train with a fixed L-BFGS-B budget and evaluate the same weights at N=32 and 64. Nonlinear terms are evaluated on each native grid without dealiasing.
+Heat / diffusion equation
+Use periodic heat flow uₜ=νuₓₓ on [0,2π) to T=0.25. Split 46 whole problems into 24 training, 6 validation, 8 held-out ID, 4 viscosity-OOD and 4 spectrum-OOD problems. Use two fixed seeds and 93 real parameters.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Periodic Fourier-mode heat decay
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## Small learned models and independently checked biological ODEs — Tiny FNO on held-out heat problems [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/
+Coverage: reading
+
+Qualify all 93 real loss-gradient coordinates at two fixed finite-difference widths and compare Fourier blocks with direct DFT sums. Separate analytic heat-mode errors, grid-restriction differences and ID/OOD diagnostics. Relative error is NA when reference RMS≤10⁻¹²; zero and near-zero controls retain absolute errors.
+Related-model reference · Analytic reference
+Heat / Fourier-mode decay
+The saved gallery matches periodic [0,1], 1+0.25sin(2πx), ν=0.02 and final time one; this does not assert a match to separate-frequency code checks. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations.
+Related-model reference · Analytic reference
+Tiny FNO on held-out heat problems
+This comparison concerns a fixed tiny discrete operator, without arbitrary-resolution, distributional or OOD guarantees. The N=64-to-32 discrepancy includes nonlinear aliasing and is not a continuum discretization error. Optimizer convergence is distinct from normal budget termination.
+
+## Small learned models and independently checked biological ODEs — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#fno-periodic-heat-assumptions
+Coverage: reading
+
+Use periodic heat flow uₜ=νuₓₓ on [0,2π) to T=0.25. Split 46 whole problems into 24 training, 6 validation, 8 held-out ID, 4 viscosity-OOD and 4 spectrum-OOD problems. Use two fixed seeds and 93 real parameters.
+
+## Small learned models and independently checked biological ODEs — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#fno-periodic-heat-algorithm
+Coverage: reading
+
+Lift (u₀,ν) to width two and apply two blocks containing a local linear map, real DC and complex Fourier modes 1–4, then tanh. Train with a fixed L-BFGS-B budget and evaluate the same weights at N=32 and 64. Nonlinear terms are evaluated on each native grid without dealiasing.
+u_t=\nu u_{xx},\quad x\in[0,2\pi),\quad u(x+2\pi,t)=u(x,t),\quad T=\tfrac14\widehat u_k(T)=e^{-\nu k^2T}\widehat u_k(0)v^{\ell+1}=\tanh\!\left(W_\ell v^\ell+b_\ell+\mathcal F_N^{-1}(R_\ell\mathcal F_Nv^\ell)\right),\quad \ell=0,1\mathrm{relative\ error}=\frac{\operatorname{RMS}(u_\theta-u_{\rm ref})}{\operatorname{RMS}(u_{\rm ref})}\quad\text{only if }\operatorname{RMS}(u_{\rm ref})>10^{-12}
+
+## Small learned models and independently checked biological ODEs — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#fno-periodic-heat-validation
+Coverage: reading
+
+Qualify all 93 real loss-gradient coordinates at two fixed finite-difference widths and compare Fourier blocks with direct DFT sums. Separate analytic heat-mode errors, grid-restriction differences and ID/OOD diagnostics. Relative error is NA when reference RMS≤10⁻¹²; zero and near-zero controls retain absolute errors.
+
+## Small learned models and independently checked biological ODEs — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#fno-periodic-heat-limits
+Coverage: reading
+
+This comparison concerns a fixed tiny discrete operator, without arbitrary-resolution, distributional or OOD guarantees. The N=64-to-32 discrepancy includes nonlinear aliasing and is not a continuum discretization error. Optimizer convergence is distinct from normal budget termination.
+
+## Small learned models and independently checked biological ODEs — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#fno-periodic-heat-measurements
+Coverage: reading
+
+量 / metricMeasured value
+models2
+parameters_per_model93
+whole_problem_IDs46
+prediction_rows116
+nonlinear_dealiasingnone
+restriction_discrepancy_scopeNative-grid nonlinear/alias sensitivity, not continuum error
+判定 / checkPassed
+seed-8501:finite-parameterstrue
+seed-8501:optimizer-return-statustrue
+seed-8501:actual-worktrue
+seed-8501:relative-NAtrue
+seed-8502:finite-parameterstrue
+seed-8502:optimizer-return-statustrue
+seed-8502:actual-worktrue
+seed-8502:relative-NAtrue
+disjoint-whole-problem-IDstrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Evaluate the same learned weights on 32/64-point grids, held-out functions and separate OOD inputs. This figure reads saved data only.Read every stored record
+seedparameterslossstatusoptimizer_successiterationsnfevnjevloss_callsgradient_callsreturned_final_vectors
+8501930.000435952023805101201401401401401
+8502930.00040221023539101201471471471471
+Measurements and complete records / JSON
+
+## Small learned models and independently checked biological ODEs — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#fno-periodic-heat-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Fourier Neural Operator for Parametric Partial Differential Equations [accessed 2026-11-24]
+Review scope / review_level: selected-primary-body
+Selected HTML §2 learning operators; §3 Eq(2); §4 Eq(4)–(5), FFT/truncation/reality; §5 setup and §5.1 Burgers. PDF header/edition only; not full paper or appendix audit.
+
+## Small learned models and independently checked biological ODEs — Enzyme conservation and QSSA [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/
+Coverage: reading
+
+Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism.
+Methods, equations, figures and references
+Methods used
+L-stable SDIRK2
+Adaptive SDIRK2 / step doubling
+Armijo-damped Newton
+Classical RK4
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Formulation, approximation and diagnostic scope
+Integrate all four states with SDIRK2 step doubling, using the same weighted L∞ residual for Newton convergence and Armijo backtracking. Evolve the reduced Michaelis–Menten equation separately with RK4 in θ, keeping integration error distinct from model-reduction error.
+Michaelis–Menten and full enzyme kinetics
+Use the closed dimensionless reaction E+S⇌C→E+P with k₁=10, k₋₁=k₂=1, S₀=1, C₀=P₀=0 and E₀=0.01 or 0.002. Then Kₘ=0.2, ε=E₀/(Kₘ+S₀)=1/120 or 1/600, and θ=E₀t ranges from 0 to 0.5.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Enzyme conservation and QSSA
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+
+## Small learned models and independently checked biological ODEs — Enzyme conservation and QSSA [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/
+Coverage: reading
+
+Compare with independent full-system Radau/BDF references and an implicit scalar identity for the reduced equation. Check E+C=E₀, S+C+P=1, positivity and actual acceptance, rejection and Newton work. Retain both all-time errors including the initial layer and errors on the declared θ≥0.02 window.
+Same-problem reference · Finite-grid numerical reference
+Enzyme conservation and QSSA
+These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction.
+
+## Small learned models and independently checked biological ODEs — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#enzyme-qssa-assumptions
+Coverage: reading
+
+Use the closed dimensionless reaction E+S⇌C→E+P with k₁=10, k₋₁=k₂=1, S₀=1, C₀=P₀=0 and E₀=0.01 or 0.002. Then Kₘ=0.2, ε=E₀/(Kₘ+S₀)=1/120 or 1/600, and θ=E₀t ranges from 0 to 0.5.
+
+## Small learned models and independently checked biological ODEs — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#enzyme-qssa-algorithm
+Coverage: reading
+
+Integrate all four states with SDIRK2 step doubling, using the same weighted L∞ residual for Newton convergence and Armijo backtracking. Evolve the reduced Michaelis–Menten equation separately with RK4 in θ, keeping integration error distinct from model-reduction error.
+\begin{aligned}\dot S&=-10ES+C,&\dot C&=10ES-2C,\\\dot E&=-10ES+2C,&\dot P&=C.\end{aligned}E+C=E_0,\quad S+C+P=1,\quad K_m=\frac{k_{-1}+k_2}{k_1}=0.2\theta=E_0t,\quad \varepsilon=\frac{E_0}{K_m+S_0}\in\left\{\frac1{120},\frac1{600}\right\}\frac{dS_{\rm MM}}{d\theta}=-\frac{S_{\rm MM}}{0.2+S_{\rm MM}},\quad S_{\rm MM}+0.2\log S_{\rm MM}=1-\theta
+
+## Small learned models and independently checked biological ODEs — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#enzyme-qssa-validation
+Coverage: reading
+
+Compare with independent full-system Radau/BDF references and an implicit scalar identity for the reduced equation. Check E+C=E₀, S+C+P=1, positivity and actual acceptance, rejection and Newton work. Retain both all-time errors including the initial layer and errors on the declared θ≥0.02 window.
+
+## Small learned models and independently checked biological ODEs — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#enzyme-qssa-limits
+Coverage: reading
+
+These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction.
+
+## Small learned models and independently checked biological ODEs — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#enzyme-qssa-measurements
+Coverage: reading
+
+量 / metricMeasured value
+actual_primary_records6
+reference_roleQualified Radau/BDF full ODE; reduction/linearization errors are distinct modeling diagnostics
+判定 / checkPassed
+enzyme-01-r1e-06:completed-worktrue
+enzyme-01-r1e-06:finitetrue
+enzyme-01-r1e-08:completed-worktrue
+enzyme-01-r1e-08:finitetrue
+enzyme-002-r1e-06:completed-worktrue
+enzyme-002-r1e-06:finitetrue
+enzyme-002-r1e-08:completed-worktrue
+enzyme-002-r1e-08:finitetrue
+mm-200:finitetrue
+mm-400:finitetrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism. This figure reads saved data only.Read every stored record
+idEtotalepsilonrtolatolintegration_Linfconservation_defectQSSA_window_model_errorQSSA_full_model_errorminimum_acceptedattempted_stepsaccepted_stepsrejected_stepsclipped_output_stepsRHS_callsJacobian_callsfactor_buildslinear_solvesNewton_updatesbacktracksstepsreduced_scalar_error
+enzyme-01-r1e-060.010.008333333333331e-061e-103.30277438731e-082.44249065418e-150.007585076108210.007606754183502498249628845490115041150411504115040——
+enzyme-01-r1e-080.010.008333333333331e-081e-121.18697555604e-092.44249065418e-150.007585076108210.0076067541835011701167310334930122001220012200122000——
+
+## Small learned models and independently checked biological ODEs — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#enzyme-qssa-measurements
+Coverage: reading
+
+enzyme-002-r1e-060.0020.001666666666671e-061e-108.17277473475e-091.11022302463e-150.001518757415780.0015259355711205725702401192033863386338633860——
+enzyme-002-r1e-080.0020.001666666666671e-081e-123.22019923205e-103.10862446895e-150.001518757415780.00152593557112011601157310332964112621126211262112620——
+mm-200———————————————————2002.0872192863e-14
+mm-400———————————————————4003.77475828373e-15
+Measurements and complete records / JSON
+
+## Small learned models and independently checked biological ODEs — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#enzyme-qssa-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Rigorous estimates for the quasi-steady state approximation of the Michaelis–Menten reaction mechanism at low enzyme concentrations [accessed 2026-11-24]
+Review scope / review_level: selected-primary-body
+Selected §1 Eq(1)–(8) and selected discussion around transient-time estimates Eq(32); proofs and complete quantitative bounds unread.
+
+## Small learned models and independently checked biological ODEs — Lotka–Volterra invariant and positivity [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/
+Coverage: reading
+
+Compare a positive orbit against an independently integrated log-coordinate reference.
+Methods, equations, figures and references
+Methods used
+Classical RK4
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Integrate physical populations with classical RK4 at 400, 800 and 1600 fixed steps. Independent Radau/BDF references evolve log x and log y; the primary method uses neither a log-coordinate update nor invariant projection.
+Lotka–Volterra predator–prey
+Use the dimensionless predator–prey equations x′=x(1−y), y′=y(x−1), initial state (1.2,0.8) and 0≤t≤20. Evaluate H=x−log x+y−log y only in the positive quadrant.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+Lotka–Volterra invariant and positivity
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Measure state error against the independent reference, drift of H and the minimum saved population separately. The reference stage qualifies analytic Jacobians, Radau/BDF agreement, tolerance refinement and the identity dH/dt=0.
+Same-problem reference · Finite-grid numerical reference
+Lotka–Volterra invariant and positivity
+
+## Small learned models and independently checked biological ODEs — Lotka–Volterra invariant and positivity [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/
+Coverage: reading
+
+This is a finite-time comparison for one initial state. The continuum closed orbit is not an attracting limit cycle. RK4 is not claimed to preserve H exactly, maintain positivity at arbitrary steps or guarantee long-time geometric fidelity.
+
+## Small learned models and independently checked biological ODEs — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#lotka-volterra-assumptions
+Coverage: reading
+
+Use the dimensionless predator–prey equations x′=x(1−y), y′=y(x−1), initial state (1.2,0.8) and 0≤t≤20. Evaluate H=x−log x+y−log y only in the positive quadrant.
+
+## Small learned models and independently checked biological ODEs — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#lotka-volterra-algorithm
+Coverage: reading
+
+Integrate physical populations with classical RK4 at 400, 800 and 1600 fixed steps. Independent Radau/BDF references evolve log x and log y; the primary method uses neither a log-coordinate update nor invariant projection.
+\dot x=x(1-y),\quad\dot y=y(x-1),\quad(x(0),y(0))=(1.2,0.8),\quad0\le t\le20H(x,y)=x-\log x+y-\log y,\quad\frac{dH}{dt}=0\quad(x>0,y>0)\frac{d\log x}{dt}=1-e^{\log y},\quad\frac{d\log y}{dt}=e^{\log x}-1
+
+## Small learned models and independently checked biological ODEs — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#lotka-volterra-validation
+Coverage: reading
+
+Measure state error against the independent reference, drift of H and the minimum saved population separately. The reference stage qualifies analytic Jacobians, Radau/BDF agreement, tolerance refinement and the identity dH/dt=0.
+
+## Small learned models and independently checked biological ODEs — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#lotka-volterra-limits
+Coverage: reading
+
+This is a finite-time comparison for one initial state. The continuum closed orbit is not an attracting limit cycle. RK4 is not claimed to preserve H exactly, maintain positivity at arbitrary steps or guarantee long-time geometric fidelity.
+
+## Small learned models and independently checked biological ODEs — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#lotka-volterra-measurements
+Coverage: reading
+
+量 / metricMeasured value
+actual_primary_records3
+reference_roleQualified Radau/BDF full ODE; reduction/linearization errors are distinct modeling diagnostics
+判定 / checkPassed
+lv-400:actual-grid-finitetrue
+lv-800:actual-grid-finitetrue
+lv-1600:actual-grid-finitetrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Compare a positive orbit against an independently integrated log-coordinate reference. This figure reads saved data only.Read every stored record
+idstepsstate_Linfinvariant_driftminimum_state
+lv-4004003.33183228785e-075.89986370869e-090.740814263533
+lv-8008002.08550965386e-082.90957480331e-100.74081272829
+lv-160016001.30422272981e-091.57518442734e-110.740807472042
+Measurements and complete records / JSON
+
+## Small learned models and independently checked biological ODEs — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#lotka-volterra-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+Experiments in MATLAB, Chapter16: Predator-Prey Model [accessed 2026-11-24]
+Review scope / review_level: selected-primary-body
+Selected extracted text pp3–6: normalized LV equations, equilibrium, periodic-orbit discussion and numerical illustration. No original Lotka/Volterra paper read.
+
+## Small learned models and independently checked biological ODEs — SEIR conservation and initial linearization [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/
+Coverage: reading
+
+Check population conservation and the full two-mode initial linearization separately.
+Methods, equations, figures and references
+Methods used
+Classical RK4
+Methods used by this fixed-input execution. Their guides describe applicable conditions and the checked scope.
+Equations
+This example’s formulation and conditions
+Evolve all four physical states with RK4 at 400, 800 and 1600 fixed steps. Independently compute the nonlinear reference with scaled-deviation Radau/BDF and the early E/I linearization with both modes of the full 2×2 matrix exponential.
+Closed SEIR compartment model
+Use a closed population S+E+I+R=1 with β=0.6, σ=0.3 and γ=0.2. For η=10⁻⁴ or 5×10⁻⁵, start from (1−2η,η,η,0) and evolve to t=20. There are no births, deaths or external inflows.
+Problem figure
+A saved validation figure for this execution example. Its conditions and acceptance scope are documented by this page’s checks.
+SEIR conservation and initial linearization
+This problem’s code and validation status
+Exact / reference solutions
+References and checks for this execution
+Reference and validation scope
+Separate full-ODE integration error, population conservation and nonnegativity through t=20 from linearization-model error at 201 reference points on 0≤t≤1. Qualify scaled Jacobians, Radau/BDF agreement with an η² margin and the analytic full matrix exponential independently.
+
+## Small learned models and independently checked biological ODEs — SEIR conservation and initial linearization [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/
+Coverage: reading
+
+Same-problem reference · Finite-grid numerical reference
+SEIR conservation and initial linearization
+These fixed-coefficient calculations compare two small initial infection levels. The early linearization is not an exact solution through t=20, and a single dominant mode does not replace the two-mode solution. No epidemic forecast, statistical coverage or arbitrary-population guarantee is claimed.
+
+## Small learned models and independently checked biological ODEs — Assumptions, units and boundaries [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#seir-linearization-assumptions
+Coverage: reading
+
+Use a closed population S+E+I+R=1 with β=0.6, σ=0.3 and γ=0.2. For η=10⁻⁴ or 5×10⁻⁵, start from (1−2η,η,η,0) and evolve to t=20. There are no births, deaths or external inflows.
+
+## Small learned models and independently checked biological ODEs — Adopted numerical method [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#seir-linearization-algorithm
+Coverage: reading
+
+Evolve all four physical states with RK4 at 400, 800 and 1600 fixed steps. Independently compute the nonlinear reference with scaled-deviation Radau/BDF and the early E/I linearization with both modes of the full 2×2 matrix exponential.
+\begin{aligned}\dot S&=-\beta SI,&\dot E&=\beta SI-\sigma E,\\\dot I&=\sigma E-\gamma I,&\dot R&=\gamma I.\end{aligned}\beta=0.6,\quad\sigma=0.3,\quad\gamma=0.2,\quad(S,E,I,R)(0)=(1-2\eta,\eta,\eta,0)S+E+I+R=1,\quad\eta\in\{10^{-4},5\times10^{-5}\}\begin{pmatrix}E_{\rm lin}(t)\\ I_{\rm lin}(t)\end{pmatrix}=\exp\!\left[t\begin{pmatrix}-0.3&0.6\\0.3&-0.2\end{pmatrix}\right]\begin{pmatrix}\eta\\\eta\end{pmatrix}
+
+## Small learned models and independently checked biological ODEs — References and measured quantities [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#seir-linearization-validation
+Coverage: reading
+
+Separate full-ODE integration error, population conservation and nonnegativity through t=20 from linearization-model error at 201 reference points on 0≤t≤1. Qualify scaled Jacobians, Radau/BDF agreement with an η² margin and the analytic full matrix exponential independently.
+
+## Small learned models and independently checked biological ODEs — Verification limits and failures [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#seir-linearization-limits
+Coverage: reading
+
+These fixed-coefficient calculations compare two small initial infection levels. The early linearization is not an exact solution through t=20, and a single dominant mode does not replace the two-mode solution. No epidemic forecast, statistical coverage or arbitrary-population guarantee is claimed.
+
+## Small learned models and independently checked biological ODEs — Stored measurements and decisions [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#seir-linearization-measurements
+Coverage: reading
+
+量 / metricMeasured value
+actual_primary_records6
+reference_roleQualified Radau/BDF full ODE; reduction/linearization errors are distinct modeling diagnostics
+判定 / checkPassed
+seir-1e-4-400:actual-grid-finitetrue
+seir-1e-4-800:actual-grid-finitetrue
+seir-1e-4-1600:actual-grid-finitetrue
+seir-5e-5-400:actual-grid-finitetrue
+seir-5e-5-800:actual-grid-finitetrue
+seir-5e-5-1600:actual-grid-finitetrue
+Figure from saved results. See the text and JSON for input, reference and acceptance scope.Check population conservation and the full two-mode initial linearization separately. This figure reads saved data only.Read every stored record
+idetastepsstate_Linfmass_defectminimum_stateearly_model_deviationearly_deviation_over_eta_squared
+seir-1e-4-4000.00014001.86228810151e-121.33226762955e-1501.32065608744e-081.32065608744
+seir-1e-4-8000.00018001.17461596005e-135.55111512313e-1601.32065608744e-081.32065608744
+seir-1e-4-16000.000116006.99440505514e-151.88737914186e-1501.32065608744e-081.32065608744
+seir-5e-5-4005e-054009.46021039283e-136.66133814775e-1603.3017030168e-091.32068120672
+seir-5e-5-8005e-058006.02851102371e-141.11022302463e-1503.3017030168e-091.32068120672
+seir-5e-5-16005e-0516006.2172489379e-151.99840144433e-1503.3017030168e-091.32068120672
+Measurements and complete records / JSON
+
+## Small learned models and independently checked biological ODEs — Primary sources and review scope [en]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#seir-linearization-references
+Coverage: reading
+
+Bibliography, abstracts, selected original sections and executed official code have distinct review scopes. Full papers and third-party code are not reproduced wholesale, and no blanket full-text audit is claimed.
+The Mathematics of Infectious Diseases [accessed 2026-11-24]
+Review scope / review_level: selected-primary-body
+Header, selected introduction compartment definitions and §3.1 printedpp618–619, displayed mass-action numbers and Eq(3.1); search around3.2/SEIR limit. Not whole55pages or visual diagram audit.
 
 ## Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem — Operator splitting: Lie–Trotter and Strang on the same reaction–diffusion problem [en]
 
@@ -50879,7 +53373,7 @@ Check reconstruction, Parseval energy and vanishing moments on low-degree polyno
 Source: https://hrkoyama.github.io/numerical-methods-atlas/en/read/wavelets/#publication-scope
 Coverage: reading
 
-Reading, representative equations and sources are published. Dedicated code and numerical verification remain planned. The suggested checks above are not measured results, and code/results of other methods are not presented as validation of this method.
+Links lead to existing educational code and dated verification records. This reading/translation update changes no scientific code or historical measurements and does not claim reproduction of an entire paper.
 Wavelets
 
 ## Wavelets — Primary publications, supporting sources and review scope [en]
@@ -51767,7 +54261,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/
 Coverage: reading
 
-個体群の増殖から確率的な遺伝子制御、流体構造連成まで、22の生物・生物由来モデルを選び、保存則CFDの外へ方程式の地図を広げます。22モデル族の文献解説に、ロジスティック増殖・閉鎖SIR、線形反応拡散、Schnakenbergの線形発現・有限振幅の非線形発展・成長後の1次元パターン、空間なしFitzHugh–Nagumoの限定例を接続します。全22族やHodgkin–Huxleyの実装ではありません。
+個体群の増殖から確率的な遺伝子制御、流体構造連成まで、22の生物・生物由来モデルを選び、保存則CFDの外へ方程式の地図を広げます。22モデル族の文献解説に、ロジスティック増殖・閉鎖SIR、線形反応拡散、Schnakenbergの線形発現・有限振幅の非線形発展・成長後の1次元パターン、空間なしFitzHugh–Nagumoの限定例を接続します。全22族やHodgkin–Huxleyの実装ではありません。 別群small-modelsから、固定した4状態酵素/QSSA、正のLotka–Volterra軌道、SEIR保存則と初期2モード線形化の3例だけを追加します。SEIRはSIRの既存実行範囲とは別です。
 以下は慣用的な簡略形・規格化形です。出典はモデルの系譜を示し、すべての係数や変数が原論文と一致するという意味ではありません。構造化カタログに、各項目の引用、数値的な課題、検証目標、範囲を記録しています。現代数理生物学の網羅的総説ではなく、数値計算の多様性を重視した選定です。出典確認日は2026年11月6日です。
 
 ## 生物モデル方程式と数値検証 — 生物の問いと数値計算法の対応# [ja]
@@ -51808,7 +54302,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#02-1913-michaelismenten-and-full-enzyme-kinetics
 Coverage: reading
 
-生化学反応・文献調査のみ。 酵素の飽和反応です。質量作用則の全体系は過渡的な複合体Cを解き、縮約速度則は速い変数を消去します。
+固定した4状態酵素系とQSSAの限定例。初期層・積分誤差・縮約誤差を区別。 酵素の飽和反応です。質量作用則の全体系は過渡的な複合体Cを解き、縮約速度則は速い変数を消去します。
 E+S\mathrel{\mathop{\rightleftharpoons}^{k_1}_{k_{-1}}}C\mathrel{\mathop{\longrightarrow}^{k_2}}E+P,\qquad v=V_{\max}S/(K_M+S).
 数値的な課題。 速い初期層と硬さがあり、全体系と縮約系では適用範囲が異なります。通常の準定常近似ではKM=(k−1+k2)/k1です。
 検証案。 閉じた反応機構でE+C、S+C+Pの保存を確認します。酵素と基質の尺度比を変え、縮約系と全体系の差を評価します。縮約を厳密解とは扱いません。
@@ -51820,7 +54314,7 @@ E+S\mathrel{\mathop{\rightleftharpoons}^{k_1}_{k_{-1}}}C\mathrel{\mathop{\longri
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#03-1920-lotkavolterra-predatorprey
 Coverage: reading
 
-個体群・生態・文献調査のみ。 被食者の増殖と捕食を結合したモデルで、位相平面と長時間積分のテストになります。
+固定した正のLotka–Volterra軌道の独立参照・不変量・刻み比較。 被食者の増殖と捕食を結合したモデルで、位相平面と長時間積分のテストになります。
 \dot x=\alpha x-\beta xy,\qquad\dot y=\delta xy-\gamma y.
 数値的な課題。 正値性と閉軌道の人工的な減衰・増幅を調べます。この理想化モデルの周期軌道は吸引的な極限周期軌道ではありません。
 検証案。 正のx,yについてH=δx−γ ln(x)+βy−α ln(y)を追跡し、刻みを細かくしたときの軌道ドリフトを比較します。
@@ -51843,7 +54337,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#05-1927-sir-and-seir-compartment-models
 Coverage: reading
 
-閉鎖SIRの実行例あり。SEIRは未実装。 閉じた一様混合系における規格化人口比のモデルです。SEIRでは曝露区画と発症への遷移率を追加します。
+閉鎖SIR例を保持。SEIRの保存則・初期線形化は別の固定入力例。 閉じた一様混合系における規格化人口比のモデルです。SEIRでは曝露区画と発症への遷移率を追加します。
 \dot s=-\beta si,\quad\dot i=\beta si-\gamma i,\quad\dot r=\gamma i,\quad s+i+r=1.
 数値的な課題。 各区画の非負性、全人口の不変性、流行ピーク時刻の解像を確認します。
 検証案。 閉じたSIRで総和1と、β>0,s>0におけるi+s−(γ/β)ln(s)を確認します。初期増殖率βs0−γと最終規模の関係も比較します。
@@ -52568,7 +55062,7 @@ Tₖ自身の再現と節点補間、exp(x)の誤差、絶対値や段差での�
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/chebyshev/#publication-scope
 Coverage: reading
 
-解説・代表式・文献を公開しています。専用コードと数値検証結果は実装予定です。上記の検証案は未実施で、他の手法のコードや計算結果をこの手法の検証として流用しません。
+既存の教育用コードと版を固定した検証記録への案内です。今回の本文・翻訳の追加でコードや過去の測定結果を変更せず、原論文全体の再現を主張しません。
 Chebyshev近似
 
 ## Chebyshev近似 — 一次文献・関連資料と確認範囲 [ja]
@@ -57168,12 +59662,19 @@ Coverage: reading
 
 解析解または独立に収束させた従来法と比較し、学習点外のL1/L2/L∞誤差、境界・保存則、複数seedを測ります。operator学習では同じ軌道の近接時刻を無作為分割するだけでなく、問題単位でtrain/testを分け、入力分布外も別報告します。
 
+## PINN・ニューラル演算子 — 選択閲読した原典と今回の小例 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/pinn-operators/#selected-original-source-roles
+Coverage: reading
+
+2017年PINN Part I preprintの§2では、残差とデータ・境界の損失を区別します。FNO v3（2021年）§3–4の層は局所線形作用とFourier積分作用に非線形活性化を組み合わせます。今回の小Poisson・周期拡散は別の教育用入力で、2019年JCP論文全文や原著の大規模実験・性能を再現したものではありません。
+
 ## PINN・ニューラル演算子 — 公開範囲と関連項目 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/pinn-operators/#publication-scope
 Coverage: reading
 
-解説・代表式・文献を公開しています。専用コードと数値検証結果は実装予定です。上記の検証案は未実施で、他の手法のコードや計算結果をこの手法の検証として流用しません。
+既存の教育用コードと版を固定した検証記録への案内です。今回の本文・翻訳の追加でコードや過去の測定結果を変更せず、原論文全体の再現を主張しません。
 PINN・ニューラル演算子
 
 ## PINN・ニューラル演算子 — 一次文献・関連資料と確認範囲 [ja]
@@ -57188,6 +59689,18 @@ M. Raissi and P. Perdikaris and G.E. Karniadakis (2019). Physics-informed neural
 Zongyi Li and Nikola Kovachki and Kamyar Azizzadenesheli and Burigede Liu and Kaushik Bhattacharya and Andrew Stuart and Anima Anandkumar (2021). Fourier Neural Operator for Parametric Partial Differential Equations. International Conference on Learning Representations
 研究論文・提案または関連する定式化 · 抄録・書誌確認 · 確認した資料
 ICLR 2021の著者原稿の抄録・序論を参照。2020年のarXiv版は同一研究として重複加算しません。
+M. Raissi, P. Perdikaris and G. E. Karniadakis (2017). Physics Informed Deep Learning (Part I): Data-driven Solutions of Nonlinear Partial Differential Equations.
+研究プレプリント（査読論文版とは区別） · 原文の該当箇所を参照 · 確認した資料
+2017年PINN Part IプレプリントのPDF抽出テキストから、pp.4–6・§2の連続時間残差、式(2)–(4)、Burgers問題の設定、損失・最適化の記述を選択閲読しました。全22ページやレンダリングした図式の監査ではなく、2019年JCP論文全文を確認したという意味でもありません。
+Z. Li et al. (2021). Fourier Neural Operator for Parametric Partial Differential Equations.
+研究プレプリント（査読論文版とは区別） · 原文の該当箇所を参照 · 確認した資料
+
+## PINN・ニューラル演算子 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/pinn-operators/#sources
+Coverage: reading
+
+arXiv v3（2021年）のHTMLから、§2の作用素学習、§3の式(2)、§4の式(4)–(5)のFFT・モード打切り・実数性、§5の設定と§5.1のBurgersを選択閲読しました。PDFは表題と版の確認のみで、論文全体や付録・全数値表の監査は行っていません。
 
 ## Particle Mesh Ewald（PME） — Particle Mesh Ewald（PME） [ja]
 
@@ -57958,7 +60471,7 @@ R. Car; M. Parrinello (1985)
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/#verification
 Coverage: reading
 
-水素型原子・Heの2問題群を実行し、独立参照と比較して全149問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。分子DFT・FCIや他の周期物質へ検証を拡張していません。
+水素型原子・Heの2問題群を実行し、独立参照と比較して全158問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。分子DFT・FCIや他の周期物質へ検証を拡張していません。
 実行・検証例あり
 
 ## 量子化学・DFT：何を近似し、何を解くか — 1電子：水素型原子 [ja]
@@ -61111,8 +63624,8 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 公開Web版、集計日2026-11-24。数えるのはカタログ項目と記載した実験例です。すべての項目が検証済みの完全なソルバーであるという意味ではありません。
-方程式・モデル80項目・計算法と構成要素149項目・学術誌／会議論文249件・全参考資料310件。
-保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め145章です。
+方程式・モデル85項目・計算法と構成要素157項目・学術誌／会議論文249件・全参考資料310件。
+保存済み計算を用いる方程式ギャラリーは7系統・9例、読書章はこの一覧を含め148章です。
 
 ## 収録範囲と数え方 — 方程式とモデル# [ja]
 
@@ -61120,7 +63633,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 名前付きの方程式・モデルを数えます。スカラー成分や数学的に互いに独立な系統の数ではありません。枠組みや補助定式化を含み、通常は派生形を一つにまとめます。ただし個別に説明するSR／GRの流体系3種類は分けます。生物モデルは専用カタログから一度だけ取り込みます。
-ローカル実験のある項目は58、文献解説のみは22で、後者には生物調査22項目すべてを含みます。連成系は一項目とし、成分方程式では増やしません。Poisson／Laplaceや次元の違いもまとめます。枠組みと個別反応則が並ぶため、数学的に独立した系統数ではありません。
+ローカル実験のある項目は65、文献解説のみは20で、後者には生物調査22項目すべてを含みます。連成系は一項目とし、成分方程式では増やしません。Poisson／Laplaceや次元の違いもまとめます。枠組みと個別反応則が並ぶため、数学的に独立した系統数ではありません。
 一覧の詳細な範囲注記は原文（英語）を保持します。各章の日本語本文も併せて参照できます。
 
 ## 収録範囲と数え方 — 物理・数学モデル# [ja]
@@ -61207,7 +63720,7 @@ Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/site-coverage
 Coverage: reading
 
 名前付きの離散化法、積分法、線形・非線形解法、連成演算子を数えます。パラメータの違いでは増やしません。
-ローカル実験のある項目は134、文献解説のみは15です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
+ローカル実験のある項目は142、文献解説のみは15です。再構成の制限関数、前処理、連成演算子は構成要素であり、完全なPDEソルバーではありません。格子配置、CFL条件、定理は計算法の数に含めません。
 
 ## 収録範囲と数え方 — 空間離散化# [ja]
 
@@ -61652,7 +64165,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/splines/#publication-scope
 Coverage: reading
 
-解説・代表式・文献を公開しています。専用コードと数値検証結果は実装予定です。上記の検証案は未実施で、他の手法のコードや計算結果をこの手法の検証として流用しません。
+既存の教育用コードと版を固定した検証記録への案内です。今回の本文・翻訳の追加でコードや過去の測定結果を変更せず、原論文全体の再現を主張しません。
 スプライン補間
 
 ## スプライン補間 — 一次文献・関連資料と確認範囲 [ja]
@@ -64323,6 +66836,670 @@ Author-hosted INF5620 nonlinear exercises,Problem8,Eq52 [accessed 2026-11-24]
 Python3.12.16 math documentation,math.sumprod [accessed 2026-11-24]
 確認範囲 / review_level: official-selected-API
 math.sumprodの公式API選択箇所を確認。閲覧日は出版年ではなく、一般の正丸め保証ではありません。
+
+## 補間・スプライン・Haarの固定対照 — 補間・スプライン・Haarの固定対照 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/
+Coverage: reading
+
+節点・表現・丸め、C2連続性と形状保存、境界拡張とシフトをそれぞれ分けた小さな固定例です。
+
+## 補間・スプライン・Haarの固定対照 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#run-all
+Coverage: reading
+
+ZIPの atlas-approximation-controls-2026-11-25 フォルダで実行します。このコマンドは配布版の全3例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## 補間・スプライン・Haarの固定対照 — 節点・表現・丸めを分けるRunge補間 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/
+Coverage: reading
+
+Runge関数と絶対値関数を等間隔・Lobatto型の固定節点で補間し、Clenshaw評価と比較します。
+手法・式・図・参照解
+使用手法
+Chebyshev近似
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+第2重心公式と全係数Clenshaw漸化式を自作。丸め済み節点上の閉形式重みと有限Chebyshev変換をそのまま保存します。
+格納節点の多項式補間
+無次元区間[-1,1]、次数8・16・32、固定2048中点。節点・データ・重みは実際のbinary64値を対象にします。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+節点・表現・丸めを分けるRunge補間
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+格納値の補間多項式P、閉重み有理式R、格納係数級数C、目標関数fを区別。17点の正確な有理参照・演算別誤差上界・節点一致・固定Runge傾向を照合します。
+同じ問題の参照 · 解析参照
+節点・表現・丸めを分けるRunge補間
+標本最大誤差は連続一様ノルムの証明ではありません。丸め節点の閉重み・離散直交性は厳密と見なしません。任意次数・任意点の安定性は保証しません。
+
+## 補間・スプライン・Haarの固定対照 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#runge-barycentric-clenshaw-assumptions
+Coverage: reading
+
+無次元区間[-1,1]、次数8・16・32、固定2048中点。節点・データ・重みは実際のbinary64値を対象にします。
+
+## 補間・スプライン・Haarの固定対照 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#runge-barycentric-clenshaw-algorithm
+Coverage: reading
+
+第2重心公式と全係数Clenshaw漸化式を自作。丸め済み節点上の閉形式重みと有限Chebyshev変換をそのまま保存します。
+p(x)=sum_j y_j*prod_(k!=j)((x-x_k)/(x_j-x_k))R(x)=(sum_j w_j*y_j/(x-x_j))/(sum_j w_j/(x-x_j))C(x)=sum_(k=0)^n a_k*T_k(x); b_k=a_k+2*x*b_(k+1)-b_(k+2)
+
+## 補間・スプライン・Haarの固定対照 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#runge-barycentric-clenshaw-validation
+Coverage: reading
+
+格納値の補間多項式P、閉重み有理式R、格納係数級数C、目標関数fを区別。17点の正確な有理参照・演算別誤差上界・節点一致・固定Runge傾向を照合します。
+
+## 補間・スプライン・Haarの固定対照 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#runge-barycentric-clenshaw-limits
+Coverage: reading
+
+標本最大誤差は連続一様ノルムの証明ではありません。丸め節点の閉重み・離散直交性は厳密と見なしません。任意次数・任意点の安定性は保証しません。
+
+## 補間・スプライン・Haarの固定対照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#runge-barycentric-clenshaw-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+max_node_table_cosine_defect1.68168036056e-16
+maximum_sampled_function_error105718.656762
+reference_certificate_probes_per_interpolant17
+coefficient_sets6
+判定 / check合格
+reference:fixed-cosine-node-tabletrue
+runge-equispaced-8:finitetrue
+runge-equispaced-8:node-hit-identitytrue
+runge-equispaced-8:barycentric-operation-certificatetrue
+runge-lobatto-8:clenshaw-operation-certificatetrue
+runge-lobatto-8:finitetrue
+runge-lobatto-8:node-hit-identitytrue
+runge-lobatto-8:barycentric-operation-certificatetrue
+runge-equispaced-16:finitetrue
+runge-equispaced-16:node-hit-identitytrue
+runge-equispaced-16:barycentric-operation-certificatetrue
+runge-lobatto-16:clenshaw-operation-certificatetrue
+runge-lobatto-16:finitetrue
+runge-lobatto-16:node-hit-identitytrue
+runge-lobatto-16:barycentric-operation-certificatetrue
+runge-equispaced-32:finitetrue
+runge-equispaced-32:node-hit-identitytrue
+runge-equispaced-32:barycentric-operation-certificatetrue
+runge-lobatto-32:clenshaw-operation-certificatetrue
+runge-lobatto-32:finitetrue
+runge-lobatto-32:node-hit-identitytrue
+runge-lobatto-32:barycentric-operation-certificatetrue
+absolute-equispaced-8:finitetrue
+absolute-equispaced-8:node-hit-identitytrue
+absolute-equispaced-8:barycentric-operation-certificatetrue
+absolute-lobatto-8:clenshaw-operation-certificatetrue
+
+## 補間・スプライン・Haarの固定対照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#runge-barycentric-clenshaw-measurements
+Coverage: reading
+
+absolute-lobatto-8:finitetrue
+absolute-lobatto-8:node-hit-identitytrue
+absolute-lobatto-8:barycentric-operation-certificatetrue
+absolute-equispaced-16:finitetrue
+absolute-equispaced-16:node-hit-identitytrue
+absolute-equispaced-16:barycentric-operation-certificatetrue
+absolute-lobatto-16:clenshaw-operation-certificatetrue
+absolute-lobatto-16:finitetrue
+absolute-lobatto-16:node-hit-identitytrue
+absolute-lobatto-16:barycentric-operation-certificatetrue
+absolute-equispaced-32:finitetrue
+absolute-equispaced-32:node-hit-identitytrue
+absolute-equispaced-32:barycentric-operation-certificatetrue
+absolute-lobatto-32:clenshaw-operation-certificatetrue
+absolute-lobatto-32:finitetrue
+absolute-lobatto-32:node-hit-identitytrue
+absolute-lobatto-32:barycentric-operation-certificatetrue
+reference:polynomial-control-equispacedtrue
+reference:polynomial-control-lobattotrue
+runge:equispaced-growthtrue
+runge:lobatto-refinementtrue
+fixed-record-and-coefficient-counttrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。Runge関数と絶対値関数を等間隔・Lobatto型の固定節点で補間し、Clenshaw評価と比較します。 保存配列から作図。保存済み誤差・導関数または二乗ノルムを別表示。各境界・表現の適用範囲は本文を参照。全記録を表で読む
+idfunctionnodesdegreesampled_max_errorsampled_RMS_errormax_closed_weight_representation_defectmax_barycentric_roundoff_boundmax_barycentric_roundoff_defectmaximum_certificate_guard_ratiomaximum_weighted_Lebesgueclenshaw_sampled_max_errormax_coefficient_representation_defect
+
+## 補間・スプライン・Haarの固定対照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#runge-barycentric-clenshaw-measurements
+Coverage: reading
+
+runge-equispaced-8rungeequispaced81.04517014130.36845101686401.36094980933e-144.958973316e-161.07095465669e-149.6463019856——
+runge-lobatto-8rungelobatto80.2046806095420.09694311197314.72843956699e-173.35701741986e-153.0361901996e-162.39152638863e-152.154095470530.2046806095421.62078329287e-16
+runge-equispaced-16rungeequispaced1614.39330847033.2729977420507.47115732054e-149.82450983083e-167.0131908137e-1435.0940039281——
+runge-lobatto-16rungelobatto160.03671263096660.01785006972423.92696934877e-176.24622237362e-151.37858735951e-165.14886955153e-152.576494110410.03671263096662.60200272272e-16
+runge-equispaced-32rungeequispaced325058.93908871766.99713121803.48734310638e-061.83624325399e-097.93885353174e-092103142.22396——
+runge-lobatto-32rungelobatto320.001618093817780.000736006756124.89007460542e-171.26012106894e-142.04304841068e-161.17062219258e-143.101184511940.001618093817782.25053350047e-15
+absolute-equispaced-8absoluteequispaced80.3157509336360.11261435842101.66479972772e-143.13612469722e-161.07095465669e-149.6463019856——
+absolute-lobatto-8absolutelobatto80.07369681521830.03501790558091.33392081217e-173.44045286642e-151.33091267417e-162.39152638863e-152.154095470530.07369681521832.55067535847e-16
+absolute-equispaced-16absoluteequispaced1611.13644233242.5343501307801.16432255843e-139.33231238069e-167.0131908137e-1435.0940039281——
+
+## 補間・スプライン・Haarの固定対照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#runge-barycentric-clenshaw-measurements
+Coverage: reading
+
+absolute-lobatto-16absolutelobatto160.03719153077330.01338480655221.37347737096e-177.83757504144e-152.91283952783e-165.14886955153e-152.576494110410.03719153077336.9848361346e-16
+absolute-equispaced-32absoluteequispaced32105718.65676216034.084470307.27016293663e-053.86636355139e-087.93885353174e-092103142.22396——
+absolute-lobatto-32absolutelobatto320.01863947303130.004932087476343.65276265835e-171.56595973143e-143.02173403439e-161.17062219258e-143.101184511940.01863947303137.42863279557e-15
+この例の実測値・全記録 / JSON
+
+## 補間・スプライン・Haarの固定対照 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#runge-barycentric-clenshaw-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+NIST DLMF §3.11(ii): Chebyshev series and Clenshaw summation [accessed 2026-11-25]
+確認範囲 / review_level: official-reference-selected-equations
+Selected E7, E9, E11 and E15 with endpoint-halving conventions; no original Clenshaw paper reading. The implementation uses full coefficients, so its final combination is derived explicitly.
+SciPy 1.14.1 BarycentricInterpolator documentation [accessed 2026-11-24]
+確認範囲 / review_level: official-documentation-selected-notes
+Selected barycentric formula and interpolation-conditioning notes read during the preceding preparation. The Berrut–Trefethen paper is a bibliographic lead, not a full-text reading.
+
+## 補間・スプライン・Haarの固定対照 — 自然・端点微分指定スプラインとPCHIP [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/
+Coverage: reading
+
+平坦部を持つ単調データ・3次式・直線の固定3組で、C2連続性と形状保存を比較します。
+手法・式・図・参照解
+使用手法
+スプライン補間
+PCHIP単調3次Hermite補間
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+3次Bスプラインの配置行列を解きde Boor評価。別経路でPCHIPの調和平均・端点制限とHermite評価を実装します。
+3次スプラインと形状保存補間
+実binary64の節点と値を使用。自然条件は両端2階微分ゼロ、clamped条件は入力端点1階微分です。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+自然・端点微分指定スプラインとPCHIP
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+正確な有理2階微分系・有理PCHIP・SciPy 1.14.1を照合。端点15記録は16スカラー出力・13異なる入力。平坦部の負値は実binary64をFraction化した独立式で示します。
+同じ問題の参照 · 解析参照
+自然・端点微分指定スプラインとPCHIP
+PCHIPは通常C1でありC2とは限りません。一般データの最良近似・外挿・ノイズ平滑化は対象外。SciPyは原著完全閲読の代用ではありません。
+
+## 補間・スプライン・Haarの固定対照 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#spline-shape-controls-assumptions
+Coverage: reading
+
+実binary64の節点と値を使用。自然条件は両端2階微分ゼロ、clamped条件は入力端点1階微分です。
+
+## 補間・スプライン・Haarの固定対照 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#spline-shape-controls-algorithm
+Coverage: reading
+
+3次Bスプラインの配置行列を解きde Boor評価。別経路でPCHIPの調和平均・端点制限とHermite評価を実装します。
+S_i(s)=a_i+b_i*s+c_i*s^2+d_i*s^3d_k=(w_1+w_2)/(w_1/m_(k-1)+w_2/m_k)S_natural(1.5)=a-9*(b-a)/88; S_clamped(1.5)=a-15*(b-a)/152
+
+## 補間・スプライン・Haarの固定対照 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#spline-shape-controls-validation
+Coverage: reading
+
+正確な有理2階微分系・有理PCHIP・SciPy 1.14.1を照合。端点15記録は16スカラー出力・13異なる入力。平坦部の負値は実binary64をFraction化した独立式で示します。
+
+## 補間・スプライン・Haarの固定対照 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#spline-shape-controls-limits
+Coverage: reading
+
+PCHIPは通常C1でありC2とは限りません。一般データの最良近似・外挿・ノイズ平滑化は対象外。SciPyは原著完全閲読の代用ではありません。
+
+## 補間・スプライン・Haarの固定対照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#spline-shape-controls-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+maximum_value_scaled_reference_defect2.94092632398e-16
+maximum_derivative_scaled_reference_defect5.23060430947e-15
+endpoint_fixture_records15
+endpoint_scalar_outputs16
+endpoint_distinct_datasets13
+判定 / check合格
+reference:endpoint-branch-valuestrue
+reference:endpoint-record-counttrue
+reference:endpoint-output-counttrue
+reference:endpoint-distinct-datasetstrue
+reference:negative-natural-witnesstrue
+reference:negative-clamped-witnesstrue
+plateau-natural:finitetrue
+plateau-natural:value-referencetrue
+plateau-natural:derivative-referencetrue
+plateau-natural:nodaltrue
+plateau-natural:boundary-or-shapetrue
+plateau-clamped:finitetrue
+plateau-clamped:value-referencetrue
+plateau-clamped:derivative-referencetrue
+plateau-clamped:nodaltrue
+plateau-clamped:boundary-or-shapetrue
+reference:pchip-actual-input-plateautrue
+plateau-pchip:finitetrue
+plateau-pchip:value-referencetrue
+plateau-pchip:derivative-referencetrue
+plateau-pchip:nodaltrue
+plateau-pchip:boundary-or-shapetrue
+cubic-natural:finitetrue
+cubic-natural:value-referencetrue
+cubic-natural:derivative-referencetrue
+cubic-natural:nodaltrue
+cubic-natural:boundary-or-shapetrue
+cubic-clamped:finitetrue
+cubic-clamped:value-referencetrue
+cubic-clamped:derivative-referencetrue
+cubic-clamped:nodaltrue
+cubic-clamped:boundary-or-shapetrue
+cubic-pchip:finitetrue
+
+## 補間・スプライン・Haarの固定対照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#spline-shape-controls-measurements
+Coverage: reading
+
+cubic-pchip:value-referencetrue
+cubic-pchip:derivative-referencetrue
+cubic-pchip:nodaltrue
+cubic-pchip:boundary-or-shapetrue
+linear-natural:finitetrue
+linear-natural:value-referencetrue
+linear-natural:derivative-referencetrue
+linear-natural:nodaltrue
+linear-natural:boundary-or-shapetrue
+linear-clamped:finitetrue
+linear-clamped:value-referencetrue
+linear-clamped:derivative-referencetrue
+linear-clamped:nodaltrue
+linear-clamped:boundary-or-shapetrue
+linear-pchip:finitetrue
+linear-pchip:value-referencetrue
+linear-pchip:derivative-referencetrue
+linear-pchip:nodaltrue
+linear-pchip:boundary-or-shapetrue
+reference:exact-piece-continuitytrue
+reference:polynomial-cubic-clampedtrue
+reference:polynomial-linear-naturaltrue
+reference:polynomial-linear-clampedtrue
+fixed-fit-counttrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。平坦部を持つ単調データ・3次式・直線の固定3組で、C2連続性と形状保存を比較します。 保存配列から作図。保存済み誤差・導関数または二乗ノルムを別表示。各境界・表現の適用範囲は本文を参照。全記録を表で読む
+iddatasetmethodvalue_scaled_defectderivative_scaled_defectcompanion_scaled_defectminimum_valuemaximum_valuenodal_maxabsboundary_or_shape_defect
+plateau-naturalplateaunatural2.244688029e-169.14651174594e-163.92660968036e-16-0.09923917539521.11923917542.22044604925e-166.66133814775e-16
+plateau-clampedplateauclamped2.20642543627e-163.16816330818e-164.64409219157e-16-0.09639656306541.116396563078.67361737988e-185.20417042793e-18
+
+## 補間・スプライン・Haarの固定対照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#spline-shape-controls-measurements
+Coverage: reading
+
+plateau-pchipplateaupchip1.10999826656e-169.22572265388e-172.9281633885e-160.011.0100
+cubic-naturalcubicnatural2.94092632398e-162.7416294383e-152.84137242217e-1502.040498364832.22044604925e-167.93016446161e-17
+cubic-clampedcubicclamped2.89926648212e-161.49654742539e-153.84673919297e-15-0.08866192962392.088661929621.11022302463e-162.22044604925e-16
+cubic-pchipcubicpchip2.10566586084e-161.98771853869e-151.36262608024e-150200
+linear-naturallinearnatural2.04687209586e-161.26158887549e-151.63005542148e-150.51.51.66533453694e-163.17206578464e-16
+linear-clampedlinearclamped2.04687209586e-165.23060430947e-151.91503308183e-150.51.52.22044604925e-161.11022302463e-16
+linear-pchiplinearpchip9.16118696666e-171.46544056964e-159.59172272975e-160.51.500
+この例の実測値・全記録 / JSON
+
+## 補間・スプライン・Haarの固定対照 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#spline-shape-controls-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+SciPy 1.14.1 PCHIP documentation and selected source [accessed 2026-11-25]
+確認範囲 / review_level: official-source-selected-lines
+Selected lines 202–225, 243–254, 275–298: harmonic interior derivatives, endpoint sign and 3-slope limiter, two-point case. The original Fritsch–Butland paper has not been read in full. Own formulas are independently expressed as scalar Hermite polynomials.
+SciPy 1.14.1 BSpline and CubicSpline documentation [accessed 2026-11-24]
+確認範囲 / review_level: official-documentation-selected-definitions
+Natural and clamped boundary conditions and the BSpline recurrence were read during preparation. No de Boor original full-text claim. SciPy is a secondary numerical companion; the rational second-derivative system is the independent reference.
+
+## 補間・スプライン・Haarの固定対照 — Haar多重解像度の境界・シフト・閾値 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/
+Coverage: reading
+
+長さ17・32の小信号に3段Haar分解を適用。1標本シフトと奇数長の境界処理を分けて比較します。
+手法・式・図・参照解
+使用手法
+ウェーブレット
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+和差フィルタ・間引き・逆ピラミッドを自作。閾値なし・hard・softの3条件を同じ解析係数から再構成します。
+有限長信号の離散Haar変換
+奇数長の各段で周期型は先頭、対称型は末尾を1点追加し、再構成時に切り戻します。詳細係数のみ閾値0.2を使用。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Haar多重解像度の境界・シフト・閾値
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+12解析・36再構成。独立行列・Fraction/Decimal係数、完全再構成、二乗L2誤差を照合。長さ32のみ直交誤差恒等式を要求し、17点では追加エネルギーを段別保存します。
+同じ問題の参照 · 解析参照
+Haar多重解像度の境界・シフト・閾値
+Haarに限定し長いフィルタや画像圧縮は対象外。一般の対称拡張に正規直交性を仮定しません。シフト不変性は要求せず、シフト別差を保存します。
+
+## 補間・スプライン・Haarの固定対照 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#haar-mallat-boundary-threshold-assumptions
+Coverage: reading
+
+奇数長の各段で周期型は先頭、対称型は末尾を1点追加し、再構成時に切り戻します。詳細係数のみ閾値0.2を使用。
+
+## 補間・スプライン・Haarの固定対照 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#haar-mallat-boundary-threshold-algorithm
+Coverage: reading
+
+和差フィルタ・間引き・逆ピラミッドを自作。閾値なし・hard・softの3条件を同じ解析係数から再構成します。
+a_(l+1,k)=(a_(l,2k)+a_(l,2k+1))/sqrt(2)d_(l+1,k)=(a_(l,2k)-a_(l,2k+1))/sqrt(2)E_after=E_before+padding^2; ||e||_2^2=||delta_coeff||_2^2 only for square orthogonal transform
+
+## 補間・スプライン・Haarの固定対照 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#haar-mallat-boundary-threshold-validation
+Coverage: reading
+
+12解析・36再構成。独立行列・Fraction/Decimal係数、完全再構成、二乗L2誤差を照合。長さ32のみ直交誤差恒等式を要求し、17点では追加エネルギーを段別保存します。
+
+## 補間・スプライン・Haarの固定対照 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#haar-mallat-boundary-threshold-limits
+Coverage: reading
+
+Haarに限定し長いフィルタや画像圧縮は対象外。一般の対称拡張に正規直交性を仮定しません。シフト不変性は要求せず、シフト別差を保存します。
+
+## 補間・スプライン・Haarの固定対照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#haar-mallat-boundary-threshold-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+analysis_records12
+maximum_reconstruction_l2_squared0.609539426627
+maximum_shift_back_equivariance_l2_squared0.24
+判定 / check合格
+reference:golden-0true
+reference:golden-1true
+periodic-smooth32-periodic:independent-analysistrue
+periodic-smooth32-periodic:left-inversetrue
+periodic-smooth32-periodic:coefficient-counttrue
+periodic-smooth32-periodic:padding-energy-ledgertrue
+periodic-smooth32-periodic-none:finite-and-owned-shapetrue
+periodic-smooth32-periodic-none:independent-synthesistrue
+periodic-smooth32-periodic-none:perfect-reconstructiontrue
+periodic-smooth32-periodic-none:critical-squared-error-identitytrue
+periodic-smooth32-periodic-hard:finite-and-owned-shapetrue
+periodic-smooth32-periodic-hard:independent-synthesistrue
+periodic-smooth32-periodic-hard:critical-squared-error-identitytrue
+periodic-smooth32-periodic-soft:finite-and-owned-shapetrue
+periodic-smooth32-periodic-soft:independent-synthesistrue
+periodic-smooth32-periodic-soft:critical-squared-error-identitytrue
+periodic-smooth32-symmetric:independent-analysistrue
+periodic-smooth32-symmetric:left-inversetrue
+periodic-smooth32-symmetric:coefficient-counttrue
+periodic-smooth32-symmetric:padding-energy-ledgertrue
+periodic-smooth32-symmetric-none:finite-and-owned-shapetrue
+periodic-smooth32-symmetric-none:independent-synthesistrue
+
+## 補間・スプライン・Haarの固定対照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#haar-mallat-boundary-threshold-measurements
+Coverage: reading
+
+periodic-smooth32-symmetric-none:perfect-reconstructiontrue
+periodic-smooth32-symmetric-none:critical-squared-error-identitytrue
+periodic-smooth32-symmetric-hard:finite-and-owned-shapetrue
+periodic-smooth32-symmetric-hard:independent-synthesistrue
+periodic-smooth32-symmetric-hard:critical-squared-error-identitytrue
+periodic-smooth32-symmetric-soft:finite-and-owned-shapetrue
+periodic-smooth32-symmetric-soft:independent-synthesistrue
+periodic-smooth32-symmetric-soft:critical-squared-error-identitytrue
+step32-periodic:independent-analysistrue
+step32-periodic:left-inversetrue
+step32-periodic:coefficient-counttrue
+step32-periodic:padding-energy-ledgertrue
+step32-periodic-none:finite-and-owned-shapetrue
+step32-periodic-none:independent-synthesistrue
+step32-periodic-none:perfect-reconstructiontrue
+step32-periodic-none:critical-squared-error-identitytrue
+step32-periodic-hard:finite-and-owned-shapetrue
+step32-periodic-hard:independent-synthesistrue
+step32-periodic-hard:critical-squared-error-identitytrue
+step32-periodic-soft:finite-and-owned-shapetrue
+step32-periodic-soft:independent-synthesistrue
+step32-periodic-soft:critical-squared-error-identitytrue
+step32-symmetric:independent-analysistrue
+step32-symmetric:left-inversetrue
+step32-symmetric:coefficient-counttrue
+step32-symmetric:padding-energy-ledgertrue
+step32-symmetric-none:finite-and-owned-shapetrue
+
+## 補間・スプライン・Haarの固定対照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#haar-mallat-boundary-threshold-measurements
+Coverage: reading
+
+step32-symmetric-none:independent-synthesistrue
+step32-symmetric-none:perfect-reconstructiontrue
+step32-symmetric-none:critical-squared-error-identitytrue
+step32-symmetric-hard:finite-and-owned-shapetrue
+step32-symmetric-hard:independent-synthesistrue
+step32-symmetric-hard:critical-squared-error-identitytrue
+step32-symmetric-soft:finite-and-owned-shapetrue
+step32-symmetric-soft:independent-synthesistrue
+step32-symmetric-soft:critical-squared-error-identitytrue
+ramp17-periodic:independent-analysistrue
+ramp17-periodic:left-inversetrue
+ramp17-periodic:coefficient-counttrue
+ramp17-periodic:padding-energy-ledgertrue
+ramp17-periodic-none:finite-and-owned-shapetrue
+ramp17-periodic-none:independent-synthesistrue
+ramp17-periodic-none:perfect-reconstructiontrue
+ramp17-periodic-hard:finite-and-owned-shapetrue
+ramp17-periodic-hard:independent-synthesistrue
+ramp17-periodic-soft:finite-and-owned-shapetrue
+ramp17-periodic-soft:independent-synthesistrue
+ramp17-symmetric:independent-analysistrue
+ramp17-symmetric:left-inversetrue
+ramp17-symmetric:coefficient-counttrue
+ramp17-symmetric:padding-energy-ledgertrue
+ramp17-symmetric-none:finite-and-owned-shapetrue
+ramp17-symmetric-none:independent-synthesistrue
+ramp17-symmetric-none:perfect-reconstructiontrue
+ramp17-symmetric-hard:finite-and-owned-shapetrue
+ramp17-symmetric-hard:independent-synthesistrue
+ramp17-symmetric-soft:finite-and-owned-shapetrue
+
+## 補間・スプライン・Haarの固定対照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#haar-mallat-boundary-threshold-measurements
+Coverage: reading
+
+ramp17-symmetric-soft:independent-synthesistrue
+step17-periodic:independent-analysistrue
+step17-periodic:left-inversetrue
+step17-periodic:coefficient-counttrue
+step17-periodic:padding-energy-ledgertrue
+step17-periodic-none:finite-and-owned-shapetrue
+step17-periodic-none:independent-synthesistrue
+step17-periodic-none:perfect-reconstructiontrue
+step17-periodic-hard:finite-and-owned-shapetrue
+step17-periodic-hard:independent-synthesistrue
+step17-periodic-soft:finite-and-owned-shapetrue
+step17-periodic-soft:independent-synthesistrue
+step17-symmetric:independent-analysistrue
+step17-symmetric:left-inversetrue
+step17-symmetric:coefficient-counttrue
+step17-symmetric:padding-energy-ledgertrue
+step17-symmetric-none:finite-and-owned-shapetrue
+step17-symmetric-none:independent-synthesistrue
+step17-symmetric-none:perfect-reconstructiontrue
+step17-symmetric-hard:finite-and-owned-shapetrue
+step17-symmetric-hard:independent-synthesistrue
+step17-symmetric-soft:finite-and-owned-shapetrue
+step17-symmetric-soft:independent-synthesistrue
+step32-shift1-periodic:independent-analysistrue
+step32-shift1-periodic:left-inversetrue
+step32-shift1-periodic:coefficient-counttrue
+step32-shift1-periodic:padding-energy-ledgertrue
+step32-shift1-periodic-none:finite-and-owned-shapetrue
+step32-shift1-periodic-none:independent-synthesistrue
+step32-shift1-periodic-none:perfect-reconstructiontrue
+
+## 補間・スプライン・Haarの固定対照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#haar-mallat-boundary-threshold-measurements
+Coverage: reading
+
+step32-shift1-periodic-none:critical-squared-error-identitytrue
+step32-shift1-periodic-hard:finite-and-owned-shapetrue
+step32-shift1-periodic-hard:independent-synthesistrue
+step32-shift1-periodic-hard:critical-squared-error-identitytrue
+step32-shift1-periodic-soft:finite-and-owned-shapetrue
+step32-shift1-periodic-soft:independent-synthesistrue
+step32-shift1-periodic-soft:critical-squared-error-identitytrue
+step32-shift1-symmetric:independent-analysistrue
+step32-shift1-symmetric:left-inversetrue
+step32-shift1-symmetric:coefficient-counttrue
+step32-shift1-symmetric:padding-energy-ledgertrue
+step32-shift1-symmetric-none:finite-and-owned-shapetrue
+step32-shift1-symmetric-none:independent-synthesistrue
+step32-shift1-symmetric-none:perfect-reconstructiontrue
+step32-shift1-symmetric-none:critical-squared-error-identitytrue
+step32-shift1-symmetric-hard:finite-and-owned-shapetrue
+step32-shift1-symmetric-hard:independent-synthesistrue
+step32-shift1-symmetric-hard:critical-squared-error-identitytrue
+step32-shift1-symmetric-soft:finite-and-owned-shapetrue
+step32-shift1-symmetric-soft:independent-synthesistrue
+step32-shift1-symmetric-soft:critical-squared-error-identitytrue
+step17-shift1-periodic:independent-analysistrue
+step17-shift1-periodic:left-inversetrue
+step17-shift1-periodic:coefficient-counttrue
+step17-shift1-periodic:padding-energy-ledgertrue
+
+## 補間・スプライン・Haarの固定対照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#haar-mallat-boundary-threshold-measurements
+Coverage: reading
+
+step17-shift1-periodic-none:finite-and-owned-shapetrue
+step17-shift1-periodic-none:independent-synthesistrue
+step17-shift1-periodic-none:perfect-reconstructiontrue
+step17-shift1-periodic-hard:finite-and-owned-shapetrue
+step17-shift1-periodic-hard:independent-synthesistrue
+step17-shift1-periodic-soft:finite-and-owned-shapetrue
+step17-shift1-periodic-soft:independent-synthesistrue
+step17-shift1-symmetric:independent-analysistrue
+step17-shift1-symmetric:left-inversetrue
+step17-shift1-symmetric:coefficient-counttrue
+step17-shift1-symmetric:padding-energy-ledgertrue
+step17-shift1-symmetric-none:finite-and-owned-shapetrue
+step17-shift1-symmetric-none:independent-synthesistrue
+step17-shift1-symmetric-none:perfect-reconstructiontrue
+step17-shift1-symmetric-hard:finite-and-owned-shapetrue
+step17-shift1-symmetric-hard:independent-synthesistrue
+step17-shift1-symmetric-soft:finite-and-owned-shapetrue
+step17-shift1-symmetric-soft:independent-synthesistrue
+fixed-analysis-and-reconstruction-counttrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。長さ17・32の小信号に3段Haar分解を適用。1標本シフトと奇数長の境界処理を分けて比較します。 保存配列から作図。保存済み誤差・導関数または二乗ノルムを別表示。各境界・表現の適用範囲は本文を参照。全記録を表で読む
+idsignallengthboundaryshift_samplesthresholdtaureconstruction_l2_squaredreconstruction_Linfcoefficient_delta_l2_squaredshift_back_equivariance_l2_squaredsignal_l2_squaredpadding_energyretained_detailstotal_coefficients
+
+## 補間・スプライン・Haarの固定対照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#haar-mallat-boundary-threshold-measurements
+Coverage: reading
+
+periodic-smooth32-periodic-noneperiodic-smooth3232periodic0none01.12705420346e-303.33066907388e-16001702832
+periodic-smooth32-periodic-hardperiodic-smooth3232periodic0hard0.20.2095394266270.1595274170160.20953942662701701032
+periodic-smooth32-periodic-softperiodic-smooth3232periodic0soft0.20.6095394266270.3121320343560.60953942662701701032
+periodic-smooth32-symmetric-noneperiodic-smooth3232symmetric0none01.12705420346e-303.33066907388e-16001702832
+periodic-smooth32-symmetric-hardperiodic-smooth3232symmetric0hard0.20.2095394266270.1595274170160.20953942662701701032
+periodic-smooth32-symmetric-softperiodic-smooth3232symmetric0soft0.20.6095394266270.3121320343560.60953942662701701032
+step32-periodic-nonestep3232periodic0none03.15544362088e-304.4408920985e-1600160032
+step32-periodic-hardstep3232periodic0hard0.23.15544362088e-304.4408920985e-1600160032
+step32-periodic-softstep3232periodic0soft0.23.15544362088e-304.4408920985e-1600160032
+step32-symmetric-nonestep3232symmetric0none03.15544362088e-304.4408920985e-1600160032
+step32-symmetric-hardstep3232symmetric0hard0.23.15544362088e-304.4408920985e-1600160032
+step32-symmetric-softstep3232symmetric0soft0.23.15544362088e-304.4408920985e-1600160032
+ramp17-periodic-noneramp1717periodic0none07.32118194235e-313.33066907388e-16005.843750.0371093751720
+ramp17-periodic-hardramp1717periodic0hard0.20.0781250.093750.07812505.843750.037109375520
+
+## 補間・スプライン・Haarの固定対照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#haar-mallat-boundary-threshold-measurements
+Coverage: reading
+
+ramp17-periodic-softramp1717periodic0soft0.20.2555514068710.3121320343560.27812505.843750.037109375520
+ramp17-symmetric-noneramp1717symmetric0none09.17007468896e-314.4408920985e-16005.8437571420
+ramp17-symmetric-hardramp1717symmetric0hard0.20.0781250.093750.07812505.843757220
+ramp17-symmetric-softramp1717symmetric0soft0.20.1581250.1644606781190.15812505.843757220
+step17-periodic-nonestep1717periodic0none01.59004776209e-304.4408920985e-160090320
+step17-periodic-hardstep1717periodic0hard0.21.59004776209e-304.4408920985e-160090320
+step17-periodic-softstep1717periodic0soft0.20.09742640687120.3121320343560.12090320
+step17-symmetric-nonestep1717symmetric0none01.77493703675e-304.4408920985e-160097020
+step17-symmetric-hardstep1717symmetric0hard0.21.77493703675e-304.4408920985e-160097020
+step17-symmetric-softstep1717symmetric0soft0.21.77493703675e-304.4408920985e-160097020
+step32-shift1-periodic-nonestep32-shift132periodic1none02.52065711121e-304.4408920985e-1602.52682008704e-31160632
+step32-shift1-periodic-hardstep32-shift132periodic1hard0.22.52065711121e-304.4408920985e-1602.52682008704e-31160632
+step32-shift1-periodic-softstep32-shift132periodic1soft0.20.240.3121320343560.240.24160632
+step32-shift1-symmetric-nonestep32-shift132symmetric1none02.52065711121e-304.4408920985e-1602.52682008704e-31160632
+
+## 補間・スプライン・Haarの固定対照 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#haar-mallat-boundary-threshold-measurements
+Coverage: reading
+
+step32-shift1-symmetric-hardstep32-shift132symmetric1hard0.22.52065711121e-304.4408920985e-1602.52682008704e-31160632
+step32-shift1-symmetric-softstep32-shift132symmetric1soft0.20.240.3121320343560.240.24160632
+step17-shift1-periodic-nonestep17-shift117periodic1none01.05386886557e-304.4408920985e-1601.54074395551e-3191.75820
+step17-shift1-periodic-hardstep17-shift117periodic1hard0.21.05386886557e-304.4408920985e-1601.54074395551e-3191.75820
+step17-shift1-periodic-softstep17-shift117periodic1soft0.20.2691421356240.3121320343560.320.17171572875391.75820
+step17-shift1-symmetric-nonestep17-shift117symmetric1none01.14015052708e-304.4408920985e-1602.52682008704e-3197620
+step17-shift1-symmetric-hardstep17-shift117symmetric1hard0.21.14015052708e-304.4408920985e-1602.52682008704e-3197620
+step17-shift1-symmetric-softstep17-shift117symmetric1soft0.20.240.3121320343560.240.2497620
+この例の実測値・全記録 / JSON
+
+## 補間・スプライン・Haarの固定対照 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#haar-mallat-boundary-threshold-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+S. Mallat, A Theory for Multiresolution Signal Decomposition: The Wavelet Representation [accessed 2026-11-24]
+確認範囲 / review_level: primary-paper-selected-body
+During preparation: title/abstract, Haar example on printed p. 679, selected §III-B/C filter/downsample/inverse-pyramid and border-symmetry prose on p. 681. Extracted formula glyphs were imperfect; no complete proof or numerical-table audit is claimed.
+PyWavelets documentation: Signal extension modes [accessed 2026-11-25]
+確認範囲 / review_level: official-documentation-selected-terminology
+Periodic and half-sample symmetric extension and the redundancy caveat. This example defines its own append-at-each-odd-level/crop convention; it does not claim PyWavelets coefficient-layout equivalence or require PyWavelets.
 
 ## 非線形反応拡散・パターン形成の独立検証 — 非線形反応拡散・パターン形成の独立検証 [ja]
 
@@ -89132,6 +92309,1254 @@ Enrico Camporeale, Gian Luca Delzanno, Benjamin K. Bergen and J. David Moulton (
 確認範囲 / review_level: primary-selected-original-pdf-text
 原著の規格化方程式、再帰・雑音、Landauと二流の線形窓の議論を選択して確認。原著の計算値は転用しません。
 
+## 領域別・二重指数・疎格子求積 — 領域別・二重指数・疎格子求積 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/
+Coverage: reading
+
+固定した積分を適用条件に応じて比較し、推定誤差・実誤差・予算終了・未解像対照を区別します。
+
+## 領域別・二重指数・疎格子求積 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#run-all
+Coverage: reading
+
+ZIPの atlas-quadrature-controls-2026-11-25 フォルダで実行します。このコマンドは配布版の全3例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## 領域別・二重指数・疎格子求積 — 領域別QUADPACKと有限Simpson対照 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/
+Coverage: reading
+
+15本の特殊化求積と15本のSimpson対照を固定入力で比較します。
+手法・式・図・参照解
+使用手法
+Gauss求積・適応積分
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+領域と重みを明示しfull_outputの活動prefixを保持。既存Simpson関数は不変。
+有限・無限・多変数の定積分
+無限Gaussian、有限振動2周波数、半無限Fourier、内部特異点。絶対公差1e-6/1e-8/1e-10、epsrel=0。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+領域別QUADPACKと有限Simpson対照
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+独立の解析区間参照と実callback数を照合します。有限Gaussianは点値でなく厳密区間です。
+同じ問題の参照 · 解析参照
+領域別QUADPACKと有限Simpson対照
+Simpsonの特異節点失敗と未達精度を保存し、推定誤差の一般保証にしません。
+
+## 領域別・二重指数・疎格子求積 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#quadpack-domain-selection-assumptions
+Coverage: reading
+
+無限Gaussian、有限振動2周波数、半無限Fourier、内部特異点。絶対公差1e-6/1e-8/1e-10、epsrel=0。
+
+## 領域別・二重指数・疎格子求積 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#quadpack-domain-selection-algorithm
+Coverage: reading
+
+領域と重みを明示しfull_outputの活動prefixを保持。既存Simpson関数は不変。
+
+## 領域別・二重指数・疎格子求積 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#quadpack-domain-selection-validation
+Coverage: reading
+
+独立の解析区間参照と実callback数を照合します。有限Gaussianは点値でなく厳密区間です。
+
+## 領域別・二重指数・疎格子求積 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#quadpack-domain-selection-limits
+Coverage: reading
+
+Simpsonの特異節点失敗と未達精度を保存し、推定誤差の一般保証にしません。
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+records30
+integrand_evaluations34351
+accuracy_goals_met25
+accuracy_goals_unmet2
+accuracy_goals_unresolved3
+estimated_converged_rows26
+判定 / check合格
+q78:gaussian-whole-line:specialized-quadpack:a0:callback-ledgertrue
+q78:gaussian-whole-line:specialized-quadpack:a0:finite-returntrue
+q78:gaussian-whole-line:specialized-quadpack:a0:native-successtrue
+q78:gaussian-whole-line:specialized-quadpack:a0:required-analytic-accuracytrue
+q78:gaussian-whole-line:specialized-quadpack:a0:absolute-seriestrue
+q78:gaussian-whole-line:specialized-quadpack:a1:callback-ledgertrue
+q78:gaussian-whole-line:specialized-quadpack:a1:finite-returntrue
+q78:gaussian-whole-line:specialized-quadpack:a1:native-successtrue
+q78:gaussian-whole-line:specialized-quadpack:a1:required-analytic-accuracytrue
+q78:gaussian-whole-line:specialized-quadpack:a1:absolute-seriestrue
+q78:gaussian-whole-line:specialized-quadpack:a2:callback-ledgertrue
+q78:gaussian-whole-line:specialized-quadpack:a2:finite-returntrue
+q78:gaussian-whole-line:specialized-quadpack:a2:native-successtrue
+q78:gaussian-whole-line:specialized-quadpack:a2:required-analytic-accuracytrue
+q78:gaussian-whole-line:specialized-quadpack:a2:absolute-seriestrue
+q78:gaussian-whole-line:simpson-companion:a0:callback-ledgertrue
+q78:gaussian-whole-line:simpson-companion:a0:evaluation-captrue
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:gaussian-whole-line:simpson-companion:a0:finite-returntrue
+q78:gaussian-whole-line:simpson-companion:a0:native-statustrue
+q78:gaussian-whole-line:simpson-companion:a1:callback-ledgertrue
+q78:gaussian-whole-line:simpson-companion:a1:evaluation-captrue
+q78:gaussian-whole-line:simpson-companion:a1:finite-returntrue
+q78:gaussian-whole-line:simpson-companion:a1:native-statustrue
+q78:gaussian-whole-line:simpson-companion:a2:callback-ledgertrue
+q78:gaussian-whole-line:simpson-companion:a2:evaluation-captrue
+q78:gaussian-whole-line:simpson-companion:a2:finite-returntrue
+q78:gaussian-whole-line:simpson-companion:a2:native-statustrue
+q78:finite-sine-40:specialized-quadpack:a0:callback-ledgertrue
+q78:finite-sine-40:specialized-quadpack:a0:finite-returntrue
+q78:finite-sine-40:specialized-quadpack:a0:native-successtrue
+q78:finite-sine-40:specialized-quadpack:a0:required-analytic-accuracytrue
+q78:finite-sine-40:specialized-quadpack:a0:absolute-seriestrue
+q78:finite-sine-40:specialized-quadpack:a1:callback-ledgertrue
+q78:finite-sine-40:specialized-quadpack:a1:finite-returntrue
+q78:finite-sine-40:specialized-quadpack:a1:native-successtrue
+q78:finite-sine-40:specialized-quadpack:a1:required-analytic-accuracytrue
+q78:finite-sine-40:specialized-quadpack:a1:absolute-seriestrue
+q78:finite-sine-40:specialized-quadpack:a2:callback-ledgertrue
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:finite-sine-40:specialized-quadpack:a2:finite-returntrue
+q78:finite-sine-40:specialized-quadpack:a2:native-successtrue
+q78:finite-sine-40:specialized-quadpack:a2:required-analytic-accuracytrue
+q78:finite-sine-40:specialized-quadpack:a2:absolute-seriestrue
+q78:finite-sine-40:simpson-companion:a0:callback-ledgertrue
+q78:finite-sine-40:simpson-companion:a0:evaluation-captrue
+q78:finite-sine-40:simpson-companion:a0:finite-returntrue
+q78:finite-sine-40:simpson-companion:a0:native-statustrue
+q78:finite-sine-40:simpson-companion:a1:callback-ledgertrue
+q78:finite-sine-40:simpson-companion:a1:evaluation-captrue
+q78:finite-sine-40:simpson-companion:a1:finite-returntrue
+q78:finite-sine-40:simpson-companion:a1:native-statustrue
+q78:finite-sine-40:simpson-companion:a2:callback-ledgertrue
+q78:finite-sine-40:simpson-companion:a2:evaluation-captrue
+q78:finite-sine-40:simpson-companion:a2:finite-returntrue
+q78:finite-sine-40:simpson-companion:a2:native-statustrue
+q78:finite-sine-120:specialized-quadpack:a0:callback-ledgertrue
+q78:finite-sine-120:specialized-quadpack:a0:finite-returntrue
+q78:finite-sine-120:specialized-quadpack:a0:native-successtrue
+q78:finite-sine-120:specialized-quadpack:a0:required-analytic-accuracytrue
+q78:finite-sine-120:specialized-quadpack:a0:absolute-seriestrue
+q78:finite-sine-120:specialized-quadpack:a1:callback-ledgertrue
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:finite-sine-120:specialized-quadpack:a1:finite-returntrue
+q78:finite-sine-120:specialized-quadpack:a1:native-successtrue
+q78:finite-sine-120:specialized-quadpack:a1:required-analytic-accuracytrue
+q78:finite-sine-120:specialized-quadpack:a1:absolute-seriestrue
+q78:finite-sine-120:specialized-quadpack:a2:callback-ledgertrue
+q78:finite-sine-120:specialized-quadpack:a2:finite-returntrue
+q78:finite-sine-120:specialized-quadpack:a2:native-successtrue
+q78:finite-sine-120:specialized-quadpack:a2:required-analytic-accuracytrue
+q78:finite-sine-120:specialized-quadpack:a2:absolute-seriestrue
+q78:finite-sine-120:simpson-companion:a0:callback-ledgertrue
+q78:finite-sine-120:simpson-companion:a0:evaluation-captrue
+q78:finite-sine-120:simpson-companion:a0:finite-returntrue
+q78:finite-sine-120:simpson-companion:a0:native-statustrue
+q78:finite-sine-120:simpson-companion:a1:callback-ledgertrue
+q78:finite-sine-120:simpson-companion:a1:evaluation-captrue
+q78:finite-sine-120:simpson-companion:a1:finite-returntrue
+q78:finite-sine-120:simpson-companion:a1:native-statustrue
+q78:finite-sine-120:simpson-companion:a2:callback-ledgertrue
+q78:finite-sine-120:simpson-companion:a2:evaluation-captrue
+q78:finite-sine-120:simpson-companion:a2:finite-returntrue
+q78:finite-sine-120:simpson-companion:a2:native-statustrue
+q78:fourier-half-line:specialized-quadpack:a0:callback-ledgertrue
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:fourier-half-line:specialized-quadpack:a0:finite-returntrue
+q78:fourier-half-line:specialized-quadpack:a0:native-successtrue
+q78:fourier-half-line:specialized-quadpack:a0:required-analytic-accuracytrue
+q78:fourier-half-line:specialized-quadpack:a0:absolute-seriestrue
+q78:fourier-half-line:specialized-quadpack:a1:callback-ledgertrue
+q78:fourier-half-line:specialized-quadpack:a1:finite-returntrue
+q78:fourier-half-line:specialized-quadpack:a1:native-successtrue
+q78:fourier-half-line:specialized-quadpack:a1:required-analytic-accuracytrue
+q78:fourier-half-line:specialized-quadpack:a1:absolute-seriestrue
+q78:fourier-half-line:specialized-quadpack:a2:callback-ledgertrue
+q78:fourier-half-line:specialized-quadpack:a2:finite-returntrue
+q78:fourier-half-line:specialized-quadpack:a2:native-successtrue
+q78:fourier-half-line:specialized-quadpack:a2:required-analytic-accuracytrue
+q78:fourier-half-line:specialized-quadpack:a2:absolute-seriestrue
+q78:fourier-half-line:simpson-companion:a0:callback-ledgertrue
+q78:fourier-half-line:simpson-companion:a0:evaluation-captrue
+q78:fourier-half-line:simpson-companion:a0:finite-returntrue
+q78:fourier-half-line:simpson-companion:a0:native-statustrue
+q78:fourier-half-line:simpson-companion:a1:callback-ledgertrue
+q78:fourier-half-line:simpson-companion:a1:evaluation-captrue
+q78:fourier-half-line:simpson-companion:a1:finite-returntrue
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:fourier-half-line:simpson-companion:a1:native-statustrue
+q78:fourier-half-line:simpson-companion:a2:callback-ledgertrue
+q78:fourier-half-line:simpson-companion:a2:evaluation-captrue
+q78:fourier-half-line:simpson-companion:a2:finite-returntrue
+q78:fourier-half-line:simpson-companion:a2:native-statustrue
+q78:internal-root:specialized-quadpack:a0:callback-ledgertrue
+q78:internal-root:specialized-quadpack:a0:finite-returntrue
+q78:internal-root:specialized-quadpack:a0:native-successtrue
+q78:internal-root:specialized-quadpack:a0:required-analytic-accuracytrue
+q78:internal-root:specialized-quadpack:a0:absolute-seriestrue
+q78:internal-root:specialized-quadpack:a1:callback-ledgertrue
+q78:internal-root:specialized-quadpack:a1:finite-returntrue
+q78:internal-root:specialized-quadpack:a1:native-successtrue
+q78:internal-root:specialized-quadpack:a1:required-analytic-accuracytrue
+q78:internal-root:specialized-quadpack:a1:absolute-seriestrue
+q78:internal-root:specialized-quadpack:a2:callback-ledgertrue
+q78:internal-root:specialized-quadpack:a2:finite-returntrue
+q78:internal-root:specialized-quadpack:a2:native-successtrue
+q78:internal-root:specialized-quadpack:a2:required-analytic-accuracytrue
+q78:internal-root:specialized-quadpack:a2:absolute-seriestrue
+q78:internal-root:simpson-companion:a0:callback-ledgertrue
+q78:internal-root:simpson-companion:a0:evaluation-captrue
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:internal-root:simpson-companion:a0:declared-singular-nodetrue
+q78:internal-root:simpson-companion:a1:callback-ledgertrue
+q78:internal-root:simpson-companion:a1:evaluation-captrue
+q78:internal-root:simpson-companion:a1:declared-singular-nodetrue
+q78:internal-root:simpson-companion:a2:callback-ledgertrue
+q78:internal-root:simpson-companion:a2:evaluation-captrue
+q78:internal-root:simpson-companion:a2:declared-singular-nodetrue
+quadpack-domain-selection:fixed-record-counttrue
+quadpack-domain-selection:unique-record-idstrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。活動Fourier周期の保存寄与と誤差・評価数全記録を表で読む
+row_idsequenceintegrand_idmethod_iddimensionabsolute_tolerancestepcutoffmethod_codelevelvalueevaluationsestimated_errorconvergedterminationaccuracy_goal_meterror_lowererror_upperraw_fileroutinenative_messagesactive_partition_or_cyclesaccuracy_goal_statebaseline_accuracy_is_not_mandatoryfull_improper_error_interval
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:gaussian-whole-line:specialized-quadpack:a078gaussian-whole-linespecialized-quadpack—1e-06——0—1.772453850912103.42954887496e-08truelibrary_successtrue2.22044604925e-152.6645352591e-15raw/q78__gaussian-whole-line__specialized-quadpack__a0.npzqagie[]{"alist":[0.125,0.5,0.25,0.0],"blist":[0.25,1.0,0.5,0.125],"rlist":[3.9154386473573276e-05,1.4936482656248538,0.2787664308941864,7.43647065379499e-23],"elist":[6.921731761280723e-10,1.350971374075594e-08,2.0093601818829513e-08,1.421161611468685e-22]}met——
+q78:gaussian-whole-line:specialized-quadpack:a178gaussian-whole-linespecialized-quadpack—1e-08——0—1.772453850913306.93191076833e-10truelibrary_successtrue04.4408920985e-16raw/q78__gaussian-whole-line__specialized-quadpack__a1.npzqagie[]{"alist":[0.125,0.5,0.25,0.75,0.0,0.375],"blist":[0.25,0.75,0.375,1.0,0.125,0.5],"rlist":[3.9154386473573276e-05,0.8508712234014818,0.032613212816508766,0.6427770422233723,7.43647065379499e-23,0.24615321807767965],"elist":[6.921731761280723e-10,2.6062187768219587e-13,7.473957954696515e-13,7.136258719768444e-15,1.421161611468685e-22,2.7328497029541727e-15]}met——
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:gaussian-whole-line:specialized-quadpack:a278gaussian-whole-linespecialized-quadpack—1e-10——0—1.772453850913901.03068814179e-12truelibrary_successtrue02.22044604925e-16raw/q78__gaussian-whole-line__specialized-quadpack__a2.npzqagie[]{"alist":[0.125,0.5,0.25,0.75,0.0,0.375,0.1875],"blist":[0.1875,0.75,0.375,1.0,0.125,0.5,0.25],"rlist":[1.574754422354945e-09,0.8508712234014818,0.032613212816508766,0.6427770422233723,7.43647065379499e-23,0.24615321807767965,3.915281171913715e-05],"elist":[1.205092855126857e-14,2.6062187768219587e-13,7.473957954696515e-13,7.136258719768444e-15,1.421161611468685e-22,2.7328497029541727e-15,7.365078267278642e-16]}met——
+q78:gaussian-whole-line:simpson-companion:a078gaussian-whole-linesimpson-companion—1e-06——1—1.772453852972091.53312891099e-07trueestimated_tolerancetrue2.06019645788e-092.06019712401e-09raw/q78__gaussian-whole-line__simpson-companion__a0.npz———mettrue[2.0601964578759176e-09,2.0601969019651282e-09]
+q78:gaussian-whole-line:simpson-companion:a178gaussian-whole-linesimpson-companion—1e-08——1—1.772453851025772.59643305885e-09trueestimated_tolerancetrue1.18221210599e-101.18221876733e-10raw/q78__gaussian-whole-line__simpson-companion__a1.npz———mettrue[1.1822121059879007e-10,1.1822165468799997e-10]
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:gaussian-whole-line:simpson-companion:a278gaussian-whole-linesimpson-companion—1e-10——1—1.7724538509817775.22590412822e-11trueestimated_tolerancetrue7.75999264846e-117.76005926184e-11raw/q78__gaussian-whole-line__simpson-companion__a2.npz———mettrue[7.7599926484595e-11,7.760037057380488e-11]
+q78:finite-sine-40:specialized-quadpack:a078finite-sine-40specialized-quadpack—1e-06——0—0.0309431606768251.06186429913e-18truelibrary_successtrue6.93889390391e-181.38777878078e-17raw/q78__finite-sine-40__specialized-quadpack__a0.npzqawoe[]{"alist":[],"blist":[],"rlist":[],"elist":[]}met——
+q78:finite-sine-40:specialized-quadpack:a178finite-sine-40specialized-quadpack—1e-08——0—0.0309431606768251.06186429913e-18truelibrary_successtrue6.93889390391e-181.38777878078e-17raw/q78__finite-sine-40__specialized-quadpack__a1.npzqawoe[]{"alist":[],"blist":[],"rlist":[],"elist":[]}met——
+q78:finite-sine-40:specialized-quadpack:a278finite-sine-40specialized-quadpack—1e-10——0—0.0309431606768251.06186429913e-18truelibrary_successtrue6.93889390391e-181.38777878078e-17raw/q78__finite-sine-40__specialized-quadpack__a2.npzqawoe[]{"alist":[],"blist":[],"rlist":[],"elist":[]}met——
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:finite-sine-40:simpson-companion:a078finite-sine-40simpson-companion—1e-06——1—0.03094316441034132.82172329255e-07trueestimated_tolerancetrue3.73349895791e-093.73349896485e-09raw/q78__finite-sine-40__simpson-companion__a0.npz———mettrue—
+q78:finite-sine-40:simpson-companion:a178finite-sine-40simpson-companion—1e-08——1—0.030943160676510934.58017448288e-09trueestimated_tolerancetrue2.82933398932e-132.82940337826e-13raw/q78__finite-sine-40__simpson-companion__a1.npz———mettrue—
+q78:finite-sine-40:simpson-companion:a278finite-sine-40simpson-companion—1e-10——1—0.030943160676838052.7760176641e-11trueestimated_tolerancetrue1.1622647289e-151.16920362281e-15raw/q78__finite-sine-40__simpson-companion__a2.npz———mettrue—
+q78:finite-sine-120:specialized-quadpack:a078finite-sine-120specialized-quadpack—1e-06——0—0.00582209237053252.04874476107e-18truelibrary_successtrue8.67361737988e-192.60208521397e-18raw/q78__finite-sine-120__specialized-quadpack__a0.npzqawoe[]{"alist":[],"blist":[],"rlist":[],"elist":[]}met——
+q78:finite-sine-120:specialized-quadpack:a178finite-sine-120specialized-quadpack—1e-08——0—0.00582209237053252.04874476107e-18truelibrary_successtrue8.67361737988e-192.60208521397e-18raw/q78__finite-sine-120__specialized-quadpack__a1.npzqawoe[]{"alist":[],"blist":[],"rlist":[],"elist":[]}met——
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:finite-sine-120:specialized-quadpack:a278finite-sine-120specialized-quadpack—1e-10——0—0.00582209237053252.04874476107e-18truelibrary_successtrue8.67361737988e-192.60208521397e-18raw/q78__finite-sine-120__specialized-quadpack__a2.npzqawoe[]{"alist":[],"blist":[],"rlist":[],"elist":[]}met——
+q78:finite-sine-120:simpson-companion:a078finite-sine-120simpson-companion—1e-06——1—0.00582209230779974.37486670586e-07trueestimated_tolerancetrue6.28320321119e-116.28320338467e-11raw/q78__finite-sine-120__simpson-companion__a0.npz———mettrue—
+q78:finite-sine-120:simpson-companion:a178finite-sine-120simpson-companion—1e-08——1—0.005822092370937412.43353911221e-09trueestimated_tolerancetrue3.71298478075e-133.71300212798e-13raw/q78__finite-sine-120__simpson-companion__a1.npz———mettrue—
+q78:finite-sine-120:simpson-companion:a278finite-sine-120simpson-companion—1e-10——1—-0.001629203998168193—falseevaluation_budgetfalse0.007451296368690.00745129636869raw/q78__finite-sine-120__simpson-companion__a2.npz———unmettrue—
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:fourier-half-line:specialized-quadpack:a078fourier-half-linespecialized-quadpack—1e-06——0—0.1230769230771255.1044560226e-09truelibrary_successtrue01.38777878078e-17raw/q78__fourier-half-line__specialized-quadpack__a0.npzqawfe[]{"ierlst":[0,0,0,0,0],"rslst":[0.12323211777431406,-0.0001553903912180218,1.959405885331852e-07,-2.4707264029513714e-10,3.1154795460906496e-13],"erlst":[5.10445588595601e-10,6.436498002310715e-13,8.116147661278235e-16,1.023411739295527e-18,1.2904781702235121e-21]}met——
+q78:fourier-half-line:specialized-quadpack:a178fourier-half-linespecialized-quadpack—1e-08——0—0.1230769230771255.1044560226e-09truelibrary_successtrue01.38777878078e-17raw/q78__fourier-half-line__specialized-quadpack__a1.npzqawfe[]{"ierlst":[0,0,0,0,0],"rslst":[0.12323211777431406,-0.0001553903912180218,1.959405885331852e-07,-2.4707264029513714e-10,3.1154795460906496e-13],"erlst":[5.10445588595601e-10,6.436498002310715e-13,8.116147661278235e-16,1.023411739295527e-18,1.2904781702235121e-21]}met——
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:fourier-half-line:specialized-quadpack:a278fourier-half-linespecialized-quadpack—1e-10——0—0.1230769230772256.43663464514e-12truelibrary_successtrue4.16333634234e-176.93889390391e-17raw/q78__fourier-half-line__specialized-quadpack__a2.npzqawfe[]{"ierlst":[0,0,0,0,0],"rslst":[0.123232117774314,-0.0001553903912180218,1.959405885331852e-07,-2.4707264029513714e-10,3.1154795460906496e-13],"erlst":[3.5317225614938334e-13,6.436498002310715e-13,8.116147661278235e-16,1.023411739295527e-18,1.2904781702235121e-21]}met——
+q78:fourier-half-line:simpson-companion:a078fourier-half-linesimpson-companion—1e-06——1—0.1230830451927294.9988428053e-07trueestimated_tolerancetrue6.12211023134e-066.12211023136e-06raw/q78__fourier-half-line__simpson-companion__a0.npz———mettrue[6.122114781265119e-06,6.122114781292876e-06]
+q78:fourier-half-line:simpson-companion:a178fourier-half-linesimpson-companion—1e-08——1—0.12307696311224012.55650929171e-09trueestimated_tolerancetrue4.0030894502e-084.00308945298e-08raw/q78__fourier-half-line__simpson-companion__a1.npz———mettrue[4.0035444431874006e-08,4.0035444459629594e-08]
+q78:fourier-half-line:simpson-companion:a278fourier-half-linesimpson-companion—1e-10——1—0.12307691077674574.25477573116e-11trueestimated_tolerancefalse1.23052558282e-081.23052558559e-08raw/q78__fourier-half-line__simpson-companion__a2.npz———unmettrue[1.2300705898304896e-08,1.2300705926060475e-08]
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:internal-root:specialized-quadpack:a078internal-rootspecialized-quadpack—1e-06——0—2.805883701484621.34114941375e-13truelibrary_successtrue1.11022302463e-141.1990408666e-14raw/q78__internal-root__specialized-quadpack__a0.npzqagpe[]{"alist":[0.36328125,0.375,0.6875,0.0,0.53125,0.1875,0.453125,0.28125,0.4140625,0.328125,0.39453125,0.3515625],"blist":[0.375,0.39453125,1.0,0.1875,0.6875,0.28125,0.53125,0.328125,0.453125,0.3515625,0.4140625,0.36328125],"rlist":[0.21299090646061108,0.27497007787184324,0.4631048413342948,0.3587194676071504,0.32746457370779997,0.2536529680886441,0.2315524206671474,0.1793597338035752,0.16373228685389998,0.12682648404432206,0.11577621033357371,0.0896798669017876],"elist":[0.10313136738172785,0.13314202278032422,5.14149657664714e-15,3.982586123187364e-15,3.635587094794612e-15,2.816113654365228e-15,2.57074828832357e-15,1.991293061593682e-15,1.817793547397306e-15,1.408056827182614e-15,1.285374144161785e-15,9.95646530796841e-16]}met——
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:internal-root:specialized-quadpack:a178internal-rootspecialized-quadpack—1e-08——0—2.805883701484621.34114941375e-13truelibrary_successtrue1.11022302463e-141.1990408666e-14raw/q78__internal-root__specialized-quadpack__a1.npzqagpe[]{"alist":[0.36328125,0.375,0.6875,0.0,0.53125,0.1875,0.453125,0.28125,0.4140625,0.328125,0.39453125,0.3515625],"blist":[0.375,0.39453125,1.0,0.1875,0.6875,0.28125,0.53125,0.328125,0.453125,0.3515625,0.4140625,0.36328125],"rlist":[0.21299090646061108,0.27497007787184324,0.4631048413342948,0.3587194676071504,0.32746457370779997,0.2536529680886441,0.2315524206671474,0.1793597338035752,0.16373228685389998,0.12682648404432206,0.11577621033357371,0.0896798669017876],"elist":[0.10313136738172785,0.13314202278032422,5.14149657664714e-15,3.982586123187364e-15,3.635587094794612e-15,2.816113654365228e-15,2.57074828832357e-15,1.991293061593682e-15,1.817793547397306e-15,1.408056827182614e-15,1.285374144161785e-15,9.95646530796841e-16]}met——
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:internal-root:specialized-quadpack:a278internal-rootspecialized-quadpack—1e-10——0—2.805883701484621.34114941375e-13truelibrary_successtrue1.11022302463e-141.1990408666e-14raw/q78__internal-root__specialized-quadpack__a2.npzqagpe[]{"alist":[0.36328125,0.375,0.6875,0.0,0.53125,0.1875,0.453125,0.28125,0.4140625,0.328125,0.39453125,0.3515625],"blist":[0.375,0.39453125,1.0,0.1875,0.6875,0.28125,0.53125,0.328125,0.453125,0.3515625,0.4140625,0.36328125],"rlist":[0.21299090646061108,0.27497007787184324,0.4631048413342948,0.3587194676071504,0.32746457370779997,0.2536529680886441,0.2315524206671474,0.1793597338035752,0.16373228685389998,0.12682648404432206,0.11577621033357371,0.0896798669017876],"elist":[0.10313136738172785,0.13314202278032422,5.14149657664714e-15,3.982586123187364e-15,3.635587094794612e-15,2.816113654365228e-15,2.57074828832357e-15,1.991293061593682e-15,1.817793547397306e-15,1.408056827182614e-15,1.285374144161785e-15,9.95646530796841e-16]}met——
+q78:internal-root:simpson-companion:a078internal-rootsimpson-companion—1e-06——1——6—falsesingular_node_control———raw/q78__internal-root__simpson-companion__a0.npz———not_computable_at_sampled_singularity——
+q78:internal-root:simpson-companion:a178internal-rootsimpson-companion—1e-08——1——6—falsesingular_node_control———raw/q78__internal-root__simpson-companion__a1.npz———not_computable_at_sampled_singularity——
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#quadpack-domain-selection-measurements
+Coverage: reading
+
+q78:internal-root:simpson-companion:a278internal-rootsimpson-companion—1e-10——1——6—falsesingular_node_control———raw/q78__internal-root__simpson-companion__a2.npz———not_computable_at_sampled_singularity——
+この例の実測値・全記録 / JSON
+
+## 領域別・二重指数・疎格子求積 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#quadpack-domain-selection-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+quad: adaptive integration and QUADPACK dispatch [accessed 2026-11-25]
+確認範囲 / review_level: selected-official-documentation
+
+## 領域別・二重指数・疎格子求積 — G7/K15と有限区間tanh-sinh [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/
+Coverage: reading
+
+9本の適応GKと24本の固定DE和を比較します。
+手法・式・図・参照解
+使用手法
+Gauss求積・適応積分
+Gauss–Kronrod G7/K15
+tanh–sinh二重指数求積
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+共有15節点、G7次数13/K15次数23。DEは安定log式と全端点重みです。
+有限・無限・多変数の定積分
+exp(x)、x^(-1/3)、−log(x)を[0,1]で積分。h=1/2〜1/16、切断T=3/4。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+G7/K15と有限区間tanh-sinh
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+解析区間参照で全誤差、連続tail、有限窓誤差を分離します。
+同じ問題の参照 · 解析参照
+G7/K15と有限区間tanh-sinh
+半無限exp-sinh/全実線sinh-sinhは未実装。無限台形SUMの省略項のboundは提供しません。
+
+## 領域別・二重指数・疎格子求積 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#gk15-double-exponential-assumptions
+Coverage: reading
+
+exp(x)、x^(-1/3)、−log(x)を[0,1]で積分。h=1/2〜1/16、切断T=3/4。
+
+## 領域別・二重指数・疎格子求積 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#gk15-double-exponential-algorithm
+Coverage: reading
+
+共有15節点、G7次数13/K15次数23。DEは安定log式と全端点重みです。
+
+## 領域別・二重指数・疎格子求積 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#gk15-double-exponential-limits
+Coverage: reading
+
+半無限exp-sinh/全実線sinh-sinhは未実装。無限台形SUMの省略項のboundは提供しません。
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#gk15-double-exponential-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+records33
+integrand_evaluations5619
+accuracy_goals_met26
+accuracy_goals_unmet7
+accuracy_goals_unresolved0
+estimated_converged_rows28
+判定 / check合格
+q79:smooth-exponential:gk:a0:callback-ledgertrue
+q79:smooth-exponential:gk:a0:evaluation-captrue
+q79:smooth-exponential:gk:a0:finite-returntrue
+q79:smooth-exponential:gk:a0:panel-call-identitytrue
+q79:smooth-exponential:gk:a0:panel-capstrue
+q79:smooth-exponential:gk:a0:success-accuracy-or-explicit-budgettrue
+q79:smooth-exponential:gk:a1:callback-ledgertrue
+q79:smooth-exponential:gk:a1:evaluation-captrue
+q79:smooth-exponential:gk:a1:finite-returntrue
+q79:smooth-exponential:gk:a1:panel-call-identitytrue
+q79:smooth-exponential:gk:a1:panel-capstrue
+q79:smooth-exponential:gk:a1:success-accuracy-or-explicit-budgettrue
+q79:smooth-exponential:gk:a2:callback-ledgertrue
+q79:smooth-exponential:gk:a2:evaluation-captrue
+q79:smooth-exponential:gk:a2:finite-returntrue
+q79:smooth-exponential:gk:a2:panel-call-identitytrue
+q79:smooth-exponential:gk:a2:panel-capstrue
+q79:smooth-exponential:gk:a2:success-accuracy-or-explicit-budgettrue
+q79:smooth-exponential:de:T3:h0:callback-ledgertrue
+q79:smooth-exponential:de:T3:h0:evaluation-captrue
+q79:smooth-exponential:de:T3:h0:finite-returntrue
+q79:smooth-exponential:de:T3:h0:fixed-sample-counttrue
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#gk15-double-exponential-measurements
+Coverage: reading
+
+q79:smooth-exponential:de:T3:h1:callback-ledgertrue
+q79:smooth-exponential:de:T3:h1:evaluation-captrue
+q79:smooth-exponential:de:T3:h1:finite-returntrue
+q79:smooth-exponential:de:T3:h1:fixed-sample-counttrue
+q79:smooth-exponential:de:T3:h2:callback-ledgertrue
+q79:smooth-exponential:de:T3:h2:evaluation-captrue
+q79:smooth-exponential:de:T3:h2:finite-returntrue
+q79:smooth-exponential:de:T3:h2:fixed-sample-counttrue
+q79:smooth-exponential:de:T3:h3:callback-ledgertrue
+q79:smooth-exponential:de:T3:h3:evaluation-captrue
+q79:smooth-exponential:de:T3:h3:finite-returntrue
+q79:smooth-exponential:de:T3:h3:fixed-sample-counttrue
+q79:smooth-exponential:de:T4:h0:callback-ledgertrue
+q79:smooth-exponential:de:T4:h0:evaluation-captrue
+q79:smooth-exponential:de:T4:h0:finite-returntrue
+q79:smooth-exponential:de:T4:h0:fixed-sample-counttrue
+q79:smooth-exponential:de:T4:h1:callback-ledgertrue
+q79:smooth-exponential:de:T4:h1:evaluation-captrue
+q79:smooth-exponential:de:T4:h1:finite-returntrue
+q79:smooth-exponential:de:T4:h1:fixed-sample-counttrue
+q79:smooth-exponential:de:T4:h2:callback-ledgertrue
+q79:smooth-exponential:de:T4:h2:evaluation-captrue
+q79:smooth-exponential:de:T4:h2:finite-returntrue
+q79:smooth-exponential:de:T4:h2:fixed-sample-counttrue
+q79:smooth-exponential:de:T4:h3:callback-ledgertrue
+q79:smooth-exponential:de:T4:h3:evaluation-captrue
+q79:smooth-exponential:de:T4:h3:finite-returntrue
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#gk15-double-exponential-measurements
+Coverage: reading
+
+q79:smooth-exponential:de:T4:h3:fixed-sample-counttrue
+q79:smooth-exponential:de:T4:h3:required-finest-accuracytrue
+q79:algebraic-inverse-cuberoot:gk:a0:callback-ledgertrue
+q79:algebraic-inverse-cuberoot:gk:a0:evaluation-captrue
+q79:algebraic-inverse-cuberoot:gk:a0:finite-returntrue
+q79:algebraic-inverse-cuberoot:gk:a0:panel-call-identitytrue
+q79:algebraic-inverse-cuberoot:gk:a0:panel-capstrue
+q79:algebraic-inverse-cuberoot:gk:a0:success-accuracy-or-explicit-budgettrue
+q79:algebraic-inverse-cuberoot:gk:a1:callback-ledgertrue
+q79:algebraic-inverse-cuberoot:gk:a1:evaluation-captrue
+q79:algebraic-inverse-cuberoot:gk:a1:finite-returntrue
+q79:algebraic-inverse-cuberoot:gk:a1:panel-call-identitytrue
+q79:algebraic-inverse-cuberoot:gk:a1:panel-capstrue
+q79:algebraic-inverse-cuberoot:gk:a1:success-accuracy-or-explicit-budgettrue
+q79:algebraic-inverse-cuberoot:gk:a2:callback-ledgertrue
+q79:algebraic-inverse-cuberoot:gk:a2:evaluation-captrue
+q79:algebraic-inverse-cuberoot:gk:a2:finite-returntrue
+q79:algebraic-inverse-cuberoot:gk:a2:panel-call-identitytrue
+q79:algebraic-inverse-cuberoot:gk:a2:panel-capstrue
+q79:algebraic-inverse-cuberoot:gk:a2:success-accuracy-or-explicit-budgettrue
+q79:algebraic-inverse-cuberoot:de:T3:h0:callback-ledgertrue
+q79:algebraic-inverse-cuberoot:de:T3:h0:evaluation-captrue
+q79:algebraic-inverse-cuberoot:de:T3:h0:finite-returntrue
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#gk15-double-exponential-measurements
+Coverage: reading
+
+q79:algebraic-inverse-cuberoot:de:T3:h0:fixed-sample-counttrue
+q79:algebraic-inverse-cuberoot:de:T3:h1:callback-ledgertrue
+q79:algebraic-inverse-cuberoot:de:T3:h1:evaluation-captrue
+q79:algebraic-inverse-cuberoot:de:T3:h1:finite-returntrue
+q79:algebraic-inverse-cuberoot:de:T3:h1:fixed-sample-counttrue
+q79:algebraic-inverse-cuberoot:de:T3:h2:callback-ledgertrue
+q79:algebraic-inverse-cuberoot:de:T3:h2:evaluation-captrue
+q79:algebraic-inverse-cuberoot:de:T3:h2:finite-returntrue
+q79:algebraic-inverse-cuberoot:de:T3:h2:fixed-sample-counttrue
+q79:algebraic-inverse-cuberoot:de:T3:h3:callback-ledgertrue
+q79:algebraic-inverse-cuberoot:de:T3:h3:evaluation-captrue
+q79:algebraic-inverse-cuberoot:de:T3:h3:finite-returntrue
+q79:algebraic-inverse-cuberoot:de:T3:h3:fixed-sample-counttrue
+q79:algebraic-inverse-cuberoot:de:T4:h0:callback-ledgertrue
+q79:algebraic-inverse-cuberoot:de:T4:h0:evaluation-captrue
+q79:algebraic-inverse-cuberoot:de:T4:h0:finite-returntrue
+q79:algebraic-inverse-cuberoot:de:T4:h0:fixed-sample-counttrue
+q79:algebraic-inverse-cuberoot:de:T4:h1:callback-ledgertrue
+q79:algebraic-inverse-cuberoot:de:T4:h1:evaluation-captrue
+q79:algebraic-inverse-cuberoot:de:T4:h1:finite-returntrue
+q79:algebraic-inverse-cuberoot:de:T4:h1:fixed-sample-counttrue
+q79:algebraic-inverse-cuberoot:de:T4:h2:callback-ledgertrue
+q79:algebraic-inverse-cuberoot:de:T4:h2:evaluation-captrue
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#gk15-double-exponential-measurements
+Coverage: reading
+
+q79:algebraic-inverse-cuberoot:de:T4:h2:finite-returntrue
+q79:algebraic-inverse-cuberoot:de:T4:h2:fixed-sample-counttrue
+q79:algebraic-inverse-cuberoot:de:T4:h3:callback-ledgertrue
+q79:algebraic-inverse-cuberoot:de:T4:h3:evaluation-captrue
+q79:algebraic-inverse-cuberoot:de:T4:h3:finite-returntrue
+q79:algebraic-inverse-cuberoot:de:T4:h3:fixed-sample-counttrue
+q79:algebraic-inverse-cuberoot:de:T4:h3:required-finest-accuracytrue
+q79:log-endpoint:gk:a0:callback-ledgertrue
+q79:log-endpoint:gk:a0:evaluation-captrue
+q79:log-endpoint:gk:a0:finite-returntrue
+q79:log-endpoint:gk:a0:panel-call-identitytrue
+q79:log-endpoint:gk:a0:panel-capstrue
+q79:log-endpoint:gk:a0:success-accuracy-or-explicit-budgettrue
+q79:log-endpoint:gk:a1:callback-ledgertrue
+q79:log-endpoint:gk:a1:evaluation-captrue
+q79:log-endpoint:gk:a1:finite-returntrue
+q79:log-endpoint:gk:a1:panel-call-identitytrue
+q79:log-endpoint:gk:a1:panel-capstrue
+q79:log-endpoint:gk:a1:success-accuracy-or-explicit-budgettrue
+q79:log-endpoint:gk:a2:callback-ledgertrue
+q79:log-endpoint:gk:a2:evaluation-captrue
+q79:log-endpoint:gk:a2:finite-returntrue
+q79:log-endpoint:gk:a2:panel-call-identitytrue
+q79:log-endpoint:gk:a2:panel-capstrue
+q79:log-endpoint:gk:a2:success-accuracy-or-explicit-budgettrue
+q79:log-endpoint:de:T3:h0:callback-ledgertrue
+q79:log-endpoint:de:T3:h0:evaluation-captrue
+q79:log-endpoint:de:T3:h0:finite-returntrue
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#gk15-double-exponential-measurements
+Coverage: reading
+
+q79:log-endpoint:de:T3:h0:fixed-sample-counttrue
+q79:log-endpoint:de:T3:h1:callback-ledgertrue
+q79:log-endpoint:de:T3:h1:evaluation-captrue
+q79:log-endpoint:de:T3:h1:finite-returntrue
+q79:log-endpoint:de:T3:h1:fixed-sample-counttrue
+q79:log-endpoint:de:T3:h2:callback-ledgertrue
+q79:log-endpoint:de:T3:h2:evaluation-captrue
+q79:log-endpoint:de:T3:h2:finite-returntrue
+q79:log-endpoint:de:T3:h2:fixed-sample-counttrue
+q79:log-endpoint:de:T3:h3:callback-ledgertrue
+q79:log-endpoint:de:T3:h3:evaluation-captrue
+q79:log-endpoint:de:T3:h3:finite-returntrue
+q79:log-endpoint:de:T3:h3:fixed-sample-counttrue
+q79:log-endpoint:de:T4:h0:callback-ledgertrue
+q79:log-endpoint:de:T4:h0:evaluation-captrue
+q79:log-endpoint:de:T4:h0:finite-returntrue
+q79:log-endpoint:de:T4:h0:fixed-sample-counttrue
+q79:log-endpoint:de:T4:h1:callback-ledgertrue
+q79:log-endpoint:de:T4:h1:evaluation-captrue
+q79:log-endpoint:de:T4:h1:finite-returntrue
+q79:log-endpoint:de:T4:h1:fixed-sample-counttrue
+q79:log-endpoint:de:T4:h2:callback-ledgertrue
+q79:log-endpoint:de:T4:h2:evaluation-captrue
+q79:log-endpoint:de:T4:h2:finite-returntrue
+q79:log-endpoint:de:T4:h2:fixed-sample-counttrue
+q79:log-endpoint:de:T4:h3:callback-ledgertrue
+q79:log-endpoint:de:T4:h3:evaluation-captrue
+q79:log-endpoint:de:T4:h3:finite-returntrue
+q79:log-endpoint:de:T4:h3:fixed-sample-counttrue
+q79:log-endpoint:de:T4:h3:required-finest-accuracytrue
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#gk15-double-exponential-measurements
+Coverage: reading
+
+gk15-double-exponential:fixed-record-counttrue
+gk15-double-exponential:unique-record-idstrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。保存された変換関数と有限窓誤差（連続tailは別量）全記録を表で読む
+row_idsequenceintegrand_idmethod_iddimensionabsolute_tolerancestepcutoffmethod_codelevelvalueevaluationsestimated_errorconvergedterminationaccuracy_goal_meterror_lowererror_upperraw_fileaccuracy_goal_statesigned_continuous_tailsigned_finite_window_defectsigned_full_integral_defecthalf_endpoint_correctionomitted_infinite_grid_sum_bound_provided
+q79:smooth-exponential:gk:a079smooth-exponentialadaptive-g7-k15—1e-06——2—1.71828182846151.90767604875e-14trueestimated_tolerancetrue02.22044604925e-16raw/q79__smooth-exponential__gk__a0.npzmet—————
+q79:smooth-exponential:gk:a179smooth-exponentialadaptive-g7-k15—1e-08——2—1.71828182846151.90767604875e-14trueestimated_tolerancetrue02.22044604925e-16raw/q79__smooth-exponential__gk__a1.npzmet—————
+q79:smooth-exponential:gk:a279smooth-exponentialadaptive-g7-k15—1e-10——2—1.71828182846151.90767604875e-14trueestimated_tolerancetrue02.22044604925e-16raw/q79__smooth-exponential__gk__a2.npzmet—————
+q79:smooth-exponential:de:T3:h079smooth-exponentialfinite-tanh-sinh——0.533—1.7182207916613—truefixed_sum_completedfalse6.10368014977e-056.10368014982e-05raw/q79__smooth-exponential__de__T3__h0.npzunmet7.98345051127e-146.1036801418e-056.10368014979e-056.31261270826e-13false
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#gk15-double-exponential-measurements
+Coverage: reading
+
+q79:smooth-exponential:de:T3:h179smooth-exponentialfinite-tanh-sinh——0.2533—1.7182818284725—truefixed_sum_completedtrue1.54165569199e-111.54170010092e-11raw/q79__smooth-exponential__de__T3__h1.npzmet7.98345051127e-14-1.54967150223e-11-1.54167789645e-113.15630635413e-13false
+q79:smooth-exponential:de:T3:h279smooth-exponentialfinite-tanh-sinh——0.12533—1.7182818284649—truefixed_sum_completedtrue5.10702591328e-155.55111512313e-15raw/q79__smooth-exponential__de__T3__h2.npzmet7.98345051127e-14-7.46069872548e-145.3290705182e-151.57815317706e-13false
+q79:smooth-exponential:de:T3:h379smooth-exponentialfinite-tanh-sinh——0.062533—1.7182818284697—truefixed_sum_completedtrue2.44249065418e-142.48689957516e-14raw/q79__smooth-exponential__de__T3__h3.npzmet7.98345051127e-14-5.52891066263e-142.46469511467e-147.89076588532e-14false
+q79:smooth-exponential:de:T4:h079smooth-exponentialfinite-tanh-sinh——0.543—1.7182207916617—truefixed_sum_completedfalse6.10368014977e-056.10368014982e-05raw/q79__smooth-exponential__de__T4__h0.npzunmet2.17082383882e-376.10368014979e-056.10368014979e-054.65594734954e-36false
+q79:smooth-exponential:de:T4:h179smooth-exponentialfinite-tanh-sinh——0.2543—1.7182818284733—truefixed_sum_completedtrue1.54167789645e-111.54172230538e-11raw/q79__smooth-exponential__de__T4__h1.npzmet2.17082383882e-37-1.54170010092e-11-1.54170010092e-112.32797367477e-36false
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#gk15-double-exponential-measurements
+Coverage: reading
+
+q79:smooth-exponential:de:T4:h279smooth-exponentialfinite-tanh-sinh——0.12543—1.7182818284665—truefixed_sum_completedtrue02.22044604925e-16raw/q79__smooth-exponential__de__T4__h2.npzmet2.17082383882e-37001.16398683738e-36false
+q79:smooth-exponential:de:T4:h379smooth-exponentialfinite-tanh-sinh——0.062543—1.71828182846129—truefixed_sum_completedtrue02.22044604925e-16raw/q79__smooth-exponential__de__T4__h3.npzmet2.17082383882e-37005.81993418692e-37false
+q79:algebraic-inverse-cuberoot:gk:a079algebraic-inverse-cuberootadaptive-g7-k15—1e-06——2—1.499999880297356.58424652044e-06falsedepth_budgettrue1.19705341861e-071.19705342305e-07raw/q79__algebraic-inverse-cuberoot__gk__a0.npzmet—————
+q79:algebraic-inverse-cuberoot:gk:a179algebraic-inverse-cuberootadaptive-g7-k15—1e-08——2—1.499999880297356.58424652044e-06falsedepth_budgettrue1.19705341861e-071.19705342305e-07raw/q79__algebraic-inverse-cuberoot__gk__a1.npzmet—————
+q79:algebraic-inverse-cuberoot:gk:a279algebraic-inverse-cuberootadaptive-g7-k15—1e-10——2—1.499999880297356.58424652044e-06falsedepth_budgetfalse1.19705341861e-071.19705342305e-07raw/q79__algebraic-inverse-cuberoot__gk__a2.npzunmet—————
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#gk15-double-exponential-measurements
+Coverage: reading
+
+q79:algebraic-inverse-cuberoot:de:T3:h079algebraic-inverse-cuberootfinite-tanh-sinh——0.533—1.5000011084913—truefixed_sum_completedfalse1.10848713852e-061.10848713897e-06raw/q79__algebraic-inverse-cuberoot__de__T3__h0.npzunmet1.1587725401e-09-1.10964591138e-06-1.10848713875e-066.10842811283e-09false
+q79:algebraic-inverse-cuberoot:de:T3:h179algebraic-inverse-cuberootfinite-tanh-sinh——0.2533—1.4999999999825—truefixed_sum_completedtrue1.97082350439e-111.97086791331e-11raw/q79__algebraic-inverse-cuberoot__de__T3__h1.npzmet1.1587725401e-09-1.13906417631e-091.97084570885e-113.05421405642e-09false
+q79:algebraic-inverse-cuberoot:de:T3:h279algebraic-inverse-cuberootfinite-tanh-sinh——0.12533—1.4999999997849—truefixed_sum_completedtrue2.19092965992e-102.19093410081e-10raw/q79__algebraic-inverse-cuberoot__de__T3__h2.npzmet1.1587725401e-09-9.39679445366e-102.19093188036e-101.52710702821e-09false
+q79:algebraic-inverse-cuberoot:de:T3:h379algebraic-inverse-cuberootfinite-tanh-sinh——0.062533—1.4999999994597—truefixed_sum_completedtrue5.51543921645e-105.51544365734e-10raw/q79__algebraic-inverse-cuberoot__de__T3__h3.npzmet1.1587725401e-09-6.07228489713e-105.5154414369e-107.63553514104e-10false
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#gk15-double-exponential-measurements
+Coverage: reading
+
+q79:algebraic-inverse-cuberoot:de:T4:h079algebraic-inverse-cuberootfinite-tanh-sinh——0.543—1.5000011084917—truefixed_sum_completedfalse1.10848716184e-061.10848716228e-06raw/q79__algebraic-inverse-cuberoot__de__T4__h0.npzunmet2.25742212723e-25-1.10848716206e-06-1.10848716206e-063.22778795839e-24false
+q79:algebraic-inverse-cuberoot:de:T4:h179algebraic-inverse-cuberootfinite-tanh-sinh——0.2543—1.533—truefixed_sum_completedtrue7.32747196253e-157.77156117238e-15raw/q79__algebraic-inverse-cuberoot__de__T4__h1.npzmet2.25742212723e-25-7.54951656745e-15-7.54951656745e-151.6138939792e-24false
+q79:algebraic-inverse-cuberoot:de:T4:h279algebraic-inverse-cuberootfinite-tanh-sinh——0.12543—1.565—truefixed_sum_completedtrue04.4408920985e-16raw/q79__algebraic-inverse-cuberoot__de__T4__h2.npzmet2.25742212723e-25-2.22044604925e-16-2.22044604925e-168.06946989598e-25false
+q79:algebraic-inverse-cuberoot:de:T4:h379algebraic-inverse-cuberootfinite-tanh-sinh——0.062543—1.5129—truefixed_sum_completedtrue02.22044604925e-16raw/q79__algebraic-inverse-cuberoot__de__T4__h3.npzmet2.25742212723e-25004.03473494799e-25false
+q79:log-endpoint:gk:a079log-endpointadaptive-g7-k15—1e-06——2—0.9999999983866157.00494250045e-07trueestimated_tolerancetrue1.61425872669e-091.61425905976e-09raw/q79__log-endpoint__gk__a0.npzmet—————
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#gk15-double-exponential-measurements
+Coverage: reading
+
+q79:log-endpoint:gk:a179log-endpointadaptive-g7-k15—1e-08——2—0.9999999998997354.37809107767e-08falsedepth_budgettrue1.00891073274e-101.00891406341e-10raw/q79__log-endpoint__gk__a1.npzmet—————
+q79:log-endpoint:gk:a279log-endpointadaptive-g7-k15—1e-10——2—0.9999999998997354.37809107767e-08falsedepth_budgettrue1.00891073274e-101.00891406341e-10raw/q79__log-endpoint__gk__a2.npzmet—————
+q79:log-endpoint:de:T3:h079log-endpointfinite-tanh-sinh——0.533—0.9999898648213—truefixed_sum_completedfalse1.01351795853e-051.01351795856e-05raw/q79__log-endpoint__de__T3__h0.npzunmet6.97201755576e-131.01351788881e-051.01351795854e-055.34308790188e-12false
+q79:log-endpoint:de:T3:h179log-endpointfinite-tanh-sinh——0.2533—125—truefixed_sum_completedtrue1.52322598979e-131.52655665886e-13raw/q79__log-endpoint__de__T3__h1.npzmet6.97201755576e-13-5.44786438184e-131.52433621281e-132.67154395094e-12false
+q79:log-endpoint:de:T3:h279log-endpointfinite-tanh-sinh——0.12533—149—truefixed_sum_completedtrue5.12923037377e-145.16253706451e-14raw/q79__log-endpoint__de__T3__h2.npzmet6.97201755576e-13-6.45816733424e-135.14033260401e-141.33577197547e-12false
+q79:log-endpoint:de:T3:h379log-endpointfinite-tanh-sinh——0.062533—197—truefixed_sum_completedtrue2.25375273999e-132.25708340906e-13raw/q79__log-endpoint__de__T3__h3.npzmet6.97201755576e-13-4.71733763163e-132.25486296301e-136.67885987735e-13false
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#gk15-double-exponential-measurements
+Coverage: reading
+
+q79:log-endpoint:de:T4:h079log-endpointfinite-tanh-sinh——0.543—0.9999898648217—truefixed_sum_completedfalse1.01351795853e-051.01351795856e-05raw/q79__log-endpoint__de__T4__h0.npzunmet5.06373149488e-361.01351795854e-051.01351795854e-051.07353905122e-34false
+q79:log-endpoint:de:T4:h179log-endpointfinite-tanh-sinh——0.2543—133—truefixed_sum_completedtrue1.51212375954e-131.51545442861e-13raw/q79__log-endpoint__de__T4__h1.npzmet5.06373149488e-361.51323398256e-131.51323398256e-135.3676952561e-35false
+q79:log-endpoint:de:T4:h279log-endpointfinite-tanh-sinh——0.12543—165—truefixed_sum_completedtrue02.22044604925e-16raw/q79__log-endpoint__de__T4__h2.npzmet5.06373149488e-36002.68384762805e-35false
+q79:log-endpoint:de:T4:h379log-endpointfinite-tanh-sinh——0.062543—1129—truefixed_sum_completedtrue02.22044604925e-16raw/q79__log-endpoint__de__T4__h3.npzmet5.06373149488e-36001.34192381403e-35false
+この例の実測値・全記録 / JSON
+
+## 領域別・二重指数・疎格子求積 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#gk15-double-exponential-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Pinned SciPy1.14.1 bundled dqk15 [accessed 2026-11-25]
+確認範囲 / review_level: primary-software-source
+Double Exponential Formulas for Numerical Integration [accessed 2026-11-25]
+確認範囲 / review_level: selected-primary-body-text
+
+## 領域別・二重指数・疎格子求積 — 2〜4次元テンソル・Smolyak対照 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/
+Coverage: reading
+
+滑らかな積と相互作用積の42本の固定cubatureを比較します。
+手法・式・図・参照解
+使用手法
+Gauss求積・適応積分
+Smolyak疎格子求積
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+正規化dyadic角キーで同一節点を所有し、符号付き重みと評価台帳を保持。
+有限・無限・多変数の定積分
+[0,1]^d、d=2/3/4。テンソルlevel1/2/3、疎格子level1/2/3/4。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+2〜4次元テンソル・Smolyak対照
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+解析積分と独立Delta/combination組立を区別し、L<dの相互作用未解像を可視化。
+同じ問題の参照 · 解析参照
+2〜4次元テンソル・Smolyak対照
+一般の誤差単調性、常時正重み、疎格子の費用優位は主張しません。物理PDEの空間ではありません。
+
+## 領域別・二重指数・疎格子求積 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#tensor-smolyak-dimensions-assumptions
+Coverage: reading
+
+[0,1]^d、d=2/3/4。テンソルlevel1/2/3、疎格子level1/2/3/4。
+
+## 領域別・二重指数・疎格子求積 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#tensor-smolyak-dimensions-algorithm
+Coverage: reading
+
+正規化dyadic角キーで同一節点を所有し、符号付き重みと評価台帳を保持。
+
+## 領域別・二重指数・疎格子求積 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#tensor-smolyak-dimensions-validation
+Coverage: reading
+
+解析積分と独立Delta/combination組立を区別し、L<dの相互作用未解像を可視化。
+
+## 領域別・二重指数・疎格子求積 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#tensor-smolyak-dimensions-limits
+Coverage: reading
+
+一般の誤差単調性、常時正重み、疎格子の費用優位は主張しません。物理PDEの空間ではありません。
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。
+量 / metric実測値
+records42
+integrand_evaluations18482
+accuracy_goals_met24
+accuracy_goals_unmet18
+accuracy_goals_unresolved0
+estimated_converged_rows42
+判定 / check合格
+q80:d2:smooth-product:tensor-clenshaw-curtis:L1:callback-ledgertrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L1:evaluation-captrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L1:finite-returntrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L1:canonical-inventorytrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L1:masstrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L1:low-momentstrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L2:callback-ledgertrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L2:evaluation-captrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L2:finite-returntrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L2:canonical-inventorytrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L2:masstrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L2:low-momentstrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L3:callback-ledgertrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L3:evaluation-captrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L3:finite-returntrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L3:canonical-inventorytrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L3:masstrue
+q80:d2:smooth-product:tensor-clenshaw-curtis:L3:low-momentstrue
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d2:smooth-product:tensor-clenshaw-curtis:L3:required-finest-accuracytrue
+q80:d2:smooth-product:smolyak-delta:L1:callback-ledgertrue
+q80:d2:smooth-product:smolyak-delta:L1:evaluation-captrue
+q80:d2:smooth-product:smolyak-delta:L1:finite-returntrue
+q80:d2:smooth-product:smolyak-delta:L1:canonical-inventorytrue
+q80:d2:smooth-product:smolyak-delta:L1:masstrue
+q80:d2:smooth-product:smolyak-delta:L1:low-momentstrue
+q80:d2:smooth-product:smolyak-delta:L1:delta-combinationtrue
+q80:d2:smooth-product:smolyak-delta:L2:callback-ledgertrue
+q80:d2:smooth-product:smolyak-delta:L2:evaluation-captrue
+q80:d2:smooth-product:smolyak-delta:L2:finite-returntrue
+q80:d2:smooth-product:smolyak-delta:L2:canonical-inventorytrue
+q80:d2:smooth-product:smolyak-delta:L2:masstrue
+q80:d2:smooth-product:smolyak-delta:L2:low-momentstrue
+q80:d2:smooth-product:smolyak-delta:L2:delta-combinationtrue
+q80:d2:smooth-product:smolyak-delta:L3:callback-ledgertrue
+q80:d2:smooth-product:smolyak-delta:L3:evaluation-captrue
+q80:d2:smooth-product:smolyak-delta:L3:finite-returntrue
+q80:d2:smooth-product:smolyak-delta:L3:canonical-inventorytrue
+q80:d2:smooth-product:smolyak-delta:L3:masstrue
+q80:d2:smooth-product:smolyak-delta:L3:low-momentstrue
+q80:d2:smooth-product:smolyak-delta:L4:callback-ledgertrue
+q80:d2:smooth-product:smolyak-delta:L4:evaluation-captrue
+q80:d2:smooth-product:smolyak-delta:L4:finite-returntrue
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d2:smooth-product:smolyak-delta:L4:canonical-inventorytrue
+q80:d2:smooth-product:smolyak-delta:L4:masstrue
+q80:d2:smooth-product:smolyak-delta:L4:low-momentstrue
+q80:d2:smooth-product:smolyak-delta:L4:required-finest-accuracytrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L1:callback-ledgertrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L1:evaluation-captrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L1:finite-returntrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L1:canonical-inventorytrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L1:masstrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L1:low-momentstrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L1:required-product-momenttrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L2:callback-ledgertrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L2:evaluation-captrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L2:finite-returntrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L2:canonical-inventorytrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L2:masstrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L2:low-momentstrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L2:required-product-momenttrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L3:callback-ledgertrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L3:evaluation-captrue
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d2:interaction-product:tensor-clenshaw-curtis:L3:finite-returntrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L3:canonical-inventorytrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L3:masstrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L3:low-momentstrue
+q80:d2:interaction-product:tensor-clenshaw-curtis:L3:required-product-momenttrue
+q80:d2:interaction-product:smolyak-delta:L1:callback-ledgertrue
+q80:d2:interaction-product:smolyak-delta:L1:evaluation-captrue
+q80:d2:interaction-product:smolyak-delta:L1:finite-returntrue
+q80:d2:interaction-product:smolyak-delta:L1:canonical-inventorytrue
+q80:d2:interaction-product:smolyak-delta:L1:masstrue
+q80:d2:interaction-product:smolyak-delta:L1:low-momentstrue
+q80:d2:interaction-product:smolyak-delta:L1:delta-combinationtrue
+q80:d2:interaction-product:smolyak-delta:L1:underresolution-identitytrue
+q80:d2:interaction-product:smolyak-delta:L2:callback-ledgertrue
+q80:d2:interaction-product:smolyak-delta:L2:evaluation-captrue
+q80:d2:interaction-product:smolyak-delta:L2:finite-returntrue
+q80:d2:interaction-product:smolyak-delta:L2:canonical-inventorytrue
+q80:d2:interaction-product:smolyak-delta:L2:masstrue
+q80:d2:interaction-product:smolyak-delta:L2:low-momentstrue
+q80:d2:interaction-product:smolyak-delta:L2:delta-combinationtrue
+q80:d2:interaction-product:smolyak-delta:L2:required-product-momenttrue
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d2:interaction-product:smolyak-delta:L3:callback-ledgertrue
+q80:d2:interaction-product:smolyak-delta:L3:evaluation-captrue
+q80:d2:interaction-product:smolyak-delta:L3:finite-returntrue
+q80:d2:interaction-product:smolyak-delta:L3:canonical-inventorytrue
+q80:d2:interaction-product:smolyak-delta:L3:masstrue
+q80:d2:interaction-product:smolyak-delta:L3:low-momentstrue
+q80:d2:interaction-product:smolyak-delta:L3:required-product-momenttrue
+q80:d2:interaction-product:smolyak-delta:L4:callback-ledgertrue
+q80:d2:interaction-product:smolyak-delta:L4:evaluation-captrue
+q80:d2:interaction-product:smolyak-delta:L4:finite-returntrue
+q80:d2:interaction-product:smolyak-delta:L4:canonical-inventorytrue
+q80:d2:interaction-product:smolyak-delta:L4:masstrue
+q80:d2:interaction-product:smolyak-delta:L4:low-momentstrue
+q80:d2:interaction-product:smolyak-delta:L4:required-product-momenttrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L1:callback-ledgertrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L1:evaluation-captrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L1:finite-returntrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L1:canonical-inventorytrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L1:masstrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L1:low-momentstrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L2:callback-ledgertrue
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d3:smooth-product:tensor-clenshaw-curtis:L2:evaluation-captrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L2:finite-returntrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L2:canonical-inventorytrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L2:masstrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L2:low-momentstrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L3:callback-ledgertrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L3:evaluation-captrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L3:finite-returntrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L3:canonical-inventorytrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L3:masstrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L3:low-momentstrue
+q80:d3:smooth-product:tensor-clenshaw-curtis:L3:required-finest-accuracytrue
+q80:d3:smooth-product:smolyak-delta:L1:callback-ledgertrue
+q80:d3:smooth-product:smolyak-delta:L1:evaluation-captrue
+q80:d3:smooth-product:smolyak-delta:L1:finite-returntrue
+q80:d3:smooth-product:smolyak-delta:L1:canonical-inventorytrue
+q80:d3:smooth-product:smolyak-delta:L1:masstrue
+q80:d3:smooth-product:smolyak-delta:L1:low-momentstrue
+q80:d3:smooth-product:smolyak-delta:L1:delta-combinationtrue
+q80:d3:smooth-product:smolyak-delta:L2:callback-ledgertrue
+q80:d3:smooth-product:smolyak-delta:L2:evaluation-captrue
+q80:d3:smooth-product:smolyak-delta:L2:finite-returntrue
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d3:smooth-product:smolyak-delta:L2:canonical-inventorytrue
+q80:d3:smooth-product:smolyak-delta:L2:masstrue
+q80:d3:smooth-product:smolyak-delta:L2:low-momentstrue
+q80:d3:smooth-product:smolyak-delta:L2:delta-combinationtrue
+q80:d3:smooth-product:smolyak-delta:L3:callback-ledgertrue
+q80:d3:smooth-product:smolyak-delta:L3:evaluation-captrue
+q80:d3:smooth-product:smolyak-delta:L3:finite-returntrue
+q80:d3:smooth-product:smolyak-delta:L3:canonical-inventorytrue
+q80:d3:smooth-product:smolyak-delta:L3:masstrue
+q80:d3:smooth-product:smolyak-delta:L3:low-momentstrue
+q80:d3:smooth-product:smolyak-delta:L4:callback-ledgertrue
+q80:d3:smooth-product:smolyak-delta:L4:evaluation-captrue
+q80:d3:smooth-product:smolyak-delta:L4:finite-returntrue
+q80:d3:smooth-product:smolyak-delta:L4:canonical-inventorytrue
+q80:d3:smooth-product:smolyak-delta:L4:masstrue
+q80:d3:smooth-product:smolyak-delta:L4:low-momentstrue
+q80:d3:smooth-product:smolyak-delta:L4:required-finest-accuracytrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L1:callback-ledgertrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L1:evaluation-captrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L1:finite-returntrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L1:canonical-inventorytrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L1:masstrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L1:low-momentstrue
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d3:interaction-product:tensor-clenshaw-curtis:L1:required-product-momenttrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L2:callback-ledgertrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L2:evaluation-captrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L2:finite-returntrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L2:canonical-inventorytrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L2:masstrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L2:low-momentstrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L2:required-product-momenttrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L3:callback-ledgertrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L3:evaluation-captrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L3:finite-returntrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L3:canonical-inventorytrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L3:masstrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L3:low-momentstrue
+q80:d3:interaction-product:tensor-clenshaw-curtis:L3:required-product-momenttrue
+q80:d3:interaction-product:smolyak-delta:L1:callback-ledgertrue
+q80:d3:interaction-product:smolyak-delta:L1:evaluation-captrue
+q80:d3:interaction-product:smolyak-delta:L1:finite-returntrue
+q80:d3:interaction-product:smolyak-delta:L1:canonical-inventorytrue
+q80:d3:interaction-product:smolyak-delta:L1:masstrue
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d3:interaction-product:smolyak-delta:L1:low-momentstrue
+q80:d3:interaction-product:smolyak-delta:L1:delta-combinationtrue
+q80:d3:interaction-product:smolyak-delta:L1:underresolution-identitytrue
+q80:d3:interaction-product:smolyak-delta:L2:callback-ledgertrue
+q80:d3:interaction-product:smolyak-delta:L2:evaluation-captrue
+q80:d3:interaction-product:smolyak-delta:L2:finite-returntrue
+q80:d3:interaction-product:smolyak-delta:L2:canonical-inventorytrue
+q80:d3:interaction-product:smolyak-delta:L2:masstrue
+q80:d3:interaction-product:smolyak-delta:L2:low-momentstrue
+q80:d3:interaction-product:smolyak-delta:L2:delta-combinationtrue
+q80:d3:interaction-product:smolyak-delta:L2:underresolution-identitytrue
+q80:d3:interaction-product:smolyak-delta:L3:callback-ledgertrue
+q80:d3:interaction-product:smolyak-delta:L3:evaluation-captrue
+q80:d3:interaction-product:smolyak-delta:L3:finite-returntrue
+q80:d3:interaction-product:smolyak-delta:L3:canonical-inventorytrue
+q80:d3:interaction-product:smolyak-delta:L3:masstrue
+q80:d3:interaction-product:smolyak-delta:L3:low-momentstrue
+q80:d3:interaction-product:smolyak-delta:L3:required-product-momenttrue
+q80:d3:interaction-product:smolyak-delta:L4:callback-ledgertrue
+q80:d3:interaction-product:smolyak-delta:L4:evaluation-captrue
+q80:d3:interaction-product:smolyak-delta:L4:finite-returntrue
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d3:interaction-product:smolyak-delta:L4:canonical-inventorytrue
+q80:d3:interaction-product:smolyak-delta:L4:masstrue
+q80:d3:interaction-product:smolyak-delta:L4:low-momentstrue
+q80:d3:interaction-product:smolyak-delta:L4:required-product-momenttrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L1:callback-ledgertrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L1:evaluation-captrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L1:finite-returntrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L1:canonical-inventorytrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L1:masstrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L1:low-momentstrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L2:callback-ledgertrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L2:evaluation-captrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L2:finite-returntrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L2:canonical-inventorytrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L2:masstrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L2:low-momentstrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L3:callback-ledgertrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L3:evaluation-captrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L3:finite-returntrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L3:canonical-inventorytrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L3:masstrue
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d4:smooth-product:tensor-clenshaw-curtis:L3:low-momentstrue
+q80:d4:smooth-product:tensor-clenshaw-curtis:L3:required-finest-accuracytrue
+q80:d4:smooth-product:smolyak-delta:L1:callback-ledgertrue
+q80:d4:smooth-product:smolyak-delta:L1:evaluation-captrue
+q80:d4:smooth-product:smolyak-delta:L1:finite-returntrue
+q80:d4:smooth-product:smolyak-delta:L1:canonical-inventorytrue
+q80:d4:smooth-product:smolyak-delta:L1:masstrue
+q80:d4:smooth-product:smolyak-delta:L1:low-momentstrue
+q80:d4:smooth-product:smolyak-delta:L2:callback-ledgertrue
+q80:d4:smooth-product:smolyak-delta:L2:evaluation-captrue
+q80:d4:smooth-product:smolyak-delta:L2:finite-returntrue
+q80:d4:smooth-product:smolyak-delta:L2:canonical-inventorytrue
+q80:d4:smooth-product:smolyak-delta:L2:masstrue
+q80:d4:smooth-product:smolyak-delta:L2:low-momentstrue
+q80:d4:smooth-product:smolyak-delta:L3:callback-ledgertrue
+q80:d4:smooth-product:smolyak-delta:L3:evaluation-captrue
+q80:d4:smooth-product:smolyak-delta:L3:finite-returntrue
+q80:d4:smooth-product:smolyak-delta:L3:canonical-inventorytrue
+q80:d4:smooth-product:smolyak-delta:L3:masstrue
+q80:d4:smooth-product:smolyak-delta:L3:low-momentstrue
+q80:d4:smooth-product:smolyak-delta:L4:callback-ledgertrue
+q80:d4:smooth-product:smolyak-delta:L4:evaluation-captrue
+q80:d4:smooth-product:smolyak-delta:L4:finite-returntrue
+q80:d4:smooth-product:smolyak-delta:L4:canonical-inventorytrue
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d4:smooth-product:smolyak-delta:L4:masstrue
+q80:d4:smooth-product:smolyak-delta:L4:low-momentstrue
+q80:d4:smooth-product:smolyak-delta:L4:required-finest-accuracytrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L1:callback-ledgertrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L1:evaluation-captrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L1:finite-returntrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L1:canonical-inventorytrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L1:masstrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L1:low-momentstrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L1:required-product-momenttrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L2:callback-ledgertrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L2:evaluation-captrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L2:finite-returntrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L2:canonical-inventorytrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L2:masstrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L2:low-momentstrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L2:required-product-momenttrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L3:callback-ledgertrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L3:evaluation-captrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L3:finite-returntrue
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d4:interaction-product:tensor-clenshaw-curtis:L3:canonical-inventorytrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L3:masstrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L3:low-momentstrue
+q80:d4:interaction-product:tensor-clenshaw-curtis:L3:required-product-momenttrue
+q80:d4:interaction-product:smolyak-delta:L1:callback-ledgertrue
+q80:d4:interaction-product:smolyak-delta:L1:evaluation-captrue
+q80:d4:interaction-product:smolyak-delta:L1:finite-returntrue
+q80:d4:interaction-product:smolyak-delta:L1:canonical-inventorytrue
+q80:d4:interaction-product:smolyak-delta:L1:masstrue
+q80:d4:interaction-product:smolyak-delta:L1:low-momentstrue
+q80:d4:interaction-product:smolyak-delta:L1:underresolution-identitytrue
+q80:d4:interaction-product:smolyak-delta:L2:callback-ledgertrue
+q80:d4:interaction-product:smolyak-delta:L2:evaluation-captrue
+q80:d4:interaction-product:smolyak-delta:L2:finite-returntrue
+q80:d4:interaction-product:smolyak-delta:L2:canonical-inventorytrue
+q80:d4:interaction-product:smolyak-delta:L2:masstrue
+q80:d4:interaction-product:smolyak-delta:L2:low-momentstrue
+q80:d4:interaction-product:smolyak-delta:L2:underresolution-identitytrue
+q80:d4:interaction-product:smolyak-delta:L3:callback-ledgertrue
+q80:d4:interaction-product:smolyak-delta:L3:evaluation-captrue
+q80:d4:interaction-product:smolyak-delta:L3:finite-returntrue
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d4:interaction-product:smolyak-delta:L3:canonical-inventorytrue
+q80:d4:interaction-product:smolyak-delta:L3:masstrue
+q80:d4:interaction-product:smolyak-delta:L3:low-momentstrue
+q80:d4:interaction-product:smolyak-delta:L3:underresolution-identitytrue
+q80:d4:interaction-product:smolyak-delta:L4:callback-ledgertrue
+q80:d4:interaction-product:smolyak-delta:L4:evaluation-captrue
+q80:d4:interaction-product:smolyak-delta:L4:finite-returntrue
+q80:d4:interaction-product:smolyak-delta:L4:canonical-inventorytrue
+q80:d4:interaction-product:smolyak-delta:L4:masstrue
+q80:d4:interaction-product:smolyak-delta:L4:low-momentstrue
+q80:d4:interaction-product:smolyak-delta:L4:required-product-momenttrue
+tensor-smolyak-dimensions:fixed-record-counttrue
+tensor-smolyak-dimensions:unique-record-idstrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。実2次元節点と符号付き積分重み全記録を表で読む
+row_idsequenceintegrand_idmethod_iddimensionabsolute_tolerancestepcutoffmethod_codelevelvalueevaluationsestimated_errorconvergedterminationaccuracy_goal_meterror_lowererror_upperraw_filesum_weightssum_absolute_weightsassembly_contributionsassembly_duplicatescache_hitszero_weights_retainedmaximum_low_moment_defectaccuracy_goal_stateindependent_assembly_weight_defectanalytic_underresolution_control
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d2:smooth-product:tensor-clenshaw-curtis:L180smooth-producttensor-clenshaw-curtis2———412.230171620249—truefixed_rule_completedfalse0.0007996778793010.000799677879302raw/q80__d2__smooth-product__tensor-clenshaw-curtis__L1.npz1190000unmet——
+q80:d2:smooth-product:tensor-clenshaw-curtis:L280smooth-producttensor-clenshaw-curtis2———422.229371490825—truefixed_rule_completedfalse4.51554665659e-074.51554666547e-07raw/q80__d2__smooth-product__tensor-clenshaw-curtis__L2.npz11250005.55111512313e-17unmet——
+q80:d2:smooth-product:tensor-clenshaw-curtis:L380smooth-producttensor-clenshaw-curtis2———432.2293719423681—truefixed_rule_completedtrue2.04281036531e-142.13162820728e-14raw/q80__d2__smooth-product__tensor-clenshaw-curtis__L3.npz11810005.55111512313e-17met——
+q80:d2:smooth-product:smolyak-delta:L180smooth-productsmolyak-delta2———512.229228584425—truefixed_rule_completedfalse0.0001433579354320.000143357935433raw/q80__d2__smooth-product__smolyak-delta__L1.npz1172005.55111512313e-17unmet0—
+q80:d2:smooth-product:smolyak-delta:L280smooth-productsmolyak-delta2———522.2293812288213—truefixed_rule_completedfalse9.2864662018e-069.28646620268e-06raw/q80__d2__smooth-product__smolyak-delta__L2.npz11.355555555562613005.55111512313e-17unmet2.77555756156e-17—
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d2:smooth-product:smolyak-delta:L380smooth-productsmolyak-delta2———532.2293719212729—truefixed_rule_completedtrue2.10876907047e-082.10876915929e-08raw/q80__d2__smooth-product__smolyak-delta__L3.npz12.149206349217445000met——
+q80:d2:smooth-product:smolyak-delta:L480smooth-productsmolyak-delta2———542.2293719423765—truefixed_rule_completedtrue1.19797505249e-111.19806387033e-11raw/q80__d2__smooth-product__smolyak-delta__L4.npz12.60455648926187122001.11022302463e-16met——
+q80:d2:interaction-product:tensor-clenshaw-curtis:L180interaction-producttensor-clenshaw-curtis2———410.006944444444449—truefixed_rule_completedtrue08.67361737988e-19raw/q80__d2__interaction-product__tensor-clenshaw-curtis__L1.npz1190000met—false
+q80:d2:interaction-product:tensor-clenshaw-curtis:L280interaction-producttensor-clenshaw-curtis2———420.0069444444444425—truefixed_rule_completedtrue8.67361737988e-192.60208521397e-18raw/q80__d2__interaction-product__tensor-clenshaw-curtis__L2.npz11250005.55111512313e-17met—false
+q80:d2:interaction-product:tensor-clenshaw-curtis:L380interaction-producttensor-clenshaw-curtis2———430.0069444444444481—truefixed_rule_completedtrue01.73472347598e-18raw/q80__d2__interaction-product__tensor-clenshaw-curtis__L3.npz11810005.55111512313e-17met—false
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d2:interaction-product:smolyak-delta:L180interaction-productsmolyak-delta2———5105—truefixed_rule_completedfalse0.006944444444440.00694444444444raw/q80__d2__interaction-product__smolyak-delta__L1.npz1172005.55111512313e-17unmet0true
+q80:d2:interaction-product:smolyak-delta:L280interaction-productsmolyak-delta2———520.0069444444444413—truefixed_rule_completedtrue08.67361737988e-19raw/q80__d2__interaction-product__smolyak-delta__L2.npz11.355555555562613005.55111512313e-17met2.77555756156e-17false
+q80:d2:interaction-product:smolyak-delta:L380interaction-productsmolyak-delta2———530.0069444444444429—truefixed_rule_completedtrue8.67361737988e-192.60208521397e-18raw/q80__d2__interaction-product__smolyak-delta__L3.npz12.149206349217445000met—false
+q80:d2:interaction-product:smolyak-delta:L480interaction-productsmolyak-delta2———540.0069444444444465—truefixed_rule_completedtrue8.67361737988e-192.60208521397e-18raw/q80__d2__interaction-product__smolyak-delta__L4.npz12.60455648926187122001.11022302463e-16met—false
+q80:d3:smooth-product:tensor-clenshaw-curtis:L180smooth-producttensor-clenshaw-curtis3———412.5337051250627—truefixed_rule_completedfalse0.0009119455424750.000911945542476raw/q80__d3__smooth-product__tensor-clenshaw-curtis__L1.npz11270000unmet——
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d3:smooth-product:tensor-clenshaw-curtis:L280smooth-producttensor-clenshaw-curtis3———422.53279266638125—truefixed_rule_completedfalse5.13139519764e-075.13139520653e-07raw/q80__d3__smooth-product__tensor-clenshaw-curtis__L2.npz111250005.55111512313e-17unmet——
+q80:d3:smooth-product:tensor-clenshaw-curtis:L380smooth-producttensor-clenshaw-curtis3———432.53279317952729—truefixed_rule_completedtrue2.30926389122e-142.39808173319e-14raw/q80__d3__smooth-product__tensor-clenshaw-curtis__L3.npz117290001.11022302463e-16met——
+q80:d3:smooth-product:smolyak-delta:L180smooth-productsmolyak-delta3———512.532302131497—truefixed_rule_completedfalse0.0004910480270570.000491048027058raw/q80__d3__smooth-product__smolyak-delta__L1.npz11103001.11022302463e-16unmet0—
+q80:d3:smooth-product:smolyak-delta:L280smooth-productsmolyak-delta3———522.5328034515925—truefixed_rule_completedfalse1.02720730508e-051.02720730517e-05raw/q80__d3__smooth-product__smolyak-delta__L2.npz12.866666666675227005.55111512313e-17unmet5.55111512313e-17—
+q80:d3:smooth-product:smolyak-delta:L380smooth-productsmolyak-delta3———532.5327931832869—truefixed_rule_completedtrue3.75779407591e-093.75779496409e-09raw/q80__d3__smooth-product__smolyak-delta__L3.npz14.25502645503196127001.11022302463e-16met——
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d3:smooth-product:smolyak-delta:L480smooth-productsmolyak-delta3———542.53279317946177—truefixed_rule_completedtrue6.30251406619e-116.30260288403e-11raw/q80__d3__smooth-product__smolyak-delta__L4.npz16.10573295985619442001.11022302463e-16met——
+q80:d3:interaction-product:tensor-clenshaw-curtis:L180interaction-producttensor-clenshaw-curtis3———410.00057870370370427—truefixed_rule_completedtrue01.08420217249e-19raw/q80__d3__interaction-product__tensor-clenshaw-curtis__L1.npz11270000met—false
+q80:d3:interaction-product:tensor-clenshaw-curtis:L280interaction-producttensor-clenshaw-curtis3———420.000578703703704125—truefixed_rule_completedtrue02.16840434497e-19raw/q80__d3__interaction-product__tensor-clenshaw-curtis__L2.npz111250005.55111512313e-17met—false
+q80:d3:interaction-product:tensor-clenshaw-curtis:L380interaction-producttensor-clenshaw-curtis3———430.000578703703704729—truefixed_rule_completedtrue01.08420217249e-19raw/q80__d3__interaction-product__tensor-clenshaw-curtis__L3.npz117290001.11022302463e-16met—false
+q80:d3:interaction-product:smolyak-delta:L180interaction-productsmolyak-delta3———5107—truefixed_rule_completedfalse0.0005787037037040.000578703703704raw/q80__d3__interaction-product__smolyak-delta__L1.npz11103001.11022302463e-16unmet0true
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d3:interaction-product:smolyak-delta:L280interaction-productsmolyak-delta3———52025—truefixed_rule_completedfalse0.0005787037037040.000578703703704raw/q80__d3__interaction-product__smolyak-delta__L2.npz12.866666666675227005.55111512313e-17unmet5.55111512313e-17true
+q80:d3:interaction-product:smolyak-delta:L380interaction-productsmolyak-delta3———530.00057870370370469—truefixed_rule_completedtrue01.08420217249e-19raw/q80__d3__interaction-product__smolyak-delta__L3.npz14.25502645503196127001.11022302463e-16met—false
+q80:d3:interaction-product:smolyak-delta:L480interaction-productsmolyak-delta3———540.000578703703704177—truefixed_rule_completedtrue1.08420217249e-193.25260651746e-19raw/q80__d3__interaction-product__smolyak-delta__L4.npz16.10573295985619442001.11022302463e-16met—false
+q80:d4:smooth-product:tensor-clenshaw-curtis:L180smooth-producttensor-clenshaw-curtis4———412.6988715721281—truefixed_rule_completedfalse0.0009716217859030.000971621785904raw/q80__d4__smooth-product__tensor-clenshaw-curtis__L1.npz11810000unmet——
+q80:d4:smooth-product:tensor-clenshaw-curtis:L280smooth-producttensor-clenshaw-curtis4———422.69789940374625—truefixed_rule_completedfalse5.46591991668e-075.46591992556e-07raw/q80__d4__smooth-product__tensor-clenshaw-curtis__L2.npz116250005.55111512313e-17unmet——
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d4:smooth-product:tensor-clenshaw-curtis:L380smooth-producttensor-clenshaw-curtis4———432.697899950336561—truefixed_rule_completedtrue2.44249065418e-142.53130849615e-14raw/q80__d4__smooth-product__tensor-clenshaw-curtis__L3.npz1165610001.11022302463e-16met——
+q80:d4:smooth-product:smolyak-delta:L180smooth-productsmolyak-delta4———512.697284621669—truefixed_rule_completedfalse0.0006153286668680.000615328666869raw/q80__d4__smooth-product__smolyak-delta__L1.npz11.66666666667134001.11022302463e-16unmet——
+q80:d4:smooth-product:smolyak-delta:L280smooth-productsmolyak-delta4———522.6979105565641—truefixed_rule_completedfalse1.06062276743e-051.06062276752e-05raw/q80__d4__smooth-product__smolyak-delta__L2.npz14.68746005.55111512313e-17unmet——
+q80:d4:smooth-product:smolyak-delta:L380smooth-productsmolyak-delta4———532.6978999615137—truefixed_rule_completedtrue1.11655333868e-081.11655342749e-08raw/q80__d4__smooth-product__smolyak-delta__L3.npz17.62645502646411274001.11022302463e-16met——
+q80:d4:smooth-product:smolyak-delta:L480smooth-productsmolyak-delta4———542.69789995027401—truefixed_rule_completedtrue6.54116760757e-116.54125642541e-11raw/q80__d4__smooth-product__smolyak-delta__L4.npz111.939425251615741173001.66533453694e-16met——
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d4:interaction-product:tensor-clenshaw-curtis:L180interaction-producttensor-clenshaw-curtis4———414.8225308642e-0581—truefixed_rule_completedtrue06.77626357803e-21raw/q80__d4__interaction-product__tensor-clenshaw-curtis__L1.npz11810000met—false
+q80:d4:interaction-product:tensor-clenshaw-curtis:L280interaction-producttensor-clenshaw-curtis4———424.8225308642e-05625—truefixed_rule_completedtrue6.77626357803e-212.03287907341e-20raw/q80__d4__interaction-product__tensor-clenshaw-curtis__L2.npz116250005.55111512313e-17met—false
+q80:d4:interaction-product:tensor-clenshaw-curtis:L380interaction-producttensor-clenshaw-curtis4———434.8225308642e-056561—truefixed_rule_completedtrue01.35525271561e-20raw/q80__d4__interaction-product__tensor-clenshaw-curtis__L3.npz1165610001.11022302463e-16met—false
+q80:d4:interaction-product:smolyak-delta:L180interaction-productsmolyak-delta4———5109—truefixed_rule_completedfalse4.8225308642e-054.8225308642e-05raw/q80__d4__interaction-product__smolyak-delta__L1.npz11.66666666667134001.11022302463e-16unmet—true
+q80:d4:interaction-product:smolyak-delta:L280interaction-productsmolyak-delta4———52041—truefixed_rule_completedfalse4.8225308642e-054.8225308642e-05raw/q80__d4__interaction-product__smolyak-delta__L2.npz14.68746005.55111512313e-17unmet—true
+
+## 領域別・二重指数・疎格子求積 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#tensor-smolyak-dimensions-measurements
+Coverage: reading
+
+q80:d4:interaction-product:smolyak-delta:L380interaction-productsmolyak-delta4———530137—truefixed_rule_completedfalse4.8225308642e-054.8225308642e-05raw/q80__d4__interaction-product__smolyak-delta__L3.npz17.62645502646411274001.11022302463e-16unmet—true
+q80:d4:interaction-product:smolyak-delta:L480interaction-productsmolyak-delta4———544.8225308642e-05401—truefixed_rule_completedtrue06.77626357803e-21raw/q80__d4__interaction-product__smolyak-delta__L4.npz111.939425251615741173001.66533453694e-16met—false
+この例の実測値・全記録 / JSON
+
+## 領域別・二重指数・疎格子求積 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#tensor-smolyak-dimensions-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Fast Construction of the Fejer and Clenshaw-Curtis Quadrature Rules [accessed 2026-11-25]
+確認範囲 / review_level: selected-primary-body-text
+
 ## 2Dの影・ビームとM1閉包 — 2Dの影・ビームとM1閉包 [ja]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-radiation-geometry/
@@ -92456,6 +96881,499 @@ Original publisher full text unavailable; no original-text review claimed. Neutr
 LAMMPS slab Ewald documentation and neutral correction
 確認範囲 / review_level: official-selected-docs-and-formulas
 Slab geometry restrictions and official Ewald::slabcorr neutral formula inspected. No LAMMPS code copied or executed; mutable stable source is contextual, not a numerical dependency.
+
+## 小型学習モデルと生物ODEの独立検証 — 小型学習モデルと生物ODEの独立検証 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/
+Coverage: reading
+
+Poisson PINN・周期熱FNOと、酵素・捕食被食・SEIRを固定予算で調べます。学習/近似の元精度目標と再現検査を区別します。
+
+## 小型学習モデルと生物ODEの独立検証 — 配布版を取得して実行する [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#run-all
+Coverage: reading
+
+ZIPの atlas-small-models-2026-11-25 フォルダで実行します。このコマンドは配布版の全5例を実行します。results/ は同梱の保存結果です。追試は新規の output/ へ出力し、繰り返す場合は別の新規フォルダを指定してください。
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+Matplotlibは保存図の任意の再描画にだけ使い、通常の科学計算には不要です。
+
+## 小型学習モデルと生物ODEの独立検証 — 1D Poisson PINNと独立格子誤差 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/
+Coverage: reading
+
+3固定seedの49パラメータPINNを解析解・FDと比較します。
+手法・式・図・参照解
+使用手法
+PINN・ニューラル演算子
+Thomas法／三重対角消去
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+x(1−x)を掛けて境界値を厳密に組み込むtanhネットワークを、解析的な全パラメータJacobian付きTRF最小二乗法で学習します。固定予算後の全モデルを保存し、31/63/127未知数の2次中心差分とThomas法も計算します。
+Poisson・Laplace方程式
+無次元区間[0,1]で −uₓₓ=π²sin(πx)、u(0)=u(1)=0。中間層16素子・49実パラメータ、固定seed 8401–8403、学習64点と独立評価257点を用います。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+1次元Poisson・Dirichlet製造解
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+全49列の残差Jacobianと損失勾配、空間微分を別資格段階で独立照合。解析解sin(πx)に対する独立点誤差、PDE残差、境界値、FD誤差を別に保存します。収束・精度目標の実際の真偽を残し、正常な予算終了を収束と呼びません。
+関連モデルの参照 · 製造解
+Poisson／正弦波の製造解
+単一sin(πx)の共通固定入力とは一致しますが、保存比較図は複合正弦製造解も含みます。同じ零Dirichletでも全ソースが同一ではありません。
+関連モデルの参照 · 製造解
+1D Poisson PINNと独立格子誤差
+1つの滑らかなPoisson問題と3seedの固定予算実験です。小さい学習損失だけで独立点精度の達成や一般的なPINN学習成功を保証しません。未達目標も表示します。
+
+## 小型学習モデルと生物ODEの独立検証 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#pinn-poisson-assumptions
+Coverage: reading
+
+無次元区間[0,1]で −uₓₓ=π²sin(πx)、u(0)=u(1)=0。中間層16素子・49実パラメータ、固定seed 8401–8403、学習64点と独立評価257点を用います。
+
+## 小型学習モデルと生物ODEの独立検証 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#pinn-poisson-algorithm
+Coverage: reading
+
+x(1−x)を掛けて境界値を厳密に組み込むtanhネットワークを、解析的な全パラメータJacobian付きTRF最小二乗法で学習します。固定予算後の全モデルを保存し、31/63/127未知数の2次中心差分とThomas法も計算します。
+-u_{xx}=\pi^2\sin(\pi x),\quad 0<x<1,\quad u(0)=u(1)=0u_\theta(x)=x(1-x)\left[b_0+\sum_{j=1}^{16}a_j\tanh(w_jx+b_j)\right]r_i=\frac{-u_{\theta,xx}(x_i)-\pi^2\sin(\pi x_i)}{\pi^2},\quad L=\frac1{64}\sum_{i=1}^{64}r_i^2
+
+## 小型学習モデルと生物ODEの独立検証 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#pinn-poisson-validation
+Coverage: reading
+
+全49列の残差Jacobianと損失勾配、空間微分を別資格段階で独立照合。解析解sin(πx)に対する独立点誤差、PDE残差、境界値、FD誤差を別に保存します。収束・精度目標の実際の真偽を残し、正常な予算終了を収束と呼びません。
+
+## 小型学習モデルと生物ODEの独立検証 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#pinn-poisson-limits
+Coverage: reading
+
+1つの滑らかなPoisson問題と3seedの固定予算実験です。小さい学習損失だけで独立点精度の達成や一般的なPINN学習成功を保証しません。未達目標も表示します。
+
+## 小型学習モデルと生物ODEの独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#pinn-poisson-measurements
+Coverage: reading
+
+量 / metric実測値
+training_seeds3
+parameters49
+independent_grid_points257
+FD_runs3
+判定 / check合格
+seed-8401:finite-shapetrue
+seed-8401:optimizer-return-statustrue
+seed-8401:actual-worktrue
+seed-8402:finite-shapetrue
+seed-8402:optimizer-return-statustrue
+seed-8402:actual-worktrue
+seed-8403:finite-shapetrue
+seed-8403:optimizer-return-statustrue
+seed-8403:actual-worktrue
+fd-31:true-residualtrue
+fd-63:true-residualtrue
+fd-127:true-residualtrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。3固定seedの49パラメータPINNを解析解・FDと比較します。 保存値だけを描画します。全記録を表で読む
+kindseedparameter_countsolution_LinfPDE_normalized_RMSboundary_Linftraining_lossstatusoptimizer_successnfevnjevfun_callsjac_callsreturned_final_parameter_vectorsnodestrue_linear_residual
+PINN8401492.25899960959e-083.32775686711e-0704.40362097973e-14003002763002761——
+PINN8402495.56788840589e-081.0321910211e-0605.73817732081e-13003002253002251——
+PINN8403497.84035796286e-081.24355985815e-0608.52634308436e-13003002863002861——
+FD2——0.00080357767937——————————312.02504679692e-13
+FD2——0.000200821809696——————————631.2576606423e-12
+FD2——5.02009159131e-05——————————1277.22799597952e-12
+この例の実測値・全記録 / JSON
+
+## 小型学習モデルと生物ODEの独立検証 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#pinn-poisson-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Physics Informed Deep Learning (Part I): Data-driven Solutions of Nonlinear Partial Differential Equations [accessed 2026-11-24]
+確認範囲 / review_level: selected-primary-body
+Extracted PDF text selected pp.4–6, §2 continuous-time residual, Eq(2)–(4), Burgers setup and loss/optimizer discussion; not all 22 pages and not visual PDF audit.
+
+## 小型学習モデルと生物ODEの独立検証 — 小型FNOの問題単位検証 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/
+Coverage: reading
+
+同じ重みで32/64点・未見関数・OODを分けて評価します。
+手法・式・図・参照解
+使用手法
+PINN・ニューラル演算子
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+入力(u₀,ν)を幅2へ写し、局所線形項・DCと1–4モードの複素Fourier項・tanhからなる2ブロックを適用します。L-BFGS-Bの固定予算で学習し、同じ重みをN=32/64へ転送。非線形項は各格子上で評価しdealiasingしません。
+熱・拡散方程式
+周期区間[0,2π)、uₜ=νuₓₓ、T=0.25。同じ関数の点を分散させず、全46問題を学習24・検証6・未見ID8・νのOOD4・周波数のOOD4に分けます。2固定seed、93実パラメータです。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+周期Fourierモードの熱拡散
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+全93実座標の損失勾配を2つの固定差分幅で照合し、Fourierブロックを直接DFTと比較。解析的な熱モード減衰に対する絶対・相対誤差、格子制限差、ID/OODを分離します。参照RMS≤10⁻¹²では相対誤差をNAとし、ゼロ・微小振幅では絶対誤差を保存します。
+関連モデルの参照 · 解析参照
+熱拡散／Fourierモードの減衰
+保存ギャラリーの周期[0,1]、1+0.25sin(2πx)、ν=0.02、最終時刻1が一致します。別周波数のコード検査への一致は意味しません。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。
+関連モデルの参照 · 解析参照
+小型FNOの問題単位検証
+固定された小型離散作用素の比較で、任意の解像度・分布に対する一般化やOOD精度を保証しません。N=64から32への差には非線形aliasingが含まれ、連続体離散化誤差とは呼びません。最適化収束と固定予算終了は別です。
+
+## 小型学習モデルと生物ODEの独立検証 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#fno-periodic-heat-assumptions
+Coverage: reading
+
+周期区間[0,2π)、uₜ=νuₓₓ、T=0.25。同じ関数の点を分散させず、全46問題を学習24・検証6・未見ID8・νのOOD4・周波数のOOD4に分けます。2固定seed、93実パラメータです。
+
+## 小型学習モデルと生物ODEの独立検証 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#fno-periodic-heat-algorithm
+Coverage: reading
+
+入力(u₀,ν)を幅2へ写し、局所線形項・DCと1–4モードの複素Fourier項・tanhからなる2ブロックを適用します。L-BFGS-Bの固定予算で学習し、同じ重みをN=32/64へ転送。非線形項は各格子上で評価しdealiasingしません。
+u_t=\nu u_{xx},\quad x\in[0,2\pi),\quad u(x+2\pi,t)=u(x,t),\quad T=\tfrac14\widehat u_k(T)=e^{-\nu k^2T}\widehat u_k(0)v^{\ell+1}=\tanh\!\left(W_\ell v^\ell+b_\ell+\mathcal F_N^{-1}(R_\ell\mathcal F_Nv^\ell)\right),\quad \ell=0,1\mathrm{relative\ error}=\frac{\operatorname{RMS}(u_\theta-u_{\rm ref})}{\operatorname{RMS}(u_{\rm ref})}\quad\text{only if }\operatorname{RMS}(u_{\rm ref})>10^{-12}
+
+## 小型学習モデルと生物ODEの独立検証 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#fno-periodic-heat-validation
+Coverage: reading
+
+全93実座標の損失勾配を2つの固定差分幅で照合し、Fourierブロックを直接DFTと比較。解析的な熱モード減衰に対する絶対・相対誤差、格子制限差、ID/OODを分離します。参照RMS≤10⁻¹²では相対誤差をNAとし、ゼロ・微小振幅では絶対誤差を保存します。
+
+## 小型学習モデルと生物ODEの独立検証 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#fno-periodic-heat-limits
+Coverage: reading
+
+固定された小型離散作用素の比較で、任意の解像度・分布に対する一般化やOOD精度を保証しません。N=64から32への差には非線形aliasingが含まれ、連続体離散化誤差とは呼びません。最適化収束と固定予算終了は別です。
+
+## 小型学習モデルと生物ODEの独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#fno-periodic-heat-measurements
+Coverage: reading
+
+量 / metric実測値
+models2
+parameters_per_model93
+whole_problem_IDs46
+prediction_rows116
+nonlinear_dealiasingnone
+restriction_discrepancy_scopeNative-grid nonlinear/alias sensitivity, not continuum error
+判定 / check合格
+seed-8501:finite-parameterstrue
+seed-8501:optimizer-return-statustrue
+seed-8501:actual-worktrue
+seed-8501:relative-NAtrue
+seed-8502:finite-parameterstrue
+seed-8502:optimizer-return-statustrue
+seed-8502:actual-worktrue
+seed-8502:relative-NAtrue
+disjoint-whole-problem-IDstrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。同じ重みで32/64点・未見関数・OODを分けて評価します。 保存値だけを描画します。全記録を表で読む
+seedparameterslossstatusoptimizer_successiterationsnfevnjevloss_callsgradient_callsreturned_final_vectors
+8501930.000435952023805101201401401401401
+8502930.00040221023539101201471471471471
+この例の実測値・全記録 / JSON
+
+## 小型学習モデルと生物ODEの独立検証 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#fno-periodic-heat-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Fourier Neural Operator for Parametric Partial Differential Equations [accessed 2026-11-24]
+確認範囲 / review_level: selected-primary-body
+Selected HTML §2 learning operators; §3 Eq(2); §4 Eq(4)–(5), FFT/truncation/reality; §5 setup and §5.1 Burgers. PDF header/edition only; not full paper or appendix audit.
+
+## 小型学習モデルと生物ODEの独立検証 — 酵素反応の保存と準定常近似 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/
+Coverage: reading
+
+全4状態と準定常近似を比較し、初期層と積分誤差を分けます。
+手法・式・図・参照解
+使用手法
+L安定なSDIRK2
+適応SDIRK2／ステップ倍分割
+Armijo減衰Newton法
+古典的RK4
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+全4状態をSDIRK2のstep doublingで積分し、各段のNewton法では同じ重み付きL∞残差とArmijo条件を使います。縮約Michaelis–Menten式はθ上の別RK4計算で求め、全系の積分誤差と近似モデル誤差を混同しません。
+Michaelis–Mentenと完全酵素反応系
+閉鎖反応E+S⇌C→E+Pを無次元化し、k₁=10、k₋₁=k₂=1、S₀=1、C₀=P₀=0、E₀=0.01/0.002。Kₘ=0.2、ε=E₀/(Kₘ+S₀)=1/120,1/600、θ=E₀t∈[0,0.5]です。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+酵素反応の保存と準定常近似
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+独立な全系Radau/BDF参照、縮約式の陰的スカラー恒等式、E+C=E₀とS+C+P=1、正値性、実際の採用・棄却・Newton作業を照合。初期層を含む全時間と、事前指定θ≥0.02の近似誤差を別保存します。
+同じ問題の参照 · 有限格子の数値参照
+酵素反応の保存と準定常近似
+2つの小εと固定反応定数だけの教育例です。εは尺度比であり、その値だけを厳密なQSSA誤差上界とはしません。θ≥0.02を初期層終了の証明とは呼ばず、生体内の反応・観測値へ外挿しません。
+
+## 小型学習モデルと生物ODEの独立検証 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#enzyme-qssa-assumptions
+Coverage: reading
+
+閉鎖反応E+S⇌C→E+Pを無次元化し、k₁=10、k₋₁=k₂=1、S₀=1、C₀=P₀=0、E₀=0.01/0.002。Kₘ=0.2、ε=E₀/(Kₘ+S₀)=1/120,1/600、θ=E₀t∈[0,0.5]です。
+
+## 小型学習モデルと生物ODEの独立検証 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#enzyme-qssa-algorithm
+Coverage: reading
+
+全4状態をSDIRK2のstep doublingで積分し、各段のNewton法では同じ重み付きL∞残差とArmijo条件を使います。縮約Michaelis–Menten式はθ上の別RK4計算で求め、全系の積分誤差と近似モデル誤差を混同しません。
+\begin{aligned}\dot S&=-10ES+C,&\dot C&=10ES-2C,\\\dot E&=-10ES+2C,&\dot P&=C.\end{aligned}E+C=E_0,\quad S+C+P=1,\quad K_m=\frac{k_{-1}+k_2}{k_1}=0.2\theta=E_0t,\quad \varepsilon=\frac{E_0}{K_m+S_0}\in\left\{\frac1{120},\frac1{600}\right\}\frac{dS_{\rm MM}}{d\theta}=-\frac{S_{\rm MM}}{0.2+S_{\rm MM}},\quad S_{\rm MM}+0.2\log S_{\rm MM}=1-\theta
+
+## 小型学習モデルと生物ODEの独立検証 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#enzyme-qssa-validation
+Coverage: reading
+
+独立な全系Radau/BDF参照、縮約式の陰的スカラー恒等式、E+C=E₀とS+C+P=1、正値性、実際の採用・棄却・Newton作業を照合。初期層を含む全時間と、事前指定θ≥0.02の近似誤差を別保存します。
+
+## 小型学習モデルと生物ODEの独立検証 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#enzyme-qssa-limits
+Coverage: reading
+
+2つの小εと固定反応定数だけの教育例です。εは尺度比であり、その値だけを厳密なQSSA誤差上界とはしません。θ≥0.02を初期層終了の証明とは呼ばず、生体内の反応・観測値へ外挿しません。
+
+## 小型学習モデルと生物ODEの独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#enzyme-qssa-measurements
+Coverage: reading
+
+量 / metric実測値
+actual_primary_records6
+reference_roleQualified Radau/BDF full ODE; reduction/linearization errors are distinct modeling diagnostics
+判定 / check合格
+enzyme-01-r1e-06:completed-worktrue
+enzyme-01-r1e-06:finitetrue
+enzyme-01-r1e-08:completed-worktrue
+enzyme-01-r1e-08:finitetrue
+enzyme-002-r1e-06:completed-worktrue
+enzyme-002-r1e-06:finitetrue
+enzyme-002-r1e-08:completed-worktrue
+enzyme-002-r1e-08:finitetrue
+mm-200:finitetrue
+mm-400:finitetrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。全4状態と準定常近似を比較し、初期層と積分誤差を分けます。 保存値だけを描画します。全記録を表で読む
+idEtotalepsilonrtolatolintegration_Linfconservation_defectQSSA_window_model_errorQSSA_full_model_errorminimum_acceptedattempted_stepsaccepted_stepsrejected_stepsclipped_output_stepsRHS_callsJacobian_callsfactor_buildslinear_solvesNewton_updatesbacktracksstepsreduced_scalar_error
+enzyme-01-r1e-060.010.008333333333331e-061e-103.30277438731e-082.44249065418e-150.007585076108210.007606754183502498249628845490115041150411504115040——
+enzyme-01-r1e-080.010.008333333333331e-081e-121.18697555604e-092.44249065418e-150.007585076108210.0076067541835011701167310334930122001220012200122000——
+enzyme-002-r1e-060.0020.001666666666671e-061e-108.17277473475e-091.11022302463e-150.001518757415780.0015259355711205725702401192033863386338633860——
+
+## 小型学習モデルと生物ODEの独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#enzyme-qssa-measurements
+Coverage: reading
+
+enzyme-002-r1e-080.0020.001666666666671e-081e-123.22019923205e-103.10862446895e-150.001518757415780.00152593557112011601157310332964112621126211262112620——
+mm-200———————————————————2002.0872192863e-14
+mm-400———————————————————4003.77475828373e-15
+この例の実測値・全記録 / JSON
+
+## 小型学習モデルと生物ODEの独立検証 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#enzyme-qssa-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Rigorous estimates for the quasi-steady state approximation of the Michaelis–Menten reaction mechanism at low enzyme concentrations [accessed 2026-11-24]
+確認範囲 / review_level: selected-primary-body
+Selected §1 Eq(1)–(8) and selected discussion around transient-time estimates Eq(32); proofs and complete quantitative bounds unread.
+
+## 小型学習モデルと生物ODEの独立検証 — Lotka–Volterra不変量と正値性 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/
+Coverage: reading
+
+正の軌道を独立な対数座標参照と比較します。
+手法・式・図・参照解
+使用手法
+古典的RK4
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+固定400/800/1600ステップの古典RK4で物理状態を積分します。独立参照はlog x・log yの変数でRadau/BDFを実行し、主計算には対数変数や保存量の射影を導入しません。
+Lotka–Volterra捕食・被食
+無次元の捕食者・被食者系x′=x(1−y)、y′=y(x−1)、初期値(1.2,0.8)、0≤t≤20。正の象限で不変量H=x−log x+y−log yを評価します。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+Lotka–Volterra不変量と正値性
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+独立参照との状態誤差、Hのドリフト、保存された軌道の最小値を別々に測定。参照側では解析Jacobian、Radau/BDF差、刻み精度、Hの時間微分の恒等式を事前資格しています。
+同じ問題の参照 · 有限格子の数値参照
+Lotka–Volterra不変量と正値性
+1初期値・有限時間の固定比較です。連続系の閉軌道を引き込み極限周期とは呼びません。RK4の厳密な不変量保存、任意刻みでの正値性、長時間の構造保存は保証しません。
+
+## 小型学習モデルと生物ODEの独立検証 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#lotka-volterra-assumptions
+Coverage: reading
+
+無次元の捕食者・被食者系x′=x(1−y)、y′=y(x−1)、初期値(1.2,0.8)、0≤t≤20。正の象限で不変量H=x−log x+y−log yを評価します。
+
+## 小型学習モデルと生物ODEの独立検証 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#lotka-volterra-algorithm
+Coverage: reading
+
+固定400/800/1600ステップの古典RK4で物理状態を積分します。独立参照はlog x・log yの変数でRadau/BDFを実行し、主計算には対数変数や保存量の射影を導入しません。
+\dot x=x(1-y),\quad\dot y=y(x-1),\quad(x(0),y(0))=(1.2,0.8),\quad0\le t\le20H(x,y)=x-\log x+y-\log y,\quad\frac{dH}{dt}=0\quad(x>0,y>0)\frac{d\log x}{dt}=1-e^{\log y},\quad\frac{d\log y}{dt}=e^{\log x}-1
+
+## 小型学習モデルと生物ODEの独立検証 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#lotka-volterra-validation
+Coverage: reading
+
+独立参照との状態誤差、Hのドリフト、保存された軌道の最小値を別々に測定。参照側では解析Jacobian、Radau/BDF差、刻み精度、Hの時間微分の恒等式を事前資格しています。
+
+## 小型学習モデルと生物ODEの独立検証 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#lotka-volterra-limits
+Coverage: reading
+
+1初期値・有限時間の固定比較です。連続系の閉軌道を引き込み極限周期とは呼びません。RK4の厳密な不変量保存、任意刻みでの正値性、長時間の構造保存は保証しません。
+
+## 小型学習モデルと生物ODEの独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#lotka-volterra-measurements
+Coverage: reading
+
+量 / metric実測値
+actual_primary_records3
+reference_roleQualified Radau/BDF full ODE; reduction/linearization errors are distinct modeling diagnostics
+判定 / check合格
+lv-400:actual-grid-finitetrue
+lv-800:actual-grid-finitetrue
+lv-1600:actual-grid-finitetrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。正の軌道を独立な対数座標参照と比較します。 保存値だけを描画します。全記録を表で読む
+idstepsstate_Linfinvariant_driftminimum_state
+lv-4004003.33183228785e-075.89986370869e-090.740814263533
+lv-8008002.08550965386e-082.90957480331e-100.74081272829
+lv-160016001.30422272981e-091.57518442734e-110.740807472042
+この例の実測値・全記録 / JSON
+
+## 小型学習モデルと生物ODEの独立検証 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#lotka-volterra-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+Experiments in MATLAB, Chapter16: Predator-Prey Model [accessed 2026-11-24]
+確認範囲 / review_level: selected-primary-body
+Selected extracted text pp3–6: normalized LV equations, equilibrium, periodic-orbit discussion and numerical illustration. No original Lotka/Volterra paper read.
+
+## 小型学習モデルと生物ODEの独立検証 — SEIR保存則と初期線形化 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/
+Coverage: reading
+
+人口保存と2モードの初期線形化を別々に検査します。
+手法・式・図・参照解
+使用手法
+古典的RK4
+この固定入力の実行に使う手法です。適用条件と検証の範囲は各案内で確認できます。
+方程式
+この実行例の式と条件
+全4状態を固定400/800/1600ステップのRK4で積分。独立非線形参照は偏差をηで尺度化してRadau/BDFで求め、早期のE・I線形化は2×2行列指数の両モードを使います。
+閉鎖SEIR区画モデル
+閉鎖人口S+E+I+R=1、β=0.6、σ=0.3、γ=0.2。η=10⁻⁴/5×10⁻⁵に対し(S,E,I,R)(0)=(1−2η,η,η,0)、0≤t≤20。出生・死亡・外部流入はありません。
+問題の図
+この実行例で保存した検証図です。図の条件と判定範囲は、このページの検証資料で確認できます。
+SEIR保存則と初期線形化
+この問題のコード・検証状況
+厳密解・参照解
+この実行例の参照・検証
+t≤20の全ODE積分誤差・人口保存・非負性と、0≤t≤1の201参照点での線形化モデル誤差を分けます。参照では両ηの尺度付きJacobian、Radau/BDF差とη²に対する余裕、解析的な全行列指数を別資格しています。
+同じ問題の参照 · 有限格子の数値参照
+SEIR保存則と初期線形化
+2つの小初期感染量による固定係数の整合性比較です。早期線形化をt=20全体の厳密解と見なさず、単一の優勢モードで両モードを置き換えません。実流行の予測・統計的被覆・任意人口への一般保証は行いません。
+
+## 小型学習モデルと生物ODEの独立検証 — 前提・単位・境界 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#seir-linearization-assumptions
+Coverage: reading
+
+閉鎖人口S+E+I+R=1、β=0.6、σ=0.3、γ=0.2。η=10⁻⁴/5×10⁻⁵に対し(S,E,I,R)(0)=(1−2η,η,η,0)、0≤t≤20。出生・死亡・外部流入はありません。
+
+## 小型学習モデルと生物ODEの独立検証 — 採用した計算法 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#seir-linearization-algorithm
+Coverage: reading
+
+全4状態を固定400/800/1600ステップのRK4で積分。独立非線形参照は偏差をηで尺度化してRadau/BDFで求め、早期のE・I線形化は2×2行列指数の両モードを使います。
+\begin{aligned}\dot S&=-\beta SI,&\dot E&=\beta SI-\sigma E,\\\dot I&=\sigma E-\gamma I,&\dot R&=\gamma I.\end{aligned}\beta=0.6,\quad\sigma=0.3,\quad\gamma=0.2,\quad(S,E,I,R)(0)=(1-2\eta,\eta,\eta,0)S+E+I+R=1,\quad\eta\in\{10^{-4},5\times10^{-5}\}\begin{pmatrix}E_{\rm lin}(t)\\ I_{\rm lin}(t)\end{pmatrix}=\exp\!\left[t\begin{pmatrix}-0.3&0.6\\0.3&-0.2\end{pmatrix}\right]\begin{pmatrix}\eta\\\eta\end{pmatrix}
+
+## 小型学習モデルと生物ODEの独立検証 — 何と比較し、何を測るか [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#seir-linearization-validation
+Coverage: reading
+
+t≤20の全ODE積分誤差・人口保存・非負性と、0≤t≤1の201参照点での線形化モデル誤差を分けます。参照では両ηの尺度付きJacobian、Radau/BDF差とη²に対する余裕、解析的な全行列指数を別資格しています。
+
+## 小型学習モデルと生物ODEの独立検証 — 確認の限界と失敗条件 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#seir-linearization-limits
+Coverage: reading
+
+2つの小初期感染量による固定係数の整合性比較です。早期線形化をt=20全体の厳密解と見なさず、単一の優勢モードで両モードを置き換えません。実流行の予測・統計的被覆・任意人口への一般保証は行いません。
+
+## 小型学習モデルと生物ODEの独立検証 — 保存した実測値と判定 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#seir-linearization-measurements
+Coverage: reading
+
+量 / metric実測値
+actual_primary_records6
+reference_roleQualified Radau/BDF full ODE; reduction/linearization errors are distinct modeling diagnostics
+判定 / check合格
+seir-1e-4-400:actual-grid-finitetrue
+seir-1e-4-800:actual-grid-finitetrue
+seir-1e-4-1600:actual-grid-finitetrue
+seir-5e-5-400:actual-grid-finitetrue
+seir-5e-5-800:actual-grid-finitetrue
+seir-5e-5-1600:actual-grid-finitetrue
+保存結果の図です。入力・参照・判定の範囲は本文とJSONを参照してください。人口保存と2モードの初期線形化を別々に検査します。 保存値だけを描画します。全記録を表で読む
+idetastepsstate_Linfmass_defectminimum_stateearly_model_deviationearly_deviation_over_eta_squared
+seir-1e-4-4000.00014001.86228810151e-121.33226762955e-1501.32065608744e-081.32065608744
+seir-1e-4-8000.00018001.17461596005e-135.55111512313e-1601.32065608744e-081.32065608744
+seir-1e-4-16000.000116006.99440505514e-151.88737914186e-1501.32065608744e-081.32065608744
+seir-5e-5-4005e-054009.46021039283e-136.66133814775e-1603.3017030168e-091.32068120672
+seir-5e-5-8005e-058006.02851102371e-141.11022302463e-1503.3017030168e-091.32068120672
+seir-5e-5-16005e-0516006.2172489379e-151.99840144433e-1503.3017030168e-091.32068120672
+この例の実測値・全記録 / JSON
+
+## 小型学習モデルと生物ODEの独立検証 — 一次文献・関連資料と確認範囲 [ja]
+
+Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#seir-linearization-references
+Coverage: reading
+
+原著・公式資料の書誌、抄録、原文の一部、実行した公式コードなどの確認範囲を区別します。論文全文や第三者コードの一括転載・全文監査を主張しません。
+The Mathematics of Infectious Diseases [accessed 2026-11-24]
+確認範囲 / review_level: selected-primary-body
+Header, selected introduction compartment definitions and §3.1 printedpp618–619, displayed mass-action numbers and Eq(3.1); search around3.2/SEIR limit. Not whole55pages or visual diagram audit.
 
 ## 作用素分割：同じ反応拡散でLie–TrotterとStrangを比較 — 作用素分割：同じ反応拡散でLie–TrotterとStrangを比較 [ja]
 
@@ -97749,7 +102667,7 @@ Coverage: reading
 Source: https://hrkoyama.github.io/numerical-methods-atlas/ja/read/wavelets/#publication-scope
 Coverage: reading
 
-解説・代表式・文献を公開しています。専用コードと数値検証結果は実装予定です。上記の検証案は未実施で、他の手法のコードや計算結果をこの手法の検証として流用しません。
+既存の教育用コードと版を固定した検証記録への案内です。今回の本文・翻訳の追加でコードや過去の測定結果を変更せず、原論文全体の再現を主張しません。
 ウェーブレット
 
 ## ウェーブレット — 一次文献・関連資料と確認範囲 [ja]

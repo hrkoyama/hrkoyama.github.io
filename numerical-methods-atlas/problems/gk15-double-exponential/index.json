@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "id": "gk15-double-exponential",
+  "name": {
+    "ja": "G7/K15と有限区間tanh-sinh",
+    "en": "G7/K15 and finite-interval tanh-sinh"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gk15-double-exponential/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gk15-double-exponential/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gk15-double-exponential/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/results/gk15-double-exponential-preview.png",
+    "sha256": "1baba282adda756250570f756dada4aca2ad08a211da1d09f4aa4f012ab8b0dd",
+    "width": 2060,
+    "height": 696,
+    "caption": {
+      "ja": "保存された変換関数と有限窓誤差（連続tailは別量） 数学的な積分領域と次元は式・入力に示します。パラメータや誤差の図軸に物理空間の次元を割り当てません。 再現確認の合格は精度目標の全達成を意味しません。元の目標判定は達成26件・未達7件・計算不能0件です。FALSE/NAと失敗rawを保持します。",
+      "en": "Saved transformed integrands and finite-window defects; continuous tails are distinct The formulas and inputs specify mathematical integration domains and dimensions. Parameter and error axes are not physical spatial coordinates. Passing reproduction checks does not mean that every accuracy goal was met. Original row outcomes: 26 met, 7 unmet and 0 not computable. False/NA outcomes and raw failures are retained."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#gk15-double-exponential",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#gk15-double-exponential"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#gk15-double-exponential",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#gk15-double-exponential-en"
+  },
+  "equations": [
+    {
+      "id": "definite-integrals",
+      "name": {
+        "ja": "有限・無限・多変数の定積分",
+        "en": "Finite, improper and multivariate definite integrals"
+      },
+      "formula": [
+        "I_D(f)=\\int_D f(\\mathbf x)\\,d\\mathbf x"
+      ],
+      "note": {
+        "ja": "領域・重み・特異性と有限変換和の定義を確認する数学的求積問題です。",
+        "en": "Mathematical quadrature problems with explicit domains, weights, singularities and finite transformed-sum conventions."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#definite-integrals-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#definite-integrals-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "exp(x)、x^(-1/3)、−log(x)を[0,1]で積分。h=1/2〜1/16、切断T=3/4。",
+    "en": "Integrate exp(x), x^(-1/3) and -log(x) on[0,1], with h from1/2 to1/16 and cutoffs3/4."
+  },
+  "formulations": [],
+  "references": [
+    {
+      "id": "gk15-double-exponential",
+      "kind": "analytic",
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "title": {
+        "ja": "G7/K15と有限区間tanh-sinh",
+        "en": "G7/K15 and finite-interval tanh-sinh"
+      },
+      "formula": "Q_h^T=h\\sum_{k=-T/h}^{T/h}f(\\phi(kh))\\phi^{\\prime}(kh),\\quad\\phi(t)=\\tfrac12[1+\\tanh(\\tfrac\\pi2\\sinh t)];\\quad\\int_0^1(e^x,x^{-1/3},-\\log x)\\,dx=(e-1,3/2,1)",
+      "assumptions": {
+        "ja": "exp(x)、x^(-1/3)、−log(x)を[0,1]で積分。h=1/2〜1/16、切断T=3/4。",
+        "en": "Integrate exp(x), x^(-1/3) and -log(x) on[0,1], with h from1/2 to1/16 and cutoffs3/4."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "半無限exp-sinh/全実線sinh-sinhは未実装。無限台形SUMの省略項のboundは提供しません。",
+        "en": "Half-line exp-sinh and whole-line sinh-sinh are unimplemented; no omitted infinite-grid sum bound is provided."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gk15-double-exponential/?lang=ja#gk15-double-exponential-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gk15-double-exponential/?lang=en#gk15-double-exponential-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "解析区間参照で全誤差、連続tail、有限窓誤差を分離します。",
+    "en": "Analytic interval references separate total error, continuous tail and finite-window defect."
+  },
+  "methods": [
+    {
+      "id": "quadrature",
+      "name": {
+        "ja": "Gauss求積・適応積分",
+        "en": "Gaussian and adaptive quadrature"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/quadrature/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/quadrature/?lang=en"
+      }
+    },
+    {
+      "id": "gauss-kronrod",
+      "name": {
+        "ja": "Gauss–Kronrod G7/K15",
+        "en": "Gauss–Kronrod G7/K15"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/gauss-kronrod/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/gauss-kronrod/?lang=en"
+      }
+    },
+    {
+      "id": "tanh-sinh",
+      "name": {
+        "ja": "tanh–sinh二重指数求積",
+        "en": "Tanh–sinh double-exponential quadrature"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/tanh-sinh/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/tanh-sinh/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "共有15節点、G7次数13/K15次数23。DEは安定log式と全端点重みです。",
+    "en": "Shared15-node G7 degree13/K15 degree23; DE uses stable logarithmic products and full endpoint weights."
+  },
+  "executions": [
+    {
+      "id": "gk15-double-exponential",
+      "kind": "supplement",
+      "name": {
+        "ja": "G7/K15と有限区間tanh-sinh",
+        "en": "G7/K15 and finite-interval tanh-sinh"
+      },
+      "method_ids": [
+        "quadrature",
+        "gauss-kronrod",
+        "tanh-sinh"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gk15-double-exponential/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gk15-double-exponential/?lang=en"
+      },
+      "scope": {
+        "ja": "9本の適応GKと24本の固定DE和を比較します。",
+        "en": "Nine adaptive GK rows and twenty-four fixed DE sums are compared."
+      },
+      "assumptions": {
+        "ja": "exp(x)、x^(-1/3)、−log(x)を[0,1]で積分。h=1/2〜1/16、切断T=3/4。",
+        "en": "Integrate exp(x), x^(-1/3) and -log(x) on[0,1], with h from1/2 to1/16 and cutoffs3/4."
+      },
+      "limits": {
+        "ja": "半無限exp-sinh/全実線sinh-sinhは未実装。無限台形SUMの省略項のboundは提供しません。",
+        "en": "Half-line exp-sinh and whole-line sinh-sinh are unimplemented; no omitted infinite-grid sum bound is provided."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/atlas-quadrature-controls-2026-11-25.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "解析区間参照で全誤差、連続tail、有限窓誤差を分離します。",
+        "en": "Analytic interval references separate total error, continuous tail and finite-window defect."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/gk15.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/double_exponential.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/test_quadrature.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

@@ -26,11 +26,17 @@ Small training loss is not a bound on global solution error or conservation. Exa
 
 Compare against analytic or independently converged conventional solutions. Measure off-training L1/L2/L∞ errors, boundaries, conservation and multiple seeds. Split operator data by independent problems rather than nearby time slices alone, and report distribution-shift tests separately.
 
+## Selected original sources and the present small examples
+
+Selected section 2 of the 2017 PINN Part I preprint distinguishes residual loss from data and boundary losses. Sections 3–4 of FNO version 3 (2021) combine a local linear map, a Fourier integral map and nonlinear activation. The present small Poisson and periodic-heat inputs are separate educational choices. Neither the full 2019 JCP article nor the original large experiments or performance claims are reproduced.
+
 ## Publication scope
 
-Reading, representative equations and sources are published. Dedicated code and numerical verification remain planned. The suggested checks above are not measured results, and code/results of other methods are not presented as validation of this method.
+Links lead to existing educational code and dated verification records. This reading/translation update changes no scientific code or historical measurements and does not claim reproduction of an entire paper.
 
 ## Sources
 
 - M. Raissi and P. Perdikaris and G.E. Karniadakis (2019). Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations. https://doi.org/10.1016/j.jcp.2018.10.045
 - Zongyi Li and Nikola Kovachki and Kamyar Azizzadenesheli and Burigede Liu and Kaushik Bhattacharya and Andrew Stuart and Anima Anandkumar (2021). Fourier Neural Operator for Parametric Partial Differential Equations. https://openreview.net/forum?id=c8P9NQVtmnO
+- M. Raissi, P. Perdikaris and G. E. Karniadakis (2017). Physics Informed Deep Learning (Part I): Data-driven Solutions of Nonlinear Partial Differential Equations. https://arxiv.org/pdf/1711.10561
+- Z. Li et al. (2021). Fourier Neural Operator for Parametric Partial Differential Equations. https://arxiv.org/html/2010.08895v3

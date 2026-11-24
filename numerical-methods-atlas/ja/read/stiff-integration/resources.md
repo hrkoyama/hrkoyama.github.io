@@ -79,6 +79,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stiff-integration/
   availability: run
 
   既存のL安定2段SDIRK2でy′=−1000(y−cos t)−sin t、y(0)=1をt=1まで解く。解析解、固定刻み細分化、別の強減衰1段問題を検査。
+- [酵素反応の保存と準定常近似](<https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=ja>)
+  availability: run
+
+  全4状態と準定常近似を比較し、初期層と積分誤差を分けます。
 - [BDF2：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/bdf2/?lang=ja#method-execution-ja>)
   availability: source
 

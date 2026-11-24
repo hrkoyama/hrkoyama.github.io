@@ -1549,7 +1549,17 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/experiments.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/io_contract.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/references.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/reporting.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/reporting.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/experiments.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/io_utils.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/biology.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/pinn.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/fno.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/data_family.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/oracles.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/qualify.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/reference_models.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
@@ -1559,7 +1569,8 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/test_weno.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/test_moving.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_cases.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_serialization.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_serialization.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/test_models.py"
                 ],
                 "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
@@ -2162,7 +2173,17 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/experiments.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/io_contract.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/references.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/reporting.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/reporting.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/experiments.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/io_utils.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/biology.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/pinn.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/fno.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/data_family.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/oracles.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/qualify.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/reference_models.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
@@ -2172,7 +2193,8 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/test_weno.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/test_moving.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_cases.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_serialization.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_serialization.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/test_models.py"
                 ],
                 "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
@@ -2630,7 +2652,17 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/experiments.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/io_contract.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/references.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/reporting.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/reporting.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/experiments.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/io_utils.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/biology.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/pinn.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/fno.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/data_family.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/oracles.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/qualify.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/reference_models.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
@@ -2640,7 +2672,8 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/test_weno.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/test_moving.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_cases.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_serialization.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_serialization.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/test_models.py"
                 ],
                 "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               }
@@ -3130,7 +3163,17 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/distributed.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/io_contract.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/qualify_references.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/conftest.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/conftest.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/experiments.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/io_utils.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/pinn.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/fno.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/data_family.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/biology.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/oracles.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/qualify.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/reference_models.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_linear.py",
@@ -3139,7 +3182,8 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/test_bratu.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_distributed.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_fold.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_time.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/tests/test_time.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/test_models.py"
                 ],
                 "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
@@ -3970,14 +4014,14 @@
   "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
   "source_sha256": {
     "catalog/atlas-crossovers.json": "04358952828bd2732864c794205f60e351d0a7a669abec0222c2821fc03fd71f",
-    "catalog/atlas-methods.json": "82dfd3336a82bc165f4f47d3e1f709481866e053bf1c9bcb342520bf0d257609",
-    "numerical-methods-atlas/methods/index.json": "1d27024b90ef1d2aa0bb22a48af56b3be071f0dcd3c459ae0dc81d080f874257",
+    "catalog/atlas-methods.json": "b303a2990f02603849719e9094e46768634286cd84e18b425ce48e5934873297",
+    "numerical-methods-atlas/methods/index.json": "d3ddaf9bc8ff864c1845b42479e8ca009a9175ba7099c40016aaf10252905b12",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/assets/biological-models.json": "3ee3489ca4d2632d672576fcd75c062137053e203b55cbf51ee0cbe8cfc9556f"
+    "numerical-methods-atlas/assets/biological-models.json": "d27f67c75c3324c8a1d0ec132c07346d02b05c5be67913fb8467f2882af4510b"
   },
   "supplemental_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "9cf692c64631ff4c64803d9caac072b3edc5dab0afec414d67df99eae3098d28",
+    "catalog/atlas-depth-expansion.json": "a99cdc630a84a3e908c0ac95e907af1860206a31acb690711d152d5f4ed511d7",
     "code/validated-examples/2026-11-22/biology/source-manifest.json": "56947a4fb54ae757408ddddfc5de0884bfe35266032ee425a8d96a815f3362ba",
     "code/validated-examples/2026-11-22/biology/verification.json": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",

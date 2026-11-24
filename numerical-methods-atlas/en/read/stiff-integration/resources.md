@@ -79,6 +79,10 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Use the existing two-stage L-stable SDIRK2 for y'=-1000(y-cos(t))-sin(t), y(0)=1 up to t=1. Check its analytic solution, fixed-step refinement and a separate very stiff one-step decay.
+- [Enzyme conservation and QSSA](<https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=en>)
+  availability: run
+
+  Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism.
 - [BDF2 — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/bdf2/?lang=en#method-execution-en>)
   availability: source
 

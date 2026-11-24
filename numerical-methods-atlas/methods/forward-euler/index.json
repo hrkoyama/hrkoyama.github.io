@@ -1863,8 +1863,8 @@
         "executions": [],
         "role": "related",
         "method_note": {
-          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。",
-          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability."
+          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。 入力(u₀,ν)を幅2へ写し、局所線形項・DCと1–4モードの複素Fourier項・tanhからなる2ブロックを適用します。L-BFGS-Bの固定予算で学習し、同じ重みをN=32/64へ転送。非線形項は各格子上で評価しdealiasingしません。",
+          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability. Lift (u₀,ν) to width two and apply two blocks containing a local linear map, real DC and complex Fourier modes 1–4, then tanh. Train with a fixed L-BFGS-B budget and evaluate the same weights at N=32 and 64. Nonlinear terms are evaluated on each native grid without dealiasing."
         },
         "reference_url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-periodic/?lang=ja#references-ja",
@@ -2133,6 +2133,27 @@
             "view": {
               "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=sine-heat",
               "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=sine-heat"
+            }
+          },
+          {
+            "id": "fno-periodic-heat",
+            "title": {
+              "ja": "小型FNOの問題単位検証",
+              "en": "Tiny FNO on held-out heat problems"
+            },
+            "kind": "analytic",
+            "relation": "related-model",
+            "note": {
+              "ja": "固定された小型離散作用素の比較で、任意の解像度・分布に対する一般化やOOD精度を保証しません。N=64から32への差には非線形aliasingが含まれ、連続体離散化誤差とは呼びません。最適化収束と固定予算終了は別です。",
+              "en": "This comparison concerns a fixed tiny discrete operator, without arbitrary-resolution, distributional or OOD guarantees. The N=64-to-32 discrepancy includes nonlinear aliasing and is not a continuum discretization error. Optimizer convergence is distinct from normal budget termination."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-fno-periodic-heat-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-fno-periodic-heat-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/fno-periodic-heat/?lang=ja#fno-periodic-heat-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/fno-periodic-heat/?lang=en#fno-periodic-heat-en-measurements"
             }
           }
         ]

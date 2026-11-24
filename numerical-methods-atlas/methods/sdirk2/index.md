@@ -2,9 +2,9 @@
 
 Status: educational-example
 
-A two-stage second-order implicit Runge–Kutta method for stiff ODE decay. The release uses stiffly accurate L-stable SDIRK with γ=1−1/√2 and Newton stage solves; a separate wrapper adds step-doubling local-error control. Additional fixed examples: Robertson kinetics: initial stiffness and actual error, Van der Pol: an early stiffness transition. See each release for assumptions and checked scope.
+A two-stage second-order implicit Runge–Kutta method for stiff ODE decay. The release uses stiffly accurate L-stable SDIRK with γ=1−1/√2 and Newton stage solves; a separate wrapper adds step-doubling local-error control. Additional fixed examples: Robertson kinetics: initial stiffness and actual error, Van der Pol: an early stiffness transition. See each release for assumptions and checked scope. Fixed educational executions: Enzyme conservation and QSSA.
 
-硬い常微分方程式の減衰を扱う2段2次の陰的Runge–Kutta法。公開版はγ=1−1/√2のstiffly accurateなL安定SDIRKで、各段階にNewton法を用い、別のラッパーでステップ倍化による局所誤差制御を行う。 追加固定例：Robertson反応系の初期剛性と実誤差、van der Polの短時間剛性遷移。条件と検証範囲は各配布版で確認してください。
+硬い常微分方程式の減衰を扱う2段2次の陰的Runge–Kutta法。公開版はγ=1−1/√2のstiffly accurateなL安定SDIRKで、各段階にNewton法を用い、別のラッパーでステップ倍化による局所誤差制御を行う。 追加固定例：Robertson反応系の初期剛性と実誤差、van der Polの短時間剛性遷移。条件と検証範囲は各配布版で確認してください。 固定した教育用実行例：酵素反応の保存と準定常近似。
 
 L-stability concerns the linear test equation with accurate stage solves; it guarantees neither large-step accuracy, nonlinear convergence nor positivity. A Newton failure raises in the fixed version and rejects a trial in the adaptive wrapper. Adaptivity uses step doubling, not an embedded pair; rtol/atol control a local error scale, not a guaranteed final global error. General DAEs, mass matrices and events are not implemented. The preceding limitations describe earlier editions. This additional release: Conservation and positivity are observations for these inputs, not universal guarantees. Accuracy is sampled on T <= 0.4; this does not validate long-time chemistry or an all-time error bound. This post-measurement reporting revision is not a numerical repair. The first error, 4.535633779e-5, exceeded the original 2e-5 goal. Local tolerances do not guarantee global accuracy, and reporting PASS does not mean all original goals were met. Full large-mu cycles are outside scope.
 
@@ -135,7 +135,13 @@ Download: https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-a
 Verification: https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json
 Results: https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/result.json
 
-Common execution records: [{"id": "stiff-cosine", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#stiff-cosine-ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#stiff-cosine-en"}}, {"id": "robertson-stiff-kinetics", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "van-der-pol-stiff-transition", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=en"}, "kind": "dedicated-supplement"}]
+- Enzyme conservation and QSSA: https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/
+
+Download: https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip
+Verification: https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/verification.json
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/results/result.json
+
+Common execution records: [{"id": "stiff-cosine", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#stiff-cosine-ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#stiff-cosine-en"}}, {"id": "robertson-stiff-kinetics", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "van-der-pol-stiff-transition", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "enzyme-qssa", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=en"}, "kind": "dedicated-supplement"}]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/methods/sdirk2/
 Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/
@@ -151,6 +157,7 @@ Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-d
 - [Robertson反応系](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#robertson-kinetics-ja) (`robertson-kinetics`; robertson-stiff-kinetics)
 - [半陽的index-1 DAE](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#index-one-dae-ja) (`index-one-dae`; robertson-stiff-kinetics)
 - [van der Pol振動子](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#van-der-pol-ja) (`van-der-pol`; van-der-pol-stiff-transition)
+- [Michaelis–Mentenと完全酵素反応系](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-enzyme-ja) (`bio-enzyme`; enzyme-qssa)
 
 #### 問題の図 (`method-problems-ja`)
 
@@ -200,6 +207,18 @@ BDF2/SDIRK2と倍分割適応法。解析Jacobian・段階内だけの因子再�
 
 局所制御と大域誤差を分離します。初回は元209目標中208達成で、μ=1の厳しい適応設定は大域目標2e-5に未達でした。
 
+##### [酵素反応の保存と準定常近似](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=ja) (`enzyme-qssa`)
+
+![全4状態と準定常近似を比較し、初期層と積分誤差を分けます。 保存値だけを描画します。 時間・濃度・個体数の軸は空間次元ではありません。率は教育用で疾病・実験予測ではありません。](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/results/enzyme-qssa-preview.png)
+
+全4状態をSDIRK2のstep doublingで積分し、各段のNewton法では同じ重み付きL∞残差とArmijo条件を使います。縮約Michaelis–Menten式はθ上の別RK4計算で求め、全系の積分誤差と近似モデル誤差を混同しません。
+
+[この問題の参照・検証資料](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=ja#references-ja) · [この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=ja#code-ja)
+
+- [酵素反応の保存と準定常近似](https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=ja) (`enzyme-qssa`) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+全4状態と準定常近似を比較し、初期層と積分誤差を分けます。
+
 
 #### 厳密解・参照解 (`method-references-ja`)
 
@@ -232,6 +251,14 @@ BDF2/SDIRK2と倍分割適応法。解析Jacobian・段階内だけの因子再�
 測定後の報告範囲変更で、数値的な修復ではありません。初回誤差4.535633779e-5は元目標2e-5を超えます。局所rtolは大域誤差を保証せず、報告検証の合格は全元目標の達成ではありません。大μ全周期は対象外です。
 
 [既存の参照図](/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=ja#van-der-pol-stiff-transition-ja-measurements)
+
+##### [酵素反応の保存と準定常近似](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=ja#references-ja) (`enzyme-qssa`)
+
+- [酵素反応の保存と準定常近似](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-enzyme-qssa-ja) (`enzyme-qssa`; 同じ問題の参照; 有限格子の数値参照)
+
+2つの小εと固定反応定数だけの教育例です。εは尺度比であり、その値だけを厳密なQSSA誤差上界とはしません。θ≥0.02を初期層終了の証明とは呼ばず、生体内の反応・観測値へ外挿しません。
+
+[既存の参照図](/numerical-methods-atlas/validation/enzyme-qssa/?lang=ja#enzyme-qssa-ja-measurements)
 
 ##### 手法の解説・独立参照・保存結果
 
@@ -274,6 +301,16 @@ BDF2/SDIRK2と倍分割適応法。解析Jacobian・段階内だけの因子再�
 
 局所制御と大域誤差を分離します。初回は元209目標中208達成で、μ=1の厳しい適応設定は大域目標2e-5に未達でした。
 
+##### 酵素反応の保存と準定常近似 (`enzyme-qssa`)
+
+[酵素反応の保存と準定常近似](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=ja) · [実行・検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=ja) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/inputs.json)
+
+[検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/verification.json)
+
+全4状態と準定常近似を比較し、初期層と積分誤差を分けます。
+
 ##### 既存の配布版・関連ソースと検査
 
 共用モジュールや配布版全体の検査を含み、すべてが個々の問題専用とは限りません。
@@ -299,6 +336,16 @@ Scoped fixed-input examples; original method variants and earlier releases remai
 - [/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/coefficient_exact.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/coefficient_exact.py)
 - [/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/qualify.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/qualify.py)
 - [/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/reference_models.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/reference_models.py)
+- [/code/validated-examples/2026-11-25/small-models/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/run.py)
+- [/code/validated-examples/2026-11-25/small-models/experiments.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/experiments.py)
+- [/code/validated-examples/2026-11-25/small-models/io_utils.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/io_utils.py)
+- [/code/validated-examples/2026-11-25/small-models/biology.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/biology.py)
+- [/code/validated-examples/2026-11-25/small-models/pinn.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/pinn.py)
+- [/code/validated-examples/2026-11-25/small-models/fno.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/fno.py)
+- [/code/validated-examples/2026-11-25/small-models/data_family.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/data_family.py)
+- [/code/validated-examples/2026-11-25/small-models/references/oracles.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/oracles.py)
+- [/code/validated-examples/2026-11-25/small-models/references/qualify.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/qualify.py)
+- [/code/validated-examples/2026-11-25/small-models/references/reference_models.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/reference_models.py)
 
 ###### 配布版のテスト
 
@@ -308,6 +355,7 @@ Scoped fixed-input examples; original method variants and earlier releases remai
 - [/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_dopri.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_dopri.py)
 - [/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_reporting.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_reporting.py)
 - [/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_stiff.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_stiff.py)
+- [/code/validated-examples/2026-11-25/small-models/test_models.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/test_models.py)
 
 配布版の案内で条件と作業フォルダを確認してください。複数例の検査や図生成を含む場合があります。
 
@@ -325,6 +373,7 @@ These links are derived through associated problems; checked scope follows their
 - [Robertson chemical kinetics](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#robertson-kinetics-en) (`robertson-kinetics`; robertson-stiff-kinetics)
 - [Semi-explicit index-one DAE](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#index-one-dae-en) (`index-one-dae`; robertson-stiff-kinetics)
 - [Van der Pol oscillator](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#van-der-pol-en) (`van-der-pol`; van-der-pol-stiff-transition)
+- [Michaelis–Menten and full enzyme kinetics](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-enzyme-en) (`bio-enzyme`; enzyme-qssa)
 
 #### Problem figures (`method-problems-en`)
 
@@ -374,6 +423,18 @@ Use actual BDF2, SDIRK2 and adaptive step doubling, analytic Jacobians, factor r
 
 Separate local control from global error. The first study met 208 of 209 original targets; the mu = 1 tight adaptive run missed the 2e-5 global goal.
 
+##### [Enzyme conservation and QSSA](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=en) (`enzyme-qssa`)
+
+![Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism. This figure reads saved data only. Time, concentrations and populations do not define a spatial dimension. The rates are educational, not disease or experimental predictions.](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/results/enzyme-qssa-preview.png)
+
+Integrate all four states with SDIRK2 step doubling, using the same weighted L∞ residual for Newton convergence and Armijo backtracking. Evolve the reduced Michaelis–Menten equation separately with RK4 in θ, keeping integration error distinct from model-reduction error.
+
+[This problem’s references and checks](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=en#references-en) · [This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=en#code-en)
+
+- [Enzyme conservation and QSSA](https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=en) (`enzyme-qssa`) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism.
+
 
 #### Exact / reference solutions (`method-references-en`)
 
@@ -406,6 +467,14 @@ Only two official SUNDIALS v7.1.1 printed rows; zero new IDA executions, with no
 This post-measurement reporting revision is not a numerical repair. The first error, 4.535633779e-5, exceeded the original 2e-5 goal. Local tolerances do not guarantee global accuracy, and reporting PASS does not mean all original goals were met. Full large-mu cycles are outside scope.
 
 [Existing reference profile](/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=en#van-der-pol-stiff-transition-en-measurements)
+
+##### [Enzyme conservation and QSSA](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=en#references-en) (`enzyme-qssa`)
+
+- [Enzyme conservation and QSSA](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-enzyme-qssa-en) (`enzyme-qssa`; Same-problem reference; Finite-grid numerical reference)
+
+These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction.
+
+[Existing reference profile](/numerical-methods-atlas/validation/enzyme-qssa/?lang=en#enzyme-qssa-en-measurements)
 
 ##### Method explanations, independent references and saved results
 
@@ -448,6 +517,16 @@ Compare BDF2, SDIRK2 and adaptive step doubling on a short fixed interval agains
 
 Separate local control from global error. The first study met 208 of 209 original targets; the mu = 1 tight adaptive run missed the 2e-5 global goal.
 
+##### Enzyme conservation and QSSA (`enzyme-qssa`)
+
+[Enzyme conservation and QSSA](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=en) · [Run and validate](https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=en) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/inputs.json)
+
+[Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/verification.json)
+
+Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism.
+
 ##### Existing editions, related source and tests
 
 Includes shared modules and package-wide checks; these resources are not all dedicated to individual problems.
@@ -473,6 +552,16 @@ Scoped fixed-input examples; original method variants and earlier releases remai
 - [/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/coefficient_exact.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/coefficient_exact.py)
 - [/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/qualify.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/qualify.py)
 - [/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/reference_models.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/reference_models.py)
+- [/code/validated-examples/2026-11-25/small-models/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/run.py)
+- [/code/validated-examples/2026-11-25/small-models/experiments.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/experiments.py)
+- [/code/validated-examples/2026-11-25/small-models/io_utils.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/io_utils.py)
+- [/code/validated-examples/2026-11-25/small-models/biology.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/biology.py)
+- [/code/validated-examples/2026-11-25/small-models/pinn.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/pinn.py)
+- [/code/validated-examples/2026-11-25/small-models/fno.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/fno.py)
+- [/code/validated-examples/2026-11-25/small-models/data_family.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/data_family.py)
+- [/code/validated-examples/2026-11-25/small-models/references/oracles.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/oracles.py)
+- [/code/validated-examples/2026-11-25/small-models/references/qualify.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/qualify.py)
+- [/code/validated-examples/2026-11-25/small-models/references/reference_models.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/reference_models.py)
 
 ###### Package tests
 
@@ -482,6 +571,7 @@ Scoped fixed-input examples; original method variants and earlier releases remai
 - [/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_dopri.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_dopri.py)
 - [/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_reporting.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_reporting.py)
 - [/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_stiff.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_stiff.py)
+- [/code/validated-examples/2026-11-25/small-models/test_models.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/test_models.py)
 
 Consult the edition’s guide for conditions and working directory; commands may check or generate figures for several cases.
 

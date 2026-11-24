@@ -1,0 +1,556 @@
+{
+  "id": "pchip",
+  "name": {
+    "ja": "PCHIP単調3次Hermite補間",
+    "en": "PCHIP monotone cubic Hermite interpolation"
+  },
+  "group": {
+    "id": "approximation",
+    "ja": "近似・変換・数値積分",
+    "en": "Approximation & quadrature"
+  },
+  "summary": {
+    "ja": "調和平均の内部傾きと端点制限で形状を保つ区分3次補間を構成します。",
+    "en": "Construct shape-preserving piecewise cubics using harmonic interior slopes and endpoint limiting."
+  },
+  "status": "educational-example",
+  "origin": "development-candidate",
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/splines/",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/splines/"
+  },
+  "code_modules": [],
+  "test_files": [],
+  "references": [
+    {
+      "url": "https://raw.githubusercontent.com/scipy/scipy/v1.14.1/scipy/interpolate/_cubic.py",
+      "label": "SciPy 1.14.1 PCHIP documentation and selected source",
+      "scope": "Selected lines 202–225, 243–254, 275–298: harmonic interior derivatives, endpoint sign and 3-slope limiter, two-point case. The original Fritsch–Butland paper has not been read in full. Own formulas are independently expressed as scalar Hermite polynomials.",
+      "verification": {
+        "level": "official-source-selected-lines",
+        "checked_on": "2026-11-25"
+      }
+    }
+  ],
+  "assumptions": [
+    "Only the release-specific fixed inputs are qualified."
+  ],
+  "assumptions_ja": [
+    "配布版で固定した入力だけを検証します。"
+  ],
+  "units": "Dimensionless mathematical examples.",
+  "units_ja": "無次元の数学的な例です。",
+  "boundary_conditions": "The fixed integration domain or interpolation endpoints are stated in each case.",
+  "boundary_conditions_ja": "固定の積分領域・補間端点を各例に明示します。",
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
+  "code_mapping_scope_ja": "調和平均の内部傾きと端点制限で形状を保つ区分3次補間を構成します。",
+  "depth_scope": {
+    "ja": "調和平均の内部傾きと端点制限で形状を保つ区分3次補間を構成します。",
+    "en": "Construct shape-preserving piecewise cubics using harmonic interior slopes and endpoint limiting."
+  },
+  "next_deliverable": {
+    "ja": "既存の固定範囲を保ち、拡張は別の入力・参照・基準で確認する。",
+    "en": "Preserve this fixed scope; qualify extensions with separate inputs, references and criteria."
+  },
+  "limitations": {
+    "ja": "固定3データ組と端点15記録に限定。通常C1でありC2とは限らず、外挿やノイズ平滑化は扱いません。",
+    "en": "Limited to three fixed data sets and fifteen endpoint records. Generally C1 rather than C2; extrapolation and noise smoothing are outside scope."
+  },
+  "metadata_review": {
+    "on": "2026-11-25",
+    "level": "Release-specific fixed inputs, independent references and original source read scope; canonical source and independently extracted ZIP evidence are required before registration.",
+    "supplemental_review": {
+      "on": "2026-11-25",
+      "level": "Fixed release-specific input/reference/criterion scope; actual canonical source and independently extracted ZIP are bound. Original study targets remain separate from reproduction checks."
+    }
+  },
+  "aliases": [
+    "PCHIP単調3次Hermite補間",
+    "PCHIP monotone cubic Hermite interpolation"
+  ],
+  "depth_release": {
+    "group": "approximation-controls",
+    "case_ids": [
+      "spline-shape-controls"
+    ],
+    "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/",
+    "code_edition": "2026-11-25",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/splines.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/interpolation.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/haar.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/experiments.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/io_contract.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/references/haar_matrix.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/references/polynomials.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/references/spline_rational.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/test_approximation.py"
+    ],
+    "run_commands": [
+      "python -m pytest -q",
+      "python run.py --input inputs.json --output output"
+    ],
+    "run_from": "atlas-approximation-controls-2026-11-25",
+    "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/atlas-approximation-controls-2026-11-25.zip",
+    "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/source-manifest.json",
+    "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/verification.json",
+    "code_archive_sha256": "7dbadeb591e3329965c2ab5aa7f6025e5d8c18a438b7264460370ad64bdaf053",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/results/result.json",
+    "passed_tests": 32,
+    "examples": [
+      {
+        "id": "spline-shape-controls",
+        "title": {
+          "ja": "自然・端点微分指定スプラインとPCHIP",
+          "en": "Natural and clamped splines versus PCHIP"
+        },
+        "summary": {
+          "ja": "平坦部を持つ単調データ・3次式・直線の固定3組で、C2連続性と形状保存を比較します。",
+          "en": "Compare C2 continuity and shape preservation on three fixed data sets: a monotone plateau, a cubic and a straight line."
+        },
+        "assumptions": {
+          "ja": "実binary64の節点と値を使用。自然条件は両端2階微分ゼロ、clamped条件は入力端点1階微分です。",
+          "en": "Use actual binary64 knots and values. Natural conditions set both endpoint second derivatives to zero; clamped conditions prescribe the first derivatives from the input."
+        },
+        "algorithm": {
+          "ja": "3次Bスプラインの配置行列を解きde Boor評価。別経路でPCHIPの調和平均・端点制限とHermite評価を実装します。",
+          "en": "Solve a cubic B-spline collocation system and evaluate it with de Boor recursion. A separate path implements PCHIP harmonic slopes, endpoint limiting and Hermite evaluation."
+        },
+        "validation": {
+          "ja": "正確な有理2階微分系・有理PCHIP・SciPy 1.14.1を照合。端点15記録は16スカラー出力・13異なる入力。平坦部の負値は実binary64をFraction化した独立式で示します。",
+          "en": "Compare with exact rational second-derivative systems, rational PCHIP and SciPy 1.14.1. Fifteen endpoint records contain sixteen scalar outputs from thirteen distinct inputs. Independent Fraction formulas show plateau undershoot for the actual binary64 data."
+        },
+        "limits": {
+          "ja": "PCHIPは通常C1でありC2とは限りません。一般データの最良近似・外挿・ノイズ平滑化は対象外。SciPyは原著完全閲読の代用ではありません。",
+          "en": "PCHIP is generally C1, not necessarily C2. Best approximation, extrapolation and noise smoothing are outside scope. A SciPy comparison does not substitute for reading the original papers."
+        },
+        "method_ids": [
+          "splines",
+          "pchip"
+        ],
+        "domains": [
+          "approximation"
+        ],
+        "code_files": [
+          "run.py",
+          "splines.py"
+        ],
+        "reference_files": [
+          "DESIGN.md",
+          "source-reading.json"
+        ],
+        "references": [
+          {
+            "id": "scipy-cubic-1-14-1",
+            "title": "SciPy 1.14.1 PCHIP documentation and selected source",
+            "url": "https://raw.githubusercontent.com/scipy/scipy/v1.14.1/scipy/interpolate/_cubic.py",
+            "review_level": "official-source-selected-lines",
+            "review_scope": "Selected lines 202–225, 243–254, 275–298: harmonic interior derivatives, endpoint sign and 3-slope limiter, two-point case. The original Fritsch–Butland paper has not been read in full. Own formulas are independently expressed as scalar Hermite polynomials.",
+            "accessed_on": "2026-11-25",
+            "version": "1.14.1",
+            "publication_year": null
+          },
+          {
+            "id": "scipy-splines-1-14-1",
+            "title": "SciPy 1.14.1 BSpline and CubicSpline documentation",
+            "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.interpolate.CubicSpline.html",
+            "review_level": "official-documentation-selected-definitions",
+            "review_scope": "Natural and clamped boundary conditions and the BSpline recurrence were read during preparation. No de Boor original full-text claim. SciPy is a secondary numerical companion; the rational second-derivative system is the independent reference.",
+            "accessed_on": "2026-11-24",
+            "version": "1.14.1",
+            "publication_year": null
+          }
+        ],
+        "formulas": [
+          "S_i(s)=a_i+b_i*s+c_i*s^2+d_i*s^3",
+          "d_k=(w_1+w_2)/(w_1/m_(k-1)+w_2/m_k)",
+          "S_natural(1.5)=a-9*(b-a)/88; S_clamped(1.5)=a-15*(b-a)/152"
+        ],
+        "gallery_figure": "spline-shape-controls-preview.png",
+        "additional_figures": [
+          {
+            "file": "spline-shape-controls-preview.png",
+            "caption": {
+              "ja": "平坦部を持つ単調データ・3次式・直線の固定3組で、C2連続性と形状保存を比較します。 保存配列から作図。",
+              "en": "Compare C2 continuity and shape preservation on three fixed data sets: a monotone plateau, a cubic and a straight line. Drawn from saved arrays."
+            }
+          },
+          {
+            "file": "spline-shape-controls-diagnostics.png",
+            "caption": {
+              "ja": "保存済み誤差・導関数または二乗ノルムを別表示。各境界・表現の適用範囲は本文を参照。",
+              "en": "Saved errors, derivatives or squared norms shown separately. The text states the scope of each boundary and representation."
+            }
+          }
+        ],
+        "measured": {
+          "id": "spline-shape-controls",
+          "passed": true,
+          "checks": {
+            "reference:endpoint-branch-values": true,
+            "reference:endpoint-record-count": true,
+            "reference:endpoint-output-count": true,
+            "reference:endpoint-distinct-datasets": true,
+            "reference:negative-natural-witness": true,
+            "reference:negative-clamped-witness": true,
+            "plateau-natural:finite": true,
+            "plateau-natural:value-reference": true,
+            "plateau-natural:derivative-reference": true,
+            "plateau-natural:nodal": true,
+            "plateau-natural:boundary-or-shape": true,
+            "plateau-clamped:finite": true,
+            "plateau-clamped:value-reference": true,
+            "plateau-clamped:derivative-reference": true,
+            "plateau-clamped:nodal": true,
+            "plateau-clamped:boundary-or-shape": true,
+            "reference:pchip-actual-input-plateau": true,
+            "plateau-pchip:finite": true,
+            "plateau-pchip:value-reference": true,
+            "plateau-pchip:derivative-reference": true,
+            "plateau-pchip:nodal": true,
+            "plateau-pchip:boundary-or-shape": true,
+            "cubic-natural:finite": true,
+            "cubic-natural:value-reference": true,
+            "cubic-natural:derivative-reference": true,
+            "cubic-natural:nodal": true,
+            "cubic-natural:boundary-or-shape": true,
+            "cubic-clamped:finite": true,
+            "cubic-clamped:value-reference": true,
+            "cubic-clamped:derivative-reference": true,
+            "cubic-clamped:nodal": true,
+            "cubic-clamped:boundary-or-shape": true,
+            "cubic-pchip:finite": true,
+            "cubic-pchip:value-reference": true,
+            "cubic-pchip:derivative-reference": true,
+            "cubic-pchip:nodal": true,
+            "cubic-pchip:boundary-or-shape": true,
+            "linear-natural:finite": true,
+            "linear-natural:value-reference": true,
+            "linear-natural:derivative-reference": true,
+            "linear-natural:nodal": true,
+            "linear-natural:boundary-or-shape": true,
+            "linear-clamped:finite": true,
+            "linear-clamped:value-reference": true,
+            "linear-clamped:derivative-reference": true,
+            "linear-clamped:nodal": true,
+            "linear-clamped:boundary-or-shape": true,
+            "linear-pchip:finite": true,
+            "linear-pchip:value-reference": true,
+            "linear-pchip:derivative-reference": true,
+            "linear-pchip:nodal": true,
+            "linear-pchip:boundary-or-shape": true,
+            "reference:exact-piece-continuity": true,
+            "reference:polynomial-cubic-clamped": true,
+            "reference:polynomial-linear-natural": true,
+            "reference:polynomial-linear-clamped": true,
+            "fixed-fit-count": true
+          },
+          "records": [
+            {
+              "id": "plateau-natural",
+              "dataset": "plateau",
+              "method": "natural",
+              "value_scaled_defect": 2.2446880290014737e-16,
+              "derivative_scaled_defect": 9.14651174594023e-16,
+              "companion_scaled_defect": 3.9266096803602164e-16,
+              "minimum_value": -0.09923917539515348,
+              "maximum_value": 1.1192391753951534,
+              "nodal_maxabs": 2.220446049250313e-16,
+              "boundary_or_shape_defect": 6.661338147750939e-16
+            },
+            {
+              "id": "plateau-clamped",
+              "dataset": "plateau",
+              "method": "clamped",
+              "value_scaled_defect": 2.2064254362733512e-16,
+              "derivative_scaled_defect": 3.168163308179098e-16,
+              "companion_scaled_defect": 4.644092191573885e-16,
+              "minimum_value": -0.09639656306539388,
+              "maximum_value": 1.116396563065394,
+              "nodal_maxabs": 8.673617379884035e-18,
+              "boundary_or_shape_defect": 5.204170427930421e-18
+            },
+            {
+              "id": "plateau-pchip",
+              "dataset": "plateau",
+              "method": "pchip",
+              "value_scaled_defect": 1.1099982665611755e-16,
+              "derivative_scaled_defect": 9.225722653882251e-17,
+              "companion_scaled_defect": 2.9281633884951693e-16,
+              "minimum_value": 0.01,
+              "maximum_value": 1.01,
+              "nodal_maxabs": 0.0,
+              "boundary_or_shape_defect": 0.0
+            },
+            {
+              "id": "cubic-natural",
+              "dataset": "cubic",
+              "method": "natural",
+              "value_scaled_defect": 2.9409263239818476e-16,
+              "derivative_scaled_defect": 2.741629438297473e-15,
+              "companion_scaled_defect": 2.841372422171802e-15,
+              "minimum_value": 0.0,
+              "maximum_value": 2.0404983648327994,
+              "nodal_maxabs": 2.220446049250313e-16,
+              "boundary_or_shape_defect": 7.930164461608261e-17
+            },
+            {
+              "id": "cubic-clamped",
+              "dataset": "cubic",
+              "method": "clamped",
+              "value_scaled_defect": 2.8992664821243455e-16,
+              "derivative_scaled_defect": 1.4965474253948297e-15,
+              "companion_scaled_defect": 3.8467391929728776e-15,
+              "minimum_value": -0.08866192962393737,
+              "maximum_value": 2.088661929623937,
+              "nodal_maxabs": 1.1102230246251565e-16,
+              "boundary_or_shape_defect": 2.220446049250313e-16
+            },
+            {
+              "id": "cubic-pchip",
+              "dataset": "cubic",
+              "method": "pchip",
+              "value_scaled_defect": 2.105665860840524e-16,
+              "derivative_scaled_defect": 1.9877185386863365e-15,
+              "companion_scaled_defect": 1.3626260802402534e-15,
+              "minimum_value": 0.0,
+              "maximum_value": 2.0,
+              "nodal_maxabs": 0.0,
+              "boundary_or_shape_defect": 0.0
+            },
+            {
+              "id": "linear-natural",
+              "dataset": "linear",
+              "method": "natural",
+              "value_scaled_defect": 2.0468720958621947e-16,
+              "derivative_scaled_defect": 1.2615888754927e-15,
+              "companion_scaled_defect": 1.630055421480854e-15,
+              "minimum_value": 0.49999999999999983,
+              "maximum_value": 1.5,
+              "nodal_maxabs": 1.6653345369377348e-16,
+              "boundary_or_shape_defect": 3.1720657846433045e-16
+            },
+            {
+              "id": "linear-clamped",
+              "dataset": "linear",
+              "method": "clamped",
+              "value_scaled_defect": 2.0468720958621947e-16,
+              "derivative_scaled_defect": 5.2306043094691055e-15,
+              "companion_scaled_defect": 1.9150330818308978e-15,
+              "minimum_value": 0.5,
+              "maximum_value": 1.5,
+              "nodal_maxabs": 2.220446049250313e-16,
+              "boundary_or_shape_defect": 1.1102230246251565e-16
+            },
+            {
+              "id": "linear-pchip",
+              "dataset": "linear",
+              "method": "pchip",
+              "value_scaled_defect": 9.161186966658883e-17,
+              "derivative_scaled_defect": 1.4654405696350048e-15,
+              "companion_scaled_defect": 9.591722729754748e-16,
+              "minimum_value": 0.5,
+              "maximum_value": 1.5,
+              "nodal_maxabs": 0.0,
+              "boundary_or_shape_defect": 0.0
+            }
+          ],
+          "metrics": {
+            "maximum_value_scaled_reference_defect": 2.9409263239818476e-16,
+            "maximum_derivative_scaled_reference_defect": 5.2306043094691055e-15,
+            "endpoint_fixture_records": 15,
+            "endpoint_scalar_outputs": 16,
+            "endpoint_distinct_datasets": 13
+          }
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spline-shape-controls/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#spline-shape-controls",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#spline-shape-controls"
+        }
+      }
+    ]
+  },
+  "supplemental_scope_profiles": [
+    {
+      "release": {
+        "group": "approximation-controls",
+        "edition": "2026-11-25",
+        "case_ids": [
+          "spline-shape-controls"
+        ]
+      },
+      "scope": {
+        "ja": "固定した教育用実行例：自然・端点微分指定スプラインとPCHIP。",
+        "en": "Fixed educational executions: Natural and clamped splines versus PCHIP."
+      },
+      "limits": [
+        {
+          "ja": "PCHIPは通常C1でありC2とは限りません。一般データの最良近似・外挿・ノイズ平滑化は対象外。SciPyは原著完全閲読の代用ではありません。",
+          "en": "PCHIP is generally C1, not necessarily C2. Best approximation, extrapolation and noise smoothing are outside scope. A SciPy comparison does not substitute for reading the original papers."
+        }
+      ]
+    }
+  ],
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pchip/",
+  "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pchip/index.json",
+  "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pchip/index.md",
+  "code_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/splines.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/interpolation.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/haar.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/experiments.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/io_contract.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/references/haar_matrix.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/references/polynomials.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/references/spline_rational.py"
+  ],
+  "test_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/test_approximation.py"
+  ],
+  "run_commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "run_from": "atlas-approximation-controls-2026-11-25",
+  "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/",
+  "code_edition": "2026-11-25",
+  "execution_examples": [
+    {
+      "id": "spline-shape-controls",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spline-shape-controls/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spline-shape-controls/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    }
+  ],
+  "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/atlas-approximation-controls-2026-11-25.zip",
+  "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/source-manifest.json",
+  "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/verification.json",
+  "code_archive_sha256": "7dbadeb591e3329965c2ab5aa7f6025e5d8c18a438b7264460370ad64bdaf053",
+  "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/results/result.json",
+  "problem_navigation": {
+    "method_id": "pchip",
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "cubic-spline-pchip",
+        "name": {
+          "ja": "3次スプラインと形状保存補間",
+          "en": "Cubic splines and shape-preserving interpolation"
+        },
+        "problem_ids": [
+          "spline-shape-controls"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#cubic-spline-pchip-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#cubic-spline-pchip-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "spline-shape-controls",
+        "name": {
+          "ja": "自然・端点微分指定スプラインとPCHIP",
+          "en": "Natural and clamped splines versus PCHIP"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/results/spline-shape-controls-preview.png",
+          "sha256": "f82de2009b363a8e1a42e118714084f4b920f050393c066c75f996c38299f1c5",
+          "width": 1045,
+          "height": 389,
+          "caption": {
+            "ja": "平坦部を持つ単調データ・3次式・直線の固定3組で、C2連続性と形状保存を比較します。 保存配列から作図。",
+            "en": "Compare C2 continuity and shape preservation on three fixed data sets: a monotone plateau, a cubic and a straight line. Drawn from saved arrays."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/spline-shape-controls/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/spline-shape-controls/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/spline-shape-controls/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/spline-shape-controls/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "spline-shape-controls",
+            "kind": "supplement",
+            "name": {
+              "ja": "自然・端点微分指定スプラインとPCHIP",
+              "en": "Natural and clamped splines versus PCHIP"
+            },
+            "scope": {
+              "ja": "平坦部を持つ単調データ・3次式・直線の固定3組で、C2連続性と形状保存を比較します。",
+              "en": "Compare C2 continuity and shape preservation on three fixed data sets: a monotone plateau, a cubic and a straight line."
+            },
+            "method_ids": [
+              "splines",
+              "pchip"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spline-shape-controls/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spline-shape-controls/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/atlas-approximation-controls-2026-11-25.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "3次Bスプラインの配置行列を解きde Boor評価。別経路でPCHIPの調和平均・端点制限とHermite評価を実装します。",
+          "en": "Solve a cubic B-spline collocation system and evaluate it with de Boor recursion. A separate path implements PCHIP harmonic slopes, endpoint limiting and Hermite evaluation."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/spline-shape-controls/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/spline-shape-controls/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "spline-shape-controls",
+        "problem_name": {
+          "ja": "自然・端点微分指定スプラインとPCHIP",
+          "en": "Natural and clamped splines versus PCHIP"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/spline-shape-controls/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/spline-shape-controls/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "spline-shape-controls",
+            "title": {
+              "ja": "自然・端点微分指定スプラインとPCHIP",
+              "en": "Natural and clamped splines versus PCHIP"
+            },
+            "kind": "analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "PCHIPは通常C1でありC2とは限りません。一般データの最良近似・外挿・ノイズ平滑化は対象外。SciPyは原著完全閲読の代用ではありません。",
+              "en": "PCHIP is generally C1, not necessarily C2. Best approximation, extrapolation and noise smoothing are outside scope. A SciPy comparison does not substitute for reading the original papers."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-spline-shape-controls-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-spline-shape-controls-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/spline-shape-controls/?lang=ja#spline-shape-controls-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/spline-shape-controls/?lang=en#spline-shape-controls-en-measurements"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

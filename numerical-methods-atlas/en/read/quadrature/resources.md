@@ -9,6 +9,9 @@ Resources explicitly registered to the methods, problems and executions of this 
 ## Methods
 
 - [Gaussian and adaptive quadrature](<https://hrkoyama.github.io/numerical-methods-atlas/methods/quadrature/?lang=en>)
+- [Gauss–Kronrod G7/K15](<https://hrkoyama.github.io/numerical-methods-atlas/methods/gauss-kronrod/?lang=en>)
+- [Tanh–sinh double-exponential quadrature](<https://hrkoyama.github.io/numerical-methods-atlas/methods/tanh-sinh/?lang=en>)
+- [Smolyak sparse-grid quadrature](<https://hrkoyama.github.io/numerical-methods-atlas/methods/smolyak-sparse-grid/?lang=en>)
 
 ## Equations
 
@@ -32,7 +35,31 @@ No chapter-specific association is registered. Atlas-wide index: [Exact and refe
   availability: run
 
   Vary Gauss order and adaptive tolerance on narrow Lorentz peaks, a square-root endpoint, severe cancellation, a zero integral and a deliberately missed compact bump, using analytic integrals and QUADPACK.
+- [QUADPACK dispatch and finite Simpson companions](<https://hrkoyama.github.io/numerical-methods-atlas/validation/quadpack-domain-selection/?lang=en>)
+  availability: run
+
+  Fifteen specialized quadratures and fifteen Simpson companions use fixed inputs.
+- [G7/K15 and finite-interval tanh-sinh](<https://hrkoyama.github.io/numerical-methods-atlas/validation/gk15-double-exponential/?lang=en>)
+  availability: run
+
+  Nine adaptive GK rows and twenty-four fixed DE sums are compared.
+- [Tensor and Smolyak controls in two to four dimensions](<https://hrkoyama.github.io/numerical-methods-atlas/validation/tensor-smolyak-dimensions/?lang=en>)
+  availability: run
+
+  Forty-two fixed cubatures compare a smooth product and an interaction product.
 - [Gaussian and adaptive quadrature — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/quadrature/?lang=en#method-execution-en>)
+  availability: source
+
+  Method-specific editions and related sources; fixed-input runs are listed separately.
+- [Gauss–Kronrod G7/K15 — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/gauss-kronrod/?lang=en#method-execution-en>)
+  availability: source
+
+  Method-specific editions and related sources; fixed-input runs are listed separately.
+- [Tanh–sinh double-exponential quadrature — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/tanh-sinh/?lang=en#method-execution-en>)
+  availability: source
+
+  Method-specific editions and related sources; fixed-input runs are listed separately.
+- [Smolyak sparse-grid quadrature — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/smolyak-sparse-grid/?lang=en#method-execution-en>)
   availability: source
 
   Method-specific editions and related sources; fixed-input runs are listed separately.

@@ -44,6 +44,8 @@
 - [係数ジャンプ・回転異方性のMG／AMG](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-coefficient-diffusion/)
 - [線形代数：直接法・鞍点系・再始動と整合質量固有値](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/)
 - [Bratuのfold継続とJacobian不要Newton–Krylov](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-bratu-continuation-jfnk/)
+- [領域別・二重指数・疎格子求積](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/)
+- [補間・スプライン・Haarの固定対照](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/)
 
 ## 自動微分・最適化・逆問題
 
@@ -59,6 +61,7 @@
 - [逆モード・HVP・非滑らか分岐の微分](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-reverse-higher-ad/)
 - [時間離散・fold近傍・分布係数の随伴](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-adjoint/)
 - [Bratu逆問題の最適化・雑音・正則化](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-inverse-optimization/)
+- [小型学習モデルと生物ODEの独立検証](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/)
 
 ## 流体・衝撃波・定常解法
 

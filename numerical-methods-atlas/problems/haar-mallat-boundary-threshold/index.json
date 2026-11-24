@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "id": "haar-mallat-boundary-threshold",
+  "name": {
+    "ja": "Haar多重解像度の境界・シフト・閾値",
+    "en": "Haar multiresolution: boundaries, shifts and thresholds"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/haar-mallat-boundary-threshold/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/haar-mallat-boundary-threshold/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/haar-mallat-boundary-threshold/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/results/haar-mallat-boundary-threshold-preview.png",
+    "sha256": "957809b32f1acfa3d3289eeb24e0e28fbdec9dd4df5f783f28c2bdbbf10498f3",
+    "width": 1045,
+    "height": 389,
+    "caption": {
+      "ja": "長さ17・32の小信号に3段Haar分解を適用。1標本シフトと奇数長の境界処理を分けて比較します。 保存配列から作図。 標本添字は物理空間の座標ではありません。境界処理を含む有限長信号の写像です。",
+      "en": "Apply three-level Haar analysis to short signals of lengths 17 and 32, separating one-sample shifts from odd-length boundary handling. Drawn from saved arrays. Sample indices are not physical spatial coordinates. This is a finite-signal map with declared boundary handling."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#haar-mallat-boundary-threshold",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#haar-mallat-boundary-threshold"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#haar-mallat-boundary-threshold",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#haar-mallat-boundary-threshold-en"
+  },
+  "equations": [
+    {
+      "id": "discrete-haar-transform",
+      "name": {
+        "ja": "有限長信号の離散Haar変換",
+        "en": "Discrete Haar transforms of finite signals"
+      },
+      "formula": [
+        "\\binom{a^{\\prime}}d=\\frac1{\\sqrt2}\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}\\binom ab",
+        "S_NA_N=I_N,\\quad\\|A_Nx\\|_2^2=\\|x\\|_2^2+\\sum_\\ell p_\\ell^2"
+      ],
+      "note": {
+        "ja": "奇数長の追加標本と切戻しを含む有限写像です。冗長拡張全体の直交性は仮定しません。",
+        "en": "A finite map including odd-length padding and cropping; global orthogonality is not assumed for redundant extensions."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#discrete-haar-transform-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#discrete-haar-transform-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "奇数長の各段で周期型は先頭、対称型は末尾を1点追加し、再構成時に切り戻します。詳細係数のみ閾値0.2を使用。",
+    "en": "At each odd-length level append the first sample for periodic extension or the last for symmetric extension, then crop during synthesis. Apply threshold 0.2 only to detail coefficients."
+  },
+  "formulations": [
+    {
+      "id": "supplement-haar-mallat-boundary-threshold",
+      "name": {
+        "ja": "Haar多重解像度の境界・シフト・閾値",
+        "en": "Haar multiresolution: boundaries, shifts and thresholds"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "a_(l+1,k)=(a_(l,2k)+a_(l,2k+1))/sqrt(2)",
+        "d_(l+1,k)=(a_(l,2k)-a_(l,2k+1))/sqrt(2)",
+        "E_after=E_before+padding^2; ||e||_2^2=||delta_coeff||_2^2 only for square orthogonal transform"
+      ],
+      "note": {
+        "ja": "長さ17・32の小信号に3段Haar分解を適用。1標本シフトと奇数長の境界処理を分けて比較します。",
+        "en": "Apply three-level Haar analysis to short signals of lengths 17 and 32, separating one-sample shifts from odd-length boundary handling."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "haar-mallat-boundary-threshold",
+      "kind": "analytic",
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "title": {
+        "ja": "Haar多重解像度の境界・シフト・閾値",
+        "en": "Haar multiresolution: boundaries, shifts and thresholds"
+      },
+      "formula": "a_{\\ell+1,k}=\\frac{a_{\\ell,2k}+a_{\\ell,2k+1}}{\\sqrt2},\\quad d_{\\ell+1,k}=\\frac{a_{\\ell,2k}-a_{\\ell,2k+1}}{\\sqrt2};\\quad E_{\\rm after}=E_{\\rm before}+p_\\ell^2,\\quad \\|e\\|_2^2=\\|\\Delta c\\|_2^2\\ \\text{for the square orthogonal case only}",
+      "assumptions": {
+        "ja": "奇数長の各段で周期型は先頭、対称型は末尾を1点追加し、再構成時に切り戻します。詳細係数のみ閾値0.2を使用。",
+        "en": "At each odd-length level append the first sample for periodic extension or the last for symmetric extension, then crop during synthesis. Apply threshold 0.2 only to detail coefficients."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "Haarに限定し長いフィルタや画像圧縮は対象外。一般の対称拡張に正規直交性を仮定しません。シフト不変性は要求せず、シフト別差を保存します。",
+        "en": "Limited to Haar, without longer filters or image compression. General symmetric extension is not assumed orthonormal. Shift invariance is not required; shift-dependent differences are retained."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/haar-mallat-boundary-threshold/?lang=ja#haar-mallat-boundary-threshold-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/haar-mallat-boundary-threshold/?lang=en#haar-mallat-boundary-threshold-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "12解析・36再構成。独立行列・Fraction/Decimal係数、完全再構成、二乗L2誤差を照合。長さ32のみ直交誤差恒等式を要求し、17点では追加エネルギーを段別保存します。",
+    "en": "Use twelve analyses and thirty-six reconstructions. Check independent matrices, Fraction/Decimal coefficients, perfect reconstruction and squared L2 errors. Require the orthogonal error identity only at length 32; retain level-by-level padding energy at length 17."
+  },
+  "methods": [
+    {
+      "id": "wavelets",
+      "name": {
+        "ja": "ウェーブレット",
+        "en": "Wavelets"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/wavelets/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/wavelets/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "和差フィルタ・間引き・逆ピラミッドを自作。閾値なし・hard・softの3条件を同じ解析係数から再構成します。",
+    "en": "Implement pair-sum and pair-difference filters, downsampling and inverse pyramids. Reconstruct with no threshold, hard thresholding and soft thresholding from the same analysis coefficients."
+  },
+  "executions": [
+    {
+      "id": "haar-mallat-boundary-threshold",
+      "kind": "supplement",
+      "name": {
+        "ja": "Haar多重解像度の境界・シフト・閾値",
+        "en": "Haar multiresolution: boundaries, shifts and thresholds"
+      },
+      "method_ids": [
+        "wavelets"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/haar-mallat-boundary-threshold/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/haar-mallat-boundary-threshold/?lang=en"
+      },
+      "scope": {
+        "ja": "長さ17・32の小信号に3段Haar分解を適用。1標本シフトと奇数長の境界処理を分けて比較します。",
+        "en": "Apply three-level Haar analysis to short signals of lengths 17 and 32, separating one-sample shifts from odd-length boundary handling."
+      },
+      "assumptions": {
+        "ja": "奇数長の各段で周期型は先頭、対称型は末尾を1点追加し、再構成時に切り戻します。詳細係数のみ閾値0.2を使用。",
+        "en": "At each odd-length level append the first sample for periodic extension or the last for symmetric extension, then crop during synthesis. Apply threshold 0.2 only to detail coefficients."
+      },
+      "limits": {
+        "ja": "Haarに限定し長いフィルタや画像圧縮は対象外。一般の対称拡張に正規直交性を仮定しません。シフト不変性は要求せず、シフト別差を保存します。",
+        "en": "Limited to Haar, without longer filters or image compression. General symmetric extension is not assumed orthonormal. Shift invariance is not required; shift-dependent differences are retained."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/atlas-approximation-controls-2026-11-25.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "12解析・36再構成。独立行列・Fraction/Decimal係数、完全再構成、二乗L2誤差を照合。長さ32のみ直交誤差恒等式を要求し、17点では追加エネルギーを段別保存します。",
+        "en": "Use twelve analyses and thirty-six reconstructions. Check independent matrices, Fraction/Decimal coefficients, perfect reconstruction and squared L2 errors. Require the orthogonal error identity only at length 32; retain level-by-level padding energy at length 17."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/haar.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/test_approximation.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

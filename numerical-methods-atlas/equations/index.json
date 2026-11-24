@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "reviewed_on": "2026-11-24",
+  "reviewed_on": "2026-11-25",
   "scope": "All equation/model entries in the shared atlas coverage inventory. Formulas are representative forms or explicitly identified schematic systems; they do not supply every closure or implementation. Status and coverage IDs are matched at build time.",
   "formula_format": "latex",
   "groups": [
@@ -279,7 +279,8 @@
       "supplemental_examples": [
         "su-olson-transport1997",
         "diffusion-discrete-adjoint",
-        "strang-boundary-order-reduction"
+        "strang-boundary-order-reduction",
+        "fno-periodic-heat"
       ],
       "reading": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/elliptic/",
@@ -388,6 +389,34 @@
           ],
           "verification": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
           "results": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/results/result.json"
+        },
+        {
+          "id": "fno-periodic-heat",
+          "name": {
+            "ja": "小型FNOの問題単位検証",
+            "en": "Tiny FNO on held-out heat problems"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fno-periodic-heat/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fno-periodic-heat/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/io_utils.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/fno.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/data_family.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/pinn.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/biology.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/oracles.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/qualify.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/reference_models.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/test_models.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-25/small-models/verification.json",
+          "results": "/code/validated-examples/2026-11-25/small-models/results/result.json"
         }
       ],
       "related_problems": [
@@ -416,7 +445,34 @@
             "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-periodic/?lang=ja#code-ja",
             "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-periodic/?lang=en#code-en"
           },
-          "executions": []
+          "executions": [
+            {
+              "id": "fno-periodic-heat",
+              "kind": "supplement",
+              "name": {
+                "ja": "小型FNOの問題単位検証",
+                "en": "Tiny FNO on held-out heat problems"
+              },
+              "scope": {
+                "ja": "同じ重みで32/64点・未見関数・OODを分けて評価します。",
+                "en": "Evaluate the same learned weights on 32/64-point grids, held-out functions and separate OOD inputs."
+              },
+              "method_ids": [
+                "pinn-operators"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fno-periodic-heat/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fno-periodic-heat/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "周期区間[0,2π)、uₜ=νuₓₓ、T=0.25。同じ関数の点を分散させず、全46問題を学習24・検証6・未見ID8・νのOOD4・周波数のOOD4に分けます。2固定seed、93実パラメータです。",
+            "en": "Use periodic heat flow uₜ=νuₓₓ on [0,2π) to T=0.25. Split 46 whole problems into 24 training, 6 validation, 8 held-out ID, 4 viscosity-OOD and 4 spectrum-OOD problems. Use two fixed seeds and 93 real parameters."
+          }
         },
         {
           "id": "heat-dirichlet",
@@ -725,7 +781,8 @@
       "supplemental_examples": [
         "lshape-fem",
         "poisson-neumann",
-        "poisson-robin"
+        "poisson-robin",
+        "pinn-poisson"
       ],
       "execution_scope": {
         "ja": "追加例はL字特異解と同じ自由度のgraded三角形、warped正方形、および純Neumannの適合条件・平均ゲージと混合Robin境界。旧Poisson例を保持し、残差と連続誤差を区別します。",
@@ -842,6 +899,34 @@
           ],
           "verification": "/code/validated-examples/2026-11-23/mesh-boundary/verification.json",
           "results": "/code/validated-examples/2026-11-23/mesh-boundary/results/result.json"
+        },
+        {
+          "id": "pinn-poisson",
+          "name": {
+            "ja": "1D Poisson PINNと独立格子誤差",
+            "en": "Poisson PINN: independent grid error"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pinn-poisson/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pinn-poisson/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/io_utils.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/pinn.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/fno.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/data_family.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/biology.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/oracles.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/qualify.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/reference_models.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/test_models.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-25/small-models/verification.json",
+          "results": "/code/validated-examples/2026-11-25/small-models/results/result.json"
         }
       ],
       "related_problems": [
@@ -892,8 +977,35 @@
               "input": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/poisson-1d-dirichlet.json",
               "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
               "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json"
+            },
+            {
+              "id": "pinn-poisson",
+              "kind": "supplement",
+              "name": {
+                "ja": "1D Poisson PINNと独立格子誤差",
+                "en": "Poisson PINN: independent grid error"
+              },
+              "scope": {
+                "ja": "3固定seedの49パラメータPINNを解析解・FDと比較します。",
+                "en": "Compare a 49-parameter PINN for three fixed seeds with analytic and finite-difference solutions."
+              },
+              "method_ids": [
+                "pinn-operators",
+                "thomas"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pinn-poisson/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pinn-poisson/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/verification.json"
             }
-          ]
+          ],
+          "note": {
+            "ja": "無次元区間[0,1]で −uₓₓ=π²sin(πx)、u(0)=u(1)=0。中間層16素子・49実パラメータ、固定seed 8401–8403、学習64点と独立評価257点を用います。",
+            "en": "Solve dimensionless −uₓₓ=π² sin(πx) on [0,1] with zero Dirichlet data. Use sixteen hidden units, 49 real parameters, seeds 8401–8403, 64 training points and 257 separate evaluation points."
+          }
         },
         {
           "id": "poisson-1d-neumann",
@@ -6936,24 +7048,118 @@
       ],
       "chapter": "biological-models",
       "note": {
-        "ja": "酵素・基質・複合体の反応と飽和速度則。完全反応系、迅速平衡近似、準定常近似の違いは解説先へ。 文献解説のみ。",
-        "en": "Enzyme saturation; the full mass-action system resolves the transient complex C, while the rate law eliminates a fast variable. The 1913 rapid-equilibrium interpretation and the 1925 quasi-steady-state derivation must remain distinct. Literature-only."
+        "ja": "酵素・基質・複合体の反応と飽和速度則。完全反応系、迅速平衡近似、準定常近似の違いは解説先へ。 限定した実行例：2つの小εと固定反応定数だけの教育例です。εは尺度比であり、その値だけを厳密なQSSA誤差上界とはしません。θ≥0.02を初期層終了の証明とは呼ばず、生体内の反応・観測値へ外挿しません。",
+        "en": "Enzyme saturation; the full mass-action system resolves the transient complex C, while the rate law eliminates a fast variable. The 1913 rapid-equilibrium interpretation and the 1925 quasi-steady-state derivation must remain distinct. Scoped executed example: These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction."
       },
       "section": "02-1913-michaelismenten-and-full-enzyme-kinetics",
       "formula_source": {
         "path": "numerical-methods-atlas/assets/biological-models.json",
         "model_id": "enzyme"
       },
-      "status": "reading",
+      "status": "local-example",
       "group": "biology",
-      "coverage_scope": "The 1913 rapid-equilibrium interpretation and the 1925 quasi-steady-state derivation must remain distinct.",
+      "coverage_scope": "These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction.",
+      "supplemental_examples": [
+        "enzyme-qssa"
+      ],
+      "execution_scope": {
+        "ja": "2つの小εと固定反応定数だけの教育例です。εは尺度比であり、その値だけを厳密なQSSA誤差上界とはしません。θ≥0.02を初期層終了の証明とは呼ばず、生体内の反応・観測値へ外挿しません。",
+        "en": "These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction."
+      },
       "reading": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#02-1913-michaelismenten-and-full-enzyme-kinetics",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#02-1913-michaelismenten-and-full-enzyme-kinetics"
       },
       "execution_examples": [],
-      "supplemental_execution_examples": [],
-      "related_problems": []
+      "supplemental_execution_examples": [
+        {
+          "id": "enzyme-qssa",
+          "name": {
+            "ja": "酵素反応の保存と準定常近似",
+            "en": "Enzyme conservation and QSSA"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/io_utils.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/biology.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/pinn.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/fno.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/data_family.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/oracles.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/qualify.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/reference_models.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/test_models.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-25/small-models/verification.json",
+          "results": "/code/validated-examples/2026-11-25/small-models/results/result.json"
+        }
+      ],
+      "related_problems": [
+        {
+          "id": "enzyme-qssa",
+          "name": {
+            "ja": "酵素反応の保存と準定常近似",
+            "en": "Enzyme conservation and QSSA"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/results/enzyme-qssa-preview.png",
+            "sha256": "9f8ee2648321815e570a9415a71d42e1b7f8228ece70e9ff797860f23f7eea8c",
+            "width": 1634,
+            "height": 1057,
+            "caption": {
+              "ja": "全4状態と準定常近似を比較し、初期層と積分誤差を分けます。 保存値だけを描画します。 時間・濃度・個体数の軸は空間次元ではありません。率は教育用で疾病・実験予測ではありません。",
+              "en": "Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism. This figure reads saved data only. Time, concentrations and populations do not define a spatial dimension. The rates are educational, not disease or experimental predictions."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "enzyme-qssa",
+              "kind": "supplement",
+              "name": {
+                "ja": "酵素反応の保存と準定常近似",
+                "en": "Enzyme conservation and QSSA"
+              },
+              "scope": {
+                "ja": "全4状態と準定常近似を比較し、初期層と積分誤差を分けます。",
+                "en": "Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism."
+              },
+              "method_ids": [
+                "sdirk2",
+                "step-doubling",
+                "newton",
+                "rk4"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "閉鎖反応E+S⇌C→E+Pを無次元化し、k₁=10、k₋₁=k₂=1、S₀=1、C₀=P₀=0、E₀=0.01/0.002。Kₘ=0.2、ε=E₀/(Kₘ+S₀)=1/120,1/600、θ=E₀t∈[0,0.5]です。",
+            "en": "Use the closed dimensionless reaction E+S⇌C→E+P with k₁=10, k₋₁=k₂=1, S₀=1, C₀=P₀=0 and E₀=0.01 or 0.002. Then Kₘ=0.2, ε=E₀/(Kₘ+S₀)=1/120 or 1/600, and θ=E₀t ranges from 0 to 0.5."
+          }
+        }
+      ]
     },
     {
       "id": "bio-lotka-volterra",
@@ -6967,24 +7173,115 @@
       ],
       "chapter": "biological-models",
       "note": {
-        "ja": "捕食・被食の結合ODE。位相平面と長時間積分を考えるためのモデルです。 文献解説のみ。",
-        "en": "Coupled prey growth and predation; a phase-plane and long-time integration test.  Literature-only."
+        "ja": "捕食・被食の結合ODE。位相平面と長時間積分を考えるためのモデルです。 限定した実行例：1初期値・有限時間の固定比較です。連続系の閉軌道を引き込み極限周期とは呼びません。RK4の厳密な不変量保存、任意刻みでの正値性、長時間の構造保存は保証しません。",
+        "en": "Coupled prey growth and predation; a phase-plane and long-time integration test. Scoped executed example: This is a finite-time comparison for one initial state. The continuum closed orbit is not an attracting limit cycle. RK4 is not claimed to preserve H exactly, maintain positivity at arbitrary steps or guarantee long-time geometric fidelity."
       },
       "section": "03-1920-lotkavolterra-predatorprey",
       "formula_source": {
         "path": "numerical-methods-atlas/assets/biological-models.json",
         "model_id": "lotka-volterra"
       },
-      "status": "reading",
+      "status": "local-example",
       "group": "biology",
-      "coverage_scope": "",
+      "coverage_scope": "This is a finite-time comparison for one initial state. The continuum closed orbit is not an attracting limit cycle. RK4 is not claimed to preserve H exactly, maintain positivity at arbitrary steps or guarantee long-time geometric fidelity.",
+      "supplemental_examples": [
+        "lotka-volterra"
+      ],
+      "execution_scope": {
+        "ja": "1初期値・有限時間の固定比較です。連続系の閉軌道を引き込み極限周期とは呼びません。RK4の厳密な不変量保存、任意刻みでの正値性、長時間の構造保存は保証しません。",
+        "en": "This is a finite-time comparison for one initial state. The continuum closed orbit is not an attracting limit cycle. RK4 is not claimed to preserve H exactly, maintain positivity at arbitrary steps or guarantee long-time geometric fidelity."
+      },
       "reading": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/#03-1920-lotkavolterra-predatorprey",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/biological-models/#03-1920-lotkavolterra-predatorprey"
       },
       "execution_examples": [],
-      "supplemental_execution_examples": [],
-      "related_problems": []
+      "supplemental_execution_examples": [
+        {
+          "id": "lotka-volterra",
+          "name": {
+            "ja": "Lotka–Volterra不変量と正値性",
+            "en": "Lotka–Volterra invariant and positivity"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lotka-volterra/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lotka-volterra/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/io_utils.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/biology.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/pinn.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/fno.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/data_family.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/oracles.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/qualify.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/reference_models.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/test_models.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-25/small-models/verification.json",
+          "results": "/code/validated-examples/2026-11-25/small-models/results/result.json"
+        }
+      ],
+      "related_problems": [
+        {
+          "id": "lotka-volterra",
+          "name": {
+            "ja": "Lotka–Volterra不変量と正値性",
+            "en": "Lotka–Volterra invariant and positivity"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/results/lotka-volterra-preview.png",
+            "sha256": "2b0fbc061793a1f77310488f6351e2b8315fc2bc4da8c2f5946024d5f4e8d029",
+            "width": 1634,
+            "height": 1057,
+            "caption": {
+              "ja": "正の軌道を独立な対数座標参照と比較します。 保存値だけを描画します。 時間・濃度・個体数の軸は空間次元ではありません。率は教育用で疾病・実験予測ではありません。",
+              "en": "Compare a positive orbit against an independently integrated log-coordinate reference. This figure reads saved data only. Time, concentrations and populations do not define a spatial dimension. The rates are educational, not disease or experimental predictions."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lotka-volterra/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lotka-volterra/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lotka-volterra/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lotka-volterra/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "lotka-volterra",
+              "kind": "supplement",
+              "name": {
+                "ja": "Lotka–Volterra不変量と正値性",
+                "en": "Lotka–Volterra invariant and positivity"
+              },
+              "scope": {
+                "ja": "正の軌道を独立な対数座標参照と比較します。",
+                "en": "Compare a positive orbit against an independently integrated log-coordinate reference."
+              },
+              "method_ids": [
+                "rk4"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lotka-volterra/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lotka-volterra/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "無次元の捕食者・被食者系x′=x(1−y)、y′=y(x−1)、初期値(1.2,0.8)、0≤t≤20。正の象限で不変量H=x−log x+y−log yを評価します。",
+            "en": "Use the dimensionless predator–prey equations x′=x(1−y), y′=y(x−1), initial state (1.2,0.8) and 0≤t≤20. Evaluate H=x−log x+y−log y only in the positive quadrant."
+          }
+        }
+      ]
     },
     {
       "id": "bio-age-structure",
@@ -14623,19 +14920,775 @@
           }
         }
       ]
+    },
+    {
+      "id": "definite-integrals",
+      "name": {
+        "ja": "有限・無限・多変数の定積分",
+        "en": "Finite, improper and multivariate definite integrals"
+      },
+      "formula": [
+        "I_D(f)=\\int_D f(\\mathbf x)\\,d\\mathbf x"
+      ],
+      "chapter": "validation-quadrature-controls",
+      "note": {
+        "ja": "領域・重み・特異性と有限変換和の定義を確認する数学的求積問題です。",
+        "en": "Mathematical quadrature problems with explicit domains, weights, singularities and finite transformed-sum conventions."
+      },
+      "status": "local-example",
+      "group": "algebraic",
+      "coverage_scope": "Fixed educational inputs only; inspect the release-specific assumptions, references and limits.",
+      "supplemental_examples": [
+        "quadpack-domain-selection",
+        "gk15-double-exponential",
+        "tensor-smolyak-dimensions"
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/"
+      },
+      "execution_examples": [],
+      "supplemental_execution_examples": [
+        {
+          "id": "quadpack-domain-selection",
+          "name": {
+            "ja": "領域別QUADPACKと有限Simpson対照",
+            "en": "QUADPACK dispatch and finite Simpson companions"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/quadpack-domain-selection/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/quadpack-domain-selection/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/quadpack_adapter.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/simpson_baseline.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/gk15.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/double_exponential.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/cubature.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/io_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/reference_cache.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/references/direct_rule.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/references/formulas.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/references/interval.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/references/qualify.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/test_quadrature.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-25/quadrature-controls/verification.json",
+          "results": "/code/validated-examples/2026-11-25/quadrature-controls/results/result.json"
+        },
+        {
+          "id": "gk15-double-exponential",
+          "name": {
+            "ja": "G7/K15と有限区間tanh-sinh",
+            "en": "G7/K15 and finite-interval tanh-sinh"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gk15-double-exponential/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gk15-double-exponential/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/gk15.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/double_exponential.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/quadpack_adapter.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/simpson_baseline.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/cubature.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/io_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/reference_cache.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/references/direct_rule.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/references/formulas.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/references/interval.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/references/qualify.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/test_quadrature.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-25/quadrature-controls/verification.json",
+          "results": "/code/validated-examples/2026-11-25/quadrature-controls/results/result.json"
+        },
+        {
+          "id": "tensor-smolyak-dimensions",
+          "name": {
+            "ja": "2〜4次元テンソル・Smolyak対照",
+            "en": "Tensor and Smolyak controls in two to four dimensions"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/tensor-smolyak-dimensions/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/tensor-smolyak-dimensions/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/cubature.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/quadpack_adapter.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/simpson_baseline.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/gk15.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/double_exponential.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/io_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/reference_cache.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/references/direct_rule.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/references/formulas.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/references/interval.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/references/qualify.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/test_quadrature.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-25/quadrature-controls/verification.json",
+          "results": "/code/validated-examples/2026-11-25/quadrature-controls/results/result.json"
+        }
+      ],
+      "related_problems": [
+        {
+          "id": "quadpack-domain-selection",
+          "name": {
+            "ja": "領域別QUADPACKと有限Simpson対照",
+            "en": "QUADPACK dispatch and finite Simpson companions"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/results/quadpack-domain-selection-preview.png",
+            "sha256": "111323aebefd00411d8204b17d38024d3a20920e263f36af487083ecd49259f5",
+            "width": 1582,
+            "height": 614,
+            "caption": {
+              "ja": "活動Fourier周期の保存寄与と誤差・評価数 数学的な積分領域と次元は式・入力に示します。パラメータや誤差の図軸に物理空間の次元を割り当てません。 再現確認の合格は精度目標の全達成を意味しません。元の目標判定は達成25件・未達2件・計算不能3件です。FALSE/NAと失敗rawを保持します。",
+              "en": "Saved active Fourier contributions and actual errors/call counts The formulas and inputs specify mathematical integration domains and dimensions. Parameter and error axes are not physical spatial coordinates. Passing reproduction checks does not mean that every accuracy goal was met. Original row outcomes: 25 met, 2 unmet and 3 not computable. False/NA outcomes and raw failures are retained."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quadpack-domain-selection/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quadpack-domain-selection/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quadpack-domain-selection/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quadpack-domain-selection/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "quadpack-domain-selection",
+              "kind": "supplement",
+              "name": {
+                "ja": "領域別QUADPACKと有限Simpson対照",
+                "en": "QUADPACK dispatch and finite Simpson companions"
+              },
+              "scope": {
+                "ja": "15本の特殊化求積と15本のSimpson対照を固定入力で比較します。",
+                "en": "Fifteen specialized quadratures and fifteen Simpson companions use fixed inputs."
+              },
+              "method_ids": [
+                "quadrature"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/quadpack-domain-selection/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/quadpack-domain-selection/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/atlas-quadrature-controls-2026-11-25.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "無限Gaussian、有限振動2周波数、半無限Fourier、内部特異点。絶対公差1e-6/1e-8/1e-10、epsrel=0。",
+            "en": "Whole-line Gaussian, two finite frequencies, half-line Fourier and an internal singularity; absolute tolerances1e-6/1e-8/1e-10 and epsrel0."
+          }
+        },
+        {
+          "id": "gk15-double-exponential",
+          "name": {
+            "ja": "G7/K15と有限区間tanh-sinh",
+            "en": "G7/K15 and finite-interval tanh-sinh"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/results/gk15-double-exponential-preview.png",
+            "sha256": "1baba282adda756250570f756dada4aca2ad08a211da1d09f4aa4f012ab8b0dd",
+            "width": 2060,
+            "height": 696,
+            "caption": {
+              "ja": "保存された変換関数と有限窓誤差（連続tailは別量） 数学的な積分領域と次元は式・入力に示します。パラメータや誤差の図軸に物理空間の次元を割り当てません。 再現確認の合格は精度目標の全達成を意味しません。元の目標判定は達成26件・未達7件・計算不能0件です。FALSE/NAと失敗rawを保持します。",
+              "en": "Saved transformed integrands and finite-window defects; continuous tails are distinct The formulas and inputs specify mathematical integration domains and dimensions. Parameter and error axes are not physical spatial coordinates. Passing reproduction checks does not mean that every accuracy goal was met. Original row outcomes: 26 met, 7 unmet and 0 not computable. False/NA outcomes and raw failures are retained."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gk15-double-exponential/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gk15-double-exponential/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gk15-double-exponential/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/gk15-double-exponential/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "gk15-double-exponential",
+              "kind": "supplement",
+              "name": {
+                "ja": "G7/K15と有限区間tanh-sinh",
+                "en": "G7/K15 and finite-interval tanh-sinh"
+              },
+              "scope": {
+                "ja": "9本の適応GKと24本の固定DE和を比較します。",
+                "en": "Nine adaptive GK rows and twenty-four fixed DE sums are compared."
+              },
+              "method_ids": [
+                "quadrature",
+                "gauss-kronrod",
+                "tanh-sinh"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gk15-double-exponential/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gk15-double-exponential/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/atlas-quadrature-controls-2026-11-25.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "exp(x)、x^(-1/3)、−log(x)を[0,1]で積分。h=1/2〜1/16、切断T=3/4。",
+            "en": "Integrate exp(x), x^(-1/3) and -log(x) on[0,1], with h from1/2 to1/16 and cutoffs3/4."
+          }
+        },
+        {
+          "id": "tensor-smolyak-dimensions",
+          "name": {
+            "ja": "2〜4次元テンソル・Smolyak対照",
+            "en": "Tensor and Smolyak controls in two to four dimensions"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/results/tensor-smolyak-dimensions-preview.png",
+            "sha256": "8f0c7101b7ca3062e0789fb9a658f58542024b566a8fafdc38e6a2a9d4263147",
+            "width": 1571,
+            "height": 633,
+            "caption": {
+              "ja": "実2次元節点と符号付き積分重み 数学的な積分領域と次元は式・入力に示します。パラメータや誤差の図軸に物理空間の次元を割り当てません。 再現確認の合格は精度目標の全達成を意味しません。元の目標判定は達成24件・未達18件・計算不能0件です。FALSE/NAと失敗rawを保持します。",
+              "en": "Actual two-dimensional nodes and signed integration weights The formulas and inputs specify mathematical integration domains and dimensions. Parameter and error axes are not physical spatial coordinates. Passing reproduction checks does not mean that every accuracy goal was met. Original row outcomes: 24 met, 18 unmet and 0 not computable. False/NA outcomes and raw failures are retained."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/tensor-smolyak-dimensions/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/tensor-smolyak-dimensions/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/tensor-smolyak-dimensions/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/tensor-smolyak-dimensions/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "tensor-smolyak-dimensions",
+              "kind": "supplement",
+              "name": {
+                "ja": "2〜4次元テンソル・Smolyak対照",
+                "en": "Tensor and Smolyak controls in two to four dimensions"
+              },
+              "scope": {
+                "ja": "滑らかな積と相互作用積の42本の固定cubatureを比較します。",
+                "en": "Forty-two fixed cubatures compare a smooth product and an interaction product."
+              },
+              "method_ids": [
+                "quadrature",
+                "smolyak-sparse-grid"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/tensor-smolyak-dimensions/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/tensor-smolyak-dimensions/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/atlas-quadrature-controls-2026-11-25.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "[0,1]^d、d=2/3/4。テンソルlevel1/2/3、疎格子level1/2/3/4。",
+            "en": "The integration domain is[0,1]^d for d2/3/4; tensor levels1/2/3 and sparse levels1/2/3/4."
+          }
+        }
+      ]
+    },
+    {
+      "id": "polynomial-interpolation",
+      "name": {
+        "ja": "格納節点の多項式補間",
+        "en": "Polynomial interpolation on stored nodes"
+      },
+      "formula": [
+        "P_n(x_j)=y_j,\\quad P_n\\in\\mathcal P_n",
+        "R(x)=\\frac{\\sum_jw_jy_j/(x-x_j)}{\\sum_jw_j/(x-x_j)}"
+      ],
+      "chapter": "validation-approximation-controls",
+      "note": {
+        "ja": "閉形式重みと丸め節点の表現差、補間誤差と演算丸めを分けます。",
+        "en": "Separate closed-weight representation on rounded nodes, interpolation error and evaluation rounding."
+      },
+      "status": "local-example",
+      "group": "algebraic",
+      "coverage_scope": "Fixed educational inputs only; inspect the release-specific assumptions, references and limits.",
+      "supplemental_examples": [
+        "runge-barycentric-clenshaw"
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/"
+      },
+      "execution_examples": [],
+      "supplemental_execution_examples": [
+        {
+          "id": "runge-barycentric-clenshaw",
+          "name": {
+            "ja": "節点・表現・丸めを分けるRunge補間",
+            "en": "Runge interpolation: nodes, representation and rounding"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/runge-barycentric-clenshaw/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/runge-barycentric-clenshaw/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/interpolation.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/splines.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/haar.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/io_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/references/haar_matrix.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/references/polynomials.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/references/spline_rational.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/test_approximation.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-25/approximation-controls/verification.json",
+          "results": "/code/validated-examples/2026-11-25/approximation-controls/results/result.json"
+        }
+      ],
+      "related_problems": [
+        {
+          "id": "runge-barycentric-clenshaw",
+          "name": {
+            "ja": "節点・表現・丸めを分けるRunge補間",
+            "en": "Runge interpolation: nodes, representation and rounding"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/results/runge-barycentric-clenshaw-preview.png",
+            "sha256": "36e92c10fcf30cc84d6982b52d2ee72e4ddacabd445527b180d06836d33aa7f7",
+            "width": 1045,
+            "height": 389,
+            "caption": {
+              "ja": "Runge関数と絶対値関数を等間隔・Lobatto型の固定節点で補間し、Clenshaw評価と比較します。 保存配列から作図。",
+              "en": "Interpolate the Runge and absolute-value functions on fixed equispaced and Lobatto-like nodes, and compare with Clenshaw evaluation. Drawn from saved arrays."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/runge-barycentric-clenshaw/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/runge-barycentric-clenshaw/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/runge-barycentric-clenshaw/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/runge-barycentric-clenshaw/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "runge-barycentric-clenshaw",
+              "kind": "supplement",
+              "name": {
+                "ja": "節点・表現・丸めを分けるRunge補間",
+                "en": "Runge interpolation: nodes, representation and rounding"
+              },
+              "scope": {
+                "ja": "Runge関数と絶対値関数を等間隔・Lobatto型の固定節点で補間し、Clenshaw評価と比較します。",
+                "en": "Interpolate the Runge and absolute-value functions on fixed equispaced and Lobatto-like nodes, and compare with Clenshaw evaluation."
+              },
+              "method_ids": [
+                "chebyshev"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/runge-barycentric-clenshaw/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/runge-barycentric-clenshaw/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/atlas-approximation-controls-2026-11-25.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "無次元区間[-1,1]、次数8・16・32、固定2048中点。節点・データ・重みは実際のbinary64値を対象にします。",
+            "en": "Dimensionless interval [-1,1], degrees 8, 16 and 32, and 2048 fixed midpoints. Actual binary64 nodes, data and weights define the discrete problem."
+          }
+        }
+      ]
+    },
+    {
+      "id": "cubic-spline-pchip",
+      "name": {
+        "ja": "3次スプラインと形状保存補間",
+        "en": "Cubic splines and shape-preserving interpolation"
+      },
+      "formula": [
+        "S_i(x)=a_i+b_i(x-x_i)+c_i(x-x_i)^2+d_i(x-x_i)^3",
+        "S\\in C^2\\ \\text{for the natural/clamped spline};\\quad P\\in C^1\\ \\text{for PCHIP}"
+      ],
+      "chapter": "validation-approximation-controls",
+      "note": {
+        "ja": "端点条件を持つC2補間と単調な区分Hermite補間を区別します。",
+        "en": "Distinguish C2 interpolation with endpoint conditions from monotone piecewise Hermite interpolation."
+      },
+      "status": "local-example",
+      "group": "algebraic",
+      "coverage_scope": "Fixed educational inputs only; inspect the release-specific assumptions, references and limits.",
+      "supplemental_examples": [
+        "spline-shape-controls"
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/"
+      },
+      "execution_examples": [],
+      "supplemental_execution_examples": [
+        {
+          "id": "spline-shape-controls",
+          "name": {
+            "ja": "自然・端点微分指定スプラインとPCHIP",
+            "en": "Natural and clamped splines versus PCHIP"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spline-shape-controls/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spline-shape-controls/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/splines.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/interpolation.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/haar.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/io_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/references/haar_matrix.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/references/polynomials.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/references/spline_rational.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/test_approximation.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-25/approximation-controls/verification.json",
+          "results": "/code/validated-examples/2026-11-25/approximation-controls/results/result.json"
+        }
+      ],
+      "related_problems": [
+        {
+          "id": "spline-shape-controls",
+          "name": {
+            "ja": "自然・端点微分指定スプラインとPCHIP",
+            "en": "Natural and clamped splines versus PCHIP"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/results/spline-shape-controls-preview.png",
+            "sha256": "f82de2009b363a8e1a42e118714084f4b920f050393c066c75f996c38299f1c5",
+            "width": 1045,
+            "height": 389,
+            "caption": {
+              "ja": "平坦部を持つ単調データ・3次式・直線の固定3組で、C2連続性と形状保存を比較します。 保存配列から作図。",
+              "en": "Compare C2 continuity and shape preservation on three fixed data sets: a monotone plateau, a cubic and a straight line. Drawn from saved arrays."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/spline-shape-controls/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/spline-shape-controls/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/spline-shape-controls/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/spline-shape-controls/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "spline-shape-controls",
+              "kind": "supplement",
+              "name": {
+                "ja": "自然・端点微分指定スプラインとPCHIP",
+                "en": "Natural and clamped splines versus PCHIP"
+              },
+              "scope": {
+                "ja": "平坦部を持つ単調データ・3次式・直線の固定3組で、C2連続性と形状保存を比較します。",
+                "en": "Compare C2 continuity and shape preservation on three fixed data sets: a monotone plateau, a cubic and a straight line."
+              },
+              "method_ids": [
+                "splines",
+                "pchip"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spline-shape-controls/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spline-shape-controls/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/atlas-approximation-controls-2026-11-25.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "実binary64の節点と値を使用。自然条件は両端2階微分ゼロ、clamped条件は入力端点1階微分です。",
+            "en": "Use actual binary64 knots and values. Natural conditions set both endpoint second derivatives to zero; clamped conditions prescribe the first derivatives from the input."
+          }
+        }
+      ]
+    },
+    {
+      "id": "discrete-haar-transform",
+      "name": {
+        "ja": "有限長信号の離散Haar変換",
+        "en": "Discrete Haar transforms of finite signals"
+      },
+      "formula": [
+        "\\binom{a^{\\prime}}d=\\frac1{\\sqrt2}\\begin{pmatrix}1&1\\\\1&-1\\end{pmatrix}\\binom ab",
+        "S_NA_N=I_N,\\quad\\|A_Nx\\|_2^2=\\|x\\|_2^2+\\sum_\\ell p_\\ell^2"
+      ],
+      "chapter": "validation-approximation-controls",
+      "note": {
+        "ja": "奇数長の追加標本と切戻しを含む有限写像です。冗長拡張全体の直交性は仮定しません。",
+        "en": "A finite map including odd-length padding and cropping; global orthogonality is not assumed for redundant extensions."
+      },
+      "status": "local-example",
+      "group": "algebraic",
+      "coverage_scope": "Fixed educational inputs only; inspect the release-specific assumptions, references and limits.",
+      "supplemental_examples": [
+        "haar-mallat-boundary-threshold"
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/"
+      },
+      "execution_examples": [],
+      "supplemental_execution_examples": [
+        {
+          "id": "haar-mallat-boundary-threshold",
+          "name": {
+            "ja": "Haar多重解像度の境界・シフト・閾値",
+            "en": "Haar multiresolution: boundaries, shifts and thresholds"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/haar-mallat-boundary-threshold/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/haar-mallat-boundary-threshold/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/haar.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/interpolation.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/splines.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/io_contract.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/references/haar_matrix.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/references/polynomials.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/references/spline_rational.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/test_approximation.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-25/approximation-controls/verification.json",
+          "results": "/code/validated-examples/2026-11-25/approximation-controls/results/result.json"
+        }
+      ],
+      "related_problems": [
+        {
+          "id": "haar-mallat-boundary-threshold",
+          "name": {
+            "ja": "Haar多重解像度の境界・シフト・閾値",
+            "en": "Haar multiresolution: boundaries, shifts and thresholds"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/results/haar-mallat-boundary-threshold-preview.png",
+            "sha256": "957809b32f1acfa3d3289eeb24e0e28fbdec9dd4df5f783f28c2bdbbf10498f3",
+            "width": 1045,
+            "height": 389,
+            "caption": {
+              "ja": "長さ17・32の小信号に3段Haar分解を適用。1標本シフトと奇数長の境界処理を分けて比較します。 保存配列から作図。 標本添字は物理空間の座標ではありません。境界処理を含む有限長信号の写像です。",
+              "en": "Apply three-level Haar analysis to short signals of lengths 17 and 32, separating one-sample shifts from odd-length boundary handling. Drawn from saved arrays. Sample indices are not physical spatial coordinates. This is a finite-signal map with declared boundary handling."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/haar-mallat-boundary-threshold/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/haar-mallat-boundary-threshold/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/haar-mallat-boundary-threshold/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/haar-mallat-boundary-threshold/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "haar-mallat-boundary-threshold",
+              "kind": "supplement",
+              "name": {
+                "ja": "Haar多重解像度の境界・シフト・閾値",
+                "en": "Haar multiresolution: boundaries, shifts and thresholds"
+              },
+              "scope": {
+                "ja": "長さ17・32の小信号に3段Haar分解を適用。1標本シフトと奇数長の境界処理を分けて比較します。",
+                "en": "Apply three-level Haar analysis to short signals of lengths 17 and 32, separating one-sample shifts from odd-length boundary handling."
+              },
+              "method_ids": [
+                "wavelets"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/haar-mallat-boundary-threshold/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/haar-mallat-boundary-threshold/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/atlas-approximation-controls-2026-11-25.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "奇数長の各段で周期型は先頭、対称型は末尾を1点追加し、再構成時に切り戻します。詳細係数のみ閾値0.2を使用。",
+            "en": "At each odd-length level append the first sample for periodic extension or the last for symmetric extension, then crop during synthesis. Apply threshold 0.2 only to detail coefficients."
+          }
+        }
+      ]
+    },
+    {
+      "id": "seir-compartment",
+      "name": {
+        "ja": "閉鎖SEIR区画モデル",
+        "en": "Closed SEIR compartment model"
+      },
+      "formula": [
+        "\\begin{aligned}\\dot S&=-\\beta SI,&\\dot E&=\\beta SI-\\sigma E,\\\\\\dot I&=\\sigma E-\\gamma I,&\\dot R&=\\gamma I.\\end{aligned}",
+        "S+E+I+R=1"
+      ],
+      "chapter": "validation-small-models",
+      "note": {
+        "ja": "出生死亡なし・全人口一定の教育用率です。初期過渡は2×2行列指数に比較し、感染症予測には使いません。",
+        "en": "Educational rates with no births or deaths and constant population. Compare the early transient with a full two-by-two matrix exponential; no disease forecast is made."
+      },
+      "status": "local-example",
+      "group": "biology",
+      "coverage_scope": "These fixed-coefficient calculations compare two small initial infection levels. The early linearization is not an exact solution through t=20, and a single dominant mode does not replace the two-mode solution. No epidemic forecast, statistical coverage or arbitrary-population guarantee is claimed.",
+      "execution_scope": {
+        "ja": "2つの小初期感染量による固定係数の整合性比較です。早期線形化をt=20全体の厳密解と見なさず、単一の優勢モードで両モードを置き換えません。実流行の予測・統計的被覆・任意人口への一般保証は行いません。",
+        "en": "These fixed-coefficient calculations compare two small initial infection levels. The early linearization is not an exact solution through t=20, and a single dominant mode does not replace the two-mode solution. No epidemic forecast, statistical coverage or arbitrary-population guarantee is claimed."
+      },
+      "formula_source": {
+        "kind": "verified-supplement",
+        "case_id": "seir-linearization",
+        "path": "code/validated-examples/2026-11-25/small-models/cases.json",
+        "sha256": "7da1b291ce84a8133573794574cb539f6d3c5512571cafa8f05a67ad1d6acabc",
+        "json_pointer": "/4/formulas/0",
+        "source_formula": "\\begin{aligned}\\dot S&=-\\beta SI,&\\dot E&=\\beta SI-\\sigma E,\\\\\\dot I&=\\sigma E-\\gamma I,&\\dot R&=\\gamma I.\\end{aligned}",
+        "derivation_note": {
+          "ja": "4式を足すと全人口の時間微分は0です。初期総量1から保存式を得ます。率と初期値は固定教育用入力です。",
+          "en": "Summing the four equations gives zero derivative of total population. Initial total one yields the conservation relation. Rates and initial states are fixed educational inputs."
+        }
+      },
+      "supplemental_examples": [
+        "seir-linearization"
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/"
+      },
+      "execution_examples": [],
+      "supplemental_execution_examples": [
+        {
+          "id": "seir-linearization",
+          "name": {
+            "ja": "SEIR保存則と初期線形化",
+            "en": "SEIR conservation and initial linearization"
+          },
+          "entry": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/seir-linearization/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/seir-linearization/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/experiments.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/io_utils.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/biology.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/pinn.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/fno.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/data_family.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/oracles.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/qualify.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/reference_models.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/test_models.py"
+          ],
+          "verification": "/code/validated-examples/2026-11-25/small-models/verification.json",
+          "results": "/code/validated-examples/2026-11-25/small-models/results/result.json"
+        }
+      ],
+      "related_problems": [
+        {
+          "id": "seir-linearization",
+          "name": {
+            "ja": "SEIR保存則と初期線形化",
+            "en": "SEIR conservation and initial linearization"
+          },
+          "image": {
+            "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/results/seir-linearization-preview.png",
+            "sha256": "3ee8e7e8fdab4934bfc1ef679ccc39722c2412e95331bfb26800ae1c4fe80e04",
+            "width": 1630,
+            "height": 1057,
+            "caption": {
+              "ja": "人口保存と2モードの初期線形化を別々に検査します。 保存値だけを描画します。 時間・濃度・個体数の軸は空間次元ではありません。率は教育用で疾病・実験予測ではありません。",
+              "en": "Check population conservation and the full two-mode initial linearization separately. This figure reads saved data only. Time, concentrations and populations do not define a spatial dimension. The rates are educational, not disease or experimental predictions."
+            },
+            "source_kind": "existing-figure"
+          },
+          "hub": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/seir-linearization/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/seir-linearization/?lang=en"
+          },
+          "code": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/seir-linearization/?lang=ja#code-ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/seir-linearization/?lang=en#code-en"
+          },
+          "executions": [
+            {
+              "id": "seir-linearization",
+              "kind": "supplement",
+              "name": {
+                "ja": "SEIR保存則と初期線形化",
+                "en": "SEIR conservation and initial linearization"
+              },
+              "scope": {
+                "ja": "人口保存と2モードの初期線形化を別々に検査します。",
+                "en": "Check population conservation and the full two-mode initial linearization separately."
+              },
+              "method_ids": [
+                "rk4"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/seir-linearization/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/seir-linearization/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/verification.json"
+            }
+          ],
+          "note": {
+            "ja": "閉鎖人口S+E+I+R=1、β=0.6、σ=0.3、γ=0.2。η=10⁻⁴/5×10⁻⁵に対し(S,E,I,R)(0)=(1−2η,η,η,0)、0≤t≤20。出生・死亡・外部流入はありません。",
+            "en": "Use a closed population S+E+I+R=1 with β=0.6, σ=0.3 and γ=0.2. For η=10⁻⁴ or 5×10⁻⁵, start from (1−2η,η,η,0) and evolve to t=20. There are no births, deaths or external inflows."
+          }
+        }
+      ]
     }
   ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/equations/",
   "counts": {
-    "total": 80,
-    "local_example": 58,
-    "reading_only": 22,
+    "total": 85,
+    "local_example": 65,
+    "reading_only": 20,
     "groups": {
       "physical": 43,
       "relativistic": 6,
-      "biology": 23,
+      "biology": 24,
       "quantum": 4,
-      "algebraic": 4
+      "algebraic": 8
     }
   },
   "formula_renderer": {
@@ -14644,13 +15697,13 @@
   },
   "execution_example_count": 22,
   "problem_routes_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "9cf692c64631ff4c64803d9caac072b3edc5dab0afec414d67df99eae3098d28",
-    "catalog/atlas-equations.json": "61d1366ee14643fb0c8f5dff26c878f713396bf78e765c7344a4fc56a30e9b28",
+    "catalog/atlas-depth-expansion.json": "a99cdc630a84a3e908c0ac95e907af1860206a31acb690711d152d5f4ed511d7",
+    "catalog/atlas-equations.json": "0a8adb3a0055f84570ed57dcc7514a51dba3dfdfa45c4c95cc2dd6e67ab64c16",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
-    "catalog/atlas-methods.json": "82dfd3336a82bc165f4f47d3e1f709481866e053bf1c9bcb342520bf0d257609",
-    "catalog/atlas-problem-links.json": "b58e2bdf1ebe0c0c2633c2e1f96002020a5316bdfde8d17ee62f677fe1b3c156",
-    "catalog/atlas-reference-supplements.json": "35ce6804f79238ea87159340ebed57815ec42e239e0cf4fd7cc3bebd128478a2",
-    "catalog/atlas-test-problems.json": "a26379f4a8b6a236b38af6e664312f24161c97e37e65b6e7bad71ff8eb923f20",
+    "catalog/atlas-methods.json": "b303a2990f02603849719e9094e46768634286cd84e18b425ce48e5934873297",
+    "catalog/atlas-problem-links.json": "9581ec9faab129311bb883ebdda9e4ddd03ab3f4583fb22e21c9741a4e893734",
+    "catalog/atlas-reference-supplements.json": "3d59634a9aac9c9c407fbd24f9993a84b5a13dab0ec8c35a313c42f16e9c0ab8",
+    "catalog/atlas-test-problems.json": "2c5260104ab1381d23b5b1e091ccd891da1d5124b05a03fc75b5acb2c6693a6f",
     "code/validated-examples/2026-11-22/biology/atlas-biology-2026-11-22.zip": "d7608d121ad2c5a2b5fb8db8c87bc648f372bb666c3079e6b4835b276d3b5979",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",
     "code/validated-examples/2026-11-22/biology/results/result.json": "1eff310ad4bdfc4fcf161686b05e959270c3fe2b8d0546e8a8449ad9d73e824f",
@@ -14951,10 +16004,25 @@
     "code/validated-examples/2026-11-24/stochastic-estimation/results/result.json": "267e0b0be6f4a5fbcb8b116837f670d8bfacf09f0a7cda25f8e97956dd180435",
     "code/validated-examples/2026-11-24/stochastic-estimation/source-manifest.json": "17ec6615e238e14afb92b67337262922ff12e299e9f5358457f16db7e6c81def",
     "code/validated-examples/2026-11-24/stochastic-estimation/verification.json": "04589e7e1285b60e3d327c5772d392405e04f5fc9623a0850b38c9eaa9478f90",
+    "code/validated-examples/2026-11-25/approximation-controls/atlas-approximation-controls-2026-11-25.zip": "7dbadeb591e3329965c2ab5aa7f6025e5d8c18a438b7264460370ad64bdaf053",
+    "code/validated-examples/2026-11-25/approximation-controls/cases.json": "5b422ab05c5f902f238be33541a72991228dae016b0a46fdeaed38df16873a4f",
+    "code/validated-examples/2026-11-25/approximation-controls/results/result.json": "8db40827ec3c82334006c5dee9fab5bb0605045e396e580af75ea68c9e090259",
+    "code/validated-examples/2026-11-25/approximation-controls/source-manifest.json": "42ed019623f85764b60e8599f22fd4dcc130ac3eadb71e36553a029ddc31f084",
+    "code/validated-examples/2026-11-25/approximation-controls/verification.json": "4a492b3d14bd72ead4daa18b68d791fb9b58cc49c426b87c30ebf2b0d439f7ab",
+    "code/validated-examples/2026-11-25/quadrature-controls/atlas-quadrature-controls-2026-11-25.zip": "843f8394607db82a40af99a34785cce4f22e0f26f3b85d2375f121bcc9ebd6f4",
+    "code/validated-examples/2026-11-25/quadrature-controls/cases.json": "f900a3245e2b6ae3b446e553a17f93b507444654bce72ffeb1003b95bc97446b",
+    "code/validated-examples/2026-11-25/quadrature-controls/results/result.json": "08484664c27e9342f071c78695b31198775561ea8f39f663b6859665190ccede",
+    "code/validated-examples/2026-11-25/quadrature-controls/source-manifest.json": "7742ff5dd15bd7b848464e4ada267e7d861825f961ea0e15a982be46e2b8708e",
+    "code/validated-examples/2026-11-25/quadrature-controls/verification.json": "cfc7e98903ca8dcc5b11245f15d94b6711aa5ab7992ec29b2c9b291552b85e08",
+    "code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip": "d341b8a90e0b6ade7c70760a2c32a9f3825a6b4e162b221c7cc95b10f3cd40c1",
+    "code/validated-examples/2026-11-25/small-models/cases.json": "7da1b291ce84a8133573794574cb539f6d3c5512571cafa8f05a67ad1d6acabc",
+    "code/validated-examples/2026-11-25/small-models/results/result.json": "2e0e830c2fa65aea6b67833b260cb617d794f41e4832eb8600db5fe8ab60c627",
+    "code/validated-examples/2026-11-25/small-models/source-manifest.json": "20f3e16af0c6684b77e5a132e6d2ccd26f82de14203fdd9474d9bb4866e5914c",
+    "code/validated-examples/2026-11-25/small-models/verification.json": "a134ed7650c468598c7222c994e2ae49a87c4584264269747c4bc2141a115145",
     "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "7708927c98694afeb5453e6d68568dd1f76d9e23b12f78f80456b5752f31ce2d"
+    "numerical-methods-atlas/gallery/preview-manifest.json": "75374ecd3b1caf534ebfed89a1e89247556cad724d687a55b5070ae8fe96d354"
   },
   "supplemental_case_ids": [
     "ale-nonuniform-transport",
@@ -14978,14 +16046,18 @@
     "dsmc-couette",
     "dsmc-fourier",
     "dsmc-planar-shock",
+    "enzyme-qssa",
     "fem-mass-eigen",
     "fitzhugh-nagumo",
     "fmm3d-inverse-r",
+    "fno-periodic-heat",
     "gbm-milstein-strong",
     "gbm-weak-moments",
+    "gk15-double-exponential",
     "globalization-difficult-starts",
     "gravity-kepler",
     "gravity-plummer-short",
+    "haar-mallat-boundary-threshold",
     "hessian-vector-products",
     "high-index-pendulum",
     "index1-dae-consistent-initialization",
@@ -15001,6 +16073,7 @@
     "level-set-rotation",
     "level-set-translation",
     "lorentz-oblique-sp",
+    "lotka-volterra",
     "lshape-fem",
     "magnetic-loop-independent",
     "multifrequency-resonance",
@@ -15009,10 +16082,12 @@
     "opposing-beams2d",
     "ou-weak-moments",
     "pic-independent-spatial",
+    "pinn-poisson",
     "pivoted-direct-refinement",
     "poisson-neumann",
     "poisson-robin",
     "postshock-orszag-tang",
+    "quadpack-domain-selection",
     "restarted-shift-invert",
     "reverse-vjp-duality",
     "rk45-dense-events",
@@ -15020,10 +16095,13 @@
     "robertson-stiff-kinetics",
     "rotated-anisotropic-diffusion",
     "rt-initial-growth",
+    "runge-barycentric-clenshaw",
     "schnakenberg-nonlinear",
     "schnakenberg-pattern",
+    "seir-linearization",
     "shadow-absorber2d",
     "shake-rattle-pendulum",
+    "spline-shape-controls",
     "srhd-collision",
     "srmhd-alfven",
     "strang-boundary-order-reduction",
@@ -15031,6 +16109,7 @@
     "su-olson-transport1997",
     "swashes-topography",
     "symmetric-saddle-minres",
+    "tensor-smolyak-dimensions",
     "thermal-landau-damping",
     "thermal-two-stream",
     "turing-schnakenberg",
@@ -15040,10 +16119,10 @@
     "zalesak-rotation"
   ],
   "execution_evidence_source_sha256": {
-    "numerical-methods-atlas/assets/biological-models.json": "3ee3489ca4d2632d672576fcd75c062137053e203b55cbf51ee0cbe8cfc9556f",
+    "numerical-methods-atlas/assets/biological-models.json": "d27f67c75c3324c8a1d0ec132c07346d02b05c5be67913fb8467f2882af4510b",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "catalog/atlas-equations.json": "61d1366ee14643fb0c8f5dff26c878f713396bf78e765c7344a4fc56a30e9b28",
+    "catalog/atlas-equations.json": "0a8adb3a0055f84570ed57dcc7514a51dba3dfdfa45c4c95cc2dd6e67ab64c16",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "code/validated-examples/2026-11-23/weno-critical/source-manifest.json": "abd8b0a29bb81b7d98b897ec0a0eb409f77873857ec8199c3767f1ede11b43a5",
     "code/validated-examples/2026-11-23/weno-critical/verification.json": "ccbf3c6a2fe7055b324a0d98c152da909242f36e0c82ca3281038e4c9b0c165f",
@@ -15065,6 +16144,11 @@
     "code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json": "b88c01a4388790cc795041ffcecfcbdf465e8953443ea522d23247a715900845",
     "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/result.json": "6d61f82c6c4854a92696faebb2f3fcc650b50abc141a945720d432077dd789cf",
     "code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip": "19e6bed36d5a49a865881df12170edf9f79b4c5365e35ae91186eaf33bb5bc3a",
+    "code/validated-examples/2026-11-25/small-models/source-manifest.json": "20f3e16af0c6684b77e5a132e6d2ccd26f82de14203fdd9474d9bb4866e5914c",
+    "code/validated-examples/2026-11-25/small-models/verification.json": "a134ed7650c468598c7222c994e2ae49a87c4584264269747c4bc2141a115145",
+    "code/validated-examples/2026-11-25/small-models/cases.json": "7da1b291ce84a8133573794574cb539f6d3c5512571cafa8f05a67ad1d6acabc",
+    "code/validated-examples/2026-11-25/small-models/results/result.json": "2e0e830c2fa65aea6b67833b260cb617d794f41e4832eb8600db5fe8ab60c627",
+    "code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip": "d341b8a90e0b6ade7c70760a2c32a9f3825a6b4e162b221c7cc95b10f3cd40c1",
     "code/validated-examples/2026-11-23/mesh-boundary/source-manifest.json": "96e55d4c564baf804d3ae7feb86a36c7d7a3d4079f5e47180326fd2c09ee675a",
     "code/validated-examples/2026-11-23/mesh-boundary/verification.json": "1191781061a2ec3339d26d8e9e4db605e9c40e8d5d5dfa6433712b38f43f7d01",
     "code/validated-examples/2026-11-23/mesh-boundary/cases.json": "30c7d39639f74d4f263a045cccc8ced3e14a466e4e279c4c156fc21ce176f796",
@@ -15254,7 +16338,17 @@
     "code/validated-examples/2026-11-24-r2/maxwell-grazing/verification.json": "4c8133a8a4042ed925fd21af37d62fe472978af2ac4fecd3518a9d2242db1de0",
     "code/validated-examples/2026-11-24-r2/maxwell-grazing/cases.json": "6b8417bd334606a183298f805a4337b9bda947fff47de60c34bd7844b69e4c7c",
     "code/validated-examples/2026-11-24-r2/maxwell-grazing/results/result.json": "01ca786df2c0659e190cee13012170367e8fdd86b9a0e9dcf1c9a71a9a3e2c2d",
-    "code/validated-examples/2026-11-24-r2/maxwell-grazing/atlas-maxwell-grazing-2026-11-24-r2.zip": "a9d0c65eb27e26b05eafd3774b9f651b01baf28e617769bb2bbcb7efb0b90d3d"
+    "code/validated-examples/2026-11-24-r2/maxwell-grazing/atlas-maxwell-grazing-2026-11-24-r2.zip": "a9d0c65eb27e26b05eafd3774b9f651b01baf28e617769bb2bbcb7efb0b90d3d",
+    "code/validated-examples/2026-11-25/quadrature-controls/source-manifest.json": "7742ff5dd15bd7b848464e4ada267e7d861825f961ea0e15a982be46e2b8708e",
+    "code/validated-examples/2026-11-25/quadrature-controls/verification.json": "cfc7e98903ca8dcc5b11245f15d94b6711aa5ab7992ec29b2c9b291552b85e08",
+    "code/validated-examples/2026-11-25/quadrature-controls/cases.json": "f900a3245e2b6ae3b446e553a17f93b507444654bce72ffeb1003b95bc97446b",
+    "code/validated-examples/2026-11-25/quadrature-controls/results/result.json": "08484664c27e9342f071c78695b31198775561ea8f39f663b6859665190ccede",
+    "code/validated-examples/2026-11-25/quadrature-controls/atlas-quadrature-controls-2026-11-25.zip": "843f8394607db82a40af99a34785cce4f22e0f26f3b85d2375f121bcc9ebd6f4",
+    "code/validated-examples/2026-11-25/approximation-controls/source-manifest.json": "42ed019623f85764b60e8599f22fd4dcc130ac3eadb71e36553a029ddc31f084",
+    "code/validated-examples/2026-11-25/approximation-controls/verification.json": "4a492b3d14bd72ead4daa18b68d791fb9b58cc49c426b87c30ebf2b0d439f7ab",
+    "code/validated-examples/2026-11-25/approximation-controls/cases.json": "5b422ab05c5f902f238be33541a72991228dae016b0a46fdeaed38df16873a4f",
+    "code/validated-examples/2026-11-25/approximation-controls/results/result.json": "8db40827ec3c82334006c5dee9fab5bb0605045e396e580af75ea68c9e090259",
+    "code/validated-examples/2026-11-25/approximation-controls/atlas-approximation-controls-2026-11-25.zip": "7dbadeb591e3329965c2ab5aa7f6025e5d8c18a438b7264460370ad64bdaf053"
   },
   "execution_formula_scope": {
     "ja": "公開済み22問題を文字・数式・保存図から探すための案内。実行条件・配布物・数値判定は既存実行台帳を参照し、画像や式の掲載を新しい数値検証として数えない。",
@@ -15746,6 +16840,29 @@
               "input": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/recipes/poisson-1d-dirichlet.json",
               "download": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip",
               "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json"
+            },
+            {
+              "id": "pinn-poisson",
+              "kind": "supplement",
+              "name": {
+                "ja": "1D Poisson PINNと独立格子誤差",
+                "en": "Poisson PINN: independent grid error"
+              },
+              "scope": {
+                "ja": "3固定seedの49パラメータPINNを解析解・FDと比較します。",
+                "en": "Compare a 49-parameter PINN for three fixed seeds with analytic and finite-difference solutions."
+              },
+              "method_ids": [
+                "pinn-operators",
+                "thomas"
+              ],
+              "guide": {
+                "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pinn-poisson/?lang=ja",
+                "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pinn-poisson/?lang=en"
+              },
+              "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/inputs.json",
+              "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip",
+              "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/verification.json"
             }
           ]
         }

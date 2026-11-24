@@ -965,6 +965,10 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "validation-approximation-controls": [
+    "ja",
+    "en"
+  ],
   "validation-biology": [
     "ja",
     "en"
@@ -1129,6 +1133,10 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "validation-quadrature-controls": [
+    "ja",
+    "en"
+  ],
   "validation-radiation-geometry": [
     "ja",
     "en"
@@ -1162,6 +1170,10 @@ export const homeReadingLanguages = {
     "en"
   ],
   "validation-slab-ewald": [
+    "ja",
+    "en"
+  ],
+  "validation-small-models": [
     "ja",
     "en"
   ],

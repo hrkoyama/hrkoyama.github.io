@@ -139,6 +139,10 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Separate initialization, backward-Euler error and residuals on a known positive index-one DAE branch.
+- [Enzyme conservation and QSSA](<https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=en>)
+  availability: run
+
+  Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism.
 - [Restarted GMRES — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/gmres/?lang=en#method-execution-en>)
   availability: source
 

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_on": "2026-11-24",
+  "reviewed_on": "2026-11-25",
   "title": {
     "ja": "分野ごとの実装・検証範囲",
     "en": "Implementation and validation by field"
@@ -155,7 +155,8 @@
         "checkerboard-diffusion",
         "rotated-anisotropic-diffusion",
         "bratu-fold-continuation",
-        "bratu-matrix-free-jfnk"
+        "bratu-matrix-free-jfnk",
+        "pinn-poisson"
       ]
     },
     {
@@ -228,8 +229,8 @@
         "en": "Biology"
       },
       "scope": {
-        "ja": "22モデル族の文献解説に、ロジスティック増殖・閉鎖SIR、線形反応拡散、Schnakenbergの線形発現・有限振幅の非線形発展・成長後の1次元パターン、空間なしFitzHugh–Nagumoの限定例を接続します。全22族やHodgkin–Huxleyの実装ではありません。",
-        "en": "The 22-family survey links scoped examples of logistic growth, closed SIR, linear reaction–diffusion, linear Schnakenberg onset, finite-amplitude nonlinear evolution and post-growth 1D patterns, plus spatially uniform FitzHugh–Nagumo. This does not implement all 22 families or Hodgkin–Huxley."
+        "ja": "22モデル族の文献解説に、ロジスティック増殖・閉鎖SIR、線形反応拡散、Schnakenbergの線形発現・有限振幅の非線形発展・成長後の1次元パターン、空間なしFitzHugh–Nagumoの限定例を接続します。全22族やHodgkin–Huxleyの実装ではありません。 別群small-modelsから、固定した4状態酵素/QSSA、正のLotka–Volterra軌道、SEIR保存則と初期2モード線形化の3例だけを追加します。SEIRはSIRの既存実行範囲とは別です。",
+        "en": "The 22-family survey links scoped examples of logistic growth, closed SIR, linear reaction–diffusion, linear Schnakenberg onset, finite-amplitude nonlinear evolution and post-growth 1D patterns, plus spatially uniform FitzHugh–Nagumo. This does not implement all 22 families or Hodgkin–Huxley. Three further fixed examples from the separate small-models group cover four-state enzyme/QSSA, a positive Lotka–Volterra orbit, and SEIR conservation with full two-mode early linearization. SEIR is separate from the existing SIR execution scope."
       },
       "examples": [
         "logistic-growth",
@@ -240,16 +241,16 @@
         "en": "/numerical-methods-atlas/en/read/biological-models/"
       },
       "reference": {
-        "ja": "ロジスティック・線形反応拡散は解析解、SIR/FHNは別実装DOP853、線形Turingは行列指数です。新しい非線形Schnakenbergは、脱エイリアスしたFourier–Galerkin＋Radauの独立参照と、時間誤差用の同じ差分半離散系のRadau参照を区別します。",
-        "en": "Analytic references for logistic/linear reaction–diffusion, independent DOP853 for SIR/FHN and matrix exponentials for linear Turing growth. New nonlinear Schnakenberg checks distinguish an independent dealiased Fourier–Galerkin/Radau reference from Radau on the same finite-difference semidiscretization used to isolate time error."
+        "ja": "ロジスティック・線形反応拡散は解析解、SIR/FHNは別実装DOP853、線形Turingは行列指数です。新しい非線形Schnakenbergは、脱エイリアスしたFourier–Galerkin＋Radauの独立参照と、時間誤差用の同じ差分半離散系のRadau参照を区別します。 追加3ODE例は独立実装のRadau/BDF参照を用い、酵素の縮約モデルは陰的スカラー式、SEIR初期線形化は全2×2行列指数と区別します。",
+        "en": "Analytic references for logistic/linear reaction–diffusion, independent DOP853 for SIR/FHN and matrix exponentials for linear Turing growth. New nonlinear Schnakenberg checks distinguish an independent dealiased Fourier–Galerkin/Radau reference from Radau on the same finite-difference semidiscretization used to isolate time error. The three additional ODE examples use separately implemented Radau/BDF references; distinguish the enzyme scalar implicit reduced solution and the full 2×2 exponential used for early SEIR linearization."
       },
       "refinement": {
-        "ja": "旧例の空間2次・RK4時間4次を保持。新例は中心差分の拡散を厳密に進め、反応を陰的中点則で解くStrang分割です。有限振幅の解について空間・時間を別々に細分化し、成長後のパターンでも独立参照の解像度・公差の感度を区別します。 追加の短時間例では同じ32格子・部分ソルバーでLie–TrotterとStrangの時間収束を比較し、Radau公差とDOP853の参照差を別に測ります。",
-        "en": "Preserve second-order space/fourth-order RK4 time checks in the old examples. New cases combine exact finite-difference diffusion with implicit-midpoint reactions in a Strang split. Refine space and time separately for finite-amplitude solutions, distinguishing independent-reference resolution/tolerance sensitivity for post-growth patterns. An additional short-time example compares Lie–Trotter/Strang time refinement at the same 32-point grid with matched subsolvers, separately measuring Radau-tolerance and DOP853 reference differences."
+        "ja": "旧例の空間2次・RK4時間4次を保持。新例は中心差分の拡散を厳密に進め、反応を陰的中点則で解くStrang分割です。有限振幅の解について空間・時間を別々に細分化し、成長後のパターンでも独立参照の解像度・公差の感度を区別します。 追加の短時間例では同じ32格子・部分ソルバーでLie–TrotterとStrangの時間収束を比較し、Radau公差とDOP853の参照差を別に測ります。 酵素では2つのE0・2許容誤差と縮約200/400刻み、LVとSEIRでは400/800/1600刻みを固定し、積分誤差・縮約/線形化誤差を分けて報告します。",
+        "en": "Preserve second-order space/fourth-order RK4 time checks in the old examples. New cases combine exact finite-difference diffusion with implicit-midpoint reactions in a Strang split. Refine space and time separately for finite-amplitude solutions, distinguishing independent-reference resolution/tolerance sensitivity for post-growth patterns. An additional short-time example compares Lie–Trotter/Strang time refinement at the same 32-point grid with matched subsolvers, separately measuring Radau-tolerance and DOP853 reference differences. Fixed enzyme controls use two E0 values, two tolerance pairs and reduced-model 200/400 steps; LV and SEIR use 400/800/1600 steps, reporting integration error separately from reduction/linearization error."
       },
       "next": {
-        "ja": "固定した1次元周期・反射対称初期値の検証です。一般初期値からの模様選択、2次元・非周期境界、他の反応則、SEIR・完全HH、実験データへの較正と移流・流体連成は未検証です。",
-        "en": "Validation is limited to fixed reflection-symmetric initial data in 1D periodic domains. Pattern selection from general starts, 2D/nonperiodic problems, other kinetics, SEIR/full HH, experimental calibration and advection/fluid coupling remain unvalidated."
+        "ja": "固定した1次元周期・反射対称初期値の検証です。一般初期値からの模様選択、2次元・非周期境界、他の反応則、SEIRの一般入力・完全HH、実験データへの較正と移流・流体連成は未検証です。 追加ODE例も固定小入力に限り、QSSAの厳密誤差保証・捕食被食の一般的長時間保証・SEIRの全時刻線形化精度は主張しません。",
+        "en": "Validation is limited to fixed reflection-symmetric initial data in 1D periodic domains. Pattern selection from general starts, 2D/nonperiodic problems, other kinetics, general SEIR inputs/full HH, experimental calibration and advection/fluid coupling remain unvalidated. The added ODE examples also use fixed small inputs; they do not certify rigorous QSSA error bounds, general long-time predator–prey behavior or all-time SEIR linearization accuracy."
       },
       "supplemental_examples": [
         "reaction-diffusion-fourier",
@@ -257,11 +258,28 @@
         "fitzhugh-nagumo",
         "schnakenberg-nonlinear",
         "schnakenberg-pattern",
-        "reaction-diffusion-splitting"
+        "reaction-diffusion-splitting",
+        "enzyme-qssa",
+        "lotka-volterra",
+        "seir-linearization"
       ],
       "schnakenberg_scope": {
         "ja": "a=0.1,b=0.9、拡散係数0.01/1、長さ2πの1次元周期Schnakenberg系。旧線形発現例を保持し、固定した反射対称の有限振幅初期値の非線形発展と成長後パターンを独立Fourier–Galerkin/Radau参照および空間・時間細分化で比較します。一般の模様選択、2次元、生物実験への較正、流体連成には広げません。",
         "en": "A 1D periodic Schnakenberg system of length 2pi, a=0.1, b=0.9 and diffusivities 0.01/1. Preserve the earlier linear-onset example and compare finite-amplitude nonlinear evolution and post-growth patterns from fixed reflection-symmetric data with independent Fourier–Galerkin/Radau references and separate spatial/temporal refinement. No general pattern selection, 2D, biological calibration or fluid-coupling claim."
+      },
+      "model_supplements": {
+        "enzyme": {
+          "group": "small-models",
+          "case_ids": [
+            "enzyme-qssa"
+          ]
+        },
+        "lotka-volterra": {
+          "group": "small-models",
+          "case_ids": [
+            "lotka-volterra"
+          ]
+        }
       }
     },
     {
@@ -400,7 +418,14 @@
         "high-index-pendulum",
         "shake-rattle-pendulum",
         "kepler-eccentricity",
-        "multifrequency-resonance"
+        "multifrequency-resonance",
+        "quadpack-domain-selection",
+        "gk15-double-exponential",
+        "tensor-smolyak-dimensions",
+        "runge-barycentric-clenshaw",
+        "spline-shape-controls",
+        "haar-mallat-boundary-threshold",
+        "fno-periodic-heat"
       ],
       "scope": {
         "ja": "旧版のSA-AMG、QR／SVD、Krylov固有値、求積の固定例を保持し、条件数・残差・精度と、異方性・右辺摂動と階数閾値・非正規性・狭い山の診断対照を別版で比較します。AMG追加例は代数的診断で、Poissonの格子精度へ加算しません。",
@@ -560,7 +585,9 @@
         "bratu-distributed-vjp",
         "bratu-gn-lm-bounds",
         "bfgs-lbfgs-controls",
-        "bratu-noise-regularization"
+        "bratu-noise-regularization",
+        "pinn-poisson",
+        "fno-periodic-heat"
       ],
       "scope": {
         "ja": "小さな固定例で微分作用と非線形・逆問題の反復を確かめます。",
@@ -589,10 +616,10 @@
   "registry": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
   "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
   "source_sha256": {
-    "catalog/atlas-depth.json": "de02d9fcd494f1423c693cc7a7c3034df854868a4857df76a4727ca9524f7994",
+    "catalog/atlas-depth.json": "2ac22ddd02cb8cc7e3223738abcd5c91add0cf5714cffa98c130413d5eac57d7",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "catalog/atlas-depth-expansion.json": "9cf692c64631ff4c64803d9caac072b3edc5dab0afec414d67df99eae3098d28",
+    "catalog/atlas-depth-expansion.json": "a99cdc630a84a3e908c0ac95e907af1860206a31acb690711d152d5f4ed511d7",
     "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
     "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
     "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
@@ -728,6 +755,11 @@
     "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/cases.json": "9a2f2e0e780151768247923a36b7274b1b014bbeb620de7bbca5a25d46d5bc56",
     "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/results/result.json": "6a4dbb22ac61f557b30c49ebb2d6067b41c6ad2f9040fd0752f49dc8b9884b5d",
     "code/validated-examples/2026-11-24-r2/bratu-continuation-jfnk/atlas-bratu-continuation-jfnk-2026-11-24-r2.zip": "aeffa7e1b442f198ef2de55e453f82e5d6cbe30fc3d0bbd1112354a38a20a25d",
+    "code/validated-examples/2026-11-25/small-models/source-manifest.json": "20f3e16af0c6684b77e5a132e6d2ccd26f82de14203fdd9474d9bb4866e5914c",
+    "code/validated-examples/2026-11-25/small-models/verification.json": "a134ed7650c468598c7222c994e2ae49a87c4584264269747c4bc2141a115145",
+    "code/validated-examples/2026-11-25/small-models/cases.json": "7da1b291ce84a8133573794574cb539f6d3c5512571cafa8f05a67ad1d6acabc",
+    "code/validated-examples/2026-11-25/small-models/results/result.json": "2e0e830c2fa65aea6b67833b260cb617d794f41e4832eb8600db5fe8ab60c627",
+    "code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip": "d341b8a90e0b6ade7c70760a2c32a9f3825a6b4e162b221c7cc95b10f3cd40c1",
     "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
     "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
     "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
@@ -798,6 +830,16 @@
     "code/validated-examples/2026-11-24/geometric-controls/cases.json": "f97c3c5cef1540cba0c16b8f8d32d70696d4d22105eaf784ff2e17cd3ccecd8b",
     "code/validated-examples/2026-11-24/geometric-controls/results/result.json": "1e0ba587a26f6b15380621e3b04f44f2dee205d5ffe49086fd23c8972c85510b",
     "code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip": "4e3ef28ab6c91ae62918b7effc6f37097ec0f5a4ed878d4d33fa06e1945329a2",
+    "code/validated-examples/2026-11-25/quadrature-controls/source-manifest.json": "7742ff5dd15bd7b848464e4ada267e7d861825f961ea0e15a982be46e2b8708e",
+    "code/validated-examples/2026-11-25/quadrature-controls/verification.json": "cfc7e98903ca8dcc5b11245f15d94b6711aa5ab7992ec29b2c9b291552b85e08",
+    "code/validated-examples/2026-11-25/quadrature-controls/cases.json": "f900a3245e2b6ae3b446e553a17f93b507444654bce72ffeb1003b95bc97446b",
+    "code/validated-examples/2026-11-25/quadrature-controls/results/result.json": "08484664c27e9342f071c78695b31198775561ea8f39f663b6859665190ccede",
+    "code/validated-examples/2026-11-25/quadrature-controls/atlas-quadrature-controls-2026-11-25.zip": "843f8394607db82a40af99a34785cce4f22e0f26f3b85d2375f121bcc9ebd6f4",
+    "code/validated-examples/2026-11-25/approximation-controls/source-manifest.json": "42ed019623f85764b60e8599f22fd4dcc130ac3eadb71e36553a029ddc31f084",
+    "code/validated-examples/2026-11-25/approximation-controls/verification.json": "4a492b3d14bd72ead4daa18b68d791fb9b58cc49c426b87c30ebf2b0d439f7ab",
+    "code/validated-examples/2026-11-25/approximation-controls/cases.json": "5b422ab05c5f902f238be33541a72991228dae016b0a46fdeaed38df16873a4f",
+    "code/validated-examples/2026-11-25/approximation-controls/results/result.json": "8db40827ec3c82334006c5dee9fab5bb0605045e396e580af75ea68c9e090259",
+    "code/validated-examples/2026-11-25/approximation-controls/atlas-approximation-controls-2026-11-25.zip": "7dbadeb591e3329965c2ab5aa7f6025e5d8c18a438b7264460370ad64bdaf053",
     "code/validated-examples/2026-11-22/particles/source-manifest.json": "63cefd473db691db611628f6501b2b58d6727c055ffde1b9a4962bfecfacd125",
     "code/validated-examples/2026-11-22/particles/verification.json": "48744c4ce661cb76ce7cba81d55bbbb2737885c472966237e78c9e3dfcbf43b7",
     "code/validated-examples/2026-11-22/particles/cases.json": "f6e68b2ec8d0cd56357b1aeecea3f9c40cf22f89e7f9c1b8b9442ad020ddbf86",

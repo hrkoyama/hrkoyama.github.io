@@ -2,9 +2,9 @@
 
 Status: educational-example
 
-Solve F(x)=0 using a Jacobian-based Newton direction and damping that requires sufficient decrease of the residual norm. The example supports a dense or preconditioned GMRES inner solve. Additional fixed examples: Crossing the Bratu fold with pseudo-arclength continuation. See each release for assumptions and checked scope. Additional fixed examples: Line search and trust regions from the same difficult starts. See each release for assumptions and checked scope. Additional fixed examples: Bratu sensitivity near the discrete fold, Matrix-free VJP for distributed Bratu coefficients. See each release for assumptions and checked scope. Additional fixed examples: Robertson kinetics: initial stiffness and actual error, Van der Pol: an early stiffness transition. See each release for assumptions and checked scope. Additional fixed examples: Consistent initialization and discrete residuals for an index-one DAE, Robertson conservation DAE and stored official IDA values. See each release for assumptions and checked scope.
+Solve F(x)=0 using a Jacobian-based Newton direction and damping that requires sufficient decrease of the residual norm. The example supports a dense or preconditioned GMRES inner solve. Additional fixed examples: Crossing the Bratu fold with pseudo-arclength continuation. See each release for assumptions and checked scope. Additional fixed examples: Line search and trust regions from the same difficult starts. See each release for assumptions and checked scope. Additional fixed examples: Bratu sensitivity near the discrete fold, Matrix-free VJP for distributed Bratu coefficients. See each release for assumptions and checked scope. Additional fixed examples: Robertson kinetics: initial stiffness and actual error, Van der Pol: an early stiffness transition. See each release for assumptions and checked scope. Additional fixed examples: Consistent initialization and discrete residuals for an index-one DAE, Robertson conservation DAE and stored official IDA values. See each release for assumptions and checked scope. Fixed educational executions: Enzyme conservation and QSSA.
 
-非線形方程式 F(x)=0 を、Jacobianから求めたNewton方向と残差ノルムの十分減少による減衰で解く。公開例は密行列解法または前処理付きGMRESの内部解法を選べる。 追加固定例：擬似弧長継続でBratuのfoldを越える。条件と検証範囲は各配布版で確認してください。 追加固定例：同じ難しい初期値に対する線探索と信頼領域。条件と検証範囲は各配布版で確認してください。 追加固定例：離散fold近傍のBratu感度、分布係数Bratuの行列非形成VJP。条件と検証範囲は各配布版で確認してください。 追加固定例：Robertson反応系の初期剛性と実誤差、van der Polの短時間剛性遷移。条件と検証範囲は各配布版で確認してください。 追加固定例：index-1 DAEの整合初期化と離散残差、Robertson保存制約DAEと公式IDA保存値。条件と検証範囲は各配布版で確認してください。
+非線形方程式 F(x)=0 を、Jacobianから求めたNewton方向と残差ノルムの十分減少による減衰で解く。公開例は密行列解法または前処理付きGMRESの内部解法を選べる。 追加固定例：擬似弧長継続でBratuのfoldを越える。条件と検証範囲は各配布版で確認してください。 追加固定例：同じ難しい初期値に対する線探索と信頼領域。条件と検証範囲は各配布版で確認してください。 追加固定例：離散fold近傍のBratu感度、分布係数Bratuの行列非形成VJP。条件と検証範囲は各配布版で確認してください。 追加固定例：Robertson反応系の初期剛性と実誤差、van der Polの短時間剛性遷移。条件と検証範囲は各配布版で確認してください。 追加固定例：index-1 DAEの整合初期化と離散残差、Robertson保存制約DAEと公式IDA保存値。条件と検証範囲は各配布版で確認してください。 固定した教育用実行例：酵素反応の保存と準定常近似。
 
 Convergence depends on the initial guess, Jacobian nonsingularity and residual scaling; global convergence is not guaranteed. Singular dense solves or preconditioner construction may raise exceptions rather than return a failure reason. No matrix-free Jv, trust region or continuation is provided. Additional fixed examples: A small one-dimensional simple fold only. The whole-curve family comparison uses the computed midpoint as its family coordinate and is distinct from the independent fixed-lambda profile checks. The continuum fold is not an exact discrete solution. No general bifurcation-tracking or large-scale performance claim. The preceding limitations describe earlier editions. This additional release: No all-start guarantee, universal method ranking or equivalence to PETSc implementation. The preceding limitations describe earlier editions. This additional release: The continuum fold is not the discrete fold. rtol1e-4/1e-8 targets are required; requested1e-12 is observational and unmet is never called converged. Independent accuracy of the returned gradient is a separate gate. Eigenvalue/roundoff scales are floating diagnostics, not certified intervals. Bratu J is symmetric; the nonsymmetric transpose is a separate operator control. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved. Derivative verification at the same discrete state, not independent physical-PDE truth or general AD. Persistent arrays and fixed Krylov workspace inventories are not RSS measurements. For m=2, theta endpoints are[a-b-2,a+b-2], distinct from physical coefficient endpoints[a-b,a+b]. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved. The preceding limitations describe earlier editions. This additional release: Conservation and positivity are observations for these inputs, not universal guarantees. Accuracy is sampled on T <= 0.4; this does not validate long-time chemistry or an all-time error bound. This post-measurement reporting revision is not a numerical repair. The first error, 4.535633779e-5, exceeded the original 2e-5 goal. Local tolerances do not guarantee global accuracy, and reporting PASS does not mean all original goals were met. Full large-mu cycles are outside scope. The preceding limitations describe earlier editions. This additional release: One authored positive branch and fixed BE runs; no IDA execution or general DAE-solver qualification. Only two official SUNDIALS v7.1.1 printed rows; zero new IDA executions, with no long-time chemistry or general DAE-performance claim. No asymptotic-convergence or all-original-accuracy-goals claim is made for this fixed schedule.
 
@@ -159,7 +159,13 @@ Download: https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-cont
 Verification: https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/verification.json
 Results: https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/results/result.json
 
-Common execution records: [{"id": "bratu", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#bratu-ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#bratu-en"}}, {"id": "bratu-fold-continuation", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-continuation/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-continuation/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "globalization-difficult-starts", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/globalization-difficult-starts/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/globalization-difficult-starts/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "bratu-fold-sensitivity", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-sensitivity/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-sensitivity/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "bratu-distributed-vjp", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-distributed-vjp/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-distributed-vjp/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "robertson-stiff-kinetics", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "van-der-pol-stiff-transition", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "index1-dae-consistent-initialization", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/index1-dae-consistent-initialization/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/index1-dae-consistent-initialization/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "robertson-conservation-dae", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-conservation-dae/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-conservation-dae/?lang=en"}, "kind": "dedicated-supplement"}]
+- Enzyme conservation and QSSA: https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/
+
+Download: https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip
+Verification: https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/verification.json
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/results/result.json
+
+Common execution records: [{"id": "bratu", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#bratu-ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#bratu-en"}}, {"id": "bratu-fold-continuation", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-continuation/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-continuation/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "globalization-difficult-starts", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/globalization-difficult-starts/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/globalization-difficult-starts/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "bratu-fold-sensitivity", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-sensitivity/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-fold-sensitivity/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "bratu-distributed-vjp", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-distributed-vjp/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-distributed-vjp/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "robertson-stiff-kinetics", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "van-der-pol-stiff-transition", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "index1-dae-consistent-initialization", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/index1-dae-consistent-initialization/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/index1-dae-consistent-initialization/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "robertson-conservation-dae", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-conservation-dae/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/robertson-conservation-dae/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "enzyme-qssa", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=en"}, "kind": "dedicated-supplement"}]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/methods/newton/
 Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/
@@ -177,6 +183,7 @@ Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-d
 - [Robertson反応系](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#robertson-kinetics-ja) (`robertson-kinetics`; robertson-stiff-kinetics)
 - [半陽的index-1 DAE](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#index-one-dae-ja) (`index-one-dae`; robertson-stiff-kinetics, index1-dae-consistent-initialization)
 - [van der Pol振動子](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#van-der-pol-ja) (`van-der-pol`; van-der-pol-stiff-transition)
+- [Michaelis–Mentenと完全酵素反応系](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-enzyme-ja) (`bio-enzyme`; enzyme-qssa)
 
 #### 問題の図 (`method-problems-ja`)
 
@@ -290,6 +297,18 @@ BDF2/SDIRK2と倍分割適応法。解析Jacobian・段階内だけの因子再�
 
 既知の正枝を持つindex-1 DAEで初期化と後退Eulerの誤差・残差を分離します。
 
+##### [酵素反応の保存と準定常近似](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=ja) (`enzyme-qssa`)
+
+![全4状態と準定常近似を比較し、初期層と積分誤差を分けます。 保存値だけを描画します。 時間・濃度・個体数の軸は空間次元ではありません。率は教育用で疾病・実験予測ではありません。](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/results/enzyme-qssa-preview.png)
+
+全4状態をSDIRK2のstep doublingで積分し、各段のNewton法では同じ重み付きL∞残差とArmijo条件を使います。縮約Michaelis–Menten式はθ上の別RK4計算で求め、全系の積分誤差と近似モデル誤差を混同しません。
+
+[この問題の参照・検証資料](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=ja#references-ja) · [この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=ja#code-ja)
+
+- [酵素反応の保存と準定常近似](https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=ja) (`enzyme-qssa`) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+全4状態と準定常近似を比較し、初期層と積分誤差を分けます。
+
 
 #### 厳密解・参照解 (`method-references-ja`)
 
@@ -362,6 +381,14 @@ BDF2/SDIRK2と倍分割適応法。解析Jacobian・段階内だけの因子再�
 単一の製造正枝・固定BE計算です。IDA実行や一般DAEソルバーの検証ではありません。
 
 [既存の参照図](/numerical-methods-atlas/validation/index1-dae-consistent-initialization/?lang=ja#index1-dae-consistent-initialization-ja-measurements)
+
+##### [酵素反応の保存と準定常近似](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=ja#references-ja) (`enzyme-qssa`)
+
+- [酵素反応の保存と準定常近似](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-enzyme-qssa-ja) (`enzyme-qssa`; 同じ問題の参照; 有限格子の数値参照)
+
+2つの小εと固定反応定数だけの教育例です。εは尺度比であり、その値だけを厳密なQSSA誤差上界とはしません。θ≥0.02を初期層終了の証明とは呼ばず、生体内の反応・観測値へ外挿しません。
+
+[既存の参照図](/numerical-methods-atlas/validation/enzyme-qssa/?lang=ja#enzyme-qssa-ja-measurements)
 
 ##### 手法の解説・独立参照・保存結果
 
@@ -464,6 +491,16 @@ Robertsonの保存制約DAEと全ODEを同じ固定時間格子で比較し、�
 
 既知の正枝を持つindex-1 DAEで初期化と後退Eulerの誤差・残差を分離します。
 
+##### 酵素反応の保存と準定常近似 (`enzyme-qssa`)
+
+[酵素反応の保存と準定常近似](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=ja) · [実行・検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=ja) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/inputs.json)
+
+[検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/verification.json)
+
+全4状態と準定常近似を比較し、初期層と積分誤差を分けます。
+
 ##### 既存の配布版・関連ソースと検査
 
 共用モジュールや配布版全体の検査を含み、すべてが個々の問題専用とは限りません。
@@ -528,6 +565,16 @@ Scoped fixed-input examples; original method variants and earlier releases remai
 - [/code/validated-examples/2026-11-24/dae-controls/io_contract.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/io_contract.py)
 - [/code/validated-examples/2026-11-24/dae-controls/references.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/references.py)
 - [/code/validated-examples/2026-11-24/dae-controls/reporting.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/reporting.py)
+- [/code/validated-examples/2026-11-25/small-models/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/run.py)
+- [/code/validated-examples/2026-11-25/small-models/experiments.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/experiments.py)
+- [/code/validated-examples/2026-11-25/small-models/io_utils.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/io_utils.py)
+- [/code/validated-examples/2026-11-25/small-models/biology.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/biology.py)
+- [/code/validated-examples/2026-11-25/small-models/pinn.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/pinn.py)
+- [/code/validated-examples/2026-11-25/small-models/fno.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/fno.py)
+- [/code/validated-examples/2026-11-25/small-models/data_family.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/data_family.py)
+- [/code/validated-examples/2026-11-25/small-models/references/oracles.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/oracles.py)
+- [/code/validated-examples/2026-11-25/small-models/references/qualify.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/qualify.py)
+- [/code/validated-examples/2026-11-25/small-models/references/reference_models.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/reference_models.py)
 
 ###### 配布版のテスト
 
@@ -544,6 +591,7 @@ Scoped fixed-input examples; original method variants and earlier releases remai
 - [/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_stiff.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_stiff.py)
 - [/code/validated-examples/2026-11-24/dae-controls/test_cases.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_cases.py)
 - [/code/validated-examples/2026-11-24/dae-controls/test_serialization.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_serialization.py)
+- [/code/validated-examples/2026-11-25/small-models/test_models.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/test_models.py)
 
 配布版の案内で条件と作業フォルダを確認してください。複数例の検査や図生成を含む場合があります。
 
@@ -563,6 +611,7 @@ These links are derived through associated problems; checked scope follows their
 - [Robertson chemical kinetics](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#robertson-kinetics-en) (`robertson-kinetics`; robertson-stiff-kinetics)
 - [Semi-explicit index-one DAE](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#index-one-dae-en) (`index-one-dae`; robertson-stiff-kinetics, index1-dae-consistent-initialization)
 - [Van der Pol oscillator](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#van-der-pol-en) (`van-der-pol`; van-der-pol-stiff-transition)
+- [Michaelis–Menten and full enzyme kinetics](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-enzyme-en) (`bio-enzyme`; enzyme-qssa)
 
 #### Problem figures (`method-problems-en`)
 
@@ -676,6 +725,18 @@ Use coupled Newton with an Armijo search in the same scaled norm, retaining rath
 
 Separate initialization, backward-Euler error and residuals on a known positive index-one DAE branch.
 
+##### [Enzyme conservation and QSSA](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=en) (`enzyme-qssa`)
+
+![Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism. This figure reads saved data only. Time, concentrations and populations do not define a spatial dimension. The rates are educational, not disease or experimental predictions.](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/results/enzyme-qssa-preview.png)
+
+Integrate all four states with SDIRK2 step doubling, using the same weighted L∞ residual for Newton convergence and Armijo backtracking. Evolve the reduced Michaelis–Menten equation separately with RK4 in θ, keeping integration error distinct from model-reduction error.
+
+[This problem’s references and checks](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=en#references-en) · [This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=en#code-en)
+
+- [Enzyme conservation and QSSA](https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=en) (`enzyme-qssa`) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism.
+
 
 #### Exact / reference solutions (`method-references-en`)
 
@@ -748,6 +809,14 @@ This post-measurement reporting revision is not a numerical repair. The first er
 One authored positive branch and fixed BE runs; no IDA execution or general DAE-solver qualification.
 
 [Existing reference profile](/numerical-methods-atlas/validation/index1-dae-consistent-initialization/?lang=en#index1-dae-consistent-initialization-en-measurements)
+
+##### [Enzyme conservation and QSSA](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=en#references-en) (`enzyme-qssa`)
+
+- [Enzyme conservation and QSSA](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-enzyme-qssa-en) (`enzyme-qssa`; Same-problem reference; Finite-grid numerical reference)
+
+These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction.
+
+[Existing reference profile](/numerical-methods-atlas/validation/enzyme-qssa/?lang=en#enzyme-qssa-en-measurements)
 
 ##### Method explanations, independent references and saved results
 
@@ -850,6 +919,16 @@ Separate local control from global error. The first study met 208 of 209 origina
 
 Separate initialization, backward-Euler error and residuals on a known positive index-one DAE branch.
 
+##### Enzyme conservation and QSSA (`enzyme-qssa`)
+
+[Enzyme conservation and QSSA](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=en) · [Run and validate](https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=en) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/inputs.json)
+
+[Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/verification.json)
+
+Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism.
+
 ##### Existing editions, related source and tests
 
 Includes shared modules and package-wide checks; these resources are not all dedicated to individual problems.
@@ -914,6 +993,16 @@ Scoped fixed-input examples; original method variants and earlier releases remai
 - [/code/validated-examples/2026-11-24/dae-controls/io_contract.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/io_contract.py)
 - [/code/validated-examples/2026-11-24/dae-controls/references.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/references.py)
 - [/code/validated-examples/2026-11-24/dae-controls/reporting.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/reporting.py)
+- [/code/validated-examples/2026-11-25/small-models/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/run.py)
+- [/code/validated-examples/2026-11-25/small-models/experiments.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/experiments.py)
+- [/code/validated-examples/2026-11-25/small-models/io_utils.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/io_utils.py)
+- [/code/validated-examples/2026-11-25/small-models/biology.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/biology.py)
+- [/code/validated-examples/2026-11-25/small-models/pinn.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/pinn.py)
+- [/code/validated-examples/2026-11-25/small-models/fno.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/fno.py)
+- [/code/validated-examples/2026-11-25/small-models/data_family.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/data_family.py)
+- [/code/validated-examples/2026-11-25/small-models/references/oracles.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/oracles.py)
+- [/code/validated-examples/2026-11-25/small-models/references/qualify.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/qualify.py)
+- [/code/validated-examples/2026-11-25/small-models/references/reference_models.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/reference_models.py)
 
 ###### Package tests
 
@@ -930,6 +1019,7 @@ Scoped fixed-input examples; original method variants and earlier releases remai
 - [/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_stiff.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_stiff.py)
 - [/code/validated-examples/2026-11-24/dae-controls/test_cases.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_cases.py)
 - [/code/validated-examples/2026-11-24/dae-controls/test_serialization.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_serialization.py)
+- [/code/validated-examples/2026-11-25/small-models/test_models.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/test_models.py)
 
 Consult the edition’s guide for conditions and working directory; commands may check or generate figures for several cases.
 

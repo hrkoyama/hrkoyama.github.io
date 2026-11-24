@@ -24,4 +24,11 @@ No chapter-specific association is registered. Atlas-wide index: [Exact and refe
 
 ## Code and validation
 
-No chapter-specific association is registered. Atlas-wide index: [Code, inputs and validation](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en)
+- [Runge interpolation: nodes, representation and rounding](<https://hrkoyama.github.io/numerical-methods-atlas/validation/runge-barycentric-clenshaw/?lang=en>)
+  availability: run
+
+  Interpolate the Runge and absolute-value functions on fixed equispaced and Lobatto-like nodes, and compare with Clenshaw evaluation.
+- [Chebyshev approximation — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/chebyshev/?lang=en#method-execution-en>)
+  availability: source
+
+  Method-specific editions and related sources; fixed-input runs are listed separately.

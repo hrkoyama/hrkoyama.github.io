@@ -193,6 +193,18 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Derive an explicit ODE from an index-three position constraint and compare drift and stabilization for consistent and inconsistent starts.
+- [Enzyme conservation and QSSA](<https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=en>)
+  availability: run
+
+  Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism.
+- [Lotka–Volterra invariant and positivity](<https://hrkoyama.github.io/numerical-methods-atlas/validation/lotka-volterra/?lang=en>)
+  availability: run
+
+  Compare a positive orbit against an independently integrated log-coordinate reference.
+- [SEIR conservation and initial linearization](<https://hrkoyama.github.io/numerical-methods-atlas/validation/seir-linearization/?lang=en>)
+  availability: run
+
+  Check population conservation and the full two-mode initial linearization separately.
 - [Finite-amplitude Schnakenberg transient: nonlinearity and independent reference](<https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-nonlinear/?lang=en>)
   availability: run
 

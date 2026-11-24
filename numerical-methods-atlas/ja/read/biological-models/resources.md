@@ -29,10 +29,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/
   収容力Kを持つ密度依存の連続時間増殖モデル。離散ロジスティック写像とは区別します。 限定した実行例：無次元の単一個体群。RK4を全出力時刻で解析解と比較し、非負性と刻み幅の収束を確認。反応拡散・複数種は対象外。
 - [Michaelis–Mentenと完全酵素反応系](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-enzyme-ja>)
 
-  酵素・基質・複合体の反応と飽和速度則。完全反応系、迅速平衡近似、準定常近似の違いは解説先へ。 文献解説のみ。
+  酵素・基質・複合体の反応と飽和速度則。完全反応系、迅速平衡近似、準定常近似の違いは解説先へ。 限定した実行例：2つの小εと固定反応定数だけの教育例です。εは尺度比であり、その値だけを厳密なQSSA誤差上界とはしません。θ≥0.02を初期層終了の証明とは呼ばず、生体内の反応・観測値へ外挿しません。
 - [Lotka–Volterra捕食・被食](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-lotka-volterra-ja>)
 
-  捕食・被食の結合ODE。位相平面と長時間積分を考えるためのモデルです。 文献解説のみ。
+  捕食・被食の結合ODE。位相平面と長時間積分を考えるためのモデルです。 限定した実行例：1初期値・有限時間の固定比較です。連続系の閉軌道を引き込み極限周期とは呼びません。RK4の厳密な不変量保存、任意刻みでの正値性、長時間の構造保存は保証しません。
 - [McKendrick年齢構造個体群](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-age-structure-ja>)
 
   年齢aに沿う輸送と死亡、新生個体の非局所な更新境界を持つモデルです。 文献解説のみ。

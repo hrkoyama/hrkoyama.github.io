@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_on": "2026-11-24",
+  "reviewed_on": "2026-11-25",
   "title": {
     "ja": "未実装・拡充候補：問題ごとに検証し、まとめて公開する",
     "en": "Benchmark backlog: verify each problem, publish in batches"
@@ -6837,8 +6837,8 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
-      "current": "Euler/Heun/midpoint/Ralston/Kutta3/RK4/SSPRK、BDF2/SDIRK2/IMEX Euler、step doubling と非自律製造解、幾何積分がある。新規 Lie/Strang は有限振幅 Schnakenberg の同一空間離散に対する Radau/DOP853 独立時間参照で検証済み。",
+      "state": "published",
+      "current": "固定入力と図をHRで公開。公開Linux全60群127例1572pytest・全60JUnitと同一SHAの公開確認が合格。元の未達精度目標は検証PASSと分けて表示・保持する。",
       "tasks": [
         "軽い固定 μ・時区間だけを用い、stiffness 遷移、保存量/正値性、許容誤差と実誤差を比較",
         "BDF2/SDIRK2 と独立 Radau/BDF を比較し、Jacobian 再利用と失敗記録を残す"
@@ -6893,7 +6893,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-24-r2/ode-adaptivity/inputs.json",
           "/code/validated-examples/2026-11-24-r2/ode-adaptivity/acceptance.json",
@@ -6916,7 +6916,9 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-24-r2/ode-adaptivity/README.md",
-          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json"
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json",
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#robertson-stiff-kinetics-ja",
         "execution": "/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=ja#robertson-stiff-kinetics-ja-measurements",
@@ -6936,7 +6938,7 @@
         "local_evidence_checked": true,
         "verification_passed": true,
         "links": {
-          "verification": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+          "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json",
           "inputs": [
             "/code/validated-examples/2026-11-24-r2/ode-adaptivity/inputs.json",
             "/code/validated-examples/2026-11-24-r2/ode-adaptivity/acceptance.json",
@@ -6959,7 +6961,9 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-24-r2/ode-adaptivity/README.md",
-            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json"
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json",
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#robertson-stiff-kinetics-ja",
           "execution": "/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=ja#robertson-stiff-kinetics-ja-measurements",
@@ -6985,8 +6989,8 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
-      "current": "Euler/Heun/midpoint/Ralston/Kutta3/RK4/SSPRK、BDF2/SDIRK2/IMEX Euler、step doubling と非自律製造解、幾何積分がある。新規 Lie/Strang は有限振幅 Schnakenberg の同一空間離散に対する Radau/DOP853 独立時間参照で検証済み。",
+      "state": "published",
+      "current": "固定入力と図をHRで公開。公開Linux全60群127例1572pytest・全60JUnitと同一SHAの公開確認が合格。元の未達精度目標は検証PASSと分けて表示・保持する。",
       "tasks": [
         "既知交差時刻を持つ減衰振動または落下問題で補間誤差とイベント時刻を照合",
         "受理/棄却ステップ、相対/絶対許容誤差、最大刻み依存を保存"
@@ -7029,7 +7033,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-24-r2/ode-adaptivity/inputs.json",
           "/code/validated-examples/2026-11-24-r2/ode-adaptivity/acceptance.json",
@@ -7049,7 +7053,9 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-24-r2/ode-adaptivity/README.md",
-          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json"
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json",
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#rk45-dense-events-ja",
         "execution": "/numerical-methods-atlas/validation/rk45-dense-events/?lang=ja#rk45-dense-events-ja-measurements",
@@ -7065,7 +7071,7 @@
         "local_evidence_checked": true,
         "verification_passed": true,
         "links": {
-          "verification": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+          "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json",
           "inputs": [
             "/code/validated-examples/2026-11-24-r2/ode-adaptivity/inputs.json",
             "/code/validated-examples/2026-11-24-r2/ode-adaptivity/acceptance.json",
@@ -7085,7 +7091,9 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-24-r2/ode-adaptivity/README.md",
-            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json"
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json",
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#rk45-dense-events-ja",
           "execution": "/numerical-methods-atlas/validation/rk45-dense-events/?lang=ja#rk45-dense-events-ja-measurements",
@@ -7107,8 +7115,8 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
-      "current": "Euler/Heun/midpoint/Ralston/Kutta3/RK4/SSPRK、BDF2/SDIRK2/IMEX Euler、step doubling と非自律製造解、幾何積分がある。新規 Lie/Strang は有限振幅 Schnakenberg の同一空間離散に対する Radau/DOP853 独立時間参照で検証済み。",
+      "state": "published",
+      "current": "固定入力と図をHRで公開。公開Linux全60群127例1572pytest・全60JUnitと同一SHAの公開確認が合格。元の未達精度目標は検証PASSと分けて表示・保持する。",
       "tasks": [
         "既存周期・固定格子 Schnakenberg の検証を保持し、非同次境界か時間依存係数を一つ追加",
         "時間誤差と空間誤差を分離し、理想的な Strang 2次が崩れる条件を記録"
@@ -7151,7 +7159,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-24-r2/ode-adaptivity/inputs.json",
           "/code/validated-examples/2026-11-24-r2/ode-adaptivity/acceptance.json",
@@ -7170,7 +7178,9 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-24-r2/ode-adaptivity/README.md",
-          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json"
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json",
+          "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#strang-boundary-order-reduction-ja",
         "execution": "/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=ja#strang-boundary-order-reduction-ja-measurements",
@@ -7186,7 +7196,7 @@
         "local_evidence_checked": true,
         "verification_passed": true,
         "links": {
-          "verification": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+          "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json",
           "inputs": [
             "/code/validated-examples/2026-11-24-r2/ode-adaptivity/inputs.json",
             "/code/validated-examples/2026-11-24-r2/ode-adaptivity/acceptance.json",
@@ -7205,7 +7215,9 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-24-r2/ode-adaptivity/README.md",
-            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json"
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json",
+            "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#strang-boundary-order-reduction-ja",
           "execution": "/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=ja#strang-boundary-order-reduction-ja-measurements",
@@ -7227,8 +7239,8 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "verified",
-      "current": "Euler/Heun/midpoint/Ralston/Kutta3/RK4/SSPRK、BDF2/SDIRK2/IMEX Euler、step doubling と非自律製造解、幾何積分がある。新規 Lie/Strang は有限振幅 Schnakenberg の同一空間離散に対する Radau/DOP853 独立時間参照で検証済み。",
+      "state": "published",
+      "current": "固定入力と図をHRで公開。公開Linux全60群127例1572pytest・全60JUnitと同一SHAの公開確認が合格。元の未達精度目標は検証PASSと分けて表示・保持する。",
       "tasks": [
         "既存steady-runge-kutta章の基準状態型多段式と安定性多項式を、小さい線形問題の残差減衰で照合する。",
         "古典RK4の非定常4次精度、擬似時間の収束、非線形定常ソルバーの大域収束を区別する。"
@@ -7252,7 +7264,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-24/steady-rk/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-24/steady-rk/inputs.json",
           "/code/validated-examples/2026-11-24/steady-rk/acceptance.json",
@@ -7268,7 +7280,9 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-24/steady-rk/README.md",
-          "/code/validated-examples/2026-11-24/steady-rk/cases.json"
+          "/code/validated-examples/2026-11-24/steady-rk/cases.json",
+          "/code/validated-examples/2026-11-24/steady-rk/verification.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#jameson-steady-linear-modes-ja",
         "execution": "/numerical-methods-atlas/validation/jameson-steady-linear-modes/?lang=ja#jameson-steady-linear-modes-ja-measurements",
@@ -7284,7 +7298,7 @@
         "local_evidence_checked": true,
         "verification_passed": true,
         "links": {
-          "verification": "/code/validated-examples/2026-11-24/steady-rk/verification.json",
+          "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json",
           "inputs": [
             "/code/validated-examples/2026-11-24/steady-rk/inputs.json",
             "/code/validated-examples/2026-11-24/steady-rk/acceptance.json",
@@ -7300,7 +7314,9 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-24/steady-rk/README.md",
-            "/code/validated-examples/2026-11-24/steady-rk/cases.json"
+            "/code/validated-examples/2026-11-24/steady-rk/cases.json",
+            "/code/validated-examples/2026-11-24/steady-rk/verification.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#jameson-steady-linear-modes-ja",
           "execution": "/numerical-methods-atlas/validation/jameson-steady-linear-modes/?lang=ja#jameson-steady-linear-modes-ja-measurements",
@@ -7322,8 +7338,8 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "verified",
-      "current": "dae は planned だが章は存在し、F(t,y,y′)=0、index-1、整合初期値、BDF Newton 行列を説明。専用の実行・保存結果はまだない。Gear の本文確認は導入・定式化範囲に限定。",
+      "state": "published",
+      "current": "固定入力と図をHRで公開。公開Linux全60群127例1572pytest・全60JUnitと同一SHAの公開確認が合格。元の未達精度目標は検証PASSと分けて表示・保持する。",
       "tasks": [
         "解析解が作れる半陽的 index-1 系で微分・代数残差と全体次数を確認",
         "整合/不整合初期値、初期化 Newton の成功/失敗と許容誤差を保存"
@@ -7357,7 +7373,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-24/dae-controls/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-24/dae-controls/inputs.json",
           "/code/validated-examples/2026-11-24/dae-controls/acceptance.json",
@@ -7374,7 +7390,9 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-24/dae-controls/README.md",
-          "/code/validated-examples/2026-11-24/dae-controls/cases.json"
+          "/code/validated-examples/2026-11-24/dae-controls/cases.json",
+          "/code/validated-examples/2026-11-24/dae-controls/verification.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#index1-dae-consistent-initialization-ja",
         "execution": "/numerical-methods-atlas/validation/index1-dae-consistent-initialization/?lang=ja#index1-dae-consistent-initialization-ja-measurements",
@@ -7390,7 +7408,7 @@
         "local_evidence_checked": true,
         "verification_passed": true,
         "links": {
-          "verification": "/code/validated-examples/2026-11-24/dae-controls/verification.json",
+          "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json",
           "inputs": [
             "/code/validated-examples/2026-11-24/dae-controls/inputs.json",
             "/code/validated-examples/2026-11-24/dae-controls/acceptance.json",
@@ -7407,7 +7425,9 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-24/dae-controls/README.md",
-            "/code/validated-examples/2026-11-24/dae-controls/cases.json"
+            "/code/validated-examples/2026-11-24/dae-controls/cases.json",
+            "/code/validated-examples/2026-11-24/dae-controls/verification.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#index1-dae-consistent-initialization-ja",
           "execution": "/numerical-methods-atlas/validation/index1-dae-consistent-initialization/?lang=ja#index1-dae-consistent-initialization-ja-measurements",
@@ -7429,8 +7449,8 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
-      "current": "dae は planned だが章は存在し、F(t,y,y′)=0、index-1、整合初期値、BDF Newton 行列を説明。専用の実行・保存結果はまだない。Gear の本文確認は導入・定式化範囲に限定。",
+      "state": "published",
+      "current": "固定入力と図をHRで公開。公開Linux全60群127例1572pytest・全60JUnitと同一SHAの公開確認が合格。元の未達精度目標は検証PASSと分けて表示・保持する。",
       "tasks": [
         "ODE 形式と一つの保存則を代数式にした index-1 形式を同じ入力で比較",
         "IDA を独立参照にし、濃度保存・残差・初期値整合性を別々に確認"
@@ -7470,7 +7490,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-24/dae-controls/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-24/dae-controls/inputs.json",
           "/code/validated-examples/2026-11-24/dae-controls/acceptance.json",
@@ -7487,7 +7507,9 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-24/dae-controls/README.md",
-          "/code/validated-examples/2026-11-24/dae-controls/cases.json"
+          "/code/validated-examples/2026-11-24/dae-controls/cases.json",
+          "/code/validated-examples/2026-11-24/dae-controls/verification.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#robertson-stiff-kinetics-ja",
         "execution": "/numerical-methods-atlas/validation/robertson-conservation-dae/?lang=ja#robertson-conservation-dae-ja-measurements",
@@ -7503,7 +7525,7 @@
         "local_evidence_checked": true,
         "verification_passed": true,
         "links": {
-          "verification": "/code/validated-examples/2026-11-24/dae-controls/verification.json",
+          "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json",
           "inputs": [
             "/code/validated-examples/2026-11-24/dae-controls/inputs.json",
             "/code/validated-examples/2026-11-24/dae-controls/acceptance.json",
@@ -7520,7 +7542,9 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-24/dae-controls/README.md",
-            "/code/validated-examples/2026-11-24/dae-controls/cases.json"
+            "/code/validated-examples/2026-11-24/dae-controls/cases.json",
+            "/code/validated-examples/2026-11-24/dae-controls/verification.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#robertson-stiff-kinetics-ja",
           "execution": "/numerical-methods-atlas/validation/robertson-conservation-dae/?lang=ja#robertson-conservation-dae-ja-measurements",
@@ -7542,8 +7566,8 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "verified",
-      "current": "dae は planned だが章は存在し、F(t,y,y′)=0、index-1、整合初期値、BDF Newton 行列を説明。専用の実行・保存結果はまだない。Gear の本文確認は導入・定式化範囲に限定。",
+      "state": "published",
+      "current": "固定入力と図をHRで公開。公開Linux全60群127例1572pytest・全60JUnitと同一SHAの公開確認が合格。元の未達精度目標は検証PASSと分けて表示・保持する。",
       "tasks": [
         "小さい拘束振り子で元の拘束・速度拘束・エネルギーのドリフトを表示",
         "直接 index-1 と同じ扱いをしない条件を解説し、幾何積分の RATTLE へ接続"
@@ -7583,7 +7607,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-24/dae-controls/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-24/dae-controls/inputs.json",
           "/code/validated-examples/2026-11-24/dae-controls/acceptance.json",
@@ -7600,7 +7624,9 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-24/dae-controls/README.md",
-          "/code/validated-examples/2026-11-24/dae-controls/cases.json"
+          "/code/validated-examples/2026-11-24/dae-controls/cases.json",
+          "/code/validated-examples/2026-11-24/dae-controls/verification.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#high-index-pendulum-ja",
         "execution": "/numerical-methods-atlas/validation/high-index-pendulum/?lang=ja#high-index-pendulum-ja-measurements",
@@ -7616,7 +7642,7 @@
         "local_evidence_checked": true,
         "verification_passed": true,
         "links": {
-          "verification": "/code/validated-examples/2026-11-24/dae-controls/verification.json",
+          "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json",
           "inputs": [
             "/code/validated-examples/2026-11-24/dae-controls/inputs.json",
             "/code/validated-examples/2026-11-24/dae-controls/acceptance.json",
@@ -7633,7 +7659,9 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-24/dae-controls/README.md",
-            "/code/validated-examples/2026-11-24/dae-controls/cases.json"
+            "/code/validated-examples/2026-11-24/dae-controls/cases.json",
+            "/code/validated-examples/2026-11-24/dae-controls/verification.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#high-index-pendulum-ja",
           "execution": "/numerical-methods-atlas/validation/high-index-pendulum/?lang=ja#high-index-pendulum-ja-measurements",
@@ -7655,8 +7683,8 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "verified",
-      "current": "symplectic Euler、Verlet、Yoshida4、implicit midpoint を harmonic/quartic Hamiltonian で比較し、エネルギー・位相・写像の構造を検査済み。単純な振動子がない、という欠落ではない。",
+      "state": "published",
+      "current": "固定入力と図をHRで公開。公開Linux全60群127例1572pytest・全60JUnitと同一SHAの公開確認が合格。元の未達精度目標は検証PASSと分けて表示・保持する。",
       "tasks": [
         "位置・速度拘束残差、時間反転、エネルギー長期挙動を比較",
         "拘束解法の許容誤差と時間刻み誤差を区別"
@@ -7707,7 +7735,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-24/geometric-controls/inputs.json",
           "/code/validated-examples/2026-11-24/geometric-controls/acceptance.json",
@@ -7726,7 +7754,9 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-24/geometric-controls/README.md",
-          "/code/validated-examples/2026-11-24/geometric-controls/cases.json"
+          "/code/validated-examples/2026-11-24/geometric-controls/cases.json",
+          "/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#high-index-pendulum-ja",
         "execution": "/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=ja#shake-rattle-pendulum-ja-measurements",
@@ -7742,7 +7772,7 @@
         "local_evidence_checked": true,
         "verification_passed": true,
         "links": {
-          "verification": "/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+          "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json",
           "inputs": [
             "/code/validated-examples/2026-11-24/geometric-controls/inputs.json",
             "/code/validated-examples/2026-11-24/geometric-controls/acceptance.json",
@@ -7761,7 +7791,9 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-24/geometric-controls/README.md",
-            "/code/validated-examples/2026-11-24/geometric-controls/cases.json"
+            "/code/validated-examples/2026-11-24/geometric-controls/cases.json",
+            "/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#high-index-pendulum-ja",
           "execution": "/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=ja#shake-rattle-pendulum-ja-measurements",
@@ -7783,8 +7815,8 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
-      "current": "symplectic Euler、Verlet、Yoshida4、implicit midpoint を harmonic/quartic Hamiltonian で比較し、エネルギー・位相・写像の構造を検査済み。単純な振動子がない、という欠落ではない。",
+      "state": "published",
+      "current": "固定入力と図をHRで公開。公開Linux全60群127例1572pytest・全60JUnitと同一SHAの公開確認が合格。元の未達精度目標は検証PASSと分けて表示・保持する。",
       "tasks": [
         "既知楕円軌道で位相・角運動量・エネルギー誤差を別々に保存",
         "固定刻みと安易な可変刻みで構造がどう変わるかを小規模比較"
@@ -7829,7 +7861,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-24/geometric-controls/inputs.json",
           "/code/validated-examples/2026-11-24/geometric-controls/acceptance.json",
@@ -7848,7 +7880,9 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-24/geometric-controls/README.md",
-          "/code/validated-examples/2026-11-24/geometric-controls/cases.json"
+          "/code/validated-examples/2026-11-24/geometric-controls/cases.json",
+          "/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#gravity-kepler-ja",
         "execution": "/numerical-methods-atlas/validation/kepler-eccentricity/?lang=ja#kepler-eccentricity-ja-measurements",
@@ -7864,7 +7898,7 @@
         "local_evidence_checked": true,
         "verification_passed": true,
         "links": {
-          "verification": "/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+          "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json",
           "inputs": [
             "/code/validated-examples/2026-11-24/geometric-controls/inputs.json",
             "/code/validated-examples/2026-11-24/geometric-controls/acceptance.json",
@@ -7883,7 +7917,9 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-24/geometric-controls/README.md",
-            "/code/validated-examples/2026-11-24/geometric-controls/cases.json"
+            "/code/validated-examples/2026-11-24/geometric-controls/cases.json",
+            "/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#gravity-kepler-ja",
           "execution": "/numerical-methods-atlas/validation/kepler-eccentricity/?lang=ja#kepler-eccentricity-ja-measurements",
@@ -7905,8 +7941,8 @@
       "priority": "P3",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "verified",
-      "current": "symplectic Euler、Verlet、Yoshida4、implicit midpoint を harmonic/quartic Hamiltonian で比較し、エネルギー・位相・写像の構造を検査済み。単純な振動子がない、という欠落ではない。",
+      "state": "published",
+      "current": "固定入力と図をHRで公開。公開Linux全60群127例1572pytest・全60JUnitと同一SHAの公開確認が合格。元の未達精度目標は検証PASSと分けて表示・保持する。",
       "tasks": [
         "小さい結合振動子又は短い FPU 鎖で周波数比と刻みを限定走査",
         "総エネルギーだけでなくモード間エネルギー交換を検査"
@@ -7945,7 +7981,7 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+        "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json",
         "inputs": [
           "/code/validated-examples/2026-11-24/geometric-controls/inputs.json",
           "/code/validated-examples/2026-11-24/geometric-controls/acceptance.json",
@@ -7964,7 +8000,9 @@
         ],
         "references": [
           "/code/validated-examples/2026-11-24/geometric-controls/README.md",
-          "/code/validated-examples/2026-11-24/geometric-controls/cases.json"
+          "/code/validated-examples/2026-11-24/geometric-controls/cases.json",
+          "/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+          "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json"
         ],
         "gallery": "/numerical-methods-atlas/gallery/?lang=ja#multifrequency-resonance-ja",
         "execution": "/numerical-methods-atlas/validation/multifrequency-resonance/?lang=ja#multifrequency-resonance-ja-measurements",
@@ -7980,7 +8018,7 @@
         "local_evidence_checked": true,
         "verification_passed": true,
         "links": {
-          "verification": "/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+          "verification": "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json",
           "inputs": [
             "/code/validated-examples/2026-11-24/geometric-controls/inputs.json",
             "/code/validated-examples/2026-11-24/geometric-controls/acceptance.json",
@@ -7999,7 +8037,9 @@
           ],
           "references": [
             "/code/validated-examples/2026-11-24/geometric-controls/README.md",
-            "/code/validated-examples/2026-11-24/geometric-controls/cases.json"
+            "/code/validated-examples/2026-11-24/geometric-controls/cases.json",
+            "/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+            "/numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json"
           ],
           "gallery": "/numerical-methods-atlas/gallery/?lang=ja#multifrequency-resonance-ja",
           "execution": "/numerical-methods-atlas/validation/multifrequency-resonance/?lang=ja#multifrequency-resonance-ja-measurements",
@@ -8021,7 +8061,7 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
+      "state": "verified",
       "current": "Gauss–Legendre 生成・多項式モーメント、adaptive Simpson、解析 atan/QUADPACK 参照がある。追加 conditioning で狭い Lorentz、相殺、sqrt 端点、零積分、意図的に見逃す bump、推定誤差の過信まで検証済み。",
       "tasks": [
         "Gaussian 無限区間、sin(ωx) 型、内部特異点分割の小さな固定例を追加",
@@ -8040,6 +8080,12 @@
           "url": "https://www.chebfun.org/docs/guide/guide02.html",
           "checked_on": "2026-11-23",
           "review": "公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。"
+        },
+        {
+          "title": "quad: adaptive integration and QUADPACK dispatch",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.quad.html",
+          "review": "Selected parameters/full_output and routine dispatch; no complete QUADPACK book/proof audit.",
+          "review_level": "selected-official-documentation"
         }
       ],
       "baseline_evidence": [
@@ -8056,9 +8102,69 @@
           "id": "quadrature-conditioning"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-25/quadrature-controls/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-25/quadrature-controls/inputs.json",
+          "/code/validated-examples/2026-11-25/quadrature-controls/acceptance.json",
+          "/code/validated-examples/2026-11-25/quadrature-controls/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-25/quadrature-controls/results/quadpack-domain-selection.png",
+          "/code/validated-examples/2026-11-25/quadrature-controls/results/quadpack-domain-selection-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-25/quadrature-controls/run.py",
+          "/code/validated-examples/2026-11-25/quadrature-controls/quadpack_adapter.py",
+          "/code/validated-examples/2026-11-25/quadrature-controls/simpson_baseline.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-25/quadrature-controls/README.md",
+          "/code/validated-examples/2026-11-25/quadrature-controls/cases.json",
+          "/code/validated-examples/2026-11-25/quadrature-controls/source-reading.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#quadpack-domain-selection-ja",
+        "execution": "/numerical-methods-atlas/validation/quadpack-domain-selection/?lang=ja#quadpack-domain-selection-ja-measurements",
+        "note": {
+          "ja": "正規sourceと独立展開ZIPの固定再現検査を確認しました。元の精度/学習目標は別に保持し、全達成とはみなしません。公開後の同一SHAのCI・Linux・HTTP・画面確認は別です。",
+          "en": "Canonical source and independently extracted ZIP reproduction checks passed. Original accuracy and learning goals remain separate; this does not mean every goal was met. Same-SHA post-publication CI, Linux, HTTP and browser checks are separate."
+        }
+      },
       "sequence": 78,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-25/quadrature-controls/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-25/quadrature-controls/inputs.json",
+            "/code/validated-examples/2026-11-25/quadrature-controls/acceptance.json",
+            "/code/validated-examples/2026-11-25/quadrature-controls/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-25/quadrature-controls/results/quadpack-domain-selection.png",
+            "/code/validated-examples/2026-11-25/quadrature-controls/results/quadpack-domain-selection-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-25/quadrature-controls/run.py",
+            "/code/validated-examples/2026-11-25/quadrature-controls/quadpack_adapter.py",
+            "/code/validated-examples/2026-11-25/quadrature-controls/simpson_baseline.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-25/quadrature-controls/README.md",
+            "/code/validated-examples/2026-11-25/quadrature-controls/cases.json",
+            "/code/validated-examples/2026-11-25/quadrature-controls/source-reading.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#quadpack-domain-selection-ja",
+          "execution": "/numerical-methods-atlas/validation/quadpack-domain-selection/?lang=ja#quadpack-domain-selection-ja-measurements",
+          "note": {
+            "ja": "正規sourceと独立展開ZIPの固定再現検査を確認しました。元の精度/学習目標は別に保持し、全達成とはみなしません。公開後の同一SHAのCI・Linux・HTTP・画面確認は別です。",
+            "en": "Canonical source and independently extracted ZIP reproduction checks passed. Original accuracy and learning goals remain separate; this does not mean every goal was met. Same-SHA post-publication CI, Linux, HTTP and browser checks are separate."
+          }
+        }
+      }
     },
     {
       "id": "quadrature-2",
@@ -8071,7 +8177,7 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
+      "state": "verified",
       "current": "Gauss–Legendre 生成・多項式モーメント、adaptive Simpson、解析 atan/QUADPACK 参照がある。追加 conditioning で狭い Lorentz、相殺、sqrt 端点、零積分、意図的に見逃す bump、推定誤差の過信まで検証済み。",
       "tasks": [
         "滑らかな関数と可積分端点特異性で、解析積分値・独立参照を照合",
@@ -8090,6 +8196,18 @@
           "url": "https://www.chebfun.org/docs/guide/guide02.html",
           "checked_on": "2026-11-23",
           "review": "公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。"
+        },
+        {
+          "title": "Pinned SciPy1.14.1 bundled dqk15",
+          "url": "https://raw.githubusercontent.com/scipy/scipy/v1.14.1/scipy/integrate/quadpack/dqk15.f",
+          "review": "Displayed table and nesting/resasc safeguards; coefficients are shared-origin, not independently regenerated.",
+          "review_level": "primary-software-source"
+        },
+        {
+          "title": "Double Exponential Formulas for Numerical Integration",
+          "url": "https://ems.press/doi/pdf/10.2977/prims/1195192451",
+          "review": "Selected extracted pp722/724/730 equations; rendered equation screenshots failed. No whole-paper proof/optimality audit.",
+          "review_level": "selected-primary-body-text"
         }
       ],
       "baseline_evidence": [
@@ -8106,9 +8224,69 @@
           "id": "quadrature-conditioning"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-25/quadrature-controls/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-25/quadrature-controls/inputs.json",
+          "/code/validated-examples/2026-11-25/quadrature-controls/acceptance.json",
+          "/code/validated-examples/2026-11-25/quadrature-controls/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-25/quadrature-controls/results/gk15-double-exponential.png",
+          "/code/validated-examples/2026-11-25/quadrature-controls/results/gk15-double-exponential-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-25/quadrature-controls/run.py",
+          "/code/validated-examples/2026-11-25/quadrature-controls/gk15.py",
+          "/code/validated-examples/2026-11-25/quadrature-controls/double_exponential.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-25/quadrature-controls/README.md",
+          "/code/validated-examples/2026-11-25/quadrature-controls/cases.json",
+          "/code/validated-examples/2026-11-25/quadrature-controls/source-reading.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#gk15-double-exponential-ja",
+        "execution": "/numerical-methods-atlas/validation/gk15-double-exponential/?lang=ja#gk15-double-exponential-ja-measurements",
+        "note": {
+          "ja": "正規sourceと独立展開ZIPの固定再現検査を確認しました。元の精度/学習目標は別に保持し、全達成とはみなしません。公開後の同一SHAのCI・Linux・HTTP・画面確認は別です。",
+          "en": "Canonical source and independently extracted ZIP reproduction checks passed. Original accuracy and learning goals remain separate; this does not mean every goal was met. Same-SHA post-publication CI, Linux, HTTP and browser checks are separate."
+        }
+      },
       "sequence": 79,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-25/quadrature-controls/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-25/quadrature-controls/inputs.json",
+            "/code/validated-examples/2026-11-25/quadrature-controls/acceptance.json",
+            "/code/validated-examples/2026-11-25/quadrature-controls/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-25/quadrature-controls/results/gk15-double-exponential.png",
+            "/code/validated-examples/2026-11-25/quadrature-controls/results/gk15-double-exponential-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-25/quadrature-controls/run.py",
+            "/code/validated-examples/2026-11-25/quadrature-controls/gk15.py",
+            "/code/validated-examples/2026-11-25/quadrature-controls/double_exponential.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-25/quadrature-controls/README.md",
+            "/code/validated-examples/2026-11-25/quadrature-controls/cases.json",
+            "/code/validated-examples/2026-11-25/quadrature-controls/source-reading.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#gk15-double-exponential-ja",
+          "execution": "/numerical-methods-atlas/validation/gk15-double-exponential/?lang=ja#gk15-double-exponential-ja-measurements",
+          "note": {
+            "ja": "正規sourceと独立展開ZIPの固定再現検査を確認しました。元の精度/学習目標は別に保持し、全達成とはみなしません。公開後の同一SHAのCI・Linux・HTTP・画面確認は別です。",
+            "en": "Canonical source and independently extracted ZIP reproduction checks passed. Original accuracy and learning goals remain separate; this does not mean every goal was met. Same-SHA post-publication CI, Linux, HTTP and browser checks are separate."
+          }
+        }
+      }
     },
     {
       "id": "quadrature-3",
@@ -8121,7 +8299,7 @@
       "priority": "P3",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
+      "state": "verified",
       "current": "Gauss–Legendre 生成・多項式モーメント、adaptive Simpson、解析 atan/QUADPACK 参照がある。追加 conditioning で狭い Lorentz、相殺、sqrt 端点、零積分、意図的に見逃す bump、推定誤差の過信まで検証済み。",
       "tasks": [
         "2〜4次元の分離可能な既知積分値だけで軽量比較",
@@ -8140,6 +8318,12 @@
           "url": "https://www.chebfun.org/docs/guide/guide02.html",
           "checked_on": "2026-11-23",
           "review": "公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。"
+        },
+        {
+          "title": "Fast Construction of the Fejer and Clenshaw-Curtis Quadrature Rules",
+          "url": "https://www.sam.math.ethz.ch/sam_reports/reports_final/reports2008/2008-07.pdf",
+          "review": "Selected cover/introduction/sec2 extracted equations2.1–2.6; not the entire DFT proof or performance study. This report supports the Clenshaw-Curtis rule only. The Smolyak Delta/combination assembly is independently derived here; the Smolyak1963 and Gerstner-Griebel1998 original bodies remain unread.",
+          "review_level": "selected-primary-body-text"
         }
       ],
       "baseline_evidence": [
@@ -8156,9 +8340,67 @@
           "id": "quadrature-conditioning"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-25/quadrature-controls/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-25/quadrature-controls/inputs.json",
+          "/code/validated-examples/2026-11-25/quadrature-controls/acceptance.json",
+          "/code/validated-examples/2026-11-25/quadrature-controls/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-25/quadrature-controls/results/tensor-smolyak-dimensions.png",
+          "/code/validated-examples/2026-11-25/quadrature-controls/results/tensor-smolyak-dimensions-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-25/quadrature-controls/run.py",
+          "/code/validated-examples/2026-11-25/quadrature-controls/cubature.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-25/quadrature-controls/README.md",
+          "/code/validated-examples/2026-11-25/quadrature-controls/cases.json",
+          "/code/validated-examples/2026-11-25/quadrature-controls/source-reading.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#tensor-smolyak-dimensions-ja",
+        "execution": "/numerical-methods-atlas/validation/tensor-smolyak-dimensions/?lang=ja#tensor-smolyak-dimensions-ja-measurements",
+        "note": {
+          "ja": "正規sourceと独立展開ZIPの固定再現検査を確認しました。元の精度/学習目標は別に保持し、全達成とはみなしません。公開後の同一SHAのCI・Linux・HTTP・画面確認は別です。",
+          "en": "Canonical source and independently extracted ZIP reproduction checks passed. Original accuracy and learning goals remain separate; this does not mean every goal was met. Same-SHA post-publication CI, Linux, HTTP and browser checks are separate."
+        }
+      },
       "sequence": 80,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-25/quadrature-controls/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-25/quadrature-controls/inputs.json",
+            "/code/validated-examples/2026-11-25/quadrature-controls/acceptance.json",
+            "/code/validated-examples/2026-11-25/quadrature-controls/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-25/quadrature-controls/results/tensor-smolyak-dimensions.png",
+            "/code/validated-examples/2026-11-25/quadrature-controls/results/tensor-smolyak-dimensions-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-25/quadrature-controls/run.py",
+            "/code/validated-examples/2026-11-25/quadrature-controls/cubature.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-25/quadrature-controls/README.md",
+            "/code/validated-examples/2026-11-25/quadrature-controls/cases.json",
+            "/code/validated-examples/2026-11-25/quadrature-controls/source-reading.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#tensor-smolyak-dimensions-ja",
+          "execution": "/numerical-methods-atlas/validation/tensor-smolyak-dimensions/?lang=ja#tensor-smolyak-dimensions-ja-measurements",
+          "note": {
+            "ja": "正規sourceと独立展開ZIPの固定再現検査を確認しました。元の精度/学習目標は別に保持し、全達成とはみなしません。公開後の同一SHAのCI・Linux・HTTP・画面確認は別です。",
+            "en": "Canonical source and independently extracted ZIP reproduction checks passed. Original accuracy and learning goals remain separate; this does not mean every goal was met. Same-SHA post-publication CI, Linux, HTTP and browser checks are separate."
+          }
+        }
+      }
     },
     {
       "id": "interpolation-approximation-1",
@@ -8171,7 +8413,7 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "planned",
+      "state": "verified",
       "current": "splines/chebyshev/wavelets の章・公式・引用は既存だが各 status は planned。Legendre/nodal basis、GLL と等間隔節点、L² 投影、三角形 P1/P2 と質量行列は別に実装済み。",
       "tasks": [
         "1/(1+25x²) と非滑らかな |x| の独立細密点誤差を保存",
@@ -8190,6 +8432,18 @@
           "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.PchipInterpolator.html",
           "checked_on": "2026-11-23",
           "review": "公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。"
+        },
+        {
+          "title": "NIST DLMF §3.11(ii): Chebyshev series and Clenshaw summation",
+          "url": "https://dlmf.nist.gov/3.11",
+          "review": "Selected E7, E9, E11 and E15 with endpoint-halving conventions; no original Clenshaw paper reading. The implementation uses full coefficients, so its final combination is derived explicitly.",
+          "review_level": "official-reference-selected-equations"
+        },
+        {
+          "title": "SciPy 1.14.1 BarycentricInterpolator documentation",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.interpolate.BarycentricInterpolator.html",
+          "review": "Selected barycentric formula and interpolation-conditioning notes read during the preceding preparation. The Berrut–Trefethen paper is a bibliographic lead, not a full-text reading.",
+          "review_level": "official-documentation-selected-notes"
         }
       ],
       "baseline_evidence": [
@@ -8210,9 +8464,67 @@
           "path": "code/numerical-methods-atlas/2026-11-21/numart/basis.py"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-25/approximation-controls/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-25/approximation-controls/inputs.json",
+          "/code/validated-examples/2026-11-25/approximation-controls/acceptance.json",
+          "/code/validated-examples/2026-11-25/approximation-controls/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-25/approximation-controls/results/runge-barycentric-clenshaw.png",
+          "/code/validated-examples/2026-11-25/approximation-controls/results/runge-barycentric-clenshaw-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-25/approximation-controls/run.py",
+          "/code/validated-examples/2026-11-25/approximation-controls/interpolation.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-25/approximation-controls/README.md",
+          "/code/validated-examples/2026-11-25/approximation-controls/cases.json",
+          "/code/validated-examples/2026-11-25/approximation-controls/source-reading.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#runge-barycentric-clenshaw-ja",
+        "execution": "/numerical-methods-atlas/validation/runge-barycentric-clenshaw/?lang=ja#runge-barycentric-clenshaw-ja-measurements",
+        "note": {
+          "ja": "正規sourceと独立展開ZIPの固定再現検査を確認しました。元の精度/学習目標は別に保持し、全達成とはみなしません。公開後の同一SHAのCI・Linux・HTTP・画面確認は別です。",
+          "en": "Canonical source and independently extracted ZIP reproduction checks passed. Original accuracy and learning goals remain separate; this does not mean every goal was met. Same-SHA post-publication CI, Linux, HTTP and browser checks are separate."
+        }
+      },
       "sequence": 81,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-25/approximation-controls/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-25/approximation-controls/inputs.json",
+            "/code/validated-examples/2026-11-25/approximation-controls/acceptance.json",
+            "/code/validated-examples/2026-11-25/approximation-controls/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-25/approximation-controls/results/runge-barycentric-clenshaw.png",
+            "/code/validated-examples/2026-11-25/approximation-controls/results/runge-barycentric-clenshaw-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-25/approximation-controls/run.py",
+            "/code/validated-examples/2026-11-25/approximation-controls/interpolation.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-25/approximation-controls/README.md",
+            "/code/validated-examples/2026-11-25/approximation-controls/cases.json",
+            "/code/validated-examples/2026-11-25/approximation-controls/source-reading.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#runge-barycentric-clenshaw-ja",
+          "execution": "/numerical-methods-atlas/validation/runge-barycentric-clenshaw/?lang=ja#runge-barycentric-clenshaw-ja-measurements",
+          "note": {
+            "ja": "正規sourceと独立展開ZIPの固定再現検査を確認しました。元の精度/学習目標は別に保持し、全達成とはみなしません。公開後の同一SHAのCI・Linux・HTTP・画面確認は別です。",
+            "en": "Canonical source and independently extracted ZIP reproduction checks passed. Original accuracy and learning goals remain separate; this does not mean every goal was met. Same-SHA post-publication CI, Linux, HTTP and browser checks are separate."
+          }
+        }
+      }
     },
     {
       "id": "interpolation-approximation-2",
@@ -8225,7 +8537,7 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "planned",
+      "state": "verified",
       "current": "splines/chebyshev/wavelets の章・公式・引用は既存だが各 status は planned。Legendre/nodal basis、GLL と等間隔節点、L² 投影、三角形 P1/P2 と質量行列は別に実装済み。",
       "tasks": [
         "自然/端点微分指定 spline の境界条件、連続性と導関数を照合",
@@ -8244,6 +8556,18 @@
           "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.PchipInterpolator.html",
           "checked_on": "2026-11-23",
           "review": "公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。"
+        },
+        {
+          "title": "SciPy 1.14.1 PCHIP documentation and selected source",
+          "url": "https://raw.githubusercontent.com/scipy/scipy/v1.14.1/scipy/interpolate/_cubic.py",
+          "review": "Selected lines 202–225, 243–254, 275–298: harmonic interior derivatives, endpoint sign and 3-slope limiter, two-point case. The original Fritsch–Butland paper has not been read in full. Own formulas are independently expressed as scalar Hermite polynomials.",
+          "review_level": "official-source-selected-lines"
+        },
+        {
+          "title": "SciPy 1.14.1 BSpline and CubicSpline documentation",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.interpolate.CubicSpline.html",
+          "review": "Natural and clamped boundary conditions and the BSpline recurrence were read during preparation. No de Boor original full-text claim. SciPy is a secondary numerical companion; the rational second-derivative system is the independent reference.",
+          "review_level": "official-documentation-selected-definitions"
         }
       ],
       "baseline_evidence": [
@@ -8264,9 +8588,67 @@
           "path": "code/numerical-methods-atlas/2026-11-21/numart/basis.py"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-25/approximation-controls/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-25/approximation-controls/inputs.json",
+          "/code/validated-examples/2026-11-25/approximation-controls/acceptance.json",
+          "/code/validated-examples/2026-11-25/approximation-controls/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-25/approximation-controls/results/spline-shape-controls.png",
+          "/code/validated-examples/2026-11-25/approximation-controls/results/spline-shape-controls-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-25/approximation-controls/run.py",
+          "/code/validated-examples/2026-11-25/approximation-controls/splines.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-25/approximation-controls/README.md",
+          "/code/validated-examples/2026-11-25/approximation-controls/cases.json",
+          "/code/validated-examples/2026-11-25/approximation-controls/source-reading.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#spline-shape-controls-ja",
+        "execution": "/numerical-methods-atlas/validation/spline-shape-controls/?lang=ja#spline-shape-controls-ja-measurements",
+        "note": {
+          "ja": "正規sourceと独立展開ZIPの固定再現検査を確認しました。元の精度/学習目標は別に保持し、全達成とはみなしません。公開後の同一SHAのCI・Linux・HTTP・画面確認は別です。",
+          "en": "Canonical source and independently extracted ZIP reproduction checks passed. Original accuracy and learning goals remain separate; this does not mean every goal was met. Same-SHA post-publication CI, Linux, HTTP and browser checks are separate."
+        }
+      },
       "sequence": 82,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-25/approximation-controls/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-25/approximation-controls/inputs.json",
+            "/code/validated-examples/2026-11-25/approximation-controls/acceptance.json",
+            "/code/validated-examples/2026-11-25/approximation-controls/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-25/approximation-controls/results/spline-shape-controls.png",
+            "/code/validated-examples/2026-11-25/approximation-controls/results/spline-shape-controls-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-25/approximation-controls/run.py",
+            "/code/validated-examples/2026-11-25/approximation-controls/splines.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-25/approximation-controls/README.md",
+            "/code/validated-examples/2026-11-25/approximation-controls/cases.json",
+            "/code/validated-examples/2026-11-25/approximation-controls/source-reading.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#spline-shape-controls-ja",
+          "execution": "/numerical-methods-atlas/validation/spline-shape-controls/?lang=ja#spline-shape-controls-ja-measurements",
+          "note": {
+            "ja": "正規sourceと独立展開ZIPの固定再現検査を確認しました。元の精度/学習目標は別に保持し、全達成とはみなしません。公開後の同一SHAのCI・Linux・HTTP・画面確認は別です。",
+            "en": "Canonical source and independently extracted ZIP reproduction checks passed. Original accuracy and learning goals remain separate; this does not mean every goal was met. Same-SHA post-publication CI, Linux, HTTP and browser checks are separate."
+          }
+        }
+      }
     },
     {
       "id": "interpolation-approximation-3",
@@ -8279,7 +8661,7 @@
       "priority": "P3",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "planned",
+      "state": "verified",
       "current": "splines/chebyshev/wavelets の章・公式・引用は既存だが各 status は planned。Legendre/nodal basis、GLL と等間隔節点、L² 投影、三角形 P1/P2 と質量行列は別に実装済み。",
       "tasks": [
         "短い既知信号で完全再構成・直交系のエネルギーを確認",
@@ -8298,6 +8680,18 @@
           "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.PchipInterpolator.html",
           "checked_on": "2026-11-23",
           "review": "公式資料の該当機能・適用範囲を確認。全文・全証明の監査ではない。"
+        },
+        {
+          "title": "S. Mallat, A Theory for Multiresolution Signal Decomposition: The Wavelet Representation",
+          "url": "https://www.di.ens.fr/~mallat/papiers/MallatTheory89.pdf",
+          "review": "During preparation: title/abstract, Haar example on printed p. 679, selected §III-B/C filter/downsample/inverse-pyramid and border-symmetry prose on p. 681. Extracted formula glyphs were imperfect; no complete proof or numerical-table audit is claimed.",
+          "review_level": "primary-paper-selected-body"
+        },
+        {
+          "title": "PyWavelets documentation: Signal extension modes",
+          "url": "https://pywavelets.readthedocs.io/en/latest/ref/signal-extension-modes.html",
+          "review": "Periodic and half-sample symmetric extension and the redundancy caveat. This example defines its own append-at-each-odd-level/crop convention; it does not claim PyWavelets coefficient-layout equivalence or require PyWavelets.",
+          "review_level": "official-documentation-selected-terminology"
         }
       ],
       "baseline_evidence": [
@@ -8318,9 +8712,67 @@
           "path": "code/numerical-methods-atlas/2026-11-21/numart/basis.py"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-25/approximation-controls/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-25/approximation-controls/inputs.json",
+          "/code/validated-examples/2026-11-25/approximation-controls/acceptance.json",
+          "/code/validated-examples/2026-11-25/approximation-controls/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-25/approximation-controls/results/haar-mallat-boundary-threshold.png",
+          "/code/validated-examples/2026-11-25/approximation-controls/results/haar-mallat-boundary-threshold-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-25/approximation-controls/run.py",
+          "/code/validated-examples/2026-11-25/approximation-controls/haar.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-25/approximation-controls/README.md",
+          "/code/validated-examples/2026-11-25/approximation-controls/cases.json",
+          "/code/validated-examples/2026-11-25/approximation-controls/source-reading.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#haar-mallat-boundary-threshold-ja",
+        "execution": "/numerical-methods-atlas/validation/haar-mallat-boundary-threshold/?lang=ja#haar-mallat-boundary-threshold-ja-measurements",
+        "note": {
+          "ja": "正規sourceと独立展開ZIPの固定再現検査を確認しました。元の精度/学習目標は別に保持し、全達成とはみなしません。公開後の同一SHAのCI・Linux・HTTP・画面確認は別です。",
+          "en": "Canonical source and independently extracted ZIP reproduction checks passed. Original accuracy and learning goals remain separate; this does not mean every goal was met. Same-SHA post-publication CI, Linux, HTTP and browser checks are separate."
+        }
+      },
       "sequence": 83,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-25/approximation-controls/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-25/approximation-controls/inputs.json",
+            "/code/validated-examples/2026-11-25/approximation-controls/acceptance.json",
+            "/code/validated-examples/2026-11-25/approximation-controls/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-25/approximation-controls/results/haar-mallat-boundary-threshold.png",
+            "/code/validated-examples/2026-11-25/approximation-controls/results/haar-mallat-boundary-threshold-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-25/approximation-controls/run.py",
+            "/code/validated-examples/2026-11-25/approximation-controls/haar.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-25/approximation-controls/README.md",
+            "/code/validated-examples/2026-11-25/approximation-controls/cases.json",
+            "/code/validated-examples/2026-11-25/approximation-controls/source-reading.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#haar-mallat-boundary-threshold-ja",
+          "execution": "/numerical-methods-atlas/validation/haar-mallat-boundary-threshold/?lang=ja#haar-mallat-boundary-threshold-ja-measurements",
+          "note": {
+            "ja": "正規sourceと独立展開ZIPの固定再現検査を確認しました。元の精度/学習目標は別に保持し、全達成とはみなしません。公開後の同一SHAのCI・Linux・HTTP・画面確認は別です。",
+            "en": "Canonical source and independently extracted ZIP reproduction checks passed. Original accuracy and learning goals remain separate; this does not mean every goal was met. Same-SHA post-publication CI, Linux, HTTP and browser checks are separate."
+          }
+        }
+      }
     },
     {
       "id": "pinn-neural-operators-1",
@@ -8333,7 +8785,7 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "planned",
+      "state": "verified",
       "current": "pinn-operators 章は PINN と FNO を区別し、残差・境界・スケーリング・問題単位分割・OOD と複数 seed を説明。status planned で学習コード/保存ベンチマークなし。引用 raissi2019/li2021fno は abstract-and-metadata。",
       "tasks": [
         "小さい固定ネットワークと少数 seed で、独立格子の解誤差・PDE残差・境界誤差を保存",
@@ -8352,6 +8804,12 @@
           "url": "https://arxiv.org/abs/2010.08895",
           "checked_on": "2026-11-23",
           "review": "著者投稿の原著 preprint の要旨・改訂履歴・問題族学習の対象範囲を確認。OpenReview はブラウザー検証要求のため本文未取得。"
+        },
+        {
+          "title": "Physics Informed Deep Learning (Part I): Data-driven Solutions of Nonlinear Partial Differential Equations",
+          "url": "https://arxiv.org/pdf/1711.10561",
+          "review": "Extracted PDF text selected pp.4–6, §2 continuous-time residual, Eq(2)–(4), Burgers setup and loss/optimizer discussion; not all 22 pages and not visual PDF audit.",
+          "review_level": "selected-primary-body"
         }
       ],
       "baseline_evidence": [
@@ -8367,9 +8825,81 @@
           "id": "raissi2019/li2021fno"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-25/small-models/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-25/small-models/inputs.json",
+          "/code/validated-examples/2026-11-25/small-models/acceptance.json",
+          "/code/validated-examples/2026-11-25/small-models/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-25/small-models/results/pinn-poisson.png",
+          "/code/validated-examples/2026-11-25/small-models/results/pinn-poisson-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-25/small-models/run.py",
+          "/code/validated-examples/2026-11-25/small-models/experiments.py",
+          "/code/validated-examples/2026-11-25/small-models/io_utils.py",
+          "/code/validated-examples/2026-11-25/small-models/pinn.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-25/small-models/README.md",
+          "/code/validated-examples/2026-11-25/small-models/cases.json",
+          "/code/validated-examples/2026-11-25/small-models/source-reading.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#poisson-1d-dirichlet-ja",
+        "execution": "/numerical-methods-atlas/validation/pinn-poisson/?lang=ja#pinn-poisson-ja-measurements",
+        "note": {
+          "ja": "正規sourceと独立展開ZIPの固定再現検査を確認しました。元の精度/学習目標は別に保持し、全達成とはみなしません。公開後の同一SHAのCI・Linux・HTTP・画面確認は別です。",
+          "en": "Canonical source and independently extracted ZIP reproduction checks passed. Original accuracy and learning goals remain separate; this does not mean every goal was met. Same-SHA post-publication CI, Linux, HTTP and browser checks are separate."
+        },
+        "original_goal_summary": {
+          "met": 12,
+          "total": 15,
+          "all_met": false
+        }
+      },
       "sequence": 84,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-25/small-models/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-25/small-models/inputs.json",
+            "/code/validated-examples/2026-11-25/small-models/acceptance.json",
+            "/code/validated-examples/2026-11-25/small-models/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-25/small-models/results/pinn-poisson.png",
+            "/code/validated-examples/2026-11-25/small-models/results/pinn-poisson-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-25/small-models/run.py",
+            "/code/validated-examples/2026-11-25/small-models/experiments.py",
+            "/code/validated-examples/2026-11-25/small-models/io_utils.py",
+            "/code/validated-examples/2026-11-25/small-models/pinn.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-25/small-models/README.md",
+            "/code/validated-examples/2026-11-25/small-models/cases.json",
+            "/code/validated-examples/2026-11-25/small-models/source-reading.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#poisson-1d-dirichlet-ja",
+          "execution": "/numerical-methods-atlas/validation/pinn-poisson/?lang=ja#pinn-poisson-ja-measurements",
+          "note": {
+            "ja": "正規sourceと独立展開ZIPの固定再現検査を確認しました。元の精度/学習目標は別に保持し、全達成とはみなしません。公開後の同一SHAのCI・Linux・HTTP・画面確認は別です。",
+            "en": "Canonical source and independently extracted ZIP reproduction checks passed. Original accuracy and learning goals remain separate; this does not mean every goal was met. Same-SHA post-publication CI, Linux, HTTP and browser checks are separate."
+          },
+          "original_goal_summary": {
+            "met": 12,
+            "total": 15,
+            "all_met": false
+          }
+        }
+      }
     },
     {
       "id": "pinn-neural-operators-2",
@@ -8382,7 +8912,7 @@
       "priority": "P3",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "planned",
+      "state": "verified",
       "current": "pinn-operators 章は PINN と FNO を区別し、残差・境界・スケーリング・問題単位分割・OOD と複数 seed を説明。status planned で学習コード/保存ベンチマークなし。引用 raissi2019/li2021fno は abstract-and-metadata。",
       "tasks": [
         "小さな周期拡散又は Burgers 族で固定データと計算予算を公開",
@@ -8401,6 +8931,12 @@
           "url": "https://arxiv.org/abs/2010.08895",
           "checked_on": "2026-11-23",
           "review": "著者投稿の原著 preprint の要旨・改訂履歴・問題族学習の対象範囲を確認。OpenReview はブラウザー検証要求のため本文未取得。"
+        },
+        {
+          "title": "Fourier Neural Operator for Parametric Partial Differential Equations",
+          "url": "https://arxiv.org/html/2010.08895v3",
+          "review": "Selected HTML §2 learning operators; §3 Eq(2); §4 Eq(4)–(5), FFT/truncation/reality; §5 setup and §5.1 Burgers. PDF header/edition only; not full paper or appendix audit.",
+          "review_level": "selected-primary-body"
         }
       ],
       "baseline_evidence": [
@@ -8416,9 +8952,83 @@
           "id": "raissi2019/li2021fno"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-25/small-models/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-25/small-models/inputs.json",
+          "/code/validated-examples/2026-11-25/small-models/acceptance.json",
+          "/code/validated-examples/2026-11-25/small-models/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-25/small-models/results/fno-periodic-heat.png",
+          "/code/validated-examples/2026-11-25/small-models/results/fno-periodic-heat-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-25/small-models/run.py",
+          "/code/validated-examples/2026-11-25/small-models/experiments.py",
+          "/code/validated-examples/2026-11-25/small-models/io_utils.py",
+          "/code/validated-examples/2026-11-25/small-models/fno.py",
+          "/code/validated-examples/2026-11-25/small-models/data_family.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-25/small-models/README.md",
+          "/code/validated-examples/2026-11-25/small-models/cases.json",
+          "/code/validated-examples/2026-11-25/small-models/source-reading.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#heat-periodic-ja",
+        "execution": "/numerical-methods-atlas/validation/fno-periodic-heat/?lang=ja#fno-periodic-heat-ja-measurements",
+        "note": {
+          "ja": "正規sourceと独立展開ZIPの固定再現検査を確認しました。元の精度/学習目標は別に保持し、全達成とはみなしません。公開後の同一SHAのCI・Linux・HTTP・画面確認は別です。",
+          "en": "Canonical source and independently extracted ZIP reproduction checks passed. Original accuracy and learning goals remain separate; this does not mean every goal was met. Same-SHA post-publication CI, Linux, HTTP and browser checks are separate."
+        },
+        "original_goal_summary": {
+          "met": 6,
+          "total": 8,
+          "all_met": false
+        }
+      },
       "sequence": 85,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-25/small-models/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-25/small-models/inputs.json",
+            "/code/validated-examples/2026-11-25/small-models/acceptance.json",
+            "/code/validated-examples/2026-11-25/small-models/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-25/small-models/results/fno-periodic-heat.png",
+            "/code/validated-examples/2026-11-25/small-models/results/fno-periodic-heat-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-25/small-models/run.py",
+            "/code/validated-examples/2026-11-25/small-models/experiments.py",
+            "/code/validated-examples/2026-11-25/small-models/io_utils.py",
+            "/code/validated-examples/2026-11-25/small-models/fno.py",
+            "/code/validated-examples/2026-11-25/small-models/data_family.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-25/small-models/README.md",
+            "/code/validated-examples/2026-11-25/small-models/cases.json",
+            "/code/validated-examples/2026-11-25/small-models/source-reading.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#heat-periodic-ja",
+          "execution": "/numerical-methods-atlas/validation/fno-periodic-heat/?lang=ja#fno-periodic-heat-ja-measurements",
+          "note": {
+            "ja": "正規sourceと独立展開ZIPの固定再現検査を確認しました。元の精度/学習目標は別に保持し、全達成とはみなしません。公開後の同一SHAのCI・Linux・HTTP・画面確認は別です。",
+            "en": "Canonical source and independently extracted ZIP reproduction checks passed. Original accuracy and learning goals remain separate; this does not mean every goal was met. Same-SHA post-publication CI, Linux, HTTP and browser checks are separate."
+          },
+          "original_goal_summary": {
+            "met": 6,
+            "total": 8,
+            "all_met": false
+          }
+        }
+      }
     },
     {
       "id": "pinn-neural-operators-3",
@@ -8431,7 +9041,7 @@
       "priority": "P3",
       "kind": "references",
       "initial_coverage": "出典整備不足",
-      "state": "planned",
+      "state": "verified",
       "current": "pinn-operators 章は PINN と FNO を区別し、残差・境界・スケーリング・問題単位分割・OOD と複数 seed を説明。status planned で学習コード/保存ベンチマークなし。引用 raissi2019/li2021fno は abstract-and-metadata。",
       "tasks": [
         "既存の abstract-and-metadata を上書きせず、利用する本文節・式・実験条件を追加確認",
@@ -8450,6 +9060,18 @@
           "url": "https://arxiv.org/abs/2010.08895",
           "checked_on": "2026-11-23",
           "review": "著者投稿の原著 preprint の要旨・改訂履歴・問題族学習の対象範囲を確認。OpenReview はブラウザー検証要求のため本文未取得。"
+        },
+        {
+          "title": "Physics Informed Deep Learning (Part I): Data-driven Solutions of Nonlinear Partial Differential Equations",
+          "url": "https://arxiv.org/pdf/1711.10561",
+          "review": "Extracted PDF text selected pp.4–6, §2 continuous-time residual, Eq(2)–(4), Burgers setup and loss/optimizer discussion; not all 22 pages and not visual PDF audit.",
+          "review_level": "selected-primary-body"
+        },
+        {
+          "title": "Fourier Neural Operator for Parametric Partial Differential Equations",
+          "url": "https://arxiv.org/html/2010.08895v3",
+          "review": "Selected HTML §2 learning operators; §3 Eq(2); §4 Eq(4)–(5), FFT/truncation/reality; §5 setup and §5.1 Burgers. PDF header/edition only; not full paper or appendix audit.",
+          "review_level": "selected-primary-body"
         }
       ],
       "baseline_evidence": [
@@ -8465,9 +9087,76 @@
           "id": "raissi2019/li2021fno"
         }
       ],
-      "completion": null,
+      "completion": {
+        "kind": "reference-curation",
+        "numerical_case_delta": 0,
+        "shared_case_ids": [
+          "pinn-poisson",
+          "fno-periodic-heat"
+        ],
+        "verification": "/code/validated-examples/2026-11-25/small-models/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-25/small-models/source-reading.json"
+        ],
+        "references": [
+          "https://arxiv.org/pdf/1711.10561",
+          "https://arxiv.org/html/2010.08895v3"
+        ],
+        "reading": {
+          "ja": "/numerical-methods-atlas/ja/read/pinn-operators/#selected-original-source-roles",
+          "en": "/numerical-methods-atlas/en/read/pinn-operators/#selected-original-source-roles"
+        },
+        "note": {
+          "ja": "選択閲読の役割を追記します。既存2019論文の抄録/書誌記録を保持し、別の数値例を加算しません。",
+          "en": "Append the roles of selected original passages. Preserve the existing 2019 abstract/bibliographic record and add no numerical case."
+        },
+        "targets": [
+          "/numerical-methods-atlas/ja/read/pinn-operators/#selected-original-source-roles",
+          "/numerical-methods-atlas/en/read/pinn-operators/#selected-original-source-roles"
+        ],
+        "proof": [
+          "/code/validated-examples/2026-11-25/small-models/source-reading.json",
+          "/catalog/atlas-detailed-reading.json"
+        ]
+      },
       "sequence": 86,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "curation",
+        "partial": false,
+        "local_evidence_checked": true,
+        "links": {
+          "kind": "reference-curation",
+          "numerical_case_delta": 0,
+          "shared_case_ids": [
+            "pinn-poisson",
+            "fno-periodic-heat"
+          ],
+          "verification": "/code/validated-examples/2026-11-25/small-models/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-25/small-models/source-reading.json"
+          ],
+          "references": [
+            "https://arxiv.org/pdf/1711.10561",
+            "https://arxiv.org/html/2010.08895v3"
+          ],
+          "reading": {
+            "ja": "/numerical-methods-atlas/ja/read/pinn-operators/#selected-original-source-roles",
+            "en": "/numerical-methods-atlas/en/read/pinn-operators/#selected-original-source-roles"
+          },
+          "note": {
+            "ja": "選択閲読の役割を追記します。既存2019論文の抄録/書誌記録を保持し、別の数値例を加算しません。",
+            "en": "Append the roles of selected original passages. Preserve the existing 2019 abstract/bibliographic record and add no numerical case."
+          },
+          "targets": [
+            "/numerical-methods-atlas/ja/read/pinn-operators/#selected-original-source-roles",
+            "/numerical-methods-atlas/en/read/pinn-operators/#selected-original-source-roles"
+          ],
+          "proof": [
+            "/code/validated-examples/2026-11-25/small-models/source-reading.json",
+            "/catalog/atlas-detailed-reading.json"
+          ]
+        }
+      }
     },
     {
       "id": "biology-ode-1",
@@ -8480,14 +9169,33 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "planned",
+      "state": "verified",
       "current": "ロジスティック増殖、閉鎖SIR、空間なしFitzHugh–Nagumoの限定例は実行済み。生物22モデル族全体の実装ではない。",
       "tasks": [
         "酵素の保存量と準定常近似の誤差を分離する。",
         "捕食被食の不変量・正値性、SEIRの総人口保存と早期線形極限を確認する。"
       ],
       "scope_note": "",
-      "sources": [],
+      "sources": [
+        {
+          "title": "Rigorous estimates for the quasi-steady state approximation of the Michaelis–Menten reaction mechanism at low enzyme concentrations",
+          "url": "https://arxiv.org/html/2305.12602v2",
+          "review": "Selected §1 Eq(1)–(8) and selected discussion around transient-time estimates Eq(32); proofs and complete quantitative bounds unread.",
+          "review_level": "selected-primary-body"
+        },
+        {
+          "title": "Experiments in MATLAB, Chapter16: Predator-Prey Model",
+          "url": "https://www.mathworks.com/content/dam/mathworks/mathworks-dot-com/moler/exm/chapters/predprey.pdf",
+          "review": "Selected extracted text pp3–6: normalized LV equations, equilibrium, periodic-orbit discussion and numerical illustration. No original Lotka/Volterra paper read.",
+          "review_level": "selected-primary-body"
+        },
+        {
+          "title": "The Mathematics of Infectious Diseases",
+          "url": "https://math.uchicago.edu/~shmuel/Modeling/hethcote2000%20Mathematics%20of%20Infectious%20diseases.pdf",
+          "review": "Header, selected introduction compartment definitions and §3.1 printedpp618–619, displayed mass-action numbers and Eq(3.1); search around3.2/SEIR limit. Not whole55pages or visual diagram audit.",
+          "review_level": "selected-primary-body"
+        }
+      ],
       "baseline_evidence": [
         {
           "path": "catalog/atlas-depth.json",
@@ -8497,9 +9205,99 @@
           "path": "numerical-methods-atlas/assets/biological-models.json"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-25/small-models/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-25/small-models/inputs.json",
+          "/code/validated-examples/2026-11-25/small-models/acceptance.json",
+          "/code/validated-examples/2026-11-25/small-models/pre-run-contract.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-25/small-models/results/enzyme-qssa.png",
+          "/code/validated-examples/2026-11-25/small-models/results/enzyme-qssa-preview.png",
+          "/code/validated-examples/2026-11-25/small-models/results/lotka-volterra.png",
+          "/code/validated-examples/2026-11-25/small-models/results/lotka-volterra-preview.png",
+          "/code/validated-examples/2026-11-25/small-models/results/seir-linearization.png",
+          "/code/validated-examples/2026-11-25/small-models/results/seir-linearization-preview.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-25/small-models/run.py",
+          "/code/validated-examples/2026-11-25/small-models/experiments.py",
+          "/code/validated-examples/2026-11-25/small-models/io_utils.py",
+          "/code/validated-examples/2026-11-25/small-models/biology.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-25/small-models/README.md",
+          "/code/validated-examples/2026-11-25/small-models/cases.json",
+          "/code/validated-examples/2026-11-25/small-models/source-reading.json"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#enzyme-qssa-ja",
+        "execution": "/numerical-methods-atlas/validation/enzyme-qssa/?lang=ja#enzyme-qssa-ja-measurements",
+        "note": {
+          "ja": "正規sourceと独立展開ZIPの固定再現検査を確認しました。元の精度/学習目標は別に保持し、全達成とはみなしません。公開後の同一SHAのCI・Linux・HTTP・画面確認は別です。",
+          "en": "Canonical source and independently extracted ZIP reproduction checks passed. Original accuracy and learning goals remain separate; this does not mean every goal was met. Same-SHA post-publication CI, Linux, HTTP and browser checks are separate."
+        },
+        "case_ids": [
+          "enzyme-qssa",
+          "lotka-volterra",
+          "seir-linearization"
+        ],
+        "original_goal_summary": {
+          "met": 42,
+          "total": 42,
+          "all_met": true
+        }
+      },
       "sequence": 87,
-      "completion_evidence": null
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-25/small-models/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-25/small-models/inputs.json",
+            "/code/validated-examples/2026-11-25/small-models/acceptance.json",
+            "/code/validated-examples/2026-11-25/small-models/pre-run-contract.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-25/small-models/results/enzyme-qssa.png",
+            "/code/validated-examples/2026-11-25/small-models/results/enzyme-qssa-preview.png",
+            "/code/validated-examples/2026-11-25/small-models/results/lotka-volterra.png",
+            "/code/validated-examples/2026-11-25/small-models/results/lotka-volterra-preview.png",
+            "/code/validated-examples/2026-11-25/small-models/results/seir-linearization.png",
+            "/code/validated-examples/2026-11-25/small-models/results/seir-linearization-preview.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-25/small-models/run.py",
+            "/code/validated-examples/2026-11-25/small-models/experiments.py",
+            "/code/validated-examples/2026-11-25/small-models/io_utils.py",
+            "/code/validated-examples/2026-11-25/small-models/biology.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-25/small-models/README.md",
+            "/code/validated-examples/2026-11-25/small-models/cases.json",
+            "/code/validated-examples/2026-11-25/small-models/source-reading.json"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#enzyme-qssa-ja",
+          "execution": "/numerical-methods-atlas/validation/enzyme-qssa/?lang=ja#enzyme-qssa-ja-measurements",
+          "note": {
+            "ja": "正規sourceと独立展開ZIPの固定再現検査を確認しました。元の精度/学習目標は別に保持し、全達成とはみなしません。公開後の同一SHAのCI・Linux・HTTP・画面確認は別です。",
+            "en": "Canonical source and independently extracted ZIP reproduction checks passed. Original accuracy and learning goals remain separate; this does not mean every goal was met. Same-SHA post-publication CI, Linux, HTTP and browser checks are separate."
+          },
+          "case_ids": [
+            "enzyme-qssa",
+            "lotka-volterra",
+            "seir-linearization"
+          ],
+          "original_goal_summary": {
+            "met": 42,
+            "total": 42,
+            "all_met": true
+          }
+        }
+      }
     },
     {
       "id": "biology-ode-2",
@@ -9106,10 +9904,10 @@
     "total": 103,
     "fields": 36,
     "states": {
-      "planned": 31,
+      "planned": 21,
       "in-progress": 2,
       "verified": 10,
-      "published": 60
+      "published": 70
     },
     "kinds": {
       "implementation": 58,
@@ -9124,10 +9922,10 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-benchmark-backlog.json": "96389ab80bf4c5fffaf9186e731e03d66c97375bb3d89b73c30ba63f98e7a7eb",
-    "catalog/atlas-detailed-reading.json": "4e50c7c9810337a166e8d3243b5f9de0daaf143a881e955921d9bf7e4be8f20c",
+    "catalog/atlas-benchmark-backlog.json": "9a0b99aa460b98aaa0598354871be629908fd522831376bef7c31067775c64b9",
+    "catalog/atlas-detailed-reading.json": "7106bf86f5fe603d39bb4097ea5d88aa13589b6daf29d31e42a867ae781b8c03",
     "catalog/atlas-method-primary-references.json": "0b0f4df551b17a83672b3251a8155be2d7f3648f6e48f550cc99d8d49b2ef13c",
-    "catalog/atlas-methods.json": "82dfd3336a82bc165f4f47d3e1f709481866e053bf1c9bcb342520bf0d257609",
+    "catalog/atlas-methods.json": "b303a2990f02603849719e9094e46768634286cd84e18b425ce48e5934873297",
     "code/validated-examples/2026-11-23-r2/euler-positivity/acceptance.json": "f08558b2703369a2260db1252dc40272f76556a2f6205688faa88a4c37c79050",
     "code/validated-examples/2026-11-23-r2/euler-positivity/euler_positivity.py": "c22015d9435095b3f08189d1b09be4a040c79062b1cc76fd15648cca00f73a58",
     "code/validated-examples/2026-11-23-r2/euler-positivity/inputs.json": "a1185e4b8be0f49f8f3f551f934614110c227d39b2bb0dc4438c5301428d751b",
@@ -9651,10 +10449,72 @@
     "code/validated-examples/2026-11-24/stochastic-estimation/results/normal-tail-importance-preview.png": "bb43d99a5fddd23605e1a9c5c757f6ef0119a6b6dac33b8224ac153bf718fba4",
     "code/validated-examples/2026-11-24/stochastic-estimation/run.py": "4267474a1b22f476924b298dcc5e9910ccb5338ce2d8e1920235d3114bbf0e86",
     "code/validated-examples/2026-11-24/stochastic-estimation/verification.json": "04589e7e1285b60e3d327c5772d392405e04f5fc9623a0850b38c9eaa9478f90",
-    "numerical-methods-atlas/gallery/index.html": "a23d042dc4b196b3ad8e636a0fed40a66b0a76613fe3798603b542b728bc0f4e",
-    "numerical-methods-atlas/methods/thomas/index.html": "67aef687451948913dacc077e38dfee86df93ccc2baf33990b3a851ea0c6cd0b",
+    "code/validated-examples/2026-11-25/approximation-controls/README.md": "106b70deada82e3ab1f21fe870e0f75862a63caa378e7195590cd80202da6d59",
+    "code/validated-examples/2026-11-25/approximation-controls/acceptance.json": "2f3740bc218e84c3c8bac1c89ecd27651ed4e2f2d417058bb4e05c9121906ad7",
+    "code/validated-examples/2026-11-25/approximation-controls/cases.json": "5b422ab05c5f902f238be33541a72991228dae016b0a46fdeaed38df16873a4f",
+    "code/validated-examples/2026-11-25/approximation-controls/haar.py": "7a7576c71e72008b3881a18a0d2cab0a7679521011af5205d1b030ea95acc493",
+    "code/validated-examples/2026-11-25/approximation-controls/inputs.json": "1b25d6d4161e19c1208819b010042eb568f68549e513a14a500884f630745217",
+    "code/validated-examples/2026-11-25/approximation-controls/interpolation.py": "d2bf38e59a09487604b0f0de22f97cdc39c19ec89cfd62a9bcffaf9812638223",
+    "code/validated-examples/2026-11-25/approximation-controls/pre-run-contract.json": "4aedc31889b318f833b2f2921db215fdfb3512966a10b0803029d65fa63146fc",
+    "code/validated-examples/2026-11-25/approximation-controls/results/haar-mallat-boundary-threshold-preview.png": "957809b32f1acfa3d3289eeb24e0e28fbdec9dd4df5f783f28c2bdbbf10498f3",
+    "code/validated-examples/2026-11-25/approximation-controls/results/haar-mallat-boundary-threshold.png": "8515541cb6ae0fb774e093238e0b21983b29749053db2776e45f17dbc7108f51",
+    "code/validated-examples/2026-11-25/approximation-controls/results/runge-barycentric-clenshaw-preview.png": "36e92c10fcf30cc84d6982b52d2ee72e4ddacabd445527b180d06836d33aa7f7",
+    "code/validated-examples/2026-11-25/approximation-controls/results/runge-barycentric-clenshaw.png": "8cf8b9c5946bbec3a3c4cef110ff3bed1c5ddc9edf77c94b6a454129e2c536fb",
+    "code/validated-examples/2026-11-25/approximation-controls/results/spline-shape-controls-preview.png": "f82de2009b363a8e1a42e118714084f4b920f050393c066c75f996c38299f1c5",
+    "code/validated-examples/2026-11-25/approximation-controls/results/spline-shape-controls.png": "c0ebf146b8708eccd7174ee553417c6224f36c03a97ed6e8a09efe7a894e6a52",
+    "code/validated-examples/2026-11-25/approximation-controls/run.py": "62c91a1284de5af255af6bb490ef065b0b180157040cf1c9d8dfb6f19560e799",
+    "code/validated-examples/2026-11-25/approximation-controls/source-reading.json": "44ae8b2fd32ec7677191fc0ee68c1bedfabb56be6994a64c855e4f83a15ee8cd",
+    "code/validated-examples/2026-11-25/approximation-controls/splines.py": "f8d0fb4d59cf30717260c376f82a158b99b90678a5b3fe0d768f3029bf0b5ab2",
+    "code/validated-examples/2026-11-25/approximation-controls/verification.json": "4a492b3d14bd72ead4daa18b68d791fb9b58cc49c426b87c30ebf2b0d439f7ab",
+    "code/validated-examples/2026-11-25/quadrature-controls/README.md": "da369bbf7d595475830b876f1e2f4afb758af6574ff3bd6eb8e6ecc66c2a0122",
+    "code/validated-examples/2026-11-25/quadrature-controls/acceptance.json": "8f83d83c15af06ded71a045e5ef81758d47d139307df57c6942425abd6c0408d",
+    "code/validated-examples/2026-11-25/quadrature-controls/cases.json": "f900a3245e2b6ae3b446e553a17f93b507444654bce72ffeb1003b95bc97446b",
+    "code/validated-examples/2026-11-25/quadrature-controls/cubature.py": "e670b43adad8753f1e0112f48801ba8004c3d6de6ae0f059339251d4bab28bdd",
+    "code/validated-examples/2026-11-25/quadrature-controls/double_exponential.py": "c4eb6a979bebf17bec84a9a473b7731fd6c631280e8968b5c0d6e798d76367d0",
+    "code/validated-examples/2026-11-25/quadrature-controls/gk15.py": "4986d18bacbda1f20447c82cfc261b748c3202c508ff46130e9a868b93926c86",
+    "code/validated-examples/2026-11-25/quadrature-controls/inputs.json": "256fb2326fe3c907ac1a0b5131bf86d55b024e7c49cdac30ff23db1250c868d1",
+    "code/validated-examples/2026-11-25/quadrature-controls/pre-run-contract.json": "7e9a1279c12becf522d20cab4c5602361b52d4c73b5ad99b0a653d2358a4e111",
+    "code/validated-examples/2026-11-25/quadrature-controls/quadpack_adapter.py": "f63f8fcbc16c56b8a29e6eeea18072ad7e0d9cc1c236a0e464d1444c9d0aaf6d",
+    "code/validated-examples/2026-11-25/quadrature-controls/results/gk15-double-exponential-preview.png": "1baba282adda756250570f756dada4aca2ad08a211da1d09f4aa4f012ab8b0dd",
+    "code/validated-examples/2026-11-25/quadrature-controls/results/gk15-double-exponential.png": "54eff6035d84c6fa0bed04722537c85d31653911b6b1196391ea6d538f00cb7e",
+    "code/validated-examples/2026-11-25/quadrature-controls/results/quadpack-domain-selection-preview.png": "111323aebefd00411d8204b17d38024d3a20920e263f36af487083ecd49259f5",
+    "code/validated-examples/2026-11-25/quadrature-controls/results/quadpack-domain-selection.png": "9b45e3cc69ef7af27848683d0e7955c215c90da800cd6313d092f0afba36bd5f",
+    "code/validated-examples/2026-11-25/quadrature-controls/results/tensor-smolyak-dimensions-preview.png": "8f0c7101b7ca3062e0789fb9a658f58542024b566a8fafdc38e6a2a9d4263147",
+    "code/validated-examples/2026-11-25/quadrature-controls/results/tensor-smolyak-dimensions.png": "3f503ee0571df93719f30817552dc5f8152a5042975319acd9a450599f2ecbdc",
+    "code/validated-examples/2026-11-25/quadrature-controls/run.py": "22eb54075ab4b4acc935c8eff0f5112fdcac065de1d44f0770261eaca5913f27",
+    "code/validated-examples/2026-11-25/quadrature-controls/simpson_baseline.py": "b73eac6186447c3bf1563fe5a5914c69ef6ed555780743e295e086eb65c29dea",
+    "code/validated-examples/2026-11-25/quadrature-controls/source-reading.json": "649285abc319642ef009ccd7fbf9b80befccff3b9740393b4a06e628676bddf2",
+    "code/validated-examples/2026-11-25/quadrature-controls/verification.json": "cfc7e98903ca8dcc5b11245f15d94b6711aa5ab7992ec29b2c9b291552b85e08",
+    "code/validated-examples/2026-11-25/small-models/README.md": "4371db6c2b6e2a95951e5bd6c38b96c9b2728598f897429ccf4bb9b5d4562d3f",
+    "code/validated-examples/2026-11-25/small-models/acceptance.json": "b468e78459cf81bda6a32cade0051f6615b44def256c66308ae7acc82ff516ce",
+    "code/validated-examples/2026-11-25/small-models/biology.py": "2354944dcf92032ef368852bd42671d6d58c36ce38eb00edcd639fe82083cb86",
+    "code/validated-examples/2026-11-25/small-models/cases.json": "7da1b291ce84a8133573794574cb539f6d3c5512571cafa8f05a67ad1d6acabc",
+    "code/validated-examples/2026-11-25/small-models/data_family.py": "1b30bb7edd845f634180ced1691c6504c6c2deb57ccf52e87c3e1839a3979f21",
+    "code/validated-examples/2026-11-25/small-models/experiments.py": "e7c0cfb6254f7fc1bca4ee3ded9915f1eac0e45371430c036de14f5c2e35b474",
+    "code/validated-examples/2026-11-25/small-models/fno.py": "253758f404a4e0fb3f5cb928661ff7ce069f9b9c221b2f635a7e4e4801305943",
+    "code/validated-examples/2026-11-25/small-models/inputs.json": "9dc5d9527e3e36d1de06e82c386ff4375292392a6ba9e23ac09885693c1c524d",
+    "code/validated-examples/2026-11-25/small-models/io_utils.py": "346cc02cfeeba657c79dc85363ed3f04c744443eaf7c802928b329c629743e42",
+    "code/validated-examples/2026-11-25/small-models/pinn.py": "57b6381d6e7c2f880849909a53613db61b70e319c0bfd5bd2f4420404485fcdd",
+    "code/validated-examples/2026-11-25/small-models/pre-run-contract.json": "404cf05b6b1ca136c6bb220bce7f915b207b53c4ef17f36d05c4ad4c3149b9c6",
+    "code/validated-examples/2026-11-25/small-models/results/enzyme-qssa-preview.png": "9f8ee2648321815e570a9415a71d42e1b7f8228ece70e9ff797860f23f7eea8c",
+    "code/validated-examples/2026-11-25/small-models/results/enzyme-qssa.png": "9f8ee2648321815e570a9415a71d42e1b7f8228ece70e9ff797860f23f7eea8c",
+    "code/validated-examples/2026-11-25/small-models/results/fno-periodic-heat-preview.png": "ea28a5f74ffda13ea9bc3261d83e8085994e36345dfab622690ac706ca2c3312",
+    "code/validated-examples/2026-11-25/small-models/results/fno-periodic-heat.png": "ea28a5f74ffda13ea9bc3261d83e8085994e36345dfab622690ac706ca2c3312",
+    "code/validated-examples/2026-11-25/small-models/results/lotka-volterra-preview.png": "2b0fbc061793a1f77310488f6351e2b8315fc2bc4da8c2f5946024d5f4e8d029",
+    "code/validated-examples/2026-11-25/small-models/results/lotka-volterra.png": "2b0fbc061793a1f77310488f6351e2b8315fc2bc4da8c2f5946024d5f4e8d029",
+    "code/validated-examples/2026-11-25/small-models/results/pinn-poisson-preview.png": "bd65a9cb67aa5e92d5c81903ad94d2e6afae9eb3c9df85b7930c3e1b9231dad3",
+    "code/validated-examples/2026-11-25/small-models/results/pinn-poisson.png": "bd65a9cb67aa5e92d5c81903ad94d2e6afae9eb3c9df85b7930c3e1b9231dad3",
+    "code/validated-examples/2026-11-25/small-models/results/seir-linearization-preview.png": "3ee8e7e8fdab4934bfc1ef679ccc39722c2412e95331bfb26800ae1c4fe80e04",
+    "code/validated-examples/2026-11-25/small-models/results/seir-linearization.png": "3ee8e7e8fdab4934bfc1ef679ccc39722c2412e95331bfb26800ae1c4fe80e04",
+    "code/validated-examples/2026-11-25/small-models/run.py": "fe0136cbd1d93082a2daf75f0278ff7ebc9a8f18b56d40b0161c09a807c414d0",
+    "code/validated-examples/2026-11-25/small-models/source-reading.json": "582fddea8400ee21cecfd2376248bab6e7454ee59064d468c6d518b3ddd9a858",
+    "code/validated-examples/2026-11-25/small-models/verification.json": "a134ed7650c468598c7222c994e2ae49a87c4584264269747c4bc2141a115145",
+    "numerical-methods-atlas/en/read/pinn-operators/index.html": "15b5dba49680036991ced9678f964ff279f11f55c102d8efa70f717a56c76951",
+    "numerical-methods-atlas/gallery/index.html": "3b4279834764da6303b8468460337b5014d5c9b3e30e6a119ceea9b087db0484",
+    "numerical-methods-atlas/ja/read/pinn-operators/index.html": "08771e94a53fe9fd867b69c3b3c160bbc5b1e0bd8fd57dff967b75d48538cc74",
+    "numerical-methods-atlas/methods/thomas/index.html": "672429c4074d1d1f71fffff87b153fb3409927cc377f11347a442fd387f54b0f",
     "numerical-methods-atlas/reading/thomas-provenance.json": "a9eff54993f6f992bcddbb01ddf306adf59a234c8745a7a86557d38a3ab65ee2",
-    "numerical-methods-atlas/solutions/index.html": "d48efa085fb4d6768e4115bbefd3abd5fbd4818d9811902449345cfbd23a8612",
+    "numerical-methods-atlas/solutions/index.html": "b2dce3accc4fb2b5ceeaa73d8bff019ca3b387f8214e6e7d59ed832112b75241",
     "numerical-methods-atlas/validation/ale-nonuniform-transport/index.html": "7aa6c5eb188f78d0dfe31500b2fbc2e029abb79f844d658ce3a35afd68004a46",
     "numerical-methods-atlas/validation/annular-viscous-mms/index.html": "fcd250bb18308ab5934e70fa6c15f2d810d6544459dd5c38adb6914d00be1024",
     "numerical-methods-atlas/validation/bfgs-lbfgs-controls/index.html": "e937246a0ab08fc8ff00178d4f61ff7686ddff22baf2372bcbc68bc03f8022e7",
@@ -9676,15 +10536,19 @@
     "numerical-methods-atlas/validation/dry-bed-dam-break/index.html": "bb98e74ec14bdec09a7c804752f2c2cd35fc69f3d9eba3ec34bbe42a3369859a",
     "numerical-methods-atlas/validation/dsmc-couette/index.html": "8cca50ba3e4b0660d67aab7dbe987af43851a3b3c1fb75070832c741304659c9",
     "numerical-methods-atlas/validation/dsmc-planar-shock/index.html": "57b308f30bd2cf529c9ab37fbe4ebb16efef97a00453642ad1f0e36f3fd2547f",
+    "numerical-methods-atlas/validation/enzyme-qssa/index.html": "4da35248bde4865140bede8ed2eba7d48800767cf41cadfaf324abea145299c9",
     "numerical-methods-atlas/validation/euler-double-rarefaction-positivity/index.html": "4d4fcab49ac266c0ee9856fd36aee352e75d8bfd07791d80a8e16737fa58f458",
     "numerical-methods-atlas/validation/fem-mass-eigen/index.html": "5c2849a3813fb51eb67ea4dda4ac8150aa385db25f2df405b54682bd25c837c1",
     "numerical-methods-atlas/validation/fmm3d-inverse-r/index.html": "3f08ba996f5682e7df3187dd0d3243e58ac33ace110ddd7f77536e4dea2a3e32",
+    "numerical-methods-atlas/validation/fno-periodic-heat/index.html": "f6896404b6eabe86b0d920c3379a9202d7899b7895ed024eac8e4943859a74f7",
     "numerical-methods-atlas/validation/forward-step-m3/index.html": "ca49671c5b742c52c6df00924b61fb0de1eefed1f31b9933480b8f7668147d69",
     "numerical-methods-atlas/validation/gbm-milstein-strong/index.html": "8a66c6dfc62f0d81d7c39a35588efbbe8eb1b962bfcfc7b71385c2589a1e1c49",
     "numerical-methods-atlas/validation/gbm-weak-moments/index.html": "d94a2724f77c74c24277d62ef47a3f116ecfbe580e0362e5274ef14773b1d8e2",
+    "numerical-methods-atlas/validation/gk15-double-exponential/index.html": "9ec4aa347d2e58bf4195353fdc97a33b2ca93d4b2812f9db190bf6490223458b",
     "numerical-methods-atlas/validation/globalization-difficult-starts/index.html": "d3611557558ad94ed19632262a1e1e1096373d3d7895e692793ae1691e6cd464",
     "numerical-methods-atlas/validation/gravity-kepler/index.html": "22eea590d5cdc6304d824ea4e55fa48817844772969693287c4b068852ce2908",
     "numerical-methods-atlas/validation/guderley-implosion/index.html": "3c09d4266144f40a1be9ab64711f3b5b20541f3b463ed50a2f4d68aad3f9f674",
+    "numerical-methods-atlas/validation/haar-mallat-boundary-threshold/index.html": "d3ca4203f864bd3419858e7354dc33b9bbd14dce802f71a3bcea023dedf8adbe",
     "numerical-methods-atlas/validation/hessian-vector-products/index.html": "4bd7665cf7c972d386c8097efa3ac996e0b1f24ffe5906f4b841d51c99bc4d17",
     "numerical-methods-atlas/validation/high-index-pendulum/index.html": "e12b2525a22592ea0b3bb157eddec461fc22a04f390aa07f0b311dda9c46b309",
     "numerical-methods-atlas/validation/index1-dae-consistent-initialization/index.html": "ca0bf3a02f8d2aaab2e91a636a23b791b4efb7cebda762f2384791041ec78eb3",
@@ -9704,23 +10568,28 @@
     "numerical-methods-atlas/validation/noh-cartesian-2d/index.html": "0037c7d552ba9c7b88b35a2011132d20a11c687b6a5baba1dcaa2241055de0d2",
     "numerical-methods-atlas/validation/normal-tail-importance/index.html": "513b6a58efd38c58c0ae4372939d56267a87e99ced4e58fe36f4610675789c96",
     "numerical-methods-atlas/validation/pic-independent-spatial/index.html": "0e57cd9fdb3d5cae20040477888e0a7b521287badf074bbb46d8cd5cf62c5007",
+    "numerical-methods-atlas/validation/pinn-poisson/index.html": "69547452c62488301a9c6460bdb022e283d73a70aa7fa4cada9819eb95ce8867",
     "numerical-methods-atlas/validation/pivoted-direct-refinement/index.html": "c278b4c01e7ae1ca04e0dbc5f46d422c88ff49aa15b48391c6b71e39daa7499a",
     "numerical-methods-atlas/validation/poisson-neumann/index.html": "2c7e2c603960726cbfdbd90cb6bc457d9786b8175a99b09f34b1daf2503beec4",
     "numerical-methods-atlas/validation/postshock-orszag-tang/index.html": "abf9b97b408e9d8029ff6c9fd91c1ef78092140dbccba7edc46e5af2de7b603b",
+    "numerical-methods-atlas/validation/quadpack-domain-selection/index.html": "ee6d745464cbb4c64fd5c64a77af9df95641c53dc6364243ca37ccf66eaff1f9",
     "numerical-methods-atlas/validation/restarted-shift-invert/index.html": "5c6c17a68a6dd2c8edabf2c3f6f915be9edbf8e25ebcf3eaa0ccf466ac73cae9",
     "numerical-methods-atlas/validation/reverse-vjp-duality/index.html": "e9dd3d82da466d27e8e141bf279553b5b5339f3f405d664de768a9fb91c2f188",
     "numerical-methods-atlas/validation/rk45-dense-events/index.html": "22c0a86d068edea91e534d3a33da57457a7f47b9edb0fb9608313a8c9a120ce9",
     "numerical-methods-atlas/validation/robertson-conservation-dae/index.html": "8d5666af0c562a878d76a7d325447e563eb35c4a8af479b0ca907e7e9bad3d7a",
     "numerical-methods-atlas/validation/robertson-stiff-kinetics/index.html": "7da8e1e4cc03f189491ea53820629945c600fbc2b01cbeeeea81c8d5e5469c9b",
+    "numerical-methods-atlas/validation/runge-barycentric-clenshaw/index.html": "4d8c83aa49da10786212d20438b4e441d6590f4efe8d1dd6674e3e15a601dff5",
     "numerical-methods-atlas/validation/sedov-blast/index.html": "28f10d4721bf48266e595e278e09a99d404e90659825e9055d8ba62d44cf1285",
     "numerical-methods-atlas/validation/shadow-absorber2d/index.html": "88d246ab837e65f959e0979a33eec07c0b24c507a2fc7928d878e54f0a28e895",
     "numerical-methods-atlas/validation/shake-rattle-pendulum/index.html": "3dcd9609abb149da1deda3d41faa9dcf09952e280e05eeab91633b4f8bc711c0",
+    "numerical-methods-atlas/validation/spline-shape-controls/index.html": "1c42fab7dee4d35e39a5dccfb53912c619795aba24dbaade95ba3859d239e634",
     "numerical-methods-atlas/validation/srhd-collision/index.html": "78e6141371b3d586bc728237ec023b506dd330715fd68d6968c7a0aca4fc6de5",
     "numerical-methods-atlas/validation/srmhd-alfven/index.html": "6f4049edc3a8a562129d48f6c5f5e89b3de4b936bb20792a4d6e0e9aa94712e4",
     "numerical-methods-atlas/validation/strang-boundary-order-reduction/index.html": "810e8076b62bf2004ffc651a4154752147b49d2e6701c01568af24c725595ce7",
     "numerical-methods-atlas/validation/su-olson-diffusion1996/index.html": "a5ee4de84ded150bb9b58b612fdf83d3e839c551a2cb565717d578c36f776c2c",
     "numerical-methods-atlas/validation/swashes-topography/index.html": "eadbd0c32d58f2200dfc55b309aa0ac20424dd83f0919b28586ff1f435009f10",
     "numerical-methods-atlas/validation/symmetric-saddle-minres/index.html": "43c4aff7bea5444567b544b3016b51de405f1502652afa48b5eacbdc33f17189",
+    "numerical-methods-atlas/validation/tensor-smolyak-dimensions/index.html": "c851c734eaba09dcb685867227f5a1fcd7deb89a900a2acb100545afb3688220",
     "numerical-methods-atlas/validation/thermal-landau-damping/index.html": "ef80dae934f74ee56ecc35aefc02975e22c3cadc5da906c6257c1cac4c135367",
     "numerical-methods-atlas/validation/thermal-two-stream/index.html": "31ff498c6a56819b9a14490c67188d234c027058bd80afbd5157e7514b93e3a7",
     "numerical-methods-atlas/validation/verification/2026-11-23-batch13-17-public.json": "d84d08cb4d25c00250a273cdf3c200da4c16d1958948701f2cc957ffcf74f48d",
@@ -9730,6 +10599,7 @@
     "numerical-methods-atlas/validation/verification/2026-11-24-batch28-37-public.json": "e6c80f9c769e876cf0aebfc6dd9ae765701b77635762ccd83801629e971ad0f3",
     "numerical-methods-atlas/validation/verification/2026-11-24-batch48-57-public.json": "34e51bb48f51768f2cd359f25522bf555776f4ccfd53b65c08aec277f7ff50ae",
     "numerical-methods-atlas/validation/verification/2026-11-24-batch58-67-public.json": "dae69e4ff9553208d0fa497abcc47dea42548ddeb6d9f5ba66e474e5b10580d9",
+    "numerical-methods-atlas/validation/verification/2026-11-24-batch68-77-public.json": "bec3f4aa9635daa8f64aabd6c0e572b0adc1d0b43de546d46c287bea826f71f8",
     "numerical-methods-atlas/validation/wall-manufactured/index.html": "e33d4f70c30285c157c31b831e3b77df0329702cab0a0aacbade139daba5fdea",
     "numerical-methods-atlas/validation/weno-critical-epsilon/index.html": "23740e895d653ab2ab7d76dd9e3bf89ce5f8618ec75e65bdb0efae9d5e674fd7",
     "numerical-methods-atlas/validation/zalesak-rotation/index.html": "02d3ddc9b3f8cc8f30c28f38fded450264568dc6c7d92ea9bc534e75e3b38a48"

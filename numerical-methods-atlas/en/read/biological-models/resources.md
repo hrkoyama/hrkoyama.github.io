@@ -29,10 +29,10 @@ Resources explicitly registered to the methods, problems and executions of this 
   Density-limited growth with carrying capacity K. It is the simplest biological ODE baseline. The linked original is the later 1847 memoir; the 1838 note itself was not audited. The differential equation is not the discrete logistic map. Scoped executed example: One dimensionless population. Compare RK4 with the analytic solution at every output time; check nonnegativity and time refinement. Excludes reaction–diffusion and multispecies models.
 - [Michaelis–Menten and full enzyme kinetics](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-enzyme-en>)
 
-  Enzyme saturation; the full mass-action system resolves the transient complex C, while the rate law eliminates a fast variable. The 1913 rapid-equilibrium interpretation and the 1925 quasi-steady-state derivation must remain distinct. Literature-only.
+  Enzyme saturation; the full mass-action system resolves the transient complex C, while the rate law eliminates a fast variable. The 1913 rapid-equilibrium interpretation and the 1925 quasi-steady-state derivation must remain distinct. Scoped executed example: These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction.
 - [Lotka–Volterra predator–prey](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-lotka-volterra-en>)
 
-  Coupled prey growth and predation; a phase-plane and long-time integration test.  Literature-only.
+  Coupled prey growth and predation; a phase-plane and long-time integration test. Scoped executed example: This is a finite-time comparison for one initial state. The continuum closed orbit is not an attracting limit cycle. RK4 is not claimed to preserve H exactly, maintain positivity at arbitrary steps or guarantee long-time geometric fidelity.
 - [McKendrick age-structured population](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-age-structure-en>)
 
   Individuals move through age a at unit speed; newborns enter through a nonlocal renewal boundary. This is the classical age-transport form; the later von Foerster lineage is acknowledged without treating its date as the first appearance. Literature-only.

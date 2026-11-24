@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "id": "enzyme-qssa",
+  "name": {
+    "ja": "酵素反応の保存と準定常近似",
+    "en": "Enzyme conservation and QSSA"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/results/enzyme-qssa-preview.png",
+    "sha256": "9f8ee2648321815e570a9415a71d42e1b7f8228ece70e9ff797860f23f7eea8c",
+    "width": 1634,
+    "height": 1057,
+    "caption": {
+      "ja": "全4状態と準定常近似を比較し、初期層と積分誤差を分けます。 保存値だけを描画します。 時間・濃度・個体数の軸は空間次元ではありません。率は教育用で疾病・実験予測ではありません。",
+      "en": "Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism. This figure reads saved data only. Time, concentrations and populations do not define a spatial dimension. The rates are educational, not disease or experimental predictions."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#enzyme-qssa",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#enzyme-qssa"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#enzyme-qssa",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#enzyme-qssa-en"
+  },
+  "equations": [
+    {
+      "id": "bio-enzyme",
+      "name": {
+        "ja": "Michaelis–Mentenと完全酵素反応系",
+        "en": "Michaelis–Menten and full enzyme kinetics"
+      },
+      "formula": [
+        "E+S\\mathrel{\\mathop{\\rightleftharpoons}^{k_1}_{k_{-1}}}C\\mathrel{\\mathop{\\longrightarrow}^{k_2}}E+P",
+        "v=V_{\\max}S/(K_M+S)"
+      ],
+      "note": {
+        "ja": "酵素・基質・複合体の反応と飽和速度則。完全反応系、迅速平衡近似、準定常近似の違いは解説先へ。 限定した実行例：2つの小εと固定反応定数だけの教育例です。εは尺度比であり、その値だけを厳密なQSSA誤差上界とはしません。θ≥0.02を初期層終了の証明とは呼ばず、生体内の反応・観測値へ外挿しません。",
+        "en": "Enzyme saturation; the full mass-action system resolves the transient complex C, while the rate law eliminates a fast variable. The 1913 rapid-equilibrium interpretation and the 1925 quasi-steady-state derivation must remain distinct. Scoped executed example: These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-enzyme-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-enzyme-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "閉鎖反応E+S⇌C→E+Pを無次元化し、k₁=10、k₋₁=k₂=1、S₀=1、C₀=P₀=0、E₀=0.01/0.002。Kₘ=0.2、ε=E₀/(Kₘ+S₀)=1/120,1/600、θ=E₀t∈[0,0.5]です。",
+    "en": "Use the closed dimensionless reaction E+S⇌C→E+P with k₁=10, k₋₁=k₂=1, S₀=1, C₀=P₀=0 and E₀=0.01 or 0.002. Then Kₘ=0.2, ε=E₀/(Kₘ+S₀)=1/120 or 1/600, and θ=E₀t ranges from 0 to 0.5."
+  },
+  "formulations": [
+    {
+      "id": "supplement-enzyme-qssa",
+      "name": {
+        "ja": "酵素反応の保存と準定常近似",
+        "en": "Enzyme conservation and QSSA"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "\\begin{aligned}\\dot S&=-10ES+C,&\\dot C&=10ES-2C,\\\\\\dot E&=-10ES+2C,&\\dot P&=C.\\end{aligned}",
+        "E+C=E_0,\\quad S+C+P=1,\\quad K_m=\\frac{k_{-1}+k_2}{k_1}=0.2",
+        "\\theta=E_0t,\\quad \\varepsilon=\\frac{E_0}{K_m+S_0}\\in\\left\\{\\frac1{120},\\frac1{600}\\right\\}",
+        "\\frac{dS_{\\rm MM}}{d\\theta}=-\\frac{S_{\\rm MM}}{0.2+S_{\\rm MM}},\\quad S_{\\rm MM}+0.2\\log S_{\\rm MM}=1-\\theta"
+      ],
+      "note": {
+        "ja": "全4状態と準定常近似を比較し、初期層と積分誤差を分けます。",
+        "en": "Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "enzyme-qssa",
+      "kind": "numerical-reference",
+      "kind_label": {
+        "ja": "有限格子の数値参照",
+        "en": "Finite-grid numerical reference"
+      },
+      "title": {
+        "ja": "酵素反応の保存と準定常近似",
+        "en": "Enzyme conservation and QSSA"
+      },
+      "formula": "\\begin{aligned}\\dot S&=-10ES+C,&\\dot C&=10ES-2C,\\\\\\dot E&=-10ES+2C,&\\dot P&=C.\\end{aligned};\\quad E+C=E_0,\\quad S+C+P=1,\\quad K_m=\\frac{k_{-1}+k_2}{k_1}=0.2;\\quad \\theta=E_0t,\\quad \\varepsilon=\\frac{E_0}{K_m+S_0}\\in\\left\\{\\frac1{120},\\frac1{600}\\right\\};\\quad \\frac{dS_{\\rm MM}}{d\\theta}=-\\frac{S_{\\rm MM}}{0.2+S_{\\rm MM}},\\quad S_{\\rm MM}+0.2\\log S_{\\rm MM}=1-\\theta",
+      "assumptions": {
+        "ja": "閉鎖反応E+S⇌C→E+Pを無次元化し、k₁=10、k₋₁=k₂=1、S₀=1、C₀=P₀=0、E₀=0.01/0.002。Kₘ=0.2、ε=E₀/(Kₘ+S₀)=1/120,1/600、θ=E₀t∈[0,0.5]です。",
+        "en": "Use the closed dimensionless reaction E+S⇌C→E+P with k₁=10, k₋₁=k₂=1, S₀=1, C₀=P₀=0 and E₀=0.01 or 0.002. Then Kₘ=0.2, ε=E₀/(Kₘ+S₀)=1/120 or 1/600, and θ=E₀t ranges from 0 to 0.5."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "2つの小εと固定反応定数だけの教育例です。εは尺度比であり、その値だけを厳密なQSSA誤差上界とはしません。θ≥0.02を初期層終了の証明とは呼ばず、生体内の反応・観測値へ外挿しません。",
+        "en": "These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=ja#enzyme-qssa-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=en#enzyme-qssa-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "独立な全系Radau/BDF参照、縮約式の陰的スカラー恒等式、E+C=E₀とS+C+P=1、正値性、実際の採用・棄却・Newton作業を照合。初期層を含む全時間と、事前指定θ≥0.02の近似誤差を別保存します。",
+    "en": "Compare with independent full-system Radau/BDF references and an implicit scalar identity for the reduced equation. Check E+C=E₀, S+C+P=1, positivity and actual acceptance, rejection and Newton work. Retain both all-time errors including the initial layer and errors on the declared θ≥0.02 window."
+  },
+  "methods": [
+    {
+      "id": "sdirk2",
+      "name": {
+        "ja": "L安定なSDIRK2",
+        "en": "L-stable SDIRK2"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/sdirk2/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/sdirk2/?lang=en"
+      }
+    },
+    {
+      "id": "step-doubling",
+      "name": {
+        "ja": "適応SDIRK2／ステップ倍分割",
+        "en": "Adaptive SDIRK2 / step doubling"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/step-doubling/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/step-doubling/?lang=en"
+      }
+    },
+    {
+      "id": "newton",
+      "name": {
+        "ja": "Armijo減衰Newton法",
+        "en": "Armijo-damped Newton"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/newton/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/newton/?lang=en"
+      }
+    },
+    {
+      "id": "rk4",
+      "name": {
+        "ja": "古典的RK4",
+        "en": "Classical RK4"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "全4状態をSDIRK2のstep doublingで積分し、各段のNewton法では同じ重み付きL∞残差とArmijo条件を使います。縮約Michaelis–Menten式はθ上の別RK4計算で求め、全系の積分誤差と近似モデル誤差を混同しません。",
+    "en": "Integrate all four states with SDIRK2 step doubling, using the same weighted L∞ residual for Newton convergence and Armijo backtracking. Evolve the reduced Michaelis–Menten equation separately with RK4 in θ, keeping integration error distinct from model-reduction error."
+  },
+  "executions": [
+    {
+      "id": "enzyme-qssa",
+      "kind": "supplement",
+      "name": {
+        "ja": "酵素反応の保存と準定常近似",
+        "en": "Enzyme conservation and QSSA"
+      },
+      "method_ids": [
+        "sdirk2",
+        "step-doubling",
+        "newton",
+        "rk4"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=en"
+      },
+      "scope": {
+        "ja": "全4状態と準定常近似を比較し、初期層と積分誤差を分けます。",
+        "en": "Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism."
+      },
+      "assumptions": {
+        "ja": "閉鎖反応E+S⇌C→E+Pを無次元化し、k₁=10、k₋₁=k₂=1、S₀=1、C₀=P₀=0、E₀=0.01/0.002。Kₘ=0.2、ε=E₀/(Kₘ+S₀)=1/120,1/600、θ=E₀t∈[0,0.5]です。",
+        "en": "Use the closed dimensionless reaction E+S⇌C→E+P with k₁=10, k₋₁=k₂=1, S₀=1, C₀=P₀=0 and E₀=0.01 or 0.002. Then Kₘ=0.2, ε=E₀/(Kₘ+S₀)=1/120 or 1/600, and θ=E₀t ranges from 0 to 0.5."
+      },
+      "limits": {
+        "ja": "2つの小εと固定反応定数だけの教育例です。εは尺度比であり、その値だけを厳密なQSSA誤差上界とはしません。θ≥0.02を初期層終了の証明とは呼ばず、生体内の反応・観測値へ外挿しません。",
+        "en": "These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "独立な全系Radau/BDF参照、縮約式の陰的スカラー恒等式、E+C=E₀とS+C+P=1、正値性、実際の採用・棄却・Newton作業を照合。初期層を含む全時間と、事前指定θ≥0.02の近似誤差を別保存します。",
+        "en": "Compare with independent full-system Radau/BDF references and an implicit scalar identity for the reduced equation. Check E+C=E₀, S+C+P=1, positivity and actual acceptance, rejection and Newton work. Retain both all-time errors including the initial layer and errors on the declared θ≥0.02 window."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/experiments.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/io_utils.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/biology.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/test_models.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

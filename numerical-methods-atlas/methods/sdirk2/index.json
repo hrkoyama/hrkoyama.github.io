@@ -10,8 +10,8 @@
     "en": "Time integration"
   },
   "summary": {
-    "ja": "硬い常微分方程式の減衰を扱う2段2次の陰的Runge–Kutta法。公開版はγ=1−1/√2のstiffly accurateなL安定SDIRKで、各段階にNewton法を用い、別のラッパーでステップ倍化による局所誤差制御を行う。 追加固定例：Robertson反応系の初期剛性と実誤差、van der Polの短時間剛性遷移。条件と検証範囲は各配布版で確認してください。",
-    "en": "A two-stage second-order implicit Runge–Kutta method for stiff ODE decay. The release uses stiffly accurate L-stable SDIRK with γ=1−1/√2 and Newton stage solves; a separate wrapper adds step-doubling local-error control. Additional fixed examples: Robertson kinetics: initial stiffness and actual error, Van der Pol: an early stiffness transition. See each release for assumptions and checked scope."
+    "ja": "硬い常微分方程式の減衰を扱う2段2次の陰的Runge–Kutta法。公開版はγ=1−1/√2のstiffly accurateなL安定SDIRKで、各段階にNewton法を用い、別のラッパーでステップ倍化による局所誤差制御を行う。 追加固定例：Robertson反応系の初期剛性と実誤差、van der Polの短時間剛性遷移。条件と検証範囲は各配布版で確認してください。 固定した教育用実行例：酵素反応の保存と準定常近似。",
+    "en": "A two-stage second-order implicit Runge–Kutta method for stiff ODE decay. The release uses stiffly accurate L-stable SDIRK with γ=1−1/√2 and Newton stage solves; a separate wrapper adds step-doubling local-error control. Additional fixed examples: Robertson kinetics: initial stiffness and actual error, Van der Pol: an early stiffness transition. See each release for assumptions and checked scope. Fixed educational executions: Enzyme conservation and QSSA."
   },
   "status": "educational-example",
   "origin": "existing-coverage-catalog",
@@ -79,8 +79,8 @@
     "level": "method-specific source-and-code inspection; no numerical rerun; reference access recorded individually",
     "on": "2026-11-22",
     "supplemental_review": {
-      "on": "2026-11-24",
-      "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
+      "on": "2026-11-25",
+      "level": "Fixed release-specific input/reference/criterion scope; actual canonical source and independently extracted ZIP are bound. Original study targets remain separate from reproduction checks."
     }
   },
   "assumptions_ja": [
@@ -1303,6 +1303,405 @@
           "en": "This post-measurement reporting revision is not a numerical repair. The first error, 4.535633779e-5, exceeded the original 2e-5 goal. Local tolerances do not guarantee global accuracy, and reporting PASS does not mean all original goals were met. Full large-mu cycles are outside scope."
         }
       ]
+    },
+    {
+      "release": {
+        "group": "small-models",
+        "edition": "2026-11-25",
+        "case_ids": [
+          "enzyme-qssa"
+        ]
+      },
+      "scope": {
+        "ja": "固定した教育用実行例：酵素反応の保存と準定常近似。",
+        "en": "Fixed educational executions: Enzyme conservation and QSSA."
+      },
+      "limits": [
+        {
+          "ja": "2つの小εと固定反応定数だけの教育例です。εは尺度比であり、その値だけを厳密なQSSA誤差上界とはしません。θ≥0.02を初期層終了の証明とは呼ばず、生体内の反応・観測値へ外挿しません。",
+          "en": "These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction."
+        }
+      ]
+    }
+  ],
+  "depth_additional_releases": [
+    {
+      "group": "small-models",
+      "case_ids": [
+        "enzyme-qssa"
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/",
+      "code_edition": "2026-11-25",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/experiments.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/io_utils.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/biology.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/pinn.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/fno.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/data_family.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/oracles.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/qualify.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/reference_models.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/test_models.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-small-models-2026-11-25",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/verification.json",
+      "code_archive_sha256": "d341b8a90e0b6ade7c70760a2c32a9f3825a6b4e162b221c7cc95b10f3cd40c1",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/results/result.json",
+      "passed_tests": 25,
+      "examples": [
+        {
+          "id": "enzyme-qssa",
+          "method_ids": [
+            "sdirk2",
+            "step-doubling",
+            "newton",
+            "rk4"
+          ],
+          "title": {
+            "ja": "酵素反応の保存と準定常近似",
+            "en": "Enzyme conservation and QSSA"
+          },
+          "summary": {
+            "ja": "全4状態と準定常近似を比較し、初期層と積分誤差を分けます。",
+            "en": "Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism."
+          },
+          "assumptions": {
+            "ja": "閉鎖反応E+S⇌C→E+Pを無次元化し、k₁=10、k₋₁=k₂=1、S₀=1、C₀=P₀=0、E₀=0.01/0.002。Kₘ=0.2、ε=E₀/(Kₘ+S₀)=1/120,1/600、θ=E₀t∈[0,0.5]です。",
+            "en": "Use the closed dimensionless reaction E+S⇌C→E+P with k₁=10, k₋₁=k₂=1, S₀=1, C₀=P₀=0 and E₀=0.01 or 0.002. Then Kₘ=0.2, ε=E₀/(Kₘ+S₀)=1/120 or 1/600, and θ=E₀t ranges from 0 to 0.5."
+          },
+          "algorithm": {
+            "ja": "全4状態をSDIRK2のstep doublingで積分し、各段のNewton法では同じ重み付きL∞残差とArmijo条件を使います。縮約Michaelis–Menten式はθ上の別RK4計算で求め、全系の積分誤差と近似モデル誤差を混同しません。",
+            "en": "Integrate all four states with SDIRK2 step doubling, using the same weighted L∞ residual for Newton convergence and Armijo backtracking. Evolve the reduced Michaelis–Menten equation separately with RK4 in θ, keeping integration error distinct from model-reduction error."
+          },
+          "validation": {
+            "ja": "独立な全系Radau/BDF参照、縮約式の陰的スカラー恒等式、E+C=E₀とS+C+P=1、正値性、実際の採用・棄却・Newton作業を照合。初期層を含む全時間と、事前指定θ≥0.02の近似誤差を別保存します。",
+            "en": "Compare with independent full-system Radau/BDF references and an implicit scalar identity for the reduced equation. Check E+C=E₀, S+C+P=1, positivity and actual acceptance, rejection and Newton work. Retain both all-time errors including the initial layer and errors on the declared θ≥0.02 window."
+          },
+          "limits": {
+            "ja": "2つの小εと固定反応定数だけの教育例です。εは尺度比であり、その値だけを厳密なQSSA誤差上界とはしません。θ≥0.02を初期層終了の証明とは呼ばず、生体内の反応・観測値へ外挿しません。",
+            "en": "These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction."
+          },
+          "domains": [
+            "biology"
+          ],
+          "code_files": [
+            "run.py",
+            "experiments.py",
+            "io_utils.py",
+            "biology.py"
+          ],
+          "reference_files": [
+            "PROTOCOL.md",
+            "source-reading.json",
+            "acceptance.json"
+          ],
+          "references": [
+            {
+              "id": "mm-eilertsen-v2-selected",
+              "title": "Rigorous estimates for the quasi-steady state approximation of the Michaelis–Menten reaction mechanism at low enzyme concentrations",
+              "url": "https://arxiv.org/html/2305.12602v2",
+              "accessed_on": "2026-11-24",
+              "review_level": "selected-primary-body",
+              "review": {
+                "ja": "Selected §1 Eq(1)–(8) and selected discussion around transient-time estimates Eq(32); proofs and complete quantitative bounds unread.",
+                "en": "Selected §1 Eq(1)–(8) and selected discussion around transient-time estimates Eq(32); proofs and complete quantitative bounds unread."
+              },
+              "year": 2024,
+              "year_role": "preprint-version"
+            }
+          ],
+          "gallery_figure": "enzyme-qssa-preview.png",
+          "additional_figures": [
+            {
+              "file": "enzyme-qssa-preview.png",
+              "caption": {
+                "ja": "全4状態と準定常近似を比較し、初期層と積分誤差を分けます。 保存値だけを描画します。",
+                "en": "Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism. This figure reads saved data only."
+              }
+            }
+          ],
+          "formulas": [
+            "\\begin{aligned}\\dot S&=-10ES+C,&\\dot C&=10ES-2C,\\\\\\dot E&=-10ES+2C,&\\dot P&=C.\\end{aligned}",
+            "E+C=E_0,\\quad S+C+P=1,\\quad K_m=\\frac{k_{-1}+k_2}{k_1}=0.2",
+            "\\theta=E_0t,\\quad \\varepsilon=\\frac{E_0}{K_m+S_0}\\in\\left\\{\\frac1{120},\\frac1{600}\\right\\}",
+            "\\frac{dS_{\\rm MM}}{d\\theta}=-\\frac{S_{\\rm MM}}{0.2+S_{\\rm MM}},\\quad S_{\\rm MM}+0.2\\log S_{\\rm MM}=1-\\theta"
+          ],
+          "measured": {
+            "id": "enzyme-qssa",
+            "passed": true,
+            "checks": {
+              "enzyme-01-r1e-06:completed-work": true,
+              "enzyme-01-r1e-06:finite": true,
+              "enzyme-01-r1e-08:completed-work": true,
+              "enzyme-01-r1e-08:finite": true,
+              "enzyme-002-r1e-06:completed-work": true,
+              "enzyme-002-r1e-06:finite": true,
+              "enzyme-002-r1e-08:completed-work": true,
+              "enzyme-002-r1e-08:finite": true,
+              "mm-200:finite": true,
+              "mm-400:finite": true
+            },
+            "records": [
+              {
+                "id": "enzyme-01-r1e-06",
+                "Etotal": 0.01,
+                "epsilon": 0.008333333333333333,
+                "rtol": 1e-06,
+                "atol": 1e-10,
+                "integration_Linf": 3.302774387314855e-08,
+                "conservation_defect": 2.4424906541753444e-15,
+                "QSSA_window_model_error": 0.0075850761082053575,
+                "QSSA_full_model_error": 0.0076067541834961006,
+                "minimum_accepted": 0.0,
+                "attempted_steps": 2498,
+                "accepted_steps": 2496,
+                "rejected_steps": 2,
+                "clipped_output_steps": 88,
+                "RHS_calls": 45490,
+                "Jacobian_calls": 11504,
+                "factor_builds": 11504,
+                "linear_solves": 11504,
+                "Newton_updates": 11504,
+                "backtracks": 0
+              },
+              {
+                "id": "enzyme-01-r1e-08",
+                "Etotal": 0.01,
+                "epsilon": 0.008333333333333333,
+                "rtol": 1e-08,
+                "atol": 1e-12,
+                "integration_Linf": 1.1869755560389716e-09,
+                "conservation_defect": 2.4424906541753444e-15,
+                "QSSA_window_model_error": 0.0075850761082053575,
+                "QSSA_full_model_error": 0.0076067541834961006,
+                "minimum_accepted": 0.0,
+                "attempted_steps": 1170,
+                "accepted_steps": 1167,
+                "rejected_steps": 3,
+                "clipped_output_steps": 103,
+                "RHS_calls": 34930,
+                "Jacobian_calls": 12200,
+                "factor_builds": 12200,
+                "linear_solves": 12200,
+                "Newton_updates": 12200,
+                "backtracks": 0
+              },
+              {
+                "id": "enzyme-002-r1e-06",
+                "Etotal": 0.002,
+                "epsilon": 0.0016666666666666668,
+                "rtol": 1e-06,
+                "atol": 1e-10,
+                "integration_Linf": 8.17277473474931e-09,
+                "conservation_defect": 1.1102230246251565e-15,
+                "QSSA_window_model_error": 0.001518757415778449,
+                "QSSA_full_model_error": 0.001525935571123016,
+                "minimum_accepted": 0.0,
+                "attempted_steps": 572,
+                "accepted_steps": 570,
+                "rejected_steps": 2,
+                "clipped_output_steps": 40,
+                "RHS_calls": 11920,
+                "Jacobian_calls": 3386,
+                "factor_builds": 3386,
+                "linear_solves": 3386,
+                "Newton_updates": 3386,
+                "backtracks": 0
+              },
+              {
+                "id": "enzyme-002-r1e-08",
+                "Etotal": 0.002,
+                "epsilon": 0.0016666666666666668,
+                "rtol": 1e-08,
+                "atol": 1e-12,
+                "integration_Linf": 3.220199232050955e-10,
+                "conservation_defect": 3.1086244689504383e-15,
+                "QSSA_window_model_error": 0.001518757415778449,
+                "QSSA_full_model_error": 0.001525935571123016,
+                "minimum_accepted": 0.0,
+                "attempted_steps": 1160,
+                "accepted_steps": 1157,
+                "rejected_steps": 3,
+                "clipped_output_steps": 103,
+                "RHS_calls": 32964,
+                "Jacobian_calls": 11262,
+                "factor_builds": 11262,
+                "linear_solves": 11262,
+                "Newton_updates": 11262,
+                "backtracks": 0
+              },
+              {
+                "id": "mm-200",
+                "steps": 200,
+                "reduced_scalar_error": 2.0872192862952943e-14
+              },
+              {
+                "id": "mm-400",
+                "steps": 400,
+                "reduced_scalar_error": 3.774758283725532e-15
+              }
+            ],
+            "metrics": {
+              "actual_primary_records": 6,
+              "reference_role": "Qualified Radau/BDF full ODE; reduction/linearization errors are distinct modeling diagnostics"
+            },
+            "original_target_results": {
+              "enzyme-01-r1e-06:integration": true,
+              "enzyme-01-r1e-06:mass": true,
+              "enzyme-01-r1e-06:negative-part": true,
+              "enzyme-01-r1e-06:QSSA-model": true,
+              "enzyme-01-r1e-08:integration": true,
+              "enzyme-01-r1e-08:mass": true,
+              "enzyme-01-r1e-08:negative-part": true,
+              "enzyme-01-r1e-08:QSSA-model": true,
+              "enzyme-002-r1e-06:integration": true,
+              "enzyme-002-r1e-06:mass": true,
+              "enzyme-002-r1e-06:negative-part": true,
+              "enzyme-002-r1e-06:QSSA-model": true,
+              "enzyme-002-r1e-08:integration": true,
+              "enzyme-002-r1e-08:mass": true,
+              "enzyme-002-r1e-08:negative-part": true,
+              "enzyme-002-r1e-08:QSSA-model": true
+            },
+            "original_target_summary": {
+              "met": 16,
+              "total": 16,
+              "all_met": true,
+              "acceptance_sha256": "b468e78459cf81bda6a32cade0051f6615b44def256c66308ae7acc82ff516ce"
+            },
+            "original_study_goal_measurements": {
+              "enzyme-01-r1e-06:integration": {
+                "measured": 3.302774387314855e-08,
+                "limit": 1e-05,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "enzyme-01-r1e-06:mass": {
+                "measured": 2.4424906541753444e-15,
+                "limit": 1e-10,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "enzyme-01-r1e-06:negative-part": {
+                "measured": 0.0,
+                "limit": 1e-12,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "enzyme-01-r1e-06:QSSA-model": {
+                "measured": 0.0075850761082053575,
+                "limit": 0.02,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "enzyme-01-r1e-08:integration": {
+                "measured": 1.1869755560389716e-09,
+                "limit": 1e-05,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "enzyme-01-r1e-08:mass": {
+                "measured": 2.4424906541753444e-15,
+                "limit": 1e-10,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "enzyme-01-r1e-08:negative-part": {
+                "measured": 0.0,
+                "limit": 1e-12,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "enzyme-01-r1e-08:QSSA-model": {
+                "measured": 0.0075850761082053575,
+                "limit": 0.02,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "enzyme-002-r1e-06:integration": {
+                "measured": 8.17277473474931e-09,
+                "limit": 1e-05,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "enzyme-002-r1e-06:mass": {
+                "measured": 1.1102230246251565e-15,
+                "limit": 1e-10,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "enzyme-002-r1e-06:negative-part": {
+                "measured": 0.0,
+                "limit": 1e-12,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "enzyme-002-r1e-06:QSSA-model": {
+                "measured": 0.001518757415778449,
+                "limit": 0.02,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "enzyme-002-r1e-08:integration": {
+                "measured": 3.220199232050955e-10,
+                "limit": 1e-05,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "enzyme-002-r1e-08:mass": {
+                "measured": 3.1086244689504383e-15,
+                "limit": 1e-10,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "enzyme-002-r1e-08:negative-part": {
+                "measured": 0.0,
+                "limit": 1e-12,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "enzyme-002-r1e-08:QSSA-model": {
+                "measured": 0.001518757415778449,
+                "limit": 0.02,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              }
+            },
+            "validation_scope": "predeclared_accuracy_study_with_separate_reproduction_checks"
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#enzyme-qssa",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#enzyme-qssa"
+          }
+        }
+      ]
     }
   ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/sdirk2/",
@@ -1323,7 +1722,17 @@
     "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/boundary_reference.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/coefficient_exact.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/qualify.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/reference_models.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/reference_models.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/experiments.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/io_utils.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/biology.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/pinn.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/fno.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/data_family.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/oracles.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/qualify.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/reference_models.py"
   ],
   "test_urls": [
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_new_models.py",
@@ -1331,7 +1740,8 @@
     "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_contract.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_dopri.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_reporting.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_stiff.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_stiff.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/test_models.py"
   ],
   "run_commands": [
     "python -m pytest -q tests/test_new_models.py"
@@ -1363,6 +1773,15 @@
       "guide": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "enzyme-qssa",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=en"
       },
       "kind": "dedicated-supplement"
     }
@@ -1411,6 +1830,20 @@
         "url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#van-der-pol-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#van-der-pol-en"
+        }
+      },
+      {
+        "id": "bio-enzyme",
+        "name": {
+          "ja": "Michaelis–Mentenと完全酵素反応系",
+          "en": "Michaelis–Menten and full enzyme kinetics"
+        },
+        "problem_ids": [
+          "enzyme-qssa"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-enzyme-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-enzyme-en"
         }
       }
     ],
@@ -1633,6 +2066,68 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/van-der-pol-stiff-transition/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/van-der-pol-stiff-transition/?lang=en#references-en"
         }
+      },
+      {
+        "id": "enzyme-qssa",
+        "name": {
+          "ja": "酵素反応の保存と準定常近似",
+          "en": "Enzyme conservation and QSSA"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/results/enzyme-qssa-preview.png",
+          "sha256": "9f8ee2648321815e570a9415a71d42e1b7f8228ece70e9ff797860f23f7eea8c",
+          "width": 1634,
+          "height": 1057,
+          "caption": {
+            "ja": "全4状態と準定常近似を比較し、初期層と積分誤差を分けます。 保存値だけを描画します。 時間・濃度・個体数の軸は空間次元ではありません。率は教育用で疾病・実験予測ではありません。",
+            "en": "Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism. This figure reads saved data only. Time, concentrations and populations do not define a spatial dimension. The rates are educational, not disease or experimental predictions."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "enzyme-qssa",
+            "kind": "supplement",
+            "name": {
+              "ja": "酵素反応の保存と準定常近似",
+              "en": "Enzyme conservation and QSSA"
+            },
+            "scope": {
+              "ja": "全4状態と準定常近似を比較し、初期層と積分誤差を分けます。",
+              "en": "Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism."
+            },
+            "method_ids": [
+              "sdirk2",
+              "step-doubling",
+              "newton",
+              "rk4"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "全4状態をSDIRK2のstep doublingで積分し、各段のNewton法では同じ重み付きL∞残差とArmijo条件を使います。縮約Michaelis–Menten式はθ上の別RK4計算で求め、全系の積分誤差と近似モデル誤差を混同しません。",
+          "en": "Integrate all four states with SDIRK2 step doubling, using the same weighted L∞ residual for Newton convergence and Armijo backtracking. Evolve the reduced Michaelis–Menten equation separately with RK4 in θ, keeping integration error distinct from model-reduction error."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=en#references-en"
+        }
       }
     ],
     "references": [
@@ -1745,6 +2240,40 @@
             "view": {
               "ja": "/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=ja#van-der-pol-stiff-transition-ja-measurements",
               "en": "/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=en#van-der-pol-stiff-transition-en-measurements"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "enzyme-qssa",
+        "problem_name": {
+          "ja": "酵素反応の保存と準定常近似",
+          "en": "Enzyme conservation and QSSA"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "enzyme-qssa",
+            "title": {
+              "ja": "酵素反応の保存と準定常近似",
+              "en": "Enzyme conservation and QSSA"
+            },
+            "kind": "numerical-reference",
+            "relation": "same-problem",
+            "note": {
+              "ja": "2つの小εと固定反応定数だけの教育例です。εは尺度比であり、その値だけを厳密なQSSA誤差上界とはしません。θ≥0.02を初期層終了の証明とは呼ばず、生体内の反応・観測値へ外挿しません。",
+              "en": "These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-enzyme-qssa-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-enzyme-qssa-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/enzyme-qssa/?lang=ja#enzyme-qssa-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/enzyme-qssa/?lang=en#enzyme-qssa-en-measurements"
             }
           }
         ]

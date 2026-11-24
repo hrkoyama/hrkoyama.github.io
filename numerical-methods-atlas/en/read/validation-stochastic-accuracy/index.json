@@ -1586,7 +1586,7 @@
     }
   ],
   "source_sha256": {
-    "catalog/atlas-depth-expansion.json": "9cf692c64631ff4c64803d9caac072b3edc5dab0afec414d67df99eae3098d28",
+    "catalog/atlas-depth-expansion.json": "a99cdc630a84a3e908c0ac95e907af1860206a31acb690711d152d5f4ed511d7",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
     "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
@@ -1886,6 +1886,21 @@
     "code/validated-examples/2026-11-24/geometric-controls/verification.json": "507d5825483d27a7cefe5a3ef683c4e5a818234d4c8098a97772e92de056d50d",
     "code/validated-examples/2026-11-24/geometric-controls/cases.json": "f97c3c5cef1540cba0c16b8f8d32d70696d4d22105eaf784ff2e17cd3ccecd8b",
     "code/validated-examples/2026-11-24/geometric-controls/results/result.json": "1e0ba587a26f6b15380621e3b04f44f2dee205d5ffe49086fd23c8972c85510b",
-    "code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip": "4e3ef28ab6c91ae62918b7effc6f37097ec0f5a4ed878d4d33fa06e1945329a2"
+    "code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip": "4e3ef28ab6c91ae62918b7effc6f37097ec0f5a4ed878d4d33fa06e1945329a2",
+    "code/validated-examples/2026-11-25/quadrature-controls/source-manifest.json": "7742ff5dd15bd7b848464e4ada267e7d861825f961ea0e15a982be46e2b8708e",
+    "code/validated-examples/2026-11-25/quadrature-controls/verification.json": "cfc7e98903ca8dcc5b11245f15d94b6711aa5ab7992ec29b2c9b291552b85e08",
+    "code/validated-examples/2026-11-25/quadrature-controls/cases.json": "f900a3245e2b6ae3b446e553a17f93b507444654bce72ffeb1003b95bc97446b",
+    "code/validated-examples/2026-11-25/quadrature-controls/results/result.json": "08484664c27e9342f071c78695b31198775561ea8f39f663b6859665190ccede",
+    "code/validated-examples/2026-11-25/quadrature-controls/atlas-quadrature-controls-2026-11-25.zip": "843f8394607db82a40af99a34785cce4f22e0f26f3b85d2375f121bcc9ebd6f4",
+    "code/validated-examples/2026-11-25/approximation-controls/source-manifest.json": "42ed019623f85764b60e8599f22fd4dcc130ac3eadb71e36553a029ddc31f084",
+    "code/validated-examples/2026-11-25/approximation-controls/verification.json": "4a492b3d14bd72ead4daa18b68d791fb9b58cc49c426b87c30ebf2b0d439f7ab",
+    "code/validated-examples/2026-11-25/approximation-controls/cases.json": "5b422ab05c5f902f238be33541a72991228dae016b0a46fdeaed38df16873a4f",
+    "code/validated-examples/2026-11-25/approximation-controls/results/result.json": "8db40827ec3c82334006c5dee9fab5bb0605045e396e580af75ea68c9e090259",
+    "code/validated-examples/2026-11-25/approximation-controls/atlas-approximation-controls-2026-11-25.zip": "7dbadeb591e3329965c2ab5aa7f6025e5d8c18a438b7264460370ad64bdaf053",
+    "code/validated-examples/2026-11-25/small-models/source-manifest.json": "20f3e16af0c6684b77e5a132e6d2ccd26f82de14203fdd9474d9bb4866e5914c",
+    "code/validated-examples/2026-11-25/small-models/verification.json": "a134ed7650c468598c7222c994e2ae49a87c4584264269747c4bc2141a115145",
+    "code/validated-examples/2026-11-25/small-models/cases.json": "7da1b291ce84a8133573794574cb539f6d3c5512571cafa8f05a67ad1d6acabc",
+    "code/validated-examples/2026-11-25/small-models/results/result.json": "2e0e830c2fa65aea6b67833b260cb617d794f41e4832eb8600db5fe8ab60c627",
+    "code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip": "d341b8a90e0b6ade7c70760a2c32a9f3825a6b4e162b221c7cc95b10f3cd40c1"
   }
 }

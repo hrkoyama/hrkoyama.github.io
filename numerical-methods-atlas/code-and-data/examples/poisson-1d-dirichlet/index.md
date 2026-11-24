@@ -51,6 +51,10 @@ CSVは最細格子でx・数値解・解析解・誤差を整列。全3格子の
 
 単一sin(πx)の共通固定入力とは一致しますが、保存比較図は複合正弦製造解も含みます。同じ零Dirichletでも全ソースが同一ではありません。
 
+- [1D Poisson PINNと独立格子誤差](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-pinn-poisson-ja) (`pinn-poisson`; 関連モデルの参照 · 製造解)
+
+1つの滑らかなPoisson問題と3seedの固定予算実験です。小さい学習損失だけで独立点精度の達成や一般的なPINN学習成功を保証しません。未達目標も表示します。
+
 
 ### scope
 
@@ -155,6 +159,10 @@ CSV aligns finest-grid x, numerical/analytic values and error. JSON retains all 
 - [Poisson / manufactured sine](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-poisson-manufactured-en) (`poisson-manufactured`; Related-model reference · Manufactured solution)
 
 It matches the single-sine common fixed input, but saved comparisons also contain composite-sine manufactured forcing. Zero Dirichlet boundaries do not make all sources identical.
+
+- [Poisson PINN: independent grid error](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-pinn-poisson-en) (`pinn-poisson`; Related-model reference · Manufactured solution)
+
+This fixed-budget study covers one smooth Poisson problem and three seeds. A small training loss does not establish independent-point accuracy or general PINN training success. Unmet goals remain visible.
 
 
 ### scope

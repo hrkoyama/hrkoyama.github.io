@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "id": "spline-shape-controls",
+  "name": {
+    "ja": "自然・端点微分指定スプラインとPCHIP",
+    "en": "Natural and clamped splines versus PCHIP"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/spline-shape-controls/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/spline-shape-controls/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/spline-shape-controls/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/results/spline-shape-controls-preview.png",
+    "sha256": "f82de2009b363a8e1a42e118714084f4b920f050393c066c75f996c38299f1c5",
+    "width": 1045,
+    "height": 389,
+    "caption": {
+      "ja": "平坦部を持つ単調データ・3次式・直線の固定3組で、C2連続性と形状保存を比較します。 保存配列から作図。",
+      "en": "Compare C2 continuity and shape preservation on three fixed data sets: a monotone plateau, a cubic and a straight line. Drawn from saved arrays."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#spline-shape-controls",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#spline-shape-controls"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#spline-shape-controls",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#spline-shape-controls-en"
+  },
+  "equations": [
+    {
+      "id": "cubic-spline-pchip",
+      "name": {
+        "ja": "3次スプラインと形状保存補間",
+        "en": "Cubic splines and shape-preserving interpolation"
+      },
+      "formula": [
+        "S_i(x)=a_i+b_i(x-x_i)+c_i(x-x_i)^2+d_i(x-x_i)^3",
+        "S\\in C^2\\ \\text{for the natural/clamped spline};\\quad P\\in C^1\\ \\text{for PCHIP}"
+      ],
+      "note": {
+        "ja": "端点条件を持つC2補間と単調な区分Hermite補間を区別します。",
+        "en": "Distinguish C2 interpolation with endpoint conditions from monotone piecewise Hermite interpolation."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#cubic-spline-pchip-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#cubic-spline-pchip-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "実binary64の節点と値を使用。自然条件は両端2階微分ゼロ、clamped条件は入力端点1階微分です。",
+    "en": "Use actual binary64 knots and values. Natural conditions set both endpoint second derivatives to zero; clamped conditions prescribe the first derivatives from the input."
+  },
+  "formulations": [
+    {
+      "id": "supplement-spline-shape-controls",
+      "name": {
+        "ja": "自然・端点微分指定スプラインとPCHIP",
+        "en": "Natural and clamped splines versus PCHIP"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "S_i(s)=a_i+b_i*s+c_i*s^2+d_i*s^3",
+        "d_k=(w_1+w_2)/(w_1/m_(k-1)+w_2/m_k)",
+        "S_natural(1.5)=a-9*(b-a)/88; S_clamped(1.5)=a-15*(b-a)/152"
+      ],
+      "note": {
+        "ja": "平坦部を持つ単調データ・3次式・直線の固定3組で、C2連続性と形状保存を比較します。",
+        "en": "Compare C2 continuity and shape preservation on three fixed data sets: a monotone plateau, a cubic and a straight line."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "spline-shape-controls",
+      "kind": "analytic",
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "title": {
+        "ja": "自然・端点微分指定スプラインとPCHIP",
+        "en": "Natural and clamped splines versus PCHIP"
+      },
+      "formula": "S_i(s)=a_i+b_is+c_is^2+d_is^3,\\quad d_k=\\frac{w_1+w_2}{w_1/m_{k-1}+w_2/m_k};\\quad S_{\\rm nat}(3/2)=a-\\frac9{88}(b-a),\\quad S_{\\rm clamp}(3/2)=a-\\frac{15}{152}(b-a)",
+      "assumptions": {
+        "ja": "実binary64の節点と値を使用。自然条件は両端2階微分ゼロ、clamped条件は入力端点1階微分です。",
+        "en": "Use actual binary64 knots and values. Natural conditions set both endpoint second derivatives to zero; clamped conditions prescribe the first derivatives from the input."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "PCHIPは通常C1でありC2とは限りません。一般データの最良近似・外挿・ノイズ平滑化は対象外。SciPyは原著完全閲読の代用ではありません。",
+        "en": "PCHIP is generally C1, not necessarily C2. Best approximation, extrapolation and noise smoothing are outside scope. A SciPy comparison does not substitute for reading the original papers."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spline-shape-controls/?lang=ja#spline-shape-controls-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spline-shape-controls/?lang=en#spline-shape-controls-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "正確な有理2階微分系・有理PCHIP・SciPy 1.14.1を照合。端点15記録は16スカラー出力・13異なる入力。平坦部の負値は実binary64をFraction化した独立式で示します。",
+    "en": "Compare with exact rational second-derivative systems, rational PCHIP and SciPy 1.14.1. Fifteen endpoint records contain sixteen scalar outputs from thirteen distinct inputs. Independent Fraction formulas show plateau undershoot for the actual binary64 data."
+  },
+  "methods": [
+    {
+      "id": "splines",
+      "name": {
+        "ja": "スプライン補間",
+        "en": "Spline interpolation"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/splines/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/splines/?lang=en"
+      }
+    },
+    {
+      "id": "pchip",
+      "name": {
+        "ja": "PCHIP単調3次Hermite補間",
+        "en": "PCHIP monotone cubic Hermite interpolation"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pchip/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pchip/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "3次Bスプラインの配置行列を解きde Boor評価。別経路でPCHIPの調和平均・端点制限とHermite評価を実装します。",
+    "en": "Solve a cubic B-spline collocation system and evaluate it with de Boor recursion. A separate path implements PCHIP harmonic slopes, endpoint limiting and Hermite evaluation."
+  },
+  "executions": [
+    {
+      "id": "spline-shape-controls",
+      "kind": "supplement",
+      "name": {
+        "ja": "自然・端点微分指定スプラインとPCHIP",
+        "en": "Natural and clamped splines versus PCHIP"
+      },
+      "method_ids": [
+        "splines",
+        "pchip"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spline-shape-controls/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/spline-shape-controls/?lang=en"
+      },
+      "scope": {
+        "ja": "平坦部を持つ単調データ・3次式・直線の固定3組で、C2連続性と形状保存を比較します。",
+        "en": "Compare C2 continuity and shape preservation on three fixed data sets: a monotone plateau, a cubic and a straight line."
+      },
+      "assumptions": {
+        "ja": "実binary64の節点と値を使用。自然条件は両端2階微分ゼロ、clamped条件は入力端点1階微分です。",
+        "en": "Use actual binary64 knots and values. Natural conditions set both endpoint second derivatives to zero; clamped conditions prescribe the first derivatives from the input."
+      },
+      "limits": {
+        "ja": "PCHIPは通常C1でありC2とは限りません。一般データの最良近似・外挿・ノイズ平滑化は対象外。SciPyは原著完全閲読の代用ではありません。",
+        "en": "PCHIP is generally C1, not necessarily C2. Best approximation, extrapolation and noise smoothing are outside scope. A SciPy comparison does not substitute for reading the original papers."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/atlas-approximation-controls-2026-11-25.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "正確な有理2階微分系・有理PCHIP・SciPy 1.14.1を照合。端点15記録は16スカラー出力・13異なる入力。平坦部の負値は実binary64をFraction化した独立式で示します。",
+        "en": "Compare with exact rational second-derivative systems, rational PCHIP and SciPy 1.14.1. Fifteen endpoint records contain sixteen scalar outputs from thirteen distinct inputs. Independent Fraction formulas show plateau undershoot for the actual binary64 data."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/splines.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/test_approximation.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

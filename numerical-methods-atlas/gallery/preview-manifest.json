@@ -1789,10 +1789,118 @@
         "ja": "保存した最細impulse軌道の実q1–q2座標と物理時刻。これは走査相図ではなく、結合した1軌道です。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
         "en": "Saved q1–q2 coordinates of the finest impulse trajectory, colored by physical time. This is one coupled trajectory, not a scanned phase diagram. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
       }
+    },
+    {
+      "id": "quadpack-domain-selection",
+      "image": "/code/validated-examples/2026-11-25/quadrature-controls/results/quadpack-domain-selection-preview.png",
+      "image_sha256": "111323aebefd00411d8204b17d38024d3a20920e263f36af487083ecd49259f5",
+      "width": 1582,
+      "height": 614,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "活動Fourier周期の保存寄与と誤差・評価数 数学的な積分領域と次元は式・入力に示します。パラメータや誤差の図軸に物理空間の次元を割り当てません。 再現確認の合格は精度目標の全達成を意味しません。元の目標判定は達成25件・未達2件・計算不能3件です。FALSE/NAと失敗rawを保持します。",
+        "en": "Saved active Fourier contributions and actual errors/call counts The formulas and inputs specify mathematical integration domains and dimensions. Parameter and error axes are not physical spatial coordinates. Passing reproduction checks does not mean that every accuracy goal was met. Original row outcomes: 25 met, 2 unmet and 3 not computable. False/NA outcomes and raw failures are retained."
+      }
+    },
+    {
+      "id": "gk15-double-exponential",
+      "image": "/code/validated-examples/2026-11-25/quadrature-controls/results/gk15-double-exponential-preview.png",
+      "image_sha256": "1baba282adda756250570f756dada4aca2ad08a211da1d09f4aa4f012ab8b0dd",
+      "width": 2060,
+      "height": 696,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "保存された変換関数と有限窓誤差（連続tailは別量） 数学的な積分領域と次元は式・入力に示します。パラメータや誤差の図軸に物理空間の次元を割り当てません。 再現確認の合格は精度目標の全達成を意味しません。元の目標判定は達成26件・未達7件・計算不能0件です。FALSE/NAと失敗rawを保持します。",
+        "en": "Saved transformed integrands and finite-window defects; continuous tails are distinct The formulas and inputs specify mathematical integration domains and dimensions. Parameter and error axes are not physical spatial coordinates. Passing reproduction checks does not mean that every accuracy goal was met. Original row outcomes: 26 met, 7 unmet and 0 not computable. False/NA outcomes and raw failures are retained."
+      }
+    },
+    {
+      "id": "tensor-smolyak-dimensions",
+      "image": "/code/validated-examples/2026-11-25/quadrature-controls/results/tensor-smolyak-dimensions-preview.png",
+      "image_sha256": "8f0c7101b7ca3062e0789fb9a658f58542024b566a8fafdc38e6a2a9d4263147",
+      "width": 1571,
+      "height": 633,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "実2次元節点と符号付き積分重み 数学的な積分領域と次元は式・入力に示します。パラメータや誤差の図軸に物理空間の次元を割り当てません。 再現確認の合格は精度目標の全達成を意味しません。元の目標判定は達成24件・未達18件・計算不能0件です。FALSE/NAと失敗rawを保持します。",
+        "en": "Actual two-dimensional nodes and signed integration weights The formulas and inputs specify mathematical integration domains and dimensions. Parameter and error axes are not physical spatial coordinates. Passing reproduction checks does not mean that every accuracy goal was met. Original row outcomes: 24 met, 18 unmet and 0 not computable. False/NA outcomes and raw failures are retained."
+      }
+    },
+    {
+      "id": "runge-barycentric-clenshaw",
+      "image": "/code/validated-examples/2026-11-25/approximation-controls/results/runge-barycentric-clenshaw-preview.png",
+      "image_sha256": "36e92c10fcf30cc84d6982b52d2ee72e4ddacabd445527b180d06836d33aa7f7",
+      "width": 1045,
+      "height": 389,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "Runge関数と絶対値関数を等間隔・Lobatto型の固定節点で補間し、Clenshaw評価と比較します。 保存配列から作図。",
+        "en": "Interpolate the Runge and absolute-value functions on fixed equispaced and Lobatto-like nodes, and compare with Clenshaw evaluation. Drawn from saved arrays."
+      }
+    },
+    {
+      "id": "spline-shape-controls",
+      "image": "/code/validated-examples/2026-11-25/approximation-controls/results/spline-shape-controls-preview.png",
+      "image_sha256": "f82de2009b363a8e1a42e118714084f4b920f050393c066c75f996c38299f1c5",
+      "width": 1045,
+      "height": 389,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "平坦部を持つ単調データ・3次式・直線の固定3組で、C2連続性と形状保存を比較します。 保存配列から作図。",
+        "en": "Compare C2 continuity and shape preservation on three fixed data sets: a monotone plateau, a cubic and a straight line. Drawn from saved arrays."
+      }
+    },
+    {
+      "id": "haar-mallat-boundary-threshold",
+      "image": "/code/validated-examples/2026-11-25/approximation-controls/results/haar-mallat-boundary-threshold-preview.png",
+      "image_sha256": "957809b32f1acfa3d3289eeb24e0e28fbdec9dd4df5f783f28c2bdbbf10498f3",
+      "width": 1045,
+      "height": 389,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "長さ17・32の小信号に3段Haar分解を適用。1標本シフトと奇数長の境界処理を分けて比較します。 保存配列から作図。 標本添字は物理空間の座標ではありません。境界処理を含む有限長信号の写像です。",
+        "en": "Apply three-level Haar analysis to short signals of lengths 17 and 32, separating one-sample shifts from odd-length boundary handling. Drawn from saved arrays. Sample indices are not physical spatial coordinates. This is a finite-signal map with declared boundary handling."
+      }
+    },
+    {
+      "id": "enzyme-qssa",
+      "image": "/code/validated-examples/2026-11-25/small-models/results/enzyme-qssa-preview.png",
+      "image_sha256": "9f8ee2648321815e570a9415a71d42e1b7f8228ece70e9ff797860f23f7eea8c",
+      "width": 1634,
+      "height": 1057,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "全4状態と準定常近似を比較し、初期層と積分誤差を分けます。 保存値だけを描画します。 時間・濃度・個体数の軸は空間次元ではありません。率は教育用で疾病・実験予測ではありません。",
+        "en": "Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism. This figure reads saved data only. Time, concentrations and populations do not define a spatial dimension. The rates are educational, not disease or experimental predictions."
+      }
+    },
+    {
+      "id": "lotka-volterra",
+      "image": "/code/validated-examples/2026-11-25/small-models/results/lotka-volterra-preview.png",
+      "image_sha256": "2b0fbc061793a1f77310488f6351e2b8315fc2bc4da8c2f5946024d5f4e8d029",
+      "width": 1634,
+      "height": 1057,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "正の軌道を独立な対数座標参照と比較します。 保存値だけを描画します。 時間・濃度・個体数の軸は空間次元ではありません。率は教育用で疾病・実験予測ではありません。",
+        "en": "Compare a positive orbit against an independently integrated log-coordinate reference. This figure reads saved data only. Time, concentrations and populations do not define a spatial dimension. The rates are educational, not disease or experimental predictions."
+      }
+    },
+    {
+      "id": "seir-linearization",
+      "image": "/code/validated-examples/2026-11-25/small-models/results/seir-linearization-preview.png",
+      "image_sha256": "3ee8e7e8fdab4934bfc1ef679ccc39722c2412e95331bfb26800ae1c4fe80e04",
+      "width": 1630,
+      "height": 1057,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "人口保存と2モードの初期線形化を別々に検査します。 保存値だけを描画します。 時間・濃度・個体数の軸は空間次元ではありません。率は教育用で疾病・実験予測ではありません。",
+        "en": "Check population conservation and the full two-mode initial linearization separately. This figure reads saved data only. Time, concentrations and populations do not define a spatial dimension. The rates are educational, not disease or experimental predictions."
+      }
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "c882b83950ce3788adba25db1eae31f68f12df1d0dcbf682a10d249596c2930a",
+    "catalog/atlas-gallery.json": "ae602a1174532df8a396241f0510a65436b86fdc609fba190ef2f2bd68efbbf4",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -1839,8 +1947,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "a26379f4a8b6a236b38af6e664312f24161c97e37e65b6e7bad71ff8eb923f20",
-    "catalog/atlas-depth-expansion.json": "9cf692c64631ff4c64803d9caac072b3edc5dab0afec414d67df99eae3098d28",
+    "catalog/atlas-test-problems.json": "2c5260104ab1381d23b5b1e091ccd891da1d5124b05a03fc75b5acb2c6693a6f",
+    "catalog/atlas-depth-expansion.json": "a99cdc630a84a3e908c0ac95e907af1860206a31acb690711d152d5f4ed511d7",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -2438,7 +2546,49 @@
     "code/validated-examples/2026-11-24/geometric-controls/results/multifrequency-resonance-preview.png": "971cc717fea17fc6184f618778728aa4b3929c651fe9b835dfa1e9bb4340a8c8",
     "code/validated-examples/2026-11-24/geometric-controls/source-manifest.json": "ef06a73e7a39a839112d5d1c3bb962860dc37e95eec1fb80e6ade23b64ab844a",
     "code/validated-examples/2026-11-24/geometric-controls/verification.json": "507d5825483d27a7cefe5a3ef683c4e5a818234d4c8098a97772e92de056d50d",
-    "code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip": "4e3ef28ab6c91ae62918b7effc6f37097ec0f5a4ed878d4d33fa06e1945329a2"
+    "code/validated-examples/2026-11-24/geometric-controls/atlas-geometric-controls-2026-11-24.zip": "4e3ef28ab6c91ae62918b7effc6f37097ec0f5a4ed878d4d33fa06e1945329a2",
+    "code/validated-examples/2026-11-25/quadrature-controls/cases.json": "f900a3245e2b6ae3b446e553a17f93b507444654bce72ffeb1003b95bc97446b",
+    "code/validated-examples/2026-11-25/quadrature-controls/inputs.json": "256fb2326fe3c907ac1a0b5131bf86d55b024e7c49cdac30ff23db1250c868d1",
+    "code/validated-examples/2026-11-25/quadrature-controls/acceptance.json": "8f83d83c15af06ded71a045e5ef81758d47d139307df57c6942425abd6c0408d",
+    "code/validated-examples/2026-11-25/quadrature-controls/pre-run-contract.json": "7e9a1279c12becf522d20cab4c5602361b52d4c73b5ad99b0a653d2358a4e111",
+    "code/validated-examples/2026-11-25/quadrature-controls/results/result.json": "08484664c27e9342f071c78695b31198775561ea8f39f663b6859665190ccede",
+    "code/validated-examples/2026-11-25/quadrature-controls/results/quadpack-domain-selection.png": "9b45e3cc69ef7af27848683d0e7955c215c90da800cd6313d092f0afba36bd5f",
+    "code/validated-examples/2026-11-25/quadrature-controls/results/quadpack-domain-selection-preview.png": "111323aebefd00411d8204b17d38024d3a20920e263f36af487083ecd49259f5",
+    "code/validated-examples/2026-11-25/quadrature-controls/source-manifest.json": "7742ff5dd15bd7b848464e4ada267e7d861825f961ea0e15a982be46e2b8708e",
+    "code/validated-examples/2026-11-25/quadrature-controls/verification.json": "cfc7e98903ca8dcc5b11245f15d94b6711aa5ab7992ec29b2c9b291552b85e08",
+    "code/validated-examples/2026-11-25/quadrature-controls/atlas-quadrature-controls-2026-11-25.zip": "843f8394607db82a40af99a34785cce4f22e0f26f3b85d2375f121bcc9ebd6f4",
+    "code/validated-examples/2026-11-25/quadrature-controls/results/gk15-double-exponential.png": "54eff6035d84c6fa0bed04722537c85d31653911b6b1196391ea6d538f00cb7e",
+    "code/validated-examples/2026-11-25/quadrature-controls/results/gk15-double-exponential-preview.png": "1baba282adda756250570f756dada4aca2ad08a211da1d09f4aa4f012ab8b0dd",
+    "code/validated-examples/2026-11-25/quadrature-controls/results/tensor-smolyak-dimensions.png": "3f503ee0571df93719f30817552dc5f8152a5042975319acd9a450599f2ecbdc",
+    "code/validated-examples/2026-11-25/quadrature-controls/results/tensor-smolyak-dimensions-preview.png": "8f0c7101b7ca3062e0789fb9a658f58542024b566a8fafdc38e6a2a9d4263147",
+    "code/validated-examples/2026-11-25/approximation-controls/cases.json": "5b422ab05c5f902f238be33541a72991228dae016b0a46fdeaed38df16873a4f",
+    "code/validated-examples/2026-11-25/approximation-controls/inputs.json": "1b25d6d4161e19c1208819b010042eb568f68549e513a14a500884f630745217",
+    "code/validated-examples/2026-11-25/approximation-controls/acceptance.json": "2f3740bc218e84c3c8bac1c89ecd27651ed4e2f2d417058bb4e05c9121906ad7",
+    "code/validated-examples/2026-11-25/approximation-controls/pre-run-contract.json": "4aedc31889b318f833b2f2921db215fdfb3512966a10b0803029d65fa63146fc",
+    "code/validated-examples/2026-11-25/approximation-controls/results/result.json": "8db40827ec3c82334006c5dee9fab5bb0605045e396e580af75ea68c9e090259",
+    "code/validated-examples/2026-11-25/approximation-controls/results/runge-barycentric-clenshaw.png": "8cf8b9c5946bbec3a3c4cef110ff3bed1c5ddc9edf77c94b6a454129e2c536fb",
+    "code/validated-examples/2026-11-25/approximation-controls/results/runge-barycentric-clenshaw-preview.png": "36e92c10fcf30cc84d6982b52d2ee72e4ddacabd445527b180d06836d33aa7f7",
+    "code/validated-examples/2026-11-25/approximation-controls/source-manifest.json": "42ed019623f85764b60e8599f22fd4dcc130ac3eadb71e36553a029ddc31f084",
+    "code/validated-examples/2026-11-25/approximation-controls/verification.json": "4a492b3d14bd72ead4daa18b68d791fb9b58cc49c426b87c30ebf2b0d439f7ab",
+    "code/validated-examples/2026-11-25/approximation-controls/atlas-approximation-controls-2026-11-25.zip": "7dbadeb591e3329965c2ab5aa7f6025e5d8c18a438b7264460370ad64bdaf053",
+    "code/validated-examples/2026-11-25/approximation-controls/results/spline-shape-controls.png": "c0ebf146b8708eccd7174ee553417c6224f36c03a97ed6e8a09efe7a894e6a52",
+    "code/validated-examples/2026-11-25/approximation-controls/results/spline-shape-controls-preview.png": "f82de2009b363a8e1a42e118714084f4b920f050393c066c75f996c38299f1c5",
+    "code/validated-examples/2026-11-25/approximation-controls/results/haar-mallat-boundary-threshold.png": "8515541cb6ae0fb774e093238e0b21983b29749053db2776e45f17dbc7108f51",
+    "code/validated-examples/2026-11-25/approximation-controls/results/haar-mallat-boundary-threshold-preview.png": "957809b32f1acfa3d3289eeb24e0e28fbdec9dd4df5f783f28c2bdbbf10498f3",
+    "code/validated-examples/2026-11-25/small-models/cases.json": "7da1b291ce84a8133573794574cb539f6d3c5512571cafa8f05a67ad1d6acabc",
+    "code/validated-examples/2026-11-25/small-models/inputs.json": "9dc5d9527e3e36d1de06e82c386ff4375292392a6ba9e23ac09885693c1c524d",
+    "code/validated-examples/2026-11-25/small-models/acceptance.json": "b468e78459cf81bda6a32cade0051f6615b44def256c66308ae7acc82ff516ce",
+    "code/validated-examples/2026-11-25/small-models/pre-run-contract.json": "404cf05b6b1ca136c6bb220bce7f915b207b53c4ef17f36d05c4ad4c3149b9c6",
+    "code/validated-examples/2026-11-25/small-models/results/result.json": "2e0e830c2fa65aea6b67833b260cb617d794f41e4832eb8600db5fe8ab60c627",
+    "code/validated-examples/2026-11-25/small-models/results/enzyme-qssa.png": "9f8ee2648321815e570a9415a71d42e1b7f8228ece70e9ff797860f23f7eea8c",
+    "code/validated-examples/2026-11-25/small-models/results/enzyme-qssa-preview.png": "9f8ee2648321815e570a9415a71d42e1b7f8228ece70e9ff797860f23f7eea8c",
+    "code/validated-examples/2026-11-25/small-models/source-manifest.json": "20f3e16af0c6684b77e5a132e6d2ccd26f82de14203fdd9474d9bb4866e5914c",
+    "code/validated-examples/2026-11-25/small-models/verification.json": "a134ed7650c468598c7222c994e2ae49a87c4584264269747c4bc2141a115145",
+    "code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip": "d341b8a90e0b6ade7c70760a2c32a9f3825a6b4e162b221c7cc95b10f3cd40c1",
+    "code/validated-examples/2026-11-25/small-models/results/lotka-volterra.png": "2b0fbc061793a1f77310488f6351e2b8315fc2bc4da8c2f5946024d5f4e8d029",
+    "code/validated-examples/2026-11-25/small-models/results/lotka-volterra-preview.png": "2b0fbc061793a1f77310488f6351e2b8315fc2bc4da8c2f5946024d5f4e8d029",
+    "code/validated-examples/2026-11-25/small-models/results/seir-linearization.png": "3ee8e7e8fdab4934bfc1ef679ccc39722c2412e95331bfb26800ae1c4fe80e04",
+    "code/validated-examples/2026-11-25/small-models/results/seir-linearization-preview.png": "3ee8e7e8fdab4934bfc1ef679ccc39722c2412e95331bfb26800ae1c4fe80e04"
   },
   "calculations_sha256": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
   "maintenance_updates": [
@@ -2865,6 +3015,45 @@
         "catalog/atlas-depth-expansion.json": {
           "before": "5d3f5ab6f626a0bc4627b680dbe64ab75f738f8660f25862cf58a97ac2e39b90",
           "after": "9cf692c64631ff4c64803d9caac072b3edc5dab0afec414d67df99eae3098d28"
+        }
+      },
+      "producer": {
+        "path": "scripts/prime-atlas-gallery-metadata.py",
+        "sha256": "5cd0859fb6bc008a5b6b55435441630d29e3398edb93bb7ae212bd94cd9ef668"
+      },
+      "historical_primary_records_unchanged": true,
+      "scientific_preview_execution": false,
+      "historical_figures_rerendered": false
+    },
+    {
+      "on": "2026-11-25",
+      "date_role": "Source catalog reviewed_on; not execution time.",
+      "scope": "Register already qualified canonical PNG metadata before reverse routes; retain all prior picture records/images and original numerical-preview receipts.",
+      "primary_item_count_before": 149,
+      "primary_item_count_after": 158,
+      "added_primary_ids": [
+        "quadpack-domain-selection",
+        "gk15-double-exponential",
+        "tensor-smolyak-dimensions",
+        "runge-barycentric-clenshaw",
+        "spline-shape-controls",
+        "haar-mallat-boundary-threshold",
+        "enzyme-qssa",
+        "lotka-volterra",
+        "seir-linearization"
+      ],
+      "changed_catalog_bindings": {
+        "catalog/atlas-gallery.json": {
+          "before": "c882b83950ce3788adba25db1eae31f68f12df1d0dcbf682a10d249596c2930a",
+          "after": "ae602a1174532df8a396241f0510a65436b86fdc609fba190ef2f2bd68efbbf4"
+        },
+        "catalog/atlas-test-problems.json": {
+          "before": "a26379f4a8b6a236b38af6e664312f24161c97e37e65b6e7bad71ff8eb923f20",
+          "after": "2c5260104ab1381d23b5b1e091ccd891da1d5124b05a03fc75b5acb2c6693a6f"
+        },
+        "catalog/atlas-depth-expansion.json": {
+          "before": "9cf692c64631ff4c64803d9caac072b3edc5dab0afec414d67df99eae3098d28",
+          "after": "a99cdc630a84a3e908c0ac95e907af1860206a31acb690711d152d5f4ed511d7"
         }
       },
       "producer": {

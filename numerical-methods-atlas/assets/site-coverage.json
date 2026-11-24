@@ -10,8 +10,8 @@
     "test_problems": "Count independent problems across published atlas results and the verified public code edition. Distinguish governing equations, dimensions, boundary conditions and named initial/source problems; merge solver, mesh, step-size, parameter-sweep, random-seed and presentation variants of the same problem. Repeated Sod exhibits, wedge Mach variants and CT/GLM variants do not add problems. Exclude reference-only evaluations, planned/literature-only entries, diagrams, and local identity/invariant/input-error unit checks. Static-force, boundary-value, approximation and algebraic problems are included; not every entry is a time-evolving simulation."
   },
   "counts": {
-    "equations": 80,
-    "methods": 149,
+    "equations": 85,
+    "methods": 157,
     "papers": 249,
     "references": 310,
     "journal_articles": 242,
@@ -20,16 +20,16 @@
     "chapters": 3,
     "reports": 4,
     "other_sources": 29,
-    "local_equations": 58,
-    "reading_equations": 22,
-    "local_methods": 134,
+    "local_equations": 65,
+    "reading_equations": 20,
+    "local_methods": 142,
     "reading_methods": 15,
     "biological_entries": 22,
     "gallery_cases": 9,
     "gallery_equations": 7,
-    "reading_chapters": 145,
-    "test_problems": 149,
-    "saved_test_problems": 149,
+    "reading_chapters": 148,
+    "test_problems": 158,
+    "saved_test_problems": 158,
     "code_test_problems": 0
   },
   "items": [
@@ -695,18 +695,18 @@
       "id": "bio-enzyme",
       "label": "Michaelis–Menten and full enzyme kinetics",
       "chapter": "biological-models",
-      "status": "reading",
+      "status": "local-example",
       "group": "Biological model survey",
-      "scope": "The 1913 rapid-equilibrium interpretation and the 1925 quasi-steady-state derivation must remain distinct."
+      "scope": "These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction."
     },
     {
       "kind": "equation",
       "id": "bio-lotka-volterra",
       "label": "Lotka–Volterra predator–prey",
       "chapter": "biological-models",
-      "status": "reading",
+      "status": "local-example",
       "group": "Biological model survey",
-      "scope": ""
+      "scope": "This is a finite-time comparison for one initial state. The continuum closed orbit is not an attracting limit cycle. RK4 is not claimed to preserve H exactly, maintain positivity at arbitrary steps or guarantee long-time geometric fidelity."
     },
     {
       "kind": "equation",
@@ -1460,6 +1460,56 @@
       "origin": "curated-equation-catalog"
     },
     {
+      "kind": "equation",
+      "id": "definite-integrals",
+      "label": "Finite, improper and multivariate definite integrals",
+      "chapter": "validation-quadrature-controls",
+      "status": "local-example",
+      "group": "Physics & mathematical models",
+      "scope": "Fixed educational inputs only; inspect the release-specific assumptions, references and limits.",
+      "origin": "curated-equation-catalog"
+    },
+    {
+      "kind": "equation",
+      "id": "polynomial-interpolation",
+      "label": "Polynomial interpolation on stored nodes",
+      "chapter": "validation-approximation-controls",
+      "status": "local-example",
+      "group": "Physics & mathematical models",
+      "scope": "Fixed educational inputs only; inspect the release-specific assumptions, references and limits.",
+      "origin": "curated-equation-catalog"
+    },
+    {
+      "kind": "equation",
+      "id": "cubic-spline-pchip",
+      "label": "Cubic splines and shape-preserving interpolation",
+      "chapter": "validation-approximation-controls",
+      "status": "local-example",
+      "group": "Physics & mathematical models",
+      "scope": "Fixed educational inputs only; inspect the release-specific assumptions, references and limits.",
+      "origin": "curated-equation-catalog"
+    },
+    {
+      "kind": "equation",
+      "id": "discrete-haar-transform",
+      "label": "Discrete Haar transforms of finite signals",
+      "chapter": "validation-approximation-controls",
+      "status": "local-example",
+      "group": "Physics & mathematical models",
+      "scope": "Fixed educational inputs only; inspect the release-specific assumptions, references and limits.",
+      "origin": "curated-equation-catalog"
+    },
+    {
+      "kind": "equation",
+      "id": "seir-compartment",
+      "label": "Closed SEIR compartment model",
+      "chapter": "validation-small-models",
+      "status": "local-example",
+      "group": "Physics & mathematical models",
+      "scope": "These fixed-coefficient calculations compare two small initial infection levels. The early linearization is not an exact solution through t=20, and a single dominant mode does not replace the two-mode solution. No epidemic forecast, statistical coverage or arbitrary-population guarantee is claimed.",
+      "origin": "curated-equation-catalog"
+    },
+    {
       "kind": "method",
       "id": "centered-difference",
       "label": "Centered spatial difference",
@@ -1931,12 +1981,42 @@
     },
     {
       "kind": "method",
+      "id": "splines",
+      "label": "Spline interpolation",
+      "chapter": "validation-approximation-controls",
+      "status": "local-example",
+      "group": "Approximation & quadrature",
+      "scope": "Fixed educational executions: Natural and clamped splines versus PCHIP.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
       "id": "quadrature",
       "label": "Gaussian and adaptive quadrature",
       "chapter": "validation-foundations",
       "status": "local-example",
       "group": "Approximation & quadrature",
       "scope": "Gauss–Legendre and adaptive quadrature: exactness, error estimates and budgets: Construct Gaussian nodes/weights from the Legendre recurrence and test polynomial moments through degree 2n−1 and an exponential. Adaptive Simpson integrates exponential and Lorentzian peaks, against analytic integrals and independent QUADPACK. Quadrature: narrow peaks, cancellation, endpoints and estimator blind spots: Vary Gauss order and adaptive tolerance on narrow Lorentz peaks, a square-root endpoint, severe cancellation, a zero integral and a deliberately missed compact bump, using analytic integrals and QUADPACK.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "chebyshev",
+      "label": "Chebyshev approximation",
+      "chapter": "validation-approximation-controls",
+      "status": "local-example",
+      "group": "Approximation & quadrature",
+      "scope": "Fixed educational executions: Runge interpolation: nodes, representation and rounding.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "wavelets",
+      "label": "Wavelets",
+      "chapter": "validation-approximation-controls",
+      "status": "local-example",
+      "group": "Approximation & quadrature",
+      "scope": "Fixed educational executions: Haar multiresolution: boundaries, shifts and thresholds.",
       "origin": "curated-depth-example"
     },
     {
@@ -2027,6 +2107,16 @@
       "status": "local-example",
       "group": "Linear & nonlinear solvers",
       "scope": "Additional fixed examples: Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products. See each release for assumptions and checked scope. An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "pinn-operators",
+      "label": "PINNs and neural operators",
+      "chapter": "validation-small-models",
+      "status": "local-example",
+      "group": "Optimization & stochastic methods",
+      "scope": "Fixed educational executions: Poisson PINN: independent grid error, Tiny FNO on held-out heat problems.",
       "origin": "curated-depth-example"
     },
     {
@@ -2217,6 +2307,46 @@
       "status": "local-example",
       "group": "Time integration",
       "scope": "Additional fixed examples: SHAKE and RATTLE: constraints and momentum ownership. See each release for assumptions and checked scope. Original SHAKE and RATTLE full texts remain unread; selected author lecture notes were inspected. The finite-difference symplectic defect is a local proxy, not a general proof, and centered SHAKE velocity is not assigned RATTLE tangency.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "gauss-kronrod",
+      "label": "Gauss–Kronrod G7/K15",
+      "chapter": "validation-quadrature-controls",
+      "status": "local-example",
+      "group": "Approximation & quadrature",
+      "scope": "Compare a shared fifteen-node G7/K15 difference with actual errors on fixed integrals.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "tanh-sinh",
+      "label": "Tanh–sinh double-exponential quadrature",
+      "chapter": "validation-quadrature-controls",
+      "status": "local-example",
+      "group": "Approximation & quadrature",
+      "scope": "Evaluate stable transformed products with a finite full-endpoint trapezoidal sum.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "smolyak-sparse-grid",
+      "label": "Smolyak sparse-grid quadrature",
+      "chapter": "validation-quadrature-controls",
+      "status": "local-example",
+      "group": "Approximation & quadrature",
+      "scope": "Compare nested Clenshaw–Curtis differences and tensor rules on fixed integrals in two to four variables.",
+      "origin": "curated-depth-example"
+    },
+    {
+      "kind": "method",
+      "id": "pchip",
+      "label": "PCHIP monotone cubic Hermite interpolation",
+      "chapter": "validation-approximation-controls",
+      "status": "local-example",
+      "group": "Approximation & quadrature",
+      "scope": "Construct shape-preserving piecewise cubics using harmonic interior slopes and endpoint limiting.",
       "origin": "curated-depth-example"
     },
     {
@@ -3925,19 +4055,19 @@
     "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/",
     "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/index.json",
     "catalog": "catalog/atlas-test-problems.json",
-    "reviewed_on": "2026-11-24"
+    "reviewed_on": "2026-11-25"
   },
   "public_extension_sha256": {
     "catalog/atlas-quantum.json": "415dd98efe103ad5a2d950c22b98980f53539f6243b93e4e193dbca2c67169fe",
-    "catalog/atlas-methods.json": "82dfd3336a82bc165f4f47d3e1f709481866e053bf1c9bcb342520bf0d257609",
-    "catalog/atlas-equations.json": "61d1366ee14643fb0c8f5dff26c878f713396bf78e765c7344a4fc56a30e9b28",
+    "catalog/atlas-methods.json": "b303a2990f02603849719e9094e46768634286cd84e18b425ce48e5934873297",
+    "catalog/atlas-equations.json": "0a8adb3a0055f84570ed57dcc7514a51dba3dfdfa45c4c95cc2dd6e67ab64c16",
     "catalog/atlas-method-primary-references.json": "0b0f4df551b17a83672b3251a8155be2d7f3648f6e48f550cc99d8d49b2ef13c"
   },
   "equation_execution_source_sha256": {
-    "numerical-methods-atlas/assets/biological-models.json": "3ee3489ca4d2632d672576fcd75c062137053e203b55cbf51ee0cbe8cfc9556f",
+    "numerical-methods-atlas/assets/biological-models.json": "d27f67c75c3324c8a1d0ec132c07346d02b05c5be67913fb8467f2882af4510b",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "catalog/atlas-equations.json": "61d1366ee14643fb0c8f5dff26c878f713396bf78e765c7344a4fc56a30e9b28",
+    "catalog/atlas-equations.json": "0a8adb3a0055f84570ed57dcc7514a51dba3dfdfa45c4c95cc2dd6e67ab64c16",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "code/validated-examples/2026-11-23/weno-critical/source-manifest.json": "abd8b0a29bb81b7d98b897ec0a0eb409f77873857ec8199c3767f1ede11b43a5",
     "code/validated-examples/2026-11-23/weno-critical/verification.json": "ccbf3c6a2fe7055b324a0d98c152da909242f36e0c82ca3281038e4c9b0c165f",
@@ -3959,6 +4089,11 @@
     "code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json": "b88c01a4388790cc795041ffcecfcbdf465e8953443ea522d23247a715900845",
     "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/result.json": "6d61f82c6c4854a92696faebb2f3fcc650b50abc141a945720d432077dd789cf",
     "code/validated-examples/2026-11-24-r2/ode-adaptivity/atlas-ode-adaptivity-2026-11-24-r2.zip": "19e6bed36d5a49a865881df12170edf9f79b4c5365e35ae91186eaf33bb5bc3a",
+    "code/validated-examples/2026-11-25/small-models/source-manifest.json": "20f3e16af0c6684b77e5a132e6d2ccd26f82de14203fdd9474d9bb4866e5914c",
+    "code/validated-examples/2026-11-25/small-models/verification.json": "a134ed7650c468598c7222c994e2ae49a87c4584264269747c4bc2141a115145",
+    "code/validated-examples/2026-11-25/small-models/cases.json": "7da1b291ce84a8133573794574cb539f6d3c5512571cafa8f05a67ad1d6acabc",
+    "code/validated-examples/2026-11-25/small-models/results/result.json": "2e0e830c2fa65aea6b67833b260cb617d794f41e4832eb8600db5fe8ab60c627",
+    "code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip": "d341b8a90e0b6ade7c70760a2c32a9f3825a6b4e162b221c7cc95b10f3cd40c1",
     "code/validated-examples/2026-11-23/mesh-boundary/source-manifest.json": "96e55d4c564baf804d3ae7feb86a36c7d7a3d4079f5e47180326fd2c09ee675a",
     "code/validated-examples/2026-11-23/mesh-boundary/verification.json": "1191781061a2ec3339d26d8e9e4db605e9c40e8d5d5dfa6433712b38f43f7d01",
     "code/validated-examples/2026-11-23/mesh-boundary/cases.json": "30c7d39639f74d4f263a045cccc8ced3e14a466e4e279c4c156fc21ce176f796",
@@ -4148,6 +4283,16 @@
     "code/validated-examples/2026-11-24-r2/maxwell-grazing/verification.json": "4c8133a8a4042ed925fd21af37d62fe472978af2ac4fecd3518a9d2242db1de0",
     "code/validated-examples/2026-11-24-r2/maxwell-grazing/cases.json": "6b8417bd334606a183298f805a4337b9bda947fff47de60c34bd7844b69e4c7c",
     "code/validated-examples/2026-11-24-r2/maxwell-grazing/results/result.json": "01ca786df2c0659e190cee13012170367e8fdd86b9a0e9dcf1c9a71a9a3e2c2d",
-    "code/validated-examples/2026-11-24-r2/maxwell-grazing/atlas-maxwell-grazing-2026-11-24-r2.zip": "a9d0c65eb27e26b05eafd3774b9f651b01baf28e617769bb2bbcb7efb0b90d3d"
+    "code/validated-examples/2026-11-24-r2/maxwell-grazing/atlas-maxwell-grazing-2026-11-24-r2.zip": "a9d0c65eb27e26b05eafd3774b9f651b01baf28e617769bb2bbcb7efb0b90d3d",
+    "code/validated-examples/2026-11-25/quadrature-controls/source-manifest.json": "7742ff5dd15bd7b848464e4ada267e7d861825f961ea0e15a982be46e2b8708e",
+    "code/validated-examples/2026-11-25/quadrature-controls/verification.json": "cfc7e98903ca8dcc5b11245f15d94b6711aa5ab7992ec29b2c9b291552b85e08",
+    "code/validated-examples/2026-11-25/quadrature-controls/cases.json": "f900a3245e2b6ae3b446e553a17f93b507444654bce72ffeb1003b95bc97446b",
+    "code/validated-examples/2026-11-25/quadrature-controls/results/result.json": "08484664c27e9342f071c78695b31198775561ea8f39f663b6859665190ccede",
+    "code/validated-examples/2026-11-25/quadrature-controls/atlas-quadrature-controls-2026-11-25.zip": "843f8394607db82a40af99a34785cce4f22e0f26f3b85d2375f121bcc9ebd6f4",
+    "code/validated-examples/2026-11-25/approximation-controls/source-manifest.json": "42ed019623f85764b60e8599f22fd4dcc130ac3eadb71e36553a029ddc31f084",
+    "code/validated-examples/2026-11-25/approximation-controls/verification.json": "4a492b3d14bd72ead4daa18b68d791fb9b58cc49c426b87c30ebf2b0d439f7ab",
+    "code/validated-examples/2026-11-25/approximation-controls/cases.json": "5b422ab05c5f902f238be33541a72991228dae016b0a46fdeaed38df16873a4f",
+    "code/validated-examples/2026-11-25/approximation-controls/results/result.json": "8db40827ec3c82334006c5dee9fab5bb0605045e396e580af75ea68c9e090259",
+    "code/validated-examples/2026-11-25/approximation-controls/atlas-approximation-controls-2026-11-25.zip": "7dbadeb591e3329965c2ab5aa7f6025e5d8c18a438b7264460370ad64bdaf053"
   }
 }

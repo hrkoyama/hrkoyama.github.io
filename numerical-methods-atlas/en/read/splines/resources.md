@@ -9,6 +9,7 @@ Resources explicitly registered to the methods, problems and executions of this 
 ## Methods
 
 - [Spline interpolation](<https://hrkoyama.github.io/numerical-methods-atlas/methods/splines/?lang=en>)
+- [PCHIP monotone cubic Hermite interpolation](<https://hrkoyama.github.io/numerical-methods-atlas/methods/pchip/?lang=en>)
 
 ## Equations
 
@@ -24,4 +25,15 @@ No chapter-specific association is registered. Atlas-wide index: [Exact and refe
 
 ## Code and validation
 
-No chapter-specific association is registered. Atlas-wide index: [Code, inputs and validation](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en)
+- [Natural and clamped splines versus PCHIP](<https://hrkoyama.github.io/numerical-methods-atlas/validation/spline-shape-controls/?lang=en>)
+  availability: run
+
+  Compare C2 continuity and shape preservation on three fixed data sets: a monotone plateau, a cubic and a straight line.
+- [Spline interpolation — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/splines/?lang=en#method-execution-en>)
+  availability: source
+
+  Method-specific editions and related sources; fixed-input runs are listed separately.
+- [PCHIP monotone cubic Hermite interpolation — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/pchip/?lang=en#method-execution-en>)
+  availability: source
+
+  Method-specific editions and related sources; fixed-input runs are listed separately.

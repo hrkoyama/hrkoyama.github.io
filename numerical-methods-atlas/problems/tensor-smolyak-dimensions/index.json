@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "id": "tensor-smolyak-dimensions",
+  "name": {
+    "ja": "2〜4次元テンソル・Smolyak対照",
+    "en": "Tensor and Smolyak controls in two to four dimensions"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/tensor-smolyak-dimensions/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/tensor-smolyak-dimensions/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/tensor-smolyak-dimensions/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/results/tensor-smolyak-dimensions-preview.png",
+    "sha256": "8f0c7101b7ca3062e0789fb9a658f58542024b566a8fafdc38e6a2a9d4263147",
+    "width": 1571,
+    "height": 633,
+    "caption": {
+      "ja": "実2次元節点と符号付き積分重み 数学的な積分領域と次元は式・入力に示します。パラメータや誤差の図軸に物理空間の次元を割り当てません。 再現確認の合格は精度目標の全達成を意味しません。元の目標判定は達成24件・未達18件・計算不能0件です。FALSE/NAと失敗rawを保持します。",
+      "en": "Actual two-dimensional nodes and signed integration weights The formulas and inputs specify mathematical integration domains and dimensions. Parameter and error axes are not physical spatial coordinates. Passing reproduction checks does not mean that every accuracy goal was met. Original row outcomes: 24 met, 18 unmet and 0 not computable. False/NA outcomes and raw failures are retained."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#tensor-smolyak-dimensions",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#tensor-smolyak-dimensions"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#tensor-smolyak-dimensions",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#tensor-smolyak-dimensions-en"
+  },
+  "equations": [
+    {
+      "id": "definite-integrals",
+      "name": {
+        "ja": "有限・無限・多変数の定積分",
+        "en": "Finite, improper and multivariate definite integrals"
+      },
+      "formula": [
+        "I_D(f)=\\int_D f(\\mathbf x)\\,d\\mathbf x"
+      ],
+      "note": {
+        "ja": "領域・重み・特異性と有限変換和の定義を確認する数学的求積問題です。",
+        "en": "Mathematical quadrature problems with explicit domains, weights, singularities and finite transformed-sum conventions."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#definite-integrals-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#definite-integrals-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "[0,1]^d、d=2/3/4。テンソルlevel1/2/3、疎格子level1/2/3/4。",
+    "en": "The integration domain is[0,1]^d for d2/3/4; tensor levels1/2/3 and sparse levels1/2/3/4."
+  },
+  "formulations": [],
+  "references": [
+    {
+      "id": "tensor-smolyak-dimensions",
+      "kind": "analytic",
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "title": {
+        "ja": "2〜4次元テンソル・Smolyak対照",
+        "en": "Tensor and Smolyak controls in two to four dimensions"
+      },
+      "formula": "\\int_{[0,1]^d}\\prod_{j=1}^de^{a_jx_j}\\,d\\mathbf x=\\prod_{j=1}^d\\frac{e^{a_j}-1}{a_j},\\quad\\int_{[0,1]^d}\\prod_{j=1}^d(x_j-1/2)^2\\,d\\mathbf x=12^{-d};\\quad A_L=\\sum_{|\\ell|_1\\le L}\\bigotimes_{j=1}^d(Q_{\\ell_j}-Q_{\\ell_j-1}),\\quad Q_{-1}=0",
+      "assumptions": {
+        "ja": "[0,1]^d、d=2/3/4。テンソルlevel1/2/3、疎格子level1/2/3/4。",
+        "en": "The integration domain is[0,1]^d for d2/3/4; tensor levels1/2/3 and sparse levels1/2/3/4."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "一般の誤差単調性、常時正重み、疎格子の費用優位は主張しません。物理PDEの空間ではありません。",
+        "en": "No general error monotonicity, positive-weight or cost-superiority claim; these are integration coordinates, not a physical PDE space."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/tensor-smolyak-dimensions/?lang=ja#tensor-smolyak-dimensions-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/tensor-smolyak-dimensions/?lang=en#tensor-smolyak-dimensions-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "解析積分と独立Delta/combination組立を区別し、L<dの相互作用未解像を可視化。",
+    "en": "Analytic integrals are distinct from companion Delta/combination assembly; interaction underresolution at L<d remains visible."
+  },
+  "methods": [
+    {
+      "id": "quadrature",
+      "name": {
+        "ja": "Gauss求積・適応積分",
+        "en": "Gaussian and adaptive quadrature"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/quadrature/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/quadrature/?lang=en"
+      }
+    },
+    {
+      "id": "smolyak-sparse-grid",
+      "name": {
+        "ja": "Smolyak疎格子求積",
+        "en": "Smolyak sparse-grid quadrature"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/smolyak-sparse-grid/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/smolyak-sparse-grid/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "正規化dyadic角キーで同一節点を所有し、符号付き重みと評価台帳を保持。",
+    "en": "Canonical dyadic angle keys own shared nodes; signed weights and call ledgers are retained."
+  },
+  "executions": [
+    {
+      "id": "tensor-smolyak-dimensions",
+      "kind": "supplement",
+      "name": {
+        "ja": "2〜4次元テンソル・Smolyak対照",
+        "en": "Tensor and Smolyak controls in two to four dimensions"
+      },
+      "method_ids": [
+        "quadrature",
+        "smolyak-sparse-grid"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/tensor-smolyak-dimensions/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/tensor-smolyak-dimensions/?lang=en"
+      },
+      "scope": {
+        "ja": "滑らかな積と相互作用積の42本の固定cubatureを比較します。",
+        "en": "Forty-two fixed cubatures compare a smooth product and an interaction product."
+      },
+      "assumptions": {
+        "ja": "[0,1]^d、d=2/3/4。テンソルlevel1/2/3、疎格子level1/2/3/4。",
+        "en": "The integration domain is[0,1]^d for d2/3/4; tensor levels1/2/3 and sparse levels1/2/3/4."
+      },
+      "limits": {
+        "ja": "一般の誤差単調性、常時正重み、疎格子の費用優位は主張しません。物理PDEの空間ではありません。",
+        "en": "No general error monotonicity, positive-weight or cost-superiority claim; these are integration coordinates, not a physical PDE space."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/atlas-quadrature-controls-2026-11-25.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "解析積分と独立Delta/combination組立を区別し、L<dの相互作用未解像を可視化。",
+        "en": "Analytic integrals are distinct from companion Delta/combination assembly; interaction underresolution at L<d remains visible."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/cubature.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/test_quadrature.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

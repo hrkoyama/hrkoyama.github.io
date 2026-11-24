@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "checked_on": "2026-11-24",
-  "scope": "The 22-family survey links scoped examples of logistic growth, closed SIR, linear reaction–diffusion, linear Schnakenberg onset, finite-amplitude nonlinear evolution and post-growth 1D patterns, plus spatially uniform FitzHugh–Nagumo. This does not implement all 22 families or Hodgkin–Huxley.",
+  "checked_on": "2026-11-25",
+  "scope": "The 22-family survey links scoped examples of logistic growth, closed SIR, linear reaction–diffusion, linear Schnakenberg onset, finite-amplitude nonlinear evolution and post-growth 1D patterns, plus spatially uniform FitzHugh–Nagumo. This does not implement all 22 families or Hodgkin–Huxley. Three further fixed examples from the separate small-models group cover four-state enzyme/QSSA, a positive Lotka–Volterra orbit, and SEIR conservation with full two-mode early linearization. SEIR is separate from the existing SIR execution scope.",
   "models": [
     {
       "id": "logistic",
@@ -41,8 +41,16 @@
         "johnson2011"
       ],
       "priority": "first",
-      "status": "survey-only",
-      "scope": "The 1913 rapid-equilibrium interpretation and the 1925 quasi-steady-state derivation must remain distinct."
+      "status": "scoped-educational-example",
+      "scope": "The 1913 rapid-equilibrium interpretation and the 1925 quasi-steady-state derivation must remain distinct.",
+      "supplemental_examples": [
+        "enzyme-qssa"
+      ],
+      "implementation_scope": {
+        "ja": "2つの小εと固定反応定数だけの教育例です。εは尺度比であり、その値だけを厳密なQSSA誤差上界とはしません。θ≥0.02を初期層終了の証明とは呼ばず、生体内の反応・観測値へ外挿しません。",
+        "en": "These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction."
+      },
+      "execution_url": "/numerical-methods-atlas/validation/enzyme-qssa/"
     },
     {
       "id": "lotka-volterra",
@@ -58,8 +66,16 @@
         "volterra1926"
       ],
       "priority": "first",
-      "status": "survey-only",
-      "scope": ""
+      "status": "scoped-educational-example",
+      "scope": "",
+      "supplemental_examples": [
+        "lotka-volterra"
+      ],
+      "implementation_scope": {
+        "ja": "1初期値・有限時間の固定比較です。連続系の閉軌道を引き込み極限周期とは呼びません。RK4の厳密な不変量保存、任意刻みでの正値性、長時間の構造保存は保証しません。",
+        "en": "This is a finite-time comparison for one initial state. The continuum closed orbit is not an attracting limit cycle. RK4 is not claimed to preserve H exactly, maintain positivity at arbitrary steps or guarantee long-time geometric fidelity."
+      },
+      "execution_url": "/numerical-methods-atlas/validation/lotka-volterra/"
     },
     {
       "id": "age-structure",

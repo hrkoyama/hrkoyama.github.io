@@ -2,9 +2,9 @@
 
 Status: educational-example
 
-Classical four-stage Runge–Kutta advances smooth nonstiff ODEs with fourth-order accuracy. Released examples compare order conditions, stability functions and nonlinear/time-dependent problems while distinguishing accuracy from SSP and symplectic properties. Additional fixed examples: Index reduction, constraint drift and explicit stabilization for a pendulum. See each release for assumptions and checked scope.
+Classical four-stage Runge–Kutta advances smooth nonstiff ODEs with fourth-order accuracy. Released examples compare order conditions, stability functions and nonlinear/time-dependent problems while distinguishing accuracy from SSP and symplectic properties. Additional fixed examples: Index reduction, constraint drift and explicit stabilization for a pendulum. See each release for assumptions and checked scope. Fixed educational executions: Enzyme conservation and QSSA, Lotka–Volterra invariant and positivity, SEIR conservation and initial linearization.
 
-滑らかな非硬い常微分方程式を4回の右辺評価で4次精度に進める古典Runge–Kutta法。公開例では次数条件、安定関数、非線形・時刻依存問題を比較し、SSP性やシンプレクティック性とは区別する。 追加固定例：振り子の指数低減・拘束ドリフト・明示安定化。条件と検証範囲は各配布版で確認してください。
+滑らかな非硬い常微分方程式を4回の右辺評価で4次精度に進める古典Runge–Kutta法。公開例では次数条件、安定関数、非線形・時刻依存問題を比較し、SSP性やシンプレクティック性とは区別する。 追加固定例：振り子の指数低減・拘束ドリフト・明示安定化。条件と検証範囲は各配布版で確認してください。 固定した教育用実行例：酵素反応の保存と準定常近似、Lotka–Volterra不変量と正値性、SEIR保存則と初期線形化。
 
 Explicit RK4 is neither A-stable nor L-stable and may require small steps for stiff decay. It has no positive general nonlinear SSP coefficient; fourth-order accuracy implies neither positivity, TVD, energy conservation nor symplecticity. The released rk_step is a fixed-step component without an embedded error estimator or adaptive controller. The preceding limitations describe earlier editions. This additional release: No projection, normalization or SHAKE/RATTLE; no general index-three-solver or symplecticity claim.
 
@@ -151,7 +151,15 @@ Download: https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-cont
 Verification: https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/verification.json
 Results: https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/results/result.json
 
-Common execution records: [{"id": "logistic-growth", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#logistic-growth-ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#logistic-growth-en"}}, {"id": "sir-epidemic", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#sir-epidemic-ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#sir-epidemic-en"}}, {"id": "reaction-diffusion-fourier", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-fourier/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-fourier/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "turing-schnakenberg", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/turing-schnakenberg/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/turing-schnakenberg/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "fitzhugh-nagumo", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fitzhugh-nagumo/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fitzhugh-nagumo/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "weno-critical-epsilon", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "cgrid-rotating-wave", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/cgrid-rotating-wave/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/cgrid-rotating-wave/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "high-index-pendulum", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/high-index-pendulum/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/high-index-pendulum/?lang=en"}, "kind": "dedicated-supplement"}]
+- Enzyme conservation and QSSA: https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/
+- Lotka–Volterra invariant and positivity: https://hrkoyama.github.io/numerical-methods-atlas/validation/lotka-volterra/
+- SEIR conservation and initial linearization: https://hrkoyama.github.io/numerical-methods-atlas/validation/seir-linearization/
+
+Download: https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip
+Verification: https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/verification.json
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/results/result.json
+
+Common execution records: [{"id": "logistic-growth", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#logistic-growth-ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#logistic-growth-en"}}, {"id": "sir-epidemic", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#sir-epidemic-ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#sir-epidemic-en"}}, {"id": "reaction-diffusion-fourier", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-fourier/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/reaction-diffusion-fourier/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "turing-schnakenberg", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/turing-schnakenberg/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/turing-schnakenberg/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "fitzhugh-nagumo", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fitzhugh-nagumo/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fitzhugh-nagumo/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "weno-critical-epsilon", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "cgrid-rotating-wave", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/cgrid-rotating-wave/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/cgrid-rotating-wave/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "high-index-pendulum", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/high-index-pendulum/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/high-index-pendulum/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "enzyme-qssa", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "lotka-volterra", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lotka-volterra/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lotka-volterra/?lang=en"}, "kind": "dedicated-supplement"}, {"id": "seir-linearization", "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json", "guide": {"ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/seir-linearization/?lang=ja", "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/seir-linearization/?lang=en"}, "kind": "dedicated-supplement"}]
 
 Source: https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/
 Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/
@@ -175,6 +183,9 @@ Edition and terms: https://hrkoyama.github.io/numerical-methods-atlas/code-and-d
 - [FitzHugh–Nagumoの興奮と回復](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-fitzhugh-nagumo-ja) (`bio-fitzhugh-nagumo`; fitzhugh-nagumo)
 - [線形回転浅水方程式](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#linear-rotating-shallow-water-ja) (`linear-rotating-shallow-water`; cgrid-rotating-wave)
 - [拘束付き平面振り子](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#constrained-pendulum-ja) (`constrained-pendulum`; high-index-pendulum)
+- [Michaelis–Mentenと完全酵素反応系](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-enzyme-ja) (`bio-enzyme`; enzyme-qssa)
+- [Lotka–Volterra捕食・被食](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-lotka-volterra-ja) (`bio-lotka-volterra`; lotka-volterra)
+- [閉鎖SEIR区画モデル](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#seir-compartment-ja) (`seir-compartment`; seir-linearization)
 
 #### 問題の図 (`method-problems-ja`)
 
@@ -314,6 +325,42 @@ Schnakenberg型反応拡散で、一様平衡の安定性と拡散による選�
 
 位置拘束の指数3系から明示ODEを導き、整合・非整合初期値の拘束ドリフトと安定化を比較します。
 
+##### [酵素反応の保存と準定常近似](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=ja) (`enzyme-qssa`)
+
+![全4状態と準定常近似を比較し、初期層と積分誤差を分けます。 保存値だけを描画します。 時間・濃度・個体数の軸は空間次元ではありません。率は教育用で疾病・実験予測ではありません。](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/results/enzyme-qssa-preview.png)
+
+全4状態をSDIRK2のstep doublingで積分し、各段のNewton法では同じ重み付きL∞残差とArmijo条件を使います。縮約Michaelis–Menten式はθ上の別RK4計算で求め、全系の積分誤差と近似モデル誤差を混同しません。
+
+[この問題の参照・検証資料](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=ja#references-ja) · [この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=ja#code-ja)
+
+- [酵素反応の保存と準定常近似](https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=ja) (`enzyme-qssa`) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+全4状態と準定常近似を比較し、初期層と積分誤差を分けます。
+
+##### [Lotka–Volterra不変量と正値性](https://hrkoyama.github.io/numerical-methods-atlas/problems/lotka-volterra/?lang=ja) (`lotka-volterra`)
+
+![正の軌道を独立な対数座標参照と比較します。 保存値だけを描画します。 時間・濃度・個体数の軸は空間次元ではありません。率は教育用で疾病・実験予測ではありません。](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/results/lotka-volterra-preview.png)
+
+固定400/800/1600ステップの古典RK4で物理状態を積分します。独立参照はlog x・log yの変数でRadau/BDFを実行し、主計算には対数変数や保存量の射影を導入しません。
+
+[この問題の参照・検証資料](https://hrkoyama.github.io/numerical-methods-atlas/problems/lotka-volterra/?lang=ja#references-ja) · [この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/lotka-volterra/?lang=ja#code-ja)
+
+- [Lotka–Volterra不変量と正値性](https://hrkoyama.github.io/numerical-methods-atlas/validation/lotka-volterra/?lang=ja) (`lotka-volterra`) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+正の軌道を独立な対数座標参照と比較します。
+
+##### [SEIR保存則と初期線形化](https://hrkoyama.github.io/numerical-methods-atlas/problems/seir-linearization/?lang=ja) (`seir-linearization`)
+
+![人口保存と2モードの初期線形化を別々に検査します。 保存値だけを描画します。 時間・濃度・個体数の軸は空間次元ではありません。率は教育用で疾病・実験予測ではありません。](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/results/seir-linearization-preview.png)
+
+全4状態を固定400/800/1600ステップのRK4で積分。独立非線形参照は偏差をηで尺度化してRadau/BDFで求め、早期のE・I線形化は2×2行列指数の両モードを使います。
+
+[この問題の参照・検証資料](https://hrkoyama.github.io/numerical-methods-atlas/problems/seir-linearization/?lang=ja#references-ja) · [この問題のコード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/seir-linearization/?lang=ja#code-ja)
+
+- [SEIR保存則と初期線形化](https://hrkoyama.github.io/numerical-methods-atlas/validation/seir-linearization/?lang=ja) (`seir-linearization`) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+人口保存と2モードの初期線形化を別々に検査します。
+
 
 #### 厳密解・参照解 (`method-references-ja`)
 
@@ -398,6 +445,30 @@ Schnakenberg型反応拡散で、一様平衡の安定性と拡散による選�
 原著SHAKE/RATTLE本文は未読で、著者講義ノートの選択箇所を確認。有限差分のsymplectic defectは一般証明ではなく、中心化SHAKE速度にRATTLEの接線拘束を要求しません。
 
 [既存の参照図](/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=ja#shake-rattle-pendulum-ja-measurements)
+
+##### [酵素反応の保存と準定常近似](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=ja#references-ja) (`enzyme-qssa`)
+
+- [酵素反応の保存と準定常近似](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-enzyme-qssa-ja) (`enzyme-qssa`; 同じ問題の参照; 有限格子の数値参照)
+
+2つの小εと固定反応定数だけの教育例です。εは尺度比であり、その値だけを厳密なQSSA誤差上界とはしません。θ≥0.02を初期層終了の証明とは呼ばず、生体内の反応・観測値へ外挿しません。
+
+[既存の参照図](/numerical-methods-atlas/validation/enzyme-qssa/?lang=ja#enzyme-qssa-ja-measurements)
+
+##### [Lotka–Volterra不変量と正値性](https://hrkoyama.github.io/numerical-methods-atlas/problems/lotka-volterra/?lang=ja#references-ja) (`lotka-volterra`)
+
+- [Lotka–Volterra不変量と正値性](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-lotka-volterra-ja) (`lotka-volterra`; 同じ問題の参照; 有限格子の数値参照)
+
+1初期値・有限時間の固定比較です。連続系の閉軌道を引き込み極限周期とは呼びません。RK4の厳密な不変量保存、任意刻みでの正値性、長時間の構造保存は保証しません。
+
+[既存の参照図](/numerical-methods-atlas/validation/lotka-volterra/?lang=ja#lotka-volterra-ja-measurements)
+
+##### [SEIR保存則と初期線形化](https://hrkoyama.github.io/numerical-methods-atlas/problems/seir-linearization/?lang=ja#references-ja) (`seir-linearization`)
+
+- [SEIR保存則と初期線形化](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-seir-linearization-ja) (`seir-linearization`; 同じ問題の参照; 有限格子の数値参照)
+
+2つの小初期感染量による固定係数の整合性比較です。早期線形化をt=20全体の厳密解と見なさず、単一の優勢モードで両モードを置き換えません。実流行の予測・統計的被覆・任意人口への一般保証は行いません。
+
+[既存の参照図](/numerical-methods-atlas/validation/seir-linearization/?lang=ja#seir-linearization-ja-measurements)
 
 ##### 手法の解説・独立参照・保存結果
 
@@ -490,6 +561,36 @@ Schnakenberg型反応拡散で、一様平衡の安定性と拡散による選�
 
 位置拘束の指数3系から明示ODEを導き、整合・非整合初期値の拘束ドリフトと安定化を比較します。
 
+##### 酵素反応の保存と準定常近似 (`enzyme-qssa`)
+
+[酵素反応の保存と準定常近似](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=ja) · [実行・検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=ja) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/inputs.json)
+
+[検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/verification.json)
+
+全4状態と準定常近似を比較し、初期層と積分誤差を分けます。
+
+##### Lotka–Volterra不変量と正値性 (`lotka-volterra`)
+
+[Lotka–Volterra不変量と正値性](https://hrkoyama.github.io/numerical-methods-atlas/problems/lotka-volterra/?lang=ja) · [実行・検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/lotka-volterra/?lang=ja) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/inputs.json)
+
+[検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/verification.json)
+
+正の軌道を独立な対数座標参照と比較します。
+
+##### SEIR保存則と初期線形化 (`seir-linearization`)
+
+[SEIR保存則と初期線形化](https://hrkoyama.github.io/numerical-methods-atlas/problems/seir-linearization/?lang=ja) · [実行・検証](https://hrkoyama.github.io/numerical-methods-atlas/validation/seir-linearization/?lang=ja) · [コードZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/inputs.json)
+
+[検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/verification.json)
+
+人口保存と2モードの初期線形化を別々に検査します。
+
 ##### 既存の配布版・関連ソースと検査
 
 共用モジュールや配布版全体の検査を含み、すべてが個々の問題専用とは限りません。
@@ -521,6 +622,16 @@ Scoped fixed-input examples; original method variants and earlier releases remai
 - [/code/validated-examples/2026-11-24/dae-controls/io_contract.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/io_contract.py)
 - [/code/validated-examples/2026-11-24/dae-controls/references.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/references.py)
 - [/code/validated-examples/2026-11-24/dae-controls/reporting.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/reporting.py)
+- [/code/validated-examples/2026-11-25/small-models/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/run.py)
+- [/code/validated-examples/2026-11-25/small-models/experiments.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/experiments.py)
+- [/code/validated-examples/2026-11-25/small-models/io_utils.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/io_utils.py)
+- [/code/validated-examples/2026-11-25/small-models/biology.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/biology.py)
+- [/code/validated-examples/2026-11-25/small-models/pinn.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/pinn.py)
+- [/code/validated-examples/2026-11-25/small-models/fno.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/fno.py)
+- [/code/validated-examples/2026-11-25/small-models/data_family.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/data_family.py)
+- [/code/validated-examples/2026-11-25/small-models/references/oracles.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/oracles.py)
+- [/code/validated-examples/2026-11-25/small-models/references/qualify.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/qualify.py)
+- [/code/validated-examples/2026-11-25/small-models/references/reference_models.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/reference_models.py)
 
 ###### 配布版のテスト
 
@@ -532,6 +643,7 @@ Scoped fixed-input examples; original method variants and earlier releases remai
 - [/code/validated-examples/2026-11-23/moving-waves/test_moving.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/test_moving.py)
 - [/code/validated-examples/2026-11-24/dae-controls/test_cases.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_cases.py)
 - [/code/validated-examples/2026-11-24/dae-controls/test_serialization.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_serialization.py)
+- [/code/validated-examples/2026-11-25/small-models/test_models.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/test_models.py)
 
 配布版の案内で条件と作業フォルダを確認してください。複数例の検査や図生成を含む場合があります。
 
@@ -557,6 +669,9 @@ These links are derived through associated problems; checked scope follows their
 - [FitzHugh–Nagumo excitation and recovery](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-fitzhugh-nagumo-en) (`bio-fitzhugh-nagumo`; fitzhugh-nagumo)
 - [Linear rotating shallow-water equations](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#linear-rotating-shallow-water-en) (`linear-rotating-shallow-water`; cgrid-rotating-wave)
 - [Constrained planar pendulum](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#constrained-pendulum-en) (`constrained-pendulum`; high-index-pendulum)
+- [Michaelis–Menten and full enzyme kinetics](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-enzyme-en) (`bio-enzyme`; enzyme-qssa)
+- [Lotka–Volterra predator–prey](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-lotka-volterra-en) (`bio-lotka-volterra`; lotka-volterra)
+- [Closed SEIR compartment model](https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#seir-compartment-en) (`seir-compartment`; seir-linearization)
 
 #### Problem figures (`method-problems-en`)
 
@@ -696,6 +811,42 @@ Advance the index-reduced ODE and a critical constraint-error extension with fix
 
 Derive an explicit ODE from an index-three position constraint and compare drift and stabilization for consistent and inconsistent starts.
 
+##### [Enzyme conservation and QSSA](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=en) (`enzyme-qssa`)
+
+![Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism. This figure reads saved data only. Time, concentrations and populations do not define a spatial dimension. The rates are educational, not disease or experimental predictions.](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/results/enzyme-qssa-preview.png)
+
+Integrate all four states with SDIRK2 step doubling, using the same weighted L∞ residual for Newton convergence and Armijo backtracking. Evolve the reduced Michaelis–Menten equation separately with RK4 in θ, keeping integration error distinct from model-reduction error.
+
+[This problem’s references and checks](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=en#references-en) · [This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=en#code-en)
+
+- [Enzyme conservation and QSSA](https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=en) (`enzyme-qssa`) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism.
+
+##### [Lotka–Volterra invariant and positivity](https://hrkoyama.github.io/numerical-methods-atlas/problems/lotka-volterra/?lang=en) (`lotka-volterra`)
+
+![Compare a positive orbit against an independently integrated log-coordinate reference. This figure reads saved data only. Time, concentrations and populations do not define a spatial dimension. The rates are educational, not disease or experimental predictions.](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/results/lotka-volterra-preview.png)
+
+Integrate physical populations with classical RK4 at 400, 800 and 1600 fixed steps. Independent Radau/BDF references evolve log x and log y; the primary method uses neither a log-coordinate update nor invariant projection.
+
+[This problem’s references and checks](https://hrkoyama.github.io/numerical-methods-atlas/problems/lotka-volterra/?lang=en#references-en) · [This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/lotka-volterra/?lang=en#code-en)
+
+- [Lotka–Volterra invariant and positivity](https://hrkoyama.github.io/numerical-methods-atlas/validation/lotka-volterra/?lang=en) (`lotka-volterra`) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+Compare a positive orbit against an independently integrated log-coordinate reference.
+
+##### [SEIR conservation and initial linearization](https://hrkoyama.github.io/numerical-methods-atlas/problems/seir-linearization/?lang=en) (`seir-linearization`)
+
+![Check population conservation and the full two-mode initial linearization separately. This figure reads saved data only. Time, concentrations and populations do not define a spatial dimension. The rates are educational, not disease or experimental predictions.](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/results/seir-linearization-preview.png)
+
+Evolve all four physical states with RK4 at 400, 800 and 1600 fixed steps. Independently compute the nonlinear reference with scaled-deviation Radau/BDF and the early E/I linearization with both modes of the full 2×2 matrix exponential.
+
+[This problem’s references and checks](https://hrkoyama.github.io/numerical-methods-atlas/problems/seir-linearization/?lang=en#references-en) · [This problem’s code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/seir-linearization/?lang=en#code-en)
+
+- [SEIR conservation and initial linearization](https://hrkoyama.github.io/numerical-methods-atlas/validation/seir-linearization/?lang=en) (`seir-linearization`) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+Check population conservation and the full two-mode initial linearization separately.
+
 
 #### Exact / reference solutions (`method-references-en`)
 
@@ -780,6 +931,30 @@ No projection, normalization or SHAKE/RATTLE; no general index-three-solver or s
 Original SHAKE and RATTLE full texts remain unread; selected author lecture notes were inspected. The finite-difference symplectic defect is a local proxy, not a general proof, and centered SHAKE velocity is not assigned RATTLE tangency.
 
 [Existing reference profile](/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=en#shake-rattle-pendulum-en-measurements)
+
+##### [Enzyme conservation and QSSA](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=en#references-en) (`enzyme-qssa`)
+
+- [Enzyme conservation and QSSA](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-enzyme-qssa-en) (`enzyme-qssa`; Same-problem reference; Finite-grid numerical reference)
+
+These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction.
+
+[Existing reference profile](/numerical-methods-atlas/validation/enzyme-qssa/?lang=en#enzyme-qssa-en-measurements)
+
+##### [Lotka–Volterra invariant and positivity](https://hrkoyama.github.io/numerical-methods-atlas/problems/lotka-volterra/?lang=en#references-en) (`lotka-volterra`)
+
+- [Lotka–Volterra invariant and positivity](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-lotka-volterra-en) (`lotka-volterra`; Same-problem reference; Finite-grid numerical reference)
+
+This is a finite-time comparison for one initial state. The continuum closed orbit is not an attracting limit cycle. RK4 is not claimed to preserve H exactly, maintain positivity at arbitrary steps or guarantee long-time geometric fidelity.
+
+[Existing reference profile](/numerical-methods-atlas/validation/lotka-volterra/?lang=en#lotka-volterra-en-measurements)
+
+##### [SEIR conservation and initial linearization](https://hrkoyama.github.io/numerical-methods-atlas/problems/seir-linearization/?lang=en#references-en) (`seir-linearization`)
+
+- [SEIR conservation and initial linearization](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-seir-linearization-en) (`seir-linearization`; Same-problem reference; Finite-grid numerical reference)
+
+These fixed-coefficient calculations compare two small initial infection levels. The early linearization is not an exact solution through t=20, and a single dominant mode does not replace the two-mode solution. No epidemic forecast, statistical coverage or arbitrary-population guarantee is claimed.
+
+[Existing reference profile](/numerical-methods-atlas/validation/seir-linearization/?lang=en#seir-linearization-en-measurements)
 
 ##### Method explanations, independent references and saved results
 
@@ -872,6 +1047,36 @@ Time-advance actual2D staggered fields and distinguish continuous-wave reference
 
 Derive an explicit ODE from an index-three position constraint and compare drift and stabilization for consistent and inconsistent starts.
 
+##### Enzyme conservation and QSSA (`enzyme-qssa`)
+
+[Enzyme conservation and QSSA](https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=en) · [Run and validate](https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=en) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/inputs.json)
+
+[Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/verification.json)
+
+Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism.
+
+##### Lotka–Volterra invariant and positivity (`lotka-volterra`)
+
+[Lotka–Volterra invariant and positivity](https://hrkoyama.github.io/numerical-methods-atlas/problems/lotka-volterra/?lang=en) · [Run and validate](https://hrkoyama.github.io/numerical-methods-atlas/validation/lotka-volterra/?lang=en) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/inputs.json)
+
+[Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/verification.json)
+
+Compare a positive orbit against an independently integrated log-coordinate reference.
+
+##### SEIR conservation and initial linearization (`seir-linearization`)
+
+[SEIR conservation and initial linearization](https://hrkoyama.github.io/numerical-methods-atlas/problems/seir-linearization/?lang=en) · [Run and validate](https://hrkoyama.github.io/numerical-methods-atlas/validation/seir-linearization/?lang=en) · [Code ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
+
+[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/inputs.json)
+
+[Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/verification.json)
+
+Check population conservation and the full two-mode initial linearization separately.
+
 ##### Existing editions, related source and tests
 
 Includes shared modules and package-wide checks; these resources are not all dedicated to individual problems.
@@ -903,6 +1108,16 @@ Scoped fixed-input examples; original method variants and earlier releases remai
 - [/code/validated-examples/2026-11-24/dae-controls/io_contract.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/io_contract.py)
 - [/code/validated-examples/2026-11-24/dae-controls/references.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/references.py)
 - [/code/validated-examples/2026-11-24/dae-controls/reporting.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/reporting.py)
+- [/code/validated-examples/2026-11-25/small-models/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/run.py)
+- [/code/validated-examples/2026-11-25/small-models/experiments.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/experiments.py)
+- [/code/validated-examples/2026-11-25/small-models/io_utils.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/io_utils.py)
+- [/code/validated-examples/2026-11-25/small-models/biology.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/biology.py)
+- [/code/validated-examples/2026-11-25/small-models/pinn.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/pinn.py)
+- [/code/validated-examples/2026-11-25/small-models/fno.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/fno.py)
+- [/code/validated-examples/2026-11-25/small-models/data_family.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/data_family.py)
+- [/code/validated-examples/2026-11-25/small-models/references/oracles.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/oracles.py)
+- [/code/validated-examples/2026-11-25/small-models/references/qualify.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/qualify.py)
+- [/code/validated-examples/2026-11-25/small-models/references/reference_models.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/reference_models.py)
 
 ###### Package tests
 
@@ -914,6 +1129,7 @@ Scoped fixed-input examples; original method variants and earlier releases remai
 - [/code/validated-examples/2026-11-23/moving-waves/test_moving.py](https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/test_moving.py)
 - [/code/validated-examples/2026-11-24/dae-controls/test_cases.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_cases.py)
 - [/code/validated-examples/2026-11-24/dae-controls/test_serialization.py](https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_serialization.py)
+- [/code/validated-examples/2026-11-25/small-models/test_models.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/test_models.py)
 
 Consult the edition’s guide for conditions and working directory; commands may check or generate figures for several cases.
 

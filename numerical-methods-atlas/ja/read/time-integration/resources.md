@@ -193,6 +193,18 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/time-integration/
   availability: run
 
   位置拘束の指数3系から明示ODEを導き、整合・非整合初期値の拘束ドリフトと安定化を比較します。
+- [酵素反応の保存と準定常近似](<https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=ja>)
+  availability: run
+
+  全4状態と準定常近似を比較し、初期層と積分誤差を分けます。
+- [Lotka–Volterra不変量と正値性](<https://hrkoyama.github.io/numerical-methods-atlas/validation/lotka-volterra/?lang=ja>)
+  availability: run
+
+  正の軌道を独立な対数座標参照と比較します。
+- [SEIR保存則と初期線形化](<https://hrkoyama.github.io/numerical-methods-atlas/validation/seir-linearization/?lang=ja>)
+  availability: run
+
+  人口保存と2モードの初期線形化を別々に検査します。
 - [Schnakenberg有限振幅過渡：非線形性と独立参照](<https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-nonlinear/?lang=ja>)
   availability: run
 

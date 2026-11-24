@@ -139,6 +139,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/sparse-nonlinear/
   availability: run
 
   既知の正枝を持つindex-1 DAEで初期化と後退Eulerの誤差・残差を分離します。
+- [酵素反応の保存と準定常近似](<https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=ja>)
+  availability: run
+
+  全4状態と準定常近似を比較し、初期層と積分誤差を分けます。
 - [再始動GMRES：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/gmres/?lang=ja#method-execution-ja>)
   availability: source
 

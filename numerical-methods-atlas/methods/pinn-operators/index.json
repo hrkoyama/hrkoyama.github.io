@@ -10,10 +10,10 @@
     "en": "Optimization & stochastic methods"
   },
   "summary": {
-    "ja": "学習した解・演算子の位置付けと誤差・汎化を整理する。",
-    "en": "Map learned solutions/operators, error and generalization."
+    "ja": "学習した解・演算子の位置付けと誤差・汎化を整理する。 固定した教育用実行例：1D Poisson PINNと独立格子誤差、小型FNOの問題単位検証。",
+    "en": "Map learned solutions/operators, error and generalization. Fixed educational executions: Poisson PINN: independent grid error, Tiny FNO on held-out heat problems."
   },
-  "status": "planned",
+  "status": "educational-example",
   "origin": "development-candidate",
   "reading": {
     "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/pinn-operators/",
@@ -31,22 +31,65 @@
       "url": "https://openreview.net/forum?id=c8P9NQVtmnO",
       "label": "Fourier Neural Operator for Parametric Partial Differential Equations (2021)",
       "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+    },
+    {
+      "url": "https://arxiv.org/pdf/1711.10561",
+      "label": "Physics Informed Deep Learning (Part I): Data-driven Solutions of Nonlinear Partial Differential Equations",
+      "scope": "Extracted PDF text selected pp.4–6, §2 continuous-time residual, Eq(2)–(4), Burgers setup and loss/optimizer discussion; not all 22 pages and not visual PDF audit."
+    },
+    {
+      "url": "https://arxiv.org/html/2010.08895v3",
+      "label": "Fourier Neural Operator for Parametric Partial Differential Equations",
+      "scope": "Selected HTML §2 learning operators; §3 Eq(2); §4 Eq(4)–(5), FFT/truncation/reality; §5 setup and §5.1 Burgers. PDF header/edition only; not full paper or appendix audit."
     }
   ],
-  "assumptions": null,
-  "units": null,
-  "boundary_conditions": null,
+  "assumptions": [
+    "Solve dimensionless −uₓₓ=π² sin(πx) on [0,1] with zero Dirichlet data. Use sixteen hidden units, 49 real parameters, seeds 8401–8403, 64 training points and 257 separate evaluation points.",
+    "Use periodic heat flow uₜ=νuₓₓ on [0,2π) to T=0.25. Split 46 whole problems into 24 training, 6 validation, 8 held-out ID, 4 viscosity-OOD and 4 spectrum-OOD problems. Use two fixed seeds and 93 real parameters."
+  ],
+  "units": "Dimensionless fixed educational examples.",
+  "boundary_conditions": "See the exact case-specific domain and boundary conventions.",
   "next_deliverable": {
-    "ja": "古典解法と同じ問題・評価量を使う比較計画。",
-    "en": "A comparison with classical solvers on the same problems and observables."
+    "ja": "固定範囲を保持し、拡張は別に検証する。",
+    "en": "Preserve the fixed scope and qualify extensions separately."
   },
   "limitations": {
-    "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
-    "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+    "ja": "1つの滑らかなPoisson問題と3seedの固定予算実験です。小さい学習損失だけで独立点精度の達成や一般的なPINN学習成功を保証しません。未達目標も表示します。 固定された小型離散作用素の比較で、任意の解像度・分布に対する一般化やOOD精度を保証しません。N=64から32への差には非線形aliasingが含まれ、連続体離散化誤差とは呼びません。最適化収束と固定予算終了は別です。",
+    "en": "This fixed-budget study covers one smooth Poisson problem and three seeds. A small training loss does not establish independent-point accuracy or general PINN training success. Unmet goals remain visible. This comparison concerns a fixed tiny discrete operator, without arbitrary-resolution, distributional or OOD guarantees. The N=64-to-32 discrepancy includes nonlinear aliasing and is not a continuum discretization error. Optimizer convergence is distinct from normal budget termination."
   },
   "metadata_review": {
-    "level": "candidate outline; scientific derivation and literature review incomplete",
-    "on": "2026-11-21"
+    "on": "2026-11-25",
+    "level": "Release-specific educational promotion, backed by actual canonical source and independent ZIP verification.",
+    "prior_reading_metadata": {
+      "summary": {
+        "ja": "学習した解・演算子の位置付けと誤差・汎化を整理する。",
+        "en": "Map learned solutions/operators, error and generalization."
+      },
+      "limitations": {
+        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
+        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+      },
+      "metadata_review": {
+        "level": "candidate outline; scientific derivation and literature review incomplete",
+        "on": "2026-11-21"
+      },
+      "references": [
+        {
+          "url": "https://doi.org/10.1016/j.jcp.2018.10.045",
+          "label": "Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations (2019)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        },
+        {
+          "url": "https://openreview.net/forum?id=c8P9NQVtmnO",
+          "label": "Fourier Neural Operator for Parametric Partial Differential Equations (2021)",
+          "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        }
+      ]
+    },
+    "supplemental_review": {
+      "on": "2026-11-25",
+      "level": "Fixed release-specific input/reference/criterion scope; actual canonical source and independently extracted ZIP are bound. Original study targets remain separate from reproduction checks."
+    }
   },
   "aliases": [
     "PINN",
@@ -56,21 +99,907 @@
     "neural operator",
     "ニューラルオペレーター"
   ],
+  "depth_previous_status": "planned",
+  "assumptions_ja": [
+    "無次元区間[0,1]で −uₓₓ=π²sin(πx)、u(0)=u(1)=0。中間層16素子・49実パラメータ、固定seed 8401–8403、学習64点と独立評価257点を用います。",
+    "周期区間[0,2π)、uₜ=νuₓₓ、T=0.25。同じ関数の点を分散させず、全46問題を学習24・検証6・未見ID8・νのOOD4・周波数のOOD4に分けます。2固定seed、93実パラメータです。"
+  ],
+  "units_ja": "無次元の固定教育用例です。",
+  "boundary_conditions_ja": "各例の正確な領域・境界の定義を確認してください。",
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
+  "code_mapping_scope_ja": "固定した教育用実行例：1D Poisson PINNと独立格子誤差、小型FNOの問題単位検証。",
+  "depth_scope": {
+    "ja": "固定した教育用実行例：1D Poisson PINNと独立格子誤差、小型FNOの問題単位検証。",
+    "en": "Fixed educational executions: Poisson PINN: independent grid error, Tiny FNO on held-out heat problems."
+  },
+  "depth_release": {
+    "group": "small-models",
+    "case_ids": [
+      "pinn-poisson",
+      "fno-periodic-heat"
+    ],
+    "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/",
+    "code_edition": "2026-11-25",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/experiments.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/io_utils.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/pinn.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/fno.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/data_family.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/biology.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/oracles.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/qualify.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/reference_models.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/test_models.py"
+    ],
+    "run_commands": [
+      "python -m pytest -q",
+      "python run.py --input inputs.json --output output"
+    ],
+    "run_from": "atlas-small-models-2026-11-25",
+    "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip",
+    "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/source-manifest.json",
+    "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/verification.json",
+    "code_archive_sha256": "d341b8a90e0b6ade7c70760a2c32a9f3825a6b4e162b221c7cc95b10f3cd40c1",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/results/result.json",
+    "passed_tests": 25,
+    "examples": [
+      {
+        "id": "pinn-poisson",
+        "method_ids": [
+          "pinn-operators",
+          "thomas"
+        ],
+        "title": {
+          "ja": "1D Poisson PINNと独立格子誤差",
+          "en": "Poisson PINN: independent grid error"
+        },
+        "summary": {
+          "ja": "3固定seedの49パラメータPINNを解析解・FDと比較します。",
+          "en": "Compare a 49-parameter PINN for three fixed seeds with analytic and finite-difference solutions."
+        },
+        "assumptions": {
+          "ja": "無次元区間[0,1]で −uₓₓ=π²sin(πx)、u(0)=u(1)=0。中間層16素子・49実パラメータ、固定seed 8401–8403、学習64点と独立評価257点を用います。",
+          "en": "Solve dimensionless −uₓₓ=π² sin(πx) on [0,1] with zero Dirichlet data. Use sixteen hidden units, 49 real parameters, seeds 8401–8403, 64 training points and 257 separate evaluation points."
+        },
+        "algorithm": {
+          "ja": "x(1−x)を掛けて境界値を厳密に組み込むtanhネットワークを、解析的な全パラメータJacobian付きTRF最小二乗法で学習します。固定予算後の全モデルを保存し、31/63/127未知数の2次中心差分とThomas法も計算します。",
+          "en": "Train a hard-boundary tanh ansatz with trust-region reflective least squares and an analytic parameter Jacobian. Retain every returned model under the fixed budget. Also solve second-order finite differences with 31, 63 and 127 unknowns using the Thomas algorithm."
+        },
+        "validation": {
+          "ja": "全49列の残差Jacobianと損失勾配、空間微分を別資格段階で独立照合。解析解sin(πx)に対する独立点誤差、PDE残差、境界値、FD誤差を別に保存します。収束・精度目標の実際の真偽を残し、正常な予算終了を収束と呼びません。",
+          "en": "Independently qualify all 49 residual-Jacobian columns, loss-gradient coordinates and spatial derivatives. Save off-training solution error against sin(πx), PDE residual, boundary error and finite-difference error separately. Preserve actual convergence and accuracy decisions; a normal budget return is not convergence."
+        },
+        "limits": {
+          "ja": "1つの滑らかなPoisson問題と3seedの固定予算実験です。小さい学習損失だけで独立点精度の達成や一般的なPINN学習成功を保証しません。未達目標も表示します。",
+          "en": "This fixed-budget study covers one smooth Poisson problem and three seeds. A small training loss does not establish independent-point accuracy or general PINN training success. Unmet goals remain visible."
+        },
+        "domains": [
+          "foundations"
+        ],
+        "code_files": [
+          "run.py",
+          "experiments.py",
+          "io_utils.py",
+          "pinn.py"
+        ],
+        "reference_files": [
+          "PROTOCOL.md",
+          "source-reading.json",
+          "acceptance.json"
+        ],
+        "references": [
+          {
+            "id": "raissi-part1-2017-selected",
+            "title": "Physics Informed Deep Learning (Part I): Data-driven Solutions of Nonlinear Partial Differential Equations",
+            "url": "https://arxiv.org/pdf/1711.10561",
+            "accessed_on": "2026-11-24",
+            "review_level": "selected-primary-body",
+            "review": {
+              "ja": "Extracted PDF text selected pp.4–6, §2 continuous-time residual, Eq(2)–(4), Burgers setup and loss/optimizer discussion; not all 22 pages and not visual PDF audit.",
+              "en": "Extracted PDF text selected pp.4–6, §2 continuous-time residual, Eq(2)–(4), Burgers setup and loss/optimizer discussion; not all 22 pages and not visual PDF audit."
+            },
+            "year": 2017,
+            "year_role": "preprint-version"
+          }
+        ],
+        "gallery_figure": "pinn-poisson-preview.png",
+        "additional_figures": [
+          {
+            "file": "pinn-poisson-preview.png",
+            "caption": {
+              "ja": "3固定seedの49パラメータPINNを解析解・FDと比較します。 保存値だけを描画します。",
+              "en": "Compare a 49-parameter PINN for three fixed seeds with analytic and finite-difference solutions. This figure reads saved data only."
+            }
+          }
+        ],
+        "formulas": [
+          "-u_{xx}=\\pi^2\\sin(\\pi x),\\quad 0<x<1,\\quad u(0)=u(1)=0",
+          "u_\\theta(x)=x(1-x)\\left[b_0+\\sum_{j=1}^{16}a_j\\tanh(w_jx+b_j)\\right]",
+          "r_i=\\frac{-u_{\\theta,xx}(x_i)-\\pi^2\\sin(\\pi x_i)}{\\pi^2},\\quad L=\\frac1{64}\\sum_{i=1}^{64}r_i^2"
+        ],
+        "measured": {
+          "id": "pinn-poisson",
+          "passed": true,
+          "checks": {
+            "seed-8401:finite-shape": true,
+            "seed-8401:optimizer-return-status": true,
+            "seed-8401:actual-work": true,
+            "seed-8402:finite-shape": true,
+            "seed-8402:optimizer-return-status": true,
+            "seed-8402:actual-work": true,
+            "seed-8403:finite-shape": true,
+            "seed-8403:optimizer-return-status": true,
+            "seed-8403:actual-work": true,
+            "fd-31:true-residual": true,
+            "fd-63:true-residual": true,
+            "fd-127:true-residual": true
+          },
+          "records": [
+            {
+              "kind": "PINN",
+              "seed": 8401,
+              "parameter_count": 49,
+              "solution_Linf": 2.2589996095945253e-08,
+              "PDE_normalized_RMS": 3.327756867105598e-07,
+              "boundary_Linf": 0.0,
+              "training_loss": 4.403620979734481e-14,
+              "status": 0,
+              "optimizer_success": 0,
+              "nfev": 300,
+              "njev": 276,
+              "fun_calls": 300,
+              "jac_calls": 276,
+              "returned_final_parameter_vectors": 1
+            },
+            {
+              "kind": "PINN",
+              "seed": 8402,
+              "parameter_count": 49,
+              "solution_Linf": 5.56788840588851e-08,
+              "PDE_normalized_RMS": 1.0321910210950756e-06,
+              "boundary_Linf": 0.0,
+              "training_loss": 5.738177320807445e-13,
+              "status": 0,
+              "optimizer_success": 0,
+              "nfev": 300,
+              "njev": 225,
+              "fun_calls": 300,
+              "jac_calls": 225,
+              "returned_final_parameter_vectors": 1
+            },
+            {
+              "kind": "PINN",
+              "seed": 8403,
+              "parameter_count": 49,
+              "solution_Linf": 7.840357962862754e-08,
+              "PDE_normalized_RMS": 1.2435598581497693e-06,
+              "boundary_Linf": 0.0,
+              "training_loss": 8.526343084359145e-13,
+              "status": 0,
+              "optimizer_success": 0,
+              "nfev": 300,
+              "njev": 286,
+              "fun_calls": 300,
+              "jac_calls": 286,
+              "returned_final_parameter_vectors": 1
+            },
+            {
+              "kind": "FD2",
+              "nodes": 31,
+              "solution_Linf": 0.0008035776793697824,
+              "true_linear_residual": 2.0250467969162855e-13
+            },
+            {
+              "kind": "FD2",
+              "nodes": 63,
+              "solution_Linf": 0.00020082180969560604,
+              "true_linear_residual": 1.2576606422953773e-12
+            },
+            {
+              "kind": "FD2",
+              "nodes": 127,
+              "solution_Linf": 5.020091591312337e-05,
+              "true_linear_residual": 7.227995979519619e-12
+            }
+          ],
+          "metrics": {
+            "training_seeds": 3,
+            "parameters": 49,
+            "independent_grid_points": 257,
+            "FD_runs": 3
+          },
+          "original_target_results": {
+            "seed-8401:optimizer-converged": false,
+            "seed-8401:solution_Linf": true,
+            "seed-8401:PDE_normalized_RMS": true,
+            "seed-8401:boundary_Linf": true,
+            "seed-8402:optimizer-converged": false,
+            "seed-8402:solution_Linf": true,
+            "seed-8402:PDE_normalized_RMS": true,
+            "seed-8402:boundary_Linf": true,
+            "seed-8403:optimizer-converged": false,
+            "seed-8403:solution_Linf": true,
+            "seed-8403:PDE_normalized_RMS": true,
+            "seed-8403:boundary_Linf": true,
+            "fd-31:solution_Linf": true,
+            "fd-63:solution_Linf": true,
+            "fd-127:solution_Linf": true
+          },
+          "original_target_summary": {
+            "met": 12,
+            "total": 15,
+            "all_met": false,
+            "acceptance_sha256": "b468e78459cf81bda6a32cade0051f6615b44def256c66308ae7acc82ff516ce"
+          },
+          "original_study_goal_measurements": {
+            "seed-8401:optimizer-converged": {
+              "measured": 0,
+              "limit": 1,
+              "comparison": "==",
+              "units": "native optimizer success boolean",
+              "met": false
+            },
+            "seed-8401:solution_Linf": {
+              "measured": 2.2589996095945253e-08,
+              "limit": 0.01,
+              "comparison": "<=",
+              "units": "dimensionless",
+              "met": true
+            },
+            "seed-8401:PDE_normalized_RMS": {
+              "measured": 3.327756867105598e-07,
+              "limit": 0.02,
+              "comparison": "<=",
+              "units": "dimensionless",
+              "met": true
+            },
+            "seed-8401:boundary_Linf": {
+              "measured": 0.0,
+              "limit": 1e-12,
+              "comparison": "<=",
+              "units": "dimensionless",
+              "met": true
+            },
+            "seed-8402:optimizer-converged": {
+              "measured": 0,
+              "limit": 1,
+              "comparison": "==",
+              "units": "native optimizer success boolean",
+              "met": false
+            },
+            "seed-8402:solution_Linf": {
+              "measured": 5.56788840588851e-08,
+              "limit": 0.01,
+              "comparison": "<=",
+              "units": "dimensionless",
+              "met": true
+            },
+            "seed-8402:PDE_normalized_RMS": {
+              "measured": 1.0321910210950756e-06,
+              "limit": 0.02,
+              "comparison": "<=",
+              "units": "dimensionless",
+              "met": true
+            },
+            "seed-8402:boundary_Linf": {
+              "measured": 0.0,
+              "limit": 1e-12,
+              "comparison": "<=",
+              "units": "dimensionless",
+              "met": true
+            },
+            "seed-8403:optimizer-converged": {
+              "measured": 0,
+              "limit": 1,
+              "comparison": "==",
+              "units": "native optimizer success boolean",
+              "met": false
+            },
+            "seed-8403:solution_Linf": {
+              "measured": 7.840357962862754e-08,
+              "limit": 0.01,
+              "comparison": "<=",
+              "units": "dimensionless",
+              "met": true
+            },
+            "seed-8403:PDE_normalized_RMS": {
+              "measured": 1.2435598581497693e-06,
+              "limit": 0.02,
+              "comparison": "<=",
+              "units": "dimensionless",
+              "met": true
+            },
+            "seed-8403:boundary_Linf": {
+              "measured": 0.0,
+              "limit": 1e-12,
+              "comparison": "<=",
+              "units": "dimensionless",
+              "met": true
+            },
+            "fd-31:solution_Linf": {
+              "measured": 0.0008035776793697824,
+              "limit": 0.001,
+              "comparison": "<=",
+              "units": "dimensionless",
+              "met": true
+            },
+            "fd-63:solution_Linf": {
+              "measured": 0.00020082180969560604,
+              "limit": 0.0003,
+              "comparison": "<=",
+              "units": "dimensionless",
+              "met": true
+            },
+            "fd-127:solution_Linf": {
+              "measured": 5.020091591312337e-05,
+              "limit": 7e-05,
+              "comparison": "<=",
+              "units": "dimensionless",
+              "met": true
+            }
+          },
+          "validation_scope": "predeclared_accuracy_study_with_separate_reproduction_checks"
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pinn-poisson/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#pinn-poisson",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#pinn-poisson"
+        }
+      },
+      {
+        "id": "fno-periodic-heat",
+        "method_ids": [
+          "pinn-operators"
+        ],
+        "title": {
+          "ja": "小型FNOの問題単位検証",
+          "en": "Tiny FNO on held-out heat problems"
+        },
+        "summary": {
+          "ja": "同じ重みで32/64点・未見関数・OODを分けて評価します。",
+          "en": "Evaluate the same learned weights on 32/64-point grids, held-out functions and separate OOD inputs."
+        },
+        "assumptions": {
+          "ja": "周期区間[0,2π)、uₜ=νuₓₓ、T=0.25。同じ関数の点を分散させず、全46問題を学習24・検証6・未見ID8・νのOOD4・周波数のOOD4に分けます。2固定seed、93実パラメータです。",
+          "en": "Use periodic heat flow uₜ=νuₓₓ on [0,2π) to T=0.25. Split 46 whole problems into 24 training, 6 validation, 8 held-out ID, 4 viscosity-OOD and 4 spectrum-OOD problems. Use two fixed seeds and 93 real parameters."
+        },
+        "algorithm": {
+          "ja": "入力(u₀,ν)を幅2へ写し、局所線形項・DCと1–4モードの複素Fourier項・tanhからなる2ブロックを適用します。L-BFGS-Bの固定予算で学習し、同じ重みをN=32/64へ転送。非線形項は各格子上で評価しdealiasingしません。",
+          "en": "Lift (u₀,ν) to width two and apply two blocks containing a local linear map, real DC and complex Fourier modes 1–4, then tanh. Train with a fixed L-BFGS-B budget and evaluate the same weights at N=32 and 64. Nonlinear terms are evaluated on each native grid without dealiasing."
+        },
+        "validation": {
+          "ja": "全93実座標の損失勾配を2つの固定差分幅で照合し、Fourierブロックを直接DFTと比較。解析的な熱モード減衰に対する絶対・相対誤差、格子制限差、ID/OODを分離します。参照RMS≤10⁻¹²では相対誤差をNAとし、ゼロ・微小振幅では絶対誤差を保存します。",
+          "en": "Qualify all 93 real loss-gradient coordinates at two fixed finite-difference widths and compare Fourier blocks with direct DFT sums. Separate analytic heat-mode errors, grid-restriction differences and ID/OOD diagnostics. Relative error is NA when reference RMS≤10⁻¹²; zero and near-zero controls retain absolute errors."
+        },
+        "limits": {
+          "ja": "固定された小型離散作用素の比較で、任意の解像度・分布に対する一般化やOOD精度を保証しません。N=64から32への差には非線形aliasingが含まれ、連続体離散化誤差とは呼びません。最適化収束と固定予算終了は別です。",
+          "en": "This comparison concerns a fixed tiny discrete operator, without arbitrary-resolution, distributional or OOD guarantees. The N=64-to-32 discrepancy includes nonlinear aliasing and is not a continuum discretization error. Optimizer convergence is distinct from normal budget termination."
+        },
+        "domains": [
+          "foundations"
+        ],
+        "code_files": [
+          "run.py",
+          "experiments.py",
+          "io_utils.py",
+          "fno.py",
+          "data_family.py"
+        ],
+        "reference_files": [
+          "PROTOCOL.md",
+          "source-reading.json",
+          "acceptance.json"
+        ],
+        "references": [
+          {
+            "id": "li-fno-v3-2021-selected",
+            "title": "Fourier Neural Operator for Parametric Partial Differential Equations",
+            "url": "https://arxiv.org/html/2010.08895v3",
+            "accessed_on": "2026-11-24",
+            "review_level": "selected-primary-body",
+            "review": {
+              "ja": "Selected HTML §2 learning operators; §3 Eq(2); §4 Eq(4)–(5), FFT/truncation/reality; §5 setup and §5.1 Burgers. PDF header/edition only; not full paper or appendix audit.",
+              "en": "Selected HTML §2 learning operators; §3 Eq(2); §4 Eq(4)–(5), FFT/truncation/reality; §5 setup and §5.1 Burgers. PDF header/edition only; not full paper or appendix audit."
+            },
+            "year": 2021,
+            "year_role": "conference-and-preprint-version"
+          }
+        ],
+        "gallery_figure": "fno-periodic-heat-preview.png",
+        "additional_figures": [
+          {
+            "file": "fno-periodic-heat-preview.png",
+            "caption": {
+              "ja": "同じ重みで32/64点・未見関数・OODを分けて評価します。 保存値だけを描画します。",
+              "en": "Evaluate the same learned weights on 32/64-point grids, held-out functions and separate OOD inputs. This figure reads saved data only."
+            }
+          }
+        ],
+        "formulas": [
+          "u_t=\\nu u_{xx},\\quad x\\in[0,2\\pi),\\quad u(x+2\\pi,t)=u(x,t),\\quad T=\\tfrac14",
+          "\\widehat u_k(T)=e^{-\\nu k^2T}\\widehat u_k(0)",
+          "v^{\\ell+1}=\\tanh\\!\\left(W_\\ell v^\\ell+b_\\ell+\\mathcal F_N^{-1}(R_\\ell\\mathcal F_Nv^\\ell)\\right),\\quad \\ell=0,1",
+          "\\mathrm{relative\\ error}=\\frac{\\operatorname{RMS}(u_\\theta-u_{\\rm ref})}{\\operatorname{RMS}(u_{\\rm ref})}\\quad\\text{only if }\\operatorname{RMS}(u_{\\rm ref})>10^{-12}"
+        ],
+        "measured": {
+          "id": "fno-periodic-heat",
+          "passed": true,
+          "checks": {
+            "seed-8501:finite-parameters": true,
+            "seed-8501:optimizer-return-status": true,
+            "seed-8501:actual-work": true,
+            "seed-8501:relative-NA": true,
+            "seed-8502:finite-parameters": true,
+            "seed-8502:optimizer-return-status": true,
+            "seed-8502:actual-work": true,
+            "seed-8502:relative-NA": true,
+            "disjoint-whole-problem-IDs": true
+          },
+          "records": [
+            {
+              "seed": 8501,
+              "parameters": 93,
+              "loss": 0.0004359520238047014,
+              "status": 1,
+              "optimizer_success": 0,
+              "iterations": 120,
+              "nfev": 140,
+              "njev": 140,
+              "loss_calls": 140,
+              "gradient_calls": 140,
+              "returned_final_vectors": 1
+            },
+            {
+              "seed": 8502,
+              "parameters": 93,
+              "loss": 0.0004022102353904921,
+              "status": 1,
+              "optimizer_success": 0,
+              "iterations": 120,
+              "nfev": 147,
+              "njev": 147,
+              "loss_calls": 147,
+              "gradient_calls": 147,
+              "returned_final_vectors": 1
+            }
+          ],
+          "metrics": {
+            "models": 2,
+            "parameters_per_model": 93,
+            "whole_problem_IDs": 46,
+            "prediction_rows": 116,
+            "nonlinear_dealiasing": "none",
+            "restriction_discrepancy_scope": "Native-grid nonlinear/alias sensitivity, not continuum error"
+          },
+          "original_target_results": {
+            "seed-8501:optimizer-converged": false,
+            "seed-8501:ID-N32-relative": true,
+            "seed-8501:ID-N64-relative": true,
+            "seed-8501:norm-control-absolute": true,
+            "seed-8502:optimizer-converged": false,
+            "seed-8502:ID-N32-relative": true,
+            "seed-8502:ID-N64-relative": true,
+            "seed-8502:norm-control-absolute": true
+          },
+          "original_target_summary": {
+            "met": 6,
+            "total": 8,
+            "all_met": false,
+            "acceptance_sha256": "b468e78459cf81bda6a32cade0051f6615b44def256c66308ae7acc82ff516ce"
+          },
+          "original_study_goal_measurements": {
+            "seed-8501:optimizer-converged": {
+              "measured": 0,
+              "limit": 1,
+              "comparison": "==",
+              "units": "native optimizer success boolean",
+              "met": false
+            },
+            "seed-8501:ID-N32-relative": {
+              "measured": 0.0725200611497353,
+              "limit": 0.1,
+              "comparison": "<=",
+              "units": "dimensionless",
+              "met": true
+            },
+            "seed-8501:ID-N64-relative": {
+              "measured": 0.07252006117240327,
+              "limit": 0.12,
+              "comparison": "<=",
+              "units": "dimensionless",
+              "met": true
+            },
+            "seed-8501:norm-control-absolute": {
+              "measured": 0.002675666457044871,
+              "limit": 0.02,
+              "comparison": "<=",
+              "units": "dimensionless",
+              "met": true
+            },
+            "seed-8502:optimizer-converged": {
+              "measured": 0,
+              "limit": 1,
+              "comparison": "==",
+              "units": "native optimizer success boolean",
+              "met": false
+            },
+            "seed-8502:ID-N32-relative": {
+              "measured": 0.06860990594166173,
+              "limit": 0.1,
+              "comparison": "<=",
+              "units": "dimensionless",
+              "met": true
+            },
+            "seed-8502:ID-N64-relative": {
+              "measured": 0.06860990594163281,
+              "limit": 0.12,
+              "comparison": "<=",
+              "units": "dimensionless",
+              "met": true
+            },
+            "seed-8502:norm-control-absolute": {
+              "measured": 0.005624287439638441,
+              "limit": 0.02,
+              "comparison": "<=",
+              "units": "dimensionless",
+              "met": true
+            }
+          },
+          "validation_scope": "predeclared_accuracy_study_with_separate_reproduction_checks"
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fno-periodic-heat/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#fno-periodic-heat",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#fno-periodic-heat"
+        }
+      }
+    ]
+  },
+  "supplemental_scope_profiles": [
+    {
+      "release": {
+        "group": "small-models",
+        "edition": "2026-11-25",
+        "case_ids": [
+          "pinn-poisson",
+          "fno-periodic-heat"
+        ]
+      },
+      "scope": {
+        "ja": "固定した教育用実行例：1D Poisson PINNと独立格子誤差、小型FNOの問題単位検証。",
+        "en": "Fixed educational executions: Poisson PINN: independent grid error, Tiny FNO on held-out heat problems."
+      },
+      "limits": [
+        {
+          "ja": "1つの滑らかなPoisson問題と3seedの固定予算実験です。小さい学習損失だけで独立点精度の達成や一般的なPINN学習成功を保証しません。未達目標も表示します。",
+          "en": "This fixed-budget study covers one smooth Poisson problem and three seeds. A small training loss does not establish independent-point accuracy or general PINN training success. Unmet goals remain visible."
+        },
+        {
+          "ja": "固定された小型離散作用素の比較で、任意の解像度・分布に対する一般化やOOD精度を保証しません。N=64から32への差には非線形aliasingが含まれ、連続体離散化誤差とは呼びません。最適化収束と固定予算終了は別です。",
+          "en": "This comparison concerns a fixed tiny discrete operator, without arbitrary-resolution, distributional or OOD guarantees. The N=64-to-32 discrepancy includes nonlinear aliasing and is not a continuum discretization error. Optimizer convergence is distinct from normal budget termination."
+        }
+      ]
+    }
+  ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pinn-operators/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pinn-operators/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pinn-operators/index.md",
-  "code_urls": [],
-  "test_urls": [],
-  "run_commands": [],
-  "run_from": null,
-  "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
-  "code_edition": null,
-  "execution_examples": [],
+  "code_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/experiments.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/io_utils.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/pinn.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/fno.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/data_family.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/biology.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/oracles.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/qualify.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/reference_models.py"
+  ],
+  "test_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/test_models.py"
+  ],
+  "run_commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "run_from": "atlas-small-models-2026-11-25",
+  "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/",
+  "code_edition": "2026-11-25",
+  "execution_examples": [
+    {
+      "id": "pinn-poisson",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pinn-poisson/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pinn-poisson/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "fno-periodic-heat",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fno-periodic-heat/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fno-periodic-heat/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    }
+  ],
+  "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip",
+  "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/source-manifest.json",
+  "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/verification.json",
+  "code_archive_sha256": "d341b8a90e0b6ade7c70760a2c32a9f3825a6b4e162b221c7cc95b10f3cd40c1",
+  "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/results/result.json",
   "problem_navigation": {
     "method_id": "pinn-operators",
-    "status": "planned",
-    "equations": [],
-    "problems": [],
-    "references": []
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "heat",
+        "name": {
+          "ja": "熱・拡散方程式",
+          "en": "Heat / diffusion equation"
+        },
+        "problem_ids": [
+          "heat-periodic"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#heat-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#heat-en"
+        }
+      },
+      {
+        "id": "poisson-laplace",
+        "name": {
+          "ja": "Poisson・Laplace方程式",
+          "en": "Poisson / Laplace equations"
+        },
+        "problem_ids": [
+          "poisson-1d-dirichlet"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#poisson-laplace-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#poisson-laplace-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "heat-periodic",
+        "name": {
+          "ja": "周期Fourierモードの熱拡散",
+          "en": "Periodic Fourier-mode heat decay"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/heat-periodic.png",
+          "sha256": "0b8eb0c0163f02b3ae8d990ecc64545d142ac6f448f0e16571cff4e48ccd2913",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "保存した最終時刻の数値波形と参照解。",
+            "en": "Stored final-time numerical profile and reference."
+          },
+          "source_kind": "stored-data-plot"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-periodic/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-periodic/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-periodic/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-periodic/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "fno-periodic-heat",
+            "kind": "supplement",
+            "name": {
+              "ja": "小型FNOの問題単位検証",
+              "en": "Tiny FNO on held-out heat problems"
+            },
+            "scope": {
+              "ja": "同じ重みで32/64点・未見関数・OODを分けて評価します。",
+              "en": "Evaluate the same learned weights on 32/64-point grids, held-out functions and separate OOD inputs."
+            },
+            "method_ids": [
+              "pinn-operators"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fno-periodic-heat/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fno-periodic-heat/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。 入力(u₀,ν)を幅2へ写し、局所線形項・DCと1–4モードの複素Fourier項・tanhからなる2ブロックを適用します。L-BFGS-Bの固定予算で学習し、同じ重みをN=32/64へ転送。非線形項は各格子上で評価しdealiasingしません。",
+          "en": "Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability. Lift (u₀,ν) to width two and apply two blocks containing a local linear map, real DC and complex Fourier modes 1–4, then tanh. Train with a fixed L-BFGS-B budget and evaluate the same weights at N=32 and 64. Nonlinear terms are evaluated on each native grid without dealiasing."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-periodic/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-periodic/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "poisson-1d-dirichlet",
+        "name": {
+          "ja": "1次元Poisson・Dirichlet製造解",
+          "en": "1D Poisson / smooth Dirichlet manufactured solutions"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/poisson-1d-dirichlet.png",
+          "sha256": "981d432e8b2d984d5716570f9ecb747e06d92e9a1d2e68577e3f051846930d89",
+          "width": 832,
+          "height": 494,
+          "caption": {
+            "ja": "保存済み1次元Dirichlet製造解の誤差と格子数。",
+            "en": "Stored error versus resolution for the 1D Dirichlet manufactured solution."
+          },
+          "source_kind": "stored-data-plot"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-dirichlet/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-dirichlet/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-dirichlet/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-dirichlet/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "pinn-poisson",
+            "kind": "supplement",
+            "name": {
+              "ja": "1D Poisson PINNと独立格子誤差",
+              "en": "Poisson PINN: independent grid error"
+            },
+            "scope": {
+              "ja": "3固定seedの49パラメータPINNを解析解・FDと比較します。",
+              "en": "Compare a 49-parameter PINN for three fixed seeds with analytic and finite-difference solutions."
+            },
+            "method_ids": [
+              "pinn-operators",
+              "thomas"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pinn-poisson/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/pinn-poisson/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。 x(1−x)を掛けて境界値を厳密に組み込むtanhネットワークを、解析的な全パラメータJacobian付きTRF最小二乗法で学習します。固定予算後の全モデルを保存し、31/63/127未知数の2次中心差分とThomas法も計算します。",
+          "en": "Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions. Train a hard-boundary tanh ansatz with trust-region reflective least squares and an analytic parameter Jacobian. Retain every returned model under the fixed budget. Also solve second-order finite differences with 31, 63 and 127 unknowns using the Thomas algorithm."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-dirichlet/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-dirichlet/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "heat-periodic",
+        "problem_name": {
+          "ja": "周期Fourierモードの熱拡散",
+          "en": "Periodic Fourier-mode heat decay"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-periodic/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-periodic/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "sine-heat",
+            "title": {
+              "ja": "熱拡散／Fourierモードの減衰",
+              "en": "Heat / Fourier-mode decay"
+            },
+            "kind": "analytic",
+            "relation": "related-model",
+            "note": {
+              "ja": "保存ギャラリーの周期[0,1]、1+0.25sin(2πx)、ν=0.02、最終時刻1が一致します。別周波数のコード検査への一致は意味しません。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。",
+              "en": "The saved gallery matches periodic [0,1], 1+0.25sin(2πx), ν=0.02 and final time one; this does not assert a match to separate-frequency code checks. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-sine-heat-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-sine-heat-en"
+            },
+            "view": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=sine-heat",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=sine-heat"
+            }
+          },
+          {
+            "id": "fno-periodic-heat",
+            "title": {
+              "ja": "小型FNOの問題単位検証",
+              "en": "Tiny FNO on held-out heat problems"
+            },
+            "kind": "analytic",
+            "relation": "related-model",
+            "note": {
+              "ja": "固定された小型離散作用素の比較で、任意の解像度・分布に対する一般化やOOD精度を保証しません。N=64から32への差には非線形aliasingが含まれ、連続体離散化誤差とは呼びません。最適化収束と固定予算終了は別です。",
+              "en": "This comparison concerns a fixed tiny discrete operator, without arbitrary-resolution, distributional or OOD guarantees. The N=64-to-32 discrepancy includes nonlinear aliasing and is not a continuum discretization error. Optimizer convergence is distinct from normal budget termination."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-fno-periodic-heat-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-fno-periodic-heat-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/fno-periodic-heat/?lang=ja#fno-periodic-heat-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/fno-periodic-heat/?lang=en#fno-periodic-heat-en-measurements"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "poisson-1d-dirichlet",
+        "problem_name": {
+          "ja": "1次元Poisson・Dirichlet製造解",
+          "en": "1D Poisson / smooth Dirichlet manufactured solutions"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-dirichlet/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-dirichlet/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "poisson-manufactured",
+            "title": {
+              "ja": "Poisson／正弦波の製造解",
+              "en": "Poisson / manufactured sine"
+            },
+            "kind": "manufactured",
+            "relation": "related-model",
+            "note": {
+              "ja": "単一sin(πx)の共通固定入力とは一致しますが、保存比較図は複合正弦製造解も含みます。同じ零Dirichletでも全ソースが同一ではありません。",
+              "en": "It matches the single-sine common fixed input, but saved comparisons also contain composite-sine manufactured forcing. Zero Dirichlet boundaries do not make all sources identical."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-poisson-manufactured-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-poisson-manufactured-en"
+            },
+            "view": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=poisson-manufactured",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=poisson-manufactured"
+            }
+          },
+          {
+            "id": "pinn-poisson",
+            "title": {
+              "ja": "1D Poisson PINNと独立格子誤差",
+              "en": "Poisson PINN: independent grid error"
+            },
+            "kind": "manufactured",
+            "relation": "related-model",
+            "note": {
+              "ja": "1つの滑らかなPoisson問題と3seedの固定予算実験です。小さい学習損失だけで独立点精度の達成や一般的なPINN学習成功を保証しません。未達目標も表示します。",
+              "en": "This fixed-budget study covers one smooth Poisson problem and three seeds. A small training loss does not establish independent-point accuracy or general PINN training success. Unmet goals remain visible."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-pinn-poisson-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-pinn-poisson-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/pinn-poisson/?lang=ja#pinn-poisson-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/pinn-poisson/?lang=en#pinn-poisson-en-measurements"
+            }
+          }
+        ]
+      }
+    ]
   }
 }

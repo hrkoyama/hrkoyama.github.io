@@ -1,9 +1,9 @@
 // Generated from frontend/search/home-search.js by scripts/search_assets.py. Edit the source template.
-import {atlasSearch} from '../search/engine.mjs?v=2b8de3f6f042';
+import {atlasSearch} from '../search/engine.mjs?v=c81f3228d76c';
 import {currentLanguage} from './i18n.js';
 import {readingURL} from './reading-urls.js';
-import {appendMethodCard,tokenIncludes} from '../search/method-search.mjs?v=92957a959574';
-import {appendSearchNavigation,publicNavigationPath} from '../search/navigation.mjs?v=d6dbf9870fc0';
+import {appendMethodCard,tokenIncludes} from '../search/method-search.mjs?v=2cc1912b4ca7';
+import {appendSearchNavigation,publicNavigationPath} from '../search/navigation.mjs?v=e0aceedd72e4';
 const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const normalizeSearch=value=>String(value).normalize('NFKC').toLocaleLowerCase().replace(/[‐‑‒–—−-]/g,' ').replace(/\s+/g,' ').trim();
 const plain=value=>String(value).replace(/<[^>]*>/g,' ').replace(/&(?:amp|lt|gt|quot|#39|nbsp);/g,c=>({'&amp;':'&','&lt;':'<','&gt;':'>','&quot;':'"','&#39;':"'",'&nbsp;':' '}[c])).replace(/\s+/g,' ').trim();
@@ -68,7 +68,7 @@ export function homeSearchPage({compact=false,staticMode=false}={}){
 }
 let indexPromise;
 function loadIndex(){
- if(!indexPromise)indexPromise=fetch(new URL('../search/atlas-query-index.json?v=135421264120',import.meta.url)).then(r=>{if(!r.ok)throw Error('Search index unavailable');return r.json();}).catch(error=>{indexPromise=null;throw error;});
+ if(!indexPromise)indexPromise=fetch(new URL('../search/atlas-query-index.json?v=a6a756a4b325',import.meta.url)).then(r=>{if(!r.ok)throw Error('Search index unavailable');return r.json();}).catch(error=>{indexPromise=null;throw error;});
  return indexPromise;
 }
 export function wireHomeSearch(){

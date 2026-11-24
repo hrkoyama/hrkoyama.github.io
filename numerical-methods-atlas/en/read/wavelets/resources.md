@@ -24,4 +24,11 @@ No chapter-specific association is registered. Atlas-wide index: [Exact and refe
 
 ## Code and validation
 
-No chapter-specific association is registered. Atlas-wide index: [Code, inputs and validation](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en)
+- [Haar multiresolution: boundaries, shifts and thresholds](<https://hrkoyama.github.io/numerical-methods-atlas/validation/haar-mallat-boundary-threshold/?lang=en>)
+  availability: run
+
+  Apply three-level Haar analysis to short signals of lengths 17 and 32, separating one-sample shifts from odd-length boundary handling.
+- [Wavelets — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/wavelets/?lang=en#method-execution-en>)
+  availability: source
+
+  Method-specific editions and related sources; fixed-input runs are listed separately.

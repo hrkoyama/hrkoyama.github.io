@@ -18,10 +18,13 @@ Resources explicitly registered to the methods, problems and executions of this 
 - [Geometric multigrid V-cycle](<https://hrkoyama.github.io/numerical-methods-atlas/methods/multigrid/?lang=en>)
 - [Centered spatial difference](<https://hrkoyama.github.io/numerical-methods-atlas/methods/centered-difference/?lang=en>)
 
-  Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability.
+  Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability. Lift (u₀,ν) to width two and apply two blocks containing a local linear map, real DC and complex Fourier modes 1–4, then tanh. Train with a fixed L-BFGS-B budget and evaluate the same weights at N=32 and 64. Nonlinear terms are evaluated on each native grid without dealiasing.
 - [Forward Euler](<https://hrkoyama.github.io/numerical-methods-atlas/methods/forward-euler/?lang=en>)
 
-  Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability.
+  Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability. Lift (u₀,ν) to width two and apply two blocks containing a local linear map, real DC and complex Fourier modes 1–4, then tanh. Train with a fixed L-BFGS-B budget and evaluate the same weights at N=32 and 64. Nonlinear terms are evaluated on each native grid without dealiasing.
+- [PINNs and neural operators](<https://hrkoyama.github.io/numerical-methods-atlas/methods/pinn-operators/?lang=en>)
+
+  Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability. Lift (u₀,ν) to width two and apply two blocks containing a local linear map, real DC and complex Fourier modes 1–4, then tanh. Train with a fixed L-BFGS-B budget and evaluate the same weights at N=32 and 64. Nonlinear terms are evaluated on each native grid without dealiasing.
 - [Centered spatial difference](<https://hrkoyama.github.io/numerical-methods-atlas/methods/centered-difference/?lang=en>)
 
   Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability.
@@ -39,7 +42,10 @@ Resources explicitly registered to the methods, problems and executions of this 
   Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability.
 - [Thomas tridiagonal elimination](<https://hrkoyama.github.io/numerical-methods-atlas/methods/thomas/?lang=en>)
 
-  Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions.
+  Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions. Train a hard-boundary tanh ansatz with trust-region reflective least squares and an analytic parameter Jacobian. Retain every returned model under the fixed budget. Also solve second-order finite differences with 31, 63 and 127 unknowns using the Thomas algorithm.
+- [PINNs and neural operators](<https://hrkoyama.github.io/numerical-methods-atlas/methods/pinn-operators/?lang=en>)
+
+  Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions. Train a hard-boundary tanh ansatz with trust-region reflective least squares and an analytic parameter Jacobian. Retain every returned model under the fixed budget. Also solve second-order finite differences with 31, 63 and 127 unknowns using the Thomas algorithm.
 - [Thomas tridiagonal elimination](<https://hrkoyama.github.io/numerical-methods-atlas/methods/thomas/?lang=en>)
 
   Uses Thomas elimination and the discrete mean gauge in the public boundary-value implementation.
@@ -102,13 +108,13 @@ Resources explicitly registered to the methods, problems and executions of this 
 
 - [Heat / diffusion equation](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#heat-en>)
 
-  A representative constant-diffusivity form: mode decay, time integration and boundaries. Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters.
+  A representative constant-diffusivity form: mode decay, time integration and boundaries. Use periodic heat flow uₜ=νuₓₓ on [0,2π) to T=0.25. Split 46 whole problems into 24 training, 6 validation, 8 held-out ID, 4 viscosity-OOD and 4 spectrum-OOD problems. Use two fixed seeds and 93 real parameters.
 - [Heat / diffusion equation](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#heat-en>)
 
   A representative constant-diffusivity form: mode decay, time integration and boundaries. Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters.
 - [Poisson / Laplace equations](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#poisson-laplace-en>)
 
-  Elliptic boundary-value problems: check sign conventions, iterative solvers, sparse matrices and boundaries. Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters.
+  Elliptic boundary-value problems: check sign conventions, iterative solvers, sparse matrices and boundaries. Solve dimensionless −uₓₓ=π² sin(πx) on [0,1] with zero Dirichlet data. Use sixteen hidden units, 49 real parameters, seeds 8401–8403, 64 training points and 257 separate evaluation points.
 - [Poisson / Laplace equations](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#poisson-laplace-en>)
 
   Elliptic boundary-value problems: check sign conventions, iterative solvers, sparse matrices and boundaries. Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters.
@@ -197,12 +203,17 @@ Resources explicitly registered to the methods, problems and executions of this 
 
 - [Periodic Fourier-mode heat decay — references and comparison conditions](<https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-periodic/?lang=en#references-en>)
 
-  Analytic exponential decay of a periodic Fourier mode is the standard. Distinguish the saved figure's amplitude 0.25 and viscosity 0.02 from code checks using other frequencies.
+  Analytic exponential decay of a periodic Fourier mode is the standard. Distinguish the saved figure's amplitude 0.25 and viscosity 0.02 from code checks using other frequencies. Qualify all 93 real loss-gradient coordinates at two fixed finite-difference widths and compare Fourier blocks with direct DFT sums. Separate analytic heat-mode errors, grid-restriction differences and ID/OOD diagnostics. Relative error is NA when reference RMS≤10⁻¹²; zero and near-zero controls retain absolute errors.
 - [Heat / Fourier-mode decay](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-sine-heat-en>)
   relation: related-model
   reference_kind: analytic
 
   Analytic reference Periodic unit interval; viscosity 0.02. The saved gallery matches periodic [0,1], 1+0.25sin(2πx), ν=0.02 and final time one; this does not assert a match to separate-frequency code checks. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations.
+- [Tiny FNO on held-out heat problems](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-fno-periodic-heat-en>)
+  relation: related-model
+  reference_kind: analytic
+
+  Analytic reference Use periodic heat flow uₜ=νuₓₓ on [0,2π) to T=0.25. Split 46 whole problems into 24 training, 6 validation, 8 held-out ID, 4 viscosity-OOD and 4 spectrum-OOD problems. Use two fixed seeds and 93 real parameters. This comparison concerns a fixed tiny discrete operator, without arbitrary-resolution, distributional or OOD guarantees. The N=64-to-32 discrepancy includes nonlinear aliasing and is not a continuum discretization error. Optimizer convergence is distinct from normal budget termination.
 - [Heat decay with Dirichlet boundaries — references and comparison conditions](<https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-dirichlet/?lang=en#references-en>)
 
   Check exponential decay of sin(πx) with zero Dirichlet endpoints and mesh refinement. The library heat mode instead has periodic boundaries and mean one.
@@ -213,12 +224,17 @@ Resources explicitly registered to the methods, problems and executions of this 
   Analytic reference Periodic unit interval; viscosity 0.02. This test has zero Dirichlet endpoints and sin(πx); the card has periodic boundaries, 1+0.25sin(2πx) and ν=0.02.
 - [1D Poisson / smooth Dirichlet manufactured solutions — references and comparison conditions](<https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-dirichlet/?lang=en#references-en>)
 
-  Use manufactured sine solutions, the composite-sine comparison and discrete residuals with zero Dirichlet endpoints. The single sin(πx) reference does not represent every forcing variant.
+  Use manufactured sine solutions, the composite-sine comparison and discrete residuals with zero Dirichlet endpoints. The single sin(πx) reference does not represent every forcing variant. Independently qualify all 49 residual-Jacobian columns, loss-gradient coordinates and spatial derivatives. Save off-training solution error against sin(πx), PDE residual, boundary error and finite-difference error separately. Preserve actual convergence and accuracy decisions; a normal budget return is not convergence.
 - [Poisson / manufactured sine](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-poisson-manufactured-en>)
   relation: related-model
   reference_kind: manufactured
 
   Manufactured solution Zero Dirichlet endpoints. The forcing is chosen from the target solution; this is not an arbitrary-source Poisson solution. It matches the single-sine common fixed input, but saved comparisons also contain composite-sine manufactured forcing. Zero Dirichlet boundaries do not make all sources identical.
+- [Poisson PINN: independent grid error](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-pinn-poisson-en>)
+  relation: related-model
+  reference_kind: manufactured
+
+  Manufactured solution Solve dimensionless −uₓₓ=π² sin(πx) on [0,1] with zero Dirichlet data. Use sixteen hidden units, 49 real parameters, seeds 8401–8403, 64 training points and 257 separate evaluation points. This fixed-budget study covers one smooth Poisson problem and three seeds. A small training loss does not establish independent-point accuracy or general PINN training success. Unmet goals remain visible.
 - [1D Poisson / pure Neumann boundaries — references and comparison conditions](<https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-neumann/?lang=en#references-en>)
 
   Check x² with its discrete mean removed for f=-2 and outward derivatives (0,2), together with Neumann compatibility and the mean gauge.
@@ -268,6 +284,11 @@ Resources explicitly registered to the methods, problems and executions of this 
   reference_kind: manufactured
 
   Manufactured solution Zero Dirichlet endpoints. The forcing is chosen from the target solution; this is not an arbitrary-source Poisson solution. It matches the single-sine common fixed input, but saved comparisons also contain composite-sine manufactured forcing. Zero Dirichlet boundaries do not make all sources identical.
+- [Poisson PINN: independent grid error](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-pinn-poisson-en>)
+  relation: related-model
+  reference_kind: manufactured
+
+  Manufactured solution Solve dimensionless −uₓₓ=π² sin(πx) on [0,1] with zero Dirichlet data. Use sixteen hidden units, 49 real parameters, seeds 8401–8403, 64 training points and 257 separate evaluation points. This fixed-budget study covers one smooth Poisson problem and three seeds. A small training loss does not establish independent-point accuracy or general PINN training success. Unmet goals remain visible.
 
 ## Code and validation
 
@@ -275,6 +296,10 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Use the existing Thomas kernel for −u''=π²sin(πx) with 15/31/63 interior nodes; separately check analytic sin(πx), a recomputed discrete residual and halving-grid refinement.
+- [Poisson PINN: independent grid error](<https://hrkoyama.github.io/numerical-methods-atlas/validation/pinn-poisson/?lang=en>)
+  availability: run
+
+  Compare a 49-parameter PINN for three fixed seeds with analytic and finite-difference solutions.
 - [Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products](<https://hrkoyama.github.io/numerical-methods-atlas/validation/bratu-matrix-free-jfnk/?lang=en>)
   availability: run
 
@@ -299,6 +324,10 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Retain nonzero Kxy in the Q1 weak form and compare analytic refinement with MG/AMG convergence for the same matrix.
+- [Tiny FNO on held-out heat problems](<https://hrkoyama.github.io/numerical-methods-atlas/validation/fno-periodic-heat/?lang=en>)
+  availability: run
+
+  Evaluate the same learned weights on 32/64-point grids, held-out functions and separate OOD inputs.
 - [Crank–Nicolson — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/crank-nicolson/?lang=en#method-execution-en>)
   availability: source
 

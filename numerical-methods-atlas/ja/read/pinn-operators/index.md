@@ -26,11 +26,17 @@ PINNでは領域と単位をスケーリングし、自動微分で残差を作�
 
 解析解または独立に収束させた従来法と比較し、学習点外のL1/L2/L∞誤差、境界・保存則、複数seedを測ります。operator学習では同じ軌道の近接時刻を無作為分割するだけでなく、問題単位でtrain/testを分け、入力分布外も別報告します。
 
+## 選択閲読した原典と今回の小例
+
+2017年PINN Part I preprintの§2では、残差とデータ・境界の損失を区別します。FNO v3（2021年）§3–4の層は局所線形作用とFourier積分作用に非線形活性化を組み合わせます。今回の小Poisson・周期拡散は別の教育用入力で、2019年JCP論文全文や原著の大規模実験・性能を再現したものではありません。
+
 ## 公開範囲
 
-解説・代表式・文献を公開しています。専用コードと数値検証結果は実装予定です。上記の検証案は未実施で、他の手法のコードや計算結果をこの手法の検証として流用しません。
+既存の教育用コードと版を固定した検証記録への案内です。今回の本文・翻訳の追加でコードや過去の測定結果を変更せず、原論文全体の再現を主張しません。
 
 ## 文献
 
 - M. Raissi and P. Perdikaris and G.E. Karniadakis (2019). Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations. https://doi.org/10.1016/j.jcp.2018.10.045
 - Zongyi Li and Nikola Kovachki and Kamyar Azizzadenesheli and Burigede Liu and Kaushik Bhattacharya and Andrew Stuart and Anima Anandkumar (2021). Fourier Neural Operator for Parametric Partial Differential Equations. https://openreview.net/forum?id=c8P9NQVtmnO
+- M. Raissi, P. Perdikaris and G. E. Karniadakis (2017). Physics Informed Deep Learning (Part I): Data-driven Solutions of Nonlinear Partial Differential Equations. https://arxiv.org/pdf/1711.10561
+- Z. Li et al. (2021). Fourier Neural Operator for Parametric Partial Differential Equations. https://arxiv.org/html/2010.08895v3

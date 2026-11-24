@@ -10,8 +10,8 @@
     "en": "Time integration"
   },
   "summary": {
-    "ja": "滑らかな非硬い常微分方程式を4回の右辺評価で4次精度に進める古典Runge–Kutta法。公開例では次数条件、安定関数、非線形・時刻依存問題を比較し、SSP性やシンプレクティック性とは区別する。 追加固定例：振り子の指数低減・拘束ドリフト・明示安定化。条件と検証範囲は各配布版で確認してください。",
-    "en": "Classical four-stage Runge–Kutta advances smooth nonstiff ODEs with fourth-order accuracy. Released examples compare order conditions, stability functions and nonlinear/time-dependent problems while distinguishing accuracy from SSP and symplectic properties. Additional fixed examples: Index reduction, constraint drift and explicit stabilization for a pendulum. See each release for assumptions and checked scope."
+    "ja": "滑らかな非硬い常微分方程式を4回の右辺評価で4次精度に進める古典Runge–Kutta法。公開例では次数条件、安定関数、非線形・時刻依存問題を比較し、SSP性やシンプレクティック性とは区別する。 追加固定例：振り子の指数低減・拘束ドリフト・明示安定化。条件と検証範囲は各配布版で確認してください。 固定した教育用実行例：酵素反応の保存と準定常近似、Lotka–Volterra不変量と正値性、SEIR保存則と初期線形化。",
+    "en": "Classical four-stage Runge–Kutta advances smooth nonstiff ODEs with fourth-order accuracy. Released examples compare order conditions, stability functions and nonlinear/time-dependent problems while distinguishing accuracy from SSP and symplectic properties. Additional fixed examples: Index reduction, constraint drift and explicit stabilization for a pendulum. See each release for assumptions and checked scope. Fixed educational executions: Enzyme conservation and QSSA, Lotka–Volterra invariant and positivity, SEIR conservation and initial linearization."
   },
   "status": "educational-example",
   "origin": "existing-coverage-catalog",
@@ -65,8 +65,8 @@
     "level": "method-specific source-and-code inspection; no numerical rerun; reference access recorded individually",
     "on": "2026-11-22",
     "supplemental_review": {
-      "on": "2026-11-24",
-      "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
+      "on": "2026-11-25",
+      "level": "Fixed release-specific input/reference/criterion scope; actual canonical source and independently extracted ZIP are bound. Original study targets remain separate from reproduction checks."
     }
   },
   "assumptions_ja": [
@@ -12242,6 +12242,889 @@
           }
         }
       ]
+    },
+    {
+      "group": "small-models",
+      "case_ids": [
+        "enzyme-qssa",
+        "lotka-volterra",
+        "seir-linearization"
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/",
+      "code_edition": "2026-11-25",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/experiments.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/io_utils.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/biology.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/pinn.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/fno.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/data_family.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/oracles.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/qualify.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/reference_models.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/test_models.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-small-models-2026-11-25",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/verification.json",
+      "code_archive_sha256": "d341b8a90e0b6ade7c70760a2c32a9f3825a6b4e162b221c7cc95b10f3cd40c1",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/results/result.json",
+      "passed_tests": 25,
+      "examples": [
+        {
+          "id": "enzyme-qssa",
+          "method_ids": [
+            "sdirk2",
+            "step-doubling",
+            "newton",
+            "rk4"
+          ],
+          "title": {
+            "ja": "酵素反応の保存と準定常近似",
+            "en": "Enzyme conservation and QSSA"
+          },
+          "summary": {
+            "ja": "全4状態と準定常近似を比較し、初期層と積分誤差を分けます。",
+            "en": "Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism."
+          },
+          "assumptions": {
+            "ja": "閉鎖反応E+S⇌C→E+Pを無次元化し、k₁=10、k₋₁=k₂=1、S₀=1、C₀=P₀=0、E₀=0.01/0.002。Kₘ=0.2、ε=E₀/(Kₘ+S₀)=1/120,1/600、θ=E₀t∈[0,0.5]です。",
+            "en": "Use the closed dimensionless reaction E+S⇌C→E+P with k₁=10, k₋₁=k₂=1, S₀=1, C₀=P₀=0 and E₀=0.01 or 0.002. Then Kₘ=0.2, ε=E₀/(Kₘ+S₀)=1/120 or 1/600, and θ=E₀t ranges from 0 to 0.5."
+          },
+          "algorithm": {
+            "ja": "全4状態をSDIRK2のstep doublingで積分し、各段のNewton法では同じ重み付きL∞残差とArmijo条件を使います。縮約Michaelis–Menten式はθ上の別RK4計算で求め、全系の積分誤差と近似モデル誤差を混同しません。",
+            "en": "Integrate all four states with SDIRK2 step doubling, using the same weighted L∞ residual for Newton convergence and Armijo backtracking. Evolve the reduced Michaelis–Menten equation separately with RK4 in θ, keeping integration error distinct from model-reduction error."
+          },
+          "validation": {
+            "ja": "独立な全系Radau/BDF参照、縮約式の陰的スカラー恒等式、E+C=E₀とS+C+P=1、正値性、実際の採用・棄却・Newton作業を照合。初期層を含む全時間と、事前指定θ≥0.02の近似誤差を別保存します。",
+            "en": "Compare with independent full-system Radau/BDF references and an implicit scalar identity for the reduced equation. Check E+C=E₀, S+C+P=1, positivity and actual acceptance, rejection and Newton work. Retain both all-time errors including the initial layer and errors on the declared θ≥0.02 window."
+          },
+          "limits": {
+            "ja": "2つの小εと固定反応定数だけの教育例です。εは尺度比であり、その値だけを厳密なQSSA誤差上界とはしません。θ≥0.02を初期層終了の証明とは呼ばず、生体内の反応・観測値へ外挿しません。",
+            "en": "These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction."
+          },
+          "domains": [
+            "biology"
+          ],
+          "code_files": [
+            "run.py",
+            "experiments.py",
+            "io_utils.py",
+            "biology.py"
+          ],
+          "reference_files": [
+            "PROTOCOL.md",
+            "source-reading.json",
+            "acceptance.json"
+          ],
+          "references": [
+            {
+              "id": "mm-eilertsen-v2-selected",
+              "title": "Rigorous estimates for the quasi-steady state approximation of the Michaelis–Menten reaction mechanism at low enzyme concentrations",
+              "url": "https://arxiv.org/html/2305.12602v2",
+              "accessed_on": "2026-11-24",
+              "review_level": "selected-primary-body",
+              "review": {
+                "ja": "Selected §1 Eq(1)–(8) and selected discussion around transient-time estimates Eq(32); proofs and complete quantitative bounds unread.",
+                "en": "Selected §1 Eq(1)–(8) and selected discussion around transient-time estimates Eq(32); proofs and complete quantitative bounds unread."
+              },
+              "year": 2024,
+              "year_role": "preprint-version"
+            }
+          ],
+          "gallery_figure": "enzyme-qssa-preview.png",
+          "additional_figures": [
+            {
+              "file": "enzyme-qssa-preview.png",
+              "caption": {
+                "ja": "全4状態と準定常近似を比較し、初期層と積分誤差を分けます。 保存値だけを描画します。",
+                "en": "Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism. This figure reads saved data only."
+              }
+            }
+          ],
+          "formulas": [
+            "\\begin{aligned}\\dot S&=-10ES+C,&\\dot C&=10ES-2C,\\\\\\dot E&=-10ES+2C,&\\dot P&=C.\\end{aligned}",
+            "E+C=E_0,\\quad S+C+P=1,\\quad K_m=\\frac{k_{-1}+k_2}{k_1}=0.2",
+            "\\theta=E_0t,\\quad \\varepsilon=\\frac{E_0}{K_m+S_0}\\in\\left\\{\\frac1{120},\\frac1{600}\\right\\}",
+            "\\frac{dS_{\\rm MM}}{d\\theta}=-\\frac{S_{\\rm MM}}{0.2+S_{\\rm MM}},\\quad S_{\\rm MM}+0.2\\log S_{\\rm MM}=1-\\theta"
+          ],
+          "measured": {
+            "id": "enzyme-qssa",
+            "passed": true,
+            "checks": {
+              "enzyme-01-r1e-06:completed-work": true,
+              "enzyme-01-r1e-06:finite": true,
+              "enzyme-01-r1e-08:completed-work": true,
+              "enzyme-01-r1e-08:finite": true,
+              "enzyme-002-r1e-06:completed-work": true,
+              "enzyme-002-r1e-06:finite": true,
+              "enzyme-002-r1e-08:completed-work": true,
+              "enzyme-002-r1e-08:finite": true,
+              "mm-200:finite": true,
+              "mm-400:finite": true
+            },
+            "records": [
+              {
+                "id": "enzyme-01-r1e-06",
+                "Etotal": 0.01,
+                "epsilon": 0.008333333333333333,
+                "rtol": 1e-06,
+                "atol": 1e-10,
+                "integration_Linf": 3.302774387314855e-08,
+                "conservation_defect": 2.4424906541753444e-15,
+                "QSSA_window_model_error": 0.0075850761082053575,
+                "QSSA_full_model_error": 0.0076067541834961006,
+                "minimum_accepted": 0.0,
+                "attempted_steps": 2498,
+                "accepted_steps": 2496,
+                "rejected_steps": 2,
+                "clipped_output_steps": 88,
+                "RHS_calls": 45490,
+                "Jacobian_calls": 11504,
+                "factor_builds": 11504,
+                "linear_solves": 11504,
+                "Newton_updates": 11504,
+                "backtracks": 0
+              },
+              {
+                "id": "enzyme-01-r1e-08",
+                "Etotal": 0.01,
+                "epsilon": 0.008333333333333333,
+                "rtol": 1e-08,
+                "atol": 1e-12,
+                "integration_Linf": 1.1869755560389716e-09,
+                "conservation_defect": 2.4424906541753444e-15,
+                "QSSA_window_model_error": 0.0075850761082053575,
+                "QSSA_full_model_error": 0.0076067541834961006,
+                "minimum_accepted": 0.0,
+                "attempted_steps": 1170,
+                "accepted_steps": 1167,
+                "rejected_steps": 3,
+                "clipped_output_steps": 103,
+                "RHS_calls": 34930,
+                "Jacobian_calls": 12200,
+                "factor_builds": 12200,
+                "linear_solves": 12200,
+                "Newton_updates": 12200,
+                "backtracks": 0
+              },
+              {
+                "id": "enzyme-002-r1e-06",
+                "Etotal": 0.002,
+                "epsilon": 0.0016666666666666668,
+                "rtol": 1e-06,
+                "atol": 1e-10,
+                "integration_Linf": 8.17277473474931e-09,
+                "conservation_defect": 1.1102230246251565e-15,
+                "QSSA_window_model_error": 0.001518757415778449,
+                "QSSA_full_model_error": 0.001525935571123016,
+                "minimum_accepted": 0.0,
+                "attempted_steps": 572,
+                "accepted_steps": 570,
+                "rejected_steps": 2,
+                "clipped_output_steps": 40,
+                "RHS_calls": 11920,
+                "Jacobian_calls": 3386,
+                "factor_builds": 3386,
+                "linear_solves": 3386,
+                "Newton_updates": 3386,
+                "backtracks": 0
+              },
+              {
+                "id": "enzyme-002-r1e-08",
+                "Etotal": 0.002,
+                "epsilon": 0.0016666666666666668,
+                "rtol": 1e-08,
+                "atol": 1e-12,
+                "integration_Linf": 3.220199232050955e-10,
+                "conservation_defect": 3.1086244689504383e-15,
+                "QSSA_window_model_error": 0.001518757415778449,
+                "QSSA_full_model_error": 0.001525935571123016,
+                "minimum_accepted": 0.0,
+                "attempted_steps": 1160,
+                "accepted_steps": 1157,
+                "rejected_steps": 3,
+                "clipped_output_steps": 103,
+                "RHS_calls": 32964,
+                "Jacobian_calls": 11262,
+                "factor_builds": 11262,
+                "linear_solves": 11262,
+                "Newton_updates": 11262,
+                "backtracks": 0
+              },
+              {
+                "id": "mm-200",
+                "steps": 200,
+                "reduced_scalar_error": 2.0872192862952943e-14
+              },
+              {
+                "id": "mm-400",
+                "steps": 400,
+                "reduced_scalar_error": 3.774758283725532e-15
+              }
+            ],
+            "metrics": {
+              "actual_primary_records": 6,
+              "reference_role": "Qualified Radau/BDF full ODE; reduction/linearization errors are distinct modeling diagnostics"
+            },
+            "original_target_results": {
+              "enzyme-01-r1e-06:integration": true,
+              "enzyme-01-r1e-06:mass": true,
+              "enzyme-01-r1e-06:negative-part": true,
+              "enzyme-01-r1e-06:QSSA-model": true,
+              "enzyme-01-r1e-08:integration": true,
+              "enzyme-01-r1e-08:mass": true,
+              "enzyme-01-r1e-08:negative-part": true,
+              "enzyme-01-r1e-08:QSSA-model": true,
+              "enzyme-002-r1e-06:integration": true,
+              "enzyme-002-r1e-06:mass": true,
+              "enzyme-002-r1e-06:negative-part": true,
+              "enzyme-002-r1e-06:QSSA-model": true,
+              "enzyme-002-r1e-08:integration": true,
+              "enzyme-002-r1e-08:mass": true,
+              "enzyme-002-r1e-08:negative-part": true,
+              "enzyme-002-r1e-08:QSSA-model": true
+            },
+            "original_target_summary": {
+              "met": 16,
+              "total": 16,
+              "all_met": true,
+              "acceptance_sha256": "b468e78459cf81bda6a32cade0051f6615b44def256c66308ae7acc82ff516ce"
+            },
+            "original_study_goal_measurements": {
+              "enzyme-01-r1e-06:integration": {
+                "measured": 3.302774387314855e-08,
+                "limit": 1e-05,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "enzyme-01-r1e-06:mass": {
+                "measured": 2.4424906541753444e-15,
+                "limit": 1e-10,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "enzyme-01-r1e-06:negative-part": {
+                "measured": 0.0,
+                "limit": 1e-12,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "enzyme-01-r1e-06:QSSA-model": {
+                "measured": 0.0075850761082053575,
+                "limit": 0.02,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "enzyme-01-r1e-08:integration": {
+                "measured": 1.1869755560389716e-09,
+                "limit": 1e-05,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "enzyme-01-r1e-08:mass": {
+                "measured": 2.4424906541753444e-15,
+                "limit": 1e-10,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "enzyme-01-r1e-08:negative-part": {
+                "measured": 0.0,
+                "limit": 1e-12,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "enzyme-01-r1e-08:QSSA-model": {
+                "measured": 0.0075850761082053575,
+                "limit": 0.02,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "enzyme-002-r1e-06:integration": {
+                "measured": 8.17277473474931e-09,
+                "limit": 1e-05,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "enzyme-002-r1e-06:mass": {
+                "measured": 1.1102230246251565e-15,
+                "limit": 1e-10,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "enzyme-002-r1e-06:negative-part": {
+                "measured": 0.0,
+                "limit": 1e-12,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "enzyme-002-r1e-06:QSSA-model": {
+                "measured": 0.001518757415778449,
+                "limit": 0.02,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "enzyme-002-r1e-08:integration": {
+                "measured": 3.220199232050955e-10,
+                "limit": 1e-05,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "enzyme-002-r1e-08:mass": {
+                "measured": 3.1086244689504383e-15,
+                "limit": 1e-10,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "enzyme-002-r1e-08:negative-part": {
+                "measured": 0.0,
+                "limit": 1e-12,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "enzyme-002-r1e-08:QSSA-model": {
+                "measured": 0.001518757415778449,
+                "limit": 0.02,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              }
+            },
+            "validation_scope": "predeclared_accuracy_study_with_separate_reproduction_checks"
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#enzyme-qssa",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#enzyme-qssa"
+          }
+        },
+        {
+          "id": "lotka-volterra",
+          "method_ids": [
+            "rk4"
+          ],
+          "title": {
+            "ja": "Lotka–Volterra不変量と正値性",
+            "en": "Lotka–Volterra invariant and positivity"
+          },
+          "summary": {
+            "ja": "正の軌道を独立な対数座標参照と比較します。",
+            "en": "Compare a positive orbit against an independently integrated log-coordinate reference."
+          },
+          "assumptions": {
+            "ja": "無次元の捕食者・被食者系x′=x(1−y)、y′=y(x−1)、初期値(1.2,0.8)、0≤t≤20。正の象限で不変量H=x−log x+y−log yを評価します。",
+            "en": "Use the dimensionless predator–prey equations x′=x(1−y), y′=y(x−1), initial state (1.2,0.8) and 0≤t≤20. Evaluate H=x−log x+y−log y only in the positive quadrant."
+          },
+          "algorithm": {
+            "ja": "固定400/800/1600ステップの古典RK4で物理状態を積分します。独立参照はlog x・log yの変数でRadau/BDFを実行し、主計算には対数変数や保存量の射影を導入しません。",
+            "en": "Integrate physical populations with classical RK4 at 400, 800 and 1600 fixed steps. Independent Radau/BDF references evolve log x and log y; the primary method uses neither a log-coordinate update nor invariant projection."
+          },
+          "validation": {
+            "ja": "独立参照との状態誤差、Hのドリフト、保存された軌道の最小値を別々に測定。参照側では解析Jacobian、Radau/BDF差、刻み精度、Hの時間微分の恒等式を事前資格しています。",
+            "en": "Measure state error against the independent reference, drift of H and the minimum saved population separately. The reference stage qualifies analytic Jacobians, Radau/BDF agreement, tolerance refinement and the identity dH/dt=0."
+          },
+          "limits": {
+            "ja": "1初期値・有限時間の固定比較です。連続系の閉軌道を引き込み極限周期とは呼びません。RK4の厳密な不変量保存、任意刻みでの正値性、長時間の構造保存は保証しません。",
+            "en": "This is a finite-time comparison for one initial state. The continuum closed orbit is not an attracting limit cycle. RK4 is not claimed to preserve H exactly, maintain positivity at arbitrary steps or guarantee long-time geometric fidelity."
+          },
+          "domains": [
+            "biology"
+          ],
+          "code_files": [
+            "run.py",
+            "experiments.py",
+            "io_utils.py",
+            "biology.py"
+          ],
+          "reference_files": [
+            "PROTOCOL.md",
+            "source-reading.json",
+            "acceptance.json"
+          ],
+          "references": [
+            {
+              "id": "moler-predprey-selected",
+              "title": "Experiments in MATLAB, Chapter16: Predator-Prey Model",
+              "url": "https://www.mathworks.com/content/dam/mathworks/mathworks-dot-com/moler/exm/chapters/predprey.pdf",
+              "accessed_on": "2026-11-24",
+              "review_level": "selected-primary-body",
+              "review": {
+                "ja": "Selected extracted text pp3–6: normalized LV equations, equilibrium, periodic-orbit discussion and numerical illustration. No original Lotka/Volterra paper read.",
+                "en": "Selected extracted text pp3–6: normalized LV equations, equilibrium, periodic-orbit discussion and numerical illustration. No original Lotka/Volterra paper read."
+              },
+              "year": 2011,
+              "year_role": "document-version"
+            }
+          ],
+          "gallery_figure": "lotka-volterra-preview.png",
+          "additional_figures": [
+            {
+              "file": "lotka-volterra-preview.png",
+              "caption": {
+                "ja": "正の軌道を独立な対数座標参照と比較します。 保存値だけを描画します。",
+                "en": "Compare a positive orbit against an independently integrated log-coordinate reference. This figure reads saved data only."
+              }
+            }
+          ],
+          "formulas": [
+            "\\dot x=x(1-y),\\quad\\dot y=y(x-1),\\quad(x(0),y(0))=(1.2,0.8),\\quad0\\le t\\le20",
+            "H(x,y)=x-\\log x+y-\\log y,\\quad\\frac{dH}{dt}=0\\quad(x>0,y>0)",
+            "\\frac{d\\log x}{dt}=1-e^{\\log y},\\quad\\frac{d\\log y}{dt}=e^{\\log x}-1"
+          ],
+          "measured": {
+            "id": "lotka-volterra",
+            "passed": true,
+            "checks": {
+              "lv-400:actual-grid-finite": true,
+              "lv-800:actual-grid-finite": true,
+              "lv-1600:actual-grid-finite": true
+            },
+            "records": [
+              {
+                "id": "lv-400",
+                "steps": 400,
+                "state_Linf": 3.33183228784506e-07,
+                "invariant_drift": 5.899863708691555e-09,
+                "minimum_state": 0.7408142635326392
+              },
+              {
+                "id": "lv-800",
+                "steps": 800,
+                "state_Linf": 2.085509653859674e-08,
+                "invariant_drift": 2.909574803311443e-10,
+                "minimum_state": 0.7408127282900917
+              },
+              {
+                "id": "lv-1600",
+                "steps": 1600,
+                "state_Linf": 1.3042227298143416e-09,
+                "invariant_drift": 1.575184427338172e-11,
+                "minimum_state": 0.7408074720424371
+              }
+            ],
+            "metrics": {
+              "actual_primary_records": 3,
+              "reference_role": "Qualified Radau/BDF full ODE; reduction/linearization errors are distinct modeling diagnostics"
+            },
+            "original_target_results": {
+              "lv-400:state": true,
+              "lv-400:invariant": true,
+              "lv-800:state": true,
+              "lv-800:invariant": true,
+              "lv-1600:state": true,
+              "lv-1600:invariant": true
+            },
+            "original_target_summary": {
+              "met": 6,
+              "total": 6,
+              "all_met": true,
+              "acceptance_sha256": "b468e78459cf81bda6a32cade0051f6615b44def256c66308ae7acc82ff516ce"
+            },
+            "original_study_goal_measurements": {
+              "lv-400:state": {
+                "measured": 3.33183228784506e-07,
+                "limit": 1e-05,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "lv-400:invariant": {
+                "measured": 5.899863708691555e-09,
+                "limit": 1e-06,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "lv-800:state": {
+                "measured": 2.085509653859674e-08,
+                "limit": 1e-05,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "lv-800:invariant": {
+                "measured": 2.909574803311443e-10,
+                "limit": 1e-06,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "lv-1600:state": {
+                "measured": 1.3042227298143416e-09,
+                "limit": 1e-05,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "lv-1600:invariant": {
+                "measured": 1.575184427338172e-11,
+                "limit": 1e-06,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              }
+            },
+            "validation_scope": "predeclared_accuracy_study_with_separate_reproduction_checks"
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lotka-volterra/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#lotka-volterra",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#lotka-volterra"
+          }
+        },
+        {
+          "id": "seir-linearization",
+          "method_ids": [
+            "rk4"
+          ],
+          "title": {
+            "ja": "SEIR保存則と初期線形化",
+            "en": "SEIR conservation and initial linearization"
+          },
+          "summary": {
+            "ja": "人口保存と2モードの初期線形化を別々に検査します。",
+            "en": "Check population conservation and the full two-mode initial linearization separately."
+          },
+          "assumptions": {
+            "ja": "閉鎖人口S+E+I+R=1、β=0.6、σ=0.3、γ=0.2。η=10⁻⁴/5×10⁻⁵に対し(S,E,I,R)(0)=(1−2η,η,η,0)、0≤t≤20。出生・死亡・外部流入はありません。",
+            "en": "Use a closed population S+E+I+R=1 with β=0.6, σ=0.3 and γ=0.2. For η=10⁻⁴ or 5×10⁻⁵, start from (1−2η,η,η,0) and evolve to t=20. There are no births, deaths or external inflows."
+          },
+          "algorithm": {
+            "ja": "全4状態を固定400/800/1600ステップのRK4で積分。独立非線形参照は偏差をηで尺度化してRadau/BDFで求め、早期のE・I線形化は2×2行列指数の両モードを使います。",
+            "en": "Evolve all four physical states with RK4 at 400, 800 and 1600 fixed steps. Independently compute the nonlinear reference with scaled-deviation Radau/BDF and the early E/I linearization with both modes of the full 2×2 matrix exponential."
+          },
+          "validation": {
+            "ja": "t≤20の全ODE積分誤差・人口保存・非負性と、0≤t≤1の201参照点での線形化モデル誤差を分けます。参照では両ηの尺度付きJacobian、Radau/BDF差とη²に対する余裕、解析的な全行列指数を別資格しています。",
+            "en": "Separate full-ODE integration error, population conservation and nonnegativity through t=20 from linearization-model error at 201 reference points on 0≤t≤1. Qualify scaled Jacobians, Radau/BDF agreement with an η² margin and the analytic full matrix exponential independently."
+          },
+          "limits": {
+            "ja": "2つの小初期感染量による固定係数の整合性比較です。早期線形化をt=20全体の厳密解と見なさず、単一の優勢モードで両モードを置き換えません。実流行の予測・統計的被覆・任意人口への一般保証は行いません。",
+            "en": "These fixed-coefficient calculations compare two small initial infection levels. The early linearization is not an exact solution through t=20, and a single dominant mode does not replace the two-mode solution. No epidemic forecast, statistical coverage or arbitrary-population guarantee is claimed."
+          },
+          "domains": [
+            "biology"
+          ],
+          "code_files": [
+            "run.py",
+            "experiments.py",
+            "io_utils.py",
+            "biology.py"
+          ],
+          "reference_files": [
+            "PROTOCOL.md",
+            "source-reading.json",
+            "acceptance.json"
+          ],
+          "references": [
+            {
+              "id": "hethcote2000-selected",
+              "title": "The Mathematics of Infectious Diseases",
+              "url": "https://math.uchicago.edu/~shmuel/Modeling/hethcote2000%20Mathematics%20of%20Infectious%20diseases.pdf",
+              "accessed_on": "2026-11-24",
+              "review_level": "selected-primary-body",
+              "review": {
+                "ja": "Header, selected introduction compartment definitions and §3.1 printedpp618–619, displayed mass-action numbers and Eq(3.1); search around3.2/SEIR limit. Not whole55pages or visual diagram audit.",
+                "en": "Header, selected introduction compartment definitions and §3.1 printedpp618–619, displayed mass-action numbers and Eq(3.1); search around3.2/SEIR limit. Not whole55pages or visual diagram audit."
+              },
+              "year": 2000,
+              "year_role": "publication"
+            }
+          ],
+          "gallery_figure": "seir-linearization-preview.png",
+          "additional_figures": [
+            {
+              "file": "seir-linearization-preview.png",
+              "caption": {
+                "ja": "人口保存と2モードの初期線形化を別々に検査します。 保存値だけを描画します。",
+                "en": "Check population conservation and the full two-mode initial linearization separately. This figure reads saved data only."
+              }
+            }
+          ],
+          "formulas": [
+            "\\begin{aligned}\\dot S&=-\\beta SI,&\\dot E&=\\beta SI-\\sigma E,\\\\\\dot I&=\\sigma E-\\gamma I,&\\dot R&=\\gamma I.\\end{aligned}",
+            "\\beta=0.6,\\quad\\sigma=0.3,\\quad\\gamma=0.2,\\quad(S,E,I,R)(0)=(1-2\\eta,\\eta,\\eta,0)",
+            "S+E+I+R=1,\\quad\\eta\\in\\{10^{-4},5\\times10^{-5}\\}",
+            "\\begin{pmatrix}E_{\\rm lin}(t)\\\\ I_{\\rm lin}(t)\\end{pmatrix}=\\exp\\!\\left[t\\begin{pmatrix}-0.3&0.6\\\\0.3&-0.2\\end{pmatrix}\\right]\\begin{pmatrix}\\eta\\\\\\eta\\end{pmatrix}"
+          ],
+          "measured": {
+            "id": "seir-linearization",
+            "passed": true,
+            "checks": {
+              "seir-1e-4-400:actual-grid-finite": true,
+              "seir-1e-4-800:actual-grid-finite": true,
+              "seir-1e-4-1600:actual-grid-finite": true,
+              "seir-5e-5-400:actual-grid-finite": true,
+              "seir-5e-5-800:actual-grid-finite": true,
+              "seir-5e-5-1600:actual-grid-finite": true
+            },
+            "records": [
+              {
+                "id": "seir-1e-4-400",
+                "eta": 0.0001,
+                "steps": 400,
+                "state_Linf": 1.8622881015062376e-12,
+                "mass_defect": 1.3322676295501878e-15,
+                "minimum_state": 0.0,
+                "early_model_deviation": 1.3206560874431299e-08,
+                "early_deviation_over_eta_squared": 1.32065608744313
+              },
+              {
+                "id": "seir-1e-4-800",
+                "eta": 0.0001,
+                "steps": 800,
+                "state_Linf": 1.1746159600534156e-13,
+                "mass_defect": 5.551115123125783e-16,
+                "minimum_state": 0.0,
+                "early_model_deviation": 1.3206560874431299e-08,
+                "early_deviation_over_eta_squared": 1.32065608744313
+              },
+              {
+                "id": "seir-1e-4-1600",
+                "eta": 0.0001,
+                "steps": 1600,
+                "state_Linf": 6.994405055138486e-15,
+                "mass_defect": 1.887379141862766e-15,
+                "minimum_state": 0.0,
+                "early_model_deviation": 1.3206560874431299e-08,
+                "early_deviation_over_eta_squared": 1.32065608744313
+              },
+              {
+                "id": "seir-5e-5-400",
+                "eta": 5e-05,
+                "steps": 400,
+                "state_Linf": 9.460210392830959e-13,
+                "mass_defect": 6.661338147750939e-16,
+                "minimum_state": 0.0,
+                "early_model_deviation": 3.3017030167970538e-09,
+                "early_deviation_over_eta_squared": 1.3206812067188214
+              },
+              {
+                "id": "seir-5e-5-800",
+                "eta": 5e-05,
+                "steps": 800,
+                "state_Linf": 6.0285110237146e-14,
+                "mass_defect": 1.1102230246251565e-15,
+                "minimum_state": 0.0,
+                "early_model_deviation": 3.3017030167970538e-09,
+                "early_deviation_over_eta_squared": 1.3206812067188214
+              },
+              {
+                "id": "seir-5e-5-1600",
+                "eta": 5e-05,
+                "steps": 1600,
+                "state_Linf": 6.217248937900877e-15,
+                "mass_defect": 1.9984014443252818e-15,
+                "minimum_state": 0.0,
+                "early_model_deviation": 3.3017030167970538e-09,
+                "early_deviation_over_eta_squared": 1.3206812067188214
+              }
+            ],
+            "metrics": {
+              "actual_primary_records": 6,
+              "reference_role": "Qualified Radau/BDF full ODE; reduction/linearization errors are distinct modeling diagnostics"
+            },
+            "original_target_results": {
+              "seir-1e-4-400:integration": true,
+              "seir-1e-4-400:mass": true,
+              "seir-1e-4-400:negative-part": true,
+              "seir-1e-4-800:integration": true,
+              "seir-1e-4-800:mass": true,
+              "seir-1e-4-800:negative-part": true,
+              "seir-1e-4-1600:integration": true,
+              "seir-1e-4-1600:mass": true,
+              "seir-1e-4-1600:negative-part": true,
+              "seir-1e-4:early-linearization": true,
+              "seir-5e-5-400:integration": true,
+              "seir-5e-5-400:mass": true,
+              "seir-5e-5-400:negative-part": true,
+              "seir-5e-5-800:integration": true,
+              "seir-5e-5-800:mass": true,
+              "seir-5e-5-800:negative-part": true,
+              "seir-5e-5-1600:integration": true,
+              "seir-5e-5-1600:mass": true,
+              "seir-5e-5-1600:negative-part": true,
+              "seir-5e-5:early-linearization": true
+            },
+            "original_target_summary": {
+              "met": 20,
+              "total": 20,
+              "all_met": true,
+              "acceptance_sha256": "b468e78459cf81bda6a32cade0051f6615b44def256c66308ae7acc82ff516ce"
+            },
+            "original_study_goal_measurements": {
+              "seir-1e-4-400:integration": {
+                "measured": 1.8622881015062376e-12,
+                "limit": 1e-05,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "seir-1e-4-400:mass": {
+                "measured": 1.3322676295501878e-15,
+                "limit": 1e-10,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "seir-1e-4-400:negative-part": {
+                "measured": 0.0,
+                "limit": 1e-12,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "seir-1e-4-800:integration": {
+                "measured": 1.1746159600534156e-13,
+                "limit": 1e-05,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "seir-1e-4-800:mass": {
+                "measured": 5.551115123125783e-16,
+                "limit": 1e-10,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "seir-1e-4-800:negative-part": {
+                "measured": 0.0,
+                "limit": 1e-12,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "seir-1e-4-1600:integration": {
+                "measured": 6.994405055138486e-15,
+                "limit": 1e-05,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "seir-1e-4-1600:mass": {
+                "measured": 1.887379141862766e-15,
+                "limit": 1e-10,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "seir-1e-4-1600:negative-part": {
+                "measured": 0.0,
+                "limit": 1e-12,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "seir-1e-4:early-linearization": {
+                "measured": 0.000132065608744313,
+                "limit": 0.005,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "seir-5e-5-400:integration": {
+                "measured": 9.460210392830959e-13,
+                "limit": 1e-05,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "seir-5e-5-400:mass": {
+                "measured": 6.661338147750939e-16,
+                "limit": 1e-10,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "seir-5e-5-400:negative-part": {
+                "measured": 0.0,
+                "limit": 1e-12,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "seir-5e-5-800:integration": {
+                "measured": 6.0285110237146e-14,
+                "limit": 1e-05,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "seir-5e-5-800:mass": {
+                "measured": 1.1102230246251565e-15,
+                "limit": 1e-10,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "seir-5e-5-800:negative-part": {
+                "measured": 0.0,
+                "limit": 1e-12,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "seir-5e-5-1600:integration": {
+                "measured": 6.217248937900877e-15,
+                "limit": 1e-05,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "seir-5e-5-1600:mass": {
+                "measured": 1.9984014443252818e-15,
+                "limit": 1e-10,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "seir-5e-5-1600:negative-part": {
+                "measured": 0.0,
+                "limit": 1e-12,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              },
+              "seir-5e-5:early-linearization": {
+                "measured": 6.603406033594108e-05,
+                "limit": 0.005,
+                "comparison": "<=",
+                "units": "dimensionless",
+                "met": true
+              }
+            },
+            "validation_scope": "predeclared_accuracy_study_with_separate_reproduction_checks"
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/seir-linearization/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#seir-linearization",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#seir-linearization"
+          }
+        }
+      ]
     }
   ],
   "supplemental_scope_profiles": [
@@ -12261,6 +13144,35 @@
         {
           "ja": "投影・正規化・SHAKE/RATTLEなし。一般指数3ソルバーやシンプレクティック性の検証ではありません。",
           "en": "No projection, normalization or SHAKE/RATTLE; no general index-three-solver or symplecticity claim."
+        }
+      ]
+    },
+    {
+      "release": {
+        "group": "small-models",
+        "edition": "2026-11-25",
+        "case_ids": [
+          "enzyme-qssa",
+          "lotka-volterra",
+          "seir-linearization"
+        ]
+      },
+      "scope": {
+        "ja": "固定した教育用実行例：酵素反応の保存と準定常近似、Lotka–Volterra不変量と正値性、SEIR保存則と初期線形化。",
+        "en": "Fixed educational executions: Enzyme conservation and QSSA, Lotka–Volterra invariant and positivity, SEIR conservation and initial linearization."
+      },
+      "limits": [
+        {
+          "ja": "2つの小εと固定反応定数だけの教育例です。εは尺度比であり、その値だけを厳密なQSSA誤差上界とはしません。θ≥0.02を初期層終了の証明とは呼ばず、生体内の反応・観測値へ外挿しません。",
+          "en": "These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction."
+        },
+        {
+          "ja": "1初期値・有限時間の固定比較です。連続系の閉軌道を引き込み極限周期とは呼びません。RK4の厳密な不変量保存、任意刻みでの正値性、長時間の構造保存は保証しません。",
+          "en": "This is a finite-time comparison for one initial state. The continuum closed orbit is not an attracting limit cycle. RK4 is not claimed to preserve H exactly, maintain positivity at arbitrary steps or guarantee long-time geometric fidelity."
+        },
+        {
+          "ja": "2つの小初期感染量による固定係数の整合性比較です。早期線形化をt=20全体の厳密解と見なさず、単一の優勢モードで両モードを置き換えません。実流行の予測・統計的被覆・任意人口への一般保証は行いません。",
+          "en": "These fixed-coefficient calculations compare two small initial infection levels. The early linearization is not an exact solution through t=20, and a single dominant mode does not replace the two-mode solution. No epidemic forecast, statistical coverage or arbitrary-population guarantee is claimed."
         }
       ]
     }
@@ -12287,7 +13199,17 @@
     "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/experiments.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/io_contract.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/references.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/reporting.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/reporting.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/experiments.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/io_utils.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/biology.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/pinn.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/fno.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/data_family.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/oracles.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/qualify.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/reference_models.py"
   ],
   "test_urls": [
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
@@ -12297,7 +13219,8 @@
     "https://hrkoyama.github.io/code/validated-examples/2026-11-23/weno-critical/test_weno.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/test_moving.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_cases.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_serialization.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_serialization.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/test_models.py"
   ],
   "run_commands": [
     "python -m pytest -q tests/test_time_geometry.py tests/test_runge_kutta.py tests/test_hamiltonian.py"
@@ -12373,6 +13296,33 @@
       "guide": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/high-index-pendulum/?lang=ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/high-index-pendulum/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "enzyme-qssa",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "lotka-volterra",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lotka-volterra/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lotka-volterra/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "seir-linearization",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/seir-linearization/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/seir-linearization/?lang=en"
       },
       "kind": "dedicated-supplement"
     }
@@ -12534,6 +13484,48 @@
         "url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#constrained-pendulum-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#constrained-pendulum-en"
+        }
+      },
+      {
+        "id": "bio-enzyme",
+        "name": {
+          "ja": "Michaelis–Mentenと完全酵素反応系",
+          "en": "Michaelis–Menten and full enzyme kinetics"
+        },
+        "problem_ids": [
+          "enzyme-qssa"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-enzyme-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-enzyme-en"
+        }
+      },
+      {
+        "id": "bio-lotka-volterra",
+        "name": {
+          "ja": "Lotka–Volterra捕食・被食",
+          "en": "Lotka–Volterra predator–prey"
+        },
+        "problem_ids": [
+          "lotka-volterra"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-lotka-volterra-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-lotka-volterra-en"
+        }
+      },
+      {
+        "id": "seir-compartment",
+        "name": {
+          "ja": "閉鎖SEIR区画モデル",
+          "en": "Closed SEIR compartment model"
+        },
+        "problem_ids": [
+          "seir-linearization"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#seir-compartment-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#seir-compartment-en"
         }
       }
     ],
@@ -13159,6 +14151,186 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/high-index-pendulum/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/high-index-pendulum/?lang=en#references-en"
         }
+      },
+      {
+        "id": "enzyme-qssa",
+        "name": {
+          "ja": "酵素反応の保存と準定常近似",
+          "en": "Enzyme conservation and QSSA"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/results/enzyme-qssa-preview.png",
+          "sha256": "9f8ee2648321815e570a9415a71d42e1b7f8228ece70e9ff797860f23f7eea8c",
+          "width": 1634,
+          "height": 1057,
+          "caption": {
+            "ja": "全4状態と準定常近似を比較し、初期層と積分誤差を分けます。 保存値だけを描画します。 時間・濃度・個体数の軸は空間次元ではありません。率は教育用で疾病・実験予測ではありません。",
+            "en": "Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism. This figure reads saved data only. Time, concentrations and populations do not define a spatial dimension. The rates are educational, not disease or experimental predictions."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "enzyme-qssa",
+            "kind": "supplement",
+            "name": {
+              "ja": "酵素反応の保存と準定常近似",
+              "en": "Enzyme conservation and QSSA"
+            },
+            "scope": {
+              "ja": "全4状態と準定常近似を比較し、初期層と積分誤差を分けます。",
+              "en": "Separate the initial layer, integration error and QSSA modeling error in a four-state enzyme mechanism."
+            },
+            "method_ids": [
+              "sdirk2",
+              "step-doubling",
+              "newton",
+              "rk4"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/enzyme-qssa/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "全4状態をSDIRK2のstep doublingで積分し、各段のNewton法では同じ重み付きL∞残差とArmijo条件を使います。縮約Michaelis–Menten式はθ上の別RK4計算で求め、全系の積分誤差と近似モデル誤差を混同しません。",
+          "en": "Integrate all four states with SDIRK2 step doubling, using the same weighted L∞ residual for Newton convergence and Armijo backtracking. Evolve the reduced Michaelis–Menten equation separately with RK4 in θ, keeping integration error distinct from model-reduction error."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "lotka-volterra",
+        "name": {
+          "ja": "Lotka–Volterra不変量と正値性",
+          "en": "Lotka–Volterra invariant and positivity"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/results/lotka-volterra-preview.png",
+          "sha256": "2b0fbc061793a1f77310488f6351e2b8315fc2bc4da8c2f5946024d5f4e8d029",
+          "width": 1634,
+          "height": 1057,
+          "caption": {
+            "ja": "正の軌道を独立な対数座標参照と比較します。 保存値だけを描画します。 時間・濃度・個体数の軸は空間次元ではありません。率は教育用で疾病・実験予測ではありません。",
+            "en": "Compare a positive orbit against an independently integrated log-coordinate reference. This figure reads saved data only. Time, concentrations and populations do not define a spatial dimension. The rates are educational, not disease or experimental predictions."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lotka-volterra/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lotka-volterra/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lotka-volterra/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lotka-volterra/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "lotka-volterra",
+            "kind": "supplement",
+            "name": {
+              "ja": "Lotka–Volterra不変量と正値性",
+              "en": "Lotka–Volterra invariant and positivity"
+            },
+            "scope": {
+              "ja": "正の軌道を独立な対数座標参照と比較します。",
+              "en": "Compare a positive orbit against an independently integrated log-coordinate reference."
+            },
+            "method_ids": [
+              "rk4"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lotka-volterra/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/lotka-volterra/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "固定400/800/1600ステップの古典RK4で物理状態を積分します。独立参照はlog x・log yの変数でRadau/BDFを実行し、主計算には対数変数や保存量の射影を導入しません。",
+          "en": "Integrate physical populations with classical RK4 at 400, 800 and 1600 fixed steps. Independent Radau/BDF references evolve log x and log y; the primary method uses neither a log-coordinate update nor invariant projection."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lotka-volterra/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lotka-volterra/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "seir-linearization",
+        "name": {
+          "ja": "SEIR保存則と初期線形化",
+          "en": "SEIR conservation and initial linearization"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/results/seir-linearization-preview.png",
+          "sha256": "3ee8e7e8fdab4934bfc1ef679ccc39722c2412e95331bfb26800ae1c4fe80e04",
+          "width": 1630,
+          "height": 1057,
+          "caption": {
+            "ja": "人口保存と2モードの初期線形化を別々に検査します。 保存値だけを描画します。 時間・濃度・個体数の軸は空間次元ではありません。率は教育用で疾病・実験予測ではありません。",
+            "en": "Check population conservation and the full two-mode initial linearization separately. This figure reads saved data only. Time, concentrations and populations do not define a spatial dimension. The rates are educational, not disease or experimental predictions."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/seir-linearization/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/seir-linearization/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/seir-linearization/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/seir-linearization/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "seir-linearization",
+            "kind": "supplement",
+            "name": {
+              "ja": "SEIR保存則と初期線形化",
+              "en": "SEIR conservation and initial linearization"
+            },
+            "scope": {
+              "ja": "人口保存と2モードの初期線形化を別々に検査します。",
+              "en": "Check population conservation and the full two-mode initial linearization separately."
+            },
+            "method_ids": [
+              "rk4"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/seir-linearization/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/seir-linearization/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "全4状態を固定400/800/1600ステップのRK4で積分。独立非線形参照は偏差をηで尺度化してRadau/BDFで求め、早期のE・I線形化は2×2行列指数の両モードを使います。",
+          "en": "Evolve all four physical states with RK4 at 400, 800 and 1600 fixed steps. Independently compute the nonlinear reference with scaled-deviation Radau/BDF and the early E/I linearization with both modes of the full 2×2 matrix exponential."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/seir-linearization/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/seir-linearization/?lang=en#references-en"
+        }
       }
     ],
     "references": [
@@ -13453,6 +14625,108 @@
             "view": {
               "ja": "/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=ja#shake-rattle-pendulum-ja-measurements",
               "en": "/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=en#shake-rattle-pendulum-en-measurements"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "enzyme-qssa",
+        "problem_name": {
+          "ja": "酵素反応の保存と準定常近似",
+          "en": "Enzyme conservation and QSSA"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/enzyme-qssa/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "enzyme-qssa",
+            "title": {
+              "ja": "酵素反応の保存と準定常近似",
+              "en": "Enzyme conservation and QSSA"
+            },
+            "kind": "numerical-reference",
+            "relation": "same-problem",
+            "note": {
+              "ja": "2つの小εと固定反応定数だけの教育例です。εは尺度比であり、その値だけを厳密なQSSA誤差上界とはしません。θ≥0.02を初期層終了の証明とは呼ばず、生体内の反応・観測値へ外挿しません。",
+              "en": "These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-enzyme-qssa-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-enzyme-qssa-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/enzyme-qssa/?lang=ja#enzyme-qssa-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/enzyme-qssa/?lang=en#enzyme-qssa-en-measurements"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "lotka-volterra",
+        "problem_name": {
+          "ja": "Lotka–Volterra不変量と正値性",
+          "en": "Lotka–Volterra invariant and positivity"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lotka-volterra/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/lotka-volterra/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "lotka-volterra",
+            "title": {
+              "ja": "Lotka–Volterra不変量と正値性",
+              "en": "Lotka–Volterra invariant and positivity"
+            },
+            "kind": "numerical-reference",
+            "relation": "same-problem",
+            "note": {
+              "ja": "1初期値・有限時間の固定比較です。連続系の閉軌道を引き込み極限周期とは呼びません。RK4の厳密な不変量保存、任意刻みでの正値性、長時間の構造保存は保証しません。",
+              "en": "This is a finite-time comparison for one initial state. The continuum closed orbit is not an attracting limit cycle. RK4 is not claimed to preserve H exactly, maintain positivity at arbitrary steps or guarantee long-time geometric fidelity."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-lotka-volterra-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-lotka-volterra-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/lotka-volterra/?lang=ja#lotka-volterra-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/lotka-volterra/?lang=en#lotka-volterra-en-measurements"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "seir-linearization",
+        "problem_name": {
+          "ja": "SEIR保存則と初期線形化",
+          "en": "SEIR conservation and initial linearization"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/seir-linearization/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/seir-linearization/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "seir-linearization",
+            "title": {
+              "ja": "SEIR保存則と初期線形化",
+              "en": "SEIR conservation and initial linearization"
+            },
+            "kind": "numerical-reference",
+            "relation": "same-problem",
+            "note": {
+              "ja": "2つの小初期感染量による固定係数の整合性比較です。早期線形化をt=20全体の厳密解と見なさず、単一の優勢モードで両モードを置き換えません。実流行の予測・統計的被覆・任意人口への一般保証は行いません。",
+              "en": "These fixed-coefficient calculations compare two small initial infection levels. The early linearization is not an exact solution through t=20, and a single dominant mode does not replace the two-mode solution. No epidemic forecast, statistical coverage or arbitrary-population guarantee is claimed."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-seir-linearization-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-seir-linearization-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/seir-linearization/?lang=ja#seir-linearization-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/seir-linearization/?lang=en#seir-linearization-en-measurements"
             }
           }
         ]

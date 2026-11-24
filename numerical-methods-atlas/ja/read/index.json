@@ -4,8 +4,8 @@
   "title": "分野別に解説を読む",
   "description": "理論・導出・計算例を、分野ごとにまとめた読み物です。基礎から関連する手法と検証例へ進めます。",
   "source": "/catalog/atlas-reading-index.json",
-  "source_sha256": "7ffc77f89eda15d0a01d8b2cfe19edffa56a2570bccef4f8005f2862dbca49d9",
-  "chapter_count": 145,
+  "source_sha256": "17a3572c629b036aa6c9cd168eb97daf5a7a21e690f0725d315d90f8ad6a67ea",
+  "chapter_count": 148,
   "groups": [
     {
       "id": "foundations-time",
@@ -337,6 +337,28 @@
             "en"
           ],
           "search_text": "validation-bratu-continuation-jfnk Bratuのfold継続とJacobian不要Newton–Krylov Bratu fold continuation and Jacobian-free Newton-Krylov 楕円型問題・線形代数・近似 Elliptic problems, linear algebra and approximation"
+        },
+        {
+          "id": "validation-quadrature-controls",
+          "title": "領域別・二重指数・疎格子求積",
+          "url": "/numerical-methods-atlas/ja/read/validation-quadrature-controls/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-quadrature-controls 領域別・二重指数・疎格子求積 Domain-aware, double-exponential and sparse-grid quadrature 楕円型問題・線形代数・近似 Elliptic problems, linear algebra and approximation"
+        },
+        {
+          "id": "validation-approximation-controls",
+          "title": "補間・スプライン・Haarの固定対照",
+          "url": "/numerical-methods-atlas/ja/read/validation-approximation-controls/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-approximation-controls 補間・スプライン・Haarの固定対照 Fixed interpolation, spline and Haar controls 楕円型問題・線形代数・近似 Elliptic problems, linear algebra and approximation"
         }
       ]
     },
@@ -454,6 +476,17 @@
             "en"
           ],
           "search_text": "validation-inverse-optimization Bratu逆問題の最適化・雑音・正則化 Optimization, noise and regularization in the Bratu inverse problem 自動微分・最適化・逆問題 Differentiation, optimization and inverse problems"
+        },
+        {
+          "id": "validation-small-models",
+          "title": "小型学習モデルと生物ODEの独立検証",
+          "url": "/numerical-methods-atlas/ja/read/validation-small-models/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-small-models 小型学習モデルと生物ODEの独立検証 Small learned models and independently checked biological ODEs 自動微分・最適化・逆問題 Differentiation, optimization and inverse problems"
         }
       ]
     },

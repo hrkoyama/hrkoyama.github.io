@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "id": "quadpack-domain-selection",
+  "name": {
+    "ja": "領域別QUADPACKと有限Simpson対照",
+    "en": "QUADPACK dispatch and finite Simpson companions"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quadpack-domain-selection/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quadpack-domain-selection/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quadpack-domain-selection/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/results/quadpack-domain-selection-preview.png",
+    "sha256": "111323aebefd00411d8204b17d38024d3a20920e263f36af487083ecd49259f5",
+    "width": 1582,
+    "height": 614,
+    "caption": {
+      "ja": "活動Fourier周期の保存寄与と誤差・評価数 数学的な積分領域と次元は式・入力に示します。パラメータや誤差の図軸に物理空間の次元を割り当てません。 再現確認の合格は精度目標の全達成を意味しません。元の目標判定は達成25件・未達2件・計算不能3件です。FALSE/NAと失敗rawを保持します。",
+      "en": "Saved active Fourier contributions and actual errors/call counts The formulas and inputs specify mathematical integration domains and dimensions. Parameter and error axes are not physical spatial coordinates. Passing reproduction checks does not mean that every accuracy goal was met. Original row outcomes: 25 met, 2 unmet and 3 not computable. False/NA outcomes and raw failures are retained."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quadrature-controls/#quadpack-domain-selection",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quadrature-controls/#quadpack-domain-selection"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#quadpack-domain-selection",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#quadpack-domain-selection-en"
+  },
+  "equations": [
+    {
+      "id": "definite-integrals",
+      "name": {
+        "ja": "有限・無限・多変数の定積分",
+        "en": "Finite, improper and multivariate definite integrals"
+      },
+      "formula": [
+        "I_D(f)=\\int_D f(\\mathbf x)\\,d\\mathbf x"
+      ],
+      "note": {
+        "ja": "領域・重み・特異性と有限変換和の定義を確認する数学的求積問題です。",
+        "en": "Mathematical quadrature problems with explicit domains, weights, singularities and finite transformed-sum conventions."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#definite-integrals-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#definite-integrals-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "無限Gaussian、有限振動2周波数、半無限Fourier、内部特異点。絶対公差1e-6/1e-8/1e-10、epsrel=0。",
+    "en": "Whole-line Gaussian, two finite frequencies, half-line Fourier and an internal singularity; absolute tolerances1e-6/1e-8/1e-10 and epsrel0."
+  },
+  "formulations": [],
+  "references": [
+    {
+      "id": "quadpack-domain-selection",
+      "kind": "analytic",
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "title": {
+        "ja": "領域別QUADPACKと有限Simpson対照",
+        "en": "QUADPACK dispatch and finite Simpson companions"
+      },
+      "formula": "\\int_{-\\infty}^{\\infty}e^{-x^2}\\,dx=\\sqrt\\pi;\\quad\\int_0^1e^{-x}\\sin(\\omega x)\\,dx=\\frac{\\omega-e^{-1}(\\sin\\omega+\\omega\\cos\\omega)}{1+\\omega^2};\\quad\\int_0^\\infty e^{-x}\\sin(8x)\\,dx=\\frac8{65};\\quad\\int_0^1|x-3/8|^{-1/2}\\,dx=2(\\sqrt{3/8}+\\sqrt{5/8})",
+      "assumptions": {
+        "ja": "無限Gaussian、有限振動2周波数、半無限Fourier、内部特異点。絶対公差1e-6/1e-8/1e-10、epsrel=0。",
+        "en": "Whole-line Gaussian, two finite frequencies, half-line Fourier and an internal singularity; absolute tolerances1e-6/1e-8/1e-10 and epsrel0."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "Simpsonの特異節点失敗と未達精度を保存し、推定誤差の一般保証にしません。",
+        "en": "Singular-node failures and unmet Simpson goals remain visible; error estimates are not general guarantees."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/quadpack-domain-selection/?lang=ja#quadpack-domain-selection-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/quadpack-domain-selection/?lang=en#quadpack-domain-selection-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "独立の解析区間参照と実callback数を照合します。有限Gaussianは点値でなく厳密区間です。",
+    "en": "Independent analytic interval references and actual callback counts are checked. The finite Gaussian target is an interval, not an invented erf value."
+  },
+  "methods": [
+    {
+      "id": "quadrature",
+      "name": {
+        "ja": "Gauss求積・適応積分",
+        "en": "Gaussian and adaptive quadrature"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/quadrature/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/quadrature/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "領域と重みを明示しfull_outputの活動prefixを保持。既存Simpson関数は不変。",
+    "en": "Explicit domain/weight dispatch retains active full_output prefixes. The existing Simpson function is unchanged."
+  },
+  "executions": [
+    {
+      "id": "quadpack-domain-selection",
+      "kind": "supplement",
+      "name": {
+        "ja": "領域別QUADPACKと有限Simpson対照",
+        "en": "QUADPACK dispatch and finite Simpson companions"
+      },
+      "method_ids": [
+        "quadrature"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/quadpack-domain-selection/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/quadpack-domain-selection/?lang=en"
+      },
+      "scope": {
+        "ja": "15本の特殊化求積と15本のSimpson対照を固定入力で比較します。",
+        "en": "Fifteen specialized quadratures and fifteen Simpson companions use fixed inputs."
+      },
+      "assumptions": {
+        "ja": "無限Gaussian、有限振動2周波数、半無限Fourier、内部特異点。絶対公差1e-6/1e-8/1e-10、epsrel=0。",
+        "en": "Whole-line Gaussian, two finite frequencies, half-line Fourier and an internal singularity; absolute tolerances1e-6/1e-8/1e-10 and epsrel0."
+      },
+      "limits": {
+        "ja": "Simpsonの特異節点失敗と未達精度を保存し、推定誤差の一般保証にしません。",
+        "en": "Singular-node failures and unmet Simpson goals remain visible; error estimates are not general guarantees."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/atlas-quadrature-controls-2026-11-25.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "独立の解析区間参照と実callback数を照合します。有限Gaussianは点値でなく厳密区間です。",
+        "en": "Independent analytic interval references and actual callback counts are checked. The finite Gaussian target is an interval, not an invented erf value."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/quadpack_adapter.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/simpson_baseline.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quadrature-controls/test_quadrature.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

@@ -24,4 +24,15 @@ No chapter-specific association is registered. Atlas-wide index: [Exact and refe
 
 ## Code and validation
 
-No chapter-specific association is registered. Atlas-wide index: [Code, inputs and validation](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en)
+- [Tiny FNO on held-out heat problems](<https://hrkoyama.github.io/numerical-methods-atlas/validation/fno-periodic-heat/?lang=en>)
+  availability: run
+
+  Evaluate the same learned weights on 32/64-point grids, held-out functions and separate OOD inputs.
+- [Poisson PINN: independent grid error](<https://hrkoyama.github.io/numerical-methods-atlas/validation/pinn-poisson/?lang=en>)
+  availability: run
+
+  Compare a 49-parameter PINN for three fixed seeds with analytic and finite-difference solutions.
+- [PINNs and neural operators — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/pinn-operators/?lang=en#method-execution-en>)
+  availability: source
+
+  Method-specific editions and related sources; fixed-input runs are listed separately.

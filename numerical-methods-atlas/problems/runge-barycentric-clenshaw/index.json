@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "id": "runge-barycentric-clenshaw",
+  "name": {
+    "ja": "節点・表現・丸めを分けるRunge補間",
+    "en": "Runge interpolation: nodes, representation and rounding"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/runge-barycentric-clenshaw/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/runge-barycentric-clenshaw/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/runge-barycentric-clenshaw/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/results/runge-barycentric-clenshaw-preview.png",
+    "sha256": "36e92c10fcf30cc84d6982b52d2ee72e4ddacabd445527b180d06836d33aa7f7",
+    "width": 1045,
+    "height": 389,
+    "caption": {
+      "ja": "Runge関数と絶対値関数を等間隔・Lobatto型の固定節点で補間し、Clenshaw評価と比較します。 保存配列から作図。",
+      "en": "Interpolate the Runge and absolute-value functions on fixed equispaced and Lobatto-like nodes, and compare with Clenshaw evaluation. Drawn from saved arrays."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#runge-barycentric-clenshaw",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#runge-barycentric-clenshaw"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#runge-barycentric-clenshaw",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#runge-barycentric-clenshaw-en"
+  },
+  "equations": [
+    {
+      "id": "polynomial-interpolation",
+      "name": {
+        "ja": "格納節点の多項式補間",
+        "en": "Polynomial interpolation on stored nodes"
+      },
+      "formula": [
+        "P_n(x_j)=y_j,\\quad P_n\\in\\mathcal P_n",
+        "R(x)=\\frac{\\sum_jw_jy_j/(x-x_j)}{\\sum_jw_j/(x-x_j)}"
+      ],
+      "note": {
+        "ja": "閉形式重みと丸め節点の表現差、補間誤差と演算丸めを分けます。",
+        "en": "Separate closed-weight representation on rounded nodes, interpolation error and evaluation rounding."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#polynomial-interpolation-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#polynomial-interpolation-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "無次元区間[-1,1]、次数8・16・32、固定2048中点。節点・データ・重みは実際のbinary64値を対象にします。",
+    "en": "Dimensionless interval [-1,1], degrees 8, 16 and 32, and 2048 fixed midpoints. Actual binary64 nodes, data and weights define the discrete problem."
+  },
+  "formulations": [
+    {
+      "id": "supplement-runge-barycentric-clenshaw",
+      "name": {
+        "ja": "節点・表現・丸めを分けるRunge補間",
+        "en": "Runge interpolation: nodes, representation and rounding"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "p(x)=sum_j y_j*prod_(k!=j)((x-x_k)/(x_j-x_k))",
+        "R(x)=(sum_j w_j*y_j/(x-x_j))/(sum_j w_j/(x-x_j))",
+        "C(x)=sum_(k=0)^n a_k*T_k(x); b_k=a_k+2*x*b_(k+1)-b_(k+2)"
+      ],
+      "note": {
+        "ja": "Runge関数と絶対値関数を等間隔・Lobatto型の固定節点で補間し、Clenshaw評価と比較します。",
+        "en": "Interpolate the Runge and absolute-value functions on fixed equispaced and Lobatto-like nodes, and compare with Clenshaw evaluation."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "runge-barycentric-clenshaw",
+      "kind": "analytic",
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "title": {
+        "ja": "節点・表現・丸めを分けるRunge補間",
+        "en": "Runge interpolation: nodes, representation and rounding"
+      },
+      "formula": "P_{\\rm stored}(x)=\\sum_j y_j\\prod_{k\\ne j}\\frac{x-x_k}{x_j-x_k},\\quad R_{\\rm closed}(x)=\\frac{\\sum_jw_jy_j/(x-x_j)}{\\sum_jw_j/(x-x_j)},\\quad C_{\\rm stored}(x)=\\sum_{k=0}^na_kT_k(x),\\quad f(x)\\in\\{(1+25x^2)^{-1},|x|\\}",
+      "assumptions": {
+        "ja": "無次元区間[-1,1]、次数8・16・32、固定2048中点。節点・データ・重みは実際のbinary64値を対象にします。",
+        "en": "Dimensionless interval [-1,1], degrees 8, 16 and 32, and 2048 fixed midpoints. Actual binary64 nodes, data and weights define the discrete problem."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "標本最大誤差は連続一様ノルムの証明ではありません。丸め節点の閉重み・離散直交性は厳密と見なしません。任意次数・任意点の安定性は保証しません。",
+        "en": "A sampled maximum error is not a proof of a continuous uniform norm. Closed weights and discrete orthogonality on rounded nodes are not treated as exact. No arbitrary-degree or all-point stability guarantee is made."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/runge-barycentric-clenshaw/?lang=ja#runge-barycentric-clenshaw-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/runge-barycentric-clenshaw/?lang=en#runge-barycentric-clenshaw-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "格納値の補間多項式P、閉重み有理式R、格納係数級数C、目標関数fを区別。17点の正確な有理参照・演算別誤差上界・節点一致・固定Runge傾向を照合します。",
+    "en": "Separate the stored-data polynomial P, closed-weight rational expression R, stored-coefficient series C and target f. Check exact rational references at 17 probes, operation-based error bounds, node identities and fixed Runge trends."
+  },
+  "methods": [
+    {
+      "id": "chebyshev",
+      "name": {
+        "ja": "Chebyshev近似",
+        "en": "Chebyshev approximation"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/chebyshev/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/chebyshev/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "第2重心公式と全係数Clenshaw漸化式を自作。丸め済み節点上の閉形式重みと有限Chebyshev変換をそのまま保存します。",
+    "en": "Implement the second barycentric formula and a full-coefficient Clenshaw recurrence. Retain the closed weights and finite Chebyshev transform on rounded nodes."
+  },
+  "executions": [
+    {
+      "id": "runge-barycentric-clenshaw",
+      "kind": "supplement",
+      "name": {
+        "ja": "節点・表現・丸めを分けるRunge補間",
+        "en": "Runge interpolation: nodes, representation and rounding"
+      },
+      "method_ids": [
+        "chebyshev"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/runge-barycentric-clenshaw/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/runge-barycentric-clenshaw/?lang=en"
+      },
+      "scope": {
+        "ja": "Runge関数と絶対値関数を等間隔・Lobatto型の固定節点で補間し、Clenshaw評価と比較します。",
+        "en": "Interpolate the Runge and absolute-value functions on fixed equispaced and Lobatto-like nodes, and compare with Clenshaw evaluation."
+      },
+      "assumptions": {
+        "ja": "無次元区間[-1,1]、次数8・16・32、固定2048中点。節点・データ・重みは実際のbinary64値を対象にします。",
+        "en": "Dimensionless interval [-1,1], degrees 8, 16 and 32, and 2048 fixed midpoints. Actual binary64 nodes, data and weights define the discrete problem."
+      },
+      "limits": {
+        "ja": "標本最大誤差は連続一様ノルムの証明ではありません。丸め節点の閉重み・離散直交性は厳密と見なしません。任意次数・任意点の安定性は保証しません。",
+        "en": "A sampled maximum error is not a proof of a continuous uniform norm. Closed weights and discrete orthogonality on rounded nodes are not treated as exact. No arbitrary-degree or all-point stability guarantee is made."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/atlas-approximation-controls-2026-11-25.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "格納値の補間多項式P、閉重み有理式R、格納係数級数C、目標関数fを区別。17点の正確な有理参照・演算別誤差上界・節点一致・固定Runge傾向を照合します。",
+        "en": "Separate the stored-data polynomial P, closed-weight rational expression R, stored-coefficient series C and target f. Check exact rational references at 17 probes, operation-based error bounds, node identities and fixed Runge trends."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/interpolation.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/approximation-controls/test_approximation.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}
