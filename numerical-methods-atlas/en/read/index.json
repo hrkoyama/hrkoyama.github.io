@@ -4,7 +4,7 @@
   "title": "Learn by field",
   "description": "Read the theory, derivations and worked examples by field, from foundations to related methods and verification.",
   "source": "/catalog/atlas-reading-index.json",
-  "source_sha256": "f167ae9b3075a1dae1eb67c8d8b44e7c47a5f8800f974eb6910bbf61596cca54",
+  "source_sha256": "134631e6e6dc6593596ac4b872d2a80c0f1084040f3ca7148794c9fd0bcff1e7",
   "chapter_count": 123,
   "groups": [
     {
@@ -1436,15 +1436,23 @@
       "id": "numerical-foundations",
       "title": {
         "ja": "初学者のための数値計算の基礎：全19章",
-        "en": "Numerical foundations: a 19-chapter beginner course (Japanese)"
+        "en": "Numerical foundations: a 19-chapter beginner course"
       },
       "description": {
         "ja": "誤差・安定性・散逸と分散・境界条件・分割法・シンプレクティック積分を、小さな計算例と確認問題で学びます。同じ内容のWeb版・PDF版とコードZIP。",
-        "en": "A Japanese course with matching Web/PDF editions, figures, small verified examples and exercises with answers."
+        "en": "Matching English and Japanese Web/PDF courses with shared figures, small verified examples, and 38 review questions with answers."
       },
-      "url": "/numerical-methods-atlas/learn/numerical-foundations/",
-      "language": "ja",
-      "chapters": 19
+      "url": "/numerical-methods-atlas/learn/numerical-foundations/en/",
+      "language": "en",
+      "chapters": 19,
+      "localized_urls": {
+        "ja": "/numerical-methods-atlas/learn/numerical-foundations/",
+        "en": "/numerical-methods-atlas/learn/numerical-foundations/en/"
+      },
+      "available_languages": [
+        "ja",
+        "en"
+      ]
     }
   ]
 }
