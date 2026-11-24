@@ -70,9 +70,10 @@ def build(font,mono):
         for t in c['pitfalls']:p('- '+t)
         h('Key points')
         for t in c['summary']:p('- '+t)
-        h('Continue in the atlas')
+        related=[paragraph('Continue in the atlas','h2')]
         for key in c['readings']:
-            r=d['readings'][key];p(r['title']);p(r['url'],'small')
+            r=d['readings'][key];related.extend([paragraph(r['title']),paragraph(r['url'],'small')])
+        story.append(KeepTogether(related))
     story.append(PageBreak());p('References and reproduction','h1')
     for r in d['references']:h(r['title']);p(r['scope']);p(r['url'],'small')
     h('Scope of the computations and production');p(d['execution_scope']);p(d['rights'])
