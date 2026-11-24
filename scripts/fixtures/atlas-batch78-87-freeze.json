@@ -506,10 +506,6 @@
             ]
           }
         ],
-        "depth_scope": {
-          "ja": "固定した教育用実行例：酵素反応の保存と準定常近似。",
-          "en": "Fixed educational executions: Enzyme conservation and QSSA."
-        },
         "metadata_review": {
           "level": "method-specific source-and-code inspection; no numerical rerun; reference access recorded individually",
           "on": "2026-11-22",
@@ -569,8 +565,7 @@
         ]
       },
       "before_absent": [
-        "depth_additional_releases",
-        "depth_scope"
+        "depth_additional_releases"
       ],
       "after_absent": [],
       "before_keys": [
@@ -608,7 +603,6 @@
         "code_modules",
         "depth_additional_releases",
         "depth_release",
-        "depth_scope",
         "group",
         "id",
         "limitations",
@@ -677,10 +671,6 @@
             ]
           }
         ],
-        "depth_scope": {
-          "ja": "固定した教育用実行例：酵素反応の保存と準定常近似。",
-          "en": "Fixed educational executions: Enzyme conservation and QSSA."
-        },
         "metadata_review": {
           "level": "chapter-linked; detailed method-specific curation in progress",
           "on": "2026-11-21",
@@ -740,8 +730,7 @@
         ]
       },
       "before_absent": [
-        "depth_additional_releases",
-        "depth_scope"
+        "depth_additional_releases"
       ],
       "after_absent": [],
       "before_keys": [
@@ -773,7 +762,6 @@
         "code_modules",
         "depth_additional_releases",
         "depth_release",
-        "depth_scope",
         "group",
         "id",
         "limitations",
@@ -875,10 +863,6 @@
             ]
           }
         ],
-        "depth_scope": {
-          "ja": "固定した教育用実行例：1D Poisson PINNと独立格子誤差。",
-          "en": "Fixed educational executions: Poisson PINN: independent grid error."
-        },
         "metadata_review": {
           "level": "method-specific bibliographic roles curated;1949 original full text unread",
           "on": "2026-11-23",
@@ -956,9 +940,7 @@
           }
         ]
       },
-      "before_absent": [
-        "depth_scope"
-      ],
+      "before_absent": [],
       "after_absent": [],
       "before_keys": [
         "aliases",
@@ -992,7 +974,6 @@
         "code_modules",
         "depth_additional_releases",
         "depth_release",
-        "depth_scope",
         "group",
         "id",
         "limitations",
@@ -1209,10 +1190,6 @@
             ]
           }
         ],
-        "depth_scope": {
-          "ja": "固定した教育用実行例：酵素反応の保存と準定常近似。",
-          "en": "Fixed educational executions: Enzyme conservation and QSSA."
-        },
         "metadata_review": {
           "level": "method-specific sources and implementation inspected; no new numerical rerun",
           "on": "2026-11-22",
@@ -1357,9 +1334,7 @@
           }
         ]
       },
-      "before_absent": [
-        "depth_scope"
-      ],
+      "before_absent": [],
       "after_absent": [],
       "before_keys": [
         "aliases",
@@ -1397,7 +1372,6 @@
         "code_modules",
         "depth_additional_releases",
         "depth_release",
-        "depth_scope",
         "group",
         "id",
         "limitations",
@@ -3642,6 +3616,6 @@
     "problems": 158,
     "gallery_items": 158
   },
-  "integration_sha256": "bed93d1b4e0b61c36cbaa9114dbd0791a41c3ae128df5971e41610606fd01a95",
+  "integration_sha256": "b4bb6cef9b1dadb0b32c643dd980fe0d6751679917a90b244d07720731d46e74",
   "canonical_snapshot_sha256": "f46f44ccbf6296c526bf0b6e9ce3d4b7fc32f9e498128d29fd990ae0a207f4f6"
 }

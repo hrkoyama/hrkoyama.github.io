@@ -43,7 +43,7 @@ test('AMG algebraic diagnostics remain outside physical counts and the Poisson g
  const config=json('catalog/atlas-depth-expansion.json');
  assert.equal(config.case_problem_ids['amg-conditioning'],null);
  const goal=json('catalog/atlas-goals.json').goals.find(x=>x.id==='poisson');
- assert.deepEqual(goal.supplemental_examples,['sa-amg']);
+ assert.deepEqual(goal.supplemental_examples,['sa-amg','pinn-poisson','fno-periodic-heat']);
  assert.deepEqual(goal.examples,['poisson-1d-dirichlet','poisson-2d-sine']);
  const note=goal.resources.find(x=>x.id==='amg-conditioning-reading');
  assert.equal(note.status,'reading-only');assert.deepEqual(note.code_urls,[]);assert.deepEqual(note.test_urls,[]);assert.deepEqual(note.execution_examples,[]);
@@ -58,7 +58,35 @@ test('AMG algebraic diagnostics remain outside physical counts and the Poisson g
  const cohort68=json('scripts/fixtures/atlas-batch68-77-baseline.json');
  const added68=Object.values(cohort68.expected_new_groups).flat();
  assert.equal(added68.length,11);assert.equal(new Set(added68).size,11);
- assert.deepEqual(retained.slice(previous.length+added.length),added68);
+ assert.deepEqual(retained.slice(previous.length+added.length,previous.length+added.length+added68.length),added68);
+ // Dated78: exact foundations selection, not all eleven cases in the new packets.
+ const cohort78=json('scripts/fixtures/atlas-batch78-87-freeze.json');
+ const selected78={
+  'quadrature-controls':['quadpack-domain-selection','gk15-double-exponential','tensor-smolyak-dimensions'],
+  'approximation-controls':['runge-barycentric-clenshaw','spline-shape-controls','haar-mallat-boundary-threshold'],
+  'small-models':['fno-periodic-heat'],
+ };
+ assert.deepEqual(Object.keys(cohort78.expected_new_groups),Object.keys(selected78));
+ const added78=Object.values(selected78).flat();
+ assert.equal(added78.length,7);assert.equal(new Set(added78).size,7);
+ for(const [group,selected] of Object.entries(selected78)){
+  const packet=cohort78.canonical_packets[group],release78=config.groups.find(row=>row.id===group);
+  assert.ok(release78,group);assert.equal(release78.edition||config.edition,packet.edition);
+  assert.equal(packet.base,`code/validated-examples/${packet.edition}/${group}/`);
+  const metadata78=json(packet.base+'cases.json');
+  const cases78=Array.isArray(metadata78)?metadata78:metadata78.cases;
+  assert.deepEqual(cases78.map(row=>row.id),cohort78.expected_new_groups[group]);
+  assert.deepEqual(packet.case_ids,cohort78.expected_new_groups[group]);
+  const domains={'quadrature-controls':['numerical-integration'],'approximation-controls':['approximation'],'small-models':['foundations']};
+  for(const id of selected){assert.ok(packet.case_ids.includes(id),id);assert.deepEqual(cases78.find(row=>row.id===id).domains,domains[group],id+' canonical scientific domain is distinct from the editorial field');}
+ }
+ assert.deepEqual(retained.slice(previous.length+added.length+added68.length),added78);
+ for(const id of ['pinn-poisson','enzyme-qssa','lotka-volterra','seir-linearization'])assert.ok(!added78.includes(id),id+' belongs to its separately selected field');
+ const small=cohort78.canonical_packets['small-models'];
+ const smallMetadata=json(small.base+'cases.json');
+ const smallCases=Array.isArray(smallMetadata)?smallMetadata:smallMetadata.cases;
+ for(const id of ['pinn-poisson','fno-periodic-heat'])assert.ok(smallCases.find(row=>row.id===id).method_ids.includes('pinn-operators'),id+' own qualified learning case');
+ assert.deepEqual(goal.supplemental_examples.filter(id=>id!=='sa-amg'),['pinn-poisson','fno-periodic-heat']);
  assert.equal(new Set(retained).size,retained.length);
  const release=config.groups.find(row=>row.id==='linear-algebra-spectral');
  assert.equal(release.edition,'2026-11-24-r3');

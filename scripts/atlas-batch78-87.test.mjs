@@ -14,7 +14,7 @@ const sorted=xs=>[...xs].sort();
 const baselinePath='scripts/fixtures/atlas-batch78-87-baseline.json';
 assert.equal(sha(baselinePath),'af74ae58975c6b978bec5a425927ce05c0d894ed5c325443dc452ee7ec6df653');
 const baseline=json(baselinePath),freeze=json('scripts/fixtures/atlas-batch78-87-freeze.json');
-assert.equal(sha('scripts/fixtures/atlas-batch78-87-freeze.json'),'dcfd910fa5b0fd364315342f8a606f5d74b5aec7491dfb509d5def5516592799');
+assert.equal(sha('scripts/fixtures/atlas-batch78-87-freeze.json'),'b5ea04031e443f0ec3c2e20e610034bcbbbc326f5884350d454df2fbad85b7ad');
 // An accidentally installed unfilled template fails closed, never skips tests.
 assert.equal(freeze.status,'ROOT_REVIEWED_ACTUAL_CANONICAL_FREEZE');
 assert.equal(freeze.source_base_commit,baseline.base_commit);
