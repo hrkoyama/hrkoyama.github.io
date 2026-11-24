@@ -272,7 +272,7 @@ for m in methods:
    matched=[p for p in m['supplemental_scope_profiles'] if p['release']==m['depth_release']];assert len(matched)==1
    assert value.startswith(matched[0]['scope'][lang]) and all(p[lang] in value for p in matched[0]['limits'])
  if 'depth_scope' not in m:fallback.append(m['id'])
-assert set(fallback)=={'leapfrog','thomas','gmres','newton','fdtd','automatic-differentiation'}
+assert set(fallback)=={'leapfrog','thomas','gmres','newton','fdtd','optimization','adjoint','automatic-differentiation'}
 release={'group':'one','edition':'2026-11-24','case_ids':['fixed']}
 profile={'release':release,'scope':{'ja':'固定例のみ。','en':'Fixed case only.'},'limits':[{'ja':'一般保証なし。','en':'No general guarantee.'}]}
 other={'release':{**release,'group':'other'},'scope':{'ja':'別の例。','en':'UNRELATED RELEASE'},'limits':profile['limits']}
