@@ -5,7 +5,52 @@ const own=(value,key)=>Object.prototype.hasOwnProperty.call(value,key);
 const plain=value=>value!==null&&typeof value==='object'&&!Array.isArray(value)&&Object.getPrototypeOf(value)===Object.prototype;
 const scalarString=value=>typeof value==='string'&&!/[\uD800-\uDFFF]/u.test(value);
 const invalid=()=>{throw Error('Invalid pooled row strings');};
+/** Restore dictionary key order and arrays without reference expansion. */
+export function restoreRowShapes(data){
+ if(!data||typeof data!=='object')return data;
+ if(data.row_structure_encoding===undefined){if(own(data,'row_shapes'))invalid();return data;}
+ if(!plain(data)||data.format!=='compact-search-v1'||!['atlas','site'].includes(data.kind)||data.row_structure_encoding!=='key-shapes-v1')invalid();
+ const shapes=data.row_shapes,seen=new Set(),used=new Set();let schemaUnits=0,schemaKeys=0;
+ const dense=a=>Array.isArray(a)&&Object.getPrototypeOf(a)===Array.prototype;
+ if(!dense(shapes)||shapes.length>ROW_STRING_LIMITS.pool)invalid();
+ for(let i=0;i<shapes.length;i++){
+  if(!own(shapes,i)||!dense(shapes[i])||shapes[i].length>ROW_STRING_LIMITS.nodes-schemaKeys)invalid();
+  const keys=shapes[i],names=new Set();schemaKeys+=keys.length;
+  for(let j=0;j<keys.length;j++){
+   if(!own(keys,j)||!scalarString(keys[j])||names.has(keys[j]))invalid();
+   names.add(keys[j]);schemaUnits+=keys[j].length;if(schemaUnits>ROW_STRING_LIMITS.poolUnits)invalid();
+  }
+  const signature=JSON.stringify(keys);if(seen.has(signature))invalid();seen.add(signature);
+ }
+ const field=data.kind==='atlas'?'entries':'documents',packed=data[field];
+ if(!dense(packed)||packed.length>ROW_STRING_LIMITS.rows)invalid();
+ let nodes=0,units=0;
+ const charge=s=>{if(!scalarString(s))invalid();units+=s.length;if(units>ROW_STRING_LIMITS.expandedUnits)invalid();return s;};
+ const visit=(value,depth=0)=>{
+  if(++nodes>ROW_STRING_LIMITS.nodes||depth>ROW_STRING_LIMITS.depth)invalid();
+  if(Array.isArray(value)){
+   if(!dense(value)||!value.length||!own(value,0)||!Number.isInteger(value[0])||value.length-1>ROW_STRING_LIMITS.nodes-nodes)invalid();
+   const tag=value[0];for(let i=1;i<value.length;i++)if(!own(value,i))invalid();
+   if(tag===-1)return value.slice(1).map(v=>visit(v,depth+1));
+   if(tag<0||tag>=shapes.length||value.length!==shapes[tag].length+1)invalid();
+   used.add(tag);
+   return Object.fromEntries(shapes[tag].map((key,i)=>[charge(key),visit(value[i+1],depth+1)]));
+  }
+  if(typeof value==='string')return charge(value);
+  if(value!==null&&typeof value!=='boolean'&&(typeof value!=='number'||!Number.isFinite(value)))invalid();
+  return value;
+ };
+ const rows=[];
+ for(let i=0;i<packed.length;i++){
+  if(!own(packed,i)||!dense(packed[i])||!Number.isInteger(packed[i][0])||packed[i][0]<0)invalid();
+  rows.push(visit(packed[i]));
+ }
+ if(used.size!==shapes.length)invalid();
+ const {row_structure_encoding,row_shapes,...header}=data;
+ return {...header,[field]:rows};
+}
 export function restoreRowStrings(data){
+ data=restoreRowShapes(data);
  if(!data||typeof data!=='object')return data;
  if(data.row_string_encoding===undefined){
   if(own(data,'row_strings'))invalid();
@@ -70,6 +115,7 @@ export function restoreRowStrings(data){
 const decoded=new WeakMap(),pending=new Map();
 const MAX_TERMS=500000,MAX_VOCABULARY_UNITS=8200000;
 const ALPHABET='unicode-prefix-alphabet-v1';
+const ALPHABET_COLUMNS='unicode-prefix-alphabet-columns-v1';
 export const VOCABULARY_ALPHABET_LIMIT=8192;
 const alphabetASCII=Array.from({length:95},(_,i)=>String.fromCharCode(i+32)).filter(c=>c!=='"'&&c!=='\\');
 function suffixAlphabet(data){
@@ -100,15 +146,36 @@ function suffixAlphabet(data){
   }
  };
 }
+function vocabularyColumns(data){
+ const fail=()=>{throw Error('Invalid vocabulary columns');};
+ const suffixes=data.terms,value=data.vocabulary_prefixes;
+ if(!plain(data)||!Array.isArray(suffixes)||Object.getPrototypeOf(suffixes)!==Array.prototype||suffixes.length>MAX_TERMS||typeof value!=='string'||value.length>4*Math.ceil(4*MAX_TERMS/3)||! /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(value))fail();
+ const raw=atob(value);if(btoa(raw)!==value)fail();
+ const prefixes=[];let number=0,factor=1,bytes=0;
+ for(let i=0;i<raw.length;i++){
+  const byte=raw.charCodeAt(i);number+=(byte%128)*factor;bytes++;
+  if(number>MAX_VOCABULARY_UNITS||bytes>4)fail();
+  if(byte<128){
+   if(bytes>1&&byte===0)fail();prefixes.push(number);if(prefixes.length>suffixes.length)fail();
+   number=0;factor=1;bytes=0;
+  }else factor*=128;
+ }
+ if(bytes||prefixes.length!==suffixes.length)fail();
+ const packed=[];
+ for(let i=0;i<suffixes.length;i++){if(!own(suffixes,i))fail();packed.push(prefixes[i],suffixes[i]);}
+ return packed;
+}
 function vocabulary(data){
- const packed=data.terms,alphabet=data.vocabulary_encoding===ALPHABET?suffixAlphabet(data):null;
+ const columns=data.vocabulary_encoding===ALPHABET_COLUMNS;
+ if(!columns&&own(data,'vocabulary_prefixes'))throw Error('Invalid vocabulary columns');
+ const packed=columns?vocabularyColumns(data):data.terms,alphabet=[ALPHABET,ALPHABET_COLUMNS].includes(data.vocabulary_encoding)?suffixAlphabet(data):null;
  if(!alphabet&&own(data,'vocabulary_alphabet'))throw Error('Invalid vocabulary alphabet');
  if(!Array.isArray(packed))throw Error('Invalid search vocabulary');
  if(data.vocabulary_encoding===undefined){
   if(packed.length>MAX_TERMS||packed.some(word=>typeof word!=='string'))throw Error('Invalid search vocabulary');
   return packed;
  }
- if(!['unicode-prefix-flat-v1',ALPHABET].includes(data.vocabulary_encoding)||packed.length%2||packed.length>2*MAX_TERMS)throw Error('Invalid search vocabulary');
+ if(!['unicode-prefix-flat-v1',ALPHABET,ALPHABET_COLUMNS].includes(data.vocabulary_encoding)||packed.length%2||packed.length>2*MAX_TERMS)throw Error('Invalid search vocabulary');
  const words=[];let previous=[],units=0;
  for(let i=0;i<packed.length;i+=2){
   const prefix=packed[i];
@@ -200,7 +267,7 @@ function invertTerms(data,words,field){
 }
 export function unpackSearchIndex(data){
  if(data?.format!=='compact-search-v1'){
-  if(data&&typeof data==='object'&&('row_string_encoding' in data||'row_strings' in data||own(data,'vocabulary_alphabet')||data.vocabulary_encoding===ALPHABET||membershipKeys.some(key=>own(data,key))))throw Error('Invalid pooled row strings');
+  if(data&&typeof data==='object'&&('row_string_encoding' in data||'row_strings' in data||own(data,'row_structure_encoding')||own(data,'row_shapes')||own(data,'vocabulary_prefixes')||own(data,'vocabulary_alphabet')||[ALPHABET,ALPHABET_COLUMNS].includes(data.vocabulary_encoding)||membershipKeys.some(key=>own(data,key))))throw Error('Invalid pooled row strings');
   return data;
  }
  if(decoded.has(data))return decoded.get(data);
@@ -227,7 +294,7 @@ export function unpackSearchIndex(data){
   const searchText=Array.isArray(terms)||typeof terms==='string'?expand(terms):Object.fromEntries(Object.entries(terms||{}).map(([language,ids])=>[language,expand(ids)]));
   const {search_terms,...record}=row;return {...record,search_text:searchText};
  });
- const {terms,vocabulary_encoding,vocabulary_alphabet,term_channel_count,term_membership_ids,term_membership_classes,...rest}=data;
+ const {terms,vocabulary_encoding,vocabulary_alphabet,vocabulary_prefixes,term_channel_count,term_membership_ids,term_membership_classes,...rest}=data;
  // Preserve the legacy unpacked record/header API; storage codecs are private
  // to this loader. Both old numeric arrays and the new byte strings decode here.
  if(binary||inverted)rest.term_encoding='sorted-delta';

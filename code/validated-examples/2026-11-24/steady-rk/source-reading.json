@@ -1,0 +1,20 @@
+{
+  "accessed_on": "2026-11-24",
+  "scope": "Selected official/primary sources, not full-paper reading. Publication years are unestablished unless stated; access date and SUNDIALS repository version are separate.",
+  "references": [
+    {
+      "id": "perform-rk4-selected",
+      "title": "PERFORM time integration schemes",
+      "url": "https://perform.readthedocs.io/en/latest/solver/timeschemes.html",
+      "review_level": "official-documentation-selected-equations",
+      "review_scope": "Selected four-stage base-state recurrence. No full JST 1981 paper reading or compressible-flow implementation claim.",
+      "accessed_on": "2026-11-24"
+    }
+  ],
+  "unread": [
+    "Original JST 1981 paper body unavailable; not needed as a copied implementation.",
+    "Baumgarte 1972 body returned403; critical constraint-error extension is independently derived, not claimed as a reproduced implementation.",
+    "Full Hairer projection paper and unselected DLMF sections not read."
+  ],
+  "local_prior_source_scope": "Existing scalar stability polynomial, ODE stiff solvers and unconstrained Hamiltonian examples were read as limited context; they are not numerical evidence for these cases."
+}

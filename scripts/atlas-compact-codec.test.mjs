@@ -6,7 +6,7 @@ import {fileURLToPath,pathToFileURL} from 'node:url';
 import {copyFileSync,mkdirSync,mkdtempSync,rmSync,writeFileSync} from 'node:fs';
 import {join} from 'node:path';
 import {tmpdir} from 'node:os';
-import {unpackSearchIndex} from '../frontend/search/compact-index.mjs';
+import {unpackSearchIndex,restoreRowShapes} from '../frontend/search/compact-index.mjs';
 
 const root=new URL('../',import.meta.url);
 // Render no indexes: isolate the source modules with their existing public data
@@ -107,9 +107,9 @@ with tempfile.TemporaryDirectory(prefix='compact-writer-') as path:
  assert.deepEqual(expanded.details.keys,[entry.text_ref]);
  const raw=details[entry.text_ref+'.json'],detail=JSON.parse(raw);
  assert.equal(createHash('sha256').update(raw).digest('hex'),entry.text_ref);
- assert.equal(compact.vocabulary_encoding,'unicode-prefix-alphabet-v1');
+ assert.equal(compact.vocabulary_encoding,'unicode-prefix-alphabet-columns-v1');
  assert.equal(compact.term_encoding,'inverted-membership-varint-base64-v1');
- assert.equal(typeof compact.entries[0].search_terms.ja,'number');
+ assert.equal(typeof restoreRowShapes(compact).entries[0].search_terms.ja,'number');
  assert.deepEqual(entry.headings,source.entries[0].headings);
  assert.deepEqual(detail.text,source.entries[0].text);
  assert.equal(entry.text.ja,Array.from(source.entries[0].text.ja).slice(0,500).join(''));

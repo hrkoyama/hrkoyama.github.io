@@ -1,0 +1,67 @@
+{
+  "accessed_on": "2026-11-24",
+  "publication_year_rule": "Softwareconsultationdates are not publication years. n.d. unless specific primary publication/version metadata verified.",
+  "selected_readings": [
+    {
+      "id": "robertson-official-model",
+      "url": "https://raw.githubusercontent.com/LLNL/sundials/main/examples/cvode/serial/cvRoberts_dns.c",
+      "version": "observed main, not exactreleasepin",
+      "publication_year": null,
+      "outcome": "READ_SELECTED_WEB_SOURCE",
+      "scope": "Read displayed model, initial-value and Jacobian sections of the official observed-main source. The original Robertson paper and the complete SUNDIALS method proof were not read.",
+      "limitation": "The main URL is mutable. An exact upstream body download was unavailable in the default network; the equations are transcribed and the independently authored reference generator is frozen locally. No SUNDIALS trajectory values are imported.",
+      "scope_difference": "Only 0 <= t <= 0.4 is used, not the 4e10 long-time benchmark or a reproduction of its tables."
+    },
+    {
+      "id": "vdp-official-binding-example",
+      "url": "https://scikit-sundae.readthedocs.io/en/stable/examples/van_der_pol.html",
+      "version": "page header1.1.3",
+      "publication_year": null,
+      "outcome": "READ_SELECTED_OFFICIAL_PROJECT_EXAMPLE",
+      "scope": "Read the displayed second-order and first-order equations and the initial state (2, 0) in the official binding example. The original van der Pol paper was not read.",
+      "scope_difference": "The example uses mu = 1000 over 0..3000; the present mu = 1 and 100 over 0..2 are an authored short early-transient comparison."
+    },
+    {
+      "id": "dopri-fixed-source",
+      "url": "https://raw.githubusercontent.com/scipy/scipy/v1.14.1/scipy/integrate/_ivp/rk.py",
+      "version": "1.14.1",
+      "publication_year": null,
+      "outcome": "READ_SELECTED_OFFICIAL_RELEASE_SOURCE",
+      "scope": "Read rk_step, accepted/rejected derivative ownership, the RK45 method description and full C/A/B/E/P blocks, and RkDenseOutput. The installed-wheel text snapshot is separately hash-bound and is not represented as downloaded upstream bytes."
+    },
+    {
+      "id": "dopri-norm-events",
+      "urls": [
+        "https://raw.githubusercontent.com/scipy/scipy/v1.14.1/scipy/integrate/_ivp/common.py",
+        "https://raw.githubusercontent.com/scipy/scipy/v1.14.1/scipy/integrate/_ivp/ivp.py"
+      ],
+      "version": "1.14.1",
+      "publication_year": null,
+      "outcome": "READ_SELECTED_OFFICIAL_RELEASE_SOURCE",
+      "scope": "Read the fixed-version RMS and tolerance definitions, initial-step selection, and event normalization, brackets and direction tests. Our prescribed first step and own bisection are explicitly different implementation choices."
+    },
+    {
+      "id": "scipy-license",
+      "url": "https://raw.githubusercontent.com/scipy/scipy/v1.14.1/LICENSE.txt",
+      "version": "1.14.1",
+      "publication_year": null,
+      "outcome": "READ_FULL_SHORT_LICENSE_WEB_TEXT",
+      "scope": "Read the full short BSD 3-Clause text, including redistribution, attribution and disclaimer. The applicable installed-wheel license text is retained with adapted coefficients."
+    },
+    {
+      "id": "boundary-primary",
+      "url": "https://arxiv.org/pdf/1411.0465",
+      "version": "actualPDF1411.0465v1,3Nov2014",
+      "publication_year": 2014,
+      "published_journal_metadata": "The author publication list gives SIAM Journal on Scientific Computing 37, A1577–A1592 (2015), DOI 10.1137/140994204. The technical text inspected here is the 2014 preprint.",
+      "outcome": "READ_SELECTED_EXTRACTED_TEXT_NOT_FULLPROOF",
+      "scope": "Read selected extracted text from pages 1–3 and 8–9: equation 1.1, lifting equations 2.1–2.4, Algorithm 2, the constant-boundary example, Assumption 3.4, Theorem 3.5 and the one-dimensional setup. No full-proof or whole-PDF visual audit is claimed.",
+      "technical_scope": "The lifting and corrected reaction preserve the zero-boundary reaction state. The selected theorem has a tau-squared times logarithm bound under stated assumptions. The present linear constant-boundary example is authored and does not reproduce the nonlinear tables."
+    }
+  ],
+  "limits": [
+    "The original Robertson, Dormand–Prince and Shampine papers remain unread; official implementation and numerical-oracle roles are identified separately.",
+    "Only selected extracted text of the Einkemmer–Ostermann 2014 v1 preprint was read. No complete proof or nonlinear-table reproduction is claimed.",
+    "Actual run and verification receipts determine numerical status. Source consultation alone does not qualify a numerical reference."
+  ]
+}

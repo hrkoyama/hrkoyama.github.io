@@ -1,4 +1,4 @@
-import {groupsAddedAfterBatch47,problemsAddedAfterBatch47,equationsAddedAfterBatch47,projectPointerBeforeBatch48,projectReleaseBeforeBatch48} from './fixtures/atlas-inventory.mjs';
+import {projectMethodBeforeBatch68,groupsAddedAfterBatch47,problemsAddedAfterBatch47,equationsAddedAfterBatch47,projectPointerBeforeBatch48,projectReleaseBeforeBatch48} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -58,7 +58,7 @@ test('batch38–47 preserves existing scientific files, search details, equation
    assert.equal(createHash('sha256').update(projected).digest('hex'),hash,path+'/preserved-incoming-release-before-reviewed-2026-11-24-extension');
   }else assert.equal(sha(path),hash,path+'/preserved-incoming-release');
  }
- const methods=json('catalog/atlas-methods.json').methods;
+ const methods=json('catalog/atlas-methods.json').methods.map(projectMethodBeforeBatch68);
  for(const [id,status] of Object.entries(baseline.method_statuses))assert.equal(methods.find(x=>x.id===id)?.status,status,id);
  const appendFields=new Set(['summary','limitations','depth_release','depth_additional_releases','supplemental_scope_profiles','metadata_review']);
  const firstScopeMethods=new Set(['backward-euler','d2q9-bgk','monte-carlo','sde']);

@@ -1,0 +1,15 @@
+{
+  "primary_evolutions": 4,
+  "records": 4,
+  "main_case_gate_counts": {
+    "jameson-steady-linear-modes": 41
+  },
+  "pytest_tests": 18,
+  "reference_ODE_evolutions": 0,
+  "additional_primary_component_solves": 0,
+  "scope": "Primary component solves are the three case72 one-step Newton oracle comparisons, not extra trajectories. Initializers and expected rejections are records separately. Reference ODE calls and qualification are included in the same main budget.",
+  "measured_runtime": null,
+  "local_runtime_target_seconds": 8,
+  "shared_pytest_main_limit_seconds": 120,
+  "plotting_limit_separate_seconds": 60
+}

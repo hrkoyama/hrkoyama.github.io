@@ -1,0 +1,29 @@
+{
+  "values": {
+    "h": 0.05,
+    "omega": 20.0,
+    "alpha": 1.0,
+    "theta_evaluated": 1.0,
+    "half": 0.025,
+    "cross": 0.025,
+    "stiff": 10.0,
+    "sine": 0.8414709848078965,
+    "cosine": 0.5403023058681398,
+    "sine_over_omega": 0.042073549240394824,
+    "omega_sine": 16.82941969615793
+  },
+  "hexadecimal": {
+    "h": "0x1.999999999999ap-5",
+    "omega": "0x1.4000000000000p+4",
+    "alpha": "0x1.0000000000000p+0",
+    "theta_evaluated": "0x1.0000000000000p+0",
+    "half": "0x1.999999999999ap-6",
+    "cross": "0x1.999999999999ap-6",
+    "stiff": "0x1.4000000000000p+3",
+    "sine": "0x1.aed548f090ceep-1",
+    "cosine": "0x1.14a280fb5068cp-1",
+    "sine_over_omega": "0x1.58aaa0c073d8bp-5",
+    "omega_sine": "0x1.0d454d965a815p+4"
+  },
+  "theta_requested": 1.0
+}

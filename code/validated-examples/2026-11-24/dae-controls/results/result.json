@@ -1,0 +1,953 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "input_sha256": "f2fe378da0eba05ddb47e8333f6b00b1effbf83e22b13fc8e1ad6079338cb275",
+  "termination": "completed_fixed_protocol",
+  "checks": {
+    "index1-dae-consistent-initialization": true,
+    "robertson-conservation-dae": true,
+    "high-index-pendulum": true
+  },
+  "cases": [
+    {
+      "id": "index1-dae-consistent-initialization",
+      "passed": true,
+      "checks": {
+        "reference:MMS-0": true,
+        "reference:MMS-1": true,
+        "reference:MMS-2": true,
+        "reference:nonexpansive-positive-region": true,
+        "reference:initial-differentiated-constraint": true,
+        "reference:three-positive-branch-brackets": true,
+        "reference:three-independent-discrete-roots": true,
+        "initialize-0.5:root": true,
+        "initialize-0.5:algebraic-residual": true,
+        "initialize-2:root": true,
+        "initialize-2:algebraic-residual": true,
+        "initialize-0:expected-singular-status": true,
+        "index1-BE-16:finite": true,
+        "index1-BE-16:positive": true,
+        "index1-BE-16:step-residual": true,
+        "index1-BE-16:constraint": true,
+        "index1-BE-16:MMS-bound": true,
+        "index1-BE-32:finite": true,
+        "index1-BE-32:positive": true,
+        "index1-BE-32:step-residual": true,
+        "index1-BE-32:constraint": true,
+        "index1-BE-32:MMS-bound": true,
+        "index1-BE-64:finite": true,
+        "index1-BE-64:positive": true,
+        "index1-BE-64:step-residual": true,
+        "index1-BE-64:constraint": true,
+        "index1-BE-64:MMS-bound": true,
+        "first-order-refinement": true,
+        "initial-F-and-hidden-constraint": true,
+        "six-record-identities": true
+      },
+      "records": [
+        {
+          "id": "initialize-0.5",
+          "kind": "initialization",
+          "termination": "consistent_initialization",
+          "metrics": {
+            "termination": "consistent_initialization",
+            "iterations": 5,
+            "residual": 0.0
+          }
+        },
+        {
+          "id": "initialize-2",
+          "kind": "initialization",
+          "termination": "consistent_initialization",
+          "metrics": {
+            "termination": "consistent_initialization",
+            "iterations": 6,
+            "residual": 6.661338147750939e-16
+          }
+        },
+        {
+          "id": "initialize-0",
+          "kind": "expected_initial_failure",
+          "termination": "initialization_singular_jacobian",
+          "metrics": {
+            "termination": "initialization_singular_jacobian",
+            "iterations": 0,
+            "residual": 1.0
+          }
+        },
+        {
+          "id": "index1-BE-16",
+          "kind": "trajectory",
+          "termination": "completed_fixed_steps",
+          "steps": 16,
+          "metrics": {
+            "max_state_error": 0.017655667991177793,
+            "max_algebraic_residual": 9.536815781530095e-14,
+            "max_derivative_unit_step_residual": 9.536815781530095e-14,
+            "Newton_iterations": 48
+          }
+        },
+        {
+          "id": "index1-BE-32",
+          "kind": "trajectory",
+          "termination": "completed_fixed_steps",
+          "steps": 32,
+          "metrics": {
+            "max_state_error": 0.00889059915166246,
+            "max_algebraic_residual": 4.440892098500626e-16,
+            "max_derivative_unit_step_residual": 1.5543122344752192e-15,
+            "Newton_iterations": 96
+          }
+        },
+        {
+          "id": "index1-BE-64",
+          "kind": "trajectory",
+          "termination": "completed_fixed_steps",
+          "steps": 64,
+          "metrics": {
+            "max_state_error": 0.0044611112911168704,
+            "max_algebraic_residual": 3.3306690738754696e-16,
+            "max_derivative_unit_step_residual": 3.552713678800501e-15,
+            "Newton_iterations": 192
+          }
+        }
+      ],
+      "metrics": {
+        "reference:three-independent-discrete-roots": 3.5860203695392556e-14,
+        "initialize-0.5:root": 0.0,
+        "initialize-2:root": 2.220446049250313e-16,
+        "index1-BE-16:step-residual": 9.536815781530095e-14,
+        "index1-BE-16:constraint": 9.536815781530095e-14,
+        "index1-BE-16:MMS-bound": 0.017655667991177793,
+        "index1-BE-32:step-residual": 1.5543122344752192e-15,
+        "index1-BE-32:constraint": 4.440892098500626e-16,
+        "index1-BE-32:MMS-bound": 0.00889059915166246,
+        "index1-BE-64:step-residual": 3.552713678800501e-15,
+        "index1-BE-64:constraint": 3.3306690738754696e-16,
+        "index1-BE-64:MMS-bound": 0.0044611112911168704,
+        "first-order-refinement": [
+          0.989778852631791,
+          0.9948775084516599
+        ],
+        "finest_max_state_error": 0.0044611112911168704,
+        "observed_orders": [
+          0.989778852631791,
+          0.9948775084516599
+        ],
+        "one_step_reference_errors": [
+          3.5860203695392556e-14,
+          1.1102230246251565e-16,
+          1.1102230246251565e-16
+        ],
+        "original_targets_met": 30,
+        "original_targets_total": 30
+      },
+      "original_target_results": {
+        "reference:MMS-0": true,
+        "reference:MMS-1": true,
+        "reference:MMS-2": true,
+        "reference:nonexpansive-positive-region": true,
+        "reference:initial-differentiated-constraint": true,
+        "reference:three-positive-branch-brackets": true,
+        "reference:three-independent-discrete-roots": true,
+        "initialize-0.5:root": true,
+        "initialize-0.5:algebraic-residual": true,
+        "initialize-2:root": true,
+        "initialize-2:algebraic-residual": true,
+        "initialize-0:expected-singular-status": true,
+        "index1-BE-16:finite": true,
+        "index1-BE-16:positive": true,
+        "index1-BE-16:step-residual": true,
+        "index1-BE-16:constraint": true,
+        "index1-BE-16:MMS-bound": true,
+        "index1-BE-32:finite": true,
+        "index1-BE-32:positive": true,
+        "index1-BE-32:step-residual": true,
+        "index1-BE-32:constraint": true,
+        "index1-BE-32:MMS-bound": true,
+        "index1-BE-64:finite": true,
+        "index1-BE-64:positive": true,
+        "index1-BE-64:step-residual": true,
+        "index1-BE-64:constraint": true,
+        "index1-BE-64:MMS-bound": true,
+        "first-order-refinement": true,
+        "initial-F-and-hidden-constraint": true,
+        "six-record-identities": true
+      },
+      "original_target_summary": {
+        "met": 30,
+        "total": 30,
+        "all_met": true,
+        "acceptance_sha256": "de0c9378204b8b08610318f41d98efb95cc2c31048a6b593707197635a0cba96"
+      },
+      "original_scientific_targets_met": true,
+      "validation_scope": "all_original_numerical_targets_required"
+    },
+    {
+      "id": "robertson-conservation-dae",
+      "passed": true,
+      "checks": {
+        "reference:all-reference-complete-finite-nonnegative": true,
+        "reference:reference-agreement-0": true,
+        "reference:reference-agreement-2": true,
+        "reference:official-IDA-printed-interval-qualification": true,
+        "inconsistent-initial-rejected": true,
+        "robertson-residual_dae-r1:finite": true,
+        "robertson-residual_dae-r1:nonnegative": true,
+        "robertson-residual_dae-r1:nonlinear-residual": true,
+        "robertson-residual_dae-r1:mass": true,
+        "robertson-residual_dae-r2:finite": true,
+        "robertson-residual_dae-r2:nonnegative": true,
+        "robertson-residual_dae-r2:nonlinear-residual": true,
+        "robertson-residual_dae-r2:mass": true,
+        "robertson-residual_dae-r4:finite": true,
+        "robertson-residual_dae-r4:nonnegative": true,
+        "robertson-residual_dae-r4:nonlinear-residual": true,
+        "robertson-residual_dae-r4:mass": true,
+        "residual_dae:official-printed-comparison": true,
+        "robertson-full_ode-r1:finite": true,
+        "robertson-full_ode-r1:nonnegative": true,
+        "robertson-full_ode-r1:nonlinear-residual": true,
+        "robertson-full_ode-r1:mass": true,
+        "robertson-full_ode-r2:finite": true,
+        "robertson-full_ode-r2:nonnegative": true,
+        "robertson-full_ode-r2:nonlinear-residual": true,
+        "robertson-full_ode-r2:mass": true,
+        "robertson-full_ode-r4:finite": true,
+        "robertson-full_ode-r4:nonnegative": true,
+        "robertson-full_ode-r4:nonlinear-residual": true,
+        "robertson-full_ode-r4:mass": true,
+        "full_ode:official-printed-comparison": true,
+        "ODE-DAE-r1": true,
+        "ODE-DAE-r2": true,
+        "ODE-DAE-r4": true,
+        "seven-record-identities": true,
+        "verification:original-target-inventory": true,
+        "verification:all-original-decisions-recomputed": true,
+        "verification:measured-records-match-saved-arrays": true,
+        "verification:frozen-original-input-and-acceptance": true,
+        "verification:independent-reference-integrity": true,
+        "verification:actual-target-summary": true,
+        "verification:retained-first-attempt-history": true,
+        "verification:only-declared-study-goals-are-nonmandatory": true
+      },
+      "records": [
+        {
+          "id": "inconsistent-initial-rejection",
+          "kind": "expected_initial_failure",
+          "termination": "initial_algebraic_constraint_violated",
+          "metrics": {
+            "mass_residual": 9.999999999998899e-05
+          }
+        },
+        {
+          "id": "robertson-residual_dae-r1",
+          "kind": "trajectory",
+          "formulation": "residual_dae",
+          "termination": "completed_fixed_steps",
+          "steps": 384,
+          "metrics": {
+            "max_scaled_reference_error": 0.014438638971779891,
+            "max_mass_error": 2.220446049250313e-16,
+            "max_scaled_step_residual": 1.0710574122841998e-12,
+            "minimum_species": 0.0,
+            "Newton_iterations": 900
+          }
+        },
+        {
+          "id": "robertson-residual_dae-r2",
+          "kind": "trajectory",
+          "formulation": "residual_dae",
+          "termination": "completed_fixed_steps",
+          "steps": 768,
+          "metrics": {
+            "max_scaled_reference_error": 0.013348649011714184,
+            "max_mass_error": 2.220446049250313e-16,
+            "max_scaled_step_residual": 1.9804734758359423e-12,
+            "minimum_species": 0.0,
+            "Newton_iterations": 1723
+          }
+        },
+        {
+          "id": "robertson-residual_dae-r4",
+          "kind": "trajectory",
+          "formulation": "residual_dae",
+          "termination": "completed_fixed_steps",
+          "steps": 1536,
+          "metrics": {
+            "max_scaled_reference_error": 0.007755772186054176,
+            "max_mass_error": 2.220446049250313e-16,
+            "max_scaled_step_residual": 9.182101846032633e-13,
+            "minimum_species": 0.0,
+            "Newton_iterations": 3078
+          }
+        },
+        {
+          "id": "robertson-full_ode-r1",
+          "kind": "trajectory",
+          "formulation": "full_ode",
+          "termination": "completed_fixed_steps",
+          "steps": 384,
+          "metrics": {
+            "max_scaled_reference_error": 0.014438638971780366,
+            "max_mass_error": 4.440892098500626e-16,
+            "max_scaled_step_residual": 1.0707354074153451e-12,
+            "minimum_species": 0.0,
+            "Newton_iterations": 900
+          }
+        },
+        {
+          "id": "robertson-full_ode-r2",
+          "kind": "trajectory",
+          "formulation": "full_ode",
+          "termination": "completed_fixed_steps",
+          "steps": 768,
+          "metrics": {
+            "max_scaled_reference_error": 0.013348649011714252,
+            "max_mass_error": 1.5543122344752192e-15,
+            "max_scaled_step_residual": 1.980642882425393e-12,
+            "minimum_species": 0.0,
+            "Newton_iterations": 1723
+          }
+        },
+        {
+          "id": "robertson-full_ode-r4",
+          "kind": "trajectory",
+          "formulation": "full_ode",
+          "termination": "completed_fixed_steps",
+          "steps": 1536,
+          "metrics": {
+            "max_scaled_reference_error": 0.007755772186054176,
+            "max_mass_error": 8.881784197001252e-16,
+            "max_scaled_step_residual": 9.182101846032633e-13,
+            "minimum_species": 0.0,
+            "Newton_iterations": 3078
+          }
+        }
+      ],
+      "metrics": {
+        "robertson-residual_dae-r1:nonnegative": 0.0,
+        "robertson-residual_dae-r1:nonlinear-residual": 1.0710574122841998e-12,
+        "robertson-residual_dae-r1:mass": 2.220446049250313e-16,
+        "robertson-residual_dae-r2:nonnegative": 0.0,
+        "robertson-residual_dae-r2:nonlinear-residual": 1.9804734758359423e-12,
+        "robertson-residual_dae-r2:mass": 2.220446049250313e-16,
+        "robertson-residual_dae-r4:nonnegative": 0.0,
+        "robertson-residual_dae-r4:nonlinear-residual": 9.182101846032633e-13,
+        "robertson-residual_dae-r4:mass": 2.220446049250313e-16,
+        "residual_dae:refinement": [
+          1.0816554513576002,
+          1.7211244337110214
+        ],
+        "residual_dae:finest-reference-error": 0.007755772186054176,
+        "residual_dae:official-printed-comparison": [
+          [
+            0.0,
+            0.0,
+            1.98496998732485e-06
+          ],
+          [
+            2.8469832178190657e-05,
+            3.4259947900275225e-09,
+            3.737975817291739e-05
+          ]
+        ],
+        "robertson-full_ode-r1:nonnegative": 0.0,
+        "robertson-full_ode-r1:nonlinear-residual": 1.0707354074153451e-12,
+        "robertson-full_ode-r1:mass": 4.440892098500626e-16,
+        "robertson-full_ode-r2:nonnegative": 0.0,
+        "robertson-full_ode-r2:nonlinear-residual": 1.980642882425393e-12,
+        "robertson-full_ode-r2:mass": 1.5543122344752192e-15,
+        "robertson-full_ode-r4:nonnegative": 0.0,
+        "robertson-full_ode-r4:nonlinear-residual": 9.182101846032633e-13,
+        "robertson-full_ode-r4:mass": 8.881784197001252e-16,
+        "full_ode:refinement": [
+          1.0816554513576304,
+          1.72112443371103
+        ],
+        "full_ode:finest-reference-error": 0.007755772186054176,
+        "full_ode:official-printed-comparison": [
+          [
+            0.0,
+            0.0,
+            1.9849699872138277e-06
+          ],
+          [
+            2.8469832178079635e-05,
+            3.4259947900546275e-09,
+            3.737975817323658e-05
+          ]
+        ],
+        "ODE-DAE-r1": 8.131516293641283e-16,
+        "ODE-DAE-r2": 2.100641709190665e-15,
+        "ODE-DAE-r4": 8.809142651444724e-16,
+        "finest_scaled_error_DAE": 0.007755772186054176,
+        "finest_scaled_error_ODE": 0.007755772186054176,
+        "reference_solver_counters": [
+          {
+            "id": "reference-radau-loose",
+            "method": "Radau",
+            "nfev": 4291,
+            "njev": 43,
+            "nlu": 166,
+            "status": 0,
+            "observations": 1537
+          },
+          {
+            "id": "reference-radau-tight",
+            "method": "Radau",
+            "nfev": 12141,
+            "njev": 9,
+            "nlu": 124,
+            "status": 0,
+            "observations": 1537
+          },
+          {
+            "id": "reference-bdf-tight",
+            "method": "BDF",
+            "nfev": 1593,
+            "njev": 3,
+            "nlu": 110,
+            "status": 0,
+            "observations": 1537
+          }
+        ],
+        "IDA_new_executions": 0,
+        "original_targets_met": 35,
+        "original_targets_total": 39
+      },
+      "original_target_results": {
+        "reference:all-reference-complete-finite-nonnegative": true,
+        "reference:reference-agreement-0": true,
+        "reference:reference-agreement-2": true,
+        "reference:official-IDA-printed-interval-qualification": true,
+        "inconsistent-initial-rejected": true,
+        "robertson-residual_dae-r1:finite": true,
+        "robertson-residual_dae-r1:nonnegative": true,
+        "robertson-residual_dae-r1:nonlinear-residual": true,
+        "robertson-residual_dae-r1:mass": true,
+        "robertson-residual_dae-r2:finite": true,
+        "robertson-residual_dae-r2:nonnegative": true,
+        "robertson-residual_dae-r2:nonlinear-residual": true,
+        "robertson-residual_dae-r2:mass": true,
+        "robertson-residual_dae-r4:finite": true,
+        "robertson-residual_dae-r4:nonnegative": true,
+        "robertson-residual_dae-r4:nonlinear-residual": true,
+        "robertson-residual_dae-r4:mass": true,
+        "residual_dae:refinement": false,
+        "residual_dae:finest-reference-error": false,
+        "residual_dae:official-printed-comparison": true,
+        "robertson-full_ode-r1:finite": true,
+        "robertson-full_ode-r1:nonnegative": true,
+        "robertson-full_ode-r1:nonlinear-residual": true,
+        "robertson-full_ode-r1:mass": true,
+        "robertson-full_ode-r2:finite": true,
+        "robertson-full_ode-r2:nonnegative": true,
+        "robertson-full_ode-r2:nonlinear-residual": true,
+        "robertson-full_ode-r2:mass": true,
+        "robertson-full_ode-r4:finite": true,
+        "robertson-full_ode-r4:nonnegative": true,
+        "robertson-full_ode-r4:nonlinear-residual": true,
+        "robertson-full_ode-r4:mass": true,
+        "full_ode:refinement": false,
+        "full_ode:finest-reference-error": false,
+        "full_ode:official-printed-comparison": true,
+        "ODE-DAE-r1": true,
+        "ODE-DAE-r2": true,
+        "ODE-DAE-r4": true,
+        "seven-record-identities": true
+      },
+      "original_target_summary": {
+        "met": 35,
+        "total": 39,
+        "all_met": false,
+        "acceptance_sha256": "de0c9378204b8b08610318f41d98efb95cc2c31048a6b593707197635a0cba96"
+      },
+      "original_scientific_targets_met": false,
+      "reporting_verification": {
+        "scope": "Retained numerical integrity and verified faithful reporting; original accuracy goals may be unmet.",
+        "post_measurement_revision": true,
+        "goal_measurements": {
+          "full_ode:finest-reference-error": {
+            "measured": 0.007755772186054176,
+            "limit": 0.002,
+            "comparison": "<=",
+            "units": "state error scaled by (1,1e-4,1)",
+            "met": false
+          },
+          "full_ode:refinement": {
+            "measured": [
+              1.0816554513576304,
+              1.72112443371103
+            ],
+            "limit": 1.6,
+            "comparison": "minimum adjacent ratio >=",
+            "units": "dimensionless error ratio",
+            "met": false
+          },
+          "residual_dae:finest-reference-error": {
+            "measured": 0.007755772186054176,
+            "limit": 0.002,
+            "comparison": "<=",
+            "units": "state error scaled by (1,1e-4,1)",
+            "met": false
+          },
+          "residual_dae:refinement": {
+            "measured": [
+              1.0816554513576002,
+              1.7211244337110214
+            ],
+            "limit": 1.6,
+            "comparison": "minimum adjacent ratio >=",
+            "units": "dimensionless error ratio",
+            "met": false
+          }
+        },
+        "study_goal_keys": [
+          "full_ode:finest-reference-error",
+          "full_ode:refinement",
+          "residual_dae:finest-reference-error",
+          "residual_dae:refinement"
+        ],
+        "current_failure_mask_required": false,
+        "original_numerical_acceptance_unchanged": true,
+        "saved_data_only_audit_no_new_solver_or_reference_generation": true
+      },
+      "original_study_goal_measurements": {
+        "full_ode:finest-reference-error": {
+          "measured": 0.007755772186054176,
+          "limit": 0.002,
+          "comparison": "<=",
+          "units": "state error scaled by (1,1e-4,1)",
+          "met": false
+        },
+        "full_ode:refinement": {
+          "measured": [
+            1.0816554513576304,
+            1.72112443371103
+          ],
+          "limit": 1.6,
+          "comparison": "minimum adjacent ratio >=",
+          "units": "dimensionless error ratio",
+          "met": false
+        },
+        "residual_dae:finest-reference-error": {
+          "measured": 0.007755772186054176,
+          "limit": 0.002,
+          "comparison": "<=",
+          "units": "state error scaled by (1,1e-4,1)",
+          "met": false
+        },
+        "residual_dae:refinement": {
+          "measured": [
+            1.0816554513576002,
+            1.7211244337110214
+          ],
+          "limit": 1.6,
+          "comparison": "minimum adjacent ratio >=",
+          "units": "dimensionless error ratio",
+          "met": false
+        }
+      },
+      "validation_scope": "fixed_study_with_separate_original_accuracy_goals"
+    },
+    {
+      "id": "high-index-pendulum",
+      "passed": true,
+      "checks": {
+        "reference:Jacobi-angular-agreement": true,
+        "reference:angular-tolerance-agreement": true,
+        "reference:Jacobi-initial": true,
+        "reference:Jacobi-invariants": true,
+        "reference:AGM-K": true,
+        "reference:Decimal-remainder-qualification": true,
+        "reference:constraint-identity-False": true,
+        "reference:constraint-work-False": true,
+        "reference:constraint-identity-True": true,
+        "reference:constraint-work-True": true,
+        "default-consistency-rejection": true,
+        "pendulum-consistent-underlying-500:finite": true,
+        "pendulum-consistent-underlying-500:radius": true,
+        "pendulum-consistent-underlying-1000:finite": true,
+        "pendulum-consistent-underlying-1000:radius": true,
+        "pendulum-consistent-underlying-2000:finite": true,
+        "pendulum-consistent-underlying-2000:radius": true,
+        "pendulum-consistent-underlying-2000:state": true,
+        "pendulum-consistent-underlying-2000:energy": true,
+        "pendulum-consistent-stabilized-2000:finite": true,
+        "pendulum-consistent-stabilized-2000:radius": true,
+        "pendulum-consistent-stabilized-2000:state": true,
+        "pendulum-consistent-stabilized-2000:energy": true,
+        "pendulum-radial-underlying-500:finite": true,
+        "pendulum-radial-underlying-500:radius": true,
+        "pendulum-radial-underlying-1000:finite": true,
+        "pendulum-radial-underlying-1000:radius": true,
+        "pendulum-radial-underlying-2000:finite": true,
+        "pendulum-radial-underlying-2000:radius": true,
+        "pendulum-radial-underlying-2000:C-law": true,
+        "pendulum-radial-underlying-2000:D-law": true,
+        "pendulum-radial-underlying-2000:work-ledger": true,
+        "pendulum-radial-stabilized-500:finite": true,
+        "pendulum-radial-stabilized-500:radius": true,
+        "pendulum-radial-stabilized-1000:finite": true,
+        "pendulum-radial-stabilized-1000:radius": true,
+        "pendulum-radial-stabilized-2000:finite": true,
+        "pendulum-radial-stabilized-2000:radius": true,
+        "pendulum-radial-stabilized-2000:C-law": true,
+        "pendulum-radial-stabilized-2000:D-law": true,
+        "pendulum-radial-stabilized-2000:work-ledger": true,
+        "underlying-consistent-fourth-order": true,
+        "visible-unstabilized-drift": true,
+        "stabilized-drift-ratio": true,
+        "eleven-record-identities": true
+      },
+      "records": [
+        {
+          "id": "default-inconsistent-rejection",
+          "kind": "expected_initial_failure",
+          "termination": "initial_velocity_constraint_violated",
+          "metrics": {
+            "C": 0.0,
+            "D": 0.001
+          }
+        },
+        {
+          "id": "pendulum-consistent-underlying-500",
+          "kind": "trajectory",
+          "initial_consistent": true,
+          "constraint_extension": "underlying_ode",
+          "termination": "completed_fixed_steps",
+          "steps": 500,
+          "RHS_evaluations": 2000,
+          "metrics": {
+            "max_state_error": 4.160545245934788e-06,
+            "max_abs_C": 2.765469672483256e-06,
+            "C_exact_law_error": 2.765469672483256e-06,
+            "D_exact_law_error": 2.7391049113589805e-07,
+            "max_energy_error": 3.0130832572305977e-06,
+            "max_energy_work_balance_error": 1.8252864454015173e-08,
+            "minimum_radius_squared": 0.999994469060655
+          }
+        },
+        {
+          "id": "pendulum-consistent-underlying-1000",
+          "kind": "trajectory",
+          "initial_consistent": true,
+          "constraint_extension": "underlying_ode",
+          "termination": "completed_fixed_steps",
+          "steps": 1000,
+          "RHS_evaluations": 4000,
+          "metrics": {
+            "max_state_error": 2.604554864560349e-07,
+            "max_abs_C": 1.7316282147072926e-07,
+            "C_exact_law_error": 1.7316282147072926e-07,
+            "D_exact_law_error": 1.713857653018458e-08,
+            "max_energy_error": 1.8919273392370428e-07,
+            "max_energy_work_balance_error": 8.221427626750745e-10,
+            "minimum_radius_squared": 0.9999996536743571
+          }
+        },
+        {
+          "id": "pendulum-consistent-underlying-2000",
+          "kind": "trajectory",
+          "initial_consistent": true,
+          "constraint_extension": "underlying_ode",
+          "termination": "completed_fixed_steps",
+          "steps": 2000,
+          "RHS_evaluations": 8000,
+          "metrics": {
+            "max_state_error": 1.6288695170452172e-08,
+            "max_abs_C": 1.0830674912476468e-08,
+            "C_exact_law_error": 1.0830674912476468e-08,
+            "D_exact_law_error": 1.0715459075605338e-09,
+            "max_energy_error": 1.1849681791353817e-08,
+            "max_energy_work_balance_error": 4.1426898669475616e-11,
+            "minimum_radius_squared": 0.9999999783386502
+          }
+        },
+        {
+          "id": "pendulum-consistent-stabilized-2000",
+          "kind": "trajectory",
+          "initial_consistent": true,
+          "constraint_extension": "critical_constraint_stabilization",
+          "termination": "completed_fixed_steps",
+          "steps": 2000,
+          "RHS_evaluations": 8000,
+          "metrics": {
+            "max_state_error": 2.182399358452436e-09,
+            "max_abs_C": 1.0581768794537538e-10,
+            "C_exact_law_error": 1.0581768794537538e-10,
+            "D_exact_law_error": 1.1133916011374367e-10,
+            "max_energy_error": 1.2245648939313014e-10,
+            "max_energy_work_balance_error": 1.262848326362555e-09,
+            "minimum_radius_squared": 0.9999999999119735
+          }
+        },
+        {
+          "id": "pendulum-radial-underlying-500",
+          "kind": "trajectory",
+          "initial_consistent": false,
+          "constraint_extension": "underlying_ode",
+          "termination": "completed_fixed_steps",
+          "steps": 500,
+          "RHS_evaluations": 2000,
+          "metrics": {
+            "max_state_error": null,
+            "max_abs_C": 0.01999730449987358,
+            "C_exact_law_error": 2.6955001264199197e-06,
+            "D_exact_law_error": 2.6519275278438087e-07,
+            "max_energy_error": 0.021853616550225663,
+            "max_energy_work_balance_error": 1.773553745879064e-08,
+            "minimum_radius_squared": 1.0
+          }
+        },
+        {
+          "id": "pendulum-radial-underlying-1000",
+          "kind": "trajectory",
+          "initial_consistent": false,
+          "constraint_extension": "underlying_ode",
+          "termination": "completed_fixed_steps",
+          "steps": 1000,
+          "RHS_evaluations": 4000,
+          "metrics": {
+            "max_state_error": null,
+            "max_abs_C": 0.019999831214412733,
+            "C_exact_law_error": 1.687855872671562e-07,
+            "D_exact_law_error": 1.6593273643138173e-08,
+            "max_energy_error": 0.021856315611555877,
+            "max_energy_work_balance_error": 8.02820952078287e-10,
+            "minimum_radius_squared": 1.0
+          }
+        },
+        {
+          "id": "pendulum-radial-underlying-2000",
+          "kind": "trajectory",
+          "initial_consistent": false,
+          "constraint_extension": "underlying_ode",
+          "termination": "completed_fixed_steps",
+          "steps": 2000,
+          "RHS_evaluations": 8000,
+          "metrics": {
+            "max_state_error": null,
+            "max_abs_C": 0.019999989442972765,
+            "C_exact_law_error": 1.0557027235041927e-08,
+            "D_exact_law_error": 1.037474827401963e-09,
+            "max_energy_error": 0.021856485118469382,
+            "max_energy_work_balance_error": 4.06214124837323e-11,
+            "minimum_radius_squared": 1.0
+          }
+        },
+        {
+          "id": "pendulum-radial-stabilized-500",
+          "kind": "trajectory",
+          "initial_consistent": false,
+          "constraint_extension": "critical_constraint_stabilization",
+          "termination": "completed_fixed_steps",
+          "steps": 500,
+          "RHS_evaluations": 2000,
+          "metrics": {
+            "max_state_error": null,
+            "max_abs_C": 0.00036789506087830937,
+            "C_exact_law_error": 2.70874640680434e-08,
+            "D_exact_law_error": 2.8949574397093593e-08,
+            "max_energy_error": 0.0003082872934667691,
+            "max_energy_work_balance_error": 3.1977183966938887e-07,
+            "minimum_radius_squared": 0.9999999763781866
+          }
+        },
+        {
+          "id": "pendulum-radial-stabilized-1000",
+          "kind": "trajectory",
+          "initial_consistent": false,
+          "constraint_extension": "critical_constraint_stabilization",
+          "termination": "completed_fixed_steps",
+          "steps": 1000,
+          "RHS_evaluations": 4000,
+          "metrics": {
+            "max_state_error": null,
+            "max_abs_C": 0.00036788043239688317,
+            "C_exact_law_error": 1.6940355969667815e-09,
+            "D_exact_law_error": 1.7906875354268062e-09,
+            "max_energy_error": 0.00030827311284586933,
+            "max_energy_work_balance_error": 2.0137442365109428e-08,
+            "minimum_radius_squared": 0.9999999986894732
+          }
+        },
+        {
+          "id": "pendulum-radial-stabilized-2000",
+          "kind": "trajectory",
+          "initial_consistent": false,
+          "constraint_extension": "critical_constraint_stabilization",
+          "termination": "completed_fixed_steps",
+          "steps": 2000,
+          "RHS_evaluations": 8000,
+          "metrics": {
+            "max_state_error": null,
+            "max_abs_C": 0.0003678795035788607,
+            "C_exact_law_error": 1.058986416895176e-10,
+            "D_exact_law_error": 1.113360997362714e-10,
+            "max_energy_error": 0.00030827223479734656,
+            "max_energy_work_balance_error": 1.2632772794691789e-09,
+            "minimum_radius_squared": 1.0
+          }
+        }
+      ],
+      "metrics": {
+        "pendulum-consistent-underlying-2000:state": 1.6288695170452172e-08,
+        "pendulum-consistent-underlying-2000:energy": 1.1849681791353817e-08,
+        "pendulum-consistent-stabilized-2000:state": 2.182399358452436e-09,
+        "pendulum-consistent-stabilized-2000:energy": 1.2245648939313014e-10,
+        "pendulum-radial-underlying-2000:C-law": 1.0557027235041927e-08,
+        "pendulum-radial-underlying-2000:D-law": 1.037474827401963e-09,
+        "pendulum-radial-underlying-2000:work-ledger": 4.06214124837323e-11,
+        "pendulum-radial-stabilized-2000:C-law": 1.058986416895176e-10,
+        "pendulum-radial-stabilized-2000:D-law": 1.113360997362714e-10,
+        "pendulum-radial-stabilized-2000:work-ledger": 1.2632772794691789e-09,
+        "underlying-consistent-fourth-order": [
+          3.997663875510909,
+          3.999093883138539
+        ],
+        "visible-unstabilized-drift": 0.019999989442972765,
+        "stabilized-drift-ratio": 8.89400134498285e-10,
+        "finest_consistent_state_error": 1.6288695170452172e-08,
+        "observed_orders": [
+          3.997663875510909,
+          3.999093883138539
+        ],
+        "stabilized_to_unstabilized_drift_ratio": 8.89400134498285e-10,
+        "reference_solver_counters": [
+          {
+            "id": "angular-reference-0",
+            "method": "DOP853",
+            "nfev": 1373,
+            "njev": 0,
+            "nlu": 0,
+            "status": 0,
+            "observations": 33
+          },
+          {
+            "id": "angular-reference-1",
+            "method": "DOP853",
+            "nfev": 2273,
+            "njev": 0,
+            "nlu": 0,
+            "status": 0,
+            "observations": 33
+          }
+        ],
+        "original_targets_met": 45,
+        "original_targets_total": 45
+      },
+      "original_target_results": {
+        "reference:Jacobi-angular-agreement": true,
+        "reference:angular-tolerance-agreement": true,
+        "reference:Jacobi-initial": true,
+        "reference:Jacobi-invariants": true,
+        "reference:AGM-K": true,
+        "reference:Decimal-remainder-qualification": true,
+        "reference:constraint-identity-False": true,
+        "reference:constraint-work-False": true,
+        "reference:constraint-identity-True": true,
+        "reference:constraint-work-True": true,
+        "default-consistency-rejection": true,
+        "pendulum-consistent-underlying-500:finite": true,
+        "pendulum-consistent-underlying-500:radius": true,
+        "pendulum-consistent-underlying-1000:finite": true,
+        "pendulum-consistent-underlying-1000:radius": true,
+        "pendulum-consistent-underlying-2000:finite": true,
+        "pendulum-consistent-underlying-2000:radius": true,
+        "pendulum-consistent-underlying-2000:state": true,
+        "pendulum-consistent-underlying-2000:energy": true,
+        "pendulum-consistent-stabilized-2000:finite": true,
+        "pendulum-consistent-stabilized-2000:radius": true,
+        "pendulum-consistent-stabilized-2000:state": true,
+        "pendulum-consistent-stabilized-2000:energy": true,
+        "pendulum-radial-underlying-500:finite": true,
+        "pendulum-radial-underlying-500:radius": true,
+        "pendulum-radial-underlying-1000:finite": true,
+        "pendulum-radial-underlying-1000:radius": true,
+        "pendulum-radial-underlying-2000:finite": true,
+        "pendulum-radial-underlying-2000:radius": true,
+        "pendulum-radial-underlying-2000:C-law": true,
+        "pendulum-radial-underlying-2000:D-law": true,
+        "pendulum-radial-underlying-2000:work-ledger": true,
+        "pendulum-radial-stabilized-500:finite": true,
+        "pendulum-radial-stabilized-500:radius": true,
+        "pendulum-radial-stabilized-1000:finite": true,
+        "pendulum-radial-stabilized-1000:radius": true,
+        "pendulum-radial-stabilized-2000:finite": true,
+        "pendulum-radial-stabilized-2000:radius": true,
+        "pendulum-radial-stabilized-2000:C-law": true,
+        "pendulum-radial-stabilized-2000:D-law": true,
+        "pendulum-radial-stabilized-2000:work-ledger": true,
+        "underlying-consistent-fourth-order": true,
+        "visible-unstabilized-drift": true,
+        "stabilized-drift-ratio": true,
+        "eleven-record-identities": true
+      },
+      "original_target_summary": {
+        "met": 45,
+        "total": 45,
+        "all_met": true,
+        "acceptance_sha256": "de0c9378204b8b08610318f41d98efb95cc2c31048a6b593707197635a0cba96"
+      },
+      "original_scientific_targets_met": true,
+      "validation_scope": "all_original_numerical_targets_required"
+    }
+  ],
+  "source_sha256": {
+    "DESIGN.md": "d0fab42d926e93868059a0037fdfbaeffa64ddc931b18dfd6a3645f90f09ca53",
+    "LICENSE": "07cca125623617c85a41e9a21a2b114d693c61737bc353e3ca98587431e26ee6",
+    "README.md": "bd190a82a02e36c0500a274ac593d405d664dc94b32a5b3d09d061dc0ab26b1a",
+    "SUNDIALS-LICENSE.txt": "b0ebbb1a56b9be8926bce091d1f98fd08a403f1ec60513f02f4199f33e741a2d",
+    "acceptance.json": "de0c9378204b8b08610318f41d98efb95cc2c31048a6b593707197635a0cba96",
+    "cases.json": "b5a4e533751629a22667809a1d609ff709a8ebc0b121a7aa3bbb30e70c82f2ca",
+    "experiments.py": "c7f1782305852b22bb3bf49dcc043052b59464bb5afeead229054ee3df75d29d",
+    "gate-inventory.json": "9828d4ae2a77ade197f942dcfe42baab5d65a8f89be1d999911a4f8d15b21ae5",
+    "history/first-attempt/source/DESIGN.md.txt": "d0fab42d926e93868059a0037fdfbaeffa64ddc931b18dfd6a3645f90f09ca53",
+    "history/first-attempt/source/LICENSE.txt": "07cca125623617c85a41e9a21a2b114d693c61737bc353e3ca98587431e26ee6",
+    "history/first-attempt/source/README.md.txt": "e94c84d31605d6e38044658bea8147fe41b0815c760f7a2073fb0f9e9d600886",
+    "history/first-attempt/source/SUNDIALS-LICENSE.txt.txt": "b0ebbb1a56b9be8926bce091d1f98fd08a403f1ec60513f02f4199f33e741a2d",
+    "history/first-attempt/source/acceptance.json.txt": "de0c9378204b8b08610318f41d98efb95cc2c31048a6b593707197635a0cba96",
+    "history/first-attempt/source/cases.json.txt": "8bfb96bc8e38a47396b21ae11057f43d9c2d5b7e2e9c78c124e589f711a77a21",
+    "history/first-attempt/source/experiments.py.txt": "c7f1782305852b22bb3bf49dcc043052b59464bb5afeead229054ee3df75d29d",
+    "history/first-attempt/source/gate-inventory.json.txt": "9828d4ae2a77ade197f942dcfe42baab5d65a8f89be1d999911a4f8d15b21ae5",
+    "history/first-attempt/source/ida-printed-values.json.txt": "51e99501e53e437cacab822f71c037f5c05db656c098ccbd18e4900831acd328",
+    "history/first-attempt/source/inputs.json.txt": "f2fe378da0eba05ddb47e8333f6b00b1effbf83e22b13fc8e1ad6079338cb275",
+    "history/first-attempt/source/io_contract.py.txt": "cad2f927c5efaaa3599694b027b3d3c2e98c5617f503928f93e29053165537a4",
+    "history/first-attempt/source/models.py.txt": "537ea2beb6dac6488216c6bf8e22848be9eac506807043b5f0bf9b240e9c7295",
+    "history/first-attempt/source/newton.py.txt": "59b5763372b5ac27cb5c45357a11db94bb5a464c26df08989f8556f0de8d09dc",
+    "history/first-attempt/source/plot.py.txt": "35464c834575f1460e1bd3684fb44a8242b21bf3870d17f6a86153b29b0eee01",
+    "history/first-attempt/source/pre-run-contract.json.txt": "71cd50ca254da75b9f3f679b9b89a34777d6b517ad414084a2c9d4d48ae43c87",
+    "history/first-attempt/source/references.py.txt": "8661ca064860230ea3a3229381df606162d2359dcc7308288af43e4cb1ff9083",
+    "history/first-attempt/source/requirements.txt.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "history/first-attempt/source/run-matrix.json.txt": "d4b608792fde8c48a9e5b412ebba9bb9247c28597db4864b7f4978a2910d07a5",
+    "history/first-attempt/source/run.py.txt": "073eb386a9a304d9b68d380194f4627790415b8fb60c70ded55c655ed49b39e3",
+    "history/first-attempt/source/source-reading.json.txt": "3d479b10c1886f3caa4e1de5be1d8dbb6aece04d334681c5c91e8964c2ecef0b",
+    "history/first-attempt/source/test_cases.py.txt": "dddd96e9edfc312c19c13532cf58e9e1b8c216bc7497dad29651bcba7b9017d1",
+    "history/first-attempt/summary.json": "ddc47282e1048bfc8321292e0d6f591612827d66b6423d7b3344c1b8953366d2",
+    "ida-printed-values.json": "51e99501e53e437cacab822f71c037f5c05db656c098ccbd18e4900831acd328",
+    "inputs.json": "f2fe378da0eba05ddb47e8333f6b00b1effbf83e22b13fc8e1ad6079338cb275",
+    "io_contract.py": "d147077575a8749be0c50734fd11649c22ac55924f1876885f27c08f0318929c",
+    "models.py": "537ea2beb6dac6488216c6bf8e22848be9eac506807043b5f0bf9b240e9c7295",
+    "newton.py": "59b5763372b5ac27cb5c45357a11db94bb5a464c26df08989f8556f0de8d09dc",
+    "plot.py": "35464c834575f1460e1bd3684fb44a8242b21bf3870d17f6a86153b29b0eee01",
+    "references.py": "8661ca064860230ea3a3229381df606162d2359dcc7308288af43e4cb1ff9083",
+    "reporting-policy.json": "82b2e31d841b197805ee5fe1638dd48fa594e9bd800621a1f2809db66356cedc",
+    "reporting.py": "80874a0d0ca9bc52514ba12074203442630902b0d62bd9425325d8b807d8e7a0",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run-matrix.json": "a65dabe9860924b5e18cd18584a70d8d0c2fe768ae7474c801f12d925bd64a03",
+    "run.py": "df0a4be4e3e38043c22f956503c0642ecb84f54f62eca3c064fc2bbe9d236284",
+    "source-reading.json": "3d479b10c1886f3caa4e1de5be1d8dbb6aece04d334681c5c91e8964c2ecef0b",
+    "test_cases.py": "dddd96e9edfc312c19c13532cf58e9e1b8c216bc7497dad29651bcba7b9017d1",
+    "test_serialization.py": "121e46030b9470ae85471f220486624a9277c577d56e3f958fee8b0339d6fc3c",
+    "verification-inventory.json": "7f708c4fe0b9df8c43ca9ef210bbd92e4288482c74a0d056afad8141e12484c4"
+  },
+  "original_target_summary": {
+    "met": 110,
+    "total": 114,
+    "all_met": false,
+    "acceptance_sha256": "de0c9378204b8b08610318f41d98efb95cc2c31048a6b593707197635a0cba96"
+  },
+  "verification_scope": "Retained numerical requirements plus truthful reporting of original accuracy study goals; original_target_summary is separate."
+}

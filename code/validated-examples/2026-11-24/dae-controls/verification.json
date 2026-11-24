@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "group": "dae-controls",
+  "edition": "2026-11-24",
+  "verified_on": "2026-11-24",
+  "source_manifest_sha256": "d2fb466758236e7de6b078693209262ad99f3eadc343e9e719fc990a6e3cec4c",
+  "archive": {
+    "file": "atlas-dae-controls-2026-11-24.zip",
+    "sha256": "3f4d3ed14053a3a2a6f495c4445fb5c64093e59c07559b6632d2cdd9ea454fad",
+    "bytes": 4255044,
+    "archive_directory": "atlas-dae-controls-2026-11-24"
+  },
+  "archive_sha256": "3f4d3ed14053a3a2a6f495c4445fb5c64093e59c07559b6632d2cdd9ea454fad",
+  "returncode": 0,
+  "passed_tests": 25,
+  "tests": 25,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "high-index-pendulum",
+    "index1-dae-consistent-initialization",
+    "robertson-conservation-dae"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 1.7416116249951301,
+  "independent_rerun_seconds": 1.6124059590001707,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

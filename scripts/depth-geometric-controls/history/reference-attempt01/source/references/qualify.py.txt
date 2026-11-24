@@ -1,0 +1,156 @@
+"""Fixed reference-only qualification, separately authorized from main."""
+import argparse
+from decimal import Decimal, localcontext
+from fractions import Fraction
+import json
+import math
+from pathlib import Path
+import sys
+import numpy as np
+from scipy.integrate import solve_ivp
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from io_utils import sha, save_raw, write_json
+from references import analytic as a
+from references import discrete as d
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--input', type=Path, required=True)
+    parser.add_argument('--acceptance', type=Path, required=True)
+    parser.add_argument('--output', type=Path, required=True)
+    args = parser.parse_args(); out = args.output.resolve()
+    if out.exists():
+        raise FileExistsError('Fresh reference output required')
+    out.mkdir(parents=True)
+    cfg = json.loads(args.input.read_text()); limits = json.loads(args.acceptance.read_text())['independent_reference']
+    checks, values = {}, {}
+    source = Path(__file__).resolve().parents[1]
+    dependencies = ['references/__init__.py', 'references/analytic.py', 'references/discrete.py',
+                    'references/qualify.py', 'io_utils.py']
+    hashes = {name: sha(source/name) for name in dependencies}
+    report = dict(schema_version=1, passed=False, checks=checks, values=values,
+                  input_sha256=sha(args.input), acceptance_sha256=sha(args.acceptance),
+                  source_sha256=hashes, failure=None,
+                  scope='64independent analytic/frozen-map checks; two DOP853reference evolutions; zero primary evolutions')
+    def check(name, value, limit=None):
+        nonfinite = isinstance(value, (float, np.floating)) and not math.isfinite(float(value))
+        values[name] = {'nonfinite_candidate': str(value)} if nonfinite else value
+        checks[name] = False if nonfinite else bool(value if limit is None else value <= limit)
+        write_json(out/'qualification.partial.json', report)
+    try:
+        t = np.linspace(0., 100., 33); exact = a.pendulum(t)
+        save_raw(out, 'pendulum-analytic-before-diagnostics', dict(times=t, **exact))
+        check('pendulum-initial-theta', abs(float(exact['theta'][0])-.7), 1e-13)
+        check('pendulum-initial-angular-velocity', abs(float(exact['angular_velocity'][0])), 1e-13)
+        H = .5*np.sum(exact['p']**2, axis=1)+exact['q'][:, 1]
+        check('pendulum-energy', float(np.max(abs(H+math.cos(.7)))), limits['analytic_pendulum_energy'])
+        k = math.sin(.35)
+        check('Jacobi-sn-cn', float(np.max(abs(exact['sn']**2+exact['cn']**2-1))), 1e-13)
+        check('Jacobi-dn-sn', float(np.max(abs(exact['dn']**2+k*k*exact['sn']**2-1))), 1e-13)
+        dop = []
+        for i, (rtol, atol) in enumerate(cfg['reference_qualification']['angular_DOP853_tolerances']):
+            queries = []
+            def rhs(time, state):
+                queries.append((float(time), float(state[0]), float(state[1])))
+                if len(queries) % 64 == 0:
+                    save_raw(out, 'DOP853-current-'+str(i), dict(rhs_queries=np.asarray(queries)))
+                return (state[1], -np.sin(state[0]))
+            try:
+                solution = solve_ivp(rhs, (0., 100.), (.7, 0.), method='DOP853',
+                                     rtol=rtol, atol=atol, t_eval=t)
+                save_raw(out, 'DOP853-completed-'+str(i), dict(times=solution.t,
+                         states=solution.y.T, rhs_queries=np.asarray(queries)))
+            finally:
+                save_raw(out, 'DOP853-entered-'+str(i), dict(rhs_queries=np.asarray(queries)))
+            check('DOP853-success-'+str(i), bool(solution.success and len(solution.t) == 33))
+            dop.append(solution.y.T)
+        check('DOP853-tight-analytic', float(np.max(abs(dop[-1]-np.column_stack((exact['theta'], exact['angular_velocity']))))), limits['pendulum_DOP853_state_agreement'])
+        check('DOP853-two-tolerances', float(np.max(abs(dop[0]-dop[1]))), limits['pendulum_two_tolerance_agreement'])
+        for e in [.1, .7]:
+            times = np.linspace(0., 20*math.pi, 33)
+            one = a.kepler(times, e); save_raw(out, 'kepler-brent-'+str(e), dict(times=times, **one))
+            two = a.kepler(times, e, True); save_raw(out, 'kepler-bisect-'+str(e), dict(times=times, **two))
+            prefix = 'kepler-'+str(e)+'-'; q, p = one['q'], one['p']
+            check(prefix+'root', float(np.max(abs(one['root_residual']))), limits['kepler_root_residual'])
+            check(prefix+'independent-bracket', float(max(np.max(abs(one['q']-two['q'])), np.max(abs(one['p']-two['p'])))), limits['kepler_brent_bisection_state_agreement'])
+            radius = np.sqrt(np.sum(q*q, axis=1)); energy = np.sum(p*p, axis=1)/2-1/radius
+            check(prefix+'energy', float(np.max(abs(energy+.5))), 5e-13)
+            angular = q[:, 0]*p[:, 1]-q[:, 1]*p[:, 0]
+            check(prefix+'angular', float(np.max(abs(angular-math.sqrt(1-e*e)))), 5e-13)
+            delta = 1e-5; mid = .7
+            left, right, center = a.kepler([mid-delta], e), a.kepler([mid+delta], e), a.kepler([mid], e)
+            dv = (right['p'][0]-left['p'][0])/(2*delta)
+            force = -center['q'][0]/np.linalg.norm(center['q'][0])**3
+            check(prefix+'velocity-ODE', float(np.max(abs(dv-force))), 5e-8)
+            check(prefix+'initial-radius', abs(float(radius[0])-(1-e)), 1e-13)
+        for omega in [10, 20]:
+            vals, vecs = a.modes(omega); fields = a.coupled(np.linspace(0., 10., 33), omega)
+            save_raw(out, 'modal-before-diagnostics-'+str(omega), dict(states=fields, eigenvalues=vals, vectors=vecs))
+            check('modal-positive-'+str(omega), min(vals) > 0)
+            check('modal-orthogonal-'+str(omega), abs(sum(x*y for x, y in zip(*vecs))), limits['modal_orthogonality'])
+            residual = max(max(abs(v[0]+v[1]-value*v[0]), abs(v[0]+omega*omega*v[1]-value*v[1]))/(1+omega*omega) for value, v in zip(vals, vecs))
+            check('modal-eigenpair-'+str(omega), residual, limits['modal_eigenpair_scaled_residual'])
+            H = .5*np.sum(fields[:, 2:]**2, axis=1)+.5*(fields[:, 0]**2+omega*omega*fields[:, 1]**2)+fields[:, 0]*fields[:, 1]
+            check('modal-energy-'+str(omega), float(np.max(abs(H-H[0]))), 1e-12)
+        for omega in [10, 20]:
+            for method, probes in [('verlet', [1., 1.8, 2.2]), ('impulse', [.9, 1., 1.1])]:
+                for value in probes:
+                    h = value/omega if method == 'verlet' else (float(value)*math.pi)/float(omega)
+                    coeff = d.binary_coefficients(method, omega, 1., h)
+                    tag = str(omega)+'-'+method+'-'+str(value)
+                    refs = []
+                    for precision in [80, 120]:
+                        write_json(out/(tag+'-D'+str(precision)+'-active.json'),
+                                   dict(completed_steps=0, initial=[1., 1./omega, 0., 0.]))
+                        states = d.action(coeff, method, 64, precision,
+                                          raw_callback=lambda step, candidate: write_json(
+                                              out/(tag+'-D'+str(precision)+'-active.json'),
+                                              dict(completed_steps=step, states=candidate)))
+                        write_json(out/(tag+'-D'+str(precision)+'.json'), [[str(x) for x in row] for row in states])
+                        refs.append(states)
+                    with localcontext() as ctx:
+                        ctx.prec = 140
+                        difference = max(abs(x-y)/(1+abs(y)) for aa, bb in zip(*refs) for x, y in zip(aa, bb))
+                    check('map-precision-'+tag, float(difference), limits['decimal80_120_relative_action_agreement'])
+                    rational = [Fraction.from_float(float(x)) for x in (1., 1./omega, 0., 0.)]
+                    for matrix in d.stage_matrices(coeff, method, Fraction):
+                        rational = d.mv(matrix, rational)
+                    with localcontext() as ctx:
+                        ctx.prec = 140
+                        difference = max(abs(Decimal(x.numerator)/Decimal(x.denominator)-y)/(1+abs(y)) for x, y in zip(rational, refs[0][1]))
+                    check('map-Fraction-component-'+tag, float(difference), 1e-50)
+        for h in [Fraction(1, 4), Fraction(1, 8)]:
+            _, rank, polynomial = d.exact_pi_component(h)
+            _, uncoupled_rank, _ = d.exact_pi_component(h, Fraction(0))
+            check('ideal-pi-polynomial-'+str(h), polynomial)
+            check('ideal-pi-Jordan-rank-'+str(h), rank == 3)
+            check('ideal-pi-no-coupling-control-'+str(h), uncoupled_rank == 2)
+        for omega in [10, 20]:
+            for factor in [.9, 1.1]:
+                low, margin_low = d.ideal_classification(omega, factor, 80)
+                high, margin_high = d.ideal_classification(omega, factor, 120)
+                write_json(out/('ideal-class-'+str(omega)+'-'+str(factor)+'.json'),
+                           dict(precision80_class=low, precision120_class=high,
+                                margin80=str(margin_low), margin120=str(margin_high)))
+                check('ideal-offcentral-class-'+str(omega)+'-'+str(factor),
+                      low == high and low in ('stable', 'unstable') and
+                      min(margin_low, margin_high) > Decimal('1e-20'))
+        wrap = a.kepler([0., 2*math.pi, 20*math.pi], .7)
+        save_raw(out, 'Kepler-wrapping-before-diagnostics', wrap)
+        check('Kepler-whole-period-wrap', float(max(np.max(abs(wrap['q']-wrap['q'][0])), np.max(abs(wrap['p']-wrap['p'][0])))), 2e-11)
+        if len(checks) != 64:
+            raise RuntimeError('Reference decision inventory differs from64')
+        if {name: sha(source/name) for name in dependencies} != hashes:
+            raise RuntimeError('Reference source changed')
+        report['passed'] = bool(all(checks.values()))
+    except BaseException as error:
+        report['failure'] = dict(type=type(error).__name__, message=str(error))
+    finally:
+        write_json(out/'qualification.json', report)
+    return 0 if report['passed'] else 1
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

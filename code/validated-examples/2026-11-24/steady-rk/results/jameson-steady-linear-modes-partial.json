@@ -1,0 +1,213 @@
+{
+  "id": "jameson-steady-linear-modes",
+  "passed": true,
+  "checks": {
+    "reference:h32-mode4:expanded-vs-stages": true,
+    "reference:h32-mode4:prior-classification": true,
+    "reference:h32-mode8:expanded-vs-stages": true,
+    "reference:h32-mode8:prior-classification": true,
+    "reference:h16-mode4:expanded-vs-stages": true,
+    "reference:h16-mode4:prior-classification": true,
+    "reference:h16-mode8:expanded-vs-stages": true,
+    "reference:h16-mode8:prior-classification": true,
+    "reference:neutral:expanded-vs-stages": true,
+    "reference:neutral:prior-classification": true,
+    "reference:expanding:expanded-vs-stages": true,
+    "reference:expanding:prior-classification": true,
+    "reference:rational-stencil-mode4": true,
+    "reference:rational-stencil-mode8": true,
+    "stable-h32:finite": true,
+    "stable-h32:stage-count": true,
+    "stable-h32:spurious-mode": true,
+    "stable-h32:true-residual-reference": true,
+    "stable-h32:field-error": true,
+    "stable-h32:residual-reduction": true,
+    "stable-h32:nonzero-mode4": true,
+    "stable-h16:finite": true,
+    "stable-h16:stage-count": true,
+    "stable-h16:spurious-mode": true,
+    "stable-h16:true-residual-reference": true,
+    "stable-h16:field-error": true,
+    "stable-h16:residual-reduction": true,
+    "stable-h16:nonzero-mode4": true,
+    "neutral-constant:finite": true,
+    "neutral-constant:stage-count": true,
+    "neutral-constant:spurious-mode": true,
+    "neutral-constant:true-residual-reference": true,
+    "neutral-constant:neutrality": true,
+    "expanding-nyquist:finite": true,
+    "expanding-nyquist:stage-count": true,
+    "expanding-nyquist:spurious-mode": true,
+    "expanding-nyquist:expected-expansion": true,
+    "expanding-nyquist:normalized-error": true,
+    "steady-fixed-point": true,
+    "four-record-identities": true,
+    "verification:original-target-inventory": true,
+    "verification:all-original-decisions-recomputed": true,
+    "verification:measured-records-match-saved-arrays": true,
+    "verification:frozen-original-input-and-acceptance": true,
+    "verification:independent-reference-integrity": true,
+    "verification:actual-target-summary": true,
+    "verification:retained-first-attempt-history": true,
+    "verification:only-declared-study-goals-are-nonmandatory": true
+  },
+  "records": [
+    {
+      "id": "stable-h32",
+      "role": "steady_iteration",
+      "termination": "completed_fixed_steps",
+      "steps": 64,
+      "stage_residual_evaluations": 256,
+      "monitor_residual_evaluations": 65,
+      "metrics": {
+        "full_field_maxabs_error": 3.3306690738754696e-16,
+        "normalized_field_error": 1.7143221587850987e-16,
+        "mode4_final_amplitude": 1.5238393618337132e-08,
+        "residual_ratio": 6.446370751486289e-09,
+        "spurious_mode_maxabs": 1.1102230246251565e-16,
+        "modal_residual_error": 2.6645352591003757e-15
+      }
+    },
+    {
+      "id": "stable-h16",
+      "role": "steady_iteration",
+      "termination": "completed_fixed_steps",
+      "steps": 32,
+      "stage_residual_evaluations": 128,
+      "monitor_residual_evaluations": 33,
+      "metrics": {
+        "full_field_maxabs_error": 2.220446049250313e-16,
+        "normalized_field_error": 1.1997714173839207e-16,
+        "mode4_final_amplitude": 1.5381125809623605e-08,
+        "residual_ratio": 6.6210787709662455e-09,
+        "spurious_mode_maxabs": 1.1102230246251565e-16,
+        "modal_residual_error": 1.1102230246251565e-15
+      }
+    },
+    {
+      "id": "neutral-constant",
+      "role": "neutral_control",
+      "termination": "completed_fixed_steps",
+      "steps": 8,
+      "stage_residual_evaluations": 32,
+      "monitor_residual_evaluations": 9,
+      "metrics": {
+        "full_field_maxabs_error": 0.0,
+        "normalized_field_error": 0.0,
+        "mode4_final_amplitude": 0.0,
+        "residual_ratio": null,
+        "spurious_mode_maxabs": 0.0,
+        "modal_residual_error": 0.0
+      }
+    },
+    {
+      "id": "expanding-nyquist",
+      "role": "expected_expansion_control",
+      "termination": "completed_fixed_steps",
+      "steps": 4,
+      "stage_residual_evaluations": 16,
+      "monitor_residual_evaluations": 5,
+      "metrics": {
+        "full_field_maxabs_error": 6.821210263296962e-13,
+        "normalized_field_error": 3.634886991251329e-16,
+        "mode4_final_amplitude": 0.0,
+        "residual_ratio": 1875.5948651814128,
+        "spurious_mode_maxabs": 0.0,
+        "modal_residual_error": 1.0913936421275139e-11
+      }
+    }
+  ],
+  "metrics": {
+    "stable-h32:field-error": 3.3306690738754696e-16,
+    "stable-h32:residual-reduction": 6.446370751486289e-09,
+    "stable-h32:nonzero-mode4": 1.5238393618337132e-08,
+    "stable-h16:field-error": 2.220446049250313e-16,
+    "stable-h16:residual-reduction": 6.6210787709662455e-09,
+    "stable-h16:nonzero-mode4": 1.5381125809623605e-08,
+    "neutral-constant:neutrality": 0.0,
+    "expanding-nyquist:expected-expansion": 1875.5948651814128,
+    "expanding-nyquist:normalized-error": 3.634886991251329e-16,
+    "max_field_error": 6.821210263296962e-13,
+    "original_targets_met": 40,
+    "original_targets_total": 41
+  },
+  "original_target_results": {
+    "reference:h32-mode4:expanded-vs-stages": true,
+    "reference:h32-mode4:prior-classification": true,
+    "reference:h32-mode8:expanded-vs-stages": true,
+    "reference:h32-mode8:prior-classification": true,
+    "reference:h16-mode4:expanded-vs-stages": true,
+    "reference:h16-mode4:prior-classification": true,
+    "reference:h16-mode8:expanded-vs-stages": true,
+    "reference:h16-mode8:prior-classification": true,
+    "reference:neutral:expanded-vs-stages": true,
+    "reference:neutral:prior-classification": true,
+    "reference:expanding:expanded-vs-stages": true,
+    "reference:expanding:prior-classification": true,
+    "reference:rational-stencil-mode4": true,
+    "reference:rational-stencil-mode8": true,
+    "stable-h32:finite": true,
+    "stable-h32:stage-count": true,
+    "stable-h32:spurious-mode": true,
+    "stable-h32:true-residual-reference": true,
+    "stable-h32:field-error": true,
+    "stable-h32:residual-reduction": true,
+    "stable-h32:nonzero-mode4": true,
+    "stable-h16:finite": true,
+    "stable-h16:stage-count": true,
+    "stable-h16:spurious-mode": true,
+    "stable-h16:true-residual-reference": true,
+    "stable-h16:field-error": true,
+    "stable-h16:residual-reduction": true,
+    "stable-h16:nonzero-mode4": true,
+    "neutral-constant:finite": true,
+    "neutral-constant:stage-count": true,
+    "neutral-constant:spurious-mode": true,
+    "neutral-constant:true-residual-reference": true,
+    "neutral-constant:neutrality": true,
+    "expanding-nyquist:finite": true,
+    "expanding-nyquist:stage-count": true,
+    "expanding-nyquist:spurious-mode": true,
+    "expanding-nyquist:true-residual-reference": false,
+    "expanding-nyquist:expected-expansion": true,
+    "expanding-nyquist:normalized-error": true,
+    "steady-fixed-point": true,
+    "four-record-identities": true
+  },
+  "original_target_summary": {
+    "met": 40,
+    "total": 41,
+    "all_met": false,
+    "acceptance_sha256": "af846323a4e4235d968ecb431eea825fbee40f7a1047e65b18c70b7d4a83fe00"
+  },
+  "original_scientific_targets_met": false,
+  "reporting_verification": {
+    "scope": "Retained numerical integrity and verified faithful reporting; original accuracy goals may be unmet.",
+    "post_measurement_revision": true,
+    "goal_measurements": {
+      "expanding-nyquist:true-residual-reference": {
+        "measured": 1.0913936421275139e-11,
+        "limit": 2e-12,
+        "comparison": "<=",
+        "units": "absolute discrete residual",
+        "met": false
+      }
+    },
+    "study_goal_keys": [
+      "expanding-nyquist:true-residual-reference"
+    ],
+    "current_failure_mask_required": false,
+    "original_numerical_acceptance_unchanged": true,
+    "saved_data_only_audit_no_new_solver_or_reference_generation": true
+  },
+  "original_study_goal_measurements": {
+    "expanding-nyquist:true-residual-reference": {
+      "measured": 1.0913936421275139e-11,
+      "limit": 2e-12,
+      "comparison": "<=",
+      "units": "absolute discrete residual",
+      "met": false
+    }
+  },
+  "validation_scope": "fixed_study_with_separate_original_accuracy_goals"
+}

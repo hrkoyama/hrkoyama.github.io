@@ -1,0 +1,249 @@
+"""All60 fixed primary runs, actual finite metrics, per-run raw retention."""
+import math
+import json
+import reporting_policy
+from pathlib import Path
+import numpy as np
+import boundary
+import dopri
+import models
+import stiff
+from io_contract import Trace, save_json, save_csv
+
+CASE_IDS = ['robertson-stiff-kinetics', 'van-der-pol-stiff-transition',
+            'rk45-dense-events', 'strang-boundary-order-reduction']
+
+
+def new_case(ident, acceptance_sha256):
+    return {'id': ident, 'passed': False, 'checks': {}, 'records': [], 'metrics': {},
+            'original_target_results': {},
+            'original_target_summary': {'met': 0, 'total': 0, 'all_met': False, 'acceptance_sha256': acceptance_sha256}}
+
+
+def checkpoint(directory, case):
+    original = case['original_target_results']
+    case['original_target_summary'].update(met=sum(v is True for v in original.values()),
+                                          total=len(original), all_met=bool(original) and all(original.values()))
+    case['passed'] = bool(case['checks']) and all(case['checks'].values())
+    save_json(directory/(case['id']+'-checkpoint.json'), case)
+
+
+def check(case, directory, name, value, original=True):
+    if name in case['checks'] or name in case['original_target_results']:raise ValueError('Duplicate scientific gate')
+    decision = bool(value)
+    if original:case['original_target_results'][name] = decision
+    # Exactly one disclosed global goal becomes study data; its decision is never overwritten.
+    scoped_goal = case['id'] == reporting_policy.CASE_ID and name == reporting_policy.GOAL_ID
+    if not scoped_goal:case['checks'][name] = decision
+    checkpoint(directory, case)
+
+
+def save_stiff(directory, row, out, extra=None):
+    arrays = {'times': out['times'], 'states': out['states']}
+    if 'observation_states' in out:arrays['observation_states'] = out['observation_states']
+    if extra:arrays.update(extra)
+    np.savez_compressed(directory/(row['id']+'.npz'), **arrays)
+
+
+def run_stiff(case, rows, inputs, limits, cache, directory):
+    is_robertson = case['id'] == CASE_IDS[0]
+    byid = {}
+    for row in rows:
+        save_json(directory/'entered-run.json', row)
+        rhs, jac, initial, weights = models.model(case['id'], row.get('mu'))
+        key = 'robertson' if is_robertson else 'vdp-mu'+str(row['mu'])
+        # Cache identity is checked before entry; actual candidate save still precedes diagnostics.
+        reference = cache.stiff(key)
+        trace = Trace(directory, row['id'])
+        try:
+            if row['role'] == 'primary-fixed':
+                out = stiff.fixed(rhs, jac, initial, weights, row['final_time'], row['steps'], row['method'], inputs['implicit_solver'], trace)
+            else:
+                first = inputs['sdirk_step_doubling']['initial_step']['robertson' if is_robertson else 'vdp']
+                out = stiff.adaptive(rhs, jac, initial, weights, reference['times'], inputs['implicit_solver'],
+                                     inputs['sdirk_step_doubling'], row['tolerance_id'], first, trace)
+            save_stiff(directory, row, out)
+        finally:
+            trace.close()
+        if row['role'] == 'primary-fixed':
+            indices = np.rint(reference['times']/(row['final_time']/row['steps'])).astype(int)
+            actual_times = out['times'][indices]
+            if float(np.max(np.abs(actual_times-reference['times']))) > 2e-14:raise ValueError('Fixed grid misses frozen observations')
+            observed = out['states'][indices]
+        else:
+            observed = out['observation_states']
+        errors = (observed-reference['states'])/weights
+        error = float(np.max(np.abs(errors)))
+        work = out['work']
+        record = {'run_id': row['id'], 'method': row['method'], 'mu': row.get('mu', ''),
+                  'steps': work['accepted_steps'], 'attempts': work['attempted_steps'],
+                  'rejected': work['rejected_steps'], 'rtol': inputs['sdirk_step_doubling'][row['tolerance_id']]['rtol'] if 'tolerance_id' in row else '',
+                  'sampled_weighted_linf': error, 'minimum_accepted_state': float(out['states'].min()),
+                  'maximum_accepted_state_abs': float(np.max(np.abs(out['states']))),
+                  'maximum_completed_stage_residual': work['maximum_completed_stage_residual'],
+                  'minimum_completed_stage_value': work['minimum_completed_stage_value'],
+                  'maximum_completed_stage_abs': work['maximum_completed_stage_abs'],
+                  'mass_error': float(np.max(np.abs(out['states'].sum(axis=1)-1))) if is_robertson else '',
+                  **{k: work[k] for k in ['rhs','jacobian','factorizations','linear_solves','factor_reuses','newton_updates','line_search_rejections','stage_failures']}}
+        case['records'].append(record)
+        byid[row['id']] = record
+        checkpoint(directory, case)
+        save_stiff(directory, row, out, {'observation_times': reference['times'], 'reference': reference['states'],
+                                      'observed': observed, 'scaled_errors': errors})
+        if 'trials' in out:save_json(directory/(row['id']+'-trials.json'), out['trials'])
+        check(case, directory, row['id']+':complete-finite', out['times'][-1] == row['final_time'] and np.isfinite(out['states']).all())
+        check(case, directory, row['id']+':true-stage-residual', work['maximum_completed_stage_residual'] <= limits['global']['maximum_scaled_implicit_residual'])
+        if is_robertson:
+            check(case, directory, row['id']+':mass', record['mass_error'] <= limits['robertson']['all_run_mass_abs'])
+            check(case, directory, row['id']+':accepted-positivity', record['minimum_accepted_state'] >= limits['robertson']['all_accepted_minimum'])
+        else:
+            check(case, directory, row['id']+':bounded-state', record['maximum_accepted_state_abs'] <= limits['vdp']['all_run_state_abs_bound'])
+    section = limits['robertson' if is_robertson else 'vdp']
+    mus = [None] if is_robertson else [1, 100]
+    for mu in mus:
+        prefix = 'robertson-' if is_robertson else 'vdp-mu'+str(mu)+'-'
+        ncoarse, nfine = (512, 2048) if is_robertson else (256, 1024)
+        for method in ('bdf2', 'sdirk2'):
+            coarse = byid[prefix+method+'-'+str(ncoarse)]['sampled_weighted_linf']
+            fine = byid[prefix+method+'-'+str(nfine)]['sampled_weighted_linf']
+            threshold = section['fixed_finest_sampled_weighted_linf' if is_robertson else 'fixed_finest_sampled_linf']
+            check(case, directory, prefix+method+':finest-accuracy', fine <= threshold)
+            check(case, directory, prefix+method+':refinement', coarse > 0 and fine <= section['fixed_finest_over_coarsest_error_max']*coarse)
+        for tol in ('loose', 'tight'):
+            value = byid[prefix+'sdirk-doubling-'+tol]['sampled_weighted_linf']
+            key = 'adaptive_'+tol+'_sampled_'+('weighted_linf' if is_robertson else 'linf')
+            check(case, directory, prefix+'adaptive-'+tol+':accuracy', value <= section[key])
+        loose = byid[prefix+'sdirk-doubling-loose']['sampled_weighted_linf']
+        tight = byid[prefix+'sdirk-doubling-tight']['sampled_weighted_linf']
+        check(case, directory, prefix+'adaptive:actual-tolerance-response', loose > 0 and tight <= section['adaptive_tight_over_loose_error_max']*loose)
+    reuses = sum(r['factor_reuses'] for r in case['records'])
+    check(case, directory, 'actual-within-stage-factor-reuse', reuses > 0 and all(r['linear_solves'] >= r['factorizations'] for r in case['records']))
+    case['metrics'] = {'maximum_sampled_weighted_error': max(r['sampled_weighted_linf'] for r in case['records']),
+                       'factorizations': sum(r['factorizations'] for r in case['records']),
+                       'linear_solves': sum(r['linear_solves'] for r in case['records']), 'factor_reuses': reuses,
+                       'accuracy_scope': 'Fixed reference observation times only; all-step positivity/conservation separately tested. Stage residual norm is weightedLinf; adaptive estimator norm is RMS.'}
+    if case['id'] == reporting_policy.CASE_ID:
+        record = byid[reporting_policy.RUN_ID]
+        threshold = limits['vdp']['adaptive_tight_sampled_linf']
+        trials = json.loads((directory/(reporting_policy.RUN_ID+'-trials.json')).read_text())
+        study, reporting_checks = reporting_policy.evaluate(Path(__file__).resolve().parent, case, record, trials, threshold)
+        case['validation_scope'] = 'study_with_explicit_original_accuracy_goal_outcomes'
+        case['study_results'] = {'mu1_tight_global_goal': study}
+        case['original_study_goal_measurements'] = {reporting_policy.GOAL_ID: {
+            'measured': study['actual_sampled_weighted_linf'], 'limit': threshold,
+            'comparison': '<=', 'units': 'dimensionless sampled weighted L-infinity error', 'met': study['target_met']}}
+        record['original_global_goal'] = threshold
+        record['original_global_goal_met'] = int(study['target_met'])
+        case['metrics']['original_mu1_tight_global_goal'] = threshold
+        case['metrics']['actual_mu1_tight_global_error'] = study['actual_sampled_weighted_linf']
+        case['metrics']['original_mu1_tight_global_goal_met'] = study['target_met']
+        case['metrics']['reporting_scope'] = study['scope']
+        for name, decision in reporting_checks.items():check(case, directory, name, decision, original=False)
+    checkpoint(directory, case)
+    save_csv(directory/(case['id']+'.csv'), case['records'])
+
+
+def run_rk45(case, rows, inputs, limits, directory):
+    cfg, section = inputs['cases'][case['id']], limits['rk45']
+    errors = {}
+    rejections = 0
+    for row in rows:
+        save_json(directory/'entered-run.json', row)
+        trace = Trace(directory, row['id'])
+        try:
+            out = dopri.integrate(row, cfg, observe=trace)
+            raw = {'times': out['times'], 'states': out['states'], 'output_time': np.array([out['output_time']]),
+                   'output_state': out['output_state'], 'segment_t0': np.array([s.t0 for s in out['segments']]),
+                   'segment_t1': np.array([s.t1 for s in out['segments']]), 'segment_q': np.array([s.q for s in out['segments']]),
+                   'segment_y0': np.array([s.y0 for s in out['segments']])}
+            np.savez_compressed(directory/(row['id']+'.npz'), **raw)
+        finally:
+            trace.close()
+        observation_times = np.array([(j+0.37)*2/97 for j in range(97) if (j+0.37)*2/97 < out['output_time']])
+        observed = np.array([dopri.evaluate(out['segments'], t) for t in observation_times])
+        reference = dopri.exact(observation_times)
+        # Accepted full endpoints remain distinct from terminal root output.
+        endpoint_error = float(np.max(np.abs(out['states']-dopri.exact(out['times']))))
+        dense_error = float(np.max(np.abs(observed-reference)))
+        expected = [math.pi/6, math.pi/2] if row['event_direction'] == 0 else [math.pi/6 if row['event_direction'] < 0 else math.pi/2]
+        found = [r['time'] for r in out['roots']]
+        root_set = len(found) == len(expected)
+        event_error = max((abs(a-b) for a,b in zip(found, expected)), default=None)
+        root_residual = max((abs(r['residual']) for r in out['roots']), default=None)
+        work = out['work'];rejections += work['rejected_steps']
+        record = {'run_id': row['id'], 'rtol': cfg['tolerances'][row['tolerance_id']]['rtol'], 'max_step': row['max_step'],
+                  'direction': row['event_direction'], 'terminal': int(row['terminal']), 'output_time': out['output_time'],
+                  'endpoint_linf': endpoint_error, 'offmesh_linf': dense_error, 'event_time_abs': event_error,
+                  'event_residual_abs': root_residual, 'events': len(found), **work}
+        case['records'].append(record);checkpoint(directory, case)
+        np.savez_compressed(directory/(row['id']+'.npz'), **raw, observation_times=observation_times,
+                            observed=observed, reference=reference, root_times=np.array(found), expected_roots=np.array(expected))
+        save_json(directory/(row['id']+'-trials.json'), {'attempts': out['attempts'], 'events': out['roots'], 'termination': out['termination']})
+        bound = section[row['tolerance_id']]
+        good_termination = out['termination'] == ('terminal_event' if row['terminal'] else 'reached_fixed_final_time')
+        check(case, directory, row['id']+':completion-and-work', good_termination and np.isfinite(out['states']).all() and work['nfev'] == 1+6*work['attempted_steps'])
+        check(case, directory, row['id']+':endpoint-error', endpoint_error <= bound['endpoint_linf'])
+        check(case, directory, row['id']+':offmesh-error', dense_error <= bound['offmesh_linf'])
+        check(case, directory, row['id']+':event-time-and-set', root_set and event_error is not None and event_error <= bound['event_time_abs'])
+        check(case, directory, row['id']+':event-residual', root_residual is not None and root_residual <= section['event_function_abs'])
+        errors[row['id']] = dense_error
+    for maximum in (0.4, 0.1):
+        loose, tight = errors['rk45-loose-hmax'+str(maximum)], errors['rk45-tight-hmax'+str(maximum)]
+        check(case, directory, 'hmax'+str(maximum)+':actual-tolerance-response', loose > 0 and tight <= section['tight_over_loose_error_at_each_maxstep']*loose)
+    check(case, directory, 'rejected-trial-actually-exercised', rejections > 0)
+    case['metrics'] = {'maximum_dense_error': max(r['offmesh_linf'] for r in case['records']),
+                       'maximum_event_time_error': max((r['event_time_abs'] for r in case['records'] if r['event_time_abs'] is not None), default=None),
+                       'actual_RHS_evaluations': sum(r['nfev'] for r in case['records']), 'rejected_trials': rejections,
+                       'scope': 'Analytic state/simple crossings; accepted-full endpoint versus terminal dense-root state distinct. No global guarantee inferred from localtol.'}
+    checkpoint(directory, case);save_csv(directory/(case['id']+'.csv'), case['records'])
+
+
+def run_boundary(case, rows, inputs, limits, cache, directory):
+    byid = {}
+    for row in rows:
+        save_json(directory/'entered-run.json', row)
+        trace = Trace(directory, row['id'])
+        try:
+            out = boundary.integrate(row, observe=trace)
+            np.savez_compressed(directory/(row['id']+'.npz'), x=out['x'], times=out['times'], states=out['states'])
+        finally:
+            trace.close()
+        ref = cache.boundary(row['n_interior'])
+        if len(out['times']) != len(ref['times']) or float(np.max(np.abs(out['times']-ref['times']))) > 2e-14:raise ValueError('Boundary time cache mismatch')
+        temporal = float(np.max(np.abs(out['states']-ref['states'])))
+        spatial = float(np.max(np.abs(ref['states']-ref['continuum'])))
+        continuum_error = float(np.max(np.abs(out['states']-ref['continuum'])))
+        record = {'run_id': row['id'], 'method': row['method'], 'n': row['n_interior'], 'steps': row['steps'],
+                  'dt': row['final_time']/row['steps'], 'temporal_linf': temporal, 'reference_spatial_linf': spatial,
+                  'continuum_total_linf': continuum_error, **out['work'],
+                  'reaction_trace_defect': out['boundary']['reaction_trace_defect'],
+                  'last_subflow_trace_defect': out['boundary']['last_subflow_trace_defect']}
+        case['records'].append(record);byid[row['id']] = record;checkpoint(directory, case)
+        np.savez_compressed(directory/(row['id']+'.npz'), x=out['x'], times=out['times'], states=out['states'],
+                            reference=ref['states'], continuum=ref['continuum'])
+        expected_calls = row['steps'] if row['method'] == 'lie-unmodified' else 2*row['steps']
+        check(case, directory, row['id']+':actual-field-and-work', np.isfinite(out['states']).all() and out['times'][-1] == row['final_time'] and out['work']['diffusion_calls'] == expected_calls and out['work']['reaction_calls'] == row['steps'])
+        corrected = row['method'] == 'strang-boundary-corrected'
+        defect = out['boundary']['reaction_trace_defect']
+        check(case, directory, row['id']+':boundary-compatibility-ledger', defect == 0 if corrected else defect > 0)
+    section = limits['boundary']
+    for n in (31, 63, 127):
+        value = byid[f'boundary-n{n}-strang-boundary-corrected-64']['temporal_linf']
+        check(case, directory, f'n{n}:corrected-finest-accuracy', value <= section['corrected_finest_temporal_linf'])
+    for method, key in [('strang-unmodified','raw_N127_last_pair_observed_order_interval'),('strang-boundary-corrected','corrected_N127_last_pair_observed_order_interval')]:
+        coarse = byid[f'boundary-n127-{method}-32']['temporal_linf']
+        fine = byid[f'boundary-n127-{method}-64']['temporal_linf']
+        order = math.log2(coarse/fine)
+        check(case, directory, method+':fixed-regime-temporal-order', section[key][0] <= order <= section[key][1])
+    corrected = byid['boundary-n127-strang-boundary-corrected-64']['temporal_linf']
+    raw = byid['boundary-n127-strang-unmodified-64']['temporal_linf']
+    check(case, directory, 'finest:boundary-correction-improves', corrected <= section['N127_finest_corrected_over_raw_max']*raw)
+    e63 = byid['boundary-n63-strang-boundary-corrected-64']['reference_spatial_linf']
+    e127 = byid['boundary-n127-strang-boundary-corrected-64']['reference_spatial_linf']
+    spatial_order = math.log2(e63/e127)
+    low, high = section['reference_spatial_last_pair_linf_order_interval']
+    check(case, directory, 'separate-reference-spatial-order', low <= spatial_order <= high)
+    case['metrics'] = {'N127_finest_raw_temporal_error': raw, 'N127_finest_corrected_temporal_error': corrected,
+                       'reference_spatial_order': spatial_order,
+                       'scope': 'Actual1Dnonperiodicfields. TimevsSAME-FDoracle; spacevsanalyticcontinuum. Linearautonomousspecialization, fixed-regime order; no universal reduction/theorem reproduction.'}
+    checkpoint(directory, case);save_csv(directory/(case['id']+'.csv'), case['records'])

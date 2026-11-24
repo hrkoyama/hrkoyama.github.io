@@ -1,0 +1,343 @@
+{
+  "id": "high-index-pendulum",
+  "passed": true,
+  "checks": {
+    "reference:Jacobi-angular-agreement": true,
+    "reference:angular-tolerance-agreement": true,
+    "reference:Jacobi-initial": true,
+    "reference:Jacobi-invariants": true,
+    "reference:AGM-K": true,
+    "reference:Decimal-remainder-qualification": true,
+    "reference:constraint-identity-False": true,
+    "reference:constraint-work-False": true,
+    "reference:constraint-identity-True": true,
+    "reference:constraint-work-True": true,
+    "default-consistency-rejection": true,
+    "pendulum-consistent-underlying-500:finite": true,
+    "pendulum-consistent-underlying-500:radius": true,
+    "pendulum-consistent-underlying-1000:finite": true,
+    "pendulum-consistent-underlying-1000:radius": true,
+    "pendulum-consistent-underlying-2000:finite": true,
+    "pendulum-consistent-underlying-2000:radius": true,
+    "pendulum-consistent-underlying-2000:state": true,
+    "pendulum-consistent-underlying-2000:energy": true,
+    "pendulum-consistent-stabilized-2000:finite": true,
+    "pendulum-consistent-stabilized-2000:radius": true,
+    "pendulum-consistent-stabilized-2000:state": true,
+    "pendulum-consistent-stabilized-2000:energy": true,
+    "pendulum-radial-underlying-500:finite": true,
+    "pendulum-radial-underlying-500:radius": true,
+    "pendulum-radial-underlying-1000:finite": true,
+    "pendulum-radial-underlying-1000:radius": true,
+    "pendulum-radial-underlying-2000:finite": true,
+    "pendulum-radial-underlying-2000:radius": true,
+    "pendulum-radial-underlying-2000:C-law": true,
+    "pendulum-radial-underlying-2000:D-law": true,
+    "pendulum-radial-underlying-2000:work-ledger": true,
+    "pendulum-radial-stabilized-500:finite": true,
+    "pendulum-radial-stabilized-500:radius": true,
+    "pendulum-radial-stabilized-1000:finite": true,
+    "pendulum-radial-stabilized-1000:radius": true,
+    "pendulum-radial-stabilized-2000:finite": true,
+    "pendulum-radial-stabilized-2000:radius": true,
+    "pendulum-radial-stabilized-2000:C-law": true,
+    "pendulum-radial-stabilized-2000:D-law": true,
+    "pendulum-radial-stabilized-2000:work-ledger": true,
+    "underlying-consistent-fourth-order": true,
+    "visible-unstabilized-drift": true,
+    "stabilized-drift-ratio": true,
+    "eleven-record-identities": true
+  },
+  "records": [
+    {
+      "id": "default-inconsistent-rejection",
+      "kind": "expected_initial_failure",
+      "termination": "initial_velocity_constraint_violated",
+      "metrics": {
+        "C": 0.0,
+        "D": 0.001
+      }
+    },
+    {
+      "id": "pendulum-consistent-underlying-500",
+      "kind": "trajectory",
+      "initial_consistent": true,
+      "constraint_extension": "underlying_ode",
+      "termination": "completed_fixed_steps",
+      "steps": 500,
+      "RHS_evaluations": 2000,
+      "metrics": {
+        "max_state_error": 4.160545245934788e-06,
+        "max_abs_C": 2.765469672483256e-06,
+        "C_exact_law_error": 2.765469672483256e-06,
+        "D_exact_law_error": 2.7391049113589805e-07,
+        "max_energy_error": 3.0130832572305977e-06,
+        "max_energy_work_balance_error": 1.8252864454015173e-08,
+        "minimum_radius_squared": 0.999994469060655
+      }
+    },
+    {
+      "id": "pendulum-consistent-underlying-1000",
+      "kind": "trajectory",
+      "initial_consistent": true,
+      "constraint_extension": "underlying_ode",
+      "termination": "completed_fixed_steps",
+      "steps": 1000,
+      "RHS_evaluations": 4000,
+      "metrics": {
+        "max_state_error": 2.604554864560349e-07,
+        "max_abs_C": 1.7316282147072926e-07,
+        "C_exact_law_error": 1.7316282147072926e-07,
+        "D_exact_law_error": 1.713857653018458e-08,
+        "max_energy_error": 1.8919273392370428e-07,
+        "max_energy_work_balance_error": 8.221427626750745e-10,
+        "minimum_radius_squared": 0.9999996536743571
+      }
+    },
+    {
+      "id": "pendulum-consistent-underlying-2000",
+      "kind": "trajectory",
+      "initial_consistent": true,
+      "constraint_extension": "underlying_ode",
+      "termination": "completed_fixed_steps",
+      "steps": 2000,
+      "RHS_evaluations": 8000,
+      "metrics": {
+        "max_state_error": 1.6288695170452172e-08,
+        "max_abs_C": 1.0830674912476468e-08,
+        "C_exact_law_error": 1.0830674912476468e-08,
+        "D_exact_law_error": 1.0715459075605338e-09,
+        "max_energy_error": 1.1849681791353817e-08,
+        "max_energy_work_balance_error": 4.1426898669475616e-11,
+        "minimum_radius_squared": 0.9999999783386502
+      }
+    },
+    {
+      "id": "pendulum-consistent-stabilized-2000",
+      "kind": "trajectory",
+      "initial_consistent": true,
+      "constraint_extension": "critical_constraint_stabilization",
+      "termination": "completed_fixed_steps",
+      "steps": 2000,
+      "RHS_evaluations": 8000,
+      "metrics": {
+        "max_state_error": 2.182399358452436e-09,
+        "max_abs_C": 1.0581768794537538e-10,
+        "C_exact_law_error": 1.0581768794537538e-10,
+        "D_exact_law_error": 1.1133916011374367e-10,
+        "max_energy_error": 1.2245648939313014e-10,
+        "max_energy_work_balance_error": 1.262848326362555e-09,
+        "minimum_radius_squared": 0.9999999999119735
+      }
+    },
+    {
+      "id": "pendulum-radial-underlying-500",
+      "kind": "trajectory",
+      "initial_consistent": false,
+      "constraint_extension": "underlying_ode",
+      "termination": "completed_fixed_steps",
+      "steps": 500,
+      "RHS_evaluations": 2000,
+      "metrics": {
+        "max_state_error": null,
+        "max_abs_C": 0.01999730449987358,
+        "C_exact_law_error": 2.6955001264199197e-06,
+        "D_exact_law_error": 2.6519275278438087e-07,
+        "max_energy_error": 0.021853616550225663,
+        "max_energy_work_balance_error": 1.773553745879064e-08,
+        "minimum_radius_squared": 1.0
+      }
+    },
+    {
+      "id": "pendulum-radial-underlying-1000",
+      "kind": "trajectory",
+      "initial_consistent": false,
+      "constraint_extension": "underlying_ode",
+      "termination": "completed_fixed_steps",
+      "steps": 1000,
+      "RHS_evaluations": 4000,
+      "metrics": {
+        "max_state_error": null,
+        "max_abs_C": 0.019999831214412733,
+        "C_exact_law_error": 1.687855872671562e-07,
+        "D_exact_law_error": 1.6593273643138173e-08,
+        "max_energy_error": 0.021856315611555877,
+        "max_energy_work_balance_error": 8.02820952078287e-10,
+        "minimum_radius_squared": 1.0
+      }
+    },
+    {
+      "id": "pendulum-radial-underlying-2000",
+      "kind": "trajectory",
+      "initial_consistent": false,
+      "constraint_extension": "underlying_ode",
+      "termination": "completed_fixed_steps",
+      "steps": 2000,
+      "RHS_evaluations": 8000,
+      "metrics": {
+        "max_state_error": null,
+        "max_abs_C": 0.019999989442972765,
+        "C_exact_law_error": 1.0557027235041927e-08,
+        "D_exact_law_error": 1.037474827401963e-09,
+        "max_energy_error": 0.021856485118469382,
+        "max_energy_work_balance_error": 4.06214124837323e-11,
+        "minimum_radius_squared": 1.0
+      }
+    },
+    {
+      "id": "pendulum-radial-stabilized-500",
+      "kind": "trajectory",
+      "initial_consistent": false,
+      "constraint_extension": "critical_constraint_stabilization",
+      "termination": "completed_fixed_steps",
+      "steps": 500,
+      "RHS_evaluations": 2000,
+      "metrics": {
+        "max_state_error": null,
+        "max_abs_C": 0.00036789506087830937,
+        "C_exact_law_error": 2.70874640680434e-08,
+        "D_exact_law_error": 2.8949574397093593e-08,
+        "max_energy_error": 0.0003082872934667691,
+        "max_energy_work_balance_error": 3.1977183966938887e-07,
+        "minimum_radius_squared": 0.9999999763781866
+      }
+    },
+    {
+      "id": "pendulum-radial-stabilized-1000",
+      "kind": "trajectory",
+      "initial_consistent": false,
+      "constraint_extension": "critical_constraint_stabilization",
+      "termination": "completed_fixed_steps",
+      "steps": 1000,
+      "RHS_evaluations": 4000,
+      "metrics": {
+        "max_state_error": null,
+        "max_abs_C": 0.00036788043239688317,
+        "C_exact_law_error": 1.6940355969667815e-09,
+        "D_exact_law_error": 1.7906875354268062e-09,
+        "max_energy_error": 0.00030827311284586933,
+        "max_energy_work_balance_error": 2.0137442365109428e-08,
+        "minimum_radius_squared": 0.9999999986894732
+      }
+    },
+    {
+      "id": "pendulum-radial-stabilized-2000",
+      "kind": "trajectory",
+      "initial_consistent": false,
+      "constraint_extension": "critical_constraint_stabilization",
+      "termination": "completed_fixed_steps",
+      "steps": 2000,
+      "RHS_evaluations": 8000,
+      "metrics": {
+        "max_state_error": null,
+        "max_abs_C": 0.0003678795035788607,
+        "C_exact_law_error": 1.058986416895176e-10,
+        "D_exact_law_error": 1.113360997362714e-10,
+        "max_energy_error": 0.00030827223479734656,
+        "max_energy_work_balance_error": 1.2632772794691789e-09,
+        "minimum_radius_squared": 1.0
+      }
+    }
+  ],
+  "metrics": {
+    "pendulum-consistent-underlying-2000:state": 1.6288695170452172e-08,
+    "pendulum-consistent-underlying-2000:energy": 1.1849681791353817e-08,
+    "pendulum-consistent-stabilized-2000:state": 2.182399358452436e-09,
+    "pendulum-consistent-stabilized-2000:energy": 1.2245648939313014e-10,
+    "pendulum-radial-underlying-2000:C-law": 1.0557027235041927e-08,
+    "pendulum-radial-underlying-2000:D-law": 1.037474827401963e-09,
+    "pendulum-radial-underlying-2000:work-ledger": 4.06214124837323e-11,
+    "pendulum-radial-stabilized-2000:C-law": 1.058986416895176e-10,
+    "pendulum-radial-stabilized-2000:D-law": 1.113360997362714e-10,
+    "pendulum-radial-stabilized-2000:work-ledger": 1.2632772794691789e-09,
+    "underlying-consistent-fourth-order": [
+      3.997663875510909,
+      3.999093883138539
+    ],
+    "visible-unstabilized-drift": 0.019999989442972765,
+    "stabilized-drift-ratio": 8.89400134498285e-10,
+    "finest_consistent_state_error": 1.6288695170452172e-08,
+    "observed_orders": [
+      3.997663875510909,
+      3.999093883138539
+    ],
+    "stabilized_to_unstabilized_drift_ratio": 8.89400134498285e-10,
+    "reference_solver_counters": [
+      {
+        "id": "angular-reference-0",
+        "method": "DOP853",
+        "nfev": 1373,
+        "njev": 0,
+        "nlu": 0,
+        "status": 0,
+        "observations": 33
+      },
+      {
+        "id": "angular-reference-1",
+        "method": "DOP853",
+        "nfev": 2273,
+        "njev": 0,
+        "nlu": 0,
+        "status": 0,
+        "observations": 33
+      }
+    ],
+    "original_targets_met": 45,
+    "original_targets_total": 45
+  },
+  "original_target_results": {
+    "reference:Jacobi-angular-agreement": true,
+    "reference:angular-tolerance-agreement": true,
+    "reference:Jacobi-initial": true,
+    "reference:Jacobi-invariants": true,
+    "reference:AGM-K": true,
+    "reference:Decimal-remainder-qualification": true,
+    "reference:constraint-identity-False": true,
+    "reference:constraint-work-False": true,
+    "reference:constraint-identity-True": true,
+    "reference:constraint-work-True": true,
+    "default-consistency-rejection": true,
+    "pendulum-consistent-underlying-500:finite": true,
+    "pendulum-consistent-underlying-500:radius": true,
+    "pendulum-consistent-underlying-1000:finite": true,
+    "pendulum-consistent-underlying-1000:radius": true,
+    "pendulum-consistent-underlying-2000:finite": true,
+    "pendulum-consistent-underlying-2000:radius": true,
+    "pendulum-consistent-underlying-2000:state": true,
+    "pendulum-consistent-underlying-2000:energy": true,
+    "pendulum-consistent-stabilized-2000:finite": true,
+    "pendulum-consistent-stabilized-2000:radius": true,
+    "pendulum-consistent-stabilized-2000:state": true,
+    "pendulum-consistent-stabilized-2000:energy": true,
+    "pendulum-radial-underlying-500:finite": true,
+    "pendulum-radial-underlying-500:radius": true,
+    "pendulum-radial-underlying-1000:finite": true,
+    "pendulum-radial-underlying-1000:radius": true,
+    "pendulum-radial-underlying-2000:finite": true,
+    "pendulum-radial-underlying-2000:radius": true,
+    "pendulum-radial-underlying-2000:C-law": true,
+    "pendulum-radial-underlying-2000:D-law": true,
+    "pendulum-radial-underlying-2000:work-ledger": true,
+    "pendulum-radial-stabilized-500:finite": true,
+    "pendulum-radial-stabilized-500:radius": true,
+    "pendulum-radial-stabilized-1000:finite": true,
+    "pendulum-radial-stabilized-1000:radius": true,
+    "pendulum-radial-stabilized-2000:finite": true,
+    "pendulum-radial-stabilized-2000:radius": true,
+    "pendulum-radial-stabilized-2000:C-law": true,
+    "pendulum-radial-stabilized-2000:D-law": true,
+    "pendulum-radial-stabilized-2000:work-ledger": true,
+    "underlying-consistent-fourth-order": true,
+    "visible-unstabilized-drift": true,
+    "stabilized-drift-ratio": true,
+    "eleven-record-identities": true
+  },
+  "original_target_summary": {
+    "met": 45,
+    "total": 45,
+    "all_met": true,
+    "acceptance_sha256": "de0c9378204b8b08610318f41d98efb95cc2c31048a6b593707197635a0cba96"
+  },
+  "original_scientific_targets_met": true,
+  "validation_scope": "all_original_numerical_targets_required"
+}

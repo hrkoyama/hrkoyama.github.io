@@ -25,9 +25,13 @@ SLICE_NOTE = 'Taylor–Green: x-slice at y = π/4. These are point values, not t
 
 def dimension_label(case, language):
     if case['dimension'] is None:
-        if case.get('domain_kind') != 'finite-dimensional-algebra':
-            raise ValueError('A nonspatial reference needs its explicit algebraic domain')
-        return '有限次元の代数問題' if language == 'ja' else 'Finite-dimensional algebra'
+        labels = {
+            'finite-dimensional-algebra': ('有限次元の代数問題', 'Finite-dimensional algebra'),
+            'finite-dimensional-ivp': ('常微分・微分代数方程式（空間次元なし）', 'ODE / DAE (no spatial dimension)'),
+        }
+        if case.get('domain_kind') not in labels:
+            raise ValueError('A nonspatial reference needs an explicit supported domain')
+        return labels[case['domain_kind']][language == 'en']
     if type(case['dimension']) is not int or case['dimension'] not in (1, 2, 3):
         raise ValueError('Invalid spatial reference dimension')
     return str(case['dimension']) + ('次元' if language == 'ja' else 'D')
@@ -58,7 +62,7 @@ def load(root=ROOT):
             raise ValueError('Missing reference formula or dimension: ' + ident)
         dimension_label(source_case, 'en')
         case = {key: source_case[key] for key in ['id', 'model', 'kind', 'formula', 'dimension', 'bounds', 'components', 'field_type', 'parameters', 'sources']}
-        if source_case.get('domain_kind') == 'finite-dimensional-algebra':
+        if source_case.get('domain_kind') in {'finite-dimensional-algebra', 'finite-dimensional-ivp'}:
             case['domain_kind'] = source_case['domain_kind']
         case.update(title=localized(source_case['title']), assumptions=localized(source_case['assumptions']),
                     kind_label=localized(KIND_NAMES[kind]),
@@ -96,8 +100,8 @@ def section(data, language):
     body += link(BASE + language + '/read/reference-solutions/', '参照解の定義と検証' if ja else 'Reference definitions and verification') + '</nav>'
     body += '<details class="solutions-scope"><summary>' + ('参照解の種類と表示範囲' if ja else 'Reference types and display scope') + '</summary><p>' + ('解析解・半解析解・製造解・有限格子の数値参照を区別します。半解析解は有限精度の求根・ODE積分・求積などを含み、製造解は目標解から外力を選びます。数値参照は別計算で得た有限格子の結果で、離散化・境界・時間刻みの誤差や参照自身の感度が残ります。厳密解や保証された誤差上界ではありません。' if ja else
              'Analytic, semi-analytic, manufactured and finite-grid numerical references are distinct. Semi-analytic cases include finite-precision roots, ODE integration or quadrature; manufactured cases choose forcing from a target solution. Numerical references come from separate computations and retain discretization, boundary and time-step errors and their own resolution sensitivity. They are not exact solutions or guaranteed error bounds.') + '</p><p>'
-    body += ('次元は元データの定義に従います。有限次元の代数問題には空間次元を割り当てません。Taylor–Greenは2次元の式ですが、既存の表示は y = π/4 のx方向断面です。' if ja else
-             'Dimensions follow the source metadata. Finite-dimensional algebraic problems have no assigned spatial dimension. Taylor–Green has a two-dimensional formula; the existing display is an x-slice at y = π/4.') + '</p></details>'
+    body += ('次元は元データの定義に従います。有限次元の代数問題とODE・DAEには空間次元を割り当てません。Taylor–Greenは2次元の式ですが、既存の表示は y = π/4 のx方向断面です。' if ja else
+             'Dimensions follow the source metadata. Finite-dimensional algebraic problems and ODE/DAE models have no assigned spatial dimension. Taylor–Green has a two-dimensional formula; the existing display is an x-slice at y = π/4.') + '</p></details>'
     body += '<div class="solutions-summary">' + ''.join('<span>' + escape(next(case['kind_label'][language] for case in data['cases'] if case['kind'] == kind)) + ' · ' + str(data['counts'].get(kind, 0)) + '</span>' for kind in KIND_NAMES if data['counts'].get(kind)) + '</div>'
     body += '<div class="solutions-grid">'
     for case in data['cases']:

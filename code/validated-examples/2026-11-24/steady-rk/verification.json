@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "group": "steady-rk",
+  "edition": "2026-11-24",
+  "verified_on": "2026-11-24",
+  "source_manifest_sha256": "05dd64c334156ee7ea2d10c47efa4d5822cfc3ba61ae3ad5867aeea3c6cad13c",
+  "archive": {
+    "file": "atlas-steady-rk-2026-11-24.zip",
+    "sha256": "a6524122fbc92701504894dff03837587170c0f4d39ce50657d4d5a23d36d3d9",
+    "bytes": 422643,
+    "archive_directory": "atlas-steady-rk-2026-11-24"
+  },
+  "archive_sha256": "a6524122fbc92701504894dff03837587170c0f4d39ce50657d4d5a23d36d3d9",
+  "returncode": 0,
+  "passed_tests": 18,
+  "tests": 18,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "jameson-steady-linear-modes"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 0.147827334003523,
+  "independent_rerun_seconds": 0.10598929199477425,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

@@ -81,7 +81,8 @@
       "coverage_scope": "",
       "supplemental_examples": [
         "su-olson-transport1997",
-        "diffusion-discrete-adjoint"
+        "diffusion-discrete-adjoint",
+        "strang-boundary-order-reduction"
       ]
     },
     {
@@ -322,7 +323,13 @@
       },
       "status": "local-example",
       "group": "physical",
-      "coverage_scope": ""
+      "coverage_scope": "",
+      "supplemental_examples": [
+        "high-index-pendulum",
+        "shake-rattle-pendulum",
+        "kepler-eccentricity",
+        "multifrequency-resonance"
+      ]
     },
     {
       "id": "particle-gravity",
@@ -345,7 +352,8 @@
       "supplemental_examples": [
         "fmm3d-inverse-r",
         "gravity-kepler",
-        "gravity-plummer-short"
+        "gravity-plummer-short",
+        "kepler-eccentricity"
       ]
     },
     {
@@ -1805,7 +1813,8 @@
       },
       "supplemental_examples": [
         "pivoted-direct-refinement",
-        "symmetric-saddle-minres"
+        "symmetric-saddle-minres",
+        "jameson-steady-linear-modes"
       ]
     },
     {
@@ -2031,6 +2040,179 @@
       },
       "supplemental_examples": [
         "bfgs-lbfgs-controls"
+      ]
+    },
+    {
+      "id": "robertson-kinetics",
+      "name": {
+        "ja": "Robertson反応系",
+        "en": "Robertson chemical kinetics"
+      },
+      "formula": [
+        "\\dot y_1=-0.04y_1+10^4y_2y_3,\\quad\\dot y_2=0.04y_1-10^4y_2y_3-3\\times10^7y_2^2,\\quad\\dot y_3=3\\times10^7y_2^2",
+        "y_1+y_2+y_3=1"
+      ],
+      "chapter": "stiff-integration",
+      "note": {
+        "ja": "3成分の硬い反応ODEと、保存則を代数式に置き換えたindex-1 DAEを区別して比較します。",
+        "en": "Distinguish the stiff three-species ODE from an index-one DAE obtained by replacing one equation with conservation."
+      },
+      "status": "local-example",
+      "group": "biology",
+      "coverage_scope": "Fixed educational models; see each release for inputs, reference qualification and limits.",
+      "supplemental_examples": [
+        "robertson-stiff-kinetics",
+        "robertson-conservation-dae"
+      ]
+    },
+    {
+      "id": "van-der-pol",
+      "name": {
+        "ja": "van der Pol振動子",
+        "en": "Van der Pol oscillator"
+      },
+      "formula": [
+        "\\dot x=v,\\qquad\\dot v=\\mu(1-x^2)v-x"
+      ],
+      "chapter": "stiff-integration",
+      "note": {
+        "ja": "固定したμと短い時区間で硬さによる仕事量と誤差を比較します。完全な緩和振動周期の検証ではありません。",
+        "en": "Compare work and error for fixed mu values over a short interval; this does not validate a full relaxation cycle."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "coverage_scope": "Fixed educational models; see each release for inputs, reference qualification and limits.",
+      "supplemental_examples": [
+        "van-der-pol-stiff-transition"
+      ]
+    },
+    {
+      "id": "linear-evolution-system",
+      "name": {
+        "ja": "有限次元の線形発展系",
+        "en": "Finite-dimensional linear evolution systems"
+      },
+      "formula": [
+        "\\dot y=Ay+b"
+      ],
+      "chapter": "time-integration",
+      "note": {
+        "ja": "減衰回転の物理時刻と、定常残差を減衰させる擬似時間を例ごとに区別します。",
+        "en": "Each example distinguishes physical time in damped rotation from pseudo-time used to reduce steady residuals."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "coverage_scope": "Fixed educational models; see each release for inputs, reference qualification and limits.",
+      "supplemental_examples": [
+        "rk45-dense-events",
+        "jameson-steady-linear-modes"
+      ]
+    },
+    {
+      "id": "inhomogeneous-reaction-diffusion",
+      "name": {
+        "ja": "非同次境界を持つ線形反応拡散",
+        "en": "Linear reaction-diffusion with inhomogeneous boundaries"
+      },
+      "formula": [
+        "u_t=u_{xx}+u,\\quad0<x<1,\\quad u(0,t)=u(1,t)=1"
+      ],
+      "chapter": "operator-splitting",
+      "note": {
+        "ja": "同じ非周期有限差分系に対する時間誤差と、連続厳密解に対する空間誤差を分けます。",
+        "en": "Separate temporal errors relative to the same nonperiodic finite-difference system from spatial errors relative to the continuous exact family."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "coverage_scope": "Fixed educational models; see each release for inputs, reference qualification and limits.",
+      "supplemental_examples": [
+        "strang-boundary-order-reduction"
+      ]
+    },
+    {
+      "id": "index-one-dae",
+      "name": {
+        "ja": "半陽的index-1 DAE",
+        "en": "Semi-explicit index-one DAE"
+      },
+      "formula": [
+        "\\dot y=f(t,y,z),\\qquad0=g(t,y,z),\\qquad\\det g_z\\ne0"
+      ],
+      "chapter": "dae",
+      "note": {
+        "ja": "整合初期化と微分・代数残差を扱う小規模な固定例です。一般DAEソルバーの完成を意味しません。",
+        "en": "Small fixed examples expose consistent initialization and separate differential/algebraic residuals; this is not a general-purpose DAE solver."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "coverage_scope": "Fixed educational models; see each release for inputs, reference qualification and limits.",
+      "supplemental_examples": [
+        "index1-dae-consistent-initialization",
+        "robertson-conservation-dae"
+      ]
+    },
+    {
+      "id": "constrained-pendulum",
+      "name": {
+        "ja": "拘束付き平面振り子",
+        "en": "Constrained planar pendulum"
+      },
+      "formula": [
+        "\\dot q=p,\\quad\\dot p=(0,-1)-\\lambda q,\\quad q^Tq=1,\\quad q^Tp=0"
+      ],
+      "chapter": "dae",
+      "note": {
+        "ja": "元の位置拘束DAE、微分した拘束に基づくODE、SHAKE/RATTLEの離散写像を区別します。",
+        "en": "Distinguish the original position-constrained DAE, an underlying ODE based on differentiated constraints, and the SHAKE/RATTLE discrete maps."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "coverage_scope": "Fixed educational models; see each release for inputs, reference qualification and limits.",
+      "supplemental_examples": [
+        "high-index-pendulum",
+        "shake-rattle-pendulum"
+      ]
+    },
+    {
+      "id": "kepler-two-body",
+      "name": {
+        "ja": "Kepler二体問題",
+        "en": "Kepler two-body problem"
+      },
+      "formula": [
+        "\\dot q=p,\\qquad\\dot p=-q/\\|q\\|^3,\\qquad H=\\tfrac12p^Tp-1/\\|q\\|"
+      ],
+      "chapter": "symplectic",
+      "note": {
+        "ja": "無次元化した平面楕円軌道で位相、角運動量、エネルギーと刻みの影響を分けます。",
+        "en": "Nondimensional planar ellipses separate phase, angular momentum, energy and step-selection effects."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "coverage_scope": "Fixed educational models; see each release for inputs, reference qualification and limits.",
+      "supplemental_examples": [
+        "kepler-eccentricity"
+      ]
+    },
+    {
+      "id": "coupled-harmonic-oscillators",
+      "name": {
+        "ja": "二周波数の結合調和振動子",
+        "en": "Coupled two-frequency harmonic oscillators"
+      },
+      "formula": [
+        "H=\\tfrac12(p_1^2+p_2^2+q_1^2+\\omega^2q_2^2)+q_1q_2"
+      ],
+      "chapter": "symplectic",
+      "note": {
+        "ja": "連続正規モード、理想分割写像、保存した浮動小数点係数の写像、実際の反復丸めを区別します。",
+        "en": "Separate continuous normal modes, the ideal split map, a map with stored floating-point coefficients, and repeated rounded updates."
+      },
+      "status": "local-example",
+      "group": "physical",
+      "coverage_scope": "Fixed educational models; see each release for inputs, reference qualification and limits.",
+      "supplemental_examples": [
+        "multifrequency-resonance"
       ]
     }
   ]

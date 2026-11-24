@@ -1,0 +1,47 @@
+{
+  "repository_tag": "v7.1.1",
+  "suite_version": "7.1.1",
+  "IDA_component_version_not_inferred": true,
+  "source_C_sha256": "bc1908378be48b3e13580a75bb313b7c2ccc341bf7829255c9a9ea53f84a2d27",
+  "source_output_sha256": "3c85f42bd5fff829593c286de355245120e735a536642bddc59f89dfb6635beb",
+  "official_local_tolerances": {
+    "rtol": "1e-4",
+    "atol": [
+      "1e-8",
+      "1e-6",
+      "1e-6"
+    ]
+  },
+  "printed_rows": [
+    {
+      "t": "4.0000e-01",
+      "y": [
+        "9.8517e-01",
+        "3.3864e-05",
+        "1.4794e-02"
+      ],
+      "printing_halfwidth": [
+        "5e-6",
+        "5e-10",
+        "5e-7"
+      ]
+    },
+    {
+      "t": "4.0000e+00",
+      "y": [
+        "9.0553e-01",
+        "2.2406e-05",
+        "9.4452e-02"
+      ],
+      "printing_halfwidth": [
+        "5e-6",
+        "5e-10",
+        "5e-7"
+      ]
+    }
+  ],
+  "interval_rule": "Closed printedvalue±halfunitoflastdisplayeddecimaldigit; endpoints constructed in Decimal during future qualified reference code. Bounds describe the printed IDA approximation only, not true solution accuracy.",
+  "new_IDA_executions": 0,
+  "qualifier_status": "NOT_EXECUTED",
+  "redistribution": "Public packet will include only selected data/provenance fixture and BSD license/notice if any original snapshot is distributed; fullC remains private reading evidence."
+}

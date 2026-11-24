@@ -1,4 +1,4 @@
-import {groupsAddedAfterBatch37,projectReleaseBeforeBatch48} from './fixtures/atlas-inventory.mjs';
+import {projectMethodBeforeBatch68,groupsAddedAfterBatch37,projectReleaseBeforeBatch48} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -60,7 +60,7 @@ assert 'None' not in html
 test('batch28–37 preserves every prior scientific distribution and reference identity',()=>{
  for(const [p,h] of Object.entries(beforeRuntimeRepair.immutable_files))assert.equal(sha(p),h,p+'/published-batch-preserved');
  for(const [p,h] of Object.entries(baseline.immutable_files)) assert.equal(sha(p),h,p);
- const methods=json('catalog/atlas-methods.json').methods;
+ const methods=json('catalog/atlas-methods.json').methods.map(projectMethodBeforeBatch68);
  for(const [id,status] of Object.entries(baseline.method_statuses)) assert.equal(methods.find(x=>x.id===id)?.status,id==='slab-ewald'?'educational-example':status,id);
  assert.equal(baseline.method_statuses['slab-ewald'],'planned');
  assert.deepEqual(methods.find(x=>x.id==='slab-ewald').depth_release,{group:'slab-ewald',edition:'2026-11-23',case_ids:['neutral-slab-yb']});

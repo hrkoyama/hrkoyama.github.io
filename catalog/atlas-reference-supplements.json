@@ -5811,6 +5811,703 @@
           "publication_year": null
         }
       ]
+    },
+    {
+      "id": "robertson-stiff-kinetics",
+      "model": "robertson-kinetics",
+      "kind": "numerical-reference",
+      "title": "Robertson kinetics: initial stiffness and actual error",
+      "assumptions": "A nondimensional three-species system starts at (1, 0, 0) and ends at T = 0.4. The fixed methods use 512, 1024 and 2048 steps; two adaptive tolerance settings bring the total to eight runs.",
+      "formula": "\\dot y_1=-0.04y_1+10^4y_2y_3,\\quad\\dot y_2=-\\dot y_1-3\\!\\times\\!10^7y_2^2,\\quad\\dot y_3=3\\!\\times\\!10^7y_2^2;\\quad \\|r\\|_{w,\\infty}=\\max_i|r_i|/w_i,\\quad e_{\\rm dbl}=(y_{h/2,h/2}-y_h)/3",
+      "dimension": null,
+      "bounds": [],
+      "components": [
+        "state",
+        "error",
+        "invariants or residuals"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "case_id": "robertson-stiff-kinetics",
+        "inputs_sha256": "08841a5698329c02021434dc4f1784cb1dbbd428de7e493dda6a3014e85315d3",
+        "public_inputs": {
+          "registry_group": "ode-adaptivity",
+          "edition": "2026-11-24-r2",
+          "member": "inputs.json",
+          "json_pointer": "/cases/robertson-stiff-kinetics",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/inputs.json",
+          "sha256": "08841a5698329c02021434dc4f1784cb1dbbd428de7e493dda6a3014e85315d3"
+        }
+      },
+      "sources": [
+        "https://raw.githubusercontent.com/LLNL/sundials/main/examples/cvode/serial/cvRoberts_dns.c",
+        "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html"
+      ],
+      "citations": [
+        {
+          "role": "selected-source-formulation",
+          "title": "Official SUNDIALS cvRoberts_dns model definition",
+          "url": "https://raw.githubusercontent.com/LLNL/sundials/main/examples/cvode/serial/cvRoberts_dns.c",
+          "note": "Read the model, initial values and Jacobian in selected official source sections. The observed main URL is not an immutable release pin. Our T = 0.4 scope does not reproduce the original paper, the long 4e10 benchmark or its numerical tables.",
+          "review_level": "official-source-selected-functions",
+          "full_text_read_by_integration_author": false,
+          "publication_year": null,
+          "publication_year_display": "n.d.",
+          "accessed_on": "2026-11-24"
+        },
+        {
+          "role": "selected-source-formulation",
+          "title": "SciPy1.14.1 solve_ivp and selected official source",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html",
+          "note": "Read selected fixed-version method, API, local-tolerance and termination sections. This is not a full audit of the original research papers.",
+          "review_level": "official-selected-source",
+          "full_text_read_by_integration_author": false,
+          "publication_year": null,
+          "publication_year_display": "n.d.",
+          "accessed_on": "2026-11-24",
+          "version": "1.14.1"
+        }
+      ],
+      "reference_scope": "Check actual errors at 22 common times, mass and minimum values at every accepted state, true stage residuals, and actual RHS, Jacobian, factorization and linear-solve counts separately. Conservation and positivity are observations for these inputs, not universal guarantees. Accuracy is sampled on T <= 0.4; this does not validate long-time chemistry or an all-time error bound.",
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=ja#robertson-stiff-kinetics-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/robertson-stiff-kinetics/?lang=en#robertson-stiff-kinetics-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#robertson-stiff-kinetics",
+        "en": "/numerical-methods-atlas/en/read/validation-ode-adaptivity/#robertson-stiff-kinetics"
+      },
+      "domain_kind": "finite-dimensional-ivp"
+    },
+    {
+      "id": "van-der-pol-stiff-transition",
+      "model": "van-der-pol",
+      "kind": "numerical-reference",
+      "title": "Van der Pol: an early stiffness transition",
+      "assumptions": "The system is xprime = v and vprime = mu(1 - x squared)v - x, initially (2, 0), over T = 2. Two fixed methods, three step counts and two mu values plus four adaptive runs give 16 runs.",
+      "formula": "\\dot x=v,\\qquad \\dot v=\\mu(1-x^2)v-x,\\quad\\mu\\in\\{1,100\\}",
+      "dimension": null,
+      "bounds": [],
+      "components": [
+        "state",
+        "error",
+        "invariants or residuals"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "case_id": "van-der-pol-stiff-transition",
+        "inputs_sha256": "08841a5698329c02021434dc4f1784cb1dbbd428de7e493dda6a3014e85315d3",
+        "public_inputs": {
+          "registry_group": "ode-adaptivity",
+          "edition": "2026-11-24-r2",
+          "member": "inputs.json",
+          "json_pointer": "/cases/van-der-pol-stiff-transition",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/inputs.json",
+          "sha256": "08841a5698329c02021434dc4f1784cb1dbbd428de7e493dda6a3014e85315d3"
+        }
+      },
+      "sources": [
+        "https://scikit-sundae.readthedocs.io/en/stable/examples/van_der_pol.html",
+        "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html"
+      ],
+      "citations": [
+        {
+          "role": "selected-source-formulation",
+          "title": "scikit-sundae official van der Pol example",
+          "url": "https://scikit-sundae.readthedocs.io/en/stable/examples/van_der_pol.html",
+          "note": "Read the equations and initial state in the official binding example. Our mu = 1 and 100, T = 2 inputs are an authored early-transient scope, not an original-paper or full mu = 1000 cycle reproduction.",
+          "review_level": "official-project-example-selected-equations",
+          "full_text_read_by_integration_author": false,
+          "publication_year": null,
+          "publication_year_display": "n.d.",
+          "accessed_on": "2026-11-24"
+        },
+        {
+          "role": "selected-source-formulation",
+          "title": "SciPy1.14.1 solve_ivp and selected official source",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html",
+          "note": "Read selected fixed-version method, API, local-tolerance and termination sections. This is not a full audit of the original research papers.",
+          "review_level": "official-selected-source",
+          "full_text_read_by_integration_author": false,
+          "publication_year": null,
+          "publication_year_display": "n.d.",
+          "accessed_on": "2026-11-24",
+          "version": "1.14.1"
+        }
+      ],
+      "reference_scope": "Compare 21 sampled times with qualified Radau and BDF references. Preserve every original decision, including false values. Require the other 208 conditions separately from three checks of faithful disclosure, actual local controls and retained original failure evidence. This post-measurement reporting revision is not a numerical repair. The first error, 4.535633779e-5, exceeded the original 2e-5 goal. Local tolerances do not guarantee global accuracy, and reporting PASS does not mean all original goals were met. Full large-mu cycles are outside scope.",
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=ja#van-der-pol-stiff-transition-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/van-der-pol-stiff-transition/?lang=en#van-der-pol-stiff-transition-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#van-der-pol-stiff-transition",
+        "en": "/numerical-methods-atlas/en/read/validation-ode-adaptivity/#van-der-pol-stiff-transition"
+      },
+      "domain_kind": "finite-dimensional-ivp"
+    },
+    {
+      "id": "rk45-dense-events",
+      "model": "linear-evolution-system",
+      "kind": "analytic",
+      "title": "RK45: embedded errors, dense output and events",
+      "assumptions": "Use gamma = 0.2, omega = 3, initial state (1, 0), and T = 2. Three paired relative and absolute tolerances with two maximum steps, plus two terminal runs, give eight runs.",
+      "formula": "y(t)=e^{-0.2t}(\\cos 3t,\\sin 3t)^T,\\quad t_*=\\pi/6,\\pi/2;\\quad y(t_n+\\theta h)=y_n+hQ(\\theta,\\theta^2,\\theta^3,\\theta^4)^T",
+      "dimension": null,
+      "bounds": [],
+      "components": [
+        "state",
+        "error",
+        "invariants or residuals"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "case_id": "rk45-dense-events",
+        "inputs_sha256": "08841a5698329c02021434dc4f1784cb1dbbd428de7e493dda6a3014e85315d3",
+        "public_inputs": {
+          "registry_group": "ode-adaptivity",
+          "edition": "2026-11-24-r2",
+          "member": "inputs.json",
+          "json_pointer": "/cases/rk45-dense-events",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/inputs.json",
+          "sha256": "08841a5698329c02021434dc4f1784cb1dbbd428de7e493dda6a3014e85315d3"
+        }
+      },
+      "sources": [
+        "https://github.com/scipy/scipy/blob/v1.14.1/scipy/integrate/_ivp/rk.py"
+      ],
+      "citations": [
+        {
+          "role": "selected-source-formulation",
+          "title": "SciPy1.14.1 RK45 coefficient and dense-output source",
+          "url": "https://github.com/scipy/scipy/blob/v1.14.1/scipy/integrate/_ivp/rk.py",
+          "note": "Read C, A, B, E, P, stage evaluation, accepted/rejected FSAL updates and quartic evaluation. The original Dormand–Prince 1980 and Shampine 1986 papers remain unread beyond bibliography. The adapted coefficient BSD notice is retained.",
+          "review_level": "official-release-source-selected-functions",
+          "full_text_read_by_integration_author": false,
+          "publication_year": null,
+          "publication_year_display": "n.d.",
+          "accessed_on": "2026-11-24",
+          "version": "1.14.1"
+        }
+      ],
+      "reference_scope": "Analytic states and the simple crossings at pi/6 and pi/2 provide independent truth. Check endpoints, 97 off-mesh samples, event times and residuals, and the actual identity nfev = 1 + 6 times the attempted-step count. There is no general guarantee for tangential roots, multiple crossings within a step or systems with resets. Initial-zero and ownership controls are limited component tests; local tolerances and global accuracy remain distinct.",
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/rk45-dense-events/?lang=ja#rk45-dense-events-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/rk45-dense-events/?lang=en#rk45-dense-events-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#rk45-dense-events",
+        "en": "/numerical-methods-atlas/en/read/validation-ode-adaptivity/#rk45-dense-events"
+      },
+      "domain_kind": "finite-dimensional-ivp"
+    },
+    {
+      "id": "strang-boundary-order-reduction",
+      "model": "inhomogeneous-reaction-diffusion",
+      "kind": "semi-analytic",
+      "title": "Strang splitting: Dirichlet boundary order reduction and correction",
+      "assumptions": "Solve u_t = u_xx + u on [0, 1] with both boundary values equal to 1, an analytic steady state plus a 0.1 sine perturbation, and T = 0.1. Use 31, 63 and 127 interior nodes with 8, 16, 32 and 64 steps, plus four Lie controls: 28 runs.",
+      "formula": "u_t=u_{xx}+u,\\quad u(0,t)=u(1,t)=1,\\quad w=u-1;\\quad A_{\\rm raw}(w)=L_hw,\\ B_{\\rm raw}(w)=w+1;\\quad A_{\\rm corr}(w)=L_hw+1,\\ B_{\\rm corr}(w)=w",
+      "dimension": 1,
+      "bounds": [
+        [
+          0,
+          1
+        ]
+      ],
+      "components": [
+        "state",
+        "error",
+        "invariants or residuals"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "case_id": "strang-boundary-order-reduction",
+        "inputs_sha256": "08841a5698329c02021434dc4f1784cb1dbbd428de7e493dda6a3014e85315d3",
+        "public_inputs": {
+          "registry_group": "ode-adaptivity",
+          "edition": "2026-11-24-r2",
+          "member": "inputs.json",
+          "json_pointer": "/cases/strang-boundary-order-reduction",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/inputs.json",
+          "sha256": "08841a5698329c02021434dc4f1784cb1dbbd428de7e493dda6a3014e85315d3"
+        }
+      },
+      "sources": [
+        "https://arxiv.org/abs/1411.0465"
+      ],
+      "citations": [
+        {
+          "role": "selected-source-formulation",
+          "title": "Overcoming order reduction in diffusion-reaction splitting. Part1: Dirichlet boundary conditions",
+          "url": "https://arxiv.org/abs/1411.0465",
+          "note": "Read selected extracted text from the 2014 v1 preprint: section 2, Algorithm 2, the constant-boundary example, section 3.2 assumptions and result, and the one-dimensional example. This was not a full-proof or whole-PDF visual audit; the present linear specialization does not reproduce the nonlinear tables.",
+          "review_level": "primary-preprint-selected-sections",
+          "full_text_read_by_integration_author": false,
+          "publication_year": 2014,
+          "publication_year_display": "2014",
+          "accessed_on": "2026-11-24"
+        }
+      ],
+      "reference_scope": "First qualify an independent sparse affine exponential action against separately written sine sums. Then separate temporal error against the same finite-difference system, spatial error against the analytic continuum field, and observed order in the fixed regime. This is an authored linear specialization, not a reproduction of the original nonlinear tables. It makes no general claim for nonautonomous boundaries or universal order loss. The final reaction-trace mismatch of Lie splitting is disclosed separately.",
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=ja#strang-boundary-order-reduction-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/strang-boundary-order-reduction/?lang=en#strang-boundary-order-reduction-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-ode-adaptivity/#strang-boundary-order-reduction",
+        "en": "/numerical-methods-atlas/en/read/validation-ode-adaptivity/#strang-boundary-order-reduction"
+      }
+    },
+    {
+      "id": "jameson-steady-linear-modes",
+      "model": "linear-evolution-system",
+      "kind": "analytic",
+      "title": "Real-space mode damping with steady multistage RK",
+      "assumptions": "A fixed dimensionless sixteen-node periodic linear residual; pseudo-time is an iteration parameter.",
+      "formula": "Y_j=u_n-alpha_j*dtau*(A*Y_(j-1)-b);\\quad P(z)=1+z+z^2/2+z^3/6+z^4/24; lambda_4=9+2i, lambda_8=17",
+      "dimension": null,
+      "bounds": [],
+      "components": [
+        "state",
+        "error",
+        "invariants or residuals"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "case_id": "jameson-steady-linear-modes",
+        "inputs_sha256": "7f5afd4ad594265d55f34b0ebce95fc5fdd9e66c11b88a4df5f802e8688fb072",
+        "public_inputs": {
+          "registry_group": "steady-rk",
+          "edition": "2026-11-24",
+          "member": "inputs.json",
+          "json_pointer": "/jameson-steady-linear-modes",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/steady-rk/inputs.json",
+          "sha256": "7f5afd4ad594265d55f34b0ebce95fc5fdd9e66c11b88a4df5f802e8688fb072"
+        }
+      },
+      "sources": [
+        "https://perform.readthedocs.io/en/latest/solver/timeschemes.html"
+      ],
+      "citations": [
+        {
+          "role": "selected-source-formulation",
+          "title": "PERFORM time integration schemes",
+          "url": "https://perform.readthedocs.io/en/latest/solver/timeschemes.html",
+          "note": "Selected four-stage base-state recurrence. No full JST 1981 paper reading or compressible-flow implementation claim.",
+          "review_level": "official-documentation-selected-equations",
+          "full_text_read_by_integration_author": false,
+          "publication_year": null,
+          "publication_year_display": "n.d.",
+          "accessed_on": "2026-11-24"
+        }
+      ],
+      "reference_scope": "Retain all 41 original numerical targets and their actual decisions. Only the expanding-control absolute residual goal is a separate study outcome; the other 40 requirements and faithful recomputation from saved arrays remain mandatory. Limited to a fixed linear example; no JST compressible flux, nonlinear fourth-order RK or all-start convergence claim. Verification of this study does not mean that all original numerical targets were met.",
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/jameson-steady-linear-modes/?lang=ja#jameson-steady-linear-modes-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/jameson-steady-linear-modes/?lang=en#jameson-steady-linear-modes-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-steady-rk/#jameson-steady-linear-modes",
+        "en": "/numerical-methods-atlas/en/read/validation-steady-rk/#jameson-steady-linear-modes"
+      },
+      "domain_kind": "finite-dimensional-ivp"
+    },
+    {
+      "id": "index1-dae-consistent-initialization",
+      "model": "index-one-dae",
+      "kind": "manufactured",
+      "title": "Consistent initialization and discrete residuals for an index-one DAE",
+      "assumptions": "Dimensionless positive branch; differential and algebraic row scales are both one, with the maximum norm.",
+      "formula": "F1=ydot+y-z+exp(-2t/3), F2=z^3-y^2;\\quad y=exp(-t), z=exp(-2t/3)",
+      "dimension": null,
+      "bounds": [],
+      "components": [
+        "state",
+        "error",
+        "invariants or residuals"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "case_id": "index1-dae-consistent-initialization",
+        "inputs_sha256": "f2fe378da0eba05ddb47e8333f6b00b1effbf83e22b13fc8e1ad6079338cb275",
+        "public_inputs": {
+          "registry_group": "dae-controls",
+          "edition": "2026-11-24",
+          "member": "inputs.json",
+          "json_pointer": "/index1-dae-consistent-initialization",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/inputs.json",
+          "sha256": "f2fe378da0eba05ddb47e8333f6b00b1effbf83e22b13fc8e1ad6079338cb275"
+        }
+      },
+      "sources": [
+        "https://sundials.readthedocs.io/en/v7.1.1/ida/Mathematics_link.html"
+      ],
+      "citations": [
+        {
+          "role": "selected-source-formulation",
+          "title": "SUNDIALS v7.1.1 IDA mathematics, section 5.2",
+          "url": "https://sundials.readthedocs.io/en/v7.1.1/ida/Mathematics_link.html",
+          "note": "Residual form, BDF/Newton and consistent initialization sections selected. Section5.2 is not an IDA version. This authored MMS/BE solver is not IDA.",
+          "review_level": "official-documentation-selected-equations",
+          "full_text_read_by_integration_author": false,
+          "publication_year": null,
+          "publication_year_display": "n.d.",
+          "accessed_on": "2026-11-24"
+        }
+      ],
+      "reference_scope": "Compare independent Decimal manufactured states, three discrete roots and three fixed grids, checking first-order error and the algebraic constraint. One authored positive branch and fixed BE runs; no IDA execution or general DAE-solver qualification.",
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/index1-dae-consistent-initialization/?lang=ja#index1-dae-consistent-initialization-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/index1-dae-consistent-initialization/?lang=en#index1-dae-consistent-initialization-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-dae-controls/#index1-dae-consistent-initialization",
+        "en": "/numerical-methods-atlas/en/read/validation-dae-controls/#index1-dae-consistent-initialization"
+      },
+      "domain_kind": "finite-dimensional-ivp"
+    },
+    {
+      "id": "robertson-conservation-dae",
+      "model": "robertson-kinetics",
+      "kind": "numerical-reference",
+      "title": "Robertson conservation DAE and stored official IDA values",
+      "assumptions": "Model time zero to four; the intermediate-species state and residual scale is 1e-4. Printing intervals and numerical errors are distinct.",
+      "formula": "F1=ydot1+0.04*y1-1e4*y2*y3; F2=ydot2-0.04*y1+1e4*y2*y3+3e7*y2^2; F3=y1+y2+y3-1;\\quad M=diag(1,1,0)",
+      "dimension": null,
+      "bounds": [],
+      "components": [
+        "state",
+        "error",
+        "invariants or residuals"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "case_id": "robertson-conservation-dae",
+        "inputs_sha256": "f2fe378da0eba05ddb47e8333f6b00b1effbf83e22b13fc8e1ad6079338cb275",
+        "public_inputs": {
+          "registry_group": "dae-controls",
+          "edition": "2026-11-24",
+          "member": "inputs.json",
+          "json_pointer": "/robertson-conservation-dae",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/inputs.json",
+          "sha256": "f2fe378da0eba05ddb47e8333f6b00b1effbf83e22b13fc8e1ad6079338cb275"
+        }
+      },
+      "sources": [
+        "https://github.com/LLNL/sundials/blob/v7.1.1/examples/ida/serial/idaRoberts_dns.c",
+        "https://github.com/LLNL/sundials/blob/v7.1.1/examples/ida/serial/idaRoberts_dns.out"
+      ],
+      "citations": [
+        {
+          "role": "selected-source-formulation",
+          "title": "SUNDIALS v7.1.1 idaRoberts_dns example",
+          "url": "https://github.com/LLNL/sundials/blob/v7.1.1/examples/ida/serial/idaRoberts_dns.c",
+          "note": "Read residual/Jacobian, initialization, tolerances and print format. Own first two residual rows have opposite sign and the same zero set.",
+          "review_level": "official-source-selected-functions",
+          "full_text_read_by_integration_author": false,
+          "publication_year": null,
+          "publication_year_display": "n.d.",
+          "accessed_on": "2026-11-24"
+        },
+        {
+          "role": "selected-source-formulation",
+          "title": "Stored official v7.1.1 IDA Robertson output",
+          "url": "https://github.com/LLNL/sundials/blob/v7.1.1/examples/ida/serial/idaRoberts_dns.out",
+          "note": "Selected printed t=0.4 and4 values only, with Decimal rounding intervals. These approximate IDA values are not exact truth; no IDA run is performed here.",
+          "review_level": "official-stored-output-selected-rows",
+          "full_text_read_by_integration_author": false,
+          "publication_year": null,
+          "publication_year_display": "n.d.",
+          "accessed_on": "2026-11-24"
+        }
+      ],
+      "reference_scope": "Evaluate all 39 original targets, retaining the four unmet accuracy/refinement goals as study outcomes. The other 35 requirements, independent references and faithful saved-array recomputation remain mandatory. Only two official SUNDIALS v7.1.1 printed rows; zero new IDA executions, with no long-time chemistry or general DAE-performance claim. No asymptotic-convergence or all-original-accuracy-goals claim is made for this fixed schedule.",
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/robertson-conservation-dae/?lang=ja#robertson-conservation-dae-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/robertson-conservation-dae/?lang=en#robertson-conservation-dae-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-dae-controls/#robertson-conservation-dae",
+        "en": "/numerical-methods-atlas/en/read/validation-dae-controls/#robertson-conservation-dae"
+      },
+      "domain_kind": "finite-dimensional-ivp"
+    },
+    {
+      "id": "high-index-pendulum",
+      "model": "constrained-pendulum",
+      "kind": "semi-analytic",
+      "title": "Index reduction, constraint drift and explicit stabilization for a pendulum",
+      "assumptions": "m=L=g=1, initial angle 0.7 and zero angular velocity; off-manifold controls explicitly add radial velocity.",
+      "formula": "C=(q.q-1)/2, D=q.v, lambda=(v.v-q_y+2D+C)/(q.q);\\quad Cddot+2*Cdot+C=0; Wdot=-lambda*(q.v)",
+      "dimension": null,
+      "bounds": [],
+      "components": [
+        "state",
+        "error",
+        "invariants or residuals"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "case_id": "high-index-pendulum",
+        "inputs_sha256": "f2fe378da0eba05ddb47e8333f6b00b1effbf83e22b13fc8e1ad6079338cb275",
+        "public_inputs": {
+          "registry_group": "dae-controls",
+          "edition": "2026-11-24",
+          "member": "inputs.json",
+          "json_pointer": "/high-index-pendulum",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/inputs.json",
+          "sha256": "f2fe378da0eba05ddb47e8333f6b00b1effbf83e22b13fc8e1ad6079338cb275"
+        }
+      },
+      "sources": [
+        "https://dlmf.nist.gov/22.19",
+        "https://dlmf.nist.gov/19.8"
+      ],
+      "citations": [
+        {
+          "role": "selected-source-formulation",
+          "title": "NIST DLMF section22.19(i), pendulum",
+          "url": "https://dlmf.nist.gov/22.19",
+          "note": "Selected pendulum formulas, phase and modulus convention. Authored Cartesian conversion uses K-t; SciPy takes parameter m=k². No full chapter reading claimed.",
+          "review_level": "official-reference-selected-equations",
+          "full_text_read_by_integration_author": false,
+          "publication_year": null,
+          "publication_year_display": "n.d.",
+          "accessed_on": "2026-11-24"
+        },
+        {
+          "role": "selected-source-formulation",
+          "title": "NIST DLMF section19.8(i), arithmetic-geometric mean",
+          "url": "https://dlmf.nist.gov/19.8",
+          "note": "Selected AGM/K identity; independent Decimal Machin pi and sine with explicit finite remainders qualify a single fixed modulus.",
+          "review_level": "official-reference-selected-equations",
+          "full_text_read_by_integration_author": false,
+          "publication_year": null,
+          "publication_year_display": "n.d.",
+          "accessed_on": "2026-11-24"
+        }
+      ],
+      "reference_scope": "Qualify the Jacobi family against two independent angular ODE runs, then compare states, exact constraint laws and energy/work budgets. No projection, normalization or SHAKE/RATTLE; no general index-three-solver or symplecticity claim.",
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/high-index-pendulum/?lang=ja#high-index-pendulum-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/high-index-pendulum/?lang=en#high-index-pendulum-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-dae-controls/#high-index-pendulum",
+        "en": "/numerical-methods-atlas/en/read/validation-dae-controls/#high-index-pendulum"
+      },
+      "domain_kind": "finite-dimensional-ivp"
+    },
+    {
+      "id": "shake-rattle-pendulum",
+      "model": "constrained-pendulum",
+      "kind": "semi-analytic",
+      "title": "SHAKE and RATTLE: constraints and momentum ownership",
+      "assumptions": "L=m=g=1, initial angle 0.7 and zero angular velocity. C=(q·q−1)/2, T=100 and h=0.04/0.02/0.01; position targets are fixed at 1e−13, with a coarse 1e−10 companion.",
+      "formula": "C(q)=\\tfrac12(q^Tq-1)=0;\\quad q_{n+1}=q_n+h p_n+\\tfrac12h^2 f-\\eta_n q_n;\\quad q_n^Tp_n^c=\\frac{\\|q_n-q_{n-1}\\|^2-\\|q_{n+1}-q_n\\|^2}{4h}+\\frac{C_{n+1}-C_{n-1}}{2h}",
+      "dimension": null,
+      "bounds": [],
+      "components": [
+        "state",
+        "error",
+        "invariants or residuals"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "case_id": "shake-rattle-pendulum",
+        "inputs_sha256": "3f5ae2a9e57f8f420dc3e0916414c33dbcb7ad575974f3122aa13385473da31b",
+        "public_inputs": {
+          "registry_group": "geometric-controls",
+          "edition": "2026-11-24",
+          "member": "inputs.json",
+          "json_pointer": "/pendulum",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/inputs.json",
+          "sha256": "3f5ae2a9e57f8f420dc3e0916414c33dbcb7ad575974f3122aa13385473da31b"
+        }
+      },
+      "sources": [
+        "https://www.unige.ch/~hairer/poly-sde-mani.pdf",
+        "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+        "https://dlmf.nist.gov/22.4"
+      ],
+      "citations": [
+        {
+          "role": "selected-source-formulation",
+          "title": "Solving Differential Equations on Manifolds",
+          "url": "https://www.unige.ch/~hairer/poly-sde-mani.pdf",
+          "note": "Author-hosted lecture notes, selected printed page50, SectionV.5, equations5.1–5.3 and Theorem5.1 statement, rendered and visually read. Centered SHAKE momentum and RATTLE final tangency are explicit. The original1977 SHAKE and1983 RATTLE articles remain full-text unread; no full proof review is claimed. Source date: 2011 (date displayed on lecture notes); this is not asserted as the publication year.",
+          "review_level": "selected-primary-scope",
+          "full_text_read_by_integration_author": false,
+          "publication_year": null,
+          "publication_year_display": "n.d.",
+          "source_year": 2011,
+          "year_role": "date displayed on lecture notes",
+          "accessed_on": "2026-11-24"
+        },
+        {
+          "role": "selected-source-formulation",
+          "title": "Lecture2: Symplectic integrators",
+          "url": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+          "note": "Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment. Source date: 2010 (displayed course date); this is not asserted as the publication year.",
+          "review_level": "selected-primary-scope",
+          "full_text_read_by_integration_author": false,
+          "publication_year": null,
+          "publication_year_display": "n.d.",
+          "source_year": 2010,
+          "year_role": "displayed course date",
+          "accessed_on": "2026-11-24"
+        },
+        {
+          "role": "selected-source-formulation",
+          "title": "DLMF22.4: Periods, Poles, and Zeros",
+          "url": "https://dlmf.nist.gov/22.4",
+          "note": "Official Table22.4.1 selected real periods: sn and cn have4K, dn has2K. Version date is not an initial publication date. Common-period reduction and direct-library periodicity qualification are separate from the independent angular DOP853 state comparison. Source date: 2026 (version); this is not asserted as the publication year.",
+          "review_level": "selected-primary-scope",
+          "full_text_read_by_integration_author": false,
+          "publication_year": null,
+          "publication_year_display": "n.d.",
+          "source_year": 2026,
+          "year_role": "version",
+          "accessed_on": "2026-11-24",
+          "version": "1.2.8",
+          "release_date": "2026-09-15"
+        }
+      ],
+      "reference_scope": "A separately qualified Jacobi family and angular DOP853 reference support 74 main decisions. Finite-C centered identities, two-delta reduced-map diagnostics and position-pair versus full-state reversals are distinct. Original SHAKE and RATTLE full texts remain unread; selected author lecture notes were inspected. The finite-difference symplectic defect is a local proxy, not a general proof, and centered SHAKE velocity is not assigned RATTLE tangency.",
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=ja#shake-rattle-pendulum-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=en#shake-rattle-pendulum-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-geometric-controls/#shake-rattle-pendulum",
+        "en": "/numerical-methods-atlas/en/read/validation-geometric-controls/#shake-rattle-pendulum"
+      },
+      "domain_kind": "finite-dimensional-ivp"
+    },
+    {
+      "id": "kepler-eccentricity",
+      "model": "kepler-two-body",
+      "kind": "semi-analytic",
+      "title": "Kepler eccentricity and time-step controls",
+      "assumptions": "a=mu=reduced mass=1, without softening. One-period runs use 512/1024/2048 steps; ten-period controls use h0=2π/2048. Variable steps use h=h0|q| at the current state, with only the final step shortened to the physical endpoint.",
+      "formula": "\\ddot q=-q/\\|q\\|^3;\\quad E-e\\sin E=t,\\quad q=(\\cos E-e,\\sqrt{1-e^2}\\sin E);\\quad H=\\tfrac12\\|p\\|^2-1/\\|q\\|",
+      "dimension": null,
+      "bounds": [],
+      "components": [
+        "state",
+        "error",
+        "invariants or residuals"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "case_id": "kepler-eccentricity",
+        "inputs_sha256": "3f5ae2a9e57f8f420dc3e0916414c33dbcb7ad575974f3122aa13385473da31b",
+        "public_inputs": {
+          "registry_group": "geometric-controls",
+          "edition": "2026-11-24",
+          "member": "inputs.json",
+          "json_pointer": "/kepler",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/inputs.json",
+          "sha256": "3f5ae2a9e57f8f420dc3e0916414c33dbcb7ad575974f3122aa13385473da31b"
+        }
+      },
+      "sources": [
+        "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+        "https://ssd.jpl.nasa.gov/planets/approx_pos.html"
+      ],
+      "citations": [
+        {
+          "role": "selected-source-formulation",
+          "title": "Lecture2: Symplectic integrators",
+          "url": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+          "note": "Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment. Source date: 2010 (displayed course date); this is not asserted as the publication year.",
+          "review_level": "selected-primary-scope",
+          "full_text_read_by_integration_author": false,
+          "publication_year": null,
+          "publication_year_display": "n.d.",
+          "source_year": 2010,
+          "year_role": "displayed course date",
+          "accessed_on": "2026-11-24"
+        },
+        {
+          "role": "selected-source-formulation",
+          "title": "Approximate Positions of the Planets",
+          "url": "https://ssd.jpl.nasa.gov/planets/approx_pos.html",
+          "note": "Official JPL page, selected steps3–4 and Kepler equation. Only the eccentric-anomaly equation and elliptic coordinate transformation are used; no planetary coefficient tables, fitted ephemeris accuracy or Horizons calculation is claimed. Publication date was not verified.",
+          "review_level": "selected-primary-scope",
+          "full_text_read_by_integration_author": false,
+          "publication_year": null,
+          "publication_year_display": "n.d.",
+          "accessed_on": "2026-11-24"
+        }
+      ],
+      "reference_scope": "An independent Kepler-equation family, qualified with brentq and bisection, supports 92 main decisions: full-state error, energy/angular momentum, at least eight periapses, finite-window order and reversal defects. Small invariant errors do not establish phase accuracy. No canonical symplectic-defect measurement is claimed for the variable-step map, and fixed-h properties are not transferred automatically. R1 resolution was revised to R2 using pre-execution asymptotic planning, not measured calibration.",
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/kepler-eccentricity/?lang=ja#kepler-eccentricity-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/kepler-eccentricity/?lang=en#kepler-eccentricity-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-geometric-controls/#kepler-eccentricity",
+        "en": "/numerical-methods-atlas/en/read/validation-geometric-controls/#kepler-eccentricity"
+      },
+      "domain_kind": "finite-dimensional-ivp"
+    },
+    {
+      "id": "multifrequency-resonance",
+      "model": "coupled-harmonic-oscillators",
+      "kind": "semi-analytic",
+      "title": "Coupled frequencies and finite-window resonance",
+      "assumptions": "alpha=1, omega=10/20, q0=(1,1/omega) and p0=0. Central probes retain the evaluated binary64 h and sin/cos coefficients without snapping to mathematical pi.",
+      "formula": "H=\\tfrac12(p_1^2+p_2^2+q_1^2+\\omega^2q_2^2)+\\alpha q_1q_2;\\quad \\Phi_h=\\varphi^B_{h/2}\\circ\\varphi^A_h\\circ\\varphi^B_{h/2};\\quad \\chi_{\\theta=\\pi}(z)=(z+1)^2[z^2-(2-h^2)z+1]",
+      "dimension": null,
+      "bounds": [],
+      "components": [
+        "state",
+        "error",
+        "invariants or residuals"
+      ],
+      "field_type": "system",
+      "parameters": {
+        "case_id": "multifrequency-resonance",
+        "inputs_sha256": "3f5ae2a9e57f8f420dc3e0916414c33dbcb7ad575974f3122aa13385473da31b",
+        "public_inputs": {
+          "registry_group": "geometric-controls",
+          "edition": "2026-11-24",
+          "member": "inputs.json",
+          "json_pointer": "/coupled",
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/geometric-controls/inputs.json",
+          "sha256": "3f5ae2a9e57f8f420dc3e0916414c33dbcb7ad575974f3122aa13385473da31b"
+        }
+      },
+      "sources": [
+        "https://www.unige.ch/~hairer/poly_geoint/week2.pdf"
+      ],
+      "citations": [
+        {
+          "role": "selected-source-formulation",
+          "title": "Lecture2: Symplectic integrators",
+          "url": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+          "note": "Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment. Source date: 2010 (displayed course date); this is not asserted as the publication year.",
+          "review_level": "selected-primary-scope",
+          "full_text_read_by_integration_author": false,
+          "publication_year": null,
+          "publication_year_display": "n.d.",
+          "source_year": 2010,
+          "year_role": "displayed course date",
+          "accessed_on": "2026-11-24"
+        }
+      ],
+      "reference_scope": "The 116 main decisions distinguish independent coupled normal modes, Decimal80/120 and Fraction frozen-coefficient maps, and stagewise gamma8 roundoff allowances. Ideal-pi Jordan structure is checked separately by rational identities. Each probe uses the current saved coefficient hex for its own Decimal80/120 actions; six accuracy actions use Decimal80. The central actual floating map remains unresolved; ideal-pi Jordan structure is not transferred to it. Results concern 64-step amplification and small fixed inputs, not a scanned resonance diagram, general stability or a universal long-time error theorem.",
+      "view": {
+        "ja": "/numerical-methods-atlas/validation/multifrequency-resonance/?lang=ja#multifrequency-resonance-ja-measurements",
+        "en": "/numerical-methods-atlas/validation/multifrequency-resonance/?lang=en#multifrequency-resonance-en-measurements"
+      },
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/validation-geometric-controls/#multifrequency-resonance",
+        "en": "/numerical-methods-atlas/en/read/validation-geometric-controls/#multifrequency-resonance"
+      },
+      "domain_kind": "finite-dimensional-ivp"
     }
   ]
 }

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "status": "RETAINED_ACTUAL_FAILURE_NOT_RELABELED",
+  "original_checks": 64,
+  "original_passed_checks": 63,
+  "unmet": "Jacobi-dn-sn",
+  "actual": 1.0136336214827679e-13,
+  "unchanged_limit": 1e-13,
+  "original_qualification_sha256": "a47e31d27678811096bacaccdb3b486ebae0fb6b946241f326874e3e1da5b503",
+  "original_receipt_sha256": "5544367f35d2a99f8341015614f0ce62f70e00d61c377e952d4b355e0a9f5243",
+  "source_prepost_unchanged": true,
+  "retained_full_attempt_scope": "Full source, raw arrays, Decimal actions, partial outputs and logs remain outside the public release; these small original failure anchors are included here.",
+  "current_reference_scope": "R3 common4K evaluator is separately qualified67/67. This does not erase the original63/64 failure."
+}

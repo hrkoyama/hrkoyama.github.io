@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "files_sha256": {
+    "qualification.json": "55259b99b0be07fab1979232045f9de2c871476b3cc6e49ef7e448b7c570f300",
+    "10-impulse-0.9-D120.json": "fb50249b9c55e9270a98f19f851743cf9b08de84d84c86679f2cf45c175dbd10",
+    "10-impulse-1.0-D120.json": "e25c07ff4a27463512e6074ba7902ccc18ee654a26700e964a10110a5944b604",
+    "10-impulse-1.1-D120.json": "c463b73799f0de325036095909662ca2ff8def3ff4589b80633e83a6ba51f84c",
+    "10-verlet-1.0-D120.json": "633b7625d08a51d364175c085d99484e923684f5dcf6358e719dbbe691e9c9db",
+    "10-verlet-1.8-D120.json": "a5037e4c1f75f19ab200b3f0bf8bc7d07563c58c3e0e050dc674a388fab20a96",
+    "10-verlet-2.2-D120.json": "0d464e5eba1d449609ef57b2b7543ddc48fc59191309ea2f371b4fc7c2f89f89",
+    "20-impulse-0.9-D120.json": "9587a3200aa5e8933581cfed56bacbdfec83007973c38abbca3067f796969154",
+    "20-impulse-1.0-D120.json": "754942a375658aba9c8832ca857f8cbef6d5f7f32f3a2d40195fee2f15a41e7a",
+    "20-impulse-1.1-D120.json": "f4475b119996842743b4cfe34d53113e8af4ef21c713487436b44194505963da",
+    "20-verlet-1.0-D120.json": "3944fefef74d93662ad1d0ffba5f6ab37347b84ac65d1dad9b9dca6b380155d4",
+    "20-verlet-1.8-D120.json": "1f0f46d8732363a3b84b78afa5075862a18b7ef66a79438fd43c6a81e11f198b",
+    "20-verlet-2.2-D120.json": "3e17eaf60dee5ba2422d5a0f4833e34240bacde439fa2804199df93f41109608",
+    "ideal-class-10-0.9.json": "e75920d779b92091cfe93f330066e29d976a8e2dc147b11359c6c546b062dd2a",
+    "ideal-class-10-1.1.json": "21288fbed83060085a8dfbf7fe11545069aec65586ca10df06c37711c04f5bab",
+    "ideal-class-20-0.9.json": "9060569a000170d9a48f08b8e5683054e78d9559e9302074a6d6fb4153c8da4d",
+    "ideal-class-20-1.1.json": "39f475ad81f55e930fb8e9b3adfaf1ecc23bcc2143d8450da17f4005e1fe715c"
+  },
+  "qualification_receipt_sha256": "e6d2ad43f6a65c6a4441d8c02d61816721de274c54cf8faf230c9a0516c298b6",
+  "qualification_plan_sha256": "12724123e7d5e8df9470d31f2e2633762ae122ace2e12c0a99a66ece3abe2138",
+  "input_sha256": "3f5ae2a9e57f8f420dc3e0916414c33dbcb7ad575974f3122aa13385473da31b",
+  "acceptance_sha256": "9b2b3d1ccd8337f8894396d82d20b43dabb330135f08e26c53cbc4645e39059b",
+  "qualification_checks": 67,
+  "passed": true,
+  "scope": "Portable fixed reference candidates only. Main never regenerates the two angular DOP853 reference evolutions. Frozen coefficient libm primitives are intentionally shared; ideal-angle Decimal algebra and continuum formulas remain separate."
+}

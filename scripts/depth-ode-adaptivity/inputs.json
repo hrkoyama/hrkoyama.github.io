@@ -1,0 +1,748 @@
+{
+  "schema_version": 1,
+  "state": "FIXED_INPUT_REVISION2_BEFORE_FIRST_NUMERICAL_EXECUTION",
+  "group": "ode-adaptivity",
+  "candidate_sequences": [
+    68,
+    69,
+    70
+  ],
+  "cases": {
+    "robertson-stiff-kinetics": {
+      "dimension": 3,
+      "initial": [
+        1,
+        0,
+        0
+      ],
+      "final_time": 0.4,
+      "rhs": [
+        "-0.04*y1+1e4*y2*y3",
+        "0.04*y1-1e4*y2*y3-3e7*y2*y2",
+        "3e7*y2*y2"
+      ],
+      "units": "nondimensional standard rate-equation test; no chemical species or physical concentration precision claim",
+      "error_weights": [
+        1,
+        0.0001,
+        1
+      ],
+      "observation_rule": "Sorted union of T*k/16 for k=0..16 and T*j/512 for j=1,2,4,8,16. Every fixed grid hits these; adaptive integration truncates steps at each observation. Actual error is sampled on these22times, not claimed all-time supremum.",
+      "reference_output_count": 22,
+      "plot_snapshots": "Store every accepted fixed/adaptive state; trajectory positivity/mass inspect every accepted state and every implicit stage separately."
+    },
+    "van-der-pol-stiff-transition": {
+      "dimension": 2,
+      "initial": [
+        2,
+        0
+      ],
+      "mu_values": [
+        1,
+        100
+      ],
+      "final_time": 2,
+      "rhs": [
+        "v",
+        "mu*(1-x*x)*v-x"
+      ],
+      "units": "nondimensional; early transient only, not full large-mu relaxation cycle",
+      "error_weights": [
+        1,
+        1
+      ],
+      "observation_rule": "Sorted union of T*k/16 for k=0..16 and T*j/256 for j=1,2,4,8.21common times, all fixed grids aligned; adaptive steps stop at each observation.",
+      "reference_output_count": 21
+    },
+    "rk45-dense-events": {
+      "initial": [
+        1,
+        0
+      ],
+      "gamma": 0.2,
+      "omega": 3,
+      "final_time": 2,
+      "rhs": [
+        "-gamma*y1-omega*y2",
+        "omega*y1-gamma*y2"
+      ],
+      "analytic": [
+        "exp(-gamma*t)*cos(omega*t)",
+        "exp(-gamma*t)*sin(omega*t)"
+      ],
+      "event": "g=y1",
+      "expected_roots": "t=pi/6 downward and pi/2 upward; direction filters exact known simple crossings. Terminal stops at first qualifying root.",
+      "observation_rule": "Off-mesh analytic comparison at t=(j+0.37)*2/97 for j=0..96 below actual terminal. Accepted endpoints and event root states also stored. No extrapolation outside accepted segment.",
+      "event_root_solver": {
+        "algorithm": "own bracket-preserving bisection on retained quartic interpolant",
+        "max_iterations": 80,
+        "absolute_time_width": 2e-13,
+        "root_residual_bound": 2e-12,
+        "initial_zero_policy": "Record at most once; a zero already owned by the previous accepted interval is not repeated. Covered by dedicated controls."
+      },
+      "tolerances": {
+        "loose": {
+          "rtol": 0.0001,
+          "atol": [
+            1e-08,
+            1e-08
+          ]
+        },
+        "medium": {
+          "rtol": 1e-06,
+          "atol": [
+            1e-10,
+            1e-10
+          ]
+        },
+        "tight": {
+          "rtol": 1e-08,
+          "atol": [
+            1e-12,
+            1e-12
+          ]
+        }
+      },
+      "adaptivity": {
+        "error": "RMS of h*K.T*E / (atol+rtol*max(abs(yold),abs(ynew)))",
+        "safety": 0.9,
+        "factor_min": 0.2,
+        "factor_max": 10,
+        "exponent": "-1/5",
+        "after_rejection_factor_cap": 1,
+        "max_trials": 5000,
+        "rejection_cache": "Preserve accepted-start f; never promote rejected endpoint f. Accepted endpoint reuse only. Dense root queries have no RHS evaluation. Terminal root output separate from accepted fullstep endpoint."
+      }
+    },
+    "strang-boundary-order-reduction": {
+      "model": "u_t=u_xx+u",
+      "domain": [
+        0,
+        1
+      ],
+      "boundary": "u(t,0)=u(t,1)=1, fixed nonperiodic Dirichlet",
+      "continuum_exact": "u_ss(x)+0.1*exp((1-pi*pi)*t)*sin(pi*x), u_ss(x)=cos(x-1/2)/cos(1/2)",
+      "initial": "continuum_exact at t0; sampled node values, NOT cell means",
+      "spatial_operator": "centered FD2 on n interior nodes, h=1/(n+1).",
+      "final_time": 0.1,
+      "snapshots": [
+        0,
+        0.025,
+        0.05,
+        0.075,
+        0.1
+      ],
+      "physical_subflow_boundary": "Unmodified reaction boundary evolves from1 to exp(tau), then diffusion boundary is1; report this compatibility defect, do not reset reaction interior states.",
+      "lift": "w=u-1",
+      "uncorrected_subflows": [
+        "diffusion: w_t=L_h*w",
+        "reaction: w_t=w+1"
+      ],
+      "corrected_subflows": [
+        "diffusion: w_t=L_h*w+1",
+        "reaction: w_t=w"
+      ],
+      "exact_diffusion": "Dirichlet DST-I semigroup plus expm1(lambda*tau)/lambda times constant source. Not periodic FFT.",
+      "composition": "Strang A(tau/2) B(tau) A(tau/2), Lie A(tau) then B(tau). Autonomous constantBC removes nonautonomous staging ambiguity.",
+      "scope": "Authored linear specialization of selected Einkemmer–Ostermann lifting/correction, not reproduction of their nonlinear u² tables. Demonstrates boundary error and finite n/time regime; no universal order-loss claim."
+    }
+  },
+  "implicit_solver": {
+    "bdf2_startup": "One BE step on exactly the same constant grid; subsequent coefficient2h/3 and base(4*y_n-y_(n-1))/3.",
+    "sdirk_gamma": "1-1/sqrt(2)",
+    "stage_residual": "z-base-coefficient*f(t_stage,z)",
+    "newton_scaled_residual_tolerance": 1e-12,
+    "newton_max_updates": 16,
+    "newton_line_search_max_halvings": 12,
+    "newton_armijo": 0.0001,
+    "jacobian_refresh_policy": "Analytic Jacobian at initial stage guess then every third accepted Newton correction. Factor I-c*J once per refresh; reuse that immutable factor for subsequent solves in SAMEstage only. Refresh immediately if a line search exhausts, at most one extra refresh per iteration; otherwise explicit failure. Count every actual RHS/Jacobian/factor/solve and rejected line search.",
+    "positivity": "No clipping/projection. Positivity is a reported/gated observed property on fixed inputs, not a theorem of BDF2/SDIRK2.",
+    "state_bound": 1000000,
+    "newton_scaled_norm": "max(abs(stage_residual)/case.error_weights); the same weightedLinfinity norm is used in Armijo and true-residual reporting.",
+    "reuse_scope": "One stage only; no factors shared across stages, attempted dt values, accepted timesteps, model parameters or independent reference solvers.",
+    "counter_identity": "Every actual lu_factor increments factorizations; every lu_solve increments linear_solves; reuses=linear_solves-factorizations (each freshly built factor must be solved once before another refresh). RHS/Jacobian counts increment on actual calls only."
+  },
+  "sdirk_step_doubling": {
+    "loose": {
+      "rtol": 0.0001,
+      "atol_scale": 1e-07
+    },
+    "tight": {
+      "rtol": 1e-06,
+      "atol_scale": 1e-09
+    },
+    "atol": "atol_scale times per-case fixed error_weights",
+    "initial_step": {
+      "robertson": 0.00078125,
+      "vdp": 0.05
+    },
+    "local_estimate": "(two_half_steps-full_step)/3; accept the two-half result only, no extrapolation",
+    "error_scale": "atol+rtol*max(abs(y_old),abs(y_two_half))",
+    "safety": 0.9,
+    "factor_min": 0.2,
+    "factor_max": 5,
+    "exponent": "-1/3",
+    "max_trials": 10000,
+    "stage_failure": "Retain failed candidate/stage and reject; stage failure is never accepted as an error estimate of zero.",
+    "forced_observations": "Each proposed step clips to next fixed observation, carrying accepted state only.",
+    "error_aggregation_norm": "RMS=sqrt(mean(error_ratio**2)); accepted if finite and <=1."
+  },
+  "runs": [
+    {
+      "id": "robertson-bdf2-512",
+      "case_id": "robertson-stiff-kinetics",
+      "role": "primary-fixed",
+      "method": "bdf2",
+      "steps": 512,
+      "final_time": 0.4
+    },
+    {
+      "id": "robertson-bdf2-1024",
+      "case_id": "robertson-stiff-kinetics",
+      "role": "primary-fixed",
+      "method": "bdf2",
+      "steps": 1024,
+      "final_time": 0.4
+    },
+    {
+      "id": "robertson-bdf2-2048",
+      "case_id": "robertson-stiff-kinetics",
+      "role": "primary-fixed",
+      "method": "bdf2",
+      "steps": 2048,
+      "final_time": 0.4
+    },
+    {
+      "id": "robertson-sdirk2-512",
+      "case_id": "robertson-stiff-kinetics",
+      "role": "primary-fixed",
+      "method": "sdirk2",
+      "steps": 512,
+      "final_time": 0.4
+    },
+    {
+      "id": "robertson-sdirk2-1024",
+      "case_id": "robertson-stiff-kinetics",
+      "role": "primary-fixed",
+      "method": "sdirk2",
+      "steps": 1024,
+      "final_time": 0.4
+    },
+    {
+      "id": "robertson-sdirk2-2048",
+      "case_id": "robertson-stiff-kinetics",
+      "role": "primary-fixed",
+      "method": "sdirk2",
+      "steps": 2048,
+      "final_time": 0.4
+    },
+    {
+      "id": "robertson-sdirk-doubling-loose",
+      "case_id": "robertson-stiff-kinetics",
+      "role": "primary-adaptive",
+      "method": "sdirk2-step-doubling",
+      "tolerance_id": "loose",
+      "final_time": 0.4
+    },
+    {
+      "id": "robertson-sdirk-doubling-tight",
+      "case_id": "robertson-stiff-kinetics",
+      "role": "primary-adaptive",
+      "method": "sdirk2-step-doubling",
+      "tolerance_id": "tight",
+      "final_time": 0.4
+    },
+    {
+      "id": "vdp-mu1-bdf2-256",
+      "case_id": "van-der-pol-stiff-transition",
+      "role": "primary-fixed",
+      "mu": 1,
+      "method": "bdf2",
+      "steps": 256,
+      "final_time": 2
+    },
+    {
+      "id": "vdp-mu1-bdf2-512",
+      "case_id": "van-der-pol-stiff-transition",
+      "role": "primary-fixed",
+      "mu": 1,
+      "method": "bdf2",
+      "steps": 512,
+      "final_time": 2
+    },
+    {
+      "id": "vdp-mu1-bdf2-1024",
+      "case_id": "van-der-pol-stiff-transition",
+      "role": "primary-fixed",
+      "mu": 1,
+      "method": "bdf2",
+      "steps": 1024,
+      "final_time": 2
+    },
+    {
+      "id": "vdp-mu1-sdirk2-256",
+      "case_id": "van-der-pol-stiff-transition",
+      "role": "primary-fixed",
+      "mu": 1,
+      "method": "sdirk2",
+      "steps": 256,
+      "final_time": 2
+    },
+    {
+      "id": "vdp-mu1-sdirk2-512",
+      "case_id": "van-der-pol-stiff-transition",
+      "role": "primary-fixed",
+      "mu": 1,
+      "method": "sdirk2",
+      "steps": 512,
+      "final_time": 2
+    },
+    {
+      "id": "vdp-mu1-sdirk2-1024",
+      "case_id": "van-der-pol-stiff-transition",
+      "role": "primary-fixed",
+      "mu": 1,
+      "method": "sdirk2",
+      "steps": 1024,
+      "final_time": 2
+    },
+    {
+      "id": "vdp-mu1-sdirk-doubling-loose",
+      "case_id": "van-der-pol-stiff-transition",
+      "role": "primary-adaptive",
+      "mu": 1,
+      "method": "sdirk2-step-doubling",
+      "tolerance_id": "loose",
+      "final_time": 2
+    },
+    {
+      "id": "vdp-mu1-sdirk-doubling-tight",
+      "case_id": "van-der-pol-stiff-transition",
+      "role": "primary-adaptive",
+      "mu": 1,
+      "method": "sdirk2-step-doubling",
+      "tolerance_id": "tight",
+      "final_time": 2
+    },
+    {
+      "id": "vdp-mu100-bdf2-256",
+      "case_id": "van-der-pol-stiff-transition",
+      "role": "primary-fixed",
+      "mu": 100,
+      "method": "bdf2",
+      "steps": 256,
+      "final_time": 2
+    },
+    {
+      "id": "vdp-mu100-bdf2-512",
+      "case_id": "van-der-pol-stiff-transition",
+      "role": "primary-fixed",
+      "mu": 100,
+      "method": "bdf2",
+      "steps": 512,
+      "final_time": 2
+    },
+    {
+      "id": "vdp-mu100-bdf2-1024",
+      "case_id": "van-der-pol-stiff-transition",
+      "role": "primary-fixed",
+      "mu": 100,
+      "method": "bdf2",
+      "steps": 1024,
+      "final_time": 2
+    },
+    {
+      "id": "vdp-mu100-sdirk2-256",
+      "case_id": "van-der-pol-stiff-transition",
+      "role": "primary-fixed",
+      "mu": 100,
+      "method": "sdirk2",
+      "steps": 256,
+      "final_time": 2
+    },
+    {
+      "id": "vdp-mu100-sdirk2-512",
+      "case_id": "van-der-pol-stiff-transition",
+      "role": "primary-fixed",
+      "mu": 100,
+      "method": "sdirk2",
+      "steps": 512,
+      "final_time": 2
+    },
+    {
+      "id": "vdp-mu100-sdirk2-1024",
+      "case_id": "van-der-pol-stiff-transition",
+      "role": "primary-fixed",
+      "mu": 100,
+      "method": "sdirk2",
+      "steps": 1024,
+      "final_time": 2
+    },
+    {
+      "id": "vdp-mu100-sdirk-doubling-loose",
+      "case_id": "van-der-pol-stiff-transition",
+      "role": "primary-adaptive",
+      "mu": 100,
+      "method": "sdirk2-step-doubling",
+      "tolerance_id": "loose",
+      "final_time": 2
+    },
+    {
+      "id": "vdp-mu100-sdirk-doubling-tight",
+      "case_id": "van-der-pol-stiff-transition",
+      "role": "primary-adaptive",
+      "mu": 100,
+      "method": "sdirk2-step-doubling",
+      "tolerance_id": "tight",
+      "final_time": 2
+    },
+    {
+      "id": "rk45-loose-hmax0.4",
+      "case_id": "rk45-dense-events",
+      "role": "primary",
+      "method": "dormand-prince54",
+      "tolerance_id": "loose",
+      "max_step": 0.4,
+      "first_step": 0.4,
+      "event_direction": 0,
+      "terminal": false,
+      "final_time": 2
+    },
+    {
+      "id": "rk45-loose-hmax0.1",
+      "case_id": "rk45-dense-events",
+      "role": "primary",
+      "method": "dormand-prince54",
+      "tolerance_id": "loose",
+      "max_step": 0.1,
+      "first_step": 0.1,
+      "event_direction": 0,
+      "terminal": false,
+      "final_time": 2
+    },
+    {
+      "id": "rk45-medium-hmax0.4",
+      "case_id": "rk45-dense-events",
+      "role": "primary",
+      "method": "dormand-prince54",
+      "tolerance_id": "medium",
+      "max_step": 0.4,
+      "first_step": 0.4,
+      "event_direction": 0,
+      "terminal": false,
+      "final_time": 2
+    },
+    {
+      "id": "rk45-medium-hmax0.1",
+      "case_id": "rk45-dense-events",
+      "role": "primary",
+      "method": "dormand-prince54",
+      "tolerance_id": "medium",
+      "max_step": 0.1,
+      "first_step": 0.1,
+      "event_direction": 0,
+      "terminal": false,
+      "final_time": 2
+    },
+    {
+      "id": "rk45-tight-hmax0.4",
+      "case_id": "rk45-dense-events",
+      "role": "primary",
+      "method": "dormand-prince54",
+      "tolerance_id": "tight",
+      "max_step": 0.4,
+      "first_step": 0.4,
+      "event_direction": 0,
+      "terminal": false,
+      "final_time": 2
+    },
+    {
+      "id": "rk45-tight-hmax0.1",
+      "case_id": "rk45-dense-events",
+      "role": "primary",
+      "method": "dormand-prince54",
+      "tolerance_id": "tight",
+      "max_step": 0.1,
+      "first_step": 0.1,
+      "event_direction": 0,
+      "terminal": false,
+      "final_time": 2
+    },
+    {
+      "id": "rk45-terminal-direction-1",
+      "case_id": "rk45-dense-events",
+      "role": "primary-terminal",
+      "method": "dormand-prince54",
+      "tolerance_id": "tight",
+      "max_step": 0.4,
+      "first_step": 0.4,
+      "event_direction": -1,
+      "terminal": true,
+      "final_time": 2
+    },
+    {
+      "id": "rk45-terminal-direction1",
+      "case_id": "rk45-dense-events",
+      "role": "primary-terminal",
+      "method": "dormand-prince54",
+      "tolerance_id": "tight",
+      "max_step": 0.4,
+      "first_step": 0.4,
+      "event_direction": 1,
+      "terminal": true,
+      "final_time": 2
+    },
+    {
+      "id": "boundary-n31-strang-unmodified-8",
+      "case_id": "strang-boundary-order-reduction",
+      "role": "primary",
+      "method": "strang-unmodified",
+      "n_interior": 31,
+      "steps": 8,
+      "final_time": 0.1
+    },
+    {
+      "id": "boundary-n31-strang-unmodified-16",
+      "case_id": "strang-boundary-order-reduction",
+      "role": "primary",
+      "method": "strang-unmodified",
+      "n_interior": 31,
+      "steps": 16,
+      "final_time": 0.1
+    },
+    {
+      "id": "boundary-n31-strang-unmodified-32",
+      "case_id": "strang-boundary-order-reduction",
+      "role": "primary",
+      "method": "strang-unmodified",
+      "n_interior": 31,
+      "steps": 32,
+      "final_time": 0.1
+    },
+    {
+      "id": "boundary-n31-strang-unmodified-64",
+      "case_id": "strang-boundary-order-reduction",
+      "role": "primary",
+      "method": "strang-unmodified",
+      "n_interior": 31,
+      "steps": 64,
+      "final_time": 0.1
+    },
+    {
+      "id": "boundary-n31-strang-boundary-corrected-8",
+      "case_id": "strang-boundary-order-reduction",
+      "role": "primary",
+      "method": "strang-boundary-corrected",
+      "n_interior": 31,
+      "steps": 8,
+      "final_time": 0.1
+    },
+    {
+      "id": "boundary-n31-strang-boundary-corrected-16",
+      "case_id": "strang-boundary-order-reduction",
+      "role": "primary",
+      "method": "strang-boundary-corrected",
+      "n_interior": 31,
+      "steps": 16,
+      "final_time": 0.1
+    },
+    {
+      "id": "boundary-n31-strang-boundary-corrected-32",
+      "case_id": "strang-boundary-order-reduction",
+      "role": "primary",
+      "method": "strang-boundary-corrected",
+      "n_interior": 31,
+      "steps": 32,
+      "final_time": 0.1
+    },
+    {
+      "id": "boundary-n31-strang-boundary-corrected-64",
+      "case_id": "strang-boundary-order-reduction",
+      "role": "primary",
+      "method": "strang-boundary-corrected",
+      "n_interior": 31,
+      "steps": 64,
+      "final_time": 0.1
+    },
+    {
+      "id": "boundary-n63-strang-unmodified-8",
+      "case_id": "strang-boundary-order-reduction",
+      "role": "primary",
+      "method": "strang-unmodified",
+      "n_interior": 63,
+      "steps": 8,
+      "final_time": 0.1
+    },
+    {
+      "id": "boundary-n63-strang-unmodified-16",
+      "case_id": "strang-boundary-order-reduction",
+      "role": "primary",
+      "method": "strang-unmodified",
+      "n_interior": 63,
+      "steps": 16,
+      "final_time": 0.1
+    },
+    {
+      "id": "boundary-n63-strang-unmodified-32",
+      "case_id": "strang-boundary-order-reduction",
+      "role": "primary",
+      "method": "strang-unmodified",
+      "n_interior": 63,
+      "steps": 32,
+      "final_time": 0.1
+    },
+    {
+      "id": "boundary-n63-strang-unmodified-64",
+      "case_id": "strang-boundary-order-reduction",
+      "role": "primary",
+      "method": "strang-unmodified",
+      "n_interior": 63,
+      "steps": 64,
+      "final_time": 0.1
+    },
+    {
+      "id": "boundary-n63-strang-boundary-corrected-8",
+      "case_id": "strang-boundary-order-reduction",
+      "role": "primary",
+      "method": "strang-boundary-corrected",
+      "n_interior": 63,
+      "steps": 8,
+      "final_time": 0.1
+    },
+    {
+      "id": "boundary-n63-strang-boundary-corrected-16",
+      "case_id": "strang-boundary-order-reduction",
+      "role": "primary",
+      "method": "strang-boundary-corrected",
+      "n_interior": 63,
+      "steps": 16,
+      "final_time": 0.1
+    },
+    {
+      "id": "boundary-n63-strang-boundary-corrected-32",
+      "case_id": "strang-boundary-order-reduction",
+      "role": "primary",
+      "method": "strang-boundary-corrected",
+      "n_interior": 63,
+      "steps": 32,
+      "final_time": 0.1
+    },
+    {
+      "id": "boundary-n63-strang-boundary-corrected-64",
+      "case_id": "strang-boundary-order-reduction",
+      "role": "primary",
+      "method": "strang-boundary-corrected",
+      "n_interior": 63,
+      "steps": 64,
+      "final_time": 0.1
+    },
+    {
+      "id": "boundary-n127-strang-unmodified-8",
+      "case_id": "strang-boundary-order-reduction",
+      "role": "primary",
+      "method": "strang-unmodified",
+      "n_interior": 127,
+      "steps": 8,
+      "final_time": 0.1
+    },
+    {
+      "id": "boundary-n127-strang-unmodified-16",
+      "case_id": "strang-boundary-order-reduction",
+      "role": "primary",
+      "method": "strang-unmodified",
+      "n_interior": 127,
+      "steps": 16,
+      "final_time": 0.1
+    },
+    {
+      "id": "boundary-n127-strang-unmodified-32",
+      "case_id": "strang-boundary-order-reduction",
+      "role": "primary",
+      "method": "strang-unmodified",
+      "n_interior": 127,
+      "steps": 32,
+      "final_time": 0.1
+    },
+    {
+      "id": "boundary-n127-strang-unmodified-64",
+      "case_id": "strang-boundary-order-reduction",
+      "role": "primary",
+      "method": "strang-unmodified",
+      "n_interior": 127,
+      "steps": 64,
+      "final_time": 0.1
+    },
+    {
+      "id": "boundary-n127-strang-boundary-corrected-8",
+      "case_id": "strang-boundary-order-reduction",
+      "role": "primary",
+      "method": "strang-boundary-corrected",
+      "n_interior": 127,
+      "steps": 8,
+      "final_time": 0.1
+    },
+    {
+      "id": "boundary-n127-strang-boundary-corrected-16",
+      "case_id": "strang-boundary-order-reduction",
+      "role": "primary",
+      "method": "strang-boundary-corrected",
+      "n_interior": 127,
+      "steps": 16,
+      "final_time": 0.1
+    },
+    {
+      "id": "boundary-n127-strang-boundary-corrected-32",
+      "case_id": "strang-boundary-order-reduction",
+      "role": "primary",
+      "method": "strang-boundary-corrected",
+      "n_interior": 127,
+      "steps": 32,
+      "final_time": 0.1
+    },
+    {
+      "id": "boundary-n127-strang-boundary-corrected-64",
+      "case_id": "strang-boundary-order-reduction",
+      "role": "primary",
+      "method": "strang-boundary-corrected",
+      "n_interior": 127,
+      "steps": 64,
+      "final_time": 0.1
+    },
+    {
+      "id": "boundary-n127-lie-8",
+      "case_id": "strang-boundary-order-reduction",
+      "role": "primary-comparator",
+      "method": "lie-unmodified",
+      "n_interior": 127,
+      "steps": 8,
+      "final_time": 0.1
+    },
+    {
+      "id": "boundary-n127-lie-16",
+      "case_id": "strang-boundary-order-reduction",
+      "role": "primary-comparator",
+      "method": "lie-unmodified",
+      "n_interior": 127,
+      "steps": 16,
+      "final_time": 0.1
+    },
+    {
+      "id": "boundary-n127-lie-32",
+      "case_id": "strang-boundary-order-reduction",
+      "role": "primary-comparator",
+      "method": "lie-unmodified",
+      "n_interior": 127,
+      "steps": 32,
+      "final_time": 0.1
+    },
+    {
+      "id": "boundary-n127-lie-64",
+      "case_id": "strang-boundary-order-reduction",
+      "role": "primary-comparator",
+      "method": "lie-unmodified",
+      "n_interior": 127,
+      "steps": 64,
+      "final_time": 0.1
+    }
+  ]
+}

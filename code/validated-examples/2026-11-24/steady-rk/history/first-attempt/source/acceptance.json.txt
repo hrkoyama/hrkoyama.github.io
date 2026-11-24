@@ -1,0 +1,24 @@
+{
+  "jameson-steady-linear-modes": {
+    "reference_preconditions": {
+      "exact_Fraction_classification": "For both stable dtau and lambda4=9+2i/lambda8=17, exact |P(-dtau*lambda)|²<9/10; neutralP(0)=1; expandingP(-17/4)>1. Must qualify before any field iteration.",
+      "independent_polynomial": "Expanded rational polynomial versus4-stage symbolic rational recurrence; no production import."
+    },
+    "gates": {
+      "four_record_identities": "exact fixed4",
+      "all_fields_finite": true,
+      "all_stage_residual_counts": "exact4*steps, monitoring evaluations counted separately",
+      "steady_fixed_point_maxabs": 2e-14,
+      "stable_h32_fullfield_maxabs_error": 2e-12,
+      "stable_h16_fullfield_maxabs_error": 2e-12,
+      "both_stable_final_to_initial_true_residual_ratio_max": 1e-05,
+      "spurious_mode_maxabs": 2e-12,
+      "neutral_constant_maxabs_error": 2e-14,
+      "expanding_normalized_fullfield_error_max": 2e-11,
+      "expanding_final_to_initial_error_norm_ratio_min": 2,
+      "true_residual_independent_modal_error_max": 2e-12,
+      "both_stable_final_mode4_amplitude_min": 1e-12
+    },
+    "rationale": "Rational input patterns and exact discrete eigenvalues remove a spatial truncation oracle. Accuracy checks the actual16-component stencil recurrence, phase/amplitude and unsmoothed residual; contraction is a prior exact oracle decision, not inferred from the run. Expansion/neutrality are labelled controls."
+  }
+}

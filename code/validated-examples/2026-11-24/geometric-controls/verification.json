@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "group": "geometric-controls",
+  "edition": "2026-11-24",
+  "verified_on": "2026-11-24",
+  "source_manifest_sha256": "ef06a73e7a39a839112d5d1c3bb962860dc37e95eec1fb80e6ade23b64ab844a",
+  "archive": {
+    "file": "atlas-geometric-controls-2026-11-24.zip",
+    "sha256": "4e3ef28ab6c91ae62918b7effc6f37097ec0f5a4ed878d4d33fa06e1945329a2",
+    "bytes": 36313876,
+    "archive_directory": "atlas-geometric-controls-2026-11-24"
+  },
+  "archive_sha256": "4e3ef28ab6c91ae62918b7effc6f37097ec0f5a4ed878d4d33fa06e1945329a2",
+  "returncode": 0,
+  "passed_tests": 32,
+  "tests": 32,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "kepler-eccentricity",
+    "multifrequency-resonance",
+    "shake-rattle-pendulum"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 3.910269874999358,
+  "independent_rerun_seconds": 3.9560895829999936,
+  "environment": {
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pytest": "8.3.5"
+  },
+  "execution": "ZIP independently extracted; meaningful pytest checks and every fixed input actually rerun. Scientific code needs no private checkout or network. Stored independent reference regeneration is a separate operation."
+}

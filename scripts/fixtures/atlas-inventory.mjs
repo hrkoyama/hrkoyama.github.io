@@ -1,3 +1,5 @@
+import {projectMethodBeforeBatch68,methodIdsAddedInBatch68} from './atlas-batch68-method-projection.mjs';
+export {projectMethodBeforeBatch68,methodIdsAddedInBatch68};
 // Current registration expectations come from canonical inputs. Immutable
 // release counts, hashes and numerical golden values stay in their own tests.
 import {readFileSync} from 'node:fs';
@@ -105,6 +107,7 @@ function batch58Typed(value){
 const batch58Hash=value=>createHash('sha256').update(batch58Typed(value)).digest('hex');
 const batch58Pick=(row,keys)=>Object.fromEntries(keys.map(key=>[key,row[key]]));
 export function projectMethodBeforeBatch58(row){
+ row=projectMethodBeforeBatch68(row);
  const before=batch57.methods[row.id];
  if(!before)return row;
  assert.equal(row.status,before.status,row.id+'/old-status');

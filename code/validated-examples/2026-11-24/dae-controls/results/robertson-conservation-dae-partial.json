@@ -1,0 +1,368 @@
+{
+  "id": "robertson-conservation-dae",
+  "passed": true,
+  "checks": {
+    "reference:all-reference-complete-finite-nonnegative": true,
+    "reference:reference-agreement-0": true,
+    "reference:reference-agreement-2": true,
+    "reference:official-IDA-printed-interval-qualification": true,
+    "inconsistent-initial-rejected": true,
+    "robertson-residual_dae-r1:finite": true,
+    "robertson-residual_dae-r1:nonnegative": true,
+    "robertson-residual_dae-r1:nonlinear-residual": true,
+    "robertson-residual_dae-r1:mass": true,
+    "robertson-residual_dae-r2:finite": true,
+    "robertson-residual_dae-r2:nonnegative": true,
+    "robertson-residual_dae-r2:nonlinear-residual": true,
+    "robertson-residual_dae-r2:mass": true,
+    "robertson-residual_dae-r4:finite": true,
+    "robertson-residual_dae-r4:nonnegative": true,
+    "robertson-residual_dae-r4:nonlinear-residual": true,
+    "robertson-residual_dae-r4:mass": true,
+    "residual_dae:official-printed-comparison": true,
+    "robertson-full_ode-r1:finite": true,
+    "robertson-full_ode-r1:nonnegative": true,
+    "robertson-full_ode-r1:nonlinear-residual": true,
+    "robertson-full_ode-r1:mass": true,
+    "robertson-full_ode-r2:finite": true,
+    "robertson-full_ode-r2:nonnegative": true,
+    "robertson-full_ode-r2:nonlinear-residual": true,
+    "robertson-full_ode-r2:mass": true,
+    "robertson-full_ode-r4:finite": true,
+    "robertson-full_ode-r4:nonnegative": true,
+    "robertson-full_ode-r4:nonlinear-residual": true,
+    "robertson-full_ode-r4:mass": true,
+    "full_ode:official-printed-comparison": true,
+    "ODE-DAE-r1": true,
+    "ODE-DAE-r2": true,
+    "ODE-DAE-r4": true,
+    "seven-record-identities": true,
+    "verification:original-target-inventory": true,
+    "verification:all-original-decisions-recomputed": true,
+    "verification:measured-records-match-saved-arrays": true,
+    "verification:frozen-original-input-and-acceptance": true,
+    "verification:independent-reference-integrity": true,
+    "verification:actual-target-summary": true,
+    "verification:retained-first-attempt-history": true,
+    "verification:only-declared-study-goals-are-nonmandatory": true
+  },
+  "records": [
+    {
+      "id": "inconsistent-initial-rejection",
+      "kind": "expected_initial_failure",
+      "termination": "initial_algebraic_constraint_violated",
+      "metrics": {
+        "mass_residual": 9.999999999998899e-05
+      }
+    },
+    {
+      "id": "robertson-residual_dae-r1",
+      "kind": "trajectory",
+      "formulation": "residual_dae",
+      "termination": "completed_fixed_steps",
+      "steps": 384,
+      "metrics": {
+        "max_scaled_reference_error": 0.014438638971779891,
+        "max_mass_error": 2.220446049250313e-16,
+        "max_scaled_step_residual": 1.0710574122841998e-12,
+        "minimum_species": 0.0,
+        "Newton_iterations": 900
+      }
+    },
+    {
+      "id": "robertson-residual_dae-r2",
+      "kind": "trajectory",
+      "formulation": "residual_dae",
+      "termination": "completed_fixed_steps",
+      "steps": 768,
+      "metrics": {
+        "max_scaled_reference_error": 0.013348649011714184,
+        "max_mass_error": 2.220446049250313e-16,
+        "max_scaled_step_residual": 1.9804734758359423e-12,
+        "minimum_species": 0.0,
+        "Newton_iterations": 1723
+      }
+    },
+    {
+      "id": "robertson-residual_dae-r4",
+      "kind": "trajectory",
+      "formulation": "residual_dae",
+      "termination": "completed_fixed_steps",
+      "steps": 1536,
+      "metrics": {
+        "max_scaled_reference_error": 0.007755772186054176,
+        "max_mass_error": 2.220446049250313e-16,
+        "max_scaled_step_residual": 9.182101846032633e-13,
+        "minimum_species": 0.0,
+        "Newton_iterations": 3078
+      }
+    },
+    {
+      "id": "robertson-full_ode-r1",
+      "kind": "trajectory",
+      "formulation": "full_ode",
+      "termination": "completed_fixed_steps",
+      "steps": 384,
+      "metrics": {
+        "max_scaled_reference_error": 0.014438638971780366,
+        "max_mass_error": 4.440892098500626e-16,
+        "max_scaled_step_residual": 1.0707354074153451e-12,
+        "minimum_species": 0.0,
+        "Newton_iterations": 900
+      }
+    },
+    {
+      "id": "robertson-full_ode-r2",
+      "kind": "trajectory",
+      "formulation": "full_ode",
+      "termination": "completed_fixed_steps",
+      "steps": 768,
+      "metrics": {
+        "max_scaled_reference_error": 0.013348649011714252,
+        "max_mass_error": 1.5543122344752192e-15,
+        "max_scaled_step_residual": 1.980642882425393e-12,
+        "minimum_species": 0.0,
+        "Newton_iterations": 1723
+      }
+    },
+    {
+      "id": "robertson-full_ode-r4",
+      "kind": "trajectory",
+      "formulation": "full_ode",
+      "termination": "completed_fixed_steps",
+      "steps": 1536,
+      "metrics": {
+        "max_scaled_reference_error": 0.007755772186054176,
+        "max_mass_error": 8.881784197001252e-16,
+        "max_scaled_step_residual": 9.182101846032633e-13,
+        "minimum_species": 0.0,
+        "Newton_iterations": 3078
+      }
+    }
+  ],
+  "metrics": {
+    "robertson-residual_dae-r1:nonnegative": 0.0,
+    "robertson-residual_dae-r1:nonlinear-residual": 1.0710574122841998e-12,
+    "robertson-residual_dae-r1:mass": 2.220446049250313e-16,
+    "robertson-residual_dae-r2:nonnegative": 0.0,
+    "robertson-residual_dae-r2:nonlinear-residual": 1.9804734758359423e-12,
+    "robertson-residual_dae-r2:mass": 2.220446049250313e-16,
+    "robertson-residual_dae-r4:nonnegative": 0.0,
+    "robertson-residual_dae-r4:nonlinear-residual": 9.182101846032633e-13,
+    "robertson-residual_dae-r4:mass": 2.220446049250313e-16,
+    "residual_dae:refinement": [
+      1.0816554513576002,
+      1.7211244337110214
+    ],
+    "residual_dae:finest-reference-error": 0.007755772186054176,
+    "residual_dae:official-printed-comparison": [
+      [
+        0.0,
+        0.0,
+        1.98496998732485e-06
+      ],
+      [
+        2.8469832178190657e-05,
+        3.4259947900275225e-09,
+        3.737975817291739e-05
+      ]
+    ],
+    "robertson-full_ode-r1:nonnegative": 0.0,
+    "robertson-full_ode-r1:nonlinear-residual": 1.0707354074153451e-12,
+    "robertson-full_ode-r1:mass": 4.440892098500626e-16,
+    "robertson-full_ode-r2:nonnegative": 0.0,
+    "robertson-full_ode-r2:nonlinear-residual": 1.980642882425393e-12,
+    "robertson-full_ode-r2:mass": 1.5543122344752192e-15,
+    "robertson-full_ode-r4:nonnegative": 0.0,
+    "robertson-full_ode-r4:nonlinear-residual": 9.182101846032633e-13,
+    "robertson-full_ode-r4:mass": 8.881784197001252e-16,
+    "full_ode:refinement": [
+      1.0816554513576304,
+      1.72112443371103
+    ],
+    "full_ode:finest-reference-error": 0.007755772186054176,
+    "full_ode:official-printed-comparison": [
+      [
+        0.0,
+        0.0,
+        1.9849699872138277e-06
+      ],
+      [
+        2.8469832178079635e-05,
+        3.4259947900546275e-09,
+        3.737975817323658e-05
+      ]
+    ],
+    "ODE-DAE-r1": 8.131516293641283e-16,
+    "ODE-DAE-r2": 2.100641709190665e-15,
+    "ODE-DAE-r4": 8.809142651444724e-16,
+    "finest_scaled_error_DAE": 0.007755772186054176,
+    "finest_scaled_error_ODE": 0.007755772186054176,
+    "reference_solver_counters": [
+      {
+        "id": "reference-radau-loose",
+        "method": "Radau",
+        "nfev": 4291,
+        "njev": 43,
+        "nlu": 166,
+        "status": 0,
+        "observations": 1537
+      },
+      {
+        "id": "reference-radau-tight",
+        "method": "Radau",
+        "nfev": 12141,
+        "njev": 9,
+        "nlu": 124,
+        "status": 0,
+        "observations": 1537
+      },
+      {
+        "id": "reference-bdf-tight",
+        "method": "BDF",
+        "nfev": 1593,
+        "njev": 3,
+        "nlu": 110,
+        "status": 0,
+        "observations": 1537
+      }
+    ],
+    "IDA_new_executions": 0,
+    "original_targets_met": 35,
+    "original_targets_total": 39
+  },
+  "original_target_results": {
+    "reference:all-reference-complete-finite-nonnegative": true,
+    "reference:reference-agreement-0": true,
+    "reference:reference-agreement-2": true,
+    "reference:official-IDA-printed-interval-qualification": true,
+    "inconsistent-initial-rejected": true,
+    "robertson-residual_dae-r1:finite": true,
+    "robertson-residual_dae-r1:nonnegative": true,
+    "robertson-residual_dae-r1:nonlinear-residual": true,
+    "robertson-residual_dae-r1:mass": true,
+    "robertson-residual_dae-r2:finite": true,
+    "robertson-residual_dae-r2:nonnegative": true,
+    "robertson-residual_dae-r2:nonlinear-residual": true,
+    "robertson-residual_dae-r2:mass": true,
+    "robertson-residual_dae-r4:finite": true,
+    "robertson-residual_dae-r4:nonnegative": true,
+    "robertson-residual_dae-r4:nonlinear-residual": true,
+    "robertson-residual_dae-r4:mass": true,
+    "residual_dae:refinement": false,
+    "residual_dae:finest-reference-error": false,
+    "residual_dae:official-printed-comparison": true,
+    "robertson-full_ode-r1:finite": true,
+    "robertson-full_ode-r1:nonnegative": true,
+    "robertson-full_ode-r1:nonlinear-residual": true,
+    "robertson-full_ode-r1:mass": true,
+    "robertson-full_ode-r2:finite": true,
+    "robertson-full_ode-r2:nonnegative": true,
+    "robertson-full_ode-r2:nonlinear-residual": true,
+    "robertson-full_ode-r2:mass": true,
+    "robertson-full_ode-r4:finite": true,
+    "robertson-full_ode-r4:nonnegative": true,
+    "robertson-full_ode-r4:nonlinear-residual": true,
+    "robertson-full_ode-r4:mass": true,
+    "full_ode:refinement": false,
+    "full_ode:finest-reference-error": false,
+    "full_ode:official-printed-comparison": true,
+    "ODE-DAE-r1": true,
+    "ODE-DAE-r2": true,
+    "ODE-DAE-r4": true,
+    "seven-record-identities": true
+  },
+  "original_target_summary": {
+    "met": 35,
+    "total": 39,
+    "all_met": false,
+    "acceptance_sha256": "de0c9378204b8b08610318f41d98efb95cc2c31048a6b593707197635a0cba96"
+  },
+  "original_scientific_targets_met": false,
+  "reporting_verification": {
+    "scope": "Retained numerical integrity and verified faithful reporting; original accuracy goals may be unmet.",
+    "post_measurement_revision": true,
+    "goal_measurements": {
+      "full_ode:finest-reference-error": {
+        "measured": 0.007755772186054176,
+        "limit": 0.002,
+        "comparison": "<=",
+        "units": "state error scaled by (1,1e-4,1)",
+        "met": false
+      },
+      "full_ode:refinement": {
+        "measured": [
+          1.0816554513576304,
+          1.72112443371103
+        ],
+        "limit": 1.6,
+        "comparison": "minimum adjacent ratio >=",
+        "units": "dimensionless error ratio",
+        "met": false
+      },
+      "residual_dae:finest-reference-error": {
+        "measured": 0.007755772186054176,
+        "limit": 0.002,
+        "comparison": "<=",
+        "units": "state error scaled by (1,1e-4,1)",
+        "met": false
+      },
+      "residual_dae:refinement": {
+        "measured": [
+          1.0816554513576002,
+          1.7211244337110214
+        ],
+        "limit": 1.6,
+        "comparison": "minimum adjacent ratio >=",
+        "units": "dimensionless error ratio",
+        "met": false
+      }
+    },
+    "study_goal_keys": [
+      "full_ode:finest-reference-error",
+      "full_ode:refinement",
+      "residual_dae:finest-reference-error",
+      "residual_dae:refinement"
+    ],
+    "current_failure_mask_required": false,
+    "original_numerical_acceptance_unchanged": true,
+    "saved_data_only_audit_no_new_solver_or_reference_generation": true
+  },
+  "original_study_goal_measurements": {
+    "full_ode:finest-reference-error": {
+      "measured": 0.007755772186054176,
+      "limit": 0.002,
+      "comparison": "<=",
+      "units": "state error scaled by (1,1e-4,1)",
+      "met": false
+    },
+    "full_ode:refinement": {
+      "measured": [
+        1.0816554513576304,
+        1.72112443371103
+      ],
+      "limit": 1.6,
+      "comparison": "minimum adjacent ratio >=",
+      "units": "dimensionless error ratio",
+      "met": false
+    },
+    "residual_dae:finest-reference-error": {
+      "measured": 0.007755772186054176,
+      "limit": 0.002,
+      "comparison": "<=",
+      "units": "state error scaled by (1,1e-4,1)",
+      "met": false
+    },
+    "residual_dae:refinement": {
+      "measured": [
+        1.0816554513576002,
+        1.7211244337110214
+      ],
+      "limit": 1.6,
+      "comparison": "minimum adjacent ratio >=",
+      "units": "dimensionless error ratio",
+      "met": false
+    }
+  },
+  "validation_scope": "fixed_study_with_separate_original_accuracy_goals"
+}

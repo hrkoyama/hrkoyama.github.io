@@ -1,0 +1,686 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "verified_at_utc": "2026-11-24T12:37:05.106245+00:00",
+  "final_commit": "c89776f807fc0137d3aa46aba172a784dabc61aa",
+  "content_tree": "c306a07e0d39c19985acb6914b36262bdf2b7304",
+  "publication_repository": "hrkoyama/hrkoyama.github.io",
+  "publication_branch": "main",
+  "public_origin": "https://hrkoyama.github.io/numerical-methods-atlas/",
+  "backlog_sequences": [
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67
+  ],
+  "new_groups": [
+    {
+      "group": "globalization-controls",
+      "edition": "2026-11-24",
+      "tests": 16,
+      "cases": [
+        "globalization-difficult-starts"
+      ],
+      "case_gates": {
+        "globalization-difficult-starts": 145
+      },
+      "archive": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/globalization-controls/atlas-globalization-controls-2026-11-24.zip",
+        "sha256": "a8d55166dedf528bbb143080998b5bdd0a95ad37d29d589206499e23dbc9fe4d"
+      }
+    },
+    {
+      "group": "reverse-higher-ad",
+      "edition": "2026-11-24",
+      "tests": 24,
+      "cases": [
+        "hessian-vector-products",
+        "kink-branch-derivatives",
+        "reverse-vjp-duality"
+      ],
+      "case_gates": {
+        "reverse-vjp-duality": 46,
+        "hessian-vector-products": 27,
+        "kink-branch-derivatives": 144
+      },
+      "archive": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/atlas-reverse-higher-ad-2026-11-24.zip",
+        "sha256": "9ba9d564393bf64d33ec79add1648082e72356335051da99f228e9b0ee5e850a"
+      }
+    },
+    {
+      "group": "adjoint",
+      "edition": "2026-11-24",
+      "tests": 32,
+      "cases": [
+        "bratu-distributed-vjp",
+        "bratu-fold-sensitivity",
+        "diffusion-discrete-adjoint"
+      ],
+      "case_gates": {
+        "diffusion-discrete-adjoint": 59,
+        "bratu-fold-sensitivity": 55,
+        "bratu-distributed-vjp": 27
+      },
+      "archive": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/atlas-adjoint-2026-11-24.zip",
+        "sha256": "6b78fd9d4320e9790bd6ebe2a0ef61a25c55c7fdc0a14dd37d0ca1a37b80a5ee"
+      }
+    },
+    {
+      "group": "inverse-optimization",
+      "edition": "2026-11-24",
+      "tests": 32,
+      "cases": [
+        "bfgs-lbfgs-controls",
+        "bratu-gn-lm-bounds",
+        "bratu-noise-regularization"
+      ],
+      "case_gates": {
+        "bratu-gn-lm-bounds": 95,
+        "bfgs-lbfgs-controls": 88,
+        "bratu-noise-regularization": 197
+      },
+      "archive": {
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/atlas-inverse-optimization-2026-11-24.zip",
+        "sha256": "ffefd2d5876a3db10596d6e1f089f73be7a82288d63f348bcd960b9497412b44"
+      }
+    }
+  ],
+  "new_scientific_cases": 10,
+  "new_pytest": 104,
+  "new_case_gates": 883,
+  "source_reading_scopes": [
+    {
+      "case": "globalization-difficult-starts",
+      "metadata": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/globalization-controls/cases.json",
+      "references": [
+        {
+          "id": "petsc-snes-selected",
+          "author": "PETSc developers",
+          "title": "SNES: Nonlinear Solvers",
+          "url": "https://petsc.org/release/manual/snes/",
+          "accessed_on": "2026-11-24",
+          "review_level": "official-documentation-selected-sections",
+          "review_scope": "Read nonlinear solver categories, stopping/domain-error distinctions and selected line-search/trust-region descriptions. Our fixed Euclidean dogleg and Delta0=1 are independently specified; not asserted to reproduce PETSc defaults. Unread: MINPACK original report/paper, PETSc solver implementation source, Full manual outside named sections. Publication year not established (n.d.)."
+        }
+      ]
+    },
+    {
+      "case": "reverse-vjp-duality",
+      "metadata": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/cases.json",
+      "references": [
+        {
+          "id": "jax-cookbook-selected",
+          "author": "The JAX authors",
+          "title": "The Autodiff Cookbook",
+          "url": "https://docs.jax.dev/en/latest/notebooks/autodiff_cookbook.html",
+          "accessed_on": "2026-11-24",
+          "review_level": "official-documentation-selected-mathematical-sections",
+          "review_scope": "Selected definitions and composition formulas only. A new educational tape will implement the stated finite subset. No JAX installation, execution, timing replication or implementation-source audit. Unread: Original reverse-mode/HVP papers, JAX transformation implementation, Unselected cookbook sections. Publication year not established (n.d.)."
+        },
+        {
+          "id": "jax-faq-selected",
+          "author": "The JAX authors",
+          "title": "Frequently asked questions: undefined branches and ordering",
+          "url": "https://docs.jax.dev/en/latest/faq.html",
+          "accessed_on": "2026-11-24",
+          "review_level": "official-documentation-selected-sections",
+          "review_scope": "Read invalid inactive-branch and ordering discussions. We use an explicitly different strict nondifferentiability policy, not a universal JAX tie rule. Unread: Linked issue threads, Generalized derivative original papers. Publication year not established (n.d.)."
+        }
+      ]
+    },
+    {
+      "case": "hessian-vector-products",
+      "metadata": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/cases.json",
+      "references": [
+        {
+          "id": "jax-cookbook-selected",
+          "author": "The JAX authors",
+          "title": "The Autodiff Cookbook",
+          "url": "https://docs.jax.dev/en/latest/notebooks/autodiff_cookbook.html",
+          "accessed_on": "2026-11-24",
+          "review_level": "official-documentation-selected-mathematical-sections",
+          "review_scope": "Selected definitions and composition formulas only. A new educational tape will implement the stated finite subset. No JAX installation, execution, timing replication or implementation-source audit. Unread: Original reverse-mode/HVP papers, JAX transformation implementation, Unselected cookbook sections. Publication year not established (n.d.)."
+        },
+        {
+          "id": "jax-faq-selected",
+          "author": "The JAX authors",
+          "title": "Frequently asked questions: undefined branches and ordering",
+          "url": "https://docs.jax.dev/en/latest/faq.html",
+          "accessed_on": "2026-11-24",
+          "review_level": "official-documentation-selected-sections",
+          "review_scope": "Read invalid inactive-branch and ordering discussions. We use an explicitly different strict nondifferentiability policy, not a universal JAX tie rule. Unread: Linked issue threads, Generalized derivative original papers. Publication year not established (n.d.)."
+        }
+      ]
+    },
+    {
+      "case": "kink-branch-derivatives",
+      "metadata": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/reverse-higher-ad/cases.json",
+      "references": [
+        {
+          "id": "jax-cookbook-selected",
+          "author": "The JAX authors",
+          "title": "The Autodiff Cookbook",
+          "url": "https://docs.jax.dev/en/latest/notebooks/autodiff_cookbook.html",
+          "accessed_on": "2026-11-24",
+          "review_level": "official-documentation-selected-mathematical-sections",
+          "review_scope": "Selected definitions and composition formulas only. A new educational tape will implement the stated finite subset. No JAX installation, execution, timing replication or implementation-source audit. Unread: Original reverse-mode/HVP papers, JAX transformation implementation, Unselected cookbook sections. Publication year not established (n.d.)."
+        },
+        {
+          "id": "jax-faq-selected",
+          "author": "The JAX authors",
+          "title": "Frequently asked questions: undefined branches and ordering",
+          "url": "https://docs.jax.dev/en/latest/faq.html",
+          "accessed_on": "2026-11-24",
+          "review_level": "official-documentation-selected-sections",
+          "review_scope": "Read invalid inactive-branch and ordering discussions. We use an explicitly different strict nondifferentiability policy, not a universal JAX tie rule. Unread: Linked issue threads, Generalized derivative original papers. Publication year not established (n.d.)."
+        }
+      ]
+    },
+    {
+      "case": "diffusion-discrete-adjoint",
+      "metadata": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/cases.json",
+      "references": [
+        {
+          "id": "cvodes-adjoint",
+          "title": "SUNDIALS CVODES adjoint usage",
+          "url": "https://sundials.readthedocs.io/en/latest/cvodes/Usage/ADJ.html",
+          "review_level": "official-documentation-selected-sections",
+          "review_scope": "Skeleton forward/backward tolerance and solver setup; Nd checkpoint spacing/interpolation; selected sections only. Our fixed-step discrete transpose/replay is not CVODES interpolation-based ASA or an optimal schedule.",
+          "accessed_on": "2026-11-24",
+          "role": "selected-primary-method-or-equation",
+          "review": {
+            "ja": "選択部分のみを確認。閲覧日は出版年ではありません。独立数値参照の資格は別途記録します。",
+            "en": "Selected scope only. Access date is not publication year. Numerical oracle qualification is recorded separately."
+          }
+        },
+        {
+          "id": "jax-vjp",
+          "title": "JAX vjp API",
+          "url": "https://docs.jax.dev/en/latest/_autosummary/jax.vjp.html",
+          "review_level": "official-documentation-selected-API",
+          "review_scope": "Reverse-mode cotangent map definition and input/output shapes. Terminology only; no JAX implementation, library-equivalence or framework execution claim.",
+          "accessed_on": "2026-11-24",
+          "role": "terminology-only",
+          "review": {
+            "ja": "選択部分のみを確認。閲覧日は出版年ではありません。独立数値参照の資格は別途記録します。",
+            "en": "Selected scope only. Access date is not publication year. Numerical oracle qualification is recorded separately."
+          }
+        },
+        {
+          "id": "decimal",
+          "title": "Python3.12.16 decimal documentation",
+          "url": "https://docs.python.org/3.12/library/decimal.html",
+          "review_level": "official-documentation-selected-API",
+          "review_scope": "Decimal.exp correctly rounded half-even and from_float exact binary-float conversion. This supports arithmetic choices, not an already qualified numerical oracle.",
+          "accessed_on": "2026-11-24",
+          "role": "selected-primary-method-or-equation",
+          "review": {
+            "ja": "選択部分のみを確認。閲覧日は出版年ではありません。独立数値参照の資格は別途記録します。",
+            "en": "Selected scope only. Access date is not publication year. Numerical oracle qualification is recorded separately."
+          }
+        },
+        {
+          "id": "arclength",
+          "title": "Dickson,Kelley,Ipsen,Kevrekidis:Condition Estimates for Pseudo-Arclength Continuation",
+          "url": "https://ipsen.math.ncsu.edu/ps/sinum65438.pdf",
+          "review_level": "author-paper-selected-equations",
+          "review_scope": "Section2.1 implicit sensitivity and2.2 simple-fold definition/arclength equations, printed265–267. Full proofs/experiments not audited; no reference table copied. Continuation already exists in56.",
+          "accessed_on": "2026-11-24",
+          "role": "selected-primary-method-or-equation",
+          "review": {
+            "ja": "選択部分のみを確認。閲覧日は出版年ではありません。独立数値参照の資格は別途記録します。",
+            "en": "Selected scope only. Access date is not publication year. Numerical oracle qualification is recorded separately."
+          }
+        },
+        {
+          "id": "bratu-family",
+          "title": "Author-hosted INF5620 nonlinear exercises,Problem8,Eq52",
+          "url": "https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html",
+          "review_level": "author-teaching-source-selected-equation",
+          "review_scope": "Bratu BVP/cosh family/critical value and FD exercise. Source theta=2*the alpha in old sensitivity module. Continuum family only, never the exact discrete fold/state.",
+          "accessed_on": "2026-11-24",
+          "role": "selected-primary-method-or-equation",
+          "review": {
+            "ja": "選択部分のみを確認。閲覧日は出版年ではありません。独立数値参照の資格は別途記録します。",
+            "en": "Selected scope only. Access date is not publication year. Numerical oracle qualification is recorded separately."
+          }
+        }
+      ]
+    },
+    {
+      "case": "bratu-fold-sensitivity",
+      "metadata": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/cases.json",
+      "references": [
+        {
+          "id": "cvodes-adjoint",
+          "title": "SUNDIALS CVODES adjoint usage",
+          "url": "https://sundials.readthedocs.io/en/latest/cvodes/Usage/ADJ.html",
+          "review_level": "official-documentation-selected-sections",
+          "review_scope": "Skeleton forward/backward tolerance and solver setup; Nd checkpoint spacing/interpolation; selected sections only. Our fixed-step discrete transpose/replay is not CVODES interpolation-based ASA or an optimal schedule.",
+          "accessed_on": "2026-11-24",
+          "role": "selected-primary-method-or-equation",
+          "review": {
+            "ja": "選択部分のみを確認。閲覧日は出版年ではありません。独立数値参照の資格は別途記録します。",
+            "en": "Selected scope only. Access date is not publication year. Numerical oracle qualification is recorded separately."
+          }
+        },
+        {
+          "id": "jax-vjp",
+          "title": "JAX vjp API",
+          "url": "https://docs.jax.dev/en/latest/_autosummary/jax.vjp.html",
+          "review_level": "official-documentation-selected-API",
+          "review_scope": "Reverse-mode cotangent map definition and input/output shapes. Terminology only; no JAX implementation, library-equivalence or framework execution claim.",
+          "accessed_on": "2026-11-24",
+          "role": "terminology-only",
+          "review": {
+            "ja": "選択部分のみを確認。閲覧日は出版年ではありません。独立数値参照の資格は別途記録します。",
+            "en": "Selected scope only. Access date is not publication year. Numerical oracle qualification is recorded separately."
+          }
+        },
+        {
+          "id": "decimal",
+          "title": "Python3.12.16 decimal documentation",
+          "url": "https://docs.python.org/3.12/library/decimal.html",
+          "review_level": "official-documentation-selected-API",
+          "review_scope": "Decimal.exp correctly rounded half-even and from_float exact binary-float conversion. This supports arithmetic choices, not an already qualified numerical oracle.",
+          "accessed_on": "2026-11-24",
+          "role": "selected-primary-method-or-equation",
+          "review": {
+            "ja": "選択部分のみを確認。閲覧日は出版年ではありません。独立数値参照の資格は別途記録します。",
+            "en": "Selected scope only. Access date is not publication year. Numerical oracle qualification is recorded separately."
+          }
+        },
+        {
+          "id": "arclength",
+          "title": "Dickson,Kelley,Ipsen,Kevrekidis:Condition Estimates for Pseudo-Arclength Continuation",
+          "url": "https://ipsen.math.ncsu.edu/ps/sinum65438.pdf",
+          "review_level": "author-paper-selected-equations",
+          "review_scope": "Section2.1 implicit sensitivity and2.2 simple-fold definition/arclength equations, printed265–267. Full proofs/experiments not audited; no reference table copied. Continuation already exists in56.",
+          "accessed_on": "2026-11-24",
+          "role": "selected-primary-method-or-equation",
+          "review": {
+            "ja": "選択部分のみを確認。閲覧日は出版年ではありません。独立数値参照の資格は別途記録します。",
+            "en": "Selected scope only. Access date is not publication year. Numerical oracle qualification is recorded separately."
+          }
+        },
+        {
+          "id": "bratu-family",
+          "title": "Author-hosted INF5620 nonlinear exercises,Problem8,Eq52",
+          "url": "https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html",
+          "review_level": "author-teaching-source-selected-equation",
+          "review_scope": "Bratu BVP/cosh family/critical value and FD exercise. Source theta=2*the alpha in old sensitivity module. Continuum family only, never the exact discrete fold/state.",
+          "accessed_on": "2026-11-24",
+          "role": "selected-primary-method-or-equation",
+          "review": {
+            "ja": "選択部分のみを確認。閲覧日は出版年ではありません。独立数値参照の資格は別途記録します。",
+            "en": "Selected scope only. Access date is not publication year. Numerical oracle qualification is recorded separately."
+          }
+        },
+        {
+          "id": "python312-sumprod",
+          "title": "Python3.12.16 math documentation,math.sumprod",
+          "url": "https://docs.python.org/3.12/library/math.html#math.sumprod",
+          "review_level": "official-selected-API",
+          "review_scope": "Selected math.sumprod definition,matching-length error,added-in3.12 and builtinfloat/mixedfloat intermediate arithmetic semantics only. No full CPython C implementation audit by this author. Documented extended intermediate precision; no wholeCPython audit or universal correctrounding claim.",
+          "accessed_on": "2026-11-24",
+          "role": "algorithm-precision-contract",
+          "review": {
+            "ja": "math.sumprodの公式API選択箇所を確認。閲覧日は出版年ではなく、一般の正丸め保証ではありません。",
+            "en": "Selectedofficial math.sumprod API read;accessdate is notpublicationyear,no globalcorrectrounding claim."
+          }
+        }
+      ]
+    },
+    {
+      "case": "bratu-distributed-vjp",
+      "metadata": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/adjoint/cases.json",
+      "references": [
+        {
+          "id": "cvodes-adjoint",
+          "title": "SUNDIALS CVODES adjoint usage",
+          "url": "https://sundials.readthedocs.io/en/latest/cvodes/Usage/ADJ.html",
+          "review_level": "official-documentation-selected-sections",
+          "review_scope": "Skeleton forward/backward tolerance and solver setup; Nd checkpoint spacing/interpolation; selected sections only. Our fixed-step discrete transpose/replay is not CVODES interpolation-based ASA or an optimal schedule.",
+          "accessed_on": "2026-11-24",
+          "role": "selected-primary-method-or-equation",
+          "review": {
+            "ja": "選択部分のみを確認。閲覧日は出版年ではありません。独立数値参照の資格は別途記録します。",
+            "en": "Selected scope only. Access date is not publication year. Numerical oracle qualification is recorded separately."
+          }
+        },
+        {
+          "id": "jax-vjp",
+          "title": "JAX vjp API",
+          "url": "https://docs.jax.dev/en/latest/_autosummary/jax.vjp.html",
+          "review_level": "official-documentation-selected-API",
+          "review_scope": "Reverse-mode cotangent map definition and input/output shapes. Terminology only; no JAX implementation, library-equivalence or framework execution claim.",
+          "accessed_on": "2026-11-24",
+          "role": "terminology-only",
+          "review": {
+            "ja": "選択部分のみを確認。閲覧日は出版年ではありません。独立数値参照の資格は別途記録します。",
+            "en": "Selected scope only. Access date is not publication year. Numerical oracle qualification is recorded separately."
+          }
+        },
+        {
+          "id": "decimal",
+          "title": "Python3.12.16 decimal documentation",
+          "url": "https://docs.python.org/3.12/library/decimal.html",
+          "review_level": "official-documentation-selected-API",
+          "review_scope": "Decimal.exp correctly rounded half-even and from_float exact binary-float conversion. This supports arithmetic choices, not an already qualified numerical oracle.",
+          "accessed_on": "2026-11-24",
+          "role": "selected-primary-method-or-equation",
+          "review": {
+            "ja": "選択部分のみを確認。閲覧日は出版年ではありません。独立数値参照の資格は別途記録します。",
+            "en": "Selected scope only. Access date is not publication year. Numerical oracle qualification is recorded separately."
+          }
+        },
+        {
+          "id": "arclength",
+          "title": "Dickson,Kelley,Ipsen,Kevrekidis:Condition Estimates for Pseudo-Arclength Continuation",
+          "url": "https://ipsen.math.ncsu.edu/ps/sinum65438.pdf",
+          "review_level": "author-paper-selected-equations",
+          "review_scope": "Section2.1 implicit sensitivity and2.2 simple-fold definition/arclength equations, printed265–267. Full proofs/experiments not audited; no reference table copied. Continuation already exists in56.",
+          "accessed_on": "2026-11-24",
+          "role": "selected-primary-method-or-equation",
+          "review": {
+            "ja": "選択部分のみを確認。閲覧日は出版年ではありません。独立数値参照の資格は別途記録します。",
+            "en": "Selected scope only. Access date is not publication year. Numerical oracle qualification is recorded separately."
+          }
+        },
+        {
+          "id": "bratu-family",
+          "title": "Author-hosted INF5620 nonlinear exercises,Problem8,Eq52",
+          "url": "https://hplgit.github.io/INF5620/doc/pub/._main_nonlin005.html",
+          "review_level": "author-teaching-source-selected-equation",
+          "review_scope": "Bratu BVP/cosh family/critical value and FD exercise. Source theta=2*the alpha in old sensitivity module. Continuum family only, never the exact discrete fold/state.",
+          "accessed_on": "2026-11-24",
+          "role": "selected-primary-method-or-equation",
+          "review": {
+            "ja": "選択部分のみを確認。閲覧日は出版年ではありません。独立数値参照の資格は別途記録します。",
+            "en": "Selected scope only. Access date is not publication year. Numerical oracle qualification is recorded separately."
+          }
+        },
+        {
+          "id": "python312-sumprod",
+          "title": "Python3.12.16 math documentation,math.sumprod",
+          "url": "https://docs.python.org/3.12/library/math.html#math.sumprod",
+          "review_level": "official-selected-API",
+          "review_scope": "Selected math.sumprod definition,matching-length error,added-in3.12 and builtinfloat/mixedfloat intermediate arithmetic semantics only. No full CPython C implementation audit by this author. Documented extended intermediate precision; no wholeCPython audit or universal correctrounding claim.",
+          "accessed_on": "2026-11-24",
+          "role": "algorithm-precision-contract",
+          "review": {
+            "ja": "math.sumprodの公式API選択箇所を確認。閲覧日は出版年ではなく、一般の正丸め保証ではありません。",
+            "en": "Selectedofficial math.sumprod API read;accessdate is notpublicationyear,no globalcorrectrounding claim."
+          }
+        }
+      ]
+    },
+    {
+      "case": "bratu-gn-lm-bounds",
+      "metadata": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/cases.json",
+      "references": [
+        {
+          "id": "scipy-least-squares-1141",
+          "title": "SciPy 1.14.1 least_squares documentation",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.optimize.least_squares.html",
+          "review_level": "selected-primary-scope",
+          "review_scope": "Parameters, bounds, callable Jacobian, method-specific ftol/xtol/gtol and x_scale, max_nfev, returned status and Notes on LM and TRF. LM does not handle bounds and requires at least as many residual rows as variables; TRF supports bounds. MINPACK/STIR original papers were not read in this preparation.",
+          "accessed_on": "2026-11-24"
+        }
+      ]
+    },
+    {
+      "case": "bfgs-lbfgs-controls",
+      "metadata": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/cases.json",
+      "references": [
+        {
+          "id": "liu-nocedal-1989",
+          "title": "On the limited memory BFGS method for large scale optimization",
+          "url": "https://users.iems.northwestern.edu/~nocedal/PDFfiles/limited-memory.pdf",
+          "review_level": "selected-primary-scope",
+          "review_scope": "Author-hosted PDF selected physical pages 3–5 (printed 2–4), rendered locally and visually inspected: limited storage, deletion of oldest correction, Eq. (2.1) inverse-BFGS, Algorithm 2.1 and Eq. (2.6) retained-update construction. No full-paper/proof/experiment or Section 4 scaling review. The selected original uses weak Wolfe; this study deliberately uses a separately specified strong-Wolfe line search. Current-gamma least-squares scaling is independently derived here, not attributed to unread text.",
+          "year": 1989,
+          "accessed_on": "2026-11-24"
+        },
+        {
+          "id": "scipy-line-search-1141",
+          "title": "SciPy 1.14.1 line_search documentation",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.optimize.line_search.html",
+          "review_level": "selected-primary-scope",
+          "review_scope": "Signature, c1/c2, descent-direction requirement, returned failure None and evaluation counts. Cited textbook pages were not read.",
+          "accessed_on": "2026-11-24"
+        },
+        {
+          "id": "scipy-bfgs-1141",
+          "title": "SciPy 1.14.1 BFGS documentation",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/optimize.minimize-bfgs.html",
+          "review_level": "selected-primary-scope",
+          "review_scope": "Options gtol, norm, c1/c2, hess_inv0 and precision-loss notes; no claim of reading a BFGS original paper.",
+          "accessed_on": "2026-11-24"
+        },
+        {
+          "id": "scipy-lbfgsb-1141",
+          "title": "SciPy 1.14.1 L-BFGS-B documentation",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/optimize.minimize-lbfgsb.html",
+          "review_level": "selected-primary-scope",
+          "review_scope": "Options maxcor, ftol, gtol/projected-gradient convention, maxfun, maxiter and maxls.",
+          "accessed_on": "2026-11-24"
+        },
+        {
+          "id": "fletcher-1970",
+          "title": "A new approach to variable metric algorithms",
+          "url": "https://academic.oup.com/comjnl/article-abstract/13/3/317/345520?login=false",
+          "review_level": "bibliography-only-original-unread",
+          "review_scope": "Prior saved publisher metadata/abstract-search record only. Original article full text remains unavailable/unread; no new request was made and no derivation is claimed to have been checked against it.",
+          "year": 1970
+        }
+      ]
+    },
+    {
+      "case": "bratu-noise-regularization",
+      "metadata": "https://hrkoyama.github.io/code/validated-examples/2026-11-24/inverse-optimization/cases.json",
+      "references": [
+        {
+          "id": "hansen-rt41",
+          "title": "Regularization Tools, Version 4.1 for Matlab 7.3",
+          "url": "https://www2.compute.dtu.dk/~pcha/Regutools/RTv4manual.pdf",
+          "review_level": "selected-primary-scope",
+          "review_scope": "Official author manual: selected text around Section 2.5 and Section 2.9; physical pages 20 and 37 (printed 18 and 35) rendered locally and visually inspected. L-curve residual/solution norm tradeoff and discrepancy equation (2.61) were read. Four-point chord curvature here is a finite-list diagnostic, not the manual spline/corner algorithm, a theorem of optimal regularization or coverage. Original software (1994) and later article (2007) are separate bibliographic works and were not read.",
+          "year": 2008,
+          "accessed_on": "2026-11-24"
+        },
+        {
+          "id": "scipy-curve-fit-1141",
+          "title": "SciPy 1.14.1 curve_fit documentation",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.optimize.curve_fit.html",
+          "review_level": "selected-primary-scope",
+          "review_scope": "sigma/absolute_sigma and covariance interpretation sections. The penalized sandwich covariance in this study is derived independently; it is not presented as curve_fit output.",
+          "accessed_on": "2026-11-24"
+        },
+        {
+          "id": "scipy-least-squares-1141",
+          "title": "SciPy 1.14.1 least_squares documentation",
+          "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.optimize.least_squares.html",
+          "review_level": "selected-primary-scope",
+          "review_scope": "Parameters, bounds, callable Jacobian, method-specific ftol/xtol/gtol and x_scale, max_nfev, returned status and Notes on LM and TRF. LM does not handle bounds and requires at least as many residual rows as variables; TRF supports bounds. MINPACK/STIR original papers were not read in this preparation.",
+          "accessed_on": "2026-11-24"
+        }
+      ]
+    }
+  ],
+  "public_linux": {
+    "run_id": 45390994718,
+    "run_attempt": 1,
+    "url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45390994718",
+    "groups": 56,
+    "cases": 116,
+    "pytest": 1456,
+    "source_checkout": false,
+    "all56JUnitVerified": true,
+    "report_sha256": "4ad3e5ae26c639065c2c9ca0e724b097eb61277c7f5244ae9a62cc34aae45e02",
+    "junit_sha256": {
+      "foundations": "3a273e028a1712cd6afb2991d67d5525d4742f1f0d15a5a565f5e447db6cf70f",
+      "models": "e1bd2d3c6dbcd292cc50fed2bae0ae659cafe20aa8e1463db97f42a2db7c3f58",
+      "particles": "a3fdea0e206ad25062bc8817b68801aa78e12111910c8371de93aaa1753b6aad",
+      "mhd": "5873429509783c843c98779b63b19e141c4351a85ad452bc22566d7a12600a41",
+      "thermostats": "c320d1591b5d39665532c543db6161a620c63672c43680b17708956666a1f3c5",
+      "biology": "b12cbc32408618354a565d658b36597bf6341ad2b3798cd1246b7258c75e05e3",
+      "mcmc": "57a087cdb443a0180106a2ca0b90dd54b8d550e6d672f8dc00cded119fa24fa8",
+      "mhd-convergence": "2619c240da9aaf3339eb73eb835cb6c45ec836cc4c8d8fcba26795d7fffb0c21",
+      "foundations-conditioning": "940ef4f8e9fcfb244a871a2f24448625e5b4a447fd3e14d96465182cd9e20834",
+      "particle-transport": "b7e24efc40bc02a4da9fa1deabf4aab08388ca9450ff7673b6cc6c650742ba6d",
+      "splitting": "1f43fa4e26aefd46e4f7c981f7c31749210a1783b59c87789f18f11f15237d57",
+      "noh": "0d642b6709c469188d6287d5ce260b92899cc31dcf77f3c4f660df1801aa0530",
+      "noh-cartesian": "75c796969944fb892ccd3eab3cb793ee74f378a692bc3bde524c329e0aa5240e",
+      "sedov": "31565979e929e11591b49eb5b9641bdeb80462f091fa75ff8afda34531f179c9",
+      "double-mach": "32e270e04842dc61d1b29e8d202b5b40dbb3e956641e30a9ca88e84a1c55cd99",
+      "forward-step": "d632066f51a14afe8d26b183c429ca2fcf8b3d295af9772a10a9ef860081519c",
+      "low-mach": "c4239ef960989221cb7e7bc2cfaf774acb8848725e1c0504f5c5bf596d07f81d",
+      "guderley": "b2bac16b6cc99f92c58a4ca71e792086e1aac9cbc446fe3802cfcb1b31dc512e",
+      "euler-positivity": "9fbceda84bb010c4702daaeda058e909a02114769d7afe51c8978890f8d14ce4",
+      "zalesak": "d7111a4713134ba4a88c2ed960149f7b19a1067f33ee67044580df8994bb6d0b",
+      "weno-critical": "e4387d2f82dc9784e08b1dea1f4c5da1bbf363c25dcbac31da4b4184d2f8cf66",
+      "shallow-water": "8bdd0fa4f21f4930a738a69ccd03b6e33892f8202a63ebef60a1ac2676b99d09",
+      "wall-flow": "81d891ecd5a8f9cb469070f3174140315b566b59a3ceb3ad2f78e4142b6afb11",
+      "level-set": "d6c6d73f3497492e87162a88f9d98c8c33e60a3b820944736837ab170fe5a332",
+      "sem-fr": "0137d79a64f9dfec0a64c70c94b09957427d50a8b56ee6a7cae8b4749f0a12b0",
+      "instability-growth": "a8c8ab40c4dfa481fafc47758f6f84beae920e95cb67290cfa4322ecd8df2e63",
+      "mhd-transport": "c039ba17e6498b2878dce9b053da56ea082134e4dc6744a0ab870a567c10ae6a",
+      "mesh-boundary": "7744dd17fd137ce306ad42376623d50c6dc809e5d7f11b36f3e72ef6189059e3",
+      "moving-waves": "acd87994129e2c779202edb4a6ab4f97fb403528f4b1e10d8ba442af210e5dab",
+      "relativistic": "4d8235301c55ecd5979a40e05402415887426670a2e5348fb91b154f46ec4db6",
+      "coefficient-diffusion": "32117521d2a649e3fed14fc80d35f915087aa8b15d52fe2ab7276a3ae0874607",
+      "slab-ewald": "062b5420d32fda7c596c8a17d4eef45bbfb6056e2b06d660fef983a940f95311",
+      "fmm3d": "1e19508a7dfdd6adf7da4219e13241175d4774b3ec4e5229fd4e7068a609d8dc",
+      "gravity-dynamics": "2cd0693de21e304c22a304e78b4114ed4b5c5a174164379d5edd04c37e355282",
+      "warm-pic": "3c62dce404c4b1e2a89207255e5eac565de817687cf8b79e86013ace7b16480e",
+      "pic-spatial": "2ca8741a007fef684aa4e3603d2293ab196fbb08404366191462f0af2e214c11",
+      "dsmc-wall": "754febc0f5b41c88ae7fea33ed4933a99193a14959ec7ccb9e93d59262d7de5f",
+      "dsmc-shock": "d721449b218a312e15b69be21f0a9f5182c5c4f5a97009f04bae02eba1b3eef4",
+      "lbm-cavity": "c3db6c5bf98e505b26069e721ae741648beed2144bc3f06af383d0aaa8df08b1",
+      "lbm-taylor-green": "eea227f5f06aed5dba4503eae239ffa7ed9f1c363545379a49ec385bc68f44a6",
+      "lbm-annulus": "85628275e725d237cd186527c75c2786a4444e5df9a93a08196a261712fe7d54",
+      "lbm-curved-boundary": "d6432ad6e37f9c10d61eca499c5e2a78bb8ddb9096695d672b09cae79521ca3f",
+      "radiation-scattering": "a1fb59927d5d08f87df840f5e99808016c1b7d0f13eec1da222e89ea36508ecf",
+      "radiation-matter": "2a3d4e8803b9210c32033758dded9b4e63a38fe037a6daa47750a6252b46bff3",
+      "radiation-geometry": "a3e0c818d17a80a19a898affc6b06ca6961de85fa16234955192c69d86dc316a",
+      "stochastic-accuracy": "e8aa1198846a6357e065e0d55a4fdec17d666b7e4b4c7892f9d32091438a8cce",
+      "stochastic-estimation": "8272002a470cb72f0dc6fd18db9c5ebba070fb2b60ac1f5a163928feff5603fd",
+      "maxwell-cylinder": "6f843353d49be2f1e97ebf31f97f67b512c6fdc378e0ef2e474a38b058f65f6d",
+      "maxwell-lorentz": "e1f2eb9b30dd2c555ba3cd43935e1716fcb1f556f8daece702f95c6a937e2e76",
+      "maxwell-grazing": "5059865062b5e35a10c4c0c138b1edd03919a8b7198b71e2798d70a6753274c9",
+      "linear-algebra-spectral": "2f5ff6b62733708f13ad34e2f6f18a47c9d28087e67ee405bf5d34bebc355820",
+      "bratu-continuation-jfnk": "3cb50e2a1028eb5e615b6e373b6048aa4151ab9fff450181198f9e6a7476ab12",
+      "globalization-controls": "067919908817150f92fbe02d61e7abad1b285c882a51bb2fd70efc6946d7c65c",
+      "reverse-higher-ad": "7599ef5d444334a7f3f4df13b0abeeed4123a77d1e4e69270f3189d3d4e782c3",
+      "adjoint": "8e8b0e19c8bbb53fe587c7478e7ac13c90ee52a24ea3e227d2e2d20ce1c72fb0",
+      "inverse-optimization": "891aacad9dd5bd2257521b8d0ee616c88fe988feb4877a442a78c5a0bb8ca18f"
+    }
+  },
+  "public_HTTP": {
+    "files": 1653,
+    "bytes": 363919929,
+    "anonymous": true,
+    "proof_sha256": "c0ed5411ce3b9174a257273fc21478ada14c81d11979072974c91a03149e2135"
+  },
+  "public_UI": {
+    "actual_HR_views": 16,
+    "profiles": 4,
+    "cases": 4,
+    "root_visual_review": true,
+    "proof_sha256": "226fee7ea6a6c42c60592a50a3cfdeb9346ab60524f9508a220773af51c5cadc"
+  },
+  "site_checks": {
+    "actual_node_tests": 621,
+    "browser_tests": 20,
+    "profiles": 4,
+    "generated_indexes_current": true
+  },
+  "cold_search": {
+    "samples": 12,
+    "groups": 4,
+    "repetitions": 3,
+    "scope": "12 synthetic shaped Chromium cold-search samples; 3 per group, min/median/max. Not physical-device equivalence, p95, or a newly imposed latency threshold."
+  },
+  "mandatory_workflows": [
+    {
+      "name": "Atlas cold-search performance verification",
+      "id": 45389447333,
+      "run_attempt": 1,
+      "head_sha": "c89776f807fc0137d3aa46aba172a784dabc61aa",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45389447333"
+    },
+    {
+      "name": "Atlas lightweight public Linux verification",
+      "id": 45390994718,
+      "run_attempt": 1,
+      "head_sha": "c89776f807fc0137d3aa46aba172a784dabc61aa",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45390994718"
+    },
+    {
+      "name": "Foundations English public Web and PDF verification",
+      "id": 45390994366,
+      "run_attempt": 1,
+      "head_sha": "c89776f807fc0137d3aa46aba172a784dabc61aa",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45390994366"
+    },
+    {
+      "name": "Foundations course public Linux verification",
+      "id": 45390994625,
+      "run_attempt": 1,
+      "head_sha": "c89776f807fc0137d3aa46aba172a784dabc61aa",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45390994625"
+    },
+    {
+      "name": "Public site checks",
+      "id": 45389447377,
+      "run_attempt": 1,
+      "head_sha": "c89776f807fc0137d3aa46aba172a784dabc61aa",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45389447377"
+    },
+    {
+      "name": "pages build and deployment",
+      "id": 45389446052,
+      "run_attempt": 1,
+      "head_sha": "c89776f807fc0137d3aa46aba172a784dabc61aa",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/hrkoyama/hrkoyama.github.io/actions/runs/45389446052"
+    }
+  ],
+  "proof_sha256": {
+    "final_summary": "5d28a605393ca775411c2bb1a239b5d4316e607631f68e61090e94948c92db34",
+    "status": "69bda9e585fda815b9561228df342f197574014ebb2477f1e31365d5025d2cb0",
+    "linux_ci": "7c87e45ee8ff4ee20afb76c97e48efeeff8011b777cf196b1e2807e85fb54520",
+    "linux_report": "4ad3e5ae26c639065c2c9ca0e724b097eb61277c7f5244ae9a62cc34aae45e02",
+    "linux_context": "741ed6f6d1ccf2bb9ea59a264ff1fb50f03547acef73893ca51f549435e8a314",
+    "http": "c0ed5411ce3b9174a257273fc21478ada14c81d11979072974c91a03149e2135",
+    "ui": "226fee7ea6a6c42c60592a50a3cfdeb9346ab60524f9508a220773af51c5cadc",
+    "ui_visual": "24e0999e31ed79ed9dba6ae0d12000275a02a8dd09d5733cacf905a836d44458",
+    "site": "86298cbfbae79337061c64b50e889bb9680a6150305e0c9838c6b0ea9454bcb8",
+    "performance": "59778762e957b0cd968fb45e16d2e6699ee1640ac71034dc2312b382360832f1",
+    "course": "c145807b820df7cefbfcf25e1c82910160ceca4023249f73ed199c7d49be5704",
+    "english": "ae8b5b9aed8650c699a49ba695c4bf37c405696765edf0a1f89d228b639830e9",
+    "history_retention": "fd98ca96523dba77d7b454cefaae51d4f53af776853484c14367147832d8d021"
+  },
+  "remaining_unfinished_candidates": 43,
+  "scope": "Actual final published files and all56 Linux ZIP/JUnit checks. Published labels/public proof/index metadata are deferred to the next authorized daily aggregate. Source-reading scope, historical failures, packaging revisions and prior proofs remain separate."
+}

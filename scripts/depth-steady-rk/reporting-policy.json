@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "status": "POST_MEASUREMENT_SCOPE_REVISION",
+  "source_revision": "r4",
+  "original_input_sha256": "7f5afd4ad594265d55f34b0ebce95fc5fdd9e66c11b88a4df5f802e8688fb072",
+  "original_acceptance_sha256": "af846323a4e4235d968ecb431eea825fbee40f7a1047e65b18c70b7d4a83fe00",
+  "history_summary_sha256": "bc41c643f5671ec344c171f5f98c86ec151926668bca909f955449740be684dd",
+  "first_attempt_result_sha256": "fe02dff604626944224c0b9a5eed8db5160e4d7038f5906f9602bd3817f58a08",
+  "original_case_inventory": {
+    "jameson-steady-linear-modes": [
+      "reference:h32-mode4:expanded-vs-stages",
+      "reference:h32-mode4:prior-classification",
+      "reference:h32-mode8:expanded-vs-stages",
+      "reference:h32-mode8:prior-classification",
+      "reference:h16-mode4:expanded-vs-stages",
+      "reference:h16-mode4:prior-classification",
+      "reference:h16-mode8:expanded-vs-stages",
+      "reference:h16-mode8:prior-classification",
+      "reference:neutral:expanded-vs-stages",
+      "reference:neutral:prior-classification",
+      "reference:expanding:expanded-vs-stages",
+      "reference:expanding:prior-classification",
+      "reference:rational-stencil-mode4",
+      "reference:rational-stencil-mode8",
+      "stable-h32:finite",
+      "stable-h32:stage-count",
+      "stable-h32:spurious-mode",
+      "stable-h32:true-residual-reference",
+      "stable-h32:field-error",
+      "stable-h32:residual-reduction",
+      "stable-h32:nonzero-mode4",
+      "stable-h16:finite",
+      "stable-h16:stage-count",
+      "stable-h16:spurious-mode",
+      "stable-h16:true-residual-reference",
+      "stable-h16:field-error",
+      "stable-h16:residual-reduction",
+      "stable-h16:nonzero-mode4",
+      "neutral-constant:finite",
+      "neutral-constant:stage-count",
+      "neutral-constant:spurious-mode",
+      "neutral-constant:true-residual-reference",
+      "neutral-constant:neutrality",
+      "expanding-nyquist:finite",
+      "expanding-nyquist:stage-count",
+      "expanding-nyquist:spurious-mode",
+      "expanding-nyquist:true-residual-reference",
+      "expanding-nyquist:expected-expansion",
+      "expanding-nyquist:normalized-error",
+      "steady-fixed-point",
+      "four-record-identities"
+    ]
+  },
+  "study_goal_keys": {
+    "jameson-steady-linear-modes": [
+      "expanding-nyquist:true-residual-reference"
+    ]
+  },
+  "policy": "Original numerical limits and all actual decisions remain unchanged in original_target_results. Only the named study goals may be unmet without failing the reviewed reproduction/reporting scope. Every other original numerical decision remains mandatory. No current failure mask is required; a rerun may actually meet a study goal.",
+  "first_attempt_disclosure": "The retained first attempt did not meet all original accuracy goals. This revision was designed after observing that shortfall and must not be described as the original all-pass protocol."
+}

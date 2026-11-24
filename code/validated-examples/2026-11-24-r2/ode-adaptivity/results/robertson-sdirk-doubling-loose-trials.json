@@ -1,0 +1,275 @@
+[
+  {
+    "time": 0.0,
+    "step": 0.00078125,
+    "error_ratio": 10.8047059380169,
+    "accepted": false,
+    "stage_failure": null
+  },
+  {
+    "time": 0.0,
+    "step": 0.00031804962603460257,
+    "error_ratio": 2.0713565845769826,
+    "accepted": false,
+    "stage_failure": null
+  },
+  {
+    "time": 0.0,
+    "step": 0.0002245531279196527,
+    "error_ratio": 1.365767503285411,
+    "accepted": false,
+    "stage_failure": null
+  },
+  {
+    "time": 0.0,
+    "step": 0.0001821528735030998,
+    "error_ratio": 0.9781548511688622,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.0001821528735030998,
+    "step": 0.00016514901906087358,
+    "error_ratio": 0.0977488572888262,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.0003473018925639734,
+    "step": 0.0003226620917080055,
+    "error_ratio": 1.825606861933683,
+    "accepted": false,
+    "stage_failure": null
+  },
+  {
+    "time": 0.0003473018925639734,
+    "step": 0.00023760452168710826,
+    "error_ratio": 0.675966158197182,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.0005849064142510816,
+    "step": 0.00019634358574891842,
+    "error_ratio": 0.5972202586479671,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.00078125,
+    "step": 0.0002098365080597046,
+    "error_ratio": 0.6994768057006431,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.0009910865080597047,
+    "step": 0.00021274814751247174,
+    "error_ratio": 0.5919476602087009,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.0012038346555721764,
+    "step": 0.00022804148504434752,
+    "error_ratio": 0.5233300376455918,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.001431876140616524,
+    "step": 0.00013062385938347612,
+    "error_ratio": 0.07770592726005508,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.0015625,
+    "step": 0.0002754949473687748,
+    "error_ratio": 0.4476257689844012,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.001837994947368775,
+    "step": 0.0003241289240852702,
+    "error_ratio": 0.38628498747268886,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.002162123871454045,
+    "step": 0.0004005508770624929,
+    "error_ratio": 0.32444260580645407,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.002562674748516538,
+    "step": 0.0005246313467916021,
+    "error_ratio": 0.2507067530301905,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.00308730609530814,
+    "step": 3.7693904691860156e-05,
+    "error_ratio": 6.793568087011106e-05,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.003125,
+    "step": 0.00018846952345930078,
+    "error_ratio": 0.0059125955344782105,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.003313469523459301,
+    "step": 0.0009380462498298341,
+    "error_ratio": 0.14955705912689968,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.004251515773289135,
+    "step": 0.0015904906563501218,
+    "error_ratio": 0.037254109846326884,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.005842006429639257,
+    "step": 0.0004079935703607436,
+    "error_ratio": 4.67627852439843e-05,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.00625,
+    "step": 0.002039967851803718,
+    "error_ratio": 0.00028798206549364967,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.008289967851803718,
+    "step": 0.004210032148196282,
+    "error_ratio": 2.915084548383571e-05,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.0125,
+    "step": 0.0125,
+    "error_ratio": 0.0004647453906292021,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.025,
+    "step": 0.025,
+    "error_ratio": 0.0023890842334772584,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.05,
+    "step": 0.02500000000000001,
+    "error_ratio": 0.0017487332086286009,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.07500000000000001,
+    "step": 0.024999999999999994,
+    "error_ratio": 0.0013685590188058394,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.1,
+    "step": 0.024999999999999994,
+    "error_ratio": 0.0011173197402820703,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.125,
+    "step": 0.025000000000000022,
+    "error_ratio": 0.0009393788881954094,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.15000000000000002,
+    "step": 0.024999999999999994,
+    "error_ratio": 0.0008070688634964639,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.17500000000000002,
+    "step": 0.024999999999999994,
+    "error_ratio": 0.0007050750208191354,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.2,
+    "step": 0.024999999999999994,
+    "error_ratio": 0.0006242360014032947,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.225,
+    "step": 0.024999999999999994,
+    "error_ratio": 0.0005587344464846526,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.25,
+    "step": 0.025000000000000022,
+    "error_ratio": 0.0005046992113073701,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.275,
+    "step": 0.025000000000000022,
+    "error_ratio": 0.0004594544294295962,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.30000000000000004,
+    "step": 0.024999999999999967,
+    "error_ratio": 0.00042109136963709785,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.325,
+    "step": 0.025000000000000022,
+    "error_ratio": 0.00038821203364735235,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.35000000000000003,
+    "step": 0.024999999999999967,
+    "error_ratio": 0.0003597691549431636,
+    "accepted": true,
+    "stage_failure": null
+  },
+  {
+    "time": 0.375,
+    "step": 0.025000000000000022,
+    "error_ratio": 0.00033496281083972437,
+    "accepted": true,
+    "stage_failure": null
+  }
+]

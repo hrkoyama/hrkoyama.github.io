@@ -1,0 +1,424 @@
+{
+  "schema_version": 1,
+  "status": "STATIC_FIXED_DESIGN_PROPOSAL",
+  "main_evolutions": [
+    {
+      "case": "shake-rattle-pendulum",
+      "id": "rattle-tight-2500",
+      "role": "primary",
+      "method": "rattle",
+      "h": 0.04,
+      "steps": 2500,
+      "target": 1e-13
+    },
+    {
+      "case": "shake-rattle-pendulum",
+      "id": "rattle-tight-5000",
+      "role": "primary",
+      "method": "rattle",
+      "h": 0.02,
+      "steps": 5000,
+      "target": 1e-13
+    },
+    {
+      "case": "shake-rattle-pendulum",
+      "id": "rattle-tight-10000",
+      "role": "primary",
+      "method": "rattle",
+      "h": 0.01,
+      "steps": 10000,
+      "target": 1e-13
+    },
+    {
+      "case": "shake-rattle-pendulum",
+      "id": "rattle-loose-2500",
+      "role": "primary",
+      "method": "rattle",
+      "h": 0.04,
+      "steps": 2500,
+      "target": 1e-10
+    },
+    {
+      "case": "shake-rattle-pendulum",
+      "id": "rattle-reverse",
+      "role": "reversal",
+      "method": "rattle",
+      "h": -0.04,
+      "steps": 2500,
+      "start_from": "rattle-tight-2500"
+    },
+    {
+      "case": "shake-rattle-pendulum",
+      "id": "shake-tight-2500",
+      "role": "primary",
+      "method": "shake",
+      "h": 0.04,
+      "steps": 2500,
+      "target": 1e-13
+    },
+    {
+      "case": "shake-rattle-pendulum",
+      "id": "shake-tight-5000",
+      "role": "primary",
+      "method": "shake",
+      "h": 0.02,
+      "steps": 5000,
+      "target": 1e-13
+    },
+    {
+      "case": "shake-rattle-pendulum",
+      "id": "shake-tight-10000",
+      "role": "primary",
+      "method": "shake",
+      "h": 0.01,
+      "steps": 10000,
+      "target": 1e-13
+    },
+    {
+      "case": "shake-rattle-pendulum",
+      "id": "shake-loose-2500",
+      "role": "primary",
+      "method": "shake",
+      "h": 0.04,
+      "steps": 2500,
+      "target": 1e-10
+    },
+    {
+      "case": "shake-rattle-pendulum",
+      "id": "shake-reverse",
+      "role": "reversal",
+      "method": "shake",
+      "h": -0.04,
+      "steps": 2499,
+      "start_from": "shake-tight-2500"
+    },
+    {
+      "case": "kepler-eccentricity",
+      "id": "e0p1-fixed-512",
+      "role": "primary",
+      "eccentricity": 0.1,
+      "steps": 512,
+      "periods": 1
+    },
+    {
+      "case": "kepler-eccentricity",
+      "id": "e0p1-fixed-1024",
+      "role": "primary",
+      "eccentricity": 0.1,
+      "steps": 1024,
+      "periods": 1
+    },
+    {
+      "case": "kepler-eccentricity",
+      "id": "e0p1-fixed-2048",
+      "role": "primary",
+      "eccentricity": 0.1,
+      "steps": 2048,
+      "periods": 1
+    },
+    {
+      "case": "kepler-eccentricity",
+      "id": "e0p1-fixed-long",
+      "role": "primary",
+      "eccentricity": 0.1,
+      "control": "fixed",
+      "periods": 10,
+      "fixed_steps": 20480,
+      "step_cap": 20480
+    },
+    {
+      "case": "kepler-eccentricity",
+      "id": "e0p1-variable-long",
+      "role": "primary",
+      "eccentricity": 0.1,
+      "control": "variable",
+      "periods": 10,
+      "fixed_steps": null,
+      "step_cap": 50000
+    },
+    {
+      "case": "kepler-eccentricity",
+      "id": "e0p1-reverse-fixed",
+      "role": "reversal",
+      "eccentricity": 0.1,
+      "control": "fixed",
+      "start_from": "e0p1-fixed-2048"
+    },
+    {
+      "case": "kepler-eccentricity",
+      "id": "e0p1-reverse-variable-replay",
+      "role": "reversal",
+      "eccentricity": 0.1,
+      "control": "variable-replay",
+      "start_from": "e0p1-variable-long"
+    },
+    {
+      "case": "kepler-eccentricity",
+      "id": "e0p1-reverse-variable-regenerated",
+      "role": "reversal",
+      "eccentricity": 0.1,
+      "control": "variable-regenerated",
+      "start_from": "e0p1-variable-long"
+    },
+    {
+      "case": "kepler-eccentricity",
+      "id": "e0p7-fixed-512",
+      "role": "primary",
+      "eccentricity": 0.7,
+      "steps": 512,
+      "periods": 1
+    },
+    {
+      "case": "kepler-eccentricity",
+      "id": "e0p7-fixed-1024",
+      "role": "primary",
+      "eccentricity": 0.7,
+      "steps": 1024,
+      "periods": 1
+    },
+    {
+      "case": "kepler-eccentricity",
+      "id": "e0p7-fixed-2048",
+      "role": "primary",
+      "eccentricity": 0.7,
+      "steps": 2048,
+      "periods": 1
+    },
+    {
+      "case": "kepler-eccentricity",
+      "id": "e0p7-fixed-long",
+      "role": "primary",
+      "eccentricity": 0.7,
+      "control": "fixed",
+      "periods": 10,
+      "fixed_steps": 20480,
+      "step_cap": 20480
+    },
+    {
+      "case": "kepler-eccentricity",
+      "id": "e0p7-variable-long",
+      "role": "primary",
+      "eccentricity": 0.7,
+      "control": "variable",
+      "periods": 10,
+      "fixed_steps": null,
+      "step_cap": 50000
+    },
+    {
+      "case": "kepler-eccentricity",
+      "id": "e0p7-reverse-fixed",
+      "role": "reversal",
+      "eccentricity": 0.7,
+      "control": "fixed",
+      "start_from": "e0p7-fixed-2048"
+    },
+    {
+      "case": "kepler-eccentricity",
+      "id": "e0p7-reverse-variable-replay",
+      "role": "reversal",
+      "eccentricity": 0.7,
+      "control": "variable-replay",
+      "start_from": "e0p7-variable-long"
+    },
+    {
+      "case": "kepler-eccentricity",
+      "id": "e0p7-reverse-variable-regenerated",
+      "role": "reversal",
+      "eccentricity": 0.7,
+      "control": "variable-regenerated",
+      "start_from": "e0p7-variable-long"
+    },
+    {
+      "case": "multifrequency-resonance",
+      "id": "w10-verlet-1p0",
+      "role": "probe",
+      "method": "verlet",
+      "omega": 10,
+      "steps": 64,
+      "coefficient": 1.0,
+      "coefficient_kind": "h_omega"
+    },
+    {
+      "case": "multifrequency-resonance",
+      "id": "w10-verlet-1p8",
+      "role": "probe",
+      "method": "verlet",
+      "omega": 10,
+      "steps": 64,
+      "coefficient": 1.8,
+      "coefficient_kind": "h_omega"
+    },
+    {
+      "case": "multifrequency-resonance",
+      "id": "w10-verlet-2p2",
+      "role": "probe",
+      "method": "verlet",
+      "omega": 10,
+      "steps": 64,
+      "coefficient": 2.2,
+      "coefficient_kind": "h_omega"
+    },
+    {
+      "case": "multifrequency-resonance",
+      "id": "w10-impulse-0p9",
+      "role": "probe",
+      "method": "impulse",
+      "omega": 10,
+      "steps": 64,
+      "coefficient": 0.9,
+      "coefficient_kind": "pi_factor"
+    },
+    {
+      "case": "multifrequency-resonance",
+      "id": "w10-impulse-1p0",
+      "role": "probe",
+      "method": "impulse",
+      "omega": 10,
+      "steps": 64,
+      "coefficient": 1.0,
+      "coefficient_kind": "pi_factor"
+    },
+    {
+      "case": "multifrequency-resonance",
+      "id": "w10-impulse-1p1",
+      "role": "probe",
+      "method": "impulse",
+      "omega": 10,
+      "steps": 64,
+      "coefficient": 1.1,
+      "coefficient_kind": "pi_factor"
+    },
+    {
+      "case": "multifrequency-resonance",
+      "id": "w20-verlet-1p0",
+      "role": "probe",
+      "method": "verlet",
+      "omega": 20,
+      "steps": 64,
+      "coefficient": 1.0,
+      "coefficient_kind": "h_omega"
+    },
+    {
+      "case": "multifrequency-resonance",
+      "id": "w20-verlet-1p8",
+      "role": "probe",
+      "method": "verlet",
+      "omega": 20,
+      "steps": 64,
+      "coefficient": 1.8,
+      "coefficient_kind": "h_omega"
+    },
+    {
+      "case": "multifrequency-resonance",
+      "id": "w20-verlet-2p2",
+      "role": "probe",
+      "method": "verlet",
+      "omega": 20,
+      "steps": 64,
+      "coefficient": 2.2,
+      "coefficient_kind": "h_omega"
+    },
+    {
+      "case": "multifrequency-resonance",
+      "id": "w20-impulse-0p9",
+      "role": "probe",
+      "method": "impulse",
+      "omega": 20,
+      "steps": 64,
+      "coefficient": 0.9,
+      "coefficient_kind": "pi_factor"
+    },
+    {
+      "case": "multifrequency-resonance",
+      "id": "w20-impulse-1p0",
+      "role": "probe",
+      "method": "impulse",
+      "omega": 20,
+      "steps": 64,
+      "coefficient": 1.0,
+      "coefficient_kind": "pi_factor"
+    },
+    {
+      "case": "multifrequency-resonance",
+      "id": "w20-impulse-1p1",
+      "role": "probe",
+      "method": "impulse",
+      "omega": 20,
+      "steps": 64,
+      "coefficient": 1.1,
+      "coefficient_kind": "pi_factor"
+    },
+    {
+      "case": "multifrequency-resonance",
+      "id": "w10-verlet-accuracy-500",
+      "role": "accuracy",
+      "method": "verlet",
+      "omega": 10,
+      "h": 0.02,
+      "steps": 500,
+      "T": 10.0
+    },
+    {
+      "case": "multifrequency-resonance",
+      "id": "w10-verlet-accuracy-1000",
+      "role": "accuracy",
+      "method": "verlet",
+      "omega": 10,
+      "h": 0.01,
+      "steps": 1000,
+      "T": 10.0
+    },
+    {
+      "case": "multifrequency-resonance",
+      "id": "w10-verlet-accuracy-2000",
+      "role": "accuracy",
+      "method": "verlet",
+      "omega": 10,
+      "h": 0.005,
+      "steps": 2000,
+      "T": 10.0
+    },
+    {
+      "case": "multifrequency-resonance",
+      "id": "w10-impulse-accuracy-500",
+      "role": "accuracy",
+      "method": "impulse",
+      "omega": 10,
+      "h": 0.02,
+      "steps": 500,
+      "T": 10.0
+    },
+    {
+      "case": "multifrequency-resonance",
+      "id": "w10-impulse-accuracy-1000",
+      "role": "accuracy",
+      "method": "impulse",
+      "omega": 10,
+      "h": 0.01,
+      "steps": 1000,
+      "T": 10.0
+    },
+    {
+      "case": "multifrequency-resonance",
+      "id": "w10-impulse-accuracy-2000",
+      "role": "accuracy",
+      "method": "impulse",
+      "omega": 10,
+      "h": 0.005,
+      "steps": 2000,
+      "T": 10.0
+    }
+  ],
+  "case_evolution_counts": {
+    "shake-rattle-pendulum": 10,
+    "kepler-eccentricity": 16,
+    "multifrequency-resonance": 18
+  },
+  "main_evolutions_total": 44,
+  "principal_probe_accuracy_evolutions": 36,
+  "reversal_evolutions": 8,
+  "separate_reference_DOP853_evolutions": 2,
+  "variable_counts": "Actual state-dependent step counts are measured; rule,end policy and cap fixed beforehand.",
+  "implemented_or_executed": false,
+  "resolution_revision": "R2 before numerics; same44rows/282criteria, refined Kepler resolution only"
+}

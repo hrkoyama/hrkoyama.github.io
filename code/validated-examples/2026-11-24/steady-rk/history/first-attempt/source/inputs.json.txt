@@ -1,0 +1,55 @@
+{
+  "jameson-steady-linear-modes": {
+    "sequence": 71,
+    "group": "steady-rk",
+    "domain": [
+      0,
+      1
+    ],
+    "grid_cells": 16,
+    "periodic": true,
+    "advection": "1/8",
+    "diffusion": "1/64",
+    "reaction_shift": 1,
+    "alpha": [
+      "1/4",
+      "1/3",
+      "1/2",
+      "1"
+    ],
+    "steady_grid_state": "u_star[j]=1/2+1/4*cos(pi*j/2), implemented as exact repeating rational pattern, j=0..15",
+    "forcing": "b=A*u_star using the declared actual periodic centered stencil",
+    "error_initial": "cos(pi*j/2)+(1/2)*(-1)^j; exact4-cycle rational pattern",
+    "runs": [
+      {
+        "id": "stable-h32",
+        "dtau": "1/32",
+        "steps": 64,
+        "role": "steady_iteration"
+      },
+      {
+        "id": "stable-h16",
+        "dtau": "1/16",
+        "steps": 32,
+        "role": "steady_iteration"
+      },
+      {
+        "id": "neutral-constant",
+        "dtau": "1/32",
+        "steps": 8,
+        "shift_override": 0,
+        "u_star_override": 0,
+        "error_initial_override": "constant1",
+        "role": "neutral_control"
+      },
+      {
+        "id": "expanding-nyquist",
+        "dtau": "1/4",
+        "steps": 4,
+        "u_star_override": 0,
+        "error_initial_override": "(-1)^j",
+        "role": "expected_expansion_control"
+      }
+    ]
+  }
+}

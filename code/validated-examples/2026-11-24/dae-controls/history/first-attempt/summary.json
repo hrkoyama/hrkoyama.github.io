@@ -1,0 +1,476 @@
+{
+  "scope": "Public derived summary of the first actual failed attempt. Full original JSON/traceback and all raw NPZ/CSV remain preserved privately; no private path is reproduced here.",
+  "original_result_sha256": "5903f525aa6b996518b96908880177a763164f43a3f74adb31cc09aec0be7b56",
+  "original_receipt_sha256": "b602b1df05424bfaaf9db7901ee573bd9171b9bc7bf54b30d4051ae050d55789",
+  "source_prepost_exact": true,
+  "passed": false,
+  "input_sha256": "f2fe378da0eba05ddb47e8333f6b00b1effbf83e22b13fc8e1ad6079338cb275",
+  "termination": "incomplete",
+  "checks": {
+    "index1-dae-consistent-initialization": true,
+    "robertson-conservation-dae": false,
+    "high-index-pendulum": false
+  },
+  "cases": [
+    {
+      "id": "index1-dae-consistent-initialization",
+      "passed": true,
+      "checks": {
+        "reference:MMS-0": true,
+        "reference:MMS-1": true,
+        "reference:MMS-2": true,
+        "reference:nonexpansive-positive-region": true,
+        "reference:initial-differentiated-constraint": true,
+        "reference:three-positive-branch-brackets": true,
+        "reference:three-independent-discrete-roots": true,
+        "initialize-0.5:root": true,
+        "initialize-0.5:algebraic-residual": true,
+        "initialize-2:root": true,
+        "initialize-2:algebraic-residual": true,
+        "initialize-0:expected-singular-status": true,
+        "index1-BE-16:finite": true,
+        "index1-BE-16:positive": true,
+        "index1-BE-16:step-residual": true,
+        "index1-BE-16:constraint": true,
+        "index1-BE-16:MMS-bound": true,
+        "index1-BE-32:finite": true,
+        "index1-BE-32:positive": true,
+        "index1-BE-32:step-residual": true,
+        "index1-BE-32:constraint": true,
+        "index1-BE-32:MMS-bound": true,
+        "index1-BE-64:finite": true,
+        "index1-BE-64:positive": true,
+        "index1-BE-64:step-residual": true,
+        "index1-BE-64:constraint": true,
+        "index1-BE-64:MMS-bound": true,
+        "first-order-refinement": true,
+        "initial-F-and-hidden-constraint": true,
+        "six-record-identities": true
+      },
+      "records": [
+        {
+          "id": "initialize-0.5",
+          "kind": "initialization",
+          "termination": "consistent_initialization",
+          "metrics": {
+            "termination": "consistent_initialization",
+            "iterations": 5,
+            "residual": 0.0
+          }
+        },
+        {
+          "id": "initialize-2",
+          "kind": "initialization",
+          "termination": "consistent_initialization",
+          "metrics": {
+            "termination": "consistent_initialization",
+            "iterations": 6,
+            "residual": 6.661338147750939e-16
+          }
+        },
+        {
+          "id": "initialize-0",
+          "kind": "expected_initial_failure",
+          "termination": "initialization_singular_jacobian",
+          "metrics": {
+            "termination": "initialization_singular_jacobian",
+            "iterations": 0,
+            "residual": 1.0
+          }
+        },
+        {
+          "id": "index1-BE-16",
+          "kind": "trajectory",
+          "termination": "completed_fixed_steps",
+          "steps": 16,
+          "metrics": {
+            "max_state_error": 0.017655667991177793,
+            "max_algebraic_residual": 9.536815781530095e-14,
+            "max_derivative_unit_step_residual": 9.536815781530095e-14,
+            "Newton_iterations": 48
+          }
+        },
+        {
+          "id": "index1-BE-32",
+          "kind": "trajectory",
+          "termination": "completed_fixed_steps",
+          "steps": 32,
+          "metrics": {
+            "max_state_error": 0.00889059915166246,
+            "max_algebraic_residual": 4.440892098500626e-16,
+            "max_derivative_unit_step_residual": 1.5543122344752192e-15,
+            "Newton_iterations": 96
+          }
+        },
+        {
+          "id": "index1-BE-64",
+          "kind": "trajectory",
+          "termination": "completed_fixed_steps",
+          "steps": 64,
+          "metrics": {
+            "max_state_error": 0.0044611112911168704,
+            "max_algebraic_residual": 3.3306690738754696e-16,
+            "max_derivative_unit_step_residual": 3.552713678800501e-15,
+            "Newton_iterations": 192
+          }
+        }
+      ],
+      "metrics": {
+        "reference:three-independent-discrete-roots": 3.5860203695392556e-14,
+        "initialize-0.5:root": 0.0,
+        "initialize-2:root": 2.220446049250313e-16,
+        "index1-BE-16:step-residual": 9.536815781530095e-14,
+        "index1-BE-16:constraint": 9.536815781530095e-14,
+        "index1-BE-16:MMS-bound": 0.017655667991177793,
+        "index1-BE-32:step-residual": 1.5543122344752192e-15,
+        "index1-BE-32:constraint": 4.440892098500626e-16,
+        "index1-BE-32:MMS-bound": 0.00889059915166246,
+        "index1-BE-64:step-residual": 3.552713678800501e-15,
+        "index1-BE-64:constraint": 3.3306690738754696e-16,
+        "index1-BE-64:MMS-bound": 0.0044611112911168704,
+        "first-order-refinement": [
+          0.989778852631791,
+          0.9948775084516599
+        ],
+        "finest_max_state_error": 0.0044611112911168704,
+        "observed_orders": [
+          0.989778852631791,
+          0.9948775084516599
+        ],
+        "one_step_reference_errors": [
+          3.5860203695392556e-14,
+          1.1102230246251565e-16,
+          1.1102230246251565e-16
+        ]
+      }
+    },
+    {
+      "id": "robertson-conservation-dae",
+      "passed": false,
+      "checks": {
+        "reference:all-reference-complete-finite-nonnegative": true,
+        "reference:reference-agreement-0": true,
+        "reference:reference-agreement-2": true,
+        "reference:official-IDA-printed-interval-qualification": true,
+        "inconsistent-initial-rejected": true,
+        "robertson-residual_dae-r1:finite": true,
+        "robertson-residual_dae-r1:nonnegative": true,
+        "robertson-residual_dae-r1:nonlinear-residual": true,
+        "robertson-residual_dae-r1:mass": true,
+        "robertson-residual_dae-r2:finite": true,
+        "robertson-residual_dae-r2:nonnegative": true,
+        "robertson-residual_dae-r2:nonlinear-residual": true,
+        "robertson-residual_dae-r2:mass": true,
+        "robertson-residual_dae-r4:finite": true,
+        "robertson-residual_dae-r4:nonnegative": true,
+        "robertson-residual_dae-r4:nonlinear-residual": true,
+        "robertson-residual_dae-r4:mass": true,
+        "residual_dae:refinement": false,
+        "residual_dae:finest-reference-error": false,
+        "residual_dae:official-printed-comparison": true,
+        "robertson-full_ode-r1:finite": true,
+        "robertson-full_ode-r1:nonnegative": true,
+        "robertson-full_ode-r1:nonlinear-residual": true,
+        "robertson-full_ode-r1:mass": true,
+        "robertson-full_ode-r2:finite": true,
+        "robertson-full_ode-r2:nonnegative": true,
+        "robertson-full_ode-r2:nonlinear-residual": true,
+        "robertson-full_ode-r2:mass": true,
+        "robertson-full_ode-r4:finite": true,
+        "robertson-full_ode-r4:nonnegative": true,
+        "robertson-full_ode-r4:nonlinear-residual": true,
+        "robertson-full_ode-r4:mass": true,
+        "full_ode:refinement": false,
+        "full_ode:finest-reference-error": false,
+        "full_ode:official-printed-comparison": true,
+        "ODE-DAE-r1": true,
+        "ODE-DAE-r2": true,
+        "ODE-DAE-r4": true,
+        "seven-record-identities": true
+      },
+      "records": [
+        {
+          "id": "inconsistent-initial-rejection",
+          "kind": "expected_initial_failure",
+          "termination": "initial_algebraic_constraint_violated",
+          "metrics": {
+            "mass_residual": 9.999999999998899e-05
+          }
+        },
+        {
+          "id": "robertson-residual_dae-r1",
+          "kind": "trajectory",
+          "formulation": "residual_dae",
+          "termination": "completed_fixed_steps",
+          "steps": 384,
+          "metrics": {
+            "max_scaled_reference_error": 0.014438638971779891,
+            "max_mass_error": 2.220446049250313e-16,
+            "max_scaled_step_residual": 1.0710574122841998e-12,
+            "minimum_species": 0.0,
+            "Newton_iterations": 900
+          }
+        },
+        {
+          "id": "robertson-residual_dae-r2",
+          "kind": "trajectory",
+          "formulation": "residual_dae",
+          "termination": "completed_fixed_steps",
+          "steps": 768,
+          "metrics": {
+            "max_scaled_reference_error": 0.013348649011714184,
+            "max_mass_error": 2.220446049250313e-16,
+            "max_scaled_step_residual": 1.9804734758359423e-12,
+            "minimum_species": 0.0,
+            "Newton_iterations": 1723
+          }
+        },
+        {
+          "id": "robertson-residual_dae-r4",
+          "kind": "trajectory",
+          "formulation": "residual_dae",
+          "termination": "completed_fixed_steps",
+          "steps": 1536,
+          "metrics": {
+            "max_scaled_reference_error": 0.007755772186054176,
+            "max_mass_error": 2.220446049250313e-16,
+            "max_scaled_step_residual": 9.182101846032633e-13,
+            "minimum_species": 0.0,
+            "Newton_iterations": 3078
+          }
+        },
+        {
+          "id": "robertson-full_ode-r1",
+          "kind": "trajectory",
+          "formulation": "full_ode",
+          "termination": "completed_fixed_steps",
+          "steps": 384,
+          "metrics": {
+            "max_scaled_reference_error": 0.014438638971780366,
+            "max_mass_error": 4.440892098500626e-16,
+            "max_scaled_step_residual": 1.0707354074153451e-12,
+            "minimum_species": 0.0,
+            "Newton_iterations": 900
+          }
+        },
+        {
+          "id": "robertson-full_ode-r2",
+          "kind": "trajectory",
+          "formulation": "full_ode",
+          "termination": "completed_fixed_steps",
+          "steps": 768,
+          "metrics": {
+            "max_scaled_reference_error": 0.013348649011714252,
+            "max_mass_error": 1.5543122344752192e-15,
+            "max_scaled_step_residual": 1.980642882425393e-12,
+            "minimum_species": 0.0,
+            "Newton_iterations": 1723
+          }
+        },
+        {
+          "id": "robertson-full_ode-r4",
+          "kind": "trajectory",
+          "formulation": "full_ode",
+          "termination": "completed_fixed_steps",
+          "steps": 1536,
+          "metrics": {
+            "max_scaled_reference_error": 0.007755772186054176,
+            "max_mass_error": 8.881784197001252e-16,
+            "max_scaled_step_residual": 9.182101846032633e-13,
+            "minimum_species": 0.0,
+            "Newton_iterations": 3078
+          }
+        }
+      ],
+      "metrics": {
+        "robertson-residual_dae-r1:nonnegative": 0.0,
+        "robertson-residual_dae-r1:nonlinear-residual": 1.0710574122841998e-12,
+        "robertson-residual_dae-r1:mass": 2.220446049250313e-16,
+        "robertson-residual_dae-r2:nonnegative": 0.0,
+        "robertson-residual_dae-r2:nonlinear-residual": 1.9804734758359423e-12,
+        "robertson-residual_dae-r2:mass": 2.220446049250313e-16,
+        "robertson-residual_dae-r4:nonnegative": 0.0,
+        "robertson-residual_dae-r4:nonlinear-residual": 9.182101846032633e-13,
+        "robertson-residual_dae-r4:mass": 2.220446049250313e-16,
+        "residual_dae:refinement": [
+          1.0816554513576002,
+          1.7211244337110214
+        ],
+        "residual_dae:finest-reference-error": 0.007755772186054176,
+        "residual_dae:official-printed-comparison": [
+          [
+            0.0,
+            0.0,
+            1.98496998732485e-06
+          ],
+          [
+            2.8469832178190657e-05,
+            3.4259947900275225e-09,
+            3.737975817291739e-05
+          ]
+        ],
+        "robertson-full_ode-r1:nonnegative": 0.0,
+        "robertson-full_ode-r1:nonlinear-residual": 1.0707354074153451e-12,
+        "robertson-full_ode-r1:mass": 4.440892098500626e-16,
+        "robertson-full_ode-r2:nonnegative": 0.0,
+        "robertson-full_ode-r2:nonlinear-residual": 1.980642882425393e-12,
+        "robertson-full_ode-r2:mass": 1.5543122344752192e-15,
+        "robertson-full_ode-r4:nonnegative": 0.0,
+        "robertson-full_ode-r4:nonlinear-residual": 9.182101846032633e-13,
+        "robertson-full_ode-r4:mass": 8.881784197001252e-16,
+        "full_ode:refinement": [
+          1.0816554513576304,
+          1.72112443371103
+        ],
+        "full_ode:finest-reference-error": 0.007755772186054176,
+        "full_ode:official-printed-comparison": [
+          [
+            0.0,
+            0.0,
+            1.9849699872138277e-06
+          ],
+          [
+            2.8469832178079635e-05,
+            3.4259947900546275e-09,
+            3.737975817323658e-05
+          ]
+        ],
+        "ODE-DAE-r1": 8.131516293641283e-16,
+        "ODE-DAE-r2": 2.100641709190665e-15,
+        "ODE-DAE-r4": 8.809142651444724e-16,
+        "finest_scaled_error_DAE": 0.007755772186054176,
+        "finest_scaled_error_ODE": 0.007755772186054176,
+        "reference_solver_counters": [
+          {
+            "id": "reference-radau-loose",
+            "method": "Radau",
+            "nfev": 4291,
+            "njev": 43,
+            "nlu": 166,
+            "status": 0,
+            "observations": 1537
+          },
+          {
+            "id": "reference-radau-tight",
+            "method": "Radau",
+            "nfev": 12141,
+            "njev": 9,
+            "nlu": 124,
+            "status": 0,
+            "observations": 1537
+          },
+          {
+            "id": "reference-bdf-tight",
+            "method": "BDF",
+            "nfev": 1593,
+            "njev": 3,
+            "nlu": 110,
+            "status": 0,
+            "observations": 1537
+          }
+        ],
+        "IDA_new_executions": 0
+      }
+    },
+    {
+      "id": "high-index-pendulum",
+      "passed": false,
+      "checks": {},
+      "records": [],
+      "metrics": {}
+    }
+  ],
+  "failure": {
+    "type": "TypeError",
+    "message": "Object of type bool is not JSON serializable"
+  },
+  "public_full_traceback_included": false,
+  "public_raw_arrays_included": false,
+  "source_text_aliases": {
+    "DESIGN.md": {
+      "file": "source/DESIGN.md.txt",
+      "sha256": "d0fab42d926e93868059a0037fdfbaeffa64ddc931b18dfd6a3645f90f09ca53"
+    },
+    "README.md": {
+      "file": "source/README.md.txt",
+      "sha256": "e94c84d31605d6e38044658bea8147fe41b0815c760f7a2073fb0f9e9d600886"
+    },
+    "SUNDIALS-LICENSE.txt": {
+      "file": "source/SUNDIALS-LICENSE.txt.txt",
+      "sha256": "b0ebbb1a56b9be8926bce091d1f98fd08a403f1ec60513f02f4199f33e741a2d"
+    },
+    "acceptance.json": {
+      "file": "source/acceptance.json.txt",
+      "sha256": "de0c9378204b8b08610318f41d98efb95cc2c31048a6b593707197635a0cba96"
+    },
+    "cases.json": {
+      "file": "source/cases.json.txt",
+      "sha256": "8bfb96bc8e38a47396b21ae11057f43d9c2d5b7e2e9c78c124e589f711a77a21"
+    },
+    "experiments.py": {
+      "file": "source/experiments.py.txt",
+      "sha256": "c7f1782305852b22bb3bf49dcc043052b59464bb5afeead229054ee3df75d29d"
+    },
+    "gate-inventory.json": {
+      "file": "source/gate-inventory.json.txt",
+      "sha256": "9828d4ae2a77ade197f942dcfe42baab5d65a8f89be1d999911a4f8d15b21ae5"
+    },
+    "ida-printed-values.json": {
+      "file": "source/ida-printed-values.json.txt",
+      "sha256": "51e99501e53e437cacab822f71c037f5c05db656c098ccbd18e4900831acd328"
+    },
+    "inputs.json": {
+      "file": "source/inputs.json.txt",
+      "sha256": "f2fe378da0eba05ddb47e8333f6b00b1effbf83e22b13fc8e1ad6079338cb275"
+    },
+    "io_contract.py": {
+      "file": "source/io_contract.py.txt",
+      "sha256": "cad2f927c5efaaa3599694b027b3d3c2e98c5617f503928f93e29053165537a4"
+    },
+    "models.py": {
+      "file": "source/models.py.txt",
+      "sha256": "537ea2beb6dac6488216c6bf8e22848be9eac506807043b5f0bf9b240e9c7295"
+    },
+    "newton.py": {
+      "file": "source/newton.py.txt",
+      "sha256": "59b5763372b5ac27cb5c45357a11db94bb5a464c26df08989f8556f0de8d09dc"
+    },
+    "plot.py": {
+      "file": "source/plot.py.txt",
+      "sha256": "35464c834575f1460e1bd3684fb44a8242b21bf3870d17f6a86153b29b0eee01"
+    },
+    "references.py": {
+      "file": "source/references.py.txt",
+      "sha256": "8661ca064860230ea3a3229381df606162d2359dcc7308288af43e4cb1ff9083"
+    },
+    "requirements.txt": {
+      "file": "source/requirements.txt.txt",
+      "sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75"
+    },
+    "run-matrix.json": {
+      "file": "source/run-matrix.json.txt",
+      "sha256": "d4b608792fde8c48a9e5b412ebba9bb9247c28597db4864b7f4978a2910d07a5"
+    },
+    "run.py": {
+      "file": "source/run.py.txt",
+      "sha256": "073eb386a9a304d9b68d380194f4627790415b8fb60c70ded55c655ed49b39e3"
+    },
+    "source-reading.json": {
+      "file": "source/source-reading.json.txt",
+      "sha256": "3d479b10c1886f3caa4e1de5be1d8dbb6aece04d334681c5c91e8964c2ecef0b"
+    },
+    "test_cases.py": {
+      "file": "source/test_cases.py.txt",
+      "sha256": "dddd96e9edfc312c19c13532cf58e9e1b8c216bc7497dad29651bcba7b9017d1"
+    },
+    "pre-run-contract.json": {
+      "file": "source/pre-run-contract.json.txt",
+      "sha256": "71cd50ca254da75b9f3f679b9b89a34777d6b517ad414084a2c9d4d48ae43c87"
+    },
+    "LICENSE": {
+      "file": "source/LICENSE.txt",
+      "sha256": "07cca125623617c85a41e9a21a2b114d693c61737bc353e3ca98587431e26ee6"
+    }
+  },
+  "pytest_passed": 24
+}

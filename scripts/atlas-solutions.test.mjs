@@ -116,13 +116,15 @@ for dimension in [1,2,3]:
     for language,suffix in [('ja','次元'),('en','D')]:
         assert format_dimension({'dimension':dimension},language)==str(dimension)+suffix;checks+=1
 assert format_dimension({'dimension':None,'domain_kind':'finite-dimensional-algebra'},'en')=='Finite-dimensional algebra';checks+=1
+assert format_dimension({'dimension':None,'domain_kind':'finite-dimensional-ivp'},'en')=='ODE / DAE (no spatial dimension)';checks+=1
+assert format_dimension({'dimension':None,'domain_kind':'finite-dimensional-ivp'},'ja')=='常微分・微分代数方程式（空間次元なし）';checks+=1
 for case in [{'dimension':None},{'dimension':None,'domain_kind':'physical'},{'dimension':0},{'dimension':True}]:
     try:format_dimension(case,'en')
     except ValueError:checks+=1
     else:raise AssertionError(case)
 print(json.dumps({'passed':True,'checks':checks}))
 `],{cwd:fileURLToPath(root),encoding:'utf8'}));
-  assert.deepEqual(result,{passed:true,checks:11});
+  assert.deepEqual(result,{passed:true,checks:13});
 });
 
 test('each edition exposes all names, formulas and assumptions as visible static cards',()=>{

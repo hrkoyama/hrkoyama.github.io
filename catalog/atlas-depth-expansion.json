@@ -828,6 +828,66 @@
         "ja": "既存の合成観測を保持し、小さな固定例でGN/LM・準Newton・正則化選択を比較します。",
         "en": "Retain existing synthetic observations and compare GN/LM, quasi-Newton methods and regularization selection on small fixed controls."
       }
+    },
+    {
+      "id": "ode-adaptivity",
+      "edition": "2026-11-24-r2",
+      "title": {
+        "ja": "硬いODE・RK45・境界分割",
+        "en": "Stiff ODEs, RK45 and boundary splitting"
+      },
+      "fields": [
+        "foundations"
+      ],
+      "intro": {
+        "ja": "Robertsonとvan der Pol、RK45の補間・イベント、非同次境界の分割法を小さな固定入力で検証します。独立参照、局所推定と実誤差、時間誤差と空間誤差を区別します。",
+        "en": "Small fixed inputs validate Robertson and van der Pol, RK45 interpolation/events, and splitting with inhomogeneous boundaries. Independent references distinguish local estimates from actual errors and temporal from spatial errors."
+      }
+    },
+    {
+      "id": "steady-rk",
+      "edition": "2026-11-24",
+      "title": {
+        "ja": "定常多段RKのモード減衰",
+        "en": "Modal damping of steady multistage RK"
+      },
+      "fields": [
+        "foundations"
+      ],
+      "intro": {
+        "ja": "16成分の周期線形場で擬似時間の残差減衰を測り、安定・非減衰・発散の対照を示します。非線形非定常問題の4次精度とは区別します。",
+        "en": "A 16-component periodic linear field measures pseudo-time residual damping with stable, neutral and expanding controls. This is distinct from fourth-order accuracy for nonlinear physical-time problems."
+      }
+    },
+    {
+      "id": "dae-controls",
+      "edition": "2026-11-24",
+      "title": {
+        "ja": "DAEの初期化・保存則・拘束ドリフト",
+        "en": "DAE initialization, conservation and constraint drift"
+      },
+      "fields": [
+        "foundations"
+      ],
+      "intro": {
+        "ja": "整合初期化、index-1保存則DAE、index-3振り子の微分拘束に基づくODEを比較します。保存された公式IDA出力との比較と、新たに実行した独立ODE参照を区別します。",
+        "en": "Compare consistent initialization, an index-one conservation DAE, and an underlying ODE for an index-three pendulum. Comparisons with stored official IDA output are distinguished from newly executed independent ODE references."
+      }
+    },
+    {
+      "id": "geometric-controls",
+      "edition": "2026-11-24",
+      "title": {
+        "ja": "拘束・軌道・多周波数の幾何積分",
+        "en": "Geometric integration of constraints, orbits and multiple frequencies"
+      },
+      "fields": [
+        "foundations"
+      ],
+      "intro": {
+        "ja": "SHAKE/RATTLE、Kepler軌道、結合振動子を固定した小規模条件で比較します。拘束、位相、エネルギーと丸め誤差を別々に示します。",
+        "en": "Fixed small examples compare SHAKE/RATTLE, Kepler orbits and coupled oscillators. Constraints, phase, energy and rounding effects are reported separately."
+      }
     }
   ],
   "case_problem_ids": {
@@ -946,7 +1006,18 @@
     "bratu-distributed-vjp": "bratu-distributed-vjp",
     "bratu-gn-lm-bounds": "bratu-gn-lm-bounds",
     "bfgs-lbfgs-controls": "bfgs-lbfgs-controls",
-    "bratu-noise-regularization": "bratu-noise-regularization"
+    "bratu-noise-regularization": "bratu-noise-regularization",
+    "robertson-stiff-kinetics": "robertson-stiff-kinetics",
+    "van-der-pol-stiff-transition": "van-der-pol-stiff-transition",
+    "rk45-dense-events": "rk45-dense-events",
+    "strang-boundary-order-reduction": "strang-boundary-order-reduction",
+    "jameson-steady-linear-modes": "jameson-steady-linear-modes",
+    "index1-dae-consistent-initialization": "index1-dae-consistent-initialization",
+    "robertson-conservation-dae": "robertson-stiff-kinetics",
+    "high-index-pendulum": "high-index-pendulum",
+    "shake-rattle-pendulum": "high-index-pendulum",
+    "kepler-eccentricity": "gravity-kepler",
+    "multifrequency-resonance": "multifrequency-resonance"
   },
   "routine_policy": {
     "ja": "通常の補助例CIは、公開レジストリに登録した補助配布グループをNumPy・SciPy・pytestで実行します。保存済みの独立参照は版・入力・実行記録を照合し、新規の参照計算と区別します。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。",
@@ -1308,6 +1379,50 @@
     "bratu-noise-regularization": {
       "ja": "楕円は選択γを固定した局所Gauss–Newton線形モデルのplug-inです。非線形残差の二階微分、γ選択のランダム性、選択事象で条件づけた共分散、事後分布、被覆率を扱いません。全γ連続経路・実測データも未検証。",
       "en": "Ellipses are plug-in noise propagation for a local Gauss–Newton linear model with the selected gamma treated as fixed. They omit nonlinear residual Hessians and selection randomness and are not selection-conditional covariance, a posterior or a coverage guarantee. Continuous gamma paths and real data remain unverified."
+    },
+    "robertson-stiff-kinetics": {
+      "ja": "保存/正値性は固定入力の観測で、一般的な保証ではありません。T=.4の短時間・標本時刻での精度であり、長時間化学精度や全時刻誤差上限は主張しません。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
+      "en": "Conservation and positivity are observations for these inputs, not universal guarantees. Accuracy is sampled on T <= 0.4; this does not validate long-time chemistry or an all-time error bound. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
+    },
+    "van-der-pol-stiff-transition": {
+      "ja": "測定後の報告範囲変更で、数値的な修復ではありません。初回誤差4.535633779e-5は元目標2e-5を超えます。局所rtolは大域誤差を保証せず、報告検証の合格は全元目標の達成ではありません。大μ全周期は対象外です。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
+      "en": "This post-measurement reporting revision is not a numerical repair. The first error, 4.535633779e-5, exceeded the original 2e-5 goal. Local tolerances do not guarantee global accuracy, and reporting PASS does not mean all original goals were met. Full large-mu cycles are outside scope. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
+    },
+    "rk45-dense-events": {
+      "ja": "接触根・1刻み内の多重交差・reset付き系の一般性は保証しません。初期零/所有権/resetは限定成分対照で、局所許容誤差と大域精度を同一視しません。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
+      "en": "There is no general guarantee for tangential roots, multiple crossings within a step or systems with resets. Initial-zero and ownership controls are limited component tests; local tolerances and global accuracy remain distinct. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
+    },
+    "strang-boundary-order-reduction": {
+      "ja": "原著の線形特殊例で非線形数値表の再現ではありません。非自律/一般境界や普遍的な次数低下は主張せず、Lie終端の反応trace不整合も別表示します。",
+      "en": "This is an authored linear specialization, not a reproduction of the original nonlinear tables. It makes no general claim for nonautonomous boundaries or universal order loss. The final reaction-trace mismatch of Lie splitting is disclosed separately."
+    },
+    "jameson-steady-linear-modes": {
+      "ja": "固定線形例に限定。JST圧縮性流束や非線形4次RK、任意初期値の収束は検証しません。 元の全数値目標の合格を意味する公開ではありません。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
+      "en": "Limited to a fixed linear example; no JST compressible flux, nonlinear fourth-order RK or all-start convergence claim. Verification of this study does not mean that all original numerical targets were met. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
+    },
+    "index1-dae-consistent-initialization": {
+      "ja": "単一の製造正枝・固定BE計算です。IDA実行や一般DAEソルバーの検証ではありません。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
+      "en": "One authored positive branch and fixed BE runs; no IDA execution or general DAE-solver qualification. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
+    },
+    "robertson-conservation-dae": {
+      "ja": "公式SUNDIALS v7.1.1の2印字行のみ。IDAの新規実行0、長時間の化学精度や一般DAE性能は扱いません。 この固定時間格子の漸近収束や元精度目標の全合格は主張しません。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
+      "en": "Only two official SUNDIALS v7.1.1 printed rows; zero new IDA executions, with no long-time chemistry or general DAE-performance claim. No asymptotic-convergence or all-original-accuracy-goals claim is made for this fixed schedule. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
+    },
+    "high-index-pendulum": {
+      "ja": "投影・正規化・SHAKE/RATTLEなし。一般指数3ソルバーやシンプレクティック性の検証ではありません。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
+      "en": "No projection, normalization or SHAKE/RATTLE; no general index-three-solver or symplecticity claim. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
+    },
+    "shake-rattle-pendulum": {
+      "ja": "原著SHAKE/RATTLE本文は未読で、著者講義ノートの選択箇所を確認。有限差分のsymplectic defectは一般証明ではなく、中心化SHAKE速度にRATTLEの接線拘束を要求しません。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
+      "en": "Original SHAKE and RATTLE full texts remain unread; selected author lecture notes were inspected. The finite-difference symplectic defect is a local proxy, not a general proof, and centered SHAKE velocity is not assigned RATTLE tangency. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
+    },
+    "kepler-eccentricity": {
+      "ja": "保存量の小さい誤差から位相精度を推論しません。変動刻み写像の正準symplectic defectは測定せず、固定hの性質をそのまま移しません。初期解像度R1は数値実行前の漸近解析でR2へ改訂。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
+      "en": "Small invariant errors do not establish phase accuracy. No canonical symplectic-defect measurement is claimed for the variable-step map, and fixed-h properties are not transferred automatically. R1 resolution was revised to R2 using pre-execution asymptotic planning, not measured calibration. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
+    },
+    "multifrequency-resonance": {
+      "ja": "中心の実浮動係数写像はunresolvedとし、理想πのJordan性を移しません。64刻み増幅と小さい固定入力の観測であり、走査した共鳴図・一般安定性・長時間の普遍誤差定理は主張しません。 図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。",
+      "en": "The central actual floating map remains unresolved; ideal-pi Jordan structure is not transferred to it. Results concern 64-step amplification and small fixed inputs, not a scanned resonance diagram, general stability or a universal long-time error theorem. Axes for trajectories, states, time or iterations do not represent physical spatial dimensions."
     }
   },
   "case_equations": {
@@ -2003,6 +2118,113 @@
       "note": {
         "ja": "Bratu推定は31内点、5観測、W=I/5、Σ=σ²I。既存1023格子のデータは保存値を使い再生成しません。σ=1e-4/1e-3、seed67001/67002、γの固定5点です。",
         "en": "Bratu inference uses 31 interior nodes, five observations, W=I/5 and Sigma=sigma² I. Existing 1023-grid observations are reused without regeneration. Fixed sigma values are 1e-4/1e-3, seeds are 67001/67002 and the gamma list has five entries."
+      }
+    },
+    "robertson-stiff-kinetics": {
+      "ids": [
+        "robertson-kinetics"
+      ],
+      "note": {
+        "ja": "無次元3成分、初期値(1,0,0)、T=.4。固定512/1024/2048刻みと2許容誤差の適応法で計8run。",
+        "en": "A nondimensional three-species system starts at (1, 0, 0) and ends at T = 0.4. The fixed methods use 512, 1024 and 2048 steps; two adaptive tolerance settings bring the total to eight runs."
+      }
+    },
+    "van-der-pol-stiff-transition": {
+      "ids": [
+        "van-der-pol"
+      ],
+      "note": {
+        "ja": "x′=v,v′=μ(1−x²)v−x、初期値(2,0)、T=2。2方式×3刻み×2μと適応4runで計16run。",
+        "en": "The system is xprime = v and vprime = mu(1 - x squared)v - x, initially (2, 0), over T = 2. Two fixed methods, three step counts and two mu values plus four adaptive runs give 16 runs."
+      }
+    },
+    "rk45-dense-events": {
+      "ids": [
+        "linear-evolution-system"
+      ],
+      "note": {
+        "ja": "γ=.2,ω=3、初期値(1,0)、T=2。3対のrtol/atol×2最大刻みと終端交差2runで計8run。",
+        "en": "Use gamma = 0.2, omega = 3, initial state (1, 0), and T = 2. Three paired relative and absolute tolerances with two maximum steps, plus two terminal runs, give eight runs."
+      }
+    },
+    "strang-boundary-order-reduction": {
+      "ids": [
+        "inhomogeneous-reaction-diffusion",
+        "heat"
+      ],
+      "note": {
+        "ja": "u_t=u_xx+u、[0,1]、両端u=1、解析定常解+.1正弦摂動、T=.1。内部31/63/127点・8/16/32/64刻みとLie対照4run、計28run。",
+        "en": "Solve u_t = u_xx + u on [0, 1] with both boundary values equal to 1, an analytic steady state plus a 0.1 sine perturbation, and T = 0.1. Use 31, 63 and 127 interior nodes with 8, 16, 32 and 64 steps, plus four Lie controls: 28 runs."
+      }
+    },
+    "jameson-steady-linear-modes": {
+      "ids": [
+        "linear-evolution-system",
+        "finite-dimensional-linear-system"
+      ],
+      "note": {
+        "ja": "無次元の固定16点・周期・線形残差。疑似時間は反復パラメータです。",
+        "en": "A fixed dimensionless sixteen-node periodic linear residual; pseudo-time is an iteration parameter."
+      }
+    },
+    "index1-dae-consistent-initialization": {
+      "ids": [
+        "index-one-dae"
+      ],
+      "note": {
+        "ja": "無次元・正枝。微分行と代数行の尺度はそれぞれ1で、最大ノルムを用います。",
+        "en": "Dimensionless positive branch; differential and algebraic row scales are both one, with the maximum norm."
+      }
+    },
+    "robertson-conservation-dae": {
+      "ids": [
+        "robertson-kinetics",
+        "index-one-dae"
+      ],
+      "note": {
+        "ja": "モデル時間0から4。中間種と残差の尺度は1e-4。公式印字値の丸め幅と数値誤差を区別します。",
+        "en": "Model time zero to four; the intermediate-species state and residual scale is 1e-4. Printing intervals and numerical errors are distinct."
+      }
+    },
+    "high-index-pendulum": {
+      "ids": [
+        "constrained-pendulum",
+        "hamiltonian"
+      ],
+      "note": {
+        "ja": "m=L=g=1、初期角0.7、初期角速度0。非整合制御では半径方向速度を明示的に加えます。",
+        "en": "m=L=g=1, initial angle 0.7 and zero angular velocity; off-manifold controls explicitly add radial velocity."
+      }
+    },
+    "shake-rattle-pendulum": {
+      "ids": [
+        "constrained-pendulum",
+        "hamiltonian"
+      ],
+      "note": {
+        "ja": "L=m=g=1、初期角0.7、初期角速度0。C=(q·q−1)/2、T=100、h=0.04/0.02/0.01。拘束目標1e−13と粗格子の1e−10比較を固定。",
+        "en": "L=m=g=1, initial angle 0.7 and zero angular velocity. C=(q·q−1)/2, T=100 and h=0.04/0.02/0.01; position targets are fixed at 1e−13, with a coarse 1e−10 companion."
+      }
+    },
+    "kepler-eccentricity": {
+      "ids": [
+        "kepler-two-body",
+        "particle-gravity",
+        "hamiltonian"
+      ],
+      "note": {
+        "ja": "a=μ=換算質量=1、軟化なし。1周期は512/1024/2048刻み、10周期は基準2048刻み/周期。変動刻みh=h0|q|を現在状態から定め、最後だけ物理終端へ短縮。",
+        "en": "a=mu=reduced mass=1, without softening. One-period runs use 512/1024/2048 steps; ten-period controls use h0=2π/2048. Variable steps use h=h0|q| at the current state, with only the final step shortened to the physical endpoint."
+      }
+    },
+    "multifrequency-resonance": {
+      "ids": [
+        "coupled-harmonic-oscillators",
+        "hamiltonian"
+      ],
+      "note": {
+        "ja": "α=1、ω=10/20、q0=(1,1/ω)、p0=0。中心probeは保存binary64のhとsin/cosをそのまま使い、πへ丸め直しません。",
+        "en": "alpha=1, omega=10/20, q0=(1,1/omega) and p0=0. Central probes retain the evaluated binary64 h and sin/cos coefficients without snapping to mathematical pi."
       }
     }
   }

@@ -1,0 +1,52 @@
+{
+  "accessed_on": "2026-11-24",
+  "scope": "Selected official/primary sources, not full-paper reading. Publication years are unestablished unless stated; access date and SUNDIALS repository version are separate.",
+  "references": [
+    {
+      "id": "sundials-ida-mathematics-selected",
+      "title": "SUNDIALS v7.1.1 IDA mathematics, section 5.2",
+      "url": "https://sundials.readthedocs.io/en/v7.1.1/ida/Mathematics_link.html",
+      "review_level": "official-documentation-selected-equations",
+      "review_scope": "Residual form, BDF/Newton and consistent initialization sections selected. Section5.2 is not an IDA version. This authored MMS/BE solver is not IDA.",
+      "accessed_on": "2026-11-24"
+    },
+    {
+      "id": "sundials-ida-roberts-source",
+      "title": "SUNDIALS v7.1.1 idaRoberts_dns example",
+      "url": "https://github.com/LLNL/sundials/blob/v7.1.1/examples/ida/serial/idaRoberts_dns.c",
+      "review_level": "official-source-selected-functions",
+      "review_scope": "Read residual/Jacobian, initialization, tolerances and print format. Own first two residual rows have opposite sign and the same zero set.",
+      "accessed_on": "2026-11-24"
+    },
+    {
+      "id": "sundials-ida-roberts-stored-output",
+      "title": "Stored official v7.1.1 IDA Robertson output",
+      "url": "https://github.com/LLNL/sundials/blob/v7.1.1/examples/ida/serial/idaRoberts_dns.out",
+      "review_level": "official-stored-output-selected-rows",
+      "review_scope": "Selected printed t=0.4 and4 values only, with Decimal rounding intervals. These approximate IDA values are not exact truth; no IDA run is performed here.",
+      "accessed_on": "2026-11-24"
+    },
+    {
+      "id": "nist-dlmf-pendulum-selected",
+      "title": "NIST DLMF section22.19(i), pendulum",
+      "url": "https://dlmf.nist.gov/22.19",
+      "review_level": "official-reference-selected-equations",
+      "review_scope": "Selected pendulum formulas, phase and modulus convention. Authored Cartesian conversion uses K-t; SciPy takes parameter m=k². No full chapter reading claimed.",
+      "accessed_on": "2026-11-24"
+    },
+    {
+      "id": "nist-dlmf-agm-selected",
+      "title": "NIST DLMF section19.8(i), arithmetic-geometric mean",
+      "url": "https://dlmf.nist.gov/19.8",
+      "review_level": "official-reference-selected-equations",
+      "review_scope": "Selected AGM/K identity; independent Decimal Machin pi and sine with explicit finite remainders qualify a single fixed modulus.",
+      "accessed_on": "2026-11-24"
+    }
+  ],
+  "unread": [
+    "Original JST 1981 paper body unavailable; not needed as a copied implementation.",
+    "Baumgarte 1972 body returned403; critical constraint-error extension is independently derived, not claimed as a reproduced implementation.",
+    "Full Hairer projection paper and unselected DLMF sections not read."
+  ],
+  "local_prior_source_scope": "Existing scalar stability polynomial, ODE stiff solvers and unconstrained Hamiltonian examples were read as limited context; they are not numerical evidence for these cases."
+}

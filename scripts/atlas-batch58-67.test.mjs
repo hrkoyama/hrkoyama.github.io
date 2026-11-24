@@ -1,3 +1,4 @@
+import {projectMethodBeforeBatch68} from './fixtures/atlas-inventory.mjs';
 // Frozen cohort protection and ten verified examples; science is not re-executed here.
 // Data/hash checks only: no solver, renderer, network call or ZIP extraction.
 import test from 'node:test';
@@ -71,7 +72,7 @@ test('batch58–67 preserves all 52 earlier immutable editions and every existin
 });
 
 test('all 158 existing method science and formula goldens remain, with one separately scoped dogleg method',()=>{
- const methods=json('catalog/atlas-methods.json').methods.filter(row=>historicalMethods.has(row.id));
+ const methods=json('catalog/atlas-methods.json').methods.map(projectMethodBeforeBatch68).filter(row=>historicalMethods.has(row.id));
  for(const [id,old] of Object.entries(baseline.methods)){
   const row=methods.find(value=>value.id===id);assert.ok(row,id);assert.equal(row.status,old.status,id+'/status');
   assert.equal(fingerprint(pick(row,old.stable_keys)),old.stable_sha256,id+'/scientific-fields');

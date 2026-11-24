@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "checks": {
+    "h32-mode4:expanded-vs-stages": true,
+    "h32-mode4:prior-classification": true,
+    "h32-mode8:expanded-vs-stages": true,
+    "h32-mode8:prior-classification": true,
+    "h16-mode4:expanded-vs-stages": true,
+    "h16-mode4:prior-classification": true,
+    "h16-mode8:expanded-vs-stages": true,
+    "h16-mode8:prior-classification": true,
+    "neutral:expanded-vs-stages": true,
+    "neutral:prior-classification": true,
+    "expanding:expanded-vs-stages": true,
+    "expanding:prior-classification": true,
+    "rational-stencil-mode4": true,
+    "rational-stencil-mode8": true
+  }
+}

@@ -389,7 +389,18 @@
         "pivoted-direct-refinement",
         "symmetric-saddle-minres",
         "restarted-shift-invert",
-        "fem-mass-eigen"
+        "fem-mass-eigen",
+        "robertson-stiff-kinetics",
+        "van-der-pol-stiff-transition",
+        "rk45-dense-events",
+        "strang-boundary-order-reduction",
+        "jameson-steady-linear-modes",
+        "index1-dae-consistent-initialization",
+        "robertson-conservation-dae",
+        "high-index-pendulum",
+        "shake-rattle-pendulum",
+        "kepler-eccentricity",
+        "multifrequency-resonance"
       ],
       "scope": {
         "ja": "旧版のSA-AMG、QR／SVD、Krylov固有値、求積の固定例を保持し、条件数・残差・精度と、異方性・右辺摂動と階数閾値・非正規性・狭い山の診断対照を別版で比較します。AMG追加例は代数的診断で、Poissonの格子精度へ加算しません。",

@@ -1,0 +1,73 @@
+{
+  "group": "steady-rk",
+  "cases": [
+    {
+      "id": "jameson-steady-linear-modes",
+      "title": {
+        "ja": "定常多段RKの実空間モード減衰",
+        "en": "Real-space mode damping with steady multistage RK"
+      },
+      "summary": {
+        "ja": "周期格子の実残差に4段定常反復を適用し、離散モードの減衰・中立・増幅を区別します。",
+        "en": "Apply four steady residual stages on a periodic grid, separating damping, neutrality and amplification of discrete modes."
+      },
+      "assumptions": {
+        "ja": "無次元の固定16点・周期・線形残差。疑似時間は反復パラメータです。",
+        "en": "A fixed dimensionless sixteen-node periodic linear residual; pseudo-time is an iteration parameter."
+      },
+      "algorithm": {
+        "ja": "全段で同じ基底状態を用い、全場・全段残差・評価回数を保存します。",
+        "en": "Use the same base state in every stage and retain complete fields, stage residuals and evaluation counts."
+      },
+      "validation": {
+        "ja": "有理数ステンシルと増幅多項式を先に資格確認し、固定4試行の場・位相・真残差を比較します。",
+        "en": "Qualify rational stencil modes and amplification first, then compare fields, phase and true residuals in four fixed runs."
+      },
+      "limits": {
+        "ja": "固定線形例に限定。JST圧縮性流束や非線形4次RK、任意初期値の収束は検証しません。",
+        "en": "Limited to a fixed linear example; no JST compressible flux, nonlinear fourth-order RK or all-start convergence claim."
+      },
+      "method_ids": [
+        "jameson-steady-rk"
+      ],
+      "domains": [
+        "foundations"
+      ],
+      "code_files": [
+        "run.py",
+        "steady.py"
+      ],
+      "references": [
+        {
+          "id": "perform-rk4-selected",
+          "title": "PERFORM time integration schemes",
+          "url": "https://perform.readthedocs.io/en/latest/solver/timeschemes.html",
+          "review_level": "official-documentation-selected-equations",
+          "review_scope": "Selected four-stage base-state recurrence. No full JST 1981 paper reading or compressible-flow implementation claim.",
+          "accessed_on": "2026-11-24"
+        }
+      ],
+      "formulas": [
+        "Y_j=u_n-alpha_j*dtau*(A*Y_(j-1)-b)",
+        "P(z)=1+z+z^2/2+z^3/6+z^4/24; lambda_4=9+2i, lambda_8=17"
+      ],
+      "gallery_figure": "jameson-steady-linear-modes-preview.png",
+      "additional_figures": [
+        {
+          "file": "jameson-steady-linear-modes-preview.png",
+          "caption": {
+            "ja": "周期格子の実残差に4段定常反復を適用し、離散モードの減衰・中立・増幅を区別します。 保存配列から作図。",
+            "en": "Apply four steady residual stages on a periodic grid, separating damping, neutrality and amplification of discrete modes. Drawn from saved arrays."
+          }
+        },
+        {
+          "file": "jameson-steady-linear-modes-diagnostics.png",
+          "caption": {
+            "ja": "保存済み残差・拘束・収支を別表示。ゼロ値は対称対数軸で保持します。",
+            "en": "Saved residuals, constraints and budgets shown separately; symmetric log axes retain zero values."
+          }
+        }
+      ]
+    }
+  ]
+}

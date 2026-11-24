@@ -1,0 +1,79 @@
+{
+  "passed": true,
+  "checks": {
+    "all-reference-complete-finite-nonnegative": true,
+    "reference-agreement-0": true,
+    "reference-agreement-2": true,
+    "official-IDA-printed-interval-qualification": true
+  },
+  "counters": [
+    {
+      "id": "reference-radau-loose",
+      "method": "Radau",
+      "nfev": 4291,
+      "njev": 43,
+      "nlu": 166,
+      "status": 0,
+      "observations": 1537
+    },
+    {
+      "id": "reference-radau-tight",
+      "method": "Radau",
+      "nfev": 12141,
+      "njev": 9,
+      "nlu": 124,
+      "status": 0,
+      "observations": 1537
+    },
+    {
+      "id": "reference-bdf-tight",
+      "method": "BDF",
+      "nfev": 1593,
+      "njev": 3,
+      "nlu": 110,
+      "status": 0,
+      "observations": 1537
+    }
+  ],
+  "printed_intervals": [
+    {
+      "t": "4.0000e-01",
+      "lower": [
+        "0.985165",
+        "0.0000338635",
+        "0.0147935"
+      ],
+      "upper": [
+        "0.985175",
+        "0.0000338645",
+        "0.0147945"
+      ]
+    },
+    {
+      "t": "4.0000e+00",
+      "lower": [
+        "0.905525",
+        "0.0000224055",
+        "0.0944515"
+      ],
+      "upper": [
+        "0.905535",
+        "0.0000224065",
+        "0.0944525"
+      ]
+    }
+  ],
+  "IDA_new_executions": 0,
+  "printed_interval_distances": [
+    [
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      6.3214157451918496e-06,
+      7.431243976531649e-10,
+      6.416658870148084e-06
+    ]
+  ]
+}

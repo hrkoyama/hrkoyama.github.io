@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "group": "geometric-controls",
+  "proposed_edition": "2026-11-24",
+  "frozen_at_utc": "2026-11-24T14:15:33.036514+00:00",
+  "status": "POST_MAIN_PRESENTATION_REVISION_BEFORE_CANONICAL_PACKAGING",
+  "before_first_main_execution": false,
+  "before_any_scientific_execution": false,
+  "prior_reference_history": {
+    "attempt01": {
+      "passed": false,
+      "true_checks": 63,
+      "checks": 64,
+      "retained_failure": "history/reference-attempt01/qualification.json"
+    },
+    "attempt02": {
+      "passed": true,
+      "checks": 67,
+      "qualification_sha256": "55259b99b0be07fab1979232045f9de2c871476b3cc6e49ef7e448b7c570f300",
+      "receipt_sha256": "e6d2ad43f6a65c6a4441d8c02d61816721de274c54cf8faf230c9a0516c298b6"
+    }
+  },
+  "files_sha256": {
+    "LICENSE": "07cca125623617c85a41e9a21a2b114d693c61737bc353e3ca98587431e26ee6",
+    "README.md": "cafe58cc2864bf42ad9a9ecfa139731972b337758cbd6766d27cd522a9494e14",
+    "REFERENCE-READING.json": "1e2208690fa1bcf16a1b8fa73d2766cb33de365e96a0c0e3b1d7151a2ea31d3e",
+    "acceptance.json": "9b2b3d1ccd8337f8894396d82d20b43dabb330135f08e26c53cbc4645e39059b",
+    "cases.json": "f97c3c5cef1540cba0c16b8f8d32d70696d4d22105eaf784ff2e17cd3ccecd8b",
+    "diagnostics.py": "1e5ffb1fb0ddc0c305dbf7e9428fbd4f8c5c5356bae272eccc65f028f5c87439",
+    "history/reference-attempt01/history-summary.json": "aa5eb0a9d738957e013d9395ad836eea577b933d4c008094c18b8f3980d069f7",
+    "history/reference-attempt01/pendulum-analytic-before-diagnostics.npz": "4f01c7038961f273e6fa00d1485fec3b26686f24b5f61ad59d25a8a8c4db6a06",
+    "history/reference-attempt01/qualification.json": "a47e31d27678811096bacaccdb3b486ebae0fb6b946241f326874e3e1da5b503",
+    "history/reference-attempt01/source/acceptance.json.txt": "100f99cb49aaaf6f43a6317ea8c006ce756174842b509a227adfba95a5aaa738",
+    "history/reference-attempt01/source/inputs.json.txt": "3f5ae2a9e57f8f420dc3e0916414c33dbcb7ad575974f3122aa13385473da31b",
+    "history/reference-attempt01/source/io_utils.py.txt": "f39c6004240b6282fdfb9d0dc6f5cc264aa717860663598a1e31e96b31c1cf01",
+    "history/reference-attempt01/source/references/__init__.py.txt": "ac00652eb4a17ef450507f630f6971820b7a09581f49ccca691408fd990788e7",
+    "history/reference-attempt01/source/references/analytic.py.txt": "ff7b2701efc8445006a306d724ed0136d565ca35b56ac187511708728ff22a22",
+    "history/reference-attempt01/source/references/discrete.py.txt": "8ba4f451194d2aa9b1e174069aba8dcaca73a42e676421695b23a3b622ea59df",
+    "history/reference-attempt01/source/references/qualify.py.txt": "a5f477bc3c53ee0b54142cc82546546159b3c6672988c4fd01d108dd126d9632",
+    "history/reference-attempt01/source/requirements.txt.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "inputs.json": "3f5ae2a9e57f8f420dc3e0916414c33dbcb7ad575974f3122aa13385473da31b",
+    "io_utils.py": "f39c6004240b6282fdfb9d0dc6f5cc264aa717860663598a1e31e96b31c1cf01",
+    "physics.py": "c7bbbdecc4f43091d145cf8c71a5f0110b6d901dd8d2e07152bc826bcc627b5a",
+    "plot.py": "609473ae2441bf632246168508e4f63a873d53bc268cd3af7eb87232b407cfdf",
+    "references/__init__.py": "ac00652eb4a17ef450507f630f6971820b7a09581f49ccca691408fd990788e7",
+    "references/analytic.py": "905208c2c2ef470066f6187849badac46872135e11555a3d0b54693e225988eb",
+    "references/discrete.py": "8ba4f451194d2aa9b1e174069aba8dcaca73a42e676421695b23a3b622ea59df",
+    "references/qualified/10-impulse-0.9-D120.json": "fb50249b9c55e9270a98f19f851743cf9b08de84d84c86679f2cf45c175dbd10",
+    "references/qualified/10-impulse-1.0-D120.json": "e25c07ff4a27463512e6074ba7902ccc18ee654a26700e964a10110a5944b604",
+    "references/qualified/10-impulse-1.1-D120.json": "c463b73799f0de325036095909662ca2ff8def3ff4589b80633e83a6ba51f84c",
+    "references/qualified/10-verlet-1.0-D120.json": "633b7625d08a51d364175c085d99484e923684f5dcf6358e719dbbe691e9c9db",
+    "references/qualified/10-verlet-1.8-D120.json": "a5037e4c1f75f19ab200b3f0bf8bc7d07563c58c3e0e050dc674a388fab20a96",
+    "references/qualified/10-verlet-2.2-D120.json": "0d464e5eba1d449609ef57b2b7543ddc48fc59191309ea2f371b4fc7c2f89f89",
+    "references/qualified/20-impulse-0.9-D120.json": "9587a3200aa5e8933581cfed56bacbdfec83007973c38abbca3067f796969154",
+    "references/qualified/20-impulse-1.0-D120.json": "754942a375658aba9c8832ca857f8cbef6d5f7f32f3a2d40195fee2f15a41e7a",
+    "references/qualified/20-impulse-1.1-D120.json": "f4475b119996842743b4cfe34d53113e8af4ef21c713487436b44194505963da",
+    "references/qualified/20-verlet-1.0-D120.json": "3944fefef74d93662ad1d0ffba5f6ab37347b84ac65d1dad9b9dca6b380155d4",
+    "references/qualified/20-verlet-1.8-D120.json": "1f0f46d8732363a3b84b78afa5075862a18b7ef66a79438fd43c6a81e11f198b",
+    "references/qualified/20-verlet-2.2-D120.json": "3e17eaf60dee5ba2422d5a0f4833e34240bacde439fa2804199df93f41109608",
+    "references/qualified/cache-manifest.json": "0a6a31bb2729488d7c5e99895817bdf26a8a986dff55d586af550382eeb2bd65",
+    "references/qualified/ideal-class-10-0.9.json": "e75920d779b92091cfe93f330066e29d976a8e2dc147b11359c6c546b062dd2a",
+    "references/qualified/ideal-class-10-1.1.json": "21288fbed83060085a8dfbf7fe11545069aec65586ca10df06c37711c04f5bab",
+    "references/qualified/ideal-class-20-0.9.json": "9060569a000170d9a48f08b8e5683054e78d9559e9302074a6d6fb4153c8da4d",
+    "references/qualified/ideal-class-20-1.1.json": "39f475ad81f55e930fb8e9b3adfaf1ecc23bcc2143d8450da17f4005e1fe715c",
+    "references/qualified/qualification.json": "55259b99b0be07fab1979232045f9de2c871476b3cc6e49ef7e448b7c570f300",
+    "references/qualify.py": "606a9facec288ac43ab29b04ec612cb4a43925a8cae3f15554d33f6a654b0faa",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run-matrix.json": "b60f0f57cf6319f3c12e896ef2de71aafdcbe99b60395aa63b5b066ecf7a0397",
+    "run.py": "149e67c9aab288f586549e8f25cfd12453eebe114daf870799449601944f6903",
+    "test_geometry.py": "d144fb2388c0c7e4575d12e3b216ebb232057f899159e91859eb157ae66d7b24"
+  },
+  "input_sha256": "3f5ae2a9e57f8f420dc3e0916414c33dbcb7ad575974f3122aa13385473da31b",
+  "acceptance_sha256": "9b2b3d1ccd8337f8894396d82d20b43dabb330135f08e26c53cbc4645e39059b",
+  "case_ids": [
+    "shake-rattle-pendulum",
+    "kepler-eccentricity",
+    "multifrequency-resonance"
+  ],
+  "pytest_tests": 32,
+  "main_evolutions": 44,
+  "case_records": [
+    10,
+    16,
+    18
+  ],
+  "case_gate_counts": [
+    74,
+    92,
+    116
+  ],
+  "main_scientific_gates": 282,
+  "termination": "completed_fixed_protocol",
+  "shared_seconds": 120,
+  "runtime": "UNMEASURED",
+  "criteria_relaxed_after_measurement": false,
+  "scope": "A small fixed educational protocol. Main44 evolutions and282 scientific decisions are distinct from67 qualified reference decisions and small pytest operator trajectories. No unexecuted result is claimed successful.",
+  "checkpoint_policy": "Completed full candidate NPZ precedes diagnostics/reference access; current owned states every256steps; ordinary exceptions retain accepted prefix/current candidate; SIGKILL may retain only the latest written checkpoint. SHAKE endpoint momenta are absent.",
+  "reference_reuse": "The 67-check cache qualifies analytic/matrix algorithms and retains author-platform frozen maps as history. Main never regenerates two DOP853 reference evolutions; current libm coefficients are stored as values/hex and independently evaluated by 24 probe Decimal80/120 plus 6 accuracy Decimal80 actions. Existing probe reference gates additionally enforce unchanged 1e-50 precision agreement.",
+  "methods": {
+    "shake-rattle-pendulum": [
+      "shake",
+      "rattle"
+    ],
+    "kepler-eccentricity": [
+      "verlet"
+    ],
+    "multifrequency-resonance": [
+      "verlet",
+      "strang-splitting"
+    ]
+  },
+  "revision": "R3 presentation-only multiplier labels and English spacing after actual main R2 PASS",
+  "current_coefficient_reference_actions": {
+    "probe_Decimal80": 12,
+    "probe_Decimal120": 12,
+    "accuracy_Decimal80": 6,
+    "total": 30
+  },
+  "prior_unexecuted_contract_sha256": "f8fd0204b2db4c34fa50abc2c112c4d6777343776362e2f1dfe2679cdcafd8d9",
+  "qualified_main_receipt_sha256": "e1af4b47d524ca85cce2335ec1830e44a1aef88fee7da2db574b421bb65f7618",
+  "qualified_main_counts": {
+    "pytest": 32,
+    "evolutions": 44,
+    "gates": 282,
+    "current_coefficient_reference_actions": 30
+  },
+  "source_math_input_tests_criteria_cache_unchanged": true
+}

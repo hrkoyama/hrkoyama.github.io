@@ -1,0 +1,174 @@
+{
+  "id": "index1-dae-consistent-initialization",
+  "passed": true,
+  "checks": {
+    "reference:MMS-0": true,
+    "reference:MMS-1": true,
+    "reference:MMS-2": true,
+    "reference:nonexpansive-positive-region": true,
+    "reference:initial-differentiated-constraint": true,
+    "reference:three-positive-branch-brackets": true,
+    "reference:three-independent-discrete-roots": true,
+    "initialize-0.5:root": true,
+    "initialize-0.5:algebraic-residual": true,
+    "initialize-2:root": true,
+    "initialize-2:algebraic-residual": true,
+    "initialize-0:expected-singular-status": true,
+    "index1-BE-16:finite": true,
+    "index1-BE-16:positive": true,
+    "index1-BE-16:step-residual": true,
+    "index1-BE-16:constraint": true,
+    "index1-BE-16:MMS-bound": true,
+    "index1-BE-32:finite": true,
+    "index1-BE-32:positive": true,
+    "index1-BE-32:step-residual": true,
+    "index1-BE-32:constraint": true,
+    "index1-BE-32:MMS-bound": true,
+    "index1-BE-64:finite": true,
+    "index1-BE-64:positive": true,
+    "index1-BE-64:step-residual": true,
+    "index1-BE-64:constraint": true,
+    "index1-BE-64:MMS-bound": true,
+    "first-order-refinement": true,
+    "initial-F-and-hidden-constraint": true,
+    "six-record-identities": true
+  },
+  "records": [
+    {
+      "id": "initialize-0.5",
+      "kind": "initialization",
+      "termination": "consistent_initialization",
+      "metrics": {
+        "termination": "consistent_initialization",
+        "iterations": 5,
+        "residual": 0.0
+      }
+    },
+    {
+      "id": "initialize-2",
+      "kind": "initialization",
+      "termination": "consistent_initialization",
+      "metrics": {
+        "termination": "consistent_initialization",
+        "iterations": 6,
+        "residual": 6.661338147750939e-16
+      }
+    },
+    {
+      "id": "initialize-0",
+      "kind": "expected_initial_failure",
+      "termination": "initialization_singular_jacobian",
+      "metrics": {
+        "termination": "initialization_singular_jacobian",
+        "iterations": 0,
+        "residual": 1.0
+      }
+    },
+    {
+      "id": "index1-BE-16",
+      "kind": "trajectory",
+      "termination": "completed_fixed_steps",
+      "steps": 16,
+      "metrics": {
+        "max_state_error": 0.017655667991177793,
+        "max_algebraic_residual": 9.536815781530095e-14,
+        "max_derivative_unit_step_residual": 9.536815781530095e-14,
+        "Newton_iterations": 48
+      }
+    },
+    {
+      "id": "index1-BE-32",
+      "kind": "trajectory",
+      "termination": "completed_fixed_steps",
+      "steps": 32,
+      "metrics": {
+        "max_state_error": 0.00889059915166246,
+        "max_algebraic_residual": 4.440892098500626e-16,
+        "max_derivative_unit_step_residual": 1.5543122344752192e-15,
+        "Newton_iterations": 96
+      }
+    },
+    {
+      "id": "index1-BE-64",
+      "kind": "trajectory",
+      "termination": "completed_fixed_steps",
+      "steps": 64,
+      "metrics": {
+        "max_state_error": 0.0044611112911168704,
+        "max_algebraic_residual": 3.3306690738754696e-16,
+        "max_derivative_unit_step_residual": 3.552713678800501e-15,
+        "Newton_iterations": 192
+      }
+    }
+  ],
+  "metrics": {
+    "reference:three-independent-discrete-roots": 3.5860203695392556e-14,
+    "initialize-0.5:root": 0.0,
+    "initialize-2:root": 2.220446049250313e-16,
+    "index1-BE-16:step-residual": 9.536815781530095e-14,
+    "index1-BE-16:constraint": 9.536815781530095e-14,
+    "index1-BE-16:MMS-bound": 0.017655667991177793,
+    "index1-BE-32:step-residual": 1.5543122344752192e-15,
+    "index1-BE-32:constraint": 4.440892098500626e-16,
+    "index1-BE-32:MMS-bound": 0.00889059915166246,
+    "index1-BE-64:step-residual": 3.552713678800501e-15,
+    "index1-BE-64:constraint": 3.3306690738754696e-16,
+    "index1-BE-64:MMS-bound": 0.0044611112911168704,
+    "first-order-refinement": [
+      0.989778852631791,
+      0.9948775084516599
+    ],
+    "finest_max_state_error": 0.0044611112911168704,
+    "observed_orders": [
+      0.989778852631791,
+      0.9948775084516599
+    ],
+    "one_step_reference_errors": [
+      3.5860203695392556e-14,
+      1.1102230246251565e-16,
+      1.1102230246251565e-16
+    ],
+    "original_targets_met": 30,
+    "original_targets_total": 30
+  },
+  "original_target_results": {
+    "reference:MMS-0": true,
+    "reference:MMS-1": true,
+    "reference:MMS-2": true,
+    "reference:nonexpansive-positive-region": true,
+    "reference:initial-differentiated-constraint": true,
+    "reference:three-positive-branch-brackets": true,
+    "reference:three-independent-discrete-roots": true,
+    "initialize-0.5:root": true,
+    "initialize-0.5:algebraic-residual": true,
+    "initialize-2:root": true,
+    "initialize-2:algebraic-residual": true,
+    "initialize-0:expected-singular-status": true,
+    "index1-BE-16:finite": true,
+    "index1-BE-16:positive": true,
+    "index1-BE-16:step-residual": true,
+    "index1-BE-16:constraint": true,
+    "index1-BE-16:MMS-bound": true,
+    "index1-BE-32:finite": true,
+    "index1-BE-32:positive": true,
+    "index1-BE-32:step-residual": true,
+    "index1-BE-32:constraint": true,
+    "index1-BE-32:MMS-bound": true,
+    "index1-BE-64:finite": true,
+    "index1-BE-64:positive": true,
+    "index1-BE-64:step-residual": true,
+    "index1-BE-64:constraint": true,
+    "index1-BE-64:MMS-bound": true,
+    "first-order-refinement": true,
+    "initial-F-and-hidden-constraint": true,
+    "six-record-identities": true
+  },
+  "original_target_summary": {
+    "met": 30,
+    "total": 30,
+    "all_met": true,
+    "acceptance_sha256": "de0c9378204b8b08610318f41d98efb95cc2c31048a6b593707197635a0cba96"
+  },
+  "original_scientific_targets_met": true,
+  "validation_scope": "all_original_numerical_targets_required"
+}

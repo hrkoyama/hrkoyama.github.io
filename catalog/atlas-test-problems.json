@@ -4094,6 +4094,14 @@
             "ja": "無軟化Kepler二体の時間誤差",
             "en": "Unsoftened Kepler two-body time error"
           }
+        },
+        {
+          "id": "kepler-eccentricity",
+          "url": "/numerical-methods-atlas/validation/kepler-eccentricity/",
+          "name": {
+            "ja": "離心率を変えたKepler軌道と時間刻み",
+            "en": "Kepler eccentricity and time-step controls"
+          }
         }
       ]
     },
@@ -5598,6 +5606,374 @@
         }
       ],
       "parent_problem_id": "bratu"
+    },
+    {
+      "id": "robertson-stiff-kinetics",
+      "group": "time",
+      "name": {
+        "ja": "Robertson反応系：ODEと保存則DAE",
+        "en": "Robertson kinetics: ODE and conservation DAE"
+      },
+      "chapter": "validation-ode-adaptivity",
+      "reading_section": "robertson-stiff-kinetics",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/",
+      "verification": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "robertson-stiff-kinetics"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/robertson-stiff-kinetics-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "robertson-stiff-kinetics",
+          "url": "/numerical-methods-atlas/validation/robertson-stiff-kinetics/",
+          "name": {
+            "ja": "Robertson反応系の初期剛性と実誤差",
+            "en": "Robertson kinetics: initial stiffness and actual error"
+          }
+        },
+        {
+          "id": "robertson-conservation-dae",
+          "url": "/numerical-methods-atlas/validation/robertson-conservation-dae/",
+          "name": {
+            "ja": "Robertson保存制約DAEと公式IDA保存値",
+            "en": "Robertson conservation DAE and stored official IDA values"
+          }
+        }
+      ]
+    },
+    {
+      "id": "van-der-pol-stiff-transition",
+      "group": "time",
+      "name": {
+        "ja": "van der Polの短時間剛性遷移",
+        "en": "Van der Pol: an early stiffness transition"
+      },
+      "chapter": "validation-ode-adaptivity",
+      "reading_section": "van-der-pol-stiff-transition",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/",
+      "verification": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "van-der-pol-stiff-transition"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/van-der-pol-stiff-transition-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "van-der-pol-stiff-transition",
+          "url": "/numerical-methods-atlas/validation/van-der-pol-stiff-transition/",
+          "name": {
+            "ja": "van der Polの短時間剛性遷移",
+            "en": "Van der Pol: an early stiffness transition"
+          }
+        }
+      ]
+    },
+    {
+      "id": "rk45-dense-events",
+      "group": "time",
+      "name": {
+        "ja": "RK45の埋込み推定・補間・イベント",
+        "en": "RK45: embedded errors, dense output and events"
+      },
+      "chapter": "validation-ode-adaptivity",
+      "reading_section": "rk45-dense-events",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/",
+      "verification": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "rk45-dense-events"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/rk45-dense-events-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "rk45-dense-events",
+          "url": "/numerical-methods-atlas/validation/rk45-dense-events/",
+          "name": {
+            "ja": "RK45の埋込み推定・補間・イベント",
+            "en": "RK45: embedded errors, dense output and events"
+          }
+        }
+      ]
+    },
+    {
+      "id": "strang-boundary-order-reduction",
+      "group": "time",
+      "name": {
+        "ja": "Dirichlet境界でのStrang次数低下と補正",
+        "en": "Strang splitting: Dirichlet boundary order reduction and correction"
+      },
+      "chapter": "validation-ode-adaptivity",
+      "reading_section": "strang-boundary-order-reduction",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/",
+      "verification": "/code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "strang-boundary-order-reduction"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/results/strang-boundary-order-reduction-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "strang-boundary-order-reduction",
+          "url": "/numerical-methods-atlas/validation/strang-boundary-order-reduction/",
+          "name": {
+            "ja": "Dirichlet境界でのStrang次数低下と補正",
+            "en": "Strang splitting: Dirichlet boundary order reduction and correction"
+          }
+        }
+      ]
+    },
+    {
+      "id": "jameson-steady-linear-modes",
+      "group": "time",
+      "name": {
+        "ja": "定常多段RKの実空間モード減衰",
+        "en": "Real-space mode damping with steady multistage RK"
+      },
+      "chapter": "validation-steady-rk",
+      "reading_section": "jameson-steady-linear-modes",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24/steady-rk/",
+      "verification": "/code/validated-examples/2026-11-24/steady-rk/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24/steady-rk/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "jameson-steady-linear-modes"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/steady-rk/results/jameson-steady-linear-modes-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/steady-rk/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "jameson-steady-linear-modes",
+          "url": "/numerical-methods-atlas/validation/jameson-steady-linear-modes/",
+          "name": {
+            "ja": "定常多段RKの実空間モード減衰",
+            "en": "Real-space mode damping with steady multistage RK"
+          }
+        }
+      ]
+    },
+    {
+      "id": "index1-dae-consistent-initialization",
+      "group": "time",
+      "name": {
+        "ja": "index-1 DAEの整合初期化と離散残差",
+        "en": "Consistent initialization and discrete residuals for an index-one DAE"
+      },
+      "chapter": "validation-dae-controls",
+      "reading_section": "index1-dae-consistent-initialization",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24/dae-controls/",
+      "verification": "/code/validated-examples/2026-11-24/dae-controls/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24/dae-controls/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "index1-dae-consistent-initialization"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/dae-controls/results/index1-dae-consistent-initialization-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/dae-controls/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "index1-dae-consistent-initialization",
+          "url": "/numerical-methods-atlas/validation/index1-dae-consistent-initialization/",
+          "name": {
+            "ja": "index-1 DAEの整合初期化と離散残差",
+            "en": "Consistent initialization and discrete residuals for an index-one DAE"
+          }
+        }
+      ]
+    },
+    {
+      "id": "high-index-pendulum",
+      "group": "time",
+      "name": {
+        "ja": "拘束付き振り子",
+        "en": "Constrained planar pendulum"
+      },
+      "chapter": "validation-dae-controls",
+      "reading_section": "high-index-pendulum",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24/dae-controls/",
+      "verification": "/code/validated-examples/2026-11-24/dae-controls/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24/dae-controls/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "high-index-pendulum"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/dae-controls/results/high-index-pendulum-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/dae-controls/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "high-index-pendulum",
+          "url": "/numerical-methods-atlas/validation/high-index-pendulum/",
+          "name": {
+            "ja": "振り子の指数低減・拘束ドリフト・明示安定化",
+            "en": "Index reduction, constraint drift and explicit stabilization for a pendulum"
+          }
+        },
+        {
+          "id": "shake-rattle-pendulum",
+          "url": "/numerical-methods-atlas/validation/shake-rattle-pendulum/",
+          "name": {
+            "ja": "SHAKEとRATTLE：拘束と運動量の違い",
+            "en": "SHAKE and RATTLE: constraints and momentum ownership"
+          }
+        }
+      ]
+    },
+    {
+      "id": "multifrequency-resonance",
+      "group": "time",
+      "name": {
+        "ja": "結合した2周波数系と共鳴の有限窓",
+        "en": "Coupled frequencies and finite-window resonance"
+      },
+      "chapter": "validation-geometric-controls",
+      "reading_section": "multifrequency-resonance",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-24/geometric-controls/",
+      "verification": "/code/validated-examples/2026-11-24/geometric-controls/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-24/geometric-controls/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "multifrequency-resonance"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/geometric-controls/results/multifrequency-resonance-preview.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-24/geometric-controls/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "multifrequency-resonance",
+          "url": "/numerical-methods-atlas/validation/multifrequency-resonance/",
+          "name": {
+            "ja": "結合した2周波数系と共鳴の有限窓",
+            "en": "Coupled frequencies and finite-window resonance"
+          }
+        }
+      ]
     }
   ],
   "excluded_examples": {

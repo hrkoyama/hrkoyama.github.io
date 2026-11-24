@@ -29,7 +29,11 @@
         "operator-splitting",
         "validation-splitting",
         "symplectic",
-        "dae"
+        "dae",
+        "validation-ode-adaptivity",
+        "validation-steady-rk",
+        "validation-dae-controls",
+        "validation-geometric-controls"
       ]
     },
     {

@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "checks": {
+    "Jacobi-angular-agreement": true,
+    "angular-tolerance-agreement": true,
+    "Jacobi-initial": true,
+    "Jacobi-invariants": true,
+    "AGM-K": true,
+    "Decimal-remainder-qualification": true,
+    "constraint-identity-False": true,
+    "constraint-work-False": true,
+    "constraint-identity-True": true,
+    "constraint-work-True": true
+  },
+  "counters": [
+    {
+      "id": "angular-reference-0",
+      "method": "DOP853",
+      "nfev": 1373,
+      "njev": 0,
+      "nlu": 0,
+      "status": 0,
+      "observations": 33
+    },
+    {
+      "id": "angular-reference-1",
+      "method": "DOP853",
+      "nfev": 2273,
+      "njev": 0,
+      "nlu": 0,
+      "status": 0,
+      "observations": 33
+    }
+  ],
+  "AGM": {
+    "machin_remainder_bound": "8.3635449075665323038278518507326915415075966132350212102759057738615292195390547E-361",
+    "agm_gap": "0E-80",
+    "sine_last_term": "1.0901413011711232077774929063392499947385844325905205275957434640421394838116484E-355"
+  },
+  "K_error": 0.0
+}

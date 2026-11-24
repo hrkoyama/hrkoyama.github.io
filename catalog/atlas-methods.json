@@ -212,8 +212,8 @@
         "en": "Spatial discretization"
       },
       "summary": {
-        "ja": "「空間中心差分」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。 追加固定例：擬似弧長継続でBratuのfoldを越える、解析・中央差分・方向ADによるJacobian不要Newton–Krylov。条件と検証範囲は各配布版で確認してください。 追加固定例：離散fold近傍のBratu感度、分布係数Bratuの行列非形成VJP。条件と検証範囲は各配布版で確認してください。",
-        "en": "Read about Centered spatial difference, follow the original references and inspect related educational code and checks. Additional fixed examples: Crossing the Bratu fold with pseudo-arclength continuation, Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products. See each release for assumptions and checked scope. Additional fixed examples: Bratu sensitivity near the discrete fold, Matrix-free VJP for distributed Bratu coefficients. See each release for assumptions and checked scope."
+        "ja": "「空間中心差分」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。 追加固定例：擬似弧長継続でBratuのfoldを越える、解析・中央差分・方向ADによるJacobian不要Newton–Krylov。条件と検証範囲は各配布版で確認してください。 追加固定例：離散fold近傍のBratu感度、分布係数Bratuの行列非形成VJP。条件と検証範囲は各配布版で確認してください。 追加固定例：Dirichlet境界でのStrang次数低下と補正。条件と検証範囲は各配布版で確認してください。",
+        "en": "Read about Centered spatial difference, follow the original references and inspect related educational code and checks. Additional fixed examples: Crossing the Bratu fold with pseudo-arclength continuation, Jacobian-free Newton–Krylov with analytic, central-FD and directional-AD products. See each release for assumptions and checked scope. Additional fixed examples: Bratu sensitivity near the discrete fold, Matrix-free VJP for distributed Bratu coefficients. See each release for assumptions and checked scope. Additional fixed examples: Strang splitting: Dirichlet boundary order reduction and correction. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "existing-coverage-catalog",
@@ -250,8 +250,8 @@
       "units": null,
       "boundary_conditions": null,
       "limitations": {
-        "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。 追加固定例：小さな1次元の単純foldだけです。分岐曲線の解析族比較では計算した中点値を族の座標に使い、固定λの独立形状比較と区別します。連続foldは離散解そのものではなく、一般の分岐追跡や大規模性能は保証しません。 小1次元BVP向けの教育実装です。ADは四則・exp・境界paddingの方向微分に限ります。小Hessenberg行列と基底は保持します。ηの固定下限があるため、原著EWの漸近収束定理、一般AD/PETScとの同等性、速度向上や大域収束は主張しません。 上記の制限は既存配布版の範囲です。今回の追加配布版：連続foldは離散foldではありません。rtol1e-4/1e-8は達成必須、requested1e-12は観測のみで未達を収束と表示しません。返却候補の独立勾配精度は別判定。最小固有値/丸めscaleは浮動小数点の診断で保証区間ではありません。BratuのJは対称であり、非対称転置は別の演算子対照です。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。 同じ離散状態の微分検証で、独立した物理PDE解の証明や一般ADではありません。保存arrayと固定Krylov workspaceの記録はRSS測定ではありません。m=2のθ端点は[a-b-2,a+b-2]で、物理係数端点[a-b,a+b]と区別します。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。",
-        "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers. Additional fixed examples: A small one-dimensional simple fold only. The whole-curve family comparison uses the computed midpoint as its family coordinate and is distinct from the independent fixed-lambda profile checks. The continuum fold is not an exact discrete solution. No general bifurcation-tracking or large-scale performance claim. An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee. The preceding limitations describe earlier editions. This additional release: The continuum fold is not the discrete fold. rtol1e-4/1e-8 targets are required; requested1e-12 is observational and unmet is never called converged. Independent accuracy of the returned gradient is a separate gate. Eigenvalue/roundoff scales are floating diagnostics, not certified intervals. Bratu J is symmetric; the nonsymmetric transpose is a separate operator control. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved. Derivative verification at the same discrete state, not independent physical-PDE truth or general AD. Persistent arrays and fixed Krylov workspace inventories are not RSS measurements. For m=2, theta endpoints are[a-b-2,a+b-2], distinct from physical coefficient endpoints[a-b,a+b]. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved."
+        "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。 追加固定例：小さな1次元の単純foldだけです。分岐曲線の解析族比較では計算した中点値を族の座標に使い、固定λの独立形状比較と区別します。連続foldは離散解そのものではなく、一般の分岐追跡や大規模性能は保証しません。 小1次元BVP向けの教育実装です。ADは四則・exp・境界paddingの方向微分に限ります。小Hessenberg行列と基底は保持します。ηの固定下限があるため、原著EWの漸近収束定理、一般AD/PETScとの同等性、速度向上や大域収束は主張しません。 上記の制限は既存配布版の範囲です。今回の追加配布版：連続foldは離散foldではありません。rtol1e-4/1e-8は達成必須、requested1e-12は観測のみで未達を収束と表示しません。返却候補の独立勾配精度は別判定。最小固有値/丸めscaleは浮動小数点の診断で保証区間ではありません。BratuのJは対称であり、非対称転置は別の演算子対照です。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。 同じ離散状態の微分検証で、独立した物理PDE解の証明や一般ADではありません。保存arrayと固定Krylov workspaceの記録はRSS測定ではありません。m=2のθ端点は[a-b-2,a+b-2]で、物理係数端点[a-b,a+b]と区別します。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。 上記の制限は既存配布版の範囲です。今回の追加配布版：原著の線形特殊例で非線形数値表の再現ではありません。非自律/一般境界や普遍的な次数低下は主張せず、Lie終端の反応trace不整合も別表示します。",
+        "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers. Additional fixed examples: A small one-dimensional simple fold only. The whole-curve family comparison uses the computed midpoint as its family coordinate and is distinct from the independent fixed-lambda profile checks. The continuum fold is not an exact discrete solution. No general bifurcation-tracking or large-scale performance claim. An educational small1D BVP. AD covers only elementary arithmetic, exp and linear boundary padding. Small Hessenberg matrices and Krylov bases are stored. The fixed eta floor precludes claiming the unmodified EW asymptotic theorem. No general-AD/PETSc equivalence, speedup or global-convergence guarantee. The preceding limitations describe earlier editions. This additional release: The continuum fold is not the discrete fold. rtol1e-4/1e-8 targets are required; requested1e-12 is observational and unmet is never called converged. Independent accuracy of the returned gradient is a separate gate. Eigenvalue/roundoff scales are floating diagnostics, not certified intervals. Bratu J is symmetric; the nonsymmetric transpose is a separate operator control. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved. Derivative verification at the same discrete state, not independent physical-PDE truth or general AD. Persistent arrays and fixed Krylov workspace inventories are not RSS measurements. For m=2, theta endpoints are[a-b-2,a+b-2], distinct from physical coefficient endpoints[a-b,a+b]. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved. The preceding limitations describe earlier editions. This additional release: This is an authored linear specialization, not a reproduction of the original nonlinear tables. It makes no general claim for nonautonomous boundaries or universal order loss. The final reaction-trace mismatch of Lie splitting is disclosed separately."
       },
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
@@ -336,6 +336,13 @@
             "bratu-fold-sensitivity",
             "bratu-distributed-vjp"
           ]
+        },
+        {
+          "group": "ode-adaptivity",
+          "edition": "2026-11-24-r2",
+          "case_ids": [
+            "strang-boundary-order-reduction"
+          ]
         }
       ],
       "supplemental_scope_profiles": [
@@ -384,6 +391,25 @@
             {
               "ja": "同じ離散状態の微分検証で、独立した物理PDE解の証明や一般ADではありません。保存arrayと固定Krylov workspaceの記録はRSS測定ではありません。m=2のθ端点は[a-b-2,a+b-2]で、物理係数端点[a-b,a+b]と区別します。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。",
               "en": "Derivative verification at the same discrete state, not independent physical-PDE truth or general AD. Persistent arrays and fixed Krylov workspace inventories are not RSS measurements. For m=2, theta endpoints are[a-b-2,a+b-2], distinct from physical coefficient endpoints[a-b,a+b]. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved."
+            }
+          ]
+        },
+        {
+          "release": {
+            "group": "ode-adaptivity",
+            "edition": "2026-11-24-r2",
+            "case_ids": [
+              "strang-boundary-order-reduction"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：Dirichlet境界でのStrang次数低下と補正。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Strang splitting: Dirichlet boundary order reduction and correction. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "原著の線形特殊例で非線形数値表の再現ではありません。非自律/一般境界や普遍的な次数低下は主張せず、Lie終端の反応trace不整合も別表示します。",
+              "en": "This is an authored linear specialization, not a reproduction of the original nonlinear tables. It makes no general claim for nonautonomous boundaries or universal order loss. The final reaction-trace mismatch of Lie splitting is disclosed separately."
             }
           ]
         }
@@ -2977,8 +3003,8 @@
         "en": "Time integration"
       },
       "summary": {
-        "ja": "「後退Euler法」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。 追加固定例：Su–Olson1996非平衡拡散。条件と検証範囲は各配布版で確認してください。 追加固定例：時間離散拡散の随伴とcheckpoint。条件と検証範囲は各配布版で確認してください。",
-        "en": "Read about Backward Euler, follow the original references and inspect related educational code and checks. Additional fixed examples: Su–Olson1996 non-equilibrium diffusion. See each release for assumptions and checked scope. Additional fixed examples: Discrete diffusion adjoint and checkpoint replay. See each release for assumptions and checked scope."
+        "ja": "「後退Euler法」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。 追加固定例：Su–Olson1996非平衡拡散。条件と検証範囲は各配布版で確認してください。 追加固定例：時間離散拡散の随伴とcheckpoint。条件と検証範囲は各配布版で確認してください。 追加固定例：index-1 DAEの整合初期化と離散残差、Robertson保存制約DAEと公式IDA保存値。条件と検証範囲は各配布版で確認してください。",
+        "en": "Read about Backward Euler, follow the original references and inspect related educational code and checks. Additional fixed examples: Su–Olson1996 non-equilibrium diffusion. See each release for assumptions and checked scope. Additional fixed examples: Discrete diffusion adjoint and checkpoint replay. See each release for assumptions and checked scope. Additional fixed examples: Consistent initialization and discrete residuals for an index-one DAE, Robertson conservation DAE and stored official IDA values. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "existing-coverage-catalog",
@@ -3008,8 +3034,8 @@
       "units": null,
       "boundary_conditions": null,
       "limitations": {
-        "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。 今回の追加固定例：1996拡散であり1997角度輸送とは別です。原典本文は未読、公式ソフトの選択値を資格。物理単位の質量opacity解釈は使わず無次元関数を直接参照します。 上記の制限は既存配布版の範囲です。今回の追加配布版：固定stepの離散随伴でありCVODESや最適checkpoint法ではありません。40nは状態・随伴・RHS/solve scratchの一意な所有要素数です。静的因子・model配列は別表示し総所有byteへ含めます。検証/NPZ組立は測定後で、RSSではありません。",
-        "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers. Additional fixed examples: This1996diffusion model is distinct from1997angular transport. Original paper fulltext unread;officialsoftware selected values qualified. Direct dimensionless functions avoid ambiguous mass-opacity physical-wrapper units. The preceding limitations describe earlier editions. This additional release: Fixed-step discrete adjoints, not CVODES or an optimal checkpoint schedule. The40n limit counts unique evolving state/adjoint/RHS/solve-scratch elements. Static factors/model arrays are separately listed and included in total bytes. Validation/NPZ assembly follows the ownership windows; this is not RSS."
+        "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。 今回の追加固定例：1996拡散であり1997角度輸送とは別です。原典本文は未読、公式ソフトの選択値を資格。物理単位の質量opacity解釈は使わず無次元関数を直接参照します。 上記の制限は既存配布版の範囲です。今回の追加配布版：固定stepの離散随伴でありCVODESや最適checkpoint法ではありません。40nは状態・随伴・RHS/solve scratchの一意な所有要素数です。静的因子・model配列は別表示し総所有byteへ含めます。検証/NPZ組立は測定後で、RSSではありません。 上記の制限は既存配布版の範囲です。今回の追加配布版：単一の製造正枝・固定BE計算です。IDA実行や一般DAEソルバーの検証ではありません。 公式SUNDIALS v7.1.1の2印字行のみ。IDAの新規実行0、長時間の化学精度や一般DAE性能は扱いません。 この固定時間格子の漸近収束や元精度目標の全合格は主張しません。",
+        "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers. Additional fixed examples: This1996diffusion model is distinct from1997angular transport. Original paper fulltext unread;officialsoftware selected values qualified. Direct dimensionless functions avoid ambiguous mass-opacity physical-wrapper units. The preceding limitations describe earlier editions. This additional release: Fixed-step discrete adjoints, not CVODES or an optimal checkpoint schedule. The40n limit counts unique evolving state/adjoint/RHS/solve-scratch elements. Static factors/model arrays are separately listed and included in total bytes. Validation/NPZ assembly follows the ownership windows; this is not RSS. The preceding limitations describe earlier editions. This additional release: One authored positive branch and fixed BE runs; no IDA execution or general DAE-solver qualification. Only two official SUNDIALS v7.1.1 printed rows; zero new IDA executions, with no long-time chemistry or general DAE-performance claim. No asymptotic-convergence or all-original-accuracy-goals claim is made for this fixed schedule."
       },
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
@@ -3075,6 +3101,30 @@
               "en": "Fixed-step discrete adjoints, not CVODES or an optimal checkpoint schedule. The40n limit counts unique evolving state/adjoint/RHS/solve-scratch elements. Static factors/model arrays are separately listed and included in total bytes. Validation/NPZ assembly follows the ownership windows; this is not RSS."
             }
           ]
+        },
+        {
+          "release": {
+            "group": "dae-controls",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "index1-dae-consistent-initialization",
+              "robertson-conservation-dae"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：index-1 DAEの整合初期化と離散残差、Robertson保存制約DAEと公式IDA保存値。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Consistent initialization and discrete residuals for an index-one DAE, Robertson conservation DAE and stored official IDA values. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "単一の製造正枝・固定BE計算です。IDA実行や一般DAEソルバーの検証ではありません。",
+              "en": "One authored positive branch and fixed BE runs; no IDA execution or general DAE-solver qualification."
+            },
+            {
+              "ja": "公式SUNDIALS v7.1.1の2印字行のみ。IDAの新規実行0、長時間の化学精度や一般DAE性能は扱いません。 この固定時間格子の漸近収束や元精度目標の全合格は主張しません。",
+              "en": "Only two official SUNDIALS v7.1.1 printed rows; zero new IDA executions, with no long-time chemistry or general DAE-performance claim. No asymptotic-convergence or all-original-accuracy-goals claim is made for this fixed schedule."
+            }
+          ]
         }
       ],
       "depth_additional_releases": [
@@ -3083,6 +3133,14 @@
           "edition": "2026-11-24",
           "case_ids": [
             "diffusion-discrete-adjoint"
+          ]
+        },
+        {
+          "group": "dae-controls",
+          "edition": "2026-11-24",
+          "case_ids": [
+            "index1-dae-consistent-initialization",
+            "robertson-conservation-dae"
           ]
         }
       ]
@@ -3626,8 +3684,8 @@
         "en": "Time integration"
       },
       "summary": {
-        "ja": "滑らかな非硬い常微分方程式を4回の右辺評価で4次精度に進める古典Runge–Kutta法。公開例では次数条件、安定関数、非線形・時刻依存問題を比較し、SSP性やシンプレクティック性とは区別する。",
-        "en": "Classical four-stage Runge–Kutta advances smooth nonstiff ODEs with fourth-order accuracy. Released examples compare order conditions, stability functions and nonlinear/time-dependent problems while distinguishing accuracy from SSP and symplectic properties."
+        "ja": "滑らかな非硬い常微分方程式を4回の右辺評価で4次精度に進める古典Runge–Kutta法。公開例では次数条件、安定関数、非線形・時刻依存問題を比較し、SSP性やシンプレクティック性とは区別する。 追加固定例：振り子の指数低減・拘束ドリフト・明示安定化。条件と検証範囲は各配布版で確認してください。",
+        "en": "Classical four-stage Runge–Kutta advances smooth nonstiff ODEs with fourth-order accuracy. Released examples compare order conditions, stability functions and nonlinear/time-dependent problems while distinguishing accuracy from SSP and symplectic properties. Additional fixed examples: Index reduction, constraint drift and explicit stabilization for a pendulum. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "existing-coverage-catalog",
@@ -3674,12 +3732,16 @@
       "units": "h and t have the same time unit, and f_i has units y_i/time. State-component units belong to the problem; RK4 imposes no intrinsic physical unit. hλ is dimensionless.",
       "boundary_conditions": "Spatial boundary conditions do not apply to the ODE step itself. For a PDE, each stage's RHS evaluation must supply the appropriate boundary values or ghost states.",
       "limitations": {
-        "ja": "陽解法でA安定・L安定ではなく、硬い減衰では小さい刻みを要する。一般の非線形問題に正のSSP係数を持たず、正値性・TVD性・エネルギー保存・シンプレクティック性を4次精度から導くことはできない。このrk_stepは固定刻みの部品で、埋込み誤差推定や自動刻み調整を持たない。",
-        "en": "Explicit RK4 is neither A-stable nor L-stable and may require small steps for stiff decay. It has no positive general nonlinear SSP coefficient; fourth-order accuracy implies neither positivity, TVD, energy conservation nor symplecticity. The released rk_step is a fixed-step component without an embedded error estimator or adaptive controller."
+        "ja": "陽解法でA安定・L安定ではなく、硬い減衰では小さい刻みを要する。一般の非線形問題に正のSSP係数を持たず、正値性・TVD性・エネルギー保存・シンプレクティック性を4次精度から導くことはできない。このrk_stepは固定刻みの部品で、埋込み誤差推定や自動刻み調整を持たない。 上記の制限は既存配布版の範囲です。今回の追加配布版：投影・正規化・SHAKE/RATTLEなし。一般指数3ソルバーやシンプレクティック性の検証ではありません。",
+        "en": "Explicit RK4 is neither A-stable nor L-stable and may require small steps for stiff decay. It has no positive general nonlinear SSP coefficient; fourth-order accuracy implies neither positivity, TVD, energy conservation nor symplecticity. The released rk_step is a fixed-step component without an embedded error estimator or adaptive controller. The preceding limitations describe earlier editions. This additional release: No projection, normalization or SHAKE/RATTLE; no general index-three-solver or symplecticity claim."
       },
       "metadata_review": {
         "level": "method-specific source-and-code inspection; no numerical rerun; reference access recorded individually",
-        "on": "2026-11-22"
+        "on": "2026-11-22",
+        "supplemental_review": {
+          "on": "2026-11-24",
+          "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
+        }
       },
       "assumptions_ja": [
         "対象は初期値問題y'=f(t,y)で、4次収束を期待する区間では右辺と解に十分な滑らかさがある。",
@@ -3823,6 +3885,34 @@
           "edition": "2026-11-23",
           "case_ids": [
             "cgrid-rotating-wave"
+          ]
+        },
+        {
+          "group": "dae-controls",
+          "edition": "2026-11-24",
+          "case_ids": [
+            "high-index-pendulum"
+          ]
+        }
+      ],
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "dae-controls",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "high-index-pendulum"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：振り子の指数低減・拘束ドリフト・明示安定化。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Index reduction, constraint drift and explicit stabilization for a pendulum. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "投影・正規化・SHAKE/RATTLEなし。一般指数3ソルバーやシンプレクティック性の検証ではありません。",
+              "en": "No projection, normalization or SHAKE/RATTLE; no general index-three-solver or symplecticity claim."
+            }
           ]
         }
       ]
@@ -4232,8 +4322,8 @@
         "en": "Time integration"
       },
       "summary": {
-        "ja": "「BDF2」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。",
-        "en": "Read about BDF2, follow the original references and inspect related educational code and checks."
+        "ja": "「BDF2」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。 追加固定例：Robertson反応系の初期剛性と実誤差、van der Polの短時間剛性遷移。条件と検証範囲は各配布版で確認してください。",
+        "en": "Read about BDF2, follow the original references and inspect related educational code and checks. Additional fixed examples: Robertson kinetics: initial stiffness and actual error, Van der Pol: an early stiffness transition. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "existing-coverage-catalog",
@@ -4264,17 +4354,55 @@
       "units": null,
       "boundary_conditions": null,
       "limitations": {
-        "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。",
-        "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers."
+        "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。 上記の制限は既存配布版の範囲です。今回の追加配布版：保存/正値性は固定入力の観測で、一般的な保証ではありません。T=.4の短時間・標本時刻での精度であり、長時間化学精度や全時刻誤差上限は主張しません。 測定後の報告範囲変更で、数値的な修復ではありません。初回誤差4.535633779e-5は元目標2e-5を超えます。局所rtolは大域誤差を保証せず、報告検証の合格は全元目標の達成ではありません。大μ全周期は対象外です。",
+        "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers. The preceding limitations describe earlier editions. This additional release: Conservation and positivity are observations for these inputs, not universal guarantees. Accuracy is sampled on T <= 0.4; this does not validate long-time chemistry or an all-time error bound. This post-measurement reporting revision is not a numerical repair. The first error, 4.535633779e-5, exceeded the original 2e-5 goal. Local tolerances do not guarantee global accuracy, and reporting PASS does not mean all original goals were met. Full large-mu cycles are outside scope."
       },
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
-        "on": "2026-11-21"
+        "on": "2026-11-21",
+        "supplemental_review": {
+          "on": "2026-11-24",
+          "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
+        }
       },
       "aliases": [
         "BDF2法",
         "2次後退微分公式",
         "second order backward differentiation formula"
+      ],
+      "depth_release": {
+        "group": "ode-adaptivity",
+        "edition": "2026-11-24-r2",
+        "case_ids": [
+          "robertson-stiff-kinetics",
+          "van-der-pol-stiff-transition"
+        ]
+      },
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "ode-adaptivity",
+            "edition": "2026-11-24-r2",
+            "case_ids": [
+              "robertson-stiff-kinetics",
+              "van-der-pol-stiff-transition"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：Robertson反応系の初期剛性と実誤差、van der Polの短時間剛性遷移。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Robertson kinetics: initial stiffness and actual error, Van der Pol: an early stiffness transition. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "保存/正値性は固定入力の観測で、一般的な保証ではありません。T=.4の短時間・標本時刻での精度であり、長時間化学精度や全時刻誤差上限は主張しません。",
+              "en": "Conservation and positivity are observations for these inputs, not universal guarantees. Accuracy is sampled on T <= 0.4; this does not validate long-time chemistry or an all-time error bound."
+            },
+            {
+              "ja": "測定後の報告範囲変更で、数値的な修復ではありません。初回誤差4.535633779e-5は元目標2e-5を超えます。局所rtolは大域誤差を保証せず、報告検証の合格は全元目標の達成ではありません。大μ全周期は対象外です。",
+              "en": "This post-measurement reporting revision is not a numerical repair. The first error, 4.535633779e-5, exceeded the original 2e-5 goal. Local tolerances do not guarantee global accuracy, and reporting PASS does not mean all original goals were met. Full large-mu cycles are outside scope."
+            }
+          ]
+        }
       ]
     },
     {
@@ -4289,8 +4417,8 @@
         "en": "Time integration"
       },
       "summary": {
-        "ja": "硬い常微分方程式の減衰を扱う2段2次の陰的Runge–Kutta法。公開版はγ=1−1/√2のstiffly accurateなL安定SDIRKで、各段階にNewton法を用い、別のラッパーでステップ倍化による局所誤差制御を行う。",
-        "en": "A two-stage second-order implicit Runge–Kutta method for stiff ODE decay. The release uses stiffly accurate L-stable SDIRK with γ=1−1/√2 and Newton stage solves; a separate wrapper adds step-doubling local-error control."
+        "ja": "硬い常微分方程式の減衰を扱う2段2次の陰的Runge–Kutta法。公開版はγ=1−1/√2のstiffly accurateなL安定SDIRKで、各段階にNewton法を用い、別のラッパーでステップ倍化による局所誤差制御を行う。 追加固定例：Robertson反応系の初期剛性と実誤差、van der Polの短時間剛性遷移。条件と検証範囲は各配布版で確認してください。",
+        "en": "A two-stage second-order implicit Runge–Kutta method for stiff ODE decay. The release uses stiffly accurate L-stable SDIRK with γ=1−1/√2 and Newton stage solves; a separate wrapper adds step-doubling local-error control. Additional fixed examples: Robertson kinetics: initial stiffness and actual error, Van der Pol: an early stiffness transition. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "existing-coverage-catalog",
@@ -4351,12 +4479,16 @@
       "units": "h has time units, f_i has y_i/time, and J_ij has y_i/(y_j×time). Nondimensionalization or component scaling is needed: the fixed Newton tolerance 2×10^-12 does not automatically adapt to arbitrary physical units. Adaptive atol sets state scales and rtol is dimensionless.",
       "boundary_conditions": "Spatial boundaries do not apply to the ODE time step itself. For semidiscrete PDEs, incorporate boundary conditions and their time dependence consistently into the RHS and Jacobian.",
       "limitations": {
-        "ja": "L安定性は正確な段階解を前提とする線形試験方程式の性質であり、大刻みの精度・非線形収束・正値性を保証しない。Newton失敗時は固定版が例外、適応版が試行棄却を行う。埋込み対ではなくステップ倍化で、rtol/atolは局所誤差尺度であり最終大域誤差の保証ではない。一般DAE、質量行列、イベント処理は未実装。",
-        "en": "L-stability concerns the linear test equation with accurate stage solves; it guarantees neither large-step accuracy, nonlinear convergence nor positivity. A Newton failure raises in the fixed version and rejects a trial in the adaptive wrapper. Adaptivity uses step doubling, not an embedded pair; rtol/atol control a local error scale, not a guaranteed final global error. General DAEs, mass matrices and events are not implemented."
+        "ja": "L安定性は正確な段階解を前提とする線形試験方程式の性質であり、大刻みの精度・非線形収束・正値性を保証しない。Newton失敗時は固定版が例外、適応版が試行棄却を行う。埋込み対ではなくステップ倍化で、rtol/atolは局所誤差尺度であり最終大域誤差の保証ではない。一般DAE、質量行列、イベント処理は未実装。 上記の制限は既存配布版の範囲です。今回の追加配布版：保存/正値性は固定入力の観測で、一般的な保証ではありません。T=.4の短時間・標本時刻での精度であり、長時間化学精度や全時刻誤差上限は主張しません。 測定後の報告範囲変更で、数値的な修復ではありません。初回誤差4.535633779e-5は元目標2e-5を超えます。局所rtolは大域誤差を保証せず、報告検証の合格は全元目標の達成ではありません。大μ全周期は対象外です。",
+        "en": "L-stability concerns the linear test equation with accurate stage solves; it guarantees neither large-step accuracy, nonlinear convergence nor positivity. A Newton failure raises in the fixed version and rejects a trial in the adaptive wrapper. Adaptivity uses step doubling, not an embedded pair; rtol/atol control a local error scale, not a guaranteed final global error. General DAEs, mass matrices and events are not implemented. The preceding limitations describe earlier editions. This additional release: Conservation and positivity are observations for these inputs, not universal guarantees. Accuracy is sampled on T <= 0.4; this does not validate long-time chemistry or an all-time error bound. This post-measurement reporting revision is not a numerical repair. The first error, 4.535633779e-5, exceeded the original 2e-5 goal. Local tolerances do not guarantee global accuracy, and reporting PASS does not mean all original goals were met. Full large-mu cycles are outside scope."
       },
       "metadata_review": {
         "level": "method-specific source-and-code inspection; no numerical rerun; reference access recorded individually",
-        "on": "2026-11-22"
+        "on": "2026-11-22",
+        "supplemental_review": {
+          "on": "2026-11-24",
+          "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
+        }
       },
       "assumptions_ja": [
         "対象は実数の1次元配列で表すODE y'=f(t,y)。整合するJacobian ∂f/∂yを呼び出し側が与える。",
@@ -4461,6 +4593,40 @@
         "SDIRK2法",
         "2次SDIRK",
         "L-stable SDIRK2"
+      ],
+      "depth_release": {
+        "group": "ode-adaptivity",
+        "edition": "2026-11-24-r2",
+        "case_ids": [
+          "robertson-stiff-kinetics",
+          "van-der-pol-stiff-transition"
+        ]
+      },
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "ode-adaptivity",
+            "edition": "2026-11-24-r2",
+            "case_ids": [
+              "robertson-stiff-kinetics",
+              "van-der-pol-stiff-transition"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：Robertson反応系の初期剛性と実誤差、van der Polの短時間剛性遷移。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Robertson kinetics: initial stiffness and actual error, Van der Pol: an early stiffness transition. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "保存/正値性は固定入力の観測で、一般的な保証ではありません。T=.4の短時間・標本時刻での精度であり、長時間化学精度や全時刻誤差上限は主張しません。",
+              "en": "Conservation and positivity are observations for these inputs, not universal guarantees. Accuracy is sampled on T <= 0.4; this does not validate long-time chemistry or an all-time error bound."
+            },
+            {
+              "ja": "測定後の報告範囲変更で、数値的な修復ではありません。初回誤差4.535633779e-5は元目標2e-5を超えます。局所rtolは大域誤差を保証せず、報告検証の合格は全元目標の達成ではありません。大μ全周期は対象外です。",
+              "en": "This post-measurement reporting revision is not a numerical repair. The first error, 4.535633779e-5, exceeded the original 2e-5 goal. Local tolerances do not guarantee global accuracy, and reporting PASS does not mean all original goals were met. Full large-mu cycles are outside scope."
+            }
+          ]
+        }
       ]
     },
     {
@@ -4532,8 +4698,8 @@
         "en": "Time integration"
       },
       "summary": {
-        "ja": "「適応SDIRK2／ステップ倍分割」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。",
-        "en": "Read about Adaptive SDIRK2 / step doubling, follow the original references and inspect related educational code and checks."
+        "ja": "「適応SDIRK2／ステップ倍分割」の考え方と適用範囲を、解説章・一次文献・関連する教育用コードからたどります。 追加固定例：Robertson反応系の初期剛性と実誤差、van der Polの短時間剛性遷移。条件と検証範囲は各配布版で確認してください。",
+        "en": "Read about Adaptive SDIRK2 / step doubling, follow the original references and inspect related educational code and checks. Additional fixed examples: Robertson kinetics: initial stiffness and actual error, Van der Pol: an early stiffness transition. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "existing-coverage-catalog",
@@ -4564,18 +4730,56 @@
       "units": null,
       "boundary_conditions": null,
       "limitations": {
-        "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。",
-        "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers."
+        "ja": "対象方程式・境界条件・検証の範囲は解説章と各コードを確認してください。教育用例は汎用ソルバーの完成を意味しません。 上記の制限は既存配布版の範囲です。今回の追加配布版：保存/正値性は固定入力の観測で、一般的な保証ではありません。T=.4の短時間・標本時刻での精度であり、長時間化学精度や全時刻誤差上限は主張しません。 測定後の報告範囲変更で、数値的な修復ではありません。初回誤差4.535633779e-5は元目標2e-5を超えます。局所rtolは大域誤差を保証せず、報告検証の合格は全元目標の達成ではありません。大μ全周期は対象外です。",
+        "en": "See the chapter and implementation for equations, boundaries and checked scope. Educational examples are not complete general-purpose solvers. The preceding limitations describe earlier editions. This additional release: Conservation and positivity are observations for these inputs, not universal guarantees. Accuracy is sampled on T <= 0.4; this does not validate long-time chemistry or an all-time error bound. This post-measurement reporting revision is not a numerical repair. The first error, 4.535633779e-5, exceeded the original 2e-5 goal. Local tolerances do not guarantee global accuracy, and reporting PASS does not mean all original goals were met. Full large-mu cycles are outside scope."
       },
       "metadata_review": {
         "level": "chapter-linked; detailed method-specific curation in progress",
-        "on": "2026-11-21"
+        "on": "2026-11-21",
+        "supplemental_review": {
+          "on": "2026-11-24",
+          "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
+        }
       },
       "aliases": [
         "ステップ倍分割法",
         "step doubling",
         "適応SDIRK2",
         "adaptive SDIRK2"
+      ],
+      "depth_release": {
+        "group": "ode-adaptivity",
+        "edition": "2026-11-24-r2",
+        "case_ids": [
+          "robertson-stiff-kinetics",
+          "van-der-pol-stiff-transition"
+        ]
+      },
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "ode-adaptivity",
+            "edition": "2026-11-24-r2",
+            "case_ids": [
+              "robertson-stiff-kinetics",
+              "van-der-pol-stiff-transition"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：Robertson反応系の初期剛性と実誤差、van der Polの短時間剛性遷移。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Robertson kinetics: initial stiffness and actual error, Van der Pol: an early stiffness transition. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "保存/正値性は固定入力の観測で、一般的な保証ではありません。T=.4の短時間・標本時刻での精度であり、長時間化学精度や全時刻誤差上限は主張しません。",
+              "en": "Conservation and positivity are observations for these inputs, not universal guarantees. Accuracy is sampled on T <= 0.4; this does not validate long-time chemistry or an all-time error bound."
+            },
+            {
+              "ja": "測定後の報告範囲変更で、数値的な修復ではありません。初回誤差4.535633779e-5は元目標2e-5を超えます。局所rtolは大域誤差を保証せず、報告検証の合格は全元目標の達成ではありません。大μ全周期は対象外です。",
+              "en": "This post-measurement reporting revision is not a numerical repair. The first error, 4.535633779e-5, exceeded the original 2e-5 goal. Local tolerances do not guarantee global accuracy, and reporting PASS does not mean all original goals were met. Full large-mu cycles are outside scope."
+            }
+          ]
+        }
       ]
     },
     {
@@ -4647,8 +4851,8 @@
         "en": "Time integration"
       },
       "summary": {
-        "ja": "既存配布版：位置だけに依存する力を、半分のkick・drift・半分のkickで進める2次の可逆・シンプレクティック法。公開例は単位質量の調和/四次振動子で、エネルギー誤差と構造保存が同じでないことを確かめる。 追加固定例：無軟化Kepler二体の時間誤差、冷たいPlummer密度由来32粒子の短時間力学。条件と検証範囲は各配布版で確認してください。 追加固定例：温かいPICの線形Landau減衰、温かいPICの二流初期成長。条件と検証範囲は各配布版で確認してください。 追加固定例：PIC空間演算の独立実装照合。条件と検証範囲は各配布版で確認してください。",
-        "en": "Existing releases: A second-order reversible symplectic method using half kick, drift and half kick for position-dependent forces. Released unit-mass harmonic/quartic oscillators illustrate why energy error and geometric structure preservation are different properties. Additional fixed examples: Unsoftened Kepler two-body time error, Short-time32body dynamics from a cold Plummer-density sample. See each release for assumptions and checked scope. Additional fixed examples: Warm PIC linear Landau damping, Warm PIC two-stream initial growth. See each release for assumptions and checked scope. Additional fixed examples: Independently coded PIC spatial pipeline. See each release for assumptions and checked scope."
+        "ja": "既存配布版：位置だけに依存する力を、半分のkick・drift・半分のkickで進める2次の可逆・シンプレクティック法。公開例は単位質量の調和/四次振動子で、エネルギー誤差と構造保存が同じでないことを確かめる。 追加固定例：無軟化Kepler二体の時間誤差、冷たいPlummer密度由来32粒子の短時間力学。条件と検証範囲は各配布版で確認してください。 追加固定例：温かいPICの線形Landau減衰、温かいPICの二流初期成長。条件と検証範囲は各配布版で確認してください。 追加固定例：PIC空間演算の独立実装照合。条件と検証範囲は各配布版で確認してください。 追加固定例：離心率を変えたKepler軌道と時間刻み、結合した2周波数系と共鳴の有限窓。条件と検証範囲は各配布版で確認してください。",
+        "en": "Existing releases: A second-order reversible symplectic method using half kick, drift and half kick for position-dependent forces. Released unit-mass harmonic/quartic oscillators illustrate why energy error and geometric structure preservation are different properties. Additional fixed examples: Unsoftened Kepler two-body time error, Short-time32body dynamics from a cold Plummer-density sample. See each release for assumptions and checked scope. Additional fixed examples: Warm PIC linear Landau damping, Warm PIC two-stream initial growth. See each release for assumptions and checked scope. Additional fixed examples: Independently coded PIC spatial pipeline. See each release for assumptions and checked scope. Additional fixed examples: Kepler eccentricity and time-step controls, Coupled frequencies and finite-window resonance. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "existing-coverage-catalog",
@@ -4709,15 +4913,15 @@
       "units": "The released oscillator is nondimensional with m=1 and harmonic ω=1. A general-mass formulation would require drift h p/m and consistent position, momentum, force and time scales; that generalization is not an input feature of this released function.",
       "boundary_conditions": "Spatial boundary conditions do not apply to this oscillator phase-space map. It is a different problem from the original periodic Lennard-Jones fluid; particle periodicity, walls and constraints are not implemented here.",
       "limitations": {
-        "ja": "既存配布版の制約：元のHamiltonianを各ステップで厳密保存するわけではない。シンプレクティックでも大刻みは不安定になり得て、ω=1の調和振動子では|h|<2が安定域の内部。速度依存力、摩擦・サーモスタット、拘束、一般の可変刻みや非分離Hamiltonianでは、同じ性質をそのまま保証できない。公開関数は一般分子動力学solverではない。 今回の追加固定例：1周期・固定離心率のみ。軟化軌道や長時間安定性はこの参照の範囲外。 冷たい有限N初期値で平衡Plummer分布/連続球厳密軌道ではありません。BHの一般相反性・大域symplectic性は主張しません。 今回の追加固定例：1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。 1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。 今回の追加固定例：離散演算の独立したコーディング照合です。時間積分法や連続方程式を変えた独立エンジン、連続極限の収束、冷たいプラズマの振動参照の再現を意味しません。既存cold-plasma-picの関連補助検証として扱い、温かい初期速度の軌道を冷たい解と同一視しません。",
-        "en": "Limits of existing releases: The original Hamiltonian is not exactly preserved at each step. A symplectic map can still be unstable at large steps; for the ω=1 harmonic oscillator, |h|<2 is the interior stability interval. Velocity-dependent forces, friction/thermostats, constraints, generic variable steps and nonseparable Hamiltonians require different treatment. This function is not a general molecular-dynamics solver. Additional fixed examples: One orbit at fixed eccentricity only; softened binaries and long-time behavior are outside this exact reference. Cold finite-N initial value,not an equilibrium Plummer DF or exact continuum orbit. No general BH reciprocity/global symplecticity claim. Additional fixed examples: Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established. Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established. Additional fixed examples: Independent coding check of discrete spatial operators. It does not change the time integrator/continuum model, establish continuum convergence, or reproduce the cold-plasma oscillation reference. A related supplement of cold-plasma-pic; the finite warm velocity spread is explicit."
+        "ja": "既存配布版の制約：元のHamiltonianを各ステップで厳密保存するわけではない。シンプレクティックでも大刻みは不安定になり得て、ω=1の調和振動子では|h|<2が安定域の内部。速度依存力、摩擦・サーモスタット、拘束、一般の可変刻みや非分離Hamiltonianでは、同じ性質をそのまま保証できない。公開関数は一般分子動力学solverではない。 今回の追加固定例：1周期・固定離心率のみ。軟化軌道や長時間安定性はこの参照の範囲外。 冷たい有限N初期値で平衡Plummer分布/連続球厳密軌道ではありません。BHの一般相反性・大域symplectic性は主張しません。 今回の追加固定例：1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。 1D1V・固定イオン・無衝突の小規模例です。正のGauss速度重みのfull-f粒子を全て動かします。4シードのSEとt区間は静かな空間シフトに条件付けられ、i.i.d.粒子雑音やN^(-1/2)収束の証明ではありません。速度積分の偏りは別の倍増計算で検査。線形参照は独立した連続モデルの導出で、独立非線形Vlasovエンジンではありません。二流の後期は診断表示で飽和値を合否に用いません。偶数格子のNyquist電荷を別記し、そのモードまでGauss則を満たすとは表示しません。 4シフトのStudent-t区間は名目上の条件付き要約で、真の率に対する被覆率や全誤差を検証したものではありません。 今回の追加固定例：離散演算の独立したコーディング照合です。時間積分法や連続方程式を変えた独立エンジン、連続極限の収束、冷たいプラズマの振動参照の再現を意味しません。既存cold-plasma-picの関連補助検証として扱い、温かい初期速度の軌道を冷たい解と同一視しません。 上記の制限は既存配布版の範囲です。今回の追加配布版：保存量の小さい誤差から位相精度を推論しません。変動刻み写像の正準symplectic defectは測定せず、固定hの性質をそのまま移しません。初期解像度R1は数値実行前の漸近解析でR2へ改訂。 中心の実浮動係数写像はunresolvedとし、理想πのJordan性を移しません。64刻み増幅と小さい固定入力の観測であり、走査した共鳴図・一般安定性・長時間の普遍誤差定理は主張しません。",
+        "en": "Limits of existing releases: The original Hamiltonian is not exactly preserved at each step. A symplectic map can still be unstable at large steps; for the ω=1 harmonic oscillator, |h|<2 is the interior stability interval. Velocity-dependent forces, friction/thermostats, constraints, generic variable steps and nonseparable Hamiltonians require different treatment. This function is not a general molecular-dynamics solver. Additional fixed examples: One orbit at fixed eccentricity only; softened binaries and long-time behavior are outside this exact reference. Cold finite-N initial value,not an equilibrium Plummer DF or exact continuum orbit. No general BH reciprocity/global symplecticity claim. Additional fixed examples: Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established. Small fixed1D1V collisionless electrons with fixed ions. Every positive-weight Gauss-velocity full-f carrier moves. Seed SE/t intervals are conditional on quiet spatial shifts, not iid particle noise or N^(-1/2) convergence. Velocity-quadrature bias has a separate doubling probe. The independent reference is a derived linear continuum IVP, not a second nonlinear Vlasov engine. Late two-stream behavior is diagnostic; no saturation-value gate. Even-grid Nyquist charge is separately reported rather than included in a full-spectrum Gauss claim. Four-shift Student-t intervals are nominal conditional summaries; neither coverage of the exact rate nor total error is established. Additional fixed examples: Independent coding check of discrete spatial operators. It does not change the time integrator/continuum model, establish continuum convergence, or reproduce the cold-plasma oscillation reference. A related supplement of cold-plasma-pic; the finite warm velocity spread is explicit. The preceding limitations describe earlier editions. This additional release: Small invariant errors do not establish phase accuracy. No canonical symplectic-defect measurement is claimed for the variable-step map, and fixed-h properties are not transferred automatically. R1 resolution was revised to R2 using pre-execution asymptotic planning, not measured calibration. The central actual floating map remains unresolved; ideal-pi Jordan structure is not transferred to it. Results concern 64-step amplification and small fixed inputs, not a scanned resonance diagram, general stability or a universal long-time error theorem."
       },
       "metadata_review": {
         "level": "method-specific source-and-code inspection; no numerical rerun; reference access recorded individually",
         "on": "2026-11-22",
         "supplemental_review": {
-          "on": "2026-11-23",
-          "level": "Frozen fixed-input source,independent review,actual pytest/main and independently extracted ZIP; see each new release for exact reference independence and failed-attempt history."
+          "on": "2026-11-24",
+          "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
         }
       },
       "assumptions_ja": [
@@ -4901,6 +5105,30 @@
               "en": "Independent coding check of discrete spatial operators. It does not change the time integrator/continuum model, establish continuum convergence, or reproduce the cold-plasma oscillation reference. A related supplement of cold-plasma-pic; the finite warm velocity spread is explicit."
             }
           ]
+        },
+        {
+          "release": {
+            "group": "geometric-controls",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "kepler-eccentricity",
+              "multifrequency-resonance"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：離心率を変えたKepler軌道と時間刻み、結合した2周波数系と共鳴の有限窓。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Kepler eccentricity and time-step controls, Coupled frequencies and finite-window resonance. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "保存量の小さい誤差から位相精度を推論しません。変動刻み写像の正準symplectic defectは測定せず、固定hの性質をそのまま移しません。初期解像度R1は数値実行前の漸近解析でR2へ改訂。",
+              "en": "Small invariant errors do not establish phase accuracy. No canonical symplectic-defect measurement is claimed for the variable-step map, and fixed-h properties are not transferred automatically. R1 resolution was revised to R2 using pre-execution asymptotic planning, not measured calibration."
+            },
+            {
+              "ja": "中心の実浮動係数写像はunresolvedとし、理想πのJordan性を移しません。64刻み増幅と小さい固定入力の観測であり、走査した共鳴図・一般安定性・長時間の普遍誤差定理は主張しません。",
+              "en": "The central actual floating map remains unresolved; ideal-pi Jordan structure is not transferred to it. Results concern 64-step amplification and small fixed inputs, not a scanned resonance diagram, general stability or a universal long-time error theorem."
+            }
+          ]
         }
       ],
       "depth_additional_releases": [
@@ -4917,6 +5145,14 @@
           "edition": "2026-11-23",
           "case_ids": [
             "pic-independent-spatial"
+          ]
+        },
+        {
+          "group": "geometric-controls",
+          "edition": "2026-11-24",
+          "case_ids": [
+            "kepler-eccentricity",
+            "multifrequency-resonance"
           ]
         }
       ],
@@ -6218,8 +6454,8 @@
         "en": "Linear & nonlinear solvers"
       },
       "summary": {
-        "ja": "非線形方程式 F(x)=0 を、Jacobianから求めたNewton方向と残差ノルムの十分減少による減衰で解く。公開例は密行列解法または前処理付きGMRESの内部解法を選べる。 追加固定例：擬似弧長継続でBratuのfoldを越える。条件と検証範囲は各配布版で確認してください。 追加固定例：同じ難しい初期値に対する線探索と信頼領域。条件と検証範囲は各配布版で確認してください。 追加固定例：離散fold近傍のBratu感度、分布係数Bratuの行列非形成VJP。条件と検証範囲は各配布版で確認してください。",
-        "en": "Solve F(x)=0 using a Jacobian-based Newton direction and damping that requires sufficient decrease of the residual norm. The example supports a dense or preconditioned GMRES inner solve. Additional fixed examples: Crossing the Bratu fold with pseudo-arclength continuation. See each release for assumptions and checked scope. Additional fixed examples: Line search and trust regions from the same difficult starts. See each release for assumptions and checked scope. Additional fixed examples: Bratu sensitivity near the discrete fold, Matrix-free VJP for distributed Bratu coefficients. See each release for assumptions and checked scope."
+        "ja": "非線形方程式 F(x)=0 を、Jacobianから求めたNewton方向と残差ノルムの十分減少による減衰で解く。公開例は密行列解法または前処理付きGMRESの内部解法を選べる。 追加固定例：擬似弧長継続でBratuのfoldを越える。条件と検証範囲は各配布版で確認してください。 追加固定例：同じ難しい初期値に対する線探索と信頼領域。条件と検証範囲は各配布版で確認してください。 追加固定例：離散fold近傍のBratu感度、分布係数Bratuの行列非形成VJP。条件と検証範囲は各配布版で確認してください。 追加固定例：Robertson反応系の初期剛性と実誤差、van der Polの短時間剛性遷移。条件と検証範囲は各配布版で確認してください。 追加固定例：index-1 DAEの整合初期化と離散残差、Robertson保存制約DAEと公式IDA保存値。条件と検証範囲は各配布版で確認してください。",
+        "en": "Solve F(x)=0 using a Jacobian-based Newton direction and damping that requires sufficient decrease of the residual norm. The example supports a dense or preconditioned GMRES inner solve. Additional fixed examples: Crossing the Bratu fold with pseudo-arclength continuation. See each release for assumptions and checked scope. Additional fixed examples: Line search and trust regions from the same difficult starts. See each release for assumptions and checked scope. Additional fixed examples: Bratu sensitivity near the discrete fold, Matrix-free VJP for distributed Bratu coefficients. See each release for assumptions and checked scope. Additional fixed examples: Robertson kinetics: initial stiffness and actual error, Van der Pol: an early stiffness transition. See each release for assumptions and checked scope. Additional fixed examples: Consistent initialization and discrete residuals for an index-one DAE, Robertson conservation DAE and stored official IDA values. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "existing-coverage-catalog",
@@ -6280,8 +6516,8 @@
       "units": "No intrinsic physical unit; the caller defines unknown and residual scales. Components are not nondimensionalized automatically, so scale them consistently before using the norm and absolute tolerance.",
       "boundary_conditions": "Newton has no intrinsic physical boundary. F/Jacobian assembly supplies it; the existing Bratu test encodes zero Dirichlet values at both ends of [0,1].",
       "limitations": {
-        "ja": "初期値、Jacobianの非特異性、残差の尺度に依存し、大域的収束は保証しない。特異な密行列解法や前処理構築は例外となることがあり、すべてが失敗理由の戻り値に変換されるわけではない。行列なしJv、信頼領域、継続法は備えない。 追加固定例：小さな1次元の単純foldだけです。分岐曲線の解析族比較では計算した中点値を族の座標に使い、固定λの独立形状比較と区別します。連続foldは離散解そのものではなく、一般の分岐追跡や大規模性能は保証しません。 上記の制限は既存配布版の範囲です。今回の追加配布版：全初期値の成功や手法の普遍的優越、PETSc実装との一致を保証しません。 上記の制限は既存配布版の範囲です。今回の追加配布版：連続foldは離散foldではありません。rtol1e-4/1e-8は達成必須、requested1e-12は観測のみで未達を収束と表示しません。返却候補の独立勾配精度は別判定。最小固有値/丸めscaleは浮動小数点の診断で保証区間ではありません。BratuのJは対称であり、非対称転置は別の演算子対照です。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。 同じ離散状態の微分検証で、独立した物理PDE解の証明や一般ADではありません。保存arrayと固定Krylov workspaceの記録はRSS測定ではありません。m=2のθ端点は[a-b-2,a+b-2]で、物理係数端点[a-b,a+b]と区別します。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。",
-        "en": "Convergence depends on the initial guess, Jacobian nonsingularity and residual scaling; global convergence is not guaranteed. Singular dense solves or preconditioner construction may raise exceptions rather than return a failure reason. No matrix-free Jv, trust region or continuation is provided. Additional fixed examples: A small one-dimensional simple fold only. The whole-curve family comparison uses the computed midpoint as its family coordinate and is distinct from the independent fixed-lambda profile checks. The continuum fold is not an exact discrete solution. No general bifurcation-tracking or large-scale performance claim. The preceding limitations describe earlier editions. This additional release: No all-start guarantee, universal method ranking or equivalence to PETSc implementation. The preceding limitations describe earlier editions. This additional release: The continuum fold is not the discrete fold. rtol1e-4/1e-8 targets are required; requested1e-12 is observational and unmet is never called converged. Independent accuracy of the returned gradient is a separate gate. Eigenvalue/roundoff scales are floating diagnostics, not certified intervals. Bratu J is symmetric; the nonsymmetric transpose is a separate operator control. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved. Derivative verification at the same discrete state, not independent physical-PDE truth or general AD. Persistent arrays and fixed Krylov workspace inventories are not RSS measurements. For m=2, theta endpoints are[a-b-2,a+b-2], distinct from physical coefficient endpoints[a-b,a+b]. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved."
+        "ja": "初期値、Jacobianの非特異性、残差の尺度に依存し、大域的収束は保証しない。特異な密行列解法や前処理構築は例外となることがあり、すべてが失敗理由の戻り値に変換されるわけではない。行列なしJv、信頼領域、継続法は備えない。 追加固定例：小さな1次元の単純foldだけです。分岐曲線の解析族比較では計算した中点値を族の座標に使い、固定λの独立形状比較と区別します。連続foldは離散解そのものではなく、一般の分岐追跡や大規模性能は保証しません。 上記の制限は既存配布版の範囲です。今回の追加配布版：全初期値の成功や手法の普遍的優越、PETSc実装との一致を保証しません。 上記の制限は既存配布版の範囲です。今回の追加配布版：連続foldは離散foldではありません。rtol1e-4/1e-8は達成必須、requested1e-12は観測のみで未達を収束と表示しません。返却候補の独立勾配精度は別判定。最小固有値/丸めscaleは浮動小数点の診断で保証区間ではありません。BratuのJは対称であり、非対称転置は別の演算子対照です。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。 同じ離散状態の微分検証で、独立した物理PDE解の証明や一般ADではありません。保存arrayと固定Krylov workspaceの記録はRSS測定ではありません。m=2のθ端点は[a-b-2,a+b-2]で、物理係数端点[a-b,a+b]と区別します。 inputsの/solver/gmres/retention_adaptationはR1/R2の履歴記述で、現状態解法は新契約の明示混合精度が上書きします。射影解の未達は別保存します。 上記の制限は既存配布版の範囲です。今回の追加配布版：保存/正値性は固定入力の観測で、一般的な保証ではありません。T=.4の短時間・標本時刻での精度であり、長時間化学精度や全時刻誤差上限は主張しません。 測定後の報告範囲変更で、数値的な修復ではありません。初回誤差4.535633779e-5は元目標2e-5を超えます。局所rtolは大域誤差を保証せず、報告検証の合格は全元目標の達成ではありません。大μ全周期は対象外です。 上記の制限は既存配布版の範囲です。今回の追加配布版：単一の製造正枝・固定BE計算です。IDA実行や一般DAEソルバーの検証ではありません。 公式SUNDIALS v7.1.1の2印字行のみ。IDAの新規実行0、長時間の化学精度や一般DAE性能は扱いません。 この固定時間格子の漸近収束や元精度目標の全合格は主張しません。",
+        "en": "Convergence depends on the initial guess, Jacobian nonsingularity and residual scaling; global convergence is not guaranteed. Singular dense solves or preconditioner construction may raise exceptions rather than return a failure reason. No matrix-free Jv, trust region or continuation is provided. Additional fixed examples: A small one-dimensional simple fold only. The whole-curve family comparison uses the computed midpoint as its family coordinate and is distinct from the independent fixed-lambda profile checks. The continuum fold is not an exact discrete solution. No general bifurcation-tracking or large-scale performance claim. The preceding limitations describe earlier editions. This additional release: No all-start guarantee, universal method ranking or equivalence to PETSc implementation. The preceding limitations describe earlier editions. This additional release: The continuum fold is not the discrete fold. rtol1e-4/1e-8 targets are required; requested1e-12 is observational and unmet is never called converged. Independent accuracy of the returned gradient is a separate gate. Eigenvalue/roundoff scales are floating diagnostics, not certified intervals. Bratu J is symmetric; the nonsymmetric transpose is a separate operator control. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved. Derivative verification at the same discrete state, not independent physical-PDE truth or general AD. Persistent arrays and fixed Krylov workspace inventories are not RSS measurements. For m=2, theta endpoints are[a-b-2,a+b-2], distinct from physical coefficient endpoints[a-b,a+b]. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved. The preceding limitations describe earlier editions. This additional release: Conservation and positivity are observations for these inputs, not universal guarantees. Accuracy is sampled on T <= 0.4; this does not validate long-time chemistry or an all-time error bound. This post-measurement reporting revision is not a numerical repair. The first error, 4.535633779e-5, exceeded the original 2e-5 goal. Local tolerances do not guarantee global accuracy, and reporting PASS does not mean all original goals were met. Full large-mu cycles are outside scope. The preceding limitations describe earlier editions. This additional release: One authored positive branch and fixed BE runs; no IDA execution or general DAE-solver qualification. Only two official SUNDIALS v7.1.1 printed rows; zero new IDA executions, with no long-time chemistry or general DAE-performance claim. No asymptotic-convergence or all-original-accuracy-goals claim is made for this fixed schedule."
       },
       "metadata_review": {
         "level": "method-specific sources and implementation inspected; no new numerical rerun",
@@ -6466,6 +6702,54 @@
               "en": "Derivative verification at the same discrete state, not independent physical-PDE truth or general AD. Persistent arrays and fixed Krylov workspace inventories are not RSS measurements. For m=2, theta endpoints are[a-b-2,a+b-2], distinct from physical coefficient endpoints[a-b,a+b]. The retained /solver/gmres/retention_adaptation text is historicalR1/R2;the newcontract explicitly overrides it for mixed-precisionSTATEsolves. ProjectedUNMET is separatelysaved."
             }
           ]
+        },
+        {
+          "release": {
+            "group": "ode-adaptivity",
+            "edition": "2026-11-24-r2",
+            "case_ids": [
+              "robertson-stiff-kinetics",
+              "van-der-pol-stiff-transition"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：Robertson反応系の初期剛性と実誤差、van der Polの短時間剛性遷移。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Robertson kinetics: initial stiffness and actual error, Van der Pol: an early stiffness transition. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "保存/正値性は固定入力の観測で、一般的な保証ではありません。T=.4の短時間・標本時刻での精度であり、長時間化学精度や全時刻誤差上限は主張しません。",
+              "en": "Conservation and positivity are observations for these inputs, not universal guarantees. Accuracy is sampled on T <= 0.4; this does not validate long-time chemistry or an all-time error bound."
+            },
+            {
+              "ja": "測定後の報告範囲変更で、数値的な修復ではありません。初回誤差4.535633779e-5は元目標2e-5を超えます。局所rtolは大域誤差を保証せず、報告検証の合格は全元目標の達成ではありません。大μ全周期は対象外です。",
+              "en": "This post-measurement reporting revision is not a numerical repair. The first error, 4.535633779e-5, exceeded the original 2e-5 goal. Local tolerances do not guarantee global accuracy, and reporting PASS does not mean all original goals were met. Full large-mu cycles are outside scope."
+            }
+          ]
+        },
+        {
+          "release": {
+            "group": "dae-controls",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "index1-dae-consistent-initialization",
+              "robertson-conservation-dae"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：index-1 DAEの整合初期化と離散残差、Robertson保存制約DAEと公式IDA保存値。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Consistent initialization and discrete residuals for an index-one DAE, Robertson conservation DAE and stored official IDA values. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "単一の製造正枝・固定BE計算です。IDA実行や一般DAEソルバーの検証ではありません。",
+              "en": "One authored positive branch and fixed BE runs; no IDA execution or general DAE-solver qualification."
+            },
+            {
+              "ja": "公式SUNDIALS v7.1.1の2印字行のみ。IDAの新規実行0、長時間の化学精度や一般DAE性能は扱いません。 この固定時間格子の漸近収束や元精度目標の全合格は主張しません。",
+              "en": "Only two official SUNDIALS v7.1.1 printed rows; zero new IDA executions, with no long-time chemistry or general DAE-performance claim. No asymptotic-convergence or all-original-accuracy-goals claim is made for this fixed schedule."
+            }
+          ]
         }
       ],
       "depth_additional_releases": [
@@ -6482,6 +6766,22 @@
           "case_ids": [
             "bratu-fold-sensitivity",
             "bratu-distributed-vjp"
+          ]
+        },
+        {
+          "group": "ode-adaptivity",
+          "edition": "2026-11-24-r2",
+          "case_ids": [
+            "robertson-stiff-kinetics",
+            "van-der-pol-stiff-transition"
+          ]
+        },
+        {
+          "group": "dae-controls",
+          "edition": "2026-11-24",
+          "case_ids": [
+            "index1-dae-consistent-initialization",
+            "robertson-conservation-dae"
           ]
         }
       ]
@@ -14525,10 +14825,10 @@
         "en": "Time integration"
       },
       "summary": {
-        "ja": "微分方程式と代数拘束を同時に満たす時間積分を整理する。",
-        "en": "Map integration with differential equations and algebraic constraints."
+        "ja": "小規模な固定例で、index-1 DAEの後退Euler・Newton法、整合初期化、保存則と拘束ドリフトを比較します。 追加固定例：index-1 DAEの整合初期化と離散残差、Robertson保存制約DAEと公式IDA保存値、振り子の指数低減・拘束ドリフト・明示安定化。条件と検証範囲は各配布版で確認してください。",
+        "en": "Small fixed examples compare backward Euler and Newton for index-one DAEs, consistent initialization, conservation and constraint drift. Additional fixed examples: Consistent initialization and discrete residuals for an index-one DAE, Robertson conservation DAE and stored official IDA values, Index reduction, constraint drift and explicit stabilization for a pendulum. See each release for assumptions and checked scope."
       },
-      "status": "planned",
+      "status": "educational-example",
       "origin": "development-candidate",
       "reading": {
         "ja": "/numerical-methods-atlas/ja/read/dae/",
@@ -14541,27 +14841,132 @@
           "url": "https://doi.org/10.1109/tct.1971.1083221",
           "label": "Simultaneous Numerical Solution of Differential-Algebraic Equations (1971)",
           "scope": "Method-specific source; see the detailed reading for source role and actual review depth."
+        },
+        {
+          "url": "https://sundials.readthedocs.io/en/v7.1.1/ida/Mathematics_link.html",
+          "label": "SUNDIALS v7.1.1 IDA mathematics, section 5.2",
+          "scope": "Residual form, BDF/Newton and consistent initialization sections selected. Section5.2 is not an IDA version. This authored MMS/BE solver is not IDA.",
+          "verification": {
+            "level": "official-documentation-selected-equations",
+            "checked_on": "2026-11-24"
+          }
+        },
+        {
+          "url": "https://github.com/LLNL/sundials/blob/v7.1.1/examples/ida/serial/idaRoberts_dns.c",
+          "label": "SUNDIALS v7.1.1 idaRoberts_dns example",
+          "scope": "Read residual/Jacobian, initialization, tolerances and print format. Own first two residual rows have opposite sign and the same zero set.",
+          "verification": {
+            "level": "official-source-selected-functions",
+            "checked_on": "2026-11-24"
+          }
+        },
+        {
+          "url": "https://github.com/LLNL/sundials/blob/v7.1.1/examples/ida/serial/idaRoberts_dns.out",
+          "label": "Stored official v7.1.1 IDA Robertson output",
+          "scope": "Selected printed t=0.4 and4 values only, with Decimal rounding intervals. These approximate IDA values are not exact truth; no IDA run is performed here.",
+          "verification": {
+            "level": "official-stored-output-selected-rows",
+            "checked_on": "2026-11-24"
+          }
+        },
+        {
+          "url": "https://dlmf.nist.gov/22.19",
+          "label": "NIST DLMF section22.19(i), pendulum",
+          "scope": "Selected pendulum formulas, phase and modulus convention. Authored Cartesian conversion uses K-t; SciPy takes parameter m=k². No full chapter reading claimed.",
+          "verification": {
+            "level": "official-reference-selected-equations",
+            "checked_on": "2026-11-24"
+          }
+        },
+        {
+          "url": "https://dlmf.nist.gov/19.8",
+          "label": "NIST DLMF section19.8(i), arithmetic-geometric mean",
+          "scope": "Selected AGM/K identity; independent Decimal Machin pi and sine with explicit finite remainders qualify a single fixed modulus.",
+          "verification": {
+            "level": "official-reference-selected-equations",
+            "checked_on": "2026-11-24"
+          }
         }
       ],
-      "assumptions": null,
-      "units": null,
-      "boundary_conditions": null,
+      "assumptions": [
+        "For the index-one examples, the algebraic constraint Jacobian must be nonsingular on the selected branch and Newton iterations must satisfy fixed criteria.",
+        "Backward-Euler residuals use explicit differential and algebraic row scales. Consistent initialization and rejection of inconsistent input are checked separately.",
+        "The position-constrained pendulum is index three. Its examples use an underlying ODE and constraint-error stabilization, not a general high-index DAE solver.",
+        "Comparisons with stored official IDA output are distinct from newly executed Radau/BDF/DOP853 references. The IDA executable is not newly run."
+      ],
+      "units": "Examples are nondimensional. Differential and algebraic residual rows use explicitly declared scales; their unscaled norms need not have the same units.",
+      "boundary_conditions": "There is no spatial boundary. Algebraic constraints and consistent initial state/derivative data are part of the initial-value formulation.",
       "next_deliverable": {
-        "ja": "拘束残差と整合初期条件を確認できる例。",
-        "en": "An example with consistent initialization and constraint residuals."
+        "ja": "別のモデルや大規模化は、入力・参照・基準を改めて固定して検証します。",
+        "en": "Other models and larger systems require separately frozen inputs, references and criteria."
       },
       "limitations": {
-        "ja": "日英の詳細解説・代表式・出典を公開。専用の実装・数値検証結果はまだありません。",
-        "en": "Detailed bilingual reading, representative equations and sources are published. No dedicated implementation or numerical verification result is provided yet."
+        "ja": "固定した小規模系と入力に限ります。Robertsonの粗い刻みは当初の時間精度・収束目標を達成しておらず、元のFALSE判定を保存して表示します。微分した拘束を使うODEでは元の拘束がドリフトし得ます。一般のindex処理・大規模疎DAE・任意入力の収束は未検証です。 上記の制限は既存配布版の範囲です。今回の追加配布版：単一の製造正枝・固定BE計算です。IDA実行や一般DAEソルバーの検証ではありません。 公式SUNDIALS v7.1.1の2印字行のみ。IDAの新規実行0、長時間の化学精度や一般DAE性能は扱いません。 この固定時間格子の漸近収束や元精度目標の全合格は主張しません。 投影・正規化・SHAKE/RATTLEなし。一般指数3ソルバーやシンプレクティック性の検証ではありません。",
+        "en": "Scope is limited to small fixed systems and inputs. The coarse Robertson schedule does not meet the original temporal accuracy/refinement goals; those false decisions are retained and shown. Underlying ODEs based on differentiated constraints can drift from the original constraint. General index handling, large sparse DAEs and convergence for arbitrary inputs are unverified. The preceding limitations describe earlier editions. This additional release: One authored positive branch and fixed BE runs; no IDA execution or general DAE-solver qualification. Only two official SUNDIALS v7.1.1 printed rows; zero new IDA executions, with no long-time chemistry or general DAE-performance claim. No asymptotic-convergence or all-original-accuracy-goals claim is made for this fixed schedule. No projection, normalization or SHAKE/RATTLE; no general index-three-solver or symplecticity claim."
       },
       "metadata_review": {
-        "level": "candidate outline; scientific derivation and literature review incomplete",
-        "on": "2026-11-21"
+        "on": "2026-11-24",
+        "level": "Small fixed-input educational implementation; canonical source and independently extracted ZIP verification are required before promotion. Original unmet accuracy goals remain explicit; source review is limited to the selected official sections and stored-output evidence.",
+        "supplemental_review": {
+          "on": "2026-11-24",
+          "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
+        }
       },
       "aliases": [
         "DAE法",
         "differential algebraic equation",
         "微分代数方程式法"
+      ],
+      "depth_previous_status": "planned",
+      "assumptions_ja": [
+        "index-1の例では代数拘束のJacobianが選んだ解枝で正則で、Newton反復が固定基準を満たす必要があります。",
+        "後退Eulerの残差を解き、微分行と代数行の尺度を入力で指定します。整合初期値と不整合入力の拒否を別に確認します。",
+        "位置拘束の振り子はindex-3系です。追加例は微分拘束に基づくODEと拘束誤差の安定化を扱い、汎用高index DAEソルバーではありません。",
+        "公式IDAの保存済み印字値との比較と、新たに実行したRadau/BDF/DOP853参照を区別します。IDA本体の新規実行はありません。"
+      ],
+      "units_ja": "例は無次元です。微分残差と代数残差の行は明示した尺度を使い、生の残差ノルムが同じ単位を持つとは限りません。",
+      "boundary_conditions_ja": "空間境界はありません。代数拘束と整合した初期状態・初期微分が初期値問題の条件です。",
+      "code_mapping_scope": "Executable evidence is the separately versioned dae-controls supplement; it does not implement a general IDA replacement.",
+      "code_mapping_scope_ja": "実行の根拠は版を固定したdae-controls追加配布です。汎用IDAの代替実装ではありません。",
+      "depth_release": {
+        "group": "dae-controls",
+        "edition": "2026-11-24",
+        "case_ids": [
+          "index1-dae-consistent-initialization",
+          "robertson-conservation-dae",
+          "high-index-pendulum"
+        ]
+      },
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "dae-controls",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "index1-dae-consistent-initialization",
+              "robertson-conservation-dae",
+              "high-index-pendulum"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：index-1 DAEの整合初期化と離散残差、Robertson保存制約DAEと公式IDA保存値、振り子の指数低減・拘束ドリフト・明示安定化。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Consistent initialization and discrete residuals for an index-one DAE, Robertson conservation DAE and stored official IDA values, Index reduction, constraint drift and explicit stabilization for a pendulum. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "単一の製造正枝・固定BE計算です。IDA実行や一般DAEソルバーの検証ではありません。",
+              "en": "One authored positive branch and fixed BE runs; no IDA execution or general DAE-solver qualification."
+            },
+            {
+              "ja": "公式SUNDIALS v7.1.1の2印字行のみ。IDAの新規実行0、長時間の化学精度や一般DAE性能は扱いません。 この固定時間格子の漸近収束や元精度目標の全合格は主張しません。",
+              "en": "Only two official SUNDIALS v7.1.1 printed rows; zero new IDA executions, with no long-time chemistry or general DAE-performance claim. No asymptotic-convergence or all-original-accuracy-goals claim is made for this fixed schedule."
+            },
+            {
+              "ja": "投影・正規化・SHAKE/RATTLEなし。一般指数3ソルバーやシンプレクティック性の検証ではありません。",
+              "en": "No projection, normalization or SHAKE/RATTLE; no general index-three-solver or symplecticity claim."
+            }
+          ]
+        }
       ]
     },
     {
@@ -15696,8 +16101,8 @@
         "en": "Time integration"
       },
       "summary": {
-        "ja": "右辺を2つの部分流に分け、全刻みずつ順に合成する1次の時間積分法。Strangとの公式・交換子・局所と大域の誤差・非可換な小例を比較する。 同じ32格子のSchnakenberg問題を比較する専用コード・固定入力・追試記録があります。",
-        "en": "First-order integration by composing two full subflows. Compare formulas, commutators, local/global errors and a small noncommuting example with Strang splitting. Dedicated code, fixed inputs and rerun evidence compare the same 32-point Schnakenberg problem."
+        "ja": "右辺を2つの部分流に分け、全刻みずつ順に合成する1次の時間積分法。Strangとの公式・交換子・局所と大域の誤差・非可換な小例を比較する。 同じ32格子のSchnakenberg問題を比較する専用コード・固定入力・追試記録があります。 追加固定例：Dirichlet境界でのStrang次数低下と補正。条件と検証範囲は各配布版で確認してください。",
+        "en": "First-order integration by composing two full subflows. Compare formulas, commutators, local/global errors and a small noncommuting example with Strang splitting. Dedicated code, fixed inputs and rerun evidence compare the same 32-point Schnakenberg problem. Additional fixed examples: Strang splitting: Dirichlet boundary order reduction and correction. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "curated-operator-splitting-reading",
@@ -15737,12 +16142,16 @@
       "boundary_conditions": "None for the two-component ODE. PDEs need compatible stage boundary data; inhomogeneous or time-dependent boundaries can reduce order.",
       "boundary_conditions_ja": "2成分ODEに空間境界条件はない。PDEでは部分問題・段階の境界値を整合させる。非同次・時間依存境界では次数低下を確認。",
       "limitations": {
-        "ja": "固定格子での採用合成法の時間誤差であり、分割誤差と反応中点則の離散誤差を含みます。連続PDEの厳密解・空間収束・独立PDE実装の照合とは呼びません。u+vは反応で保存せず、正濃度は固定入力での観測です。計算費は実際の部分流呼出し数で示し、速度の順位やStrangの一般的優越を主張しません。既存Schnakenberg問題の追加比較で、物理問題数・共通22例・旧配布版の公差や成功履歴を増減・変更しません。長時間パターン・2D・一般境界は対象外です。",
-        "en": "This measures temporal error of the adopted compositions at fixed space, including splitting and midpoint-reaction discretization errors. It is not an exact continuum solution, spatial convergence check or independent PDE-engine comparison. Reactions do not conserve u+v; positivity is observed only for the fixed input. Work is reported as actual subflow calls, without runtime rankings or universal Strang superiority. This additional comparison of the existing Schnakenberg problem changes neither physical-problem counts, the common 22 examples, old release criteria nor success history. Long-time patterns, 2D and general boundaries are outside scope."
+        "ja": "固定格子での採用合成法の時間誤差であり、分割誤差と反応中点則の離散誤差を含みます。連続PDEの厳密解・空間収束・独立PDE実装の照合とは呼びません。u+vは反応で保存せず、正濃度は固定入力での観測です。計算費は実際の部分流呼出し数で示し、速度の順位やStrangの一般的優越を主張しません。既存Schnakenberg問題の追加比較で、物理問題数・共通22例・旧配布版の公差や成功履歴を増減・変更しません。長時間パターン・2D・一般境界は対象外です。 上記の制限は既存配布版の範囲です。今回の追加配布版：原著の線形特殊例で非線形数値表の再現ではありません。非自律/一般境界や普遍的な次数低下は主張せず、Lie終端の反応trace不整合も別表示します。",
+        "en": "This measures temporal error of the adopted compositions at fixed space, including splitting and midpoint-reaction discretization errors. It is not an exact continuum solution, spatial convergence check or independent PDE-engine comparison. Reactions do not conserve u+v; positivity is observed only for the fixed input. Work is reported as actual subflow calls, without runtime rankings or universal Strang superiority. This additional comparison of the existing Schnakenberg problem changes neither physical-problem counts, the common 22 examples, old release criteria nor success history. Long-time patterns, 2D and general boundaries are outside scope. The preceding limitations describe earlier editions. This additional release: This is an authored linear specialization, not a reproduction of the original nonlinear tables. It makes no general claim for nonautonomous boundaries or universal order loss. The final reaction-trace mismatch of Lie splitting is disclosed separately."
       },
       "metadata_review": {
         "on": "2026-11-22",
-        "level": "dedicated bounded reaction-diffusion comparison; 16 tests and all fixed inputs rerun after independent ZIP extraction; same-FD Radau/DOP853 references distinguished from continuum PDE accuracy"
+        "level": "dedicated bounded reaction-diffusion comparison; 16 tests and all fixed inputs rerun after independent ZIP extraction; same-FD Radau/DOP853 references distinguished from continuum PDE accuracy",
+        "supplemental_review": {
+          "on": "2026-11-24",
+          "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
+        }
       },
       "aliases": [
         "Lie-Trotter splitting",
@@ -15766,7 +16175,37 @@
       "depth_scope": {
         "ja": "32格子・終了時刻1のSchnakenberg反応拡散を、同じ入力・部分ソルバーでLie–TrotterとStrangにより進めます。4段階の時間刻みで1次／2次の収束、参照の感度、反応収支と未収束時の失敗を確かめる軽量な比較例です。",
         "en": "Advance a 32-point Schnakenberg reaction–diffusion problem to T=1 with matched inputs and subsolvers. Four step sizes check first-/second-order temporal convergence, reference sensitivity, reaction balance and failure on nonconvergence in a lightweight comparison."
-      }
+      },
+      "depth_additional_releases": [
+        {
+          "group": "ode-adaptivity",
+          "edition": "2026-11-24-r2",
+          "case_ids": [
+            "strang-boundary-order-reduction"
+          ]
+        }
+      ],
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "ode-adaptivity",
+            "edition": "2026-11-24-r2",
+            "case_ids": [
+              "strang-boundary-order-reduction"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：Dirichlet境界でのStrang次数低下と補正。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Strang splitting: Dirichlet boundary order reduction and correction. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "原著の線形特殊例で非線形数値表の再現ではありません。非自律/一般境界や普遍的な次数低下は主張せず、Lie終端の反応trace不整合も別表示します。",
+              "en": "This is an authored linear specialization, not a reproduction of the original nonlinear tables. It makes no general claim for nonautonomous boundaries or universal order loss. The final reaction-trace mismatch of Lie splitting is disclosed separately."
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "strang-splitting",
@@ -15780,8 +16219,8 @@
         "en": "Time integration"
       },
       "summary": {
-        "ja": "半刻み・全刻み・半刻みの対称合成による2次の時間積分法。Lie–Trotterとの違い、部分ソルバーの次数、境界条件と安定性、既存の反応拡散の実行例を解説する。 同じ32格子のSchnakenberg問題を比較する専用コード・固定入力・追試記録があります。",
-        "en": "Second-order integration using a symmetric half/full/half composition. Compare Lie–Trotter, subsolver order, boundaries and stability, with links to existing reaction–diffusion runs. Dedicated code, fixed inputs and rerun evidence compare the same 32-point Schnakenberg problem."
+        "ja": "半刻み・全刻み・半刻みの対称合成による2次の時間積分法。Lie–Trotterとの違い、部分ソルバーの次数、境界条件と安定性、既存の反応拡散の実行例を解説する。 同じ32格子のSchnakenberg問題を比較する専用コード・固定入力・追試記録があります。 追加固定例：Dirichlet境界でのStrang次数低下と補正。条件と検証範囲は各配布版で確認してください。 追加固定例：結合した2周波数系と共鳴の有限窓。条件と検証範囲は各配布版で確認してください。",
+        "en": "Second-order integration using a symmetric half/full/half composition. Compare Lie–Trotter, subsolver order, boundaries and stability, with links to existing reaction–diffusion runs. Dedicated code, fixed inputs and rerun evidence compare the same 32-point Schnakenberg problem. Additional fixed examples: Strang splitting: Dirichlet boundary order reduction and correction. See each release for assumptions and checked scope. Additional fixed examples: Coupled frequencies and finite-window resonance. See each release for assumptions and checked scope."
       },
       "status": "educational-example",
       "origin": "curated-operator-splitting-reading",
@@ -15821,12 +16260,16 @@
       "boundary_conditions": "None for the two-component ODE. PDEs need compatible stage boundary data; inhomogeneous or time-dependent boundaries can reduce order.",
       "boundary_conditions_ja": "2成分ODEに空間境界条件はない。PDEでは部分問題・段階の境界値を整合させる。非同次・時間依存境界では次数低下を確認。",
       "limitations": {
-        "ja": "固定格子での採用合成法の時間誤差であり、分割誤差と反応中点則の離散誤差を含みます。連続PDEの厳密解・空間収束・独立PDE実装の照合とは呼びません。u+vは反応で保存せず、正濃度は固定入力での観測です。計算費は実際の部分流呼出し数で示し、速度の順位やStrangの一般的優越を主張しません。既存Schnakenberg問題の追加比較で、物理問題数・共通22例・旧配布版の公差や成功履歴を増減・変更しません。長時間パターン・2D・一般境界は対象外です。",
-        "en": "This measures temporal error of the adopted compositions at fixed space, including splitting and midpoint-reaction discretization errors. It is not an exact continuum solution, spatial convergence check or independent PDE-engine comparison. Reactions do not conserve u+v; positivity is observed only for the fixed input. Work is reported as actual subflow calls, without runtime rankings or universal Strang superiority. This additional comparison of the existing Schnakenberg problem changes neither physical-problem counts, the common 22 examples, old release criteria nor success history. Long-time patterns, 2D and general boundaries are outside scope."
+        "ja": "固定格子での採用合成法の時間誤差であり、分割誤差と反応中点則の離散誤差を含みます。連続PDEの厳密解・空間収束・独立PDE実装の照合とは呼びません。u+vは反応で保存せず、正濃度は固定入力での観測です。計算費は実際の部分流呼出し数で示し、速度の順位やStrangの一般的優越を主張しません。既存Schnakenberg問題の追加比較で、物理問題数・共通22例・旧配布版の公差や成功履歴を増減・変更しません。長時間パターン・2D・一般境界は対象外です。 上記の制限は既存配布版の範囲です。今回の追加配布版：原著の線形特殊例で非線形数値表の再現ではありません。非自律/一般境界や普遍的な次数低下は主張せず、Lie終端の反応trace不整合も別表示します。 上記の制限は既存配布版の範囲です。今回の追加配布版：中心の実浮動係数写像はunresolvedとし、理想πのJordan性を移しません。64刻み増幅と小さい固定入力の観測であり、走査した共鳴図・一般安定性・長時間の普遍誤差定理は主張しません。",
+        "en": "This measures temporal error of the adopted compositions at fixed space, including splitting and midpoint-reaction discretization errors. It is not an exact continuum solution, spatial convergence check or independent PDE-engine comparison. Reactions do not conserve u+v; positivity is observed only for the fixed input. Work is reported as actual subflow calls, without runtime rankings or universal Strang superiority. This additional comparison of the existing Schnakenberg problem changes neither physical-problem counts, the common 22 examples, old release criteria nor success history. Long-time patterns, 2D and general boundaries are outside scope. The preceding limitations describe earlier editions. This additional release: This is an authored linear specialization, not a reproduction of the original nonlinear tables. It makes no general claim for nonautonomous boundaries or universal order loss. The final reaction-trace mismatch of Lie splitting is disclosed separately. The preceding limitations describe earlier editions. This additional release: The central actual floating map remains unresolved; ideal-pi Jordan structure is not transferred to it. Results concern 64-step amplification and small fixed inputs, not a scanned resonance diagram, general stability or a universal long-time error theorem."
       },
       "metadata_review": {
         "on": "2026-11-22",
-        "level": "dedicated bounded reaction-diffusion comparison; 16 tests and all fixed inputs rerun after independent ZIP extraction; same-FD Radau/DOP853 references distinguished from continuum PDE accuracy"
+        "level": "dedicated bounded reaction-diffusion comparison; 16 tests and all fixed inputs rerun after independent ZIP extraction; same-FD Radau/DOP853 references distinguished from continuum PDE accuracy",
+        "supplemental_review": {
+          "on": "2026-11-24",
+          "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
+        }
       },
       "aliases": [
         "Strang splitting",
@@ -15849,7 +16292,63 @@
       "depth_scope": {
         "ja": "32格子・終了時刻1のSchnakenberg反応拡散を、同じ入力・部分ソルバーでLie–TrotterとStrangにより進めます。4段階の時間刻みで1次／2次の収束、参照の感度、反応収支と未収束時の失敗を確かめる軽量な比較例です。",
         "en": "Advance a 32-point Schnakenberg reaction–diffusion problem to T=1 with matched inputs and subsolvers. Four step sizes check first-/second-order temporal convergence, reference sensitivity, reaction balance and failure on nonconvergence in a lightweight comparison."
-      }
+      },
+      "depth_additional_releases": [
+        {
+          "group": "ode-adaptivity",
+          "edition": "2026-11-24-r2",
+          "case_ids": [
+            "strang-boundary-order-reduction"
+          ]
+        },
+        {
+          "group": "geometric-controls",
+          "edition": "2026-11-24",
+          "case_ids": [
+            "multifrequency-resonance"
+          ]
+        }
+      ],
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "ode-adaptivity",
+            "edition": "2026-11-24-r2",
+            "case_ids": [
+              "strang-boundary-order-reduction"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：Dirichlet境界でのStrang次数低下と補正。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Strang splitting: Dirichlet boundary order reduction and correction. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "原著の線形特殊例で非線形数値表の再現ではありません。非自律/一般境界や普遍的な次数低下は主張せず、Lie終端の反応trace不整合も別表示します。",
+              "en": "This is an authored linear specialization, not a reproduction of the original nonlinear tables. It makes no general claim for nonautonomous boundaries or universal order loss. The final reaction-trace mismatch of Lie splitting is disclosed separately."
+            }
+          ]
+        },
+        {
+          "release": {
+            "group": "geometric-controls",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "multifrequency-resonance"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：結合した2周波数系と共鳴の有限窓。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Coupled frequencies and finite-window resonance. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "中心の実浮動係数写像はunresolvedとし、理想πのJordan性を移しません。64刻み増幅と小さい固定入力の観測であり、走査した共鳴図・一般安定性・長時間の普遍誤差定理は主張しません。",
+              "en": "The central actual floating map remains unresolved; ideal-pi Jordan structure is not transferred to it. Results concern 64-step amplification and small fixed inputs, not a scanned resonance diagram, general stability or a universal long-time error theorem."
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "level-set",
@@ -17036,6 +17535,419 @@
             {
               "ja": "全初期値の成功や手法の普遍的優越、PETSc実装との一致を保証しません。",
               "en": "No all-start guarantee, universal method ranking or equivalence to PETSc implementation."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rk45",
+      "name": {
+        "ja": "Dormand–Prince RK45",
+        "en": "Dormand–Prince RK45"
+      },
+      "group": {
+        "id": "time",
+        "ja": "時間積分",
+        "en": "Time integration"
+      },
+      "summary": {
+        "ja": "埋込み5(4)誤差推定と刻み制御、4次の連続拡張、向き付きイベントを組み合わせる陽的時間積分です。",
+        "en": "Explicit time integration combines an embedded 5(4) error estimator, adaptive steps, a quartic continuous extension and directed events."
+      },
+      "status": "educational-example",
+      "origin": "development-candidate",
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/runge-kutta/",
+        "en": "/numerical-methods-atlas/en/read/runge-kutta/"
+      },
+      "code_modules": [],
+      "test_files": [],
+      "code_mapping_scope": "The separately versioned supplement is the executable evidence for the fixed examples; chapter links are additional context.",
+      "code_mapping_scope_ja": "実行の根拠は版を固定した追加配布例です。章へのリンクは補足解説です。",
+      "assumptions": [
+        "The target is a smooth nonstiff initial-value problem; tolerances must match component scales.",
+        "FSAL reuses the RHS owned by the accepted state and never promotes a rejected trial endpoint.",
+        "Simple sign crossings are localized on interpolants of retained accepted steps."
+      ],
+      "assumptions_ja": [
+        "滑らかな非硬い初期値問題を対象とし、許容誤差は成分の尺度に合わせます。",
+        "FSALは受理状態の右辺を再利用し、棄却した試行の端点で置き換えません。",
+        "保存した受理区間の補間を用いて単純な符号交差を探します。"
+      ],
+      "units": "Time and step size share units; atol has each state component's units and rtol is dimensionless.",
+      "units_ja": "時刻と刻みは同じ単位です。atolは各成分、rtolは無次元の尺度です。",
+      "boundary_conditions": "The ODE step has no spatial boundary; an RHS for a semidiscrete PDE must supply its boundaries.",
+      "boundary_conditions_ja": "ODE自体に空間境界はなく、空間離散した系では右辺が境界を供給します。",
+      "limitations": {
+        "ja": "硬い系、接触根、1刻み内の複数交差、reset系の一般保証はありません。局所許容誤差を大域誤差の上界とみなしません。",
+        "en": "No general guarantee is provided for stiff systems, tangential roots, multiple crossings per step or reset systems. Local tolerances are not global error bounds."
+      },
+      "aliases": [
+        "RK45",
+        "Dormand-Prince 5(4)",
+        "DOPRI5",
+        "埋込みRunge–Kutta"
+      ],
+      "metadata_review": {
+        "on": "2026-11-24",
+        "level": "Frozen inputs and criteria, independently reviewed references, actual canonical main and independently extracted ZIP pytest/all-input rerun; scope is release-specific.",
+        "supplemental_review": {
+          "on": "2026-11-24",
+          "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
+        }
+      },
+      "references": [
+        {
+          "url": "https://github.com/scipy/scipy/blob/v1.14.1/scipy/integrate/_ivp/rk.py",
+          "label": "SciPy1.14.1 RK45 coefficient and dense-output source",
+          "scope": "Read C, A, B, E, P, stage evaluation, accepted/rejected FSAL updates and quartic evaluation. The original Dormand–Prince 1980 and Shampine 1986 papers remain unread beyond bibliography. The adapted coefficient BSD notice is retained.",
+          "verification": {
+            "level": "official-release-source-selected-functions",
+            "checked_on": "2026-11-24"
+          }
+        }
+      ],
+      "depth_release": {
+        "group": "ode-adaptivity",
+        "edition": "2026-11-24-r2",
+        "case_ids": [
+          "rk45-dense-events"
+        ]
+      },
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "ode-adaptivity",
+            "edition": "2026-11-24-r2",
+            "case_ids": [
+              "rk45-dense-events"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：RK45の埋込み推定・補間・イベント。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: RK45: embedded errors, dense output and events. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "接触根・1刻み内の多重交差・reset付き系の一般性は保証しません。初期零/所有権/resetは限定成分対照で、局所許容誤差と大域精度を同一視しません。",
+              "en": "There is no general guarantee for tangential roots, multiple crossings within a step or systems with resets. Initial-zero and ownership controls are limited component tests; local tolerances and global accuracy remain distinct."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "jameson-steady-rk",
+      "name": {
+        "ja": "Jameson型の定常多段Runge–Kutta",
+        "en": "Jameson-type steady multistage Runge–Kutta"
+      },
+      "group": {
+        "id": "time",
+        "ja": "時間積分",
+        "en": "Time integration"
+      },
+      "summary": {
+        "ja": "基準状態から各段階を構成する多段反復で、擬似時間を進めて定常残差を減衰させます。",
+        "en": "A multistage iteration forms each stage from a fixed base state and advances pseudo-time to damp steady residuals."
+      },
+      "status": "educational-example",
+      "origin": "development-candidate",
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/steady-runge-kutta/",
+        "en": "/numerical-methods-atlas/en/read/steady-runge-kutta/"
+      },
+      "code_modules": [],
+      "test_files": [],
+      "code_mapping_scope": "The separately versioned supplement is the executable evidence for the fixed examples; chapter links are additional context.",
+      "code_mapping_scope_ja": "実行の根拠は版を固定した追加配布例です。章へのリンクは補足解説です。",
+      "assumptions": [
+        "The selected coefficients are 1/4, 1/3, 1/2 and 1; all stages share the same base state.",
+        "Residuals, modal amplitudes and phase are measured on a fixed 16-component periodic linear system."
+      ],
+      "assumptions_ja": [
+        "採用係数は1/4,1/3,1/2,1で、各段階の基準値は同じです。",
+        "固定した16成分の周期線形系で残差・モード振幅・位相を測ります。"
+      ],
+      "units": "The product of pseudo-time step and operator eigenvalue is dimensionless; physical-time accuracy is a separate question.",
+      "units_ja": "擬似時間刻みと作用素固有値の積は無次元です。物理時間精度の主張とは分けます。",
+      "boundary_conditions": "The fixed example applies periodic differences at every stage.",
+      "boundary_conditions_ja": "固定例は周期格子で、周期差分を全段階に適用します。",
+      "limitations": {
+        "ja": "採用多項式は線形問題では古典RK4と一致しますが、一般非線形問題の4次法ではありません。安定なモード、非減衰対照、発散対照を区別します。",
+        "en": "The chosen stability polynomial matches classical RK4 on linear problems, but this is not a fourth-order method for general nonlinear problems. Stable modes, a neutral control and an expanding control are distinguished."
+      },
+      "aliases": [
+        "Jameson multistage",
+        "steady Runge-Kutta",
+        "定常多段RK"
+      ],
+      "metadata_review": {
+        "on": "2026-11-24",
+        "level": "Frozen inputs and criteria, independently reviewed references, actual canonical main and independently extracted ZIP pytest/all-input rerun; scope is release-specific.",
+        "supplemental_review": {
+          "on": "2026-11-24",
+          "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
+        }
+      },
+      "references": [
+        {
+          "url": "https://perform.readthedocs.io/en/latest/solver/timeschemes.html",
+          "label": "PERFORM time integration schemes",
+          "scope": "Selected four-stage base-state recurrence. No full JST 1981 paper reading or compressible-flow implementation claim.",
+          "verification": {
+            "level": "official-documentation-selected-equations",
+            "checked_on": "2026-11-24"
+          }
+        }
+      ],
+      "depth_release": {
+        "group": "steady-rk",
+        "edition": "2026-11-24",
+        "case_ids": [
+          "jameson-steady-linear-modes"
+        ]
+      },
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "steady-rk",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "jameson-steady-linear-modes"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：定常多段RKの実空間モード減衰。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: Real-space mode damping with steady multistage RK. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "固定線形例に限定。JST圧縮性流束や非線形4次RK、任意初期値の収束は検証しません。 元の全数値目標の合格を意味する公開ではありません。",
+              "en": "Limited to a fixed linear example; no JST compressible flux, nonlinear fourth-order RK or all-start convergence claim. Verification of this study does not mean that all original numerical targets were met."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shake",
+      "name": {
+        "ja": "SHAKE拘束積分",
+        "en": "SHAKE constrained integration"
+      },
+      "group": {
+        "id": "time",
+        "ja": "時間積分",
+        "en": "Time integration"
+      },
+      "summary": {
+        "ja": "位置拘束を解くVerlet型の離散写像です。振り子では連続な近傍枝を固定し、中心差分で再構成した運動量を区別します。",
+        "en": "A Verlet-type discrete map solves position constraints. The pendulum example selects the nearby continuous branch and distinguishes momentum reconstructed by centered differences."
+      },
+      "status": "educational-example",
+      "origin": "development-candidate",
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/symplectic/",
+        "en": "/numerical-methods-atlas/en/read/symplectic/"
+      },
+      "code_modules": [],
+      "test_files": [],
+      "code_mapping_scope": "The separately versioned supplement is the executable evidence for the fixed examples; chapter links are additional context.",
+      "code_mapping_scope_ja": "実行の根拠は版を固定した追加配布例です。章へのリンクは補足解説です。",
+      "assumptions": [
+        "The planar pendulum has unit mass, length and gravity, initial angle 0.7 and zero initial angular velocity.",
+        "The position-constraint solve uses fixed iteration and residual limits; nonconvergence is retained as failure."
+      ],
+      "assumptions_ja": [
+        "単位質量・長さ・重力の平面振り子で、初期角は0.7、初期角速度は0です。",
+        "位置拘束の非線形解法は反復上限と残差基準を固定し、未収束を成功に置き換えません。"
+      ],
+      "units": "The fixed example is nondimensional; constraint and multiplier units depend on the formulation in general.",
+      "units_ja": "固定例は無次元です。一般には拘束と乗数の単位は定式化に依存します。",
+      "boundary_conditions": "There is no spatial boundary; conditions are the position and velocity constraint manifolds.",
+      "boundary_conditions_ja": "空間境界はなく、位置と速度の拘束面が条件です。",
+      "limitations": {
+        "ja": "中心差分運動量の接線残差をRATTLEの速度拘束と同一視しません。単一の滑らかな円拘束の固定例であり、一般の拘束ネットワークは未検証です。",
+        "en": "The tangency residual of reconstructed centered momentum is distinct from the RATTLE velocity constraint. Only fixed examples with one smooth circular constraint are validated; general constraint networks are outside this release."
+      },
+      "aliases": [
+        "SHAKE",
+        "SHAKE algorithm"
+      ],
+      "metadata_review": {
+        "on": "2026-11-24",
+        "level": "Frozen inputs and criteria, independently reviewed references, actual canonical main and independently extracted ZIP pytest/all-input rerun; scope is release-specific.",
+        "supplemental_review": {
+          "on": "2026-11-24",
+          "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
+        }
+      },
+      "references": [
+        {
+          "url": "https://www.unige.ch/~hairer/poly-sde-mani.pdf",
+          "label": "Solving Differential Equations on Manifolds",
+          "scope": "Author-hosted lecture notes, selected printed page50, SectionV.5, equations5.1–5.3 and Theorem5.1 statement, rendered and visually read. Centered SHAKE momentum and RATTLE final tangency are explicit. The original1977 SHAKE and1983 RATTLE articles remain full-text unread; no full proof review is claimed. Source date: 2011 (date displayed on lecture notes); this is not asserted as the publication year.",
+          "verification": {
+            "level": "selected-primary-scope",
+            "checked_on": "2026-11-24"
+          }
+        },
+        {
+          "url": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+          "label": "Lecture2: Symplectic integrators",
+          "scope": "Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment. Source date: 2010 (displayed course date); this is not asserted as the publication year.",
+          "verification": {
+            "level": "selected-primary-scope",
+            "checked_on": "2026-11-24"
+          }
+        },
+        {
+          "url": "https://dlmf.nist.gov/22.4",
+          "label": "DLMF22.4: Periods, Poles, and Zeros",
+          "scope": "Official Table22.4.1 selected real periods: sn and cn have4K, dn has2K. Version date is not an initial publication date. Common-period reduction and direct-library periodicity qualification are separate from the independent angular DOP853 state comparison. Source date: 2026 (version); this is not asserted as the publication year.",
+          "verification": {
+            "level": "selected-primary-scope",
+            "checked_on": "2026-11-24"
+          }
+        }
+      ],
+      "depth_release": {
+        "group": "geometric-controls",
+        "edition": "2026-11-24",
+        "case_ids": [
+          "shake-rattle-pendulum"
+        ]
+      },
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "geometric-controls",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "shake-rattle-pendulum"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：SHAKEとRATTLE：拘束と運動量の違い。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: SHAKE and RATTLE: constraints and momentum ownership. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "原著SHAKE/RATTLE本文は未読で、著者講義ノートの選択箇所を確認。有限差分のsymplectic defectは一般証明ではなく、中心化SHAKE速度にRATTLEの接線拘束を要求しません。",
+              "en": "Original SHAKE and RATTLE full texts remain unread; selected author lecture notes were inspected. The finite-difference symplectic defect is a local proxy, not a general proof, and centered SHAKE velocity is not assigned RATTLE tangency."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rattle",
+      "name": {
+        "ja": "RATTLE拘束積分",
+        "en": "RATTLE constrained integration"
+      },
+      "group": {
+        "id": "time",
+        "ja": "時間積分",
+        "en": "Time integration"
+      },
+      "summary": {
+        "ja": "位置と速度の拘束をVerlet型の段階で満たす離散写像です。Newton残差、時間反転、時間離散誤差を分けて測ります。",
+        "en": "A Verlet-type discrete map enforces position and velocity constraints. Newton residuals, time reversal and time-discretization error are measured separately."
+      },
+      "status": "educational-example",
+      "origin": "development-candidate",
+      "reading": {
+        "ja": "/numerical-methods-atlas/ja/read/symplectic/",
+        "en": "/numerical-methods-atlas/en/read/symplectic/"
+      },
+      "code_modules": [],
+      "test_files": [],
+      "code_mapping_scope": "The separately versioned supplement is the executable evidence for the fixed examples; chapter links are additional context.",
+      "code_mapping_scope_ja": "実行の根拠は版を固定した追加配布例です。章へのリンクは補足解説です。",
+      "assumptions": [
+        "The planar pendulum has unit mass, length and gravity, initial angle 0.7 and zero initial angular velocity.",
+        "The position-constraint solve uses fixed iteration and residual limits; nonconvergence is retained as failure."
+      ],
+      "assumptions_ja": [
+        "単位質量・長さ・重力の平面振り子で、初期角は0.7、初期角速度は0です。",
+        "位置拘束の非線形解法は反復上限と残差基準を固定し、未収束を成功に置き換えません。"
+      ],
+      "units": "The fixed example is nondimensional; constraint and multiplier units depend on the formulation in general.",
+      "units_ja": "固定例は無次元です。一般には拘束と乗数の単位は定式化に依存します。",
+      "boundary_conditions": "There is no spatial boundary; conditions are the position and velocity constraint manifolds.",
+      "boundary_conditions_ja": "空間境界はなく、位置と速度の拘束面が条件です。",
+      "limitations": {
+        "ja": "構造保存は拘束面上の写像についての性質です。エネルギーの厳密保存や任意の拘束・許容誤差での一般保証を意味しません。数値Jacobianは限定した診断です。",
+        "en": "Geometric structure concerns the map on the constraint manifold. This does not imply exact energy conservation or a guarantee for arbitrary constraints and solver tolerances. Numerical Jacobians provide a limited diagnostic."
+      },
+      "aliases": [
+        "RATTLE",
+        "RATTLE algorithm"
+      ],
+      "metadata_review": {
+        "on": "2026-11-24",
+        "level": "Frozen inputs and criteria, independently reviewed references, actual canonical main and independently extracted ZIP pytest/all-input rerun; scope is release-specific.",
+        "supplemental_review": {
+          "on": "2026-11-24",
+          "level": "Frozen fixed inputs, independently reviewed references and criteria, actual pytest/main and independently extracted ZIP. See release-specific scope and retained failure history."
+        }
+      },
+      "references": [
+        {
+          "url": "https://www.unige.ch/~hairer/poly-sde-mani.pdf",
+          "label": "Solving Differential Equations on Manifolds",
+          "scope": "Author-hosted lecture notes, selected printed page50, SectionV.5, equations5.1–5.3 and Theorem5.1 statement, rendered and visually read. Centered SHAKE momentum and RATTLE final tangency are explicit. The original1977 SHAKE and1983 RATTLE articles remain full-text unread; no full proof review is claimed. Source date: 2011 (date displayed on lecture notes); this is not asserted as the publication year.",
+          "verification": {
+            "level": "selected-primary-scope",
+            "checked_on": "2026-11-24"
+          }
+        },
+        {
+          "url": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+          "label": "Lecture2: Symplectic integrators",
+          "scope": "Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment. Source date: 2010 (displayed course date); this is not asserted as the publication year.",
+          "verification": {
+            "level": "selected-primary-scope",
+            "checked_on": "2026-11-24"
+          }
+        },
+        {
+          "url": "https://dlmf.nist.gov/22.4",
+          "label": "DLMF22.4: Periods, Poles, and Zeros",
+          "scope": "Official Table22.4.1 selected real periods: sn and cn have4K, dn has2K. Version date is not an initial publication date. Common-period reduction and direct-library periodicity qualification are separate from the independent angular DOP853 state comparison. Source date: 2026 (version); this is not asserted as the publication year.",
+          "verification": {
+            "level": "selected-primary-scope",
+            "checked_on": "2026-11-24"
+          }
+        }
+      ],
+      "depth_release": {
+        "group": "geometric-controls",
+        "edition": "2026-11-24",
+        "case_ids": [
+          "shake-rattle-pendulum"
+        ]
+      },
+      "supplemental_scope_profiles": [
+        {
+          "release": {
+            "group": "geometric-controls",
+            "edition": "2026-11-24",
+            "case_ids": [
+              "shake-rattle-pendulum"
+            ]
+          },
+          "scope": {
+            "ja": "追加固定例：SHAKEとRATTLE：拘束と運動量の違い。条件と検証範囲は各配布版で確認してください。",
+            "en": "Additional fixed examples: SHAKE and RATTLE: constraints and momentum ownership. See each release for assumptions and checked scope."
+          },
+          "limits": [
+            {
+              "ja": "原著SHAKE/RATTLE本文は未読で、著者講義ノートの選択箇所を確認。有限差分のsymplectic defectは一般証明ではなく、中心化SHAKE速度にRATTLEの接線拘束を要求しません。",
+              "en": "Original SHAKE and RATTLE full texts remain unread; selected author lecture notes were inspected. The finite-difference symplectic defect is a local proxy, not a general proof, and centered SHAKE velocity is not assigned RATTLE tangency."
             }
           ]
         }

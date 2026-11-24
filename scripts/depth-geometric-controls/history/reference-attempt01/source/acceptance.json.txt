@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "status": "FIXED_SOURCE_FREEZE_CRITERIA_BEFORE_FIRST_NUMERICS",
+  "criteria_relaxed_after_measurement": false,
+  "pendulum": {
+    "principal_rows": 8,
+    "common_six_per_row": {
+      "finite": "All saved candidate arrays finite",
+      "completed": "All declared fixed steps completed, no recovery or hidden projection",
+      "constraint": "max|C| <= requested_target + 8eps",
+      "state": "max same-time state error <= 20h^2; SHAKE interior centered state only",
+      "energy": "max|H-H0| <= 2h^2 + 32*N*requested_target; reconstructed SHAKE H explicitly labelled",
+      "solver": "Every position solve target_met within8iterations, raw status retained"
+    },
+    "four_RATTLE_tangent_gates": "max|q dot p| <= requested_target + 64eps*(1+max|p|)",
+    "four_SHAKE_centered_identity_gates": "max discrepancy from finite-C algebraic identity <=32eps/h",
+    "four_SHAKE_centered_tangency_gates": "max|q dot p_center| <=2h^2 + max|C_next-C_prev|/(2h) +32eps/h",
+    "two_reversals_three_gates_each": "finite; exact declared reverse count; full-state or position-pair recovery <=2e-8",
+    "two_refinement_gates": "Each method minimum adjacent maxstate-error order>=1.7 across tight h=.04/.02/.01",
+    "six_reduced_map_gates": "Three fixed reduced-coordinate probes: symplectic defect and two-FD-delta difference each<=2e-6. A finite-difference proxy, not a general proof.",
+    "planned_case_gates": 74
+  },
+  "kepler": {
+    "principal_rows": 10,
+    "common_six_per_row": {
+      "finite": "All actual states/diagnostics finite",
+      "time": "Physical endpoint within1e-12*(1+T), all actual steps retained",
+      "radius": "min radius>=.05, no softening",
+      "angular": "max angular drift/(1+|L0|)<=64eps*N",
+      "energy": "max absolute H drift<=200*max(actual_h)^2",
+      "reference": "max same-time analytic state error<=2.0; separate coarse guard from finest/order checks"
+    },
+    "six_refinement_gates": "For each e: finest short state error<=.03, minimum adjacent state-error order>=1.7, finest short energy envelope<=.02",
+    "eight_long_phase_gates": "Each of4long runs: >=8positive periapsis crossings; max |t_peri-2pi*k|<=.5 using declared Hermite/brent localization",
+    "six_reversals_three_gates_each": "finite; declared schedule count or regenerated endpoint within cap; fixed/replayed state recovery<=200eps*N*(1+initial_state_norm). Regenerated control instead retains actual defect and diagnostic_not_time_symmetric label, with no desired magnitude/sign assertion.",
+    "planned_case_gates": 92
+  },
+  "coupled": {
+    "probe_rows": 12,
+    "six_per_probe": {
+      "finite_cap": "All actual states finite and norm<=1e40; cap stop remains failed/incomplete",
+      "completed": "Exactly64steps/65states",
+      "discrete_reference": "max scaled error/(1+scaled reference norm)<=2e-10",
+      "roundoff": "Component errors within independent stagewise gamma8 forward bound plus6eps*state scale",
+      "symplectic": "One-step matrix normalized symplectic defect<=1e-12",
+      "classification": "Qualified off-central ideal-map class; central actual float map unresolved_near_degeneracy; ideal-pi Jordan result separate"
+    },
+    "accuracy_rows": 6,
+    "six_per_accuracy_row": {
+      "finite": "All actual states finite",
+      "completed": "Fixed N and physical endpoint completed",
+      "state": "max scaled same-time state error<=500h^2",
+      "energy": "max absolute H envelope<=100h^2",
+      "mode": "Modal and coordinate energies include full coupled K and distinct invariant/transfer labels",
+      "discrete_reference": "Frozen-coefficient map agreement<=2e-10 plus declared roundoff-bound construction"
+    },
+    "eight_refinement_gates": "For each method: minimum adjacent scaled state order>=1.7; finest scaled state error<=.02; finest relative H envelope<=.01; finest coordinate-energy reference discrepancy<=.02",
+    "planned_case_gates": 116
+  },
+  "independent_reference": {
+    "pendulum_DOP853_state_agreement": 2e-09,
+    "pendulum_two_tolerance_agreement": 1e-09,
+    "analytic_pendulum_energy": 5e-13,
+    "kepler_root_residual": 5e-13,
+    "kepler_brent_bisection_state_agreement": 2e-11,
+    "modal_eigenpair_scaled_residual": 1e-13,
+    "modal_orthogonality": 1e-14,
+    "decimal80_120_relative_action_agreement": 1e-50,
+    "planned_reference_only_checks": 64,
+    "reference_count_breakdown": "Original60proposedchecks unchanged, plus4explicit off-central ideal-map classification/precision-margin gates before any numerical execution."
+  },
+  "main_gate_count": 282,
+  "scope": "Small fixed educational windows and explicit metrics. Limits are pre-execution design choices, not universal guarantees or predicted passes. No thresholds measured or calibrated."
+}

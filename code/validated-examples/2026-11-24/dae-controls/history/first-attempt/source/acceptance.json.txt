@@ -1,0 +1,100 @@
+{
+  "index1-dae-consistent-initialization": {
+    "reference_preconditions": {
+      "authored_MMS_identities": "Independent80-digit Decimal exp checks and algebraic identities; no production import.",
+      "independent_BE_root": "Three scalar positive-branch cubic bisections, width<=1e-60; compare primary coupledNewton one-step roots within2e-12.",
+      "initial_derivatives": "ydot0=-1,zdot0=-2/3; verify differentiated algebraic row."
+    },
+    "gates": {
+      "six_record_identities": "3BEpaths+2successfulinitializations+1intendedsingularreject",
+      "all_accepted_states_finite": true,
+      "both_initialization_root_error_max": 5e-13,
+      "both_initialization_algebraic_residual_max": 5e-13,
+      "singular_initialization_status": "initialization_singular_jacobian with finite raw candidate/residual/Jacobian saved",
+      "all_step_nonlinear_residual_max": 2e-12,
+      "all_algebraic_constraint_maxabs": 2e-12,
+      "each_grid_maxstate_error_bound": "<=h/2+5e-10, measured against authored exact state",
+      "last_two_observed_time_orders_range": [
+        0.8,
+        1.2
+      ],
+      "positive_branch_min": "y>0,z>0, no clipping",
+      "initial_F_and_differentiated_constraint_maxabs": 5e-13
+    },
+    "rationale": "Positive exact branch has g_z=3z²>0. BackwardEuler is first order. On the compared positive solution region the reduced scalar field is nonexpansive and max exact ysecond<=1, motivating h/2 global bound. The discrete root and continuum MMS are distinct references."
+  },
+  "robertson-conservation-dae": {
+    "reference_preconditions": {
+      "Radau_loose_tight_max_component_difference": [
+        2e-10,
+        2e-13,
+        2e-10
+      ],
+      "Radau_tight_BDF_max_component_difference": [
+        2e-10,
+        2e-13,
+        2e-10
+      ],
+      "all_reference_complete_finite_and_nonnegative_min": -5e-13,
+      "official_IDA_to_tight_reference_distance_from_rounding_intervals_max": [
+        0.0002,
+        2e-07,
+        0.0002
+      ],
+      "official_source_scope": "Stored official v7.1.1 IDA output at.4and4, not an IDA run here. Its local tolerances are not a true-solution global-error bound. Qualification estimates a fixed observed numerical-reference discrepancy separately from printing intervals."
+    },
+    "gates": {
+      "seven_record_identities": "6BEpaths+1inconsistentinitialreject",
+      "all_reference_preconditions_pass": true,
+      "all_accepted_states_finite": true,
+      "all_species_min": -5e-13,
+      "DAE_allstep_scaled_step_residual_max": 4e-12,
+      "ODE_allstep_scaled_step_residual_max": 4e-12,
+      "DAE_mass_error_max": 5e-12,
+      "ODE_mass_error_max": 5e-10,
+      "DAE_ODE_max_scaled_state_difference": 2e-07,
+      "both_finest_max_scaled_reference_error_max": 0.002,
+      "both_refinement_error_ratios_min": 1.6,
+      "finest_to_official_print_interval_component_distance_max": [
+        0.0022,
+        4e-07,
+        0.0022
+      ],
+      "inconsistent_initial_status": "initial_algebraic_constraint_violated, candidate retained; no silent repair"
+    },
+    "rationale": "Scale1e-4 keeps the tiny intermediate species visible. Time discretization, nonlinear step residual, conservation and reference uncertainty have separate gates. ODE/DAE equivalence is an implementation control, not the independent reference."
+  },
+  "high-index-pendulum": {
+    "reference_preconditions": {
+      "Jacobi_to_tight_angular_DOP853_max_state_error": 2e-10,
+      "loose_tight_angular_DOP853_max_state_difference": 2e-10,
+      "Jacobi_initial_state_error_max": 5e-15,
+      "Jacobi_energy_and_circle_tangency_identity_max": 5e-13,
+      "K_AGM_to_SciPy_ellipk_abs_error_max": 5e-14,
+      "constraint_dynamics": "Independent Decimal/Fraction algebra verifies Cddot=0 or Cddot+2*Cdot+C=0 for declared lambda, including gravity sign and C normalization."
+    },
+    "gates": {
+      "eleven_record_identities": "10RK4paths+1defaultconsistencyreject",
+      "all_saved_states_finite": true,
+      "minimum_radius_squared": 0.9,
+      "both_consistent_finest_max_state_error": 1e-06,
+      "underlying_consistent_observed_state_orders_range": [
+        3.4,
+        4.6
+      ],
+      "both_consistent_finest_energy_error_max": 1e-07,
+      "inconsistent_underlying_finest_C_error_to_linear_law_max": 2e-07,
+      "inconsistent_underlying_finest_Cdot_error_to_constant_law_max": 2e-07,
+      "inconsistent_stabilized_finest_C_error_to_critical_law_max": 2e-07,
+      "inconsistent_stabilized_finest_Cdot_error_to_critical_law_max": 2e-07,
+      "both_inconsistent_finest_energy_work_balance_error_max": 2e-07,
+      "unstabilized_final_absC_min": 0.001,
+      "stabilized_to_unstabilized_final_absC_ratio_max": 0.01,
+      "default_inconsistent_status": "initial_velocity_constraint_violated; explicit diagnostic mode needed for the separate off-manifold controls"
+    },
+    "rationale": "Original position-constrained system is index3. Explicit reduction and a disclosed critical constraint-error extension are tested, not a general high-index solver. Inconsistent controls use their own exact C laws, not the consistent-angle trajectory. Work ledger accounts for non-tangent constraint work.",
+    "source_constraints": {
+      "no_projection_or_normalization": "No such operations permitted. Enforced by static peer review and meaningful off-manifold exact-law fixtures, not a dummy numerical0counter."
+    }
+  }
+}

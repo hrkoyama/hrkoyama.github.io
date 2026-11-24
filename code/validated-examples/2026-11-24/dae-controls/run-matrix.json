@@ -1,0 +1,23 @@
+{
+  "primary_evolutions": 19,
+  "records": 24,
+  "pytest_tests": 25,
+  "reference_ODE_evolutions": 5,
+  "additional_primary_component_solves": 3,
+  "scope": "Primary component solves are the three case72 one-step Newton oracle comparisons, not extra trajectories. Initializers and expected rejections are records separately. Reference ODE calls and qualification are included in the same main budget.",
+  "measured_runtime": null,
+  "local_runtime_target_seconds": 35,
+  "shared_pytest_main_limit_seconds": 120,
+  "plotting_limit_separate_seconds": 60,
+  "original_case_target_counts": {
+    "index1-dae-consistent-initialization": 30,
+    "robertson-conservation-dae": 39,
+    "high-index-pendulum": 45
+  },
+  "verification_case_check_counts": {
+    "index1-dae-consistent-initialization": 30,
+    "robertson-conservation-dae": 43,
+    "high-index-pendulum": 45
+  },
+  "scope_revision": "R4 after retained actual first failure: original target decisions remain complete and separate; only named study goals are nonmandatory, with independently recomputed faithful-report checks."
+}

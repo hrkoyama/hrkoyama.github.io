@@ -193,6 +193,76 @@ def pack_deltas(deltas):
     return base64.b64encode(raw).decode('ascii')
 
 
+def encode_vocabulary_columns(data):
+    """Store the same alphabet suffixes with a separate canonical prefix stream."""
+    if 'vocabulary_prefixes' in data:
+        raise ValueError('Reserved vocabulary prefixes')
+    if data.get('vocabulary_encoding') != VOCABULARY_ALPHABET_ENCODING:
+        return data
+    packed = data.get('terms')
+    if not isinstance(packed, list) or len(packed) % 2 or len(packed) > 2 * MAX_VOCABULARY_TERMS:
+        raise ValueError('Invalid vocabulary columns')
+    previous, units = 0, 0
+    for prefix, suffix in zip(packed[::2], packed[1::2]):
+        if (type(prefix) is not int or not 0 <= prefix <= previous or
+                not isinstance(suffix, str) or any(0xD800 <= ord(c) <= 0xDFFF for c in suffix)):
+            raise ValueError('Invalid vocabulary columns')
+        previous = prefix + len(suffix)
+        units += previous
+        if units > MAX_VOCABULARY_UNITS:
+            raise ValueError('Expanded vocabulary exceeds limit')
+    return {**data, 'terms': packed[1::2],
+            'vocabulary_encoding': 'unicode-prefix-alphabet-columns-v1',
+            'vocabulary_prefixes': pack_deltas(packed[::2])}
+
+
+def encode_row_shapes(data):
+    """Lossless in-place-order dictionary shapes; arrays have a distinct -1 tag."""
+    if data.get('format') != 'compact-search-v1' or data.get('kind') not in ['atlas', 'site']:
+        raise ValueError('Expected compact rows')
+    if 'row_structure_encoding' in data or 'row_shapes' in data:
+        raise ValueError('Reserved row shapes')
+    field = 'entries' if data['kind'] == 'atlas' else 'documents'
+    rows = data.get(field)
+    if not isinstance(rows, list) or len(rows) > 2000 or any(not isinstance(r, dict) for r in rows):
+        raise ValueError('Invalid rows')
+    shapes, identifiers = [], {}
+    nodes, units, schema_units, schema_keys = 0, 0, 0, 0
+    def charge(text):
+        nonlocal units
+        if not isinstance(text, str) or any(0xD800 <= ord(c) <= 0xDFFF for c in text):
+            raise ValueError('Invalid row string')
+        units += len(text.encode('utf-16-le')) // 2
+        if units > MAX_EXPANDED_UNITS:
+            raise ValueError('Expanded row strings exceed limit')
+    def visit(value, depth=0):
+        nonlocal nodes, schema_units, schema_keys
+        nodes += 1
+        if nodes > MAX_NODES or depth > MAX_DEPTH:
+            raise ValueError('Row structure exceeds limit')
+        if isinstance(value, dict):
+            keys = tuple(value)
+            for key in keys: charge(key)
+            if keys not in identifiers:
+                schema_keys += len(keys)
+                schema_units += sum(len(k.encode('utf-16-le')) // 2 for k in keys)
+                if len(shapes) >= MAX_POOL or schema_keys > MAX_NODES or schema_units > MAX_POOL_UNITS:
+                    raise ValueError('Row shapes exceed limit')
+                identifiers[keys] = len(shapes)
+                shapes.append(list(keys))
+            return [identifiers[keys]] + [visit(child, depth + 1) for child in value.values()]
+        if isinstance(value, list):
+            return [-1] + [visit(child, depth + 1) for child in value]
+        if isinstance(value, str): charge(value)
+        elif value is not None and not isinstance(value, (bool, int, float)):
+            raise ValueError('Non-JSON row value')
+        elif isinstance(value, float) and not math.isfinite(value):
+            raise ValueError('Nonfinite row value')
+        return value
+    packed = [visit(row) for row in rows]
+    return {**data, field: packed, 'row_structure_encoding': 'key-shapes-v1', 'row_shapes': shapes}
+
+
 def pack_term_memberships(rows, term_count):
     """Transpose sorted term IDs, sharing identical posting lists losslessly.
 
@@ -326,5 +396,5 @@ def write_compact(root, source, kind):
         'scope': 'Same public search terms; original text and explicit navigation are loaded from fixed public files as needed. Search queries are never transmitted.',
     }
     path = root/'search'/('atlas-query-index.json' if kind == 'atlas' else 'query-index.json')
-    path.write_bytes(encoded(encode_vocabulary_alphabet(encode_row_strings(payload))))
+    path.write_bytes(encoded(encode_row_shapes(encode_vocabulary_columns(encode_vocabulary_alphabet(encode_row_strings(payload))))))
     return path

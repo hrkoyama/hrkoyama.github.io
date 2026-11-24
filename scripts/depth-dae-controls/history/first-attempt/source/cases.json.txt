@@ -1,0 +1,233 @@
+{
+  "group": "dae-controls",
+  "cases": [
+    {
+      "id": "index1-dae-consistent-initialization",
+      "title": {
+        "ja": "index-1 DAEの整合初期化と離散残差",
+        "en": "Consistent initialization and discrete residuals for an index-one DAE"
+      },
+      "summary": {
+        "ja": "既知の正枝を持つindex-1 DAEで初期化と後退Eulerの誤差・残差を分離します。",
+        "en": "Separate initialization, backward-Euler error and residuals on a known positive index-one DAE branch."
+      },
+      "assumptions": {
+        "ja": "無次元・正枝。微分行と代数行の尺度はそれぞれ1で、最大ノルムを用います。",
+        "en": "Dimensionless positive branch; differential and algebraic row scales are both one, with the maximum norm."
+      },
+      "algorithm": {
+        "ja": "連立Newtonと同じ尺度のArmijo線探索を用い、特異な初期推測は修復せず記録します。",
+        "en": "Use coupled Newton with an Armijo search in the same scaled norm, retaining rather than repairing a singular initial guess."
+      },
+      "validation": {
+        "ja": "独立Decimal製造解・3つの離散根と3固定格子を比較し、一次誤差と代数拘束を確認します。",
+        "en": "Compare independent Decimal manufactured states, three discrete roots and three fixed grids, checking first-order error and the algebraic constraint."
+      },
+      "limits": {
+        "ja": "単一の製造正枝・固定BE計算です。IDA実行や一般DAEソルバーの検証ではありません。",
+        "en": "One authored positive branch and fixed BE runs; no IDA execution or general DAE-solver qualification."
+      },
+      "method_ids": [
+        "dae",
+        "backward-euler",
+        "newton"
+      ],
+      "domains": [
+        "foundations"
+      ],
+      "code_files": [
+        "run.py",
+        "models.py",
+        "newton.py"
+      ],
+      "references": [
+        {
+          "id": "sundials-ida-mathematics-selected",
+          "title": "SUNDIALS v7.1.1 IDA mathematics, section 5.2",
+          "url": "https://sundials.readthedocs.io/en/v7.1.1/ida/Mathematics_link.html",
+          "review_level": "official-documentation-selected-equations",
+          "review_scope": "Residual form, BDF/Newton and consistent initialization sections selected. Section5.2 is not an IDA version. This authored MMS/BE solver is not IDA.",
+          "accessed_on": "2026-11-24"
+        }
+      ],
+      "formulas": [
+        "F1=ydot+y-z+exp(-2t/3), F2=z^3-y^2",
+        "y=exp(-t), z=exp(-2t/3)"
+      ],
+      "gallery_figure": "index1-dae-consistent-initialization-preview.png",
+      "additional_figures": [
+        {
+          "file": "index1-dae-consistent-initialization-preview.png",
+          "caption": {
+            "ja": "既知の正枝を持つindex-1 DAEで初期化と後退Eulerの誤差・残差を分離します。 保存配列から作図。",
+            "en": "Separate initialization, backward-Euler error and residuals on a known positive index-one DAE branch. Drawn from saved arrays."
+          }
+        },
+        {
+          "file": "index1-dae-consistent-initialization-diagnostics.png",
+          "caption": {
+            "ja": "保存済み残差・拘束・収支を別表示。ゼロ値は対称対数軸で保持します。",
+            "en": "Saved residuals, constraints and budgets shown separately; symmetric log axes retain zero values."
+          }
+        }
+      ]
+    },
+    {
+      "id": "robertson-conservation-dae",
+      "title": {
+        "ja": "Robertson保存制約DAEと公式IDA保存値",
+        "en": "Robertson conservation DAE and stored official IDA values"
+      },
+      "summary": {
+        "ja": "Robertsonの保存制約DAEと全ODEを同じ固定時間格子で比較し、公式IDA保存値を別に照合します。",
+        "en": "Compare the Robertson conservation DAE and full ODE on the same fixed time grids, with a separate check of stored official IDA values."
+      },
+      "assumptions": {
+        "ja": "モデル時間0から4。中間種と残差の尺度は1e-4。公式印字値の丸め幅と数値誤差を区別します。",
+        "en": "Model time zero to four; the intermediate-species state and residual scale is 1e-4. Printing intervals and numerical errors are distinct."
+      },
+      "algorithm": {
+        "ja": "解析Jacobian付き固定BE/Newtonを使い、質量の投影・濃度クリップはしません。",
+        "en": "Use fixed BE/Newton with analytic Jacobians and no mass projection or concentration clipping."
+      },
+      "validation": {
+        "ja": "独立Radau/BDF参照3計算の資格確認後、6主経路の保存・残差・時間細分化を比較します。",
+        "en": "Qualify three independent Radau/BDF reference runs before comparing conservation, residuals and time refinement on six primary paths."
+      },
+      "limits": {
+        "ja": "公式SUNDIALS v7.1.1の2印字行のみ。IDAの新規実行0、長時間の化学精度や一般DAE性能は扱いません。",
+        "en": "Only two official SUNDIALS v7.1.1 printed rows; zero new IDA executions, with no long-time chemistry or general DAE-performance claim."
+      },
+      "method_ids": [
+        "dae",
+        "backward-euler",
+        "newton"
+      ],
+      "domains": [
+        "foundations"
+      ],
+      "code_files": [
+        "run.py",
+        "models.py",
+        "newton.py"
+      ],
+      "references": [
+        {
+          "id": "sundials-ida-roberts-source",
+          "title": "SUNDIALS v7.1.1 idaRoberts_dns example",
+          "url": "https://github.com/LLNL/sundials/blob/v7.1.1/examples/ida/serial/idaRoberts_dns.c",
+          "review_level": "official-source-selected-functions",
+          "review_scope": "Read residual/Jacobian, initialization, tolerances and print format. Own first two residual rows have opposite sign and the same zero set.",
+          "accessed_on": "2026-11-24"
+        },
+        {
+          "id": "sundials-ida-roberts-stored-output",
+          "title": "Stored official v7.1.1 IDA Robertson output",
+          "url": "https://github.com/LLNL/sundials/blob/v7.1.1/examples/ida/serial/idaRoberts_dns.out",
+          "review_level": "official-stored-output-selected-rows",
+          "review_scope": "Selected printed t=0.4 and4 values only, with Decimal rounding intervals. These approximate IDA values are not exact truth; no IDA run is performed here.",
+          "accessed_on": "2026-11-24"
+        }
+      ],
+      "formulas": [
+        "F1=ydot1+0.04*y1-1e4*y2*y3; F2=ydot2-0.04*y1+1e4*y2*y3+3e7*y2^2; F3=y1+y2+y3-1",
+        "M=diag(1,1,0)"
+      ],
+      "gallery_figure": "robertson-conservation-dae-preview.png",
+      "additional_figures": [
+        {
+          "file": "robertson-conservation-dae-preview.png",
+          "caption": {
+            "ja": "Robertsonの保存制約DAEと全ODEを同じ固定時間格子で比較し、公式IDA保存値を別に照合します。 保存配列から作図。",
+            "en": "Compare the Robertson conservation DAE and full ODE on the same fixed time grids, with a separate check of stored official IDA values. Drawn from saved arrays."
+          }
+        },
+        {
+          "file": "robertson-conservation-dae-diagnostics.png",
+          "caption": {
+            "ja": "保存済み残差・拘束・収支を別表示。ゼロ値は対称対数軸で保持します。",
+            "en": "Saved residuals, constraints and budgets shown separately; symmetric log axes retain zero values."
+          }
+        }
+      ]
+    },
+    {
+      "id": "high-index-pendulum",
+      "title": {
+        "ja": "振り子の指数低減・拘束ドリフト・明示安定化",
+        "en": "Index reduction, constraint drift and explicit stabilization for a pendulum"
+      },
+      "summary": {
+        "ja": "位置拘束の指数3系から明示ODEを導き、整合・非整合初期値の拘束ドリフトと安定化を比較します。",
+        "en": "Derive an explicit ODE from an index-three position constraint and compare drift and stabilization for consistent and inconsistent starts."
+      },
+      "assumptions": {
+        "ja": "m=L=g=1、初期角0.7、初期角速度0。非整合制御では半径方向速度を明示的に加えます。",
+        "en": "m=L=g=1, initial angle 0.7 and zero angular velocity; off-manifold controls explicitly add radial velocity."
+      },
+      "algorithm": {
+        "ja": "指数低減ODEと臨界拘束誤差拡張を固定RK4で積分し、拘束仕事も同じ段で積分します。",
+        "en": "Advance the index-reduced ODE and a critical constraint-error extension with fixed RK4, integrating constraint work at the same stages."
+      },
+      "validation": {
+        "ja": "Jacobi解析族と独立角度ODE2計算を資格確認し、場・拘束の厳密法則・エネルギー仕事収支を比較します。",
+        "en": "Qualify the Jacobi family against two independent angular ODE runs, then compare states, exact constraint laws and energy/work budgets."
+      },
+      "limits": {
+        "ja": "投影・正規化・SHAKE/RATTLEなし。一般指数3ソルバーやシンプレクティック性の検証ではありません。",
+        "en": "No projection, normalization or SHAKE/RATTLE; no general index-three-solver or symplecticity claim."
+      },
+      "method_ids": [
+        "dae",
+        "rk4"
+      ],
+      "domains": [
+        "foundations"
+      ],
+      "code_files": [
+        "run.py",
+        "models.py",
+        "newton.py"
+      ],
+      "references": [
+        {
+          "id": "nist-dlmf-pendulum-selected",
+          "title": "NIST DLMF section22.19(i), pendulum",
+          "url": "https://dlmf.nist.gov/22.19",
+          "review_level": "official-reference-selected-equations",
+          "review_scope": "Selected pendulum formulas, phase and modulus convention. Authored Cartesian conversion uses K-t; SciPy takes parameter m=k². No full chapter reading claimed.",
+          "accessed_on": "2026-11-24"
+        },
+        {
+          "id": "nist-dlmf-agm-selected",
+          "title": "NIST DLMF section19.8(i), arithmetic-geometric mean",
+          "url": "https://dlmf.nist.gov/19.8",
+          "review_level": "official-reference-selected-equations",
+          "review_scope": "Selected AGM/K identity; independent Decimal Machin pi and sine with explicit finite remainders qualify a single fixed modulus.",
+          "accessed_on": "2026-11-24"
+        }
+      ],
+      "formulas": [
+        "C=(q.q-1)/2, D=q.v, lambda=(v.v-q_y+2D+C)/(q.q)",
+        "Cddot+2*Cdot+C=0; Wdot=-lambda*(q.v)"
+      ],
+      "gallery_figure": "high-index-pendulum-preview.png",
+      "additional_figures": [
+        {
+          "file": "high-index-pendulum-preview.png",
+          "caption": {
+            "ja": "位置拘束の指数3系から明示ODEを導き、整合・非整合初期値の拘束ドリフトと安定化を比較します。 保存配列から作図。",
+            "en": "Derive an explicit ODE from an index-three position constraint and compare drift and stabilization for consistent and inconsistent starts. Drawn from saved arrays."
+          }
+        },
+        {
+          "file": "high-index-pendulum-diagnostics.png",
+          "caption": {
+            "ja": "保存済み残差・拘束・収支を別表示。ゼロ値は対称対数軸で保持します。",
+            "en": "Saved residuals, constraints and budgets shown separately; symmetric log axes retain zero values."
+          }
+        }
+      ]
+    }
+  ]
+}

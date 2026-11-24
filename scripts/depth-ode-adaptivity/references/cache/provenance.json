@@ -1,0 +1,42 @@
+{
+  "status": "QUALIFIED_INDEPENDENT_REFERENCES",
+  "qualification_checks": 52,
+  "qualification_passed": true,
+  "reference_plan_sha256": "6e51e1e71503e53b1b770110b7b3d073d08d187296a277ec3b7e60154b9fe709",
+  "qualification_receipt_sha256": "e5ec344eda5018d1bffd8b8532aa769d24bf8d0d2ea78012a347ec1ac694536e",
+  "qualification_source_sha256": {
+    "inputs.json": "08841a5698329c02021434dc4f1784cb1dbbd428de7e493dda6a3014e85315d3",
+    "acceptance.json": "fd7e7cfe528d9844e2992e8ef96d6b33e482e8c5d2bc63a4d6955431168f6051",
+    "tableau.py": "280608cede3340a0b3f32e792a3643e93ccb9fb29d06fb8c03c5fa3091c21c4e",
+    "references/qualify.py": "9e5adaf3cc24652a99b089652438f6814f84d2357ac86f81821e4594fa7b9582",
+    "references/reference_models.py": "b4156ac22ed8ac0257dd320914074e7d51052cb4ed0ca6942c5db4a19160df70",
+    "references/boundary_reference.py": "182d95ff835c59e0602e164326fc4181cb0c6d09207415e98a4e0450cde36003",
+    "references/coefficient_exact.py": "67809c4e6e48e0779959a19cb804bc9c7161e0ab6974572469fa9a4ec667e1b2"
+  },
+  "files_sha256": {
+    "boundary-31-active.npz": "4a0716d3b36fa1b2d57ba6f96db54ddd7d618682148e245b803a4679f43aaa70",
+    "vdp-mu100-Radau-tight.npz": "9698889ebe985c44ba41673f962f92ab0f69203b4547ab1e57d43ef30ecf6fa8",
+    "vdp-mu100-jacobian-controls.npz": "b147a082b4cea754353579e6b3df47bcd00126675996b45ea2bc3315ef6c18c2",
+    "qualification.json": "601ecaf05f9a9784cbae0fdef50f27a86392795b60b0cd8421e8feebb94b931d",
+    "vdp-mu100-entered.npz": "f520d8f99dd8e403288e9b2378871b7ab7d448d60b6c218e2fd12e6242eec7d1",
+    "robertson-entered.npz": "e061d802b3bc0b789f02c3b98f90c4bbdc87ed8416c2fe95bdc770847cddb2b2",
+    "coefficient-audit.json": "b197e85dc4e6fc2e4cf8c402637cf32c60d62f1069fc0907753d3bb5785c9f9d",
+    "boundary-31.npz": "b4ffeeba59cbad806a83d3aad72ef9770db14ac8ec1dd9d65253e1ceee24e568",
+    "vdp-mu100-BDF.npz": "01773f9786b180393bc627d3b6a5e2701e775c1ec3b6b4e7adb082d6a5b8ddc8",
+    "boundary-63-active.npz": "6f6982a7b0e51aa038a232e90056b823afba4b97f43e6d8f47bf9830187aaf8a",
+    "vdp-mu1-entered.npz": "f520d8f99dd8e403288e9b2378871b7ab7d448d60b6c218e2fd12e6242eec7d1",
+    "vdp-mu1-Radau.npz": "a3ad2bcec92df2025af5eb3f46a80321b86376cb3d55e5a5165f84ff56df5b8e",
+    "vdp-mu100-Radau.npz": "2c264a6243b8dd72f0b797190c61622441467086440d1d335bd3c5bae04ef450",
+    "robertson-jacobian-controls.npz": "2e86f166d673c69391aa3dcbf0f185775dfa4ad503994e72e697d7ef97e0d56b",
+    "boundary-127-active.npz": "e7a543a72370ab1ae1d23ddbb608e5c72e896a1752c65a4e4bbc277f03452b40",
+    "robertson-Radau-tight.npz": "b942961fbb9908f9f4c3aada74d23635cdedaba24fe8d9d75d3e46ffa4eb639f",
+    "vdp-mu1-jacobian-controls.npz": "3856a1b840e3c00744419a95bd204d18aa35a7fed0039c4a32c887f394d41bff",
+    "vdp-mu1-Radau-tight.npz": "8f8ee172e431f1fd8edfe7827f5c3e6ed831af3e56b5fb636a56d26d1d3ae121",
+    "boundary-63.npz": "e819a8f17e08404047740cdfdeeb41adde241f8cf69a340b1cd37a2614b9977d",
+    "robertson-Radau.npz": "046a009b589be6400c0c7f5cf1b420a5d9c73b7cce2d7b73fa9aa85f88bd3664",
+    "robertson-BDF.npz": "6e1827a574f9839cca3393d9e3ad99a5baf06ea4dd4ca524e9b7ad9a8e2653eb",
+    "boundary-127.npz": "c8a06f9d8fb95d0988b226e6ca2b00b6b0a5e81400573c116fca235fc8a044fd",
+    "vdp-mu1-BDF.npz": "939f2d78e8eab4cf4a1170e465c26c68d4cf5404ca47bed7017609c7eac8fc68"
+  },
+  "scope": "Bundled finite fixed reference data; no primary generator import. Shared SciPy/NumPy elementary algebra disclosed. Main does not regenerate reference trajectories. No originalRobertson/DormandPrince full-paper or universal exact-reference claim."
+}

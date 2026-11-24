@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "state": "PROPOSED_LIMITS_BEFORE_FIRST_NUMERICAL_EXECUTION",
+  "changing_after_failure": "Never relax thresholds/input seeds/window/caps in-place. Preserve original source/input/result/receipt; propose separately reviewed revision.",
+  "global": {
+    "every_run": "Successful expected termination; full finite candidate fields/records/CSV; store before diagnostics; no undeclared runs or retry.",
+    "maximum_scaled_implicit_residual": 3e-12,
+    "maximum_stage_state_magnitude": 1000000,
+    "primary_ref_source_identity": "Qualified reference inputs and all generator dependency hashes must match current frozen input/acceptance and installed cache receipt."
+  },
+  "robertson": {
+    "all_run_mass_abs": 1e-09,
+    "all_accepted_minimum": -5e-12,
+    "all_stage_minimum": "report separately; never silently count a negative intermediate stage as accepted state positivity",
+    "fixed_finest_sampled_weighted_linf": 0.005,
+    "adaptive_loose_sampled_weighted_linf": 0.002,
+    "adaptive_tight_sampled_weighted_linf": 5e-05,
+    "fixed_finest_over_coarsest_error_max": 0.8,
+    "adaptive_tight_over_loose_error_max": 0.8,
+    "factor_reuse": "At least one actual reused factor solve, count factorizations <=linear solves; no claim of cross-step reuse."
+  },
+  "vdp": {
+    "all_run_state_abs_bound": 4,
+    "fixed_finest_sampled_linf": 0.001,
+    "adaptive_loose_sampled_linf": 0.002,
+    "adaptive_tight_sampled_linf": 2e-05,
+    "fixed_finest_over_coarsest_error_max": 0.8,
+    "adaptive_tight_over_loose_error_max": 0.8,
+    "factor_reuse": "At least one actual reused factor solve; no dense-general Newton library control passed as a different algorithm."
+  },
+  "rk45": {
+    "loose": {
+      "endpoint_linf": 0.001,
+      "offmesh_linf": 0.002,
+      "event_time_abs": 0.001
+    },
+    "medium": {
+      "endpoint_linf": 2e-05,
+      "offmesh_linf": 3e-05,
+      "event_time_abs": 2e-05
+    },
+    "tight": {
+      "endpoint_linf": 3e-07,
+      "offmesh_linf": 5e-07,
+      "event_time_abs": 3e-07
+    },
+    "event_function_abs": 2e-12,
+    "work_identity": "nfev=1+6*attempted_steps for prescribed firststep, including rejected steps. Bisection/dense evaluation adds zeroRHS. No resets in production inputs.",
+    "tight_over_loose_error_at_each_maxstep": 0.2,
+    "rejection_coverage": "At least one rejected nonterminal loose/medium/tight trial overall with accepted-start f preserved; separate causal tests force rejection deterministically.",
+    "root_sets": "Direction0 gives both knownroots; terminal−1 returns pi/6; terminal+1 returns pi/2."
+  },
+  "boundary": {
+    "corrected_finest_temporal_linf": 1e-05,
+    "raw_N127_last_pair_observed_order_interval": [
+      0.7,
+      1.6
+    ],
+    "corrected_N127_last_pair_observed_order_interval": [
+      1.6,
+      2.4
+    ],
+    "N127_finest_corrected_over_raw_max": 0.2,
+    "reference_spatial_last_pair_linf_order_interval": [
+      1.8,
+      2.2
+    ],
+    "boundary_ledger": "PhysicalBC=1 at outputs/diffusion; raw reaction defect exp(tau)-1 retained, corrected lifted reaction at w0=0 has exact zero defect. No boundary reset repair.",
+    "temporal_vs_spatial": "Temporalerror against SAME FD reference. Spatialerror uses qualified FDreference minus analytic continuum solution at same nodes/time. Never subtract continuum error as if it were time error."
+  },
+  "rationale": "Fixed small cases; thresholds target representative algorithm correctness and observed stated regimes. Refinement inequalities are actual gates, not guaranteed pre-run outcomes. Tight time errors never imply positivity, full stiff-cycle coverage or universal PDE convergence."
+}

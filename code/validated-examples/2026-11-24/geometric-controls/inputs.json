@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "group": "geometric-controls",
+  "pendulum": {
+    "case_id": "shake-rattle-pendulum",
+    "units": "L=m=g=1, time=sqrt(L/g)",
+    "theta0": 0.7,
+    "angular_velocity0": 0.0,
+    "initialization": "q=(sin(theta0),-cos(theta0)), p=omega0*(cos(theta0),sin(theta0)); no projection",
+    "final_time": 100.0,
+    "step_sizes": [
+      0.04,
+      0.02,
+      0.01
+    ],
+    "steps": [
+      2500,
+      5000,
+      10000
+    ],
+    "methods": [
+      "rattle",
+      "shake"
+    ],
+    "position_target": 1e-13,
+    "loose_position_target": 1e-10,
+    "loose_companion_h": 0.04,
+    "newton_max_iterations": 8,
+    "newton_variable": "eta in q_next=a-eta*q; physical multiplier normalization is recorded separately",
+    "branch": "Small continuous root, q dot q_next positive; reject absent/ambiguous branch or unsafe derivative; no root retry",
+    "SHAKE_startup": "q1 from the same constrained first half-step as RATTLE; subsequent position-Verlet recurrence uses its own h^2 multiplier",
+    "SHAKE_momentum": "Centered p only at interior nodes, no fabricated endpoint momentum",
+    "reversal_h": 0.04,
+    "reversal": "RATTLE reverses full q/p for2500steps; SHAKE swaps saved final-position pair and reverses2499updates to recover(q1,q0)",
+    "map_probes": [
+      [
+        0.7,
+        0.0
+      ],
+      [
+        0.3,
+        0.2
+      ],
+      [
+        -0.4,
+        -0.3
+      ]
+    ],
+    "map_h": 0.02,
+    "map_difference_steps": [
+      1e-05,
+      5e-06
+    ]
+  },
+  "kepler": {
+    "case_id": "kepler-eccentricity",
+    "units": "a=mu=reduced_mass=1, time=sqrt(a^3/mu), p=relative velocity",
+    "softening": 0.0,
+    "eccentricities": [
+      0.1,
+      0.7
+    ],
+    "steps_per_period": [
+      512,
+      1024,
+      2048
+    ],
+    "refinement_periods": 1,
+    "long_periods": 10,
+    "long_steps_per_period": 2048,
+    "initialization": "q=(1-e,0), p=(0,sqrt((1+e)/(1-e)))",
+    "method": "verlet",
+    "variable_control": "h(q)=h0*norm(q), h0=2*pi/2048, current accepted state; shorten last abs(h) to remaining physical interval",
+    "variable_max_steps": 50000,
+    "reversal_modes": [
+      "fixed_one_period",
+      "variable_saved_schedule_replay",
+      "variable_regenerated_schedule"
+    ],
+    "periapsis": "Long runs only: positive crossing of q(s) dot q_s(s), cubic Hermite q in a bracket, then brentq; exclude t0 and retain actual root residual. No sampled minimum called exact.",
+    "root_xtol": 1e-14,
+    "root_rtol": 1e-14,
+    "geometric_scope": "No measured canonical symplectic-defect claim for variable map. Actual diagnostics are phase/invariants/reversal only; fixed-h geometry is not inherited automatically."
+  },
+  "coupled": {
+    "case_id": "multifrequency-resonance",
+    "Hamiltonian": "H=(p1^2+p2^2+q1^2+omega^2*q2^2)/2+alpha*q1*q2",
+    "omega_values": [
+      10.0,
+      20.0
+    ],
+    "alpha": 1.0,
+    "initialization": "q=(1,1/omega), p=(0,0)",
+    "probe_methods": [
+      "verlet",
+      "impulse"
+    ],
+    "verlet_h_omega": [
+      1.0,
+      1.8,
+      2.2
+    ],
+    "impulse_pi_factors": [
+      0.9,
+      1.0,
+      1.1
+    ],
+    "probe_steps": 64,
+    "norm_cap": 1e+40,
+    "float_convention": "Python binary64 float: theta_requested=float(factor)*math.pi; h=theta_requested/float(omega); theta_evaluated=h*float(omega); math.sin/cos(theta_evaluated). Store float.hex. Never snap/reset.",
+    "impulse_split": "A=(p1^2+p2^2+omega^2*q2^2)/2; B=q1^2/2+alpha*q1*q2. Half B kick, exact A flow, half B kick.",
+    "stage_coefficient_convention": "Store actual binary64 h,h/2,(h/2)*alpha,(h/2)*omega^2,sin(theta)/omega,omega*sin(theta),cos(theta); scalar primary stages and independent frozen-map reference use those same stored coefficients.",
+    "accuracy_omega": 10.0,
+    "accuracy_methods": [
+      "verlet",
+      "impulse"
+    ],
+    "accuracy_step_sizes": [
+      0.02,
+      0.01,
+      0.005
+    ],
+    "accuracy_steps": [
+      500,
+      1000,
+      2000
+    ],
+    "accuracy_final_time": 10.0,
+    "near_degenerate_angle_window_eps_factor": 64,
+    "central_actual_classification": "unresolved_near_degeneracy; actual finite action and spectral diagnostics separate from ideal-pi Jordan structure"
+  },
+  "reference_qualification": {
+    "pendulum_sample_count": 33,
+    "pendulum_time_interval": [
+      0.0,
+      100.0
+    ],
+    "angular_DOP853_tolerances": [
+      [
+        1e-12,
+        1e-13
+      ],
+      [
+        3e-13,
+        3e-14
+      ]
+    ],
+    "kepler_sample_count_per_e": 33,
+    "kepler_time_interval_pi_units": [
+      0.0,
+      20.0
+    ],
+    "decimal_precisions": [
+      80,
+      120
+    ],
+    "fraction_ideal_pi_h_values": [
+      "1/4",
+      "1/8"
+    ],
+    "root_iterations_max": 100
+  }
+}

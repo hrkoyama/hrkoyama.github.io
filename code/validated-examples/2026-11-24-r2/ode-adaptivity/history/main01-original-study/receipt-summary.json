@@ -1,0 +1,21 @@
+{
+  "status": "CURATED_PATH_FREE_SUMMARY_NOT_ORIGINAL_RECEIPT_BYTES",
+  "original_receipt_sha256": "e54b93f28bede43bb1ec434974c0191ef1495339ba9bee65cec83e0eb7c2b6a1",
+  "passed": false,
+  "status_observed": "FAIL",
+  "started_at_utc": "2026-11-24T14:07:30.821797+00:00",
+  "completed_at_utc": "2026-11-24T14:07:33.887589+00:00",
+  "elapsed_seconds": 3.065786957995442,
+  "pytest": {
+    "tests": 39,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "records": 60,
+  "original_checks": 209,
+  "original_passed": 208,
+  "original_failed": 1,
+  "source_unchanged": true,
+  "scope": "Complete original raw trajectories, logs and receipts remain privately and persistently retained. This public history is compact."
+}

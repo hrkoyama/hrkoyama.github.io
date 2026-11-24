@@ -1,0 +1,312 @@
+[
+  {
+    "id": "robertson-stiff-kinetics",
+    "method_ids": [
+      "bdf2",
+      "sdirk2",
+      "step-doubling",
+      "newton"
+    ],
+    "title": {
+      "ja": "Robertson反応系の初期剛性と実誤差",
+      "en": "Robertson kinetics: initial stiffness and actual error"
+    },
+    "summary": {
+      "ja": "短い固定区間でBDF2・SDIRK2・倍分割適応法を、資格済みRadau/BDF参照と比較します。",
+      "en": "Compare BDF2, SDIRK2 and adaptive step doubling on a short fixed interval against qualified Radau and BDF references."
+    },
+    "assumptions": {
+      "ja": "無次元3成分、初期値(1,0,0)、T=.4。固定512/1024/2048刻みと2許容誤差の適応法で計8run。",
+      "en": "A nondimensional three-species system starts at (1, 0, 0) and ends at T = 0.4. The fixed methods use 512, 1024 and 2048 steps; two adaptive tolerance settings bring the total to eight runs."
+    },
+    "algorithm": {
+      "ja": "BDF2は同格子BE開始。SDIRK2の非線形段階は重み付き最大残差で判定し、同じ段階内だけJacobian因子を再利用。適応法はRMS倍分割誤差と2半刻みを採用。",
+      "en": "BDF2 starts with backward Euler on the same grid. SDIRK2 stages use a weighted maximum residual and reuse Jacobian factors only within one stage. Adaptive steps use an RMS step-doubling estimate and accept the two-half-step result."
+    },
+    "validation": {
+      "ja": "22共通時刻の実誤差、全受理時刻の質量/最小値、真の段階残差、実RHS/Jacobian/因子/solve数を別判定します。",
+      "en": "Check actual errors at 22 common times, mass and minimum values at every accepted state, true stage residuals, and actual RHS, Jacobian, factorization and linear-solve counts separately."
+    },
+    "limits": {
+      "ja": "保存/正値性は固定入力の観測で、一般的な保証ではありません。T=.4の短時間・標本時刻での精度であり、長時間化学精度や全時刻誤差上限は主張しません。",
+      "en": "Conservation and positivity are observations for these inputs, not universal guarantees. Accuracy is sampled on T <= 0.4; this does not validate long-time chemistry or an all-time error bound."
+    },
+    "domains": [
+      "time",
+      "foundations"
+    ],
+    "code_files": [
+      "run.py",
+      "experiments.py",
+      "io_contract.py",
+      "reference_eval.py",
+      "models.py",
+      "stiff.py"
+    ],
+    "references": [
+      {
+        "id": "sundials-robertson-model",
+        "title": "Official SUNDIALS cvRoberts_dns model definition",
+        "url": "https://raw.githubusercontent.com/LLNL/sundials/main/examples/cvode/serial/cvRoberts_dns.c",
+        "accessed_on": "2026-11-24",
+        "review_level": "official-source-selected-functions",
+        "review": {
+          "ja": "観測mainのモデル式・初期値・Jacobianを選択閲読。今回T=.4のみで、原論文全文・4e10の長時間計算や既存数値表の再現ではありません。",
+          "en": "Read the model, initial values and Jacobian in selected official source sections. The observed main URL is not an immutable release pin. Our T = 0.4 scope does not reproduce the original paper, the long 4e10 benchmark or its numerical tables."
+        }
+      },
+      {
+        "id": "scipy-ivp-1.14.1",
+        "title": "SciPy1.14.1 solve_ivp and selected official source",
+        "version": "1.14.1",
+        "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html",
+        "accessed_on": "2026-11-24",
+        "review_level": "official-selected-source",
+        "review": {
+          "ja": "固定版の手法/API・局所許容誤差・終了状態を選択確認。独立原著の全編監査ではありません。",
+          "en": "Read selected fixed-version method, API, local-tolerance and termination sections. This is not a full audit of the original research papers."
+        }
+      }
+    ],
+    "gallery_figure": "robertson-stiff-kinetics-preview.png",
+    "additional_figures": [
+      {
+        "file": "robertson-stiff-kinetics-preview.png",
+        "caption": {
+          "ja": "短い固定区間でBDF2・SDIRK2・倍分割適応法を、資格済みRadau/BDF参照と比較します。 保存済みの数値場と参照を用いた図です。",
+          "en": "Compare BDF2, SDIRK2 and adaptive step doubling on a short fixed interval against qualified Radau and BDF references. This preview reads saved numerical fields and references only."
+        }
+      }
+    ],
+    "formulas": [
+      "\\dot y_1=-0.04y_1+10^4y_2y_3,\\quad\\dot y_2=-\\dot y_1-3\\!\\times\\!10^7y_2^2,\\quad\\dot y_3=3\\!\\times\\!10^7y_2^2",
+      "\\|r\\|_{w,\\infty}=\\max_i|r_i|/w_i,\\quad e_{\\rm dbl}=(y_{h/2,h/2}-y_h)/3"
+    ]
+  },
+  {
+    "id": "van-der-pol-stiff-transition",
+    "method_ids": [
+      "bdf2",
+      "sdirk2",
+      "step-doubling",
+      "newton"
+    ],
+    "title": {
+      "ja": "van der Polの短時間剛性遷移",
+      "en": "Van der Pol: an early stiffness transition"
+    },
+    "summary": {
+      "ja": "局所制御と大域誤差を分離します。初回は元209目標中208達成で、μ=1の厳しい適応設定は大域目標2e-5に未達でした。",
+      "en": "Separate local control from global error. The first study met 208 of 209 original targets; the mu = 1 tight adaptive run missed the 2e-5 global goal."
+    },
+    "assumptions": {
+      "ja": "x′=v,v′=μ(1−x²)v−x、初期値(2,0)、T=2。2方式×3刻み×2μと適応4runで計16run。",
+      "en": "The system is xprime = v and vprime = mu(1 - x squared)v - x, initially (2, 0), over T = 2. Two fixed methods, three step counts and two mu values plus four adaptive runs give 16 runs."
+    },
+    "algorithm": {
+      "ja": "BDF2/SDIRK2と倍分割適応法。解析Jacobian・段階内だけの因子再利用・失敗時の候補保存を実装します。",
+      "en": "Use actual BDF2, SDIRK2 and adaptive step doubling, analytic Jacobians, factor reuse within each implicit stage, and retained candidates on failure."
+    },
+    "validation": {
+      "ja": "資格済みRadau/BDFと21時刻で比較。元の全判定を偽値も含め保存し、他208条件と、結果の忠実な表示・実局所制御・元失敗保存の3検証を別に要求します。",
+      "en": "Compare 21 sampled times with qualified Radau and BDF references. Preserve every original decision, including false values. Require the other 208 conditions separately from three checks of faithful disclosure, actual local controls and retained original failure evidence."
+    },
+    "limits": {
+      "ja": "測定後の報告範囲変更で、数値的な修復ではありません。初回誤差4.535633779e-5は元目標2e-5を超えます。局所rtolは大域誤差を保証せず、報告検証の合格は全元目標の達成ではありません。大μ全周期は対象外です。",
+      "en": "This post-measurement reporting revision is not a numerical repair. The first error, 4.535633779e-5, exceeded the original 2e-5 goal. Local tolerances do not guarantee global accuracy, and reporting PASS does not mean all original goals were met. Full large-mu cycles are outside scope."
+    },
+    "domains": [
+      "time",
+      "foundations"
+    ],
+    "code_files": [
+      "run.py",
+      "experiments.py",
+      "io_contract.py",
+      "reference_eval.py",
+      "models.py",
+      "stiff.py",
+      "reporting_policy.py"
+    ],
+    "references": [
+      {
+        "id": "official-vdp-example",
+        "title": "scikit-sundae official van der Pol example",
+        "url": "https://scikit-sundae.readthedocs.io/en/stable/examples/van_der_pol.html",
+        "accessed_on": "2026-11-24",
+        "review_level": "official-project-example-selected-equations",
+        "review": {
+          "ja": "公式binding例の2階/1階系と初期値を確認。採用μ=1/100,T=2は独自の軽量範囲で、原著やμ1000全周期の再現ではありません。",
+          "en": "Read the equations and initial state in the official binding example. Our mu = 1 and 100, T = 2 inputs are an authored early-transient scope, not an original-paper or full mu = 1000 cycle reproduction."
+        }
+      },
+      {
+        "id": "scipy-ivp-1.14.1",
+        "title": "SciPy1.14.1 solve_ivp and selected official source",
+        "version": "1.14.1",
+        "url": "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html",
+        "accessed_on": "2026-11-24",
+        "review_level": "official-selected-source",
+        "review": {
+          "ja": "固定版の手法/API・局所許容誤差・終了状態を選択確認。独立原著の全編監査ではありません。",
+          "en": "Read selected fixed-version method, API, local-tolerance and termination sections. This is not a full audit of the original research papers."
+        }
+      }
+    ],
+    "gallery_figure": "van-der-pol-stiff-transition-preview.png",
+    "additional_figures": [
+      {
+        "file": "van-der-pol-stiff-transition-preview.png",
+        "caption": {
+          "ja": "保存済みの固定刻み比較と局所/大域誤差の区別。初回208/209で、μ=1適応法の大域目標2e-5は未達のまま保持します。",
+          "en": "Saved fixed-step comparisons and the local/global error distinction. The first study met 208/209 targets; the unmet mu = 1 adaptive global goal of 2e-5 remains recorded."
+        }
+      }
+    ],
+    "formulas": [
+      "\\dot x=v,\\qquad \\dot v=\\mu(1-x^2)v-x,\\quad\\mu\\in\\{1,100\\}"
+    ]
+  },
+  {
+    "id": "rk45-dense-events",
+    "method_ids": [
+      "rk45"
+    ],
+    "title": {
+      "ja": "RK45の埋込み推定・補間・イベント",
+      "en": "RK45: embedded errors, dense output and events"
+    },
+    "summary": {
+      "ja": "減衰回転の解析解を使い、受理/棄却・FSAL・区間内補間・向き付き交差時刻を分けて検査します。",
+      "en": "Use analytic damped rotation to test acceptance, rejection, FSAL ownership, dense interpolation and directed event times separately."
+    },
+    "assumptions": {
+      "ja": "γ=.2,ω=3、初期値(1,0)、T=2。3対のrtol/atol×2最大刻みと終端交差2runで計8run。",
+      "en": "Use gamma = 0.2, omega = 3, initial state (1, 0), and T = 2. Three paired relative and absolute tolerances with two maximum steps, plus two terminal runs, give eight runs."
+    },
+    "algorithm": {
+      "ja": "実Dormand–Prince5(4)・quartic連続拡張・受理状態が所有するFSAL・保存補間上の符号区間二分法。拒否端点を昇格しません。",
+      "en": "Use actual Dormand–Prince 5(4) stages, a quartic continuous extension, an accepted-state derivative cache and bracket bisection on retained interpolants. A rejected endpoint never replaces the accepted starting derivative."
+    },
+    "validation": {
+      "ja": "解析状態とπ/6,π/2の単純交差を参照に、端点/97オフメッシュ点/イベント時刻・残差と実nfev=1+6試行数を判定。",
+      "en": "Analytic states and the simple crossings at pi/6 and pi/2 provide independent truth. Check endpoints, 97 off-mesh samples, event times and residuals, and the actual identity nfev = 1 + 6 times the attempted-step count."
+    },
+    "limits": {
+      "ja": "接触根・1刻み内の多重交差・reset付き系の一般性は保証しません。初期零/所有権/resetは限定成分対照で、局所許容誤差と大域精度を同一視しません。",
+      "en": "There is no general guarantee for tangential roots, multiple crossings within a step or systems with resets. Initial-zero and ownership controls are limited component tests; local tolerances and global accuracy remain distinct."
+    },
+    "domains": [
+      "time",
+      "foundations"
+    ],
+    "code_files": [
+      "run.py",
+      "experiments.py",
+      "io_contract.py",
+      "reference_eval.py",
+      "dopri.py",
+      "tableau.py"
+    ],
+    "references": [
+      {
+        "id": "scipy-rk45-coefficients",
+        "title": "SciPy1.14.1 RK45 coefficient and dense-output source",
+        "url": "https://github.com/scipy/scipy/blob/v1.14.1/scipy/integrate/_ivp/rk.py",
+        "version": "1.14.1",
+        "accessed_on": "2026-11-24",
+        "review_level": "official-release-source-selected-functions",
+        "review": {
+          "ja": "C/A/B/E/P、段階・受理/棄却時FSAL更新、quartic補間を確認。原Dormand–Prince1980/Shampine1986論文は書誌参照のみで全文未読。係数由来のBSD通知を同梱。",
+          "en": "Read C, A, B, E, P, stage evaluation, accepted/rejected FSAL updates and quartic evaluation. The original Dormand–Prince 1980 and Shampine 1986 papers remain unread beyond bibliography. The adapted coefficient BSD notice is retained."
+        }
+      }
+    ],
+    "gallery_figure": "rk45-dense-events-preview.png",
+    "additional_figures": [
+      {
+        "file": "rk45-dense-events-preview.png",
+        "caption": {
+          "ja": "減衰回転の解析解を使い、受理/棄却・FSAL・区間内補間・向き付き交差時刻を分けて検査します。 保存済みの数値場と参照を用いた図です。",
+          "en": "Use analytic damped rotation to test acceptance, rejection, FSAL ownership, dense interpolation and directed event times separately. This preview reads saved numerical fields and references only."
+        }
+      }
+    ],
+    "formulas": [
+      "y(t)=e^{-0.2t}(\\cos 3t,\\sin 3t)^T,\\quad t_*=\\pi/6,\\pi/2",
+      "y(t_n+\\theta h)=y_n+hQ(\\theta,\\theta^2,\\theta^3,\\theta^4)^T"
+    ]
+  },
+  {
+    "id": "strang-boundary-order-reduction",
+    "method_ids": [
+      "strang-splitting",
+      "lie-trotter",
+      "centered-difference"
+    ],
+    "title": {
+      "ja": "Dirichlet境界でのStrang次数低下と補正",
+      "en": "Strang splitting: Dirichlet boundary order reduction and correction"
+    },
+    "summary": {
+      "ja": "実1D非周期場で、未補正/境界補正Strangを同じFD参照へ比較し、時間誤差と空間誤差を分けます。",
+      "en": "Evolve actual one-dimensional nonperiodic fields and compare unmodified and boundary-corrected Strang splitting against the same spatial discretization."
+    },
+    "assumptions": {
+      "ja": "u_t=u_xx+u、[0,1]、両端u=1、解析定常解+.1正弦摂動、T=.1。内部31/63/127点・8/16/32/64刻みとLie対照4run、計28run。",
+      "en": "Solve u_t = u_xx + u on [0, 1] with both boundary values equal to 1, an analytic steady state plus a 0.1 sine perturbation, and T = 0.1. Use 31, 63 and 127 interior nodes with 8, 16, 32 and 64 steps, plus four Lie controls: 28 runs."
+    },
+    "algorithm": {
+      "ja": "w=u−1で未補正(Lw,w+1)、補正(Lw+1,w)に分割。実DirichletDST-I指数流を合成し、反応の境界不整合を保持します。",
+      "en": "For w = u - 1, use the unmodified split (Lw, w + 1) or the corrected split (Lw + 1, w). Compose actual Dirichlet DST-I flows and retain the reaction boundary mismatch."
+    },
+    "validation": {
+      "ja": "独立疎affine指数作用と別記述の正弦和を先に資格。同FD時間誤差・解析連続解との差・固定格子/刻み領域の観測次数を判定。",
+      "en": "First qualify an independent sparse affine exponential action against separately written sine sums. Then separate temporal error against the same finite-difference system, spatial error against the analytic continuum field, and observed order in the fixed regime."
+    },
+    "limits": {
+      "ja": "原著の線形特殊例で非線形数値表の再現ではありません。非自律/一般境界や普遍的な次数低下は主張せず、Lie終端の反応trace不整合も別表示します。",
+      "en": "This is an authored linear specialization, not a reproduction of the original nonlinear tables. It makes no general claim for nonautonomous boundaries or universal order loss. The final reaction-trace mismatch of Lie splitting is disclosed separately."
+    },
+    "domains": [
+      "time",
+      "foundations"
+    ],
+    "code_files": [
+      "run.py",
+      "experiments.py",
+      "io_contract.py",
+      "reference_eval.py",
+      "boundary.py"
+    ],
+    "references": [
+      {
+        "id": "einkemmer-ostermann-dirichlet",
+        "author": "L. Einkemmer; A. Ostermann",
+        "title": "Overcoming order reduction in diffusion-reaction splitting. Part1: Dirichlet boundary conditions",
+        "year": 2014,
+        "url": "https://arxiv.org/abs/1411.0465",
+        "accessed_on": "2026-11-24",
+        "review_level": "primary-preprint-selected-sections",
+        "review": {
+          "ja": "2014v1の§2/Algorithm2/定数境界例、§3.2の定理・仮定、1D例の選択抽出テキストを閲読。全証明・原PDF全画像の監査ではありません。今回線形特殊例で、原著の非線形数値表ではありません。",
+          "en": "Read selected extracted text from the 2014 v1 preprint: section 2, Algorithm 2, the constant-boundary example, section 3.2 assumptions and result, and the one-dimensional example. This was not a full-proof or whole-PDF visual audit; the present linear specialization does not reproduce the nonlinear tables."
+        }
+      }
+    ],
+    "gallery_figure": "strang-boundary-order-reduction-preview.png",
+    "additional_figures": [
+      {
+        "file": "strang-boundary-order-reduction-preview.png",
+        "caption": {
+          "ja": "実1D非周期場で、未補正/境界補正Strangを同じFD参照へ比較し、時間誤差と空間誤差を分けます。 保存済みの数値場と参照を用いた図です。",
+          "en": "Evolve actual one-dimensional nonperiodic fields and compare unmodified and boundary-corrected Strang splitting against the same spatial discretization. This preview reads saved numerical fields and references only."
+        }
+      }
+    ],
+    "formulas": [
+      "u_t=u_{xx}+u,\\quad u(0,t)=u(1,t)=1,\\quad w=u-1",
+      "A_{\\rm raw}(w)=L_hw,\\ B_{\\rm raw}(w)=w+1;\\quad A_{\\rm corr}(w)=L_hw+1,\\ B_{\\rm corr}(w)=w"
+    ]
+  }
+]

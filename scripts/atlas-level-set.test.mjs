@@ -1,4 +1,4 @@
-import {projectMethodBeforeBatch58,methodIdsAddedInBatch58,projectMethodBeforeBatch38,groupsAddedAfterBatch37,problemCount,examplesAddedAfterBatch37,supplementCaseCount,supplementGroupCount} from './fixtures/atlas-inventory.mjs';
+import {methodIdsAddedInBatch68,projectMethodBeforeBatch58,methodIdsAddedInBatch58,projectMethodBeforeBatch38,groupsAddedAfterBatch37,problemCount,examplesAddedAfterBatch37,supplementCaseCount,supplementGroupCount} from './fixtures/atlas-inventory.mjs';
 import {methodCount} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -88,7 +88,7 @@ test('the dedicated two-case release preserves all previous releases, method rec
  assert.equal(objectHash(registry.releases.filter(r=>!['level-set','weno-critical','shallow-water','wall-flow', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic', 'sem-fr','coefficient-diffusion','slab-ewald','fmm3d','gravity-dynamics','warm-pic','pic-spatial','dsmc-wall','dsmc-shock',...groupsAddedAfterBatch37].includes(r.group))),'150a2bfb669938f7c9c67dde0f23fcc4dace9e54c3298841fed651a57bb5fd3f');
  const methods=json('catalog/atlas-methods.json').methods;
  assert.equal(methods.length,methodCount);
- assert.equal(objectHash(methods.filter(m=>!methodIdsAddedInBatch58.includes(m.id)&&!batch48NewMethodIds.has(m.id)&&!['level-set','vof', 'q1-fem', 'spectral-element', 'flux-reconstruction'].includes(m.id)).map(historicalMethod)),'6462e0c0e177b17a95b97d953fd12bf2887933124691bb8844c5cc0eda9ee904');
+ assert.equal(objectHash(methods.filter(m=>!methodIdsAddedInBatch68.includes(m.id)&&!methodIdsAddedInBatch58.includes(m.id)&&!batch48NewMethodIds.has(m.id)&&!['level-set','vof', 'q1-fem', 'spectral-element', 'flux-reconstruction'].includes(m.id)).map(historicalMethod)),'6462e0c0e177b17a95b97d953fd12bf2887933124691bb8844c5cc0eda9ee904');
  const pictures=json('numerical-methods-atlas/gallery/preview-manifest.json').items;
  assert.equal(pictures.length,problemCount);
  assert.equal(objectHash(pictures.filter(p=>!['level-set-circle','swashes-topography','dry-bed-dam-break','lid-driven-cavity','wall-manufactured', 'kh-initial-growth', 'rt-initial-growth', 'lshape-fem', 'annular-viscous-mms', 'poisson-neumann', 'poisson-robin', 'ale-nonuniform-transport', 'cgrid-rotating-wave', 'srhd-collision', 'srmhd-alfven','checkerboard-diffusion','rotated-anisotropic-diffusion','neutral-slab-yb','fmm3d-inverse-r','gravity-kepler','gravity-plummer-short','thermal-landau-damping','thermal-two-stream','dsmc-couette','dsmc-fourier','dsmc-planar-shock',...examplesAddedAfterBatch37].includes(p.id))),'ea4dfdfc33dfb4da3c54b6a6a5d8e1c02fd10b94b2281af9e21fd15f55938d9c');

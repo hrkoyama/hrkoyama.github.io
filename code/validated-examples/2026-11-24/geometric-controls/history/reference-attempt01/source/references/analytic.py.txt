@@ -1,0 +1,72 @@
+"""Closed families independent of the scalar primary maps."""
+import math
+import numpy as np
+from scipy.special import ellipj, ellipk
+from scipy.optimize import brentq
+
+
+def pendulum(times, theta0=.7):
+    t = np.asarray(times, dtype=float)
+    k = math.sin(theta0/2); m = k*k
+    sn, cn, dn, _ = ellipj(ellipk(m)-t, m)
+    theta = 2*np.arcsin(k*sn); omega = -2*k*cn
+    q = np.column_stack((np.sin(theta), -np.cos(theta)))
+    p = np.column_stack((omega*np.cos(theta), omega*np.sin(theta)))
+    return dict(q=q, p=p, theta=theta, angular_velocity=omega,
+                sn=sn, cn=cn, dn=dn)
+
+
+def anomaly_bisection(mean, e):
+    lo, hi = float(mean)-e, float(mean)+e
+    for _ in range(100):
+        mid = (lo+hi)/2
+        value = mid-e*math.sin(mid)-mean
+        if value < 0:
+            lo = mid
+        else:
+            hi = mid
+        if hi-lo <= 4e-15*(1+abs(mid)):
+            return (hi+lo)/2
+    raise ArithmeticError('Independent anomaly bracket did not close')
+
+
+def kepler(times, e, bisection=False):
+    qs, ps, residuals = [], [], []
+    for time in times:
+        mean = float(time)
+        E = (anomaly_bisection(mean, e) if bisection else
+             brentq(lambda x: x-e*math.sin(x)-mean, mean-e, mean+e,
+                    xtol=1e-14, rtol=1e-14, maxiter=100))
+        c, s = math.cos(E), math.sin(E)
+        radius = 1-e*c; b = math.sqrt(1-e*e)
+        qs.append((c-e, b*s)); ps.append((-s/radius, b*c/radius))
+        residuals.append(E-e*math.sin(E)-mean)
+    return dict(q=np.asarray(qs), p=np.asarray(ps),
+                root_residual=np.asarray(residuals))
+
+
+def modes(omega, alpha=1.):
+    discriminant = math.sqrt((omega*omega-1)**2+4*alpha*alpha)
+    high = (1+omega*omega+discriminant)/2
+    low = (omega*omega-alpha*alpha)/high
+    x, y = alpha, high-1
+    length = math.hypot(x, y); x, y = x/length, y/length
+    # Rows are the low/high orthonormal eigenvectors.
+    return (low, high), ((-y, x), (x, y))
+
+
+def coupled(times, omega, alpha=1.):
+    eigenvalues, vectors = modes(omega, alpha)
+    amplitudes = [v[0]+v[1]/omega for v in vectors]
+    states = []
+    for time in times:
+        Q, P = [], []
+        for value, amplitude in zip(eigenvalues, amplitudes):
+            frequency = math.sqrt(value)
+            Q.append(amplitude*math.cos(frequency*float(time)))
+            P.append(-frequency*amplitude*math.sin(frequency*float(time)))
+        states.append((sum(v[0]*x for v, x in zip(vectors, Q)),
+                       sum(v[1]*x for v, x in zip(vectors, Q)),
+                       sum(v[0]*x for v, x in zip(vectors, P)),
+                       sum(v[1]*x for v, x in zip(vectors, P))))
+    return np.asarray(states)

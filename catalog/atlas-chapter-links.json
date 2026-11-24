@@ -1286,6 +1286,163 @@
         "ja": "既存の合成観測を保持し、小さな固定例でGN/LM・準Newton・正則化選択を比較します。",
         "en": "Retain existing synthetic observations and compare GN/LM, quasi-Newton methods and regularization selection on small fixed controls."
       }
+    },
+    {
+      "id": "validation-ode-adaptivity",
+      "method_ids": [
+        "bdf2",
+        "sdirk2",
+        "step-doubling",
+        "newton",
+        "rk45",
+        "strang-splitting",
+        "lie-trotter",
+        "centered-difference"
+      ],
+      "equation_ids": [
+        "robertson-kinetics",
+        "van-der-pol",
+        "linear-evolution-system",
+        "inhomogeneous-reaction-diffusion",
+        "heat"
+      ],
+      "problem_ids": [
+        "robertson-stiff-kinetics",
+        "van-der-pol-stiff-transition",
+        "rk45-dense-events",
+        "strang-boundary-order-reduction"
+      ],
+      "execution_ids": [
+        "robertson-stiff-kinetics",
+        "van-der-pol-stiff-transition",
+        "rk45-dense-events",
+        "strang-boundary-order-reduction"
+      ],
+      "reference_ids": [
+        "robertson-stiff-kinetics",
+        "van-der-pol-stiff-transition",
+        "rk45-dense-events",
+        "strang-boundary-order-reduction"
+      ],
+      "code_problem_ids": [
+        "robertson-stiff-kinetics",
+        "van-der-pol-stiff-transition",
+        "rk45-dense-events",
+        "strang-boundary-order-reduction"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "Robertsonとvan der Pol、RK45の補間・イベント、非同次境界の分割法を小さな固定入力で検証します。独立参照、局所推定と実誤差、時間誤差と空間誤差を区別します。",
+        "en": "Small fixed inputs validate Robertson and van der Pol, RK45 interpolation/events, and splitting with inhomogeneous boundaries. Independent references distinguish local estimates from actual errors and temporal from spatial errors."
+      }
+    },
+    {
+      "id": "validation-steady-rk",
+      "method_ids": [
+        "jameson-steady-rk"
+      ],
+      "equation_ids": [
+        "linear-evolution-system",
+        "finite-dimensional-linear-system"
+      ],
+      "problem_ids": [
+        "jameson-steady-linear-modes"
+      ],
+      "execution_ids": [
+        "jameson-steady-linear-modes"
+      ],
+      "reference_ids": [
+        "jameson-steady-linear-modes"
+      ],
+      "code_problem_ids": [
+        "jameson-steady-linear-modes"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "16成分の周期線形場で擬似時間の残差減衰を測り、安定・非減衰・発散の対照を示します。非線形非定常問題の4次精度とは区別します。",
+        "en": "A 16-component periodic linear field measures pseudo-time residual damping with stable, neutral and expanding controls. This is distinct from fourth-order accuracy for nonlinear physical-time problems."
+      }
+    },
+    {
+      "id": "validation-dae-controls",
+      "method_ids": [
+        "dae",
+        "backward-euler",
+        "newton",
+        "rk4"
+      ],
+      "equation_ids": [
+        "index-one-dae",
+        "robertson-kinetics",
+        "constrained-pendulum",
+        "hamiltonian"
+      ],
+      "problem_ids": [
+        "index1-dae-consistent-initialization",
+        "robertson-stiff-kinetics",
+        "high-index-pendulum"
+      ],
+      "execution_ids": [
+        "index1-dae-consistent-initialization",
+        "robertson-conservation-dae",
+        "high-index-pendulum"
+      ],
+      "reference_ids": [
+        "index1-dae-consistent-initialization",
+        "robertson-conservation-dae",
+        "high-index-pendulum"
+      ],
+      "code_problem_ids": [
+        "index1-dae-consistent-initialization",
+        "robertson-stiff-kinetics",
+        "high-index-pendulum"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "整合初期化、index-1保存則DAE、index-3振り子の微分拘束に基づくODEを比較します。保存された公式IDA出力との比較と、新たに実行した独立ODE参照を区別します。",
+        "en": "Compare consistent initialization, an index-one conservation DAE, and an underlying ODE for an index-three pendulum. Comparisons with stored official IDA output are distinguished from newly executed independent ODE references."
+      }
+    },
+    {
+      "id": "validation-geometric-controls",
+      "method_ids": [
+        "shake",
+        "rattle",
+        "verlet",
+        "strang-splitting"
+      ],
+      "equation_ids": [
+        "constrained-pendulum",
+        "hamiltonian",
+        "kepler-two-body",
+        "particle-gravity",
+        "coupled-harmonic-oscillators"
+      ],
+      "problem_ids": [
+        "high-index-pendulum",
+        "gravity-kepler",
+        "multifrequency-resonance"
+      ],
+      "execution_ids": [
+        "shake-rattle-pendulum",
+        "kepler-eccentricity",
+        "multifrequency-resonance"
+      ],
+      "reference_ids": [
+        "shake-rattle-pendulum",
+        "kepler-eccentricity",
+        "multifrequency-resonance"
+      ],
+      "code_problem_ids": [
+        "high-index-pendulum",
+        "gravity-kepler",
+        "multifrequency-resonance"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "SHAKE/RATTLE、Kepler軌道、結合振動子を固定した小規模条件で比較します。拘束、位相、エネルギーと丸め誤差を別々に示します。",
+        "en": "Fixed small examples compare SHAKE/RATTLE, Kepler orbits and coupled oscillators. Constraints, phase, energy and rounding effects are reported separately."
+      }
     }
   ]
 }

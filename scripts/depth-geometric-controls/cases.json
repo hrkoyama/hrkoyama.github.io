@@ -1,0 +1,274 @@
+[
+  {
+    "id": "shake-rattle-pendulum",
+    "method_ids": [
+      "shake",
+      "rattle"
+    ],
+    "domains": [
+      "classical-mechanics",
+      "geometric-integration"
+    ],
+    "validation_count": 32,
+    "title": {
+      "ja": "SHAKEとRATTLE：拘束と運動量の違い",
+      "en": "SHAKE and RATTLE: constraints and momentum ownership"
+    },
+    "summary": {
+      "ja": "単振り子の10固定軌道で、位置拘束、全時刻の接線運動量と内部点の中心化運動量を区別します。",
+      "en": "Ten fixed pendulum evolutions distinguish position constraints, full-time tangent momentum and interior centered momentum."
+    },
+    "assumptions": {
+      "ja": "L=m=g=1、初期角0.7、初期角速度0。C=(q·q−1)/2、T=100、h=0.04/0.02/0.01。拘束目標1e−13と粗格子の1e−10比較を固定。",
+      "en": "L=m=g=1, initial angle 0.7 and zero angular velocity. C=(q·q−1)/2, T=100 and h=0.04/0.02/0.01; position targets are fixed at 1e−13, with a coarse 1e−10 companion."
+    },
+    "algorithm": {
+      "ja": "独自のスカラーNewton位置拘束、RATTLE終端接線impulse、SHAKE位置対。SHAKEの運動量は内部点だけで中心化し、端点を作りません。 SHAKEのsolves列はeta、eta/h^2、位置残差、Newton更新数です。列1は一律にeta/h^2ですが、初回半刻みの物理乗数は2eta/h^2、以後の位置Verletではeta/h^2です。逆位置対はすべて後者です。判定と図はこの列1を使いません。",
+      "en": "Original scalar Newton position constraints, RATTLE final tangent impulses and SHAKE position pairs. SHAKE momentum is centered only at interior nodes; endpoint momenta are absent. SHAKE solves columns are eta, eta/h^2, position residual and Newton updates. Column1 uses the uniform recurrence normalization eta/h^2. For the first constrained half-step startup, the physical multiplier is 2*eta/h^2; later full position-Verlet steps use eta/h^2. Reverse-pair steps all use the later recurrence convention. RATTLE has its separate five-column normalization. No scientific gate or plot uses SHAKE column1."
+    },
+    "validation": {
+      "ja": "独立Jacobi解析族と角度系DOP853の資格、74主判定。有限Cの中心化恒等式、2段階FDの縮約写像診断、位置対／全状態の逆積分を分離。",
+      "en": "A separately qualified Jacobi family and angular DOP853 reference support 74 main decisions. Finite-C centered identities, two-delta reduced-map diagnostics and position-pair versus full-state reversals are distinct."
+    },
+    "limits": {
+      "ja": "原著SHAKE/RATTLE本文は未読で、著者講義ノートの選択箇所を確認。有限差分のsymplectic defectは一般証明ではなく、中心化SHAKE速度にRATTLEの接線拘束を要求しません。",
+      "en": "Original SHAKE and RATTLE full texts remain unread; selected author lecture notes were inspected. The finite-difference symplectic defect is a local proxy, not a general proof, and centered SHAKE velocity is not assigned RATTLE tangency."
+    },
+    "review_level": {
+      "ja": "一次資料の選択閲読と独立参照資格。実際の成否は保存result.jsonとverification.jsonに記録します。",
+      "en": "Selected primary passages and separately qualified independent references. Actual outcomes are recorded in the saved result.json and verification.json."
+    },
+    "formulas": [
+      "C(q)=\\tfrac12(q^Tq-1)=0",
+      "q_{n+1}=q_n+h p_n+\\tfrac12h^2 f-\\eta_n q_n",
+      "q_n^Tp_n^c=\\frac{\\|q_n-q_{n-1}\\|^2-\\|q_{n+1}-q_n\\|^2}{4h}+\\frac{C_{n+1}-C_{n-1}}{2h}"
+    ],
+    "source_files": [
+      "physics.py",
+      "diagnostics.py",
+      "run.py",
+      "references/analytic.py",
+      "references/discrete.py"
+    ],
+    "code_files": [
+      "physics.py",
+      "diagnostics.py",
+      "run.py",
+      "references/analytic.py",
+      "references/discrete.py"
+    ],
+    "references": [
+      {
+        "id": "hairer-manifolds-2011",
+        "title": "Solving Differential Equations on Manifolds",
+        "url": "https://www.unige.ch/~hairer/poly-sde-mani.pdf",
+        "year": 2011,
+        "year_role": "date displayed on lecture notes",
+        "accessed_on": "2026-11-24",
+        "review_level": "selected-primary-scope",
+        "review_scope": "Author-hosted lecture notes, selected printed page50, SectionV.5, equations5.1–5.3 and Theorem5.1 statement, rendered and visually read. Centered SHAKE momentum and RATTLE final tangency are explicit. The original1977 SHAKE and1983 RATTLE articles remain full-text unread; no full proof review is claimed."
+      },
+      {
+        "id": "hairer-symplectic-2010",
+        "title": "Lecture2: Symplectic integrators",
+        "url": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+        "year": 2010,
+        "year_role": "displayed course date",
+        "accessed_on": "2026-11-24",
+        "review_level": "selected-primary-scope",
+        "review_scope": "Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment."
+      },
+      {
+        "id": "dlmf-jacobi-periods",
+        "title": "DLMF22.4: Periods, Poles, and Zeros",
+        "url": "https://dlmf.nist.gov/22.4",
+        "year": 2026,
+        "year_role": "version",
+        "version": "1.2.8",
+        "release_date": "2026-09-15",
+        "accessed_on": "2026-11-24",
+        "review_level": "selected-primary-scope",
+        "review_scope": "Official Table22.4.1 selected real periods: sn and cn have4K, dn has2K. Version date is not an initial publication date. Common-period reduction and direct-library periodicity qualification are separate from the independent angular DOP853 state comparison."
+      }
+    ],
+    "gallery_figure": "shake-rattle-pendulum-preview.png",
+    "additional_figures": [
+      {
+        "file": "shake-rattle-pendulum-preview.png",
+        "caption": {
+          "ja": "保存したh=0.01の縮約位相軌道。SHAKEは内部点の中心化運動量、RATTLEは全時刻の接線運動量です。",
+          "en": "Saved reduced phase portraits at h=0.01. SHAKE uses interior centered momentum; RATTLE uses full-time tangent momentum."
+        }
+      }
+    ]
+  },
+  {
+    "id": "kepler-eccentricity",
+    "method_ids": [
+      "verlet"
+    ],
+    "domains": [
+      "classical-mechanics",
+      "geometric-integration"
+    ],
+    "validation_count": 32,
+    "title": {
+      "ja": "離心率を変えたKepler軌道と時間刻み",
+      "en": "Kepler eccentricity and time-step controls"
+    },
+    "summary": {
+      "ja": "e=0.1/0.7の16固定軌道で、保存量と同時刻の位相誤差、実際の近日点時刻と逆積分を比較します。",
+      "en": "Sixteen fixed evolutions at e=0.1/0.7 compare invariants, same-time phase error, physical periapsis times and reversal."
+    },
+    "assumptions": {
+      "ja": "a=μ=換算質量=1、軟化なし。1周期は512/1024/2048刻み、10周期は基準2048刻み/周期。変動刻みh=h0|q|を現在状態から定め、最後だけ物理終端へ短縮。",
+      "en": "a=mu=reduced mass=1, without softening. One-period runs use 512/1024/2048 steps; ten-period controls use h0=2π/2048. Variable steps use h=h0|q| at the current state, with only the final step shortened to the physical endpoint."
+    },
+    "algorithm": {
+      "ja": "独自の中心力KDK Verlet。固定・保存刻み再生・再生成刻みを区別し、cubic Hermite軌道の正の放射速度交差をbrentqで局在化。",
+      "en": "Original central-force KDK Verlet. Fixed, replayed and regenerated schedules are distinct. Positive radial crossings of cubic Hermite trajectories are localized by brentq."
+    },
+    "validation": {
+      "ja": "独立のKepler方程式brentq／二分法解析族、92主判定。全状態誤差とエネルギー・角運動量、8回以上の近日点、有限窓の順序と反転誤差を検査。",
+      "en": "An independent Kepler-equation family, qualified with brentq and bisection, supports 92 main decisions: full-state error, energy/angular momentum, at least eight periapses, finite-window order and reversal defects."
+    },
+    "limits": {
+      "ja": "保存量の小さい誤差から位相精度を推論しません。変動刻み写像の正準symplectic defectは測定せず、固定hの性質をそのまま移しません。初期解像度R1は数値実行前の漸近解析でR2へ改訂。",
+      "en": "Small invariant errors do not establish phase accuracy. No canonical symplectic-defect measurement is claimed for the variable-step map, and fixed-h properties are not transferred automatically. R1 resolution was revised to R2 using pre-execution asymptotic planning, not measured calibration."
+    },
+    "review_level": {
+      "ja": "一次資料の選択閲読と独立参照資格。実際の成否は保存result.jsonとverification.jsonに記録します。",
+      "en": "Selected primary passages and separately qualified independent references. Actual outcomes are recorded in the saved result.json and verification.json."
+    },
+    "formulas": [
+      "\\ddot q=-q/\\|q\\|^3",
+      "E-e\\sin E=t,\\quad q=(\\cos E-e,\\sqrt{1-e^2}\\sin E)",
+      "H=\\tfrac12\\|p\\|^2-1/\\|q\\|"
+    ],
+    "source_files": [
+      "physics.py",
+      "diagnostics.py",
+      "run.py",
+      "references/analytic.py",
+      "references/discrete.py"
+    ],
+    "code_files": [
+      "physics.py",
+      "diagnostics.py",
+      "run.py",
+      "references/analytic.py",
+      "references/discrete.py"
+    ],
+    "references": [
+      {
+        "id": "hairer-symplectic-2010",
+        "title": "Lecture2: Symplectic integrators",
+        "url": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+        "year": 2010,
+        "year_role": "displayed course date",
+        "accessed_on": "2026-11-24",
+        "review_level": "selected-primary-scope",
+        "review_scope": "Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment."
+      },
+      {
+        "id": "jpl-kepler-equation",
+        "title": "Approximate Positions of the Planets",
+        "url": "https://ssd.jpl.nasa.gov/planets/approx_pos.html",
+        "accessed_on": "2026-11-24",
+        "review_level": "selected-primary-scope",
+        "review_scope": "Official JPL page, selected steps3–4 and Kepler equation. Only the eccentric-anomaly equation and elliptic coordinate transformation are used; no planetary coefficient tables, fitted ephemeris accuracy or Horizons calculation is claimed. Publication date was not verified."
+      }
+    ],
+    "gallery_figure": "kepler-eccentricity-preview.png",
+    "additional_figures": [
+      {
+        "file": "kepler-eccentricity-preview.png",
+        "caption": {
+          "ja": "保存したe=0.7、10周期の固定刻み／変動刻み軌道。物理座標は等倍率で、中心力は軟化していません。",
+          "en": "Saved ten-period fixed-step and variable-step orbits at e=0.7, shown with equal physical aspect and an unsoftened central force."
+        }
+      }
+    ]
+  },
+  {
+    "id": "multifrequency-resonance",
+    "method_ids": [
+      "verlet",
+      "strang-splitting"
+    ],
+    "domains": [
+      "classical-mechanics",
+      "geometric-integration"
+    ],
+    "validation_count": 32,
+    "title": {
+      "ja": "結合した2周波数系と共鳴の有限窓",
+      "en": "Coupled frequencies and finite-window resonance"
+    },
+    "summary": {
+      "ja": "2自由度の実結合系で、12の64刻みprobeと6の精度軌道を使い、真のモード、座標間交換、離散写像と丸めを分けます。",
+      "en": "A genuinely coupled two-degree-of-freedom system uses twelve 64-step probes and six accuracy trajectories to separate normal modes, coordinate exchange, discrete maps and roundoff."
+    },
+    "assumptions": {
+      "ja": "α=1、ω=10/20、q0=(1,1/ω)、p0=0。中心probeは保存binary64のhとsin/cosをそのまま使い、πへ丸め直しません。",
+      "en": "alpha=1, omega=10/20, q0=(1,1/omega) and p0=0. Central probes retain the evaluated binary64 h and sin/cos coefficients without snapping to mathematical pi."
+    },
+    "algorithm": {
+      "ja": "全ポテンシャルVerletと、B半kick・A厳密flow・B半kickのStrang impulse。Aには高速調和振動子と低速自由流、Bには低速位置項と結合を含めます。",
+      "en": "Full-potential Verlet and a Strang impulse composition: half B kick, exact A flow, half B kick. A contains the fast oscillator and slow free drift; B contains the slow potential and the coupling."
+    },
+    "validation": {
+      "ja": "116主判定。独立の結合固有モード解析、保存係数Decimal80/120・Fraction写像、段階別γ8丸め上界を区別。理想πのJordan構造は有理恒等式で別確認。 各probeは現在保存した係数hexからDecimal80/120を評価し、6精度軌道はDecimal80を用います。",
+      "en": "The 116 main decisions distinguish independent coupled normal modes, Decimal80/120 and Fraction frozen-coefficient maps, and stagewise gamma8 roundoff allowances. Ideal-pi Jordan structure is checked separately by rational identities. Each probe uses the current saved coefficient hex for its own Decimal80/120 actions; six accuracy actions use Decimal80."
+    },
+    "limits": {
+      "ja": "中心の実浮動係数写像はunresolvedとし、理想πのJordan性を移しません。64刻み増幅と小さい固定入力の観測であり、走査した共鳴図・一般安定性・長時間の普遍誤差定理は主張しません。",
+      "en": "The central actual floating map remains unresolved; ideal-pi Jordan structure is not transferred to it. Results concern 64-step amplification and small fixed inputs, not a scanned resonance diagram, general stability or a universal long-time error theorem."
+    },
+    "review_level": {
+      "ja": "一次資料の選択閲読と独立参照資格。実際の成否は保存result.jsonとverification.jsonに記録します。",
+      "en": "Selected primary passages and separately qualified independent references. Actual outcomes are recorded in the saved result.json and verification.json."
+    },
+    "formulas": [
+      "H=\\tfrac12(p_1^2+p_2^2+q_1^2+\\omega^2q_2^2)+\\alpha q_1q_2",
+      "\\Phi_h=\\varphi^B_{h/2}\\circ\\varphi^A_h\\circ\\varphi^B_{h/2}",
+      "\\chi_{\\theta=\\pi}(z)=(z+1)^2[z^2-(2-h^2)z+1]"
+    ],
+    "source_files": [
+      "physics.py",
+      "diagnostics.py",
+      "run.py",
+      "references/analytic.py",
+      "references/discrete.py"
+    ],
+    "code_files": [
+      "physics.py",
+      "diagnostics.py",
+      "run.py",
+      "references/analytic.py",
+      "references/discrete.py"
+    ],
+    "references": [
+      {
+        "id": "hairer-symplectic-2010",
+        "title": "Lecture2: Symplectic integrators",
+        "url": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+        "year": 2010,
+        "year_role": "displayed course date",
+        "accessed_on": "2026-11-24",
+        "review_level": "selected-primary-scope",
+        "review_scope": "Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment."
+      }
+    ],
+    "gallery_figure": "multifrequency-resonance-preview.png",
+    "additional_figures": [
+      {
+        "file": "multifrequency-resonance-preview.png",
+        "caption": {
+          "ja": "保存した最細impulse軌道の実q1–q2座標と物理時刻。これは走査相図ではなく、結合した1軌道です。",
+          "en": "Saved q1–q2 coordinates of the finest impulse trajectory, colored by physical time. This is one coupled trajectory, not a scanned phase diagram."
+        }
+      }
+    ]
+  }
+]

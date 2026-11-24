@@ -8343,5 +8343,637 @@
   "reference.batch58-67.1ad76e8b2125": {
     "en": "No general large-scale performance, convergence, universal nonsmooth derivative or statistical coverage guarantee.",
     "ja": "大規模性能や一般的収束、非滑らかな点の普遍的な微分、雑音の被覆保証へは広げません。"
+  },
+  "reference.batch68-77.8a2200afd694": {
+    "en": "Stiff ODEs, RK45 and boundary splitting",
+    "ja": "硬いODE・RK45・境界分割"
+  },
+  "reference.batch68-77.40a201fdef62": {
+    "en": "Small fixed inputs validate Robertson and van der Pol, RK45 interpolation/events, and splitting with inhomogeneous boundaries. Independent references distinguish local estimates from actual errors and temporal from spatial errors.",
+    "ja": "Robertsonとvan der Pol、RK45の補間・イベント、非同次境界の分割法を小さな固定入力で検証します。独立参照、局所推定と実誤差、時間誤差と空間誤差を区別します。"
+  },
+  "reference.batch68-77.e7eda09c8ddf": {
+    "en": "Modal damping of steady multistage RK",
+    "ja": "定常多段RKのモード減衰"
+  },
+  "reference.batch68-77.f583b69b2522": {
+    "en": "A 16-component periodic linear field measures pseudo-time residual damping with stable, neutral and expanding controls. This is distinct from fourth-order accuracy for nonlinear physical-time problems.",
+    "ja": "16成分の周期線形場で擬似時間の残差減衰を測り、安定・非減衰・発散の対照を示します。非線形非定常問題の4次精度とは区別します。"
+  },
+  "reference.batch68-77.8bdaf5bfc7a9": {
+    "en": "DAE initialization, conservation and constraint drift",
+    "ja": "DAEの初期化・保存則・拘束ドリフト"
+  },
+  "reference.batch68-77.072f23a10bb4": {
+    "en": "Compare consistent initialization, an index-one conservation DAE, and an underlying ODE for an index-three pendulum. Comparisons with stored official IDA output are distinguished from newly executed independent ODE references.",
+    "ja": "整合初期化、index-1保存則DAE、index-3振り子の微分拘束に基づくODEを比較します。保存された公式IDA出力との比較と、新たに実行した独立ODE参照を区別します。"
+  },
+  "reference.batch68-77.f3a00819ddc4": {
+    "en": "Geometric integration of constraints, orbits and multiple frequencies",
+    "ja": "拘束・軌道・多周波数の幾何積分"
+  },
+  "reference.batch68-77.0f05a21f3578": {
+    "en": "Fixed small examples compare SHAKE/RATTLE, Kepler orbits and coupled oscillators. Constraints, phase, energy and rounding effects are reported separately.",
+    "ja": "SHAKE/RATTLE、Kepler軌道、結合振動子を固定した小規模条件で比較します。拘束、位相、エネルギーと丸め誤差を別々に示します。"
+  },
+  "reference.batch68-77.1410d0037d51": {
+    "en": "Robertson kinetics: initial stiffness and actual error",
+    "ja": "Robertson反応系の初期剛性と実誤差"
+  },
+  "reference.batch68-77.61dd0b09cf21": {
+    "en": "A nondimensional three-species system starts at (1, 0, 0) and ends at T = 0.4. The fixed methods use 512, 1024 and 2048 steps; two adaptive tolerance settings bring the total to eight runs.",
+    "ja": "無次元3成分、初期値(1,0,0)、T=.4。固定512/1024/2048刻みと2許容誤差の適応法で計8run。"
+  },
+  "reference.batch68-77.3d3bb141eef5": {
+    "en": "Check actual errors at 22 common times, mass and minimum values at every accepted state, true stage residuals, and actual RHS, Jacobian, factorization and linear-solve counts separately. Conservation and positivity are observations for these inputs, not universal guarantees. Accuracy is sampled on T <= 0.4; this does not validate long-time chemistry or an all-time error bound.",
+    "ja": "22共通時刻の実誤差、全受理時刻の質量/最小値、真の段階残差、実RHS/Jacobian/因子/solve数を別判定します。 保存/正値性は固定入力の観測で、一般的な保証ではありません。T=.4の短時間・標本時刻での精度であり、長時間化学精度や全時刻誤差上限は主張しません。"
+  },
+  "reference.batch68-77.876631deec37": {
+    "en": "Compare BDF2, SDIRK2 and adaptive step doubling on a short fixed interval against qualified Radau and BDF references.",
+    "ja": "短い固定区間でBDF2・SDIRK2・倍分割適応法を、資格済みRadau/BDF参照と比較します。"
+  },
+  "reference.batch68-77.5ca0428479ac": {
+    "en": "BDF2 starts with backward Euler on the same grid. SDIRK2 stages use a weighted maximum residual and reuse Jacobian factors only within one stage. Adaptive steps use an RMS step-doubling estimate and accept the two-half-step result.",
+    "ja": "BDF2は同格子BE開始。SDIRK2の非線形段階は重み付き最大残差で判定し、同じ段階内だけJacobian因子を再利用。適応法はRMS倍分割誤差と2半刻みを採用。"
+  },
+  "reference.batch68-77.06d08168e630": {
+    "en": "Check actual errors at 22 common times, mass and minimum values at every accepted state, true stage residuals, and actual RHS, Jacobian, factorization and linear-solve counts separately.",
+    "ja": "22共通時刻の実誤差、全受理時刻の質量/最小値、真の段階残差、実RHS/Jacobian/因子/solve数を別判定します。"
+  },
+  "reference.batch68-77.54f19a116003": {
+    "en": "Conservation and positivity are observations for these inputs, not universal guarantees. Accuracy is sampled on T <= 0.4; this does not validate long-time chemistry or an all-time error bound.",
+    "ja": "保存/正値性は固定入力の観測で、一般的な保証ではありません。T=.4の短時間・標本時刻での精度であり、長時間化学精度や全時刻誤差上限は主張しません。"
+  },
+  "reference.batch68-77.522c20bea32e": {
+    "en": "Read the model, initial values and Jacobian in selected official source sections. The observed main URL is not an immutable release pin. Our T = 0.4 scope does not reproduce the original paper, the long 4e10 benchmark or its numerical tables.",
+    "ja": "観測mainのモデル式・初期値・Jacobianを選択閲読。今回T=.4のみで、原論文全文・4e10の長時間計算や既存数値表の再現ではありません。"
+  },
+  "reference.batch68-77.e4b901a3d163": {
+    "en": "Read selected fixed-version method, API, local-tolerance and termination sections. This is not a full audit of the original research papers.",
+    "ja": "固定版の手法/API・局所許容誤差・終了状態を選択確認。独立原著の全編監査ではありません。"
+  },
+  "reference.batch68-77.6c96a007fd52": {
+    "en": "Compare BDF2, SDIRK2 and adaptive step doubling on a short fixed interval against qualified Radau and BDF references. This preview reads saved numerical fields and references only.",
+    "ja": "短い固定区間でBDF2・SDIRK2・倍分割適応法を、資格済みRadau/BDF参照と比較します。 保存済みの数値場と参照を用いた図です。"
+  },
+  "reference.batch68-77.0dffc0230b39": {
+    "en": "Axes for trajectories, states, time or iterations do not represent physical spatial dimensions.",
+    "ja": "図の軌道・状態・時刻・反復の軸は、物理空間の次元を表しません。"
+  },
+  "reference.batch68-77.4aa23c17385f": {
+    "en": "Van der Pol: an early stiffness transition",
+    "ja": "van der Polの短時間剛性遷移"
+  },
+  "reference.batch68-77.759c422c49df": {
+    "en": "The system is xprime = v and vprime = mu(1 - x squared)v - x, initially (2, 0), over T = 2. Two fixed methods, three step counts and two mu values plus four adaptive runs give 16 runs.",
+    "ja": "x′=v,v′=μ(1−x²)v−x、初期値(2,0)、T=2。2方式×3刻み×2μと適応4runで計16run。"
+  },
+  "reference.batch68-77.92d98616ee4e": {
+    "en": "Compare 21 sampled times with qualified Radau and BDF references. Preserve every original decision, including false values. Require the other 208 conditions separately from three checks of faithful disclosure, actual local controls and retained original failure evidence. This post-measurement reporting revision is not a numerical repair. The first error, 4.535633779e-5, exceeded the original 2e-5 goal. Local tolerances do not guarantee global accuracy, and reporting PASS does not mean all original goals were met. Full large-mu cycles are outside scope.",
+    "ja": "資格済みRadau/BDFと21時刻で比較。元の全判定を偽値も含め保存し、他208条件と、結果の忠実な表示・実局所制御・元失敗保存の3検証を別に要求します。 測定後の報告範囲変更で、数値的な修復ではありません。初回誤差4.535633779e-5は元目標2e-5を超えます。局所rtolは大域誤差を保証せず、報告検証の合格は全元目標の達成ではありません。大μ全周期は対象外です。"
+  },
+  "reference.batch68-77.47a7e08aa230": {
+    "en": "Separate local control from global error. The first study met 208 of 209 original targets; the mu = 1 tight adaptive run missed the 2e-5 global goal.",
+    "ja": "局所制御と大域誤差を分離します。初回は元209目標中208達成で、μ=1の厳しい適応設定は大域目標2e-5に未達でした。"
+  },
+  "reference.batch68-77.60b9e6e996a9": {
+    "en": "Use actual BDF2, SDIRK2 and adaptive step doubling, analytic Jacobians, factor reuse within each implicit stage, and retained candidates on failure.",
+    "ja": "BDF2/SDIRK2と倍分割適応法。解析Jacobian・段階内だけの因子再利用・失敗時の候補保存を実装します。"
+  },
+  "reference.batch68-77.2e80c79a6132": {
+    "en": "Compare 21 sampled times with qualified Radau and BDF references. Preserve every original decision, including false values. Require the other 208 conditions separately from three checks of faithful disclosure, actual local controls and retained original failure evidence.",
+    "ja": "資格済みRadau/BDFと21時刻で比較。元の全判定を偽値も含め保存し、他208条件と、結果の忠実な表示・実局所制御・元失敗保存の3検証を別に要求します。"
+  },
+  "reference.batch68-77.e27864235bc0": {
+    "en": "This post-measurement reporting revision is not a numerical repair. The first error, 4.535633779e-5, exceeded the original 2e-5 goal. Local tolerances do not guarantee global accuracy, and reporting PASS does not mean all original goals were met. Full large-mu cycles are outside scope.",
+    "ja": "測定後の報告範囲変更で、数値的な修復ではありません。初回誤差4.535633779e-5は元目標2e-5を超えます。局所rtolは大域誤差を保証せず、報告検証の合格は全元目標の達成ではありません。大μ全周期は対象外です。"
+  },
+  "reference.batch68-77.8b4a3aaa8258": {
+    "en": "Read the equations and initial state in the official binding example. Our mu = 1 and 100, T = 2 inputs are an authored early-transient scope, not an original-paper or full mu = 1000 cycle reproduction.",
+    "ja": "公式binding例の2階/1階系と初期値を確認。採用μ=1/100,T=2は独自の軽量範囲で、原著やμ1000全周期の再現ではありません。"
+  },
+  "reference.batch68-77.473c6fc2cd7c": {
+    "en": "Saved fixed-step comparisons and the local/global error distinction. The first study met 208/209 targets; the unmet mu = 1 adaptive global goal of 2e-5 remains recorded.",
+    "ja": "保存済みの固定刻み比較と局所/大域誤差の区別。初回208/209で、μ=1適応法の大域目標2e-5は未達のまま保持します。"
+  },
+  "reference.batch68-77.7e1fb4ac6d29": {
+    "en": "RK45: embedded errors, dense output and events",
+    "ja": "RK45の埋込み推定・補間・イベント"
+  },
+  "reference.batch68-77.d23c6fff8de4": {
+    "en": "Use gamma = 0.2, omega = 3, initial state (1, 0), and T = 2. Three paired relative and absolute tolerances with two maximum steps, plus two terminal runs, give eight runs.",
+    "ja": "γ=.2,ω=3、初期値(1,0)、T=2。3対のrtol/atol×2最大刻みと終端交差2runで計8run。"
+  },
+  "reference.batch68-77.7eb7dfaee9c7": {
+    "en": "Analytic states and the simple crossings at pi/6 and pi/2 provide independent truth. Check endpoints, 97 off-mesh samples, event times and residuals, and the actual identity nfev = 1 + 6 times the attempted-step count. There is no general guarantee for tangential roots, multiple crossings within a step or systems with resets. Initial-zero and ownership controls are limited component tests; local tolerances and global accuracy remain distinct.",
+    "ja": "解析状態とπ/6,π/2の単純交差を参照に、端点/97オフメッシュ点/イベント時刻・残差と実nfev=1+6試行数を判定。 接触根・1刻み内の多重交差・reset付き系の一般性は保証しません。初期零/所有権/resetは限定成分対照で、局所許容誤差と大域精度を同一視しません。"
+  },
+  "reference.batch68-77.20f0e5589a72": {
+    "en": "Use analytic damped rotation to test acceptance, rejection, FSAL ownership, dense interpolation and directed event times separately.",
+    "ja": "減衰回転の解析解を使い、受理/棄却・FSAL・区間内補間・向き付き交差時刻を分けて検査します。"
+  },
+  "reference.batch68-77.df9d7695e90a": {
+    "en": "Use actual Dormand–Prince 5(4) stages, a quartic continuous extension, an accepted-state derivative cache and bracket bisection on retained interpolants. A rejected endpoint never replaces the accepted starting derivative.",
+    "ja": "実Dormand–Prince5(4)・quartic連続拡張・受理状態が所有するFSAL・保存補間上の符号区間二分法。拒否端点を昇格しません。"
+  },
+  "reference.batch68-77.4388ad9f7dc1": {
+    "en": "Analytic states and the simple crossings at pi/6 and pi/2 provide independent truth. Check endpoints, 97 off-mesh samples, event times and residuals, and the actual identity nfev = 1 + 6 times the attempted-step count.",
+    "ja": "解析状態とπ/6,π/2の単純交差を参照に、端点/97オフメッシュ点/イベント時刻・残差と実nfev=1+6試行数を判定。"
+  },
+  "reference.batch68-77.a1150751b4de": {
+    "en": "There is no general guarantee for tangential roots, multiple crossings within a step or systems with resets. Initial-zero and ownership controls are limited component tests; local tolerances and global accuracy remain distinct.",
+    "ja": "接触根・1刻み内の多重交差・reset付き系の一般性は保証しません。初期零/所有権/resetは限定成分対照で、局所許容誤差と大域精度を同一視しません。"
+  },
+  "reference.batch68-77.4a4d929a48e4": {
+    "en": "Read C, A, B, E, P, stage evaluation, accepted/rejected FSAL updates and quartic evaluation. The original Dormand–Prince 1980 and Shampine 1986 papers remain unread beyond bibliography. The adapted coefficient BSD notice is retained.",
+    "ja": "C/A/B/E/P、段階・受理/棄却時FSAL更新、quartic補間を確認。原Dormand–Prince1980/Shampine1986論文は書誌参照のみで全文未読。係数由来のBSD通知を同梱。"
+  },
+  "reference.batch68-77.cdd6ffce16b7": {
+    "en": "Use analytic damped rotation to test acceptance, rejection, FSAL ownership, dense interpolation and directed event times separately. This preview reads saved numerical fields and references only.",
+    "ja": "減衰回転の解析解を使い、受理/棄却・FSAL・区間内補間・向き付き交差時刻を分けて検査します。 保存済みの数値場と参照を用いた図です。"
+  },
+  "reference.batch68-77.c92d9d1fde06": {
+    "en": "Strang splitting: Dirichlet boundary order reduction and correction",
+    "ja": "Dirichlet境界でのStrang次数低下と補正"
+  },
+  "reference.batch68-77.910e5fe373c9": {
+    "en": "Solve u_t = u_xx + u on [0, 1] with both boundary values equal to 1, an analytic steady state plus a 0.1 sine perturbation, and T = 0.1. Use 31, 63 and 127 interior nodes with 8, 16, 32 and 64 steps, plus four Lie controls: 28 runs.",
+    "ja": "u_t=u_xx+u、[0,1]、両端u=1、解析定常解+.1正弦摂動、T=.1。内部31/63/127点・8/16/32/64刻みとLie対照4run、計28run。"
+  },
+  "reference.batch68-77.8442f20b003e": {
+    "en": "First qualify an independent sparse affine exponential action against separately written sine sums. Then separate temporal error against the same finite-difference system, spatial error against the analytic continuum field, and observed order in the fixed regime. This is an authored linear specialization, not a reproduction of the original nonlinear tables. It makes no general claim for nonautonomous boundaries or universal order loss. The final reaction-trace mismatch of Lie splitting is disclosed separately.",
+    "ja": "独立疎affine指数作用と別記述の正弦和を先に資格。同FD時間誤差・解析連続解との差・固定格子/刻み領域の観測次数を判定。 原著の線形特殊例で非線形数値表の再現ではありません。非自律/一般境界や普遍的な次数低下は主張せず、Lie終端の反応trace不整合も別表示します。"
+  },
+  "reference.batch68-77.01ed895b453f": {
+    "en": "Evolve actual one-dimensional nonperiodic fields and compare unmodified and boundary-corrected Strang splitting against the same spatial discretization.",
+    "ja": "実1D非周期場で、未補正/境界補正Strangを同じFD参照へ比較し、時間誤差と空間誤差を分けます。"
+  },
+  "reference.batch68-77.d7507b5105a3": {
+    "en": "For w = u - 1, use the unmodified split (Lw, w + 1) or the corrected split (Lw + 1, w). Compose actual Dirichlet DST-I flows and retain the reaction boundary mismatch.",
+    "ja": "w=u−1で未補正(Lw,w+1)、補正(Lw+1,w)に分割。実DirichletDST-I指数流を合成し、反応の境界不整合を保持します。"
+  },
+  "reference.batch68-77.c126f748f3ce": {
+    "en": "First qualify an independent sparse affine exponential action against separately written sine sums. Then separate temporal error against the same finite-difference system, spatial error against the analytic continuum field, and observed order in the fixed regime.",
+    "ja": "独立疎affine指数作用と別記述の正弦和を先に資格。同FD時間誤差・解析連続解との差・固定格子/刻み領域の観測次数を判定。"
+  },
+  "reference.batch68-77.d71b0d9cfc1c": {
+    "en": "This is an authored linear specialization, not a reproduction of the original nonlinear tables. It makes no general claim for nonautonomous boundaries or universal order loss. The final reaction-trace mismatch of Lie splitting is disclosed separately.",
+    "ja": "原著の線形特殊例で非線形数値表の再現ではありません。非自律/一般境界や普遍的な次数低下は主張せず、Lie終端の反応trace不整合も別表示します。"
+  },
+  "reference.batch68-77.ce51d7714a3b": {
+    "en": "Read selected extracted text from the 2014 v1 preprint: section 2, Algorithm 2, the constant-boundary example, section 3.2 assumptions and result, and the one-dimensional example. This was not a full-proof or whole-PDF visual audit; the present linear specialization does not reproduce the nonlinear tables.",
+    "ja": "2014v1の§2/Algorithm2/定数境界例、§3.2の定理・仮定、1D例の選択抽出テキストを閲読。全証明・原PDF全画像の監査ではありません。今回線形特殊例で、原著の非線形数値表ではありません。"
+  },
+  "reference.batch68-77.b789be20f3de": {
+    "en": "Evolve actual one-dimensional nonperiodic fields and compare unmodified and boundary-corrected Strang splitting against the same spatial discretization. This preview reads saved numerical fields and references only.",
+    "ja": "実1D非周期場で、未補正/境界補正Strangを同じFD参照へ比較し、時間誤差と空間誤差を分けます。 保存済みの数値場と参照を用いた図です。"
+  },
+  "reference.batch68-77.7e585814d444": {
+    "en": "Real-space mode damping with steady multistage RK",
+    "ja": "定常多段RKの実空間モード減衰"
+  },
+  "reference.batch68-77.dbaa9b8617c0": {
+    "en": "A fixed dimensionless sixteen-node periodic linear residual; pseudo-time is an iteration parameter.",
+    "ja": "無次元の固定16点・周期・線形残差。疑似時間は反復パラメータです。"
+  },
+  "reference.batch68-77.bcf74175ab09": {
+    "en": "Retain all 41 original numerical targets and their actual decisions. Only the expanding-control absolute residual goal is a separate study outcome; the other 40 requirements and faithful recomputation from saved arrays remain mandatory. Limited to a fixed linear example; no JST compressible flux, nonlinear fourth-order RK or all-start convergence claim. Verification of this study does not mean that all original numerical targets were met.",
+    "ja": "元の41数値目標と実際の真偽を変更せず保存します。増幅制御の絶対残差目標だけを研究結果として分離し、他40条件と保存配列からの判定再計算・正確な表示を必須にします。 固定線形例に限定。JST圧縮性流束や非線形4次RK、任意初期値の収束は検証しません。 元の全数値目標の合格を意味する公開ではありません。"
+  },
+  "reference.batch68-77.7eab2295fe2c": {
+    "en": "Apply four steady residual stages on a periodic grid, separating damping, neutrality and amplification of discrete modes. The retained first run missed the original absolute residual goal in the expanding control.",
+    "ja": "周期格子の実残差に4段定常反復を適用し、離散モードの減衰・中立・増幅を区別します。 初回の増幅制御では元の絶対残差目標が未達でした。"
+  },
+  "reference.batch68-77.49b9734d51a8": {
+    "en": "Use the same base state in every stage and retain complete fields, stage residuals and evaluation counts.",
+    "ja": "全段で同じ基底状態を用い、全場・全段残差・評価回数を保存します。"
+  },
+  "reference.batch68-77.ac1e2a08e8f1": {
+    "en": "Retain all 41 original numerical targets and their actual decisions. Only the expanding-control absolute residual goal is a separate study outcome; the other 40 requirements and faithful recomputation from saved arrays remain mandatory.",
+    "ja": "元の41数値目標と実際の真偽を変更せず保存します。増幅制御の絶対残差目標だけを研究結果として分離し、他40条件と保存配列からの判定再計算・正確な表示を必須にします。"
+  },
+  "reference.batch68-77.a805d4f21f5d": {
+    "en": "Limited to a fixed linear example; no JST compressible flux, nonlinear fourth-order RK or all-start convergence claim. Verification of this study does not mean that all original numerical targets were met.",
+    "ja": "固定線形例に限定。JST圧縮性流束や非線形4次RK、任意初期値の収束は検証しません。 元の全数値目標の合格を意味する公開ではありません。"
+  },
+  "reference.batch68-77.409f439f1949": {
+    "en": "Apply four steady residual stages on a periodic grid, separating damping, neutrality and amplification of discrete modes. Drawn from saved arrays. The first-run goal shortfall and each rerun’s actual target decisions remain explicit in the saved JSON.",
+    "ja": "周期格子の実残差に4段定常反復を適用し、離散モードの減衰・中立・増幅を区別します。 保存配列から作図。 初回の元精度目標未達と再実行の実測判定は保存JSONで区別します。"
+  },
+  "reference.batch68-77.313b2787bd5e": {
+    "en": "Saved residuals, constraints and budgets shown separately; symmetric log axes retain zero values. The first-run goal shortfall and each rerun’s actual target decisions remain explicit in the saved JSON.",
+    "ja": "保存済み残差・拘束・収支を別表示。ゼロ値は対称対数軸で保持します。 初回の元精度目標未達と再実行の実測判定は保存JSONで区別します。"
+  },
+  "reference.batch68-77.d5ffa65ee1bb": {
+    "en": "Consistent initialization and discrete residuals for an index-one DAE",
+    "ja": "index-1 DAEの整合初期化と離散残差"
+  },
+  "reference.batch68-77.dd2a2a77cf74": {
+    "en": "Dimensionless positive branch; differential and algebraic row scales are both one, with the maximum norm.",
+    "ja": "無次元・正枝。微分行と代数行の尺度はそれぞれ1で、最大ノルムを用います。"
+  },
+  "reference.batch68-77.cf801ecc07ab": {
+    "en": "Compare independent Decimal manufactured states, three discrete roots and three fixed grids, checking first-order error and the algebraic constraint. One authored positive branch and fixed BE runs; no IDA execution or general DAE-solver qualification.",
+    "ja": "独立Decimal製造解・3つの離散根と3固定格子を比較し、一次誤差と代数拘束を確認します。 単一の製造正枝・固定BE計算です。IDA実行や一般DAEソルバーの検証ではありません。"
+  },
+  "reference.batch68-77.0b0702d0a5c2": {
+    "en": "Separate initialization, backward-Euler error and residuals on a known positive index-one DAE branch.",
+    "ja": "既知の正枝を持つindex-1 DAEで初期化と後退Eulerの誤差・残差を分離します。"
+  },
+  "reference.batch68-77.55ed279b6567": {
+    "en": "Use coupled Newton with an Armijo search in the same scaled norm, retaining rather than repairing a singular initial guess.",
+    "ja": "連立Newtonと同じ尺度のArmijo線探索を用い、特異な初期推測は修復せず記録します。"
+  },
+  "reference.batch68-77.3b43f89cea9d": {
+    "en": "Compare independent Decimal manufactured states, three discrete roots and three fixed grids, checking first-order error and the algebraic constraint.",
+    "ja": "独立Decimal製造解・3つの離散根と3固定格子を比較し、一次誤差と代数拘束を確認します。"
+  },
+  "reference.batch68-77.eaa06a602935": {
+    "en": "One authored positive branch and fixed BE runs; no IDA execution or general DAE-solver qualification.",
+    "ja": "単一の製造正枝・固定BE計算です。IDA実行や一般DAEソルバーの検証ではありません。"
+  },
+  "reference.batch68-77.8796b1c7d474": {
+    "en": "Separate initialization, backward-Euler error and residuals on a known positive index-one DAE branch. Drawn from saved arrays.",
+    "ja": "既知の正枝を持つindex-1 DAEで初期化と後退Eulerの誤差・残差を分離します。 保存配列から作図。"
+  },
+  "reference.batch68-77.468f6cac897e": {
+    "en": "Saved residuals, constraints and budgets shown separately; symmetric log axes retain zero values.",
+    "ja": "保存済み残差・拘束・収支を別表示。ゼロ値は対称対数軸で保持します。"
+  },
+  "reference.batch68-77.74dc61333b27": {
+    "en": "Robertson conservation DAE and stored official IDA values",
+    "ja": "Robertson保存制約DAEと公式IDA保存値"
+  },
+  "reference.batch68-77.a3f657df829d": {
+    "en": "Model time zero to four; the intermediate-species state and residual scale is 1e-4. Printing intervals and numerical errors are distinct.",
+    "ja": "モデル時間0から4。中間種と残差の尺度は1e-4。公式印字値の丸め幅と数値誤差を区別します。"
+  },
+  "reference.batch68-77.8842d783bc65": {
+    "en": "Evaluate all 39 original targets, retaining the four unmet accuracy/refinement goals as study outcomes. The other 35 requirements, independent references and faithful saved-array recomputation remain mandatory. Only two official SUNDIALS v7.1.1 printed rows; zero new IDA executions, with no long-time chemistry or general DAE-performance claim. No asymptotic-convergence or all-original-accuracy-goals claim is made for this fixed schedule.",
+    "ja": "元39目標をすべて実測し、精度・細分化4目標の未達を変更せず研究結果として記録します。他35条件と独立参照・保存配列からの判定再計算は必須です。 公式SUNDIALS v7.1.1の2印字行のみ。IDAの新規実行0、長時間の化学精度や一般DAE性能は扱いません。 この固定時間格子の漸近収束や元精度目標の全合格は主張しません。"
+  },
+  "reference.batch68-77.3035d1475e66": {
+    "en": "Compare the Robertson conservation DAE and full ODE on the same fixed time grids, with a separate check of stored official IDA values. The first retained run missed four original time-accuracy and refinement goals.",
+    "ja": "Robertsonの保存制約DAEと全ODEを同じ固定時間格子で比較し、公式IDA保存値を別に照合します。 初回は元の時間精度・細分化目標4件が未達でした。"
+  },
+  "reference.batch68-77.d9ea6a2f7520": {
+    "en": "Use fixed BE/Newton with analytic Jacobians and no mass projection or concentration clipping.",
+    "ja": "解析Jacobian付き固定BE/Newtonを使い、質量の投影・濃度クリップはしません。"
+  },
+  "reference.batch68-77.0bf090fc26dd": {
+    "en": "Evaluate all 39 original targets, retaining the four unmet accuracy/refinement goals as study outcomes. The other 35 requirements, independent references and faithful saved-array recomputation remain mandatory.",
+    "ja": "元39目標をすべて実測し、精度・細分化4目標の未達を変更せず研究結果として記録します。他35条件と独立参照・保存配列からの判定再計算は必須です。"
+  },
+  "reference.batch68-77.b7f3891f2158": {
+    "en": "Only two official SUNDIALS v7.1.1 printed rows; zero new IDA executions, with no long-time chemistry or general DAE-performance claim. No asymptotic-convergence or all-original-accuracy-goals claim is made for this fixed schedule.",
+    "ja": "公式SUNDIALS v7.1.1の2印字行のみ。IDAの新規実行0、長時間の化学精度や一般DAE性能は扱いません。 この固定時間格子の漸近収束や元精度目標の全合格は主張しません。"
+  },
+  "reference.batch68-77.9419fd4cc7ea": {
+    "en": "Compare the Robertson conservation DAE and full ODE on the same fixed time grids, with a separate check of stored official IDA values. Drawn from saved arrays. The first-run goal shortfall and each rerun’s actual target decisions remain explicit in the saved JSON.",
+    "ja": "Robertsonの保存制約DAEと全ODEを同じ固定時間格子で比較し、公式IDA保存値を別に照合します。 保存配列から作図。 初回の元精度目標未達と再実行の実測判定は保存JSONで区別します。"
+  },
+  "reference.batch68-77.66e59f89db8e": {
+    "en": "Index reduction, constraint drift and explicit stabilization for a pendulum",
+    "ja": "振り子の指数低減・拘束ドリフト・明示安定化"
+  },
+  "reference.batch68-77.1396b971933b": {
+    "en": "m=L=g=1, initial angle 0.7 and zero angular velocity; off-manifold controls explicitly add radial velocity.",
+    "ja": "m=L=g=1、初期角0.7、初期角速度0。非整合制御では半径方向速度を明示的に加えます。"
+  },
+  "reference.batch68-77.079d29eb1b7a": {
+    "en": "Qualify the Jacobi family against two independent angular ODE runs, then compare states, exact constraint laws and energy/work budgets. No projection, normalization or SHAKE/RATTLE; no general index-three-solver or symplecticity claim.",
+    "ja": "Jacobi解析族と独立角度ODE2計算を資格確認し、場・拘束の厳密法則・エネルギー仕事収支を比較します。 投影・正規化・SHAKE/RATTLEなし。一般指数3ソルバーやシンプレクティック性の検証ではありません。"
+  },
+  "reference.batch68-77.bdf0c3b01335": {
+    "en": "Derive an explicit ODE from an index-three position constraint and compare drift and stabilization for consistent and inconsistent starts.",
+    "ja": "位置拘束の指数3系から明示ODEを導き、整合・非整合初期値の拘束ドリフトと安定化を比較します。"
+  },
+  "reference.batch68-77.65605447cb15": {
+    "en": "Advance the index-reduced ODE and a critical constraint-error extension with fixed RK4, integrating constraint work at the same stages.",
+    "ja": "指数低減ODEと臨界拘束誤差拡張を固定RK4で積分し、拘束仕事も同じ段で積分します。"
+  },
+  "reference.batch68-77.a0ed62596f91": {
+    "en": "Qualify the Jacobi family against two independent angular ODE runs, then compare states, exact constraint laws and energy/work budgets.",
+    "ja": "Jacobi解析族と独立角度ODE2計算を資格確認し、場・拘束の厳密法則・エネルギー仕事収支を比較します。"
+  },
+  "reference.batch68-77.77bf03c3c408": {
+    "en": "No projection, normalization or SHAKE/RATTLE; no general index-three-solver or symplecticity claim.",
+    "ja": "投影・正規化・SHAKE/RATTLEなし。一般指数3ソルバーやシンプレクティック性の検証ではありません。"
+  },
+  "reference.batch68-77.b6dc3636b096": {
+    "en": "Derive an explicit ODE from an index-three position constraint and compare drift and stabilization for consistent and inconsistent starts. Drawn from saved arrays.",
+    "ja": "位置拘束の指数3系から明示ODEを導き、整合・非整合初期値の拘束ドリフトと安定化を比較します。 保存配列から作図。"
+  },
+  "reference.batch68-77.22f1e84f0722": {
+    "en": "SHAKE and RATTLE: constraints and momentum ownership",
+    "ja": "SHAKEとRATTLE：拘束と運動量の違い"
+  },
+  "reference.batch68-77.a6023568d360": {
+    "en": "L=m=g=1, initial angle 0.7 and zero angular velocity. C=(q·q−1)/2, T=100 and h=0.04/0.02/0.01; position targets are fixed at 1e−13, with a coarse 1e−10 companion.",
+    "ja": "L=m=g=1、初期角0.7、初期角速度0。C=(q·q−1)/2、T=100、h=0.04/0.02/0.01。拘束目標1e−13と粗格子の1e−10比較を固定。"
+  },
+  "reference.batch68-77.ae2cd42944db": {
+    "en": "A separately qualified Jacobi family and angular DOP853 reference support 74 main decisions. Finite-C centered identities, two-delta reduced-map diagnostics and position-pair versus full-state reversals are distinct. Original SHAKE and RATTLE full texts remain unread; selected author lecture notes were inspected. The finite-difference symplectic defect is a local proxy, not a general proof, and centered SHAKE velocity is not assigned RATTLE tangency.",
+    "ja": "独立Jacobi解析族と角度系DOP853の資格、74主判定。有限Cの中心化恒等式、2段階FDの縮約写像診断、位置対／全状態の逆積分を分離。 原著SHAKE/RATTLE本文は未読で、著者講義ノートの選択箇所を確認。有限差分のsymplectic defectは一般証明ではなく、中心化SHAKE速度にRATTLEの接線拘束を要求しません。"
+  },
+  "reference.batch68-77.470ab8d24a40": {
+    "en": "Ten fixed pendulum evolutions distinguish position constraints, full-time tangent momentum and interior centered momentum.",
+    "ja": "単振り子の10固定軌道で、位置拘束、全時刻の接線運動量と内部点の中心化運動量を区別します。"
+  },
+  "reference.batch68-77.1ab513b62349": {
+    "en": "Original scalar Newton position constraints, RATTLE final tangent impulses and SHAKE position pairs. SHAKE momentum is centered only at interior nodes; endpoint momenta are absent. SHAKE solves columns are eta, eta/h^2, position residual and Newton updates. Column1 uses the uniform recurrence normalization eta/h^2. For the first constrained half-step startup, the physical multiplier is 2*eta/h^2; later full position-Verlet steps use eta/h^2. Reverse-pair steps all use the later recurrence convention. RATTLE has its separate five-column normalization. No scientific gate or plot uses SHAKE column1.",
+    "ja": "独自のスカラーNewton位置拘束、RATTLE終端接線impulse、SHAKE位置対。SHAKEの運動量は内部点だけで中心化し、端点を作りません。 SHAKEのsolves列はeta、eta/h^2、位置残差、Newton更新数です。列1は一律にeta/h^2ですが、初回半刻みの物理乗数は2eta/h^2、以後の位置Verletではeta/h^2です。逆位置対はすべて後者です。判定と図はこの列1を使いません。"
+  },
+  "reference.batch68-77.51e5d625ea8d": {
+    "en": "A separately qualified Jacobi family and angular DOP853 reference support 74 main decisions. Finite-C centered identities, two-delta reduced-map diagnostics and position-pair versus full-state reversals are distinct.",
+    "ja": "独立Jacobi解析族と角度系DOP853の資格、74主判定。有限Cの中心化恒等式、2段階FDの縮約写像診断、位置対／全状態の逆積分を分離。"
+  },
+  "reference.batch68-77.ee81d892ceaf": {
+    "en": "Original SHAKE and RATTLE full texts remain unread; selected author lecture notes were inspected. The finite-difference symplectic defect is a local proxy, not a general proof, and centered SHAKE velocity is not assigned RATTLE tangency.",
+    "ja": "原著SHAKE/RATTLE本文は未読で、著者講義ノートの選択箇所を確認。有限差分のsymplectic defectは一般証明ではなく、中心化SHAKE速度にRATTLEの接線拘束を要求しません。"
+  },
+  "reference.batch68-77.dd5def6dd3ae": {
+    "en": "Selected primary passages and separately qualified independent references. Actual outcomes are recorded in the saved result.json and verification.json.",
+    "ja": "一次資料の選択閲読と独立参照資格。実際の成否は保存result.jsonとverification.jsonに記録します。"
+  },
+  "reference.batch68-77.b2f5b5d0c0c8": {
+    "en": "Saved reduced phase portraits at h=0.01. SHAKE uses interior centered momentum; RATTLE uses full-time tangent momentum.",
+    "ja": "保存したh=0.01の縮約位相軌道。SHAKEは内部点の中心化運動量、RATTLEは全時刻の接線運動量です。"
+  },
+  "reference.batch68-77.1fdd4718a876": {
+    "en": "Kepler eccentricity and time-step controls",
+    "ja": "離心率を変えたKepler軌道と時間刻み"
+  },
+  "reference.batch68-77.27a88b129882": {
+    "en": "a=mu=reduced mass=1, without softening. One-period runs use 512/1024/2048 steps; ten-period controls use h0=2π/2048. Variable steps use h=h0|q| at the current state, with only the final step shortened to the physical endpoint.",
+    "ja": "a=μ=換算質量=1、軟化なし。1周期は512/1024/2048刻み、10周期は基準2048刻み/周期。変動刻みh=h0|q|を現在状態から定め、最後だけ物理終端へ短縮。"
+  },
+  "reference.batch68-77.2bd803046ac0": {
+    "en": "An independent Kepler-equation family, qualified with brentq and bisection, supports 92 main decisions: full-state error, energy/angular momentum, at least eight periapses, finite-window order and reversal defects. Small invariant errors do not establish phase accuracy. No canonical symplectic-defect measurement is claimed for the variable-step map, and fixed-h properties are not transferred automatically. R1 resolution was revised to R2 using pre-execution asymptotic planning, not measured calibration.",
+    "ja": "独立のKepler方程式brentq／二分法解析族、92主判定。全状態誤差とエネルギー・角運動量、8回以上の近日点、有限窓の順序と反転誤差を検査。 保存量の小さい誤差から位相精度を推論しません。変動刻み写像の正準symplectic defectは測定せず、固定hの性質をそのまま移しません。初期解像度R1は数値実行前の漸近解析でR2へ改訂。"
+  },
+  "reference.batch68-77.22e8f95bbb0d": {
+    "en": "Sixteen fixed evolutions at e=0.1/0.7 compare invariants, same-time phase error, physical periapsis times and reversal.",
+    "ja": "e=0.1/0.7の16固定軌道で、保存量と同時刻の位相誤差、実際の近日点時刻と逆積分を比較します。"
+  },
+  "reference.batch68-77.af4c5099b261": {
+    "en": "Original central-force KDK Verlet. Fixed, replayed and regenerated schedules are distinct. Positive radial crossings of cubic Hermite trajectories are localized by brentq.",
+    "ja": "独自の中心力KDK Verlet。固定・保存刻み再生・再生成刻みを区別し、cubic Hermite軌道の正の放射速度交差をbrentqで局在化。"
+  },
+  "reference.batch68-77.eebde48ef245": {
+    "en": "An independent Kepler-equation family, qualified with brentq and bisection, supports 92 main decisions: full-state error, energy/angular momentum, at least eight periapses, finite-window order and reversal defects.",
+    "ja": "独立のKepler方程式brentq／二分法解析族、92主判定。全状態誤差とエネルギー・角運動量、8回以上の近日点、有限窓の順序と反転誤差を検査。"
+  },
+  "reference.batch68-77.c6244f2b84a7": {
+    "en": "Small invariant errors do not establish phase accuracy. No canonical symplectic-defect measurement is claimed for the variable-step map, and fixed-h properties are not transferred automatically. R1 resolution was revised to R2 using pre-execution asymptotic planning, not measured calibration.",
+    "ja": "保存量の小さい誤差から位相精度を推論しません。変動刻み写像の正準symplectic defectは測定せず、固定hの性質をそのまま移しません。初期解像度R1は数値実行前の漸近解析でR2へ改訂。"
+  },
+  "reference.batch68-77.632f45733a1f": {
+    "en": "Saved ten-period fixed-step and variable-step orbits at e=0.7, shown with equal physical aspect and an unsoftened central force.",
+    "ja": "保存したe=0.7、10周期の固定刻み／変動刻み軌道。物理座標は等倍率で、中心力は軟化していません。"
+  },
+  "reference.batch68-77.f25e037ba79a": {
+    "en": "Coupled frequencies and finite-window resonance",
+    "ja": "結合した2周波数系と共鳴の有限窓"
+  },
+  "reference.batch68-77.4a28af9bbd2b": {
+    "en": "alpha=1, omega=10/20, q0=(1,1/omega) and p0=0. Central probes retain the evaluated binary64 h and sin/cos coefficients without snapping to mathematical pi.",
+    "ja": "α=1、ω=10/20、q0=(1,1/ω)、p0=0。中心probeは保存binary64のhとsin/cosをそのまま使い、πへ丸め直しません。"
+  },
+  "reference.batch68-77.6f40b524fda6": {
+    "en": "The 116 main decisions distinguish independent coupled normal modes, Decimal80/120 and Fraction frozen-coefficient maps, and stagewise gamma8 roundoff allowances. Ideal-pi Jordan structure is checked separately by rational identities. Each probe uses the current saved coefficient hex for its own Decimal80/120 actions; six accuracy actions use Decimal80. The central actual floating map remains unresolved; ideal-pi Jordan structure is not transferred to it. Results concern 64-step amplification and small fixed inputs, not a scanned resonance diagram, general stability or a universal long-time error theorem.",
+    "ja": "116主判定。独立の結合固有モード解析、保存係数Decimal80/120・Fraction写像、段階別γ8丸め上界を区別。理想πのJordan構造は有理恒等式で別確認。 各probeは現在保存した係数hexからDecimal80/120を評価し、6精度軌道はDecimal80を用います。 中心の実浮動係数写像はunresolvedとし、理想πのJordan性を移しません。64刻み増幅と小さい固定入力の観測であり、走査した共鳴図・一般安定性・長時間の普遍誤差定理は主張しません。"
+  },
+  "reference.batch68-77.2e860abe1820": {
+    "en": "A genuinely coupled two-degree-of-freedom system uses twelve 64-step probes and six accuracy trajectories to separate normal modes, coordinate exchange, discrete maps and roundoff.",
+    "ja": "2自由度の実結合系で、12の64刻みprobeと6の精度軌道を使い、真のモード、座標間交換、離散写像と丸めを分けます。"
+  },
+  "reference.batch68-77.c6da0ea8ab25": {
+    "en": "Full-potential Verlet and a Strang impulse composition: half B kick, exact A flow, half B kick. A contains the fast oscillator and slow free drift; B contains the slow potential and the coupling.",
+    "ja": "全ポテンシャルVerletと、B半kick・A厳密flow・B半kickのStrang impulse。Aには高速調和振動子と低速自由流、Bには低速位置項と結合を含めます。"
+  },
+  "reference.batch68-77.ccfbe8965c88": {
+    "en": "The 116 main decisions distinguish independent coupled normal modes, Decimal80/120 and Fraction frozen-coefficient maps, and stagewise gamma8 roundoff allowances. Ideal-pi Jordan structure is checked separately by rational identities. Each probe uses the current saved coefficient hex for its own Decimal80/120 actions; six accuracy actions use Decimal80.",
+    "ja": "116主判定。独立の結合固有モード解析、保存係数Decimal80/120・Fraction写像、段階別γ8丸め上界を区別。理想πのJordan構造は有理恒等式で別確認。 各probeは現在保存した係数hexからDecimal80/120を評価し、6精度軌道はDecimal80を用います。"
+  },
+  "reference.batch68-77.4ec9b0b06ec5": {
+    "en": "The central actual floating map remains unresolved; ideal-pi Jordan structure is not transferred to it. Results concern 64-step amplification and small fixed inputs, not a scanned resonance diagram, general stability or a universal long-time error theorem.",
+    "ja": "中心の実浮動係数写像はunresolvedとし、理想πのJordan性を移しません。64刻み増幅と小さい固定入力の観測であり、走査した共鳴図・一般安定性・長時間の普遍誤差定理は主張しません。"
+  },
+  "reference.batch68-77.f46964684c00": {
+    "en": "Saved q1–q2 coordinates of the finest impulse trajectory, colored by physical time. This is one coupled trajectory, not a scanned phase diagram.",
+    "ja": "保存した最細impulse軌道の実q1–q2座標と物理時刻。これは走査相図ではなく、結合した1軌道です。"
+  },
+  "reference.batch68-77.af61aa578413": {
+    "en": "Dormand–Prince RK45",
+    "ja": "Dormand–Prince RK45"
+  },
+  "reference.batch68-77.2314bac42502": {
+    "en": "Explicit time integration combines an embedded 5(4) error estimator, adaptive steps, a quartic continuous extension and directed events.",
+    "ja": "埋込み5(4)誤差推定と刻み制御、4次の連続拡張、向き付きイベントを組み合わせる陽的時間積分です。"
+  },
+  "reference.batch68-77.2c55920e53bb": {
+    "en": "No general guarantee is provided for stiff systems, tangential roots, multiple crossings per step or reset systems. Local tolerances are not global error bounds.",
+    "ja": "硬い系、接触根、1刻み内の複数交差、reset系の一般保証はありません。局所許容誤差を大域誤差の上界とみなしません。"
+  },
+  "reference.batch68-77.83ae7f7622da": {
+    "en": "The target is a smooth nonstiff initial-value problem; tolerances must match component scales.",
+    "ja": "滑らかな非硬い初期値問題を対象とし、許容誤差は成分の尺度に合わせます。"
+  },
+  "reference.batch68-77.27df1719fdd7": {
+    "en": "FSAL reuses the RHS owned by the accepted state and never promotes a rejected trial endpoint.",
+    "ja": "FSALは受理状態の右辺を再利用し、棄却した試行の端点で置き換えません。"
+  },
+  "reference.batch68-77.8a4f6643965b": {
+    "en": "Simple sign crossings are localized on interpolants of retained accepted steps.",
+    "ja": "保存した受理区間の補間を用いて単純な符号交差を探します。"
+  },
+  "reference.batch68-77.db0c577b0ef3": {
+    "en": "Time and step size share units; atol has each state component's units and rtol is dimensionless.",
+    "ja": "時刻と刻みは同じ単位です。atolは各成分、rtolは無次元の尺度です。"
+  },
+  "reference.batch68-77.340a0d572d5e": {
+    "en": "The ODE step has no spatial boundary; an RHS for a semidiscrete PDE must supply its boundaries.",
+    "ja": "ODE自体に空間境界はなく、空間離散した系では右辺が境界を供給します。"
+  },
+  "reference.batch68-77.1698670faa1b": {
+    "en": "The separately versioned supplement is the executable evidence for the fixed examples; chapter links are additional context.",
+    "ja": "実行の根拠は版を固定した追加配布例です。章へのリンクは補足解説です。"
+  },
+  "reference.batch68-77.10330610030a": {
+    "en": "Jameson-type steady multistage Runge–Kutta",
+    "ja": "Jameson型の定常多段Runge–Kutta"
+  },
+  "reference.batch68-77.ef392cf71439": {
+    "en": "A multistage iteration forms each stage from a fixed base state and advances pseudo-time to damp steady residuals.",
+    "ja": "基準状態から各段階を構成する多段反復で、擬似時間を進めて定常残差を減衰させます。"
+  },
+  "reference.batch68-77.658303eca94e": {
+    "en": "The chosen stability polynomial matches classical RK4 on linear problems, but this is not a fourth-order method for general nonlinear problems. Stable modes, a neutral control and an expanding control are distinguished.",
+    "ja": "採用多項式は線形問題では古典RK4と一致しますが、一般非線形問題の4次法ではありません。安定なモード、非減衰対照、発散対照を区別します。"
+  },
+  "reference.batch68-77.b6abd5f16ca2": {
+    "en": "The selected coefficients are 1/4, 1/3, 1/2 and 1; all stages share the same base state.",
+    "ja": "採用係数は1/4,1/3,1/2,1で、各段階の基準値は同じです。"
+  },
+  "reference.batch68-77.567b94f24e8d": {
+    "en": "Residuals, modal amplitudes and phase are measured on a fixed 16-component periodic linear system.",
+    "ja": "固定した16成分の周期線形系で残差・モード振幅・位相を測ります。"
+  },
+  "reference.batch68-77.5270f247adf7": {
+    "en": "The product of pseudo-time step and operator eigenvalue is dimensionless; physical-time accuracy is a separate question.",
+    "ja": "擬似時間刻みと作用素固有値の積は無次元です。物理時間精度の主張とは分けます。"
+  },
+  "reference.batch68-77.48ae06c2ac04": {
+    "en": "The fixed example applies periodic differences at every stage.",
+    "ja": "固定例は周期格子で、周期差分を全段階に適用します。"
+  },
+  "reference.batch68-77.f9075565362a": {
+    "en": "SHAKE constrained integration",
+    "ja": "SHAKE拘束積分"
+  },
+  "reference.batch68-77.c3dc99555079": {
+    "en": "A Verlet-type discrete map solves position constraints. The pendulum example selects the nearby continuous branch and distinguishes momentum reconstructed by centered differences.",
+    "ja": "位置拘束を解くVerlet型の離散写像です。振り子では連続な近傍枝を固定し、中心差分で再構成した運動量を区別します。"
+  },
+  "reference.batch68-77.bc6c38fa52d5": {
+    "en": "The tangency residual of reconstructed centered momentum is distinct from the RATTLE velocity constraint. Only fixed examples with one smooth circular constraint are validated; general constraint networks are outside this release.",
+    "ja": "中心差分運動量の接線残差をRATTLEの速度拘束と同一視しません。単一の滑らかな円拘束の固定例であり、一般の拘束ネットワークは未検証です。"
+  },
+  "reference.batch68-77.2c8510bf1bba": {
+    "en": "The planar pendulum has unit mass, length and gravity, initial angle 0.7 and zero initial angular velocity.",
+    "ja": "単位質量・長さ・重力の平面振り子で、初期角は0.7、初期角速度は0です。"
+  },
+  "reference.batch68-77.6dd164cff04a": {
+    "en": "The position-constraint solve uses fixed iteration and residual limits; nonconvergence is retained as failure.",
+    "ja": "位置拘束の非線形解法は反復上限と残差基準を固定し、未収束を成功に置き換えません。"
+  },
+  "reference.batch68-77.a43b26983733": {
+    "en": "The fixed example is nondimensional; constraint and multiplier units depend on the formulation in general.",
+    "ja": "固定例は無次元です。一般には拘束と乗数の単位は定式化に依存します。"
+  },
+  "reference.batch68-77.260d51b2aa05": {
+    "en": "There is no spatial boundary; conditions are the position and velocity constraint manifolds.",
+    "ja": "空間境界はなく、位置と速度の拘束面が条件です。"
+  },
+  "reference.batch68-77.3977f1a84331": {
+    "en": "RATTLE constrained integration",
+    "ja": "RATTLE拘束積分"
+  },
+  "reference.batch68-77.2e3f49c63076": {
+    "en": "A Verlet-type discrete map enforces position and velocity constraints. Newton residuals, time reversal and time-discretization error are measured separately.",
+    "ja": "位置と速度の拘束をVerlet型の段階で満たす離散写像です。Newton残差、時間反転、時間離散誤差を分けて測ります。"
+  },
+  "reference.batch68-77.dcf3341b802f": {
+    "en": "Geometric structure concerns the map on the constraint manifold. This does not imply exact energy conservation or a guarantee for arbitrary constraints and solver tolerances. Numerical Jacobians provide a limited diagnostic.",
+    "ja": "構造保存は拘束面上の写像についての性質です。エネルギーの厳密保存や任意の拘束・許容誤差での一般保証を意味しません。数値Jacobianは限定した診断です。"
+  },
+  "reference.batch68-77.fe11f6a8206e": {
+    "en": "Robertson chemical kinetics",
+    "ja": "Robertson反応系"
+  },
+  "reference.batch68-77.6d0b9a90b66e": {
+    "en": "Distinguish the stiff three-species ODE from an index-one DAE obtained by replacing one equation with conservation.",
+    "ja": "3成分の硬い反応ODEと、保存則を代数式に置き換えたindex-1 DAEを区別して比較します。"
+  },
+  "reference.batch68-77.0132eab38c26": {
+    "en": "Fixed educational models; see each release for inputs, reference qualification and limits.",
+    "ja": "固定した教育用モデルです。各配布版の入力、参照の検証、制限を確認してください。"
+  },
+  "reference.batch68-77.925722225eba": {
+    "en": "Van der Pol oscillator",
+    "ja": "van der Pol振動子"
+  },
+  "reference.batch68-77.12e3f2801a4c": {
+    "en": "Compare work and error for fixed mu values over a short interval; this does not validate a full relaxation cycle.",
+    "ja": "固定したμと短い時区間で硬さによる仕事量と誤差を比較します。完全な緩和振動周期の検証ではありません。"
+  },
+  "reference.batch68-77.642f209ce23a": {
+    "en": "Finite-dimensional linear evolution systems",
+    "ja": "有限次元の線形発展系"
+  },
+  "reference.batch68-77.ffd8fad4fab0": {
+    "en": "Each example distinguishes physical time in damped rotation from pseudo-time used to reduce steady residuals.",
+    "ja": "減衰回転の物理時刻と、定常残差を減衰させる擬似時間を例ごとに区別します。"
+  },
+  "reference.batch68-77.793ac097f0a5": {
+    "en": "Linear reaction-diffusion with inhomogeneous boundaries",
+    "ja": "非同次境界を持つ線形反応拡散"
+  },
+  "reference.batch68-77.77d0f24fd395": {
+    "en": "Separate temporal errors relative to the same nonperiodic finite-difference system from spatial errors relative to the continuous exact family.",
+    "ja": "同じ非周期有限差分系に対する時間誤差と、連続厳密解に対する空間誤差を分けます。"
+  },
+  "reference.batch68-77.34d59fbb74ec": {
+    "en": "Semi-explicit index-one DAE",
+    "ja": "半陽的index-1 DAE"
+  },
+  "reference.batch68-77.b17a2e95aac5": {
+    "en": "Small fixed examples expose consistent initialization and separate differential/algebraic residuals; this is not a general-purpose DAE solver.",
+    "ja": "整合初期化と微分・代数残差を扱う小規模な固定例です。一般DAEソルバーの完成を意味しません。"
+  },
+  "reference.batch68-77.9a666f5f7c76": {
+    "en": "Constrained planar pendulum",
+    "ja": "拘束付き平面振り子"
+  },
+  "reference.batch68-77.6f4bbfb61af8": {
+    "en": "Distinguish the original position-constrained DAE, an underlying ODE based on differentiated constraints, and the SHAKE/RATTLE discrete maps.",
+    "ja": "元の位置拘束DAE、微分した拘束に基づくODE、SHAKE/RATTLEの離散写像を区別します。"
+  },
+  "reference.batch68-77.2ec6377c87ef": {
+    "en": "Kepler two-body problem",
+    "ja": "Kepler二体問題"
+  },
+  "reference.batch68-77.a99fbccd2c46": {
+    "en": "Nondimensional planar ellipses separate phase, angular momentum, energy and step-selection effects.",
+    "ja": "無次元化した平面楕円軌道で位相、角運動量、エネルギーと刻みの影響を分けます。"
+  },
+  "reference.batch68-77.8c0e7308ef1e": {
+    "en": "Coupled two-frequency harmonic oscillators",
+    "ja": "二周波数の結合調和振動子"
+  },
+  "reference.batch68-77.963934537135": {
+    "en": "Separate continuous normal modes, the ideal split map, a map with stored floating-point coefficients, and repeated rounded updates.",
+    "ja": "連続正規モード、理想分割写像、保存した浮動小数点係数の写像、実際の反復丸めを区別します。"
+  },
+  "reference.batch68-77.fcc93e0a4870": {
+    "en": "Small fixed examples compare backward Euler and Newton for index-one DAEs, consistent initialization, conservation and constraint drift.",
+    "ja": "小規模な固定例で、index-1 DAEの後退Euler・Newton法、整合初期化、保存則と拘束ドリフトを比較します。"
+  },
+  "reference.batch68-77.81bcf3534a55": {
+    "en": "Scope is limited to small fixed systems and inputs. The coarse Robertson schedule does not meet the original temporal accuracy/refinement goals; those false decisions are retained and shown. Underlying ODEs based on differentiated constraints can drift from the original constraint. General index handling, large sparse DAEs and convergence for arbitrary inputs are unverified.",
+    "ja": "固定した小規模系と入力に限ります。Robertsonの粗い刻みは当初の時間精度・収束目標を達成しておらず、元のFALSE判定を保存して表示します。微分した拘束を使うODEでは元の拘束がドリフトし得ます。一般のindex処理・大規模疎DAE・任意入力の収束は未検証です。"
+  },
+  "reference.batch68-77.24fd1e0fe7da": {
+    "en": "Other models and larger systems require separately frozen inputs, references and criteria.",
+    "ja": "別のモデルや大規模化は、入力・参照・基準を改めて固定して検証します。"
+  },
+  "reference.batch68-77.c62eb9f6ece5": {
+    "en": "For the index-one examples, the algebraic constraint Jacobian must be nonsingular on the selected branch and Newton iterations must satisfy fixed criteria.",
+    "ja": "index-1の例では代数拘束のJacobianが選んだ解枝で正則で、Newton反復が固定基準を満たす必要があります。"
+  },
+  "reference.batch68-77.6550076fc40f": {
+    "en": "Backward-Euler residuals use explicit differential and algebraic row scales. Consistent initialization and rejection of inconsistent input are checked separately.",
+    "ja": "後退Eulerの残差を解き、微分行と代数行の尺度を入力で指定します。整合初期値と不整合入力の拒否を別に確認します。"
+  },
+  "reference.batch68-77.268de043fecb": {
+    "en": "The position-constrained pendulum is index three. Its examples use an underlying ODE and constraint-error stabilization, not a general high-index DAE solver.",
+    "ja": "位置拘束の振り子はindex-3系です。追加例は微分拘束に基づくODEと拘束誤差の安定化を扱い、汎用高index DAEソルバーではありません。"
+  },
+  "reference.batch68-77.42ae20857b4a": {
+    "en": "Comparisons with stored official IDA output are distinct from newly executed Radau/BDF/DOP853 references. The IDA executable is not newly run.",
+    "ja": "公式IDAの保存済み印字値との比較と、新たに実行したRadau/BDF/DOP853参照を区別します。IDA本体の新規実行はありません。"
+  },
+  "reference.batch68-77.23a9414bc857": {
+    "en": "Examples are nondimensional. Differential and algebraic residual rows use explicitly declared scales; their unscaled norms need not have the same units.",
+    "ja": "例は無次元です。微分残差と代数残差の行は明示した尺度を使い、生の残差ノルムが同じ単位を持つとは限りません。"
+  },
+  "reference.batch68-77.3a5c54e1facc": {
+    "en": "There is no spatial boundary. Algebraic constraints and consistent initial state/derivative data are part of the initial-value formulation.",
+    "ja": "空間境界はありません。代数拘束と整合した初期状態・初期微分が初期値問題の条件です。"
+  },
+  "reference.batch68-77.74b2bab2967d": {
+    "en": "Executable evidence is the separately versioned dae-controls supplement; it does not implement a general IDA replacement.",
+    "ja": "実行の根拠は版を固定したdae-controls追加配布です。汎用IDAの代替実装ではありません。"
   }
 }

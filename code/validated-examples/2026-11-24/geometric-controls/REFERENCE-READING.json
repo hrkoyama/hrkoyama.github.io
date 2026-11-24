@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "accessed_on": "2026-11-24",
+  "sources": [
+    {
+      "id": "hairer-manifolds-2011",
+      "title": "Solving Differential Equations on Manifolds",
+      "url": "https://www.unige.ch/~hairer/poly-sde-mani.pdf",
+      "year": 2011,
+      "year_role": "date displayed on lecture notes",
+      "accessed_on": "2026-11-24",
+      "review_level": "selected-primary-scope",
+      "review_scope": "Author-hosted lecture notes, selected printed page50, SectionV.5, equations5.1–5.3 and Theorem5.1 statement, rendered and visually read. Centered SHAKE momentum and RATTLE final tangency are explicit. The original1977 SHAKE and1983 RATTLE articles remain full-text unread; no full proof review is claimed."
+    },
+    {
+      "id": "hairer-symplectic-2010",
+      "title": "Lecture2: Symplectic integrators",
+      "url": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+      "year": 2010,
+      "year_role": "displayed course date",
+      "accessed_on": "2026-11-24",
+      "review_level": "selected-primary-scope",
+      "review_scope": "Author-hosted course notes, selected rendered printed pages2,12–13: Verlet kick/drift form, symplectic statement, Lie and symmetric Strang compositions. This does not qualify every state-dependent step rule or the authored coupled resonance experiment."
+    },
+    {
+      "id": "dlmf-jacobi-periods",
+      "title": "DLMF22.4: Periods, Poles, and Zeros",
+      "url": "https://dlmf.nist.gov/22.4",
+      "year": 2026,
+      "year_role": "version",
+      "version": "1.2.8",
+      "release_date": "2026-09-15",
+      "accessed_on": "2026-11-24",
+      "review_level": "selected-primary-scope",
+      "review_scope": "Official Table22.4.1 selected real periods: sn and cn have4K, dn has2K. Version date is not an initial publication date. Common-period reduction and direct-library periodicity qualification are separate from the independent angular DOP853 state comparison."
+    },
+    {
+      "id": "jpl-kepler-equation",
+      "title": "Approximate Positions of the Planets",
+      "url": "https://ssd.jpl.nasa.gov/planets/approx_pos.html",
+      "accessed_on": "2026-11-24",
+      "review_level": "selected-primary-scope",
+      "review_scope": "Official JPL page, selected steps3–4 and Kepler equation. Only the eccentric-anomaly equation and elliptic coordinate transformation are used; no planetary coefficient tables, fitted ephemeris accuracy or Horizons calculation is claimed. Publication date was not verified."
+    }
+  ],
+  "visual_evidence": [
+    {
+      "url": "https://www.unige.ch/~hairer/poly-sde-mani.pdf",
+      "sha256": "2604fa6b7e216207332f007059c207860e6d820602df2cb21b0620475f584d61",
+      "read_scope": "Printedpage50, SectionV.5, equations5.1–5.3 and Theorem5.1 statement; selected page locally rendered and visually inspected."
+    },
+    {
+      "url": "https://www.unige.ch/~hairer/poly_geoint/week2.pdf",
+      "sha256": "f4f15ff5124fb685870e13b36e54cbc4edc96744199b518ec12e1c5cf006f0fb",
+      "read_scope": "Printedpages2,12–13, selected kick/drift and Lie/Strang sections locally rendered and visually inspected."
+    }
+  ],
+  "unread_originals": [
+    "OriginalSHAKE1977 full text",
+    "OriginalRATTLE1983 full text"
+  ],
+  "limits": "Selected passages only; no original paper body is bundled. Independent continuum, ideal-angle and frozen-coefficient references have explicitly different scopes."
+}

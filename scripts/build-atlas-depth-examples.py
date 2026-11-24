@@ -37,6 +37,25 @@ def paragraph(text):
     return '<p>'+escape(text)+'</p>'
 
 
+def original_study_targets(measured):
+    """Keep scientific target outcomes distinct from reproduction checks."""
+    if 'original_target_results' not in measured:
+        return None
+    targets = measured['original_target_results']
+    summary = measured['original_target_summary']
+    assert isinstance(targets, dict) and targets
+    assert all(type(value) is bool for value in targets.values())
+    assert type(summary['met']) is int and type(summary['total']) is int
+    assert type(summary['all_met']) is bool
+    assert summary['total'] == len(targets)
+    assert summary['met'] == sum(targets.values())
+    assert summary['all_met'] is all(targets.values())
+    assert re.fullmatch(r'[0-9a-f]{64}', summary['acceptance_sha256'])
+    for key, value in measured.get('original_study_goal_measurements', {}).items():
+        assert key in targets and value['met'] is targets[key]
+    return targets, summary
+
+
 def initial_input_name(data):
     """Use a separate initial file, or a proven unchanged preregistered input."""
     files = data['manifest']['files']
@@ -204,8 +223,24 @@ def render_case(case, measured, data, language, rendered, heading_level=2, comma
             formulas = case.get('formulas', case.get('equations', []))
             body += ''.join('<div class="validation-math">'+rendered['depth-'+ident+'-'+str(i)][0]+'</div>' for i in range(len(formulas)))
     body += '<h'+str(level)+' id="'+anchor+'-measurements">'+('保存した実測値と判定' if ja else 'Stored measurements and decisions')+'</h'+str(level)+'>'
-    body += paragraph('表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。'
-                      if ja else 'Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.')
+    study = original_study_targets(measured)
+    if study and (measured.get('original_study_goal_measurements') or not study[1]['all_met']):
+        targets, summary = study
+        headline = ('元の数値目標：'+str(summary['met'])+'/'+str(summary['total'])+'達成' if ja else
+                    'Original numerical targets: '+str(summary['met'])+'/'+str(summary['total'])+' met')
+        body += '<aside class="validation-scope validation-study-outcomes" data-original-target-status="'+('all-met' if summary['all_met'] else 'unmet')+'"><strong>'+escape(headline)+'</strong>'
+        body += paragraph('元の入力・基準に対する未達の判定も、そのまま表示します。別表の合格は、実行と記録の忠実さについての検証で、元の精度目標がすべて達成されたという意味ではありません。' if ja else
+                          'Outcomes retain unmet targets under the original inputs and criteria. Passing the separate reproduction/reporting checks does not mean that every original accuracy goal was met.')
+        goals = measured.get('original_study_goal_measurements', {})
+        if goals:
+            rows = [(key, value['measured'], value['comparison']+' '+str(value['limit']), value['met']) for key, value in goals.items()]
+            body += table(['調査した目標' if ja else 'Study goal', '実測値' if ja else 'Measured', '元の基準' if ja else 'Original target', '達成' if ja else 'Met'], rows, case['title'][language]+('：元の目標' if ja else ': original targets'))
+        else:
+            body += table(['元の目標 / original target', '達成' if ja else 'Met'], list(targets.items()), case['title'][language]+('：元の目標' if ja else ': original targets'))
+        body += '</aside>'
+    else:
+        body += paragraph('表示は丸めています。合否は固定入力の元の公差と丸め前の数値で判定し、全判定が合格した保存結果だけを表示します。'
+                          if ja else 'Display values are rounded. Acceptance uses original fixed-input tolerances and unrounded numbers; only stored results passing every check are presented.')
     body += table(['量 / metric', '実測値' if ja else 'Measured value'], list(measured['metrics'].items()), case['title'][language]+('：実測値' if ja else ': measurements'))
     body += table(['判定 / check', '合格' if ja else 'Passed'], list(measured['checks'].items()), case['title'][language]+('：判定' if ja else ': decisions'))
     png = (data['directory']/'results'/(ident+'.png')).read_bytes(); assert png[:8] == b'\x89PNG\r\n\x1a\n'
@@ -243,6 +278,10 @@ def markdown_case(case, measured, data, language, heading_level=1, editorial_not
             out += '**'+('編集上の補足' if language == 'ja' else 'Editorial clarification')+'**\n\n'+editorial_note[language]+'\n\n'
         if field == 'algorithm':
             out += ''.join('$$\n'+formula+'\n$$\n\n' for formula in case.get('formulas', case.get('equations', [])))
+    study = original_study_targets(measured)
+    if study and (measured.get('original_study_goal_measurements') or not study[1]['all_met']):
+        out += subheading+' '+('元の数値目標と未達の結果' if language == 'ja' else 'Original numerical targets and unmet outcomes')+'\n\n'
+        out += ('実行・記録の検証合格は、元の精度目標の全達成を意味しません。元の判定を保持します。' if language == 'ja' else 'Passing reproduction/reporting verification does not mean that all original accuracy goals were met. Original decisions are retained.')+'\n\n```json\n'+json.dumps({'original_target_results':study[0],'original_target_summary':study[1]},ensure_ascii=False,indent=2,allow_nan=False)+'\n```\n\n'
     out += subheading+' '+('保存実測値と判定' if language == 'ja' else 'Stored measurements and decisions')+'\n\n```json\n'+json.dumps({'metrics': measured['metrics'], 'checks': measured['checks']}, ensure_ascii=False, indent=2, allow_nan=False)+'\n```\n\n'
     out += ('全recordsとreference_records：' if language == 'ja' else 'Complete records and reference_records: ')+ORIGIN+case_route(case['id'])+'index.json\n\n'
     if 'additional_figures' in case:

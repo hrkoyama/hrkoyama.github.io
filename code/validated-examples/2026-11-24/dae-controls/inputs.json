@@ -1,0 +1,270 @@
+{
+  "index1-dae-consistent-initialization": {
+    "sequence": 72,
+    "group": "dae-controls",
+    "T": 1,
+    "step_counts": [
+      16,
+      32,
+      64
+    ],
+    "initial_y": 1,
+    "initial_z": 1,
+    "initialization_guesses": [
+      0.5,
+      2
+    ],
+    "singular_initial_guess": 0,
+    "Newton": {
+      "residual_target": 5e-13,
+      "max_iterations": 16,
+      "line_search_halvings": 12,
+      "armijo_constant": 0.0001,
+      "residual_definition": "F=((y-yold)/h+y-z+exp(-2*tnew/3), z**3-y**2)",
+      "residual_row_units": [
+        "inverse_model_time",
+        "dimensionless_algebraic"
+      ],
+      "residual_row_scale": [
+        1,
+        1
+      ],
+      "aggregate_norm": "max(abs(F/row_scale))",
+      "line_search_merit": "same scaled max norm; trial <= (1-armijo_constant*alpha)*current norm",
+      "initialization_norm": "absolute scalar algebraic residual"
+    },
+    "differential_algebraic_indices": {
+      "differential": [
+        "y"
+      ],
+      "algebraic": [
+        "z"
+      ]
+    },
+    "oracle_one_step_fixtures": [
+      {
+        "t0": "0",
+        "yold": "1",
+        "h": "1/16"
+      },
+      {
+        "t0": "1/2",
+        "yold": "exp(-1/2)",
+        "h": "1/32"
+      },
+      {
+        "t0": "31/32",
+        "yold": "exp(-31/32)",
+        "h": "1/32"
+      }
+    ],
+    "oracle_positive_z_bracket": [
+      "2/5",
+      "6/5"
+    ],
+    "Decimal_precision": 80,
+    "Decimal_bisection_iterations": 256
+  },
+  "robertson-conservation-dae": {
+    "sequence": 73,
+    "group": "dae-controls",
+    "rates": {
+      "a": 0.04,
+      "b": 10000,
+      "c": 30000000
+    },
+    "initial": [
+      1,
+      0,
+      0
+    ],
+    "consistent_ydot": [
+      -0.04,
+      0.04,
+      0
+    ],
+    "window_boundaries": [
+      0,
+      0.001,
+      0.1,
+      0.4,
+      4
+    ],
+    "base_steps_per_window": [
+      128,
+      64,
+      64,
+      128
+    ],
+    "refinement_factors": [
+      1,
+      2,
+      4
+    ],
+    "formulations": [
+      "residual_dae",
+      "full_ode"
+    ],
+    "time_method": "backward-euler, no BDF2/variable-step claim",
+    "Newton": {
+      "scaled_step_residual_target": 2e-12,
+      "max_iterations": 16,
+      "line_search_halvings": 12,
+      "armijo_constant": 0.0001,
+      "residual_definition": "G=(y1-yold1-h*f1, y2-yold2-h*f2, sum(y)-1) for DAE; all3 y-yold-h*f for ODE",
+      "residual_row_units": [
+        "dimensionless_concentration",
+        "dimensionless_concentration",
+        "dimensionless_concentration"
+      ],
+      "aggregate_norm": "max(abs(G/residual_scale))",
+      "line_search_merit": "same scaled max norm; trial <= (1-armijo_constant*alpha)*current norm",
+      "initial_mass_tolerance": 5e-13,
+      "iterate_domain": "All finite real Newton trials; no clipping or positivity filter. Accepted states checked by unchanged species gate."
+    },
+    "state_error_scale": [
+      1,
+      0.0001,
+      1
+    ],
+    "residual_scale": [
+      1,
+      0.0001,
+      1
+    ],
+    "inconsistent_y3_perturbation": 0.0001,
+    "official_IDA_printed_times": [
+      0.4,
+      4
+    ],
+    "references": [
+      {
+        "id": "radau-loose",
+        "method": "Radau",
+        "rtol": 1e-10,
+        "atol": [
+          1e-13,
+          1e-17,
+          1e-13
+        ]
+      },
+      {
+        "id": "radau-tight",
+        "method": "Radau",
+        "rtol": 1e-12,
+        "atol": [
+          1e-14,
+          1e-18,
+          1e-14
+        ]
+      },
+      {
+        "id": "bdf-tight",
+        "method": "BDF",
+        "rtol": 1e-11,
+        "atol": [
+          1e-14,
+          1e-18,
+          1e-14
+        ]
+      }
+    ],
+    "reference_t_eval": "All1537finest nested window nodes, endpoints deduplicated; all coarse primary nodes are a subset. Independent references run from0to4 without window restarts.",
+    "reference_jacobian": "SciPy finite differences, jac=None; no production residual/Jacobian imports"
+  },
+  "high-index-pendulum": {
+    "sequence": 74,
+    "group": "dae-controls",
+    "m": 1,
+    "length": 1,
+    "gravity": 1,
+    "theta0": 0.7,
+    "omega0": 0,
+    "q0_generator": "(sin(theta0),-cos(theta0)); rounded binary64 values saved, no normalization",
+    "v0": [
+      0,
+      0
+    ],
+    "T": 20,
+    "step_counts": [
+      500,
+      1000,
+      2000
+    ],
+    "methods": [
+      "underlying_ode",
+      "critical_constraint_stabilization"
+    ],
+    "stabilization": {
+      "alpha": 1,
+      "beta": 1
+    },
+    "radial_velocity_perturbation": 0.001,
+    "runs": [
+      {
+        "initial": "consistent",
+        "method": "underlying_ode",
+        "steps": 500
+      },
+      {
+        "initial": "consistent",
+        "method": "underlying_ode",
+        "steps": 1000
+      },
+      {
+        "initial": "consistent",
+        "method": "underlying_ode",
+        "steps": 2000
+      },
+      {
+        "initial": "consistent",
+        "method": "critical_constraint_stabilization",
+        "steps": 2000
+      },
+      {
+        "initial": "radial_inconsistent_explicit_control",
+        "method": "underlying_ode",
+        "steps": 500
+      },
+      {
+        "initial": "radial_inconsistent_explicit_control",
+        "method": "underlying_ode",
+        "steps": 1000
+      },
+      {
+        "initial": "radial_inconsistent_explicit_control",
+        "method": "underlying_ode",
+        "steps": 2000
+      },
+      {
+        "initial": "radial_inconsistent_explicit_control",
+        "method": "critical_constraint_stabilization",
+        "steps": 500
+      },
+      {
+        "initial": "radial_inconsistent_explicit_control",
+        "method": "critical_constraint_stabilization",
+        "steps": 1000
+      },
+      {
+        "initial": "radial_inconsistent_explicit_control",
+        "method": "critical_constraint_stabilization",
+        "steps": 2000
+      }
+    ],
+    "reference_angular_runs": [
+      {
+        "method": "DOP853",
+        "rtol": 1e-11,
+        "atol": 1e-13
+      },
+      {
+        "method": "DOP853",
+        "rtol": 1e-13,
+        "atol": 1e-14
+      }
+    ],
+    "reference_times": "All2001finest nodes for main analytic reference; independent DOP853 qualification at33fixed equally spaced times on[0,20].",
+    "consistent_start_tolerance": 5e-14
+  }
+}
