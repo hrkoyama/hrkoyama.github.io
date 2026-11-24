@@ -2063,7 +2063,23 @@
       "supplemental_examples": [
         "robertson-stiff-kinetics",
         "robertson-conservation-dae"
-      ]
+      ],
+      "formula_source": {
+        "kind": "verified-supplement",
+        "path": "code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json",
+        "case_id": "robertson-stiff-kinetics",
+        "sha256": "b88c01a4388790cc795041ffcecfcbdf465e8953443ea522d23247a715900845",
+        "json_pointer": "/0/formulas/0",
+        "source_formula": "\\dot y_1=-0.04y_1+10^4y_2y_3,\\quad\\dot y_2=-\\dot y_1-3\\!\\times\\!10^7y_2^2,\\quad\\dot y_3=3\\!\\times\\!10^7y_2^2",
+        "derivation_note": {
+          "ja": "出典の第2式に第1式を代入して反応項を展開しています。3式の和が0なので、初期総量1から保存式 y1+y2+y3=1 を得ます。DAE例はその保存式を別に検証します。",
+          "en": "Substitute the first RHS into the second to expand the reaction terms. Summing the three equations gives zero; initial total one yields y1+y2+y3=1. The DAE example separately validates that conservation form."
+        }
+      },
+      "execution_scope": {
+        "ja": "3成分の固定Robertson反応系を、短い時区間のODEと固定した粗い刻みの保存則DAEで検証します。DAEの未達の時間精度・収束目標もそのまま表示します。",
+        "en": "Fixed three-species Robertson examples cover a short-time ODE and a conservation DAE on a prescribed coarse schedule. The DAE unmet temporal accuracy/refinement targets remain visible."
+      }
     },
     {
       "id": "van-der-pol",

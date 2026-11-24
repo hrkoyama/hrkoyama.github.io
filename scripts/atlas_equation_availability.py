@@ -33,6 +33,38 @@ def equation_evidence(root, equations, discovery):
         if item['group'] != 'biology':
             continue
         source = item['formula_source']
+        if source.get('kind') == 'verified-supplement':
+            # Subject grouping does not imply provenance from the fixed survey.
+            # Existing survey identities cannot opt out of their stricter checks.
+            assert not item['id'].startswith('bio-'), 'Survey model must retain survey provenance'
+            ident = source['case_id']
+            assert ident in selected, 'Formula source must be a selected verified example'
+            example = supplements[ident]
+            path = source['path']
+            assert path.endswith('/cases.json') and path in example['source_sha256']
+            assert source['sha256'] == example['source_sha256'][path], 'Formula source SHA mismatch'
+            raw = (root / path).read_bytes()
+            assert sha256(raw).hexdigest() == source['sha256'], 'Formula source bytes changed'
+            metadata = json.loads(raw)
+            pointer = source['json_pointer']
+            assert pointer.startswith('/') and '~' not in pointer
+            tokens = pointer[1:].split('/')
+            if isinstance(metadata, dict):
+                assert tokens[0] == 'cases'
+                metadata = metadata['cases']
+                tokens = tokens[1:]
+            assert isinstance(metadata, list) and len(tokens) == 3 and tokens[1] == 'formulas'
+            for token in [tokens[0], tokens[2]]:
+                assert token.isdecimal() and str(int(token)) == token, 'Canonical nonnegative array index required'
+            case = metadata[int(tokens[0])]
+            assert case['id'] == ident, 'Formula pointer identifies a different case'
+            value = case['formulas'][int(tokens[2])]
+            assert isinstance(value, str) and value == source['source_formula']
+            assert value in example['formulas'], 'Formula pointer must identify selected case formula'
+            assert item['status'] == 'local-example' and not common[item['id']]
+            assert all(item['execution_scope'].get(lang) for lang in ['ja', 'en'])
+            continue
+        assert 'kind' not in source, 'Unknown biological formula provenance kind'
         assert source['path'] == 'numerical-methods-atlas/assets/biological-models.json'
         model = survey[source['model_id']]
         executed = model['status'] == 'scoped-educational-example'
