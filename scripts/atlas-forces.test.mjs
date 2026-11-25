@@ -1,3 +1,4 @@
+import {assertScopedMDMethod,assertChapterMDScope,mdCase,mdBase} from './fixtures/atlas-md-scope.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -83,7 +84,8 @@ test('BOMD evidence is an actually reconverged local interface rather than a lon
   assert.notDeepEqual(b.full_step.positions_bohr,input.cell.positions_bohr);
   const methods=json('numerical-methods-atlas/methods/index.json').methods;
   for(const id of ['born-oppenheimer-md','car-parrinello-md']){
-    const m=methods.find(m=>m.id===id);assert.equal(m.status,'reading-only');assert.deepEqual(m.execution_examples,[]);
+    const m=methods.find(m=>m.id===id);assertScopedMDMethod(m);
+    assert.throws(()=>assertScopedMDMethod({...m,execution_examples:[{id:'periodic-he-forces'}]}),'a local He force/Verlet interface is not the two-state execution');
   }
   const route=json('numerical-methods-atlas/connections/index.json').routes.find(r=>r.id==='dft-md');
   assert.equal(route.coupled_validation.status,'not-executed');
@@ -97,6 +99,7 @@ test('bilingual force reading connects measured evidence, runnable code, sources
     const route=`numerical-methods-atlas/${lang}/read/periodic-forces/`;
     const doc=json(route+'index.json'),html=text(route+'index.html');
     assert.equal(doc.locale,lang);assert.equal(doc.execution_example,'periodic-he-forces');assert.deepEqual(doc.measurements,result.metrics);
+    assertChapterMDScope(doc);assert.ok(html.includes('/validation/'+mdCase+'/')&&html.includes(mdBase+'source-manifest.json'));
     for(const [path,hash] of Object.entries(doc.source_sha256))assert.equal(sha(path),hash,path);
     assert.ok(html.includes('katex-mathml')&&!html.includes('katex-error'));
     assert.ok(html.includes('/examples/periodic-he-forces/'));assert.ok(html.includes(base+'periodic_forces.py'));

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_on": "2026-11-22",
+  "updated_on": "2026-11-25",
   "id": "periodic-forces",
   "example_id": "periodic-he-forces",
   "title": {
@@ -238,13 +238,15 @@
           "BOMDの力供給部energy_and_forcesは、原子位置（positions_bohr）を受け取り、同じエネルギー面の全エネルギー（energy_per_cell）と力（forces_cartesian）、SCFの収束状態・残差を返します。電子状態が未収束なら計算を失敗として扱います。質量は核運動の時間積分で使い、DFTから求めるポテンシャルエネルギーや力へ掛けません。周期セル内での位置の折り返しは表示と連続した軌道の記録を区別します。",
           "速度Verletなら、力で速度を半刻み進め、位置を更新し、新しい配置で電子状態を再び解いて力を得た後、残り半刻みの速度更新を行います。電子の初期推定を前のステップから引き継ぐことは高速化ですが、SCF収束の要件を置き換えるものではありません。今回の検証は原子間力とBOMDへ渡す接続を中心にし、単発の力評価や短い接続試験を長時間のMD検証として数えません。",
           "実用的な軌道の受入には、時間刻みを細分化した比較、SCF公差を厳しくした比較、温度制御を使わないNVEでの全エネルギーと運動量、必要なら時間反転の検査を追加します。温度制御でエネルギーのずれを吸収させると力や積分器の誤差が見えにくくなるため、まず無温度制御で検査します。短時間のドリフトが小さいことを、長時間の安定性や正しい統計分布の保証とはしません。",
-          "Car–Parrinello法は仮想電子自由度を核と同時に進める別の定式化です。ここで用意するBorn–Oppenheimer面の力供給をCPMDの実装として扱いません。DFTから力、核の時間積分、温度制御のどこまでが実行済みかは、分野間をつなぐ入口でも段階ごとに示します。"
+          "Car–Parrinello法は仮想電子自由度を核と同時に進める別の定式化です。ここで用意するBorn–Oppenheimer面の力供給をCPMDの実装として扱いません。DFTから力、核の時間積分、温度制御のどこまでが実行済みかは、分野間をつなぐ入口でも段階ごとに示します。",
+          "手法台帳には別の2準位BO/CP型教育模型の実行例があります。本章のHe₂の力・局所Verlet接続とは別の固定入力で、一般のKohn–Sham軌道計算・実材料・長時間MDの検証としてまとめて数えません。"
         ],
         "en": [
           "The BOMD force provider energy_and_forces accepts positions_bohr and returns energy_per_cell and forces_cartesian from the same energy surface, together with SCF convergence and residual diagnostics. An unconverged electronic state is treated as a failure. Masses belong to nuclear time integration, not as factors multiplying the DFT potential energy or forces. Wrapped positions inside a periodic cell must be distinguished from a continuous trajectory record.",
           "Velocity Verlet advances velocities by half a step, updates positions, solves the electronic problem again for the new forces, then completes the velocity update. Carrying an electronic guess from a previous step accelerates the calculation but does not replace SCF convergence. This verification focuses on atomic forces and the BOMD handoff; a single force evaluation or short interface smoke test is not counted as validation of long trajectories.",
           "Accepting a practical trajectory additionally requires timestep refinement, tighter-SCF comparisons, total-energy and momentum checks in unthermostatted NVE, and time-reversal checks where appropriate. Thermostats can hide force or integration errors by absorbing energy changes, so unthermostatted checks come first. Small short-time drift does not guarantee long-time stability or a correct statistical distribution.",
-          "Car–Parrinello dynamics is a distinct formulation propagating fictitious electronic degrees of freedom alongside nuclei. A force provider on the Born–Oppenheimer surface is not a CPMD implementation. The cross-field navigation separately shows the executed scope of DFT, force evaluation, nuclear integration and temperature control."
+          "Car–Parrinello dynamics is a distinct formulation propagating fictitious electronic degrees of freedom alongside nuclei. A force provider on the Born–Oppenheimer surface is not a CPMD implementation. The cross-field navigation separately shows the executed scope of DFT, force evaluation, nuclear integration and temperature control.",
+          "The method registry also links a separate two-state BO/CP-type educational model. Its fixed inputs are distinct from this chapter’s He2 forces/local Verlet interface; neither example establishes general Kohn–Sham trajectories, real materials or long-time MD."
         ]
       },
       "formulas": [
@@ -451,5 +453,9 @@
       },
       "doi": "10.1039/B509494A"
     }
+  ],
+  "reading_only_methods_scope": "chapter-local",
+  "scoped_md_examples": [
+    "two-state-bo-cp-ou"
   ]
 }

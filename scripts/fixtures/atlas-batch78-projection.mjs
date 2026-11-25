@@ -1,5 +1,6 @@
 // Exact inverse of the reviewed batch78 metadata changes for historical tests.
 // Current scientific values are checked before the named metadata is restored.
+import {projectCatalogBeforeFinal23,projectMethodBeforeFinal23,methodIdsAddedInFinal23} from './atlas-final23-projection.mjs';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
@@ -44,6 +45,8 @@ function inverse(row,record,change,allowed){
  assert.equal(hash(ordered),record.typed_sha256,row.id+'/all-old-values');return ordered;
 }
 export function projectMethodBeforeBatch78(row){
+ row=projectMethodBeforeFinal23(row);
+ if(methodIdsAddedInFinal23.includes(row.id))return row;
  const record=baseline.method_records[row.id];
  if(!record){assert.ok(methodIdsAddedInBatch78.includes(row.id),row.id+'/known-new-method');assert.equal(hash(row),freeze.new_method_records_typed_sha256[row.id]);return row;}
  return inverse(row,record,freeze.method_transitions[row.id],methodIdsPromotedInBatch78.includes(row.id)?promotion:append);
@@ -79,6 +82,7 @@ function registryBefore78(value){
 // Use only in a dated historical-cohort test. Current registration checks keep
 // the complete new cohort and validate its actual canonical packets separately.
 export function projectCatalogBeforeBatch78(path,value){
+ value=projectCatalogBeforeFinal23(path,value);
  if(path==='catalog/atlas-methods.json'){
   exactIDs(value.methods,baseline.method_order,methodIdsAddedInBatch78,'methods');
   for(const row of value.methods)if(methodIdsAddedInBatch78.includes(row.id))projectMethodBeforeBatch78(row);

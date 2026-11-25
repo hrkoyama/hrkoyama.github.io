@@ -598,8 +598,8 @@
         "car-parrinello1985"
       ],
       "caution": {
-        "ja": "BOMD全体の手法状態は解説のみ。力の専用配布版にある短い接続確認を、長時間MD軌道・温度制御の検証として数えません。",
-        "en": "The overall BOMD method record remains reading only. The force release’s short interface check does not validate long MD trajectories or thermostats."
+        "ja": "既存の力の配布版はBOMD接続の確認です。別配布quantum-smallの無次元2準位BO/CP型模型は短い連成と核熱浴を扱います。一般のKS第一原理MD・実材料・長時間軌道・平衡温度制御は未検証です。",
+        "en": "The existing force release checks a BOMD interface. A separate quantum-small dimensionless two-state BO/CP-type model checks short coupled motion and a nuclear thermostat. General KS first-principles MD, real materials, long trajectories and equilibrium thermostat sampling remain unvalidated."
       }
     },
     {
@@ -608,11 +608,11 @@
       "paragraphs": {
         "ja": [
           "カー–パリネロ法は電子軌道と核を拡張ラグランジアンで同時に進めます。電子の仮想質量μと直交制約を導入しますが、この電子運動をTDDFTの実時間発展や物理的な電子励起と同一視しません。",
-          "μ・時間刻み・直交性の許容誤差、仮想運動エネルギーを点検し、BO面の近傍に保つ必要があります。専用コードは未実装で、周期Heの静的なエネルギー比較をCPMD検証として数えません。"
+          "μ・時間刻み・直交性の許容誤差、仮想運動エネルギーを点検し、BO面の近傍に保つ必要があります。別配布quantum-smallは無次元2準位の短いCP型連成模型で、一般のKS軌道CPMDではありません。周期Heの静的なエネルギー比較をCPMD検証として数えません。"
         ],
         "en": [
           "Car–Parrinello dynamics propagates orbitals and nuclei through an extended Lagrangian with fictitious orbital inertia μ and orthonormality constraints. This electronic motion is distinct from real-time TDDFT and physical electronic excitation.",
-          "Inspect μ, timestep, orthogonality tolerance and fictitious kinetic energy to maintain proximity to the BO surface. No dedicated implementation is provided; static periodic-He energy agreement is not CPMD validation."
+          "Inspect μ, timestep, orthogonality tolerance and fictitious kinetic energy to maintain proximity to the BO surface. The separate quantum-small release is a short dimensionless two-state CP-type coupled model, not general KS-orbital CPMD. Static periodic-He energy agreement is not CPMD validation."
         ]
       },
       "formula": [
@@ -622,8 +622,8 @@
         "car-parrinello1985"
       ],
       "caution": {
-        "ja": "解説のみ。仮想電子運動の断熱性、エネルギー移動、長時間軌道は未検証です。",
-        "en": "Reading only. Adiabatic separation, fictitious-to-nuclear energy transfer and long trajectories are unvalidated."
+        "ja": "原論文の一般KS軌道CPMDの実装・長時間検証は未実施です。別配布の2準位教育模型で確認した短い軌道を、実材料の断熱分離・長時間のエネルギー移動の保証にしません。",
+        "en": "General KS-orbital CPMD implementation and long-time validation remain unperformed. Short trajectories in the separate two-state educational model do not certify real-material adiabatic separation or long-time energy transfer."
       }
     }
   ],

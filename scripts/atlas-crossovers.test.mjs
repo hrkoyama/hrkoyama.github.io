@@ -1,3 +1,4 @@
+import {assertScopedMDMethod} from './fixtures/atlas-md-scope.mjs';
 import {equationCount} from './fixtures/atlas-inventory.mjs';
 import {methodCount} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
@@ -51,24 +52,29 @@ test('crossovers preserve the scientific inventory and canonical availability', 
   assert.equal(examples.length, 22);
   for (const id of ['born-oppenheimer-md', 'car-parrinello-md']) {
     const method = publishedMethods.find(item => item.id === id);
-    assert.equal(method.status, 'reading-only', id);
-    assert.deepEqual(method.code_urls, [], id);
-    assert.deepEqual(method.test_urls, [], id);
-    assert.deepEqual(method.execution_examples, [], id);
+    assertScopedMDMethod(method);
+    assert.throws(()=>assertScopedMDMethod({...method,execution_examples:[{id:'periodic-he-dft'}]}),'static He is not a coupled MD trajectory');
   }
   for (const id of ['nose-hoover', 'nose-hoover-chains', 'velocity-rescaling']) {
     const method = publishedMethods.find(item => item.id === id);
-    assert.equal(method.status, 'planned', id);
-    assert.deepEqual(method.code_urls, [], id);
-    assert.deepEqual(method.test_urls, [], id);
-    assert.deepEqual(method.execution_examples, [], id);
+    assert.equal(method.status, 'educational-example', id);
+    assert.deepEqual(method.execution_examples.map(row=>row.id),['deterministic-thermostat-contrasts'],id);
+    assert.equal(method.depth_release.group,'thermostat-constraint-controls',id);
+    assert.deepEqual(method.depth_release.case_ids,['deterministic-thermostat-contrasts'],id);
+    const base='https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/';
+    assert.ok(method.code_urls.length&&method.code_urls.every(url=>url.startsWith(base)),id);
+    assert.ok(method.test_urls.length&&method.test_urls.every(url=>url.startsWith(base)),id);
   }
   const langevin = publishedMethods.find(item => item.id === 'langevin-thermostat');
   assert.equal(langevin.status, 'educational-example');
-  assert.deepEqual(new Set(langevin.execution_examples.map(row => row.id)),new Set(['langevin-harmonic','csvr-langevin-harmonic','csvr-langevin-quartic']));
+  const oldLangevin=['langevin-harmonic','csvr-langevin-harmonic','csvr-langevin-quartic'];
+  assert.deepEqual(new Set(langevin.execution_examples.filter(row=>oldLangevin.includes(row.id)).map(row=>row.id)),new Set(oldLangevin));
+  assert.deepEqual(new Set(langevin.execution_examples.map(row=>row.id)),new Set([...oldLangevin,'two-state-bo-cp-ou','projected-canonical-dof']));
   const csvr=publishedMethods.find(item=>item.id==='stochastic-velocity-rescaling');
   assert.equal(csvr.status,'educational-example');
-  assert.deepEqual(new Set(csvr.execution_examples.map(row=>row.id)),new Set(['csvr-kinetic-kernel','csvr-langevin-harmonic','csvr-langevin-quartic']));
+  const oldCSVR=['csvr-kinetic-kernel','csvr-langevin-harmonic','csvr-langevin-quartic'];
+  assert.deepEqual(new Set(csvr.execution_examples.filter(row=>oldCSVR.includes(row.id)).map(row=>row.id)),new Set(oldCSVR));
+  assert.deepEqual(new Set(csvr.execution_examples.map(row=>row.id)),new Set([...oldCSVR,'projected-canonical-dof']));
   assert.ok(!examples.some(row => row.id === 'langevin-harmonic'), 'supplement is not silently added to the common execution registry');
 });
 

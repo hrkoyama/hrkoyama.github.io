@@ -14,7 +14,8 @@ const cohort=[
   'scf','hartree-poisson','xc-functionals','ewald','pme','spme',
 ];
 const implementedLongRange={ewald:['ewald'],pme:['spme'],spme:['spme']};
-const planned=['velocity-rescaling','berendsen-thermostat','andersen-thermostat','nose-thermostat','nose-hoover','nose-hoover-chains','gaussian-isokinetic','generalized-langevin','dpd-thermostat','lowe-andersen'];
+// The four fixed two-mode methods now have their own limited educational packet.
+const planned=['andersen-thermostat','nose-thermostat','gaussian-isokinetic','generalized-langevin','dpd-thermostat','lowe-andersen'];
 const languages=['ja','en'];
 const fields=['assumptions','units','boundary_conditions','limitations'];
 const states=['specified','not-applicable','unknown'];

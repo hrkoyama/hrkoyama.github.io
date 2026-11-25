@@ -16,6 +16,7 @@ from atlas_execution_discovery import load_discovery
 from atlas_equation_availability import equation_evidence
 from atlas_equation_inventory import merge_catalog_equations
 from atlas_method_scope import depth_coverage_scope
+from atlas_depth_release import depth_release_record
 
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -25,14 +26,42 @@ load=lambda p:json.loads(p.read_text())
 write=lambda p,d:p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n')
 sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
 esc=html.escape
+SCOPED_QUANTUM_DEPTH_ONLY = {
+    'mp2': ['h3plus-mp2-fci'],
+    'configuration-interaction': ['h2-rhf-uhf-fci', 'h3plus-mp2-fci'],
+    'born-oppenheimer-md': ['two-state-bo-cp-ou'],
+    'car-parrinello-md': ['two-state-bo-cp-ou'],
+}
+
+
+def quantum_implementation_allowed(method, record=None):
+    """Separate a qualified small-model release from all legacy chemistry examples."""
+    legacy = any(method.get(key) for key in ['quantum_examples', 'molecular_examples', 'periodic_examples'])
+    selected = SCOPED_QUANTUM_DEPTH_ONLY.get(method['id'])
+    if selected is not None:
+        assert not legacy and not method.get('force_examples'), 'Unrelated legacy chemistry cannot prove MP2/CI/BO/CP'
+        if record is None:
+            return False
+        assert method['depth_release'] == {'group':'quantum-small', 'edition':'2026-11-25', 'case_ids':selected}
+        assert record['group'] == 'quantum-small' and record['code_edition'] == '2026-11-25'
+        assert record['case_ids'] == selected and record['passed_tests'] == 18
+        assert [case['id'] for case in record['examples']] == selected
+        for case in record['examples']:
+            assert method['id'] in case['method_ids'] and case['measured']['passed'] is True
+            assert case['measured']['checks'] and all(value is True for value in case['measured']['checks'].values())
+    return bool(legacy or record)
+
+
 data=load(ROOT/'catalog/atlas-quantum.json')
 queue=load(ROOT/'catalog/atlas-work-queue.json')
 methods={x['id']:x for x in load(ROOT/'catalog/atlas-methods.json')['methods'] if x['group']['id']=='quantum'}
 assert {x['id'] for x in data['sections']}==set(methods)
 examples=load(ROOT/'catalog/atlas-quantum-examples.json')
 case_ids={x['id'] for x in examples['cases']}
+# Existing verifier hashes every immutable member and ZIP; no solver is executed.
+depth_records={ident:depth_release_record(ROOT,method) for ident,method in methods.items() if method.get('depth_release')}
 assert all(x['status'] in ['reading-only','educational-example'] and not x['code_modules'] and not x['test_files'] for x in methods.values())
-assert all(set(x.get('quantum_examples',[]))<=case_ids and (x['status']!='educational-example' or x.get('quantum_examples') or x.get('molecular_examples') or x.get('periodic_examples')) for x in methods.values())
+assert all(set(x.get('quantum_examples',[]))<=case_ids and (x['status']!='educational-example' or quantum_implementation_allowed(x,depth_records.get(x['id']))) for x in methods.values())
 total_problems=len(load(ROOT/'catalog/atlas-test-problems.json')['problems'])
 refs={x['id']:x for x in data['references']}
 assert len(refs)==len(data['references'])
@@ -43,6 +72,20 @@ math=json.loads(subprocess.run(['node','scripts/render-atlas-math.cjs'],cwd=ROOT
 def link(url,label):return '<a href="'+esc(url)+'">'+esc(label)+'</a>'
 def paragraph(text):return '<p>'+esc(text)+'</p>'
 def reference(r):return esc(r['author'].replace(' and ','; '))+f' ({r["year"]}). '+link(r['source'],r['title'])+'. '+esc(r['journal'])+'.'
+
+def quantum_depth_html(method,record,lang):
+    if record is None:
+        return ''
+    assert quantum_implementation_allowed(method,record)
+    ja=lang=='ja'
+    body='<aside class="resource-summary" data-quantum-depth-method="'+esc(method['id'])+'">'
+    body+=paragraph(('別配布の小規模な固定入力模型：' if ja else 'Separate fixed-input small-model release: ')+depth_coverage_scope(method,lang))
+    body+='<ul>'
+    for case in record['examples']:
+        body+='<li data-release-case="'+esc(case['id'])+'">'+link(case['entry']+'?lang='+lang,case['title'][lang])+paragraph(case['assumptions'][lang])+paragraph(case['limits'][lang])+'</li>'
+    body+='</ul>'+link(record['code_download'],('固定配布版 ' if ja else 'Fixed release ')+record['code_edition']+' / ZIP')+' · '+link(record['code_verification'],'保存された独立展開の検査' if ja else 'Saved independent-extraction checks')
+    return body+'</aside>'
+
 bodies={}
 for lang in ['ja','en']:
     ja=lang=='ja';route=f'/numerical-methods-atlas/{lang}/read/quantum-chemistry/'
@@ -68,6 +111,7 @@ for lang in ['ja','en']:
             body+='<p class="resource-summary">'+esc(methods[x['id']]['periodic_scope'][lang])+' '+link(f'/numerical-methods-atlas/{lang}/read/periodic-dft/','周期DFTの条件・コード・収束・独立参照' if ja else 'Periodic DFT conditions, code, convergence and independent reference')+'</p>'
         if methods[x['id']].get('force_examples'):
             body+='<p class="resource-summary">'+esc(methods[x['id']]['force_scope'][lang])+' '+link(f'/numerical-methods-atlas/{lang}/read/periodic-forces/','原子間力・有限差分・独立参照・BOMD接続' if ja else 'Atomic forces, finite differences, independent reference and BOMD interface')+'</p>'
+        body+=quantum_depth_html(methods[x['id']],depth_records.get(x['id']),lang)
         if math[x['id']]:
             body+='<div class="quantum-math">'+''.join(math[x['id']])+'</div>'
             if any(len(f)>90 for f in x['formula']):body+='<p class="quantum-scroll-note">'+('長い式は横にスクロールできます。' if ja else 'Long equations scroll horizontally.')+'</p>'
@@ -77,7 +121,7 @@ for lang in ['ja','en']:
             body+='</section>'
         body+='<p class="quantum-caution">'+esc(x['caution'][lang])+'</p><p>'+link('/numerical-methods-atlas/methods/'+x['id']+'/?lang='+lang,'条件・実装状況・JSON' if ja else 'Assumptions, implementation status and JSON')+'</p><ul>'
         body+=''.join('<li>'+link('#ref-'+r,refs[r]['author'].replace(' and ','; ')+f' ({refs[r]["year"]})')+'</li>' for r in x['references'])+'</ul></section>'
-    body+='<section><h2 id="verification">'+('実行・検証例と次の計画' if ja else 'Runnable validation examples and next plans')+'</h2>'+paragraph(f'水素型原子・Heの2問題群を実行し、独立参照と比較して全{total_problems}問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。分子DFT・FCIや他の周期物質へ検証を拡張していません。' if ja else f'Two hydrogenic/He problem families were executed, independently compared and added to the {total_problems}-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; molecular DFT, FCI and other periodic materials are not validated.')
+    body+='<section><h2 id="verification">'+('実行・検証例と次の計画' if ja else 'Runnable validation examples and next plans')+'</h2>'+paragraph(f'水素型原子・Heの2問題群を実行し、独立参照と比較して全{total_problems}問題の台帳へ加えました。さらにH₂の有限基底RHFを独立参照・SCFと基底の収束で検証しました。周期Heセルの限定DFTも追加。別配布の固定模型には最小基底H₂のUHF/FCI、3中心H₃⁺のMP2/FCI、無次元2準位のBO/CP型連成があります。これらは一般の分子DFT・大基底相関計算・実材料の長時間第一原理MDの検証ではありません。' if ja else f'Two hydrogenic/He problem families were executed, independently compared and added to the {total_problems}-problem inventory. A scoped H₂ finite-basis RHF example now adds independent-reference, SCF and basis checks. A scoped periodic-He DFT workflow is now added; separate fixed-model releases add minimal-basis H₂ UHF/FCI, three-center H₃⁺ MP2/FCI and dimensionless two-state BO/CP-type coupling. These do not validate general molecular DFT, large-basis correlation or long first-principles trajectories in real materials.')
     for x in data['verification_plan']:
         state=('実行・検証例あり' if ja else 'Runnable and checked') if x['state']=='verified-educational-example' else 'Under construction'
         body+='<article class="quantum-plan"><p class="resource-status">'+state+'</p><h3>'+esc(x['title'][lang])+'</h3>'+paragraph(x['check'][lang])

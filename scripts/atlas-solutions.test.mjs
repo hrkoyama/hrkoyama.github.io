@@ -14,6 +14,7 @@ const json=path=>JSON.parse(read(path));
 const sha=path=>createHash('sha256').update(readFileSync(new URL(path,root))).digest('hex');
 const source='numerical-methods-atlas/assets/reference-solutions.json';
 const historicalCases=json(source).cases,supplementSource='catalog/atlas-reference-supplements.json';
+const commonReferenceIds=['bratu-lower-branch-analytic','harmonic-oscillator-exact','stiff-cosine-exact','hydrogenic-coulomb-reference'];
 const cases=[...historicalCases,...json(supplementSource).cases],messages=json('numerical-methods-atlas/locales/messages.json');
 const translations=new Map(Object.values(messages).map(entry=>[entry.en?.replace(/\s+/g,' ').trim(),entry]));
 const decode=value=>value.replaceAll('&amp;','&').replaceAll('&quot;','"').replaceAll('&#x27;',"'").replaceAll('&#39;',"'").replaceAll('&lt;','<').replaceAll('&gt;','>');
@@ -67,7 +68,7 @@ with tempfile.TemporaryDirectory(prefix='atlas-solutions-fixture-') as temporary
 test('the saved-solution index derives every existing case and source hash without changing scientific inputs',()=>{
   assert.equal(historicalCases.length,18);
   assert.equal(sha(source),'c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc','the historical18 scientific references remain byte-identical');
-  assert.deepEqual(cases.slice(historicalCases.length).filter(row=>!['weno-critical-profile','lake-at-rest-bed','swashes-bernoulli','ritter-dry-bed','ghia-re100','wall-mms','level-set-translation','level-set-rotation', 'kh-initial-growth', 'rt-initial-growth', 'circular-alfven-refinement', 'magnetic-loop-independent', 'postshock-orszag-tang', 'lshape-fem', 'annular-viscous-mms', 'poisson-neumann', 'poisson-robin', 'ale-nonuniform-transport', 'cgrid-rotating-wave', 'srhd-collision', 'srmhd-alfven', 'sem-poisson-2d', 'fr-periodic-advection','checkerboard-diffusion','rotated-anisotropic-diffusion','neutral-slab-yb','fmm3d-inverse-r','gravity-kepler','gravity-plummer-short','thermal-landau-damping','thermal-two-stream','pic-independent-spatial','dsmc-couette','dsmc-fourier','dsmc-planar-shock',...examplesAddedAfterBatch37].includes(row.id)).map(row=>row.id),['noh','sedov','double-mach','forward-step','isentropic-vortex','guderley','zalesak-rotation']);
+  assert.deepEqual(cases.slice(historicalCases.length).filter(row=>!['weno-critical-profile','lake-at-rest-bed','swashes-bernoulli','ritter-dry-bed','ghia-re100','wall-mms','level-set-translation','level-set-rotation', 'kh-initial-growth', 'rt-initial-growth', 'circular-alfven-refinement', 'magnetic-loop-independent', 'postshock-orszag-tang', 'lshape-fem', 'annular-viscous-mms', 'poisson-neumann', 'poisson-robin', 'ale-nonuniform-transport', 'cgrid-rotating-wave', 'srhd-collision', 'srmhd-alfven', 'sem-poisson-2d', 'fr-periodic-advection','checkerboard-diffusion','rotated-anisotropic-diffusion','neutral-slab-yb','fmm3d-inverse-r','gravity-kepler','gravity-plummer-short','thermal-landau-damping','thermal-two-stream','pic-independent-spatial','dsmc-couette','dsmc-fourier','dsmc-planar-shock',...examplesAddedAfterBatch37,...commonReferenceIds].includes(row.id)).map(row=>row.id),['noh','sedov','double-mach','forward-step','isentropic-vortex','guderley','zalesak-rotation']);
   assert.equal(rendered.record.supplements_source_sha256,sha(supplementSource));
   assert.deepEqual(rendered.record.cases.map(row=>row.id),cases.map(row=>row.id));
   assert.equal(rendered.record.count,cases.length);
@@ -78,6 +79,23 @@ test('the saved-solution index derives every existing case and source hash witho
   assert.deepEqual(Object.keys(rendered.first).sort(),['index.html','index.json','index.md']);
   const counts={};for(const row of cases)counts[row.kind]=(counts[row.kind]||0)+1;
   assert.deepEqual(rendered.record.counts,counts);
+});
+
+test('four common exact cards retain their fixed source bindings and original verification scope',()=>{
+  assert.deepEqual(json(supplementSource).cases.slice(97,101).map(row=>row.id),commonReferenceIds);
+  for(const id of commonReferenceIds){
+    const row=rendered.record.cases.find(row=>row.id===id);
+    assert.equal(row.reference_class,'continuous-exact',id);
+    const contract=row.reference_contract;
+    assert.equal(contract.class,'continuous-exact');
+    for(const binding of [contract.fixed_input_binding,...contract.saved_output_bindings]){
+      assert.match(binding.sha256,/^[a-f0-9]{64}$/);
+      assert.equal(sha(new URL(binding.url).pathname.slice(1)),binding.sha256,id+'/'+binding.url);
+    }
+    assert.match(contract.release_binding.verification_sha256,/^[a-f0-9]{64}$/);
+    assert.equal(sha(new URL(contract.release_binding.verification).pathname.slice(1)),contract.release_binding.verification_sha256);
+    assert.equal(contract.formula_derivation.historical_original_solution_verified,false);
+  }
 });
 
 test('names, formulas, dimensions and analytic/semi-analytic/manufactured distinctions come from the same source records',()=>{
@@ -123,13 +141,15 @@ for dimension in [1,2,3]:
 assert format_dimension({'dimension':None,'domain_kind':'finite-dimensional-algebra'},'en')=='Finite-dimensional algebra';checks+=1
 assert format_dimension({'dimension':None,'domain_kind':'finite-dimensional-ivp'},'en')=='ODE / DAE (no spatial dimension)';checks+=1
 assert format_dimension({'dimension':None,'domain_kind':'finite-dimensional-ivp'},'ja')=='常微分・微分代数方程式（空間次元なし）';checks+=1
+assert format_dimension({'dimension':None,'domain_kind':'nonspatial-stochastic'},'en')=='Stochastic process (no spatial dimension)';checks+=1
+assert format_dimension({'dimension':None,'domain_kind':'nonspatial-stochastic'},'ja')=='空間次元を持たない確率過程';checks+=1
 for case in [{'dimension':None},{'dimension':None,'domain_kind':'physical'},{'dimension':0},{'dimension':True}]:
     try:format_dimension(case,'en')
     except ValueError:checks+=1
     else:raise AssertionError(case)
 print(json.dumps({'passed':True,'checks':checks}))
 `],{cwd:fileURLToPath(root),encoding:'utf8'}));
-  assert.deepEqual(result,{passed:true,checks:13});
+  assert.deepEqual(result,{passed:true,checks:15});
 });
 
 test('each edition exposes all names, formulas and assumptions as visible static cards',()=>{

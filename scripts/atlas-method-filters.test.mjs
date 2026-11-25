@@ -137,12 +137,14 @@ test('actual bilingual names, aliases, groups and AND terms combine with exact c
       assert.deepEqual(actual.map(record => record.id).sort(), catalog.methods.filter(method => method.status === status).map(method => method.id).sort());
     }
     for (const query of ['CG', 'ｃｇ', '共役勾配', 'Conjugate 勾配']) assert.ok(methodMatches(lookup.get('cg'), 'educational-example', query), `${lang}: ${query}`);
-    for (const query of ['Nosé–Hoover', 'Nose-Hoover', 'のせフーバー', 'ノセ・フーバー', 'thermostats 温度制御']) assert.ok(methodMatches(lookup.get('nose-hoover'), 'planned', query), `${lang}: ${query}`);
-    assert.ok(methodMatches(lookup.get('velocity-rescaling'), 'planned', 'ベロシティースケーリング'));
+    for (const query of ['Nosé–Hoover', 'Nose-Hoover', 'のせフーバー', 'ノセ・フーバー', 'thermostats 温度制御']) assert.ok(methodMatches(lookup.get('nose-hoover'), 'educational-example', query), `${lang}: ${query}`);
+    assert.ok(methodMatches(lookup.get('velocity-rescaling'), 'educational-example', 'ベロシティースケーリング'));
     assert.ok(methodMatches(lookup.get('stochastic-velocity-rescaling'), 'educational-example', 'CSVR'));
     assert.ok(!methodMatches(lookup.get('cg'), 'planned', 'CG'));
     assert.ok(!methodMatches(lookup.get('cg'), 'all', 'CG __absent_term__'));
-    assert.ok(!methodMatches(lookup.get('nose-hoover'), 'educational-example', 'Nosé'));
+    assert.ok(!methodMatches(lookup.get('nose-hoover'), 'planned', 'Nosé'));
+    assert.ok(methodMatches(lookup.get('andersen-thermostat'), 'planned', 'Andersen'));
+    assert.ok(!methodMatches(lookup.get('andersen-thermostat'), 'educational-example', 'Andersen'));
   }
 });
 
@@ -242,8 +244,9 @@ test('DOM status and query filters synchronize both languages, group counts, jum
   assertVisible(fixture, catalog.methods.filter(method => method.status === 'reading-only').map(method => method.id));
   fixture.en.select.value = 'planned'; fixture.en.select.dispatch('change');
   assertVisible(fixture, catalog.methods.filter(method => method.status === 'planned').map(method => method.id));
+  fixture.en.select.value = 'educational-example'; fixture.en.select.dispatch('change');
   fixture.en.input.value = 'のせフーバー'; fixture.en.input.dispatch('input');
-  assert.equal(fixture.ja.input.value, 'のせフーバー'); assert.equal(fixture.ja.select.value, 'planned');
+  assert.equal(fixture.ja.input.value, 'のせフーバー'); assert.equal(fixture.ja.select.value, 'educational-example');
   assertVisible(fixture, ['nose-hoover']);
   fixture.ja.input.value = '__no_matching_method__'; fixture.ja.input.dispatch('input');
   assertVisible(fixture, []);
@@ -256,11 +259,11 @@ test('DOM status and query filters synchronize both languages, group counts, jum
 
 test('session restoration retains the shared filter after reloading or changing language, and caps restored query length', () => {
   const storage = memoryStorage(); const first = makeFixture(); wireMethodMaps(first.document, storage);
-  first.ja.select.value = 'planned'; first.ja.select.dispatch('change'); first.ja.input.value = 'Nose-Hoover'; first.ja.input.dispatch('input');
-  assert.deepEqual(JSON.parse(storage.getItem(storageKey)), {status: 'planned', query: 'Nose-Hoover'});
+  first.ja.select.value = 'educational-example'; first.ja.select.dispatch('change'); first.ja.input.value = 'Nose-Hoover'; first.ja.input.dispatch('input');
+  assert.deepEqual(JSON.parse(storage.getItem(storageKey)), {status: 'educational-example', query: 'Nose-Hoover'});
   const reload = makeFixture(); wireMethodMaps(reload.document, storage);
   assertVisible(reload, ['nose-hoover', 'nose-hoover-chains']);
-  for (const section of reload.sections) { assert.equal(section.select.value, 'planned'); assert.equal(section.input.value, 'Nose-Hoover'); }
+  for (const section of reload.sections) { assert.equal(section.select.value, 'educational-example'); assert.equal(section.input.value, 'Nose-Hoover'); }
   const oversized = makeFixture(); wireMethodMaps(oversized.document, memoryStorage(JSON.stringify({status: 'all', query: 'x'.repeat(250)})));
   for (const section of oversized.sections) assert.equal(section.input.value.length, 200);
 });

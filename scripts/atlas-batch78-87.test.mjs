@@ -1,6 +1,7 @@
 // Frozen canonical cohort checks; no scientific calculation is executed here.
 // Metadata and byte checks only: no numerical imports, archive extraction,
 // reference regeneration, training, image rendering or network access.
+import {projectCatalogBeforeFinal23} from './fixtures/atlas-final23-projection.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
@@ -8,7 +9,8 @@ import {createReadStream,readFileSync,statSync} from 'node:fs';
 const root=new URL('../',import.meta.url);
 const local=p=>String(p).replace(/^https:\/\/hrkoyama\.github\.io\//,'').replace(/^\//,'');
 const bytes=p=>readFileSync(new URL(local(p),root));
-const json=p=>JSON.parse(bytes(p));
+// This dated batch keeps its exact old cohort; the strict final23 inverse validates later changes first.
+const json=p=>projectCatalogBeforeFinal23(local(p),JSON.parse(bytes(p)));
 const sha=p=>createHash('sha256').update(bytes(p)).digest('hex');
 const sorted=xs=>[...xs].sort();
 const baselinePath='scripts/fixtures/atlas-batch78-87-baseline.json';

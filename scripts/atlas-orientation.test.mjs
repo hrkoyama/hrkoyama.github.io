@@ -72,7 +72,7 @@ test('orientation and sharing retain scientific counts and the already-verified 
   assert.equal(receipt.registry_source_mode, 'public-registry'); assert.equal(receipt.passed, true);
   assert.equal(digest('numerical-methods-atlas/code-and-data/examples.json'), receipt.registry_sha256);
   assert.deepEqual(json('numerical-methods-atlas/code-and-data/examples.json').examples, examples.examples);
-  assert.ok(methods.filter(method => method.group.id === 'thermostats').every(method => method.status === (['langevin-thermostat', 'stochastic-velocity-rescaling'].includes(method.id) ? 'educational-example' : 'planned')));
+  assert.ok(methods.filter(method => method.group.id === 'thermostats').every(method => method.status === (['langevin-thermostat', 'stochastic-velocity-rescaling', 'velocity-rescaling', 'berendsen-thermostat', 'nose-hoover', 'nose-hoover-chains'].includes(method.id) ? 'educational-example' : 'planned')));
 });
 
 test('the eight actual areas render in both languages with real reading/execution links and scoped new fields', () => {

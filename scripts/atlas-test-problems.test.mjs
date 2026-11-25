@@ -1,3 +1,4 @@
+import {projectCatalogBeforeFinal23} from './fixtures/atlas-final23-projection.mjs';
 import {projectCatalogBeforeBatch78} from './fixtures/atlas-batch78-projection.mjs';
 import {examplesAddedAfterBatch37} from './fixtures/atlas-inventory.mjs';
 import {problemGroupCounts} from './fixtures/atlas-inventory.mjs';
@@ -80,12 +81,14 @@ test('the new thermostat comparisons add one quartic problem and retain the orig
   assert.equal(catalog.problems.length,problemCount);
   const oldTimeIds=['harmonic-oscillator','quartic-oscillator','nonlinear-exp-ode','stiff-cosine','nonlinear-rational-ode','nonlinear-rational-decay','langevin-harmonic','thermostatted-quartic'];
   const batch68TimeIds=['robertson-stiff-kinetics','van-der-pol-stiff-transition','rk45-dense-events','strang-boundary-order-reduction','jameson-steady-linear-modes','index1-dae-consistent-initialization','high-index-pendulum','multifrequency-resonance'];
+  const final23TimeIds=['projected-canonical-dof'];
   const timeIds=inventory.problems.filter(x=>x.group==='time').map(x=>x.id);
   assert.equal(new Set(timeIds).size,timeIds.length,'No duplicated time problems');
-  assert.deepEqual(timeIds.filter(id=>!batch68TimeIds.includes(id)).sort(),[...oldTimeIds].sort(),'Historical eight time problems remain exact');
+  assert.deepEqual(timeIds.filter(id=>!batch68TimeIds.includes(id)&&!final23TimeIds.includes(id)).sort(),[...oldTimeIds].sort(),'Historical eight time problems remain exact');
   assert.deepEqual(timeIds.filter(id=>batch68TimeIds.includes(id)).sort(),[...batch68TimeIds].sort(),'Exactly eight new physical time problems');
-  assert.equal(inventory.counts.groups.time,oldTimeIds.length+batch68TimeIds.length);
-  assert.deepEqual(catalog.problems.filter(x=>x.group==='time').map(x=>x.id).sort(),[...oldTimeIds,...batch68TimeIds].sort());
+  assert.deepEqual(timeIds.filter(id=>final23TimeIds.includes(id)),final23TimeIds,'One new physical constraint-ensemble problem');
+  assert.equal(inventory.counts.groups.time,oldTimeIds.length+batch68TimeIds.length+final23TimeIds.length);
+  assert.deepEqual(catalog.problems.filter(x=>x.group==='time').map(x=>x.id).sort(),[...oldTimeIds,...batch68TimeIds,...final23TimeIds].sort());
   assert.equal(mapping['csvr-kinetic-kernel'],null);
   assert.equal(mapping['csvr-langevin-harmonic'],'langevin-harmonic');
   assert.equal(mapping['csvr-langevin-quartic'],'thermostatted-quartic');
@@ -99,7 +102,10 @@ test('the new thermostat comparisons add one quartic problem and retain the orig
   assert.equal(quartic.group,'time');
   assert.equal(quartic.chapter,'validation-thermostats');
   assert.deepEqual(quartic.name,metadata.title);
-  assert.deepEqual(quartic.supplemental_examples.map(x=>x.id),['csvr-langevin-quartic']);
+  assert.deepEqual(quartic.supplemental_examples.map(x=>x.id),['csvr-langevin-quartic','deterministic-thermostat-contrasts']);
+  const newQuarticCase=JSON.parse(read('code/validated-examples/2026-11-25/thermostat-constraint-controls/cases.json')).find(x=>x.id==='deterministic-thermostat-contrasts');
+  assert.deepEqual(quartic.supplemental_examples[1].name,newQuarticCase.title);
+  assert.equal(mapping['deterministic-thermostat-contrasts'],quartic.id);
   assert.equal(results.input_sha256,hash(readFileSync(new URL(base+'inputs.json',root))));
   assert.equal(results.passed,true);
   for(const row of results.cases){assert.match(row.input_sha256,/^[a-f0-9]{64}$/);assert.equal(row.passed,true);assert.ok(Object.values(row.checks).every(Boolean));}
@@ -116,12 +122,13 @@ test('nonlinear Schnakenberg refinements reuse one physical problem and preserve
   assert.equal(catalog.problems.length,problemCount);
   const oldBiologyIDs=['logistic-growth','sir-epidemic','reaction-diffusion-fourier','turing-schnakenberg','fitzhugh-nagumo'];
   const newBiologyIDs=['enzyme-qssa','lotka-volterra','seir-linearization'];
-  const previous=projectCatalogBeforeBatch78('catalog/atlas-test-problems.json',catalog);
+  const final23BiologyIDs=['hodgkin-huxley-controls','immigration-death-ssa','fisher-kpp-special-front','schnakenberg-2d-boundary-modes','keller-segel-forced-flux'];
+  const previous=projectCatalogBeforeBatch78('catalog/atlas-test-problems.json',projectCatalogBeforeFinal23('catalog/atlas-test-problems.json',catalog));
   assert.deepEqual(previous.problems.filter(x=>x.group==='biology').map(x=>x.id),oldBiologyIDs);
   assert.equal(oldBiologyIDs.length,5);
-  assert.deepEqual(catalog.problems.filter(x=>x.group==='biology').map(x=>x.id),[...oldBiologyIDs,...newBiologyIDs]);
-  assert.deepEqual(inventory.problems.filter(x=>x.group==='biology').map(x=>x.id),[...oldBiologyIDs,...newBiologyIDs]);
-  assert.equal(inventory.counts.groups.biology,oldBiologyIDs.length+newBiologyIDs.length);
+  assert.deepEqual(catalog.problems.filter(x=>x.group==='biology').map(x=>x.id),[...oldBiologyIDs,...newBiologyIDs,...final23BiologyIDs]);
+  assert.deepEqual(inventory.problems.filter(x=>x.group==='biology').map(x=>x.id),[...oldBiologyIDs,...newBiologyIDs,...final23BiologyIDs]);
+  assert.equal(inventory.counts.groups.biology,oldBiologyIDs.length+newBiologyIDs.length+final23BiologyIDs.length);
   assert.equal(problem.chapter,'validation-models');
   assert.equal(problem.code_base,'/code/validated-examples/2026-11-22/models/');
   assert.deepEqual(problem.supplemental_examples.map(x=>x.id),['turing-schnakenberg',...identifiers,'reaction-diffusion-splitting']);

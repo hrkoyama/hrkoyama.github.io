@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_on": "2026-11-22",
+  "updated_on": "2026-11-25",
   "id": "periodic-dft",
   "example_id": "periodic-he-dft",
   "title": {
@@ -239,14 +239,16 @@
           "BOMDではSCFの許容誤差をエネルギーだけでなく力と軌道の再現性でも決めます。原子に追随する有限Gaussian基底を使う場合は、基底の位置依存に由来する力の項（Pulay項）も必要です。力の有限差分照合、時間刻みの細分化、無温度制御のNVEでのエネルギードリフトを別々に検査します。予測した電子状態を次の初期値に使っても、各配置で必要な精度まで最適化するというBOMDの要件は変わりません。",
           "カー–パリネロ分子動力学（CPMD）は、核の座標と電子軌道を拡張ラグランジアンで同時に進めます。μは電子軌道に与える数値的な仮想質量で、実在の電子の質量そのものではありません。直交制約はLagrange乗数Λで課します。表示式は固定セル・固定占有を想定し、軌道の速度項をμ/2と定義する規約です。周期k点を使う一般化では電子項に重みと占有を一貫して含めます。",
           "CPMDで電子軌道を時間発展させることは、TDDFTで実在の電子励起を追うことではありません。電子の仮想運動と核運動の時間尺度を分離し、軌道をBO面の近傍に保つ必要があります。μ・時間刻み・直交性許容誤差を変えて、仮想運動エネルギーと核運動へのエネルギー移動を監視します。温度制御を加えない理想的な拡張系の保存量E_extと、核の運動エネルギー＋BOエネルギーを区別します。狭いギャップや金属への適用をこの説明だけで保証しません。",
-          "この節は解説のみです。本章の1原子固定He例が検証するのは静的な全エネルギーとk点・基底・補助格子・SCFの収束です。多原子Heセルの原子間力、エネルギー有限差分と独立参照、BOMDへの力供給は、別章「DFTから原子間力へ」と専用配布版で扱います。BOMD/CPMDの長時間軌道、時間刻み・SCF公差・仮想質量μへの感度、温度制御は段階を分けて検証します。"
+          "この節は解説のみです。本章の1原子固定He例が検証するのは静的な全エネルギーとk点・基底・補助格子・SCFの収束です。多原子Heセルの原子間力、エネルギー有限差分と独立参照、BOMDへの力供給は、別章「DFTから原子間力へ」と専用配布版で扱います。BOMD/CPMDの長時間軌道、時間刻み・SCF公差・仮想質量μへの感度、温度制御は段階を分けて検証します。",
+          "別の固定入力の教育例では、無次元の2準位電子角と核座標によるBO/CP型連成を短時間だけ実行しています。この模型は本章の周期He計算を動かしたものではなく、一般のKohn–Sham BOMD/CPMD・実材料・長時間MDの検証とは区別します。"
         ],
         "en": [
           "First-principles molecular dynamics (AIMD) moves nuclei using electronic-structure calculations. Born–Oppenheimer molecular dynamics (BOMD) converges the electronic ground state at each nuclear configuration, then integrates classical nuclear motion using forces on that energy surface. E_BO below includes ionic interactions. The 1927 Born–Oppenheimer paper is cited for electronic–nuclear separation, not as the publication of a modern BOMD program.",
           "In BOMD, SCF tolerances must control forces and trajectory reproducibility as well as energies. Atom-centered finite Gaussian bases require force contributions from basis-position dependence (Pulay terms). Finite-difference force checks, timestep refinement and energy drift in unthermostatted NVE trajectories are separate tests. Predicting an electronic initial guess does not remove the requirement to optimize each configuration to adequate accuracy.",
           "Car–Parrinello molecular dynamics (CPMD) propagates nuclear coordinates and electronic orbitals together through an extended Lagrangian. The fictitious orbital mass μ is a numerical parameter, rather than the physical electron mass. Lagrange multipliers Λ enforce orthonormality. The displayed convention uses a μ/2 orbital-velocity term at fixed cell and occupations. Generalization to periodic k sampling must consistently include weights and occupations in electronic terms.",
           "CPMD orbital propagation does not represent real electronic excitations as in TDDFT. Electronic fictitious motion must remain separated in timescale from nuclear motion, keeping orbitals near the BO surface. Vary μ, timestep and orthogonality tolerance while monitoring fictitious kinetic energy and energy transfer to nuclei. Distinguish the ideal unthermostatted extended-system conserved energy E_ext from nuclear kinetic plus BO energy. These statements do not establish applicability to narrow-gap systems or metals.",
-          "This section is reading only. This chapter’s fixed one-atom He example validates static total energies and k-point, basis, auxiliary-grid and SCF convergence. Multiatom He forces, energy finite differences, an independent reference and the BOMD force interface are covered in the separate From DFT to atomic forces chapter and release. Long BOMD/CPMD trajectories, timestep/SCF/fictitious-mass sensitivity and thermostats require separate validation."
+          "This section is reading only. This chapter’s fixed one-atom He example validates static total energies and k-point, basis, auxiliary-grid and SCF convergence. Multiatom He forces, energy finite differences, an independent reference and the BOMD force interface are covered in the separate From DFT to atomic forces chapter and release. Long BOMD/CPMD trajectories, timestep/SCF/fictitious-mass sensitivity and thermostats require separate validation.",
+          "A separate fixed-input educational example executes a short, dimensionless two-state electronic-angle/nuclear-coordinate BO/CP-type model. It does not propagate this chapter’s periodic He calculation or establish general Kohn–Sham BOMD/CPMD, real-material or long-time MD validation."
         ]
       },
       "formulas": [
@@ -485,5 +487,9 @@
   "reading_only_methods": [
     "born-oppenheimer-md",
     "car-parrinello-md"
+  ],
+  "reading_only_methods_scope": "chapter-local",
+  "scoped_md_examples": [
+    "two-state-bo-cp-ou"
   ]
 }

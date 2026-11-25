@@ -937,24 +937,6 @@
       }
     },
     {
-      "id": "quantum-small",
-      "edition": "2026-11-25",
-      "title": {
-        "ja": "小さな量子模型と保存参照カード",
-        "en": "Small quantum models and saved-reference cards"
-      },
-      "fields": [
-        "temperature",
-        "quantum-atoms",
-        "quantum-molecular",
-        "quantum-periodic"
-      ],
-      "intro": {
-        "ja": "固定2準位連成・1D固有対・最小分子・3波模型と、H/He・周期Heの保存参照監査です。重い一般範囲は残します。",
-        "en": "Fixed two-state dynamics,1D eigenpairs,minimal molecules and a3-wave model plus saved H/He and periodic-He audits. Broad expensive tails remain unverified."
-      }
-    },
-    {
       "id": "biology-ode-controls",
       "edition": "2026-11-25",
       "title": {
@@ -997,6 +979,24 @@
       "intro": {
         "ja": "小さな調和・四次系で温度制御の違いを比較し、固定線形拘束の有効自由度・運動量共分散・過渡分布を検証します。未達の統計目標も表示します。",
         "en": "Compare thermostats on small harmonic/quartic systems and check effective degrees of freedom, momentum covariance and transient distributions under fixed linear constraints. Retain unmet statistical goals."
+      }
+    },
+    {
+      "id": "quantum-small",
+      "edition": "2026-11-25",
+      "title": {
+        "ja": "小さな量子模型と保存参照カード",
+        "en": "Small quantum models and saved-reference cards"
+      },
+      "fields": [
+        "temperature",
+        "quantum-atoms",
+        "quantum-molecular",
+        "quantum-periodic"
+      ],
+      "intro": {
+        "ja": "固定2準位連成・1D固有対・最小分子・3波模型と、H/He・周期Heの保存参照監査です。重い一般範囲は残します。",
+        "en": "Fixed two-state dynamics,1D eigenpairs,minimal molecules and a3-wave model plus saved H/He and periodic-He audits. Broad expensive tails remain unverified."
       }
     },
     {

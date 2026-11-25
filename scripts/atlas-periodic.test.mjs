@@ -1,3 +1,5 @@
+import {methodIdsAddedInFinal23} from './fixtures/atlas-final23-projection.mjs';
+import {assertScopedMDMethod,assertChapterMDScope,mdCase,mdBase} from './fixtures/atlas-md-scope.mjs';
 import {methodIdsAddedInBatch78,methodIdsPromotedInBatch78,methodIdsAddedInBatch68,methodIdsAddedInBatch58,methodCount,methodIds} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -26,6 +28,9 @@ test('bilingual periodic reading exposes measured evidence before theory, render
     const record = json(route + 'index.json'), html = text(route + 'index.html'), markdown = text(route + 'index.md');
     assert.equal(record.locale, lang);
     assert.equal(record.execution_example, exampleID);
+    assertChapterMDScope(record);
+    assert.ok(html.includes('/validation/'+mdCase+'/')&&html.includes(mdBase+'source-manifest.json'));
+    assert.ok(markdown.includes(mdBase+'source-manifest.json'));
     assert.deepEqual(record.measurements, result.metrics);
     for (const [path, hash] of Object.entries(record.source_sha256)) assert.equal(sha(path), hash, path);
     assert.ok(html.includes('katex-mathml') && !html.includes('katex-error'));
@@ -159,7 +164,7 @@ test('periodic methods and the purpose entry link to reading, code and tests whi
   }
 });
 
-test('BOMD and CPMD are searchable reading-only methods with equations and primary sources, without borrowed executions', () => {
+test('BOMD and CPMD distinguish chapter-local reading from the fixed two-state model without borrowed He executions', () => {
   const methods = json('numerical-methods-atlas/methods/index.json').methods;
   const source = json('catalog/atlas-periodic-reading.json');
   const section = source.sections.find(s => s.id === 'first-principles-md');
@@ -173,7 +178,7 @@ test('BOMD and CPMD are searchable reading-only methods with equations and prima
   const addedMethods = ['lu-partial-pivoting','cholesky','minres','lobpcg','pseudo-arclength-continuation','jacobian-free-newton-krylov'];
   assert.equal(Object.keys(baseline.methods).length,152);
   assert.deepEqual(baseline.expected_new_method_ids,addedMethods);
-  assert.deepEqual(methodIds.filter(id=>!Object.hasOwn(baseline.methods,id)&&!methodIdsAddedInBatch58.includes(id)&&!methodIdsAddedInBatch68.includes(id)&&!methodIdsAddedInBatch78.includes(id)),addedMethods);
+  assert.deepEqual(methodIds.filter(id=>!Object.hasOwn(baseline.methods,id)&&!methodIdsAddedInBatch58.includes(id)&&!methodIdsAddedInBatch68.includes(id)&&!methodIdsAddedInBatch78.includes(id)&&!methodIdsAddedInFinal23.includes(id)),addedMethods);
   assert.deepEqual(coveredMethods.filter(row=>addedMethods.includes(row.id)).map(row=>row.id),addedMethods);
   assert.deepEqual(coveredMethods.filter(row=>addedMethods.includes(row.id)).map(row=>row.chapter),[
     ...Array(4).fill('validation-linear-algebra-spectral'),...Array(2).fill('validation-bratu-continuation-jfnk'),
@@ -187,7 +192,7 @@ test('BOMD and CPMD are searchable reading-only methods with equations and prima
   const expectedCoverage78=[['gauss-kronrod','validation-quadrature-controls'],['tanh-sinh','validation-quadrature-controls'],['smolyak-sparse-grid','validation-quadrature-controls'],['pchip','validation-approximation-controls'],['splines','validation-approximation-controls'],['chebyshev','validation-approximation-controls'],['wavelets','validation-approximation-controls'],['pinn-operators','validation-small-models']];
   assert.deepEqual(coveredMethods.filter(row=>addedCoverage78.has(row.id)).map(row=>[row.id,row.chapter]).sort(),expectedCoverage78.sort());
   assert.ok(coveredMethods.filter(row=>addedCoverage78.has(row.id)).every(row=>row.status==='local-example'));
-  assert.equal(coveredMethods.filter(row => row.id !== 'slab-ewald'&&!addedMethods.includes(row.id)&&!methodIdsAddedInBatch58.includes(row.id)&&!addedCoverage68.has(row.id)&&!addedCoverage78.has(row.id)).length,136);
+  assert.equal(coveredMethods.filter(row => row.id !== 'slab-ewald'&&!addedMethods.includes(row.id)&&!methodIdsAddedInBatch58.includes(row.id)&&!addedCoverage68.has(row.id)&&!addedCoverage78.has(row.id)&&!methodIdsAddedInFinal23.includes(row.id)).length,136);
   const expectedCoverage68=[['dae','validation-dae-controls'],['rk45','validation-ode-adaptivity'],['jameson-steady-rk','validation-steady-rk'],['shake','validation-geometric-controls'],['rattle','validation-geometric-controls']];
   const byId=(a,b)=>a[0].localeCompare(b[0]);
   assert.deepEqual(coveredMethods.filter(row=>addedCoverage68.has(row.id)).map(row=>[row.id,row.chapter]).sort(byId),expectedCoverage68.sort(byId));
@@ -200,22 +205,14 @@ test('BOMD and CPMD are searchable reading-only methods with equations and prima
   assert.deepEqual(coveredMethods.filter(row => row.id === 'slab-ewald').map(row => row.chapter), ['validation-slab-ewald']);
   for (const [id, alias] of [['born-oppenheimer-md', 'BOMD'], ['car-parrinello-md', 'CPMD']]) {
     const method = methods.find(m => m.id === id);
-    assert.equal(method.status, 'reading-only');
-    assert.deepEqual(method.code_urls, []);
-    assert.deepEqual(method.test_urls, []);
-    assert.deepEqual(method.execution_examples, []);
-    assert.ok(!method.periodic_examples?.length);
-    assert.ok(!method.depth_release && !method.depth_additional_releases?.length);
-    assert.ok(!method.force_release && !method.force_examples?.length);
+    assertScopedMDMethod(method);
+    assert.throws(()=>assertScopedMDMethod({...method,execution_examples:[{id:exampleID}]}),'the static He energy example is not BOMD/CPMD execution');
+    assert.throws(()=>assertScopedMDMethod({...method,execution_examples:[{id:'periodic-he-forces'}]}),'the He force interface is not general BOMD/CPMD execution');
     const coverageRow = coveredMethods.find(row => row.id === id);
-    assert.equal(coverageRow.status, 'reading');
-    assert.equal(coverageRow.chapter, 'quantum-chemistry');
+    assert.equal(coverageRow.status, 'local-example');
+    assert.equal(coverageRow.chapter, 'validation-quantum-small');
     const individual = json(`numerical-methods-atlas/methods/${id}/index.json`);
-    assert.equal(individual.status, 'reading-only');
-    assert.deepEqual(individual.execution_examples, []);
-    assert.deepEqual(individual.code_urls, []);
-    assert.deepEqual(individual.test_urls, []);
-    assert.ok(!individual.depth_release && !individual.force_release);
+    assertScopedMDMethod(individual);
     for (const lang of ['ja', 'en']) {
       assert.ok(method.reading[lang].endsWith('/read/periodic-dft/#first-principles-md'));
       assert.equal(findMethods(methods, alias, lang)[0]?.method.id, id);

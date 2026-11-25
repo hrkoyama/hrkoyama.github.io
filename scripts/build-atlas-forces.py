@@ -12,6 +12,8 @@ import re
 import struct
 import subprocess
 import xml.etree.ElementTree as ET
+from atlas_depth_release import load_depth_group
+from atlas_md_scope import chapter_md_scope
 
 ROOT = Path(__file__).resolve().parents[1]
 ATLAS = ROOT / 'numerical-methods-atlas'
@@ -167,7 +169,12 @@ def build():
     sources = {SOURCE.lstrip('/'): source_hash, (base + package['results']).lstrip('/'): sha(result_path), (base + 'source-manifest.json').lstrip('/'): sha(release / 'source-manifest.json'), (base + 'verification.json').lstrip('/'): sha(release / 'verification.json')}
     methods = {m['id']: m for m in read(ROOT / 'catalog/atlas-methods.json')['methods']}
     assert all(i in methods for i in data['methods'])
-    assert all(methods[i]['status'] == 'reading-only' for i in data['reading_only_methods']), 'A force-provider example does not itself validate BOMD or CPMD trajectories'
+    # Reading-only is local to this He chapter; the global method also has a
+    # separately qualified two-state educational example, not a KS trajectory.
+    md_packet = load_depth_group(ROOT, 'quantum-small', '2026-11-25')
+    md_scope = chapter_md_scope(data, methods, md_packet)
+    sources.update(md_packet['source_sha256'])
+    sources.update({name: sha(ROOT / name) for name in ['catalog/atlas-methods.json', 'scripts/atlas_md_scope.py']})
     rendered = json.loads(subprocess.check_output(['node', 'scripts/render-atlas-math.cjs'], cwd=ROOT, input=json.dumps([{'id': k, 'formula': [v]} for k, v in data['formulas'].items()]).encode()))['rendered']
     references = {r['id']: r for r in data['references']}
     documents = {lang: read(ATLAS / f'content.{lang}.json') for lang in ['ja', 'en']}
@@ -186,6 +193,9 @@ def build():
             body += ''.join('<div class="math-block">' + rendered[f][0] + '</div>' for f in section['formulas'])
             body += '<p class="periodic-citations">' + ('関連出典：' if ja else 'Sources: ') + ', '.join(link('#source-' + i, references[i]['author'] + ' (' + str(references[i]['year']) + ')') for i in section['references']) + '</p>'
             markdown += '## ' + section['title'][lang] + '\n\n' + '\n\n'.join(section['paragraphs'][lang]) + '\n\n' + ''.join('$$\n' + data['formulas'][f] + '\n$$\n\n' for f in section['formulas'])
+            if section['id'] == 'bomd-interface':
+                body += '<p class="resource-nav">' + link(md_scope['entry']+'?lang='+lang, md_scope['title'][lang]) + ' · ' + link(md_scope['source_manifest'], '別模型の固定版・SHA-256' if ja else 'Separate-model fixed edition and SHA-256') + '</p>'
+                markdown += md_scope['title'][lang] + ': ' + md_scope['entry']+'?lang='+lang + '\n\n' + md_scope['source_manifest'] + '\n\n'
         body += heading('run-and-check', '取得して結果を確かめる' if ja else 'Download and verify the results')
         body += para('ZIP内の配布版フォルダで依存関係を導入し、同梱の固定入力を使います。出力先は新規または空のディレクトリにします。通常のrunnerは保存済みDFTK参照を照合します。Juliaによる参照の再生成は別工程で、参照用環境と手順を同梱しています。' if ja else 'Install dependencies in the extracted edition directory and use its fixed input. Choose a new or empty output directory. The ordinary runner compares with the saved DFTK reference. Regenerating that reference in Julia is a separate operation with its own packaged environment and instructions.')
         commands = 'python -m pip install -r requirements.txt\npython -m pytest -q\npython run.py --input inputs.json --output output'
@@ -207,7 +217,7 @@ def build():
         style = '<style>.periodic-reading{max-width:1100px;margin:auto;padding:1.2rem;overflow-wrap:anywhere}.periodic-reading .prose{max-width:88ch;margin:auto}.periodic-reading .prose h1{font-size:clamp(1.8rem,3.5vw,2.75rem);line-height:1.35;margin-block:1.1rem}.periodic-reading .prose p{font-size:1rem;line-height:1.85}.periodic-reading .resource-nav,.periodic-reading>nav{display:flex;flex-wrap:wrap;gap:.5rem}.periodic-reading>nav a{padding:.3rem}.periodic-reading .math-block,.periodic-table{max-width:100%;overflow-x:auto}.periodic-table{margin:1rem 0}.periodic-table table{border-collapse:collapse;min-width:100%;font-size:.95rem}.periodic-table td,.periodic-table th{border-bottom:1px solid #becbc3;padding:.55rem;text-align:left}.periodic-table td:not(:first-child){font-variant-numeric:tabular-nums;white-space:nowrap}.periodic-table th:first-child,.periodic-table td:first-child{min-width:12rem;overflow-wrap:normal}.periodic-reading img,.periodic-reading svg{width:100%;height:auto}.periodic-reading pre{white-space:pre;overflow:auto;padding:1rem;background:#eef3ef}.periodic-reading li{margin-bottom:1rem}.periodic-reading h2{scroll-margin-top:1rem}.periodic-toc{margin:1rem 0}.periodic-toc summary{padding:.5rem 0;cursor:pointer}.periodic-toc nav{display:flex;flex-wrap:wrap;gap:.5rem 1rem;padding:.6rem 0}.periodic-citations{font-size:.95rem}.periodic-reading .resource-summary{border-left:4px solid #386552;padding:.3rem 1rem;background:#eef3ef}</style>'
         document = '<!doctype html><html lang="' + lang + '"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' + e(title) + ' | Numerical Methods Atlas</title><meta name="description" content="' + e(data['intro'][lang], quote=True) + '"><link rel="canonical" href="' + ORIGIN + route(lang) + '">' + ''.join('<link rel="alternate" hreflang="' + l + '" href="' + ORIGIN + route(l) + '">' for l in ['ja', 'en']) + '<link rel="stylesheet" href="/numerical-methods-atlas/vendor/katex.min.css"><link rel="stylesheet" href="/numerical-methods-atlas/style.css"><link rel="stylesheet" href="/styles/atlas-resources.css">' + style + '</head><body class="profile-page" data-content-language="' + lang + '"><main id="main" class="periodic-reading">' + nav + toc + '<article class="prose" lang="' + lang + '">' + body + '</article></main></body></html>\n'
         (directory / 'index.html').write_text(document)
-        dump(directory / 'index.json', {**entry, 'url': ORIGIN + route(lang), 'methods': data['methods'], 'reading_only_methods': data['reading_only_methods'], 'execution_example': EXAMPLE, 'references': data['references'], 'source_sha256': sources, 'measurements': results['metrics']})
+        dump(directory / 'index.json', {**entry, 'url': ORIGIN + route(lang), 'methods': data['methods'], 'reading_only_methods': data['reading_only_methods'], 'reading_only_methods_scope': data['reading_only_methods_scope'], 'scoped_educational_examples': [md_scope], 'execution_example': EXAMPLE, 'references': data['references'], 'source_sha256': sources, 'measurements': results['metrics']})
         markdown += '## ' + ('保存した実測値' if ja else 'Stored measurements') + '\n\n' + '\n'.join('- ' + k + ': ' + number(v) for k, v in results['metrics'].items()) + '\n\n' + ORIGIN + base + package['results'] + '\n\n'
         markdown += '## ' + ('実行' if ja else 'Execution') + '\n\n```sh\n' + commands + '\n```\n\n' + ORIGIN + example_url + '\n\n'
         markdown += '## ' + ('文献' if ja else 'Sources') + '\n\n' + '\n'.join('- ' + r['author'] + ' (' + str(r['year']) + '). ' + r['title'] + '. ' + r['source'] + ' — ' + r['review'][lang] for r in data['references']) + '\n'

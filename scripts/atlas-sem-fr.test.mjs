@@ -1,4 +1,4 @@
-import {methodIdsAddedInBatch78,methodIdsAddedInBatch68,projectMethodBeforeBatch58,methodIdsAddedInBatch58,projectMethodBeforeBatch38,groupsAddedAfterBatch37,problemCount,examplesAddedAfterBatch37,supplementCaseCount,supplementGroupCount} from './fixtures/atlas-inventory.mjs';
+import {methodIdsAddedInFinal23,methodIdsAddedInBatch78,methodIdsAddedInBatch68,projectMethodBeforeBatch58,methodIdsAddedInBatch58,projectMethodBeforeBatch38,groupsAddedAfterBatch37,problemCount,examplesAddedAfterBatch37,supplementCaseCount,supplementGroupCount} from './fixtures/atlas-inventory.mjs';
 import {methodCount} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -78,7 +78,7 @@ const baseline=json('scripts/sem-fr-baseline.json'),result=json(base+'results/re
 test('SEM/FR preserve the previous149 method records,24 releases,92 primary pictures and common executions',()=>{
  const rows=json('catalog/atlas-methods.json').methods;
  assert.equal(rows.length,methodCount);
- const original=rows.filter(m=>!methodIdsAddedInBatch78.includes(m.id)&&!methodIdsAddedInBatch68.includes(m.id)&&!methodIdsAddedInBatch58.includes(m.id)&&!batch48NewMethodIds.has(m.id)&&!methods.includes(m.id)&&m.id!=='q1-fem').map(projectMethodBeforeBatch58).map(projectMethodBeforeBatch48).map(projectMethodBeforeBatch38).map(batch28HistoricalMethod).map(batch18HistoricalMethod).map(m=>Object.fromEntries(Object.entries(m).filter(([k])=>!(['p1-fem','dg'].includes(m.id)&&['depth_release','depth_scope','depth_previous_status'].includes(k)))));
+ const original=rows.filter(m=>!methodIdsAddedInFinal23.includes(m.id)&&!methodIdsAddedInBatch78.includes(m.id)&&!methodIdsAddedInBatch68.includes(m.id)&&!methodIdsAddedInBatch58.includes(m.id)&&!batch48NewMethodIds.has(m.id)&&!methods.includes(m.id)&&m.id!=='q1-fem').map(projectMethodBeforeBatch58).map(projectMethodBeforeBatch48).map(projectMethodBeforeBatch38).map(batch28HistoricalMethod).map(batch18HistoricalMethod).map(m=>Object.fromEntries(Object.entries(m).filter(([k])=>!(['p1-fem','dg'].includes(m.id)&&['depth_release','depth_scope','depth_previous_status'].includes(k)))));
  assert.equal(hash(original),baseline.method_records_sha256);
  const registry=json('numerical-methods-atlas/validation/releases.json');
  assert.equal(registry.releases.length,supplementGroupCount);assert.equal(registry.case_count,supplementCaseCount);assert.equal(registry.releases.filter(r=>!['coefficient-diffusion', 'slab-ewald', 'fmm3d', 'gravity-dynamics', 'warm-pic', 'pic-spatial', 'dsmc-wall', 'dsmc-shock',...groupsAddedAfterBatch37].includes(r.group)).reduce((n,r)=>n+r.tests,0),893);

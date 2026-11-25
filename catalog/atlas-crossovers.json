@@ -343,8 +343,8 @@
             "en": "BOMD and Car–Parrinello MD"
           },
           "summary": {
-            "ja": "BOMDは各核配置で電子基底状態を十分に収束させて核を進める。力の配布版にはvelocity-Verletへの接続と1ステップ対2半ステップの局所確認がある。BOMD全体とCPMDは解説のみの状態を維持し、長時間NVEやCPの仮想質量・直交制約の検証と区別する。",
-            "en": "BOMD advances nuclei after converging the electronic ground state at each geometry. The force package provides a velocity-Verlet interface and a one-step/two-half-step local check. Overall BOMD and CPMD records remain reading only; long NVE and CP fictitious-mass/orthogonality validation are separate."
+            "ja": "BOMDは各核配置で電子基底状態を十分に収束させて核を進める。力の配布版にはvelocity-Verletへの接続と1ステップ対2半ステップの局所確認がある。別の固定2準位BO/CP型模型には短い実行例がある。本ルートの周期He接続、一般のKohn–Sham MD、長時間NVEや多軌道CPMDの検証とは区別する。",
+            "en": "BOMD advances nuclei after converging the electronic ground state at each geometry. The force package provides a velocity-Verlet interface and a one-step/two-half-step local check. A separate fixed two-state BO/CP-type model has short executed examples. It is distinct from this route’s periodic-He interface, general Kohn–Sham MD, long NVE or multi-orbital CPMD validation."
           },
           "method_ids": [
             "born-oppenheimer-md",

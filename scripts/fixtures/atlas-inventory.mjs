@@ -1,3 +1,4 @@
+export {methodIdsAddedInFinal23,methodIdsPromotedInFinal23,groupIdsAddedInFinal23,projectMethodBeforeFinal23,projectCatalogBeforeFinal23} from './atlas-final23-projection.mjs';
 import {projectMethodBeforeBatch68 as projectMethodBeforeBatch68Only,methodIdsAddedInBatch68} from './atlas-batch68-method-projection.mjs';
 import {projectMethodBeforeBatch78,methodIdsAddedInBatch78,methodIdsPromotedInBatch78} from './atlas-batch78-projection.mjs';
 export {methodIdsAddedInBatch68,methodIdsAddedInBatch78,methodIdsPromotedInBatch78};

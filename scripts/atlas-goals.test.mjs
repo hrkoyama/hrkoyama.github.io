@@ -33,8 +33,10 @@ test('new domains distinguish runnable atoms, reading-only molecular DFT, scoped
  const temperature=findMethods(methods,'温度を制御したい');
  const langevin=temperature.find(x=>x.method.id==='langevin-thermostat');assert.equal(langevin?.method.status,'educational-example');assert.ok(langevin.method.execution_examples.some(e=>e.id==='langevin-harmonic'));
  const csvr=temperature.find(x=>x.method.id==='stochastic-velocity-rescaling');assert.equal(csvr?.method.status,'educational-example');
- assert.deepEqual(new Set(csvr.method.execution_examples.map(x=>x.id)),new Set(['csvr-kinetic-kernel','csvr-langevin-harmonic','csvr-langevin-quartic']));
- assert.ok(temperature.filter(x=>!['langevin-thermostat','stochastic-velocity-rescaling'].includes(x.method.id)).every(x=>x.method.status==='planned' && x.method.code_urls.length===0));
+ assert.deepEqual(new Set(csvr.method.execution_examples.map(x=>x.id)),new Set(['csvr-kinetic-kernel','csvr-langevin-harmonic','csvr-langevin-quartic','projected-canonical-dof']));
+ const deterministic=['velocity-rescaling','berendsen-thermostat','nose-hoover','nose-hoover-chains'];
+ for(const id of deterministic){const actual=temperature.find(x=>x.method.id===id)?.method;assert.equal(actual?.status,'educational-example',id);assert.deepEqual(actual.execution_examples.map(x=>x.id),['deterministic-thermostat-contrasts']);assert.ok(actual.code_urls.length&&actual.test_urls.length);}
+ assert.deepEqual(new Set(temperature.map(x=>x.method.id)),new Set(['langevin-thermostat','stochastic-velocity-rescaling',...deterministic]));
  const legacyBio=['bio-populations','bio-epidemics','bio-patterns','bio-reaction-fourier','bio-fhn'];
  const additions=[['bio-enzyme-qssa','enzyme-qssa'],['bio-lotka-volterra','lotka-volterra'],['bio-seir-linearization','seir-linearization']];
  const bio=findMethods(methods,'生物モデルを調べたい');assert.ok(bio.every(x=>x.method.resource_type==='model'));
