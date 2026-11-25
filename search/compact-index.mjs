@@ -6,8 +6,64 @@ const own=(value,key)=>Object.prototype.hasOwnProperty.call(value,key);
 const plain=value=>value!==null&&typeof value==='object'&&!Array.isArray(value)&&Object.getPrototypeOf(value)===Object.prototype;
 const scalarString=value=>typeof value==='string'&&!/[\uD800-\uDFFF]/u.test(value);
 const invalid=()=>{throw Error('Invalid pooled row strings');};
+const ROW_LITERAL='scalar-bijection-v1',ROW_LITERAL_ALPHABET_LIMIT=8192;
+/** The marked subset has stricter traversal limits; the writer falls back unmarked. */
+export function restoreRowLiterals(data){
+ if(!data||typeof data!=='object')return data;
+ if(!own(data,'row_literal_encoding')){if(own(data,'row_literal_alphabet'))invalid();return data;}
+ if(!plain(data)||data.format!=='compact-search-v1'||!['atlas','site'].includes(data.kind)||
+    data.row_literal_encoding!==ROW_LITERAL||!own(data,'row_literal_alphabet')||
+    data.row_string_encoding!==ENCODING||data.row_structure_encoding!=='key-shapes-v1')invalid();
+ const table=data.row_literal_alphabet;
+ if(!scalarString(table)||table.length>2*ROW_LITERAL_ALPHABET_LIMIT)invalid();
+ const alphabet=Array.from(table);
+ if(!alphabet.length||alphabet.length>ROW_LITERAL_ALPHABET_LIMIT||new Set(alphabet).size!==alphabet.length)invalid();
+ const dense=x=>Array.isArray(x)&&Object.getPrototypeOf(x)===Array.prototype;
+ const field=data.kind==='atlas'?'entries':'documents';
+ if(!own(data,field)||!own(data,'row_strings')||!own(data,'row_shapes')||
+    !plain(data.details)||!own(data.details,'keys'))invalid();
+ const roots=[[field,data[field]],['row_strings',data.row_strings],['row_shapes',data.row_shapes],['details.keys',data.details.keys]];
+ if(roots.some(([,v])=>!dense(v))||data[field].length>ROW_STRING_LIMITS.rows||
+    data.row_strings.length>ROW_STRING_LIMITS.pool||data.row_shapes.length>ROW_STRING_LIMITS.pool)invalid();
+ const counts=new Array(alphabet.length).fill(0),rootUnits=new Map();
+ let nodes=0,total=0;
+ const index=c=>{const cp=c.codePointAt(0);return cp>=32&&cp<=126?alphabetASCII.indexOf(c):cp>=128?alphabetASCII.length+cp-128:-1;};
+ // Validate the entire encoded forest before allocating any reconstructed root/string.
+ const scan=(value,depth,root)=>{
+  if(++nodes>ROW_STRING_LIMITS.nodes||depth>ROW_STRING_LIMITS.depth)invalid();
+  if(depth===1&&root===field&&!dense(value))invalid();
+  if(depth===1&&['row_strings','details.keys'].includes(root)&&typeof value!=='string')invalid();
+  if(root==='row_shapes'&&((depth===1&&!dense(value))||(depth>=2&&typeof value!=='string')))invalid();
+  if(typeof value==='string'){
+   if(!scalarString(value))invalid();let size=0;
+   for(const c of value){
+    const i=index(c);if(i<0||i>=alphabet.length)invalid();
+    const units=alphabet[i].length;size+=units;total+=units;
+    const subtotal=(rootUnits.get(root)||0)+units;rootUnits.set(root,subtotal);
+    if(total>ROW_STRING_LIMITS.expandedUnits||
+       (['row_strings','row_shapes'].includes(root)&&subtotal>ROW_STRING_LIMITS.poolUnits)||
+       (root==='row_strings'&&size>ROW_STRING_LIMITS.stringUnits))invalid();
+    counts[i]++;
+   }
+  }else if(Array.isArray(value)){
+   if(!dense(value)||value.length>ROW_STRING_LIMITS.nodes-nodes)invalid();
+   for(let i=0;i<value.length;i++){if(!own(value,i))invalid();scan(value[i],depth+1,root);}
+  }else if(value!==null&&typeof value!=='boolean'&&(typeof value!=='number'||!Number.isFinite(value)))invalid();
+ };
+ for(const [root,value]of roots)scan(value,0,root);
+ for(let i=0;i<alphabet.length;i++)if(!counts[i]||(i&&(counts[i]>counts[i-1]||
+    (counts[i]===counts[i-1]&&alphabet[i].codePointAt(0)<alphabet[i-1].codePointAt(0)))))invalid();
+ const mapped=value=>{
+  if(typeof value==='string'){const out=[];for(const c of value)out.push(alphabet[index(c)]);return out.join('');}
+  return Array.isArray(value)?value.map(mapped):value;
+ };
+ const {row_literal_encoding,row_literal_alphabet,...header}=data;
+ return {...header,[field]:mapped(data[field]),row_strings:mapped(data.row_strings),row_shapes:mapped(data.row_shapes),
+  details:{...data.details,keys:mapped(data.details.keys)}};
+}
 /** Restore only the optional pool storage; reference IDs and all budgets stay fixed. */
 export function restoreRowPool(data){
+ data=restoreRowLiterals(data);
  if(!data||typeof data!=='object')return data;
  if(!own(data,'row_pool_encoding')){if(own(data,'row_pool_prefixes'))invalid();return data;}
  if(!plain(data)||data.format!=='compact-search-v1'||!['atlas','site'].includes(data.kind)||data.row_string_encoding!==ENCODING||data.row_pool_encoding!=='unicode-prefix-columns-v1')invalid();
@@ -39,6 +95,7 @@ export function restoreRowPool(data){
 }
 /** Restore dictionary key order and arrays without reference expansion. */
 export function restoreRowShapes(data){
+ data=restoreRowLiterals(data);
  if(!data||typeof data!=='object')return data;
  if(data.row_structure_encoding===undefined){if(own(data,'row_shapes'))invalid();return data;}
  if(!plain(data)||data.format!=='compact-search-v1'||!['atlas','site'].includes(data.kind)||data.row_structure_encoding!=='key-shapes-v1')invalid();
@@ -300,7 +357,7 @@ function invertTerms(data,words,field){
 }
 export function unpackSearchIndex(data){
  if(data?.format!=='compact-search-v1'){
-  if(data&&typeof data==='object'&&('row_string_encoding' in data||'row_strings' in data||own(data,'row_pool_encoding')||own(data,'row_pool_prefixes')||own(data,'row_structure_encoding')||own(data,'row_shapes')||own(data,'vocabulary_prefixes')||own(data,'vocabulary_alphabet')||[ALPHABET,ALPHABET_COLUMNS].includes(data.vocabulary_encoding)||membershipKeys.some(key=>own(data,key))))throw Error('Invalid pooled row strings');
+  if(data&&typeof data==='object'&&('row_string_encoding' in data||'row_strings' in data||own(data,'row_literal_encoding')||own(data,'row_literal_alphabet')||own(data,'row_pool_encoding')||own(data,'row_pool_prefixes')||own(data,'row_structure_encoding')||own(data,'row_shapes')||own(data,'vocabulary_prefixes')||own(data,'vocabulary_alphabet')||[ALPHABET,ALPHABET_COLUMNS].includes(data.vocabulary_encoding)||membershipKeys.some(key=>own(data,key))))throw Error('Invalid pooled row strings');
   return data;
  }
  if(decoded.has(data))return decoded.get(data);
