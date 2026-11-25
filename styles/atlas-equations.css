@@ -26,3 +26,5 @@
 .execution-formula-picture img{display:block;width:140px;max-width:45%;height:auto;object-fit:contain;background:#fff}
 .execution-formula-picture span{min-width:0;overflow-wrap:anywhere}
 @media(max-width:400px){.execution-formula-card>a.execution-formula-picture{align-items:flex-start;flex-direction:column}.execution-formula-picture img{width:100%;max-width:100%}}
+
+.equation-entry{overflow-wrap:anywhere}

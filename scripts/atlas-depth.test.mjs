@@ -36,7 +36,16 @@ test('supplements retain their own evidence and do not borrow or expand the comm
   'pinn-poisson':['elliptic','differentiation-inverse'],
   'fno-periodic-heat':['foundations','differentiation-inverse'],
  };
- const crossFieldFinal23={'williamson-sphere-transport':['fluid','transport'],'two-state-bo-cp-ou':['quantum-molecular','temperature'],'sph-pressure-acoustics':['particles','transport']};
+ const crossFieldFinal23={'williamson-sphere-transport':['fluid','transport'],'two-state-bo-cp-ou':['quantum-molecular','temperature'],'sph-pressure-acoustics':['particles','transport'],'immigration-death-ssa':['biology','probability']};
+ const ssaGroup=read('numerical-methods-atlas/validation/releases.json').releases.find(row=>row.group==='biology-ode-controls');
+ assert.equal(ssaGroup.edition,'2026-11-25');
+ const ssaBase='code/validated-examples/2026-11-25/biology-ode-controls/';
+ assert.equal(ssaGroup.base,'https://hrkoyama.github.io/'+ssaBase);
+ assert.deepEqual(ssaGroup.case_ids,['hodgkin-huxley-controls','immigration-death-ssa']);
+ assert.equal(hash(ssaBase+'source-manifest.json'),ssaGroup.manifest_sha256);
+ assert.equal(hash(ssaBase+'cases.json'),read(ssaBase+'source-manifest.json').files['cases.json']);
+ const ssa=read(ssaBase+'cases.json').find(row=>row.id==='immigration-death-ssa');
+ assert.deepEqual(ssa.method_ids,['gillespie-ssa'],'the shared biology/probability case is SSA, not an MCMC execution');
  const allCrossFields={...crossField78,...crossFieldFinal23};
  const memberships=new Map();
  for(const field of depth.fields){

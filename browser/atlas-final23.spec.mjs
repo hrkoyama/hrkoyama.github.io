@@ -213,7 +213,8 @@ test('final23 execution figures, typed study outcomes, gallery bindings and skil
     for(const [kind,count]of Object.entries(read('numerical-methods-atlas/solutions/index.json').counts))await expect(active.locator(`[data-solution-kind="${kind}"]`)).toHaveCount(count);
    }else if(item.id==='equations')await expect(page.locator(`[data-site-language="${language}"] [data-equation-id]`)).toHaveCount(collectionExpected.equations);
    else{await expect(page.locator('[data-reading-group]')).toHaveCount(collectionExpected.fields);await expect(page.locator('[data-reading-input]')).toHaveValue('');}
-   expect(await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth)).toBeLessThanOrEqual(1);collectionClicks.push({id:item.id,count:collectionExpected[item.id],path:new URL(page.url()).pathname,hash:new URL(page.url()).hash});
+   const overflowMetrics=await page.evaluate(()=>({url:location.href,scrollWidth:document.documentElement.scrollWidth,clientWidth:document.documentElement.clientWidth,innerWidth:window.innerWidth,fontStatus:document.fonts?.status||'unavailable'}));
+   expect(overflowMetrics.scrollWidth-overflowMetrics.clientWidth,'Collection overflow: '+JSON.stringify(overflowMetrics)).toBeLessThanOrEqual(1);collectionClicks.push({id:item.id,count:collectionExpected[item.id],path:new URL(page.url()).pathname,hash:new URL(page.url()).hash});
   }
   for(const item of cases){
    const response=await page.goto(`/numerical-methods-atlas/validation/${item.id}/?lang=${language}`,{waitUntil:'domcontentloaded'});expect(response.status()).toBe(200);
