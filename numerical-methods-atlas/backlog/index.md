@@ -4926,7 +4926,7 @@ ID: geometric-3 · P3 · 公開済み · 検証の拡充
 
 ### 無限区間・振動重み・既知特異点に応じた求積選択
 
-ID: quadrature-1 · P2 · 検証済み · 検証の拡充
+ID: quadrature-1 · P2 · 公開済み · 検証の拡充
 
 調査時の範囲：検証範囲不足
 
@@ -4965,7 +4965,7 @@ Gauss–Legendre 生成・多項式モーメント、adaptive Simpson、解析 a
 
 ```json
 {
-  "verification": "/code/validated-examples/2026-11-25/quadrature-controls/verification.json",
+  "verification": "/numerical-methods-atlas/validation/verification/2026-11-25-batch78-87-public.json",
   "inputs": [
     "/code/validated-examples/2026-11-25/quadrature-controls/inputs.json",
     "/code/validated-examples/2026-11-25/quadrature-controls/acceptance.json",
@@ -4983,7 +4983,8 @@ Gauss–Legendre 生成・多項式モーメント、adaptive Simpson、解析 a
   "references": [
     "/code/validated-examples/2026-11-25/quadrature-controls/README.md",
     "/code/validated-examples/2026-11-25/quadrature-controls/cases.json",
-    "/code/validated-examples/2026-11-25/quadrature-controls/source-reading.json"
+    "/code/validated-examples/2026-11-25/quadrature-controls/source-reading.json",
+    "/code/validated-examples/2026-11-25/quadrature-controls/verification.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#quadpack-domain-selection-ja",
   "execution": "/numerical-methods-atlas/validation/quadpack-domain-selection/?lang=ja#quadpack-domain-selection-ja-measurements",
@@ -4996,7 +4997,7 @@ Gauss–Legendre 生成・多項式モーメント、adaptive Simpson、解析 a
 
 ### Gauss–Kronrod と二重指数変換の教材実装比較
 
-ID: quadrature-2 · P2 · 検証済み · 新規実装
+ID: quadrature-2 · P2 · 公開済み · 新規実装
 
 調査時の範囲：未収録
 
@@ -5035,7 +5036,7 @@ Gauss–Legendre 生成・多項式モーメント、adaptive Simpson、解析 a
 
 ```json
 {
-  "verification": "/code/validated-examples/2026-11-25/quadrature-controls/verification.json",
+  "verification": "/numerical-methods-atlas/validation/verification/2026-11-25-batch78-87-public.json",
   "inputs": [
     "/code/validated-examples/2026-11-25/quadrature-controls/inputs.json",
     "/code/validated-examples/2026-11-25/quadrature-controls/acceptance.json",
@@ -5053,7 +5054,8 @@ Gauss–Legendre 生成・多項式モーメント、adaptive Simpson、解析 a
   "references": [
     "/code/validated-examples/2026-11-25/quadrature-controls/README.md",
     "/code/validated-examples/2026-11-25/quadrature-controls/cases.json",
-    "/code/validated-examples/2026-11-25/quadrature-controls/source-reading.json"
+    "/code/validated-examples/2026-11-25/quadrature-controls/source-reading.json",
+    "/code/validated-examples/2026-11-25/quadrature-controls/verification.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#gk15-double-exponential-ja",
   "execution": "/numerical-methods-atlas/validation/gk15-double-exponential/?lang=ja#gk15-double-exponential-ja-measurements",
@@ -5066,7 +5068,7 @@ Gauss–Legendre 生成・多項式モーメント、adaptive Simpson、解析 a
 
 ### 多次元求積の次元依存：テンソル積と疎格子
 
-ID: quadrature-3 · P3 · 検証済み · 新規実装
+ID: quadrature-3 · P3 · 公開済み · 新規実装
 
 調査時の範囲：未収録
 
@@ -5105,7 +5107,7 @@ Monte Carlo/QMC 分野と重複する場合は共同入口にする。
 
 ```json
 {
-  "verification": "/code/validated-examples/2026-11-25/quadrature-controls/verification.json",
+  "verification": "/numerical-methods-atlas/validation/verification/2026-11-25-batch78-87-public.json",
   "inputs": [
     "/code/validated-examples/2026-11-25/quadrature-controls/inputs.json",
     "/code/validated-examples/2026-11-25/quadrature-controls/acceptance.json",
@@ -5122,7 +5124,8 @@ Monte Carlo/QMC 分野と重複する場合は共同入口にする。
   "references": [
     "/code/validated-examples/2026-11-25/quadrature-controls/README.md",
     "/code/validated-examples/2026-11-25/quadrature-controls/cases.json",
-    "/code/validated-examples/2026-11-25/quadrature-controls/source-reading.json"
+    "/code/validated-examples/2026-11-25/quadrature-controls/source-reading.json",
+    "/code/validated-examples/2026-11-25/quadrature-controls/verification.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#tensor-smolyak-dimensions-ja",
   "execution": "/numerical-methods-atlas/validation/tensor-smolyak-dimensions/?lang=ja#tensor-smolyak-dimensions-ja-measurements",
@@ -5137,7 +5140,7 @@ Monte Carlo/QMC 分野と重複する場合は共同入口にする。
 
 ### Runge 関数：等間隔・Chebyshev 節点と barycentric/Clenshaw 評価
 
-ID: interpolation-approximation-1 · P1 · 検証済み · 新規実装
+ID: interpolation-approximation-1 · P1 · 公開済み · 新規実装
 
 調査時の範囲：解説のみ
 
@@ -5178,7 +5181,7 @@ splines/chebyshev/wavelets の章・公式・引用は既存だが各 status は
 
 ```json
 {
-  "verification": "/code/validated-examples/2026-11-25/approximation-controls/verification.json",
+  "verification": "/numerical-methods-atlas/validation/verification/2026-11-25-batch78-87-public.json",
   "inputs": [
     "/code/validated-examples/2026-11-25/approximation-controls/inputs.json",
     "/code/validated-examples/2026-11-25/approximation-controls/acceptance.json",
@@ -5195,7 +5198,8 @@ splines/chebyshev/wavelets の章・公式・引用は既存だが各 status は
   "references": [
     "/code/validated-examples/2026-11-25/approximation-controls/README.md",
     "/code/validated-examples/2026-11-25/approximation-controls/cases.json",
-    "/code/validated-examples/2026-11-25/approximation-controls/source-reading.json"
+    "/code/validated-examples/2026-11-25/approximation-controls/source-reading.json",
+    "/code/validated-examples/2026-11-25/approximation-controls/verification.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#runge-barycentric-clenshaw-ja",
   "execution": "/numerical-methods-atlas/validation/runge-barycentric-clenshaw/?lang=ja#runge-barycentric-clenshaw-ja-measurements",
@@ -5208,7 +5212,7 @@ splines/chebyshev/wavelets の章・公式・引用は既存だが各 status は
 
 ### de Boor スプラインと PCHIP の単調データ比較
 
-ID: interpolation-approximation-2 · P1 · 検証済み · 新規実装
+ID: interpolation-approximation-2 · P1 · 公開済み · 新規実装
 
 調査時の範囲：解説のみ
 
@@ -5251,7 +5255,7 @@ B-spline/de Boor は章にある。PCHIP は追加手法候補。
 
 ```json
 {
-  "verification": "/code/validated-examples/2026-11-25/approximation-controls/verification.json",
+  "verification": "/numerical-methods-atlas/validation/verification/2026-11-25-batch78-87-public.json",
   "inputs": [
     "/code/validated-examples/2026-11-25/approximation-controls/inputs.json",
     "/code/validated-examples/2026-11-25/approximation-controls/acceptance.json",
@@ -5268,7 +5272,8 @@ B-spline/de Boor は章にある。PCHIP は追加手法候補。
   "references": [
     "/code/validated-examples/2026-11-25/approximation-controls/README.md",
     "/code/validated-examples/2026-11-25/approximation-controls/cases.json",
-    "/code/validated-examples/2026-11-25/approximation-controls/source-reading.json"
+    "/code/validated-examples/2026-11-25/approximation-controls/source-reading.json",
+    "/code/validated-examples/2026-11-25/approximation-controls/verification.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#spline-shape-controls-ja",
   "execution": "/numerical-methods-atlas/validation/spline-shape-controls/?lang=ja#spline-shape-controls-ja-measurements",
@@ -5281,7 +5286,7 @@ B-spline/de Boor は章にある。PCHIP は追加手法候補。
 
 ### Mallat 変換・閾値化と境界拡張の実行検証
 
-ID: interpolation-approximation-3 · P3 · 検証済み · 新規実装
+ID: interpolation-approximation-3 · P3 · 公開済み · 新規実装
 
 調査時の範囲：解説のみ
 
@@ -5322,7 +5327,7 @@ splines/chebyshev/wavelets の章・公式・引用は既存だが各 status は
 
 ```json
 {
-  "verification": "/code/validated-examples/2026-11-25/approximation-controls/verification.json",
+  "verification": "/numerical-methods-atlas/validation/verification/2026-11-25-batch78-87-public.json",
   "inputs": [
     "/code/validated-examples/2026-11-25/approximation-controls/inputs.json",
     "/code/validated-examples/2026-11-25/approximation-controls/acceptance.json",
@@ -5339,7 +5344,8 @@ splines/chebyshev/wavelets の章・公式・引用は既存だが各 status は
   "references": [
     "/code/validated-examples/2026-11-25/approximation-controls/README.md",
     "/code/validated-examples/2026-11-25/approximation-controls/cases.json",
-    "/code/validated-examples/2026-11-25/approximation-controls/source-reading.json"
+    "/code/validated-examples/2026-11-25/approximation-controls/source-reading.json",
+    "/code/validated-examples/2026-11-25/approximation-controls/verification.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#haar-mallat-boundary-threshold-ja",
   "execution": "/numerical-methods-atlas/validation/haar-mallat-boundary-threshold/?lang=ja#haar-mallat-boundary-threshold-ja-measurements",
@@ -5354,7 +5360,7 @@ splines/chebyshev/wavelets の章・公式・引用は既存だが各 status は
 
 ### 製造解 Poisson PINN と従来法の最小比較
 
-ID: pinn-neural-operators-1 · P2 · 検証済み · 新規実装
+ID: pinn-neural-operators-1 · P2 · 公開済み · 新規実装
 
 調査時の範囲：解説のみ
 
@@ -5391,7 +5397,7 @@ pinn-operators 章は PINN と FNO を区別し、残差・境界・スケーリ
 
 ```json
 {
-  "verification": "/code/validated-examples/2026-11-25/small-models/verification.json",
+  "verification": "/numerical-methods-atlas/validation/verification/2026-11-25-batch78-87-public.json",
   "inputs": [
     "/code/validated-examples/2026-11-25/small-models/inputs.json",
     "/code/validated-examples/2026-11-25/small-models/acceptance.json",
@@ -5410,7 +5416,8 @@ pinn-operators 章は PINN と FNO を区別し、残差・境界・スケーリ
   "references": [
     "/code/validated-examples/2026-11-25/small-models/README.md",
     "/code/validated-examples/2026-11-25/small-models/cases.json",
-    "/code/validated-examples/2026-11-25/small-models/source-reading.json"
+    "/code/validated-examples/2026-11-25/small-models/source-reading.json",
+    "/code/validated-examples/2026-11-25/small-models/verification.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#poisson-1d-dirichlet-ja",
   "execution": "/numerical-methods-atlas/validation/pinn-poisson/?lang=ja#pinn-poisson-ja-measurements",
@@ -5428,7 +5435,7 @@ pinn-operators 章は PINN と FNO を区別し、残差・境界・スケーリ
 
 ### FNO の問題単位 train/test・解像度/OOD 検証
 
-ID: pinn-neural-operators-2 · P3 · 検証済み · 新規実装
+ID: pinn-neural-operators-2 · P3 · 公開済み · 新規実装
 
 調査時の範囲：解説のみ
 
@@ -5467,7 +5474,7 @@ pinn-operators 章は PINN と FNO を区別し、残差・境界・スケーリ
 
 ```json
 {
-  "verification": "/code/validated-examples/2026-11-25/small-models/verification.json",
+  "verification": "/numerical-methods-atlas/validation/verification/2026-11-25-batch78-87-public.json",
   "inputs": [
     "/code/validated-examples/2026-11-25/small-models/inputs.json",
     "/code/validated-examples/2026-11-25/small-models/acceptance.json",
@@ -5487,7 +5494,8 @@ pinn-operators 章は PINN と FNO を区別し、残差・境界・スケーリ
   "references": [
     "/code/validated-examples/2026-11-25/small-models/README.md",
     "/code/validated-examples/2026-11-25/small-models/cases.json",
-    "/code/validated-examples/2026-11-25/small-models/source-reading.json"
+    "/code/validated-examples/2026-11-25/small-models/source-reading.json",
+    "/code/validated-examples/2026-11-25/small-models/verification.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#heat-periodic-ja",
   "execution": "/numerical-methods-atlas/validation/fno-periodic-heat/?lang=ja#fno-periodic-heat-ja-measurements",
@@ -5505,7 +5513,7 @@ pinn-operators 章は PINN と FNO を区別し、残差・境界・スケーリ
 
 ### PINN/FNO の原著本文で損失・分割・適用条件の出典を補足
 
-ID: pinn-neural-operators-3 · P3 · 検証済み · 参照・出典の整備
+ID: pinn-neural-operators-3 · P3 · 公開済み · 参照・出典の整備
 
 調査時の範囲：出典整備不足
 
@@ -5549,13 +5557,14 @@ pinn-operators 章は PINN と FNO を区別し、残差・境界・スケーリ
     "pinn-poisson",
     "fno-periodic-heat"
   ],
-  "verification": "/code/validated-examples/2026-11-25/small-models/verification.json",
+  "verification": "/numerical-methods-atlas/validation/verification/2026-11-25-batch78-87-public.json",
   "inputs": [
     "/code/validated-examples/2026-11-25/small-models/source-reading.json"
   ],
   "references": [
     "https://arxiv.org/pdf/1711.10561",
-    "https://arxiv.org/html/2010.08895v3"
+    "https://arxiv.org/html/2010.08895v3",
+    "/code/validated-examples/2026-11-25/small-models/verification.json"
   ],
   "reading": {
     "ja": "/numerical-methods-atlas/ja/read/pinn-operators/#selected-original-source-roles",
@@ -5580,7 +5589,7 @@ pinn-operators 章は PINN と FNO を区別し、残差・境界・スケーリ
 
 ### Michaelis–Menten反応・Lotka–Volterra・SEIRの小規模基準計算
 
-ID: biology-ode-1 · P2 · 検証済み · 新規実装
+ID: biology-ode-1 · P2 · 公開済み · 新規実装
 
 調査時の範囲：解説のみ
 
@@ -5616,7 +5625,7 @@ ID: biology-ode-1 · P2 · 検証済み · 新規実装
 
 ```json
 {
-  "verification": "/code/validated-examples/2026-11-25/small-models/verification.json",
+  "verification": "/numerical-methods-atlas/validation/verification/2026-11-25-batch78-87-public.json",
   "inputs": [
     "/code/validated-examples/2026-11-25/small-models/inputs.json",
     "/code/validated-examples/2026-11-25/small-models/acceptance.json",
@@ -5639,7 +5648,8 @@ ID: biology-ode-1 · P2 · 検証済み · 新規実装
   "references": [
     "/code/validated-examples/2026-11-25/small-models/README.md",
     "/code/validated-examples/2026-11-25/small-models/cases.json",
-    "/code/validated-examples/2026-11-25/small-models/source-reading.json"
+    "/code/validated-examples/2026-11-25/small-models/source-reading.json",
+    "/code/validated-examples/2026-11-25/small-models/verification.json"
   ],
   "gallery": "/numerical-methods-atlas/gallery/?lang=ja#enzyme-qssa-ja",
   "execution": "/numerical-methods-atlas/validation/enzyme-qssa/?lang=ja#enzyme-qssa-ja-measurements",

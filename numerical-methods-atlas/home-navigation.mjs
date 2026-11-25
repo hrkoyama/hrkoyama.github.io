@@ -1,5 +1,5 @@
 import {homeAreas} from './home-overview-data.js?v=c7bda9b62571';
-import {homeNavigationData} from './atlas-home-data.js?v=f37795b9b630';
+import {homeNavigationData} from './atlas-home-data.js?v=d43451b61b86';
 
 /** Preserve existing home bookmarks after moving detailed navigation. */
 export function resolveHomeLegacyURL(href, language='en') {

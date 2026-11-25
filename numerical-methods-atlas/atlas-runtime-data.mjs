@@ -1,3 +1,3 @@
 // Generated from atlas-purpose.json and published language documents.
-export const atlasIntroDescriptions = {"ja":"数値計算法の適用条件・数式・一次文献から公開コードとデータへ。Poisson・Barnes–Hut・H/Heなど代表22問題の固定入力・実行・結果照合を日英で案内します。","en":"Connect numerical methods, assumptions, equations and original papers with public code and data. Explore twenty-two fixed-input examples, including Poisson, Barnes–Hut and H/He atoms, with execution and result checks in English and Japanese."};
+export const atlasIntroDescriptions = {"ja":"An Atlas of Numerical Methods。解説・方程式・実行コード・検証例を人とAIがたどり、軽量・低コストなLLMでの開発にも利用できる日英の数値計算資料集です。","en":"An Atlas of Numerical Methods for people and AI. Explanations, code and validation support development with lightweight, lower-cost LLMs."};
 export const atlasDocumentVersions = {"ja":"0dc4da47e1be","en":"1ca92c26b5f2"};
