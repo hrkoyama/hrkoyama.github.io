@@ -30,7 +30,20 @@ test('supplements retain their own evidence and do not borrow or expand the comm
  assert.deepEqual(depth.fields.find(f=>f.id==='probability').examples,['mc-integral','gbm-sde']);
  const supplementIds=depth.fields.flatMap(f=>f.supplemental_examples||[]);
  const expectedCount=Object.keys(read('catalog/atlas-depth-expansion.json').case_problem_ids).length;
- assert.equal(supplementIds.length,expectedCount);assert.equal(new Set(supplementIds).size,expectedCount);
+ // Batch78 adds two reviewed cross-field entries, each reusing one canonical
+ // case rather than creating another common execution or numerical result.
+ const crossField78={
+  'pinn-poisson':['elliptic','differentiation-inverse'],
+  'fno-periodic-heat':['foundations','differentiation-inverse'],
+ };
+ const memberships=new Map();
+ for(const field of depth.fields){
+  const ids=field.supplemental_examples||[];assert.equal(new Set(ids).size,ids.length,field.id+' no duplicate within field');
+  for(const id of ids){if(!memberships.has(id))memberships.set(id,[]);memberships.get(id).push(field.id);}
+ }
+ assert.deepEqual(Object.fromEntries([...memberships].filter(([,fields])=>fields.length>1)),crossField78,'only exact reviewed cross-field memberships');
+ assert.equal(supplementIds.length,expectedCount+Object.values(crossField78).reduce((n,fields)=>n+fields.length-1,0));
+ assert.equal(new Set(supplementIds).size,expectedCount);
  assert.equal(read('catalog/atlas-depth-expansion.json').case_problem_ids['csvr-kinetic-kernel'],null);
  assert.deepEqual(new Set(supplementIds),new Set(Object.keys(read('catalog/atlas-depth-expansion.json').case_problem_ids)));
  const verified=JSON.parse(execFileSync('python3',['-c',`import sys,json
@@ -39,9 +52,9 @@ sys.path.insert(0,'scripts')
 from atlas_goal_availability import load_supplemental_examples
 r=Path('.')
 d=json.loads((r/'catalog/atlas-depth.json').read_text())
-ids=[i for f in d['fields'] for i in f.get('supplemental_examples',[])]
+ids=list(dict.fromkeys(i for f in d['fields'] for i in f.get('supplemental_examples',[])))
 print(json.dumps([x['id'] for x in load_supplemental_examples(r,ids)]))`],{cwd:root,encoding:'utf8'}));
- assert.deepEqual(verified,supplementIds);
+ assert.deepEqual(verified,[...new Set(supplementIds)],'one qualified record per canonical case in first-seen field order');
  for(const id of ['mcmc','langevin-thermostat','stochastic-velocity-rescaling','ewald','pme','spme']){
   const method=methods.find(m=>m.id===id);assert.ok(method,id);assert.equal(method.status,'educational-example');assert.ok(method.code_urls.length);assert.ok(method.test_urls.length);
  }

@@ -197,6 +197,21 @@ def reference_html(case, language, anchor):
     return result
 
 
+def case_formulas(case):
+    """Read declared formula metadata, retaining plural-key priority."""
+    if 'formulas' in case:
+        value = case['formulas']
+    elif 'equations' in case:
+        value = case['equations']
+    elif 'equation' in case:
+        value = [case['equation']]
+    else:
+        value = []
+    if not isinstance(value, list) or any(not isinstance(formula, str) or not formula.strip() for formula in value):
+        raise ValueError('Formula metadata must contain nonempty strings')
+    return value
+
+
 def render_case(case, measured, data, language, rendered, heading_level=2, commands=False, editorial_note=None, navigation=None):
     ja = language == 'ja'; ident = case['id']; anchor = ident if heading_level == 2 else ident+'-'+language
     level = heading_level+1
@@ -220,7 +235,7 @@ def render_case(case, measured, data, language, rendered, heading_level=2, comma
         if key == 'assumptions' and editorial_note:
             body += '<aside class="validation-scope validation-editorial-note"><strong>'+('編集上の補足' if ja else 'Editorial clarification')+'</strong>'+paragraph(editorial_note[language])+'</aside>'
         if key == 'algorithm':
-            formulas = case.get('formulas', case.get('equations', []))
+            formulas = case_formulas(case)
             body += ''.join('<div class="validation-math">'+rendered['depth-'+ident+'-'+str(i)][0]+'</div>' for i in range(len(formulas)))
     body += '<h'+str(level)+' id="'+anchor+'-measurements">'+('保存した実測値と判定' if ja else 'Stored measurements and decisions')+'</h'+str(level)+'>'
     study = original_study_targets(measured)
@@ -277,7 +292,7 @@ def markdown_case(case, measured, data, language, heading_level=1, editorial_not
         if field == 'assumptions' and editorial_note:
             out += '**'+('編集上の補足' if language == 'ja' else 'Editorial clarification')+'**\n\n'+editorial_note[language]+'\n\n'
         if field == 'algorithm':
-            out += ''.join('$$\n'+formula+'\n$$\n\n' for formula in case.get('formulas', case.get('equations', [])))
+            out += ''.join('$$\n'+formula+'\n$$\n\n' for formula in case_formulas(case))
     study = original_study_targets(measured)
     if study and (measured.get('original_study_goal_measurements') or not study[1]['all_met']):
         out += subheading+' '+('元の数値目標と未達の結果' if language == 'ja' else 'Original numerical targets and unmet outcomes')+'\n\n'
@@ -323,7 +338,7 @@ def build():
         source_hashes.update(group['source_sha256'])
     formulas = [{'id': 'depth-'+case['id']+'-'+str(i), 'formula': [formula]}
                 for group in data.values() for case in group['metadata']
-                for i, formula in enumerate(case.get('formulas', case.get('equations', [])))]
+                for i, formula in enumerate(case_formulas(case))]
     rendered = json.loads(subprocess.check_output(['node', 'scripts/render-atlas-math.cjs'], cwd=ROOT,
         input=json.dumps(formulas, ensure_ascii=False).encode()))['rendered']
     documents = {language: read_json(ATLAS/('content.'+language+'.json')) for language in LANGUAGES}

@@ -1,3 +1,4 @@
+import {projectCatalogBeforeBatch78} from './fixtures/atlas-batch78-projection.mjs';
 import {examplesAddedAfterBatch37} from './fixtures/atlas-inventory.mjs';
 import {problemGroupCounts} from './fixtures/atlas-inventory.mjs';
 import {problemCount} from './fixtures/atlas-inventory.mjs';
@@ -113,7 +114,14 @@ test('nonlinear Schnakenberg refinements reuse one physical problem and preserve
   const mapping=JSON.parse(read('catalog/atlas-depth-expansion.json')).case_problem_ids;
   const problem=catalog.problems.find(x=>x.id==='turing-schnakenberg');
   assert.equal(catalog.problems.length,problemCount);
-  assert.equal(inventory.counts.groups.biology,5);
+  const oldBiologyIDs=['logistic-growth','sir-epidemic','reaction-diffusion-fourier','turing-schnakenberg','fitzhugh-nagumo'];
+  const newBiologyIDs=['enzyme-qssa','lotka-volterra','seir-linearization'];
+  const previous=projectCatalogBeforeBatch78('catalog/atlas-test-problems.json',catalog);
+  assert.deepEqual(previous.problems.filter(x=>x.group==='biology').map(x=>x.id),oldBiologyIDs);
+  assert.equal(oldBiologyIDs.length,5);
+  assert.deepEqual(catalog.problems.filter(x=>x.group==='biology').map(x=>x.id),[...oldBiologyIDs,...newBiologyIDs]);
+  assert.deepEqual(inventory.problems.filter(x=>x.group==='biology').map(x=>x.id),[...oldBiologyIDs,...newBiologyIDs]);
+  assert.equal(inventory.counts.groups.biology,oldBiologyIDs.length+newBiologyIDs.length);
   assert.equal(problem.chapter,'validation-models');
   assert.equal(problem.code_base,'/code/validated-examples/2026-11-22/models/');
   assert.deepEqual(problem.supplemental_examples.map(x=>x.id),['turing-schnakenberg',...identifiers,'reaction-diffusion-splitting']);

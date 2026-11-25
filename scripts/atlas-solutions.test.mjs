@@ -21,7 +21,7 @@ const attrs=tag=>Object.fromEntries([...tag.matchAll(/([\w:-]+)="([^"]*)"/g)].ma
 const label=html=>decode(html.replace(/<[^>]+>/g,'')).trim();
 function blocks(html,attribute,value){
   const result=[];
-  for(const opening of html.matchAll(/<([a-z][\w:-]*)\b[^>]*>/gi)){
+  for(const opening of html.matchAll(/<([a-z][\w:-]*)\b(?:[^>"']|"[^"]*"|'[^']*')*>/gi)){
     const attributes=attrs(opening[0]);
     if(new RegExp('\\s'+attribute+'(?=\\s|/?>)').test(opening[0]))attributes[attribute]??='';
     if(!(attribute in attributes)||(value!==undefined&&attributes[attribute]!==value))continue;
@@ -31,6 +31,11 @@ function blocks(html,attribute,value){
     result.push({attributes,start:opening.index,end:tags.lastIndex,body:html.slice(opening.index+opening[0].length,closing.index)});
   }
   return result;
+}
+// Inspect markup attributes, not scientific prose such as "hidden units".
+function concealedReferenceMarkup(html){
+  return [...html.matchAll(/<([a-z][\w:-]*)\b(?:[^>"']|"[^"]*"|'[^']*')*>/gi)].some(match=>
+    match[1].toLowerCase()==='details'||/\shidden(?=\s|=|\/?>)/i.test(match[0].replace(/"[^"]*"|'[^']*'/g,'')));
 }
 function withoutProblemRoutes(html){
   for(const block of blocks(html,'data-problem-routes').reverse())html=html.slice(0,block.start)+html.slice(block.end);
@@ -128,6 +133,10 @@ print(json.dumps({'passed':True,'checks':checks}))
 });
 
 test('each edition exposes all names, formulas and assumptions as visible static cards',()=>{
+  assert.equal(concealedReferenceMarkup('<p>Use sixteen hidden units.</p>'),false);
+  assert.equal(concealedReferenceMarkup('<p title="hidden units">visible</p>'),false);
+  assert.equal(concealedReferenceMarkup('<p data-hidden="true">visible</p>'),false);
+  for(const markup of ['<p hidden>text</p>','<p HIDDEN="until-found">text</p>','<input hidden/>','<p title="a > b" hidden>text</p>','<details><summary>name</summary>formula</details>'])assert.equal(concealedReferenceMarkup(markup),true,markup);
   for(const language of ['ja','en']){
     const section=blocks(rendered.html,'data-site-language',language)[0]?.body;
     assert.ok(section);
@@ -140,7 +149,7 @@ test('each edition exposes all names, formulas and assumptions as visible static
       const body=label(original);
       assert.equal(card.attributes['data-solution-kind'],row.kind);
       assert.ok(body.includes(row.title[language])&&body.includes(row.formula)&&body.includes(row.assumptions[language]));
-      assert.doesNotMatch(original,/<details\b|\shidden(?:\s|=|>)/,'the original reference name, formula and conditions stay visible before optional related-problem disclosures');
+      assert.equal(concealedReferenceMarkup(original),false,'the original reference name, formula and conditions stay visible before optional related-problem disclosures');
     }
     const taylor=cards.find(card=>card.attributes['data-solution-id']==='taylor-green');
     assert.ok(label(withoutProblemRoutes(taylor.body)).includes(rendered.record.cases.find(row=>row.id==='taylor-green').sampling_note[language]));
@@ -190,7 +199,7 @@ test('static and client home add three secondary browse links below the books wh
       }
     }
     assert.equal(staticPages.browse[language],renderHomeBrowse(language,{headingId:'explore-browse-title-'+language}));
-    assert.doesNotMatch(staticPages.browse[language],/<details\b|\shidden(?:\s|=|>)/);
+    assert.equal(concealedReferenceMarkup(staticPages.browse[language]),false);
   }
   const asset='/numerical-methods-atlas/assets/field-taylor-green.png';
   assert.ok(renderHomeBrowse('en').includes(asset));

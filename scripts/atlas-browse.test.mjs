@@ -1,3 +1,4 @@
+import {projectCatalogBeforeBatch78} from './fixtures/atlas-batch78-projection.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,existsSync} from 'node:fs';
@@ -55,9 +56,29 @@ test('equation records link to existing chapters in both languages and expose a 
 test('every displayed model has static math and valid deep links without inflating implementation status',()=>{
   const published=JSON.parse(read('numerical-methods-atlas/equations/index.json'));
   const html=read('numerical-methods-atlas/equations/index.html');
-  const implementedBiology=['bio-logistic','bio-sir','bio-turing','bio-schnakenberg','bio-fitzhugh-nagumo'];
+  const source=JSON.parse(read('catalog/atlas-equations.json'));
+  const previous=projectCatalogBeforeBatch78('catalog/atlas-equations.json',source);
+  const oldImplementedBiology=['bio-logistic','bio-sir','bio-turing','bio-schnakenberg','bio-fitzhugh-nagumo'];
+  const scopedBiology={'bio-enzyme':'enzyme-qssa','bio-lotka-volterra':'lotka-volterra'};
+  const oldBiology=previous.equations.filter(x=>x.id.startsWith('bio-'));
+  assert.equal(oldBiology.length,22);
+  assert.equal(oldBiology.filter(x=>x.status==='reading').length,17);
+  assert.deepEqual(oldBiology.filter(x=>x.status==='local-example').map(x=>x.id).sort(),[...oldImplementedBiology].sort());
+  const implementedBiology=[...oldImplementedBiology,...Object.keys(scopedBiology)];
   assert.equal(published.equations.filter(x=>x.id.startsWith('bio-')).length,22);
-  assert.equal(published.equations.filter(x=>x.id.startsWith('bio-')&&x.status==='reading').length,17);
+  assert.equal(published.equations.filter(x=>x.id.startsWith('bio-')&&x.status==='reading').length,17-Object.keys(scopedBiology).length);
+  for(const [model,id] of Object.entries(scopedBiology)){
+    const row=published.equations.find(x=>x.id===model),fixed=source.equations.find(x=>x.id===model);
+    assert.equal(row.status,'local-example');assert.deepEqual(row.execution_examples,[]);
+    assert.deepEqual(row.supplemental_execution_examples.map(x=>x.id),[id]);
+    assert.deepEqual(row.execution_scope,fixed.execution_scope);
+    assert.deepEqual(row.formula,fixed.formula);
+  }
+  const seir=published.equations.find(x=>x.id==='seir-compartment');
+  assert.equal(seir.status,'local-example');assert.deepEqual(seir.execution_examples,[]);
+  assert.deepEqual(seir.supplemental_execution_examples.map(x=>x.id),['seir-linearization']);
+  assert.deepEqual(seir.execution_scope,source.equations.find(x=>x.id===seir.id).execution_scope);
+  assert.deepEqual(published.equations.find(x=>x.id==='bio-sir').execution_examples.map(x=>x.id),['sir-epidemic']);
   for(const x of published.equations){
     const expected=coverage.items.find(item=>item.kind==='equation'&&item.id===x.id);
     assert.equal(x.status,expected.status);

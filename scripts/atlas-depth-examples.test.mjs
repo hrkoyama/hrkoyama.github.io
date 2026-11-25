@@ -48,6 +48,22 @@ with tempfile.TemporaryDirectory(prefix='atlas-additional-figures-') as temporar
  assert len(resolved)==1 and resolved[0]['width']==resolved[0]['height']==1
  data={'base':'/code/validated-examples/fixture/','directory':directory,'manifest':manifest,'verification':{'archive':{'file':'fixture.zip'}}}
  measured={'metrics':{'saved':0.},'checks':{'complete':True},'records':[{'n':1,'error':0.}]}
+ # A singular canonical equation must reach the same HTML/Markdown selector.
+ equation=r'I=\int_\Omega f(x)\,dx'
+ assert builder.case_formulas({'equation':equation})==[equation]
+ assert builder.case_formulas({'equations':[equation]})==[equation]
+ assert builder.case_formulas({'formulas':[equation],'equations':['other'],'equation':'other'})==[equation]
+ assert builder.case_formulas({'formulas':[],'equation':equation})==[]
+ assert builder.case_formulas({})==[]
+ for invalid in [{'equation':None},{'equation':''},{'equation':['nested']},{'formulas':equation},{'equations':[42]}]:
+  try:builder.case_formulas(invalid)
+  except ValueError:pass
+  else:raise AssertionError('Invalid formula metadata accepted')
+ singular=copy.deepcopy(case);del singular['formulas'];singular['equation']=equation
+ math_html='<span class="katex-mathml">declared integral</span>'
+ for lang in ['ja','en']:
+  assert math_html in builder.render_case(singular,measured,data,lang,{'depth-fixture-0':[math_html]})
+  assert '$$\n'+equation+'\n$$' in builder.markdown_case(singular,measured,data,lang)
  for lang in ['ja','en']:
   rendered=builder.render_case(case,measured,data,lang,{})
   markdown=builder.markdown_case(case,measured,data,lang)

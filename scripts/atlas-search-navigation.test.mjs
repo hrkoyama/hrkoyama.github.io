@@ -309,6 +309,22 @@ test('execution, method and reverse-reference graphs preserve exact runners, nul
   const declaredNewton68=canonicalCases68.filter(row=>row.method_ids.includes('newton')).map(row=>row.id);
   assert.deepEqual(sorted(declaredNewton68),sorted(addedNewton68));
   assert.equal(new Set(declaredNewton68).size,4);
+  // Batch78 adds exactly the independently verified enzyme case using Newton.
+  // Keep all older runner arrays and their order unchanged.
+  const cohort78=json('scripts/fixtures/atlas-batch78-87-freeze.json');
+  assert.equal(cohort78.status,'ROOT_REVIEWED_ACTUAL_CANONICAL_FREEZE');
+  const canonicalCases78=Object.values(cohort78.canonical_packets).flatMap(packet=>{
+    assert.equal(sha(packet.base+'source-manifest.json'),packet.manifest_sha256);
+    const manifest=json(packet.base+'source-manifest.json');
+    assert.equal(sha(packet.base+'cases.json'),manifest.files['cases.json']);
+    const raw=json(packet.base+'cases.json'),rows=Array.isArray(raw)?raw:raw.cases;
+    assert.deepEqual(sorted(rows.map(row=>row.id)),sorted(packet.case_ids));
+    return rows;
+  });
+  const addedNewton78=['enzyme-qssa'];
+  const declaredNewton78=canonicalCases78.filter(row=>row.method_ids.includes('newton')).map(row=>row.id);
+  assert.deepEqual(declaredNewton78,addedNewton78);
+  assert.equal(new Set(declaredNewton78).size,1);
   const qualifiedRunners={
     'newton':['bratu','bratu-fold-continuation','globalization-difficult-starts','bratu-fold-sensitivity','bratu-distributed-vjp'],
     'automatic-differentiation':['bratu-matrix-free-jfnk','reverse-vjp-duality','hessian-vector-products','kink-branch-derivatives'],
@@ -321,7 +337,8 @@ test('execution, method and reverse-reference graphs preserve exact runners, nul
   for(const [id,expected]of Object.entries(qualifiedRunners)){
     const graph=source.nodes['method:'+id];
     if(id==='newton')assert.deepEqual(runIds(graph).slice(0,expected.length),expected,id+' exact historical prefix');
-    assert.deepEqual(runIds(graph),id==='newton'?[...expected,...addedNewton68]:expected,id+' exact qualified runners');
+    if(id==='newton')assert.deepEqual(runIds(graph).slice(0,expected.length+addedNewton68.length),[...expected,...addedNewton68],id+' exact through-batch68 prefix');
+    assert.deepEqual(runIds(graph),id==='newton'?[...expected,...addedNewton68,...addedNewton78]:expected,id+' exact qualified runners');
     assert.ok(graph.groups.code.some(row=>row.id==='method-'+id&&row.availability==='source'),'independent code editions remain accessible');
     assert.ok(graph.groups.references.some(row=>row.id==='method-'+id),'method-owned validation stays separate from forward-problem references');
   }

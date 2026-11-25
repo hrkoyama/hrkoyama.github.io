@@ -228,6 +228,18 @@ test('purpose search retains common executions and adds only the selected indepe
   for(const [id,expected] of [['bio-patterns',['turing-schnakenberg','schnakenberg-nonlinear','schnakenberg-pattern','reaction-diffusion-splitting']],['bio-reaction-fourier',['reaction-diffusion-fourier']],['bio-fhn',['fitzhugh-nagumo']]]){
     assert.deepEqual(biology.find(row=>row.id===id).method.execution_examples.map(example=>example.id),expected,id+' applicable components');
   }
+  const bioGoal=goals.find(goal=>goal.id==='biological-models');
+  assert.deepEqual(bioGoal.resources.map(row=>row.id),['bio-populations','bio-epidemics','bio-patterns','bio-excitation','bio-reaction-fourier','bio-fhn','bio-enzyme-qssa','bio-lotka-volterra','bio-seir-linearization']);
+  const canonical=json('code/validated-examples/2026-11-25/small-models/cases.json');
+  for(const [resourceID,caseID] of [['bio-enzyme-qssa','enzyme-qssa'],['bio-lotka-volterra','lotka-volterra'],['bio-seir-linearization','seir-linearization']]){
+    const resource=bioGoal.resources.find(row=>row.id===resourceID),actual=biology.find(row=>row.id===resourceID)?.method;
+    const sourceCase=(Array.isArray(canonical)?canonical:canonical.cases).find(row=>row.id===caseID),page=json('numerical-methods-atlas/validation/'+caseID+'/index.json');
+    assert.ok(actual&&sourceCase,resourceID);assert.equal(actual.status,'educational-example');
+    assert.deepEqual(resource.supplemental_examples,[caseID]);assert.deepEqual(resource.execution_examples,[]);
+    assert.deepEqual(actual.execution_examples.map(row=>row.id),[caseID]);assert.deepEqual(actual.summary,sourceCase.limits);assert.deepEqual(actual.name,sourceCase.title);
+    assert.deepEqual(actual.code_urls,page.release.code_urls);assert.deepEqual(actual.test_urls,page.release.test_urls);
+    for(const lang of ['ja','en'])assert.equal(actual.reading[lang],'https://hrkoyama.github.io/numerical-methods-atlas/'+lang+'/read/validation-small-models/#'+caseID);
+  }
   assert.deepEqual(biology.find(row=>row.id==='bio-excitation').method.execution_examples,[],'Hodgkin–Huxley does not borrow a FitzHugh–Nagumo implementation');
 }));
 

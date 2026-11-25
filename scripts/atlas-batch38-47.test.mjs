@@ -36,14 +36,19 @@ function projectSearchWorkflowBeforeReviewedBatch48Extension(current){
  const chromium=`      - name: Install the pinned Chromium browser
         run: npx --no-install playwright install --with-deps chromium
 `;
+ // The 2026-11-25 lossless-codec extension reuses the existing strict
+ // budget/token test before Chromium. Invert only this exact added step.
+ const capacity=`      - name: Reject oversized or lossy compact corpora before browser measurements
+        run: node --test --test-name-pattern='compact corpora preserve every normalized text token' scripts/atlas-priority1.test.mjs
+`;
  const aggregate=`      - name: Explicitly aggregate derived files in this isolated candidate
 `;
  const bind=`      - name: Bind the measurement to its exact staged tree and target
 `;
- for(const [label,block] of Object.entries({renderer,chromium,aggregate,bind}))assert.equal(current.split(block).length-1,1,'reviewed-workflow-block/'+label);
+ for(const [label,block] of Object.entries({renderer,capacity,chromium,aggregate,bind}))assert.equal(current.split(block).length-1,1,'reviewed-workflow-block/'+label);
  assert.ok(current.includes(renderer+aggregate),'renderer-immediately-before-generation');
- assert.ok(current.includes(chromium+bind),'chromium-immediately-before-bind');
- return current.replace(renderer,'').replace(chromium,'').replace(aggregate,chromium+aggregate);
+ assert.ok(current.includes(capacity+chromium+bind),'capacity-then-chromium-immediately-before-bind');
+ return current.replace(capacity,'').replace(renderer,'').replace(chromium,'').replace(aggregate,chromium+aggregate);
 }
 
 test('batch38–47 preserves existing scientific files, search details, equations and references',()=>{

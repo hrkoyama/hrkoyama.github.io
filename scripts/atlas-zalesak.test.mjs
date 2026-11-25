@@ -1,3 +1,4 @@
+import {projectEquationBeforeBatch78} from './fixtures/atlas-batch78-projection.mjs';
 import {equationCount,equationsAddedAfterBatch37,examplesAddedAfterBatch37,groupsAddedAfterBatch37,problemCount,runnableProblemCount,supplementCaseCount,supplementGroupCount} from './fixtures/atlas-inventory.mjs';
 import {methodCount,methodStatusCounts} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
@@ -19,7 +20,7 @@ const batch18OriginalEquations={"poisson-laplace":{"id":"poisson-laplace","name"
 const priority1OriginalScopeNotes={"hartree-fock-model":{"ja":"閉殻RHFの占有空間軌道の式。一般に非局所な交換を含む。実行例は球対称1s² Heの局所還元に限定し、一般の分子・多電子のFock行列構築は未実装。","en":"Closed-shell RHF spatial-orbital equations, generally with nonlocal exchange. Runnable code is restricted to the spherical 1s² helium local reduction; general molecular/many-electron Fock-matrix construction is not implemented."},"kohn-sham-model":{"ja":"密度汎関数の局所KS代表形。実行例は球対称He・スピン非偏極Dirac交換のみLDA。相関・GGA・hybrid・一般化KS・周期系は未実装。","en":"Representative local KS equations. Runnable code covers spherical-helium spin-unpolarized Dirac exchange-only LDA. Correlation, GGA, hybrids, generalized KS and periodic systems are not implemented."}};
 const batch28CaseIds=new Set(['checkerboard-diffusion', 'rotated-anisotropic-diffusion', 'neutral-slab-yb', 'fmm3d-inverse-r', 'gravity-kepler', 'gravity-plummer-short', 'thermal-landau-damping', 'thermal-two-stream', 'pic-independent-spatial', 'dsmc-couette', 'dsmc-fourier', 'dsmc-planar-shock',...examplesAddedAfterBatch37]);
 const batch28HistoricalEquation=row=>{if(!Object.hasOwn(row,'supplemental_examples'))return row;const copy={...row},remaining=row.supplemental_examples.filter(id=>!batch28CaseIds.has(id));if(remaining.length)copy.supplemental_examples=remaining;else delete copy.supplemental_examples;return copy;};
-const historicalEquation=row=>{row=batch28HistoricalEquation(row);if(priority1OriginalScopeNotes[row.id])row={...row,note:priority1OriginalScopeNotes[row.id]};row=batch18OriginalEquations[row.id]||row;if(!oldEquationMetadata[row.id])return row;const copy={...row,...oldEquationMetadata[row.id]};delete copy.execution_scope;delete copy.supplemental_examples;return copy;};
+const historicalEquation=row=>{row=projectEquationBeforeBatch78(row);row=batch28HistoricalEquation(row);if(priority1OriginalScopeNotes[row.id])row={...row,note:priority1OriginalScopeNotes[row.id]};row=batch18OriginalEquations[row.id]||row;if(!oldEquationMetadata[row.id])return row;const copy={...row,...oldEquationMetadata[row.id]};delete copy.execution_scope;delete copy.supplemental_examples;return copy;};
 
 
 // Remove only this batch's appended WENO evidence/entry for the historical golden.

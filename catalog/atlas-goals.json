@@ -386,6 +386,87 @@
           "supplemental_examples": [
             "fitzhugh-nagumo"
           ]
+        },
+        {
+          "id": "bio-enzyme-qssa",
+          "name": {
+            "ja": "酵素反応の保存と準定常近似",
+            "en": "Enzyme conservation and QSSA"
+          },
+          "group": {
+            "ja": "生物モデル",
+            "en": "Biological models"
+          },
+          "summary": {
+            "ja": "2つの小εと固定反応定数だけの教育例です。εは尺度比であり、その値だけを厳密なQSSA誤差上界とはしません。θ≥0.02を初期層終了の証明とは呼ばず、生体内の反応・観測値へ外挿しません。",
+            "en": "These two small-ε fixed-rate examples are educational. ε is a scale ratio, not itself a certified QSSA error bound. The θ≥0.02 window is not a proof that the initial layer has ended, and the calculation is not an in-vivo prediction."
+          },
+          "status": "educational-example",
+          "resource_type": "model",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#enzyme-qssa",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#enzyme-qssa"
+          },
+          "code_urls": [],
+          "test_urls": [],
+          "execution_examples": [],
+          "supplemental_examples": [
+            "enzyme-qssa"
+          ]
+        },
+        {
+          "id": "bio-lotka-volterra",
+          "name": {
+            "ja": "Lotka–Volterra不変量と正値性",
+            "en": "Lotka–Volterra invariant and positivity"
+          },
+          "group": {
+            "ja": "生物モデル",
+            "en": "Biological models"
+          },
+          "summary": {
+            "ja": "1初期値・有限時間の固定比較です。連続系の閉軌道を引き込み極限周期とは呼びません。RK4の厳密な不変量保存、任意刻みでの正値性、長時間の構造保存は保証しません。",
+            "en": "This is a finite-time comparison for one initial state. The continuum closed orbit is not an attracting limit cycle. RK4 is not claimed to preserve H exactly, maintain positivity at arbitrary steps or guarantee long-time geometric fidelity."
+          },
+          "status": "educational-example",
+          "resource_type": "model",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#lotka-volterra",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#lotka-volterra"
+          },
+          "code_urls": [],
+          "test_urls": [],
+          "execution_examples": [],
+          "supplemental_examples": [
+            "lotka-volterra"
+          ]
+        },
+        {
+          "id": "bio-seir-linearization",
+          "name": {
+            "ja": "SEIR保存則と初期線形化",
+            "en": "SEIR conservation and initial linearization"
+          },
+          "group": {
+            "ja": "生物モデル",
+            "en": "Biological models"
+          },
+          "summary": {
+            "ja": "2つの小初期感染量による固定係数の整合性比較です。早期線形化をt=20全体の厳密解と見なさず、単一の優勢モードで両モードを置き換えません。実流行の予測・統計的被覆・任意人口への一般保証は行いません。",
+            "en": "These fixed-coefficient calculations compare two small initial infection levels. The early linearization is not an exact solution through t=20, and a single dominant mode does not replace the two-mode solution. No epidemic forecast, statistical coverage or arbitrary-population guarantee is claimed."
+          },
+          "status": "educational-example",
+          "resource_type": "model",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-small-models/#seir-linearization",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-small-models/#seir-linearization"
+          },
+          "code_urls": [],
+          "test_urls": [],
+          "execution_examples": [],
+          "supplemental_examples": [
+            "seir-linearization"
+          ]
         }
       ],
       "domains": [
