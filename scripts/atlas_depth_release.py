@@ -264,7 +264,8 @@ def depth_release_record(root, method):
 
 def depth_release_records(root, method):
     """Resolve separately verified editions without replacing earlier evidence."""
-    configs = [method['depth_release'], *method.get('depth_additional_releases', [])]
+    configs = ([method['depth_release']] if 'depth_release' in method else []) + method.get('depth_additional_releases', [])
+    assert configs, 'No supplement release configured'
     identities = [(item['group'], item['edition']) for item in configs]
     assert len(identities) == len(set(identities)), 'Repeated supplement release'
     records = [_depth_release_record(root, method, config) for config in configs]

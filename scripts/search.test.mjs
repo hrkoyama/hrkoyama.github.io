@@ -12,7 +12,12 @@ test('execution intent keeps the requested published input and validation pages 
     assert.equal(first?.kind,'execution-example',query);
   }
   assert.equal(search('WENO-Z','ja','atlas')[0]?.method?.id,'weno-z');
-  assert.ok(!search('GSPH code','ja','atlas').some(row=>row.executionPriority));
+  for(const lang of ['ja','en']){
+    const rows=search('GSPH code',lang,'atlas').filter(row=>row.executionPriority);
+    assert.deepEqual(rows.map(row=>row.url).sort(),['/numerical-methods-atlas/validation/gsph-sod/','/numerical-methods-atlas/validation/sph-pressure-acoustics/']);
+    assert.ok(rows.every(row=>row.kind==='execution-example'));
+    assert.ok(!search('GSPH zxqvnotfound123 code',lang,'atlas').some(row=>row.executionPriority));
+  }
 });
 test('the public search page has one search container and no merge markers',()=>{
   const html=fs.readFileSync(new URL('../search/index.html',import.meta.url),'utf8');

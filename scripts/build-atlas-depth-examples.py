@@ -213,6 +213,27 @@ def case_formulas(case):
     return value
 
 
+def with_formula_supplement(case, supplement):
+    """Add explicitly sourced editorial math without modifying frozen packets."""
+    if supplement is None:
+        return case
+    if any(key in case for key in ('formulas', 'equations', 'equation')):
+        raise ValueError('Editorial formulas must not replace declared packet math')
+    if not isinstance(supplement, dict) or set(supplement) != {'formulas', 'note', 'source_sha256'}:
+        raise ValueError('Invalid editorial formula supplement')
+    formulas = case_formulas({'formulas': supplement['formulas']})
+    if not formulas:
+        raise ValueError('Editorial formula supplement must contain math')
+    note, sources = supplement['note'], supplement['source_sha256']
+    if (not isinstance(note, dict) or set(note) != {'ja', 'en'} or
+            any(not isinstance(note[lang], str) or not note[lang].strip() for lang in ('ja', 'en')) or
+            not isinstance(sources, dict) or not sources or
+            any(not isinstance(path, str) or not isinstance(value, str) or
+                re.fullmatch(r'[0-9a-f]{64}', value) is None for path, value in sources.items())):
+        raise ValueError('Editorial math needs bilingual scope and explicit source hashes')
+    return {**case, 'formulas': list(formulas), 'editorial_formula_supplement': supplement}
+
+
 def render_case(case, measured, data, language, rendered, heading_level=2, commands=False, editorial_note=None, navigation=None, study_outcomes=None):
     ja = language == 'ja'; ident = case['id']; anchor = ident if heading_level == 2 else ident+'-'+language
     level = heading_level+1
@@ -238,6 +259,8 @@ def render_case(case, measured, data, language, rendered, heading_level=2, comma
         if key == 'algorithm':
             formulas = case_formulas(case)
             body += ''.join('<div class="validation-math">'+rendered['depth-'+ident+'-'+str(i)][0]+'</div>' for i in range(len(formulas)))
+            if case.get('editorial_formula_supplement'):
+                body += '<aside class="validation-scope">'+paragraph(case['editorial_formula_supplement']['note'][language])+'</aside>'
     body += '<h'+str(level)+' id="'+anchor+'-measurements">'+('保存した実測値と判定' if ja else 'Stored measurements and decisions')+'</h'+str(level)+'>'
     body += study_outcomes_html(study_outcomes, language, level)
     study = original_study_targets(measured)
@@ -295,6 +318,8 @@ def markdown_case(case, measured, data, language, heading_level=1, editorial_not
             out += '**'+('編集上の補足' if language == 'ja' else 'Editorial clarification')+'**\n\n'+editorial_note[language]+'\n\n'
         if field == 'algorithm':
             out += ''.join('$$\n'+formula+'\n$$\n\n' for formula in case_formulas(case))
+            if case.get('editorial_formula_supplement'):
+                out += case['editorial_formula_supplement']['note'][language]+'\n\n'
     out += study_outcomes_markdown(study_outcomes, language, heading_level+1)
     study = original_study_targets(measured)
     if study and (measured.get('original_study_goal_measurements') or not study[1]['all_met']):
@@ -333,6 +358,21 @@ def build():
     data = {group['id']: load_depth_group(ROOT, group['id'], group.get('edition', catalog['edition'])) for group in catalog['groups']}
     identifiers = [case['id'] for group in data.values() for case in group['metadata']]
     assert len(identifiers) == len(set(identifiers))
+    formula_supplements = catalog.get('case_formula_supplements', {})
+    if not isinstance(formula_supplements, dict) or not set(formula_supplements) <= set(identifiers):
+        raise ValueError('Editorial formula supplement names an unknown execution case')
+    for current in data.values():
+        current['metadata'] = [with_formula_supplement(case, formula_supplements.get(case['id']))
+                               for case in current['metadata']]
+    formula_sources = {}
+    for supplement in formula_supplements.values():
+        for name, expected in supplement['source_sha256'].items():
+            path = ROOT/name
+            if (not (name == 'catalog/atlas-equations.json' or name.startswith('code/validated-examples/')) or
+                    '..' in Path(name).parts or not path.is_file() or path.is_symlink() or
+                    not path.resolve().is_relative_to(ROOT) or digest(path) != expected):
+                raise ValueError('Editorial formula source is missing, unsafe or changed')
+            formula_sources[name] = expected
     selectors = catalog.get('case_study_goal_prefixes', {})
     assert isinstance(selectors, dict) and set(selectors) <= set(identifiers)
     projected_studies = {}
@@ -349,6 +389,7 @@ def build():
     registry_hash = digest(registry_path)
     common_count = len(read_json(registry_path)['examples'])
     source_hashes = {CATALOG.lstrip('/'): digest(ROOT/CATALOG.lstrip('/'))}
+    source_hashes.update(formula_sources)
     for group in data.values():
         source_hashes.update(group['source_sha256'])
     formulas = [{'id': 'depth-'+case['id']+'-'+str(i), 'formula': [formula]}

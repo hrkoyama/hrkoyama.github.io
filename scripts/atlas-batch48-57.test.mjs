@@ -279,7 +279,15 @@ cohort=json.loads(Path('scripts/fixtures/atlas-batch68-77-baseline.json').read_t
 transition=json.loads(Path('scripts/fixtures/atlas-batch68-77-method-transition.json').read_text())
 added68=set(cohort['expected_new_method_ids'])|{ident for ident,change in transition['transitions'].items() if 'depth_release' in change['before_absent'] and 'depth_release' in change['after']}
 assert added68=={'bdf2','sdirk2','step-doubling','dae','rk45','jameson-steady-rk','shake','rattle'}
-assert set(fallback)==legacy_fallback|added68
+added23={'schrodinger','hartree-fock','kohn-sham-dft','scf','pseudopotentials'}
+delta23=json.loads(Path('scripts/fixtures/atlas-final23-metadata-delta.json').read_text())
+assert set(fallback)-added23==legacy_fallback|added68
+assert set(fallback)&added23==added23
+for ident in added23:
+ assert 'depth_release' not in delta23['methods'][ident]['delta']['keys'], ident
+ method=next(m for m in methods if m['id']==ident)
+ assert method['depth_release']['group']=='quantum-small' and method['depth_release']['edition']=='2026-11-25'
+ assert method['depth_release']['case_ids']
 release={'group':'one','edition':'2026-11-24','case_ids':['fixed']}
 profile={'release':release,'scope':{'ja':'固定例のみ。','en':'Fixed case only.'},'limits':[{'ja':'一般保証なし。','en':'No general guarantee.'}]}
 other={'release':{**release,'group':'other'},'scope':{'ja':'別の例。','en':'UNRELATED RELEASE'},'limits':profile['limits']}

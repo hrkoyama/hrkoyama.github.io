@@ -24,3 +24,27 @@ def depth_coverage_scope(method, language):
             raise ValueError('Primary release needs bilingual coverage and limits')
     return ' '.join([profile['scope'][language], *(row[language] for row in limits)])
 
+
+
+def additional_depth_scope(method, release, language):
+    """Require the exact additional-only release profile and bilingual limits."""
+    if language not in ('ja', 'en'):
+        raise ValueError('Unknown additional coverage language')
+    identity = {'group': release['group'], 'edition': release['code_edition'],
+                'case_ids': release['case_ids']}
+    configs = method.get('depth_additional_releases', [])
+    if 'depth_release' in method or identity not in configs:
+        raise ValueError('Expected an exact additional-only method release')
+    matches = [row for row in method.get('supplemental_scope_profiles', [])
+               if row.get('release') == identity]
+    if len(matches) != 1:
+        raise ValueError('Additional release needs one exact coverage profile')
+    profile = matches[0]
+    limits = profile.get('limits')
+    if not isinstance(limits, list) or not limits:
+        raise ValueError('Additional release needs explicit limits')
+    for text in [profile.get('scope'), *limits]:
+        if not isinstance(text, dict) or any(not isinstance(text.get(lang), str) or not text[lang].strip()
+                                             for lang in ('ja', 'en')):
+            raise ValueError('Additional release needs bilingual coverage and limits')
+    return ' '.join([profile['scope'][language], *(row[language] for row in limits)])

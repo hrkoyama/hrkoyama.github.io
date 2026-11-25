@@ -5,7 +5,7 @@ import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
 const bytes=readFileSync(new URL('./atlas-final23-metadata-delta.json',import.meta.url));
-assert.equal(createHash('sha256').update(bytes).digest('hex'),'81c99ff4275dad10113d3842552709e3a45222e7acde7a807782cf6e154e9952','frozen final23 metadata inverse');
+assert.equal(createHash('sha256').update(bytes).digest('hex'),'63c6385c9dbe9a1290a3e78e4ba7deb5cf1fdce9ce41f44718f64348f109bc0e','frozen final23 metadata inverse');
 const frozen=JSON.parse(bytes);
 assert.equal(frozen.base_commit,'812f0e1a295f1491d12c50db9df5b6147bb41744');
 export const methodIdsAddedInFinal23=Object.freeze(frozen.new_method_ids);

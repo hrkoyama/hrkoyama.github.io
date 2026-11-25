@@ -1,4 +1,4 @@
-import {methodIdsAddedInFinal23} from './fixtures/atlas-final23-projection.mjs';
+import {methodIdsAddedInFinal23,projectCatalogBeforeFinal23} from './fixtures/atlas-final23-projection.mjs';
 import {assertScopedMDMethod,assertChapterMDScope,mdCase,mdBase} from './fixtures/atlas-md-scope.mjs';
 import {methodIdsAddedInBatch78,methodIdsPromotedInBatch78,methodIdsAddedInBatch68,methodIdsAddedInBatch58,methodCount,methodIds} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
@@ -192,7 +192,21 @@ test('BOMD and CPMD distinguish chapter-local reading from the fixed two-state m
   const expectedCoverage78=[['gauss-kronrod','validation-quadrature-controls'],['tanh-sinh','validation-quadrature-controls'],['smolyak-sparse-grid','validation-quadrature-controls'],['pchip','validation-approximation-controls'],['splines','validation-approximation-controls'],['chebyshev','validation-approximation-controls'],['wavelets','validation-approximation-controls'],['pinn-operators','validation-small-models']];
   assert.deepEqual(coveredMethods.filter(row=>addedCoverage78.has(row.id)).map(row=>[row.id,row.chapter]).sort(),expectedCoverage78.sort());
   assert.ok(coveredMethods.filter(row=>addedCoverage78.has(row.id)).every(row=>row.status==='local-example'));
-  assert.equal(coveredMethods.filter(row => row.id !== 'slab-ewald'&&!addedMethods.includes(row.id)&&!methodIdsAddedInBatch58.includes(row.id)&&!addedCoverage68.has(row.id)&&!addedCoverage78.has(row.id)&&!methodIdsAddedInFinal23.includes(row.id)).length,136);
+  // Only these four previously unlisted thermostat rows extend the old coverage set.
+  // BO/CP/MP2/CI already had coverage rows and must remain in the historical136.
+  const addedThermostatCoverage=['velocity-rescaling','berendsen-thermostat','nose-hoover','nose-hoover-chains'];
+  const addedCoverageFinal23=new Set([...methodIdsAddedInFinal23,...addedThermostatCoverage]);
+  assert.deepEqual(coveredMethods.filter(row=>addedCoverageFinal23.has(row.id)).map(row=>[row.id,row.chapter,row.status]),[
+    ...addedThermostatCoverage.map(id=>[id,'validation-thermostat-constraint-controls','local-example']),
+    ['gillespie-ssa','validation-biology-ode-controls','local-example'],['semi-lagrangian','validation-continuum-particle-controls','local-example'],
+  ]);
+  const sourceMethods=json('catalog/atlas-methods.json'),beforeFinalMethods=projectCatalogBeforeFinal23('catalog/atlas-methods.json',sourceMethods).methods;
+  for(const id of addedThermostatCoverage){
+    assert.equal(beforeFinalMethods.find(row=>row.id===id).status,'planned');
+    const current=sourceMethods.methods.find(row=>row.id===id);assert.equal(current.status,'educational-example');
+    assert.deepEqual(current.depth_release,{group:'thermostat-constraint-controls',edition:'2026-11-25',case_ids:['deterministic-thermostat-contrasts']});
+  }
+  assert.equal(coveredMethods.filter(row => row.id !== 'slab-ewald'&&!addedMethods.includes(row.id)&&!methodIdsAddedInBatch58.includes(row.id)&&!addedCoverage68.has(row.id)&&!addedCoverage78.has(row.id)&&!addedCoverageFinal23.has(row.id)).length,136);
   const expectedCoverage68=[['dae','validation-dae-controls'],['rk45','validation-ode-adaptivity'],['jameson-steady-rk','validation-steady-rk'],['shake','validation-geometric-controls'],['rattle','validation-geometric-controls']];
   const byId=(a,b)=>a[0].localeCompare(b[0]);
   assert.deepEqual(coveredMethods.filter(row=>addedCoverage68.has(row.id)).map(row=>[row.id,row.chapter]).sort(byId),expectedCoverage68.sort(byId));

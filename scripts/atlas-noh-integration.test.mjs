@@ -1,3 +1,4 @@
+import {projectCatalogBeforeFinal23} from './fixtures/atlas-final23-projection.mjs';
 import {problemCount,examplesAddedAfterBatch37} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -215,7 +216,19 @@ test('spherical diagnostics distinguish discrete conservation from the signed SS
 });
 
 test('Noh reference, figure, chapter and execution connect through their actual new records',()=>{
-  const addition=json('catalog/atlas-reference-supplements.json').cases;
+  const current=json('catalog/atlas-reference-supplements.json');
+  const addition=projectCatalogBeforeFinal23('catalog/atlas-reference-supplements.json',current).cases;
+  const previousIDs=new Set(addition.map(row=>row.id));
+  const registry=json('numerical-methods-atlas/validation/releases.json');
+  const oldGroups=new Set(projectCatalogBeforeFinal23('numerical-methods-atlas/validation/releases.json',registry).releases.map(row=>row.group));
+  const newCases=registry.releases.filter(row=>!oldGroups.has(row.group)).flatMap(row=>row.case_ids);
+  assert.equal(newCases.length,19);
+  assert.deepEqual(current.cases.filter(row=>!previousIDs.has(row.id)).map(row=>row.id).sort(),['bratu-lower-branch-analytic','harmonic-oscillator-exact','stiff-cosine-exact','hydrogenic-coulomb-reference',...newCases].sort());
+  for(const id of ['bratu-lower-branch-analytic','harmonic-oscillator-exact','stiff-cosine-exact','hydrogenic-coulomb-reference']){
+    const card=current.cases.find(row=>row.id===id),contract=card.reference_contract;assert.equal(card.kind,'analytic');assert.equal(contract.class,'continuous-exact');
+    for(const binding of [contract.fixed_input_binding,{url:contract.release_binding.manifest,sha256:contract.release_binding.manifest_sha256},{url:contract.release_binding.verification,sha256:contract.release_binding.verification_sha256}])assert.equal(sha(new URL(binding.url).pathname.slice(1)),binding.sha256,id+'/immutable-binding');
+    assert.ok(card.citations.every(row=>row.role&&row.title&&row.url));
+  }
   assert.deepEqual(addition.filter(row=>!['zalesak-rotation','weno-critical-profile','lake-at-rest-bed','swashes-bernoulli','ritter-dry-bed','ghia-re100','wall-mms','level-set-translation','level-set-rotation', 'kh-initial-growth', 'rt-initial-growth', 'circular-alfven-refinement', 'magnetic-loop-independent', 'postshock-orszag-tang', 'lshape-fem', 'annular-viscous-mms', 'poisson-neumann', 'poisson-robin', 'ale-nonuniform-transport', 'cgrid-rotating-wave', 'srhd-collision', 'srmhd-alfven', 'sem-poisson-2d', 'fr-periodic-advection','checkerboard-diffusion','rotated-anisotropic-diffusion','neutral-slab-yb','fmm3d-inverse-r','gravity-kepler','gravity-plummer-short','thermal-landau-damping','thermal-two-stream','pic-independent-spatial','dsmc-couette','dsmc-fourier','dsmc-planar-shock',...examplesAddedAfterBatch37].includes(row.id)).map(row=>row.id),['noh','sedov','double-mach','forward-step','isentropic-vortex','guderley']);assert.equal(addition[0].kind,'analytic');
   const reference=json('numerical-methods-atlas/solutions/index.json').cases.find(row=>row.id==='noh');
   const problem=json('numerical-methods-atlas/problems/noh/index.json');
@@ -280,7 +293,7 @@ with tempfile.TemporaryDirectory(prefix='atlas-reference-catalog-') as directory
  old=root/'numerical-methods-atlas/assets/reference-solutions.json';old.parent.mkdir(parents=True);old.write_text(json.dumps({'cases':[{'id':'old'}]}))
  extra=root/'catalog/atlas-reference-supplements.json';extra.parent.mkdir()
  def write(value):extra.write_text(json.dumps(value))
- write(source);assert [row['id'] for row in load_reference_cases(root) if row['id'] not in ['zalesak-rotation','weno-critical-profile','lake-at-rest-bed','swashes-bernoulli','ritter-dry-bed','ghia-re100','wall-mms','level-set-translation','level-set-rotation','sem-poisson-2d','fr-periodic-advection', 'kh-initial-growth', 'rt-initial-growth', 'circular-alfven-refinement', 'magnetic-loop-independent', 'postshock-orszag-tang', 'lshape-fem', 'annular-viscous-mms', 'poisson-neumann', 'poisson-robin', 'ale-nonuniform-transport', 'cgrid-rotating-wave', 'srhd-collision', 'srmhd-alfven','checkerboard-diffusion','rotated-anisotropic-diffusion','neutral-slab-yb','fmm3d-inverse-r','gravity-kepler','gravity-plummer-short','thermal-landau-damping','thermal-two-stream','pic-independent-spatial','dsmc-couette','dsmc-fourier','dsmc-planar-shock']+${JSON.stringify(examplesAddedAfterBatch37)}]==['old','noh','sedov','double-mach','forward-step','isentropic-vortex','guderley']
+ write(source);assert [row['id'] for row in load_reference_cases(root) if row['id'] not in ['zalesak-rotation','weno-critical-profile','lake-at-rest-bed','swashes-bernoulli','ritter-dry-bed','ghia-re100','wall-mms','level-set-translation','level-set-rotation','sem-poisson-2d','fr-periodic-advection', 'kh-initial-growth', 'rt-initial-growth', 'circular-alfven-refinement', 'magnetic-loop-independent', 'postshock-orszag-tang', 'lshape-fem', 'annular-viscous-mms', 'poisson-neumann', 'poisson-robin', 'ale-nonuniform-transport', 'cgrid-rotating-wave', 'srhd-collision', 'srmhd-alfven','checkerboard-diffusion','rotated-anisotropic-diffusion','neutral-slab-yb','fmm3d-inverse-r','gravity-kepler','gravity-plummer-short','thermal-landau-damping','thermal-two-stream','pic-independent-spatial','dsmc-couette','dsmc-fourier','dsmc-planar-shock']+${JSON.stringify(examplesAddedAfterBatch37)}]==['old','noh','sedov','double-mach','forward-step','isentropic-vortex','guderley']+['bratu-lower-branch-analytic','harmonic-oscillator-exact','stiff-cosine-exact','hydrogenic-coulomb-reference']
  for mutation in ['duplicate','citation','route']:
   bad=copy.deepcopy(source)
   if mutation=='duplicate':bad['cases'][0]['id']='old'
@@ -291,5 +304,5 @@ with tempfile.TemporaryDirectory(prefix='atlas-reference-catalog-') as directory
   except ValueError:pass
   else:raise AssertionError('accepted invalid reference '+mutation)
 `;
-  execFileSync('python3',['-B','-c',program],{cwd:fileURLToPath(root),encoding:'utf8'});
+  execFileSync('python3',['-B','-c',program],{cwd:fileURLToPath(root),encoding:'utf8',timeout:10000});
 });

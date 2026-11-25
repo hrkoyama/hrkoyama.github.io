@@ -55,6 +55,18 @@ with tempfile.TemporaryDirectory(prefix='atlas-additional-figures-') as temporar
  assert builder.case_formulas({'formulas':[equation],'equations':['other'],'equation':'other'})==[equation]
  assert builder.case_formulas({'formulas':[],'equation':equation})==[]
  assert builder.case_formulas({})==[]
+ supplement={'formulas':[equation],'note':{'ja':'保存コードに基づく編集上の数式補足。','en':'Editorial equations from saved code.'},'source_sha256':{'code/validated-examples/fixed/run.py':'0'*64}}
+ undeclared=copy.deepcopy(case);del undeclared['formulas']
+ augmented=builder.with_formula_supplement(undeclared,supplement)
+ assert augmented['formulas']==[equation] and augmented['editorial_formula_supplement']==supplement
+ assert 'formulas' not in undeclared and builder.with_formula_supplement(undeclared,None) is undeclared
+ for invalid in [dict(supplement,formulas=[]),dict(supplement,formulas=equation),dict(supplement,note={'en':'Missing Japanese'}),dict(supplement,source_sha256={}),dict(supplement,source_sha256={'code/run.py':'invalid'})]:
+  try:builder.with_formula_supplement(undeclared,invalid)
+  except ValueError:pass
+  else:raise AssertionError('Invalid editorial formula supplement accepted')
+ try:builder.with_formula_supplement(case,supplement)
+ except ValueError:pass
+ else:raise AssertionError('Declared packet equations were overwritten')
  for invalid in [{'equation':None},{'equation':''},{'equation':['nested']},{'formulas':equation},{'equations':[42]}]:
   try:builder.case_formulas(invalid)
   except ValueError:pass
@@ -149,7 +161,9 @@ test('frozen files, manifests and real independent-extraction receipts agree for
     for (const item of results.cases) {
       assert.equal(item.passed, true, item.id);
       assert.ok(Object.keys(item.checks).length > 0 && Object.values(item.checks).every(value => value === true), item.id);
-      assert.ok(Object.keys(item.metrics).length > 0 && item.records.length > 0, item.id);
+      assert.ok(Object.keys(item.metrics).length > 0, item.id);
+      assert.ok(Array.isArray(item.records) || (item.records !== null && Object.getPrototypeOf(item.records) === Object.prototype), item.id+'/records-type');
+      assert.ok(Object.keys(item.records).length > 0, item.id+'/nonempty-records');
     }
   }
 });

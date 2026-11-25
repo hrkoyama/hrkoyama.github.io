@@ -1,3 +1,4 @@
+import {projectCatalogBeforeFinal23} from './fixtures/atlas-final23-projection.mjs';
 import {projectEquationBeforeBatch78} from './fixtures/atlas-batch78-projection.mjs';
 import {projectMethodBeforeBatch68,groupsAddedAfterBatch47,problemsAddedAfterBatch47,equationsAddedAfterBatch47,projectPointerBeforeBatch48,projectReleaseBeforeBatch48} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
@@ -79,7 +80,7 @@ test('batch38–47 preserves existing scientific files, search details, equation
   if(old.depth_release)assert.deepEqual(projectPointerBeforeBatch48(current.depth_release),old.depth_release,id+'/preserved-primary-release');
   for(const key of ['depth_additional_releases','supplemental_scope_profiles'])assert.deepEqual((current[key]||[]).slice(0,(old[key]||[]).length).map(row=>key==='depth_additional_releases'?projectPointerBeforeBatch48(row):row),old[key]||[],id+'/'+key+'/preserved-prefix');
  }
- const equations=json('catalog/atlas-equations.json').equations.map(projectEquationBeforeBatch78);
+ const equations=projectCatalogBeforeFinal23('catalog/atlas-equations.json',json('catalog/atlas-equations.json')).equations.map(projectEquationBeforeBatch78);
  for(const [id,formula] of Object.entries(baseline.equation_formulas))assert.deepEqual(equations.find(x=>x.id===id)?.formula,formula,id);
  for(const [oldRows,currentRows] of [[baseline.problem_records,json('catalog/atlas-test-problems.json').problems],[baseline.equation_records,equations]])for(const old of oldRows){
   const current=currentRows.find(x=>x.id===old.id);

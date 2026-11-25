@@ -78,7 +78,7 @@ export function makeSearch(documents) {
     for (const entry of scoped) {
       if(executionPaths.has(entry.doc.url))continue;
       if(methods.length && entry.doc.method)continue;
-      const entityPriority=['equation','reference'].includes(entry.doc.kind)&&[
+      const entityPriority=['equation','reference','connection'].includes(entry.doc.kind)&&[
         String(entry.doc.id||entry.doc.search_navigation?.id||'').replace(/^(?:equation|reference)-/,''),
         entry.doc.title,entry.doc.titleEn,...Object.values(entry.doc.name||{})
       ].filter(value=>typeof value==='string'&&value).some(identity=>normalize(identity)===phrase);

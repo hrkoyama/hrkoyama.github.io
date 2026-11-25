@@ -70,9 +70,13 @@ test('the two methods acquire only the verified dedicated release and the physic
   assert.equal(method.depth_release.group,'splitting');
   assert.deepEqual(method.depth_release.case_ids,[id]);
   const expectedRunners=[id,'strang-boundary-order-reduction',...(methodId==='strang-splitting'?['multifrequency-resonance']:[])];
-  assert.deepEqual(method.execution_examples.map(x=>x.id),expectedRunners);
+  const final23Cases=methodId==='strang-splitting'?['schnakenberg-2d-boundary-modes']:[];
+  assert.deepEqual(method.execution_examples.filter(x=>!final23Cases.includes(x.id)).map(x=>x.id),expectedRunners);
+  assert.deepEqual(method.execution_examples.map(x=>x.id),[...expectedRunners,...final23Cases]);
     const expectedAdditions=[{group:'ode-adaptivity',edition:'2026-11-24-r2',case_ids:['strang-boundary-order-reduction']},...(methodId==='strang-splitting'?[{group:'geometric-controls',edition:'2026-11-24',case_ids:['multifrequency-resonance']}]:[])];
-    assert.deepEqual(method.depth_additional_releases.map(r=>({group:r.group,edition:r.code_edition,case_ids:r.case_ids})),expectedAdditions);
+    const final23Additions=methodId==='strang-splitting'?[{group:'biology-space-controls',edition:'2026-11-25',case_ids:['schnakenberg-2d-boundary-modes']}]:[];
+    assert.deepEqual(method.depth_additional_releases.filter(r=>r.group!=='biology-space-controls').map(r=>({group:r.group,edition:r.code_edition,case_ids:r.case_ids})),expectedAdditions);
+    assert.deepEqual(method.depth_additional_releases.map(r=>({group:r.group,edition:r.code_edition,case_ids:r.case_ids})),[...expectedAdditions,...final23Additions]);
     for(const release of method.depth_additional_releases){
       const packetBase=`code/validated-examples/${release.code_edition}/${release.group}/`;
       assert.equal(release.code_base,'https://hrkoyama.github.io/'+packetBase);

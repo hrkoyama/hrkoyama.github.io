@@ -79,13 +79,17 @@ test('both methods and their Japanese/Unicode aliases are canonical hits in both
     assert.ok(method.code_urls.some(url=>url.endsWith('/splitting/splitting.py')));
     assert.ok(method.test_urls.some(url=>url.endsWith('/splitting/test_splitting.py')));
     const expectedRunners=['reaction-diffusion-splitting','strang-boundary-order-reduction',...(id==='strang-splitting'?['multifrequency-resonance']:[])];
-    assert.deepEqual(method.execution_examples.map(x=>x.id),expectedRunners);
+    const final23Cases=id==='strang-splitting'?['schnakenberg-2d-boundary-modes']:[];
+    assert.deepEqual(method.execution_examples.filter(x=>!final23Cases.includes(x.id)).map(x=>x.id),expectedRunners);
+    assert.deepEqual(method.execution_examples.map(x=>x.id),[...expectedRunners,...final23Cases]);
     assert.equal(method.depth_release.group,'splitting');
     assert.equal(method.depth_release.code_edition,'2026-11-22');
     assert.deepEqual(method.depth_release.case_ids,['reaction-diffusion-splitting']);
     assert.deepEqual(method.depth_release.code_urls,['run.py','splitting.py','reference.py'].map(p=>'https://hrkoyama.github.io/code/validated-examples/2026-11-22/splitting/'+p));
     const expectedAdditions=[{group:'ode-adaptivity',edition:'2026-11-24-r2',case_ids:['strang-boundary-order-reduction']},...(id==='strang-splitting'?[{group:'geometric-controls',edition:'2026-11-24',case_ids:['multifrequency-resonance']}]:[])];
-    assert.deepEqual(method.depth_additional_releases.map(r=>({group:r.group,edition:r.code_edition,case_ids:r.case_ids})),expectedAdditions);
+    const final23Additions=id==='strang-splitting'?[{group:'biology-space-controls',edition:'2026-11-25',case_ids:['schnakenberg-2d-boundary-modes']}]:[];
+    assert.deepEqual(method.depth_additional_releases.filter(r=>r.group!=='biology-space-controls').map(r=>({group:r.group,edition:r.code_edition,case_ids:r.case_ids})),expectedAdditions);
+    assert.deepEqual(method.depth_additional_releases.map(r=>({group:r.group,edition:r.code_edition,case_ids:r.case_ids})),[...expectedAdditions,...final23Additions]);
     for(const release of method.depth_additional_releases){
       const packetBase=`code/validated-examples/${release.code_edition}/${release.group}/`;
       assert.equal(release.code_base,'https://hrkoyama.github.io/'+packetBase);

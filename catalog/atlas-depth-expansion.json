@@ -2791,5 +2791,88 @@
     "keller-segel-forced-flux": "KS/",
     "deterministic-thermostat-contrasts": "NH/",
     "projected-canonical-dof": "constraints/"
+  },
+  "case_formula_supplements": {
+    "saltzman-ale-piston": {
+      "formulas": [
+        "U=(\\rho,\\rho u,\\rho v,E)^{\\mathsf T},\\quad p=(\\gamma-1)\\left[E-\\frac{\\rho}{2}(u^2+v^2)\\right]",
+        "\\frac{d}{dt}(|K|\\overline U_K)=-\\sum_{f\\subset\\partial K}|f|\\widehat F_{\\mathrm{ALE}}(U_f^-,U_f^+;\\mathbf n_f,w_{n,f})",
+        "F_{\\mathrm{ALE}}(U;\\mathbf n,w_n)=(u_n-w_n)U+p(0,n_x,n_y,u_n)^{\\mathsf T},\\quad u_n=\\mathbf u\\cdot\\mathbf n",
+        "\\widehat F_{\\mathrm{ALE}}=\\frac{F_{\\mathrm{ALE}}(U_L)+F_{\\mathrm{ALE}}(U_R)}{2}-\\frac{a_{\\max}}{2}(U_R-U_L),\\quad a_{\\max}=\\max_{s=L,R}(|u_{n,s}-w_n|+c_s)",
+        "x(t)=t+(1-t)x_0,\\quad y(t)=y_0,\\quad\\mathbf w=(1-x_0,0)"
+      ],
+      "note": {
+        "ja": "数式の編集補足：凍結配布版のコードと登録済み方程式に基づく記述です。配布版・計算・受入条件・保存結果は変更しません。 所与のアフィン格子運動と2次元ALE/Rusanov流束の式で、物質追従格子やremapの式ではありません。",
+        "en": "Editorial equations from the frozen code and registered models. The release, calculations, acceptance conditions and saved results are unchanged. These specify the prescribed affine mesh and 2D ALE/Rusanov flux, not a material grid or remap algorithm."
+      },
+      "source_sha256": {
+        "code/validated-examples/2026-11-25/continuum-particle-controls/ale_piston.py": "a0afb8cfc9372a8865ec1d73fef62cb5516eedc5bb5396f4f281ff5f671d2cae",
+        "code/validated-examples/2026-11-25/continuum-particle-controls/inputs.json": "5f49881f37b07c47f674979a4886e6da0421be06ddb6bb213ab7dfea6bf6e0f5",
+        "catalog/atlas-equations.json": "f904a3d85199505331f3ef3ba6cd52530fbc7423120f0551dde0063e4e51d093"
+      }
+    },
+    "williamson-sphere-transport": {
+      "formulas": [
+        "q_t+\\mathbf v\\cdot\\nabla_{\\mathbb S^2}q=0,\\quad q(\\mathbf r,t)=q_0(R_{\\mathbf n}(-2\\pi t/T)\\mathbf r)",
+        "\\mathbf n=(-\\sin\\alpha,0,\\cos\\alpha),\\quad q_0(r)=\\tfrac12[1+\\cos(\\pi r/R)]\\ (r<R),\\quad q_0=0\\ (r\\ge R)"
+      ],
+      "note": {
+        "ja": "数式の編集補足：凍結配布版のコードと登録済み方程式に基づく記述です。配布版・計算・受入条件・保存結果は変更しません。",
+        "en": "Editorial equations from the frozen code and registered models. The release, calculations, acceptance conditions and saved results are unchanged."
+      },
+      "source_sha256": {
+        "code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py": "b352773dd6418e04e3f44892cb3e89873f9d650153a0da0f7a04ada90d39b56b",
+        "code/validated-examples/2026-11-25/continuum-particle-controls/inputs.json": "5f49881f37b07c47f674979a4886e6da0421be06ddb6bb213ab7dfea6bf6e0f5",
+        "catalog/atlas-equations.json": "f904a3d85199505331f3ef3ba6cd52530fbc7423120f0551dde0063e4e51d093"
+      }
+    },
+    "sphere-zonal-balance": {
+      "formulas": [
+        "h_t+\\frac{\\partial_\\phi(hv\\cos\\phi)}{a\\cos\\phi}=0,\\quad u_t+\\frac va u_\\phi-(2\\Omega\\sin\\phi+u\\tan\\phi/a)v=0",
+        "v_t+\\frac va v_\\phi+(2\\Omega\\sin\\phi+u\\tan\\phi/a)u+\\frac ga h_\\phi=0",
+        "u=u_0\\cos\\phi,\\quad v=0,\\quad h=h_0-\\frac{a\\Omega u_0+u_0^2/2}{g}\\sin^2\\phi"
+      ],
+      "note": {
+        "ja": "数式の編集補足：凍結配布版のコードと登録済み方程式に基づく記述です。配布版・計算・受入条件・保存結果は変更しません。",
+        "en": "Editorial equations from the frozen code and registered models. The release, calculations, acceptance conditions and saved results are unchanged."
+      },
+      "source_sha256": {
+        "code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py": "b352773dd6418e04e3f44892cb3e89873f9d650153a0da0f7a04ada90d39b56b",
+        "code/validated-examples/2026-11-25/continuum-particle-controls/inputs.json": "5f49881f37b07c47f674979a4886e6da0421be06ddb6bb213ab7dfea6bf6e0f5",
+        "catalog/atlas-equations.json": "f904a3d85199505331f3ef3ba6cd52530fbc7423120f0551dde0063e4e51d093"
+      }
+    },
+    "gsph-sod": {
+      "formulas": [
+        "\\partial_tU+\\partial_xF(U)=0",
+        "U=(\\rho,\\rho u,E)^{\\mathsf T}",
+        "F=(\\rho u,\\rho u^2+p,u(E+p))^{\\mathsf T}"
+      ],
+      "note": {
+        "ja": "数式の編集補足：凍結配布版のコードと登録済み方程式に基づく記述です。配布版・計算・受入条件・保存結果は変更しません。",
+        "en": "Editorial equations from the frozen code and registered models. The release, calculations, acceptance conditions and saved results are unchanged."
+      },
+      "source_sha256": {
+        "code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py": "aa9d35837e97a772a46e9aa358f56f1ca9bc7b69e98e34d8626fc3e742bbf5e2",
+        "code/validated-examples/2026-11-25/continuum-particle-controls/inputs.json": "5f49881f37b07c47f674979a4886e6da0421be06ddb6bb213ab7dfea6bf6e0f5",
+        "catalog/atlas-equations.json": "f904a3d85199505331f3ef3ba6cd52530fbc7423120f0551dde0063e4e51d093"
+      }
+    },
+    "sph-pressure-acoustics": {
+      "formulas": [
+        "\\partial_tU+\\partial_xF(U)=0",
+        "U=(\\rho,\\rho u,E)^{\\mathsf T}",
+        "F=(\\rho u,\\rho u^2+p,u(E+p))^{\\mathsf T}"
+      ],
+      "note": {
+        "ja": "数式の編集補足：凍結配布版のコードと登録済み方程式に基づく記述です。配布版・計算・受入条件・保存結果は変更しません。",
+        "en": "Editorial equations from the frozen code and registered models. The release, calculations, acceptance conditions and saved results are unchanged."
+      },
+      "source_sha256": {
+        "code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py": "aa9d35837e97a772a46e9aa358f56f1ca9bc7b69e98e34d8626fc3e742bbf5e2",
+        "code/validated-examples/2026-11-25/continuum-particle-controls/inputs.json": "5f49881f37b07c47f674979a4886e6da0421be06ddb6bb213ab7dfea6bf6e0f5",
+        "catalog/atlas-equations.json": "f904a3d85199505331f3ef3ba6cd52530fbc7423120f0551dde0063e4e51d093"
+      }
+    }
   }
 }

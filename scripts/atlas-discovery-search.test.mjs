@@ -83,8 +83,15 @@ test('execution intent does not promote examples for generic or unrelated querie
   assert.equal(searchChapters(synthetic,'spectral methods')[0].id,'spectral');
   assert.equal(searchChapters(synthetic,'code')[0].id,'guide');
   assert.equal(searchChapters(synthetic,'Poisson code')[0].id,'poisson');
-  for(const query of ['PBE code','UHF code','AMR code','mixed precision code']){
+  for(const query of ['PBE code','AMR code','mixed precision code']){
     assert.ok(!searchChapters(index,query).some(row=>row.kind==='execution-example'),query+' unsupported execution claim');
+  }
+  for(const lang of ['ja','en']){
+    const selected=searchChapters(index,'UHF code',lang).filter(row=>row.kind==='execution-example');
+    assert.deepEqual(selected.map(row=>row.url),[`/numerical-methods-atlas/validation/h2-rhf-uhf-fci/?lang=${lang}`],'only the qualified fixed H2 model supports UHF execution');
+    const packet=json('code/validated-examples/2026-11-25/quantum-small/cases.json');
+    const fixed=(Array.isArray(packet)?packet:packet.cases).find(row=>row.id==='h2-rhf-uhf-fci');
+    assert.match(fixed.limits.en,/two H2 geometries/);assert.match(fixed.limits.en,/spin contaminated/);assert.match(fixed.limits.en,/finite-basis only/);
   }
   assert.deepEqual(searchChapters(index,'zxqvnotfound123456789'),[]);
 });

@@ -1,3 +1,4 @@
+import {projectCatalogBeforeFinal23} from './fixtures/atlas-final23-projection.mjs';
 import {projectMethodBeforeBatch68,groupsAddedAfterBatch37,projectReleaseBeforeBatch48} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -27,8 +28,14 @@ const newIds=Object.values(expected).flat();
 
 test('concurrent compact search details and scoped HF/KS notes survive integration',()=>{
  for(const p of concurrent.immutable_content_addressed_details)assert.equal(sha(p),p.split('/').at(-1).slice(0,-5),p);
- const equations=json('catalog/atlas-equations.json').equations;
+ const source=json('catalog/atlas-equations.json'),equations=projectCatalogBeforeFinal23('catalog/atlas-equations.json',source).equations;
  for(const [id,note] of Object.entries(concurrent.scoped_equation_notes))assert.deepEqual(equations.find(x=>x.id===id).note,note,id);
+ const hf=source.equations.find(x=>x.id==='hartree-fock-model'),ks=source.equations.find(x=>x.id==='kohn-sham-model');
+ for(const row of [hf,ks])assert.deepEqual(row.formula,equations.find(x=>x.id===row.id).formula,row.id+'/same-formulation');
+ assert.deepEqual(hf.supplemental_examples,['atomic-reference-cards','h2-rhf-uhf-fci','h3plus-mp2-fci']);
+ assert.deepEqual(ks.supplemental_examples,['atomic-reference-cards','periodic-he-reference-cards']);
+ assert.deepEqual(source.equations.find(x=>x.id==='unrestricted-hartree-fock-model').supplemental_examples,['h2-rhf-uhf-fci']);
+ assert.match(hf.note.en,/fixed minimal two-electron H2\/H3\+ models/);assert.match(hf.note.en,/UHF equations have their own mapped model/);assert.match(hf.note.en,/No general multicenter/);
 });
 
 test('packager preserves native SPARTA text only in its reference-input subtree',()=>{

@@ -1,3 +1,4 @@
+import {projectCatalogBeforeFinal23} from './fixtures/atlas-final23-projection.mjs';
 import {methodCount,methodStatusCounts} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -182,7 +183,9 @@ test('untrusted method labels stay text and hostile destinations never become ac
 }));
 
 test('remaining plans retain reading-only actions while the neutral slab exposes only its verified supplement',()=>withDOM(({render})=>{
- const remaining=['velocity-rescaling','berendsen-thermostat','andersen-thermostat','nose-thermostat','nose-hoover','nose-hoover-chains','gaussian-isokinetic','generalized-langevin','dpd-thermostat','lowe-andersen'];
+ const historical=['velocity-rescaling','berendsen-thermostat','andersen-thermostat','nose-thermostat','nose-hoover','nose-hoover-chains','gaussian-isokinetic','generalized-langevin','dpd-thermostat','lowe-andersen'];
+ assert.deepEqual(projectCatalogBeforeFinal23('catalog/atlas-methods.json',json('catalog/atlas-methods.json')).methods.filter(m=>m.status==='planned').map(m=>m.id),historical,'exact historical ten plans remain checked before scoped final23 promotions');
+ const remaining=['andersen-thermostat','nose-thermostat','gaussian-isokinetic','generalized-langevin','dpd-thermostat','lowe-andersen'];
  assert.deepEqual(published.filter(m=>m.status==='planned').map(m=>m.id),remaining);
  assert.deepEqual(catalog.filter(m=>m.status==='planned').map(m=>m.id),remaining);
  for(const id of remaining){
@@ -247,7 +250,10 @@ test('goal selections do not inherit unrelated common or supplemental executions
   const borrowed=['mc-integral','periodic-he-forces','gaussian-mcmc','turing-schnakenberg'].map(id=>({id,name:{ja:id,en:id},guide:{ja:`/numerical-methods-atlas/validation/${id}/?lang=ja`}}));
   const contaminated=published.map(method=>({...method,execution_examples:[...(method.execution_examples||[]),...borrowed]}));
   const thermostat=findMethods(contaminated,'温度を制御したい');
-  assert.deepEqual(thermostat.find(row=>row.id==='langevin-thermostat').method.execution_examples.map(example=>example.id),['langevin-harmonic','csvr-langevin-harmonic','csvr-langevin-quartic']);
+  assert.deepEqual(thermostat.find(row=>row.id==='langevin-thermostat').method.execution_examples.map(example=>example.id),['langevin-harmonic','csvr-langevin-harmonic','csvr-langevin-quartic','two-state-bo-cp-ou','projected-canonical-dof']);
+  const selected=new Set(json('catalog/atlas-goals.json').goals.find(row=>row.id==='temperature-control').supplemental_examples);
+  for(const row of thermostat)for(const item of row.method.execution_examples)assert.ok(selected.has(item.id),'explicit goal selection only: '+item.id);
+  for(const item of borrowed)assert.ok(!thermostat.some(row=>row.method.execution_examples.some(example=>example.id===item.id)),item.id+' remains unrelated');
   for(const row of findMethods(contaminated,'分子のdftを学びたい')){
     assert.equal(row.method.status,'reading-only');
     assert.deepEqual(row.method.execution_examples,[]);

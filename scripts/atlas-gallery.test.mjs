@@ -189,7 +189,15 @@ test('the quartic visual comes from the new frozen comparison while the harmonic
   assert.equal(quartic.image_sha256,digest(base+'results/csvr-langevin-quartic.png'));
   assert.deepEqual(quartic.caption,metadata.summary);
   assert.equal(quartic.source_kind,'existing-figure');
-  assert.deepEqual(quartic.supplemental_execution_entries.map(x=>x.id),['csvr-langevin-quartic']);
+  const final23Quartic='deterministic-thermostat-contrasts';
+  assert.deepEqual(quartic.supplemental_execution_entries.filter(x=>x.id!==final23Quartic).map(x=>x.id),['csvr-langevin-quartic']);
+  assert.deepEqual(quartic.supplemental_execution_entries.map(x=>x.id),['csvr-langevin-quartic',final23Quartic]);
+  const contrast=quartic.supplemental_execution_entries.find(x=>x.id===final23Quartic);
+  const contrastBase='code/validated-examples/2026-11-25/thermostat-constraint-controls/';
+  const contrastCase=json(contrastBase+'cases.json').find(x=>x.id===final23Quartic);
+  assert.equal(contrast.group,'thermostat-constraint-controls');assert.deepEqual(contrast.title,contrastCase.title);
+  assert.equal(contrast.verification,'https://hrkoyama.github.io/'+contrastBase+'verification.json');
+  assert.equal(contrast.download,'https://hrkoyama.github.io/'+contrastBase+'atlas-thermostat-constraint-controls-2026-11-25.zip');
   const harmonic=gallery.items.find(x=>x.id==='langevin-harmonic');
   assert.equal(harmonic.image,'/code/validated-examples/2026-11-22/models/results/langevin-harmonic.png');
   assert.equal(harmonic.image_sha256,'0b199f45202724a444c1195b31cae227b9599d50bc92d6c793a93a90f2ff1c14');

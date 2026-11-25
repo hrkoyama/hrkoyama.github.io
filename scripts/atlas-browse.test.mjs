@@ -1,3 +1,4 @@
+import {projectCatalogBeforeFinal23} from './fixtures/atlas-final23-projection.mjs';
 import {projectCatalogBeforeBatch78} from './fixtures/atlas-batch78-projection.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -59,7 +60,12 @@ test('every displayed model has static math and valid deep links without inflati
   const source=JSON.parse(read('catalog/atlas-equations.json'));
   const previous=projectCatalogBeforeBatch78('catalog/atlas-equations.json',source);
   const oldImplementedBiology=['bio-logistic','bio-sir','bio-turing','bio-schnakenberg','bio-fitzhugh-nagumo'];
-  const scopedBiology={'bio-enzyme':'enzyme-qssa','bio-lotka-volterra':'lotka-volterra'};
+  const oldScopedBiology={'bio-enzyme':'enzyme-qssa','bio-lotka-volterra':'lotka-volterra'};
+  const finalScopedBiology={'bio-hodgkin-huxley':'hodgkin-huxley-controls','bio-fisher-kpp':'fisher-kpp-special-front','bio-keller-segel':'keller-segel-forced-flux','bio-chemical-master':'immigration-death-ssa'};
+  const scopedBiology={...oldScopedBiology,...finalScopedBiology};
+  const beforeFinal=projectCatalogBeforeFinal23('catalog/atlas-equations.json',source).equations.filter(x=>x.id.startsWith('bio-'));
+  assert.equal(beforeFinal.length,22);assert.equal(beforeFinal.filter(x=>x.status==='reading').length,15);
+  assert.deepEqual(beforeFinal.filter(x=>x.status==='local-example').map(x=>x.id).sort(),[...oldImplementedBiology,...Object.keys(oldScopedBiology)].sort());
   const oldBiology=previous.equations.filter(x=>x.id.startsWith('bio-'));
   assert.equal(oldBiology.length,22);
   assert.equal(oldBiology.filter(x=>x.status==='reading').length,17);
@@ -74,6 +80,9 @@ test('every displayed model has static math and valid deep links without inflati
     assert.deepEqual(row.execution_scope,fixed.execution_scope);
     assert.deepEqual(row.formula,fixed.formula);
   }
+  for(const id of Object.keys(finalScopedBiology))assert.equal(beforeFinal.find(x=>x.id===id).status,'reading',id+'/exact-previous-reading');
+  assert.deepEqual(published.equations.find(x=>x.id==='bio-schnakenberg').supplemental_execution_examples.map(x=>x.id),[...beforeFinal.find(x=>x.id==='bio-schnakenberg').supplemental_examples,'schnakenberg-2d-boundary-modes']);
+  assert.deepEqual(published.equations.find(x=>x.id==='bio-turing').supplemental_execution_examples.map(x=>x.id),beforeFinal.find(x=>x.id==='bio-turing').supplemental_examples);
   const seir=published.equations.find(x=>x.id==='seir-compartment');
   assert.equal(seir.status,'local-example');assert.deepEqual(seir.execution_examples,[]);
   assert.deepEqual(seir.supplemental_execution_examples.map(x=>x.id),['seir-linearization']);

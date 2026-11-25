@@ -335,12 +335,16 @@ test('square advection, Sod, Taylor–Green, Bratu and MCMC retain distinct refe
   const taylor=problems.get('taylor-green');
   assert.ok(taylor.references.some(reference=>reference.id==='taylor-green'));
   assert.match(JSON.stringify(taylor.references)+JSON.stringify(taylor.reference_note),/π\/4/,'the stored reference is explicitly a fixed-y slice');
-  for(const id of ['bratu','gaussian-mcmc','mcmc-bimodal-mixture']){
+  for(const id of ['gaussian-mcmc','mcmc-bimodal-mixture']){
     const problem=problems.get(id);
     assert.equal(problem.references.length,0,id+' is absent from the separate eighteen-case reference library');
     assert.ok(problem.reference_note.ja?.trim()&&problem.reference_note.en?.trim());
     assert.ok(problem.executions.length,id+' still has its own verified numerical/reference data');
   }
+  assert.ok(!json('numerical-methods-atlas/assets/reference-solutions.json').cases.some(row=>row.id==='bratu-lower-branch-analytic'),'the immutable eighteen-case library is not rewritten');
+  assert.deepEqual(problems.get('bratu').references.map(row=>({id:row.id,kind:row.kind,relation:row.relation})),[{id:'bratu-lower-branch-analytic',kind:'analytic',relation:'same-problem'}]);
+  const card=references.find(row=>row.id==='bratu-lower-branch-analytic');assert.equal(card.reference_contract.class,'continuous-exact');
+  assert.equal(digest(new URL(card.reference_contract.fixed_input_binding.url).pathname.slice(1)),card.reference_contract.fixed_input_binding.sha256,'analytic card uses immutable original Bratu parameters');
   assert.deepEqual(problems.get('bratu').executions.map(row=>row.id),['bratu']);
   const bratuMethods=byId(problems.get('bratu').methods);
   assert.equal(bratuMethods.get('newton')?.role,'execution','Newton remains the method used by the common Bratu solve');

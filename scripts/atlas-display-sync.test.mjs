@@ -1,3 +1,4 @@
+import {projectMethodBeforeFinal23} from './fixtures/atlas-final23-projection.mjs';
 import {equationCount,equationsAddedAfterBatch37,examplesAddedAfterBatch37} from './fixtures/atlas-inventory.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -216,9 +217,14 @@ test('released Ewald/SPME metadata and future integration no longer describe ded
 });
 
 test('quantum next steps maintain small saved examples and defer heavy sweeps and long trajectories to explicit need',()=>{
+ const fixed={'mp2':['h3plus-mp2-fci'],'configuration-interaction':['h2-rhf-uhf-fci','h3plus-mp2-fci'],'born-oppenheimer-md':['two-state-bo-cp-ou'],'car-parrinello-md':['two-state-bo-cp-ou']};
  for(const method of methods.filter(x=>x.group.id==='quantum')){
+  const previous=projectMethodBeforeFinal23(method);assert.match(previous.next_deliverable.en,/Maintain/);assert.match(previous.next_deliverable.en,/explicit need|only when needed/);
   assert.match(method.next_deliverable.en,/Maintain/);
-  assert.match(method.next_deliverable.en,/explicit need|only when needed/);
+  if(Object.hasOwn(fixed,method.id)){
+   assert.deepEqual(method.depth_release,{group:'quantum-small',edition:'2026-11-25',case_ids:fixed[method.id]});
+   assert.equal(method.next_deliverable.en,'Maintain these fixed educational examples; broader extensions require a separately specified need.');
+  }else assert.deepEqual(method.next_deliverable,previous.next_deliverable);
  }
  for(const field of json('catalog/atlas-depth.json').fields.filter(x=>x.id.startsWith('quantum-'))){
   assert.match(field.next.en,/existing small examples/);assert.match(field.next.en,/only on explicit need/);

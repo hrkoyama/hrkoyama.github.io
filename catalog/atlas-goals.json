@@ -20,7 +20,9 @@
       "methods": [
         "muscl",
         "hllc",
-        "weno-z"
+        "weno-z",
+        "ale",
+        "gsph"
       ],
       "examples": [
         "sod",
@@ -207,8 +209,8 @@
         "post-growth pattern"
       ],
       "scope": {
-        "ja": "22モデル族の文献解説に、ロジスティック増殖・閉鎖SIR、線形反応拡散、Schnakenbergの線形発現・有限振幅の非線形発展・成長後の1次元パターン、空間なしFitzHugh–Nagumoの限定例を接続します。全22族の実装ではありません。 別群small-modelsから、固定した4状態酵素/QSSA、正のLotka–Volterra軌道、SEIR保存則と初期2モード線形化の3例だけを追加します。SEIRはSIRの既存実行範囲とは別です。 別群biology-ode-controls/biology-space-controlsでは、Hodgkin–Huxley、移入–死亡SSA、Fisher特殊速度前線、2次元Schnakenberg、外力付きKeller–Segelの固定例だけを追加します。未達・未解決の目標も保持します。",
-        "en": "The 22-family survey links scoped examples of logistic growth, closed SIR, linear reaction–diffusion, linear Schnakenberg onset, finite-amplitude nonlinear evolution and post-growth 1D patterns, plus spatially uniform FitzHugh–Nagumo. This does not implement all 22 families. Three further fixed examples from the separate small-models group cover four-state enzyme/QSSA, a positive Lotka–Volterra orbit, and SEIR conservation with full two-mode early linearization. SEIR is separate from the existing SIR execution scope. Separate biology-ode-controls/biology-space-controls groups add only fixed Hodgkin–Huxley, immigration–death SSA, special-speed Fisher, two-dimensional Schnakenberg and forced Keller–Segel cases. Unmet and unresolved goals remain visible."
+        "ja": "22モデル族の文献解説に、ロジスティック増殖・閉鎖SIR、線形反応拡散、Schnakenbergの線形発現・有限振幅の非線形発展・成長後の1次元パターン、空間なしFitzHugh–Nagumoの限定例を接続します。全22族の実装ではありません。別配布の固定入力例として、HHの単一細胞電流刺激、移入–死亡SSA、Fisher特殊進行波、2次元Schnakenberg境界モード、強制Keller–Segel製造問題を接続します。 別群small-modelsから、固定した4状態酵素/QSSA、正のLotka–Volterra軌道、SEIR保存則と初期2モード線形化の3例だけを追加します。SEIRはSIRの既存実行範囲とは別です。",
+        "en": "The 22-family survey links scoped examples of logistic growth, closed SIR, linear reaction–diffusion, linear Schnakenberg onset, finite-amplitude nonlinear evolution and post-growth 1D patterns, plus spatially uniform FitzHugh–Nagumo. This does not implement all 22 families. Separate fixed-input releases add single-cell HH current controls, immigration–death SSA, a special Fisher traveling front, 2D Schnakenberg boundary modes and a forced Keller–Segel manufactured problem. Three further fixed examples from the separate small-models group cover four-state enzyme/QSSA, a positive Lotka–Volterra orbit, and SEIR conservation with full two-mode early linearization. SEIR is separate from the existing SIR execution scope."
       },
       "methods": [
         "rk4",

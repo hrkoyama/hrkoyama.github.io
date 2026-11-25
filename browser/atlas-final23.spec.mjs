@@ -115,6 +115,15 @@ const registry=read('numerical-methods-atlas/validation/releases.json');
 const expansion=read('catalog/atlas-depth-expansion.json');
 const gallerySources=new Map(read('catalog/atlas-gallery.json').items.map(row=>[row.id,row]));
 const images=new Map(),cases=[],study=new Map();
+function fixtureImageRoutes(baseURL){
+ const base=new URL(baseURL);
+ assert.equal(base.protocol,'http:');assert.equal(base.hostname,'127.0.0.1');
+ for(const field of ['username','password','search','hash'])assert.equal(base[field],'');
+ assert.equal(base.pathname,'/');
+ const routes=new Map(images);
+ for(const image of images.values())routes.set(new URL(image.path,base).href,image);
+ return routes;
+}
 for(const [group,fixed] of Object.entries(policy.groups)){
  const matches=registry.releases.filter(row=>row.group===group);assert.equal(matches.length,1,group);
  const release=matches[0],base=new URL(release.base);
@@ -168,17 +177,18 @@ test('final23 execution figures, typed study outcomes, gallery bindings and skil
  const language=info.project.metadata.language,width=info.project.use.viewport.width;
  expect(['ja','en']).toContain(language);expect([390,1280]).toContain(width);
  const collectionClicks=[];
+ const routedImages=fixtureImageRoutes(baseURL),fixtureOrigin=new URL(baseURL).origin;
  const errors=[],mirrored=[],visited=[],zipRequests=[];
  page.on('pageerror',error=>errors.push(error.message));
  await page.route(url=>url.pathname.endsWith('.zip'),route=>{zipRequests.push(route.request().url());return route.abort('blockedbyclient');});
- await page.route(url=>images.has(url.href),async route=>{
-  const original=new URL(route.request().url()),fixture=images.get(original.href);
-  expect(route.request().method()).toBe('GET');expect(original.origin).toBe(origin);
+ await page.route(url=>routedImages.has(url.href),async route=>{
+  const original=new URL(route.request().url()),fixture=routedImages.get(original.href);
+  expect(route.request().method()).toBe('GET');expect([origin,fixtureOrigin]).toContain(original.origin);
   const target=new URL(fixture.path,baseURL);
   const response=await route.fetch({url:target.href,method:'GET',headers:{accept:'image/png'},maxRedirects:0,maxRetries:0});
   expect(response.status()).toBe(200);expect(response.headers()['content-type']).toMatch(/^image\/png(?:;|$)/i);
   const bytes=await response.body();expect(bytes.subarray(0,8).equals(pngSignature)).toBe(true);expect(digest(bytes)).toBe(fixture.sha256);
-  mirrored.push({public_url:original.href,local_url:target.href,sha256:fixture.sha256});await route.fulfill({response,body:bytes});
+  mirrored.push({public_url:new URL(fixture.path,origin).href,requested_url:original.href,local_url:target.href,sha256:fixture.sha256});await route.fulfill({response,body:bytes});
  });
  try{
   // Each top-level category opens its actual list with the correct initial scope.
@@ -211,12 +221,12 @@ test('final23 execution figures, typed study outcomes, gallery bindings and skil
    await expect(article).toHaveCount(1);await expect(article.locator('h1')).toBeVisible();await expect(article.locator('h1')).toHaveText(item.title[language]);
    await expect(page.locator('h1:visible')).toHaveCount(1);
    const image=article.locator(':scope > figure:not(.validation-additional-figure) > img');
-   await expect(image).toHaveCount(1);expect(await image.evaluate(node=>node.src)).toBe(item.png);
+   await expect(image).toHaveCount(1);expect(await image.evaluate(node=>node.src)).toBe(new URL(new URL(item.png).pathname,baseURL).href);
    await image.scrollIntoViewIfNeeded();await expect(image).toBeVisible();
    await expect.poll(()=>image.evaluate(node=>node.complete&&node.naturalWidth>0&&node.naturalHeight>0)).toBe(true);
    const zip=article.locator('.validation-actions a').filter({hasText:'ZIP'});
    await expect(zip).toHaveCount(1);await expect(zip).toBeVisible();
-   expect(await zip.evaluate(node=>node.href)).toBe(new URL(item.release.archive,item.release.base).href);
+   expect(await zip.evaluate(node=>node.href)).toBe(new URL(new URL(item.release.archive,item.release.base).pathname,baseURL).href);
    await expect(page.locator('.katex-error,.katex .merror')).toHaveCount(0);
    if(study.has(item.id)){
     const expected=study.get(item.id),counts=expected.counts;

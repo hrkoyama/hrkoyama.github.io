@@ -1,3 +1,4 @@
+import {projectCatalogBeforeFinal23} from './fixtures/atlas-final23-projection.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -16,9 +17,12 @@ const digest=bytes=>createHash('sha256').update(bytes).digest('hex');
 const detail=key=>json('search/details/'+key+'.json');
 
 test('model notes distinguish actual atomic, molecular and periodic scopes without changing the formulation',()=>{
- const source=json('catalog/atlas-equations.json').equations;
+ const document=json('catalog/atlas-equations.json'),source=document.equations;
  const hf=source.find(x=>x.id==='hartree-fock-model'),ks=source.find(x=>x.id==='kohn-sham-model');
- assert.match(hf.note.ja,/He/);assert.match(hf.note.ja,/H₂ RHF/);
+ const previous=projectCatalogBeforeFinal23('catalog/atlas-equations.json',document).equations.find(x=>x.id===hf.id);
+ assert.match(previous.note.ja,/He/);assert.match(previous.note.ja,/H₂ RHF/);
+ assert.deepEqual(hf.formula,previous.formula);assert.match(hf.note.ja,/He/);assert.match(hf.note.ja,/H2のRHF/);
+ assert.match(hf.note.en,/fixed minimal two-electron H2\/H3\+ models/);assert.match(hf.note.en,/No general multicenter/);
  assert.match(ks.note.ja,/Dirac/);assert.match(ks.note.ja,/VWN5/);
  assert.doesNotMatch(ks.note.ja,/周期系は未実装/);
  const html=read('numerical-methods-atlas/equations/index.html');

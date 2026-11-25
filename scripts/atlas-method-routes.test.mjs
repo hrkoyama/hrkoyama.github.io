@@ -211,7 +211,10 @@ test('HLLC, WENO-Z, Roe and Bratu derivatives do not borrow one another’s exec
   for(const id of ['automatic-differentiation','adjoint','optimization']){
     const bratu=method(id).problems.find(problem=>problem.id==='bratu');
     assert.ok(bratu);assert.equal(bratu.role,'related');assert.deepEqual(bratu.executions,[]);
-    const context=method(id).references.find(row=>row.problem_id==='bratu');assert.ok(context);assert.deepEqual(context.cases,[]);
+    const context=method(id).references.find(row=>row.problem_id==='bratu');assert.ok(context);
+    assert.deepEqual(context.cases.map(row=>row.id),['bratu-lower-branch-analytic']);
+    assert.equal(context.cases[0].kind,'analytic');assert.equal(context.cases[0].relation,'same-problem');
+    assert.equal(referenceSources.get('bratu-lower-branch-analytic').reference_contract.class,'continuous-exact');
   }
   // Fixed approved runners, preserving old prefixes and each new case's
   // actual method IDs. Shared Bratu/AD names do not create extra runners.

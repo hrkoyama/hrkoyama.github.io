@@ -39,8 +39,11 @@ test('new domains distinguish runnable atoms, reading-only molecular DFT, scoped
  assert.deepEqual(new Set(temperature.map(x=>x.method.id)),new Set(['langevin-thermostat','stochastic-velocity-rescaling',...deterministic]));
  const legacyBio=['bio-populations','bio-epidemics','bio-patterns','bio-reaction-fourier','bio-fhn'];
  const additions=[['bio-enzyme-qssa','enzyme-qssa'],['bio-lotka-volterra','lotka-volterra'],['bio-seir-linearization','seir-linearization']];
- const bio=findMethods(methods,'生物モデルを調べたい');assert.ok(bio.every(x=>x.method.resource_type==='model'));
- const runnable=bio.filter(x=>x.method.status==='educational-example').map(x=>x.id);
+ const bio=findMethods(methods,'生物モデルを調べたい');
+ const algorithms=bio.filter(x=>x.method.resource_type!=='model');
+ assert.deepEqual(algorithms.map(x=>x.id),goals.find(row=>row.id==='biological-models').methods,'only explicitly selected canonical algorithms supplement the model resources');
+ const models=bio.filter(x=>x.method.resource_type==='model');
+ const runnable=models.filter(x=>x.method.status==='educational-example').map(x=>x.id);
  assert.deepEqual(runnable.slice(0,5),legacyBio,'the original five runnable model resources retain their order');
  assert.deepEqual(runnable,[...legacyBio,...additions.map(([id])=>id)],'only the three separately scoped models are added');
  const digest=path=>createHash('sha256').update(fs.readFileSync(new URL('../'+path,import.meta.url))).digest('hex');
@@ -101,7 +104,8 @@ test('natural goal phrases reach conditional candidate methods through both sear
 });
 test('explicit scopes distinguish Euler shocks, smooth KEEP, magnetic operators and executable examples',()=>{
  for(const row of findMethods(methods,'衝撃波を計算したい','ja')){
-  assert.ok((row.method.execution_examples || []).every(e=>['sod','shu-osher','shu-independent'].includes(e.id)),'Euler goal must not borrow MHD execution examples');
+  assert.ok((row.method.execution_examples || []).every(e=>['sod','shu-osher','shu-independent','saltzman-ale-piston','gsph-sod'].includes(e.id)),'Euler goal must not borrow MHD or unselected particle execution examples');
+  assert.ok(!(row.method.execution_examples||[]).some(e=>e.id==='sph-pressure-acoustics'),'the shared GSPH method does not imply an acoustics shock example');
  }
  assert.ok(!matchGoals('相対論の衝撃波を計算したい').some(g=>g.id==='shocks'));
  assert.ok(!matchGoals('MHD shock waves').some(g=>g.id==='shocks'));

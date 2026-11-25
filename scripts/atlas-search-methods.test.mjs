@@ -64,8 +64,15 @@ test('named executable cases retain priority over method cards and broad chapter
     assert.equal(first?.kind,'execution-example',query);
     assert.ok(ids.some(id=>first.url===`/numerical-methods-atlas/code-and-data/examples/${id}/?lang=${language}`),query);
   }
-  for(const query of ['PBE code','UHF code']){
+  for(const query of ['PBE code','AMR code','mixed precision code']){
     assert.ok(!searchChapters(index,query,'en').some(result=>result.kind==='execution-example'),query+' unsupported runnable claim');
+  }
+  for(const lang of ['ja','en']){
+    const selected=searchChapters(index,'UHF code',lang).filter(row=>row.kind==='execution-example');
+    assert.deepEqual(selected.map(row=>row.url),[`/numerical-methods-atlas/validation/h2-rhf-uhf-fci/?lang=${lang}`],'only the qualified fixed H2 model supports UHF execution');
+    const packet=json('code/validated-examples/2026-11-25/quantum-small/cases.json');
+    const fixed=(Array.isArray(packet)?packet:packet.cases).find(row=>row.id==='h2-rhf-uhf-fci');
+    assert.match(fixed.limits.en,/two H2 geometries/);assert.match(fixed.limits.en,/spin contaminated/);assert.match(fixed.limits.en,/finite-basis only/);
   }
   for(const [query,id] of [['Ewald code','ewald'],['SPME code','spme']]){
     const rows=searchChapters(index,query,'en');
@@ -116,9 +123,11 @@ test('inline cards expose real code and test destinations, collapse mentions and
     assert.match(relatedLabel.textContent,/関連資料/);
     assert.equal(all.href,'/search/?scope=atlas&lang=ja#q=KEEP');
     assert.equal(all.hidden,false);
-    input.value='のせフーバー';form.listeners.submit({preventDefault(){}});
+    assert.equal(methods.find(row=>row.id==='nose-hoover').status,'educational-example');
+    assert.deepEqual(methods.find(row=>row.id==='nose-hoover').execution_examples.map(row=>row.id),['deterministic-thermostat-contrasts']);
+    input.value='Andersen thermostat';form.listeners.submit({preventDefault(){}});
     await new Promise(resolve=>setTimeout(resolve,0));
-    assert.equal(list.children[0].dataset.methodId,'nose-hoover');
+    assert.equal(list.children[0].dataset.methodId,'andersen-thermostat');
     const planned=descendants(list);
     assert.ok(!planned.some(node=>node.tag==='a'&&node.href?.startsWith('/code/')),'planned methods have no borrowed code or tests');
     assert.ok(planned.some(node=>node.textContent==='コード・テストは未公開'));
