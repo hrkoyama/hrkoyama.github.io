@@ -52,7 +52,7 @@ test('five earlier supplement archives, the common registry and unrelated availa
  assert.equal(methods.length,methodCount);
  assert.deepEqual(Object.fromEntries(['educational-example','reading-only','planned'].map(s=>[s,methods.filter(m=>m.status===s).length])),methodStatusCounts);
  const bio=json('numerical-methods-atlas/assets/biological-models.json').models;
- assert.deepEqual(new Set(bio.filter(x=>x.status==='scoped-educational-example').map(x=>x.id)),new Set(['logistic','sir','turing','schnakenberg','fitzhugh-nagumo','enzyme','lotka-volterra']));
+ assert.deepEqual(new Set(bio.filter(x=>x.status==='scoped-educational-example').map(x=>x.id)),new Set([...['logistic','sir','turing','schnakenberg','fitzhugh-nagumo','enzyme','lotka-volterra'],...['hodgkin-huxley','fisher-kpp','keller-segel','chemical-master']]));
  const detailed=read('.github/workflows/atlas-public-linux.yml').toString();
  assert.doesNotMatch(detailed,/workflow_run:|schedule:/);
  assert.doesNotMatch(read('.github/workflows/atlas-depth-linux.yml').toString(),/pyscf|quantum-periodic|matplotlib/i);

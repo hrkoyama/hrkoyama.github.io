@@ -16,8 +16,12 @@ const expected={
  'bio-logistic':{common:['logistic-growth'],supplemental:[]},
  'bio-sir':{common:['sir-epidemic'],supplemental:[]},
  'bio-turing':{common:[],supplemental:['turing-schnakenberg','schnakenberg-nonlinear','schnakenberg-pattern']},
- 'bio-schnakenberg':{common:[],supplemental:['turing-schnakenberg','schnakenberg-nonlinear','schnakenberg-pattern']},
+ 'bio-schnakenberg':{common:[],supplemental:['turing-schnakenberg','schnakenberg-nonlinear','schnakenberg-pattern','schnakenberg-2d-boundary-modes']},
  'bio-fitzhugh-nagumo':{common:[],supplemental:['fitzhugh-nagumo']},
+ 'bio-hodgkin-huxley':{common:[],supplemental:['hodgkin-huxley-controls']},
+ 'bio-fisher-kpp':{common:[],supplemental:['fisher-kpp-special-front']},
+ 'bio-keller-segel':{common:[],supplemental:['keller-segel-forced-flux']},
+ 'bio-chemical-master':{common:[],supplemental:['immigration-death-ssa']},
 };
 const prelude=String.raw`
 import ast,copy,json,pathlib,sys
@@ -29,10 +33,10 @@ discovery=load_discovery(ROOT)
 `;
 const python=source=>execFileSync('python3',['-B','-c',prelude+source],{cwd:root,encoding:'utf8',timeout:30000});
 
-test('seven surveyed biology labels expose only their verified common or supplemental scope',()=>{
+test('eleven surveyed biology labels expose only their verified common or supplemental scope',()=>{
  assert.equal(equations.length,equationCount);
- assert.equal(equations.filter(x=>!['rotational-advection','shallow-water-bed','forced-incompressible','level-set-advection', 'forced-vorticity', 'boussinesq-buoyancy', 'ale-scalar-transport', 'linear-rotating-shallow-water', 'variable-viscosity-vector', 'srmhd', 'srhd','tensor-diffusion','coulomb-electrostatics','vlasov-poisson','hard-sphere-boltzmann','bio-enzyme','bio-lotka-volterra',...equationsAddedAfterBatch37].includes(x.id)&&x.status==='local-example').length,23);
- assert.equal(equations.filter(x=>x.status==='reading').length,20);
+ assert.equal(equations.filter(x=>!['rotational-advection','shallow-water-bed','forced-incompressible','level-set-advection', 'forced-vorticity', 'boussinesq-buoyancy', 'ale-scalar-transport', 'linear-rotating-shallow-water', 'variable-viscosity-vector', 'srmhd', 'srhd','tensor-diffusion','coulomb-electrostatics','vlasov-poisson','hard-sphere-boltzmann','bio-enzyme','bio-lotka-volterra',...equationsAddedAfterBatch37].includes(x.id)&&!['bio-hodgkin-huxley','bio-fisher-kpp','bio-keller-segel','bio-chemical-master'].includes(x.id)&&x.status==='local-example').length,23);
+ assert.equal(equations.filter(x=>x.status==='reading').length+['bio-hodgkin-huxley','bio-fisher-kpp','bio-keller-segel','bio-chemical-master'].length,20);
  const discovery=json('catalog/atlas-execution-discovery.json').examples;
  for(const [id,wanted] of Object.entries(expected)){
   const model=equations.find(x=>x.id===id);assert.equal(model.status,'local-example');
@@ -43,9 +47,9 @@ test('seven surveyed biology labels expose only their verified common or supplem
  }
  assert.ok(equations.find(x=>x.id==='bio-sir').execution_scope.en.includes('SEIR'));
  assert.ok(equations.find(x=>x.id==='bio-fitzhugh-nagumo').note.en.includes('D=0'));
- for(const id of ['bio-hodgkin-huxley','bio-gray-scott'])assert.equal(equations.find(x=>x.id===id).status,'reading');
+ for(const id of ['bio-gray-scott'])assert.equal(equations.find(x=>x.id===id).status,'reading');
  const uniqueSupplementIds=new Set(Object.keys(expected).flatMap(id=>equations.find(x=>x.id===id).supplemental_examples||[]));
- assert.deepEqual([...uniqueSupplementIds].sort(),['enzyme-qssa','fitzhugh-nagumo','lotka-volterra','schnakenberg-nonlinear','schnakenberg-pattern','turing-schnakenberg']);
+ assert.deepEqual([...uniqueSupplementIds].sort(),['enzyme-qssa','fisher-kpp-special-front','fitzhugh-nagumo','hodgkin-huxley-controls','immigration-death-ssa','keller-segel-forced-flux','lotka-volterra','schnakenberg-2d-boundary-modes','schnakenberg-nonlinear','schnakenberg-pattern','turing-schnakenberg']);
  assert.equal(createHash('sha256').update(read('numerical-methods-atlas/code-and-data/examples.json')).digest('hex'),'3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7');
 });
 
@@ -124,10 +128,11 @@ assert [x for x in value['supplemental_case_ids'] if x not in ['zalesak-rotation
 assert len(value['common']['bio-logistic'])==len(value['common']['bio-sir'])==1
 try:
  with mock.patch.object(equation_module,'load_supplemental_examples',side_effect=replay_verified):
-  for scenario in ['borrow-hh','wrong-case','missing-common','inflated-scope']:
+  for scenario in ['borrow-hh','borrow-reading','wrong-case','missing-common','inflated-scope']:
    rows=copy.deepcopy(equations);d=copy.deepcopy(discovery);byid={x['id']:x for x in rows}
    if scenario=='borrow-hh':
     byid['bio-hodgkin-huxley'].update(status='local-example',supplemental_examples=['fitzhugh-nagumo'])
+   elif scenario=='borrow-reading':byid['bio-gray-scott'].update(status='local-example',supplemental_examples=['fitzhugh-nagumo'])
    elif scenario=='wrong-case':byid['bio-turing']['supplemental_examples']=['fitzhugh-nagumo']
    elif scenario=='missing-common':next(x for x in d['examples'] if x['id']=='sir-epidemic')['equation_ids']=[]
    else:byid['bio-fitzhugh-nagumo']['execution_scope']['en']='Full spatial Hodgkin-Huxley validation'
@@ -137,7 +142,7 @@ try:
 finally:
  # Source edits, even under unchanged manifest names, invalidate the snapshot.
  if fingerprint_snapshot()!=before_sha:raise RuntimeError('Immutable source snapshot changed')
-if len(replay_calls)!=4 or verified!=verified_original:
+if len(replay_calls)!=5 or verified!=verified_original:
  raise RuntimeError('Negative replay count or owned snapshot mutation differs')
 for path in ['scripts/atlas_equation_availability.py','scripts/build-atlas-equations.py','scripts/build-atlas-quantum.py','scripts/integrate-depth-catalog.py']:
  ast.parse((ROOT/path).read_text())
@@ -166,9 +171,9 @@ with mock.patch.object(pathlib.Path,'read_text',read_text),mock.patch.object(pat
 html=captured[str(ROOT/'numerical-methods-atlas/equations/index.html')]
 public=json.loads(captured[str(ROOT/'numerical-methods-atlas/equations/index.json')])
 historical=[x for x in public['equations'] if x['id'] not in ['rotational-advection','shallow-water-bed','forced-incompressible','level-set-advection','forced-vorticity','boussinesq-buoyancy','ale-scalar-transport','linear-rotating-shallow-water','variable-viscosity-vector','srmhd','tensor-diffusion','coulomb-electrostatics','vlasov-poisson','hard-sphere-boltzmann']+${JSON.stringify(equationsAddedAfterBatch37)}]
-assert len(historical)==46 and sum(x['status']=='local-example' for x in historical if x['id'] not in ['bio-enzyme','bio-lotka-volterra'])==24
+assert len(historical)==46 and sum(x['status']=='local-example' for x in historical if x['id'] not in ['bio-enzyme','bio-lotka-volterra','bio-hodgkin-huxley','bio-fisher-kpp','bio-keller-segel','bio-chemical-master'])==24
 assert next(x for x in historical if x['id']=='srhd')['status']=='local-example'
-assert sum(x['status']=='local-example' for x in historical if x['id'] not in ['srhd','bio-enzyme','bio-lotka-volterra'])==23
+assert sum(x['status']=='local-example' for x in historical if x['id'] not in ['srhd','bio-enzyme','bio-lotka-volterra','bio-hodgkin-huxley','bio-fisher-kpp','bio-keller-segel','bio-chemical-master'])==23
 assert public['counts']['total']==len(public['equations'])
 assert public['counts']['local_example']==sum(x['status']=='local-example' for x in public['equations'])
 assert public['execution_example_count']==22
@@ -176,7 +181,10 @@ assert [x for x in public['supplemental_case_ids'] if x not in ['zalesak-rotatio
 rows={x['id']:x for x in public['equations']}
 for ident in ['bio-turing','bio-schnakenberg']:
  assert rows[ident]['execution_examples']==[]
- assert [x['id'] for x in rows[ident]['supplemental_execution_examples']]==['turing-schnakenberg','schnakenberg-nonlinear','schnakenberg-pattern']
+ assert [x['id'] for x in rows[ident]['supplemental_execution_examples']]==['turing-schnakenberg','schnakenberg-nonlinear','schnakenberg-pattern']+(['schnakenberg-2d-boundary-modes'] if ident=='bio-schnakenberg' else [])
+for ident,case in [('bio-hodgkin-huxley','hodgkin-huxley-controls'),('bio-fisher-kpp','fisher-kpp-special-front'),('bio-keller-segel','keller-segel-forced-flux'),('bio-chemical-master','immigration-death-ssa')]:
+ assert rows[ident]['execution_examples']==[]
+ assert [x['id'] for x in rows[ident]['supplemental_execution_examples']]==[case]
 for ident,case in [('bio-enzyme','enzyme-qssa'),('bio-lotka-volterra','lotka-volterra')]:
  assert rows[ident]['execution_examples']==[]
  assert [x['id'] for x in rows[ident]['supplemental_execution_examples']]==[case]
@@ -184,12 +192,12 @@ for ident,case in [('bio-logistic','logistic-growth'),('bio-sir','sir-epidemic')
  assert [x['id'] for x in rows[ident]['execution_examples']]==[case]
  assert rows[ident]['supplemental_execution_examples']==[]
 for lang in ['ja','en']:
- for case in ['fitzhugh-nagumo','schnakenberg-nonlinear','schnakenberg-pattern','turing-schnakenberg']:
+ for case in ['hodgkin-huxley-controls','immigration-death-ssa','fisher-kpp-special-front','schnakenberg-2d-boundary-modes','keller-segel-forced-flux','fitzhugh-nagumo','schnakenberg-nonlinear','schnakenberg-pattern','turing-schnakenberg']:
   assert '/numerical-methods-atlas/validation/'+case+'/?lang='+lang in html
  assert '/numerical-methods-atlas/code-and-data/examples/logistic-growth/?lang='+lang in html
 assert 'D=0' in html and 'katex-error' not in html
 assert '共通22実行例とは別' in html and 'separate from the common 22 registry' in html
-for ident in ['bio-hodgkin-huxley','bio-gray-scott']:
+for ident in ['bio-gray-scott']:
  assert not rows[ident]['execution_examples'] and not rows[ident]['supplemental_execution_examples']
 `);
 });

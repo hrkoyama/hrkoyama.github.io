@@ -2585,7 +2585,7 @@
     },
     "catalog/atlas-equations.json": {
       "before": "bdc1a3a3d83cb73404846aa6aa8d21cf9e5ae67b447be397c9ce06d7ae59d20a",
-      "after": "643b4c97ae27d20ce357957aa91fe4f61871b209cf7a5c155d7751be3679c2d2",
+      "after": "1498188b3f204de7489f8fb6b1cce4c8938d10d4da46e0ac04b7c51f04854706",
       "delta": {
         "kind": "object",
         "keys": [
@@ -2597,7 +2597,7 @@
           "equations"
         ],
         "before": "bdc1a3a3d83cb73404846aa6aa8d21cf9e5ae67b447be397c9ce06d7ae59d20a",
-        "after": "643b4c97ae27d20ce357957aa91fe4f61871b209cf7a5c155d7751be3679c2d2",
+        "after": "1498188b3f204de7489f8fb6b1cce4c8938d10d4da46e0ac04b7c51f04854706",
         "changes": {
           "equations": {
             "kind": "rows",
@@ -2689,7 +2689,7 @@
               "seir-compartment"
             ],
             "before": "f3ca0626bafda21f0d8874acbd2e926125ec1a5797c7b469f3cf9a5b19006567",
-            "after": "36aa2e218085755d8b2086f73863312454b6ae86fd0563c970e704d3800854b5",
+            "after": "42a684ede3089f8c1fc11ac6dbfb0ede8f66550381ef5f2088068f8891bf3458",
             "changes": {
               "euler": {
                 "kind": "object",

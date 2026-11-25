@@ -8,7 +8,7 @@ import re
 from urllib.parse import urlparse
 from atlas_depth import depth_teaser
 from atlas_goal_availability import load_supplemental_examples
-from atlas_biology_model_evidence import apply_biology_model_evidence
+from atlas_biology_model_evidence import apply_biology_model_evidence, apply_canonical_biology_supplements
 
 ROOT=Path(__file__).resolve().parents[1]
 BASE='/numerical-methods-atlas/depth/'
@@ -27,7 +27,7 @@ assert receipt and receipt['registry_sha256']==hashlib.sha256(registry_path.read
 checks={r['id']:r['validation'] for r in receipt['examples']}
 assert len(data['fields'])==len({f['id'] for f in data['fields']})
 sources={}
-for path in [source,registry_path,receipt_path,ROOT/'catalog/atlas-depth-expansion.json']:sources[path.relative_to(ROOT).as_posix()]=hashlib.sha256(path.read_bytes()).hexdigest()
+for path in [source,registry_path,receipt_path,ROOT/'catalog/atlas-depth-expansion.json',ROOT/'catalog/atlas-equations.json']:sources[path.relative_to(ROOT).as_posix()]=hashlib.sha256(path.read_bytes()).hexdigest()
 supplements={item['id']:item for item in load_supplemental_examples(ROOT,list(dict.fromkeys(ident for field in data['fields'] for ident in field.get('supplemental_examples',[]))))}
 for item in supplements.values():sources.update(item['source_sha256'])
 
@@ -88,7 +88,7 @@ for lang in ['ja','en']:
         # Replace its introductory scope structurally so a second refresh is identical.
         pattern=r'(<h1\b[^>]*>.*?</h1>\s*<p>.*?<strong>).*?(</strong>)'
         text=re.sub(pattern,lambda m:m[1]+e(biology['scope'][lang])+m[2],text,count=1,flags=re.S)
-        description=('22モデル族の解説と小規模な増殖・SIR・酵素/QSSA・Lotka–Volterra・別固定入力SEIR・反応拡散・FHNの検証。完全HH・流体連成は未実装。' if lang=='ja' else 'A 22-family survey with small logistic, SIR, enzyme/QSSA, Lotka–Volterra, separate fixed-input SEIR, reaction–diffusion and FHN checks. Full HH and fluid coupling remain unimplemented.')
+        description=('22モデル族の解説と小規模な増殖・SIR・酵素/QSSA・Lotka–Volterra・別固定入力SEIR・反応拡散・FHNの検証。別固定例に単一細胞HH・SSA・Fisher特殊波・2次元境界モード・強制Keller–Segelがあり、一般の実験較正・流体連成は未検証。' if lang=='ja' else 'A 22-family survey with small logistic, SIR, enzyme/QSSA, Lotka–Volterra, separate fixed-input SEIR, reaction–diffusion and FHN checks. Separate fixed cases cover single-cell HH, SSA, a special Fisher front, 2D boundary modes and forced Keller–Segel; general experimental calibration and fluid coupling remain unvalidated.')
         text=re.sub(r'<meta name="description"[^>]*>', '<meta name="description" content="'+description+'">',text)
         text=re.sub(r'<meta property="og:description"[^>]*>', '<meta property="og:description" content="'+description+'">',text)
         for anchor,ident in [('01-1838-logistic-population-growth','logistic-growth'),('05-1927-sir-and-seir-compartment-models','sir-epidemic')]:
@@ -98,16 +98,23 @@ for lang in ['ja','en']:
         for anchor,label in [('02-1913-michaelismenten-and-full-enzyme-kinetics',('固定した4状態酵素系とQSSAの限定例。初期層・積分誤差・縮約誤差を区別。','A fixed four-state enzyme/QSSA example distinguishes initial-layer, integration and reduction errors.')),('03-1920-lotkavolterra-predatorprey',('固定した正のLotka–Volterra軌道の独立参照・不変量・刻み比較。','A fixed positive Lotka–Volterra orbit has independent-reference, invariant and step-refinement comparisons.'))]:
             pattern=r'(<h3 id="'+anchor+r'".*?</h3>\s*<p><strong>)(.*?)(</strong>)'
             text=re.sub(pattern,lambda m:m[1]+label[0 if lang=='ja' else 1]+m[3],text,flags=re.S)
-        for anchor,label in [('09-1952-turing-reactiondiffusion-framework',('固定1次元Schnakenberg系の線形発現・非線形発展・成長後パターンを別々に検証。','Separate scoped checks of linear onset, nonlinear evolution and post-growth patterns for fixed 1D Schnakenberg systems.')),('10-1961-fitzhughnagumo-excitation-and-recovery',('FHNの励起回復ODE・時間収束例あり。完全HHは未実装。','FHN excitation/recovery ODE and time refinement available; full HH unimplemented.')),('17-1979-schnakenberg-reactiondiffusion',('有限振幅の非線形発展と成長後パターンを独立参照・空間/時間収束で比較。一般の模様選択は対象外。','Finite-amplitude nonlinear evolution and post-growth patterns compared with independent references and separate space/time refinement; no general pattern-selection claim.'))]:
+        for anchor,label in [('09-1952-turing-reactiondiffusion-framework',('固定1次元Schnakenberg系の線形発現・非線形発展・成長後パターンを別々に検証。','Separate scoped checks of linear onset, nonlinear evolution and post-growth patterns for fixed 1D Schnakenberg systems.')),('10-1961-fitzhughnagumo-excitation-and-recovery',('FHNの励起回復ODE・時間収束例を保持。HH単一細胞は別の固定例で、空間軸索・実験較正は未検証。','FHN excitation/recovery ODE and time checks retained. Single-cell HH has a separate fixed case; spatial axons and experimental calibration remain unvalidated.')),('17-1979-schnakenberg-reactiondiffusion',('有限振幅の非線形発展と成長後パターンを独立参照・空間/時間収束で比較。一般の模様選択は対象外。','Finite-amplitude nonlinear evolution and post-growth patterns compared with independent references and separate space/time refinement; no general pattern-selection claim.'))]:
             pattern=r'(<h3 id="'+anchor+r'".*?</h3>\s*<p><strong>)(.*?)(</strong>)'
             text=re.sub(pattern,lambda m:m[1]+label[0 if lang=='ja' else 1]+m[3],text,flags=re.S)
+        # The survey's historical model convention stays intact; link the four
+        # separately qualified fixed cases rather than claiming a full family.
+        for anchor,ident in [('06-1937-fisherkpp-invasion-front','fisher-kpp-special-front'),('08-1952-hodgkinhuxley-membrane-dynamics','hodgkin-huxley-controls'),('11-1970-kellersegel-chemotaxis','keller-segel-forced-flux'),('14-1977-chemical-master-equation-and-gillespie-ssa','immigration-death-ssa')]:
+            label=('別配布の固定入力例：' if lang=='ja' else 'Separate fixed-input example: ')+link(supplements[ident]['url']+'?lang='+lang,supplements[ident]['title'][lang])+'.'
+            pattern=r'(<h3 id="'+anchor+r'".*?</h3>\s*<p><strong>)(.*?)(</strong>)'
+            text=re.sub(pattern,lambda m:m[1]+label+m[3],text,flags=re.S)
         return re.sub(r'(</h1>)',lambda m:m[1]+'<!-- atlas-biology-depth -->'+notice+'<!-- /atlas-biology-depth -->',text,count=1)
     path=ROOT/f'numerical-methods-atlas/{lang}/read/biological-models/index.html';path.write_text(adapt(path.read_text()))
     for filename in [f'content.{lang}.json']+(['content.json'] if lang=='en' else []):
         path=ROOT/'numerical-methods-atlas'/filename;docs=json.loads(path.read_text());docs['biological-models']['html']=adapt(docs['biological-models']['html']);path.write_text(json.dumps(docs,ensure_ascii=False,separators=(',',':'))+'\n')
 bio=ROOT/'numerical-methods-atlas/assets/biological-models.json';survey=json.loads(bio.read_text())
 apply_biology_model_evidence(survey,biology,examples,supplements,data['reviewed_on'])
+apply_canonical_biology_supplements(survey,biology,json.loads((ROOT/'catalog/atlas-equations.json').read_text())['equations'],supplements,json.loads((ROOT/'catalog/atlas-depth-expansion.json').read_text())['case_equations'])
 bio.write_text(json.dumps(survey,ensure_ascii=False,indent=2)+'\n')
 guide=ROOT/'llms.txt';text=re.sub(r'^- \[Field-specific validation depth\].*\n?','',guide.read_text(),flags=re.M)
-guide.write_text(text.rstrip()+'\n- [Field-specific validation depth]('+ORIGIN+BASE+'): bilingual scope/evidence/gaps by field. Preserve the shared 22-example registry and link '+str(len(supplements))+' independently rerun supplements across foundations, nonlinear Schnakenberg reaction-diffusion and post-growth patterns, other models, particles/transport, fluid/MHD and Langevin/CSVR comparisons. Preserve the earlier harmonic BAOAB example separately from new two-degree same-OBABO harmonic/quartic comparisons and the CSVR-kernel diagnostic. Full HH, the other 10 thermostats, general many-body and first-principles-MD coupling remain unimplemented or unvalidated.\n')
+guide.write_text(text.rstrip()+'\n- [Field-specific validation depth]('+ORIGIN+BASE+'): bilingual scope/evidence/gaps by field. Preserve the shared 22-example registry and link '+str(len(supplements))+' independently rerun supplements across foundations, nonlinear Schnakenberg reaction-diffusion and post-growth patterns, other models, particles/transport, fluid/MHD and Langevin/CSVR comparisons. Preserve the earlier harmonic BAOAB example separately from new two-degree same-OBABO harmonic/quartic comparisons and the CSVR-kernel diagnostic. Single-cell HH has a separate fixed case; spatial HH axons and experimental calibration remain unvalidated. Thermostat checks retain their stated fixed-input scope; general many-body and real-material first-principles-MD coupling remain unvalidated.\n')
 print('Built field-specific evidence and validation gaps:',len(data['fields']),'fields,',len(supplements),'separate supplements; common registry unchanged.')

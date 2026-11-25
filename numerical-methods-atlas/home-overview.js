@@ -1,4 +1,4 @@
-import {homeLandingCopy} from './atlas-home-data.js?v=e0ad4044e23f';
+import {homeLandingCopy,homeCollectionInventory} from './atlas-home-data.js?v=e0ad4044e23f';
 import {homeSearchPage,wireHomeSearch} from './home-search.js?v=90085eda7e79';
 import {t,currentLanguage} from './i18n.js';
 import {homeAreas,homeCopy,homePaths,homeReadingLanguages} from './home-overview-data.js?v=c7bda9b62571';
@@ -70,6 +70,13 @@ export function renderHomeBrowse(lang=currentLanguage(),{headingId}={}){
  return `<nav class="page-width home-browse" aria-labelledby="${esc(headingId)}"><h2 id="${esc(headingId)}">${ja?'式や図から探す':'Browse by equations and figures'}</h2><ul class="home-browse-grid">${cards.map(card=>`<li><a class="home-browse-card" data-home-browse="${card.id}" href="/numerical-methods-atlas/${card.id}/?lang=${lang}"><span class="home-browse-visual">${card.visual}</span><span class="home-browse-copy"><strong>${esc(card.title)}</strong><span>${esc(card.description)}</span></span></a></li>`).join('')}</ul></nav>`;
 }
 
+/** One compact inventory entry; every count comes from its existing JSON list. */
+export function renderHomeCollection(lang=currentLanguage(),{headingId,inventory=homeCollectionInventory}={}){
+ lang=locale(lang);const copy=homeLandingCopy[lang].collection;headingId=headingId||'home-collection-title-'+lang;
+ const items=copy.items.map(item=>{const count=inventory.counts[item.count_key];if(!Number.isSafeInteger(count)||count<=0)throw new Error('Invalid collection count '+item.id);return `<li><a data-home-collection-item="${esc(item.id)}" href="${esc(item.href)}"><span class="home-collection-number" data-home-collection-count="${esc(item.count_key)}">${count}<small>${esc(item.unit)}</small></span><span class="home-collection-label">${esc(item.label)}<span aria-hidden="true">↗</span></span></a></li>`;}).join('');
+ return `<section class="page-width home-collection" aria-labelledby="${esc(headingId)}"><h2 id="${esc(headingId)}">${esc(copy.title)}</h2><p>${esc(copy.description)}</p><ul class="home-collection-grid">${items}</ul><p class="home-collection-note">${esc(copy.note)} <a href="${esc(copy.overview_href)}">${esc(copy.overview_label)} →</a></p></section>`;
+}
+
 /** The front door offers one search and three paths; inventories live beyond it. */
 export function homeOverviewPage(coverage,selected,{staticMode=false}={}){
  const lang=currentLanguage(),copy=homeLandingCopy[lang],suffix=staticMode?'-'+lang:'';
@@ -80,6 +87,7 @@ export function homeOverviewPage(coverage,selected,{staticMode=false}={}){
  ${homeSearchPage({compact:true,staticMode})}
  <p class="page-width landing-ways">${esc(copy.introduction.ways)}</p>
  <nav class="page-width home-entrypoints" aria-label="${lang==='ja'?'3つの入口':'Three ways to begin'}"><ul class="home-entry-grid">${copy.entries.map(entry=>`<li><a class="home-entry" data-home-entry="${esc(entry.id)}" href="${esc(entry.href)}"><h2>${esc(entry.title)}</h2><p>${esc(entry.description)}</p><span class="home-entry-arrow" aria-hidden="true">→</span></a></li>`).join('')}</ul></nav>
+ ${renderHomeCollection(lang,{headingId:'home-collection-title'+suffix})}
  <section class="page-width home-reference-links home-kit-entry" aria-labelledby="home-kit-title${suffix}"><h2 id="home-kit-title${suffix}">${esc(copy.agent_kit.title)}</h2><p>${esc(copy.agent_kit.description)}</p><p><a href="${esc(copy.agent_kit.href)}">${esc(copy.agent_kit.label)}</a></p></section>
  <aside class="page-width home-reference-links" aria-labelledby="home-reference-title${suffix}"><h2 id="home-reference-title${suffix}">${lang==='ja'?'教科書・参考文献を探す':'Find textbooks and references'}</h2><p><a href="/numerical-methods-atlas/${lang}/read/textbooks/">${lang==='ja'?'教科書案内':'Textbook guide'}</a><a href="/numerical-methods-atlas/${lang}/read/references/">${lang==='ja'?'参考文献一覧':'Reference list'}</a></p></aside>
  ${renderHomeBrowse(lang,{headingId:'home-browse-title'+suffix})}

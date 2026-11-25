@@ -4,7 +4,8 @@ import {readFileSync, existsSync} from 'node:fs';
 import {execFileSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import {configureLocale} from '../numerical-methods-atlas/i18n.js';
-import {homeOverviewPage} from '../numerical-methods-atlas/home-overview.js';
+import {homeOverviewPage,renderHomeCollection} from '../numerical-methods-atlas/home-overview.js';
+import {homeCollectionInventory} from '../numerical-methods-atlas/atlas-home-data.js';
 import {resolveHomeLegacyURL} from '../numerical-methods-atlas/home-navigation.mjs';
 
 const root = new URL('../', import.meta.url);
@@ -46,6 +47,15 @@ test('the bilingual landing offers exactly one local search and the three reques
       assert.equal(url.pathname, expectedPaths[index]);
       assert.equal(url.searchParams.get('lang'), lang);
     }
+    const collection = [...html.matchAll(/<a\b[^>]*data-home-collection-item="[^"]+"[^>]*>[\s\S]*?<\/a>/g)].map(match=>({...attributes(match[0]),html:match[0]}));
+    assert.deepEqual(collection.map(link=>link['data-home-collection-item']),['papers','books','methods','tests','solutions','equations','fields']);
+    assert.ok(html.indexOf('home-entrypoints')<html.indexOf('home-collection-grid')&&html.indexOf('home-collection-grid')<html.indexOf('home-kit-entry'));
+    for(const [index,item] of copy[lang].collection.items.entries()){
+      const link=collection[index],url=actualDestination(link.href);assert.equal(url.searchParams.get('lang'),lang);assert.ok(link.html.includes(item.label));
+      assert.ok(link.html.includes('data-home-collection-count="'+item.count_key+'">'+homeCollectionInventory.counts[item.count_key]+'<'));
+      if(['papers','books'].includes(item.id))assert.equal(new URLSearchParams(url.hash.split('?')[1]).get('q'),item.id==='papers'?'type:paper':'type:book');
+    }
+    assert.throws(()=>renderHomeCollection(lang,{inventory:{counts:{...homeCollectionInventory.counts,papers:-1}}}));
     const allIds = ids(html); assert.equal(allIds.length, new Set(allIds).size);
   }
 });

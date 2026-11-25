@@ -25,7 +25,7 @@ test('supplements retain their own evidence and do not borrow or expand the comm
  assert.equal(registry.examples.length,22);
  assert.equal(hash('numerical-methods-atlas/code-and-data/examples.json'),'3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7');
  assert.deepEqual(depth.fields.find(f=>f.id==='temperature').examples,[]);
- assert.deepEqual(depth.fields.find(f=>f.id==='temperature').supplemental_examples,['langevin-harmonic','csvr-kinetic-kernel','csvr-langevin-harmonic','csvr-langevin-quartic']);
+ assert.deepEqual(depth.fields.find(f=>f.id==='temperature').supplemental_examples,['langevin-harmonic','csvr-kinetic-kernel','csvr-langevin-harmonic','csvr-langevin-quartic','two-state-bo-cp-ou','deterministic-thermostat-contrasts','projected-canonical-dof']);
  assert.deepEqual(depth.fields.find(f=>f.id==='biology').examples,['logistic-growth','sir-epidemic']);
  assert.deepEqual(depth.fields.find(f=>f.id==='probability').examples,['mc-integral','gbm-sde']);
  const supplementIds=depth.fields.flatMap(f=>f.supplemental_examples||[]);
@@ -36,13 +36,15 @@ test('supplements retain their own evidence and do not borrow or expand the comm
   'pinn-poisson':['elliptic','differentiation-inverse'],
   'fno-periodic-heat':['foundations','differentiation-inverse'],
  };
+ const crossFieldFinal23={'williamson-sphere-transport':['fluid','transport'],'two-state-bo-cp-ou':['quantum-molecular','temperature'],'sph-pressure-acoustics':['particles','transport']};
+ const allCrossFields={...crossField78,...crossFieldFinal23};
  const memberships=new Map();
  for(const field of depth.fields){
   const ids=field.supplemental_examples||[];assert.equal(new Set(ids).size,ids.length,field.id+' no duplicate within field');
   for(const id of ids){if(!memberships.has(id))memberships.set(id,[]);memberships.get(id).push(field.id);}
  }
- assert.deepEqual(Object.fromEntries([...memberships].filter(([,fields])=>fields.length>1)),crossField78,'only exact reviewed cross-field memberships');
- assert.equal(supplementIds.length,expectedCount+Object.values(crossField78).reduce((n,fields)=>n+fields.length-1,0));
+ assert.deepEqual(Object.fromEntries([...memberships].filter(([,fields])=>fields.length>1)),allCrossFields,'only exact reviewed cross-field memberships');
+ assert.equal(supplementIds.length,expectedCount+Object.values(allCrossFields).reduce((n,fields)=>n+fields.length-1,0));
  assert.equal(new Set(supplementIds).size,expectedCount);
  assert.equal(read('catalog/atlas-depth-expansion.json').case_problem_ids['csvr-kinetic-kernel'],null);
  assert.deepEqual(new Set(supplementIds),new Set(Object.keys(read('catalog/atlas-depth-expansion.json').case_problem_ids)));
@@ -58,18 +60,19 @@ print(json.dumps([x['id'] for x in load_supplemental_examples(r,ids)]))`],{cwd:r
  for(const id of ['mcmc','langevin-thermostat','stochastic-velocity-rescaling','ewald','pme','spme']){
   const method=methods.find(m=>m.id===id);assert.ok(method,id);assert.equal(method.status,'educational-example');assert.ok(method.code_urls.length);assert.ok(method.test_urls.length);
  }
- for(const id of ['nose-hoover','berendsen-thermostat']){
-  const method=methods.find(m=>m.id===id);assert.ok(method,id);assert.equal(method.status,'planned');assert.deepEqual(method.code_urls,[]);assert.deepEqual(method.execution_examples,[]);
+ for(const id of ['velocity-rescaling','berendsen-thermostat','nose-hoover','nose-hoover-chains']){
+  const method=methods.find(m=>m.id===id);assert.ok(method,id);assert.equal(method.status,'educational-example');assert.deepEqual(method.execution_examples.map(x=>x.id),['deterministic-thermostat-contrasts']);assert.equal(method.depth_release.group,'thermostat-constraint-controls');assert.ok(method.code_urls.length&&method.test_urls.length);
  }
+ const planned=methods.find(m=>m.id==='andersen-thermostat');assert.equal(planned.status,'planned');assert.deepEqual(planned.code_urls,[]);assert.deepEqual(planned.execution_examples,[]);
  const survey=read('numerical-methods-atlas/assets/biological-models.json');
  assert.equal(survey.models.length,22);
- assert.deepEqual(new Set(survey.models.filter(m=>m.status==='scoped-educational-example').map(m=>m.id)),new Set(['logistic','sir','turing','schnakenberg','fitzhugh-nagumo','enzyme','lotka-volterra']));
- assert.notEqual(survey.models.find(m=>m.id==='hodgkin-huxley').status,'scoped-educational-example');
+ assert.deepEqual(new Set(survey.models.filter(m=>m.status==='scoped-educational-example').map(m=>m.id)),new Set([...['logistic','sir','turing','schnakenberg','fitzhugh-nagumo','enzyme','lotka-volterra'],...['hodgkin-huxley','fisher-kpp','keller-segel','chemical-master']]));
+ for(const [model,ident] of [['hodgkin-huxley','hodgkin-huxley-controls'],['fisher-kpp','fisher-kpp-special-front'],['keller-segel','keller-segel-forced-flux'],['chemical-master','immigration-death-ssa']]){const actual=survey.models.find(x=>x.id===model);assert.deepEqual(actual.supplemental_examples,[ident]);const equation=read('catalog/atlas-equations.json').equations.find(x=>x.id==='bio-'+model);assert.deepEqual(actual.implementation_scope,equation.execution_scope);}
  assert.notEqual(survey.models.find(m=>m.id==='gray-scott').status,'scoped-educational-example');
  for(const lang of ['ja','en']){
   const html=bytes(`numerical-methods-atlas/${lang}/read/biological-models/index.html`).toString();
   assert.ok(html.includes('biological-execution-scope'));assert.ok(!html.includes('22項目すべてが文献調査とベンチマーク設計案です。'));assert.ok(!/All 22 entries are literature and proposed/.test(html));
-  for(const id of ['reaction-diffusion-fourier','turing-schnakenberg','fitzhugh-nagumo','schnakenberg-nonlinear','schnakenberg-pattern'])assert.ok(html.includes('/numerical-methods-atlas/validation/'+id+'/?lang='+lang));
+  for(const id of ['reaction-diffusion-fourier','turing-schnakenberg','fitzhugh-nagumo','schnakenberg-nonlinear','schnakenberg-pattern',...['hodgkin-huxley-controls','immigration-death-ssa','fisher-kpp-special-front','schnakenberg-2d-boundary-modes','keller-segel-forced-flux']])assert.ok(html.includes('/numerical-methods-atlas/validation/'+id+'/?lang='+lang));
   const thermo=bytes(`numerical-methods-atlas/${lang}/read/thermostats/index.html`).toString();
   for(const id of ['langevin-harmonic','csvr-kinetic-kernel','csvr-langevin-harmonic','csvr-langevin-quartic'])assert.ok(thermo.includes('/numerical-methods-atlas/validation/'+id+'/?lang='+lang));
   assert.ok(thermo.includes('OBABO')&&thermo.includes('BAOAB'));

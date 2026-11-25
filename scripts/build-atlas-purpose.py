@@ -11,6 +11,26 @@ from atlas_crossovers import crossover_teaser, crossover_assets
 from atlas_execution_discovery import load_discovery, entry_url, ENTRY_BASE
 from atlas_goal_availability import goal_label, goal_attributes, goal_filter_controls, goal_filter_assets
 
+def home_collection_inventory(root):
+    """Count existing lists, without running solvers or duplicating their data."""
+    root=Path(root);atlas=root/'numerical-methods-atlas'
+    paths=['numerical-methods-atlas/coverage.json','numerical-methods-atlas/references.json','numerical-methods-atlas/methods/index.json','numerical-methods-atlas/solutions/index.json','catalog/atlas-reading-index.json','numerical-methods-atlas/gallery/index.json','numerical-methods-atlas/equations/index.json']
+    data={path:json.loads((root/path).read_text()) for path in paths}
+    counts=data[paths[0]]['counts'];references=data[paths[1]];methods=data[paths[2]]['methods'];solutions=data[paths[3]];groups=data[paths[4]]['groups']
+    publications=data[paths[0]]['publications'];types={row['id']:row['type'] for row in publications}
+    assert len(types)==len(publications) and set(types)<=set(row['id'] for row in references)
+    assert counts['papers']==sum(kind in ['article','inproceedings'] for kind in types.values())
+    assert counts['books']==sum(kind=='book' for kind in types.values())
+    assert len({row['id'] for row in methods})==len(methods) and len({row['id'] for row in groups})==len(groups)
+    kinds=solutions['counts'];assert set(kinds)=={'analytic','manufactured','semi-analytic','numerical-reference'}
+    assert solutions['count']==len(solutions['cases'])==sum(kinds.values())
+    assert all(kinds[kind]==sum(row['kind']==kind for row in solutions['cases']) for kind in kinds)
+    assert counts['test_problems']==len(data[paths[5]]['items']) and counts['equations']==len(data[paths[6]]['equations'])
+    result={key:counts[key] for key in ['papers','books','test_problems','equations']}
+    result.update(methods=len(methods),solutions=solutions['count'],reading_groups=len(groups))
+    assert all(type(value) is int and value>0 for value in result.values())
+    return {'counts':result,'solution_kinds':kinds,'source_sha256':{path:hashlib.sha256((root/path).read_bytes()).hexdigest() for path in paths}}
+
 ROOT=Path(__file__).resolve().parents[1]
 ATLAS=ROOT/'numerical-methods-atlas'
 copy=json.loads((ROOT/'catalog/atlas-purpose.json').read_text())
@@ -22,7 +42,7 @@ discovery_by_id={x['id']:x for x in discovery['examples']}
 format_counts={**coverage['counts'],'execution_examples':len(discovery['examples']),'gallery_runnable_problems':json.loads((ATLAS/'gallery/index.json').read_text())['counts']['runnable_problems']}
 home=json.loads((ROOT/'catalog/atlas-home.json').read_text())
 goals=json.loads((ROOT/'catalog/atlas-goals.json').read_text())
-(ATLAS/'atlas-home-data.js').write_text('// Generated from catalog/atlas-home.json; navigation copy only.\nexport const homeLandingCopy='+json.dumps(home['landing'],ensure_ascii=False)+';\nexport const homeNavigationData='+json.dumps({'goalDomains':[x['id'] for x in goals['domains']]},ensure_ascii=False)+';\n')
+(ATLAS/'atlas-home-data.js').write_text('// Generated from catalog/atlas-home.json; navigation copy only.\nexport const homeLandingCopy='+json.dumps(home['landing'],ensure_ascii=False)+';\nexport const homeCollectionInventory='+json.dumps(home_collection_inventory(ROOT),ensure_ascii=False)+';\nexport const homeNavigationData='+json.dumps({'goalDomains':[x['id'] for x in goals['domains']]},ensure_ascii=False)+';\n')
 # Reading links follow the editions that actually exist, including new chapters.
 reading_languages={}
 for language in ['ja','en']:

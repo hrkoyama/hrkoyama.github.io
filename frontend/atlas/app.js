@@ -205,8 +205,10 @@ function referencePage(query='') {
 }
 function filterReferences(query) {
  const booksOnly=/(?:^|\s)type:book(?=\s|$)/i.test(query);
- const q=query.replace(/(?:^|\s)type:book(?=\s|$)/ig,' ').toLowerCase().trim();
- const matches=references.filter(e=>(!booksOnly||e.type==='book')&&[e.author,e.title,e.year,e.id,e.note,translateText(e.note)].join(' ').toLowerCase().includes(q));
+ const papersOnly=/(?:^|\s)type:paper(?=\s|$)/i.test(query);
+ const q=query.replace(/(?:^|\s)type:(?:book|paper)(?=\s|$)/ig,' ').toLowerCase().trim();
+ const publicationTypes=new Map(coverage.publications.map(row=>[row.id,row.type]));
+ const matches=references.filter(e=>(!booksOnly||publicationTypes.get(e.id)==='book')&&(!papersOnly||['article','inproceedings'].includes(publicationTypes.get(e.id)))&&[e.author,e.title,e.year,e.id,e.note,translateText(e.note)].join(' ').toLowerCase().includes(q));
  document.querySelector('#reference-results').innerHTML=matches.length?matches.map(referenceItem).join(''):'<div class="empty-state"><h2>No references found.</h2><p>Try an author, a method such as WENO, or a publication year.</p></div>';
  document.querySelector('#reference-count').textContent=`${matches.length} of ${references.length} references`;
 }

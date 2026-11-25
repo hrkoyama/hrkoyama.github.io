@@ -52,6 +52,64 @@
           "label": "入門PDFを開く",
           "href": "/numerical-methods-atlas/learn/numerical-foundations/2026-11-24/numerical-foundations-ja.pdf"
         }
+      },
+      "collection": {
+        "title": "NaNの収録内容・規模",
+        "description": "項目を選ぶと、論文・紹介書籍・手法・テスト問題・解・方程式・分野別の一覧を開けます。",
+        "items": [
+          {
+            "id": "papers",
+            "count_key": "papers",
+            "label": "論文",
+            "unit": "件",
+            "href": "/numerical-methods-atlas/?lang=ja#/references?q=type%3Apaper"
+          },
+          {
+            "id": "books",
+            "count_key": "books",
+            "label": "紹介書籍",
+            "unit": "冊",
+            "href": "/numerical-methods-atlas/?lang=ja#/references?q=type%3Abook"
+          },
+          {
+            "id": "methods",
+            "count_key": "methods",
+            "label": "手法・アルゴリズム",
+            "unit": "項目",
+            "href": "/numerical-methods-atlas/methods/?lang=ja"
+          },
+          {
+            "id": "tests",
+            "count_key": "test_problems",
+            "label": "テスト問題の図",
+            "unit": "問題",
+            "href": "/numerical-methods-atlas/gallery/?lang=ja"
+          },
+          {
+            "id": "solutions",
+            "count_key": "solutions",
+            "label": "厳密解・参照解",
+            "unit": "項目",
+            "href": "/numerical-methods-atlas/solutions/?lang=ja"
+          },
+          {
+            "id": "equations",
+            "count_key": "equations",
+            "label": "方程式・モデル",
+            "unit": "項目",
+            "href": "/numerical-methods-atlas/equations/?lang=ja"
+          },
+          {
+            "id": "fields",
+            "count_key": "reading_groups",
+            "label": "分野別の目次",
+            "unit": "分類",
+            "href": "/numerical-methods-atlas/ja/read/?lang=ja"
+          }
+        ],
+        "note": "手法には収録予定も含みます。解の一覧では解析解・製造解・半解析参照・数値参照を区別します。分野別目次の数は学習・資料の分類数です。",
+        "overview_label": "収録内容と集計ルール",
+        "overview_href": "/numerical-methods-atlas/?lang=ja#/coverage"
       }
     },
     "en": {
@@ -105,6 +163,64 @@
           "label": "Open the PDF",
           "href": "/numerical-methods-atlas/learn/numerical-foundations/en/2026-11-24/numerical-foundations-en.pdf"
         }
+      },
+      "collection": {
+        "title": "What’s in NaN",
+        "description": "Choose a category to open its list of papers, books, methods, test problems, solutions, equations or field guides.",
+        "items": [
+          {
+            "id": "papers",
+            "count_key": "papers",
+            "label": "Papers",
+            "unit": "papers",
+            "href": "/numerical-methods-atlas/?lang=en#/references?q=type%3Apaper"
+          },
+          {
+            "id": "books",
+            "count_key": "books",
+            "label": "Books",
+            "unit": "books",
+            "href": "/numerical-methods-atlas/?lang=en#/references?q=type%3Abook"
+          },
+          {
+            "id": "methods",
+            "count_key": "methods",
+            "label": "Methods and algorithms",
+            "unit": "entries",
+            "href": "/numerical-methods-atlas/methods/?lang=en"
+          },
+          {
+            "id": "tests",
+            "count_key": "test_problems",
+            "label": "Visual test problems",
+            "unit": "problems",
+            "href": "/numerical-methods-atlas/gallery/?lang=en"
+          },
+          {
+            "id": "solutions",
+            "count_key": "solutions",
+            "label": "Exact and reference solutions",
+            "unit": "entries",
+            "href": "/numerical-methods-atlas/solutions/?lang=en"
+          },
+          {
+            "id": "equations",
+            "count_key": "equations",
+            "label": "Equations and models",
+            "unit": "entries",
+            "href": "/numerical-methods-atlas/equations/?lang=en"
+          },
+          {
+            "id": "fields",
+            "count_key": "reading_groups",
+            "label": "Reading by field",
+            "unit": "groups",
+            "href": "/numerical-methods-atlas/en/read/?lang=en"
+          }
+        ],
+        "note": "Method entries include planned work. The solution list distinguishes analytic, manufactured, semi-analytic and numerical references. Field-guide counts refer to reading and resource groups.",
+        "overview_label": "Contents and counting rules",
+        "overview_href": "/numerical-methods-atlas/?lang=en#/coverage"
       }
     }
   }

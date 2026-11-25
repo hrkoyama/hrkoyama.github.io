@@ -210,3 +210,19 @@
  .home-overview .home-browse-card{grid-template-columns:76px minmax(0,1fr);min-height:100px;padding-block:12px}
 }
 @media(prefers-reduced-motion:reduce){.home-overview *{scroll-behavior:auto}}
+
+/* Compact, directly clickable inventory; counts are supplied by existing lists. */
+.home-landing .home-collection{margin-top:28px;padding-top:22px;border-top:1px solid var(--line)}
+.home-landing .home-collection h2{font-size:1.5rem;margin-bottom:8px}
+.home-landing .home-collection>p{font-size:.9375rem;line-height:1.75;margin:0 0 14px;max-width:88ch}
+.home-collection-grid{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.home-collection-grid>li{min-width:0}
+.home-collection-grid a{display:flex;flex-direction:column;gap:7px;min-height:94px;padding:13px 15px;background:var(--paper);border:1px solid var(--line);height:100%}
+.home-collection-grid a:hover{border-color:var(--orange)}
+.home-collection-number{font:1.65rem/1.1 var(--serif);font-variant-numeric:lining-nums;color:var(--ink)}
+.home-collection-number small{font:.75rem/1.4 var(--sans);color:var(--muted);margin-left:6px}
+.home-collection-label{display:flex;justify-content:space-between;gap:7px;font-size:.9rem;line-height:1.5}
+.home-collection-label>span{color:var(--orange)}
+.home-landing .home-collection .home-collection-note{font-size:.8125rem;color:var(--muted);margin-top:12px;margin-bottom:0}
+.home-collection-note a{display:inline-flex;align-items:center;min-height:36px;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:700px){.home-collection-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.home-collection-grid a{padding:12px;min-height:90px}.home-landing .home-collection h2{font-size:1.375rem}}

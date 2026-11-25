@@ -178,6 +178,7 @@
       ],
       "inputs": [
         "catalog/atlas-depth.json",
+        "catalog/atlas-equations.json",
         "catalog/atlas-depth-expansion.json",
         "numerical-methods-atlas/code-and-data/examples.json",
         "code/validated-examples/"
@@ -414,12 +415,21 @@
       "inputs": [
         "frontend/atlas/app.js",
         "catalog/atlas-purpose.json",
-        "numerical-methods-atlas/content.*.json"
+        "numerical-methods-atlas/content.*.json",
+        "catalog/atlas-home.json",
+        "numerical-methods-atlas/coverage.json",
+        "numerical-methods-atlas/references.json",
+        "numerical-methods-atlas/methods/index.json",
+        "numerical-methods-atlas/solutions/index.json",
+        "catalog/atlas-reading-index.json",
+        "numerical-methods-atlas/gallery/index.json",
+        "numerical-methods-atlas/equations/index.json"
       ],
       "outputs": [
         "numerical-methods-atlas/app.js",
         "numerical-methods-atlas/atlas-runtime-data.mjs",
-        "numerical-methods-atlas/runtime-asset-manifest.json"
+        "numerical-methods-atlas/runtime-asset-manifest.json",
+        "numerical-methods-atlas/atlas-home-data.js"
       ],
       "checks": [
         "scripts/search-assets.test.mjs"
@@ -470,12 +480,21 @@
       "inputs": [
         "frontend/atlas/app.js",
         "catalog/atlas-purpose.json",
-        "numerical-methods-atlas/content.*.json"
+        "numerical-methods-atlas/content.*.json",
+        "catalog/atlas-home.json",
+        "numerical-methods-atlas/coverage.json",
+        "numerical-methods-atlas/references.json",
+        "numerical-methods-atlas/methods/index.json",
+        "numerical-methods-atlas/solutions/index.json",
+        "catalog/atlas-reading-index.json",
+        "numerical-methods-atlas/gallery/index.json",
+        "numerical-methods-atlas/equations/index.json"
       ],
       "outputs": [
         "numerical-methods-atlas/app.js",
         "numerical-methods-atlas/atlas-runtime-data.mjs",
-        "numerical-methods-atlas/runtime-asset-manifest.json"
+        "numerical-methods-atlas/runtime-asset-manifest.json",
+        "numerical-methods-atlas/atlas-home-data.js"
       ],
       "checks": [
         "scripts/search-assets.test.mjs"

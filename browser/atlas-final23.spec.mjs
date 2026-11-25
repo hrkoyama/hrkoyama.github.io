@@ -167,6 +167,7 @@ test('final23 execution figures, typed study outcomes, gallery bindings and skil
  test.setTimeout(120_000); // Only this new bounded test; existing project timeouts stay unchanged.
  const language=info.project.metadata.language,width=info.project.use.viewport.width;
  expect(['ja','en']).toContain(language);expect([390,1280]).toContain(width);
+ const collectionClicks=[];
  const errors=[],mirrored=[],visited=[],zipRequests=[];
  page.on('pageerror',error=>errors.push(error.message));
  await page.route(url=>url.pathname.endsWith('.zip'),route=>{zipRequests.push(route.request().url());return route.abort('blockedbyclient');});
@@ -180,6 +181,30 @@ test('final23 execution figures, typed study outcomes, gallery bindings and skil
   mirrored.push({public_url:original.href,local_url:target.href,sha256:fixture.sha256});await route.fulfill({response,body:bytes});
  });
  try{
+  // Each top-level category opens its actual list with the correct initial scope.
+  const homeCopy=read('catalog/atlas-home.json').landing[language].collection;
+  const collectionExpected={papers:read('numerical-methods-atlas/coverage.json').counts.papers,books:read('numerical-methods-atlas/coverage.json').counts.books,methods:read('numerical-methods-atlas/methods/index.json').methods.length,tests:read('numerical-methods-atlas/gallery/index.json').items.length,solutions:read('numerical-methods-atlas/solutions/index.json').count,equations:read('numerical-methods-atlas/equations/index.json').equations.length,fields:read('catalog/atlas-reading-index.json').groups.length};
+  for(const item of homeCopy.items){
+   await page.goto(`/numerical-methods-atlas/?lang=${language}`,{waitUntil:'domcontentloaded'});
+   const panel=page.locator('.home-collection:visible'),link=panel.locator(`[data-home-collection-item="${item.id}"]`);await expect(panel).toBeVisible();await expect(panel.locator('[data-home-collection-item]')).toHaveCount(7);
+   await expect(link).toContainText(String(collectionExpected[item.id]));await expect(link).toContainText(item.label);
+   const expected=new URL(item.href,baseURL);await link.click();await expect.poll(()=>{const url=new URL(page.url());return url.pathname+url.search+url.hash;}).toBe(expected.pathname+expected.search+expected.hash);
+   if(['papers','books'].includes(item.id)){
+    await expect(page.locator('#reference-search')).toHaveValue(item.id==='papers'?'type:paper':'type:book');
+    await expect(page.locator('.reference-item')).toHaveCount(collectionExpected[item.id]);
+    const actual=await page.locator('.reference-item .reference-links code').allTextContents();
+    const desired=read('numerical-methods-atlas/coverage.json').publications.filter(row=>item.id==='papers'?['article','inproceedings'].includes(row.type):row.type==='book').map(row=>row.id);expect(actual.sort()).toEqual(desired.sort());
+   }else if(item.id==='methods'){
+    const active=page.locator(`[data-site-language="${language}"]`);await expect(active.locator('[data-method-status]')).toHaveValue('all');await expect(active.locator('[data-method-query]')).toHaveValue('');await expect(active.locator('[data-method-id]')).toHaveCount(collectionExpected.methods);
+   }else if(item.id==='tests'){
+    const active=page.locator(`[data-gallery][data-site-language="${language}"]`);await expect(active.locator('[data-gallery-group="all"]')).toHaveAttribute('aria-pressed','true');await expect(active.locator(`[id="gallery-query-${language}"]`)).toHaveValue('');await expect(active.locator('[data-problem-id]')).toHaveCount(collectionExpected.tests);
+   }else if(item.id==='solutions'){
+    const active=page.locator(`[data-site-language="${language}"]`);await expect(active.locator('[data-solution-id]')).toHaveCount(collectionExpected.solutions);
+    for(const [kind,count]of Object.entries(read('numerical-methods-atlas/solutions/index.json').counts))await expect(active.locator(`[data-solution-kind="${kind}"]`)).toHaveCount(count);
+   }else if(item.id==='equations')await expect(page.locator(`[data-site-language="${language}"] [data-equation-id]`)).toHaveCount(collectionExpected.equations);
+   else{await expect(page.locator('[data-reading-group]')).toHaveCount(collectionExpected.fields);await expect(page.locator('[data-reading-input]')).toHaveValue('');}
+   expect(await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth)).toBeLessThanOrEqual(1);collectionClicks.push({id:item.id,count:collectionExpected[item.id],path:new URL(page.url()).pathname,hash:new URL(page.url()).hash});
+  }
   for(const item of cases){
    const response=await page.goto(`/numerical-methods-atlas/validation/${item.id}/?lang=${language}`,{waitUntil:'domcontentloaded'});expect(response.status()).toBe(200);
    const active=page.locator(`[data-site-language="${language}"]`),article=active.locator(`[data-validation-case="${item.id}"]`);
@@ -227,6 +252,6 @@ test('final23 execution figures, typed study outcomes, gallery bindings and skil
   for(const name of Object.keys(skillManifest.files))await expect(skill.locator(`a[href="${skillBase}${name}"]`)).toBeVisible();
   expect(await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth)).toBeLessThanOrEqual(1);
   expect(visited).toHaveLength(19);expect(zipRequests).toEqual([]);expect(errors).toEqual([]);
-  await info.attach('final23-ui-coverage',{body:Buffer.from(JSON.stringify({scope:'Candidate UI integration only; no scientific execution, ZIP bodies or actual public-HR success claim.',language,width,visited,new_physical_problems:policy.newProblems,reused_physical_problems:policy.reusedProblems,mirrored,zip_requests:zipRequests,pageerrors:errors},null,2)),contentType:'application/json'});
+  await info.attach('final23-ui-coverage',{body:Buffer.from(JSON.stringify({scope:'Candidate UI integration only; no scientific execution, ZIP bodies or actual public-HR success claim.',language,width,collectionClicks,visited,new_physical_problems:policy.newProblems,reused_physical_problems:policy.reusedProblems,mirrored,zip_requests:zipRequests,pageerrors:errors},null,2)),contentType:'application/json'});
  }finally{await page.unrouteAll({behavior:'wait'});}
 });

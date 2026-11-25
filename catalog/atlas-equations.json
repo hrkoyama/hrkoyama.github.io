@@ -2539,7 +2539,15 @@
       },
       "supplemental_examples": [
         "immigration-death-ssa"
-      ]
+      ],
+      "formula_source": {
+        "kind": "verified-supplement",
+        "case_id": "immigration-death-ssa",
+        "path": "code/validated-examples/2026-11-25/biology-ode-controls/cases.json",
+        "sha256": "ba2a1ca599d893f8460f853b712f407784d1b963ed2fac778193e275652225c0",
+        "json_pointer": "/1/formulas/0",
+        "source_formula": "\\varnothing\\xrightarrow{6}N,\\qquad N\\xrightarrow{N} \\varnothing"
+      }
     },
     {
       "id": "forced-keller-segel-model",
@@ -2568,12 +2576,16 @@
         "keller-segel-forced-flux"
       ],
       "formula_source": {
-        "path": "code/validated-examples/2026-11-25/biology-space-controls/keller_segel.py",
-        "python_symbols": [
-          "exact",
-          "expanded_source",
-          "reference_geometry"
-        ]
+        "kind": "verified-supplement",
+        "case_id": "keller-segel-forced-flux",
+        "path": "code/validated-examples/2026-11-25/biology-space-controls/cases.json",
+        "sha256": "9128ac9e123ac817a890e279433ec11d275c52b0e00b33575ca69d6b3d967a46",
+        "json_pointer": "/2/formulas/0",
+        "source_formula": "n_t+\\nabla\\cdot(wn)=D_n\\Delta n-\\chi\\nabla\\cdot(n\\nabla c)+rn(1-n)+s_n",
+        "derivation_note": {
+          "ja": "先頭2式は固定配布ケースの式と逐字一致します。第3式の製造解と強制項の実装は、同配布物keller_segel.pyのexact・expanded_source・reference_geometryに対応します。",
+          "en": "The first two equations match the fixed release case formulas verbatim. The third manufactured solution and forcing implementation correspond to exact, expanded_source and reference_geometry in keller_segel.py in the same release."
+        }
       }
     },
     {
