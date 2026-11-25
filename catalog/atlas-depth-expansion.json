@@ -419,8 +419,8 @@
         "fluid"
       ],
       "intro": {
-        "ja": "非一様に動くセルの保存的ALE輸送とGCL、および2次元C格子の線形回転浅水波を時間発展させます。SaltzmanピストンとWilliamson球面問題は次段階の未実装項目です。",
-        "en": "Time-advance conservative ALE transport on genuinely nonuniform moving cells with GCL, and2D linear rotating C-grid shallow-water waves. Saltzman pistons and global Williamson problems remain future work."
+        "ja": "非一様に動くセルの保存的ALE輸送とGCL、および2次元C格子の線形回転浅水波を時間発展させます。Saltzman型の所与ALEピストンと限定した球面輸送・軸対称釣合いは別配布で追加し、一般の全球Williamson力学は未検証です。",
+        "en": "Time-advance conservative ALE transport on genuinely nonuniform moving cells with GCL, and2D linear rotating C-grid shallow-water waves. A prescribed-ALE Saltzman-type piston and limited sphere transport/axisymmetric balance are separate additions; general global Williamson dynamics remain unverified."
       }
     },
     {
@@ -935,6 +935,86 @@
         "ja": "Poisson PINN・周期熱FNOと、酵素・捕食被食・SEIRを固定予算で調べます。学習/近似の元精度目標と再現検査を区別します。",
         "en": "Study a Poisson PINN, periodic-heat FNO and enzyme, predator–prey and SEIR systems under fixed budgets. Original learning and approximation goals remain separate from reproduction checks."
       }
+    },
+    {
+      "id": "quantum-small",
+      "edition": "2026-11-25",
+      "title": {
+        "ja": "小さな量子模型と保存参照カード",
+        "en": "Small quantum models and saved-reference cards"
+      },
+      "fields": [
+        "temperature",
+        "quantum-atoms",
+        "quantum-molecular",
+        "quantum-periodic"
+      ],
+      "intro": {
+        "ja": "固定2準位連成・1D固有対・最小分子・3波模型と、H/He・周期Heの保存参照監査です。重い一般範囲は残します。",
+        "en": "Fixed two-state dynamics,1D eigenpairs,minimal molecules and a3-wave model plus saved H/He and periodic-He audits. Broad expensive tails remain unverified."
+      }
+    },
+    {
+      "id": "biology-ode-controls",
+      "edition": "2026-11-25",
+      "title": {
+        "ja": "神経膜と反応SSAの独立検証",
+        "en": "Independent checks of membrane dynamics and reaction SSA"
+      },
+      "fields": [
+        "biology"
+      ],
+      "intro": {
+        "ja": "Hodgkin–Huxleyの電位固定・静止・発火と、移入–死亡SSAの厳密過渡分布を、小さな固定入力で照合します。",
+        "en": "Check Hodgkin–Huxley clamps, rest and firing alongside exact immigration–death SSA transient laws on fixed small inputs."
+      }
+    },
+    {
+      "id": "biology-space-controls",
+      "edition": "2026-11-25",
+      "title": {
+        "ja": "生物反応拡散の2次元・境界検証",
+        "en": "Biological reaction–diffusion: two-dimensional and boundary controls"
+      },
+      "fields": [
+        "biology"
+      ],
+      "intro": {
+        "ja": "Fisherの特殊速度前線、2次元Schnakenbergの境界別過渡、外力付きKeller–Segelのセル平均・流束を独立参照と比べます。",
+        "en": "Compare a special-speed Fisher front, boundary-specific two-dimensional Schnakenberg transients and forced Keller–Segel cell averages and fluxes with independent references."
+      }
+    },
+    {
+      "id": "thermostat-constraint-controls",
+      "edition": "2026-11-25",
+      "title": {
+        "ja": "決定論的温度制御と拘束自由度",
+        "en": "Deterministic thermostats and constrained degrees of freedom"
+      },
+      "fields": [
+        "temperature"
+      ],
+      "intro": {
+        "ja": "小さな調和・四次系で温度制御の違いを比較し、固定線形拘束の有効自由度・運動量共分散・過渡分布を検証します。未達の統計目標も表示します。",
+        "en": "Compare thermostats on small harmonic/quartic systems and check effective degrees of freedom, momentum covariance and transient distributions under fixed linear constraints. Retain unmet statistical goals."
+      }
+    },
+    {
+      "id": "continuum-particle-controls",
+      "edition": "2026-11-25",
+      "title": {
+        "ja": "ALEピストン・球面輸送・SPH/GSPHの限定検証",
+        "en": "Scoped ALE piston, sphere transport and SPH/GSPH controls"
+      },
+      "fields": [
+        "fluid",
+        "particles",
+        "transport"
+      ],
+      "intro": {
+        "ja": "所与ALEの有限圧力ピストン、限定球面輸送と軸対称釣合い、実GSPHとSPH対照を固定入力で検証します。",
+        "en": "Fixed prescribed-ALE piston, limited sphere transport and axisymmetric balance, plus actual GSPH and separate SPH controls."
+      }
     }
   ],
   "case_problem_ids": {
@@ -1075,7 +1155,26 @@
     "fno-periodic-heat": "heat-periodic",
     "enzyme-qssa": "enzyme-qssa",
     "lotka-volterra": "lotka-volterra",
-    "seir-linearization": "seir-linearization"
+    "seir-linearization": "seir-linearization",
+    "two-state-bo-cp-ou": "two-state-bo-cp-model",
+    "atomic-reference-cards": "helium-ground-state",
+    "quantum-box-ho": "quantum-box-ho",
+    "h2-rhf-uhf-fci": "h2-rhf",
+    "h3plus-mp2-fci": "h3plus-minimal",
+    "periodic-he-reference-cards": "periodic-he-forces",
+    "periodic-projector-occupations": "finite-projector-fermi",
+    "hodgkin-huxley-controls": "hodgkin-huxley-controls",
+    "immigration-death-ssa": "immigration-death-ssa",
+    "fisher-kpp-special-front": "fisher-kpp-special-front",
+    "schnakenberg-2d-boundary-modes": "schnakenberg-2d-boundary-modes",
+    "keller-segel-forced-flux": "keller-segel-forced-flux",
+    "deterministic-thermostat-contrasts": "thermostatted-quartic",
+    "projected-canonical-dof": "projected-canonical-dof",
+    "saltzman-ale-piston": "saltzman-ale-piston",
+    "williamson-sphere-transport": "williamson-sphere-transport",
+    "sphere-zonal-balance": "sphere-zonal-balance",
+    "gsph-sod": "sod",
+    "sph-pressure-acoustics": "sph-pressure-acoustics"
   },
   "routine_policy": {
     "ja": "通常の補助例CIは、公開レジストリに登録した補助配布グループをNumPy・SciPy・pytestで実行します。保存済みの独立参照は版・入力・実行記録を照合し、新規の参照計算と区別します。量子収束を含む従来の共通22例は必要時の手動実行とし、既存の配布物・公差・履歴を保持します。",
@@ -1525,6 +1624,82 @@
     "seir-linearization": {
       "ja": "2つの小初期感染量による固定係数の整合性比較です。早期線形化をt=20全体の厳密解と見なさず、単一の優勢モードで両モードを置き換えません。実流行の予測・統計的被覆・任意人口への一般保証は行いません。 時間・濃度・個体数の軸は空間次元ではありません。率は教育用で疾病・実験予測ではありません。",
       "en": "These fixed-coefficient calculations compare two small initial infection levels. The early linearization is not an exact solution through t=20, and a single dominant mode does not replace the two-mode solution. No epidemic forecast, statistical coverage or arbitrary-population guarantee is claimed. Time, concentrations and populations do not define a spatial dimension. The rates are educational, not disease or experimental predictions."
+    },
+    "two-state-bo-cp-ou": {
+      "ja": "長時間第一原理NVE、一般の多軌道直交制約・SCF誤差、電子/核の一般熱浴、正準平衡・断熱分離・エルゴード性、実物質は未検証。",
+      "en": "Long first-principles NVE, general multi-orbital orthonormality/SCF errors, general electronic/nuclear baths, canonical equilibration, adiabatic/ergodic certification and materials remain unverified."
+    },
+    "atomic-reference-cards": {
+      "ja": "参照カードの整備・保存値照合であり、新SCF/新独立参照は0回。相関込み厳密He、完全基底極限、全軌道の再実行は主張しません。",
+      "en": "Curation and saved-value audit only: zero new SCF/independent-reference runs. No correlated-exact He, complete-basis limit or full orbital rerun claim."
+    },
+    "quantum-box-ho": {
+      "ja": "8回の全固有対計算で824組をraw保存、規格化等の資格判定は選択24組です。節の閾値と位相は診断、HO0.003は固定例の達成目標で証明済み上界ではありません。有限壁と格子感度を相殺から独立に保証しません。",
+      "en": "Eight full solves save824raw pairs; qualification applies to24selected pairs. Thresholded nodes/phase are diagnostics. HO0.003 is a met fixed-case goal, not a proved bound; finite-wall/mesh sensitivities do not certify separate errors."
+    },
+    "h2-rhf-uhf-fci": {
+      "ja": "2固定距離のみ。有限基底FCIは連続空間の厳密解ではなく、UHF定常解の一般的な大域最小性は保証しません。角運動量・完全基底・広い解離曲線は未検証。",
+      "en": "Only2fixed distances. Finite-basis FCI is not continuum exactness, and UHF stationarity is not a general global-minimum guarantee. Angular/complete-basis convergence and a broad dissociation curve remain untested."
+    },
+    "h3plus-mp2-fci": {
+      "ja": "独立な演算子組立と2電子RS2恒等式で固定小模型を照合します。新しい外部PySCF参照はありません。一般分子DFT、CC、多参照法、精密エネルギー・最適化・化学精度は未実装/未検証。MP2は変分上界ではありません。",
+      "en": "Independent operator assembly and two-electron RS2 identity qualify this fixed toy. No fresh external PySCF scalar. General molecular DFT, CC, multireference methods, precision energetics, geometry optimization and chemical accuracy remain unimplemented/unverified. MP2 is not variational."
+    },
+    "periodic-he-reference-cards": {
+      "ja": "既存の6力成分・エネルギー差分・Gaussian/PW比較の保存値照合です。電子計算の追加0回。新しい基底/k/カットオフ走査、一般物質、金属、長時間MDへ拡張しません。",
+      "en": "Audit of stored6force components, energy differences and Gaussian/PW comparisons; zero new electronic solves. No new basis/k/cutoff scans, materials, metals or longMD claim."
+    },
+    "periodic-projector-occupations": {
+      "ja": "自作3平面波の線形Hamiltonianです。平均占有の独立粒子Fermi模型であり、整数粒子の正準多体系ではありません。自己無撞着Hartree/XC、元素適合ノルム保存擬ポテンシャル、実金属、一般材料、長時間MDは未検証。",
+      "en": "Authored linear3-wave Hamiltonian with independent-particle mean Fermi occupations, not an integer-particle canonical many-body ensemble. No self-consistent Hartree/XC, element-fitted norm-conserving PSP, real metal, general material or longMD validation."
+    },
+    "hodgkin-huxley-controls": {
+      "ja": "1細胞膜の教育例です。元論文の電位規約、TABLE/cnexp実装、ケーブル伝播や生体実測の再現とは呼びません。区間内に括れない発火は捏造せず、静止根の一意性・区間Hurwitz安定性は主張しません。",
+      "en": "This educational membrane model does not reproduce the original voltage convention, TABLE/cnexp, cable propagation or measured physiology. Missing/unresolved events remain explicit; rest-root uniqueness and interval-Hurwitz stability are unclaimed."
+    },
+    "immigration-death-ssa": {
+      "ja": "有限時間の決定論的初期状態を定常分布とは呼びません。区間の保証は理想IID法則の参照に限り、PRNG・対数演算を含むソフトウェア全体の被覆率保証や単一軌跡の代表性を主張しません。",
+      "en": "Finite deterministic-start transients are not stationary. Interval qualification concerns the idealIID reference law, without a whole-software PRNG/logarithm coverage guarantee or a claim that one path represents the ensemble."
+    },
+    "fisher-kpp-special-front": {
+      "ja": "特殊前線を一般の最小速度2の前線と同一視しません。急減衰初期値からの速度選択、長時間伝播、機械誤差込みの厳密障壁証明は対象外です。",
+      "en": "The special front is distinct from the minimum linear speed2. This is not a steep-data speed-selection study, long-time propagation result or certified machine-error barrier proof."
+    },
+    "schnakenberg-2d-boundary-modes": {
+      "ja": "短時間の小振幅・固定初期値です。一般的な模様選択、成長後の成熟パターン、原著図の再現は主張しません。有限の参照差を連続体誤差の厳密上界と呼びません。",
+      "en": "This short small-amplitude study does not establish general pattern selection, mature patterns or reproduction of original figures. Finite reference differences are not rigorous continuum error bounds."
+    },
+    "keller-segel-forced-flux": {
+      "ja": "著者作成の強制2場モデルです。原著の全生物モデル、ピーク形成、真のblow-upやその抑制を実証しません。負値をクリップして正値性を装いません。",
+      "en": "This authored forced two-field model does not reproduce the full original biological model or demonstrate aggregation, true blow-up or suppression. No clipping is used to manufacture positivity."
+    },
+    "deterministic-thermostat-contrasts": {
+      "ja": "著者作成の分割でありLAMMPS/MKT実装の完全再現ではありません。時刻20は混合・平衡化の証明でなく、平均温度一致だけで正準分布や一般的なエルゴード性を認定しません。 調査目標には、異なる熱浴の正準モーメント・相関と、固定した正準/加熱アンサンブルの有限時刻での比較が含まれます。未達は熱浴・初期集団ごとの結果を残したもので、必須の実装・再現検査とは別に読みます。",
+      "en": "This authored splitting is not a full LAMMPS/MKT reproduction. Time20does not prove mixing/equilibration; correct mean temperature alone does not establish canonical sampling or general ergodicity. Study targets compare canonical moments and correlations across different baths and finite-time canonical/heated ensembles. Retained unmet outcomes must be read by bath and initial ensemble, separately from mandatory implementation and reproduction checks."
+    },
+    "projected-canonical-dof": {
+      "ja": "固定線形拘束の小例です。非線形分子拘束、Fixman補正、輸送係数へ一般化しません。独立seedの冗長拘束系には軌跡の一致を要求せず、CSVRの動的相関は経験的な結果です。",
+      "en": "These fixed linear constraints do not cover nonlinear molecular constraints,Fixman corrections or transport coefficients. Redundant systems with independent seeds need not have identical paths; CSVR dynamical correlations are empirical."
+    },
+    "saltzman-ale-piston": {
+      "ja": "Tan–Lv–Zhu (2023) Example 8 の e0=10^-4 を明示した有限圧力版。所与のアフィンALE格子を使う2D Euler/Rusanov例で、物質追従格子、WENO、remapや1985原報の全面再現ではありません。",
+      "en": "Tan–Lv–Zhu (2023) Example 8 variant with e0=1e-4 and finite initial pressure. Prescribed affine ALE, 2D Euler and Rusanov; not their material Lagrangian mesh, WENO/remap scheme or a full reproduction of the unread 1985 report."
+    },
+    "williamson-sphere-transport": {
+      "ja": "単位球の所与の剛体回転によるスカラー輸送だけです。原W92全文の式は未閲読で、Nairらの選択した著者資料との規約照合に限ります。両格子とも11回の非整合なremap。非保存の双線形補間で質量ずれを報告し、時間収束とは呼びません。",
+      "en": "Only prescribed scalar solid-body rotation on a unit sphere. Original W92 equations remain unread; selected Nair author formulas cross-check conventions. Both grids use eleven noncommensurate remaps. Bilinear interpolation is nonconservative; report mass drift and do not claim temporal convergence or a nonlinear global SWE core."
+    },
+    "sphere-zonal-balance": {
+      "ja": "a=g=1, Ω=2, u0=.5, h0=10 の軸対称な無次元部分問題。運動量中心差分・質量FV・RK4の混成で実際に時間発展させます。標準地球条件や全球多次元SWE、厳密な離散釣合い・PV保存の再現ではありません。",
+      "en": "Axisymmetric nondimensional subproblem with a=g=1, Omega=2, u0=.5 and h0=10. Actual time evolution uses centered primitive momentum, finite-volume mass and RK4. Not standard Earth parameters, a full global multidimensional SWE core, exact discrete balance or a PV-conservation claim."
+    },
+    "gsph-sod": {
+      "ja": "Gaussianの線形比体積畳み込み、対称な可変h、独立な対Riemann解と反対称な全エネルギー交換を持つGSPHです。通常SPHへp*を代入する代用ではありません。一次再構成に限定し、論文のcubic/MUSCLや一般精度を主張しません。",
+      "en": "Actual Gaussian linear-specific-volume GSPH overlap with symmetric variable h, independent pair Riemann solves and antisymmetric total-energy exchange; not substitution of star pressure into ordinary SPH. First-order reconstruction only, not the paper cubic/MUSCL implementation or a general accuracy claim."
+    },
+    "sph-pressure-acoustics": {
+      "ja": "GSPH、摂動した128粒子、t=0.2。初期カーネル再構成誤差は最大0.011834で、音波振幅0.001より大きく、左の密度分布にその影響が残ります。右は初期誤差です。判定は基本Fourierモードの位相・振幅と保存量などの固定条件であり、点ごとの高精度や一般的な優位性を示しません。",
+      "en": "GSPH with 128 jittered particles at t=0.2. The initial kernel reconstruction error reaches 0.011834, exceeding the acoustic amplitude 0.001 and remaining visible in the left density profile; the right panel shows that initial error. Acceptance concerns the fundamental Fourier mode phase/amplitude and other fixed conservation controls, not pointwise high accuracy or general superiority."
     }
   },
   "case_equations": {
@@ -2427,6 +2602,194 @@
         "ja": "閉鎖人口S+E+I+R=1、β=0.6、σ=0.3、γ=0.2。η=10⁻⁴/5×10⁻⁵に対し(S,E,I,R)(0)=(1−2η,η,η,0)、0≤t≤20。出生・死亡・外部流入はありません。",
         "en": "Use a closed population S+E+I+R=1 with β=0.6, σ=0.3 and γ=0.2. For η=10⁻⁴ or 5×10⁻⁵, start from (1−2η,η,η,0) and evolve to t=20. There are no births, deaths or external inflows."
       }
+    },
+    "two-state-bo-cp-ou": {
+      "ids": [
+        "two-state-bo-cp-model"
+      ],
+      "note": {
+        "ja": "無次元の核座標と規格化した1電子角。3固定刻み、2架空質量、1固定seedのOU熱浴です。 自作模型の無次元単位。Q,時間,電子角,温度を固定し、M=20、架空角質量μ=.04/.01。cp.xのemass規約とは別です。",
+        "en": "Actual coupled normalized electronic angle and nuclear coordinate, short NVE plus one nuclear OU trajectory. No first-principles/long NVE/canonical sampling/production CPMD. BO and mu.04 state comparisons use fixed4096/8192 RK4 companions; mu.01 receives energy checks only. Authored dimensionless model units with M=20 and angular fictitious mass mu=.04/.01; these are not cp.x emass units."
+      }
+    },
+    "atomic-reference-cards": {
+      "ids": [
+        "stationary-schrodinger",
+        "hartree-fock-model",
+        "kohn-sham-model"
+      ],
+      "note": {
+        "ja": "Hは無限質量点核の1電子、Heは球対称1軌道の閉殻HFまたは交換のみLDAです。 エネルギーhartree、rはbohr。uはbohr^(-1/2)、pはbohr^(-1)、nはbohr^(-3)。保存3行は各40基底関数であり40計算行ではありません。",
+        "en": "Three saved 40-function He reference rows, hydrogenic analytic equations, p versus n and finite-grid/basis/model limits. Energies in hartree, radius in bohr; u in bohr^-1/2, p in bohr^-1 and n in bohr^-3. Three saved rows each use40basis functions, not40computed rows."
+      }
+    },
+    "quantum-box-ho": {
+      "ids": [
+        "stationary-schrodinger"
+      ],
+      "note": {
+        "ja": "原子単位、ゼロDirichlet端点、一様内点格子。箱[0,1]とHO[-L,L]です。 1次元模型の原子単位でℏ=m=1、HOはω=1。箱[0,1]とHOの有限区間[-L,L]はいずれも同次Dirichlet。",
+        "en": "Finite Dirichlet boxes and central differences; whole-line HO formulas do not isolate finite-wall error. Node counts diagnostic until forward sign qualification. Atomic model units hbar=m=1 and HO omega=1. The box[0,1] and finite HO[-L,L] domains both use homogeneous Dirichlet conditions."
+      }
+    },
+    "h2-rhf-uhf-fci": {
+      "ids": [
+        "stationary-schrodinger",
+        "hartree-fock-model",
+        "unrestricted-hartree-fock-model"
+      ],
+      "note": {
+        "ja": "H-H距離1.4/3.0bohr、2電子、HごとにSTO-3G縮約s軌道を1個用います。 核間距離1.4/3.0bohr、全エネルギーhartree。各Hに同じ明示3primitiveのs型収縮を1つ置く2AO/2電子の固定部分空間。",
+        "en": "Explicit unchanged STO-3G s contraction, R1.4/3.0bohr, finite-basis FCI and broken-spin UHF; not exact continuum chemistry. Distances1.4/3.0bohr and total energies in hartree. Two electrons in2AOs, each an explicitly supplied three-primitive contracted Hs function."
+      }
+    },
+    "h3plus-mp2-fci": {
+      "ids": [
+        "stationary-schrodinger",
+        "hartree-fock-model"
+      ],
+      "note": {
+        "ja": "H核3個、電荷+1、2電子、3縮約s軌道の非対称三角形1個です。 H3+の固定3中心[(0,0,0),(1.5,0,0),(.5,1.5,0)]bohr、電荷+1、2電子/3s軌道。エネルギーhartree。",
+        "en": "Two electrons/3 explicit s orbitals, one fixed non-symmetric triangle. Molecular DFT, CC and general multireference/large molecules remain unimplemented tails. One H3+ geometry[(0,0,0),(1.5,0,0),(.5,1.5,0)]bohr, charge+1,2electrons/3s orbitals; energies in hartree."
+      }
+    },
+    "periodic-he-reference-cards": {
+      "ids": [
+        "kohn-sham-model"
+      ],
+      "note": {
+        "ja": "人工2He・4電子・5bohrセル、局所のみのGTH、固定LDA_X+VWNとコード版です。 人工He2、4電子、5bohrセル。保存した幾何・局所GTH版・LDA_X+VWN/Libxc・PySCF/DFTK版をsaved-data/periodic-he-reference.jsonに固定。エネルギーhartree、力hartree/bohr。",
+        "en": "Audit saved six-coordinate FD and Gaussian/PW comparisons; source versions, local-only He GTH, XC/units/cell/electron count fixed. No new k/basis/cutoff scans. Artificial He2,4electrons,5bohr cell. Stored geometry/localGTH version/LDA_X+VWN/Libxc/PySCF/DFTK versions remain fixed in saved-data/periodic-he-reference.json. Energy hartree; force hartree/bohr."
+      }
+    },
+    "periodic-projector-occupations": {
+      "ids": [
+        "finite-projector-fermi-model"
+      ],
+      "note": {
+        "ja": "G=-1,0,1、k=±0.25、等重み、T=.05、電子数1.5の自作線形模型です。 無次元のG=-1,0,1、p=G+k、k=±.25、重み各.5、T=.05、平均電子数N=1.5、スピン係数2。実在格子定数や金属へ換算しません。",
+        "en": "Authored rank-one periodic linear model and finite-N Helmholtz forces. No real metal/element pseudopotential/norm conservation/Hartree-XC/long MD claim. N=1.5 is a mean independent-particle Fermi occupation count, not an integer-N canonical many-body ensemble. Dimensionless G=-1,0,1,p=G+k,k=±.25 with equal.5weights,T=.05,mean electron countN=1.5 and spin factor2. No physical lattice-constant or metal mapping."
+      }
+    },
+    "hodgkin-huxley-controls": {
+      "ids": [
+        "bio-hodgkin-huxley"
+      ],
+      "note": {
+        "ja": "6.3°C、ms/mV/µA cm⁻²。NEURON8.2.6の解析的な絶対電位規約を固定し、4電位×3刻み、静止20 ms、10–11 msの電流パルスを扱います。",
+        "en": "Fix6.3°C and the NEURON8.2.6 analytic absolute-voltage convention in ms/mV/µA cm⁻². Use four clamp voltages, three steps, a20ms rest and a10–11ms pulse."
+      }
+    },
+    "immigration-death-ssa": {
+      "ids": [
+        "bio-chemical-master",
+        "immigration-death-model"
+      ],
+      "note": {
+        "ja": "移入率6、粒子ごとの死亡率1、時刻0/0.5/2/4。初期0・5・名目上のPoisson(6)定常標本を2seedずつ、各2,048本で比較します。",
+        "en": "Use immigration6, per-particle death1 and observations0/0.5/2/4. Compare initial0,5 and nominal stationary Poisson(6), two seeds each and2,048paths per record."
+      }
+    },
+    "fisher-kpp-special-front": {
+      "ids": [
+        "bio-fisher-kpp"
+      ],
+      "note": {
+        "ja": "D=r=1、T=1。Ablowitz–Zeppetella型の特殊波速5/√6、L=12の空間・時間系列、定数端点L=6/12/24の境界比較を固定します。",
+        "en": "Use D=r=1,T=1 and the special speed5/√6. Fix spatial/time series on L12 and constant-endpoint boundary rows at L6/12/24."
+      }
+    },
+    "schnakenberg-2d-boundary-modes": {
+      "ids": [
+        "bio-schnakenberg"
+      ],
+      "note": {
+        "ja": "[0,2π]²、T=2、a=0.1,b=0.9,Du=0.01,Dv=1。平衡(1,0.9)のまわりで3初期値と12/24/48セル、一定の非周期境界を使います。",
+        "en": "On[0,2π]² toT2,use a.1,b.9,Du.01,Dv1. Compare three perturbations of(1,.9),12/24/48cell grids and fixed nonperiodic boundary conditions."
+      }
+    },
+    "keller-segel-forced-flux": {
+      "ids": [
+        "bio-keller-segel",
+        "forced-keller-segel-model"
+      ],
+      "note": {
+        "ja": "単位正方形、T=0.25。n=1+0.1e⁻ᵗcosπx cosπy、c=1+0.05e⁻²ᵗcosπx cos2πyに合う強制項と接線方向の発散ゼロ移流を与えます。",
+        "en": "On the unit square toT.25,manufacture forcing for n=1+.1e⁻ᵗcosπx cosπy,c=1+.05e⁻²ᵗcosπx cos2πy with divergence-free tangential advection."
+      }
+    },
+    "deterministic-thermostat-contrasts": {
+      "ids": [
+        "hamiltonian",
+        "finite-mode-thermostat-model"
+      ],
+      "note": {
+        "ja": "単位質量,kBT=1、周波数1/1.7、quartic係数0/0.2。NH1/NHC3/Berendsen/速度固定、2結合・2刻み、正準256＋加熱128レプリカを固定します。",
+        "en": "Fix unit masses,kBT1,frequencies1/1.7 and quartic0/.2. Compare NH1,NHC3,Berendsen and fixed-speed baths at two couplings/two steps with256canonical and128heated replicas."
+      }
+    },
+    "projected-canonical-dof": {
+      "ids": [
+        "projected-canonical-model"
+      ],
+      "note": {
+        "ja": "質量1/2/3の1D3粒子と1つの共通調和ポテンシャル。拘束なし・COM・COM＋相対・冗長行を含む同じ拘束でf=3/2/1/1、各1,024レプリカを用います。",
+        "en": "Use three1Dparticles of masses1/2/3 in one common harmonic potential. No constraints,COM,COM-relative and a redundant-row equivalent have f3/2/1/1,each with1,024replicas."
+      }
+    },
+    "saltzman-ale-piston": {
+      "ids": [
+        "euler"
+      ],
+      "note": {
+        "ja": "Tan–Lv–Zhu (2023) Example 8 の e0=10^-4 を明示した有限圧力版。所与のアフィンALE格子を使う2D Euler/Rusanov例で、物質追従格子、WENO、remapや1985原報の全面再現ではありません。",
+        "en": "Tan–Lv–Zhu (2023) Example 8 variant with e0=1e-4 and finite initial pressure. Prescribed affine ALE, 2D Euler and Rusanov; not their material Lagrangian mesh, WENO/remap scheme or a full reproduction of the unread 1985 report."
+      }
+    },
+    "williamson-sphere-transport": {
+      "ids": [
+        "sphere-scalar-advection"
+      ],
+      "note": {
+        "ja": "単位球の所与の剛体回転によるスカラー輸送だけです。原W92全文の式は未閲読で、Nairらの選択した著者資料との規約照合に限ります。両格子とも11回の非整合なremap。非保存の双線形補間で質量ずれを報告し、時間収束とは呼びません。",
+        "en": "Only prescribed scalar solid-body rotation on a unit sphere. Original W92 equations remain unread; selected Nair author formulas cross-check conventions. Both grids use eleven noncommensurate remaps. Bilinear interpolation is nonconservative; report mass drift and do not claim temporal convergence or a nonlinear global SWE core."
+      }
+    },
+    "sphere-zonal-balance": {
+      "ids": [
+        "spherical-shallow-water"
+      ],
+      "note": {
+        "ja": "a=g=1, Ω=2, u0=.5, h0=10 の軸対称な無次元部分問題。運動量中心差分・質量FV・RK4の混成で実際に時間発展させます。標準地球条件や全球多次元SWE、厳密な離散釣合い・PV保存の再現ではありません。",
+        "en": "Axisymmetric nondimensional subproblem with a=g=1, Omega=2, u0=.5 and h0=10. Actual time evolution uses centered primitive momentum, finite-volume mass and RK4. Not standard Earth parameters, a full global multidimensional SWE core, exact discrete balance or a PV-conservation claim."
+      }
+    },
+    "gsph-sod": {
+      "ids": [
+        "euler"
+      ],
+      "note": {
+        "ja": "Gaussianの線形比体積畳み込み、対称な可変h、独立な対Riemann解と反対称な全エネルギー交換を持つGSPHです。通常SPHへp*を代入する代用ではありません。一次再構成に限定し、論文のcubic/MUSCLや一般精度を主張しません。",
+        "en": "Actual Gaussian linear-specific-volume GSPH overlap with symmetric variable h, independent pair Riemann solves and antisymmetric total-energy exchange; not substitution of star pressure into ordinary SPH. First-order reconstruction only, not the paper cubic/MUSCL implementation or a general accuracy claim."
+      }
+    },
+    "sph-pressure-acoustics": {
+      "ids": [
+        "euler"
+      ],
+      "note": {
+        "ja": "GSPH、摂動した128粒子、t=0.2。初期カーネル再構成誤差は最大0.011834で、音波振幅0.001より大きく、左の密度分布にその影響が残ります。右は初期誤差です。判定は基本Fourierモードの位相・振幅と保存量などの固定条件であり、点ごとの高精度や一般的な優位性を示しません。",
+        "en": "GSPH with 128 jittered particles at t=0.2. The initial kernel reconstruction error reaches 0.011834, exceeding the acoustic amplitude 0.001 and remaining visible in the left density profile; the right panel shows that initial error. Acceptance concerns the fundamental Fourier mode phase/amplitude and other fixed conservation controls, not pointwise high accuracy or general superiority."
+      }
     }
+  },
+  "case_study_goal_prefixes": {
+    "hodgkin-huxley-controls": "HH/",
+    "immigration-death-ssa": "SSA/",
+    "fisher-kpp-special-front": "Fisher/",
+    "schnakenberg-2d-boundary-modes": "Schnakenberg/",
+    "keller-segel-forced-flux": "KS/",
+    "deterministic-thermostat-contrasts": "NH/",
+    "projected-canonical-dof": "constraints/"
   }
 }

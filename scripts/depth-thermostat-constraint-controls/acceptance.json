@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "group": "thermostat-constraint-controls",
+  "shared_pytest_plus_main_cap_seconds": 120,
+  "case_contracts": {
+    "93": {
+      "mandatory": {
+        "phi1_abs": 5e-15,
+        "Hext_derivative_scaled": 1e-13,
+        "R_reversal_abs": 1e-10,
+        "Berendsen_inverse_abs": 1e-13,
+        "static_reference_spread_abs": 1e-08,
+        "harmonic_H_CDF_abs": 1e-10,
+        "short_reference_spread_scaled": 1e-08,
+        "CDF_family_count": 256
+      },
+      "study": {
+        "short_fullstate_scaled": 2e-05,
+        "short_order": 1.7,
+        "Hext_scaled_drift": 2e-05,
+        "Hext_order": 1.7,
+        "CDF_point_error": 0.08,
+        "scaled_mean_error": 0.1,
+        "relative_variance_error": 0.2
+      },
+      "scope": "time20notmixing;shortaccuracytau1only;Hextgoalheuristicnotrigorousbound"
+    },
+    "94": {
+      "mandatory": {
+        "rank_and_projector_abs": 1e-12,
+        "rational_covariance_abs": 1e-12,
+        "isotropic_OU_identity_abs": 1e-12,
+        "signed_f1_abs": 1e-12,
+        "OBABO_matrix_noise_abs": 1e-13,
+        "Lyapunov_scaled_residual": 1e-12,
+        "continuous_matrix_abs": 5e-11,
+        "continuous_matrix_imag_abs": 1e-11,
+        "finite_K_CDF_refinement_abs": 1e-10,
+        "physical_constraint_scaled": 1e-12,
+        "CDF_family_count": 220
+      },
+      "study": {
+        "canonical_CDF_error": 0.08,
+        "actual_discrete_CDF_allowance": "sqrt(log(2*220/.05)/(2*1024))"
+      },
+      "scope": "CanonicaltargetCDFvsactualfiniteLangevinGaussianlawdistinct;CSVRACFempirical;noFixman/nonlinearconstraintgeneralization"
+    }
+  },
+  "mandatory_reporting": [
+    "allfixedprimary/reference/componentactions",
+    "actualRNGandworkcounts",
+    "finitequalifiedreferencecompanions",
+    "alloriginalstudygoalstrue/false/nullwithreason",
+    "ownedpartialcheckpointonfailure",
+    "nohiddenclipping/seedselection/rowskipping"
+  ],
+  "passed_semantics": "Allmandatorycomponent/reference/reportingchecks;studygoalsremainseparateandarenotsilentlymasked.",
+  "order_floor": "Ordernullwhenerrorsnotabove20xqualifiedreferencespreadanddeclaredroundofffloor.",
+  "preexecution_review": "freeze.jsonmustbindallsource/input/acceptancebeforeexecution",
+  "owned_main_cap_seconds": 115,
+  "budget_note": "Pre-executionoperationaltightening,notincreasedtimeallowanceorchangedscientificgoal;sharedouter120unchanged."
+}

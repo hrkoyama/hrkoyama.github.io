@@ -1,0 +1,14 @@
+{
+  "source_results": "result.json",
+  "source_results_sha256": "750fa3e7f3fe79a96aaacd46039bf00f18b7623d7c4b09035b3c850bfd5d2c20",
+  "plots": [
+    "atomic-reference-cards.png",
+    "h2-rhf-uhf-fci.png",
+    "h3plus-mp2-fci.png",
+    "periodic-he-reference-cards.png",
+    "periodic-projector-occupations.png",
+    "quantum-box-ho.png",
+    "two-state-bo-cp-ou.png"
+  ],
+  "scope": "Saved numerical arrays/analytic field evaluation only; no eigensolve or SCF rerun."
+}

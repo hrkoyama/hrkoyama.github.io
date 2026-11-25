@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "accessed_on": "2026-11-25",
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/scipy/scipy/v1.14.1/scipy/integrate/_ivp/rk.py",
+      "scope": "Selected RK45 class and rational A/B/C/E tableau lines273–368; local estimate semantics. Driver is authored; no SciPy execution or copied dense-output implementation.",
+      "unread": "Full SciPy implementation and Dormand–Prince1980 original paper body."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/boostorg/odeint/master/include/boost/numeric/odeint/stepper/runge_kutta_cash_karp54.hpp",
+      "scope": "Selected rational Cash–Karp tableau lines38–127. Mathematical coefficients transcribed to an authored Python driver; no C++ code copied.",
+      "unread": "Original Cash–Karp paper and generic C++ driver implementation."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/neuronsimulator/nrn/8.2.6/src/nrnoc/hh.mod",
+      "scope": "Selected convention7–11, physical units/current35–67 and exact analytic rates88–120. Source TABLE/cnexp is not reproduced.",
+      "unread": "Original HH1952 full body; no original-paper figure reproduction claim."
+    },
+    {
+      "url": "https://manual.gromacs.org/current/reference-manual/algorithms/molecular-dynamics.html",
+      "observed_version": "2026.4",
+      "scope": "Selected temperature coupling equations43/47–53 and NH/NHC mass-period conventions. Authored xi velocity convention and exact frozen subflows independently derived.",
+      "unread": "Original NH/MKT papers, package code, rest of manual."
+    },
+    {
+      "url": "https://docs.lammps.org/compute_temp.html",
+      "observed_version": "release13Nov2026",
+      "scope": "Description lines29–38:kinetic temperature/effectiveDOF/constraint deduction/default translational subtraction.",
+      "unread": "Package source and simulations."
+    },
+    {
+      "url": "https://doi.org/10.1007/BF02462380",
+      "scope": "Publisherbibliographic/abstractspecial-speedstatementfrompriorselectedreview.",
+      "unread": "Originalmathematicalbodyunavailable;exactprofileidentityverifiedbyauthoredalgebra,notclaimedfigurematching."
+    },
+    {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/537379/",
+      "scope": "OriginalSchnakenbergbibliographicrecordonly.",
+      "unread": "Originalpaperbodyandfigures;this2DFV/Galerkinprotocolisauthored."
+    },
+    {
+      "url": "https://arxiv.org/pdf/0803.4060",
+      "scope": "SelectedpreprintAppendixA,A1-A7,OUradialrepresentationandchi-squarelaw;selectedcanonicalslice§IIA.",
+      "unread": "Most8-pagepaperandnumericalexamples;notapackagereproduction."
+    },
+    {
+      "url": "https://docs.lammps.org/fix_nh.html",
+      "scope": "Selectedrelease13Nov2026description76-86,tchain/tloopterms;oursubflowmapindependentlyauthored.",
+      "unread": "Shinoda/MKT/TuckermanoriginalpaperbodiesandLAMMPSsource."
+    }
+  ],
+  "authorship": "Manufacturedsolutions,finiteprotocols,intervaloracles,integratorimplementationsandplotsauthoredforthiseducationaledition.",
+  "execution_evidence": "Separateactualresultandreceipt,neverinferredfromsourcepreparation.",
+  "prior_reference_qualification": {
+    "revision": "R4firstfrozenfixedprotocol",
+    "status": "FAIL_RETAINED_NOT_RELABELLED",
+    "source_manifest_sha256": "cac0aa8503612ee99736606319ebd1e53fa6bf05763b238a3318627c47c1c6f5",
+    "group_freeze_sha256": "6af8c1ce99d735996e3733007f9a42ef9b199df9492c6523243392dcbe25cda9",
+    "input_sha256": "8fb00f1cf9b97cbb445bfbb39be8dc9153f9d61e27c7d743b06339c097a9b462",
+    "acceptance_sha256": "d53d9882a8fde2c91b5ddf2ac5812af6651621cda9897500971080784601064a",
+    "executed_result_sha256": "494a4539512332db504397abb6d4fe3ea2f555197c509e1ef26e2b0550fe1b3d",
+    "termination": "completed_fixed_protocol",
+    "all_fixed_records_completed": 49,
+    "failed_check": "Schnakenberg/reference/D-mode42",
+    "deltas": [
+      4.995141182306817e-05,
+      1.5543122344752192e-15,
+      3.1374902675906924e-13
+    ],
+    "sum": 4.995141213837151e-05,
+    "fine_primary_discrepancy": 9.088196030337947e-05,
+    "absolute_allowance": 0.0002,
+    "relative_fraction": 0.1,
+    "interpretation": "OriginalK12/18Dirichletreferenceinsufficientunderrelativecriterion. NewD-onlyK24/32protocolmustqualifybeforeaccuracygoalscanberesolved. Nooriginalresultorcriterionchanged."
+  }
+}

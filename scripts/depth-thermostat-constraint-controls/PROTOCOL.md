@@ -1,0 +1,37 @@
+# Temperature control and linear-constraint statistics
+
+These are small educational fixed systems. No arbitrary molecular dynamics, non-linear constraint, transport or thermodynamic-limit claim is made. All mandatory component/reference qualifications are separate from original accuracy/distribution study goals. Unmet targets and statistically unresolved classifications remain visible.
+
+## Deterministic baths on the same two-mode potentials
+
+Take unit masses,kBT1,U=sum_i[omega_i²q_i²/2+kappa q_i⁴/4],omega=(1,1.7),kappa0/.2. NH has one bath variable; NHC has three. Q1=fT tau² and laterQj=T tau² withf2; this authored mass convention is not the GROMACS period convention containing4pi². Equal numerical tau values do not establish identical dynamical relaxation times across methods.
+
+NH/NHC equations use xi velocities and eta positions. The conserved full-ODE quantity is Hext=H+sumQj xi_j²/2+fT eta1+T sumj>1eta_j. Multiplying each equation by its energy derivative cancels physical friction and adjacent chain energy transfer,leavingdHext/dt0. This algebra is separately evaluated on fixed component states,not inferred from a small numerical drift.
+
+The authored exact frozen-variable subflows are A:p<-exp(-xi1 delta)p; Bj:xi_j<-exp(-xi_{j+1}delta)xi_j+Fj delta phi1(-xi_{j+1}delta),with finalxi using additiveF;and E:eta<-eta+delta xi. Compose E(d/2)B_M(d/2)..B1(d/2)A(d)B1(d/2)..B_M(d/2)E(d/2). Every outer O(h/2) is exactly two such subcycles of durationd=h/4. Eta advances **only inE**,never again in velocityVerlet. phi1 uses its continuous value1and degree6series nearzero,otherwise expm1(z)/z,and independent Decimal branch probes.
+
+Physical reversal is R(q,p,xi,eta)=(q,-p,-xi,eta). The palindrome is tested with R S_h R S_h,including full eta state. Eight short tau1reference solves use an independent fullODE at two fixed tolerances,two potentials,and NH/NHC. Eight primary short evolutions use h1/512and1/1024,T1,17snapshots. The full-state norm is max |error|/(1+|reference|),not physical-state-only. The original2e-5/order1.7 and Hext goals are predeclared heuristic study goals,not rigorous nonlinear error bounds. No tau.25full-trajectory accuracy is borrowed from these tau1checks.
+
+For Berendsen the authored bath is exact K+=K0+(K--K0)exp(-delta/tau),radial direction unchanged. Local negative-time inversion is checked only on the positive-K domain. The concrete invalid fixtureK.25,K01,delta-1,tau1has K+=1-.75e<0 and must reject before sqrt. Simple rescaling is an idempotent noninjective projection; it has no physical-time inverse or NH Hext claim. ZeroK is rejected for global direction-based scaling.
+
+Thirty-two long batched evolutions retain four methods,two potentials,two couplings,two timesteps. Each starts from the same384canonical q/p/bath-normal array for a potential; last128momenta are then heated by1.4. Gaussian-envelope coordinate rejection has a fixed100000proposal cap and explicit ordered draw ledger. Canonical-start means and variances are compared to independent128/256point Boltzmann quadrature. Harmonic references have analytic companions; quartic full-H CDF integrates the K~Exp1 conditional law with turning-point sine substitutions. Gaussian tail truncation is explicit,not silently infinite-domain.
+
+Observation time20is not called equilibrium or a mixing proof. The256CDF families are32runs times2ensembles times(q1,q2,K,H);each family has independent replicas and delta.05/256. The original.08CDF target can remain unresolved because DKW allowances with256/128replicas exceed that scale. No replica/time/seed search is performed. Mean goal uses max |mean-target|/(1+|target|); variance goal uses relative unbiased-variance error. Signed lag products,centered covariances and zero-variance/null correlations are reported from the time20anchor. A physicalzero-state invariant is a limited ergodicity counterexample,not proof that every generic start fails. Earlier Langevin/CSVR results remain linked prior evidence and are not counted as new runs.
+
+## Linear constraints and effective DOF
+
+Use three1Dparticles,masses1/2/3,one ambient U=.5q^T M D²q,D=(1,1.7,1.3). Constraints are Cq0,CM^-1p0,with no constraints,COM,COM-relative,and a redundant copy. Rank givesf3/2/1/1; package3Dtranslation subtraction is not imposed on this1Dtoy or on the confined2DOF system above.
+
+Let q=M^-1/2 Qr,p=M^1/2 Qs with fixed oriented orthonormalQ. Then Kred=Q^T D²Q,canonical s~N(0,TI),r=L^-Tz, K=LL^T with positive Cholesky diagonal. Independently, Fraction RREF removes redundant rows and constructs Cov(p)=T[M-C^T(CM^-1C^T)^+C]. The covariance is rational;Q/Pmay contain radicals. Redundant production ensembles use independent seeds94003/94004,and are not required to have identical paths. A separate common-latent component fixture verifies exact basis equivalence.
+
+Projected isotropic OU is a **positive identity**: forP=QQ^T,Pz=z,P(az+sigma xi)=az+sigma Pxi=Q(as+sigma Q^Txi). It must not be used as a universal failing project-after-thermostat example. The negative control instead applies an ambientf3CSVR radial law to an f1tangent state,changing the conditional K law. Signed f1CSVR is compared with s+=sqrt(c)s+sign(s)sqrt(T(1-c))R,using the explicitly coupled OU normalZ=sign(s)R. Six fixed actions include sign flips. f1consumes no chi-square draws; f0and positive-timezeroKreject before sampling; h0returns an owned copy without RNG.
+
+For column statex=(r,s),OBABO has Dh=Oh Vh Oh,Oh=diag(I,aI),a=exp(-gamma h/2),and B=diag(0,T(1-a²)I). Crucially total noise is Qh=(Oh Vh)B(Oh Vh)^T+B. Independent basis-column and noise-injection constructions qualify these blocks. From canonicalS0=Tdiag(Kred^-1,I),Sn=Dh Sn-1 Dh^T+Qh and crosscov=Dh^nS0. The stationary discrete Lyapunov solutionShis a separate finite-step bias diagnostic,never substituted for canonical-start transients. Continuous exp(A t)S0has an independently qualified matrix companion. There are20continuous actions,40transient covariance actions,and8Lyapunov solves.
+
+Sixteen batched evolutions use4configs times2baths times2steps,1024replicas,T4,observations0/.5/1/2/4. Their220scalar-CDF families coverall tangentcomponents and K. Langevin nulls use actual finite-time Gaussian covariances; the generalized quadratic K CDF uses separately refined angular quadrature and a closed chi radial CDF. Canonical Gamma laws remain a distinct study target,especially for CSVR where dynamical ACF is empirical. DKW compares independent replica distributions,not correlated time samples. Signed raw/centered two-time products,individual variances,empirical product SEs,and correctf/incorrectambient3temperature denominators are retained. Approximate moment SEs are not universal finite-sample confidence bounds.
+
+## Figures
+
+Both case galleries display saved numerical phase-space/covariance arrays. Diagnostic plots show actual distribution,fluctuation,correlation and DOF measurements. The plotter imports no solver module,uses an explicit scratch font/cache directory,and never regenerates a reference.
+
+Numerically unresolved lag correlations are NULL when a sample variance is zero or <=(64eps*max(1,RMS))². Actual variances and floors are retained. This predeclared binary64-resolution heuristic avoids plotting roundoff noise as kinetic decorrelation after exact rescaling;it is not a physical mixing criterion,and no distribution/mean/variance study target is changed. DKW source support is the selected Massart original abstract and Reeve2024v1theorem/corollaries,with full read limits in source-reading.

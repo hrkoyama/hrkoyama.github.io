@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "group": "quantum-small",
+  "edition": "2026-11-25",
+  "verified_on": "2026-11-25",
+  "source_manifest_sha256": "b13b8873c5f74ec3b1b25207ed145cf7ece1ceec2e0e254a9b7f18e93f73350c",
+  "archive": {
+    "file": "atlas-quantum-small-2026-11-25.zip",
+    "sha256": "b332d168c00bd46862a4b5a98e42054e1749e0b734318e96af0049ab9d255cfc",
+    "bytes": 2247991,
+    "archive_directory": "atlas-quantum-small-2026-11-25"
+  },
+  "archive_sha256": "b332d168c00bd46862a4b5a98e42054e1749e0b734318e96af0049ab9d255cfc",
+  "returncode": 0,
+  "passed_tests": 18,
+  "tests": 18,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "atomic-reference-cards",
+    "h2-rhf-uhf-fci",
+    "h3plus-mp2-fci",
+    "periodic-he-reference-cards",
+    "periodic-projector-occupations",
+    "quantum-box-ho",
+    "two-state-bo-cp-ou"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 1.0439045000000107,
+  "independent_rerun_seconds": 0.9307216660000108,
+  "independent_pytest_plus_main_seconds": 1.4999949159999915,
+  "environment": {
+    "python": "3.9.6 (default, Aug 25 2026, 21:26:21) \n[Clang 21.0.0 (clang-2100.3.34.2)]",
+    "numpy": "2.0.2",
+    "scipy": "NOT_INSTALLED",
+    "pytest": "8.4.2",
+    "matplotlib": "3.9.4",
+    "Pillow": "11.3.0"
+  },
+  "pinned_public_Linux_reproduction": false,
+  "execution": "Actual first run/plots and independently extracted ZIP strict tests/full rerun. Actual local versions recorded; pinned Python3.12 Linux remains mandatory."
+}

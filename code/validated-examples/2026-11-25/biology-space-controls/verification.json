@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "group": "biology-space-controls",
+  "edition": "2026-11-25",
+  "verified_on": "2026-11-25",
+  "source_manifest_sha256": "b9ebb71638b3f18fde2d5b32b8042016e0f33ac1daa42173937f957c3f65d0ab",
+  "archive": {
+    "file": "atlas-biology-space-controls-2026-11-25.zip",
+    "sha256": "8abffcd65c0fc14eb1a346dba17e70097e2dc8806b348e114fc449b4fe0e0419",
+    "bytes": 11536597,
+    "archive_directory": "atlas-biology-space-controls-2026-11-25"
+  },
+  "archive_sha256": "8abffcd65c0fc14eb1a346dba17e70097e2dc8806b348e114fc449b4fe0e0419",
+  "returncode": 0,
+  "passed_tests": 11,
+  "tests": 11,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "fisher-kpp-special-front",
+    "keller-segel-forced-flux",
+    "schnakenberg-2d-boundary-modes"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 18.002466834000003,
+  "independent_rerun_seconds": 18.274315125,
+  "independent_pytest_plus_main_seconds": 18.851752833,
+  "environment": {
+    "python": "3.9.6 (default, Aug 25 2026, 21:26:21) \n[Clang 21.0.0 (clang-2100.3.34.2)]",
+    "numpy": "2.0.2",
+    "scipy": "NOT_INSTALLED",
+    "pytest": "8.4.2",
+    "matplotlib": "3.9.4",
+    "Pillow": "11.3.0"
+  },
+  "pinned_public_Linux_reproduction": false,
+  "execution": "Actual first run/plots and independently extracted ZIP strict tests/full rerun. Actual local versions recorded; pinned Python3.12 Linux remains mandatory."
+}

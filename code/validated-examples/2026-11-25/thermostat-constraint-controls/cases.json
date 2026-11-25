@@ -1,0 +1,208 @@
+[
+  {
+    "id": "deterministic-thermostat-contrasts",
+    "method_ids": [
+      "nose-hoover",
+      "nose-hoover-chains",
+      "berendsen-thermostat",
+      "velocity-rescaling"
+    ],
+    "title": {
+      "ja": "NH・chain・弱結合・速度固定の比較",
+      "en": "NH,chains,weak coupling and fixed-speed contrasts"
+    },
+    "summary": {
+      "ja": "同じ2モード系で、温度平均に加えて分布・揺らぎ・相関を比べます。",
+      "en": "Compare distributions,fluctuations and correlations as well as mean temperature on the same two-mode systems."
+    },
+    "assumptions": {
+      "ja": "単位質量,kBT=1、周波数1/1.7、quartic係数0/0.2。NH1/NHC3/Berendsen/速度固定、2結合・2刻み、正準256＋加熱128レプリカを固定します。",
+      "en": "Fix unit masses,kBT1,frequencies1/1.7 and quartic0/.2. Compare NH1,NHC3,Berendsen and fixed-speed baths at two couplings/two steps with256canonical and128heated replicas."
+    },
+    "algorithm": {
+      "ja": "明示した凍結変数の厳密bath部分流を対称合成し、各半bathを2副周期で計算します。etaはE部分流だけで進め、独立な全拡張ODEの短時間参照と照合します。",
+      "en": "Symmetrically compose exact frozen-variable bath subflows,two subcycles per half bath. Advance eta only in E subflows and compare short trajectories against independent full extendedODE references."
+    },
+    "validation": {
+      "ja": "物理的時間反転、Hextの微分、phi1、弱結合の局所逆と非可逆な速度固定を別に検査。時刻20の4分布・揺らぎ・符号付き相関とDKWの未確定範囲を残します。",
+      "en": "Separately test physical reversal,Hext derivative,phi1,local weak-coupling inverses and noninjective rescaling. Retain four distributions,fluctuations,signed correlations and unresolved DKW precision at time20."
+    },
+    "limits": {
+      "ja": "著者作成の分割でありLAMMPS/MKT実装の完全再現ではありません。時刻20は混合・平衡化の証明でなく、平均温度一致だけで正準分布や一般的なエルゴード性を認定しません。",
+      "en": "This authored splitting is not a full LAMMPS/MKT reproduction. Time20does not prove mixing/equilibration; correct mean temperature alone does not establish canonical sampling or general ergodicity."
+    },
+    "domains": [
+      "temperature",
+      "time"
+    ],
+    "code_files": [
+      "run.py",
+      "common.py",
+      "deterministic.py"
+    ],
+    "reference_files": [
+      "PROTOCOL.md",
+      "source-reading.json",
+      "acceptance.json"
+    ],
+    "references": [
+      {
+        "id": "gromacs-temperature",
+        "title": "GROMACS2026.4,Temperature coupling",
+        "url": "https://manual.gromacs.org/current/reference-manual/algorithms/molecular-dynamics.html",
+        "year": 2026,
+        "year_role": "documentation-version",
+        "review_level": "selected-primary-or-bibliographic-see-provenance",
+        "review": {
+          "ja": "source-reading.jsonに実際の読取範囲と未読部分を記録。原著の全式・全図の再現とは主張しません。",
+          "en": "Actual selected read scopes and unread limits are recorded in source-reading.json; no full original-paper equation/figure reproduction claim."
+        }
+      },
+      {
+        "id": "massart1990",
+        "title": "Massart(1990),The Tight Constant in the Dvoretzky–Kiefer–Wolfowitz Inequality",
+        "url": "https://doi.org/10.1214/aop/1176990746",
+        "year": 1990,
+        "year_role": "publication",
+        "review_level": "selected-primary-abstract",
+        "review": {
+          "ja": "著者公開ページの原著抄録でIID・両側定数2を確認。公式本文はiframeで閲覧できず、証明の全読はしていません。",
+          "en": "Selected original abstract on the author-uploaded page:IID/two-sidedconstant2. Official body access was blocked by an iframe; proof unread."
+        }
+      },
+      {
+        "id": "reeve2024",
+        "title": "Reeve(2024),A short proof of the Dvoretzky–Kiefer–Wolfowitz–Massart inequality",
+        "url": "https://arxiv.org/pdf/2403.16651",
+        "year": 2024,
+        "year_role": "preprint-version",
+        "review_level": "selected-primary-theorem",
+        "review": {
+          "ja": "v1の1–3頁、IID設定・定理1・系1/2のみ確認。詳細な証明は未読です。",
+          "en": "Selected v1pp1–3:IIDsetup,Theorem1,Corollaries1/2. Detailed proofs unread."
+        }
+      }
+    ],
+    "additional_figures": [
+      {
+        "file": "deterministic-thermostat-contrasts-diagnostics.png",
+        "caption": {
+          "ja": "精度・参照・統計の実測値と未達目標を分けて表示します。",
+          "en": "Separate actual accuracy,reference and statistical measurements,including unmet targets."
+        }
+      }
+    ],
+    "formulas": [
+      "\\dot p=-\\nabla U-\\xi_1p,\\quad\\dot\\xi_1=(2K-fT)/Q_1-\\xi_2\\xi_1",
+      "H_{ext}=H+\\sum_jQ_j\\xi_j^2/2+fT\\eta_1+T\\sum_{j>1}\\eta_j"
+    ]
+  },
+  {
+    "id": "projected-canonical-dof",
+    "method_ids": [
+      "langevin-thermostat",
+      "stochastic-velocity-rescaling"
+    ],
+    "title": {
+      "ja": "拘束・重心除去と正準統計",
+      "en": "Constraints,centre-of-mass removal and canonical statistics"
+    },
+    "summary": {
+      "ja": "有効自由度、運動量共分散、過渡分布と時間相関を分けて検証します。",
+      "en": "Separate effectiveDOF,momentum covariance,transient distributions and time correlations."
+    },
+    "assumptions": {
+      "ja": "質量1/2/3の1D3粒子と1つの共通調和ポテンシャル。拘束なし・COM・COM＋相対・冗長行を含む同じ拘束でf=3/2/1/1、各1,024レプリカを用います。",
+      "en": "Use three1Dparticles of masses1/2/3 in one common harmonic potential. No constraints,COM,COM-relative and a redundant-row equivalent have f3/2/1/1,each with1,024replicas."
+    },
+    "algorithm": {
+      "ja": "質量重み付き接空間でLangevin/CSVRをOBABO分割します。初期正準共分散からの有限時刻写像・雑音共分散を直接組み、連続参照と離散定常Lyapunov解を別に求めます。",
+      "en": "Apply tangent-space Langevin/CSVR in OBABO form. Build finite-time maps and noise covariance from canonical initial data; compute continuous references and stationary discrete Lyapunov solutions separately."
+    },
+    "validation": {
+      "ja": "Fractionによる独立なrank/共分散、符号付きf1浴、正しい投影OU恒等式と誤ったambient自由度の負例を照合。220分布族、符号付き2時刻積、正しい/誤った温度分母を保存します。",
+      "en": "Check independent Fraction rank/covariance,signedf1 baths,the valid projectedOU identity and a wrong-ambientDOF counterexample. Retain220CDF families,signed two-time products and correct/incorrect temperature denominators."
+    },
+    "limits": {
+      "ja": "固定線形拘束の小例です。非線形分子拘束、Fixman補正、輸送係数へ一般化しません。独立seedの冗長拘束系には軌跡の一致を要求せず、CSVRの動的相関は経験的な結果です。",
+      "en": "These fixed linear constraints do not cover nonlinear molecular constraints,Fixman corrections or transport coefficients. Redundant systems with independent seeds need not have identical paths; CSVR dynamical correlations are empirical."
+    },
+    "domains": [
+      "temperature",
+      "time"
+    ],
+    "code_files": [
+      "run.py",
+      "common.py",
+      "constrained.py"
+    ],
+    "reference_files": [
+      "PROTOCOL.md",
+      "source-reading.json",
+      "acceptance.json"
+    ],
+    "references": [
+      {
+        "id": "lammps-temp",
+        "title": "LAMMPS,compute temp",
+        "url": "https://docs.lammps.org/compute_temp.html",
+        "year": 2026,
+        "year_role": "documentation-version",
+        "review_level": "selected-primary-or-bibliographic-see-provenance",
+        "review": {
+          "ja": "source-reading.jsonに実際の読取範囲と未読部分を記録。原著の全式・全図の再現とは主張しません。",
+          "en": "Actual selected read scopes and unread limits are recorded in source-reading.json; no full original-paper equation/figure reproduction claim."
+        }
+      },
+      {
+        "id": "bussi-preprint2008",
+        "title": "Bussi,Donadio,Parrinello,Canonical sampling through velocity-rescaling",
+        "url": "https://arxiv.org/pdf/0803.4060",
+        "year": 2008,
+        "year_role": "preprint-version",
+        "review_level": "selected-primary-or-bibliographic-see-provenance",
+        "review": {
+          "ja": "source-reading.jsonに実際の読取範囲と未読部分を記録。原著の全式・全図の再現とは主張しません。",
+          "en": "Actual selected read scopes and unread limits are recorded in source-reading.json; no full original-paper equation/figure reproduction claim."
+        }
+      },
+      {
+        "id": "massart1990",
+        "title": "Massart(1990),The Tight Constant in the Dvoretzky–Kiefer–Wolfowitz Inequality",
+        "url": "https://doi.org/10.1214/aop/1176990746",
+        "year": 1990,
+        "year_role": "publication",
+        "review_level": "selected-primary-abstract",
+        "review": {
+          "ja": "著者公開ページの原著抄録でIID・両側定数2を確認。公式本文はiframeで閲覧できず、証明の全読はしていません。",
+          "en": "Selected original abstract on the author-uploaded page:IID/two-sidedconstant2. Official body access was blocked by an iframe; proof unread."
+        }
+      },
+      {
+        "id": "reeve2024",
+        "title": "Reeve(2024),A short proof of the Dvoretzky–Kiefer–Wolfowitz–Massart inequality",
+        "url": "https://arxiv.org/pdf/2403.16651",
+        "year": 2024,
+        "year_role": "preprint-version",
+        "review_level": "selected-primary-theorem",
+        "review": {
+          "ja": "v1の1–3頁、IID設定・定理1・系1/2のみ確認。詳細な証明は未読です。",
+          "en": "Selected v1pp1–3:IIDsetup,Theorem1,Corollaries1/2. Detailed proofs unread."
+        }
+      }
+    ],
+    "additional_figures": [
+      {
+        "file": "projected-canonical-dof-diagnostics.png",
+        "caption": {
+          "ja": "精度・参照・統計の実測値と未達目標を分けて表示します。",
+          "en": "Separate actual accuracy,reference and statistical measurements,including unmet targets."
+        }
+      }
+    ],
+    "formulas": [
+      "Cq=0,\\quad CM^{-1}p=0,\\quad f=3-\\mathrm{rank}(C)",
+      "\\mathrm{Cov}(p)=T(M-C^T(CM^{-1}C^T)^+C)"
+    ]
+  }
+]

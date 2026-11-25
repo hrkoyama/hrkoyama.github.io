@@ -1882,6 +1882,16 @@
         "ja": "公式サイトのFRによる空間離散化・非構造格子・CPU/GPUの紹介を確認。今回の軽量Python例でPyFRを導入・実行・検証したとはしない。",
         "en": "Official overview: FR spatial discretization, unstructured meshes and CPU/GPU platforms. PyFR is not installed, invoked or validated by this small Python example."
       }
+    },
+    {
+      "id": "gillespie1977-direct-ssa",
+      "author": "Daniel T. Gillespie",
+      "title": "Exact stochastic simulation of coupled chemical reactions",
+      "year": 1977,
+      "doi": "10.1021/j100540a008",
+      "source": "https://doi.org/10.1021/j100540a008",
+      "type": "article",
+      "note": "Selected original article pp2343–2345, section III A–C, equations8–21 and algorithm0–3. Full paper and earlier1976 derivation unread. Numerical evidence is restricted to the immigration–death case."
     }
   ]
 }

@@ -1,0 +1,87 @@
+{
+  "state": "declared-acceptance-criteria",
+  "failure_policy": "Keep all first inputs/native returns/checkpoints/exceptions and original criteria. No threshold/mesh/seed/window changes after results. Accuracy goals are not proven PASS guarantees.",
+  "95": {
+    "max_BO_or_CP_NVE_energy_drift": 1e-06,
+    "finest_state_RK4_difference": 1e-05,
+    "OU_heat_corrected_extended_energy_error": 1e-05,
+    "OU_conditional_variance_identity_error": 1e-14,
+    "orbital_norm_error": 1e-14,
+    "force_gradient_check": 1e-08,
+    "thermostat_equilibration_or_ergodicity_gate": null,
+    "RK4_companion_state_difference": 1e-10
+  },
+  "96": {
+    "new_solves": 0,
+    "saved_rows": 3,
+    "basis_functions_per_row": 40,
+    "energies_exact_saved_literals": [
+      -2.861679994991034,
+      -2.7236397914037958,
+      -2.723639791475126
+    ],
+    "electron_number_saved_error": 1e-12
+  },
+  "97": {
+    "native_norm_error_before_conversion": 1e-12,
+    "physical_norm_error": 1e-12,
+    "orthogonality_error": 1e-11,
+    "scaled_residual": 1e-12,
+    "box_same_grid_relative_error": 2e-12,
+    "box_finest_relative_continuum_error": 0.001,
+    "box_doubling_error_ratio": [
+      3.5,
+      4.5
+    ],
+    "HO_finest_absolute_total_error_goal": 0.003,
+    "HO_parity_error": 1e-10,
+    "node_threshold_mandatory": false,
+    "nodes_report_all_raw_masks_and_tail_signs": true,
+    "HO_field_error_gate": null,
+    "HO_separate_certified_wall_mesh_bounds": false
+  },
+  "98": {
+    "saved_PySCF_RHF_energy_difference": 2e-09,
+    "H2_UHF_analytic_pair_oracle_error": 1e-08,
+    "H2_FCI_even_oracle_error": 1e-10,
+    "FCI_operator_assembly_error": 1e-11,
+    "FCI_residual": 1e-11,
+    "electron_number_error": 1e-10,
+    "orbital_orthogonality_error": 1e-10,
+    "SCF_commutator": 1e-09,
+    "energy_ordering_slack": 1e-09,
+    "stretched_UHF_lower_than_RHF_by": 0.0001,
+    "stretched_spin_contamination_greater_than": 0.01
+  },
+  "99": {
+    "FCI_operator_assembly_error": 1e-11,
+    "FCI_residual": 1e-11,
+    "FCI_singlet_spatial_symmetry_error": 1e-10,
+    "MP2_RS2_oracle_difference": 1e-11,
+    "min_MP2_denominator_gap": 0.01,
+    "electron_number_error": 1e-10,
+    "SCF_commutator": 1e-09,
+    "FCI_le_RHF_slack": 1e-09,
+    "MP2_variational_claim": false
+  },
+  "100": {
+    "new_SCF_or_reference_runs": 0,
+    "recomputed_saved_FD_value_difference": 1e-12,
+    "original_acceptance_criteria": "saved-data/periodic-he-reference.json#/acceptance_unchanged",
+    "no_original_saved_success_rewritten": true
+  },
+  "101": {
+    "hermiticity_error": 1e-13,
+    "eigenpair_residual": 1e-12,
+    "cubic_independent_eigenvalue_error": 1e-12,
+    "electron_number_error": 1e-12,
+    "occupation_range": [
+      0,
+      2
+    ],
+    "finest_force_free_energy_FD_error": 1e-07,
+    "entropy_nonnegative_slack": 1e-12,
+    "real_metal_or_general_PSP_claim": false,
+    "fixed_case_cubic_clamp_activation": false
+  }
+}

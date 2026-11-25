@@ -1,0 +1,607 @@
+{
+  "schema_version": 1,
+  "input_sha256": "5f49881f37b07c47f674979a4886e6da0421be06ddb6bb213ab7dfea6bf6e0f5",
+  "passed": true,
+  "checks": {
+    "saltzman-ale-piston": true,
+    "williamson-sphere-transport": true,
+    "sphere-zonal-balance": true,
+    "gsph-sod": true,
+    "sph-pressure-acoustics": true
+  },
+  "cases": [
+    {
+      "id": "saltzman-ale-piston",
+      "passed": true,
+      "metrics": {
+        "finest": {
+          "grid": [
+            80,
+            8
+          ],
+          "density_error": 0.03966960674770006,
+          "shock_error": 0.009071663139626374,
+          "plateau_density_error": 0.060142667838002595,
+          "plateau_pressure_error": 0.07005129077711092,
+          "max_transverse": 0.08502093161153988,
+          "mass_defect": 4.1551145858098734e-16,
+          "momentum_defect": 1.3877787807814449e-15,
+          "energy_defect": 3.5023519269671693e-15,
+          "GCL": 3.7705883405261993e-17,
+          "steps": 1333,
+          "minimum_density": 0.9999999999997568,
+          "minimum_pressure": 6.66666666666505e-05
+        }
+      },
+      "checks": {
+        "positive": true,
+        "conservation": true,
+        "GCL": true,
+        "density": true,
+        "refinement": true,
+        "shock": true,
+        "plateau": true,
+        "transverse": true
+      },
+      "records": [
+        {
+          "grid": [
+            40,
+            4
+          ],
+          "density_error": 0.07386820461272857,
+          "shock_error": 0.009757574053712803,
+          "plateau_density_error": 0.0888474010026582,
+          "plateau_pressure_error": 0.08631540710901564,
+          "max_transverse": 0.10290051699214085,
+          "mass_defect": 5.551288678130829e-16,
+          "momentum_defect": 8.326672684688674e-16,
+          "energy_defect": 1.7726508978871696e-16,
+          "GCL": 2.8801661305487974e-17,
+          "steps": 649,
+          "minimum_density": 0.9999999999999672,
+          "minimum_pressure": 6.666666666666452e-05
+        },
+        {
+          "grid": [
+            80,
+            8
+          ],
+          "density_error": 0.03966960674770006,
+          "shock_error": 0.009071663139626374,
+          "plateau_density_error": 0.060142667838002595,
+          "plateau_pressure_error": 0.07005129077711092,
+          "max_transverse": 0.08502093161153988,
+          "mass_defect": 4.1551145858098734e-16,
+          "momentum_defect": 1.3877787807814449e-15,
+          "energy_defect": 3.5023519269671693e-15,
+          "GCL": 3.7705883405261993e-17,
+          "steps": 1333,
+          "minimum_density": 0.9999999999997568,
+          "minimum_pressure": 6.66666666666505e-05
+        }
+      ]
+    },
+    {
+      "id": "williamson-sphere-transport",
+      "passed": true,
+      "metrics": {
+        "fine_L1": [
+          0.17228372801445835,
+          0.1983012829411487
+        ]
+      },
+      "checks": {
+        "error": true,
+        "refinement": true,
+        "mass": true,
+        "bounds": true,
+        "sphere_area": true
+      },
+      "records": [
+        {
+          "grid": [
+            64,
+            32
+          ],
+          "tilt": 0.0,
+          "relative_L1": 0.3576488111262617,
+          "mass_drift": 2.2762314336492173e-15,
+          "analytic_bell_mass": 0.10335083717604891,
+          "initial_quadrature_mass_error": 0.00029521095650797413,
+          "initial_quadrature_mass_relative_error": 0.0028563963735011516,
+          "minimum": 0.0,
+          "maximum": 0.6932018368760269,
+          "weight_sum_error": 0.0
+        },
+        {
+          "grid": [
+            128,
+            64
+          ],
+          "tilt": 0.0,
+          "relative_L1": 0.17228372801445835,
+          "mass_drift": -1.4774612198989573e-15,
+          "analytic_bell_mass": 0.10335083717604891,
+          "initial_quadrature_mass_error": -2.7877608691162514e-05,
+          "initial_quadrature_mass_relative_error": -0.00026973761851271217,
+          "minimum": 0.0,
+          "maximum": 0.8588395313178578,
+          "weight_sum_error": 0.0
+        },
+        {
+          "grid": [
+            64,
+            32
+          ],
+          "tilt": 1.5707963267948966,
+          "relative_L1": 0.5238366974913431,
+          "mass_drift": 0.07639022389319293,
+          "analytic_bell_mass": 0.10335083717604891,
+          "initial_quadrature_mass_error": 0.00029521095650797413,
+          "initial_quadrature_mass_relative_error": 0.0028563963735011516,
+          "minimum": 0.0,
+          "maximum": 0.6020371160100979,
+          "weight_sum_error": 0.0
+        },
+        {
+          "grid": [
+            128,
+            64
+          ],
+          "tilt": 1.5707963267948966,
+          "relative_L1": 0.1983012829411487,
+          "mass_drift": 0.017452594440184883,
+          "analytic_bell_mass": 0.10335083717604891,
+          "initial_quadrature_mass_error": -2.7877608691162514e-05,
+          "initial_quadrature_mass_relative_error": -0.00026973761851271217,
+          "minimum": 0.0,
+          "maximum": 0.8294429898418034,
+          "weight_sum_error": 0.0
+        }
+      ]
+    },
+    {
+      "id": "sphere-zonal-balance",
+      "passed": true,
+      "metrics": {
+        "finest": {
+          "grid": 64,
+          "h_error": 0.00010108962138506427,
+          "initial_balance_residual": 0.0018041320580228781,
+          "analytic_force_residual": 0.0,
+          "mass_defect": 0.0,
+          "minimum_h": 8.87466665967074,
+          "steps": 129
+        }
+      },
+      "checks": {
+        "analytic_balance": true,
+        "balance_order": true,
+        "height": true,
+        "refinement": true,
+        "mass": true,
+        "positive": true
+      },
+      "records": [
+        {
+          "grid": 32,
+          "h_error": 0.00040095227332273,
+          "initial_balance_residual": 0.007180051265050613,
+          "analytic_force_residual": 0.0,
+          "mass_defect": 0.0,
+          "minimum_h": 8.873699068513663,
+          "steps": 65
+        },
+        {
+          "grid": 64,
+          "h_error": 0.00010108962138506427,
+          "initial_balance_residual": 0.0018041320580228781,
+          "analytic_force_residual": 0.0,
+          "mass_defect": 0.0,
+          "minimum_h": 8.87466665967074,
+          "steps": 129
+        }
+      ]
+    },
+    {
+      "id": "gsph-sod",
+      "passed": true,
+      "metrics": {
+        "finest_GSPH": {
+          "method": "gsph",
+          "right_particles": 32,
+          "rho_error": 0.03789937718353325,
+          "pressure_error": 0.040752681798075875,
+          "shock_error": 0.011271366170524794,
+          "defect": [
+            0.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          "h_change": 1.5560167029698944,
+          "steps": 518,
+          "h_residual": 9.994160761956033e-11,
+          "Riemann_residual": 1.5300261058115439e-15
+        },
+        "pair_swap_force_residual": 0.0,
+        "pair_swap_energy_residual": 1.1102230246251565e-16,
+        "oracle_pressure_root": 0.30313017805063625,
+        "oracle_root_diagnostics": {
+          "iterations": 45,
+          "log_bracket_width": 1.3078427230084344e-13,
+          "wave_residual": -5.773159728050814e-14
+        }
+      },
+      "checks": {
+        "pair_swap_force": true,
+        "pair_swap_energy": true,
+        "conservation": true,
+        "rho": true,
+        "pressure": true,
+        "refinement": true,
+        "shock": true,
+        "h_solve": true,
+        "Riemann": true,
+        "adaptive_h": true
+      },
+      "records": [
+        {
+          "method": "gsph",
+          "right_particles": 16,
+          "rho_error": 0.05859811714229003,
+          "pressure_error": 0.05834178880702191,
+          "shock_error": 0.01583330771536892,
+          "defect": [
+            0.0,
+            2.7755575615628914e-17,
+            -4.440892098500626e-16
+          ],
+          "h_change": 1.4033364886019801,
+          "steps": 255,
+          "h_residual": 9.994144972561693e-11,
+          "Riemann_residual": 1.4432899320127035e-15
+        },
+        {
+          "method": "gsph",
+          "right_particles": 32,
+          "rho_error": 0.03789937718353325,
+          "pressure_error": 0.040752681798075875,
+          "shock_error": 0.011271366170524794,
+          "defect": [
+            0.0,
+            2.220446049250313e-16,
+            0.0
+          ],
+          "h_change": 1.5560167029698944,
+          "steps": 518,
+          "h_residual": 9.994160761956033e-11,
+          "Riemann_residual": 1.5300261058115439e-15
+        },
+        {
+          "method": "sph",
+          "right_particles": 16,
+          "rho_error": 0.04687701674940342,
+          "pressure_error": 0.06471491872635392,
+          "shock_error": 0.022487023693831015,
+          "defect": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "h_change": 0.0,
+          "steps": 268,
+          "h_residual": 0.0,
+          "Riemann_residual": 0.0
+        },
+        {
+          "method": "sph",
+          "right_particles": 32,
+          "rho_error": 0.0467804408027692,
+          "pressure_error": 0.06137069262338928,
+          "shock_error": 0.018114954873250183,
+          "defect": [
+            0.0,
+            0.0,
+            -4.440892098500626e-16
+          ],
+          "h_change": 0.0,
+          "steps": 524,
+          "h_residual": 0.0,
+          "Riemann_residual": 0.0
+        }
+      ]
+    },
+    {
+      "id": "sph-pressure-acoustics",
+      "passed": true,
+      "metrics": {
+        "profiles": 16,
+        "linearization_remainder_scale": 1e-06
+      },
+      "checks": {
+        "regular_static_force": true,
+        "jittered_static_velocity": true,
+        "acoustic_phase": true,
+        "acoustic_amplitude": true,
+        "conservation": true
+      },
+      "records": [
+        {
+          "method": "gsph",
+          "acoustic": false,
+          "jitter": false,
+          "particles": 64,
+          "initial_force": 5.329070518200751e-15,
+          "initial_kernel_error": 1.3450449076746196e-06,
+          "velocity_max": 8.937271492775838e-17,
+          "phase_error": 0.0,
+          "amplitude_relative_error": 0.0,
+          "defect": [
+            0.0,
+            -3.864096621486545e-17,
+            0.0
+          ],
+          "steps": 18
+        },
+        {
+          "method": "gsph",
+          "acoustic": false,
+          "jitter": false,
+          "particles": 128,
+          "initial_force": 1.0658141036401503e-14,
+          "initial_kernel_error": 1.3450449076746196e-06,
+          "velocity_max": 1.2545612240167544e-16,
+          "phase_error": 0.0,
+          "amplitude_relative_error": 0.0,
+          "defect": [
+            0.0,
+            -7.719084818624856e-17,
+            0.0
+          ],
+          "steps": 36
+        },
+        {
+          "method": "gsph",
+          "acoustic": false,
+          "jitter": true,
+          "particles": 64,
+          "initial_force": 0.051176097875732296,
+          "initial_kernel_error": 0.023370288508501424,
+          "velocity_max": 0.0019391365583129809,
+          "phase_error": 0.0,
+          "amplitude_relative_error": 0.0,
+          "defect": [
+            0.0,
+            -2.681706311007115e-18,
+            0.0
+          ],
+          "steps": 18
+        },
+        {
+          "method": "gsph",
+          "acoustic": false,
+          "jitter": true,
+          "particles": 128,
+          "initial_force": 0.007156950187948041,
+          "initial_kernel_error": 0.011828899475329946,
+          "velocity_max": 0.0002879130436727492,
+          "phase_error": 0.0,
+          "amplitude_relative_error": 0.0,
+          "defect": [
+            0.0,
+            -5.345201413648262e-18,
+            2.220446049250313e-16
+          ],
+          "steps": 36
+        },
+        {
+          "method": "gsph",
+          "acoustic": true,
+          "jitter": false,
+          "particles": 64,
+          "initial_force": 0.00635278955696883,
+          "initial_kernel_error": 4.811805334625774e-06,
+          "velocity_max": 0.0009236746451309551,
+          "phase_error": 0.04457604532856833,
+          "amplitude_relative_error": 0.04352830048396161,
+          "defect": [
+            0.0,
+            -3.3462036581281135e-18,
+            -2.220446049250313e-16
+          ],
+          "steps": 72
+        },
+        {
+          "method": "gsph",
+          "acoustic": true,
+          "jitter": false,
+          "particles": 128,
+          "initial_force": 0.006301073254409317,
+          "initial_kernel_error": 2.2126406166167456e-06,
+          "velocity_max": 0.0009594084170960964,
+          "phase_error": 0.023412776265260362,
+          "amplitude_relative_error": 0.021061997782465758,
+          "defect": [
+            0.0,
+            5.803446238112839e-18,
+            -2.220446049250313e-16
+          ],
+          "steps": 143
+        },
+        {
+          "method": "gsph",
+          "acoustic": true,
+          "jitter": true,
+          "particles": 64,
+          "initial_force": 0.056837028043483784,
+          "initial_kernel_error": 0.023368234849200253,
+          "velocity_max": 0.0015039517861971483,
+          "phase_error": 0.044622031978529285,
+          "amplitude_relative_error": 0.043487498119571866,
+          "defect": [
+            0.0,
+            3.7070396936584454e-18,
+            0.0
+          ],
+          "steps": 72
+        },
+        {
+          "method": "gsph",
+          "acoustic": true,
+          "jitter": true,
+          "particles": 128,
+          "initial_force": 0.012764558853660901,
+          "initial_kernel_error": 0.01183431287289971,
+          "velocity_max": 0.0010878602877072378,
+          "phase_error": 0.023413015107400417,
+          "amplitude_relative_error": 0.021058606998279994,
+          "defect": [
+            0.0,
+            3.2749470114403455e-18,
+            0.0
+          ],
+          "steps": 144
+        },
+        {
+          "method": "sph",
+          "acoustic": false,
+          "jitter": false,
+          "particles": 64,
+          "initial_force": 7.105427357601002e-15,
+          "initial_kernel_error": 1.3450449076746196e-06,
+          "velocity_max": 3.153033121141567e-16,
+          "phase_error": 0.0,
+          "amplitude_relative_error": 0.0,
+          "defect": [
+            0.0,
+            1.1535892740664254e-17,
+            0.0
+          ],
+          "steps": 18
+        },
+        {
+          "method": "sph",
+          "acoustic": false,
+          "jitter": false,
+          "particles": 128,
+          "initial_force": 1.4210854715202004e-14,
+          "initial_kernel_error": 1.3450449076746196e-06,
+          "velocity_max": 3.896885437174613e-16,
+          "phase_error": 0.0,
+          "amplitude_relative_error": 0.0,
+          "defect": [
+            0.0,
+            -2.9923720091518844e-18,
+            0.0
+          ],
+          "steps": 36
+        },
+        {
+          "method": "sph",
+          "acoustic": false,
+          "jitter": true,
+          "particles": 64,
+          "initial_force": 0.03588704060697623,
+          "initial_kernel_error": 0.023370288508501424,
+          "velocity_max": 0.0014844854358780502,
+          "phase_error": 0.0,
+          "amplitude_relative_error": 0.0,
+          "defect": [
+            0.0,
+            4.3080095697353715e-18,
+            0.0
+          ],
+          "steps": 18
+        },
+        {
+          "method": "sph",
+          "acoustic": false,
+          "jitter": true,
+          "particles": 128,
+          "initial_force": 0.004832933053840804,
+          "initial_kernel_error": 0.011828899475329946,
+          "velocity_max": 0.0002034276651211021,
+          "phase_error": 0.0,
+          "amplitude_relative_error": 0.0,
+          "defect": [
+            0.0,
+            -1.4376266697273613e-18,
+            2.220446049250313e-16
+          ],
+          "steps": 36
+        },
+        {
+          "method": "sph",
+          "acoustic": true,
+          "jitter": false,
+          "particles": 64,
+          "initial_force": 0.006333389883472762,
+          "initial_kernel_error": 4.811805334625774e-06,
+          "velocity_max": 0.0009903070776615692,
+          "phase_error": 0.008796105207573908,
+          "amplitude_relative_error": 0.018057134199508162,
+          "defect": [
+            0.0,
+            1.143113313967041e-17,
+            0.0
+          ],
+          "steps": 72
+        },
+        {
+          "method": "sph",
+          "acoustic": true,
+          "jitter": false,
+          "particles": 128,
+          "initial_force": 0.006295731997411735,
+          "initial_kernel_error": 2.2126406166167456e-06,
+          "velocity_max": 0.0009937796617539212,
+          "phase_error": 0.00562227198386485,
+          "amplitude_relative_error": 0.008160556154479526,
+          "defect": [
+            0.0,
+            -2.4013384054659415e-19,
+            -2.220446049250313e-16
+          ],
+          "steps": 143
+        },
+        {
+          "method": "sph",
+          "acoustic": true,
+          "jitter": true,
+          "particles": 64,
+          "initial_force": 0.04131920329160366,
+          "initial_kernel_error": 0.023368234849200253,
+          "velocity_max": 0.001921508672921766,
+          "phase_error": 0.008279445341194505,
+          "amplitude_relative_error": 0.01817465468130519,
+          "defect": [
+            0.0,
+            -3.218301683092714e-18,
+            0.0
+          ],
+          "steps": 73
+        },
+        {
+          "method": "sph",
+          "acoustic": true,
+          "jitter": true,
+          "particles": 128,
+          "initial_force": 0.01039100564375417,
+          "initial_kernel_error": 0.01183431287289971,
+          "velocity_max": 0.0011322600135208862,
+          "phase_error": 0.005581954436149254,
+          "amplitude_relative_error": 0.00819551780633443,
+          "defect": [
+            0.0,
+            -2.510288018306526e-18,
+            0.0
+          ],
+          "steps": 144
+        }
+      ]
+    }
+  ],
+  "termination": "completed_fixed_protocol",
+  "scientific_scope": "Five fixed new cases for four extension/implementation candidates; fivecommonmaintenancecandidates are separate metadata work."
+}

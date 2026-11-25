@@ -1,0 +1,837 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-11-25",
+  "scope": "Metadata-only annotations over immutable historical cards; original kind enum, formulas, parameters, values, sources and all97supplement citation objects remain unchanged. Classification is not a new numerical qualification.",
+  "base_source": {
+    "path": "/numerical-methods-atlas/assets/reference-solutions.json",
+    "sha256": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc"
+  },
+  "cases": [
+    {
+      "id": "sine-advection",
+      "source": "numerical-methods-atlas/assets/reference-solutions.json",
+      "source_case_sha256": "5888ff947809edb9b0a68d26f519f55e517187a1c2f84aa60d52d0f009c153c8",
+      "metadata": {
+        "reference_class": "continuous-exact",
+        "citations": [
+          {
+            "role": "textbook-background",
+            "title": "LeVeque, Randall J. (2007), Finite Difference Methods for Ordinary and Partial Differential Equations: Steady-State and Time-Dependent Problems",
+            "url": "https://doi.org/10.1137/1.9780898717839",
+            "note": "Inherited current bibliography metadata: Author-maintained book list checked for year, title, DOI and companion materials. Reading reference for consistency, stability, boundary-value problems and time stepping; full book not audited here. No new full-text reading in this migration; this source is not claimed as the original exact solution."
+          }
+        ],
+        "reference_scope": "Immutable historical formula/parameters/saved values retained. Role annotations distinguish textbook background, method sources and educational reference documentation; no new original-paper or numerical qualification is claimed.",
+        "reference_contract": {
+          "class": "continuous-exact",
+          "sampling": {
+            "en": "Saved point profile at 401 x coordinates on [0.0, 1.0], t=1.0. Components: u. Conserved cell averages are a distinct evaluation.",
+            "ja": "保存済みのx方向401点、範囲[0.0, 1.0]、時刻t=1.0での点値です。保存量のセル平均とは区別します。"
+          },
+          "fixed_parameters": {},
+          "historical_original_solution_verified": false
+        }
+      }
+    },
+    {
+      "id": "sine-heat",
+      "source": "numerical-methods-atlas/assets/reference-solutions.json",
+      "source_case_sha256": "1d8908f67388387e16f6d6b95c9ff74e2a22c274d123e960f860f6c3e89181e1",
+      "metadata": {
+        "reference_class": "continuous-exact",
+        "citations": [
+          {
+            "role": "textbook-background",
+            "title": "LeVeque, Randall J. (2007), Finite Difference Methods for Ordinary and Partial Differential Equations: Steady-State and Time-Dependent Problems",
+            "url": "https://doi.org/10.1137/1.9780898717839",
+            "note": "Inherited current bibliography metadata: Author-maintained book list checked for year, title, DOI and companion materials. Reading reference for consistency, stability, boundary-value problems and time stepping; full book not audited here. No new full-text reading in this migration; this source is not claimed as the original exact solution."
+          }
+        ],
+        "reference_scope": "Immutable historical formula/parameters/saved values retained. Role annotations distinguish textbook background, method sources and educational reference documentation; no new original-paper or numerical qualification is claimed.",
+        "reference_contract": {
+          "class": "continuous-exact",
+          "sampling": {
+            "en": "Saved point profile at 401 x coordinates on [0.0, 1.0], t=1.0. Components: u. Conserved cell averages are a distinct evaluation.",
+            "ja": "保存済みのx方向401点、範囲[0.0, 1.0]、時刻t=1.0での点値です。保存量のセル平均とは区別します。"
+          },
+          "fixed_parameters": {},
+          "historical_original_solution_verified": false
+        }
+      }
+    },
+    {
+      "id": "burgers-shock",
+      "source": "numerical-methods-atlas/assets/reference-solutions.json",
+      "source_case_sha256": "b97e60ab8b619f7ed7a70a6ceb2b1fe26e6605b72f61531164fd3ac24502a612",
+      "metadata": {
+        "reference_class": "continuous-exact",
+        "citations": [
+          {
+            "role": "reference-documentation",
+            "title": "Clawpack Riemann book: Burgers equation",
+            "url": "https://www.clawpack.org/riemann_book/html/Burgers.html",
+            "note": "Existing official educational reference link retained. The present audit reads the saved Atlas formula/code metadata, not a newly downloaded original article or full documentation body; historical original-problem attribution remains unverified here."
+          }
+        ],
+        "reference_scope": "Immutable historical formula/parameters/saved values retained. Role annotations distinguish textbook background, method sources and educational reference documentation; no new original-paper or numerical qualification is claimed.",
+        "reference_contract": {
+          "class": "continuous-exact",
+          "sampling": {
+            "en": "Saved point profile at 401 x coordinates on [0.0, 1.0], t=0.4. Components: u. Conserved cell averages are a distinct evaluation.",
+            "ja": "保存済みのx方向401点、範囲[0.0, 1.0]、時刻t=0.4での点値です。保存量のセル平均とは区別します。"
+          },
+          "fixed_parameters": {
+            "left": 1.0,
+            "right": 0.0,
+            "origin": 0.5
+          },
+          "historical_original_solution_verified": false
+        }
+      }
+    },
+    {
+      "id": "burgers-fan",
+      "source": "numerical-methods-atlas/assets/reference-solutions.json",
+      "source_case_sha256": "cbe470b97915bfab8ba58a72263b3e3d07ae72b06deee0d54fe19b785e0bf2ea",
+      "metadata": {
+        "reference_class": "continuous-exact",
+        "citations": [
+          {
+            "role": "reference-documentation",
+            "title": "Clawpack Riemann book: Burgers equation",
+            "url": "https://www.clawpack.org/riemann_book/html/Burgers.html",
+            "note": "Existing official educational reference link retained. The present audit reads the saved Atlas formula/code metadata, not a newly downloaded original article or full documentation body; historical original-problem attribution remains unverified here."
+          }
+        ],
+        "reference_scope": "Immutable historical formula/parameters/saved values retained. Role annotations distinguish textbook background, method sources and educational reference documentation; no new original-paper or numerical qualification is claimed.",
+        "reference_contract": {
+          "class": "continuous-exact",
+          "sampling": {
+            "en": "Saved point profile at 401 x coordinates on [0.0, 1.0], t=0.4. Components: u. Conserved cell averages are a distinct evaluation.",
+            "ja": "保存済みのx方向401点、範囲[0.0, 1.0]、時刻t=0.4での点値です。保存量のセル平均とは区別します。"
+          },
+          "fixed_parameters": {
+            "left": 0.0,
+            "right": 1.0,
+            "origin": 0.5
+          },
+          "historical_original_solution_verified": false
+        }
+      }
+    },
+    {
+      "id": "traffic-jam",
+      "source": "numerical-methods-atlas/assets/reference-solutions.json",
+      "source_case_sha256": "8d7f30075041f0a9dc2866b3887fa2d7ed1d73e587c0e5e74f9f0e52f0ac8303",
+      "metadata": {
+        "reference_class": "continuous-exact",
+        "citations": [
+          {
+            "role": "reference-documentation",
+            "title": "Clawpack Riemann book: Traffic flow",
+            "url": "https://www.clawpack.org/riemann_book/html/Traffic_flow.html",
+            "note": "Existing official educational reference link retained. The present audit reads the saved Atlas formula/code metadata, not a newly downloaded original article or full documentation body; historical original-problem attribution remains unverified here."
+          }
+        ],
+        "reference_scope": "Immutable historical formula/parameters/saved values retained. Role annotations distinguish textbook background, method sources and educational reference documentation; no new original-paper or numerical qualification is claimed.",
+        "reference_contract": {
+          "class": "continuous-exact",
+          "sampling": {
+            "en": "Saved point profile at 401 x coordinates on [0.0, 1.0], t=0.4. Components: rho. Conserved cell averages are a distinct evaluation.",
+            "ja": "保存済みのx方向401点、範囲[0.0, 1.0]、時刻t=0.4での点値です。保存量のセル平均とは区別します。"
+          },
+          "fixed_parameters": {
+            "left": 0.3,
+            "right": 0.9,
+            "origin": 0.5
+          },
+          "historical_original_solution_verified": false
+        }
+      }
+    },
+    {
+      "id": "traffic-fan",
+      "source": "numerical-methods-atlas/assets/reference-solutions.json",
+      "source_case_sha256": "80217caa34769f9e28322b46c01abc6004f873b106b0f2dff2b03d84f891ee3a",
+      "metadata": {
+        "reference_class": "continuous-exact",
+        "citations": [
+          {
+            "role": "reference-documentation",
+            "title": "Clawpack Riemann book: Traffic flow",
+            "url": "https://www.clawpack.org/riemann_book/html/Traffic_flow.html",
+            "note": "Existing official educational reference link retained. The present audit reads the saved Atlas formula/code metadata, not a newly downloaded original article or full documentation body; historical original-problem attribution remains unverified here."
+          }
+        ],
+        "reference_scope": "Immutable historical formula/parameters/saved values retained. Role annotations distinguish textbook background, method sources and educational reference documentation; no new original-paper or numerical qualification is claimed.",
+        "reference_contract": {
+          "class": "continuous-exact",
+          "sampling": {
+            "en": "Saved point profile at 401 x coordinates on [0.0, 1.0], t=0.4. Components: rho. Conserved cell averages are a distinct evaluation.",
+            "ja": "保存済みのx方向401点、範囲[0.0, 1.0]、時刻t=0.4での点値です。保存量のセル平均とは区別します。"
+          },
+          "fixed_parameters": {
+            "left": 0.9,
+            "right": 0.1,
+            "origin": 0.5
+          },
+          "historical_original_solution_verified": false
+        }
+      }
+    },
+    {
+      "id": "euler-sod",
+      "source": "numerical-methods-atlas/assets/reference-solutions.json",
+      "source_case_sha256": "d9f93cc4a21148c53490792822544c7a5867af97eb671ea29c693e2508127507",
+      "metadata": {
+        "reference_class": "semi-analytic",
+        "citations": [
+          {
+            "role": "reference-documentation",
+            "title": "Clawpack Riemann book: Euler equations",
+            "url": "https://www.clawpack.org/riemann_book/html/Euler.html",
+            "note": "Existing official educational reference link retained. The present audit reads the saved Atlas formula/code metadata, not a newly downloaded original article or full documentation body; historical original-problem attribution remains unverified here."
+          }
+        ],
+        "reference_scope": "Immutable historical formula/parameters/saved values retained. Role annotations distinguish textbook background, method sources and educational reference documentation; no new original-paper or numerical qualification is claimed.",
+        "reference_contract": {
+          "class": "semi-analytic",
+          "sampling": {
+            "en": "Saved point profile at 401 x coordinates on [0.0, 1.0], t=0.2. Components: rho, rho u, E. Conserved cell averages are a distinct evaluation.",
+            "ja": "保存済みのx方向401点、範囲[0.0, 1.0]、時刻t=0.2での点値です。保存量のセル平均とは区別します。"
+          },
+          "fixed_parameters": {
+            "left": [
+              1.0,
+              0.0,
+              1.0
+            ],
+            "right": [
+              0.125,
+              0.0,
+              0.1
+            ],
+            "parameter": 1.4,
+            "origin": 0.5
+          },
+          "historical_original_solution_verified": false
+        }
+      }
+    },
+    {
+      "id": "euler-lax",
+      "source": "numerical-methods-atlas/assets/reference-solutions.json",
+      "source_case_sha256": "ebc0e1257cd7a6321868a8fa8b4b33c3aadd7bbf9f519ff15f24f4d958f60938",
+      "metadata": {
+        "reference_class": "semi-analytic",
+        "citations": [
+          {
+            "role": "reference-documentation",
+            "title": "Clawpack Riemann book: Euler equations",
+            "url": "https://www.clawpack.org/riemann_book/html/Euler.html",
+            "note": "Existing official educational reference link retained. The present audit reads the saved Atlas formula/code metadata, not a newly downloaded original article or full documentation body; historical original-problem attribution remains unverified here."
+          }
+        ],
+        "reference_scope": "Immutable historical formula/parameters/saved values retained. Role annotations distinguish textbook background, method sources and educational reference documentation; no new original-paper or numerical qualification is claimed.",
+        "reference_contract": {
+          "class": "semi-analytic",
+          "sampling": {
+            "en": "Saved point profile at 401 x coordinates on [-5.0, 5.0], t=1.3. Components: rho, rho u, E. Conserved cell averages are a distinct evaluation.",
+            "ja": "保存済みのx方向401点、範囲[-5.0, 5.0]、時刻t=1.3での点値です。保存量のセル平均とは区別します。"
+          },
+          "fixed_parameters": {
+            "left": [
+              0.445,
+              0.698,
+              3.528
+            ],
+            "right": [
+              0.5,
+              0.0,
+              0.571
+            ],
+            "parameter": 1.4,
+            "origin": 0.0
+          },
+          "historical_original_solution_verified": false
+        }
+      }
+    },
+    {
+      "id": "euler-double-rarefaction",
+      "source": "numerical-methods-atlas/assets/reference-solutions.json",
+      "source_case_sha256": "fd57f408586459556a290db48940f8e1e2ea83ff2cc64355759a90166f03ba19",
+      "metadata": {
+        "reference_class": "semi-analytic",
+        "citations": [
+          {
+            "role": "reference-documentation",
+            "title": "Clawpack Riemann book: Euler equations",
+            "url": "https://www.clawpack.org/riemann_book/html/Euler.html",
+            "note": "Existing official educational reference link retained. The present audit reads the saved Atlas formula/code metadata, not a newly downloaded original article or full documentation body; historical original-problem attribution remains unverified here."
+          }
+        ],
+        "reference_scope": "Immutable historical formula/parameters/saved values retained. Role annotations distinguish textbook background, method sources and educational reference documentation; no new original-paper or numerical qualification is claimed.",
+        "reference_contract": {
+          "class": "semi-analytic",
+          "sampling": {
+            "en": "Saved point profile at 401 x coordinates on [0.0, 1.0], t=0.15. Components: rho, rho u, E. Conserved cell averages are a distinct evaluation.",
+            "ja": "保存済みのx方向401点、範囲[0.0, 1.0]、時刻t=0.15での点値です。保存量のセル平均とは区別します。"
+          },
+          "fixed_parameters": {
+            "left": [
+              1.0,
+              -2.0,
+              0.4
+            ],
+            "right": [
+              1.0,
+              2.0,
+              0.4
+            ],
+            "parameter": 1.4,
+            "origin": 0.5
+          },
+          "historical_original_solution_verified": false
+        }
+      }
+    },
+    {
+      "id": "euler-vacuum",
+      "source": "numerical-methods-atlas/assets/reference-solutions.json",
+      "source_case_sha256": "d00149f38f7822ad4070264540f43a1d3d085910af8d5433b2e958712f0dc3c4",
+      "metadata": {
+        "reference_class": "continuous-exact",
+        "citations": [
+          {
+            "role": "reference-documentation",
+            "title": "Clawpack Riemann book: Euler equations",
+            "url": "https://www.clawpack.org/riemann_book/html/Euler.html",
+            "note": "Existing official educational reference link retained. The present audit reads the saved Atlas formula/code metadata, not a newly downloaded original article or full documentation body; historical original-problem attribution remains unverified here."
+          }
+        ],
+        "reference_scope": "Immutable historical formula/parameters/saved values retained. Role annotations distinguish textbook background, method sources and educational reference documentation; no new original-paper or numerical qualification is claimed.",
+        "reference_contract": {
+          "class": "continuous-exact",
+          "sampling": {
+            "en": "Saved point profile at 401 x coordinates on [0.0, 1.0], t=0.05. Components: rho, rho u, E. Conserved cell averages are a distinct evaluation.",
+            "ja": "保存済みのx方向401点、範囲[0.0, 1.0]、時刻t=0.05での点値です。保存量のセル平均とは区別します。"
+          },
+          "fixed_parameters": {
+            "left": [
+              1.0,
+              -4.0,
+              0.4
+            ],
+            "right": [
+              1.0,
+              4.0,
+              0.4
+            ],
+            "parameter": 1.4,
+            "origin": 0.5
+          },
+          "historical_original_solution_verified": false
+        }
+      }
+    },
+    {
+      "id": "swe-dam-break",
+      "source": "numerical-methods-atlas/assets/reference-solutions.json",
+      "source_case_sha256": "f61da65a6b908730869ddd1b24e6f013927392235c03586212f922a00789ea81",
+      "metadata": {
+        "reference_class": "semi-analytic",
+        "citations": [
+          {
+            "role": "reference-documentation",
+            "title": "Clawpack Riemann book: Shallow-water equations",
+            "url": "https://www.clawpack.org/riemann_book/html/Shallow_water.html",
+            "note": "Existing official educational reference link retained. The present audit reads the saved Atlas formula/code metadata, not a newly downloaded original article or full documentation body; historical original-problem attribution remains unverified here."
+          }
+        ],
+        "reference_scope": "Immutable historical formula/parameters/saved values retained. Role annotations distinguish textbook background, method sources and educational reference documentation; no new original-paper or numerical qualification is claimed.",
+        "reference_contract": {
+          "class": "semi-analytic",
+          "sampling": {
+            "en": "Saved point profile at 401 x coordinates on [0.0, 1.0], t=0.1. Components: h, h u. Conserved cell averages are a distinct evaluation.",
+            "ja": "保存済みのx方向401点、範囲[0.0, 1.0]、時刻t=0.1での点値です。保存量のセル平均とは区別します。"
+          },
+          "fixed_parameters": {
+            "left": [
+              2.0,
+              0.0
+            ],
+            "right": [
+              1.0,
+              0.0
+            ],
+            "parameter": 1.0,
+            "origin": 0.5
+          },
+          "historical_original_solution_verified": false
+        }
+      }
+    },
+    {
+      "id": "swe-dry-bed",
+      "source": "numerical-methods-atlas/assets/reference-solutions.json",
+      "source_case_sha256": "793c3835f2e6846cfc9385ebf85e3428bc4454143b1ec69943f638f958f3b14b",
+      "metadata": {
+        "reference_class": "continuous-exact",
+        "citations": [
+          {
+            "role": "reference-documentation",
+            "title": "Clawpack Riemann book: Shallow-water equations",
+            "url": "https://www.clawpack.org/riemann_book/html/Shallow_water.html",
+            "note": "Existing official educational reference link retained. The present audit reads the saved Atlas formula/code metadata, not a newly downloaded original article or full documentation body; historical original-problem attribution remains unverified here."
+          }
+        ],
+        "reference_scope": "Immutable historical formula/parameters/saved values retained. Role annotations distinguish textbook background, method sources and educational reference documentation; no new original-paper or numerical qualification is claimed.",
+        "reference_contract": {
+          "class": "continuous-exact",
+          "sampling": {
+            "en": "Saved point profile at 401 x coordinates on [0.0, 1.0], t=0.15. Components: h, h u. Conserved cell averages are a distinct evaluation.",
+            "ja": "保存済みのx方向401点、範囲[0.0, 1.0]、時刻t=0.15での点値です。保存量のセル平均とは区別します。"
+          },
+          "fixed_parameters": {
+            "left": [
+              1.0,
+              0.0
+            ],
+            "right": [
+              0.0,
+              0.0
+            ],
+            "parameter": 1.0,
+            "origin": 0.5
+          },
+          "historical_original_solution_verified": false
+        }
+      }
+    },
+    {
+      "id": "swe-vacuum",
+      "source": "numerical-methods-atlas/assets/reference-solutions.json",
+      "source_case_sha256": "4583a79e21809c9561e0192a95123957d82a36202ba790d55fe1026205ed7165",
+      "metadata": {
+        "reference_class": "continuous-exact",
+        "citations": [
+          {
+            "role": "reference-documentation",
+            "title": "Clawpack Riemann book: Shallow-water equations",
+            "url": "https://www.clawpack.org/riemann_book/html/Shallow_water.html",
+            "note": "Existing official educational reference link retained. The present audit reads the saved Atlas formula/code metadata, not a newly downloaded original article or full documentation body; historical original-problem attribution remains unverified here."
+          }
+        ],
+        "reference_scope": "Immutable historical formula/parameters/saved values retained. Role annotations distinguish textbook background, method sources and educational reference documentation; no new original-paper or numerical qualification is claimed.",
+        "reference_contract": {
+          "class": "continuous-exact",
+          "sampling": {
+            "en": "Saved point profile at 401 x coordinates on [0.0, 1.0], t=0.1. Components: h, h u. Conserved cell averages are a distinct evaluation.",
+            "ja": "保存済みのx方向401点、範囲[0.0, 1.0]、時刻t=0.1での点値です。保存量のセル平均とは区別します。"
+          },
+          "fixed_parameters": {
+            "left": [
+              1.0,
+              -3.0
+            ],
+            "right": [
+              1.0,
+              3.0
+            ],
+            "parameter": 1.0,
+            "origin": 0.5
+          },
+          "historical_original_solution_verified": false
+        }
+      }
+    },
+    {
+      "id": "isothermal-jump",
+      "source": "numerical-methods-atlas/assets/reference-solutions.json",
+      "source_case_sha256": "7b084f4b4128ed0585f3e00fb6e6ae535911a983939911e52a4a7683fc3884a4",
+      "metadata": {
+        "reference_class": "semi-analytic",
+        "citations": [
+          {
+            "role": "solution-background",
+            "title": "Existing linked isothermal Riemann-invariant background",
+            "url": "https://www.sfu.ca/~van/papers/Riemann-inv.pdf",
+            "note": "Original card URL retained. PDF authorship/body/equations were not newly verified; this link is background, not a claim of an inspected original exact-solution paper."
+          }
+        ],
+        "reference_scope": "Immutable historical formula/parameters/saved values retained. Role annotations distinguish textbook background, method sources and educational reference documentation; no new original-paper or numerical qualification is claimed.",
+        "reference_contract": {
+          "class": "semi-analytic",
+          "sampling": {
+            "en": "Saved point profile at 401 x coordinates on [0.0, 1.0], t=0.1. Components: rho, rho u. Conserved cell averages are a distinct evaluation.",
+            "ja": "保存済みのx方向401点、範囲[0.0, 1.0]、時刻t=0.1での点値です。保存量のセル平均とは区別します。"
+          },
+          "fixed_parameters": {
+            "left": [
+              1.0,
+              0.0
+            ],
+            "right": [
+              0.125,
+              0.0
+            ],
+            "parameter": 1.0,
+            "origin": 0.5
+          },
+          "historical_original_solution_verified": false
+        }
+      }
+    },
+    {
+      "id": "poisson-manufactured",
+      "source": "numerical-methods-atlas/assets/reference-solutions.json",
+      "source_case_sha256": "80e1846e946f33a1da70c9cd95ed6adc5d0235a35bfe55e0bfbe20dcccb136be",
+      "metadata": {
+        "reference_class": "manufactured",
+        "citations": [
+          {
+            "role": "textbook-background",
+            "title": "LeVeque, Randall J. (2007), Finite Difference Methods for Ordinary and Partial Differential Equations: Steady-State and Time-Dependent Problems",
+            "url": "https://doi.org/10.1137/1.9780898717839",
+            "note": "Inherited current bibliography metadata: Author-maintained book list checked for year, title, DOI and companion materials. Reading reference for consistency, stability, boundary-value problems and time stepping; full book not audited here. No new full-text reading in this migration; this source is not claimed as the original exact solution."
+          }
+        ],
+        "reference_scope": "Immutable historical formula/parameters/saved values retained. Role annotations distinguish textbook background, method sources and educational reference documentation; no new original-paper or numerical qualification is claimed.",
+        "reference_contract": {
+          "class": "manufactured",
+          "sampling": {
+            "en": "Saved point profile at 401 x coordinates on [0.0, 1.0], t=0.0. Components: u. Conserved cell averages are a distinct evaluation.",
+            "ja": "保存済みのx方向401点、範囲[0.0, 1.0]、時刻t=0.0での点値です。保存量のセル平均とは区別します。"
+          },
+          "fixed_parameters": {},
+          "historical_original_solution_verified": false
+        }
+      }
+    },
+    {
+      "id": "couette",
+      "source": "numerical-methods-atlas/assets/reference-solutions.json",
+      "source_case_sha256": "1c7687563b91bd7ec1a7907547713a72b2bb37892933e4fcdef8118ca14c877b",
+      "metadata": {
+        "reference_class": "continuous-exact",
+        "citations": [
+          {
+            "role": "textbook-background",
+            "title": "Ferziger, Joel H. and Perić, Milovan and Street, Robert L. (2020), Computational Methods for Fluid Dynamics",
+            "url": "https://doi.org/10.1007/978-3-319-99693-6",
+            "note": "Inherited current bibliography metadata: Publisher edition metadata and contents checked. Uses the fourth-edition copyright year 2020; the publisher lists electronic publication in August 2019. Broad CFD reading reference, including incompressible flow and solution procedures; not a validation claim for all listed applications. No new full-text reading in this migration; this source is not claimed as the original exact solution."
+          }
+        ],
+        "reference_scope": "Immutable historical formula/parameters/saved values retained. Role annotations distinguish textbook background, method sources and educational reference documentation; no new original-paper or numerical qualification is claimed.",
+        "reference_contract": {
+          "class": "continuous-exact",
+          "sampling": {
+            "en": "Saved point profile at 401 y coordinates on [0.0, 1.0], t=0.0. Components: u. Conserved cell averages are a distinct evaluation.",
+            "ja": "保存済みのy方向401点、範囲[0.0, 1.0]、時刻t=0.0での点値です。保存量のセル平均とは区別します。"
+          },
+          "fixed_parameters": {},
+          "historical_original_solution_verified": false
+        }
+      }
+    },
+    {
+      "id": "poiseuille",
+      "source": "numerical-methods-atlas/assets/reference-solutions.json",
+      "source_case_sha256": "5832fc09e595ff47b49d7be345b3019076375e22e402d35b9d7433d816e2e98f",
+      "metadata": {
+        "reference_class": "continuous-exact",
+        "citations": [
+          {
+            "role": "textbook-background",
+            "title": "Ferziger, Joel H. and Perić, Milovan and Street, Robert L. (2020), Computational Methods for Fluid Dynamics",
+            "url": "https://doi.org/10.1007/978-3-319-99693-6",
+            "note": "Inherited current bibliography metadata: Publisher edition metadata and contents checked. Uses the fourth-edition copyright year 2020; the publisher lists electronic publication in August 2019. Broad CFD reading reference, including incompressible flow and solution procedures; not a validation claim for all listed applications. No new full-text reading in this migration; this source is not claimed as the original exact solution."
+          }
+        ],
+        "reference_scope": "Immutable historical formula/parameters/saved values retained. Role annotations distinguish textbook background, method sources and educational reference documentation; no new original-paper or numerical qualification is claimed.",
+        "reference_contract": {
+          "class": "continuous-exact",
+          "sampling": {
+            "en": "Saved point profile at 401 y coordinates on [0.0, 1.0], t=0.0. Components: u. Conserved cell averages are a distinct evaluation.",
+            "ja": "保存済みのy方向401点、範囲[0.0, 1.0]、時刻t=0.0での点値です。保存量のセル平均とは区別します。"
+          },
+          "fixed_parameters": {},
+          "historical_original_solution_verified": false
+        }
+      }
+    },
+    {
+      "id": "taylor-green",
+      "source": "numerical-methods-atlas/assets/reference-solutions.json",
+      "source_case_sha256": "f7f9ce6b8efe42146e2be2b4963aafb5adc18116136e079f2a387d2311f91aa6",
+      "metadata": {
+        "reference_class": "continuous-exact",
+        "citations": [
+          {
+            "role": "numerical-method",
+            "title": "Chorin, Alexandre Joel (1968), Numerical solution of the Navier-Stokes equations",
+            "url": "https://doi.org/10.1090/S0025-5718-1968-0242392-2",
+            "note": "Inherited current bibliography metadata: Original publisher record and author-hosted original checked. Projection source; the independent periodic MAC/SSPRK2 demonstration is not the original boundary/time algorithm. No new full-text reading in this migration; this source is not claimed as the original exact solution."
+          }
+        ],
+        "reference_scope": "Immutable historical formula/parameters/saved values retained. Role annotations distinguish textbook background, method sources and educational reference documentation; no new original-paper or numerical qualification is claimed.",
+        "reference_contract": {
+          "class": "continuous-exact",
+          "sampling": {
+            "en": "Saved point profile at 401 x coordinates on [0.0, 6.283185307179586], t=0.5. Components: u, v, p. Conserved cell averages are a distinct evaluation. The two-dimensional field is displayed only as the x-slice at y=pi/4.",
+            "ja": "保存済みのx方向401点、範囲[0.0, 6.283185307179586]、時刻t=0.5での点値です。保存量のセル平均とは区別します。 2次元の式のうち、表示はy=π/4のx断面だけです。"
+          },
+          "fixed_parameters": {
+            "viscosity": 0.1
+          },
+          "historical_original_solution_verified": false
+        }
+      }
+    },
+    {
+      "id": "lake-at-rest-bed",
+      "source": "catalog/atlas-reference-supplements.json",
+      "source_case_sha256": "b5a54de81f5e25f4499bd3a366076efd7536695f2038622f774761cfca5e8367",
+      "metadata": {
+        "reference_class": "discrete-exact",
+        "reference_contract": {
+          "class": "discrete-exact",
+          "sampling": {
+            "en": "Discrete hydrostatic equilibrium for the represented bed; wet and emerged cases are distinct. No universal fully discrete entropy inequality is claimed.",
+            "ja": "固定された離散対象の解析・有理数参照です。連続PDEの厳密解とは区別し、対象と補助比較は元カードの適用範囲を保持します。"
+          },
+          "qualification": "Classification of the existing recorded reference scope only; no citation or numerical evidence changed and no new oracle execution."
+        }
+      }
+    },
+    {
+      "id": "pivoted-direct-refinement",
+      "source": "catalog/atlas-reference-supplements.json",
+      "source_case_sha256": "a40da9ccc8daf0b4a20fcf5986362a8892eb33cb128c863475437819d6b880f1",
+      "metadata": {
+        "reference_class": "discrete-exact",
+        "reference_contract": {
+          "class": "discrete-exact",
+          "sampling": {
+            "en": "Exact-rational algebraic references, not spatial or PDE data and not a universal certified forward-error bound. LAPACK DGESV and DPOSV comparisons are reported separately.",
+            "ja": "固定された離散対象の解析・有理数参照です。連続PDEの厳密解とは区別し、対象と補助比較は元カードの適用範囲を保持します。"
+          },
+          "qualification": "Classification of the existing recorded reference scope only; no citation or numerical evidence changed and no new oracle execution."
+        }
+      }
+    },
+    {
+      "id": "restarted-shift-invert",
+      "source": "catalog/atlas-reference-supplements.json",
+      "source_case_sha256": "c5149660fc4211c132a18f56df83dab73691153db93a0b901a1cd08638489d86",
+      "metadata": {
+        "reference_class": "discrete-exact",
+        "reference_contract": {
+          "class": "discrete-exact",
+          "sampling": {
+            "en": "A closed finite-dimensional sine spectrum and a separate dense LAPACK qualification. Original-problem residuals and the spectral back-map are checked. No implicit restarting, Krylov-Schur or general nonnormal capability is claimed.",
+            "ja": "固定された離散対象の解析・有理数参照です。連続PDEの厳密解とは区別し、対象と補助比較は元カードの適用範囲を保持します。"
+          },
+          "qualification": "Classification of the existing recorded reference scope only; no citation or numerical evidence changed and no new oracle execution."
+        }
+      }
+    },
+    {
+      "id": "fem-mass-eigen",
+      "source": "catalog/atlas-reference-supplements.json",
+      "source_case_sha256": "9041a835ed4e2549c28317f0a7200f1399611c4f40975d8a4b8940b931a6970c",
+      "metadata": {
+        "reference_class": "discrete-exact",
+        "reference_contract": {
+          "class": "discrete-exact",
+          "sampling": {
+            "en": "Closed finite-element eigenvalues independently qualify comparisons that share LAPACK. Generalized dense eigenvectors and primary M-normalized vectors are finite-precision numerical objects. Residual, M-orthogonality, discrete eigenvalue error and continuum refinement are distinct. No time integration or analytically exact piecewise-linear mode is claimed.",
+            "ja": "固定された離散対象の解析・有理数参照です。連続PDEの厳密解とは区別し、対象と補助比較は元カードの適用範囲を保持します。"
+          },
+          "qualification": "Classification of the existing recorded reference scope only; no citation or numerical evidence changed and no new oracle execution."
+        }
+      }
+    },
+    {
+      "id": "reverse-vjp-duality",
+      "source": "catalog/atlas-reference-supplements.json",
+      "source_case_sha256": "4dbe750f4b6b0757113d6bb68792ed8c52d82c11f7c09c765cbdaf40964d2aa7",
+      "metadata": {
+        "reference_class": "discrete-exact",
+        "reference_contract": {
+          "class": "discrete-exact",
+          "sampling": {
+            "en": "A hand-derived nonsymmetric rectangular Jacobian with separately evaluated high-precision exponentials is the reference. Independent stencil/transpose actions supplement it; symmetric Bratu alone cannot qualify transposition. These are analytic derivatives of finite discrete maps, not exact continuum PDE solutions or a general AD framework.",
+            "ja": "固定された離散対象の解析・有理数参照です。連続PDEの厳密解とは区別し、対象と補助比較は元カードの適用範囲を保持します。"
+          },
+          "qualification": "Classification of the existing recorded reference scope only; no citation or numerical evidence changed and no new oracle execution."
+        }
+      }
+    },
+    {
+      "id": "hessian-vector-products",
+      "source": "catalog/atlas-reference-supplements.json",
+      "source_case_sha256": "3404143ec1c83c0abefc8d5710ac51674db58e72eb85b855b87707fed9158b1c",
+      "metadata": {
+        "reference_class": "discrete-exact",
+        "reference_contract": {
+          "class": "discrete-exact",
+          "sampling": {
+            "en": "References are rational Qv, an independently evaluated fixed-state Bratu stencil formula, and an oracle-only square-root family with rational values at theta 4. The primary solves F/R1/R2 without embedding that family. These are not continuum PDE solutions, general reduced inverse Hessians or derivatives of a finite Newton trace.",
+            "ja": "固定された離散対象の解析・有理数参照です。連続PDEの厳密解とは区別し、対象と補助比較は元カードの適用範囲を保持します。"
+          },
+          "qualification": "Classification of the existing recorded reference scope only; no citation or numerical evidence changed and no new oracle execution."
+        }
+      }
+    },
+    {
+      "id": "kink-branch-derivatives",
+      "source": "catalog/atlas-reference-supplements.json",
+      "source_case_sha256": "e2e037b4fd56617f050d8b43c062892547a0d671fa606ee3be301bafea43a65d",
+      "metadata": {
+        "reference_class": "discrete-exact",
+        "reference_contract": {
+          "class": "discrete-exact",
+          "sampling": {
+            "en": "Rational piecewise formulas and the literal stopping rule provide references. Strict kinks retain undefined classical derivatives with null/validity, separately from directional maps and chosen-trace slopes. Finite quotients across a switch are not derivative limits, continuum PDE references or universal subgradients.",
+            "ja": "固定された離散対象の解析・有理数参照です。連続PDEの厳密解とは区別し、対象と補助比較は元カードの適用範囲を保持します。"
+          },
+          "qualification": "Classification of the existing recorded reference scope only; no citation or numerical evidence changed and no new oracle execution."
+        }
+      }
+    },
+    {
+      "id": "diffusion-discrete-adjoint",
+      "source": "catalog/atlas-reference-supplements.json",
+      "source_case_sha256": "9f5bf81872a0f3d58919e8ccc48bfff51a11d634272f283435106c91dd3fd589",
+      "metadata": {
+        "reference_class": "discrete-exact",
+        "reference_contract": {
+          "class": "discrete-exact",
+          "sampling": {
+            "en": "Analytic references are scalar modal solutions and parameter derivatives of the same finite backward-Euler map. A separate time-exact semidiscrete exponential measures temporal error only and never substitutes continuum spatial eigenvalues. Checkpoint replay follows that same discrete reverse map; it is not CVODES or an optimal schedule. Qualification, primary execution and final packet evidence remain separate receipts.",
+            "ja": "固定された離散対象の解析・有理数参照です。連続PDEの厳密解とは区別し、対象と補助比較は元カードの適用範囲を保持します。"
+          },
+          "qualification": "Classification of the existing recorded reference scope only; no citation or numerical evidence changed and no new oracle execution."
+        }
+      }
+    },
+    {
+      "id": "haar-mallat-boundary-threshold",
+      "source": "catalog/atlas-reference-supplements.json",
+      "source_case_sha256": "cefacc3c4d7f09daec4ab5ef03f86b7ca6090f911bce89424a320454e90e5374",
+      "metadata": {
+        "reference_class": "discrete-exact",
+        "reference_contract": {
+          "class": "discrete-exact",
+          "sampling": {
+            "en": "Use twelve analyses and thirty-six reconstructions. Check independent matrices, Fraction/Decimal coefficients, perfect reconstruction and squared L2 errors. Require the orthogonal error identity only at length 32; retain level-by-level padding energy at length 17. Limited to Haar, without longer filters or image compression. General symmetric extension is not assumed orthonormal. Shift invariance is not required; shift-dependent differences are retained.",
+            "ja": "固定された離散対象の解析・有理数参照です。連続PDEの厳密解とは区別し、対象と補助比較は元カードの適用範囲を保持します。"
+          },
+          "qualification": "Classification of the existing recorded reference scope only; no citation or numerical evidence changed and no new oracle execution."
+        }
+      }
+    }
+  ],
+  "reference_class_vocabulary": [
+    "continuous-exact",
+    "semi-analytic",
+    "manufactured",
+    "discrete-exact",
+    "independent-numerical",
+    "self-convergence"
+  ],
+  "unclassified_ids": [
+    "noh",
+    "sedov",
+    "double-mach",
+    "forward-step",
+    "isentropic-vortex",
+    "guderley",
+    "zalesak-rotation",
+    "weno-critical-profile",
+    "swashes-bernoulli",
+    "ritter-dry-bed",
+    "ghia-re100",
+    "wall-mms",
+    "level-set-translation",
+    "level-set-rotation",
+    "sem-poisson-2d",
+    "fr-periodic-advection",
+    "kh-initial-growth",
+    "rt-initial-growth",
+    "circular-alfven-refinement",
+    "magnetic-loop-independent",
+    "postshock-orszag-tang",
+    "ale-nonuniform-transport",
+    "cgrid-rotating-wave",
+    "lshape-fem",
+    "annular-viscous-mms",
+    "poisson-neumann",
+    "poisson-robin",
+    "srhd-collision",
+    "srmhd-alfven",
+    "checkerboard-diffusion",
+    "rotated-anisotropic-diffusion",
+    "neutral-slab-yb",
+    "fmm3d-inverse-r",
+    "gravity-kepler",
+    "gravity-plummer-short",
+    "thermal-landau-damping",
+    "thermal-two-stream",
+    "pic-independent-spatial",
+    "dsmc-couette",
+    "dsmc-fourier",
+    "dsmc-planar-shock",
+    "lbm-cavity-re100",
+    "lbm-taylor-green",
+    "lbm-annular-couette-control",
+    "lbm-cylinder-re20",
+    "isotropic-scattering-slab",
+    "su-olson-diffusion1996",
+    "su-olson-transport1997",
+    "shadow-absorber2d",
+    "opposing-beams2d",
+    "gbm-weak-moments",
+    "ou-weak-moments",
+    "gbm-milstein-strong",
+    "normal-tail-importance",
+    "correlated-gaussian-mcmc",
+    "cylinder-mie2d",
+    "lorentz-oblique-sp",
+    "dispersive-grazing-pml",
+    "symmetric-saddle-minres",
+    "bratu-fold-continuation",
+    "bratu-matrix-free-jfnk",
+    "globalization-difficult-starts",
+    "bratu-fold-sensitivity",
+    "bratu-distributed-vjp",
+    "bratu-gn-lm-bounds",
+    "bfgs-lbfgs-controls",
+    "bratu-noise-regularization",
+    "robertson-stiff-kinetics",
+    "van-der-pol-stiff-transition",
+    "rk45-dense-events",
+    "strang-boundary-order-reduction",
+    "jameson-steady-linear-modes",
+    "index1-dae-consistent-initialization",
+    "robertson-conservation-dae",
+    "high-index-pendulum",
+    "shake-rattle-pendulum",
+    "kepler-eccentricity",
+    "multifrequency-resonance",
+    "quadpack-domain-selection",
+    "gk15-double-exponential",
+    "tensor-smolyak-dimensions",
+    "runge-barycentric-clenshaw",
+    "spline-shape-controls",
+    "pinn-poisson",
+    "fno-periodic-heat",
+    "enzyme-qssa",
+    "lotka-volterra",
+    "seir-linearization"
+  ],
+  "unclassified_reason": "No single refined reference class assigned by this bounded migration. Keep the original kind and complete reference_scope; mixed continuum/discrete/numerical roles need explicit per-card qualification rather than inference from kind alone.",
+  "historical_citation_reading_gap": "All18legacylinksnowhaveexplicitroles/readlimits; original exact-solution/problem attribution remains unverified in this migration. Existing97citationobjects retain their original individual read limits."
+}

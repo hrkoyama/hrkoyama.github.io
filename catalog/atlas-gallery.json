@@ -915,10 +915,10 @@
     {
       "id": "thermostatted-quartic",
       "kind": "image",
-      "source": "/code/validated-examples/2026-11-22/thermostats/results/csvr-langevin-quartic.png",
+      "source": "/code/validated-examples/2026-11-25/thermostat-constraint-controls/results/deterministic-thermostat-contrasts.png",
       "caption": {
-        "ja": "弱い四次ポテンシャルを持つ2自由度で、CSVRとLangevinの分布・温度とエネルギーの揺らぎ・相関を比較。正準分布を独立なBoltzmann求積から得ます。",
-        "en": "Compare CSVR and Langevin distributions, temperature/energy fluctuations and correlations for two weakly quartic modes. Independent Boltzmann quadrature provides equilibrium references."
+        "ja": "同じ2モード系で、温度平均に加えて分布・揺らぎ・相関を比べます。 著者作成の分割でありLAMMPS/MKT実装の完全再現ではありません。時刻20は混合・平衡化の証明でなく、平均温度一致だけで正準分布や一般的なエルゴード性を認定しません。",
+        "en": "Compare distributions,fluctuations and correlations as well as mean temperature on the same two-mode systems. This authored splitting is not a full LAMMPS/MKT reproduction. Time20does not prove mixing/equilibration; correct mean temperature alone does not establish canonical sampling or general ergodicity."
       }
     },
     {
@@ -1612,6 +1612,132 @@
       "caption": {
         "ja": "人口保存と2モードの初期線形化を別々に検査します。 保存値だけを描画します。 時間・濃度・個体数の軸は空間次元ではありません。率は教育用で疾病・実験予測ではありません。",
         "en": "Check population conservation and the full two-mode initial linearization separately. This figure reads saved data only. Time, concentrations and populations do not define a spatial dimension. The rates are educational, not disease or experimental predictions."
+      }
+    },
+    {
+      "id": "two-state-bo-cp-model",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-25/quantum-small/results/two-state-bo-cp-ou.png",
+      "caption": {
+        "ja": "電子角と核座標を実際に結合した2準位模型を、短いNVEと核熱浴で比較します。 長時間第一原理NVE、一般の多軌道直交制約・SCF誤差、電子/核の一般熱浴、正準平衡・断熱分離・エルゴード性、実物質は未検証。",
+        "en": "Compare a normalized two-state electronic degree of freedom coupled to a nuclear coordinate, short NVE and one nuclear OU bath. Long first-principles NVE, general multi-orbital orthonormality/SCF errors, general electronic/nuclear baths, canonical equilibration, adiabatic/ergodic certification and materials remain unverified."
+      }
+    },
+    {
+      "id": "quantum-box-ho",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-25/quantum-small/results/quantum-box-ho.png",
+      "caption": {
+        "ja": "1次元の箱と量子調和振動子で、低3固有対と有限領域・格子の影響を比較します。 8回の全固有対計算で824組をraw保存、規格化等の資格判定は選択24組です。節の閾値と位相は診断、HO0.003は固定例の達成目標で証明済み上界ではありません。有限壁と格子感度を相殺から独立に保証しません。",
+        "en": "Compare low stationary eigenpairs of a1D box and harmonic oscillator, with finite-domain and mesh sensitivity. Eight full solves save824raw pairs; qualification applies to24selected pairs. Thresholded nodes/phase are diagnostics. HO0.003 is a met fixed-case goal, not a proved bound; finite-wall/mesh sensitivities do not certify separate errors."
+      }
+    },
+    {
+      "id": "h3plus-minimal",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-25/quantum-small/results/h3plus-mp2-fci.png",
+      "caption": {
+        "ja": "固定三角形H3+の3中心小分子で、RHF/MP2/有限基底FCIを示します。 独立な演算子組立と2電子RS2恒等式で固定小模型を照合します。新しい外部PySCF参照はありません。一般分子DFT、CC、多参照法、精密エネルギー・最適化・化学精度は未実装/未検証。MP2は変分上界ではありません。",
+        "en": "Demonstrate RHF, MP2 and finite-basis FCI for a tiny fixed three-center H3+ molecule. Independent operator assembly and two-electron RS2 identity qualify this fixed toy. No fresh external PySCF scalar. General molecular DFT, CC, multireference methods, precision energetics, geometry optimization and chemical accuracy remain unimplemented/unverified. MP2 is not variational."
+      }
+    },
+    {
+      "id": "finite-projector-fermi",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-25/quantum-small/results/periodic-projector-occupations.png",
+      "caption": {
+        "ja": "3平面波の小周期模型で、非局所projectorと有限温度占有・力を示します。 自作3平面波の線形Hamiltonianです。平均占有の独立粒子Fermi模型であり、整数粒子の正準多体系ではありません。自己無撞着Hartree/XC、元素適合ノルム保存擬ポテンシャル、実金属、一般材料、長時間MDは未検証。",
+        "en": "Show a genuine rank-one nonlocal kernel and finite-temperature occupations in a three-wave periodic educational model. Authored linear3-wave Hamiltonian with independent-particle mean Fermi occupations, not an integer-particle canonical many-body ensemble. No self-consistent Hartree/XC, element-fitted norm-conserving PSP, real metal, general material or longMD validation."
+      }
+    },
+    {
+      "id": "hodgkin-huxley-controls",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-25/biology-ode-controls/results/hodgkin-huxley-controls.png",
+      "caption": {
+        "ja": "固定電位の解析ゲート解と、区分電流下の4状態系を照合します。 1細胞膜の教育例です。元論文の電位規約、TABLE/cnexp実装、ケーブル伝播や生体実測の再現とは呼びません。区間内に括れない発火は捏造せず、静止根の一意性・区間Hurwitz安定性は主張しません。",
+        "en": "Compare analytic clamp gates and a four-state system with segment-owned current. This educational membrane model does not reproduce the original voltage convention, TABLE/cnexp, cable propagation or measured physiology. Missing/unresolved events remain explicit; rest-root uniqueness and interval-Hurwitz stability are unclaimed."
+      }
+    },
+    {
+      "id": "immigration-death-ssa",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-25/biology-ode-controls/results/immigration-death-ssa.png",
+      "caption": {
+        "ja": "1本の軌跡と12,288本の固定アンサンブルを分けて検証します。 有限時間の決定論的初期状態を定常分布とは呼びません。区間の保証は理想IID法則の参照に限り、PRNG・対数演算を含むソフトウェア全体の被覆率保証や単一軌跡の代表性を主張しません。",
+        "en": "Separate one displayed path from12,288fixed ensemble paths. Finite deterministic-start transients are not stationary. Interval qualification concerns the idealIID reference law, without a whole-software PRNG/logarithm coverage guarantee or a claim that one path represents the ensemble."
+      }
+    },
+    {
+      "id": "fisher-kpp-special-front",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-25/biology-space-controls/results/fisher-kpp-special-front.png",
+      "caption": {
+        "ja": "波形・位置・格子誤差・時間誤差・有限領域の影響を分けます。 特殊前線を一般の最小速度2の前線と同一視しません。急減衰初期値からの速度選択、長時間伝播、機械誤差込みの厳密障壁証明は対象外です。",
+        "en": "Separate profile, phase, grid, time and finite-boundary errors. The special front is distinct from the minimum linear speed2. This is not a steep-data speed-selection study, long-time propagation result or certified machine-error barrier proof."
+      }
+    },
+    {
+      "id": "schnakenberg-2d-boundary-modes",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-25/biology-space-controls/results/schnakenberg-2d-boundary-modes.png",
+      "caption": {
+        "ja": "2つのNeumann摂動とDirichlet摂動を独立な非線形Galerkin参照と比較します。 短時間の小振幅・固定初期値です。一般的な模様選択、成長後の成熟パターン、原著図の再現は主張しません。有限の参照差を連続体誤差の厳密上界と呼びません。",
+        "en": "Compare two Neumann perturbations and a Dirichlet perturbation against nonlinear Galerkin references. This short small-amplitude study does not establish general pattern selection, mature patterns or reproduction of original figures. Finite reference differences are not rigorous continuum error bounds."
+      }
+    },
+    {
+      "id": "keller-segel-forced-flux",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-25/biology-space-controls/results/keller-segel-forced-flux.png",
+      "caption": {
+        "ja": "滑らかな2D厳密場で、交差流束・段時刻・収支を検証します。 著者作成の強制2場モデルです。原著の全生物モデル、ピーク形成、真のblow-upやその抑制を実証しません。負値をクリップして正値性を装いません。",
+        "en": "Use smooth exact2D fields to test cross fluxes, stage timing and mass ledgers. This authored forced two-field model does not reproduce the full original biological model or demonstrate aggregation, true blow-up or suppression. No clipping is used to manufacture positivity."
+      }
+    },
+    {
+      "id": "projected-canonical-dof",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-25/thermostat-constraint-controls/results/projected-canonical-dof.png",
+      "caption": {
+        "ja": "有効自由度、運動量共分散、過渡分布と時間相関を分けて検証します。 固定線形拘束の小例です。非線形分子拘束、Fixman補正、輸送係数へ一般化しません。独立seedの冗長拘束系には軌跡の一致を要求せず、CSVRの動的相関は経験的な結果です。",
+        "en": "Separate effectiveDOF,momentum covariance,transient distributions and time correlations. These fixed linear constraints do not cover nonlinear molecular constraints,Fixman corrections or transport coefficients. Redundant systems with independent seeds need not have identical paths; CSVR dynamical correlations are empirical."
+      }
+    },
+    {
+      "id": "saltzman-ale-piston",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-25/continuum-particle-controls/results/saltzman-ale-piston.png",
+      "caption": {
+        "ja": "Tan–Lv–Zhu (2023) Example 8 の e0=10^-4 を明示した有限圧力版。所与のアフィンALE格子を使う2D Euler/Rusanov例で、物質追従格子、WENO、remapや1985原報の全面再現ではありません。",
+        "en": "Tan–Lv–Zhu (2023) Example 8 variant with e0=1e-4 and finite initial pressure. Prescribed affine ALE, 2D Euler and Rusanov; not their material Lagrangian mesh, WENO/remap scheme or a full reproduction of the unread 1985 report."
+      }
+    },
+    {
+      "id": "williamson-sphere-transport",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-25/continuum-particle-controls/results/williamson-sphere-transport.png",
+      "caption": {
+        "ja": "単位球の所与の剛体回転によるスカラー輸送だけです。原W92全文の式は未閲読で、Nairらの選択した著者資料との規約照合に限ります。両格子とも11回の非整合なremap。非保存の双線形補間で質量ずれを報告し、時間収束とは呼びません。",
+        "en": "Only prescribed scalar solid-body rotation on a unit sphere. Original W92 equations remain unread; selected Nair author formulas cross-check conventions. Both grids use eleven noncommensurate remaps. Bilinear interpolation is nonconservative; report mass drift and do not claim temporal convergence or a nonlinear global SWE core."
+      }
+    },
+    {
+      "id": "sphere-zonal-balance",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-25/continuum-particle-controls/results/sphere-zonal-balance.png",
+      "caption": {
+        "ja": "a=g=1, Ω=2, u0=.5, h0=10 の軸対称な無次元部分問題。運動量中心差分・質量FV・RK4の混成で実際に時間発展させます。標準地球条件や全球多次元SWE、厳密な離散釣合い・PV保存の再現ではありません。",
+        "en": "Axisymmetric nondimensional subproblem with a=g=1, Omega=2, u0=.5 and h0=10. Actual time evolution uses centered primitive momentum, finite-volume mass and RK4. Not standard Earth parameters, a full global multidimensional SWE core, exact discrete balance or a PV-conservation claim."
+      }
+    },
+    {
+      "id": "sph-pressure-acoustics",
+      "kind": "image",
+      "source": "/code/validated-examples/2026-11-25/continuum-particle-controls/results/sph-pressure-acoustics.png",
+      "caption": {
+        "ja": "GSPH、摂動した128粒子、t=0.2。初期カーネル再構成誤差は最大0.011834で、音波振幅0.001より大きく、左の密度分布にその影響が残ります。右は初期誤差です。判定は基本Fourierモードの位相・振幅と保存量などの固定条件であり、点ごとの高精度や一般的な優位性を示しません。",
+        "en": "GSPH with 128 jittered particles at t=0.2. The initial kernel reconstruction error reaches 0.011834, exceeding the acoustic amplitude 0.001 and remaining visible in the left density profile; the right panel shows that initial error. Acceptance concerns the fundamental Fourier mode phase/amplitude and other fixed conservation controls, not pointwise high accuracy or general superiority."
       }
     }
   ]

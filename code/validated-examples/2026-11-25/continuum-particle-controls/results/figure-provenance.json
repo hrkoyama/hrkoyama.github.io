@@ -1,0 +1,33 @@
+{
+  "result_sha256": "cab002c93e01d997562f3c145e1aaddd6a2a8ce59a087d44e8bddc4679081bbf",
+  "data_sources": {
+    "piston-80-8.npz": "a76c42ff8036b04c585dd851fc3f540ca222b0cf6bdba3c4430827964b10420f",
+    "sphere-128-64-1.570796.npz": "a65939204baf4b17e66f73e4bf8620b61d61bf362b2b43eec3a29bae816c40d5",
+    "zonal-64.npz": "4ef5051af149e0987b7cd41e5ac1d8c5bc05989d325125fbc3c28f685f960022",
+    "sod-gsph-32.npz": "7b05627c26c09c3516745096284e6c32b62b5b3db51be4ae29c04f61e454c1b2",
+    "smooth-gsph-wave-jitter-128.npz": "49327ac194942a50db657fa0cf2d447badb0307add7c6c830d9c084952f38fda"
+  },
+  "plots": {
+    "saltzman-ale-piston": {
+      "saltzman-ale-piston.png": "e1a51556c809261a2dbd47e5d06acc113780f3cc42be82e0225be18f05d09e05",
+      "saltzman-ale-piston-preview.png": "1100f7009e7e83a2dcb771e8968fbf89f79ff2412c0843951eb49a8c1fb09dfd"
+    },
+    "williamson-sphere-transport": {
+      "williamson-sphere-transport.png": "be017ade9a054d91fc83cc743cedae9a5bbeee367c60892f0b731e5c17f36ca1",
+      "williamson-sphere-transport-preview.png": "0592ee5b7d141e027ba7622c70d6e16c084d8d4da90bdf3d5bb831786b9b6c6b"
+    },
+    "sphere-zonal-balance": {
+      "sphere-zonal-balance.png": "74876bf29005e8968fe5c5fe51157d0be99f57cc76c18da88e663ad85ae061c6",
+      "sphere-zonal-balance-preview.png": "c45c9a9c70f049d1638862988d6290fb1679c45d5bdca90cccecb9ce4d469b8b"
+    },
+    "gsph-sod": {
+      "gsph-sod.png": "ca05217ba1deaba5d97b84865f9170dea48abafe5114c975e86e2fb456214815",
+      "gsph-sod-preview.png": "48b54c254853556490ba5e775d88fa602123d6eba4b6d3550e607925ac06a053"
+    },
+    "sph-pressure-acoustics": {
+      "sph-pressure-acoustics.png": "1eae2a6441afcc1fe5adbeb9d84b7b0cc0bc4ca117bf75f14be5a49cd617740e",
+      "sph-pressure-acoustics-preview.png": "996a626c95b64f77ad6723d79264b962e26d6429bd6ee778b48ef8a94f84b791"
+    }
+  },
+  "scope": "Plots and CSV are derived only from saved arrays. No numerical solver executes here."
+}

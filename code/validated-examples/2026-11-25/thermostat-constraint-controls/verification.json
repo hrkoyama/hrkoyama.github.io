@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "group": "thermostat-constraint-controls",
+  "edition": "2026-11-25",
+  "verified_on": "2026-11-25",
+  "source_manifest_sha256": "6e64499f6bda68ad17ccc7402e49a7296b82d500174ce0eb238e0acd076cc45e",
+  "archive": {
+    "file": "atlas-thermostat-constraint-controls-2026-11-25.zip",
+    "sha256": "836113a7e8859d41b2697177f74cb2c8c8185a6fa4f4630773b914095ed10de1",
+    "bytes": 7147682,
+    "archive_directory": "atlas-thermostat-constraint-controls-2026-11-25"
+  },
+  "archive_sha256": "836113a7e8859d41b2697177f74cb2c8c8185a6fa4f4630773b914095ed10de1",
+  "returncode": 0,
+  "passed_tests": 10,
+  "tests": 10,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "deterministic-thermostat-contrasts",
+    "projected-canonical-dof"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 4.820733500000003,
+  "independent_rerun_seconds": 4.699817541000002,
+  "independent_pytest_plus_main_seconds": 5.293539417000005,
+  "environment": {
+    "python": "3.9.6 (default, Aug 25 2026, 21:26:21) \n[Clang 21.0.0 (clang-2100.3.34.2)]",
+    "numpy": "2.0.2",
+    "scipy": "NOT_INSTALLED",
+    "pytest": "8.4.2",
+    "matplotlib": "3.9.4",
+    "Pillow": "11.3.0"
+  },
+  "pinned_public_Linux_reproduction": false,
+  "execution": "Actual first run/plots and independently extracted ZIP strict tests/full rerun. Actual local versions recorded; pinned Python3.12 Linux remains mandatory."
+}

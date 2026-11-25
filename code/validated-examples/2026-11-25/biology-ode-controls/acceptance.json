@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "group": "biology-ode-controls",
+  "shared_pytest_plus_main_cap_seconds": 120,
+  "case_contracts": {
+    "88": {
+      "mandatory": {
+        "rates_abs": 2e-12,
+        "Decimal80_120_abs": 1e-13,
+        "rest_root_and_residual_abs": 1e-10,
+        "pulse_edge_increment_abs": 1e-15,
+        "ODE_reference_spread_abs": 1e-07,
+        "accepted_gate_lower": -1e-12,
+        "accepted_gate_upper": 1.000000000001
+      },
+      "study": {
+        "all_time_finest_clamp_error": 1e-08,
+        "rest_voltage_drift": 1e-07,
+        "finest_pulse_V": 0.05,
+        "finest_pulse_gates": 0.0001,
+        "single_simple_event_ms": 0.01
+      },
+      "stability": "NotclaimedwithoutintervalHurwitzcertificate"
+    },
+    "89": {
+      "mandatory": {
+        "CDF_interval_width": "1e-18",
+        "80_120_initial_integer_thresholds": "exactlyequal",
+        "80_120_sum_acceptance_bounds": "exactlyequal",
+        "complete_paths": 12289,
+        "families": 40,
+        "unique_ensemble_stream_namespaces": 24576,
+        "all_initial_PCG_state_inc_pairs_including_display": 24578,
+        "all_stream_labels_including_display": 24578
+      },
+      "study": {
+        "DKW_nominal_failure_probability_each": 0.00025,
+        "exact_sum_mean_nominal_failure_probability_each": 0.00025,
+        "variance_five_SE": 5
+      },
+      "sampling_target_scope": "NominalidealIIDsamplinggoals,notmandatoryrandomrealizationPASS"
+    }
+  },
+  "mandatory_reporting": [
+    "allfixedprimary/reference/componentactions",
+    "actualRNGandworkcounts",
+    "finitequalifiedreferencecompanions",
+    "alloriginalstudygoalstrue/false/nullwithreason",
+    "ownedpartialcheckpointonfailure",
+    "nohiddenclipping/seedselection/rowskipping"
+  ],
+  "passed_semantics": "Allmandatorycomponent/reference/reportingchecks;studygoalsremainseparateandarenotsilentlymasked.",
+  "order_floor": "Ordernullwhenerrorsnotabove20xqualifiedreferencespreadanddeclaredroundofffloor.",
+  "preexecution_review": "freeze.jsonmustbindallsource/input/acceptancebeforeexecution",
+  "owned_main_cap_seconds": 115,
+  "budget_note": "Pre-executionoperationaltightening,notincreasedtimeallowanceorchangedscientificgoal;sharedouter120unchanged."
+}

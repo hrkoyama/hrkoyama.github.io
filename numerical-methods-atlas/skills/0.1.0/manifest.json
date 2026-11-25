@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "name": "nan-numerics",
+  "version": "0.1.0",
+  "public_base_url": "https://hrkoyama.github.io/numerical-methods-atlas/skills/0.1.0/",
+  "files": {
+    "nan-numerics/SKILL.md": {
+      "sha256": "0bdbe6cdcd9126208983c36a9ab46d19f2d96775738e448e1e516d0a9c2abc72",
+      "bytes": 2535
+    },
+    "nan-numerics/references/public-resources.md": {
+      "sha256": "4c663d9ca27f3df2aac9b0b54526fc7ef9e1b698e8d92a4b98867adf073c68e8",
+      "bytes": 3267
+    },
+    "nan-numerics/LICENSE": {
+      "sha256": "510f2caf16d88fac38c52e14938c532a6c77c2af5f8bc7b2a6c5e692e97e08f1",
+      "bytes": 1312
+    }
+  },
+  "archive": {
+    "file": "nan-numerics-0.1.0.zip",
+    "sha256": "0be858df2e290a9df5c5b4fb49dc2a7e269db89f3587829eb15053deb8834139",
+    "bytes": 3961,
+    "archive_directory": "nan-numerics"
+  },
+  "license": {
+    "spdx_id": "MIT",
+    "file": "nan-numerics/LICENSE",
+    "scope": "Only the original skill instructions and resource-route guide in this package. Referenced atlas content, scientific code, papers, datasets and figures retain their own terms and are not redistributed or relicensed."
+  }
+}

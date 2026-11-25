@@ -68,7 +68,10 @@
         "lbm-cavity-re100",
         "lbm-taylor-green",
         "lbm-annular-couette-control",
-        "lbm-cylinder-re20"
+        "lbm-cylinder-re20",
+        "saltzman-ale-piston",
+        "williamson-sphere-transport",
+        "sphere-zonal-balance"
       ]
     },
     {
@@ -189,7 +192,10 @@
         "ja": "既存の小規模例・保存済み独立参照と配布物の整合を維持し、必要時に少数の代表再実行を行う。大規模な基底・k点走査、重い独立参照の再生成、長時間BOMD／CPMD、一般物質への拡張は、必要性が指定された場合だけ別途検討する。",
         "en": "Maintain the existing small examples, saved independent references and release integrity, with a few representative reruns when needed. Large basis/k-point sweeps, expensive reference regeneration, long BOMD/CPMD and general-material extensions are considered separately only on explicit need."
       },
-      "supplemental_examples": []
+      "supplemental_examples": [
+        "atomic-reference-cards",
+        "quantum-box-ho"
+      ]
     },
     {
       "id": "quantum-molecular",
@@ -220,7 +226,11 @@
         "ja": "既存の小規模例・保存済み独立参照と配布物の整合を維持し、必要時に少数の代表再実行を行う。大規模な基底・k点走査、重い独立参照の再生成、長時間BOMD／CPMD、一般物質への拡張は、必要性が指定された場合だけ別途検討する。",
         "en": "Maintain the existing small examples, saved independent references and release integrity, with a few representative reruns when needed. Large basis/k-point sweeps, expensive reference regeneration, long BOMD/CPMD and general-material extensions are considered separately only on explicit need."
       },
-      "supplemental_examples": []
+      "supplemental_examples": [
+        "two-state-bo-cp-ou",
+        "h2-rhf-uhf-fci",
+        "h3plus-mp2-fci"
+      ]
     },
     {
       "id": "biology",
@@ -261,7 +271,12 @@
         "reaction-diffusion-splitting",
         "enzyme-qssa",
         "lotka-volterra",
-        "seir-linearization"
+        "seir-linearization",
+        "hodgkin-huxley-controls",
+        "immigration-death-ssa",
+        "fisher-kpp-special-front",
+        "schnakenberg-2d-boundary-modes",
+        "keller-segel-forced-flux"
       ],
       "schnakenberg_scope": {
         "ja": "a=0.1,b=0.9、拡散係数0.01/1、長さ2πの1次元周期Schnakenberg系。旧線形発現例を保持し、固定した反射対称の有限振幅初期値の非線形発展と成長後パターンを独立Fourier–Galerkin/Radau参照および空間・時間細分化で比較します。一般の模様選択、2次元、生物実験への較正、流体連成には広げません。",
@@ -354,7 +369,10 @@
         "langevin-harmonic",
         "csvr-kinetic-kernel",
         "csvr-langevin-harmonic",
-        "csvr-langevin-quartic"
+        "csvr-langevin-quartic",
+        "two-state-bo-cp-ou",
+        "deterministic-thermostat-contrasts",
+        "projected-canonical-dof"
       ]
     },
     {
@@ -387,7 +405,10 @@
         "ja": "既存の小規模例・保存済み独立参照と配布物の整合を維持し、必要時に少数の代表再実行を行う。大規模な基底・k点走査、重い独立参照の再生成、長時間BOMD／CPMD、一般物質への拡張は、必要性が指定された場合だけ別途検討する。",
         "en": "Maintain the existing small examples, saved independent references and release integrity, with a few representative reruns when needed. Large basis/k-point sweeps, expensive reference regeneration, long BOMD/CPMD and general-material extensions are considered separately only on explicit need."
       },
-      "supplemental_examples": []
+      "supplemental_examples": [
+        "periodic-he-reference-cards",
+        "periodic-projector-occupations"
+      ]
     },
     {
       "id": "foundations",
@@ -475,7 +496,9 @@
         "pic-independent-spatial",
         "dsmc-couette",
         "dsmc-fourier",
-        "dsmc-planar-shock"
+        "dsmc-planar-shock",
+        "gsph-sod",
+        "sph-pressure-acoustics"
       ],
       "scope": {
         "ja": "中性周期電荷のEwald／B-spline SPME、2次元自由空間対数核の真のFMM、1次元cold-plasma PIC、均質Maxwell分子のDSMC衝突成分を小規模検証。 旧5例に加え、同じ問題の独立参照・打切り・格子・時間・保存量・統計診断を別配布版で比較します。 追加固定例は真の2周期スラブ、3D1/r FMM、重力軌道、熱的PICと独立空間演算、物理時間の剛体球壁面流・Mach2衝撃波。",
@@ -512,7 +535,9 @@
         "su-olson-diffusion1996",
         "su-olson-transport1997",
         "shadow-absorber2d",
-        "opposing-beams2d"
+        "opposing-beams2d",
+        "williamson-sphere-transport",
+        "sph-pressure-acoustics"
       ],
       "scope": {
         "ja": "従来の1次元純吸収平板を保持します。追加の固定例では、等方散乱平板、規格化を分けた非平衡拡散と輸送・物質交換、2Dの影・ビームと静止M1を扱います。拡散極限の比較は平均自由行程を解像したFourierモードに限定し、固定格子APや一般の放射流体連成へは広げません。",

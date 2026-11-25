@@ -361,7 +361,17 @@
           }
         }
       ],
-      "availability": "saved-output"
+      "availability": "saved-output",
+      "supplemental_examples": [
+        {
+          "id": "gsph-sod",
+          "url": "/numerical-methods-atlas/validation/gsph-sod/",
+          "name": {
+            "ja": "Gaussian畳込みGSPHによるSod型粒子衝撃管",
+            "en": "Sod-type particle shock tube with Gaussian-convolution GSPH"
+          }
+        }
+      ]
     },
     {
       "id": "lax",
@@ -1750,6 +1760,16 @@
           "path": "code/quantum-atoms/2026-11-21/test_atomic_radial.py",
           "python_symbol": "test_helium_scf_and_independent_reference"
         }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "atomic-reference-cards",
+          "url": "/numerical-methods-atlas/validation/atomic-reference-cards/",
+          "name": {
+            "ja": "H/Heの式・密度・固定参照カード",
+            "en": "Hydrogenic formulas and immutable finite-basis helium reference cards"
+          }
+        }
       ]
     },
     {
@@ -1903,6 +1923,16 @@
           "path": "code/molecular-hf/2026-11-22/test_molecular_hf.py",
           "python_symbol": "test_fixed_input_validation"
         }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "h2-rhf-uhf-fci",
+          "url": "/numerical-methods-atlas/validation/h2-rhf-uhf-fci/",
+          "name": {
+            "ja": "最小基底H2のRHF/UHF/FCI・2固定幾何",
+            "en": "Minimal-basis H2: RHF, broken-spin UHF and finite-basis FCI"
+          }
+        }
       ]
     },
     {
@@ -1956,6 +1986,16 @@
         {
           "path": "code/periodic-forces/2026-11-22/test_periodic_forces.py",
           "python_symbol": "test_saved_full_run_passes"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "periodic-he-reference-cards",
+          "url": "/numerical-methods-atlas/validation/periodic-he-reference-cards/",
+          "name": {
+            "ja": "保存周期Heエネルギー・力の参照台帳",
+            "en": "Immutable periodic-helium energy and force reference audit"
+          }
         }
       ]
     },
@@ -2845,6 +2885,14 @@
           "name": {
             "ja": "非調和CSVRとLangevin：Boltzmann求積との分布比較",
             "en": "Anharmonic CSVR versus Langevin: distribution checks against Boltzmann quadrature"
+          }
+        },
+        {
+          "id": "deterministic-thermostat-contrasts",
+          "url": "/numerical-methods-atlas/validation/deterministic-thermostat-contrasts/",
+          "name": {
+            "ja": "NH・chain・弱結合・速度固定の比較",
+            "en": "NH,chains,weak coupling and fixed-speed contrasts"
           }
         }
       ]
@@ -6387,6 +6435,622 @@
           "name": {
             "ja": "SEIR保存則と初期線形化",
             "en": "SEIR conservation and initial linearization"
+          }
+        }
+      ]
+    },
+    {
+      "id": "two-state-bo-cp-model",
+      "group": "quantum",
+      "name": {
+        "ja": "2準位模型のBO/CP型連成と短い核熱浴",
+        "en": "A two-state BO / CP-type model with a short nuclear thermostat coupling"
+      },
+      "chapter": "validation-quantum-small",
+      "reading_section": "two-state-bo-cp-ou",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-25/quantum-small/",
+      "verification": "/code/validated-examples/2026-11-25/quantum-small/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider test_quantum_small.py",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-25/quantum-small/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "two-state-bo-cp-ou"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/quantum-small/results/two-state-bo-cp-ou.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/quantum-small/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "two-state-bo-cp-ou",
+          "url": "/numerical-methods-atlas/validation/two-state-bo-cp-ou/",
+          "name": {
+            "ja": "2準位模型のBO/CP型連成と短い核熱浴",
+            "en": "A two-state BO / CP-type model with a short nuclear thermostat coupling"
+          }
+        }
+      ]
+    },
+    {
+      "id": "quantum-box-ho",
+      "group": "quantum",
+      "name": {
+        "ja": "1次元箱型井戸・量子調和振動子",
+        "en": "Small 1D box and quantum harmonic-oscillator eigenpairs"
+      },
+      "chapter": "validation-quantum-small",
+      "reading_section": "quantum-box-ho",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-25/quantum-small/",
+      "verification": "/code/validated-examples/2026-11-25/quantum-small/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider test_quantum_small.py",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-25/quantum-small/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "quantum-box-ho"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/quantum-small/results/quantum-box-ho.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/quantum-small/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "quantum-box-ho",
+          "url": "/numerical-methods-atlas/validation/quantum-box-ho/",
+          "name": {
+            "ja": "1次元箱型井戸・量子調和振動子",
+            "en": "Small 1D box and quantum harmonic-oscillator eigenpairs"
+          }
+        }
+      ]
+    },
+    {
+      "id": "h3plus-minimal",
+      "group": "quantum",
+      "name": {
+        "ja": "3中心H3+の小RHF/MP2/FCI模型",
+        "en": "A tiny three-center H3+ RHF / MP2 / FCI example"
+      },
+      "chapter": "validation-quantum-small",
+      "reading_section": "h3plus-mp2-fci",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-25/quantum-small/",
+      "verification": "/code/validated-examples/2026-11-25/quantum-small/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider test_quantum_small.py",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-25/quantum-small/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "h3plus-mp2-fci"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/quantum-small/results/h3plus-mp2-fci.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/quantum-small/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "h3plus-mp2-fci",
+          "url": "/numerical-methods-atlas/validation/h3plus-mp2-fci/",
+          "name": {
+            "ja": "3中心H3+の小RHF/MP2/FCI模型",
+            "en": "A tiny three-center H3+ RHF / MP2 / FCI example"
+          }
+        }
+      ]
+    },
+    {
+      "id": "finite-projector-fermi",
+      "group": "quantum",
+      "name": {
+        "ja": "3平面波の非局所projectorと有限温度占有",
+        "en": "A three-wave periodic projector and Fermi-occupation model"
+      },
+      "chapter": "validation-quantum-small",
+      "reading_section": "periodic-projector-occupations",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-25/quantum-small/",
+      "verification": "/code/validated-examples/2026-11-25/quantum-small/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider test_quantum_small.py",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-25/quantum-small/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "periodic-projector-occupations"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/quantum-small/results/periodic-projector-occupations.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/quantum-small/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "periodic-projector-occupations",
+          "url": "/numerical-methods-atlas/validation/periodic-projector-occupations/",
+          "name": {
+            "ja": "3平面波の非局所projectorと有限温度占有",
+            "en": "A three-wave periodic projector and Fermi-occupation model"
+          }
+        }
+      ]
+    },
+    {
+      "id": "hodgkin-huxley-controls",
+      "group": "biology",
+      "name": {
+        "ja": "Hodgkin–Huxley：電位固定・静止平衡・発火",
+        "en": "Hodgkin–Huxley: clamps, rest and firing"
+      },
+      "chapter": "validation-biology-ode-controls",
+      "reading_section": "hodgkin-huxley-controls",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-25/biology-ode-controls/",
+      "verification": "/code/validated-examples/2026-11-25/biology-ode-controls/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-25/biology-ode-controls/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "hodgkin-huxley-controls"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/biology-ode-controls/results/hodgkin-huxley-controls.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/biology-ode-controls/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "hodgkin-huxley-controls",
+          "url": "/numerical-methods-atlas/validation/hodgkin-huxley-controls/",
+          "name": {
+            "ja": "Hodgkin–Huxley：電位固定・静止平衡・発火",
+            "en": "Hodgkin–Huxley: clamps, rest and firing"
+          }
+        }
+      ]
+    },
+    {
+      "id": "immigration-death-ssa",
+      "group": "biology",
+      "name": {
+        "ja": "移入–死亡SSA：有限時刻の厳密分布",
+        "en": "Immigration–death SSA: exact transient laws"
+      },
+      "chapter": "validation-biology-ode-controls",
+      "reading_section": "immigration-death-ssa",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-25/biology-ode-controls/",
+      "verification": "/code/validated-examples/2026-11-25/biology-ode-controls/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-25/biology-ode-controls/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "immigration-death-ssa"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/biology-ode-controls/results/immigration-death-ssa.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/biology-ode-controls/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "immigration-death-ssa",
+          "url": "/numerical-methods-atlas/validation/immigration-death-ssa/",
+          "name": {
+            "ja": "移入–死亡SSA：有限時刻の厳密分布",
+            "en": "Immigration–death SSA: exact transient laws"
+          }
+        }
+      ]
+    },
+    {
+      "id": "fisher-kpp-special-front",
+      "group": "biology",
+      "name": {
+        "ja": "Fisher–KPP：特殊波速の厳密前線",
+        "en": "Fisher–KPP: a special-speed exact front"
+      },
+      "chapter": "validation-biology-space-controls",
+      "reading_section": "fisher-kpp-special-front",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-25/biology-space-controls/",
+      "verification": "/code/validated-examples/2026-11-25/biology-space-controls/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-25/biology-space-controls/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "fisher-kpp-special-front"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/biology-space-controls/results/fisher-kpp-special-front.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/biology-space-controls/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "fisher-kpp-special-front",
+          "url": "/numerical-methods-atlas/validation/fisher-kpp-special-front/",
+          "name": {
+            "ja": "Fisher–KPP：特殊波速の厳密前線",
+            "en": "Fisher–KPP: a special-speed exact front"
+          }
+        }
+      ]
+    },
+    {
+      "id": "schnakenberg-2d-boundary-modes",
+      "group": "biology",
+      "name": {
+        "ja": "Schnakenberg：2D境界と初期モード",
+        "en": "Schnakenberg:2D boundaries and initial modes"
+      },
+      "chapter": "validation-biology-space-controls",
+      "reading_section": "schnakenberg-2d-boundary-modes",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-25/biology-space-controls/",
+      "verification": "/code/validated-examples/2026-11-25/biology-space-controls/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-25/biology-space-controls/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "schnakenberg-2d-boundary-modes"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/biology-space-controls/results/schnakenberg-2d-boundary-modes.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/biology-space-controls/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "schnakenberg-2d-boundary-modes",
+          "url": "/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/",
+          "name": {
+            "ja": "Schnakenberg：2D境界と初期モード",
+            "en": "Schnakenberg:2D boundaries and initial modes"
+          }
+        }
+      ]
+    },
+    {
+      "id": "keller-segel-forced-flux",
+      "group": "biology",
+      "name": {
+        "ja": "Keller–Segel：連成流束の製造解",
+        "en": "Keller–Segel: a manufactured coupled-flux solution"
+      },
+      "chapter": "validation-biology-space-controls",
+      "reading_section": "keller-segel-forced-flux",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-25/biology-space-controls/",
+      "verification": "/code/validated-examples/2026-11-25/biology-space-controls/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-25/biology-space-controls/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "keller-segel-forced-flux"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/biology-space-controls/results/keller-segel-forced-flux.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/biology-space-controls/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "keller-segel-forced-flux",
+          "url": "/numerical-methods-atlas/validation/keller-segel-forced-flux/",
+          "name": {
+            "ja": "Keller–Segel：連成流束の製造解",
+            "en": "Keller–Segel: a manufactured coupled-flux solution"
+          }
+        }
+      ]
+    },
+    {
+      "id": "projected-canonical-dof",
+      "group": "time",
+      "name": {
+        "ja": "拘束・重心除去と正準統計",
+        "en": "Constraints,centre-of-mass removal and canonical statistics"
+      },
+      "chapter": "validation-thermostat-constraint-controls",
+      "reading_section": "projected-canonical-dof",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-25/thermostat-constraint-controls/",
+      "verification": "/code/validated-examples/2026-11-25/thermostat-constraint-controls/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-25/thermostat-constraint-controls/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "projected-canonical-dof"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/thermostat-constraint-controls/results/projected-canonical-dof.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/thermostat-constraint-controls/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "projected-canonical-dof",
+          "url": "/numerical-methods-atlas/validation/projected-canonical-dof/",
+          "name": {
+            "ja": "拘束・重心除去と正準統計",
+            "en": "Constraints,centre-of-mass removal and canonical statistics"
+          }
+        }
+      ]
+    },
+    {
+      "id": "saltzman-ale-piston",
+      "group": "fluid",
+      "name": {
+        "ja": "Saltzman型の歪み格子ピストン：2次元EulerとALE",
+        "en": "Saltzman-type skew-grid piston: 2D Euler and ALE"
+      },
+      "chapter": "validation-continuum-particle-controls",
+      "reading_section": "saltzman-ale-piston",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-25/continuum-particle-controls/",
+      "verification": "/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider test_components.py",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "saltzman-ale-piston"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/continuum-particle-controls/results/saltzman-ale-piston.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "saltzman-ale-piston",
+          "url": "/numerical-methods-atlas/validation/saltzman-ale-piston/",
+          "name": {
+            "ja": "Saltzman型の歪み格子ピストン：2次元EulerとALE",
+            "en": "Saltzman-type skew-grid piston: 2D Euler and ALE"
+          }
+        }
+      ]
+    },
+    {
+      "id": "williamson-sphere-transport",
+      "group": "fluid",
+      "name": {
+        "ja": "Williamson型の球面固体回転輸送：傾いた軸と極通過",
+        "en": "Williamson-type spherical rotation: tilted axes and pole crossing"
+      },
+      "chapter": "validation-continuum-particle-controls",
+      "reading_section": "williamson-sphere-transport",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-25/continuum-particle-controls/",
+      "verification": "/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider test_components.py",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "williamson-sphere-transport"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/continuum-particle-controls/results/williamson-sphere-transport.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "williamson-sphere-transport",
+          "url": "/numerical-methods-atlas/validation/williamson-sphere-transport/",
+          "name": {
+            "ja": "Williamson型の球面固体回転輸送：傾いた軸と極通過",
+            "en": "Williamson-type spherical rotation: tilted axes and pole crossing"
+          }
+        }
+      ]
+    },
+    {
+      "id": "sphere-zonal-balance",
+      "group": "fluid",
+      "name": {
+        "ja": "球面浅水波の軸対称定常釣合いを時間積分",
+        "en": "Time evolution of axisymmetric spherical shallow-water balance"
+      },
+      "chapter": "validation-continuum-particle-controls",
+      "reading_section": "sphere-zonal-balance",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-25/continuum-particle-controls/",
+      "verification": "/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider test_components.py",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "sphere-zonal-balance"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/continuum-particle-controls/results/sphere-zonal-balance.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "sphere-zonal-balance",
+          "url": "/numerical-methods-atlas/validation/sphere-zonal-balance/",
+          "name": {
+            "ja": "球面浅水波の軸対称定常釣合いを時間積分",
+            "en": "Time evolution of axisymmetric spherical shallow-water balance"
+          }
+        }
+      ]
+    },
+    {
+      "id": "sph-pressure-acoustics",
+      "group": "particles",
+      "name": {
+        "ja": "一様圧力と線形音波：SPH/GSPHの粒子配置依存",
+        "en": "Uniform pressure and acoustics: particle-layout effects in SPH/GSPH"
+      },
+      "chapter": "validation-continuum-particle-controls",
+      "reading_section": "sph-pressure-acoustics",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-25/continuum-particle-controls/",
+      "verification": "/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider test_components.py",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "sph-pressure-acoustics"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/continuum-particle-controls/results/sph-pressure-acoustics.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "sph-pressure-acoustics",
+          "url": "/numerical-methods-atlas/validation/sph-pressure-acoustics/",
+          "name": {
+            "ja": "一様圧力と線形音波：SPH/GSPHの粒子配置依存",
+            "en": "Uniform pressure and acoustics: particle-layout effects in SPH/GSPH"
           }
         }
       ]

@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "status": "ROOT_PEER_REVIEWED_FROZEN",
+  "created_at_utc": "2026-11-25T10:07:52.419694+00:00",
+  "group": "thermostat-constraint-controls",
+  "files_sha256": {
+    "LICENSE": "f33f55c85a47e986052d79123fd6939790af5dc8b840e15798b745ced1da482a",
+    "PROTOCOL.md": "940878d7b3467743aa5f5b5ca9107c8c32b755012e530b805d329c85a99448da",
+    "README.md": "aeaf0778f9904b71292bc6e6de6d0ede4851891fcd37aca67790a3b361890667",
+    "acceptance.json": "e741651e9ac010e4f500ce2d761a7d12c538827441fbec29a271dc526958cef2",
+    "cases.json": "8763d8bb27b77b5f014914065a50a49a2e2b2b552128ce4c595b6a391de17c32",
+    "common.py": "b4bfa4a1e0e5d3a99ab06bdbd8a925ff941ac7b6a269d721ec538bcfb51a5a9e",
+    "constrained.py": "847ce8a497dfa7077618dc200373c6897a66c5d59e95b1ad1147287ee462d184",
+    "deterministic.py": "fb0d184d755db2a6d49c28f856d41fc2b04bdd92b9701244e556ba9353404ff7",
+    "inputs.json": "31c649cecb7a69704ac44dbabeb86ef2fa4f79f941b9902fbe602f402571247d",
+    "plot.py": "51cfcf5f50f79ae465332cc86348cdee4b22e972bdfb70f31bea4a65c8e6dbe8",
+    "requirements-plotting.txt": "9219ba01fa741ccca28c752db67a0ac180f6d9e55cb5198821ded5aa4b4099bd",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "deb16e98c3f51b409f85594dde84cd7bf6527baca2e8b359473c46202670b2be",
+    "source-reading.json": "085d2f542d16d96e8f0c5455d64cb670ddbe60b3ebb51f384b5f46bd7bf8b79b",
+    "test_models.py": "dbbda5e5221fe5d6d6e8d5bfb60411dddf0e27b8753543d9b3fd6792aa810510"
+  },
+  "root_review": {
+    "sha256": "6cf8c9eb4536f3cd3c21bc96a36d2d41566200a15e6d42cf8896f004a8d4d48e"
+  },
+  "independent_peer_review": {
+    "sha256": "8d1dcb676aea985ceddc2b58a7ae833605d308eb24cd470a6abab641ac2fbefe"
+  },
+  "scope": "R6displaycompatibilityonly; originalscientificcode/inputs/gatesunchanged. CanonicalnewPNG+ZIPactualverificationrequired.",
+  "budget_seconds": {
+    "pytest": 120,
+    "runner_external": 120,
+    "runner_cooperative": 115,
+    "plot": 45
+  }
+}

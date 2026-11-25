@@ -1570,6 +1570,234 @@
         "ja": "Poisson PINN・周期熱FNOと、酵素・捕食被食・SEIRを固定予算で調べます。学習/近似の元精度目標と再現検査を区別します。",
         "en": "Study a Poisson PINN, periodic-heat FNO and enzyme, predator–prey and SEIR systems under fixed budgets. Original learning and approximation goals remain separate from reproduction checks."
       }
+    },
+    {
+      "id": "validation-quantum-small",
+      "method_ids": [
+        "born-oppenheimer-md",
+        "car-parrinello-md",
+        "langevin-thermostat",
+        "verlet",
+        "schrodinger",
+        "hartree-fock",
+        "kohn-sham-dft",
+        "configuration-interaction",
+        "scf",
+        "mp2",
+        "pseudopotentials"
+      ],
+      "equation_ids": [
+        "two-state-bo-cp-model",
+        "stationary-schrodinger",
+        "hartree-fock-model",
+        "kohn-sham-model",
+        "unrestricted-hartree-fock-model",
+        "finite-projector-fermi-model"
+      ],
+      "problem_ids": [
+        "two-state-bo-cp-model",
+        "helium-ground-state",
+        "hydrogenic-atoms",
+        "quantum-box-ho",
+        "h2-rhf",
+        "h3plus-minimal",
+        "periodic-he-forces",
+        "periodic-he-dft",
+        "finite-projector-fermi"
+      ],
+      "execution_ids": [
+        "two-state-bo-cp-ou",
+        "atomic-reference-cards",
+        "quantum-box-ho",
+        "h2-rhf-uhf-fci",
+        "h3plus-mp2-fci",
+        "periodic-he-reference-cards",
+        "periodic-projector-occupations"
+      ],
+      "reference_ids": [
+        "two-state-bo-cp-ou",
+        "atomic-reference-cards",
+        "quantum-box-ho",
+        "h2-rhf-uhf-fci",
+        "h3plus-mp2-fci",
+        "periodic-he-reference-cards",
+        "periodic-projector-occupations"
+      ],
+      "code_problem_ids": [
+        "two-state-bo-cp-model",
+        "helium-ground-state",
+        "quantum-box-ho",
+        "h2-rhf",
+        "h3plus-minimal",
+        "periodic-he-forces",
+        "finite-projector-fermi"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "固定2準位連成・1D固有対・最小分子・3波模型と、H/He・周期Heの保存参照監査です。重い一般範囲は残します。",
+        "en": "Fixed two-state dynamics,1D eigenpairs,minimal molecules and a3-wave model plus saved H/He and periodic-He audits. Broad expensive tails remain unverified."
+      }
+    },
+    {
+      "id": "validation-biology-ode-controls",
+      "method_ids": [
+        "rk4",
+        "rk45",
+        "gillespie-ssa"
+      ],
+      "equation_ids": [
+        "bio-hodgkin-huxley",
+        "bio-chemical-master",
+        "immigration-death-model"
+      ],
+      "problem_ids": [
+        "hodgkin-huxley-controls",
+        "immigration-death-ssa"
+      ],
+      "execution_ids": [
+        "hodgkin-huxley-controls",
+        "immigration-death-ssa"
+      ],
+      "reference_ids": [
+        "hodgkin-huxley-controls",
+        "immigration-death-ssa"
+      ],
+      "code_problem_ids": [
+        "hodgkin-huxley-controls",
+        "immigration-death-ssa"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "Hodgkin–Huxleyの電位固定・静止・発火と、移入–死亡SSAの厳密過渡分布を、小さな固定入力で照合します。",
+        "en": "Check Hodgkin–Huxley clamps, rest and firing alongside exact immigration–death SSA transient laws on fixed small inputs."
+      }
+    },
+    {
+      "id": "validation-biology-space-controls",
+      "method_ids": [
+        "ssprk33",
+        "rk45",
+        "crank-nicolson",
+        "strang-splitting"
+      ],
+      "equation_ids": [
+        "bio-fisher-kpp",
+        "bio-schnakenberg",
+        "bio-keller-segel",
+        "forced-keller-segel-model"
+      ],
+      "problem_ids": [
+        "fisher-kpp-special-front",
+        "schnakenberg-2d-boundary-modes",
+        "keller-segel-forced-flux"
+      ],
+      "execution_ids": [
+        "fisher-kpp-special-front",
+        "schnakenberg-2d-boundary-modes",
+        "keller-segel-forced-flux"
+      ],
+      "reference_ids": [
+        "fisher-kpp-special-front",
+        "schnakenberg-2d-boundary-modes",
+        "keller-segel-forced-flux"
+      ],
+      "code_problem_ids": [
+        "fisher-kpp-special-front",
+        "schnakenberg-2d-boundary-modes",
+        "keller-segel-forced-flux"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "Fisherの特殊速度前線、2次元Schnakenbergの境界別過渡、外力付きKeller–Segelのセル平均・流束を独立参照と比べます。",
+        "en": "Compare a special-speed Fisher front, boundary-specific two-dimensional Schnakenberg transients and forced Keller–Segel cell averages and fluxes with independent references."
+      }
+    },
+    {
+      "id": "validation-thermostat-constraint-controls",
+      "method_ids": [
+        "nose-hoover",
+        "nose-hoover-chains",
+        "berendsen-thermostat",
+        "velocity-rescaling",
+        "langevin-thermostat",
+        "stochastic-velocity-rescaling"
+      ],
+      "equation_ids": [
+        "hamiltonian",
+        "finite-mode-thermostat-model",
+        "projected-canonical-model"
+      ],
+      "problem_ids": [
+        "thermostatted-quartic",
+        "projected-canonical-dof"
+      ],
+      "execution_ids": [
+        "deterministic-thermostat-contrasts",
+        "projected-canonical-dof"
+      ],
+      "reference_ids": [
+        "deterministic-thermostat-contrasts",
+        "projected-canonical-dof"
+      ],
+      "code_problem_ids": [
+        "thermostatted-quartic",
+        "projected-canonical-dof"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "小さな調和・四次系で温度制御の違いを比較し、固定線形拘束の有効自由度・運動量共分散・過渡分布を検証します。未達の統計目標も表示します。",
+        "en": "Compare thermostats on small harmonic/quartic systems and check effective degrees of freedom, momentum covariance and transient distributions under fixed linear constraints. Retain unmet statistical goals."
+      }
+    },
+    {
+      "id": "validation-continuum-particle-controls",
+      "method_ids": [
+        "ale",
+        "rusanov",
+        "semi-lagrangian",
+        "centered-difference",
+        "rk4",
+        "gsph",
+        "sph"
+      ],
+      "equation_ids": [
+        "euler",
+        "sphere-scalar-advection",
+        "spherical-shallow-water"
+      ],
+      "problem_ids": [
+        "saltzman-ale-piston",
+        "williamson-sphere-transport",
+        "sphere-zonal-balance",
+        "sod",
+        "sph-pressure-acoustics"
+      ],
+      "execution_ids": [
+        "saltzman-ale-piston",
+        "williamson-sphere-transport",
+        "sphere-zonal-balance",
+        "gsph-sod",
+        "sph-pressure-acoustics"
+      ],
+      "reference_ids": [
+        "saltzman-ale-piston",
+        "williamson-sphere-transport",
+        "sphere-zonal-balance",
+        "gsph-sod",
+        "sph-pressure-acoustics"
+      ],
+      "code_problem_ids": [
+        "saltzman-ale-piston",
+        "williamson-sphere-transport",
+        "sphere-zonal-balance",
+        "sod",
+        "sph-pressure-acoustics"
+      ],
+      "code_links": [],
+      "note": {
+        "ja": "4拡張候補に対応する5ケース。元論文の全設定や一般的な精度の検証には広げません。",
+        "en": "Five cases for four scoped extensions; not every original-paper setting or general accuracy qualification."
+      }
     }
   ]
 }

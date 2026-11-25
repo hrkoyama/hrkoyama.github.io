@@ -1,0 +1,488 @@
+{
+  "source": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/results/result.json",
+  "source_sha256": "dfdb8284a52b5dfb7f4e6acc790b60ff2378068b498d9c27bd4de30984d231a5",
+  "input_sha256": "d25fe56cf92f1486d9553ead5e7851db49fb3f319b7d32d7813278cc4103c097",
+  "reference_sha256": "f4beb96c3672066378e34ad756ea9a2b08aab10c5b16aae31537644b23303db7",
+  "scope": "Artificial displaced two-He periodic KS-LDA cell: analytic forces, finite-difference and independent-plane-wave checks; not an equilibrium material or a long-time MD validation.",
+  "energy_unit": "hartree/cell",
+  "force_unit": "hartree/bohr",
+  "force_sign": "F_I = -d E_total / d R_I, Cartesian coordinates, including ion-ion Ewald energy.",
+  "cell": {
+    "element": "He",
+    "lattice_bohr": [
+      [
+        5.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        5.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        5.0
+      ]
+    ],
+    "charge": 0,
+    "spin": 0,
+    "pseudopotential": [
+      [
+        2
+      ],
+      0.2,
+      2,
+      [
+        -9.1120234,
+        1.69836797
+      ],
+      0
+    ],
+    "positions_bohr": [
+      [
+        0.37,
+        0.61,
+        0.83
+      ],
+      [
+        2.13,
+        2.27,
+        2.41
+      ]
+    ]
+  },
+  "xc": {
+    "pyscf": "LDA_X,LDA_C_VWN",
+    "libxc": [
+      "lda_x",
+      "lda_c_vwn"
+    ],
+    "convention": "Dirac exchange plus spin-unpolarized VWN5 correlation"
+  },
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pyscf": "2.11.0",
+    "libxc": "7.0.0"
+  },
+  "finite_difference": {
+    "case_id": "k-1",
+    "step_bohr": 0.002,
+    "components": [
+      {
+        "atom": 0,
+        "axis": 0,
+        "step_bohr": 0.002,
+        "energy_minus": -5.70776201845532,
+        "energy_plus": -5.707602072416968,
+        "force_analytic": -0.039986518074288546,
+        "force_finite_difference": -0.03998650958791927,
+        "absolute_error": 8.486369273974503e-09
+      },
+      {
+        "atom": 0,
+        "axis": 1,
+        "step_bohr": 0.002,
+        "energy_minus": -5.70776480670491,
+        "energy_plus": -5.707599312090885,
+        "force_analytic": -0.041373667614802156,
+        "force_finite_difference": -0.04137365350631583,
+        "absolute_error": 1.4108486323660685e-08
+      },
+      {
+        "atom": 0,
+        "axis": 2,
+        "step_bohr": 0.002,
+        "energy_minus": -5.70776592335308,
+        "energy_plus": -5.707598218843662,
+        "force_analytic": -0.04192614893526374,
+        "force_finite_difference": -0.041926127354541265,
+        "absolute_error": 2.1580722472935854e-08
+      },
+      {
+        "atom": 1,
+        "axis": 0,
+        "step_bohr": 0.002,
+        "energy_minus": -5.707602069181712,
+        "energy_plus": -5.7077620220767535,
+        "force_analytic": 0.03998823499347619,
+        "force_finite_difference": 0.039988223760278885,
+        "absolute_error": 1.1233197302895626e-08
+      },
+      {
+        "atom": 1,
+        "axis": 1,
+        "step_bohr": 0.002,
+        "energy_minus": -5.707599307012897,
+        "energy_plus": -5.707764811865087,
+        "force_analytic": 0.04137623123060577,
+        "force_finite_difference": 0.04137621304756145,
+        "absolute_error": 1.818304432021911e-08
+      },
+      {
+        "atom": 1,
+        "axis": 2,
+        "step_bohr": 0.002,
+        "energy_minus": -5.707598216610827,
+        "energy_plus": -5.707765925256853,
+        "force_analytic": 0.04192718472982923,
+        "force_finite_difference": 0.04192716150641651,
+        "absolute_error": 2.3223412720652092e-08
+      }
+    ],
+    "steps": [
+      {
+        "atom": 1,
+        "axis": 0,
+        "step_bohr": 0.008,
+        "energy_minus": -5.70736056500885,
+        "energy_plus": -5.7080003738849445,
+        "force_analytic": 0.03998823499347619,
+        "force_finite_difference": 0.03998805475591283,
+        "absolute_error": 1.8023756336027486e-07
+      },
+      {
+        "atom": 1,
+        "axis": 0,
+        "step_bohr": 0.004,
+        "energy_minus": -5.707521777634115,
+        "energy_plus": -5.707841683153559,
+        "force_analytic": 0.03998823499347619,
+        "force_finite_difference": 0.03998818993045106,
+        "absolute_error": 4.5063025130853696e-08
+      },
+      {
+        "atom": 1,
+        "axis": 0,
+        "step_bohr": 0.002,
+        "energy_minus": -5.707602069181712,
+        "energy_plus": -5.7077620220767535,
+        "force_analytic": 0.03998823499347619,
+        "force_finite_difference": 0.039988223760278885,
+        "absolute_error": 1.1233197302895626e-08
+      }
+    ],
+    "evaluations": [
+      {
+        "atom": 0,
+        "axis": 0,
+        "step_bohr": 0.002,
+        "sign": -1,
+        "energy_per_cell": -5.70776201845532,
+        "iterations": 4,
+        "scf_commutator_norm": 1.5220959220281472e-09,
+        "converged": true
+      },
+      {
+        "atom": 0,
+        "axis": 0,
+        "step_bohr": 0.002,
+        "sign": 1,
+        "energy_per_cell": -5.707602072416968,
+        "iterations": 4,
+        "scf_commutator_norm": 1.5204768252819928e-09,
+        "converged": true
+      },
+      {
+        "atom": 0,
+        "axis": 1,
+        "step_bohr": 0.002,
+        "sign": -1,
+        "energy_per_cell": -5.70776480670491,
+        "iterations": 4,
+        "scf_commutator_norm": 1.7066896159925422e-09,
+        "converged": true
+      },
+      {
+        "atom": 0,
+        "axis": 1,
+        "step_bohr": 0.002,
+        "sign": 1,
+        "energy_per_cell": -5.707599312090885,
+        "iterations": 4,
+        "scf_commutator_norm": 1.7037653158038238e-09,
+        "converged": true
+      },
+      {
+        "atom": 0,
+        "axis": 2,
+        "step_bohr": 0.002,
+        "sign": -1,
+        "energy_per_cell": -5.70776592335308,
+        "iterations": 4,
+        "scf_commutator_norm": 1.8289591074823855e-09,
+        "converged": true
+      },
+      {
+        "atom": 0,
+        "axis": 2,
+        "step_bohr": 0.002,
+        "sign": 1,
+        "energy_per_cell": -5.707598218843662,
+        "iterations": 4,
+        "scf_commutator_norm": 1.8249836420510215e-09,
+        "converged": true
+      },
+      {
+        "atom": 1,
+        "axis": 0,
+        "step_bohr": 0.002,
+        "sign": -1,
+        "energy_per_cell": -5.707602069181712,
+        "iterations": 4,
+        "scf_commutator_norm": 1.520671206191859e-09,
+        "converged": true
+      },
+      {
+        "atom": 1,
+        "axis": 0,
+        "step_bohr": 0.002,
+        "sign": 1,
+        "energy_per_cell": -5.7077620220767535,
+        "iterations": 4,
+        "scf_commutator_norm": 1.5223766576570238e-09,
+        "converged": true
+      },
+      {
+        "atom": 1,
+        "axis": 1,
+        "step_bohr": 0.002,
+        "sign": -1,
+        "energy_per_cell": -5.707599307012897,
+        "iterations": 4,
+        "scf_commutator_norm": 1.7035388422712544e-09,
+        "converged": true
+      },
+      {
+        "atom": 1,
+        "axis": 1,
+        "step_bohr": 0.002,
+        "sign": 1,
+        "energy_per_cell": -5.707764811865087,
+        "iterations": 4,
+        "scf_commutator_norm": 1.7067478813124962e-09,
+        "converged": true
+      },
+      {
+        "atom": 1,
+        "axis": 2,
+        "step_bohr": 0.002,
+        "sign": -1,
+        "energy_per_cell": -5.707598216610827,
+        "iterations": 4,
+        "scf_commutator_norm": 1.8254543485934473e-09,
+        "converged": true
+      },
+      {
+        "atom": 1,
+        "axis": 2,
+        "step_bohr": 0.002,
+        "sign": 1,
+        "energy_per_cell": -5.707765925256853,
+        "iterations": 4,
+        "scf_commutator_norm": 1.8294844900897163e-09,
+        "converged": true
+      },
+      {
+        "atom": 1,
+        "axis": 0,
+        "step_bohr": 0.008,
+        "sign": -1,
+        "energy_per_cell": -5.70736056500885,
+        "iterations": 5,
+        "scf_commutator_norm": 9.409867546337095e-11,
+        "converged": true
+      },
+      {
+        "atom": 1,
+        "axis": 0,
+        "step_bohr": 0.008,
+        "sign": 1,
+        "energy_per_cell": -5.7080003738849445,
+        "iterations": 5,
+        "scf_commutator_norm": 1.2030846185291165e-10,
+        "converged": true
+      },
+      {
+        "atom": 1,
+        "axis": 0,
+        "step_bohr": 0.004,
+        "sign": -1,
+        "energy_per_cell": -5.707521777634115,
+        "iterations": 4,
+        "scf_commutator_norm": 3.039404173380635e-09,
+        "converged": true
+      },
+      {
+        "atom": 1,
+        "axis": 0,
+        "step_bohr": 0.004,
+        "sign": 1,
+        "energy_per_cell": -5.707841683153559,
+        "iterations": 4,
+        "scf_commutator_norm": 3.046234039240302e-09,
+        "converged": true
+      }
+    ],
+    "max_component_error": 2.3223412720652092e-08,
+    "scan_max_error": 1.8023756336027486e-07,
+    "initial_guess": "Every displaced SCF starts from the same converged undisplaced density; no displaced energy is reused as a solution."
+  },
+  "independent_cases": [
+    {
+      "case_id": "basis-gth-qzv3p",
+      "k_n": 1,
+      "pyscf_forces_cartesian": [
+        [
+          -0.03980526806347624,
+          -0.041215546536110065,
+          -0.04178946180585587
+        ],
+        [
+          0.03980988519161899,
+          0.04122244092626284,
+          0.04179224741666929
+        ]
+      ],
+      "dftk_forces_cartesian": [
+        [
+          -0.03974088227830999,
+          -0.04115049946348135,
+          -0.04171943176348754
+        ],
+        [
+          0.03974088227924635,
+          0.041150499470787284,
+          0.04171943176060742
+        ]
+      ],
+      "pyscf_energy_per_cell": -5.7082863928626715,
+      "dftk_energy_per_cell": -5.708360349156424,
+      "max_absolute_force_difference": 7.28156560618684e-05,
+      "energy_absolute_difference": 7.395629375217538e-05,
+      "force_acceptance": 0.0002,
+      "energy_acceptance": 0.0002,
+      "passed": true
+    },
+    {
+      "case_id": "basis-k2-gth-qzv3p",
+      "k_n": 2,
+      "pyscf_forces_cartesian": [
+        [
+          -0.018506280119487822,
+          -0.018139198690163894,
+          -0.017683559205554283
+        ],
+        [
+          0.018510908625335026,
+          0.01814611171168265,
+          0.017686353977092895
+        ]
+      ],
+      "dftk_forces_cartesian": [
+        [
+          -0.01844417456225589,
+          -0.018073499897586175,
+          -0.017610971491064765
+        ],
+        [
+          0.018444174540823078,
+          0.018073499877919907,
+          0.01761097147813535
+        ]
+      ],
+      "pyscf_energy_per_cell": -5.655433930636953,
+      "dftk_energy_per_cell": -5.65560561480506,
+      "max_absolute_force_difference": 7.538249895754426e-05,
+      "energy_absolute_difference": 0.00017168416810697806,
+      "force_acceptance": 0.0002,
+      "energy_acceptance": 0.0002,
+      "passed": true
+    }
+  ],
+  "reference_environment": {
+    "Libxc_jll": "7.0.0+2",
+    "JSON3": "1.14.3",
+    "DFTK": "0.7.19",
+    "DftFunctionals": "0.3.1",
+    "Libxc": "0.3.20"
+  },
+  "acceptance_unchanged": {
+    "kpoint_last_change": 0.001,
+    "basis_last_change": 0.0001,
+    "basis-k2_last_change": 0.0001,
+    "auxiliary_last_change": 1e-05,
+    "scf_last_change": 1e-06,
+    "reference_force_difference": 0.0002,
+    "reference_energy_difference": 0.0002,
+    "finite_difference_max_error": 2e-06,
+    "finite_difference_scan_max_error": 1e-05,
+    "max_tight_commutator": 1e-06,
+    "max_electron_count_error": 1e-08,
+    "max_orthogonality_error": 1e-07,
+    "max_energy_reconstruction_error": 1e-08,
+    "min_sampled_ks_gap": 0.1,
+    "max_overlap_condition": 100000000000.0,
+    "finest_net_force": 1e-07,
+    "bomd_position_step_difference": 1e-06,
+    "bomd_energy_defect": 1e-06
+  },
+  "model_provenance": {
+    "scope": "Artificial displaced two-He, four-electron cubic5-bohr cell, not an equilibrium helium material.",
+    "pseudopotential_source": "https://github.com/pyscf/pyscf/blob/v2.11.0/pyscf/pbc/gto/pseudo/gth-pade.dat",
+    "pseudopotential_record": "He GTH-PADE-q2, local-only",
+    "pseudopotential_coefficients": [
+      [
+        2
+      ],
+      0.2,
+      2,
+      [
+        -9.1120234,
+        1.69836797
+      ],
+      0
+    ],
+    "basis_sets": [
+      {
+        "name": "gth-dzv",
+        "element": "He",
+        "parsed_coefficients_sha256": "3961f67f70adb181551b93bc64d52365b791717df105feac49a20de69dcd94c9",
+        "upstream_complete_file_sha256": "8dd9c26be064265e0e08e8b94b29bfc96e94845d9d30e7648ab548c062d7d0aa",
+        "source_url": "https://github.com/pyscf/pyscf/blob/v2.11.0/pyscf/pbc/gto/basis/gth-dzv.dat"
+      },
+      {
+        "name": "gth-dzvp",
+        "element": "He",
+        "parsed_coefficients_sha256": "823387474729cbd97849de1558363ecb7d0aa8d54d6625482ea0b2c8b7a815d3",
+        "upstream_complete_file_sha256": "ccd6c8dcb534952c549a94189df4f0f5a917d4674bf4cef2a4ea4554d724aa17",
+        "source_url": "https://github.com/pyscf/pyscf/blob/v2.11.0/pyscf/pbc/gto/basis/gth-dzvp.dat"
+      },
+      {
+        "name": "gth-tzv2p",
+        "element": "He",
+        "parsed_coefficients_sha256": "48b69dda75193bc824080881b19250b17a90d64f39279da7f2d0a53e51757d84",
+        "upstream_complete_file_sha256": "3620351c7b7811bf36de593efeb7a579b3435b3cb32c7011954ec194997d8abf",
+        "source_url": "https://github.com/pyscf/pyscf/blob/v2.11.0/pyscf/pbc/gto/basis/gth-tzv2p.dat"
+      },
+      {
+        "name": "gth-qzv3p",
+        "element": "He",
+        "parsed_coefficients_sha256": "1e12da75297a5252989daa19f0ea8e6dbfb6c7ae9d6e7b14a2b5e38e6011f54e",
+        "upstream_complete_file_sha256": "ca38d78957bcbe1ca7114d6a0d76d918a3c970d52ceb97e20ab76f1ed2e8f4f8",
+        "source_url": "https://github.com/pyscf/pyscf/blob/v2.11.0/pyscf/pbc/gto/basis/gth-qzv3p.dat"
+      }
+    ]
+  },
+  "independence": {
+    "engine": "DFTK 0.7.19",
+    "runtime": "Julia 1.12.2",
+    "environment": "reference-environment/Project.toml + Manifest.toml",
+    "implementation_independence": "Separate Gaussian and plane-wave Hamiltonian, Ewald and SCF implementations. Both use Libxc XC formulas; this is not an independent functional or experimental validation.",
+    "regeneration": "README-reference.txt",
+    "finite_basis_scope": "Cartesian ground-state nuclear forces and total cell energies at Gamma and2x2x2, with independent plane-wave cutoff scans and all-six-component finite differences; not a general material, spectrum or long-time MD validation."
+  }
+}

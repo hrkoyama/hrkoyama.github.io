@@ -15,6 +15,7 @@ import xml.etree.ElementTree as ET
 from atlas_depth_release import GROUPS, ORIGIN, depth_additional_figures, depth_code_urls, digest, load_depth_group, read_json
 from atlas_execution_routes import load_execution_routes
 from atlas_execution_navigation import render_execution_navigation, execution_navigation_markdown
+from atlas_study_outcomes import project_study_outcomes, study_outcome_headline, study_outcomes_html, study_outcomes_markdown
 
 ROOT = Path(__file__).resolve().parents[1]
 ATLAS = ROOT/'numerical-methods-atlas'
@@ -212,7 +213,7 @@ def case_formulas(case):
     return value
 
 
-def render_case(case, measured, data, language, rendered, heading_level=2, commands=False, editorial_note=None, navigation=None):
+def render_case(case, measured, data, language, rendered, heading_level=2, commands=False, editorial_note=None, navigation=None, study_outcomes=None):
     ja = language == 'ja'; ident = case['id']; anchor = ident if heading_level == 2 else ident+'-'+language
     level = heading_level+1
     body = '<article class="validation-case" data-validation-case="'+ident+'" id="'+anchor+'"><h'+str(heading_level)+'>'+escape(case['title'][language])+'</h'+str(heading_level)+'>'+paragraph(case['summary'][language])
@@ -238,6 +239,7 @@ def render_case(case, measured, data, language, rendered, heading_level=2, comma
             formulas = case_formulas(case)
             body += ''.join('<div class="validation-math">'+rendered['depth-'+ident+'-'+str(i)][0]+'</div>' for i in range(len(formulas)))
     body += '<h'+str(level)+' id="'+anchor+'-measurements">'+('保存した実測値と判定' if ja else 'Stored measurements and decisions')+'</h'+str(level)+'>'
+    body += study_outcomes_html(study_outcomes, language, level)
     study = original_study_targets(measured)
     if study and (measured.get('original_study_goal_measurements') or not study[1]['all_met']):
         targets, summary = study
@@ -277,7 +279,7 @@ def render_case(case, measured, data, language, rendered, heading_level=2, comma
     return body
 
 
-def markdown_case(case, measured, data, language, heading_level=1, editorial_note=None, navigation=None):
+def markdown_case(case, measured, data, language, heading_level=1, editorial_note=None, navigation=None, study_outcomes=None):
     title = case['title'][language]
     heading = '#'*heading_level
     subheading = heading+'#'
@@ -293,6 +295,7 @@ def markdown_case(case, measured, data, language, heading_level=1, editorial_not
             out += '**'+('編集上の補足' if language == 'ja' else 'Editorial clarification')+'**\n\n'+editorial_note[language]+'\n\n'
         if field == 'algorithm':
             out += ''.join('$$\n'+formula+'\n$$\n\n' for formula in case_formulas(case))
+    out += study_outcomes_markdown(study_outcomes, language, heading_level+1)
     study = original_study_targets(measured)
     if study and (measured.get('original_study_goal_measurements') or not study[1]['all_met']):
         out += subheading+' '+('元の数値目標と未達の結果' if language == 'ja' else 'Original numerical targets and unmet outcomes')+'\n\n'
@@ -330,6 +333,18 @@ def build():
     data = {group['id']: load_depth_group(ROOT, group['id'], group.get('edition', catalog['edition'])) for group in catalog['groups']}
     identifiers = [case['id'] for group in data.values() for case in group['metadata']]
     assert len(identifiers) == len(set(identifiers))
+    selectors = catalog.get('case_study_goal_prefixes', {})
+    assert isinstance(selectors, dict) and set(selectors) <= set(identifiers)
+    projected_studies = {}
+    for current_data in data.values():
+        for case in current_data['metadata']:
+            if case['id'] not in selectors:
+                continue
+            if selectors[case['id']] is None:
+                raise ValueError('Mapped study-goal prefix must be explicit')
+            projected_studies[case['id']] = project_study_outcomes(
+                current_data, case['id'], selectors[case['id']], ORIGIN)
+
     registry_path = ATLAS/'code-and-data/examples.json'
     registry_hash = digest(registry_path)
     common_count = len(read_json(registry_path)['examples'])
@@ -365,12 +380,14 @@ def build():
                     'code_urls': depth_code_urls(current, [ident]), 'test_urls': current['test_urls'], 'passed_tests': current['verification']['passed_tests']},
                 'source_sha256': source_hashes, 'scope': {language: scope_text(language, common_count) for language in LANGUAGES},
                 'execution_navigation': routes[ident], 'navigation_source_sha256': navigation['source_sha256']}
+            if ident in projected_studies:
+                public_case['study_outcomes'] = projected_studies[ident]
             public_cases.append(public_case)
             sections, markdown = [], ''
             for language in LANGUAGES:
                 nav = '<nav class="validation-actions">'+link(INDEX+'?lang='+language, '追加検証の一覧' if language == 'ja' else 'Additional validation index')+link(chapter_route(group_id, language)+'#'+ident, '詳しい解説' if language == 'ja' else 'Detailed reading')+link('index.json', 'JSON')+link('index.md', 'Markdown')+'</nav>'
-                sections.append('<section data-site-language="'+language+'" lang="'+language+'">'+nav+'<aside class="validation-scope">'+paragraph(scope_text(language, common_count))+'</aside>'+render_case(case, measured[ident], current, language, rendered, 1, True, editorial_note, routes[ident])+terms(language)+'</section>')
-                markdown += markdown_case(case, measured[ident], current, language, editorial_note=editorial_note, navigation=routes[ident])+'\n'
+                sections.append('<section data-site-language="'+language+'" lang="'+language+'">'+nav+'<aside class="validation-scope">'+paragraph(scope_text(language, common_count))+'</aside>'+render_case(case, measured[ident], current, language, rendered, 1, True, editorial_note, routes[ident], study_outcomes=projected_studies.get(ident))+terms(language)+'</section>')
+                markdown += markdown_case(case, measured[ident], current, language, editorial_note=editorial_note, navigation=routes[ident], study_outcomes=projected_studies.get(ident))+'\n'
             destination = ROOT/case_route(ident).lstrip('/'); destination.mkdir(parents=True, exist_ok=True)
             (destination/'index.html').write_text(document(case_route(ident), page_title, case['summary'], ''.join(sections)))
             dump(destination/'index.json', public_case); (destination/'index.md').write_text(markdown.rstrip()+'\n')
@@ -389,8 +406,8 @@ def build():
             markdown = '# '+title+'\n\n'+intro+'\n\n'+scope_text(language, common_count)+'\n\n'
             for case in current['metadata']:
                 note = catalog.get('case_notes', {}).get(case['id'])
-                body += render_case(case, measured[case['id']], current, language, rendered, editorial_note=note, navigation=routes[case['id']])
-                markdown += markdown_case(case, measured[case['id']], current, language, 2, note, routes[case['id']])+'\n'
+                body += render_case(case, measured[case['id']], current, language, rendered, editorial_note=note, navigation=routes[case['id']], study_outcomes=projected_studies.get(case['id']))
+                markdown += markdown_case(case, measured[case['id']], current, language, 2, note, routes[case['id']], study_outcomes=projected_studies.get(case['id']))+'\n'
             body += terms(language)
             headings = [{'level': int(level), 'id': ident, 'title': re.sub('<[^>]+>', '', text)}
                         for level, ident, text in re.findall(r'<h([23]) id="([a-z0-9-]+)">(.*?)</h[23]>', body, re.S)]
@@ -406,7 +423,7 @@ def build():
             (destination/'index.html').write_text(document(chapter_route(group_id, language), title+' | Numerical Methods Atlas', intro, nav+'<div class="validation-prose">'+body+'</div>', language, {lang: chapter_route(group_id, lang) for lang in LANGUAGES}))
             dump(destination/'index.json', {**entry, 'url': ORIGIN+chapter_route(group_id, language), 'group': group_id,
                  'case_ids': [case['id'] for case in current['metadata']], 'measurements': current['results']['cases'],
-                 'source_sha256': source_hashes}); (destination/'index.md').write_text(markdown.rstrip()+'\n')
+                 'source_sha256': source_hashes, **({'study_outcomes': {case['id']: projected_studies[case['id']] for case in current['metadata'] if case['id'] in projected_studies}} if any(case['id'] in projected_studies for case in current['metadata']) else {})}); (destination/'index.md').write_text(markdown.rstrip()+'\n')
             translations['chapters'][chapter_id] = {'status': 'draft', 'source_url': current['base']+'cases.json',
                 'source_sha256': digest(current['directory']/'cases.json'), 'checked_on': current['edition'][:10]}
     for language in LANGUAGES:
@@ -446,8 +463,11 @@ def build():
             body += '<section class="validation-group"><h2 id="'+group['id']+'-'+language+'">'+link(chapter_route(group['id'], language), group['title'][language])+'</h2><p>'+str(current['verification']['passed_tests'])+('検査に合格。ZIP独立展開から全入力を再実行。' if ja else ' tests passed; every input rerun from an independent ZIP extraction.')+'</p><ul>'
             markdown += '## '+group['title'][language]+'\n\n'
             for case in current['metadata']:
-                body += '<li data-validation-entry="'+case['id']+'"><h3>'+link(case_route(case['id'], language), case['title'][language])+'</h3>'+paragraph(case['summary'][language])+'<details class="execution-resource-details"><summary>'+('手法・式・図・参照解' if ja else 'Methods, equations, figures and references')+'</summary>'+render_execution_navigation(routes[case['id']], language)+'</details></li>'
+                body += '<li data-validation-entry="'+case['id']+'"><h3>'+link(case_route(case['id'], language), case['title'][language])+'</h3>'+paragraph(case['summary'][language])+'<details class="execution-resource-details"><summary>'+('手法・式・図・参照解' if ja else 'Methods, equations, figures and references')+'</summary>'+render_execution_navigation(routes[case['id']], language)+'</details>'+(paragraph(study_outcome_headline(projected_studies[case['id']], language)) if case['id'] in projected_studies else '')+'</li>'
                 markdown += '- ['+case['title'][language]+']('+ORIGIN+case_route(case['id'], language)+'): '+case['summary'][language]+'\n'
+                if case['id'] in projected_studies:
+                    outcome = projected_studies[case['id']]
+                    markdown += study_outcome_headline(outcome, language)+'\n\n'
                 markdown += execution_navigation_markdown(routes[case['id']], language)
             body += '</ul></section>'; markdown += '\n'
         sections.append(body+'</div>'+terms(language)+'</section>')

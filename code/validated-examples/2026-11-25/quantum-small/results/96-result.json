@@ -1,0 +1,49 @@
+{
+  "source": "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/reference-pyscf.json",
+  "source_sha256": "0fcf5800a54f5429e258e304d58c43214d20f22703625e76d703639ea79c36d9",
+  "environment": {
+    "python": "3.12.14",
+    "pyscf": "2.11.0",
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "libxc": "7.0.0"
+  },
+  "scope": "Independent uncontracted even-tempered s-Gaussian PySCF calculation of closed-shell helium; HF and spin-unpolarized exchange-only LDA. Finite-basis/quadrature references, not exact correlated helium.",
+  "cases": [
+    {
+      "model": "hf",
+      "basis_size": 40,
+      "quadrature_grid": null,
+      "energy": -2.861679994991034,
+      "converged": true,
+      "electron_count_overlap": 2.0000000000000018
+    },
+    {
+      "model": "lda_x",
+      "basis_size": 40,
+      "quadrature_grid": [
+        250,
+        110
+      ],
+      "energy": -2.7236397914037958,
+      "converged": true,
+      "electron_count_overlap": 2.000000000000003
+    },
+    {
+      "model": "lda_x",
+      "basis_size": 40,
+      "quadrature_grid": [
+        500,
+        194
+      ],
+      "energy": -2.723639791475126,
+      "converged": true,
+      "electron_count_overlap": 2.000000000000003
+    }
+  ],
+  "json_pointers": [
+    "/cases/6",
+    "/cases/7",
+    "/cases/8"
+  ]
+}

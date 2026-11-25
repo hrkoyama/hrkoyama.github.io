@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "status": "ROOT_PEER_REVIEWED_FROZEN",
+  "created_at_utc": "2026-11-25T10:07:52.419694+00:00",
+  "group": "biology-space-controls",
+  "files_sha256": {
+    "LICENSE": "f33f55c85a47e986052d79123fd6939790af5dc8b840e15798b745ced1da482a",
+    "PROTOCOL.md": "fb9870b83b3fbb660e019adab2a4b94927125bd18bcd6cde006f27f9ca2515fd",
+    "README.md": "aeaf0778f9904b71292bc6e6de6d0ede4851891fcd37aca67790a3b361890667",
+    "acceptance.json": "b2f1727f9f4e70c139af7d38c218608b369625ab8f5896d762b060f88432a117",
+    "cases.json": "9128ac9e123ac817a890e279433ec11d275c52b0e00b33575ca69d6b3d967a46",
+    "common.py": "3fbd068a920473fd93348ca57ab521ae3c0d77ec6eb90af29e9476ee352307f6",
+    "fisher.py": "85e9281dabb94309ea90a3f65d16ed4ccc6b08e00d3d2054baeac49e9b63b7d8",
+    "inputs.json": "96095517a632f1706713360c82ce01c6d4b68682faa96fecae11e46cb87a1b80",
+    "keller_segel.py": "c73b4d4de5e9edf3f3d1065c5aaf72ee43eaa8c6d05e4cc74797b29bbc95792b",
+    "plot.py": "49b2eafa96b2bbed31f10edf4ac43cd28ca853f93330e779f349fc2c74fcbd8e",
+    "requirements-plotting.txt": "9219ba01fa741ccca28c752db67a0ac180f6d9e55cb5198821ded5aa4b4099bd",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "c60a1dd14cff34225a1b57465e333716333ea521133bb408c09996c127ca2feb",
+    "schnakenberg.py": "d1b2b17535a03a54b0dda404945ef6cb8e6d5a197ea8f6381aeed1650943ad21",
+    "source-reading.json": "3e97c66f73c5eea3d5b59fa5b715b34aec09a45bf382e3da2af02f5278fe2ecd",
+    "test_models.py": "c3caf7d0fd491e7e07b7212b141176707ed4bf825f227b687135182c07cb9102"
+  },
+  "root_review": {
+    "sha256": "6cf8c9eb4536f3cd3c21bc96a36d2d41566200a15e6d42cf8896f004a8d4d48e"
+  },
+  "independent_peer_review": {
+    "sha256": "8d1dcb676aea985ceddc2b58a7ae833605d308eb24cd470a6abab641ac2fbefe"
+  },
+  "scope": "R6displaycompatibilityonly; originalscientificcode/inputs/gatesunchanged. CanonicalnewPNG+ZIPactualverificationrequired.",
+  "budget_seconds": {
+    "pytest": 120,
+    "runner_external": 120,
+    "runner_cooperative": 115,
+    "plot": 45
+  }
+}

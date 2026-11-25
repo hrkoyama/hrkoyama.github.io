@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "groups": {
+    "continuum-moving": {
+      "cases": [
+        {
+          "id": "saltzman-ale-piston",
+          "sequence": 23,
+          "gamma": 1.6666666666666667,
+          "rho0": 1.0,
+          "specific_internal_energy0": 0.0001,
+          "piston_speed": 1.0,
+          "final_time": 0.6,
+          "grids": [
+            [
+              40,
+              4
+            ],
+            [
+              80,
+              8
+            ]
+          ],
+          "domain_initial": [
+            [
+              0.0,
+              1.0
+            ],
+            [
+              0.0,
+              0.1
+            ]
+          ],
+          "initial_nodes": "x0=xi+(0.1-y)*sin(pi*xi), y=y",
+          "node_motion": "x(t)=t+(1-t)*x0, y(t)=y0; prescribed ALE, not material/Lagrangian mesh",
+          "boundary": "Moving left slipwall speed1, stationary right/top/bottom slipwalls; no periodic copy",
+          "scheme": "Firstorder cell-average 2D Euler ALE finitevolume; timecentered geometry and Rusanov face flux. Signed area/GCL checked withoutrepair.",
+          "CFL": 0.2,
+          "startup_CFL": 0.01,
+          "startup_until": 0.01,
+          "max_steps": 20000,
+          "reference": "Finitep0 piston RH quadratic; exact planar discontinuity integrated over every deformed quadrilateral by polygon clipping. Strongshock4 and4/3 are limits, not exactfinitep values."
+        },
+        {
+          "id": "williamson-sphere-transport",
+          "sequence": 24,
+          "scope": "Limited prescribed solidbody scalartransport fromW92test1; doesnot solve nonlinearSWE",
+          "radius": 1.0,
+          "period": 1.0,
+          "bell_radius": 0.3333333333333333,
+          "bell_center_lon_lat": [
+            4.71238898038469,
+            0.0
+          ],
+          "bell_peak": 1.0,
+          "tilt_angles": [
+            0.0,
+            1.5707963267948966
+          ],
+          "grids": [
+            [
+              64,
+              32
+            ],
+            [
+              128,
+              64
+            ]
+          ],
+          "steps": [
+            11,
+            11
+          ],
+          "final_time": 1.0,
+          "scheme": "Finite-grid bilinear semi-Lagrangian transport on latitude-longitude cellcenters, exactRodrigues backwardtrajectory, explicit pole reflection and longitudeperiodicity. Nonconservative remap is declared and mass drift reported.",
+          "reference": "Rigid rotation exact pointvalue atsamegridcenters; exact sphericalband areas forweightednorms; analyticbellmass crosscheck separate from discreteinitialmass.",
+          "rotation_axis": "(-sin(alpha),0,cos(alpha)); u=(2pi/T)a[cos(phi)cos(alpha)+sin(phi)cos(lambda)sin(alpha)],v=-(2pi/T)a sin(lambda)sin(alpha)",
+          "step_policy": "Eleven fixed noncommensurate exact-characteristic remaps on both grids. No advective CFL restriction applies to thisSL trajectory. This is spatialrefinement atfixedtime-discretization protocol, not temporalconvergence or trivialone-stepwhole-periodreturn."
+        },
+        {
+          "id": "sphere-zonal-balance",
+          "sequence": 24,
+          "scope": "Williamson2-type axisymmetric inviscid sphericalSWE educational nondimensionalvariant, not exactstandardEarthsetup or fullglobaldynamicalcore",
+          "a": 1.0,
+          "g": 1.0,
+          "Omega": 2.0,
+          "u0": 0.5,
+          "h0": 10.0,
+          "grids": [
+            32,
+            64
+          ],
+          "final_time": 0.2,
+          "time_scheme": "RK4 with CFL0.1, conservative spherical mass flux and centered primitive momentum; ghost parity atpoles",
+          "reference": "u=u0*cos(phi),v=0,h=h0-(a*Omega*u0+u0^2/2)*sin(phi)^2/g. Analytic PDE cancellation plus genuine time integration; no exact-discrete-balance claim."
+        }
+      ]
+    },
+    "particle-gsph": {
+      "common": {
+        "gamma": 1.4,
+        "eta": 1.2,
+        "C_smooth": 2.0,
+        "h_fixed_point_rtol": 1e-10,
+        "h_fixed_point_maxiter": 100,
+        "h_underrelaxation": 0.5,
+        "h_max_fraction_domain": 0.15,
+        "pair_cutoff_sqrt2_h": 4.0,
+        "integrator": "Explicit midpoint of x,velocity,specific totalenergy; pairantisymmetric energy exchange. Recover internalenergy withoutclipping.",
+        "pair_Riemann": "Independently implemented vectorpressure bracket+bisection, firstorder primitive states. Analyticwave matching residual recorded.",
+        "GSPH_overlap": "Gaussian W and linearV inverse-density overlap C^2*h^2/4+D^2, Eq52; symmetric hi/hj Eq79/80, eta smoothed-density fixedpoint Eq81/82.",
+        "standardSPH_control": "Symmetrized Gaussian-gradient SPH with fixedh and Monaghan alpha1 beta2 artificialviscosity forSod; exactpair energy accounting. This is explicitly separate from GSPH.",
+        "CFL": 0.15,
+        "particle_max_steps": 20000,
+        "Riemann_max_pressure_bracket_doublings": 32,
+        "Riemann_pressure_bisection_iterations": 64,
+        "Riemann_max_wave_residual": 1e-09,
+        "h_failure_behavior": "Raise ContractFailure with time/step/mode/iterations/residual; runner must save failure JSON and current states/logs; no h clamp, pressure floor, timestepretry or discardedfailedstate.",
+        "energy_flux": "Pairwise antisymmetric specific TOTAL-energy increments; internalenergy is recovered afterupdate. This semidiscrete conservative form is distinguished from claiming paperoriginal finite-stepinternalenergy code."
+      },
+      "cases": [
+        {
+          "id": "gsph-sod",
+          "sequence": 102,
+          "domain": [
+            -1.0,
+            1.0
+          ],
+          "periodic": true,
+          "left": [
+            1.0,
+            0.0,
+            1.0
+          ],
+          "right": [
+            0.125,
+            0.0,
+            0.1
+          ],
+          "interface": 0.0,
+          "right_particle_counts": [
+            16,
+            32
+          ],
+          "left_to_right_particle_count": 8,
+          "final_time": 0.12,
+          "measurement_window": [
+            -0.4,
+            0.4
+          ],
+          "oracle": "Existing immutable reference_riemann.py is copied unchanged and evaluates RiemannSolution atcurrentparticlepositions; pair closure code is separate. Outer periodic secondinterface waves cannot reach measurementwindow atthis time.",
+          "sampling": "Primitive pointvalues, weights m/rho; report particlequadrature norm, not FV cellmean norm.",
+          "coordinate_implementation": "Physical[-1,1) is stored as[0,2); centralinterface xstored=1. Oracle coordinate xstored-1; secondinterface periodic at0/2.",
+          "initial_state_sampling": "Equalmass particles encode continuum left/rightdensities; kernel initialrho is computed and stored separately. Set initial internalenergy from prescribed piecewisep divided by actualkernelrho; the finiteh discrepancy from continuum initialdensity is reported."
+        },
+        {
+          "id": "sph-pressure-acoustics",
+          "sequence": 103,
+          "subcases": [
+            "uniform-pressure-regular",
+            "uniform-pressure-jittered",
+            "acoustic-regular",
+            "acoustic-jittered"
+          ],
+          "domain": [
+            0.0,
+            1.0
+          ],
+          "periodic": true,
+          "particles": [
+            64,
+            128
+          ],
+          "rho0": 1.0,
+          "p0": 0.7142857142857143,
+          "acoustic_amplitude": 0.001,
+          "final_time_pressure": 0.05,
+          "final_time_acoustic": 0.2,
+          "jitter": "0.08*dx*sin(6*pi*index/N), deterministic; preserveorder",
+          "reference": "Staticconstantpressurestate or righttravel linearacousticwave c=1, with finiteamplitude O(A^2) remainder explicitlybudgeted; distinct initial kernelreconstruction error stored."
+        }
+      ]
+    }
+  },
+  "cooperative_budget_seconds": 90
+}

@@ -172,7 +172,12 @@
       },
       "status": "local-example",
       "group": "physical",
-      "coverage_scope": ""
+      "coverage_scope": "",
+      "supplemental_examples": [
+        "saltzman-ale-piston",
+        "gsph-sod",
+        "sph-pressure-acoustics"
+      ]
     },
     {
       "id": "shallow-water",
@@ -330,7 +335,8 @@
         "high-index-pendulum",
         "shake-rattle-pendulum",
         "kepler-eccentricity",
-        "multifrequency-resonance"
+        "multifrequency-resonance",
+        "deterministic-thermostat-contrasts"
       ]
     },
     {
@@ -706,17 +712,24 @@
       ],
       "chapter": "biological-models",
       "note": {
-        "ja": "拡散と増殖を結ぶ侵入前線。表示は規格化した代表形で、波の速度と境界条件は解説先へ。 文献解説のみ。",
-        "en": "Spatial spread of an invading population or advantageous allele, represented by a reaction–diffusion front. Fisher–KPP is a conventional family name; the independent KPP 1937 original remains an archival follow-up. The exact special speed is not the minimal speed. Literature-only."
+        "ja": "拡散と増殖を結ぶ侵入前線。表示は規格化した代表形で、波の速度と境界条件は解説先へ。 全モデル族の実装ではありません。今回の固定例：Fisher–KPP：特殊波速の厳密前線",
+        "en": "Spatial spread of an invading population or advantageous allele, represented by a reaction–diffusion front. Fisher–KPP is a conventional family name; the independent KPP 1937 original remains an archival follow-up. The exact special speed is not the minimal speed. Not implementation of the entire model family. Fixed cases: Fisher–KPP: a special-speed exact front"
       },
       "section": "06-1937-fisherkpp-invasion-front",
       "formula_source": {
         "path": "numerical-methods-atlas/assets/biological-models.json",
         "model_id": "fisher-kpp"
       },
-      "status": "reading",
+      "status": "local-example",
       "group": "biology",
-      "coverage_scope": "Fisher–KPP is a conventional family name; the independent KPP 1937 original remains an archival follow-up. The exact special speed is not the minimal speed."
+      "coverage_scope": "Fisher–KPP is a conventional family name; the independent KPP 1937 original remains an archival follow-up. The exact special speed is not the minimal speed.",
+      "supplemental_examples": [
+        "fisher-kpp-special-front"
+      ],
+      "execution_scope": {
+        "ja": "全モデル族の実装ではありません。今回の固定例：Fisher–KPP：特殊波速の厳密前線",
+        "en": "Not implementation of the entire model family. Fixed cases: Fisher–KPP: a special-speed exact front"
+      }
     },
     {
       "id": "bio-monod",
@@ -755,17 +768,24 @@
       ],
       "chapter": "biological-models",
       "note": {
-        "ja": "電位とゲート変数z=m,h,nの膜モデル。元のイカ軸索モデルと、人心筋や空間ケーブルへの拡張を区別します。 文献解説のみ。",
-        "en": "Voltage and gating variables z=m,h,n describe an ionic excitable membrane. A cable extension adds spatial axial current. The original squid-axon model is not a calibrated human cardiac model. No single rate parameter set is selected by this survey. Literature-only."
+        "ja": "電位とゲート変数z=m,h,nの膜モデル。元のイカ軸索モデルと、人心筋や空間ケーブルへの拡張を区別します。 全モデル族の実装ではありません。今回の固定例：Hodgkin–Huxley：電位固定・静止平衡・発火",
+        "en": "Voltage and gating variables z=m,h,n describe an ionic excitable membrane. A cable extension adds spatial axial current. The original squid-axon model is not a calibrated human cardiac model. No single rate parameter set is selected by this survey. Not implementation of the entire model family. Fixed cases: Hodgkin–Huxley: clamps, rest and firing"
       },
       "section": "08-1952-hodgkinhuxley-membrane-dynamics",
       "formula_source": {
         "path": "numerical-methods-atlas/assets/biological-models.json",
         "model_id": "hodgkin-huxley"
       },
-      "status": "reading",
+      "status": "local-example",
       "group": "biology",
-      "coverage_scope": "The original squid-axon model is not a calibrated human cardiac model. No single rate parameter set is selected by this survey."
+      "coverage_scope": "The original squid-axon model is not a calibrated human cardiac model. No single rate parameter set is selected by this survey.",
+      "supplemental_examples": [
+        "hodgkin-huxley-controls"
+      ],
+      "execution_scope": {
+        "ja": "全モデル族の実装ではありません。今回の固定例：Hodgkin–Huxley：電位固定・静止平衡・発火",
+        "en": "Not implementation of the entire model family. Fixed cases: Hodgkin–Huxley: clamps, rest and firing"
+      }
     },
     {
       "id": "bio-turing",
@@ -843,17 +863,24 @@
       ],
       "chapter": "biological-models",
       "note": {
-        "ja": "細胞密度が化学物質の勾配に応答する2場の代表的な縮約系。次元・境界・化学場の動態が重要です。 文献解説のみ。",
-        "en": "Cell density n drifts up a chemoattractant gradient; τc=0 gives an elliptic chemical subproblem. This is a common two-field reduction of a more detailed original formulation. Blowup thresholds depend on dimension, domain, boundary and chemical dynamics. Literature-only."
+        "ja": "細胞密度が化学物質の勾配に応答する2場の代表的な縮約系。次元・境界・化学場の動態が重要です。 全モデル族の実装ではありません。今回の固定例：Keller–Segel：連成流束の製造解",
+        "en": "Cell density n drifts up a chemoattractant gradient; τc=0 gives an elliptic chemical subproblem. This is a common two-field reduction of a more detailed original formulation. Blowup thresholds depend on dimension, domain, boundary and chemical dynamics. Not implementation of the entire model family. Fixed cases: Keller–Segel: a manufactured coupled-flux solution"
       },
       "section": "11-1970-kellersegel-chemotaxis",
       "formula_source": {
         "path": "numerical-methods-atlas/assets/biological-models.json",
         "model_id": "keller-segel"
       },
-      "status": "reading",
+      "status": "local-example",
       "group": "biology",
-      "coverage_scope": "This is a common two-field reduction of a more detailed original formulation. Blowup thresholds depend on dimension, domain, boundary and chemical dynamics."
+      "coverage_scope": "This is a common two-field reduction of a more detailed original formulation. Blowup thresholds depend on dimension, domain, boundary and chemical dynamics.",
+      "supplemental_examples": [
+        "keller-segel-forced-flux"
+      ],
+      "execution_scope": {
+        "ja": "全モデル族の実装ではありません。今回の固定例：Keller–Segel：連成流束の製造解",
+        "en": "Not implementation of the entire model family. Fixed cases: Keller–Segel: a manufactured coupled-flux solution"
+      }
     },
     {
       "id": "bio-gierer-meinhardt",
@@ -915,17 +942,24 @@
       ],
       "chapter": "biological-models",
       "note": {
-        "ja": "整数分子数n、反応ジャンプνj、傾向関数ajの確率モデル。Gillespie SSAは軌道を標本化する解法で、反応網自体とは区別します。 文献解説のみ。",
-        "en": "Integer molecule counts, reaction jumps νj and propensities aj; SSA samples paths of this continuous-time Markov model. The 1977 paper is a foundational SSA reference, not a priority claim for all master equations. SSA is a solver; the reaction network is the model. A seed documents a trajectory, not an ensemble validation. Literature-only."
+        "ja": "整数分子数n、反応ジャンプνj、傾向関数ajの確率モデル。Gillespie SSAは軌道を標本化する解法で、反応網自体とは区別します。 全モデル族の実装ではありません。今回の固定例：移入–死亡SSA：有限時刻の厳密分布",
+        "en": "Integer molecule counts, reaction jumps νj and propensities aj; SSA samples paths of this continuous-time Markov model. The 1977 paper is a foundational SSA reference, not a priority claim for all master equations. SSA is a solver; the reaction network is the model. A seed documents a trajectory, not an ensemble validation. Not implementation of the entire model family. Fixed cases: Immigration–death SSA: exact transient laws"
       },
       "section": "14-1977-chemical-master-equation-and-gillespie-ssa",
       "formula_source": {
         "path": "numerical-methods-atlas/assets/biological-models.json",
         "model_id": "chemical-master"
       },
-      "status": "reading",
+      "status": "local-example",
       "group": "biology",
-      "coverage_scope": "The 1977 paper is a foundational SSA reference, not a priority claim for all master equations. SSA is a solver; the reaction network is the model. A seed documents a trajectory, not an ensemble validation."
+      "coverage_scope": "The 1977 paper is a foundational SSA reference, not a priority claim for all master equations. SSA is a solver; the reaction network is the model. A seed documents a trajectory, not an ensemble validation.",
+      "supplemental_examples": [
+        "immigration-death-ssa"
+      ],
+      "execution_scope": {
+        "ja": "全モデル族の実装ではありません。今回の固定例：移入–死亡SSA：有限時刻の厳密分布",
+        "en": "Not implementation of the entire model family. Fixed cases: Immigration–death SSA: exact transient laws"
+      }
     },
     {
       "id": "bio-mackey-glass",
@@ -987,8 +1021,8 @@
       ],
       "chapter": "biological-models",
       "note": {
-        "ja": "自己触媒反応の空間拡張。反応平衡と分散関係から模様の発生を検証するための数理モデルです。 限定した実行例：a=0.1,b=0.9、拡散係数0.01/1、長さ2πの1次元周期Schnakenberg系。旧線形発現例を保持し、固定した反射対称の有限振幅初期値の非線形発展と成長後パターンを独立Fourier–Galerkin/Radau参照および空間・時間細分化で比較します。一般の模様選択、2次元、生物実験への較正、流体連成には広げません。",
-        "en": "A simple autocatalytic kinetic law extended in space, useful for reproducible Turing-onset tests. A mathematical chemical pattern model; matching a visual biological pattern does not calibrate it to a tissue. Scoped executed example: A 1D periodic Schnakenberg system of length 2pi, a=0.1, b=0.9 and diffusivities 0.01/1. Preserve the earlier linear-onset example and compare finite-amplitude nonlinear evolution and post-growth patterns from fixed reflection-symmetric data with independent Fourier–Galerkin/Radau references and separate spatial/temporal refinement. No general pattern selection, 2D, biological calibration or fluid-coupling claim."
+        "ja": "自己触媒反応の空間拡張。反応平衡と分散関係から模様の発生を検証するための数理モデルです。 限定した実行例：a=0.1,b=0.9、拡散係数0.01/1、長さ2πの1次元周期Schnakenberg系。旧線形発現例を保持し、固定した反射対称の有限振幅初期値の非線形発展と成長後パターンを独立Fourier–Galerkin/Radau参照および空間・時間細分化で比較します。この旧1次元例だけから一般の模様選択、生物実験への較正、流体連成へ広げません。 全モデル族の実装ではありません。今回の固定例：Schnakenberg：2D境界と初期モード",
+        "en": "A simple autocatalytic kinetic law extended in space, useful for reproducible Turing-onset tests. A mathematical chemical pattern model; matching a visual biological pattern does not calibrate it to a tissue. Scoped executed example: A 1D periodic Schnakenberg system of length 2pi, a=0.1, b=0.9 and diffusivities 0.01/1. Preserve the earlier linear-onset example and compare finite-amplitude nonlinear evolution and post-growth patterns from fixed reflection-symmetric data with independent Fourier–Galerkin/Radau references and separate spatial/temporal refinement. The earlier 1D case alone makes no general pattern-selection, biological-calibration or fluid-coupling claim. Not implementation of the entire model family. Fixed cases: Schnakenberg:2D boundaries and initial modes"
       },
       "section": "17-1979-schnakenberg-reactiondiffusion",
       "formula_source": {
@@ -999,13 +1033,14 @@
       "group": "biology",
       "coverage_scope": "A 1D periodic Schnakenberg system of length 2pi, a=0.1, b=0.9 and diffusivities 0.01/1. Preserve the earlier linear-onset example and compare finite-amplitude nonlinear evolution and post-growth patterns from fixed reflection-symmetric data with independent Fourier–Galerkin/Radau references and separate spatial/temporal refinement. No general pattern selection, 2D, biological calibration or fluid-coupling claim.",
       "execution_scope": {
-        "ja": "a=0.1,b=0.9、拡散係数0.01/1、長さ2πの1次元周期Schnakenberg系。旧線形発現例を保持し、固定した反射対称の有限振幅初期値の非線形発展と成長後パターンを独立Fourier–Galerkin/Radau参照および空間・時間細分化で比較します。一般の模様選択、2次元、生物実験への較正、流体連成には広げません。",
-        "en": "A 1D periodic Schnakenberg system of length 2pi, a=0.1, b=0.9 and diffusivities 0.01/1. Preserve the earlier linear-onset example and compare finite-amplitude nonlinear evolution and post-growth patterns from fixed reflection-symmetric data with independent Fourier–Galerkin/Radau references and separate spatial/temporal refinement. No general pattern selection, 2D, biological calibration or fluid-coupling claim."
+        "ja": "全モデル族の実装ではありません。今回の固定例：Schnakenberg：2D境界と初期モード",
+        "en": "Not implementation of the entire model family. Fixed cases: Schnakenberg:2D boundaries and initial modes"
       },
       "supplemental_examples": [
         "turing-schnakenberg",
         "schnakenberg-nonlinear",
-        "schnakenberg-pattern"
+        "schnakenberg-pattern",
+        "schnakenberg-2d-boundary-modes"
       ]
     },
     {
@@ -1140,15 +1175,26 @@
         "\\hat H_{\\rm el}\\Psi=E_{\\rm el}\\Psi,\\qquad E_{\\rm tot}=E_{\\rm el}+\\sum_{A<B}\\frac{Z_AZ_B}{R_{AB}}"
       ],
       "note": {
-        "ja": "固定核・非相対論の電子多体固有値問題。核間反発は電子Hamiltonianの外に加える。実行例は1電子の孤立水素型原子に限定。一般の多電子直接解法は未実装。",
-        "en": "Fixed-nuclei nonrelativistic electronic many-body eigenproblem; add nuclear repulsion separately. Runnable examples cover only isolated one-electron hydrogenic atoms, not direct general many-electron solutions."
+        "ja": "固定核・非相対論の電子固有値問題。核間反発は電子Hamiltonianの外に加える。従来の水素型動径例を保持し、追加は1次元の箱/HOと3AO以下の2電子FCIに限定する。一般多電子系の直接解法や連続空間の厳密分子解の検証ではない。",
+        "en": "Fixed-nuclei nonrelativistic electronic eigenproblems; add nuclear repulsion separately. Preserve the existing hydrogenic radial examples. Additional examples are restricted to one-dimensional box/HO and two-electron FCI in at most3AOs, not general many-electron direct solvers or continuum-exact molecules."
       },
       "status": "local-example",
       "chapter": "quantum-chemistry",
       "section": "schrodinger",
       "related_chapters": [
         "quantum-atoms"
-      ]
+      ],
+      "supplemental_examples": [
+        "atomic-reference-cards",
+        "quantum-box-ho",
+        "h2-rhf-uhf-fci",
+        "h3plus-mp2-fci"
+      ],
+      "execution_scope": {
+        "ja": "固定核・非相対論の電子固有値問題。核間反発は電子Hamiltonianの外に加える。従来の水素型動径例を保持し、追加は1次元の箱/HOと3AO以下の2電子FCIに限定する。一般多電子系の直接解法や連続空間の厳密分子解の検証ではない。",
+        "en": "Fixed-nuclei nonrelativistic electronic eigenproblems; add nuclear repulsion separately. Preserve the existing hydrogenic radial examples. Additional examples are restricted to one-dimensional box/HO and two-electron FCI in at most3AOs, not general many-electron direct solvers or continuum-exact molecules."
+      },
+      "coverage_scope": "Fixed-nuclei nonrelativistic electronic eigenproblems; add nuclear repulsion separately. Preserve the existing hydrogenic radial examples. Additional examples are restricted to one-dimensional box/HO and two-electron FCI in at most3AOs, not general many-electron direct solvers or continuum-exact molecules."
     },
     {
       "id": "hartree-fock-model",
@@ -1162,15 +1208,25 @@
         "\\mathbf F\\mathbf C=\\mathbf S\\mathbf C\\boldsymbol\\varepsilon,\\qquad \\mathbf C^\\dagger\\mathbf S\\mathbf C=\\mathbf I"
       ],
       "note": {
-        "ja": "閉殻RHFの占有空間軌道の式で、一般に非局所な交換を含みます。公開例は、球対称1s² Heの局所還元と、別の分子積分実装による固定入力のH₂ RHFです。原子例と分子例では基底・離散化・参照が異なります。各例の範囲は下の固定入力・検証記録で確認してください。一般多中心分子・開殻・相関を含む解法の検証ではありません。",
-        "en": "Closed-shell RHF equations for occupied spatial orbitals generally include nonlocal exchange. Published examples cover the spherical 1s²-helium local reduction and fixed-input H₂ RHF using a separate molecular-integral implementation. Their bases, discretizations and references differ; inspect each input and validation record below. These examples do not validate general multicenter molecules, open shells or correlated methods."
+        "ja": "閉殻RHFの占有空間軌道の式で、非局所交換を含む。既存のHe局所還元とH2のRHF例を保持する。追加は固定H2/H3+の最小2電子模型で、UHF式は別の対応模型に明示する。一般多中心分子、開殻の大域安定性、完全基底や一般相関法の保証ではない。",
+        "en": "Closed-shell occupied-orbital RHF equations include nonlocal exchange. Preserve existing He local-reduction and H2RHF examples. New calculations cover only fixed minimal two-electron H2/H3+ models; UHF equations have their own mapped model. No general multicenter molecules, global open-shell stability, complete-basis or general correlated-method guarantee."
       },
       "status": "local-example",
       "chapter": "quantum-chemistry",
       "section": "hartree-fock",
       "related_chapters": [
         "quantum-atoms"
-      ]
+      ],
+      "supplemental_examples": [
+        "atomic-reference-cards",
+        "h2-rhf-uhf-fci",
+        "h3plus-mp2-fci"
+      ],
+      "execution_scope": {
+        "ja": "閉殻RHFの占有空間軌道の式で、非局所交換を含む。既存のHe局所還元とH2のRHF例を保持する。追加は固定H2/H3+の最小2電子模型で、UHF式は別の対応模型に明示する。一般多中心分子、開殻の大域安定性、完全基底や一般相関法の保証ではない。",
+        "en": "Closed-shell occupied-orbital RHF equations include nonlocal exchange. Preserve existing He local-reduction and H2RHF examples. New calculations cover only fixed minimal two-electron H2/H3+ models; UHF equations have their own mapped model. No general multicenter molecules, global open-shell stability, complete-basis or general correlated-method guarantee."
+      },
+      "coverage_scope": "Closed-shell occupied-orbital RHF equations include nonlocal exchange. Preserve existing He local-reduction and H2RHF examples. New calculations cover only fixed minimal two-electron H2/H3+ models; UHF equations have their own mapped model. No general multicenter molecules, global open-shell stability, complete-basis or general correlated-method guarantee."
     },
     {
       "id": "kohn-sham-model",
@@ -1193,6 +1249,10 @@
       "section": "kohn-sham-dft",
       "related_chapters": [
         "quantum-atoms"
+      ],
+      "supplemental_examples": [
+        "atomic-reference-cards",
+        "periodic-he-reference-cards"
       ]
     },
     {
@@ -2372,6 +2432,246 @@
       },
       "supplemental_examples": [
         "seir-linearization"
+      ]
+    },
+    {
+      "id": "two-state-bo-cp-model",
+      "group": "quantum",
+      "name": {
+        "ja": "2準位電子角と核のBO/CP型模型",
+        "en": "Two-state electronic-angle/nuclear BO and CP-type model"
+      },
+      "formula": [
+        "H(Q)=\\frac{kQ^2}{2}I+\\begin{pmatrix}-\\Delta&gQ\\\\gQ&\\Delta\\end{pmatrix},\\quad\\psi=(\\cos\\theta,\\sin\\theta)^T",
+        "E(Q,\\theta)=\\frac{kQ^2}{2}-\\Delta\\cos(2\\theta)+gQ\\sin(2\\theta),\\quad E_-(Q)=\\frac{kQ^2}{2}-\\sqrt{\\Delta^2+g^2Q^2}",
+        "M\\ddot Q=-kQ-g\\sin(2\\theta),\\quad\\mu\\ddot\\theta=-2\\Delta\\sin(2\\theta)-2gQ\\cos(2\\theta)",
+        "V^+=aV^-+\\sqrt{(T/M)(1-a^2)}\\,\\xi,\\quad a=e^{-\\gamma h},\\quad Q_{\\rm bath}=\\sum\\Delta K_{\\rm nuclear}"
+      ],
+      "chapter": "validation-quantum-small",
+      "status": "local-example",
+      "note": {
+        "ja": "長時間第一原理NVE、一般の多軌道直交制約・SCF誤差、電子/核の一般熱浴、正準平衡・断熱分離・エルゴード性、実物質は未検証。",
+        "en": "Long first-principles NVE, general multi-orbital orthonormality/SCF errors, general electronic/nuclear baths, canonical equilibration, adiabatic/ergodic certification and materials remain unverified."
+      },
+      "coverage_scope": "Long first-principles NVE, general multi-orbital orthonormality/SCF errors, general electronic/nuclear baths, canonical equilibration, adiabatic/ergodic certification and materials remain unverified.",
+      "execution_scope": {
+        "ja": "長時間第一原理NVE、一般の多軌道直交制約・SCF誤差、電子/核の一般熱浴、正準平衡・断熱分離・エルゴード性、実物質は未検証。",
+        "en": "Long first-principles NVE, general multi-orbital orthonormality/SCF errors, general electronic/nuclear baths, canonical equilibration, adiabatic/ergodic certification and materials remain unverified."
+      },
+      "supplemental_examples": [
+        "two-state-bo-cp-ou"
+      ]
+    },
+    {
+      "id": "unrestricted-hartree-fock-model",
+      "group": "quantum",
+      "name": {
+        "ja": "最小2電子模型のスピン非制限HF",
+        "en": "Unrestricted HF in a minimal two-electron model"
+      },
+      "formula": [
+        "F^\\sigma=h+J[P^\\alpha+P^\\beta]-K[P^\\sigma],\\quad F^\\sigma C^\\sigma=SC^\\sigma\\varepsilon^\\sigma",
+        "\\langle S^2\\rangle_{1\\alpha,1\\beta}=1-|c_\\alpha^\\dagger S c_\\beta|^2"
+      ],
+      "chapter": "validation-quantum-small",
+      "status": "local-example",
+      "note": {
+        "ja": "2固定距離のみ。有限基底FCIは連続空間の厳密解ではなく、UHF定常解の一般的な大域最小性は保証しません。角運動量・完全基底・広い解離曲線は未検証。",
+        "en": "Only2fixed distances. Finite-basis FCI is not continuum exactness, and UHF stationarity is not a general global-minimum guarantee. Angular/complete-basis convergence and a broad dissociation curve remain untested."
+      },
+      "coverage_scope": "Only2fixed distances. Finite-basis FCI is not continuum exactness, and UHF stationarity is not a general global-minimum guarantee. Angular/complete-basis convergence and a broad dissociation curve remain untested.",
+      "execution_scope": {
+        "ja": "2固定距離のみ。有限基底FCIは連続空間の厳密解ではなく、UHF定常解の一般的な大域最小性は保証しません。角運動量・完全基底・広い解離曲線は未検証。",
+        "en": "Only2fixed distances. Finite-basis FCI is not continuum exactness, and UHF stationarity is not a general global-minimum guarantee. Angular/complete-basis convergence and a broad dissociation curve remain untested."
+      },
+      "supplemental_examples": [
+        "h2-rhf-uhf-fci"
+      ]
+    },
+    {
+      "id": "finite-projector-fermi-model",
+      "group": "quantum",
+      "name": {
+        "ja": "3平面波・非局所核と平均Fermi占有",
+        "en": "Three-wave nonlocal kernel and mean Fermi occupations"
+      },
+      "formula": [
+        "H_{GG\\prime}(k,R)=\\tfrac12(G+k)^2\\delta_{GG\\prime}+V_{GG\\prime}+\\eta\\beta_G\\beta_{G\\prime}^*,\\quad\\beta_G=e^{-(G+k)^2/(2\\sigma^2)}e^{-i(G+k)R}",
+        "f_{kn}=\\frac{2}{1+e^{(\\varepsilon_{kn}-\\mu)/T}},\\quad\\sum_{kn}w_kf_{kn}=1.5",
+        "F=\\sum_{kn}w_kf_{kn}\\varepsilon_{kn}-TS,\\quad F_R=-\\sum_{kn}w_kf_{kn}\\langle u_{kn}|\\partial_RH_k|u_{kn}\\rangle"
+      ],
+      "chapter": "validation-quantum-small",
+      "status": "local-example",
+      "note": {
+        "ja": "自作3平面波の線形Hamiltonianです。平均占有の独立粒子Fermi模型であり、整数粒子の正準多体系ではありません。自己無撞着Hartree/XC、元素適合ノルム保存擬ポテンシャル、実金属、一般材料、長時間MDは未検証。",
+        "en": "Authored linear3-wave Hamiltonian with independent-particle mean Fermi occupations, not an integer-particle canonical many-body ensemble. No self-consistent Hartree/XC, element-fitted norm-conserving PSP, real metal, general material or longMD validation."
+      },
+      "coverage_scope": "Authored linear3-wave Hamiltonian with independent-particle mean Fermi occupations, not an integer-particle canonical many-body ensemble. No self-consistent Hartree/XC, element-fitted norm-conserving PSP, real metal, general material or longMD validation.",
+      "execution_scope": {
+        "ja": "自作3平面波の線形Hamiltonianです。平均占有の独立粒子Fermi模型であり、整数粒子の正準多体系ではありません。自己無撞着Hartree/XC、元素適合ノルム保存擬ポテンシャル、実金属、一般材料、長時間MDは未検証。",
+        "en": "Authored linear3-wave Hamiltonian with independent-particle mean Fermi occupations, not an integer-particle canonical many-body ensemble. No self-consistent Hartree/XC, element-fitted norm-conserving PSP, real metal, general material or longMD validation."
+      },
+      "supplemental_examples": [
+        "periodic-projector-occupations"
+      ]
+    },
+    {
+      "id": "immigration-death-model",
+      "group": "biology",
+      "name": {
+        "ja": "移入–死亡反応と厳密過渡法則",
+        "en": "Immigration–death reaction and exact transient law"
+      },
+      "formula": [
+        "\\varnothing\\xrightarrow{6}N,\\qquad N\\xrightarrow{N} \\varnothing",
+        "N(t)\\overset d=\\mathrm{Bin}(n_0,e^{-t})+\\mathrm{Pois}(6(1-e^{-t}))"
+      ],
+      "chapter": "validation-biology-ode-controls",
+      "status": "local-example",
+      "note": {
+        "ja": "有限時間の決定論的初期状態を定常分布とは呼びません。区間の保証は理想IID法則の参照に限り、PRNG・対数演算を含むソフトウェア全体の被覆率保証や単一軌跡の代表性を主張しません。",
+        "en": "Finite deterministic-start transients are not stationary. Interval qualification concerns the idealIID reference law, without a whole-software PRNG/logarithm coverage guarantee or a claim that one path represents the ensemble."
+      },
+      "coverage_scope": "Fixed educational case only; original study goals and numerical reference limits remain visible.",
+      "execution_scope": {
+        "ja": "移入率6、粒子ごとの死亡率1、時刻0/0.5/2/4。初期0・5・名目上のPoisson(6)定常標本を2seedずつ、各2,048本で比較します。",
+        "en": "Use immigration6, per-particle death1 and observations0/0.5/2/4. Compare initial0,5 and nominal stationary Poisson(6), two seeds each and2,048paths per record."
+      },
+      "supplemental_examples": [
+        "immigration-death-ssa"
+      ]
+    },
+    {
+      "id": "forced-keller-segel-model",
+      "group": "biology",
+      "name": {
+        "ja": "外力・移流付きKeller–Segel製造問題",
+        "en": "Forced advective Keller–Segel manufactured problem"
+      },
+      "formula": [
+        "n_t+\\nabla\\cdot(wn)=D_n\\Delta n-\\chi\\nabla\\cdot(n\\nabla c)+rn(1-n)+s_n",
+        "\\tau c_t=D_c\\Delta c+\\alpha n-\\lambda c+s_c",
+        "n_*=1+0.1e^{-t}\\cos(\\pi x)\\cos(\\pi y),\\quad c_*=1+0.05e^{-2t}\\cos(\\pi x)\\cos(2\\pi y)"
+      ],
+      "chapter": "validation-biology-space-controls",
+      "status": "local-example",
+      "note": {
+        "ja": "著者作成の強制2場モデルです。原著の全生物モデル、ピーク形成、真のblow-upやその抑制を実証しません。負値をクリップして正値性を装いません。",
+        "en": "This authored forced two-field model does not reproduce the full original biological model or demonstrate aggregation, true blow-up or suppression. No clipping is used to manufacture positivity."
+      },
+      "coverage_scope": "Fixed educational case only; original study goals and numerical reference limits remain visible.",
+      "execution_scope": {
+        "ja": "単位正方形、T=0.25。n=1+0.1e⁻ᵗcosπx cosπy、c=1+0.05e⁻²ᵗcosπx cos2πyに合う強制項と接線方向の発散ゼロ移流を与えます。",
+        "en": "On the unit square toT.25,manufacture forcing for n=1+.1e⁻ᵗcosπx cosπy,c=1+.05e⁻²ᵗcosπx cos2πy with divergence-free tangential advection."
+      },
+      "supplemental_examples": [
+        "keller-segel-forced-flux"
+      ],
+      "formula_source": {
+        "path": "code/validated-examples/2026-11-25/biology-space-controls/keller_segel.py",
+        "python_symbols": [
+          "exact",
+          "expanded_source",
+          "reference_geometry"
+        ]
+      }
+    },
+    {
+      "id": "finite-mode-thermostat-model",
+      "group": "physical",
+      "name": {
+        "ja": "2モードの決定論的温度浴",
+        "en": "Two-mode deterministic thermostat model"
+      },
+      "formula": [
+        "U(q)=\\sum_{i=1}^2(\\omega_i^2q_i^2/2+\\kappa q_i^4/4),\\quad\\omega=(1,1.7),\\ \\kappa=0,.2",
+        "\\dot p=-\\nabla U-\\xi_1p,\\quad\\dot\\xi_1=(2K-fT)/Q_1-\\xi_2\\xi_1",
+        "H_{ext}=H+\\sum_jQ_j\\xi_j^2/2+fT\\eta_1+T\\sum_{j>1}\\eta_j"
+      ],
+      "chapter": "validation-thermostat-constraint-controls",
+      "status": "local-example",
+      "note": {
+        "ja": "著者作成の分割でありLAMMPS/MKT実装の完全再現ではありません。時刻20は混合・平衡化の証明でなく、平均温度一致だけで正準分布や一般的なエルゴード性を認定しません。",
+        "en": "This authored splitting is not a full LAMMPS/MKT reproduction. Time20does not prove mixing/equilibration; correct mean temperature alone does not establish canonical sampling or general ergodicity."
+      },
+      "coverage_scope": "Fixed educational case only; original study goals and numerical reference limits remain visible.",
+      "execution_scope": {
+        "ja": "単位質量,kBT=1、周波数1/1.7、quartic係数0/0.2。NH1/NHC3/Berendsen/速度固定、2結合・2刻み、正準256＋加熱128レプリカを固定します。",
+        "en": "Fix unit masses,kBT1,frequencies1/1.7 and quartic0/.2. Compare NH1,NHC3,Berendsen and fixed-speed baths at two couplings/two steps with256canonical and128heated replicas."
+      },
+      "supplemental_examples": [
+        "deterministic-thermostat-contrasts"
+      ]
+    },
+    {
+      "id": "projected-canonical-model",
+      "group": "physical",
+      "name": {
+        "ja": "固定線形拘束の正準運動量",
+        "en": "Canonical momentum under fixed linear constraints"
+      },
+      "formula": [
+        "Cq=0,\\quad CM^{-1}p=0,\\quad f=3-\\mathrm{rank}(C)",
+        "\\mathrm{Cov}(p)=T(M-C^T(CM^{-1}C^T)^+C)"
+      ],
+      "chapter": "validation-thermostat-constraint-controls",
+      "status": "local-example",
+      "note": {
+        "ja": "固定線形拘束の小例です。非線形分子拘束、Fixman補正、輸送係数へ一般化しません。独立seedの冗長拘束系には軌跡の一致を要求せず、CSVRの動的相関は経験的な結果です。",
+        "en": "These fixed linear constraints do not cover nonlinear molecular constraints,Fixman corrections or transport coefficients. Redundant systems with independent seeds need not have identical paths; CSVR dynamical correlations are empirical."
+      },
+      "coverage_scope": "Fixed educational case only; original study goals and numerical reference limits remain visible.",
+      "execution_scope": {
+        "ja": "質量1/2/3の1D3粒子と1つの共通調和ポテンシャル。拘束なし・COM・COM＋相対・冗長行を含む同じ拘束でf=3/2/1/1、各1,024レプリカを用います。",
+        "en": "Use three1Dparticles of masses1/2/3 in one common harmonic potential. No constraints,COM,COM-relative and a redundant-row equivalent have f3/2/1/1,each with1,024replicas."
+      },
+      "supplemental_examples": [
+        "projected-canonical-dof"
+      ]
+    },
+    {
+      "id": "sphere-scalar-advection",
+      "name": {
+        "ja": "球面上の所与速度スカラー移流",
+        "en": "Prescribed scalar advection on a sphere"
+      },
+      "formula": [
+        "q_t+\\mathbf v\\cdot\\nabla_{\\mathbb S^2}q=0,\\quad q(\\mathbf r,t)=q_0(R_{\\mathbf n}(-2\\pi t/T)\\mathbf r)",
+        "\\mathbf n=(-\\sin\\alpha,0,\\cos\\alpha),\\quad q_0(r)=\\tfrac12[1+\\cos(\\pi r/R)]\\ (r<R),\\quad q_0=0\\ (r\\ge R)"
+      ],
+      "chapter": "validation-continuum-particle-controls",
+      "group": "physical",
+      "status": "local-example",
+      "note": {
+        "ja": "単位球の所与の剛体回転によるスカラー輸送だけです。原W92全文の式は未閲読で、Nairらの選択した著者資料との規約照合に限ります。両格子とも11回の非整合なremap。非保存の双線形補間で質量ずれを報告し、時間収束とは呼びません。",
+        "en": "Only prescribed scalar solid-body rotation on a unit sphere. Original W92 equations remain unread; selected Nair author formulas cross-check conventions. Both grids use eleven noncommensurate remaps. Bilinear interpolation is nonconservative; report mass drift and do not claim temporal convergence or a nonlinear global SWE core."
+      },
+      "coverage_scope": "Only prescribed scalar solid-body rotation on a unit sphere. Original W92 equations remain unread; selected Nair author formulas cross-check conventions. Both grids use eleven noncommensurate remaps. Bilinear interpolation is nonconservative; report mass drift and do not claim temporal convergence or a nonlinear global SWE core.",
+      "supplemental_examples": [
+        "williamson-sphere-transport"
+      ]
+    },
+    {
+      "id": "spherical-shallow-water",
+      "name": {
+        "ja": "球面浅水波の軸対称部分問題",
+        "en": "Axisymmetric spherical shallow-water subproblem"
+      },
+      "formula": [
+        "h_t+\\frac{\\partial_\\phi(hv\\cos\\phi)}{a\\cos\\phi}=0,\\quad u_t+\\frac va u_\\phi-(2\\Omega\\sin\\phi+u\\tan\\phi/a)v=0",
+        "v_t+\\frac va v_\\phi+(2\\Omega\\sin\\phi+u\\tan\\phi/a)u+\\frac ga h_\\phi=0",
+        "u=u_0\\cos\\phi,\\quad v=0,\\quad h=h_0-\\frac{a\\Omega u_0+u_0^2/2}{g}\\sin^2\\phi"
+      ],
+      "chapter": "validation-continuum-particle-controls",
+      "group": "physical",
+      "status": "local-example",
+      "note": {
+        "ja": "a=g=1, Ω=2, u0=.5, h0=10 の軸対称な無次元部分問題。運動量中心差分・質量FV・RK4の混成で実際に時間発展させます。標準地球条件や全球多次元SWE、厳密な離散釣合い・PV保存の再現ではありません。",
+        "en": "Axisymmetric nondimensional subproblem with a=g=1, Omega=2, u0=.5 and h0=10. Actual time evolution uses centered primitive momentum, finite-volume mass and RK4. Not standard Earth parameters, a full global multidimensional SWE core, exact discrete balance or a PV-conservation claim."
+      },
+      "coverage_scope": "Axisymmetric nondimensional subproblem with a=g=1, Omega=2, u0=.5 and h0=10. Actual time evolution uses centered primitive momentum, finite-volume mass and RK4. Not standard Earth parameters, a full global multidimensional SWE core, exact discrete balance or a PV-conservation claim.",
+      "supplemental_examples": [
+        "sphere-zonal-balance"
       ]
     }
   ]

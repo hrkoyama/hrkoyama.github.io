@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "state": "fixed-input-contract",
+  "md95": {
+    "k": 1.0,
+    "delta": 1.0,
+    "g": 0.25,
+    "nuclear_mass": 20.0,
+    "Q0": 0.4,
+    "V0": 0.05,
+    "T": 1.0,
+    "dt": [
+      0.015625,
+      0.0078125,
+      0.00390625
+    ],
+    "cp_mu": [
+      0.04,
+      0.01
+    ],
+    "rk4_reference_steps": [
+      4096,
+      8192
+    ],
+    "bath": {
+      "gamma": 0.2,
+      "temperature": 0.02,
+      "seed": 20261125,
+      "steps": 256
+    }
+  },
+  "eigen97": {
+    "box_M": [
+      32,
+      64,
+      128
+    ],
+    "HO_L8_h": [
+      0.25,
+      0.125,
+      0.0625
+    ],
+    "HO_domain_L": [
+      4,
+      6,
+      8
+    ],
+    "HO_domain_h": 0.125,
+    "selected_states": 3,
+    "API": "numpy.linalg.eigh full real symmetric matrix; retain all native eigenpairs before selecting lowest3",
+    "primary_API_calls": 8,
+    "native_returned_eigenpairs": 824,
+    "selected_eigenpairs": 24
+  },
+  "molecule98": {
+    "basis": {
+      "id": "sto-3g",
+      "label": "STO-3G minimal contraction",
+      "family": "contracted-minimal",
+      "shells": [
+        {
+          "exponents": [
+            3.425250914,
+            0.6239137298,
+            0.168855404
+          ],
+          "coefficients": [
+            0.1543289673,
+            0.5353281423,
+            0.4446345422
+          ]
+        }
+      ]
+    },
+    "bonds_bohr": [
+      1.4,
+      3.0
+    ],
+    "nelec": [
+      1,
+      1
+    ],
+    "mixing": 0.5,
+    "max_cycles": 240,
+    "density_tolerance": 1e-10,
+    "energy_tolerance": 1e-12,
+    "commutator_tolerance": 1e-09,
+    "UHF_initial_g_u_angle": 0.5
+  },
+  "molecule99": {
+    "name": "H3+",
+    "nuclei_bohr": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        1.5,
+        0,
+        0
+      ],
+      [
+        0.5,
+        1.5,
+        0
+      ]
+    ],
+    "charges": [
+      1,
+      1,
+      1
+    ],
+    "charge": 1,
+    "nelec": [
+      1,
+      1
+    ],
+    "basis": "same explicit H STO-3G s contraction as98",
+    "mixing": 0.5,
+    "max_cycles": 240,
+    "density_tolerance": 1e-10,
+    "energy_tolerance": 1e-12,
+    "commutator_tolerance": 1e-09
+  },
+  "periodic101": {
+    "cell_length": "2*pi in declared dimensionless atomic-like units",
+    "G": [
+      -1,
+      0,
+      1
+    ],
+    "k": [
+      -0.25,
+      0.25
+    ],
+    "weights": [
+      0.5,
+      0.5
+    ],
+    "local_V1": -0.1,
+    "projector_eta": 0.3,
+    "projector_sigma": 0.8,
+    "projector_R": 0.4,
+    "temperature": 0.05,
+    "electrons": 1.5,
+    "force_delta": [
+      0.0001,
+      5e-05
+    ],
+    "primary_matrices": 2,
+    "auxiliary_displaced_matrices": 8,
+    "no_self_consistent_density_functional": true
+  }
+}

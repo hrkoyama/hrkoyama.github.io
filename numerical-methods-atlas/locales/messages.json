@@ -9607,5 +9607,189 @@
   "reference.batch78-87.e3feafb39059": {
     "en": "Fixed educational executions: Tensor and Smolyak controls in two to four dimensions.",
     "ja": "固定した教育用実行例：2〜4次元テンソル・Smolyak対照。"
+  },
+  "reference.common-2-6.c517d4802dee": {
+    "en": "1D Bratu: Newton–GMRES on the lower branch",
+    "ja": "1次元Bratu：小さい枝のNewton–GMRES"
+  },
+  "reference.common-2-6.326c43d7ef72": {
+    "en": "Existing residual-decrease damped Newton and ILU(0)-GMRES. Analytic u=2log[cosh(β/2)/cosh(β(x−1/2))]. βtanh(β/2)<2 selects the lower branch and all initial unknowns are zero. Nonlinear tolerance is 1e-10 with at most 30 Newton iterations.",
+    "ja": "既存の残差十分減少による減衰NewtonとILU(0)付きGMRES。解析解u=2log[cosh(β/2)/cosh(β(x−1/2))]。βtanh(β/2)<2で小さい枝を選び、初期値は全点零。内部Newton制御は非線形許容値1e-10、最大30反復。"
+  },
+  "reference.common-2-6.1ee6d7bb5db0": {
+    "en": "Harmonic oscillator: Verlet phase error and energy",
+    "ja": "調和振動子：Verletの位相誤差とエネルギー"
+  },
+  "reference.common-2-6.8a9e55304ccc": {
+    "en": "H=(q²+p²)/2 and (q0,p0)=(1,0.2); one nondissipative degree of freedom, fixed steps. Inputs explicitly provide initial state, final time and counts. Largest h=0.1 lies in h*omega<2.",
+    "ja": "H=(q²+p²)/2、(q₀,p₀)=(1,0.2)。固定刻み、非散逸1自由度。初期値・終端時刻・刻み数は入力に明記。最大刻みh=0.1はhω<2の安定域。"
+  },
+  "reference.common-2-6.32830d86f1db": {
+    "en": "Stiff cosine-tracking ODE: SDIRK2",
+    "ja": "硬い余弦追従ODE：SDIRK2"
+  },
+  "reference.common-2-6.56f3db8d8452": {
+    "en": "rate=1000; 1000/2000/4000 steps give rate*h=1,0.5,0.25. Uses fixed gamma=1-1/sqrt(2) and the existing Newton stage solver. Separate decay: y'=-1e8*y, y(0)=1, h=1. No adaptive stepping.",
+    "ja": "rate=1000、1000/2000/4000ステップでrate*h=1,0.5,0.25。固定γ=1−1/√2と既存Newton段階解法を使用。別の減衰はy′=−10⁸y、y(0)=1、h=1。適応刻み法ではない。"
+  },
+  "reference.common-2-6.7a8197b228ca": {
+    "en": "Hydrogenic atoms: analytic references and grid refinement",
+    "ja": "水素型原子：解析解と格子収束"
+  },
+  "reference.common-2-6.57e593b6c9c5": {
+    "en": "Nonrelativistic infinite-mass point nucleus, Z=1,2. Reduced radial orbitals use second-order central differences on a uniform mesh.",
+    "ja": "非相対論・無限質量の点核。核電荷Z=1,2。縮約動径軌道を一様格子の2次中心差分で離散化。"
+  },
+  "reference.final23.4c2992ad5d5e": {
+    "en": "A two-state BO / CP-type model with a short nuclear thermostat coupling",
+    "ja": "2準位模型のBO/CP型連成と短い核熱浴"
+  },
+  "reference.final23.5d3e7d6e67e8": {
+    "en": "Actual coupled normalized electronic angle and nuclear coordinate, short NVE plus one nuclear OU trajectory. No first-principles/long NVE/canonical sampling/production CPMD. BO and mu.04 state comparisons use fixed4096/8192 RK4 companions; mu.01 receives energy checks only. Authored dimensionless model units with M=20 and angular fictitious mass mu=.04/.01; these are not cp.x emass units.",
+    "ja": "無次元の核座標と規格化した1電子角。3固定刻み、2架空質量、1固定seedのOU熱浴です。 自作模型の無次元単位。Q,時間,電子角,温度を固定し、M=20、架空角質量μ=.04/.01。cp.xのemass規約とは別です。"
+  },
+  "reference.final23.f2edb3d61eb0": {
+    "en": "Hydrogenic formulas and immutable finite-basis helium reference cards",
+    "ja": "H/Heの式・密度・固定参照カード"
+  },
+  "reference.final23.3ebfcfffd2ce": {
+    "en": "Three saved 40-function He reference rows, hydrogenic analytic equations, p versus n and finite-grid/basis/model limits. Energies in hartree, radius in bohr; u in bohr^-1/2, p in bohr^-1 and n in bohr^-3. Three saved rows each use40basis functions, not40computed rows.",
+    "ja": "Hは無限質量点核の1電子、Heは球対称1軌道の閉殻HFまたは交換のみLDAです。 エネルギーhartree、rはbohr。uはbohr^(-1/2)、pはbohr^(-1)、nはbohr^(-3)。保存3行は各40基底関数であり40計算行ではありません。"
+  },
+  "reference.final23.0c663ed27aed": {
+    "en": "Small 1D box and quantum harmonic-oscillator eigenpairs",
+    "ja": "1次元箱型井戸・量子調和振動子"
+  },
+  "reference.final23.137d47911a8d": {
+    "en": "Finite Dirichlet boxes and central differences; whole-line HO formulas do not isolate finite-wall error. Node counts diagnostic until forward sign qualification. Atomic model units hbar=m=1 and HO omega=1. The box[0,1] and finite HO[-L,L] domains both use homogeneous Dirichlet conditions.",
+    "ja": "原子単位、ゼロDirichlet端点、一様内点格子。箱[0,1]とHO[-L,L]です。 1次元模型の原子単位でℏ=m=1、HOはω=1。箱[0,1]とHOの有限区間[-L,L]はいずれも同次Dirichlet。"
+  },
+  "reference.final23.9cb8764eb835": {
+    "en": "Minimal-basis H2: RHF, broken-spin UHF and finite-basis FCI",
+    "ja": "最小基底H2のRHF/UHF/FCI・2固定幾何"
+  },
+  "reference.final23.da75f9cc6c13": {
+    "en": "Explicit unchanged STO-3G s contraction, R1.4/3.0bohr, finite-basis FCI and broken-spin UHF; not exact continuum chemistry. Distances1.4/3.0bohr and total energies in hartree. Two electrons in2AOs, each an explicitly supplied three-primitive contracted Hs function.",
+    "ja": "H-H距離1.4/3.0bohr、2電子、HごとにSTO-3G縮約s軌道を1個用います。 核間距離1.4/3.0bohr、全エネルギーhartree。各Hに同じ明示3primitiveのs型収縮を1つ置く2AO/2電子の固定部分空間。"
+  },
+  "reference.final23.38cab4eca851": {
+    "en": "A tiny three-center H3+ RHF / MP2 / FCI example",
+    "ja": "3中心H3+の小RHF/MP2/FCI模型"
+  },
+  "reference.final23.48932eddc0f2": {
+    "en": "Two electrons/3 explicit s orbitals, one fixed non-symmetric triangle. Molecular DFT, CC and general multireference/large molecules remain unimplemented tails. One H3+ geometry[(0,0,0),(1.5,0,0),(.5,1.5,0)]bohr, charge+1,2electrons/3s orbitals; energies in hartree.",
+    "ja": "H核3個、電荷+1、2電子、3縮約s軌道の非対称三角形1個です。 H3+の固定3中心[(0,0,0),(1.5,0,0),(.5,1.5,0)]bohr、電荷+1、2電子/3s軌道。エネルギーhartree。"
+  },
+  "reference.final23.cf88fbed52fa": {
+    "en": "Immutable periodic-helium energy and force reference audit",
+    "ja": "保存周期Heエネルギー・力の参照台帳"
+  },
+  "reference.final23.95a78297827f": {
+    "en": "Audit saved six-coordinate FD and Gaussian/PW comparisons; source versions, local-only He GTH, XC/units/cell/electron count fixed. No new k/basis/cutoff scans. Artificial He2,4electrons,5bohr cell. Stored geometry/localGTH version/LDA_X+VWN/Libxc/PySCF/DFTK versions remain fixed in saved-data/periodic-he-reference.json. Energy hartree; force hartree/bohr.",
+    "ja": "人工2He・4電子・5bohrセル、局所のみのGTH、固定LDA_X+VWNとコード版です。 人工He2、4電子、5bohrセル。保存した幾何・局所GTH版・LDA_X+VWN/Libxc・PySCF/DFTK版をsaved-data/periodic-he-reference.jsonに固定。エネルギーhartree、力hartree/bohr。"
+  },
+  "reference.final23.7d88dd213975": {
+    "en": "A three-wave periodic projector and Fermi-occupation model",
+    "ja": "3平面波の非局所projectorと有限温度占有"
+  },
+  "reference.final23.bdf72d4764fe": {
+    "en": "Authored rank-one periodic linear model and finite-N Helmholtz forces. No real metal/element pseudopotential/norm conservation/Hartree-XC/long MD claim. N=1.5 is a mean independent-particle Fermi occupation count, not an integer-N canonical many-body ensemble. Dimensionless G=-1,0,1,p=G+k,k=±.25 with equal.5weights,T=.05,mean electron countN=1.5 and spin factor2. No physical lattice-constant or metal mapping.",
+    "ja": "G=-1,0,1、k=±0.25、等重み、T=.05、電子数1.5の自作線形模型です。 無次元のG=-1,0,1、p=G+k、k=±.25、重み各.5、T=.05、平均電子数N=1.5、スピン係数2。実在格子定数や金属へ換算しません。"
+  },
+  "reference.final23.d356f8730174": {
+    "en": "Hodgkin–Huxley: clamps, rest and firing",
+    "ja": "Hodgkin–Huxley：電位固定・静止平衡・発火"
+  },
+  "reference.final23.ba90814ab26f": {
+    "en": "Fix6.3°C and the NEURON8.2.6 analytic absolute-voltage convention in ms/mV/µA cm⁻². Use four clamp voltages, three steps, a20ms rest and a10–11ms pulse. ms, mV, microampere/cm², 6.3°C; dimensionless gates. Spatially uniform single membrane; voltage clamp or segment-current initial-value problem.",
+    "ja": "6.3°C、NEURON8.2.6の解析的な絶対電位規約を固定し、時間ms・電位mV・電流密度μA/cm²を用います。4固定電位、3刻み、20msの静止と10–11msの電流パルスを比較。ゲートは無次元で、空間一様な1細胞膜の電位固定または区分電流の初期値問題です。"
+  },
+  "reference.final23.9cf1bdc3f229": {
+    "en": "Immigration–death SSA: exact transient laws",
+    "ja": "移入–死亡SSA：有限時刻の厳密分布"
+  },
+  "reference.final23.028560803575": {
+    "en": "Use immigration6, per-particle death1 and observations0/0.5/2/4. Compare initial0,5 and nominal stationary Poisson(6), two seeds each and2,048paths per record. Integer particle counts and a fixed time unit; death rate 1 per particle and immigration rate 6. Nonnegative integer counts; death propensity vanishes at N=0.",
+    "ja": "移入率6、粒子ごとの死亡率1、観測時刻0/0.5/2/4。初期値0・5・名目上の定常Poisson(6)を各2seed、各記録2,048軌跡で比較します。粒子数は非負整数、時間単位を固定し、N=0では死亡propensityが零になります。"
+  },
+  "reference.final23.ea70a7fd0d3c": {
+    "en": "Fisher–KPP: a special-speed exact front",
+    "ja": "Fisher–KPP：特殊波速の厳密前線"
+  },
+  "reference.final23.f5c5dbf03979": {
+    "en": "Use D=r=1,T=1 and the special speed5/√6. Fix spatial/time series on L12 and constant-endpoint boundary rows at L6/12/24. Dimensionless; diffusion coefficient and reaction rate equal 1. Separate exact-front and constant boundary experiments; retain finite-domain effects.",
+    "ja": "D=r=1、T=1、特殊速度5/√6を固定。L=12で空間・時間系列を調べ、L=6/12/24で定数端点の境界系列を比較します。無次元で拡散係数と反応率は1。厳密前線の境界値と定数境界を区別し、有限領域の影響を残します。"
+  },
+  "reference.final23.cef5950cb4d3": {
+    "en": "Schnakenberg:2D boundaries and initial modes",
+    "ja": "Schnakenberg：2D境界と初期モード"
+  },
+  "reference.final23.e77cf3e4d952": {
+    "en": "On[0,2π]² toT2,use a.1,b.9,Du.01,Dv1. Compare three perturbations of(1,.9),12/24/48cell grids and fixed nonperiodic boundary conditions. Dimensionless square [0,2pi]², diffusion coefficients 0.01 and 1. Single/mixed Neumann modes and a single mode with equilibrium Dirichlet data.",
+    "ja": "[0,2π]²、T=2、a=0.1、b=0.9、Du=0.01、Dv=1。(1,0.9)からの3摂動、12/24/48セルと固定非周期境界を比較します。Neumannの単一・混合モードと、平衡Dirichlet境界の単一モードを区別します。"
+  },
+  "reference.final23.80af20d5c0aa": {
+    "en": "Keller–Segel: a manufactured coupled-flux solution",
+    "ja": "Keller–Segel：連成流束の製造解"
+  },
+  "reference.final23.6798d2b08752": {
+    "en": "On the unit square toT.25,manufacture forcing for n=1+.1e⁻ᵗcosπx cosπy,c=1+.05e⁻²ᵗcosπx cos2πy with divergence-free tangential advection. Dimensionless; manufactured-field coefficients and forcing are fixed in inputs.json. Manufactured forcing and boundary fluxes, with explicit ownership of interior faces and corners.",
+    "ja": "単位正方形でT=0.25まで、n=1+0.1e⁻ᵗcos(πx)cos(πy)、c=1+0.05e⁻²ᵗcos(πx)cos(2πy)に対応する外力を製造し、発散零で境界に接する移流を用います。無次元の係数と外力をinputs.jsonに固定。内面・角の所有を明示して製造外力と境界流束を扱います。"
+  },
+  "reference.final23.cfb85788d857": {
+    "en": "NH,chains,weak coupling and fixed-speed contrasts",
+    "ja": "NH・chain・弱結合・速度固定の比較"
+  },
+  "reference.final23.7ef160ed01f4": {
+    "en": "Fix unit masses,kBT1,frequencies1/1.7 and quartic0/.2. Compare NH1,NHC3,Berendsen and fixed-speed baths at two couplings/two steps with256canonical and128heated replicas. Dimensionless, unit masses, kBT=1, frequencies 1/1.7; Q1=2tau², Qj=tau². Two-mode initial-value problem without spatial boundaries; fixed canonical/heated ensembles.",
+    "ja": "質量1、kBT=1、振動数1/1.7、四次係数0/0.2。NH1・NHC3・Berendsen・固定速さの熱浴を、2結合・2刻み、正準256/加熱128標本で比較します。無次元でQ1=2τ²、Qj=τ²。空間境界のない2モード初期値問題で、正準・加熱アンサンブルを固定します。"
+  },
+  "reference.final23.0cbb94fa4da0": {
+    "en": "Constraints,centre-of-mass removal and canonical statistics",
+    "ja": "拘束・重心除去と正準統計"
+  },
+  "reference.final23.c5e974f9e765": {
+    "en": "Use three1Dparticles of masses1/2/3 in one common harmonic potential. No constraints,COM,COM-relative and a redundant-row equivalent have f3/2/1/1,each with1,024replicas. Dimensionless; masses 1/2/3 and kBT=1. Fixed linear constraints Cq=0 and CM⁻¹p=0; redundant rows are compared on the same tangent space.",
+    "ja": "共通の調和ポテンシャル中の1次元3粒子で質量1/2/3、kBT=1。無拘束・COM・COM相対・冗長行の等価拘束で有効自由度3/2/1/1、各1,024標本を比較します。固定線形拘束Cq=0、CM⁻¹p=0を用い、冗長行は同じ接空間上で比較します。"
+  },
+  "reference.final23.2134073e816a": {
+    "en": "Saltzman-type skew-grid piston: 2D Euler and ALE",
+    "ja": "Saltzman型の歪み格子ピストン：2次元EulerとALE"
+  },
+  "reference.final23.b9bb454f29cf": {
+    "en": "Tan–Lv–Zhu (2023) Example 8 variant with e0=1e-4 and finite initial pressure. Prescribed affine ALE, 2D Euler and Rusanov; not their material Lagrangian mesh, WENO/remap scheme or a full reproduction of the unread 1985 report.",
+    "ja": "Tan–Lv–Zhu（2023）Example 8に対応するe0=10⁻⁴・有限初期圧力の変種です。規定したアフィンALE、2次元Euler、Rusanovを用います。同論文の物質Lagrange格子・WENO/remap法や、未読の1985年原報全体の再現ではありません。"
+  },
+  "reference.final23.1a25e676f3d7": {
+    "en": "Williamson-type spherical rotation: tilted axes and pole crossing",
+    "ja": "Williamson型の球面固体回転輸送：傾いた軸と極通過"
+  },
+  "reference.final23.e2159bf06b2e": {
+    "en": "Only prescribed scalar solid-body rotation on a unit sphere. Original W92 equations remain unread; selected Nair author formulas cross-check conventions. Both grids use eleven noncommensurate remaps. Bilinear interpolation is nonconservative; report mass drift and do not claim temporal convergence or a nonlinear global SWE core.",
+    "ja": "単位球上の規定スカラー剛体回転に限定します。W92原著の式は未読で、Nair著者資料の選択式から規約を照合。両格子で整合しない位相の11回再配置を用います。双線形補間は非保存なので質量変動を報告し、時間収束や非線形の全球浅水コアは主張しません。"
+  },
+  "reference.final23.b9bcd82dc5bd": {
+    "en": "Time evolution of axisymmetric spherical shallow-water balance",
+    "ja": "球面浅水波の軸対称定常釣合いを時間積分"
+  },
+  "reference.final23.6e9586a46f7a": {
+    "en": "Axisymmetric nondimensional subproblem with a=g=1, Omega=2, u0=.5 and h0=10. Actual time evolution uses centered primitive momentum, finite-volume mass and RK4. Not standard Earth parameters, a full global multidimensional SWE core, exact discrete balance or a PV-conservation claim.",
+    "ja": "a=g=1、Ω=2、u0=0.5、h0=10の無次元軸対称部分問題です。中心差分のprimitive運動量、有限体積の質量、RK4で実際に時間発展させます。標準地球パラメータ、多次元の全球浅水コア、離散厳密釣合い、渦位保存の主張は含みません。"
+  },
+  "reference.final23.1948fa7020d4": {
+    "en": "Sod-type particle shock tube with Gaussian-convolution GSPH",
+    "ja": "Gaussian畳込みGSPHによるSod型粒子衝撃管"
+  },
+  "reference.final23.2268b39805f1": {
+    "en": "Actual Gaussian linear-specific-volume GSPH overlap with symmetric variable h, independent pair Riemann solves and antisymmetric total-energy exchange; not substitution of star pressure into ordinary SPH. First-order reconstruction only, not the paper cubic/MUSCL implementation or a general accuracy claim.",
+    "ja": "Gaussianの線形比体積GSPH重なり積分、対称な可変h、独立な対Riemann解、反対称な全エネルギー交換を実装します。通常SPHへの星状態圧力の代入とは区別。再構築は1次に限定し、原著の3次/MUSCL実装や一般的な高精度は主張しません。"
+  },
+  "reference.final23.c061ce6d0bc6": {
+    "en": "Uniform pressure and acoustics: particle-layout effects in SPH/GSPH",
+    "ja": "一様圧力と線形音波：SPH/GSPHの粒子配置依存"
+  },
+  "reference.final23.caeaef885cfe": {
+    "en": "GSPH with 128 jittered particles at t=0.2. The initial kernel reconstruction error reaches 0.011834, exceeding the acoustic amplitude 0.001 and remaining visible in the left density profile; the right panel shows that initial error. Acceptance concerns the fundamental Fourier mode phase/amplitude and other fixed conservation controls, not pointwise high accuracy or general superiority.",
+    "ja": "t=0.2、位置を揺らした128粒子のGSPHです。初期kernel再構成誤差は0.011834に達し、音波振幅0.001を上回って左の密度波形に残ります。右図はその初期誤差です。合格条件は基本Fourierモードの位相・振幅と固定した保存検査であり、各点の高精度や一般的な優位性ではありません。"
   }
 }

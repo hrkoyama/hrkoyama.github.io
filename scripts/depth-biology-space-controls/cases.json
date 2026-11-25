@@ -1,0 +1,216 @@
+[
+  {
+    "id": "fisher-kpp-special-front",
+    "method_ids": [
+      "ssprk33",
+      "rk45"
+    ],
+    "title": {
+      "ja": "Fisher–KPP：特殊波速の厳密前線",
+      "en": "Fisher–KPP: a special-speed exact front"
+    },
+    "summary": {
+      "ja": "波形・位置・格子誤差・時間誤差・有限領域の影響を分けます。",
+      "en": "Separate profile, phase, grid, time and finite-boundary errors."
+    },
+    "assumptions": {
+      "ja": "D=r=1、T=1。Ablowitz–Zeppetella型の特殊波速5/√6、L=12の空間・時間系列、定数端点L=6/12/24の境界比較を固定します。",
+      "en": "Use D=r=1,T=1 and the special speed5/√6. Fix spatial/time series on L12 and constant-endpoint boundary rows at L6/12/24."
+    },
+    "algorithm": {
+      "ja": "2次中心差分とSSPRK3で計算し、厳密Dirichlet値を各段の時刻で与えます。時間誤差は同じ95未知数の半離散ODE参照と比較します。",
+      "en": "Use centered second-order differences and SSPRK3 with exact Dirichlet values at every stage. Compare time errors to an independent reference for the same95-unknown semidiscreteODE."
+    },
+    "validation": {
+      "ja": "厳密波形と1/4等値線、同一格子の時間収束、全域と中央領域の境界誤差を別保存します。実数算術の離散障壁と、実測した浮動小数点の余裕を区別します。",
+      "en": "Save exact-profile and quarter-contour errors, same-grid time convergence and full/core boundary errors. Distinguish a real-arithmetic discrete barrier from the observed floating-point margin."
+    },
+    "limits": {
+      "ja": "特殊前線を一般の最小速度2の前線と同一視しません。急減衰初期値からの速度選択、長時間伝播、機械誤差込みの厳密障壁証明は対象外です。",
+      "en": "The special front is distinct from the minimum linear speed2. This is not a steep-data speed-selection study, long-time propagation result or certified machine-error barrier proof."
+    },
+    "domains": [
+      "biology"
+    ],
+    "code_files": [
+      "run.py",
+      "common.py",
+      "fisher.py"
+    ],
+    "reference_files": [
+      "PROTOCOL.md",
+      "source-reading.json",
+      "acceptance.json"
+    ],
+    "references": [
+      {
+        "id": "ablowitz-zeppetella1979",
+        "title": "Ablowitz–Zeppetella(1979), Explicit solutions of Fisher’s equation for a special wave speed",
+        "url": "https://doi.org/10.1007/BF02462380",
+        "year": 1979,
+        "year_role": "publication",
+        "review_level": "selected-primary-or-bibliographic-see-provenance",
+        "review": {
+          "ja": "source-reading.jsonに実際の読取範囲と未読部分を記録。原著の全式・全図の再現とは主張しません。",
+          "en": "Actual selected read scopes and unread limits are recorded in source-reading.json; no full original-paper equation/figure reproduction claim."
+        }
+      }
+    ],
+    "additional_figures": [
+      {
+        "file": "fisher-kpp-special-front-diagnostics.png",
+        "caption": {
+          "ja": "精度・参照・統計の実測値と未達目標を分けて表示します。",
+          "en": "Separate actual accuracy,reference and statistical measurements,including unmet targets."
+        }
+      }
+    ],
+    "formulas": [
+      "u_t=u_{xx}+u(1-u)",
+      "u(x,t)=[1+\\exp((x-5t/\\sqrt6)/\\sqrt6)]^{-2}"
+    ]
+  },
+  {
+    "id": "schnakenberg-2d-boundary-modes",
+    "method_ids": [
+      "crank-nicolson",
+      "strang-splitting",
+      "rk45"
+    ],
+    "title": {
+      "ja": "Schnakenberg：2D境界と初期モード",
+      "en": "Schnakenberg:2D boundaries and initial modes"
+    },
+    "summary": {
+      "ja": "2つのNeumann摂動とDirichlet摂動を独立な非線形Galerkin参照と比較します。",
+      "en": "Compare two Neumann perturbations and a Dirichlet perturbation against nonlinear Galerkin references."
+    },
+    "assumptions": {
+      "ja": "[0,2π]²、T=2、a=0.1,b=0.9,Du=0.01,Dv=1。平衡(1,0.9)のまわりで3初期値と12/24/48セル、一定の非周期境界を使います。",
+      "en": "On[0,2π]² toT2,use a.1,b.9,Du.01,Dv1. Compare three perturbations of(1,.9),12/24/48cell grids and fixed nonperiodic boundary conditions."
+    },
+    "algorithm": {
+      "ja": "セル平均のCN拡散と局所陰的中点反応をStrang分割します。独立参照は正規直交sin/cos Galerkin、K12/18,Q96/192と2許容誤差の4列を全初期値で残します。 元のDirichlet K12/18参照は初回の相対資格基準を満たさなかったため、失敗を残し、D境界だけK24/32・Q128/192の4参照を追加します。",
+      "en": "Strang-split cell-averageCN diffusion and local implicit-midpoint reactions. Independent orthonormal sine/cosine Galerkin references retain four K12/18,Q96/192,tolerance rows for every initial condition. The original Dirichlet K12/18 reference failed its first relative qualification. Preserve that failure and add four D-only K24/32,Q128/192 reference actions."
+    },
+    "validation": {
+      "ja": "線形モードの連続・離散記号、角の面所有、平衡、物質収支を照合。K/Q/時間許容差感度を別に測り、参照が資格条件を満たさなければ精度・次数を未確定にします。 精度目標には、新しい細参照が同じ絶対・相対基準に合格した場合だけその参照を用います。旧参照の不合格を合格へ読み替えません。",
+      "en": "Check continuum/discrete linear symbols, corner-face ownership, equilibrium and mass ledgers. Separate K/Q/tolerance sensitivity; unqualified references leave related accuracy/order unresolved. Use the new finer reference for accuracy goals only after the same absolute/relative criteria pass; the original failed qualification is retained."
+    },
+    "limits": {
+      "ja": "短時間の小振幅・固定初期値です。一般的な模様選択、成長後の成熟パターン、原著図の再現は主張しません。有限の参照差を連続体誤差の厳密上界と呼びません。",
+      "en": "This short small-amplitude study does not establish general pattern selection, mature patterns or reproduction of original figures. Finite reference differences are not rigorous continuum error bounds."
+    },
+    "domains": [
+      "biology"
+    ],
+    "code_files": [
+      "run.py",
+      "common.py",
+      "schnakenberg.py"
+    ],
+    "reference_files": [
+      "PROTOCOL.md",
+      "source-reading.json",
+      "acceptance.json"
+    ],
+    "references": [
+      {
+        "id": "schnakenberg1979",
+        "title": "Schnakenberg(1979), Simple chemical reaction systems with limit cycle behaviour",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/537379/",
+        "year": 1979,
+        "year_role": "publication",
+        "review_level": "selected-primary-or-bibliographic-see-provenance",
+        "review": {
+          "ja": "source-reading.jsonに実際の読取範囲と未読部分を記録。原著の全式・全図の再現とは主張しません。",
+          "en": "Actual selected read scopes and unread limits are recorded in source-reading.json; no full original-paper equation/figure reproduction claim."
+        }
+      }
+    ],
+    "additional_figures": [
+      {
+        "file": "schnakenberg-2d-boundary-modes-diagnostics.png",
+        "caption": {
+          "ja": "精度・参照・統計の実測値と未達目標を分けて表示します。",
+          "en": "Separate actual accuracy,reference and statistical measurements,including unmet targets."
+        }
+      }
+    ],
+    "formulas": [
+      "u_t=.01\\Delta u+.1-u+u^2v,\\qquad v_t=\\Delta v+.9-u^2v"
+    ]
+  },
+  {
+    "id": "keller-segel-forced-flux",
+    "method_ids": [
+      "ssprk33",
+      "rk45"
+    ],
+    "title": {
+      "ja": "Keller–Segel：連成流束の製造解",
+      "en": "Keller–Segel: a manufactured coupled-flux solution"
+    },
+    "summary": {
+      "ja": "滑らかな2D厳密場で、交差流束・段時刻・収支を検証します。",
+      "en": "Use smooth exact2D fields to test cross fluxes, stage timing and mass ledgers."
+    },
+    "assumptions": {
+      "ja": "単位正方形、T=0.25。n=1+0.1e⁻ᵗcosπx cosπy、c=1+0.05e⁻²ᵗcosπx cos2πyに合う強制項と接線方向の発散ゼロ移流を与えます。",
+      "en": "On the unit square toT.25,manufacture forcing for n=1+.1e⁻ᵗcosπx cosπy,c=1+.05e⁻²ᵗcosπx cos2πy with divergence-free tangential advection."
+    },
+    "algorithm": {
+      "ja": "セル平均の中心面流束とSSPRK3を使い、n/c/強制項を同じ段に揃えます。展開した三角多項式の積分を、別の未展開積分とスカラー面ループ参照で確認します。",
+      "en": "Use cell-average centered face fluxes and SSPRK3 with n,c and forcing at the same stage. Check expanded trigonometric integrals against independent unexpanded integrals and scalar face-loop references."
+    },
+    "validation": {
+      "ja": "36点の源項、96セル状態ベクトル、符号・欠落連成・古い段・面重複の負例を検査。空間・同一MOL時間・正値性・実際の段収支を分けて保存します。",
+      "en": "Qualify36source pairs,96cell-state vectors and wrong-sign,omitted-coupling,stale-stage and face-duplication controls. Separate spatial,same-MOL time,positivity and actual stage-ledger outcomes."
+    },
+    "limits": {
+      "ja": "著者作成の強制2場モデルです。原著の全生物モデル、ピーク形成、真のblow-upやその抑制を実証しません。負値をクリップして正値性を装いません。",
+      "en": "This authored forced two-field model does not reproduce the full original biological model or demonstrate aggregation, true blow-up or suppression. No clipping is used to manufacture positivity."
+    },
+    "domains": [
+      "biology"
+    ],
+    "code_files": [
+      "run.py",
+      "common.py",
+      "keller_segel.py"
+    ],
+    "reference_files": [
+      "PROTOCOL.md",
+      "source-reading.json",
+      "acceptance.json"
+    ],
+    "references": [
+      {
+        "id": "atlas-forced-keller-segel-mms-2026-11-25",
+        "title": "Atlas authored Keller–Segel manufactured fields, forcing and finite-volume balance controls (2026-11-25)",
+        "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/keller_segel.py",
+        "source": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/PROTOCOL.md",
+        "year": 2026,
+        "year_role": "atlas-authored-edition",
+        "review_level": "authored-formulas-and-actually-executed-component-checks",
+        "review": {
+          "ja": "本アトラス独自の製造解・外力・面流束の導出と実装です。保存された成分検査・独立なスカラー面/RHS参照・セル平均照合の範囲に限ります。原著論文の読了や元の無外力問題の再現を主張しません。",
+          "en": "Atlas-authored manufactured fields, forcing and face-flux derivation/implementation. Evidence is limited to saved component checks, independently written scalar-face/RHS references and cell-average comparisons. No original-paper full-text reading or reproduction of the unforced original problem is claimed."
+        }
+      }
+    ],
+    "additional_figures": [
+      {
+        "file": "keller-segel-forced-flux-diagnostics.png",
+        "caption": {
+          "ja": "精度・参照・統計の実測値と未達目標を分けて表示します。",
+          "en": "Separate actual accuracy,reference and statistical measurements,including unmet targets."
+        }
+      }
+    ],
+    "formulas": [
+      "n_t+\\nabla\\cdot(wn)=D_n\\Delta n-\\chi\\nabla\\cdot(n\\nabla c)+rn(1-n)+s_n",
+      "\\tau c_t=D_c\\Delta c+\\alpha n-\\lambda c+s_c"
+    ]
+  }
+]

@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "input_sha256": "5f49881f37b07c47f674979a4886e6da0421be06ddb6bb213ab7dfea6bf6e0f5",
+  "passed": false,
+  "checks": {},
+  "cases": [
+    {
+      "id": "saltzman-ale-piston",
+      "passed": true,
+      "metrics": {
+        "finest": {
+          "grid": [
+            80,
+            8
+          ],
+          "density_error": 0.03966960674770006,
+          "shock_error": 0.009071663139626374,
+          "plateau_density_error": 0.060142667838002595,
+          "plateau_pressure_error": 0.07005129077711092,
+          "max_transverse": 0.08502093161153988,
+          "mass_defect": 4.1551145858098734e-16,
+          "momentum_defect": 1.3877787807814449e-15,
+          "energy_defect": 3.5023519269671693e-15,
+          "GCL": 3.7705883405261993e-17,
+          "steps": 1333,
+          "minimum_density": 0.9999999999997568,
+          "minimum_pressure": 6.66666666666505e-05
+        }
+      },
+      "checks": {
+        "positive": true,
+        "conservation": true,
+        "GCL": true,
+        "density": true,
+        "refinement": true,
+        "shock": true,
+        "plateau": true,
+        "transverse": true
+      },
+      "records": [
+        {
+          "grid": [
+            40,
+            4
+          ],
+          "density_error": 0.07386820461272857,
+          "shock_error": 0.009757574053712803,
+          "plateau_density_error": 0.0888474010026582,
+          "plateau_pressure_error": 0.08631540710901564,
+          "max_transverse": 0.10290051699214085,
+          "mass_defect": 5.551288678130829e-16,
+          "momentum_defect": 8.326672684688674e-16,
+          "energy_defect": 1.7726508978871696e-16,
+          "GCL": 2.8801661305487974e-17,
+          "steps": 649,
+          "minimum_density": 0.9999999999999672,
+          "minimum_pressure": 6.666666666666452e-05
+        },
+        {
+          "grid": [
+            80,
+            8
+          ],
+          "density_error": 0.03966960674770006,
+          "shock_error": 0.009071663139626374,
+          "plateau_density_error": 0.060142667838002595,
+          "plateau_pressure_error": 0.07005129077711092,
+          "max_transverse": 0.08502093161153988,
+          "mass_defect": 4.1551145858098734e-16,
+          "momentum_defect": 1.3877787807814449e-15,
+          "energy_defect": 3.5023519269671693e-15,
+          "GCL": 3.7705883405261993e-17,
+          "steps": 1333,
+          "minimum_density": 0.9999999999997568,
+          "minimum_pressure": 6.66666666666505e-05
+        }
+      ]
+    },
+    {
+      "id": "williamson-sphere-transport",
+      "passed": true,
+      "metrics": {
+        "fine_L1": [
+          0.17228372801445835,
+          0.1983012829411487
+        ]
+      },
+      "checks": {
+        "error": true,
+        "refinement": true,
+        "mass": true,
+        "bounds": true,
+        "sphere_area": true
+      },
+      "records": [
+        {
+          "grid": [
+            64,
+            32
+          ],
+          "tilt": 0.0,
+          "relative_L1": 0.3576488111262617,
+          "mass_drift": 2.2762314336492173e-15,
+          "analytic_bell_mass": 0.10335083717604891,
+          "initial_quadrature_mass_error": 0.00029521095650797413,
+          "initial_quadrature_mass_relative_error": 0.0028563963735011516,
+          "minimum": 0.0,
+          "maximum": 0.6932018368760269,
+          "weight_sum_error": 0.0
+        },
+        {
+          "grid": [
+            128,
+            64
+          ],
+          "tilt": 0.0,
+          "relative_L1": 0.17228372801445835,
+          "mass_drift": -1.4774612198989573e-15,
+          "analytic_bell_mass": 0.10335083717604891,
+          "initial_quadrature_mass_error": -2.7877608691162514e-05,
+          "initial_quadrature_mass_relative_error": -0.00026973761851271217,
+          "minimum": 0.0,
+          "maximum": 0.8588395313178578,
+          "weight_sum_error": 0.0
+        },
+        {
+          "grid": [
+            64,
+            32
+          ],
+          "tilt": 1.5707963267948966,
+          "relative_L1": 0.5238366974913431,
+          "mass_drift": 0.07639022389319293,
+          "analytic_bell_mass": 0.10335083717604891,
+          "initial_quadrature_mass_error": 0.00029521095650797413,
+          "initial_quadrature_mass_relative_error": 0.0028563963735011516,
+          "minimum": 0.0,
+          "maximum": 0.6020371160100979,
+          "weight_sum_error": 0.0
+        },
+        {
+          "grid": [
+            128,
+            64
+          ],
+          "tilt": 1.5707963267948966,
+          "relative_L1": 0.1983012829411487,
+          "mass_drift": 0.017452594440184883,
+          "analytic_bell_mass": 0.10335083717604891,
+          "initial_quadrature_mass_error": -2.7877608691162514e-05,
+          "initial_quadrature_mass_relative_error": -0.00026973761851271217,
+          "minimum": 0.0,
+          "maximum": 0.8294429898418034,
+          "weight_sum_error": 0.0
+        }
+      ]
+    },
+    {
+      "id": "sphere-zonal-balance",
+      "passed": true,
+      "metrics": {
+        "finest": {
+          "grid": 64,
+          "h_error": 0.00010108962138506427,
+          "initial_balance_residual": 0.0018041320580228781,
+          "analytic_force_residual": 0.0,
+          "mass_defect": 0.0,
+          "minimum_h": 8.87466665967074,
+          "steps": 129
+        }
+      },
+      "checks": {
+        "analytic_balance": true,
+        "balance_order": true,
+        "height": true,
+        "refinement": true,
+        "mass": true,
+        "positive": true
+      },
+      "records": [
+        {
+          "grid": 32,
+          "h_error": 0.00040095227332273,
+          "initial_balance_residual": 0.007180051265050613,
+          "analytic_force_residual": 0.0,
+          "mass_defect": 0.0,
+          "minimum_h": 8.873699068513663,
+          "steps": 65
+        },
+        {
+          "grid": 64,
+          "h_error": 0.00010108962138506427,
+          "initial_balance_residual": 0.0018041320580228781,
+          "analytic_force_residual": 0.0,
+          "mass_defect": 0.0,
+          "minimum_h": 8.87466665967074,
+          "steps": 129
+        }
+      ]
+    }
+  ],
+  "termination": "RUNNING",
+  "scientific_scope": "Five fixed new cases for four extension/implementation candidates; fivecommonmaintenancecandidates are separate metadata work."
+}

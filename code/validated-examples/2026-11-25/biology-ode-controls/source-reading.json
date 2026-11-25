@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "accessed_on": "2026-11-25",
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/scipy/scipy/v1.14.1/scipy/integrate/_ivp/rk.py",
+      "scope": "Selected RK45 class and rational A/B/C/E tableau lines273–368; local estimate semantics. Driver is authored; no SciPy execution or copied dense-output implementation.",
+      "unread": "Full SciPy implementation and Dormand–Prince1980 original paper body."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/boostorg/odeint/master/include/boost/numeric/odeint/stepper/runge_kutta_cash_karp54.hpp",
+      "scope": "Selected rational Cash–Karp tableau lines38–127. Mathematical coefficients transcribed to an authored Python driver; no C++ code copied.",
+      "unread": "Original Cash–Karp paper and generic C++ driver implementation."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/neuronsimulator/nrn/8.2.6/src/nrnoc/hh.mod",
+      "scope": "Selected convention7–11, physical units/current35–67 and exact analytic rates88–120. Source TABLE/cnexp is not reproduced.",
+      "unread": "Original HH1952 full body; no original-paper figure reproduction claim."
+    },
+    {
+      "url": "https://manual.gromacs.org/current/reference-manual/algorithms/molecular-dynamics.html",
+      "observed_version": "2026.4",
+      "scope": "Selected temperature coupling equations43/47–53 and NH/NHC mass-period conventions. Authored xi velocity convention and exact frozen subflows independently derived.",
+      "unread": "Original NH/MKT papers, package code, rest of manual."
+    },
+    {
+      "url": "https://docs.lammps.org/compute_temp.html",
+      "observed_version": "release13Nov2026",
+      "scope": "Description lines29–38:kinetic temperature/effectiveDOF/constraint deduction/default translational subtraction.",
+      "unread": "Package source and simulations."
+    },
+    {
+      "url": "https://doi.org/10.1007/BF02462380",
+      "scope": "Publisherbibliographic/abstractspecial-speedstatementfrompriorselectedreview.",
+      "unread": "Originalmathematicalbodyunavailable;exactprofileidentityverifiedbyauthoredalgebra,notclaimedfigurematching."
+    },
+    {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/537379/",
+      "scope": "OriginalSchnakenbergbibliographicrecordonly.",
+      "unread": "Originalpaperbodyandfigures;this2DFV/Galerkinprotocolisauthored."
+    },
+    {
+      "url": "https://arxiv.org/pdf/0803.4060",
+      "scope": "SelectedpreprintAppendixA,A1-A7,OUradialrepresentationandchi-squarelaw;selectedcanonicalslice§IIA.",
+      "unread": "Most8-pagepaperandnumericalexamples;notapackagereproduction."
+    },
+    {
+      "url": "https://docs.lammps.org/fix_nh.html",
+      "scope": "Selectedrelease13Nov2026description76-86,tchain/tloopterms;oursubflowmapindependentlyauthored.",
+      "unread": "Shinoda/MKT/TuckermanoriginalpaperbodiesandLAMMPSsource."
+    },
+    {
+      "id": "gillespie1977-original-selected",
+      "url": "https://www.cl.cam.ac.uk/teaching/2425/Bioinfo/papers/DanielGillespie1.pdf",
+      "publication_url": "https://doi.org/10.1021/j100540a008",
+      "year": 1977,
+      "scope": "Carry-forward documentedselectedoriginalarticleextractedpp2343–2345,§IIIA–C,eq8–21andalgorithm0–3,on2026-11-24UTC. Exponentialwaitingandcumulativepropensityselection;repeated-runsvsonepath. No newPDFdownload/bodyread inthisR3batch.",
+      "unread": "Restofthe21-pagepaper,visualsymbolauditandearlier1976derivation;publisherDOIbodyrequest2026-11-25returned403."
+    },
+    {
+      "id": "massart1990-selected-abstract",
+      "url": "https://doi.org/10.1214/aop/1176990746",
+      "author_copy_url": "https://www.researchgate.net/publication/38360933_The_Tight_Constant_in_the_Dvoretzky-Kiefer-Wolfowitz_Inequality",
+      "year": 1990,
+      "scope": "SelectedoriginalabstracttwosidedCDFbound2exp(-2lambda²),IIDassumptionandunrestrictedlambda. Author-uploadedprimaryarticlepage identifiesMassartupload2014.",
+      "unread": "Originalproof/fullbody. OfficialProjectEuclidentryreturnedonlyanti-botiframe;noofficialbodyaccessclaim."
+    },
+    {
+      "id": "reeve2024-selected-theorem",
+      "url": "https://arxiv.org/pdf/2403.16651",
+      "year": 2024,
+      "version": "v1,25Mar2024",
+      "scope": "SelectedPDFtextpp1–3:IIDpopulation/empiricalCDFdefinition,Theorem1,Corollary1andCorollary2andMassartcomparison. Supportsfinite-nCDFconcentration;notwhole11-pageproof.",
+      "unread": "Detailedproofs/technicallemmas/restofthepaper. HTMLv2locator404;PDFv1used."
+    }
+  ],
+  "authorship": "Manufacturedsolutions,finiteprotocols,intervaloracles,integratorimplementationsandplotsauthoredforthiseducationaledition.",
+  "execution_evidence": "Separateactualresultandreceipt,neverinferredfromsourcepreparation."
+}

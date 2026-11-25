@@ -30,7 +30,9 @@
         "fluid"
       ],
       "supplemental_examples": [
-        "shu-independent"
+        "shu-independent",
+        "saltzman-ale-piston",
+        "gsph-sod"
       ]
     },
     {
@@ -97,6 +99,10 @@
       ],
       "domains": [
         "quantum"
+      ],
+      "supplemental_examples": [
+        "atomic-reference-cards",
+        "quantum-box-ho"
       ]
     },
     {
@@ -151,14 +157,16 @@
         "nvt"
       ],
       "scope": {
-        "ja": "12手法のうちLangevinとCSVRの2手法に専用実装。旧1自由度Langevin/BAOABの調和例を保持し、別版の同じOBABO分割で、非縮退2自由度の調和系とquartic係数λ=0.2の2自由度非調和系を比較します。CSVR単独の運動エネルギー核も検査。他の10手法は実装予定です。",
-        "en": "Two of the 12 methods have dedicated implementations: Langevin and CSVR. Preserve the earlier one-degree-of-freedom harmonic Langevin/BAOAB case. A separate edition compares both baths with the same OBABO splitting for a nondegenerate two-degree harmonic system and a two-degree anharmonic system with quartic coefficient lambda=0.2, and checks the standalone CSVR kinetic-energy kernel. The other 10 methods remain planned."
+        "ja": "既存Langevin・CSVRの浴と調和・四次系の固定例を保持。別群でNH・NHC3・Berendsen・単純速度リスケーリングを同じ小型2モード系で比較し、線形拘束の有効自由度・接空間共分散・Langevin/CSVR過渡を検査します。固定seed・短時間の教育例で、未達・未解決の分布や相関目標を含みます。一般の正準平衡・エルゴード性・分子系の検証にはしません。",
+        "en": "Preserve the existing fixed Langevin/CSVR bath and harmonic/quartic cases. A separate group compares NH, NHC3, Berendsen and simple rescaling on the same small two-mode system and checks effective DOF, tangent covariance and Langevin/CSVR transients under linear constraints. Fixed seeds and short educational runs retain unmet/unresolved distribution and correlation goals; no general canonical, ergodic or molecular-system validation is claimed."
       },
       "methods": [
         "nose-hoover",
         "stochastic-velocity-rescaling",
         "langevin-thermostat",
-        "berendsen-thermostat"
+        "berendsen-thermostat",
+        "nose-hoover-chains",
+        "velocity-rescaling"
       ],
       "examples": [],
       "domains": [
@@ -168,7 +176,10 @@
         "langevin-harmonic",
         "csvr-kinetic-kernel",
         "csvr-langevin-harmonic",
-        "csvr-langevin-quartic"
+        "csvr-langevin-quartic",
+        "two-state-bo-cp-ou",
+        "deterministic-thermostat-contrasts",
+        "projected-canonical-dof"
       ]
     },
     {
@@ -196,10 +207,17 @@
         "post-growth pattern"
       ],
       "scope": {
-        "ja": "22モデル族の文献解説に、ロジスティック増殖・閉鎖SIR、線形反応拡散、Schnakenbergの線形発現・有限振幅の非線形発展・成長後の1次元パターン、空間なしFitzHugh–Nagumoの限定例を接続します。全22族やHodgkin–Huxleyの実装ではありません。 別群small-modelsから、固定した4状態酵素/QSSA、正のLotka–Volterra軌道、SEIR保存則と初期2モード線形化の3例だけを追加します。SEIRはSIRの既存実行範囲とは別です。",
-        "en": "The 22-family survey links scoped examples of logistic growth, closed SIR, linear reaction–diffusion, linear Schnakenberg onset, finite-amplitude nonlinear evolution and post-growth 1D patterns, plus spatially uniform FitzHugh–Nagumo. This does not implement all 22 families or Hodgkin–Huxley. Three further fixed examples from the separate small-models group cover four-state enzyme/QSSA, a positive Lotka–Volterra orbit, and SEIR conservation with full two-mode early linearization. SEIR is separate from the existing SIR execution scope."
+        "ja": "22モデル族の文献解説に、ロジスティック増殖・閉鎖SIR、線形反応拡散、Schnakenbergの線形発現・有限振幅の非線形発展・成長後の1次元パターン、空間なしFitzHugh–Nagumoの限定例を接続します。全22族の実装ではありません。 別群small-modelsから、固定した4状態酵素/QSSA、正のLotka–Volterra軌道、SEIR保存則と初期2モード線形化の3例だけを追加します。SEIRはSIRの既存実行範囲とは別です。 別群biology-ode-controls/biology-space-controlsでは、Hodgkin–Huxley、移入–死亡SSA、Fisher特殊速度前線、2次元Schnakenberg、外力付きKeller–Segelの固定例だけを追加します。未達・未解決の目標も保持します。",
+        "en": "The 22-family survey links scoped examples of logistic growth, closed SIR, linear reaction–diffusion, linear Schnakenberg onset, finite-amplitude nonlinear evolution and post-growth 1D patterns, plus spatially uniform FitzHugh–Nagumo. This does not implement all 22 families. Three further fixed examples from the separate small-models group cover four-state enzyme/QSSA, a positive Lotka–Volterra orbit, and SEIR conservation with full two-mode early linearization. SEIR is separate from the existing SIR execution scope. Separate biology-ode-controls/biology-space-controls groups add only fixed Hodgkin–Huxley, immigration–death SSA, special-speed Fisher, two-dimensional Schnakenberg and forced Keller–Segel cases. Unmet and unresolved goals remain visible."
       },
-      "methods": [],
+      "methods": [
+        "rk4",
+        "rk45",
+        "gillespie-ssa",
+        "ssprk33",
+        "crank-nicolson",
+        "strang-splitting"
+      ],
       "examples": [
         "logistic-growth",
         "sir-epidemic"
@@ -481,7 +499,12 @@
         "reaction-diffusion-splitting",
         "enzyme-qssa",
         "lotka-volterra",
-        "seir-linearization"
+        "seir-linearization",
+        "hodgkin-huxley-controls",
+        "immigration-death-ssa",
+        "fisher-kpp-special-front",
+        "schnakenberg-2d-boundary-modes",
+        "keller-segel-forced-flux"
       ]
     },
     {
@@ -720,7 +743,9 @@
         "su-olson-diffusion1996",
         "su-olson-transport1997",
         "shadow-absorber2d",
-        "opposing-beams2d"
+        "opposing-beams2d",
+        "gsph-sod",
+        "sph-pressure-acoustics"
       ]
     },
     {
@@ -763,7 +788,8 @@
       "methods": [
         "monte-carlo",
         "sde",
-        "mcmc"
+        "mcmc",
+        "gillespie-ssa"
       ],
       "examples": [
         "mc-integral",
@@ -777,7 +803,8 @@
       "supplemental_examples": [
         "gaussian-mcmc",
         "mcmc-multimodal-mixing",
-        "mcmc-diagnostic-reference"
+        "mcmc-diagnostic-reference",
+        "immigration-death-ssa"
       ]
     },
     {
@@ -848,6 +875,10 @@
       ],
       "domains": [
         "quantum"
+      ],
+      "supplemental_examples": [
+        "h2-rhf-uhf-fci",
+        "h3plus-mp2-fci"
       ]
     },
     {
@@ -917,6 +948,9 @@
       ],
       "domains": [
         "quantum"
+      ],
+      "supplemental_examples": [
+        "periodic-he-reference-cards"
       ]
     },
     {
@@ -986,6 +1020,9 @@
       ],
       "domains": [
         "quantum"
+      ],
+      "supplemental_examples": [
+        "periodic-he-reference-cards"
       ]
     },
     {

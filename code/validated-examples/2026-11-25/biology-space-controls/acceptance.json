@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "group": "biology-space-controls",
+  "shared_pytest_plus_main_cap_seconds": 120,
+  "case_contracts": {
+    "90": {
+      "mandatory": {
+        "exact_PDE_abs": 5e-15,
+        "wrong_special_speed_residual_min": 0.0001,
+        "semidiscrete_reference_spread_abs": 1e-08,
+        "state_range_slack": 1e-12
+      },
+      "study": {
+        "finest_spatial_Linf": 0.001,
+        "spatial_order": 1.7,
+        "finest_time_error": 1e-05,
+        "time_order": 2.7,
+        "phase_error": 0.02,
+        "observed_boundary_core_L12_L24": 0.0001
+      }
+    },
+    "91": {
+      "mandatory": {
+        "FV_mode_symbol_abs": 1e-11,
+        "matrix_exponential_abs": 2e-11,
+        "constant_equilibrium_abs": 5e-13,
+        "quadrature_Gram_abs": 1e-11,
+        "mass_ledger_scaled": 5e-11,
+        "reference_each_and_sum_abs": 0.0002,
+        "reference_sum_relative_to_finest_discrepancy": 0.1,
+        "reference_denominator_floor": 1e-12
+      },
+      "study": {
+        "finest_Linf": 0.02,
+        "spatial_order": 1.6,
+        "time_order": 1.7,
+        "minimum": -1e-12,
+        "time_Richardson_indicator_fraction_of_spatial": 0.1
+      },
+      "reference_interpretation": "Finitesensitivityonly;floorbranchunqualified/nullordersnotaccuracyPASS",
+      "reference_protocol_revision": {
+        "kind": "onecontrolledD-onlyfinerreferenceextension",
+        "original_4D_rows": "retainedwithlegacyqualificationandfirstR4FAILvisible;notrelabelled",
+        "additional_reference_actions": 4,
+        "primary_and_other_N_reference_actions": "unchanged",
+        "new_qualification": "TheSAMEoriginalabsolute/relative/floorcriteriaappliedtoNEW4-rowfinerreference;newfinestprimarydiscrepancyisdenominator.",
+        "failure": "cap/error/unqualifiednewreference=>nonPASS/nullrelatedgoals;nofallbackorcalibrationloop"
+      }
+    },
+    "92": {
+      "mandatory": {
+        "point_and_MOL_source_scaled": 1e-10,
+        "divergence_free_faces_abs": 2e-14,
+        "independent_velocity_abs": 1e-14,
+        "same_MOL_reference_spread_abs": 1e-08,
+        "mass_ledger_scaled": 2e-10,
+        "unforced_constant_abs": 1e-12
+      },
+      "study": {
+        "finest_field_Linf": 0.002,
+        "spatial_order": 1.7,
+        "time_order": 2.5,
+        "n_minimum": 0.88,
+        "c_minimum": 0.93,
+        "halfdt_difference_fraction_of_spatial": 0.1
+      }
+    }
+  },
+  "mandatory_reporting": [
+    "allfixedprimary/reference/componentactions",
+    "actualRNGandworkcounts",
+    "finitequalifiedreferencecompanions",
+    "alloriginalstudygoalstrue/false/nullwithreason",
+    "ownedpartialcheckpointonfailure",
+    "nohiddenclipping/seedselection/rowskipping"
+  ],
+  "passed_semantics": "Allmandatorycomponent/reference/reportingchecks;studygoalsremainseparateandarenotsilentlymasked.",
+  "order_floor": "Ordernullwhenerrorsnotabove20xqualifiedreferencespreadanddeclaredroundofffloor.",
+  "preexecution_review": "freeze.jsonmustbindallsource/input/acceptancebeforeexecution",
+  "owned_main_cap_seconds": 115,
+  "budget_note": "Pre-executionoperationaltightening,notincreasedtimeallowanceorchangedscientificgoal;sharedouter120unchanged."
+}

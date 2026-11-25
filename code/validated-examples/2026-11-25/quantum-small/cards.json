@@ -1,0 +1,279 @@
+{
+  "schema_version": 1,
+  "cards": [
+    {
+      "sequence": 95,
+      "id": "two-state-bo-cp-ou",
+      "kind": "educational-representative",
+      "title": {
+        "ja": "2準位模型のBO/CP型連成と短い核熱浴",
+        "en": "A two-state BO / CP-type model with a short nuclear thermostat coupling"
+      },
+      "model_scope": "Actual coupled normalized electronic angle and nuclear coordinate, short NVE plus one nuclear OU trajectory. No first-principles/long NVE/canonical sampling/production CPMD. BO and mu.04 state comparisons use fixed4096/8192 RK4 companions; mu.01 receives energy checks only.",
+      "counting": {
+        "new_physical_models": 1,
+        "new_primary_trajectories": 8,
+        "reference_trajectories": 4
+      },
+      "sources": [
+        "car-parrinello1985",
+        "qe-cp-guide"
+      ],
+      "main_figure": {
+        "path": "results/two-state-bo-cp-ou.png",
+        "basis": "Figure contract: use saved numerical arrays; reference-only panels use unchanged stored values.",
+        "status": "saved-result-figure-contract"
+      },
+      "unimplemented_or_unverified_tails": [
+        "Long first-principles NVE and general electronic/nuclear thermostat equilibration remain deferred.",
+        "No material prediction, multi-orbital CPMD or canonical/ergodic sampling certificate."
+      ],
+      "original_backlog_full_breadth_claimed": false,
+      "acceptance": "acceptance.json#/95"
+    },
+    {
+      "sequence": 96,
+      "id": "atomic-reference-cards",
+      "kind": "references",
+      "title": {
+        "ja": "H/Heの式・密度・固定参照カード",
+        "en": "Hydrogenic formulas and immutable finite-basis helium reference cards"
+      },
+      "model_scope": "Three saved 40-function He reference rows, hydrogenic analytic equations, p versus n and finite-grid/basis/model limits.",
+      "counting": {
+        "new_physical_models": 0,
+        "new_primary_solves": 0
+      },
+      "sources": [
+        "dlmf1839",
+        "pyscf-scf"
+      ],
+      "main_figure": {
+        "path": "results/atomic-reference-cards.png",
+        "basis": "Figure contract: use saved numerical arrays; reference-only panels use unchanged stored values.",
+        "status": "saved-result-figure-contract"
+      },
+      "unimplemented_or_unverified_tails": [
+        "No new SCF, external-reference regeneration, complete-basis or correlated-exact helium claim."
+      ],
+      "original_backlog_full_breadth_claimed": false,
+      "acceptance": "acceptance.json#/96",
+      "reference_cards": [
+        {
+          "id": "hydrogenic-analytic",
+          "model": "One electron, infinite-mass point nucleus, nonrelativistic isolated Coulomb Hamiltonian.",
+          "conventions": "Atomic units hbar=me=e=4piepsilon0=1; energy hartree, radius bohr; Psi=R_nl(r)Y_lm, u=rR; integral|u|²dr=1 with normalized angular function.",
+          "formulas": [
+            "E_n=-Z²/(2n²)",
+            "H_l u=-u''/2+[l(l+1)/(2r²)-Z/r]u",
+            "u(0)=0; physical u(r)->0 as r->infinity; finite release imposes u(rmax)=0"
+          ],
+          "degeneracy": "Energy independent of l,m for fixedn; orbital degeneracy n² ignoring spin,2n² including two spin labels; radial release samples selected l, not all magnetic states.",
+          "released_inputs": "Z1,2; (n,l)=(1,0),(2,0),(2,1),(3,2); rmax60 andh=.04/.02/.01; separate finite-box study rmax4/8/16/32 at h=.01.",
+          "limits": "Analytic continuum energies/orbitals are distinct from finite radial grid and Dirichlet-box errors.",
+          "formula_conventions_r2": {
+            "rho": "rho=2Zr/n",
+            "radial_polynomial_degree": "k=n-l-1 (DLMF uses p for this degree; do not confuse it with the radial electron density p(r)).",
+            "u_formula": "u_nl=(sqrt(Z*(n-l-1)!/(n+l)!)/n)*exp(-rho/2)*rho^(l+1)*L_(n-l-1)^(2l+1)(rho)",
+            "released_source_equivalence": "Substitute r=n*rho/(2Z) into atomic_radial.py53–65. Its r*(2Z/n)^(3/2)*sqrt((n-l-1)!/[2n(n+l)!])*rho^l coefficient reduces to the u formula above; this is an authored algebraic correspondence, not a new numerical check.",
+            "new_official_selected_support": "DLMF18.39 HTML equations26–35 and nearby measure/quantum-number text were read in R2; no TeX/PDF image reading claimed.",
+            "source_url": "https://dlmf.nist.gov/18.39#ii"
+          }
+        },
+        {
+          "id": "helium-hf",
+          "model": "Spherical closed-shell1s² restricted HF; one doubly occupied spatial orbital, not correlated exactHe.",
+          "formulas": [
+            "p(r)=2u(r)²; integral p dr=2",
+            "v_eff=-2/r+v_H/2; E_x=-E_H/2 only for this one-orbital two-electron model",
+            "E_total=T_s+V_nuc+E_H+E_x; E_c=0"
+          ],
+          "limits": "HF exchange cancellation is a special helium reduction; not general local exchange.",
+          "density_conventions_r2": {
+            "spatial_orbital": "Psi(r,angles)=u(r)Y00/r with Y00=1/sqrt(4pi); one spatial orbital occupied twice.",
+            "radial_number_density": "p(r)=2|u(r)|², integral_0^infinity p(r)dr=2.",
+            "volume_number_density": "n(r)=p(r)/(4pi*r²), integral n(r)d³r=2.",
+            "units": "u:bohr^(-1/2), p:bohr^(-1), n:bohr^(-3); energies:hartree.",
+            "finite_grid": "Published solver uses positive interior r_i and dr*sum(u_i²)=1, dr*sum(p_i)=2 with zero Dirichlet endpoints; it is not a claim of exact continuum normalization.",
+            "origin": "n(0) is a regular limiting value; do not divide a sampled r=0 by r². Released grid has positive interior radii.",
+            "energy": "Orbital eigenvalue and many-electron total energy are separately labeled; neither HF nor LDA_X total energy is correlated exactHe."
+          }
+        },
+        {
+          "id": "helium-lda-x",
+          "model": "Spin-unpolarized exchange-only local density functional, not LDA+VWN/PBE and not correlated exactHe.",
+          "formulas": [
+            "v_x=-(3n/pi)^(1/3)",
+            "E_x=(3/4) integral p(r)v_x(r)dr; E_c=0"
+          ],
+          "limits": "Numerical agreement certifies only fixed-model finite discretizations, not physical accuracy.",
+          "density_conventions_r2": {
+            "spatial_orbital": "Psi(r,angles)=u(r)Y00/r with Y00=1/sqrt(4pi); one spatial orbital occupied twice.",
+            "radial_number_density": "p(r)=2|u(r)|², integral_0^infinity p(r)dr=2.",
+            "volume_number_density": "n(r)=p(r)/(4pi*r²), integral n(r)d³r=2.",
+            "units": "u:bohr^(-1/2), p:bohr^(-1), n:bohr^(-3); energies:hartree.",
+            "finite_grid": "Published solver uses positive interior r_i and dr*sum(u_i²)=1, dr*sum(p_i)=2 with zero Dirichlet endpoints; it is not a claim of exact continuum normalization.",
+            "origin": "n(0) is a regular limiting value; do not divide a sampled r=0 by r². Released grid has positive interior radii.",
+            "energy": "Orbital eigenvalue and many-electron total energy are separately labeled; neither HF nor LDA_X total energy is correlated exactHe."
+          }
+        }
+      ],
+      "saved_reference_rows": "saved-data/atom-reference.json#/cases"
+    },
+    {
+      "sequence": 97,
+      "id": "quantum-box-ho",
+      "kind": "educational-representative",
+      "title": {
+        "ja": "1次元箱型井戸・量子調和振動子",
+        "en": "Small 1D box and quantum harmonic-oscillator eigenpairs"
+      },
+      "model_scope": "Finite Dirichlet boxes and central differences; whole-line HO formulas do not isolate finite-wall error. Node counts diagnostic until forward sign qualification.",
+      "counting": {
+        "new_physical_models": 2,
+        "primary_eigh_calls": 8,
+        "native_eigenpairs": 824,
+        "selected_eigenpairs": 24
+      },
+      "sources": [
+        "dlmf1839",
+        "numpy-eigh20"
+      ],
+      "main_figure": {
+        "path": "results/quantum-box-ho.png",
+        "basis": "Figure contract: use saved numerical arrays; reference-only panels use unchanged stored values.",
+        "status": "saved-result-figure-contract"
+      },
+      "unimplemented_or_unverified_tails": [
+        "No separate certified finite-wall/mesh decomposition for HO; raw nodal count is a diagnostic.",
+        "HO0.003 is the unchanged unmeasured accuracy goal, not a proved finite-h bound."
+      ],
+      "original_backlog_full_breadth_claimed": false,
+      "acceptance": "acceptance.json#/97"
+    },
+    {
+      "sequence": 98,
+      "id": "h2-rhf-uhf-fci",
+      "kind": "educational-representative",
+      "title": {
+        "ja": "最小基底H2のRHF/UHF/FCI・2固定幾何",
+        "en": "Minimal-basis H2: RHF, broken-spin UHF and finite-basis FCI"
+      },
+      "model_scope": "Explicit unchanged STO-3G s contraction, R1.4/3.0bohr, finite-basis FCI and broken-spin UHF; not exact continuum chemistry.",
+      "counting": {
+        "new_physical_models": 1,
+        "geometries": 2
+      },
+      "sources": [
+        "pyscf-scf",
+        "pyscf-fci"
+      ],
+      "main_figure": {
+        "path": "results/h2-rhf-uhf-fci.png",
+        "basis": "Figure contract: use saved numerical arrays; reference-only panels use unchanged stored values.",
+        "status": "saved-result-figure-contract"
+      },
+      "unimplemented_or_unverified_tails": [
+        "Only two H2 geometries and two contracted s orbitals; no complete-basis dissociation curve.",
+        "UHF is spin contaminated; FCI exactness is finite-basis only."
+      ],
+      "original_backlog_full_breadth_claimed": false,
+      "acceptance": "acceptance.json#/98"
+    },
+    {
+      "sequence": 99,
+      "id": "h3plus-mp2-fci",
+      "kind": "educational-representative",
+      "title": {
+        "ja": "3中心H3+の小RHF/MP2/FCI模型",
+        "en": "A tiny three-center H3+ RHF / MP2 / FCI example"
+      },
+      "model_scope": "Two electrons/3 explicit s orbitals, one fixed non-symmetric triangle. Molecular DFT, CC and general multireference/large molecules remain unimplemented tails.",
+      "counting": {
+        "new_physical_models": 1,
+        "geometries": 1
+      },
+      "sources": [
+        "pyscf-scf",
+        "pyscf-mp2",
+        "pyscf-mp2-kernel",
+        "pyscf-fci"
+      ],
+      "main_figure": {
+        "path": "results/h3plus-mp2-fci.png",
+        "basis": "Figure contract: use saved numerical arrays; reference-only panels use unchanged stored values.",
+        "status": "saved-result-figure-contract"
+      },
+      "unimplemented_or_unverified_tails": [
+        "General molecular DFT, CC, large bases and general multireference methods remain unimplemented.",
+        "Independent operator assembly is not an independent external chemistry-engine scalar reference."
+      ],
+      "original_backlog_full_breadth_claimed": false,
+      "acceptance": "acceptance.json#/99"
+    },
+    {
+      "sequence": 100,
+      "id": "periodic-he-reference-cards",
+      "kind": "references",
+      "title": {
+        "ja": "保存周期Heエネルギー・力の参照台帳",
+        "en": "Immutable periodic-helium energy and force reference audit"
+      },
+      "model_scope": "Audit saved six-coordinate FD and Gaussian/PW comparisons; source versions, local-only He GTH, XC/units/cell/electron count fixed. No new k/basis/cutoff scans.",
+      "counting": {
+        "new_physical_models": 0,
+        "new_primary_solves": 0
+      },
+      "sources": [
+        "dftk-pseudo",
+        "pyscf-scf"
+      ],
+      "main_figure": {
+        "path": "results/periodic-he-reference-cards.png",
+        "basis": "Figure contract: use saved numerical arrays; reference-only panels use unchanged stored values.",
+        "status": "saved-result-figure-contract"
+      },
+      "unimplemented_or_unverified_tails": [
+        "No new SCF/DFTK/PySCF run, no basis/k/cutoff scans; preserve all old values and criteria.",
+        "The He GTH is local-only, so its saved success does not test nonlocal projectors."
+      ],
+      "original_backlog_full_breadth_claimed": false,
+      "acceptance": "acceptance.json#/100",
+      "saved_reference_rows": "saved-data/periodic-he-reference.json"
+    },
+    {
+      "sequence": 101,
+      "id": "periodic-projector-occupations",
+      "kind": "educational-representative",
+      "title": {
+        "ja": "3平面波の非局所projectorと有限温度占有",
+        "en": "A three-wave periodic projector and Fermi-occupation model"
+      },
+      "model_scope": "Authored rank-one periodic linear model and finite-N Helmholtz forces. No real metal/element pseudopotential/norm conservation/Hartree-XC/long MD claim. N=1.5 denotes mean Fermi particle number, not an integer-N canonical many-body law.",
+      "counting": {
+        "new_physical_models": 1,
+        "primary_matrices": 2,
+        "auxiliary_displaced_matrices": 8
+      },
+      "sources": [
+        "dftk-periodic",
+        "dftk-pseudo",
+        "dftk-metal",
+        "numpy-eigh20"
+      ],
+      "main_figure": {
+        "path": "results/periodic-projector-occupations.png",
+        "basis": "Figure contract: use saved numerical arrays; reference-only panels use unchanged stored values.",
+        "status": "saved-result-figure-contract"
+      },
+      "unimplemented_or_unverified_tails": [
+        "The authored rank-one kernel is not an element-fitted norm-conserving pseudopotential.",
+        "No self-consistent Hartree/XC, real metal, general material or long-time MD success."
+      ],
+      "original_backlog_full_breadth_claimed": false,
+      "acceptance": "acceptance.json#/101"
+    }
+  ],
+  "counting_note": "7 backlog sequences, 6 new small physical model families across5 executing sequences; 96/100 add0 new simulations. 8 MD trajectories and2 H2 geometries are not8 or2 extra backlog candidates.",
+  "state": "case-and-figure-contract"
+}

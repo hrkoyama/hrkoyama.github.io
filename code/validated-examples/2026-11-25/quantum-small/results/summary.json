@@ -1,0 +1,1448 @@
+{
+  "state": "completed",
+  "passed": true,
+  "checks": [
+    {
+      "name": "95 bo-0 NVE extended energy drift",
+      "value": 4.54374582403716e-08,
+      "operator": "<=",
+      "limit": 1e-06,
+      "passed": true,
+      "kind": "accuracy_goal"
+    },
+    {
+      "name": "95 bo-1 NVE extended energy drift",
+      "value": 1.135934568630148e-08,
+      "operator": "<=",
+      "limit": 1e-06,
+      "passed": true,
+      "kind": "accuracy_goal"
+    },
+    {
+      "name": "95 bo-2 NVE extended energy drift",
+      "value": 2.8398352558411943e-09,
+      "operator": "<=",
+      "limit": 1e-06,
+      "passed": true,
+      "kind": "accuracy_goal"
+    },
+    {
+      "name": "95 cp-mu004-0 NVE extended energy drift",
+      "value": 4.543430420778094e-08,
+      "operator": "<=",
+      "limit": 1e-06,
+      "passed": true,
+      "kind": "accuracy_goal"
+    },
+    {
+      "name": "95 cp-mu004-1 NVE extended energy drift",
+      "value": 1.1358568974273453e-08,
+      "operator": "<=",
+      "limit": 1e-06,
+      "passed": true,
+      "kind": "accuracy_goal"
+    },
+    {
+      "name": "95 cp-mu004-2 NVE extended energy drift",
+      "value": 2.839641743968002e-09,
+      "operator": "<=",
+      "limit": 1e-06,
+      "passed": true,
+      "kind": "accuracy_goal"
+    },
+    {
+      "name": "95 cp-mu001 NVE extended energy drift",
+      "value": 2.8397284523862254e-09,
+      "operator": "<=",
+      "limit": 1e-06,
+      "passed": true,
+      "kind": "accuracy_goal"
+    },
+    {
+      "name": "95 bo finest RK4 state comparison",
+      "value": 5.443721431889809e-09,
+      "operator": "<=",
+      "limit": 1e-05,
+      "passed": true,
+      "kind": "accuracy_goal"
+    },
+    {
+      "name": "95 cp-mu004 finest RK4 state comparison",
+      "value": 9.898870595217574e-08,
+      "operator": "<=",
+      "limit": 1e-05,
+      "passed": true,
+      "kind": "accuracy_goal"
+    },
+    {
+      "name": "95 bo fixed RK4 companion sensitivity",
+      "value": 2.5547594848822963e-15,
+      "operator": "<=",
+      "limit": 1e-10,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "95 cp-mu004 fixed RK4 companion sensitivity",
+      "value": 1.2252872249276024e-15,
+      "operator": "<=",
+      "limit": 1e-10,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "95 OU extended energy minus measured heat",
+      "value": 4.47292801061816e-09,
+      "operator": "<=",
+      "limit": 1e-05,
+      "passed": true,
+      "kind": "accuracy_goal"
+    },
+    {
+      "name": "95 OU conditional temperature variance identity",
+      "value": 0.0,
+      "operator": "<=",
+      "limit": 1e-14,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "95 normalized orbital",
+      "value": 2.220446049250313e-16,
+      "operator": "<=",
+      "limit": 1e-14,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "96 selected saved row count",
+      "value": 0.0,
+      "operator": "<=",
+      "limit": 0,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "96 saved energy literal 0",
+      "value": 0.0,
+      "operator": "<=",
+      "limit": 0,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "96 basis functions 0",
+      "value": 0.0,
+      "operator": "<=",
+      "limit": 0,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "96 saved electron count 0",
+      "value": 1.7763568394002505e-15,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "96 saved energy literal 1",
+      "value": 0.0,
+      "operator": "<=",
+      "limit": 0,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "96 basis functions 1",
+      "value": 0.0,
+      "operator": "<=",
+      "limit": 0,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "96 saved electron count 1",
+      "value": 3.1086244689504383e-15,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "96 saved energy literal 2",
+      "value": 0.0,
+      "operator": "<=",
+      "limit": 0,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "96 basis functions 2",
+      "value": 0.0,
+      "operator": "<=",
+      "limit": 0,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "96 saved electron count 2",
+      "value": 3.1086244689504383e-15,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box-M32 native_norm_error",
+      "value": 9.992007221626409e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box-M32 physical_norm_error",
+      "value": 9.992007221626409e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box-M32 orthogonality_error",
+      "value": 9.992007221626409e-16,
+      "operator": "<=",
+      "limit": 1e-11,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box-M32 state1 residual",
+      "value": 2.6534314217337773e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box-M32 state1 same-grid oracle",
+      "value": 2.521780905296546e-15,
+      "operator": "<=",
+      "limit": 2e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box-M32 state2 residual",
+      "value": 2.6489743749213535e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box-M32 state2 same-grid oracle",
+      "value": 1.6250574155051521e-15,
+      "operator": "<=",
+      "limit": 2e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box-M32 state3 residual",
+      "value": 2.3939284948881844e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box-M32 state3 same-grid oracle",
+      "value": 2.2560444050504554e-15,
+      "operator": "<=",
+      "limit": 2e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box-M64 native_norm_error",
+      "value": 4.440892098500626e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box-M64 physical_norm_error",
+      "value": 4.440892098500626e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box-M64 orthogonality_error",
+      "value": 5.729429494880433e-16,
+      "operator": "<=",
+      "limit": 1e-11,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box-M64 state1 residual",
+      "value": 3.628867495606101e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box-M64 state1 same-grid oracle",
+      "value": 1.5283589494924628e-13,
+      "operator": "<=",
+      "limit": 2e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box-M64 state2 residual",
+      "value": 3.5175380832319105e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box-M64 state2 same-grid oracle",
+      "value": 2.5578063468007826e-14,
+      "operator": "<=",
+      "limit": 2e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box-M64 state3 residual",
+      "value": 3.511156850072398e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box-M64 state3 same-grid oracle",
+      "value": 9.295888967353658e-15,
+      "operator": "<=",
+      "limit": 2e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box-M128 native_norm_error",
+      "value": 1.3322676295501878e-15,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box-M128 physical_norm_error",
+      "value": 8.881784197001252e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box-M128 orthogonality_error",
+      "value": 1.1102230246251565e-15,
+      "operator": "<=",
+      "limit": 1e-11,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box-M128 state1 residual",
+      "value": 3.7340644105619856e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box-M128 state1 same-grid oracle",
+      "value": 7.066470719683718e-13,
+      "operator": "<=",
+      "limit": 2e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box-M128 state2 residual",
+      "value": 3.901829244394146e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box-M128 state2 same-grid oracle",
+      "value": 1.6885756120423205e-13,
+      "operator": "<=",
+      "limit": 2e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box-M128 state3 residual",
+      "value": 4.0863269302611023e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box-M128 state3 same-grid oracle",
+      "value": 7.042499776870415e-14,
+      "operator": "<=",
+      "limit": 2e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L8-h0.25 native_norm_error",
+      "value": 1.1102230246251565e-15,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L8-h0.25 physical_norm_error",
+      "value": 1.1102230246251565e-15,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L8-h0.25 orthogonality_error",
+      "value": 1.1102230246251565e-15,
+      "operator": "<=",
+      "limit": 1e-11,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L8-h0.25 state0 residual",
+      "value": 1.384362487647675e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L8-h0.25 state0 reflection parity",
+      "value": 9.906146009304781e-16,
+      "operator": "<=",
+      "limit": 1e-10,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L8-h0.25 state1 residual",
+      "value": 1.549514541364104e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L8-h0.25 state1 reflection parity",
+      "value": 2.169025096981292e-15,
+      "operator": "<=",
+      "limit": 1e-10,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L8-h0.25 state2 residual",
+      "value": 1.26030926507246e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L8-h0.25 state2 reflection parity",
+      "value": 5.378632453105551e-15,
+      "operator": "<=",
+      "limit": 1e-10,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L8-h0.125 native_norm_error",
+      "value": 1.1102230246251565e-15,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L8-h0.125 physical_norm_error",
+      "value": 8.881784197001252e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L8-h0.125 orthogonality_error",
+      "value": 8.881784197001252e-16,
+      "operator": "<=",
+      "limit": 1e-11,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L8-h0.125 state0 residual",
+      "value": 3.9740329134654874e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L8-h0.125 state0 reflection parity",
+      "value": 1.489799852793317e-14,
+      "operator": "<=",
+      "limit": 1e-10,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L8-h0.125 state1 residual",
+      "value": 4.0343427613151107e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L8-h0.125 state1 reflection parity",
+      "value": 3.32819383816502e-14,
+      "operator": "<=",
+      "limit": 1e-10,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L8-h0.125 state2 residual",
+      "value": 3.816857166136067e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L8-h0.125 state2 reflection parity",
+      "value": 3.1052104675910025e-14,
+      "operator": "<=",
+      "limit": 1e-10,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L8-h0.0625 native_norm_error",
+      "value": 1.1102230246251565e-15,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L8-h0.0625 physical_norm_error",
+      "value": 1.1102230246251565e-15,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L8-h0.0625 orthogonality_error",
+      "value": 1.3322676295501878e-15,
+      "operator": "<=",
+      "limit": 1e-11,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L8-h0.0625 state0 residual",
+      "value": 5.118810100977104e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L8-h0.0625 state0 reflection parity",
+      "value": 1.0562240570035153e-14,
+      "operator": "<=",
+      "limit": 1e-10,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L8-h0.0625 state1 residual",
+      "value": 5.6425322872051155e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L8-h0.0625 state1 reflection parity",
+      "value": 3.3151730411536006e-14,
+      "operator": "<=",
+      "limit": 1e-10,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L8-h0.0625 state2 residual",
+      "value": 4.424438066999679e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L8-h0.0625 state2 reflection parity",
+      "value": 3.9175195970046425e-14,
+      "operator": "<=",
+      "limit": 1e-10,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L4-h0.125 native_norm_error",
+      "value": 8.881784197001252e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L4-h0.125 physical_norm_error",
+      "value": 6.661338147750939e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L4-h0.125 orthogonality_error",
+      "value": 6.661338147750939e-16,
+      "operator": "<=",
+      "limit": 1e-11,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L4-h0.125 state0 residual",
+      "value": 2.8638408377792463e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L4-h0.125 state0 reflection parity",
+      "value": 5.622962058212243e-15,
+      "operator": "<=",
+      "limit": 1e-10,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L4-h0.125 state1 residual",
+      "value": 2.7780454534440377e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L4-h0.125 state1 reflection parity",
+      "value": 1.3088888066254994e-14,
+      "operator": "<=",
+      "limit": 1e-10,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L4-h0.125 state2 residual",
+      "value": 3.13657233698048e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L4-h0.125 state2 reflection parity",
+      "value": 1.5345752054778173e-14,
+      "operator": "<=",
+      "limit": 1e-10,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L6-h0.125 native_norm_error",
+      "value": 6.661338147750939e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L6-h0.125 physical_norm_error",
+      "value": 4.440892098500626e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L6-h0.125 orthogonality_error",
+      "value": 1.0478097465287758e-15,
+      "operator": "<=",
+      "limit": 1e-11,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L6-h0.125 state0 residual",
+      "value": 2.3361979300913016e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L6-h0.125 state0 reflection parity",
+      "value": 1.654208719984383e-15,
+      "operator": "<=",
+      "limit": 1e-10,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L6-h0.125 state1 residual",
+      "value": 3.0895334790910436e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L6-h0.125 state1 reflection parity",
+      "value": 3.966086461776309e-15,
+      "operator": "<=",
+      "limit": 1e-10,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L6-h0.125 state2 residual",
+      "value": 3.0577186768266187e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO-L6-h0.125 state2 reflection parity",
+      "value": 9.059939709541788e-15,
+      "operator": "<=",
+      "limit": 1e-10,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box finest relative continuum 0",
+      "value": 5.019839662078447e-05,
+      "operator": "<=",
+      "limit": 0.001,
+      "passed": true,
+      "kind": "accuracy_goal"
+    },
+    {
+      "name": "97 box reduction lower (0, 0)",
+      "value": 3.99903629835137,
+      "operator": ">=",
+      "limit": 3.5,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box reduction upper (0, 0)",
+      "value": 3.99903629835137,
+      "operator": "<=",
+      "limit": 4.5,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box reduction lower (0, 1)",
+      "value": 3.9997589977320964,
+      "operator": ">=",
+      "limit": 3.5,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box reduction upper (0, 1)",
+      "value": 3.9997589977320964,
+      "operator": "<=",
+      "limit": 4.5,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box finest relative continuum 1",
+      "value": 0.0002007814885717256,
+      "operator": "<=",
+      "limit": 0.001,
+      "passed": true,
+      "kind": "accuracy_goal"
+    },
+    {
+      "name": "97 box reduction lower (1, 0)",
+      "value": 3.996146764158027,
+      "operator": ">=",
+      "limit": 3.5,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box reduction upper (1, 0)",
+      "value": 3.996146764158027,
+      "operator": "<=",
+      "limit": 4.5,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box reduction lower (1, 1)",
+      "value": 3.999036298147065,
+      "operator": ">=",
+      "limit": 3.5,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box reduction upper (1, 1)",
+      "value": 3.999036298147065,
+      "operator": "<=",
+      "limit": 4.5,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box finest relative continuum 2",
+      "value": 0.00045171299567713406,
+      "operator": "<=",
+      "limit": 0.001,
+      "passed": true,
+      "kind": "accuracy_goal"
+    },
+    {
+      "name": "97 box reduction lower (2, 0)",
+      "value": 3.9913360615376745,
+      "operator": ">=",
+      "limit": 3.5,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box reduction upper (2, 0)",
+      "value": 3.9913360615376745,
+      "operator": "<=",
+      "limit": 4.5,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box reduction lower (2, 1)",
+      "value": 3.9978320428851237,
+      "operator": ">=",
+      "limit": 3.5,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 box reduction upper (2, 1)",
+      "value": 3.9978320428851237,
+      "operator": "<=",
+      "limit": 4.5,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "97 HO finest total error 0",
+      "value": 0.0001221001366430441,
+      "operator": "<=",
+      "limit": 0.003,
+      "passed": true,
+      "kind": "accuracy_goal"
+    },
+    {
+      "name": "97 HO finest total error 1",
+      "value": 0.0006106201113647014,
+      "operator": "<=",
+      "limit": 0.003,
+      "passed": true,
+      "kind": "accuracy_goal"
+    },
+    {
+      "name": "97 HO finest total error 2",
+      "value": 0.0015879589598619681,
+      "operator": "<=",
+      "limit": 0.003,
+      "passed": true,
+      "kind": "accuracy_goal"
+    },
+    {
+      "name": "98 R1.4 saved PySCF RHF",
+      "value": 1.7319479184152442e-14,
+      "operator": "<=",
+      "limit": 2e-09,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "98 R1.4 UHF analytic paired ansatz",
+      "value": 1.3322676295501878e-15,
+      "operator": "<=",
+      "limit": 1e-08,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "98 R1.4 finite-basis FCI analytic",
+      "value": 4.440892098500626e-16,
+      "operator": "<=",
+      "limit": 1e-10,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "98 R1.4 independent fermion assembly",
+      "value": 1.1102230246251565e-16,
+      "operator": "<=",
+      "limit": 1e-11,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "98 R1.4 FCI residual",
+      "value": 1.510066572755813e-15,
+      "operator": "<=",
+      "limit": 1e-11,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "98 R1.4 UHF <= RHF",
+      "value": 0.0,
+      "operator": "<=",
+      "limit": 1e-09,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "98 R1.4 FCI <= UHF",
+      "value": -0.02056161860694994,
+      "operator": "<=",
+      "limit": 1e-09,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "98 R1.4 RHF electron count",
+      "value": 1.3322676295501878e-15,
+      "operator": "<=",
+      "limit": 1e-10,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "98 R1.4 RHF orbital norm",
+      "value": 9.992007221626409e-16,
+      "operator": "<=",
+      "limit": 1e-10,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "98 R1.4 RHF SCF residual",
+      "value": 4.739336526991705e-16,
+      "operator": "<=",
+      "limit": 1e-09,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "98 R1.4 UHF electron count",
+      "value": 1.3322676295501878e-15,
+      "operator": "<=",
+      "limit": 1e-10,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "98 R1.4 UHF orbital norm",
+      "value": 9.992007221626409e-16,
+      "operator": "<=",
+      "limit": 1e-10,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "98 R1.4 UHF SCF residual",
+      "value": 3.031599154361081e-11,
+      "operator": "<=",
+      "limit": 1e-09,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "98 R3.0 saved PySCF RHF",
+      "value": 8.659739592076221e-15,
+      "operator": "<=",
+      "limit": 2e-09,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "98 R3.0 UHF analytic paired ansatz",
+      "value": 0.0,
+      "operator": "<=",
+      "limit": 1e-08,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "98 R3.0 finite-basis FCI analytic",
+      "value": 6.661338147750939e-16,
+      "operator": "<=",
+      "limit": 1e-10,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "98 R3.0 independent fermion assembly",
+      "value": 1.1102230246251565e-16,
+      "operator": "<=",
+      "limit": 1e-11,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "98 R3.0 FCI residual",
+      "value": 6.798699777552591e-16,
+      "operator": "<=",
+      "limit": 1e-11,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "98 R3.0 UHF <= RHF",
+      "value": -0.06574294870227004,
+      "operator": "<=",
+      "limit": 1e-09,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "98 R3.0 FCI <= UHF",
+      "value": -0.03413887592482623,
+      "operator": "<=",
+      "limit": 1e-09,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "98 R3.0 RHF electron count",
+      "value": 8.881784197001252e-16,
+      "operator": "<=",
+      "limit": 1e-10,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "98 R3.0 RHF orbital norm",
+      "value": 6.661338147750939e-16,
+      "operator": "<=",
+      "limit": 1e-10,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "98 R3.0 RHF SCF residual",
+      "value": 1.0881821476711805e-16,
+      "operator": "<=",
+      "limit": 1e-09,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "98 R3.0 UHF electron count",
+      "value": 4.440892098500626e-16,
+      "operator": "<=",
+      "limit": 1e-10,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "98 R3.0 UHF orbital norm",
+      "value": 7.771561172376096e-16,
+      "operator": "<=",
+      "limit": 1e-10,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "98 R3.0 UHF SCF residual",
+      "value": 1.610351596292876e-11,
+      "operator": "<=",
+      "limit": 1e-09,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "98 stretched UHF energy lowering",
+      "value": 0.06574294870227004,
+      "operator": ">=",
+      "limit": 0.0001,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "98 stretched UHF spin contamination",
+      "value": 0.7742403321308335,
+      "operator": ">=",
+      "limit": 0.01,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "99 operator assembly",
+      "value": 4.440892098500626e-16,
+      "operator": "<=",
+      "limit": 1e-11,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "99 FCI residual",
+      "value": 2.0196960871277348e-16,
+      "operator": "<=",
+      "limit": 1e-11,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "99 singlet spatial symmetry",
+      "value": 1.821725679363684e-16,
+      "operator": "<=",
+      "limit": 1e-10,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "99 MP2 determinant perturbation oracle",
+      "value": 0.0,
+      "operator": "<=",
+      "limit": 1e-11,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "99 MP2 minimum denominator",
+      "value": 2.27228160503523,
+      "operator": ">=",
+      "limit": 0.01,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "99 FCI <= RHF",
+      "value": -0.02394188636845218,
+      "operator": "<=",
+      "limit": 1e-09,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "99 RHF electron count",
+      "value": 0.0,
+      "operator": "<=",
+      "limit": 1e-10,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "99 RHF SCF residual",
+      "value": 4.7552933164260536e-12,
+      "operator": "<=",
+      "limit": 1e-09,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "100 saved FD arithmetic 0",
+      "value": 0.0,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "100 unchanged FD science bound 0",
+      "value": 8.486369273974503e-09,
+      "operator": "<=",
+      "limit": 2e-06,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "100 saved FD arithmetic 1",
+      "value": 0.0,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "100 unchanged FD science bound 1",
+      "value": 1.4108486323660685e-08,
+      "operator": "<=",
+      "limit": 2e-06,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "100 saved FD arithmetic 2",
+      "value": 0.0,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "100 unchanged FD science bound 2",
+      "value": 2.1580722472935854e-08,
+      "operator": "<=",
+      "limit": 2e-06,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "100 saved FD arithmetic 3",
+      "value": 0.0,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "100 unchanged FD science bound 3",
+      "value": 1.1233197302895626e-08,
+      "operator": "<=",
+      "limit": 2e-06,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "100 saved FD arithmetic 4",
+      "value": 0.0,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "100 unchanged FD science bound 4",
+      "value": 1.818304432021911e-08,
+      "operator": "<=",
+      "limit": 2e-06,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "100 saved FD arithmetic 5",
+      "value": 0.0,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "100 unchanged FD science bound 5",
+      "value": 2.3223412720652092e-08,
+      "operator": "<=",
+      "limit": 2e-06,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "100 unchanged Gaussian/PW force basis-gth-qzv3p",
+      "value": 7.28156560618684e-05,
+      "operator": "<=",
+      "limit": 0.0002,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "100 unchanged Gaussian/PW energy basis-gth-qzv3p",
+      "value": 7.395629375217538e-05,
+      "operator": "<=",
+      "limit": 0.0002,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "100 unchanged Gaussian/PW force basis-k2-gth-qzv3p",
+      "value": 7.538249895754426e-05,
+      "operator": "<=",
+      "limit": 0.0002,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "100 unchanged Gaussian/PW energy basis-k2-gth-qzv3p",
+      "value": 0.00017168416810697806,
+      "operator": "<=",
+      "limit": 0.0002,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "101 Hermiticity 0",
+      "value": 3.58464566598299e-18,
+      "operator": "<=",
+      "limit": 1e-13,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "101 residual 0",
+      "value": 2.751670084160633e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "101 independent cubic 0",
+      "value": 2.7755575615628914e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "101 fixed-case cubic clamp activation 0",
+      "value": 0.0,
+      "operator": "<=",
+      "limit": 0,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "101 Hermiticity 1",
+      "value": 3.58464566598299e-18,
+      "operator": "<=",
+      "limit": 1e-13,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "101 residual 1",
+      "value": 2.7503882064100795e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "101 independent cubic 1",
+      "value": 2.7755575615628914e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "101 fixed-case cubic clamp activation 1",
+      "value": 0.0,
+      "operator": "<=",
+      "limit": 0,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "101 fixed electron number",
+      "value": 6.661338147750939e-16,
+      "operator": "<=",
+      "limit": 1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "101 lower occupation",
+      "value": 4.6784131873466673e-05,
+      "operator": ">=",
+      "limit": 0,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "101 upper occupation",
+      "value": 1.4444120001743874,
+      "operator": "<=",
+      "limit": 2,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "101 nonnegative entropy",
+      "value": 1.4360712457901055,
+      "operator": ">=",
+      "limit": -1e-12,
+      "passed": true,
+      "kind": "required"
+    },
+    {
+      "name": "101 finest free-energy force difference",
+      "value": 1.721169318180671e-10,
+      "operator": "<=",
+      "limit": 1e-07,
+      "passed": true,
+      "kind": "accuracy_goal"
+    }
+  ],
+  "elapsed_seconds": 0.770394333,
+  "new_models": 6,
+  "saved_reference_only_sequences": [
+    96,
+    100
+  ],
+  "new_trajectories": 8,
+  "quantum97_API_calls": 8,
+  "original_heavy_tails_completed": false,
+  "scope": "Small educational representatives plus immutable saved-reference audits; see cards.json for explicit method boundaries."
+}

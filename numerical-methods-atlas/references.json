@@ -311,7 +311,7 @@
     "pages": "325--348",
     "doi": "10.1016/0021-9991(87)90140-9",
     "source": "https://web.stanford.edu/class/cme324/classics/greengard-rokhlin.pdf",
-    "note": "Original paper hosted by a university course. FMM reading reference; multipole-to-local translations and an FMM solver are not implemented here."
+    "note": "The original university-hosted paper remains the FMM reading source. The Atlas now has limited educational 2D logarithmic FMM with M2L and 3D inverse-r multipole/local examples, each with its own fixed inputs, direct-sum comparisons and convergence limits. These implementations do not reproduce every kernel, algorithm, performance result or accuracy claim of the 1987 paper; no new full-paper reading is claimed by this metadata correction."
   },
   {
     "id": "turkel1987",

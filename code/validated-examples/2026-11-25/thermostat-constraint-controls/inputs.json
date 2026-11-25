@@ -1,0 +1,279 @@
+{
+  "schema_version": 1,
+  "edition": "2026-11-25",
+  "arithmetic": "IEEEbinary64 physicalarrays; directedDecimal80/120 finite-law intervaloracles",
+  "numpy_version": "2.0.2",
+  "reference_integrators": {
+    "driver": "authored embedded5(4),localestimates,landonallrequestedtimes,nodenseoutput,nocachedsuccess",
+    "DP54": "Dormand–Prince rational tableau",
+    "CK54": "Cash–Karp rational tableau; HHcompaniononly"
+  },
+  "execution_policy": {
+    "shared_pytest_plus_main_seconds": 120,
+    "fixed_inputs_only": true,
+    "threads": 1,
+    "reference_and_primary_own_cap_failures_retained": true,
+    "no_clipping_or_seed_selection": true,
+    "owned_main_budget_seconds": 115,
+    "budget_scope": "115sownedmaincapinsideunchanged120ssharedpytest+main;pre-executionoperationaltighteningforstartup/tests/checkpointreserve;externalSIGKILLcannotflushunreturnedstate"
+  },
+  "case_ids": [
+    "deterministic-thermostat-contrasts",
+    "projected-canonical-dof"
+  ],
+  "group": "thermostat-constraint-controls",
+  "sequences": [
+    93,
+    94
+  ],
+  "deterministic": {
+    "f": 2,
+    "masses": [
+      1,
+      1
+    ],
+    "kB_T": 1,
+    "frequencies": [
+      1,
+      1.7
+    ],
+    "kappas": [
+      0,
+      0.2
+    ],
+    "taus": [
+      0.25,
+      1
+    ],
+    "h": [
+      0.1,
+      0.05
+    ],
+    "methods": [
+      "NH",
+      "NHC3",
+      "Berendsen",
+      "rescale"
+    ],
+    "canonical_replicas": 256,
+    "heated_replicas": 128,
+    "heated_p_scale": 1.4,
+    "seed_per_potential": [
+      93001,
+      93002
+    ],
+    "T": 24,
+    "observation": 20,
+    "snapshots": [
+      0,
+      20,
+      20.5,
+      21,
+      22,
+      24
+    ],
+    "outer": "O(h/2)-velocityVerlet(h)-O(h/2)",
+    "bath": "EachOhas2subcyclesd=h/4;E(d/2)B_M(d/2)..B1(d/2)A(d)B1(d/2)..B_M(d/2)E(d/2);etaonlyinE",
+    "Q": "Q1=2tau²,Qj=tau²;notGROMACSperiodconvention",
+    "Hext": "H+sumQxi²/2+2eta1+sumj>=2eta_j",
+    "phi1": {
+      "small_threshold": 1e-05,
+      "small_polynomial_degree": 6,
+      "otherwise": "expm1(z)/z",
+      "zero": 1
+    },
+    "short": {
+      "T": 1,
+      "tau": 1,
+      "q0": [
+        0.3,
+        -0.4
+      ],
+      "p0": [
+        0.5,
+        -0.2
+      ],
+      "xi0": [
+        0.1,
+        -0.05,
+        0.02
+      ],
+      "eta0": 0,
+      "h_denominators": [
+        512,
+        1024
+      ],
+      "snapshots": "k/16,k0..16",
+      "primary_evolutions": 8,
+      "reference_solves": 8,
+      "reference_tolerances": [
+        [
+          2e-11,
+          2e-13
+        ],
+        [
+          2e-13,
+          2e-15
+        ]
+      ],
+      "reference_RHS_cap_each": 5000,
+      "norm": "maxallq,p,xi,eta/times abs(error)/(1+abs(reference))"
+    },
+    "static_reference": {
+      "quadratures": [
+        128,
+        256
+      ],
+      "integration_truncation": "10/omega",
+      "quartic_H_CDF": "turningpointsandx=Xsin(theta),y=Ysin(phi),fixedGaussLegendreonpositivequadrant",
+      "q_CDF_points": [
+        -2,
+        -1,
+        0,
+        1,
+        2
+      ],
+      "K_H_CDF_points": [
+        0.5,
+        1,
+        2,
+        4,
+        6
+      ]
+    },
+    "statistical_families": 256,
+    "DKW_delta": 0.0001953125,
+    "mean_goal_norm": "maxq1/q2/K/H abs(samplemean-target)/(1+abs(target))",
+    "variance_goal_norm": "maxrelativeunbiasedvarianceerrorq1/q2/K/H",
+    "canonical_init_draw_order": "384x2normalq+384x2uniform;increasingrejectedindicesnormal/uniformrounds;then384x2normalp;then384x3bathnormal;onlylast128pmultiplied1.4",
+    "proposal_cap": 100000,
+    "zero_state_nonergodicity": "Limitedinvariantsubsetonly;nogenericmixingclaim",
+    "old_CSVR_Langevin": "Linkexistingtwo-modepacketonly;notnewexecutioncredit"
+  },
+  "constraints": {
+    "masses": [
+      1,
+      2,
+      3
+    ],
+    "spatial_dimensions": 1,
+    "C_rows": [
+      [],
+      [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      [
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          -1,
+          0
+        ]
+      ],
+      [
+        [
+          1,
+          2,
+          3
+        ],
+        [
+          1,
+          -1,
+          0
+        ],
+        [
+          2,
+          -2,
+          0
+        ]
+      ]
+    ],
+    "f": [
+      3,
+      2,
+      1,
+      1
+    ],
+    "ambient_potential_D": [
+      1,
+      1.7,
+      1.3
+    ],
+    "common_potential": ".5q^TMD²q;Kred=Q^TD²Q",
+    "basis_orientation": "COMa=(sqrt(2/3),-1/sqrt3,0),b=(1/sqrt6,1/sqrt3,-1/sqrt2);COM[a,b],relative/redundant[b]",
+    "canonical_map": "q=M^-1/2Qr;p=M^1/2Qs;r=L^-Tzq,Kred=LL^T;positiveCholeskydiagonal",
+    "h": [
+      0.1,
+      0.05
+    ],
+    "T": 4,
+    "snapshots": [
+      0,
+      0.5,
+      1,
+      2,
+      4
+    ],
+    "replicas": 1024,
+    "methods": [
+      "Langevin",
+      "CSVR"
+    ],
+    "gamma": 1,
+    "csvr_tau": 0.5,
+    "initial_seeds": [
+      94001,
+      94002,
+      94003,
+      94004
+    ],
+    "bath_entropy": "[94000,config_index,bathcode0Langevin1CSVR,hcode0for.1/1for.05]",
+    "draw_order": "initallzqthenallzp;eachstepfirsthalfbaththenVVthensecondhalf;Langevin1024xf_normals;CSVR1024scalar_normals,then1024chi2(f-1)iff_f>1",
+    "h0": "ownedcopy,noRNG;positive-timezeroKandf0rejectbeforedraws",
+    "normal_counts": {
+      "initial": 14336,
+      "Langevin": 1720320,
+      "CSVR": 983040,
+      "CSVR_chi_square_variates": 491520
+    },
+    "matrix_reference_counts": {
+      "unique_continuous_exponentials": 20,
+      "transient_discrete_covariances": 40,
+      "stationary_Lyapunov": 8
+    },
+    "OBABO": "Oh=diag(I,exp(-h/2)I),B=diag(0,(1-exp(-h))I),Dh=OhVhOh,Qh=(OhVh)B(OhVh)^T+B;SnstartsfromcanonicalS0;Shisaseparatestationarydiagnostic",
+    "CDF_families": 220,
+    "DKW_delta": 0.00022727272727272727,
+    "s_CDF_points": [
+      -2,
+      -1,
+      0,
+      1,
+      2
+    ],
+    "K_CDF_points": [
+      0.25,
+      0.5,
+      1,
+      2,
+      4
+    ],
+    "finite_K_CDF_reference": "Gaussianellipsoidalradiusangularaverage,128/256companion;f1/2/3closedradialchiCDF",
+    "positive_projection_identity": "P(az+sigma*xi)=a*z+sigma*Pxi=Q(a*s+sigma*Q^Txi)forPz=z",
+    "wrong_DOF_negative": "Ambientf3CSVRradialrescalingontangentf1wrongconditionalKlaw;NOTprojectedisotropicOU",
+    "statistics": "Signedrawandcenteredtwotimeproducts,individualvariances,empiricalproductSE;LangevinactualS0transientvscontinuousvsstationaryShseparate;CSVRdynamicalACFempirical"
+  },
+  "correlation_resolution": {
+    "variance_floor": "(64*binary64eps*max(1,RMS(values)))^2",
+    "classification": "zero_variance/roundoff_limited_variance=>NULLcorrelation;actualvariance/floorretained",
+    "scope": "Heuristicnumericalresolution,notphysicalmixingthreshold;alloriginaldistribution/mean/variancegoalsunchanged"
+  }
+}

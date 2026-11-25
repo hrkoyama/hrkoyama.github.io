@@ -1,0 +1,484 @@
+{
+  "schema_version": 1,
+  "edition": "2026-11-25",
+  "arithmetic": "IEEEbinary64 physicalarrays; directedDecimal80/120 finite-law intervaloracles",
+  "numpy_version": "2.0.2",
+  "reference_integrators": {
+    "driver": "authored embedded5(4),localestimates,landonallrequestedtimes,nodenseoutput,nocachedsuccess",
+    "DP54": "Dormand–Prince rational tableau",
+    "CK54": "Cash–Karp rational tableau; HHcompaniononly"
+  },
+  "execution_policy": {
+    "shared_pytest_plus_main_seconds": 120,
+    "fixed_inputs_only": true,
+    "threads": 1,
+    "reference_and_primary_own_cap_failures_retained": true,
+    "no_clipping_or_seed_selection": true,
+    "owned_main_budget_seconds": 115,
+    "budget_scope": "115sownedmaincapinsideunchanged120ssharedpytest+main;pre-executionoperationaltighteningforstartup/tests/checkpointreserve;externalSIGKILLcannotflushunreturnedstate"
+  },
+  "case_ids": [
+    "fisher-kpp-special-front",
+    "schnakenberg-2d-boundary-modes",
+    "keller-segel-forced-flux"
+  ],
+  "group": "biology-space-controls",
+  "sequences": [
+    90,
+    91,
+    92
+  ],
+  "Fisher": {
+    "D": 1,
+    "r": 1,
+    "x0": 0,
+    "T": 1,
+    "profile": "[1+exp((x-c*t)/sqrt(6))]^-2",
+    "special_speed": "5/sqrt(6)",
+    "minimum_linear_speed": 2,
+    "primary_rows": [
+      {
+        "id": "fisher-space-1-2",
+        "sequence": 90,
+        "domain": [
+          -12,
+          12
+        ],
+        "h": "1/2",
+        "steps": 80,
+        "boundary": "exact-time-dependent-U"
+      },
+      {
+        "id": "fisher-space-1-4",
+        "sequence": 90,
+        "domain": [
+          -12,
+          12
+        ],
+        "h": "1/4",
+        "steps": 320,
+        "boundary": "exact-time-dependent-U"
+      },
+      {
+        "id": "fisher-space-1-8",
+        "sequence": 90,
+        "domain": [
+          -12,
+          12
+        ],
+        "h": "1/8",
+        "steps": 1280,
+        "boundary": "exact-time-dependent-U"
+      },
+      {
+        "id": "fisher-time-1-100",
+        "sequence": 90,
+        "domain": [
+          -12,
+          12
+        ],
+        "h": "1/4",
+        "steps": 100,
+        "boundary": "exact-time-dependent-U"
+      },
+      {
+        "id": "fisher-time-1-200",
+        "sequence": 90,
+        "domain": [
+          -12,
+          12
+        ],
+        "h": "1/4",
+        "steps": 200,
+        "boundary": "exact-time-dependent-U"
+      },
+      {
+        "id": "fisher-time-1-400",
+        "sequence": 90,
+        "domain": [
+          -12,
+          12
+        ],
+        "h": "1/4",
+        "steps": 400,
+        "boundary": "exact-time-dependent-U"
+      },
+      {
+        "id": "fisher-boundary-L6",
+        "sequence": 90,
+        "domain": [
+          -6,
+          6
+        ],
+        "h": "1/8",
+        "steps": 1280,
+        "boundary": "constant1/0"
+      },
+      {
+        "id": "fisher-boundary-L12",
+        "sequence": 90,
+        "domain": [
+          -12,
+          12
+        ],
+        "h": "1/8",
+        "steps": 1280,
+        "boundary": "constant1/0"
+      },
+      {
+        "id": "fisher-boundary-L24",
+        "sequence": 90,
+        "domain": [
+          -24,
+          24
+        ],
+        "h": "1/8",
+        "steps": 1280,
+        "boundary": "constant1/0"
+      }
+    ],
+    "stage_times_SSPRK3": [
+      0,
+      1,
+      0.5
+    ],
+    "reference_same_MOL_h": 0.25,
+    "reference_interior_nodes": 95,
+    "reference_tolerances": [
+      [
+        1e-11,
+        1e-13
+      ],
+      [
+        1e-13,
+        1e-15
+      ]
+    ],
+    "reference_sample_times": "k/400,k0..400",
+    "reference_RHS_cap_each": 20000,
+    "boundary_barrier": "Real-arithmeticL12vsL24constant-enddiscretebarrier2exp(sigma-18)<1e-4on|x|<=3;notfloating-pointcertificate"
+  },
+  "Schnakenberg": {
+    "equations": [
+      "u_t=.01Lap(u)+.1-u+u*u*v",
+      "v_t=Lap(v)+.9-u*u*v"
+    ],
+    "domain": [
+      0,
+      "2pi",
+      0,
+      "2pi"
+    ],
+    "T": 2,
+    "snapshots": [
+      0,
+      0.5,
+      1,
+      2
+    ],
+    "cell_grids": [
+      12,
+      24,
+      48
+    ],
+    "primary_dt": "1/800",
+    "additional_time_rows": [
+      {
+        "IC": "N-mixed",
+        "N": 48,
+        "dt": "1/200"
+      },
+      {
+        "IC": "N-mixed",
+        "N": 48,
+        "dt": "1/400"
+      }
+    ],
+    "ICs": {
+      "N-mode42": ".02/-.006*cos(4*pi*x/L)*cos(2*pi*y/L)",
+      "N-mixed": ".02/-.006*[cos(2*pi*x/L)*cos(4*pi*y/L)+.5*cos(3*pi*x/L)*cos(pi*y/L)]",
+      "D-mode42": ".02/-.006*sin(4*pi*x/L)*sin(2*pi*y/L)"
+    },
+    "IC_interpretation": "exactcellaveragesofpointprofiles,frequencym*pi*x/L",
+    "boundary": "Neumannzeronormalfaceflux;equilibriumDirichletdeviationghost=-cell;onefaceowner,cornersowntwodistinctfaces",
+    "primary_scheme": "CNdiffusion(dt/2),implicitmidpointreaction(dt),CNdiffusion(dt/2);reactionNewtoncap12,residual1e-13",
+    "reference_rows": [
+      {
+        "K": 12,
+        "Q": 96,
+        "rtol": 1e-10,
+        "atol": 1e-12
+      },
+      {
+        "K": 18,
+        "Q": 96,
+        "rtol": 1e-10,
+        "atol": 1e-12
+      },
+      {
+        "K": 18,
+        "Q": 192,
+        "rtol": 1e-10,
+        "atol": 1e-12
+      },
+      {
+        "K": 18,
+        "Q": 192,
+        "rtol": 1e-12,
+        "atol": 1e-14
+      }
+    ],
+    "reference_rows_per_IC": 4,
+    "reference_RHS_cap_each": 4000,
+    "basis": "orthonormaltensor,Neumannm0..K-1phi0=1/sqrtL,phim=sqrt(2/L)cos;Dirichletm1..Ksqrt(2/L)sin;lexicographicm,n;cellaverages=phicenters*sinc(m/(2N))",
+    "reference_differences": "maxbothfields/all4times/all3cellgrids;DeltaKrows0/1,DeltaQ1/2,Deltatol2/3",
+    "time_indicator": "sameN48coarse-mediumandmedium-finedifferences;finesttimeindicator=difference/3isaRichardsonindicator,notbound",
+    "linear_actions": 54,
+    "closed_and_independent_matrix_actions": 216,
+    "reference_rows_scope": "Original4rowsforeachICarealwaysrunandretained;D-onlycontrolledfinerextensionadds4rows;other8Nreferenceactionsunchanged.",
+    "Dirichlet_extension_reference_rows": 4,
+    "total_nonlinear_reference_solves": 16,
+    "Dirichlet_effective_accuracy_reference": "ONLYtheK32/Q192/tightreferenceafterall3newK/Q/tolsensitivitygatesqualify;sameabsolute2e-4andrelative.1*NEWfineprimarydiscrepancy;nofallbacktounqualifiedlegacyK18.",
+    "legacy_reference_history": "OriginalD4rowsandfirstfrozenFAILretainedexplicitly;source-reading.json#/prior_reference_qualification documentsactualR4evidence. Newprotocolisareference-resolutionextension,notanoldprotocolPASS."
+  },
+  "Schnakenberg_reference_rows": [
+    {
+      "K": 12,
+      "Q": 96,
+      "rtol": 1e-10,
+      "atol": 1e-12
+    },
+    {
+      "K": 18,
+      "Q": 96,
+      "rtol": 1e-10,
+      "atol": 1e-12
+    },
+    {
+      "K": 18,
+      "Q": 192,
+      "rtol": 1e-10,
+      "atol": 1e-12
+    },
+    {
+      "K": 18,
+      "Q": 192,
+      "rtol": 1e-12,
+      "atol": 1e-14
+    }
+  ],
+  "KS": {
+    "N_space": [
+      12,
+      24,
+      48
+    ],
+    "space_steps": 1024,
+    "N_time": 24,
+    "time_steps": [
+      64,
+      128,
+      256
+    ],
+    "halfdt_control": {
+      "N": 48,
+      "steps": 2048
+    },
+    "constant_unforced_control": {
+      "N": 24,
+      "steps": 256
+    },
+    "T": 0.25,
+    "domain": [
+      0,
+      1,
+      0,
+      1
+    ],
+    "parameters": {
+      "Dn": 0.02,
+      "Dc": 0.1,
+      "chi": 0.2,
+      "r": 0.1,
+      "tau": 1,
+      "alpha": 1,
+      "lambda": 1
+    },
+    "exact": [
+      "1+.1exp(-t)cos(pi*x)cos(pi*y)",
+      "1+.05exp(-2t)cos(pi*x)cos(2pi*y)"
+    ],
+    "velocity_streamfunction": "sin(pi*x)sin(pi*y)/pi;cornerdifferences;boundarypsiexactzero",
+    "flux": "J=w*avg(n)-Dn*gradn+chi*avg(n)*gradc;externalnormalflux0;nocornerduplication",
+    "source": "closedcellaverageexpandedtrigonometricpolynomial;independentunexpandedproductintegrals",
+    "stage_times": [
+      0,
+      1,
+      0.5
+    ],
+    "ledger_weights": [
+      "1/6",
+      "1/6",
+      "2/3"
+    ],
+    "source_probes": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        0,
+        0.25
+      ],
+      [
+        1,
+        0.75
+      ],
+      [
+        0.25,
+        0
+      ],
+      [
+        0.75,
+        1
+      ],
+      [
+        0.25,
+        0.25
+      ],
+      [
+        0.25,
+        0.5
+      ],
+      [
+        0.5,
+        0.25
+      ],
+      [
+        0.75,
+        0.625
+      ]
+    ],
+    "probe_times": [
+      0,
+      0.125,
+      0.25
+    ],
+    "wholegrid_reference_N": 4,
+    "wholegrid_reference_states": [
+      "exactMMS",
+      "constantones"
+    ],
+    "same_MOL_reference": {
+      "N": 24,
+      "method": "DP54",
+      "tolerances": [
+        [
+          2e-10,
+          1e-12
+        ],
+        [
+          5e-12,
+          2e-14
+        ]
+      ],
+      "RHS_cap_each": 4000,
+      "sample_times": "k/256,k0..64",
+      "RHS": "independentscalarfaceownershipandindependentanalyticcellsource"
+    },
+    "source_integral_zero_frequency": "mean cos0=1; cosacosb=.5(cos(a-b)+cos(a+b)); sinasinb=.5(cos(a-b)-cos(a+b))"
+  },
+  "KS_source_probes": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      0,
+      0.25
+    ],
+    [
+      1,
+      0.75
+    ],
+    [
+      0.25,
+      0
+    ],
+    [
+      0.75,
+      1
+    ],
+    [
+      0.25,
+      0.25
+    ],
+    [
+      0.25,
+      0.5
+    ],
+    [
+      0.5,
+      0.25
+    ],
+    [
+      0.75,
+      0.625
+    ]
+  ],
+  "KS_probe_times": [
+    0,
+    0.125,
+    0.25
+  ],
+  "Schnakenberg_D_reference_extension_rows": [
+    {
+      "K": 24,
+      "Q": 128,
+      "rtol": 1e-10,
+      "atol": 1e-12
+    },
+    {
+      "K": 32,
+      "Q": 128,
+      "rtol": 1e-10,
+      "atol": 1e-12
+    },
+    {
+      "K": 32,
+      "Q": 192,
+      "rtol": 1e-10,
+      "atol": 1e-12
+    },
+    {
+      "K": 32,
+      "Q": 192,
+      "rtol": 1e-12,
+      "atol": 1e-14
+    }
+  ]
+}

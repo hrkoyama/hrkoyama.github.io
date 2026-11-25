@@ -122,6 +122,9 @@ def load_problem_links(root=ROOT):
     extra_source = 'catalog/atlas-reference-supplements.json'
     if (root/extra_source).is_file() and solutions.get('supplements_source_sha256') != receipts[extra_source]:
         raise ValueError('Refresh supplementary reference cards before problem links')
+    annotation_source = 'catalog/atlas-reference-metadata.json'
+    if (root/annotation_source).is_file() and solutions.get('metadata_source_sha256') != receipts[annotation_source]:
+        raise ValueError('Refresh annotated reference metadata before problem links')
     problems = {row['id']: row for row in inventory['problems']}
     visuals = {row['id']: row for row in gallery['items']}
     methods = {row['id']: row for row in methods_data['methods']}

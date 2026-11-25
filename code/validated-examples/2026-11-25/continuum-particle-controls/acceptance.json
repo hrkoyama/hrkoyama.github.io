@@ -1,0 +1,95 @@
+{
+  "policy": "Independentreview of inputs/reference/acceptance/source before anynumerical call. Failing result is preserved, neither thresholds nor references silentlychanged. Actual timings and decisions are recorded in execution and verification receipts.",
+  "all_cases": {
+    "finite_values": true,
+    "no_floor_clipping_repair": true,
+    "same_fixed_input_all_refinements": true,
+    "max_step_nonconvergence": "hardFAILwithreason",
+    "all_plots_from_saved_arrays": true
+  },
+  "saltzman-ale-piston": {
+    "positive_rho_p_area_every_step": true,
+    "mass_relative_defect_max": 1e-10,
+    "momentum_boundary_impulse_relative_defect_max": 1e-10,
+    "energy_boundary_work_relative_defect_max": 1e-10,
+    "local_GCL_absolute_max": 1e-12,
+    "finest_density_volume_L1_relative_max": 0.35,
+    "fine_over_coarse_density_error_max": 0.95,
+    "finest_shock_position_absolute_max": 0.04,
+    "plateau_density_pressure_relative_max": 0.15,
+    "max_transverse_velocity": 0.15,
+    "no_smooth_secondorder_requirement_at_shock": true
+  },
+  "williamson-sphere-transport": {
+    "return_relative_L1_fine_max": 0.65,
+    "fine_over_coarse_relative_L1_max": 0.95,
+    "mass_drift_fraction_fine_max": 0.25,
+    "minimum_q": -1e-13,
+    "maximum_q": 1.0000000000001,
+    "rotation_inverse_point_error_max": 1e-12,
+    "weights_sum_error_max": 1e-12,
+    "poles_and_two_tilts_required": true,
+    "not_a_conservative_or_fullSWE_claim": true
+  },
+  "sphere-zonal-balance": {
+    "analytic_force_balance_abs_max": 1e-12,
+    "finite_difference_balance_refinement_min": 3.0,
+    "finest_h_relative_error_max": 0.001,
+    "fine_over_coarse_h_error_max": 0.4,
+    "mass_relative_defect_max": 1e-10,
+    "positive_h_all_steps": true
+  },
+  "gsph-sod": {
+    "closed_periodic_mass_relative_max": 1e-12,
+    "closed_periodic_momentum_abs_max": 1e-10,
+    "closed_periodic_total_energy_relative_max": 1e-10,
+    "h_fixed_point_relative_max": 1e-10,
+    "all_internal_energy_pressure_density_positive": true,
+    "Riemann_wave_residual_abs_max": 1e-09,
+    "fine_particle_weighted_rho_L1_relative_max": 0.25,
+    "fine_particle_weighted_pressure_L1_relative_max": 0.25,
+    "fine_over_coarse_rho_error_max": 0.98,
+    "shock_position_abs_max": 0.05,
+    "pair_swap_force_and_energy_abs_max": 1e-12,
+    "smoothing_length_must_change": true,
+    "not_claim_paper_cubic_MUSCL_reproduction": true
+  },
+  "sph-pressure-acoustics": {
+    "uniform_regular_force_abs_max": 1e-10,
+    "jittered_uniform_pressure_velocity_max": 0.05,
+    "conservation_limits_same_as_Sod": true,
+    "acoustic_relative_phase_error_fine_max": 0.08,
+    "acoustic_relative_amplitude_error_fine_max": 0.12,
+    "initial_kernel_error_and_nonlinear_remainder_reported": true,
+    "regular_and_jittered_both_required": true,
+    "comparison_order_not_assumed": "RecordSPH/GSPH perturbations even if oneisworse; do notassert universalGSPH superiority."
+  },
+  "negative_component_controls": {
+    "wrong_GCL_face_velocity_sign": {
+      "test": "test_GCL_and_wrong_face_velocity_sign",
+      "oracle": "Endpoint polygonarea change independently compared with sweptfacevolume; negate meshvelocity flux only.",
+      "correct_abs_max": 1e-12,
+      "mutant_residual_min": 1e-05
+    },
+    "omitted_movingwall_work": {
+      "test": "test_moving_wall_mass_work_and_omitted_work_control",
+      "oracle": "Independent impermeable movingwall identity Fmass=0, FE=wall_velocity dot Fmomentum. A ledger claimingzerowork must fail.",
+      "correct_abs_max": 1e-12,
+      "mutant_work_residual_min": 0.001
+    },
+    "wrong_GSPH_pair_energy_sign": {
+      "test": "test_pair_energy_sign_and_deliberate_wrong_sign",
+      "oracle": "Closed-system energy checker applied to actualscatter_pairs and deliberatewrong positivej energy. Unequalmasses avoid cancellinga wrongweight.",
+      "correct_abs_max": 1e-12,
+      "mutant_must_raise": "ContractFailure"
+    },
+    "wrong_sphere_backward_direction_and_pole_ghost": {
+      "tests": [
+        "test_rotation_velocity_convention_backward_inverse_and_wrong_direction",
+        "test_pole_ghost_requires_longitude_halfturn"
+      ],
+      "correct_abs_max": 1e-12,
+      "mutants_must_be_detected": true
+    }
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "car-parrinello1985",
+      "title": "Unified Approach for Molecular Dynamics and Density-Functional Theory",
+      "authors": "R. Car and M. Parrinello",
+      "year": 1985,
+      "doi": "10.1103/PhysRevLett.55.2471",
+      "url": "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.55.2471",
+      "read_scope": "Publisher title/authors/date/DOI and abstract only. Full PDF/equations not read; this is not a reproduction of the silicon calculation.",
+      "accessed_on_utc": "2026-11-25",
+      "year_role": "original publication year"
+    },
+    {
+      "id": "qe-cp-guide",
+      "title": "Quantum ESPRESSO cp.x input description",
+      "year": null,
+      "version": "live official7.5 documentation, not a numerical package used here",
+      "url": "https://www.quantum-espresso.org/Doc/INPUT_CP.html",
+      "read_scope": "Selected emass/orthogonalization and CP context. Its physical mass conventions are not silently assigned to the authored dimensionless angle mass.",
+      "accessed_on_utc": "2026-11-25",
+      "year_role": "n.d.; actual access date, not fabricated publication date"
+    },
+    {
+      "id": "numpy-eigh20",
+      "title": "NumPy2.0 numpy.linalg.eigh",
+      "year": null,
+      "version": "2.0 docs; available package root reports2.0.2",
+      "url": "https://numpy.org/doc/2.0/reference/generated/numpy.linalg.eigh.html",
+      "read_scope": "Signature, Hermitian lower-triangle handling, all ascending eigenvalues/normalized columns, LinAlgError and LAPACK syevd/heevd notes.",
+      "accessed_on_utc": "2026-11-25",
+      "year_role": "n.d.; actual access date, not fabricated publication date"
+    },
+    {
+      "id": "dlmf1839",
+      "title": "NIST DLMF18.39 Applications in the Physical Sciences",
+      "year": null,
+      "url": "https://dlmf.nist.gov/18.39",
+      "read_scope": "Earlier same-session R3 selected E7–8,E13–15,E24–35; oscillator/Coulomb normalization and measure. Full chapter/books not audited.",
+      "accessed_on_utc": "2026-11-25",
+      "year_role": "n.d.; actual access date, not fabricated publication date"
+    },
+    {
+      "id": "pyscf-scf",
+      "title": "PySCF Self-consistent field methods",
+      "year": null,
+      "url": "https://pyscf.org/user/scf.html",
+      "read_scope": "FC=SCe, mean-field orbital/determinant ansatz, stability vs stationarity, RHF/UHF spin symmetry and overlap orthogonalization selected passages. No PySCF execution.",
+      "accessed_on_utc": "2026-11-25",
+      "year_role": "n.d.; actual access date, not fabricated publication date"
+    },
+    {
+      "id": "pyscf-fci",
+      "title": "PySCF Configuration interaction (CISD and FCI)",
+      "year": null,
+      "url": "https://pyscf.org/user/ci.html",
+      "read_scope": "Introduction and FCI/spin-sector examples: all determinants within a finite symmetry sector, diagonalization, Nalpha/Nbeta. Not full chapter or full package source.",
+      "accessed_on_utc": "2026-11-25",
+      "year_role": "n.d.; actual access date, not fabricated publication date"
+    },
+    {
+      "id": "pyscf-mp2",
+      "title": "PySCF Second-order Moller-Plesset perturbation theory",
+      "year": null,
+      "url": "https://pyscf.org/user/mp.html",
+      "read_scope": "Introduction/total vs correlation energy/spin symmetry selected passages.",
+      "accessed_on_utc": "2026-11-25",
+      "year_role": "n.d.; actual access date, not fabricated publication date"
+    },
+    {
+      "id": "pyscf-mp2-kernel",
+      "title": "PySCF official mp2 module source",
+      "year": null,
+      "url": "https://pyscf.org/_modules/pyscf/mp/mp2.html",
+      "read_scope": "Selected kernel lines53–87 and energy lines167–178: canonical occupied/virtual denominators and direct/exchange contractions. Source read for convention; code not copied into this packet and no fresh PySCF reference.",
+      "accessed_on_utc": "2026-11-25",
+      "year_role": "n.d.; actual access date, not fabricated publication date"
+    },
+    {
+      "id": "dftk-periodic",
+      "title": "DFTK periodic problems and plane-wave discretisations",
+      "year": null,
+      "url": "https://docs.dftk.org/stable/guide/periodic_problems/",
+      "read_scope": "Selected displayed Bloch/periodic operator/plane-wave basis context; no material calculations reproduced.",
+      "accessed_on_utc": "2026-11-25",
+      "year_role": "n.d.; actual access date, not fabricated publication date"
+    },
+    {
+      "id": "dftk-pseudo",
+      "title": "DFTK Pseudopotentials",
+      "year": null,
+      "url": "https://docs.dftk.org/stable/examples/pseudopotentials/",
+      "read_scope": "Official separable Kleinman-Bylander/norm-conserving/GTH formats and approximation limits introduction. Our rank-one kernel is authored and is not an element-fitted norm-conserving potential.",
+      "accessed_on_utc": "2026-11-25",
+      "year_role": "n.d.; actual access date, not fabricated publication date"
+    },
+    {
+      "id": "dftk-metal",
+      "title": "DFTK Temperature and metallic systems",
+      "year": null,
+      "url": "https://docs.dftk.org/stable/examples/metallic_systems/",
+      "read_scope": "Selected Fermi-Dirac smearing temperature, partial occupations, explicit unconverged fast-example warning and energy Entropy term. No magnesium run, no new k/basis/cutoff scans.",
+      "accessed_on_utc": "2026-11-25",
+      "year_role": "n.d.; actual access date, not fabricated publication date"
+    }
+  ],
+  "authored_models": {
+    "95": "Two-state electronic expectation and angle-constraint CP-type Euler-Lagrange equations derived explicitly in THEORY.md; primary paper abstract is historical context, not source of this exact toy model.",
+    "98_99": "Analytic normalized s-Gaussian integral formulas adapted from existing MIT atlas source, same explicit stored H STO-3G values. Added <=3-center/two-electron HF/FCI/MP2 code is original; finite-basis and independent-assembly limits explicit.",
+    "101": "Original finite3-plane-wave local Fourier plus rank-one nonlocal kernel and Fermi free-energy model. Not DFTK/PySCF code or a real-element PSP. The fixed N=1.5 is the mean particle number of independent-particle Fermi occupations, not an integer-particle canonical many-body distribution."
+  },
+  "independence_limits": [
+    "96/100 are immutable saved-data audits, not reexecution or independent new reference generation.",
+    "98 uses only two saved PySCF RHF rows. No saved UHF/FCI values are invented. Analytic two-AO H2 oracles and separate fermion assembly qualify new code.",
+    "99 has no independently regenerated PySCF scalar. It uses analytic primitive identities, H2 cached integral/SCF qualification, independent second-quantized FCI assembly and MP2 determinant perturbation identity. These are distinct from an independent external quantum-chemistry engine.",
+    "95 RK4 companions are a different integrator for the same explicit model; step-sensitivity is not a formal global-error certificate.",
+    "101 cubic spectral oracle and matrix derivatives qualify the finite declared Hamiltonian, not discretization convergence or a real metal."
+  ],
+  "failed_accesses": [
+    {
+      "url": "https://docs.dftk.org/stable/developer/hamiltonian/",
+      "result": "Web tool inaccessible; used official periodic-problems guide and examples instead."
+    }
+  ],
+  "unread": [
+    "Original CPMD PDF/equations, thermostat original papers, full quantum chemistry textbooks, full NumPy/LAPACK algorithm source.",
+    "GTH/VWN original full texts/tables are not newly audited; retain prior source review depth.",
+    "All atlas books/PDF/notebooks not exhaustively searched for duplicate exercises; targeted existing model and backlog sources reviewed."
+  ],
+  "canonical_public_source_bindings": {
+    "https://hrkoyama.github.io/catalog/atlas-benchmark-backlog.json": "bf45371a93d90588a95d5e17258b5cd6d291a12d82706a37aae31a69943cd065",
+    "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/molecular_hf.py": "d8ee4f8b26d99868c025e41f82308886569e864a3a04099966e6b8d3e9ae074d",
+    "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/inputs.json": "28bb38cda99ac89fb43e8dd85f3b38126d7684293c14762debe7b5453fa57daf",
+    "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/reference-pyscf.json": "3649493f9aeca86bcfeb058501f724400e97ad8bf4315c163d3230c70a314e72",
+    "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/basis-provenance.json": "91d738350b74c50ee1f1ec7d674114f56fafe945d5819bd2396288d6f64405c2",
+    "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/atomic_radial.py": "f85eaf72d6ec51d3313a2f87804ddad953ce339b775c6e18d047cccde693cded",
+    "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/reference-pyscf.json": "0fcf5800a54f5429e258e304d58c43214d20f22703625e76d703639ea79c36d9",
+    "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/results/result.json": "dfdb8284a52b5dfb7f4e6acc790b60ff2378068b498d9c27bd4de30984d231a5",
+    "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/reference-dftk.json": "f4beb96c3672066378e34ad756ea9a2b08aab10c5b16aae31537644b23303db7",
+    "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/provenance.json": "4d022b74540c088213981bc6a9443adda08378c1d053735367099129422a5106"
+  },
+  "execution_evidence": "Actual measured execution and public reproduction are recorded separately in verification.json and results/result.json, not inferred from source presence."
+}

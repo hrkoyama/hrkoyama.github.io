@@ -1,0 +1,3778 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "termination": "completed_fixed_protocol",
+  "input_sha256": "96095517a632f1706713360c82ce01c6d4b68682faa96fecae11e46cb87a1b80",
+  "acceptance_sha256": "b2f1727f9f4e70c139af7d38c218608b369625ab8f5896d762b060f88432a117",
+  "runtime": {
+    "python": "3.9.6 (default, Aug 25 2026, 21:26:21) \n[Clang 21.0.0 (clang-2100.3.34.2)]",
+    "numpy": "2.0.2"
+  },
+  "rows": [
+    {
+      "id": "fisher-components",
+      "special_speed": 2.041241452319315,
+      "minimum_linear_speed": 2.0,
+      "same_profile_speed2_not_exact": true,
+      "real_arithmetic_boundary_barrier": "2exp(sigma-18), sigma=1+128(cosh(.25)-1)<6 -> <1e-4",
+      "floating_point_certificate": false,
+      "barrier_scope": "L12vsL24,constantends,|x|<=3,real discrete maximum principle",
+      "data": null
+    },
+    {
+      "id": "fisher-space-0p5",
+      "h": 0.5,
+      "steps": 80,
+      "Linf": 0.00014732589111010608,
+      "quarter_contour": 2.041867208238213,
+      "min": 5.474568235775531e-05,
+      "max": 0.9935521970915635,
+      "Euler_monotonicity_bound": 0.1125,
+      "data": "fisher-space-0p5.npz"
+    },
+    {
+      "id": "fisher-space-0p25",
+      "h": 0.25,
+      "steps": 320,
+      "Linf": 3.685096347005867e-05,
+      "quarter_contour": 2.0417896707895355,
+      "min": 5.474568235775531e-05,
+      "max": 0.9935521970915635,
+      "Euler_monotonicity_bound": 0.10312500000000001,
+      "data": "fisher-space-0p25.npz"
+    },
+    {
+      "id": "fisher-space-0p125",
+      "h": 0.125,
+      "steps": 1280,
+      "Linf": 9.239320837961529e-06,
+      "quarter_contour": 2.041507219886743,
+      "min": 5.474568235775531e-05,
+      "max": 0.9935521970915635,
+      "Euler_monotonicity_bound": 0.10078125,
+      "data": "fisher-space-0p125.npz"
+    },
+    {
+      "id": "fisher-time-reference",
+      "qualified": true,
+      "spread": 2.886579864025407e-15,
+      "solvers": [
+        {
+          "method": "DP54",
+          "accepted": 402,
+          "rejected": 0,
+          "nfev": 2814,
+          "rtol": 1e-11,
+          "atol": 1e-13,
+          "complete": true
+        },
+        {
+          "method": "DP54",
+          "accepted": 561,
+          "rejected": 0,
+          "nfev": 3927,
+          "rtol": 1e-13,
+          "atol": 1e-15,
+          "complete": true
+        }
+      ],
+      "scope": "The SAME95interior-nodeMOL, not continuumexactfront",
+      "data": "fisher-time-reference.npz"
+    },
+    {
+      "id": "fisher-time-100",
+      "steps": 100,
+      "dt": 0.01,
+      "same_MOL_error": 1.3592351688629378e-08,
+      "data": "fisher-time-100.npz"
+    },
+    {
+      "id": "fisher-time-200",
+      "steps": 200,
+      "dt": 0.005,
+      "same_MOL_error": 1.566985097234408e-09,
+      "data": "fisher-time-200.npz"
+    },
+    {
+      "id": "fisher-time-400",
+      "steps": 400,
+      "dt": 0.0025,
+      "same_MOL_error": 1.8780066390888805e-10,
+      "data": "fisher-time-400.npz"
+    },
+    {
+      "id": "fisher-boundary-6",
+      "L": 6,
+      "h": 0.125,
+      "steps": 1280,
+      "core_error": 0.0026663312871475497,
+      "full_error": 0.15263532851013306,
+      "initial_boundary_mismatch": [
+        0.15263532851013306,
+        0.006316414121400317
+      ],
+      "data": "fisher-boundary-6.npz"
+    },
+    {
+      "id": "fisher-boundary-12",
+      "L": 12,
+      "h": 0.125,
+      "steps": 1280,
+      "core_error": 9.239320838239085e-06,
+      "full_error": 0.014743319374636132,
+      "initial_boundary_mismatch": [
+        0.014743319374636132,
+        5.474568235775531e-05
+      ],
+      "data": "fisher-boundary-12.npz"
+    },
+    {
+      "id": "fisher-boundary-24",
+      "L": 24,
+      "h": 0.125,
+      "steps": 1280,
+      "core_error": 9.239320837961529e-06,
+      "full_error": 0.0001111205249660907,
+      "initial_boundary_mismatch": [
+        0.0001111205249660907,
+        3.0871142904547678e-09
+      ],
+      "data": "fisher-boundary-24.npz"
+    },
+    {
+      "id": "schnakenberg-components",
+      "linear_actions": [
+        {
+          "bc": "N",
+          "mode": [
+            1,
+            1
+          ],
+          "N": 12,
+          "time": 0.1,
+          "symbol_error": 3.1086244689504383e-15,
+          "exponential_error": 4.440892098500626e-16
+        },
+        {
+          "bc": "N",
+          "mode": [
+            1,
+            1
+          ],
+          "N": 12,
+          "time": 0.5,
+          "symbol_error": 3.1086244689504383e-15,
+          "exponential_error": 2.6645352591003757e-15
+        },
+        {
+          "bc": "N",
+          "mode": [
+            1,
+            1
+          ],
+          "N": 12,
+          "time": 1.0,
+          "symbol_error": 3.1086244689504383e-15,
+          "exponential_error": 5.995204332975845e-15
+        },
+        {
+          "bc": "N",
+          "mode": [
+            1,
+            1
+          ],
+          "N": 24,
+          "time": 0.1,
+          "symbol_error": 1.1213252548714081e-14,
+          "exponential_error": 2.220446049250313e-16
+        },
+        {
+          "bc": "N",
+          "mode": [
+            1,
+            1
+          ],
+          "N": 24,
+          "time": 0.5,
+          "symbol_error": 1.1213252548714081e-14,
+          "exponential_error": 2.6645352591003757e-15
+        },
+        {
+          "bc": "N",
+          "mode": [
+            1,
+            1
+          ],
+          "N": 24,
+          "time": 1.0,
+          "symbol_error": 1.1213252548714081e-14,
+          "exponential_error": 5.995204332975845e-15
+        },
+        {
+          "bc": "N",
+          "mode": [
+            1,
+            1
+          ],
+          "N": 48,
+          "time": 0.1,
+          "symbol_error": 5.773159728050814e-14,
+          "exponential_error": 4.440892098500626e-16
+        },
+        {
+          "bc": "N",
+          "mode": [
+            1,
+            1
+          ],
+          "N": 48,
+          "time": 0.5,
+          "symbol_error": 5.773159728050814e-14,
+          "exponential_error": 2.6645352591003757e-15
+        },
+        {
+          "bc": "N",
+          "mode": [
+            1,
+            1
+          ],
+          "N": 48,
+          "time": 1.0,
+          "symbol_error": 5.773159728050814e-14,
+          "exponential_error": 5.995204332975845e-15
+        },
+        {
+          "bc": "N",
+          "mode": [
+            4,
+            2
+          ],
+          "N": 12,
+          "time": 0.1,
+          "symbol_error": 5.329070518200751e-15,
+          "exponential_error": 4.440892098500626e-16
+        },
+        {
+          "bc": "N",
+          "mode": [
+            4,
+            2
+          ],
+          "N": 12,
+          "time": 0.5,
+          "symbol_error": 5.329070518200751e-15,
+          "exponential_error": 5.995204332975845e-15
+        },
+        {
+          "bc": "N",
+          "mode": [
+            4,
+            2
+          ],
+          "N": 12,
+          "time": 1.0,
+          "symbol_error": 5.329070518200751e-15,
+          "exponential_error": 1.509903313490213e-14
+        },
+        {
+          "bc": "N",
+          "mode": [
+            4,
+            2
+          ],
+          "N": 24,
+          "time": 0.1,
+          "symbol_error": 2.375877272697835e-14,
+          "exponential_error": 6.661338147750939e-16
+        },
+        {
+          "bc": "N",
+          "mode": [
+            4,
+            2
+          ],
+          "N": 24,
+          "time": 0.5,
+          "symbol_error": 2.375877272697835e-14,
+          "exponential_error": 3.1086244689504383e-15
+        },
+        {
+          "bc": "N",
+          "mode": [
+            4,
+            2
+          ],
+          "N": 24,
+          "time": 1.0,
+          "symbol_error": 2.375877272697835e-14,
+          "exponential_error": 8.43769498715119e-15
+        },
+        {
+          "bc": "N",
+          "mode": [
+            4,
+            2
+          ],
+          "N": 48,
+          "time": 0.1,
+          "symbol_error": 1.8340884366807586e-13,
+          "exponential_error": 4.440892098500626e-16
+        },
+        {
+          "bc": "N",
+          "mode": [
+            4,
+            2
+          ],
+          "N": 48,
+          "time": 0.5,
+          "symbol_error": 1.8340884366807586e-13,
+          "exponential_error": 4.440892098500626e-15
+        },
+        {
+          "bc": "N",
+          "mode": [
+            4,
+            2
+          ],
+          "N": 48,
+          "time": 1.0,
+          "symbol_error": 1.8340884366807586e-13,
+          "exponential_error": 1.199040866595169e-14
+        },
+        {
+          "bc": "N",
+          "mode": [
+            3,
+            1
+          ],
+          "N": 12,
+          "time": 0.1,
+          "symbol_error": 5.773159728050814e-15,
+          "exponential_error": 8.881784197001252e-16
+        },
+        {
+          "bc": "N",
+          "mode": [
+            3,
+            1
+          ],
+          "N": 12,
+          "time": 0.5,
+          "symbol_error": 5.773159728050814e-15,
+          "exponential_error": 6.439293542825908e-15
+        },
+        {
+          "bc": "N",
+          "mode": [
+            3,
+            1
+          ],
+          "N": 12,
+          "time": 1.0,
+          "symbol_error": 5.773159728050814e-15,
+          "exponential_error": 1.5987211554602254e-14
+        },
+        {
+          "bc": "N",
+          "mode": [
+            3,
+            1
+          ],
+          "N": 24,
+          "time": 0.1,
+          "symbol_error": 3.58046925441613e-14,
+          "exponential_error": 6.661338147750939e-16
+        },
+        {
+          "bc": "N",
+          "mode": [
+            3,
+            1
+          ],
+          "N": 24,
+          "time": 0.5,
+          "symbol_error": 3.58046925441613e-14,
+          "exponential_error": 6.439293542825908e-15
+        },
+        {
+          "bc": "N",
+          "mode": [
+            3,
+            1
+          ],
+          "N": 24,
+          "time": 1.0,
+          "symbol_error": 3.58046925441613e-14,
+          "exponential_error": 1.5987211554602254e-14
+        },
+        {
+          "bc": "N",
+          "mode": [
+            3,
+            1
+          ],
+          "N": 48,
+          "time": 0.1,
+          "symbol_error": 1.603162047558726e-13,
+          "exponential_error": 4.440892098500626e-16
+        },
+        {
+          "bc": "N",
+          "mode": [
+            3,
+            1
+          ],
+          "N": 48,
+          "time": 0.5,
+          "symbol_error": 1.603162047558726e-13,
+          "exponential_error": 6.439293542825908e-15
+        },
+        {
+          "bc": "N",
+          "mode": [
+            3,
+            1
+          ],
+          "N": 48,
+          "time": 1.0,
+          "symbol_error": 1.603162047558726e-13,
+          "exponential_error": 1.5987211554602254e-14
+        },
+        {
+          "bc": "D",
+          "mode": [
+            1,
+            1
+          ],
+          "N": 12,
+          "time": 0.1,
+          "symbol_error": 3.733124920302089e-15,
+          "exponential_error": 4.440892098500626e-16
+        },
+        {
+          "bc": "D",
+          "mode": [
+            1,
+            1
+          ],
+          "N": 12,
+          "time": 0.5,
+          "symbol_error": 3.733124920302089e-15,
+          "exponential_error": 2.6645352591003757e-15
+        },
+        {
+          "bc": "D",
+          "mode": [
+            1,
+            1
+          ],
+          "N": 12,
+          "time": 1.0,
+          "symbol_error": 3.733124920302089e-15,
+          "exponential_error": 5.995204332975845e-15
+        },
+        {
+          "bc": "D",
+          "mode": [
+            1,
+            1
+          ],
+          "N": 24,
+          "time": 0.1,
+          "symbol_error": 1.0380585280245214e-14,
+          "exponential_error": 2.220446049250313e-16
+        },
+        {
+          "bc": "D",
+          "mode": [
+            1,
+            1
+          ],
+          "N": 24,
+          "time": 0.5,
+          "symbol_error": 1.0380585280245214e-14,
+          "exponential_error": 2.6645352591003757e-15
+        },
+        {
+          "bc": "D",
+          "mode": [
+            1,
+            1
+          ],
+          "N": 24,
+          "time": 1.0,
+          "symbol_error": 1.0380585280245214e-14,
+          "exponential_error": 5.995204332975845e-15
+        },
+        {
+          "bc": "D",
+          "mode": [
+            1,
+            1
+          ],
+          "N": 48,
+          "time": 0.1,
+          "symbol_error": 5.861977570020827e-14,
+          "exponential_error": 4.440892098500626e-16
+        },
+        {
+          "bc": "D",
+          "mode": [
+            1,
+            1
+          ],
+          "N": 48,
+          "time": 0.5,
+          "symbol_error": 5.861977570020827e-14,
+          "exponential_error": 2.6645352591003757e-15
+        },
+        {
+          "bc": "D",
+          "mode": [
+            1,
+            1
+          ],
+          "N": 48,
+          "time": 1.0,
+          "symbol_error": 5.861977570020827e-14,
+          "exponential_error": 5.995204332975845e-15
+        },
+        {
+          "bc": "D",
+          "mode": [
+            4,
+            2
+          ],
+          "N": 12,
+          "time": 0.1,
+          "symbol_error": 1.1102230246251565e-14,
+          "exponential_error": 4.440892098500626e-16
+        },
+        {
+          "bc": "D",
+          "mode": [
+            4,
+            2
+          ],
+          "N": 12,
+          "time": 0.5,
+          "symbol_error": 1.1102230246251565e-14,
+          "exponential_error": 5.995204332975845e-15
+        },
+        {
+          "bc": "D",
+          "mode": [
+            4,
+            2
+          ],
+          "N": 12,
+          "time": 1.0,
+          "symbol_error": 1.1102230246251565e-14,
+          "exponential_error": 1.509903313490213e-14
+        },
+        {
+          "bc": "D",
+          "mode": [
+            4,
+            2
+          ],
+          "N": 24,
+          "time": 0.1,
+          "symbol_error": 2.353672812205332e-14,
+          "exponential_error": 6.661338147750939e-16
+        },
+        {
+          "bc": "D",
+          "mode": [
+            4,
+            2
+          ],
+          "N": 24,
+          "time": 0.5,
+          "symbol_error": 2.353672812205332e-14,
+          "exponential_error": 3.1086244689504383e-15
+        },
+        {
+          "bc": "D",
+          "mode": [
+            4,
+            2
+          ],
+          "N": 24,
+          "time": 1.0,
+          "symbol_error": 2.353672812205332e-14,
+          "exponential_error": 8.43769498715119e-15
+        },
+        {
+          "bc": "D",
+          "mode": [
+            4,
+            2
+          ],
+          "N": 48,
+          "time": 0.1,
+          "symbol_error": 1.9828583219805296e-13,
+          "exponential_error": 4.440892098500626e-16
+        },
+        {
+          "bc": "D",
+          "mode": [
+            4,
+            2
+          ],
+          "N": 48,
+          "time": 0.5,
+          "symbol_error": 1.9828583219805296e-13,
+          "exponential_error": 4.440892098500626e-15
+        },
+        {
+          "bc": "D",
+          "mode": [
+            4,
+            2
+          ],
+          "N": 48,
+          "time": 1.0,
+          "symbol_error": 1.9828583219805296e-13,
+          "exponential_error": 1.199040866595169e-14
+        },
+        {
+          "bc": "D",
+          "mode": [
+            3,
+            1
+          ],
+          "N": 12,
+          "time": 0.1,
+          "symbol_error": 8.548717289613705e-15,
+          "exponential_error": 8.881784197001252e-16
+        },
+        {
+          "bc": "D",
+          "mode": [
+            3,
+            1
+          ],
+          "N": 12,
+          "time": 0.5,
+          "symbol_error": 8.548717289613705e-15,
+          "exponential_error": 6.439293542825908e-15
+        },
+        {
+          "bc": "D",
+          "mode": [
+            3,
+            1
+          ],
+          "N": 12,
+          "time": 1.0,
+          "symbol_error": 8.548717289613705e-15,
+          "exponential_error": 1.5987211554602254e-14
+        },
+        {
+          "bc": "D",
+          "mode": [
+            3,
+            1
+          ],
+          "N": 24,
+          "time": 0.1,
+          "symbol_error": 2.2593038551121936e-14,
+          "exponential_error": 6.661338147750939e-16
+        },
+        {
+          "bc": "D",
+          "mode": [
+            3,
+            1
+          ],
+          "N": 24,
+          "time": 0.5,
+          "symbol_error": 2.2593038551121936e-14,
+          "exponential_error": 6.439293542825908e-15
+        },
+        {
+          "bc": "D",
+          "mode": [
+            3,
+            1
+          ],
+          "N": 24,
+          "time": 1.0,
+          "symbol_error": 2.2593038551121936e-14,
+          "exponential_error": 1.5987211554602254e-14
+        },
+        {
+          "bc": "D",
+          "mode": [
+            3,
+            1
+          ],
+          "N": 48,
+          "time": 0.1,
+          "symbol_error": 1.63202784619898e-13,
+          "exponential_error": 4.440892098500626e-16
+        },
+        {
+          "bc": "D",
+          "mode": [
+            3,
+            1
+          ],
+          "N": 48,
+          "time": 0.5,
+          "symbol_error": 1.63202784619898e-13,
+          "exponential_error": 6.439293542825908e-15
+        },
+        {
+          "bc": "D",
+          "mode": [
+            3,
+            1
+          ],
+          "N": 48,
+          "time": 1.0,
+          "symbol_error": 1.63202784619898e-13,
+          "exponential_error": 1.5987211554602254e-14
+        }
+      ],
+      "matrix_actions_total": 216,
+      "data": null
+    },
+    {
+      "id": "schnak-N-mode42-N12",
+      "ic": "N-mode42",
+      "N": 12,
+      "steps": 1600,
+      "dt": 0.00125,
+      "minimum": 0.8880521241619382,
+      "max_Newton_residual": 1.1143904267256477e-16,
+      "mass_balance_residual": [
+        1.5122451901827816e-15,
+        -1.1150802503578916e-14
+      ],
+      "mass_scale": [
+        40.48207834452456,
+        36.537342941016455
+      ],
+      "integrated_boundary_flux": [
+        0.0,
+        0.0
+      ],
+      "integrated_reaction": [
+        0.0036607401671331784,
+        -0.006767097094769033
+      ],
+      "data": "schnak-N-mode42-N12.npz"
+    },
+    {
+      "id": "schnak-N-mode42-N24",
+      "ic": "N-mode42",
+      "N": 24,
+      "steps": 1600,
+      "dt": 0.00125,
+      "minimum": 0.8860615561401685,
+      "max_Newton_residual": 1.1143904267256477e-16,
+      "mass_balance_residual": [
+        5.62310614737882e-15,
+        1.42785089307651e-14
+      ],
+      "mass_scale": [
+        40.4828964273337,
+        36.538787010464794
+      ],
+      "integrated_boundary_flux": [
+        0.0,
+        0.0
+      ],
+      "integrated_reaction": [
+        0.004478822976275926,
+        -0.008211166543105787
+      ],
+      "data": "schnak-N-mode42-N24.npz"
+    },
+    {
+      "id": "schnak-N-mode42-N48",
+      "ic": "N-mode42",
+      "N": 48,
+      "steps": 1600,
+      "dt": 0.00125,
+      "minimum": 0.8855372535923153,
+      "max_Newton_residual": 1.1143904267256477e-16,
+      "mass_balance_residual": [
+        1.0853297427448894e-14,
+        -5.377642775528102e-16
+      ],
+      "mass_scale": [
+        40.48311824457079,
+        36.539177617282824
+      ],
+      "integrated_boundary_flux": [
+        0.0,
+        0.0
+      ],
+      "integrated_reaction": [
+        0.0047006402133680505,
+        -0.008601773361135118
+      ],
+      "data": "schnak-N-mode42-N48.npz"
+    },
+    {
+      "id": "schnak-ref-N-mode42-K12-Q96-t1e-10",
+      "K": 12,
+      "Q": 96,
+      "Gram_error": 4.958669244444029e-15,
+      "method": "DP54",
+      "accepted": 98,
+      "rejected": 0,
+      "nfev": 686,
+      "rtol": 1e-10,
+      "atol": 1e-12,
+      "complete": true,
+      "data": "schnak-ref-N-mode42-K12-Q96-t1e-10.npz"
+    },
+    {
+      "id": "schnak-ref-N-mode42-K18-Q96-t1e-10",
+      "K": 18,
+      "Q": 96,
+      "Gram_error": 5.755627031595042e-15,
+      "method": "DP54",
+      "accepted": 101,
+      "rejected": 2,
+      "nfev": 721,
+      "rtol": 1e-10,
+      "atol": 1e-12,
+      "complete": true,
+      "data": "schnak-ref-N-mode42-K18-Q96-t1e-10.npz"
+    },
+    {
+      "id": "schnak-ref-N-mode42-K18-Q192-t1e-10",
+      "K": 18,
+      "Q": 192,
+      "Gram_error": 2.565855440668069e-14,
+      "method": "DP54",
+      "accepted": 101,
+      "rejected": 1,
+      "nfev": 714,
+      "rtol": 1e-10,
+      "atol": 1e-12,
+      "complete": true,
+      "data": "schnak-ref-N-mode42-K18-Q192-t1e-10.npz"
+    },
+    {
+      "id": "schnak-ref-N-mode42-K18-Q192-t1e-12",
+      "K": 18,
+      "Q": 192,
+      "Gram_error": 2.565855440668069e-14,
+      "method": "DP54",
+      "accepted": 234,
+      "rejected": 0,
+      "nfev": 1638,
+      "rtol": 1e-12,
+      "atol": 1e-14,
+      "complete": true,
+      "data": "schnak-ref-N-mode42-K18-Q192-t1e-12.npz"
+    },
+    {
+      "id": "schnak-summary-N-mode42",
+      "reference_deltas": [
+        7.613877928136503e-07,
+        6.505906924303417e-14,
+        2.4635848916432224e-13
+      ],
+      "reference_sum": 7.613881042312087e-07,
+      "reference_qualified": true,
+      "finest_denominator": 8.250442438972883e-05,
+      "zero_floor": 1e-12,
+      "grid_errors": [
+        0.0010844810056118703,
+        0.00031759732092773163,
+        8.250442438972883e-05
+      ],
+      "spatial_order": 1.944655350128315,
+      "reference_role": "original4-rowreference",
+      "reference_scope": "Finite modal/quadrature/tolerance sensitivity indicators, not rigorous continuum bounds",
+      "data": "schnak-summary-N-mode42.npz"
+    },
+    {
+      "id": "schnak-N-mixed-N12",
+      "ic": "N-mixed",
+      "N": 12,
+      "steps": 1600,
+      "dt": 0.00125,
+      "minimum": 0.8798143344957898,
+      "max_Newton_residual": 1.1130012926921506e-16,
+      "mass_balance_residual": [
+        -1.4127154307486123e-14,
+        4.133846043252731e-15
+      ],
+      "mass_scale": [
+        40.48189852416706,
+        36.53710378394009
+      ],
+      "integrated_boundary_flux": [
+        0.0,
+        0.0
+      ],
+      "integrated_reaction": [
+        0.0034809198096325262,
+        -0.006527940018398097
+      ],
+      "data": "schnak-N-mixed-N12.npz"
+    },
+    {
+      "id": "schnak-N-mixed-N24",
+      "ic": "N-mixed",
+      "N": 24,
+      "steps": 1600,
+      "dt": 0.00125,
+      "minimum": 0.8771054043233121,
+      "max_Newton_residual": 1.1143904267256477e-16,
+      "mass_balance_residual": [
+        1.222459633520856e-14,
+        -7.504413757075667e-15
+      ],
+      "mass_scale": [
+        40.482759046795586,
+        36.53863057796566
+      ],
+      "integrated_boundary_flux": [
+        0.0,
+        0.0
+      ],
+      "integrated_reaction": [
+        0.004341442438162911,
+        -0.008054734043973211
+      ],
+      "data": "schnak-N-mixed-N24.npz"
+    },
+    {
+      "id": "schnak-N-mixed-N48",
+      "ic": "N-mixed",
+      "N": 48,
+      "steps": 1600,
+      "dt": 0.00125,
+      "minimum": 0.8763952220795853,
+      "max_Newton_residual": 1.1143904267256477e-16,
+      "mass_balance_residual": [
+        -6.296178856057821e-15,
+        1.5456386170953351e-15
+      ],
+      "mass_scale": [
+        40.4829923295782,
+        36.53904338692758
+      ],
+      "integrated_boundary_flux": [
+        0.0,
+        0.0
+      ],
+      "integrated_reaction": [
+        0.0045747252207767,
+        -0.008467543005893799
+      ],
+      "data": "schnak-N-mixed-N48.npz"
+    },
+    {
+      "id": "schnak-ref-N-mixed-K12-Q96-t1e-10",
+      "K": 12,
+      "Q": 96,
+      "Gram_error": 4.958669244444029e-15,
+      "method": "DP54",
+      "accepted": 99,
+      "rejected": 0,
+      "nfev": 693,
+      "rtol": 1e-10,
+      "atol": 1e-12,
+      "complete": true,
+      "data": "schnak-ref-N-mixed-K12-Q96-t1e-10.npz"
+    },
+    {
+      "id": "schnak-ref-N-mixed-K18-Q96-t1e-10",
+      "K": 18,
+      "Q": 96,
+      "Gram_error": 5.755627031595042e-15,
+      "method": "DP54",
+      "accepted": 102,
+      "rejected": 1,
+      "nfev": 721,
+      "rtol": 1e-10,
+      "atol": 1e-12,
+      "complete": true,
+      "data": "schnak-ref-N-mixed-K18-Q96-t1e-10.npz"
+    },
+    {
+      "id": "schnak-ref-N-mixed-K18-Q192-t1e-10",
+      "K": 18,
+      "Q": 192,
+      "Gram_error": 2.565855440668069e-14,
+      "method": "DP54",
+      "accepted": 102,
+      "rejected": 1,
+      "nfev": 721,
+      "rtol": 1e-10,
+      "atol": 1e-12,
+      "complete": true,
+      "data": "schnak-ref-N-mixed-K18-Q192-t1e-10.npz"
+    },
+    {
+      "id": "schnak-ref-N-mixed-K18-Q192-t1e-12",
+      "K": 18,
+      "Q": 192,
+      "Gram_error": 2.565855440668069e-14,
+      "method": "DP54",
+      "accepted": 236,
+      "rejected": 0,
+      "nfev": 1652,
+      "rtol": 1e-12,
+      "atol": 1e-14,
+      "complete": true,
+      "data": "schnak-ref-N-mixed-K18-Q192-t1e-12.npz"
+    },
+    {
+      "id": "schnak-summary-N-mixed",
+      "reference_deltas": [
+        1.0061035745634328e-06,
+        3.83026943495679e-14,
+        4.289901767151605e-13
+      ],
+      "reference_sum": 1.0061040418563039e-06,
+      "reference_qualified": true,
+      "finest_denominator": 0.00011769804580841203,
+      "zero_floor": 1e-12,
+      "grid_errors": [
+        0.0015678188483445599,
+        0.00045405290439126667,
+        0.00011769804580841203
+      ],
+      "spatial_order": 1.9477700373628166,
+      "reference_role": "original4-rowreference",
+      "reference_scope": "Finite modal/quadrature/tolerance sensitivity indicators, not rigorous continuum bounds",
+      "data": "schnak-summary-N-mixed.npz"
+    },
+    {
+      "id": "schnak-time-200",
+      "steps": 400,
+      "dt": 0.005,
+      "minimum": 0.8763965338878951,
+      "max_Newton_residual": 1.1268926330271212e-16,
+      "mass_balance_residual": [
+        -4.154662724964453e-16,
+        -6.7758298971654085e-15
+      ],
+      "mass_scale": [
+        40.482991803033464,
+        36.53904245107021
+      ],
+      "integrated_boundary_flux": [
+        0.0,
+        0.0
+      ],
+      "integrated_reaction": [
+        0.004574198676039447,
+        -0.00846660714852054
+      ],
+      "data": "schnak-time-200.npz"
+    },
+    {
+      "id": "schnak-time-400",
+      "steps": 800,
+      "dt": 0.0025,
+      "minimum": 0.8763954844494254,
+      "max_Newton_residual": 1.1185578288261389e-16,
+      "mass_balance_residual": [
+        -6.315260814293566e-15,
+        -6.331740687315346e-16
+      ],
+      "mass_scale": [
+        40.482992224265146,
+        36.53904319974951
+      ],
+      "integrated_boundary_flux": [
+        0.0,
+        0.0
+      ],
+      "integrated_reaction": [
+        0.004574619907720665,
+        -0.00846735582781769
+      ],
+      "data": "schnak-time-400.npz"
+    },
+    {
+      "id": "schnak-time-summary",
+      "errors_to_continuum_reference": [
+        0.00011937928470340253,
+        0.00011803430257639747,
+        0.00011769804580841203
+      ],
+      "same_grid_pair_differences": [
+        1.3449824467492988e-06,
+        3.36257405475493e-07
+      ],
+      "observed_order": null,
+      "finest_time_indicator": 1.1208580182516432e-07,
+      "data": null
+    },
+    {
+      "id": "schnak-D-mode42-N12",
+      "ic": "D-mode42",
+      "N": 12,
+      "steps": 1600,
+      "dt": 0.00125,
+      "minimum": 0.8862155577223321,
+      "max_Newton_residual": 1.1130012926921506e-16,
+      "mass_balance_residual": [
+        -1.258281673299777e-14,
+        -2.3507237822961713e-14
+      ],
+      "mass_scale": [
+        40.48368721856097,
+        36.54327355643294
+      ],
+      "integrated_boundary_flux": [
+        -2.7856976883969742e-05,
+        0.0036001342953684025
+      ],
+      "integrated_reaction": [
+        0.005241757226660534,
+        -0.00909757821588442
+      ],
+      "data": "schnak-D-mode42-N12.npz"
+    },
+    {
+      "id": "schnak-D-mode42-N24",
+      "ic": "D-mode42",
+      "N": 24,
+      "steps": 1600,
+      "dt": 0.00125,
+      "minimum": 0.8860670448524426,
+      "max_Newton_residual": 1.1143904267256477e-16,
+      "mass_balance_residual": [
+        4.272623921330876e-15,
+        -8.217385105702135e-15
+      ],
+      "mass_scale": [
+        40.48484332831696,
+        36.546076124381784
+      ],
+      "integrated_boundary_flux": [
+        -1.2247718017517128e-05,
+        0.004433603689124673
+      ],
+      "integrated_reaction": [
+        0.00641347624152124,
+        -0.011066676770974242
+      ],
+      "data": "schnak-D-mode42-N24.npz"
+    },
+    {
+      "id": "schnak-D-mode42-N48",
+      "ic": "D-mode42",
+      "N": 48,
+      "steps": 1600,
+      "dt": 0.00125,
+      "minimum": 0.8855435379971976,
+      "max_Newton_residual": 1.1143904267256477e-16,
+      "mass_balance_residual": [
+        9.75261538194161e-15,
+        1.7034984534092246e-15
+      ],
+      "mass_scale": [
+        40.48516700681382,
+        36.54687745916411
+      ],
+      "integrated_boundary_flux": [
+        -7.531580989803015e-06,
+        0.004685081591690642
+      ],
+      "integrated_reaction": [
+        0.00674187087540529,
+        -0.011616533650727682
+      ],
+      "data": "schnak-D-mode42-N48.npz"
+    },
+    {
+      "id": "schnak-ref-D-mode42-K12-Q96-t1e-10",
+      "K": 12,
+      "Q": 96,
+      "Gram_error": 3.3306690738754696e-15,
+      "method": "DP54",
+      "accepted": 95,
+      "rejected": 0,
+      "nfev": 665,
+      "rtol": 1e-10,
+      "atol": 1e-12,
+      "complete": true,
+      "data": "schnak-ref-D-mode42-K12-Q96-t1e-10.npz"
+    },
+    {
+      "id": "schnak-ref-D-mode42-K18-Q96-t1e-10",
+      "K": 18,
+      "Q": 96,
+      "Gram_error": 3.9968028886505635e-15,
+      "method": "DP54",
+      "accepted": 111,
+      "rejected": 6,
+      "nfev": 819,
+      "rtol": 1e-10,
+      "atol": 1e-12,
+      "complete": true,
+      "data": "schnak-ref-D-mode42-K18-Q96-t1e-10.npz"
+    },
+    {
+      "id": "schnak-ref-D-mode42-K18-Q192-t1e-10",
+      "K": 18,
+      "Q": 192,
+      "Gram_error": 1.3766765505351941e-14,
+      "method": "DP54",
+      "accepted": 111,
+      "rejected": 6,
+      "nfev": 819,
+      "rtol": 1e-10,
+      "atol": 1e-12,
+      "complete": true,
+      "data": "schnak-ref-D-mode42-K18-Q192-t1e-10.npz"
+    },
+    {
+      "id": "schnak-ref-D-mode42-K18-Q192-t1e-12",
+      "K": 18,
+      "Q": 192,
+      "Gram_error": 1.3766765505351941e-14,
+      "method": "DP54",
+      "accepted": 230,
+      "rejected": 0,
+      "nfev": 1610,
+      "rtol": 1e-12,
+      "atol": 1e-14,
+      "complete": true,
+      "data": "schnak-ref-D-mode42-K18-Q192-t1e-12.npz"
+    },
+    {
+      "id": "schnak-legacy-reference-summary-D-mode42",
+      "role": "legacy-reference-qualification",
+      "reference_rows": 4,
+      "reference_deltas": [
+        4.995141182306817e-05,
+        1.5543122344752192e-15,
+        3.1374902675906924e-13
+      ],
+      "reference_sum": 4.995141213837151e-05,
+      "reference_qualified_in_this_run": false,
+      "grid_errors": [
+        0.0012654646650283041,
+        0.00032652993641701933,
+        9.088196030337947e-05
+      ],
+      "finest_denominator": 9.088196030337947e-05,
+      "original_R4_first_qualification": "FAIL, preserved in source-reading.json#/prior_reference_qualification",
+      "used_for_current_accuracy_goals": false,
+      "relabelled_as_original_protocol_pass": false,
+      "data": "schnak-legacy-reference-summary-D-mode42.npz"
+    },
+    {
+      "id": "schnak-ref-extension-D-mode42-K24-Q128-t1e-10",
+      "K": 24,
+      "Q": 128,
+      "Gram_error": 5.440092820663267e-15,
+      "method": "DP54",
+      "accepted": 178,
+      "rejected": 8,
+      "nfev": 1302,
+      "rtol": 1e-10,
+      "atol": 1e-12,
+      "complete": true,
+      "role": "controlledD-onlyfinerreferenceextension",
+      "data": "schnak-ref-extension-D-mode42-K24-Q128-t1e-10.npz"
+    },
+    {
+      "id": "schnak-ref-extension-D-mode42-K32-Q128-t1e-10",
+      "K": 32,
+      "Q": 128,
+      "Gram_error": 5.440092820663267e-15,
+      "method": "DP54",
+      "accepted": 310,
+      "rejected": 16,
+      "nfev": 2282,
+      "rtol": 1e-10,
+      "atol": 1e-12,
+      "complete": true,
+      "role": "controlledD-onlyfinerreferenceextension",
+      "data": "schnak-ref-extension-D-mode42-K32-Q128-t1e-10.npz"
+    },
+    {
+      "id": "schnak-ref-extension-D-mode42-K32-Q192-t1e-10",
+      "K": 32,
+      "Q": 192,
+      "Gram_error": 1.3766765505351941e-14,
+      "method": "DP54",
+      "accepted": 310,
+      "rejected": 16,
+      "nfev": 2282,
+      "rtol": 1e-10,
+      "atol": 1e-12,
+      "complete": true,
+      "role": "controlledD-onlyfinerreferenceextension",
+      "data": "schnak-ref-extension-D-mode42-K32-Q192-t1e-10.npz"
+    },
+    {
+      "id": "schnak-ref-extension-D-mode42-K32-Q192-t1e-12",
+      "K": 32,
+      "Q": 192,
+      "Gram_error": 1.3766765505351941e-14,
+      "method": "DP54",
+      "accepted": 327,
+      "rejected": 15,
+      "nfev": 2394,
+      "rtol": 1e-12,
+      "atol": 1e-14,
+      "complete": true,
+      "role": "controlledD-onlyfinerreferenceextension",
+      "data": "schnak-ref-extension-D-mode42-K32-Q192-t1e-12.npz"
+    },
+    {
+      "id": "schnak-summary-D-mode42",
+      "reference_deltas": [
+        2.888731544303802e-06,
+        1.532107773982716e-14,
+        3.4638958368304884e-14
+      ],
+      "reference_sum": 2.888731594263838e-06,
+      "reference_qualified": true,
+      "finest_denominator": 8.370124740819662e-05,
+      "zero_floor": 1e-12,
+      "grid_errors": [
+        0.0012636317080267911,
+        0.0003225772206343347,
+        8.370124740819662e-05
+      ],
+      "spatial_order": 1.9463235349282928,
+      "reference_role": "controlledD-onlyK24/32extension;newfineK32Q192tight",
+      "reference_scope": "Finite modal/quadrature/tolerance sensitivity indicators, not rigorous continuum bounds",
+      "data": "schnak-summary-D-mode42.npz"
+    },
+    {
+      "id": "KS-components",
+      "source_probe_errors": [
+        1.743057661661681e-17,
+        0.0,
+        5.567246105721821e-17,
+        0.0,
+        7.331022943903909e-17,
+        1.1273611683325498e-16,
+        1.155751671135632e-16,
+        9.176709363971631e-17,
+        3.3042351923367754e-17,
+        0.0,
+        2.3987610560004725e-17,
+        1.6733836901180518e-16,
+        1.3288849832387691e-16,
+        1.063397404910753e-16,
+        5.965646603830402e-17,
+        2.019420333428594e-17,
+        8.075139069961866e-17,
+        1.1376352429826677e-16,
+        9.537453544297961e-18,
+        4.7415203793282976e-17,
+        1.3291310778163528e-17,
+        3.935901640243106e-17,
+        2.4376455543235746e-17,
+        6.227408030443852e-17,
+        2.0388109045349676e-17,
+        4.491019965895992e-17,
+        6.327483384510945e-17,
+        6.485546015926426e-17,
+        6.930022394244165e-17,
+        8.926903575388533e-17,
+        4.049481017529868e-17,
+        1.2179397477570174e-17,
+        1.0686112603087862e-16,
+        7.282314889259799e-17,
+        2.4730233622395917e-17,
+        8.357605320993966e-17
+      ],
+      "wholegrid_RHS_errors": [
+        7.98373580700796e-17,
+        3.739870524936518e-17,
+        1.5017262866255578e-16,
+        3.96194504320184e-17,
+        9.850777372941522e-17,
+        4.163682882480494e-17
+      ],
+      "zero_frequency_integral": "mean cos0=1; cosacosb=.5(cos(a-b)+cos(a+b)); sinasinb=.5(cos(a-b)-cos(a+b))",
+      "continuum_integrals": "integraln=integralc=1; integralreactionn=-r*A²/4; integralsn=+r*A²/4; integralsc=0",
+      "data": null
+    },
+    {
+      "id": "KS-space-N12",
+      "N": 12,
+      "steps": 1024,
+      "dt": 0.000244140625,
+      "minimum": [
+        0.9022638544007324,
+        0.9527970664018593
+      ],
+      "integrated_reaction": [
+        -4.8811926832839186e-05,
+        5.685308987443972e-08
+      ],
+      "integrated_source": [
+        4.9183667535921016e-05,
+        -1.495640583716623e-20
+      ],
+      "mass_residual": [
+        -1.9490566929500353e-16,
+        -8.289384608127543e-17
+      ],
+      "mass_scale": [
+        2.000097995594369,
+        2.00000005685309
+      ],
+      "Linf_fields": [
+        0.0019229529613318253,
+        0.0004558503710181405
+      ],
+      "data": "KS-space-N12.npz"
+    },
+    {
+      "id": "KS-space-N24",
+      "N": 24,
+      "steps": 1024,
+      "dt": 0.000244140625,
+      "minimum": [
+        0.9005698543736446,
+        0.9507102465265501
+      ],
+      "integrated_reaction": [
+        -4.909041989231419e-05,
+        1.426894292249008e-08
+      ],
+      "integrated_source": [
+        4.918366753592049e-05,
+        2.996477087132836e-20
+      ],
+      "mass_residual": [
+        3.3203691532368573e-19,
+        -2.2844662815889056e-16
+      ],
+      "mass_scale": [
+        2.0000982740874282,
+        2.000000014268943
+      ],
+      "Linf_fields": [
+        0.0004872998548195451,
+        0.00011835563261164417
+      ],
+      "data": "KS-space-N24.npz"
+    },
+    {
+      "id": "KS-space-N48",
+      "N": 48,
+      "steps": 1024,
+      "dt": 0.000244140625,
+      "minimum": [
+        0.9001427078852056,
+        0.9501782550064043
+      ],
+      "integrated_reaction": [
+        -4.916033546238315e-05,
+        3.5707755966428794e-09
+      ],
+      "integrated_source": [
+        4.918366753592075e-05,
+        -2.6486935940327674e-21
+      ],
+      "mass_residual": [
+        6.889427179787577e-17,
+        7.850329195907732e-17
+      ],
+      "mass_scale": [
+        2.0000983440029985,
+        2.0000000035707757
+      ],
+      "Linf_fields": [
+        0.0001221189660198796,
+        2.9817290057465584e-05
+      ],
+      "data": "KS-space-N48.npz"
+    },
+    {
+      "id": "KS-time-reference",
+      "qualified": true,
+      "spread": 0.0,
+      "solvers": [
+        {
+          "method": "DP54",
+          "accepted": 67,
+          "rejected": 0,
+          "nfev": 469,
+          "rtol": 2e-10,
+          "atol": 1e-12,
+          "complete": true
+        },
+        {
+          "method": "DP54",
+          "accepted": 67,
+          "rejected": 0,
+          "nfev": 469,
+          "rtol": 5e-12,
+          "atol": 2e-14,
+          "complete": true
+        }
+      ],
+      "scope": "Same24x24MOL, scalar face ownership and independent unexpanded analytic cellsource",
+      "data": "KS-time-reference.npz"
+    },
+    {
+      "id": "KS-time-64",
+      "N": 24,
+      "steps": 64,
+      "dt": 0.00390625,
+      "minimum": [
+        0.9005698543736446,
+        0.9507102465265501
+      ],
+      "integrated_reaction": [
+        -4.909042056683601e-05,
+        1.4269308586965537e-08
+      ],
+      "integrated_source": [
+        4.9183667535984124e-05,
+        3.684593320556207e-20
+      ],
+      "mass_residual": [
+        1.0905040976130764e-16,
+        3.657994997087319e-17
+      ],
+      "mass_scale": [
+        2.000098274088103,
+        2.0000000142693084
+      ],
+      "same_MOL_error": 8.777474524990225e-09,
+      "data": "KS-time-64.npz"
+    },
+    {
+      "id": "KS-time-128",
+      "N": 24,
+      "steps": 128,
+      "dt": 0.001953125,
+      "minimum": [
+        0.9005698543736446,
+        0.9507102465265501
+      ],
+      "integrated_reaction": [
+        -4.909041997674902e-05,
+        1.4268988426072723e-08
+      ],
+      "integrated_source": [
+        4.91836675359245e-05,
+        2.303459042672111e-20
+      ],
+      "mass_residual": [
+        5.420333236069719e-17,
+        9.166273653102473e-18
+      ],
+      "mass_scale": [
+        2.0000982740875126,
+        2.000000014268988
+      ],
+      "same_MOL_error": 1.0914410486506654e-09,
+      "data": "KS-time-128.npz"
+    },
+    {
+      "id": "KS-time-256",
+      "N": 24,
+      "steps": 256,
+      "dt": 0.0009765625,
+      "minimum": [
+        0.9005698543736446,
+        0.9507102465265501
+      ],
+      "integrated_reaction": [
+        -4.909041990273799e-05,
+        1.4268948479360648e-08
+      ],
+      "integrated_source": [
+        4.918366753592076e-05,
+        3.1861771742783264e-20
+      ],
+      "mass_residual": [
+        2.098134491666792e-16,
+        -1.2159365181897086e-17
+      ],
+      "mass_scale": [
+        2.000098274087439,
+        2.0000000142689487
+      ],
+      "same_MOL_error": 1.3607648341462664e-10,
+      "data": "KS-time-256.npz"
+    },
+    {
+      "id": "KS-halfdt-N48",
+      "N": 48,
+      "steps": 2048,
+      "dt": 0.0001220703125,
+      "minimum": [
+        0.9001427078852056,
+        0.9501782550064043
+      ],
+      "integrated_reaction": [
+        -4.9160335462243064e-05,
+        3.5707755179330368e-09
+      ],
+      "integrated_source": [
+        4.918366753592083e-05,
+        -2.1748110119968244e-21
+      ],
+      "mass_residual": [
+        -7.126596405018781e-17,
+        -6.48319442294641e-17
+      ],
+      "mass_scale": [
+        2.0000983440029985,
+        2.0000000035707757
+      ],
+      "data": "KS-halfdt-N48.npz"
+    },
+    {
+      "id": "KS-constant-unforced",
+      "N": 24,
+      "steps": 256,
+      "dt": 0.0009765625,
+      "minimum": [
+        1.0,
+        1.0
+      ],
+      "integrated_reaction": [
+        0.0,
+        0.0
+      ],
+      "integrated_source": [
+        0.0,
+        0.0
+      ],
+      "mass_residual": [
+        0.0,
+        0.0
+      ],
+      "mass_scale": [
+        2.0,
+        2.0
+      ],
+      "data": "KS-constant-unforced.npz"
+    }
+  ],
+  "checks": {
+    "fisher-kpp-special-front": true,
+    "schnakenberg-2d-boundary-modes": true,
+    "keller-segel-forced-flux": true
+  },
+  "study_goals": {
+    "Fisher/space-finest": {
+      "observed": true,
+      "actual": 9.239320837961529e-06,
+      "target": 0.001
+    },
+    "Fisher/space-order": {
+      "observed": true,
+      "actual": 1.9958436278085308,
+      "target": 1.7
+    },
+    "Fisher/phase": {
+      "observed": true,
+      "actual": 0.0002657675674280213,
+      "target": 0.02
+    },
+    "Fisher/time-order": {
+      "observed": true,
+      "actual": 3.0607173908690903,
+      "target": 2.7,
+      "reference_spread": 2.886579864025407e-15
+    },
+    "Fisher/time-finest": {
+      "observed": true,
+      "actual": 1.8780066390888805e-10,
+      "target": 1e-05
+    },
+    "Fisher/observed-boundary-margin": {
+      "observed": true,
+      "observed_margin": 9.999999795441408e-05,
+      "scope": "Observed binary64 margin; analyticreal-arithmetic barrier is not a machine-error certificate"
+    },
+    "Schnakenberg/positivity/N-mode42/12": {
+      "observed": true,
+      "minimum": 0.8880521241619382
+    },
+    "Schnakenberg/positivity/N-mode42/24": {
+      "observed": true,
+      "minimum": 0.8860615561401685
+    },
+    "Schnakenberg/positivity/N-mode42/48": {
+      "observed": true,
+      "minimum": 0.8855372535923153
+    },
+    "Schnakenberg/space-finest/N-mode42": {
+      "observed": true,
+      "actual": 8.250442438972883e-05,
+      "target": 0.02
+    },
+    "Schnakenberg/space-order/N-mode42": {
+      "observed": true,
+      "actual": 1.944655350128315,
+      "target": 1.6
+    },
+    "Schnakenberg/positivity/N-mixed/12": {
+      "observed": true,
+      "minimum": 0.8798143344957898
+    },
+    "Schnakenberg/positivity/N-mixed/24": {
+      "observed": true,
+      "minimum": 0.8771054043233121
+    },
+    "Schnakenberg/positivity/N-mixed/48": {
+      "observed": true,
+      "minimum": 0.8763952220795853
+    },
+    "Schnakenberg/space-finest/N-mixed": {
+      "observed": true,
+      "actual": 0.00011769804580841203,
+      "target": 0.02
+    },
+    "Schnakenberg/space-order/N-mixed": {
+      "observed": true,
+      "actual": 1.9477700373628166,
+      "target": 1.6
+    },
+    "Schnakenberg/time-order": {
+      "observed": null,
+      "actual": null,
+      "target": 1.7
+    },
+    "Schnakenberg/time-contamination": {
+      "observed": true,
+      "actual": 1.1208580182516432e-07,
+      "finest_spatial_discrepancy": 0.00011769804580841203,
+      "scope": "Secondorder Richardson indicator,notcertifiederrorbound"
+    },
+    "Schnakenberg/positivity/D-mode42/12": {
+      "observed": true,
+      "minimum": 0.8862155577223321
+    },
+    "Schnakenberg/positivity/D-mode42/24": {
+      "observed": true,
+      "minimum": 0.8860670448524426
+    },
+    "Schnakenberg/positivity/D-mode42/48": {
+      "observed": true,
+      "minimum": 0.8855435379971976
+    },
+    "Schnakenberg/space-finest/D-mode42": {
+      "observed": true,
+      "actual": 8.370124740819662e-05,
+      "target": 0.02
+    },
+    "Schnakenberg/space-order/D-mode42": {
+      "observed": true,
+      "actual": 1.9463235349282928,
+      "target": 1.6
+    },
+    "KS/minimum/12": {
+      "observed": true,
+      "minimum": [
+        0.9022638544007324,
+        0.9527970664018593
+      ]
+    },
+    "KS/minimum/24": {
+      "observed": true,
+      "minimum": [
+        0.9005698543736446,
+        0.9507102465265501
+      ]
+    },
+    "KS/minimum/48": {
+      "observed": true,
+      "minimum": [
+        0.9001427078852056,
+        0.9501782550064043
+      ]
+    },
+    "KS/time-order": {
+      "observed": true,
+      "actual": 3.0037445404571113,
+      "target": 2.5
+    },
+    "KS/space-finest/0": {
+      "observed": true,
+      "actual": 0.0001221189660198796,
+      "target": 0.002
+    },
+    "KS/space-order/0": {
+      "observed": true,
+      "actual": 1.9965225132866062,
+      "target": 1.7
+    },
+    "KS/space-finest/1": {
+      "observed": true,
+      "actual": 2.9817290057465584e-05,
+      "target": 0.002
+    },
+    "KS/space-order/1": {
+      "observed": true,
+      "actual": 1.988907316937278,
+      "target": 1.7
+    },
+    "KS/time-contamination": {
+      "observed": true,
+      "actual": 1.893596390800667e-12,
+      "finest_spatial_error": 0.0001221189660198796
+    }
+  },
+  "elapsed_seconds": 17.770365584,
+  "work_counts": {
+    "fisher_primary_step": 6220,
+    "fisher_primary_rhs": 18660,
+    "reference_attempt": 3914,
+    "reference_rhs": 27398,
+    "schnak_CN_field": 62408,
+    "schnak_newton_iteration": 46802,
+    "schnak_primary_step": 15600,
+    "KS_primary_step": 5824,
+    "KS_primary_rhs": 17472,
+    "final_completion": 1
+  },
+  "cases": [
+    {
+      "id": "fisher-kpp-special-front",
+      "passed": true,
+      "checks": {
+        "Fisher/exact-PDE": true,
+        "Fisher/wrong-special-speed-detected": true,
+        "Fisher/finite-space/0.5": true,
+        "Fisher/finite-space/0.25": true,
+        "Fisher/finite-space/0.125": true,
+        "Fisher/semidiscrete-reference": true
+      },
+      "metrics": {
+        "fixed_records": 11,
+        "Fisher/space-finest/actual": 9.239320837961529e-06,
+        "Fisher/space-order/actual": 1.9958436278085308,
+        "Fisher/phase/actual": 0.0002657675674280213,
+        "Fisher/time-order/actual": 3.0607173908690903,
+        "Fisher/time-finest/actual": 1.8780066390888805e-10,
+        "Fisher/observed-boundary-margin/observed_margin": 9.999999795441408e-05
+      },
+      "records": [
+        {
+          "id": "fisher-components",
+          "special_speed": 2.041241452319315,
+          "minimum_linear_speed": 2.0,
+          "same_profile_speed2_not_exact": true,
+          "real_arithmetic_boundary_barrier": "2exp(sigma-18), sigma=1+128(cosh(.25)-1)<6 -> <1e-4",
+          "floating_point_certificate": false,
+          "barrier_scope": "L12vsL24,constantends,|x|<=3,real discrete maximum principle",
+          "data": null
+        },
+        {
+          "id": "fisher-space-0p5",
+          "h": 0.5,
+          "steps": 80,
+          "Linf": 0.00014732589111010608,
+          "quarter_contour": 2.041867208238213,
+          "min": 5.474568235775531e-05,
+          "max": 0.9935521970915635,
+          "Euler_monotonicity_bound": 0.1125,
+          "data": "fisher-space-0p5.npz"
+        },
+        {
+          "id": "fisher-space-0p25",
+          "h": 0.25,
+          "steps": 320,
+          "Linf": 3.685096347005867e-05,
+          "quarter_contour": 2.0417896707895355,
+          "min": 5.474568235775531e-05,
+          "max": 0.9935521970915635,
+          "Euler_monotonicity_bound": 0.10312500000000001,
+          "data": "fisher-space-0p25.npz"
+        },
+        {
+          "id": "fisher-space-0p125",
+          "h": 0.125,
+          "steps": 1280,
+          "Linf": 9.239320837961529e-06,
+          "quarter_contour": 2.041507219886743,
+          "min": 5.474568235775531e-05,
+          "max": 0.9935521970915635,
+          "Euler_monotonicity_bound": 0.10078125,
+          "data": "fisher-space-0p125.npz"
+        },
+        {
+          "id": "fisher-time-reference",
+          "qualified": true,
+          "spread": 2.886579864025407e-15,
+          "solvers": [
+            {
+              "method": "DP54",
+              "accepted": 402,
+              "rejected": 0,
+              "nfev": 2814,
+              "rtol": 1e-11,
+              "atol": 1e-13,
+              "complete": true
+            },
+            {
+              "method": "DP54",
+              "accepted": 561,
+              "rejected": 0,
+              "nfev": 3927,
+              "rtol": 1e-13,
+              "atol": 1e-15,
+              "complete": true
+            }
+          ],
+          "scope": "The SAME95interior-nodeMOL, not continuumexactfront",
+          "data": "fisher-time-reference.npz"
+        },
+        {
+          "id": "fisher-time-100",
+          "steps": 100,
+          "dt": 0.01,
+          "same_MOL_error": 1.3592351688629378e-08,
+          "data": "fisher-time-100.npz"
+        },
+        {
+          "id": "fisher-time-200",
+          "steps": 200,
+          "dt": 0.005,
+          "same_MOL_error": 1.566985097234408e-09,
+          "data": "fisher-time-200.npz"
+        },
+        {
+          "id": "fisher-time-400",
+          "steps": 400,
+          "dt": 0.0025,
+          "same_MOL_error": 1.8780066390888805e-10,
+          "data": "fisher-time-400.npz"
+        },
+        {
+          "id": "fisher-boundary-6",
+          "L": 6,
+          "h": 0.125,
+          "steps": 1280,
+          "core_error": 0.0026663312871475497,
+          "full_error": 0.15263532851013306,
+          "initial_boundary_mismatch": [
+            0.15263532851013306,
+            0.006316414121400317
+          ],
+          "data": "fisher-boundary-6.npz"
+        },
+        {
+          "id": "fisher-boundary-12",
+          "L": 12,
+          "h": 0.125,
+          "steps": 1280,
+          "core_error": 9.239320838239085e-06,
+          "full_error": 0.014743319374636132,
+          "initial_boundary_mismatch": [
+            0.014743319374636132,
+            5.474568235775531e-05
+          ],
+          "data": "fisher-boundary-12.npz"
+        },
+        {
+          "id": "fisher-boundary-24",
+          "L": 24,
+          "h": 0.125,
+          "steps": 1280,
+          "core_error": 9.239320837961529e-06,
+          "full_error": 0.0001111205249660907,
+          "initial_boundary_mismatch": [
+            0.0001111205249660907,
+            3.0871142904547678e-09
+          ],
+          "data": "fisher-boundary-24.npz"
+        }
+      ]
+    },
+    {
+      "id": "schnakenberg-2d-boundary-modes",
+      "passed": true,
+      "checks": {
+        "Schnakenberg/mode/N/1/1/12": true,
+        "Schnakenberg/exp/N/1/1/12/0.1": true,
+        "Schnakenberg/exp/N/1/1/12/0.5": true,
+        "Schnakenberg/exp/N/1/1/12/1.0": true,
+        "Schnakenberg/mode/N/1/1/24": true,
+        "Schnakenberg/exp/N/1/1/24/0.1": true,
+        "Schnakenberg/exp/N/1/1/24/0.5": true,
+        "Schnakenberg/exp/N/1/1/24/1.0": true,
+        "Schnakenberg/mode/N/1/1/48": true,
+        "Schnakenberg/exp/N/1/1/48/0.1": true,
+        "Schnakenberg/exp/N/1/1/48/0.5": true,
+        "Schnakenberg/exp/N/1/1/48/1.0": true,
+        "Schnakenberg/mode/N/4/2/12": true,
+        "Schnakenberg/exp/N/4/2/12/0.1": true,
+        "Schnakenberg/exp/N/4/2/12/0.5": true,
+        "Schnakenberg/exp/N/4/2/12/1.0": true,
+        "Schnakenberg/mode/N/4/2/24": true,
+        "Schnakenberg/exp/N/4/2/24/0.1": true,
+        "Schnakenberg/exp/N/4/2/24/0.5": true,
+        "Schnakenberg/exp/N/4/2/24/1.0": true,
+        "Schnakenberg/mode/N/4/2/48": true,
+        "Schnakenberg/exp/N/4/2/48/0.1": true,
+        "Schnakenberg/exp/N/4/2/48/0.5": true,
+        "Schnakenberg/exp/N/4/2/48/1.0": true,
+        "Schnakenberg/mode/N/3/1/12": true,
+        "Schnakenberg/exp/N/3/1/12/0.1": true,
+        "Schnakenberg/exp/N/3/1/12/0.5": true,
+        "Schnakenberg/exp/N/3/1/12/1.0": true,
+        "Schnakenberg/mode/N/3/1/24": true,
+        "Schnakenberg/exp/N/3/1/24/0.1": true,
+        "Schnakenberg/exp/N/3/1/24/0.5": true,
+        "Schnakenberg/exp/N/3/1/24/1.0": true,
+        "Schnakenberg/mode/N/3/1/48": true,
+        "Schnakenberg/exp/N/3/1/48/0.1": true,
+        "Schnakenberg/exp/N/3/1/48/0.5": true,
+        "Schnakenberg/exp/N/3/1/48/1.0": true,
+        "Schnakenberg/mode/D/1/1/12": true,
+        "Schnakenberg/exp/D/1/1/12/0.1": true,
+        "Schnakenberg/exp/D/1/1/12/0.5": true,
+        "Schnakenberg/exp/D/1/1/12/1.0": true,
+        "Schnakenberg/mode/D/1/1/24": true,
+        "Schnakenberg/exp/D/1/1/24/0.1": true,
+        "Schnakenberg/exp/D/1/1/24/0.5": true,
+        "Schnakenberg/exp/D/1/1/24/1.0": true,
+        "Schnakenberg/mode/D/1/1/48": true,
+        "Schnakenberg/exp/D/1/1/48/0.1": true,
+        "Schnakenberg/exp/D/1/1/48/0.5": true,
+        "Schnakenberg/exp/D/1/1/48/1.0": true,
+        "Schnakenberg/mode/D/4/2/12": true,
+        "Schnakenberg/exp/D/4/2/12/0.1": true,
+        "Schnakenberg/exp/D/4/2/12/0.5": true,
+        "Schnakenberg/exp/D/4/2/12/1.0": true,
+        "Schnakenberg/mode/D/4/2/24": true,
+        "Schnakenberg/exp/D/4/2/24/0.1": true,
+        "Schnakenberg/exp/D/4/2/24/0.5": true,
+        "Schnakenberg/exp/D/4/2/24/1.0": true,
+        "Schnakenberg/mode/D/4/2/48": true,
+        "Schnakenberg/exp/D/4/2/48/0.1": true,
+        "Schnakenberg/exp/D/4/2/48/0.5": true,
+        "Schnakenberg/exp/D/4/2/48/1.0": true,
+        "Schnakenberg/mode/D/3/1/12": true,
+        "Schnakenberg/exp/D/3/1/12/0.1": true,
+        "Schnakenberg/exp/D/3/1/12/0.5": true,
+        "Schnakenberg/exp/D/3/1/12/1.0": true,
+        "Schnakenberg/mode/D/3/1/24": true,
+        "Schnakenberg/exp/D/3/1/24/0.1": true,
+        "Schnakenberg/exp/D/3/1/24/0.5": true,
+        "Schnakenberg/exp/D/3/1/24/1.0": true,
+        "Schnakenberg/mode/D/3/1/48": true,
+        "Schnakenberg/exp/D/3/1/48/0.1": true,
+        "Schnakenberg/exp/D/3/1/48/0.5": true,
+        "Schnakenberg/exp/D/3/1/48/1.0": true,
+        "Schnakenberg/equilibrium-face-zero": true,
+        "Schnakenberg/constant-equilibrium/N": true,
+        "Schnakenberg/constant-equilibrium/D": true,
+        "Schnakenberg/wrong-boundary-control": true,
+        "Schnakenberg/corner-doublecount-control": true,
+        "Schnakenberg/linear-action-count": true,
+        "Schnakenberg/ledger/N-mode42/12": true,
+        "Schnakenberg/ledger/N-mode42/24": true,
+        "Schnakenberg/ledger/N-mode42/48": true,
+        "Schnakenberg/reference/N-mode42": true,
+        "Schnakenberg/ledger/N-mixed/12": true,
+        "Schnakenberg/ledger/N-mixed/24": true,
+        "Schnakenberg/ledger/N-mixed/48": true,
+        "Schnakenberg/reference/N-mixed": true,
+        "Schnakenberg/ledger/D-mode42/12": true,
+        "Schnakenberg/ledger/D-mode42/24": true,
+        "Schnakenberg/ledger/D-mode42/48": true,
+        "Schnakenberg/reference/D-mode42": true
+      },
+      "metrics": {
+        "fixed_records": 33,
+        "Schnakenberg/positivity/N-mode42/12/minimum": 0.8880521241619382,
+        "Schnakenberg/positivity/N-mode42/24/minimum": 0.8860615561401685,
+        "Schnakenberg/positivity/N-mode42/48/minimum": 0.8855372535923153,
+        "Schnakenberg/space-finest/N-mode42/actual": 8.250442438972883e-05,
+        "Schnakenberg/space-order/N-mode42/actual": 1.944655350128315,
+        "Schnakenberg/positivity/N-mixed/12/minimum": 0.8798143344957898,
+        "Schnakenberg/positivity/N-mixed/24/minimum": 0.8771054043233121,
+        "Schnakenberg/positivity/N-mixed/48/minimum": 0.8763952220795853,
+        "Schnakenberg/space-finest/N-mixed/actual": 0.00011769804580841203,
+        "Schnakenberg/space-order/N-mixed/actual": 1.9477700373628166,
+        "Schnakenberg/time-contamination/actual": 1.1208580182516432e-07,
+        "Schnakenberg/positivity/D-mode42/12/minimum": 0.8862155577223321,
+        "Schnakenberg/positivity/D-mode42/24/minimum": 0.8860670448524426,
+        "Schnakenberg/positivity/D-mode42/48/minimum": 0.8855435379971976,
+        "Schnakenberg/space-finest/D-mode42/actual": 8.370124740819662e-05,
+        "Schnakenberg/space-order/D-mode42/actual": 1.9463235349282928
+      },
+      "records": [
+        {
+          "id": "schnakenberg-components",
+          "linear_actions": [
+            {
+              "bc": "N",
+              "mode": [
+                1,
+                1
+              ],
+              "N": 12,
+              "time": 0.1,
+              "symbol_error": 3.1086244689504383e-15,
+              "exponential_error": 4.440892098500626e-16
+            },
+            {
+              "bc": "N",
+              "mode": [
+                1,
+                1
+              ],
+              "N": 12,
+              "time": 0.5,
+              "symbol_error": 3.1086244689504383e-15,
+              "exponential_error": 2.6645352591003757e-15
+            },
+            {
+              "bc": "N",
+              "mode": [
+                1,
+                1
+              ],
+              "N": 12,
+              "time": 1.0,
+              "symbol_error": 3.1086244689504383e-15,
+              "exponential_error": 5.995204332975845e-15
+            },
+            {
+              "bc": "N",
+              "mode": [
+                1,
+                1
+              ],
+              "N": 24,
+              "time": 0.1,
+              "symbol_error": 1.1213252548714081e-14,
+              "exponential_error": 2.220446049250313e-16
+            },
+            {
+              "bc": "N",
+              "mode": [
+                1,
+                1
+              ],
+              "N": 24,
+              "time": 0.5,
+              "symbol_error": 1.1213252548714081e-14,
+              "exponential_error": 2.6645352591003757e-15
+            },
+            {
+              "bc": "N",
+              "mode": [
+                1,
+                1
+              ],
+              "N": 24,
+              "time": 1.0,
+              "symbol_error": 1.1213252548714081e-14,
+              "exponential_error": 5.995204332975845e-15
+            },
+            {
+              "bc": "N",
+              "mode": [
+                1,
+                1
+              ],
+              "N": 48,
+              "time": 0.1,
+              "symbol_error": 5.773159728050814e-14,
+              "exponential_error": 4.440892098500626e-16
+            },
+            {
+              "bc": "N",
+              "mode": [
+                1,
+                1
+              ],
+              "N": 48,
+              "time": 0.5,
+              "symbol_error": 5.773159728050814e-14,
+              "exponential_error": 2.6645352591003757e-15
+            },
+            {
+              "bc": "N",
+              "mode": [
+                1,
+                1
+              ],
+              "N": 48,
+              "time": 1.0,
+              "symbol_error": 5.773159728050814e-14,
+              "exponential_error": 5.995204332975845e-15
+            },
+            {
+              "bc": "N",
+              "mode": [
+                4,
+                2
+              ],
+              "N": 12,
+              "time": 0.1,
+              "symbol_error": 5.329070518200751e-15,
+              "exponential_error": 4.440892098500626e-16
+            },
+            {
+              "bc": "N",
+              "mode": [
+                4,
+                2
+              ],
+              "N": 12,
+              "time": 0.5,
+              "symbol_error": 5.329070518200751e-15,
+              "exponential_error": 5.995204332975845e-15
+            },
+            {
+              "bc": "N",
+              "mode": [
+                4,
+                2
+              ],
+              "N": 12,
+              "time": 1.0,
+              "symbol_error": 5.329070518200751e-15,
+              "exponential_error": 1.509903313490213e-14
+            },
+            {
+              "bc": "N",
+              "mode": [
+                4,
+                2
+              ],
+              "N": 24,
+              "time": 0.1,
+              "symbol_error": 2.375877272697835e-14,
+              "exponential_error": 6.661338147750939e-16
+            },
+            {
+              "bc": "N",
+              "mode": [
+                4,
+                2
+              ],
+              "N": 24,
+              "time": 0.5,
+              "symbol_error": 2.375877272697835e-14,
+              "exponential_error": 3.1086244689504383e-15
+            },
+            {
+              "bc": "N",
+              "mode": [
+                4,
+                2
+              ],
+              "N": 24,
+              "time": 1.0,
+              "symbol_error": 2.375877272697835e-14,
+              "exponential_error": 8.43769498715119e-15
+            },
+            {
+              "bc": "N",
+              "mode": [
+                4,
+                2
+              ],
+              "N": 48,
+              "time": 0.1,
+              "symbol_error": 1.8340884366807586e-13,
+              "exponential_error": 4.440892098500626e-16
+            },
+            {
+              "bc": "N",
+              "mode": [
+                4,
+                2
+              ],
+              "N": 48,
+              "time": 0.5,
+              "symbol_error": 1.8340884366807586e-13,
+              "exponential_error": 4.440892098500626e-15
+            },
+            {
+              "bc": "N",
+              "mode": [
+                4,
+                2
+              ],
+              "N": 48,
+              "time": 1.0,
+              "symbol_error": 1.8340884366807586e-13,
+              "exponential_error": 1.199040866595169e-14
+            },
+            {
+              "bc": "N",
+              "mode": [
+                3,
+                1
+              ],
+              "N": 12,
+              "time": 0.1,
+              "symbol_error": 5.773159728050814e-15,
+              "exponential_error": 8.881784197001252e-16
+            },
+            {
+              "bc": "N",
+              "mode": [
+                3,
+                1
+              ],
+              "N": 12,
+              "time": 0.5,
+              "symbol_error": 5.773159728050814e-15,
+              "exponential_error": 6.439293542825908e-15
+            },
+            {
+              "bc": "N",
+              "mode": [
+                3,
+                1
+              ],
+              "N": 12,
+              "time": 1.0,
+              "symbol_error": 5.773159728050814e-15,
+              "exponential_error": 1.5987211554602254e-14
+            },
+            {
+              "bc": "N",
+              "mode": [
+                3,
+                1
+              ],
+              "N": 24,
+              "time": 0.1,
+              "symbol_error": 3.58046925441613e-14,
+              "exponential_error": 6.661338147750939e-16
+            },
+            {
+              "bc": "N",
+              "mode": [
+                3,
+                1
+              ],
+              "N": 24,
+              "time": 0.5,
+              "symbol_error": 3.58046925441613e-14,
+              "exponential_error": 6.439293542825908e-15
+            },
+            {
+              "bc": "N",
+              "mode": [
+                3,
+                1
+              ],
+              "N": 24,
+              "time": 1.0,
+              "symbol_error": 3.58046925441613e-14,
+              "exponential_error": 1.5987211554602254e-14
+            },
+            {
+              "bc": "N",
+              "mode": [
+                3,
+                1
+              ],
+              "N": 48,
+              "time": 0.1,
+              "symbol_error": 1.603162047558726e-13,
+              "exponential_error": 4.440892098500626e-16
+            },
+            {
+              "bc": "N",
+              "mode": [
+                3,
+                1
+              ],
+              "N": 48,
+              "time": 0.5,
+              "symbol_error": 1.603162047558726e-13,
+              "exponential_error": 6.439293542825908e-15
+            },
+            {
+              "bc": "N",
+              "mode": [
+                3,
+                1
+              ],
+              "N": 48,
+              "time": 1.0,
+              "symbol_error": 1.603162047558726e-13,
+              "exponential_error": 1.5987211554602254e-14
+            },
+            {
+              "bc": "D",
+              "mode": [
+                1,
+                1
+              ],
+              "N": 12,
+              "time": 0.1,
+              "symbol_error": 3.733124920302089e-15,
+              "exponential_error": 4.440892098500626e-16
+            },
+            {
+              "bc": "D",
+              "mode": [
+                1,
+                1
+              ],
+              "N": 12,
+              "time": 0.5,
+              "symbol_error": 3.733124920302089e-15,
+              "exponential_error": 2.6645352591003757e-15
+            },
+            {
+              "bc": "D",
+              "mode": [
+                1,
+                1
+              ],
+              "N": 12,
+              "time": 1.0,
+              "symbol_error": 3.733124920302089e-15,
+              "exponential_error": 5.995204332975845e-15
+            },
+            {
+              "bc": "D",
+              "mode": [
+                1,
+                1
+              ],
+              "N": 24,
+              "time": 0.1,
+              "symbol_error": 1.0380585280245214e-14,
+              "exponential_error": 2.220446049250313e-16
+            },
+            {
+              "bc": "D",
+              "mode": [
+                1,
+                1
+              ],
+              "N": 24,
+              "time": 0.5,
+              "symbol_error": 1.0380585280245214e-14,
+              "exponential_error": 2.6645352591003757e-15
+            },
+            {
+              "bc": "D",
+              "mode": [
+                1,
+                1
+              ],
+              "N": 24,
+              "time": 1.0,
+              "symbol_error": 1.0380585280245214e-14,
+              "exponential_error": 5.995204332975845e-15
+            },
+            {
+              "bc": "D",
+              "mode": [
+                1,
+                1
+              ],
+              "N": 48,
+              "time": 0.1,
+              "symbol_error": 5.861977570020827e-14,
+              "exponential_error": 4.440892098500626e-16
+            },
+            {
+              "bc": "D",
+              "mode": [
+                1,
+                1
+              ],
+              "N": 48,
+              "time": 0.5,
+              "symbol_error": 5.861977570020827e-14,
+              "exponential_error": 2.6645352591003757e-15
+            },
+            {
+              "bc": "D",
+              "mode": [
+                1,
+                1
+              ],
+              "N": 48,
+              "time": 1.0,
+              "symbol_error": 5.861977570020827e-14,
+              "exponential_error": 5.995204332975845e-15
+            },
+            {
+              "bc": "D",
+              "mode": [
+                4,
+                2
+              ],
+              "N": 12,
+              "time": 0.1,
+              "symbol_error": 1.1102230246251565e-14,
+              "exponential_error": 4.440892098500626e-16
+            },
+            {
+              "bc": "D",
+              "mode": [
+                4,
+                2
+              ],
+              "N": 12,
+              "time": 0.5,
+              "symbol_error": 1.1102230246251565e-14,
+              "exponential_error": 5.995204332975845e-15
+            },
+            {
+              "bc": "D",
+              "mode": [
+                4,
+                2
+              ],
+              "N": 12,
+              "time": 1.0,
+              "symbol_error": 1.1102230246251565e-14,
+              "exponential_error": 1.509903313490213e-14
+            },
+            {
+              "bc": "D",
+              "mode": [
+                4,
+                2
+              ],
+              "N": 24,
+              "time": 0.1,
+              "symbol_error": 2.353672812205332e-14,
+              "exponential_error": 6.661338147750939e-16
+            },
+            {
+              "bc": "D",
+              "mode": [
+                4,
+                2
+              ],
+              "N": 24,
+              "time": 0.5,
+              "symbol_error": 2.353672812205332e-14,
+              "exponential_error": 3.1086244689504383e-15
+            },
+            {
+              "bc": "D",
+              "mode": [
+                4,
+                2
+              ],
+              "N": 24,
+              "time": 1.0,
+              "symbol_error": 2.353672812205332e-14,
+              "exponential_error": 8.43769498715119e-15
+            },
+            {
+              "bc": "D",
+              "mode": [
+                4,
+                2
+              ],
+              "N": 48,
+              "time": 0.1,
+              "symbol_error": 1.9828583219805296e-13,
+              "exponential_error": 4.440892098500626e-16
+            },
+            {
+              "bc": "D",
+              "mode": [
+                4,
+                2
+              ],
+              "N": 48,
+              "time": 0.5,
+              "symbol_error": 1.9828583219805296e-13,
+              "exponential_error": 4.440892098500626e-15
+            },
+            {
+              "bc": "D",
+              "mode": [
+                4,
+                2
+              ],
+              "N": 48,
+              "time": 1.0,
+              "symbol_error": 1.9828583219805296e-13,
+              "exponential_error": 1.199040866595169e-14
+            },
+            {
+              "bc": "D",
+              "mode": [
+                3,
+                1
+              ],
+              "N": 12,
+              "time": 0.1,
+              "symbol_error": 8.548717289613705e-15,
+              "exponential_error": 8.881784197001252e-16
+            },
+            {
+              "bc": "D",
+              "mode": [
+                3,
+                1
+              ],
+              "N": 12,
+              "time": 0.5,
+              "symbol_error": 8.548717289613705e-15,
+              "exponential_error": 6.439293542825908e-15
+            },
+            {
+              "bc": "D",
+              "mode": [
+                3,
+                1
+              ],
+              "N": 12,
+              "time": 1.0,
+              "symbol_error": 8.548717289613705e-15,
+              "exponential_error": 1.5987211554602254e-14
+            },
+            {
+              "bc": "D",
+              "mode": [
+                3,
+                1
+              ],
+              "N": 24,
+              "time": 0.1,
+              "symbol_error": 2.2593038551121936e-14,
+              "exponential_error": 6.661338147750939e-16
+            },
+            {
+              "bc": "D",
+              "mode": [
+                3,
+                1
+              ],
+              "N": 24,
+              "time": 0.5,
+              "symbol_error": 2.2593038551121936e-14,
+              "exponential_error": 6.439293542825908e-15
+            },
+            {
+              "bc": "D",
+              "mode": [
+                3,
+                1
+              ],
+              "N": 24,
+              "time": 1.0,
+              "symbol_error": 2.2593038551121936e-14,
+              "exponential_error": 1.5987211554602254e-14
+            },
+            {
+              "bc": "D",
+              "mode": [
+                3,
+                1
+              ],
+              "N": 48,
+              "time": 0.1,
+              "symbol_error": 1.63202784619898e-13,
+              "exponential_error": 4.440892098500626e-16
+            },
+            {
+              "bc": "D",
+              "mode": [
+                3,
+                1
+              ],
+              "N": 48,
+              "time": 0.5,
+              "symbol_error": 1.63202784619898e-13,
+              "exponential_error": 6.439293542825908e-15
+            },
+            {
+              "bc": "D",
+              "mode": [
+                3,
+                1
+              ],
+              "N": 48,
+              "time": 1.0,
+              "symbol_error": 1.63202784619898e-13,
+              "exponential_error": 1.5987211554602254e-14
+            }
+          ],
+          "matrix_actions_total": 216,
+          "data": null
+        },
+        {
+          "id": "schnak-N-mode42-N12",
+          "ic": "N-mode42",
+          "N": 12,
+          "steps": 1600,
+          "dt": 0.00125,
+          "minimum": 0.8880521241619382,
+          "max_Newton_residual": 1.1143904267256477e-16,
+          "mass_balance_residual": [
+            1.5122451901827816e-15,
+            -1.1150802503578916e-14
+          ],
+          "mass_scale": [
+            40.48207834452456,
+            36.537342941016455
+          ],
+          "integrated_boundary_flux": [
+            0.0,
+            0.0
+          ],
+          "integrated_reaction": [
+            0.0036607401671331784,
+            -0.006767097094769033
+          ],
+          "data": "schnak-N-mode42-N12.npz"
+        },
+        {
+          "id": "schnak-N-mode42-N24",
+          "ic": "N-mode42",
+          "N": 24,
+          "steps": 1600,
+          "dt": 0.00125,
+          "minimum": 0.8860615561401685,
+          "max_Newton_residual": 1.1143904267256477e-16,
+          "mass_balance_residual": [
+            5.62310614737882e-15,
+            1.42785089307651e-14
+          ],
+          "mass_scale": [
+            40.4828964273337,
+            36.538787010464794
+          ],
+          "integrated_boundary_flux": [
+            0.0,
+            0.0
+          ],
+          "integrated_reaction": [
+            0.004478822976275926,
+            -0.008211166543105787
+          ],
+          "data": "schnak-N-mode42-N24.npz"
+        },
+        {
+          "id": "schnak-N-mode42-N48",
+          "ic": "N-mode42",
+          "N": 48,
+          "steps": 1600,
+          "dt": 0.00125,
+          "minimum": 0.8855372535923153,
+          "max_Newton_residual": 1.1143904267256477e-16,
+          "mass_balance_residual": [
+            1.0853297427448894e-14,
+            -5.377642775528102e-16
+          ],
+          "mass_scale": [
+            40.48311824457079,
+            36.539177617282824
+          ],
+          "integrated_boundary_flux": [
+            0.0,
+            0.0
+          ],
+          "integrated_reaction": [
+            0.0047006402133680505,
+            -0.008601773361135118
+          ],
+          "data": "schnak-N-mode42-N48.npz"
+        },
+        {
+          "id": "schnak-ref-N-mode42-K12-Q96-t1e-10",
+          "K": 12,
+          "Q": 96,
+          "Gram_error": 4.958669244444029e-15,
+          "method": "DP54",
+          "accepted": 98,
+          "rejected": 0,
+          "nfev": 686,
+          "rtol": 1e-10,
+          "atol": 1e-12,
+          "complete": true,
+          "data": "schnak-ref-N-mode42-K12-Q96-t1e-10.npz"
+        },
+        {
+          "id": "schnak-ref-N-mode42-K18-Q96-t1e-10",
+          "K": 18,
+          "Q": 96,
+          "Gram_error": 5.755627031595042e-15,
+          "method": "DP54",
+          "accepted": 101,
+          "rejected": 2,
+          "nfev": 721,
+          "rtol": 1e-10,
+          "atol": 1e-12,
+          "complete": true,
+          "data": "schnak-ref-N-mode42-K18-Q96-t1e-10.npz"
+        },
+        {
+          "id": "schnak-ref-N-mode42-K18-Q192-t1e-10",
+          "K": 18,
+          "Q": 192,
+          "Gram_error": 2.565855440668069e-14,
+          "method": "DP54",
+          "accepted": 101,
+          "rejected": 1,
+          "nfev": 714,
+          "rtol": 1e-10,
+          "atol": 1e-12,
+          "complete": true,
+          "data": "schnak-ref-N-mode42-K18-Q192-t1e-10.npz"
+        },
+        {
+          "id": "schnak-ref-N-mode42-K18-Q192-t1e-12",
+          "K": 18,
+          "Q": 192,
+          "Gram_error": 2.565855440668069e-14,
+          "method": "DP54",
+          "accepted": 234,
+          "rejected": 0,
+          "nfev": 1638,
+          "rtol": 1e-12,
+          "atol": 1e-14,
+          "complete": true,
+          "data": "schnak-ref-N-mode42-K18-Q192-t1e-12.npz"
+        },
+        {
+          "id": "schnak-summary-N-mode42",
+          "reference_deltas": [
+            7.613877928136503e-07,
+            6.505906924303417e-14,
+            2.4635848916432224e-13
+          ],
+          "reference_sum": 7.613881042312087e-07,
+          "reference_qualified": true,
+          "finest_denominator": 8.250442438972883e-05,
+          "zero_floor": 1e-12,
+          "grid_errors": [
+            0.0010844810056118703,
+            0.00031759732092773163,
+            8.250442438972883e-05
+          ],
+          "spatial_order": 1.944655350128315,
+          "reference_role": "original4-rowreference",
+          "reference_scope": "Finite modal/quadrature/tolerance sensitivity indicators, not rigorous continuum bounds",
+          "data": "schnak-summary-N-mode42.npz"
+        },
+        {
+          "id": "schnak-N-mixed-N12",
+          "ic": "N-mixed",
+          "N": 12,
+          "steps": 1600,
+          "dt": 0.00125,
+          "minimum": 0.8798143344957898,
+          "max_Newton_residual": 1.1130012926921506e-16,
+          "mass_balance_residual": [
+            -1.4127154307486123e-14,
+            4.133846043252731e-15
+          ],
+          "mass_scale": [
+            40.48189852416706,
+            36.53710378394009
+          ],
+          "integrated_boundary_flux": [
+            0.0,
+            0.0
+          ],
+          "integrated_reaction": [
+            0.0034809198096325262,
+            -0.006527940018398097
+          ],
+          "data": "schnak-N-mixed-N12.npz"
+        },
+        {
+          "id": "schnak-N-mixed-N24",
+          "ic": "N-mixed",
+          "N": 24,
+          "steps": 1600,
+          "dt": 0.00125,
+          "minimum": 0.8771054043233121,
+          "max_Newton_residual": 1.1143904267256477e-16,
+          "mass_balance_residual": [
+            1.222459633520856e-14,
+            -7.504413757075667e-15
+          ],
+          "mass_scale": [
+            40.482759046795586,
+            36.53863057796566
+          ],
+          "integrated_boundary_flux": [
+            0.0,
+            0.0
+          ],
+          "integrated_reaction": [
+            0.004341442438162911,
+            -0.008054734043973211
+          ],
+          "data": "schnak-N-mixed-N24.npz"
+        },
+        {
+          "id": "schnak-N-mixed-N48",
+          "ic": "N-mixed",
+          "N": 48,
+          "steps": 1600,
+          "dt": 0.00125,
+          "minimum": 0.8763952220795853,
+          "max_Newton_residual": 1.1143904267256477e-16,
+          "mass_balance_residual": [
+            -6.296178856057821e-15,
+            1.5456386170953351e-15
+          ],
+          "mass_scale": [
+            40.4829923295782,
+            36.53904338692758
+          ],
+          "integrated_boundary_flux": [
+            0.0,
+            0.0
+          ],
+          "integrated_reaction": [
+            0.0045747252207767,
+            -0.008467543005893799
+          ],
+          "data": "schnak-N-mixed-N48.npz"
+        },
+        {
+          "id": "schnak-ref-N-mixed-K12-Q96-t1e-10",
+          "K": 12,
+          "Q": 96,
+          "Gram_error": 4.958669244444029e-15,
+          "method": "DP54",
+          "accepted": 99,
+          "rejected": 0,
+          "nfev": 693,
+          "rtol": 1e-10,
+          "atol": 1e-12,
+          "complete": true,
+          "data": "schnak-ref-N-mixed-K12-Q96-t1e-10.npz"
+        },
+        {
+          "id": "schnak-ref-N-mixed-K18-Q96-t1e-10",
+          "K": 18,
+          "Q": 96,
+          "Gram_error": 5.755627031595042e-15,
+          "method": "DP54",
+          "accepted": 102,
+          "rejected": 1,
+          "nfev": 721,
+          "rtol": 1e-10,
+          "atol": 1e-12,
+          "complete": true,
+          "data": "schnak-ref-N-mixed-K18-Q96-t1e-10.npz"
+        },
+        {
+          "id": "schnak-ref-N-mixed-K18-Q192-t1e-10",
+          "K": 18,
+          "Q": 192,
+          "Gram_error": 2.565855440668069e-14,
+          "method": "DP54",
+          "accepted": 102,
+          "rejected": 1,
+          "nfev": 721,
+          "rtol": 1e-10,
+          "atol": 1e-12,
+          "complete": true,
+          "data": "schnak-ref-N-mixed-K18-Q192-t1e-10.npz"
+        },
+        {
+          "id": "schnak-ref-N-mixed-K18-Q192-t1e-12",
+          "K": 18,
+          "Q": 192,
+          "Gram_error": 2.565855440668069e-14,
+          "method": "DP54",
+          "accepted": 236,
+          "rejected": 0,
+          "nfev": 1652,
+          "rtol": 1e-12,
+          "atol": 1e-14,
+          "complete": true,
+          "data": "schnak-ref-N-mixed-K18-Q192-t1e-12.npz"
+        },
+        {
+          "id": "schnak-summary-N-mixed",
+          "reference_deltas": [
+            1.0061035745634328e-06,
+            3.83026943495679e-14,
+            4.289901767151605e-13
+          ],
+          "reference_sum": 1.0061040418563039e-06,
+          "reference_qualified": true,
+          "finest_denominator": 0.00011769804580841203,
+          "zero_floor": 1e-12,
+          "grid_errors": [
+            0.0015678188483445599,
+            0.00045405290439126667,
+            0.00011769804580841203
+          ],
+          "spatial_order": 1.9477700373628166,
+          "reference_role": "original4-rowreference",
+          "reference_scope": "Finite modal/quadrature/tolerance sensitivity indicators, not rigorous continuum bounds",
+          "data": "schnak-summary-N-mixed.npz"
+        },
+        {
+          "id": "schnak-time-200",
+          "steps": 400,
+          "dt": 0.005,
+          "minimum": 0.8763965338878951,
+          "max_Newton_residual": 1.1268926330271212e-16,
+          "mass_balance_residual": [
+            -4.154662724964453e-16,
+            -6.7758298971654085e-15
+          ],
+          "mass_scale": [
+            40.482991803033464,
+            36.53904245107021
+          ],
+          "integrated_boundary_flux": [
+            0.0,
+            0.0
+          ],
+          "integrated_reaction": [
+            0.004574198676039447,
+            -0.00846660714852054
+          ],
+          "data": "schnak-time-200.npz"
+        },
+        {
+          "id": "schnak-time-400",
+          "steps": 800,
+          "dt": 0.0025,
+          "minimum": 0.8763954844494254,
+          "max_Newton_residual": 1.1185578288261389e-16,
+          "mass_balance_residual": [
+            -6.315260814293566e-15,
+            -6.331740687315346e-16
+          ],
+          "mass_scale": [
+            40.482992224265146,
+            36.53904319974951
+          ],
+          "integrated_boundary_flux": [
+            0.0,
+            0.0
+          ],
+          "integrated_reaction": [
+            0.004574619907720665,
+            -0.00846735582781769
+          ],
+          "data": "schnak-time-400.npz"
+        },
+        {
+          "id": "schnak-time-summary",
+          "errors_to_continuum_reference": [
+            0.00011937928470340253,
+            0.00011803430257639747,
+            0.00011769804580841203
+          ],
+          "same_grid_pair_differences": [
+            1.3449824467492988e-06,
+            3.36257405475493e-07
+          ],
+          "observed_order": null,
+          "finest_time_indicator": 1.1208580182516432e-07,
+          "data": null
+        },
+        {
+          "id": "schnak-D-mode42-N12",
+          "ic": "D-mode42",
+          "N": 12,
+          "steps": 1600,
+          "dt": 0.00125,
+          "minimum": 0.8862155577223321,
+          "max_Newton_residual": 1.1130012926921506e-16,
+          "mass_balance_residual": [
+            -1.258281673299777e-14,
+            -2.3507237822961713e-14
+          ],
+          "mass_scale": [
+            40.48368721856097,
+            36.54327355643294
+          ],
+          "integrated_boundary_flux": [
+            -2.7856976883969742e-05,
+            0.0036001342953684025
+          ],
+          "integrated_reaction": [
+            0.005241757226660534,
+            -0.00909757821588442
+          ],
+          "data": "schnak-D-mode42-N12.npz"
+        },
+        {
+          "id": "schnak-D-mode42-N24",
+          "ic": "D-mode42",
+          "N": 24,
+          "steps": 1600,
+          "dt": 0.00125,
+          "minimum": 0.8860670448524426,
+          "max_Newton_residual": 1.1143904267256477e-16,
+          "mass_balance_residual": [
+            4.272623921330876e-15,
+            -8.217385105702135e-15
+          ],
+          "mass_scale": [
+            40.48484332831696,
+            36.546076124381784
+          ],
+          "integrated_boundary_flux": [
+            -1.2247718017517128e-05,
+            0.004433603689124673
+          ],
+          "integrated_reaction": [
+            0.00641347624152124,
+            -0.011066676770974242
+          ],
+          "data": "schnak-D-mode42-N24.npz"
+        },
+        {
+          "id": "schnak-D-mode42-N48",
+          "ic": "D-mode42",
+          "N": 48,
+          "steps": 1600,
+          "dt": 0.00125,
+          "minimum": 0.8855435379971976,
+          "max_Newton_residual": 1.1143904267256477e-16,
+          "mass_balance_residual": [
+            9.75261538194161e-15,
+            1.7034984534092246e-15
+          ],
+          "mass_scale": [
+            40.48516700681382,
+            36.54687745916411
+          ],
+          "integrated_boundary_flux": [
+            -7.531580989803015e-06,
+            0.004685081591690642
+          ],
+          "integrated_reaction": [
+            0.00674187087540529,
+            -0.011616533650727682
+          ],
+          "data": "schnak-D-mode42-N48.npz"
+        },
+        {
+          "id": "schnak-ref-D-mode42-K12-Q96-t1e-10",
+          "K": 12,
+          "Q": 96,
+          "Gram_error": 3.3306690738754696e-15,
+          "method": "DP54",
+          "accepted": 95,
+          "rejected": 0,
+          "nfev": 665,
+          "rtol": 1e-10,
+          "atol": 1e-12,
+          "complete": true,
+          "data": "schnak-ref-D-mode42-K12-Q96-t1e-10.npz"
+        },
+        {
+          "id": "schnak-ref-D-mode42-K18-Q96-t1e-10",
+          "K": 18,
+          "Q": 96,
+          "Gram_error": 3.9968028886505635e-15,
+          "method": "DP54",
+          "accepted": 111,
+          "rejected": 6,
+          "nfev": 819,
+          "rtol": 1e-10,
+          "atol": 1e-12,
+          "complete": true,
+          "data": "schnak-ref-D-mode42-K18-Q96-t1e-10.npz"
+        },
+        {
+          "id": "schnak-ref-D-mode42-K18-Q192-t1e-10",
+          "K": 18,
+          "Q": 192,
+          "Gram_error": 1.3766765505351941e-14,
+          "method": "DP54",
+          "accepted": 111,
+          "rejected": 6,
+          "nfev": 819,
+          "rtol": 1e-10,
+          "atol": 1e-12,
+          "complete": true,
+          "data": "schnak-ref-D-mode42-K18-Q192-t1e-10.npz"
+        },
+        {
+          "id": "schnak-ref-D-mode42-K18-Q192-t1e-12",
+          "K": 18,
+          "Q": 192,
+          "Gram_error": 1.3766765505351941e-14,
+          "method": "DP54",
+          "accepted": 230,
+          "rejected": 0,
+          "nfev": 1610,
+          "rtol": 1e-12,
+          "atol": 1e-14,
+          "complete": true,
+          "data": "schnak-ref-D-mode42-K18-Q192-t1e-12.npz"
+        },
+        {
+          "id": "schnak-legacy-reference-summary-D-mode42",
+          "role": "legacy-reference-qualification",
+          "reference_rows": 4,
+          "reference_deltas": [
+            4.995141182306817e-05,
+            1.5543122344752192e-15,
+            3.1374902675906924e-13
+          ],
+          "reference_sum": 4.995141213837151e-05,
+          "reference_qualified_in_this_run": false,
+          "grid_errors": [
+            0.0012654646650283041,
+            0.00032652993641701933,
+            9.088196030337947e-05
+          ],
+          "finest_denominator": 9.088196030337947e-05,
+          "original_R4_first_qualification": "FAIL, preserved in source-reading.json#/prior_reference_qualification",
+          "used_for_current_accuracy_goals": false,
+          "relabelled_as_original_protocol_pass": false,
+          "data": "schnak-legacy-reference-summary-D-mode42.npz"
+        },
+        {
+          "id": "schnak-ref-extension-D-mode42-K24-Q128-t1e-10",
+          "K": 24,
+          "Q": 128,
+          "Gram_error": 5.440092820663267e-15,
+          "method": "DP54",
+          "accepted": 178,
+          "rejected": 8,
+          "nfev": 1302,
+          "rtol": 1e-10,
+          "atol": 1e-12,
+          "complete": true,
+          "role": "controlledD-onlyfinerreferenceextension",
+          "data": "schnak-ref-extension-D-mode42-K24-Q128-t1e-10.npz"
+        },
+        {
+          "id": "schnak-ref-extension-D-mode42-K32-Q128-t1e-10",
+          "K": 32,
+          "Q": 128,
+          "Gram_error": 5.440092820663267e-15,
+          "method": "DP54",
+          "accepted": 310,
+          "rejected": 16,
+          "nfev": 2282,
+          "rtol": 1e-10,
+          "atol": 1e-12,
+          "complete": true,
+          "role": "controlledD-onlyfinerreferenceextension",
+          "data": "schnak-ref-extension-D-mode42-K32-Q128-t1e-10.npz"
+        },
+        {
+          "id": "schnak-ref-extension-D-mode42-K32-Q192-t1e-10",
+          "K": 32,
+          "Q": 192,
+          "Gram_error": 1.3766765505351941e-14,
+          "method": "DP54",
+          "accepted": 310,
+          "rejected": 16,
+          "nfev": 2282,
+          "rtol": 1e-10,
+          "atol": 1e-12,
+          "complete": true,
+          "role": "controlledD-onlyfinerreferenceextension",
+          "data": "schnak-ref-extension-D-mode42-K32-Q192-t1e-10.npz"
+        },
+        {
+          "id": "schnak-ref-extension-D-mode42-K32-Q192-t1e-12",
+          "K": 32,
+          "Q": 192,
+          "Gram_error": 1.3766765505351941e-14,
+          "method": "DP54",
+          "accepted": 327,
+          "rejected": 15,
+          "nfev": 2394,
+          "rtol": 1e-12,
+          "atol": 1e-14,
+          "complete": true,
+          "role": "controlledD-onlyfinerreferenceextension",
+          "data": "schnak-ref-extension-D-mode42-K32-Q192-t1e-12.npz"
+        },
+        {
+          "id": "schnak-summary-D-mode42",
+          "reference_deltas": [
+            2.888731544303802e-06,
+            1.532107773982716e-14,
+            3.4638958368304884e-14
+          ],
+          "reference_sum": 2.888731594263838e-06,
+          "reference_qualified": true,
+          "finest_denominator": 8.370124740819662e-05,
+          "zero_floor": 1e-12,
+          "grid_errors": [
+            0.0012636317080267911,
+            0.0003225772206343347,
+            8.370124740819662e-05
+          ],
+          "spatial_order": 1.9463235349282928,
+          "reference_role": "controlledD-onlyK24/32extension;newfineK32Q192tight",
+          "reference_scope": "Finite modal/quadrature/tolerance sensitivity indicators, not rigorous continuum bounds",
+          "data": "schnak-summary-D-mode42.npz"
+        }
+      ]
+    },
+    {
+      "id": "keller-segel-forced-flux",
+      "passed": true,
+      "checks": {
+        "KS/source_point_pairs36": true,
+        "KS/wholegrid_RHS_vectorpairs96": true,
+        "KS/divergence_free_faces": true,
+        "KS/independent_velocity": true,
+        "KS/wrong_chi_detected": true,
+        "KS/omitted_coupling_detected": true,
+        "KS/stale_source_time_detected": true,
+        "KS/duplicated_external_face_detected": true,
+        "KS/massledger/12": true,
+        "KS/massledger/24": true,
+        "KS/massledger/48": true,
+        "KS/reference": true,
+        "KS/constant-control": true
+      },
+      "metrics": {
+        "fixed_records": 10,
+        "KS/time-order/actual": 3.0037445404571113,
+        "KS/space-finest/0/actual": 0.0001221189660198796,
+        "KS/space-order/0/actual": 1.9965225132866062,
+        "KS/space-finest/1/actual": 2.9817290057465584e-05,
+        "KS/space-order/1/actual": 1.988907316937278,
+        "KS/time-contamination/actual": 1.893596390800667e-12
+      },
+      "records": [
+        {
+          "id": "KS-components",
+          "source_probe_errors": [
+            1.743057661661681e-17,
+            0.0,
+            5.567246105721821e-17,
+            0.0,
+            7.331022943903909e-17,
+            1.1273611683325498e-16,
+            1.155751671135632e-16,
+            9.176709363971631e-17,
+            3.3042351923367754e-17,
+            0.0,
+            2.3987610560004725e-17,
+            1.6733836901180518e-16,
+            1.3288849832387691e-16,
+            1.063397404910753e-16,
+            5.965646603830402e-17,
+            2.019420333428594e-17,
+            8.075139069961866e-17,
+            1.1376352429826677e-16,
+            9.537453544297961e-18,
+            4.7415203793282976e-17,
+            1.3291310778163528e-17,
+            3.935901640243106e-17,
+            2.4376455543235746e-17,
+            6.227408030443852e-17,
+            2.0388109045349676e-17,
+            4.491019965895992e-17,
+            6.327483384510945e-17,
+            6.485546015926426e-17,
+            6.930022394244165e-17,
+            8.926903575388533e-17,
+            4.049481017529868e-17,
+            1.2179397477570174e-17,
+            1.0686112603087862e-16,
+            7.282314889259799e-17,
+            2.4730233622395917e-17,
+            8.357605320993966e-17
+          ],
+          "wholegrid_RHS_errors": [
+            7.98373580700796e-17,
+            3.739870524936518e-17,
+            1.5017262866255578e-16,
+            3.96194504320184e-17,
+            9.850777372941522e-17,
+            4.163682882480494e-17
+          ],
+          "zero_frequency_integral": "mean cos0=1; cosacosb=.5(cos(a-b)+cos(a+b)); sinasinb=.5(cos(a-b)-cos(a+b))",
+          "continuum_integrals": "integraln=integralc=1; integralreactionn=-r*A²/4; integralsn=+r*A²/4; integralsc=0",
+          "data": null
+        },
+        {
+          "id": "KS-space-N12",
+          "N": 12,
+          "steps": 1024,
+          "dt": 0.000244140625,
+          "minimum": [
+            0.9022638544007324,
+            0.9527970664018593
+          ],
+          "integrated_reaction": [
+            -4.8811926832839186e-05,
+            5.685308987443972e-08
+          ],
+          "integrated_source": [
+            4.9183667535921016e-05,
+            -1.495640583716623e-20
+          ],
+          "mass_residual": [
+            -1.9490566929500353e-16,
+            -8.289384608127543e-17
+          ],
+          "mass_scale": [
+            2.000097995594369,
+            2.00000005685309
+          ],
+          "Linf_fields": [
+            0.0019229529613318253,
+            0.0004558503710181405
+          ],
+          "data": "KS-space-N12.npz"
+        },
+        {
+          "id": "KS-space-N24",
+          "N": 24,
+          "steps": 1024,
+          "dt": 0.000244140625,
+          "minimum": [
+            0.9005698543736446,
+            0.9507102465265501
+          ],
+          "integrated_reaction": [
+            -4.909041989231419e-05,
+            1.426894292249008e-08
+          ],
+          "integrated_source": [
+            4.918366753592049e-05,
+            2.996477087132836e-20
+          ],
+          "mass_residual": [
+            3.3203691532368573e-19,
+            -2.2844662815889056e-16
+          ],
+          "mass_scale": [
+            2.0000982740874282,
+            2.000000014268943
+          ],
+          "Linf_fields": [
+            0.0004872998548195451,
+            0.00011835563261164417
+          ],
+          "data": "KS-space-N24.npz"
+        },
+        {
+          "id": "KS-space-N48",
+          "N": 48,
+          "steps": 1024,
+          "dt": 0.000244140625,
+          "minimum": [
+            0.9001427078852056,
+            0.9501782550064043
+          ],
+          "integrated_reaction": [
+            -4.916033546238315e-05,
+            3.5707755966428794e-09
+          ],
+          "integrated_source": [
+            4.918366753592075e-05,
+            -2.6486935940327674e-21
+          ],
+          "mass_residual": [
+            6.889427179787577e-17,
+            7.850329195907732e-17
+          ],
+          "mass_scale": [
+            2.0000983440029985,
+            2.0000000035707757
+          ],
+          "Linf_fields": [
+            0.0001221189660198796,
+            2.9817290057465584e-05
+          ],
+          "data": "KS-space-N48.npz"
+        },
+        {
+          "id": "KS-time-reference",
+          "qualified": true,
+          "spread": 0.0,
+          "solvers": [
+            {
+              "method": "DP54",
+              "accepted": 67,
+              "rejected": 0,
+              "nfev": 469,
+              "rtol": 2e-10,
+              "atol": 1e-12,
+              "complete": true
+            },
+            {
+              "method": "DP54",
+              "accepted": 67,
+              "rejected": 0,
+              "nfev": 469,
+              "rtol": 5e-12,
+              "atol": 2e-14,
+              "complete": true
+            }
+          ],
+          "scope": "Same24x24MOL, scalar face ownership and independent unexpanded analytic cellsource",
+          "data": "KS-time-reference.npz"
+        },
+        {
+          "id": "KS-time-64",
+          "N": 24,
+          "steps": 64,
+          "dt": 0.00390625,
+          "minimum": [
+            0.9005698543736446,
+            0.9507102465265501
+          ],
+          "integrated_reaction": [
+            -4.909042056683601e-05,
+            1.4269308586965537e-08
+          ],
+          "integrated_source": [
+            4.9183667535984124e-05,
+            3.684593320556207e-20
+          ],
+          "mass_residual": [
+            1.0905040976130764e-16,
+            3.657994997087319e-17
+          ],
+          "mass_scale": [
+            2.000098274088103,
+            2.0000000142693084
+          ],
+          "same_MOL_error": 8.777474524990225e-09,
+          "data": "KS-time-64.npz"
+        },
+        {
+          "id": "KS-time-128",
+          "N": 24,
+          "steps": 128,
+          "dt": 0.001953125,
+          "minimum": [
+            0.9005698543736446,
+            0.9507102465265501
+          ],
+          "integrated_reaction": [
+            -4.909041997674902e-05,
+            1.4268988426072723e-08
+          ],
+          "integrated_source": [
+            4.91836675359245e-05,
+            2.303459042672111e-20
+          ],
+          "mass_residual": [
+            5.420333236069719e-17,
+            9.166273653102473e-18
+          ],
+          "mass_scale": [
+            2.0000982740875126,
+            2.000000014268988
+          ],
+          "same_MOL_error": 1.0914410486506654e-09,
+          "data": "KS-time-128.npz"
+        },
+        {
+          "id": "KS-time-256",
+          "N": 24,
+          "steps": 256,
+          "dt": 0.0009765625,
+          "minimum": [
+            0.9005698543736446,
+            0.9507102465265501
+          ],
+          "integrated_reaction": [
+            -4.909041990273799e-05,
+            1.4268948479360648e-08
+          ],
+          "integrated_source": [
+            4.918366753592076e-05,
+            3.1861771742783264e-20
+          ],
+          "mass_residual": [
+            2.098134491666792e-16,
+            -1.2159365181897086e-17
+          ],
+          "mass_scale": [
+            2.000098274087439,
+            2.0000000142689487
+          ],
+          "same_MOL_error": 1.3607648341462664e-10,
+          "data": "KS-time-256.npz"
+        },
+        {
+          "id": "KS-halfdt-N48",
+          "N": 48,
+          "steps": 2048,
+          "dt": 0.0001220703125,
+          "minimum": [
+            0.9001427078852056,
+            0.9501782550064043
+          ],
+          "integrated_reaction": [
+            -4.9160335462243064e-05,
+            3.5707755179330368e-09
+          ],
+          "integrated_source": [
+            4.918366753592083e-05,
+            -2.1748110119968244e-21
+          ],
+          "mass_residual": [
+            -7.126596405018781e-17,
+            -6.48319442294641e-17
+          ],
+          "mass_scale": [
+            2.0000983440029985,
+            2.0000000035707757
+          ],
+          "data": "KS-halfdt-N48.npz"
+        },
+        {
+          "id": "KS-constant-unforced",
+          "N": 24,
+          "steps": 256,
+          "dt": 0.0009765625,
+          "minimum": [
+            1.0,
+            1.0
+          ],
+          "integrated_reaction": [
+            0.0,
+            0.0
+          ],
+          "integrated_source": [
+            0.0,
+            0.0
+          ],
+          "mass_residual": [
+            0.0,
+            0.0
+          ],
+          "mass_scale": [
+            2.0,
+            2.0
+          ],
+          "data": "KS-constant-unforced.npz"
+        }
+      ]
+    }
+  ],
+  "qualification_checks": {
+    "Fisher/exact-PDE": true,
+    "Fisher/wrong-special-speed-detected": true,
+    "Fisher/finite-space/0.5": true,
+    "Fisher/finite-space/0.25": true,
+    "Fisher/finite-space/0.125": true,
+    "Fisher/semidiscrete-reference": true,
+    "Schnakenberg/mode/N/1/1/12": true,
+    "Schnakenberg/exp/N/1/1/12/0.1": true,
+    "Schnakenberg/exp/N/1/1/12/0.5": true,
+    "Schnakenberg/exp/N/1/1/12/1.0": true,
+    "Schnakenberg/mode/N/1/1/24": true,
+    "Schnakenberg/exp/N/1/1/24/0.1": true,
+    "Schnakenberg/exp/N/1/1/24/0.5": true,
+    "Schnakenberg/exp/N/1/1/24/1.0": true,
+    "Schnakenberg/mode/N/1/1/48": true,
+    "Schnakenberg/exp/N/1/1/48/0.1": true,
+    "Schnakenberg/exp/N/1/1/48/0.5": true,
+    "Schnakenberg/exp/N/1/1/48/1.0": true,
+    "Schnakenberg/mode/N/4/2/12": true,
+    "Schnakenberg/exp/N/4/2/12/0.1": true,
+    "Schnakenberg/exp/N/4/2/12/0.5": true,
+    "Schnakenberg/exp/N/4/2/12/1.0": true,
+    "Schnakenberg/mode/N/4/2/24": true,
+    "Schnakenberg/exp/N/4/2/24/0.1": true,
+    "Schnakenberg/exp/N/4/2/24/0.5": true,
+    "Schnakenberg/exp/N/4/2/24/1.0": true,
+    "Schnakenberg/mode/N/4/2/48": true,
+    "Schnakenberg/exp/N/4/2/48/0.1": true,
+    "Schnakenberg/exp/N/4/2/48/0.5": true,
+    "Schnakenberg/exp/N/4/2/48/1.0": true,
+    "Schnakenberg/mode/N/3/1/12": true,
+    "Schnakenberg/exp/N/3/1/12/0.1": true,
+    "Schnakenberg/exp/N/3/1/12/0.5": true,
+    "Schnakenberg/exp/N/3/1/12/1.0": true,
+    "Schnakenberg/mode/N/3/1/24": true,
+    "Schnakenberg/exp/N/3/1/24/0.1": true,
+    "Schnakenberg/exp/N/3/1/24/0.5": true,
+    "Schnakenberg/exp/N/3/1/24/1.0": true,
+    "Schnakenberg/mode/N/3/1/48": true,
+    "Schnakenberg/exp/N/3/1/48/0.1": true,
+    "Schnakenberg/exp/N/3/1/48/0.5": true,
+    "Schnakenberg/exp/N/3/1/48/1.0": true,
+    "Schnakenberg/mode/D/1/1/12": true,
+    "Schnakenberg/exp/D/1/1/12/0.1": true,
+    "Schnakenberg/exp/D/1/1/12/0.5": true,
+    "Schnakenberg/exp/D/1/1/12/1.0": true,
+    "Schnakenberg/mode/D/1/1/24": true,
+    "Schnakenberg/exp/D/1/1/24/0.1": true,
+    "Schnakenberg/exp/D/1/1/24/0.5": true,
+    "Schnakenberg/exp/D/1/1/24/1.0": true,
+    "Schnakenberg/mode/D/1/1/48": true,
+    "Schnakenberg/exp/D/1/1/48/0.1": true,
+    "Schnakenberg/exp/D/1/1/48/0.5": true,
+    "Schnakenberg/exp/D/1/1/48/1.0": true,
+    "Schnakenberg/mode/D/4/2/12": true,
+    "Schnakenberg/exp/D/4/2/12/0.1": true,
+    "Schnakenberg/exp/D/4/2/12/0.5": true,
+    "Schnakenberg/exp/D/4/2/12/1.0": true,
+    "Schnakenberg/mode/D/4/2/24": true,
+    "Schnakenberg/exp/D/4/2/24/0.1": true,
+    "Schnakenberg/exp/D/4/2/24/0.5": true,
+    "Schnakenberg/exp/D/4/2/24/1.0": true,
+    "Schnakenberg/mode/D/4/2/48": true,
+    "Schnakenberg/exp/D/4/2/48/0.1": true,
+    "Schnakenberg/exp/D/4/2/48/0.5": true,
+    "Schnakenberg/exp/D/4/2/48/1.0": true,
+    "Schnakenberg/mode/D/3/1/12": true,
+    "Schnakenberg/exp/D/3/1/12/0.1": true,
+    "Schnakenberg/exp/D/3/1/12/0.5": true,
+    "Schnakenberg/exp/D/3/1/12/1.0": true,
+    "Schnakenberg/mode/D/3/1/24": true,
+    "Schnakenberg/exp/D/3/1/24/0.1": true,
+    "Schnakenberg/exp/D/3/1/24/0.5": true,
+    "Schnakenberg/exp/D/3/1/24/1.0": true,
+    "Schnakenberg/mode/D/3/1/48": true,
+    "Schnakenberg/exp/D/3/1/48/0.1": true,
+    "Schnakenberg/exp/D/3/1/48/0.5": true,
+    "Schnakenberg/exp/D/3/1/48/1.0": true,
+    "Schnakenberg/equilibrium-face-zero": true,
+    "Schnakenberg/constant-equilibrium/N": true,
+    "Schnakenberg/constant-equilibrium/D": true,
+    "Schnakenberg/wrong-boundary-control": true,
+    "Schnakenberg/corner-doublecount-control": true,
+    "Schnakenberg/linear-action-count": true,
+    "Schnakenberg/ledger/N-mode42/12": true,
+    "Schnakenberg/ledger/N-mode42/24": true,
+    "Schnakenberg/ledger/N-mode42/48": true,
+    "Schnakenberg/reference/N-mode42": true,
+    "Schnakenberg/ledger/N-mixed/12": true,
+    "Schnakenberg/ledger/N-mixed/24": true,
+    "Schnakenberg/ledger/N-mixed/48": true,
+    "Schnakenberg/reference/N-mixed": true,
+    "Schnakenberg/ledger/D-mode42/12": true,
+    "Schnakenberg/ledger/D-mode42/24": true,
+    "Schnakenberg/ledger/D-mode42/48": true,
+    "Schnakenberg/reference/D-mode42": true,
+    "KS/source_point_pairs36": true,
+    "KS/wholegrid_RHS_vectorpairs96": true,
+    "KS/divergence_free_faces": true,
+    "KS/independent_velocity": true,
+    "KS/wrong_chi_detected": true,
+    "KS/omitted_coupling_detected": true,
+    "KS/stale_source_time_detected": true,
+    "KS/duplicated_external_face_detected": true,
+    "KS/massledger/12": true,
+    "KS/massledger/24": true,
+    "KS/massledger/48": true,
+    "KS/reference": true,
+    "KS/constant-control": true,
+    "all_fixed_case_ids": true
+  }
+}

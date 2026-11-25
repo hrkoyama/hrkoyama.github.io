@@ -2,8 +2,10 @@
 """Verify reviewed lightweight public ZIPs without a source checkout.
 
 Only the Python standard library is used by this verifier. The current Python
-must already contain the three pinned scientific/test dependencies. No quantum
-code, plot regeneration, automatic installation or Git operation is performed.
+must already contain the three pinned scientific/test dependencies. Only the
+registered fixed-input examples run, including scoped small quantum models.
+No plot or heavy-reference regeneration, automatic installation or Git operation
+is performed.
 """
 import argparse
 import csv

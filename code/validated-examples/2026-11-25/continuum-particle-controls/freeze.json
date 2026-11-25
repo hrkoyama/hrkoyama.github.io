@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "status": "ROOT_PEER_REVIEWED_FROZEN",
+  "created_at_utc": "2026-11-25T10:07:52.419694+00:00",
+  "group": "continuum-particle-controls",
+  "files_sha256": {
+    "LICENSE": "07cca125623617c85a41e9a21a2b114d693c61737bc353e3ca98587431e26ee6",
+    "PROTOCOL.md": "6c4be0c5ea7256bf64d4d936be0586430a1f6112ee4c98814a5eb9b60122690f",
+    "README.md": "627d8686c8da0bdd0bdf55a1d9a79b61cb430988d085c3ae2e5b08b981f8060f",
+    "acceptance.json": "cacf2ca243acff9310d0ebf1c529ef87a54b94bc4de8dac1edc2d5375bb30a82",
+    "ale_piston.py": "a0afb8cfc9372a8865ec1d73fef62cb5516eedc5bb5396f4f281ff5f671d2cae",
+    "cases.json": "8b4b8db859d0bb29a4c156beb7d02c5270776c460bed9e1796a409f3b1beb712",
+    "failure_support.py": "709022cb21bd629948afdb829f7e438c4e5919fd2b07145f3662bb2aeea25aa5",
+    "gsph.py": "aa9d35837e97a772a46e9aa358f56f1ca9bc7b69e98e34d8626fc3e742bbf5e2",
+    "inputs.json": "5f49881f37b07c47f674979a4886e6da0421be06ddb6bb213ab7dfea6bf6e0f5",
+    "plot.py": "1363e025d930fff3f7937a195422e27769c3302f602d5e5bac7fff943421e1d5",
+    "reference_riemann.py": "5d2b36eb1e4165d6cf791702529642c9a0c8672cd44a591962efeee7ea66709f",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "41246d28057b9ab3235e4adf60200b2066609baf224f2f44f9315f37d79a80b5",
+    "source-reading.json": "f72bbe7d0eeb97c5c3a36eb4281b6417c5e747297672c1522eb907e631b10bb3",
+    "sphere.py": "b352773dd6418e04e3f44892cb3e89873f9d650153a0da0f7a04ada90d39b56b",
+    "test_components.py": "1e71784a8e027e2aa001f0a2a0fde99ef2ace44bb964700dfcb0a7f60d39b211"
+  },
+  "root_review": {
+    "sha256": "6cf8c9eb4536f3cd3c21bc96a36d2d41566200a15e6d42cf8896f004a8d4d48e"
+  },
+  "independent_peer_review": {
+    "sha256": "8d1dcb676aea985ceddc2b58a7ae833605d308eb24cd470a6abab641ac2fbefe"
+  },
+  "scope": "R8displayreviewlevels-only; sameR7science. CanonicalfreshZIPactualverificationrequired.",
+  "budget_seconds": {
+    "pytest": 120,
+    "runner_external": 120,
+    "runner_cooperative": 90,
+    "plot": 45
+  }
+}

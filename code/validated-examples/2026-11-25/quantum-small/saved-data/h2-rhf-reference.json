@@ -1,0 +1,49 @@
+{
+  "source": "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/reference-pyscf.json",
+  "source_sha256": "3649493f9aeca86bcfeb058501f724400e97ad8bf4315c163d3230c70a314e72",
+  "scope": "Same explicitly supplied finite s-Gaussian spaces and geometries; not a correlated, polarized or complete-basis H2 reference.",
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.0.2",
+    "scipy": "1.14.1",
+    "pyscf": "2.11.0"
+  },
+  "cases": [
+    {
+      "bond_bohr": 1.4,
+      "basis_id": "sto-3g",
+      "nbf": 2,
+      "energy_total": -1.1167143251757512,
+      "converged": true,
+      "nuclear_repulsion": 0.7142857142857143,
+      "electron_count": 2.0,
+      "scf_commutator_ao_norm": 2.7194799110210365e-16,
+      "overlap_eigenvalues": [
+        0.3406817941952571,
+        1.6593182058047427
+      ],
+      "core_eigenvalues": [
+        -2.0787889741644605,
+        -0.16202904677305968
+      ]
+    },
+    {
+      "bond_bohr": 3.0,
+      "basis_id": "sto-3g",
+      "nbf": 2,
+      "energy_total": -0.8852750008977088,
+      "converged": true,
+      "nuclear_repulsion": 0.3333333333333333,
+      "electron_count": 1.9999999999999998,
+      "scf_commutator_ao_norm": 5.551115123125783e-17,
+      "overlap_eigenvalues": [
+        0.7738103555247424,
+        1.2261896444752574
+      ],
+      "core_eigenvalues": [
+        -1.0801298857299495,
+        -0.5178596178920571
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "status": "ROOT_PEER_REVIEWED_FROZEN",
+  "created_at_utc": "2026-11-25T10:07:52.419694+00:00",
+  "group": "biology-ode-controls",
+  "files_sha256": {
+    "LICENSE": "f33f55c85a47e986052d79123fd6939790af5dc8b840e15798b745ced1da482a",
+    "PROTOCOL.md": "921cccda952063c89f6a692bc4f804fe4c919d0ffbb7952939289872db85b5de",
+    "README.md": "aeaf0778f9904b71292bc6e6de6d0ede4851891fcd37aca67790a3b361890667",
+    "acceptance.json": "47bb2050ccf15b2d404c2a3e63047d11d8258dc6feb25dc1e2fc14c3863b72ab",
+    "cases.json": "ba2a1ca599d893f8460f853b712f407784d1b963ed2fac778193e275652225c0",
+    "common.py": "b498680d2500670b2690cd05f1b6292ece0f380fdc8c3bb164e8fe9300b69b4a",
+    "hh.py": "cdcb97b1fc0177b9a1274a1c243271be1353dd6a238179a577af19a9fe6d41bb",
+    "inputs.json": "f15bd046bb65798a49c2e1f5ef75e7aedfb23a7aec0c09f2d11cec5a3a6b58a8",
+    "plot.py": "1c3c4541d5802427f6c2ed21dadd7e5ebc895648467055b6edb5ae8939da9590",
+    "requirements-plotting.txt": "9219ba01fa741ccca28c752db67a0ac180f6d9e55cb5198821ded5aa4b4099bd",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "88ef2deb3150bf8ca73a683d6d3dfd6666af8656284d4644b502885e76b5f275",
+    "source-reading.json": "0c0d3c256fb2ae7c4ec57e7891efe4fae66b8f99530d22a0934923561cf70949",
+    "ssa.py": "8a2e3e73d7e6719dfba1b5019ac87e55f2f6161bb6132ba5615ae129483df1d5",
+    "test_models.py": "94a0017c326a0adcbc75f3438356f7e98f02241c5304cac692d559b6e197f99e"
+  },
+  "root_review": {
+    "sha256": "6cf8c9eb4536f3cd3c21bc96a36d2d41566200a15e6d42cf8896f004a8d4d48e"
+  },
+  "independent_peer_review": {
+    "sha256": "8d1dcb676aea985ceddc2b58a7ae833605d308eb24cd470a6abab641ac2fbefe"
+  },
+  "scope": "R6displaycompatibilityonly; originalscientificcode/inputs/gatesunchanged. CanonicalnewPNG+ZIPactualverificationrequired.",
+  "budget_seconds": {
+    "pytest": 120,
+    "runner_external": 120,
+    "runner_cooperative": 115,
+    "plot": 45
+  }
+}

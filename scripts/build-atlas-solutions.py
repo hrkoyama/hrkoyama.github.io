@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Publish the saved reference-solution inventory without evaluating new solutions."""
 from collections import Counter
-from atlas_reference_catalog import load_reference_cases, SUPPLEMENT_SOURCE
+from atlas_reference_catalog import load_reference_cases, SUPPLEMENT_SOURCE, ANNOTATION_SOURCE
 from html import escape
 from pathlib import Path
 import hashlib
@@ -20,6 +20,31 @@ CITATION_ROLES = {'official-setup-cross-check': ('公式の設定・境界の照
 def citation_role(citation, language):
     return CITATION_ROLES.get(citation['role'], (citation['role'], citation['role']))[language == 'en']
 
+REFERENCE_CLASSES = {
+    'continuous-exact': ('連続問題の厳密解', 'Continuous exact solution'),
+    'semi-analytic': ('半解析参照', 'Semi-analytic reference'),
+    'manufactured': ('製造解', 'Manufactured solution'),
+    'discrete-exact': ('固定した離散対象の厳密参照', 'Exact reference for a fixed discrete object'),
+    'independent-numerical': ('独立な数値参照', 'Independent numerical reference'),
+    'self-convergence': ('自己収束比較', 'Self-convergence comparison'),
+}
+CITATION_ROLES.update({
+    'textbook-background': ('教科書の背景資料', 'Textbook background'),
+    'reference-documentation': ('既存の参照解説資料', 'Existing reference documentation'),
+    'numerical-method': ('数値手法の出典', 'Numerical-method source'),
+    'solution-background': ('解の背景資料（確認範囲を参照）', 'Solution background (see read limits)'),
+    'atlas-formula-or-saved-result': ('アトラスの式・保存結果', 'Atlas formula or saved result'),
+})
+
+
+def reference_contract_text(case, language):
+    contract = case.get('reference_contract', {})
+    sampling = contract.get('sampling', '')
+    sampling = sampling.get(language, '') if isinstance(sampling, dict) else sampling
+    label = REFERENCE_CLASSES.get(case.get('reference_class'), ('', ''))[language == 'en']
+    return (' · '.join(part for part in [label, sampling] if part)).strip()
+
+
 SLICE_NOTE = 'Taylor–Green: x-slice at y = π/4. These are point values, not two-dimensional cell averages.'
 
 
@@ -28,6 +53,7 @@ def dimension_label(case, language):
         labels = {
             'finite-dimensional-algebra': ('有限次元の代数問題', 'Finite-dimensional algebra'),
             'finite-dimensional-ivp': ('常微分・微分代数方程式（空間次元なし）', 'ODE / DAE (no spatial dimension)'),
+            'nonspatial-stochastic': ('空間次元を持たない確率過程', 'Stochastic process (no spatial dimension)'),
         }
         if case.get('domain_kind') not in labels:
             raise ValueError('A nonspatial reference needs an explicit supported domain')
@@ -62,13 +88,13 @@ def load(root=ROOT):
             raise ValueError('Missing reference formula or dimension: ' + ident)
         dimension_label(source_case, 'en')
         case = {key: source_case[key] for key in ['id', 'model', 'kind', 'formula', 'dimension', 'bounds', 'components', 'field_type', 'parameters', 'sources']}
-        if source_case.get('domain_kind') in {'finite-dimensional-algebra', 'finite-dimensional-ivp'}:
+        if source_case.get('domain_kind') in {'finite-dimensional-algebra', 'finite-dimensional-ivp', 'nonspatial-stochastic'}:
             case['domain_kind'] = source_case['domain_kind']
         case.update(title=localized(source_case['title']), assumptions=localized(source_case['assumptions']),
                     kind_label=localized(KIND_NAMES[kind]),
                     view=source_case.get('view', {language: BASE + '?lang=' + language + '#/exact-solutions?case=' + ident for language in ['ja', 'en']}),
                     reading=source_case.get('reading', {language: BASE + language + '/read/reference-solutions/' for language in ['ja', 'en']}))
-        for key in ['citations', 'reference_scope']:
+        for key in ['citations', 'reference_scope', 'reference_class', 'reference_contract']:
             if key in source_case:
                 case[key] = source_case[key]
         if ident == 'taylor-green':
@@ -77,6 +103,8 @@ def load(root=ROOT):
     if len({case['id'] for case in cases}) != len(cases):
         raise ValueError('Duplicate reference-solution ID')
     extra = {'supplements_source': '/'+SUPPLEMENT_SOURCE, 'supplements_source_sha256': digest(root/SUPPLEMENT_SOURCE)} if (root/SUPPLEMENT_SOURCE).is_file() else {}
+    if (root/ANNOTATION_SOURCE).is_file():
+        extra.update(metadata_source='/'+ANNOTATION_SOURCE, metadata_source_sha256=digest(root/ANNOTATION_SOURCE))
     return dict(**extra, schema_version=1, url=ORIGIN + ROUTE, source='/' + SOURCE, source_sha256=digest(root / SOURCE),
                 translations_source='/' + TRANSLATIONS, translations_source_sha256=digest(root / TRANSLATIONS),
                 count=len(cases), counts=dict(Counter(case['kind'] for case in cases)), cases=cases)
@@ -111,6 +139,8 @@ def section(data, language):
         body += '<p class="solution-assumptions">' + escape(case['assumptions'][language]) + '</p>'
         if case.get('sampling_note'):
             body += '<p class="solution-sampling">' + escape(case['sampling_note'][language]) + '</p>'
+        if reference_contract_text(case, language):
+            body += '<p class="solution-sampling">'+escape(reference_contract_text(case, language))+'</p>'
         body += '<nav class="solution-links" aria-label="' + escape(case['title'][language], quote=True) + '">'
         body += link(case['view'][language], '保存済みの解を表示 →' if ja else 'View the saved profile →')
         body += link(case['reading'][language], '定義・条件を読む' if ja else 'Read definitions and conditions') + '</nav>'
@@ -121,7 +151,11 @@ def section(data, language):
             body += '</ul></details>'
         body += render_problem_routes(case.get('related_problems', []), language, heading_level=3, limit=3) + '</article>'
     body += '</div><footer class="solutions-footer">' + link('index.json', 'JSON') + link('index.md', 'Markdown')
-    body += link('/' + SOURCE, '参照値の元データ' if ja else 'Source reference values') + link('/using/', '引用と利用条件' if ja else 'Citation and reuse') + '</footer></section>'
+    body += link('/' + SOURCE, '参照値の元データ' if ja else 'Source reference values')
+    if data.get('metadata_source'):
+        body += link(data['metadata_source'], '参照の種類・出典の確認範囲（JSON）' if ja else 'Reference classes and read limits (JSON)')
+        body += link('/catalog/atlas-legacy-reference-contracts-2026-11-25.json', '旧配布版の検証契約と不足範囲（JSON）' if ja else 'Legacy contracts and qualification gaps (JSON)')
+    body += link('/using/', '引用と利用条件' if ja else 'Citation and reuse') + '</footer></section>'
     return body
 
 
@@ -138,6 +172,8 @@ def markdown(data):
             result += '`' + case['formula'] + '`\n\n' + case['assumptions'][language] + '\n\n'
             if case.get('sampling_note'):
                 result += case['sampling_note'][language] + '\n\n'
+            if reference_contract_text(case, language):
+                result += reference_contract_text(case, language)+'\n\n'
             result += '[' + ('保存済みの解を表示' if ja else 'View the saved profile') + '](' + ORIGIN + case['view'][language] + ') · [' + ('定義・条件を読む' if ja else 'Read definitions and conditions') + '](' + ORIGIN + case['reading'][language] + ')\n\n'
             for citation in case.get('citations', []):
                 result += '- '+citation['role']+': ['+citation['title']+']('+citation['url']+')'+(' — '+citation.get('note', '') if citation.get('note') else '')+'\n'

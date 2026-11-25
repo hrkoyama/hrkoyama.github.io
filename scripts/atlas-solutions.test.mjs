@@ -49,7 +49,7 @@ from atlas_problem_routes import load_problem_routes
 routes=load_problem_routes(site)
 spec=importlib.util.spec_from_file_location('solutions_builder',site/'scripts/build-atlas-solutions.py')
 module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
-inputs=['numerical-methods-atlas/assets/reference-solutions.json','numerical-methods-atlas/locales/messages.json','styles/atlas-solutions.css','styles/atlas-problem-routes.css','catalog/atlas-reference-supplements.json']
+inputs=['numerical-methods-atlas/assets/reference-solutions.json','numerical-methods-atlas/locales/messages.json','styles/atlas-solutions.css','styles/atlas-problem-routes.css','catalog/atlas-reference-supplements.json','catalog/atlas-reference-metadata.json']
 before={name:hashlib.sha256((site/name).read_bytes()).hexdigest() for name in inputs}
 with tempfile.TemporaryDirectory(prefix='atlas-solutions-fixture-') as temporary:
     root=pathlib.Path(temporary)

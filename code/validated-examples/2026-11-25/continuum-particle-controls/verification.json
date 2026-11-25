@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "group": "continuum-particle-controls",
+  "edition": "2026-11-25",
+  "verified_on": "2026-11-25",
+  "source_manifest_sha256": "2017c5da0e0a6d70ba01242b63d5bc391feb1fbe24795f8ceab2389790bbec00",
+  "archive": {
+    "file": "atlas-continuum-particle-controls-2026-11-25.zip",
+    "sha256": "1d12a6ecd9d87ae95585a984e66411b2314eb7804b064f023aa57addc3142f49",
+    "bytes": 1291567,
+    "archive_directory": "atlas-continuum-particle-controls-2026-11-25"
+  },
+  "archive_sha256": "1d12a6ecd9d87ae95585a984e66411b2314eb7804b064f023aa57addc3142f49",
+  "returncode": 0,
+  "passed_tests": 17,
+  "tests": 17,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "gsph-sod",
+    "saltzman-ale-piston",
+    "sph-pressure-acoustics",
+    "sphere-zonal-balance",
+    "williamson-sphere-transport"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 25.928110875,
+  "independent_rerun_seconds": 26.008970166999973,
+  "independent_pytest_plus_main_seconds": 26.58602354200002,
+  "environment": {
+    "python": "3.9.6 (default, Aug 25 2026, 21:26:21) \n[Clang 21.0.0 (clang-2100.3.34.2)]",
+    "numpy": "2.0.2",
+    "scipy": "NOT_INSTALLED",
+    "pytest": "8.4.2",
+    "matplotlib": "3.9.4",
+    "Pillow": "11.3.0"
+  },
+  "pinned_public_Linux_reproduction": false,
+  "execution": "Actual first run/plots and independently extracted ZIP strict tests/full rerun. Actual local versions recorded; pinned Python3.12 Linux remains mandatory."
+}

@@ -159,7 +159,8 @@
         "validation-shallow-water",
         "validation-wall-flow",
         "validation-mesh-boundary",
-        "validation-moving-waves"
+        "validation-moving-waves",
+        "validation-continuum-particle-controls"
       ]
     },
     {
@@ -223,7 +224,8 @@
         "validation-slab-ewald",
         "validation-maxwell-cylinder",
         "validation-maxwell-lorentz",
-        "validation-maxwell-grazing"
+        "validation-maxwell-grazing",
+        "validation-quantum-small"
       ]
     },
     {
@@ -247,7 +249,10 @@
         "validation-models",
         "validation-thermostats",
         "validation-stochastic-accuracy",
-        "validation-stochastic-estimation"
+        "validation-stochastic-estimation",
+        "validation-biology-ode-controls",
+        "validation-biology-space-controls",
+        "validation-thermostat-constraint-controls"
       ]
     },
     {

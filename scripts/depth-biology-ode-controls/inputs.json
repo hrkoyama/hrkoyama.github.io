@@ -1,0 +1,455 @@
+{
+  "schema_version": 1,
+  "edition": "2026-11-25",
+  "arithmetic": "IEEEbinary64 physicalarrays; directedDecimal80/120 finite-law intervaloracles",
+  "numpy_version": "2.0.2",
+  "reference_integrators": {
+    "driver": "authored embedded5(4),localestimates,landonallrequestedtimes,nodenseoutput,nocachedsuccess",
+    "DP54": "Dormand–Prince rational tableau",
+    "CK54": "Cash–Karp rational tableau; HHcompaniononly"
+  },
+  "execution_policy": {
+    "shared_pytest_plus_main_seconds": 120,
+    "fixed_inputs_only": true,
+    "threads": 1,
+    "reference_and_primary_own_cap_failures_retained": true,
+    "no_clipping_or_seed_selection": true,
+    "owned_main_budget_seconds": 115,
+    "budget_scope": "115sownedmaincapinsideunchanged120ssharedpytest+main;pre-executionoperationaltighteningforstartup/tests/checkpointreserve;externalSIGKILLcannotflushunreturnedstate"
+  },
+  "case_ids": [
+    "hodgkin-huxley-controls",
+    "immigration-death-ssa"
+  ],
+  "group": "biology-ode-controls",
+  "sequences": [
+    88,
+    89
+  ],
+  "HH": {
+    "units": [
+      "ms",
+      "mV",
+      "uA/cm2",
+      "uF/cm2",
+      "mS/cm2"
+    ],
+    "temperature_C": 6.3,
+    "C": 1,
+    "gNa_gK_gL": [
+      120,
+      36,
+      0.3
+    ],
+    "ENa_EK_EL": [
+      50,
+      -77,
+      -54.3
+    ],
+    "analytic_convention": "NEURON8.2.6 absolute-depolarization-positive analyticrates; noTABLE/cnexp equivalence",
+    "primary_rows": [
+      {
+        "id": "hh-clamp-m80-h004",
+        "sequence": 88,
+        "type": "prescribed-voltage-clamp",
+        "V_mV": -80,
+        "h_ms": "0.04",
+        "T_ms": 5
+      },
+      {
+        "id": "hh-clamp-m80-h002",
+        "sequence": 88,
+        "type": "prescribed-voltage-clamp",
+        "V_mV": -80,
+        "h_ms": "0.02",
+        "T_ms": 5
+      },
+      {
+        "id": "hh-clamp-m80-h001",
+        "sequence": 88,
+        "type": "prescribed-voltage-clamp",
+        "V_mV": -80,
+        "h_ms": "0.01",
+        "T_ms": 5
+      },
+      {
+        "id": "hh-clamp-m55-h004",
+        "sequence": 88,
+        "type": "prescribed-voltage-clamp",
+        "V_mV": -55,
+        "h_ms": "0.04",
+        "T_ms": 5
+      },
+      {
+        "id": "hh-clamp-m55-h002",
+        "sequence": 88,
+        "type": "prescribed-voltage-clamp",
+        "V_mV": -55,
+        "h_ms": "0.02",
+        "T_ms": 5
+      },
+      {
+        "id": "hh-clamp-m55-h001",
+        "sequence": 88,
+        "type": "prescribed-voltage-clamp",
+        "V_mV": -55,
+        "h_ms": "0.01",
+        "T_ms": 5
+      },
+      {
+        "id": "hh-clamp-m40-h004",
+        "sequence": 88,
+        "type": "prescribed-voltage-clamp",
+        "V_mV": -40,
+        "h_ms": "0.04",
+        "T_ms": 5
+      },
+      {
+        "id": "hh-clamp-m40-h002",
+        "sequence": 88,
+        "type": "prescribed-voltage-clamp",
+        "V_mV": -40,
+        "h_ms": "0.02",
+        "T_ms": 5
+      },
+      {
+        "id": "hh-clamp-m40-h001",
+        "sequence": 88,
+        "type": "prescribed-voltage-clamp",
+        "V_mV": -40,
+        "h_ms": "0.01",
+        "T_ms": 5
+      },
+      {
+        "id": "hh-clamp-p0-h004",
+        "sequence": 88,
+        "type": "prescribed-voltage-clamp",
+        "V_mV": 0,
+        "h_ms": "0.04",
+        "T_ms": 5
+      },
+      {
+        "id": "hh-clamp-p0-h002",
+        "sequence": 88,
+        "type": "prescribed-voltage-clamp",
+        "V_mV": 0,
+        "h_ms": "0.02",
+        "T_ms": 5
+      },
+      {
+        "id": "hh-clamp-p0-h001",
+        "sequence": 88,
+        "type": "prescribed-voltage-clamp",
+        "V_mV": 0,
+        "h_ms": "0.01",
+        "T_ms": 5
+      },
+      {
+        "id": "hh-rest-h004",
+        "sequence": 88,
+        "type": "rest",
+        "h_ms": "0.04",
+        "T_ms": 20
+      },
+      {
+        "id": "hh-rest-h002",
+        "sequence": 88,
+        "type": "rest",
+        "h_ms": "0.02",
+        "T_ms": 20
+      },
+      {
+        "id": "hh-rest-h001",
+        "sequence": 88,
+        "type": "rest",
+        "h_ms": "0.01",
+        "T_ms": 20
+      },
+      {
+        "id": "hh-pulse-h004",
+        "sequence": 88,
+        "type": "pulse",
+        "h_ms": "0.04",
+        "T_ms": 30
+      },
+      {
+        "id": "hh-pulse-h002",
+        "sequence": 88,
+        "type": "pulse",
+        "h_ms": "0.02",
+        "T_ms": 30
+      },
+      {
+        "id": "hh-pulse-h001",
+        "sequence": 88,
+        "type": "pulse",
+        "h_ms": "0.01",
+        "T_ms": 30
+      }
+    ],
+    "voltage_clamp_initial": [
+      0.2,
+      0.8,
+      0.1
+    ],
+    "rest_bracket": [
+      -80,
+      -50
+    ],
+    "rest_root_decimal_precisions": [
+      80,
+      120
+    ],
+    "root_cap": 256,
+    "root_width": "1e-30",
+    "stability_claim": false,
+    "pulse_segments": [
+      [
+        0,
+        10,
+        0
+      ],
+      [
+        10,
+        11,
+        10
+      ],
+      [
+        11,
+        30,
+        0
+      ]
+    ],
+    "pulse_stage_ownership": "AllRKstagesinacceptedintervaluseconstantsegmentcurrent,includingleftlimitrightendpoint;physicaloutputcurrentrightcontinuous",
+    "reference_rows": [
+      {
+        "method": "DP54",
+        "rtol": 1e-11,
+        "atol": [
+          1e-12,
+          1e-14,
+          1e-14,
+          1e-14
+        ]
+      },
+      {
+        "method": "DP54",
+        "rtol": 1e-13,
+        "atol": [
+          1e-14,
+          1e-15,
+          1e-15,
+          1e-15
+        ]
+      },
+      {
+        "method": "CK54",
+        "rtol": 1e-11,
+        "atol": [
+          1e-12,
+          1e-14,
+          1e-14,
+          1e-14
+        ]
+      }
+    ],
+    "reference_sampling_ms": ".01",
+    "reference_propagations": 12,
+    "reference_RHS_cap_per_propagation": 50000,
+    "event": {
+      "threshold_mV": 0,
+      "direction": "upward",
+      "bracket_ownership": "(tn,tn+1]",
+      "interpolant": "cubicHermite,freshacceptedendpointRHSwithintervalownedcurrent,notk4",
+      "bracket_cap": 8,
+      "polynomial_cap": 80,
+      "time_tolerance_ms": 1e-10,
+      "completeness": "EveryHermitecubiccriticalpoint/monotonepieceinspected;multiple/interiorsame-signcrossingsretained;tangentroundoffuncertaintyexplicit;noexactcontinuousODEcompletenessclaim"
+    }
+  },
+  "HH_reference_rows": [
+    {
+      "method": "DP54",
+      "rtol": 1e-11,
+      "atol": [
+        1e-12,
+        1e-14,
+        1e-14,
+        1e-14
+      ]
+    },
+    {
+      "method": "DP54",
+      "rtol": 1e-13,
+      "atol": [
+        1e-14,
+        1e-15,
+        1e-15,
+        1e-15
+      ]
+    },
+    {
+      "method": "CK54",
+      "rtol": 1e-11,
+      "atol": [
+        1e-12,
+        1e-14,
+        1e-14,
+        1e-14
+      ]
+    }
+  ],
+  "SSA": {
+    "immigration_rate": 6,
+    "death_rate_per_particle": 1,
+    "T": 4,
+    "observation_times": [
+      0,
+      0.5,
+      2,
+      4
+    ],
+    "ensemble_paths": 2048,
+    "ensemble_records": [
+      {
+        "id": "ssa-0-101",
+        "sequence": 89,
+        "record_index": 0,
+        "initial_law": "fixed0",
+        "seed_label": 101,
+        "paths": 2048,
+        "T": 4,
+        "observation_times": [
+          0,
+          0.5,
+          2,
+          4
+        ]
+      },
+      {
+        "id": "ssa-1-202",
+        "sequence": 89,
+        "record_index": 1,
+        "initial_law": "fixed0",
+        "seed_label": 202,
+        "paths": 2048,
+        "T": 4,
+        "observation_times": [
+          0,
+          0.5,
+          2,
+          4
+        ]
+      },
+      {
+        "id": "ssa-2-101",
+        "sequence": 89,
+        "record_index": 2,
+        "initial_law": "fixed5",
+        "seed_label": 101,
+        "paths": 2048,
+        "T": 4,
+        "observation_times": [
+          0,
+          0.5,
+          2,
+          4
+        ]
+      },
+      {
+        "id": "ssa-3-202",
+        "sequence": 89,
+        "record_index": 3,
+        "initial_law": "fixed5",
+        "seed_label": 202,
+        "paths": 2048,
+        "T": 4,
+        "observation_times": [
+          0,
+          0.5,
+          2,
+          4
+        ]
+      },
+      {
+        "id": "ssa-4-101",
+        "sequence": 89,
+        "record_index": 4,
+        "initial_law": "Poisson6-nominal-stationary",
+        "seed_label": 101,
+        "paths": 2048,
+        "T": 4,
+        "observation_times": [
+          0,
+          0.5,
+          2,
+          4
+        ]
+      },
+      {
+        "id": "ssa-5-202",
+        "sequence": 89,
+        "record_index": 5,
+        "initial_law": "Poisson6-nominal-stationary",
+        "seed_label": 202,
+        "paths": 2048,
+        "T": 4,
+        "observation_times": [
+          0,
+          0.5,
+          2,
+          4
+        ]
+      },
+      {
+        "id": "ssa-display-path-11",
+        "sequence": 89,
+        "record_index": 6,
+        "initial_law": "fixed5",
+        "seed_label": 11,
+        "paths": 1,
+        "T": 4,
+        "full_event_history": true
+      }
+    ],
+    "per_path_jump_cap": 4096,
+    "per_record_jump_cap": 1000000,
+    "global_raw_uint64_cap": 17000000,
+    "seed_entropy": "[20261125,89,record_index,seed_label,path_index,purpose],purpose0init/1events",
+    "generator": "PCG64/NumPy2.0.2;rawuint64>>11,rejectj0upto8attempts;U=j2^-53",
+    "initial_Poisson_table": {
+      "k": [
+        0,
+        128
+      ],
+      "integer_threshold": "ceil(2^53 F(k))-1;80/120directedintervalceilingsmustagree",
+      "finite_grid_CDF_discrepancy_bound": "1/(2^53-1)"
+    },
+    "event_rule": "twoopenuniformsperpendingevent;applytevent<=tobs,retainpendingacrossobservations;immigrationiffU2*(6+n)<6,equalitydeath",
+    "exact_law": "Bin(n0,exp(-t))+Pois(6*(1-exp(-t)));nominalstationaryPois6",
+    "directed_oracle": {
+      "precisions": [
+        80,
+        120
+      ],
+      "factor_tail_target": "1e-25",
+      "init_tail_target": "1e-50",
+      "halfwidth_cap": 2048,
+      "max_weights_per_factor": 4097,
+      "CDF_width_max": "1e-18",
+      "per_path_laws": 7,
+      "ensemble_sum_laws": 7
+    },
+    "sampling": {
+      "DKW_families": 20,
+      "exact_sum_mean_families": 20,
+      "total_families": 40,
+      "delta_each": 0.00025,
+      "nominal_union_bound": 0.01,
+      "mean_tail_each": 0.000125,
+      "variance_goal_five_SE_outside_union": true,
+      "claim": "IdealIIDnominalonly;noPRNG/logarithmsoftwarecoverageguarantee"
+    },
+    "stream_identity_qualification": "All24578initialPCG(state,inc)pairsandentropylabels,includingunusedinitand2displaystreams,mustbedistinct;notastatisticalindependencetheorem"
+  }
+}

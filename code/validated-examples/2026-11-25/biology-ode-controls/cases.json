@@ -1,0 +1,166 @@
+[
+  {
+    "id": "hodgkin-huxley-controls",
+    "method_ids": [
+      "rk4",
+      "rk45"
+    ],
+    "title": {
+      "ja": "Hodgkin–Huxley：電位固定・静止平衡・発火",
+      "en": "Hodgkin–Huxley: clamps, rest and firing"
+    },
+    "summary": {
+      "ja": "固定電位の解析ゲート解と、区分電流下の4状態系を照合します。",
+      "en": "Compare analytic clamp gates and a four-state system with segment-owned current."
+    },
+    "assumptions": {
+      "ja": "6.3°C、ms/mV/µA cm⁻²。NEURON8.2.6の解析的な絶対電位規約を固定し、4電位×3刻み、静止20 ms、10–11 msの電流パルスを扱います。",
+      "en": "Fix6.3°C and the NEURON8.2.6 analytic absolute-voltage convention in ms/mV/µA cm⁻². Use four clamp voltages, three steps, a20ms rest and a10–11ms pulse."
+    },
+    "algorithm": {
+      "ja": "古典RK4を用い、電流の切り替わりでは全段の片側値を区間に帰属させます。ゲートの可除特異点、Decimal静止根、独立なDP5(4)/Cash–Karp参照を別に照合します。",
+      "en": "Use classicalRK4 with all stages owned by each current segment. Separately qualify removable rate singularities, a Decimal rest root and independently written DP5(4)/Cash–Karp references."
+    },
+    "validation": {
+      "ja": "全採用時刻のゲート誤差、電位・ゲート範囲、採用端点の新しい微分を使うHermite発火時刻を保存。元の1e-8ゲート目標も未達を含めて表示します。",
+      "en": "Retain errors over all accepted times, voltage/gate ranges and Hermite firing events from fresh accepted-endpoint derivatives. Preserve the original1e-8clamp goal even when unmet."
+    },
+    "limits": {
+      "ja": "1細胞膜の教育例です。元論文の電位規約、TABLE/cnexp実装、ケーブル伝播や生体実測の再現とは呼びません。区間内に括れない発火は捏造せず、静止根の一意性・区間Hurwitz安定性は主張しません。",
+      "en": "This educational membrane model does not reproduce the original voltage convention, TABLE/cnexp, cable propagation or measured physiology. Missing/unresolved events remain explicit; rest-root uniqueness and interval-Hurwitz stability are unclaimed."
+    },
+    "domains": [
+      "biology"
+    ],
+    "code_files": [
+      "run.py",
+      "common.py",
+      "hh.py",
+      "ssa.py"
+    ],
+    "reference_files": [
+      "PROTOCOL.md",
+      "source-reading.json",
+      "acceptance.json"
+    ],
+    "references": [
+      {
+        "id": "neuron826-hh",
+        "title": "NEURON8.2.6 analytic hh.mod",
+        "url": "https://raw.githubusercontent.com/neuronsimulator/nrn/8.2.6/src/nrnoc/hh.mod",
+        "review_level": "selected-primary-or-bibliographic-see-provenance",
+        "review": {
+          "ja": "source-reading.jsonに実際の読取範囲と未読部分を記録。原著の全式・全図の再現とは主張しません。",
+          "en": "Actual selected read scopes and unread limits are recorded in source-reading.json; no full original-paper equation/figure reproduction claim."
+        }
+      }
+    ],
+    "additional_figures": [
+      {
+        "file": "hodgkin-huxley-controls-diagnostics.png",
+        "caption": {
+          "ja": "精度・参照・統計の実測値と未達目標を分けて表示します。",
+          "en": "Separate actual accuracy,reference and statistical measurements,including unmet targets."
+        }
+      }
+    ],
+    "formulas": [
+      "C_m\\dot V=I-g_{Na}m^3h(V-E_{Na})-g_Kn^4(V-E_K)-g_L(V-E_L)",
+      "\\dot z=\\alpha_z(V)(1-z)-\\beta_z(V)z"
+    ]
+  },
+  {
+    "id": "immigration-death-ssa",
+    "method_ids": [
+      "gillespie-ssa"
+    ],
+    "title": {
+      "ja": "移入–死亡SSA：有限時刻の厳密分布",
+      "en": "Immigration–death SSA: exact transient laws"
+    },
+    "summary": {
+      "ja": "1本の軌跡と12,288本の固定アンサンブルを分けて検証します。",
+      "en": "Separate one displayed path from12,288fixed ensemble paths."
+    },
+    "assumptions": {
+      "ja": "移入率6、粒子ごとの死亡率1、時刻0/0.5/2/4。初期0・5・名目上のPoisson(6)定常標本を2seedずつ、各2,048本で比較します。",
+      "en": "Use immigration6, per-particle death1 and observations0/0.5/2/4. Compare initial0,5 and nominal stationary Poisson(6), two seeds each and2,048paths per record."
+    },
+    "algorithm": {
+      "ja": "Gillespie direct SSAで、次の事象時刻を観測点の間で保持します。生のPCG64から開区間一様数を作り、初期Poissonの有限格子逆CDFと全ストリームを記録します。",
+      "en": "Use direct GillespieSSA with pending event times preserved across observations. Draw open-grid uniforms from rawPCG64; record finite-grid Poisson initialization and all RNG streams."
+    },
+    "validation": {
+      "ja": "Binomial＋Poissonの厳密過渡法則を、80/120桁の有向区間・尾部上界で照合。20個のDKW目標と20個の厳密和平均目標を名目union bound0.01にまとめ、分散の5SE目標は別に残します。",
+      "en": "Qualify exact Binomial-plus-Poisson transients with directed80/120digit intervals and tail bounds. Combine20DKW and20exact-sum mean goals under nominal union bound0.01; retain five-SE variance goals separately."
+    },
+    "limits": {
+      "ja": "有限時間の決定論的初期状態を定常分布とは呼びません。区間の保証は理想IID法則の参照に限り、PRNG・対数演算を含むソフトウェア全体の被覆率保証や単一軌跡の代表性を主張しません。",
+      "en": "Finite deterministic-start transients are not stationary. Interval qualification concerns the idealIID reference law, without a whole-software PRNG/logarithm coverage guarantee or a claim that one path represents the ensemble."
+    },
+    "domains": [
+      "biology"
+    ],
+    "code_files": [
+      "run.py",
+      "common.py",
+      "ssa.py"
+    ],
+    "reference_files": [
+      "PROTOCOL.md",
+      "source-reading.json",
+      "acceptance.json"
+    ],
+    "references": [
+      {
+        "id": "gillespie1977",
+        "title": "Gillespie(1977), Exact stochastic simulation of coupled chemical reactions",
+        "url": "https://doi.org/10.1021/j100540a008",
+        "year": 1977,
+        "year_role": "publication",
+        "review_level": "selected-primary-or-bibliographic-see-provenance",
+        "review": {
+          "ja": "source-reading.jsonに実際の読取範囲と未読部分を記録。原著の全式・全図の再現とは主張しません。",
+          "en": "Actual selected read scopes and unread limits are recorded in source-reading.json; no full original-paper equation/figure reproduction claim."
+        }
+      },
+      {
+        "id": "massart1990",
+        "title": "Massart(1990),The Tight Constant in the Dvoretzky–Kiefer–Wolfowitz Inequality",
+        "url": "https://doi.org/10.1214/aop/1176990746",
+        "year": 1990,
+        "year_role": "publication",
+        "review_level": "selected-primary-abstract",
+        "review": {
+          "ja": "著者公開ページの原著抄録でIID・両側定数2を確認。公式本文はiframeで閲覧できず、証明の全読はしていません。",
+          "en": "Selected original abstract on the author-uploaded page:IID/two-sidedconstant2. Official body access was blocked by an iframe; proof unread."
+        }
+      },
+      {
+        "id": "reeve2024",
+        "title": "Reeve(2024),A short proof of the Dvoretzky–Kiefer–Wolfowitz–Massart inequality",
+        "url": "https://arxiv.org/pdf/2403.16651",
+        "year": 2024,
+        "year_role": "preprint-version",
+        "review_level": "selected-primary-theorem",
+        "review": {
+          "ja": "v1の1–3頁、IID設定・定理1・系1/2のみ確認。詳細な証明は未読です。",
+          "en": "Selected v1pp1–3:IIDsetup,Theorem1,Corollaries1/2. Detailed proofs unread."
+        }
+      }
+    ],
+    "additional_figures": [
+      {
+        "file": "immigration-death-ssa-diagnostics.png",
+        "caption": {
+          "ja": "精度・参照・統計の実測値と未達目標を分けて表示します。",
+          "en": "Separate actual accuracy,reference and statistical measurements,including unmet targets."
+        }
+      }
+    ],
+    "formulas": [
+      "\\varnothing\\xrightarrow{6}N,\\qquad N\\xrightarrow{N} \\varnothing",
+      "N(t)\\overset d=\\mathrm{Bin}(n_0,e^{-t})+\\mathrm{Pois}(6(1-e^{-t}))"
+    ]
+  }
+]

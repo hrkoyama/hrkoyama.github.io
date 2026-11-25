@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "group": "biology-ode-controls",
+  "edition": "2026-11-25",
+  "verified_on": "2026-11-25",
+  "source_manifest_sha256": "6b39422e0a480658f7435dbfff210ade94c3016ec5cc7cbfc55e54fff3215016",
+  "archive": {
+    "file": "atlas-biology-ode-controls-2026-11-25.zip",
+    "sha256": "b67232232a461e8ef0e24d522a3e40c9af64b8d90cd55c9657c955a92772b042",
+    "bytes": 3097433,
+    "archive_directory": "atlas-biology-ode-controls-2026-11-25"
+  },
+  "archive_sha256": "b67232232a461e8ef0e24d522a3e40c9af64b8d90cd55c9657c955a92772b042",
+  "returncode": 0,
+  "passed_tests": 11,
+  "tests": 11,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "passed": true,
+  "case_ids": [
+    "hodgkin-huxley-controls",
+    "immigration-death-ssa"
+  ],
+  "all_cases_rerun": true,
+  "first_run_seconds": 6.193458208,
+  "independent_rerun_seconds": 6.2625924170000005,
+  "independent_pytest_plus_main_seconds": 6.902901584000002,
+  "environment": {
+    "python": "3.9.6 (default, Aug 25 2026, 21:26:21) \n[Clang 21.0.0 (clang-2100.3.34.2)]",
+    "numpy": "2.0.2",
+    "scipy": "NOT_INSTALLED",
+    "pytest": "8.4.2",
+    "matplotlib": "3.9.4",
+    "Pillow": "11.3.0"
+  },
+  "pinned_public_Linux_reproduction": false,
+  "execution": "Actual first run/plots and independently extracted ZIP strict tests/full rerun. Actual local versions recorded; pinned Python3.12 Linux remains mandatory."
+}

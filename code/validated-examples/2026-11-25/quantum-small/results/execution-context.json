@@ -1,0 +1,272 @@
+{
+  "python": "3.9.6",
+  "numpy": "2.0.2",
+  "freeze_sha256": "6299a7b6efcdf3826e284a374c29ce3ba8683d5ea08ccfa5cfda0dfcc50662b5",
+  "frozen_files_sha256": {
+    "LICENSE": "07cca125623617c85a41e9a21a2b114d693c61737bc353e3ca98587431e26ee6",
+    "README.md": "f8cc696950d089cf73aa3e953c5299d34d38baff09098b8f73328a5ed4410314",
+    "THEORY.md": "d74c5ca85d1eed0d41a85b89f170b19dcec3a2f58b5d58573bf52896e3ca6a6e",
+    "acceptance.json": "4659ab8fffc3bfc672facd1fdc27893000863af6420f91a3120ebf91f3a8b2ee",
+    "cards.json": "0c701cb25f9de9ec1f9b01cb46b72c79e5c10617ec13bac9ac6daf3e055e738d",
+    "cases.json": "4db1de209977cdc525037ebb1221db185dae82c042f241e2b7277569b10674a4",
+    "coupled_md.py": "068b0d14ebce78b9f4aa85ff766a5ac15affa32d326079dd5c65d0ee86fd5232",
+    "eigenpairs.py": "bc97077f6115b669fc69f9a7b1a80dba8dd3306798b321cff395dc3d5862f3b2",
+    "inputs.json": "36f9b4b9293e5b34d554014134fbce6c31ec11a09a50d1bb5179e9dcb1cee21a",
+    "io_utils.py": "ac9f973cd96b4ff911e1da37648e81ab7e501721b1baaa90cbe3ec20ae9bd784",
+    "molecules.py": "1001f93a6d3f2b53dbe9a587f89232b80fe28265f5b21d94dbb50ace6752db54",
+    "periodic_projector.py": "0fb62ecb5ae7a52c27058084de77394094f711fe860b934a162f7b6ab5329f67",
+    "plot.py": "f17d87be7f323160242efa6137cfa958c1a864f15c875f75c871147ea06800ce",
+    "plot_results.py": "32233bd7cf0d46e38168445bbe6f8e488119c8ab65b415e9ef0e7c0cebea25b7",
+    "provenance.json": "913f58e14e98ba5a51adc820f75b5dd4dba0955ff090a2211014c72b33237ee2",
+    "requirements-dev.txt": "a0e201ecda2bc871726ea3bb5db9cfe6b2109f60d8da88eecf910b790794b03d",
+    "requirements-plotting.txt": "fd70c5b60168fd91d504345ec04061037fb9de084f7ec8fa53255486c9c94ab1",
+    "requirements.txt": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+    "run.py": "24dd3ab244a2171bf11de6613ce29601e5fa53e44ed76aea0b0ea509e4b28900",
+    "saved-data/atom-reference.json": "3d2aa9a8e186e5f24bba207b473a2b05d12d2bc116627cca5403f8b3dd90389f",
+    "saved-data/h2-rhf-reference.json": "15e9da8ce84a4622f098ea31e4a7682829d7de3ea395ab5f085cf57184cce578",
+    "saved-data/periodic-he-reference.json": "461bbdd7cfc17ae2e243a43f0bf27312a3fb7e65c8329ec53dfbdc591a9bbee1",
+    "test_quantum_small.py": "93e14859adcd480e4f398a77242347a80a9160bda827cead603f0eb9145e286e"
+  },
+  "input": {
+    "schema_version": 1,
+    "state": "fixed-input-contract",
+    "md95": {
+      "k": 1.0,
+      "delta": 1.0,
+      "g": 0.25,
+      "nuclear_mass": 20.0,
+      "Q0": 0.4,
+      "V0": 0.05,
+      "T": 1.0,
+      "dt": [
+        0.015625,
+        0.0078125,
+        0.00390625
+      ],
+      "cp_mu": [
+        0.04,
+        0.01
+      ],
+      "rk4_reference_steps": [
+        4096,
+        8192
+      ],
+      "bath": {
+        "gamma": 0.2,
+        "temperature": 0.02,
+        "seed": 20261125,
+        "steps": 256
+      }
+    },
+    "eigen97": {
+      "box_M": [
+        32,
+        64,
+        128
+      ],
+      "HO_L8_h": [
+        0.25,
+        0.125,
+        0.0625
+      ],
+      "HO_domain_L": [
+        4,
+        6,
+        8
+      ],
+      "HO_domain_h": 0.125,
+      "selected_states": 3,
+      "API": "numpy.linalg.eigh full real symmetric matrix; retain all native eigenpairs before selecting lowest3",
+      "primary_API_calls": 8,
+      "native_returned_eigenpairs": 824,
+      "selected_eigenpairs": 24
+    },
+    "molecule98": {
+      "basis": {
+        "id": "sto-3g",
+        "label": "STO-3G minimal contraction",
+        "family": "contracted-minimal",
+        "shells": [
+          {
+            "exponents": [
+              3.425250914,
+              0.6239137298,
+              0.168855404
+            ],
+            "coefficients": [
+              0.1543289673,
+              0.5353281423,
+              0.4446345422
+            ]
+          }
+        ]
+      },
+      "bonds_bohr": [
+        1.4,
+        3.0
+      ],
+      "nelec": [
+        1,
+        1
+      ],
+      "mixing": 0.5,
+      "max_cycles": 240,
+      "density_tolerance": 1e-10,
+      "energy_tolerance": 1e-12,
+      "commutator_tolerance": 1e-09,
+      "UHF_initial_g_u_angle": 0.5
+    },
+    "molecule99": {
+      "name": "H3+",
+      "nuclei_bohr": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1.5,
+          0,
+          0
+        ],
+        [
+          0.5,
+          1.5,
+          0
+        ]
+      ],
+      "charges": [
+        1,
+        1,
+        1
+      ],
+      "charge": 1,
+      "nelec": [
+        1,
+        1
+      ],
+      "basis": "same explicit H STO-3G s contraction as98",
+      "mixing": 0.5,
+      "max_cycles": 240,
+      "density_tolerance": 1e-10,
+      "energy_tolerance": 1e-12,
+      "commutator_tolerance": 1e-09
+    },
+    "periodic101": {
+      "cell_length": "2*pi in declared dimensionless atomic-like units",
+      "G": [
+        -1,
+        0,
+        1
+      ],
+      "k": [
+        -0.25,
+        0.25
+      ],
+      "weights": [
+        0.5,
+        0.5
+      ],
+      "local_V1": -0.1,
+      "projector_eta": 0.3,
+      "projector_sigma": 0.8,
+      "projector_R": 0.4,
+      "temperature": 0.05,
+      "electrons": 1.5,
+      "force_delta": [
+        0.0001,
+        5e-05
+      ],
+      "primary_matrices": 2,
+      "auxiliary_displaced_matrices": 8,
+      "no_self_consistent_density_functional": true
+    }
+  },
+  "acceptance": {
+    "state": "declared-acceptance-criteria",
+    "failure_policy": "Keep all first inputs/native returns/checkpoints/exceptions and original criteria. No threshold/mesh/seed/window changes after results. Accuracy goals are not proven PASS guarantees.",
+    "95": {
+      "max_BO_or_CP_NVE_energy_drift": 1e-06,
+      "finest_state_RK4_difference": 1e-05,
+      "OU_heat_corrected_extended_energy_error": 1e-05,
+      "OU_conditional_variance_identity_error": 1e-14,
+      "orbital_norm_error": 1e-14,
+      "force_gradient_check": 1e-08,
+      "thermostat_equilibration_or_ergodicity_gate": null,
+      "RK4_companion_state_difference": 1e-10
+    },
+    "96": {
+      "new_solves": 0,
+      "saved_rows": 3,
+      "basis_functions_per_row": 40,
+      "energies_exact_saved_literals": [
+        -2.861679994991034,
+        -2.7236397914037958,
+        -2.723639791475126
+      ],
+      "electron_number_saved_error": 1e-12
+    },
+    "97": {
+      "native_norm_error_before_conversion": 1e-12,
+      "physical_norm_error": 1e-12,
+      "orthogonality_error": 1e-11,
+      "scaled_residual": 1e-12,
+      "box_same_grid_relative_error": 2e-12,
+      "box_finest_relative_continuum_error": 0.001,
+      "box_doubling_error_ratio": [
+        3.5,
+        4.5
+      ],
+      "HO_finest_absolute_total_error_goal": 0.003,
+      "HO_parity_error": 1e-10,
+      "node_threshold_mandatory": false,
+      "nodes_report_all_raw_masks_and_tail_signs": true,
+      "HO_field_error_gate": null,
+      "HO_separate_certified_wall_mesh_bounds": false
+    },
+    "98": {
+      "saved_PySCF_RHF_energy_difference": 2e-09,
+      "H2_UHF_analytic_pair_oracle_error": 1e-08,
+      "H2_FCI_even_oracle_error": 1e-10,
+      "FCI_operator_assembly_error": 1e-11,
+      "FCI_residual": 1e-11,
+      "electron_number_error": 1e-10,
+      "orbital_orthogonality_error": 1e-10,
+      "SCF_commutator": 1e-09,
+      "energy_ordering_slack": 1e-09,
+      "stretched_UHF_lower_than_RHF_by": 0.0001,
+      "stretched_spin_contamination_greater_than": 0.01
+    },
+    "99": {
+      "FCI_operator_assembly_error": 1e-11,
+      "FCI_residual": 1e-11,
+      "FCI_singlet_spatial_symmetry_error": 1e-10,
+      "MP2_RS2_oracle_difference": 1e-11,
+      "min_MP2_denominator_gap": 0.01,
+      "electron_number_error": 1e-10,
+      "SCF_commutator": 1e-09,
+      "FCI_le_RHF_slack": 1e-09,
+      "MP2_variational_claim": false
+    },
+    "100": {
+      "new_SCF_or_reference_runs": 0,
+      "recomputed_saved_FD_value_difference": 1e-12,
+      "original_acceptance_criteria": "saved-data/periodic-he-reference.json#/acceptance_unchanged",
+      "no_original_saved_success_rewritten": true
+    },
+    "101": {
+      "hermiticity_error": 1e-13,
+      "eigenpair_residual": 1e-12,
+      "cubic_independent_eigenvalue_error": 1e-12,
+      "electron_number_error": 1e-12,
+      "occupation_range": [
+        0,
+        2
+      ],
+      "finest_force_free_energy_FD_error": 1e-07,
+      "entropy_nonnegative_slack": 1e-12,
+      "real_metal_or_general_PSP_claim": false,
+      "fixed_case_cubic_clamp_activation": false
+    }
+  }
+}
