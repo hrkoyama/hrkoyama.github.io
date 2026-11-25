@@ -74,7 +74,24 @@ test('case, full-width letters and scientific dashes are normalized without alte
 test('the built index includes public content only, with clean titles and all notebook records',()=>{
   assert.equal(data.documents.filter(row=>/^\/notebooks\/notebook.html\?id=/.test(row.url)).length,41);
   assert.ok(data.documents.every(row=>safePath(row.url) && row.title.length<400 && row.text.trim()));
-  const serialized=JSON.stringify(data);
+  // The owner publishes this exact bilingual contact on these two pages only.
+  // Inline labels and links join in the atlas index, so fix their exact tokens.
+  // Mask only complete whitespace-delimited tokens in those documents' text;
+  // every other field, document and Gmail address retains the privacy guard.
+  const publicContact='hrkoyamacontact@gmail.com';
+  const contactTokens=new Map([
+    ['/',[publicContact,publicContact]],
+    ['/numerical-methods-atlas/',['連絡先'+publicContact,'Contact'+publicContact]]
+  ]);
+  for(const [url,tokens] of contactTokens){
+    const rows=data.documents.filter(row=>row.url===url);
+    assert.equal(rows.length,1,url+' has exactly one indexed document');
+    assert.deepEqual(rows[0].text.split(/\s+/).filter(token=>token.includes('@gmail.com')),tokens,url+' has only the two authorized contact tokens');
+  }
+  const privacyData={...data,documents:data.documents.map(row=>contactTokens.has(row.url)
+    ? {...row,text:row.text.split(/(\s+)/).map(token=>contactTokens.get(row.url).includes(token)?'[public contact]':token).join('')}
+    : row)};
+  const serialized=JSON.stringify(privacyData);
   assert.ok(!serialized.includes('/Users/'));
   assert.ok(!serialized.includes('@gmail.com'));
   assert.ok(!data.documents.some(row=>row.url.startsWith('/search/')));
