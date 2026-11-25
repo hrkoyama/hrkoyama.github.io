@@ -1,7 +1,7 @@
 // Generated from frontend/atlas/app.js by scripts/atlas_runtime_assets.py. Edit the source template.
 import {atlasIntroDescriptions,atlasDocumentVersions} from './atlas-runtime-data.mjs?v=5b5800d8a75b';
-import {homeOverviewPage,wireHomeOverview} from './home-overview.js?v=2b482da4aa0f';
-import {resolveHomeLegacyURL} from './home-navigation.mjs?v=5d2df11cb0cd';
+import {homeOverviewPage,wireHomeOverview} from './home-overview.js?v=36e5d19fabd1';
+import {resolveHomeLegacyURL} from './home-navigation.mjs?v=f06b3b9e2f7b';
 import {readingURL,rewriteReadingLinks} from './reading-urls.js';
 import {chapterEditions} from './chapter-resources.mjs?v=ae4077223131';
 import {expansionPage,wireExpansion} from './shock-expansion.js';
@@ -292,7 +292,7 @@ async function route(options={}) {
  main.lang=currentLanguage();main.removeAttribute('data-localize');
  document.querySelectorAll('[data-nav]').forEach(a=>{if(a.dataset.nav===type||(['movies','flow-comparison','mhd-tests','reconstruction','shock-robustness','shock-expansion'].includes(type)&&a.dataset.nav==='gallery')||(['convergence','time-integration','meshes','hamiltonian','limiters','runge-kutta','cip','basis','poisson-comparison','exact-solutions'].includes(type)&&a.dataset.nav==='experiments'))a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
  document.querySelector('.site-header').classList.remove('menu-open');document.querySelector('.mobile-menu').setAttribute('aria-expanded','false');
- document.title=type==='home'?site.title[currentLanguage()]:`${type==='read'?(documents[parts[1]]?.title||'Reading room'):({glossary:currentLanguage()==='ja'?'日英用語集':'Bilingual glossary',coverage:'The atlas in numbers',equations:'Equation gallery','exact-solutions':'Exact & reference solutions','shock-expansion':'Traced PPM, AUSM & bow shocks',atlas:'Historical atlas',methods:'Explore the methods',gallery:'Numerical gallery',figures:'Figures and comparison tools',movies:'Motion gallery',reconstruction:'High-order Euler reconstruction','poisson-comparison':'Poisson solver comparison','shock-robustness':'Odd–even shock diagnostic','flow-comparison':'Euler reconstruction comparison','mhd-tests':'HLLD standard tests',references:'Reference library',experiments:'Stability laboratory',convergence:'Convergence notebook','time-integration':'Time integration notebook',meshes:'Mesh explorer',hamiltonian:'Hamiltonian map notebook',limiters:'Slope limiter notebook','runge-kutta':'Runge–Kutta family notebook',cip:'CIP profile notebook',basis:'Element basis notebook'}[type]||'Page not found')} · ${site.title[currentLanguage()]}`;
+ document.title=type==='home'?site.title[currentLanguage()]:`${type==='read'?(documents[parts[1]]?.title||'Reading room'):({glossary:currentLanguage()==='ja'?'日英用語集':'Bilingual glossary',coverage:'The atlas in numbers',equations:'Equation gallery','exact-solutions':'Exact & reference solutions','shock-expansion':'Traced PPM, AUSM & bow shocks',atlas:'Historical atlas',methods:'Explore the methods',gallery:'Numerical gallery',figures:'Figures and comparison tools',movies:'Motion gallery',reconstruction:'High-order Euler reconstruction','poisson-comparison':'Poisson solver comparison','shock-robustness':'Odd–even shock diagnostic','flow-comparison':'Euler reconstruction comparison','mhd-tests':'HLLD standard tests',references:'Reference library',experiments:'Stability laboratory',convergence:'Convergence notebook','time-integration':'Time integration notebook',meshes:'Mesh explorer',hamiltonian:'Hamiltonian map notebook',limiters:'Slope limiter notebook','runge-kutta':'Runge–Kutta family notebook',cip:'CIP profile notebook',basis:'Element basis notebook'}[type]||'Page not found')} · ${site.brand.lead}`;
  document.title=document.title.split(' · ').map(translateText).join(' · ');
  if(type==='read')document.querySelectorAll('.heading-anchor').forEach(a=>{a.href=`#/read/${parts[1]}?section=${a.parentElement.id}`;});
  if(type==='references') {filterReferences(query.get('q')||'');document.querySelector('#reference-search').addEventListener('input',e=>filterReferences(e.target.value));}
@@ -330,7 +330,7 @@ async function route(options={}) {
 document.querySelector('.skip-link').addEventListener('click',e=>{e.preventDefault();main.focus();main.scrollIntoView();});
 document.querySelector('#figure-dialog').addEventListener('click',e=>{if(e.target===e.currentTarget)e.currentTarget.close();});
 try {
- [localeCatalog,references,sod,experiments,foundations,coverage,translationStatus,glossary,site]=await Promise.all(['locales/messages.json?v=1f29a82c9600','references.json?v=3da6820a557d','sod.json','experiments.json','foundations.json','coverage.json?v=48f6e1c48c28','translation-status.json','glossary.json','site.json'].map(async file=>{const response=await fetch(file);if(!response.ok)throw Error(`Cannot load ${file}`);return response.json();}));
+ [localeCatalog,references,sod,experiments,foundations,coverage,translationStatus,glossary,site]=await Promise.all(['locales/messages.json?v=98aa2555a967','references.json?v=3da6820a557d','sod.json','experiments.json','foundations.json','coverage.json?v=48f6e1c48c28','translation-status.json','glossary.json','site.json'].map(async file=>{const response=await fetch(file);if(!response.ok)throw Error(`Cannot load ${file}`);return response.json();}));
  repo=site.repositoryUrl;
  references.sort((a,b)=>a.year-b.year||a.id.localeCompare(b.id));
  let saved;try{saved=localStorage.getItem('hrkoyama.home.language') || localStorage.getItem('numart-language');}catch{}

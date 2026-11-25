@@ -5,16 +5,16 @@
     {
       "source": "frontend/atlas/app.js",
       "output": "numerical-methods-atlas/app.js",
-      "source_sha256": "2ea7d909f5c50a8a037fa6ba9f1f066db253cd6f2fe8cf11c7c57a41a5f1e05d",
-      "sha256": "3629d083032776023153fd3b6d1fc26d3de099fff328a06a94b401892d73c4ae",
+      "source_sha256": "7c9367d2efd9287ebaad16d73b26c26a0899af6aa611367f4ff225e1af070969",
+      "sha256": "fc51d123b5a52b43f9e51fdf5b41e053929396f6399cf477a9ef75deef5fca8e",
       "dependencies": {
         "numerical-methods-atlas/atlas-runtime-data.mjs": "5b5800d8a75b7252313bc3f2bd796cdf26f200d49c8d04bca7af8c2287eba116",
         "numerical-methods-atlas/chapter-resources.mjs": "ae4077223131216e0452c8cd1a8ed8cc20b6d8bf979604eb1188e95b67614533",
         "numerical-methods-atlas/coverage.js": "6ff11947c360a1292179c333c5226356494ba5a1ebedc1dae7b5cf0f3ae92d0b",
         "numerical-methods-atlas/coverage.json": "48f6e1c48c28662d59b92a13e0297ee2b4f50761f90177f6d8acad153cd02561",
-        "numerical-methods-atlas/home-navigation.mjs": "5d2df11cb0cdd6496379b5e16f136808301b794b748a8cb6e40ec2ade8cfbc99",
-        "numerical-methods-atlas/home-overview.js": "2b482da4aa0f4be507d577faae1b44a052650d04868091f45706c8309c669d6e",
-        "numerical-methods-atlas/locales/messages.json": "1f29a82c960004f9f4075f84eb0e36f352845c2cec354cb44c768cb324f503a6",
+        "numerical-methods-atlas/home-navigation.mjs": "f06b3b9e2f7b36408ec567fd617591f3e0484218ad74d1d51ab76bb0d07797a1",
+        "numerical-methods-atlas/home-overview.js": "36e5d19fabd1af74573e238feef697d47e183c6166a77db00ef82eb3eee896f3",
+        "numerical-methods-atlas/locales/messages.json": "98aa2555a967288647724c5dbde8a952a3de5ec7fa01103c949b5c70cb9fbdba",
         "numerical-methods-atlas/references.json": "3da6820a557d33dfb884a1f3c063fa945bbee8cfa30b6008b75a35a5c4aedac0",
         "numerical-methods-atlas/wave-evolution.js": "f53bf3879d2a8531da1bc22422b074c3850324afde54898ecc9e036b5bfdb7e8"
       }
