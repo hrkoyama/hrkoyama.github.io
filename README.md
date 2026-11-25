@@ -8,7 +8,7 @@ For current atlas counts, editing sources, validation and publication, see [MAIN
 
 ## Archives
 
-- `/gordon-bell/`: Gordon Bell Research Archive, including the original research dataset and search/export interface.
+- `/gordon-bell/`: Gordon Bell Prize Paper Archive（ゴードン・ベル賞 論文アーカイブ）, including the original research dataset and search/export interface. Centered on finalist and prize-winning papers, with a separate historical competition-entry index; some entries are not confirmed finalists or single papers.
 - `/notebooks/`: the existing public notebook viewing collection, with redactions unchanged.
 - `/hpci-policy/`: bilingual Computing Policy Archive and history/budget pages.
 

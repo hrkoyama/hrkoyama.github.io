@@ -157,12 +157,23 @@ def completion_evidence(root, item, receipts):
             'verification_passed': True, 'links': deepcopy(completion)}
 
 
+def workflow_contract(workflow):
+    """Require the state legend and bilingual completion policy before rendering."""
+    if not isinstance(workflow, dict) or workflow.get('states') != list(STATES):
+        raise ValueError('Backlog workflow must retain its four-state contract')
+    rule = workflow.get('completion_rule')
+    if not isinstance(rule, dict) or any(not isinstance(rule.get(lang), str) or not rule[lang].strip() for lang in ('ja', 'en')):
+        raise ValueError('Backlog workflow needs a nonempty Japanese and English completion rule')
+    return workflow
+
+
 def load(root=ROOT):
     root = Path(root).resolve()
     source = root / SOURCE
     data = json.loads(source.read_text())
     if data.get('schema_version') != 1:
         raise ValueError('Unknown benchmark-backlog schema')
+    workflow_contract(data.get('workflow'))
     receipts = {SOURCE: digest(source)}
     fields = {row['id']: row for row in data['fields']}
     if len(fields) != len(data['fields']) or any(not ID.fullmatch(ident) for ident in fields):
@@ -316,7 +327,7 @@ def item_html(item, data, language):
 
 
 def section(data, language):
-    ja = language == 'ja'; counts = data['counts']; workflow = data['workflow']
+    ja = language == 'ja'; counts = data['counts']; workflow = workflow_contract(data.get('workflow'))
     active = workflow.get('active_items', [workflow['active_item']] if workflow['active_item'] else [])
     out = '<section data-site-language="' + language + '" data-backlog-root="' + language + '" lang="' + language + '"><header class="backlog-heading"><p class="backlog-eyebrow">BENCHMARK WORK LOG</p><h1>' + text(data['title'][language]) + '</h1><p>' + text(data['description'][language]) + '</p></header>'
     out += '<nav class="backlog-navigation" aria-label="' + ('関連する入口' if ja else 'Related entries') + '">' + link(ORIGIN + BASE + '?lang=' + language, 'アトラス' if ja else 'Atlas home') + link(ORIGIN + BASE + 'gallery/?lang=' + language, 'テスト問題の名前と図' if ja else 'Test problems by name and figure') + link(ORIGIN + BASE + 'explore/?lang=' + language, '体系的に読む' if ja else 'Read systematically') + '</nav>'

@@ -250,3 +250,30 @@ print('ten-item batches retain individual completion requirements')
 `;
  assert.match(execFileSync(process.env.ATLAS_INDEX_PYTHON||'python3',['-B','-c',code,fileURLToPath(root)],{encoding:'utf8'}),/ten-item batches retain/);
 });
+
+
+test('workflow retains the four states and bilingual completion criteria before rendering',()=>{
+ const program=String.raw`
+from pathlib import Path
+from copy import deepcopy
+import importlib.util,json,sys
+root=Path(sys.argv[1]).resolve()
+spec=importlib.util.spec_from_file_location('backlog_contract',root/'scripts/build-atlas-benchmark-backlog.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
+workflow=json.loads((root/m.SOURCE).read_text())['workflow'];before=deepcopy(workflow)
+assert m.workflow_contract(workflow) is workflow and workflow==before
+assert workflow['states']==['planned','in-progress','verified','published']
+for language in ['ja','en']:assert isinstance(workflow['completion_rule'][language],str) and workflow['completion_rule'][language].strip()
+for mutation in ['missing-states','unknown-state','missing-rule','empty-ja','nonstr-en']:
+ bad=deepcopy(workflow)
+ if mutation=='missing-states':bad.pop('states')
+ elif mutation=='unknown-state':bad['states'][-1]='done'
+ elif mutation=='missing-rule':bad.pop('completion_rule')
+ elif mutation=='empty-ja':bad['completion_rule']['ja']='  '
+ else:bad['completion_rule']['en']=None
+ try:m.workflow_contract(bad)
+ except ValueError:pass
+ else:raise AssertionError('Incomplete workflow contract accepted: '+mutation)
+print('four states and bilingual completion criteria retained; five invalid controls rejected')
+`;
+ assert.match(execFileSync(process.env.ATLAS_INDEX_PYTHON||'python3',['-B','-c',program,fileURLToPath(root)],{encoding:'utf8',timeout:10000}),/five invalid controls rejected/);
+});

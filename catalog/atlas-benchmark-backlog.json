@@ -23,6 +23,16 @@
   "workflow": {
     "max_active": 10,
     "active_item": null,
+    "states": [
+      "planned",
+      "in-progress",
+      "verified",
+      "published"
+    ],
+    "completion_rule": {
+      "ja": "科学計算の項目は入力・参照と出典・コード・検査・誤差/収束・保存図・実行入口・検証記録を確認して完了にします。出典整理は対象箇所と修正根拠を確認します。",
+      "en": "Scientific items require inputs, cited reference, code, tests, error/refinement evidence, saved figure, execution entry and verification receipt. Curation items require checked target passages and evidence for the correction."
+    },
     "active_items": [],
     "batch_id": "2026-11-25-final23-scoped"
   },
