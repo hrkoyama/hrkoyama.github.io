@@ -42,6 +42,15 @@ test('three new groups render their own figures, code and reference routes',asyn
  page.on('pageerror',error=>errors.push(error.message));
  try {
  await page.route('**/*.zip',route=>route.request().method()==='HEAD'?route.continue():route.abort('blockedbyclient'));
+ // Current home branding only; fixed chapter names and published editions stay descriptive.
+ const siteTitle='NaN — Not just Algorithms, but Numerics.';
+ await page.goto(`/numerical-methods-atlas/?lang=${language}`);
+ await expect(page).toHaveTitle(siteTitle);
+ await expect(page.locator('main h1:visible')).toHaveCount(1);
+ await expect(page.locator('main h1:visible')).toHaveText(siteTitle);
+ await expect(page.locator('.site-header .brand > span:last-child')).toHaveText('NaN');
+ expect(await page.locator('meta[property="og:title"]').getAttribute('content')).toBe(siteTitle);
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth)).toBeLessThanOrEqual(1);
  await page.route(url=>fixtures.has(url.href),async route=>{
   const original=new URL(route.request().url()),fixture=fixtures.get(original.href);
   expect(original.origin).toBe(publicOrigin);expect(original.username).toBe('');expect(original.password).toBe('');expect(route.request().method()).toBe('GET');

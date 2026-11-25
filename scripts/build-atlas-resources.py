@@ -21,6 +21,7 @@ from atlas_method_review import (validate_method_reviews, review_intro, field_no
 
 ROOT=Path(__file__).resolve().parents[1]
 ATLAS=ROOT/'numerical-methods-atlas'
+SITE_TITLE=json.loads((ATLAS/'site.json').read_text())['title']['en']
 ORIGIN='https://hrkoyama.github.io'
 DATA=json.loads((ROOT/'catalog/atlas-methods.json').read_text())
 METHODS=DATA['methods']
@@ -416,7 +417,7 @@ for x in METHODS:
             body+='<p>'+('一次文献の個別整理は今後の作業です。' if ja else 'Dedicated primary-reference curation remains to be completed.')+'</p>'
         body+='<p>'+link('index.json','この項目 / JSON' if ja else 'This record / JSON')+' · '+link('index.md','この項目 / Markdown' if ja else 'This record / Markdown')+' · '+link('/using/','引用と利用条件' if ja else 'Citation and reuse')+'</p></section>'
         sections.append(body)
-    structured={'@context':'https://schema.org','@type':'LearningResource','name':x['name']['en'],'url':ORIGIN+url,'author':{'@type':'Person','name':'Hiroshi Koyama'},'isPartOf':{'@type':'WebSite','name':'An Atlas of Numerical Methods','url':ORIGIN+'/numerical-methods-atlas/'},'description':x['summary']['en'],'inLanguage':['ja','en']}
+    structured={'@context':'https://schema.org','@type':'LearningResource','name':x['name']['en'],'url':ORIGIN+url,'author':{'@type':'Person','name':'Hiroshi Koyama'},'isPartOf':{'@type':'WebSite','name':SITE_TITLE,'url':ORIGIN+'/numerical-methods-atlas/'},'description':x['summary']['en'],'inLanguage':['ja','en']}
     method_page=page(x['name']['ja'],x['name']['en'],url,''.join(sections),structured,extra_head=method_routes_head)
     method_page=method_page.replace('<body class="profile-page">','<body class="profile-page" data-site-language-anchors="suffix">',1)
     write(url+'index.html',method_page)

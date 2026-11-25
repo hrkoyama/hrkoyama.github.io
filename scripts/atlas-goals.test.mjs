@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import {createHash} from 'node:crypto';
 import {goals,matchGoals} from '../search/goals-data.mjs';
 import {findMethods} from '../search/method-search.mjs';
 import {makeSearch} from '../search/engine.mjs';
@@ -34,7 +35,33 @@ test('new domains distinguish runnable atoms, reading-only molecular DFT, scoped
  const csvr=temperature.find(x=>x.method.id==='stochastic-velocity-rescaling');assert.equal(csvr?.method.status,'educational-example');
  assert.deepEqual(new Set(csvr.method.execution_examples.map(x=>x.id)),new Set(['csvr-kinetic-kernel','csvr-langevin-harmonic','csvr-langevin-quartic']));
  assert.ok(temperature.filter(x=>!['langevin-thermostat','stochastic-velocity-rescaling'].includes(x.method.id)).every(x=>x.method.status==='planned' && x.method.code_urls.length===0));
- const bio=findMethods(methods,'生物モデルを調べたい');assert.equal(bio.filter(x=>x.method.status==='educational-example').length,5);assert.ok(bio.every(x=>x.method.resource_type==='model'));
+ const legacyBio=['bio-populations','bio-epidemics','bio-patterns','bio-reaction-fourier','bio-fhn'];
+ const additions=[['bio-enzyme-qssa','enzyme-qssa'],['bio-lotka-volterra','lotka-volterra'],['bio-seir-linearization','seir-linearization']];
+ const bio=findMethods(methods,'生物モデルを調べたい');assert.ok(bio.every(x=>x.method.resource_type==='model'));
+ const runnable=bio.filter(x=>x.method.status==='educational-example').map(x=>x.id);
+ assert.deepEqual(runnable.slice(0,5),legacyBio,'the original five runnable model resources retain their order');
+ assert.deepEqual(runnable,[...legacyBio,...additions.map(([id])=>id)],'only the three separately scoped models are added');
+ const digest=path=>createHash('sha256').update(fs.readFileSync(new URL('../'+path,import.meta.url))).digest('hex');
+ const freezePath='scripts/fixtures/atlas-batch78-87-freeze.json';
+ assert.equal(digest(freezePath),'b5ea04031e443f0ec3c2e20e610034bcbbbc326f5884350d454df2fbad85b7ad');
+ const packet=read(freezePath).canonical_packets['small-models'];
+ for(const [file,hash] of [['source-manifest.json',packet.manifest_sha256],['verification.json',packet.verification_sha256],[packet.archive_file,packet.archive_sha256]])assert.equal(digest(packet.base+file),hash,file+' canonical packet identity');
+ const canonical=read(packet.base+'cases.json'),manifest=read(packet.base+'source-manifest.json');
+ assert.equal(digest(packet.base+'cases.json'),manifest.files['cases.json']);
+ for(const lang of ['ja','en']){
+  const scoped=findMethods(methods,'生物モデルを調べたい',lang);
+  assert.equal(scoped.find(row=>row.id==='bio-excitation').method.status,'reading-only');
+  assert.deepEqual(scoped.find(row=>row.id==='bio-excitation').method.execution_examples,[]);
+  for(const [resourceID,caseID] of additions){
+   const actual=scoped.find(row=>row.id===resourceID)?.method,source=canonical.find(row=>row.id===caseID),entry=read('numerical-methods-atlas/validation/'+caseID+'/index.json');
+   assert.ok(actual&&source,resourceID);assert.equal(actual.status,'educational-example');
+   assert.deepEqual(actual.supplemental_examples,[caseID]);assert.deepEqual(actual.execution_examples.map(row=>row.id),[caseID]);
+   assert.deepEqual(actual.name,source.title);assert.deepEqual(actual.summary,source.limits);
+   assert.equal(actual.reading[lang],'https://hrkoyama.github.io/numerical-methods-atlas/'+lang+'/read/validation-small-models/#'+caseID);
+   assert.equal(entry.release.base,'https://hrkoyama.github.io/'+packet.base);
+   assert.deepEqual(actual.code_urls,entry.release.code_urls);assert.deepEqual(actual.test_urls,entry.release.test_urls);
+  }
+ }
 });
 test('static new-domain sections have status labels and do not advertise atomic code for molecules or simulations for surveys',()=>{
  const html=fs.readFileSync(new URL('../numerical-methods-atlas/start/index.html',import.meta.url),'utf8');

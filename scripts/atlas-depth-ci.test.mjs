@@ -326,18 +326,63 @@ os.environ['AWS_SECRET_ACCESS_KEY'] = 'do-not-inherit'
 
 test('full verifier state machine accepts every mixed-edition saved fixture case without scientific execution', () => {
   python(mockedPipeline + String.raw`
-with tempfile.TemporaryDirectory() as temporary:
-    report = v.verify(v.REGISTRY_URL, v.digest(registry_bytes), Path(temporary)/'run')
-    assert report['passed'] is True, brief_report(report)
-    assert report['phase']=='complete' and report['case_count']==registry['case_count'] and report['tests']==sum(g['tests'] for g in registry['releases'])
-    assert len(report['acquisitions'])==1+4*len(registry['releases']) and all(r['passed'] for r in report['acquisitions'])
-    assert all(g['pytest']['skipped']==0 and g['passed'] and g['generated_csv'] for g in report['groups'])
-    assert v.strict_json((Path(temporary)/'run/report.json').read_bytes())['passed'] is True
-    for group in v.GROUPS:
-        directory = Path(temporary)/'run/groups'/group
-        assert (directory/'pytest.stdout.log').is_file() and (directory/'run.stderr.log').is_file()
-        assert (directory/'generated/result.json').is_file()
-assert not any(name in sys.modules for name in ['numpy', 'scipy', 'pytest', 'pyscf'])
+# This positive metadata fixture validates every real archive/result, but does not
+# need to rewrite the same growing running report hundreds of times. Keep all
+# checkpoint emissions as immutable state projections; persist every terminal
+# report and all non-report JSON through the unchanged real atomic writer.
+original_write_json = v.write_json
+checkpoint_rows, terminal_reports = [], []
+verifier_source = ROOT/'scripts/verify-depth-public.py'
+verifier_before = v.digest(verifier_source.read_bytes())
+def fixture_write_json(path, value):
+    if Path(path).name == 'report.json' and value.get('status') == 'running':
+        checkpoint_rows.append((value['phase'], value.get('active_group'),
+                                len(value['groups']), len(value['acquisitions'])))
+        return
+    original_write_json(path, value)
+    if Path(path).name == 'report.json':
+        terminal_reports.append(copy.deepcopy({key: value.get(key) for key in ['status', 'phase', 'passed']}))
+v.write_json = fixture_write_json
+try:
+    # A failed terminal report must never be coalesced into an apparent success.
+    with tempfile.TemporaryDirectory() as probe:
+        failed = {'status': 'failed', 'phase': 'sentinel', 'passed': False}
+        probe_report = Path(probe)/'report.json'
+        fixture_write_json(probe_report, failed)
+        assert v.strict_json(probe_report.read_bytes()) == failed
+    with tempfile.TemporaryDirectory() as temporary:
+        report = v.verify(v.REGISTRY_URL, v.digest(registry_bytes), Path(temporary)/'run')
+        assert report['passed'] is True, brief_report(report)
+        assert report['phase']=='complete' and report['case_count']==registry['case_count'] and report['tests']==sum(g['tests'] for g in registry['releases'])
+        assert len(report['acquisitions'])==1+4*len(registry['releases']) and all(r['passed'] for r in report['acquisitions'])
+        assert all(g['pytest']['skipped']==0 and g['passed'] and g['generated_csv'] for g in report['groups'])
+        assert v.strict_json((Path(temporary)/'run/report.json').read_bytes())['passed'] is True
+        for group in v.GROUPS:
+            directory = Path(temporary)/'run/groups'/group
+            assert (directory/'pytest.stdout.log').is_file() and (directory/'run.stderr.log').is_file()
+            assert (directory/'generated/result.json').is_file()
+    assert not any(name in sys.modules for name in ['numpy', 'scipy', 'pytest', 'pyscf'])
+finally:
+    v.write_json = original_write_json
+assert v.write_json is original_write_json
+assert v.digest(verifier_source.read_bytes()) == verifier_before
+expected_checkpoints = [('registry', None, 0, 0)]
+groups = [release['group'] for release in registry['releases']]
+for index, group in enumerate(groups):
+    expected_checkpoints.append(('downloads', group, index+1, 1+4*index))
+    expected_checkpoints.extend(('downloads', group, index+1, 1+4*index+item) for item in range(1, 5))
+    expected_checkpoints.extend([('archive-validation', group, index+1, 1+4*(index+1))]*2)
+expected_checkpoints.extend([('environment', groups[-1], len(groups), 1+4*len(groups))]*2)
+for group in groups:
+    expected_checkpoints.extend((phase, group, len(groups), 1+4*len(groups)) for phase in
+        ['pytest', 'pytest', 'pytest-validation', 'fixed-input-integrity',
+         'execution', 'execution', 'numerical-validation', 'numerical-validation'])
+assert checkpoint_rows == expected_checkpoints
+assert len(checkpoint_rows) == 3+15*len(groups)
+assert terminal_reports == [
+    {'status': 'failed', 'phase': 'sentinel', 'passed': False},
+    {'status': 'complete', 'phase': 'complete', 'passed': True},
+]
 `, 120_000);
 });
 

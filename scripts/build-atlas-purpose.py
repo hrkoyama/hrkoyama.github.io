@@ -50,7 +50,7 @@ def goal_start(lang, static=False):
     c={**c,'all':c['all'].format(count=len(data['goals']))}
     map_url='#atlas-map-'+lang if static else '#/?section=atlas-map'
     crossover_action='<a href="/numerical-methods-atlas/connections/?lang='+lang+'"><strong>'+html.escape(crossovers['home']['action'][lang])+'</strong><span>'+html.escape(crossovers['home']['short_description'][lang])+'</span></a>'
-    return '<section class="intro page-width goal-first-intro" data-goal-filter-root data-goal-language="'+lang+'"><div><p class="eyebrow">'+('数値計算法アトラス' if ja else 'An Atlas of Numerical Methods')+'</p><h1>'+html.escape(c['title'])+'</h1><p class="intro-description">'+html.escape(c['description'])+'</p><p class="home-crossover-entry">'+crossover_action+'</p>'+goal_filter_controls(lang,'home',data['domains'])+'<nav class="home-goal-start" aria-label="'+html.escape(c['label'])+'">'+cards+'</nav><p class="home-goal-all"><a href="/numerical-methods-atlas/start/?lang='+lang+'">'+html.escape(c['all'])+'</a></p><nav class="home-primary-actions" aria-label="'+('ほかの探し方' if ja else 'Other ways to explore')+'"><a class="home-map-action" href="'+map_url+'">'+('分野地図から探す' if ja else 'Browse the field map')+'</a><a class="home-run-action" href="'+ENTRY_BASE+'?lang='+lang+'">'+('22の実行例を見る' if ja else 'See 22 runnable examples')+'</a><a href="/search/?lang='+lang+'&amp;scope=atlas">'+('手法名で検索' if ja else 'Search by method name')+'</a></nav><p class="home-share-link"><a href="/numerical-methods-atlas/share/?lang='+lang+'">'+('紹介文・共有素材' if ja else 'Introduction and sharing materials')+'</a></p>'+depth_teaser(ROOT,lang)+'</div></section>'+validation_teaser(lang)+'<section class="page-width crossover-home">'+crossover_teaser(ROOT,lang)+'</section>'
+    return '<section class="intro page-width goal-first-intro" data-goal-filter-root data-goal-language="'+lang+'"><div><p class="eyebrow">'+'NaN'+'</p><h1>'+html.escape(c['title'])+'</h1><p class="intro-description">'+html.escape(c['description'])+'</p><p class="home-crossover-entry">'+crossover_action+'</p>'+goal_filter_controls(lang,'home',data['domains'])+'<nav class="home-goal-start" aria-label="'+html.escape(c['label'])+'">'+cards+'</nav><p class="home-goal-all"><a href="/numerical-methods-atlas/start/?lang='+lang+'">'+html.escape(c['all'])+'</a></p><nav class="home-primary-actions" aria-label="'+('ほかの探し方' if ja else 'Other ways to explore')+'"><a class="home-map-action" href="'+map_url+'">'+('分野地図から探す' if ja else 'Browse the field map')+'</a><a class="home-run-action" href="'+ENTRY_BASE+'?lang='+lang+'">'+('22の実行例を見る' if ja else 'See 22 runnable examples')+'</a><a href="/search/?lang='+lang+'&amp;scope=atlas">'+('手法名で検索' if ja else 'Search by method name')+'</a></nav><p class="home-share-link"><a href="/numerical-methods-atlas/share/?lang='+lang+'">'+('紹介文・共有素材' if ja else 'Introduction and sharing materials')+'</a></p>'+depth_teaser(ROOT,lang)+'</div></section>'+validation_teaser(lang)+'<section class="page-width crossover-home">'+crossover_teaser(ROOT,lang)+'</section>'
 
 def browse(lang):
     c=copy[lang]
@@ -98,17 +98,17 @@ overview=ATLAS/'home-overview.js'
 app=ATLAS/'app.js'
 page=ATLAS/'index.html'
 text=page.read_text()
-titles={'ja':'数値計算法アトラス','en':'An Atlas of Numerical Methods'}
-text=re.sub(r'<title(?:\s[^>]*)?>.*?</title>','<title data-page-title-ja="'+titles['ja']+'" data-page-title-en="'+titles['en']+'">'+titles['ja']+' | '+titles['en']+'</title>',text,count=1,flags=re.S)
+titles={lang:home['landing'][lang]['title'] for lang in ['ja','en']}
+text=re.sub(r'<title(?:\s[^>]*)?>.*?</title>','<title data-page-title-ja="'+titles['ja']+'" data-page-title-en="'+titles['en']+'">'+titles['en']+'</title>',text,count=1,flags=re.S)
 text=re.sub(r'<meta name="description"[^>]*>','<meta name="description" data-description-ja="'+html.escape(copy['ja']['meta_description'],quote=True)+'" data-description-en="'+html.escape(copy['en']['meta_description'],quote=True)+'" content="'+html.escape(copy['en']['meta_description'],quote=True)+'">',text,count=1)
 text=re.sub(r'<meta (?:property|name)="(?:og:(?:title|description|image(?::(?:width|height|type|alt))?|locale(?::alternate)?)|twitter:[^"]+)"[^>]*>\s*','',text)
 share_image='https://hrkoyama.github.io/numerical-methods-atlas/share/atlas-intro-ja.png'
 social={
-    'og:title':titles['ja']+' | '+titles['en'],'og:description':copy['en']['meta_description'],
+    'og:title':titles['en'],'og:description':copy['en']['meta_description'],
     'og:image':share_image,'og:image:width':'1200','og:image:height':'630','og:image:type':'image/png',
     'og:image:alt':'数値計算法アトラス / An Atlas of Numerical Methods: methods, conditions, code and result checks',
     'og:locale':'ja_JP','og:locale:alternate':'en_US',
-    'twitter:card':'summary_large_image','twitter:title':titles['ja']+' | '+titles['en'],
+    'twitter:card':'summary_large_image','twitter:title':titles['en'],
     'twitter:description':copy['en']['meta_description'],'twitter:image':share_image,
     'twitter:image:alt':'数値計算法アトラス / An Atlas of Numerical Methods'}
 text=text.replace('</head>',''.join('<meta '+('name' if key.startswith('twitter:') else 'property')+'="'+key+'" content="'+html.escape(value,quote=True)+'">\n' for key,value in social.items())+'</head>')
