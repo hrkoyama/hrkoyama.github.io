@@ -973,11 +973,23 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "validation-biology-ode-controls": [
+    "ja",
+    "en"
+  ],
+  "validation-biology-space-controls": [
+    "ja",
+    "en"
+  ],
   "validation-bratu-continuation-jfnk": [
     "ja",
     "en"
   ],
   "validation-coefficient-diffusion": [
+    "ja",
+    "en"
+  ],
+  "validation-continuum-particle-controls": [
     "ja",
     "en"
   ],
@@ -1137,6 +1149,10 @@ export const homeReadingLanguages = {
     "ja",
     "en"
   ],
+  "validation-quantum-small": [
+    "ja",
+    "en"
+  ],
   "validation-radiation-geometry": [
     "ja",
     "en"
@@ -1190,6 +1206,10 @@ export const homeReadingLanguages = {
     "en"
   ],
   "validation-stochastic-estimation": [
+    "ja",
+    "en"
+  ],
+  "validation-thermostat-constraint-controls": [
     "ja",
     "en"
   ],

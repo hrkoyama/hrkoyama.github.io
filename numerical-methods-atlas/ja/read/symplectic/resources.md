@@ -65,9 +65,18 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/symplectic/
 - [4次ポテンシャルの非線形振動子：参照・比較条件](<https://hrkoyama.github.io/numerical-methods-atlas/problems/quartic-oscillator/?lang=ja#references-ja>)
 
   非線形ポテンシャルの保存エネルギーと長時間の数値軌道・写像の性質を比較します。保存図を閉形式の厳密軌道と呼びません。
+- [調和振動子：Verletの位相誤差とエネルギー](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-harmonic-oscillator-exact-ja>)
+  reference_kind: analytic
+
+  解析解 H=(q²+p²)/2、(q₀,p₀)=(1,0.2)。固定刻み、非散逸1自由度。初期値・終端時刻・刻み数は入力に明記。最大刻みh=0.1はhω<2の安定域。
 - [調和振動子：Verletの位相誤差とエネルギー：参照・検証](<https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/harmonic-oscillator/?lang=ja#harmonic-oscillator-ja-validation>)
 
   CSVは最細刻みの時刻ごとに数値・解析のq,pとエネルギーを整列。観測次数は終端状態誤差から、エネルギー偏差は全保存時刻から計算。
+- [調和振動子：Verletの位相誤差とエネルギー](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-harmonic-oscillator-exact-ja>)
+  relation: same-problem
+  reference_kind: analytic
+
+  解析解 H=(q²+p²)/2、(q₀,p₀)=(1,0.2)。固定刻み、非散逸1自由度。初期値・終端時刻・刻み数は入力に明記。最大刻みh=0.1はhω<2の安定域。 既存の固定入力・保存結果に対応する解析参照カードを追加。解析式、点・時刻・動径の標本化、配布版SHAと実行コードを相互に辿れます。過去の計算を再実行した記録ではありません。 既存ギャラリーはt≤10、共通固定入力は終端20です。
 
 ## コード・検証
 
@@ -103,6 +112,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/symplectic/
   availability: run
 
   2自由度の実結合系で、12の64刻みprobeと6の精度軌道を使い、真のモード、座標間交換、離散写像と丸めを分けます。
+- [2準位模型のBO/CP型連成と短い核熱浴](<https://hrkoyama.github.io/numerical-methods-atlas/validation/two-state-bo-cp-ou/?lang=ja>)
+  availability: run
+
+  電子角と核座標を実際に結合した2準位模型を、短いNVEと核熱浴で比較します。
 - [SHAKEとRATTLE：拘束と運動量の違い](<https://hrkoyama.github.io/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=ja>)
   availability: run
 

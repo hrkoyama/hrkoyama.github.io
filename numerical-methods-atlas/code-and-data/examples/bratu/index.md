@@ -47,7 +47,9 @@ $$
 
 CSVは最細格子の数値解・解析解・絶対誤差。JSONには各格子の真の非線形残差、Newton反復数と最小減衰長を記録する。
 
-参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
+- [1次元Bratu：小さい枝のNewton–GMRES](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-bratu-lower-branch-analytic-ja) (`bratu-lower-branch-analytic`; 同じ問題の参照 · 解析参照)
+
+既存の固定入力・保存結果に対応する解析参照カードを追加。解析式、点・時刻・動径の標本化、配布版SHAと実行コードを相互に辿れます。過去の計算を再実行した記録ではありません。
 
 
 ### scope
@@ -153,7 +155,9 @@ A representative figure for the problem. Its grid, time and initial data may dif
 
 CSV carries finest-grid numerical/analytic values and absolute error. JSON retains each mesh's nonlinear residual, Newton iteration count and minimum damping length.
 
-No corresponding reference-library card is registered; execution-specific material above documents its reference values and acceptance checks.
+- [1D Bratu: Newton–GMRES on the lower branch](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-bratu-lower-branch-analytic-en) (`bratu-lower-branch-analytic`; Same-problem reference · Analytic reference)
+
+An analytic reference card now links the existing fixed inputs and saved results: formula, point/time/radial sampling, edition SHA and executable code. This metadata registration is not a new execution.
 
 
 ### scope

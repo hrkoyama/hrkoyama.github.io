@@ -335,7 +335,9 @@ $$
 
 座標の正規化・CDF・Uの平均/分散を1D求積、HのCDFをKの指数分布と2D座標Boltzmann密度の畳込み積分で得ます。求積公差2e−10と2e−12の差を保存し、独立棄却集団でもH分布を検査。q,p,K,Hの相関には複製間の標準誤差を併記し、刻み差と標本誤差を混同しません。
 
-参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
+- [NH・chain・弱結合・速度固定の比較](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-deterministic-thermostat-contrasts-ja) (`deterministic-thermostat-contrasts`; 同じ問題の参照 · 半解析参照)
+
+同じ2モード四次系と調和対照。決定論的浴の短時間・有限標本比較。
 ### 前提・単位・境界
 
 m=kB=T=1、ω=(1,1.7)、λ=0.2、U=Σ(ω²q²/2+λq⁴/4)。正準8192複製、温度摂動4096複製、t=20、τ=0.25/1、h=0.1/0.05、lag=0/0.5/1/2/4。

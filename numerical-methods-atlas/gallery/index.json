@@ -4,31 +4,31 @@
   "reviewed_on": "2026-11-25",
   "scope": "One explicitly mapped visual per atlas test problem. Existing shared figures are identified. Derived plots use stored numerical values; computed previews record fixed inputs and numerical checks.",
   "counts": {
-    "test_problems": 158,
-    "runnable_problems": 121,
+    "test_problems": 172,
+    "runnable_problems": 135,
     "common_runnable_problems": 22,
-    "supplemental_runnable_problems": 106,
-    "supplemental_case_count": 133,
-    "supplemental_release_case_count": 138,
+    "supplemental_runnable_problems": 124,
+    "supplemental_case_count": 152,
+    "supplemental_release_case_count": 157,
     "groups": {
       "transport": 17,
-      "fluid": 23,
+      "fluid": 26,
       "mhd": 6,
       "viscous": 9,
       "elliptic": 22,
       "gravity": 11,
-      "time": 16,
+      "time": 17,
       "approximation": 15,
-      "quantum": 5,
-      "biology": 8,
+      "quantum": 9,
+      "biology": 13,
       "probability": 6,
-      "kinetic": 7,
+      "kinetic": 8,
       "electromagnetics": 3,
       "differentiation-inverse": 10
     },
     "visual_sources": {
       "stored-data-plot": 27,
-      "existing-figure": 122,
+      "existing-figure": 136,
       "computed-preview": 9
     }
   },
@@ -733,6 +733,16 @@
         }
       ],
       "availability": "saved-output",
+      "supplemental_examples": [
+        {
+          "id": "gsph-sod",
+          "url": "/numerical-methods-atlas/validation/gsph-sod/",
+          "name": {
+            "ja": "Gaussian畳込みGSPHによるSod型粒子衝撃管",
+            "en": "Sod-type particle shock tube with Gaussian-convolution GSPH"
+          }
+        }
+      ],
       "reading": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/benchmarks/",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/benchmarks/"
@@ -787,7 +797,34 @@
           "en": "Compare the Sod shock tube with a self-similar Riemann solution; check decreasing density error, positivity and boundary-flux balances."
         }
       },
-      "supplemental_execution_entries": []
+      "supplemental_execution_entries": [
+        {
+          "id": "gsph-sod",
+          "title": {
+            "ja": "Gaussian畳込みGSPHによるSod型粒子衝撃管",
+            "en": "Sod-type particle shock tube with Gaussian-convolution GSPH"
+          },
+          "group": "continuum-particle-controls",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gsph-sod/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gsph-sod/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/ale_piston.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/reference_riemann.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/test_components.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json"
+        }
+      ]
     },
     {
       "id": "lax",
@@ -4670,6 +4707,16 @@
           "python_symbol": "test_helium_scf_and_independent_reference"
         }
       ],
+      "supplemental_examples": [
+        {
+          "id": "atomic-reference-cards",
+          "url": "/numerical-methods-atlas/validation/atomic-reference-cards/",
+          "name": {
+            "ja": "H/Heの式・密度・固定参照カード",
+            "en": "Hydrogenic formulas and immutable finite-basis helium reference cards"
+          }
+        }
+      ],
       "reading": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-atoms/#helium",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-atoms/#helium"
@@ -4725,7 +4772,35 @@
           "en": "Solve spherical 1s² helium with RHF and exchange-only LDA; compare SCF convergence, energies and electron count with independent finite-basis references."
         }
       },
-      "supplemental_execution_entries": []
+      "supplemental_execution_entries": [
+        {
+          "id": "atomic-reference-cards",
+          "title": {
+            "ja": "H/Heの式・密度・固定参照カード",
+            "en": "Hydrogenic formulas and immutable finite-basis helium reference cards"
+          },
+          "group": "quantum-small",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/atomic-reference-cards/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/atomic-reference-cards/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/io_utils.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/coupled_md.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/eigenpairs.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/molecules.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/periodic_projector.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/plot_results.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/test_quantum_small.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/verification.json"
+        }
+      ]
     },
     {
       "id": "logistic-growth",
@@ -5178,6 +5253,16 @@
           "python_symbol": "test_fixed_input_validation"
         }
       ],
+      "supplemental_examples": [
+        {
+          "id": "h2-rhf-uhf-fci",
+          "url": "/numerical-methods-atlas/validation/h2-rhf-uhf-fci/",
+          "name": {
+            "ja": "最小基底H2のRHF/UHF/FCI・2固定幾何",
+            "en": "Minimal-basis H2: RHF, broken-spin UHF and finite-basis FCI"
+          }
+        }
+      ],
       "reading": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/h2-hf/#measured-results",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/h2-hf/#measured-results"
@@ -5233,7 +5318,35 @@
           "en": "Isolated Born–Oppenheimer nonrelativistic two-electron closed-shell H₂. Compare STO-3G and nested s-Gaussian spaces at three separations. Numerical RHF validation, not molecular DFT, periodic, complete-basis or correct-dissociation validation."
         }
       },
-      "supplemental_execution_entries": []
+      "supplemental_execution_entries": [
+        {
+          "id": "h2-rhf-uhf-fci",
+          "title": {
+            "ja": "最小基底H2のRHF/UHF/FCI・2固定幾何",
+            "en": "Minimal-basis H2: RHF, broken-spin UHF and finite-basis FCI"
+          },
+          "group": "quantum-small",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/h2-rhf-uhf-fci/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/h2-rhf-uhf-fci/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/molecules.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/coupled_md.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/io_utils.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/eigenpairs.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/periodic_projector.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/plot_results.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/test_quantum_small.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/verification.json"
+        }
+      ]
     },
     {
       "id": "periodic-he-dft",
@@ -5344,6 +5457,16 @@
           "python_symbol": "test_saved_full_run_passes"
         }
       ],
+      "supplemental_examples": [
+        {
+          "id": "periodic-he-reference-cards",
+          "url": "/numerical-methods-atlas/validation/periodic-he-reference-cards/",
+          "name": {
+            "ja": "保存周期Heエネルギー・力の参照台帳",
+            "en": "Immutable periodic-helium energy and force reference audit"
+          }
+        }
+      ],
       "reading": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/#measured-results",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-forces/#measured-results"
@@ -5399,7 +5522,35 @@
           "en": "Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated."
         }
       },
-      "supplemental_execution_entries": []
+      "supplemental_execution_entries": [
+        {
+          "id": "periodic-he-reference-cards",
+          "title": {
+            "ja": "保存周期Heエネルギー・力の参照台帳",
+            "en": "Immutable periodic-helium energy and force reference audit"
+          },
+          "group": "quantum-small",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/periodic-he-reference-cards/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/periodic-he-reference-cards/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/io_utils.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/coupled_md.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/eigenpairs.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/molecules.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/periodic_projector.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/plot_results.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/test_quantum_small.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/verification.json"
+        }
+      ]
     },
     {
       "id": "matrix-factorization",
@@ -7677,6 +7828,14 @@
             "ja": "非調和CSVRとLangevin：Boltzmann求積との分布比較",
             "en": "Anharmonic CSVR versus Langevin: distribution checks against Boltzmann quadrature"
           }
+        },
+        {
+          "id": "deterministic-thermostat-contrasts",
+          "url": "/numerical-methods-atlas/validation/deterministic-thermostat-contrasts/",
+          "name": {
+            "ja": "NH・chain・弱結合・速度固定の比較",
+            "en": "NH,chains,weak coupling and fixed-speed contrasts"
+          }
         }
       ],
       "reading": {
@@ -7737,6 +7896,30 @@
           "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip",
           "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/results/result.json",
           "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/verification.json"
+        },
+        {
+          "id": "deterministic-thermostat-contrasts",
+          "title": {
+            "ja": "NH・chain・弱結合・速度固定の比較",
+            "en": "NH,chains,weak coupling and fixed-speed contrasts"
+          },
+          "group": "thermostat-constraint-controls",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/deterministic-thermostat-contrasts/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/deterministic-thermostat-contrasts/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/common.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/deterministic.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/constrained.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/test_models.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/atlas-thermostat-constraint-controls-2026-11-25.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/verification.json"
         }
       ]
     },
@@ -17417,10 +17600,1517 @@
           }
         }
       ]
+    },
+    {
+      "id": "two-state-bo-cp-model",
+      "group": "quantum",
+      "name": {
+        "ja": "2準位模型のBO/CP型連成と短い核熱浴",
+        "en": "A two-state BO / CP-type model with a short nuclear thermostat coupling"
+      },
+      "chapter": "validation-quantum-small",
+      "reading_section": "two-state-bo-cp-ou",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-25/quantum-small/",
+      "verification": "/code/validated-examples/2026-11-25/quantum-small/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider test_quantum_small.py",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-25/quantum-small/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "two-state-bo-cp-ou"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/quantum-small/results/two-state-bo-cp-ou.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/quantum-small/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "two-state-bo-cp-ou",
+          "url": "/numerical-methods-atlas/validation/two-state-bo-cp-ou/",
+          "name": {
+            "ja": "2準位模型のBO/CP型連成と短い核熱浴",
+            "en": "A two-state BO / CP-type model with a short nuclear thermostat coupling"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quantum-small/#two-state-bo-cp-ou",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quantum-small/#two-state-bo-cp-ou"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#two-state-bo-cp-model",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider test_quantum_small.py",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "image": "/code/validated-examples/2026-11-25/quantum-small/results/two-state-bo-cp-ou.png",
+      "image_sha256": "cdd2033e650a54ceb9fb961b3717f7405b12d7fc6983891d03658f1e10a5df2b",
+      "width": 1600,
+      "height": 640,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "電子角と核座標を実際に結合した2準位模型を、短いNVEと核熱浴で比較します。 長時間第一原理NVE、一般の多軌道直交制約・SCF誤差、電子/核の一般熱浴、正準平衡・断熱分離・エルゴード性、実物質は未検証。",
+        "en": "Compare a normalized two-state electronic degree of freedom coupled to a nuclear coordinate, short NVE and one nuclear OU bath. Long first-principles NVE, general multi-orbital orthonormality/SCF errors, general electronic/nuclear baths, canonical equilibration, adiabatic/ergodic certification and materials remain unverified."
+      },
+      "visual_input": {
+        "id": "two-state-bo-cp-model",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-25/quantum-small/results/two-state-bo-cp-ou.png",
+        "caption": {
+          "ja": "電子角と核座標を実際に結合した2準位模型を、短いNVEと核熱浴で比較します。 長時間第一原理NVE、一般の多軌道直交制約・SCF誤差、電子/核の一般熱浴、正準平衡・断熱分離・エルゴード性、実物質は未検証。",
+          "en": "Compare a normalized two-state electronic degree of freedom coupled to a nuclear coordinate, short NVE and one nuclear OU bath. Long first-principles NVE, general multi-orbital orthonormality/SCF errors, general electronic/nuclear baths, canonical equilibration, adiabatic/ergodic certification and materials remain unverified."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#two-state-bo-cp-model-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/two-state-bo-cp-model/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/two-state-bo-cp-model/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "two-state-bo-cp-ou",
+          "title": {
+            "ja": "2準位模型のBO/CP型連成と短い核熱浴",
+            "en": "A two-state BO / CP-type model with a short nuclear thermostat coupling"
+          },
+          "group": "quantum-small",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/two-state-bo-cp-ou/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/two-state-bo-cp-ou/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/coupled_md.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/io_utils.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/eigenpairs.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/molecules.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/periodic_projector.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/plot_results.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/test_quantum_small.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/verification.json"
+        }
+      ]
+    },
+    {
+      "id": "quantum-box-ho",
+      "group": "quantum",
+      "name": {
+        "ja": "1次元箱型井戸・量子調和振動子",
+        "en": "Small 1D box and quantum harmonic-oscillator eigenpairs"
+      },
+      "chapter": "validation-quantum-small",
+      "reading_section": "quantum-box-ho",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-25/quantum-small/",
+      "verification": "/code/validated-examples/2026-11-25/quantum-small/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider test_quantum_small.py",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-25/quantum-small/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "quantum-box-ho"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/quantum-small/results/quantum-box-ho.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/quantum-small/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "quantum-box-ho",
+          "url": "/numerical-methods-atlas/validation/quantum-box-ho/",
+          "name": {
+            "ja": "1次元箱型井戸・量子調和振動子",
+            "en": "Small 1D box and quantum harmonic-oscillator eigenpairs"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quantum-small/#quantum-box-ho",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quantum-small/#quantum-box-ho"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#quantum-box-ho",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider test_quantum_small.py",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "image": "/code/validated-examples/2026-11-25/quantum-small/results/quantum-box-ho.png",
+      "image_sha256": "a14a5ca14665349629e371d2c96992f3f015a7dcab40b745a0c5f9f6c5a34325",
+      "width": 1600,
+      "height": 640,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "1次元の箱と量子調和振動子で、低3固有対と有限領域・格子の影響を比較します。 8回の全固有対計算で824組をraw保存、規格化等の資格判定は選択24組です。節の閾値と位相は診断、HO0.003は固定例の達成目標で証明済み上界ではありません。有限壁と格子感度を相殺から独立に保証しません。",
+        "en": "Compare low stationary eigenpairs of a1D box and harmonic oscillator, with finite-domain and mesh sensitivity. Eight full solves save824raw pairs; qualification applies to24selected pairs. Thresholded nodes/phase are diagnostics. HO0.003 is a met fixed-case goal, not a proved bound; finite-wall/mesh sensitivities do not certify separate errors."
+      },
+      "visual_input": {
+        "id": "quantum-box-ho",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-25/quantum-small/results/quantum-box-ho.png",
+        "caption": {
+          "ja": "1次元の箱と量子調和振動子で、低3固有対と有限領域・格子の影響を比較します。 8回の全固有対計算で824組をraw保存、規格化等の資格判定は選択24組です。節の閾値と位相は診断、HO0.003は固定例の達成目標で証明済み上界ではありません。有限壁と格子感度を相殺から独立に保証しません。",
+          "en": "Compare low stationary eigenpairs of a1D box and harmonic oscillator, with finite-domain and mesh sensitivity. Eight full solves save824raw pairs; qualification applies to24selected pairs. Thresholded nodes/phase are diagnostics. HO0.003 is a met fixed-case goal, not a proved bound; finite-wall/mesh sensitivities do not certify separate errors."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#quantum-box-ho-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quantum-box-ho/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/quantum-box-ho/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "quantum-box-ho",
+          "title": {
+            "ja": "1次元箱型井戸・量子調和振動子",
+            "en": "Small 1D box and quantum harmonic-oscillator eigenpairs"
+          },
+          "group": "quantum-small",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/quantum-box-ho/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/quantum-box-ho/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/eigenpairs.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/coupled_md.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/io_utils.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/molecules.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/periodic_projector.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/plot_results.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/test_quantum_small.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/verification.json"
+        }
+      ]
+    },
+    {
+      "id": "h3plus-minimal",
+      "group": "quantum",
+      "name": {
+        "ja": "3中心H3+の小RHF/MP2/FCI模型",
+        "en": "A tiny three-center H3+ RHF / MP2 / FCI example"
+      },
+      "chapter": "validation-quantum-small",
+      "reading_section": "h3plus-mp2-fci",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-25/quantum-small/",
+      "verification": "/code/validated-examples/2026-11-25/quantum-small/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider test_quantum_small.py",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-25/quantum-small/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "h3plus-mp2-fci"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/quantum-small/results/h3plus-mp2-fci.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/quantum-small/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "h3plus-mp2-fci",
+          "url": "/numerical-methods-atlas/validation/h3plus-mp2-fci/",
+          "name": {
+            "ja": "3中心H3+の小RHF/MP2/FCI模型",
+            "en": "A tiny three-center H3+ RHF / MP2 / FCI example"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quantum-small/#h3plus-mp2-fci",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quantum-small/#h3plus-mp2-fci"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#h3plus-minimal",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider test_quantum_small.py",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "image": "/code/validated-examples/2026-11-25/quantum-small/results/h3plus-mp2-fci.png",
+      "image_sha256": "36b5f3ecf0079052f304681465ca846fef3dba571cecd86311fa4042cff130d5",
+      "width": 1600,
+      "height": 640,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "固定三角形H3+の3中心小分子で、RHF/MP2/有限基底FCIを示します。 独立な演算子組立と2電子RS2恒等式で固定小模型を照合します。新しい外部PySCF参照はありません。一般分子DFT、CC、多参照法、精密エネルギー・最適化・化学精度は未実装/未検証。MP2は変分上界ではありません。",
+        "en": "Demonstrate RHF, MP2 and finite-basis FCI for a tiny fixed three-center H3+ molecule. Independent operator assembly and two-electron RS2 identity qualify this fixed toy. No fresh external PySCF scalar. General molecular DFT, CC, multireference methods, precision energetics, geometry optimization and chemical accuracy remain unimplemented/unverified. MP2 is not variational."
+      },
+      "visual_input": {
+        "id": "h3plus-minimal",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-25/quantum-small/results/h3plus-mp2-fci.png",
+        "caption": {
+          "ja": "固定三角形H3+の3中心小分子で、RHF/MP2/有限基底FCIを示します。 独立な演算子組立と2電子RS2恒等式で固定小模型を照合します。新しい外部PySCF参照はありません。一般分子DFT、CC、多参照法、精密エネルギー・最適化・化学精度は未実装/未検証。MP2は変分上界ではありません。",
+          "en": "Demonstrate RHF, MP2 and finite-basis FCI for a tiny fixed three-center H3+ molecule. Independent operator assembly and two-electron RS2 identity qualify this fixed toy. No fresh external PySCF scalar. General molecular DFT, CC, multireference methods, precision energetics, geometry optimization and chemical accuracy remain unimplemented/unverified. MP2 is not variational."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#h3plus-minimal-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/h3plus-minimal/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/h3plus-minimal/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "h3plus-mp2-fci",
+          "title": {
+            "ja": "3中心H3+の小RHF/MP2/FCI模型",
+            "en": "A tiny three-center H3+ RHF / MP2 / FCI example"
+          },
+          "group": "quantum-small",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/h3plus-mp2-fci/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/h3plus-mp2-fci/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/molecules.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/coupled_md.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/io_utils.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/eigenpairs.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/periodic_projector.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/plot_results.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/test_quantum_small.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/verification.json"
+        }
+      ]
+    },
+    {
+      "id": "finite-projector-fermi",
+      "group": "quantum",
+      "name": {
+        "ja": "3平面波の非局所projectorと有限温度占有",
+        "en": "A three-wave periodic projector and Fermi-occupation model"
+      },
+      "chapter": "validation-quantum-small",
+      "reading_section": "periodic-projector-occupations",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-25/quantum-small/",
+      "verification": "/code/validated-examples/2026-11-25/quantum-small/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider test_quantum_small.py",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-25/quantum-small/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "periodic-projector-occupations"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/quantum-small/results/periodic-projector-occupations.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/quantum-small/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "periodic-projector-occupations",
+          "url": "/numerical-methods-atlas/validation/periodic-projector-occupations/",
+          "name": {
+            "ja": "3平面波の非局所projectorと有限温度占有",
+            "en": "A three-wave periodic projector and Fermi-occupation model"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quantum-small/#periodic-projector-occupations",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quantum-small/#periodic-projector-occupations"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#finite-projector-fermi",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider test_quantum_small.py",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "image": "/code/validated-examples/2026-11-25/quantum-small/results/periodic-projector-occupations.png",
+      "image_sha256": "0209e46d2c2a5690ad05796c1d2077f0f5f34b38aba51cbcfed8deb40d4764f5",
+      "width": 1600,
+      "height": 640,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "3平面波の小周期模型で、非局所projectorと有限温度占有・力を示します。 自作3平面波の線形Hamiltonianです。平均占有の独立粒子Fermi模型であり、整数粒子の正準多体系ではありません。自己無撞着Hartree/XC、元素適合ノルム保存擬ポテンシャル、実金属、一般材料、長時間MDは未検証。",
+        "en": "Show a genuine rank-one nonlocal kernel and finite-temperature occupations in a three-wave periodic educational model. Authored linear3-wave Hamiltonian with independent-particle mean Fermi occupations, not an integer-particle canonical many-body ensemble. No self-consistent Hartree/XC, element-fitted norm-conserving PSP, real metal, general material or longMD validation."
+      },
+      "visual_input": {
+        "id": "finite-projector-fermi",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-25/quantum-small/results/periodic-projector-occupations.png",
+        "caption": {
+          "ja": "3平面波の小周期模型で、非局所projectorと有限温度占有・力を示します。 自作3平面波の線形Hamiltonianです。平均占有の独立粒子Fermi模型であり、整数粒子の正準多体系ではありません。自己無撞着Hartree/XC、元素適合ノルム保存擬ポテンシャル、実金属、一般材料、長時間MDは未検証。",
+          "en": "Show a genuine rank-one nonlocal kernel and finite-temperature occupations in a three-wave periodic educational model. Authored linear3-wave Hamiltonian with independent-particle mean Fermi occupations, not an integer-particle canonical many-body ensemble. No self-consistent Hartree/XC, element-fitted norm-conserving PSP, real metal, general material or longMD validation."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#finite-projector-fermi-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/finite-projector-fermi/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/finite-projector-fermi/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "periodic-projector-occupations",
+          "title": {
+            "ja": "3平面波の非局所projectorと有限温度占有",
+            "en": "A three-wave periodic projector and Fermi-occupation model"
+          },
+          "group": "quantum-small",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/periodic-projector-occupations/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/periodic-projector-occupations/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/periodic_projector.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/coupled_md.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/io_utils.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/eigenpairs.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/molecules.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/plot_results.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/test_quantum_small.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/verification.json"
+        }
+      ]
+    },
+    {
+      "id": "hodgkin-huxley-controls",
+      "group": "biology",
+      "name": {
+        "ja": "Hodgkin–Huxley：電位固定・静止平衡・発火",
+        "en": "Hodgkin–Huxley: clamps, rest and firing"
+      },
+      "chapter": "validation-biology-ode-controls",
+      "reading_section": "hodgkin-huxley-controls",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-25/biology-ode-controls/",
+      "verification": "/code/validated-examples/2026-11-25/biology-ode-controls/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-25/biology-ode-controls/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "hodgkin-huxley-controls"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/biology-ode-controls/results/hodgkin-huxley-controls.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/biology-ode-controls/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "hodgkin-huxley-controls",
+          "url": "/numerical-methods-atlas/validation/hodgkin-huxley-controls/",
+          "name": {
+            "ja": "Hodgkin–Huxley：電位固定・静止平衡・発火",
+            "en": "Hodgkin–Huxley: clamps, rest and firing"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology-ode-controls/#hodgkin-huxley-controls",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology-ode-controls/#hodgkin-huxley-controls"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#hodgkin-huxley-controls",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "image": "/code/validated-examples/2026-11-25/biology-ode-controls/results/hodgkin-huxley-controls.png",
+      "image_sha256": "103d53258302f2855b7c7c9cca7840245a257909ca12163e8cd7a4d972a5871a",
+      "width": 1624,
+      "height": 667,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "固定電位の解析ゲート解と、区分電流下の4状態系を照合します。 1細胞膜の教育例です。元論文の電位規約、TABLE/cnexp実装、ケーブル伝播や生体実測の再現とは呼びません。区間内に括れない発火は捏造せず、静止根の一意性・区間Hurwitz安定性は主張しません。",
+        "en": "Compare analytic clamp gates and a four-state system with segment-owned current. This educational membrane model does not reproduce the original voltage convention, TABLE/cnexp, cable propagation or measured physiology. Missing/unresolved events remain explicit; rest-root uniqueness and interval-Hurwitz stability are unclaimed."
+      },
+      "visual_input": {
+        "id": "hodgkin-huxley-controls",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-25/biology-ode-controls/results/hodgkin-huxley-controls.png",
+        "caption": {
+          "ja": "固定電位の解析ゲート解と、区分電流下の4状態系を照合します。 1細胞膜の教育例です。元論文の電位規約、TABLE/cnexp実装、ケーブル伝播や生体実測の再現とは呼びません。区間内に括れない発火は捏造せず、静止根の一意性・区間Hurwitz安定性は主張しません。",
+          "en": "Compare analytic clamp gates and a four-state system with segment-owned current. This educational membrane model does not reproduce the original voltage convention, TABLE/cnexp, cable propagation or measured physiology. Missing/unresolved events remain explicit; rest-root uniqueness and interval-Hurwitz stability are unclaimed."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#hodgkin-huxley-controls-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/hodgkin-huxley-controls/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/hodgkin-huxley-controls/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "hodgkin-huxley-controls",
+          "title": {
+            "ja": "Hodgkin–Huxley：電位固定・静止平衡・発火",
+            "en": "Hodgkin–Huxley: clamps, rest and firing"
+          },
+          "group": "biology-ode-controls",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/hodgkin-huxley-controls/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/hodgkin-huxley-controls/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/common.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/hh.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/ssa.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/test_models.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/atlas-biology-ode-controls-2026-11-25.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/verification.json"
+        }
+      ]
+    },
+    {
+      "id": "immigration-death-ssa",
+      "group": "biology",
+      "name": {
+        "ja": "移入–死亡SSA：有限時刻の厳密分布",
+        "en": "Immigration–death SSA: exact transient laws"
+      },
+      "chapter": "validation-biology-ode-controls",
+      "reading_section": "immigration-death-ssa",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-25/biology-ode-controls/",
+      "verification": "/code/validated-examples/2026-11-25/biology-ode-controls/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-25/biology-ode-controls/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "immigration-death-ssa"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/biology-ode-controls/results/immigration-death-ssa.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/biology-ode-controls/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "immigration-death-ssa",
+          "url": "/numerical-methods-atlas/validation/immigration-death-ssa/",
+          "name": {
+            "ja": "移入–死亡SSA：有限時刻の厳密分布",
+            "en": "Immigration–death SSA: exact transient laws"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology-ode-controls/#immigration-death-ssa",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology-ode-controls/#immigration-death-ssa"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#immigration-death-ssa",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "image": "/code/validated-examples/2026-11-25/biology-ode-controls/results/immigration-death-ssa.png",
+      "image_sha256": "e3131f516bf0382697622af312169367ff29b7ab0b5ab15fc838dea6f3996ab5",
+      "width": 1624,
+      "height": 667,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "1本の軌跡と12,288本の固定アンサンブルを分けて検証します。 有限時間の決定論的初期状態を定常分布とは呼びません。区間の保証は理想IID法則の参照に限り、PRNG・対数演算を含むソフトウェア全体の被覆率保証や単一軌跡の代表性を主張しません。",
+        "en": "Separate one displayed path from12,288fixed ensemble paths. Finite deterministic-start transients are not stationary. Interval qualification concerns the idealIID reference law, without a whole-software PRNG/logarithm coverage guarantee or a claim that one path represents the ensemble."
+      },
+      "visual_input": {
+        "id": "immigration-death-ssa",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-25/biology-ode-controls/results/immigration-death-ssa.png",
+        "caption": {
+          "ja": "1本の軌跡と12,288本の固定アンサンブルを分けて検証します。 有限時間の決定論的初期状態を定常分布とは呼びません。区間の保証は理想IID法則の参照に限り、PRNG・対数演算を含むソフトウェア全体の被覆率保証や単一軌跡の代表性を主張しません。",
+          "en": "Separate one displayed path from12,288fixed ensemble paths. Finite deterministic-start transients are not stationary. Interval qualification concerns the idealIID reference law, without a whole-software PRNG/logarithm coverage guarantee or a claim that one path represents the ensemble."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#immigration-death-ssa-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/immigration-death-ssa/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/immigration-death-ssa/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "immigration-death-ssa",
+          "title": {
+            "ja": "移入–死亡SSA：有限時刻の厳密分布",
+            "en": "Immigration–death SSA: exact transient laws"
+          },
+          "group": "biology-ode-controls",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/immigration-death-ssa/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/immigration-death-ssa/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/common.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/ssa.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/hh.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/test_models.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/atlas-biology-ode-controls-2026-11-25.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/verification.json"
+        }
+      ]
+    },
+    {
+      "id": "fisher-kpp-special-front",
+      "group": "biology",
+      "name": {
+        "ja": "Fisher–KPP：特殊波速の厳密前線",
+        "en": "Fisher–KPP: a special-speed exact front"
+      },
+      "chapter": "validation-biology-space-controls",
+      "reading_section": "fisher-kpp-special-front",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-25/biology-space-controls/",
+      "verification": "/code/validated-examples/2026-11-25/biology-space-controls/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-25/biology-space-controls/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "fisher-kpp-special-front"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/biology-space-controls/results/fisher-kpp-special-front.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/biology-space-controls/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "fisher-kpp-special-front",
+          "url": "/numerical-methods-atlas/validation/fisher-kpp-special-front/",
+          "name": {
+            "ja": "Fisher–KPP：特殊波速の厳密前線",
+            "en": "Fisher–KPP: a special-speed exact front"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology-space-controls/#fisher-kpp-special-front",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology-space-controls/#fisher-kpp-special-front"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#fisher-kpp-special-front",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "image": "/code/validated-examples/2026-11-25/biology-space-controls/results/fisher-kpp-special-front.png",
+      "image_sha256": "1f78a6525f5f45a54a61f6a8d1e6a3f95e34d85a3d9211ef386d42fd8c8378a3",
+      "width": 1624,
+      "height": 667,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "波形・位置・格子誤差・時間誤差・有限領域の影響を分けます。 特殊前線を一般の最小速度2の前線と同一視しません。急減衰初期値からの速度選択、長時間伝播、機械誤差込みの厳密障壁証明は対象外です。",
+        "en": "Separate profile, phase, grid, time and finite-boundary errors. The special front is distinct from the minimum linear speed2. This is not a steep-data speed-selection study, long-time propagation result or certified machine-error barrier proof."
+      },
+      "visual_input": {
+        "id": "fisher-kpp-special-front",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-25/biology-space-controls/results/fisher-kpp-special-front.png",
+        "caption": {
+          "ja": "波形・位置・格子誤差・時間誤差・有限領域の影響を分けます。 特殊前線を一般の最小速度2の前線と同一視しません。急減衰初期値からの速度選択、長時間伝播、機械誤差込みの厳密障壁証明は対象外です。",
+          "en": "Separate profile, phase, grid, time and finite-boundary errors. The special front is distinct from the minimum linear speed2. This is not a steep-data speed-selection study, long-time propagation result or certified machine-error barrier proof."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#fisher-kpp-special-front-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fisher-kpp-special-front/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fisher-kpp-special-front/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "fisher-kpp-special-front",
+          "title": {
+            "ja": "Fisher–KPP：特殊波速の厳密前線",
+            "en": "Fisher–KPP: a special-speed exact front"
+          },
+          "group": "biology-space-controls",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fisher-kpp-special-front/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fisher-kpp-special-front/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/common.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/fisher.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/schnakenberg.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/keller_segel.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/test_models.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/atlas-biology-space-controls-2026-11-25.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/verification.json"
+        }
+      ]
+    },
+    {
+      "id": "schnakenberg-2d-boundary-modes",
+      "group": "biology",
+      "name": {
+        "ja": "Schnakenberg：2D境界と初期モード",
+        "en": "Schnakenberg:2D boundaries and initial modes"
+      },
+      "chapter": "validation-biology-space-controls",
+      "reading_section": "schnakenberg-2d-boundary-modes",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-25/biology-space-controls/",
+      "verification": "/code/validated-examples/2026-11-25/biology-space-controls/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-25/biology-space-controls/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "schnakenberg-2d-boundary-modes"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/biology-space-controls/results/schnakenberg-2d-boundary-modes.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/biology-space-controls/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "schnakenberg-2d-boundary-modes",
+          "url": "/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/",
+          "name": {
+            "ja": "Schnakenberg：2D境界と初期モード",
+            "en": "Schnakenberg:2D boundaries and initial modes"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology-space-controls/#schnakenberg-2d-boundary-modes",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology-space-controls/#schnakenberg-2d-boundary-modes"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#schnakenberg-2d-boundary-modes",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "image": "/code/validated-examples/2026-11-25/biology-space-controls/results/schnakenberg-2d-boundary-modes.png",
+      "image_sha256": "f989caee1655dd22ab0a8aa99d3e8b9b4d0805d72bb7e425fffa99ec22e35a33",
+      "width": 1827,
+      "height": 623,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "2つのNeumann摂動とDirichlet摂動を独立な非線形Galerkin参照と比較します。 短時間の小振幅・固定初期値です。一般的な模様選択、成長後の成熟パターン、原著図の再現は主張しません。有限の参照差を連続体誤差の厳密上界と呼びません。",
+        "en": "Compare two Neumann perturbations and a Dirichlet perturbation against nonlinear Galerkin references. This short small-amplitude study does not establish general pattern selection, mature patterns or reproduction of original figures. Finite reference differences are not rigorous continuum error bounds."
+      },
+      "visual_input": {
+        "id": "schnakenberg-2d-boundary-modes",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-25/biology-space-controls/results/schnakenberg-2d-boundary-modes.png",
+        "caption": {
+          "ja": "2つのNeumann摂動とDirichlet摂動を独立な非線形Galerkin参照と比較します。 短時間の小振幅・固定初期値です。一般的な模様選択、成長後の成熟パターン、原著図の再現は主張しません。有限の参照差を連続体誤差の厳密上界と呼びません。",
+          "en": "Compare two Neumann perturbations and a Dirichlet perturbation against nonlinear Galerkin references. This short small-amplitude study does not establish general pattern selection, mature patterns or reproduction of original figures. Finite reference differences are not rigorous continuum error bounds."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#schnakenberg-2d-boundary-modes-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/schnakenberg-2d-boundary-modes/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/schnakenberg-2d-boundary-modes/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "schnakenberg-2d-boundary-modes",
+          "title": {
+            "ja": "Schnakenberg：2D境界と初期モード",
+            "en": "Schnakenberg:2D boundaries and initial modes"
+          },
+          "group": "biology-space-controls",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/common.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/schnakenberg.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/fisher.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/keller_segel.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/test_models.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/atlas-biology-space-controls-2026-11-25.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/verification.json"
+        }
+      ]
+    },
+    {
+      "id": "keller-segel-forced-flux",
+      "group": "biology",
+      "name": {
+        "ja": "Keller–Segel：連成流束の製造解",
+        "en": "Keller–Segel: a manufactured coupled-flux solution"
+      },
+      "chapter": "validation-biology-space-controls",
+      "reading_section": "keller-segel-forced-flux",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-25/biology-space-controls/",
+      "verification": "/code/validated-examples/2026-11-25/biology-space-controls/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-25/biology-space-controls/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "keller-segel-forced-flux"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/biology-space-controls/results/keller-segel-forced-flux.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/biology-space-controls/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "keller-segel-forced-flux",
+          "url": "/numerical-methods-atlas/validation/keller-segel-forced-flux/",
+          "name": {
+            "ja": "Keller–Segel：連成流束の製造解",
+            "en": "Keller–Segel: a manufactured coupled-flux solution"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology-space-controls/#keller-segel-forced-flux",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology-space-controls/#keller-segel-forced-flux"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#keller-segel-forced-flux",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "image": "/code/validated-examples/2026-11-25/biology-space-controls/results/keller-segel-forced-flux.png",
+      "image_sha256": "cf69138e069f3f733193297d9d526814e6d491655054f660a679c3ec530956f1",
+      "width": 1827,
+      "height": 623,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "滑らかな2D厳密場で、交差流束・段時刻・収支を検証します。 著者作成の強制2場モデルです。原著の全生物モデル、ピーク形成、真のblow-upやその抑制を実証しません。負値をクリップして正値性を装いません。",
+        "en": "Use smooth exact2D fields to test cross fluxes, stage timing and mass ledgers. This authored forced two-field model does not reproduce the full original biological model or demonstrate aggregation, true blow-up or suppression. No clipping is used to manufacture positivity."
+      },
+      "visual_input": {
+        "id": "keller-segel-forced-flux",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-25/biology-space-controls/results/keller-segel-forced-flux.png",
+        "caption": {
+          "ja": "滑らかな2D厳密場で、交差流束・段時刻・収支を検証します。 著者作成の強制2場モデルです。原著の全生物モデル、ピーク形成、真のblow-upやその抑制を実証しません。負値をクリップして正値性を装いません。",
+          "en": "Use smooth exact2D fields to test cross fluxes, stage timing and mass ledgers. This authored forced two-field model does not reproduce the full original biological model or demonstrate aggregation, true blow-up or suppression. No clipping is used to manufacture positivity."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#keller-segel-forced-flux-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/keller-segel-forced-flux/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/keller-segel-forced-flux/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "keller-segel-forced-flux",
+          "title": {
+            "ja": "Keller–Segel：連成流束の製造解",
+            "en": "Keller–Segel: a manufactured coupled-flux solution"
+          },
+          "group": "biology-space-controls",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/keller-segel-forced-flux/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/keller-segel-forced-flux/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/common.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/keller_segel.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/fisher.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/schnakenberg.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/test_models.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/atlas-biology-space-controls-2026-11-25.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/verification.json"
+        }
+      ]
+    },
+    {
+      "id": "projected-canonical-dof",
+      "group": "time",
+      "name": {
+        "ja": "拘束・重心除去と正準統計",
+        "en": "Constraints,centre-of-mass removal and canonical statistics"
+      },
+      "chapter": "validation-thermostat-constraint-controls",
+      "reading_section": "projected-canonical-dof",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-25/thermostat-constraint-controls/",
+      "verification": "/code/validated-examples/2026-11-25/thermostat-constraint-controls/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-25/thermostat-constraint-controls/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "projected-canonical-dof"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/thermostat-constraint-controls/results/projected-canonical-dof.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/thermostat-constraint-controls/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "projected-canonical-dof",
+          "url": "/numerical-methods-atlas/validation/projected-canonical-dof/",
+          "name": {
+            "ja": "拘束・重心除去と正準統計",
+            "en": "Constraints,centre-of-mass removal and canonical statistics"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostat-constraint-controls/#projected-canonical-dof",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostat-constraint-controls/#projected-canonical-dof"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#projected-canonical-dof",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "image": "/code/validated-examples/2026-11-25/thermostat-constraint-controls/results/projected-canonical-dof.png",
+      "image_sha256": "1af28c5089da8b6a578920dbc16ea129fe71fa461d1114951d639038065181ab",
+      "width": 1914,
+      "height": 942,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "有効自由度、運動量共分散、過渡分布と時間相関を分けて検証します。 固定線形拘束の小例です。非線形分子拘束、Fixman補正、輸送係数へ一般化しません。独立seedの冗長拘束系には軌跡の一致を要求せず、CSVRの動的相関は経験的な結果です。",
+        "en": "Separate effectiveDOF,momentum covariance,transient distributions and time correlations. These fixed linear constraints do not cover nonlinear molecular constraints,Fixman corrections or transport coefficients. Redundant systems with independent seeds need not have identical paths; CSVR dynamical correlations are empirical."
+      },
+      "visual_input": {
+        "id": "projected-canonical-dof",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-25/thermostat-constraint-controls/results/projected-canonical-dof.png",
+        "caption": {
+          "ja": "有効自由度、運動量共分散、過渡分布と時間相関を分けて検証します。 固定線形拘束の小例です。非線形分子拘束、Fixman補正、輸送係数へ一般化しません。独立seedの冗長拘束系には軌跡の一致を要求せず、CSVRの動的相関は経験的な結果です。",
+          "en": "Separate effectiveDOF,momentum covariance,transient distributions and time correlations. These fixed linear constraints do not cover nonlinear molecular constraints,Fixman corrections or transport coefficients. Redundant systems with independent seeds need not have identical paths; CSVR dynamical correlations are empirical."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#projected-canonical-dof-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/projected-canonical-dof/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/projected-canonical-dof/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "projected-canonical-dof",
+          "title": {
+            "ja": "拘束・重心除去と正準統計",
+            "en": "Constraints,centre-of-mass removal and canonical statistics"
+          },
+          "group": "thermostat-constraint-controls",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/projected-canonical-dof/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/projected-canonical-dof/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/common.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/constrained.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/deterministic.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/test_models.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/atlas-thermostat-constraint-controls-2026-11-25.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/verification.json"
+        }
+      ]
+    },
+    {
+      "id": "saltzman-ale-piston",
+      "group": "fluid",
+      "name": {
+        "ja": "Saltzman型の歪み格子ピストン：2次元EulerとALE",
+        "en": "Saltzman-type skew-grid piston: 2D Euler and ALE"
+      },
+      "chapter": "validation-continuum-particle-controls",
+      "reading_section": "saltzman-ale-piston",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-25/continuum-particle-controls/",
+      "verification": "/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider test_components.py",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "saltzman-ale-piston"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/continuum-particle-controls/results/saltzman-ale-piston.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "saltzman-ale-piston",
+          "url": "/numerical-methods-atlas/validation/saltzman-ale-piston/",
+          "name": {
+            "ja": "Saltzman型の歪み格子ピストン：2次元EulerとALE",
+            "en": "Saltzman-type skew-grid piston: 2D Euler and ALE"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-continuum-particle-controls/#saltzman-ale-piston",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-continuum-particle-controls/#saltzman-ale-piston"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#saltzman-ale-piston",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider test_components.py",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "image": "/code/validated-examples/2026-11-25/continuum-particle-controls/results/saltzman-ale-piston.png",
+      "image_sha256": "e1a51556c809261a2dbd47e5d06acc113780f3cc42be82e0225be18f05d09e05",
+      "width": 1500,
+      "height": 900,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "2023年版の歪み格子と有限初期圧力を明示した、所与の格子移動による2次元Eulerピストン計算。 Tan–Lv–Zhu (2023) Example 8 の e0=10^-4 を明示した有限圧力版。所与のアフィンALE格子を使う2D Euler/Rusanov例で、物質追従格子、WENO、remapや1985原報の全面再現ではありません。",
+        "en": "Tan–Lv–Zhu2023 Example8 e0=1e-4 initialvariant. PrescribedaffineALEmesh, not theirWENO/materialLagrangian/remap scheme. Finitepressure RH cellaverages. Tan–Lv–Zhu (2023) Example 8 variant with e0=1e-4 and finite initial pressure. Prescribed affine ALE, 2D Euler and Rusanov; not their material Lagrangian mesh, WENO/remap scheme or a full reproduction of the unread 1985 report."
+      },
+      "visual_input": {
+        "id": "saltzman-ale-piston",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-25/continuum-particle-controls/results/saltzman-ale-piston.png",
+        "caption": {
+          "ja": "2023年版の歪み格子と有限初期圧力を明示した、所与の格子移動による2次元Eulerピストン計算。 Tan–Lv–Zhu (2023) Example 8 の e0=10^-4 を明示した有限圧力版。所与のアフィンALE格子を使う2D Euler/Rusanov例で、物質追従格子、WENO、remapや1985原報の全面再現ではありません。",
+          "en": "Tan–Lv–Zhu2023 Example8 e0=1e-4 initialvariant. PrescribedaffineALEmesh, not theirWENO/materialLagrangian/remap scheme. Finitepressure RH cellaverages. Tan–Lv–Zhu (2023) Example 8 variant with e0=1e-4 and finite initial pressure. Prescribed affine ALE, 2D Euler and Rusanov; not their material Lagrangian mesh, WENO/remap scheme or a full reproduction of the unread 1985 report."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#saltzman-ale-piston-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/saltzman-ale-piston/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/saltzman-ale-piston/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "saltzman-ale-piston",
+          "title": {
+            "ja": "Saltzman型の歪み格子ピストン：2次元EulerとALE",
+            "en": "Saltzman-type skew-grid piston: 2D Euler and ALE"
+          },
+          "group": "continuum-particle-controls",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/saltzman-ale-piston/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/saltzman-ale-piston/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/ale_piston.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/reference_riemann.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/test_components.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json"
+        }
+      ]
+    },
+    {
+      "id": "williamson-sphere-transport",
+      "group": "fluid",
+      "name": {
+        "ja": "Williamson型の球面固体回転輸送：傾いた軸と極通過",
+        "en": "Williamson-type spherical rotation: tilted axes and pole crossing"
+      },
+      "chapter": "validation-continuum-particle-controls",
+      "reading_section": "williamson-sphere-transport",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-25/continuum-particle-controls/",
+      "verification": "/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider test_components.py",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "williamson-sphere-transport"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/continuum-particle-controls/results/williamson-sphere-transport.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "williamson-sphere-transport",
+          "url": "/numerical-methods-atlas/validation/williamson-sphere-transport/",
+          "name": {
+            "ja": "Williamson型の球面固体回転輸送：傾いた軸と極通過",
+            "en": "Williamson-type spherical rotation: tilted axes and pole crossing"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-continuum-particle-controls/#williamson-sphere-transport",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-continuum-particle-controls/#williamson-sphere-transport"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#williamson-sphere-transport",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider test_components.py",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "image": "/code/validated-examples/2026-11-25/continuum-particle-controls/results/williamson-sphere-transport.png",
+      "image_sha256": "be017ade9a054d91fc83cc743cedae9a5bbeee367c60892f0b731e5c17f36ca1",
+      "width": 1650,
+      "height": 600,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "所与の固体回転速度で球面上のcosine bellを輸送し、傾いた軸・極通過・1周後の誤差を調べる限定例。 単位球の所与の剛体回転によるスカラー輸送だけです。原W92全文の式は未閲読で、Nairらの選択した著者資料との規約照合に限ります。両格子とも11回の非整合なremap。非保存の双線形補間で質量ずれを報告し、時間収束とは呼びません。",
+        "en": "Limitedprescribedscalartransport, radius1/3 nondimensionalvariant; not nonlinearSWE or exact1992fullpaperreproduction. Nair1999 selectedformulascrosscheck; bilinear method isAtlasoriginal. Only prescribed scalar solid-body rotation on a unit sphere. Original W92 equations remain unread; selected Nair author formulas cross-check conventions. Both grids use eleven noncommensurate remaps. Bilinear interpolation is nonconservative; report mass drift and do not claim temporal convergence or a nonlinear global SWE core."
+      },
+      "visual_input": {
+        "id": "williamson-sphere-transport",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-25/continuum-particle-controls/results/williamson-sphere-transport.png",
+        "caption": {
+          "ja": "所与の固体回転速度で球面上のcosine bellを輸送し、傾いた軸・極通過・1周後の誤差を調べる限定例。 単位球の所与の剛体回転によるスカラー輸送だけです。原W92全文の式は未閲読で、Nairらの選択した著者資料との規約照合に限ります。両格子とも11回の非整合なremap。非保存の双線形補間で質量ずれを報告し、時間収束とは呼びません。",
+          "en": "Limitedprescribedscalartransport, radius1/3 nondimensionalvariant; not nonlinearSWE or exact1992fullpaperreproduction. Nair1999 selectedformulascrosscheck; bilinear method isAtlasoriginal. Only prescribed scalar solid-body rotation on a unit sphere. Original W92 equations remain unread; selected Nair author formulas cross-check conventions. Both grids use eleven noncommensurate remaps. Bilinear interpolation is nonconservative; report mass drift and do not claim temporal convergence or a nonlinear global SWE core."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#williamson-sphere-transport-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/williamson-sphere-transport/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/williamson-sphere-transport/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "williamson-sphere-transport",
+          "title": {
+            "ja": "Williamson型の球面固体回転輸送：傾いた軸と極通過",
+            "en": "Williamson-type spherical rotation: tilted axes and pole crossing"
+          },
+          "group": "continuum-particle-controls",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/williamson-sphere-transport/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/williamson-sphere-transport/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/ale_piston.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/reference_riemann.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/test_components.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json"
+        }
+      ]
+    },
+    {
+      "id": "sphere-zonal-balance",
+      "group": "fluid",
+      "name": {
+        "ja": "球面浅水波の軸対称定常釣合いを時間積分",
+        "en": "Time evolution of axisymmetric spherical shallow-water balance"
+      },
+      "chapter": "validation-continuum-particle-controls",
+      "reading_section": "sphere-zonal-balance",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-25/continuum-particle-controls/",
+      "verification": "/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider test_components.py",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "sphere-zonal-balance"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/continuum-particle-controls/results/sphere-zonal-balance.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "sphere-zonal-balance",
+          "url": "/numerical-methods-atlas/validation/sphere-zonal-balance/",
+          "name": {
+            "ja": "球面浅水波の軸対称定常釣合いを時間積分",
+            "en": "Time evolution of axisymmetric spherical shallow-water balance"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-continuum-particle-controls/#sphere-zonal-balance",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-continuum-particle-controls/#sphere-zonal-balance"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#sphere-zonal-balance",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider test_components.py",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "image": "/code/validated-examples/2026-11-25/continuum-particle-controls/results/sphere-zonal-balance.png",
+      "image_sha256": "74876bf29005e8968fe5c5fe51157d0be99f57cc76c18da88e663ad85ae061c6",
+      "width": 1800,
+      "height": 540,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "球面浅水波の軸対称な無次元定常状態を実際に時間積分し、釣合い残差と格子依存を分ける。 a=g=1, Ω=2, u0=.5, h0=10 の軸対称な無次元部分問題。運動量中心差分・質量FV・RK4の混成で実際に時間発展させます。標準地球条件や全球多次元SWE、厳密な離散釣合い・PV保存の再現ではありません。",
+        "en": "NondimensionalWilliamson2-type axisymmetricsubproblem. Analyticstaticstatevsactualtimeintegration; not fullglobaldynamicalcore/PVclaim. Axisymmetric nondimensional subproblem with a=g=1, Omega=2, u0=.5 and h0=10. Actual time evolution uses centered primitive momentum, finite-volume mass and RK4. Not standard Earth parameters, a full global multidimensional SWE core, exact discrete balance or a PV-conservation claim."
+      },
+      "visual_input": {
+        "id": "sphere-zonal-balance",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-25/continuum-particle-controls/results/sphere-zonal-balance.png",
+        "caption": {
+          "ja": "球面浅水波の軸対称な無次元定常状態を実際に時間積分し、釣合い残差と格子依存を分ける。 a=g=1, Ω=2, u0=.5, h0=10 の軸対称な無次元部分問題。運動量中心差分・質量FV・RK4の混成で実際に時間発展させます。標準地球条件や全球多次元SWE、厳密な離散釣合い・PV保存の再現ではありません。",
+          "en": "NondimensionalWilliamson2-type axisymmetricsubproblem. Analyticstaticstatevsactualtimeintegration; not fullglobaldynamicalcore/PVclaim. Axisymmetric nondimensional subproblem with a=g=1, Omega=2, u0=.5 and h0=10. Actual time evolution uses centered primitive momentum, finite-volume mass and RK4. Not standard Earth parameters, a full global multidimensional SWE core, exact discrete balance or a PV-conservation claim."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#sphere-zonal-balance-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sphere-zonal-balance/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sphere-zonal-balance/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "sphere-zonal-balance",
+          "title": {
+            "ja": "球面浅水波の軸対称定常釣合いを時間積分",
+            "en": "Time evolution of axisymmetric spherical shallow-water balance"
+          },
+          "group": "continuum-particle-controls",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sphere-zonal-balance/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sphere-zonal-balance/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/ale_piston.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/reference_riemann.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/test_components.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json"
+        }
+      ]
+    },
+    {
+      "id": "sph-pressure-acoustics",
+      "group": "kinetic",
+      "name": {
+        "ja": "一様圧力と線形音波：SPH/GSPHの粒子配置依存",
+        "en": "Uniform pressure and acoustics: particle-layout effects in SPH/GSPH"
+      },
+      "chapter": "validation-continuum-particle-controls",
+      "reading_section": "sph-pressure-acoustics",
+      "availability": "saved-output",
+      "code_base": "/code/validated-examples/2026-11-25/continuum-particle-controls/",
+      "verification": "/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+      "commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider test_components.py",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "evidence": [
+        {
+          "path": "code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json",
+          "json_pointer": "/cases",
+          "where": {
+            "id": "sph-pressure-acoustics"
+          }
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/continuum-particle-controls/results/sph-pressure-acoustics.png",
+          "artifact": "image"
+        },
+        {
+          "path": "code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+          "json_pointer": "/all_cases_rerun"
+        }
+      ],
+      "supplemental_examples": [
+        {
+          "id": "sph-pressure-acoustics",
+          "url": "/numerical-methods-atlas/validation/sph-pressure-acoustics/",
+          "name": {
+            "ja": "一様圧力と線形音波：SPH/GSPHの粒子配置依存",
+            "en": "Uniform pressure and acoustics: particle-layout effects in SPH/GSPH"
+          }
+        }
+      ],
+      "reading": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-continuum-particle-controls/#sph-pressure-acoustics",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-continuum-particle-controls/#sph-pressure-acoustics"
+      },
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+      "execution_examples": [],
+      "url": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/#sph-pressure-acoustics",
+      "run_commands": [
+        "python -B -W error -m pytest -q -p no:cacheprovider test_components.py",
+        "python -B -W error run.py --input inputs.json --output fresh-output"
+      ],
+      "image": "/code/validated-examples/2026-11-25/continuum-particle-controls/results/sph-pressure-acoustics.png",
+      "image_sha256": "1eae2a6441afcc1fe5adbeb9d84b7b0cc0bc4ca117bf75f14be5a49cd617740e",
+      "width": 1650,
+      "height": 555,
+      "source_kind": "existing-figure",
+      "caption": {
+        "ja": "規則・摂動粒子の一様圧力と小振幅音波について、初期カーネル誤差と時間発展誤差を区別する。 GSPH、摂動した128粒子、t=0.2。初期カーネル再構成誤差は最大0.011834で、音波振幅0.001より大きく、左の密度分布にその影響が残ります。右は初期誤差です。判定は基本Fourierモードの位相・振幅と保存量などの固定条件であり、点ごとの高精度や一般的な優位性を示しません。",
+        "en": "Regular/deterministicallyjitteredperiodicparticles, fixedhSPHcontrol vs adaptivehGSPH. Separateinitialkernelerror and fluidupdate, finiteamplitudeO(A²)linearizedreference remainder. No universalGSPHsuperiorityclaim. GSPH with 128 jittered particles at t=0.2. The initial kernel reconstruction error reaches 0.011834, exceeding the acoustic amplitude 0.001 and remaining visible in the left density profile; the right panel shows that initial error. Acceptance concerns the fundamental Fourier mode phase/amplitude and other fixed conservation controls, not pointwise high accuracy or general superiority."
+      },
+      "visual_input": {
+        "id": "sph-pressure-acoustics",
+        "kind": "image",
+        "source": "/code/validated-examples/2026-11-25/continuum-particle-controls/results/sph-pressure-acoustics.png",
+        "caption": {
+          "ja": "規則・摂動粒子の一様圧力と小振幅音波について、初期カーネル誤差と時間発展誤差を区別する。 GSPH、摂動した128粒子、t=0.2。初期カーネル再構成誤差は最大0.011834で、音波振幅0.001より大きく、左の密度分布にその影響が残ります。右は初期誤差です。判定は基本Fourierモードの位相・振幅と保存量などの固定条件であり、点ごとの高精度や一般的な優位性を示しません。",
+          "en": "Regular/deterministicallyjitteredperiodicparticles, fixedhSPHcontrol vs adaptivehGSPH. Separateinitialkernelerror and fluidupdate, finiteamplitudeO(A²)linearizedreference remainder. No universalGSPHsuperiorityclaim. GSPH with 128 jittered particles at t=0.2. The initial kernel reconstruction error reaches 0.011834, exceeding the acoustic amplitude 0.001 and remaining visible in the left density profile; the right panel shows that initial error. Acceptance concerns the fundamental Fourier mode phase/amplitude and other fixed conservation controls, not pointwise high accuracy or general superiority."
+        }
+      },
+      "gallery_url": "https://hrkoyama.github.io/numerical-methods-atlas/gallery/#sph-pressure-acoustics-ja",
+      "problem_page": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sph-pressure-acoustics/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sph-pressure-acoustics/?lang=en"
+      },
+      "runnable": true,
+      "execution_entry": null,
+      "supplemental_execution_entries": [
+        {
+          "id": "sph-pressure-acoustics",
+          "title": {
+            "ja": "一様圧力と線形音波：SPH/GSPHの粒子配置依存",
+            "en": "Uniform pressure and acoustics: particle-layout effects in SPH/GSPH"
+          },
+          "group": "continuum-particle-controls",
+          "url": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sph-pressure-acoustics/?lang=ja",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sph-pressure-acoustics/?lang=en"
+          },
+          "code_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/run.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/ale_piston.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py",
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/reference_riemann.py"
+          ],
+          "test_urls": [
+            "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/test_components.py"
+          ],
+          "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip",
+          "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json",
+          "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json"
+        }
+      ]
     }
   ],
   "source_sha256": {
-    "catalog/atlas-gallery.json": "ae602a1174532df8a396241f0510a65436b86fdc609fba190ef2f2bd68efbbf4",
+    "catalog/atlas-gallery.json": "ed3412a4196a5e0bfebde524f834b98754ad3dfe8320465f662230e62b91768f",
     "scripts/render-atlas-gallery.py": "62956b5a0ece0c5144ec079bb30f36e44b3ccf97e4b56b677d4de356cdbab04c",
     "code/numerical-methods-atlas/2026-11-21/numart/benchmarks.py": "dc8f83aafea473b5f0e1e7bf82630484dd60aa446859c1f602571adc3c59f019",
     "code/numerical-methods-atlas/2026-11-21/numart/solvers.py": "7811862ea3384cef825a1d382c24c6e19a175fb688a024fa4117959eed4bf05d",
@@ -17467,8 +19157,8 @@
     "code/periodic-dft/2026-11-22/verification.json": "5de4662728e0114aea5576dc7e93dee03fcc02e32d516e1d8da77e5b8f4511e5",
     "code/periodic-forces/2026-11-22/results/preview.png": "ea952ee104c44d0b229c56751d9c147629d58f661ebb95c2821e6b895b24e4fb",
     "code/periodic-forces/2026-11-22/verification.json": "e29d65bc89b7edac45a81d3cbae4048911f7fc8848cc47a35764f0041e296b7f",
-    "catalog/atlas-test-problems.json": "2c5260104ab1381d23b5b1e091ccd891da1d5124b05a03fc75b5acb2c6693a6f",
-    "catalog/atlas-depth-expansion.json": "a99cdc630a84a3e908c0ac95e907af1860206a31acb690711d152d5f4ed511d7",
+    "catalog/atlas-test-problems.json": "8aa618c508f213ea8e07e2683c2573357f06d052517326508d85465e4da81c43",
+    "catalog/atlas-depth-expansion.json": "a3fa27c909cda00ef31a0919afffe3275a132bc03193841879563384fdb84249",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
     "code/validated-examples/2026-11-22/foundations/inputs.json": "9b07ca782d9b9de4ef467189d6710f3fa346d23be154200358f005e4eceebff1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
@@ -18018,7 +19708,7 @@
     "code/validated-examples/2026-11-24/inverse-optimization/results/bfgs-lbfgs-controls-preview.png": "1d14d1186acab1ef8a9a7ca638a1d196e51f61a17319d42423e0dd5257c92363",
     "code/validated-examples/2026-11-24/inverse-optimization/results/bratu-noise-regularization.png": "507419bc07f14a0101bc449dddfcd1b89de53895ced77d238b4532681872fede",
     "code/validated-examples/2026-11-24/inverse-optimization/results/bratu-noise-regularization-preview.png": "b43caf14cf8ba49af80aecad69e5f7394dcb5f6a2afc3c01f4320b29f194ff0a",
-    "scripts/prime-atlas-gallery-metadata.py": "5cd0859fb6bc008a5b6b55435441630d29e3398edb93bb7ae212bd94cd9ef668",
+    "scripts/prime-atlas-gallery-metadata.py": "a00a82bf2607067296ae6ea8a143f891a4fa3adaa74051440eb5964540cf3265",
     "code/validated-examples/2026-11-24-r2/ode-adaptivity/cases.json": "b88c01a4388790cc795041ffcecfcbdf465e8953443ea522d23247a715900845",
     "code/validated-examples/2026-11-24-r2/ode-adaptivity/inputs.json": "08841a5698329c02021434dc4f1784cb1dbbd428de7e493dda6a3014e85315d3",
     "code/validated-examples/2026-11-24-r2/ode-adaptivity/acceptance.json": "fd7e7cfe528d9844e2992e8ef96d6b33e482e8c5d2bc63a4d6955431168f6051",
@@ -18109,15 +19799,69 @@
     "code/validated-examples/2026-11-25/small-models/results/lotka-volterra-preview.png": "2b0fbc061793a1f77310488f6351e2b8315fc2bc4da8c2f5946024d5f4e8d029",
     "code/validated-examples/2026-11-25/small-models/results/seir-linearization.png": "3ee8e7e8fdab4934bfc1ef679ccc39722c2412e95331bfb26800ae1c4fe80e04",
     "code/validated-examples/2026-11-25/small-models/results/seir-linearization-preview.png": "3ee8e7e8fdab4934bfc1ef679ccc39722c2412e95331bfb26800ae1c4fe80e04",
+    "code/validated-examples/2026-11-25/quantum-small/cases.json": "4db1de209977cdc525037ebb1221db185dae82c042f241e2b7277569b10674a4",
+    "code/validated-examples/2026-11-25/quantum-small/inputs.json": "36f9b4b9293e5b34d554014134fbce6c31ec11a09a50d1bb5179e9dcb1cee21a",
+    "code/validated-examples/2026-11-25/quantum-small/acceptance.json": "4659ab8fffc3bfc672facd1fdc27893000863af6420f91a3120ebf91f3a8b2ee",
+    "code/validated-examples/2026-11-25/quantum-small/freeze.json": "6299a7b6efcdf3826e284a374c29ce3ba8683d5ea08ccfa5cfda0dfcc50662b5",
+    "code/validated-examples/2026-11-25/quantum-small/results/result.json": "750fa3e7f3fe79a96aaacd46039bf00f18b7623d7c4b09035b3c850bfd5d2c20",
+    "code/validated-examples/2026-11-25/quantum-small/results/two-state-bo-cp-ou.png": "cdd2033e650a54ceb9fb961b3717f7405b12d7fc6983891d03658f1e10a5df2b",
+    "code/validated-examples/2026-11-25/quantum-small/source-manifest.json": "b13b8873c5f74ec3b1b25207ed145cf7ece1ceec2e0e254a9b7f18e93f73350c",
+    "code/validated-examples/2026-11-25/quantum-small/verification.json": "f78f47618f7524ef69e2b96ed460f1d1e4636cf42775f1ae643e062dabf99dbe",
+    "code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip": "b332d168c00bd46862a4b5a98e42054e1749e0b734318e96af0049ab9d255cfc",
+    "code/validated-examples/2026-11-25/quantum-small/results/quantum-box-ho.png": "a14a5ca14665349629e371d2c96992f3f015a7dcab40b745a0c5f9f6c5a34325",
+    "code/validated-examples/2026-11-25/quantum-small/results/h3plus-mp2-fci.png": "36b5f3ecf0079052f304681465ca846fef3dba571cecd86311fa4042cff130d5",
+    "code/validated-examples/2026-11-25/quantum-small/results/periodic-projector-occupations.png": "0209e46d2c2a5690ad05796c1d2077f0f5f34b38aba51cbcfed8deb40d4764f5",
+    "code/validated-examples/2026-11-25/biology-ode-controls/cases.json": "ba2a1ca599d893f8460f853b712f407784d1b963ed2fac778193e275652225c0",
+    "code/validated-examples/2026-11-25/biology-ode-controls/inputs.json": "f15bd046bb65798a49c2e1f5ef75e7aedfb23a7aec0c09f2d11cec5a3a6b58a8",
+    "code/validated-examples/2026-11-25/biology-ode-controls/acceptance.json": "47bb2050ccf15b2d404c2a3e63047d11d8258dc6feb25dc1e2fc14c3863b72ab",
+    "code/validated-examples/2026-11-25/biology-ode-controls/freeze.json": "2d34093e533eb9ef715cc0d10132f183210e28ac7b7172b28ac120eec2b5e687",
+    "code/validated-examples/2026-11-25/biology-ode-controls/results/result.json": "104875b041a43542ec5d1500003da8f5986983816e27ce3b88971d11d7b63149",
+    "code/validated-examples/2026-11-25/biology-ode-controls/results/hodgkin-huxley-controls.png": "103d53258302f2855b7c7c9cca7840245a257909ca12163e8cd7a4d972a5871a",
+    "code/validated-examples/2026-11-25/biology-ode-controls/source-manifest.json": "6b39422e0a480658f7435dbfff210ade94c3016ec5cc7cbfc55e54fff3215016",
+    "code/validated-examples/2026-11-25/biology-ode-controls/verification.json": "b6106b16b00c01c4a8fa95e0fc44d8cddf2f41ae19973598df7aa5c4e8a3cef9",
+    "code/validated-examples/2026-11-25/biology-ode-controls/atlas-biology-ode-controls-2026-11-25.zip": "b67232232a461e8ef0e24d522a3e40c9af64b8d90cd55c9657c955a92772b042",
+    "code/validated-examples/2026-11-25/biology-ode-controls/results/immigration-death-ssa.png": "e3131f516bf0382697622af312169367ff29b7ab0b5ab15fc838dea6f3996ab5",
+    "code/validated-examples/2026-11-25/biology-space-controls/cases.json": "9128ac9e123ac817a890e279433ec11d275c52b0e00b33575ca69d6b3d967a46",
+    "code/validated-examples/2026-11-25/biology-space-controls/inputs.json": "96095517a632f1706713360c82ce01c6d4b68682faa96fecae11e46cb87a1b80",
+    "code/validated-examples/2026-11-25/biology-space-controls/acceptance.json": "b2f1727f9f4e70c139af7d38c218608b369625ab8f5896d762b060f88432a117",
+    "code/validated-examples/2026-11-25/biology-space-controls/freeze.json": "4aa4742c7b13fb4b93f387c8b8f424ab8c25e00c57368751c27c5027ee4ea5cd",
+    "code/validated-examples/2026-11-25/biology-space-controls/results/result.json": "090c187f89db9d05a2eb437eaf5e73b2dcf1e7600ef0163efd94bae4119cb6eb",
+    "code/validated-examples/2026-11-25/biology-space-controls/results/fisher-kpp-special-front.png": "1f78a6525f5f45a54a61f6a8d1e6a3f95e34d85a3d9211ef386d42fd8c8378a3",
+    "code/validated-examples/2026-11-25/biology-space-controls/source-manifest.json": "b9ebb71638b3f18fde2d5b32b8042016e0f33ac1daa42173937f957c3f65d0ab",
+    "code/validated-examples/2026-11-25/biology-space-controls/verification.json": "2e7efea396ecd14287ef8fe8b7326d88c61955a6201431eda4dbaa09c26daed2",
+    "code/validated-examples/2026-11-25/biology-space-controls/atlas-biology-space-controls-2026-11-25.zip": "8abffcd65c0fc14eb1a346dba17e70097e2dc8806b348e114fc449b4fe0e0419",
+    "code/validated-examples/2026-11-25/biology-space-controls/results/schnakenberg-2d-boundary-modes.png": "f989caee1655dd22ab0a8aa99d3e8b9b4d0805d72bb7e425fffa99ec22e35a33",
+    "code/validated-examples/2026-11-25/biology-space-controls/results/keller-segel-forced-flux.png": "cf69138e069f3f733193297d9d526814e6d491655054f660a679c3ec530956f1",
+    "code/validated-examples/2026-11-25/thermostat-constraint-controls/cases.json": "8763d8bb27b77b5f014914065a50a49a2e2b2b552128ce4c595b6a391de17c32",
+    "code/validated-examples/2026-11-25/thermostat-constraint-controls/inputs.json": "31c649cecb7a69704ac44dbabeb86ef2fa4f79f941b9902fbe602f402571247d",
+    "code/validated-examples/2026-11-25/thermostat-constraint-controls/acceptance.json": "e741651e9ac010e4f500ce2d761a7d12c538827441fbec29a271dc526958cef2",
+    "code/validated-examples/2026-11-25/thermostat-constraint-controls/freeze.json": "b002e0bd67d925412f143f19b51c552c8c2aac5c9b08f7d7c094dad668f3c86e",
+    "code/validated-examples/2026-11-25/thermostat-constraint-controls/results/result.json": "45e4101f6676b2b971b144f5df45c1b28d3bff564d3896eeb309ee6c667d9351",
+    "code/validated-examples/2026-11-25/thermostat-constraint-controls/results/projected-canonical-dof.png": "1af28c5089da8b6a578920dbc16ea129fe71fa461d1114951d639038065181ab",
+    "code/validated-examples/2026-11-25/thermostat-constraint-controls/source-manifest.json": "6e64499f6bda68ad17ccc7402e49a7296b82d500174ce0eb238e0acd076cc45e",
+    "code/validated-examples/2026-11-25/thermostat-constraint-controls/verification.json": "c3273335cc6619c07d956252d65b00abf58ff3497d0a35776b3fc376ae70134e",
+    "code/validated-examples/2026-11-25/thermostat-constraint-controls/atlas-thermostat-constraint-controls-2026-11-25.zip": "836113a7e8859d41b2697177f74cb2c8c8185a6fa4f4630773b914095ed10de1",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/cases.json": "8b4b8db859d0bb29a4c156beb7d02c5270776c460bed9e1796a409f3b1beb712",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/inputs.json": "5f49881f37b07c47f674979a4886e6da0421be06ddb6bb213ab7dfea6bf6e0f5",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/acceptance.json": "cacf2ca243acff9310d0ebf1c529ef87a54b94bc4de8dac1edc2d5375bb30a82",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/freeze.json": "f1fc04a344d7482825e7545c663b63612def1103bda3519252799b07c9046dc0",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json": "cab002c93e01d997562f3c145e1aaddd6a2a8ce59a087d44e8bddc4679081bbf",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/results/saltzman-ale-piston.png": "e1a51556c809261a2dbd47e5d06acc113780f3cc42be82e0225be18f05d09e05",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/source-manifest.json": "2017c5da0e0a6d70ba01242b63d5bc391feb1fbe24795f8ceab2389790bbec00",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/verification.json": "0ce44ce14104c4cdd7e6876b8118d9e6c5635ae40af0f631623418c05264600e",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip": "1d12a6ecd9d87ae95585a984e66411b2314eb7804b064f023aa57addc3142f49",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/results/williamson-sphere-transport.png": "be017ade9a054d91fc83cc743cedae9a5bbeee367c60892f0b731e5c17f36ca1",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/results/sphere-zonal-balance.png": "74876bf29005e8968fe5c5fe51157d0be99f57cc76c18da88e663ad85ae061c6",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/results/sph-pressure-acoustics.png": "1eae2a6441afcc1fe5adbeb9d84b7b0cc0bc4ca117bf75f14be5a49cd617740e",
     "code/numerical-methods-atlas/2026-11-21/tests/test_numerics.py": "4ad61ac54dfa59d7d61959c5699f290e2386c23bf5b4b930a5d98576feaa54d1",
     "code/numerical-methods-atlas/2026-11-21/tests/test_linear.py": "5e7323f2734fb7328c35706ccd90fc25076bd46d01d32cd9c78c8cd25dd0421f",
     "code/numerical-methods-atlas/2026-11-21/tests/test_sparse_fem.py": "4076e514e0b9b5fd94dead4af33fe7e7548fba6a7b48b3e21a406034f7170afb",
     "code/numerical-methods-atlas/2026-11-21/tests/test_runge_kutta.py": "920a5eb560afe7f560cae8d22f879f125851f4ee0451b24720d0eca0082c31ce",
     "code/numerical-methods-atlas/2026-11-21/tests/test_new_models.py": "2937daf8fa8ad86882ac06e47835a6309ca1df3d0283c7dfb7b9606dc3906b1f",
-    "numerical-methods-atlas/gallery/preview-manifest.json": "75374ecd3b1caf534ebfed89a1e89247556cad724d687a55b5070ae8fe96d354",
+    "numerical-methods-atlas/gallery/preview-manifest.json": "c6b31ad5af0fe30f0a9fdd0a4122bbb70510d15c48f49fd9edd85dba0b6c4e6f",
     "numerical-methods-atlas/gallery/calculations.json": "d98cd75e1c58177bfc716e8b68d6bfba1358d5135ac8e2ee0989eb3df77942a6",
     "numerical-methods-atlas/gallery/verification.json": "46c39543afa9d943dfef896fadbc8f84d847f1a145d9b1427a2336de7a3a50f9",
-    "numerical-methods-atlas/test-cases/index.json": "3ca95f2c35e091cadae1bd2d44f5d2bd69101c0538ea2edc2a4c36de466445fa",
+    "numerical-methods-atlas/test-cases/index.json": "13ef7e1c3870a0505541d7d29454d676057b6e5eeab77cefb145bdd54ddb867c",
     "catalog/atlas-execution-discovery.json": "59d15442970b7141e411d7d9095476afcb49f7407489f8d1fc727cd965f37f2f",
     "scripts/atlas_execution_discovery.py": "3431dae95fb0adc68e1deca07b406b70bd99480f9ad6023a31765cb07ccf84be",
     "scripts/atlas_depth_release.py": "5eef2754321b4e71024dfa458d56802054a455333cd6b0510ec7e86a5618cba6",

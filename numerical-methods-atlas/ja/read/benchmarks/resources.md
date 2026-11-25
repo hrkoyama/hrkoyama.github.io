@@ -24,6 +24,12 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/benchmarks/
 - [HLLC](<https://hrkoyama.github.io/numerical-methods-atlas/methods/hllc/?lang=ja>)
 
   この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。
+- [Godunov SPH／GSPH](<https://hrkoyama.github.io/numerical-methods-atlas/methods/gsph/?lang=ja>)
+
+  この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。
+- [SPHカーネル再構成](<https://hrkoyama.github.io/numerical-methods-atlas/methods/sph/?lang=ja>)
+
+  この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。
 - [MUSCL再構成](<https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=ja>)
 
   この問題の保存済み比較データまたは対応する公開検査で使われる手法です。一般的な適用可能性だけでは追加していません。
@@ -138,6 +144,11 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/benchmarks/
   reference_kind: semi-analytic
 
   半解析解 比熱比gamma>1の理想気体、平面1次元波。真空の保存変数はゼロ、速度は未定義です。 γ=1.4、左右(ρ,u,p)=(1,0,1)/(0.125,0,0.1)、x0=0.5、[0,1]、t=0.2が一致します。点値・保存セル平均・誤差ノルムは別に確認します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。
+- [Gaussian畳込みGSPHによるSod型粒子衝撃管](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-gsph-sod-ja>)
+  relation: same-problem
+  reference_kind: semi-analytic
+
+  半解析解 Gaussianの線形比体積GSPH重なり積分、対称な可変h、独立な対Riemann解、反対称な全エネルギー交換を実装します。通常SPHへの星状態圧力の代入とは区別。再構築は1次に限定し、原著の3次/MUSCL実装や一般的な高精度は主張しません。 固定入力の式・参照・図と実行コードを対応付けます。 Gaussianの線形比体積畳み込み、対称な可変h、独立な対Riemann解と反対称な全エネルギー交換を持つGSPHです。通常SPHへp*を代入する代用ではありません。一次再構成に限定し、論文のcubic/MUSCLや一般精度を主張しません。
 - [Lax衝撃波管：参照・比較条件](<https://hrkoyama.github.io/numerical-methods-atlas/problems/lax/?lang=ja#references-ja>)
 
   左右状態(0.445,0.698,3.528)と(0.5,0,0.571)、γ=1.4の半解析的Riemann解が基準です。
@@ -178,6 +189,11 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/benchmarks/
   reference_kind: semi-analytic
 
   半解析解 比熱比gamma>1の理想気体、平面1次元波。真空の保存変数はゼロ、速度は未定義です。 γ=1.4、左右(ρ,u,p)=(1,0,1)/(0.125,0,0.1)、x0=0.5、[0,1]、t=0.2が一致します。点値・保存セル平均・誤差ノルムは別に確認します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。
+- [Gaussian畳込みGSPHによるSod型粒子衝撃管](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-gsph-sod-ja>)
+  relation: same-problem
+  reference_kind: semi-analytic
+
+  半解析解 Gaussianの線形比体積GSPH重なり積分、対称な可変h、独立な対Riemann解、反対称な全エネルギー交換を実装します。通常SPHへの星状態圧力の代入とは区別。再構築は1次に限定し、原著の3次/MUSCL実装や一般的な高精度は主張しません。 固定入力の式・参照・図と実行コードを対応付けます。 Gaussianの線形比体積畳み込み、対称な可変h、独立な対Riemann解と反対称な全エネルギー交換を持つGSPHです。通常SPHへp*を代入する代用ではありません。一次再構成に限定し、論文のcubic/MUSCLや一般精度を主張しません。
 
 ## コード・検証
 
@@ -261,6 +277,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/benchmarks/
   availability: run
 
   保存した反向packetの実進行からM1の限界を示し、別の閉M1MMSで数値実装を検証します。
+- [Saltzman型の歪み格子ピストン：2次元EulerとALE](<https://hrkoyama.github.io/numerical-methods-atlas/validation/saltzman-ale-piston/?lang=ja>)
+  availability: run
+
+  2023年版の歪み格子と有限初期圧力を明示した、所与の格子移動による2次元Eulerピストン計算。
 - [Double Mach反射：多格子の軽量検証](<https://hrkoyama.github.io/numerical-methods-atlas/validation/double-mach-reflection/?lang=ja>)
   availability: run
 
@@ -273,6 +293,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/benchmarks/
   availability: run
 
   冷たい静止気体へ内向きに進む球対称Guderley衝撃波を、128/256/512個の球殻でt=−1から−.85まで計算します。HLL流束とHeun法を、相似指数の固有値・半解析場・衝撃位置・保存収支と照合する軽量例です。
+- [Gaussian畳込みGSPHによるSod型粒子衝撃管](<https://hrkoyama.github.io/numerical-methods-atlas/validation/gsph-sod/?lang=ja>)
+  availability: run
+
+  Gaussian畳込みの線形比体積近似と対称な可変平滑化長を使う、限定GSPH粒子流体計算。
 - [Godunov型有限体積法：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/?lang=ja#method-execution-ja>)
   availability: source
 

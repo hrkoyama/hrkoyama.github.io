@@ -2622,6 +2622,27 @@
               "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=euler-sod",
               "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=euler-sod"
             }
+          },
+          {
+            "id": "gsph-sod",
+            "title": {
+              "ja": "Gaussian畳込みGSPHによるSod型粒子衝撃管",
+              "en": "Sod-type particle shock tube with Gaussian-convolution GSPH"
+            },
+            "kind": "semi-analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "固定入力の式・参照・図と実行コードを対応付けます。 Gaussianの線形比体積畳み込み、対称な可変h、独立な対Riemann解と反対称な全エネルギー交換を持つGSPHです。通常SPHへp*を代入する代用ではありません。一次再構成に限定し、論文のcubic/MUSCLや一般精度を主張しません。",
+              "en": "Bind the fixed-input formula, reference, figure and executable code. Actual Gaussian linear-specific-volume GSPH overlap with symmetric variable h, independent pair Riemann solves and antisymmetric total-energy exchange; not substitution of star pressure into ordinary SPH. First-order reconstruction only, not the paper cubic/MUSCL implementation or a general accuracy claim."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-gsph-sod-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-gsph-sod-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/gsph-sod/?lang=ja#gsph-sod-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/gsph-sod/?lang=en#gsph-sod-en-measurements"
+            }
           }
         ]
       },

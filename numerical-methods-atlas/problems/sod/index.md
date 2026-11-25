@@ -56,6 +56,16 @@ U(x,t) = R((x−x0)/t)
 
 γ=1.4、左右(ρ,u,p)=(1,0,1)/(0.125,0,0.1)、x0=0.5、[0,1]、t=0.2が一致します。点値・保存セル平均・誤差ノルムは別に確認します。 物理的な入力は一致しますが、参照カードの点値標本と保存計算の有限体積セル平均・離散格子は別表現です。
 
+#### [Gaussian畳込みGSPHによるSod型粒子衝撃管](https://hrkoyama.github.io/numerical-methods-atlas/validation/gsph-sod/?lang=ja#gsph-sod-ja-measurements)
+
+半解析解 · 同じ問題の参照
+
+U_t+F(U)_x=0,\quad p=(\gamma-1)\rho e,\quad\gamma=1.4; V_{ij}^2(h)=\frac{h^2}{4}\left(\frac{V_i-V_j}{r_{ij}}\right)^2+\left(\frac{V_i+V_j}{2}\right)^2,\quad V_i=1/\rho_i,\quad h_i=\eta m_i/\rho_{\rm smooth,i}
+
+Gaussianの線形比体積GSPH重なり積分、対称な可変h、独立な対Riemann解、反対称な全エネルギー交換を実装します。通常SPHへの星状態圧力の代入とは区別。再構築は1次に限定し、原著の3次/MUSCL実装や一般的な高精度は主張しません。
+
+固定入力の式・参照・図と実行コードを対応付けます。 Gaussianの線形比体積畳み込み、対称な可変h、独立な対Riemann解と反対称な全エネルギー交換を持つGSPHです。通常SPHへp*を代入する代用ではありません。一次再構成に限定し、論文のcubic/MUSCLや一般精度を主張しません。
+
 #### Sod衝撃波管：Godunov型更新と自己相似解
 
 細格子160セルの各中心でρ,u,pと同位置・同時刻の参照値を併記。初期値も点サンプルをセル値として与える既存solverを使う。解析的な波構造を使うが、圧力根の数値評価を含み、別コードベースとの独立照合ではない。
@@ -66,12 +76,22 @@ U(x,t) = R((x−x0)/t)
 
 [参照・検証条件の詳細](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=ja)
 
+#### Gaussian畳込みGSPHによるSod型粒子衝撃管
+
+解析参照、保存量、細分化、独立成分検査と意図した誤式の負例を区別して保存します。
+
+- [保存結果](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json)
+
+[参照・検証条件の詳細](https://hrkoyama.github.io/numerical-methods-atlas/validation/gsph-sod/?lang=ja)
+
 ### 計算法
 
 この問題への対応が共通の固定入力・実行例で明示された手法です。図と実行例の条件の違いは入力で確認してください。
 
 - [Godunov型有限体積法](https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/?lang=ja) — この問題の実行例で使用; 手法台帳の状態：教育用例・関連コードあり
 - [HLLC](https://hrkoyama.github.io/numerical-methods-atlas/methods/hllc/?lang=ja) — この問題の実行例で使用; 手法台帳の状態：教育用例・関連コードあり
+- [Godunov SPH／GSPH](https://hrkoyama.github.io/numerical-methods-atlas/methods/gsph/?lang=ja) — この問題の実行例で使用; 手法台帳の状態：教育用例・関連コードあり
+- [SPHカーネル再構成](https://hrkoyama.github.io/numerical-methods-atlas/methods/sph/?lang=ja) — この問題の実行例で使用; 手法台帳の状態：教育用例・関連コードあり
 
 ### コード・実行
 
@@ -103,6 +123,39 @@ python -m pytest -q tests/test_recipes.py
 
 - [/code/numerical-methods-atlas/2026-11-22/run_recipe.py](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/run_recipe.py)
 - [/code/numerical-methods-atlas/2026-11-22/tests/test_recipes.py](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/tests/test_recipes.py)
+
+#### [Gaussian畳込みGSPHによるSod型粒子衝撃管](https://hrkoyama.github.io/numerical-methods-atlas/validation/gsph-sod/?lang=ja)
+
+補助実行例
+
+Gaussian畳込みの線形比体積近似と対称な可変平滑化長を使う、限定GSPH粒子流体計算。
+
+Gaussian畳込みの線形比体積近似と対称な可変平滑化長を使う、限定GSPH粒子流体計算。 固定入力の条件・境界・参照の範囲はinputs.jsonを参照。
+
+[コード / ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip) · [検証記録](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json)
+
+[固定入力](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/inputs.json)
+
+[配布ファイルとハッシュ](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/source-manifest.json)
+
+ZIPを展開し、実行案内の作業フォルダで実行します。配布版の複数例をまとめて実行する場合があります。
+
+```sh
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+```
+
+限定した教育用モデルです。元論文の全条件・全アルゴリズムや一般的な性能の再現ではありません。
+
+同じ配布版で共有するソースとテストを含みます。すべてがこの問題専用とは限りません。
+
+- [/code/validated-examples/2026-11-25/continuum-particle-controls/ale_piston.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/ale_piston.py)
+- [/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py)
+- [/code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py)
+- [/code/validated-examples/2026-11-25/continuum-particle-controls/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/run.py)
+- [/code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py)
+- [/code/validated-examples/2026-11-25/continuum-particle-controls/test_components.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/test_components.py)
 
 ## English
 
@@ -158,6 +211,16 @@ Ideal gas; gamma>1; planar 1D waves; vacuum has zero conserved state and undefin
 
 γ=1.4, primitive states (1,0,1)/(0.125,0,0.1), x0=0.5, [0,1] and t=0.2 match. Inspect point/conserved-cell-average sampling and error norms separately. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations.
 
+#### [Sod-type particle shock tube with Gaussian-convolution GSPH](https://hrkoyama.github.io/numerical-methods-atlas/validation/gsph-sod/?lang=en#gsph-sod-en-measurements)
+
+Semi-analytic reference · Reference for the same problem
+
+U_t+F(U)_x=0,\quad p=(\gamma-1)\rho e,\quad\gamma=1.4; V_{ij}^2(h)=\frac{h^2}{4}\left(\frac{V_i-V_j}{r_{ij}}\right)^2+\left(\frac{V_i+V_j}{2}\right)^2,\quad V_i=1/\rho_i,\quad h_i=\eta m_i/\rho_{\rm smooth,i}
+
+Actual Gaussian linear-specific-volume GSPH overlap with symmetric variable h, independent pair Riemann solves and antisymmetric total-energy exchange; not substitution of star pressure into ordinary SPH. First-order reconstruction only, not the paper cubic/MUSCL implementation or a general accuracy claim.
+
+Bind the fixed-input formula, reference, figure and executable code. Actual Gaussian linear-specific-volume GSPH overlap with symmetric variable h, independent pair Riemann solves and antisymmetric total-energy exchange; not substitution of star pressure into ordinary SPH. First-order reconstruction only, not the paper cubic/MUSCL implementation or a general accuracy claim.
+
 #### Sod shock tube: Godunov-type update and self-similar reference
 
 Each of the 160 fine-grid centers carries ρ,u,p and reference values at the same time/location. The existing solver also initializes its cell values from point samples. Wave structure is analytic but reference pressure requires a numerical root; this is not a cross-check against an independent codebase.
@@ -168,12 +231,22 @@ Each of the 160 fine-grid centers carries ρ,u,p and reference values at the sam
 
 [Reference and validation details](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en)
 
+#### Sod-type particle shock tube with Gaussian-convolution GSPH
+
+Separate analytic/reference errors, conservation, refinement, independent component qualification and deliberately wrong-formula controls.
+
+- [Saved result](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json)
+
+[Reference and validation details](https://hrkoyama.github.io/numerical-methods-atlas/validation/gsph-sod/?lang=en)
+
 ### Numerical methods
 
 Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions.
 
 - [Godunov-type finite volumes](https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/?lang=en) — Used by this problem’s execution examples; Method-registry status: Educational example / related code
 - [HLLC](https://hrkoyama.github.io/numerical-methods-atlas/methods/hllc/?lang=en) — Used by this problem’s execution examples; Method-registry status: Educational example / related code
+- [Godunov SPH / GSPH](https://hrkoyama.github.io/numerical-methods-atlas/methods/gsph/?lang=en) — Used by this problem’s execution examples; Method-registry status: Educational example / related code
+- [SPH kernel reconstruction](https://hrkoyama.github.io/numerical-methods-atlas/methods/sph/?lang=en) — Used by this problem’s execution examples; Method-registry status: Educational example / related code
 
 ### Code and execution
 
@@ -205,3 +278,36 @@ These source and test lists include files shared across the package; they are no
 
 - [/code/numerical-methods-atlas/2026-11-22/run_recipe.py](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/run_recipe.py)
 - [/code/numerical-methods-atlas/2026-11-22/tests/test_recipes.py](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/tests/test_recipes.py)
+
+#### [Sod-type particle shock tube with Gaussian-convolution GSPH](https://hrkoyama.github.io/numerical-methods-atlas/validation/gsph-sod/?lang=en)
+
+Supplementary execution example
+
+ActualInutsuka-linear-overlap variablehGSPH approximation withfirstorderpair states, comparedwithdistinctstandardSPHcontrol. Periodictwointerfaces; centralwindowbeforeouterwaves. Not cubic/MUSCLpaperreproduction or plainSPH-pressure-star surrogate.
+
+ActualInutsuka-linear-overlap variablehGSPH approximation withfirstorderpair states, comparedwithdistinctstandardSPHcontrol. Periodictwointerfaces; centralwindowbeforeouterwaves. Not cubic/MUSCLpaperreproduction or plainSPH-pressure-star surrogate.
+
+[Code / ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip) · [Verification receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json)
+
+[Fixed input](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/inputs.json)
+
+[File manifest and hashes](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/source-manifest.json)
+
+After extracting the ZIP, run these in the working directory specified by the guide. A command may execute several package cases.
+
+```sh
+python -m pip install -r requirements.txt
+python -m pytest -q
+python run.py --input inputs.json --output output
+```
+
+ActualInutsuka-linear-overlap variablehGSPH approximation withfirstorderpair states, comparedwithdistinctstandardSPHcontrol. Periodictwointerfaces; centralwindowbeforeouterwaves. Not cubic/MUSCLpaperreproduction or plainSPH-pressure-star surrogate.
+
+These source and test lists include files shared across the package; they are not all dedicated to this problem.
+
+- [/code/validated-examples/2026-11-25/continuum-particle-controls/ale_piston.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/ale_piston.py)
+- [/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py)
+- [/code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py)
+- [/code/validated-examples/2026-11-25/continuum-particle-controls/run.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/run.py)
+- [/code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py)
+- [/code/validated-examples/2026-11-25/continuum-particle-controls/test_components.py](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/test_components.py)

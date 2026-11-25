@@ -96,6 +96,22 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/runge-kutta/
   availability: run
 
   減衰回転の解析解を使い、受理/棄却・FSAL・区間内補間・向き付き交差時刻を分けて検査します。
+- [Hodgkin–Huxley：電位固定・静止平衡・発火](<https://hrkoyama.github.io/numerical-methods-atlas/validation/hodgkin-huxley-controls/?lang=ja>)
+  availability: run
+
+  固定電位の解析ゲート解と、区分電流下の4状態系を照合します。
+- [Fisher–KPP：特殊波速の厳密前線](<https://hrkoyama.github.io/numerical-methods-atlas/validation/fisher-kpp-special-front/?lang=ja>)
+  availability: run
+
+  波形・位置・格子誤差・時間誤差・有限領域の影響を分けます。
+- [Schnakenberg：2D境界と初期モード](<https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/?lang=ja>)
+  availability: run
+
+  2つのNeumann摂動とDirichlet摂動を独立な非線形Galerkin参照と比較します。
+- [Keller–Segel：連成流束の製造解](<https://hrkoyama.github.io/numerical-methods-atlas/validation/keller-segel-forced-flux/?lang=ja>)
+  availability: run
+
+  滑らかな2D厳密場で、交差流束・段時刻・収支を検証します。
 - [Dormand–Prince RK45：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/rk45/?lang=ja#method-execution-ja>)
   availability: source
 

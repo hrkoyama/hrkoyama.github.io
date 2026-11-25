@@ -68,7 +68,10 @@
         "lbm-cavity-re100",
         "lbm-taylor-green",
         "lbm-annular-couette-control",
-        "lbm-cylinder-re20"
+        "lbm-cylinder-re20",
+        "saltzman-ale-piston",
+        "williamson-sphere-transport",
+        "sphere-zonal-balance"
       ]
     },
     {
@@ -189,7 +192,10 @@
         "ja": "既存の小規模例・保存済み独立参照と配布物の整合を維持し、必要時に少数の代表再実行を行う。大規模な基底・k点走査、重い独立参照の再生成、長時間BOMD／CPMD、一般物質への拡張は、必要性が指定された場合だけ別途検討する。",
         "en": "Maintain the existing small examples, saved independent references and release integrity, with a few representative reruns when needed. Large basis/k-point sweeps, expensive reference regeneration, long BOMD/CPMD and general-material extensions are considered separately only on explicit need."
       },
-      "supplemental_examples": []
+      "supplemental_examples": [
+        "atomic-reference-cards",
+        "quantum-box-ho"
+      ]
     },
     {
       "id": "quantum-molecular",
@@ -220,7 +226,11 @@
         "ja": "既存の小規模例・保存済み独立参照と配布物の整合を維持し、必要時に少数の代表再実行を行う。大規模な基底・k点走査、重い独立参照の再生成、長時間BOMD／CPMD、一般物質への拡張は、必要性が指定された場合だけ別途検討する。",
         "en": "Maintain the existing small examples, saved independent references and release integrity, with a few representative reruns when needed. Large basis/k-point sweeps, expensive reference regeneration, long BOMD/CPMD and general-material extensions are considered separately only on explicit need."
       },
-      "supplemental_examples": []
+      "supplemental_examples": [
+        "two-state-bo-cp-ou",
+        "h2-rhf-uhf-fci",
+        "h3plus-mp2-fci"
+      ]
     },
     {
       "id": "biology",
@@ -229,8 +239,8 @@
         "en": "Biology"
       },
       "scope": {
-        "ja": "22モデル族の文献解説に、ロジスティック増殖・閉鎖SIR、線形反応拡散、Schnakenbergの線形発現・有限振幅の非線形発展・成長後の1次元パターン、空間なしFitzHugh–Nagumoの限定例を接続します。全22族やHodgkin–Huxleyの実装ではありません。 別群small-modelsから、固定した4状態酵素/QSSA、正のLotka–Volterra軌道、SEIR保存則と初期2モード線形化の3例だけを追加します。SEIRはSIRの既存実行範囲とは別です。",
-        "en": "The 22-family survey links scoped examples of logistic growth, closed SIR, linear reaction–diffusion, linear Schnakenberg onset, finite-amplitude nonlinear evolution and post-growth 1D patterns, plus spatially uniform FitzHugh–Nagumo. This does not implement all 22 families or Hodgkin–Huxley. Three further fixed examples from the separate small-models group cover four-state enzyme/QSSA, a positive Lotka–Volterra orbit, and SEIR conservation with full two-mode early linearization. SEIR is separate from the existing SIR execution scope."
+        "ja": "22モデル族の文献解説に、ロジスティック増殖・閉鎖SIR、線形反応拡散、Schnakenbergの線形発現・有限振幅の非線形発展・成長後の1次元パターン、空間なしFitzHugh–Nagumoの限定例を接続します。全22族の実装ではありません。別配布の固定入力例として、HHの単一細胞電流刺激、移入–死亡SSA、Fisher特殊進行波、2次元Schnakenberg境界モード、強制Keller–Segel製造問題を接続します。 別群small-modelsから、固定した4状態酵素/QSSA、正のLotka–Volterra軌道、SEIR保存則と初期2モード線形化の3例だけを追加します。SEIRはSIRの既存実行範囲とは別です。",
+        "en": "The 22-family survey links scoped examples of logistic growth, closed SIR, linear reaction–diffusion, linear Schnakenberg onset, finite-amplitude nonlinear evolution and post-growth 1D patterns, plus spatially uniform FitzHugh–Nagumo. This does not implement all 22 families. Separate fixed-input releases add single-cell HH current controls, immigration–death SSA, a special Fisher traveling front, 2D Schnakenberg boundary modes and a forced Keller–Segel manufactured problem. Three further fixed examples from the separate small-models group cover four-state enzyme/QSSA, a positive Lotka–Volterra orbit, and SEIR conservation with full two-mode early linearization. SEIR is separate from the existing SIR execution scope."
       },
       "examples": [
         "logistic-growth",
@@ -249,8 +259,8 @@
         "en": "Preserve second-order space/fourth-order RK4 time checks in the old examples. New cases combine exact finite-difference diffusion with implicit-midpoint reactions in a Strang split. Refine space and time separately for finite-amplitude solutions, distinguishing independent-reference resolution/tolerance sensitivity for post-growth patterns. An additional short-time example compares Lie–Trotter/Strang time refinement at the same 32-point grid with matched subsolvers, separately measuring Radau-tolerance and DOP853 reference differences. Fixed enzyme controls use two E0 values, two tolerance pairs and reduced-model 200/400 steps; LV and SEIR use 400/800/1600 steps, reporting integration error separately from reduction/linearization error."
       },
       "next": {
-        "ja": "固定した1次元周期・反射対称初期値の検証です。一般初期値からの模様選択、2次元・非周期境界、他の反応則、SEIRの一般入力・完全HH、実験データへの較正と移流・流体連成は未検証です。 追加ODE例も固定小入力に限り、QSSAの厳密誤差保証・捕食被食の一般的長時間保証・SEIRの全時刻線形化精度は主張しません。",
-        "en": "Validation is limited to fixed reflection-symmetric initial data in 1D periodic domains. Pattern selection from general starts, 2D/nonperiodic problems, other kinetics, general SEIR inputs/full HH, experimental calibration and advection/fluid coupling remain unvalidated. The added ODE examples also use fixed small inputs; they do not certify rigorous QSSA error bounds, general long-time predator–prey behavior or all-time SEIR linearization accuracy."
+        "ja": "旧パターン例は固定した1次元周期・反射対称初期値の検証です。別配布の2次元境界モード・強制移流製造問題とHH単一細胞例も、それぞれ明記した固定条件に限ります。一般初期値からの模様選択、任意の2次元・非周期問題、他の反応則、SEIRの一般入力、HH空間軸索・実験データへの較正と流体連成は未検証です。 追加ODE例も固定小入力に限り、QSSAの厳密誤差保証・捕食被食の一般的長時間保証・SEIRの全時刻線形化精度は主張しません。",
+        "en": "The earlier pattern examples use fixed reflection-symmetric data in 1D periodic domains. Separate 2D boundary-mode, forced-advection manufactured and single-cell HH examples remain limited to their stated fixed conditions. Pattern selection from general starts, arbitrary 2D/nonperiodic problems, other kinetics, general SEIR inputs, spatial HH axons, experimental calibration and fluid coupling remain unvalidated. The added ODE examples also use fixed small inputs; they do not certify rigorous QSSA error bounds, general long-time predator–prey behavior or all-time SEIR linearization accuracy."
       },
       "supplemental_examples": [
         "reaction-diffusion-fourier",
@@ -261,7 +271,12 @@
         "reaction-diffusion-splitting",
         "enzyme-qssa",
         "lotka-volterra",
-        "seir-linearization"
+        "seir-linearization",
+        "hodgkin-huxley-controls",
+        "immigration-death-ssa",
+        "fisher-kpp-special-front",
+        "schnakenberg-2d-boundary-modes",
+        "keller-segel-forced-flux"
       ],
       "schnakenberg_scope": {
         "ja": "a=0.1,b=0.9、拡散係数0.01/1、長さ2πの1次元周期Schnakenberg系。旧線形発現例を保持し、固定した反射対称の有限振幅初期値の非線形発展と成長後パターンを独立Fourier–Galerkin/Radau参照および空間・時間細分化で比較します。一般の模様選択、2次元、生物実験への較正、流体連成には広げません。",
@@ -330,8 +345,8 @@
         "en": "Temperature control"
       },
       "scope": {
-        "ja": "12手法のうちLangevinとCSVRの2手法に専用実装。旧1自由度Langevin/BAOABの調和例を保持し、別版の同じOBABO分割で、非縮退2自由度の調和系とquartic係数λ=0.2の2自由度非調和系を比較します。CSVR単独の運動エネルギー核も検査。他の10手法は実装予定です。",
-        "en": "Two of the 12 methods have dedicated implementations: Langevin and CSVR. Preserve the earlier one-degree-of-freedom harmonic Langevin/BAOAB case. A separate edition compares both baths with the same OBABO splitting for a nondegenerate two-degree harmonic system and a two-degree anharmonic system with quartic coefficient lambda=0.2, and checks the standalone CSVR kinetic-energy kernel. The other 10 methods remain planned."
+        "ja": "旧LangevinとCSVRの2手法の比較を保持します。旧1自由度Langevin/BAOABの調和例を保持し、別版の同じOBABO分割で、非縮退2自由度の調和系とquartic係数λ=0.2の2自由度非調和系を比較します。CSVR単独の運動エネルギー核も検査。別配布の固定2モード系で、単純速度固定・Berendsen・Nosé–Hoover・NHC3の4手法を比較し、未達・未解決の原目標も保存します。残る6手法は実装予定です。",
+        "en": "Retain the earlier two-method comparison of Langevin and CSVR. Preserve the earlier one-degree-of-freedom harmonic Langevin/BAOAB case. A separate edition compares both baths with the same OBABO splitting for a nondegenerate two-degree harmonic system and a two-degree anharmonic system with quartic coefficient lambda=0.2, and checks the standalone CSVR kinetic-energy kernel. A separate fixed two-mode release contrasts direct rescaling, Berendsen, Nosé–Hoover and NHC3 while retaining unmet or unresolved original goals. The remaining six methods are planned."
       },
       "examples": [],
       "reading": {
@@ -347,14 +362,17 @@
         "en": "Compare bath choices under the same OBABO splitting; separate step/coupling effects and independent-stream sampling uncertainty. Check distributions and temperature fluctuations separately from correlations. Langevin and CSVR correlations need not agree: they describe method-dependent sampling dynamics."
       },
       "next": {
-        "ja": "非調和系は固定した小さな2自由度例に限定。一般多体系・拘束・重心除去、広い結合時間走査、他10手法、BOMD／CPMDと熱浴の連成は未検証。CSVR核の診断を独立した物理問題へ加算しません。",
-        "en": "Anharmonic evidence covers only the fixed small two-degree example. General many-body systems, constraints/center-of-mass removal, broad coupling sweeps, the other 10 methods and BOMD/CPMD-to-bath coupling remain unvalidated. The CSVR-kernel diagnostic is not an additional independent physical problem."
+        "ja": "非調和系は固定した小さな2自由度例に限定。固定線形拘束・重心除去と無次元2準位BO/CP/OU連成は別の小入力例です。一般多体系・非線形分子拘束、広い結合時間走査、残る6手法、実物質のBOMD／CPMDと熱浴の連成は未検証。CSVR核の診断を独立した物理問題へ加算しません。",
+        "en": "Anharmonic evidence covers only the fixed small two-degree example. Fixed linear-constraint/center-of-mass and dimensionless two-state BO/CP/OU coupling cases are separate small inputs. General many-body systems, nonlinear molecular constraints, broad coupling sweeps, the remaining six methods and real-material BOMD/CPMD-to-bath coupling remain unvalidated. The CSVR-kernel diagnostic is not an additional independent physical problem."
       },
       "supplemental_examples": [
         "langevin-harmonic",
         "csvr-kinetic-kernel",
         "csvr-langevin-harmonic",
-        "csvr-langevin-quartic"
+        "csvr-langevin-quartic",
+        "two-state-bo-cp-ou",
+        "deterministic-thermostat-contrasts",
+        "projected-canonical-dof"
       ]
     },
     {
@@ -387,7 +405,10 @@
         "ja": "既存の小規模例・保存済み独立参照と配布物の整合を維持し、必要時に少数の代表再実行を行う。大規模な基底・k点走査、重い独立参照の再生成、長時間BOMD／CPMD、一般物質への拡張は、必要性が指定された場合だけ別途検討する。",
         "en": "Maintain the existing small examples, saved independent references and release integrity, with a few representative reruns when needed. Large basis/k-point sweeps, expensive reference regeneration, long BOMD/CPMD and general-material extensions are considered separately only on explicit need."
       },
-      "supplemental_examples": []
+      "supplemental_examples": [
+        "periodic-he-reference-cards",
+        "periodic-projector-occupations"
+      ]
     },
     {
       "id": "foundations",
@@ -475,7 +496,9 @@
         "pic-independent-spatial",
         "dsmc-couette",
         "dsmc-fourier",
-        "dsmc-planar-shock"
+        "dsmc-planar-shock",
+        "gsph-sod",
+        "sph-pressure-acoustics"
       ],
       "scope": {
         "ja": "中性周期電荷のEwald／B-spline SPME、2次元自由空間対数核の真のFMM、1次元cold-plasma PIC、均質Maxwell分子のDSMC衝突成分を小規模検証。 旧5例に加え、同じ問題の独立参照・打切り・格子・時間・保存量・統計診断を別配布版で比較します。 追加固定例は真の2周期スラブ、3D1/r FMM、重力軌道、熱的PICと独立空間演算、物理時間の剛体球壁面流・Mach2衝撃波。",
@@ -512,7 +535,9 @@
         "su-olson-diffusion1996",
         "su-olson-transport1997",
         "shadow-absorber2d",
-        "opposing-beams2d"
+        "opposing-beams2d",
+        "williamson-sphere-transport",
+        "sph-pressure-acoustics"
       ],
       "scope": {
         "ja": "従来の1次元純吸収平板を保持します。追加の固定例では、等方散乱平板、規格化を分けた非平衡拡散と輸送・物質交換、2Dの影・ビームと静止M1を扱います。拡散極限の比較は平均自由行程を解像したFourierモードに限定し、固定格子APや一般の放射流体連成へは広げません。",
@@ -616,10 +641,11 @@
   "registry": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
   "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
   "source_sha256": {
-    "catalog/atlas-depth.json": "2ac22ddd02cb8cc7e3223738abcd5c91add0cf5714cffa98c130413d5eac57d7",
+    "catalog/atlas-depth.json": "b9829bb20804de2570af0b378db7723fc03bf0e4e0269871c07211fb1a5b42b0",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "catalog/atlas-depth-expansion.json": "a99cdc630a84a3e908c0ac95e907af1860206a31acb690711d152d5f4ed511d7",
+    "catalog/atlas-depth-expansion.json": "a3fa27c909cda00ef31a0919afffe3275a132bc03193841879563384fdb84249",
+    "catalog/atlas-equations.json": "f904a3d85199505331f3ef3ba6cd52530fbc7423120f0551dde0063e4e51d093",
     "code/validated-examples/2026-11-22/mhd/source-manifest.json": "49c66703b1b7891c41437abaf871fc69d9b3a2067731f9a1f7b0a2d4e5ff4061",
     "code/validated-examples/2026-11-22/mhd/verification.json": "272fdb476f16cd8f97e5cf3b8f9c7aab921ff56ed2448a0714a6473fa0c72597",
     "code/validated-examples/2026-11-22/mhd/cases.json": "4d7633246bc3652d7ff75d1e2195824e8c883b0336c7d60962ff220b20fbd31c",
@@ -730,6 +756,11 @@
     "code/validated-examples/2026-11-24/lbm-curved-boundary/cases.json": "a6423cddd48d0540aa5121e0ea3d8b84e8db9792d8650582e9f6e22fd168e78b",
     "code/validated-examples/2026-11-24/lbm-curved-boundary/results/result.json": "954e50130a966eb647e09bb3e6ebd2ce8e73f3cac34fbe5094d0eb5fee77088d",
     "code/validated-examples/2026-11-24/lbm-curved-boundary/atlas-lbm-curved-boundary-2026-11-24.zip": "69757fbf7ccab53450d7bdf6ce3023cd6f5ca3b42698d2e8c7a383421a1c640d",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/source-manifest.json": "2017c5da0e0a6d70ba01242b63d5bc391feb1fbe24795f8ceab2389790bbec00",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/verification.json": "0ce44ce14104c4cdd7e6876b8118d9e6c5635ae40af0f631623418c05264600e",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/cases.json": "8b4b8db859d0bb29a4c156beb7d02c5270776c460bed9e1796a409f3b1beb712",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json": "cab002c93e01d997562f3c145e1aaddd6a2a8ce59a087d44e8bddc4679081bbf",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip": "1d12a6ecd9d87ae95585a984e66411b2314eb7804b064f023aa57addc3142f49",
     "code/validated-examples/2026-11-22/mhd-convergence/source-manifest.json": "9d5fd8eb67ed3d4ac3965596bbd12152bdc1ae2e03a3a4f060573175d00caf67",
     "code/validated-examples/2026-11-22/mhd-convergence/verification.json": "ddf51e803eb94ca7dc419d0b9fc4aa6ec7204c319e448f7d4b120f5342a319d8",
     "code/validated-examples/2026-11-22/mhd-convergence/cases.json": "a1ebd3a1344c90cc49e11dd790a522434f7fdec27f77d8621a2197a7be738434",
@@ -760,6 +791,11 @@
     "code/validated-examples/2026-11-25/small-models/cases.json": "7da1b291ce84a8133573794574cb539f6d3c5512571cafa8f05a67ad1d6acabc",
     "code/validated-examples/2026-11-25/small-models/results/result.json": "2e0e830c2fa65aea6b67833b260cb617d794f41e4832eb8600db5fe8ab60c627",
     "code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip": "d341b8a90e0b6ade7c70760a2c32a9f3825a6b4e162b221c7cc95b10f3cd40c1",
+    "code/validated-examples/2026-11-25/quantum-small/source-manifest.json": "b13b8873c5f74ec3b1b25207ed145cf7ece1ceec2e0e254a9b7f18e93f73350c",
+    "code/validated-examples/2026-11-25/quantum-small/verification.json": "f78f47618f7524ef69e2b96ed460f1d1e4636cf42775f1ae643e062dabf99dbe",
+    "code/validated-examples/2026-11-25/quantum-small/cases.json": "4db1de209977cdc525037ebb1221db185dae82c042f241e2b7277569b10674a4",
+    "code/validated-examples/2026-11-25/quantum-small/results/result.json": "750fa3e7f3fe79a96aaacd46039bf00f18b7623d7c4b09035b3c850bfd5d2c20",
+    "code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip": "b332d168c00bd46862a4b5a98e42054e1749e0b734318e96af0049ab9d255cfc",
     "code/validated-examples/2026-11-22/models/source-manifest.json": "bdbb957f013cd76cd9568da822a815a533750eab7ee9129dcfe36fc2c25530d4",
     "code/validated-examples/2026-11-22/models/verification.json": "f792796e62b62c7be4eaa2d36fa460481563ac3e535e10c838a0a2e4502af3b2",
     "code/validated-examples/2026-11-22/models/cases.json": "09b670a3462f7f1395dcdf12b507786b69616c0ea165d2678efe780ddb0cf0e6",
@@ -775,6 +811,16 @@
     "code/validated-examples/2026-11-22/splitting/cases.json": "f252ee6b994a6827e5579b28127143680170124de50f05057d2890e545dcc84f",
     "code/validated-examples/2026-11-22/splitting/results/result.json": "7b1b8338ec2a03eb04e82f3891d4e2fd08a2edb665313dc8bd0991b1a7a9a8f2",
     "code/validated-examples/2026-11-22/splitting/atlas-splitting-2026-11-22.zip": "2ae466a4ea62e204716a388b86033de3a6493a9ab0ef4ad9aec4ebb038d8a404",
+    "code/validated-examples/2026-11-25/biology-ode-controls/source-manifest.json": "6b39422e0a480658f7435dbfff210ade94c3016ec5cc7cbfc55e54fff3215016",
+    "code/validated-examples/2026-11-25/biology-ode-controls/verification.json": "b6106b16b00c01c4a8fa95e0fc44d8cddf2f41ae19973598df7aa5c4e8a3cef9",
+    "code/validated-examples/2026-11-25/biology-ode-controls/cases.json": "ba2a1ca599d893f8460f853b712f407784d1b963ed2fac778193e275652225c0",
+    "code/validated-examples/2026-11-25/biology-ode-controls/results/result.json": "104875b041a43542ec5d1500003da8f5986983816e27ce3b88971d11d7b63149",
+    "code/validated-examples/2026-11-25/biology-ode-controls/atlas-biology-ode-controls-2026-11-25.zip": "b67232232a461e8ef0e24d522a3e40c9af64b8d90cd55c9657c955a92772b042",
+    "code/validated-examples/2026-11-25/biology-space-controls/source-manifest.json": "b9ebb71638b3f18fde2d5b32b8042016e0f33ac1daa42173937f957c3f65d0ab",
+    "code/validated-examples/2026-11-25/biology-space-controls/verification.json": "2e7efea396ecd14287ef8fe8b7326d88c61955a6201431eda4dbaa09c26daed2",
+    "code/validated-examples/2026-11-25/biology-space-controls/cases.json": "9128ac9e123ac817a890e279433ec11d275c52b0e00b33575ca69d6b3d967a46",
+    "code/validated-examples/2026-11-25/biology-space-controls/results/result.json": "090c187f89db9d05a2eb437eaf5e73b2dcf1e7600ef0163efd94bae4119cb6eb",
+    "code/validated-examples/2026-11-25/biology-space-controls/atlas-biology-space-controls-2026-11-25.zip": "8abffcd65c0fc14eb1a346dba17e70097e2dc8806b348e114fc449b4fe0e0419",
     "code/validated-examples/2026-11-22/mcmc/source-manifest.json": "c288e5c96aefe6f4bfdab4dbd78efc8b27924087aa09ac7e91d61adf63ebf195",
     "code/validated-examples/2026-11-22/mcmc/verification.json": "f39975a549b48345d5b6f833d6226cdae1054ecb9f004d9c845d1ffa8bbc8c9e",
     "code/validated-examples/2026-11-22/mcmc/cases.json": "fa950eafd45ac23aa2eba3374b23ab2d8df934368ab5b833bf812fbdd095fcaa",
@@ -795,6 +841,11 @@
     "code/validated-examples/2026-11-22/thermostats/cases.json": "123566ec7000dce11f2a6a7474d35e45c8fdf24db85a0556e2cbb3911d3acd77",
     "code/validated-examples/2026-11-22/thermostats/results/result.json": "7971007807acce9f75261b684b789f196e1d5dffc80797e102d1b0bebbc93f11",
     "code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip": "38142da988bf0c790eab7e7f10f8d1e209d074c3627f73a207f5223a24e18d65",
+    "code/validated-examples/2026-11-25/thermostat-constraint-controls/source-manifest.json": "6e64499f6bda68ad17ccc7402e49a7296b82d500174ce0eb238e0acd076cc45e",
+    "code/validated-examples/2026-11-25/thermostat-constraint-controls/verification.json": "c3273335cc6619c07d956252d65b00abf58ff3497d0a35776b3fc376ae70134e",
+    "code/validated-examples/2026-11-25/thermostat-constraint-controls/cases.json": "8763d8bb27b77b5f014914065a50a49a2e2b2b552128ce4c595b6a391de17c32",
+    "code/validated-examples/2026-11-25/thermostat-constraint-controls/results/result.json": "45e4101f6676b2b971b144f5df45c1b28d3bff564d3896eeb309ee6c667d9351",
+    "code/validated-examples/2026-11-25/thermostat-constraint-controls/atlas-thermostat-constraint-controls-2026-11-25.zip": "836113a7e8859d41b2697177f74cb2c8c8185a6fa4f4630773b914095ed10de1",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
     "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",

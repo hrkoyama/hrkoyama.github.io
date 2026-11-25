@@ -320,14 +320,22 @@
                   "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/run.py",
                   "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/periodic_forces.py",
                   "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/bomd.py",
-                  "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/run.py"
+                  "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/io_utils.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/coupled_md.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/eigenpairs.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/molecules.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/periodic_projector.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/plot_results.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/test_atomic_radial.py",
                   "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/test_periodic_dft.py",
-                  "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/test_periodic_forces.py"
+                  "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/test_periodic_forces.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/test_quantum_small.py"
                 ],
-                "code_mapping_scope": null
+                "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
               {
                 "id": "scf",
@@ -349,15 +357,23 @@
                   "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/run.py",
                   "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/periodic_forces.py",
                   "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/bomd.py",
-                  "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/run.py"
+                  "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/molecules.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/coupled_md.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/io_utils.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/eigenpairs.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/periodic_projector.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/plot_results.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/test_atomic_radial.py",
                   "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/test_molecular_hf.py",
                   "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/test_periodic_dft.py",
-                  "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/test_periodic_forces.py"
+                  "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/test_periodic_forces.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/test_quantum_small.py"
                 ],
-                "code_mapping_scope": null
+                "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
               {
                 "id": "electronic-bases",
@@ -429,13 +445,21 @@
                   "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/run.py",
                   "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/periodic_forces.py",
                   "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/bomd.py",
-                  "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/run.py"
+                  "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/io_utils.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/periodic_projector.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/coupled_md.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/eigenpairs.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/molecules.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/plot_results.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/test_periodic_dft.py",
-                  "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/test_periodic_forces.py"
+                  "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/test_periodic_forces.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/test_quantum_small.py"
                 ],
-                "code_mapping_scope": null
+                "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
               {
                 "id": "k-point",
@@ -539,14 +563,22 @@
                   "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/run.py",
                   "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/periodic_forces.py",
                   "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/bomd.py",
-                  "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/run.py"
+                  "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/io_utils.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/coupled_md.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/eigenpairs.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/molecules.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/periodic_projector.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/plot_results.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/test_atomic_radial.py",
                   "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/test_periodic_dft.py",
-                  "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/test_periodic_forces.py"
+                  "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/test_periodic_forces.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/test_quantum_small.py"
                 ],
-                "code_mapping_scope": null
+                "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
               {
                 "id": "electronic-bases",
@@ -595,15 +627,23 @@
                   "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/run.py",
                   "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/periodic_forces.py",
                   "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/bomd.py",
-                  "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/run.py"
+                  "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/molecules.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/coupled_md.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/io_utils.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/eigenpairs.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/periodic_projector.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/plot_results.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/test_atomic_radial.py",
                   "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/test_molecular_hf.py",
                   "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/test_periodic_dft.py",
-                  "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/test_periodic_forces.py"
+                  "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/test_periodic_forces.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/test_quantum_small.py"
                 ],
-                "code_mapping_scope": null
+                "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               }
             ],
             "examples": [
@@ -634,8 +674,8 @@
             "en": "BOMD and Car–Parrinello MD"
           },
           "summary": {
-            "ja": "BOMDは各核配置で電子基底状態を十分に収束させて核を進める。力の配布版にはvelocity-Verletへの接続と1ステップ対2半ステップの局所確認がある。BOMD全体とCPMDは解説のみの状態を維持し、長時間NVEやCPの仮想質量・直交制約の検証と区別する。",
-            "en": "BOMD advances nuclei after converging the electronic ground state at each geometry. The force package provides a velocity-Verlet interface and a one-step/two-half-step local check. Overall BOMD and CPMD records remain reading only; long NVE and CP fictitious-mass/orthogonality validation are separate."
+            "ja": "BOMDは各核配置で電子基底状態を十分に収束させて核を進める。力の配布版にはvelocity-Verletへの接続と1ステップ対2半ステップの局所確認がある。別の固定2準位BO/CP型模型には短い実行例がある。本ルートの周期He接続、一般のKohn–Sham MD、長時間NVEや多軌道CPMDの検証とは区別する。",
+            "en": "BOMD advances nuclei after converging the electronic ground state at each geometry. The force package provides a velocity-Verlet interface and a one-step/two-half-step local check. A separate fixed two-state BO/CP-type model has short executed examples. It is distinct from this route’s periodic-He interface, general Kohn–Sham MD, long NVE or multi-orbital CPMD validation."
           },
           "method_ids": [
             "born-oppenheimer-md",
@@ -677,14 +717,24 @@
                   "ja": "Born–Oppenheimer分子動力学（BOMD）",
                   "en": "Born–Oppenheimer molecular dynamics / BOMD"
                 },
-                "status": "reading-only",
+                "status": "educational-example",
                 "reading": {
                   "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-dft/#first-principles-md",
                   "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/#first-principles-md"
                 },
-                "code_urls": [],
-                "test_urls": [],
-                "code_mapping_scope": null
+                "code_urls": [
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/coupled_md.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/io_utils.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/eigenpairs.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/molecules.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/periodic_projector.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/plot_results.py"
+                ],
+                "test_urls": [
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/test_quantum_small.py"
+                ],
+                "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
               {
                 "id": "car-parrinello-md",
@@ -692,14 +742,24 @@
                   "ja": "カー–パリネロ法（CPMD）",
                   "en": "Car–Parrinello molecular dynamics / CPMD"
                 },
-                "status": "reading-only",
+                "status": "educational-example",
                 "reading": {
                   "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-dft/#first-principles-md",
                   "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/periodic-dft/#first-principles-md"
                 },
-                "code_urls": [],
-                "test_urls": [],
-                "code_mapping_scope": null
+                "code_urls": [
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/coupled_md.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/io_utils.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/eigenpairs.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/molecules.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/periodic_projector.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/plot_results.py"
+                ],
+                "test_urls": [
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/test_quantum_small.py"
+                ],
+                "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               }
             ],
             "examples": [],
@@ -715,8 +775,8 @@
             "en": "Thermostats and distribution checks"
           },
           "summary": {
-            "ja": "12手法のうちLangevinとCSVRの2手法に専用実装。旧1自由度Langevin/BAOABの調和例を保持し、別版の同じOBABO分割で、非縮退2自由度の調和系とquartic係数λ=0.2の2自由度非調和系を比較します。CSVR単独の運動エネルギー核も検査。他の10手法は実装予定です。",
-            "en": "Two of the 12 methods have dedicated implementations: Langevin and CSVR. Preserve the earlier one-degree-of-freedom harmonic Langevin/BAOAB case. A separate edition compares both baths with the same OBABO splitting for a nondegenerate two-degree harmonic system and a two-degree anharmonic system with quartic coefficient lambda=0.2, and checks the standalone CSVR kinetic-energy kernel. The other 10 methods remain planned."
+            "ja": "この段階の要素例はLangevinとCSVRの2手法です。旧1自由度Langevin/BAOABの調和例を保持し、別版の同じOBABO分割で、非縮退2自由度の調和系とquartic係数λ=0.2の2自由度非調和系を比較します。CSVR単独の運動エネルギー核も検査。別配布の決定論的4手法の固定比較は温度制御章で案内し、この段階の連成検証へは加えません。",
+            "en": "This stage uses component examples for two methods, Langevin and CSVR. Preserve the earlier one-degree-of-freedom harmonic Langevin/BAOAB case. A separate edition compares both baths with the same OBABO splitting for a nondegenerate two-degree harmonic system and a two-degree anharmonic system with quartic coefficient lambda=0.2, and checks the standalone CSVR kinetic-energy kernel. The thermostat chapter links a separate fixed four-method deterministic contrast; it is not added as coupled validation of this stage."
           },
           "method_ids": [
             "nose-hoover",
@@ -758,8 +818,8 @@
             }
           ],
           "gap": {
-            "ja": "専用実装は2手法で、他10手法は未実装。新しい2自由度調和・quartic比較とCSVR核は別の古典要素例です。旧BAOABも保持します。平衡分布・揺らぎと、浴に依存する時間相関を区別し、一般多体系や第一原理MDとの連成へ証拠を移しません。",
-            "en": "Dedicated implementations cover two methods; the other 10 methods are unimplemented. The new two-degree harmonic/quartic comparisons and CSVR kernel are separate classical components, alongside the retained BAOAB case. Distinguish equilibrium distributions/fluctuations from bath-dependent correlations, without transferring evidence to general many-body or first-principles-MD coupling."
+            "ja": "この段階に結び付ける要素例は2手法です。他方式の別固定入力例を連成の証拠へ流用しません。新しい2自由度調和・quartic比較とCSVR核は別の古典要素例です。旧BAOABも保持します。平衡分布・揺らぎと、浴に依存する時間相関を区別し、一般多体系や第一原理MDとの連成へ証拠を移しません。",
+            "en": "This stage links two thermostat component methods; separate fixed-input examples of other algorithms are not evidence of coupling. The new two-degree harmonic/quartic comparisons and CSVR kernel are separate classical components, alongside the retained BAOAB case. Distinguish equilibrium distributions/fluctuations from bath-dependent correlations, without transferring evidence to general many-body or first-principles-MD coupling."
           },
           "supplemental_ids": [
             "langevin-harmonic",
@@ -781,14 +841,21 @@
                   "ja": "Nosé–Hooverサーモスタット",
                   "en": "Nosé–Hoover thermostat"
                 },
-                "status": "planned",
+                "status": "educational-example",
                 "reading": {
                   "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/thermostats/",
                   "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/thermostats/"
                 },
-                "code_urls": [],
-                "test_urls": [],
-                "code_mapping_scope": null
+                "code_urls": [
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/common.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/deterministic.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/constrained.py"
+                ],
+                "test_urls": [
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/test_models.py"
+                ],
+                "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
               {
                 "id": "nose-hoover-chains",
@@ -796,14 +863,21 @@
                   "ja": "Nosé–Hoover chain",
                   "en": "Nosé–Hoover chains"
                 },
-                "status": "planned",
+                "status": "educational-example",
                 "reading": {
                   "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/thermostats/",
                   "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/thermostats/"
                 },
-                "code_urls": [],
-                "test_urls": [],
-                "code_mapping_scope": null
+                "code_urls": [
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/common.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/deterministic.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/constrained.py"
+                ],
+                "test_urls": [
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/test_models.py"
+                ],
+                "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
               {
                 "id": "langevin-thermostat",
@@ -820,11 +894,24 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/run.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/models.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/run.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/thermostats.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/thermostats.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/coupled_md.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/io_utils.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/eigenpairs.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/molecules.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/periodic_projector.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/plot_results.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/common.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/constrained.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/deterministic.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-22/models/test_models.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/test_thermostats.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/test_thermostats.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/test_quantum_small.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/test_models.py"
                 ],
                 "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
@@ -841,10 +928,15 @@
                 },
                 "code_urls": [
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/run.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/thermostats.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/thermostats.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/common.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/constrained.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/deterministic.py"
                 ],
                 "test_urls": [
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/test_thermostats.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/test_thermostats.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/test_models.py"
                 ],
                 "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               }
@@ -1494,7 +1586,13 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/boundary_reference.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/coefficient_exact.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/qualify.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/reference_models.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/reference_models.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/ale_piston.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/reference_riemann.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
@@ -1515,7 +1613,8 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_contract.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_dopri.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_reporting.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_stiff.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_stiff.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/test_components.py"
                 ],
                 "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
@@ -1559,7 +1658,17 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/data_family.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/oracles.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/qualify.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/reference_models.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/reference_models.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/common.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/hh.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/ssa.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/ale_piston.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/reference_riemann.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
@@ -1570,7 +1679,9 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/test_moving.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_cases.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_serialization.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/test_models.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/test_models.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/test_models.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/test_components.py"
                 ],
                 "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
@@ -2118,7 +2229,13 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/boundary_reference.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/coefficient_exact.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/qualify.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/reference_models.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/reference_models.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/ale_piston.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/reference_riemann.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
@@ -2139,7 +2256,8 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_contract.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_dopri.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_reporting.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_stiff.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_stiff.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/test_components.py"
                 ],
                 "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
@@ -2183,7 +2301,17 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/data_family.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/oracles.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/qualify.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/reference_models.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/reference_models.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/common.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/hh.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/ssa.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/ale_piston.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/reference_riemann.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
@@ -2194,7 +2322,9 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/test_moving.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_cases.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_serialization.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/test_models.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/test_models.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/test_models.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/test_components.py"
                 ],
                 "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
@@ -2662,7 +2792,17 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/data_family.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/oracles.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/qualify.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/reference_models.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/reference_models.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/common.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/hh.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/ssa.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/ale_piston.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/reference_riemann.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
@@ -2673,7 +2813,9 @@
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/test_moving.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_cases.py",
                   "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_serialization.py",
-                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/test_models.py"
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/test_models.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/test_models.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/test_components.py"
                 ],
                 "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               }
@@ -3456,14 +3598,22 @@
                   "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/run.py",
                   "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/periodic_forces.py",
                   "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/bomd.py",
-                  "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/run.py"
+                  "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/io_utils.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/coupled_md.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/eigenpairs.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/molecules.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/periodic_projector.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/plot_results.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/test_atomic_radial.py",
                   "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/test_periodic_dft.py",
-                  "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/test_periodic_forces.py"
+                  "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/test_periodic_forces.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/test_quantum_small.py"
                 ],
-                "code_mapping_scope": null
+                "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               },
               {
                 "id": "scf",
@@ -3485,15 +3635,23 @@
                   "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/run.py",
                   "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/periodic_forces.py",
                   "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/bomd.py",
-                  "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/run.py"
+                  "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/run.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/molecules.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/coupled_md.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/io_utils.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/eigenpairs.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/periodic_projector.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/plot_results.py"
                 ],
                 "test_urls": [
                   "https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/test_atomic_radial.py",
                   "https://hrkoyama.github.io/code/molecular-hf/2026-11-22/test_molecular_hf.py",
                   "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/test_periodic_dft.py",
-                  "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/test_periodic_forces.py"
+                  "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/test_periodic_forces.py",
+                  "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/test_quantum_small.py"
                 ],
-                "code_mapping_scope": null
+                "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct."
               }
             ],
             "examples": [
@@ -4013,15 +4171,15 @@
   "registry": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples.json",
   "verification_receipt": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json",
   "source_sha256": {
-    "catalog/atlas-crossovers.json": "04358952828bd2732864c794205f60e351d0a7a669abec0222c2821fc03fd71f",
-    "catalog/atlas-methods.json": "b303a2990f02603849719e9094e46768634286cd84e18b425ce48e5934873297",
-    "numerical-methods-atlas/methods/index.json": "1eefb5b12ac1faa749f68e8abf7d6811723e866e37f9d205bfad73d57bc4ec21",
+    "catalog/atlas-crossovers.json": "e9d521da62c793a9d2b2cc8da1f98571a7a1ad2b0353ccda461aff9ba0da62dd",
+    "catalog/atlas-methods.json": "989b31c7bfe335ebf0c6d44cb9ed126aa79aad9c74d913f6d41ec853890a6418",
+    "numerical-methods-atlas/methods/index.json": "0df23254c946c678fded9db00fb640e625975e03fbb0e604ab0e1232ce78a04f",
     "numerical-methods-atlas/code-and-data/examples.json": "3fd85a15483d2a8abcd06fc9523da0f4cc7e45d4a835f06355ac424fd5af8cb7",
     "numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json": "f8fb4b768093f44190180933ec248b6d44a263671431803fddc76ecc7b83a30b",
-    "numerical-methods-atlas/assets/biological-models.json": "d27f67c75c3324c8a1d0ec132c07346d02b05c5be67913fb8467f2882af4510b"
+    "numerical-methods-atlas/assets/biological-models.json": "bf5fc19ef07d4c979a55706ff39904b3a7db020b4aa145b4a33bc89e681e40cb"
   },
   "supplemental_source_sha256": {
-    "catalog/atlas-depth-expansion.json": "a99cdc630a84a3e908c0ac95e907af1860206a31acb690711d152d5f4ed511d7",
+    "catalog/atlas-depth-expansion.json": "a3fa27c909cda00ef31a0919afffe3275a132bc03193841879563384fdb84249",
     "code/validated-examples/2026-11-22/biology/source-manifest.json": "56947a4fb54ae757408ddddfc5de0884bfe35266032ee425a8d96a815f3362ba",
     "code/validated-examples/2026-11-22/biology/verification.json": "5cafaaef809f46e6ab01327107f7367113b8069931621fc92d446fbf142682bd",
     "code/validated-examples/2026-11-22/biology/cases.json": "fe99de593520876bac63a799263a1bbc105ed82d2bf04a63df28b36b2a27e279",

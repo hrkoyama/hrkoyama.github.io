@@ -2871,7 +2871,7 @@
     }
   ],
   "source_sha256": {
-    "catalog/atlas-depth-expansion.json": "a99cdc630a84a3e908c0ac95e907af1860206a31acb690711d152d5f4ed511d7",
+    "catalog/atlas-depth-expansion.json": "a3fa27c909cda00ef31a0919afffe3275a132bc03193841879563384fdb84249",
     "code/validated-examples/2026-11-22/foundations/source-manifest.json": "1b6302f6727a760526b1a38bad01848f051cb37f19300922616a5ed184980440",
     "code/validated-examples/2026-11-22/foundations/verification.json": "3df61261f1e0f33dcf8d8f1ced1a18a60fbcbec5e020814b46d7bf1c5411aadf",
     "code/validated-examples/2026-11-22/foundations/cases.json": "cabfaae3a51cfdefcfcf05a6eb84c7bf35b455cc4823e511933e8e822a04a03f",
@@ -3186,6 +3186,31 @@
     "code/validated-examples/2026-11-25/small-models/verification.json": "a134ed7650c468598c7222c994e2ae49a87c4584264269747c4bc2141a115145",
     "code/validated-examples/2026-11-25/small-models/cases.json": "7da1b291ce84a8133573794574cb539f6d3c5512571cafa8f05a67ad1d6acabc",
     "code/validated-examples/2026-11-25/small-models/results/result.json": "2e0e830c2fa65aea6b67833b260cb617d794f41e4832eb8600db5fe8ab60c627",
-    "code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip": "d341b8a90e0b6ade7c70760a2c32a9f3825a6b4e162b221c7cc95b10f3cd40c1"
+    "code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip": "d341b8a90e0b6ade7c70760a2c32a9f3825a6b4e162b221c7cc95b10f3cd40c1",
+    "code/validated-examples/2026-11-25/biology-ode-controls/source-manifest.json": "6b39422e0a480658f7435dbfff210ade94c3016ec5cc7cbfc55e54fff3215016",
+    "code/validated-examples/2026-11-25/biology-ode-controls/verification.json": "b6106b16b00c01c4a8fa95e0fc44d8cddf2f41ae19973598df7aa5c4e8a3cef9",
+    "code/validated-examples/2026-11-25/biology-ode-controls/cases.json": "ba2a1ca599d893f8460f853b712f407784d1b963ed2fac778193e275652225c0",
+    "code/validated-examples/2026-11-25/biology-ode-controls/results/result.json": "104875b041a43542ec5d1500003da8f5986983816e27ce3b88971d11d7b63149",
+    "code/validated-examples/2026-11-25/biology-ode-controls/atlas-biology-ode-controls-2026-11-25.zip": "b67232232a461e8ef0e24d522a3e40c9af64b8d90cd55c9657c955a92772b042",
+    "code/validated-examples/2026-11-25/biology-space-controls/source-manifest.json": "b9ebb71638b3f18fde2d5b32b8042016e0f33ac1daa42173937f957c3f65d0ab",
+    "code/validated-examples/2026-11-25/biology-space-controls/verification.json": "2e7efea396ecd14287ef8fe8b7326d88c61955a6201431eda4dbaa09c26daed2",
+    "code/validated-examples/2026-11-25/biology-space-controls/cases.json": "9128ac9e123ac817a890e279433ec11d275c52b0e00b33575ca69d6b3d967a46",
+    "code/validated-examples/2026-11-25/biology-space-controls/results/result.json": "090c187f89db9d05a2eb437eaf5e73b2dcf1e7600ef0163efd94bae4119cb6eb",
+    "code/validated-examples/2026-11-25/biology-space-controls/atlas-biology-space-controls-2026-11-25.zip": "8abffcd65c0fc14eb1a346dba17e70097e2dc8806b348e114fc449b4fe0e0419",
+    "code/validated-examples/2026-11-25/thermostat-constraint-controls/source-manifest.json": "6e64499f6bda68ad17ccc7402e49a7296b82d500174ce0eb238e0acd076cc45e",
+    "code/validated-examples/2026-11-25/thermostat-constraint-controls/verification.json": "c3273335cc6619c07d956252d65b00abf58ff3497d0a35776b3fc376ae70134e",
+    "code/validated-examples/2026-11-25/thermostat-constraint-controls/cases.json": "8763d8bb27b77b5f014914065a50a49a2e2b2b552128ce4c595b6a391de17c32",
+    "code/validated-examples/2026-11-25/thermostat-constraint-controls/results/result.json": "45e4101f6676b2b971b144f5df45c1b28d3bff564d3896eeb309ee6c667d9351",
+    "code/validated-examples/2026-11-25/thermostat-constraint-controls/atlas-thermostat-constraint-controls-2026-11-25.zip": "836113a7e8859d41b2697177f74cb2c8c8185a6fa4f4630773b914095ed10de1",
+    "code/validated-examples/2026-11-25/quantum-small/source-manifest.json": "b13b8873c5f74ec3b1b25207ed145cf7ece1ceec2e0e254a9b7f18e93f73350c",
+    "code/validated-examples/2026-11-25/quantum-small/verification.json": "f78f47618f7524ef69e2b96ed460f1d1e4636cf42775f1ae643e062dabf99dbe",
+    "code/validated-examples/2026-11-25/quantum-small/cases.json": "4db1de209977cdc525037ebb1221db185dae82c042f241e2b7277569b10674a4",
+    "code/validated-examples/2026-11-25/quantum-small/results/result.json": "750fa3e7f3fe79a96aaacd46039bf00f18b7623d7c4b09035b3c850bfd5d2c20",
+    "code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip": "b332d168c00bd46862a4b5a98e42054e1749e0b734318e96af0049ab9d255cfc",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/source-manifest.json": "2017c5da0e0a6d70ba01242b63d5bc391feb1fbe24795f8ceab2389790bbec00",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/verification.json": "0ce44ce14104c4cdd7e6876b8118d9e6c5635ae40af0f631623418c05264600e",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/cases.json": "8b4b8db859d0bb29a4c156beb7d02c5270776c460bed9e1796a409f3b1beb712",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json": "cab002c93e01d997562f3c145e1aaddd6a2a8ce59a087d44e8bddc4679081bbf",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip": "1d12a6ecd9d87ae95585a984e66411b2314eb7804b064f023aa57addc3142f49"
   }
 }

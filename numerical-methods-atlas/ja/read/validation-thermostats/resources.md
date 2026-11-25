@@ -14,6 +14,18 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostat
 - [Langevinサーモスタット](<https://hrkoyama.github.io/numerical-methods-atlas/methods/langevin-thermostat/?lang=ja>)
 
   この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。
+- [Nosé–Hooverサーモスタット](<https://hrkoyama.github.io/numerical-methods-atlas/methods/nose-hoover/?lang=ja>)
+
+  この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。
+- [Nosé–Hoover chain](<https://hrkoyama.github.io/numerical-methods-atlas/methods/nose-hoover-chains/?lang=ja>)
+
+  この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。
+- [Berendsen弱結合サーモスタット](<https://hrkoyama.github.io/numerical-methods-atlas/methods/berendsen-thermostat/?lang=ja>)
+
+  この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。
+- [単純な速度スケーリング](<https://hrkoyama.github.io/numerical-methods-atlas/methods/velocity-rescaling/?lang=ja>)
+
+  この問題に明示的に結び付けられた補助実行例と、存在する場合は共通実行例の手法です。別問題の配布物を借用していません。
 - [確率的速度リスケーリング（CSVR）](<https://hrkoyama.github.io/numerical-methods-atlas/methods/stochastic-velocity-rescaling/?lang=ja>)
 - [Langevinサーモスタット](<https://hrkoyama.github.io/numerical-methods-atlas/methods/langevin-thermostat/?lang=ja>)
 
@@ -22,6 +34,9 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostat
 - [Hamilton系・振動子](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#hamiltonian-ja>)
 
   正準方程式と分離可能なHamiltonianの代表形。調和・4次ポテンシャルの振動子で、エネルギー誤差とシンプレクティック性を比べます。 Hamilton系へのリンクは非調和ポテンシャルの力学部分です。確率温度浴を加えたCSVR・Langevinの分布検証を行います。
+- [2モードの決定論的温度浴](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#finite-mode-thermostat-model-ja>)
+
+  著者作成の分割でありLAMMPS/MKT実装の完全再現ではありません。時刻20は混合・平衡化の証明でなく、平均温度一致だけで正準分布や一般的なエルゴード性を認定しません。 Hamilton系へのリンクは非調和ポテンシャルの力学部分です。確率温度浴を加えたCSVR・Langevinの分布検証を行います。
 - [この実行例の式と条件](<https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-kinetic-kernel/?lang=ja#csvr-kinetic-kernel-ja-algorithm>)
 
   平方完成した厳密CIR遷移を、標準正規Rと独立χ²(Nf−1)のSから作ります。同じRでglobal αの符号を決め、Nf=1ではS=0。単位方向と新しい半径からpを再構成し、極小KでKnew/Kを作りません。K=0は方向が未定義として拒否します。
@@ -60,6 +75,11 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostat
 - [非調和CSVRとLangevin：Boltzmann求積との分布比較：参照・比較条件](<https://hrkoyama.github.io/numerical-methods-atlas/problems/thermostatted-quartic/?lang=ja#references-ja>)
 
   非調和ポテンシャルのBoltzmann分布を独立数値求積し、CSVR・Langevinの有限刻み分布とモーメントを比較します。厳密な確率軌道の比較ではありません。
+- [NH・chain・弱結合・速度固定の比較](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-deterministic-thermostat-contrasts-ja>)
+  relation: same-problem
+  reference_kind: semi-analytic
+
+  半解析解 質量1、kBT=1、振動数1/1.7、四次係数0/0.2。NH1・NHC3・Berendsen・固定速さの熱浴を、2結合・2刻み、正準256/加熱128標本で比較します。無次元でQ1=2τ²、Qj=τ²。空間境界のない2モード初期値問題で、正準・加熱アンサンブルを固定します。 同じ2モード四次系と調和対照。決定論的浴の短時間・有限標本比較。
 - [CSVRの厳密浴：条件付き分布・揺らぎ・運動エネルギー相関：参照・検証](<https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-kinetic-kernel/?lang=ja#csvr-kinetic-kernel-ja-validation>)
 
   条件付き平均・分散は独立なCIR式、CDFの3確率点はSciPyの非心χ²分位点、定常KはGamma分布、浴単独ACFはexp(−t/τ)と照合。無雑音の平均緩和は分散を失う対照として別表示します。
@@ -74,6 +94,11 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostat
 - [非調和CSVRとLangevin：Boltzmann求積との分布比較：参照・検証](<https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-langevin-quartic/?lang=ja#csvr-langevin-quartic-ja-validation>)
 
   座標の正規化・CDF・Uの平均/分散を1D求積、HのCDFをKの指数分布と2D座標Boltzmann密度の畳込み積分で得ます。求積公差2e−10と2e−12の差を保存し、独立棄却集団でもH分布を検査。q,p,K,Hの相関には複製間の標準誤差を併記し、刻み差と標本誤差を混同しません。
+- [NH・chain・弱結合・速度固定の比較](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-deterministic-thermostat-contrasts-ja>)
+  relation: same-problem
+  reference_kind: semi-analytic
+
+  半解析解 質量1、kBT=1、振動数1/1.7、四次係数0/0.2。NH1・NHC3・Berendsen・固定速さの熱浴を、2結合・2刻み、正準256/加熱128標本で比較します。無次元でQ1=2τ²、Qj=τ²。空間境界のない2モード初期値問題で、正準・加熱アンサンブルを固定します。 同じ2モード四次系と調和対照。決定論的浴の短時間・有限標本比較。
 
 ## コード・検証
 
@@ -81,6 +106,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostat
   availability: run
 
   弱い四次ポテンシャルを持つ2自由度で、CSVRとLangevinの分布・温度とエネルギーの揺らぎ・相関を比較。正準分布を独立なBoltzmann求積から得ます。
+- [NH・chain・弱結合・速度固定の比較](<https://hrkoyama.github.io/numerical-methods-atlas/validation/deterministic-thermostat-contrasts/?lang=ja>)
+  availability: run
+
+  同じ2モード系で、温度平均に加えて分布・揺らぎ・相関を比べます。
 - [CSVRの厳密浴：条件付き分布・揺らぎ・運動エネルギー相関](<https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-kinetic-kernel/?lang=ja>)
   availability: run
 

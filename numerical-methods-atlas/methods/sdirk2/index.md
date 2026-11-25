@@ -224,7 +224,11 @@ BDF2/SDIRK2と倍分割適応法。解析Jacobian・段階内だけの因子再�
 
 ##### [硬い余弦追従ODE](https://hrkoyama.github.io/numerical-methods-atlas/problems/stiff-cosine/?lang=ja#references-ja) (`stiff-cosine`)
 
-参照解一覧の対応カードは未登録です。問題ごとの参照・検証資料に、解析的基準・数値参照・保存則などの確認範囲を示します。
+- [硬い余弦追従ODE：SDIRK2](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-stiff-cosine-exact-ja) (`stiff-cosine-exact`; 同じ問題の参照; 解析参照)
+
+既存の固定入力・保存結果に対応する解析参照カードを追加。解析式、点・時刻・動径の標本化、配布版SHAと実行コードを相互に辿れます。過去の計算を再実行した記録ではありません。
+
+[既存の参照図](/numerical-methods-atlas/problems/stiff-cosine/?lang=ja)
 
 ##### [有理関数を厳密解に持つ非線形・非自律ODE](https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-ode/?lang=ja#references-ja) (`nonlinear-rational-ode`)
 
@@ -440,7 +444,11 @@ Separate the initial layer, integration error and QSSA modeling error in a four-
 
 ##### [Stiff cosine-tracking ODE](https://hrkoyama.github.io/numerical-methods-atlas/problems/stiff-cosine/?lang=en#references-en) (`stiff-cosine`)
 
-No corresponding reference-library card is registered. The problem’s references and checks describe its analytic standards, numerical references or conservation checks.
+- [Stiff cosine-tracking ODE: SDIRK2](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-stiff-cosine-exact-en) (`stiff-cosine-exact`; Same-problem reference; Analytic reference)
+
+An analytic reference card now links the existing fixed inputs and saved results: formula, point/time/radial sampling, edition SHA and executable code. This metadata registration is not a new execution.
+
+[Existing reference profile](/numerical-methods-atlas/problems/stiff-cosine/?lang=en)
 
 ##### [Nonlinear nonautonomous ODE with rational exact solution](https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-ode/?lang=en#references-en) (`nonlinear-rational-ode`)
 

@@ -158,6 +158,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stability/
   availability: run
 
   実1D非周期場で、未補正/境界補正Strangを同じFD参照へ比較し、時間誤差と空間誤差を分けます。
+- [球面浅水波の軸対称定常釣合いを時間積分](<https://hrkoyama.github.io/numerical-methods-atlas/validation/sphere-zonal-balance/?lang=ja>)
+  availability: run
+
+  球面浅水波の軸対称な無次元定常状態を実際に時間積分し、釣合い残差と格子依存を分ける。
 - [周期正弦波の線形移流：風上法と解析解](<https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/advection-sine/?lang=ja>)
   availability: run
 

@@ -24,4 +24,15 @@ No chapter-specific association is registered. Atlas-wide index: [Exact and refe
 
 ## Code and validation
 
-No chapter-specific association is registered. Atlas-wide index: [Code, inputs and validation](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en)
+- [Sod-type particle shock tube with Gaussian-convolution GSPH](<https://hrkoyama.github.io/numerical-methods-atlas/validation/gsph-sod/?lang=en>)
+  availability: run
+
+  ActualInutsuka-linear-overlap variablehGSPH approximation withfirstorderpair states, comparedwithdistinctstandardSPHcontrol. Periodictwointerfaces; centralwindowbeforeouterwaves. Not cubic/MUSCLpaperreproduction or plainSPH-pressure-star surrogate.
+- [Uniform pressure and acoustics: particle-layout effects in SPH/GSPH](<https://hrkoyama.github.io/numerical-methods-atlas/validation/sph-pressure-acoustics/?lang=en>)
+  availability: run
+
+  Regular/deterministicallyjitteredperiodicparticles, fixedhSPHcontrol vs adaptivehGSPH. Separateinitialkernelerror and fluidupdate, finiteamplitudeO(A²)linearizedreference remainder. No universalGSPHsuperiorityclaim.
+- [Godunov SPH / GSPH — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/gsph/?lang=en#method-execution-en>)
+  availability: source
+
+  Method-specific editions and related sources; fixed-input runs are listed separately.

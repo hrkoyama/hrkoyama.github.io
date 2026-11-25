@@ -117,6 +117,7 @@
 - [非周期壁面：キャビティと製造解](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-wall-flow/)
 - [角特異性・曲線座標・Neumann／Robin境界](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-mesh-boundary/)
 - [非一様ALE輸送・2次元回転浅水波](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-moving-waves/)
+- [ALEピストン・球面輸送・SPH/GSPHの限定検証](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-continuum-particle-controls/)
 
 ## 粒子・運動論・輸送
 
@@ -165,6 +166,7 @@
 - [2D誘電体円柱のMie散乱幅](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-cylinder/)
 - [Lorentz分散板へのs/p斜め入射](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-lorentz/)
 - [分散媒質の浅い入射角と長時間PML](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-maxwell-grazing/)
+- [小さな量子模型と保存参照カード](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quantum-small/)
 
 ## 確率計算・生物・温度制御
 
@@ -181,6 +183,9 @@
 - [CSVRとLangevin：分布・揺らぎ・相関](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/)
 - [SDEの弱誤差・強誤差と標本誤差](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-accuracy/)
 - [重要度サンプリングと相関Gaussian診断](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-stochastic-estimation/)
+- [神経膜と反応SSAの独立検証](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology-ode-controls/)
+- [生物反応拡散の2次元・境界検証](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology-space-controls/)
+- [決定論的温度制御と拘束自由度](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostat-constraint-controls/)
 
 ## 検証問題・実験ガイド
 

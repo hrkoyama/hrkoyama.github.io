@@ -43,7 +43,9 @@ $$
 
 座標の正規化・CDF・Uの平均/分散を1D求積、HのCDFをKの指数分布と2D座標Boltzmann密度の畳込み積分で得ます。求積公差2e−10と2e−12の差を保存し、独立棄却集団でもH分布を検査。q,p,K,Hの相関には複製間の標準誤差を併記し、刻み差と標本誤差を混同しません。
 
-参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
+- [NH・chain・弱結合・速度固定の比較](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-deterministic-thermostat-contrasts-ja) (`deterministic-thermostat-contrasts`; 同じ問題の参照 · 半解析参照)
+
+同じ2モード四次系と調和対照。決定論的浴の短時間・有限標本比較。
 ## 前提・単位・境界
 
 m=kB=T=1、ω=(1,1.7)、λ=0.2、U=Σ(ω²q²/2+λq⁴/4)。正準8192複製、温度摂動4096複製、t=20、τ=0.25/1、h=0.1/0.05、lag=0/0.5/1/2/4。
@@ -175,7 +177,9 @@ A saved validation figure for this execution example. Its conditions and accepta
 
 Obtain coordinate normalizers/CDFs and U moments by 1D quadrature, and the H CDF by convolving exponential K with the 2D positional Boltzmann density. Save the difference between quadrature tolerances 2e−10 and 2e−12; a separate rejection ensemble also checks H. Report independent-replica standard errors for q,p,K,H correlations, keeping step differences distinct from sampling noise.
 
-No corresponding reference-library card is registered; execution-specific material above documents its reference values and acceptance checks.
+- [NH,chains,weak coupling and fixed-speed contrasts](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-deterministic-thermostat-contrasts-en) (`deterministic-thermostat-contrasts`; Same-problem reference · Semi-analytic reference)
+
+Same two-mode quartic system plus a harmonic control; short-time and finite-sample deterministic-bath comparisons.
 ## Assumptions, units and boundaries
 
 m=kB=T=1, omega=(1,1.7), lambda=0.2, U=sum(omega²q²/2+lambda q⁴/4). Use 8192 canonical and 4096 heated replicas, t=20, tau=0.25/1, h=0.1/0.05, lags 0/0.5/1/2/4.

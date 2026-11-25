@@ -2,7 +2,7 @@
 
 温度の平均だけでなく、揺らぎ・エルゴード性・時間相関を比べる。Nosé–Hoover、速度スケーリングから確率的・運動量保存型の手法まで。
 
-12手法のうちLangevinとCSVRの2手法に専用実装。旧1自由度Langevin/BAOABの調和例を保持し、別版の同じOBABO分割で、非縮退2自由度の調和系とquartic係数λ=0.2の2自由度非調和系を比較します。CSVR単独の運動エネルギー核も検査。他の10手法は実装予定です。
+旧LangevinとCSVRの2手法の比較を保持します。旧1自由度Langevin/BAOABの調和例を保持し、別版の同じOBABO分割で、非縮退2自由度の調和系とquartic係数λ=0.2の2自由度非調和系を比較します。CSVR単独の運動エネルギー核も検査。別配布の固定2モード系で、単純速度固定・Berendsen・Nosé–Hoover・NHC3の4手法を比較し、未達・未解決の原目標も保存します。残る6手法は実装予定です。
 
 ## 何の温度を制御するか
 
@@ -86,15 +86,23 @@ $$
 
 ## 検証済みの範囲と次の課題
 
-3つの新例は、熱浴単独の厳密則、少自由度の調和系、弱い非調和系を別々に検査します。各例で固定入力、実測値、誤差と不確かさ、受入条件、コード、テスト、配布ZIP、独立展開からの追試記録へ進めます。旧BAOAB例は別の根拠です。他の10手法は専用の実装・検証をまだ持ちません。
+3つの新例は、熱浴単独の厳密則、少自由度の調和系、弱い非調和系を別々に検査します。各例で固定入力、実測値、誤差と不確かさ、受入条件、コード、テスト、配布ZIP、独立展開からの追試記録へ進めます。旧BAOAB例は別の根拠です。このCSVR比較を他方式の検証へ流用しません。別配布で決定論的4方式の固定入力比較を行い、未達・未解決の原目標も表示します。残る6方式は実装予定です。
 
 ## 出典と確認範囲
 
-CSVRについては2007年原著の著者稿の運動エネルギー式と付録、2008年原著の著者稿の符号付き更新式、原著者の誤植訂正を確認し、採用した小規模な古典例を独立参照・求積・再実行で検証しています。原著のLennard–JonesやTIP4P水の数値実験の再現ではありません。他の10方式は比較解説・一次文献への案内であり、ここで数値検証したと表示しません。Gaussian isokineticの個別原論文の整理も継続課題です。
+CSVRについては2007年原著の著者稿の運動エネルギー式と付録、2008年原著の著者稿の符号付き更新式、原著者の誤植訂正を確認し、採用した小規模な古典例を独立参照・求積・再実行で検証しています。原著のLennard–JonesやTIP4P水の数値実験の再現ではありません。このCSVR原著確認を他方式へ広げません。決定論的4方式は別配布の限定例であり、残る6方式は比較解説・一次文献への案内です。Gaussian isokineticの個別原論文の整理も継続課題です。
 
 - G. Bussi, D. Donadio and M. Parrinello (2007). Canonical sampling through velocity rescaling. https://arxiv.org/html/0803.4060v1
 - G. Bussi and M. Parrinello (2008). Stochastic thermostats: comparison of local and global schemes. https://arxiv.org/html/0803.4397v1
 - Giovanni Bussi (2026). Algorithms: stochastic velocity rescaling, author correction note. https://sites.google.com/site/giovannibussi/Research/algorithms
+
+## NH・chain・弱結合・速度固定の比較
+
+単位質量,kBT=1、周波数1/1.7、quartic係数0/0.2。NH1/NHC3/Berendsen/速度固定、2結合・2刻み、正準256＋加熱128レプリカを固定します。
+
+物理的時間反転、Hextの微分、phi1、弱結合の局所逆と非可逆な速度固定を別に検査。時刻20の4分布・揺らぎ・符号付き相関とDKWの未確定範囲を残します。
+
+著者作成の分割でありLAMMPS/MKT実装の完全再現ではありません。時刻20は混合・平衡化の証明でなく、平均温度一致だけで正準分布や一般的なエルゴード性を認定しません。
 
 ## 実行・検証例
 
@@ -133,3 +141,30 @@ Entry: https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-langev
 ZIP: https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip
 Results: https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/results/result.json
 Receipt: https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/verification.json
+
+### 2準位模型のBO/CP型連成と短い核熱浴
+
+短い自作教育模型です。第一原理・長いNVE・一般CPMD・正準平衡・エルゴード性の成功は主張しません。
+
+Entry: https://hrkoyama.github.io/numerical-methods-atlas/validation/two-state-bo-cp-ou/?lang=ja
+ZIP: https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/results/result.json
+Receipt: https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/verification.json
+
+### NH・chain・弱結合・速度固定の比較
+
+著者作成の分割でありLAMMPS/MKT実装の完全再現ではありません。時刻20は混合・平衡化の証明でなく、平均温度一致だけで正準分布や一般的なエルゴード性を認定しません。
+
+Entry: https://hrkoyama.github.io/numerical-methods-atlas/validation/deterministic-thermostat-contrasts/?lang=ja
+ZIP: https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/atlas-thermostat-constraint-controls-2026-11-25.zip
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/results/result.json
+Receipt: https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/verification.json
+
+### 拘束・重心除去と正準統計
+
+固定線形拘束の小例です。非線形分子拘束、Fixman補正、輸送係数へ一般化しません。独立seedの冗長拘束系には軌跡の一致を要求せず、CSVRの動的相関は経験的な結果です。
+
+Entry: https://hrkoyama.github.io/numerical-methods-atlas/validation/projected-canonical-dof/?lang=ja
+ZIP: https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/atlas-thermostat-constraint-controls-2026-11-25.zip
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/results/result.json
+Receipt: https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/verification.json

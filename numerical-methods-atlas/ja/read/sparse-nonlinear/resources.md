@@ -82,16 +82,30 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/sparse-nonlinear/
 
 - [1次元Bratu非線形境界値問題：参照・比較条件](<https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu/?lang=ja#references-ja>)
 
-  小さい枝の双曲線関数による連続解と格子収束を確認します。感度・逆問題の追補では微分・目的関数を別に検証し、18件の参照解一覧にBratu専用カードはありません。
+  小さい枝の双曲線関数による連続解と格子収束を確認します。感度・逆問題の追補では微分・目的関数を別に検証します。 既存の固定入力・保存結果に対応する解析参照カードを追加。解析式、点・時刻・動径の標本化、配布版SHAと実行コードを相互に辿れます。過去の計算を再実行した記録ではありません。
+- [1次元Bratu：小さい枝のNewton–GMRES](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-bratu-lower-branch-analytic-ja>)
+  relation: same-problem
+  reference_kind: analytic
+
+  解析解 既存の残差十分減少による減衰NewtonとILU(0)付きGMRES。解析解u=2log[cosh(β/2)/cosh(β(x−1/2))]。βtanh(β/2)<2で小さい枝を選び、初期値は全点零。内部Newton制御は非線形許容値1e-10、最大30反復。 既存の固定入力・保存結果に対応する解析参照カードを追加。解析式、点・時刻・動径の標本化、配布版SHAと実行コードを相互に辿れます。過去の計算を再実行した記録ではありません。
 - [非対称移流拡散離散系の製造解：参照・比較条件](<https://hrkoyama.github.io/numerical-methods-atlas/problems/sparse-advection-diffusion/?lang=ja#references-ja>)
 
   既知の離散ベクトルからb=A xを構成する製造系で、真の残差と解誤差を確認します。連続移流拡散方程式の厳密解を使った検証とは区別します。
 - [減衰Newton法による3次方程式の求根：参照・比較条件](<https://hrkoyama.github.io/numerical-methods-atlas/problems/cubic-root/?lang=ja#references-ja>)
 
   x³-1=0の既知の実根x=1と残差を用い、Armijo減衰Newtonの収束を確認します。
+- [1次元Bratu：小さい枝のNewton–GMRES](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-bratu-lower-branch-analytic-ja>)
+  reference_kind: analytic
+
+  解析解 既存の残差十分減少による減衰NewtonとILU(0)付きGMRES。解析解u=2log[cosh(β/2)/cosh(β(x−1/2))]。βtanh(β/2)<2で小さい枝を選び、初期値は全点零。内部Newton制御は非線形許容値1e-10、最大30反復。
 - [1次元Bratu：小さい枝のNewton–GMRES：参照・検証](<https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/bratu/?lang=ja#bratu-ja-validation>)
 
   CSVは最細格子の数値解・解析解・絶対誤差。JSONには各格子の真の非線形残差、Newton反復数と最小減衰長を記録する。
+- [1次元Bratu：小さい枝のNewton–GMRES](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-bratu-lower-branch-analytic-ja>)
+  relation: same-problem
+  reference_kind: analytic
+
+  解析解 既存の残差十分減少による減衰NewtonとILU(0)付きGMRES。解析解u=2log[cosh(β/2)/cosh(β(x−1/2))]。βtanh(β/2)<2で小さい枝を選び、初期値は全点零。内部Newton制御は非線形許容値1e-10、最大30反復。 既存の固定入力・保存結果に対応する解析参照カードを追加。解析式、点・時刻・動径の標本化、配布版SHAと実行コードを相互に辿れます。過去の計算を再実行した記録ではありません。
 
 ## コード・検証
 

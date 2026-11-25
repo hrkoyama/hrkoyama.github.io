@@ -47,7 +47,13 @@ $$
 
 E_n=−Z²/(2n²)とLaguerre動径解。有限格子の誤差と箱の誤差を分ける。
 
-参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
+- [水素型原子：解析解と格子収束](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-hydrogenic-coulomb-reference-ja) (`hydrogenic-coulomb-reference`; 同じ問題の参照 · 解析参照)
+
+既存の固定入力・保存結果に対応する解析参照カードを追加。解析式、点・時刻・動径の標本化、配布版SHAと実行コードを相互に辿れます。過去の計算を再実行した記録ではありません。
+
+- [H/Heの式・密度・固定参照カード](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-atomic-reference-cards-ja) (`atomic-reference-cards`; 同じ問題の参照 · 有限格子の数値参照)
+
+参照カードの整備・保存値照合であり、新SCF/新独立参照は0回。相関込み厳密He、完全基底極限、全軌道の再実行は主張しません。
 
 
 ### scope
@@ -148,7 +154,13 @@ A representative figure for the problem. Its grid, time and initial data may dif
 
 E_n=−Z²/(2n²) and Laguerre radial solutions, separating finite-grid and finite-box error.
 
-No corresponding reference-library card is registered; execution-specific material above documents its reference values and acceptance checks.
+- [Hydrogenic atoms: analytic references and grid refinement](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-hydrogenic-coulomb-reference-en) (`hydrogenic-coulomb-reference`; Same-problem reference · Analytic reference)
+
+An analytic reference card now links the existing fixed inputs and saved results: formula, point/time/radial sampling, edition SHA and executable code. This metadata registration is not a new execution.
+
+- [Hydrogenic formulas and immutable finite-basis helium reference cards](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-atomic-reference-cards-en) (`atomic-reference-cards`; Same-problem reference · Finite-grid numerical reference)
+
+Curation and saved-value audit only: zero new SCF/independent-reference runs. No correlated-exact He, complete-basis limit or full orbital rerun claim.
 
 
 ### scope

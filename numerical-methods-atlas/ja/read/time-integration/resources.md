@@ -45,7 +45,12 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/time-integration/
 
 - [調和振動子（複素ODE表示も統合）：参照・比較条件](<https://hrkoyama.github.io/numerical-methods-atlas/problems/harmonic-oscillator/?lang=ja#references-ja>)
 
-  正弦・余弦の解析軌道（複素ODE表現を含む）と比較し、位相・エネルギー・写像の幾何学的性質を区別します。専用参照解カードは未収録です。
+  正弦・余弦の解析軌道（複素ODE表現を含む）と比較し、位相・エネルギー・写像の幾何学的性質を区別します。 既存の固定入力・保存結果に対応する解析参照カードを追加。解析式、点・時刻・動径の標本化、配布版SHAと実行コードを相互に辿れます。過去の計算を再実行した記録ではありません。 既存ギャラリーはt≤10、共通固定入力は終端20です。
+- [調和振動子：Verletの位相誤差とエネルギー](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-harmonic-oscillator-exact-ja>)
+  relation: same-problem
+  reference_kind: analytic
+
+  解析解 H=(q²+p²)/2、(q₀,p₀)=(1,0.2)。固定刻み、非散逸1自由度。初期値・終端時刻・刻み数は入力に明記。最大刻みh=0.1はhω<2の安定域。 既存の固定入力・保存結果に対応する解析参照カードを追加。解析式、点・時刻・動径の標本化、配布版SHAと実行コードを相互に辿れます。過去の計算を再実行した記録ではありません。 既存ギャラリーはt≤10、共通固定入力は終端20です。
 
 ## コード・検証
 
@@ -161,6 +166,14 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/time-integration/
   availability: run
 
   完全な磁気応力と誘導を含むSRMHDで非線形有限振幅波を1周期進め、厳密セル平均、位相、振幅と細分化を検査します。
+- [Fisher–KPP：特殊波速の厳密前線](<https://hrkoyama.github.io/numerical-methods-atlas/validation/fisher-kpp-special-front/?lang=ja>)
+  availability: run
+
+  波形・位置・格子誤差・時間誤差・有限領域の影響を分けます。
+- [Keller–Segel：連成流束の製造解](<https://hrkoyama.github.io/numerical-methods-atlas/validation/keller-segel-forced-flux/?lang=ja>)
+  availability: run
+
+  滑らかな2D厳密場で、交差流束・段時刻・収支を検証します。
 - [WENO-JS／Z：臨界点とεの固定比較](<https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=ja>)
   availability: run
 
@@ -205,6 +218,14 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/time-integration/
   availability: run
 
   人口保存と2モードの初期線形化を別々に検査します。
+- [Hodgkin–Huxley：電位固定・静止平衡・発火](<https://hrkoyama.github.io/numerical-methods-atlas/validation/hodgkin-huxley-controls/?lang=ja>)
+  availability: run
+
+  固定電位の解析ゲート解と、区分電流下の4状態系を照合します。
+- [球面浅水波の軸対称定常釣合いを時間積分](<https://hrkoyama.github.io/numerical-methods-atlas/validation/sphere-zonal-balance/?lang=ja>)
+  availability: run
+
+  球面浅水波の軸対称な無次元定常状態を実際に時間積分し、釣合い残差と格子依存を分ける。
 - [Schnakenberg有限振幅過渡：非線形性と独立参照](<https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-nonlinear/?lang=ja>)
   availability: run
 

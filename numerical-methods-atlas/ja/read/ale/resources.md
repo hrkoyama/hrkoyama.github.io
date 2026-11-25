@@ -28,6 +28,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/ale/
   availability: run
 
   質量と格子面位置を同じHeun段で更新し、一様GCLだけでなく非一様な解析波を運びます。
+- [Saltzman型の歪み格子ピストン：2次元EulerとALE](<https://hrkoyama.github.io/numerical-methods-atlas/validation/saltzman-ale-piston/?lang=ja>)
+  availability: run
+
+  2023年版の歪み格子と有限初期圧力を明示した、所与の格子移動による2次元Eulerピストン計算。
 - [ALE一様状態・幾何保存モデル：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/ale/?lang=ja#method-execution-ja>)
   availability: source
 

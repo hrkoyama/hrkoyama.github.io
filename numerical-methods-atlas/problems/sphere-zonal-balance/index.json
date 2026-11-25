@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "id": "sphere-zonal-balance",
+  "name": {
+    "ja": "球面浅水波の軸対称定常釣合いを時間積分",
+    "en": "Time evolution of axisymmetric spherical shallow-water balance"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sphere-zonal-balance/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sphere-zonal-balance/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sphere-zonal-balance/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/results/sphere-zonal-balance.png",
+    "sha256": "74876bf29005e8968fe5c5fe51157d0be99f57cc76c18da88e663ad85ae061c6",
+    "width": 1800,
+    "height": 540,
+    "caption": {
+      "ja": "球面浅水波の軸対称な無次元定常状態を実際に時間積分し、釣合い残差と格子依存を分ける。 a=g=1, Ω=2, u0=.5, h0=10 の軸対称な無次元部分問題。運動量中心差分・質量FV・RK4の混成で実際に時間発展させます。標準地球条件や全球多次元SWE、厳密な離散釣合い・PV保存の再現ではありません。",
+      "en": "NondimensionalWilliamson2-type axisymmetricsubproblem. Analyticstaticstatevsactualtimeintegration; not fullglobaldynamicalcore/PVclaim. Axisymmetric nondimensional subproblem with a=g=1, Omega=2, u0=.5 and h0=10. Actual time evolution uses centered primitive momentum, finite-volume mass and RK4. Not standard Earth parameters, a full global multidimensional SWE core, exact discrete balance or a PV-conservation claim."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-continuum-particle-controls/#sphere-zonal-balance",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-continuum-particle-controls/#sphere-zonal-balance"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#sphere-zonal-balance",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#sphere-zonal-balance-en"
+  },
+  "equations": [
+    {
+      "id": "spherical-shallow-water",
+      "name": {
+        "ja": "球面浅水波の軸対称部分問題",
+        "en": "Axisymmetric spherical shallow-water subproblem"
+      },
+      "formula": [
+        "h_t+\\frac{\\partial_\\phi(hv\\cos\\phi)}{a\\cos\\phi}=0,\\quad u_t+\\frac va u_\\phi-(2\\Omega\\sin\\phi+u\\tan\\phi/a)v=0",
+        "v_t+\\frac va v_\\phi+(2\\Omega\\sin\\phi+u\\tan\\phi/a)u+\\frac ga h_\\phi=0",
+        "u=u_0\\cos\\phi,\\quad v=0,\\quad h=h_0-\\frac{a\\Omega u_0+u_0^2/2}{g}\\sin^2\\phi"
+      ],
+      "note": {
+        "ja": "a=g=1, Ω=2, u0=.5, h0=10 の軸対称な無次元部分問題。運動量中心差分・質量FV・RK4の混成で実際に時間発展させます。標準地球条件や全球多次元SWE、厳密な離散釣合い・PV保存の再現ではありません。",
+        "en": "Axisymmetric nondimensional subproblem with a=g=1, Omega=2, u0=.5 and h0=10. Actual time evolution uses centered primitive momentum, finite-volume mass and RK4. Not standard Earth parameters, a full global multidimensional SWE core, exact discrete balance or a PV-conservation claim."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#spherical-shallow-water-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#spherical-shallow-water-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
+    "en": "Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
+  },
+  "formulations": [],
+  "references": [
+    {
+      "id": "sphere-zonal-balance",
+      "kind": "analytic",
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "title": {
+        "ja": "球面浅水波の軸対称定常釣合いを時間積分",
+        "en": "Time evolution of axisymmetric spherical shallow-water balance"
+      },
+      "formula": "h_t+\\frac{\\partial_\\phi(hv\\cos\\phi)}{a\\cos\\phi}=0,\\quad u_t+\\frac va u_\\phi-(2\\Omega\\sin\\phi+u\\tan\\phi/a)v=0; v_t+\\frac va v_\\phi+(2\\Omega\\sin\\phi+u\\tan\\phi/a)u+\\frac ga h_\\phi=0; u=u_0\\cos\\phi,\\quad v=0,\\quad h=h_0-\\frac{a\\Omega u_0+u_0^2/2}{g}\\sin^2\\phi",
+      "assumptions": {
+        "ja": "a=g=1、Ω=2、u0=0.5、h0=10の無次元軸対称部分問題です。中心差分のprimitive運動量、有限体積の質量、RK4で実際に時間発展させます。標準地球パラメータ、多次元の全球浅水コア、離散厳密釣合い、渦位保存の主張は含みません。",
+        "en": "Axisymmetric nondimensional subproblem with a=g=1, Omega=2, u0=.5 and h0=10. Actual time evolution uses centered primitive momentum, finite-volume mass and RK4. Not standard Earth parameters, a full global multidimensional SWE core, exact discrete balance or a PV-conservation claim."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "固定入力の式・参照・図と実行コードを対応付けます。 a=g=1, Ω=2, u0=.5, h0=10 の軸対称な無次元部分問題。運動量中心差分・質量FV・RK4の混成で実際に時間発展させます。標準地球条件や全球多次元SWE、厳密な離散釣合い・PV保存の再現ではありません。",
+        "en": "Bind the fixed-input formula, reference, figure and executable code. Axisymmetric nondimensional subproblem with a=g=1, Omega=2, u0=.5 and h0=10. Actual time evolution uses centered primitive momentum, finite-volume mass and RK4. Not standard Earth parameters, a full global multidimensional SWE core, exact discrete balance or a PV-conservation claim."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sphere-zonal-balance/?lang=ja#sphere-zonal-balance-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sphere-zonal-balance/?lang=en#sphere-zonal-balance-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "固定入力の式・参照・図と実行コードを対応付けます。 a=g=1, Ω=2, u0=.5, h0=10 の軸対称な無次元部分問題。運動量中心差分・質量FV・RK4の混成で実際に時間発展させます。標準地球条件や全球多次元SWE、厳密な離散釣合い・PV保存の再現ではありません。",
+    "en": "Bind the fixed-input formula, reference, figure and executable code. Axisymmetric nondimensional subproblem with a=g=1, Omega=2, u0=.5 and h0=10. Actual time evolution uses centered primitive momentum, finite-volume mass and RK4. Not standard Earth parameters, a full global multidimensional SWE core, exact discrete balance or a PV-conservation claim."
+  },
+  "methods": [
+    {
+      "id": "centered-difference",
+      "name": {
+        "ja": "空間中心差分",
+        "en": "Centered spatial difference"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/centered-difference/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/centered-difference/?lang=en"
+      }
+    },
+    {
+      "id": "rk4",
+      "name": {
+        "ja": "古典的RK4",
+        "en": "Classical RK4"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "a=g=1, Ω=2, u0=.5, h0=10 の軸対称な無次元部分問題。運動量中心差分・質量FV・RK4の混成で実際に時間発展させます。標準地球条件や全球多次元SWE、厳密な離散釣合い・PV保存の再現ではありません。",
+    "en": "Axisymmetric nondimensional subproblem with a=g=1, Omega=2, u0=.5 and h0=10. Actual time evolution uses centered primitive momentum, finite-volume mass and RK4. Not standard Earth parameters, a full global multidimensional SWE core, exact discrete balance or a PV-conservation claim."
+  },
+  "executions": [
+    {
+      "id": "sphere-zonal-balance",
+      "kind": "supplement",
+      "name": {
+        "ja": "球面浅水波の軸対称定常釣合いを時間積分",
+        "en": "Time evolution of axisymmetric spherical shallow-water balance"
+      },
+      "method_ids": [
+        "centered-difference",
+        "rk4"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sphere-zonal-balance/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sphere-zonal-balance/?lang=en"
+      },
+      "scope": {
+        "ja": "球面浅水波の軸対称な無次元定常状態を実際に時間積分し、釣合い残差と格子依存を分ける。",
+        "en": "NondimensionalWilliamson2-type axisymmetricsubproblem. Analyticstaticstatevsactualtimeintegration; not fullglobaldynamicalcore/PVclaim."
+      },
+      "assumptions": {
+        "ja": "球面浅水波の軸対称な無次元部分問題です。運動量の原始変数は子午線方向の中心差分、質量は緯度帯の面流束による有限体積形で離散化し、RK4で時間積分します。極の質量流束をゼロとし、平衡残差の差し引きや補正は行いません。固定入力・境界・参照の範囲はinputs.jsonを参照。",
+        "en": "Nondimensional axisymmetric spherical SWE subproblem. Hybrid centered meridional differences for primitive momentum and latitude-band finite-volume face fluxes for mass, advanced by RK4. Pole mass flux is zero; no equilibrium residual subtraction or correction. Fixed inputs, boundaries and reference scope are specified in inputs.json."
+      },
+      "limits": {
+        "ja": "限定した教育用モデルです。元論文の全条件・全アルゴリズムや一般的な性能の再現ではありません。",
+        "en": "NondimensionalWilliamson2-type axisymmetricsubproblem. Analyticstaticstatevsactualtimeintegration; not fullglobaldynamicalcore/PVclaim."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "解析参照、保存量、細分化、独立成分検査と意図した誤式の負例を区別して保存します。",
+        "en": "Separate analytic/reference errors, conservation, refinement, independent component qualification and deliberately wrong-formula controls."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/ale_piston.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/test_components.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

@@ -31,10 +31,10 @@ Resources explicitly registered to the methods, problems and executions of this 
 
 - [Stationary electronic Schrödinger equation](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#stationary-schrodinger-en>)
 
-  Fixed-nuclei nonrelativistic electronic many-body eigenproblem; add nuclear repulsion separately. Runnable examples cover only isolated one-electron hydrogenic atoms, not direct general many-electron solutions.
+  Fixed-nuclei nonrelativistic electronic eigenproblems; add nuclear repulsion separately. Preserve the existing hydrogenic radial examples. Additional examples are restricted to one-dimensional box/HO and two-electron FCI in at most3AOs, not general many-electron direct solvers or continuum-exact molecules.
 - [Closed-shell Hartree–Fock equations](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#hartree-fock-model-en>)
 
-  Closed-shell RHF equations for occupied spatial orbitals generally include nonlocal exchange. Published examples cover the spherical 1s²-helium local reduction and fixed-input H₂ RHF using a separate molecular-integral implementation. Their bases, discretizations and references differ; inspect each input and validation record below. These examples do not validate general multicenter molecules, open shells or correlated methods.
+  Closed-shell occupied-orbital RHF equations include nonlocal exchange. Preserve existing He local-reduction and H2RHF examples. New calculations cover only fixed minimal two-electron H2/H3+ models; UHF equations have their own mapped model. No general multicenter molecules, global open-shell stability, complete-basis or general correlated-method guarantee.
 - [Local Kohn–Sham DFT](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#kohn-sham-model-en>)
 
   Representative local Kohn–Sham equations. Published examples cover spin-unpolarized exchange-only Dirac LDA for spherical helium and LDA exchange plus VWN5 correlation for fixed periodic He/He₂ cells. The radial atomic implementation and periodic PySCF workflows are separate series with different bases, boundaries and references. Inspect each input and validation record below; these examples do not validate GGA, hybrids, general materials or excited states.
@@ -56,6 +56,18 @@ No chapter-specific association is registered. Atlas-wide index: [Exact and refe
   availability: run
 
   Isolated one-electron H and He⁺: compare 1s, 2s, 2p and 3d energies and radial orbitals against analytic solutions. Not a direct many-electron or molecular solver.
+- [Hydrogenic formulas and immutable finite-basis helium reference cards](<https://hrkoyama.github.io/numerical-methods-atlas/validation/atomic-reference-cards/?lang=en>)
+  availability: run
+
+  Map existing H/He formulas and saved finite-basis references to units, normalization and model limits.
+- [Small 1D box and quantum harmonic-oscillator eigenpairs](<https://hrkoyama.github.io/numerical-methods-atlas/validation/quantum-box-ho/?lang=en>)
+  availability: run
+
+  Compare low stationary eigenpairs of a1D box and harmonic oscillator, with finite-domain and mesh sensitivity.
+- [A three-wave periodic projector and Fermi-occupation model](<https://hrkoyama.github.io/numerical-methods-atlas/validation/periodic-projector-occupations/?lang=en>)
+  availability: run
+
+  Show a genuine rank-one nonlocal kernel and finite-temperature occupations in a three-wave periodic educational model.
 - [H₂ molecular RHF: independent reference, SCF and s-basis refinement](<https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/h2-rhf/?lang=en>)
   availability: run
 
@@ -72,6 +84,18 @@ No chapter-specific association is registered. Atlas-wide index: [Exact and refe
   availability: run
 
   Compare spherical 1s² closed-shell helium HF and spin-unpolarized Dirac exchange-only LDA. No electron correlation, molecules or periodic systems.
+- [Minimal-basis H2: RHF, broken-spin UHF and finite-basis FCI](<https://hrkoyama.github.io/numerical-methods-atlas/validation/h2-rhf-uhf-fci/?lang=en>)
+  availability: run
+
+  Compare RHF, broken-spin UHF and finite-basis FCI for H2 at two fixed geometries in the same minimal basis.
+- [A tiny three-center H3+ RHF / MP2 / FCI example](<https://hrkoyama.github.io/numerical-methods-atlas/validation/h3plus-mp2-fci/?lang=en>)
+  availability: run
+
+  Demonstrate RHF, MP2 and finite-basis FCI for a tiny fixed three-center H3+ molecule.
+- [Immutable periodic-helium energy and force reference audit](<https://hrkoyama.github.io/numerical-methods-atlas/validation/periodic-he-reference-cards/?lang=en>)
+  availability: run
+
+  Map saved periodic-He energies and six-coordinate forces to unchanged independent references and criteria.
 - [Schrodinger eigenproblems — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/schrodinger/?lang=en#method-execution-en>)
   availability: source
 
@@ -105,6 +129,14 @@ No chapter-specific association is registered. Atlas-wide index: [Exact and refe
 
   Method-specific editions and related sources; fixed-input runs are listed separately.
 - [Periodic electronic structure and k-point sampling — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/k-point/?lang=en#method-execution-en>)
+  availability: source
+
+  Method-specific editions and related sources; fixed-input runs are listed separately.
+- [MP2 perturbation theory — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/mp2/?lang=en#method-execution-en>)
+  availability: source
+
+  Method-specific editions and related sources; fixed-input runs are listed separately.
+- [Configuration interaction / CI — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/configuration-interaction/?lang=en#method-execution-en>)
   availability: source
 
   Method-specific editions and related sources; fixed-input runs are listed separately.

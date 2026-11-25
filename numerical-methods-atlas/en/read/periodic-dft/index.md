@@ -98,6 +98,8 @@ CPMD orbital propagation does not represent real electronic excitations as in TD
 
 This section is reading only. This chapter’s fixed one-atom He example validates static total energies and k-point, basis, auxiliary-grid and SCF convergence. Multiatom He forces, energy finite differences, an independent reference and the BOMD force interface are covered in the separate From DFT to atomic forces chapter and release. Long BOMD/CPMD trajectories, timestep/SCF/fictitious-mass sensitivity and thermostats require separate validation.
 
+A separate fixed-input educational example executes a short, dimensionless two-state electronic-angle/nuclear-coordinate BO/CP-type model. It does not propagate this chapter’s periodic He calculation or establish general Kohn–Sham BOMD/CPMD, real-material or long-time MD validation.
+
 $$
 E_{\mathrm{BO}}(\mathbf R)=\min_{\langle\psi_i|\psi_j\rangle=\delta_{ij}}E_{\mathrm{KS}}[\{\psi_i\};\mathbf R],\qquad M_I\ddot{\mathbf R}_I=\mathbf F_I=-\nabla_{\mathbf R_I}E_{\mathrm{BO}}(\mathbf R)
 $$
@@ -109,6 +111,10 @@ $$
 $$
 \langle\psi_i|\psi_j\rangle=\delta_{ij},\qquad K_{\mathrm{fict}}=\frac{\mu}{2}\sum_i\langle\dot\psi_i|\dot\psi_i\rangle,\qquad E_{\mathrm{ext}}=\sum_I\frac{M_I}{2}|\dot{\mathbf R}_I|^2+E_{\mathrm{KS}}+K_{\mathrm{fict}}
 $$
+
+A two-state BO / CP-type model with a short nuclear thermostat coupling: https://hrkoyama.github.io/numerical-methods-atlas/validation/two-state-bo-cp-ou/?lang=en
+
+https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/source-manifest.json
 
 ## Stored measurements
 

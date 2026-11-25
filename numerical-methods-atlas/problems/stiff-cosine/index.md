@@ -28,7 +28,17 @@ $$
 
 ### 厳密解・参照解
 
-y′=-1000(y-cos t)-sin t、y(0)=1の厳密解cos tと、固定刻み・適応刻みの誤差を確認します。
+y′=-1000(y-cos t)-sin t、y(0)=1の厳密解cos tと、固定刻み・適応刻みの誤差を確認します。 既存の固定入力・保存結果に対応する解析参照カードを追加。解析式、点・時刻・動径の標本化、配布版SHAと実行コードを相互に辿れます。過去の計算を再実行した記録ではありません。
+
+#### [硬い余弦追従ODE：SDIRK2](https://hrkoyama.github.io/numerical-methods-atlas/problems/stiff-cosine/?lang=ja)
+
+解析解 · 同じ問題の参照
+
+y(t)=cos(t)+(y0-1)exp(-rate*t); yprime=-rate*(y-cos(t))-sin(t)
+
+rate=1000、1000/2000/4000ステップでrate*h=1,0.5,0.25。固定γ=1−1/√2と既存Newton段階解法を使用。別の減衰はy′=−10⁸y、y(0)=1、h=1。適応刻み法ではない。
+
+既存の固定入力・保存結果に対応する解析参照カードを追加。解析式、点・時刻・動径の標本化、配布版SHAと実行コードを相互に辿れます。過去の計算を再実行した記録ではありません。
 
 #### 硬い余弦追従ODE：SDIRK2
 
@@ -118,7 +128,17 @@ Temporal initial-value problems using the existing two-stage SDIRK2. Main case: 
 
 ### Exact and reference solutions
 
-Check fixed/adaptive-step errors against cos t for y′=-1000(y-cos t)-sin t with y(0)=1.
+Check fixed/adaptive-step errors against cos t for y′=-1000(y-cos t)-sin t with y(0)=1. An analytic reference card now links the existing fixed inputs and saved results: formula, point/time/radial sampling, edition SHA and executable code. This metadata registration is not a new execution.
+
+#### [Stiff cosine-tracking ODE: SDIRK2](https://hrkoyama.github.io/numerical-methods-atlas/problems/stiff-cosine/?lang=en)
+
+Analytic reference · Reference for the same problem
+
+y(t)=cos(t)+(y0-1)exp(-rate*t); yprime=-rate*(y-cos(t))-sin(t)
+
+rate=1000; 1000/2000/4000 steps give rate*h=1,0.5,0.25. Uses fixed gamma=1-1/sqrt(2) and the existing Newton stage solver. Separate decay: y'=-1e8*y, y(0)=1, h=1. No adaptive stepping.
+
+An analytic reference card now links the existing fixed inputs and saved results: formula, point/time/radial sampling, edition SHA and executable code. This metadata registration is not a new execution.
 
 #### Stiff cosine-tracking ODE: SDIRK2
 

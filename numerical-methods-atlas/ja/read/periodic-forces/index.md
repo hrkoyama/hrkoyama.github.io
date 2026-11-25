@@ -100,6 +100,8 @@ BOMDの力供給部energy_and_forcesは、原子位置（positions_bohr）を受
 
 Car–Parrinello法は仮想電子自由度を核と同時に進める別の定式化です。ここで用意するBorn–Oppenheimer面の力供給をCPMDの実装として扱いません。DFTから力、核の時間積分、温度制御のどこまでが実行済みかは、分野間をつなぐ入口でも段階ごとに示します。
 
+手法台帳には別の2準位BO/CP型教育模型の実行例があります。本章のHe₂の力・局所Verlet接続とは別の固定入力で、一般のKohn–Sham軌道計算・実材料・長時間MDの検証としてまとめて数えません。
+
 $$
 \mathbf v_{n+1/2}=\mathbf v_n+\frac{\Delta t}{2M}\mathbf F(\mathbf R_n),\quad\mathbf R_{n+1}=\mathbf R_n+\Delta t\,\mathbf v_{n+1/2},\quad\mathbf v_{n+1}=\mathbf v_{n+1/2}+\frac{\Delta t}{2M}\mathbf F(\mathbf R_{n+1})
 $$
@@ -107,6 +109,10 @@ $$
 $$
 \mathcal E_n=E_{\mathrm{BO}}(\mathbf R_n)+\sum_I\frac{M_I}{2}|\mathbf v_{I,n}|^2,\qquad \Delta\mathcal E_n=\mathcal E_n-\mathcal E_0
 $$
+
+2準位模型のBO/CP型連成と短い核熱浴: https://hrkoyama.github.io/numerical-methods-atlas/validation/two-state-bo-cp-ou/?lang=ja
+
+https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/source-manifest.json
 
 ## 保存した実測値
 

@@ -40,6 +40,10 @@ No chapter-specific association is registered. Atlas-wide index: [Exact and refe
   availability: run
 
   A genuinely coupled two-degree-of-freedom system uses twelve 64-step probes and six accuracy trajectories to separate normal modes, coordinate exchange, discrete maps and roundoff.
+- [Schnakenberg:2D boundaries and initial modes](<https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/?lang=en>)
+  availability: run
+
+  Compare two Neumann perturbations and a Dirichlet perturbation against nonlinear Galerkin references.
 - [Lie–Trotter splitting — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/lie-trotter/?lang=en#method-execution-en>)
   availability: source
 

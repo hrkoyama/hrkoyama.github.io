@@ -96,6 +96,22 @@ No chapter-specific association is registered. Atlas-wide index: [Equations](htt
   availability: run
 
   Use analytic damped rotation to test acceptance, rejection, FSAL ownership, dense interpolation and directed event times separately.
+- [Hodgkin–Huxley: clamps, rest and firing](<https://hrkoyama.github.io/numerical-methods-atlas/validation/hodgkin-huxley-controls/?lang=en>)
+  availability: run
+
+  Compare analytic clamp gates and a four-state system with segment-owned current.
+- [Fisher–KPP: a special-speed exact front](<https://hrkoyama.github.io/numerical-methods-atlas/validation/fisher-kpp-special-front/?lang=en>)
+  availability: run
+
+  Separate profile, phase, grid, time and finite-boundary errors.
+- [Schnakenberg:2D boundaries and initial modes](<https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/?lang=en>)
+  availability: run
+
+  Compare two Neumann perturbations and a Dirichlet perturbation against nonlinear Galerkin references.
+- [Keller–Segel: a manufactured coupled-flux solution](<https://hrkoyama.github.io/numerical-methods-atlas/validation/keller-segel-forced-flux/?lang=en>)
+  availability: run
+
+  Use smooth exact2D fields to test cross fluxes, stage timing and mass ledgers.
 - [Dormand–Prince RK45 — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/rk45/?lang=en#method-execution-en>)
   availability: source
 

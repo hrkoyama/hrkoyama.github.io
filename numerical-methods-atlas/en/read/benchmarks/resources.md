@@ -24,6 +24,12 @@ Resources explicitly registered to the methods, problems and executions of this 
 - [HLLC](<https://hrkoyama.github.io/numerical-methods-atlas/methods/hllc/?lang=en>)
 
   Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions.
+- [Godunov SPH / GSPH](<https://hrkoyama.github.io/numerical-methods-atlas/methods/gsph/?lang=en>)
+
+  Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions.
+- [SPH kernel reconstruction](<https://hrkoyama.github.io/numerical-methods-atlas/methods/sph/?lang=en>)
+
+  Methods explicitly bound to this problem by the common fixed-input execution example. Inspect its input for differences from the figure’s conditions.
 - [MUSCL reconstruction](<https://hrkoyama.github.io/numerical-methods-atlas/methods/muscl/?lang=en>)
 
   Methods used by this problem’s stored comparison data or corresponding public checks, rather than added solely for general applicability.
@@ -138,6 +144,11 @@ Resources explicitly registered to the methods, problems and executions of this 
   reference_kind: semi-analytic
 
   Semi-analytic reference Ideal gas; gamma>1; planar 1D waves; vacuum has zero conserved state and undefined velocity. γ=1.4, primitive states (1,0,1)/(0.125,0,0.1), x0=0.5, [0,1] and t=0.2 match. Inspect point/conserved-cell-average sampling and error norms separately. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations.
+- [Sod-type particle shock tube with Gaussian-convolution GSPH](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-gsph-sod-en>)
+  relation: same-problem
+  reference_kind: semi-analytic
+
+  Semi-analytic reference Actual Gaussian linear-specific-volume GSPH overlap with symmetric variable h, independent pair Riemann solves and antisymmetric total-energy exchange; not substitution of star pressure into ordinary SPH. First-order reconstruction only, not the paper cubic/MUSCL implementation or a general accuracy claim. Bind the fixed-input formula, reference, figure and executable code. Actual Gaussian linear-specific-volume GSPH overlap with symmetric variable h, independent pair Riemann solves and antisymmetric total-energy exchange; not substitution of star pressure into ordinary SPH. First-order reconstruction only, not the paper cubic/MUSCL implementation or a general accuracy claim.
 - [Lax shock tube — references and comparison conditions](<https://hrkoyama.github.io/numerical-methods-atlas/problems/lax/?lang=en#references-en>)
 
   Use the semi-analytic Riemann solution for primitive states (0.445,0.698,3.528) and (0.5,0,0.571), γ=1.4.
@@ -178,6 +189,11 @@ Resources explicitly registered to the methods, problems and executions of this 
   reference_kind: semi-analytic
 
   Semi-analytic reference Ideal gas; gamma>1; planar 1D waves; vacuum has zero conserved state and undefined velocity. γ=1.4, primitive states (1,0,1)/(0.125,0,0.1), x0=0.5, [0,1] and t=0.2 match. Inspect point/conserved-cell-average sampling and error norms separately. Physical inputs match, but the card’s point samples and the saved computation’s finite-volume cell averages/discrete grid are different representations.
+- [Sod-type particle shock tube with Gaussian-convolution GSPH](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-gsph-sod-en>)
+  relation: same-problem
+  reference_kind: semi-analytic
+
+  Semi-analytic reference Actual Gaussian linear-specific-volume GSPH overlap with symmetric variable h, independent pair Riemann solves and antisymmetric total-energy exchange; not substitution of star pressure into ordinary SPH. First-order reconstruction only, not the paper cubic/MUSCL implementation or a general accuracy claim. Bind the fixed-input formula, reference, figure and executable code. Actual Gaussian linear-specific-volume GSPH overlap with symmetric variable h, independent pair Riemann solves and antisymmetric total-energy exchange; not substitution of star pressure into ordinary SPH. First-order reconstruction only, not the paper cubic/MUSCL implementation or a general accuracy claim.
 
 ## Code and validation
 
@@ -261,6 +277,10 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Show the M1 limitation in actual opposing-packet evolution; validate the same closed M1 solver independently with a manufactured solution.
+- [Saltzman-type skew-grid piston: 2D Euler and ALE](<https://hrkoyama.github.io/numerical-methods-atlas/validation/saltzman-ale-piston/?lang=en>)
+  availability: run
+
+  Tan–Lv–Zhu2023 Example8 e0=1e-4 initialvariant. PrescribedaffineALEmesh, not theirWENO/materialLagrangian/remap scheme. Finitepressure RH cellaverages.
 - [Double Mach reflection: lightweight grid verification](<https://hrkoyama.github.io/numerical-methods-atlas/validation/double-mach-reflection/?lang=en>)
   availability: run
 
@@ -273,6 +293,10 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   An inward spherical Guderley shock in cold stationary gas is evolved from t=-1 to -0.85 on 128/256/512 radial shells. HLL fluxes and Heun steps are checked against a similarity eigenvalue/field, shock trajectory and discrete conservation budgets.
+- [Sod-type particle shock tube with Gaussian-convolution GSPH](<https://hrkoyama.github.io/numerical-methods-atlas/validation/gsph-sod/?lang=en>)
+  availability: run
+
+  ActualInutsuka-linear-overlap variablehGSPH approximation withfirstorderpair states, comparedwithdistinctstandardSPHcontrol. Periodictwointerfaces; centralwindowbeforeouterwaves. Not cubic/MUSCLpaperreproduction or plainSPH-pressure-star surrogate.
 - [Godunov-type finite volumes — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/godunov/?lang=en#method-execution-en>)
   availability: source
 

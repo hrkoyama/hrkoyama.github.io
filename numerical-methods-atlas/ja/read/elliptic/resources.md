@@ -292,6 +292,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/elliptic/
 
 ## コード・検証
 
+- [Schnakenberg：2D境界と初期モード](<https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/?lang=ja>)
+  availability: run
+
+  2つのNeumann摂動とDirichlet摂動を独立な非線形Galerkin参照と比較します。
 - [1次元Poisson：Dirichlet正弦解と2次収束](<https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=ja>)
   availability: run
 

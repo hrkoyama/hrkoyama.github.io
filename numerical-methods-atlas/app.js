@@ -1,9 +1,9 @@
 // Generated from frontend/atlas/app.js by scripts/atlas_runtime_assets.py. Edit the source template.
-import {atlasIntroDescriptions,atlasDocumentVersions} from './atlas-runtime-data.mjs?v=613941b553f7';
-import {homeOverviewPage,wireHomeOverview} from './home-overview.js?v=8da3797a2e43';
-import {resolveHomeLegacyURL} from './home-navigation.mjs?v=fbd886a7d28b';
+import {atlasIntroDescriptions,atlasDocumentVersions} from './atlas-runtime-data.mjs?v=5dc3d2205fa9';
+import {homeOverviewPage,wireHomeOverview} from './home-overview.js?v=14270d7f4fd2';
+import {resolveHomeLegacyURL} from './home-navigation.mjs?v=3ec3e2cba974';
 import {readingURL,rewriteReadingLinks} from './reading-urls.js';
-import {chapterEditions} from './chapter-resources.mjs?v=ae4077223131';
+import {chapterEditions} from './chapter-resources.mjs?v=336830640a23';
 import {expansionPage,wireExpansion} from './shock-expansion.js';
 import {referencePage as exactPage,wireReferences} from './reference-solutions.js';
 import {glossaryPage,wireGlossary} from './glossary.js';
@@ -206,8 +206,10 @@ function referencePage(query='') {
 }
 function filterReferences(query) {
  const booksOnly=/(?:^|\s)type:book(?=\s|$)/i.test(query);
- const q=query.replace(/(?:^|\s)type:book(?=\s|$)/ig,' ').toLowerCase().trim();
- const matches=references.filter(e=>(!booksOnly||e.type==='book')&&[e.author,e.title,e.year,e.id,e.note,translateText(e.note)].join(' ').toLowerCase().includes(q));
+ const papersOnly=/(?:^|\s)type:paper(?=\s|$)/i.test(query);
+ const q=query.replace(/(?:^|\s)type:(?:book|paper)(?=\s|$)/ig,' ').toLowerCase().trim();
+ const publicationTypes=new Map(coverage.publications.map(row=>[row.id,row.type]));
+ const matches=references.filter(e=>(!booksOnly||publicationTypes.get(e.id)==='book')&&(!papersOnly||['article','inproceedings'].includes(publicationTypes.get(e.id)))&&[e.author,e.title,e.year,e.id,e.note,translateText(e.note)].join(' ').toLowerCase().includes(q));
  document.querySelector('#reference-results').innerHTML=matches.length?matches.map(referenceItem).join(''):'<div class="empty-state"><h2>No references found.</h2><p>Try an author, a method such as WENO, or a publication year.</p></div>';
  document.querySelector('#reference-count').textContent=`${matches.length} of ${references.length} references`;
 }
@@ -330,7 +332,7 @@ async function route(options={}) {
 document.querySelector('.skip-link').addEventListener('click',e=>{e.preventDefault();main.focus();main.scrollIntoView();});
 document.querySelector('#figure-dialog').addEventListener('click',e=>{if(e.target===e.currentTarget)e.currentTarget.close();});
 try {
- [localeCatalog,references,sod,experiments,foundations,coverage,translationStatus,glossary,site]=await Promise.all(['locales/messages.json?v=98aa2555a967','references.json?v=3da6820a557d','sod.json','experiments.json','foundations.json','coverage.json?v=48f6e1c48c28','translation-status.json','glossary.json','site.json'].map(async file=>{const response=await fetch(file);if(!response.ok)throw Error(`Cannot load ${file}`);return response.json();}));
+ [localeCatalog,references,sod,experiments,foundations,coverage,translationStatus,glossary,site]=await Promise.all(['locales/messages.json?v=014c9a41fe53','references.json?v=5e8fec9aec1f','sod.json','experiments.json','foundations.json','coverage.json?v=e3cad543377d','translation-status.json','glossary.json','site.json'].map(async file=>{const response=await fetch(file);if(!response.ok)throw Error(`Cannot load ${file}`);return response.json();}));
  repo=site.repositoryUrl;
  references.sort((a,b)=>a.year-b.year||a.id.localeCompare(b.id));
  let saved;try{saved=localStorage.getItem('hrkoyama.home.language') || localStorage.getItem('numart-language');}catch{}

@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "id": "hodgkin-huxley-controls",
+  "name": {
+    "ja": "Hodgkin–Huxley：電位固定・静止平衡・発火",
+    "en": "Hodgkin–Huxley: clamps, rest and firing"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/hodgkin-huxley-controls/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/hodgkin-huxley-controls/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/hodgkin-huxley-controls/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/results/hodgkin-huxley-controls.png",
+    "sha256": "103d53258302f2855b7c7c9cca7840245a257909ca12163e8cd7a4d972a5871a",
+    "width": 1624,
+    "height": 667,
+    "caption": {
+      "ja": "固定電位の解析ゲート解と、区分電流下の4状態系を照合します。 1細胞膜の教育例です。元論文の電位規約、TABLE/cnexp実装、ケーブル伝播や生体実測の再現とは呼びません。区間内に括れない発火は捏造せず、静止根の一意性・区間Hurwitz安定性は主張しません。",
+      "en": "Compare analytic clamp gates and a four-state system with segment-owned current. This educational membrane model does not reproduce the original voltage convention, TABLE/cnexp, cable propagation or measured physiology. Missing/unresolved events remain explicit; rest-root uniqueness and interval-Hurwitz stability are unclaimed."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology-ode-controls/#hodgkin-huxley-controls",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology-ode-controls/#hodgkin-huxley-controls"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#hodgkin-huxley-controls",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#hodgkin-huxley-controls-en"
+  },
+  "equations": [
+    {
+      "id": "bio-hodgkin-huxley",
+      "name": {
+        "ja": "Hodgkin–Huxley膜動態",
+        "en": "Hodgkin–Huxley membrane dynamics"
+      },
+      "formula": [
+        "C_m\\dot V=I_{app}-\\bar g_{Na}m^3h(V-E_{Na})-\\bar g_Kn^4(V-E_K)-g_L(V-E_L)",
+        "\\dot z=\\alpha_z(V)(1-z)-\\beta_z(V)z"
+      ],
+      "note": {
+        "ja": "電位とゲート変数z=m,h,nの膜モデル。元のイカ軸索モデルと、人心筋や空間ケーブルへの拡張を区別します。 全モデル族の実装ではありません。今回の固定例：Hodgkin–Huxley：電位固定・静止平衡・発火",
+        "en": "Voltage and gating variables z=m,h,n describe an ionic excitable membrane. A cable extension adds spatial axial current. The original squid-axon model is not a calibrated human cardiac model. No single rate parameter set is selected by this survey. Not implementation of the entire model family. Fixed cases: Hodgkin–Huxley: clamps, rest and firing"
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-hodgkin-huxley-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-hodgkin-huxley-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "6.3°C、ms/mV/µA cm⁻²。NEURON8.2.6の解析的な絶対電位規約を固定し、4電位×3刻み、静止20 ms、10–11 msの電流パルスを扱います。",
+    "en": "Fix6.3°C and the NEURON8.2.6 analytic absolute-voltage convention in ms/mV/µA cm⁻². Use four clamp voltages, three steps, a20ms rest and a10–11ms pulse."
+  },
+  "formulations": [
+    {
+      "id": "supplement-hodgkin-huxley-controls",
+      "name": {
+        "ja": "Hodgkin–Huxley：電位固定・静止平衡・発火",
+        "en": "Hodgkin–Huxley: clamps, rest and firing"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "C_m\\dot V=I-g_{Na}m^3h(V-E_{Na})-g_Kn^4(V-E_K)-g_L(V-E_L)",
+        "\\dot z=\\alpha_z(V)(1-z)-\\beta_z(V)z"
+      ],
+      "note": {
+        "ja": "固定電位の解析ゲート解と、区分電流下の4状態系を照合します。",
+        "en": "Compare analytic clamp gates and a four-state system with segment-owned current."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "hodgkin-huxley-controls",
+      "kind": "semi-analytic",
+      "kind_label": {
+        "ja": "半解析解",
+        "en": "Semi-analytic reference"
+      },
+      "title": {
+        "ja": "Hodgkin–Huxley：電位固定・静止平衡・発火",
+        "en": "Hodgkin–Huxley: clamps, rest and firing"
+      },
+      "formula": "C_m\\dot V=I-g_{Na}m^3h(V-E_{Na})-g_Kn^4(V-E_K)-g_L(V-E_L);\\quad \\dot z=\\alpha_z(V)(1-z)-\\beta_z(V)z",
+      "assumptions": {
+        "ja": "6.3°C、NEURON8.2.6の解析的な絶対電位規約を固定し、時間ms・電位mV・電流密度μA/cm²を用います。4固定電位、3刻み、20msの静止と10–11msの電流パルスを比較。ゲートは無次元で、空間一様な1細胞膜の電位固定または区分電流の初期値問題です。",
+        "en": "Fix6.3°C and the NEURON8.2.6 analytic absolute-voltage convention in ms/mV/µA cm⁻². Use four clamp voltages, three steps, a20ms rest and a10–11ms pulse. ms, mV, microampere/cm², 6.3°C; dimensionless gates. Spatially uniform single membrane; voltage clamp or segment-current initial-value problem."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "1細胞膜の教育例です。元論文の電位規約、TABLE/cnexp実装、ケーブル伝播や生体実測の再現とは呼びません。区間内に括れない発火は捏造せず、静止根の一意性・区間Hurwitz安定性は主張しません。",
+        "en": "This educational membrane model does not reproduce the original voltage convention, TABLE/cnexp, cable propagation or measured physiology. Missing/unresolved events remain explicit; rest-root uniqueness and interval-Hurwitz stability are unclaimed."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/hodgkin-huxley-controls/?lang=ja#hodgkin-huxley-controls-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/hodgkin-huxley-controls/?lang=en#hodgkin-huxley-controls-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "全採用時刻のゲート誤差、電位・ゲート範囲、採用端点の新しい微分を使うHermite発火時刻を保存。元の1e-8ゲート目標も未達を含めて表示します。",
+    "en": "Retain errors over all accepted times, voltage/gate ranges and Hermite firing events from fresh accepted-endpoint derivatives. Preserve the original1e-8clamp goal even when unmet."
+  },
+  "methods": [
+    {
+      "id": "rk4",
+      "name": {
+        "ja": "古典的RK4",
+        "en": "Classical RK4"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/?lang=en"
+      }
+    },
+    {
+      "id": "rk45",
+      "name": {
+        "ja": "Dormand–Prince RK45",
+        "en": "Dormand–Prince RK45"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk45/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk45/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "古典RK4を用い、電流の切り替わりでは全段の片側値を区間に帰属させます。ゲートの可除特異点、Decimal静止根、独立なDP5(4)/Cash–Karp参照を別に照合します。",
+    "en": "Use classicalRK4 with all stages owned by each current segment. Separately qualify removable rate singularities, a Decimal rest root and independently written DP5(4)/Cash–Karp references."
+  },
+  "executions": [
+    {
+      "id": "hodgkin-huxley-controls",
+      "kind": "supplement",
+      "name": {
+        "ja": "Hodgkin–Huxley：電位固定・静止平衡・発火",
+        "en": "Hodgkin–Huxley: clamps, rest and firing"
+      },
+      "method_ids": [
+        "rk4",
+        "rk45"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/hodgkin-huxley-controls/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/hodgkin-huxley-controls/?lang=en"
+      },
+      "scope": {
+        "ja": "固定電位の解析ゲート解と、区分電流下の4状態系を照合します。",
+        "en": "Compare analytic clamp gates and a four-state system with segment-owned current."
+      },
+      "assumptions": {
+        "ja": "6.3°C、ms/mV/µA cm⁻²。NEURON8.2.6の解析的な絶対電位規約を固定し、4電位×3刻み、静止20 ms、10–11 msの電流パルスを扱います。",
+        "en": "Fix6.3°C and the NEURON8.2.6 analytic absolute-voltage convention in ms/mV/µA cm⁻². Use four clamp voltages, three steps, a20ms rest and a10–11ms pulse."
+      },
+      "limits": {
+        "ja": "1細胞膜の教育例です。元論文の電位規約、TABLE/cnexp実装、ケーブル伝播や生体実測の再現とは呼びません。区間内に括れない発火は捏造せず、静止根の一意性・区間Hurwitz安定性は主張しません。",
+        "en": "This educational membrane model does not reproduce the original voltage convention, TABLE/cnexp, cable propagation or measured physiology. Missing/unresolved events remain explicit; rest-root uniqueness and interval-Hurwitz stability are unclaimed."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/atlas-biology-ode-controls-2026-11-25.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "全採用時刻のゲート誤差、電位・ゲート範囲、採用端点の新しい微分を使うHermite発火時刻を保存。元の1e-8ゲート目標も未達を含めて表示します。",
+        "en": "Retain errors over all accepted times, voltage/gate ranges and Hermite firing events from fresh accepted-endpoint derivatives. Preserve the original1e-8clamp goal even when unmet."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/common.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/hh.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/ssa.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/test_models.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

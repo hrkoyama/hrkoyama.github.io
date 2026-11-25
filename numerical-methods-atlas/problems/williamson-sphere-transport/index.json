@@ -1,0 +1,167 @@
+{
+  "schema_version": 1,
+  "id": "williamson-sphere-transport",
+  "name": {
+    "ja": "Williamson型の球面固体回転輸送：傾いた軸と極通過",
+    "en": "Williamson-type spherical rotation: tilted axes and pole crossing"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/williamson-sphere-transport/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/williamson-sphere-transport/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/williamson-sphere-transport/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/results/williamson-sphere-transport.png",
+    "sha256": "be017ade9a054d91fc83cc743cedae9a5bbeee367c60892f0b731e5c17f36ca1",
+    "width": 1650,
+    "height": 600,
+    "caption": {
+      "ja": "所与の固体回転速度で球面上のcosine bellを輸送し、傾いた軸・極通過・1周後の誤差を調べる限定例。 単位球の所与の剛体回転によるスカラー輸送だけです。原W92全文の式は未閲読で、Nairらの選択した著者資料との規約照合に限ります。両格子とも11回の非整合なremap。非保存の双線形補間で質量ずれを報告し、時間収束とは呼びません。",
+      "en": "Limitedprescribedscalartransport, radius1/3 nondimensionalvariant; not nonlinearSWE or exact1992fullpaperreproduction. Nair1999 selectedformulascrosscheck; bilinear method isAtlasoriginal. Only prescribed scalar solid-body rotation on a unit sphere. Original W92 equations remain unread; selected Nair author formulas cross-check conventions. Both grids use eleven noncommensurate remaps. Bilinear interpolation is nonconservative; report mass drift and do not claim temporal convergence or a nonlinear global SWE core."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-continuum-particle-controls/#williamson-sphere-transport",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-continuum-particle-controls/#williamson-sphere-transport"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#williamson-sphere-transport",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#williamson-sphere-transport-en"
+  },
+  "equations": [
+    {
+      "id": "sphere-scalar-advection",
+      "name": {
+        "ja": "球面上の所与速度スカラー移流",
+        "en": "Prescribed scalar advection on a sphere"
+      },
+      "formula": [
+        "q_t+\\mathbf v\\cdot\\nabla_{\\mathbb S^2}q=0,\\quad q(\\mathbf r,t)=q_0(R_{\\mathbf n}(-2\\pi t/T)\\mathbf r)",
+        "\\mathbf n=(-\\sin\\alpha,0,\\cos\\alpha),\\quad q_0(r)=\\tfrac12[1+\\cos(\\pi r/R)]\\ (r<R),\\quad q_0=0\\ (r\\ge R)"
+      ],
+      "note": {
+        "ja": "単位球の所与の剛体回転によるスカラー輸送だけです。原W92全文の式は未閲読で、Nairらの選択した著者資料との規約照合に限ります。両格子とも11回の非整合なremap。非保存の双線形補間で質量ずれを報告し、時間収束とは呼びません。",
+        "en": "Only prescribed scalar solid-body rotation on a unit sphere. Original W92 equations remain unread; selected Nair author formulas cross-check conventions. Both grids use eleven noncommensurate remaps. Bilinear interpolation is nonconservative; report mass drift and do not claim temporal convergence or a nonlinear global SWE core."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#sphere-scalar-advection-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#sphere-scalar-advection-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
+    "en": "Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
+  },
+  "formulations": [],
+  "references": [
+    {
+      "id": "williamson-sphere-transport",
+      "kind": "analytic",
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "title": {
+        "ja": "Williamson型の球面固体回転輸送：傾いた軸と極通過",
+        "en": "Williamson-type spherical rotation: tilted axes and pole crossing"
+      },
+      "formula": "q_t+\\mathbf v\\cdot\\nabla_{\\mathbb S^2}q=0,\\quad q(\\mathbf r,t)=q_0(R_{\\mathbf n}(-2\\pi t/T)\\mathbf r); \\mathbf n=(-\\sin\\alpha,0,\\cos\\alpha),\\quad q_0(r)=\\tfrac12[1+\\cos(\\pi r/R)]\\ (r<R),\\quad q_0=0\\ (r\\ge R)",
+      "assumptions": {
+        "ja": "単位球上の規定スカラー剛体回転に限定します。W92原著の式は未読で、Nair著者資料の選択式から規約を照合。両格子で整合しない位相の11回再配置を用います。双線形補間は非保存なので質量変動を報告し、時間収束や非線形の全球浅水コアは主張しません。",
+        "en": "Only prescribed scalar solid-body rotation on a unit sphere. Original W92 equations remain unread; selected Nair author formulas cross-check conventions. Both grids use eleven noncommensurate remaps. Bilinear interpolation is nonconservative; report mass drift and do not claim temporal convergence or a nonlinear global SWE core."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "固定入力の式・参照・図と実行コードを対応付けます。 単位球の所与の剛体回転によるスカラー輸送だけです。原W92全文の式は未閲読で、Nairらの選択した著者資料との規約照合に限ります。両格子とも11回の非整合なremap。非保存の双線形補間で質量ずれを報告し、時間収束とは呼びません。",
+        "en": "Bind the fixed-input formula, reference, figure and executable code. Only prescribed scalar solid-body rotation on a unit sphere. Original W92 equations remain unread; selected Nair author formulas cross-check conventions. Both grids use eleven noncommensurate remaps. Bilinear interpolation is nonconservative; report mass drift and do not claim temporal convergence or a nonlinear global SWE core."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/williamson-sphere-transport/?lang=ja#williamson-sphere-transport-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/williamson-sphere-transport/?lang=en#williamson-sphere-transport-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "固定入力の式・参照・図と実行コードを対応付けます。 単位球の所与の剛体回転によるスカラー輸送だけです。原W92全文の式は未閲読で、Nairらの選択した著者資料との規約照合に限ります。両格子とも11回の非整合なremap。非保存の双線形補間で質量ずれを報告し、時間収束とは呼びません。",
+    "en": "Bind the fixed-input formula, reference, figure and executable code. Only prescribed scalar solid-body rotation on a unit sphere. Original W92 equations remain unread; selected Nair author formulas cross-check conventions. Both grids use eleven noncommensurate remaps. Bilinear interpolation is nonconservative; report mass drift and do not claim temporal convergence or a nonlinear global SWE core."
+  },
+  "methods": [
+    {
+      "id": "semi-lagrangian",
+      "name": {
+        "ja": "セミラグランジュ法：所与球面回転の限定例",
+        "en": "Semi-Lagrangian transport: a limited prescribed sphere rotation"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/semi-lagrangian/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/semi-lagrangian/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "単位球の所与の剛体回転によるスカラー輸送だけです。原W92全文の式は未閲読で、Nairらの選択した著者資料との規約照合に限ります。両格子とも11回の非整合なremap。非保存の双線形補間で質量ずれを報告し、時間収束とは呼びません。",
+    "en": "Only prescribed scalar solid-body rotation on a unit sphere. Original W92 equations remain unread; selected Nair author formulas cross-check conventions. Both grids use eleven noncommensurate remaps. Bilinear interpolation is nonconservative; report mass drift and do not claim temporal convergence or a nonlinear global SWE core."
+  },
+  "executions": [
+    {
+      "id": "williamson-sphere-transport",
+      "kind": "supplement",
+      "name": {
+        "ja": "Williamson型の球面固体回転輸送：傾いた軸と極通過",
+        "en": "Williamson-type spherical rotation: tilted axes and pole crossing"
+      },
+      "method_ids": [
+        "semi-lagrangian"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/williamson-sphere-transport/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/williamson-sphere-transport/?lang=en"
+      },
+      "scope": {
+        "ja": "所与の固体回転速度で球面上のcosine bellを輸送し、傾いた軸・極通過・1周後の誤差を調べる限定例。",
+        "en": "Limitedprescribedscalartransport, radius1/3 nondimensionalvariant; not nonlinearSWE or exact1992fullpaperreproduction. Nair1999 selectedformulascrosscheck; bilinear method isAtlasoriginal."
+      },
+      "assumptions": {
+        "ja": "所与の固体回転速度で球面上のcosine bellを輸送し、傾いた軸・極通過・1周後の誤差を調べる限定例。 固定入力の条件・境界・参照の範囲はinputs.jsonを参照。",
+        "en": "Limitedprescribedscalartransport, radius1/3 nondimensionalvariant; not nonlinearSWE or exact1992fullpaperreproduction. Nair1999 selectedformulascrosscheck; bilinear method isAtlasoriginal."
+      },
+      "limits": {
+        "ja": "限定した教育用モデルです。元論文の全条件・全アルゴリズムや一般的な性能の再現ではありません。",
+        "en": "Limitedprescribedscalartransport, radius1/3 nondimensionalvariant; not nonlinearSWE or exact1992fullpaperreproduction. Nair1999 selectedformulascrosscheck; bilinear method isAtlasoriginal."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "解析参照、保存量、細分化、独立成分検査と意図した誤式の負例を区別して保存します。",
+        "en": "Separate analytic/reference errors, conservation, refinement, independent component qualification and deliberately wrong-formula controls."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/ale_piston.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/test_components.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

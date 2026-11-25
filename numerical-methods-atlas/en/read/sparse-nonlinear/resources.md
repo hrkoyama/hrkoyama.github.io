@@ -82,16 +82,30 @@ Resources explicitly registered to the methods, problems and executions of this 
 
 - [One-dimensional Bratu boundary-value problem — references and comparison conditions](<https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu/?lang=en#references-en>)
 
-  Check a hyperbolic-function continuum solution on the lower branch and mesh refinement. Follow-on sensitivity/inverse examples validate derivatives and objectives separately; Bratu has no card in the 18-case reference library.
+  Check a hyperbolic-function continuum solution on the lower branch and mesh refinement. Follow-on sensitivity/inverse examples validate derivatives and objectives separately. An analytic reference card now links the existing fixed inputs and saved results: formula, point/time/radial sampling, edition SHA and executable code. This metadata registration is not a new execution.
+- [1D Bratu: Newton–GMRES on the lower branch](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-bratu-lower-branch-analytic-en>)
+  relation: same-problem
+  reference_kind: analytic
+
+  Analytic reference Existing residual-decrease damped Newton and ILU(0)-GMRES. Analytic u=2log[cosh(β/2)/cosh(β(x−1/2))]. βtanh(β/2)<2 selects the lower branch and all initial unknowns are zero. Nonlinear tolerance is 1e-10 with at most 30 Newton iterations. An analytic reference card now links the existing fixed inputs and saved results: formula, point/time/radial sampling, edition SHA and executable code. This metadata registration is not a new execution.
 - [Nonsymmetric advection-diffusion discrete manufactured system — references and comparison conditions](<https://hrkoyama.github.io/numerical-methods-atlas/problems/sparse-advection-diffusion/?lang=en#references-en>)
 
   Use a manufactured discrete system b=A x from a known vector to check true residual and solution error. Distinguish this from verification against an exact continuum advection-diffusion solution.
 - [Damped Newton root of a cubic equation — references and comparison conditions](<https://hrkoyama.github.io/numerical-methods-atlas/problems/cubic-root/?lang=en#references-en>)
 
   Use the known real root x=1 of x³-1=0 and its residual to check Armijo-damped Newton convergence.
+- [1D Bratu: Newton–GMRES on the lower branch](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-bratu-lower-branch-analytic-en>)
+  reference_kind: analytic
+
+  Analytic reference Existing residual-decrease damped Newton and ILU(0)-GMRES. Analytic u=2log[cosh(β/2)/cosh(β(x−1/2))]. βtanh(β/2)<2 selects the lower branch and all initial unknowns are zero. Nonlinear tolerance is 1e-10 with at most 30 Newton iterations.
 - [1D Bratu: Newton–GMRES on the lower branch — references and checks](<https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/bratu/?lang=en#bratu-en-validation>)
 
   CSV carries finest-grid numerical/analytic values and absolute error. JSON retains each mesh's nonlinear residual, Newton iteration count and minimum damping length.
+- [1D Bratu: Newton–GMRES on the lower branch](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-bratu-lower-branch-analytic-en>)
+  relation: same-problem
+  reference_kind: analytic
+
+  Analytic reference Existing residual-decrease damped Newton and ILU(0)-GMRES. Analytic u=2log[cosh(β/2)/cosh(β(x−1/2))]. βtanh(β/2)<2 selects the lower branch and all initial unknowns are zero. Nonlinear tolerance is 1e-10 with at most 30 Newton iterations. An analytic reference card now links the existing fixed inputs and saved results: formula, point/time/radial sampling, edition SHA and executable code. This metadata registration is not a new execution.
 
 ## Code and validation
 

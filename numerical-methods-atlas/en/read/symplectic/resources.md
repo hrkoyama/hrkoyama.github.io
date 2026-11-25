@@ -65,9 +65,18 @@ Resources explicitly registered to the methods, problems and executions of this 
 - [Nonlinear quartic-potential oscillator — references and comparison conditions](<https://hrkoyama.github.io/numerical-methods-atlas/problems/quartic-oscillator/?lang=en#references-en>)
 
   Compare conserved energy and long-time numerical trajectories/map properties in the nonlinear potential. The stored figure is not labeled a closed-form exact trajectory.
+- [Harmonic oscillator: Verlet phase error and energy](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-harmonic-oscillator-exact-en>)
+  reference_kind: analytic
+
+  Analytic reference H=(q²+p²)/2 and (q0,p0)=(1,0.2); one nondissipative degree of freedom, fixed steps. Inputs explicitly provide initial state, final time and counts. Largest h=0.1 lies in h*omega<2.
 - [Harmonic oscillator: Verlet phase error and energy — references and checks](<https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/harmonic-oscillator/?lang=en#harmonic-oscillator-en-validation>)
 
   CSV aligns numerical/analytic q,p and energy on the finest time grid. Observed order uses endpoint-state errors; energy deviation uses all recorded times.
+- [Harmonic oscillator: Verlet phase error and energy](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-harmonic-oscillator-exact-en>)
+  relation: same-problem
+  reference_kind: analytic
+
+  Analytic reference H=(q²+p²)/2 and (q0,p0)=(1,0.2); one nondissipative degree of freedom, fixed steps. Inputs explicitly provide initial state, final time and counts. Largest h=0.1 lies in h*omega<2. An analytic reference card now links the existing fixed inputs and saved results: formula, point/time/radial sampling, edition SHA and executable code. This metadata registration is not a new execution. The existing gallery shows t≤10; the common fixed input ends at20.
 
 ## Code and validation
 
@@ -103,6 +112,10 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   A genuinely coupled two-degree-of-freedom system uses twelve 64-step probes and six accuracy trajectories to separate normal modes, coordinate exchange, discrete maps and roundoff.
+- [A two-state BO / CP-type model with a short nuclear thermostat coupling](<https://hrkoyama.github.io/numerical-methods-atlas/validation/two-state-bo-cp-ou/?lang=en>)
+  availability: run
+
+  Compare a normalized two-state electronic degree of freedom coupled to a nuclear coordinate, short NVE and one nuclear OU bath.
 - [SHAKE and RATTLE: constraints and momentum ownership](<https://hrkoyama.github.io/numerical-methods-atlas/validation/shake-rattle-pendulum/?lang=en>)
   availability: run
 

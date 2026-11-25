@@ -45,7 +45,12 @@ Resources explicitly registered to the methods, problems and executions of this 
 
 - [Harmonic oscillator, including complex-ODE form — references and comparison conditions](<https://hrkoyama.github.io/numerical-methods-atlas/problems/harmonic-oscillator/?lang=en#references-en>)
 
-  Compare with analytic sine/cosine trajectories, including complex-ODE form, and distinguish phase, energy and geometric map properties. No dedicated reference-library card is included.
+  Compare with analytic sine/cosine trajectories, including complex-ODE form, and distinguish phase, energy and geometric map properties. An analytic reference card now links the existing fixed inputs and saved results: formula, point/time/radial sampling, edition SHA and executable code. This metadata registration is not a new execution. The existing gallery shows t≤10; the common fixed input ends at20.
+- [Harmonic oscillator: Verlet phase error and energy](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-harmonic-oscillator-exact-en>)
+  relation: same-problem
+  reference_kind: analytic
+
+  Analytic reference H=(q²+p²)/2 and (q0,p0)=(1,0.2); one nondissipative degree of freedom, fixed steps. Inputs explicitly provide initial state, final time and counts. Largest h=0.1 lies in h*omega<2. An analytic reference card now links the existing fixed inputs and saved results: formula, point/time/radial sampling, edition SHA and executable code. This metadata registration is not a new execution. The existing gallery shows t≤10; the common fixed input ends at20.
 
 ## Code and validation
 
@@ -161,6 +166,14 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Evolve a nonlinear finite-amplitude wave for one period with full SRMHD magnetic stress and induction; check exact cell means,phase,amplitude and refinement.
+- [Fisher–KPP: a special-speed exact front](<https://hrkoyama.github.io/numerical-methods-atlas/validation/fisher-kpp-special-front/?lang=en>)
+  availability: run
+
+  Separate profile, phase, grid, time and finite-boundary errors.
+- [Keller–Segel: a manufactured coupled-flux solution](<https://hrkoyama.github.io/numerical-methods-atlas/validation/keller-segel-forced-flux/?lang=en>)
+  availability: run
+
+  Use smooth exact2D fields to test cross fluxes, stage timing and mass ledgers.
 - [WENO-JS/Z: fixed critical-point and epsilon comparison](<https://hrkoyama.github.io/numerical-methods-atlas/validation/weno-critical-epsilon/?lang=en>)
   availability: run
 
@@ -205,6 +218,14 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Check population conservation and the full two-mode initial linearization separately.
+- [Hodgkin–Huxley: clamps, rest and firing](<https://hrkoyama.github.io/numerical-methods-atlas/validation/hodgkin-huxley-controls/?lang=en>)
+  availability: run
+
+  Compare analytic clamp gates and a four-state system with segment-owned current.
+- [Time evolution of axisymmetric spherical shallow-water balance](<https://hrkoyama.github.io/numerical-methods-atlas/validation/sphere-zonal-balance/?lang=en>)
+  availability: run
+
+  NondimensionalWilliamson2-type axisymmetricsubproblem. Analyticstaticstatevsactualtimeintegration; not fullglobaldynamicalcore/PVclaim.
 - [Finite-amplitude Schnakenberg transient: nonlinearity and independent reference](<https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-nonlinear/?lang=en>)
   availability: run
 

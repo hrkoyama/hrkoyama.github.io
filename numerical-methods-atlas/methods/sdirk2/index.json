@@ -2141,7 +2141,29 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/stiff-cosine/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/stiff-cosine/?lang=en#references-en"
         },
-        "cases": []
+        "cases": [
+          {
+            "id": "stiff-cosine-exact",
+            "title": {
+              "ja": "硬い余弦追従ODE：SDIRK2",
+              "en": "Stiff cosine-tracking ODE: SDIRK2"
+            },
+            "kind": "analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "既存の固定入力・保存結果に対応する解析参照カードを追加。解析式、点・時刻・動径の標本化、配布版SHAと実行コードを相互に辿れます。過去の計算を再実行した記録ではありません。",
+              "en": "An analytic reference card now links the existing fixed inputs and saved results: formula, point/time/radial sampling, edition SHA and executable code. This metadata registration is not a new execution."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-stiff-cosine-exact-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-stiff-cosine-exact-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/problems/stiff-cosine/?lang=ja",
+              "en": "/numerical-methods-atlas/problems/stiff-cosine/?lang=en"
+            }
+          }
+        ]
       },
       {
         "problem_id": "nonlinear-rational-ode",

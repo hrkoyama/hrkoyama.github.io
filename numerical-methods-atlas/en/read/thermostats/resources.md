@@ -35,6 +35,10 @@ No chapter-specific association is registered. Atlas-wide index: [Exact and refe
 
 ## Code and validation
 
+- [NH,chains,weak coupling and fixed-speed contrasts](<https://hrkoyama.github.io/numerical-methods-atlas/validation/deterministic-thermostat-contrasts/?lang=en>)
+  availability: run
+
+  Compare distributions,fluctuations and correlations as well as mean temperature on the same two-mode systems.
 - [Langevin thermostat: canonical distributions, timestep bias and correlation](<https://hrkoyama.github.io/numerical-methods-atlas/validation/langevin-harmonic/?lang=en>)
   availability: run
 
@@ -47,7 +51,31 @@ No chapter-specific association is registered. Atlas-wide index: [Exact and refe
   availability: run
 
   Compare CSVR and Langevin distributions, temperature/energy fluctuations and correlations for two weakly quartic modes. Independent Boltzmann quadrature provides equilibrium references.
+- [A two-state BO / CP-type model with a short nuclear thermostat coupling](<https://hrkoyama.github.io/numerical-methods-atlas/validation/two-state-bo-cp-ou/?lang=en>)
+  availability: run
+
+  Compare a normalized two-state electronic degree of freedom coupled to a nuclear coordinate, short NVE and one nuclear OU bath.
+- [Constraints,centre-of-mass removal and canonical statistics](<https://hrkoyama.github.io/numerical-methods-atlas/validation/projected-canonical-dof/?lang=en>)
+  availability: run
+
+  Separate effectiveDOF,momentum covariance,transient distributions and time correlations.
+- [Direct velocity rescaling — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/velocity-rescaling/?lang=en#method-execution-en>)
+  availability: source
+
+  Method-specific editions and related sources; fixed-input runs are listed separately.
+- [Berendsen weak-coupling thermostat — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/berendsen-thermostat/?lang=en#method-execution-en>)
+  availability: source
+
+  Method-specific editions and related sources; fixed-input runs are listed separately.
 - [Langevin thermostat — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/langevin-thermostat/?lang=en#method-execution-en>)
+  availability: source
+
+  Method-specific editions and related sources; fixed-input runs are listed separately.
+- [Nosé–Hoover thermostat — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/nose-hoover/?lang=en#method-execution-en>)
+  availability: source
+
+  Method-specific editions and related sources; fixed-input runs are listed separately.
+- [Nosé–Hoover chains — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/nose-hoover-chains/?lang=en#method-execution-en>)
   availability: source
 
   Method-specific editions and related sources; fixed-input runs are listed separately.

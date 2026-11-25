@@ -2,7 +2,7 @@
 
 Compare fluctuations, ergodicity and time correlations as well as mean temperature, from Nosé–Hoover and velocity rescaling to stochastic and momentum-conserving methods.
 
-Two of the 12 methods have dedicated implementations: Langevin and CSVR. Preserve the earlier one-degree-of-freedom harmonic Langevin/BAOAB case. A separate edition compares both baths with the same OBABO splitting for a nondegenerate two-degree harmonic system and a two-degree anharmonic system with quartic coefficient lambda=0.2, and checks the standalone CSVR kinetic-energy kernel. The other 10 methods remain planned.
+Retain the earlier two-method comparison of Langevin and CSVR. Preserve the earlier one-degree-of-freedom harmonic Langevin/BAOAB case. A separate edition compares both baths with the same OBABO splitting for a nondegenerate two-degree harmonic system and a two-degree anharmonic system with quartic coefficient lambda=0.2, and checks the standalone CSVR kinetic-energy kernel. A separate fixed two-mode release contrasts direct rescaling, Berendsen, Nosé–Hoover and NHC3 while retaining unmet or unresolved original goals. The remaining six methods are planned.
 
 ## Define the controlled temperature
 
@@ -86,15 +86,23 @@ For a positive bath step, at K=0 the direction is undefined, so this implementat
 
 ## Validated scope and next checks
 
-Three new cases separate the exact isolated-bath law, a few-degree harmonic system and a weakly anharmonic system. Each entry exposes fixed inputs, measurements, errors/uncertainty, criteria, code, tests, ZIP and independent-extraction receipt. The earlier BAOAB example is separate evidence. The other 10 methods still have no dedicated implementation or validation.
+Three new cases separate the exact isolated-bath law, a few-degree harmonic system and a weakly anharmonic system. Each entry exposes fixed inputs, measurements, errors/uncertainty, criteria, code, tests, ZIP and independent-extraction receipt. The earlier BAOAB example is separate evidence. These CSVR comparisons are not evidence for other algorithms. A separate fixed-input release contrasts four deterministic schemes and retains unmet/unresolved original goals; six other schemes remain planned.
 
 ## Sources and review scope
 
-For CSVR, the kinetic-energy equations/appendix in the 2007 author manuscript, signed update in the 2008 manuscript and author correction were checked. The adopted small classical examples are validated by separate references, quadrature and actual reruns. They do not reproduce the original Lennard–Jones or TIP4P-water experiments. The other ten schemes remain comparative reading and primary-source entry points, not numerically validated here. Individual original-paper curation for Gaussian isokinetic remains open.
+For CSVR, the kinetic-energy equations/appendix in the 2007 author manuscript, signed update in the 2008 manuscript and author correction were checked. The adopted small classical examples are validated by separate references, quadrature and actual reruns. They do not reproduce the original Lennard–Jones or TIP4P-water experiments. This CSVR source audit is not transferred to other algorithms. Four deterministic schemes have a separate limited release; the remaining six schemes are comparative reading and primary-source entry points. Individual original-paper curation for Gaussian isokinetic remains open.
 
 - G. Bussi, D. Donadio and M. Parrinello (2007). Canonical sampling through velocity rescaling. https://arxiv.org/html/0803.4060v1
 - G. Bussi and M. Parrinello (2008). Stochastic thermostats: comparison of local and global schemes. https://arxiv.org/html/0803.4397v1
 - Giovanni Bussi (2026). Algorithms: stochastic velocity rescaling, author correction note. https://sites.google.com/site/giovannibussi/Research/algorithms
+
+## NH,chains,weak coupling and fixed-speed contrasts
+
+Fix unit masses,kBT1,frequencies1/1.7 and quartic0/.2. Compare NH1,NHC3,Berendsen and fixed-speed baths at two couplings/two steps with256canonical and128heated replicas.
+
+Separately test physical reversal,Hext derivative,phi1,local weak-coupling inverses and noninjective rescaling. Retain four distributions,fluctuations,signed correlations and unresolved DKW precision at time20.
+
+This authored splitting is not a full LAMMPS/MKT reproduction. Time20does not prove mixing/equilibration; correct mean temperature alone does not establish canonical sampling or general ergodicity.
 
 ## Execution and validation entries
 
@@ -133,3 +141,30 @@ Entry: https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-langev
 ZIP: https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip
 Results: https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/results/result.json
 Receipt: https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/verification.json
+
+### A two-state BO / CP-type model with a short nuclear thermostat coupling
+
+Long first-principles NVE and general electronic/nuclear thermostat equilibration remain deferred. No material prediction, multi-orbital CPMD or canonical/ergodic sampling certificate.
+
+Entry: https://hrkoyama.github.io/numerical-methods-atlas/validation/two-state-bo-cp-ou/?lang=en
+ZIP: https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/results/result.json
+Receipt: https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/verification.json
+
+### NH,chains,weak coupling and fixed-speed contrasts
+
+This authored splitting is not a full LAMMPS/MKT reproduction. Time20does not prove mixing/equilibration; correct mean temperature alone does not establish canonical sampling or general ergodicity.
+
+Entry: https://hrkoyama.github.io/numerical-methods-atlas/validation/deterministic-thermostat-contrasts/?lang=en
+ZIP: https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/atlas-thermostat-constraint-controls-2026-11-25.zip
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/results/result.json
+Receipt: https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/verification.json
+
+### Constraints,centre-of-mass removal and canonical statistics
+
+These fixed linear constraints do not cover nonlinear molecular constraints,Fixman corrections or transport coefficients. Redundant systems with independent seeds need not have identical paths; CSVR dynamical correlations are empirical.
+
+Entry: https://hrkoyama.github.io/numerical-methods-atlas/validation/projected-canonical-dof/?lang=en
+ZIP: https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/atlas-thermostat-constraint-controls-2026-11-25.zip
+Results: https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/results/result.json
+Receipt: https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/verification.json

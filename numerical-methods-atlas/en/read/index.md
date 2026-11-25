@@ -117,6 +117,7 @@ Organize spatial discretization and coordinates, then examine incompressible flo
 - [Nonperiodic walls: cavity and manufactured flow](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-wall-flow/)
 - [Corner singularities, curved coordinates and Neumann/Robin boundaries](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-mesh-boundary/)
 - [Nonuniform ALE transport and2D rotating shallow-water waves](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-moving-waves/)
+- [Scoped ALE piston, sphere transport and SPH/GSPH controls](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-continuum-particle-controls/)
 
 ## Particles, kinetic methods and transport
 
@@ -165,6 +166,7 @@ Follow periodic electrostatics and electromagnetic fields, then atomic, molecula
 - [Mie scattering width of a two-dimensional dielectric cylinder](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-cylinder/)
 - [Oblique s/p incidence on a Lorentz-dispersive slab](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-lorentz/)
 - [Long-time grazing PML in a dispersive medium](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-maxwell-grazing/)
+- [Small quantum models and saved-reference cards](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quantum-small/)
 
 ## Stochastic computation, biology and temperature control
 
@@ -181,6 +183,9 @@ Compare stochastic error, population models and temperature control through thei
 - [CSVR and Langevin: distributions, fluctuations and correlations](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/)
 - [Weak/strong SDE errors and sampling uncertainty](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-accuracy/)
 - [Importance sampling and correlated-Gaussian diagnostics](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-stochastic-estimation/)
+- [Independent checks of membrane dynamics and reaction SSA](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology-ode-controls/)
+- [Biological reaction–diffusion: two-dimensional and boundary controls](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology-space-controls/)
+- [Deterministic thermostats and constrained degrees of freedom](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostat-constraint-controls/)
 
 ## Verification problems and experiment guides
 

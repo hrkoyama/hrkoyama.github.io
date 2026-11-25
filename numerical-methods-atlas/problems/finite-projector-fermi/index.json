@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "id": "finite-projector-fermi",
+  "name": {
+    "ja": "3平面波の非局所projectorと有限温度占有",
+    "en": "A three-wave periodic projector and Fermi-occupation model"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/finite-projector-fermi/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/finite-projector-fermi/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/finite-projector-fermi/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/results/periodic-projector-occupations.png",
+    "sha256": "0209e46d2c2a5690ad05796c1d2077f0f5f34b38aba51cbcfed8deb40d4764f5",
+    "width": 1600,
+    "height": 640,
+    "caption": {
+      "ja": "3平面波の小周期模型で、非局所projectorと有限温度占有・力を示します。 自作3平面波の線形Hamiltonianです。平均占有の独立粒子Fermi模型であり、整数粒子の正準多体系ではありません。自己無撞着Hartree/XC、元素適合ノルム保存擬ポテンシャル、実金属、一般材料、長時間MDは未検証。",
+      "en": "Show a genuine rank-one nonlocal kernel and finite-temperature occupations in a three-wave periodic educational model. Authored linear3-wave Hamiltonian with independent-particle mean Fermi occupations, not an integer-particle canonical many-body ensemble. No self-consistent Hartree/XC, element-fitted norm-conserving PSP, real metal, general material or longMD validation."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quantum-small/#periodic-projector-occupations",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quantum-small/#periodic-projector-occupations"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#finite-projector-fermi",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#finite-projector-fermi-en"
+  },
+  "equations": [
+    {
+      "id": "finite-projector-fermi-model",
+      "name": {
+        "ja": "3平面波・非局所核と平均Fermi占有",
+        "en": "Three-wave nonlocal kernel and mean Fermi occupations"
+      },
+      "formula": [
+        "H_{GG\\prime}(k,R)=\\tfrac12(G+k)^2\\delta_{GG\\prime}+V_{GG\\prime}+\\eta\\beta_G\\beta_{G\\prime}^*,\\quad\\beta_G=e^{-(G+k)^2/(2\\sigma^2)}e^{-i(G+k)R}",
+        "f_{kn}=\\frac{2}{1+e^{(\\varepsilon_{kn}-\\mu)/T}},\\quad\\sum_{kn}w_kf_{kn}=1.5",
+        "F=\\sum_{kn}w_kf_{kn}\\varepsilon_{kn}-TS,\\quad F_R=-\\sum_{kn}w_kf_{kn}\\langle u_{kn}|\\partial_RH_k|u_{kn}\\rangle"
+      ],
+      "note": {
+        "ja": "自作3平面波の線形Hamiltonianです。平均占有の独立粒子Fermi模型であり、整数粒子の正準多体系ではありません。自己無撞着Hartree/XC、元素適合ノルム保存擬ポテンシャル、実金属、一般材料、長時間MDは未検証。",
+        "en": "Authored linear3-wave Hamiltonian with independent-particle mean Fermi occupations, not an integer-particle canonical many-body ensemble. No self-consistent Hartree/XC, element-fitted norm-conserving PSP, real metal, general material or longMD validation."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#finite-projector-fermi-model-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#finite-projector-fermi-model-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "G=-1,0,1、k=±0.25、等重み、T=.05、電子数1.5の自作線形模型です。 無次元のG=-1,0,1、p=G+k、k=±.25、重み各.5、T=.05、平均電子数N=1.5、スピン係数2。実在格子定数や金属へ換算しません。",
+    "en": "Authored rank-one periodic linear model and finite-N Helmholtz forces. No real metal/element pseudopotential/norm conservation/Hartree-XC/long MD claim. N=1.5 is a mean independent-particle Fermi occupation count, not an integer-N canonical many-body ensemble. Dimensionless G=-1,0,1,p=G+k,k=±.25 with equal.5weights,T=.05,mean electron countN=1.5 and spin factor2. No physical lattice-constant or metal mapping."
+  },
+  "formulations": [
+    {
+      "id": "supplement-periodic-projector-occupations",
+      "name": {
+        "ja": "3平面波の非局所projectorと有限温度占有",
+        "en": "A three-wave periodic projector and Fermi-occupation model"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "H_{GG\\prime}(k,R)=\\tfrac12(G+k)^2\\delta_{GG\\prime}+V_{GG\\prime}+\\eta\\beta_G\\beta_{G\\prime}^*,\\quad\\beta_G=e^{-(G+k)^2/(2\\sigma^2)}e^{-i(G+k)R}",
+        "f_{kn}=\\frac{2}{1+e^{(\\varepsilon_{kn}-\\mu)/T}},\\quad\\sum_{kn}w_kf_{kn}=1.5",
+        "F=\\sum_{kn}w_kf_{kn}\\varepsilon_{kn}-TS,\\quad F_R=-\\sum_{kn}w_kf_{kn}\\langle u_{kn}|\\partial_RH_k|u_{kn}\\rangle"
+      ],
+      "note": {
+        "ja": "3平面波の小周期模型で、非局所projectorと有限温度占有・力を示します。",
+        "en": "Show a genuine rank-one nonlocal kernel and finite-temperature occupations in a three-wave periodic educational model."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "periodic-projector-occupations",
+      "kind": "semi-analytic",
+      "kind_label": {
+        "ja": "半解析解",
+        "en": "Semi-analytic reference"
+      },
+      "title": {
+        "ja": "3平面波の非局所projectorと有限温度占有",
+        "en": "A three-wave periodic projector and Fermi-occupation model"
+      },
+      "formula": "H_{GG\\prime}(k,R)=\\tfrac12(G+k)^2\\delta_{GG\\prime}+V_{GG\\prime}+\\eta\\beta_G\\beta_{G\\prime}^*,\\quad\\beta_G=e^{-(G+k)^2/(2\\sigma^2)}e^{-i(G+k)R};\\quad f_{kn}=\\frac{2}{1+e^{(\\varepsilon_{kn}-\\mu)/T}},\\quad\\sum_{kn}w_kf_{kn}=1.5;\\quad F=\\sum_{kn}w_kf_{kn}\\varepsilon_{kn}-TS,\\quad F_R=-\\sum_{kn}w_kf_{kn}\\langle u_{kn}|\\partial_RH_k|u_{kn}\\rangle",
+      "assumptions": {
+        "ja": "G=-1,0,1、k=±0.25、等重み、T=.05、電子数1.5の自作線形模型です。 無次元のG=-1,0,1、p=G+k、k=±.25、重み各.5、T=.05、平均電子数N=1.5、スピン係数2。実在格子定数や金属へ換算しません。",
+        "en": "Authored rank-one periodic linear model and finite-N Helmholtz forces. No real metal/element pseudopotential/norm conservation/Hartree-XC/long MD claim. N=1.5 is a mean independent-particle Fermi occupation count, not an integer-N canonical many-body ensemble. Dimensionless G=-1,0,1,p=G+k,k=±.25 with equal.5weights,T=.05,mean electron countN=1.5 and spin factor2. No physical lattice-constant or metal mapping."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "自作3平面波の線形Hamiltonianです。平均占有の独立粒子Fermi模型であり、整数粒子の正準多体系ではありません。自己無撞着Hartree/XC、元素適合ノルム保存擬ポテンシャル、実金属、一般材料、長時間MDは未検証。",
+        "en": "Authored linear3-wave Hamiltonian with independent-particle mean Fermi occupations, not an integer-particle canonical many-body ensemble. No self-consistent Hartree/XC, element-fitted norm-conserving PSP, real metal, general material or longMD validation."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/periodic-projector-occupations/?lang=ja#periodic-projector-occupations-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/periodic-projector-occupations/?lang=en#periodic-projector-occupations-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "独立3次式固有値、Hermiticity・電子数・entropy・解析力と自由エネルギー差分を照合します。",
+    "en": "Check an independent cubic spectral oracle, Hermiticity, electron number, entropy, analytic force and fixed-N free-energy differences."
+  },
+  "methods": [
+    {
+      "id": "schrodinger",
+      "name": {
+        "ja": "Schrödinger固有値問題",
+        "en": "Schrodinger eigenproblems"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/schrodinger/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/schrodinger/?lang=en"
+      }
+    },
+    {
+      "id": "pseudopotentials",
+      "name": {
+        "ja": "擬ポテンシャル・PAW",
+        "en": "Pseudopotentials and PAW"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pseudopotentials/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pseudopotentials/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "rank1核のHermitian行列を解き、固定NのFermi占有と自由エネルギーの力を計算します。",
+    "en": "Solve3x3 Hermitian blocks, determine fixed-N Fermi occupations and differentiate Helmholtz free energy including entropy."
+  },
+  "executions": [
+    {
+      "id": "periodic-projector-occupations",
+      "kind": "supplement",
+      "name": {
+        "ja": "3平面波の非局所projectorと有限温度占有",
+        "en": "A three-wave periodic projector and Fermi-occupation model"
+      },
+      "method_ids": [
+        "schrodinger",
+        "pseudopotentials"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/periodic-projector-occupations/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/periodic-projector-occupations/?lang=en"
+      },
+      "scope": {
+        "ja": "3平面波の小周期模型で、非局所projectorと有限温度占有・力を示します。",
+        "en": "Show a genuine rank-one nonlocal kernel and finite-temperature occupations in a three-wave periodic educational model."
+      },
+      "assumptions": {
+        "ja": "G=-1,0,1、k=±0.25、等重み、T=.05、電子数1.5の自作線形模型です。 無次元のG=-1,0,1、p=G+k、k=±.25、重み各.5、T=.05、平均電子数N=1.5、スピン係数2。実在格子定数や金属へ換算しません。",
+        "en": "Authored rank-one periodic linear model and finite-N Helmholtz forces. No real metal/element pseudopotential/norm conservation/Hartree-XC/long MD claim. N=1.5 is a mean independent-particle Fermi occupation count, not an integer-N canonical many-body ensemble. Dimensionless G=-1,0,1,p=G+k,k=±.25 with equal.5weights,T=.05,mean electron countN=1.5 and spin factor2. No physical lattice-constant or metal mapping."
+      },
+      "limits": {
+        "ja": "元素に合わせたノルム保存擬ポテンシャルではありません。実金属、自己無撞着Hartree/XC、一般材料や長時間MDは未検証です。",
+        "en": "The authored rank-one kernel is not an element-fitted norm-conserving pseudopotential. No self-consistent Hartree/XC, real metal, general material or long-time MD success."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "独立3次式固有値、Hermiticity・電子数・entropy・解析力と自由エネルギー差分を照合します。",
+        "en": "Check an independent cubic spectral oracle, Hermiticity, electron number, entropy, analytic force and fixed-N free-energy differences."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/periodic_projector.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/test_quantum_small.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

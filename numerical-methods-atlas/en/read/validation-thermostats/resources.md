@@ -14,6 +14,18 @@ Resources explicitly registered to the methods, problems and executions of this 
 - [Langevin thermostat](<https://hrkoyama.github.io/numerical-methods-atlas/methods/langevin-thermostat/?lang=en>)
 
   Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed.
+- [Nosé–Hoover thermostat](<https://hrkoyama.github.io/numerical-methods-atlas/methods/nose-hoover/?lang=en>)
+
+  Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed.
+- [Nosé–Hoover chains](<https://hrkoyama.github.io/numerical-methods-atlas/methods/nose-hoover-chains/?lang=en>)
+
+  Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed.
+- [Berendsen weak-coupling thermostat](<https://hrkoyama.github.io/numerical-methods-atlas/methods/berendsen-thermostat/?lang=en>)
+
+  Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed.
+- [Direct velocity rescaling](<https://hrkoyama.github.io/numerical-methods-atlas/methods/velocity-rescaling/?lang=en>)
+
+  Methods from explicitly bound supplementary examples and, where present, the common execution example. No release for a different problem is borrowed.
 - [Stochastic velocity rescaling (CSVR)](<https://hrkoyama.github.io/numerical-methods-atlas/methods/stochastic-velocity-rescaling/?lang=en>)
 - [Langevin thermostat](<https://hrkoyama.github.io/numerical-methods-atlas/methods/langevin-thermostat/?lang=en>)
 
@@ -22,6 +34,9 @@ Resources explicitly registered to the methods, problems and executions of this 
 - [Hamiltonian systems and oscillators](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#hamiltonian-en>)
 
   Canonical equations and a representative separable Hamiltonian. Harmonic and quartic oscillators distinguish energy error from symplecticity. The Hamiltonian link identifies the anharmonic mechanical part; validation concerns distributions with added stochastic CSVR/Langevin heat baths.
+- [Two-mode deterministic thermostat model](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#finite-mode-thermostat-model-en>)
+
+  This authored splitting is not a full LAMMPS/MKT reproduction. Time20does not prove mixing/equilibration; correct mean temperature alone does not establish canonical sampling or general ergodicity. The Hamiltonian link identifies the anharmonic mechanical part; validation concerns distributions with added stochastic CSVR/Langevin heat baths.
 - [This execution’s formulation and conditions](<https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-kinetic-kernel/?lang=en#csvr-kinetic-kernel-en-algorithm>)
 
   Use the completed-square exact CIR transition with normal R and independent chi-square(Nf−1) S. The same R sets the sign of global alpha; S=0 for Nf=1. Reconstruct momentum from its unit direction and new radius without a tiny-K energy ratio. Reject K=0 because its direction is undefined.
@@ -60,6 +75,11 @@ Resources explicitly registered to the methods, problems and executions of this 
 - [Anharmonic CSVR versus Langevin: distribution checks against Boltzmann quadrature — references and comparison conditions](<https://hrkoyama.github.io/numerical-methods-atlas/problems/thermostatted-quartic/?lang=en#references-en>)
 
   Independently integrate the anharmonic Boltzmann distribution and compare finite-step CSVR/Langevin distributions and moments, not exact stochastic trajectories.
+- [NH,chains,weak coupling and fixed-speed contrasts](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-deterministic-thermostat-contrasts-en>)
+  relation: same-problem
+  reference_kind: semi-analytic
+
+  Semi-analytic reference Fix unit masses,kBT1,frequencies1/1.7 and quartic0/.2. Compare NH1,NHC3,Berendsen and fixed-speed baths at two couplings/two steps with256canonical and128heated replicas. Dimensionless, unit masses, kBT=1, frequencies 1/1.7; Q1=2tau², Qj=tau². Two-mode initial-value problem without spatial boundaries; fixed canonical/heated ensembles. Same two-mode quartic system plus a harmonic control; short-time and finite-sample deterministic-bath comparisons.
 - [Exact CSVR bath: conditional laws, fluctuations and kinetic correlation — references and checks](<https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-kinetic-kernel/?lang=en#csvr-kinetic-kernel-en-validation>)
 
   Compare with separate CIR conditional moments, three SciPy noncentral-chi-square quantile probabilities, stationary Gamma K and bath-only exp(−t/tau) correlation. A separate noiseless mean-relaxation control demonstrates loss of fluctuations.
@@ -74,6 +94,11 @@ Resources explicitly registered to the methods, problems and executions of this 
 - [Anharmonic CSVR versus Langevin: distribution checks against Boltzmann quadrature — references and checks](<https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-langevin-quartic/?lang=en#csvr-langevin-quartic-en-validation>)
 
   Obtain coordinate normalizers/CDFs and U moments by 1D quadrature, and the H CDF by convolving exponential K with the 2D positional Boltzmann density. Save the difference between quadrature tolerances 2e−10 and 2e−12; a separate rejection ensemble also checks H. Report independent-replica standard errors for q,p,K,H correlations, keeping step differences distinct from sampling noise.
+- [NH,chains,weak coupling and fixed-speed contrasts](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-deterministic-thermostat-contrasts-en>)
+  relation: same-problem
+  reference_kind: semi-analytic
+
+  Semi-analytic reference Fix unit masses,kBT1,frequencies1/1.7 and quartic0/.2. Compare NH1,NHC3,Berendsen and fixed-speed baths at two couplings/two steps with256canonical and128heated replicas. Dimensionless, unit masses, kBT=1, frequencies 1/1.7; Q1=2tau², Qj=tau². Two-mode initial-value problem without spatial boundaries; fixed canonical/heated ensembles. Same two-mode quartic system plus a harmonic control; short-time and finite-sample deterministic-bath comparisons.
 
 ## Code and validation
 
@@ -81,6 +106,10 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Compare CSVR and Langevin distributions, temperature/energy fluctuations and correlations for two weakly quartic modes. Independent Boltzmann quadrature provides equilibrium references.
+- [NH,chains,weak coupling and fixed-speed contrasts](<https://hrkoyama.github.io/numerical-methods-atlas/validation/deterministic-thermostat-contrasts/?lang=en>)
+  availability: run
+
+  Compare distributions,fluctuations and correlations as well as mean temperature on the same two-mode systems.
 - [Exact CSVR bath: conditional laws, fluctuations and kinetic correlation](<https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-kinetic-kernel/?lang=en>)
   availability: run
 

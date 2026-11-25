@@ -292,6 +292,10 @@ Resources explicitly registered to the methods, problems and executions of this 
 
 ## Code and validation
 
+- [Schnakenberg:2D boundaries and initial modes](<https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/?lang=en>)
+  availability: run
+
+  Compare two Neumann perturbations and a Dirichlet perturbation against nonlinear Galerkin references.
 - [1D Poisson: Dirichlet sine solution and second-order refinement](<https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/poisson-1d-dirichlet/?lang=en>)
   availability: run
 

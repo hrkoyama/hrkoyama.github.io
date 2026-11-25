@@ -158,6 +158,10 @@ Resources explicitly registered to the methods, problems and executions of this 
   availability: run
 
   Evolve actual one-dimensional nonperiodic fields and compare unmodified and boundary-corrected Strang splitting against the same spatial discretization.
+- [Time evolution of axisymmetric spherical shallow-water balance](<https://hrkoyama.github.io/numerical-methods-atlas/validation/sphere-zonal-balance/?lang=en>)
+  availability: run
+
+  NondimensionalWilliamson2-type axisymmetricsubproblem. Analyticstaticstatevsactualtimeintegration; not fullglobaldynamicalcore/PVclaim.
 - [Periodic sine advection: upwind and analytic transport](<https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/advection-sine/?lang=en>)
   availability: run
 

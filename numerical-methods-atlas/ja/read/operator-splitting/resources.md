@@ -40,6 +40,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/operator-splitting/
   availability: run
 
   2自由度の実結合系で、12の64刻みprobeと6の精度軌道を使い、真のモード、座標間交換、離散写像と丸めを分けます。
+- [Schnakenberg：2D境界と初期モード](<https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/?lang=ja>)
+  availability: run
+
+  2つのNeumann摂動とDirichlet摂動を独立な非線形Galerkin参照と比較します。
 - [Lie–Trotter分割：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/lie-trotter/?lang=ja#method-execution-ja>)
   availability: source
 

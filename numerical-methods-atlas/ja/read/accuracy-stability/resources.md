@@ -46,6 +46,11 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/accuracy-stability/
 - [硬い余弦追従ODE：SDIRK2：参照・検証](<https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/stiff-cosine/?lang=ja#stiff-cosine-ja-validation>)
 
   章で比較する時間積分法と、関連するSDIRK2の硬い余弦追従ODEを案内します。固定入力stiff-cosineの誤差・段階残差・刻み比較は、その条件の実行検証です。A/L安定性の一般的な証明や、列挙した全手法の同一条件での検証を意味しません。誤差ノルムと安定性の役割は分けて読みます。 CSVは最細刻みの数値解・解析解・絶対誤差。観測次数は全時刻最大誤差から計算。旧保存例の粗格子で約1台になる挙動と、今回の解像した刻みでの次数を混同しない。
+- [硬い余弦追従ODE：SDIRK2](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-stiff-cosine-exact-ja>)
+  relation: same-problem
+  reference_kind: analytic
+
+  章で比較する時間積分法と、関連するSDIRK2の硬い余弦追従ODEを案内します。固定入力stiff-cosineの誤差・段階残差・刻み比較は、その条件の実行検証です。A/L安定性の一般的な証明や、列挙した全手法の同一条件での検証を意味しません。誤差ノルムと安定性の役割は分けて読みます。 解析解 rate=1000、1000/2000/4000ステップでrate*h=1,0.5,0.25。固定γ=1−1/√2と既存Newton段階解法を使用。別の減衰はy′=−10⁸y、y(0)=1、h=1。適応刻み法ではない。 既存の固定入力・保存結果に対応する解析参照カードを追加。解析式、点・時刻・動径の標本化、配布版SHAと実行コードを相互に辿れます。過去の計算を再実行した記録ではありません。
 
 ## コード・検証
 

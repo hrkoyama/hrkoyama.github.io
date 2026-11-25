@@ -404,6 +404,20 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#kohn-sham-model-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#kohn-sham-model-en"
         }
+      },
+      {
+        "id": "stationary-schrodinger",
+        "name": {
+          "ja": "電子の定常Schrödinger方程式",
+          "en": "Stationary electronic Schrödinger equation"
+        },
+        "problem_ids": [
+          "helium-ground-state"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#stationary-schrodinger-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#stationary-schrodinger-en"
+        }
       }
     ],
     "problems": [
@@ -610,7 +624,29 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/helium-ground-state/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/helium-ground-state/?lang=en#references-en"
         },
-        "cases": []
+        "cases": [
+          {
+            "id": "atomic-reference-cards",
+            "title": {
+              "ja": "H/Heの式・密度・固定参照カード",
+              "en": "Hydrogenic formulas and immutable finite-basis helium reference cards"
+            },
+            "kind": "numerical-reference",
+            "relation": "same-problem",
+            "note": {
+              "ja": "参照カードの整備・保存値照合であり、新SCF/新独立参照は0回。相関込み厳密He、完全基底極限、全軌道の再実行は主張しません。",
+              "en": "Curation and saved-value audit only: zero new SCF/independent-reference runs. No correlated-exact He, complete-basis limit or full orbital rerun claim."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-atomic-reference-cards-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-atomic-reference-cards-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/atomic-reference-cards/?lang=ja#atomic-reference-cards-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/atomic-reference-cards/?lang=en#atomic-reference-cards-en-measurements"
+            }
+          }
+        ]
       },
       {
         "problem_id": "periodic-he-dft",
@@ -622,7 +658,29 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-dft/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-dft/?lang=en#references-en"
         },
-        "cases": []
+        "cases": [
+          {
+            "id": "periodic-he-reference-cards",
+            "title": {
+              "ja": "保存周期Heエネルギー・力の参照台帳",
+              "en": "Immutable periodic-helium energy and force reference audit"
+            },
+            "kind": "numerical-reference",
+            "relation": "same-problem",
+            "note": {
+              "ja": "既存の6力成分・エネルギー差分・Gaussian/PW比較の保存値照合です。電子計算の追加0回。新しい基底/k/カットオフ走査、一般物質、金属、長時間MDへ拡張しません。",
+              "en": "Audit of stored6force components, energy differences and Gaussian/PW comparisons; zero new electronic solves. No new basis/k/cutoff scans, materials, metals or longMD claim."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-periodic-he-reference-cards-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-periodic-he-reference-cards-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/periodic-he-reference-cards/?lang=ja#periodic-he-reference-cards-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/periodic-he-reference-cards/?lang=en#periodic-he-reference-cards-en-measurements"
+            }
+          }
+        ]
       },
       {
         "problem_id": "periodic-he-forces",
@@ -634,7 +692,29 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-forces/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-forces/?lang=en#references-en"
         },
-        "cases": []
+        "cases": [
+          {
+            "id": "periodic-he-reference-cards",
+            "title": {
+              "ja": "保存周期Heエネルギー・力の参照台帳",
+              "en": "Immutable periodic-helium energy and force reference audit"
+            },
+            "kind": "numerical-reference",
+            "relation": "same-problem",
+            "note": {
+              "ja": "既存の6力成分・エネルギー差分・Gaussian/PW比較の保存値照合です。電子計算の追加0回。新しい基底/k/カットオフ走査、一般物質、金属、長時間MDへ拡張しません。",
+              "en": "Audit of stored6force components, energy differences and Gaussian/PW comparisons; zero new electronic solves. No new basis/k/cutoff scans, materials, metals or longMD claim."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-periodic-he-reference-cards-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-periodic-he-reference-cards-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/periodic-he-reference-cards/?lang=ja#periodic-he-reference-cards-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/periodic-he-reference-cards/?lang=en#periodic-he-reference-cards-en-measurements"
+            }
+          }
+        ]
       }
     ]
   }

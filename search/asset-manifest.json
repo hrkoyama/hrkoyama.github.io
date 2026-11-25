@@ -6,11 +6,11 @@
       "source": "frontend/search/home-search.js",
       "output": "numerical-methods-atlas/home-search.js",
       "source_sha256": "bdaf2dfdb9ea693d04280c81d69f7e4ede482ba1f91d42a46e952e2f84ed04ed",
-      "sha256": "90085eda7e79608dd8f6354de2540a985a7faf4ad78a50f9f6a88b688792e04e",
+      "sha256": "85d93cc6169ef82685ecf54ae8f2a5003911e3613e2bffbdbdf152dcd1673c7d",
       "dependencies": {
-        "search/atlas-query-index.json": "1110d7fafce382b877f2229a691588feb563fa65176866c0b9f563b5c94a5438",
-        "search/engine.mjs": "435452f9b73f36a2cd218cab957ac47329ab692fd9fb4174e2e07950747c6992",
-        "search/method-search.mjs": "65b1257a6f104c6c307108872673d9a6808e3232e3548b4b3e86db908e3a78e4",
+        "search/atlas-query-index.json": "31f18bb056c339ecafbc090b585b781d9cfcabebdf1684736cf112571822d5d9",
+        "search/engine.mjs": "f9c5e4de41991dd236af1c61155024f89dc1fe07b234526a986d985bf0060bbe",
+        "search/method-search.mjs": "873e9c53bc9fe10f74ea806968c281e61152eacff1f7d45202a97ce21afa999b",
         "search/navigation.mjs": "cbd24e09fe0584a5e25143938746ebc2e3ffd5e276fdceb6fb9d324b64dad74b"
       }
     },
@@ -25,10 +25,10 @@
       "source": "frontend/search/engine.mjs",
       "output": "search/engine.mjs",
       "source_sha256": "5eed4b75d2acb44025386711ef4a121d3661891e8279260c68be65c650a51de1",
-      "sha256": "435452f9b73f36a2cd218cab957ac47329ab692fd9fb4174e2e07950747c6992",
+      "sha256": "f9c5e4de41991dd236af1c61155024f89dc1fe07b234526a986d985bf0060bbe",
       "dependencies": {
         "search/compact-index.mjs": "5ac38c56172d0431611e0bd9fd4c3cc40fb8680a2568f716561713b5d6f22931",
-        "search/method-search.mjs": "65b1257a6f104c6c307108872673d9a6808e3232e3548b4b3e86db908e3a78e4",
+        "search/method-search.mjs": "873e9c53bc9fe10f74ea806968c281e61152eacff1f7d45202a97ce21afa999b",
         "search/navigation.mjs": "cbd24e09fe0584a5e25143938746ebc2e3ffd5e276fdceb6fb9d324b64dad74b"
       }
     },
@@ -36,9 +36,9 @@
       "source": "frontend/search/method-search.mjs",
       "output": "search/method-search.mjs",
       "source_sha256": "8f904685ba2a50ed737fde7c09dd9a314bd25b27659815898137c061a218b213",
-      "sha256": "65b1257a6f104c6c307108872673d9a6808e3232e3548b4b3e86db908e3a78e4",
+      "sha256": "873e9c53bc9fe10f74ea806968c281e61152eacff1f7d45202a97ce21afa999b",
       "dependencies": {
-        "search/goals-data.mjs": "f8a88058b7d4ed3c02d34f490941d916fbd5394566d64d7356356c9e4576f259",
+        "search/goals-data.mjs": "8f3204d0e2c799ecddfa6c82a08b5cac2e4a3d114ea60cba92da414a204ac857",
         "search/methods.css": "efa8031daab462ece5e3dd965880ff27f65b759f2bc60818b61ec04355e3305a",
         "search/navigation.mjs": "cbd24e09fe0584a5e25143938746ebc2e3ffd5e276fdceb6fb9d324b64dad74b"
       }
@@ -57,11 +57,11 @@
       "source": "frontend/search/search.js",
       "output": "search/search.js",
       "source_sha256": "13057927ce6307f88a74b79ca9512b38c561271892ee52e50f634c5a8267e299",
-      "sha256": "931c5fc53b87c72b5f54ea686069620fc9ee4eede7552a47d5833b29f60ae161",
+      "sha256": "a18eba95befa2730c6dd11e05a3ccb9b38160792d4a8756751588ccf5e7a5216",
       "dependencies": {
         "search/compact-index.mjs": "5ac38c56172d0431611e0bd9fd4c3cc40fb8680a2568f716561713b5d6f22931",
-        "search/engine.mjs": "435452f9b73f36a2cd218cab957ac47329ab692fd9fb4174e2e07950747c6992",
-        "search/method-search.mjs": "65b1257a6f104c6c307108872673d9a6808e3232e3548b4b3e86db908e3a78e4",
+        "search/engine.mjs": "f9c5e4de41991dd236af1c61155024f89dc1fe07b234526a986d985bf0060bbe",
+        "search/method-search.mjs": "873e9c53bc9fe10f74ea806968c281e61152eacff1f7d45202a97ce21afa999b",
         "search/navigation.mjs": "cbd24e09fe0584a5e25143938746ebc2e3ffd5e276fdceb6fb9d324b64dad74b"
       }
     }

@@ -4,8 +4,8 @@
   "title": "分野別に解説を読む",
   "description": "理論・導出・計算例を、分野ごとにまとめた読み物です。基礎から関連する手法と検証例へ進めます。",
   "source": "/catalog/atlas-reading-index.json",
-  "source_sha256": "17a3572c629b036aa6c9cd168eb97daf5a7a21e690f0725d315d90f8ad6a67ea",
-  "chapter_count": 148,
+  "source_sha256": "67a2a5f9ec21459fc38bc49b844e7c082ec0bf5cbe133666104f3ec09932d2ce",
+  "chapter_count": 153,
   "groups": [
     {
       "id": "foundations-time",
@@ -996,6 +996,17 @@
             "en"
           ],
           "search_text": "validation-moving-waves 非一様ALE輸送・2次元回転浅水波 Nonuniform ALE transport and2D rotating shallow-water waves 格子・有限要素・連成方程式 Meshes, finite elements and coupled equations"
+        },
+        {
+          "id": "validation-continuum-particle-controls",
+          "title": "ALEピストン・球面輸送・SPH/GSPHの限定検証",
+          "url": "/numerical-methods-atlas/ja/read/validation-continuum-particle-controls/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-continuum-particle-controls ALEピストン・球面輸送・SPH/GSPHの限定検証 Scoped ALE piston, sphere transport and SPH/GSPH controls 格子・有限要素・連成方程式 Meshes, finite elements and coupled equations"
         }
       ]
     },
@@ -1428,6 +1439,17 @@
             "en"
           ],
           "search_text": "validation-maxwell-grazing 分散媒質の浅い入射角と長時間PML Long-time grazing PML in a dispersive medium 電磁場・静電場・電子状態 Electromagnetic fields, electrostatics and electronic structure"
+        },
+        {
+          "id": "validation-quantum-small",
+          "title": "小さな量子模型と保存参照カード",
+          "url": "/numerical-methods-atlas/ja/read/validation-quantum-small/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-quantum-small 小さな量子模型と保存参照カード Small quantum models and saved-reference cards 電磁場・静電場・電子状態 Electromagnetic fields, electrostatics and electronic structure"
         }
       ]
     },
@@ -1556,6 +1578,39 @@
             "en"
           ],
           "search_text": "validation-stochastic-estimation 重要度サンプリングと相関Gaussian診断 Importance sampling and correlated-Gaussian diagnostics 確率計算・生物・温度制御 Stochastic computation, biology and temperature control"
+        },
+        {
+          "id": "validation-biology-ode-controls",
+          "title": "神経膜と反応SSAの独立検証",
+          "url": "/numerical-methods-atlas/ja/read/validation-biology-ode-controls/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-biology-ode-controls 神経膜と反応SSAの独立検証 Independent checks of membrane dynamics and reaction SSA 確率計算・生物・温度制御 Stochastic computation, biology and temperature control"
+        },
+        {
+          "id": "validation-biology-space-controls",
+          "title": "生物反応拡散の2次元・境界検証",
+          "url": "/numerical-methods-atlas/ja/read/validation-biology-space-controls/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-biology-space-controls 生物反応拡散の2次元・境界検証 Biological reaction–diffusion: two-dimensional and boundary controls 確率計算・生物・温度制御 Stochastic computation, biology and temperature control"
+        },
+        {
+          "id": "validation-thermostat-constraint-controls",
+          "title": "決定論的温度制御と拘束自由度",
+          "url": "/numerical-methods-atlas/ja/read/validation-thermostat-constraint-controls/",
+          "language": "ja",
+          "available_languages": [
+            "ja",
+            "en"
+          ],
+          "search_text": "validation-thermostat-constraint-controls 決定論的温度制御と拘束自由度 Deterministic thermostats and constrained degrees of freedom 確率計算・生物・温度制御 Stochastic computation, biology and temperature control"
         }
       ]
     },

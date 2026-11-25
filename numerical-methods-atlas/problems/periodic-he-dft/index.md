@@ -46,6 +46,16 @@ $$
 
 固定した小周期Heセルの独立DFTK参照・SCF・基底・k点の保存検査を使います。擬ポテンシャルと交換のみLDAのモデル範囲に限定します。
 
+#### [保存周期Heエネルギー・力の参照台帳](https://hrkoyama.github.io/numerical-methods-atlas/validation/periodic-he-reference-cards/?lang=ja#periodic-he-reference-cards-ja-measurements)
+
+有限格子の数値参照 · 同じ問題の参照
+
+F_{A\alpha}=-\frac{\partial E}{\partial R_{A\alpha}},\quad F^{\rm FD}_{A\alpha}=-\frac{E(R_{A\alpha}+\delta)-E(R_{A\alpha}-\delta)}{2\delta}
+
+人工2He・4電子・5bohrセル、局所のみのGTH、固定LDA_X+VWNとコード版です。 人工He2、4電子、5bohrセル。保存した幾何・局所GTH版・LDA_X+VWN/Libxc・PySCF/DFTK版をsaved-data/periodic-he-reference.jsonに固定。エネルギーhartree、力hartree/bohr。
+
+既存の6力成分・エネルギー差分・Gaussian/PW比較の保存値照合です。電子計算の追加0回。新しい基底/k/カットオフ走査、一般物質、金属、長時間MDへ拡張しません。
+
 #### 周期HeのKS-LDA：Γ点・kメッシュ・基底・SCF
 
 別実行のDFTK平面波KS-LDA。Γ／2³で同一モデルを比較し、平面波打切り収束を保存。異なる有限軌道基底のため機械精度一致は要求しない。
@@ -156,6 +166,16 @@ KS-LDA for a fixed 3D periodic He cell. BZ integration meshes differ from band p
 ### Exact and reference solutions
 
 Use stored independent DFTK, SCF, basis and k-point checks for a fixed small periodic He cell, limited to the pseudopotential and exchange-only LDA model.
+
+#### [Immutable periodic-helium energy and force reference audit](https://hrkoyama.github.io/numerical-methods-atlas/validation/periodic-he-reference-cards/?lang=en#periodic-he-reference-cards-en-measurements)
+
+Finite-grid numerical reference · Reference for the same problem
+
+F_{A\alpha}=-\frac{\partial E}{\partial R_{A\alpha}},\quad F^{\rm FD}_{A\alpha}=-\frac{E(R_{A\alpha}+\delta)-E(R_{A\alpha}-\delta)}{2\delta}
+
+Audit saved six-coordinate FD and Gaussian/PW comparisons; source versions, local-only He GTH, XC/units/cell/electron count fixed. No new k/basis/cutoff scans. Artificial He2,4electrons,5bohr cell. Stored geometry/localGTH version/LDA_X+VWN/Libxc/PySCF/DFTK versions remain fixed in saved-data/periodic-he-reference.json. Energy hartree; force hartree/bohr.
+
+Audit of stored6force components, energy differences and Gaussian/PW comparisons; zero new electronic solves. No new basis/k/cutoff scans, materials, metals or longMD claim.
 
 #### Periodic-He KS-LDA: Gamma, k meshes, basis and SCF
 

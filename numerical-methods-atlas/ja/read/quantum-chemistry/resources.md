@@ -31,10 +31,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/
 
 - [電子の定常Schrödinger方程式](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#stationary-schrodinger-ja>)
 
-  固定核・非相対論の電子多体固有値問題。核間反発は電子Hamiltonianの外に加える。実行例は1電子の孤立水素型原子に限定。一般の多電子直接解法は未実装。
+  固定核・非相対論の電子固有値問題。核間反発は電子Hamiltonianの外に加える。従来の水素型動径例を保持し、追加は1次元の箱/HOと3AO以下の2電子FCIに限定する。一般多電子系の直接解法や連続空間の厳密分子解の検証ではない。
 - [閉殻Hartree–Fock方程式](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#hartree-fock-model-ja>)
 
-  閉殻RHFの占有空間軌道の式で、一般に非局所な交換を含みます。公開例は、球対称1s² Heの局所還元と、別の分子積分実装による固定入力のH₂ RHFです。原子例と分子例では基底・離散化・参照が異なります。各例の範囲は下の固定入力・検証記録で確認してください。一般多中心分子・開殻・相関を含む解法の検証ではありません。
+  閉殻RHFの占有空間軌道の式で、非局所交換を含む。既存のHe局所還元とH2のRHF例を保持する。追加は固定H2/H3+の最小2電子模型で、UHF式は別の対応模型に明示する。一般多中心分子、開殻の大域安定性、完全基底や一般相関法の保証ではない。
 - [局所Kohn–Sham DFT](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#kohn-sham-model-ja>)
 
   密度汎関数の局所KS代表形です。公開例は、球対称Heのスピン非偏極・Dirac交換のみLDAと、固定した周期He／He₂セルのLDA交換＋VWN5相関です。原子の動径実装と周期PySCFワークフローは別系列で、基底・境界条件・参照も異なります。各例の範囲は下の固定入力・検証記録で確認してください。GGA・hybrid・一般物質・励起状態まで検証した意味ではありません。
@@ -56,6 +56,18 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/
   availability: run
 
   孤立した1電子のH・He⁺について、1s・2s・2p・3dのエネルギーと動径軌道を解析解と比較します。多電子原子や分子の直接解法ではありません。
+- [H/Heの式・密度・固定参照カード](<https://hrkoyama.github.io/numerical-methods-atlas/validation/atomic-reference-cards/?lang=ja>)
+  availability: run
+
+  既存H/Heの式と保存参照を、単位・規格化・模型の限界とともに示します。
+- [1次元箱型井戸・量子調和振動子](<https://hrkoyama.github.io/numerical-methods-atlas/validation/quantum-box-ho/?lang=ja>)
+  availability: run
+
+  1次元の箱と量子調和振動子で、低3固有対と有限領域・格子の影響を比較します。
+- [3平面波の非局所projectorと有限温度占有](<https://hrkoyama.github.io/numerical-methods-atlas/validation/periodic-projector-occupations/?lang=ja>)
+  availability: run
+
+  3平面波の小周期模型で、非局所projectorと有限温度占有・力を示します。
 - [H₂分子RHF：独立参照・SCF・s型基底拡大](<https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/h2-rhf/?lang=ja>)
   availability: run
 
@@ -72,6 +84,18 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/
   availability: run
 
   Heの球対称1s²・閉殻HFとスピン非偏極Dirac交換のみLDAを比較します。電子相関・分子・周期系は含みません。
+- [最小基底H2のRHF/UHF/FCI・2固定幾何](<https://hrkoyama.github.io/numerical-methods-atlas/validation/h2-rhf-uhf-fci/?lang=ja>)
+  availability: run
+
+  同じ最小基底H2の2固定幾何で、RHF/UHF/有限基底FCIとスピン対称性を比較します。
+- [3中心H3+の小RHF/MP2/FCI模型](<https://hrkoyama.github.io/numerical-methods-atlas/validation/h3plus-mp2-fci/?lang=ja>)
+  availability: run
+
+  固定三角形H3+の3中心小分子で、RHF/MP2/有限基底FCIを示します。
+- [保存周期Heエネルギー・力の参照台帳](<https://hrkoyama.github.io/numerical-methods-atlas/validation/periodic-he-reference-cards/?lang=ja>)
+  availability: run
+
+  既存周期Heのエネルギーと6座標力を、保存参照と元の受入基準へ対応付けます。
 - [Schrödinger固有値問題：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/schrodinger/?lang=ja#method-execution-ja>)
   availability: source
 
@@ -105,6 +129,14 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-chemistry/
 
   手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。
 - [周期電子状態とk点：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/k-point/?lang=ja#method-execution-ja>)
+  availability: source
+
+  手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。
+- [MP2摂動論：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/mp2/?lang=ja#method-execution-ja>)
+  availability: source
+
+  手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。
+- [配置間相互作用（CI）：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/configuration-interaction/?lang=ja#method-execution-ja>)
   availability: source
 
   手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。

@@ -1,6 +1,6 @@
 # Nonuniform ALE transport and2D rotating shallow-water waves
 
-Time-advance conservative ALE transport on genuinely nonuniform moving cells with GCL, and2D linear rotating C-grid shallow-water waves. Saltzman pistons and global Williamson problems remain future work.
+Time-advance conservative ALE transport on genuinely nonuniform moving cells with GCL, and2D linear rotating C-grid shallow-water waves. A prescribed-ALE Saltzman-type piston and limited sphere transport/axisymmetric balance are separate additions; general global Williamson dynamics remain unverified.
 
 These additional validation supplements are managed separately from the common 22-example registry. Receipts cover independent ZIP extraction, tests and every fixed input within each group. Changes of settings, methods or step sizes do not add independent physical problems.
 

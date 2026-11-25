@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "id": "keller-segel-forced-flux",
+  "name": {
+    "ja": "Keller–Segel：連成流束の製造解",
+    "en": "Keller–Segel: a manufactured coupled-flux solution"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/keller-segel-forced-flux/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/keller-segel-forced-flux/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/keller-segel-forced-flux/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/results/keller-segel-forced-flux.png",
+    "sha256": "cf69138e069f3f733193297d9d526814e6d491655054f660a679c3ec530956f1",
+    "width": 1827,
+    "height": 623,
+    "caption": {
+      "ja": "滑らかな2D厳密場で、交差流束・段時刻・収支を検証します。 著者作成の強制2場モデルです。原著の全生物モデル、ピーク形成、真のblow-upやその抑制を実証しません。負値をクリップして正値性を装いません。",
+      "en": "Use smooth exact2D fields to test cross fluxes, stage timing and mass ledgers. This authored forced two-field model does not reproduce the full original biological model or demonstrate aggregation, true blow-up or suppression. No clipping is used to manufacture positivity."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology-space-controls/#keller-segel-forced-flux",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology-space-controls/#keller-segel-forced-flux"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#keller-segel-forced-flux",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#keller-segel-forced-flux-en"
+  },
+  "equations": [
+    {
+      "id": "bio-keller-segel",
+      "name": {
+        "ja": "Keller–Segel走化性",
+        "en": "Keller–Segel chemotaxis"
+      },
+      "formula": [
+        "n_t=D_n\\Delta n-\\chi\\nabla\\cdot(n\\nabla c)",
+        "\\tau_c c_t=D_c\\Delta c+\\alpha n-\\lambda c"
+      ],
+      "note": {
+        "ja": "細胞密度が化学物質の勾配に応答する2場の代表的な縮約系。次元・境界・化学場の動態が重要です。 全モデル族の実装ではありません。今回の固定例：Keller–Segel：連成流束の製造解",
+        "en": "Cell density n drifts up a chemoattractant gradient; τc=0 gives an elliptic chemical subproblem. This is a common two-field reduction of a more detailed original formulation. Blowup thresholds depend on dimension, domain, boundary and chemical dynamics. Not implementation of the entire model family. Fixed cases: Keller–Segel: a manufactured coupled-flux solution"
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-keller-segel-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-keller-segel-en"
+      }
+    },
+    {
+      "id": "forced-keller-segel-model",
+      "name": {
+        "ja": "外力・移流付きKeller–Segel製造問題",
+        "en": "Forced advective Keller–Segel manufactured problem"
+      },
+      "formula": [
+        "n_t+\\nabla\\cdot(wn)=D_n\\Delta n-\\chi\\nabla\\cdot(n\\nabla c)+rn(1-n)+s_n",
+        "\\tau c_t=D_c\\Delta c+\\alpha n-\\lambda c+s_c",
+        "n_*=1+0.1e^{-t}\\cos(\\pi x)\\cos(\\pi y),\\quad c_*=1+0.05e^{-2t}\\cos(\\pi x)\\cos(2\\pi y)"
+      ],
+      "note": {
+        "ja": "著者作成の強制2場モデルです。原著の全生物モデル、ピーク形成、真のblow-upやその抑制を実証しません。負値をクリップして正値性を装いません。",
+        "en": "This authored forced two-field model does not reproduce the full original biological model or demonstrate aggregation, true blow-up or suppression. No clipping is used to manufacture positivity."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#forced-keller-segel-model-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#forced-keller-segel-model-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "単位正方形、T=0.25。n=1+0.1e⁻ᵗcosπx cosπy、c=1+0.05e⁻²ᵗcosπx cos2πyに合う強制項と接線方向の発散ゼロ移流を与えます。",
+    "en": "On the unit square toT.25,manufacture forcing for n=1+.1e⁻ᵗcosπx cosπy,c=1+.05e⁻²ᵗcosπx cos2πy with divergence-free tangential advection."
+  },
+  "formulations": [
+    {
+      "id": "supplement-keller-segel-forced-flux",
+      "name": {
+        "ja": "Keller–Segel：連成流束の製造解",
+        "en": "Keller–Segel: a manufactured coupled-flux solution"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "n_t+\\nabla\\cdot(wn)=D_n\\Delta n-\\chi\\nabla\\cdot(n\\nabla c)+rn(1-n)+s_n",
+        "\\tau c_t=D_c\\Delta c+\\alpha n-\\lambda c+s_c"
+      ],
+      "note": {
+        "ja": "滑らかな2D厳密場で、交差流束・段時刻・収支を検証します。",
+        "en": "Use smooth exact2D fields to test cross fluxes, stage timing and mass ledgers."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "keller-segel-forced-flux",
+      "kind": "manufactured",
+      "kind_label": {
+        "ja": "製造解",
+        "en": "Manufactured solution"
+      },
+      "title": {
+        "ja": "Keller–Segel：連成流束の製造解",
+        "en": "Keller–Segel: a manufactured coupled-flux solution"
+      },
+      "formula": "n_t+\\nabla\\cdot(wn)=D_n\\Delta n-\\chi\\nabla\\cdot(n\\nabla c)+rn(1-n)+s_n;\\quad \\tau c_t=D_c\\Delta c+\\alpha n-\\lambda c+s_c;\\quad n_*(x,y,t)=1+0.1e^{-t}\\cos(\\pi x)\\cos(\\pi y),\\quad c_*(x,y,t)=1+0.05e^{-2t}\\cos(\\pi x)\\cos(2\\pi y),\\quad\\psi=\\sin(\\pi x)\\sin(\\pi y)/\\pi,\\quad w=(\\partial_y\\psi,-\\partial_x\\psi)",
+      "assumptions": {
+        "ja": "単位正方形でT=0.25まで、n=1+0.1e⁻ᵗcos(πx)cos(πy)、c=1+0.05e⁻²ᵗcos(πx)cos(2πy)に対応する外力を製造し、発散零で境界に接する移流を用います。無次元の係数と外力をinputs.jsonに固定。内面・角の所有を明示して製造外力と境界流束を扱います。",
+        "en": "On the unit square toT.25,manufacture forcing for n=1+.1e⁻ᵗcosπx cosπy,c=1+.05e⁻²ᵗcosπx cos2πy with divergence-free tangential advection. Dimensionless; manufactured-field coefficients and forcing are fixed in inputs.json. Manufactured forcing and boundary fluxes, with explicit ownership of interior faces and corners."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "著者作成の強制2場モデルです。原著の全生物モデル、ピーク形成、真のblow-upやその抑制を実証しません。負値をクリップして正値性を装いません。",
+        "en": "This authored forced two-field model does not reproduce the full original biological model or demonstrate aggregation, true blow-up or suppression. No clipping is used to manufacture positivity."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/keller-segel-forced-flux/?lang=ja#keller-segel-forced-flux-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/keller-segel-forced-flux/?lang=en#keller-segel-forced-flux-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "36点の源項、96セル状態ベクトル、符号・欠落連成・古い段・面重複の負例を検査。空間・同一MOL時間・正値性・実際の段収支を分けて保存します。",
+    "en": "Qualify36source pairs,96cell-state vectors and wrong-sign,omitted-coupling,stale-stage and face-duplication controls. Separate spatial,same-MOL time,positivity and actual stage-ledger outcomes."
+  },
+  "methods": [
+    {
+      "id": "ssprk33",
+      "name": {
+        "ja": "SSPRK(3,3)",
+        "en": "SSPRK(3,3)"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk33/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk33/?lang=en"
+      }
+    },
+    {
+      "id": "rk45",
+      "name": {
+        "ja": "Dormand–Prince RK45",
+        "en": "Dormand–Prince RK45"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk45/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk45/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "セル平均の中心面流束とSSPRK3を使い、n/c/強制項を同じ段に揃えます。展開した三角多項式の積分を、別の未展開積分とスカラー面ループ参照で確認します。",
+    "en": "Use cell-average centered face fluxes and SSPRK3 with n,c and forcing at the same stage. Check expanded trigonometric integrals against independent unexpanded integrals and scalar face-loop references."
+  },
+  "executions": [
+    {
+      "id": "keller-segel-forced-flux",
+      "kind": "supplement",
+      "name": {
+        "ja": "Keller–Segel：連成流束の製造解",
+        "en": "Keller–Segel: a manufactured coupled-flux solution"
+      },
+      "method_ids": [
+        "ssprk33",
+        "rk45"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/keller-segel-forced-flux/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/keller-segel-forced-flux/?lang=en"
+      },
+      "scope": {
+        "ja": "滑らかな2D厳密場で、交差流束・段時刻・収支を検証します。",
+        "en": "Use smooth exact2D fields to test cross fluxes, stage timing and mass ledgers."
+      },
+      "assumptions": {
+        "ja": "単位正方形、T=0.25。n=1+0.1e⁻ᵗcosπx cosπy、c=1+0.05e⁻²ᵗcosπx cos2πyに合う強制項と接線方向の発散ゼロ移流を与えます。",
+        "en": "On the unit square toT.25,manufacture forcing for n=1+.1e⁻ᵗcosπx cosπy,c=1+.05e⁻²ᵗcosπx cos2πy with divergence-free tangential advection."
+      },
+      "limits": {
+        "ja": "著者作成の強制2場モデルです。原著の全生物モデル、ピーク形成、真のblow-upやその抑制を実証しません。負値をクリップして正値性を装いません。",
+        "en": "This authored forced two-field model does not reproduce the full original biological model or demonstrate aggregation, true blow-up or suppression. No clipping is used to manufacture positivity."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/atlas-biology-space-controls-2026-11-25.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "36点の源項、96セル状態ベクトル、符号・欠落連成・古い段・面重複の負例を検査。空間・同一MOL時間・正値性・実際の段収支を分けて保存します。",
+        "en": "Qualify36source pairs,96cell-state vectors and wrong-sign,omitted-coupling,stale-stage and face-duplication controls. Separate spatial,same-MOL time,positivity and actual stage-ledger outcomes."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/common.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/keller_segel.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/test_models.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

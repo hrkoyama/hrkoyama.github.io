@@ -28,6 +28,10 @@ No chapter-specific association is registered. Atlas-wide index: [Exact and refe
   availability: run
 
   Advance cell integrals and face positions with identical Heun stages, transporting a nonuniform analytic wave beyond a uniform GCL check.
+- [Saltzman-type skew-grid piston: 2D Euler and ALE](<https://hrkoyama.github.io/numerical-methods-atlas/validation/saltzman-ale-piston/?lang=en>)
+  availability: run
+
+  Tan–Lv–Zhu2023 Example8 e0=1e-4 initialvariant. PrescribedaffineALEmesh, not theirWENO/materialLagrangian/remap scheme. Finitepressure RH cellaverages.
 - [ALE uniform-state / geometric-conservation model — code and checks](<https://hrkoyama.github.io/numerical-methods-atlas/methods/ale/?lang=en#method-execution-en>)
   availability: source
 

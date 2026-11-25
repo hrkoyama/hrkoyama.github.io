@@ -47,7 +47,9 @@ $$
 
 CSVは最細刻みの数値解・解析解・絶対誤差。観測次数は全時刻最大誤差から計算。旧保存例の粗格子で約1台になる挙動と、今回の解像した刻みでの次数を混同しない。
 
-参照解一覧の対応カードは未登録です。この実行例の参照値・判定方法は上の検証資料で確認できます。
+- [硬い余弦追従ODE：SDIRK2](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-stiff-cosine-exact-ja) (`stiff-cosine-exact`; 同じ問題の参照 · 解析参照)
+
+既存の固定入力・保存結果に対応する解析参照カードを追加。解析式、点・時刻・動径の標本化、配布版SHAと実行コードを相互に辿れます。過去の計算を再実行した記録ではありません。
 
 
 ### scope
@@ -152,7 +154,9 @@ A representative figure for the problem. Its grid, time and initial data may dif
 
 CSV contains finest-grid time, numerical/analytic state and absolute error. Orders use maximum-in-time errors. Distinguish the older coarse-step order reduction from the resolved refinement here.
 
-No corresponding reference-library card is registered; execution-specific material above documents its reference values and acceptance checks.
+- [Stiff cosine-tracking ODE: SDIRK2](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-stiff-cosine-exact-en) (`stiff-cosine-exact`; Same-problem reference · Analytic reference)
+
+An analytic reference card now links the existing fixed inputs and saved results: formula, point/time/radial sampling, edition SHA and executable code. This metadata registration is not a new execution.
 
 
 ### scope

@@ -3,8 +3,10 @@
 """Verify reviewed lightweight public ZIPs without a source checkout.
 
 Only the Python standard library is used by this verifier. The current Python
-must already contain the three pinned scientific/test dependencies. No quantum
-code, plot regeneration, automatic installation or Git operation is performed.
+must already contain the three pinned scientific/test dependencies. Only the
+registered fixed-input examples run, including scoped small quantum models.
+No plot or heavy-reference regeneration, automatic installation or Git operation
+is performed.
 """
 import argparse
 import csv
@@ -31,7 +33,7 @@ import zipfile
 
 ORIGIN = 'https://hrkoyama.github.io'
 REGISTRY_URL = ORIGIN + '/numerical-methods-atlas/validation/releases.json'
-GROUPS = ('foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology', 'mcmc', 'mhd-convergence', 'foundations-conditioning', 'particle-transport', 'splitting', 'noh', 'noh-cartesian', 'sedov', 'double-mach', 'forward-step', 'low-mach', 'guderley', 'euler-positivity', 'zalesak', 'weno-critical', 'shallow-water', 'wall-flow', 'level-set', 'sem-fr', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic', 'coefficient-diffusion', 'slab-ewald', 'fmm3d', 'gravity-dynamics', 'warm-pic', 'pic-spatial', 'dsmc-wall', 'dsmc-shock', 'lbm-cavity', 'lbm-taylor-green', 'lbm-annulus', 'lbm-curved-boundary', 'radiation-scattering', 'radiation-matter', 'radiation-geometry', 'stochastic-accuracy', 'stochastic-estimation', 'maxwell-cylinder', 'maxwell-lorentz', 'maxwell-grazing', 'linear-algebra-spectral', 'bratu-continuation-jfnk', 'globalization-controls', 'reverse-higher-ad', 'adjoint', 'inverse-optimization', 'ode-adaptivity', 'steady-rk', 'dae-controls', 'geometric-controls', 'quadrature-controls', 'approximation-controls', 'small-models')
+GROUPS = ('foundations', 'models', 'particles', 'mhd', 'thermostats', 'biology', 'mcmc', 'mhd-convergence', 'foundations-conditioning', 'particle-transport', 'splitting', 'noh', 'noh-cartesian', 'sedov', 'double-mach', 'forward-step', 'low-mach', 'guderley', 'euler-positivity', 'zalesak', 'weno-critical', 'shallow-water', 'wall-flow', 'level-set', 'sem-fr', 'instability-growth', 'mhd-transport', 'mesh-boundary', 'moving-waves', 'relativistic', 'coefficient-diffusion', 'slab-ewald', 'fmm3d', 'gravity-dynamics', 'warm-pic', 'pic-spatial', 'dsmc-wall', 'dsmc-shock', 'lbm-cavity', 'lbm-taylor-green', 'lbm-annulus', 'lbm-curved-boundary', 'radiation-scattering', 'radiation-matter', 'radiation-geometry', 'stochastic-accuracy', 'stochastic-estimation', 'maxwell-cylinder', 'maxwell-lorentz', 'maxwell-grazing', 'linear-algebra-spectral', 'bratu-continuation-jfnk', 'globalization-controls', 'reverse-higher-ad', 'adjoint', 'inverse-optimization', 'ode-adaptivity', 'steady-rk', 'dae-controls', 'geometric-controls', 'quadrature-controls', 'approximation-controls', 'small-models', 'biology-ode-controls', 'biology-space-controls', 'thermostat-constraint-controls', 'quantum-small', 'continuum-particle-controls')
 DIRECT_PINS = {'numpy': '2.0.2', 'scipy': '1.14.1', 'pytest': '8.3.5'}
 GROUP_TIMEOUT_SECONDS = 120
 MAX_DOWNLOAD_BYTES = 64 * 1024 * 1024

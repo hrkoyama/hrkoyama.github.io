@@ -98,6 +98,340 @@
     "ja": "非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。",
     "en": "Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated."
   },
+  "depth_release": {
+    "group": "quantum-small",
+    "case_ids": [
+      "periodic-he-reference-cards",
+      "periodic-projector-occupations"
+    ],
+    "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/",
+    "code_edition": "2026-11-25",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/io_utils.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/periodic_projector.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/coupled_md.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/eigenpairs.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/molecules.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/plot_results.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/test_quantum_small.py"
+    ],
+    "run_commands": [
+      "python -m pytest -q",
+      "python run.py --input inputs.json --output output"
+    ],
+    "run_from": "atlas-quantum-small-2026-11-25",
+    "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip",
+    "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/source-manifest.json",
+    "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/verification.json",
+    "code_archive_sha256": "b332d168c00bd46862a4b5a98e42054e1749e0b734318e96af0049ab9d255cfc",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/results/result.json",
+    "passed_tests": 18,
+    "examples": [
+      {
+        "id": "periodic-he-reference-cards",
+        "sequence": 100,
+        "method_ids": [
+          "kohn-sham-dft",
+          "pseudopotentials"
+        ],
+        "title": {
+          "ja": "保存周期Heエネルギー・力の参照台帳",
+          "en": "Immutable periodic-helium energy and force reference audit"
+        },
+        "summary": {
+          "ja": "既存周期Heのエネルギーと6座標力を、保存参照と元の受入基準へ対応付けます。",
+          "en": "Map saved periodic-He energies and six-coordinate forces to unchanged independent references and criteria."
+        },
+        "assumptions": {
+          "ja": "人工2He・4電子・5bohrセル、局所のみのGTH、固定LDA_X+VWNとコード版です。 人工He2、4電子、5bohrセル。保存した幾何・局所GTH版・LDA_X+VWN/Libxc・PySCF/DFTK版をsaved-data/periodic-he-reference.jsonに固定。エネルギーhartree、力hartree/bohr。",
+          "en": "Audit saved six-coordinate FD and Gaussian/PW comparisons; source versions, local-only He GTH, XC/units/cell/electron count fixed. No new k/basis/cutoff scans. Artificial He2,4electrons,5bohr cell. Stored geometry/localGTH version/LDA_X+VWN/Libxc/PySCF/DFTK versions remain fixed in saved-data/periodic-he-reference.json. Energy hartree; force hartree/bohr."
+        },
+        "algorithm": {
+          "ja": "保存エネルギー差分・解析力・Gaussian/PW比較の算術を再照合します。",
+          "en": "Audit arithmetic of saved energy differences, analytic forces and Gaussian/PW comparisons under the original bounds."
+        },
+        "validation": {
+          "ja": "元の数値・基準・履歴を保持し、単位・電子数・幾何・共有Libxcの独立性限界を明記します。",
+          "en": "Run zero electronic calculations. Preserve cell, units, local-only GTH, XC, electron counts and engine-version provenance; identify shared Libxc formulas."
+        },
+        "limits": {
+          "ja": "新電子計算や基底・k点・cutoff走査は0回です。局所Heの成功を非局所擬ポテンシャルへ拡張しません。",
+          "en": "No new SCF/DFTK/PySCF run, no basis/k/cutoff scans; preserve all old values and criteria. The He GTH is local-only, so its saved success does not test nonlocal projectors."
+        },
+        "domains": [
+          "quantum"
+        ],
+        "code_files": [
+          "run.py",
+          "io_utils.py"
+        ],
+        "reference_files": [
+          "THEORY.md",
+          "provenance.json",
+          "acceptance.json",
+          "cards.json"
+        ],
+        "references": [
+          {
+            "id": "dftk-pseudo",
+            "title": "DFTK Pseudopotentials",
+            "url": "https://docs.dftk.org/stable/examples/pseudopotentials/",
+            "accessed_on": "2026-11-25",
+            "review_level": "selected-official-documentation",
+            "review": {
+              "ja": "公式文書の分離形・ノルム保存・GTH形式と近似の導入。自作rank-one核を元素適合のノルム保存ポテンシャルと呼びません。",
+              "en": "Official separable Kleinman-Bylander/norm-conserving/GTH formats and approximation limits introduction. Our rank-one kernel is authored and is not an element-fitted norm-conserving potential."
+            },
+            "year_role": "n.d.-access-date"
+          },
+          {
+            "id": "pyscf-scf",
+            "title": "PySCF Self-consistent field methods",
+            "url": "https://pyscf.org/user/scf.html",
+            "accessed_on": "2026-11-25",
+            "review_level": "selected-official-documentation",
+            "review": {
+              "ja": "公式文書のFC=SCε、平均場・行列式、RHF/UHF、定常性と安定性、重なりの直交化を選択閲読。PySCF実行は行いません。",
+              "en": "FC=SCe, mean-field orbital/determinant ansatz, stability vs stationarity, RHF/UHF spin symmetry and overlap orthogonalization selected passages. No PySCF execution."
+            },
+            "year_role": "n.d.-access-date"
+          }
+        ],
+        "kind": "references",
+        "new_numeric_model_families": 0,
+        "formulas": [
+          "F_{A\\alpha}=-\\frac{\\partial E}{\\partial R_{A\\alpha}},\\quad F^{\\rm FD}_{A\\alpha}=-\\frac{E(R_{A\\alpha}+\\delta)-E(R_{A\\alpha}-\\delta)}{2\\delta}"
+        ],
+        "measured": {
+          "id": "periodic-he-reference-cards",
+          "passed": true,
+          "checks": {
+            "100 saved FD arithmetic 0": true,
+            "100 unchanged FD science bound 0": true,
+            "100 saved FD arithmetic 1": true,
+            "100 unchanged FD science bound 1": true,
+            "100 saved FD arithmetic 2": true,
+            "100 unchanged FD science bound 2": true,
+            "100 saved FD arithmetic 3": true,
+            "100 unchanged FD science bound 3": true,
+            "100 saved FD arithmetic 4": true,
+            "100 unchanged FD science bound 4": true,
+            "100 saved FD arithmetic 5": true,
+            "100 unchanged FD science bound 5": true,
+            "100 unchanged Gaussian/PW force basis-gth-qzv3p": true,
+            "100 unchanged Gaussian/PW energy basis-gth-qzv3p": true,
+            "100 unchanged Gaussian/PW force basis-k2-gth-qzv3p": true,
+            "100 unchanged Gaussian/PW energy basis-k2-gth-qzv3p": true
+          },
+          "metrics": {
+            "100 saved FD arithmetic 0": 0.0,
+            "100 unchanged FD science bound 0": 8.486369273974503e-09,
+            "100 saved FD arithmetic 1": 0.0,
+            "100 unchanged FD science bound 1": 1.4108486323660685e-08,
+            "100 saved FD arithmetic 2": 0.0,
+            "100 unchanged FD science bound 2": 2.1580722472935854e-08,
+            "100 saved FD arithmetic 3": 0.0,
+            "100 unchanged FD science bound 3": 1.1233197302895626e-08,
+            "100 saved FD arithmetic 4": 0.0,
+            "100 unchanged FD science bound 4": 1.818304432021911e-08,
+            "100 saved FD arithmetic 5": 0.0,
+            "100 unchanged FD science bound 5": 2.3223412720652092e-08,
+            "100 unchanged Gaussian/PW force basis-gth-qzv3p": 7.28156560618684e-05,
+            "100 unchanged Gaussian/PW energy basis-gth-qzv3p": 7.395629375217538e-05,
+            "100 unchanged Gaussian/PW force basis-k2-gth-qzv3p": 7.538249895754426e-05,
+            "100 unchanged Gaussian/PW energy basis-k2-gth-qzv3p": 0.00017168416810697806
+          },
+          "records": {
+            "saved_data": "100-result.json",
+            "sequence": 100,
+            "new_simulations": false,
+            "scope_card": "cards.json#periodic-he-reference-cards"
+          }
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/periodic-he-reference-cards/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quantum-small/#periodic-he-reference-cards",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quantum-small/#periodic-he-reference-cards"
+        }
+      },
+      {
+        "id": "periodic-projector-occupations",
+        "sequence": 101,
+        "method_ids": [
+          "schrodinger",
+          "pseudopotentials"
+        ],
+        "title": {
+          "ja": "3平面波の非局所projectorと有限温度占有",
+          "en": "A three-wave periodic projector and Fermi-occupation model"
+        },
+        "summary": {
+          "ja": "3平面波の小周期模型で、非局所projectorと有限温度占有・力を示します。",
+          "en": "Show a genuine rank-one nonlocal kernel and finite-temperature occupations in a three-wave periodic educational model."
+        },
+        "assumptions": {
+          "ja": "G=-1,0,1、k=±0.25、等重み、T=.05、電子数1.5の自作線形模型です。 無次元のG=-1,0,1、p=G+k、k=±.25、重み各.5、T=.05、平均電子数N=1.5、スピン係数2。実在格子定数や金属へ換算しません。",
+          "en": "Authored rank-one periodic linear model and finite-N Helmholtz forces. No real metal/element pseudopotential/norm conservation/Hartree-XC/long MD claim. N=1.5 is a mean independent-particle Fermi occupation count, not an integer-N canonical many-body ensemble. Dimensionless G=-1,0,1,p=G+k,k=±.25 with equal.5weights,T=.05,mean electron countN=1.5 and spin factor2. No physical lattice-constant or metal mapping."
+        },
+        "algorithm": {
+          "ja": "rank1核のHermitian行列を解き、固定NのFermi占有と自由エネルギーの力を計算します。",
+          "en": "Solve3x3 Hermitian blocks, determine fixed-N Fermi occupations and differentiate Helmholtz free energy including entropy."
+        },
+        "validation": {
+          "ja": "独立3次式固有値、Hermiticity・電子数・entropy・解析力と自由エネルギー差分を照合します。",
+          "en": "Check an independent cubic spectral oracle, Hermiticity, electron number, entropy, analytic force and fixed-N free-energy differences."
+        },
+        "limits": {
+          "ja": "元素に合わせたノルム保存擬ポテンシャルではありません。実金属、自己無撞着Hartree/XC、一般材料や長時間MDは未検証です。",
+          "en": "The authored rank-one kernel is not an element-fitted norm-conserving pseudopotential. No self-consistent Hartree/XC, real metal, general material or long-time MD success."
+        },
+        "domains": [
+          "quantum"
+        ],
+        "code_files": [
+          "run.py",
+          "periodic_projector.py"
+        ],
+        "reference_files": [
+          "THEORY.md",
+          "provenance.json",
+          "acceptance.json",
+          "cards.json"
+        ],
+        "references": [
+          {
+            "id": "dftk-periodic",
+            "title": "DFTK periodic problems and plane-wave discretisations",
+            "url": "https://docs.dftk.org/stable/guide/periodic_problems/",
+            "accessed_on": "2026-11-25",
+            "review_level": "selected-official-documentation",
+            "review": {
+              "ja": "公式周期問題ガイドのBloch・周期演算子・平面波の選択箇所。物質の数値計算は再現していません。",
+              "en": "Selected displayed Bloch/periodic operator/plane-wave basis context; no material calculations reproduced."
+            },
+            "year_role": "n.d.-access-date"
+          },
+          {
+            "id": "dftk-pseudo",
+            "title": "DFTK Pseudopotentials",
+            "url": "https://docs.dftk.org/stable/examples/pseudopotentials/",
+            "accessed_on": "2026-11-25",
+            "review_level": "selected-official-documentation",
+            "review": {
+              "ja": "公式文書の分離形・ノルム保存・GTH形式と近似の導入。自作rank-one核を元素適合のノルム保存ポテンシャルと呼びません。",
+              "en": "Official separable Kleinman-Bylander/norm-conserving/GTH formats and approximation limits introduction. Our rank-one kernel is authored and is not an element-fitted norm-conserving potential."
+            },
+            "year_role": "n.d.-access-date"
+          },
+          {
+            "id": "dftk-metal",
+            "title": "DFTK Temperature and metallic systems",
+            "url": "https://docs.dftk.org/stable/examples/metallic_systems/",
+            "accessed_on": "2026-11-25",
+            "review_level": "selected-official-documentation",
+            "review": {
+              "ja": "公式金属例のFermi温度・部分占有・Entropy項・高速例の未収束警告のみ。Mg計算や新k/基底/カットオフ走査は行いません。",
+              "en": "Selected Fermi-Dirac smearing temperature, partial occupations, explicit unconverged fast-example warning and energy Entropy term. No magnesium run, no new k/basis/cutoff scans."
+            },
+            "year_role": "n.d.-access-date"
+          },
+          {
+            "id": "numpy-eigh20",
+            "title": "NumPy2.0 numpy.linalg.eigh",
+            "url": "https://numpy.org/doc/2.0/reference/generated/numpy.linalg.eigh.html",
+            "accessed_on": "2026-11-25",
+            "review_level": "selected-official-documentation",
+            "review": {
+              "ja": "NumPy2.0公式の引数、昇順固有値、規格化した固有ベクトル、Hermitian三角格納、LinAlgError、LAPACKの説明を選択閲読。全LAPACK実装・誤差証明の監査ではありません。",
+              "en": "Signature, Hermitian lower-triangle handling, all ascending eigenvalues/normalized columns, LinAlgError and LAPACK syevd/heevd notes."
+            },
+            "year_role": "n.d.-access-date"
+          }
+        ],
+        "kind": "implementation",
+        "new_numeric_model_families": 1,
+        "formulas": [
+          "H_{GG\\prime}(k,R)=\\tfrac12(G+k)^2\\delta_{GG\\prime}+V_{GG\\prime}+\\eta\\beta_G\\beta_{G\\prime}^*,\\quad\\beta_G=e^{-(G+k)^2/(2\\sigma^2)}e^{-i(G+k)R}",
+          "f_{kn}=\\frac{2}{1+e^{(\\varepsilon_{kn}-\\mu)/T}},\\quad\\sum_{kn}w_kf_{kn}=1.5",
+          "F=\\sum_{kn}w_kf_{kn}\\varepsilon_{kn}-TS,\\quad F_R=-\\sum_{kn}w_kf_{kn}\\langle u_{kn}|\\partial_RH_k|u_{kn}\\rangle"
+        ],
+        "measured": {
+          "id": "periodic-projector-occupations",
+          "passed": true,
+          "checks": {
+            "101 Hermiticity 0": true,
+            "101 residual 0": true,
+            "101 independent cubic 0": true,
+            "101 fixed-case cubic clamp activation 0": true,
+            "101 Hermiticity 1": true,
+            "101 residual 1": true,
+            "101 independent cubic 1": true,
+            "101 fixed-case cubic clamp activation 1": true,
+            "101 fixed electron number": true,
+            "101 lower occupation": true,
+            "101 upper occupation": true,
+            "101 nonnegative entropy": true,
+            "101 finest free-energy force difference": true
+          },
+          "metrics": {
+            "101 Hermiticity 0": 3.58464566598299e-18,
+            "101 residual 0": 2.751670084160633e-16,
+            "101 independent cubic 0": 2.7755575615628914e-16,
+            "101 fixed-case cubic clamp activation 0": 0.0,
+            "101 Hermiticity 1": 3.58464566598299e-18,
+            "101 residual 1": 2.7503882064100795e-16,
+            "101 independent cubic 1": 2.7755575615628914e-16,
+            "101 fixed-case cubic clamp activation 1": 0.0,
+            "101 fixed electron number": 6.661338147750939e-16,
+            "101 lower occupation": 4.6784131873466673e-05,
+            "101 upper occupation": 1.4444120001743874,
+            "101 nonnegative entropy": 1.4360712457901055,
+            "101 finest free-energy force difference": 1.721169318180671e-10
+          },
+          "records": {
+            "saved_data": "101-result.json",
+            "sequence": 101,
+            "new_simulations": true,
+            "scope_card": "cards.json#periodic-projector-occupations"
+          }
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/periodic-projector-occupations/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quantum-small/#periodic-projector-occupations",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quantum-small/#periodic-projector-occupations"
+        }
+      }
+    ]
+  },
+  "supplemental_scope_profiles": [
+    {
+      "release": {
+        "group": "quantum-small",
+        "edition": "2026-11-25",
+        "case_ids": [
+          "periodic-he-reference-cards",
+          "periodic-projector-occupations"
+        ]
+      },
+      "scope": {
+        "ja": "固定した小規模例に限定：保存周期Heエネルギー・力の参照台帳、3平面波の非局所projectorと有限温度占有。保存参照監査は新しい電子計算ではありません。",
+        "en": "Restricted fixed examples: Immutable periodic-helium energy and force reference audit, A three-wave periodic projector and Fermi-occupation model. Saved-reference audits are not new electronic calculations."
+      },
+      "limits": [
+        {
+          "ja": "新電子計算や基底・k点・cutoff走査は0回です。局所Heの成功を非局所擬ポテンシャルへ拡張しません。",
+          "en": "No new SCF/DFTK/PySCF run, no basis/k/cutoff scans; preserve all old values and criteria. The He GTH is local-only, so its saved success does not test nonlocal projectors."
+        },
+        {
+          "ja": "元素に合わせたノルム保存擬ポテンシャルではありません。実金属、自己無撞着Hartree/XC、一般材料や長時間MDは未検証です。",
+          "en": "The authored rank-one kernel is not an element-fitted norm-conserving pseudopotential. No self-consistent Hartree/XC, real metal, general material or long-time MD success."
+        }
+      ]
+    }
+  ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pseudopotentials/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pseudopotentials/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/pseudopotentials/index.md",
@@ -106,11 +440,19 @@
     "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/run.py",
     "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/periodic_forces.py",
     "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/bomd.py",
-    "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/run.py"
+    "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/io_utils.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/periodic_projector.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/coupled_md.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/eigenpairs.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/molecules.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/plot_results.py"
   ],
   "test_urls": [
     "https://hrkoyama.github.io/code/periodic-dft/2026-11-22/test_periodic_dft.py",
-    "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/test_periodic_forces.py"
+    "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/test_periodic_forces.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/test_quantum_small.py"
   ],
   "run_commands": [
     "python run.py --input inputs.json --output output"
@@ -187,8 +529,27 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=ja#periodic-he-forces-ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/?lang=en#periodic-he-forces-en"
       }
+    },
+    {
+      "id": "periodic-he-reference-cards",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/periodic-he-reference-cards/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/periodic-he-reference-cards/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "periodic-projector-occupations",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/periodic-projector-occupations/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/periodic-projector-occupations/?lang=en"
+      },
+      "kind": "dedicated-supplement"
     }
   ],
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
   "problem_navigation": {
     "method_id": "pseudopotentials",
     "status": "educational-example",
@@ -206,6 +567,20 @@
         "url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#kohn-sham-model-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#kohn-sham-model-en"
+        }
+      },
+      {
+        "id": "finite-projector-fermi-model",
+        "name": {
+          "ja": "3平面波・非局所核と平均Fermi占有",
+          "en": "Three-wave nonlocal kernel and mean Fermi occupations"
+        },
+        "problem_ids": [
+          "finite-projector-fermi"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#finite-projector-fermi-model-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#finite-projector-fermi-model-en"
         }
       }
     ],
@@ -326,6 +701,29 @@
             "input": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/inputs.json",
             "download": "https://hrkoyama.github.io/code/periodic-forces/2026-11-22/periodic-forces-2026-11-22.zip",
             "verification": "https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/verification/2026-11-22-forces.json"
+          },
+          {
+            "id": "periodic-he-reference-cards",
+            "kind": "supplement",
+            "name": {
+              "ja": "保存周期Heエネルギー・力の参照台帳",
+              "en": "Immutable periodic-helium energy and force reference audit"
+            },
+            "scope": {
+              "ja": "既存周期Heのエネルギーと6座標力を、保存参照と元の受入基準へ対応付けます。",
+              "en": "Map saved periodic-He energies and six-coordinate forces to unchanged independent references and criteria."
+            },
+            "method_ids": [
+              "kohn-sham-dft",
+              "pseudopotentials"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/periodic-he-reference-cards/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/periodic-he-reference-cards/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/verification.json"
           }
         ],
         "role": "execution",
@@ -336,6 +734,66 @@
         "reference_url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-forces/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-forces/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "finite-projector-fermi",
+        "name": {
+          "ja": "3平面波の非局所projectorと有限温度占有",
+          "en": "A three-wave periodic projector and Fermi-occupation model"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/results/periodic-projector-occupations.png",
+          "sha256": "0209e46d2c2a5690ad05796c1d2077f0f5f34b38aba51cbcfed8deb40d4764f5",
+          "width": 1600,
+          "height": 640,
+          "caption": {
+            "ja": "3平面波の小周期模型で、非局所projectorと有限温度占有・力を示します。 自作3平面波の線形Hamiltonianです。平均占有の独立粒子Fermi模型であり、整数粒子の正準多体系ではありません。自己無撞着Hartree/XC、元素適合ノルム保存擬ポテンシャル、実金属、一般材料、長時間MDは未検証。",
+            "en": "Show a genuine rank-one nonlocal kernel and finite-temperature occupations in a three-wave periodic educational model. Authored linear3-wave Hamiltonian with independent-particle mean Fermi occupations, not an integer-particle canonical many-body ensemble. No self-consistent Hartree/XC, element-fitted norm-conserving PSP, real metal, general material or longMD validation."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/finite-projector-fermi/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/finite-projector-fermi/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/finite-projector-fermi/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/finite-projector-fermi/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "periodic-projector-occupations",
+            "kind": "supplement",
+            "name": {
+              "ja": "3平面波の非局所projectorと有限温度占有",
+              "en": "A three-wave periodic projector and Fermi-occupation model"
+            },
+            "scope": {
+              "ja": "3平面波の小周期模型で、非局所projectorと有限温度占有・力を示します。",
+              "en": "Show a genuine rank-one nonlocal kernel and finite-temperature occupations in a three-wave periodic educational model."
+            },
+            "method_ids": [
+              "schrodinger",
+              "pseudopotentials"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/periodic-projector-occupations/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/periodic-projector-occupations/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "rank1核のHermitian行列を解き、固定NのFermi占有と自由エネルギーの力を計算します。",
+          "en": "Solve3x3 Hermitian blocks, determine fixed-N Fermi occupations and differentiate Helmholtz free energy including entropy."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/finite-projector-fermi/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/finite-projector-fermi/?lang=en#references-en"
         }
       }
     ],
@@ -350,7 +808,29 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-dft/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-dft/?lang=en#references-en"
         },
-        "cases": []
+        "cases": [
+          {
+            "id": "periodic-he-reference-cards",
+            "title": {
+              "ja": "保存周期Heエネルギー・力の参照台帳",
+              "en": "Immutable periodic-helium energy and force reference audit"
+            },
+            "kind": "numerical-reference",
+            "relation": "same-problem",
+            "note": {
+              "ja": "既存の6力成分・エネルギー差分・Gaussian/PW比較の保存値照合です。電子計算の追加0回。新しい基底/k/カットオフ走査、一般物質、金属、長時間MDへ拡張しません。",
+              "en": "Audit of stored6force components, energy differences and Gaussian/PW comparisons; zero new electronic solves. No new basis/k/cutoff scans, materials, metals or longMD claim."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-periodic-he-reference-cards-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-periodic-he-reference-cards-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/periodic-he-reference-cards/?lang=ja#periodic-he-reference-cards-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/periodic-he-reference-cards/?lang=en#periodic-he-reference-cards-en-measurements"
+            }
+          }
+        ]
       },
       {
         "problem_id": "periodic-he-forces",
@@ -362,7 +842,63 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-forces/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-forces/?lang=en#references-en"
         },
-        "cases": []
+        "cases": [
+          {
+            "id": "periodic-he-reference-cards",
+            "title": {
+              "ja": "保存周期Heエネルギー・力の参照台帳",
+              "en": "Immutable periodic-helium energy and force reference audit"
+            },
+            "kind": "numerical-reference",
+            "relation": "same-problem",
+            "note": {
+              "ja": "既存の6力成分・エネルギー差分・Gaussian/PW比較の保存値照合です。電子計算の追加0回。新しい基底/k/カットオフ走査、一般物質、金属、長時間MDへ拡張しません。",
+              "en": "Audit of stored6force components, energy differences and Gaussian/PW comparisons; zero new electronic solves. No new basis/k/cutoff scans, materials, metals or longMD claim."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-periodic-he-reference-cards-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-periodic-he-reference-cards-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/periodic-he-reference-cards/?lang=ja#periodic-he-reference-cards-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/periodic-he-reference-cards/?lang=en#periodic-he-reference-cards-en-measurements"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "finite-projector-fermi",
+        "problem_name": {
+          "ja": "3平面波の非局所projectorと有限温度占有",
+          "en": "A three-wave periodic projector and Fermi-occupation model"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/finite-projector-fermi/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/finite-projector-fermi/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "periodic-projector-occupations",
+            "title": {
+              "ja": "3平面波の非局所projectorと有限温度占有",
+              "en": "A three-wave periodic projector and Fermi-occupation model"
+            },
+            "kind": "semi-analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "自作3平面波の線形Hamiltonianです。平均占有の独立粒子Fermi模型であり、整数粒子の正準多体系ではありません。自己無撞着Hartree/XC、元素適合ノルム保存擬ポテンシャル、実金属、一般材料、長時間MDは未検証。",
+              "en": "Authored linear3-wave Hamiltonian with independent-particle mean Fermi occupations, not an integer-particle canonical many-body ensemble. No self-consistent Hartree/XC, element-fitted norm-conserving PSP, real metal, general material or longMD validation."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-periodic-projector-occupations-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-periodic-projector-occupations-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/periodic-projector-occupations/?lang=ja#periodic-projector-occupations-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/periodic-projector-occupations/?lang=en#periodic-projector-occupations-en-measurements"
+            }
+          }
+        ]
       }
     ]
   }

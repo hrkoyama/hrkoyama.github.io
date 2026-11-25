@@ -14,8 +14,11 @@ SHA-256: `c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc`
 
 単位区間の周期境界、一定移流速度1。
 
+連続問題の厳密解 · 保存済みのx方向401点、範囲[0.0, 1.0]、時刻t=1.0での点値です。保存量のセル平均とは区別します。
+
 [保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=sine-advection) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/reference-solutions/)
 
+- textbook-background: [LeVeque, Randall J. (2007), Finite Difference Methods for Ordinary and Partial Differential Equations: Steady-State and Time-Dependent Problems](https://doi.org/10.1137/1.9780898717839) — Inherited current bibliography metadata: Author-maintained book list checked for year, title, DOI and companion materials. Reading reference for consistency, stability, boundary-value problems and time stepping; full book not audited here. No new full-text reading in this migration; this source is not claimed as the original exact solution.
 #### 関連するテスト問題の図とコード
 
 ##### [周期正弦波の線形移流](https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=ja) (`advection-sine`)
@@ -63,8 +66,11 @@ SHA-256: `c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc`
 
 単位区間の周期境界、拡散係数0.02。
 
+連続問題の厳密解 · 保存済みのx方向401点、範囲[0.0, 1.0]、時刻t=1.0での点値です。保存量のセル平均とは区別します。
+
 [保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=sine-heat) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/reference-solutions/)
 
+- textbook-background: [LeVeque, Randall J. (2007), Finite Difference Methods for Ordinary and Partial Differential Equations: Steady-State and Time-Dependent Problems](https://doi.org/10.1137/1.9780898717839) — Inherited current bibliography metadata: Author-maintained book list checked for year, title, DOI and companion materials. Reading reference for consistency, stability, boundary-value problems and time stepping; full book not audited here. No new full-text reading in this migration; this source is not claimed as the original exact solution.
 #### 関連するテスト問題の図とコード
 
 ##### [周期Fourierモードの熱拡散](https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-periodic/?lang=ja) (`heat-periodic`)
@@ -116,8 +122,11 @@ SHA-256: `c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc`
 
 全直線上のスカラーRiemann問題のエントロピー解。端点の外側は一定値で継続します。
 
+連続問題の厳密解 · 保存済みのx方向401点、範囲[0.0, 1.0]、時刻t=0.4での点値です。保存量のセル平均とは区別します。
+
 [保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=burgers-shock) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/reference-solutions/)
 
+- reference-documentation: [Clawpack Riemann book: Burgers equation](https://www.clawpack.org/riemann_book/html/Burgers.html) — Existing official educational reference link retained. The present audit reads the saved Atlas formula/code metadata, not a newly downloaded original article or full documentation body; historical original-problem attribution remains unverified here.
 #### 関連するテスト問題の図とコード
 
 ##### [Burgers衝撃波](https://hrkoyama.github.io/numerical-methods-atlas/problems/burgers-shock/?lang=ja) (`burgers-shock`)
@@ -142,8 +151,11 @@ SHA-256: `c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc`
 
 全直線上のスカラーRiemann問題のエントロピー解。端点の外側は一定値で継続します。
 
+連続問題の厳密解 · 保存済みのx方向401点、範囲[0.0, 1.0]、時刻t=0.4での点値です。保存量のセル平均とは区別します。
+
 [保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=burgers-fan) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/reference-solutions/)
 
+- reference-documentation: [Clawpack Riemann book: Burgers equation](https://www.clawpack.org/riemann_book/html/Burgers.html) — Existing official educational reference link retained. The present audit reads the saved Atlas formula/code metadata, not a newly downloaded original article or full documentation body; historical original-problem attribution remains unverified here.
 #### 関連するテスト問題の図とコード
 
 ##### [Burgers膨張波](https://hrkoyama.github.io/numerical-methods-atlas/problems/burgers-fan/?lang=ja) (`burgers-fan`)
@@ -168,8 +180,11 @@ SHA-256: `c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc`
 
 全直線上のスカラーRiemann問題のエントロピー解。端点の外側は一定値で継続します。
 
+連続問題の厳密解 · 保存済みのx方向401点、範囲[0.0, 1.0]、時刻t=0.4での点値です。保存量のセル平均とは区別します。
+
 [保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=traffic-jam) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/reference-solutions/)
 
+- reference-documentation: [Clawpack Riemann book: Traffic flow](https://www.clawpack.org/riemann_book/html/Traffic_flow.html) — Existing official educational reference link retained. The present audit reads the saved Atlas formula/code metadata, not a newly downloaded original article or full documentation body; historical original-problem attribution remains unverified here.
 #### 関連するテスト問題の図とコード
 
 ##### [交通流の渋滞衝撃波](https://hrkoyama.github.io/numerical-methods-atlas/problems/traffic-jam/?lang=ja) (`traffic-jam`)
@@ -194,8 +209,11 @@ SHA-256: `c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc`
 
 全直線上のスカラーRiemann問題のエントロピー解。端点の外側は一定値で継続します。
 
+連続問題の厳密解 · 保存済みのx方向401点、範囲[0.0, 1.0]、時刻t=0.4での点値です。保存量のセル平均とは区別します。
+
 [保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=traffic-fan) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/reference-solutions/)
 
+- reference-documentation: [Clawpack Riemann book: Traffic flow](https://www.clawpack.org/riemann_book/html/Traffic_flow.html) — Existing official educational reference link retained. The present audit reads the saved Atlas formula/code metadata, not a newly downloaded original article or full documentation body; historical original-problem attribution remains unverified here.
 #### 関連するテスト問題の図とコード
 
 ##### [交通流の希薄化波](https://hrkoyama.github.io/numerical-methods-atlas/problems/traffic-fan/?lang=ja) (`traffic-fan`)
@@ -220,8 +238,11 @@ SHA-256: `c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc`
 
 比熱比gamma>1の理想気体、平面1次元波。真空の保存変数はゼロ、速度は未定義です。
 
+半解析参照 · 保存済みのx方向401点、範囲[0.0, 1.0]、時刻t=0.2での点値です。保存量のセル平均とは区別します。
+
 [保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=euler-sod) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/reference-solutions/)
 
+- reference-documentation: [Clawpack Riemann book: Euler equations](https://www.clawpack.org/riemann_book/html/Euler.html) — Existing official educational reference link retained. The present audit reads the saved Atlas formula/code metadata, not a newly downloaded original article or full documentation body; historical original-problem attribution remains unverified here.
 #### 関連するテスト問題の図とコード
 
 ##### [Sod衝撃波管](https://hrkoyama.github.io/numerical-methods-atlas/problems/sod/?lang=ja) (`sod`)
@@ -238,6 +259,10 @@ SHA-256: `c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc`
 
 この実行例の範囲：γ=1.4、左右(ρ,u,p)=(1,0,1)/(0.125,0,0.1)、初期不連続x=0.5、t=0.2の標準問題。80/160セルの区分一定Godunov型＋HLLC＋SSPRK3を自己相似Euler解と比較する。
 
+- [実行・検証：Gaussian畳込みGSPHによるSod型粒子衝撃管](https://hrkoyama.github.io/numerical-methods-atlas/validation/gsph-sod/?lang=ja) (`gsph-sod`) · [コードZIP：Gaussian畳込みGSPHによるSod型粒子衝撃管](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip)
+
+この実行例の範囲：Gaussian畳込みの線形比体積近似と対称な可変平滑化長を使う、限定GSPH粒子流体計算。
+
 
 
 
@@ -249,8 +274,11 @@ SHA-256: `c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc`
 
 比熱比gamma>1の理想気体、平面1次元波。真空の保存変数はゼロ、速度は未定義です。
 
+半解析参照 · 保存済みのx方向401点、範囲[-5.0, 5.0]、時刻t=1.3での点値です。保存量のセル平均とは区別します。
+
 [保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=euler-lax) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/reference-solutions/)
 
+- reference-documentation: [Clawpack Riemann book: Euler equations](https://www.clawpack.org/riemann_book/html/Euler.html) — Existing official educational reference link retained. The present audit reads the saved Atlas formula/code metadata, not a newly downloaded original article or full documentation body; historical original-problem attribution remains unverified here.
 #### 関連するテスト問題の図とコード
 
 ##### [Lax衝撃波管](https://hrkoyama.github.io/numerical-methods-atlas/problems/lax/?lang=ja) (`lax`)
@@ -275,8 +303,11 @@ SHA-256: `c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc`
 
 比熱比gamma>1の理想気体、平面1次元波。真空の保存変数はゼロ、速度は未定義です。
 
+半解析参照 · 保存済みのx方向401点、範囲[0.0, 1.0]、時刻t=0.15での点値です。保存量のセル平均とは区別します。
+
 [保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=euler-double-rarefaction) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/reference-solutions/)
 
+- reference-documentation: [Clawpack Riemann book: Euler equations](https://www.clawpack.org/riemann_book/html/Euler.html) — Existing official educational reference link retained. The present audit reads the saved Atlas formula/code metadata, not a newly downloaded original article or full documentation body; historical original-problem attribution remains unverified here.
 #### 関連するテスト問題の図とコード
 
 ##### [Euler二重膨張波](https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=ja) (`double-rarefaction`)
@@ -304,8 +335,11 @@ SHA-256: `c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc`
 
 比熱比gamma>1の理想気体、平面1次元波。真空の保存変数はゼロ、速度は未定義です。
 
+連続問題の厳密解 · 保存済みのx方向401点、範囲[0.0, 1.0]、時刻t=0.05での点値です。保存量のセル平均とは区別します。
+
 [保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=euler-vacuum) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/reference-solutions/)
 
+- reference-documentation: [Clawpack Riemann book: Euler equations](https://www.clawpack.org/riemann_book/html/Euler.html) — Existing official educational reference link retained. The present audit reads the saved Atlas formula/code metadata, not a newly downloaded original article or full documentation body; historical original-problem attribution remains unverified here.
 #### 関連するテスト問題の図とコード
 
 この項目に対応付けられたテスト問題は未登録です。
@@ -320,8 +354,11 @@ SHA-256: `c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc`
 
 平坦な底面と一定の重力g。乾床は参照解のみの対応で、既存の有限体積ソルバーでは扱えません。
 
+半解析参照 · 保存済みのx方向401点、範囲[0.0, 1.0]、時刻t=0.1での点値です。保存量のセル平均とは区別します。
+
 [保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=swe-dam-break) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/reference-solutions/)
 
+- reference-documentation: [Clawpack Riemann book: Shallow-water equations](https://www.clawpack.org/riemann_book/html/Shallow_water.html) — Existing official educational reference link retained. The present audit reads the saved Atlas formula/code metadata, not a newly downloaded original article or full documentation body; historical original-problem attribution remains unverified here.
 #### 関連するテスト問題の図とコード
 
 ##### [湿潤床ダム崩壊](https://hrkoyama.github.io/numerical-methods-atlas/problems/dam-break/?lang=ja) (`dam-break`)
@@ -346,8 +383,11 @@ SHA-256: `c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc`
 
 平坦な底面と一定の重力g。乾床は参照解のみの対応で、既存の有限体積ソルバーでは扱えません。
 
+連続問題の厳密解 · 保存済みのx方向401点、範囲[0.0, 1.0]、時刻t=0.15での点値です。保存量のセル平均とは区別します。
+
 [保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=swe-dry-bed) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/reference-solutions/)
 
+- reference-documentation: [Clawpack Riemann book: Shallow-water equations](https://www.clawpack.org/riemann_book/html/Shallow_water.html) — Existing official educational reference link retained. The present audit reads the saved Atlas formula/code metadata, not a newly downloaded original article or full documentation body; historical original-problem attribution remains unverified here.
 #### 関連するテスト問題の図とコード
 
 ##### [乾燥床へのRitter破堤流](https://hrkoyama.github.io/numerical-methods-atlas/problems/dry-bed-dam-break/?lang=ja) (`dry-bed-dam-break`)
@@ -375,8 +415,11 @@ SHA-256: `c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc`
 
 平坦な底面と一定の重力g。乾床は参照解のみの対応で、既存の有限体積ソルバーでは扱えません。
 
+連続問題の厳密解 · 保存済みのx方向401点、範囲[0.0, 1.0]、時刻t=0.1での点値です。保存量のセル平均とは区別します。
+
 [保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=swe-vacuum) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/reference-solutions/)
 
+- reference-documentation: [Clawpack Riemann book: Shallow-water equations](https://www.clawpack.org/riemann_book/html/Shallow_water.html) — Existing official educational reference link retained. The present audit reads the saved Atlas formula/code metadata, not a newly downloaded original article or full documentation body; historical original-problem attribution remains unverified here.
 #### 関連するテスト問題の図とコード
 
 この項目に対応付けられたテスト問題は未登録です。
@@ -391,8 +434,11 @@ SHA-256: `c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc`
 
 p = c_s² rho、一定の音速c_s。初期密度は厳密に正とし、真空状態とエネルギー方程式はありません。
 
+半解析参照 · 保存済みのx方向401点、範囲[0.0, 1.0]、時刻t=0.1での点値です。保存量のセル平均とは区別します。
+
 [保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=isothermal-jump) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/reference-solutions/)
 
+- solution-background: [Existing linked isothermal Riemann-invariant background](https://www.sfu.ca/~van/papers/Riemann-inv.pdf) — Original card URL retained. PDF authorship/body/equations were not newly verified; this link is background, not a claim of an inspected original exact-solution paper.
 #### 関連するテスト問題の図とコード
 
 ##### [等温流体の密度ジャンプ](https://hrkoyama.github.io/numerical-methods-atlas/problems/isothermal-jump/?lang=ja) (`isothermal-jump`)
@@ -417,8 +463,11 @@ p=ρ、音速1、左右密度(1,0.125)・速度0、x0=0.5が一致します。 �
 
 両端はゼロDirichlet条件。目標解から外力を選ぶ製造解であり、任意の外力のPoisson解ではありません。
 
+製造解 · 保存済みのx方向401点、範囲[0.0, 1.0]、時刻t=0.0での点値です。保存量のセル平均とは区別します。
+
 [保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=poisson-manufactured) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/reference-solutions/)
 
+- textbook-background: [LeVeque, Randall J. (2007), Finite Difference Methods for Ordinary and Partial Differential Equations: Steady-State and Time-Dependent Problems](https://doi.org/10.1137/1.9780898717839) — Inherited current bibliography metadata: Author-maintained book list checked for year, title, DOI and companion materials. Reading reference for consistency, stability, boundary-value problems and time stepping; full book not audited here. No new full-text reading in this migration; this source is not claimed as the original exact solution.
 #### 関連するテスト問題の図とコード
 
 ##### [1次元Poisson・Dirichlet製造解](https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-dirichlet/?lang=ja) (`poisson-1d-dirichlet`)
@@ -521,8 +570,11 @@ p=ρ、音速1、左右密度(1,0.125)・速度0、x0=0.5が一致します。 �
 
 十分に発達した平面定常チャネル。壁速度u(0)=0、u(1)=1、圧力勾配ゼロ。
 
+連続問題の厳密解 · 保存済みのy方向401点、範囲[0.0, 1.0]、時刻t=0.0での点値です。保存量のセル平均とは区別します。
+
 [保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=couette) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/reference-solutions/)
 
+- textbook-background: [Ferziger, Joel H. and Perić, Milovan and Street, Robert L. (2020), Computational Methods for Fluid Dynamics](https://doi.org/10.1007/978-3-319-99693-6) — Inherited current bibliography metadata: Publisher edition metadata and contents checked. Uses the fourth-edition copyright year 2020; the publisher lists electronic publication in August 2019. Broad CFD reading reference, including incompressible flow and solution procedures; not a validation claim for all listed applications. No new full-text reading in this migration; this source is not claimed as the original exact solution.
 #### 関連するテスト問題の図とコード
 
 この項目に対応付けられたテスト問題は未登録です。
@@ -537,8 +589,11 @@ p=ρ、音速1、左右密度(1,0.125)・速度0、x0=0.5が一致します。 �
 
 十分に発達した平面定常チャネル、no-slip、単位密度。−dp/dx=G、または体積力加速度G。
 
+連続問題の厳密解 · 保存済みのy方向401点、範囲[0.0, 1.0]、時刻t=0.0での点値です。保存量のセル平均とは区別します。
+
 [保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=poiseuille) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/reference-solutions/)
 
+- textbook-background: [Ferziger, Joel H. and Perić, Milovan and Street, Robert L. (2020), Computational Methods for Fluid Dynamics](https://doi.org/10.1007/978-3-319-99693-6) — Inherited current bibliography metadata: Publisher edition metadata and contents checked. Uses the fourth-edition copyright year 2020; the publisher lists electronic publication in August 2019. Broad CFD reading reference, including incompressible flow and solution procedures; not a validation claim for all listed applications. No new full-text reading in this migration; this source is not claimed as the original exact solution.
 #### 関連するテスト問題の図とコード
 
 ##### [平行平板Poiseuille流](https://hrkoyama.github.io/numerical-methods-atlas/problems/channel-poiseuille/?lang=ja) (`channel-poiseuille`)
@@ -565,8 +620,11 @@ p=ρ、音速1、左右密度(1,0.125)・速度0、x0=0.5が一致します。 �
 
 Taylor–Green：y = π/4のx方向断面です。2次元セル平均ではなく点値を表示します。
 
+連続問題の厳密解 · 保存済みのx方向401点、範囲[0.0, 6.283185307179586]、時刻t=0.5での点値です。保存量のセル平均とは区別します。 2次元の式のうち、表示はy=π/4のx断面だけです。
+
 [保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=taylor-green) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/reference-solutions/)
 
+- numerical-method: [Chorin, Alexandre Joel (1968), Numerical solution of the Navier-Stokes equations](https://doi.org/10.1090/S0025-5718-1968-0242392-2) — Inherited current bibliography metadata: Original publisher record and author-hosted original checked. Projection source; the independent periodic MAC/SSPRK2 demonstration is not the original boundary/time algorithm. No new full-text reading in this migration; this source is not claimed as the original exact solution.
 #### 関連するテスト問題の図とコード
 
 ##### [周期Taylor–Green渦](https://hrkoyama.github.io/numerical-methods-atlas/problems/taylor-green/?lang=ja) (`taylor-green`)
@@ -868,6 +926,8 @@ Taylor–Green：y = π/4のx方向断面です。2次元セル平均ではな�
 `q_i=0; h_i=max(eta0-z_i,0); z_i=cellmean(z); eta0=.5 or .1.`
 
 g9.81、[0,25]m、200セル。8<x<12の放物線床z=.2−.05(x−10)²をセルごとにGauss8で平均し、h_i=max(η₀−z_i,0)、q_i=0、η₀=.5/.1mを初期化します。静水再構成が保つのはこの表現した区分定数床の平衡であり、連続床上の水深平均をそのまま使う別問題ではありません。
+
+固定した離散対象の厳密参照 · 固定された離散対象の解析・有理数参照です。連続PDEの厳密解とは区別し、対象と補助比較は元カードの適用範囲を保持します。
 
 [保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/swashes-topography/?lang=ja#swashes-topography-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-shallow-water/#swashes-topography)
 
@@ -2537,6 +2597,8 @@ Ezの無損失2D円柱のみで、3D球ではありません。階段状形状�
 
 固定4行列の実binary64 A,bをFractionへ厳密変換し、有理数消去の解を最後にbinary64へ変換。LAPACKは別比較であり共有数値基盤を含みます。任意の悪条件行列に対する前進精度保証ではありません。
 
+固定した離散対象の厳密参照 · 固定された離散対象の解析・有理数参照です。連続PDEの厳密解とは区別し、対象と補助比較は元カードの適用範囲を保持します。
+
 [保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/pivoted-direct-refinement/?lang=ja#pivoted-direct-refinement-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#pivoted-direct-refinement)
 
 - selected-official-documentation: [LAPACK Users Guide: Linear Equations](https://netlib.org/lapack/lug/node38.html) — Selected LU, Cholesky, conditioning and refinement paragraphs were read. This source uses mixed precision, unlike the selected same-precision RFS description.
@@ -2598,6 +2660,8 @@ A=[[H,Bᵀ],[B,0]]、速度サイズ12/24、圧力行数5/11の代数問題。SP
 
 31×31 Dirichlet三重対角行列、h=1/32、再始動長8/16、shiftなし/0/950。参照はこの有限行列の固有値であり、格子細分化による連続PDE収束を認証しません。
 
+固定した離散対象の厳密参照 · 固定された離散対象の解析・有理数参照です。連続PDEの厳密解とは区別し、対象と補助比較は元カードの適用範囲を保持します。
+
 [保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/restarted-shift-invert/?lang=ja#restarted-shift-invert-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#restarted-shift-invert)
 
 - selected-official-documentation: [SLEPc EPS manual: projection and spectral transformations](https://slepc.upv.es/release/documentation/manual/eps.html) — Selected projection, restarting and generalized-problem discussion was read. No SLEPc execution or Krylov-Schur reproduction is claimed.
@@ -2627,6 +2691,8 @@ A=[[H,Bᵀ],[B,0]]、速度サイズ12/24、圧力行数5/11の代数問題。SP
 `Kx=lambda_h Mx; lambda_j,h=6*(1-cos(theta_j))/(h^2*(2+cos(theta_j))),theta_j=j*pi/(n+1); lambda_j=(j*pi)^2,phi_j(x)=sin(j*pi*x)`
 
 長さ・張力・密度1、両端Dirichlet0、内部15/31/63点、最低3固有対。閉離散固有値とgeneralized dense LAPACKを比較し、連続(jπ)²への誤差を別に調べます。表示ベクトルは保存した数値解で、符号は任意です。
+
+固定した離散対象の厳密参照 · 固定された離散対象の解析・有理数参照です。連続PDEの厳密解とは区別し、対象と補助比較は元カードの適用範囲を保持します。
 
 [保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/fem-mass-eigen/?lang=ja#fem-mass-eigen-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-linear-algebra-spectral/#fem-mass-eigen)
 
@@ -2753,6 +2819,8 @@ A=[[H,Bᵀ],[B,0]]、速度サイズ12/24、圧力行数5/11の代数問題。SP
 
 固定R4→R3写像は重複gather[0,0,2]とscalar broadcastを含みます。wide写像と固定Bratu状態はサイズ7/31。Euclidean pullbackと指定SPD計量の随伴を区別します。
 
+固定した離散対象の厳密参照 · 固定された離散対象の解析・有理数参照です。連続PDEの厳密解とは区別し、対象と補助比較は元カードの適用範囲を保持します。
+
 [保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/reverse-vjp-duality/?lang=ja#reverse-vjp-duality-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-reverse-higher-ad/#reverse-vjp-duality)
 
 - selected-official-JVP-VJP-definitions: [The Autodiff Cookbook](https://docs.jax.dev/en/latest/notebooks/autodiff_cookbook.html) — The source owner records this selected reading: Selected definitions and composition formulas only. A new educational tape will implement the stated finite subset. No JAX installation, execution, timing replication or implementation-source audit. Unread: Original reverse-mode/HVP papers, JAX transformation implementation, Unselected cookbook sections. Publication year is not established; display n.d. Access date is separate.
@@ -2782,6 +2850,8 @@ A=[[H,Bᵀ],[B,0]]、速度サイズ12/24、圧力行数5/11の代数問題。SP
 `Hv=D(\nabla f)(x)v;\quad H_Bv=h(A_hv-\lambda e^u\odot v);\quad 2us=1,\quad 2ut+2s^2=0,\quad j^{\prime\prime}=0.2+s^2+(u-1)t.`
 
 4変数のdyadic二次関数とサイズ7/31の固定Bratu energyを用います。別の正枝陰関数u²−θ=0はθ=4、初期値u=3から解き、状態固定偏微分と全微分を分けます。
+
+固定した離散対象の厳密参照 · 固定された離散対象の解析・有理数参照です。連続PDEの厳密解とは区別し、対象と補助比較は元カードの適用範囲を保持します。
 
 [保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/hessian-vector-products/?lang=ja#hessian-vector-products-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-reverse-higher-ad/#hessian-vector-products)
 
@@ -2813,6 +2883,8 @@ A=[[H,Bᵀ],[B,0]]、速度サイズ12/24、圧力行数5/11の代数問題。SP
 
 abs・ReLU・clip・多項式分岐の固定7点と方向±1を用います。停止反復はx0=0、更新前に|xk−θ|≤1/8を検査し最大5更新。θ=1/4,1/2,1は切替点です。
 
+固定した離散対象の厳密参照 · 固定された離散対象の解析・有理数参照です。連続PDEの厳密解とは区別し、対象と補助比較は元カードの適用範囲を保持します。
+
 [保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/kink-branch-derivatives/?lang=ja#kink-branch-derivatives-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-reverse-higher-ad/#kink-branch-derivatives)
 
 - selected-official-branch-limitations: [Frequently asked questions: undefined branches and ordering](https://docs.jax.dev/en/latest/faq.html) — The source owner records this selected reading: Read invalid inactive-branch and ordering discussions. We use an explicitly different strict nondifferentiability policy, not a universal JAX tie rule. Unread: Linked issue threads, Generalized derivative original papers. Publication year is not established; display n.d. Access date is separate.
@@ -2842,6 +2914,8 @@ abs・ReLU・clip・多項式分岐の固定7点と方向±1を用います。�
 `\lambda_{\ell,h}=4h^{-2}\sin^2(\ell\pi h/2),\quad a_{\ell,k+1}=\frac{a_{\ell,k}+\Delta t\,\theta\beta_\ell}{1+\Delta t\,\kappa\lambda_{\ell,h}};\quad a_{\ell}^{\rm sd}(T)=a_{\ell,0}e^{-\kappa\lambda_{\ell,h}T}+\frac{\theta\beta_\ell}{\kappa\lambda_{\ell,h}}(1-e^{-\kappa\lambda_{\ell,h}T}).`
 
 無次元x∈[0,1]、同次Dirichlet、κ=.1、θ=.2、T=.1。内点7/15、時間step64/128/256。目的関数はh重み付き終端誤差と指定二次正則化です。
+
+固定した離散対象の厳密参照 · 固定された離散対象の解析・有理数参照です。連続PDEの厳密解とは区別し、対象と補助比較は元カードの適用範囲を保持します。
 
 [保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/diffusion-discrete-adjoint/?lang=ja#diffusion-discrete-adjoint-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-adjoint/#diffusion-discrete-adjoint)
 
@@ -3544,6 +3618,8 @@ PCHIPは通常C1でありC2とは限りません。一般データの最良近�
 
 奇数長の各段で周期型は先頭、対称型は末尾を1点追加し、再構成時に切り戻します。詳細係数のみ閾値0.2を使用。
 
+固定した離散対象の厳密参照 · 固定された離散対象の解析・有理数参照です。連続PDEの厳密解とは区別し、対象と補助比較は元カードの適用範囲を保持します。
+
 [保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/haar-mallat-boundary-threshold/?lang=ja#haar-mallat-boundary-threshold-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-approximation-controls/#haar-mallat-boundary-threshold)
 
 - selected-primary-documentation-or-authored-identity: [S. Mallat, A Theory for Multiresolution Signal Decomposition: The Wavelet Representation](https://www.di.ens.fr/~mallat/papiers/MallatTheory89.pdf) — During preparation: title/abstract, Haar example on printed p. 679, selected §III-B/C filter/downsample/inverse-pyramid and border-symmetry prose on p. 681. Extracted formula glyphs were imperfect; no complete proof or numerical-table audit is claimed.
@@ -3721,6 +3797,794 @@ Haarに限定し長いフィルタや画像圧縮は対象外。一般の対称�
 
 
 
+### 1次元Bratu：小さい枝のNewton–GMRES
+
+解析解 · 1次元
+
+`u(x)=2 log[cosh(beta/2)/cosh(beta(x-1/2))], lambda=2 beta^2/cosh(beta/2)^2; beta=1`
+
+既存の残差十分減少による減衰NewtonとILU(0)付きGMRES。解析解u=2log[cosh(β/2)/cosh(β(x−1/2))]。βtanh(β/2)<2で小さい枝を選び、初期値は全点零。内部Newton制御は非線形許容値1e-10、最大30反復。
+
+連続問題の厳密解 · 内部点 x_i=i/(N+1)、N=31/63/127 で連続解を点評価し、CSVには零境界の両端も含めます。離散非線形方程式の厳密な根ではありません。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu/?lang=ja) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/sparse-nonlinear/)
+
+- atlas-formula-or-saved-result: [CSV carries finest-grid numerical/analytic values and absolute error. JSON retains each mesh's nonlinear residual, Newton iteration count and minimum damping length.](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/bratu/result.json) — Inherited existingexecutioncitation, not newlyreadoriginal. Numericalmethodpapers mustnotbe calledoriginalexactsolution/problem.
+- atlas-formula-or-saved-result: [Evaluate λ and the analytic solution independently from β, retaining the factor 2β².](https://hrkoyama.github.io/numerical-methods-atlas/en/read/sparse-nonlinear/) — Inherited existingexecutioncitation, not newlyreadoriginal. Numericalmethodpapers mustnotbe calledoriginalexactsolution/problem.
+- numerical-method: [Existing Newton-method source for sufficient decrease/halving, not direct application of the original minimization theorem.](https://doi.org/10.2140/pjm.1966.16.1) — Inherited existingexecutioncitation, not newlyreadoriginal. Numericalmethodpapers mustnotbe calledoriginalexactsolution/problem.
+- numerical-method: [Existing source for inexact Newton inner solves, not a proof specific to this recipe.](https://doi.org/10.1137/0719025) — Inherited existingexecutioncitation, not newlyreadoriginal. Numericalmethodpapers mustnotbe calledoriginalexactsolution/problem.
+#### 関連するテスト問題の図とコード
+
+##### [1次元Bratu非線形境界値問題](https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu/?lang=ja) (`bratu`)
+
+![公開コード版を固定条件で実行して作成した計算結果。条件・値・検査結果を添付。](https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/bratu.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu/?lang=ja#code-ja)
+
+同じ問題への対応
+
+既存の固定入力・保存結果に対応する解析参照カードを追加。解析式、点・時刻・動径の標本化、配布版SHAと実行コードを相互に辿れます。過去の計算を再実行した記録ではありません。
+
+- [実行・検証：1次元Bratu：小さい枝のNewton–GMRES](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/bratu/?lang=ja) (`bratu`) · [コードZIP：1次元Bratu：小さい枝のNewton–GMRES](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip)
+
+この実行例の範囲：−u''=λexp(u)、β=1・λ=2β²/cosh²(β/2)の小さい枝を零初期値から解く。31/63/127内部点で解析解、独立に再評価した非線形残差、2次格子収束を確認する。
+
+
+
+
+### 調和振動子：Verletの位相誤差とエネルギー
+
+解析解 · 常微分・微分代数方程式（空間次元なし）
+
+`q(t)=q0 cos(t)+p0 sin(t),p(t)=p0 cos(t)-q0 sin(t)`
+
+H=(q²+p²)/2、(q₀,p₀)=(1,0.2)。固定刻み、非散逸1自由度。初期値・終端時刻・刻み数は入力に明記。最大刻みh=0.1はhω<2の安定域。
+
+連続問題の厳密解 · t_k=20k/n、n=200/400/800 の保存時刻に解析的な q,p を評価します。既存ギャラリーの t≤10 の図は別の表示範囲として保持します。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/problems/harmonic-oscillator/?lang=ja) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/symplectic/)
+
+- atlas-formula-or-saved-result: [CSV aligns numerical/analytic q,p and energy on the finest time grid. Observed order uses endpoint-state errors; energy deviation uses all recorded times.](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/harmonic-oscillator/result.json) — Inherited existingexecutioncitation, not newlyreadoriginal. Numericalmethodpapers mustnotbe calledoriginalexactsolution/problem.
+- atlas-formula-or-saved-result: [Independent analytic q=q0*cos(t)+p0*sin(t), p=-q0*sin(t)+p0*cos(t); no fine numerical solution is called exact.](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/symplectic/) — Inherited existingexecutioncitation, not newlyreadoriginal. Numericalmethodpapers mustnotbe calledoriginalexactsolution/problem.
+- numerical-method: [Existing Verlet-method reference; this run does not reproduce every calculation in the original paper.](https://doi.org/10.1103/PhysRev.159.98) — Inherited existingexecutioncitation, not newlyreadoriginal. Numericalmethodpapers mustnotbe calledoriginalexactsolution/problem.
+#### 関連するテスト問題の図とコード
+
+##### [調和振動子（複素ODE表示も統合）](https://hrkoyama.github.io/numerical-methods-atlas/problems/harmonic-oscillator/?lang=ja) (`harmonic-oscillator`)
+
+![保存済みのt≤10の正準位相軌道。手法違いは同一問題の比較。](https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/harmonic-oscillator.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/harmonic-oscillator/?lang=ja#code-ja)
+
+同じ問題への対応
+
+既存の固定入力・保存結果に対応する解析参照カードを追加。解析式、点・時刻・動径の標本化、配布版SHAと実行コードを相互に辿れます。過去の計算を再実行した記録ではありません。 既存ギャラリーはt≤10、共通固定入力は終端20です。
+
+- [実行・検証：調和振動子：Verletの位相誤差とエネルギー](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/harmonic-oscillator/?lang=ja) (`harmonic-oscillator`) · [コードZIP：調和振動子：Verletの位相誤差とエネルギー](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip)
+
+この実行例の範囲：既存の単位質量・単位角振動数の調和振動子をvelocity Verletで進める。20時間単位、200/400/800刻みの解析解比較、元のエネルギー偏差、時間反転を出力。
+
+
+
+
+### 硬い余弦追従ODE：SDIRK2
+
+解析解 · 常微分・微分代数方程式（空間次元なし）
+
+`y(t)=cos(t)+(y0-1)exp(-rate*t); yprime=-rate*(y-cos(t))-sin(t)`
+
+rate=1000、1000/2000/4000ステップでrate*h=1,0.5,0.25。固定γ=1−1/√2と既存Newton段階解法を使用。別の減衰はy′=−10⁸y、y(0)=1、h=1。適応刻み法ではない。
+
+連続問題の厳密解 · t_k=k/n、n=1000/2000/4000、y0=1 で cos(t_k) と比較します。別の一段減衰の参照は exp(-10^8) です。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/problems/stiff-cosine/?lang=ja) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stiff-integration/)
+
+- atlas-formula-or-saved-result: [CSV contains finest-grid time, numerical/analytic state and absolute error. Orders use maximum-in-time errors. Distinguish the older coarse-step order reduction from the resolved refinement here.](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/stiff-cosine/result.json) — Inherited existingexecutioncitation, not newlyreadoriginal. Numericalmethodpapers mustnotbe calledoriginalexactsolution/problem.
+- atlas-formula-or-saved-result: [Analytic y=cos(t)+(y0-1)*exp(-rate*t); the separate homogeneous decay also uses an exponential reference.](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stiff-integration/) — Inherited existingexecutioncitation, not newlyreadoriginal. Numericalmethodpapers mustnotbe calledoriginalexactsolution/problem.
+- numerical-method: [DIRK paper already cited by the SDIRK2 record; selected coefficients/Newton settings are fixed by the released implementation.](https://doi.org/10.1137/0714068) — Inherited existingexecutioncitation, not newlyreadoriginal. Numericalmethodpapers mustnotbe calledoriginalexactsolution/problem.
+#### 関連するテスト問題の図とコード
+
+##### [硬い余弦追従ODE](https://hrkoyama.github.io/numerical-methods-atlas/problems/stiff-cosine/?lang=ja) (`stiff-cosine`)
+
+![保存済みの硬い余弦追従ODEの固定刻み誤差。](https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/stiff-cosine.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/stiff-cosine/?lang=ja#code-ja)
+
+同じ問題への対応
+
+既存の固定入力・保存結果に対応する解析参照カードを追加。解析式、点・時刻・動径の標本化、配布版SHAと実行コードを相互に辿れます。過去の計算を再実行した記録ではありません。
+
+- [実行・検証：硬い余弦追従ODE：SDIRK2](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/stiff-cosine/?lang=ja) (`stiff-cosine`) · [コードZIP：硬い余弦追従ODE：SDIRK2](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip)
+
+この実行例の範囲：既存のL安定2段SDIRK2でy′=−1000(y−cos t)−sin t、y(0)=1をt=1まで解く。解析解、固定刻み細分化、別の強減衰1段問題を検査。
+
+
+
+
+### 水素型原子：解析解と格子収束
+
+解析解 · 1次元
+
+`E_n=-Z^2/(2n^2) hartree; normalized hydrogenic radial functions on r>=0`
+
+非相対論・無限質量の点核。核電荷Z=1,2。縮約動径軌道を一様格子の2次中心差分で離散化。
+
+連続問題の厳密解 · dr=0.04/0.02/0.01 bohr、rmax=60 bohr の実際の内部動径点で u=rR_nl を評価します。無限領域のエネルギーと有限箱・格子の誤差を区別します。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/problems/hydrogenic-atoms/?lang=ja) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/quantum-atoms/#hydrogenic)
+
+- atlas-formula-or-saved-result: [E_n=−Z²/(2n²) and Laguerre radial solutions, separating finite-grid and finite-box error.](https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-atoms/#hydrogenic) — Inherited existingexecutioncitation, not newlyreadoriginal. Numericalmethodpapers mustnotbe calledoriginalexactsolution/problem.
+- solution-background: [Original method publication: Schrödinger, E. (1926), Quantisierung als Eigenwertproblem](https://doi.org/10.1002/andp.19263840404) — Inherited existingexecutioncitation, not newlyreadoriginal. Numericalmethodpapers mustnotbe calledoriginalexactsolution/problem.
+#### 関連するテスト問題の図とコード
+
+##### [水素型原子の動径固有値問題](https://hrkoyama.github.io/numerical-methods-atlas/problems/hydrogenic-atoms/?lang=ja) (`hydrogenic-atoms`)
+
+![公開した原子計算コードの固定入力から計算。条件・CSV・収束検査・独立参照を解説先に保存。](https://hrkoyama.github.io/numerical-methods-atlas/assets/quantum-atoms/hydrogenic.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/hydrogenic-atoms/?lang=ja#code-ja)
+
+同じ問題への対応
+
+既存の固定入力・保存結果に対応する解析参照カードを追加。解析式、点・時刻・動径の標本化、配布版SHAと実行コードを相互に辿れます。過去の計算を再実行した記録ではありません。
+
+- [実行・検証：水素型原子：解析解と格子収束](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/hydrogenic-atoms/?lang=ja) (`hydrogenic-atoms`) · [コードZIP：水素型原子：解析解と格子収束](https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/quantum-atoms-2026-11-21.zip)
+
+この実行例の範囲：孤立した1電子のH・He⁺について、1s・2s・2p・3dのエネルギーと動径軌道を解析解と比較します。多電子原子や分子の直接解法ではありません。
+
+
+
+
+### 2準位模型のBO/CP型連成と短い核熱浴
+
+半解析解 · 常微分・微分代数方程式（空間次元なし）
+
+`H(Q)=\frac{kQ^2}{2}I+\begin{pmatrix}-\Delta&gQ\\gQ&\Delta\end{pmatrix},\quad\psi=(\cos\theta,\sin\theta)^T;\quad E(Q,\theta)=\frac{kQ^2}{2}-\Delta\cos(2\theta)+gQ\sin(2\theta),\quad E_-(Q)=\frac{kQ^2}{2}-\sqrt{\Delta^2+g^2Q^2};\quad M\ddot Q=-kQ-g\sin(2\theta),\quad\mu\ddot\theta=-2\Delta\sin(2\theta)-2gQ\cos(2\theta);\quad V^+=aV^-+\sqrt{(T/M)(1-a^2)}\,\xi,\quad a=e^{-\gamma h},\quad Q_{\rm bath}=\sum\Delta K_{\rm nuclear}`
+
+無次元の核座標と規格化した1電子角。3固定刻み、2架空質量、1固定seedのOU熱浴です。 自作模型の無次元単位。Q,時間,電子角,温度を固定し、M=20、架空角質量μ=.04/.01。cp.xのemass規約とは別です。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/two-state-bo-cp-ou/?lang=ja#two-state-bo-cp-ou-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quantum-small/#two-state-bo-cp-ou)
+
+- historical-context-only: [Unified Approach for Molecular Dynamics and Density-Functional Theory](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.55.2471) — Publisher title/authors/date/DOI and abstract only. Full PDF/equations not read; this is not a reproduction of the silicon calculation.
+- mathematical-or-numerical-contract: [Quantum ESPRESSO cp.x input description](https://www.quantum-espresso.org/Doc/INPUT_CP.html) — Selected emass/orthogonalization and CP context. Its physical mass conventions are not silently assigned to the authored dimensionless angle mass.
+#### 関連するテスト問題の図とコード
+
+##### [2準位模型のBO/CP型連成と短い核熱浴](https://hrkoyama.github.io/numerical-methods-atlas/problems/two-state-bo-cp-model/?lang=ja) (`two-state-bo-cp-model`)
+
+![電子角と核座標を実際に結合した2準位模型を、短いNVEと核熱浴で比較します。 長時間第一原理NVE、一般の多軌道直交制約・SCF誤差、電子/核の一般熱浴、正準平衡・断熱分離・エルゴード性、実物質は未検証。](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/results/two-state-bo-cp-ou.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/two-state-bo-cp-model/?lang=ja#code-ja)
+
+同じ問題への対応
+
+長時間第一原理NVE、一般の多軌道直交制約・SCF誤差、電子/核の一般熱浴、正準平衡・断熱分離・エルゴード性、実物質は未検証。
+
+- [実行・検証：2準位模型のBO/CP型連成と短い核熱浴](https://hrkoyama.github.io/numerical-methods-atlas/validation/two-state-bo-cp-ou/?lang=ja) (`two-state-bo-cp-ou`) · [コードZIP：2準位模型のBO/CP型連成と短い核熱浴](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip)
+
+この実行例の範囲：電子角と核座標を実際に結合した2準位模型を、短いNVEと核熱浴で比較します。
+
+
+
+
+### H/Heの式・密度・固定参照カード
+
+有限格子の数値参照 · 有限次元の代数問題
+
+`E_n=-\frac{Z^2}{2n^2},\quad H_lu=-\frac12u^{\prime\prime}+\left[\frac{l(l+1)}{2r^2}-\frac Zr\right]u;\quad \Psi=u(r)Y_{lm}/r,\quad\int|u|^2\,dr=1,\quad p_{\rm He}(r)=2|u|^2,\quad n_{\rm He}(r)=\frac{p_{\rm He}(r)}{4\pi r^2};\quad \int p_{\rm He}(r)\,dr=\int n_{\rm He}(\mathbf r)\,d^3r=2,\quad E_x^{\rm HF}=-E_H/2\ \text{one-orbital restricted Hartree--Fock He only}`
+
+Hは無限質量点核の1電子、Heは球対称1軌道の閉殻HFまたは交換のみLDAです。 エネルギーhartree、rはbohr。uはbohr^(-1/2)、pはbohr^(-1)、nはbohr^(-3)。保存3行は各40基底関数であり40計算行ではありません。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/atomic-reference-cards/?lang=ja#atomic-reference-cards-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quantum-small/#atomic-reference-cards)
+
+- mathematical-or-numerical-contract: [NIST DLMF18.39 Applications in the Physical Sciences](https://dlmf.nist.gov/18.39) — Earlier same-session R3 selected E7–8,E13–15,E24–35; oscillator/Coulomb normalization and measure. Full chapter/books not audited.
+- independent-reference-convention-and-limits: [PySCF Self-consistent field methods](https://pyscf.org/user/scf.html) — FC=SCe, mean-field orbital/determinant ansatz, stability vs stationarity, RHF/UHF spin symmetry and overlap orthogonalization selected passages. No PySCF execution.
+#### 関連するテスト問題の図とコード
+
+##### [水素型原子の動径固有値問題](https://hrkoyama.github.io/numerical-methods-atlas/problems/hydrogenic-atoms/?lang=ja) (`hydrogenic-atoms`)
+
+![公開した原子計算コードの固定入力から計算。条件・CSV・収束検査・独立参照を解説先に保存。](https://hrkoyama.github.io/numerical-methods-atlas/assets/quantum-atoms/hydrogenic.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/hydrogenic-atoms/?lang=ja#code-ja)
+
+同じ問題への対応
+
+参照カードの整備・保存値照合であり、新SCF/新独立参照は0回。相関込み厳密He、完全基底極限、全軌道の再実行は主張しません。
+
+- [実行・検証：水素型原子：解析解と格子収束](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/hydrogenic-atoms/?lang=ja) (`hydrogenic-atoms`) · [コードZIP：水素型原子：解析解と格子収束](https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/quantum-atoms-2026-11-21.zip)
+
+この実行例の範囲：孤立した1電子のH・He⁺について、1s・2s・2p・3dのエネルギーと動径軌道を解析解と比較します。多電子原子や分子の直接解法ではありません。
+
+
+##### [He基底状態：閉殻HF・交換のみLDA](https://hrkoyama.github.io/numerical-methods-atlas/problems/helium-ground-state/?lang=ja) (`helium-ground-state`)
+
+![公開した原子計算コードの固定入力から計算。条件・CSV・収束検査・独立参照を解説先に保存。](https://hrkoyama.github.io/numerical-methods-atlas/assets/quantum-atoms/helium.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/helium-ground-state/?lang=ja#code-ja)
+
+同じ問題への対応
+
+参照カードの整備・保存値照合であり、新SCF/新独立参照は0回。相関込み厳密He、完全基底極限、全軌道の再実行は主張しません。
+
+- [実行・検証：He：閉殻HF・交換のみLDA](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/helium-ground-state/?lang=ja) (`helium-ground-state`) · [コードZIP：He：閉殻HF・交換のみLDA](https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/quantum-atoms-2026-11-21.zip)
+
+この実行例の範囲：Heの球対称1s²・閉殻HFとスピン非偏極Dirac交換のみLDAを比較します。電子相関・分子・周期系は含みません。
+
+- [実行・検証：H/Heの式・密度・固定参照カード](https://hrkoyama.github.io/numerical-methods-atlas/validation/atomic-reference-cards/?lang=ja) (`atomic-reference-cards`) · [コードZIP：H/Heの式・密度・固定参照カード](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip)
+
+この実行例の範囲：既存H/Heの式と保存参照を、単位・規格化・模型の限界とともに示します。
+
+
+
+
+### 1次元箱型井戸・量子調和振動子
+
+解析解 · 有限次元の代数問題
+
+`H_h=-\frac12D_{xx}+V,\quad V_{\rm box}=0,\quad V_{\rm HO}=x^2/2;\quad E_j^{\rm box}=\frac{(j\pi)^2}{2},\quad u_j=\sqrt2\sin(j\pi x),\quad\lambda_{h,j}=2h^{-2}\sin^2\left(\frac{j\pi}{2M}\right),\ h=1/M;\quad E_n^{\rm HO}=n+\frac12,\quad u_n(x)=\frac{H_n(x)e^{-x^2/2}}{\pi^{1/4}\sqrt{2^nn!}},\quad u_h=v_h/\sqrt h`
+
+原子単位、ゼロDirichlet端点、一様内点格子。箱[0,1]とHO[-L,L]です。 1次元模型の原子単位でℏ=m=1、HOはω=1。箱[0,1]とHOの有限区間[-L,L]はいずれも同次Dirichlet。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/quantum-box-ho/?lang=ja#quantum-box-ho-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quantum-small/#quantum-box-ho)
+
+- mathematical-or-numerical-contract: [NIST DLMF18.39 Applications in the Physical Sciences](https://dlmf.nist.gov/18.39) — Earlier same-session R3 selected E7–8,E13–15,E24–35; oscillator/Coulomb normalization and measure. Full chapter/books not audited.
+- mathematical-or-numerical-contract: [NumPy2.0 numpy.linalg.eigh](https://numpy.org/doc/2.0/reference/generated/numpy.linalg.eigh.html) — Signature, Hermitian lower-triangle handling, all ascending eigenvalues/normalized columns, LinAlgError and LAPACK syevd/heevd notes.
+#### 関連するテスト問題の図とコード
+
+##### [1次元箱型井戸・量子調和振動子](https://hrkoyama.github.io/numerical-methods-atlas/problems/quantum-box-ho/?lang=ja) (`quantum-box-ho`)
+
+![1次元の箱と量子調和振動子で、低3固有対と有限領域・格子の影響を比較します。 8回の全固有対計算で824組をraw保存、規格化等の資格判定は選択24組です。節の閾値と位相は診断、HO0.003は固定例の達成目標で証明済み上界ではありません。有限壁と格子感度を相殺から独立に保証しません。](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/results/quantum-box-ho.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/quantum-box-ho/?lang=ja#code-ja)
+
+同じ問題への対応
+
+8回の全固有対計算で824組をraw保存、規格化等の資格判定は選択24組です。節の閾値と位相は診断、HO0.003は固定例の達成目標で証明済み上界ではありません。有限壁と格子感度を相殺から独立に保証しません。
+
+- [実行・検証：1次元箱型井戸・量子調和振動子](https://hrkoyama.github.io/numerical-methods-atlas/validation/quantum-box-ho/?lang=ja) (`quantum-box-ho`) · [コードZIP：1次元箱型井戸・量子調和振動子](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip)
+
+この実行例の範囲：1次元の箱と量子調和振動子で、低3固有対と有限領域・格子の影響を比較します。
+
+
+
+
+### 最小基底H2のRHF/UHF/FCI・2固定幾何
+
+半解析解 · 有限次元の代数問題
+
+`F^\sigma=h+J[P^\alpha+P^\beta]-K[P^\sigma],\quad F^\sigma C^\sigma=SC^\sigma\varepsilon^\sigma;\quad \langle S^2\rangle_{1\alpha,1\beta}=1-|c_\alpha^\dagger S c_\beta|^2;\quad H_{pq,rs}=h_{pr}\delta_{qs}+h_{qs}\delta_{pr}+(pr|qs),\quad E_{\rm tot}=E_{\rm el}+E_{NN}`
+
+H-H距離1.4/3.0bohr、2電子、HごとにSTO-3G縮約s軌道を1個用います。 核間距離1.4/3.0bohr、全エネルギーhartree。各Hに同じ明示3primitiveのs型収縮を1つ置く2AO/2電子の固定部分空間。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/h2-rhf-uhf-fci/?lang=ja#h2-rhf-uhf-fci-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quantum-small/#h2-rhf-uhf-fci)
+
+- independent-reference-convention-and-limits: [PySCF Self-consistent field methods](https://pyscf.org/user/scf.html) — FC=SCe, mean-field orbital/determinant ansatz, stability vs stationarity, RHF/UHF spin symmetry and overlap orthogonalization selected passages. No PySCF execution.
+- independent-reference-convention-and-limits: [PySCF Configuration interaction (CISD and FCI)](https://pyscf.org/user/ci.html) — Introduction and FCI/spin-sector examples: all determinants within a finite symmetry sector, diagonalization, Nalpha/Nbeta. Not full chapter or full package source.
+#### 関連するテスト問題の図とコード
+
+##### [H₂分子RHF：独立参照・SCF・s型基底拡大](https://hrkoyama.github.io/numerical-methods-atlas/problems/h2-rhf/?lang=ja) (`h2-rhf`)
+
+![固定入力のH₂ RHF：核間距離・s型基底系列・SCF公差を分けて比較。PySCFとの差、反復履歴と有限基底の残る制約を解説。](https://hrkoyama.github.io/code/molecular-hf/2026-11-22/results/preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/h2-rhf/?lang=ja#code-ja)
+
+同じ問題への対応
+
+2固定距離のみ。有限基底FCIは連続空間の厳密解ではなく、UHF定常解の一般的な大域最小性は保証しません。角運動量・完全基底・広い解離曲線は未検証。
+
+- [実行・検証：H₂分子RHF：独立参照・SCF・s型基底拡大](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/h2-rhf/?lang=ja) (`h2-rhf`) · [コードZIP：H₂分子RHF：独立参照・SCF・s型基底拡大](https://hrkoyama.github.io/code/molecular-hf/2026-11-22/molecular-hf-2026-11-22.zip)
+
+この実行例の範囲：孤立・Born–Oppenheimer・非相対論・2電子閉殻H₂。3核間距離でSTO-3Gと入れ子s型Gaussian基底を比較。RHFの数値検証であり、分子DFT・周期系・完全基底極限や正しい解離を検証しない。
+
+- [実行・検証：最小基底H2のRHF/UHF/FCI・2固定幾何](https://hrkoyama.github.io/numerical-methods-atlas/validation/h2-rhf-uhf-fci/?lang=ja) (`h2-rhf-uhf-fci`) · [コードZIP：最小基底H2のRHF/UHF/FCI・2固定幾何](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip)
+
+この実行例の範囲：同じ最小基底H2の2固定幾何で、RHF/UHF/有限基底FCIとスピン対称性を比較します。
+
+
+
+
+### 3中心H3+の小RHF/MP2/FCI模型
+
+有限格子の数値参照 · 有限次元の代数問題
+
+`H_{pq,rs}=h_{pr}\delta_{qs}+h_{qs}\delta_{pr}+(pr|qs);\quad E_{\rm MP2}=E_{\rm RHF}+\sum_{a,b\in\mathrm{virt}}\frac{(0a|0b)^2}{2\varepsilon_0-\varepsilon_a-\varepsilon_b},\quad E_{\rm FCI}=\lambda_{\min}(H)+E_{NN}`
+
+H核3個、電荷+1、2電子、3縮約s軌道の非対称三角形1個です。 H3+の固定3中心[(0,0,0),(1.5,0,0),(.5,1.5,0)]bohr、電荷+1、2電子/3s軌道。エネルギーhartree。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/h3plus-mp2-fci/?lang=ja#h3plus-mp2-fci-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quantum-small/#h3plus-mp2-fci)
+
+- independent-reference-convention-and-limits: [PySCF Self-consistent field methods](https://pyscf.org/user/scf.html) — FC=SCe, mean-field orbital/determinant ansatz, stability vs stationarity, RHF/UHF spin symmetry and overlap orthogonalization selected passages. No PySCF execution.
+- independent-reference-convention-and-limits: [PySCF Second-order Moller-Plesset perturbation theory](https://pyscf.org/user/mp.html) — Introduction/total vs correlation energy/spin symmetry selected passages.
+- independent-reference-convention-and-limits: [PySCF official mp2 module source](https://pyscf.org/_modules/pyscf/mp/mp2.html) — Selected kernel lines53–87 and energy lines167–178: canonical occupied/virtual denominators and direct/exchange contractions. Source read for convention; code not copied into this packet and no fresh PySCF reference.
+- independent-reference-convention-and-limits: [PySCF Configuration interaction (CISD and FCI)](https://pyscf.org/user/ci.html) — Introduction and FCI/spin-sector examples: all determinants within a finite symmetry sector, diagonalization, Nalpha/Nbeta. Not full chapter or full package source.
+#### 関連するテスト問題の図とコード
+
+##### [3中心H3+の小RHF/MP2/FCI模型](https://hrkoyama.github.io/numerical-methods-atlas/problems/h3plus-minimal/?lang=ja) (`h3plus-minimal`)
+
+![固定三角形H3+の3中心小分子で、RHF/MP2/有限基底FCIを示します。 独立な演算子組立と2電子RS2恒等式で固定小模型を照合します。新しい外部PySCF参照はありません。一般分子DFT、CC、多参照法、精密エネルギー・最適化・化学精度は未実装/未検証。MP2は変分上界ではありません。](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/results/h3plus-mp2-fci.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/h3plus-minimal/?lang=ja#code-ja)
+
+同じ問題への対応
+
+独立な演算子組立と2電子RS2恒等式で固定小模型を照合します。新しい外部PySCF参照はありません。一般分子DFT、CC、多参照法、精密エネルギー・最適化・化学精度は未実装/未検証。MP2は変分上界ではありません。
+
+- [実行・検証：3中心H3+の小RHF/MP2/FCI模型](https://hrkoyama.github.io/numerical-methods-atlas/validation/h3plus-mp2-fci/?lang=ja) (`h3plus-mp2-fci`) · [コードZIP：3中心H3+の小RHF/MP2/FCI模型](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip)
+
+この実行例の範囲：固定三角形H3+の3中心小分子で、RHF/MP2/有限基底FCIを示します。
+
+
+
+
+### 保存周期Heエネルギー・力の参照台帳
+
+有限格子の数値参照 · 有限次元の代数問題
+
+`F_{A\alpha}=-\frac{\partial E}{\partial R_{A\alpha}},\quad F^{\rm FD}_{A\alpha}=-\frac{E(R_{A\alpha}+\delta)-E(R_{A\alpha}-\delta)}{2\delta}`
+
+人工2He・4電子・5bohrセル、局所のみのGTH、固定LDA_X+VWNとコード版です。 人工He2、4電子、5bohrセル。保存した幾何・局所GTH版・LDA_X+VWN/Libxc・PySCF/DFTK版をsaved-data/periodic-he-reference.jsonに固定。エネルギーhartree、力hartree/bohr。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/periodic-he-reference-cards/?lang=ja#periodic-he-reference-cards-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quantum-small/#periodic-he-reference-cards)
+
+- independent-reference-convention-and-limits: [DFTK Pseudopotentials](https://docs.dftk.org/stable/examples/pseudopotentials/) — Official separable Kleinman-Bylander/norm-conserving/GTH formats and approximation limits introduction. Our rank-one kernel is authored and is not an element-fitted norm-conserving potential.
+- independent-reference-convention-and-limits: [PySCF Self-consistent field methods](https://pyscf.org/user/scf.html) — FC=SCe, mean-field orbital/determinant ansatz, stability vs stationarity, RHF/UHF spin symmetry and overlap orthogonalization selected passages. No PySCF execution.
+#### 関連するテスト問題の図とコード
+
+##### [周期HeのKS-LDA：Γ点・kメッシュ・基底・SCF](https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-dft/?lang=ja) (`periodic-he-dft`)
+
+![固定Heセルの周期LDA：Γ点とkメッシュ、Gaussian軌道基底・FFT格子・SCFを分離。DFTK平面波参照の打切り収束と差も表示。](https://hrkoyama.github.io/code/periodic-dft/2026-11-22/results/preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-dft/?lang=ja#code-ja)
+
+同じ問題への対応
+
+既存の6力成分・エネルギー差分・Gaussian/PW比較の保存値照合です。電子計算の追加0回。新しい基底/k/カットオフ走査、一般物質、金属、長時間MDへ拡張しません。
+
+- [実行・検証：周期HeのKS-LDA：Γ点・kメッシュ・基底・SCF](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-dft/?lang=ja) (`periodic-he-dft`) · [コードZIP：周期HeのKS-LDA：Γ点・kメッシュ・基底・SCF](https://hrkoyama.github.io/code/periodic-dft/2026-11-22/periodic-dft-2026-11-22.zip)
+
+この実行例の範囲：固定した1原子単純立方Heセル（格子定数4 bohr、価電子2、非偏極LDA_X＋VWN5、局所GTH）。PySCFを使う実行・検証ワークフロー。11設定でk点・Gaussian軌道基底・FFT補助格子・SCFを別々に比較し、Γ／2³は独立DFTK平面波参照と照合。平衡He結晶・完全基底・金属・一般物質は未検証。
+
+
+##### [周期He₂の原子間力：解析力・有限差分・BOMD接続](https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-forces/?lang=ja) (`periodic-he-forces`)
+
+![非対称He₂の解析力をエネルギー有限差分とDFTK参照で比較。力のk点・基底・FFT・SCF収束とBOMDの局所接続確認。](https://hrkoyama.github.io/code/periodic-forces/2026-11-22/results/preview.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-forces/?lang=ja#code-ja)
+
+同じ問題への対応
+
+既存の6力成分・エネルギー差分・Gaussian/PW比較の保存値照合です。電子計算の追加0回。新しい基底/k/カットオフ走査、一般物質、金属、長時間MDへ拡張しません。
+
+- [実行・検証：周期He₂の原子間力：解析力・有限差分・BOMD接続](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-forces/?lang=ja) (`periodic-he-forces`) · [コードZIP：周期He₂の原子間力：解析力・有限差分・BOMD接続](https://hrkoyama.github.io/code/periodic-forces/2026-11-22/periodic-forces-2026-11-22.zip)
+
+この実行例の範囲：非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。
+
+- [実行・検証：保存周期Heエネルギー・力の参照台帳](https://hrkoyama.github.io/numerical-methods-atlas/validation/periodic-he-reference-cards/?lang=ja) (`periodic-he-reference-cards`) · [コードZIP：保存周期Heエネルギー・力の参照台帳](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip)
+
+この実行例の範囲：既存周期Heのエネルギーと6座標力を、保存参照と元の受入基準へ対応付けます。
+
+
+
+
+### 3平面波の非局所projectorと有限温度占有
+
+半解析解 · 有限次元の代数問題
+
+`H_{GG\prime}(k,R)=\tfrac12(G+k)^2\delta_{GG\prime}+V_{GG\prime}+\eta\beta_G\beta_{G\prime}^*,\quad\beta_G=e^{-(G+k)^2/(2\sigma^2)}e^{-i(G+k)R};\quad f_{kn}=\frac{2}{1+e^{(\varepsilon_{kn}-\mu)/T}},\quad\sum_{kn}w_kf_{kn}=1.5;\quad F=\sum_{kn}w_kf_{kn}\varepsilon_{kn}-TS,\quad F_R=-\sum_{kn}w_kf_{kn}\langle u_{kn}|\partial_RH_k|u_{kn}\rangle`
+
+G=-1,0,1、k=±0.25、等重み、T=.05、電子数1.5の自作線形模型です。 無次元のG=-1,0,1、p=G+k、k=±.25、重み各.5、T=.05、平均電子数N=1.5、スピン係数2。実在格子定数や金属へ換算しません。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/periodic-projector-occupations/?lang=ja#periodic-projector-occupations-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quantum-small/#periodic-projector-occupations)
+
+- independent-reference-convention-and-limits: [DFTK periodic problems and plane-wave discretisations](https://docs.dftk.org/stable/guide/periodic_problems/) — Selected displayed Bloch/periodic operator/plane-wave basis context; no material calculations reproduced.
+- independent-reference-convention-and-limits: [DFTK Pseudopotentials](https://docs.dftk.org/stable/examples/pseudopotentials/) — Official separable Kleinman-Bylander/norm-conserving/GTH formats and approximation limits introduction. Our rank-one kernel is authored and is not an element-fitted norm-conserving potential.
+- independent-reference-convention-and-limits: [DFTK Temperature and metallic systems](https://docs.dftk.org/stable/examples/metallic_systems/) — Selected Fermi-Dirac smearing temperature, partial occupations, explicit unconverged fast-example warning and energy Entropy term. No magnesium run, no new k/basis/cutoff scans.
+- mathematical-or-numerical-contract: [NumPy2.0 numpy.linalg.eigh](https://numpy.org/doc/2.0/reference/generated/numpy.linalg.eigh.html) — Signature, Hermitian lower-triangle handling, all ascending eigenvalues/normalized columns, LinAlgError and LAPACK syevd/heevd notes.
+#### 関連するテスト問題の図とコード
+
+##### [3平面波の非局所projectorと有限温度占有](https://hrkoyama.github.io/numerical-methods-atlas/problems/finite-projector-fermi/?lang=ja) (`finite-projector-fermi`)
+
+![3平面波の小周期模型で、非局所projectorと有限温度占有・力を示します。 自作3平面波の線形Hamiltonianです。平均占有の独立粒子Fermi模型であり、整数粒子の正準多体系ではありません。自己無撞着Hartree/XC、元素適合ノルム保存擬ポテンシャル、実金属、一般材料、長時間MDは未検証。](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/results/periodic-projector-occupations.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/finite-projector-fermi/?lang=ja#code-ja)
+
+同じ問題への対応
+
+自作3平面波の線形Hamiltonianです。平均占有の独立粒子Fermi模型であり、整数粒子の正準多体系ではありません。自己無撞着Hartree/XC、元素適合ノルム保存擬ポテンシャル、実金属、一般材料、長時間MDは未検証。
+
+- [実行・検証：3平面波の非局所projectorと有限温度占有](https://hrkoyama.github.io/numerical-methods-atlas/validation/periodic-projector-occupations/?lang=ja) (`periodic-projector-occupations`) · [コードZIP：3平面波の非局所projectorと有限温度占有](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip)
+
+この実行例の範囲：3平面波の小周期模型で、非局所projectorと有限温度占有・力を示します。
+
+
+
+
+### Hodgkin–Huxley：電位固定・静止平衡・発火
+
+半解析解 · 常微分・微分代数方程式（空間次元なし）
+
+`C_m\dot V=I-g_{Na}m^3h(V-E_{Na})-g_Kn^4(V-E_K)-g_L(V-E_L);\quad \dot z=\alpha_z(V)(1-z)-\beta_z(V)z`
+
+6.3°C、NEURON8.2.6の解析的な絶対電位規約を固定し、時間ms・電位mV・電流密度μA/cm²を用います。4固定電位、3刻み、20msの静止と10–11msの電流パルスを比較。ゲートは無次元で、空間一様な1細胞膜の電位固定または区分電流の初期値問題です。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/hodgkin-huxley-controls/?lang=ja#hodgkin-huxley-controls-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology-ode-controls/#hodgkin-huxley-controls)
+
+- model-or-reference-source: [NEURON8.2.6 analytic hh.mod](https://raw.githubusercontent.com/neuronsimulator/nrn/8.2.6/src/nrnoc/hh.mod) — Selected convention7–11, physical units/current35–67 and exact analytic rates88–120. Source TABLE/cnexp is not reproduced.
+#### 関連するテスト問題の図とコード
+
+##### [Hodgkin–Huxley：電位固定・静止平衡・発火](https://hrkoyama.github.io/numerical-methods-atlas/problems/hodgkin-huxley-controls/?lang=ja) (`hodgkin-huxley-controls`)
+
+![固定電位の解析ゲート解と、区分電流下の4状態系を照合します。 1細胞膜の教育例です。元論文の電位規約、TABLE/cnexp実装、ケーブル伝播や生体実測の再現とは呼びません。区間内に括れない発火は捏造せず、静止根の一意性・区間Hurwitz安定性は主張しません。](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/results/hodgkin-huxley-controls.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/hodgkin-huxley-controls/?lang=ja#code-ja)
+
+同じ問題への対応
+
+1細胞膜の教育例です。元論文の電位規約、TABLE/cnexp実装、ケーブル伝播や生体実測の再現とは呼びません。区間内に括れない発火は捏造せず、静止根の一意性・区間Hurwitz安定性は主張しません。
+
+- [実行・検証：Hodgkin–Huxley：電位固定・静止平衡・発火](https://hrkoyama.github.io/numerical-methods-atlas/validation/hodgkin-huxley-controls/?lang=ja) (`hodgkin-huxley-controls`) · [コードZIP：Hodgkin–Huxley：電位固定・静止平衡・発火](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/atlas-biology-ode-controls-2026-11-25.zip)
+
+この実行例の範囲：固定電位の解析ゲート解と、区分電流下の4状態系を照合します。
+
+
+
+
+### 移入–死亡SSA：有限時刻の厳密分布
+
+解析解 · 空間次元を持たない確率過程
+
+`\varnothing\xrightarrow{6}N,\qquad N\xrightarrow{N} \varnothing;\quad N(t)\mid N(0)=n_0\;\overset d=\mathrm{Bin}(n_0,e^{-t})+\mathrm{Pois}(6(1-e^{-t}))`
+
+移入率6、粒子ごとの死亡率1、観測時刻0/0.5/2/4。初期値0・5・名目上の定常Poisson(6)を各2seed、各記録2,048軌跡で比較します。粒子数は非負整数、時間単位を固定し、N=0では死亡propensityが零になります。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/immigration-death-ssa/?lang=ja#immigration-death-ssa-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology-ode-controls/#immigration-death-ssa)
+
+- model-or-reference-source: [Gillespie(1977), Exact stochastic simulation of coupled chemical reactions](https://doi.org/10.1021/j100540a008) — Carry-forward documentedselectedoriginalarticleextractedpp2343–2345,§IIIA–C,eq8–21andalgorithm0–3,on2026-11-24UTC. Exponentialwaitingandcumulativepropensityselection;repeated-runsvsonepath. No newPDFdownload/bodyread inthisR3batch.
+- model-or-reference-source: [Massart(1990),The Tight Constant in the Dvoretzky–Kiefer–Wolfowitz Inequality](https://doi.org/10.1214/aop/1176990746) — SelectedoriginalabstracttwosidedCDFbound2exp(-2lambda²),IIDassumptionandunrestrictedlambda. Author-uploadedprimaryarticlepage identifiesMassartupload2014.
+- model-or-reference-source: [Reeve(2024),A short proof of the Dvoretzky–Kiefer–Wolfowitz–Massart inequality](https://arxiv.org/pdf/2403.16651) — SelectedPDFtextpp1–3:IIDpopulation/empiricalCDFdefinition,Theorem1,Corollary1andCorollary2andMassartcomparison. Supportsfinite-nCDFconcentration;notwhole11-pageproof.
+#### 関連するテスト問題の図とコード
+
+##### [移入–死亡SSA：有限時刻の厳密分布](https://hrkoyama.github.io/numerical-methods-atlas/problems/immigration-death-ssa/?lang=ja) (`immigration-death-ssa`)
+
+![1本の軌跡と12,288本の固定アンサンブルを分けて検証します。 有限時間の決定論的初期状態を定常分布とは呼びません。区間の保証は理想IID法則の参照に限り、PRNG・対数演算を含むソフトウェア全体の被覆率保証や単一軌跡の代表性を主張しません。](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/results/immigration-death-ssa.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/immigration-death-ssa/?lang=ja#code-ja)
+
+同じ問題への対応
+
+有限時間の決定論的初期状態を定常分布とは呼びません。区間の保証は理想IID法則の参照に限り、PRNG・対数演算を含むソフトウェア全体の被覆率保証や単一軌跡の代表性を主張しません。
+
+- [実行・検証：移入–死亡SSA：有限時刻の厳密分布](https://hrkoyama.github.io/numerical-methods-atlas/validation/immigration-death-ssa/?lang=ja) (`immigration-death-ssa`) · [コードZIP：移入–死亡SSA：有限時刻の厳密分布](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/atlas-biology-ode-controls-2026-11-25.zip)
+
+この実行例の範囲：1本の軌跡と12,288本の固定アンサンブルを分けて検証します。
+
+
+
+
+### Fisher–KPP：特殊波速の厳密前線
+
+解析解 · 1次元
+
+`u_t=u_{xx}+u(1-u);\quad u(x,t)=[1+\exp((x-5t/\sqrt6)/\sqrt6)]^{-2}`
+
+D=r=1、T=1、特殊速度5/√6を固定。L=12で空間・時間系列を調べ、L=6/12/24で定数端点の境界系列を比較します。無次元で拡散係数と反応率は1。厳密前線の境界値と定数境界を区別し、有限領域の影響を残します。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/fisher-kpp-special-front/?lang=ja#fisher-kpp-special-front-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology-space-controls/#fisher-kpp-special-front)
+
+- model-or-reference-source: [Ablowitz–Zeppetella(1979), Explicit solutions of Fisher’s equation for a special wave speed](https://doi.org/10.1007/BF02462380) — Publisherbibliographic/abstractspecial-speedstatementfrompriorselectedreview.
+#### 関連するテスト問題の図とコード
+
+##### [Fisher–KPP：特殊波速の厳密前線](https://hrkoyama.github.io/numerical-methods-atlas/problems/fisher-kpp-special-front/?lang=ja) (`fisher-kpp-special-front`)
+
+![波形・位置・格子誤差・時間誤差・有限領域の影響を分けます。 特殊前線を一般の最小速度2の前線と同一視しません。急減衰初期値からの速度選択、長時間伝播、機械誤差込みの厳密障壁証明は対象外です。](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/results/fisher-kpp-special-front.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/fisher-kpp-special-front/?lang=ja#code-ja)
+
+同じ問題への対応
+
+特殊前線を一般の最小速度2の前線と同一視しません。急減衰初期値からの速度選択、長時間伝播、機械誤差込みの厳密障壁証明は対象外です。
+
+- [実行・検証：Fisher–KPP：特殊波速の厳密前線](https://hrkoyama.github.io/numerical-methods-atlas/validation/fisher-kpp-special-front/?lang=ja) (`fisher-kpp-special-front`) · [コードZIP：Fisher–KPP：特殊波速の厳密前線](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/atlas-biology-space-controls-2026-11-25.zip)
+
+この実行例の範囲：波形・位置・格子誤差・時間誤差・有限領域の影響を分けます。
+
+
+
+
+### Schnakenberg：2D境界と初期モード
+
+有限格子の数値参照 · 2次元
+
+`u_t=.01\Delta u+.1-u+u^2v,\qquad v_t=\Delta v+.9-u^2v`
+
+[0,2π]²、T=2、a=0.1、b=0.9、Du=0.01、Dv=1。(1,0.9)からの3摂動、12/24/48セルと固定非周期境界を比較します。Neumannの単一・混合モードと、平衡Dirichlet境界の単一モードを区別します。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/?lang=ja#schnakenberg-2d-boundary-modes-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology-space-controls/#schnakenberg-2d-boundary-modes)
+
+- model-or-reference-source: [Schnakenberg(1979), Simple chemical reaction systems with limit cycle behaviour](https://pubmed.ncbi.nlm.nih.gov/537379/) — OriginalSchnakenbergbibliographicrecordonly.
+#### 関連するテスト問題の図とコード
+
+##### [Schnakenberg：2D境界と初期モード](https://hrkoyama.github.io/numerical-methods-atlas/problems/schnakenberg-2d-boundary-modes/?lang=ja) (`schnakenberg-2d-boundary-modes`)
+
+![2つのNeumann摂動とDirichlet摂動を独立な非線形Galerkin参照と比較します。 短時間の小振幅・固定初期値です。一般的な模様選択、成長後の成熟パターン、原著図の再現は主張しません。有限の参照差を連続体誤差の厳密上界と呼びません。](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/results/schnakenberg-2d-boundary-modes.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/schnakenberg-2d-boundary-modes/?lang=ja#code-ja)
+
+同じ問題への対応
+
+短時間の小振幅・固定初期値です。一般的な模様選択、成長後の成熟パターン、原著図の再現は主張しません。有限の参照差を連続体誤差の厳密上界と呼びません。
+
+- [実行・検証：Schnakenberg：2D境界と初期モード](https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/?lang=ja) (`schnakenberg-2d-boundary-modes`) · [コードZIP：Schnakenberg：2D境界と初期モード](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/atlas-biology-space-controls-2026-11-25.zip)
+
+この実行例の範囲：2つのNeumann摂動とDirichlet摂動を独立な非線形Galerkin参照と比較します。
+
+
+
+
+### Keller–Segel：連成流束の製造解
+
+製造解 · 2次元
+
+`n_t+\nabla\cdot(wn)=D_n\Delta n-\chi\nabla\cdot(n\nabla c)+rn(1-n)+s_n;\quad \tau c_t=D_c\Delta c+\alpha n-\lambda c+s_c;\quad n_*(x,y,t)=1+0.1e^{-t}\cos(\pi x)\cos(\pi y),\quad c_*(x,y,t)=1+0.05e^{-2t}\cos(\pi x)\cos(2\pi y),\quad\psi=\sin(\pi x)\sin(\pi y)/\pi,\quad w=(\partial_y\psi,-\partial_x\psi)`
+
+単位正方形でT=0.25まで、n=1+0.1e⁻ᵗcos(πx)cos(πy)、c=1+0.05e⁻²ᵗcos(πx)cos(2πy)に対応する外力を製造し、発散零で境界に接する移流を用います。無次元の係数と外力をinputs.jsonに固定。内面・角の所有を明示して製造外力と境界流束を扱います。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/keller-segel-forced-flux/?lang=ja#keller-segel-forced-flux-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology-space-controls/#keller-segel-forced-flux)
+
+- authored-manufactured-reference: [Atlas authored Keller–Segel manufactured fields, forcing and finite-volume balance controls (2026-11-25)](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/keller_segel.py) — Atlas-authored manufactured fields, forcing and face-flux derivation/implementation. Evidence is limited to saved component checks, independently written scalar-face/RHS references and cell-average comparisons. No original-paper full-text reading or reproduction of the unforced original problem is claimed.
+#### 関連するテスト問題の図とコード
+
+##### [Keller–Segel：連成流束の製造解](https://hrkoyama.github.io/numerical-methods-atlas/problems/keller-segel-forced-flux/?lang=ja) (`keller-segel-forced-flux`)
+
+![滑らかな2D厳密場で、交差流束・段時刻・収支を検証します。 著者作成の強制2場モデルです。原著の全生物モデル、ピーク形成、真のblow-upやその抑制を実証しません。負値をクリップして正値性を装いません。](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/results/keller-segel-forced-flux.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/keller-segel-forced-flux/?lang=ja#code-ja)
+
+同じ問題への対応
+
+著者作成の強制2場モデルです。原著の全生物モデル、ピーク形成、真のblow-upやその抑制を実証しません。負値をクリップして正値性を装いません。
+
+- [実行・検証：Keller–Segel：連成流束の製造解](https://hrkoyama.github.io/numerical-methods-atlas/validation/keller-segel-forced-flux/?lang=ja) (`keller-segel-forced-flux`) · [コードZIP：Keller–Segel：連成流束の製造解](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/atlas-biology-space-controls-2026-11-25.zip)
+
+この実行例の範囲：滑らかな2D厳密場で、交差流束・段時刻・収支を検証します。
+
+
+
+
+### NH・chain・弱結合・速度固定の比較
+
+半解析解 · 常微分・微分代数方程式（空間次元なし）
+
+`\dot p=-\nabla U-\xi_1p,\quad\dot\xi_1=(2K-fT)/Q_1-\xi_2\xi_1;\quad H_{ext}=H+\sum_jQ_j\xi_j^2/2+fT\eta_1+T\sum_{j>1}\eta_j`
+
+質量1、kBT=1、振動数1/1.7、四次係数0/0.2。NH1・NHC3・Berendsen・固定速さの熱浴を、2結合・2刻み、正準256/加熱128標本で比較します。無次元でQ1=2τ²、Qj=τ²。空間境界のない2モード初期値問題で、正準・加熱アンサンブルを固定します。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/deterministic-thermostat-contrasts/?lang=ja#deterministic-thermostat-contrasts-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostat-constraint-controls/#deterministic-thermostat-contrasts)
+
+- model-or-reference-source: [GROMACS2026.4,Temperature coupling](https://manual.gromacs.org/current/reference-manual/algorithms/molecular-dynamics.html) — Selected temperature coupling equations43/47–53 and NH/NHC mass-period conventions. Authored xi velocity convention and exact frozen subflows independently derived.
+- model-or-reference-source: [Massart(1990),The Tight Constant in the Dvoretzky–Kiefer–Wolfowitz Inequality](https://doi.org/10.1214/aop/1176990746) — SelectedoriginalabstracttwosidedCDFbound2exp(-2lambda²),IIDassumptionandunrestrictedlambda. Author-uploadedprimaryarticlepage identifiesMassartupload2014.
+- model-or-reference-source: [Reeve(2024),A short proof of the Dvoretzky–Kiefer–Wolfowitz–Massart inequality](https://arxiv.org/pdf/2403.16651) — SelectedPDFtextpp1–3:IIDpopulation/empiricalCDFdefinition,Theorem1,Corollary1andCorollary2andMassartcomparison. Supportsfinite-nCDFconcentration;notwhole11-pageproof.
+#### 関連するテスト問題の図とコード
+
+##### [非調和CSVRとLangevin：Boltzmann求積との分布比較](https://hrkoyama.github.io/numerical-methods-atlas/problems/thermostatted-quartic/?lang=ja) (`thermostatted-quartic`)
+
+![弱い四次ポテンシャルを持つ2自由度で、CSVRとLangevinの分布・温度とエネルギーの揺らぎ・相関を比較。正準分布を独立なBoltzmann求積から得ます。](https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/results/csvr-langevin-quartic.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/thermostatted-quartic/?lang=ja#code-ja)
+
+同じ問題への対応
+
+同じ2モード四次系と調和対照。決定論的浴の短時間・有限標本比較。
+
+- [実行・検証：非調和CSVRとLangevin：Boltzmann求積との分布比較](https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-langevin-quartic/?lang=ja) (`csvr-langevin-quartic`) · [コードZIP：非調和CSVRとLangevin：Boltzmann求積との分布比較](https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip)
+
+この実行例の範囲：弱い四次ポテンシャルを持つ2自由度で、CSVRとLangevinの分布・温度とエネルギーの揺らぎ・相関を比較。正準分布を独立なBoltzmann求積から得ます。
+
+- [実行・検証：NH・chain・弱結合・速度固定の比較](https://hrkoyama.github.io/numerical-methods-atlas/validation/deterministic-thermostat-contrasts/?lang=ja) (`deterministic-thermostat-contrasts`) · [コードZIP：NH・chain・弱結合・速度固定の比較](https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/atlas-thermostat-constraint-controls-2026-11-25.zip)
+
+この実行例の範囲：同じ2モード系で、温度平均に加えて分布・揺らぎ・相関を比べます。
+
+
+
+
+### 拘束・重心除去と正準統計
+
+半解析解 · 常微分・微分代数方程式（空間次元なし）
+
+`Cq=0,\quad CM^{-1}p=0,\quad f=3-\mathrm{rank}(C);\quad \mathrm{Cov}(p)=T(M-C^T(CM^{-1}C^T)^+C)`
+
+共通の調和ポテンシャル中の1次元3粒子で質量1/2/3、kBT=1。無拘束・COM・COM相対・冗長行の等価拘束で有効自由度3/2/1/1、各1,024標本を比較します。固定線形拘束Cq=0、CM⁻¹p=0を用い、冗長行は同じ接空間上で比較します。
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/projected-canonical-dof/?lang=ja#projected-canonical-dof-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostat-constraint-controls/#projected-canonical-dof)
+
+- model-or-reference-source: [LAMMPS,compute temp](https://docs.lammps.org/compute_temp.html) — Description lines29–38:kinetic temperature/effectiveDOF/constraint deduction/default translational subtraction.
+- model-or-reference-source: [Bussi,Donadio,Parrinello,Canonical sampling through velocity-rescaling](https://arxiv.org/pdf/0803.4060) — SelectedpreprintAppendixA,A1-A7,OUradialrepresentationandchi-squarelaw;selectedcanonicalslice§IIA.
+- model-or-reference-source: [Massart(1990),The Tight Constant in the Dvoretzky–Kiefer–Wolfowitz Inequality](https://doi.org/10.1214/aop/1176990746) — SelectedoriginalabstracttwosidedCDFbound2exp(-2lambda²),IIDassumptionandunrestrictedlambda. Author-uploadedprimaryarticlepage identifiesMassartupload2014.
+- model-or-reference-source: [Reeve(2024),A short proof of the Dvoretzky–Kiefer–Wolfowitz–Massart inequality](https://arxiv.org/pdf/2403.16651) — SelectedPDFtextpp1–3:IIDpopulation/empiricalCDFdefinition,Theorem1,Corollary1andCorollary2andMassartcomparison. Supportsfinite-nCDFconcentration;notwhole11-pageproof.
+#### 関連するテスト問題の図とコード
+
+##### [拘束・重心除去と正準統計](https://hrkoyama.github.io/numerical-methods-atlas/problems/projected-canonical-dof/?lang=ja) (`projected-canonical-dof`)
+
+![有効自由度、運動量共分散、過渡分布と時間相関を分けて検証します。 固定線形拘束の小例です。非線形分子拘束、Fixman補正、輸送係数へ一般化しません。独立seedの冗長拘束系には軌跡の一致を要求せず、CSVRの動的相関は経験的な結果です。](https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/results/projected-canonical-dof.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/projected-canonical-dof/?lang=ja#code-ja)
+
+同じ問題への対応
+
+固定線形拘束の小例です。非線形分子拘束、Fixman補正、輸送係数へ一般化しません。独立seedの冗長拘束系には軌跡の一致を要求せず、CSVRの動的相関は経験的な結果です。
+
+- [実行・検証：拘束・重心除去と正準統計](https://hrkoyama.github.io/numerical-methods-atlas/validation/projected-canonical-dof/?lang=ja) (`projected-canonical-dof`) · [コードZIP：拘束・重心除去と正準統計](https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/atlas-thermostat-constraint-controls-2026-11-25.zip)
+
+この実行例の範囲：有効自由度、運動量共分散、過渡分布と時間相関を分けて検証します。
+
+
+
+
+### Saltzman型の歪み格子ピストン：2次元EulerとALE
+
+解析解 · 2次元
+
+`\partial_tU+\nabla\cdot F(U)=0,\quad F_{\rm ALE}\cdot n=F(U)\cdot n-w_nU; s=\frac{\gamma+1}{4}u_p+\sqrt{[(\gamma+1)u_p/4]^2+\gamma p_0/\rho_0},\quad\rho_1=\frac{\rho_0s}{s-u_p},\quad p_1=p_0+\rho_0su_p,\quad x_s=st`
+
+Tan–Lv–Zhu（2023）Example 8に対応するe0=10⁻⁴・有限初期圧力の変種です。規定したアフィンALE、2次元Euler、Rusanovを用います。同論文の物質Lagrange格子・WENO/remap法や、未読の1985年原報全体の再現ではありません。
+
+連続問題の厳密解 · Exact conserved area means over each actual deformed quadrilateral, computed by planar-shock polygon clipping. Pressure of a conserved mean differs from mean pointwise pressure. Initial [0,1]x[0,.1] moves to [t,1]x[0,.1].
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/saltzman-ale-piston/?lang=ja#saltzman-ale-piston-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-continuum-particle-controls/#saltzman-ale-piston)
+
+- explicit-benchmark-configuration: [New Third-Order Finite Volume Unequal-Sized WENO Lagrangian Schemes for Solving Euler Equations](https://www.mdpi.com/2227-7390/11/23/4842) — Publisher full-text Example8, equation42 and Figures8–9 captions: 2D skewedpiston geometry and finite nonzero internalenergy. Only the benchmark configuration is borrowed; the new solver is not that WENO/Lagrangian method. Saltzman/Colella1985 LA-UR-85-678 is cited historically but original full text was not obtained. Later papers use different skew maps/cold pressures; they must not be silently mixed.
+- historical-original-problem: [Second Order Corner Coupled Upwind Transport Methods for Lagrangian Hydrodynamics](https://www.osti.gov/servlets/purl/15005665) — Bibliographic identity found in the authors LLNL comparison report reference27, not the original1985 report. Do not claim original1985 parameters or originalmethod reproduction.
+#### 関連するテスト問題の図とコード
+
+##### [Saltzman型の歪み格子ピストン：2次元EulerとALE](https://hrkoyama.github.io/numerical-methods-atlas/problems/saltzman-ale-piston/?lang=ja) (`saltzman-ale-piston`)
+
+![2023年版の歪み格子と有限初期圧力を明示した、所与の格子移動による2次元Eulerピストン計算。 Tan–Lv–Zhu (2023) Example 8 の e0=10^-4 を明示した有限圧力版。所与のアフィンALE格子を使う2D Euler/Rusanov例で、物質追従格子、WENO、remapや1985原報の全面再現ではありません。](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/results/saltzman-ale-piston.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/saltzman-ale-piston/?lang=ja#code-ja)
+
+同じ問題への対応
+
+固定入力の式・参照・図と実行コードを対応付けます。 Tan–Lv–Zhu (2023) Example 8 の e0=10^-4 を明示した有限圧力版。所与のアフィンALE格子を使う2D Euler/Rusanov例で、物質追従格子、WENO、remapや1985原報の全面再現ではありません。
+
+- [実行・検証：Saltzman型の歪み格子ピストン：2次元EulerとALE](https://hrkoyama.github.io/numerical-methods-atlas/validation/saltzman-ale-piston/?lang=ja) (`saltzman-ale-piston`) · [コードZIP：Saltzman型の歪み格子ピストン：2次元EulerとALE](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip)
+
+この実行例の範囲：2023年版の歪み格子と有限初期圧力を明示した、所与の格子移動による2次元Eulerピストン計算。
+
+
+
+
+### Williamson型の球面固体回転輸送：傾いた軸と極通過
+
+解析解 · 2次元
+
+`q_t+\mathbf v\cdot\nabla_{\mathbb S^2}q=0,\quad q(\mathbf r,t)=q_0(R_{\mathbf n}(-2\pi t/T)\mathbf r); \mathbf n=(-\sin\alpha,0,\cos\alpha),\quad q_0(r)=\tfrac12[1+\cos(\pi r/R)]\ (r<R),\quad q_0=0\ (r\ge R)`
+
+単位球上の規定スカラー剛体回転に限定します。W92原著の式は未読で、Nair著者資料の選択式から規約を照合。両格子で整合しない位相の11回再配置を用います。双線形補間は非保存なので質量変動を報告し、時間収束や非線形の全球浅水コアは主張しません。
+
+連続問題の厳密解 · Exact scalar point values at latitude-longitude cell centers, with exact spherical-band area weights for quadrature. Two tilts0,pi/2; fixed11remaps at both64x32/128x64. Not finite-volume conservative means.
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/williamson-sphere-transport/?lang=ja#williamson-sphere-transport-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-continuum-particle-controls/#williamson-sphere-transport)
+
+- original-problem-suite: [A standard test set for numerical approximations to the shallow water equations in spherical geometry](https://digital.library.unt.edu/ark:/67531/metadc1069483/) — DOE/ORNL1991 author-report bibliography/abstract and suite identity. FullPDF/page fetch timed out; do not mark original equation read. Primary author implementation/formula confirmation still required before claiming exactstandard W92 parameterreproduction.
+- author-formula-crosscheck: [Cascade interpolation for semi-Lagrangian advection over the sphere](https://www.image.ucar.edu/staff/rnair/qj99_sph.pdf) — Author-hosted selected section3 gives velocity/bell formulas and explicitly distinguishes radius7pi/64 from W92 radius1/3. Selected solidbody-rotation definitions only. Our bilinear tensor interpolation is not their cascade algorithm; our radius1/3 uses the W92-associated variant, not their7pi/64 radius. Original W92 full text remains unread.
+#### 関連するテスト問題の図とコード
+
+##### [Williamson型の球面固体回転輸送：傾いた軸と極通過](https://hrkoyama.github.io/numerical-methods-atlas/problems/williamson-sphere-transport/?lang=ja) (`williamson-sphere-transport`)
+
+![所与の固体回転速度で球面上のcosine bellを輸送し、傾いた軸・極通過・1周後の誤差を調べる限定例。 単位球の所与の剛体回転によるスカラー輸送だけです。原W92全文の式は未閲読で、Nairらの選択した著者資料との規約照合に限ります。両格子とも11回の非整合なremap。非保存の双線形補間で質量ずれを報告し、時間収束とは呼びません。](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/results/williamson-sphere-transport.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/williamson-sphere-transport/?lang=ja#code-ja)
+
+同じ問題への対応
+
+固定入力の式・参照・図と実行コードを対応付けます。 単位球の所与の剛体回転によるスカラー輸送だけです。原W92全文の式は未閲読で、Nairらの選択した著者資料との規約照合に限ります。両格子とも11回の非整合なremap。非保存の双線形補間で質量ずれを報告し、時間収束とは呼びません。
+
+- [実行・検証：Williamson型の球面固体回転輸送：傾いた軸と極通過](https://hrkoyama.github.io/numerical-methods-atlas/validation/williamson-sphere-transport/?lang=ja) (`williamson-sphere-transport`) · [コードZIP：Williamson型の球面固体回転輸送：傾いた軸と極通過](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip)
+
+この実行例の範囲：所与の固体回転速度で球面上のcosine bellを輸送し、傾いた軸・極通過・1周後の誤差を調べる限定例。
+
+
+
+
+### 球面浅水波の軸対称定常釣合いを時間積分
+
+解析解 · 1次元
+
+`h_t+\frac{\partial_\phi(hv\cos\phi)}{a\cos\phi}=0,\quad u_t+\frac va u_\phi-(2\Omega\sin\phi+u\tan\phi/a)v=0; v_t+\frac va v_\phi+(2\Omega\sin\phi+u\tan\phi/a)u+\frac ga h_\phi=0; u=u_0\cos\phi,\quad v=0,\quad h=h_0-\frac{a\Omega u_0+u_0^2/2}{g}\sin^2\phi`
+
+a=g=1、Ω=2、u0=0.5、h0=10の無次元軸対称部分問題です。中心差分のprimitive運動量、有限体積の質量、RK4で実際に時間発展させます。標準地球パラメータ、多次元の全球浅水コア、離散厳密釣合い、渦位保存の主張は含みません。
+
+連続問題の厳密解 · Pointwise stationary h,u,v at latitude-band centers in a one-coordinate axisymmetric reduction; finite-volume band mass weights. Continuous analytic balance is distinct from the measured discrete residual.
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/sphere-zonal-balance/?lang=ja#sphere-zonal-balance-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-continuum-particle-controls/#sphere-zonal-balance)
+
+- original-problem-suite: [A standard test set for numerical approximations to the shallow water equations in spherical geometry](https://digital.library.unt.edu/ark:/67531/metadc1069483/) — DOE/ORNL1991 author-report bibliography/abstract and suite identity. FullPDF/page fetch timed out; do not mark original equation read. Primary author implementation/formula confirmation still required before claiming exactstandard W92 parameterreproduction.
+- atlas-derived-reference: [Atlas fixed formula and stored result](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json) — Authored stationary/linearized identity and actual saved-array qualification only; not a newly read original-paper derivation.
+#### 関連するテスト問題の図とコード
+
+##### [球面浅水波の軸対称定常釣合いを時間積分](https://hrkoyama.github.io/numerical-methods-atlas/problems/sphere-zonal-balance/?lang=ja) (`sphere-zonal-balance`)
+
+![球面浅水波の軸対称な無次元定常状態を実際に時間積分し、釣合い残差と格子依存を分ける。 a=g=1, Ω=2, u0=.5, h0=10 の軸対称な無次元部分問題。運動量中心差分・質量FV・RK4の混成で実際に時間発展させます。標準地球条件や全球多次元SWE、厳密な離散釣合い・PV保存の再現ではありません。](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/results/sphere-zonal-balance.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/sphere-zonal-balance/?lang=ja#code-ja)
+
+同じ問題への対応
+
+固定入力の式・参照・図と実行コードを対応付けます。 a=g=1, Ω=2, u0=.5, h0=10 の軸対称な無次元部分問題。運動量中心差分・質量FV・RK4の混成で実際に時間発展させます。標準地球条件や全球多次元SWE、厳密な離散釣合い・PV保存の再現ではありません。
+
+- [実行・検証：球面浅水波の軸対称定常釣合いを時間積分](https://hrkoyama.github.io/numerical-methods-atlas/validation/sphere-zonal-balance/?lang=ja) (`sphere-zonal-balance`) · [コードZIP：球面浅水波の軸対称定常釣合いを時間積分](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip)
+
+この実行例の範囲：球面浅水波の軸対称な無次元定常状態を実際に時間積分し、釣合い残差と格子依存を分ける。
+
+
+
+
+### Gaussian畳込みGSPHによるSod型粒子衝撃管
+
+半解析解 · 1次元
+
+`U_t+F(U)_x=0,\quad p=(\gamma-1)\rho e,\quad\gamma=1.4; V_{ij}^2(h)=\frac{h^2}{4}\left(\frac{V_i-V_j}{r_{ij}}\right)^2+\left(\frac{V_i+V_j}{2}\right)^2,\quad V_i=1/\rho_i,\quad h_i=\eta m_i/\rho_{\rm smooth,i}`
+
+Gaussianの線形比体積GSPH重なり積分、対称な可変h、独立な対Riemann解、反対称な全エネルギー交換を実装します。通常SPHへの星状態圧力の代入とは区別。再構築は1次に限定し、原著の3次/MUSCL実装や一般的な高精度は主張しません。
+
+半解析参照 · Independent Riemann primitive point values at actual particle positions, norm weighted by m/rho in physicalx[-.4,.4] at t=.12. Stored coordinates[0,2) shift by-1. A second periodic interface cannot reach this window; not FV cell means.
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/gsph-sod/?lang=ja#gsph-sod-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-continuum-particle-controls/#gsph-sod)
+
+- numerical-method: [Reformulation of Smoothed Particle Hydrodynamics with Riemann Solver](https://arxiv.org/pdf/astro-ph/0206401) — Author PDF selected passages in sections3.1.1/3.2/3.3/3.4 and4.1, equations48–52,66–67,79–85,94 and Figure6 caption. No new whole-paper audit. Gaussian convolution overlap, variableh approximation and matched pair energy are distinguished from substituting star pressure into ordinarySPH. Draft will use the linear specific-volume overlap and first-order pair reconstruction, not the paper cubic/MUSCL production variant. Variableh is the paper approximate formulation, not a rigorous grad-h variationalSPH scheme.
+#### 関連するテスト問題の図とコード
+
+##### [Sod衝撃波管](https://hrkoyama.github.io/numerical-methods-atlas/problems/sod/?lang=ja) (`sod`)
+
+![保存した最終時刻の数値波形と参照解。](https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/sod.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/sod/?lang=ja#code-ja)
+
+同じ問題への対応
+
+固定入力の式・参照・図と実行コードを対応付けます。 Gaussianの線形比体積畳み込み、対称な可変h、独立な対Riemann解と反対称な全エネルギー交換を持つGSPHです。通常SPHへp*を代入する代用ではありません。一次再構成に限定し、論文のcubic/MUSCLや一般精度を主張しません。
+
+- [実行・検証：Sod衝撃波管：Godunov型更新と自己相似解](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=ja) (`sod`) · [コードZIP：Sod衝撃波管：Godunov型更新と自己相似解](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip)
+
+この実行例の範囲：γ=1.4、左右(ρ,u,p)=(1,0,1)/(0.125,0,0.1)、初期不連続x=0.5、t=0.2の標準問題。80/160セルの区分一定Godunov型＋HLLC＋SSPRK3を自己相似Euler解と比較する。
+
+- [実行・検証：Gaussian畳込みGSPHによるSod型粒子衝撃管](https://hrkoyama.github.io/numerical-methods-atlas/validation/gsph-sod/?lang=ja) (`gsph-sod`) · [コードZIP：Gaussian畳込みGSPHによるSod型粒子衝撃管](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip)
+
+この実行例の範囲：Gaussian畳込みの線形比体積近似と対称な可変平滑化長を使う、限定GSPH粒子流体計算。
+
+
+
+
+### 一様圧力と線形音波：SPH/GSPHの粒子配置依存
+
+解析解 · 1次元
+
+`\rho=1+A\sin[2\pi(x-t)],\quad v=A\sin[2\pi(x-t)],\quad p=1/\gamma+A\sin[2\pi(x-t)]; A=10^{-3},\quad c=1,\quad\text{linearized reference only; nonlinear remainder }O(A^2)`
+
+t=0.2、位置を揺らした128粒子のGSPHです。初期kernel再構成誤差は0.011834に達し、音波振幅0.001を上回って左の密度波形に残ります。右図はその初期誤差です。合格条件は基本Fourierモードの位相・振幅と固定した保存検査であり、各点の高精度や一般的な優位性ではありません。
+
+連続問題の厳密解 · Exact constant-pressure equilibrium and an analytic solution of the linearized acoustic model, not an exact finite-amplitude nonlinear Euler wave. Retain distinct initial kernel error and the O(A^2) model remainder; phase/amplitude criteria use only the fundamental Fourier mode.
+
+[保存済みの解を表示](https://hrkoyama.github.io/numerical-methods-atlas/validation/sph-pressure-acoustics/?lang=ja#sph-pressure-acoustics-ja-measurements) · [定義・条件を読む](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-continuum-particle-controls/#sph-pressure-acoustics)
+
+- numerical-method: [Reformulation of Smoothed Particle Hydrodynamics with Riemann Solver](https://arxiv.org/pdf/astro-ph/0206401) — Author PDF selected passages in sections3.1.1/3.2/3.3/3.4 and4.1, equations48–52,66–67,79–85,94 and Figure6 caption. No new whole-paper audit. Gaussian convolution overlap, variableh approximation and matched pair energy are distinguished from substituting star pressure into ordinarySPH. Draft will use the linear specific-volume overlap and first-order pair reconstruction, not the paper cubic/MUSCL production variant. Variableh is the paper approximate formulation, not a rigorous grad-h variationalSPH scheme.
+- atlas-derived-reference: [Atlas fixed formula and stored result](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json) — Authored stationary/linearized identity and actual saved-array qualification only; not a newly read original-paper derivation.
+#### 関連するテスト問題の図とコード
+
+##### [一様圧力と線形音波：SPH/GSPHの粒子配置依存](https://hrkoyama.github.io/numerical-methods-atlas/problems/sph-pressure-acoustics/?lang=ja) (`sph-pressure-acoustics`)
+
+![規則・摂動粒子の一様圧力と小振幅音波について、初期カーネル誤差と時間発展誤差を区別する。 GSPH、摂動した128粒子、t=0.2。初期カーネル再構成誤差は最大0.011834で、音波振幅0.001より大きく、左の密度分布にその影響が残ります。右は初期誤差です。判定は基本Fourierモードの位相・振幅と保存量などの固定条件であり、点ごとの高精度や一般的な優位性を示しません。](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/results/sph-pressure-acoustics.png)
+
+[コード・検証状況](https://hrkoyama.github.io/numerical-methods-atlas/problems/sph-pressure-acoustics/?lang=ja#code-ja)
+
+同じ問題への対応
+
+固定入力の式・参照・図と実行コードを対応付けます。 GSPH、摂動した128粒子、t=0.2。初期カーネル再構成誤差は最大0.011834で、音波振幅0.001より大きく、左の密度分布にその影響が残ります。右は初期誤差です。判定は基本Fourierモードの位相・振幅と保存量などの固定条件であり、点ごとの高精度や一般的な優位性を示しません。
+
+- [実行・検証：一様圧力と線形音波：SPH/GSPHの粒子配置依存](https://hrkoyama.github.io/numerical-methods-atlas/validation/sph-pressure-acoustics/?lang=ja) (`sph-pressure-acoustics`) · [コードZIP：一様圧力と線形音波：SPH/GSPHの粒子配置依存](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip)
+
+この実行例の範囲：規則・摂動粒子の一様圧力と小振幅音波について、初期カーネル誤差と時間発展誤差を区別する。
+
+
+
+
 ## English
 
 ### Advection / sine translation
@@ -3731,8 +4595,11 @@ Analytic reference · 1D
 
 Periodic unit interval; constant advection speed 1.
 
+Continuous exact solution · Saved point profile at 401 x coordinates on [0.0, 1.0], t=1.0. Components: u. Conserved cell averages are a distinct evaluation.
+
 [View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=sine-advection) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/reference-solutions/)
 
+- textbook-background: [LeVeque, Randall J. (2007), Finite Difference Methods for Ordinary and Partial Differential Equations: Steady-State and Time-Dependent Problems](https://doi.org/10.1137/1.9780898717839) — Inherited current bibliography metadata: Author-maintained book list checked for year, title, DOI and companion materials. Reading reference for consistency, stability, boundary-value problems and time stepping; full book not audited here. No new full-text reading in this migration; this source is not claimed as the original exact solution.
 #### Related test problem figures and code
 
 ##### [Periodic sine-wave advection](https://hrkoyama.github.io/numerical-methods-atlas/problems/advection-sine/?lang=en) (`advection-sine`)
@@ -3780,8 +4647,11 @@ Analytic reference · 1D
 
 Periodic unit interval; viscosity 0.02.
 
+Continuous exact solution · Saved point profile at 401 x coordinates on [0.0, 1.0], t=1.0. Components: u. Conserved cell averages are a distinct evaluation.
+
 [View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=sine-heat) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/reference-solutions/)
 
+- textbook-background: [LeVeque, Randall J. (2007), Finite Difference Methods for Ordinary and Partial Differential Equations: Steady-State and Time-Dependent Problems](https://doi.org/10.1137/1.9780898717839) — Inherited current bibliography metadata: Author-maintained book list checked for year, title, DOI and companion materials. Reading reference for consistency, stability, boundary-value problems and time stepping; full book not audited here. No new full-text reading in this migration; this source is not claimed as the original exact solution.
 #### Related test problem figures and code
 
 ##### [Periodic Fourier-mode heat decay](https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-periodic/?lang=en) (`heat-periodic`)
@@ -3833,8 +4703,11 @@ Analytic reference · 1D
 
 Entropy solution of a scalar whole-line Riemann problem; constant endpoint continuation.
 
+Continuous exact solution · Saved point profile at 401 x coordinates on [0.0, 1.0], t=0.4. Components: u. Conserved cell averages are a distinct evaluation.
+
 [View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=burgers-shock) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/reference-solutions/)
 
+- reference-documentation: [Clawpack Riemann book: Burgers equation](https://www.clawpack.org/riemann_book/html/Burgers.html) — Existing official educational reference link retained. The present audit reads the saved Atlas formula/code metadata, not a newly downloaded original article or full documentation body; historical original-problem attribution remains unverified here.
 #### Related test problem figures and code
 
 ##### [Burgers shock](https://hrkoyama.github.io/numerical-methods-atlas/problems/burgers-shock/?lang=en) (`burgers-shock`)
@@ -3859,8 +4732,11 @@ Analytic reference · 1D
 
 Entropy solution of a scalar whole-line Riemann problem; constant endpoint continuation.
 
+Continuous exact solution · Saved point profile at 401 x coordinates on [0.0, 1.0], t=0.4. Components: u. Conserved cell averages are a distinct evaluation.
+
 [View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=burgers-fan) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/reference-solutions/)
 
+- reference-documentation: [Clawpack Riemann book: Burgers equation](https://www.clawpack.org/riemann_book/html/Burgers.html) — Existing official educational reference link retained. The present audit reads the saved Atlas formula/code metadata, not a newly downloaded original article or full documentation body; historical original-problem attribution remains unverified here.
 #### Related test problem figures and code
 
 ##### [Burgers rarefaction](https://hrkoyama.github.io/numerical-methods-atlas/problems/burgers-fan/?lang=en) (`burgers-fan`)
@@ -3885,8 +4761,11 @@ Analytic reference · 1D
 
 Entropy solution of a scalar whole-line Riemann problem; constant endpoint continuation.
 
+Continuous exact solution · Saved point profile at 401 x coordinates on [0.0, 1.0], t=0.4. Components: rho. Conserved cell averages are a distinct evaluation.
+
 [View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=traffic-jam) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/reference-solutions/)
 
+- reference-documentation: [Clawpack Riemann book: Traffic flow](https://www.clawpack.org/riemann_book/html/Traffic_flow.html) — Existing official educational reference link retained. The present audit reads the saved Atlas formula/code metadata, not a newly downloaded original article or full documentation body; historical original-problem attribution remains unverified here.
 #### Related test problem figures and code
 
 ##### [Traffic jam shock](https://hrkoyama.github.io/numerical-methods-atlas/problems/traffic-jam/?lang=en) (`traffic-jam`)
@@ -3911,8 +4790,11 @@ Analytic reference · 1D
 
 Entropy solution of a scalar whole-line Riemann problem; constant endpoint continuation.
 
+Continuous exact solution · Saved point profile at 401 x coordinates on [0.0, 1.0], t=0.4. Components: rho. Conserved cell averages are a distinct evaluation.
+
 [View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=traffic-fan) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/reference-solutions/)
 
+- reference-documentation: [Clawpack Riemann book: Traffic flow](https://www.clawpack.org/riemann_book/html/Traffic_flow.html) — Existing official educational reference link retained. The present audit reads the saved Atlas formula/code metadata, not a newly downloaded original article or full documentation body; historical original-problem attribution remains unverified here.
 #### Related test problem figures and code
 
 ##### [Traffic clearing fan](https://hrkoyama.github.io/numerical-methods-atlas/problems/traffic-fan/?lang=en) (`traffic-fan`)
@@ -3937,8 +4819,11 @@ Semi-analytic reference · 1D
 
 Ideal gas; gamma>1; planar 1D waves; vacuum has zero conserved state and undefined velocity.
 
+Semi-analytic reference · Saved point profile at 401 x coordinates on [0.0, 1.0], t=0.2. Components: rho, rho u, E. Conserved cell averages are a distinct evaluation.
+
 [View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=euler-sod) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/reference-solutions/)
 
+- reference-documentation: [Clawpack Riemann book: Euler equations](https://www.clawpack.org/riemann_book/html/Euler.html) — Existing official educational reference link retained. The present audit reads the saved Atlas formula/code metadata, not a newly downloaded original article or full documentation body; historical original-problem attribution remains unverified here.
 #### Related test problem figures and code
 
 ##### [Sod shock tube](https://hrkoyama.github.io/numerical-methods-atlas/problems/sod/?lang=en) (`sod`)
@@ -3955,6 +4840,10 @@ Related-model problem
 
 Scope of this execution example: Standard γ=1.4 Sod tube with left/right (ρ,u,p)=(1,0,1)/(0.125,0,0.1), initial jump x=0.5 and t=0.2. Compare 80/160-cell piecewise-constant Godunov-type/HLLC/SSPRK3 updates with a self-similar Euler solution.
 
+- [Run and validate: Sod-type particle shock tube with Gaussian-convolution GSPH](https://hrkoyama.github.io/numerical-methods-atlas/validation/gsph-sod/?lang=en) (`gsph-sod`) · [Code ZIP: Sod-type particle shock tube with Gaussian-convolution GSPH](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip)
+
+Scope of this execution example: ActualInutsuka-linear-overlap variablehGSPH approximation withfirstorderpair states, comparedwithdistinctstandardSPHcontrol. Periodictwointerfaces; centralwindowbeforeouterwaves. Not cubic/MUSCLpaperreproduction or plainSPH-pressure-star surrogate.
+
 
 
 
@@ -3966,8 +4855,11 @@ Semi-analytic reference · 1D
 
 Ideal gas; gamma>1; planar 1D waves; vacuum has zero conserved state and undefined velocity.
 
+Semi-analytic reference · Saved point profile at 401 x coordinates on [-5.0, 5.0], t=1.3. Components: rho, rho u, E. Conserved cell averages are a distinct evaluation.
+
 [View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=euler-lax) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/reference-solutions/)
 
+- reference-documentation: [Clawpack Riemann book: Euler equations](https://www.clawpack.org/riemann_book/html/Euler.html) — Existing official educational reference link retained. The present audit reads the saved Atlas formula/code metadata, not a newly downloaded original article or full documentation body; historical original-problem attribution remains unverified here.
 #### Related test problem figures and code
 
 ##### [Lax shock tube](https://hrkoyama.github.io/numerical-methods-atlas/problems/lax/?lang=en) (`lax`)
@@ -3992,8 +4884,11 @@ Semi-analytic reference · 1D
 
 Ideal gas; gamma>1; planar 1D waves; vacuum has zero conserved state and undefined velocity.
 
+Semi-analytic reference · Saved point profile at 401 x coordinates on [0.0, 1.0], t=0.15. Components: rho, rho u, E. Conserved cell averages are a distinct evaluation.
+
 [View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=euler-double-rarefaction) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/reference-solutions/)
 
+- reference-documentation: [Clawpack Riemann book: Euler equations](https://www.clawpack.org/riemann_book/html/Euler.html) — Existing official educational reference link retained. The present audit reads the saved Atlas formula/code metadata, not a newly downloaded original article or full documentation body; historical original-problem attribution remains unverified here.
 #### Related test problem figures and code
 
 ##### [Euler double rarefaction](https://hrkoyama.github.io/numerical-methods-atlas/problems/double-rarefaction/?lang=en) (`double-rarefaction`)
@@ -4021,8 +4916,11 @@ Analytic reference · 1D
 
 Ideal gas; gamma>1; planar 1D waves; vacuum has zero conserved state and undefined velocity.
 
+Continuous exact solution · Saved point profile at 401 x coordinates on [0.0, 1.0], t=0.05. Components: rho, rho u, E. Conserved cell averages are a distinct evaluation.
+
 [View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=euler-vacuum) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/reference-solutions/)
 
+- reference-documentation: [Clawpack Riemann book: Euler equations](https://www.clawpack.org/riemann_book/html/Euler.html) — Existing official educational reference link retained. The present audit reads the saved Atlas formula/code metadata, not a newly downloaded original article or full documentation body; historical original-problem attribution remains unverified here.
 #### Related test problem figures and code
 
 No associated test problem is registered for this entry.
@@ -4037,8 +4935,11 @@ Semi-analytic reference · 1D
 
 Flat bottom; constant g; dry states allowed in the reference only, not the existing FV solver.
 
+Semi-analytic reference · Saved point profile at 401 x coordinates on [0.0, 1.0], t=0.1. Components: h, h u. Conserved cell averages are a distinct evaluation.
+
 [View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=swe-dam-break) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/reference-solutions/)
 
+- reference-documentation: [Clawpack Riemann book: Shallow-water equations](https://www.clawpack.org/riemann_book/html/Shallow_water.html) — Existing official educational reference link retained. The present audit reads the saved Atlas formula/code metadata, not a newly downloaded original article or full documentation body; historical original-problem attribution remains unverified here.
 #### Related test problem figures and code
 
 ##### [Wet-bed dam break](https://hrkoyama.github.io/numerical-methods-atlas/problems/dam-break/?lang=en) (`dam-break`)
@@ -4063,8 +4964,11 @@ Analytic reference · 1D
 
 Flat bottom; constant g; dry states allowed in the reference only, not the existing FV solver.
 
+Continuous exact solution · Saved point profile at 401 x coordinates on [0.0, 1.0], t=0.15. Components: h, h u. Conserved cell averages are a distinct evaluation.
+
 [View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=swe-dry-bed) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/reference-solutions/)
 
+- reference-documentation: [Clawpack Riemann book: Shallow-water equations](https://www.clawpack.org/riemann_book/html/Shallow_water.html) — Existing official educational reference link retained. The present audit reads the saved Atlas formula/code metadata, not a newly downloaded original article or full documentation body; historical original-problem attribution remains unverified here.
 #### Related test problem figures and code
 
 ##### [Ritter dam break onto a dry bed](https://hrkoyama.github.io/numerical-methods-atlas/problems/dry-bed-dam-break/?lang=en) (`dry-bed-dam-break`)
@@ -4092,8 +4996,11 @@ Analytic reference · 1D
 
 Flat bottom; constant g; dry states allowed in the reference only, not the existing FV solver.
 
+Continuous exact solution · Saved point profile at 401 x coordinates on [0.0, 1.0], t=0.1. Components: h, h u. Conserved cell averages are a distinct evaluation.
+
 [View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=swe-vacuum) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/reference-solutions/)
 
+- reference-documentation: [Clawpack Riemann book: Shallow-water equations](https://www.clawpack.org/riemann_book/html/Shallow_water.html) — Existing official educational reference link retained. The present audit reads the saved Atlas formula/code metadata, not a newly downloaded original article or full documentation body; historical original-problem attribution remains unverified here.
 #### Related test problem figures and code
 
 No associated test problem is registered for this entry.
@@ -4108,8 +5015,11 @@ Semi-analytic reference · 1D
 
 p = c_s² rho; constant c_s; strictly positive initial density; no vacuum state or energy equation.
 
+Semi-analytic reference · Saved point profile at 401 x coordinates on [0.0, 1.0], t=0.1. Components: rho, rho u. Conserved cell averages are a distinct evaluation.
+
 [View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=isothermal-jump) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/reference-solutions/)
 
+- solution-background: [Existing linked isothermal Riemann-invariant background](https://www.sfu.ca/~van/papers/Riemann-inv.pdf) — Original card URL retained. PDF authorship/body/equations were not newly verified; this link is background, not a claim of an inspected original exact-solution paper.
 #### Related test problem figures and code
 
 ##### [Isothermal density jump](https://hrkoyama.github.io/numerical-methods-atlas/problems/isothermal-jump/?lang=en) (`isothermal-jump`)
@@ -4134,8 +5044,11 @@ Manufactured solution · 1D
 
 Zero Dirichlet endpoints. The forcing is chosen from the target solution; this is not an arbitrary-source Poisson solution.
 
+Manufactured solution · Saved point profile at 401 x coordinates on [0.0, 1.0], t=0.0. Components: u. Conserved cell averages are a distinct evaluation.
+
 [View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=poisson-manufactured) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/reference-solutions/)
 
+- textbook-background: [LeVeque, Randall J. (2007), Finite Difference Methods for Ordinary and Partial Differential Equations: Steady-State and Time-Dependent Problems](https://doi.org/10.1137/1.9780898717839) — Inherited current bibliography metadata: Author-maintained book list checked for year, title, DOI and companion materials. Reading reference for consistency, stability, boundary-value problems and time stepping; full book not audited here. No new full-text reading in this migration; this source is not claimed as the original exact solution.
 #### Related test problem figures and code
 
 ##### [1D Poisson / smooth Dirichlet manufactured solutions](https://hrkoyama.github.io/numerical-methods-atlas/problems/poisson-1d-dirichlet/?lang=en) (`poisson-1d-dirichlet`)
@@ -4238,8 +5151,11 @@ Analytic reference · 1D
 
 Fully developed planar steady channel; walls u(0)=0,u(1)=1; zero pressure gradient.
 
+Continuous exact solution · Saved point profile at 401 y coordinates on [0.0, 1.0], t=0.0. Components: u. Conserved cell averages are a distinct evaluation.
+
 [View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=couette) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/reference-solutions/)
 
+- textbook-background: [Ferziger, Joel H. and Perić, Milovan and Street, Robert L. (2020), Computational Methods for Fluid Dynamics](https://doi.org/10.1007/978-3-319-99693-6) — Inherited current bibliography metadata: Publisher edition metadata and contents checked. Uses the fourth-edition copyright year 2020; the publisher lists electronic publication in August 2019. Broad CFD reading reference, including incompressible flow and solution procedures; not a validation claim for all listed applications. No new full-text reading in this migration; this source is not claimed as the original exact solution.
 #### Related test problem figures and code
 
 No associated test problem is registered for this entry.
@@ -4254,8 +5170,11 @@ Analytic reference · 1D
 
 Fully developed planar steady channel, no slip, unit density; −dp/dx=G or body acceleration G.
 
+Continuous exact solution · Saved point profile at 401 y coordinates on [0.0, 1.0], t=0.0. Components: u. Conserved cell averages are a distinct evaluation.
+
 [View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=poiseuille) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/reference-solutions/)
 
+- textbook-background: [Ferziger, Joel H. and Perić, Milovan and Street, Robert L. (2020), Computational Methods for Fluid Dynamics](https://doi.org/10.1007/978-3-319-99693-6) — Inherited current bibliography metadata: Publisher edition metadata and contents checked. Uses the fourth-edition copyright year 2020; the publisher lists electronic publication in August 2019. Broad CFD reading reference, including incompressible flow and solution procedures; not a validation claim for all listed applications. No new full-text reading in this migration; this source is not claimed as the original exact solution.
 #### Related test problem figures and code
 
 ##### [Plane Poiseuille channel flow](https://hrkoyama.github.io/numerical-methods-atlas/problems/channel-poiseuille/?lang=en) (`channel-poiseuille`)
@@ -4282,8 +5201,11 @@ Periodic [0,2π]²; unit density; viscosity 0.1; zero mean pressure. Web profile
 
 Taylor–Green: x-slice at y = π/4. These are point values, not two-dimensional cell averages.
 
+Continuous exact solution · Saved point profile at 401 x coordinates on [0.0, 6.283185307179586], t=0.5. Components: u, v, p. Conserved cell averages are a distinct evaluation. The two-dimensional field is displayed only as the x-slice at y=pi/4.
+
 [View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=taylor-green) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/reference-solutions/)
 
+- numerical-method: [Chorin, Alexandre Joel (1968), Numerical solution of the Navier-Stokes equations](https://doi.org/10.1090/S0025-5718-1968-0242392-2) — Inherited current bibliography metadata: Original publisher record and author-hosted original checked. Projection source; the independent periodic MAC/SSPRK2 demonstration is not the original boundary/time algorithm. No new full-text reading in this migration; this source is not claimed as the original exact solution.
 #### Related test problem figures and code
 
 ##### [Periodic Taylor–Green vortex](https://hrkoyama.github.io/numerical-methods-atlas/problems/taylor-green/?lang=en) (`taylor-green`)
@@ -4585,6 +5507,8 @@ Analytic reference · 1D
 `q_i=0; h_i=max(eta0-z_i,0); z_i=cellmean(z); eta0=.5 or .1.`
 
 Use g9.81,[0,25]m and200cells. Represent z=.2−.05(x−10)² on8<x<12 by split Gauss8 cell means, initializing h_i=max(eta0−z_i,0),q_i0 with eta0=.5/.1m. Hydrostatic reconstruction preserves equilibrium over this represented piecewise-constant bed; this differs from directly averaging depth over the continuous bed.
+
+Exact reference for a fixed discrete object · Discrete hydrostatic equilibrium for the represented bed; wet and emerged cases are distinct. No universal fully discrete entropy inequality is claimed.
 
 [View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/swashes-topography/?lang=en#swashes-topography-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-shallow-water/#swashes-topography)
 
@@ -6254,6 +7178,8 @@ Analytic reference · Finite-dimensional algebra
 
 The four fixed matrices use the actual binary64 A and b, converted exactly to Fractions. Rational elimination is exact, followed by a final binary64 rounding. Separate LAPACK comparisons share some numerical infrastructure. This is not a forward-accuracy guarantee for arbitrary ill-conditioned matrices.
 
+Exact reference for a fixed discrete object · Exact-rational algebraic references, not spatial or PDE data and not a universal certified forward-error bound. LAPACK DGESV and DPOSV comparisons are reported separately.
+
 [View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/pivoted-direct-refinement/?lang=en#pivoted-direct-refinement-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#pivoted-direct-refinement)
 
 - selected-official-documentation: [LAPACK Users Guide: Linear Equations](https://netlib.org/lapack/lug/node38.html) — Selected LU, Cholesky, conditioning and refinement paragraphs were read. This source uses mixed precision, unlike the selected same-precision RFS description.
@@ -6315,6 +7241,8 @@ Analytic reference · Finite-dimensional algebra
 
 A fixed 31 x 31 Dirichlet tridiagonal matrix with h=1/32, restart lengths 8 and 16, and shifts none/0/950. The references are eigenvalues of this finite matrix, not a continuum PDE grid-convergence study.
 
+Exact reference for a fixed discrete object · A closed finite-dimensional sine spectrum and a separate dense LAPACK qualification. Original-problem residuals and the spectral back-map are checked. No implicit restarting, Krylov-Schur or general nonnormal capability is claimed.
+
 [View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/restarted-shift-invert/?lang=en#restarted-shift-invert-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#restarted-shift-invert)
 
 - selected-official-documentation: [SLEPc EPS manual: projection and spectral transformations](https://slepc.upv.es/release/documentation/manual/eps.html) — Selected projection, restarting and generalized-problem discussion was read. No SLEPc execution or Krylov-Schur reproduction is claimed.
@@ -6344,6 +7272,8 @@ Analytic reference · 1D
 `Kx=lambda_h Mx; lambda_j,h=6*(1-cos(theta_j))/(h^2*(2+cos(theta_j))),theta_j=j*pi/(n+1); lambda_j=(j*pi)^2,phi_j(x)=sin(j*pi*x)`
 
 Unit length, tension and density, homogeneous Dirichlet endpoints, 15/31/63 interior nodes, and the lowest three eigenpairs. Compare closed discrete eigenvalues with generalized dense LAPACK, then measure error relative to (j*pi)^2 separately. Displayed vectors are saved numerical modes with arbitrary sign.
+
+Exact reference for a fixed discrete object · Closed finite-element eigenvalues independently qualify comparisons that share LAPACK. Generalized dense eigenvectors and primary M-normalized vectors are finite-precision numerical objects. Residual, M-orthogonality, discrete eigenvalue error and continuum refinement are distinct. No time integration or analytically exact piecewise-linear mode is claimed.
 
 [View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/fem-mass-eigen/?lang=en#fem-mass-eigen-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-linear-algebra-spectral/#fem-mass-eigen)
 
@@ -6470,6 +7400,8 @@ Analytic reference · Finite-dimensional algebra
 
 The fixed R4-to-R3 map includes repeated-index gather[0,0,2] and scalar broadcast. Wide maps and fixed Bratu states have sizes 7 and 31. Euclidean pullbacks and adjoints under specified SPD metrics are distinct.
 
+Exact reference for a fixed discrete object · A hand-derived nonsymmetric rectangular Jacobian with separately evaluated high-precision exponentials is the reference. Independent stencil/transpose actions supplement it; symmetric Bratu alone cannot qualify transposition. These are analytic derivatives of finite discrete maps, not exact continuum PDE solutions or a general AD framework.
+
 [View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/reverse-vjp-duality/?lang=en#reverse-vjp-duality-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-reverse-higher-ad/#reverse-vjp-duality)
 
 - selected-official-JVP-VJP-definitions: [The Autodiff Cookbook](https://docs.jax.dev/en/latest/notebooks/autodiff_cookbook.html) — The source owner records this selected reading: Selected definitions and composition formulas only. A new educational tape will implement the stated finite subset. No JAX installation, execution, timing replication or implementation-source audit. Unread: Original reverse-mode/HVP papers, JAX transformation implementation, Unselected cookbook sections. Publication year is not established; display n.d. Access date is separate.
@@ -6499,6 +7431,8 @@ Analytic reference · Finite-dimensional algebra
 `Hv=D(\nabla f)(x)v;\quad H_Bv=h(A_hv-\lambda e^u\odot v);\quad 2us=1,\quad 2ut+2s^2=0,\quad j^{\prime\prime}=0.2+s^2+(u-1)t.`
 
 Use a four-variable dyadic quadratic and fixed-state Bratu energies of sizes 7 and 31. A separate positive implicit branch u²-theta=0 is solved at theta 4 from initial u 3, distinguishing fixed-state partials from total derivatives.
+
+Exact reference for a fixed discrete object · References are rational Qv, an independently evaluated fixed-state Bratu stencil formula, and an oracle-only square-root family with rational values at theta 4. The primary solves F/R1/R2 without embedding that family. These are not continuum PDE solutions, general reduced inverse Hessians or derivatives of a finite Newton trace.
 
 [View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/hessian-vector-products/?lang=en#hessian-vector-products-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-reverse-higher-ad/#hessian-vector-products)
 
@@ -6530,6 +7464,8 @@ Analytic reference · Finite-dimensional algebra
 
 Use seven fixed points and directions ±1 for abs, ReLU, clip and a polynomial branch. The stopped iteration starts at x0 = 0, tests |xk - theta| <= 1/8 before updating and allows at mostfive updates. Theta 1/4, 1/2 and 1 are switching points.
 
+Exact reference for a fixed discrete object · Rational piecewise formulas and the literal stopping rule provide references. Strict kinks retain undefined classical derivatives with null/validity, separately from directional maps and chosen-trace slopes. Finite quotients across a switch are not derivative limits, continuum PDE references or universal subgradients.
+
 [View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/kink-branch-derivatives/?lang=en#kink-branch-derivatives-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-reverse-higher-ad/#kink-branch-derivatives)
 
 - selected-official-branch-limitations: [Frequently asked questions: undefined branches and ordering](https://docs.jax.dev/en/latest/faq.html) — The source owner records this selected reading: Read invalid inactive-branch and ordering discussions. We use an explicitly different strict nondifferentiability policy, not a universal JAX tie rule. Unread: Linked issue threads, Generalized derivative original papers. Publication year is not established; display n.d. Access date is separate.
@@ -6559,6 +7495,8 @@ Analytic reference · 1D
 `\lambda_{\ell,h}=4h^{-2}\sin^2(\ell\pi h/2),\quad a_{\ell,k+1}=\frac{a_{\ell,k}+\Delta t\,\theta\beta_\ell}{1+\Delta t\,\kappa\lambda_{\ell,h}};\quad a_{\ell}^{\rm sd}(T)=a_{\ell,0}e^{-\kappa\lambda_{\ell,h}T}+\frac{\theta\beta_\ell}{\kappa\lambda_{\ell,h}}(1-e^{-\kappa\lambda_{\ell,h}T}).`
 
 Dimensionless x in [0,1] with zero Dirichlet data, kappa = .1, theta = .2 and T = .1. Use 7/15 interior nodes and 64/128/256 time steps. The objective has an h-weighted terminal error and specified quadratic penalties.
+
+Exact reference for a fixed discrete object · Analytic references are scalar modal solutions and parameter derivatives of the same finite backward-Euler map. A separate time-exact semidiscrete exponential measures temporal error only and never substitutes continuum spatial eigenvalues. Checkpoint replay follows that same discrete reverse map; it is not CVODES or an optimal schedule. Qualification, primary execution and final packet evidence remain separate receipts.
 
 [View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/diffusion-discrete-adjoint/?lang=en#diffusion-discrete-adjoint-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-adjoint/#diffusion-discrete-adjoint)
 
@@ -7261,6 +8199,8 @@ Analytic reference · Finite-dimensional algebra
 
 At each odd-length level append the first sample for periodic extension or the last for symmetric extension, then crop during synthesis. Apply threshold 0.2 only to detail coefficients.
 
+Exact reference for a fixed discrete object · Use twelve analyses and thirty-six reconstructions. Check independent matrices, Fraction/Decimal coefficients, perfect reconstruction and squared L2 errors. Require the orthogonal error identity only at length 32; retain level-by-level padding energy at length 17. Limited to Haar, without longer filters or image compression. General symmetric extension is not assumed orthonormal. Shift invariance is not required; shift-dependent differences are retained.
+
 [View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/haar-mallat-boundary-threshold/?lang=en#haar-mallat-boundary-threshold-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-approximation-controls/#haar-mallat-boundary-threshold)
 
 - selected-primary-documentation-or-authored-identity: [S. Mallat, A Theory for Multiresolution Signal Decomposition: The Wavelet Representation](https://www.di.ens.fr/~mallat/papiers/MallatTheory89.pdf) — During preparation: title/abstract, Haar example on printed p. 679, selected §III-B/C filter/downsample/inverse-pyramid and border-symmetry prose on p. 681. Extracted formula glyphs were imperfect; no complete proof or numerical-table audit is claimed.
@@ -7434,3 +8374,791 @@ These fixed-coefficient calculations compare two small initial infection levels.
 - [Run and validate: SEIR conservation and initial linearization](https://hrkoyama.github.io/numerical-methods-atlas/validation/seir-linearization/?lang=en) (`seir-linearization`) · [Code ZIP: SEIR conservation and initial linearization](https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/atlas-small-models-2026-11-25.zip)
 
 Scope of this execution example: Check population conservation and the full two-mode initial linearization separately.
+
+
+
+
+### 1D Bratu: Newton–GMRES on the lower branch
+
+Analytic reference · 1D
+
+`u(x)=2 log[cosh(beta/2)/cosh(beta(x-1/2))], lambda=2 beta^2/cosh(beta/2)^2; beta=1`
+
+Existing residual-decrease damped Newton and ILU(0)-GMRES. Analytic u=2log[cosh(β/2)/cosh(β(x−1/2))]. βtanh(β/2)<2 selects the lower branch and all initial unknowns are zero. Nonlinear tolerance is 1e-10 with at most 30 Newton iterations.
+
+Continuous exact solution · Pointwise continuousu at x_i=i/(N+1),N=31/63/127, includingbothzeroendpoints inCSV. Reference iscontinuumsolution, not anexactdiscreteroot.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu/?lang=en) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/sparse-nonlinear/)
+
+- atlas-formula-or-saved-result: [CSV carries finest-grid numerical/analytic values and absolute error. JSON retains each mesh's nonlinear residual, Newton iteration count and minimum damping length.](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/bratu/result.json) — Inherited existingexecutioncitation, not newlyreadoriginal. Numericalmethodpapers mustnotbe calledoriginalexactsolution/problem.
+- atlas-formula-or-saved-result: [Evaluate λ and the analytic solution independently from β, retaining the factor 2β².](https://hrkoyama.github.io/numerical-methods-atlas/en/read/sparse-nonlinear/) — Inherited existingexecutioncitation, not newlyreadoriginal. Numericalmethodpapers mustnotbe calledoriginalexactsolution/problem.
+- numerical-method: [Existing Newton-method source for sufficient decrease/halving, not direct application of the original minimization theorem.](https://doi.org/10.2140/pjm.1966.16.1) — Inherited existingexecutioncitation, not newlyreadoriginal. Numericalmethodpapers mustnotbe calledoriginalexactsolution/problem.
+- numerical-method: [Existing source for inexact Newton inner solves, not a proof specific to this recipe.](https://doi.org/10.1137/0719025) — Inherited existingexecutioncitation, not newlyreadoriginal. Numericalmethodpapers mustnotbe calledoriginalexactsolution/problem.
+#### Related test problem figures and code
+
+##### [One-dimensional Bratu boundary-value problem](https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu/?lang=en) (`bratu`)
+
+![Calculated from the public code edition with fixed inputs; inputs, values and checks are linked.](https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/bratu.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu/?lang=en#code-en)
+
+Same-problem link
+
+An analytic reference card now links the existing fixed inputs and saved results: formula, point/time/radial sampling, edition SHA and executable code. This metadata registration is not a new execution.
+
+- [Run and validate: 1D Bratu: Newton–GMRES on the lower branch](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/bratu/?lang=en) (`bratu`) · [Code ZIP: 1D Bratu: Newton–GMRES on the lower branch](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip)
+
+Scope of this execution example: Solve the lower branch of −u''=λexp(u), with β=1 and λ=2β²/cosh²(β/2), starting at zero. Check the analytic solution, recomputed nonlinear residual and second-order refinement on 31/63/127 interior nodes.
+
+
+
+
+### Harmonic oscillator: Verlet phase error and energy
+
+Analytic reference · ODE / DAE (no spatial dimension)
+
+`q(t)=q0 cos(t)+p0 sin(t),p(t)=p0 cos(t)-q0 sin(t)`
+
+H=(q²+p²)/2 and (q0,p0)=(1,0.2); one nondissipative degree of freedom, fixed steps. Inputs explicitly provide initial state, final time and counts. Largest h=0.1 lies in h*omega<2.
+
+Continuous exact solution · Exact(q,p) at thesame saved t_k=k*20/n_steps,n_steps=200/400/800. Existing gallerypreview has itsown shorter timewindow; preserveitscaption.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/problems/harmonic-oscillator/?lang=en) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/symplectic/)
+
+- atlas-formula-or-saved-result: [CSV aligns numerical/analytic q,p and energy on the finest time grid. Observed order uses endpoint-state errors; energy deviation uses all recorded times.](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/harmonic-oscillator/result.json) — Inherited existingexecutioncitation, not newlyreadoriginal. Numericalmethodpapers mustnotbe calledoriginalexactsolution/problem.
+- atlas-formula-or-saved-result: [Independent analytic q=q0*cos(t)+p0*sin(t), p=-q0*sin(t)+p0*cos(t); no fine numerical solution is called exact.](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/symplectic/) — Inherited existingexecutioncitation, not newlyreadoriginal. Numericalmethodpapers mustnotbe calledoriginalexactsolution/problem.
+- numerical-method: [Existing Verlet-method reference; this run does not reproduce every calculation in the original paper.](https://doi.org/10.1103/PhysRev.159.98) — Inherited existingexecutioncitation, not newlyreadoriginal. Numericalmethodpapers mustnotbe calledoriginalexactsolution/problem.
+#### Related test problem figures and code
+
+##### [Harmonic oscillator, including complex-ODE form](https://hrkoyama.github.io/numerical-methods-atlas/problems/harmonic-oscillator/?lang=en) (`harmonic-oscillator`)
+
+![Stored canonical phase orbits for t≤10; methods remain variants of one problem.](https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/harmonic-oscillator.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/harmonic-oscillator/?lang=en#code-en)
+
+Same-problem link
+
+An analytic reference card now links the existing fixed inputs and saved results: formula, point/time/radial sampling, edition SHA and executable code. This metadata registration is not a new execution. The existing gallery shows t≤10; the common fixed input ends at20.
+
+- [Run and validate: Harmonic oscillator: Verlet phase error and energy](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/harmonic-oscillator/?lang=en) (`harmonic-oscillator`) · [Code ZIP: Harmonic oscillator: Verlet phase error and energy](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip)
+
+Scope of this execution example: Advance the existing unit-mass, unit-frequency harmonic oscillator with velocity Verlet. Compare analytic states over 20 time units at 200/400/800 steps, original-energy deviation and reversal.
+
+
+
+
+### Stiff cosine-tracking ODE: SDIRK2
+
+Analytic reference · ODE / DAE (no spatial dimension)
+
+`y(t)=cos(t)+(y0-1)exp(-rate*t); yprime=-rate*(y-cos(t))-sin(t)`
+
+rate=1000; 1000/2000/4000 steps give rate*h=1,0.5,0.25. Uses fixed gamma=1-1/sqrt(2) and the existing Newton stage solver. Separate decay: y'=-1e8*y, y(0)=1, h=1. No adaptive stepping.
+
+Continuous exact solution · Exacty(t_k)=cos(t_k) at t_k=k/n_steps,n_steps=1000/2000/4000, with y0=1. Separateone-stepstiffdecay oracle exp(-1e8).
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/problems/stiff-cosine/?lang=en) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/stiff-integration/)
+
+- atlas-formula-or-saved-result: [CSV contains finest-grid time, numerical/analytic state and absolute error. Orders use maximum-in-time errors. Distinguish the older coarse-step order reduction from the resolved refinement here.](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/reference/stiff-cosine/result.json) — Inherited existingexecutioncitation, not newlyreadoriginal. Numericalmethodpapers mustnotbe calledoriginalexactsolution/problem.
+- atlas-formula-or-saved-result: [Analytic y=cos(t)+(y0-1)*exp(-rate*t); the separate homogeneous decay also uses an exponential reference.](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/stiff-integration/) — Inherited existingexecutioncitation, not newlyreadoriginal. Numericalmethodpapers mustnotbe calledoriginalexactsolution/problem.
+- numerical-method: [DIRK paper already cited by the SDIRK2 record; selected coefficients/Newton settings are fixed by the released implementation.](https://doi.org/10.1137/0714068) — Inherited existingexecutioncitation, not newlyreadoriginal. Numericalmethodpapers mustnotbe calledoriginalexactsolution/problem.
+#### Related test problem figures and code
+
+##### [Stiff cosine-tracking ODE](https://hrkoyama.github.io/numerical-methods-atlas/problems/stiff-cosine/?lang=en) (`stiff-cosine`)
+
+![Stored fixed-step errors for the stiff cosine-tracking ODE.](https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/stiff-cosine.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/stiff-cosine/?lang=en#code-en)
+
+Same-problem link
+
+An analytic reference card now links the existing fixed inputs and saved results: formula, point/time/radial sampling, edition SHA and executable code. This metadata registration is not a new execution.
+
+- [Run and validate: Stiff cosine-tracking ODE: SDIRK2](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/stiff-cosine/?lang=en) (`stiff-cosine`) · [Code ZIP: Stiff cosine-tracking ODE: SDIRK2](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip)
+
+Scope of this execution example: Use the existing two-stage L-stable SDIRK2 for y'=-1000(y-cos(t))-sin(t), y(0)=1 up to t=1. Check its analytic solution, fixed-step refinement and a separate very stiff one-step decay.
+
+
+
+
+### Hydrogenic atoms: analytic references and grid refinement
+
+Analytic reference · 1D
+
+`E_n=-Z^2/(2n^2) hartree; normalized hydrogenic radial functions on r>=0`
+
+Nonrelativistic infinite-mass point nucleus, Z=1,2. Reduced radial orbitals use second-order central differences on a uniform mesh.
+
+Continuous exact solution · Reducedradialorbitals u(r)=rR_nl(r) at theactual uniform interior r points of dr=.04/.02/.01,rmax=60 bohr; energies compare infinite-domainCoulombvalues and finite-box errors areseparate.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/problems/hydrogenic-atoms/?lang=en) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-atoms/#hydrogenic)
+
+- atlas-formula-or-saved-result: [E_n=−Z²/(2n²) and Laguerre radial solutions, separating finite-grid and finite-box error.](https://hrkoyama.github.io/numerical-methods-atlas/en/read/quantum-atoms/#hydrogenic) — Inherited existingexecutioncitation, not newlyreadoriginal. Numericalmethodpapers mustnotbe calledoriginalexactsolution/problem.
+- solution-background: [Original method publication: Schrödinger, E. (1926), Quantisierung als Eigenwertproblem](https://doi.org/10.1002/andp.19263840404) — Inherited existingexecutioncitation, not newlyreadoriginal. Numericalmethodpapers mustnotbe calledoriginalexactsolution/problem.
+#### Related test problem figures and code
+
+##### [Hydrogenic radial eigenproblems](https://hrkoyama.github.io/numerical-methods-atlas/problems/hydrogenic-atoms/?lang=en) (`hydrogenic-atoms`)
+
+![Computed from the public atomic-code fixed inputs, with conditions, CSV profiles, convergence checks and independent references linked in the reading.](https://hrkoyama.github.io/numerical-methods-atlas/assets/quantum-atoms/hydrogenic.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/hydrogenic-atoms/?lang=en#code-en)
+
+Same-problem link
+
+An analytic reference card now links the existing fixed inputs and saved results: formula, point/time/radial sampling, edition SHA and executable code. This metadata registration is not a new execution.
+
+- [Run and validate: Hydrogenic atoms: analytic references and grid refinement](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/hydrogenic-atoms/?lang=en) (`hydrogenic-atoms`) · [Code ZIP: Hydrogenic atoms: analytic references and grid refinement](https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/quantum-atoms-2026-11-21.zip)
+
+Scope of this execution example: Isolated one-electron H and He⁺: compare 1s, 2s, 2p and 3d energies and radial orbitals against analytic solutions. Not a direct many-electron or molecular solver.
+
+
+
+
+### A two-state BO / CP-type model with a short nuclear thermostat coupling
+
+Semi-analytic reference · ODE / DAE (no spatial dimension)
+
+`H(Q)=\frac{kQ^2}{2}I+\begin{pmatrix}-\Delta&gQ\\gQ&\Delta\end{pmatrix},\quad\psi=(\cos\theta,\sin\theta)^T;\quad E(Q,\theta)=\frac{kQ^2}{2}-\Delta\cos(2\theta)+gQ\sin(2\theta),\quad E_-(Q)=\frac{kQ^2}{2}-\sqrt{\Delta^2+g^2Q^2};\quad M\ddot Q=-kQ-g\sin(2\theta),\quad\mu\ddot\theta=-2\Delta\sin(2\theta)-2gQ\cos(2\theta);\quad V^+=aV^-+\sqrt{(T/M)(1-a^2)}\,\xi,\quad a=e^{-\gamma h},\quad Q_{\rm bath}=\sum\Delta K_{\rm nuclear}`
+
+Actual coupled normalized electronic angle and nuclear coordinate, short NVE plus one nuclear OU trajectory. No first-principles/long NVE/canonical sampling/production CPMD. BO and mu.04 state comparisons use fixed4096/8192 RK4 companions; mu.01 receives energy checks only. Authored dimensionless model units with M=20 and angular fictitious mass mu=.04/.01; these are not cp.x emass units.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/two-state-bo-cp-ou/?lang=en#two-state-bo-cp-ou-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quantum-small/#two-state-bo-cp-ou)
+
+- historical-context-only: [Unified Approach for Molecular Dynamics and Density-Functional Theory](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.55.2471) — Publisher title/authors/date/DOI and abstract only. Full PDF/equations not read; this is not a reproduction of the silicon calculation.
+- mathematical-or-numerical-contract: [Quantum ESPRESSO cp.x input description](https://www.quantum-espresso.org/Doc/INPUT_CP.html) — Selected emass/orthogonalization and CP context. Its physical mass conventions are not silently assigned to the authored dimensionless angle mass.
+#### Related test problem figures and code
+
+##### [A two-state BO / CP-type model with a short nuclear thermostat coupling](https://hrkoyama.github.io/numerical-methods-atlas/problems/two-state-bo-cp-model/?lang=en) (`two-state-bo-cp-model`)
+
+![Compare a normalized two-state electronic degree of freedom coupled to a nuclear coordinate, short NVE and one nuclear OU bath. Long first-principles NVE, general multi-orbital orthonormality/SCF errors, general electronic/nuclear baths, canonical equilibration, adiabatic/ergodic certification and materials remain unverified.](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/results/two-state-bo-cp-ou.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/two-state-bo-cp-model/?lang=en#code-en)
+
+Same-problem link
+
+Long first-principles NVE, general multi-orbital orthonormality/SCF errors, general electronic/nuclear baths, canonical equilibration, adiabatic/ergodic certification and materials remain unverified.
+
+- [Run and validate: A two-state BO / CP-type model with a short nuclear thermostat coupling](https://hrkoyama.github.io/numerical-methods-atlas/validation/two-state-bo-cp-ou/?lang=en) (`two-state-bo-cp-ou`) · [Code ZIP: A two-state BO / CP-type model with a short nuclear thermostat coupling](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip)
+
+Scope of this execution example: Compare a normalized two-state electronic degree of freedom coupled to a nuclear coordinate, short NVE and one nuclear OU bath.
+
+
+
+
+### Hydrogenic formulas and immutable finite-basis helium reference cards
+
+Finite-grid numerical reference · Finite-dimensional algebra
+
+`E_n=-\frac{Z^2}{2n^2},\quad H_lu=-\frac12u^{\prime\prime}+\left[\frac{l(l+1)}{2r^2}-\frac Zr\right]u;\quad \Psi=u(r)Y_{lm}/r,\quad\int|u|^2\,dr=1,\quad p_{\rm He}(r)=2|u|^2,\quad n_{\rm He}(r)=\frac{p_{\rm He}(r)}{4\pi r^2};\quad \int p_{\rm He}(r)\,dr=\int n_{\rm He}(\mathbf r)\,d^3r=2,\quad E_x^{\rm HF}=-E_H/2\ \text{one-orbital restricted Hartree--Fock He only}`
+
+Three saved 40-function He reference rows, hydrogenic analytic equations, p versus n and finite-grid/basis/model limits. Energies in hartree, radius in bohr; u in bohr^-1/2, p in bohr^-1 and n in bohr^-3. Three saved rows each use40basis functions, not40computed rows.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/atomic-reference-cards/?lang=en#atomic-reference-cards-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quantum-small/#atomic-reference-cards)
+
+- mathematical-or-numerical-contract: [NIST DLMF18.39 Applications in the Physical Sciences](https://dlmf.nist.gov/18.39) — Earlier same-session R3 selected E7–8,E13–15,E24–35; oscillator/Coulomb normalization and measure. Full chapter/books not audited.
+- independent-reference-convention-and-limits: [PySCF Self-consistent field methods](https://pyscf.org/user/scf.html) — FC=SCe, mean-field orbital/determinant ansatz, stability vs stationarity, RHF/UHF spin symmetry and overlap orthogonalization selected passages. No PySCF execution.
+#### Related test problem figures and code
+
+##### [Hydrogenic radial eigenproblems](https://hrkoyama.github.io/numerical-methods-atlas/problems/hydrogenic-atoms/?lang=en) (`hydrogenic-atoms`)
+
+![Computed from the public atomic-code fixed inputs, with conditions, CSV profiles, convergence checks and independent references linked in the reading.](https://hrkoyama.github.io/numerical-methods-atlas/assets/quantum-atoms/hydrogenic.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/hydrogenic-atoms/?lang=en#code-en)
+
+Same-problem link
+
+Curation and saved-value audit only: zero new SCF/independent-reference runs. No correlated-exact He, complete-basis limit or full orbital rerun claim.
+
+- [Run and validate: Hydrogenic atoms: analytic references and grid refinement](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/hydrogenic-atoms/?lang=en) (`hydrogenic-atoms`) · [Code ZIP: Hydrogenic atoms: analytic references and grid refinement](https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/quantum-atoms-2026-11-21.zip)
+
+Scope of this execution example: Isolated one-electron H and He⁺: compare 1s, 2s, 2p and 3d energies and radial orbitals against analytic solutions. Not a direct many-electron or molecular solver.
+
+
+##### [Helium ground state: closed-shell HF and exchange-only LDA](https://hrkoyama.github.io/numerical-methods-atlas/problems/helium-ground-state/?lang=en) (`helium-ground-state`)
+
+![Computed from the public atomic-code fixed inputs, with conditions, CSV profiles, convergence checks and independent references linked in the reading.](https://hrkoyama.github.io/numerical-methods-atlas/assets/quantum-atoms/helium.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/helium-ground-state/?lang=en#code-en)
+
+Same-problem link
+
+Curation and saved-value audit only: zero new SCF/independent-reference runs. No correlated-exact He, complete-basis limit or full orbital rerun claim.
+
+- [Run and validate: Helium: closed-shell HF and exchange-only LDA](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/helium-ground-state/?lang=en) (`helium-ground-state`) · [Code ZIP: Helium: closed-shell HF and exchange-only LDA](https://hrkoyama.github.io/code/quantum-atoms/2026-11-21/quantum-atoms-2026-11-21.zip)
+
+Scope of this execution example: Compare spherical 1s² closed-shell helium HF and spin-unpolarized Dirac exchange-only LDA. No electron correlation, molecules or periodic systems.
+
+- [Run and validate: Hydrogenic formulas and immutable finite-basis helium reference cards](https://hrkoyama.github.io/numerical-methods-atlas/validation/atomic-reference-cards/?lang=en) (`atomic-reference-cards`) · [Code ZIP: Hydrogenic formulas and immutable finite-basis helium reference cards](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip)
+
+Scope of this execution example: Map existing H/He formulas and saved finite-basis references to units, normalization and model limits.
+
+
+
+
+### Small 1D box and quantum harmonic-oscillator eigenpairs
+
+Analytic reference · Finite-dimensional algebra
+
+`H_h=-\frac12D_{xx}+V,\quad V_{\rm box}=0,\quad V_{\rm HO}=x^2/2;\quad E_j^{\rm box}=\frac{(j\pi)^2}{2},\quad u_j=\sqrt2\sin(j\pi x),\quad\lambda_{h,j}=2h^{-2}\sin^2\left(\frac{j\pi}{2M}\right),\ h=1/M;\quad E_n^{\rm HO}=n+\frac12,\quad u_n(x)=\frac{H_n(x)e^{-x^2/2}}{\pi^{1/4}\sqrt{2^nn!}},\quad u_h=v_h/\sqrt h`
+
+Finite Dirichlet boxes and central differences; whole-line HO formulas do not isolate finite-wall error. Node counts diagnostic until forward sign qualification. Atomic model units hbar=m=1 and HO omega=1. The box[0,1] and finite HO[-L,L] domains both use homogeneous Dirichlet conditions.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/quantum-box-ho/?lang=en#quantum-box-ho-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quantum-small/#quantum-box-ho)
+
+- mathematical-or-numerical-contract: [NIST DLMF18.39 Applications in the Physical Sciences](https://dlmf.nist.gov/18.39) — Earlier same-session R3 selected E7–8,E13–15,E24–35; oscillator/Coulomb normalization and measure. Full chapter/books not audited.
+- mathematical-or-numerical-contract: [NumPy2.0 numpy.linalg.eigh](https://numpy.org/doc/2.0/reference/generated/numpy.linalg.eigh.html) — Signature, Hermitian lower-triangle handling, all ascending eigenvalues/normalized columns, LinAlgError and LAPACK syevd/heevd notes.
+#### Related test problem figures and code
+
+##### [Small 1D box and quantum harmonic-oscillator eigenpairs](https://hrkoyama.github.io/numerical-methods-atlas/problems/quantum-box-ho/?lang=en) (`quantum-box-ho`)
+
+![Compare low stationary eigenpairs of a1D box and harmonic oscillator, with finite-domain and mesh sensitivity. Eight full solves save824raw pairs; qualification applies to24selected pairs. Thresholded nodes/phase are diagnostics. HO0.003 is a met fixed-case goal, not a proved bound; finite-wall/mesh sensitivities do not certify separate errors.](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/results/quantum-box-ho.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/quantum-box-ho/?lang=en#code-en)
+
+Same-problem link
+
+Eight full solves save824raw pairs; qualification applies to24selected pairs. Thresholded nodes/phase are diagnostics. HO0.003 is a met fixed-case goal, not a proved bound; finite-wall/mesh sensitivities do not certify separate errors.
+
+- [Run and validate: Small 1D box and quantum harmonic-oscillator eigenpairs](https://hrkoyama.github.io/numerical-methods-atlas/validation/quantum-box-ho/?lang=en) (`quantum-box-ho`) · [Code ZIP: Small 1D box and quantum harmonic-oscillator eigenpairs](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip)
+
+Scope of this execution example: Compare low stationary eigenpairs of a1D box and harmonic oscillator, with finite-domain and mesh sensitivity.
+
+
+
+
+### Minimal-basis H2: RHF, broken-spin UHF and finite-basis FCI
+
+Semi-analytic reference · Finite-dimensional algebra
+
+`F^\sigma=h+J[P^\alpha+P^\beta]-K[P^\sigma],\quad F^\sigma C^\sigma=SC^\sigma\varepsilon^\sigma;\quad \langle S^2\rangle_{1\alpha,1\beta}=1-|c_\alpha^\dagger S c_\beta|^2;\quad H_{pq,rs}=h_{pr}\delta_{qs}+h_{qs}\delta_{pr}+(pr|qs),\quad E_{\rm tot}=E_{\rm el}+E_{NN}`
+
+Explicit unchanged STO-3G s contraction, R1.4/3.0bohr, finite-basis FCI and broken-spin UHF; not exact continuum chemistry. Distances1.4/3.0bohr and total energies in hartree. Two electrons in2AOs, each an explicitly supplied three-primitive contracted Hs function.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/h2-rhf-uhf-fci/?lang=en#h2-rhf-uhf-fci-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quantum-small/#h2-rhf-uhf-fci)
+
+- independent-reference-convention-and-limits: [PySCF Self-consistent field methods](https://pyscf.org/user/scf.html) — FC=SCe, mean-field orbital/determinant ansatz, stability vs stationarity, RHF/UHF spin symmetry and overlap orthogonalization selected passages. No PySCF execution.
+- independent-reference-convention-and-limits: [PySCF Configuration interaction (CISD and FCI)](https://pyscf.org/user/ci.html) — Introduction and FCI/spin-sector examples: all determinants within a finite symmetry sector, diagonalization, Nalpha/Nbeta. Not full chapter or full package source.
+#### Related test problem figures and code
+
+##### [H₂ molecular RHF: independent reference, SCF and s-basis refinement](https://hrkoyama.github.io/numerical-methods-atlas/problems/h2-rhf/?lang=en) (`h2-rhf`)
+
+![Fixed-input H₂ RHF: separate geometry, s-basis sequence and SCF-tolerance comparisons. Reading states PySCF differences, histories and remaining finite-basis limits.](https://hrkoyama.github.io/code/molecular-hf/2026-11-22/results/preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/h2-rhf/?lang=en#code-en)
+
+Same-problem link
+
+Only2fixed distances. Finite-basis FCI is not continuum exactness, and UHF stationarity is not a general global-minimum guarantee. Angular/complete-basis convergence and a broad dissociation curve remain untested.
+
+- [Run and validate: H₂ molecular RHF: independent reference, SCF and s-basis refinement](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/h2-rhf/?lang=en) (`h2-rhf`) · [Code ZIP: H₂ molecular RHF: independent reference, SCF and s-basis refinement](https://hrkoyama.github.io/code/molecular-hf/2026-11-22/molecular-hf-2026-11-22.zip)
+
+Scope of this execution example: Isolated Born–Oppenheimer nonrelativistic two-electron closed-shell H₂. Compare STO-3G and nested s-Gaussian spaces at three separations. Numerical RHF validation, not molecular DFT, periodic, complete-basis or correct-dissociation validation.
+
+- [Run and validate: Minimal-basis H2: RHF, broken-spin UHF and finite-basis FCI](https://hrkoyama.github.io/numerical-methods-atlas/validation/h2-rhf-uhf-fci/?lang=en) (`h2-rhf-uhf-fci`) · [Code ZIP: Minimal-basis H2: RHF, broken-spin UHF and finite-basis FCI](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip)
+
+Scope of this execution example: Compare RHF, broken-spin UHF and finite-basis FCI for H2 at two fixed geometries in the same minimal basis.
+
+
+
+
+### A tiny three-center H3+ RHF / MP2 / FCI example
+
+Finite-grid numerical reference · Finite-dimensional algebra
+
+`H_{pq,rs}=h_{pr}\delta_{qs}+h_{qs}\delta_{pr}+(pr|qs);\quad E_{\rm MP2}=E_{\rm RHF}+\sum_{a,b\in\mathrm{virt}}\frac{(0a|0b)^2}{2\varepsilon_0-\varepsilon_a-\varepsilon_b},\quad E_{\rm FCI}=\lambda_{\min}(H)+E_{NN}`
+
+Two electrons/3 explicit s orbitals, one fixed non-symmetric triangle. Molecular DFT, CC and general multireference/large molecules remain unimplemented tails. One H3+ geometry[(0,0,0),(1.5,0,0),(.5,1.5,0)]bohr, charge+1,2electrons/3s orbitals; energies in hartree.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/h3plus-mp2-fci/?lang=en#h3plus-mp2-fci-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quantum-small/#h3plus-mp2-fci)
+
+- independent-reference-convention-and-limits: [PySCF Self-consistent field methods](https://pyscf.org/user/scf.html) — FC=SCe, mean-field orbital/determinant ansatz, stability vs stationarity, RHF/UHF spin symmetry and overlap orthogonalization selected passages. No PySCF execution.
+- independent-reference-convention-and-limits: [PySCF Second-order Moller-Plesset perturbation theory](https://pyscf.org/user/mp.html) — Introduction/total vs correlation energy/spin symmetry selected passages.
+- independent-reference-convention-and-limits: [PySCF official mp2 module source](https://pyscf.org/_modules/pyscf/mp/mp2.html) — Selected kernel lines53–87 and energy lines167–178: canonical occupied/virtual denominators and direct/exchange contractions. Source read for convention; code not copied into this packet and no fresh PySCF reference.
+- independent-reference-convention-and-limits: [PySCF Configuration interaction (CISD and FCI)](https://pyscf.org/user/ci.html) — Introduction and FCI/spin-sector examples: all determinants within a finite symmetry sector, diagonalization, Nalpha/Nbeta. Not full chapter or full package source.
+#### Related test problem figures and code
+
+##### [A tiny three-center H3+ RHF / MP2 / FCI example](https://hrkoyama.github.io/numerical-methods-atlas/problems/h3plus-minimal/?lang=en) (`h3plus-minimal`)
+
+![Demonstrate RHF, MP2 and finite-basis FCI for a tiny fixed three-center H3+ molecule. Independent operator assembly and two-electron RS2 identity qualify this fixed toy. No fresh external PySCF scalar. General molecular DFT, CC, multireference methods, precision energetics, geometry optimization and chemical accuracy remain unimplemented/unverified. MP2 is not variational.](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/results/h3plus-mp2-fci.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/h3plus-minimal/?lang=en#code-en)
+
+Same-problem link
+
+Independent operator assembly and two-electron RS2 identity qualify this fixed toy. No fresh external PySCF scalar. General molecular DFT, CC, multireference methods, precision energetics, geometry optimization and chemical accuracy remain unimplemented/unverified. MP2 is not variational.
+
+- [Run and validate: A tiny three-center H3+ RHF / MP2 / FCI example](https://hrkoyama.github.io/numerical-methods-atlas/validation/h3plus-mp2-fci/?lang=en) (`h3plus-mp2-fci`) · [Code ZIP: A tiny three-center H3+ RHF / MP2 / FCI example](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip)
+
+Scope of this execution example: Demonstrate RHF, MP2 and finite-basis FCI for a tiny fixed three-center H3+ molecule.
+
+
+
+
+### Immutable periodic-helium energy and force reference audit
+
+Finite-grid numerical reference · Finite-dimensional algebra
+
+`F_{A\alpha}=-\frac{\partial E}{\partial R_{A\alpha}},\quad F^{\rm FD}_{A\alpha}=-\frac{E(R_{A\alpha}+\delta)-E(R_{A\alpha}-\delta)}{2\delta}`
+
+Audit saved six-coordinate FD and Gaussian/PW comparisons; source versions, local-only He GTH, XC/units/cell/electron count fixed. No new k/basis/cutoff scans. Artificial He2,4electrons,5bohr cell. Stored geometry/localGTH version/LDA_X+VWN/Libxc/PySCF/DFTK versions remain fixed in saved-data/periodic-he-reference.json. Energy hartree; force hartree/bohr.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/periodic-he-reference-cards/?lang=en#periodic-he-reference-cards-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quantum-small/#periodic-he-reference-cards)
+
+- independent-reference-convention-and-limits: [DFTK Pseudopotentials](https://docs.dftk.org/stable/examples/pseudopotentials/) — Official separable Kleinman-Bylander/norm-conserving/GTH formats and approximation limits introduction. Our rank-one kernel is authored and is not an element-fitted norm-conserving potential.
+- independent-reference-convention-and-limits: [PySCF Self-consistent field methods](https://pyscf.org/user/scf.html) — FC=SCe, mean-field orbital/determinant ansatz, stability vs stationarity, RHF/UHF spin symmetry and overlap orthogonalization selected passages. No PySCF execution.
+#### Related test problem figures and code
+
+##### [Periodic-He KS-LDA: Gamma, k meshes, basis and SCF](https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-dft/?lang=en) (`periodic-he-dft`)
+
+![Periodic LDA for fixed He: separate Gamma/k sampling, Gaussian orbital basis, FFT grid and SCF. Includes independently converged DFTK plane-wave reference differences.](https://hrkoyama.github.io/code/periodic-dft/2026-11-22/results/preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-dft/?lang=en#code-en)
+
+Same-problem link
+
+Audit of stored6force components, energy differences and Gaussian/PW comparisons; zero new electronic solves. No new basis/k/cutoff scans, materials, metals or longMD claim.
+
+- [Run and validate: Periodic-He KS-LDA: Gamma, k meshes, basis and SCF](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-dft/?lang=en) (`periodic-he-dft`) · [Code ZIP: Periodic-He KS-LDA: Gamma, k meshes, basis and SCF](https://hrkoyama.github.io/code/periodic-dft/2026-11-22/periodic-dft-2026-11-22.zip)
+
+Scope of this execution example: Fixed one-atom simple-cubic He cell (lattice constant 4 bohr, two valence electrons, unpolarized LDA_X plus VWN5, local GTH). A PySCF execution/validation workflow. Eleven settings separately compare k sampling, Gaussian orbital basis, auxiliary FFT grid and SCF; Gamma and 2³ are compared with independent DFTK plane waves. Equilibrium helium, complete-basis, metals and general materials remain unvalidated.
+
+
+##### [Periodic-He₂ forces: analytic derivatives, finite differences and BOMD interface](https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-forces/?lang=en) (`periodic-he-forces`)
+
+![Asymmetric-He₂ analytic forces versus energy finite differences and DFTK reference. Force k-point, basis, FFT and SCF refinement, plus a local BOMD interface check.](https://hrkoyama.github.io/code/periodic-forces/2026-11-22/results/preview.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-forces/?lang=en#code-en)
+
+Same-problem link
+
+Audit of stored6force components, energy differences and Gaussian/PW comparisons; zero new electronic solves. No new basis/k/cutoff scans, materials, metals or longMD claim.
+
+- [Run and validate: Periodic-He₂ forces: analytic derivatives, finite differences and BOMD interface](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-forces/?lang=en) (`periodic-he-forces`) · [Code ZIP: Periodic-He₂ forces: analytic derivatives, finite differences and BOMD interface](https://hrkoyama.github.io/code/periodic-forces/2026-11-22/periodic-forces-2026-11-22.zip)
+
+Scope of this execution example: Asymmetric two-He periodic cell with local GTH and LDA exchange plus VWN5. Compare PySCF analytic forces, including Gaussian-basis derivatives, with energy finite differences for all six coordinates and independent DFTK plane waves. Separate force basis, k-point, SCF and FFT refinement. BOMD coverage is a force interface and short step comparison; long NVE, CPMD and general materials remain unvalidated.
+
+- [Run and validate: Immutable periodic-helium energy and force reference audit](https://hrkoyama.github.io/numerical-methods-atlas/validation/periodic-he-reference-cards/?lang=en) (`periodic-he-reference-cards`) · [Code ZIP: Immutable periodic-helium energy and force reference audit](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip)
+
+Scope of this execution example: Map saved periodic-He energies and six-coordinate forces to unchanged independent references and criteria.
+
+
+
+
+### A three-wave periodic projector and Fermi-occupation model
+
+Semi-analytic reference · Finite-dimensional algebra
+
+`H_{GG\prime}(k,R)=\tfrac12(G+k)^2\delta_{GG\prime}+V_{GG\prime}+\eta\beta_G\beta_{G\prime}^*,\quad\beta_G=e^{-(G+k)^2/(2\sigma^2)}e^{-i(G+k)R};\quad f_{kn}=\frac{2}{1+e^{(\varepsilon_{kn}-\mu)/T}},\quad\sum_{kn}w_kf_{kn}=1.5;\quad F=\sum_{kn}w_kf_{kn}\varepsilon_{kn}-TS,\quad F_R=-\sum_{kn}w_kf_{kn}\langle u_{kn}|\partial_RH_k|u_{kn}\rangle`
+
+Authored rank-one periodic linear model and finite-N Helmholtz forces. No real metal/element pseudopotential/norm conservation/Hartree-XC/long MD claim. N=1.5 is a mean independent-particle Fermi occupation count, not an integer-N canonical many-body ensemble. Dimensionless G=-1,0,1,p=G+k,k=±.25 with equal.5weights,T=.05,mean electron countN=1.5 and spin factor2. No physical lattice-constant or metal mapping.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/periodic-projector-occupations/?lang=en#periodic-projector-occupations-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quantum-small/#periodic-projector-occupations)
+
+- independent-reference-convention-and-limits: [DFTK periodic problems and plane-wave discretisations](https://docs.dftk.org/stable/guide/periodic_problems/) — Selected displayed Bloch/periodic operator/plane-wave basis context; no material calculations reproduced.
+- independent-reference-convention-and-limits: [DFTK Pseudopotentials](https://docs.dftk.org/stable/examples/pseudopotentials/) — Official separable Kleinman-Bylander/norm-conserving/GTH formats and approximation limits introduction. Our rank-one kernel is authored and is not an element-fitted norm-conserving potential.
+- independent-reference-convention-and-limits: [DFTK Temperature and metallic systems](https://docs.dftk.org/stable/examples/metallic_systems/) — Selected Fermi-Dirac smearing temperature, partial occupations, explicit unconverged fast-example warning and energy Entropy term. No magnesium run, no new k/basis/cutoff scans.
+- mathematical-or-numerical-contract: [NumPy2.0 numpy.linalg.eigh](https://numpy.org/doc/2.0/reference/generated/numpy.linalg.eigh.html) — Signature, Hermitian lower-triangle handling, all ascending eigenvalues/normalized columns, LinAlgError and LAPACK syevd/heevd notes.
+#### Related test problem figures and code
+
+##### [A three-wave periodic projector and Fermi-occupation model](https://hrkoyama.github.io/numerical-methods-atlas/problems/finite-projector-fermi/?lang=en) (`finite-projector-fermi`)
+
+![Show a genuine rank-one nonlocal kernel and finite-temperature occupations in a three-wave periodic educational model. Authored linear3-wave Hamiltonian with independent-particle mean Fermi occupations, not an integer-particle canonical many-body ensemble. No self-consistent Hartree/XC, element-fitted norm-conserving PSP, real metal, general material or longMD validation.](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/results/periodic-projector-occupations.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/finite-projector-fermi/?lang=en#code-en)
+
+Same-problem link
+
+Authored linear3-wave Hamiltonian with independent-particle mean Fermi occupations, not an integer-particle canonical many-body ensemble. No self-consistent Hartree/XC, element-fitted norm-conserving PSP, real metal, general material or longMD validation.
+
+- [Run and validate: A three-wave periodic projector and Fermi-occupation model](https://hrkoyama.github.io/numerical-methods-atlas/validation/periodic-projector-occupations/?lang=en) (`periodic-projector-occupations`) · [Code ZIP: A three-wave periodic projector and Fermi-occupation model](https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip)
+
+Scope of this execution example: Show a genuine rank-one nonlocal kernel and finite-temperature occupations in a three-wave periodic educational model.
+
+
+
+
+### Hodgkin–Huxley: clamps, rest and firing
+
+Semi-analytic reference · ODE / DAE (no spatial dimension)
+
+`C_m\dot V=I-g_{Na}m^3h(V-E_{Na})-g_Kn^4(V-E_K)-g_L(V-E_L);\quad \dot z=\alpha_z(V)(1-z)-\beta_z(V)z`
+
+Fix6.3°C and the NEURON8.2.6 analytic absolute-voltage convention in ms/mV/µA cm⁻². Use four clamp voltages, three steps, a20ms rest and a10–11ms pulse. ms, mV, microampere/cm², 6.3°C; dimensionless gates. Spatially uniform single membrane; voltage clamp or segment-current initial-value problem.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/hodgkin-huxley-controls/?lang=en#hodgkin-huxley-controls-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology-ode-controls/#hodgkin-huxley-controls)
+
+- model-or-reference-source: [NEURON8.2.6 analytic hh.mod](https://raw.githubusercontent.com/neuronsimulator/nrn/8.2.6/src/nrnoc/hh.mod) — Selected convention7–11, physical units/current35–67 and exact analytic rates88–120. Source TABLE/cnexp is not reproduced.
+#### Related test problem figures and code
+
+##### [Hodgkin–Huxley: clamps, rest and firing](https://hrkoyama.github.io/numerical-methods-atlas/problems/hodgkin-huxley-controls/?lang=en) (`hodgkin-huxley-controls`)
+
+![Compare analytic clamp gates and a four-state system with segment-owned current. This educational membrane model does not reproduce the original voltage convention, TABLE/cnexp, cable propagation or measured physiology. Missing/unresolved events remain explicit; rest-root uniqueness and interval-Hurwitz stability are unclaimed.](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/results/hodgkin-huxley-controls.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/hodgkin-huxley-controls/?lang=en#code-en)
+
+Same-problem link
+
+This educational membrane model does not reproduce the original voltage convention, TABLE/cnexp, cable propagation or measured physiology. Missing/unresolved events remain explicit; rest-root uniqueness and interval-Hurwitz stability are unclaimed.
+
+- [Run and validate: Hodgkin–Huxley: clamps, rest and firing](https://hrkoyama.github.io/numerical-methods-atlas/validation/hodgkin-huxley-controls/?lang=en) (`hodgkin-huxley-controls`) · [Code ZIP: Hodgkin–Huxley: clamps, rest and firing](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/atlas-biology-ode-controls-2026-11-25.zip)
+
+Scope of this execution example: Compare analytic clamp gates and a four-state system with segment-owned current.
+
+
+
+
+### Immigration–death SSA: exact transient laws
+
+Analytic reference · Stochastic process (no spatial dimension)
+
+`\varnothing\xrightarrow{6}N,\qquad N\xrightarrow{N} \varnothing;\quad N(t)\mid N(0)=n_0\;\overset d=\mathrm{Bin}(n_0,e^{-t})+\mathrm{Pois}(6(1-e^{-t}))`
+
+Use immigration6, per-particle death1 and observations0/0.5/2/4. Compare initial0,5 and nominal stationary Poisson(6), two seeds each and2,048paths per record. Integer particle counts and a fixed time unit; death rate 1 per particle and immigration rate 6. Nonnegative integer counts; death propensity vanishes at N=0.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/immigration-death-ssa/?lang=en#immigration-death-ssa-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology-ode-controls/#immigration-death-ssa)
+
+- model-or-reference-source: [Gillespie(1977), Exact stochastic simulation of coupled chemical reactions](https://doi.org/10.1021/j100540a008) — Carry-forward documentedselectedoriginalarticleextractedpp2343–2345,§IIIA–C,eq8–21andalgorithm0–3,on2026-11-24UTC. Exponentialwaitingandcumulativepropensityselection;repeated-runsvsonepath. No newPDFdownload/bodyread inthisR3batch.
+- model-or-reference-source: [Massart(1990),The Tight Constant in the Dvoretzky–Kiefer–Wolfowitz Inequality](https://doi.org/10.1214/aop/1176990746) — SelectedoriginalabstracttwosidedCDFbound2exp(-2lambda²),IIDassumptionandunrestrictedlambda. Author-uploadedprimaryarticlepage identifiesMassartupload2014.
+- model-or-reference-source: [Reeve(2024),A short proof of the Dvoretzky–Kiefer–Wolfowitz–Massart inequality](https://arxiv.org/pdf/2403.16651) — SelectedPDFtextpp1–3:IIDpopulation/empiricalCDFdefinition,Theorem1,Corollary1andCorollary2andMassartcomparison. Supportsfinite-nCDFconcentration;notwhole11-pageproof.
+#### Related test problem figures and code
+
+##### [Immigration–death SSA: exact transient laws](https://hrkoyama.github.io/numerical-methods-atlas/problems/immigration-death-ssa/?lang=en) (`immigration-death-ssa`)
+
+![Separate one displayed path from12,288fixed ensemble paths. Finite deterministic-start transients are not stationary. Interval qualification concerns the idealIID reference law, without a whole-software PRNG/logarithm coverage guarantee or a claim that one path represents the ensemble.](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/results/immigration-death-ssa.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/immigration-death-ssa/?lang=en#code-en)
+
+Same-problem link
+
+Finite deterministic-start transients are not stationary. Interval qualification concerns the idealIID reference law, without a whole-software PRNG/logarithm coverage guarantee or a claim that one path represents the ensemble.
+
+- [Run and validate: Immigration–death SSA: exact transient laws](https://hrkoyama.github.io/numerical-methods-atlas/validation/immigration-death-ssa/?lang=en) (`immigration-death-ssa`) · [Code ZIP: Immigration–death SSA: exact transient laws](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/atlas-biology-ode-controls-2026-11-25.zip)
+
+Scope of this execution example: Separate one displayed path from12,288fixed ensemble paths.
+
+
+
+
+### Fisher–KPP: a special-speed exact front
+
+Analytic reference · 1D
+
+`u_t=u_{xx}+u(1-u);\quad u(x,t)=[1+\exp((x-5t/\sqrt6)/\sqrt6)]^{-2}`
+
+Use D=r=1,T=1 and the special speed5/√6. Fix spatial/time series on L12 and constant-endpoint boundary rows at L6/12/24. Dimensionless; diffusion coefficient and reaction rate equal 1. Separate exact-front and constant boundary experiments; retain finite-domain effects.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/fisher-kpp-special-front/?lang=en#fisher-kpp-special-front-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology-space-controls/#fisher-kpp-special-front)
+
+- model-or-reference-source: [Ablowitz–Zeppetella(1979), Explicit solutions of Fisher’s equation for a special wave speed](https://doi.org/10.1007/BF02462380) — Publisherbibliographic/abstractspecial-speedstatementfrompriorselectedreview.
+#### Related test problem figures and code
+
+##### [Fisher–KPP: a special-speed exact front](https://hrkoyama.github.io/numerical-methods-atlas/problems/fisher-kpp-special-front/?lang=en) (`fisher-kpp-special-front`)
+
+![Separate profile, phase, grid, time and finite-boundary errors. The special front is distinct from the minimum linear speed2. This is not a steep-data speed-selection study, long-time propagation result or certified machine-error barrier proof.](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/results/fisher-kpp-special-front.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/fisher-kpp-special-front/?lang=en#code-en)
+
+Same-problem link
+
+The special front is distinct from the minimum linear speed2. This is not a steep-data speed-selection study, long-time propagation result or certified machine-error barrier proof.
+
+- [Run and validate: Fisher–KPP: a special-speed exact front](https://hrkoyama.github.io/numerical-methods-atlas/validation/fisher-kpp-special-front/?lang=en) (`fisher-kpp-special-front`) · [Code ZIP: Fisher–KPP: a special-speed exact front](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/atlas-biology-space-controls-2026-11-25.zip)
+
+Scope of this execution example: Separate profile, phase, grid, time and finite-boundary errors.
+
+
+
+
+### Schnakenberg:2D boundaries and initial modes
+
+Finite-grid numerical reference · 2D
+
+`u_t=.01\Delta u+.1-u+u^2v,\qquad v_t=\Delta v+.9-u^2v`
+
+On[0,2π]² toT2,use a.1,b.9,Du.01,Dv1. Compare three perturbations of(1,.9),12/24/48cell grids and fixed nonperiodic boundary conditions. Dimensionless square [0,2pi]², diffusion coefficients 0.01 and 1. Single/mixed Neumann modes and a single mode with equilibrium Dirichlet data.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/?lang=en#schnakenberg-2d-boundary-modes-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology-space-controls/#schnakenberg-2d-boundary-modes)
+
+- model-or-reference-source: [Schnakenberg(1979), Simple chemical reaction systems with limit cycle behaviour](https://pubmed.ncbi.nlm.nih.gov/537379/) — OriginalSchnakenbergbibliographicrecordonly.
+#### Related test problem figures and code
+
+##### [Schnakenberg:2D boundaries and initial modes](https://hrkoyama.github.io/numerical-methods-atlas/problems/schnakenberg-2d-boundary-modes/?lang=en) (`schnakenberg-2d-boundary-modes`)
+
+![Compare two Neumann perturbations and a Dirichlet perturbation against nonlinear Galerkin references. This short small-amplitude study does not establish general pattern selection, mature patterns or reproduction of original figures. Finite reference differences are not rigorous continuum error bounds.](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/results/schnakenberg-2d-boundary-modes.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/schnakenberg-2d-boundary-modes/?lang=en#code-en)
+
+Same-problem link
+
+This short small-amplitude study does not establish general pattern selection, mature patterns or reproduction of original figures. Finite reference differences are not rigorous continuum error bounds.
+
+- [Run and validate: Schnakenberg:2D boundaries and initial modes](https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/?lang=en) (`schnakenberg-2d-boundary-modes`) · [Code ZIP: Schnakenberg:2D boundaries and initial modes](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/atlas-biology-space-controls-2026-11-25.zip)
+
+Scope of this execution example: Compare two Neumann perturbations and a Dirichlet perturbation against nonlinear Galerkin references.
+
+
+
+
+### Keller–Segel: a manufactured coupled-flux solution
+
+Manufactured solution · 2D
+
+`n_t+\nabla\cdot(wn)=D_n\Delta n-\chi\nabla\cdot(n\nabla c)+rn(1-n)+s_n;\quad \tau c_t=D_c\Delta c+\alpha n-\lambda c+s_c;\quad n_*(x,y,t)=1+0.1e^{-t}\cos(\pi x)\cos(\pi y),\quad c_*(x,y,t)=1+0.05e^{-2t}\cos(\pi x)\cos(2\pi y),\quad\psi=\sin(\pi x)\sin(\pi y)/\pi,\quad w=(\partial_y\psi,-\partial_x\psi)`
+
+On the unit square toT.25,manufacture forcing for n=1+.1e⁻ᵗcosπx cosπy,c=1+.05e⁻²ᵗcosπx cos2πy with divergence-free tangential advection. Dimensionless; manufactured-field coefficients and forcing are fixed in inputs.json. Manufactured forcing and boundary fluxes, with explicit ownership of interior faces and corners.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/keller-segel-forced-flux/?lang=en#keller-segel-forced-flux-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology-space-controls/#keller-segel-forced-flux)
+
+- authored-manufactured-reference: [Atlas authored Keller–Segel manufactured fields, forcing and finite-volume balance controls (2026-11-25)](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/keller_segel.py) — Atlas-authored manufactured fields, forcing and face-flux derivation/implementation. Evidence is limited to saved component checks, independently written scalar-face/RHS references and cell-average comparisons. No original-paper full-text reading or reproduction of the unforced original problem is claimed.
+#### Related test problem figures and code
+
+##### [Keller–Segel: a manufactured coupled-flux solution](https://hrkoyama.github.io/numerical-methods-atlas/problems/keller-segel-forced-flux/?lang=en) (`keller-segel-forced-flux`)
+
+![Use smooth exact2D fields to test cross fluxes, stage timing and mass ledgers. This authored forced two-field model does not reproduce the full original biological model or demonstrate aggregation, true blow-up or suppression. No clipping is used to manufacture positivity.](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/results/keller-segel-forced-flux.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/keller-segel-forced-flux/?lang=en#code-en)
+
+Same-problem link
+
+This authored forced two-field model does not reproduce the full original biological model or demonstrate aggregation, true blow-up or suppression. No clipping is used to manufacture positivity.
+
+- [Run and validate: Keller–Segel: a manufactured coupled-flux solution](https://hrkoyama.github.io/numerical-methods-atlas/validation/keller-segel-forced-flux/?lang=en) (`keller-segel-forced-flux`) · [Code ZIP: Keller–Segel: a manufactured coupled-flux solution](https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/atlas-biology-space-controls-2026-11-25.zip)
+
+Scope of this execution example: Use smooth exact2D fields to test cross fluxes, stage timing and mass ledgers.
+
+
+
+
+### NH,chains,weak coupling and fixed-speed contrasts
+
+Semi-analytic reference · ODE / DAE (no spatial dimension)
+
+`\dot p=-\nabla U-\xi_1p,\quad\dot\xi_1=(2K-fT)/Q_1-\xi_2\xi_1;\quad H_{ext}=H+\sum_jQ_j\xi_j^2/2+fT\eta_1+T\sum_{j>1}\eta_j`
+
+Fix unit masses,kBT1,frequencies1/1.7 and quartic0/.2. Compare NH1,NHC3,Berendsen and fixed-speed baths at two couplings/two steps with256canonical and128heated replicas. Dimensionless, unit masses, kBT=1, frequencies 1/1.7; Q1=2tau², Qj=tau². Two-mode initial-value problem without spatial boundaries; fixed canonical/heated ensembles.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/deterministic-thermostat-contrasts/?lang=en#deterministic-thermostat-contrasts-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostat-constraint-controls/#deterministic-thermostat-contrasts)
+
+- model-or-reference-source: [GROMACS2026.4,Temperature coupling](https://manual.gromacs.org/current/reference-manual/algorithms/molecular-dynamics.html) — Selected temperature coupling equations43/47–53 and NH/NHC mass-period conventions. Authored xi velocity convention and exact frozen subflows independently derived.
+- model-or-reference-source: [Massart(1990),The Tight Constant in the Dvoretzky–Kiefer–Wolfowitz Inequality](https://doi.org/10.1214/aop/1176990746) — SelectedoriginalabstracttwosidedCDFbound2exp(-2lambda²),IIDassumptionandunrestrictedlambda. Author-uploadedprimaryarticlepage identifiesMassartupload2014.
+- model-or-reference-source: [Reeve(2024),A short proof of the Dvoretzky–Kiefer–Wolfowitz–Massart inequality](https://arxiv.org/pdf/2403.16651) — SelectedPDFtextpp1–3:IIDpopulation/empiricalCDFdefinition,Theorem1,Corollary1andCorollary2andMassartcomparison. Supportsfinite-nCDFconcentration;notwhole11-pageproof.
+#### Related test problem figures and code
+
+##### [Anharmonic CSVR versus Langevin: distribution checks against Boltzmann quadrature](https://hrkoyama.github.io/numerical-methods-atlas/problems/thermostatted-quartic/?lang=en) (`thermostatted-quartic`)
+
+![Compare CSVR and Langevin distributions, temperature/energy fluctuations and correlations for two weakly quartic modes. Independent Boltzmann quadrature provides equilibrium references.](https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/results/csvr-langevin-quartic.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/thermostatted-quartic/?lang=en#code-en)
+
+Same-problem link
+
+Same two-mode quartic system plus a harmonic control; short-time and finite-sample deterministic-bath comparisons.
+
+- [Run and validate: Anharmonic CSVR versus Langevin: distribution checks against Boltzmann quadrature](https://hrkoyama.github.io/numerical-methods-atlas/validation/csvr-langevin-quartic/?lang=en) (`csvr-langevin-quartic`) · [Code ZIP: Anharmonic CSVR versus Langevin: distribution checks against Boltzmann quadrature](https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip)
+
+Scope of this execution example: Compare CSVR and Langevin distributions, temperature/energy fluctuations and correlations for two weakly quartic modes. Independent Boltzmann quadrature provides equilibrium references.
+
+- [Run and validate: NH,chains,weak coupling and fixed-speed contrasts](https://hrkoyama.github.io/numerical-methods-atlas/validation/deterministic-thermostat-contrasts/?lang=en) (`deterministic-thermostat-contrasts`) · [Code ZIP: NH,chains,weak coupling and fixed-speed contrasts](https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/atlas-thermostat-constraint-controls-2026-11-25.zip)
+
+Scope of this execution example: Compare distributions,fluctuations and correlations as well as mean temperature on the same two-mode systems.
+
+
+
+
+### Constraints,centre-of-mass removal and canonical statistics
+
+Semi-analytic reference · ODE / DAE (no spatial dimension)
+
+`Cq=0,\quad CM^{-1}p=0,\quad f=3-\mathrm{rank}(C);\quad \mathrm{Cov}(p)=T(M-C^T(CM^{-1}C^T)^+C)`
+
+Use three1Dparticles of masses1/2/3 in one common harmonic potential. No constraints,COM,COM-relative and a redundant-row equivalent have f3/2/1/1,each with1,024replicas. Dimensionless; masses 1/2/3 and kBT=1. Fixed linear constraints Cq=0 and CM⁻¹p=0; redundant rows are compared on the same tangent space.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/projected-canonical-dof/?lang=en#projected-canonical-dof-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostat-constraint-controls/#projected-canonical-dof)
+
+- model-or-reference-source: [LAMMPS,compute temp](https://docs.lammps.org/compute_temp.html) — Description lines29–38:kinetic temperature/effectiveDOF/constraint deduction/default translational subtraction.
+- model-or-reference-source: [Bussi,Donadio,Parrinello,Canonical sampling through velocity-rescaling](https://arxiv.org/pdf/0803.4060) — SelectedpreprintAppendixA,A1-A7,OUradialrepresentationandchi-squarelaw;selectedcanonicalslice§IIA.
+- model-or-reference-source: [Massart(1990),The Tight Constant in the Dvoretzky–Kiefer–Wolfowitz Inequality](https://doi.org/10.1214/aop/1176990746) — SelectedoriginalabstracttwosidedCDFbound2exp(-2lambda²),IIDassumptionandunrestrictedlambda. Author-uploadedprimaryarticlepage identifiesMassartupload2014.
+- model-or-reference-source: [Reeve(2024),A short proof of the Dvoretzky–Kiefer–Wolfowitz–Massart inequality](https://arxiv.org/pdf/2403.16651) — SelectedPDFtextpp1–3:IIDpopulation/empiricalCDFdefinition,Theorem1,Corollary1andCorollary2andMassartcomparison. Supportsfinite-nCDFconcentration;notwhole11-pageproof.
+#### Related test problem figures and code
+
+##### [Constraints,centre-of-mass removal and canonical statistics](https://hrkoyama.github.io/numerical-methods-atlas/problems/projected-canonical-dof/?lang=en) (`projected-canonical-dof`)
+
+![Separate effectiveDOF,momentum covariance,transient distributions and time correlations. These fixed linear constraints do not cover nonlinear molecular constraints,Fixman corrections or transport coefficients. Redundant systems with independent seeds need not have identical paths; CSVR dynamical correlations are empirical.](https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/results/projected-canonical-dof.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/projected-canonical-dof/?lang=en#code-en)
+
+Same-problem link
+
+These fixed linear constraints do not cover nonlinear molecular constraints,Fixman corrections or transport coefficients. Redundant systems with independent seeds need not have identical paths; CSVR dynamical correlations are empirical.
+
+- [Run and validate: Constraints,centre-of-mass removal and canonical statistics](https://hrkoyama.github.io/numerical-methods-atlas/validation/projected-canonical-dof/?lang=en) (`projected-canonical-dof`) · [Code ZIP: Constraints,centre-of-mass removal and canonical statistics](https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/atlas-thermostat-constraint-controls-2026-11-25.zip)
+
+Scope of this execution example: Separate effectiveDOF,momentum covariance,transient distributions and time correlations.
+
+
+
+
+### Saltzman-type skew-grid piston: 2D Euler and ALE
+
+Analytic reference · 2D
+
+`\partial_tU+\nabla\cdot F(U)=0,\quad F_{\rm ALE}\cdot n=F(U)\cdot n-w_nU; s=\frac{\gamma+1}{4}u_p+\sqrt{[(\gamma+1)u_p/4]^2+\gamma p_0/\rho_0},\quad\rho_1=\frac{\rho_0s}{s-u_p},\quad p_1=p_0+\rho_0su_p,\quad x_s=st`
+
+Tan–Lv–Zhu (2023) Example 8 variant with e0=1e-4 and finite initial pressure. Prescribed affine ALE, 2D Euler and Rusanov; not their material Lagrangian mesh, WENO/remap scheme or a full reproduction of the unread 1985 report.
+
+Continuous exact solution · Exact conserved area means over each actual deformed quadrilateral, computed by planar-shock polygon clipping. Pressure of a conserved mean differs from mean pointwise pressure. Initial [0,1]x[0,.1] moves to [t,1]x[0,.1].
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/saltzman-ale-piston/?lang=en#saltzman-ale-piston-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-continuum-particle-controls/#saltzman-ale-piston)
+
+- explicit-benchmark-configuration: [New Third-Order Finite Volume Unequal-Sized WENO Lagrangian Schemes for Solving Euler Equations](https://www.mdpi.com/2227-7390/11/23/4842) — Publisher full-text Example8, equation42 and Figures8–9 captions: 2D skewedpiston geometry and finite nonzero internalenergy. Only the benchmark configuration is borrowed; the new solver is not that WENO/Lagrangian method. Saltzman/Colella1985 LA-UR-85-678 is cited historically but original full text was not obtained. Later papers use different skew maps/cold pressures; they must not be silently mixed.
+- historical-original-problem: [Second Order Corner Coupled Upwind Transport Methods for Lagrangian Hydrodynamics](https://www.osti.gov/servlets/purl/15005665) — Bibliographic identity found in the authors LLNL comparison report reference27, not the original1985 report. Do not claim original1985 parameters or originalmethod reproduction.
+#### Related test problem figures and code
+
+##### [Saltzman-type skew-grid piston: 2D Euler and ALE](https://hrkoyama.github.io/numerical-methods-atlas/problems/saltzman-ale-piston/?lang=en) (`saltzman-ale-piston`)
+
+![Tan–Lv–Zhu2023 Example8 e0=1e-4 initialvariant. PrescribedaffineALEmesh, not theirWENO/materialLagrangian/remap scheme. Finitepressure RH cellaverages. Tan–Lv–Zhu (2023) Example 8 variant with e0=1e-4 and finite initial pressure. Prescribed affine ALE, 2D Euler and Rusanov; not their material Lagrangian mesh, WENO/remap scheme or a full reproduction of the unread 1985 report.](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/results/saltzman-ale-piston.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/saltzman-ale-piston/?lang=en#code-en)
+
+Same-problem link
+
+Bind the fixed-input formula, reference, figure and executable code. Tan–Lv–Zhu (2023) Example 8 variant with e0=1e-4 and finite initial pressure. Prescribed affine ALE, 2D Euler and Rusanov; not their material Lagrangian mesh, WENO/remap scheme or a full reproduction of the unread 1985 report.
+
+- [Run and validate: Saltzman-type skew-grid piston: 2D Euler and ALE](https://hrkoyama.github.io/numerical-methods-atlas/validation/saltzman-ale-piston/?lang=en) (`saltzman-ale-piston`) · [Code ZIP: Saltzman-type skew-grid piston: 2D Euler and ALE](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip)
+
+Scope of this execution example: Tan–Lv–Zhu2023 Example8 e0=1e-4 initialvariant. PrescribedaffineALEmesh, not theirWENO/materialLagrangian/remap scheme. Finitepressure RH cellaverages.
+
+
+
+
+### Williamson-type spherical rotation: tilted axes and pole crossing
+
+Analytic reference · 2D
+
+`q_t+\mathbf v\cdot\nabla_{\mathbb S^2}q=0,\quad q(\mathbf r,t)=q_0(R_{\mathbf n}(-2\pi t/T)\mathbf r); \mathbf n=(-\sin\alpha,0,\cos\alpha),\quad q_0(r)=\tfrac12[1+\cos(\pi r/R)]\ (r<R),\quad q_0=0\ (r\ge R)`
+
+Only prescribed scalar solid-body rotation on a unit sphere. Original W92 equations remain unread; selected Nair author formulas cross-check conventions. Both grids use eleven noncommensurate remaps. Bilinear interpolation is nonconservative; report mass drift and do not claim temporal convergence or a nonlinear global SWE core.
+
+Continuous exact solution · Exact scalar point values at latitude-longitude cell centers, with exact spherical-band area weights for quadrature. Two tilts0,pi/2; fixed11remaps at both64x32/128x64. Not finite-volume conservative means.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/williamson-sphere-transport/?lang=en#williamson-sphere-transport-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-continuum-particle-controls/#williamson-sphere-transport)
+
+- original-problem-suite: [A standard test set for numerical approximations to the shallow water equations in spherical geometry](https://digital.library.unt.edu/ark:/67531/metadc1069483/) — DOE/ORNL1991 author-report bibliography/abstract and suite identity. FullPDF/page fetch timed out; do not mark original equation read. Primary author implementation/formula confirmation still required before claiming exactstandard W92 parameterreproduction.
+- author-formula-crosscheck: [Cascade interpolation for semi-Lagrangian advection over the sphere](https://www.image.ucar.edu/staff/rnair/qj99_sph.pdf) — Author-hosted selected section3 gives velocity/bell formulas and explicitly distinguishes radius7pi/64 from W92 radius1/3. Selected solidbody-rotation definitions only. Our bilinear tensor interpolation is not their cascade algorithm; our radius1/3 uses the W92-associated variant, not their7pi/64 radius. Original W92 full text remains unread.
+#### Related test problem figures and code
+
+##### [Williamson-type spherical rotation: tilted axes and pole crossing](https://hrkoyama.github.io/numerical-methods-atlas/problems/williamson-sphere-transport/?lang=en) (`williamson-sphere-transport`)
+
+![Limitedprescribedscalartransport, radius1/3 nondimensionalvariant; not nonlinearSWE or exact1992fullpaperreproduction. Nair1999 selectedformulascrosscheck; bilinear method isAtlasoriginal. Only prescribed scalar solid-body rotation on a unit sphere. Original W92 equations remain unread; selected Nair author formulas cross-check conventions. Both grids use eleven noncommensurate remaps. Bilinear interpolation is nonconservative; report mass drift and do not claim temporal convergence or a nonlinear global SWE core.](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/results/williamson-sphere-transport.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/williamson-sphere-transport/?lang=en#code-en)
+
+Same-problem link
+
+Bind the fixed-input formula, reference, figure and executable code. Only prescribed scalar solid-body rotation on a unit sphere. Original W92 equations remain unread; selected Nair author formulas cross-check conventions. Both grids use eleven noncommensurate remaps. Bilinear interpolation is nonconservative; report mass drift and do not claim temporal convergence or a nonlinear global SWE core.
+
+- [Run and validate: Williamson-type spherical rotation: tilted axes and pole crossing](https://hrkoyama.github.io/numerical-methods-atlas/validation/williamson-sphere-transport/?lang=en) (`williamson-sphere-transport`) · [Code ZIP: Williamson-type spherical rotation: tilted axes and pole crossing](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip)
+
+Scope of this execution example: Limitedprescribedscalartransport, radius1/3 nondimensionalvariant; not nonlinearSWE or exact1992fullpaperreproduction. Nair1999 selectedformulascrosscheck; bilinear method isAtlasoriginal.
+
+
+
+
+### Time evolution of axisymmetric spherical shallow-water balance
+
+Analytic reference · 1D
+
+`h_t+\frac{\partial_\phi(hv\cos\phi)}{a\cos\phi}=0,\quad u_t+\frac va u_\phi-(2\Omega\sin\phi+u\tan\phi/a)v=0; v_t+\frac va v_\phi+(2\Omega\sin\phi+u\tan\phi/a)u+\frac ga h_\phi=0; u=u_0\cos\phi,\quad v=0,\quad h=h_0-\frac{a\Omega u_0+u_0^2/2}{g}\sin^2\phi`
+
+Axisymmetric nondimensional subproblem with a=g=1, Omega=2, u0=.5 and h0=10. Actual time evolution uses centered primitive momentum, finite-volume mass and RK4. Not standard Earth parameters, a full global multidimensional SWE core, exact discrete balance or a PV-conservation claim.
+
+Continuous exact solution · Pointwise stationary h,u,v at latitude-band centers in a one-coordinate axisymmetric reduction; finite-volume band mass weights. Continuous analytic balance is distinct from the measured discrete residual.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/sphere-zonal-balance/?lang=en#sphere-zonal-balance-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-continuum-particle-controls/#sphere-zonal-balance)
+
+- original-problem-suite: [A standard test set for numerical approximations to the shallow water equations in spherical geometry](https://digital.library.unt.edu/ark:/67531/metadc1069483/) — DOE/ORNL1991 author-report bibliography/abstract and suite identity. FullPDF/page fetch timed out; do not mark original equation read. Primary author implementation/formula confirmation still required before claiming exactstandard W92 parameterreproduction.
+- atlas-derived-reference: [Atlas fixed formula and stored result](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json) — Authored stationary/linearized identity and actual saved-array qualification only; not a newly read original-paper derivation.
+#### Related test problem figures and code
+
+##### [Time evolution of axisymmetric spherical shallow-water balance](https://hrkoyama.github.io/numerical-methods-atlas/problems/sphere-zonal-balance/?lang=en) (`sphere-zonal-balance`)
+
+![NondimensionalWilliamson2-type axisymmetricsubproblem. Analyticstaticstatevsactualtimeintegration; not fullglobaldynamicalcore/PVclaim. Axisymmetric nondimensional subproblem with a=g=1, Omega=2, u0=.5 and h0=10. Actual time evolution uses centered primitive momentum, finite-volume mass and RK4. Not standard Earth parameters, a full global multidimensional SWE core, exact discrete balance or a PV-conservation claim.](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/results/sphere-zonal-balance.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/sphere-zonal-balance/?lang=en#code-en)
+
+Same-problem link
+
+Bind the fixed-input formula, reference, figure and executable code. Axisymmetric nondimensional subproblem with a=g=1, Omega=2, u0=.5 and h0=10. Actual time evolution uses centered primitive momentum, finite-volume mass and RK4. Not standard Earth parameters, a full global multidimensional SWE core, exact discrete balance or a PV-conservation claim.
+
+- [Run and validate: Time evolution of axisymmetric spherical shallow-water balance](https://hrkoyama.github.io/numerical-methods-atlas/validation/sphere-zonal-balance/?lang=en) (`sphere-zonal-balance`) · [Code ZIP: Time evolution of axisymmetric spherical shallow-water balance](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip)
+
+Scope of this execution example: NondimensionalWilliamson2-type axisymmetricsubproblem. Analyticstaticstatevsactualtimeintegration; not fullglobaldynamicalcore/PVclaim.
+
+
+
+
+### Sod-type particle shock tube with Gaussian-convolution GSPH
+
+Semi-analytic reference · 1D
+
+`U_t+F(U)_x=0,\quad p=(\gamma-1)\rho e,\quad\gamma=1.4; V_{ij}^2(h)=\frac{h^2}{4}\left(\frac{V_i-V_j}{r_{ij}}\right)^2+\left(\frac{V_i+V_j}{2}\right)^2,\quad V_i=1/\rho_i,\quad h_i=\eta m_i/\rho_{\rm smooth,i}`
+
+Actual Gaussian linear-specific-volume GSPH overlap with symmetric variable h, independent pair Riemann solves and antisymmetric total-energy exchange; not substitution of star pressure into ordinary SPH. First-order reconstruction only, not the paper cubic/MUSCL implementation or a general accuracy claim.
+
+Semi-analytic reference · Independent Riemann primitive point values at actual particle positions, norm weighted by m/rho in physicalx[-.4,.4] at t=.12. Stored coordinates[0,2) shift by-1. A second periodic interface cannot reach this window; not FV cell means.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/gsph-sod/?lang=en#gsph-sod-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-continuum-particle-controls/#gsph-sod)
+
+- numerical-method: [Reformulation of Smoothed Particle Hydrodynamics with Riemann Solver](https://arxiv.org/pdf/astro-ph/0206401) — Author PDF selected passages in sections3.1.1/3.2/3.3/3.4 and4.1, equations48–52,66–67,79–85,94 and Figure6 caption. No new whole-paper audit. Gaussian convolution overlap, variableh approximation and matched pair energy are distinguished from substituting star pressure into ordinarySPH. Draft will use the linear specific-volume overlap and first-order pair reconstruction, not the paper cubic/MUSCL production variant. Variableh is the paper approximate formulation, not a rigorous grad-h variationalSPH scheme.
+#### Related test problem figures and code
+
+##### [Sod shock tube](https://hrkoyama.github.io/numerical-methods-atlas/problems/sod/?lang=en) (`sod`)
+
+![Stored final-time numerical profile and reference.](https://hrkoyama.github.io/numerical-methods-atlas/gallery/previews/sod.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/sod/?lang=en#code-en)
+
+Same-problem link
+
+Bind the fixed-input formula, reference, figure and executable code. Actual Gaussian linear-specific-volume GSPH overlap with symmetric variable h, independent pair Riemann solves and antisymmetric total-energy exchange; not substitution of star pressure into ordinary SPH. First-order reconstruction only, not the paper cubic/MUSCL implementation or a general accuracy claim.
+
+- [Run and validate: Sod shock tube: Godunov-type update and self-similar reference](https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/sod/?lang=en) (`sod`) · [Code ZIP: Sod shock tube: Godunov-type update and self-similar reference](https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/atlas-code-2026-11-22.zip)
+
+Scope of this execution example: Standard γ=1.4 Sod tube with left/right (ρ,u,p)=(1,0,1)/(0.125,0,0.1), initial jump x=0.5 and t=0.2. Compare 80/160-cell piecewise-constant Godunov-type/HLLC/SSPRK3 updates with a self-similar Euler solution.
+
+- [Run and validate: Sod-type particle shock tube with Gaussian-convolution GSPH](https://hrkoyama.github.io/numerical-methods-atlas/validation/gsph-sod/?lang=en) (`gsph-sod`) · [Code ZIP: Sod-type particle shock tube with Gaussian-convolution GSPH](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip)
+
+Scope of this execution example: ActualInutsuka-linear-overlap variablehGSPH approximation withfirstorderpair states, comparedwithdistinctstandardSPHcontrol. Periodictwointerfaces; centralwindowbeforeouterwaves. Not cubic/MUSCLpaperreproduction or plainSPH-pressure-star surrogate.
+
+
+
+
+### Uniform pressure and acoustics: particle-layout effects in SPH/GSPH
+
+Analytic reference · 1D
+
+`\rho=1+A\sin[2\pi(x-t)],\quad v=A\sin[2\pi(x-t)],\quad p=1/\gamma+A\sin[2\pi(x-t)]; A=10^{-3},\quad c=1,\quad\text{linearized reference only; nonlinear remainder }O(A^2)`
+
+GSPH with 128 jittered particles at t=0.2. The initial kernel reconstruction error reaches 0.011834, exceeding the acoustic amplitude 0.001 and remaining visible in the left density profile; the right panel shows that initial error. Acceptance concerns the fundamental Fourier mode phase/amplitude and other fixed conservation controls, not pointwise high accuracy or general superiority.
+
+Continuous exact solution · Exact constant-pressure equilibrium and an analytic solution of the linearized acoustic model, not an exact finite-amplitude nonlinear Euler wave. Retain distinct initial kernel error and the O(A^2) model remainder; phase/amplitude criteria use only the fundamental Fourier mode.
+
+[View the saved profile](https://hrkoyama.github.io/numerical-methods-atlas/validation/sph-pressure-acoustics/?lang=en#sph-pressure-acoustics-en-measurements) · [Read definitions and conditions](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-continuum-particle-controls/#sph-pressure-acoustics)
+
+- numerical-method: [Reformulation of Smoothed Particle Hydrodynamics with Riemann Solver](https://arxiv.org/pdf/astro-ph/0206401) — Author PDF selected passages in sections3.1.1/3.2/3.3/3.4 and4.1, equations48–52,66–67,79–85,94 and Figure6 caption. No new whole-paper audit. Gaussian convolution overlap, variableh approximation and matched pair energy are distinguished from substituting star pressure into ordinarySPH. Draft will use the linear specific-volume overlap and first-order pair reconstruction, not the paper cubic/MUSCL production variant. Variableh is the paper approximate formulation, not a rigorous grad-h variationalSPH scheme.
+- atlas-derived-reference: [Atlas fixed formula and stored result](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json) — Authored stationary/linearized identity and actual saved-array qualification only; not a newly read original-paper derivation.
+#### Related test problem figures and code
+
+##### [Uniform pressure and acoustics: particle-layout effects in SPH/GSPH](https://hrkoyama.github.io/numerical-methods-atlas/problems/sph-pressure-acoustics/?lang=en) (`sph-pressure-acoustics`)
+
+![Regular/deterministicallyjitteredperiodicparticles, fixedhSPHcontrol vs adaptivehGSPH. Separateinitialkernelerror and fluidupdate, finiteamplitudeO(A²)linearizedreference remainder. No universalGSPHsuperiorityclaim. GSPH with 128 jittered particles at t=0.2. The initial kernel reconstruction error reaches 0.011834, exceeding the acoustic amplitude 0.001 and remaining visible in the left density profile; the right panel shows that initial error. Acceptance concerns the fundamental Fourier mode phase/amplitude and other fixed conservation controls, not pointwise high accuracy or general superiority.](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/results/sph-pressure-acoustics.png)
+
+[Code and validation status](https://hrkoyama.github.io/numerical-methods-atlas/problems/sph-pressure-acoustics/?lang=en#code-en)
+
+Same-problem link
+
+Bind the fixed-input formula, reference, figure and executable code. GSPH with 128 jittered particles at t=0.2. The initial kernel reconstruction error reaches 0.011834, exceeding the acoustic amplitude 0.001 and remaining visible in the left density profile; the right panel shows that initial error. Acceptance concerns the fundamental Fourier mode phase/amplitude and other fixed conservation controls, not pointwise high accuracy or general superiority.
+
+- [Run and validate: Uniform pressure and acoustics: particle-layout effects in SPH/GSPH](https://hrkoyama.github.io/numerical-methods-atlas/validation/sph-pressure-acoustics/?lang=en) (`sph-pressure-acoustics`) · [Code ZIP: Uniform pressure and acoustics: particle-layout effects in SPH/GSPH](https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip)
+
+Scope of this execution example: Regular/deterministicallyjitteredperiodicparticles, fixedhSPHcontrol vs adaptivehGSPH. Separateinitialkernelerror and fluidupdate, finiteamplitudeO(A²)linearizedreference remainder. No universalGSPHsuperiorityclaim.

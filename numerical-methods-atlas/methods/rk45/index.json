@@ -449,6 +449,3099 @@
           "en": "There is no general guarantee for tangential roots, multiple crossings within a step or systems with resets. Initial-zero and ownership controls are limited component tests; local tolerances and global accuracy remain distinct."
         }
       ]
+    },
+    {
+      "release": {
+        "group": "biology-ode-controls",
+        "edition": "2026-11-25",
+        "case_ids": [
+          "hodgkin-huxley-controls"
+        ]
+      },
+      "scope": {
+        "ja": "固定電位の解析ゲート解と、区分電流下の4状態系を照合します。",
+        "en": "Compare analytic clamp gates and a four-state system with segment-owned current."
+      },
+      "limits": [
+        {
+          "ja": "1細胞膜の教育例です。元論文の電位規約、TABLE/cnexp実装、ケーブル伝播や生体実測の再現とは呼びません。区間内に括れない発火は捏造せず、静止根の一意性・区間Hurwitz安定性は主張しません。",
+          "en": "This educational membrane model does not reproduce the original voltage convention, TABLE/cnexp, cable propagation or measured physiology. Missing/unresolved events remain explicit; rest-root uniqueness and interval-Hurwitz stability are unclaimed."
+        }
+      ]
+    },
+    {
+      "release": {
+        "group": "biology-space-controls",
+        "edition": "2026-11-25",
+        "case_ids": [
+          "fisher-kpp-special-front",
+          "schnakenberg-2d-boundary-modes",
+          "keller-segel-forced-flux"
+        ]
+      },
+      "scope": {
+        "ja": "波形・位置・格子誤差・時間誤差・有限領域の影響を分けます。; 2つのNeumann摂動とDirichlet摂動を独立な非線形Galerkin参照と比較します。; 滑らかな2D厳密場で、交差流束・段時刻・収支を検証します。",
+        "en": "Separate profile, phase, grid, time and finite-boundary errors.; Compare two Neumann perturbations and a Dirichlet perturbation against nonlinear Galerkin references.; Use smooth exact2D fields to test cross fluxes, stage timing and mass ledgers."
+      },
+      "limits": [
+        {
+          "ja": "特殊前線を一般の最小速度2の前線と同一視しません。急減衰初期値からの速度選択、長時間伝播、機械誤差込みの厳密障壁証明は対象外です。",
+          "en": "The special front is distinct from the minimum linear speed2. This is not a steep-data speed-selection study, long-time propagation result or certified machine-error barrier proof."
+        },
+        {
+          "ja": "短時間の小振幅・固定初期値です。一般的な模様選択、成長後の成熟パターン、原著図の再現は主張しません。有限の参照差を連続体誤差の厳密上界と呼びません。",
+          "en": "This short small-amplitude study does not establish general pattern selection, mature patterns or reproduction of original figures. Finite reference differences are not rigorous continuum error bounds."
+        },
+        {
+          "ja": "著者作成の強制2場モデルです。原著の全生物モデル、ピーク形成、真のblow-upやその抑制を実証しません。負値をクリップして正値性を装いません。",
+          "en": "This authored forced two-field model does not reproduce the full original biological model or demonstrate aggregation, true blow-up or suppression. No clipping is used to manufacture positivity."
+        }
+      ]
+    }
+  ],
+  "depth_additional_releases": [
+    {
+      "group": "biology-ode-controls",
+      "case_ids": [
+        "hodgkin-huxley-controls"
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/",
+      "code_edition": "2026-11-25",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/common.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/hh.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/ssa.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/test_models.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-biology-ode-controls-2026-11-25",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/atlas-biology-ode-controls-2026-11-25.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/verification.json",
+      "code_archive_sha256": "b67232232a461e8ef0e24d522a3e40c9af64b8d90cd55c9657c955a92772b042",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/results/result.json",
+      "passed_tests": 11,
+      "examples": [
+        {
+          "id": "hodgkin-huxley-controls",
+          "method_ids": [
+            "rk4",
+            "rk45"
+          ],
+          "title": {
+            "ja": "Hodgkin–Huxley：電位固定・静止平衡・発火",
+            "en": "Hodgkin–Huxley: clamps, rest and firing"
+          },
+          "summary": {
+            "ja": "固定電位の解析ゲート解と、区分電流下の4状態系を照合します。",
+            "en": "Compare analytic clamp gates and a four-state system with segment-owned current."
+          },
+          "assumptions": {
+            "ja": "6.3°C、ms/mV/µA cm⁻²。NEURON8.2.6の解析的な絶対電位規約を固定し、4電位×3刻み、静止20 ms、10–11 msの電流パルスを扱います。",
+            "en": "Fix6.3°C and the NEURON8.2.6 analytic absolute-voltage convention in ms/mV/µA cm⁻². Use four clamp voltages, three steps, a20ms rest and a10–11ms pulse."
+          },
+          "algorithm": {
+            "ja": "古典RK4を用い、電流の切り替わりでは全段の片側値を区間に帰属させます。ゲートの可除特異点、Decimal静止根、独立なDP5(4)/Cash–Karp参照を別に照合します。",
+            "en": "Use classicalRK4 with all stages owned by each current segment. Separately qualify removable rate singularities, a Decimal rest root and independently written DP5(4)/Cash–Karp references."
+          },
+          "validation": {
+            "ja": "全採用時刻のゲート誤差、電位・ゲート範囲、採用端点の新しい微分を使うHermite発火時刻を保存。元の1e-8ゲート目標も未達を含めて表示します。",
+            "en": "Retain errors over all accepted times, voltage/gate ranges and Hermite firing events from fresh accepted-endpoint derivatives. Preserve the original1e-8clamp goal even when unmet."
+          },
+          "limits": {
+            "ja": "1細胞膜の教育例です。元論文の電位規約、TABLE/cnexp実装、ケーブル伝播や生体実測の再現とは呼びません。区間内に括れない発火は捏造せず、静止根の一意性・区間Hurwitz安定性は主張しません。",
+            "en": "This educational membrane model does not reproduce the original voltage convention, TABLE/cnexp, cable propagation or measured physiology. Missing/unresolved events remain explicit; rest-root uniqueness and interval-Hurwitz stability are unclaimed."
+          },
+          "domains": [
+            "biology"
+          ],
+          "code_files": [
+            "run.py",
+            "common.py",
+            "hh.py",
+            "ssa.py"
+          ],
+          "reference_files": [
+            "PROTOCOL.md",
+            "source-reading.json",
+            "acceptance.json"
+          ],
+          "references": [
+            {
+              "id": "neuron826-hh",
+              "title": "NEURON8.2.6 analytic hh.mod",
+              "url": "https://raw.githubusercontent.com/neuronsimulator/nrn/8.2.6/src/nrnoc/hh.mod",
+              "review_level": "selected-primary-or-bibliographic-see-provenance",
+              "review": {
+                "ja": "source-reading.jsonに実際の読取範囲と未読部分を記録。原著の全式・全図の再現とは主張しません。",
+                "en": "Actual selected read scopes and unread limits are recorded in source-reading.json; no full original-paper equation/figure reproduction claim."
+              }
+            }
+          ],
+          "additional_figures": [
+            {
+              "file": "hodgkin-huxley-controls-diagnostics.png",
+              "caption": {
+                "ja": "精度・参照・統計の実測値と未達目標を分けて表示します。",
+                "en": "Separate actual accuracy,reference and statistical measurements,including unmet targets."
+              }
+            }
+          ],
+          "formulas": [
+            "C_m\\dot V=I-g_{Na}m^3h(V-E_{Na})-g_Kn^4(V-E_K)-g_L(V-E_L)",
+            "\\dot z=\\alpha_z(V)(1-z)-\\beta_z(V)z"
+          ],
+          "measured": {
+            "id": "hodgkin-huxley-controls",
+            "passed": true,
+            "checks": {
+              "HH/rates_against_decimal": true,
+              "HH/precision_companion": true,
+              "HH/removable_singularities": true,
+              "HH/rest_bracket_companion": true,
+              "HH/owned_stage_edges": true,
+              "HH/naive_jump_control_detected": true,
+              "HH/clamp-finite-bounds/-80.0/0.04": true,
+              "HH/clamp-finite-bounds/-80.0/0.02": true,
+              "HH/clamp-finite-bounds/-80.0/0.01": true,
+              "HH/clamp-finite-bounds/-55.0/0.04": true,
+              "HH/clamp-finite-bounds/-55.0/0.02": true,
+              "HH/clamp-finite-bounds/-55.0/0.01": true,
+              "HH/clamp-finite-bounds/-40.0/0.04": true,
+              "HH/clamp-finite-bounds/-40.0/0.02": true,
+              "HH/clamp-finite-bounds/-40.0/0.01": true,
+              "HH/clamp-finite-bounds/0.0/0.04": true,
+              "HH/clamp-finite-bounds/0.0/0.02": true,
+              "HH/clamp-finite-bounds/0.0/0.01": true,
+              "HH/reference/rest": true,
+              "HH/finite-gates/rest/0.04": true,
+              "HH/finite-gates/rest/0.02": true,
+              "HH/finite-gates/rest/0.01": true,
+              "HH/reference/pulse": true,
+              "HH/finite-gates/pulse/0.04": true,
+              "HH/finite-gates/pulse/0.02": true,
+              "HH/finite-gates/pulse/0.01": true
+            },
+            "metrics": {
+              "fixed_records": 21,
+              "HH/clamp-original1e-8/-80.0/actual": 4.711626791498169e-08,
+              "HH/clamp-original1e-8/-55.0/actual": 7.262476731106915e-11,
+              "HH/clamp-original1e-8/-40.0/actual": 1.4916989865554342e-10,
+              "HH/clamp-original1e-8/0.0/actual": 7.521943623522986e-09,
+              "HH/pulse-voltage/actual": 0.00010511156826709112,
+              "HH/pulse-gates/actual": 5.371951350419124e-08,
+              "HH/pulse-event/actual_ms": 3.799796033376879e-08
+            },
+            "records": [
+              {
+                "id": "hh-components",
+                "checks": {
+                  "rates_against_decimal": true,
+                  "precision_companion": true,
+                  "removable_singularities": true,
+                  "rest_bracket_companion": true,
+                  "owned_stage_edges": true,
+                  "naive_jump_control_detected": true
+                },
+                "rate_max_errors": [
+                  1.4210854715202004e-14,
+                  2.7755575615628914e-17,
+                  0.0,
+                  4.440892098500626e-16,
+                  1.1102230246251565e-16,
+                  8.881784197001252e-16,
+                  1.7763568394002505e-15,
+                  5.551115123125783e-17,
+                  5.551115123125783e-17,
+                  5.551115123125783e-17,
+                  5.551115123125783e-17,
+                  1.1102230246251565e-16,
+                  0.0,
+                  1.1102230246251565e-16,
+                  1.1102230246251565e-16
+                ],
+                "input_v64_hex": [
+                  "-0x1.e000000000000p+6",
+                  "-0x1.4000000000000p+6",
+                  "-0x1.0400000000000p+6",
+                  "-0x1.b800000000000p+5",
+                  "-0x1.4000000000000p+5",
+                  "0x0.0p+0",
+                  "0x1.4000000000000p+6",
+                  "-0x1.b800346dc5d64p+5",
+                  "-0x1.b7ffcb923a29cp+5",
+                  "-0x1.b80000015798fp+5",
+                  "-0x1.b7fffffea8671p+5",
+                  "-0x1.4000346dc5d64p+5",
+                  "-0x1.3fffcb923a29cp+5",
+                  "-0x1.400000015798fp+5",
+                  "-0x1.3ffffffea8671p+5"
+                ],
+                "edge_actions": [
+                  {
+                    "h": 0.04,
+                    "t": 9.96,
+                    "stage_currents": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "increment": 0.0,
+                    "expected": 0.0,
+                    "naive_increment": 0.06666666666666667
+                  },
+                  {
+                    "h": 0.04,
+                    "t": 10,
+                    "stage_currents": [
+                      10,
+                      10,
+                      10,
+                      10
+                    ],
+                    "increment": 0.39999999999999997,
+                    "expected": 0.4,
+                    "naive_increment": 0.39999999999999997
+                  },
+                  {
+                    "h": 0.04,
+                    "t": 10.96,
+                    "stage_currents": [
+                      10,
+                      10,
+                      10,
+                      10
+                    ],
+                    "increment": 0.39999999999999997,
+                    "expected": 0.4,
+                    "naive_increment": 0.3333333333333333
+                  },
+                  {
+                    "h": 0.04,
+                    "t": 11,
+                    "stage_currents": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "increment": 0.0,
+                    "expected": 0.0,
+                    "naive_increment": 0.0
+                  },
+                  {
+                    "h": 0.02,
+                    "t": 9.98,
+                    "stage_currents": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "increment": 0.0,
+                    "expected": 0.0,
+                    "naive_increment": 0.03333333333333333
+                  },
+                  {
+                    "h": 0.02,
+                    "t": 10,
+                    "stage_currents": [
+                      10,
+                      10,
+                      10,
+                      10
+                    ],
+                    "increment": 0.19999999999999998,
+                    "expected": 0.2,
+                    "naive_increment": 0.19999999999999998
+                  },
+                  {
+                    "h": 0.02,
+                    "t": 10.98,
+                    "stage_currents": [
+                      10,
+                      10,
+                      10,
+                      10
+                    ],
+                    "increment": 0.19999999999999998,
+                    "expected": 0.2,
+                    "naive_increment": 0.16666666666666666
+                  },
+                  {
+                    "h": 0.02,
+                    "t": 11,
+                    "stage_currents": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "increment": 0.0,
+                    "expected": 0.0,
+                    "naive_increment": 0.0
+                  },
+                  {
+                    "h": 0.01,
+                    "t": 9.99,
+                    "stage_currents": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "increment": 0.0,
+                    "expected": 0.0,
+                    "naive_increment": 0.016666666666666666
+                  },
+                  {
+                    "h": 0.01,
+                    "t": 10,
+                    "stage_currents": [
+                      10,
+                      10,
+                      10,
+                      10
+                    ],
+                    "increment": 0.09999999999999999,
+                    "expected": 0.1,
+                    "naive_increment": 0.09999999999999999
+                  },
+                  {
+                    "h": 0.01,
+                    "t": 10.99,
+                    "stage_currents": [
+                      10,
+                      10,
+                      10,
+                      10
+                    ],
+                    "increment": 0.09999999999999999,
+                    "expected": 0.1,
+                    "naive_increment": 0.08333333333333333
+                  },
+                  {
+                    "h": 0.01,
+                    "t": 11,
+                    "stage_currents": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "increment": 0.0,
+                    "expected": 0.0,
+                    "naive_increment": 0.0
+                  }
+                ],
+                "rest": [
+                  -64.97405245162668,
+                  0.05309465178484726,
+                  0.5952130171676475,
+                  0.31807461723758984
+                ],
+                "root_companions": [
+                  {
+                    "lo": "-64.974052451626681111411189456397112715685567752679120487323982278612954921470655",
+                    "hi": "-64.97405245162668111141118945639637315858692305411154699179402966652263629043774",
+                    "iterations": 105,
+                    "endpoint_signs": [
+                      "-7.088800764508274005970217961400532438052271900502E-31",
+                      "1.572127229559934473598185747373955297085929414520E-31"
+                    ],
+                    "precision": 80,
+                    "uniqueness_claim": false
+                  },
+                  {
+                    "lo": "-64.97405245162668111141118945639711271568556775267912048732398227861295492147064578603021800518035888671875",
+                    "hi": "-64.974052451626681111411189456396373158586923054111546991794029666522636290437731076963245868682861328125",
+                    "iterations": 105,
+                    "endpoint_signs": [
+                      "-7.0888007645082740059702179614005324380522719003903169720424579840458414971736378020480281E-31",
+                      "1.5721272295599344735981857473739552970859294146284583204657906796674493670259378821275406E-31"
+                    ],
+                    "precision": 120,
+                    "uniqueness_claim": false
+                  }
+                ],
+                "stability_status": "UNCLAIMED: bracketed equilibrium, no interval Hurwitz certificate; not a proof of uniqueness",
+                "data": "hh-components.npz"
+              },
+              {
+                "id": "hh-clamp--80-0p04",
+                "V": -80.0,
+                "h": 0.04,
+                "max_all_time_error": 1.5143378531798368e-05,
+                "gate_min": 0.008043237159868667,
+                "gate_max": 0.8718822999489665,
+                "data": "hh-clamp--80-0p04.npz"
+              },
+              {
+                "id": "hh-clamp--80-0p02",
+                "V": -80.0,
+                "h": 0.02,
+                "max_all_time_error": 8.126174439321288e-07,
+                "gate_min": 0.00804323715986867,
+                "gate_max": 0.8718822999495738,
+                "data": "hh-clamp--80-0p02.npz"
+              },
+              {
+                "id": "hh-clamp--80-0p01",
+                "V": -80.0,
+                "h": 0.01,
+                "max_all_time_error": 4.711626791498169e-08,
+                "gate_min": 0.008043237159868674,
+                "gate_max": 0.8718822999496124,
+                "data": "hh-clamp--80-0p01.npz"
+              },
+              {
+                "id": "hh-clamp--55-0p04",
+                "V": -55.0,
+                "h": 0.04,
+                "max_all_time_error": 1.9902477887967507e-08,
+                "gate_min": 0.1,
+                "gate_max": 0.8,
+                "data": "hh-clamp--55-0p04.npz"
+              },
+              {
+                "id": "hh-clamp--55-0p02",
+                "V": -55.0,
+                "h": 0.02,
+                "max_all_time_error": 1.1885528672372914e-09,
+                "gate_min": 0.1,
+                "gate_max": 0.8,
+                "data": "hh-clamp--55-0p02.npz"
+              },
+              {
+                "id": "hh-clamp--55-0p01",
+                "V": -55.0,
+                "h": 0.01,
+                "max_all_time_error": 7.262476731106915e-11,
+                "gate_min": 0.1,
+                "gate_max": 0.8,
+                "data": "hh-clamp--55-0p01.npz"
+              },
+              {
+                "id": "hh-clamp--40-0p04",
+                "V": -40.0,
+                "h": 0.04,
+                "max_all_time_error": 4.0116030053383156e-08,
+                "gate_min": 0.1,
+                "gate_max": 0.8,
+                "data": "hh-clamp--40-0p04.npz"
+              },
+              {
+                "id": "hh-clamp--40-0p02",
+                "V": -40.0,
+                "h": 0.02,
+                "max_all_time_error": 2.4268089204859677e-09,
+                "gate_min": 0.1,
+                "gate_max": 0.8,
+                "data": "hh-clamp--40-0p02.npz"
+              },
+              {
+                "id": "hh-clamp--40-0p01",
+                "V": -40.0,
+                "h": 0.01,
+                "max_all_time_error": 1.4916989865554342e-10,
+                "gate_min": 0.1,
+                "gate_max": 0.8,
+                "data": "hh-clamp--40-0p01.npz"
+              },
+              {
+                "id": "hh-clamp-0-0p04",
+                "V": 0.0,
+                "h": 0.04,
+                "max_all_time_error": 2.1384378671163162e-06,
+                "gate_min": 0.008923975351978464,
+                "gate_max": 0.9741586066826129,
+                "data": "hh-clamp-0-0p04.npz"
+              },
+              {
+                "id": "hh-clamp-0-0p02",
+                "V": 0.0,
+                "h": 0.02,
+                "max_all_time_error": 1.246264965670818e-07,
+                "gate_min": 0.008923974797501913,
+                "gate_max": 0.9741586066827076,
+                "data": "hh-clamp-0-0p02.npz"
+              },
+              {
+                "id": "hh-clamp-0-0p01",
+                "V": 0.0,
+                "h": 0.01,
+                "max_all_time_error": 7.521943623522986e-09,
+                "gate_min": 0.008923974763423407,
+                "gate_max": 0.974158606682713,
+                "data": "hh-clamp-0-0p01.npz"
+              },
+              {
+                "id": "hh-reference-rest",
+                "spread": 0.0,
+                "qualified": true,
+                "configurations": [
+                  [
+                    {
+                      "segment": [
+                        0.0,
+                        20.0
+                      ],
+                      "current": 0.0,
+                      "method": "DP54",
+                      "accepted": 2002,
+                      "rejected": 0,
+                      "nfev": 14014,
+                      "rtol": 1e-11,
+                      "atol": [
+                        1e-12,
+                        1e-14,
+                        1e-14,
+                        1e-14
+                      ],
+                      "complete": true
+                    }
+                  ],
+                  [
+                    {
+                      "segment": [
+                        0.0,
+                        20.0
+                      ],
+                      "current": 0.0,
+                      "method": "DP54",
+                      "accepted": 2002,
+                      "rejected": 0,
+                      "nfev": 14014,
+                      "rtol": 1e-13,
+                      "atol": [
+                        1e-14,
+                        1e-15,
+                        1e-15,
+                        1e-15
+                      ],
+                      "complete": true
+                    }
+                  ],
+                  [
+                    {
+                      "segment": [
+                        0.0,
+                        20.0
+                      ],
+                      "current": 0.0,
+                      "method": "CK54",
+                      "accepted": 2002,
+                      "rejected": 0,
+                      "nfev": 12012,
+                      "rtol": 1e-11,
+                      "atol": [
+                        1e-12,
+                        1e-14,
+                        1e-14,
+                        1e-14
+                      ],
+                      "complete": true
+                    }
+                  ]
+                ],
+                "events": [],
+                "event_audit": {},
+                "data": "hh-reference-rest.npz"
+              },
+              {
+                "id": "hh-rest-0p04",
+                "h": 0.04,
+                "errors": [
+                  0.0,
+                  2.0816681711721685e-17,
+                  0.0,
+                  0.0
+                ],
+                "events": [],
+                "event_audit": {},
+                "rest_drift_mV": 0.0,
+                "gate_range": [
+                  0.05309465178484726,
+                  0.5952130171676475
+                ],
+                "data": "hh-rest-0p04.npz"
+              },
+              {
+                "id": "hh-rest-0p02",
+                "h": 0.02,
+                "errors": [
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "events": [],
+                "event_audit": {},
+                "rest_drift_mV": 0.0,
+                "gate_range": [
+                  0.05309465178484726,
+                  0.5952130171676475
+                ],
+                "data": "hh-rest-0p02.npz"
+              },
+              {
+                "id": "hh-rest-0p01",
+                "h": 0.01,
+                "errors": [
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "events": [],
+                "event_audit": {},
+                "rest_drift_mV": 0.0,
+                "gate_range": [
+                  0.05309465178484726,
+                  0.5952130171676475
+                ],
+                "data": "hh-rest-0p01.npz"
+              },
+              {
+                "id": "hh-reference-pulse",
+                "spread": 1.0302887432089847e-09,
+                "qualified": true,
+                "configurations": [
+                  [
+                    {
+                      "segment": [
+                        0.0,
+                        10.0
+                      ],
+                      "current": 0.0,
+                      "method": "DP54",
+                      "accepted": 1002,
+                      "rejected": 0,
+                      "nfev": 7014,
+                      "rtol": 1e-11,
+                      "atol": [
+                        1e-12,
+                        1e-14,
+                        1e-14,
+                        1e-14
+                      ],
+                      "complete": true
+                    },
+                    {
+                      "segment": [
+                        10.0,
+                        11.0
+                      ],
+                      "current": 10.0,
+                      "method": "DP54",
+                      "accepted": 143,
+                      "rejected": 0,
+                      "nfev": 1001,
+                      "rtol": 1e-11,
+                      "atol": [
+                        1e-12,
+                        1e-14,
+                        1e-14,
+                        1e-14
+                      ],
+                      "complete": true
+                    },
+                    {
+                      "segment": [
+                        11.0,
+                        30.0
+                      ],
+                      "current": 0.0,
+                      "method": "DP54",
+                      "accepted": 3034,
+                      "rejected": 1,
+                      "nfev": 21245,
+                      "rtol": 1e-11,
+                      "atol": [
+                        1e-12,
+                        1e-14,
+                        1e-14,
+                        1e-14
+                      ],
+                      "complete": true
+                    }
+                  ],
+                  [
+                    {
+                      "segment": [
+                        0.0,
+                        10.0
+                      ],
+                      "current": 0.0,
+                      "method": "DP54",
+                      "accepted": 1002,
+                      "rejected": 0,
+                      "nfev": 7014,
+                      "rtol": 1e-13,
+                      "atol": [
+                        1e-14,
+                        1e-15,
+                        1e-15,
+                        1e-15
+                      ],
+                      "complete": true
+                    },
+                    {
+                      "segment": [
+                        10.0,
+                        11.0
+                      ],
+                      "current": 10.0,
+                      "method": "DP54",
+                      "accepted": 291,
+                      "rejected": 0,
+                      "nfev": 2037,
+                      "rtol": 1e-13,
+                      "atol": [
+                        1e-14,
+                        1e-15,
+                        1e-15,
+                        1e-15
+                      ],
+                      "complete": true
+                    },
+                    {
+                      "segment": [
+                        11.0,
+                        30.0
+                      ],
+                      "current": 0.0,
+                      "method": "DP54",
+                      "accepted": 5768,
+                      "rejected": 1,
+                      "nfev": 40383,
+                      "rtol": 1e-13,
+                      "atol": [
+                        1e-14,
+                        1e-15,
+                        1e-15,
+                        1e-15
+                      ],
+                      "complete": true
+                    }
+                  ],
+                  [
+                    {
+                      "segment": [
+                        0.0,
+                        10.0
+                      ],
+                      "current": 0.0,
+                      "method": "CK54",
+                      "accepted": 1002,
+                      "rejected": 0,
+                      "nfev": 6012,
+                      "rtol": 1e-11,
+                      "atol": [
+                        1e-12,
+                        1e-14,
+                        1e-14,
+                        1e-14
+                      ],
+                      "complete": true
+                    },
+                    {
+                      "segment": [
+                        10.0,
+                        11.0
+                      ],
+                      "current": 10.0,
+                      "method": "CK54",
+                      "accepted": 118,
+                      "rejected": 0,
+                      "nfev": 708,
+                      "rtol": 1e-11,
+                      "atol": [
+                        1e-12,
+                        1e-14,
+                        1e-14,
+                        1e-14
+                      ],
+                      "complete": true
+                    },
+                    {
+                      "segment": [
+                        11.0,
+                        30.0
+                      ],
+                      "current": 0.0,
+                      "method": "CK54",
+                      "accepted": 2788,
+                      "rejected": 3,
+                      "nfev": 16746,
+                      "rtol": 1e-11,
+                      "atol": [
+                        1e-12,
+                        1e-14,
+                        1e-14,
+                        1e-14
+                      ],
+                      "complete": true
+                    }
+                  ]
+                ],
+                "events": [
+                  {
+                    "time_ms": 12.270536208115518,
+                    "bracket": [
+                      12.27,
+                      12.28
+                    ],
+                    "accepted_interval": [
+                      12.27,
+                      12.28
+                    ],
+                    "slope": 282.96670391249,
+                    "simple_upward": true,
+                    "polynomial_evaluations": 27,
+                    "endpoint_rhs": "fresh accepted endpoint or reused same-current accepted derivative",
+                    "model": "accepted-interval cubic Hermite, not an exact-ODE event certificate"
+                  }
+                ],
+                "event_audit": {
+                  "intervals": 3000,
+                  "critical_point_intervals": 1002,
+                  "interior_crossings_without_endpoint_sign_change": 0,
+                  "nonsimple_or_roundoff_unresolved_intervals": 0,
+                  "maximum_cubic_roots_per_interval": 1,
+                  "all_intervals_inspected": true,
+                  "exact_ODE_event_completeness_certified": false
+                },
+                "data": "hh-reference-pulse.npz"
+              },
+              {
+                "id": "hh-pulse-0p04",
+                "h": 0.04,
+                "errors": [
+                  0.04192891312136027,
+                  1.3084352575520874e-05,
+                  3.3544849469269167e-06,
+                  3.866401408370024e-06
+                ],
+                "events": [
+                  {
+                    "time_ms": 12.270540241710842,
+                    "bracket": [
+                      12.24,
+                      12.280000000000001
+                    ],
+                    "accepted_interval": [
+                      12.24,
+                      12.280000000000001
+                    ],
+                    "slope": 282.6910340661269,
+                    "simple_upward": true,
+                    "polynomial_evaluations": 29,
+                    "endpoint_rhs": "fresh accepted endpoint or reused same-current accepted derivative",
+                    "model": "accepted-interval cubic Hermite, not an exact-ODE event certificate"
+                  }
+                ],
+                "event_audit": {
+                  "intervals": 750,
+                  "critical_point_intervals": 252,
+                  "interior_crossings_without_endpoint_sign_change": 0,
+                  "nonsimple_or_roundoff_unresolved_intervals": 0,
+                  "maximum_cubic_roots_per_interval": 1,
+                  "all_intervals_inspected": true,
+                  "exact_ODE_event_completeness_certified": false
+                },
+                "rest_drift_mV": 103.96268898240359,
+                "gate_range": [
+                  0.01354035557901755,
+                  0.9936420320685314
+                ],
+                "data": "hh-pulse-0p04.npz"
+              },
+              {
+                "id": "hh-pulse-0p02",
+                "h": 0.02,
+                "errors": [
+                  0.00196329020079844,
+                  8.42501571507448e-07,
+                  2.31642003301058e-07,
+                  2.6283570375706944e-07
+                ],
+                "events": [
+                  {
+                    "time_ms": 12.270536090023816,
+                    "bracket": [
+                      12.26,
+                      12.280000000000001
+                    ],
+                    "accepted_interval": [
+                      12.26,
+                      12.280000000000001
+                    ],
+                    "slope": 282.9560649288312,
+                    "simple_upward": true,
+                    "polynomial_evaluations": 28,
+                    "endpoint_rhs": "fresh accepted endpoint or reused same-current accepted derivative",
+                    "model": "accepted-interval cubic Hermite, not an exact-ODE event certificate"
+                  }
+                ],
+                "event_audit": {
+                  "intervals": 1500,
+                  "critical_point_intervals": 502,
+                  "interior_crossings_without_endpoint_sign_change": 0,
+                  "nonsimple_or_roundoff_unresolved_intervals": 0,
+                  "maximum_cubic_roots_per_interval": 1,
+                  "all_intervals_inspected": true,
+                  "exact_ODE_event_completeness_certified": false
+                },
+                "rest_drift_mV": 103.99070027978291,
+                "gate_range": [
+                  0.013539472329901554,
+                  0.9936425561498745
+                ],
+                "data": "hh-pulse-0p02.npz"
+              },
+              {
+                "id": "hh-pulse-0p01",
+                "h": 0.01,
+                "errors": [
+                  0.00010511156826709112,
+                  5.371951350419124e-08,
+                  1.519693548779344e-08,
+                  1.6999222141045323e-08
+                ],
+                "events": [
+                  {
+                    "time_ms": 12.270536246113478,
+                    "bracket": [
+                      12.27,
+                      12.280000000000001
+                    ],
+                    "accepted_interval": [
+                      12.27,
+                      12.280000000000001
+                    ],
+                    "slope": 282.9666736962941,
+                    "simple_upward": true,
+                    "polynomial_evaluations": 27,
+                    "endpoint_rhs": "fresh accepted endpoint or reused same-current accepted derivative",
+                    "model": "accepted-interval cubic Hermite, not an exact-ODE event certificate"
+                  }
+                ],
+                "event_audit": {
+                  "intervals": 3000,
+                  "critical_point_intervals": 1002,
+                  "interior_crossings_without_endpoint_sign_change": 0,
+                  "nonsimple_or_roundoff_unresolved_intervals": 0,
+                  "maximum_cubic_roots_per_interval": 1,
+                  "all_intervals_inspected": true,
+                  "exact_ODE_event_completeness_certified": false
+                },
+                "rest_drift_mV": 104.01748600208015,
+                "gate_range": [
+                  0.013539469102569887,
+                  0.993642589636883
+                ],
+                "data": "hh-pulse-0p01.npz"
+              }
+            ]
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/hodgkin-huxley-controls/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology-ode-controls/#hodgkin-huxley-controls",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology-ode-controls/#hodgkin-huxley-controls"
+          }
+        }
+      ]
+    },
+    {
+      "group": "biology-space-controls",
+      "case_ids": [
+        "fisher-kpp-special-front",
+        "schnakenberg-2d-boundary-modes",
+        "keller-segel-forced-flux"
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/",
+      "code_edition": "2026-11-25",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/common.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/fisher.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/schnakenberg.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/keller_segel.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/test_models.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-biology-space-controls-2026-11-25",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/atlas-biology-space-controls-2026-11-25.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/verification.json",
+      "code_archive_sha256": "8abffcd65c0fc14eb1a346dba17e70097e2dc8806b348e114fc449b4fe0e0419",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/results/result.json",
+      "passed_tests": 11,
+      "examples": [
+        {
+          "id": "fisher-kpp-special-front",
+          "method_ids": [
+            "ssprk33",
+            "rk45"
+          ],
+          "title": {
+            "ja": "Fisher–KPP：特殊波速の厳密前線",
+            "en": "Fisher–KPP: a special-speed exact front"
+          },
+          "summary": {
+            "ja": "波形・位置・格子誤差・時間誤差・有限領域の影響を分けます。",
+            "en": "Separate profile, phase, grid, time and finite-boundary errors."
+          },
+          "assumptions": {
+            "ja": "D=r=1、T=1。Ablowitz–Zeppetella型の特殊波速5/√6、L=12の空間・時間系列、定数端点L=6/12/24の境界比較を固定します。",
+            "en": "Use D=r=1,T=1 and the special speed5/√6. Fix spatial/time series on L12 and constant-endpoint boundary rows at L6/12/24."
+          },
+          "algorithm": {
+            "ja": "2次中心差分とSSPRK3で計算し、厳密Dirichlet値を各段の時刻で与えます。時間誤差は同じ95未知数の半離散ODE参照と比較します。",
+            "en": "Use centered second-order differences and SSPRK3 with exact Dirichlet values at every stage. Compare time errors to an independent reference for the same95-unknown semidiscreteODE."
+          },
+          "validation": {
+            "ja": "厳密波形と1/4等値線、同一格子の時間収束、全域と中央領域の境界誤差を別保存します。実数算術の離散障壁と、実測した浮動小数点の余裕を区別します。",
+            "en": "Save exact-profile and quarter-contour errors, same-grid time convergence and full/core boundary errors. Distinguish a real-arithmetic discrete barrier from the observed floating-point margin."
+          },
+          "limits": {
+            "ja": "特殊前線を一般の最小速度2の前線と同一視しません。急減衰初期値からの速度選択、長時間伝播、機械誤差込みの厳密障壁証明は対象外です。",
+            "en": "The special front is distinct from the minimum linear speed2. This is not a steep-data speed-selection study, long-time propagation result or certified machine-error barrier proof."
+          },
+          "domains": [
+            "biology"
+          ],
+          "code_files": [
+            "run.py",
+            "common.py",
+            "fisher.py"
+          ],
+          "reference_files": [
+            "PROTOCOL.md",
+            "source-reading.json",
+            "acceptance.json"
+          ],
+          "references": [
+            {
+              "id": "ablowitz-zeppetella1979",
+              "title": "Ablowitz–Zeppetella(1979), Explicit solutions of Fisher’s equation for a special wave speed",
+              "url": "https://doi.org/10.1007/BF02462380",
+              "year": 1979,
+              "year_role": "publication",
+              "review_level": "selected-primary-or-bibliographic-see-provenance",
+              "review": {
+                "ja": "source-reading.jsonに実際の読取範囲と未読部分を記録。原著の全式・全図の再現とは主張しません。",
+                "en": "Actual selected read scopes and unread limits are recorded in source-reading.json; no full original-paper equation/figure reproduction claim."
+              }
+            }
+          ],
+          "additional_figures": [
+            {
+              "file": "fisher-kpp-special-front-diagnostics.png",
+              "caption": {
+                "ja": "精度・参照・統計の実測値と未達目標を分けて表示します。",
+                "en": "Separate actual accuracy,reference and statistical measurements,including unmet targets."
+              }
+            }
+          ],
+          "formulas": [
+            "u_t=u_{xx}+u(1-u)",
+            "u(x,t)=[1+\\exp((x-5t/\\sqrt6)/\\sqrt6)]^{-2}"
+          ],
+          "measured": {
+            "id": "fisher-kpp-special-front",
+            "passed": true,
+            "checks": {
+              "Fisher/exact-PDE": true,
+              "Fisher/wrong-special-speed-detected": true,
+              "Fisher/finite-space/0.5": true,
+              "Fisher/finite-space/0.25": true,
+              "Fisher/finite-space/0.125": true,
+              "Fisher/semidiscrete-reference": true
+            },
+            "metrics": {
+              "fixed_records": 11,
+              "Fisher/space-finest/actual": 9.239320837961529e-06,
+              "Fisher/space-order/actual": 1.9958436278085308,
+              "Fisher/phase/actual": 0.0002657675674280213,
+              "Fisher/time-order/actual": 3.0607173908690903,
+              "Fisher/time-finest/actual": 1.8780066390888805e-10,
+              "Fisher/observed-boundary-margin/observed_margin": 9.999999795441408e-05
+            },
+            "records": [
+              {
+                "id": "fisher-components",
+                "special_speed": 2.041241452319315,
+                "minimum_linear_speed": 2.0,
+                "same_profile_speed2_not_exact": true,
+                "real_arithmetic_boundary_barrier": "2exp(sigma-18), sigma=1+128(cosh(.25)-1)<6 -> <1e-4",
+                "floating_point_certificate": false,
+                "barrier_scope": "L12vsL24,constantends,|x|<=3,real discrete maximum principle",
+                "data": null
+              },
+              {
+                "id": "fisher-space-0p5",
+                "h": 0.5,
+                "steps": 80,
+                "Linf": 0.00014732589111010608,
+                "quarter_contour": 2.041867208238213,
+                "min": 5.474568235775531e-05,
+                "max": 0.9935521970915635,
+                "Euler_monotonicity_bound": 0.1125,
+                "data": "fisher-space-0p5.npz"
+              },
+              {
+                "id": "fisher-space-0p25",
+                "h": 0.25,
+                "steps": 320,
+                "Linf": 3.685096347005867e-05,
+                "quarter_contour": 2.0417896707895355,
+                "min": 5.474568235775531e-05,
+                "max": 0.9935521970915635,
+                "Euler_monotonicity_bound": 0.10312500000000001,
+                "data": "fisher-space-0p25.npz"
+              },
+              {
+                "id": "fisher-space-0p125",
+                "h": 0.125,
+                "steps": 1280,
+                "Linf": 9.239320837961529e-06,
+                "quarter_contour": 2.041507219886743,
+                "min": 5.474568235775531e-05,
+                "max": 0.9935521970915635,
+                "Euler_monotonicity_bound": 0.10078125,
+                "data": "fisher-space-0p125.npz"
+              },
+              {
+                "id": "fisher-time-reference",
+                "qualified": true,
+                "spread": 2.886579864025407e-15,
+                "solvers": [
+                  {
+                    "method": "DP54",
+                    "accepted": 402,
+                    "rejected": 0,
+                    "nfev": 2814,
+                    "rtol": 1e-11,
+                    "atol": 1e-13,
+                    "complete": true
+                  },
+                  {
+                    "method": "DP54",
+                    "accepted": 561,
+                    "rejected": 0,
+                    "nfev": 3927,
+                    "rtol": 1e-13,
+                    "atol": 1e-15,
+                    "complete": true
+                  }
+                ],
+                "scope": "The SAME95interior-nodeMOL, not continuumexactfront",
+                "data": "fisher-time-reference.npz"
+              },
+              {
+                "id": "fisher-time-100",
+                "steps": 100,
+                "dt": 0.01,
+                "same_MOL_error": 1.3592351688629378e-08,
+                "data": "fisher-time-100.npz"
+              },
+              {
+                "id": "fisher-time-200",
+                "steps": 200,
+                "dt": 0.005,
+                "same_MOL_error": 1.566985097234408e-09,
+                "data": "fisher-time-200.npz"
+              },
+              {
+                "id": "fisher-time-400",
+                "steps": 400,
+                "dt": 0.0025,
+                "same_MOL_error": 1.8780066390888805e-10,
+                "data": "fisher-time-400.npz"
+              },
+              {
+                "id": "fisher-boundary-6",
+                "L": 6,
+                "h": 0.125,
+                "steps": 1280,
+                "core_error": 0.0026663312871475497,
+                "full_error": 0.15263532851013306,
+                "initial_boundary_mismatch": [
+                  0.15263532851013306,
+                  0.006316414121400317
+                ],
+                "data": "fisher-boundary-6.npz"
+              },
+              {
+                "id": "fisher-boundary-12",
+                "L": 12,
+                "h": 0.125,
+                "steps": 1280,
+                "core_error": 9.239320838239085e-06,
+                "full_error": 0.014743319374636132,
+                "initial_boundary_mismatch": [
+                  0.014743319374636132,
+                  5.474568235775531e-05
+                ],
+                "data": "fisher-boundary-12.npz"
+              },
+              {
+                "id": "fisher-boundary-24",
+                "L": 24,
+                "h": 0.125,
+                "steps": 1280,
+                "core_error": 9.239320837961529e-06,
+                "full_error": 0.0001111205249660907,
+                "initial_boundary_mismatch": [
+                  0.0001111205249660907,
+                  3.0871142904547678e-09
+                ],
+                "data": "fisher-boundary-24.npz"
+              }
+            ]
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fisher-kpp-special-front/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology-space-controls/#fisher-kpp-special-front",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology-space-controls/#fisher-kpp-special-front"
+          }
+        },
+        {
+          "id": "schnakenberg-2d-boundary-modes",
+          "method_ids": [
+            "crank-nicolson",
+            "strang-splitting",
+            "rk45"
+          ],
+          "title": {
+            "ja": "Schnakenberg：2D境界と初期モード",
+            "en": "Schnakenberg:2D boundaries and initial modes"
+          },
+          "summary": {
+            "ja": "2つのNeumann摂動とDirichlet摂動を独立な非線形Galerkin参照と比較します。",
+            "en": "Compare two Neumann perturbations and a Dirichlet perturbation against nonlinear Galerkin references."
+          },
+          "assumptions": {
+            "ja": "[0,2π]²、T=2、a=0.1,b=0.9,Du=0.01,Dv=1。平衡(1,0.9)のまわりで3初期値と12/24/48セル、一定の非周期境界を使います。",
+            "en": "On[0,2π]² toT2,use a.1,b.9,Du.01,Dv1. Compare three perturbations of(1,.9),12/24/48cell grids and fixed nonperiodic boundary conditions."
+          },
+          "algorithm": {
+            "ja": "セル平均のCN拡散と局所陰的中点反応をStrang分割します。独立参照は正規直交sin/cos Galerkin、K12/18,Q96/192と2許容誤差の4列を全初期値で残します。 元のDirichlet K12/18参照は初回の相対資格基準を満たさなかったため、失敗を残し、D境界だけK24/32・Q128/192の4参照を追加します。",
+            "en": "Strang-split cell-averageCN diffusion and local implicit-midpoint reactions. Independent orthonormal sine/cosine Galerkin references retain four K12/18,Q96/192,tolerance rows for every initial condition. The original Dirichlet K12/18 reference failed its first relative qualification. Preserve that failure and add four D-only K24/32,Q128/192 reference actions."
+          },
+          "validation": {
+            "ja": "線形モードの連続・離散記号、角の面所有、平衡、物質収支を照合。K/Q/時間許容差感度を別に測り、参照が資格条件を満たさなければ精度・次数を未確定にします。 精度目標には、新しい細参照が同じ絶対・相対基準に合格した場合だけその参照を用います。旧参照の不合格を合格へ読み替えません。",
+            "en": "Check continuum/discrete linear symbols, corner-face ownership, equilibrium and mass ledgers. Separate K/Q/tolerance sensitivity; unqualified references leave related accuracy/order unresolved. Use the new finer reference for accuracy goals only after the same absolute/relative criteria pass; the original failed qualification is retained."
+          },
+          "limits": {
+            "ja": "短時間の小振幅・固定初期値です。一般的な模様選択、成長後の成熟パターン、原著図の再現は主張しません。有限の参照差を連続体誤差の厳密上界と呼びません。",
+            "en": "This short small-amplitude study does not establish general pattern selection, mature patterns or reproduction of original figures. Finite reference differences are not rigorous continuum error bounds."
+          },
+          "domains": [
+            "biology"
+          ],
+          "code_files": [
+            "run.py",
+            "common.py",
+            "schnakenberg.py"
+          ],
+          "reference_files": [
+            "PROTOCOL.md",
+            "source-reading.json",
+            "acceptance.json"
+          ],
+          "references": [
+            {
+              "id": "schnakenberg1979",
+              "title": "Schnakenberg(1979), Simple chemical reaction systems with limit cycle behaviour",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/537379/",
+              "year": 1979,
+              "year_role": "publication",
+              "review_level": "selected-primary-or-bibliographic-see-provenance",
+              "review": {
+                "ja": "source-reading.jsonに実際の読取範囲と未読部分を記録。原著の全式・全図の再現とは主張しません。",
+                "en": "Actual selected read scopes and unread limits are recorded in source-reading.json; no full original-paper equation/figure reproduction claim."
+              }
+            }
+          ],
+          "additional_figures": [
+            {
+              "file": "schnakenberg-2d-boundary-modes-diagnostics.png",
+              "caption": {
+                "ja": "精度・参照・統計の実測値と未達目標を分けて表示します。",
+                "en": "Separate actual accuracy,reference and statistical measurements,including unmet targets."
+              }
+            }
+          ],
+          "formulas": [
+            "u_t=.01\\Delta u+.1-u+u^2v,\\qquad v_t=\\Delta v+.9-u^2v"
+          ],
+          "measured": {
+            "id": "schnakenberg-2d-boundary-modes",
+            "passed": true,
+            "checks": {
+              "Schnakenberg/mode/N/1/1/12": true,
+              "Schnakenberg/exp/N/1/1/12/0.1": true,
+              "Schnakenberg/exp/N/1/1/12/0.5": true,
+              "Schnakenberg/exp/N/1/1/12/1.0": true,
+              "Schnakenberg/mode/N/1/1/24": true,
+              "Schnakenberg/exp/N/1/1/24/0.1": true,
+              "Schnakenberg/exp/N/1/1/24/0.5": true,
+              "Schnakenberg/exp/N/1/1/24/1.0": true,
+              "Schnakenberg/mode/N/1/1/48": true,
+              "Schnakenberg/exp/N/1/1/48/0.1": true,
+              "Schnakenberg/exp/N/1/1/48/0.5": true,
+              "Schnakenberg/exp/N/1/1/48/1.0": true,
+              "Schnakenberg/mode/N/4/2/12": true,
+              "Schnakenberg/exp/N/4/2/12/0.1": true,
+              "Schnakenberg/exp/N/4/2/12/0.5": true,
+              "Schnakenberg/exp/N/4/2/12/1.0": true,
+              "Schnakenberg/mode/N/4/2/24": true,
+              "Schnakenberg/exp/N/4/2/24/0.1": true,
+              "Schnakenberg/exp/N/4/2/24/0.5": true,
+              "Schnakenberg/exp/N/4/2/24/1.0": true,
+              "Schnakenberg/mode/N/4/2/48": true,
+              "Schnakenberg/exp/N/4/2/48/0.1": true,
+              "Schnakenberg/exp/N/4/2/48/0.5": true,
+              "Schnakenberg/exp/N/4/2/48/1.0": true,
+              "Schnakenberg/mode/N/3/1/12": true,
+              "Schnakenberg/exp/N/3/1/12/0.1": true,
+              "Schnakenberg/exp/N/3/1/12/0.5": true,
+              "Schnakenberg/exp/N/3/1/12/1.0": true,
+              "Schnakenberg/mode/N/3/1/24": true,
+              "Schnakenberg/exp/N/3/1/24/0.1": true,
+              "Schnakenberg/exp/N/3/1/24/0.5": true,
+              "Schnakenberg/exp/N/3/1/24/1.0": true,
+              "Schnakenberg/mode/N/3/1/48": true,
+              "Schnakenberg/exp/N/3/1/48/0.1": true,
+              "Schnakenberg/exp/N/3/1/48/0.5": true,
+              "Schnakenberg/exp/N/3/1/48/1.0": true,
+              "Schnakenberg/mode/D/1/1/12": true,
+              "Schnakenberg/exp/D/1/1/12/0.1": true,
+              "Schnakenberg/exp/D/1/1/12/0.5": true,
+              "Schnakenberg/exp/D/1/1/12/1.0": true,
+              "Schnakenberg/mode/D/1/1/24": true,
+              "Schnakenberg/exp/D/1/1/24/0.1": true,
+              "Schnakenberg/exp/D/1/1/24/0.5": true,
+              "Schnakenberg/exp/D/1/1/24/1.0": true,
+              "Schnakenberg/mode/D/1/1/48": true,
+              "Schnakenberg/exp/D/1/1/48/0.1": true,
+              "Schnakenberg/exp/D/1/1/48/0.5": true,
+              "Schnakenberg/exp/D/1/1/48/1.0": true,
+              "Schnakenberg/mode/D/4/2/12": true,
+              "Schnakenberg/exp/D/4/2/12/0.1": true,
+              "Schnakenberg/exp/D/4/2/12/0.5": true,
+              "Schnakenberg/exp/D/4/2/12/1.0": true,
+              "Schnakenberg/mode/D/4/2/24": true,
+              "Schnakenberg/exp/D/4/2/24/0.1": true,
+              "Schnakenberg/exp/D/4/2/24/0.5": true,
+              "Schnakenberg/exp/D/4/2/24/1.0": true,
+              "Schnakenberg/mode/D/4/2/48": true,
+              "Schnakenberg/exp/D/4/2/48/0.1": true,
+              "Schnakenberg/exp/D/4/2/48/0.5": true,
+              "Schnakenberg/exp/D/4/2/48/1.0": true,
+              "Schnakenberg/mode/D/3/1/12": true,
+              "Schnakenberg/exp/D/3/1/12/0.1": true,
+              "Schnakenberg/exp/D/3/1/12/0.5": true,
+              "Schnakenberg/exp/D/3/1/12/1.0": true,
+              "Schnakenberg/mode/D/3/1/24": true,
+              "Schnakenberg/exp/D/3/1/24/0.1": true,
+              "Schnakenberg/exp/D/3/1/24/0.5": true,
+              "Schnakenberg/exp/D/3/1/24/1.0": true,
+              "Schnakenberg/mode/D/3/1/48": true,
+              "Schnakenberg/exp/D/3/1/48/0.1": true,
+              "Schnakenberg/exp/D/3/1/48/0.5": true,
+              "Schnakenberg/exp/D/3/1/48/1.0": true,
+              "Schnakenberg/equilibrium-face-zero": true,
+              "Schnakenberg/constant-equilibrium/N": true,
+              "Schnakenberg/constant-equilibrium/D": true,
+              "Schnakenberg/wrong-boundary-control": true,
+              "Schnakenberg/corner-doublecount-control": true,
+              "Schnakenberg/linear-action-count": true,
+              "Schnakenberg/ledger/N-mode42/12": true,
+              "Schnakenberg/ledger/N-mode42/24": true,
+              "Schnakenberg/ledger/N-mode42/48": true,
+              "Schnakenberg/reference/N-mode42": true,
+              "Schnakenberg/ledger/N-mixed/12": true,
+              "Schnakenberg/ledger/N-mixed/24": true,
+              "Schnakenberg/ledger/N-mixed/48": true,
+              "Schnakenberg/reference/N-mixed": true,
+              "Schnakenberg/ledger/D-mode42/12": true,
+              "Schnakenberg/ledger/D-mode42/24": true,
+              "Schnakenberg/ledger/D-mode42/48": true,
+              "Schnakenberg/reference/D-mode42": true
+            },
+            "metrics": {
+              "fixed_records": 33,
+              "Schnakenberg/positivity/N-mode42/12/minimum": 0.8880521241619382,
+              "Schnakenberg/positivity/N-mode42/24/minimum": 0.8860615561401685,
+              "Schnakenberg/positivity/N-mode42/48/minimum": 0.8855372535923153,
+              "Schnakenberg/space-finest/N-mode42/actual": 8.250442438972883e-05,
+              "Schnakenberg/space-order/N-mode42/actual": 1.944655350128315,
+              "Schnakenberg/positivity/N-mixed/12/minimum": 0.8798143344957898,
+              "Schnakenberg/positivity/N-mixed/24/minimum": 0.8771054043233121,
+              "Schnakenberg/positivity/N-mixed/48/minimum": 0.8763952220795853,
+              "Schnakenberg/space-finest/N-mixed/actual": 0.00011769804580841203,
+              "Schnakenberg/space-order/N-mixed/actual": 1.9477700373628166,
+              "Schnakenberg/time-contamination/actual": 1.1208580182516432e-07,
+              "Schnakenberg/positivity/D-mode42/12/minimum": 0.8862155577223321,
+              "Schnakenberg/positivity/D-mode42/24/minimum": 0.8860670448524426,
+              "Schnakenberg/positivity/D-mode42/48/minimum": 0.8855435379971976,
+              "Schnakenberg/space-finest/D-mode42/actual": 8.370124740819662e-05,
+              "Schnakenberg/space-order/D-mode42/actual": 1.9463235349282928
+            },
+            "records": [
+              {
+                "id": "schnakenberg-components",
+                "linear_actions": [
+                  {
+                    "bc": "N",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 12,
+                    "time": 0.1,
+                    "symbol_error": 3.1086244689504383e-15,
+                    "exponential_error": 4.440892098500626e-16
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 12,
+                    "time": 0.5,
+                    "symbol_error": 3.1086244689504383e-15,
+                    "exponential_error": 2.6645352591003757e-15
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 12,
+                    "time": 1.0,
+                    "symbol_error": 3.1086244689504383e-15,
+                    "exponential_error": 5.995204332975845e-15
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 24,
+                    "time": 0.1,
+                    "symbol_error": 1.1213252548714081e-14,
+                    "exponential_error": 2.220446049250313e-16
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 24,
+                    "time": 0.5,
+                    "symbol_error": 1.1213252548714081e-14,
+                    "exponential_error": 2.6645352591003757e-15
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 24,
+                    "time": 1.0,
+                    "symbol_error": 1.1213252548714081e-14,
+                    "exponential_error": 5.995204332975845e-15
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 48,
+                    "time": 0.1,
+                    "symbol_error": 5.773159728050814e-14,
+                    "exponential_error": 4.440892098500626e-16
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 48,
+                    "time": 0.5,
+                    "symbol_error": 5.773159728050814e-14,
+                    "exponential_error": 2.6645352591003757e-15
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 48,
+                    "time": 1.0,
+                    "symbol_error": 5.773159728050814e-14,
+                    "exponential_error": 5.995204332975845e-15
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 12,
+                    "time": 0.1,
+                    "symbol_error": 5.329070518200751e-15,
+                    "exponential_error": 4.440892098500626e-16
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 12,
+                    "time": 0.5,
+                    "symbol_error": 5.329070518200751e-15,
+                    "exponential_error": 5.995204332975845e-15
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 12,
+                    "time": 1.0,
+                    "symbol_error": 5.329070518200751e-15,
+                    "exponential_error": 1.509903313490213e-14
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 24,
+                    "time": 0.1,
+                    "symbol_error": 2.375877272697835e-14,
+                    "exponential_error": 6.661338147750939e-16
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 24,
+                    "time": 0.5,
+                    "symbol_error": 2.375877272697835e-14,
+                    "exponential_error": 3.1086244689504383e-15
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 24,
+                    "time": 1.0,
+                    "symbol_error": 2.375877272697835e-14,
+                    "exponential_error": 8.43769498715119e-15
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 48,
+                    "time": 0.1,
+                    "symbol_error": 1.8340884366807586e-13,
+                    "exponential_error": 4.440892098500626e-16
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 48,
+                    "time": 0.5,
+                    "symbol_error": 1.8340884366807586e-13,
+                    "exponential_error": 4.440892098500626e-15
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 48,
+                    "time": 1.0,
+                    "symbol_error": 1.8340884366807586e-13,
+                    "exponential_error": 1.199040866595169e-14
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 12,
+                    "time": 0.1,
+                    "symbol_error": 5.773159728050814e-15,
+                    "exponential_error": 8.881784197001252e-16
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 12,
+                    "time": 0.5,
+                    "symbol_error": 5.773159728050814e-15,
+                    "exponential_error": 6.439293542825908e-15
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 12,
+                    "time": 1.0,
+                    "symbol_error": 5.773159728050814e-15,
+                    "exponential_error": 1.5987211554602254e-14
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 24,
+                    "time": 0.1,
+                    "symbol_error": 3.58046925441613e-14,
+                    "exponential_error": 6.661338147750939e-16
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 24,
+                    "time": 0.5,
+                    "symbol_error": 3.58046925441613e-14,
+                    "exponential_error": 6.439293542825908e-15
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 24,
+                    "time": 1.0,
+                    "symbol_error": 3.58046925441613e-14,
+                    "exponential_error": 1.5987211554602254e-14
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 48,
+                    "time": 0.1,
+                    "symbol_error": 1.603162047558726e-13,
+                    "exponential_error": 4.440892098500626e-16
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 48,
+                    "time": 0.5,
+                    "symbol_error": 1.603162047558726e-13,
+                    "exponential_error": 6.439293542825908e-15
+                  },
+                  {
+                    "bc": "N",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 48,
+                    "time": 1.0,
+                    "symbol_error": 1.603162047558726e-13,
+                    "exponential_error": 1.5987211554602254e-14
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 12,
+                    "time": 0.1,
+                    "symbol_error": 3.733124920302089e-15,
+                    "exponential_error": 4.440892098500626e-16
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 12,
+                    "time": 0.5,
+                    "symbol_error": 3.733124920302089e-15,
+                    "exponential_error": 2.6645352591003757e-15
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 12,
+                    "time": 1.0,
+                    "symbol_error": 3.733124920302089e-15,
+                    "exponential_error": 5.995204332975845e-15
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 24,
+                    "time": 0.1,
+                    "symbol_error": 1.0380585280245214e-14,
+                    "exponential_error": 2.220446049250313e-16
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 24,
+                    "time": 0.5,
+                    "symbol_error": 1.0380585280245214e-14,
+                    "exponential_error": 2.6645352591003757e-15
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 24,
+                    "time": 1.0,
+                    "symbol_error": 1.0380585280245214e-14,
+                    "exponential_error": 5.995204332975845e-15
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 48,
+                    "time": 0.1,
+                    "symbol_error": 5.861977570020827e-14,
+                    "exponential_error": 4.440892098500626e-16
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 48,
+                    "time": 0.5,
+                    "symbol_error": 5.861977570020827e-14,
+                    "exponential_error": 2.6645352591003757e-15
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      1,
+                      1
+                    ],
+                    "N": 48,
+                    "time": 1.0,
+                    "symbol_error": 5.861977570020827e-14,
+                    "exponential_error": 5.995204332975845e-15
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 12,
+                    "time": 0.1,
+                    "symbol_error": 1.1102230246251565e-14,
+                    "exponential_error": 4.440892098500626e-16
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 12,
+                    "time": 0.5,
+                    "symbol_error": 1.1102230246251565e-14,
+                    "exponential_error": 5.995204332975845e-15
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 12,
+                    "time": 1.0,
+                    "symbol_error": 1.1102230246251565e-14,
+                    "exponential_error": 1.509903313490213e-14
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 24,
+                    "time": 0.1,
+                    "symbol_error": 2.353672812205332e-14,
+                    "exponential_error": 6.661338147750939e-16
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 24,
+                    "time": 0.5,
+                    "symbol_error": 2.353672812205332e-14,
+                    "exponential_error": 3.1086244689504383e-15
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 24,
+                    "time": 1.0,
+                    "symbol_error": 2.353672812205332e-14,
+                    "exponential_error": 8.43769498715119e-15
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 48,
+                    "time": 0.1,
+                    "symbol_error": 1.9828583219805296e-13,
+                    "exponential_error": 4.440892098500626e-16
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 48,
+                    "time": 0.5,
+                    "symbol_error": 1.9828583219805296e-13,
+                    "exponential_error": 4.440892098500626e-15
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      4,
+                      2
+                    ],
+                    "N": 48,
+                    "time": 1.0,
+                    "symbol_error": 1.9828583219805296e-13,
+                    "exponential_error": 1.199040866595169e-14
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 12,
+                    "time": 0.1,
+                    "symbol_error": 8.548717289613705e-15,
+                    "exponential_error": 8.881784197001252e-16
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 12,
+                    "time": 0.5,
+                    "symbol_error": 8.548717289613705e-15,
+                    "exponential_error": 6.439293542825908e-15
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 12,
+                    "time": 1.0,
+                    "symbol_error": 8.548717289613705e-15,
+                    "exponential_error": 1.5987211554602254e-14
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 24,
+                    "time": 0.1,
+                    "symbol_error": 2.2593038551121936e-14,
+                    "exponential_error": 6.661338147750939e-16
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 24,
+                    "time": 0.5,
+                    "symbol_error": 2.2593038551121936e-14,
+                    "exponential_error": 6.439293542825908e-15
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 24,
+                    "time": 1.0,
+                    "symbol_error": 2.2593038551121936e-14,
+                    "exponential_error": 1.5987211554602254e-14
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 48,
+                    "time": 0.1,
+                    "symbol_error": 1.63202784619898e-13,
+                    "exponential_error": 4.440892098500626e-16
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 48,
+                    "time": 0.5,
+                    "symbol_error": 1.63202784619898e-13,
+                    "exponential_error": 6.439293542825908e-15
+                  },
+                  {
+                    "bc": "D",
+                    "mode": [
+                      3,
+                      1
+                    ],
+                    "N": 48,
+                    "time": 1.0,
+                    "symbol_error": 1.63202784619898e-13,
+                    "exponential_error": 1.5987211554602254e-14
+                  }
+                ],
+                "matrix_actions_total": 216,
+                "data": null
+              },
+              {
+                "id": "schnak-N-mode42-N12",
+                "ic": "N-mode42",
+                "N": 12,
+                "steps": 1600,
+                "dt": 0.00125,
+                "minimum": 0.8880521241619382,
+                "max_Newton_residual": 1.1143904267256477e-16,
+                "mass_balance_residual": [
+                  1.5122451901827816e-15,
+                  -1.1150802503578916e-14
+                ],
+                "mass_scale": [
+                  40.48207834452456,
+                  36.537342941016455
+                ],
+                "integrated_boundary_flux": [
+                  0.0,
+                  0.0
+                ],
+                "integrated_reaction": [
+                  0.0036607401671331784,
+                  -0.006767097094769033
+                ],
+                "data": "schnak-N-mode42-N12.npz"
+              },
+              {
+                "id": "schnak-N-mode42-N24",
+                "ic": "N-mode42",
+                "N": 24,
+                "steps": 1600,
+                "dt": 0.00125,
+                "minimum": 0.8860615561401685,
+                "max_Newton_residual": 1.1143904267256477e-16,
+                "mass_balance_residual": [
+                  5.62310614737882e-15,
+                  1.42785089307651e-14
+                ],
+                "mass_scale": [
+                  40.4828964273337,
+                  36.538787010464794
+                ],
+                "integrated_boundary_flux": [
+                  0.0,
+                  0.0
+                ],
+                "integrated_reaction": [
+                  0.004478822976275926,
+                  -0.008211166543105787
+                ],
+                "data": "schnak-N-mode42-N24.npz"
+              },
+              {
+                "id": "schnak-N-mode42-N48",
+                "ic": "N-mode42",
+                "N": 48,
+                "steps": 1600,
+                "dt": 0.00125,
+                "minimum": 0.8855372535923153,
+                "max_Newton_residual": 1.1143904267256477e-16,
+                "mass_balance_residual": [
+                  1.0853297427448894e-14,
+                  -5.377642775528102e-16
+                ],
+                "mass_scale": [
+                  40.48311824457079,
+                  36.539177617282824
+                ],
+                "integrated_boundary_flux": [
+                  0.0,
+                  0.0
+                ],
+                "integrated_reaction": [
+                  0.0047006402133680505,
+                  -0.008601773361135118
+                ],
+                "data": "schnak-N-mode42-N48.npz"
+              },
+              {
+                "id": "schnak-ref-N-mode42-K12-Q96-t1e-10",
+                "K": 12,
+                "Q": 96,
+                "Gram_error": 4.958669244444029e-15,
+                "method": "DP54",
+                "accepted": 98,
+                "rejected": 0,
+                "nfev": 686,
+                "rtol": 1e-10,
+                "atol": 1e-12,
+                "complete": true,
+                "data": "schnak-ref-N-mode42-K12-Q96-t1e-10.npz"
+              },
+              {
+                "id": "schnak-ref-N-mode42-K18-Q96-t1e-10",
+                "K": 18,
+                "Q": 96,
+                "Gram_error": 5.755627031595042e-15,
+                "method": "DP54",
+                "accepted": 101,
+                "rejected": 2,
+                "nfev": 721,
+                "rtol": 1e-10,
+                "atol": 1e-12,
+                "complete": true,
+                "data": "schnak-ref-N-mode42-K18-Q96-t1e-10.npz"
+              },
+              {
+                "id": "schnak-ref-N-mode42-K18-Q192-t1e-10",
+                "K": 18,
+                "Q": 192,
+                "Gram_error": 2.565855440668069e-14,
+                "method": "DP54",
+                "accepted": 101,
+                "rejected": 1,
+                "nfev": 714,
+                "rtol": 1e-10,
+                "atol": 1e-12,
+                "complete": true,
+                "data": "schnak-ref-N-mode42-K18-Q192-t1e-10.npz"
+              },
+              {
+                "id": "schnak-ref-N-mode42-K18-Q192-t1e-12",
+                "K": 18,
+                "Q": 192,
+                "Gram_error": 2.565855440668069e-14,
+                "method": "DP54",
+                "accepted": 234,
+                "rejected": 0,
+                "nfev": 1638,
+                "rtol": 1e-12,
+                "atol": 1e-14,
+                "complete": true,
+                "data": "schnak-ref-N-mode42-K18-Q192-t1e-12.npz"
+              },
+              {
+                "id": "schnak-summary-N-mode42",
+                "reference_deltas": [
+                  7.613877928136503e-07,
+                  6.505906924303417e-14,
+                  2.4635848916432224e-13
+                ],
+                "reference_sum": 7.613881042312087e-07,
+                "reference_qualified": true,
+                "finest_denominator": 8.250442438972883e-05,
+                "zero_floor": 1e-12,
+                "grid_errors": [
+                  0.0010844810056118703,
+                  0.00031759732092773163,
+                  8.250442438972883e-05
+                ],
+                "spatial_order": 1.944655350128315,
+                "reference_role": "original4-rowreference",
+                "reference_scope": "Finite modal/quadrature/tolerance sensitivity indicators, not rigorous continuum bounds",
+                "data": "schnak-summary-N-mode42.npz"
+              },
+              {
+                "id": "schnak-N-mixed-N12",
+                "ic": "N-mixed",
+                "N": 12,
+                "steps": 1600,
+                "dt": 0.00125,
+                "minimum": 0.8798143344957898,
+                "max_Newton_residual": 1.1130012926921506e-16,
+                "mass_balance_residual": [
+                  -1.4127154307486123e-14,
+                  4.133846043252731e-15
+                ],
+                "mass_scale": [
+                  40.48189852416706,
+                  36.53710378394009
+                ],
+                "integrated_boundary_flux": [
+                  0.0,
+                  0.0
+                ],
+                "integrated_reaction": [
+                  0.0034809198096325262,
+                  -0.006527940018398097
+                ],
+                "data": "schnak-N-mixed-N12.npz"
+              },
+              {
+                "id": "schnak-N-mixed-N24",
+                "ic": "N-mixed",
+                "N": 24,
+                "steps": 1600,
+                "dt": 0.00125,
+                "minimum": 0.8771054043233121,
+                "max_Newton_residual": 1.1143904267256477e-16,
+                "mass_balance_residual": [
+                  1.222459633520856e-14,
+                  -7.504413757075667e-15
+                ],
+                "mass_scale": [
+                  40.482759046795586,
+                  36.53863057796566
+                ],
+                "integrated_boundary_flux": [
+                  0.0,
+                  0.0
+                ],
+                "integrated_reaction": [
+                  0.004341442438162911,
+                  -0.008054734043973211
+                ],
+                "data": "schnak-N-mixed-N24.npz"
+              },
+              {
+                "id": "schnak-N-mixed-N48",
+                "ic": "N-mixed",
+                "N": 48,
+                "steps": 1600,
+                "dt": 0.00125,
+                "minimum": 0.8763952220795853,
+                "max_Newton_residual": 1.1143904267256477e-16,
+                "mass_balance_residual": [
+                  -6.296178856057821e-15,
+                  1.5456386170953351e-15
+                ],
+                "mass_scale": [
+                  40.4829923295782,
+                  36.53904338692758
+                ],
+                "integrated_boundary_flux": [
+                  0.0,
+                  0.0
+                ],
+                "integrated_reaction": [
+                  0.0045747252207767,
+                  -0.008467543005893799
+                ],
+                "data": "schnak-N-mixed-N48.npz"
+              },
+              {
+                "id": "schnak-ref-N-mixed-K12-Q96-t1e-10",
+                "K": 12,
+                "Q": 96,
+                "Gram_error": 4.958669244444029e-15,
+                "method": "DP54",
+                "accepted": 99,
+                "rejected": 0,
+                "nfev": 693,
+                "rtol": 1e-10,
+                "atol": 1e-12,
+                "complete": true,
+                "data": "schnak-ref-N-mixed-K12-Q96-t1e-10.npz"
+              },
+              {
+                "id": "schnak-ref-N-mixed-K18-Q96-t1e-10",
+                "K": 18,
+                "Q": 96,
+                "Gram_error": 5.755627031595042e-15,
+                "method": "DP54",
+                "accepted": 102,
+                "rejected": 1,
+                "nfev": 721,
+                "rtol": 1e-10,
+                "atol": 1e-12,
+                "complete": true,
+                "data": "schnak-ref-N-mixed-K18-Q96-t1e-10.npz"
+              },
+              {
+                "id": "schnak-ref-N-mixed-K18-Q192-t1e-10",
+                "K": 18,
+                "Q": 192,
+                "Gram_error": 2.565855440668069e-14,
+                "method": "DP54",
+                "accepted": 102,
+                "rejected": 1,
+                "nfev": 721,
+                "rtol": 1e-10,
+                "atol": 1e-12,
+                "complete": true,
+                "data": "schnak-ref-N-mixed-K18-Q192-t1e-10.npz"
+              },
+              {
+                "id": "schnak-ref-N-mixed-K18-Q192-t1e-12",
+                "K": 18,
+                "Q": 192,
+                "Gram_error": 2.565855440668069e-14,
+                "method": "DP54",
+                "accepted": 236,
+                "rejected": 0,
+                "nfev": 1652,
+                "rtol": 1e-12,
+                "atol": 1e-14,
+                "complete": true,
+                "data": "schnak-ref-N-mixed-K18-Q192-t1e-12.npz"
+              },
+              {
+                "id": "schnak-summary-N-mixed",
+                "reference_deltas": [
+                  1.0061035745634328e-06,
+                  3.83026943495679e-14,
+                  4.289901767151605e-13
+                ],
+                "reference_sum": 1.0061040418563039e-06,
+                "reference_qualified": true,
+                "finest_denominator": 0.00011769804580841203,
+                "zero_floor": 1e-12,
+                "grid_errors": [
+                  0.0015678188483445599,
+                  0.00045405290439126667,
+                  0.00011769804580841203
+                ],
+                "spatial_order": 1.9477700373628166,
+                "reference_role": "original4-rowreference",
+                "reference_scope": "Finite modal/quadrature/tolerance sensitivity indicators, not rigorous continuum bounds",
+                "data": "schnak-summary-N-mixed.npz"
+              },
+              {
+                "id": "schnak-time-200",
+                "steps": 400,
+                "dt": 0.005,
+                "minimum": 0.8763965338878951,
+                "max_Newton_residual": 1.1268926330271212e-16,
+                "mass_balance_residual": [
+                  -4.154662724964453e-16,
+                  -6.7758298971654085e-15
+                ],
+                "mass_scale": [
+                  40.482991803033464,
+                  36.53904245107021
+                ],
+                "integrated_boundary_flux": [
+                  0.0,
+                  0.0
+                ],
+                "integrated_reaction": [
+                  0.004574198676039447,
+                  -0.00846660714852054
+                ],
+                "data": "schnak-time-200.npz"
+              },
+              {
+                "id": "schnak-time-400",
+                "steps": 800,
+                "dt": 0.0025,
+                "minimum": 0.8763954844494254,
+                "max_Newton_residual": 1.1185578288261389e-16,
+                "mass_balance_residual": [
+                  -6.315260814293566e-15,
+                  -6.331740687315346e-16
+                ],
+                "mass_scale": [
+                  40.482992224265146,
+                  36.53904319974951
+                ],
+                "integrated_boundary_flux": [
+                  0.0,
+                  0.0
+                ],
+                "integrated_reaction": [
+                  0.004574619907720665,
+                  -0.00846735582781769
+                ],
+                "data": "schnak-time-400.npz"
+              },
+              {
+                "id": "schnak-time-summary",
+                "errors_to_continuum_reference": [
+                  0.00011937928470340253,
+                  0.00011803430257639747,
+                  0.00011769804580841203
+                ],
+                "same_grid_pair_differences": [
+                  1.3449824467492988e-06,
+                  3.36257405475493e-07
+                ],
+                "observed_order": null,
+                "finest_time_indicator": 1.1208580182516432e-07,
+                "data": null
+              },
+              {
+                "id": "schnak-D-mode42-N12",
+                "ic": "D-mode42",
+                "N": 12,
+                "steps": 1600,
+                "dt": 0.00125,
+                "minimum": 0.8862155577223321,
+                "max_Newton_residual": 1.1130012926921506e-16,
+                "mass_balance_residual": [
+                  -1.258281673299777e-14,
+                  -2.3507237822961713e-14
+                ],
+                "mass_scale": [
+                  40.48368721856097,
+                  36.54327355643294
+                ],
+                "integrated_boundary_flux": [
+                  -2.7856976883969742e-05,
+                  0.0036001342953684025
+                ],
+                "integrated_reaction": [
+                  0.005241757226660534,
+                  -0.00909757821588442
+                ],
+                "data": "schnak-D-mode42-N12.npz"
+              },
+              {
+                "id": "schnak-D-mode42-N24",
+                "ic": "D-mode42",
+                "N": 24,
+                "steps": 1600,
+                "dt": 0.00125,
+                "minimum": 0.8860670448524426,
+                "max_Newton_residual": 1.1143904267256477e-16,
+                "mass_balance_residual": [
+                  4.272623921330876e-15,
+                  -8.217385105702135e-15
+                ],
+                "mass_scale": [
+                  40.48484332831696,
+                  36.546076124381784
+                ],
+                "integrated_boundary_flux": [
+                  -1.2247718017517128e-05,
+                  0.004433603689124673
+                ],
+                "integrated_reaction": [
+                  0.00641347624152124,
+                  -0.011066676770974242
+                ],
+                "data": "schnak-D-mode42-N24.npz"
+              },
+              {
+                "id": "schnak-D-mode42-N48",
+                "ic": "D-mode42",
+                "N": 48,
+                "steps": 1600,
+                "dt": 0.00125,
+                "minimum": 0.8855435379971976,
+                "max_Newton_residual": 1.1143904267256477e-16,
+                "mass_balance_residual": [
+                  9.75261538194161e-15,
+                  1.7034984534092246e-15
+                ],
+                "mass_scale": [
+                  40.48516700681382,
+                  36.54687745916411
+                ],
+                "integrated_boundary_flux": [
+                  -7.531580989803015e-06,
+                  0.004685081591690642
+                ],
+                "integrated_reaction": [
+                  0.00674187087540529,
+                  -0.011616533650727682
+                ],
+                "data": "schnak-D-mode42-N48.npz"
+              },
+              {
+                "id": "schnak-ref-D-mode42-K12-Q96-t1e-10",
+                "K": 12,
+                "Q": 96,
+                "Gram_error": 3.3306690738754696e-15,
+                "method": "DP54",
+                "accepted": 95,
+                "rejected": 0,
+                "nfev": 665,
+                "rtol": 1e-10,
+                "atol": 1e-12,
+                "complete": true,
+                "data": "schnak-ref-D-mode42-K12-Q96-t1e-10.npz"
+              },
+              {
+                "id": "schnak-ref-D-mode42-K18-Q96-t1e-10",
+                "K": 18,
+                "Q": 96,
+                "Gram_error": 3.9968028886505635e-15,
+                "method": "DP54",
+                "accepted": 111,
+                "rejected": 6,
+                "nfev": 819,
+                "rtol": 1e-10,
+                "atol": 1e-12,
+                "complete": true,
+                "data": "schnak-ref-D-mode42-K18-Q96-t1e-10.npz"
+              },
+              {
+                "id": "schnak-ref-D-mode42-K18-Q192-t1e-10",
+                "K": 18,
+                "Q": 192,
+                "Gram_error": 1.3766765505351941e-14,
+                "method": "DP54",
+                "accepted": 111,
+                "rejected": 6,
+                "nfev": 819,
+                "rtol": 1e-10,
+                "atol": 1e-12,
+                "complete": true,
+                "data": "schnak-ref-D-mode42-K18-Q192-t1e-10.npz"
+              },
+              {
+                "id": "schnak-ref-D-mode42-K18-Q192-t1e-12",
+                "K": 18,
+                "Q": 192,
+                "Gram_error": 1.3766765505351941e-14,
+                "method": "DP54",
+                "accepted": 230,
+                "rejected": 0,
+                "nfev": 1610,
+                "rtol": 1e-12,
+                "atol": 1e-14,
+                "complete": true,
+                "data": "schnak-ref-D-mode42-K18-Q192-t1e-12.npz"
+              },
+              {
+                "id": "schnak-legacy-reference-summary-D-mode42",
+                "role": "legacy-reference-qualification",
+                "reference_rows": 4,
+                "reference_deltas": [
+                  4.995141182306817e-05,
+                  1.5543122344752192e-15,
+                  3.1374902675906924e-13
+                ],
+                "reference_sum": 4.995141213837151e-05,
+                "reference_qualified_in_this_run": false,
+                "grid_errors": [
+                  0.0012654646650283041,
+                  0.00032652993641701933,
+                  9.088196030337947e-05
+                ],
+                "finest_denominator": 9.088196030337947e-05,
+                "original_R4_first_qualification": "FAIL, preserved in source-reading.json#/prior_reference_qualification",
+                "used_for_current_accuracy_goals": false,
+                "relabelled_as_original_protocol_pass": false,
+                "data": "schnak-legacy-reference-summary-D-mode42.npz"
+              },
+              {
+                "id": "schnak-ref-extension-D-mode42-K24-Q128-t1e-10",
+                "K": 24,
+                "Q": 128,
+                "Gram_error": 5.440092820663267e-15,
+                "method": "DP54",
+                "accepted": 178,
+                "rejected": 8,
+                "nfev": 1302,
+                "rtol": 1e-10,
+                "atol": 1e-12,
+                "complete": true,
+                "role": "controlledD-onlyfinerreferenceextension",
+                "data": "schnak-ref-extension-D-mode42-K24-Q128-t1e-10.npz"
+              },
+              {
+                "id": "schnak-ref-extension-D-mode42-K32-Q128-t1e-10",
+                "K": 32,
+                "Q": 128,
+                "Gram_error": 5.440092820663267e-15,
+                "method": "DP54",
+                "accepted": 310,
+                "rejected": 16,
+                "nfev": 2282,
+                "rtol": 1e-10,
+                "atol": 1e-12,
+                "complete": true,
+                "role": "controlledD-onlyfinerreferenceextension",
+                "data": "schnak-ref-extension-D-mode42-K32-Q128-t1e-10.npz"
+              },
+              {
+                "id": "schnak-ref-extension-D-mode42-K32-Q192-t1e-10",
+                "K": 32,
+                "Q": 192,
+                "Gram_error": 1.3766765505351941e-14,
+                "method": "DP54",
+                "accepted": 310,
+                "rejected": 16,
+                "nfev": 2282,
+                "rtol": 1e-10,
+                "atol": 1e-12,
+                "complete": true,
+                "role": "controlledD-onlyfinerreferenceextension",
+                "data": "schnak-ref-extension-D-mode42-K32-Q192-t1e-10.npz"
+              },
+              {
+                "id": "schnak-ref-extension-D-mode42-K32-Q192-t1e-12",
+                "K": 32,
+                "Q": 192,
+                "Gram_error": 1.3766765505351941e-14,
+                "method": "DP54",
+                "accepted": 327,
+                "rejected": 15,
+                "nfev": 2394,
+                "rtol": 1e-12,
+                "atol": 1e-14,
+                "complete": true,
+                "role": "controlledD-onlyfinerreferenceextension",
+                "data": "schnak-ref-extension-D-mode42-K32-Q192-t1e-12.npz"
+              },
+              {
+                "id": "schnak-summary-D-mode42",
+                "reference_deltas": [
+                  2.888731544303802e-06,
+                  1.532107773982716e-14,
+                  3.4638958368304884e-14
+                ],
+                "reference_sum": 2.888731594263838e-06,
+                "reference_qualified": true,
+                "finest_denominator": 8.370124740819662e-05,
+                "zero_floor": 1e-12,
+                "grid_errors": [
+                  0.0012636317080267911,
+                  0.0003225772206343347,
+                  8.370124740819662e-05
+                ],
+                "spatial_order": 1.9463235349282928,
+                "reference_role": "controlledD-onlyK24/32extension;newfineK32Q192tight",
+                "reference_scope": "Finite modal/quadrature/tolerance sensitivity indicators, not rigorous continuum bounds",
+                "data": "schnak-summary-D-mode42.npz"
+              }
+            ]
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology-space-controls/#schnakenberg-2d-boundary-modes",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology-space-controls/#schnakenberg-2d-boundary-modes"
+          }
+        },
+        {
+          "id": "keller-segel-forced-flux",
+          "method_ids": [
+            "ssprk33",
+            "rk45"
+          ],
+          "title": {
+            "ja": "Keller–Segel：連成流束の製造解",
+            "en": "Keller–Segel: a manufactured coupled-flux solution"
+          },
+          "summary": {
+            "ja": "滑らかな2D厳密場で、交差流束・段時刻・収支を検証します。",
+            "en": "Use smooth exact2D fields to test cross fluxes, stage timing and mass ledgers."
+          },
+          "assumptions": {
+            "ja": "単位正方形、T=0.25。n=1+0.1e⁻ᵗcosπx cosπy、c=1+0.05e⁻²ᵗcosπx cos2πyに合う強制項と接線方向の発散ゼロ移流を与えます。",
+            "en": "On the unit square toT.25,manufacture forcing for n=1+.1e⁻ᵗcosπx cosπy,c=1+.05e⁻²ᵗcosπx cos2πy with divergence-free tangential advection."
+          },
+          "algorithm": {
+            "ja": "セル平均の中心面流束とSSPRK3を使い、n/c/強制項を同じ段に揃えます。展開した三角多項式の積分を、別の未展開積分とスカラー面ループ参照で確認します。",
+            "en": "Use cell-average centered face fluxes and SSPRK3 with n,c and forcing at the same stage. Check expanded trigonometric integrals against independent unexpanded integrals and scalar face-loop references."
+          },
+          "validation": {
+            "ja": "36点の源項、96セル状態ベクトル、符号・欠落連成・古い段・面重複の負例を検査。空間・同一MOL時間・正値性・実際の段収支を分けて保存します。",
+            "en": "Qualify36source pairs,96cell-state vectors and wrong-sign,omitted-coupling,stale-stage and face-duplication controls. Separate spatial,same-MOL time,positivity and actual stage-ledger outcomes."
+          },
+          "limits": {
+            "ja": "著者作成の強制2場モデルです。原著の全生物モデル、ピーク形成、真のblow-upやその抑制を実証しません。負値をクリップして正値性を装いません。",
+            "en": "This authored forced two-field model does not reproduce the full original biological model or demonstrate aggregation, true blow-up or suppression. No clipping is used to manufacture positivity."
+          },
+          "domains": [
+            "biology"
+          ],
+          "code_files": [
+            "run.py",
+            "common.py",
+            "keller_segel.py"
+          ],
+          "reference_files": [
+            "PROTOCOL.md",
+            "source-reading.json",
+            "acceptance.json"
+          ],
+          "references": [
+            {
+              "id": "atlas-forced-keller-segel-mms-2026-11-25",
+              "title": "Atlas authored Keller–Segel manufactured fields, forcing and finite-volume balance controls (2026-11-25)",
+              "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/keller_segel.py",
+              "source": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/PROTOCOL.md",
+              "year": 2026,
+              "year_role": "atlas-authored-edition",
+              "review_level": "authored-formulas-and-actually-executed-component-checks",
+              "review": {
+                "ja": "本アトラス独自の製造解・外力・面流束の導出と実装です。保存された成分検査・独立なスカラー面/RHS参照・セル平均照合の範囲に限ります。原著論文の読了や元の無外力問題の再現を主張しません。",
+                "en": "Atlas-authored manufactured fields, forcing and face-flux derivation/implementation. Evidence is limited to saved component checks, independently written scalar-face/RHS references and cell-average comparisons. No original-paper full-text reading or reproduction of the unforced original problem is claimed."
+              }
+            }
+          ],
+          "additional_figures": [
+            {
+              "file": "keller-segel-forced-flux-diagnostics.png",
+              "caption": {
+                "ja": "精度・参照・統計の実測値と未達目標を分けて表示します。",
+                "en": "Separate actual accuracy,reference and statistical measurements,including unmet targets."
+              }
+            }
+          ],
+          "formulas": [
+            "n_t+\\nabla\\cdot(wn)=D_n\\Delta n-\\chi\\nabla\\cdot(n\\nabla c)+rn(1-n)+s_n",
+            "\\tau c_t=D_c\\Delta c+\\alpha n-\\lambda c+s_c"
+          ],
+          "measured": {
+            "id": "keller-segel-forced-flux",
+            "passed": true,
+            "checks": {
+              "KS/source_point_pairs36": true,
+              "KS/wholegrid_RHS_vectorpairs96": true,
+              "KS/divergence_free_faces": true,
+              "KS/independent_velocity": true,
+              "KS/wrong_chi_detected": true,
+              "KS/omitted_coupling_detected": true,
+              "KS/stale_source_time_detected": true,
+              "KS/duplicated_external_face_detected": true,
+              "KS/massledger/12": true,
+              "KS/massledger/24": true,
+              "KS/massledger/48": true,
+              "KS/reference": true,
+              "KS/constant-control": true
+            },
+            "metrics": {
+              "fixed_records": 10,
+              "KS/time-order/actual": 3.0037445404571113,
+              "KS/space-finest/0/actual": 0.0001221189660198796,
+              "KS/space-order/0/actual": 1.9965225132866062,
+              "KS/space-finest/1/actual": 2.9817290057465584e-05,
+              "KS/space-order/1/actual": 1.988907316937278,
+              "KS/time-contamination/actual": 1.893596390800667e-12
+            },
+            "records": [
+              {
+                "id": "KS-components",
+                "source_probe_errors": [
+                  1.743057661661681e-17,
+                  0.0,
+                  5.567246105721821e-17,
+                  0.0,
+                  7.331022943903909e-17,
+                  1.1273611683325498e-16,
+                  1.155751671135632e-16,
+                  9.176709363971631e-17,
+                  3.3042351923367754e-17,
+                  0.0,
+                  2.3987610560004725e-17,
+                  1.6733836901180518e-16,
+                  1.3288849832387691e-16,
+                  1.063397404910753e-16,
+                  5.965646603830402e-17,
+                  2.019420333428594e-17,
+                  8.075139069961866e-17,
+                  1.1376352429826677e-16,
+                  9.537453544297961e-18,
+                  4.7415203793282976e-17,
+                  1.3291310778163528e-17,
+                  3.935901640243106e-17,
+                  2.4376455543235746e-17,
+                  6.227408030443852e-17,
+                  2.0388109045349676e-17,
+                  4.491019965895992e-17,
+                  6.327483384510945e-17,
+                  6.485546015926426e-17,
+                  6.930022394244165e-17,
+                  8.926903575388533e-17,
+                  4.049481017529868e-17,
+                  1.2179397477570174e-17,
+                  1.0686112603087862e-16,
+                  7.282314889259799e-17,
+                  2.4730233622395917e-17,
+                  8.357605320993966e-17
+                ],
+                "wholegrid_RHS_errors": [
+                  7.98373580700796e-17,
+                  3.739870524936518e-17,
+                  1.5017262866255578e-16,
+                  3.96194504320184e-17,
+                  9.850777372941522e-17,
+                  4.163682882480494e-17
+                ],
+                "zero_frequency_integral": "mean cos0=1; cosacosb=.5(cos(a-b)+cos(a+b)); sinasinb=.5(cos(a-b)-cos(a+b))",
+                "continuum_integrals": "integraln=integralc=1; integralreactionn=-r*A²/4; integralsn=+r*A²/4; integralsc=0",
+                "data": null
+              },
+              {
+                "id": "KS-space-N12",
+                "N": 12,
+                "steps": 1024,
+                "dt": 0.000244140625,
+                "minimum": [
+                  0.9022638544007324,
+                  0.9527970664018593
+                ],
+                "integrated_reaction": [
+                  -4.8811926832839186e-05,
+                  5.685308987443972e-08
+                ],
+                "integrated_source": [
+                  4.9183667535921016e-05,
+                  -1.495640583716623e-20
+                ],
+                "mass_residual": [
+                  -1.9490566929500353e-16,
+                  -8.289384608127543e-17
+                ],
+                "mass_scale": [
+                  2.000097995594369,
+                  2.00000005685309
+                ],
+                "Linf_fields": [
+                  0.0019229529613318253,
+                  0.0004558503710181405
+                ],
+                "data": "KS-space-N12.npz"
+              },
+              {
+                "id": "KS-space-N24",
+                "N": 24,
+                "steps": 1024,
+                "dt": 0.000244140625,
+                "minimum": [
+                  0.9005698543736446,
+                  0.9507102465265501
+                ],
+                "integrated_reaction": [
+                  -4.909041989231419e-05,
+                  1.426894292249008e-08
+                ],
+                "integrated_source": [
+                  4.918366753592049e-05,
+                  2.996477087132836e-20
+                ],
+                "mass_residual": [
+                  3.3203691532368573e-19,
+                  -2.2844662815889056e-16
+                ],
+                "mass_scale": [
+                  2.0000982740874282,
+                  2.000000014268943
+                ],
+                "Linf_fields": [
+                  0.0004872998548195451,
+                  0.00011835563261164417
+                ],
+                "data": "KS-space-N24.npz"
+              },
+              {
+                "id": "KS-space-N48",
+                "N": 48,
+                "steps": 1024,
+                "dt": 0.000244140625,
+                "minimum": [
+                  0.9001427078852056,
+                  0.9501782550064043
+                ],
+                "integrated_reaction": [
+                  -4.916033546238315e-05,
+                  3.5707755966428794e-09
+                ],
+                "integrated_source": [
+                  4.918366753592075e-05,
+                  -2.6486935940327674e-21
+                ],
+                "mass_residual": [
+                  6.889427179787577e-17,
+                  7.850329195907732e-17
+                ],
+                "mass_scale": [
+                  2.0000983440029985,
+                  2.0000000035707757
+                ],
+                "Linf_fields": [
+                  0.0001221189660198796,
+                  2.9817290057465584e-05
+                ],
+                "data": "KS-space-N48.npz"
+              },
+              {
+                "id": "KS-time-reference",
+                "qualified": true,
+                "spread": 0.0,
+                "solvers": [
+                  {
+                    "method": "DP54",
+                    "accepted": 67,
+                    "rejected": 0,
+                    "nfev": 469,
+                    "rtol": 2e-10,
+                    "atol": 1e-12,
+                    "complete": true
+                  },
+                  {
+                    "method": "DP54",
+                    "accepted": 67,
+                    "rejected": 0,
+                    "nfev": 469,
+                    "rtol": 5e-12,
+                    "atol": 2e-14,
+                    "complete": true
+                  }
+                ],
+                "scope": "Same24x24MOL, scalar face ownership and independent unexpanded analytic cellsource",
+                "data": "KS-time-reference.npz"
+              },
+              {
+                "id": "KS-time-64",
+                "N": 24,
+                "steps": 64,
+                "dt": 0.00390625,
+                "minimum": [
+                  0.9005698543736446,
+                  0.9507102465265501
+                ],
+                "integrated_reaction": [
+                  -4.909042056683601e-05,
+                  1.4269308586965537e-08
+                ],
+                "integrated_source": [
+                  4.9183667535984124e-05,
+                  3.684593320556207e-20
+                ],
+                "mass_residual": [
+                  1.0905040976130764e-16,
+                  3.657994997087319e-17
+                ],
+                "mass_scale": [
+                  2.000098274088103,
+                  2.0000000142693084
+                ],
+                "same_MOL_error": 8.777474524990225e-09,
+                "data": "KS-time-64.npz"
+              },
+              {
+                "id": "KS-time-128",
+                "N": 24,
+                "steps": 128,
+                "dt": 0.001953125,
+                "minimum": [
+                  0.9005698543736446,
+                  0.9507102465265501
+                ],
+                "integrated_reaction": [
+                  -4.909041997674902e-05,
+                  1.4268988426072723e-08
+                ],
+                "integrated_source": [
+                  4.91836675359245e-05,
+                  2.303459042672111e-20
+                ],
+                "mass_residual": [
+                  5.420333236069719e-17,
+                  9.166273653102473e-18
+                ],
+                "mass_scale": [
+                  2.0000982740875126,
+                  2.000000014268988
+                ],
+                "same_MOL_error": 1.0914410486506654e-09,
+                "data": "KS-time-128.npz"
+              },
+              {
+                "id": "KS-time-256",
+                "N": 24,
+                "steps": 256,
+                "dt": 0.0009765625,
+                "minimum": [
+                  0.9005698543736446,
+                  0.9507102465265501
+                ],
+                "integrated_reaction": [
+                  -4.909041990273799e-05,
+                  1.4268948479360648e-08
+                ],
+                "integrated_source": [
+                  4.918366753592076e-05,
+                  3.1861771742783264e-20
+                ],
+                "mass_residual": [
+                  2.098134491666792e-16,
+                  -1.2159365181897086e-17
+                ],
+                "mass_scale": [
+                  2.000098274087439,
+                  2.0000000142689487
+                ],
+                "same_MOL_error": 1.3607648341462664e-10,
+                "data": "KS-time-256.npz"
+              },
+              {
+                "id": "KS-halfdt-N48",
+                "N": 48,
+                "steps": 2048,
+                "dt": 0.0001220703125,
+                "minimum": [
+                  0.9001427078852056,
+                  0.9501782550064043
+                ],
+                "integrated_reaction": [
+                  -4.9160335462243064e-05,
+                  3.5707755179330368e-09
+                ],
+                "integrated_source": [
+                  4.918366753592083e-05,
+                  -2.1748110119968244e-21
+                ],
+                "mass_residual": [
+                  -7.126596405018781e-17,
+                  -6.48319442294641e-17
+                ],
+                "mass_scale": [
+                  2.0000983440029985,
+                  2.0000000035707757
+                ],
+                "data": "KS-halfdt-N48.npz"
+              },
+              {
+                "id": "KS-constant-unforced",
+                "N": 24,
+                "steps": 256,
+                "dt": 0.0009765625,
+                "minimum": [
+                  1.0,
+                  1.0
+                ],
+                "integrated_reaction": [
+                  0.0,
+                  0.0
+                ],
+                "integrated_source": [
+                  0.0,
+                  0.0
+                ],
+                "mass_residual": [
+                  0.0,
+                  0.0
+                ],
+                "mass_scale": [
+                  2.0,
+                  2.0
+                ],
+                "data": "KS-constant-unforced.npz"
+              }
+            ]
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/keller-segel-forced-flux/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology-space-controls/#keller-segel-forced-flux",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology-space-controls/#keller-segel-forced-flux"
+          }
+        }
+      ]
     }
   ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk45/",
@@ -468,14 +3561,25 @@
     "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/boundary_reference.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/coefficient_exact.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/qualify.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/reference_models.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/references/reference_models.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/common.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/hh.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/ssa.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/common.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/fisher.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/schnakenberg.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/keller_segel.py"
   ],
   "test_urls": [
     "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_boundary.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_contract.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_dopri.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_reporting.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_stiff.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-24-r2/ode-adaptivity/test_stiff.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/test_models.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/test_models.py"
   ],
   "run_commands": [
     "python -m pytest -q",
@@ -491,6 +3595,42 @@
       "guide": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rk45-dense-events/?lang=ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/rk45-dense-events/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "hodgkin-huxley-controls",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/hodgkin-huxley-controls/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/hodgkin-huxley-controls/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "fisher-kpp-special-front",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fisher-kpp-special-front/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fisher-kpp-special-front/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "schnakenberg-2d-boundary-modes",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "keller-segel-forced-flux",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/keller-segel-forced-flux/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/keller-segel-forced-flux/?lang=en"
       },
       "kind": "dedicated-supplement"
     }
@@ -516,6 +3656,76 @@
         "url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#linear-evolution-system-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#linear-evolution-system-en"
+        }
+      },
+      {
+        "id": "bio-hodgkin-huxley",
+        "name": {
+          "ja": "Hodgkin–Huxley膜動態",
+          "en": "Hodgkin–Huxley membrane dynamics"
+        },
+        "problem_ids": [
+          "hodgkin-huxley-controls"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-hodgkin-huxley-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-hodgkin-huxley-en"
+        }
+      },
+      {
+        "id": "bio-fisher-kpp",
+        "name": {
+          "ja": "Fisher–KPP侵入前線",
+          "en": "Fisher–KPP invasion front"
+        },
+        "problem_ids": [
+          "fisher-kpp-special-front"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-fisher-kpp-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-fisher-kpp-en"
+        }
+      },
+      {
+        "id": "bio-schnakenberg",
+        "name": {
+          "ja": "Schnakenberg反応拡散",
+          "en": "Schnakenberg reaction–diffusion"
+        },
+        "problem_ids": [
+          "schnakenberg-2d-boundary-modes"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-schnakenberg-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-schnakenberg-en"
+        }
+      },
+      {
+        "id": "bio-keller-segel",
+        "name": {
+          "ja": "Keller–Segel走化性",
+          "en": "Keller–Segel chemotaxis"
+        },
+        "problem_ids": [
+          "keller-segel-forced-flux"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-keller-segel-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-keller-segel-en"
+        }
+      },
+      {
+        "id": "forced-keller-segel-model",
+        "name": {
+          "ja": "外力・移流付きKeller–Segel製造問題",
+          "en": "Forced advective Keller–Segel manufactured problem"
+        },
+        "problem_ids": [
+          "keller-segel-forced-flux"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#forced-keller-segel-model-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#forced-keller-segel-model-en"
         }
       }
     ],
@@ -578,6 +3788,247 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rk45-dense-events/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/rk45-dense-events/?lang=en#references-en"
         }
+      },
+      {
+        "id": "hodgkin-huxley-controls",
+        "name": {
+          "ja": "Hodgkin–Huxley：電位固定・静止平衡・発火",
+          "en": "Hodgkin–Huxley: clamps, rest and firing"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/results/hodgkin-huxley-controls.png",
+          "sha256": "103d53258302f2855b7c7c9cca7840245a257909ca12163e8cd7a4d972a5871a",
+          "width": 1624,
+          "height": 667,
+          "caption": {
+            "ja": "固定電位の解析ゲート解と、区分電流下の4状態系を照合します。 1細胞膜の教育例です。元論文の電位規約、TABLE/cnexp実装、ケーブル伝播や生体実測の再現とは呼びません。区間内に括れない発火は捏造せず、静止根の一意性・区間Hurwitz安定性は主張しません。",
+            "en": "Compare analytic clamp gates and a four-state system with segment-owned current. This educational membrane model does not reproduce the original voltage convention, TABLE/cnexp, cable propagation or measured physiology. Missing/unresolved events remain explicit; rest-root uniqueness and interval-Hurwitz stability are unclaimed."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/hodgkin-huxley-controls/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/hodgkin-huxley-controls/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/hodgkin-huxley-controls/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/hodgkin-huxley-controls/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "hodgkin-huxley-controls",
+            "kind": "supplement",
+            "name": {
+              "ja": "Hodgkin–Huxley：電位固定・静止平衡・発火",
+              "en": "Hodgkin–Huxley: clamps, rest and firing"
+            },
+            "scope": {
+              "ja": "固定電位の解析ゲート解と、区分電流下の4状態系を照合します。",
+              "en": "Compare analytic clamp gates and a four-state system with segment-owned current."
+            },
+            "method_ids": [
+              "rk4",
+              "rk45"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/hodgkin-huxley-controls/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/hodgkin-huxley-controls/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/atlas-biology-ode-controls-2026-11-25.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "古典RK4を用い、電流の切り替わりでは全段の片側値を区間に帰属させます。ゲートの可除特異点、Decimal静止根、独立なDP5(4)/Cash–Karp参照を別に照合します。",
+          "en": "Use classicalRK4 with all stages owned by each current segment. Separately qualify removable rate singularities, a Decimal rest root and independently written DP5(4)/Cash–Karp references."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/hodgkin-huxley-controls/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/hodgkin-huxley-controls/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "fisher-kpp-special-front",
+        "name": {
+          "ja": "Fisher–KPP：特殊波速の厳密前線",
+          "en": "Fisher–KPP: a special-speed exact front"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/results/fisher-kpp-special-front.png",
+          "sha256": "1f78a6525f5f45a54a61f6a8d1e6a3f95e34d85a3d9211ef386d42fd8c8378a3",
+          "width": 1624,
+          "height": 667,
+          "caption": {
+            "ja": "波形・位置・格子誤差・時間誤差・有限領域の影響を分けます。 特殊前線を一般の最小速度2の前線と同一視しません。急減衰初期値からの速度選択、長時間伝播、機械誤差込みの厳密障壁証明は対象外です。",
+            "en": "Separate profile, phase, grid, time and finite-boundary errors. The special front is distinct from the minimum linear speed2. This is not a steep-data speed-selection study, long-time propagation result or certified machine-error barrier proof."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fisher-kpp-special-front/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fisher-kpp-special-front/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fisher-kpp-special-front/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fisher-kpp-special-front/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "fisher-kpp-special-front",
+            "kind": "supplement",
+            "name": {
+              "ja": "Fisher–KPP：特殊波速の厳密前線",
+              "en": "Fisher–KPP: a special-speed exact front"
+            },
+            "scope": {
+              "ja": "波形・位置・格子誤差・時間誤差・有限領域の影響を分けます。",
+              "en": "Separate profile, phase, grid, time and finite-boundary errors."
+            },
+            "method_ids": [
+              "ssprk33",
+              "rk45"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fisher-kpp-special-front/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fisher-kpp-special-front/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/atlas-biology-space-controls-2026-11-25.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "2次中心差分とSSPRK3で計算し、厳密Dirichlet値を各段の時刻で与えます。時間誤差は同じ95未知数の半離散ODE参照と比較します。",
+          "en": "Use centered second-order differences and SSPRK3 with exact Dirichlet values at every stage. Compare time errors to an independent reference for the same95-unknown semidiscreteODE."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fisher-kpp-special-front/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fisher-kpp-special-front/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "schnakenberg-2d-boundary-modes",
+        "name": {
+          "ja": "Schnakenberg：2D境界と初期モード",
+          "en": "Schnakenberg:2D boundaries and initial modes"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/results/schnakenberg-2d-boundary-modes.png",
+          "sha256": "f989caee1655dd22ab0a8aa99d3e8b9b4d0805d72bb7e425fffa99ec22e35a33",
+          "width": 1827,
+          "height": 623,
+          "caption": {
+            "ja": "2つのNeumann摂動とDirichlet摂動を独立な非線形Galerkin参照と比較します。 短時間の小振幅・固定初期値です。一般的な模様選択、成長後の成熟パターン、原著図の再現は主張しません。有限の参照差を連続体誤差の厳密上界と呼びません。",
+            "en": "Compare two Neumann perturbations and a Dirichlet perturbation against nonlinear Galerkin references. This short small-amplitude study does not establish general pattern selection, mature patterns or reproduction of original figures. Finite reference differences are not rigorous continuum error bounds."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/schnakenberg-2d-boundary-modes/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/schnakenberg-2d-boundary-modes/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/schnakenberg-2d-boundary-modes/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/schnakenberg-2d-boundary-modes/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "schnakenberg-2d-boundary-modes",
+            "kind": "supplement",
+            "name": {
+              "ja": "Schnakenberg：2D境界と初期モード",
+              "en": "Schnakenberg:2D boundaries and initial modes"
+            },
+            "scope": {
+              "ja": "2つのNeumann摂動とDirichlet摂動を独立な非線形Galerkin参照と比較します。",
+              "en": "Compare two Neumann perturbations and a Dirichlet perturbation against nonlinear Galerkin references."
+            },
+            "method_ids": [
+              "crank-nicolson",
+              "strang-splitting",
+              "rk45"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/atlas-biology-space-controls-2026-11-25.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "セル平均のCN拡散と局所陰的中点反応をStrang分割します。独立参照は正規直交sin/cos Galerkin、K12/18,Q96/192と2許容誤差の4列を全初期値で残します。 元のDirichlet K12/18参照は初回の相対資格基準を満たさなかったため、失敗を残し、D境界だけK24/32・Q128/192の4参照を追加します。",
+          "en": "Strang-split cell-averageCN diffusion and local implicit-midpoint reactions. Independent orthonormal sine/cosine Galerkin references retain four K12/18,Q96/192,tolerance rows for every initial condition. The original Dirichlet K12/18 reference failed its first relative qualification. Preserve that failure and add four D-only K24/32,Q128/192 reference actions."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/schnakenberg-2d-boundary-modes/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/schnakenberg-2d-boundary-modes/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "keller-segel-forced-flux",
+        "name": {
+          "ja": "Keller–Segel：連成流束の製造解",
+          "en": "Keller–Segel: a manufactured coupled-flux solution"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/results/keller-segel-forced-flux.png",
+          "sha256": "cf69138e069f3f733193297d9d526814e6d491655054f660a679c3ec530956f1",
+          "width": 1827,
+          "height": 623,
+          "caption": {
+            "ja": "滑らかな2D厳密場で、交差流束・段時刻・収支を検証します。 著者作成の強制2場モデルです。原著の全生物モデル、ピーク形成、真のblow-upやその抑制を実証しません。負値をクリップして正値性を装いません。",
+            "en": "Use smooth exact2D fields to test cross fluxes, stage timing and mass ledgers. This authored forced two-field model does not reproduce the full original biological model or demonstrate aggregation, true blow-up or suppression. No clipping is used to manufacture positivity."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/keller-segel-forced-flux/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/keller-segel-forced-flux/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/keller-segel-forced-flux/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/keller-segel-forced-flux/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "keller-segel-forced-flux",
+            "kind": "supplement",
+            "name": {
+              "ja": "Keller–Segel：連成流束の製造解",
+              "en": "Keller–Segel: a manufactured coupled-flux solution"
+            },
+            "scope": {
+              "ja": "滑らかな2D厳密場で、交差流束・段時刻・収支を検証します。",
+              "en": "Use smooth exact2D fields to test cross fluxes, stage timing and mass ledgers."
+            },
+            "method_ids": [
+              "ssprk33",
+              "rk45"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/keller-segel-forced-flux/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/keller-segel-forced-flux/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/atlas-biology-space-controls-2026-11-25.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "セル平均の中心面流束とSSPRK3を使い、n/c/強制項を同じ段に揃えます。展開した三角多項式の積分を、別の未展開積分とスカラー面ループ参照で確認します。",
+          "en": "Use cell-average centered face fluxes and SSPRK3 with n,c and forcing at the same stage. Check expanded trigonometric integrals against independent unexpanded integrals and scalar face-loop references."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/keller-segel-forced-flux/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/keller-segel-forced-flux/?lang=en#references-en"
+        }
       }
     ],
     "references": [
@@ -611,6 +4062,142 @@
             "view": {
               "ja": "/numerical-methods-atlas/validation/rk45-dense-events/?lang=ja#rk45-dense-events-ja-measurements",
               "en": "/numerical-methods-atlas/validation/rk45-dense-events/?lang=en#rk45-dense-events-en-measurements"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "hodgkin-huxley-controls",
+        "problem_name": {
+          "ja": "Hodgkin–Huxley：電位固定・静止平衡・発火",
+          "en": "Hodgkin–Huxley: clamps, rest and firing"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/hodgkin-huxley-controls/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/hodgkin-huxley-controls/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "hodgkin-huxley-controls",
+            "title": {
+              "ja": "Hodgkin–Huxley：電位固定・静止平衡・発火",
+              "en": "Hodgkin–Huxley: clamps, rest and firing"
+            },
+            "kind": "semi-analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "1細胞膜の教育例です。元論文の電位規約、TABLE/cnexp実装、ケーブル伝播や生体実測の再現とは呼びません。区間内に括れない発火は捏造せず、静止根の一意性・区間Hurwitz安定性は主張しません。",
+              "en": "This educational membrane model does not reproduce the original voltage convention, TABLE/cnexp, cable propagation or measured physiology. Missing/unresolved events remain explicit; rest-root uniqueness and interval-Hurwitz stability are unclaimed."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-hodgkin-huxley-controls-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-hodgkin-huxley-controls-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/hodgkin-huxley-controls/?lang=ja#hodgkin-huxley-controls-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/hodgkin-huxley-controls/?lang=en#hodgkin-huxley-controls-en-measurements"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "fisher-kpp-special-front",
+        "problem_name": {
+          "ja": "Fisher–KPP：特殊波速の厳密前線",
+          "en": "Fisher–KPP: a special-speed exact front"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fisher-kpp-special-front/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fisher-kpp-special-front/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "fisher-kpp-special-front",
+            "title": {
+              "ja": "Fisher–KPP：特殊波速の厳密前線",
+              "en": "Fisher–KPP: a special-speed exact front"
+            },
+            "kind": "analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "特殊前線を一般の最小速度2の前線と同一視しません。急減衰初期値からの速度選択、長時間伝播、機械誤差込みの厳密障壁証明は対象外です。",
+              "en": "The special front is distinct from the minimum linear speed2. This is not a steep-data speed-selection study, long-time propagation result or certified machine-error barrier proof."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-fisher-kpp-special-front-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-fisher-kpp-special-front-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/fisher-kpp-special-front/?lang=ja#fisher-kpp-special-front-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/fisher-kpp-special-front/?lang=en#fisher-kpp-special-front-en-measurements"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "schnakenberg-2d-boundary-modes",
+        "problem_name": {
+          "ja": "Schnakenberg：2D境界と初期モード",
+          "en": "Schnakenberg:2D boundaries and initial modes"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/schnakenberg-2d-boundary-modes/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/schnakenberg-2d-boundary-modes/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "schnakenberg-2d-boundary-modes",
+            "title": {
+              "ja": "Schnakenberg：2D境界と初期モード",
+              "en": "Schnakenberg:2D boundaries and initial modes"
+            },
+            "kind": "numerical-reference",
+            "relation": "same-problem",
+            "note": {
+              "ja": "短時間の小振幅・固定初期値です。一般的な模様選択、成長後の成熟パターン、原著図の再現は主張しません。有限の参照差を連続体誤差の厳密上界と呼びません。",
+              "en": "This short small-amplitude study does not establish general pattern selection, mature patterns or reproduction of original figures. Finite reference differences are not rigorous continuum error bounds."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-schnakenberg-2d-boundary-modes-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-schnakenberg-2d-boundary-modes-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/?lang=ja#schnakenberg-2d-boundary-modes-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/?lang=en#schnakenberg-2d-boundary-modes-en-measurements"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "keller-segel-forced-flux",
+        "problem_name": {
+          "ja": "Keller–Segel：連成流束の製造解",
+          "en": "Keller–Segel: a manufactured coupled-flux solution"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/keller-segel-forced-flux/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/keller-segel-forced-flux/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "keller-segel-forced-flux",
+            "title": {
+              "ja": "Keller–Segel：連成流束の製造解",
+              "en": "Keller–Segel: a manufactured coupled-flux solution"
+            },
+            "kind": "manufactured",
+            "relation": "same-problem",
+            "note": {
+              "ja": "著者作成の強制2場モデルです。原著の全生物モデル、ピーク形成、真のblow-upやその抑制を実証しません。負値をクリップして正値性を装いません。",
+              "en": "This authored forced two-field model does not reproduce the full original biological model or demonstrate aggregation, true blow-up or suppression. No clipping is used to manufacture positivity."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-keller-segel-forced-flux-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-keller-segel-forced-flux-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/keller-segel-forced-flux/?lang=ja#keller-segel-forced-flux-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/keller-segel-forced-flux/?lang=en#keller-segel-forced-flux-en-measurements"
             }
           }
         ]

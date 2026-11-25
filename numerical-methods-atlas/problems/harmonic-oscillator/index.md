@@ -40,7 +40,17 @@ $$
 
 ### 厳密解・参照解
 
-正弦・余弦の解析軌道（複素ODE表現を含む）と比較し、位相・エネルギー・写像の幾何学的性質を区別します。専用参照解カードは未収録です。
+正弦・余弦の解析軌道（複素ODE表現を含む）と比較し、位相・エネルギー・写像の幾何学的性質を区別します。 既存の固定入力・保存結果に対応する解析参照カードを追加。解析式、点・時刻・動径の標本化、配布版SHAと実行コードを相互に辿れます。過去の計算を再実行した記録ではありません。 既存ギャラリーはt≤10、共通固定入力は終端20です。
+
+#### [調和振動子：Verletの位相誤差とエネルギー](https://hrkoyama.github.io/numerical-methods-atlas/problems/harmonic-oscillator/?lang=ja)
+
+解析解 · 同じ問題の参照
+
+q(t)=q0 cos(t)+p0 sin(t),p(t)=p0 cos(t)-q0 sin(t)
+
+H=(q²+p²)/2、(q₀,p₀)=(1,0.2)。固定刻み、非散逸1自由度。初期値・終端時刻・刻み数は入力に明記。最大刻みh=0.1はhω<2の安定域。
+
+既存の固定入力・保存結果に対応する解析参照カードを追加。解析式、点・時刻・動径の標本化、配布版SHAと実行コードを相互に辿れます。過去の計算を再実行した記録ではありません。 既存ギャラリーはt≤10、共通固定入力は終端20です。
 
 #### 調和振動子：Verletの位相誤差とエネルギー
 
@@ -128,7 +138,17 @@ Unit mass/frequency, t=20, velocity Verlet with 200/400/800 steps. Reversibility
 
 ### Exact and reference solutions
 
-Compare with analytic sine/cosine trajectories, including complex-ODE form, and distinguish phase, energy and geometric map properties. No dedicated reference-library card is included.
+Compare with analytic sine/cosine trajectories, including complex-ODE form, and distinguish phase, energy and geometric map properties. An analytic reference card now links the existing fixed inputs and saved results: formula, point/time/radial sampling, edition SHA and executable code. This metadata registration is not a new execution. The existing gallery shows t≤10; the common fixed input ends at20.
+
+#### [Harmonic oscillator: Verlet phase error and energy](https://hrkoyama.github.io/numerical-methods-atlas/problems/harmonic-oscillator/?lang=en)
+
+Analytic reference · Reference for the same problem
+
+q(t)=q0 cos(t)+p0 sin(t),p(t)=p0 cos(t)-q0 sin(t)
+
+H=(q²+p²)/2 and (q0,p0)=(1,0.2); one nondissipative degree of freedom, fixed steps. Inputs explicitly provide initial state, final time and counts. Largest h=0.1 lies in h*omega<2.
+
+An analytic reference card now links the existing fixed inputs and saved results: formula, point/time/radial sampling, edition SHA and executable code. This metadata registration is not a new execution. The existing gallery shows t≤10; the common fixed input ends at20.
 
 #### Harmonic oscillator: Verlet phase error and energy
 

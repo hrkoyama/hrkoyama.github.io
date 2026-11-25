@@ -98,6 +98,8 @@ CPMDで電子軌道を時間発展させることは、TDDFTで実在の電子�
 
 この節は解説のみです。本章の1原子固定He例が検証するのは静的な全エネルギーとk点・基底・補助格子・SCFの収束です。多原子Heセルの原子間力、エネルギー有限差分と独立参照、BOMDへの力供給は、別章「DFTから原子間力へ」と専用配布版で扱います。BOMD/CPMDの長時間軌道、時間刻み・SCF公差・仮想質量μへの感度、温度制御は段階を分けて検証します。
 
+別の固定入力の教育例では、無次元の2準位電子角と核座標によるBO/CP型連成を短時間だけ実行しています。この模型は本章の周期He計算を動かしたものではなく、一般のKohn–Sham BOMD/CPMD・実材料・長時間MDの検証とは区別します。
+
 $$
 E_{\mathrm{BO}}(\mathbf R)=\min_{\langle\psi_i|\psi_j\rangle=\delta_{ij}}E_{\mathrm{KS}}[\{\psi_i\};\mathbf R],\qquad M_I\ddot{\mathbf R}_I=\mathbf F_I=-\nabla_{\mathbf R_I}E_{\mathrm{BO}}(\mathbf R)
 $$
@@ -109,6 +111,10 @@ $$
 $$
 \langle\psi_i|\psi_j\rangle=\delta_{ij},\qquad K_{\mathrm{fict}}=\frac{\mu}{2}\sum_i\langle\dot\psi_i|\dot\psi_i\rangle,\qquad E_{\mathrm{ext}}=\sum_I\frac{M_I}{2}|\dot{\mathbf R}_I|^2+E_{\mathrm{KS}}+K_{\mathrm{fict}}
 $$
+
+2準位模型のBO/CP型連成と短い核熱浴: https://hrkoyama.github.io/numerical-methods-atlas/validation/two-state-bo-cp-ou/?lang=ja
+
+https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/source-manifest.json
 
 ## 保存した実測値
 

@@ -100,6 +100,32 @@
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=euler-sod",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=euler-sod"
       }
+    },
+    {
+      "id": "gsph-sod",
+      "kind": "semi-analytic",
+      "kind_label": {
+        "ja": "半解析解",
+        "en": "Semi-analytic reference"
+      },
+      "title": {
+        "ja": "Gaussian畳込みGSPHによるSod型粒子衝撃管",
+        "en": "Sod-type particle shock tube with Gaussian-convolution GSPH"
+      },
+      "formula": "U_t+F(U)_x=0,\\quad p=(\\gamma-1)\\rho e,\\quad\\gamma=1.4; V_{ij}^2(h)=\\frac{h^2}{4}\\left(\\frac{V_i-V_j}{r_{ij}}\\right)^2+\\left(\\frac{V_i+V_j}{2}\\right)^2,\\quad V_i=1/\\rho_i,\\quad h_i=\\eta m_i/\\rho_{\\rm smooth,i}",
+      "assumptions": {
+        "ja": "Gaussianの線形比体積GSPH重なり積分、対称な可変h、独立な対Riemann解、反対称な全エネルギー交換を実装します。通常SPHへの星状態圧力の代入とは区別。再構築は1次に限定し、原著の3次/MUSCL実装や一般的な高精度は主張しません。",
+        "en": "Actual Gaussian linear-specific-volume GSPH overlap with symmetric variable h, independent pair Riemann solves and antisymmetric total-energy exchange; not substitution of star pressure into ordinary SPH. First-order reconstruction only, not the paper cubic/MUSCL implementation or a general accuracy claim."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "固定入力の式・参照・図と実行コードを対応付けます。 Gaussianの線形比体積畳み込み、対称な可変h、独立な対Riemann解と反対称な全エネルギー交換を持つGSPHです。通常SPHへp*を代入する代用ではありません。一次再構成に限定し、論文のcubic/MUSCLや一般精度を主張しません。",
+        "en": "Bind the fixed-input formula, reference, figure and executable code. Actual Gaussian linear-specific-volume GSPH overlap with symmetric variable h, independent pair Riemann solves and antisymmetric total-energy exchange; not substitution of star pressure into ordinary SPH. First-order reconstruction only, not the paper cubic/MUSCL implementation or a general accuracy claim."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gsph-sod/?lang=ja#gsph-sod-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gsph-sod/?lang=en#gsph-sod-en-measurements"
+      }
     }
   ],
   "reference_note": {
@@ -131,6 +157,32 @@
       "url": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hllc/?lang=ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hllc/?lang=en"
+      }
+    },
+    {
+      "id": "gsph",
+      "name": {
+        "ja": "Godunov SPH／GSPH",
+        "en": "Godunov SPH / GSPH"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/gsph/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/gsph/?lang=en"
+      }
+    },
+    {
+      "id": "sph",
+      "name": {
+        "ja": "SPHカーネル再構成",
+        "en": "SPH kernel reconstruction"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/sph/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/sph/?lang=en"
       }
     }
   ],
@@ -198,6 +250,62 @@
       ],
       "test_urls": [
         "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-22/tests/test_recipes.py"
+      ],
+      "source_scope": "package"
+    },
+    {
+      "id": "gsph-sod",
+      "kind": "supplement",
+      "name": {
+        "ja": "Gaussian畳込みGSPHによるSod型粒子衝撃管",
+        "en": "Sod-type particle shock tube with Gaussian-convolution GSPH"
+      },
+      "method_ids": [
+        "gsph",
+        "sph"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gsph-sod/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/gsph-sod/?lang=en"
+      },
+      "scope": {
+        "ja": "Gaussian畳込みの線形比体積近似と対称な可変平滑化長を使う、限定GSPH粒子流体計算。",
+        "en": "ActualInutsuka-linear-overlap variablehGSPH approximation withfirstorderpair states, comparedwithdistinctstandardSPHcontrol. Periodictwointerfaces; centralwindowbeforeouterwaves. Not cubic/MUSCLpaperreproduction or plainSPH-pressure-star surrogate."
+      },
+      "assumptions": {
+        "ja": "Gaussian畳込みの線形比体積近似と対称な可変平滑化長を使う、限定GSPH粒子流体計算。 固定入力の条件・境界・参照の範囲はinputs.jsonを参照。",
+        "en": "ActualInutsuka-linear-overlap variablehGSPH approximation withfirstorderpair states, comparedwithdistinctstandardSPHcontrol. Periodictwointerfaces; centralwindowbeforeouterwaves. Not cubic/MUSCLpaperreproduction or plainSPH-pressure-star surrogate."
+      },
+      "limits": {
+        "ja": "限定した教育用モデルです。元論文の全条件・全アルゴリズムや一般的な性能の再現ではありません。",
+        "en": "ActualInutsuka-linear-overlap variablehGSPH approximation withfirstorderpair states, comparedwithdistinctstandardSPHcontrol. Periodictwointerfaces; centralwindowbeforeouterwaves. Not cubic/MUSCLpaperreproduction or plainSPH-pressure-star surrogate."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "解析参照、保存量、細分化、独立成分検査と意図した誤式の負例を区別して保存します。",
+        "en": "Separate analytic/reference errors, conservation, refinement, independent component qualification and deliberately wrong-formula controls."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/ale_piston.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/test_components.py"
       ],
       "source_scope": "package"
     }

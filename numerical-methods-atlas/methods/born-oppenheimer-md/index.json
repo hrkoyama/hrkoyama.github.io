@@ -13,7 +13,7 @@
     "ja": "核配置ごとに電子基底状態を収束させ、得られた力で核の古典運動を進める。",
     "en": "Converge the electronic ground state at each nuclear configuration and propagate classical nuclei with its forces."
   },
-  "status": "reading-only",
+  "status": "educational-example",
   "origin": "curated-quantum-reading",
   "reading": {
     "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-dft/#first-principles-md",
@@ -39,27 +39,29 @@
   ],
   "assumptions": [
     "Classical nuclei and a selected adiabatic electronic ground state. A fixed-He₂ force-provider/local-Verlet check exists, while full trajectories remain unvalidated.",
-    "The published interface fixes the periodic cell, occupations and electronic model, and reconverges SCF at every visited geometry."
+    "The published interface fixes the periodic cell, occupations and electronic model, and reconverges SCF at every visited geometry.",
+    "Actual coupled normalized electronic angle and nuclear coordinate, short NVE plus one nuclear OU trajectory. No first-principles/long NVE/canonical sampling/production CPMD. BO and mu.04 state comparisons use fixed4096/8192 RK4 companions; mu.01 receives energy checks only. Authored dimensionless model units with M=20 and angular fictitious mass mu=.04/.01; these are not cp.x emass units."
   ],
   "assumptions_ja": [
     "核は古典力学、電子は選択した断熱的基底状態。固定He₂の力供給と局所Verlet確認があるが、軌道全体は未検証。",
-    "公開接続例は周期セル・占有・電子モデルを固定し、訪れた各核配置でSCFを解き直す。"
+    "公開接続例は周期セル・占有・電子モデルを固定し、訪れた各核配置でSCFを解き直す。",
+    "無次元の核座標と規格化した1電子角。3固定刻み、2架空質量、1固定seedのOU熱浴です。 自作模型の無次元単位。Q,時間,電子角,温度を固定し、M=20、架空角質量μ=.04/.01。cp.xのemass規約とは別です。"
   ],
-  "units": "Atomic units: energies hartree, forces hartree/bohr, positions bohr, time atomic units and explicit nuclear masses in electron masses.",
-  "units_ja": "原子単位：エネルギー hartree、力 hartree/bohr、座標 bohr、時間 原子時間、核質量 電子質量。",
-  "boundary_conditions": "Choose isolated or periodic boundaries for the model; the published local interface uses the fixed periodic He₂ cell.",
-  "boundary_conditions_ja": "モデルに応じて孤立・周期境界を選ぶ。公開した局所接続例は固定した周期He₂セル。",
+  "units": "Authored dimensionless model units with M=20 and angular fictitious mass mu=.04/.01; these are not cp.x emass units.",
+  "units_ja": "自作模型の無次元単位。Q,時間,電子角,温度を固定し、M=20、架空角質量μ=.04/.01。cp.xのemass規約とは別です。",
+  "boundary_conditions": "The fixed case-specific conditions only; no general materials or long-MD validation.",
+  "boundary_conditions_ja": "各固定例の条件に限定し、一般物質・長時間MDを検証しません。",
   "next_deliverable": {
-    "ja": "解説・一次文献と既存の小規模例との対応を保守する。専用実装の追加は必要性が指定された場合に小さな教育用例から検討し、重い収束走査・独立参照の再生成・長時間MDは通常の作業へ含めない。",
-    "en": "Maintain the reading, primary sources and links to existing small examples. Consider a dedicated implementation only when needed, starting with a small educational case; routine work excludes heavy convergence sweeps, reference regeneration and long MD."
+    "ja": "固定した教育用例を保持し、一般範囲への拡張は必要性が改めて指定された場合に別途扱う。",
+    "en": "Maintain these fixed educational examples; broader extensions require a separately specified need."
   },
   "limitations": {
-    "ja": "BOMD全体の状態は解説のみ。別の力配布版で行った短いVerlet接続確認を、長時間軌道・温度制御の検証として数えません。",
-    "en": "Overall BOMD remains reading only. The separate force release’s short Verlet interface check does not validate long trajectories or thermostats."
+    "ja": "長時間第一原理NVE、一般の多軌道直交制約・SCF誤差、電子/核の一般熱浴、正準平衡・断熱分離・エルゴード性、実物質は未検証。",
+    "en": "Long first-principles NVE, general multi-orbital orthonormality/SCF errors, general electronic/nuclear baths, canonical equilibration, adiabatic/ergodic certification and materials remain unverified."
   },
   "caution": {
-    "ja": "BOMD全体の状態は解説のみ。別の力配布版で行った短いVerlet接続確認を、長時間軌道・温度制御の検証として数えません。",
-    "en": "Overall BOMD remains reading only. The separate force release’s short Verlet interface check does not validate long trajectories or thermostats."
+    "ja": "長時間第一原理NVE、一般の多軌道直交制約・SCF誤差、電子/核の一般熱浴、正準平衡・断熱分離・エルゴード性、実物質は未検証。",
+    "en": "Long first-principles NVE, general multi-orbital orthonormality/SCF errors, general electronic/nuclear baths, canonical equilibration, adiabatic/ergodic certification and materials remain unverified."
   },
   "aliases": [
     "BOMD",
@@ -70,24 +72,358 @@
     "ボルン・オッペンハイマー分子動力学"
   ],
   "metadata_review": {
-    "level": "Primary publisher metadata and scoped force-provider evidence reviewed; local interface check available, without validated long-time BOMD trajectories.",
-    "on": "2026-11-22"
+    "level": "Release-specific small educational examples; inspect the versioned source and independent-extraction evidence. Broad method scope remains limited.",
+    "on": "2026-11-25",
+    "prior_reading_metadata": {
+      "level": "Primary publisher metadata and scoped force-provider evidence reviewed; local interface check available, without validated long-time BOMD trajectories.",
+      "on": "2026-11-22"
+    }
+  },
+  "depth_release": {
+    "group": "quantum-small",
+    "case_ids": [
+      "two-state-bo-cp-ou"
+    ],
+    "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/",
+    "code_edition": "2026-11-25",
+    "code_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/run.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/coupled_md.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/io_utils.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/eigenpairs.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/molecules.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/periodic_projector.py",
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/plot_results.py"
+    ],
+    "test_urls": [
+      "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/test_quantum_small.py"
+    ],
+    "run_commands": [
+      "python -m pytest -q",
+      "python run.py --input inputs.json --output output"
+    ],
+    "run_from": "atlas-quantum-small-2026-11-25",
+    "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip",
+    "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/source-manifest.json",
+    "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/verification.json",
+    "code_archive_sha256": "b332d168c00bd46862a4b5a98e42054e1749e0b734318e96af0049ab9d255cfc",
+    "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/results/result.json",
+    "passed_tests": 18,
+    "examples": [
+      {
+        "id": "two-state-bo-cp-ou",
+        "sequence": 95,
+        "method_ids": [
+          "born-oppenheimer-md",
+          "car-parrinello-md",
+          "langevin-thermostat",
+          "verlet"
+        ],
+        "title": {
+          "ja": "2準位模型のBO/CP型連成と短い核熱浴",
+          "en": "A two-state BO / CP-type model with a short nuclear thermostat coupling"
+        },
+        "summary": {
+          "ja": "電子角と核座標を実際に結合した2準位模型を、短いNVEと核熱浴で比較します。",
+          "en": "Compare a normalized two-state electronic degree of freedom coupled to a nuclear coordinate, short NVE and one nuclear OU bath."
+        },
+        "assumptions": {
+          "ja": "無次元の核座標と規格化した1電子角。3固定刻み、2架空質量、1固定seedのOU熱浴です。 自作模型の無次元単位。Q,時間,電子角,温度を固定し、M=20、架空角質量μ=.04/.01。cp.xのemass規約とは別です。",
+          "en": "Actual coupled normalized electronic angle and nuclear coordinate, short NVE plus one nuclear OU trajectory. No first-principles/long NVE/canonical sampling/production CPMD. BO and mu.04 state comparisons use fixed4096/8192 RK4 companions; mu.01 receives energy checks only. Authored dimensionless model units with M=20 and angular fictitious mass mu=.04/.01; these are not cp.x emass units."
+        },
+        "algorithm": {
+          "ja": "解析BO力とCP型作用の式をVerlet/BAOABで積分し、核熱と架空電子運動エネルギーを分けます。",
+          "en": "Use analytic BO forces and the declared CP-type action with Verlet/BAOAB; record nuclear heat and fictitious electronic kinetic energy separately."
+        },
+        "validation": {
+          "ja": "解析勾配、4096/8192段の固定RK4感度、拡張エネルギーとOU条件付き分散を照合します。",
+          "en": "Check energy gradients, fixed4096/8192 RK4 sensitivity, extended energy, OU heat bookkeeping and conditional temperature variance."
+        },
+        "limits": {
+          "ja": "短い自作教育模型です。第一原理・長いNVE・一般CPMD・正準平衡・エルゴード性の成功は主張しません。",
+          "en": "Long first-principles NVE and general electronic/nuclear thermostat equilibration remain deferred. No material prediction, multi-orbital CPMD or canonical/ergodic sampling certificate."
+        },
+        "domains": [
+          "quantum"
+        ],
+        "code_files": [
+          "run.py",
+          "coupled_md.py"
+        ],
+        "reference_files": [
+          "THEORY.md",
+          "provenance.json",
+          "acceptance.json",
+          "cards.json"
+        ],
+        "references": [
+          {
+            "id": "car-parrinello1985",
+            "title": "Unified Approach for Molecular Dynamics and Density-Functional Theory",
+            "url": "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.55.2471",
+            "accessed_on": "2026-11-25",
+            "review_level": "abstract-and-metadata",
+            "review": {
+              "ja": "出版社の題名・著者・日付・DOIと抄録のみ。PDF本文・式は今回読んでおらず、Si計算やこの自作模型を原論文から再現したとは主張しません。",
+              "en": "Publisher title/authors/date/DOI and abstract only. Full PDF/equations not read; this is not a reproduction of the silicon calculation."
+            },
+            "year": 1985,
+            "year_role": "original-publication"
+          },
+          {
+            "id": "qe-cp-guide",
+            "title": "Quantum ESPRESSO cp.x input description",
+            "url": "https://www.quantum-espresso.org/Doc/INPUT_CP.html",
+            "accessed_on": "2026-11-25",
+            "review_level": "selected-official-documentation",
+            "review": {
+              "ja": "公式cp.xのemass・直交化の選択箇所のみ。この無次元電子角の架空質量を同じ物理規約へ読み替えません。",
+              "en": "Selected emass/orthogonalization and CP context. Its physical mass conventions are not silently assigned to the authored dimensionless angle mass."
+            },
+            "year_role": "n.d.-access-date"
+          }
+        ],
+        "kind": "implementation",
+        "new_numeric_model_families": 1,
+        "formulas": [
+          "H(Q)=\\frac{kQ^2}{2}I+\\begin{pmatrix}-\\Delta&gQ\\\\gQ&\\Delta\\end{pmatrix},\\quad\\psi=(\\cos\\theta,\\sin\\theta)^T",
+          "E(Q,\\theta)=\\frac{kQ^2}{2}-\\Delta\\cos(2\\theta)+gQ\\sin(2\\theta),\\quad E_-(Q)=\\frac{kQ^2}{2}-\\sqrt{\\Delta^2+g^2Q^2}",
+          "M\\ddot Q=-kQ-g\\sin(2\\theta),\\quad\\mu\\ddot\\theta=-2\\Delta\\sin(2\\theta)-2gQ\\cos(2\\theta)",
+          "V^+=aV^-+\\sqrt{(T/M)(1-a^2)}\\,\\xi,\\quad a=e^{-\\gamma h},\\quad Q_{\\rm bath}=\\sum\\Delta K_{\\rm nuclear}"
+        ],
+        "measured": {
+          "id": "two-state-bo-cp-ou",
+          "passed": true,
+          "checks": {
+            "95 bo-0 NVE extended energy drift": true,
+            "95 bo-1 NVE extended energy drift": true,
+            "95 bo-2 NVE extended energy drift": true,
+            "95 cp-mu004-0 NVE extended energy drift": true,
+            "95 cp-mu004-1 NVE extended energy drift": true,
+            "95 cp-mu004-2 NVE extended energy drift": true,
+            "95 cp-mu001 NVE extended energy drift": true,
+            "95 bo finest RK4 state comparison": true,
+            "95 cp-mu004 finest RK4 state comparison": true,
+            "95 bo fixed RK4 companion sensitivity": true,
+            "95 cp-mu004 fixed RK4 companion sensitivity": true,
+            "95 OU extended energy minus measured heat": true,
+            "95 OU conditional temperature variance identity": true,
+            "95 normalized orbital": true
+          },
+          "metrics": {
+            "95 bo-0 NVE extended energy drift": 4.54374582403716e-08,
+            "95 bo-1 NVE extended energy drift": 1.135934568630148e-08,
+            "95 bo-2 NVE extended energy drift": 2.8398352558411943e-09,
+            "95 cp-mu004-0 NVE extended energy drift": 4.543430420778094e-08,
+            "95 cp-mu004-1 NVE extended energy drift": 1.1358568974273453e-08,
+            "95 cp-mu004-2 NVE extended energy drift": 2.839641743968002e-09,
+            "95 cp-mu001 NVE extended energy drift": 2.8397284523862254e-09,
+            "95 bo finest RK4 state comparison": 5.443721431889809e-09,
+            "95 cp-mu004 finest RK4 state comparison": 9.898870595217574e-08,
+            "95 bo fixed RK4 companion sensitivity": 2.5547594848822963e-15,
+            "95 cp-mu004 fixed RK4 companion sensitivity": 1.2252872249276024e-15,
+            "95 OU extended energy minus measured heat": 4.47292801061816e-09,
+            "95 OU conditional temperature variance identity": 0.0,
+            "95 normalized orbital": 2.220446049250313e-16
+          },
+          "records": {
+            "saved_data": "95-result.json",
+            "sequence": 95,
+            "new_simulations": true,
+            "scope_card": "cards.json#two-state-bo-cp-ou"
+          }
+        },
+        "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/two-state-bo-cp-ou/",
+        "reading": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quantum-small/#two-state-bo-cp-ou",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quantum-small/#two-state-bo-cp-ou"
+        }
+      }
+    ]
+  },
+  "supplemental_scope_profiles": [
+    {
+      "release": {
+        "group": "quantum-small",
+        "edition": "2026-11-25",
+        "case_ids": [
+          "two-state-bo-cp-ou"
+        ]
+      },
+      "scope": {
+        "ja": "固定した小規模例に限定：2準位模型のBO/CP型連成と短い核熱浴。保存参照監査は新しい電子計算ではありません。",
+        "en": "Restricted fixed examples: A two-state BO / CP-type model with a short nuclear thermostat coupling. Saved-reference audits are not new electronic calculations."
+      },
+      "limits": [
+        {
+          "ja": "短い自作教育模型です。第一原理・長いNVE・一般CPMD・正準平衡・エルゴード性の成功は主張しません。",
+          "en": "Long first-principles NVE and general electronic/nuclear thermostat equilibration remain deferred. No material prediction, multi-orbital CPMD or canonical/ergodic sampling certificate."
+        }
+      ]
+    }
+  ],
+  "depth_previous_status": "reading-only",
+  "depth_scope": {
+    "ja": "固定した小規模例に限定：2準位模型のBO/CP型連成と短い核熱浴。保存参照監査は新しい電子計算ではありません。",
+    "en": "Restricted fixed examples: A two-state BO / CP-type model with a short nuclear thermostat coupling. Saved-reference audits are not new electronic calculations."
   },
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/born-oppenheimer-md/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/born-oppenheimer-md/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/born-oppenheimer-md/index.md",
-  "code_urls": [],
-  "test_urls": [],
-  "run_commands": [],
-  "run_from": null,
-  "code_base": "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/",
-  "code_edition": null,
-  "execution_examples": [],
+  "code_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/coupled_md.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/io_utils.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/eigenpairs.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/molecules.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/periodic_projector.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/plot_results.py"
+  ],
+  "test_urls": [
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/test_quantum_small.py"
+  ],
+  "run_commands": [
+    "python -m pytest -q",
+    "python run.py --input inputs.json --output output"
+  ],
+  "run_from": "atlas-quantum-small-2026-11-25",
+  "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/",
+  "code_edition": "2026-11-25",
+  "execution_examples": [
+    {
+      "id": "two-state-bo-cp-ou",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/two-state-bo-cp-ou/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/two-state-bo-cp-ou/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    }
+  ],
+  "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip",
+  "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/source-manifest.json",
+  "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/verification.json",
+  "code_archive_sha256": "b332d168c00bd46862a4b5a98e42054e1749e0b734318e96af0049ab9d255cfc",
+  "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/results/result.json",
+  "code_mapping_scope": "Scoped fixed-input examples; original method variants and earlier releases remain distinct.",
   "problem_navigation": {
     "method_id": "born-oppenheimer-md",
-    "status": "reading-only",
-    "equations": [],
-    "problems": [],
-    "references": []
+    "status": "educational-example",
+    "equations": [
+      {
+        "id": "two-state-bo-cp-model",
+        "name": {
+          "ja": "2準位電子角と核のBO/CP型模型",
+          "en": "Two-state electronic-angle/nuclear BO and CP-type model"
+        },
+        "problem_ids": [
+          "two-state-bo-cp-model"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#two-state-bo-cp-model-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#two-state-bo-cp-model-en"
+        }
+      }
+    ],
+    "problems": [
+      {
+        "id": "two-state-bo-cp-model",
+        "name": {
+          "ja": "2準位模型のBO/CP型連成と短い核熱浴",
+          "en": "A two-state BO / CP-type model with a short nuclear thermostat coupling"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/results/two-state-bo-cp-ou.png",
+          "sha256": "cdd2033e650a54ceb9fb961b3717f7405b12d7fc6983891d03658f1e10a5df2b",
+          "width": 1600,
+          "height": 640,
+          "caption": {
+            "ja": "電子角と核座標を実際に結合した2準位模型を、短いNVEと核熱浴で比較します。 長時間第一原理NVE、一般の多軌道直交制約・SCF誤差、電子/核の一般熱浴、正準平衡・断熱分離・エルゴード性、実物質は未検証。",
+            "en": "Compare a normalized two-state electronic degree of freedom coupled to a nuclear coordinate, short NVE and one nuclear OU bath. Long first-principles NVE, general multi-orbital orthonormality/SCF errors, general electronic/nuclear baths, canonical equilibration, adiabatic/ergodic certification and materials remain unverified."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/two-state-bo-cp-model/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/two-state-bo-cp-model/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/two-state-bo-cp-model/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/two-state-bo-cp-model/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "two-state-bo-cp-ou",
+            "kind": "supplement",
+            "name": {
+              "ja": "2準位模型のBO/CP型連成と短い核熱浴",
+              "en": "A two-state BO / CP-type model with a short nuclear thermostat coupling"
+            },
+            "scope": {
+              "ja": "電子角と核座標を実際に結合した2準位模型を、短いNVEと核熱浴で比較します。",
+              "en": "Compare a normalized two-state electronic degree of freedom coupled to a nuclear coordinate, short NVE and one nuclear OU bath."
+            },
+            "method_ids": [
+              "born-oppenheimer-md",
+              "car-parrinello-md",
+              "langevin-thermostat",
+              "verlet"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/two-state-bo-cp-ou/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/two-state-bo-cp-ou/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "解析BO力とCP型作用の式をVerlet/BAOABで積分し、核熱と架空電子運動エネルギーを分けます。",
+          "en": "Use analytic BO forces and the declared CP-type action with Verlet/BAOAB; record nuclear heat and fictitious electronic kinetic energy separately."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/two-state-bo-cp-model/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/two-state-bo-cp-model/?lang=en#references-en"
+        }
+      }
+    ],
+    "references": [
+      {
+        "problem_id": "two-state-bo-cp-model",
+        "problem_name": {
+          "ja": "2準位模型のBO/CP型連成と短い核熱浴",
+          "en": "A two-state BO / CP-type model with a short nuclear thermostat coupling"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/two-state-bo-cp-model/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/two-state-bo-cp-model/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "two-state-bo-cp-ou",
+            "title": {
+              "ja": "2準位模型のBO/CP型連成と短い核熱浴",
+              "en": "A two-state BO / CP-type model with a short nuclear thermostat coupling"
+            },
+            "kind": "semi-analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "長時間第一原理NVE、一般の多軌道直交制約・SCF誤差、電子/核の一般熱浴、正準平衡・断熱分離・エルゴード性、実物質は未検証。",
+              "en": "Long first-principles NVE, general multi-orbital orthonormality/SCF errors, general electronic/nuclear baths, canonical equilibration, adiabatic/ergodic certification and materials remain unverified."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-two-state-bo-cp-ou-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-two-state-bo-cp-ou-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/two-state-bo-cp-ou/?lang=ja#two-state-bo-cp-ou-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/two-state-bo-cp-ou/?lang=en#two-state-bo-cp-ou-en-measurements"
+            }
+          }
+        ]
+      }
+    ]
   }
 }

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "edition": "2026-11-22",
-  "case_count": 138,
+  "case_count": 157,
   "releases": [
     {
       "group": "foundations",
@@ -959,6 +959,90 @@
         "seir-linearization"
       ],
       "tests": 25
+    },
+    {
+      "group": "biology-ode-controls",
+      "edition": "2026-11-25",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/",
+      "archive": "atlas-biology-ode-controls-2026-11-25.zip",
+      "archive_sha256": "b67232232a461e8ef0e24d522a3e40c9af64b8d90cd55c9657c955a92772b042",
+      "manifest_sha256": "6b39422e0a480658f7435dbfff210ade94c3016ec5cc7cbfc55e54fff3215016",
+      "verification_sha256": "b6106b16b00c01c4a8fa95e0fc44d8cddf2f41ae19973598df7aa5c4e8a3cef9",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "hodgkin-huxley-controls",
+        "immigration-death-ssa"
+      ],
+      "tests": 11
+    },
+    {
+      "group": "biology-space-controls",
+      "edition": "2026-11-25",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/",
+      "archive": "atlas-biology-space-controls-2026-11-25.zip",
+      "archive_sha256": "8abffcd65c0fc14eb1a346dba17e70097e2dc8806b348e114fc449b4fe0e0419",
+      "manifest_sha256": "b9ebb71638b3f18fde2d5b32b8042016e0f33ac1daa42173937f957c3f65d0ab",
+      "verification_sha256": "2e7efea396ecd14287ef8fe8b7326d88c61955a6201431eda4dbaa09c26daed2",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "fisher-kpp-special-front",
+        "keller-segel-forced-flux",
+        "schnakenberg-2d-boundary-modes"
+      ],
+      "tests": 11
+    },
+    {
+      "group": "thermostat-constraint-controls",
+      "edition": "2026-11-25",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/thermostat-constraint-controls/",
+      "archive": "atlas-thermostat-constraint-controls-2026-11-25.zip",
+      "archive_sha256": "836113a7e8859d41b2697177f74cb2c8c8185a6fa4f4630773b914095ed10de1",
+      "manifest_sha256": "6e64499f6bda68ad17ccc7402e49a7296b82d500174ce0eb238e0acd076cc45e",
+      "verification_sha256": "c3273335cc6619c07d956252d65b00abf58ff3497d0a35776b3fc376ae70134e",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "deterministic-thermostat-contrasts",
+        "projected-canonical-dof"
+      ],
+      "tests": 10
+    },
+    {
+      "group": "quantum-small",
+      "edition": "2026-11-25",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/",
+      "archive": "atlas-quantum-small-2026-11-25.zip",
+      "archive_sha256": "b332d168c00bd46862a4b5a98e42054e1749e0b734318e96af0049ab9d255cfc",
+      "manifest_sha256": "b13b8873c5f74ec3b1b25207ed145cf7ece1ceec2e0e254a9b7f18e93f73350c",
+      "verification_sha256": "f78f47618f7524ef69e2b96ed460f1d1e4636cf42775f1ae643e062dabf99dbe",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "atomic-reference-cards",
+        "h2-rhf-uhf-fci",
+        "h3plus-mp2-fci",
+        "periodic-he-reference-cards",
+        "periodic-projector-occupations",
+        "quantum-box-ho",
+        "two-state-bo-cp-ou"
+      ],
+      "tests": 18
+    },
+    {
+      "group": "continuum-particle-controls",
+      "edition": "2026-11-25",
+      "base": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/",
+      "archive": "atlas-continuum-particle-controls-2026-11-25.zip",
+      "archive_sha256": "1d12a6ecd9d87ae95585a984e66411b2314eb7804b064f023aa57addc3142f49",
+      "manifest_sha256": "2017c5da0e0a6d70ba01242b63d5bc391feb1fbe24795f8ceab2389790bbec00",
+      "verification_sha256": "0ce44ce14104c4cdd7e6876b8118d9e6c5635ae40af0f631623418c05264600e",
+      "requirements_sha256": "d7c56e9b9d430dc6304958cf5d1e009e067c16e23944379a9e31f7b5193ece75",
+      "case_ids": [
+        "gsph-sod",
+        "saltzman-ale-piston",
+        "sph-pressure-acoustics",
+        "sphere-zonal-balance",
+        "williamson-sphere-transport"
+      ],
+      "tests": 17
     }
   ]
 }

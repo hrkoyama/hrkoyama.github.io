@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "checked_on": "2026-11-25",
-  "scope": "The 22-family survey links scoped examples of logistic growth, closed SIR, linear reaction–diffusion, linear Schnakenberg onset, finite-amplitude nonlinear evolution and post-growth 1D patterns, plus spatially uniform FitzHugh–Nagumo. This does not implement all 22 families or Hodgkin–Huxley. Three further fixed examples from the separate small-models group cover four-state enzyme/QSSA, a positive Lotka–Volterra orbit, and SEIR conservation with full two-mode early linearization. SEIR is separate from the existing SIR execution scope.",
+  "scope": "The 22-family survey links scoped examples of logistic growth, closed SIR, linear reaction–diffusion, linear Schnakenberg onset, finite-amplitude nonlinear evolution and post-growth 1D patterns, plus spatially uniform FitzHugh–Nagumo. This does not implement all 22 families. Separate fixed-input releases add single-cell HH current controls, immigration–death SSA, a special Fisher traveling front, 2D Schnakenberg boundary modes and a forced Keller–Segel manufactured problem. Three further fixed examples from the separate small-models group cover four-state enzyme/QSSA, a positive Lotka–Volterra orbit, and SEIR conservation with full two-mode early linearization. SEIR is separate from the existing SIR execution scope.",
   "models": [
     {
       "id": "logistic",
@@ -130,8 +130,16 @@
         "ablowitz1979"
       ],
       "priority": "first",
-      "status": "survey-only",
-      "scope": "Fisher–KPP is a conventional family name; the independent KPP 1937 original remains an archival follow-up. The exact special speed is not the minimal speed."
+      "status": "scoped-educational-example",
+      "scope": "Fisher–KPP is a conventional family name; the independent KPP 1937 original remains an archival follow-up. The exact special speed is not the minimal speed.",
+      "supplemental_examples": [
+        "fisher-kpp-special-front"
+      ],
+      "implementation_scope": {
+        "ja": "全モデル族の実装ではありません。今回の固定例：Fisher–KPP：特殊波速の厳密前線",
+        "en": "Not implementation of the entire model family. Fixed cases: Fisher–KPP: a special-speed exact front"
+      },
+      "execution_url": "/numerical-methods-atlas/validation/fisher-kpp-special-front/"
     },
     {
       "id": "monod",
@@ -162,8 +170,16 @@
         "hodgkin1952"
       ],
       "priority": "later",
-      "status": "survey-only",
-      "scope": "The original squid-axon model is not a calibrated human cardiac model. No single rate parameter set is selected by this survey."
+      "status": "scoped-educational-example",
+      "scope": "The original squid-axon model is not a calibrated human cardiac model. No single rate parameter set is selected by this survey.",
+      "supplemental_examples": [
+        "hodgkin-huxley-controls"
+      ],
+      "implementation_scope": {
+        "ja": "全モデル族の実装ではありません。今回の固定例：Hodgkin–Huxley：電位固定・静止平衡・発火",
+        "en": "Not implementation of the entire model family. Fixed cases: Hodgkin–Huxley: clamps, rest and firing"
+      },
+      "execution_url": "/numerical-methods-atlas/validation/hodgkin-huxley-controls/"
     },
     {
       "id": "turing",
@@ -229,8 +245,16 @@
         "keller1970"
       ],
       "priority": "later",
-      "status": "survey-only",
-      "scope": "This is a common two-field reduction of a more detailed original formulation. Blowup thresholds depend on dimension, domain, boundary and chemical dynamics."
+      "status": "scoped-educational-example",
+      "scope": "This is a common two-field reduction of a more detailed original formulation. Blowup thresholds depend on dimension, domain, boundary and chemical dynamics.",
+      "supplemental_examples": [
+        "keller-segel-forced-flux"
+      ],
+      "implementation_scope": {
+        "ja": "全モデル族の実装ではありません。今回の固定例：Keller–Segel：連成流束の製造解",
+        "en": "Not implementation of the entire model family. Fixed cases: Keller–Segel: a manufactured coupled-flux solution"
+      },
+      "execution_url": "/numerical-methods-atlas/validation/keller-segel-forced-flux/"
     },
     {
       "id": "gierer-meinhardt",
@@ -277,8 +301,16 @@
         "gillespie1977"
       ],
       "priority": "later",
-      "status": "survey-only",
-      "scope": "The 1977 paper is a foundational SSA reference, not a priority claim for all master equations. SSA is a solver; the reaction network is the model. A seed documents a trajectory, not an ensemble validation."
+      "status": "scoped-educational-example",
+      "scope": "The 1977 paper is a foundational SSA reference, not a priority claim for all master equations. SSA is a solver; the reaction network is the model. A seed documents a trajectory, not an ensemble validation.",
+      "supplemental_examples": [
+        "immigration-death-ssa"
+      ],
+      "implementation_scope": {
+        "ja": "全モデル族の実装ではありません。今回の固定例：移入–死亡SSA：有限時刻の厳密分布",
+        "en": "Not implementation of the entire model family. Fixed cases: Immigration–death SSA: exact transient laws"
+      },
+      "execution_url": "/numerical-methods-atlas/validation/immigration-death-ssa/"
     },
     {
       "id": "mackey-glass",
@@ -330,11 +362,12 @@
       "supplemental_examples": [
         "turing-schnakenberg",
         "schnakenberg-nonlinear",
-        "schnakenberg-pattern"
+        "schnakenberg-pattern",
+        "schnakenberg-2d-boundary-modes"
       ],
       "implementation_scope": {
-        "ja": "a=0.1,b=0.9、拡散係数0.01/1、長さ2πの1次元周期Schnakenberg系。旧線形発現例を保持し、固定した反射対称の有限振幅初期値の非線形発展と成長後パターンを独立Fourier–Galerkin/Radau参照および空間・時間細分化で比較します。一般の模様選択、2次元、生物実験への較正、流体連成には広げません。",
-        "en": "A 1D periodic Schnakenberg system of length 2pi, a=0.1, b=0.9 and diffusivities 0.01/1. Preserve the earlier linear-onset example and compare finite-amplitude nonlinear evolution and post-growth patterns from fixed reflection-symmetric data with independent Fourier–Galerkin/Radau references and separate spatial/temporal refinement. No general pattern selection, 2D, biological calibration or fluid-coupling claim."
+        "ja": "全モデル族の実装ではありません。今回の固定例：Schnakenberg：2D境界と初期モード",
+        "en": "Not implementation of the entire model family. Fixed cases: Schnakenberg:2D boundaries and initial modes"
       },
       "execution_url": "/numerical-methods-atlas/validation/turing-schnakenberg/"
     },

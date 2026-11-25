@@ -45,28 +45,28 @@
 
 ### BOMD・Car–Parrinello MD
 
-BOMDは各核配置で電子基底状態を十分に収束させて核を進める。力の配布版にはvelocity-Verletへの接続と1ステップ対2半ステップの局所確認がある。BOMD全体とCPMDは解説のみの状態を維持し、長時間NVEやCPの仮想質量・直交制約の検証と区別する。
+BOMDは各核配置で電子基底状態を十分に収束させて核を進める。力の配布版にはvelocity-Verletへの接続と1ステップ対2半ステップの局所確認がある。別の固定2準位BO/CP型模型には短い実行例がある。本ルートの周期He接続、一般のKohn–Sham MD、長時間NVEや多軌道CPMDの検証とは区別する。
 
 段階の状態: reading
 
 - [BOMDとCPMDの比較](/numerical-methods-atlas/ja/read/periodic-dft/#first-principles-md)
 - [BOMDへの力の受け渡しと局所確認](/numerical-methods-atlas/ja/read/periodic-forces/#bomd-interface)
-- [Born–Oppenheimer分子動力学（BOMD）](https://hrkoyama.github.io/numerical-methods-atlas/methods/born-oppenheimer-md/?lang=ja): reading-only
-- [カー–パリネロ法（CPMD）](https://hrkoyama.github.io/numerical-methods-atlas/methods/car-parrinello-md/?lang=ja): reading-only
+- [Born–Oppenheimer分子動力学（BOMD）](https://hrkoyama.github.io/numerical-methods-atlas/methods/born-oppenheimer-md/?lang=ja): educational-example
+- [カー–パリネロ法（CPMD）](https://hrkoyama.github.io/numerical-methods-atlas/methods/car-parrinello-md/?lang=ja): educational-example
 
 残る差: BOMDの長時間NVEドリフトと時間刻み・SCF公差の系統的収束、CPMDの専用実装は未公開。短い接続確認を軌道全体の検証として数えない。
 
 ### サーモスタットと分布の確認
 
-12手法のうちLangevinとCSVRの2手法に専用実装。旧1自由度Langevin/BAOABの調和例を保持し、別版の同じOBABO分割で、非縮退2自由度の調和系とquartic係数λ=0.2の2自由度非調和系を比較します。CSVR単独の運動エネルギー核も検査。他の10手法は実装予定です。
+この段階の要素例はLangevinとCSVRの2手法です。旧1自由度Langevin/BAOABの調和例を保持し、別版の同じOBABO分割で、非縮退2自由度の調和系とquartic係数λ=0.2の2自由度非調和系を比較します。CSVR単独の運動エネルギー核も検査。別配布の決定論的4手法の固定比較は温度制御章で案内し、この段階の連成検証へは加えません。
 
 段階の状態: scoped-supplement
 
 - [温度制御と分布の比較](/numerical-methods-atlas/ja/read/thermostats/)
 - [Langevin振動子：分布・相関・刻み幅の実測](/numerical-methods-atlas/ja/read/validation-models/#langevin-harmonic)
 - [CSVRとLangevin：分布・揺らぎ・方法依存の相関](/numerical-methods-atlas/ja/read/validation-thermostats/)
-- [Nosé–Hooverサーモスタット](https://hrkoyama.github.io/numerical-methods-atlas/methods/nose-hoover/?lang=ja): planned
-- [Nosé–Hoover chain](https://hrkoyama.github.io/numerical-methods-atlas/methods/nose-hoover-chains/?lang=ja): planned
+- [Nosé–Hooverサーモスタット](https://hrkoyama.github.io/numerical-methods-atlas/methods/nose-hoover/?lang=ja): educational-example
+- [Nosé–Hoover chain](https://hrkoyama.github.io/numerical-methods-atlas/methods/nose-hoover-chains/?lang=ja): educational-example
 - [Langevinサーモスタット](https://hrkoyama.github.io/numerical-methods-atlas/methods/langevin-thermostat/?lang=ja): educational-example
 - [確率的速度リスケーリング（CSVR）](https://hrkoyama.github.io/numerical-methods-atlas/methods/stochastic-velocity-rescaling/?lang=ja): educational-example
 
@@ -84,7 +84,7 @@ BOMDは各核配置で電子基底状態を十分に収束させて核を進め�
   特定の分離可能な四次2自由度・固定seedだけの小さな例です。Hを調和系のGamma分布と扱いません。全系相関には独立な厳密動力学参照がなく、相関一致や統計誤差に隠れる時間次数を合格主張しません。成熟分子系・輸送係数・量子・第一原理MDの検証ではありません。
   [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-thermostats/#csvr-langevin-quartic)
 
-残る差: 専用実装は2手法で、他10手法は未実装。新しい2自由度調和・quartic比較とCSVR核は別の古典要素例です。旧BAOABも保持します。平衡分布・揺らぎと、浴に依存する時間相関を区別し、一般多体系や第一原理MDとの連成へ証拠を移しません。
+残る差: この段階に結び付ける要素例は2手法です。他方式の別固定入力例を連成の証拠へ流用しません。新しい2自由度調和・quartic比較とCSVR核は別の古典要素例です。旧BAOABも保持します。平衡分布・揺らぎと、浴に依存する時間相関を区別し、一般多体系や第一原理MDとの連成へ証拠を移しません。
 
 ### 多原子セルでエネルギー微分と力を照合する
 
@@ -516,28 +516,28 @@ Remaining gap: Validation is limited to fixed He₂, local GTH and VWN5. Other e
 
 ### BOMD and Car–Parrinello MD
 
-BOMD advances nuclei after converging the electronic ground state at each geometry. The force package provides a velocity-Verlet interface and a one-step/two-half-step local check. Overall BOMD and CPMD records remain reading only; long NVE and CP fictitious-mass/orthogonality validation are separate.
+BOMD advances nuclei after converging the electronic ground state at each geometry. The force package provides a velocity-Verlet interface and a one-step/two-half-step local check. A separate fixed two-state BO/CP-type model has short executed examples. It is distinct from this route’s periodic-He interface, general Kohn–Sham MD, long NVE or multi-orbital CPMD validation.
 
 Stage state: reading
 
 - [BOMD and CPMD comparison](/numerical-methods-atlas/en/read/periodic-dft/#first-principles-md)
 - [BOMD force interface and local check](/numerical-methods-atlas/en/read/periodic-forces/#bomd-interface)
-- [Born–Oppenheimer molecular dynamics / BOMD](https://hrkoyama.github.io/numerical-methods-atlas/methods/born-oppenheimer-md/?lang=en): reading-only
-- [Car–Parrinello molecular dynamics / CPMD](https://hrkoyama.github.io/numerical-methods-atlas/methods/car-parrinello-md/?lang=en): reading-only
+- [Born–Oppenheimer molecular dynamics / BOMD](https://hrkoyama.github.io/numerical-methods-atlas/methods/born-oppenheimer-md/?lang=en): educational-example
+- [Car–Parrinello molecular dynamics / CPMD](https://hrkoyama.github.io/numerical-methods-atlas/methods/car-parrinello-md/?lang=en): educational-example
 
 Remaining gap: Long BOMD NVE drift and systematic timestep/SCF trajectory convergence, and a dedicated CPMD implementation, remain unpublished. The short interface check does not validate complete trajectories.
 
 ### Thermostats and distribution checks
 
-Two of the 12 methods have dedicated implementations: Langevin and CSVR. Preserve the earlier one-degree-of-freedom harmonic Langevin/BAOAB case. A separate edition compares both baths with the same OBABO splitting for a nondegenerate two-degree harmonic system and a two-degree anharmonic system with quartic coefficient lambda=0.2, and checks the standalone CSVR kinetic-energy kernel. The other 10 methods remain planned.
+This stage uses component examples for two methods, Langevin and CSVR. Preserve the earlier one-degree-of-freedom harmonic Langevin/BAOAB case. A separate edition compares both baths with the same OBABO splitting for a nondegenerate two-degree harmonic system and a two-degree anharmonic system with quartic coefficient lambda=0.2, and checks the standalone CSVR kinetic-energy kernel. The thermostat chapter links a separate fixed four-method deterministic contrast; it is not added as coupled validation of this stage.
 
 Stage state: scoped-supplement
 
 - [Temperature control and distribution comparisons](/numerical-methods-atlas/en/read/thermostats/)
 - [Langevin oscillator: measured distributions, correlations and steps](/numerical-methods-atlas/en/read/validation-models/#langevin-harmonic)
 - [CSVR and Langevin: distributions, fluctuations and method-dependent correlations](/numerical-methods-atlas/en/read/validation-thermostats/)
-- [Nosé–Hoover thermostat](https://hrkoyama.github.io/numerical-methods-atlas/methods/nose-hoover/?lang=en): planned
-- [Nosé–Hoover chains](https://hrkoyama.github.io/numerical-methods-atlas/methods/nose-hoover-chains/?lang=en): planned
+- [Nosé–Hoover thermostat](https://hrkoyama.github.io/numerical-methods-atlas/methods/nose-hoover/?lang=en): educational-example
+- [Nosé–Hoover chains](https://hrkoyama.github.io/numerical-methods-atlas/methods/nose-hoover-chains/?lang=en): educational-example
 - [Langevin thermostat](https://hrkoyama.github.io/numerical-methods-atlas/methods/langevin-thermostat/?lang=en): educational-example
 - [Stochastic velocity rescaling (CSVR)](https://hrkoyama.github.io/numerical-methods-atlas/methods/stochastic-velocity-rescaling/?lang=en): educational-example
 
@@ -555,7 +555,7 @@ Separately managed fixed supplements: Retain the earlier one harmonic-oscillator
   A small example for one separable two-mode quartic potential and fixed seeds. H is not treated as harmonic Gamma. No independent exact full-system dynamical reference is claimed, and neither matching correlations nor time order hidden by sampling noise is an acceptance claim. Molecular transport, quantum and ab initio MD are outside scope.
   [Supplement receipt](https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/verification.json) · [Code/tests ZIP](https://hrkoyama.github.io/code/validated-examples/2026-11-22/thermostats/atlas-thermostats-2026-11-22.zip) · [Detailed reading](https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-thermostats/#csvr-langevin-quartic)
 
-Remaining gap: Dedicated implementations cover two methods; the other 10 methods are unimplemented. The new two-degree harmonic/quartic comparisons and CSVR kernel are separate classical components, alongside the retained BAOAB case. Distinguish equilibrium distributions/fluctuations from bath-dependent correlations, without transferring evidence to general many-body or first-principles-MD coupling.
+Remaining gap: This stage links two thermostat component methods; separate fixed-input examples of other algorithms are not evidence of coupling. The new two-degree harmonic/quartic comparisons and CSVR kernel are separate classical components, alongside the retained BAOAB case. Distinguish equilibrium distributions/fluctuations from bath-dependent correlations, without transferring evidence to general many-body or first-principles-MD coupling.
 
 ### Check energy derivatives against forces in a multiatom cell
 

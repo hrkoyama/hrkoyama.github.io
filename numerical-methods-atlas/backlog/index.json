@@ -17,8 +17,8 @@
     "shared_count": 5
   },
   "policy": {
-    "ja": "ユーザーが指定した最大5件を一組として進めます。入力・参照・合否判定・保存図と履歴は各問題で独立させ、索引更新・サイト全体検査・公開確認をまとめます。未検証の項目は完了扱いにしません。",
-    "en": "Work on a user-selected batch of up to five items. Keep each problem’s inputs, references, acceptance, saved figures and history independent; combine index refresh, whole-site checks and publication verification. Unverified items remain incomplete."
+    "ja": "今回はユーザーが明示した残り23項目を一組として扱います。入力・参照・判定・保存図・履歴は各問題で独立させ、索引生成・全体検査・公開確認を集約します。検証済みは記載した固定入力/整理範囲に限り、元の一般的な未実装・未検証範囲まで完了した意味ではありません。",
+    "en": "Use the explicitly user-selected cohort: the current final cohort contains23 curation/extension tasks. Keep inputs, references, criteria, figures and history separate, and aggregate index/site/publication checks. Verified concerns only the stated fixed protocol or curation scope, not every broader unimplemented or unverified survey task."
   },
   "workflow": {
     "max_active": 10,
@@ -33,11 +33,8 @@
       "ja": "科学計算の項目は入力・参照と出典・コード・検査・誤差/収束・保存図・実行入口・検証記録を確認して完了にします。出典整理は対象箇所と修正根拠を確認します。",
       "en": "Scientific items require inputs, cited reference, code, tests, error/refinement evidence, saved figure, execution entry and verification receipt. Curation items require checked target passages and evidence for the correction."
     },
-    "active_items": [
-      "ale-geophysical-1",
-      "ale-geophysical-2"
-    ],
-    "batch_id": "2026-11-23-sequences28-37"
+    "active_items": [],
+    "batch_id": "2026-11-25-final23-scoped"
   },
   "priority_labels": {
     "P0": {
@@ -466,12 +463,12 @@
       "priority": "P0",
       "kind": "references",
       "initial_coverage": "整理・登録不足",
-      "state": "planned",
+      "state": "verified",
       "current": "Bratu、調和振動子、stiff-cosine、水素原子等は既存の解析/参照根拠がある。一覧18件にないことを「解がない」と解釈せず、条件・式・図・実行・出典を一組にする。",
       "tasks": [
         "Bratu、調和振動子、stiff-cosine、水素原子等は既存の解析/参照根拠がある。一覧18件にないことを「解がない」と解釈せず、条件・式・図・実行・出典を一組にする。"
       ],
-      "scope_note": "",
+      "scope_note": "2026-11-25に追加した限定範囲：既存Bratu・調和振動子・stiff-cosine・水素型原子の4参照カードを、実固定パラメータ・標本化・旧配布版/入力SHA・図・実行へ結びました。新規数値実行ではありません。",
       "sources": [],
       "baseline_evidence": [
         {
@@ -481,9 +478,42 @@
           "path": "numerical-methods-atlas/problems/bratu/index.json"
         }
       ],
-      "completion": null,
+      "completion": {
+        "targets": [
+          "/catalog/atlas-reference-supplements.json",
+          "/catalog/atlas-problem-links.json"
+        ],
+        "proof": [
+          "/catalog/atlas-reference-metadata.json",
+          "/code/numerical-methods-atlas/2026-11-22/verification.json",
+          "/code/quantum-atoms/2026-11-21/verification.json"
+        ],
+        "note": "確認した対象・出典/入力/旧配布版SHAに基づく限定したメタデータ修正。既存Bratu・調和振動子・stiff-cosine・水素型原子の4参照カードを、実固定パラメータ・標本化・旧配布版/入力SHA・図・実行へ結びました。新規数値実行ではありません。"
+      },
       "sequence": 2,
-      "completion_evidence": null
+      "completed_limited_scope": {
+        "ja": "既存Bratu・調和振動子・stiff-cosine・水素型原子の4参照カードを、実固定パラメータ・標本化・旧配布版/入力SHA・図・実行へ結びました。新規数値実行ではありません。",
+        "en": "Only the named fixed-input or metadata scope is qualified; see the retained original survey and explicit limits."
+      },
+      "completion_scope": "limited-fixed-protocol-or-curation",
+      "unverified_broad_tails": "Original broader survey tasks and unqualified source/convergence scope remain outside this fixed completion.",
+      "completion_evidence": {
+        "kind": "curation",
+        "partial": false,
+        "local_evidence_checked": true,
+        "links": {
+          "targets": [
+            "/catalog/atlas-reference-supplements.json",
+            "/catalog/atlas-problem-links.json"
+          ],
+          "proof": [
+            "/catalog/atlas-reference-metadata.json",
+            "/code/numerical-methods-atlas/2026-11-22/verification.json",
+            "/code/quantum-atoms/2026-11-21/verification.json"
+          ],
+          "note": "確認した対象・出典/入力/旧配布版SHAに基づく限定したメタデータ修正。既存Bratu・調和振動子・stiff-cosine・水素型原子の4参照カードを、実固定パラメータ・標本化・旧配布版/入力SHA・図・実行へ結びました。新規数値実行ではありません。"
+        }
+      }
     },
     {
       "id": "common-citation-roles",
@@ -496,12 +526,12 @@
       "priority": "P0",
       "kind": "references",
       "initial_coverage": "出典整備不足",
-      "state": "planned",
+      "state": "verified",
       "current": "URL配列だけの参照解カードに、著者・年・題名・DOI・該当式/節と条件を補う。初等解は信頼できる教科書と代入確認、製造解は自分で選んだ場と導いた外力・境界を示す。存在しない原著を付けない。",
       "tasks": [
         "URL配列だけの参照解カードに、著者・年・題名・DOI・該当式/節と条件を補う。初等解は信頼できる教科書と代入確認、製造解は自分で選んだ場と導いた外力・境界を示す。存在しない原著を付けない。"
       ],
-      "scope_note": "",
+      "scope_note": "2026-11-25に追加した限定範囲：旧18カードに引用役割と実際の閲読範囲を付記し、旧97カードの引用を保持しました。全原著や原厳密解出典を通読・確定したとは扱いません。",
       "sources": [],
       "baseline_evidence": [
         {
@@ -509,9 +539,38 @@
           "id": "cases[*].sources"
         }
       ],
-      "completion": null,
+      "completion": {
+        "targets": [
+          "/catalog/atlas-reference-metadata.json"
+        ],
+        "proof": [
+          "/numerical-methods-atlas/assets/reference-solutions.json",
+          "/numerical-methods-atlas/references.json"
+        ],
+        "note": "確認した対象・出典/入力/旧配布版SHAに基づく限定したメタデータ修正。旧18カードに引用役割と実際の閲読範囲を付記し、旧97カードの引用を保持しました。全原著や原厳密解出典を通読・確定したとは扱いません。"
+      },
       "sequence": 3,
-      "completion_evidence": null
+      "completed_limited_scope": {
+        "ja": "旧18カードに引用役割と実際の閲読範囲を付記し、旧97カードの引用を保持しました。全原著や原厳密解出典を通読・確定したとは扱いません。",
+        "en": "Only the named fixed-input or metadata scope is qualified; see the retained original survey and explicit limits."
+      },
+      "completion_scope": "limited-fixed-protocol-or-curation",
+      "unverified_broad_tails": "Original broader survey tasks and unqualified source/convergence scope remain outside this fixed completion.",
+      "completion_evidence": {
+        "kind": "curation",
+        "partial": false,
+        "local_evidence_checked": true,
+        "links": {
+          "targets": [
+            "/catalog/atlas-reference-metadata.json"
+          ],
+          "proof": [
+            "/numerical-methods-atlas/assets/reference-solutions.json",
+            "/numerical-methods-atlas/references.json"
+          ],
+          "note": "確認した対象・出典/入力/旧配布版SHAに基づく限定したメタデータ修正。旧18カードに引用役割と実際の閲読範囲を付記し、旧97カードの引用を保持しました。全原著や原厳密解出典を通読・確定したとは扱いません。"
+        }
+      }
     },
     {
       "id": "common-reference-kinds",
@@ -524,12 +583,12 @@
       "priority": "P0",
       "kind": "references",
       "initial_coverage": "共通仕様の拡充",
-      "state": "planned",
+      "state": "verified",
       "current": "半解析解の根探索/求積誤差、独立参照の解像度/公差と版を記録。同一コードの細格子解は独立参照と別に表示し、点値/セル平均・単位・幾何・境界・時刻を合わせる。",
       "tasks": [
         "半解析解の根探索/求積誤差、独立参照の解像度/公差と版を記録。同一コードの細格子解は独立参照と別に表示し、点値/セル平均・単位・幾何・境界・時刻を合わせる。"
       ],
-      "scope_note": "",
+      "scope_note": "2026-11-25に追加した限定範囲：今回の19ケースを加える前の119カードのうち31を精密な参照種別へ分類し、88は明示的な未分類として残しました。連続厳密解・離散厳密参照・独立数値参照・自己収束を同一視しません。",
       "sources": [],
       "baseline_evidence": [
         {
@@ -539,9 +598,36 @@
           "path": "numerical-methods-atlas/solutions/index.json"
         }
       ],
-      "completion": null,
+      "completion": {
+        "targets": [
+          "/catalog/atlas-reference-metadata.json"
+        ],
+        "proof": [
+          "/catalog/atlas-reference-supplements.json"
+        ],
+        "note": "確認した対象・出典/入力/旧配布版SHAに基づく限定したメタデータ修正。今回の19ケースを加える前の119カードのうち31を精密な参照種別へ分類し、88は明示的な未分類として残しました。連続厳密解・離散厳密参照・独立数値参照・自己収束を同一視しません。"
+      },
       "sequence": 4,
-      "completion_evidence": null
+      "completed_limited_scope": {
+        "ja": "今回の19ケースを加える前の119カードのうち31を精密な参照種別へ分類し、88は明示的な未分類として残しました。連続厳密解・離散厳密参照・独立数値参照・自己収束を同一視しません。",
+        "en": "Only the named fixed-input or metadata scope is qualified; see the retained original survey and explicit limits."
+      },
+      "completion_scope": "limited-fixed-protocol-or-curation",
+      "unverified_broad_tails": "Original broader survey tasks and unqualified source/convergence scope remain outside this fixed completion.",
+      "completion_evidence": {
+        "kind": "curation",
+        "partial": false,
+        "local_evidence_checked": true,
+        "links": {
+          "targets": [
+            "/catalog/atlas-reference-metadata.json"
+          ],
+          "proof": [
+            "/catalog/atlas-reference-supplements.json"
+          ],
+          "note": "確認した対象・出典/入力/旧配布版SHAに基づく限定したメタデータ修正。今回の19ケースを加える前の119カードのうち31を精密な参照種別へ分類し、88は明示的な未分類として残しました。連続厳密解・離散厳密参照・独立数値参照・自己収束を同一視しません。"
+        }
+      }
     },
     {
       "id": "common-reproducible-package",
@@ -554,12 +640,12 @@
       "priority": "P0",
       "kind": "references",
       "initial_coverage": "共通仕様の拡充",
-      "state": "planned",
+      "state": "verified",
       "current": "図だけで終えず、固定入力・参照評価コード・結果CSV/JSON・誤差ノルム・保存量・失敗/停止理由・再現コマンドを一組にする。空間・時間・反復・標本誤差を分離し、不連続解に滑らかな解の次数を一律要求しない。",
       "tasks": [
         "図だけで終えず、固定入力・参照評価コード・結果CSV/JSON・誤差ノルム・保存量・失敗/停止理由・再現コマンドを一組にする。空間・時間・反復・標本誤差を分離し、不連続解に滑らかな解の次数を一律要求しない。"
       ],
-      "scope_note": "",
+      "scope_note": "2026-11-25に追加した限定範囲：旧63群138ケースのSHA付き契約台帳を作り、保存判定7819件と元のstudy-goal成否を保持しました。52群はacceptance/pre-run資料あり、11群はembedded-only。acceptance.jsonなし13群のうちlevel-set/sem-frにはpre-run資料があります。後付けの事前凍結や新しい収束検証を作りません。",
       "sources": [],
       "baseline_evidence": [
         {
@@ -569,9 +655,36 @@
           "path": "numerical-methods-atlas/validation/index.json"
         }
       ],
-      "completion": null,
+      "completion": {
+        "targets": [
+          "/catalog/atlas-legacy-reference-contracts-2026-11-25.json"
+        ],
+        "proof": [
+          "/catalog/atlas-legacy-reference-registry-2026-11-25.json"
+        ],
+        "note": "確認した対象・出典/入力/旧配布版SHAに基づく限定したメタデータ修正。旧63群138ケースのSHA付き契約台帳を作り、保存判定7819件と元のstudy-goal成否を保持しました。52群はacceptance/pre-run資料あり、11群はembedded-only。acceptance.jsonなし13群のうちlevel-set/sem-frにはpre-run資料があります。後付けの事前凍結や新しい収束検証を作りません。"
+      },
       "sequence": 5,
-      "completion_evidence": null
+      "completed_limited_scope": {
+        "ja": "旧63群138ケースのSHA付き契約台帳を作り、保存判定7819件と元のstudy-goal成否を保持しました。52群はacceptance/pre-run資料あり、11群はembedded-only。acceptance.jsonなし13群のうちlevel-set/sem-frにはpre-run資料があります。後付けの事前凍結や新しい収束検証を作りません。",
+        "en": "Only the named fixed-input or metadata scope is qualified; see the retained original survey and explicit limits."
+      },
+      "completion_scope": "limited-fixed-protocol-or-curation",
+      "unverified_broad_tails": "Original broader survey tasks and unqualified source/convergence scope remain outside this fixed completion.",
+      "completion_evidence": {
+        "kind": "curation",
+        "partial": false,
+        "local_evidence_checked": true,
+        "links": {
+          "targets": [
+            "/catalog/atlas-legacy-reference-contracts-2026-11-25.json"
+          ],
+          "proof": [
+            "/catalog/atlas-legacy-reference-registry-2026-11-25.json"
+          ],
+          "note": "確認した対象・出典/入力/旧配布版SHAに基づく限定したメタデータ修正。旧63群138ケースのSHA付き契約台帳を作り、保存判定7819件と元のstudy-goal成否を保持しました。52群はacceptance/pre-run資料あり、11群はembedded-only。acceptance.jsonなし13群のうちlevel-set/sem-frにはpre-run資料があります。後付けの事前凍結や新しい収束検証を作りません。"
+        }
+      }
     },
     {
       "id": "common-stale-reference-note",
@@ -584,12 +697,12 @@
       "priority": "P0",
       "kind": "references",
       "initial_coverage": "出典整備不足",
-      "state": "planned",
+      "state": "verified",
       "current": "greengard1987.note はM2LとFMM solver未実装と記すが、現行の2D log FMMと収束検証がある。利用した原著の範囲を保って現在の限定実装と整合させる。今回のサーベイではサイトを変更していない。",
       "tasks": [
         "greengard1987.note はM2LとFMM solver未実装と記すが、現行の2D log FMMと収束検証がある。利用した原著の範囲を保って現在の限定実装と整合させる。今回のサーベイではサイトを変更していない。"
       ],
-      "scope_note": "",
+      "scope_note": "2026-11-25に追加した限定範囲：Greengard–Rokhlin(1987)の現行noteだけを限定した2D log M2L/FMMと3D inverse-r実装の現状に合わせ、原著・旧配布版・その他書誌を保持しました。",
       "sources": [],
       "baseline_evidence": [
         {
@@ -601,9 +714,38 @@
           "id": "fmm"
         }
       ],
-      "completion": null,
+      "completion": {
+        "targets": [
+          "/numerical-methods-atlas/references.json"
+        ],
+        "proof": [
+          "/catalog/atlas-execution-examples.json",
+          "/numerical-methods-atlas/validation/releases.json"
+        ],
+        "note": "確認した対象・出典/入力/旧配布版SHAに基づく限定したメタデータ修正。Greengard–Rokhlin(1987)の現行noteだけを限定した2D log M2L/FMMと3D inverse-r実装の現状に合わせ、原著・旧配布版・その他書誌を保持しました。"
+      },
       "sequence": 6,
-      "completion_evidence": null
+      "completed_limited_scope": {
+        "ja": "Greengard–Rokhlin(1987)の現行noteだけを限定した2D log M2L/FMMと3D inverse-r実装の現状に合わせ、原著・旧配布版・その他書誌を保持しました。",
+        "en": "Only the named fixed-input or metadata scope is qualified; see the retained original survey and explicit limits."
+      },
+      "completion_scope": "limited-fixed-protocol-or-curation",
+      "unverified_broad_tails": "Original broader survey tasks and unqualified source/convergence scope remain outside this fixed completion.",
+      "completion_evidence": {
+        "kind": "curation",
+        "partial": false,
+        "local_evidence_checked": true,
+        "links": {
+          "targets": [
+            "/numerical-methods-atlas/references.json"
+          ],
+          "proof": [
+            "/catalog/atlas-execution-examples.json",
+            "/numerical-methods-atlas/validation/releases.json"
+          ],
+          "note": "確認した対象・出典/入力/旧配布版SHAに基づく限定したメタデータ修正。Greengard–Rokhlin(1987)の現行noteだけを限定した2D log M2L/FMMと3D inverse-r実装の現状に合わせ、原著・旧配布版・その他書誌を保持しました。"
+        }
+      }
     },
     {
       "id": "compressible-fluid-2",
@@ -2260,14 +2402,14 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "in-progress",
+      "state": "verified",
       "current": "固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。",
       "tasks": [
         "最初は既存GCLと同じ移動に非一様scalarの解析輸送を載せ、幾何誤差と輸送誤差を分離。",
         "Lagrange/remapまで拡張する段階でSaltzmanを新規問題として考慮し、格子反転・歪み・保存・衝撃位置を検査。",
         "現在のALE一様状態チェックを完全Euler/remap実装と呼ばない。Saltzman原典/入力は別途照合が必要。"
       ],
-      "scope_note": "今回完了：非一様セルのALEスカラー輸送・GCL。残る未実装：Saltzman歪み格子ピストンの圧縮性Euler計算。",
+      "scope_note": "既存の非一様ALEスカラー輸送・GCL検証に追加。今回の限定範囲：Tan–Lv–Zhu(2023) Example8の有限初期圧力e0=1e-4に対応する所与アフィンALEの2D Eulerピストン。変形セル体積平均のRH参照、GCL、境界仕事と保存を固定2格子で検査。物質追従Lagrange/WENO/remapではありません。",
       "sources": [
         {
           "title": "Salari & Knupp, Code Verification by the Method of Manufactured Solutions, SAND2000-1444",
@@ -2288,52 +2430,87 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-23/moving-waves/verification.json",
+        "verification": "/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
         "inputs": [
-          "/code/validated-examples/2026-11-23/moving-waves/inputs.json",
-          "/code/validated-examples/2026-11-23/moving-waves/acceptance.json",
-          "/code/validated-examples/2026-11-23/moving-waves/pre-run-contract.json"
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/inputs.json",
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/acceptance.json",
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/freeze.json"
         ],
         "plots": [
-          "/code/validated-examples/2026-11-23/moving-waves/results/ale-nonuniform-transport-preview.png"
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/results/saltzman-ale-piston-preview.png",
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/results/saltzman-ale-piston.png"
         ],
         "code": [
-          "/code/validated-examples/2026-11-23/moving-waves/run.py"
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/run.py",
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/ale_piston.py",
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py"
         ],
         "references": [
-          "/code/validated-examples/2026-11-23/moving-waves/README.md",
-          "/code/validated-examples/2026-11-23/moving-waves/references/citations.json",
-          "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/source-reading.json",
+          "/numerical-methods-atlas/solutions/?lang=ja#solution-saltzman-ale-piston-ja"
         ],
-        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#ale-nonuniform-transport-ja",
-        "execution": "/numerical-methods-atlas/validation/ale-nonuniform-transport/?lang=ja"
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#saltzman-ale-piston-ja",
+        "execution": "/numerical-methods-atlas/validation/saltzman-ale-piston/?lang=ja",
+        "case_ids": [
+          "saltzman-ale-piston"
+        ],
+        "primary_diagnostics": [
+          {
+            "path": "/code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json",
+            "case_id": "saltzman-ale-piston",
+            "json_pointer": "/cases/0",
+            "source_sha256": "cab002c93e01d997562f3c145e1aaddd6a2a8ce59a087d44e8bddc4679081bbf",
+            "input_sha256": "5f49881f37b07c47f674979a4886e6da0421be06ddb6bb213ab7dfea6bf6e0f5"
+          }
+        ]
       },
       "sequence": 23,
+      "completed_limited_scope": {
+        "ja": "Tan–Lv–Zhu(2023) Example8の有限初期圧力e0=1e-4に対応する所与アフィンALEの2D Eulerピストン。変形セル体積平均のRH参照、GCL、境界仕事と保存を固定2格子で検査。物質追従Lagrange/WENO/remapではありません。",
+        "en": "Only the named fixed-input or metadata scope is qualified; see the retained original survey and explicit limits."
+      },
+      "completion_scope": "limited-fixed-protocol-or-curation",
+      "unverified_broad_tails": "Original broader survey tasks and unqualified source/convergence scope remain outside this fixed completion.",
+      "previous_stage_scope_note": "今回完了：非一様セルのALEスカラー輸送・GCL。残る未実装：Saltzman歪み格子ピストンの圧縮性Euler計算。",
       "completion_evidence": {
         "kind": "scientific",
-        "partial": true,
+        "partial": false,
         "local_evidence_checked": true,
         "verification_passed": true,
         "links": {
-          "verification": "/code/validated-examples/2026-11-23/moving-waves/verification.json",
+          "verification": "/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
           "inputs": [
-            "/code/validated-examples/2026-11-23/moving-waves/inputs.json",
-            "/code/validated-examples/2026-11-23/moving-waves/acceptance.json",
-            "/code/validated-examples/2026-11-23/moving-waves/pre-run-contract.json"
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/inputs.json",
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/acceptance.json",
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/freeze.json"
           ],
           "plots": [
-            "/code/validated-examples/2026-11-23/moving-waves/results/ale-nonuniform-transport-preview.png"
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/results/saltzman-ale-piston-preview.png",
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/results/saltzman-ale-piston.png"
           ],
           "code": [
-            "/code/validated-examples/2026-11-23/moving-waves/run.py"
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/run.py",
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/ale_piston.py",
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py"
           ],
           "references": [
-            "/code/validated-examples/2026-11-23/moving-waves/README.md",
-            "/code/validated-examples/2026-11-23/moving-waves/references/citations.json",
-            "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/source-reading.json",
+            "/numerical-methods-atlas/solutions/?lang=ja#solution-saltzman-ale-piston-ja"
           ],
-          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#ale-nonuniform-transport-ja",
-          "execution": "/numerical-methods-atlas/validation/ale-nonuniform-transport/?lang=ja"
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#saltzman-ale-piston-ja",
+          "execution": "/numerical-methods-atlas/validation/saltzman-ale-piston/?lang=ja",
+          "case_ids": [
+            "saltzman-ale-piston"
+          ],
+          "primary_diagnostics": [
+            {
+              "path": "/code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json",
+              "case_id": "saltzman-ale-piston",
+              "json_pointer": "/cases/0",
+              "source_sha256": "cab002c93e01d997562f3c145e1aaddd6a2a8ce59a087d44e8bddc4679081bbf",
+              "input_sha256": "5f49881f37b07c47f674979a4886e6da0421be06ddb6bb213ab7dfea6bf6e0f5"
+            }
+          ]
         }
       }
     },
@@ -2348,14 +2525,14 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "in-progress",
+      "state": "verified",
       "current": "固定した軽量段階をHRで公開。公開ファイル照合と全30補助版・71ケース・893pytestの公開ZIP Linux追試が合格。Saltzman／Williamsonを含む残る適用範囲はscope_noteと実行入口で区別します。",
       "tasks": [
         "まず既存f-planeの一つの固有modeを実際に時間積分し位相・振幅・geostrophic balanceを解析行列指数と比較。",
         "球面拡張時はWilliamsonの固体回転輸送/定常釣合いから段階的に選び、質量/エネルギー/位相と格子向きを比較。",
         "A/B/C配置だけで時間精度・PV保存・全球dynamical coreの完成を主張しない。"
       ],
-      "scope_note": "今回完了：平面2D C格子の線形回転浅水波・時間積分。残る未実装：Williamsonの球面浅水ケース。",
+      "scope_note": "既存の平面C格子・線形回転浅水波の検証に追加。今回の限定範囲：単位球の剛体回転スカラー輸送を2傾斜・2格子・各11remapで検査し、別に無次元軸対称SWEの定常釣合いを時間積分。非保存SLの質量ずれを保存し、原W92式の閲読や標準地球条件・全球dynamical core/PV保存を主張しません。",
       "sources": [
         {
           "title": "MITgcm official documentation, C grid staggering of variables",
@@ -2381,52 +2558,121 @@
         }
       ],
       "completion": {
-        "verification": "/code/validated-examples/2026-11-23/moving-waves/verification.json",
+        "verification": "/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
         "inputs": [
-          "/code/validated-examples/2026-11-23/moving-waves/inputs.json",
-          "/code/validated-examples/2026-11-23/moving-waves/acceptance.json",
-          "/code/validated-examples/2026-11-23/moving-waves/pre-run-contract.json"
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/inputs.json",
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/acceptance.json",
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/freeze.json"
         ],
         "plots": [
-          "/code/validated-examples/2026-11-23/moving-waves/results/cgrid-rotating-wave-preview.png"
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/results/williamson-sphere-transport-preview.png",
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/results/williamson-sphere-transport.png",
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/results/sphere-zonal-balance-preview.png",
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/results/sphere-zonal-balance.png"
         ],
         "code": [
-          "/code/validated-examples/2026-11-23/moving-waves/run.py"
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/run.py",
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py",
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py"
         ],
         "references": [
-          "/code/validated-examples/2026-11-23/moving-waves/README.md",
-          "/code/validated-examples/2026-11-23/moving-waves/references/citations.json",
-          "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/source-reading.json",
+          "/numerical-methods-atlas/solutions/?lang=ja#solution-williamson-sphere-transport-ja",
+          "/numerical-methods-atlas/solutions/?lang=ja#solution-sphere-zonal-balance-ja"
         ],
-        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#cgrid-rotating-wave-ja",
-        "execution": "/numerical-methods-atlas/validation/cgrid-rotating-wave/?lang=ja"
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#williamson-sphere-transport-ja",
+        "execution": "/numerical-methods-atlas/validation/williamson-sphere-transport/?lang=ja",
+        "case_ids": [
+          "williamson-sphere-transport",
+          "sphere-zonal-balance"
+        ],
+        "primary_diagnostics": [
+          {
+            "path": "/code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json",
+            "case_id": "williamson-sphere-transport",
+            "json_pointer": "/cases/1",
+            "source_sha256": "cab002c93e01d997562f3c145e1aaddd6a2a8ce59a087d44e8bddc4679081bbf",
+            "input_sha256": "5f49881f37b07c47f674979a4886e6da0421be06ddb6bb213ab7dfea6bf6e0f5"
+          },
+          {
+            "path": "/code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json",
+            "case_id": "sphere-zonal-balance",
+            "json_pointer": "/cases/2",
+            "source_sha256": "cab002c93e01d997562f3c145e1aaddd6a2a8ce59a087d44e8bddc4679081bbf",
+            "input_sha256": "5f49881f37b07c47f674979a4886e6da0421be06ddb6bb213ab7dfea6bf6e0f5"
+          }
+        ],
+        "additional_executions": [
+          "/numerical-methods-atlas/validation/sphere-zonal-balance/?lang=ja"
+        ],
+        "additional_galleries": [
+          "/numerical-methods-atlas/gallery/?lang=ja#sphere-zonal-balance-ja"
+        ]
       },
       "sequence": 24,
+      "completed_limited_scope": {
+        "ja": "単位球の剛体回転スカラー輸送を2傾斜・2格子・各11remapで検査し、別に無次元軸対称SWEの定常釣合いを時間積分。非保存SLの質量ずれを保存し、原W92式の閲読や標準地球条件・全球dynamical core/PV保存を主張しません。",
+        "en": "Only the named fixed-input or metadata scope is qualified; see the retained original survey and explicit limits."
+      },
+      "completion_scope": "limited-fixed-protocol-or-curation",
+      "unverified_broad_tails": "Original broader survey tasks and unqualified source/convergence scope remain outside this fixed completion.",
+      "previous_stage_scope_note": "今回完了：平面2D C格子の線形回転浅水波・時間積分。残る未実装：Williamsonの球面浅水ケース。",
       "completion_evidence": {
         "kind": "scientific",
-        "partial": true,
+        "partial": false,
         "local_evidence_checked": true,
         "verification_passed": true,
         "links": {
-          "verification": "/code/validated-examples/2026-11-23/moving-waves/verification.json",
+          "verification": "/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
           "inputs": [
-            "/code/validated-examples/2026-11-23/moving-waves/inputs.json",
-            "/code/validated-examples/2026-11-23/moving-waves/acceptance.json",
-            "/code/validated-examples/2026-11-23/moving-waves/pre-run-contract.json"
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/inputs.json",
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/acceptance.json",
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/freeze.json"
           ],
           "plots": [
-            "/code/validated-examples/2026-11-23/moving-waves/results/cgrid-rotating-wave-preview.png"
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/results/williamson-sphere-transport-preview.png",
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/results/williamson-sphere-transport.png",
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/results/sphere-zonal-balance-preview.png",
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/results/sphere-zonal-balance.png"
           ],
           "code": [
-            "/code/validated-examples/2026-11-23/moving-waves/run.py"
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/run.py",
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py",
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py"
           ],
           "references": [
-            "/code/validated-examples/2026-11-23/moving-waves/README.md",
-            "/code/validated-examples/2026-11-23/moving-waves/references/citations.json",
-            "/numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json"
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/source-reading.json",
+            "/numerical-methods-atlas/solutions/?lang=ja#solution-williamson-sphere-transport-ja",
+            "/numerical-methods-atlas/solutions/?lang=ja#solution-sphere-zonal-balance-ja"
           ],
-          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#cgrid-rotating-wave-ja",
-          "execution": "/numerical-methods-atlas/validation/cgrid-rotating-wave/?lang=ja"
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#williamson-sphere-transport-ja",
+          "execution": "/numerical-methods-atlas/validation/williamson-sphere-transport/?lang=ja",
+          "case_ids": [
+            "williamson-sphere-transport",
+            "sphere-zonal-balance"
+          ],
+          "primary_diagnostics": [
+            {
+              "path": "/code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json",
+              "case_id": "williamson-sphere-transport",
+              "json_pointer": "/cases/1",
+              "source_sha256": "cab002c93e01d997562f3c145e1aaddd6a2a8ce59a087d44e8bddc4679081bbf",
+              "input_sha256": "5f49881f37b07c47f674979a4886e6da0421be06ddb6bb213ab7dfea6bf6e0f5"
+            },
+            {
+              "path": "/code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json",
+              "case_id": "sphere-zonal-balance",
+              "json_pointer": "/cases/2",
+              "source_sha256": "cab002c93e01d997562f3c145e1aaddd6a2a8ce59a087d44e8bddc4679081bbf",
+              "input_sha256": "5f49881f37b07c47f674979a4886e6da0421be06ddb6bb213ab7dfea6bf6e0f5"
+            }
+          ],
+          "additional_executions": [
+            "/numerical-methods-atlas/validation/sphere-zonal-balance/?lang=ja"
+          ],
+          "additional_galleries": [
+            "/numerical-methods-atlas/gallery/?lang=ja#sphere-zonal-balance-ja"
+          ]
         }
       }
     },
@@ -9330,13 +9576,13 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "planned",
+      "state": "verified",
       "current": "ロジスティック増殖、閉鎖SIR、空間なしFitzHugh–Nagumoの限定例は実行済み。生物22モデル族全体の実装ではない。",
       "tasks": [
         "原著とCellML等の符号・温度・単位・速度定数の規約を固定する。",
         "ゲートの範囲、可除特異点、独立解と時間刻み収束を検査する。"
       ],
-      "scope_note": "",
+      "scope_note": "2026-11-25に追加した限定範囲：固定Hodgkin–Huxley入力の独立ODE参照・段階所有・パルス区間とHermite発火診断。補間多項式の根の資格確認は一般のODEイベント完全性証明ではありません。",
       "sources": [
         {
           "title": "Hodgkin–Huxley (1952), A quantitative description of membrane current…",
@@ -9353,9 +9599,89 @@
           "path": "numerical-methods-atlas/assets/biological-models.json"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-25/biology-ode-controls/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-25/biology-ode-controls/inputs.json",
+          "/code/validated-examples/2026-11-25/biology-ode-controls/acceptance.json",
+          "/code/validated-examples/2026-11-25/biology-ode-controls/freeze.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-25/biology-ode-controls/results/hodgkin-huxley-controls-diagnostics.png",
+          "/code/validated-examples/2026-11-25/biology-ode-controls/results/hodgkin-huxley-controls.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-25/biology-ode-controls/run.py",
+          "/code/validated-examples/2026-11-25/biology-ode-controls/hh.py",
+          "/code/validated-examples/2026-11-25/biology-ode-controls/common.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-25/biology-ode-controls/source-reading.json",
+          "/numerical-methods-atlas/solutions/?lang=ja#solution-hodgkin-huxley-controls-ja"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#hodgkin-huxley-controls-ja",
+        "execution": "/numerical-methods-atlas/validation/hodgkin-huxley-controls/?lang=ja",
+        "case_ids": [
+          "hodgkin-huxley-controls"
+        ],
+        "primary_diagnostics": [
+          {
+            "path": "/code/validated-examples/2026-11-25/biology-ode-controls/results/result.json",
+            "case_id": "hodgkin-huxley-controls",
+            "json_pointer": "/cases/0",
+            "source_sha256": "104875b041a43542ec5d1500003da8f5986983816e27ce3b88971d11d7b63149",
+            "input_sha256": "f15bd046bb65798a49c2e1f5ef75e7aedfb23a7aec0c09f2d11cec5a3a6b58a8"
+          }
+        ]
+      },
       "sequence": 88,
-      "completion_evidence": null
+      "completed_limited_scope": {
+        "ja": "固定Hodgkin–Huxley入力の独立ODE参照・段階所有・パルス区間とHermite発火診断。補間多項式の根の資格確認は一般のODEイベント完全性証明ではありません。",
+        "en": "Only the named fixed-input or metadata scope is qualified; see the retained original survey and explicit limits."
+      },
+      "completion_scope": "limited-fixed-protocol-or-curation",
+      "unverified_broad_tails": "Original broader survey tasks and unqualified source/convergence scope remain outside this fixed completion.",
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-25/biology-ode-controls/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-25/biology-ode-controls/inputs.json",
+            "/code/validated-examples/2026-11-25/biology-ode-controls/acceptance.json",
+            "/code/validated-examples/2026-11-25/biology-ode-controls/freeze.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-25/biology-ode-controls/results/hodgkin-huxley-controls-diagnostics.png",
+            "/code/validated-examples/2026-11-25/biology-ode-controls/results/hodgkin-huxley-controls.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-25/biology-ode-controls/run.py",
+            "/code/validated-examples/2026-11-25/biology-ode-controls/hh.py",
+            "/code/validated-examples/2026-11-25/biology-ode-controls/common.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-25/biology-ode-controls/source-reading.json",
+            "/numerical-methods-atlas/solutions/?lang=ja#solution-hodgkin-huxley-controls-ja"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#hodgkin-huxley-controls-ja",
+          "execution": "/numerical-methods-atlas/validation/hodgkin-huxley-controls/?lang=ja",
+          "case_ids": [
+            "hodgkin-huxley-controls"
+          ],
+          "primary_diagnostics": [
+            {
+              "path": "/code/validated-examples/2026-11-25/biology-ode-controls/results/result.json",
+              "case_id": "hodgkin-huxley-controls",
+              "json_pointer": "/cases/0",
+              "source_sha256": "104875b041a43542ec5d1500003da8f5986983816e27ce3b88971d11d7b63149",
+              "input_sha256": "f15bd046bb65798a49c2e1f5ef75e7aedfb23a7aec0c09f2d11cec5a3a6b58a8"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "biology-ode-3",
@@ -9368,13 +9694,13 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "planned",
+      "state": "verified",
       "current": "ロジスティック増殖、閉鎖SIR、空間なしFitzHugh–Nagumoの限定例は実行済み。生物22モデル族全体の実装ではない。",
       "tasks": [
         "既知のPoisson定常分布、平均・分散と有限時刻の分布を照合する。",
         "単一seedの軌跡とアンサンブルの統計検証を区別する。"
       ],
-      "scope_note": "",
+      "scope_note": "2026-11-25に追加した限定範囲：移入死亡過程の固定SSAを、区間付きPoisson/binomial法則・実PCG初期状態の識別・独立レプリカの有限標本診断で検査。PRNG一般の被覆保証や任意反応網の保証ではありません。",
       "sources": [],
       "baseline_evidence": [
         {
@@ -9385,9 +9711,89 @@
           "path": "numerical-methods-atlas/assets/biological-models.json"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-25/biology-ode-controls/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-25/biology-ode-controls/inputs.json",
+          "/code/validated-examples/2026-11-25/biology-ode-controls/acceptance.json",
+          "/code/validated-examples/2026-11-25/biology-ode-controls/freeze.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-25/biology-ode-controls/results/immigration-death-ssa-diagnostics.png",
+          "/code/validated-examples/2026-11-25/biology-ode-controls/results/immigration-death-ssa.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-25/biology-ode-controls/run.py",
+          "/code/validated-examples/2026-11-25/biology-ode-controls/ssa.py",
+          "/code/validated-examples/2026-11-25/biology-ode-controls/common.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-25/biology-ode-controls/source-reading.json",
+          "/numerical-methods-atlas/solutions/?lang=ja#solution-immigration-death-ssa-ja"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#immigration-death-ssa-ja",
+        "execution": "/numerical-methods-atlas/validation/immigration-death-ssa/?lang=ja",
+        "case_ids": [
+          "immigration-death-ssa"
+        ],
+        "primary_diagnostics": [
+          {
+            "path": "/code/validated-examples/2026-11-25/biology-ode-controls/results/result.json",
+            "case_id": "immigration-death-ssa",
+            "json_pointer": "/cases/1",
+            "source_sha256": "104875b041a43542ec5d1500003da8f5986983816e27ce3b88971d11d7b63149",
+            "input_sha256": "f15bd046bb65798a49c2e1f5ef75e7aedfb23a7aec0c09f2d11cec5a3a6b58a8"
+          }
+        ]
+      },
       "sequence": 89,
-      "completion_evidence": null
+      "completed_limited_scope": {
+        "ja": "移入死亡過程の固定SSAを、区間付きPoisson/binomial法則・実PCG初期状態の識別・独立レプリカの有限標本診断で検査。PRNG一般の被覆保証や任意反応網の保証ではありません。",
+        "en": "Only the named fixed-input or metadata scope is qualified; see the retained original survey and explicit limits."
+      },
+      "completion_scope": "limited-fixed-protocol-or-curation",
+      "unverified_broad_tails": "Original broader survey tasks and unqualified source/convergence scope remain outside this fixed completion.",
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-25/biology-ode-controls/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-25/biology-ode-controls/inputs.json",
+            "/code/validated-examples/2026-11-25/biology-ode-controls/acceptance.json",
+            "/code/validated-examples/2026-11-25/biology-ode-controls/freeze.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-25/biology-ode-controls/results/immigration-death-ssa-diagnostics.png",
+            "/code/validated-examples/2026-11-25/biology-ode-controls/results/immigration-death-ssa.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-25/biology-ode-controls/run.py",
+            "/code/validated-examples/2026-11-25/biology-ode-controls/ssa.py",
+            "/code/validated-examples/2026-11-25/biology-ode-controls/common.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-25/biology-ode-controls/source-reading.json",
+            "/numerical-methods-atlas/solutions/?lang=ja#solution-immigration-death-ssa-ja"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#immigration-death-ssa-ja",
+          "execution": "/numerical-methods-atlas/validation/immigration-death-ssa/?lang=ja",
+          "case_ids": [
+            "immigration-death-ssa"
+          ],
+          "primary_diagnostics": [
+            {
+              "path": "/code/validated-examples/2026-11-25/biology-ode-controls/results/result.json",
+              "case_id": "immigration-death-ssa",
+              "json_pointer": "/cases/1",
+              "source_sha256": "104875b041a43542ec5d1500003da8f5986983816e27ce3b88971d11d7b63149",
+              "input_sha256": "f15bd046bb65798a49c2e1f5ef75e7aedfb23a7aec0c09f2d11cec5a3a6b58a8"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "biology-space-1",
@@ -9400,13 +9806,13 @@
       "priority": "P1",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "planned",
+      "state": "verified",
       "current": "1D周期Schnakenbergの線形発現・非線形発展・成長後パターン、反応拡散の分割比較は既存。Fisher–KPPは文献解説のみ。",
       "tasks": [
         "特殊な厳密波速と一般の最小伝播速度を区別する。",
         "波形・前線位置・正値性、有限領域境界の影響、空間と時間の収束を分ける。"
       ],
-      "scope_note": "",
+      "scope_note": "2026-11-25に追加した限定範囲：Fisher–KPPの特定の閉形式進行波と独立MOL参照に対する固定入力の輸送・反応計算。任意初期値の波速選択や一般的なpositivity定理には拡張しません。",
       "sources": [
         {
           "title": "Ablowitz–Zeppetella (1979), Explicit solutions of Fisher's equation for a special wave speed",
@@ -9424,9 +9830,89 @@
           "id": "fisher-kpp"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-25/biology-space-controls/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-25/biology-space-controls/inputs.json",
+          "/code/validated-examples/2026-11-25/biology-space-controls/acceptance.json",
+          "/code/validated-examples/2026-11-25/biology-space-controls/freeze.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-25/biology-space-controls/results/fisher-kpp-special-front-diagnostics.png",
+          "/code/validated-examples/2026-11-25/biology-space-controls/results/fisher-kpp-special-front.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-25/biology-space-controls/run.py",
+          "/code/validated-examples/2026-11-25/biology-space-controls/fisher.py",
+          "/code/validated-examples/2026-11-25/biology-space-controls/common.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-25/biology-space-controls/source-reading.json",
+          "/numerical-methods-atlas/solutions/?lang=ja#solution-fisher-kpp-special-front-ja"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#fisher-kpp-special-front-ja",
+        "execution": "/numerical-methods-atlas/validation/fisher-kpp-special-front/?lang=ja",
+        "case_ids": [
+          "fisher-kpp-special-front"
+        ],
+        "primary_diagnostics": [
+          {
+            "path": "/code/validated-examples/2026-11-25/biology-space-controls/results/result.json",
+            "case_id": "fisher-kpp-special-front",
+            "json_pointer": "/cases/0",
+            "source_sha256": "090c187f89db9d05a2eb437eaf5e73b2dcf1e7600ef0163efd94bae4119cb6eb",
+            "input_sha256": "96095517a632f1706713360c82ce01c6d4b68682faa96fecae11e46cb87a1b80"
+          }
+        ]
+      },
       "sequence": 90,
-      "completion_evidence": null
+      "completed_limited_scope": {
+        "ja": "Fisher–KPPの特定の閉形式進行波と独立MOL参照に対する固定入力の輸送・反応計算。任意初期値の波速選択や一般的なpositivity定理には拡張しません。",
+        "en": "Only the named fixed-input or metadata scope is qualified; see the retained original survey and explicit limits."
+      },
+      "completion_scope": "limited-fixed-protocol-or-curation",
+      "unverified_broad_tails": "Original broader survey tasks and unqualified source/convergence scope remain outside this fixed completion.",
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-25/biology-space-controls/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-25/biology-space-controls/inputs.json",
+            "/code/validated-examples/2026-11-25/biology-space-controls/acceptance.json",
+            "/code/validated-examples/2026-11-25/biology-space-controls/freeze.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-25/biology-space-controls/results/fisher-kpp-special-front-diagnostics.png",
+            "/code/validated-examples/2026-11-25/biology-space-controls/results/fisher-kpp-special-front.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-25/biology-space-controls/run.py",
+            "/code/validated-examples/2026-11-25/biology-space-controls/fisher.py",
+            "/code/validated-examples/2026-11-25/biology-space-controls/common.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-25/biology-space-controls/source-reading.json",
+            "/numerical-methods-atlas/solutions/?lang=ja#solution-fisher-kpp-special-front-ja"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#fisher-kpp-special-front-ja",
+          "execution": "/numerical-methods-atlas/validation/fisher-kpp-special-front/?lang=ja",
+          "case_ids": [
+            "fisher-kpp-special-front"
+          ],
+          "primary_diagnostics": [
+            {
+              "path": "/code/validated-examples/2026-11-25/biology-space-controls/results/result.json",
+              "case_id": "fisher-kpp-special-front",
+              "json_pointer": "/cases/0",
+              "source_sha256": "090c187f89db9d05a2eb437eaf5e73b2dcf1e7600ef0163efd94bae4119cb6eb",
+              "input_sha256": "96095517a632f1706713360c82ce01c6d4b68682faa96fecae11e46cb87a1b80"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "biology-space-2",
@@ -9439,13 +9925,13 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
+      "state": "verified",
       "current": "1D周期Schnakenbergの線形発現・非線形発展・成長後パターン、反応拡散の分割比較は既存。Fisher–KPPは文献解説のみ。",
       "tasks": [
         "固定対称な1D初期値の結果を一般の模様選択へ拡張しない。",
         "空間2Dと境界・初期摂動を変え、独立参照の解像度感度を保存する。"
       ],
-      "scope_note": "",
+      "scope_note": "2026-11-25に追加した限定範囲：Schnakenbergの固定Neumann/Dirichlet条件とFV/Galerkin参照。旧D参照行と失敗履歴を保持し、独立参照のK/Q/許容値の資格確認を別に扱います。",
       "sources": [
         {
           "title": "Schnakenberg (1979), Simple chemical reaction systems with limit cycle behaviour",
@@ -9463,9 +9949,89 @@
           "id": "schnakenberg"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-25/biology-space-controls/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-25/biology-space-controls/inputs.json",
+          "/code/validated-examples/2026-11-25/biology-space-controls/acceptance.json",
+          "/code/validated-examples/2026-11-25/biology-space-controls/freeze.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-25/biology-space-controls/results/schnakenberg-2d-boundary-modes-diagnostics.png",
+          "/code/validated-examples/2026-11-25/biology-space-controls/results/schnakenberg-2d-boundary-modes.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-25/biology-space-controls/run.py",
+          "/code/validated-examples/2026-11-25/biology-space-controls/schnakenberg.py",
+          "/code/validated-examples/2026-11-25/biology-space-controls/common.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-25/biology-space-controls/source-reading.json",
+          "/numerical-methods-atlas/solutions/?lang=ja#solution-schnakenberg-2d-boundary-modes-ja"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#schnakenberg-2d-boundary-modes-ja",
+        "execution": "/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/?lang=ja",
+        "case_ids": [
+          "schnakenberg-2d-boundary-modes"
+        ],
+        "primary_diagnostics": [
+          {
+            "path": "/code/validated-examples/2026-11-25/biology-space-controls/results/result.json",
+            "case_id": "schnakenberg-2d-boundary-modes",
+            "json_pointer": "/cases/1",
+            "source_sha256": "090c187f89db9d05a2eb437eaf5e73b2dcf1e7600ef0163efd94bae4119cb6eb",
+            "input_sha256": "96095517a632f1706713360c82ce01c6d4b68682faa96fecae11e46cb87a1b80"
+          }
+        ]
+      },
       "sequence": 91,
-      "completion_evidence": null
+      "completed_limited_scope": {
+        "ja": "Schnakenbergの固定Neumann/Dirichlet条件とFV/Galerkin参照。旧D参照行と失敗履歴を保持し、独立参照のK/Q/許容値の資格確認を別に扱います。",
+        "en": "Only the named fixed-input or metadata scope is qualified; see the retained original survey and explicit limits."
+      },
+      "completion_scope": "limited-fixed-protocol-or-curation",
+      "unverified_broad_tails": "Original broader survey tasks and unqualified source/convergence scope remain outside this fixed completion.",
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-25/biology-space-controls/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-25/biology-space-controls/inputs.json",
+            "/code/validated-examples/2026-11-25/biology-space-controls/acceptance.json",
+            "/code/validated-examples/2026-11-25/biology-space-controls/freeze.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-25/biology-space-controls/results/schnakenberg-2d-boundary-modes-diagnostics.png",
+            "/code/validated-examples/2026-11-25/biology-space-controls/results/schnakenberg-2d-boundary-modes.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-25/biology-space-controls/run.py",
+            "/code/validated-examples/2026-11-25/biology-space-controls/schnakenberg.py",
+            "/code/validated-examples/2026-11-25/biology-space-controls/common.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-25/biology-space-controls/source-reading.json",
+            "/numerical-methods-atlas/solutions/?lang=ja#solution-schnakenberg-2d-boundary-modes-ja"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#schnakenberg-2d-boundary-modes-ja",
+          "execution": "/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/?lang=ja",
+          "case_ids": [
+            "schnakenberg-2d-boundary-modes"
+          ],
+          "primary_diagnostics": [
+            {
+              "path": "/code/validated-examples/2026-11-25/biology-space-controls/results/result.json",
+              "case_id": "schnakenberg-2d-boundary-modes",
+              "json_pointer": "/cases/1",
+              "source_sha256": "090c187f89db9d05a2eb437eaf5e73b2dcf1e7600ef0163efd94bae4119cb6eb",
+              "input_sha256": "96095517a632f1706713360c82ce01c6d4b68682faa96fecae11e46cb87a1b80"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "biology-space-3",
@@ -9478,13 +10044,13 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "planned",
+      "state": "verified",
       "current": "1D周期Schnakenbergの線形発現・非線形発展・成長後パターン、反応拡散の分割比較は既存。Fisher–KPPは文献解説のみ。",
       "tasks": [
         "まず製造解で保存量・正値性・交差流束を確認する。",
         "ピーク形成・真の発散・数値振動を区別し、連成と分割誤差を測る。"
       ],
-      "scope_note": "",
+      "scope_note": "2026-11-25に追加した限定範囲：製造したKeller–Segel場の物理面流束・境界予算・SSP段階を独立空間参照と比較する限定例。一般の走化性blow-upや生物学的推定は未検証です。",
       "sources": [],
       "baseline_evidence": [
         {
@@ -9496,9 +10062,89 @@
           "id": "reaction-transport"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-25/biology-space-controls/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-25/biology-space-controls/inputs.json",
+          "/code/validated-examples/2026-11-25/biology-space-controls/acceptance.json",
+          "/code/validated-examples/2026-11-25/biology-space-controls/freeze.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-25/biology-space-controls/results/keller-segel-forced-flux-diagnostics.png",
+          "/code/validated-examples/2026-11-25/biology-space-controls/results/keller-segel-forced-flux.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-25/biology-space-controls/run.py",
+          "/code/validated-examples/2026-11-25/biology-space-controls/keller_segel.py",
+          "/code/validated-examples/2026-11-25/biology-space-controls/common.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-25/biology-space-controls/source-reading.json",
+          "/numerical-methods-atlas/solutions/?lang=ja#solution-keller-segel-forced-flux-ja"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#keller-segel-forced-flux-ja",
+        "execution": "/numerical-methods-atlas/validation/keller-segel-forced-flux/?lang=ja",
+        "case_ids": [
+          "keller-segel-forced-flux"
+        ],
+        "primary_diagnostics": [
+          {
+            "path": "/code/validated-examples/2026-11-25/biology-space-controls/results/result.json",
+            "case_id": "keller-segel-forced-flux",
+            "json_pointer": "/cases/2",
+            "source_sha256": "090c187f89db9d05a2eb437eaf5e73b2dcf1e7600ef0163efd94bae4119cb6eb",
+            "input_sha256": "96095517a632f1706713360c82ce01c6d4b68682faa96fecae11e46cb87a1b80"
+          }
+        ]
+      },
       "sequence": 92,
-      "completion_evidence": null
+      "completed_limited_scope": {
+        "ja": "製造したKeller–Segel場の物理面流束・境界予算・SSP段階を独立空間参照と比較する限定例。一般の走化性blow-upや生物学的推定は未検証です。",
+        "en": "Only the named fixed-input or metadata scope is qualified; see the retained original survey and explicit limits."
+      },
+      "completion_scope": "limited-fixed-protocol-or-curation",
+      "unverified_broad_tails": "Original broader survey tasks and unqualified source/convergence scope remain outside this fixed completion.",
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-25/biology-space-controls/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-25/biology-space-controls/inputs.json",
+            "/code/validated-examples/2026-11-25/biology-space-controls/acceptance.json",
+            "/code/validated-examples/2026-11-25/biology-space-controls/freeze.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-25/biology-space-controls/results/keller-segel-forced-flux-diagnostics.png",
+            "/code/validated-examples/2026-11-25/biology-space-controls/results/keller-segel-forced-flux.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-25/biology-space-controls/run.py",
+            "/code/validated-examples/2026-11-25/biology-space-controls/keller_segel.py",
+            "/code/validated-examples/2026-11-25/biology-space-controls/common.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-25/biology-space-controls/source-reading.json",
+            "/numerical-methods-atlas/solutions/?lang=ja#solution-keller-segel-forced-flux-ja"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#keller-segel-forced-flux-ja",
+          "execution": "/numerical-methods-atlas/validation/keller-segel-forced-flux/?lang=ja",
+          "case_ids": [
+            "keller-segel-forced-flux"
+          ],
+          "primary_diagnostics": [
+            {
+              "path": "/code/validated-examples/2026-11-25/biology-space-controls/results/result.json",
+              "case_id": "keller-segel-forced-flux",
+              "json_pointer": "/cases/2",
+              "source_sha256": "090c187f89db9d05a2eb437eaf5e73b2dcf1e7600ef0163efd94bae4119cb6eb",
+              "input_sha256": "96095517a632f1706713360c82ce01c6d4b68682faa96fecae11e46cb87a1b80"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "thermostats-md-1",
@@ -9511,13 +10157,13 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "planned",
+      "state": "verified",
       "current": "LangevinとCSVRは、同じOBABO分割の2自由度調和／quartic系とCSVR核まで検証済み。他10手法は専用実装がない。",
       "tasks": [
         "平均温度だけでなく正準分布・温度揺らぎ・非エルゴード性を調べる。",
         "既存Langevin/CSVRと同じ小さな系・観測量・分割条件で比較する。"
       ],
-      "scope_note": "",
+      "scope_note": "2026-11-25に追加した限定範囲：NH/NHCの実サブフロー、物理的反転、eta所有、Berendsen局所逆写像と再スケールの違いを固定例で検査。短い決定論軌道の統計をエルゴード性証明としません。",
       "sources": [
         {
           "title": "LAMMPS公式: Nosé–Hoover nvt/npt",
@@ -9540,9 +10186,89 @@
           "id": "nose-hoover"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-25/thermostat-constraint-controls/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-25/thermostat-constraint-controls/inputs.json",
+          "/code/validated-examples/2026-11-25/thermostat-constraint-controls/acceptance.json",
+          "/code/validated-examples/2026-11-25/thermostat-constraint-controls/freeze.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-25/thermostat-constraint-controls/results/deterministic-thermostat-contrasts-diagnostics.png",
+          "/code/validated-examples/2026-11-25/thermostat-constraint-controls/results/deterministic-thermostat-contrasts.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-25/thermostat-constraint-controls/run.py",
+          "/code/validated-examples/2026-11-25/thermostat-constraint-controls/deterministic.py",
+          "/code/validated-examples/2026-11-25/thermostat-constraint-controls/common.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-25/thermostat-constraint-controls/source-reading.json",
+          "/numerical-methods-atlas/solutions/?lang=ja#solution-deterministic-thermostat-contrasts-ja"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#thermostatted-quartic-ja",
+        "execution": "/numerical-methods-atlas/validation/deterministic-thermostat-contrasts/?lang=ja",
+        "case_ids": [
+          "deterministic-thermostat-contrasts"
+        ],
+        "primary_diagnostics": [
+          {
+            "path": "/code/validated-examples/2026-11-25/thermostat-constraint-controls/results/result.json",
+            "case_id": "deterministic-thermostat-contrasts",
+            "json_pointer": "/cases/0",
+            "source_sha256": "45e4101f6676b2b971b144f5df45c1b28d3bff564d3896eeb309ee6c667d9351",
+            "input_sha256": "31c649cecb7a69704ac44dbabeb86ef2fa4f79f941b9902fbe602f402571247d"
+          }
+        ]
+      },
       "sequence": 93,
-      "completion_evidence": null
+      "completed_limited_scope": {
+        "ja": "NH/NHCの実サブフロー、物理的反転、eta所有、Berendsen局所逆写像と再スケールの違いを固定例で検査。短い決定論軌道の統計をエルゴード性証明としません。",
+        "en": "Only the named fixed-input or metadata scope is qualified; see the retained original survey and explicit limits."
+      },
+      "completion_scope": "limited-fixed-protocol-or-curation",
+      "unverified_broad_tails": "Original broader survey tasks and unqualified source/convergence scope remain outside this fixed completion.",
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-25/thermostat-constraint-controls/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-25/thermostat-constraint-controls/inputs.json",
+            "/code/validated-examples/2026-11-25/thermostat-constraint-controls/acceptance.json",
+            "/code/validated-examples/2026-11-25/thermostat-constraint-controls/freeze.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-25/thermostat-constraint-controls/results/deterministic-thermostat-contrasts-diagnostics.png",
+            "/code/validated-examples/2026-11-25/thermostat-constraint-controls/results/deterministic-thermostat-contrasts.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-25/thermostat-constraint-controls/run.py",
+            "/code/validated-examples/2026-11-25/thermostat-constraint-controls/deterministic.py",
+            "/code/validated-examples/2026-11-25/thermostat-constraint-controls/common.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-25/thermostat-constraint-controls/source-reading.json",
+            "/numerical-methods-atlas/solutions/?lang=ja#solution-deterministic-thermostat-contrasts-ja"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#thermostatted-quartic-ja",
+          "execution": "/numerical-methods-atlas/validation/deterministic-thermostat-contrasts/?lang=ja",
+          "case_ids": [
+            "deterministic-thermostat-contrasts"
+          ],
+          "primary_diagnostics": [
+            {
+              "path": "/code/validated-examples/2026-11-25/thermostat-constraint-controls/results/result.json",
+              "case_id": "deterministic-thermostat-contrasts",
+              "json_pointer": "/cases/0",
+              "source_sha256": "45e4101f6676b2b971b144f5df45c1b28d3bff564d3896eeb309ee6c667d9351",
+              "input_sha256": "31c649cecb7a69704ac44dbabeb86ef2fa4f79f941b9902fbe602f402571247d"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "thermostats-md-2",
@@ -9555,13 +10281,13 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
+      "state": "verified",
       "current": "LangevinとCSVRは、同じOBABO分割の2自由度調和／quartic系とCSVR核まで検証済み。他10手法は専用実装がない。",
       "tasks": [
         "有効自由度と運動エネルギー分布を一致させる。",
         "刻み・結合時間・標本誤差と時間相関を別々に評価する。"
       ],
-      "scope_note": "",
+      "scope_note": "2026-11-25に追加した限定範囲：線形拘束の実自由度と質量重み付き射影、Langevin過渡共分散と離散定常共分散、CSVRの符号付き統計と誤DOF負例を区別した限定例。",
       "sources": [
         {
           "title": "LAMMPS公式: Nosé–Hoover nvt/npt",
@@ -9579,9 +10305,89 @@
           "id": "nose-hoover"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-25/thermostat-constraint-controls/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-25/thermostat-constraint-controls/inputs.json",
+          "/code/validated-examples/2026-11-25/thermostat-constraint-controls/acceptance.json",
+          "/code/validated-examples/2026-11-25/thermostat-constraint-controls/freeze.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-25/thermostat-constraint-controls/results/projected-canonical-dof-diagnostics.png",
+          "/code/validated-examples/2026-11-25/thermostat-constraint-controls/results/projected-canonical-dof.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-25/thermostat-constraint-controls/run.py",
+          "/code/validated-examples/2026-11-25/thermostat-constraint-controls/constrained.py",
+          "/code/validated-examples/2026-11-25/thermostat-constraint-controls/common.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-25/thermostat-constraint-controls/source-reading.json",
+          "/numerical-methods-atlas/solutions/?lang=ja#solution-projected-canonical-dof-ja"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#projected-canonical-dof-ja",
+        "execution": "/numerical-methods-atlas/validation/projected-canonical-dof/?lang=ja",
+        "case_ids": [
+          "projected-canonical-dof"
+        ],
+        "primary_diagnostics": [
+          {
+            "path": "/code/validated-examples/2026-11-25/thermostat-constraint-controls/results/result.json",
+            "case_id": "projected-canonical-dof",
+            "json_pointer": "/cases/1",
+            "source_sha256": "45e4101f6676b2b971b144f5df45c1b28d3bff564d3896eeb309ee6c667d9351",
+            "input_sha256": "31c649cecb7a69704ac44dbabeb86ef2fa4f79f941b9902fbe602f402571247d"
+          }
+        ]
+      },
       "sequence": 94,
-      "completion_evidence": null
+      "completed_limited_scope": {
+        "ja": "線形拘束の実自由度と質量重み付き射影、Langevin過渡共分散と離散定常共分散、CSVRの符号付き統計と誤DOF負例を区別した限定例。",
+        "en": "Only the named fixed-input or metadata scope is qualified; see the retained original survey and explicit limits."
+      },
+      "completion_scope": "limited-fixed-protocol-or-curation",
+      "unverified_broad_tails": "Original broader survey tasks and unqualified source/convergence scope remain outside this fixed completion.",
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-25/thermostat-constraint-controls/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-25/thermostat-constraint-controls/inputs.json",
+            "/code/validated-examples/2026-11-25/thermostat-constraint-controls/acceptance.json",
+            "/code/validated-examples/2026-11-25/thermostat-constraint-controls/freeze.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-25/thermostat-constraint-controls/results/projected-canonical-dof-diagnostics.png",
+            "/code/validated-examples/2026-11-25/thermostat-constraint-controls/results/projected-canonical-dof.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-25/thermostat-constraint-controls/run.py",
+            "/code/validated-examples/2026-11-25/thermostat-constraint-controls/constrained.py",
+            "/code/validated-examples/2026-11-25/thermostat-constraint-controls/common.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-25/thermostat-constraint-controls/source-reading.json",
+            "/numerical-methods-atlas/solutions/?lang=ja#solution-projected-canonical-dof-ja"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#projected-canonical-dof-ja",
+          "execution": "/numerical-methods-atlas/validation/projected-canonical-dof/?lang=ja",
+          "case_ids": [
+            "projected-canonical-dof"
+          ],
+          "primary_diagnostics": [
+            {
+              "path": "/code/validated-examples/2026-11-25/thermostat-constraint-controls/results/result.json",
+              "case_id": "projected-canonical-dof",
+              "json_pointer": "/cases/1",
+              "source_sha256": "45e4101f6676b2b971b144f5df45c1b28d3bff564d3896eeb309ee6c667d9351",
+              "input_sha256": "31c649cecb7a69704ac44dbabeb86ef2fa4f79f941b9902fbe602f402571247d"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "thermostats-md-3",
@@ -9594,13 +10400,13 @@
       "priority": "P3",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
+      "state": "verified",
       "current": "LangevinとCSVRは、同じOBABO分割の2自由度調和／quartic系とCSVR核まで検証済み。他10手法は専用実装がない。",
       "tasks": [
         "既存の短いBOMD局所比較を、長時間のエネルギー保存や連成全体の検証と扱わない。",
         "用途が具体化したときに、力誤差・SCF誤差・積分誤差と熱浴の寄与を分離する。"
       ],
-      "scope_note": "",
+      "scope_note": "2026-11-25に追加した限定範囲：規格化した2準位電子角と1核座標の自作BO/CP型模型、短いNVEと1核OU熱浴。M=20、架空角質量μ=.04/.01で、cp.xのemassや第一原理CPMDではありません。 残る未検証：長時間の第一原理NVE、一般の多軌道直交拘束・SCF/力誤差・断熱分離、電子/核の一般熱浴、正準平衡・エルゴード性、実物質。",
       "sources": [],
       "baseline_evidence": [
         {
@@ -9612,9 +10418,85 @@
           "id": "nose-hoover"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-25/quantum-small/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-25/quantum-small/inputs.json",
+          "/code/validated-examples/2026-11-25/quantum-small/acceptance.json",
+          "/code/validated-examples/2026-11-25/quantum-small/freeze.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-25/quantum-small/results/two-state-bo-cp-ou.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-25/quantum-small/run.py",
+          "/code/validated-examples/2026-11-25/quantum-small/coupled_md.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-25/quantum-small/provenance.json",
+          "/numerical-methods-atlas/solutions/?lang=ja#solution-two-state-bo-cp-ou-ja"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#two-state-bo-cp-model-ja",
+        "execution": "/numerical-methods-atlas/validation/two-state-bo-cp-ou/?lang=ja",
+        "case_ids": [
+          "two-state-bo-cp-ou"
+        ],
+        "primary_diagnostics": [
+          {
+            "path": "/code/validated-examples/2026-11-25/quantum-small/results/result.json",
+            "case_id": "two-state-bo-cp-ou",
+            "json_pointer": "/cases/0",
+            "source_sha256": "750fa3e7f3fe79a96aaacd46039bf00f18b7623d7c4b09035b3c850bfd5d2c20",
+            "input_sha256": "36f9b4b9293e5b34d554014134fbce6c31ec11a09a50d1bb5179e9dcb1cee21a"
+          }
+        ]
+      },
       "sequence": 95,
-      "completion_evidence": null
+      "completed_limited_scope": {
+        "ja": "規格化した2準位電子角と1核座標の自作BO/CP型模型、短いNVEと1核OU熱浴。M=20、架空角質量μ=.04/.01で、cp.xのemassや第一原理CPMDではありません。",
+        "en": "Only the named fixed-input or metadata scope is qualified; see the retained original survey and explicit limits."
+      },
+      "completion_scope": "limited-fixed-protocol-or-curation",
+      "unverified_broad_tails": "残る未検証：長時間の第一原理NVE、一般の多軌道直交拘束・SCF/力誤差・断熱分離、電子/核の一般熱浴、正準平衡・エルゴード性、実物質。",
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-25/quantum-small/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-25/quantum-small/inputs.json",
+            "/code/validated-examples/2026-11-25/quantum-small/acceptance.json",
+            "/code/validated-examples/2026-11-25/quantum-small/freeze.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-25/quantum-small/results/two-state-bo-cp-ou.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-25/quantum-small/run.py",
+            "/code/validated-examples/2026-11-25/quantum-small/coupled_md.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-25/quantum-small/provenance.json",
+            "/numerical-methods-atlas/solutions/?lang=ja#solution-two-state-bo-cp-ou-ja"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#two-state-bo-cp-model-ja",
+          "execution": "/numerical-methods-atlas/validation/two-state-bo-cp-ou/?lang=ja",
+          "case_ids": [
+            "two-state-bo-cp-ou"
+          ],
+          "primary_diagnostics": [
+            {
+              "path": "/code/validated-examples/2026-11-25/quantum-small/results/result.json",
+              "case_id": "two-state-bo-cp-ou",
+              "json_pointer": "/cases/0",
+              "source_sha256": "750fa3e7f3fe79a96aaacd46039bf00f18b7623d7c4b09035b3c850bfd5d2c20",
+              "input_sha256": "36f9b4b9293e5b34d554014134fbce6c31ec11a09a50d1bb5179e9dcb1cee21a"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "quantum-atomic-1",
@@ -9627,13 +10509,13 @@
       "priority": "P1",
       "kind": "references",
       "initial_coverage": "出典整備不足",
-      "state": "planned",
+      "state": "verified",
       "current": "水素型原子の解析解、球対称Heの閉殻HF／交換のみLDA、半径格子・SCF・独立PySCF参照は既存。",
       "tasks": [
         "水素の固有値・動径関数・単位・縮退と境界条件をまとめる。",
         "Heの有限基底HF／LDA参照を相関を含む物理的厳密値と区別する。"
       ],
-      "scope_note": "",
+      "scope_note": "2026-11-25に追加した限定範囲：既存H/Heの式、u/p/nの測度、単位と保存した3行の有限基底参照を再照合するカード。新しいSCF/電子状態計算・外部参照の再生成は0回です。",
       "sources": [
         {
           "title": "PySCF公式: Self-consistent field methods",
@@ -9651,9 +10533,104 @@
           "id": "hydrogen"
         }
       ],
-      "completion": null,
+      "completion": {
+        "targets": [
+          "/code/validated-examples/2026-11-25/quantum-small/saved-data/atom-reference.json",
+          "/code/validated-examples/2026-11-25/quantum-small/provenance.json",
+          "/numerical-methods-atlas/solutions/?lang=ja#solution-atomic-reference-cards-ja"
+        ],
+        "proof": [
+          "/code/validated-examples/2026-11-25/quantum-small/verification.json",
+          "/code/validated-examples/2026-11-25/quantum-small/source-manifest.json",
+          "/code/validated-examples/2026-11-25/quantum-small/results/result.json"
+        ],
+        "note": "保存済み参照の再照合であり、新SCF/電子状態計算は0回。既存H/Heの式、u/p/nの測度、単位と保存した3行の有限基底参照を再照合するカード。新しいSCF/電子状態計算・外部参照の再生成は0回です。",
+        "verification": "/code/validated-examples/2026-11-25/quantum-small/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-25/quantum-small/inputs.json",
+          "/code/validated-examples/2026-11-25/quantum-small/acceptance.json",
+          "/code/validated-examples/2026-11-25/quantum-small/freeze.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-25/quantum-small/results/atomic-reference-cards.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-25/quantum-small/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-25/quantum-small/provenance.json",
+          "/numerical-methods-atlas/solutions/?lang=ja#solution-atomic-reference-cards-ja"
+        ],
+        "case_ids": [
+          "atomic-reference-cards"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#helium-ground-state-ja",
+        "execution": "/numerical-methods-atlas/validation/atomic-reference-cards/?lang=ja",
+        "primary_diagnostics": [
+          {
+            "path": "/code/validated-examples/2026-11-25/quantum-small/results/result.json",
+            "case_id": "atomic-reference-cards",
+            "json_pointer": "/cases/1",
+            "source_sha256": "750fa3e7f3fe79a96aaacd46039bf00f18b7623d7c4b09035b3c850bfd5d2c20",
+            "input_sha256": "36f9b4b9293e5b34d554014134fbce6c31ec11a09a50d1bb5179e9dcb1cee21a"
+          }
+        ]
+      },
       "sequence": 96,
-      "completion_evidence": null
+      "completed_limited_scope": {
+        "ja": "既存H/Heの式、u/p/nの測度、単位と保存した3行の有限基底参照を再照合するカード。新しいSCF/電子状態計算・外部参照の再生成は0回です。",
+        "en": "Only the named fixed-input or metadata scope is qualified; see the retained original survey and explicit limits."
+      },
+      "completion_scope": "limited-fixed-protocol-or-curation",
+      "unverified_broad_tails": "Original broader survey tasks and unqualified source/convergence scope remain outside this fixed completion.",
+      "completion_evidence": {
+        "kind": "curation",
+        "partial": false,
+        "local_evidence_checked": true,
+        "links": {
+          "targets": [
+            "/code/validated-examples/2026-11-25/quantum-small/saved-data/atom-reference.json",
+            "/code/validated-examples/2026-11-25/quantum-small/provenance.json",
+            "/numerical-methods-atlas/solutions/?lang=ja#solution-atomic-reference-cards-ja"
+          ],
+          "proof": [
+            "/code/validated-examples/2026-11-25/quantum-small/verification.json",
+            "/code/validated-examples/2026-11-25/quantum-small/source-manifest.json",
+            "/code/validated-examples/2026-11-25/quantum-small/results/result.json"
+          ],
+          "note": "保存済み参照の再照合であり、新SCF/電子状態計算は0回。既存H/Heの式、u/p/nの測度、単位と保存した3行の有限基底参照を再照合するカード。新しいSCF/電子状態計算・外部参照の再生成は0回です。",
+          "verification": "/code/validated-examples/2026-11-25/quantum-small/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-25/quantum-small/inputs.json",
+            "/code/validated-examples/2026-11-25/quantum-small/acceptance.json",
+            "/code/validated-examples/2026-11-25/quantum-small/freeze.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-25/quantum-small/results/atomic-reference-cards.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-25/quantum-small/run.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-25/quantum-small/provenance.json",
+            "/numerical-methods-atlas/solutions/?lang=ja#solution-atomic-reference-cards-ja"
+          ],
+          "case_ids": [
+            "atomic-reference-cards"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#helium-ground-state-ja",
+          "execution": "/numerical-methods-atlas/validation/atomic-reference-cards/?lang=ja",
+          "primary_diagnostics": [
+            {
+              "path": "/code/validated-examples/2026-11-25/quantum-small/results/result.json",
+              "case_id": "atomic-reference-cards",
+              "json_pointer": "/cases/1",
+              "source_sha256": "750fa3e7f3fe79a96aaacd46039bf00f18b7623d7c4b09035b3c850bfd5d2c20",
+              "input_sha256": "36f9b4b9293e5b34d554014134fbce6c31ec11a09a50d1bb5179e9dcb1cee21a"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "quantum-atomic-2",
@@ -9666,13 +10643,13 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "未収録",
-      "state": "planned",
+      "state": "verified",
       "current": "水素型原子の解析解、球対称Heの閉殻HF／交換のみLDA、半径格子・SCF・独立PySCF参照は既存。",
       "tasks": [
         "教材と既存コードの詳細照合後に新規登録を確定する。",
         "固有値だけでなく規格化・直交性・節・固有対残差、領域と格子誤差を確認する。"
       ],
-      "scope_note": "台帳・配布Pythonの名称と問題登録を概観した候補。全教材本文の数式との重複まで精査した判定ではない。",
+      "scope_note": "台帳・配布Pythonの名称と問題登録を概観した候補。全教材本文の数式との重複まで精査した判定ではない。\n2026-11-25に追加した限定範囲：1D箱型井戸と有限箱HOの固定8行列から得た固有対を、native規格化・残差・閉形式参照と照合。HOの壁と格子の個別誤差保証や節数の厳密証明ではありません。",
       "sources": [],
       "baseline_evidence": [
         {
@@ -9684,9 +10661,87 @@
           "id": "hydrogen"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-25/quantum-small/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-25/quantum-small/inputs.json",
+          "/code/validated-examples/2026-11-25/quantum-small/acceptance.json",
+          "/code/validated-examples/2026-11-25/quantum-small/freeze.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-25/quantum-small/results/quantum-box-ho.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-25/quantum-small/run.py",
+          "/code/validated-examples/2026-11-25/quantum-small/eigenpairs.py",
+          "/code/validated-examples/2026-11-25/quantum-small/io_utils.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-25/quantum-small/provenance.json",
+          "/numerical-methods-atlas/solutions/?lang=ja#solution-quantum-box-ho-ja"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#quantum-box-ho-ja",
+        "execution": "/numerical-methods-atlas/validation/quantum-box-ho/?lang=ja",
+        "case_ids": [
+          "quantum-box-ho"
+        ],
+        "primary_diagnostics": [
+          {
+            "path": "/code/validated-examples/2026-11-25/quantum-small/results/result.json",
+            "case_id": "quantum-box-ho",
+            "json_pointer": "/cases/2",
+            "source_sha256": "750fa3e7f3fe79a96aaacd46039bf00f18b7623d7c4b09035b3c850bfd5d2c20",
+            "input_sha256": "36f9b4b9293e5b34d554014134fbce6c31ec11a09a50d1bb5179e9dcb1cee21a"
+          }
+        ]
+      },
       "sequence": 97,
-      "completion_evidence": null
+      "completed_limited_scope": {
+        "ja": "1D箱型井戸と有限箱HOの固定8行列から得た固有対を、native規格化・残差・閉形式参照と照合。HOの壁と格子の個別誤差保証や節数の厳密証明ではありません。",
+        "en": "Only the named fixed-input or metadata scope is qualified; see the retained original survey and explicit limits."
+      },
+      "completion_scope": "limited-fixed-protocol-or-curation",
+      "unverified_broad_tails": "Original broader survey tasks and unqualified source/convergence scope remain outside this fixed completion.",
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-25/quantum-small/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-25/quantum-small/inputs.json",
+            "/code/validated-examples/2026-11-25/quantum-small/acceptance.json",
+            "/code/validated-examples/2026-11-25/quantum-small/freeze.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-25/quantum-small/results/quantum-box-ho.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-25/quantum-small/run.py",
+            "/code/validated-examples/2026-11-25/quantum-small/eigenpairs.py",
+            "/code/validated-examples/2026-11-25/quantum-small/io_utils.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-25/quantum-small/provenance.json",
+            "/numerical-methods-atlas/solutions/?lang=ja#solution-quantum-box-ho-ja"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#quantum-box-ho-ja",
+          "execution": "/numerical-methods-atlas/validation/quantum-box-ho/?lang=ja",
+          "case_ids": [
+            "quantum-box-ho"
+          ],
+          "primary_diagnostics": [
+            {
+              "path": "/code/validated-examples/2026-11-25/quantum-small/results/result.json",
+              "case_id": "quantum-box-ho",
+              "json_pointer": "/cases/2",
+              "source_sha256": "750fa3e7f3fe79a96aaacd46039bf00f18b7623d7c4b09035b3c850bfd5d2c20",
+              "input_sha256": "36f9b4b9293e5b34d554014134fbce6c31ec11a09a50d1bb5179e9dcb1cee21a"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "quantum-molecule-1",
@@ -9699,13 +10754,13 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "planned",
+      "state": "verified",
       "current": "自作s型Gaussian積分によるH₂ RHFと独立PySCF比較は既存。同一有限基底の比較と、角運動量・完全基底・相関の検証は別。",
       "tasks": [
         "小さな固定基底で解離に伴う対称性の破れと相関誤差を示す。",
         "有限基底FCIを連続空間の厳密解と呼ばない。重い基底走査を前提にしない。"
       ],
-      "scope_note": "",
+      "scope_note": "2026-11-25に追加した限定範囲：同じ明示STO-3G 2AOのH2を2固定距離でRHF/UHF/有限基底FCI比較。αβスピン混入を保存し、FCIを連続空間の厳密化学や一般解離曲線と呼びません。",
       "sources": [
         {
           "title": "PySCF公式: Self-consistent field methods",
@@ -9723,9 +10778,87 @@
           "id": "h2-hf-dft"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-25/quantum-small/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-25/quantum-small/inputs.json",
+          "/code/validated-examples/2026-11-25/quantum-small/acceptance.json",
+          "/code/validated-examples/2026-11-25/quantum-small/freeze.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-25/quantum-small/results/h2-rhf-uhf-fci.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-25/quantum-small/run.py",
+          "/code/validated-examples/2026-11-25/quantum-small/molecules.py",
+          "/code/validated-examples/2026-11-25/quantum-small/io_utils.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-25/quantum-small/provenance.json",
+          "/numerical-methods-atlas/solutions/?lang=ja#solution-h2-rhf-uhf-fci-ja"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#h2-rhf-ja",
+        "execution": "/numerical-methods-atlas/validation/h2-rhf-uhf-fci/?lang=ja",
+        "case_ids": [
+          "h2-rhf-uhf-fci"
+        ],
+        "primary_diagnostics": [
+          {
+            "path": "/code/validated-examples/2026-11-25/quantum-small/results/result.json",
+            "case_id": "h2-rhf-uhf-fci",
+            "json_pointer": "/cases/3",
+            "source_sha256": "750fa3e7f3fe79a96aaacd46039bf00f18b7623d7c4b09035b3c850bfd5d2c20",
+            "input_sha256": "36f9b4b9293e5b34d554014134fbce6c31ec11a09a50d1bb5179e9dcb1cee21a"
+          }
+        ]
+      },
       "sequence": 98,
-      "completion_evidence": null
+      "completed_limited_scope": {
+        "ja": "同じ明示STO-3G 2AOのH2を2固定距離でRHF/UHF/有限基底FCI比較。αβスピン混入を保存し、FCIを連続空間の厳密化学や一般解離曲線と呼びません。",
+        "en": "Only the named fixed-input or metadata scope is qualified; see the retained original survey and explicit limits."
+      },
+      "completion_scope": "limited-fixed-protocol-or-curation",
+      "unverified_broad_tails": "Original broader survey tasks and unqualified source/convergence scope remain outside this fixed completion.",
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-25/quantum-small/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-25/quantum-small/inputs.json",
+            "/code/validated-examples/2026-11-25/quantum-small/acceptance.json",
+            "/code/validated-examples/2026-11-25/quantum-small/freeze.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-25/quantum-small/results/h2-rhf-uhf-fci.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-25/quantum-small/run.py",
+            "/code/validated-examples/2026-11-25/quantum-small/molecules.py",
+            "/code/validated-examples/2026-11-25/quantum-small/io_utils.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-25/quantum-small/provenance.json",
+            "/numerical-methods-atlas/solutions/?lang=ja#solution-h2-rhf-uhf-fci-ja"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#h2-rhf-ja",
+          "execution": "/numerical-methods-atlas/validation/h2-rhf-uhf-fci/?lang=ja",
+          "case_ids": [
+            "h2-rhf-uhf-fci"
+          ],
+          "primary_diagnostics": [
+            {
+              "path": "/code/validated-examples/2026-11-25/quantum-small/results/result.json",
+              "case_id": "h2-rhf-uhf-fci",
+              "json_pointer": "/cases/3",
+              "source_sha256": "750fa3e7f3fe79a96aaacd46039bf00f18b7623d7c4b09035b3c850bfd5d2c20",
+              "input_sha256": "36f9b4b9293e5b34d554014134fbce6c31ec11a09a50d1bb5179e9dcb1cee21a"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "quantum-molecule-2",
@@ -9738,13 +10871,13 @@
       "priority": "P3",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "planned",
+      "state": "verified",
       "current": "自作s型Gaussian積分によるH₂ RHFと独立PySCF比較は既存。同一有限基底の比較と、角運動量・完全基底・相関の検証は別。",
       "tasks": [
         "用途と計算予算が決まったものを個別に選ぶ。",
         "基底・SCFの数値誤差と、汎関数・電子相関の物理近似誤差を分離する。"
       ],
-      "scope_note": "",
+      "scope_note": "2026-11-25に追加した限定範囲：1つの非対称3中心H3+・2電子/3s軌道のRHF/MP2/有限基底FCI。独立な演算子組立・2電子RS2恒等式は、外部化学エンジンの独立スカラー参照と区別します。 残る未実装/未検証：一般分子DFT、CC、一般多参照法、大基底・広い分子群、化学精度・精密エネルギー、構造最適化。MP2は変分上界ではありません。",
       "sources": [
         {
           "title": "PySCF公式: Self-consistent field methods",
@@ -9762,9 +10895,87 @@
           "id": "h2-hf-dft"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-25/quantum-small/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-25/quantum-small/inputs.json",
+          "/code/validated-examples/2026-11-25/quantum-small/acceptance.json",
+          "/code/validated-examples/2026-11-25/quantum-small/freeze.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-25/quantum-small/results/h3plus-mp2-fci.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-25/quantum-small/run.py",
+          "/code/validated-examples/2026-11-25/quantum-small/molecules.py",
+          "/code/validated-examples/2026-11-25/quantum-small/io_utils.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-25/quantum-small/provenance.json",
+          "/numerical-methods-atlas/solutions/?lang=ja#solution-h3plus-mp2-fci-ja"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#h3plus-minimal-ja",
+        "execution": "/numerical-methods-atlas/validation/h3plus-mp2-fci/?lang=ja",
+        "case_ids": [
+          "h3plus-mp2-fci"
+        ],
+        "primary_diagnostics": [
+          {
+            "path": "/code/validated-examples/2026-11-25/quantum-small/results/result.json",
+            "case_id": "h3plus-mp2-fci",
+            "json_pointer": "/cases/4",
+            "source_sha256": "750fa3e7f3fe79a96aaacd46039bf00f18b7623d7c4b09035b3c850bfd5d2c20",
+            "input_sha256": "36f9b4b9293e5b34d554014134fbce6c31ec11a09a50d1bb5179e9dcb1cee21a"
+          }
+        ]
+      },
       "sequence": 99,
-      "completion_evidence": null
+      "completed_limited_scope": {
+        "ja": "1つの非対称3中心H3+・2電子/3s軌道のRHF/MP2/有限基底FCI。独立な演算子組立・2電子RS2恒等式は、外部化学エンジンの独立スカラー参照と区別します。",
+        "en": "Only the named fixed-input or metadata scope is qualified; see the retained original survey and explicit limits."
+      },
+      "completion_scope": "limited-fixed-protocol-or-curation",
+      "unverified_broad_tails": "残る未実装/未検証：一般分子DFT、CC、一般多参照法、大基底・広い分子群、化学精度・精密エネルギー、構造最適化。MP2は変分上界ではありません。",
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-25/quantum-small/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-25/quantum-small/inputs.json",
+            "/code/validated-examples/2026-11-25/quantum-small/acceptance.json",
+            "/code/validated-examples/2026-11-25/quantum-small/freeze.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-25/quantum-small/results/h3plus-mp2-fci.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-25/quantum-small/run.py",
+            "/code/validated-examples/2026-11-25/quantum-small/molecules.py",
+            "/code/validated-examples/2026-11-25/quantum-small/io_utils.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-25/quantum-small/provenance.json",
+            "/numerical-methods-atlas/solutions/?lang=ja#solution-h3plus-mp2-fci-ja"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#h3plus-minimal-ja",
+          "execution": "/numerical-methods-atlas/validation/h3plus-mp2-fci/?lang=ja",
+          "case_ids": [
+            "h3plus-mp2-fci"
+          ],
+          "primary_diagnostics": [
+            {
+              "path": "/code/validated-examples/2026-11-25/quantum-small/results/result.json",
+              "case_id": "h3plus-mp2-fci",
+              "json_pointer": "/cases/4",
+              "source_sha256": "750fa3e7f3fe79a96aaacd46039bf00f18b7623d7c4b09035b3c850bfd5d2c20",
+              "input_sha256": "36f9b4b9293e5b34d554014134fbce6c31ec11a09a50d1bb5179e9dcb1cee21a"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "quantum-periodic-1",
@@ -9777,13 +10988,13 @@
       "priority": "P1",
       "kind": "references",
       "initial_coverage": "出典整備不足",
-      "state": "planned",
+      "state": "verified",
       "current": "固定Heの静的LDA、非対称He₂の全6座標の力、Gaussian/PW独立比較、短いBOMD局所確認まで既存。",
       "tasks": [
         "幾何・GTH版・Libxc指定・単位・電子数・コード版を参照カードに固定する。",
         "解析力、エネルギー差分、独立平面波参照と各残差を対応付ける。"
       ],
-      "scope_note": "",
+      "scope_note": "2026-11-25に追加した限定範囲：人工2He・4電子・5bohrセル、局所GTH・LDA_X+VWN・旧コード版の保存エネルギー/6座標力を再照合する参照監査。新SCF/DFTK/PySCF計算やk点/基底/cutoff走査は0回です。",
       "sources": [
         {
           "title": "DFTK公式: Pseudopotentials",
@@ -9800,9 +11011,104 @@
           "path": "catalog/atlas-forces-reading.json"
         }
       ],
-      "completion": null,
+      "completion": {
+        "targets": [
+          "/code/validated-examples/2026-11-25/quantum-small/saved-data/periodic-he-reference.json",
+          "/code/validated-examples/2026-11-25/quantum-small/provenance.json",
+          "/numerical-methods-atlas/solutions/?lang=ja#solution-periodic-he-reference-cards-ja"
+        ],
+        "proof": [
+          "/code/validated-examples/2026-11-25/quantum-small/verification.json",
+          "/code/validated-examples/2026-11-25/quantum-small/source-manifest.json",
+          "/code/validated-examples/2026-11-25/quantum-small/results/result.json"
+        ],
+        "note": "保存済み参照の再照合であり、新SCF/電子状態計算は0回。人工2He・4電子・5bohrセル、局所GTH・LDA_X+VWN・旧コード版の保存エネルギー/6座標力を再照合する参照監査。新SCF/DFTK/PySCF計算やk点/基底/cutoff走査は0回です。",
+        "verification": "/code/validated-examples/2026-11-25/quantum-small/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-25/quantum-small/inputs.json",
+          "/code/validated-examples/2026-11-25/quantum-small/acceptance.json",
+          "/code/validated-examples/2026-11-25/quantum-small/freeze.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-25/quantum-small/results/periodic-he-reference-cards.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-25/quantum-small/run.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-25/quantum-small/provenance.json",
+          "/numerical-methods-atlas/solutions/?lang=ja#solution-periodic-he-reference-cards-ja"
+        ],
+        "case_ids": [
+          "periodic-he-reference-cards"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#periodic-he-forces-ja",
+        "execution": "/numerical-methods-atlas/validation/periodic-he-reference-cards/?lang=ja",
+        "primary_diagnostics": [
+          {
+            "path": "/code/validated-examples/2026-11-25/quantum-small/results/result.json",
+            "case_id": "periodic-he-reference-cards",
+            "json_pointer": "/cases/5",
+            "source_sha256": "750fa3e7f3fe79a96aaacd46039bf00f18b7623d7c4b09035b3c850bfd5d2c20",
+            "input_sha256": "36f9b4b9293e5b34d554014134fbce6c31ec11a09a50d1bb5179e9dcb1cee21a"
+          }
+        ]
+      },
       "sequence": 100,
-      "completion_evidence": null
+      "completed_limited_scope": {
+        "ja": "人工2He・4電子・5bohrセル、局所GTH・LDA_X+VWN・旧コード版の保存エネルギー/6座標力を再照合する参照監査。新SCF/DFTK/PySCF計算やk点/基底/cutoff走査は0回です。",
+        "en": "Only the named fixed-input or metadata scope is qualified; see the retained original survey and explicit limits."
+      },
+      "completion_scope": "limited-fixed-protocol-or-curation",
+      "unverified_broad_tails": "Original broader survey tasks and unqualified source/convergence scope remain outside this fixed completion.",
+      "completion_evidence": {
+        "kind": "curation",
+        "partial": false,
+        "local_evidence_checked": true,
+        "links": {
+          "targets": [
+            "/code/validated-examples/2026-11-25/quantum-small/saved-data/periodic-he-reference.json",
+            "/code/validated-examples/2026-11-25/quantum-small/provenance.json",
+            "/numerical-methods-atlas/solutions/?lang=ja#solution-periodic-he-reference-cards-ja"
+          ],
+          "proof": [
+            "/code/validated-examples/2026-11-25/quantum-small/verification.json",
+            "/code/validated-examples/2026-11-25/quantum-small/source-manifest.json",
+            "/code/validated-examples/2026-11-25/quantum-small/results/result.json"
+          ],
+          "note": "保存済み参照の再照合であり、新SCF/電子状態計算は0回。人工2He・4電子・5bohrセル、局所GTH・LDA_X+VWN・旧コード版の保存エネルギー/6座標力を再照合する参照監査。新SCF/DFTK/PySCF計算やk点/基底/cutoff走査は0回です。",
+          "verification": "/code/validated-examples/2026-11-25/quantum-small/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-25/quantum-small/inputs.json",
+            "/code/validated-examples/2026-11-25/quantum-small/acceptance.json",
+            "/code/validated-examples/2026-11-25/quantum-small/freeze.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-25/quantum-small/results/periodic-he-reference-cards.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-25/quantum-small/run.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-25/quantum-small/provenance.json",
+            "/numerical-methods-atlas/solutions/?lang=ja#solution-periodic-he-reference-cards-ja"
+          ],
+          "case_ids": [
+            "periodic-he-reference-cards"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#periodic-he-forces-ja",
+          "execution": "/numerical-methods-atlas/validation/periodic-he-reference-cards/?lang=ja",
+          "primary_diagnostics": [
+            {
+              "path": "/code/validated-examples/2026-11-25/quantum-small/results/result.json",
+              "case_id": "periodic-he-reference-cards",
+              "json_pointer": "/cases/5",
+              "source_sha256": "750fa3e7f3fe79a96aaacd46039bf00f18b7623d7c4b09035b3c850bfd5d2c20",
+              "input_sha256": "36f9b4b9293e5b34d554014134fbce6c31ec11a09a50d1bb5179e9dcb1cee21a"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "quantum-periodic-2",
@@ -9815,13 +11121,13 @@
       "priority": "P3",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
+      "state": "verified",
       "current": "固定Heの静的LDA、非対称He₂の全6座標の力、Gaussian/PW独立比較、短いBOMD局所確認まで既存。",
       "tasks": [
         "固定Heの成功を一般材料・金属・CPMDの成功へ拡張しない。",
         "現行の軽量保守方針を維持し、必要な用途が示された場合に個別計画にする。"
       ],
-      "scope_note": "",
+      "scope_note": "2026-11-25に追加した限定範囲：G=-1,0,1と2固定k点の自作rank-one非局所核・平均Fermi占有N=1.5・固定NのHelmholtz自由エネルギー力。整数粒子の正準多体系や実金属・元素適合ノルム保存PSPではありません。 残る未実装/未検証：実在材料・一般金属、元素適合ノルム保存擬ポテンシャル、自己無撞着Hartree/XC、基底/k点/cutoff収束、長時間第一原理MD。",
       "sources": [
         {
           "title": "DFTK公式: Pseudopotentials",
@@ -9838,9 +11144,87 @@
           "path": "catalog/atlas-forces-reading.json"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-25/quantum-small/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-25/quantum-small/inputs.json",
+          "/code/validated-examples/2026-11-25/quantum-small/acceptance.json",
+          "/code/validated-examples/2026-11-25/quantum-small/freeze.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-25/quantum-small/results/periodic-projector-occupations.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-25/quantum-small/run.py",
+          "/code/validated-examples/2026-11-25/quantum-small/periodic_projector.py",
+          "/code/validated-examples/2026-11-25/quantum-small/io_utils.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-25/quantum-small/provenance.json",
+          "/numerical-methods-atlas/solutions/?lang=ja#solution-periodic-projector-occupations-ja"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#finite-projector-fermi-ja",
+        "execution": "/numerical-methods-atlas/validation/periodic-projector-occupations/?lang=ja",
+        "case_ids": [
+          "periodic-projector-occupations"
+        ],
+        "primary_diagnostics": [
+          {
+            "path": "/code/validated-examples/2026-11-25/quantum-small/results/result.json",
+            "case_id": "periodic-projector-occupations",
+            "json_pointer": "/cases/6",
+            "source_sha256": "750fa3e7f3fe79a96aaacd46039bf00f18b7623d7c4b09035b3c850bfd5d2c20",
+            "input_sha256": "36f9b4b9293e5b34d554014134fbce6c31ec11a09a50d1bb5179e9dcb1cee21a"
+          }
+        ]
+      },
       "sequence": 101,
-      "completion_evidence": null
+      "completed_limited_scope": {
+        "ja": "G=-1,0,1と2固定k点の自作rank-one非局所核・平均Fermi占有N=1.5・固定NのHelmholtz自由エネルギー力。整数粒子の正準多体系や実金属・元素適合ノルム保存PSPではありません。",
+        "en": "Only the named fixed-input or metadata scope is qualified; see the retained original survey and explicit limits."
+      },
+      "completion_scope": "limited-fixed-protocol-or-curation",
+      "unverified_broad_tails": "残る未実装/未検証：実在材料・一般金属、元素適合ノルム保存擬ポテンシャル、自己無撞着Hartree/XC、基底/k点/cutoff収束、長時間第一原理MD。",
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-25/quantum-small/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-25/quantum-small/inputs.json",
+            "/code/validated-examples/2026-11-25/quantum-small/acceptance.json",
+            "/code/validated-examples/2026-11-25/quantum-small/freeze.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-25/quantum-small/results/periodic-projector-occupations.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-25/quantum-small/run.py",
+            "/code/validated-examples/2026-11-25/quantum-small/periodic_projector.py",
+            "/code/validated-examples/2026-11-25/quantum-small/io_utils.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-25/quantum-small/provenance.json",
+            "/numerical-methods-atlas/solutions/?lang=ja#solution-periodic-projector-occupations-ja"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#finite-projector-fermi-ja",
+          "execution": "/numerical-methods-atlas/validation/periodic-projector-occupations/?lang=ja",
+          "case_ids": [
+            "periodic-projector-occupations"
+          ],
+          "primary_diagnostics": [
+            {
+              "path": "/code/validated-examples/2026-11-25/quantum-small/results/result.json",
+              "case_id": "periodic-projector-occupations",
+              "json_pointer": "/cases/6",
+              "source_sha256": "750fa3e7f3fe79a96aaacd46039bf00f18b7623d7c4b09035b3c850bfd5d2c20",
+              "input_sha256": "36f9b4b9293e5b34d554014134fbce6c31ec11a09a50d1bb5179e9dcb1cee21a"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "sph-gsph-1",
@@ -9853,13 +11237,13 @@
       "priority": "P2",
       "kind": "implementation",
       "initial_coverage": "解説のみ",
-      "state": "planned",
+      "state": "verified",
       "current": "SPHはカーネル再構成の実装と検査がある。GSPHの原著に沿う解説はあるが、粒子の流体時間発展は専用実装されていない。",
       "tasks": [
         "既存Sodの厳密Riemann参照を粒子位置・体積重みと整合させる。",
         "粒子対の運動量/エネルギー保存、可変平滑化長と時間更新を含めて検証する。"
       ],
-      "scope_note": "",
+      "scope_note": "2026-11-25に追加した限定範囲：Gaussian線形比体積畳み込み・対称可変h・独立対Riemann解・反対称全エネルギー交換の実GSPHをSodで検査。通常SPHへp*を入れる代用や論文のcubic/MUSCL再現ではありません。",
       "sources": [
         {
           "title": "Inutsuka (2002), Reformulation of Smoothed Particle Hydrodynamics with Riemann Solver",
@@ -9877,9 +11261,91 @@
           "id": "inutsuka2002"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/inputs.json",
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/acceptance.json",
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/freeze.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/results/gsph-sod-preview.png",
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/results/gsph-sod.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/run.py",
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py",
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/reference_riemann.py",
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/source-reading.json",
+          "/numerical-methods-atlas/solutions/?lang=ja#solution-gsph-sod-ja"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#sod-ja",
+        "execution": "/numerical-methods-atlas/validation/gsph-sod/?lang=ja",
+        "case_ids": [
+          "gsph-sod"
+        ],
+        "primary_diagnostics": [
+          {
+            "path": "/code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json",
+            "case_id": "gsph-sod",
+            "json_pointer": "/cases/3",
+            "source_sha256": "cab002c93e01d997562f3c145e1aaddd6a2a8ce59a087d44e8bddc4679081bbf",
+            "input_sha256": "5f49881f37b07c47f674979a4886e6da0421be06ddb6bb213ab7dfea6bf6e0f5"
+          }
+        ]
+      },
       "sequence": 102,
-      "completion_evidence": null
+      "completed_limited_scope": {
+        "ja": "Gaussian線形比体積畳み込み・対称可変h・独立対Riemann解・反対称全エネルギー交換の実GSPHをSodで検査。通常SPHへp*を入れる代用や論文のcubic/MUSCL再現ではありません。",
+        "en": "Only the named fixed-input or metadata scope is qualified; see the retained original survey and explicit limits."
+      },
+      "completion_scope": "limited-fixed-protocol-or-curation",
+      "unverified_broad_tails": "Original broader survey tasks and unqualified source/convergence scope remain outside this fixed completion.",
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/inputs.json",
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/acceptance.json",
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/freeze.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/results/gsph-sod-preview.png",
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/results/gsph-sod.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/run.py",
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py",
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/reference_riemann.py",
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/source-reading.json",
+            "/numerical-methods-atlas/solutions/?lang=ja#solution-gsph-sod-ja"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#sod-ja",
+          "execution": "/numerical-methods-atlas/validation/gsph-sod/?lang=ja",
+          "case_ids": [
+            "gsph-sod"
+          ],
+          "primary_diagnostics": [
+            {
+              "path": "/code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json",
+              "case_id": "gsph-sod",
+              "json_pointer": "/cases/3",
+              "source_sha256": "cab002c93e01d997562f3c145e1aaddd6a2a8ce59a087d44e8bddc4679081bbf",
+              "input_sha256": "5f49881f37b07c47f674979a4886e6da0421be06ddb6bb213ab7dfea6bf6e0f5"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "sph-gsph-2",
@@ -9892,13 +11358,13 @@
       "priority": "P2",
       "kind": "extension",
       "initial_coverage": "検証範囲不足",
-      "state": "planned",
+      "state": "verified",
       "current": "SPHはカーネル再構成の実装と検査がある。GSPHの原著に沿う解説はあるが、粒子の流体時間発展は専用実装されていない。",
       "tasks": [
         "カーネル補間誤差と流体更新誤差を区別する。",
         "規則/摂動粒子配置、平滑化長、境界処理と音速/振幅減衰を小規模比較する。"
       ],
-      "scope_note": "",
+      "scope_note": "2026-11-25に追加した限定範囲：規則/摂動粒子の一様圧力と小振幅音波をSPH/GSPHで比較。図の初期kernel誤差0.011834はA=.001より大きく、判定は基本Fourierモードの位相/振幅等の固定条件であり、点ごとの高精度を主張しません。",
       "sources": [],
       "baseline_evidence": [
         {
@@ -9910,9 +11376,89 @@
           "id": "inutsuka2002"
         }
       ],
-      "completion": null,
+      "completion": {
+        "verification": "/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+        "inputs": [
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/inputs.json",
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/acceptance.json",
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/freeze.json"
+        ],
+        "plots": [
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/results/sph-pressure-acoustics-preview.png",
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/results/sph-pressure-acoustics.png"
+        ],
+        "code": [
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/run.py",
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py",
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py"
+        ],
+        "references": [
+          "/code/validated-examples/2026-11-25/continuum-particle-controls/source-reading.json",
+          "/numerical-methods-atlas/solutions/?lang=ja#solution-sph-pressure-acoustics-ja"
+        ],
+        "gallery": "/numerical-methods-atlas/gallery/?lang=ja#sph-pressure-acoustics-ja",
+        "execution": "/numerical-methods-atlas/validation/sph-pressure-acoustics/?lang=ja",
+        "case_ids": [
+          "sph-pressure-acoustics"
+        ],
+        "primary_diagnostics": [
+          {
+            "path": "/code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json",
+            "case_id": "sph-pressure-acoustics",
+            "json_pointer": "/cases/4",
+            "source_sha256": "cab002c93e01d997562f3c145e1aaddd6a2a8ce59a087d44e8bddc4679081bbf",
+            "input_sha256": "5f49881f37b07c47f674979a4886e6da0421be06ddb6bb213ab7dfea6bf6e0f5"
+          }
+        ]
+      },
       "sequence": 103,
-      "completion_evidence": null
+      "completed_limited_scope": {
+        "ja": "規則/摂動粒子の一様圧力と小振幅音波をSPH/GSPHで比較。図の初期kernel誤差0.011834はA=.001より大きく、判定は基本Fourierモードの位相/振幅等の固定条件であり、点ごとの高精度を主張しません。",
+        "en": "Only the named fixed-input or metadata scope is qualified; see the retained original survey and explicit limits."
+      },
+      "completion_scope": "limited-fixed-protocol-or-curation",
+      "unverified_broad_tails": "Original broader survey tasks and unqualified source/convergence scope remain outside this fixed completion.",
+      "completion_evidence": {
+        "kind": "scientific",
+        "partial": false,
+        "local_evidence_checked": true,
+        "verification_passed": true,
+        "links": {
+          "verification": "/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+          "inputs": [
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/inputs.json",
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/acceptance.json",
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/freeze.json"
+          ],
+          "plots": [
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/results/sph-pressure-acoustics-preview.png",
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/results/sph-pressure-acoustics.png"
+          ],
+          "code": [
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/run.py",
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py",
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py"
+          ],
+          "references": [
+            "/code/validated-examples/2026-11-25/continuum-particle-controls/source-reading.json",
+            "/numerical-methods-atlas/solutions/?lang=ja#solution-sph-pressure-acoustics-ja"
+          ],
+          "gallery": "/numerical-methods-atlas/gallery/?lang=ja#sph-pressure-acoustics-ja",
+          "execution": "/numerical-methods-atlas/validation/sph-pressure-acoustics/?lang=ja",
+          "case_ids": [
+            "sph-pressure-acoustics"
+          ],
+          "primary_diagnostics": [
+            {
+              "path": "/code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json",
+              "case_id": "sph-pressure-acoustics",
+              "json_pointer": "/cases/4",
+              "source_sha256": "cab002c93e01d997562f3c145e1aaddd6a2a8ce59a087d44e8bddc4679081bbf",
+              "input_sha256": "5f49881f37b07c47f674979a4886e6da0421be06ddb6bb213ab7dfea6bf6e0f5"
+            }
+          ]
+        }
+      }
     }
   ],
   "citation_policy": {
@@ -9924,9 +11470,9 @@
     "total": 103,
     "fields": 36,
     "states": {
-      "planned": 21,
-      "in-progress": 2,
-      "verified": 0,
+      "planned": 0,
+      "in-progress": 0,
+      "verified": 23,
       "published": 80
     },
     "kinds": {
@@ -9942,10 +11488,18 @@
     }
   },
   "source_sha256": {
-    "catalog/atlas-benchmark-backlog.json": "bf45371a93d90588a95d5e17258b5cd6d291a12d82706a37aae31a69943cd065",
+    "catalog/atlas-benchmark-backlog.json": "c26f7a9b01549974d824ad550cfff0aad279cb721fed769afbb5ee4acc8e115f",
     "catalog/atlas-detailed-reading.json": "7106bf86f5fe603d39bb4097ea5d88aa13589b6daf29d31e42a867ae781b8c03",
-    "catalog/atlas-method-primary-references.json": "0b0f4df551b17a83672b3251a8155be2d7f3648f6e48f550cc99d8d49b2ef13c",
-    "catalog/atlas-methods.json": "b303a2990f02603849719e9094e46768634286cd84e18b425ce48e5934873297",
+    "catalog/atlas-execution-examples.json": "b67c3635f42660eaa208073af8addf82777b26337e1b7f2792987f4116fb37c2",
+    "catalog/atlas-legacy-reference-contracts-2026-11-25.json": "7d4f7625c72e3c29547834d36e34dc24290a1f7f7149cbeaae3698274089684e",
+    "catalog/atlas-legacy-reference-registry-2026-11-25.json": "4e1a167ca9c78210532ee49006f2a54ff5bb3f6cbf05cc9fe8d614d3f46ef8b3",
+    "catalog/atlas-method-primary-references.json": "b77c3073e84e9cff001edeb9f27d20c295bf0bbb7e9a62fcb9a0e413105403eb",
+    "catalog/atlas-methods.json": "989b31c7bfe335ebf0c6d44cb9ed126aa79aad9c74d913f6d41ec853890a6418",
+    "catalog/atlas-problem-links.json": "7177cdc7e4931548b22713394e5cded9dfc110caf9b03766757c2c9ad736db86",
+    "catalog/atlas-reference-metadata.json": "67e404b2c1aef9aa5f1cccb16a3ce5c7a35335fc7a5195a63c03e77e2bf3064c",
+    "catalog/atlas-reference-supplements.json": "87172f941063ed425b1ab96e4ef4dbbc1b68bc01ee375e87124f09106a29dd56",
+    "code/numerical-methods-atlas/2026-11-22/verification.json": "29d6d2ae23191ff9037cf490c8337d8c11d090cc1ca3fa7e66dfd8caba12d5c8",
+    "code/quantum-atoms/2026-11-21/verification.json": "48d5d07d230326b03e8c06814146a6618f8b532c7f42ee488ed01f633fb43778",
     "code/validated-examples/2026-11-23-r2/euler-positivity/acceptance.json": "f08558b2703369a2260db1252dc40272f76556a2f6205688faa88a4c37c79050",
     "code/validated-examples/2026-11-23-r2/euler-positivity/euler_positivity.py": "c22015d9435095b3f08189d1b09be4a040c79062b1cc76fd15648cca00f73a58",
     "code/validated-examples/2026-11-23-r2/euler-positivity/inputs.json": "a1185e4b8be0f49f8f3f551f934614110c227d39b2bb0dc4438c5301428d751b",
@@ -10136,15 +11690,6 @@
     "code/validated-examples/2026-11-23/mhd-transport/results/postshock-orszag-tang-preview.png": "bda8eeef077b2d0e0ce634dcf73e65544a520e8d1c78d65786832ce5eefe434d",
     "code/validated-examples/2026-11-23/mhd-transport/run.py": "da117c1975ea8d8c4177df4668faa2f6e114d5ad324e85457c094a603ade21d9",
     "code/validated-examples/2026-11-23/mhd-transport/verification.json": "56767d3b24b0c2fd9e6e660db523be8f8565876b38867f819c57ed983d468752",
-    "code/validated-examples/2026-11-23/moving-waves/README.md": "58840e6cf574a6dc10826c938b9a330ecfe9f7a2712e5e032e5e64c77d9541a6",
-    "code/validated-examples/2026-11-23/moving-waves/acceptance.json": "a59654e76f21e7e5bf6591a6635233e97ccfb0d6502673f846e74f8d5f74a57e",
-    "code/validated-examples/2026-11-23/moving-waves/inputs.json": "f1591358d7d6e9d85b7197b5058d80d40cdee563fa66bec05cfd56fbfdeadca3",
-    "code/validated-examples/2026-11-23/moving-waves/pre-run-contract.json": "75688d812d8e1658c4b6e4e0139a31c116ca2bf542ebecb46f8cd86472dc92fc",
-    "code/validated-examples/2026-11-23/moving-waves/references/citations.json": "475d1b34e7b432d6ba4d124fe19d884270398ef5da334542b6c0e83095c2df55",
-    "code/validated-examples/2026-11-23/moving-waves/results/ale-nonuniform-transport-preview.png": "9d478cec0c80d34b7ea186af511711f8d0fff239eb9e2db18b3b6027563766be",
-    "code/validated-examples/2026-11-23/moving-waves/results/cgrid-rotating-wave-preview.png": "363d1ee6a1c02f5fbfff257511b85cc00ef5cf80817cc265eb866847f5609a4c",
-    "code/validated-examples/2026-11-23/moving-waves/run.py": "326de4c08dda50169ed8a16212eb6ccafbca5032f4ee57a3afdad937a96627f0",
-    "code/validated-examples/2026-11-23/moving-waves/verification.json": "29199bb55f03b1167eaa27115c8bb531006a298371f614d8c1397516c5862894",
     "code/validated-examples/2026-11-23/pic-spatial/README.md": "87ecd73dde30fb8e048915ee4bb825075a5e870ab6f2a3e7ce437d7f38a5e985",
     "code/validated-examples/2026-11-23/pic-spatial/acceptance.json": "82397a27873a8db17cbc4c006843e39de6ee634a8e95d9f662d343e54f144a64",
     "code/validated-examples/2026-11-23/pic-spatial/inputs.json": "8e11e04349f7d8df800b5244b0aa7faf9238ea41d4bcbaf8411885fe70529efa",
@@ -10486,6 +12031,56 @@
     "code/validated-examples/2026-11-25/approximation-controls/source-reading.json": "44ae8b2fd32ec7677191fc0ee68c1bedfabb56be6994a64c855e4f83a15ee8cd",
     "code/validated-examples/2026-11-25/approximation-controls/splines.py": "f8d0fb4d59cf30717260c376f82a158b99b90678a5b3fe0d768f3029bf0b5ab2",
     "code/validated-examples/2026-11-25/approximation-controls/verification.json": "4a492b3d14bd72ead4daa18b68d791fb9b58cc49c426b87c30ebf2b0d439f7ab",
+    "code/validated-examples/2026-11-25/biology-ode-controls/acceptance.json": "47bb2050ccf15b2d404c2a3e63047d11d8258dc6feb25dc1e2fc14c3863b72ab",
+    "code/validated-examples/2026-11-25/biology-ode-controls/common.py": "b498680d2500670b2690cd05f1b6292ece0f380fdc8c3bb164e8fe9300b69b4a",
+    "code/validated-examples/2026-11-25/biology-ode-controls/freeze.json": "2d34093e533eb9ef715cc0d10132f183210e28ac7b7172b28ac120eec2b5e687",
+    "code/validated-examples/2026-11-25/biology-ode-controls/hh.py": "cdcb97b1fc0177b9a1274a1c243271be1353dd6a238179a577af19a9fe6d41bb",
+    "code/validated-examples/2026-11-25/biology-ode-controls/inputs.json": "f15bd046bb65798a49c2e1f5ef75e7aedfb23a7aec0c09f2d11cec5a3a6b58a8",
+    "code/validated-examples/2026-11-25/biology-ode-controls/results/hodgkin-huxley-controls-diagnostics.png": "bdd503439376f716b302d4a6c0c22158f317033d98a343340ec6b9bb31a38248",
+    "code/validated-examples/2026-11-25/biology-ode-controls/results/hodgkin-huxley-controls.png": "103d53258302f2855b7c7c9cca7840245a257909ca12163e8cd7a4d972a5871a",
+    "code/validated-examples/2026-11-25/biology-ode-controls/results/immigration-death-ssa-diagnostics.png": "2deaaa763a24e6487b19b5e84dd038b7dcb8ae4397675d6755de3845f73d6cab",
+    "code/validated-examples/2026-11-25/biology-ode-controls/results/immigration-death-ssa.png": "e3131f516bf0382697622af312169367ff29b7ab0b5ab15fc838dea6f3996ab5",
+    "code/validated-examples/2026-11-25/biology-ode-controls/run.py": "88ef2deb3150bf8ca73a683d6d3dfd6666af8656284d4644b502885e76b5f275",
+    "code/validated-examples/2026-11-25/biology-ode-controls/source-reading.json": "0c0d3c256fb2ae7c4ec57e7891efe4fae66b8f99530d22a0934923561cf70949",
+    "code/validated-examples/2026-11-25/biology-ode-controls/ssa.py": "8a2e3e73d7e6719dfba1b5019ac87e55f2f6161bb6132ba5615ae129483df1d5",
+    "code/validated-examples/2026-11-25/biology-ode-controls/verification.json": "b6106b16b00c01c4a8fa95e0fc44d8cddf2f41ae19973598df7aa5c4e8a3cef9",
+    "code/validated-examples/2026-11-25/biology-space-controls/acceptance.json": "b2f1727f9f4e70c139af7d38c218608b369625ab8f5896d762b060f88432a117",
+    "code/validated-examples/2026-11-25/biology-space-controls/common.py": "3fbd068a920473fd93348ca57ab521ae3c0d77ec6eb90af29e9476ee352307f6",
+    "code/validated-examples/2026-11-25/biology-space-controls/fisher.py": "85e9281dabb94309ea90a3f65d16ed4ccc6b08e00d3d2054baeac49e9b63b7d8",
+    "code/validated-examples/2026-11-25/biology-space-controls/freeze.json": "4aa4742c7b13fb4b93f387c8b8f424ab8c25e00c57368751c27c5027ee4ea5cd",
+    "code/validated-examples/2026-11-25/biology-space-controls/inputs.json": "96095517a632f1706713360c82ce01c6d4b68682faa96fecae11e46cb87a1b80",
+    "code/validated-examples/2026-11-25/biology-space-controls/keller_segel.py": "c73b4d4de5e9edf3f3d1065c5aaf72ee43eaa8c6d05e4cc74797b29bbc95792b",
+    "code/validated-examples/2026-11-25/biology-space-controls/results/fisher-kpp-special-front-diagnostics.png": "9949cb2f0b96ec54c71d8d38617e1025fea5b903568148e6d0764b265fc1920b",
+    "code/validated-examples/2026-11-25/biology-space-controls/results/fisher-kpp-special-front.png": "1f78a6525f5f45a54a61f6a8d1e6a3f95e34d85a3d9211ef386d42fd8c8378a3",
+    "code/validated-examples/2026-11-25/biology-space-controls/results/keller-segel-forced-flux-diagnostics.png": "5ad6370855f106f8f4a78fe115dd6df3cb13342e2524e7c5b66db71b5e518f6f",
+    "code/validated-examples/2026-11-25/biology-space-controls/results/keller-segel-forced-flux.png": "cf69138e069f3f733193297d9d526814e6d491655054f660a679c3ec530956f1",
+    "code/validated-examples/2026-11-25/biology-space-controls/results/schnakenberg-2d-boundary-modes-diagnostics.png": "f33ad0f85e49e304b234d8c6d9a440d89c7ab003f0dba9b20e76722c0f1f1f02",
+    "code/validated-examples/2026-11-25/biology-space-controls/results/schnakenberg-2d-boundary-modes.png": "f989caee1655dd22ab0a8aa99d3e8b9b4d0805d72bb7e425fffa99ec22e35a33",
+    "code/validated-examples/2026-11-25/biology-space-controls/run.py": "c60a1dd14cff34225a1b57465e333716333ea521133bb408c09996c127ca2feb",
+    "code/validated-examples/2026-11-25/biology-space-controls/schnakenberg.py": "d1b2b17535a03a54b0dda404945ef6cb8e6d5a197ea8f6381aeed1650943ad21",
+    "code/validated-examples/2026-11-25/biology-space-controls/source-reading.json": "3e97c66f73c5eea3d5b59fa5b715b34aec09a45bf382e3da2af02f5278fe2ecd",
+    "code/validated-examples/2026-11-25/biology-space-controls/verification.json": "2e7efea396ecd14287ef8fe8b7326d88c61955a6201431eda4dbaa09c26daed2",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/acceptance.json": "cacf2ca243acff9310d0ebf1c529ef87a54b94bc4de8dac1edc2d5375bb30a82",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/ale_piston.py": "a0afb8cfc9372a8865ec1d73fef62cb5516eedc5bb5396f4f281ff5f671d2cae",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py": "709022cb21bd629948afdb829f7e438c4e5919fd2b07145f3662bb2aeea25aa5",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/freeze.json": "f1fc04a344d7482825e7545c663b63612def1103bda3519252799b07c9046dc0",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py": "aa9d35837e97a772a46e9aa358f56f1ca9bc7b69e98e34d8626fc3e742bbf5e2",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/inputs.json": "5f49881f37b07c47f674979a4886e6da0421be06ddb6bb213ab7dfea6bf6e0f5",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/reference_riemann.py": "5d2b36eb1e4165d6cf791702529642c9a0c8672cd44a591962efeee7ea66709f",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/results/gsph-sod-preview.png": "48b54c254853556490ba5e775d88fa602123d6eba4b6d3550e607925ac06a053",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/results/gsph-sod.png": "ca05217ba1deaba5d97b84865f9170dea48abafe5114c975e86e2fb456214815",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/results/saltzman-ale-piston-preview.png": "1100f7009e7e83a2dcb771e8968fbf89f79ff2412c0843951eb49a8c1fb09dfd",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/results/saltzman-ale-piston.png": "e1a51556c809261a2dbd47e5d06acc113780f3cc42be82e0225be18f05d09e05",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/results/sph-pressure-acoustics-preview.png": "996a626c95b64f77ad6723d79264b962e26d6429bd6ee778b48ef8a94f84b791",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/results/sph-pressure-acoustics.png": "1eae2a6441afcc1fe5adbeb9d84b7b0cc0bc4ca117bf75f14be5a49cd617740e",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/results/sphere-zonal-balance-preview.png": "c45c9a9c70f049d1638862988d6290fb1679c45d5bdca90cccecb9ce4d469b8b",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/results/sphere-zonal-balance.png": "74876bf29005e8968fe5c5fe51157d0be99f57cc76c18da88e663ad85ae061c6",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/results/williamson-sphere-transport-preview.png": "0592ee5b7d141e027ba7622c70d6e16c084d8d4da90bdf3d5bb831786b9b6c6b",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/results/williamson-sphere-transport.png": "be017ade9a054d91fc83cc743cedae9a5bbeee367c60892f0b731e5c17f36ca1",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/run.py": "41246d28057b9ab3235e4adf60200b2066609baf224f2f44f9315f37d79a80b5",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/source-reading.json": "f72bbe7d0eeb97c5c3a36eb4281b6417c5e747297672c1522eb907e631b10bb3",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py": "b352773dd6418e04e3f44892cb3e89873f9d650153a0da0f7a04ada90d39b56b",
+    "code/validated-examples/2026-11-25/continuum-particle-controls/verification.json": "0ce44ce14104c4cdd7e6876b8118d9e6c5635ae40af0f631623418c05264600e",
     "code/validated-examples/2026-11-25/quadrature-controls/README.md": "da369bbf7d595475830b876f1e2f4afb758af6574ff3bd6eb8e6ecc66c2a0122",
     "code/validated-examples/2026-11-25/quadrature-controls/acceptance.json": "8f83d83c15af06ded71a045e5ef81758d47d139307df57c6942425abd6c0408d",
     "code/validated-examples/2026-11-25/quadrature-controls/cases.json": "f900a3245e2b6ae3b446e553a17f93b507444654bce72ffeb1003b95bc97446b",
@@ -10505,6 +12100,26 @@
     "code/validated-examples/2026-11-25/quadrature-controls/simpson_baseline.py": "b73eac6186447c3bf1563fe5a5914c69ef6ed555780743e295e086eb65c29dea",
     "code/validated-examples/2026-11-25/quadrature-controls/source-reading.json": "649285abc319642ef009ccd7fbf9b80befccff3b9740393b4a06e628676bddf2",
     "code/validated-examples/2026-11-25/quadrature-controls/verification.json": "cfc7e98903ca8dcc5b11245f15d94b6711aa5ab7992ec29b2c9b291552b85e08",
+    "code/validated-examples/2026-11-25/quantum-small/acceptance.json": "4659ab8fffc3bfc672facd1fdc27893000863af6420f91a3120ebf91f3a8b2ee",
+    "code/validated-examples/2026-11-25/quantum-small/coupled_md.py": "068b0d14ebce78b9f4aa85ff766a5ac15affa32d326079dd5c65d0ee86fd5232",
+    "code/validated-examples/2026-11-25/quantum-small/eigenpairs.py": "bc97077f6115b669fc69f9a7b1a80dba8dd3306798b321cff395dc3d5862f3b2",
+    "code/validated-examples/2026-11-25/quantum-small/freeze.json": "6299a7b6efcdf3826e284a374c29ce3ba8683d5ea08ccfa5cfda0dfcc50662b5",
+    "code/validated-examples/2026-11-25/quantum-small/inputs.json": "36f9b4b9293e5b34d554014134fbce6c31ec11a09a50d1bb5179e9dcb1cee21a",
+    "code/validated-examples/2026-11-25/quantum-small/io_utils.py": "ac9f973cd96b4ff911e1da37648e81ab7e501721b1baaa90cbe3ec20ae9bd784",
+    "code/validated-examples/2026-11-25/quantum-small/molecules.py": "1001f93a6d3f2b53dbe9a587f89232b80fe28265f5b21d94dbb50ace6752db54",
+    "code/validated-examples/2026-11-25/quantum-small/periodic_projector.py": "0fb62ecb5ae7a52c27058084de77394094f711fe860b934a162f7b6ab5329f67",
+    "code/validated-examples/2026-11-25/quantum-small/provenance.json": "913f58e14e98ba5a51adc820f75b5dd4dba0955ff090a2211014c72b33237ee2",
+    "code/validated-examples/2026-11-25/quantum-small/results/h2-rhf-uhf-fci.png": "39903417b2c3c3c1e763fa687cb35c08f53f781951ec34e29ad25ecb32baee77",
+    "code/validated-examples/2026-11-25/quantum-small/results/h3plus-mp2-fci.png": "36b5f3ecf0079052f304681465ca846fef3dba571cecd86311fa4042cff130d5",
+    "code/validated-examples/2026-11-25/quantum-small/results/periodic-projector-occupations.png": "0209e46d2c2a5690ad05796c1d2077f0f5f34b38aba51cbcfed8deb40d4764f5",
+    "code/validated-examples/2026-11-25/quantum-small/results/quantum-box-ho.png": "a14a5ca14665349629e371d2c96992f3f015a7dcab40b745a0c5f9f6c5a34325",
+    "code/validated-examples/2026-11-25/quantum-small/results/result.json": "750fa3e7f3fe79a96aaacd46039bf00f18b7623d7c4b09035b3c850bfd5d2c20",
+    "code/validated-examples/2026-11-25/quantum-small/results/two-state-bo-cp-ou.png": "cdd2033e650a54ceb9fb961b3717f7405b12d7fc6983891d03658f1e10a5df2b",
+    "code/validated-examples/2026-11-25/quantum-small/run.py": "24dd3ab244a2171bf11de6613ce29601e5fa53e44ed76aea0b0ea509e4b28900",
+    "code/validated-examples/2026-11-25/quantum-small/saved-data/atom-reference.json": "3d2aa9a8e186e5f24bba207b473a2b05d12d2bc116627cca5403f8b3dd90389f",
+    "code/validated-examples/2026-11-25/quantum-small/saved-data/periodic-he-reference.json": "461bbdd7cfc17ae2e243a43f0bf27312a3fb7e65c8329ec53dfbdc591a9bbee1",
+    "code/validated-examples/2026-11-25/quantum-small/source-manifest.json": "b13b8873c5f74ec3b1b25207ed145cf7ece1ceec2e0e254a9b7f18e93f73350c",
+    "code/validated-examples/2026-11-25/quantum-small/verification.json": "f78f47618f7524ef69e2b96ed460f1d1e4636cf42775f1ae643e062dabf99dbe",
     "code/validated-examples/2026-11-25/small-models/README.md": "4371db6c2b6e2a95951e5bd6c38b96c9b2728598f897429ccf4bb9b5d4562d3f",
     "code/validated-examples/2026-11-25/small-models/acceptance.json": "b468e78459cf81bda6a32cade0051f6615b44def256c66308ae7acc82ff516ce",
     "code/validated-examples/2026-11-25/small-models/biology.py": "2354944dcf92032ef368852bd42671d6d58c36ce38eb00edcd639fe82083cb86",
@@ -10529,13 +12144,27 @@
     "code/validated-examples/2026-11-25/small-models/run.py": "fe0136cbd1d93082a2daf75f0278ff7ebc9a8f18b56d40b0161c09a807c414d0",
     "code/validated-examples/2026-11-25/small-models/source-reading.json": "582fddea8400ee21cecfd2376248bab6e7454ee59064d468c6d518b3ddd9a858",
     "code/validated-examples/2026-11-25/small-models/verification.json": "a134ed7650c468598c7222c994e2ae49a87c4584264269747c4bc2141a115145",
+    "code/validated-examples/2026-11-25/thermostat-constraint-controls/acceptance.json": "e741651e9ac010e4f500ce2d761a7d12c538827441fbec29a271dc526958cef2",
+    "code/validated-examples/2026-11-25/thermostat-constraint-controls/common.py": "b4bfa4a1e0e5d3a99ab06bdbd8a925ff941ac7b6a269d721ec538bcfb51a5a9e",
+    "code/validated-examples/2026-11-25/thermostat-constraint-controls/constrained.py": "847ce8a497dfa7077618dc200373c6897a66c5d59e95b1ad1147287ee462d184",
+    "code/validated-examples/2026-11-25/thermostat-constraint-controls/deterministic.py": "fb0d184d755db2a6d49c28f856d41fc2b04bdd92b9701244e556ba9353404ff7",
+    "code/validated-examples/2026-11-25/thermostat-constraint-controls/freeze.json": "b002e0bd67d925412f143f19b51c552c8c2aac5c9b08f7d7c094dad668f3c86e",
+    "code/validated-examples/2026-11-25/thermostat-constraint-controls/inputs.json": "31c649cecb7a69704ac44dbabeb86ef2fa4f79f941b9902fbe602f402571247d",
+    "code/validated-examples/2026-11-25/thermostat-constraint-controls/results/deterministic-thermostat-contrasts-diagnostics.png": "84a8791648eab0eb47b52cbb88af8a58be281aceaff438cc190fa0cbcff9641d",
+    "code/validated-examples/2026-11-25/thermostat-constraint-controls/results/deterministic-thermostat-contrasts.png": "aecc1b9245f2bf9003cf77c627149b9255606cb728c08b5f00fef00a8fedff2a",
+    "code/validated-examples/2026-11-25/thermostat-constraint-controls/results/projected-canonical-dof-diagnostics.png": "dc21b87c3d98435acdda1d0db148d656fa18efedc8027d628c997253576a9a9e",
+    "code/validated-examples/2026-11-25/thermostat-constraint-controls/results/projected-canonical-dof.png": "1af28c5089da8b6a578920dbc16ea129fe71fa461d1114951d639038065181ab",
+    "code/validated-examples/2026-11-25/thermostat-constraint-controls/run.py": "deb16e98c3f51b409f85594dde84cd7bf6527baca2e8b359473c46202670b2be",
+    "code/validated-examples/2026-11-25/thermostat-constraint-controls/source-reading.json": "085d2f542d16d96e8f0c5455d64cb670ddbe60b3ebb51f384b5f46bd7bf8b79b",
+    "code/validated-examples/2026-11-25/thermostat-constraint-controls/verification.json": "c3273335cc6619c07d956252d65b00abf58ff3497d0a35776b3fc376ae70134e",
+    "numerical-methods-atlas/assets/reference-solutions.json": "c33118198faa7b35b4f66d7aad6353206f6d90c848f12e0a059874b91f897edc",
     "numerical-methods-atlas/en/read/pinn-operators/index.html": "15b5dba49680036991ced9678f964ff279f11f55c102d8efa70f717a56c76951",
-    "numerical-methods-atlas/gallery/index.html": "3b4279834764da6303b8468460337b5014d5c9b3e30e6a119ceea9b087db0484",
+    "numerical-methods-atlas/gallery/index.html": "457beaf4b71d0e221ac90a560939ead77d490386a2af434162a24d5944847d5f",
     "numerical-methods-atlas/ja/read/pinn-operators/index.html": "08771e94a53fe9fd867b69c3b3c160bbc5b1e0bd8fd57dff967b75d48538cc74",
     "numerical-methods-atlas/methods/thomas/index.html": "5844ca16426afec3024eb04538df807e60d977f26c1848a3289ffe697b0c7a7a",
     "numerical-methods-atlas/reading/thomas-provenance.json": "a9eff54993f6f992bcddbb01ddf306adf59a234c8745a7a86557d38a3ab65ee2",
-    "numerical-methods-atlas/solutions/index.html": "b2dce3accc4fb2b5ceeaa73d8bff019ca3b387f8214e6e7d59ed832112b75241",
-    "numerical-methods-atlas/validation/ale-nonuniform-transport/index.html": "7aa6c5eb188f78d0dfe31500b2fbc2e029abb79f844d658ce3a35afd68004a46",
+    "numerical-methods-atlas/references.json": "5e8fec9aec1febf38981a9fcf9b38ef2c1f1f40c7b48ce4c18bdbf22bae2eb11",
+    "numerical-methods-atlas/solutions/index.html": "8bf0e3c423af9adffac32ea7e15bc90eb8f89df8d212f314f282dad96b33fefa",
     "numerical-methods-atlas/validation/annular-viscous-mms/index.html": "fcd250bb18308ab5934e70fa6c15f2d810d6544459dd5c38adb6914d00be1024",
     "numerical-methods-atlas/validation/bfgs-lbfgs-controls/index.html": "e937246a0ab08fc8ff00178d4f61ff7686ddff22baf2372bcbc68bc03f8022e7",
     "numerical-methods-atlas/validation/bratu-distributed-vjp/index.html": "8f1962dfd6cfc936f7eca9724d19c8a1c8421832276403bb0d624cf33f67e509",
@@ -10545,11 +12174,11 @@
     "numerical-methods-atlas/validation/bratu-matrix-free-jfnk/index.html": "fadf5a92becd94d9754c2d8e310aeaa79d153d455f24119cf755d1abcb28e7b2",
     "numerical-methods-atlas/validation/bratu-noise-regularization/index.html": "713be67a6054e01b59bd9f62733438a15074e4f4e947be869cfe26a1abcb6cb2",
     "numerical-methods-atlas/validation/cavity-ghia-re100/index.html": "554b7d29a023e6727fc5be942989713a0111b133fa9843ed9ed4882a085cbd69",
-    "numerical-methods-atlas/validation/cgrid-rotating-wave/index.html": "d897197c371bc70ab9ace6a9c752b0c3bfd0e965076fd74e9fad40a97a23432f",
     "numerical-methods-atlas/validation/checkerboard-diffusion/index.html": "b8b16dfdbb4c6b5f9db2d4f1a0fb704f5f220c876faa1314efa7802e93213158",
     "numerical-methods-atlas/validation/circular-alfven-refinement/index.html": "2ee2196b0c4abae8eea31dce4140a630f19e7af96c9f6dd169cc8eee2837014a",
     "numerical-methods-atlas/validation/correlated-gaussian-mcmc/index.html": "4ba73eb58b8ce6a2c52321fcce37a4920b0c7a1a43d75ab626a4465de36368b8",
     "numerical-methods-atlas/validation/cylinder-mie2d/index.html": "18b79ac5334093103e1e5722e247f4db7d99ffba50ef64dcf45b8ddbc7751a5e",
+    "numerical-methods-atlas/validation/deterministic-thermostat-contrasts/index.html": "b5a4d03bc1d9c4ce3f6907cbe4c30b250668c57253bb12ec2b43b4a6e1ab3119",
     "numerical-methods-atlas/validation/diffusion-discrete-adjoint/index.html": "cfd3103cf6243f0e971c5b231438ae6586a1fdf5485324c02217ac6755330f90",
     "numerical-methods-atlas/validation/dispersive-grazing-pml/index.html": "312f3aead8ae2534ee2c50fca46d1e2d3e0ee013383ecf97adb5e3f3d8c008af",
     "numerical-methods-atlas/validation/double-mach-reflection/index.html": "fbc8d5d5a0246acf6b809d1a22375f5fe61e8e2d052113159a4d7567886800b7",
@@ -10559,6 +12188,7 @@
     "numerical-methods-atlas/validation/enzyme-qssa/index.html": "4da35248bde4865140bede8ed2eba7d48800767cf41cadfaf324abea145299c9",
     "numerical-methods-atlas/validation/euler-double-rarefaction-positivity/index.html": "4d4fcab49ac266c0ee9856fd36aee352e75d8bfd07791d80a8e16737fa58f458",
     "numerical-methods-atlas/validation/fem-mass-eigen/index.html": "5c2849a3813fb51eb67ea4dda4ac8150aa385db25f2df405b54682bd25c837c1",
+    "numerical-methods-atlas/validation/fisher-kpp-special-front/index.html": "fd97aacae5b5e7c14f485d6b5393c6314cff7e91c413aae4f9458561d6bfb7c0",
     "numerical-methods-atlas/validation/fmm3d-inverse-r/index.html": "3f08ba996f5682e7df3187dd0d3243e58ac33ace110ddd7f77536e4dea2a3e32",
     "numerical-methods-atlas/validation/fno-periodic-heat/index.html": "f6896404b6eabe86b0d920c3379a9202d7899b7895ed024eac8e4943859a74f7",
     "numerical-methods-atlas/validation/forward-step-m3/index.html": "ca49671c5b742c52c6df00924b61fb0de1eefed1f31b9933480b8f7668147d69",
@@ -10567,13 +12197,19 @@
     "numerical-methods-atlas/validation/gk15-double-exponential/index.html": "27fe250008fc89a015b553e5f98947e24a74af03c99545dd5dc3aee3649fa426",
     "numerical-methods-atlas/validation/globalization-difficult-starts/index.html": "d3611557558ad94ed19632262a1e1e1096373d3d7895e692793ae1691e6cd464",
     "numerical-methods-atlas/validation/gravity-kepler/index.html": "22eea590d5cdc6304d824ea4e55fa48817844772969693287c4b068852ce2908",
+    "numerical-methods-atlas/validation/gsph-sod/index.html": "7a74e9bb164bb335d9b3b6fe53a9d7c0b6042944d566f77a78bf6a8409789944",
     "numerical-methods-atlas/validation/guderley-implosion/index.html": "3c09d4266144f40a1be9ab64711f3b5b20541f3b463ed50a2f4d68aad3f9f674",
+    "numerical-methods-atlas/validation/h2-rhf-uhf-fci/index.html": "d643be266a17291ab9ca59347ab4e243fbd475d1d19d991c5b56d8aad227e123",
+    "numerical-methods-atlas/validation/h3plus-mp2-fci/index.html": "f9156e85597ca04b355f1e139239c813a10c2b9d5c4d4ae1368b85b84e2b913a",
     "numerical-methods-atlas/validation/haar-mallat-boundary-threshold/index.html": "d3ca4203f864bd3419858e7354dc33b9bbd14dce802f71a3bcea023dedf8adbe",
     "numerical-methods-atlas/validation/hessian-vector-products/index.html": "4bd7665cf7c972d386c8097efa3ac996e0b1f24ffe5906f4b841d51c99bc4d17",
     "numerical-methods-atlas/validation/high-index-pendulum/index.html": "e12b2525a22592ea0b3bb157eddec461fc22a04f390aa07f0b311dda9c46b309",
+    "numerical-methods-atlas/validation/hodgkin-huxley-controls/index.html": "5a02bf71585c4d997dde4c9b2b949a44376f506bcfc629e0e74b8d63fdc5b5ae",
+    "numerical-methods-atlas/validation/immigration-death-ssa/index.html": "17708005a1d8a056f01dfe2dda9b6e6ca128862fbe901cd40d320d2807b75aef",
     "numerical-methods-atlas/validation/index1-dae-consistent-initialization/index.html": "ca0bf3a02f8d2aaab2e91a636a23b791b4efb7cebda762f2384791041ec78eb3",
     "numerical-methods-atlas/validation/isotropic-scattering-slab/index.html": "47de967da787880337329def851acf578012b65acd7edbf6eb54baeb608f332a",
     "numerical-methods-atlas/validation/jameson-steady-linear-modes/index.html": "bae49bc294b0cc4ecd96868be9e0f6aea63caec7679d231857c9270845568feb",
+    "numerical-methods-atlas/validation/keller-segel-forced-flux/index.html": "8a814ac73c820a0cade6f1086a3a9c105b5db28a3779720f4cedef6f5922f0dd",
     "numerical-methods-atlas/validation/kepler-eccentricity/index.html": "50ba60aaf7ecaa0655f07e098b24c2add9b08720cda0b791a71a811ec28b4c33",
     "numerical-methods-atlas/validation/kh-initial-growth/index.html": "3d145babd1acca96d0d8bc4024c3a2b0e4eadfe3658264cf159b0f76f07f4a05",
     "numerical-methods-atlas/validation/kink-branch-derivatives/index.html": "957f3958c2c23aa6ab668192a5fac96f6f3e802f9472026d186dd34343e9fbc9",
@@ -10587,21 +12223,28 @@
     "numerical-methods-atlas/validation/neutral-slab-yb/index.html": "957250d32b8b37ae555ec7c3e66943dd8e9da3408bcb120c0194448d72437353",
     "numerical-methods-atlas/validation/noh-cartesian-2d/index.html": "0037c7d552ba9c7b88b35a2011132d20a11c687b6a5baba1dcaa2241055de0d2",
     "numerical-methods-atlas/validation/normal-tail-importance/index.html": "513b6a58efd38c58c0ae4372939d56267a87e99ced4e58fe36f4610675789c96",
+    "numerical-methods-atlas/validation/periodic-projector-occupations/index.html": "adc58b090ce76a8ee54069f530f2540563998989a1c5f2a03994cf6cad5d4418",
     "numerical-methods-atlas/validation/pic-independent-spatial/index.html": "0e57cd9fdb3d5cae20040477888e0a7b521287badf074bbb46d8cd5cf62c5007",
     "numerical-methods-atlas/validation/pinn-poisson/index.html": "69547452c62488301a9c6460bdb022e283d73a70aa7fa4cada9819eb95ce8867",
     "numerical-methods-atlas/validation/pivoted-direct-refinement/index.html": "c278b4c01e7ae1ca04e0dbc5f46d422c88ff49aa15b48391c6b71e39daa7499a",
     "numerical-methods-atlas/validation/poisson-neumann/index.html": "2c7e2c603960726cbfdbd90cb6bc457d9786b8175a99b09f34b1daf2503beec4",
     "numerical-methods-atlas/validation/postshock-orszag-tang/index.html": "abf9b97b408e9d8029ff6c9fd91c1ef78092140dbccba7edc46e5af2de7b603b",
+    "numerical-methods-atlas/validation/projected-canonical-dof/index.html": "014a095d16b62f717640226163572030f8ac8d6761571fc8b8afee29203276a6",
     "numerical-methods-atlas/validation/quadpack-domain-selection/index.html": "b01f5f17e6fad1329f745e823586ecd0928f18821d215fb8faaa5a279a2c9b7a",
+    "numerical-methods-atlas/validation/quantum-box-ho/index.html": "80aeda2da54233856ac021999151843322285b648f248fc2326b952f1be4a566",
+    "numerical-methods-atlas/validation/releases.json": "4c16ff2bd68466cae26617ad9beb836bbaa03d5cab3b238868fd88bc08bc9552",
     "numerical-methods-atlas/validation/restarted-shift-invert/index.html": "5c6c17a68a6dd2c8edabf2c3f6f915be9edbf8e25ebcf3eaa0ccf466ac73cae9",
     "numerical-methods-atlas/validation/reverse-vjp-duality/index.html": "e9dd3d82da466d27e8e141bf279553b5b5339f3f405d664de768a9fb91c2f188",
     "numerical-methods-atlas/validation/rk45-dense-events/index.html": "22c0a86d068edea91e534d3a33da57457a7f47b9edb0fb9608313a8c9a120ce9",
     "numerical-methods-atlas/validation/robertson-conservation-dae/index.html": "8d5666af0c562a878d76a7d325447e563eb35c4a8af479b0ca907e7e9bad3d7a",
     "numerical-methods-atlas/validation/robertson-stiff-kinetics/index.html": "7da8e1e4cc03f189491ea53820629945c600fbc2b01cbeeeea81c8d5e5469c9b",
     "numerical-methods-atlas/validation/runge-barycentric-clenshaw/index.html": "4d8c83aa49da10786212d20438b4e441d6590f4efe8d1dd6674e3e15a601dff5",
+    "numerical-methods-atlas/validation/saltzman-ale-piston/index.html": "6592f254923c9cc1d70dbadbbbb120708712c5fa227bb357e17dbb845e219c47",
+    "numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/index.html": "18aead6fd8a9cfb70432ec6f0bac1c0aefe4a63c7eb77a88e0579042b6dfb288",
     "numerical-methods-atlas/validation/sedov-blast/index.html": "28f10d4721bf48266e595e278e09a99d404e90659825e9055d8ba62d44cf1285",
     "numerical-methods-atlas/validation/shadow-absorber2d/index.html": "88d246ab837e65f959e0979a33eec07c0b24c507a2fc7928d878e54f0a28e895",
     "numerical-methods-atlas/validation/shake-rattle-pendulum/index.html": "3dcd9609abb149da1deda3d41faa9dcf09952e280e05eeab91633b4f8bc711c0",
+    "numerical-methods-atlas/validation/sph-pressure-acoustics/index.html": "6f2d4b977386c2fcb46568819f23f61f5aaeb6e9445106448a2c4fdbcd02627d",
     "numerical-methods-atlas/validation/spline-shape-controls/index.html": "1c42fab7dee4d35e39a5dccfb53912c619795aba24dbaade95ba3859d239e634",
     "numerical-methods-atlas/validation/srhd-collision/index.html": "78e6141371b3d586bc728237ec023b506dd330715fd68d6968c7a0aca4fc6de5",
     "numerical-methods-atlas/validation/srmhd-alfven/index.html": "6f4049edc3a8a562129d48f6c5f5e89b3de4b936bb20792a4d6e0e9aa94712e4",
@@ -10612,6 +12255,7 @@
     "numerical-methods-atlas/validation/tensor-smolyak-dimensions/index.html": "c8d72ec36bf88f8328a6900095744c195157d3732e719e2232eb5809f9df8871",
     "numerical-methods-atlas/validation/thermal-landau-damping/index.html": "ef80dae934f74ee56ecc35aefc02975e22c3cadc5da906c6257c1cac4c135367",
     "numerical-methods-atlas/validation/thermal-two-stream/index.html": "31ff498c6a56819b9a14490c67188d234c027058bd80afbd5157e7514b93e3a7",
+    "numerical-methods-atlas/validation/two-state-bo-cp-ou/index.html": "33f69d764f3665005ab73980169fca26bc3f7701567baeda5c746667cd74730b",
     "numerical-methods-atlas/validation/verification/2026-11-23-batch13-17-public.json": "d84d08cb4d25c00250a273cdf3c200da4c16d1958948701f2cc957ffcf74f48d",
     "numerical-methods-atlas/validation/verification/2026-11-23-batch18-27-public.json": "cc6cdf4f041243e21657d56ead41d8ccf0c78bc13861fa9d20407e1e58ed8b2b",
     "numerical-methods-atlas/validation/verification/2026-11-23-euler-positivity-public.json": "6d219b1fe34353e9a6634d64c8379d3a7dab6b324b538b35ecb695f5a584e757",
@@ -10623,6 +12267,7 @@
     "numerical-methods-atlas/validation/verification/2026-11-25-batch78-87-public.json": "94d4bd9e3cad2cb176e863e20f021cc4ed4c3f68759589f9a1e30e1654eb4c9e",
     "numerical-methods-atlas/validation/wall-manufactured/index.html": "e33d4f70c30285c157c31b831e3b77df0329702cab0a0aacbade139daba5fdea",
     "numerical-methods-atlas/validation/weno-critical-epsilon/index.html": "23740e895d653ab2ab7d76dd9e3bf89ce5f8618ec75e65bdb0efae9d5e674fd7",
+    "numerical-methods-atlas/validation/williamson-sphere-transport/index.html": "179384866abd3da8ef42547b9909465973d17020e75a57b739aaf426d35c153e",
     "numerical-methods-atlas/validation/zalesak-rotation/index.html": "02d3ddc9b3f8cc8f30c28f38fded450264568dc6c7d92ea9bc534e75e3b38a48"
   }
 }

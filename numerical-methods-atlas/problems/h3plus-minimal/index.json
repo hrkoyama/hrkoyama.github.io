@@ -1,0 +1,242 @@
+{
+  "schema_version": 1,
+  "id": "h3plus-minimal",
+  "name": {
+    "ja": "3中心H3+の小RHF/MP2/FCI模型",
+    "en": "A tiny three-center H3+ RHF / MP2 / FCI example"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/h3plus-minimal/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/h3plus-minimal/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/h3plus-minimal/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/results/h3plus-mp2-fci.png",
+    "sha256": "36b5f3ecf0079052f304681465ca846fef3dba571cecd86311fa4042cff130d5",
+    "width": 1600,
+    "height": 640,
+    "caption": {
+      "ja": "固定三角形H3+の3中心小分子で、RHF/MP2/有限基底FCIを示します。 独立な演算子組立と2電子RS2恒等式で固定小模型を照合します。新しい外部PySCF参照はありません。一般分子DFT、CC、多参照法、精密エネルギー・最適化・化学精度は未実装/未検証。MP2は変分上界ではありません。",
+      "en": "Demonstrate RHF, MP2 and finite-basis FCI for a tiny fixed three-center H3+ molecule. Independent operator assembly and two-electron RS2 identity qualify this fixed toy. No fresh external PySCF scalar. General molecular DFT, CC, multireference methods, precision energetics, geometry optimization and chemical accuracy remain unimplemented/unverified. MP2 is not variational."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-quantum-small/#h3plus-mp2-fci",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-quantum-small/#h3plus-mp2-fci"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#h3plus-minimal",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#h3plus-minimal-en"
+  },
+  "equations": [
+    {
+      "id": "stationary-schrodinger",
+      "name": {
+        "ja": "電子の定常Schrödinger方程式",
+        "en": "Stationary electronic Schrödinger equation"
+      },
+      "formula": [
+        "\\hat H_{\\rm el}\\Psi=E_{\\rm el}\\Psi,\\qquad E_{\\rm tot}=E_{\\rm el}+\\sum_{A<B}\\frac{Z_AZ_B}{R_{AB}}"
+      ],
+      "note": {
+        "ja": "固定核・非相対論の電子固有値問題。核間反発は電子Hamiltonianの外に加える。従来の水素型動径例を保持し、追加は1次元の箱/HOと3AO以下の2電子FCIに限定する。一般多電子系の直接解法や連続空間の厳密分子解の検証ではない。",
+        "en": "Fixed-nuclei nonrelativistic electronic eigenproblems; add nuclear repulsion separately. Preserve the existing hydrogenic radial examples. Additional examples are restricted to one-dimensional box/HO and two-electron FCI in at most3AOs, not general many-electron direct solvers or continuum-exact molecules."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#stationary-schrodinger-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#stationary-schrodinger-en"
+      }
+    },
+    {
+      "id": "hartree-fock-model",
+      "name": {
+        "ja": "閉殻Hartree–Fock方程式",
+        "en": "Closed-shell Hartree–Fock equations"
+      },
+      "formula": [
+        "\\hat F=\\hat h+\\sum_{j\\in\\mathrm{occ}}(2\\hat J_j-\\hat K_j),\\qquad \\hat F\\phi_i=\\varepsilon_i\\phi_i",
+        "\\mathbf F\\mathbf C=\\mathbf S\\mathbf C\\boldsymbol\\varepsilon,\\qquad \\mathbf C^\\dagger\\mathbf S\\mathbf C=\\mathbf I"
+      ],
+      "note": {
+        "ja": "閉殻RHFの占有空間軌道の式で、非局所交換を含む。既存のHe局所還元とH2のRHF例を保持する。追加は固定H2/H3+の最小2電子模型で、UHF式は別の対応模型に明示する。一般多中心分子、開殻の大域安定性、完全基底や一般相関法の保証ではない。",
+        "en": "Closed-shell occupied-orbital RHF equations include nonlocal exchange. Preserve existing He local-reduction and H2RHF examples. New calculations cover only fixed minimal two-electron H2/H3+ models; UHF equations have their own mapped model. No general multicenter molecules, global open-shell stability, complete-basis or general correlated-method guarantee."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#hartree-fock-model-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#hartree-fock-model-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "H核3個、電荷+1、2電子、3縮約s軌道の非対称三角形1個です。 H3+の固定3中心[(0,0,0),(1.5,0,0),(.5,1.5,0)]bohr、電荷+1、2電子/3s軌道。エネルギーhartree。",
+    "en": "Two electrons/3 explicit s orbitals, one fixed non-symmetric triangle. Molecular DFT, CC and general multireference/large molecules remain unimplemented tails. One H3+ geometry[(0,0,0),(1.5,0,0),(.5,1.5,0)]bohr, charge+1,2electrons/3s orbitals; energies in hartree."
+  },
+  "formulations": [
+    {
+      "id": "supplement-h3plus-mp2-fci",
+      "name": {
+        "ja": "3中心H3+の小RHF/MP2/FCI模型",
+        "en": "A tiny three-center H3+ RHF / MP2 / FCI example"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "H_{pq,rs}=h_{pr}\\delta_{qs}+h_{qs}\\delta_{pr}+(pr|qs)",
+        "E_{\\rm MP2}=E_{\\rm RHF}+\\sum_{a,b\\in\\mathrm{virt}}\\frac{(0a|0b)^2}{2\\varepsilon_0-\\varepsilon_a-\\varepsilon_b},\\quad E_{\\rm FCI}=\\lambda_{\\min}(H)+E_{NN}"
+      ],
+      "note": {
+        "ja": "固定三角形H3+の3中心小分子で、RHF/MP2/有限基底FCIを示します。",
+        "en": "Demonstrate RHF, MP2 and finite-basis FCI for a tiny fixed three-center H3+ molecule."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "h3plus-mp2-fci",
+      "kind": "numerical-reference",
+      "kind_label": {
+        "ja": "有限格子の数値参照",
+        "en": "Finite-grid numerical reference"
+      },
+      "title": {
+        "ja": "3中心H3+の小RHF/MP2/FCI模型",
+        "en": "A tiny three-center H3+ RHF / MP2 / FCI example"
+      },
+      "formula": "H_{pq,rs}=h_{pr}\\delta_{qs}+h_{qs}\\delta_{pr}+(pr|qs);\\quad E_{\\rm MP2}=E_{\\rm RHF}+\\sum_{a,b\\in\\mathrm{virt}}\\frac{(0a|0b)^2}{2\\varepsilon_0-\\varepsilon_a-\\varepsilon_b},\\quad E_{\\rm FCI}=\\lambda_{\\min}(H)+E_{NN}",
+      "assumptions": {
+        "ja": "H核3個、電荷+1、2電子、3縮約s軌道の非対称三角形1個です。 H3+の固定3中心[(0,0,0),(1.5,0,0),(.5,1.5,0)]bohr、電荷+1、2電子/3s軌道。エネルギーhartree。",
+        "en": "Two electrons/3 explicit s orbitals, one fixed non-symmetric triangle. Molecular DFT, CC and general multireference/large molecules remain unimplemented tails. One H3+ geometry[(0,0,0),(1.5,0,0),(.5,1.5,0)]bohr, charge+1,2electrons/3s orbitals; energies in hartree."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "独立な演算子組立と2電子RS2恒等式で固定小模型を照合します。新しい外部PySCF参照はありません。一般分子DFT、CC、多参照法、精密エネルギー・最適化・化学精度は未実装/未検証。MP2は変分上界ではありません。",
+        "en": "Independent operator assembly and two-electron RS2 identity qualify this fixed toy. No fresh external PySCF scalar. General molecular DFT, CC, multireference methods, precision energetics, geometry optimization and chemical accuracy remain unimplemented/unverified. MP2 is not variational."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/h3plus-mp2-fci/?lang=ja#h3plus-mp2-fci-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/h3plus-mp2-fci/?lang=en#h3plus-mp2-fci-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "独立fermion組立、MP2行列要素の摂動式、電子数・SCF残差・FCI変分性を確認します。",
+    "en": "Check independent signed-fermion assembly, determinant perturbation MP2, electron number, SCF stationarity and FCI variational ordering."
+  },
+  "methods": [
+    {
+      "id": "hartree-fock",
+      "name": {
+        "ja": "Hartree–Fock法",
+        "en": "Hartree–Fock"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hartree-fock/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/hartree-fock/?lang=en"
+      }
+    },
+    {
+      "id": "mp2",
+      "name": {
+        "ja": "MP2摂動論",
+        "en": "MP2 perturbation theory"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/mp2/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/mp2/?lang=en"
+      }
+    },
+    {
+      "id": "configuration-interaction",
+      "name": {
+        "ja": "配置間相互作用（CI）",
+        "en": "Configuration interaction / CI"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/configuration-interaction/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/configuration-interaction/?lang=en"
+      }
+    },
+    {
+      "id": "scf",
+      "name": {
+        "ja": "自己無撞着場反復（SCF）",
+        "en": "Self-consistent field iteration / SCF"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/scf/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/scf/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "正準RHFから2電子MP2と9x9 FCIを求め、保存軌道から密度の2D断面を描画します。",
+    "en": "Canonicalize RHF, evaluate the two-electron MP2 correction and9x9 FCI, and render the saved occupied-orbital density slice."
+  },
+  "executions": [
+    {
+      "id": "h3plus-mp2-fci",
+      "kind": "supplement",
+      "name": {
+        "ja": "3中心H3+の小RHF/MP2/FCI模型",
+        "en": "A tiny three-center H3+ RHF / MP2 / FCI example"
+      },
+      "method_ids": [
+        "hartree-fock",
+        "mp2",
+        "configuration-interaction",
+        "scf"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/h3plus-mp2-fci/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/h3plus-mp2-fci/?lang=en"
+      },
+      "scope": {
+        "ja": "固定三角形H3+の3中心小分子で、RHF/MP2/有限基底FCIを示します。",
+        "en": "Demonstrate RHF, MP2 and finite-basis FCI for a tiny fixed three-center H3+ molecule."
+      },
+      "assumptions": {
+        "ja": "H核3個、電荷+1、2電子、3縮約s軌道の非対称三角形1個です。 H3+の固定3中心[(0,0,0),(1.5,0,0),(.5,1.5,0)]bohr、電荷+1、2電子/3s軌道。エネルギーhartree。",
+        "en": "Two electrons/3 explicit s orbitals, one fixed non-symmetric triangle. Molecular DFT, CC and general multireference/large molecules remain unimplemented tails. One H3+ geometry[(0,0,0),(1.5,0,0),(.5,1.5,0)]bohr, charge+1,2electrons/3s orbitals; energies in hartree."
+      },
+      "limits": {
+        "ja": "一般分子DFT・CC・一般多参照法は未実装です。MP2は変分的でなく、外部独立エンジンの新参照値も生成しません。",
+        "en": "General molecular DFT, CC, large bases and general multireference methods remain unimplemented. Independent operator assembly is not an independent external chemistry-engine scalar reference."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/atlas-quantum-small-2026-11-25.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "独立fermion組立、MP2行列要素の摂動式、電子数・SCF残差・FCI変分性を確認します。",
+        "en": "Check independent signed-fermion assembly, determinant perturbation MP2, electron number, SCF stationarity and FCI variational ordering."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/molecules.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/test_quantum_small.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

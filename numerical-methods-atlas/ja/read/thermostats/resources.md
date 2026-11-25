@@ -35,6 +35,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/thermostats/
 
 ## コード・検証
 
+- [NH・chain・弱結合・速度固定の比較](<https://hrkoyama.github.io/numerical-methods-atlas/validation/deterministic-thermostat-contrasts/?lang=ja>)
+  availability: run
+
+  同じ2モード系で、温度平均に加えて分布・揺らぎ・相関を比べます。
 - [Langevin温度制御：正準分布・刻み偏り・時間相関](<https://hrkoyama.github.io/numerical-methods-atlas/validation/langevin-harmonic/?lang=ja>)
   availability: run
 
@@ -47,7 +51,31 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/thermostats/
   availability: run
 
   弱い四次ポテンシャルを持つ2自由度で、CSVRとLangevinの分布・温度とエネルギーの揺らぎ・相関を比較。正準分布を独立なBoltzmann求積から得ます。
+- [2準位模型のBO/CP型連成と短い核熱浴](<https://hrkoyama.github.io/numerical-methods-atlas/validation/two-state-bo-cp-ou/?lang=ja>)
+  availability: run
+
+  電子角と核座標を実際に結合した2準位模型を、短いNVEと核熱浴で比較します。
+- [拘束・重心除去と正準統計](<https://hrkoyama.github.io/numerical-methods-atlas/validation/projected-canonical-dof/?lang=ja>)
+  availability: run
+
+  有効自由度、運動量共分散、過渡分布と時間相関を分けて検証します。
+- [単純な速度スケーリング：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/velocity-rescaling/?lang=ja#method-execution-ja>)
+  availability: source
+
+  手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。
+- [Berendsen弱結合サーモスタット：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/berendsen-thermostat/?lang=ja#method-execution-ja>)
+  availability: source
+
+  手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。
 - [Langevinサーモスタット：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/langevin-thermostat/?lang=ja#method-execution-ja>)
+  availability: source
+
+  手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。
+- [Nosé–Hooverサーモスタット：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/nose-hoover/?lang=ja#method-execution-ja>)
+  availability: source
+
+  手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。
+- [Nosé–Hoover chain：コード・検証](<https://hrkoyama.github.io/numerical-methods-atlas/methods/nose-hoover-chains/?lang=ja#method-execution-ja>)
   availability: source
 
   手法固有の配布版と関連ソースを案内します。固定入力例は別の項目で区別します。

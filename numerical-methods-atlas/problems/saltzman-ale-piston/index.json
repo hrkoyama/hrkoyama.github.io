@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "id": "saltzman-ale-piston",
+  "name": {
+    "ja": "Saltzman型の歪み格子ピストン：2次元EulerとALE",
+    "en": "Saltzman-type skew-grid piston: 2D Euler and ALE"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/saltzman-ale-piston/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/saltzman-ale-piston/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/saltzman-ale-piston/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/results/saltzman-ale-piston.png",
+    "sha256": "e1a51556c809261a2dbd47e5d06acc113780f3cc42be82e0225be18f05d09e05",
+    "width": 1500,
+    "height": 900,
+    "caption": {
+      "ja": "2023年版の歪み格子と有限初期圧力を明示した、所与の格子移動による2次元Eulerピストン計算。 Tan–Lv–Zhu (2023) Example 8 の e0=10^-4 を明示した有限圧力版。所与のアフィンALE格子を使う2D Euler/Rusanov例で、物質追従格子、WENO、remapや1985原報の全面再現ではありません。",
+      "en": "Tan–Lv–Zhu2023 Example8 e0=1e-4 initialvariant. PrescribedaffineALEmesh, not theirWENO/materialLagrangian/remap scheme. Finitepressure RH cellaverages. Tan–Lv–Zhu (2023) Example 8 variant with e0=1e-4 and finite initial pressure. Prescribed affine ALE, 2D Euler and Rusanov; not their material Lagrangian mesh, WENO/remap scheme or a full reproduction of the unread 1985 report."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-continuum-particle-controls/#saltzman-ale-piston",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-continuum-particle-controls/#saltzman-ale-piston"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#saltzman-ale-piston",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#saltzman-ale-piston-en"
+  },
+  "equations": [
+    {
+      "id": "euler",
+      "name": {
+        "ja": "圧縮性Euler方程式",
+        "en": "Compressible Euler equations"
+      },
+      "formula": [
+        "\\partial_tU+\\partial_xF(U)=0",
+        "U=(\\rho,\\rho u,E)^{\\mathsf T}",
+        "F=(\\rho u,\\rho u^2+p,u(E+p))^{\\mathsf T}"
+      ],
+      "note": {
+        "ja": "1次元の保存形。状態方程式と初期・境界条件は各テストの定義を参照する。",
+        "en": "The one-dimensional conservative form. Consult each test for its equation of state, initial data and boundaries."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#euler-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#euler-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "この問題に関連する代表式です。初期条件・境界条件・パラメータは「図と問題の条件・根拠」と各実行例で確認できます。",
+    "en": "Representative equations related to this problem. See the image/problem conditions and each execution example for initial conditions, boundary conditions and parameters."
+  },
+  "formulations": [],
+  "references": [
+    {
+      "id": "saltzman-ale-piston",
+      "kind": "analytic",
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "title": {
+        "ja": "Saltzman型の歪み格子ピストン：2次元EulerとALE",
+        "en": "Saltzman-type skew-grid piston: 2D Euler and ALE"
+      },
+      "formula": "\\partial_tU+\\nabla\\cdot F(U)=0,\\quad F_{\\rm ALE}\\cdot n=F(U)\\cdot n-w_nU; s=\\frac{\\gamma+1}{4}u_p+\\sqrt{[(\\gamma+1)u_p/4]^2+\\gamma p_0/\\rho_0},\\quad\\rho_1=\\frac{\\rho_0s}{s-u_p},\\quad p_1=p_0+\\rho_0su_p,\\quad x_s=st",
+      "assumptions": {
+        "ja": "Tan–Lv–Zhu（2023）Example 8に対応するe0=10⁻⁴・有限初期圧力の変種です。規定したアフィンALE、2次元Euler、Rusanovを用います。同論文の物質Lagrange格子・WENO/remap法や、未読の1985年原報全体の再現ではありません。",
+        "en": "Tan–Lv–Zhu (2023) Example 8 variant with e0=1e-4 and finite initial pressure. Prescribed affine ALE, 2D Euler and Rusanov; not their material Lagrangian mesh, WENO/remap scheme or a full reproduction of the unread 1985 report."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "固定入力の式・参照・図と実行コードを対応付けます。 Tan–Lv–Zhu (2023) Example 8 の e0=10^-4 を明示した有限圧力版。所与のアフィンALE格子を使う2D Euler/Rusanov例で、物質追従格子、WENO、remapや1985原報の全面再現ではありません。",
+        "en": "Bind the fixed-input formula, reference, figure and executable code. Tan–Lv–Zhu (2023) Example 8 variant with e0=1e-4 and finite initial pressure. Prescribed affine ALE, 2D Euler and Rusanov; not their material Lagrangian mesh, WENO/remap scheme or a full reproduction of the unread 1985 report."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/saltzman-ale-piston/?lang=ja#saltzman-ale-piston-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/saltzman-ale-piston/?lang=en#saltzman-ale-piston-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "固定入力の式・参照・図と実行コードを対応付けます。 Tan–Lv–Zhu (2023) Example 8 の e0=10^-4 を明示した有限圧力版。所与のアフィンALE格子を使う2D Euler/Rusanov例で、物質追従格子、WENO、remapや1985原報の全面再現ではありません。",
+    "en": "Bind the fixed-input formula, reference, figure and executable code. Tan–Lv–Zhu (2023) Example 8 variant with e0=1e-4 and finite initial pressure. Prescribed affine ALE, 2D Euler and Rusanov; not their material Lagrangian mesh, WENO/remap scheme or a full reproduction of the unread 1985 report."
+  },
+  "methods": [
+    {
+      "id": "ale",
+      "name": {
+        "ja": "ALE一様状態・幾何保存モデル",
+        "en": "ALE uniform-state / geometric-conservation model"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ale/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ale/?lang=en"
+      }
+    },
+    {
+      "id": "rusanov",
+      "name": {
+        "ja": "Rusanov／局所Lax–Friedrichs流束",
+        "en": "Rusanov / local Lax–Friedrichs flux"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rusanov/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rusanov/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "Tan–Lv–Zhu (2023) Example 8 の e0=10^-4 を明示した有限圧力版。所与のアフィンALE格子を使う2D Euler/Rusanov例で、物質追従格子、WENO、remapや1985原報の全面再現ではありません。",
+    "en": "Tan–Lv–Zhu (2023) Example 8 variant with e0=1e-4 and finite initial pressure. Prescribed affine ALE, 2D Euler and Rusanov; not their material Lagrangian mesh, WENO/remap scheme or a full reproduction of the unread 1985 report."
+  },
+  "executions": [
+    {
+      "id": "saltzman-ale-piston",
+      "kind": "supplement",
+      "name": {
+        "ja": "Saltzman型の歪み格子ピストン：2次元EulerとALE",
+        "en": "Saltzman-type skew-grid piston: 2D Euler and ALE"
+      },
+      "method_ids": [
+        "ale",
+        "rusanov"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/saltzman-ale-piston/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/saltzman-ale-piston/?lang=en"
+      },
+      "scope": {
+        "ja": "2023年版の歪み格子と有限初期圧力を明示した、所与の格子移動による2次元Eulerピストン計算。",
+        "en": "Tan–Lv–Zhu2023 Example8 e0=1e-4 initialvariant. PrescribedaffineALEmesh, not theirWENO/materialLagrangian/remap scheme. Finitepressure RH cellaverages."
+      },
+      "assumptions": {
+        "ja": "2023年版の歪み格子と有限初期圧力を明示した、所与の格子移動による2次元Eulerピストン計算。 固定入力の条件・境界・参照の範囲はinputs.jsonを参照。",
+        "en": "Tan–Lv–Zhu2023 Example8 e0=1e-4 initialvariant. PrescribedaffineALEmesh, not theirWENO/materialLagrangian/remap scheme. Finitepressure RH cellaverages."
+      },
+      "limits": {
+        "ja": "限定した教育用モデルです。元論文の全条件・全アルゴリズムや一般的な性能の再現ではありません。",
+        "en": "Tan–Lv–Zhu2023 Example8 e0=1e-4 initialvariant. PrescribedaffineALEmesh, not theirWENO/materialLagrangian/remap scheme. Finitepressure RH cellaverages."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "解析参照、保存量、細分化、独立成分検査と意図した誤式の負例を区別して保存します。",
+        "en": "Separate analytic/reference errors, conservation, refinement, independent component qualification and deliberately wrong-formula controls."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/ale_piston.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/test_components.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

@@ -13125,6 +13125,1181 @@
           }
         }
       ]
+    },
+    {
+      "group": "biology-ode-controls",
+      "case_ids": [
+        "hodgkin-huxley-controls"
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/",
+      "code_edition": "2026-11-25",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/common.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/hh.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/ssa.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/test_models.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-biology-ode-controls-2026-11-25",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/atlas-biology-ode-controls-2026-11-25.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/verification.json",
+      "code_archive_sha256": "b67232232a461e8ef0e24d522a3e40c9af64b8d90cd55c9657c955a92772b042",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/results/result.json",
+      "passed_tests": 11,
+      "examples": [
+        {
+          "id": "hodgkin-huxley-controls",
+          "method_ids": [
+            "rk4",
+            "rk45"
+          ],
+          "title": {
+            "ja": "Hodgkin–Huxley：電位固定・静止平衡・発火",
+            "en": "Hodgkin–Huxley: clamps, rest and firing"
+          },
+          "summary": {
+            "ja": "固定電位の解析ゲート解と、区分電流下の4状態系を照合します。",
+            "en": "Compare analytic clamp gates and a four-state system with segment-owned current."
+          },
+          "assumptions": {
+            "ja": "6.3°C、ms/mV/µA cm⁻²。NEURON8.2.6の解析的な絶対電位規約を固定し、4電位×3刻み、静止20 ms、10–11 msの電流パルスを扱います。",
+            "en": "Fix6.3°C and the NEURON8.2.6 analytic absolute-voltage convention in ms/mV/µA cm⁻². Use four clamp voltages, three steps, a20ms rest and a10–11ms pulse."
+          },
+          "algorithm": {
+            "ja": "古典RK4を用い、電流の切り替わりでは全段の片側値を区間に帰属させます。ゲートの可除特異点、Decimal静止根、独立なDP5(4)/Cash–Karp参照を別に照合します。",
+            "en": "Use classicalRK4 with all stages owned by each current segment. Separately qualify removable rate singularities, a Decimal rest root and independently written DP5(4)/Cash–Karp references."
+          },
+          "validation": {
+            "ja": "全採用時刻のゲート誤差、電位・ゲート範囲、採用端点の新しい微分を使うHermite発火時刻を保存。元の1e-8ゲート目標も未達を含めて表示します。",
+            "en": "Retain errors over all accepted times, voltage/gate ranges and Hermite firing events from fresh accepted-endpoint derivatives. Preserve the original1e-8clamp goal even when unmet."
+          },
+          "limits": {
+            "ja": "1細胞膜の教育例です。元論文の電位規約、TABLE/cnexp実装、ケーブル伝播や生体実測の再現とは呼びません。区間内に括れない発火は捏造せず、静止根の一意性・区間Hurwitz安定性は主張しません。",
+            "en": "This educational membrane model does not reproduce the original voltage convention, TABLE/cnexp, cable propagation or measured physiology. Missing/unresolved events remain explicit; rest-root uniqueness and interval-Hurwitz stability are unclaimed."
+          },
+          "domains": [
+            "biology"
+          ],
+          "code_files": [
+            "run.py",
+            "common.py",
+            "hh.py",
+            "ssa.py"
+          ],
+          "reference_files": [
+            "PROTOCOL.md",
+            "source-reading.json",
+            "acceptance.json"
+          ],
+          "references": [
+            {
+              "id": "neuron826-hh",
+              "title": "NEURON8.2.6 analytic hh.mod",
+              "url": "https://raw.githubusercontent.com/neuronsimulator/nrn/8.2.6/src/nrnoc/hh.mod",
+              "review_level": "selected-primary-or-bibliographic-see-provenance",
+              "review": {
+                "ja": "source-reading.jsonに実際の読取範囲と未読部分を記録。原著の全式・全図の再現とは主張しません。",
+                "en": "Actual selected read scopes and unread limits are recorded in source-reading.json; no full original-paper equation/figure reproduction claim."
+              }
+            }
+          ],
+          "additional_figures": [
+            {
+              "file": "hodgkin-huxley-controls-diagnostics.png",
+              "caption": {
+                "ja": "精度・参照・統計の実測値と未達目標を分けて表示します。",
+                "en": "Separate actual accuracy,reference and statistical measurements,including unmet targets."
+              }
+            }
+          ],
+          "formulas": [
+            "C_m\\dot V=I-g_{Na}m^3h(V-E_{Na})-g_Kn^4(V-E_K)-g_L(V-E_L)",
+            "\\dot z=\\alpha_z(V)(1-z)-\\beta_z(V)z"
+          ],
+          "measured": {
+            "id": "hodgkin-huxley-controls",
+            "passed": true,
+            "checks": {
+              "HH/rates_against_decimal": true,
+              "HH/precision_companion": true,
+              "HH/removable_singularities": true,
+              "HH/rest_bracket_companion": true,
+              "HH/owned_stage_edges": true,
+              "HH/naive_jump_control_detected": true,
+              "HH/clamp-finite-bounds/-80.0/0.04": true,
+              "HH/clamp-finite-bounds/-80.0/0.02": true,
+              "HH/clamp-finite-bounds/-80.0/0.01": true,
+              "HH/clamp-finite-bounds/-55.0/0.04": true,
+              "HH/clamp-finite-bounds/-55.0/0.02": true,
+              "HH/clamp-finite-bounds/-55.0/0.01": true,
+              "HH/clamp-finite-bounds/-40.0/0.04": true,
+              "HH/clamp-finite-bounds/-40.0/0.02": true,
+              "HH/clamp-finite-bounds/-40.0/0.01": true,
+              "HH/clamp-finite-bounds/0.0/0.04": true,
+              "HH/clamp-finite-bounds/0.0/0.02": true,
+              "HH/clamp-finite-bounds/0.0/0.01": true,
+              "HH/reference/rest": true,
+              "HH/finite-gates/rest/0.04": true,
+              "HH/finite-gates/rest/0.02": true,
+              "HH/finite-gates/rest/0.01": true,
+              "HH/reference/pulse": true,
+              "HH/finite-gates/pulse/0.04": true,
+              "HH/finite-gates/pulse/0.02": true,
+              "HH/finite-gates/pulse/0.01": true
+            },
+            "metrics": {
+              "fixed_records": 21,
+              "HH/clamp-original1e-8/-80.0/actual": 4.711626791498169e-08,
+              "HH/clamp-original1e-8/-55.0/actual": 7.262476731106915e-11,
+              "HH/clamp-original1e-8/-40.0/actual": 1.4916989865554342e-10,
+              "HH/clamp-original1e-8/0.0/actual": 7.521943623522986e-09,
+              "HH/pulse-voltage/actual": 0.00010511156826709112,
+              "HH/pulse-gates/actual": 5.371951350419124e-08,
+              "HH/pulse-event/actual_ms": 3.799796033376879e-08
+            },
+            "records": [
+              {
+                "id": "hh-components",
+                "checks": {
+                  "rates_against_decimal": true,
+                  "precision_companion": true,
+                  "removable_singularities": true,
+                  "rest_bracket_companion": true,
+                  "owned_stage_edges": true,
+                  "naive_jump_control_detected": true
+                },
+                "rate_max_errors": [
+                  1.4210854715202004e-14,
+                  2.7755575615628914e-17,
+                  0.0,
+                  4.440892098500626e-16,
+                  1.1102230246251565e-16,
+                  8.881784197001252e-16,
+                  1.7763568394002505e-15,
+                  5.551115123125783e-17,
+                  5.551115123125783e-17,
+                  5.551115123125783e-17,
+                  5.551115123125783e-17,
+                  1.1102230246251565e-16,
+                  0.0,
+                  1.1102230246251565e-16,
+                  1.1102230246251565e-16
+                ],
+                "input_v64_hex": [
+                  "-0x1.e000000000000p+6",
+                  "-0x1.4000000000000p+6",
+                  "-0x1.0400000000000p+6",
+                  "-0x1.b800000000000p+5",
+                  "-0x1.4000000000000p+5",
+                  "0x0.0p+0",
+                  "0x1.4000000000000p+6",
+                  "-0x1.b800346dc5d64p+5",
+                  "-0x1.b7ffcb923a29cp+5",
+                  "-0x1.b80000015798fp+5",
+                  "-0x1.b7fffffea8671p+5",
+                  "-0x1.4000346dc5d64p+5",
+                  "-0x1.3fffcb923a29cp+5",
+                  "-0x1.400000015798fp+5",
+                  "-0x1.3ffffffea8671p+5"
+                ],
+                "edge_actions": [
+                  {
+                    "h": 0.04,
+                    "t": 9.96,
+                    "stage_currents": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "increment": 0.0,
+                    "expected": 0.0,
+                    "naive_increment": 0.06666666666666667
+                  },
+                  {
+                    "h": 0.04,
+                    "t": 10,
+                    "stage_currents": [
+                      10,
+                      10,
+                      10,
+                      10
+                    ],
+                    "increment": 0.39999999999999997,
+                    "expected": 0.4,
+                    "naive_increment": 0.39999999999999997
+                  },
+                  {
+                    "h": 0.04,
+                    "t": 10.96,
+                    "stage_currents": [
+                      10,
+                      10,
+                      10,
+                      10
+                    ],
+                    "increment": 0.39999999999999997,
+                    "expected": 0.4,
+                    "naive_increment": 0.3333333333333333
+                  },
+                  {
+                    "h": 0.04,
+                    "t": 11,
+                    "stage_currents": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "increment": 0.0,
+                    "expected": 0.0,
+                    "naive_increment": 0.0
+                  },
+                  {
+                    "h": 0.02,
+                    "t": 9.98,
+                    "stage_currents": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "increment": 0.0,
+                    "expected": 0.0,
+                    "naive_increment": 0.03333333333333333
+                  },
+                  {
+                    "h": 0.02,
+                    "t": 10,
+                    "stage_currents": [
+                      10,
+                      10,
+                      10,
+                      10
+                    ],
+                    "increment": 0.19999999999999998,
+                    "expected": 0.2,
+                    "naive_increment": 0.19999999999999998
+                  },
+                  {
+                    "h": 0.02,
+                    "t": 10.98,
+                    "stage_currents": [
+                      10,
+                      10,
+                      10,
+                      10
+                    ],
+                    "increment": 0.19999999999999998,
+                    "expected": 0.2,
+                    "naive_increment": 0.16666666666666666
+                  },
+                  {
+                    "h": 0.02,
+                    "t": 11,
+                    "stage_currents": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "increment": 0.0,
+                    "expected": 0.0,
+                    "naive_increment": 0.0
+                  },
+                  {
+                    "h": 0.01,
+                    "t": 9.99,
+                    "stage_currents": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "increment": 0.0,
+                    "expected": 0.0,
+                    "naive_increment": 0.016666666666666666
+                  },
+                  {
+                    "h": 0.01,
+                    "t": 10,
+                    "stage_currents": [
+                      10,
+                      10,
+                      10,
+                      10
+                    ],
+                    "increment": 0.09999999999999999,
+                    "expected": 0.1,
+                    "naive_increment": 0.09999999999999999
+                  },
+                  {
+                    "h": 0.01,
+                    "t": 10.99,
+                    "stage_currents": [
+                      10,
+                      10,
+                      10,
+                      10
+                    ],
+                    "increment": 0.09999999999999999,
+                    "expected": 0.1,
+                    "naive_increment": 0.08333333333333333
+                  },
+                  {
+                    "h": 0.01,
+                    "t": 11,
+                    "stage_currents": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "increment": 0.0,
+                    "expected": 0.0,
+                    "naive_increment": 0.0
+                  }
+                ],
+                "rest": [
+                  -64.97405245162668,
+                  0.05309465178484726,
+                  0.5952130171676475,
+                  0.31807461723758984
+                ],
+                "root_companions": [
+                  {
+                    "lo": "-64.974052451626681111411189456397112715685567752679120487323982278612954921470655",
+                    "hi": "-64.97405245162668111141118945639637315858692305411154699179402966652263629043774",
+                    "iterations": 105,
+                    "endpoint_signs": [
+                      "-7.088800764508274005970217961400532438052271900502E-31",
+                      "1.572127229559934473598185747373955297085929414520E-31"
+                    ],
+                    "precision": 80,
+                    "uniqueness_claim": false
+                  },
+                  {
+                    "lo": "-64.97405245162668111141118945639711271568556775267912048732398227861295492147064578603021800518035888671875",
+                    "hi": "-64.974052451626681111411189456396373158586923054111546991794029666522636290437731076963245868682861328125",
+                    "iterations": 105,
+                    "endpoint_signs": [
+                      "-7.0888007645082740059702179614005324380522719003903169720424579840458414971736378020480281E-31",
+                      "1.5721272295599344735981857473739552970859294146284583204657906796674493670259378821275406E-31"
+                    ],
+                    "precision": 120,
+                    "uniqueness_claim": false
+                  }
+                ],
+                "stability_status": "UNCLAIMED: bracketed equilibrium, no interval Hurwitz certificate; not a proof of uniqueness",
+                "data": "hh-components.npz"
+              },
+              {
+                "id": "hh-clamp--80-0p04",
+                "V": -80.0,
+                "h": 0.04,
+                "max_all_time_error": 1.5143378531798368e-05,
+                "gate_min": 0.008043237159868667,
+                "gate_max": 0.8718822999489665,
+                "data": "hh-clamp--80-0p04.npz"
+              },
+              {
+                "id": "hh-clamp--80-0p02",
+                "V": -80.0,
+                "h": 0.02,
+                "max_all_time_error": 8.126174439321288e-07,
+                "gate_min": 0.00804323715986867,
+                "gate_max": 0.8718822999495738,
+                "data": "hh-clamp--80-0p02.npz"
+              },
+              {
+                "id": "hh-clamp--80-0p01",
+                "V": -80.0,
+                "h": 0.01,
+                "max_all_time_error": 4.711626791498169e-08,
+                "gate_min": 0.008043237159868674,
+                "gate_max": 0.8718822999496124,
+                "data": "hh-clamp--80-0p01.npz"
+              },
+              {
+                "id": "hh-clamp--55-0p04",
+                "V": -55.0,
+                "h": 0.04,
+                "max_all_time_error": 1.9902477887967507e-08,
+                "gate_min": 0.1,
+                "gate_max": 0.8,
+                "data": "hh-clamp--55-0p04.npz"
+              },
+              {
+                "id": "hh-clamp--55-0p02",
+                "V": -55.0,
+                "h": 0.02,
+                "max_all_time_error": 1.1885528672372914e-09,
+                "gate_min": 0.1,
+                "gate_max": 0.8,
+                "data": "hh-clamp--55-0p02.npz"
+              },
+              {
+                "id": "hh-clamp--55-0p01",
+                "V": -55.0,
+                "h": 0.01,
+                "max_all_time_error": 7.262476731106915e-11,
+                "gate_min": 0.1,
+                "gate_max": 0.8,
+                "data": "hh-clamp--55-0p01.npz"
+              },
+              {
+                "id": "hh-clamp--40-0p04",
+                "V": -40.0,
+                "h": 0.04,
+                "max_all_time_error": 4.0116030053383156e-08,
+                "gate_min": 0.1,
+                "gate_max": 0.8,
+                "data": "hh-clamp--40-0p04.npz"
+              },
+              {
+                "id": "hh-clamp--40-0p02",
+                "V": -40.0,
+                "h": 0.02,
+                "max_all_time_error": 2.4268089204859677e-09,
+                "gate_min": 0.1,
+                "gate_max": 0.8,
+                "data": "hh-clamp--40-0p02.npz"
+              },
+              {
+                "id": "hh-clamp--40-0p01",
+                "V": -40.0,
+                "h": 0.01,
+                "max_all_time_error": 1.4916989865554342e-10,
+                "gate_min": 0.1,
+                "gate_max": 0.8,
+                "data": "hh-clamp--40-0p01.npz"
+              },
+              {
+                "id": "hh-clamp-0-0p04",
+                "V": 0.0,
+                "h": 0.04,
+                "max_all_time_error": 2.1384378671163162e-06,
+                "gate_min": 0.008923975351978464,
+                "gate_max": 0.9741586066826129,
+                "data": "hh-clamp-0-0p04.npz"
+              },
+              {
+                "id": "hh-clamp-0-0p02",
+                "V": 0.0,
+                "h": 0.02,
+                "max_all_time_error": 1.246264965670818e-07,
+                "gate_min": 0.008923974797501913,
+                "gate_max": 0.9741586066827076,
+                "data": "hh-clamp-0-0p02.npz"
+              },
+              {
+                "id": "hh-clamp-0-0p01",
+                "V": 0.0,
+                "h": 0.01,
+                "max_all_time_error": 7.521943623522986e-09,
+                "gate_min": 0.008923974763423407,
+                "gate_max": 0.974158606682713,
+                "data": "hh-clamp-0-0p01.npz"
+              },
+              {
+                "id": "hh-reference-rest",
+                "spread": 0.0,
+                "qualified": true,
+                "configurations": [
+                  [
+                    {
+                      "segment": [
+                        0.0,
+                        20.0
+                      ],
+                      "current": 0.0,
+                      "method": "DP54",
+                      "accepted": 2002,
+                      "rejected": 0,
+                      "nfev": 14014,
+                      "rtol": 1e-11,
+                      "atol": [
+                        1e-12,
+                        1e-14,
+                        1e-14,
+                        1e-14
+                      ],
+                      "complete": true
+                    }
+                  ],
+                  [
+                    {
+                      "segment": [
+                        0.0,
+                        20.0
+                      ],
+                      "current": 0.0,
+                      "method": "DP54",
+                      "accepted": 2002,
+                      "rejected": 0,
+                      "nfev": 14014,
+                      "rtol": 1e-13,
+                      "atol": [
+                        1e-14,
+                        1e-15,
+                        1e-15,
+                        1e-15
+                      ],
+                      "complete": true
+                    }
+                  ],
+                  [
+                    {
+                      "segment": [
+                        0.0,
+                        20.0
+                      ],
+                      "current": 0.0,
+                      "method": "CK54",
+                      "accepted": 2002,
+                      "rejected": 0,
+                      "nfev": 12012,
+                      "rtol": 1e-11,
+                      "atol": [
+                        1e-12,
+                        1e-14,
+                        1e-14,
+                        1e-14
+                      ],
+                      "complete": true
+                    }
+                  ]
+                ],
+                "events": [],
+                "event_audit": {},
+                "data": "hh-reference-rest.npz"
+              },
+              {
+                "id": "hh-rest-0p04",
+                "h": 0.04,
+                "errors": [
+                  0.0,
+                  2.0816681711721685e-17,
+                  0.0,
+                  0.0
+                ],
+                "events": [],
+                "event_audit": {},
+                "rest_drift_mV": 0.0,
+                "gate_range": [
+                  0.05309465178484726,
+                  0.5952130171676475
+                ],
+                "data": "hh-rest-0p04.npz"
+              },
+              {
+                "id": "hh-rest-0p02",
+                "h": 0.02,
+                "errors": [
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "events": [],
+                "event_audit": {},
+                "rest_drift_mV": 0.0,
+                "gate_range": [
+                  0.05309465178484726,
+                  0.5952130171676475
+                ],
+                "data": "hh-rest-0p02.npz"
+              },
+              {
+                "id": "hh-rest-0p01",
+                "h": 0.01,
+                "errors": [
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "events": [],
+                "event_audit": {},
+                "rest_drift_mV": 0.0,
+                "gate_range": [
+                  0.05309465178484726,
+                  0.5952130171676475
+                ],
+                "data": "hh-rest-0p01.npz"
+              },
+              {
+                "id": "hh-reference-pulse",
+                "spread": 1.0302887432089847e-09,
+                "qualified": true,
+                "configurations": [
+                  [
+                    {
+                      "segment": [
+                        0.0,
+                        10.0
+                      ],
+                      "current": 0.0,
+                      "method": "DP54",
+                      "accepted": 1002,
+                      "rejected": 0,
+                      "nfev": 7014,
+                      "rtol": 1e-11,
+                      "atol": [
+                        1e-12,
+                        1e-14,
+                        1e-14,
+                        1e-14
+                      ],
+                      "complete": true
+                    },
+                    {
+                      "segment": [
+                        10.0,
+                        11.0
+                      ],
+                      "current": 10.0,
+                      "method": "DP54",
+                      "accepted": 143,
+                      "rejected": 0,
+                      "nfev": 1001,
+                      "rtol": 1e-11,
+                      "atol": [
+                        1e-12,
+                        1e-14,
+                        1e-14,
+                        1e-14
+                      ],
+                      "complete": true
+                    },
+                    {
+                      "segment": [
+                        11.0,
+                        30.0
+                      ],
+                      "current": 0.0,
+                      "method": "DP54",
+                      "accepted": 3034,
+                      "rejected": 1,
+                      "nfev": 21245,
+                      "rtol": 1e-11,
+                      "atol": [
+                        1e-12,
+                        1e-14,
+                        1e-14,
+                        1e-14
+                      ],
+                      "complete": true
+                    }
+                  ],
+                  [
+                    {
+                      "segment": [
+                        0.0,
+                        10.0
+                      ],
+                      "current": 0.0,
+                      "method": "DP54",
+                      "accepted": 1002,
+                      "rejected": 0,
+                      "nfev": 7014,
+                      "rtol": 1e-13,
+                      "atol": [
+                        1e-14,
+                        1e-15,
+                        1e-15,
+                        1e-15
+                      ],
+                      "complete": true
+                    },
+                    {
+                      "segment": [
+                        10.0,
+                        11.0
+                      ],
+                      "current": 10.0,
+                      "method": "DP54",
+                      "accepted": 291,
+                      "rejected": 0,
+                      "nfev": 2037,
+                      "rtol": 1e-13,
+                      "atol": [
+                        1e-14,
+                        1e-15,
+                        1e-15,
+                        1e-15
+                      ],
+                      "complete": true
+                    },
+                    {
+                      "segment": [
+                        11.0,
+                        30.0
+                      ],
+                      "current": 0.0,
+                      "method": "DP54",
+                      "accepted": 5768,
+                      "rejected": 1,
+                      "nfev": 40383,
+                      "rtol": 1e-13,
+                      "atol": [
+                        1e-14,
+                        1e-15,
+                        1e-15,
+                        1e-15
+                      ],
+                      "complete": true
+                    }
+                  ],
+                  [
+                    {
+                      "segment": [
+                        0.0,
+                        10.0
+                      ],
+                      "current": 0.0,
+                      "method": "CK54",
+                      "accepted": 1002,
+                      "rejected": 0,
+                      "nfev": 6012,
+                      "rtol": 1e-11,
+                      "atol": [
+                        1e-12,
+                        1e-14,
+                        1e-14,
+                        1e-14
+                      ],
+                      "complete": true
+                    },
+                    {
+                      "segment": [
+                        10.0,
+                        11.0
+                      ],
+                      "current": 10.0,
+                      "method": "CK54",
+                      "accepted": 118,
+                      "rejected": 0,
+                      "nfev": 708,
+                      "rtol": 1e-11,
+                      "atol": [
+                        1e-12,
+                        1e-14,
+                        1e-14,
+                        1e-14
+                      ],
+                      "complete": true
+                    },
+                    {
+                      "segment": [
+                        11.0,
+                        30.0
+                      ],
+                      "current": 0.0,
+                      "method": "CK54",
+                      "accepted": 2788,
+                      "rejected": 3,
+                      "nfev": 16746,
+                      "rtol": 1e-11,
+                      "atol": [
+                        1e-12,
+                        1e-14,
+                        1e-14,
+                        1e-14
+                      ],
+                      "complete": true
+                    }
+                  ]
+                ],
+                "events": [
+                  {
+                    "time_ms": 12.270536208115518,
+                    "bracket": [
+                      12.27,
+                      12.28
+                    ],
+                    "accepted_interval": [
+                      12.27,
+                      12.28
+                    ],
+                    "slope": 282.96670391249,
+                    "simple_upward": true,
+                    "polynomial_evaluations": 27,
+                    "endpoint_rhs": "fresh accepted endpoint or reused same-current accepted derivative",
+                    "model": "accepted-interval cubic Hermite, not an exact-ODE event certificate"
+                  }
+                ],
+                "event_audit": {
+                  "intervals": 3000,
+                  "critical_point_intervals": 1002,
+                  "interior_crossings_without_endpoint_sign_change": 0,
+                  "nonsimple_or_roundoff_unresolved_intervals": 0,
+                  "maximum_cubic_roots_per_interval": 1,
+                  "all_intervals_inspected": true,
+                  "exact_ODE_event_completeness_certified": false
+                },
+                "data": "hh-reference-pulse.npz"
+              },
+              {
+                "id": "hh-pulse-0p04",
+                "h": 0.04,
+                "errors": [
+                  0.04192891312136027,
+                  1.3084352575520874e-05,
+                  3.3544849469269167e-06,
+                  3.866401408370024e-06
+                ],
+                "events": [
+                  {
+                    "time_ms": 12.270540241710842,
+                    "bracket": [
+                      12.24,
+                      12.280000000000001
+                    ],
+                    "accepted_interval": [
+                      12.24,
+                      12.280000000000001
+                    ],
+                    "slope": 282.6910340661269,
+                    "simple_upward": true,
+                    "polynomial_evaluations": 29,
+                    "endpoint_rhs": "fresh accepted endpoint or reused same-current accepted derivative",
+                    "model": "accepted-interval cubic Hermite, not an exact-ODE event certificate"
+                  }
+                ],
+                "event_audit": {
+                  "intervals": 750,
+                  "critical_point_intervals": 252,
+                  "interior_crossings_without_endpoint_sign_change": 0,
+                  "nonsimple_or_roundoff_unresolved_intervals": 0,
+                  "maximum_cubic_roots_per_interval": 1,
+                  "all_intervals_inspected": true,
+                  "exact_ODE_event_completeness_certified": false
+                },
+                "rest_drift_mV": 103.96268898240359,
+                "gate_range": [
+                  0.01354035557901755,
+                  0.9936420320685314
+                ],
+                "data": "hh-pulse-0p04.npz"
+              },
+              {
+                "id": "hh-pulse-0p02",
+                "h": 0.02,
+                "errors": [
+                  0.00196329020079844,
+                  8.42501571507448e-07,
+                  2.31642003301058e-07,
+                  2.6283570375706944e-07
+                ],
+                "events": [
+                  {
+                    "time_ms": 12.270536090023816,
+                    "bracket": [
+                      12.26,
+                      12.280000000000001
+                    ],
+                    "accepted_interval": [
+                      12.26,
+                      12.280000000000001
+                    ],
+                    "slope": 282.9560649288312,
+                    "simple_upward": true,
+                    "polynomial_evaluations": 28,
+                    "endpoint_rhs": "fresh accepted endpoint or reused same-current accepted derivative",
+                    "model": "accepted-interval cubic Hermite, not an exact-ODE event certificate"
+                  }
+                ],
+                "event_audit": {
+                  "intervals": 1500,
+                  "critical_point_intervals": 502,
+                  "interior_crossings_without_endpoint_sign_change": 0,
+                  "nonsimple_or_roundoff_unresolved_intervals": 0,
+                  "maximum_cubic_roots_per_interval": 1,
+                  "all_intervals_inspected": true,
+                  "exact_ODE_event_completeness_certified": false
+                },
+                "rest_drift_mV": 103.99070027978291,
+                "gate_range": [
+                  0.013539472329901554,
+                  0.9936425561498745
+                ],
+                "data": "hh-pulse-0p02.npz"
+              },
+              {
+                "id": "hh-pulse-0p01",
+                "h": 0.01,
+                "errors": [
+                  0.00010511156826709112,
+                  5.371951350419124e-08,
+                  1.519693548779344e-08,
+                  1.6999222141045323e-08
+                ],
+                "events": [
+                  {
+                    "time_ms": 12.270536246113478,
+                    "bracket": [
+                      12.27,
+                      12.280000000000001
+                    ],
+                    "accepted_interval": [
+                      12.27,
+                      12.280000000000001
+                    ],
+                    "slope": 282.9666736962941,
+                    "simple_upward": true,
+                    "polynomial_evaluations": 27,
+                    "endpoint_rhs": "fresh accepted endpoint or reused same-current accepted derivative",
+                    "model": "accepted-interval cubic Hermite, not an exact-ODE event certificate"
+                  }
+                ],
+                "event_audit": {
+                  "intervals": 3000,
+                  "critical_point_intervals": 1002,
+                  "interior_crossings_without_endpoint_sign_change": 0,
+                  "nonsimple_or_roundoff_unresolved_intervals": 0,
+                  "maximum_cubic_roots_per_interval": 1,
+                  "all_intervals_inspected": true,
+                  "exact_ODE_event_completeness_certified": false
+                },
+                "rest_drift_mV": 104.01748600208015,
+                "gate_range": [
+                  0.013539469102569887,
+                  0.993642589636883
+                ],
+                "data": "hh-pulse-0p01.npz"
+              }
+            ]
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/hodgkin-huxley-controls/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology-ode-controls/#hodgkin-huxley-controls",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology-ode-controls/#hodgkin-huxley-controls"
+          }
+        }
+      ]
+    },
+    {
+      "group": "continuum-particle-controls",
+      "case_ids": [
+        "sphere-zonal-balance"
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/",
+      "code_edition": "2026-11-25",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/ale_piston.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/reference_riemann.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/test_components.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-continuum-particle-controls-2026-11-25",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json",
+      "code_archive_sha256": "1d12a6ecd9d87ae95585a984e66411b2314eb7804b064f023aa57addc3142f49",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/results/result.json",
+      "passed_tests": 17,
+      "examples": [
+        {
+          "id": "sphere-zonal-balance",
+          "method_ids": [
+            "centered-difference",
+            "rk4"
+          ],
+          "title": {
+            "ja": "球面浅水波の軸対称定常釣合いを時間積分",
+            "en": "Time evolution of axisymmetric spherical shallow-water balance"
+          },
+          "summary": {
+            "ja": "球面浅水波の軸対称な無次元定常状態を実際に時間積分し、釣合い残差と格子依存を分ける。",
+            "en": "NondimensionalWilliamson2-type axisymmetricsubproblem. Analyticstaticstatevsactualtimeintegration; not fullglobaldynamicalcore/PVclaim."
+          },
+          "assumptions": {
+            "ja": "球面浅水波の軸対称な無次元部分問題です。運動量の原始変数は子午線方向の中心差分、質量は緯度帯の面流束による有限体積形で離散化し、RK4で時間積分します。極の質量流束をゼロとし、平衡残差の差し引きや補正は行いません。固定入力・境界・参照の範囲はinputs.jsonを参照。",
+            "en": "Nondimensional axisymmetric spherical SWE subproblem. Hybrid centered meridional differences for primitive momentum and latitude-band finite-volume face fluxes for mass, advanced by RK4. Pole mass flux is zero; no equilibrium residual subtraction or correction. Fixed inputs, boundaries and reference scope are specified in inputs.json."
+          },
+          "algorithm": {
+            "ja": "固定入力・宣言したアルゴリズム・補正しない停止条件を用います。",
+            "en": "NondimensionalWilliamson2-type axisymmetricsubproblem. Analyticstaticstatevsactualtimeintegration; not fullglobaldynamicalcore/PVclaim."
+          },
+          "validation": {
+            "ja": "解析参照、保存量、細分化、独立成分検査と意図した誤式の負例を区別して保存します。",
+            "en": "Separate analytic/reference errors, conservation, refinement, independent component qualification and deliberately wrong-formula controls."
+          },
+          "limits": {
+            "ja": "限定した教育用モデルです。元論文の全条件・全アルゴリズムや一般的な性能の再現ではありません。",
+            "en": "NondimensionalWilliamson2-type axisymmetricsubproblem. Analyticstaticstatevsactualtimeintegration; not fullglobaldynamicalcore/PVclaim."
+          },
+          "domains": [
+            "pde",
+            "geometry"
+          ],
+          "code_files": [
+            "ale_piston.py",
+            "failure_support.py",
+            "gsph.py",
+            "run.py",
+            "sphere.py"
+          ],
+          "reference_files": [
+            "reference_riemann.py",
+            "source-reading.json",
+            "acceptance.json",
+            "PROTOCOL.md"
+          ],
+          "references": [
+            {
+              "id": "inutsuka2002",
+              "authors": "Shu-ichiro Inutsuka",
+              "year": 2002,
+              "title": "Reformulation of Smoothed Particle Hydrodynamics with Riemann Solver",
+              "doi": "10.1006/jcph.2002.7053",
+              "url": "https://arxiv.org/pdf/astro-ph/0206401",
+              "roles": [
+                "numerical-method",
+                "original-GSPH-test-definition"
+              ],
+              "read_scope": "Author PDF selected passages in sections3.1.1/3.2/3.3/3.4 and4.1, equations48–52,66–67,79–85,94 and Figure6 caption. No new whole-paper audit. Gaussian convolution overlap, variableh approximation and matched pair energy are distinguished from substituting star pressure into ordinarySPH.",
+              "limits": "Draft will use the linear specific-volume overlap and first-order pair reconstruction, not the paper cubic/MUSCL production variant. Variableh is the paper approximate formulation, not a rigorous grad-h variationalSPH scheme.",
+              "review_level": "selected-original-author-paper-sections-and-equations"
+            },
+            {
+              "id": "saltzman2023-configuration",
+              "authors": "Yan Tan; Hui Lv; Jun Zhu",
+              "year": 2023,
+              "title": "New Third-Order Finite Volume Unequal-Sized WENO Lagrangian Schemes for Solving Euler Equations",
+              "doi": "10.3390/math11234842",
+              "url": "https://www.mdpi.com/2227-7390/11/23/4842",
+              "roles": [
+                "explicit-benchmark-configuration"
+              ],
+              "read_scope": "Publisher full-text Example8, equation42 and Figures8–9 captions: 2D skewedpiston geometry and finite nonzero internalenergy. Only the benchmark configuration is borrowed; the new solver is not that WENO/Lagrangian method.",
+              "limits": "Saltzman/Colella1985 LA-UR-85-678 is cited historically but original full text was not obtained. Later papers use different skew maps/cold pressures; they must not be silently mixed.",
+              "review_level": "selected-publisher-fulltext-example-8"
+            },
+            {
+              "id": "saltzman-colella1985",
+              "authors": "J. Saltzman; P. Colella",
+              "year": 1985,
+              "title": "Second Order Corner Coupled Upwind Transport Methods for Lagrangian Hydrodynamics",
+              "report": "LA-UR-85-678",
+              "url": "https://www.osti.gov/servlets/purl/15005665",
+              "roles": [
+                "historical-original-problem"
+              ],
+              "read_scope": "Bibliographic identity found in the authors LLNL comparison report reference27, not the original1985 report.",
+              "limits": "Do not claim original1985 parameters or originalmethod reproduction.",
+              "review_level": "secondary-bibliographic-identity-original-report-unread"
+            },
+            {
+              "id": "williamson1992",
+              "authors": "D. L. Williamson; J. B. Drake; J. J. Hack; R. Jakob; P. N. Swarztrauber",
+              "year": 1992,
+              "title": "A standard test set for numerical approximations to the shallow water equations in spherical geometry",
+              "doi": "10.1016/S0021-9991(05)80016-6",
+              "url": "https://digital.library.unt.edu/ark:/67531/metadc1069483/",
+              "roles": [
+                "original-problem-suite"
+              ],
+              "read_scope": "DOE/ORNL1991 author-report bibliography/abstract and suite identity. FullPDF/page fetch timed out; do not mark original equation read.",
+              "limits": "Primary author implementation/formula confirmation still required before claiming exactstandard W92 parameterreproduction.",
+              "review_level": "author-report-bibliography-and-abstract-original-formulas-unread"
+            },
+            {
+              "id": "nair-author-sphere",
+              "authors": "Ramachandran Nair; Jean Côté; Andrew Staniforth",
+              "year": 1999,
+              "title": "Cascade interpolation for semi-Lagrangian advection over the sphere",
+              "url": "https://www.image.ucar.edu/staff/rnair/qj99_sph.pdf",
+              "roles": [
+                "author-formula-crosscheck"
+              ],
+              "read_scope": "Author-hosted selected section3 gives velocity/bell formulas and explicitly distinguishes radius7pi/64 from W92 radius1/3.",
+              "limits": "Selected solidbody-rotation definitions only. Our bilinear tensor interpolation is not their cascade algorithm; our radius1/3 uses the W92-associated variant, not their7pi/64 radius. Original W92 full text remains unread.",
+              "doi": "10.1002/qj.1999.49712555617",
+              "journal": "Quarterly Journal of the Royal Meteorological Society",
+              "volume": 125,
+              "issue": 556,
+              "pages": "1445–1468",
+              "bibliography_verification": {
+                "publisher": "https://rmets.onlinelibrary.wiley.com/doi/10.1002/qj.1999.49712555617",
+                "author_institution": "https://impacts.ucar.edu/en/publications/cascade-interpolation-for-semi-lagrangian-advection-over-the-sphe/",
+                "read_at_utc": "2026-11-25T09:01:07.880299+00:00"
+              },
+              "review_level": "selected-author-hosted-formulas-and-publisher-bibliography"
+            }
+          ],
+          "plot": "sphere-zonal-balance.png",
+          "preview": "sphere-zonal-balance-preview.png",
+          "planned_equation_ids": [
+            "spherical-shallow-water"
+          ],
+          "measured": {
+            "id": "sphere-zonal-balance",
+            "passed": true,
+            "metrics": {
+              "finest": {
+                "grid": 64,
+                "h_error": 0.00010108962138506427,
+                "initial_balance_residual": 0.0018041320580228781,
+                "analytic_force_residual": 0.0,
+                "mass_defect": 0.0,
+                "minimum_h": 8.87466665967074,
+                "steps": 129
+              }
+            },
+            "checks": {
+              "analytic_balance": true,
+              "balance_order": true,
+              "height": true,
+              "refinement": true,
+              "mass": true,
+              "positive": true
+            },
+            "records": [
+              {
+                "grid": 32,
+                "h_error": 0.00040095227332273,
+                "initial_balance_residual": 0.007180051265050613,
+                "analytic_force_residual": 0.0,
+                "mass_defect": 0.0,
+                "minimum_h": 8.873699068513663,
+                "steps": 65
+              },
+              {
+                "grid": 64,
+                "h_error": 0.00010108962138506427,
+                "initial_balance_residual": 0.0018041320580228781,
+                "analytic_force_residual": 0.0,
+                "mass_defect": 0.0,
+                "minimum_h": 8.87466665967074,
+                "steps": 129
+              }
+            ]
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sphere-zonal-balance/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-continuum-particle-controls/#sphere-zonal-balance",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-continuum-particle-controls/#sphere-zonal-balance"
+          }
+        }
+      ]
     }
   ],
   "supplemental_scope_profiles": [
@@ -13175,6 +14350,44 @@
           "en": "These fixed-coefficient calculations compare two small initial infection levels. The early linearization is not an exact solution through t=20, and a single dominant mode does not replace the two-mode solution. No epidemic forecast, statistical coverage or arbitrary-population guarantee is claimed."
         }
       ]
+    },
+    {
+      "release": {
+        "group": "biology-ode-controls",
+        "edition": "2026-11-25",
+        "case_ids": [
+          "hodgkin-huxley-controls"
+        ]
+      },
+      "scope": {
+        "ja": "固定電位の解析ゲート解と、区分電流下の4状態系を照合します。",
+        "en": "Compare analytic clamp gates and a four-state system with segment-owned current."
+      },
+      "limits": [
+        {
+          "ja": "1細胞膜の教育例です。元論文の電位規約、TABLE/cnexp実装、ケーブル伝播や生体実測の再現とは呼びません。区間内に括れない発火は捏造せず、静止根の一意性・区間Hurwitz安定性は主張しません。",
+          "en": "This educational membrane model does not reproduce the original voltage convention, TABLE/cnexp, cable propagation or measured physiology. Missing/unresolved events remain explicit; rest-root uniqueness and interval-Hurwitz stability are unclaimed."
+        }
+      ]
+    },
+    {
+      "release": {
+        "group": "continuum-particle-controls",
+        "edition": "2026-11-25",
+        "case_ids": [
+          "sphere-zonal-balance"
+        ]
+      },
+      "scope": {
+        "ja": "固定された5ケース群のうち当該手法に対応する限定例です。",
+        "en": "Only the named fixed examples in this five-case protocol."
+      },
+      "limits": [
+        {
+          "ja": "a=g=1, Ω=2, u0=.5, h0=10 の軸対称な無次元部分問題。運動量中心差分・質量FV・RK4の混成で実際に時間発展させます。標準地球条件や全球多次元SWE、厳密な離散釣合い・PV保存の再現ではありません。",
+          "en": "Axisymmetric nondimensional subproblem with a=g=1, Omega=2, u0=.5 and h0=10. Actual time evolution uses centered primitive momentum, finite-volume mass and RK4. Not standard Earth parameters, a full global multidimensional SWE core, exact discrete balance or a PV-conservation claim."
+        }
+      ]
     }
   ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk4/",
@@ -13209,7 +14422,17 @@
     "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/data_family.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/oracles.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/qualify.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/reference_models.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/references/reference_models.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/common.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/hh.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/ssa.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/ale_piston.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/failure_support.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/gsph.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/sphere.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/reference_riemann.py"
   ],
   "test_urls": [
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
@@ -13220,7 +14443,9 @@
     "https://hrkoyama.github.io/code/validated-examples/2026-11-23/moving-waves/test_moving.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_cases.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-24/dae-controls/test_serialization.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/test_models.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/small-models/test_models.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/test_models.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/test_components.py"
   ],
   "run_commands": [
     "python -m pytest -q tests/test_time_geometry.py tests/test_runge_kutta.py tests/test_hamiltonian.py"
@@ -13323,6 +14548,24 @@
       "guide": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/seir-linearization/?lang=ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/seir-linearization/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "hodgkin-huxley-controls",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/hodgkin-huxley-controls/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/hodgkin-huxley-controls/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "sphere-zonal-balance",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sphere-zonal-balance/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sphere-zonal-balance/?lang=en"
       },
       "kind": "dedicated-supplement"
     }
@@ -13526,6 +14769,34 @@
         "url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#seir-compartment-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#seir-compartment-en"
+        }
+      },
+      {
+        "id": "bio-hodgkin-huxley",
+        "name": {
+          "ja": "Hodgkin–Huxley膜動態",
+          "en": "Hodgkin–Huxley membrane dynamics"
+        },
+        "problem_ids": [
+          "hodgkin-huxley-controls"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-hodgkin-huxley-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-hodgkin-huxley-en"
+        }
+      },
+      {
+        "id": "spherical-shallow-water",
+        "name": {
+          "ja": "球面浅水波の軸対称部分問題",
+          "en": "Axisymmetric spherical shallow-water subproblem"
+        },
+        "problem_ids": [
+          "sphere-zonal-balance"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#spherical-shallow-water-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#spherical-shallow-water-en"
         }
       }
     ],
@@ -14331,6 +15602,126 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/seir-linearization/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/seir-linearization/?lang=en#references-en"
         }
+      },
+      {
+        "id": "hodgkin-huxley-controls",
+        "name": {
+          "ja": "Hodgkin–Huxley：電位固定・静止平衡・発火",
+          "en": "Hodgkin–Huxley: clamps, rest and firing"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/results/hodgkin-huxley-controls.png",
+          "sha256": "103d53258302f2855b7c7c9cca7840245a257909ca12163e8cd7a4d972a5871a",
+          "width": 1624,
+          "height": 667,
+          "caption": {
+            "ja": "固定電位の解析ゲート解と、区分電流下の4状態系を照合します。 1細胞膜の教育例です。元論文の電位規約、TABLE/cnexp実装、ケーブル伝播や生体実測の再現とは呼びません。区間内に括れない発火は捏造せず、静止根の一意性・区間Hurwitz安定性は主張しません。",
+            "en": "Compare analytic clamp gates and a four-state system with segment-owned current. This educational membrane model does not reproduce the original voltage convention, TABLE/cnexp, cable propagation or measured physiology. Missing/unresolved events remain explicit; rest-root uniqueness and interval-Hurwitz stability are unclaimed."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/hodgkin-huxley-controls/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/hodgkin-huxley-controls/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/hodgkin-huxley-controls/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/hodgkin-huxley-controls/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "hodgkin-huxley-controls",
+            "kind": "supplement",
+            "name": {
+              "ja": "Hodgkin–Huxley：電位固定・静止平衡・発火",
+              "en": "Hodgkin–Huxley: clamps, rest and firing"
+            },
+            "scope": {
+              "ja": "固定電位の解析ゲート解と、区分電流下の4状態系を照合します。",
+              "en": "Compare analytic clamp gates and a four-state system with segment-owned current."
+            },
+            "method_ids": [
+              "rk4",
+              "rk45"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/hodgkin-huxley-controls/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/hodgkin-huxley-controls/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/atlas-biology-ode-controls-2026-11-25.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-ode-controls/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "古典RK4を用い、電流の切り替わりでは全段の片側値を区間に帰属させます。ゲートの可除特異点、Decimal静止根、独立なDP5(4)/Cash–Karp参照を別に照合します。",
+          "en": "Use classicalRK4 with all stages owned by each current segment. Separately qualify removable rate singularities, a Decimal rest root and independently written DP5(4)/Cash–Karp references."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/hodgkin-huxley-controls/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/hodgkin-huxley-controls/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "sphere-zonal-balance",
+        "name": {
+          "ja": "球面浅水波の軸対称定常釣合いを時間積分",
+          "en": "Time evolution of axisymmetric spherical shallow-water balance"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/results/sphere-zonal-balance.png",
+          "sha256": "74876bf29005e8968fe5c5fe51157d0be99f57cc76c18da88e663ad85ae061c6",
+          "width": 1800,
+          "height": 540,
+          "caption": {
+            "ja": "球面浅水波の軸対称な無次元定常状態を実際に時間積分し、釣合い残差と格子依存を分ける。 a=g=1, Ω=2, u0=.5, h0=10 の軸対称な無次元部分問題。運動量中心差分・質量FV・RK4の混成で実際に時間発展させます。標準地球条件や全球多次元SWE、厳密な離散釣合い・PV保存の再現ではありません。",
+            "en": "NondimensionalWilliamson2-type axisymmetricsubproblem. Analyticstaticstatevsactualtimeintegration; not fullglobaldynamicalcore/PVclaim. Axisymmetric nondimensional subproblem with a=g=1, Omega=2, u0=.5 and h0=10. Actual time evolution uses centered primitive momentum, finite-volume mass and RK4. Not standard Earth parameters, a full global multidimensional SWE core, exact discrete balance or a PV-conservation claim."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sphere-zonal-balance/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sphere-zonal-balance/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sphere-zonal-balance/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sphere-zonal-balance/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "sphere-zonal-balance",
+            "kind": "supplement",
+            "name": {
+              "ja": "球面浅水波の軸対称定常釣合いを時間積分",
+              "en": "Time evolution of axisymmetric spherical shallow-water balance"
+            },
+            "scope": {
+              "ja": "球面浅水波の軸対称な無次元定常状態を実際に時間積分し、釣合い残差と格子依存を分ける。",
+              "en": "NondimensionalWilliamson2-type axisymmetricsubproblem. Analyticstaticstatevsactualtimeintegration; not fullglobaldynamicalcore/PVclaim."
+            },
+            "method_ids": [
+              "centered-difference",
+              "rk4"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sphere-zonal-balance/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/sphere-zonal-balance/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/atlas-continuum-particle-controls-2026-11-25.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/continuum-particle-controls/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "a=g=1, Ω=2, u0=.5, h0=10 の軸対称な無次元部分問題。運動量中心差分・質量FV・RK4の混成で実際に時間発展させます。標準地球条件や全球多次元SWE、厳密な離散釣合い・PV保存の再現ではありません。",
+          "en": "Axisymmetric nondimensional subproblem with a=g=1, Omega=2, u0=.5 and h0=10. Actual time evolution uses centered primitive momentum, finite-volume mass and RK4. Not standard Earth parameters, a full global multidimensional SWE core, exact discrete balance or a PV-conservation claim."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sphere-zonal-balance/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sphere-zonal-balance/?lang=en#references-en"
+        }
       }
     ],
     "references": [
@@ -14727,6 +16118,74 @@
             "view": {
               "ja": "/numerical-methods-atlas/validation/seir-linearization/?lang=ja#seir-linearization-ja-measurements",
               "en": "/numerical-methods-atlas/validation/seir-linearization/?lang=en#seir-linearization-en-measurements"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "hodgkin-huxley-controls",
+        "problem_name": {
+          "ja": "Hodgkin–Huxley：電位固定・静止平衡・発火",
+          "en": "Hodgkin–Huxley: clamps, rest and firing"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/hodgkin-huxley-controls/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/hodgkin-huxley-controls/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "hodgkin-huxley-controls",
+            "title": {
+              "ja": "Hodgkin–Huxley：電位固定・静止平衡・発火",
+              "en": "Hodgkin–Huxley: clamps, rest and firing"
+            },
+            "kind": "semi-analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "1細胞膜の教育例です。元論文の電位規約、TABLE/cnexp実装、ケーブル伝播や生体実測の再現とは呼びません。区間内に括れない発火は捏造せず、静止根の一意性・区間Hurwitz安定性は主張しません。",
+              "en": "This educational membrane model does not reproduce the original voltage convention, TABLE/cnexp, cable propagation or measured physiology. Missing/unresolved events remain explicit; rest-root uniqueness and interval-Hurwitz stability are unclaimed."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-hodgkin-huxley-controls-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-hodgkin-huxley-controls-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/hodgkin-huxley-controls/?lang=ja#hodgkin-huxley-controls-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/hodgkin-huxley-controls/?lang=en#hodgkin-huxley-controls-en-measurements"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "sphere-zonal-balance",
+        "problem_name": {
+          "ja": "球面浅水波の軸対称定常釣合いを時間積分",
+          "en": "Time evolution of axisymmetric spherical shallow-water balance"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sphere-zonal-balance/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/sphere-zonal-balance/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "sphere-zonal-balance",
+            "title": {
+              "ja": "球面浅水波の軸対称定常釣合いを時間積分",
+              "en": "Time evolution of axisymmetric spherical shallow-water balance"
+            },
+            "kind": "analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "固定入力の式・参照・図と実行コードを対応付けます。 a=g=1, Ω=2, u0=.5, h0=10 の軸対称な無次元部分問題。運動量中心差分・質量FV・RK4の混成で実際に時間発展させます。標準地球条件や全球多次元SWE、厳密な離散釣合い・PV保存の再現ではありません。",
+              "en": "Bind the fixed-input formula, reference, figure and executable code. Axisymmetric nondimensional subproblem with a=g=1, Omega=2, u0=.5 and h0=10. Actual time evolution uses centered primitive momentum, finite-volume mass and RK4. Not standard Earth parameters, a full global multidimensional SWE core, exact discrete balance or a PV-conservation claim."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-sphere-zonal-balance-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-sphere-zonal-balance-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/sphere-zonal-balance/?lang=ja#sphere-zonal-balance-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/sphere-zonal-balance/?lang=en#sphere-zonal-balance-en-measurements"
             }
           }
         ]

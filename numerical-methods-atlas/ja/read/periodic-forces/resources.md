@@ -58,9 +58,19 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/
 - [周期He₂の原子間力：解析力・有限差分・BOMD接続：参照・比較条件](<https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-forces/?lang=ja#references-ja>)
 
   固定He₂配置のエネルギー有限差分と解析力、独立DFTK参照と保存された収束検査を区別します。長時間の第一原理MD精度を認定するものではありません。
+- [保存周期Heエネルギー・力の参照台帳](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-periodic-he-reference-cards-ja>)
+  relation: same-problem
+  reference_kind: numerical-reference
+
+  有限格子の数値参照 人工2He・4電子・5bohrセル、局所のみのGTH、固定LDA_X+VWNとコード版です。 人工He2、4電子、5bohrセル。保存した幾何・局所GTH版・LDA_X+VWN/Libxc・PySCF/DFTK版をsaved-data/periodic-he-reference.jsonに固定。エネルギーhartree、力hartree/bohr。 既存の6力成分・エネルギー差分・Gaussian/PW比較の保存値照合です。電子計算の追加0回。新しい基底/k/カットオフ走査、一般物質、金属、長時間MDへ拡張しません。
 - [周期He₂の原子間力：解析力・有限差分・BOMD接続：参照・検証](<https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/periodic-he-forces/?lang=ja#periodic-he-forces-ja-validation>)
 
   独立DFTK平面波計算：Γ／2³の解析力、8カットオフ設定、全6座標のエネルギー有限差分。共通Libxcと異なる有限基底の制約を明記。
+- [保存周期Heエネルギー・力の参照台帳](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-periodic-he-reference-cards-ja>)
+  relation: same-problem
+  reference_kind: numerical-reference
+
+  有限格子の数値参照 人工2He・4電子・5bohrセル、局所のみのGTH、固定LDA_X+VWNとコード版です。 人工He2、4電子、5bohrセル。保存した幾何・局所GTH版・LDA_X+VWN/Libxc・PySCF/DFTK版をsaved-data/periodic-he-reference.jsonに固定。エネルギーhartree、力hartree/bohr。 既存の6力成分・エネルギー差分・Gaussian/PW比較の保存値照合です。電子計算の追加0回。新しい基底/k/カットオフ走査、一般物質、金属、長時間MDへ拡張しません。
 
 ## コード・検証
 
@@ -68,6 +78,10 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/periodic-forces/
   availability: run
 
   非対称な2原子He周期セル・局所GTH・LDA交換＋VWN5。PySCFの解析力（Gaussian基底の微分を含む）を全6座標のエネルギー有限差分とDFTK平面波参照で照合し、力の基底・k点・SCF・FFT収束を分離。BOMDの力供給と短い刻み比較に限定し、長時間NVE・CPMD・一般物質は未検証。
+- [保存周期Heエネルギー・力の参照台帳](<https://hrkoyama.github.io/numerical-methods-atlas/validation/periodic-he-reference-cards/?lang=ja>)
+  availability: run
+
+  既存周期Heのエネルギーと6座標力を、保存参照と元の受入基準へ対応付けます。
 - [周期He₂の原子間力：解析力・有限差分・BOMD接続：コード・検証状況](<https://hrkoyama.github.io/numerical-methods-atlas/problems/periodic-he-forces/?lang=ja#code-ja>)
   availability: source
 

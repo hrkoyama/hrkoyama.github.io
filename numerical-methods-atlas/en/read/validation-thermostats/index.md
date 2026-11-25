@@ -335,7 +335,9 @@ A saved validation figure for this execution example. Its conditions and accepta
 
 Obtain coordinate normalizers/CDFs and U moments by 1D quadrature, and the H CDF by convolving exponential K with the 2D positional Boltzmann density. Save the difference between quadrature tolerances 2e−10 and 2e−12; a separate rejection ensemble also checks H. Report independent-replica standard errors for q,p,K,H correlations, keeping step differences distinct from sampling noise.
 
-No corresponding reference-library card is registered; execution-specific material above documents its reference values and acceptance checks.
+- [NH,chains,weak coupling and fixed-speed contrasts](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-deterministic-thermostat-contrasts-en) (`deterministic-thermostat-contrasts`; Same-problem reference · Semi-analytic reference)
+
+Same two-mode quartic system plus a harmonic control; short-time and finite-sample deterministic-bath comparisons.
 ### Assumptions, units and boundaries
 
 m=kB=T=1, omega=(1,1.7), lambda=0.2, U=sum(omega²q²/2+lambda q⁴/4). Use 8192 canonical and 4096 heated replicas, t=20, tau=0.25/1, h=0.1/0.05, lags 0/0.5/1/2/4.

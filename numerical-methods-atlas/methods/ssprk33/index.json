@@ -6931,6 +6931,710 @@
           }
         }
       ]
+    },
+    {
+      "group": "biology-space-controls",
+      "case_ids": [
+        "fisher-kpp-special-front",
+        "keller-segel-forced-flux"
+      ],
+      "code_base": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/",
+      "code_edition": "2026-11-25",
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/common.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/fisher.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/keller_segel.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/schnakenberg.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/test_models.py"
+      ],
+      "run_commands": [
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "run_from": "atlas-biology-space-controls-2026-11-25",
+      "code_download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/atlas-biology-space-controls-2026-11-25.zip",
+      "code_manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/source-manifest.json",
+      "code_verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/verification.json",
+      "code_archive_sha256": "8abffcd65c0fc14eb1a346dba17e70097e2dc8806b348e114fc449b4fe0e0419",
+      "results": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/results/result.json",
+      "passed_tests": 11,
+      "examples": [
+        {
+          "id": "fisher-kpp-special-front",
+          "method_ids": [
+            "ssprk33",
+            "rk45"
+          ],
+          "title": {
+            "ja": "Fisher–KPP：特殊波速の厳密前線",
+            "en": "Fisher–KPP: a special-speed exact front"
+          },
+          "summary": {
+            "ja": "波形・位置・格子誤差・時間誤差・有限領域の影響を分けます。",
+            "en": "Separate profile, phase, grid, time and finite-boundary errors."
+          },
+          "assumptions": {
+            "ja": "D=r=1、T=1。Ablowitz–Zeppetella型の特殊波速5/√6、L=12の空間・時間系列、定数端点L=6/12/24の境界比較を固定します。",
+            "en": "Use D=r=1,T=1 and the special speed5/√6. Fix spatial/time series on L12 and constant-endpoint boundary rows at L6/12/24."
+          },
+          "algorithm": {
+            "ja": "2次中心差分とSSPRK3で計算し、厳密Dirichlet値を各段の時刻で与えます。時間誤差は同じ95未知数の半離散ODE参照と比較します。",
+            "en": "Use centered second-order differences and SSPRK3 with exact Dirichlet values at every stage. Compare time errors to an independent reference for the same95-unknown semidiscreteODE."
+          },
+          "validation": {
+            "ja": "厳密波形と1/4等値線、同一格子の時間収束、全域と中央領域の境界誤差を別保存します。実数算術の離散障壁と、実測した浮動小数点の余裕を区別します。",
+            "en": "Save exact-profile and quarter-contour errors, same-grid time convergence and full/core boundary errors. Distinguish a real-arithmetic discrete barrier from the observed floating-point margin."
+          },
+          "limits": {
+            "ja": "特殊前線を一般の最小速度2の前線と同一視しません。急減衰初期値からの速度選択、長時間伝播、機械誤差込みの厳密障壁証明は対象外です。",
+            "en": "The special front is distinct from the minimum linear speed2. This is not a steep-data speed-selection study, long-time propagation result or certified machine-error barrier proof."
+          },
+          "domains": [
+            "biology"
+          ],
+          "code_files": [
+            "run.py",
+            "common.py",
+            "fisher.py"
+          ],
+          "reference_files": [
+            "PROTOCOL.md",
+            "source-reading.json",
+            "acceptance.json"
+          ],
+          "references": [
+            {
+              "id": "ablowitz-zeppetella1979",
+              "title": "Ablowitz–Zeppetella(1979), Explicit solutions of Fisher’s equation for a special wave speed",
+              "url": "https://doi.org/10.1007/BF02462380",
+              "year": 1979,
+              "year_role": "publication",
+              "review_level": "selected-primary-or-bibliographic-see-provenance",
+              "review": {
+                "ja": "source-reading.jsonに実際の読取範囲と未読部分を記録。原著の全式・全図の再現とは主張しません。",
+                "en": "Actual selected read scopes and unread limits are recorded in source-reading.json; no full original-paper equation/figure reproduction claim."
+              }
+            }
+          ],
+          "additional_figures": [
+            {
+              "file": "fisher-kpp-special-front-diagnostics.png",
+              "caption": {
+                "ja": "精度・参照・統計の実測値と未達目標を分けて表示します。",
+                "en": "Separate actual accuracy,reference and statistical measurements,including unmet targets."
+              }
+            }
+          ],
+          "formulas": [
+            "u_t=u_{xx}+u(1-u)",
+            "u(x,t)=[1+\\exp((x-5t/\\sqrt6)/\\sqrt6)]^{-2}"
+          ],
+          "measured": {
+            "id": "fisher-kpp-special-front",
+            "passed": true,
+            "checks": {
+              "Fisher/exact-PDE": true,
+              "Fisher/wrong-special-speed-detected": true,
+              "Fisher/finite-space/0.5": true,
+              "Fisher/finite-space/0.25": true,
+              "Fisher/finite-space/0.125": true,
+              "Fisher/semidiscrete-reference": true
+            },
+            "metrics": {
+              "fixed_records": 11,
+              "Fisher/space-finest/actual": 9.239320837961529e-06,
+              "Fisher/space-order/actual": 1.9958436278085308,
+              "Fisher/phase/actual": 0.0002657675674280213,
+              "Fisher/time-order/actual": 3.0607173908690903,
+              "Fisher/time-finest/actual": 1.8780066390888805e-10,
+              "Fisher/observed-boundary-margin/observed_margin": 9.999999795441408e-05
+            },
+            "records": [
+              {
+                "id": "fisher-components",
+                "special_speed": 2.041241452319315,
+                "minimum_linear_speed": 2.0,
+                "same_profile_speed2_not_exact": true,
+                "real_arithmetic_boundary_barrier": "2exp(sigma-18), sigma=1+128(cosh(.25)-1)<6 -> <1e-4",
+                "floating_point_certificate": false,
+                "barrier_scope": "L12vsL24,constantends,|x|<=3,real discrete maximum principle",
+                "data": null
+              },
+              {
+                "id": "fisher-space-0p5",
+                "h": 0.5,
+                "steps": 80,
+                "Linf": 0.00014732589111010608,
+                "quarter_contour": 2.041867208238213,
+                "min": 5.474568235775531e-05,
+                "max": 0.9935521970915635,
+                "Euler_monotonicity_bound": 0.1125,
+                "data": "fisher-space-0p5.npz"
+              },
+              {
+                "id": "fisher-space-0p25",
+                "h": 0.25,
+                "steps": 320,
+                "Linf": 3.685096347005867e-05,
+                "quarter_contour": 2.0417896707895355,
+                "min": 5.474568235775531e-05,
+                "max": 0.9935521970915635,
+                "Euler_monotonicity_bound": 0.10312500000000001,
+                "data": "fisher-space-0p25.npz"
+              },
+              {
+                "id": "fisher-space-0p125",
+                "h": 0.125,
+                "steps": 1280,
+                "Linf": 9.239320837961529e-06,
+                "quarter_contour": 2.041507219886743,
+                "min": 5.474568235775531e-05,
+                "max": 0.9935521970915635,
+                "Euler_monotonicity_bound": 0.10078125,
+                "data": "fisher-space-0p125.npz"
+              },
+              {
+                "id": "fisher-time-reference",
+                "qualified": true,
+                "spread": 2.886579864025407e-15,
+                "solvers": [
+                  {
+                    "method": "DP54",
+                    "accepted": 402,
+                    "rejected": 0,
+                    "nfev": 2814,
+                    "rtol": 1e-11,
+                    "atol": 1e-13,
+                    "complete": true
+                  },
+                  {
+                    "method": "DP54",
+                    "accepted": 561,
+                    "rejected": 0,
+                    "nfev": 3927,
+                    "rtol": 1e-13,
+                    "atol": 1e-15,
+                    "complete": true
+                  }
+                ],
+                "scope": "The SAME95interior-nodeMOL, not continuumexactfront",
+                "data": "fisher-time-reference.npz"
+              },
+              {
+                "id": "fisher-time-100",
+                "steps": 100,
+                "dt": 0.01,
+                "same_MOL_error": 1.3592351688629378e-08,
+                "data": "fisher-time-100.npz"
+              },
+              {
+                "id": "fisher-time-200",
+                "steps": 200,
+                "dt": 0.005,
+                "same_MOL_error": 1.566985097234408e-09,
+                "data": "fisher-time-200.npz"
+              },
+              {
+                "id": "fisher-time-400",
+                "steps": 400,
+                "dt": 0.0025,
+                "same_MOL_error": 1.8780066390888805e-10,
+                "data": "fisher-time-400.npz"
+              },
+              {
+                "id": "fisher-boundary-6",
+                "L": 6,
+                "h": 0.125,
+                "steps": 1280,
+                "core_error": 0.0026663312871475497,
+                "full_error": 0.15263532851013306,
+                "initial_boundary_mismatch": [
+                  0.15263532851013306,
+                  0.006316414121400317
+                ],
+                "data": "fisher-boundary-6.npz"
+              },
+              {
+                "id": "fisher-boundary-12",
+                "L": 12,
+                "h": 0.125,
+                "steps": 1280,
+                "core_error": 9.239320838239085e-06,
+                "full_error": 0.014743319374636132,
+                "initial_boundary_mismatch": [
+                  0.014743319374636132,
+                  5.474568235775531e-05
+                ],
+                "data": "fisher-boundary-12.npz"
+              },
+              {
+                "id": "fisher-boundary-24",
+                "L": 24,
+                "h": 0.125,
+                "steps": 1280,
+                "core_error": 9.239320837961529e-06,
+                "full_error": 0.0001111205249660907,
+                "initial_boundary_mismatch": [
+                  0.0001111205249660907,
+                  3.0871142904547678e-09
+                ],
+                "data": "fisher-boundary-24.npz"
+              }
+            ]
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fisher-kpp-special-front/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology-space-controls/#fisher-kpp-special-front",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology-space-controls/#fisher-kpp-special-front"
+          }
+        },
+        {
+          "id": "keller-segel-forced-flux",
+          "method_ids": [
+            "ssprk33",
+            "rk45"
+          ],
+          "title": {
+            "ja": "Keller–Segel：連成流束の製造解",
+            "en": "Keller–Segel: a manufactured coupled-flux solution"
+          },
+          "summary": {
+            "ja": "滑らかな2D厳密場で、交差流束・段時刻・収支を検証します。",
+            "en": "Use smooth exact2D fields to test cross fluxes, stage timing and mass ledgers."
+          },
+          "assumptions": {
+            "ja": "単位正方形、T=0.25。n=1+0.1e⁻ᵗcosπx cosπy、c=1+0.05e⁻²ᵗcosπx cos2πyに合う強制項と接線方向の発散ゼロ移流を与えます。",
+            "en": "On the unit square toT.25,manufacture forcing for n=1+.1e⁻ᵗcosπx cosπy,c=1+.05e⁻²ᵗcosπx cos2πy with divergence-free tangential advection."
+          },
+          "algorithm": {
+            "ja": "セル平均の中心面流束とSSPRK3を使い、n/c/強制項を同じ段に揃えます。展開した三角多項式の積分を、別の未展開積分とスカラー面ループ参照で確認します。",
+            "en": "Use cell-average centered face fluxes and SSPRK3 with n,c and forcing at the same stage. Check expanded trigonometric integrals against independent unexpanded integrals and scalar face-loop references."
+          },
+          "validation": {
+            "ja": "36点の源項、96セル状態ベクトル、符号・欠落連成・古い段・面重複の負例を検査。空間・同一MOL時間・正値性・実際の段収支を分けて保存します。",
+            "en": "Qualify36source pairs,96cell-state vectors and wrong-sign,omitted-coupling,stale-stage and face-duplication controls. Separate spatial,same-MOL time,positivity and actual stage-ledger outcomes."
+          },
+          "limits": {
+            "ja": "著者作成の強制2場モデルです。原著の全生物モデル、ピーク形成、真のblow-upやその抑制を実証しません。負値をクリップして正値性を装いません。",
+            "en": "This authored forced two-field model does not reproduce the full original biological model or demonstrate aggregation, true blow-up or suppression. No clipping is used to manufacture positivity."
+          },
+          "domains": [
+            "biology"
+          ],
+          "code_files": [
+            "run.py",
+            "common.py",
+            "keller_segel.py"
+          ],
+          "reference_files": [
+            "PROTOCOL.md",
+            "source-reading.json",
+            "acceptance.json"
+          ],
+          "references": [
+            {
+              "id": "atlas-forced-keller-segel-mms-2026-11-25",
+              "title": "Atlas authored Keller–Segel manufactured fields, forcing and finite-volume balance controls (2026-11-25)",
+              "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/keller_segel.py",
+              "source": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/PROTOCOL.md",
+              "year": 2026,
+              "year_role": "atlas-authored-edition",
+              "review_level": "authored-formulas-and-actually-executed-component-checks",
+              "review": {
+                "ja": "本アトラス独自の製造解・外力・面流束の導出と実装です。保存された成分検査・独立なスカラー面/RHS参照・セル平均照合の範囲に限ります。原著論文の読了や元の無外力問題の再現を主張しません。",
+                "en": "Atlas-authored manufactured fields, forcing and face-flux derivation/implementation. Evidence is limited to saved component checks, independently written scalar-face/RHS references and cell-average comparisons. No original-paper full-text reading or reproduction of the unforced original problem is claimed."
+              }
+            }
+          ],
+          "additional_figures": [
+            {
+              "file": "keller-segel-forced-flux-diagnostics.png",
+              "caption": {
+                "ja": "精度・参照・統計の実測値と未達目標を分けて表示します。",
+                "en": "Separate actual accuracy,reference and statistical measurements,including unmet targets."
+              }
+            }
+          ],
+          "formulas": [
+            "n_t+\\nabla\\cdot(wn)=D_n\\Delta n-\\chi\\nabla\\cdot(n\\nabla c)+rn(1-n)+s_n",
+            "\\tau c_t=D_c\\Delta c+\\alpha n-\\lambda c+s_c"
+          ],
+          "measured": {
+            "id": "keller-segel-forced-flux",
+            "passed": true,
+            "checks": {
+              "KS/source_point_pairs36": true,
+              "KS/wholegrid_RHS_vectorpairs96": true,
+              "KS/divergence_free_faces": true,
+              "KS/independent_velocity": true,
+              "KS/wrong_chi_detected": true,
+              "KS/omitted_coupling_detected": true,
+              "KS/stale_source_time_detected": true,
+              "KS/duplicated_external_face_detected": true,
+              "KS/massledger/12": true,
+              "KS/massledger/24": true,
+              "KS/massledger/48": true,
+              "KS/reference": true,
+              "KS/constant-control": true
+            },
+            "metrics": {
+              "fixed_records": 10,
+              "KS/time-order/actual": 3.0037445404571113,
+              "KS/space-finest/0/actual": 0.0001221189660198796,
+              "KS/space-order/0/actual": 1.9965225132866062,
+              "KS/space-finest/1/actual": 2.9817290057465584e-05,
+              "KS/space-order/1/actual": 1.988907316937278,
+              "KS/time-contamination/actual": 1.893596390800667e-12
+            },
+            "records": [
+              {
+                "id": "KS-components",
+                "source_probe_errors": [
+                  1.743057661661681e-17,
+                  0.0,
+                  5.567246105721821e-17,
+                  0.0,
+                  7.331022943903909e-17,
+                  1.1273611683325498e-16,
+                  1.155751671135632e-16,
+                  9.176709363971631e-17,
+                  3.3042351923367754e-17,
+                  0.0,
+                  2.3987610560004725e-17,
+                  1.6733836901180518e-16,
+                  1.3288849832387691e-16,
+                  1.063397404910753e-16,
+                  5.965646603830402e-17,
+                  2.019420333428594e-17,
+                  8.075139069961866e-17,
+                  1.1376352429826677e-16,
+                  9.537453544297961e-18,
+                  4.7415203793282976e-17,
+                  1.3291310778163528e-17,
+                  3.935901640243106e-17,
+                  2.4376455543235746e-17,
+                  6.227408030443852e-17,
+                  2.0388109045349676e-17,
+                  4.491019965895992e-17,
+                  6.327483384510945e-17,
+                  6.485546015926426e-17,
+                  6.930022394244165e-17,
+                  8.926903575388533e-17,
+                  4.049481017529868e-17,
+                  1.2179397477570174e-17,
+                  1.0686112603087862e-16,
+                  7.282314889259799e-17,
+                  2.4730233622395917e-17,
+                  8.357605320993966e-17
+                ],
+                "wholegrid_RHS_errors": [
+                  7.98373580700796e-17,
+                  3.739870524936518e-17,
+                  1.5017262866255578e-16,
+                  3.96194504320184e-17,
+                  9.850777372941522e-17,
+                  4.163682882480494e-17
+                ],
+                "zero_frequency_integral": "mean cos0=1; cosacosb=.5(cos(a-b)+cos(a+b)); sinasinb=.5(cos(a-b)-cos(a+b))",
+                "continuum_integrals": "integraln=integralc=1; integralreactionn=-r*A²/4; integralsn=+r*A²/4; integralsc=0",
+                "data": null
+              },
+              {
+                "id": "KS-space-N12",
+                "N": 12,
+                "steps": 1024,
+                "dt": 0.000244140625,
+                "minimum": [
+                  0.9022638544007324,
+                  0.9527970664018593
+                ],
+                "integrated_reaction": [
+                  -4.8811926832839186e-05,
+                  5.685308987443972e-08
+                ],
+                "integrated_source": [
+                  4.9183667535921016e-05,
+                  -1.495640583716623e-20
+                ],
+                "mass_residual": [
+                  -1.9490566929500353e-16,
+                  -8.289384608127543e-17
+                ],
+                "mass_scale": [
+                  2.000097995594369,
+                  2.00000005685309
+                ],
+                "Linf_fields": [
+                  0.0019229529613318253,
+                  0.0004558503710181405
+                ],
+                "data": "KS-space-N12.npz"
+              },
+              {
+                "id": "KS-space-N24",
+                "N": 24,
+                "steps": 1024,
+                "dt": 0.000244140625,
+                "minimum": [
+                  0.9005698543736446,
+                  0.9507102465265501
+                ],
+                "integrated_reaction": [
+                  -4.909041989231419e-05,
+                  1.426894292249008e-08
+                ],
+                "integrated_source": [
+                  4.918366753592049e-05,
+                  2.996477087132836e-20
+                ],
+                "mass_residual": [
+                  3.3203691532368573e-19,
+                  -2.2844662815889056e-16
+                ],
+                "mass_scale": [
+                  2.0000982740874282,
+                  2.000000014268943
+                ],
+                "Linf_fields": [
+                  0.0004872998548195451,
+                  0.00011835563261164417
+                ],
+                "data": "KS-space-N24.npz"
+              },
+              {
+                "id": "KS-space-N48",
+                "N": 48,
+                "steps": 1024,
+                "dt": 0.000244140625,
+                "minimum": [
+                  0.9001427078852056,
+                  0.9501782550064043
+                ],
+                "integrated_reaction": [
+                  -4.916033546238315e-05,
+                  3.5707755966428794e-09
+                ],
+                "integrated_source": [
+                  4.918366753592075e-05,
+                  -2.6486935940327674e-21
+                ],
+                "mass_residual": [
+                  6.889427179787577e-17,
+                  7.850329195907732e-17
+                ],
+                "mass_scale": [
+                  2.0000983440029985,
+                  2.0000000035707757
+                ],
+                "Linf_fields": [
+                  0.0001221189660198796,
+                  2.9817290057465584e-05
+                ],
+                "data": "KS-space-N48.npz"
+              },
+              {
+                "id": "KS-time-reference",
+                "qualified": true,
+                "spread": 0.0,
+                "solvers": [
+                  {
+                    "method": "DP54",
+                    "accepted": 67,
+                    "rejected": 0,
+                    "nfev": 469,
+                    "rtol": 2e-10,
+                    "atol": 1e-12,
+                    "complete": true
+                  },
+                  {
+                    "method": "DP54",
+                    "accepted": 67,
+                    "rejected": 0,
+                    "nfev": 469,
+                    "rtol": 5e-12,
+                    "atol": 2e-14,
+                    "complete": true
+                  }
+                ],
+                "scope": "Same24x24MOL, scalar face ownership and independent unexpanded analytic cellsource",
+                "data": "KS-time-reference.npz"
+              },
+              {
+                "id": "KS-time-64",
+                "N": 24,
+                "steps": 64,
+                "dt": 0.00390625,
+                "minimum": [
+                  0.9005698543736446,
+                  0.9507102465265501
+                ],
+                "integrated_reaction": [
+                  -4.909042056683601e-05,
+                  1.4269308586965537e-08
+                ],
+                "integrated_source": [
+                  4.9183667535984124e-05,
+                  3.684593320556207e-20
+                ],
+                "mass_residual": [
+                  1.0905040976130764e-16,
+                  3.657994997087319e-17
+                ],
+                "mass_scale": [
+                  2.000098274088103,
+                  2.0000000142693084
+                ],
+                "same_MOL_error": 8.777474524990225e-09,
+                "data": "KS-time-64.npz"
+              },
+              {
+                "id": "KS-time-128",
+                "N": 24,
+                "steps": 128,
+                "dt": 0.001953125,
+                "minimum": [
+                  0.9005698543736446,
+                  0.9507102465265501
+                ],
+                "integrated_reaction": [
+                  -4.909041997674902e-05,
+                  1.4268988426072723e-08
+                ],
+                "integrated_source": [
+                  4.91836675359245e-05,
+                  2.303459042672111e-20
+                ],
+                "mass_residual": [
+                  5.420333236069719e-17,
+                  9.166273653102473e-18
+                ],
+                "mass_scale": [
+                  2.0000982740875126,
+                  2.000000014268988
+                ],
+                "same_MOL_error": 1.0914410486506654e-09,
+                "data": "KS-time-128.npz"
+              },
+              {
+                "id": "KS-time-256",
+                "N": 24,
+                "steps": 256,
+                "dt": 0.0009765625,
+                "minimum": [
+                  0.9005698543736446,
+                  0.9507102465265501
+                ],
+                "integrated_reaction": [
+                  -4.909041990273799e-05,
+                  1.4268948479360648e-08
+                ],
+                "integrated_source": [
+                  4.918366753592076e-05,
+                  3.1861771742783264e-20
+                ],
+                "mass_residual": [
+                  2.098134491666792e-16,
+                  -1.2159365181897086e-17
+                ],
+                "mass_scale": [
+                  2.000098274087439,
+                  2.0000000142689487
+                ],
+                "same_MOL_error": 1.3607648341462664e-10,
+                "data": "KS-time-256.npz"
+              },
+              {
+                "id": "KS-halfdt-N48",
+                "N": 48,
+                "steps": 2048,
+                "dt": 0.0001220703125,
+                "minimum": [
+                  0.9001427078852056,
+                  0.9501782550064043
+                ],
+                "integrated_reaction": [
+                  -4.9160335462243064e-05,
+                  3.5707755179330368e-09
+                ],
+                "integrated_source": [
+                  4.918366753592083e-05,
+                  -2.1748110119968244e-21
+                ],
+                "mass_residual": [
+                  -7.126596405018781e-17,
+                  -6.48319442294641e-17
+                ],
+                "mass_scale": [
+                  2.0000983440029985,
+                  2.0000000035707757
+                ],
+                "data": "KS-halfdt-N48.npz"
+              },
+              {
+                "id": "KS-constant-unforced",
+                "N": 24,
+                "steps": 256,
+                "dt": 0.0009765625,
+                "minimum": [
+                  1.0,
+                  1.0
+                ],
+                "integrated_reaction": [
+                  0.0,
+                  0.0
+                ],
+                "integrated_source": [
+                  0.0,
+                  0.0
+                ],
+                "mass_residual": [
+                  0.0,
+                  0.0
+                ],
+                "mass_scale": [
+                  2.0,
+                  2.0
+                ],
+                "data": "KS-constant-unforced.npz"
+              }
+            ]
+          },
+          "entry": "https://hrkoyama.github.io/numerical-methods-atlas/validation/keller-segel-forced-flux/",
+          "reading": {
+            "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology-space-controls/#keller-segel-forced-flux",
+            "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology-space-controls/#keller-segel-forced-flux"
+          }
+        }
+      ]
+    }
+  ],
+  "supplemental_scope_profiles": [
+    {
+      "release": {
+        "group": "biology-space-controls",
+        "edition": "2026-11-25",
+        "case_ids": [
+          "fisher-kpp-special-front",
+          "keller-segel-forced-flux"
+        ]
+      },
+      "scope": {
+        "ja": "波形・位置・格子誤差・時間誤差・有限領域の影響を分けます。; 滑らかな2D厳密場で、交差流束・段時刻・収支を検証します。",
+        "en": "Separate profile, phase, grid, time and finite-boundary errors.; Use smooth exact2D fields to test cross fluxes, stage timing and mass ledgers."
+      },
+      "limits": [
+        {
+          "ja": "特殊前線を一般の最小速度2の前線と同一視しません。急減衰初期値からの速度選択、長時間伝播、機械誤差込みの厳密障壁証明は対象外です。",
+          "en": "The special front is distinct from the minimum linear speed2. This is not a steep-data speed-selection study, long-time propagation result or certified machine-error barrier proof."
+        },
+        {
+          "ja": "著者作成の強制2場モデルです。原著の全生物モデル、ピーク形成、真のblow-upやその抑制を実証しません。負値をクリップして正値性を装いません。",
+          "en": "This authored forced two-field model does not reproduce the full original biological model or demonstrate aggregation, true blow-up or suppression. No clipping is used to manufacture positivity."
+        }
+      ]
     }
   ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk33/",
@@ -6955,7 +7659,12 @@
     "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/references/qualify_reference.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/run.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/relativistic.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/references/exact.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/references/exact.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/run.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/common.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/fisher.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/keller_segel.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/schnakenberg.py"
   ],
   "test_urls": [
     "https://hrkoyama.github.io/code/numerical-methods-atlas/2026-11-21/tests/test_time_geometry.py",
@@ -6964,7 +7673,8 @@
     "https://hrkoyama.github.io/code/validated-examples/2026-11-23/low-mach/test_low_mach.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-23-r2/euler-positivity/test_euler_positivity.py",
     "https://hrkoyama.github.io/code/validated-examples/2026-11-23/zalesak/test_rotation.py",
-    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/test_relativistic.py"
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-23/relativistic/test_relativistic.py",
+    "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/test_models.py"
   ],
   "run_commands": [
     "python -m pytest -q tests/test_time_geometry.py tests/test_runge_kutta.py tests/test_hamiltonian.py"
@@ -7015,6 +7725,24 @@
       "guide": {
         "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/srmhd-alfven/?lang=ja",
         "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/srmhd-alfven/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "fisher-kpp-special-front",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fisher-kpp-special-front/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fisher-kpp-special-front/?lang=en"
+      },
+      "kind": "dedicated-supplement"
+    },
+    {
+      "id": "keller-segel-forced-flux",
+      "registry_url": "https://hrkoyama.github.io/numerical-methods-atlas/validation/releases.json",
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/keller-segel-forced-flux/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/keller-segel-forced-flux/?lang=en"
       },
       "kind": "dedicated-supplement"
     }
@@ -7136,6 +7864,48 @@
         "url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#srmhd-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#srmhd-en"
+        }
+      },
+      {
+        "id": "bio-fisher-kpp",
+        "name": {
+          "ja": "Fisher–KPP侵入前線",
+          "en": "Fisher–KPP invasion front"
+        },
+        "problem_ids": [
+          "fisher-kpp-special-front"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-fisher-kpp-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-fisher-kpp-en"
+        }
+      },
+      {
+        "id": "bio-keller-segel",
+        "name": {
+          "ja": "Keller–Segel走化性",
+          "en": "Keller–Segel chemotaxis"
+        },
+        "problem_ids": [
+          "keller-segel-forced-flux"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-keller-segel-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-keller-segel-en"
+        }
+      },
+      {
+        "id": "forced-keller-segel-model",
+        "name": {
+          "ja": "外力・移流付きKeller–Segel製造問題",
+          "en": "Forced advective Keller–Segel manufactured problem"
+        },
+        "problem_ids": [
+          "keller-segel-forced-flux"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#forced-keller-segel-model-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#forced-keller-segel-model-en"
         }
       }
     ],
@@ -7737,6 +8507,126 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/srmhd-alfven/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/srmhd-alfven/?lang=en#references-en"
         }
+      },
+      {
+        "id": "fisher-kpp-special-front",
+        "name": {
+          "ja": "Fisher–KPP：特殊波速の厳密前線",
+          "en": "Fisher–KPP: a special-speed exact front"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/results/fisher-kpp-special-front.png",
+          "sha256": "1f78a6525f5f45a54a61f6a8d1e6a3f95e34d85a3d9211ef386d42fd8c8378a3",
+          "width": 1624,
+          "height": 667,
+          "caption": {
+            "ja": "波形・位置・格子誤差・時間誤差・有限領域の影響を分けます。 特殊前線を一般の最小速度2の前線と同一視しません。急減衰初期値からの速度選択、長時間伝播、機械誤差込みの厳密障壁証明は対象外です。",
+            "en": "Separate profile, phase, grid, time and finite-boundary errors. The special front is distinct from the minimum linear speed2. This is not a steep-data speed-selection study, long-time propagation result or certified machine-error barrier proof."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fisher-kpp-special-front/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fisher-kpp-special-front/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fisher-kpp-special-front/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fisher-kpp-special-front/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "fisher-kpp-special-front",
+            "kind": "supplement",
+            "name": {
+              "ja": "Fisher–KPP：特殊波速の厳密前線",
+              "en": "Fisher–KPP: a special-speed exact front"
+            },
+            "scope": {
+              "ja": "波形・位置・格子誤差・時間誤差・有限領域の影響を分けます。",
+              "en": "Separate profile, phase, grid, time and finite-boundary errors."
+            },
+            "method_ids": [
+              "ssprk33",
+              "rk45"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fisher-kpp-special-front/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fisher-kpp-special-front/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/atlas-biology-space-controls-2026-11-25.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "2次中心差分とSSPRK3で計算し、厳密Dirichlet値を各段の時刻で与えます。時間誤差は同じ95未知数の半離散ODE参照と比較します。",
+          "en": "Use centered second-order differences and SSPRK3 with exact Dirichlet values at every stage. Compare time errors to an independent reference for the same95-unknown semidiscreteODE."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fisher-kpp-special-front/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fisher-kpp-special-front/?lang=en#references-en"
+        }
+      },
+      {
+        "id": "keller-segel-forced-flux",
+        "name": {
+          "ja": "Keller–Segel：連成流束の製造解",
+          "en": "Keller–Segel: a manufactured coupled-flux solution"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/results/keller-segel-forced-flux.png",
+          "sha256": "cf69138e069f3f733193297d9d526814e6d491655054f660a679c3ec530956f1",
+          "width": 1827,
+          "height": 623,
+          "caption": {
+            "ja": "滑らかな2D厳密場で、交差流束・段時刻・収支を検証します。 著者作成の強制2場モデルです。原著の全生物モデル、ピーク形成、真のblow-upやその抑制を実証しません。負値をクリップして正値性を装いません。",
+            "en": "Use smooth exact2D fields to test cross fluxes, stage timing and mass ledgers. This authored forced two-field model does not reproduce the full original biological model or demonstrate aggregation, true blow-up or suppression. No clipping is used to manufacture positivity."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/keller-segel-forced-flux/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/keller-segel-forced-flux/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/keller-segel-forced-flux/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/keller-segel-forced-flux/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "keller-segel-forced-flux",
+            "kind": "supplement",
+            "name": {
+              "ja": "Keller–Segel：連成流束の製造解",
+              "en": "Keller–Segel: a manufactured coupled-flux solution"
+            },
+            "scope": {
+              "ja": "滑らかな2D厳密場で、交差流束・段時刻・収支を検証します。",
+              "en": "Use smooth exact2D fields to test cross fluxes, stage timing and mass ledgers."
+            },
+            "method_ids": [
+              "ssprk33",
+              "rk45"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/keller-segel-forced-flux/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/keller-segel-forced-flux/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/atlas-biology-space-controls-2026-11-25.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "セル平均の中心面流束とSSPRK3を使い、n/c/強制項を同じ段に揃えます。展開した三角多項式の積分を、別の未展開積分とスカラー面ループ参照で確認します。",
+          "en": "Use cell-average centered face fluxes and SSPRK3 with n,c and forcing at the same stage. Check expanded trigonometric integrals against independent unexpanded integrals and scalar face-loop references."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/keller-segel-forced-flux/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/keller-segel-forced-flux/?lang=en#references-en"
+        }
       }
     ],
     "references": [
@@ -8134,6 +9024,74 @@
             "view": {
               "ja": "/numerical-methods-atlas/validation/srmhd-alfven/?lang=ja#srmhd-alfven-ja-measurements",
               "en": "/numerical-methods-atlas/validation/srmhd-alfven/?lang=en#srmhd-alfven-en-measurements"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "fisher-kpp-special-front",
+        "problem_name": {
+          "ja": "Fisher–KPP：特殊波速の厳密前線",
+          "en": "Fisher–KPP: a special-speed exact front"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fisher-kpp-special-front/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fisher-kpp-special-front/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "fisher-kpp-special-front",
+            "title": {
+              "ja": "Fisher–KPP：特殊波速の厳密前線",
+              "en": "Fisher–KPP: a special-speed exact front"
+            },
+            "kind": "analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "特殊前線を一般の最小速度2の前線と同一視しません。急減衰初期値からの速度選択、長時間伝播、機械誤差込みの厳密障壁証明は対象外です。",
+              "en": "The special front is distinct from the minimum linear speed2. This is not a steep-data speed-selection study, long-time propagation result or certified machine-error barrier proof."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-fisher-kpp-special-front-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-fisher-kpp-special-front-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/fisher-kpp-special-front/?lang=ja#fisher-kpp-special-front-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/fisher-kpp-special-front/?lang=en#fisher-kpp-special-front-en-measurements"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "keller-segel-forced-flux",
+        "problem_name": {
+          "ja": "Keller–Segel：連成流束の製造解",
+          "en": "Keller–Segel: a manufactured coupled-flux solution"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/keller-segel-forced-flux/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/keller-segel-forced-flux/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "keller-segel-forced-flux",
+            "title": {
+              "ja": "Keller–Segel：連成流束の製造解",
+              "en": "Keller–Segel: a manufactured coupled-flux solution"
+            },
+            "kind": "manufactured",
+            "relation": "same-problem",
+            "note": {
+              "ja": "著者作成の強制2場モデルです。原著の全生物モデル、ピーク形成、真のblow-upやその抑制を実証しません。負値をクリップして正値性を装いません。",
+              "en": "This authored forced two-field model does not reproduce the full original biological model or demonstrate aggregation, true blow-up or suppression. No clipping is used to manufacture positivity."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-keller-segel-forced-flux-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-keller-segel-forced-flux-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/keller-segel-forced-flux/?lang=ja#keller-segel-forced-flux-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/keller-segel-forced-flux/?lang=en#keller-segel-forced-flux-en-measurements"
             }
           }
         ]

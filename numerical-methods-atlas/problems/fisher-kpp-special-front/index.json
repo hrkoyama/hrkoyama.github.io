@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "id": "fisher-kpp-special-front",
+  "name": {
+    "ja": "Fisher–KPP：特殊波速の厳密前線",
+    "en": "Fisher–KPP: a special-speed exact front"
+  },
+  "url": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fisher-kpp-special-front/",
+  "hub": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fisher-kpp-special-front/?lang=ja",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/fisher-kpp-special-front/?lang=en"
+  },
+  "image": {
+    "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/results/fisher-kpp-special-front.png",
+    "sha256": "1f78a6525f5f45a54a61f6a8d1e6a3f95e34d85a3d9211ef386d42fd8c8378a3",
+    "width": 1624,
+    "height": 667,
+    "caption": {
+      "ja": "波形・位置・格子誤差・時間誤差・有限領域の影響を分けます。 特殊前線を一般の最小速度2の前線と同一視しません。急減衰初期値からの速度選択、長時間伝播、機械誤差込みの厳密障壁証明は対象外です。",
+      "en": "Separate profile, phase, grid, time and finite-boundary errors. The special front is distinct from the minimum linear speed2. This is not a steep-data speed-selection study, long-time propagation result or certified machine-error barrier proof."
+    },
+    "source_kind": "existing-figure"
+  },
+  "reading": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/ja/read/validation-biology-space-controls/#fisher-kpp-special-front",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/en/read/validation-biology-space-controls/#fisher-kpp-special-front"
+  },
+  "conditions": {
+    "ja": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=ja#fisher-kpp-special-front",
+    "en": "https://hrkoyama.github.io/numerical-methods-atlas/test-cases/?lang=en#fisher-kpp-special-front-en"
+  },
+  "equations": [
+    {
+      "id": "bio-fisher-kpp",
+      "name": {
+        "ja": "Fisher–KPP侵入前線",
+        "en": "Fisher–KPP invasion front"
+      },
+      "formula": [
+        "u_t=D\\Delta u+ru(1-u)",
+        "0\\leq u\\leq1"
+      ],
+      "note": {
+        "ja": "拡散と増殖を結ぶ侵入前線。表示は規格化した代表形で、波の速度と境界条件は解説先へ。 全モデル族の実装ではありません。今回の固定例：Fisher–KPP：特殊波速の厳密前線",
+        "en": "Spatial spread of an invading population or advantageous allele, represented by a reaction–diffusion front. Fisher–KPP is a conventional family name; the independent KPP 1937 original remains an archival follow-up. The exact special speed is not the minimal speed. Not implementation of the entire model family. Fixed cases: Fisher–KPP: a special-speed exact front"
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-fisher-kpp-ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-fisher-kpp-en"
+      }
+    }
+  ],
+  "equation_note": {
+    "ja": "D=r=1、T=1。Ablowitz–Zeppetella型の特殊波速5/√6、L=12の空間・時間系列、定数端点L=6/12/24の境界比較を固定します。",
+    "en": "Use D=r=1,T=1 and the special speed5/√6. Fix spatial/time series on L12 and constant-endpoint boundary rows at L6/12/24."
+  },
+  "formulations": [
+    {
+      "id": "supplement-fisher-kpp-special-front",
+      "name": {
+        "ja": "Fisher–KPP：特殊波速の厳密前線",
+        "en": "Fisher–KPP: a special-speed exact front"
+      },
+      "source": "supplement",
+      "role": "example-definition",
+      "latex": [
+        "u_t=u_{xx}+u(1-u)",
+        "u(x,t)=[1+\\exp((x-5t/\\sqrt6)/\\sqrt6)]^{-2}"
+      ],
+      "note": {
+        "ja": "波形・位置・格子誤差・時間誤差・有限領域の影響を分けます。",
+        "en": "Separate profile, phase, grid, time and finite-boundary errors."
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "fisher-kpp-special-front",
+      "kind": "analytic",
+      "kind_label": {
+        "ja": "解析解",
+        "en": "Analytic reference"
+      },
+      "title": {
+        "ja": "Fisher–KPP：特殊波速の厳密前線",
+        "en": "Fisher–KPP: a special-speed exact front"
+      },
+      "formula": "u_t=u_{xx}+u(1-u);\\quad u(x,t)=[1+\\exp((x-5t/\\sqrt6)/\\sqrt6)]^{-2}",
+      "assumptions": {
+        "ja": "D=r=1、T=1、特殊速度5/√6を固定。L=12で空間・時間系列を調べ、L=6/12/24で定数端点の境界系列を比較します。無次元で拡散係数と反応率は1。厳密前線の境界値と定数境界を区別し、有限領域の影響を残します。",
+        "en": "Use D=r=1,T=1 and the special speed5/√6. Fix spatial/time series on L12 and constant-endpoint boundary rows at L6/12/24. Dimensionless; diffusion coefficient and reaction rate equal 1. Separate exact-front and constant boundary experiments; retain finite-domain effects."
+      },
+      "relation": "same-problem",
+      "note": {
+        "ja": "特殊前線を一般の最小速度2の前線と同一視しません。急減衰初期値からの速度選択、長時間伝播、機械誤差込みの厳密障壁証明は対象外です。",
+        "en": "The special front is distinct from the minimum linear speed2. This is not a steep-data speed-selection study, long-time propagation result or certified machine-error barrier proof."
+      },
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fisher-kpp-special-front/?lang=ja#fisher-kpp-special-front-ja-measurements",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fisher-kpp-special-front/?lang=en#fisher-kpp-special-front-en-measurements"
+      }
+    }
+  ],
+  "reference_note": {
+    "ja": "厳密波形と1/4等値線、同一格子の時間収束、全域と中央領域の境界誤差を別保存します。実数算術の離散障壁と、実測した浮動小数点の余裕を区別します。",
+    "en": "Save exact-profile and quarter-contour errors, same-grid time convergence and full/core boundary errors. Distinguish a real-arithmetic discrete barrier from the observed floating-point margin."
+  },
+  "methods": [
+    {
+      "id": "ssprk33",
+      "name": {
+        "ja": "SSPRK(3,3)",
+        "en": "SSPRK(3,3)"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk33/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/ssprk33/?lang=en"
+      }
+    },
+    {
+      "id": "rk45",
+      "name": {
+        "ja": "Dormand–Prince RK45",
+        "en": "Dormand–Prince RK45"
+      },
+      "status": "educational-example",
+      "role": "execution",
+      "url": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk45/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/methods/rk45/?lang=en"
+      }
+    }
+  ],
+  "method_note": {
+    "ja": "2次中心差分とSSPRK3で計算し、厳密Dirichlet値を各段の時刻で与えます。時間誤差は同じ95未知数の半離散ODE参照と比較します。",
+    "en": "Use centered second-order differences and SSPRK3 with exact Dirichlet values at every stage. Compare time errors to an independent reference for the same95-unknown semidiscreteODE."
+  },
+  "executions": [
+    {
+      "id": "fisher-kpp-special-front",
+      "kind": "supplement",
+      "name": {
+        "ja": "Fisher–KPP：特殊波速の厳密前線",
+        "en": "Fisher–KPP: a special-speed exact front"
+      },
+      "method_ids": [
+        "ssprk33",
+        "rk45"
+      ],
+      "guide": {
+        "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fisher-kpp-special-front/?lang=ja",
+        "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/fisher-kpp-special-front/?lang=en"
+      },
+      "scope": {
+        "ja": "波形・位置・格子誤差・時間誤差・有限領域の影響を分けます。",
+        "en": "Separate profile, phase, grid, time and finite-boundary errors."
+      },
+      "assumptions": {
+        "ja": "D=r=1、T=1。Ablowitz–Zeppetella型の特殊波速5/√6、L=12の空間・時間系列、定数端点L=6/12/24の境界比較を固定します。",
+        "en": "Use D=r=1,T=1 and the special speed5/√6. Fix spatial/time series on L12 and constant-endpoint boundary rows at L6/12/24."
+      },
+      "limits": {
+        "ja": "特殊前線を一般の最小速度2の前線と同一視しません。急減衰初期値からの速度選択、長時間伝播、機械誤差込みの厳密障壁証明は対象外です。",
+        "en": "The special front is distinct from the minimum linear speed2. This is not a steep-data speed-selection study, long-time propagation result or certified machine-error barrier proof."
+      },
+      "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/inputs.json",
+      "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/atlas-biology-space-controls-2026-11-25.zip",
+      "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/verification.json",
+      "manifest": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/source-manifest.json",
+      "commands": [
+        "python -m pip install -r requirements.txt",
+        "python -m pytest -q",
+        "python run.py --input inputs.json --output output"
+      ],
+      "reference_note": {
+        "ja": "厳密波形と1/4等値線、同一格子の時間収束、全域と中央領域の境界誤差を別保存します。実数算術の離散障壁と、実測した浮動小数点の余裕を区別します。",
+        "en": "Save exact-profile and quarter-contour errors, same-grid time convergence and full/core boundary errors. Distinguish a real-arithmetic discrete barrier from the observed floating-point margin."
+      },
+      "reference_data": [],
+      "results": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/results/result.json"
+      ],
+      "code_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/run.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/common.py",
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/fisher.py"
+      ],
+      "test_urls": [
+        "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/test_models.py"
+      ],
+      "source_scope": "package"
+    }
+  ],
+  "code_checks": []
+}

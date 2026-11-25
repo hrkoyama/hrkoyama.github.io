@@ -31800,7 +31800,29 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu/?lang=en#references-en"
         },
-        "cases": []
+        "cases": [
+          {
+            "id": "bratu-lower-branch-analytic",
+            "title": {
+              "ja": "1次元Bratu：小さい枝のNewton–GMRES",
+              "en": "1D Bratu: Newton–GMRES on the lower branch"
+            },
+            "kind": "analytic",
+            "relation": "same-problem",
+            "note": {
+              "ja": "既存の固定入力・保存結果に対応する解析参照カードを追加。解析式、点・時刻・動径の標本化、配布版SHAと実行コードを相互に辿れます。過去の計算を再実行した記録ではありません。",
+              "en": "An analytic reference card now links the existing fixed inputs and saved results: formula, point/time/radial sampling, edition SHA and executable code. This metadata registration is not a new execution."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-bratu-lower-branch-analytic-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-bratu-lower-branch-analytic-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/problems/bratu/?lang=ja",
+              "en": "/numerical-methods-atlas/problems/bratu/?lang=en"
+            }
+          }
+        ]
       },
       {
         "problem_id": "cubic-root",

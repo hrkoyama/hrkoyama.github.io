@@ -57,13 +57,27 @@ Resources explicitly registered to the methods, problems and executions of this 
 
 - [Stiff cosine-tracking ODE — references and comparison conditions](<https://hrkoyama.github.io/numerical-methods-atlas/problems/stiff-cosine/?lang=en#references-en>)
 
-  Check fixed/adaptive-step errors against cos t for y′=-1000(y-cos t)-sin t with y(0)=1.
+  Check fixed/adaptive-step errors against cos t for y′=-1000(y-cos t)-sin t with y(0)=1. An analytic reference card now links the existing fixed inputs and saved results: formula, point/time/radial sampling, edition SHA and executable code. This metadata registration is not a new execution.
+- [Stiff cosine-tracking ODE: SDIRK2](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-stiff-cosine-exact-en>)
+  relation: same-problem
+  reference_kind: analytic
+
+  Analytic reference rate=1000; 1000/2000/4000 steps give rate*h=1,0.5,0.25. Uses fixed gamma=1-1/sqrt(2) and the existing Newton stage solver. Separate decay: y'=-1e8*y, y(0)=1, h=1. No adaptive stepping. An analytic reference card now links the existing fixed inputs and saved results: formula, point/time/radial sampling, edition SHA and executable code. This metadata registration is not a new execution.
 - [Nonlinear nonautonomous ODE with rational exact solution — references and comparison conditions](<https://hrkoyama.github.io/numerical-methods-atlas/problems/nonlinear-rational-ode/?lang=en#references-en>)
 
   Check temporal refinement against the manufactured exact solution 1/(1+t) for y′=-y²+sin(t)[y-1/(1+t)], y(0)=1.
+- [Stiff cosine-tracking ODE: SDIRK2](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-stiff-cosine-exact-en>)
+  reference_kind: analytic
+
+  Analytic reference rate=1000; 1000/2000/4000 steps give rate*h=1,0.5,0.25. Uses fixed gamma=1-1/sqrt(2) and the existing Newton stage solver. Separate decay: y'=-1e8*y, y(0)=1, h=1. No adaptive stepping.
 - [Stiff cosine-tracking ODE: SDIRK2 — references and checks](<https://hrkoyama.github.io/numerical-methods-atlas/code-and-data/examples/stiff-cosine/?lang=en#stiff-cosine-en-validation>)
 
   CSV contains finest-grid time, numerical/analytic state and absolute error. Orders use maximum-in-time errors. Distinguish the older coarse-step order reduction from the resolved refinement here.
+- [Stiff cosine-tracking ODE: SDIRK2](<https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-stiff-cosine-exact-en>)
+  relation: same-problem
+  reference_kind: analytic
+
+  Analytic reference rate=1000; 1000/2000/4000 steps give rate*h=1,0.5,0.25. Uses fixed gamma=1-1/sqrt(2) and the existing Newton stage solver. Separate decay: y'=-1e8*y, y(0)=1, h=1. No adaptive stepping. An analytic reference card now links the existing fixed inputs and saved results: formula, point/time/radial sampling, edition SHA and executable code. This metadata registration is not a new execution.
 
 ## Code and validation
 

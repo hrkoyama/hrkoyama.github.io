@@ -314,7 +314,11 @@ BDF2/SDIRK2と倍分割適応法。解析Jacobian・段階内だけの因子再�
 
 ##### [1次元Bratu非線形境界値問題](https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu/?lang=ja#references-ja) (`bratu`)
 
-参照解一覧の対応カードは未登録です。問題ごとの参照・検証資料に、解析的基準・数値参照・保存則などの確認範囲を示します。
+- [1次元Bratu：小さい枝のNewton–GMRES](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-bratu-lower-branch-analytic-ja) (`bratu-lower-branch-analytic`; 同じ問題の参照; 解析参照)
+
+既存の固定入力・保存結果に対応する解析参照カードを追加。解析式、点・時刻・動径の標本化、配布版SHAと実行コードを相互に辿れます。過去の計算を再実行した記録ではありません。
+
+[既存の参照図](/numerical-methods-atlas/problems/bratu/?lang=ja)
 
 ##### [減衰Newton法による3次方程式の求根](https://hrkoyama.github.io/numerical-methods-atlas/problems/cubic-root/?lang=ja#references-ja) (`cubic-root`)
 
@@ -742,7 +746,11 @@ Separate the initial layer, integration error and QSSA modeling error in a four-
 
 ##### [One-dimensional Bratu boundary-value problem](https://hrkoyama.github.io/numerical-methods-atlas/problems/bratu/?lang=en#references-en) (`bratu`)
 
-No corresponding reference-library card is registered. The problem’s references and checks describe its analytic standards, numerical references or conservation checks.
+- [1D Bratu: Newton–GMRES on the lower branch](https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-bratu-lower-branch-analytic-en) (`bratu-lower-branch-analytic`; Same-problem reference; Analytic reference)
+
+An analytic reference card now links the existing fixed inputs and saved results: formula, point/time/radial sampling, edition SHA and executable code. This metadata registration is not a new execution.
+
+[Existing reference profile](/numerical-methods-atlas/problems/bratu/?lang=en)
 
 ##### [Damped Newton root of a cubic equation](https://hrkoyama.github.io/numerical-methods-atlas/problems/cubic-root/?lang=en#references-en) (`cubic-root`)
 

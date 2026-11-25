@@ -64,6 +64,36 @@
     "クランク・ニコルソン法",
     "CN法"
   ],
+  "depth_additional_releases": [
+    {
+      "group": "biology-space-controls",
+      "edition": "2026-11-25",
+      "case_ids": [
+        "schnakenberg-2d-boundary-modes"
+      ]
+    }
+  ],
+  "supplemental_scope_profiles": [
+    {
+      "release": {
+        "group": "biology-space-controls",
+        "edition": "2026-11-25",
+        "case_ids": [
+          "schnakenberg-2d-boundary-modes"
+        ]
+      },
+      "scope": {
+        "ja": "2つのNeumann摂動とDirichlet摂動を独立な非線形Galerkin参照と比較します。",
+        "en": "Compare two Neumann perturbations and a Dirichlet perturbation against nonlinear Galerkin references."
+      },
+      "limits": [
+        {
+          "ja": "短時間の小振幅・固定初期値です。一般的な模様選択、成長後の成熟パターン、原著図の再現は主張しません。有限の参照差を連続体誤差の厳密上界と呼びません。",
+          "en": "This short small-amplitude study does not establish general pattern selection, mature patterns or reproduction of original figures. Finite reference differences are not rigorous continuum error bounds."
+        }
+      ]
+    }
+  ],
   "url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/crank-nicolson/",
   "json_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/crank-nicolson/index.json",
   "markdown_url": "https://hrkoyama.github.io/numerical-methods-atlas/methods/crank-nicolson/index.md",
@@ -100,6 +130,20 @@
         "url": {
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#heat-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#heat-en"
+        }
+      },
+      {
+        "id": "bio-schnakenberg",
+        "name": {
+          "ja": "Schnakenberg反応拡散",
+          "en": "Schnakenberg reaction–diffusion"
+        },
+        "problem_ids": [
+          "schnakenberg-2d-boundary-modes"
+        ],
+        "url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-schnakenberg-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=en#bio-schnakenberg-en"
         }
       }
     ],
@@ -139,6 +183,67 @@
           "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-dirichlet/?lang=ja#references-ja",
           "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/heat-dirichlet/?lang=en#references-en"
         }
+      },
+      {
+        "id": "schnakenberg-2d-boundary-modes",
+        "name": {
+          "ja": "Schnakenberg：2D境界と初期モード",
+          "en": "Schnakenberg:2D boundaries and initial modes"
+        },
+        "image": {
+          "url": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/results/schnakenberg-2d-boundary-modes.png",
+          "sha256": "f989caee1655dd22ab0a8aa99d3e8b9b4d0805d72bb7e425fffa99ec22e35a33",
+          "width": 1827,
+          "height": 623,
+          "caption": {
+            "ja": "2つのNeumann摂動とDirichlet摂動を独立な非線形Galerkin参照と比較します。 短時間の小振幅・固定初期値です。一般的な模様選択、成長後の成熟パターン、原著図の再現は主張しません。有限の参照差を連続体誤差の厳密上界と呼びません。",
+            "en": "Compare two Neumann perturbations and a Dirichlet perturbation against nonlinear Galerkin references. This short small-amplitude study does not establish general pattern selection, mature patterns or reproduction of original figures. Finite reference differences are not rigorous continuum error bounds."
+          },
+          "source_kind": "existing-figure"
+        },
+        "hub": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/schnakenberg-2d-boundary-modes/?lang=ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/schnakenberg-2d-boundary-modes/?lang=en"
+        },
+        "code": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/schnakenberg-2d-boundary-modes/?lang=ja#code-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/schnakenberg-2d-boundary-modes/?lang=en#code-en"
+        },
+        "executions": [
+          {
+            "id": "schnakenberg-2d-boundary-modes",
+            "kind": "supplement",
+            "name": {
+              "ja": "Schnakenberg：2D境界と初期モード",
+              "en": "Schnakenberg:2D boundaries and initial modes"
+            },
+            "scope": {
+              "ja": "2つのNeumann摂動とDirichlet摂動を独立な非線形Galerkin参照と比較します。",
+              "en": "Compare two Neumann perturbations and a Dirichlet perturbation against nonlinear Galerkin references."
+            },
+            "method_ids": [
+              "crank-nicolson",
+              "strang-splitting",
+              "rk45"
+            ],
+            "guide": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/?lang=ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/?lang=en"
+            },
+            "input": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/inputs.json",
+            "download": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/atlas-biology-space-controls-2026-11-25.zip",
+            "verification": "https://hrkoyama.github.io/code/validated-examples/2026-11-25/biology-space-controls/verification.json"
+          }
+        ],
+        "role": "execution",
+        "method_note": {
+          "ja": "セル平均のCN拡散と局所陰的中点反応をStrang分割します。独立参照は正規直交sin/cos Galerkin、K12/18,Q96/192と2許容誤差の4列を全初期値で残します。 元のDirichlet K12/18参照は初回の相対資格基準を満たさなかったため、失敗を残し、D境界だけK24/32・Q128/192の4参照を追加します。",
+          "en": "Strang-split cell-averageCN diffusion and local implicit-midpoint reactions. Independent orthonormal sine/cosine Galerkin references retain four K12/18,Q96/192,tolerance rows for every initial condition. The original Dirichlet K12/18 reference failed its first relative qualification. Preserve that failure and add four D-only K24/32,Q128/192 reference actions."
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/schnakenberg-2d-boundary-modes/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/schnakenberg-2d-boundary-modes/?lang=en#references-en"
+        }
       }
     ],
     "references": [
@@ -172,6 +277,40 @@
             "view": {
               "ja": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=ja#/exact-solutions?case=sine-heat",
               "en": "https://hrkoyama.github.io/numerical-methods-atlas/?lang=en#/exact-solutions?case=sine-heat"
+            }
+          }
+        ]
+      },
+      {
+        "problem_id": "schnakenberg-2d-boundary-modes",
+        "problem_name": {
+          "ja": "Schnakenberg：2D境界と初期モード",
+          "en": "Schnakenberg:2D boundaries and initial modes"
+        },
+        "reference_url": {
+          "ja": "https://hrkoyama.github.io/numerical-methods-atlas/problems/schnakenberg-2d-boundary-modes/?lang=ja#references-ja",
+          "en": "https://hrkoyama.github.io/numerical-methods-atlas/problems/schnakenberg-2d-boundary-modes/?lang=en#references-en"
+        },
+        "cases": [
+          {
+            "id": "schnakenberg-2d-boundary-modes",
+            "title": {
+              "ja": "Schnakenberg：2D境界と初期モード",
+              "en": "Schnakenberg:2D boundaries and initial modes"
+            },
+            "kind": "numerical-reference",
+            "relation": "same-problem",
+            "note": {
+              "ja": "短時間の小振幅・固定初期値です。一般的な模様選択、成長後の成熟パターン、原著図の再現は主張しません。有限の参照差を連続体誤差の厳密上界と呼びません。",
+              "en": "This short small-amplitude study does not establish general pattern selection, mature patterns or reproduction of original figures. Finite reference differences are not rigorous continuum error bounds."
+            },
+            "url": {
+              "ja": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=ja#solution-schnakenberg-2d-boundary-modes-ja",
+              "en": "https://hrkoyama.github.io/numerical-methods-atlas/solutions/?lang=en#solution-schnakenberg-2d-boundary-modes-en"
+            },
+            "view": {
+              "ja": "/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/?lang=ja#schnakenberg-2d-boundary-modes-ja-measurements",
+              "en": "/numerical-methods-atlas/validation/schnakenberg-2d-boundary-modes/?lang=en#schnakenberg-2d-boundary-modes-en-measurements"
             }
           }
         ]

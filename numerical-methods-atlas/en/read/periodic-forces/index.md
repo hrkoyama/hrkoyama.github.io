@@ -100,6 +100,8 @@ Accepting a practical trajectory additionally requires timestep refinement, tigh
 
 Car–Parrinello dynamics is a distinct formulation propagating fictitious electronic degrees of freedom alongside nuclei. A force provider on the Born–Oppenheimer surface is not a CPMD implementation. The cross-field navigation separately shows the executed scope of DFT, force evaluation, nuclear integration and temperature control.
 
+The method registry also links a separate two-state BO/CP-type educational model. Its fixed inputs are distinct from this chapter’s He2 forces/local Verlet interface; neither example establishes general Kohn–Sham trajectories, real materials or long-time MD.
+
 $$
 \mathbf v_{n+1/2}=\mathbf v_n+\frac{\Delta t}{2M}\mathbf F(\mathbf R_n),\quad\mathbf R_{n+1}=\mathbf R_n+\Delta t\,\mathbf v_{n+1/2},\quad\mathbf v_{n+1}=\mathbf v_{n+1/2}+\frac{\Delta t}{2M}\mathbf F(\mathbf R_{n+1})
 $$
@@ -107,6 +109,10 @@ $$
 $$
 \mathcal E_n=E_{\mathrm{BO}}(\mathbf R_n)+\sum_I\frac{M_I}{2}|\mathbf v_{I,n}|^2,\qquad \Delta\mathcal E_n=\mathcal E_n-\mathcal E_0
 $$
+
+A two-state BO / CP-type model with a short nuclear thermostat coupling: https://hrkoyama.github.io/numerical-methods-atlas/validation/two-state-bo-cp-ou/?lang=en
+
+https://hrkoyama.github.io/code/validated-examples/2026-11-25/quantum-small/source-manifest.json
 
 ## Stored measurements
 

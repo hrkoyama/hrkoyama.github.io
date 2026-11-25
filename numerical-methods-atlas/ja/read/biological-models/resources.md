@@ -41,13 +41,13 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/
   閉じた一様混合集団の規格化SIR系。SEIRは曝露区画を追加します。人数と割合ではβの定義が異なります。 限定した実行例：閉鎖・均質な人口割合SIR。RK4と別実装のSciPy DOP853を比較。人口保存・非負性・時間収束を確認。SEIR・空間伝播・実データ較正は対象外。
 - [Fisher–KPP侵入前線](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-fisher-kpp-ja>)
 
-  拡散と増殖を結ぶ侵入前線。表示は規格化した代表形で、波の速度と境界条件は解説先へ。 文献解説のみ。
+  拡散と増殖を結ぶ侵入前線。表示は規格化した代表形で、波の速度と境界条件は解説先へ。 全モデル族の実装ではありません。今回の固定例：Fisher–KPP：特殊波速の厳密前線
 - [Monod増殖とケモスタット](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-monod-ja>)
 
   基質S、菌体X、収率Y、希釈率dの代表形。d=0の閉鎖バッチとケモスタットを区別します。 文献解説のみ。
 - [Hodgkin–Huxley膜動態](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-hodgkin-huxley-ja>)
 
-  電位とゲート変数z=m,h,nの膜モデル。元のイカ軸索モデルと、人心筋や空間ケーブルへの拡張を区別します。 文献解説のみ。
+  電位とゲート変数z=m,h,nの膜モデル。元のイカ軸索モデルと、人心筋や空間ケーブルへの拡張を区別します。 全モデル族の実装ではありません。今回の固定例：Hodgkin–Huxley：電位固定・静止平衡・発火
 - [Turing反応拡散の枠組み](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-turing-ja>)
 
   2成分反応拡散の枠組み。f・gは個別に指定する必要があり、模様の画像だけでTuring機構とは判定できません。 限定した実行例：a=0.1,b=0.9、拡散係数0.01/1、長さ2πの1次元周期Schnakenberg系。旧線形発現例を保持し、固定した反射対称の有限振幅初期値の非線形発展と成長後パターンを独立Fourier–Galerkin/Radau参照および空間・時間細分化で比較します。一般の模様選択、2次元、生物実験への較正、流体連成には広げません。
@@ -56,7 +56,7 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/
   高速の興奮と低速の回復を結ぶ規格化した代表形。係数・符号・空間拡張には複数の規約があります。 限定した実行例：公開実行例はD=0の空間なしの縮約ODEです。FHN/BVP型の縮約ODEの限定検証です。HH全イオンチャネル、空間軸索、患者データ、実測電気生理の再現を含みません。
 - [Keller–Segel走化性](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-keller-segel-ja>)
 
-  細胞密度が化学物質の勾配に応答する2場の代表的な縮約系。次元・境界・化学場の動態が重要です。 文献解説のみ。
+  細胞密度が化学物質の勾配に応答する2場の代表的な縮約系。次元・境界・化学場の動態が重要です。 全モデル族の実装ではありません。今回の固定例：Keller–Segel：連成流束の製造解
 - [Gierer–Meinhardt活性化・抑制](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-gierer-meinhardt-ja>)
 
   短距離活性化・長距離抑制の簡略代表形。飽和項や基礎生成項には複数の変種があります。 文献解説のみ。
@@ -65,7 +65,7 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/
   流体と変形構造の結合の入口。構造の力・構成則が別途必要で、既存の非圧縮ソルバーだけで実装済みとはなりません。 文献解説のみ。
 - [化学マスター方程式とGillespie SSA](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-chemical-master-ja>)
 
-  整数分子数n、反応ジャンプνj、傾向関数ajの確率モデル。Gillespie SSAは軌道を標本化する解法で、反応網自体とは区別します。 文献解説のみ。
+  整数分子数n、反応ジャンプνj、傾向関数ajの確率モデル。Gillespie SSAは軌道を標本化する解法で、反応網自体とは区別します。 全モデル族の実装ではありません。今回の固定例：移入–死亡SSA：有限時刻の厳密分布
 - [Mackey–Glass遅延生理フィードバック](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-mackey-glass-ja>)
 
   遅延を持つフィードバックODE。初期値1点だけでなく、遅延区間の履歴関数が必要です。 文献解説のみ。
@@ -74,7 +74,7 @@ https://hrkoyama.github.io/numerical-methods-atlas/ja/read/biological-models/
   利得行列Aに対する戦略割合の動態。定常点と進化的安定戦略の同一視はしません。 文献解説のみ。
 - [Schnakenberg反応拡散](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-schnakenberg-ja>)
 
-  自己触媒反応の空間拡張。反応平衡と分散関係から模様の発生を検証するための数理モデルです。 限定した実行例：a=0.1,b=0.9、拡散係数0.01/1、長さ2πの1次元周期Schnakenberg系。旧線形発現例を保持し、固定した反射対称の有限振幅初期値の非線形発展と成長後パターンを独立Fourier–Galerkin/Radau参照および空間・時間細分化で比較します。一般の模様選択、2次元、生物実験への較正、流体連成には広げません。
+  自己触媒反応の空間拡張。反応平衡と分散関係から模様の発生を検証するための数理モデルです。 限定した実行例：a=0.1,b=0.9、拡散係数0.01/1、長さ2πの1次元周期Schnakenberg系。旧線形発現例を保持し、固定した反射対称の有限振幅初期値の非線形発展と成長後パターンを独立Fourier–Galerkin/Radau参照および空間・時間細分化で比較します。この旧1次元例だけから一般の模様選択、生物実験への較正、流体連成へ広げません。 全モデル族の実装ではありません。今回の固定例：Schnakenberg：2D境界と初期モード
 - [Shigesada–Kawasaki–Teramoto交差拡散](<https://hrkoyama.github.io/numerical-methods-atlas/equations/?lang=ja#bio-skt-ja>)
 
   自己拡散・交差拡散と競争を含む系。表示は環境ポテンシャルを省いた一様環境での縮約形です。 文献解説のみ。
